@@ -1,0 +1,62 @@
+{
+  "source": {
+    "id": "city6_7|64x64:ab05ac59977a40ab",
+    "name": "city6_7",
+    "key": "64x64:ab05ac59977a40ab",
+    "width": 64,
+    "height": 64,
+    "pixelSha256": "1b30711b9c3f28298c223ee408e8605e670aaeb890df816d5782af8c528e738e",
+    "original": "originals/64x64-ab05ac59977a40ab.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "id1",
+        "map": "maps/e4m3.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 19,
+        "faces": 196,
+        "visibleCandidateFaces": 196,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "dopa",
+        "map": "maps/e5m4.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dimension of the Past/pak0.pak",
+        "slot": 30,
+        "faces": 724,
+        "visibleCandidateFaces": 724,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "dopa",
+        "map": "maps/e5m7.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dimension of the Past/pak0.pak",
+        "slot": 33,
+        "faces": 1157,
+        "visibleCandidateFaces": 1157,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "dopa",
+        "map": "maps/e5sm1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dimension of the Past/pak0.pak",
+        "slot": 22,
+        "faces": 2798,
+        "visibleCandidateFaces": 2798,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "referenceSha256": "0679f5f68ad7d24e8163a28e400cdb61a930740bc4267add4bd526f6a1b80a7b"
+}

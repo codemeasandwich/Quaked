@@ -1,0 +1,25 @@
+{
+  "qualification": "Additional lightweight public checks on isolated ordinary-texture integration; prior35-pass receipt unchanged; no build/commit/push by reviewer",
+  "workspace": "/Users/bri/.codex/worktrees/official-textures-q92/Quaked",
+  "nodeVersion": "v24.13.0",
+  "sourceRoot": "/Users/bri/quaked",
+  "passed": 11,
+  "total": 11,
+  "skipped": 0,
+  "exitCode": 0,
+  "suites": {
+    "texture_identity_variants": 9,
+    "texture_source_builder": 2
+  },
+  "inputSha256": {
+    "tests/texture_identity_variants_test.js": "11d15ce7c5c5bbd36dd839efbb5cb790e62cf59cf9f4e5d57cbc8804736e43e7",
+    "tests/texture_source_builder_test.js": "7a529124170557ebc253c7c4fd0653f820c766651e7cd7cb177ee5d4f4ad0a81",
+    "tools/build_texture_sources.mjs": "ef903bfa02cd3d90f52db91981842393991061b42317f0770544337911d367c6",
+    "src/newer/render/r_newertextures.js": "5aabea2d4c5e713ae1c81cf4e606ef3b387ce98bcca0b6e293719a7cded32246",
+    "newer/textures/index.json": "e35644be527818be967f46294f8b8da14506f82b3f72fade37f41828617f65a3"
+  },
+  "log": "official-integration-related-node24-tests.txt",
+  "logSha256": "e62d33356323a7ea1f827858e9b4ffa6d52edb77d6300547463de96b85cc5ad5",
+  "priorReceipt": "integration-public-verification.json",
+  "priorReceiptSha256": "74c0414c53b2aa6be75bd494e5122815981416ea919de8fe91bf472abeda931c"
+}

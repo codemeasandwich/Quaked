@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "metal7_1",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-metal7_1.png",
+  "originalSha256": "583c956fa207ed2525fbaae8a01b728254ea461973398dad35818ba062a84f1e",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-12/metal7_1-photographic-seam-v2-4x.png",
+  "authoringDiffuseSha256": "549e5cc925327aba1b1a245786439a424d6d06a95e7aba02d6e352f70aa1b8c1",
+  "toolSha256": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.12,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-12/metal7_1-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "2ab2af313e1527ab35d1d8c16a8e4e42af3a1d1838fb1f242e2652e1fb6b1320",
+      "bytes": 7610,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-12/metal7_1-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "ac66b1d7417a5ad42f22608f350da6343c11cc7ca1973e4e7362c9fdd6dd8bde",
+      "bytes": 31812,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-12/metal7_1-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "5c414cc82d02887033e8db8f2bee61f70896d08e5731edc6ac443e372c0582c2",
+      "bytes": 22876,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-12/metal7_1-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "805e02752133b4bf5e78b0dd0f35ad233c63b47d59f6fb05ab79856cbfbbb932",
+      "bytes": 22486,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-12/metal7_1-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "5ec25121215a430d231ec1aa0f47b9fa494c08402a08dec07d365e3eeec8f3c1",
+      "bytes": 5554,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    32,
+    32
+  ],
+  "distanceMAE": 4.283528645833333,
+  "distanceMaximum": 22.0,
+  "secondaryComparisonDimensions": [
+    16,
+    16
+  ],
+  "secondaryDistanceMAE": 2.2682291666666665,
+  "secondaryDistanceMaximum": 10.0,
+  "colourCompressionMAE": 1.5747324625651042,
+  "heightCompressionMAE": 1.4387664794921875,
+  "heightCompressionMaximum": 9.0,
+  "normalAngularMean": 0.9944886339271264,
+  "normalAngularP99": 2.483861704370756,
+  "normalAngularMaximum": 3.9295160965536065,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

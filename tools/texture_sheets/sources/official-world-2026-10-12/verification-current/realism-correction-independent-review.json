@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "createdAt": "2026-10-13T12:42:11.379644+00:00",
+  "reviewer": "texture_plan independent subagent",
+  "authority": "Owner explicitly rejected pixelated/grainy drafts. Earlier six drafts remainHOLD; source fidelity or reducedimage metrics cannot overrule photographicmaterial quality.",
+  "scope": "Read-only visual comparison of revised wood/cliff and cleaner stone, plus exact nativeStone_01bond measurement; no generation or asset/index/engine edits.",
+  "inputs": {
+    "woodRejected": {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/TF_Wood01-generated-v1.png",
+      "sha256": "73148ad82c3b017153f3cd5ddb95a22582d726ad79327b84e8aa65bf55dea938",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    "woodRealistic": {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/TF_Wood01-generated-realistic-v2.png",
+      "sha256": "05e0111f6170a9e6e5cf4ad45748ea648c3de2cbedf8c1dfa7e9492463e6e737",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    "cliffRejectedComparison": {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/TF_Cliff2-generated-v2.png",
+      "sha256": "2b93cede9fc03622b642baccb475d93882363694e1b62e63c41d0ccac3bd47ed",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    "cliffRealistic": {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/TF_Cliff2-generated-realistic-v3.png",
+      "sha256": "d7d673c61e844d07a014e2d8b460bd71919ea0fd5de4781a37705d584aae9da4",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    "nativeStone": {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Stone_01.png",
+      "sha256": "af89808ea1fb40e1828acd5176900b109e1dd4792d083d34d0d350e6b23f2617",
+      "dimensions": [
+        128,
+        128
+      ]
+    },
+    "cleanStoneNeedsBondCorrection": {
+      "path": "/Users/bri/.codex/generated_images/01a12eef-bc66-7c03-84c7-d2bb59f40c82/exec-14761a07-23af-4dbe-b2f8-4ee4e9e672e2.png",
+      "sha256": "fbde876727029d5debe4f0cdc1cbb808297277c8cf6053cbcc3b4cd79ad642fd",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    }
+  },
+  "findings": {
+    "woodRealistic": "Positive photographic direction. Continuous lengthwise fibers, coherent knots, checking and local surfacewear replace prior repeated dark wormholes/stipple and harsh black voids. Eight vertical boards remain. This is a draftdirection review, not finished runtime/tile acceptance. Firstplank is somewhat wider than nominal source cadence; verify finishededge/jointphase before binding.",
+    "cliffRealistic": "Positive photographic direction. Continuous slate-like facets, thin cleaving layers and localized mineralwear read as physical rock. Prior crystalline/granular noise blanket is reduced; broadplanes now coexist with small-scale detail. No mortar or added decorativeframe. Final palette, broadlayer relationship, tiling and1024Q92output remain toreview.",
+    "cleanStoneNeedsBondCorrection": "Clean continuous weatheredstone material is a clear improvement, but eachcourse has one near-center verticaljoint and lacks sourcehalf-brick stagger. HOLDforbondcorrection. Preserve cleaner material while correcting layout."
+  },
+  "nativeStone01": {
+    "nativeDimensions": [
+      128,
+      128
+    ],
+    "courseBoundariesY": [
+      0,
+      32,
+      64,
+      96,
+      128
+    ],
+    "verticalJointsByCourseNominal": [
+      [
+        32,
+        96
+      ],
+      [
+        0,
+        64,
+        128
+      ],
+      [
+        32,
+        96
+      ],
+      [
+        0,
+        64,
+        128
+      ]
+    ],
+    "normalizedInteriorJointsByCourse": [
+      [
+        0.25,
+        0.75
+      ],
+      [
+        0.5
+      ],
+      [
+        0.25,
+        0.75
+      ],
+      [
+        0.5
+      ]
+    ],
+    "wrap": "Rows2/4alsojointattheleft/rightwrapedge. Rows1/3havehalfblocksatleft/rightwhichjoinacrosshorizontalrepeat. Fourcoursepatternrepeatstop/bottom.",
+    "nativeMeasurementGuide": "/private/tmp/quaked-texture-independent-review/stone01-native-phase-grid.png"
+  },
+  "suggestedCorrectionPrompt": "Keep the current image\u2019s clean photographic weathered stone faces, fine continuous surface texture, natural wear, warm grey-brown palette and restrained light mortar. Correct only the running-bond layout. Divide the square into exactly four equal-height horizontal courses, with horizontal joints at25%,50%,75%. In the first and third courses, use a half block at the left edge, one full block across the center, and a half block at the right edge: vertical joints only at25%and75%width. In the second and fourth courses, use two full blocks with a single interior vertical joint exactly at50%width, plus the left/right wrap boundary. A whole block spans50%imagewidth and25%imageheight. Preserve this alternating half-block offset; do not place a center joint in every row. Keep the existing realistic material quality: no pixelated reference dither, grain blanket, wormholes, invented extra grooves or thick bevels.",
+  "acceptanceStatus": "Earlier six drafts remainHOLD. Revised wood/cliff are positive direction only. Clean stone remainsHOLDforbond correction. No registration approval from this review.",
+  "responsibleOwner": "root campaign coordinator",
+  "nextAction": "Correct stone bond without restoring grain; review all six revised finished4xQ92images, reducedappearance andedges before acceptance/registration."
+}

@@ -1,0 +1,164 @@
+{
+  "qualification": "Static-world single-face material proof for the riveted panel. Earlier narrow-join dark frames are retained as unusable visual evidence. Native flashlight exposes broad face39827; no visual claim for all four surfaces or all maps.",
+  "captures": [
+    {
+      "file": "mge4m1-quiet-broad-lit-far.json",
+      "sha256": "a81a242efb0c37d10dbd5af73d4c9f3e3957de692f3eb9c580cad5fd99fd45ef",
+      "state": "ready",
+      "art": "hd",
+      "view": "far",
+      "relief": true,
+      "flashlight": true,
+      "beamOn": true,
+      "map": {
+        "name": "maps/mge4m1.bsp",
+        "sha256": "9c2711cd7cfababcc8b5620888c09dd7dffaf6d284c1c36eb0510650669b96fd",
+        "faces": 71470
+      },
+      "kind": "single-surface",
+      "faces": [
+        39827
+      ],
+      "cameraError": 0.05412658773652741,
+      "checks": 27,
+      "failedChecks": [],
+      "errors": [],
+      "shaderErrors": [],
+      "dimensions": [
+        "[256, 256]",
+        "[512, 512]"
+      ],
+      "normalDimensions": [
+        "[256, 256]",
+        "[512, 512]"
+      ]
+    },
+    {
+      "file": "mge4m1-quiet-broad-lit-flat.json",
+      "sha256": "c0c3cd57b7ad5b1e1a95b6022e71618f020f84323535021d7fc0d860f19a9122",
+      "state": "ready",
+      "art": "hd",
+      "view": "oblique",
+      "relief": false,
+      "flashlight": true,
+      "beamOn": true,
+      "map": {
+        "name": "maps/mge4m1.bsp",
+        "sha256": "9c2711cd7cfababcc8b5620888c09dd7dffaf6d284c1c36eb0510650669b96fd",
+        "faces": 71470
+      },
+      "kind": "single-surface",
+      "faces": [
+        39827
+      ],
+      "cameraError": 0.05412658773652741,
+      "checks": 27,
+      "failedChecks": [],
+      "errors": [],
+      "shaderErrors": [],
+      "dimensions": [
+        "[256, 256]",
+        "[512, 512]"
+      ],
+      "normalDimensions": [
+        "None"
+      ]
+    },
+    {
+      "file": "mge4m1-quiet-broad-lit-near.json",
+      "sha256": "b1a63e090c7012159aca78b3e09c08dfc90bd4e1b42bfcaf1cfbfcc030791b26",
+      "state": "ready",
+      "art": "hd",
+      "view": "near",
+      "relief": true,
+      "flashlight": true,
+      "beamOn": true,
+      "map": {
+        "name": "maps/mge4m1.bsp",
+        "sha256": "9c2711cd7cfababcc8b5620888c09dd7dffaf6d284c1c36eb0510650669b96fd",
+        "faces": 71470
+      },
+      "kind": "single-surface",
+      "faces": [
+        39827
+      ],
+      "cameraError": 0.05412658773652741,
+      "checks": 27,
+      "failedChecks": [],
+      "errors": [],
+      "shaderErrors": [],
+      "dimensions": [
+        "[256, 256]",
+        "[512, 512]"
+      ],
+      "normalDimensions": [
+        "[256, 256]",
+        "[512, 512]"
+      ]
+    },
+    {
+      "file": "mge4m1-quiet-broad-lit-oblique.json",
+      "sha256": "740f0de7ccb866c3019b4fd846a42e90aa20d83baf2ef753534a2ecf3fb09f8e",
+      "state": "ready",
+      "art": "hd",
+      "view": "oblique",
+      "relief": true,
+      "flashlight": true,
+      "beamOn": true,
+      "map": {
+        "name": "maps/mge4m1.bsp",
+        "sha256": "9c2711cd7cfababcc8b5620888c09dd7dffaf6d284c1c36eb0510650669b96fd",
+        "faces": 71470
+      },
+      "kind": "single-surface",
+      "faces": [
+        39827
+      ],
+      "cameraError": 0.05412658773652741,
+      "checks": 27,
+      "failedChecks": [],
+      "errors": [],
+      "shaderErrors": [],
+      "dimensions": [
+        "[256, 256]",
+        "[512, 512]"
+      ],
+      "normalDimensions": [
+        "[256, 256]",
+        "[512, 512]"
+      ]
+    },
+    {
+      "file": "mge4m1-quiet-broad-original-far.json",
+      "sha256": "3cbeec066c18940e381a6633c8dbf55a2b443bdb0ba75e0b45950aef5800e75c",
+      "state": "ready",
+      "art": "original",
+      "view": "far",
+      "relief": true,
+      "flashlight": true,
+      "beamOn": true,
+      "map": {
+        "name": "maps/mge4m1.bsp",
+        "sha256": "9c2711cd7cfababcc8b5620888c09dd7dffaf6d284c1c36eb0510650669b96fd",
+        "faces": 71470
+      },
+      "kind": "single-surface",
+      "faces": [
+        39827
+      ],
+      "cameraError": 0.05412658773652741,
+      "checks": 27,
+      "failedChecks": [],
+      "errors": [],
+      "shaderErrors": [],
+      "dimensions": [
+        "[128, 128]",
+        "[64, 64]"
+      ],
+      "normalDimensions": [
+        "[128, 128]",
+        "[64, 64]"
+      ]
+    }
+  ]
+}

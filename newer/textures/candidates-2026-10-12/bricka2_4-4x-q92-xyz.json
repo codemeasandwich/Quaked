@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "bricka2_4",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-bricka2_4.png",
+  "originalSha256": "7b957baafff66a9f86b20b43889f2db52634b1b1a9654af520ea91beca44069a",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-12/bricka2_4-photographic-v2-4x.png",
+  "authoringDiffuseSha256": "08995be75048678c8731a6550b1812db28aa7b982f6fb69796339c26414b8cef",
+  "toolSha256": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "profile": {
+    "bands": [
+      0.35,
+      1,
+      1.4,
+      1
+    ],
+    "groove": 1.4,
+    "bump": 0.7,
+    "glow": 0,
+    "strength": 0.3,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-12/bricka2_4-4x-q92-xyz-diffuse.webp",
+      "sha256": "d20699f84097ebecf1b22abbbad93114620a6c70921edb1c634ae05a06d26df0",
+      "bytes": 27004,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-12/bricka2_4-4x-q92-xyz-height.webp",
+      "sha256": "559fc03a36a2b8bd2a72914f14a969ec75d654a5f28b2cf70b2af968e0ac1f48",
+      "bytes": 31894,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-12/bricka2_4-4x-q92-xyz-normalX.webp",
+      "sha256": "e95eb4541dc815c88e0a55bd56f15e184a7fac76fa9e5c09504e28094c9ed851",
+      "bytes": 28708,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-12/bricka2_4-4x-q92-xyz-normalY.webp",
+      "sha256": "509fa3b5aca75828a92df2c186b755fdcb2c5e0dd513c9abe6d1092ed22b2967",
+      "bytes": 28884,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-12/bricka2_4-4x-q92-xyz-normalZ.webp",
+      "sha256": "f35bce5cba019999da4522819e621412b89aadd6b018b89c95829e00eedc154c",
+      "bytes": 8520,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    32,
+    32
+  ],
+  "distanceMAE": 3.6110026041666665,
+  "distanceMaximum": 21.0,
+  "secondaryComparisonDimensions": [
+    16,
+    16
+  ],
+  "secondaryDistanceMAE": 2.7864583333333335,
+  "secondaryDistanceMaximum": 12.0,
+  "colourCompressionMAE": 2.5401102701822915,
+  "heightCompressionMAE": 1.4090423583984375,
+  "heightCompressionMaximum": 8.0,
+  "normalAngularMean": 1.0105178907800434,
+  "normalAngularP99": 2.57938393557094,
+  "normalAngularMaximum": 4.214238608169465,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

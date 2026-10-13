@@ -1,0 +1,86 @@
+{
+  "qualification": "Independent CLI replay and geometric protected-region verification; no visual acceptance",
+  "count": 6,
+  "testSha256": "9a33cdbe8c6eb4d7ac37d4169fe54c061bd790187f9b28e762542120eed5da8a",
+  "finisherSha256": "e0ba992126bd5e591cf8fe319b4aae4c3296f651d342a329166f2f54c6666020",
+  "rows": [
+    {
+      "name": "TF_Wood01",
+      "outputSha256": "56e96fb1dab2d38ebc39a0ee5212a4721a5e70435f613b0439dcad5528c851f4",
+      "dimensions": [
+        512,
+        512
+      ],
+      "independentlyProtectedPixels": 196608,
+      "changedPixels": 55746,
+      "outsideBandUnchanged": true,
+      "realMortarPreserved": false,
+      "verticalTransitionPreserved": false
+    },
+    {
+      "name": "TF_Wood01c",
+      "outputSha256": "26a9e033af0e73cc138cea8ee820b16b1f9b538d3964e9c4f8852cd6854cc439",
+      "dimensions": [
+        512,
+        512
+      ],
+      "independentlyProtectedPixels": 196608,
+      "changedPixels": 53928,
+      "outsideBandUnchanged": true,
+      "realMortarPreserved": false,
+      "verticalTransitionPreserved": false
+    },
+    {
+      "name": "TF_Stone_01",
+      "outputSha256": "1b611a1f42bba0a90fbfde028b5588cb562190a3e3a73317403f5c20c08d231e",
+      "dimensions": [
+        512,
+        512
+      ],
+      "independentlyProtectedPixels": 230912,
+      "changedPixels": 26900,
+      "outsideBandUnchanged": true,
+      "realMortarPreserved": true,
+      "verticalTransitionPreserved": false
+    },
+    {
+      "name": "TF_Stone3",
+      "outputSha256": "d5566a41b4341201f257a8fee72fa8d0bf77f751a78e1645808a96394fc2f296",
+      "dimensions": [
+        512,
+        512
+      ],
+      "independentlyProtectedPixels": 232448,
+      "changedPixels": 23778,
+      "outsideBandUnchanged": true,
+      "realMortarPreserved": true,
+      "verticalTransitionPreserved": false
+    },
+    {
+      "name": "TF_Cliff2",
+      "outputSha256": "ecb2da0ea1dd7f93bb0e6e8e259da765ea4e7450c3bf8eca011d0178fbcb547c",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "independentlyProtectedPixels": 589824,
+      "changedPixels": 410979,
+      "outsideBandUnchanged": true,
+      "realMortarPreserved": false,
+      "verticalTransitionPreserved": false
+    },
+    {
+      "name": "TF_Cliff2b",
+      "outputSha256": "b99faf1db365843fd61ad2fd7c30a896cdb623503147e1ec9faaa2b638f3e394",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "independentlyProtectedPixels": 688128,
+      "changedPixels": 323088,
+      "outsideBandUnchanged": true,
+      "realMortarPreserved": false,
+      "verticalTransitionPreserved": true
+    }
+  ]
+}

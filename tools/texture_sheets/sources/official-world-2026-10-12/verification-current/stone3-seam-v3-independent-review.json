@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "createdAt": "2026-10-13T14:20:47.651145+00:00",
+  "reviewer": "texture_plan independent subagent",
+  "scope": "Read-only final Stone3v3 diffuse review, authoringscript inspection, publicCLIreplay and preservationcheck. No asset/index/engine edits.",
+  "result": "Accept exactStone3v3Q92diffuse for owner/GPUtrial with other5previouslyreviewedseam-v2candidates.",
+  "runtimeFiles": {
+    "diffuse": {
+      "path": "newer/textures/candidates-2026-10-12/TF_Stone3-realistic-seam-v3-4x-q92-xyz-diffuse.webp",
+      "sha256": "1f0563bc817639d1bedd467d9c58505d21e67455b8086a739f9e1ac02e693b2e",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "height": {
+      "path": "newer/textures/candidates-2026-10-12/TF_Stone3-realistic-seam-v3-4x-q92-xyz-height.webp",
+      "sha256": "8506951f104a31b50c21c07ce760c17f412b99e4f77532638cf3ab50a5ca226d",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalX": {
+      "path": "newer/textures/candidates-2026-10-12/TF_Stone3-realistic-seam-v3-4x-q92-xyz-normalX.webp",
+      "sha256": "1cb2e566415ae883069160a0ec2b1645d8af827a8768c63ad25fa588d6e52a2b",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalY": {
+      "path": "newer/textures/candidates-2026-10-12/TF_Stone3-realistic-seam-v3-4x-q92-xyz-normalY.webp",
+      "sha256": "e2540eb9e7e7b91a99b9d14a00aa46cfeef154d82608f0dd6e55e50015e782a4",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalZ": {
+      "path": "newer/textures/candidates-2026-10-12/TF_Stone3-realistic-seam-v3-4x-q92-xyz-normalZ.webp",
+      "sha256": "be7c8ec9afb5b15d0f393e30ac241f6bc608ae378f29f97ce19f023cdf744c7b",
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  },
+  "authoring": {
+    "recipe": "newer/textures/candidates-2026-10-12/TF_Stone3-realistic-seam-v3-4x.json",
+    "recipeSha256": "3f8047c82d576ca2cf90efe250fc073fad31c7712b3a78f7bff14f5123eab22e",
+    "tool": "tools/texture_sheets/sources/official-world-2026-10-12/restore_stone3_joint.py",
+    "toolSha256": "827d8b679c35fc5887cf6a2cbeac12876be1eee571a16a504f49cdedec9047fe",
+    "outputSha256": "1d4a07ad11a5ecfa00eac0e2f25599bc3fc0b3f6fec6084dee6aafa1c446785d",
+    "publicReplay": "/private/tmp/quaked-texture-independent-review/stone3-v3-replay.png",
+    "byteExactReplay": true,
+    "changedPixelFraction": 0.01319122314453125,
+    "outsideNarrowEvenCourseEdgeBandsUnchanged": true,
+    "horizontalMortarProtected": true
+  },
+  "visualFindings": [
+    "ActualdecodedQ92fulltileand3x3showproper singleverticalmortar atwrap oncourses2/4/6/8.",
+    "Closecrosscompareagainstheldv2 confirms missingjoint restored without doubledline, broadblurband or inventedgrain.",
+    "Eightcourses, alternatinghalfoffset andhorizontalmortar preserved.",
+    "Half-native64andquarter-native32comparisons remainrepresentative; sourceappearance differsnaturally butno renewedpixel/noiseblanket.",
+    "Newjointreuses photographedmortar fromsamecourse; correction doesnot change unrelatedstonefaces."
+  ],
+  "evidence": [
+    {
+      "path": "/private/tmp/TF_Stone3-realistic-seam-v3-q92-repeat.png",
+      "sha256": "eb4b8e256a1bf242e8d1b7672bc3a5c92b3e29fd6a47ba26fada38341324a8d4"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/stone3-v3-final-visual.png",
+      "sha256": "350bf7cd6fc5025113dfbaaeffcbfb8e1ebe640470ccbb76d87abd21915eb976"
+    }
+  ],
+  "supersedesFinding": "OnlyTF_Stone3missing-even-course-wrap-mortarhold in six-seam-v2-independent-review.json is resolved for the listedv3hashes. Earlierdraftsremainheld/rejected.",
+  "limits": [
+    "This is diffusevisual/preservationreview, not newnormaldirection/GPU/native-levelproof.",
+    "Other5acceptances remainboundtotheir exactseam-v2hashes.",
+    "No productionregistrationorowneracceptanceimplied."
+  ],
+  "nextOwner": "root campaign coordinator",
+  "nextAction": "Showall6currentcandidates together andperformfiniteGPU/materialreview undercoordinatedindexauthority."
+}

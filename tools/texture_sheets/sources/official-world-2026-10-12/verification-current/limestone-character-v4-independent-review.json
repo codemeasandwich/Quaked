@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "createdAt": "2026-10-13T19:27:00.220904+00:00",
+  "reviewer": "texture_plan independent subagent",
+  "scope": "Independent actualdecodedQ92full/half128/quarter64/repeat/wrapclose visualreview andpublicauthoringCLIreplay. No runtime registration, engine orimageasset edits.",
+  "result": "PASS: exactlimestonev4diffuse accepted for sourcebinding andruntime/ownertrial. Priorv3vein-endpointhold resolved forlistedv4hashes.",
+  "native": {
+    "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-wstone_03_JM.png",
+    "sha256": "d2e549fb56b9149b9b41acffc7c7b6c2fadd58a459b21254f778f3cf41d35a08",
+    "nativeKey": "256x256:685e88a59ef2729f",
+    "dimensions": [
+      256,
+      256
+    ]
+  },
+  "runtimeFiles": {
+    "diffuse": {
+      "path": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v4-4x-q92-xyz-diffuse.webp",
+      "sha256": "c68f5a42402cfc8839d37c552cf17dc9e889a6e1a5793c31f084a0306f7b7075",
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "height": {
+      "path": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v4-4x-q92-xyz-height.webp",
+      "sha256": "e4049309056ab5ad7f80358955a6480874c0da3f6e0944a48bd09e12da8d4163",
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "normalX": {
+      "path": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v4-4x-q92-xyz-normalX.webp",
+      "sha256": "b17b09c932187fea96f00033582129493fd092e6615359d725f09193b843ebdc",
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "normalY": {
+      "path": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v4-4x-q92-xyz-normalY.webp",
+      "sha256": "9ec03420a8c19b28e6a2ac6d442df9adee2db12caf7a88de0294eca85ddf82d3",
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "normalZ": {
+      "path": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v4-4x-q92-xyz-normalZ.webp",
+      "sha256": "ee24770c453a4b2626aba9449e102502133a383f985088ce247136143eb2b535",
+      "dimensions": [
+        1024,
+        1024
+      ]
+    }
+  },
+  "authoringReceipt": {
+    "path": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v4-4x.json",
+    "sha256": "2990ca5fcc4480eb43df322c9e837b2085f4cd3e6e61126254104ca9b653897a",
+    "data": {
+      "source": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v3-4x.png",
+      "sourceSha256": "3bf15d55d022c083ee0605e4f97616960e967eb5a5595b2bf66449f985321876",
+      "output": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v4-4x.png",
+      "outputSha256": "d47068c3c69b514ce87b4176b8ecbee29b9042f664c6142a7b8422cde77a3f08",
+      "axes": "xy",
+      "bandFraction": 0.125,
+      "unchangedInterior": true,
+      "spatialResampling": false,
+      "clippingFraction": 0.0,
+      "allowedPixelFraction": 0.4375,
+      "implementation": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/finish_realistic_edges.py",
+      "implementationSha256": "e0ba992126bd5e591cf8fe319b4aae4c3296f651d342a329166f2f54c6666020",
+      "toolSha256": "3631a5a2c57d38a7e5c47e79847259e832a5f196501ebd2119bbc7368e51edf7",
+      "qualification": "Authoring seam correction; decoded Q92 visual and public checks remain separate.",
+      "generatedRepair": "tools/texture_sheets/sources/official-world-2026-10-12/wstone_03_JM-character-offset-repair-v1.png",
+      "generatedRepairSha256": "9fbcff33b34b3ee9a8e6e1e8f4021914eed20adeceeb89ee7918ebd82d0956aa",
+      "coreFraction": 0.0234375,
+      "outerHalfWidthFraction": 0.125,
+      "method": "GPT cyclic-offset repair confined to feathered boundary cross"
+    }
+  },
+  "checks": {
+    "sourceRepairOutputHashesReverified": true,
+    "publicCLIReplayPNGByteExact": true,
+    "central768By768AuthoringPixelsByteIdentical": true,
+    "changedPixelFraction": 0.35492897033691406,
+    "allFiveRuntimeMaps1024": true
+  },
+  "visualFindings": [
+    "Quietphotographiclimestonewithcontinuous mineralclouding, sparsehairlineveins andfewsmallnaturalpores. No densegrain/ditherblanket.",
+    "Fulltileand3x3preserve subtlecharacter withoutnewmajorstructure, rectangularframe orperimeterbevel.",
+    "Closex/ywrap review: previouslyabruptedgeveintips nowtaperortransitionnaturally near/acrossboundary, withouttheobviousstraightcrop endpointsidentifiedinv3. Broadtonecontinuity remainsgood.",
+    "Half128andquarter64 remainrepresentative oforiginalwarmgrey/beige appearance. Originalpixelnoise isnotrestoredandisnotanacceptancetarget.",
+    "No visible newsmearstrip, doubledvein orunintendedlargeedgefeature found."
+  ],
+  "evidence": [
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/limestone-v4-comparison.png",
+      "sha256": "44a17fd1c6db3f07a97b6f5cedf7b99e025973ccfa7b5e2fa9494ac566587aa4"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/limestone-v4-repeat.png",
+      "sha256": "0affae5ca5c527be7972fc8c8820599423cb535a09d5db857509c05fa506da4c"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/limestone-v4-wrap-close.png",
+      "sha256": "643f25e9d66b9c26cb4303fdb74383deb66acd07482f813c8b2a1b010ea8bec1"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/limestone-seam-v4-replay.png",
+      "sha256": "d47068c3c69b514ce87b4176b8ecbee29b9042f664c6142a7b8422cde77a3f08"
+    }
+  ],
+  "documentationNote": "Atreview, wrapperdocstring described colour-onlymode although optionaloffset-repair branchreplacesboundarydetail. ReceiptmethodcorrectlyrecordsGPTcyclic-offsetblend; thisisnonblockingdocumentationclarity, notanassetfailure.",
+  "limits": [
+    "Height/XYZfilescheckedforhashes/dimensions only here. ParentGPU22checkresult andnative/owneracceptance areseparate.",
+    "v1/v2grainyandv3unrepairedversions remainrejected/held; onlylistedv4accepted.",
+    "No wholecampaigncompletion orrelease implied."
+  ],
+  "nextOwner": "root campaign coordinator",
+  "nextAction": "Promoteexactnativeguardedv4bindingsunderfreshindexreconciliation,retainnewGPUevidenceandshowowner; preserveallpreviousversions."
+}

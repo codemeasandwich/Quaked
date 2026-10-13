@@ -1,0 +1,542 @@
+{
+  "schema": 1,
+  "state": "ready",
+  "priorFailedSetup": "E1M1 was rejected: the bundled runtime map lacks tech08_3. Registered-pack E1M1 faces1115/1125 were not the active game map. This fixture now uses actual E2M1 and discovers its own join.",
+  "qualification": "Candidate-only actual-level trial; visual acceptance and other-map coverage remain separate.",
+  "art": "hd",
+  "relief": true,
+  "view": "oblique",
+  "sceneFrames": 1018,
+  "errors": [],
+  "checks": [
+    {
+      "passed": true,
+      "label": "city2_3: trial specification present"
+    },
+    {
+      "passed": true,
+      "label": "city2_3: candidate file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "city2_3: height file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "city2_3: original reference file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "city2_6: trial specification present"
+    },
+    {
+      "passed": true,
+      "label": "city2_6: candidate file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "city2_6: height file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "city2_6: original reference file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "city2_3: present in maps/dm5.bsp"
+    },
+    {
+      "passed": true,
+      "label": "city2_3: actual native identity matches candidate authority"
+    },
+    {
+      "passed": true,
+      "label": "city2_6: present in maps/dm5.bsp"
+    },
+    {
+      "passed": true,
+      "label": "city2_6: actual native identity matches candidate authority"
+    }
+  ],
+  "materials": [
+    {
+      "name": "city2_6",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "36e4b51c-1ee9-4ec5-bbb9-b813f64351a0",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city2_3",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "65e3f32c-ff55-419e-a1c6-d8bf6ebc7a21",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city2_6",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "36e4b51c-1ee9-4ec5-bbb9-b813f64351a0",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city2_3",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "65e3f32c-ff55-419e-a1c6-d8bf6ebc7a21",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city2_3",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "65e3f32c-ff55-419e-a1c6-d8bf6ebc7a21",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city2_6",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "36e4b51c-1ee9-4ec5-bbb9-b813f64351a0",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city2_6",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "36e4b51c-1ee9-4ec5-bbb9-b813f64351a0",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city2_3",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "65e3f32c-ff55-419e-a1c6-d8bf6ebc7a21",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city2_3",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "65e3f32c-ff55-419e-a1c6-d8bf6ebc7a21",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city2_6",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "36e4b51c-1ee9-4ec5-bbb9-b813f64351a0",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    }
+  ],
+  "fixture": {
+    "game": "quake",
+    "map": "dm5",
+    "aliases": [
+      "city2_3",
+      "city2_6"
+    ],
+    "minimumJoinLength": 16,
+    "allowCornerJoins": true
+  },
+  "candidates": {
+    "city2_3": {
+      "file": "candidates-2026-10-12/city2_3-4x-q92-xyz-diffuse.webp",
+      "height": "candidates-2026-10-12/city2_3-4x-q92-xyz-height.webp",
+      "normalChannels": {
+        "x": "candidates-2026-10-12/city2_3-4x-q92-xyz-normalX.webp",
+        "y": "candidates-2026-10-12/city2_3-4x-q92-xyz-normalY.webp",
+        "z": "candidates-2026-10-12/city2_3-4x-q92-xyz-normalZ.webp"
+      },
+      "normalChannelSha256": {
+        "x": "99de9439463a40150d0ac5c3f960d3a5175db15bf044b9ef0debb0f909fb2163",
+        "y": "880443d607bedc32f0f811f20b7399805d6ea9043068d74dd917b04778a8b38a",
+        "z": "9c6b0b57b07783c5d23de4a2a15155c04f333674bb5f6ce3c5ceab3bda8e8365"
+      },
+      "width": 256,
+      "heightPixels": 256,
+      "strength": 0.3,
+      "cap": 0.5,
+      "diffuseSha256": "3251d9fd22fed613933d06181541c6fab5de4f1f7571d3042f69156bf6b74126",
+      "heightSha256": "44a9c5283f24827b5f28f77cc877e586bed11693de6d0befe7fe6ab6a65e94d5",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-city2_3.png",
+      "originalSha256": "73ee4ed5b58f823890c316a925ca5b070a9672085306c5a26ce668107917b636",
+      "nativeKey": "64x64:2129a131b015141b",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false,
+      "method": "photographic",
+      "expectedNativeIdentity": "64x64:2129a131b015141b"
+    },
+    "city2_6": {
+      "file": "candidates-2026-10-12/city2_6-4x-q92-xyz-diffuse.webp",
+      "height": "candidates-2026-10-12/city2_6-4x-q92-xyz-height.webp",
+      "normalChannels": {
+        "x": "candidates-2026-10-12/city2_6-4x-q92-xyz-normalX.webp",
+        "y": "candidates-2026-10-12/city2_6-4x-q92-xyz-normalY.webp",
+        "z": "candidates-2026-10-12/city2_6-4x-q92-xyz-normalZ.webp"
+      },
+      "normalChannelSha256": {
+        "x": "0682058bbb025a5771de44acd507a3415640544aff087d3a994c972970f32b6a",
+        "y": "94d90389f9b578477b77aa2634c99b568f61e733b94c58b3da8bf5f8284b77b1",
+        "z": "152fa602242335dd5068ff0d2aae4404dedffaa66d91efd4dd8289f70e62367c"
+      },
+      "width": 256,
+      "heightPixels": 256,
+      "strength": 0.3,
+      "cap": 0.5,
+      "diffuseSha256": "ede1ffa718a91f302aec0a84c94b54e689502775390bdd3a99343a546712e481",
+      "heightSha256": "3fd9094625f6baa5049529306668d4956e6f1e120267db9629c385d78118b0b7",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-city2_6.png",
+      "originalSha256": "d61aab4e104e7960ef4a43919a1297c0058d372ea1a0c7acbe73a40232c77733",
+      "nativeKey": "64x64:86c3ff49a01388ab",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false,
+      "method": "photographic",
+      "expectedNativeIdentity": "64x64:86c3ff49a01388ab"
+    }
+  },
+  "assetRouting": "Page-local loose Newer assets; native PAK routing unchanged",
+  "presentationIsolation": "Page-local Bestiary observation disabled to preserve the measured camera; no journal reset; restored on stop",
+  "shaderErrors": [],
+  "actualEye": [
+    516.78125,
+    287.53125,
+    112.03125
+  ],
+  "framebuffer": {
+    "scene": [
+      2562,
+      1440
+    ],
+    "display": [
+      2560,
+      1440
+    ]
+  },
+  "signon": 4,
+  "serverTime": 100.71849999999854,
+  "hdr": 1,
+  "map": {
+    "name": "maps/dm5.bsp",
+    "sha256": "2837e106c53ae5f34e12172f3925ba9b8be48a18891972e51344ece54bd9194d",
+    "faces": 2026
+  },
+  "join": {
+    "kind": "corner",
+    "faces": [
+      209,
+      210
+    ],
+    "points": [
+      [
+        576,
+        312,
+        -32
+      ],
+      [
+        576,
+        312,
+        192
+      ]
+    ],
+    "center": [
+      576,
+      312,
+      80
+    ],
+    "surfaceNormals": [
+      [
+        -1,
+        0,
+        0
+      ],
+      [
+        -0.7071067690849304,
+        -0.7071067690849304,
+        0
+      ]
+    ],
+    "viewDirection": [
+      -0.9238795338677012,
+      -0.38268342909041575,
+      0
+    ],
+    "interiorProbes": [
+      [
+        576,
+        308,
+        80
+      ],
+      [
+        573.6,
+        314.4,
+        80
+      ]
+    ],
+    "views": {
+      "near": [
+        531.6537823743504,
+        293.63119540366006,
+        80
+      ],
+      "far": [
+        442.96134712305104,
+        256.8935862109801,
+        80
+      ],
+      "oblique": [
+        516.8717098324671,
+        287.5082605382134,
+        112
+      ]
+    },
+    "length": 224,
+    "textures": [
+      {
+        "face": 209,
+        "name": "city2_3",
+        "identity": "64x64:2129a131b015141b",
+        "s": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "t": [
+          0,
+          0,
+          -1,
+          0
+        ]
+      },
+      {
+        "face": 210,
+        "name": "city2_6",
+        "identity": "64x64:86c3ff49a01388ab",
+        "s": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "t": [
+          0,
+          0,
+          -1,
+          0
+        ]
+      }
+    ],
+    "alternatives": 48
+  },
+  "requestedView": {
+    "eye": [
+      516.8717098324671,
+      287.5082605382134,
+      112
+    ],
+    "target": [
+      576,
+      312,
+      80
+    ],
+    "angles": [
+      26.565051177077976,
+      22.499999796916153,
+      0
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "source": {
+    "id": "tech08_3|128x128:3fac30dd4bbf39af",
+    "name": "tech08_3",
+    "key": "128x128:3fac30dd4bbf39af",
+    "width": 128,
+    "height": 128,
+    "pixelSha256": "a5c64d039382d06ce44d5cbfedd01c0644d404075c7cdbadcc802450afbc528f",
+    "original": "originals/128x128-3fac30dd4bbf39af.rgba",
+    "status": "catalogued",
+    "file": "official/tech08_3-3fac30dd4bbf39af.webp",
+    "reason": "Exact native identity",
+    "uses": [
+      {
+        "game": "id1",
+        "map": "maps/e2m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 24,
+        "faces": 275,
+        "visibleCandidateFaces": 275,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "check-hd-dimensions"
+  },
+  "referenceSha256": "ab072185c51c0af6cc5a39b7b1458860bb5bffdea6fffe2f6cffaca60e41d515",
+  "qualification": "Fresh verified PAK reference after evidence-path disappearance; not historical receipt recovery"
+}

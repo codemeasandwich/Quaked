@@ -1,0 +1,24 @@
+Captured output of the completed final historical/Q92 regression run.
+Source: exec session 59589, completion output chunk 188a46, exit code 0.
+Retained from the tool response; tests were not rerun to create this file.
+
+Command:
+QUAKED_GAME_ROOT=/Users/bri/quaked QUAKED_THREE_MODULE=/Users/bri/SOURCE/Quaked/node_modules/three/build/three.module.js QUAKED_CANVAS_MODULE=/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js node tools/run_tests.mjs tests/official_texture_registration_test.js tests/official_texture_expansion_test.js tests/official_texture_masonry_test.js
+
+PASS current catalogue contains the 45 source-bound additions and preserves every entry of the fixed Git baseline
+OFFICIAL_NATIVE_SOURCES {"qualification":"NEW current-state source verification; not recovered historical evidence","inputPath":"tools/texture_sheets/sources/official-world-2026-10-12/current-registration-inputs.json","inputSha256":"046f66338fd884b1a4887a9ccb00b15fb1364f2c80e3f8280fcb7ff1482f5a34","baselineCommit":"a28d939647d93f7c1ea96160ebb79751388d2fcb","source_root":"/Users/bri/quaked","externalGameRoot":true,"indexSha256":"221bce26a8ff6ce6ab4d21823c77c7d2c860146a572ba89ee3177cabeb2a9baa","entries":45,"occurrences":162,"donors":43,"fullbright":16,"actualPacks":["/Users/bri/quaked/Dimension of the Machine/pak0.pak","/Users/bri/quaked/Dimension of the Past/pak0.pak","/Users/bri/quaked/Dissolution of Eternity/pak0.pak","/Users/bri/quaked/Quake/pak0.pak","/Users/bri/quaked/Scourge of Armagon/pak0.pak"],"sourceContentSha256":"23f348a90a009bdbd5bc488395c5110361fb4ca1f1e45a2be6feb0c124af512e"}
+PASS all 162 current source occurrences and 43 donor bindings match actual BSP palette pixels
+PASS all 45 actual native textures load their registered real images and height maps through the public interface
+PASS all 45 new source guards reject unrelated same-name original pixels without requesting HD artwork
+RESULT 4/4 passed (tests/official_texture_registration_test.js)
+EXPANSION_NATIVE_SOURCES {"source_root":"/Users/bri/quaked","indexSha256":"221bce26a8ff6ce6ab4d21823c77c7d2c860146a572ba89ee3177cabeb2a9baa","bindings":6,"occurrences":6,"sourceContentSha256":"93647a9683d7d1b67e567a4c694d0cc54900c7c4cabfdb3699e4610fe4ddf8d1"}
+PASS six expansion registrations match reviewed candidates and native BSP identities without changing any base mapping
+PASS six expansion identities install exact reviewed pixels and own relief while the six base identities still install base art
+PASS all six unrelated expansion pixel identities fall back and Classic mode requests no variant assets
+RESULT 3/3 passed (tests/official_texture_expansion_test.js)
+MASONRY_NATIVE_SOURCES {"source_root":"/Users/bri/quaked","indexSha256":"221bce26a8ff6ce6ab4d21823c77c7d2c860146a572ba89ee3177cabeb2a9baa","bindings":6,"artworks":4,"occurrences":41,"sourceContentSha256":"bd15b30d798a2801ba85ce87d218f4fd7cf45a30231fdd8ba4f97fa0576cb80e"}
+PASS four reviewed masonry artworks bind six exact native names, including both alias pairs, without widening base sources
+PASS all six masonry identities install reviewed pixels and matching heights, reuse alias caches and restore native Classic images
+PASS six unknown masonry identities retain native art and Classic mode requests no masonry variants
+RESULT 3/3 passed (tests/official_texture_masonry_test.js)
+TOTAL 10/10 passed

@@ -1,0 +1,32 @@
+✔ a game needs its own pack and its ancestors; shared assets go to the nearest common ancestor (1.147083ms)
+✔ the committed game index is current and covers every playable game (6.810667ms)
+✔ each playable game finds all of its assets in its own packs (510.442083ms)
+✔ the shareware pack holds everything the HTML can start with (60.744625ms)
+✖ ordinary variant names and all companion images use their owning game packs (32.72625ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 693.509833
+
+✖ failing tests:
+
+test at tests/packs_contract_test.mjs:54:1
+✖ ordinary variant names and all companion images use their owning game packs (32.72625ms)
+  AssertionError [ERR_ASSERTION]: ordinary companion pack official/city4_8-3eb3f2adf6aa1457-4x-q92-diffuse.webp
+  
+  'quake' !== 'rogue'
+  
+      at TestContext.<anonymous> (file:///Users/bri/.codex/worktrees/official-textures-q92/Quaked/tests/packs_contract_test.mjs:59:11)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'quake',
+    expected: 'rogue',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

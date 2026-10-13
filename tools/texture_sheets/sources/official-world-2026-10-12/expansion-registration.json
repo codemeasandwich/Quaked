@@ -1,0 +1,339 @@
+{
+  "qualification": "Six locally registered expansion variants, reviewed as material trials; actual map adjacency and release remain unqualified",
+  "beforeIndexSha256": "1804011c8e39a59ca0556fc5625d482df3055bae14afacfd0b6d186406504838",
+  "afterIndexSha256": "db7813896243f2476339ee912dacd33c31ca7da54e8a1b31ca16ed268b7fc3cd",
+  "entries": [
+    {
+      "alias": "hipnotic-metal5_6",
+      "name": "metal5_6",
+      "key": "32x64:b15237abb6d97cf1",
+      "binding": {
+        "file": "official/hipnotic-metal5_6-b15237abb6d97cf1.webp",
+        "normal": {
+          "file": "normals/official/hipnotic-metal5_6-b15237abb6d97cf1.webp",
+          "strength": 0.35,
+          "cap": 0.5
+        }
+      },
+      "source": {
+        "id": "metal5_6|32x64:b15237abb6d97cf1",
+        "name": "metal5_6",
+        "key": "32x64:b15237abb6d97cf1",
+        "width": 32,
+        "height": 64,
+        "pixelSha256": "e8efea9843fa38e4458d32b39ac03ec7d227b1c7827932bf2b6f6700a6a961cd",
+        "original": "originals/32x64-b15237abb6d97cf1.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "Same name has different original pixels",
+        "uses": [
+          {
+            "game": "hipnotic",
+            "map": "maps/hip2m4.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+            "slot": 31,
+            "faces": 13,
+            "visibleCandidateFaces": 13,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-12/native-hipnotic-metal5_6.png",
+      "sourceFileSha256": "bbbdbb43016ff0a19797611372901911b221d25ad04ca648e186e2e9e2358a28",
+      "diffuseSha256": "e5627090594b5274d73f5b77ea36cf1e4c9bbcd5a99cc8cb23e5a7edaa073d88",
+      "heightSha256": "7124206b25d4297e04ca9e2913b15645679fdaff7916a685a6a5cd4a0df16b23",
+      "candidate": "candidates-2026-10-12/hipnotic-metal5_6-photographic.png",
+      "candidateSha256": "241e4642a4670d159c843df01deceae342bb0245c55288dbd0effcb677ec00f2",
+      "beforeBase": {
+        "textures": "metal5_6.webp",
+        "normals": {
+          "file": "normals/metal5_6.webp",
+          "strength": 1.2,
+          "cap": 1.1
+        },
+        "sources": [
+          "64x64:4a6ade755f357b3f"
+        ]
+      }
+    },
+    {
+      "alias": "mg1-comp1_2",
+      "name": "comp1_2",
+      "key": "64x64:a823407b09df4331",
+      "binding": {
+        "file": "official/mg1-comp1_2-a823407b09df4331.webp",
+        "normal": {
+          "file": "normals/official/mg1-comp1_2-a823407b09df4331.webp",
+          "strength": 0.35,
+          "cap": 0.5
+        }
+      },
+      "source": {
+        "id": "comp1_2|64x64:a823407b09df4331",
+        "name": "comp1_2",
+        "key": "64x64:a823407b09df4331",
+        "width": 64,
+        "height": 64,
+        "pixelSha256": "655942de9407517068f70f5893f8498664453ec01cf59cd0e4441150dadc6402",
+        "original": "originals/64x64-a823407b09df4331.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "Same name has different original pixels",
+        "uses": [
+          {
+            "game": "mg1",
+            "map": "maps/mge5m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 119,
+            "faces": 25,
+            "visibleCandidateFaces": 25,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-comp1_2.png",
+      "sourceFileSha256": "22815eef7acb4c7e59145477985ccafabb432dbd84ece567c289da6aa1f4a23e",
+      "diffuseSha256": "88e2d2b7b1303988919f61fccf210081b9ca9c0d31757bf46acbfa30b26a322a",
+      "heightSha256": "884833465a4cfc8629dbb6a2ff9a0903162753c0100920c0fc50ab228ffefbbe",
+      "candidate": "candidates-2026-10-12/mg1-comp1_2-photographic.png",
+      "candidateSha256": "d359475e5414572268a6c0545c6c922075c6891085845d053d9f70042e057828",
+      "beforeBase": {
+        "textures": "comp1_2.webp",
+        "normals": {
+          "file": "normals/comp1_2.webp",
+          "strength": 1.15
+        },
+        "sources": [
+          "64x64:6d9776a940d7a66b"
+        ]
+      }
+    },
+    {
+      "alias": "mg1-comp1_3",
+      "name": "comp1_3",
+      "key": "64x64:4b7a14875bfadccd",
+      "binding": {
+        "file": "official/mg1-comp1_3-4b7a14875bfadccd.webp",
+        "normal": {
+          "file": "normals/official/mg1-comp1_3-4b7a14875bfadccd.webp",
+          "strength": 0.35,
+          "cap": 0.5
+        }
+      },
+      "source": {
+        "id": "comp1_3|64x64:4b7a14875bfadccd",
+        "name": "comp1_3",
+        "key": "64x64:4b7a14875bfadccd",
+        "width": 64,
+        "height": 64,
+        "pixelSha256": "804c12a8428d3e5bf7ede9db0079fe75546f858a6e3fa3e958c6ea2f67dc3b3c",
+        "original": "originals/64x64-4b7a14875bfadccd.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "Same name has different original pixels",
+        "uses": [
+          {
+            "game": "mg1",
+            "map": "maps/mge5m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 131,
+            "faces": 15,
+            "visibleCandidateFaces": 15,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-comp1_3.png",
+      "sourceFileSha256": "75d80b8205e78f16a8231942739367b586d7c3b8db15dfb74644e43f62659c5a",
+      "diffuseSha256": "b80e9bf992578d4156380675950cf463bc6f0e8efc59b0ccae762d9bc56b9cab",
+      "heightSha256": "ae51ee7af431ee1501d6e7b037e4248ff9769429974da6b2e7491889bc640a20",
+      "candidate": "candidates-2026-10-12/mg1-comp1_3-photographic.png",
+      "candidateSha256": "9e86ba713c6ccf16c77f1a04447a55af51bd6e3cb4adb5785479db96d00a2fa1",
+      "beforeBase": {
+        "textures": "comp1_3.webp",
+        "normals": {
+          "file": "normals/comp1_3.webp",
+          "strength": 1.15,
+          "cap": 1.1
+        },
+        "sources": [
+          "64x64:7c752bad374b15e7"
+        ]
+      }
+    },
+    {
+      "alias": "mg1-metal1_1",
+      "name": "metal1_1",
+      "key": "64x64:5fdc8d86e1f32d2c",
+      "binding": {
+        "file": "official/mg1-metal1_1-5fdc8d86e1f32d2c.webp",
+        "normal": {
+          "file": "normals/official/mg1-metal1_1-5fdc8d86e1f32d2c.webp",
+          "strength": 0.35,
+          "cap": 0.5
+        }
+      },
+      "source": {
+        "id": "metal1_1|64x64:5fdc8d86e1f32d2c",
+        "name": "metal1_1",
+        "key": "64x64:5fdc8d86e1f32d2c",
+        "width": 64,
+        "height": 64,
+        "pixelSha256": "8e6f168e91906f5d2b2a0dabcdbd00185d2a363b7acfb5437f75ac9c43f490bc",
+        "original": "originals/64x64-5fdc8d86e1f32d2c.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "Same name has different original pixels",
+        "uses": [
+          {
+            "game": "mg1",
+            "map": "maps/mge5m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 104,
+            "faces": 354,
+            "visibleCandidateFaces": 354,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-metal1_1.png",
+      "sourceFileSha256": "b8da654238ed4496bd58df630e5df999ad528e7417cbaa9831537d554bfb878a",
+      "diffuseSha256": "39b21ec3f02b6e88bb7d57dae1504ff8ba50adffcc488531b8af453969bd83ff",
+      "heightSha256": "e85fa23410c312a9b89794044d22a6e42e454d290b508263ac6e5a4446ced829",
+      "candidate": "candidates-2026-10-12/mg1-metal1_1-photographic.png",
+      "candidateSha256": "a8409c68487412da66948fed5d466c9bcbadbe70571a1688abbd1a52f78662a9",
+      "beforeBase": {
+        "textures": "metal1_1.webp",
+        "normals": {
+          "file": "normals/metal1_1.webp",
+          "strength": 1.4
+        },
+        "sources": [
+          "64x64:3912878915433b93"
+        ]
+      }
+    },
+    {
+      "alias": "mg1-metal1_3",
+      "name": "metal1_3",
+      "key": "64x64:7c6b8625f6f16f6f",
+      "binding": {
+        "file": "official/mg1-metal1_3-7c6b8625f6f16f6f.webp",
+        "normal": {
+          "file": "normals/official/mg1-metal1_3-7c6b8625f6f16f6f.webp",
+          "strength": 0.35,
+          "cap": 0.5
+        }
+      },
+      "source": {
+        "id": "metal1_3|64x64:7c6b8625f6f16f6f",
+        "name": "metal1_3",
+        "key": "64x64:7c6b8625f6f16f6f",
+        "width": 64,
+        "height": 64,
+        "pixelSha256": "0bbfac875632fba4fe61524063a01bd4feba2eafd3a34d0f111947b509f990ce",
+        "original": "originals/64x64-7c6b8625f6f16f6f.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "Same name has different original pixels",
+        "uses": [
+          {
+            "game": "mg1",
+            "map": "maps/mge5m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 71,
+            "faces": 948,
+            "visibleCandidateFaces": 948,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-metal1_3.png",
+      "sourceFileSha256": "b94064bc6a8baf1bd520b3097cb374980d992904dbfa465310a7f6bf61d35190",
+      "diffuseSha256": "b429aa8824ed22ded96958a7305c855b80cfb3e60838b2ee0bc832cd400a5422",
+      "heightSha256": "65f41dc0f5ea112e075ae4aff7ba2893758a0448d63c16cde758dd000fa58d26",
+      "candidate": "candidates-2026-10-12/mg1-metal1_3-photographic.png",
+      "candidateSha256": "0fdcd9d2ebbfd6d6296f7d1c628cfde5380fd8ef851201e7648e7a594c93d123",
+      "beforeBase": {
+        "textures": "metal1_3.webp",
+        "normals": {
+          "file": "normals/metal1_3.webp",
+          "strength": 1.2
+        },
+        "sources": [
+          "64x64:e4f14ff125e9416b"
+        ]
+      }
+    },
+    {
+      "alias": "mg1-metal1_4",
+      "name": "metal1_4",
+      "key": "64x64:5fcb234d8850a05f",
+      "binding": {
+        "file": "official/mg1-metal1_4-5fcb234d8850a05f.webp",
+        "normal": {
+          "file": "normals/official/mg1-metal1_4-5fcb234d8850a05f.webp",
+          "strength": 0.35,
+          "cap": 0.5
+        }
+      },
+      "source": {
+        "id": "metal1_4|64x64:5fcb234d8850a05f",
+        "name": "metal1_4",
+        "key": "64x64:5fcb234d8850a05f",
+        "width": 64,
+        "height": 64,
+        "pixelSha256": "1d0f59a3debeeb5d4d9f2f415ecf7a357e205f3fb8947e5707f2250027fcb449",
+        "original": "originals/64x64-5fcb234d8850a05f.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "Same name has different original pixels",
+        "uses": [
+          {
+            "game": "mg1",
+            "map": "maps/mge5m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 99,
+            "faces": 772,
+            "visibleCandidateFaces": 772,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-metal1_4.png",
+      "sourceFileSha256": "a0ee2fca2d25e2e0dfdbfa8825e7747a85e3a9c98dc5e7537882773648550dff",
+      "diffuseSha256": "17707a5cfaf4fab57dd0e39cc3cc74b7f7eff47b7d40363c3548e0ab2fcbd745",
+      "heightSha256": "ff1a073bf8dbfa414e7a486a479bcbf97d1eb9288f6619c0a240fbb44752a4aa",
+      "candidate": "candidates-2026-10-12/mg1-metal1_4-photographic.png",
+      "candidateSha256": "43c787510e9bb672fd9d882adf70a5671fc13bb9d6af2e3f7d8680783b920893",
+      "beforeBase": {
+        "textures": "metal1_4.webp",
+        "normals": {
+          "file": "normals/metal1_4.webp",
+          "strength": 1.3
+        },
+        "sources": [
+          "64x64:3384d4415769ad6b"
+        ]
+      }
+    }
+  ]
+}

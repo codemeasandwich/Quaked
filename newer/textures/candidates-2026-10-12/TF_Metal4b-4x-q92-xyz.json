@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "TF_Metal4b",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4b.png",
+  "originalSha256": "7824b40ef3a79aaeb47dfa03671b100119ea2c6dadb584d9fd85bf1aed0d247a",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-12/TF_Metal4b-photographic-4x.png",
+  "authoringDiffuseSha256": "201594508b36f40f36ce45bd6d39451e0ff08e60da989c3961cc3fc76c55821c",
+  "toolSha256": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.35,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-diffuse.webp",
+      "sha256": "32c772688970d801456be5e1ac69717bd1ba621fd9d6c57c3c60c1a6a7a76cf4",
+      "bytes": 102144,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-height.webp",
+      "sha256": "2e91ea3140d2f5932a2ff6a6b475c8231c7240f382e877d57153b2e47d8f7f41",
+      "bytes": 114054,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-normalX.webp",
+      "sha256": "15d71ced19bc78918764d2e28e4db07a20f175bc592d154e15c93f04533af1ba",
+      "bytes": 113468,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-normalY.webp",
+      "sha256": "ecbd26bd86df567694068767e8aec70b68bec662806239bbfac6b69b0ac75e0c",
+      "bytes": 113630,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-normalZ.webp",
+      "sha256": "394cce045c338cadd8b53c937addc1aff51e37542da2866e4f90b7e74c81c91d",
+      "bytes": 28166,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    64
+  ],
+  "distanceMAE": 3.635986328125,
+  "distanceMaximum": 38.0,
+  "secondaryComparisonDimensions": [
+    32,
+    32
+  ],
+  "secondaryDistanceMAE": 2.1389973958333335,
+  "secondaryDistanceMaximum": 13.0,
+  "colourCompressionMAE": 2.2608019510904946,
+  "heightCompressionMAE": 1.3092269897460938,
+  "heightCompressionMaximum": 9.0,
+  "normalAngularMean": 1.0110286131695896,
+  "normalAngularP99": 2.5892263531548814,
+  "normalAngularMaximum": 4.7778130951131,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

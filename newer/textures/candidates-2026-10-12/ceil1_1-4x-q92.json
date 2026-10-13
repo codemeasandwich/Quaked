@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "name": "ceil1_1",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-ceil1_1.png",
+  "originalSha256": "93d8fe0c85fc8207e969a94f631a369601bdf712e18a8f9b232062d812cd7d0b",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-12/ceil1_1-photographic-v2-4x.png",
+  "authoringDiffuseSha256": "4cb964247de90b243112e1efce30cdc1a88ca00cd897b852b876e36723481440",
+  "toolSha256": "a73e91b824f18bc3f43acf19a7f8e1d7b74f854b3efd54c335029f89677d5fc7",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.2,
+    "cap": 0.55
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-12/ceil1_1-4x-q92-diffuse.webp",
+      "sha256": "894c0cf51f990f24edd97f2ade948514db614937d4d3a66b3e9a02c14e55a7ff",
+      "bytes": 1458,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        64,
+        64
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-12/ceil1_1-4x-q92-height.webp",
+      "sha256": "5ed0eeaed75b64914c0777509945b4ff5d39286a7eb9df21423dc637537618de",
+      "bytes": 2480,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        64,
+        64
+      ]
+    },
+    "normal": {
+      "file": "newer/textures/candidates-2026-10-12/ceil1_1-4x-q92-normal.webp",
+      "sha256": "f5efb8960e216be4b8be16bed97117726deb2b21f9f63ff441a5a937a8106ab6",
+      "bytes": 1374,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        64,
+        64
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    8,
+    8
+  ],
+  "distanceMAE": 9.557291666666666,
+  "distanceMaximum": 56.0,
+  "secondaryComparisonDimensions": [
+    4,
+    4
+  ],
+  "secondaryDistanceMAE": 6.416666666666667,
+  "secondaryDistanceMaximum": 34.0,
+  "colourCompressionMAE": 2.28955078125,
+  "heightCompressionMAE": 1.537109375,
+  "heightCompressionMaximum": 7.0,
+  "normalAngularMean": 3.177466326277501,
+  "normalAngularP99": 10.98385114527075,
+  "normalAngularMaximum": 18.28562108656497,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

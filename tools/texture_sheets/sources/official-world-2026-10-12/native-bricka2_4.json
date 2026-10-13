@@ -1,0 +1,96 @@
+{
+  "source": {
+    "id": "bricka2_4|64x64:4b2a165efc1a200c",
+    "name": "bricka2_4",
+    "key": "64x64:4b2a165efc1a200c",
+    "width": 64,
+    "height": 64,
+    "pixelSha256": "bf74dd1899fbd6feaeb74158694f3c28b3ea5fe19c6c03880b8c6fc00172b1df",
+    "original": "originals/64x64-4b2a165efc1a200c.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "id1",
+        "map": "maps/dm1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 2,
+        "faces": 651,
+        "visibleCandidateFaces": 651,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/e4m3.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 10,
+        "faces": 309,
+        "visibleCandidateFaces": 309,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/test/test_nodes.bsp",
+        "scope": "installed-test",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 1,
+        "faces": 13,
+        "visibleCandidateFaces": 13,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/test/test_walkoffledge.bsp",
+        "scope": "installed-test",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 2,
+        "faces": 20,
+        "visibleCandidateFaces": 20,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "rogue",
+        "map": "maps/r1m3.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+        "slot": 9,
+        "faces": 1011,
+        "visibleCandidateFaces": 991,
+        "hiddenTriggerFaces": 20,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "dopa",
+        "map": "maps/e5end.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dimension of the Past/pak0.pak",
+        "slot": 15,
+        "faces": 572,
+        "visibleCandidateFaces": 572,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "dopa",
+        "map": "maps/e5m5.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dimension of the Past/pak0.pak",
+        "slot": 25,
+        "faces": 334,
+        "visibleCandidateFaces": 334,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "freshSnapshotSha256": "62167e768570f34dfb1bb4e9f4f405ad6019ad4226aea39db8c416fd9553e586",
+  "referenceSha256": "7b957baafff66a9f86b20b43889f2db52634b1b1a9654af520ea91beca44069a"
+}

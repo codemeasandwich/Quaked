@@ -1,0 +1,906 @@
+{
+  "schema": 1,
+  "state": "ready",
+  "priorFailedSetup": "E1M1 was rejected: the bundled runtime map lacks tech08_3. Registered-pack E1M1 faces1115/1125 were not the active game map. This fixture now uses actual E2M1 and discovers its own join.",
+  "qualification": "Candidate-only actual-level trial; visual acceptance and other-map coverage remain separate.",
+  "art": "hd",
+  "relief": true,
+  "view": "far",
+  "sceneFrames": 796,
+  "errors": [],
+  "checks": [
+    {
+      "passed": true,
+      "label": "city6_8: trial specification present"
+    },
+    {
+      "passed": true,
+      "label": "city6_8: candidate file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "city6_8: height file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "city6_8: original reference file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "city4_8: trial specification present"
+    },
+    {
+      "passed": true,
+      "label": "city4_8: candidate file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "city4_8: height file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "city4_8: original reference file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "city6_8: present in maps/e2m7.bsp"
+    },
+    {
+      "passed": true,
+      "label": "city6_8: actual native identity matches candidate authority"
+    },
+    {
+      "passed": true,
+      "label": "city4_8: present in maps/e2m7.bsp"
+    },
+    {
+      "passed": true,
+      "label": "city4_8: actual native identity matches candidate authority"
+    }
+  ],
+  "materials": [
+    {
+      "name": "city4_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "91ca750c-ba83-4e07-bb79-4ea1917c7d77",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city6_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "2cb6d891-93a7-40d7-8637-3e5f97eb6851",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city6_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "2cb6d891-93a7-40d7-8637-3e5f97eb6851",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city4_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "91ca750c-ba83-4e07-bb79-4ea1917c7d77",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city6_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "2cb6d891-93a7-40d7-8637-3e5f97eb6851",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city4_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "91ca750c-ba83-4e07-bb79-4ea1917c7d77",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city6_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "2cb6d891-93a7-40d7-8637-3e5f97eb6851",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city4_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "91ca750c-ba83-4e07-bb79-4ea1917c7d77",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city6_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "2cb6d891-93a7-40d7-8637-3e5f97eb6851",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city4_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "91ca750c-ba83-4e07-bb79-4ea1917c7d77",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city6_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "2cb6d891-93a7-40d7-8637-3e5f97eb6851",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city4_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "91ca750c-ba83-4e07-bb79-4ea1917c7d77",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city6_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "2cb6d891-93a7-40d7-8637-3e5f97eb6851",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city4_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "91ca750c-ba83-4e07-bb79-4ea1917c7d77",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city4_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "91ca750c-ba83-4e07-bb79-4ea1917c7d77",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city6_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "2cb6d891-93a7-40d7-8637-3e5f97eb6851",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city6_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "2cb6d891-93a7-40d7-8637-3e5f97eb6851",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city4_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "91ca750c-ba83-4e07-bb79-4ea1917c7d77",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city4_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "91ca750c-ba83-4e07-bb79-4ea1917c7d77",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city4_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "91ca750c-ba83-4e07-bb79-4ea1917c7d77",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city6_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "2cb6d891-93a7-40d7-8637-3e5f97eb6851",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city6_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "2cb6d891-93a7-40d7-8637-3e5f97eb6851",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city4_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "91ca750c-ba83-4e07-bb79-4ea1917c7d77",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city6_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "2cb6d891-93a7-40d7-8637-3e5f97eb6851",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "city6_8",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "2cb6d891-93a7-40d7-8637-3e5f97eb6851",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    }
+  ],
+  "fixture": {
+    "game": "quake",
+    "map": "e2m7",
+    "aliases": [
+      "city6_8",
+      "city4_8"
+    ]
+  },
+  "candidates": {
+    "city6_8": {
+      "file": "candidates-2026-10-12/city6_8-photographic-4x.png",
+      "height": "candidates-2026-10-12/city6_8-photographic-4x-height.webp",
+      "width": 256,
+      "heightPixels": 256,
+      "strength": 0.3,
+      "cap": 0.5,
+      "diffuseSha256": "59bacf4c609707c4755ccf85d08e5ab25f71763eb10b99047ddd5c4203935f80",
+      "heightSha256": "5b23ec48c79534e1d6fa9c57cfb50e7b8a9f336dc3175d2c62901f506d2c5803",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-city6_8.png",
+      "originalSha256": "4bc60a1876f96405b9f45992f56a5e82aa20bb80fb263424eab790ca176d2347",
+      "nativeKey": "64x64:3300e41335b7e451",
+      "method": "photographic",
+      "factor": 4,
+      "expectedNativeIdentity": "64x64:3300e41335b7e451"
+    },
+    "city4_8": {
+      "file": "candidates-2026-10-12/city4_8-photographic-joints-v2-4x.png",
+      "height": "candidates-2026-10-12/city4_8-photographic-joints-v2-4x-height.webp",
+      "width": 256,
+      "heightPixels": 256,
+      "strength": 0.3,
+      "cap": 0.5,
+      "diffuseSha256": "a6b22b6f92f69269bf597996613da6b8ad94f8b350d89d77e86b174ea1f5d97c",
+      "heightSha256": "9ece808cd9e5c789c5fa77611e7624512a24b9db3fe2b28be80128be11e4a49b",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-city4_8.png",
+      "originalSha256": "2c26333e46faaa5e9c87b65b48eb1cc2ccaa9627a79c621bbdceea96e98fbc44",
+      "nativeKey": "64x64:3eb3f2adf6aa1457",
+      "method": "photographic",
+      "factor": 4,
+      "expectedNativeIdentity": "64x64:3eb3f2adf6aa1457"
+    }
+  },
+  "assetRouting": "Page-local loose Newer assets; native PAK routing unchanged",
+  "presentationIsolation": "Page-local Bestiary observation disabled to preserve the measured camera; no journal reset; restored on stop",
+  "shaderErrors": [],
+  "actualEye": [
+    1032.03125,
+    1720.03125,
+    -207.96875
+  ],
+  "framebuffer": {
+    "scene": [
+      2562,
+      1440
+    ],
+    "display": [
+      2560,
+      1440
+    ]
+  },
+  "signon": 4,
+  "serverTime": 77.69189999999968,
+  "hdr": 1,
+  "map": {
+    "name": "maps/e2m7.bsp",
+    "sha256": "4aeff3a130dd2e0bfddb513e03b9f55d4c07adce3133be308270120c0658b0ff",
+    "faces": 6270
+  },
+  "join": {
+    "kind": "coplanar",
+    "faces": [
+      1699,
+      1705
+    ],
+    "points": [
+      [
+        1176,
+        1768,
+        -208
+      ],
+      [
+        1176,
+        1672,
+        -208
+      ]
+    ],
+    "center": [
+      1176,
+      1720,
+      -208
+    ],
+    "surfaceNormals": [
+      [
+        -1,
+        0,
+        0
+      ],
+      [
+        -1,
+        0,
+        0
+      ]
+    ],
+    "viewDirection": [
+      -1,
+      0,
+      0
+    ],
+    "interiorProbes": [
+      [
+        1176,
+        1720,
+        -210.4
+      ],
+      [
+        1176,
+        1720,
+        -206
+      ]
+    ],
+    "views": {
+      "near": [
+        1128,
+        1720,
+        -208
+      ],
+      "far": [
+        1032,
+        1720,
+        -208
+      ],
+      "oblique": [
+        1112,
+        1688,
+        -208
+      ]
+    },
+    "length": 96,
+    "textures": [
+      {
+        "face": 1699,
+        "name": "city6_8",
+        "identity": "64x64:3300e41335b7e451",
+        "s": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "t": [
+          0,
+          0,
+          -1,
+          0
+        ]
+      },
+      {
+        "face": 1705,
+        "name": "city4_8",
+        "identity": "64x64:3eb3f2adf6aa1457",
+        "s": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "t": [
+          0,
+          0,
+          -1,
+          0
+        ]
+      }
+    ],
+    "alternatives": 6
+  },
+  "requestedView": {
+    "eye": [
+      1032,
+      1720,
+      -208
+    ],
+    "target": [
+      1176,
+      1720,
+      -208
+    ],
+    "angles": [
+      0,
+      0,
+      0
+    ]
+  }
+}

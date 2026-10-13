@@ -1,0 +1,164 @@
+{
+  "schema": 1,
+  "createdAt": "2026-10-13T19:57:51.820084+00:00",
+  "reviewer": "texture_plan independent subagent",
+  "scope": "Independent currentindex/nativevariant/owner-art ambiguity review and actualdecoded256Q92 full/half32/quarter16/repeat/jointclose inspection. No asset/index/engine edits.",
+  "indexSha256": "6660d6989de4e1391ad275e19ebc768cc86031a68f067b1d237d0ffbf09346aa",
+  "rows": [
+    {
+      "name": "wall14_5",
+      "nativeKey": "64x64:a9763815741a765f",
+      "nativePNG": "tools/texture_sheets/sources/official-world-2026-10-12/native-wall14_5.png",
+      "nativePNGSha256": "538c7cff73ceaa0ecf117fee34be96afdf388087c83b6e998e07836995c07006",
+      "nativeRGBASha256": "d099165f3ea37c124611184bec1e43bfb1982e5c56faefe5f1f2b6d5061da798",
+      "runtimeFiles": {
+        "diffuse": {
+          "path": "newer/textures/candidates-2026-10-12/wall14_5-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "8ca3b32e0eae46e1f8b621d027c3dacd7ce52aaf328de4277039c8c6aa084ba5"
+        },
+        "height": {
+          "path": "newer/textures/candidates-2026-10-12/wall14_5-photographic-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "7b9c7821eccba14f750dd1318bbf91a793cf8d8f4a7bfb154767f595c9875166"
+        },
+        "normalX": {
+          "path": "newer/textures/candidates-2026-10-12/wall14_5-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "f2bd5d89b1b46c1b8f32a2e8ba7692b38f29fdef90b246dc3fdaae45a0207a07"
+        },
+        "normalY": {
+          "path": "newer/textures/candidates-2026-10-12/wall14_5-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "279f7cff2f3ed219f976c3d7998c6c58ee458aefcc591ccec0d08f1f45573ef1"
+        },
+        "normalZ": {
+          "path": "newer/textures/candidates-2026-10-12/wall14_5-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "76dbae12839742812719aa192077293fadcfb0bc818f75452ed9298c1910b7da"
+        }
+      },
+      "recipe": {
+        "path": "newer/textures/candidates-2026-10-12/wall14_5-photographic-seam-v2-4x.json",
+        "sha256": "dac086e83d550efe24e837a3a3d89d9a33e5a0ce630c131f05151fcf78f89c01"
+      },
+      "central192SquareByteIdentical": true,
+      "disposition": "HOLD for y-wrap dark-joint weight correction"
+    },
+    {
+      "name": "metal7_1",
+      "nativeKey": "64x64:d97a6a868b8864ec",
+      "nativePNG": "tools/texture_sheets/sources/official-world-2026-10-12/native-metal7_1.png",
+      "nativePNGSha256": "583c956fa207ed2525fbaae8a01b728254ea461973398dad35818ba062a84f1e",
+      "nativeRGBASha256": "4e84a9946a97e1bf0e40c46dca228704628742b01b87a78c7ebd1b198f64db46",
+      "runtimeFiles": {
+        "diffuse": {
+          "path": "newer/textures/candidates-2026-10-12/metal7_1-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "2ab2af313e1527ab35d1d8c16a8e4e42af3a1d1838fb1f242e2652e1fb6b1320"
+        },
+        "height": {
+          "path": "newer/textures/candidates-2026-10-12/metal7_1-photographic-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "ac66b1d7417a5ad42f22608f350da6343c11cc7ca1973e4e7362c9fdd6dd8bde"
+        },
+        "normalX": {
+          "path": "newer/textures/candidates-2026-10-12/metal7_1-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "5c414cc82d02887033e8db8f2bee61f70896d08e5731edc6ac443e372c0582c2"
+        },
+        "normalY": {
+          "path": "newer/textures/candidates-2026-10-12/metal7_1-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "805e02752133b4bf5e78b0dd0f35ad233c63b47d59f6fb05ab79856cbfbbb932"
+        },
+        "normalZ": {
+          "path": "newer/textures/candidates-2026-10-12/metal7_1-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "5ec25121215a430d231ec1aa0f47b9fa494c08402a08dec07d365e3eeec8f3c1"
+        }
+      },
+      "recipe": {
+        "path": "newer/textures/candidates-2026-10-12/metal7_1-photographic-seam-v2-4x.json",
+        "sha256": "2639a9ac93dfef190458df565b44790ed084e43a04ad5f591e7be05600106c6a"
+      },
+      "central192SquareByteIdentical": true,
+      "disposition": "PASS for exact name/native-key guarded source binding and trial"
+    }
+  ],
+  "wallFindings": [
+    "Two-course bond is structurally correct: top onefullwidthstone with xwrapjoint, bottomhalves withx32centre joint, lowerxwrapcontinuousstone. Quietphysicalstone, mutedcool/warm tones andsmallcleavages acceptable.",
+    "Focusedcomparison overrides provisional visualpass: newywrapmortar isthinwarmbrightlip, notnative darkcore; midjoint remainsstrongblack. This createsvisibly alternatingjointweight.",
+    "Nativecoremeans: y0=25.71,y63=38.14; midy32=27.54,y33=24.68. NewQ92y0=67.13,y1=75.13,y254=38.66,y255=39.62;midy128=18.70,y129=14.31. These diagnoseobservedjointappearance, notgeneral acceptance thresholds.",
+    "Correct byborrowing/phasefitting authored middlejoint into ywrap, preserving darkcore, wornedges,Tjunctions,upperxwrapmortar andlowercentrejoint. Preservequietstoneinterior."
+  ],
+  "metalFindings": [
+    "Quietbrown/greenoxidizedmetal remainsrepresentative atfull/reducedviews, withoutbolts,frame orgrainblanket.",
+    "Smoothpairededgecorrection removes tonalrepeatcuts; no blockingvisualdefect found.",
+    "No semanticconflict blocksnewexactsourceartwork. Existingholdconcernedunsafeautomaticdonorselection, not a prohibition on newgeneratedart."
+  ],
+  "ownerArtAmbiguity": {
+    "nativeKey": "64x64:d97a6a868b8864ec",
+    "identicalRGBASha256": "4e84a9946a97e1bf0e40c46dca228704628742b01b87a78c7ebd1b198f64db46",
+    "existingOwnerBindings": [
+      {
+        "name": "cop1_1",
+        "sources": [
+          "64x64:d97a6a868b8864ec"
+        ],
+        "file": "newer/textures/cop1_1.webp",
+        "sha256": "3a802ad505d34805b868f638566a5f03b43c9866fc6db40bab275ed06ef7bf2a",
+        "normal": {
+          "file": "normals/cop1_1.webp",
+          "strength": 1.2
+        }
+      },
+      {
+        "name": "ecop1_1",
+        "sources": [
+          "64x64:d97a6a868b8864ec"
+        ],
+        "file": "newer/textures/ecop1_1.webp",
+        "sha256": "3c8dc68334b2d0703886560bd40e949e0e527c8116bdc6e1feb6047e268e1433",
+        "normal": {
+          "file": "normals/ecop1_1.webp",
+          "strength": 1.2
+        }
+      },
+      {
+        "name": "metal5_1",
+        "sources": [
+          "64x64:d97a6a868b8864ec"
+        ],
+        "file": "newer/textures/metal5_1.webp",
+        "sha256": "64fb4b5a69e26720d2cdb5b1e7a28b84f7cba252c5e9b82a54cf94466ebac411",
+        "normal": {
+          "file": "normals/metal5_1.webp",
+          "strength": 1.4
+        }
+      }
+    ],
+    "visualDifference": "cop1_1/ecop1_1/metal5_1 use distinctownerHDpixels/normalrecipes despiteidenticalnativepixels;ecop1_1adds4cornerbolts. No singledonor may be silentlychosen asauthoritative.",
+    "safeNewBinding": "ordinaryVariants[metal7_1][64x64:d97a6a868b8864ec] withnewdiffuseandownheight/XYZrecipe; preserveall3existingownerbindings/files. Do notdeduplicatebyRGBAglobally.",
+    "scope": "RogueandMG1areoriginalauthorizedofficialscope. Lackofstockid1usewas onlyreasonmet5_1wasinitiallysuggestedforbasepriority, notgeneration/bindingban."
+  },
+  "evidence": [
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/wall14_5-photo-v2-comparison.png",
+      "sha256": "2fb69d4321925dd9ddce59f5d8d0948fdf7b51fd8c9e34b30ceb1159ec07eff6"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/wall14_5-photo-v2-repeat.png",
+      "sha256": "b3d176a25c5d9537374eb385c0e873e4ebf37a16181eb58230b40d23e5aa23a5"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/wall145-wrap-vs-mid-v2.png",
+      "sha256": "8a39d65cd9a5ce2f6f1a16e73c311dac623079da61e0c28c547ab15b073b237e"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/metal7_1-photo-v2-comparison.png",
+      "sha256": "8570c3ece43b329723afc5d2b71b1b9d66166aadb12fb18b5da415a676dd85d4"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/metal7_1-photo-v2-repeat.png",
+      "sha256": "1af6d3dbea4df2e15d65f32fb8b26000bb9da05fbb65bd1d3279bf259f4eb863"
+    }
+  ],
+  "limits": [
+    "GPU/public/nativeproof andowneracceptance separate; no registration performed.",
+    "Parentreported44GPUchecksnotrerunhere.",
+    "Newcandidateguard resolvesambiguityonlyforthisexactname/key; notauthority tochangeotherownerart."
+  ],
+  "nextOwner": "root campaign coordinator",
+  "nextAction": "Fixwall ywrapjointweight and re-review. Metalmayproceedwithguardedbinding aftercurrentindexreconciliation, preservingotherownerart."
+}

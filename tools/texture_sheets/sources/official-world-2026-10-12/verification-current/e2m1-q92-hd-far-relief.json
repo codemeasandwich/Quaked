@@ -1,0 +1,618 @@
+{
+  "schema": 1,
+  "state": "ready",
+  "priorFailedSetup": "E1M1 was rejected: the bundled runtime map lacks tech08_3. Registered-pack E1M1 faces1115/1125 were not the active game map. This fixture now uses actual E2M1 and discovers its own join.",
+  "qualification": "Candidate-only actual-level trial; visual acceptance and other-map coverage remain separate.",
+  "art": "hd",
+  "relief": true,
+  "view": "far",
+  "sceneFrames": 630,
+  "errors": [],
+  "checks": [
+    {
+      "passed": true,
+      "label": "tech08_3: trial specification present"
+    },
+    {
+      "passed": true,
+      "label": "tech08_3: candidate file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "tech08_3: height file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "tech08_3: original reference file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "tech08_4: trial specification present"
+    },
+    {
+      "passed": true,
+      "label": "tech08_4: candidate file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "tech08_4: height file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "tech08_4: original reference file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "tech08_3: present in maps/e2m1.bsp"
+    },
+    {
+      "passed": true,
+      "label": "tech08_3: actual native identity matches candidate authority"
+    },
+    {
+      "passed": true,
+      "label": "tech08_4: present in maps/e2m1.bsp"
+    },
+    {
+      "passed": true,
+      "label": "tech08_4: actual native identity matches candidate authority"
+    }
+  ],
+  "materials": [
+    {
+      "name": "tech08_3",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "f5fb5b05-2830-4ea1-959e-dc95d4087520",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "tech08_3",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "f5fb5b05-2830-4ea1-959e-dc95d4087520",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "tech08_3",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "f5fb5b05-2830-4ea1-959e-dc95d4087520",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "tech08_3",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "f5fb5b05-2830-4ea1-959e-dc95d4087520",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "tech08_3",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "f5fb5b05-2830-4ea1-959e-dc95d4087520",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "tech08_3",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "f5fb5b05-2830-4ea1-959e-dc95d4087520",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "tech08_3",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "f5fb5b05-2830-4ea1-959e-dc95d4087520",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "tech08_3",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "f5fb5b05-2830-4ea1-959e-dc95d4087520",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "tech08_3",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "f5fb5b05-2830-4ea1-959e-dc95d4087520",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "tech08_3",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "f5fb5b05-2830-4ea1-959e-dc95d4087520",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "tech08_4",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "0eabc4cb-35c0-49f0-ada2-399c9bc3b2c8",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "tech08_3",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "f5fb5b05-2830-4ea1-959e-dc95d4087520",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    }
+  ],
+  "fixture": {
+    "game": "quake",
+    "map": "e2m1",
+    "aliases": [
+      "tech08_3",
+      "tech08_4"
+    ]
+  },
+  "candidates": {
+    "tech08_3": {
+      "file": "candidates-2026-10-12/tech08_3-4x-q92-xyz-diffuse.webp",
+      "height": "candidates-2026-10-12/tech08_3-4x-q92-xyz-height.webp",
+      "width": 512,
+      "heightPixels": 512,
+      "strength": 0.45,
+      "cap": 0.55,
+      "diffuseSha256": "62a322dbb4e7fb834ceb6f8ebbd7601e1deba701a498186ba3bad5df417a5825",
+      "heightSha256": "9a32a4d61370bdcd10e62504ca3c5f5dab759ccf35f6c071c407e1b85978e563",
+      "method": "photographic",
+      "edgeAnchor": true,
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-tech08_3.png",
+      "originalSha256": "ab072185c51c0af6cc5a39b7b1458860bb5bffdea6fffe2f6cffaca60e41d515",
+      "factor": 4,
+      "nativeKey": "128x128:3fac30dd4bbf39af",
+      "normalChannels": {
+        "x": "candidates-2026-10-12/tech08_3-4x-q92-xyz-normalX.webp",
+        "y": "candidates-2026-10-12/tech08_3-4x-q92-xyz-normalY.webp",
+        "z": "candidates-2026-10-12/tech08_3-4x-q92-xyz-normalZ.webp"
+      },
+      "normalChannelSha256": {
+        "x": "f99b536f632c8ec486fc9d224a6c33c244e1a1393693277040578abd9b6837d8",
+        "y": "6ca6fb3fae5833e25bf48bf69c1249c26fd97fbcab023e0e8c36fdfbb8fae6fa",
+        "z": "0852a00021fc46bb85022b18bb899e5b32395ce92dad61870c5504aaecd99211"
+      },
+      "quality": 92,
+      "lossless": false,
+      "expectedNativeIdentity": "128x128:3fac30dd4bbf39af"
+    },
+    "tech08_4": {
+      "file": "candidates-2026-10-12/tech08_4-4x-q92-xyz-diffuse.webp",
+      "height": "candidates-2026-10-12/tech08_4-4x-q92-xyz-height.webp",
+      "width": 512,
+      "heightPixels": 512,
+      "strength": 0.45,
+      "cap": 0.55,
+      "diffuseSha256": "1b4b9620617a85b27bb27e311c0b806c48409cc6f8d36235c55c01e887689b3c",
+      "heightSha256": "f9d4f87b49425ddb3c00766d1790b1efc265e2611755f7a04a326069fa8f7903",
+      "method": "photographic",
+      "edgeAnchor": true,
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-tech08_4.png",
+      "originalSha256": "8fd09d9743aab088b07ec365a91a498fda916909ac67654e300a982c9d59097c",
+      "factor": 4,
+      "nativeKey": "128x128:4ded45e5c3061437",
+      "normalChannels": {
+        "x": "candidates-2026-10-12/tech08_4-4x-q92-xyz-normalX.webp",
+        "y": "candidates-2026-10-12/tech08_4-4x-q92-xyz-normalY.webp",
+        "z": "candidates-2026-10-12/tech08_4-4x-q92-xyz-normalZ.webp"
+      },
+      "normalChannelSha256": {
+        "x": "6b8c9ffa283aa439a0388d8fbfd8a5d026e7aca305483f6444128aa3864b0d9e",
+        "y": "9239400286bfc9e1fe1d184dbdb00b3831bf5faafbafc6b23eb2cee0d71cbc45",
+        "z": "f6216a364507bea0ff4cbda5813bf9498004e57264e1eba3135d18beb00939f5"
+      },
+      "quality": 92,
+      "lossless": false,
+      "expectedNativeIdentity": "128x128:4ded45e5c3061437"
+    }
+  },
+  "assetRouting": "Page-local loose Newer assets; native PAK routing unchanged",
+  "presentationIsolation": "Page-local Bestiary observation disabled to preserve the measured camera; no journal reset; restored on stop",
+  "shaderErrors": [],
+  "actualEye": [
+    1000.03125,
+    -207.96875,
+    256.03125
+  ],
+  "framebuffer": {
+    "scene": [
+      2562,
+      1440
+    ],
+    "display": [
+      2560,
+      1440
+    ]
+  },
+  "signon": 4,
+  "serverTime": 56.84270000000051,
+  "hdr": 1,
+  "map": {
+    "name": "maps/e2m1.bsp",
+    "sha256": "de2f7b284ee64b24cdfe545ea4b09abdf9cce657f7ba6b1aab7ef06fecf2c26a",
+    "faces": 5976
+  },
+  "independentSourceProbe": {
+    "map": "maps/e2m1.bsp",
+    "sha256": "de2f7b284ee64b24cdfe545ea4b09abdf9cce657f7ba6b1aab7ef06fecf2c26a",
+    "faces": 5976,
+    "tech08_3Faces": 275,
+    "tech08_4Faces": 7,
+    "joinFaces": [
+      4819,
+      4821
+    ],
+    "joinEdge": [
+      [
+        856,
+        -320,
+        256
+      ],
+      [
+        856,
+        -96,
+        256
+      ]
+    ],
+    "qualification": "Native model/hull probe; the live fixture still discovers and checks actual runtime geometry."
+  },
+  "join": {
+    "kind": "coplanar",
+    "faces": [
+      4819,
+      4821
+    ],
+    "points": [
+      [
+        856,
+        -320,
+        256
+      ],
+      [
+        856,
+        -96,
+        256
+      ]
+    ],
+    "center": [
+      856,
+      -208,
+      256
+    ],
+    "surfaceNormals": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ]
+    ],
+    "viewDirection": [
+      1,
+      0,
+      0
+    ],
+    "interiorProbes": [
+      [
+        856,
+        -208,
+        252
+      ],
+      [
+        856,
+        -208,
+        260
+      ]
+    ],
+    "views": {
+      "near": [
+        904,
+        -208,
+        256
+      ],
+      "far": [
+        1000,
+        -208,
+        256
+      ],
+      "oblique": [
+        920,
+        -176,
+        256
+      ]
+    },
+    "length": 224,
+    "textures": [
+      {
+        "face": 4819,
+        "name": "tech08_4",
+        "identity": "128x128:4ded45e5c3061437",
+        "s": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "t": [
+          0,
+          0,
+          -1,
+          0
+        ]
+      },
+      {
+        "face": 4821,
+        "name": "tech08_3",
+        "identity": "128x128:3fac30dd4bbf39af",
+        "s": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "t": [
+          0,
+          0,
+          -1,
+          0
+        ]
+      }
+    ],
+    "alternatives": 2
+  },
+  "requestedView": {
+    "eye": [
+      1000,
+      -208,
+      256
+    ],
+    "target": [
+      856,
+      -208,
+      256
+    ],
+    "angles": [
+      0,
+      180,
+      0
+    ]
+  }
+}

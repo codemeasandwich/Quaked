@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "comp1_2",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-comp1_2.png",
+  "originalSha256": "22815eef7acb4c7e59145477985ccafabb432dbd84ece567c289da6aa1f4a23e",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-12/mg1-comp1_2-photographic-4x.png",
+  "authoringDiffuseSha256": "d2bc3186f6d3cbd3b2d66c342245d7e6be3682e8cee2d853083826977779d0ed",
+  "toolSha256": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.8,
+    "bump": 0.6,
+    "glow": 0.2,
+    "strength": 0.35,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-12/mg1-comp1_2-4x-q92-xyz-diffuse.webp",
+      "sha256": "f5d4c33d46d148b688894f5502d5044af75fd5bc093a0e6db6a652a56325796a",
+      "bytes": 22728,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-12/mg1-comp1_2-4x-q92-xyz-height.webp",
+      "sha256": "ca29554d03810b024439d1beb5384cf506748037dcc5106ba2b601d2f07713b1",
+      "bytes": 27224,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-12/mg1-comp1_2-4x-q92-xyz-normalX.webp",
+      "sha256": "670b729285f885dd3713187f4867ddfd7068c1b7b45dc46044a7c152e40593cc",
+      "bytes": 22308,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-12/mg1-comp1_2-4x-q92-xyz-normalY.webp",
+      "sha256": "28da5cd4c5d0bfbdd00b547d5b8e700e32b37cd2e88decf83ff31830e647953d",
+      "bytes": 22060,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-12/mg1-comp1_2-4x-q92-xyz-normalZ.webp",
+      "sha256": "6fb2bed30b230bfb3eac09ed332562c6d7af9d6b34d04ca863d955c7dba39639",
+      "bytes": 6750,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    32,
+    32
+  ],
+  "distanceMAE": 11.313151041666666,
+  "distanceMaximum": 59.0,
+  "secondaryComparisonDimensions": [
+    16,
+    16
+  ],
+  "secondaryDistanceMAE": 7.247395833333333,
+  "secondaryDistanceMaximum": 48.0,
+  "colourCompressionMAE": 1.8184356689453125,
+  "heightCompressionMAE": 1.3278656005859375,
+  "heightCompressionMaximum": 8.0,
+  "normalAngularMean": 0.9736673565708026,
+  "normalAngularP99": 2.5157758436334943,
+  "normalAngularMaximum": 4.366163416827416,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

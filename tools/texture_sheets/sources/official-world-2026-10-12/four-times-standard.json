@@ -1,0 +1,1072 @@
+{
+  "schemaVersion": 1,
+  "factor": 4,
+  "authority": "Owner13October: all high-resolution textures must be four times each native dimension",
+  "method": "LANCZOS from reviewed8x photographic candidates; regenerate material-aware height fields at4x; lossless runtime diffuse",
+  "historicalInputs": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/current-registration-inputs.json",
+      "sha256": "046f66338fd884b1a4887a9ccb00b15fb1364f2c80e3f8280fcb7ff1482f5a34"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/expansion-registration.json",
+      "sha256": "14a7bd2c0faeccf1a8663b5c8b457b88d50f0418dba93f3e8e3e1774906b1da9"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/masonry-registration.json",
+      "sha256": "4637ba52021d79d949cb2d094cc75008203f1628c61cefa019970460ae420036"
+    }
+  ],
+  "beforeIndexSha256": "590f665c5e21b990c58e35da75dd5b1b6228b9ca20a608bc90c83e3abadc8598",
+  "afterIndexSha256": "5303d2a247ba7529084deddaee6f32b6ac276f51cf167fbd1715a185aa3fcccb",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "migrationToolSha256": "f2f5c8e00923ae2ea290bd2203b3202852bbbe450d82ec7f513cee5a9fc98777",
+  "bindings": [
+    {
+      "name": "tech08_3",
+      "nativeKey": "128x128:3fac30dd4bbf39af",
+      "previous": {
+        "binding": {
+          "file": "official/tech08_3-3fac30dd4bbf39af.webp",
+          "normal": {
+            "file": "normals/official/tech08_3-3fac30dd4bbf39af.webp",
+            "strength": 0.45,
+            "cap": 0.55
+          }
+        },
+        "diffuseSha256": "2f5e8d2cbce5f4b886e4c75f437b1af454fd37c66df1e607d801c30d28b579de",
+        "heightSha256": "b66d127223519c0aa4530abad2921596beba744303762a5efe7781730e4a1e95"
+      },
+      "current": {
+        "binding": {
+          "file": "official/tech08_3-3fac30dd4bbf39af-4x.webp",
+          "normal": {
+            "file": "normals/official/tech08_3-3fac30dd4bbf39af-4x.webp",
+            "strength": 0.45,
+            "cap": 0.55
+          }
+        },
+        "diffuseSha256": "e92bc4cdfdcfddf5ad9a23cec472ff9ed7eef7c38927e2575efa9ffb6f8b445a",
+        "heightSha256": "07854b346d59284d05cc4c041cd565fc3b372c0bb6e9f0288eaf6aebb8d99123",
+        "candidate": "candidates-2026-10-12/tech08_3-photographic-edge-4x.png",
+        "candidateSha256": "200b0fb6e50e64b97256d4bbb2e0ea218be9ad34272b94ace89ec577d1815e08"
+      }
+    },
+    {
+      "name": "tech08_4",
+      "nativeKey": "128x128:4ded45e5c3061437",
+      "previous": {
+        "binding": {
+          "file": "official/tech08_4-4ded45e5c3061437.webp",
+          "normal": {
+            "file": "normals/official/tech08_4-4ded45e5c3061437.webp",
+            "strength": 0.45,
+            "cap": 0.55
+          }
+        },
+        "diffuseSha256": "73c110bd9f6165b625aa11a6b138b98cc76117d7fd77d1a7c508c26aa54cc053",
+        "heightSha256": "241b7a10517a9470db1167871100b55b3717cd9f1c8e59321321a8da2395a5fb"
+      },
+      "current": {
+        "binding": {
+          "file": "official/tech08_4-4ded45e5c3061437-4x.webp",
+          "normal": {
+            "file": "normals/official/tech08_4-4ded45e5c3061437-4x.webp",
+            "strength": 0.45,
+            "cap": 0.55
+          }
+        },
+        "diffuseSha256": "4a7de42d8c73d8a1df57ca321686d7a945d179b2bbc46a82a64f5a40ebd1b22f",
+        "heightSha256": "f816a6e3dc7ecd72dcf1081a9b2189640fa58a67eb4e3ccf05cfb7c9aa3b6573",
+        "candidate": "candidates-2026-10-12/tech08_4-photographic-edge-4x.png",
+        "candidateSha256": "19125d642668a6d12712b8df9ff84b8cab09a1bfe18d9a79c927e2c1e24ff829"
+      }
+    },
+    {
+      "name": "metal5_6",
+      "nativeKey": "32x64:b15237abb6d97cf1",
+      "previous": {
+        "binding": {
+          "file": "official/hipnotic-metal5_6-b15237abb6d97cf1.webp",
+          "normal": {
+            "file": "normals/official/hipnotic-metal5_6-b15237abb6d97cf1.webp",
+            "strength": 0.35,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "e5627090594b5274d73f5b77ea36cf1e4c9bbcd5a99cc8cb23e5a7edaa073d88",
+        "heightSha256": "7124206b25d4297e04ca9e2913b15645679fdaff7916a685a6a5cd4a0df16b23"
+      },
+      "current": {
+        "binding": {
+          "file": "official/hipnotic-metal5_6-b15237abb6d97cf1-4x.webp",
+          "normal": {
+            "file": "normals/official/hipnotic-metal5_6-b15237abb6d97cf1-4x.webp",
+            "strength": 0.35,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "bd9b91b60b8489080f8fd9bdd91f1a69d79d41dd255558118d0ed8b3145a31ce",
+        "heightSha256": "1b13c5044dbdd0be7f4162653c9bdad023b4538370d1947f9f52279afa059d57",
+        "candidate": "candidates-2026-10-12/hipnotic-metal5_6-photographic-4x.png",
+        "candidateSha256": "53e2a65efbcfa88f707f3756e85895b41120d502fb68b0d9604a3f41b7d5f799"
+      }
+    },
+    {
+      "name": "comp1_2",
+      "nativeKey": "64x64:a823407b09df4331",
+      "previous": {
+        "binding": {
+          "file": "official/mg1-comp1_2-a823407b09df4331.webp",
+          "normal": {
+            "file": "normals/official/mg1-comp1_2-a823407b09df4331.webp",
+            "strength": 0.35,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "88e2d2b7b1303988919f61fccf210081b9ca9c0d31757bf46acbfa30b26a322a",
+        "heightSha256": "884833465a4cfc8629dbb6a2ff9a0903162753c0100920c0fc50ab228ffefbbe"
+      },
+      "current": {
+        "binding": {
+          "file": "official/mg1-comp1_2-a823407b09df4331-4x.webp",
+          "normal": {
+            "file": "normals/official/mg1-comp1_2-a823407b09df4331-4x.webp",
+            "strength": 0.35,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "52e1c43dbc4b9787ad30a7c97483bd15daeb625f621b4fb4f28addc9d5ca040d",
+        "heightSha256": "722a2adfa24f23e693ce9ca8d5d364b458cbe722c60b507f0d6f8f060f061df2",
+        "candidate": "candidates-2026-10-12/mg1-comp1_2-photographic-4x.png",
+        "candidateSha256": "d2bc3186f6d3cbd3b2d66c342245d7e6be3682e8cee2d853083826977779d0ed"
+      }
+    },
+    {
+      "name": "comp1_3",
+      "nativeKey": "64x64:4b7a14875bfadccd",
+      "previous": {
+        "binding": {
+          "file": "official/mg1-comp1_3-4b7a14875bfadccd.webp",
+          "normal": {
+            "file": "normals/official/mg1-comp1_3-4b7a14875bfadccd.webp",
+            "strength": 0.35,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "b80e9bf992578d4156380675950cf463bc6f0e8efc59b0ccae762d9bc56b9cab",
+        "heightSha256": "ae51ee7af431ee1501d6e7b037e4248ff9769429974da6b2e7491889bc640a20"
+      },
+      "current": {
+        "binding": {
+          "file": "official/mg1-comp1_3-4b7a14875bfadccd-4x.webp",
+          "normal": {
+            "file": "normals/official/mg1-comp1_3-4b7a14875bfadccd-4x.webp",
+            "strength": 0.35,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "cbfee56216b618fe8ddcaf87fb8d1c89a7125d004b888d9c35bf534928ced223",
+        "heightSha256": "be81eac26e69f29e73015b528d4d4fd08dea71bc1d2980bc9646b75e5e26a452",
+        "candidate": "candidates-2026-10-12/mg1-comp1_3-photographic-4x.png",
+        "candidateSha256": "67f142d65686b8b7bd830e76c5b747140d501db3730e514e20ff51348a654aae"
+      }
+    },
+    {
+      "name": "metal1_1",
+      "nativeKey": "64x64:5fdc8d86e1f32d2c",
+      "previous": {
+        "binding": {
+          "file": "official/mg1-metal1_1-5fdc8d86e1f32d2c.webp",
+          "normal": {
+            "file": "normals/official/mg1-metal1_1-5fdc8d86e1f32d2c.webp",
+            "strength": 0.35,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "39b21ec3f02b6e88bb7d57dae1504ff8ba50adffcc488531b8af453969bd83ff",
+        "heightSha256": "e85fa23410c312a9b89794044d22a6e42e454d290b508263ac6e5a4446ced829"
+      },
+      "current": {
+        "binding": {
+          "file": "official/mg1-metal1_1-5fdc8d86e1f32d2c-4x.webp",
+          "normal": {
+            "file": "normals/official/mg1-metal1_1-5fdc8d86e1f32d2c-4x.webp",
+            "strength": 0.35,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "f1e0b3538750ba8e4a8fbecdd941ef5f2d411f51e211704138b6f9f88ed1942a",
+        "heightSha256": "53293476a73372c8d645665c621e2aa73ea13f02bbda950ace3b406c02d48cd7",
+        "candidate": "candidates-2026-10-12/mg1-metal1_1-photographic-4x.png",
+        "candidateSha256": "24971a7f28525a99afb984daa136e4ccf0243752105337ee61f5bb1ebac25eb1"
+      }
+    },
+    {
+      "name": "metal1_3",
+      "nativeKey": "64x64:7c6b8625f6f16f6f",
+      "previous": {
+        "binding": {
+          "file": "official/mg1-metal1_3-7c6b8625f6f16f6f.webp",
+          "normal": {
+            "file": "normals/official/mg1-metal1_3-7c6b8625f6f16f6f.webp",
+            "strength": 0.35,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "b429aa8824ed22ded96958a7305c855b80cfb3e60838b2ee0bc832cd400a5422",
+        "heightSha256": "65f41dc0f5ea112e075ae4aff7ba2893758a0448d63c16cde758dd000fa58d26"
+      },
+      "current": {
+        "binding": {
+          "file": "official/mg1-metal1_3-7c6b8625f6f16f6f-4x.webp",
+          "normal": {
+            "file": "normals/official/mg1-metal1_3-7c6b8625f6f16f6f-4x.webp",
+            "strength": 0.35,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "c0e93b1bb33011bb4cb42ae1853fca8e96ad9615a1b4022bbe09e16c73a6ff02",
+        "heightSha256": "3c38d8cc60d07f6f1e7b352ee290c0551d6d254203d7c37dfa6b9fc4beb9e953",
+        "candidate": "candidates-2026-10-12/mg1-metal1_3-photographic-4x.png",
+        "candidateSha256": "9e8490ed83b3a97077265660cb42c9e461246ef52f4aa6afb2bc70860624c56c"
+      }
+    },
+    {
+      "name": "metal1_4",
+      "nativeKey": "64x64:5fcb234d8850a05f",
+      "previous": {
+        "binding": {
+          "file": "official/mg1-metal1_4-5fcb234d8850a05f.webp",
+          "normal": {
+            "file": "normals/official/mg1-metal1_4-5fcb234d8850a05f.webp",
+            "strength": 0.35,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "17707a5cfaf4fab57dd0e39cc3cc74b7f7eff47b7d40363c3548e0ab2fcbd745",
+        "heightSha256": "ff1a073bf8dbfa414e7a486a479bcbf97d1eb9288f6619c0a240fbb44752a4aa"
+      },
+      "current": {
+        "binding": {
+          "file": "official/mg1-metal1_4-5fcb234d8850a05f-4x.webp",
+          "normal": {
+            "file": "normals/official/mg1-metal1_4-5fcb234d8850a05f-4x.webp",
+            "strength": 0.35,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "059d6d3c597351cf970bb1406c7202c321079fde4c9b50f0c41b4c3f5a59d521",
+        "heightSha256": "883a43f7a5c9ec7e74d91a61c44c37d2ea6b2ef6c66266e67597bbeef133ee38",
+        "candidate": "candidates-2026-10-12/mg1-metal1_4-photographic-4x.png",
+        "candidateSha256": "103f85b306337d72a25446d2079654584b21ecf4d72b4ea734f04a68acd374b6"
+      }
+    },
+    {
+      "name": "city6_8",
+      "nativeKey": "64x64:3300e41335b7e451",
+      "previous": {
+        "binding": {
+          "file": "official/city6_8-3300e41335b7e451.webp",
+          "normal": {
+            "file": "normals/official/city6_8-3300e41335b7e451.webp",
+            "strength": 0.3,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "5d29f7bf0d46898a3572ccdbe06e7def74104f97c9a5524a6041082399df14f1",
+        "heightSha256": "42991f96d76539f3521424a75f71266e2e7c356dd253f7eb5db3cc783e65ae9d"
+      },
+      "current": {
+        "binding": {
+          "file": "official/city6_8-3300e41335b7e451-4x.webp",
+          "normal": {
+            "file": "normals/official/city6_8-3300e41335b7e451-4x.webp",
+            "strength": 0.3,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "d1b1215366a57757a21df91fb407c1b3d16fcc3d402baf5f216490e729f63005",
+        "heightSha256": "5b23ec48c79534e1d6fa9c57cfb50e7b8a9f336dc3175d2c62901f506d2c5803",
+        "candidate": "candidates-2026-10-12/city6_8-photographic-4x.png",
+        "candidateSha256": "59bacf4c609707c4755ccf85d08e5ab25f71763eb10b99047ddd5c4203935f80"
+      }
+    },
+    {
+      "name": "city4_2",
+      "nativeKey": "64x64:0621dd3e82b96b24",
+      "previous": {
+        "binding": {
+          "file": "official/city4_2-0621dd3e82b96b24.webp",
+          "normal": {
+            "file": "normals/official/city4_2-0621dd3e82b96b24.webp",
+            "strength": 0.3,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "2478adf02189b9ed09128f4b7009b275ba335db6075dd0689c3542a2865795f0",
+        "heightSha256": "83e82bbb16dfd1e1c1a5d711b0126a9d3dce08bf5142360bf4cf942a4b8498b9"
+      },
+      "current": {
+        "binding": {
+          "file": "official/city4_2-0621dd3e82b96b24-4x.webp",
+          "normal": {
+            "file": "normals/official/city4_2-0621dd3e82b96b24-4x.webp",
+            "strength": 0.3,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "4b8f413693206920ecbf7361789edc8c4a6d2b9151eae62e20f8f68f8d779558",
+        "heightSha256": "737329c3285c77cd095a91dc874ab4c3493f155f7b50efd83b5b74427a694889",
+        "candidate": "candidates-2026-10-12/city4_2-photographic-v2-4x.png",
+        "candidateSha256": "3398fc258e19915b5e476b2f84755337269a042c8fed256adbfd36bb6250bfc1"
+      }
+    },
+    {
+      "name": "city4_8",
+      "nativeKey": "64x64:3eb3f2adf6aa1457",
+      "previous": {
+        "binding": {
+          "file": "official/city4_8-3eb3f2adf6aa1457.webp",
+          "normal": {
+            "file": "normals/official/city4_8-3eb3f2adf6aa1457.webp",
+            "strength": 0.3,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "06f3258c160e9c7b96579911ae723643dab66337773143d8eb376692726d42a7",
+        "heightSha256": "59215c513acb625f63f157ab7b19b4731f2af6ce2865fbd6e8953528c2b80b5d"
+      },
+      "current": {
+        "binding": {
+          "file": "official/city4_8-3eb3f2adf6aa1457-4x.webp",
+          "normal": {
+            "file": "normals/official/city4_8-3eb3f2adf6aa1457-4x.webp",
+            "strength": 0.3,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "c1d10e29da48bb42eeff2b656a62b2aabf8f72a0a870575f3a6150a58964864c",
+        "heightSha256": "9ece808cd9e5c789c5fa77611e7624512a24b9db3fe2b28be80128be11e4a49b",
+        "candidate": "candidates-2026-10-12/city4_8-photographic-joints-v2-4x.png",
+        "candidateSha256": "a6b22b6f92f69269bf597996613da6b8ad94f8b350d89d77e86b174ea1f5d97c"
+      }
+    },
+    {
+      "name": "metflor1_3",
+      "nativeKey": "64x64:3eb3f2adf6aa1457",
+      "previous": {
+        "binding": {
+          "file": "official/city4_8-3eb3f2adf6aa1457.webp",
+          "normal": {
+            "file": "normals/official/city4_8-3eb3f2adf6aa1457.webp",
+            "strength": 0.3,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "06f3258c160e9c7b96579911ae723643dab66337773143d8eb376692726d42a7",
+        "heightSha256": "59215c513acb625f63f157ab7b19b4731f2af6ce2865fbd6e8953528c2b80b5d"
+      },
+      "current": {
+        "binding": {
+          "file": "official/city4_8-3eb3f2adf6aa1457-4x.webp",
+          "normal": {
+            "file": "normals/official/city4_8-3eb3f2adf6aa1457-4x.webp",
+            "strength": 0.3,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "c1d10e29da48bb42eeff2b656a62b2aabf8f72a0a870575f3a6150a58964864c",
+        "heightSha256": "9ece808cd9e5c789c5fa77611e7624512a24b9db3fe2b28be80128be11e4a49b",
+        "candidate": "candidates-2026-10-12/city4_8-photographic-joints-v2-4x.png",
+        "candidateSha256": "a6b22b6f92f69269bf597996613da6b8ad94f8b350d89d77e86b174ea1f5d97c"
+      }
+    },
+    {
+      "name": "bricka2_4",
+      "nativeKey": "64x64:4b2a165efc1a200c",
+      "previous": {
+        "binding": {
+          "file": "official/bricka2_4-4b2a165efc1a200c.webp",
+          "normal": {
+            "file": "normals/official/bricka2_4-4b2a165efc1a200c.webp",
+            "strength": 0.3,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "862048f34553e1e3a9000e1a14da634a7b7667bcb35bc3e8c6564d859ba3ec79",
+        "heightSha256": "e4f20fafd6e3cd8b87d4dd9185c644d491d86d9f994c18ed4d04b7b5541c6c3d"
+      },
+      "current": {
+        "binding": {
+          "file": "official/bricka2_4-4b2a165efc1a200c-4x.webp",
+          "normal": {
+            "file": "normals/official/bricka2_4-4b2a165efc1a200c-4x.webp",
+            "strength": 0.3,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "ef7f237a0afadd3d3460106523de35830f0dddd69d3a8c842b5766343d0f81fc",
+        "heightSha256": "66891c739b8922718dfc32316cea9463ce43c0ac3c85757f15e21740f8c84cd5",
+        "candidate": "candidates-2026-10-12/bricka2_4-photographic-v2-4x.png",
+        "candidateSha256": "08995be75048678c8731a6550b1812db28aa7b982f6fb69796339c26414b8cef"
+      }
+    },
+    {
+      "name": "brick2_4",
+      "nativeKey": "64x64:4b2a165efc1a200c",
+      "previous": {
+        "binding": {
+          "file": "official/bricka2_4-4b2a165efc1a200c.webp",
+          "normal": {
+            "file": "normals/official/bricka2_4-4b2a165efc1a200c.webp",
+            "strength": 0.3,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "862048f34553e1e3a9000e1a14da634a7b7667bcb35bc3e8c6564d859ba3ec79",
+        "heightSha256": "e4f20fafd6e3cd8b87d4dd9185c644d491d86d9f994c18ed4d04b7b5541c6c3d"
+      },
+      "current": {
+        "binding": {
+          "file": "official/bricka2_4-4b2a165efc1a200c-4x.webp",
+          "normal": {
+            "file": "normals/official/bricka2_4-4b2a165efc1a200c-4x.webp",
+            "strength": 0.3,
+            "cap": 0.5
+          }
+        },
+        "diffuseSha256": "ef7f237a0afadd3d3460106523de35830f0dddd69d3a8c842b5766343d0f81fc",
+        "heightSha256": "66891c739b8922718dfc32316cea9463ce43c0ac3c85757f15e21740f8c84cd5",
+        "candidate": "candidates-2026-10-12/bricka2_4-photographic-v2-4x.png",
+        "candidateSha256": "08995be75048678c8731a6550b1812db28aa7b982f6fb69796339c26414b8cef"
+      }
+    }
+  ],
+  "trials": [
+    {
+      "alias": "tech08_3",
+      "nativeKey": "128x128:3fac30dd4bbf39af",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-tech08_3.png",
+      "originalSha256": "ab072185c51c0af6cc5a39b7b1458860bb5bffdea6fffe2f6cffaca60e41d515",
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "previous": {
+        "file": "candidates-2026-10-12/tech08_3-photographic-edge.png",
+        "height": "candidates-2026-10-12/tech08_3-photographic-edge-height.webp",
+        "width": 1024,
+        "heightPixels": 1024,
+        "diffuseSha256": "59bff1140eb01f2d38a46f4efba050d78d7c9be6e46dc0e8524150b911d934fd",
+        "heightSha256": "b66d127223519c0aa4530abad2921596beba744303762a5efe7781730e4a1e95"
+      },
+      "current": {
+        "file": "candidates-2026-10-12/tech08_3-photographic-edge-4x.png",
+        "height": "candidates-2026-10-12/tech08_3-photographic-edge-4x-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "diffuseSha256": "200b0fb6e50e64b97256d4bbb2e0ea218be9ad34272b94ace89ec577d1815e08",
+        "heightSha256": "07854b346d59284d05cc4c041cd565fc3b372c0bb6e9f0288eaf6aebb8d99123"
+      },
+      "heightProfile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.8,
+        "bump": 0.6,
+        "glow": 0.2,
+        "strength": 0.45,
+        "cap": 0.55
+      }
+    },
+    {
+      "alias": "tech08_4",
+      "nativeKey": "128x128:4ded45e5c3061437",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-tech08_4.png",
+      "originalSha256": "8fd09d9743aab088b07ec365a91a498fda916909ac67654e300a982c9d59097c",
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "previous": {
+        "file": "candidates-2026-10-12/tech08_4-photographic-edge.png",
+        "height": "candidates-2026-10-12/tech08_4-photographic-edge-height.webp",
+        "width": 1024,
+        "heightPixels": 1024,
+        "diffuseSha256": "e09aaaefa0d5b815dd7e26187b90dc7b387156065033374249f0a4335da2e0e0",
+        "heightSha256": "241b7a10517a9470db1167871100b55b3717cd9f1c8e59321321a8da2395a5fb"
+      },
+      "current": {
+        "file": "candidates-2026-10-12/tech08_4-photographic-edge-4x.png",
+        "height": "candidates-2026-10-12/tech08_4-photographic-edge-4x-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "diffuseSha256": "19125d642668a6d12712b8df9ff84b8cab09a1bfe18d9a79c927e2c1e24ff829",
+        "heightSha256": "f816a6e3dc7ecd72dcf1081a9b2189640fa58a67eb4e3ccf05cfb7c9aa3b6573"
+      },
+      "heightProfile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.8,
+        "bump": 0.6,
+        "glow": 0.2,
+        "strength": 0.45,
+        "cap": 0.55
+      }
+    },
+    {
+      "alias": "tech10_2",
+      "nativeKey": "128x128:7e69745d82cfe79f",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-tech10_2.png",
+      "originalSha256": "e85e0ea2a0a9ecaf7cc105c94dba90afbdca2baef358154969b1d65cc3d635de",
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "previous": {
+        "file": "candidates-2026-10-12/tech10_2-photographic.png",
+        "height": "candidates-2026-10-12/tech10_2-photographic-height.webp",
+        "width": 1024,
+        "heightPixels": 1024,
+        "diffuseSha256": "b36335277a0ca3669096294e79739cce149a93a1db0c4001a870f4e82b2200e1",
+        "heightSha256": "a348ee2159da58970dd50533e8f2384b338fa17f2f53da2e49f38e799bf30532"
+      },
+      "current": {
+        "file": "candidates-2026-10-12/tech10_2-photographic-4x.png",
+        "height": "candidates-2026-10-12/tech10_2-photographic-4x-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "diffuseSha256": "d564ac2fa9045ba39bda9b2b550263ca4902ac5e21dda0aceb8b7298fad0cded",
+        "heightSha256": "892b77045f68a754325609dd83e73157e431668a71f7f51e6a73ee36b9d8735a"
+      },
+      "heightProfile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.8,
+        "bump": 0.6,
+        "glow": 0.2,
+        "strength": 0.45,
+        "cap": 0.55
+      }
+    },
+    {
+      "alias": "tech04_4",
+      "nativeKey": "16x128:c01c37b5e92569b7",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-tech04_4.png",
+      "originalSha256": "5b1be718dbeefd3cf0e31a4d9ece39411352ff6fff94f6d82bc47b586a0f8d33",
+      "targetDimensions": [
+        64,
+        512
+      ],
+      "previous": {
+        "file": "candidates-2026-10-12/tech04_4-photographic.png",
+        "height": "candidates-2026-10-12/tech04_4-photographic-height.webp",
+        "width": 128,
+        "heightPixels": 1024,
+        "diffuseSha256": "0a9e46aa21245a544fc63be5139ef9d5d9dc24b6a42b25a8dfae04d4b3b9c4e1",
+        "heightSha256": "214b958719c1e39e4da0ccc6d8e6cdf7cd318664ff843f2abbbb3218b4f36d2c"
+      },
+      "current": {
+        "file": "candidates-2026-10-12/tech04_4-photographic-4x.png",
+        "height": "candidates-2026-10-12/tech04_4-photographic-4x-height.webp",
+        "width": 64,
+        "heightPixels": 512,
+        "diffuseSha256": "3787ab0de2e1481db62e92a4427f16750ef175434375cbd5040faf59df36c57b",
+        "heightSha256": "f6325b950440a8218c265168f48fb2487d82e19f187b162f279c08d03f8a5a6c"
+      },
+      "heightProfile": {
+        "bands": [
+          0.5,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.8,
+        "bump": 0.8,
+        "glow": 0.1,
+        "strength": 0.45,
+        "cap": 0.55
+      }
+    },
+    {
+      "alias": "door02_1",
+      "nativeKey": "16x128:3941ea46f27a7cac",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-door02_1.png",
+      "originalSha256": "5c31efae940a4197c9798212e0f274fc49f1fb4b9f41a2370293878909e9ef88",
+      "targetDimensions": [
+        64,
+        512
+      ],
+      "previous": {
+        "file": "candidates-2026-10-12/door02_1-photographic.png",
+        "height": "candidates-2026-10-12/door02_1-photographic-height.webp",
+        "width": 128,
+        "heightPixels": 1024,
+        "diffuseSha256": "57472ae080901eee31865c8d3977db04317c47bc8bed016ef957b513954c19f9",
+        "heightSha256": "3c92d4fb5cb6b61b455a5983c294aa8b156d3956d3b9e9be030ae3b2e8aea5a4"
+      },
+      "current": {
+        "file": "candidates-2026-10-12/door02_1-photographic-4x.png",
+        "height": "candidates-2026-10-12/door02_1-photographic-4x-height.webp",
+        "width": 64,
+        "heightPixels": 512,
+        "diffuseSha256": "1c6723cf358e8198fd187b8c3b286c5014d788311ff6df87bc7e24267824b79b",
+        "heightSha256": "af1946889af7aac66cbce9890aa0d96dbb4d3f5c718b0e97c0d3009f1e1043b4"
+      },
+      "heightProfile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.8,
+        "bump": 0.6,
+        "glow": 0.2,
+        "strength": 0.45,
+        "cap": 0.55
+      }
+    },
+    {
+      "alias": "ceil1_1",
+      "nativeKey": "16x16:d42b01851aa0cd87",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-ceil1_1.png",
+      "originalSha256": "93d8fe0c85fc8207e969a94f631a369601bdf712e18a8f9b232062d812cd7d0b",
+      "targetDimensions": [
+        64,
+        64
+      ],
+      "previous": {
+        "file": "candidates-2026-10-12/ceil1_1-photographic-v2.png",
+        "height": "candidates-2026-10-12/ceil1_1-photographic-height.webp",
+        "width": 128,
+        "heightPixels": 128,
+        "diffuseSha256": "853544072ec601d16dbf68c8b489e84413549869bf1b3ef19138d11dd8586185",
+        "heightSha256": "2da41af03c2d1ac95723ca2bdb49f102f067d5f4bb8d4b43449a2a03367e9b3a"
+      },
+      "current": {
+        "file": "candidates-2026-10-12/ceil1_1-photographic-v2-4x.png",
+        "height": "candidates-2026-10-12/ceil1_1-photographic-v2-4x-height.webp",
+        "width": 64,
+        "heightPixels": 64,
+        "diffuseSha256": "4cb964247de90b243112e1efce30cdc1a88ca00cd897b852b876e36723481440",
+        "heightSha256": "e12f762a1b07b067ce0685e3f1de188b593937aa875e6d2ea57f7cbaff1aa981"
+      },
+      "heightProfile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.2,
+        "cap": 0.55
+      }
+    },
+    {
+      "alias": "hipnotic-metal5_6",
+      "nativeKey": "32x64:b15237abb6d97cf1",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-hipnotic-metal5_6.png",
+      "originalSha256": "bbbdbb43016ff0a19797611372901911b221d25ad04ca648e186e2e9e2358a28",
+      "targetDimensions": [
+        128,
+        256
+      ],
+      "previous": {
+        "file": "candidates-2026-10-12/hipnotic-metal5_6-photographic.png",
+        "height": "candidates-2026-10-12/hipnotic-metal5_6-photographic-height.webp",
+        "width": 256,
+        "heightPixels": 512,
+        "diffuseSha256": "241e4642a4670d159c843df01deceae342bb0245c55288dbd0effcb677ec00f2",
+        "heightSha256": "7124206b25d4297e04ca9e2913b15645679fdaff7916a685a6a5cd4a0df16b23"
+      },
+      "current": {
+        "file": "candidates-2026-10-12/hipnotic-metal5_6-photographic-4x.png",
+        "height": "candidates-2026-10-12/hipnotic-metal5_6-photographic-4x-height.webp",
+        "width": 128,
+        "heightPixels": 256,
+        "diffuseSha256": "53e2a65efbcfa88f707f3756e85895b41120d502fb68b0d9604a3f41b7d5f799",
+        "heightSha256": "1b13c5044dbdd0be7f4162653c9bdad023b4538370d1947f9f52279afa059d57"
+      },
+      "heightProfile": {
+        "bands": [
+          0.8,
+          1,
+          0.5,
+          0.2
+        ],
+        "groove": 0.8,
+        "bump": 0.2,
+        "glow": 0,
+        "strength": 0.35,
+        "cap": 0.5
+      }
+    },
+    {
+      "alias": "mg1-comp1_2",
+      "nativeKey": "64x64:a823407b09df4331",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-comp1_2.png",
+      "originalSha256": "22815eef7acb4c7e59145477985ccafabb432dbd84ece567c289da6aa1f4a23e",
+      "targetDimensions": [
+        256,
+        256
+      ],
+      "previous": {
+        "file": "candidates-2026-10-12/mg1-comp1_2-photographic.png",
+        "height": "candidates-2026-10-12/mg1-comp1_2-photographic-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "diffuseSha256": "d359475e5414572268a6c0545c6c922075c6891085845d053d9f70042e057828",
+        "heightSha256": "884833465a4cfc8629dbb6a2ff9a0903162753c0100920c0fc50ab228ffefbbe"
+      },
+      "current": {
+        "file": "candidates-2026-10-12/mg1-comp1_2-photographic-4x.png",
+        "height": "candidates-2026-10-12/mg1-comp1_2-photographic-4x-height.webp",
+        "width": 256,
+        "heightPixels": 256,
+        "diffuseSha256": "d2bc3186f6d3cbd3b2d66c342245d7e6be3682e8cee2d853083826977779d0ed",
+        "heightSha256": "722a2adfa24f23e693ce9ca8d5d364b458cbe722c60b507f0d6f8f060f061df2"
+      },
+      "heightProfile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.8,
+        "bump": 0.6,
+        "glow": 0.2,
+        "strength": 0.35,
+        "cap": 0.5
+      }
+    },
+    {
+      "alias": "mg1-comp1_3",
+      "nativeKey": "64x64:4b7a14875bfadccd",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-comp1_3.png",
+      "originalSha256": "75d80b8205e78f16a8231942739367b586d7c3b8db15dfb74644e43f62659c5a",
+      "targetDimensions": [
+        256,
+        256
+      ],
+      "previous": {
+        "file": "candidates-2026-10-12/mg1-comp1_3-photographic.png",
+        "height": "candidates-2026-10-12/mg1-comp1_3-photographic-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "diffuseSha256": "9e86ba713c6ccf16c77f1a04447a55af51bd6e3cb4adb5785479db96d00a2fa1",
+        "heightSha256": "ae51ee7af431ee1501d6e7b037e4248ff9769429974da6b2e7491889bc640a20"
+      },
+      "current": {
+        "file": "candidates-2026-10-12/mg1-comp1_3-photographic-4x.png",
+        "height": "candidates-2026-10-12/mg1-comp1_3-photographic-4x-height.webp",
+        "width": 256,
+        "heightPixels": 256,
+        "diffuseSha256": "67f142d65686b8b7bd830e76c5b747140d501db3730e514e20ff51348a654aae",
+        "heightSha256": "be81eac26e69f29e73015b528d4d4fd08dea71bc1d2980bc9646b75e5e26a452"
+      },
+      "heightProfile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.8,
+        "bump": 0.6,
+        "glow": 0.2,
+        "strength": 0.35,
+        "cap": 0.5
+      }
+    },
+    {
+      "alias": "mg1-metal1_1",
+      "nativeKey": "64x64:5fdc8d86e1f32d2c",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-metal1_1.png",
+      "originalSha256": "b8da654238ed4496bd58df630e5df999ad528e7417cbaa9831537d554bfb878a",
+      "targetDimensions": [
+        256,
+        256
+      ],
+      "previous": {
+        "file": "candidates-2026-10-12/mg1-metal1_1-photographic.png",
+        "height": "candidates-2026-10-12/mg1-metal1_1-photographic-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "diffuseSha256": "a8409c68487412da66948fed5d466c9bcbadbe70571a1688abbd1a52f78662a9",
+        "heightSha256": "e85fa23410c312a9b89794044d22a6e42e454d290b508263ac6e5a4446ced829"
+      },
+      "current": {
+        "file": "candidates-2026-10-12/mg1-metal1_1-photographic-4x.png",
+        "height": "candidates-2026-10-12/mg1-metal1_1-photographic-4x-height.webp",
+        "width": 256,
+        "heightPixels": 256,
+        "diffuseSha256": "24971a7f28525a99afb984daa136e4ccf0243752105337ee61f5bb1ebac25eb1",
+        "heightSha256": "53293476a73372c8d645665c621e2aa73ea13f02bbda950ace3b406c02d48cd7"
+      },
+      "heightProfile": {
+        "bands": [
+          1,
+          0.9,
+          0.3,
+          0.1
+        ],
+        "groove": 0.2,
+        "bump": 0.6,
+        "glow": 0,
+        "strength": 0.35,
+        "cap": 0.5
+      }
+    },
+    {
+      "alias": "mg1-metal1_3",
+      "nativeKey": "64x64:7c6b8625f6f16f6f",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-metal1_3.png",
+      "originalSha256": "b94064bc6a8baf1bd520b3097cb374980d992904dbfa465310a7f6bf61d35190",
+      "targetDimensions": [
+        256,
+        256
+      ],
+      "previous": {
+        "file": "candidates-2026-10-12/mg1-metal1_3-photographic.png",
+        "height": "candidates-2026-10-12/mg1-metal1_3-photographic-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "diffuseSha256": "0fdcd9d2ebbfd6d6296f7d1c628cfde5380fd8ef851201e7648e7a594c93d123",
+        "heightSha256": "65f41dc0f5ea112e075ae4aff7ba2893758a0448d63c16cde758dd000fa58d26"
+      },
+      "current": {
+        "file": "candidates-2026-10-12/mg1-metal1_3-photographic-4x.png",
+        "height": "candidates-2026-10-12/mg1-metal1_3-photographic-4x-height.webp",
+        "width": 256,
+        "heightPixels": 256,
+        "diffuseSha256": "9e8490ed83b3a97077265660cb42c9e461246ef52f4aa6afb2bc70860624c56c",
+        "heightSha256": "3c38d8cc60d07f6f1e7b352ee290c0551d6d254203d7c37dfa6b9fc4beb9e953"
+      },
+      "heightProfile": {
+        "bands": [
+          0.8,
+          1,
+          0.5,
+          0.2
+        ],
+        "groove": 0.8,
+        "bump": 0.2,
+        "glow": 0,
+        "strength": 0.35,
+        "cap": 0.5
+      }
+    },
+    {
+      "alias": "mg1-metal1_4",
+      "nativeKey": "64x64:5fcb234d8850a05f",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-metal1_4.png",
+      "originalSha256": "a0ee2fca2d25e2e0dfdbfa8825e7747a85e3a9c98dc5e7537882773648550dff",
+      "targetDimensions": [
+        256,
+        256
+      ],
+      "previous": {
+        "file": "candidates-2026-10-12/mg1-metal1_4-photographic.png",
+        "height": "candidates-2026-10-12/mg1-metal1_4-photographic-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "diffuseSha256": "43c787510e9bb672fd9d882adf70a5671fc13bb9d6af2e3f7d8680783b920893",
+        "heightSha256": "ff1a073bf8dbfa414e7a486a479bcbf97d1eb9288f6619c0a240fbb44752a4aa"
+      },
+      "current": {
+        "file": "candidates-2026-10-12/mg1-metal1_4-photographic-4x.png",
+        "height": "candidates-2026-10-12/mg1-metal1_4-photographic-4x-height.webp",
+        "width": 256,
+        "heightPixels": 256,
+        "diffuseSha256": "103f85b306337d72a25446d2079654584b21ecf4d72b4ea734f04a68acd374b6",
+        "heightSha256": "883a43f7a5c9ec7e74d91a61c44c37d2ea6b2ef6c66266e67597bbeef133ee38"
+      },
+      "heightProfile": {
+        "bands": [
+          0.5,
+          1,
+          0.6,
+          0.3
+        ],
+        "groove": 0.6,
+        "bump": 1.1,
+        "glow": 0,
+        "strength": 0.35,
+        "cap": 0.5
+      }
+    },
+    {
+      "alias": "city6_8",
+      "nativeKey": "64x64:3300e41335b7e451",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-city6_8.png",
+      "originalSha256": "4bc60a1876f96405b9f45992f56a5e82aa20bb80fb263424eab790ca176d2347",
+      "targetDimensions": [
+        256,
+        256
+      ],
+      "previous": {
+        "file": "candidates-2026-10-12/city6_8-photographic.png",
+        "height": "candidates-2026-10-12/city6_8-photographic-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "diffuseSha256": "fce7d66e627f47c5295226e94e41c007cf376fd05a2399e96e6c3bfdbb1c7cd0",
+        "heightSha256": "42991f96d76539f3521424a75f71266e2e7c356dd253f7eb5db3cc783e65ae9d"
+      },
+      "current": {
+        "file": "candidates-2026-10-12/city6_8-photographic-4x.png",
+        "height": "candidates-2026-10-12/city6_8-photographic-4x-height.webp",
+        "width": 256,
+        "heightPixels": 256,
+        "diffuseSha256": "59bacf4c609707c4755ccf85d08e5ab25f71763eb10b99047ddd5c4203935f80",
+        "heightSha256": "5b23ec48c79534e1d6fa9c57cfb50e7b8a9f336dc3175d2c62901f506d2c5803"
+      },
+      "heightProfile": {
+        "bands": [
+          0.35,
+          1,
+          1.4,
+          1
+        ],
+        "groove": 1.4,
+        "bump": 0.7,
+        "glow": 0,
+        "strength": 0.3,
+        "cap": 0.5
+      }
+    },
+    {
+      "alias": "city4_2",
+      "nativeKey": "64x64:0621dd3e82b96b24",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-city4_2.png",
+      "originalSha256": "608b008142b8695a0593d42e500cc55accdc3edbf76ddbe64fb489edf28db72f",
+      "targetDimensions": [
+        256,
+        256
+      ],
+      "previous": {
+        "file": "candidates-2026-10-12/city4_2-photographic-v2.png",
+        "height": "candidates-2026-10-12/city4_2-photographic-v2-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "diffuseSha256": "e1a4f1d89cb445d5b0929a1163a76efb9bfc75a416af470c9054fa56d96493c4",
+        "heightSha256": "83e82bbb16dfd1e1c1a5d711b0126a9d3dce08bf5142360bf4cf942a4b8498b9"
+      },
+      "current": {
+        "file": "candidates-2026-10-12/city4_2-photographic-v2-4x.png",
+        "height": "candidates-2026-10-12/city4_2-photographic-v2-4x-height.webp",
+        "width": 256,
+        "heightPixels": 256,
+        "diffuseSha256": "3398fc258e19915b5e476b2f84755337269a042c8fed256adbfd36bb6250bfc1",
+        "heightSha256": "737329c3285c77cd095a91dc874ab4c3493f155f7b50efd83b5b74427a694889"
+      },
+      "heightProfile": {
+        "bands": [
+          0.35,
+          1,
+          1.4,
+          1
+        ],
+        "groove": 1.4,
+        "bump": 0.7,
+        "glow": 0,
+        "strength": 0.3,
+        "cap": 0.5
+      }
+    },
+    {
+      "alias": "city4_8",
+      "nativeKey": "64x64:3eb3f2adf6aa1457",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-city4_8.png",
+      "originalSha256": "2c26333e46faaa5e9c87b65b48eb1cc2ccaa9627a79c621bbdceea96e98fbc44",
+      "targetDimensions": [
+        256,
+        256
+      ],
+      "previous": {
+        "file": "candidates-2026-10-12/city4_8-photographic-joints-v2.png",
+        "height": "candidates-2026-10-12/city4_8-photographic-joints-v2-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "diffuseSha256": "0c9ebb100794063659e2334d2bac2b156c9d79ddbcf0b6eec2c1fb7fda3a5ca2",
+        "heightSha256": "59215c513acb625f63f157ab7b19b4731f2af6ce2865fbd6e8953528c2b80b5d"
+      },
+      "current": {
+        "file": "candidates-2026-10-12/city4_8-photographic-joints-v2-4x.png",
+        "height": "candidates-2026-10-12/city4_8-photographic-joints-v2-4x-height.webp",
+        "width": 256,
+        "heightPixels": 256,
+        "diffuseSha256": "a6b22b6f92f69269bf597996613da6b8ad94f8b350d89d77e86b174ea1f5d97c",
+        "heightSha256": "9ece808cd9e5c789c5fa77611e7624512a24b9db3fe2b28be80128be11e4a49b"
+      },
+      "heightProfile": {
+        "bands": [
+          0.35,
+          1,
+          1.4,
+          1
+        ],
+        "groove": 1.4,
+        "bump": 0.7,
+        "glow": 0,
+        "strength": 0.3,
+        "cap": 0.5
+      }
+    },
+    {
+      "alias": "bricka2_4",
+      "nativeKey": "64x64:4b2a165efc1a200c",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-bricka2_4.png",
+      "originalSha256": "7b957baafff66a9f86b20b43889f2db52634b1b1a9654af520ea91beca44069a",
+      "targetDimensions": [
+        256,
+        256
+      ],
+      "previous": {
+        "file": "candidates-2026-10-12/bricka2_4-photographic-v2.png",
+        "height": "candidates-2026-10-12/bricka2_4-photographic-v2-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "diffuseSha256": "163b4bd1bd6f683675aea1bc285cb5c9655083966537ef5317de932bf8932703",
+        "heightSha256": "e4f20fafd6e3cd8b87d4dd9185c644d491d86d9f994c18ed4d04b7b5541c6c3d"
+      },
+      "current": {
+        "file": "candidates-2026-10-12/bricka2_4-photographic-v2-4x.png",
+        "height": "candidates-2026-10-12/bricka2_4-photographic-v2-4x-height.webp",
+        "width": 256,
+        "heightPixels": 256,
+        "diffuseSha256": "08995be75048678c8731a6550b1812db28aa7b982f6fb69796339c26414b8cef",
+        "heightSha256": "66891c739b8922718dfc32316cea9463ce43c0ac3c85757f15e21740f8c84cd5"
+      },
+      "heightProfile": {
+        "bands": [
+          0.35,
+          1,
+          1.4,
+          1
+        ],
+        "groove": 1.4,
+        "bump": 0.7,
+        "glow": 0,
+        "strength": 0.3,
+        "cap": 0.5
+      }
+    }
+  ]
+}

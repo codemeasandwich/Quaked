@@ -1,0 +1,107 @@
+{
+  "source": {
+    "id": "door02_1|16x128:3941ea46f27a7cac",
+    "name": "door02_1",
+    "key": "16x128:3941ea46f27a7cac",
+    "width": 16,
+    "height": 128,
+    "pixelSha256": "7597c5ab795842f67adf5d27cd462d26512509b7cb22b2e2990f1d3f4cd633a1",
+    "original": "originals/16x128-3941ea46f27a7cac.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "id1",
+        "map": "maps/base32b.bsp",
+        "scope": "installed-extra-review",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 71,
+        "faces": 16,
+        "visibleCandidateFaces": 16,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/e1m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/shareware/pak0.pak",
+        "slot": 62,
+        "faces": 53,
+        "visibleCandidateFaces": 53,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/e2m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 75,
+        "faces": 25,
+        "visibleCandidateFaces": 25,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/e3m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 48,
+        "faces": 10,
+        "visibleCandidateFaces": 10,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/e4m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 60,
+        "faces": 17,
+        "visibleCandidateFaces": 17,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "hipnotic",
+        "map": "maps/hip1m2.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+        "slot": 22,
+        "faces": 32,
+        "visibleCandidateFaces": 32,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "hipnotic",
+        "map": "maps/hip1m3.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+        "slot": 26,
+        "faces": 52,
+        "visibleCandidateFaces": 52,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge5m2.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+        "slot": 142,
+        "faces": 12,
+        "visibleCandidateFaces": 12,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "referenceSha256": "5c31efae940a4197c9798212e0f274fc49f1fb4b9f41a2370293878909e9ef88",
+  "qualification": "Fresh verified PAK reference after evidence-path disappearance; not historical receipt recovery"
+}

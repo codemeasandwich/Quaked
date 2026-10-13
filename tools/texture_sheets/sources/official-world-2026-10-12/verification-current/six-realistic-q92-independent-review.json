@@ -1,0 +1,556 @@
+{
+  "schema": 1,
+  "createdAt": "2026-10-13T13:03:04.228869+00:00",
+  "reviewer": "texture_plan independent subagent",
+  "authority": "Owner rejects pixelated/grainy textures. Clean photographic material, source intention/layout and correct tiling are all required. Scalar metrics do not override appearance.",
+  "scope": "Read-only review of six actual Q92 diffuse outputs against native, available old rejected drafts, full/half/quarter and 3x3 repeats. No asset/engine/index edits.",
+  "result": "HOLD all six for repeat-boundary correction. Material realism improved and masonry layout is now correct, but visible crop seams remain.",
+  "rows": [
+    {
+      "name": "TF_Wood01",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Wood01.png",
+          "sha256": "e79e8baaecd47f535b43b6966f76dda58a0725119ee56ff698f92ae6f20437da",
+          "dimensions": [
+            128,
+            128
+          ]
+        },
+        "oldRejected": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Wood01-generated-v1.png",
+          "sha256": "73148ad82c3b017153f3cd5ddb95a22582d726ad79327b84e8aa65bf55dea938",
+          "dimensions": [
+            1254,
+            1254
+          ]
+        },
+        "new": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Wood01-realistic-4x-q92-xyz-diffuse.webp",
+          "sha256": "fd054a206c163774d3f38099236b9889b057a25bdd1de2d802bf8ff6c6a0aecb",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      },
+      "disposition": "HOLD: improved photographic material, unresolved visible repeat seams",
+      "material": "Photographic continuous fibers, knots and checking; eight boards retained.",
+      "blockingFinding": "Horizontal crop cuts across multiple planks at every y wrap, with discontinuous grain/tone and some plank-gap offset.",
+      "correction": "Continue full-height plank fibers and gaps across y wrap; retain clean material.",
+      "recipe": {
+        "path": "newer/textures/candidates-2026-10-12/TF_Wood01-realistic-4x.json",
+        "sha256": "82372fa79508bf411e3b9b592428c91217655731c801517b8a69d3687c496225",
+        "generated": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Wood01-generated-realistic-v2.png",
+        "fieldSigma": 2.0
+      },
+      "sourceDonorOutputHashesReverified": true,
+      "runtimeFiles": {
+        "diffuse": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Wood01-realistic-4x-q92-xyz-diffuse.webp",
+          "sha256": "fd054a206c163774d3f38099236b9889b057a25bdd1de2d802bf8ff6c6a0aecb",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "height": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Wood01-realistic-4x-q92-xyz-height.webp",
+          "sha256": "ee2ad6fc9a95d3c85b9ba7be1c1a3b99644ef673a6470ac86d78e521228e7cfb",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalX": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Wood01-realistic-4x-q92-xyz-normalX.webp",
+          "sha256": "87e13c56db7422ba0d5339f0dd209be45f54a59b037b3296431597b30e21f21d",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalY": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Wood01-realistic-4x-q92-xyz-normalY.webp",
+          "sha256": "0835d2d5c7a942c06ce3f49e6f74b2f101d52cfa85e7bc3703f37e1c89222a21",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalZ": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Wood01-realistic-4x-q92-xyz-normalZ.webp",
+          "sha256": "b26f673392ea563e73226f3fe02fb22ee52a69b2bb327d4688f0fe2aa82cd1ba",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      },
+      "analyticalRepeat": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_Wood01-realistic-repeat.png",
+        "sha256": "b6e3d4020bde24b2c67149e11eb159dfa4f3564bb8fa547b3670feb3609de6fe"
+      },
+      "analyticalComparison": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_Wood01-realistic-comparison.png",
+        "sha256": "0640dec890d2b8c1be616bb2c415660d5fabc9f0a6f53214eb98c100fbdf33bf"
+      }
+    },
+    {
+      "name": "TF_Wood01c",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Wood01c.png",
+          "sha256": "21da33cc9e4e6a8e1c0292e6ff0d6d6d081b1a0802a5a08dd01fe48e1c6e1b81",
+          "dimensions": [
+            128,
+            128
+          ]
+        },
+        "oldRejected": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Wood01c-generated-v1.png",
+          "sha256": "9fb885f294a69baed2e628f5dfb0d471eface373f55d2cb3528f1217ca504d51",
+          "dimensions": [
+            1254,
+            1254
+          ]
+        },
+        "new": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Wood01c-realistic-4x-q92-xyz-diffuse.webp",
+          "sha256": "1ac482d684b013b547a3c8a21e26c69678cfd8cf4cb259ff1bb6d1a73cbb1d85",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      },
+      "disposition": "HOLD: improved photographic material, unresolved visible repeat seams",
+      "material": "Darker counterpart retains photographic fibers and eight boards.",
+      "blockingFinding": "Same horizontal crop cuts at y wrap as lighter wood.",
+      "correction": "Repair y continuity with darker palette retained.",
+      "recipe": {
+        "path": "newer/textures/candidates-2026-10-12/TF_Wood01c-realistic-4x.json",
+        "sha256": "3875385066832360bd44723a579f48ade1f65991fb4c3317af2d689f65e4bce8",
+        "generated": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Wood01c-generated-realistic-v2.png",
+        "fieldSigma": 2.0
+      },
+      "sourceDonorOutputHashesReverified": true,
+      "runtimeFiles": {
+        "diffuse": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Wood01c-realistic-4x-q92-xyz-diffuse.webp",
+          "sha256": "1ac482d684b013b547a3c8a21e26c69678cfd8cf4cb259ff1bb6d1a73cbb1d85",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "height": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Wood01c-realistic-4x-q92-xyz-height.webp",
+          "sha256": "f2f301191c4f34c92830009300b2cf5a8ce0e4e0232c447a585cde974ae3db8d",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalX": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Wood01c-realistic-4x-q92-xyz-normalX.webp",
+          "sha256": "8aebaca2595328d982b562b26585c43bdca9246a88f19d115fa531da15143899",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalY": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Wood01c-realistic-4x-q92-xyz-normalY.webp",
+          "sha256": "7959b73adcb86d78b0e00d15f42bfe2437b61cbe4fd401f2fff6fcacb89323dc",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalZ": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Wood01c-realistic-4x-q92-xyz-normalZ.webp",
+          "sha256": "857d985f5010daed4ee6bc9c0f756f3600aba32ea313953b72271f7456fd387e",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      },
+      "analyticalRepeat": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_Wood01c-realistic-repeat.png",
+        "sha256": "60676c7176112c791ca6b899bf30ad64d5f812d200fe2cbbe561285daf906b59"
+      },
+      "analyticalComparison": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_Wood01c-realistic-comparison.png",
+        "sha256": "b425e2570234b8dbb79721d642d2698ffba2ee04341f197d3909996316352798"
+      }
+    },
+    {
+      "name": "TF_Stone_01",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Stone_01.png",
+          "sha256": "af89808ea1fb40e1828acd5176900b109e1dd4792d083d34d0d350e6b23f2617",
+          "dimensions": [
+            128,
+            128
+          ]
+        },
+        "oldRejected": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Stone_01-generated-v1.png",
+          "sha256": "f2745e49bacf0ba9f9a5e1c49cd4695880bd2b51d79b610dae532739c079c996",
+          "dimensions": [
+            1254,
+            1254
+          ]
+        },
+        "new": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Stone_01-realistic-4x-q92-xyz-diffuse.webp",
+          "sha256": "c4076377288dcacb951013ea9906290a79b748b210f166ad6365a5c77e309b50",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      },
+      "disposition": "HOLD: improved photographic material, unresolved visible repeat seams",
+      "material": "Cleaner continuous stone faces; four courses, correct 25/75 then 50 percent joint stagger.",
+      "blockingFinding": "Vertical x-wrap crop cuts cross intended continuous stone faces assembled from edge half-blocks.",
+      "correction": "Make left/right half-block faces continuous across x wrap without changing corrected bond.",
+      "recipe": {
+        "path": "newer/textures/candidates-2026-10-12/TF_Stone_01-realistic-4x.json",
+        "sha256": "f83576d128eef3aa81054d265013d6e3f53b5934e8c628f23ee1abd1abf06bdc",
+        "generated": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Stone_01-generated-realistic-v3.png",
+        "fieldSigma": 2.0
+      },
+      "sourceDonorOutputHashesReverified": true,
+      "runtimeFiles": {
+        "diffuse": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Stone_01-realistic-4x-q92-xyz-diffuse.webp",
+          "sha256": "c4076377288dcacb951013ea9906290a79b748b210f166ad6365a5c77e309b50",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "height": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Stone_01-realistic-4x-q92-xyz-height.webp",
+          "sha256": "774b20e1567b70e2c1ca1af6df0420179fa541a48361d5a569d7fe704a80c469",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalX": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Stone_01-realistic-4x-q92-xyz-normalX.webp",
+          "sha256": "864bc01fb1b1bc8c8a41e5680817203b3a1c348a6cfd90ef2380032a423efe80",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalY": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Stone_01-realistic-4x-q92-xyz-normalY.webp",
+          "sha256": "a1875457fb0d9374f5ecc639e6670858f272003b807ae19d9d40ca16c27ae093",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalZ": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Stone_01-realistic-4x-q92-xyz-normalZ.webp",
+          "sha256": "12c0b35a2def97d390d16bd7404edb2d7f6b3ec4370fb73e44093fcaf143b941",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      },
+      "analyticalRepeat": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_Stone_01-realistic-repeat.png",
+        "sha256": "2ec7e3af4dac26054df4b618f55ea1b4ad12d0a3dcb0924d6a3e859f5d84211e"
+      },
+      "analyticalComparison": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_Stone_01-realistic-comparison.png",
+        "sha256": "22d384fc416e58bd3c69ebef8f8a01b6879e107c3ce41544ea9a4318e2c68c37"
+      }
+    },
+    {
+      "name": "TF_Stone3",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Stone3.png",
+          "sha256": "78d153ed44b848ff9112ea2023988bfb167ae0a7894b8c835b1854a9511115cd",
+          "dimensions": [
+            128,
+            128
+          ]
+        },
+        "oldRejected": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Stone3-generated-v1.png",
+          "sha256": "5ccb5b04ba50532639c092605a716d01507ad158c4957d872f469561938bba43",
+          "dimensions": [
+            1254,
+            1254
+          ]
+        },
+        "new": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Stone3-realistic-4x-q92-xyz-diffuse.webp",
+          "sha256": "56b3524378d508ae6b531d8d2c7da65da920f58e2950cf5b343b24d520096d3a",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      },
+      "disposition": "HOLD: improved photographic material, unresolved visible repeat seams",
+      "material": "Cleaner stone; eight courses and correct four-brick pitch with alternating half-brick stagger.",
+      "blockingFinding": "Vertical x-wrap cuts through stone faces repeatedly visible in 3x3.",
+      "correction": "Continue face texture and lighting across left/right wrap; preserve eight courses.",
+      "recipe": {
+        "path": "newer/textures/candidates-2026-10-12/TF_Stone3-realistic-4x.json",
+        "sha256": "7731d07bf1bccd477d0b23ec071aef885db2d41ab40c97d8387871aa80a7ce44",
+        "generated": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Stone3-generated-realistic-v3.png",
+        "fieldSigma": 2.0
+      },
+      "sourceDonorOutputHashesReverified": true,
+      "runtimeFiles": {
+        "diffuse": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Stone3-realistic-4x-q92-xyz-diffuse.webp",
+          "sha256": "56b3524378d508ae6b531d8d2c7da65da920f58e2950cf5b343b24d520096d3a",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "height": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Stone3-realistic-4x-q92-xyz-height.webp",
+          "sha256": "1224d8c1e3fd015e7437055a1c16b87ad7916e02716a7f80f69efd0351926483",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalX": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Stone3-realistic-4x-q92-xyz-normalX.webp",
+          "sha256": "30a8f0fa53eb1580015407e8da519ac7280169fc98094d08ee682cacbc84600a",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalY": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Stone3-realistic-4x-q92-xyz-normalY.webp",
+          "sha256": "efd33205bb43f56371ffe9d189e545b73951e299eca3ad79f90b9f6736b039aa",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalZ": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Stone3-realistic-4x-q92-xyz-normalZ.webp",
+          "sha256": "71b0d2e0e110ef6eb733de895e4f1a1b6621b8c273289945c7f95c5d1b5b5ee9",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      },
+      "analyticalRepeat": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_Stone3-realistic-repeat.png",
+        "sha256": "3f9294e52c8732ff3bd7caf52d2c918f80c3367473b5cc1ccdd2225f9bfacb8e"
+      },
+      "analyticalComparison": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_Stone3-realistic-comparison.png",
+        "sha256": "ea41c0d58db2594fbd759e70cbb71a282832b5fa4d69538417b3b12ca8a733a2"
+      }
+    },
+    {
+      "name": "TF_Cliff2",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Cliff2.png",
+          "sha256": "0c7877fac54c7db6b7facb04f3162f65c45cd93d5be2720f772b35f779d8e54b",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "oldRejected": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Cliff2-generated-v1.png",
+          "sha256": "3815022e7b63743da0c91c3ae830fbaf2ba939b604e57947395f3c06e9f4d4f6",
+          "dimensions": [
+            1254,
+            1254
+          ]
+        },
+        "new": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Cliff2-realistic-4x-q92-xyz-diffuse.webp",
+          "sha256": "377d12b2d758e009783c8c4a6179dc6ce7fa3077b1898f5d261ea1917c69d7ff",
+          "dimensions": [
+            1024,
+            1024
+          ]
+        }
+      },
+      "disposition": "HOLD: improved photographic material, unresolved visible repeat seams",
+      "material": "Photographic stratified rock with coherent broad facets and finer edge weathering; old noise blanket reduced.",
+      "blockingFinding": "Visible vertical crop discontinuities through ledges/facets at x wrap.",
+      "correction": "Continue strata, fracture edges and shading at wrap boundaries while preserving photo quality; inspect both axes.",
+      "recipe": {
+        "path": "newer/textures/candidates-2026-10-12/TF_Cliff2-realistic-4x.json",
+        "sha256": "be4bbba744a280d3bcf381e159a36d7ffa7878ba1680001bc211b163e17d0aa2",
+        "generated": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Cliff2-generated-realistic-v3.png",
+        "fieldSigma": 2.0
+      },
+      "sourceDonorOutputHashesReverified": true,
+      "runtimeFiles": {
+        "diffuse": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Cliff2-realistic-4x-q92-xyz-diffuse.webp",
+          "sha256": "377d12b2d758e009783c8c4a6179dc6ce7fa3077b1898f5d261ea1917c69d7ff",
+          "dimensions": [
+            1024,
+            1024
+          ]
+        },
+        "height": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Cliff2-realistic-4x-q92-xyz-height.webp",
+          "sha256": "97cfd819f3e66e720feabb80e851ca5052bffac42f3d2dd17cea5c83925f20f7",
+          "dimensions": [
+            1024,
+            1024
+          ]
+        },
+        "normalX": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Cliff2-realistic-4x-q92-xyz-normalX.webp",
+          "sha256": "a683820ad037698a029e3faabe50ebcefc7e8de8f67e4c25eb9f392fb339c0f2",
+          "dimensions": [
+            1024,
+            1024
+          ]
+        },
+        "normalY": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Cliff2-realistic-4x-q92-xyz-normalY.webp",
+          "sha256": "1fcb23413f296c54c9a0f7e9bcdc6e5f53a29ffed2c90158a4d799ddeb38463b",
+          "dimensions": [
+            1024,
+            1024
+          ]
+        },
+        "normalZ": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Cliff2-realistic-4x-q92-xyz-normalZ.webp",
+          "sha256": "b50cc5d4e2dc25962032e1b444d49ce839176822b3f5cffc8da298b245088448",
+          "dimensions": [
+            1024,
+            1024
+          ]
+        }
+      },
+      "analyticalRepeat": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_Cliff2-realistic-repeat.png",
+        "sha256": "fe8834e8d3fdd4ff848c54906b7b2b149ea431823f8314e1e6222a37bc817f9c"
+      },
+      "analyticalComparison": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_Cliff2-realistic-comparison.png",
+        "sha256": "7dd82e8440b34a49ff2f14c709611a9e180e2f69150c7ffcb0652de4c966c5d0"
+      }
+    },
+    {
+      "name": "TF_Cliff2b",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Cliff2b.png",
+          "sha256": "265648733de441aac7f92f6b0d2df5df8c9e62a9ccffb62c64783298bdcc05ec",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "new": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Cliff2b-realistic-4x-q92-xyz-diffuse.webp",
+          "sha256": "594716c51b339d7418179c7395f36e71f9b5f73b3ad9ad2bf3f1e123b7e2a508",
+          "dimensions": [
+            1024,
+            1024
+          ]
+        }
+      },
+      "disposition": "HOLD: improved photographic material, unresolved visible repeat seams",
+      "material": "Rocky top transitions into dark brown earthy lower part; directional topology preserved.",
+      "blockingFinding": "Horizontal repeat creates straight vertical crop cuts through rock top and earthy lower area.",
+      "correction": "Repair x wrap and actual top relationship with Cliff2; do not force y periodicity that erases intentional transition.",
+      "historicalComparisonLimit": "Earlier TF_Cliff2b-generated-v1.png unavailable at expected source path; comparison was against native and new Cliff2, not unavailable old raw.",
+      "recipe": {
+        "path": "newer/textures/candidates-2026-10-12/TF_Cliff2b-realistic-4x.json",
+        "sha256": "512c228026bdf6ae480b5a8ae1bf036a61de190e23c623cff857053453bd693d",
+        "generated": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Cliff2b-generated-realistic-v1.png",
+        "fieldSigma": 2.0
+      },
+      "sourceDonorOutputHashesReverified": true,
+      "runtimeFiles": {
+        "diffuse": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Cliff2b-realistic-4x-q92-xyz-diffuse.webp",
+          "sha256": "594716c51b339d7418179c7395f36e71f9b5f73b3ad9ad2bf3f1e123b7e2a508",
+          "dimensions": [
+            1024,
+            1024
+          ]
+        },
+        "height": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Cliff2b-realistic-4x-q92-xyz-height.webp",
+          "sha256": "4c4a70961de1d6f05c9862a2340e29e4f09ca14dd749b8f6ef84c5d409e2b85a",
+          "dimensions": [
+            1024,
+            1024
+          ]
+        },
+        "normalX": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Cliff2b-realistic-4x-q92-xyz-normalX.webp",
+          "sha256": "93cc7dff1b03c0da95f3f3a1e915b8b8a202ea2c4ace8c69476f83686d8c5f34",
+          "dimensions": [
+            1024,
+            1024
+          ]
+        },
+        "normalY": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Cliff2b-realistic-4x-q92-xyz-normalY.webp",
+          "sha256": "b4f8bd303a91a34dd0e638037d7fc5deba5899e5a0fa6c94e6e86ce3be6cdc6a",
+          "dimensions": [
+            1024,
+            1024
+          ]
+        },
+        "normalZ": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Cliff2b-realistic-4x-q92-xyz-normalZ.webp",
+          "sha256": "1fb5476da4d5f8b5451207fc3907265f871aba723f3da77b06658e85bdbf038e",
+          "dimensions": [
+            1024,
+            1024
+          ]
+        }
+      },
+      "analyticalRepeat": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_Cliff2b-realistic-repeat.png",
+        "sha256": "84a090cb897b51e10b4496bf9dedd9b3aef574462616c218bf403c3113609354"
+      },
+      "analyticalComparison": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_Cliff2b-realistic-comparison.png",
+        "sha256": "56ab1f216cae03ab5c35b321c2e641b21008b1b42139678baacfc119008b9dd7"
+      }
+    }
+  ],
+  "commonFindings": [
+    "Preserve the improved photographic direction: wood fibers, stone facets and layered rock are substantially better than old noise-like detail.",
+    "Eight wood planks and four versus eight stone courses verified visually. Stone_01 alternating 25/75 and 50 percent joints now correct.",
+    "Cliff2b deliberate vertical transition is valid. Its bottom-to-top jump in repeats is not counted as failure; its horizontal-repeat crop cuts are.",
+    "Displayed 1024px repeat images place tile boundaries near x341/683 or y341/683. Straight cuts across continuous material are visible, not inferred only from numerical metrics.",
+    "All 30 runtime images have correct 512 or 1024 dimensions; original/donor/output recipe hashes reverified. These do not qualify normal semantics or remedy tiling."
+  ],
+  "limits": [
+    "No live GPU/native-map draw in this review.",
+    "No owner acceptance or registration approval. Previously rejected drafts remain rejected."
+  ],
+  "nextOwner": "root campaign coordinator",
+  "nextAction": "Correct edge geometry/detail continuity while preserving clean material and native bond; rerun repeat review on exact new Q92 files before binding."
+}

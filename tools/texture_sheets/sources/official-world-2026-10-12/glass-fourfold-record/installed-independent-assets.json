@@ -1,0 +1,2486 @@
+{
+  "schemaVersion": 2,
+  "completed": true,
+  "completedChecks": [
+    "canonical-materials",
+    "reviewed-apertures"
+  ],
+  "testSha256": "52e3c150a45f8a1726bf6195a6aa546a731520a9b5cf7932b5f06400ffa74abd",
+  "source": "actual PNG canvas decode and public R_GenerateNormalData",
+  "textureRoot": "/Users/bri/SOURCE/Quaked/newer/textures/",
+  "indexSha256": "19f1d863db57479032e7c410bab9b9866154386bf2dccb08611d5b130ee7cb6e",
+  "reviewSha256": "b42259bfb3d5a73608558f77826c99b18b79ad9794dd583f16c6f246e83f3ba4",
+  "proofSha256": "fe9b652bbe7078011c4747524246d29252d09de49b1e6ce65b5f2e4199b3d9ca",
+  "materials": [
+    {
+      "reviewId": 0,
+      "name": "32glass",
+      "nativeKey": "256x32:f642a047c796608d",
+      "nativeDimensions": [
+        256,
+        32
+      ],
+      "outputDimensions": [
+        1024,
+        128
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "c0e485d33728a0144b82ddc0cb0f62d8418c0025351b14e04cf671b8865b97fe"
+    },
+    {
+      "reviewId": 1,
+      "name": "Window01",
+      "nativeKey": "64x192:348c68cc10392a3e",
+      "nativeDimensions": [
+        64,
+        192
+      ],
+      "outputDimensions": [
+        256,
+        768
+      ],
+      "factor": 4,
+      "panes": 60756,
+      "outside": 135852,
+      "lead": 121268,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "8cee1ea4781e48084c39f84e1cce092f0b712edc4ffd60c9a2cbc8177c0d5c53"
+    },
+    {
+      "reviewId": 2,
+      "name": "Window02",
+      "nativeKey": "64x192:5ffe28e59cca0a2f",
+      "nativeDimensions": [
+        64,
+        192
+      ],
+      "outputDimensions": [
+        256,
+        768
+      ],
+      "factor": 4,
+      "panes": 89722,
+      "outside": 106886,
+      "lead": 92302,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "dc1d148e2afbbc901b04523fff13796ae8570445425f844acee0f0b832576c16"
+    },
+    {
+      "reviewId": 3,
+      "name": "Window2",
+      "nativeKey": "64x96:aa3bcc1646bf8a4c",
+      "nativeDimensions": [
+        64,
+        96
+      ],
+      "outputDimensions": [
+        256,
+        384
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 98304,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "872f981d8634ae53174b5d97f43f43ab46a136cab68fc6005011e347533dd48f"
+    },
+    {
+      "reviewId": 4,
+      "name": "brick1glass1",
+      "nativeKey": "64x256:c34d2a91608874eb",
+      "nativeDimensions": [
+        64,
+        256
+      ],
+      "outputDimensions": [
+        256,
+        1024
+      ],
+      "factor": 4,
+      "panes": 93966,
+      "outside": 168178,
+      "lead": 60143,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "181641f6863e85ff04a0376b58bbbf83e81aa698516d2a9d7eaf2ba95e6ce82b"
+    },
+    {
+      "reviewId": 5,
+      "name": "brick1wind1",
+      "nativeKey": "128x256:cc7d6e6a6d82a738",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 524288,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "da71bf27af9d2eb7b1887547f3ea828cccf04df3438a64db554f2889af1fdb46"
+    },
+    {
+      "reviewId": 6,
+      "name": "brick1wind1",
+      "nativeKey": "256x256:a9390741b6c0bd6b",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "outputDimensions": [
+        1024,
+        1024
+      ],
+      "factor": 4,
+      "panes": 62617,
+      "outside": 985959,
+      "lead": 18779,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "ffae5bd49225b427bea768d267273ddcd91316a8922ac2375350dc40e74a2fde"
+    },
+    {
+      "reviewId": 7,
+      "name": "city5_3wind1",
+      "nativeKey": "64x64:3fe14575cb4135f7",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 4288,
+      "outside": 61248,
+      "lead": 6992,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "dbeccf02862d9e47b34110076c11ba444fb9782d2895b13e6b4bc445e19a536f"
+    },
+    {
+      "reviewId": 8,
+      "name": "city5_3wind2",
+      "nativeKey": "64x64:d326093d1cbbc89f",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 21312,
+      "outside": 44224,
+      "lead": 17188,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "0aeab4fd20172f6a3f335412f229453d3d0e99ec301748b7794aed3649efc50f"
+    },
+    {
+      "reviewId": 9,
+      "name": "city5_3wind2",
+      "nativeKey": "64x64:f6a9de95fc2a3827",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 21311,
+      "outside": 44225,
+      "lead": 17189,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "349e8140b3988a1a6ee6238f65420386c5c2a70f81f554ffe0e804b1136c8b16"
+    },
+    {
+      "reviewId": 10,
+      "name": "city5_3wind3",
+      "nativeKey": "128x128:15df4bae0ea4dd04",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "outputDimensions": [
+        512,
+        512
+      ],
+      "factor": 4,
+      "panes": 68708,
+      "outside": 193436,
+      "lead": 56456,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "2b32d307458961937700202890f41ae23c4c515ed9f4e55adf44d7c8a03a297c"
+    },
+    {
+      "reviewId": 11,
+      "name": "city5_3wind3b",
+      "nativeKey": "64x128:f4a8e2c3349a9231",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "outputDimensions": [
+        256,
+        512
+      ],
+      "factor": 4,
+      "panes": 33333,
+      "outside": 97739,
+      "lead": 26987,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "8b5053e5b0b3114ae46775cdba2550bd21304074436a0e0f7fa0d687eb48cbb0"
+    },
+    {
+      "reviewId": 12,
+      "name": "city5_3wind4",
+      "nativeKey": "128x128:d913ca1a2e7ea9a8",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "outputDimensions": [
+        512,
+        512
+      ],
+      "factor": 4,
+      "panes": 51341,
+      "outside": 210803,
+      "lead": 73823,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "7969812b5a3f89ea4bdf6ef0ebc73b15790c9f6cc0a06603c4a647f7526a5f10"
+    },
+    {
+      "reviewId": 13,
+      "name": "city5_3wind5",
+      "nativeKey": "128x128:f0c67b4f37d08b0d",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "outputDimensions": [
+        512,
+        512
+      ],
+      "factor": 4,
+      "panes": 71649,
+      "outside": 190495,
+      "lead": 63563,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "5f585f2e64497218f9b59e5fca2cb636cf215b9e85d59522e30c40b3d51c7b67"
+    },
+    {
+      "reviewId": 14,
+      "name": "city5_3wind5d",
+      "nativeKey": "128x128:a237eecac6dea5f0",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "outputDimensions": [
+        512,
+        512
+      ],
+      "factor": 4,
+      "panes": 23033,
+      "outside": 239111,
+      "lead": 16791,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "fbeddb216863b3a858a5622585ae84766d039879d94fd7982aed062665c35fd7"
+    },
+    {
+      "reviewId": 15,
+      "name": "city5_3wind5w",
+      "nativeKey": "128x128:870d5ea48a9d0aee",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "outputDimensions": [
+        512,
+        512
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 262144,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "e8a5c0420fbd328e15fbac03de78341de974f1de1418fca836753802ca8671b7"
+    },
+    {
+      "reviewId": 16,
+      "name": "city5_3wind7",
+      "nativeKey": "64x64:a4d3385b4786cde9",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 19098,
+      "outside": 46438,
+      "lead": 13990,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "8900cb01f70c9e4a16aeb1a517c2d6120c37e38b5592feea937d7213929b06ac"
+    },
+    {
+      "reviewId": 17,
+      "name": "city5_3wind7b",
+      "nativeKey": "64x64:1f50f1802adf18a2",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 14836,
+      "outside": 50700,
+      "lead": 18252,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "baa0486ebc554190257f1861bd33e30bd9ae5606b2050b5888da20ff1303b993"
+    },
+    {
+      "reviewId": 18,
+      "name": "dk3_window1",
+      "nativeKey": "128x128:934d134da1a7157f",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "outputDimensions": [
+        512,
+        512
+      ],
+      "factor": 4,
+      "panes": 82294,
+      "outside": 179850,
+      "lead": 59167,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "5cea6d1c5cb22face2cc5246813fb022c13c11953011ad7be9a6988459f1cb1d"
+    },
+    {
+      "reviewId": 19,
+      "name": "dk3_window4",
+      "nativeKey": "64x128:484ccfc1249e4343",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "outputDimensions": [
+        256,
+        512
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "b8adb9411d26d4438e3d06f8ef0869b3ed4391772e97a2c92024ea469909141a"
+    },
+    {
+      "reviewId": 20,
+      "name": "dwindow1_1",
+      "nativeKey": "128x128:30761fbd9657c4bf",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "outputDimensions": [
+        512,
+        512
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 262144,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "1740a6153b0f856835a69de9d03b6590f3a10a120a100001e120eaf6102fdd4d"
+    },
+    {
+      "reviewId": 21,
+      "name": "dwindow1_2a",
+      "nativeKey": "128x128:1f9a386819fecfaa",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "outputDimensions": [
+        512,
+        512
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 262144,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "91e9076f7c82a4bcc765a9cfd8621dc9f866ebd31191a2fdeb6e7591f2170694"
+    },
+    {
+      "reviewId": 22,
+      "name": "glass01t",
+      "nativeKey": "64x64:4c97ddc531702907",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 65536,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "0a765284eb6bb1dd6e4b13d1040bd9bb45c5aca59d8302253d9f16df6b67afef"
+    },
+    {
+      "reviewId": 23,
+      "name": "glass2",
+      "nativeKey": "128x128:f49491397099e0fb",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "outputDimensions": [
+        512,
+        512
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 262144,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "be272ab0744a46525fcea692416ca6219727995be4e2d4feb92f71af7b974831"
+    },
+    {
+      "reviewId": 24,
+      "name": "mire_wind1",
+      "nativeKey": "32x64:2473e7d45f01b506",
+      "nativeDimensions": [
+        32,
+        64
+      ],
+      "outputDimensions": [
+        128,
+        256
+      ],
+      "factor": 4,
+      "panes": 11977,
+      "outside": 20791,
+      "lead": 11543,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "6d66dc4b0d4f555bcb5b7c10eca912848729aa8894a72b24568e35b8d3fa5b66"
+    },
+    {
+      "reviewId": 25,
+      "name": "stainedx_js",
+      "nativeKey": "64x64:c747905e66de4004",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 23720,
+      "outside": 41816,
+      "lead": 37280,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "a5b5a2a0ddbd1624f78bc1edc595d55da6e3392bfd978454fdf469a1cc88fa46"
+    },
+    {
+      "reviewId": 26,
+      "name": "tallwindow1",
+      "nativeKey": "32x64:2473e7d45f01b506",
+      "nativeDimensions": [
+        32,
+        64
+      ],
+      "outputDimensions": [
+        128,
+        256
+      ],
+      "factor": 4,
+      "panes": 11977,
+      "outside": 20791,
+      "lead": 11543,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "6d66dc4b0d4f555bcb5b7c10eca912848729aa8894a72b24568e35b8d3fa5b66"
+    },
+    {
+      "reviewId": 27,
+      "name": "wind02a_330",
+      "nativeKey": "128x256:05ed8db20d683e58",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 70057,
+      "outside": 454231,
+      "lead": 63501,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "ffc843a79574c6b62e017634628bdb0e2c6b652a8bd1da8aa8dce2e6e5b1e7aa"
+    },
+    {
+      "reviewId": 28,
+      "name": "wind02a_340",
+      "nativeKey": "128x256:d94c3c0df1ec878f",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 70057,
+      "outside": 454231,
+      "lead": 63501,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "e65d8a9e97b722a8731c78df786b2edfcc8b7aa4e0e533d5e8468c2348bf520b"
+    },
+    {
+      "reviewId": 29,
+      "name": "wind02b_330",
+      "nativeKey": "128x256:135c9391ad5ee81b",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 33958,
+      "outside": 490330,
+      "lead": 99600,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "d535be406e30cab5d2c888a8ed30e173bb1d0ed6f8c48f72c2ac96e49e7b4158"
+    },
+    {
+      "reviewId": 30,
+      "name": "wind02b_340",
+      "nativeKey": "128x256:136457b6e9b39ce4",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 33958,
+      "outside": 490330,
+      "lead": 99600,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "0fda41d70b65faec6b4284bf88a72edda9dfc971ccabbe461e548c930f910e9b"
+    },
+    {
+      "reviewId": 31,
+      "name": "wind02c_330",
+      "nativeKey": "128x256:fea70c7db8db3787",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 63394,
+      "outside": 460894,
+      "lead": 70164,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "7d2f6dfafdc6ff4154a3cb0084584358a438ef887bc8c155289873af850fa762"
+    },
+    {
+      "reviewId": 32,
+      "name": "wind02c_340",
+      "nativeKey": "128x256:8e88c3ca7c57e5d8",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 63394,
+      "outside": 460894,
+      "lead": 70164,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "d9096b0d3966f35f679f28a9efdb9d4779e3b2a848c44c5a5f328689ff6aced2"
+    },
+    {
+      "reviewId": 33,
+      "name": "wind02d_340",
+      "nativeKey": "128x256:b337e1371cf7206d",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 524288,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "2b3a88e597b173e5a3d3c95a03ce1e22da8dbad9054bcecbc56a41610c61f12d"
+    },
+    {
+      "reviewId": 34,
+      "name": "wind02r_340",
+      "nativeKey": "256x256:ea170ae4b62b2f4e",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "outputDimensions": [
+        1024,
+        1024
+      ],
+      "factor": 4,
+      "panes": 62632,
+      "outside": 985944,
+      "lead": 18764,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "9cba0ea0b456c1e45d46f48ccd43c8bbe7e3c01938eaa9d677a710148cc5c312"
+    },
+    {
+      "reviewId": 35,
+      "name": "wind_dagg",
+      "nativeKey": "64x256:9bb550a9b2d8d90b",
+      "nativeDimensions": [
+        64,
+        256
+      ],
+      "outputDimensions": [
+        256,
+        1024
+      ],
+      "factor": 4,
+      "panes": 91230,
+      "outside": 170914,
+      "lead": 88842,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "b9e110822d5b570ab6bcf7656aafd67d84ac1c36a2cc1bd5a12638afc9ef975e"
+    },
+    {
+      "reviewId": 36,
+      "name": "windbrk1_3",
+      "nativeKey": "64x192:6f7d7792609d33f0",
+      "nativeDimensions": [
+        64,
+        192
+      ],
+      "outputDimensions": [
+        256,
+        768
+      ],
+      "factor": 4,
+      "panes": 80880,
+      "outside": 115728,
+      "lead": 101144,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "532ed828334e0f2a25a86f825167889b32ca8e421ec1305232ce572b3618b88a"
+    },
+    {
+      "reviewId": 37,
+      "name": "window01_1",
+      "nativeKey": "64x192:d4193b0d4846e7e7",
+      "nativeDimensions": [
+        64,
+        192
+      ],
+      "outputDimensions": [
+        256,
+        768
+      ],
+      "factor": 4,
+      "panes": 71089,
+      "outside": 125519,
+      "lead": 110935,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "1cf1d03c347afe4004ea13e3b875a9cc6dc84705c99e8487de0ff608784b00e6"
+    },
+    {
+      "reviewId": 38,
+      "name": "window01_1",
+      "nativeKey": "64x192:348c68cc10392a3e",
+      "nativeDimensions": [
+        64,
+        192
+      ],
+      "outputDimensions": [
+        256,
+        768
+      ],
+      "factor": 4,
+      "panes": 60756,
+      "outside": 135852,
+      "lead": 121268,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "8cee1ea4781e48084c39f84e1cce092f0b712edc4ffd60c9a2cbc8177c0d5c53"
+    },
+    {
+      "reviewId": 39,
+      "name": "window01_2",
+      "nativeKey": "64x192:d503799052ba5ca2",
+      "nativeDimensions": [
+        64,
+        192
+      ],
+      "outputDimensions": [
+        256,
+        768
+      ],
+      "factor": 4,
+      "panes": 78598,
+      "outside": 118010,
+      "lead": 103426,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "5080addb3f198e937bb040d7b4f3d1fb857d1b2ee70d59d93152bd8b3f71f703"
+    },
+    {
+      "reviewId": 40,
+      "name": "window01_2",
+      "nativeKey": "64x192:5ffe28e59cca0a2f",
+      "nativeDimensions": [
+        64,
+        192
+      ],
+      "outputDimensions": [
+        256,
+        768
+      ],
+      "factor": 4,
+      "panes": 89722,
+      "outside": 106886,
+      "lead": 92302,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "dc1d148e2afbbc901b04523fff13796ae8570445425f844acee0f0b832576c16"
+    },
+    {
+      "reviewId": 41,
+      "name": "window01_3",
+      "nativeKey": "64x192:9931f858d5865f0a",
+      "nativeDimensions": [
+        64,
+        192
+      ],
+      "outputDimensions": [
+        256,
+        768
+      ],
+      "factor": 4,
+      "panes": 89972,
+      "outside": 106636,
+      "lead": 92052,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "ab9e8e164ff62e5de5e223bae50caaa3fb8a6231eab80ea66629ffecf51daa0c"
+    },
+    {
+      "reviewId": 42,
+      "name": "window01_3",
+      "nativeKey": "64x256:b6d87858fb4b5f0a",
+      "nativeDimensions": [
+        64,
+        256
+      ],
+      "outputDimensions": [
+        256,
+        1024
+      ],
+      "factor": 4,
+      "panes": 86333,
+      "outside": 175811,
+      "lead": 92519,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "13adaad12a7d5d08e98e183f5f257f0cf461fd4cebb1620199f5ca8cde922a7f"
+    },
+    {
+      "reviewId": 43,
+      "name": "window01_4",
+      "nativeKey": "64x192:523ed0a9a8d3d90b",
+      "nativeDimensions": [
+        64,
+        192
+      ],
+      "outputDimensions": [
+        256,
+        768
+      ],
+      "factor": 4,
+      "panes": 103585,
+      "outside": 93023,
+      "lead": 78439,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "5fa32f6f691b4a2ebec6361cbf1c5b129866e30a34b9ed2ce6bddf9af7ba1c10"
+    },
+    {
+      "reviewId": 44,
+      "name": "window01_4",
+      "nativeKey": "64x192:5ffe28e59cca0a2f",
+      "nativeDimensions": [
+        64,
+        192
+      ],
+      "outputDimensions": [
+        256,
+        768
+      ],
+      "factor": 4,
+      "panes": 89722,
+      "outside": 106886,
+      "lead": 92302,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "dc1d148e2afbbc901b04523fff13796ae8570445425f844acee0f0b832576c16"
+    },
+    {
+      "reviewId": 45,
+      "name": "window01_4",
+      "nativeKey": "64x256:6fe550a9ce98d90b",
+      "nativeDimensions": [
+        64,
+        256
+      ],
+      "outputDimensions": [
+        256,
+        1024
+      ],
+      "factor": 4,
+      "panes": 90574,
+      "outside": 171570,
+      "lead": 88278,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "905569ac3a36a27b19f734281e32c2eb5d49b36b3b3045164f120e3c1cd80d23"
+    },
+    {
+      "reviewId": 46,
+      "name": "window01_4dd",
+      "nativeKey": "128x256:1277c3bb6435b6a9",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 163930,
+      "outside": 360358,
+      "lead": 141533,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "45da38a8be324fdf9c73da55212fc75a7e099aaa8a14854d1cda686749618a8d"
+    },
+    {
+      "reviewId": 47,
+      "name": "window01_4sh",
+      "nativeKey": "256x128:72c1b92a62cb7068",
+      "nativeDimensions": [
+        256,
+        128
+      ],
+      "outputDimensions": [
+        1024,
+        512
+      ],
+      "factor": 4,
+      "panes": 105536,
+      "outside": 418752,
+      "lead": 84406,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "934bfca826f4a6615585ae1a37591c337313e16e1ada981eaa247a8cd7f20e39"
+    },
+    {
+      "reviewId": 48,
+      "name": "window01_4tall",
+      "nativeKey": "128x256:743aa594544687e6",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 198658,
+      "outside": 325630,
+      "lead": 205478,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "00b928fbc7faca1c0d2d97ec5b7ccc333ccc8591c3234c10170af81790323f14"
+    },
+    {
+      "reviewId": 49,
+      "name": "window01_5tall",
+      "nativeKey": "128x256:98fbfa9d50217d9f",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 152089,
+      "outside": 372199,
+      "lead": 252047,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "589d5fe470019e07727431799fae45bb18f0bcb8ca0c83403b0f10f7452da1c5"
+    },
+    {
+      "reviewId": 50,
+      "name": "window02_1",
+      "nativeKey": "64x256:93daf1d8d996edc2",
+      "nativeDimensions": [
+        64,
+        256
+      ],
+      "outputDimensions": [
+        256,
+        1024
+      ],
+      "factor": 4,
+      "panes": 107809,
+      "outside": 154335,
+      "lead": 72263,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "158f0f29b0ba9a204362961dfc3459b2267be150d6480c31f5409c48dad6e2d7"
+    },
+    {
+      "reviewId": 51,
+      "name": "window02_1",
+      "nativeKey": "64x192:d154d1d83afd8dc2",
+      "nativeDimensions": [
+        64,
+        192
+      ],
+      "outputDimensions": [
+        256,
+        768
+      ],
+      "factor": 4,
+      "panes": 105549,
+      "outside": 91059,
+      "lead": 76475,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "f82d01dba781f85c62925c855a2fc21d07d577c8910c98066559474201299ae3"
+    },
+    {
+      "reviewId": 52,
+      "name": "window02_1",
+      "nativeKey": "64x192:348c68cc10392a3e",
+      "nativeDimensions": [
+        64,
+        192
+      ],
+      "outputDimensions": [
+        256,
+        768
+      ],
+      "factor": 4,
+      "panes": 60756,
+      "outside": 135852,
+      "lead": 121268,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "8cee1ea4781e48084c39f84e1cce092f0b712edc4ffd60c9a2cbc8177c0d5c53"
+    },
+    {
+      "reviewId": 53,
+      "name": "window02_2",
+      "nativeKey": "128x128:9f3a7dca676d73f8",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "outputDimensions": [
+        512,
+        512
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 262144,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "1c945ec434b6b867352d26667a12d4e4a28f87efe217ad5e7d7c7ab34b69f108"
+    },
+    {
+      "reviewId": 54,
+      "name": "window03",
+      "nativeKey": "256x192:5e7fde8dc456647f",
+      "nativeDimensions": [
+        256,
+        192
+      ],
+      "outputDimensions": [
+        1024,
+        768
+      ],
+      "factor": 4,
+      "panes": 42018,
+      "outside": 744414,
+      "lead": 22410,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "6618290ada379e1de978e0be6d20816a66839cee7d57c67833d41ce8a9d162ef"
+    },
+    {
+      "reviewId": 55,
+      "name": "window03",
+      "nativeKey": "256x192:cc595db37b8159a1",
+      "nativeDimensions": [
+        256,
+        192
+      ],
+      "outputDimensions": [
+        1024,
+        768
+      ],
+      "factor": 4,
+      "panes": 62634,
+      "outside": 723798,
+      "lead": 17906,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "580e3d51a11f92f1cf7a8ad83f47c8fa1f4d32ba256fc98f87213375566f26bb"
+    },
+    {
+      "reviewId": 56,
+      "name": "window03",
+      "nativeKey": "256x256:238e78ebc4e565a9",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "outputDimensions": [
+        1024,
+        1024
+      ],
+      "factor": 4,
+      "panes": 62632,
+      "outside": 985944,
+      "lead": 18764,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "b98bc8d7b096aa8c427dd7bf97bb9d6ad5589a7443500c6bacd63d3cd2c2dc6b"
+    },
+    {
+      "reviewId": 57,
+      "name": "window03",
+      "nativeKey": "256x192:fa174557ca98ead5",
+      "nativeDimensions": [
+        256,
+        192
+      ],
+      "outputDimensions": [
+        1024,
+        768
+      ],
+      "factor": 4,
+      "panes": 70960,
+      "outside": 715472,
+      "lead": 53680,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "10dec2df384e97748296c73efbfde94a57f53c0bfae323527357642e7dfd534a"
+    },
+    {
+      "reviewId": 58,
+      "name": "window030",
+      "nativeKey": "256x192:5e7fde8dc456647f",
+      "nativeDimensions": [
+        256,
+        192
+      ],
+      "outputDimensions": [
+        1024,
+        768
+      ],
+      "factor": 4,
+      "panes": 42018,
+      "outside": 744414,
+      "lead": 22410,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "6618290ada379e1de978e0be6d20816a66839cee7d57c67833d41ce8a9d162ef"
+    },
+    {
+      "reviewId": 59,
+      "name": "window030",
+      "nativeKey": "256x192:fa174557ca98ead5",
+      "nativeDimensions": [
+        256,
+        192
+      ],
+      "outputDimensions": [
+        1024,
+        768
+      ],
+      "factor": 4,
+      "panes": 70960,
+      "outside": 715472,
+      "lead": 53680,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "10dec2df384e97748296c73efbfde94a57f53c0bfae323527357642e7dfd534a"
+    },
+    {
+      "reviewId": 60,
+      "name": "window031",
+      "nativeKey": "256x192:5e7fde8dc456647f",
+      "nativeDimensions": [
+        256,
+        192
+      ],
+      "outputDimensions": [
+        1024,
+        768
+      ],
+      "factor": 4,
+      "panes": 42018,
+      "outside": 744414,
+      "lead": 22410,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "6618290ada379e1de978e0be6d20816a66839cee7d57c67833d41ce8a9d162ef"
+    },
+    {
+      "reviewId": 61,
+      "name": "window03_d",
+      "nativeKey": "256x256:78dd303c957a923e",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "outputDimensions": [
+        1024,
+        1024
+      ],
+      "factor": 4,
+      "panes": 62635,
+      "outside": 985941,
+      "lead": 18761,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "796eb3493341ae46017cd3cc32f736aa67d71c524851f7c9d8c10a18f2c801e4"
+    },
+    {
+      "reviewId": 62,
+      "name": "window03d",
+      "nativeKey": "256x256:9b46d1cbf662ce89",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "outputDimensions": [
+        1024,
+        1024
+      ],
+      "factor": 4,
+      "panes": 62632,
+      "outside": 985944,
+      "lead": 18764,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "7e07b57afb200ad939b264544206c5bbe9c632b113a8c17138e2c9987d96a96e"
+    },
+    {
+      "reviewId": 63,
+      "name": "window03k",
+      "nativeKey": "256x256:f21722134a9ad441",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "outputDimensions": [
+        1024,
+        1024
+      ],
+      "factor": 4,
+      "panes": 62635,
+      "outside": 985941,
+      "lead": 18761,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "f9b0918d98238de1803a9ad8862459d9955cc57be31950b5ef13ce0b90a6faaa"
+    },
+    {
+      "reviewId": 64,
+      "name": "window03r",
+      "nativeKey": "256x256:20fa326394886d99",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "outputDimensions": [
+        1024,
+        1024
+      ],
+      "factor": 4,
+      "panes": 62632,
+      "outside": 985944,
+      "lead": 18764,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "db36737ac7437ce57cf451c3ad52b4a49063e574a7910f7cd43862df792b4bc6"
+    },
+    {
+      "reviewId": 65,
+      "name": "window03w",
+      "nativeKey": "256x256:be83387c73d62cae",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "outputDimensions": [
+        1024,
+        1024
+      ],
+      "factor": 4,
+      "panes": 62631,
+      "outside": 985945,
+      "lead": 18765,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "5ca9e0724c99ef46565eda0442d0113ce3c6fd05df46fa93e1364029197d5880"
+    },
+    {
+      "reviewId": 66,
+      "name": "window03y",
+      "nativeKey": "256x256:66dff67e0c3e20d4",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "outputDimensions": [
+        1024,
+        1024
+      ],
+      "factor": 4,
+      "panes": 71729,
+      "outside": 976847,
+      "lead": 20925,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "a80debef43ed2177d47d25f8e60439d1f231e44c865e1ab6d6ef1fd9b0623b1c"
+    },
+    {
+      "reviewId": 67,
+      "name": "window0_1",
+      "nativeKey": "64x64:34aebb95176238cf",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 65536,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "ba4d42172f9f3307ddd86add95ccb45e8905e9079945a673731c4b9f2fc43f56"
+    },
+    {
+      "reviewId": 68,
+      "name": "window1_1",
+      "nativeKey": "64x128:d0ce846c8e67794e",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "outputDimensions": [
+        256,
+        512
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "5d6ef65fc5b5b97e1c6f93434a7d5d509f17f26e830fcc4392e0ea48d5effe6d"
+    },
+    {
+      "reviewId": 69,
+      "name": "window1_1a",
+      "nativeKey": "128x128:9e982c7274ed4a78",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "outputDimensions": [
+        512,
+        512
+      ],
+      "factor": 4,
+      "panes": 69225,
+      "outside": 192919,
+      "lead": 71286,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "4c4ad943168c9ea55158dc0b9fd00f2b880f89df84ec52df4efe3be8473ba7d3"
+    },
+    {
+      "reviewId": 70,
+      "name": "window1_1b",
+      "nativeKey": "256x128:5e4292284385ac5a",
+      "nativeDimensions": [
+        256,
+        128
+      ],
+      "outputDimensions": [
+        1024,
+        512
+      ],
+      "factor": 4,
+      "panes": 136899,
+      "outside": 387389,
+      "lead": 143796,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "e2496e9d8b318745250b5e98a32ecc73b6941b0eb62fb6862da122d64b7add11"
+    },
+    {
+      "reviewId": 71,
+      "name": "window1_1b",
+      "nativeKey": "256x128:df9785578b1585bd",
+      "nativeDimensions": [
+        256,
+        128
+      ],
+      "outputDimensions": [
+        1024,
+        512
+      ],
+      "factor": 4,
+      "panes": 137191,
+      "outside": 387097,
+      "lead": 143504,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "5fc538b5d4f18a96052ed2f254961fe6146086420182a14ddc2344401511c643"
+    },
+    {
+      "reviewId": 72,
+      "name": "window1_2",
+      "nativeKey": "64x64:12a0933767a92b95",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 17001,
+      "outside": 48535,
+      "lead": 18719,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "61cbf947c8c1744486848e6f45133c5c1a0769c5d7a3dd8beebd23d35661a0b0"
+    },
+    {
+      "reviewId": 73,
+      "name": "window1_3",
+      "nativeKey": "64x64:156b1af4336bfc86",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 17009,
+      "outside": 48527,
+      "lead": 18711,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "6e8c060ffb8f9b9549fdf36f8fbfcd0bc00d03df403c31bd5de00b95e3f0e144"
+    },
+    {
+      "reviewId": 74,
+      "name": "window1_3",
+      "nativeKey": "64x64:05dabbdedb8d6824",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 10191,
+      "outside": 55345,
+      "lead": 12009,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "54a6a7eb1a201a40a5f8a3d9b5fb39e81aca59344d25e6a763ed2df487c79228"
+    },
+    {
+      "reviewId": 75,
+      "name": "window1_3b",
+      "nativeKey": "64x64:2f2c421b60818df9",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 19961,
+      "outside": 45575,
+      "lead": 16138,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "386c83d2279b9efaf43dc7fbef6d9d2aeeb20c629894a57d8b720b3ba9088abf"
+    },
+    {
+      "reviewId": 76,
+      "name": "window1_4",
+      "nativeKey": "64x64:323e199982874f3b",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 20509,
+      "outside": 45027,
+      "lead": 7881,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "b7cfb18f1edf3fcfb5ec1db08517ad4330333f83fd15b10b08eceb93ae6e0794"
+    },
+    {
+      "reviewId": 77,
+      "name": "window1a",
+      "nativeKey": "64x256:c34d2a91608874eb",
+      "nativeDimensions": [
+        64,
+        256
+      ],
+      "outputDimensions": [
+        256,
+        1024
+      ],
+      "factor": 4,
+      "panes": 94635,
+      "outside": 167509,
+      "lead": 55494,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "9b7a71f0e59e4b2e28f679e60c8acc950c44f35a7bb10f485a51b93c2e26dd0b"
+    },
+    {
+      "reviewId": 78,
+      "name": "window1ah",
+      "nativeKey": "64x256:1aecab078d390ea5",
+      "nativeDimensions": [
+        64,
+        256
+      ],
+      "outputDimensions": [
+        256,
+        1024
+      ],
+      "factor": 4,
+      "panes": 53977,
+      "outside": 208167,
+      "lead": 34232,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "13565cfb0fe23e929986df070f67dcb601ab855100fe6c97fca31b5094cc1420"
+    },
+    {
+      "reviewId": 79,
+      "name": "window1ah",
+      "nativeKey": "64x256:f2f4aeeee6beb6c4",
+      "nativeDimensions": [
+        64,
+        256
+      ],
+      "outputDimensions": [
+        256,
+        1024
+      ],
+      "factor": 4,
+      "panes": 54331,
+      "outside": 207813,
+      "lead": 33878,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "58ca95f7236d92423b21af70d0e5b3f7d9026c75abcd7ee25f81c55b9bc692c1"
+    },
+    {
+      "reviewId": 80,
+      "name": "window1aj",
+      "nativeKey": "64x256:6cc20a4259ee1268",
+      "nativeDimensions": [
+        64,
+        256
+      ],
+      "outputDimensions": [
+        256,
+        1024
+      ],
+      "factor": 4,
+      "panes": 90710,
+      "outside": 171434,
+      "lead": 87374,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "551838c70d644128fab9aeeb16238362b20fbe75ba84d8bbbdbde1e251188bee"
+    },
+    {
+      "reviewId": 81,
+      "name": "window1c",
+      "nativeKey": "64x256:08064e63b031f189",
+      "nativeDimensions": [
+        64,
+        256
+      ],
+      "outputDimensions": [
+        256,
+        1024
+      ],
+      "factor": 4,
+      "panes": 80156,
+      "outside": 181988,
+      "lead": 71227,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "c8f5158faef3717414d2162a9fa47c8ce01a6da33ed658bc6f5234d0fe56b825"
+    },
+    {
+      "reviewId": 82,
+      "name": "window1d",
+      "nativeKey": "128x256:f456fcb5333fdfb7",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 38343,
+      "outside": 485945,
+      "lead": 48175,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "71b78442bc1ba3e8b7d50af6c731cd9bc08042ec5ad68cac25ed59cb41119b50"
+    },
+    {
+      "reviewId": 83,
+      "name": "window1d3",
+      "nativeKey": "128x256:315e7a06b2617ddc",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 38343,
+      "outside": 485945,
+      "lead": 48175,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "be625e1f3a55c18057c0efdcf219cd20437b8eaf9f6c7fb447d889a1603bd0c8"
+    },
+    {
+      "reviewId": 84,
+      "name": "window1h",
+      "nativeKey": "128x256:b381de45aac4eae7",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 38335,
+      "outside": 485953,
+      "lead": 48183,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "4f625c14843954179489966237c424e4a0d50c40a0de1e0b86b34462531958c2"
+    },
+    {
+      "reviewId": 85,
+      "name": "window1h_d",
+      "nativeKey": "128x256:5b637ecdfa5a0c3f",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 38335,
+      "outside": 485953,
+      "lead": 48183,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "375987b25ab51e542217b143f8bbd702fe4980d1f4b236a3c9edea473f0f616a"
+    },
+    {
+      "reviewId": 86,
+      "name": "window1sa",
+      "nativeKey": "128x256:e0ce486a10020b80",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 524288,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "22f9736f94a840c425d383fbdf6a8488d2af171e94499ddc91f94c8f39918639"
+    },
+    {
+      "reviewId": 87,
+      "name": "window1sac23",
+      "nativeKey": "128x256:900e5db5dbce1eaf",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 524288,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "7243acd71ff31cfe5ddc305e0ab5d8a33e7cd53eeaccf047c44576f84653e020"
+    },
+    {
+      "reviewId": 88,
+      "name": "window1sasw",
+      "nativeKey": "128x256:cfc0e472513254f0",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 524288,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "da3422bbea1dad3c156c2f2ca914d477ebee69e3b3fd4b3bbb41b886345bec46"
+    },
+    {
+      "reviewId": 89,
+      "name": "window1saswh",
+      "nativeKey": "128x256:c85e8163819851c1",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 524288,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "7f3e16a2bff5c33d0db82b14df2934b682afd33c121ce11b57696347733903f4"
+    },
+    {
+      "reviewId": 90,
+      "name": "window1sb",
+      "nativeKey": "64x128:6f5b7fb08a303862",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "outputDimensions": [
+        256,
+        512
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "4477f0f0caa4b993ad2416362a4a0658e9e7655dfc1f5226083a4aae7d39cc6d"
+    },
+    {
+      "reviewId": 91,
+      "name": "window1slot",
+      "nativeKey": "128x256:e0ce486a10020b80",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 524288,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "22f9736f94a840c425d383fbdf6a8488d2af171e94499ddc91f94c8f39918639"
+    },
+    {
+      "reviewId": 92,
+      "name": "window1slot",
+      "nativeKey": "128x256:e9418ee2ba245c70",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 524288,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "22a9209651282b3b4eb73f5635169cb6a3e8ff5d784ff5ecfc003764e08593fc"
+    },
+    {
+      "reviewId": 93,
+      "name": "window1slot_d",
+      "nativeKey": "128x256:59f659b5fb9ba857",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 524288,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "d03eab2e23d57448c190205ce97a07defc182b1e3d2caf8e70543e013b0b80ce"
+    },
+    {
+      "reviewId": 94,
+      "name": "window2_1",
+      "nativeKey": "64x192:afc21851d31c2283",
+      "nativeDimensions": [
+        64,
+        192
+      ],
+      "outputDimensions": [
+        256,
+        768
+      ],
+      "factor": 4,
+      "panes": 34889,
+      "outside": 161719,
+      "lead": 155611,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "f0df452e9a2d9a750b8cf9b68fd69f7003b11aefc18e970ba8c90a0b7f597610"
+    },
+    {
+      "reviewId": 95,
+      "name": "window2_2",
+      "nativeKey": "64x192:8df5b04c6b28cf46",
+      "nativeDimensions": [
+        64,
+        192
+      ],
+      "outputDimensions": [
+        256,
+        768
+      ],
+      "factor": 4,
+      "panes": 51700,
+      "outside": 144908,
+      "lead": 138800,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "cc6bb41d60ce1926d980bdf3d97dd4597769ba2b9607238d7fbf19dd1163fb66"
+    },
+    {
+      "reviewId": 96,
+      "name": "window2_3",
+      "nativeKey": "64x192:e5cc063f8b2fe5f5",
+      "nativeDimensions": [
+        64,
+        192
+      ],
+      "outputDimensions": [
+        256,
+        768
+      ],
+      "factor": 4,
+      "panes": 40228,
+      "outside": 156380,
+      "lead": 150272,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "73404bb7f068f64dfb3e93ad48987d82c7e52daf5adb7d55ec93c2cde9810c3f"
+    },
+    {
+      "reviewId": 97,
+      "name": "window2_4",
+      "nativeKey": "64x192:a1545a954e7d792f",
+      "nativeDimensions": [
+        64,
+        192
+      ],
+      "outputDimensions": [
+        256,
+        768
+      ],
+      "factor": 4,
+      "panes": 70404,
+      "outside": 126204,
+      "lead": 120096,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "68e9c685d4c6142242ac59791e08d9c5cf36fa4240a6a1b110485c560ba93437"
+    },
+    {
+      "reviewId": 98,
+      "name": "window2a",
+      "nativeKey": "128x256:6949a7c6578a56fc",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 99783,
+      "outside": 424505,
+      "lead": 71892,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "3a1a47105ad07b3abfc0afe0b47ea02d9267d5849f1411068d5f9e820f531aa7"
+    },
+    {
+      "reviewId": 99,
+      "name": "window2a",
+      "nativeKey": "128x256:df79d8192b777c23",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 100523,
+      "outside": 423765,
+      "lead": 71152,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "6a1d5d7aa46325b9eaee53eac723689033d7b62f7c3b9b7cc1ccec66804ebaa2"
+    },
+    {
+      "reviewId": 100,
+      "name": "window2b",
+      "nativeKey": "128x256:977bf84a9d1017d8",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 79517,
+      "outside": 444771,
+      "lead": 92158,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "d9a0f78aba7a152cfe74aa8e003cd769465a6b19384b38c5f879c52a519f7784"
+    },
+    {
+      "reviewId": 101,
+      "name": "window2c",
+      "nativeKey": "128x256:95cfdb470193224d",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 83200,
+      "outside": 441088,
+      "lead": 88475,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "e1a62894c9ac469b6739b844456fc3db20ea673ca4ce7f749bab557adddf0992"
+    },
+    {
+      "reviewId": 102,
+      "name": "window2c1",
+      "nativeKey": "128x256:4fc635b81ca8173a",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 83151,
+      "outside": 441137,
+      "lead": 88524,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "82192981392f8592a2c4c93d38e8f14511a5b85364ec40309768b7bc0b8794c5"
+    },
+    {
+      "reviewId": 103,
+      "name": "window2c_c",
+      "nativeKey": "256x256:44d909693fad26fb",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "outputDimensions": [
+        1024,
+        1024
+      ],
+      "factor": 4,
+      "panes": 166338,
+      "outside": 882238,
+      "lead": 168996,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "d11989b693eb29eb446694c7dff974b16b40e8b99a4d5f287dea11ea456b31da"
+    },
+    {
+      "reviewId": 104,
+      "name": "window2c_e",
+      "nativeKey": "128x256:2097a371d772ab9b",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 83151,
+      "outside": 441137,
+      "lead": 88524,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "edbf062503c73a4842d71ad2b4f592e8d3f4d5c0f87380789426535fc929a5d4"
+    },
+    {
+      "reviewId": 105,
+      "name": "window2c_f",
+      "nativeKey": "128x256:8b7230c11a7f5ec3",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 83151,
+      "outside": 441137,
+      "lead": 88524,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "883d7933acf9d0fe6b060c4c34cc34e2913798aa88bdc1733938f6dcec99a9ef"
+    },
+    {
+      "reviewId": 106,
+      "name": "window2cc",
+      "nativeKey": "128x256:0f4a29f6a520400c",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 524288,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "02233c28cc628b77befe528537ce57737545e36e22ed4696363f21f35e1e3f1e"
+    },
+    {
+      "reviewId": 107,
+      "name": "window2cg",
+      "nativeKey": "128x256:8f516ecf0d32daad",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 524288,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "eff0d770828c4ad5c9d9e98bfd619f2081aad102b4e69dfbd49bab182eecdc1b"
+    },
+    {
+      "reviewId": 108,
+      "name": "window2cga",
+      "nativeKey": "128x256:50987d494990b423",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 524288,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "75bbc6c815902d73c1436006474d156572329d42763901156253f8e5615a969c"
+    },
+    {
+      "reviewId": 109,
+      "name": "window2ch",
+      "nativeKey": "128x256:620f6c0e0f90f784",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 524288,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "85596d9ed44a01cf889e4fb5202143254aed402b8ee78777b5d59abd949f636e"
+    },
+    {
+      "reviewId": 110,
+      "name": "window2sh",
+      "nativeKey": "128x256:15a6bea194e0f36b",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 524288,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "ed1c725caec68474d97f5d813d275e34aaf1d8cfc72e4e4b284c958e1d3cc6ca"
+    },
+    {
+      "reviewId": 111,
+      "name": "window2td",
+      "nativeKey": "128x256:e98d0faf30a9f2ad",
+      "nativeDimensions": [
+        128,
+        256
+      ],
+      "outputDimensions": [
+        512,
+        1024
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 524288,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "1405a86e8eccb5be754fc9ce21e72e5b0b3a960fea4a08b286ecf960b84147e9"
+    },
+    {
+      "reviewId": 112,
+      "name": "window3a",
+      "nativeKey": "64x256:3f83b06967333363",
+      "nativeDimensions": [
+        64,
+        256
+      ],
+      "outputDimensions": [
+        256,
+        1024
+      ],
+      "factor": 4,
+      "panes": 73962,
+      "outside": 188182,
+      "lead": 77421,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "35376254844a8a3621e6bf61c3d5edc5acba7e73c70d95c2543e1966c4cc9716"
+    },
+    {
+      "reviewId": 113,
+      "name": "window3b",
+      "nativeKey": "64x128:5336dbd98b4233cb",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "outputDimensions": [
+        256,
+        512
+      ],
+      "factor": 4,
+      "panes": 55816,
+      "outside": 75256,
+      "lead": 56588,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "669d07a94327486293904f41028c093c26f331d7c5bd23d6d6e064cd02b5dcec"
+    },
+    {
+      "reviewId": 114,
+      "name": "window3b",
+      "nativeKey": "64x256:344d97ed54be8b2f",
+      "nativeDimensions": [
+        64,
+        256
+      ],
+      "outputDimensions": [
+        256,
+        1024
+      ],
+      "factor": 4,
+      "panes": 108935,
+      "outside": 153209,
+      "lead": 128341,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "4ac177381bc315a115819abcfd390de28a38c311eab40704b27660e106ef1aba"
+    },
+    {
+      "reviewId": 115,
+      "name": "window4a",
+      "nativeKey": "64x256:48a30e49a3b6a85b",
+      "nativeDimensions": [
+        64,
+        256
+      ],
+      "outputDimensions": [
+        256,
+        1024
+      ],
+      "factor": 4,
+      "panes": 61199,
+      "outside": 200945,
+      "lead": 90184,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "097328daf7ef7b4a00cd77bc0e7ce91fe359987a7246e22abc2524df95170a20"
+    },
+    {
+      "reviewId": 116,
+      "name": "window4b",
+      "nativeKey": "64x256:a1d046d972c2ea13",
+      "nativeDimensions": [
+        64,
+        256
+      ],
+      "outputDimensions": [
+        256,
+        1024
+      ],
+      "factor": 4,
+      "panes": 102047,
+      "outside": 160097,
+      "lead": 135229,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "a4f88abd77b71f1ed962169eb10b0c42dcaddb45cc996d3209fdb03f5a5ab534"
+    },
+    {
+      "reviewId": 117,
+      "name": "window666_9",
+      "nativeKey": "64x192:d154d1d83afd8dc2",
+      "nativeDimensions": [
+        64,
+        192
+      ],
+      "outputDimensions": [
+        256,
+        768
+      ],
+      "factor": 4,
+      "panes": 110395,
+      "outside": 86213,
+      "lead": 80105,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "52009918f3a4e92238494f9c8dfb63831c8c43c5034d1f803683fe4b4a84766a"
+    },
+    {
+      "reviewId": 118,
+      "name": "window8a",
+      "nativeKey": "128x64:9d703acea7b1571c",
+      "nativeDimensions": [
+        128,
+        64
+      ],
+      "outputDimensions": [
+        512,
+        256
+      ],
+      "factor": 4,
+      "panes": 34372,
+      "outside": 96700,
+      "lead": 32228,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "1bebc74410f8c958a750856abfd453cc6dfac0382cfd37c4214846a43fb637c6"
+    },
+    {
+      "reviewId": 119,
+      "name": "window8c1",
+      "nativeKey": "128x64:5b223847d543167d",
+      "nativeDimensions": [
+        128,
+        64
+      ],
+      "outputDimensions": [
+        512,
+        256
+      ],
+      "factor": 4,
+      "panes": 40345,
+      "outside": 90727,
+      "lead": 47943,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "07862abfab9d37bff1f3d8dd7c17df35941bd8085ed55cedcbe8ffd65aa68f07"
+    },
+    {
+      "reviewId": 120,
+      "name": "window8s",
+      "nativeKey": "64x64:9c6096037b1856c9",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 19963,
+      "outside": 45573,
+      "lead": 15193,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "177a7d8aa89be17816dd02a8dda8ec629bb9e36cc555fe348f7c313d539fdaca"
+    },
+    {
+      "reviewId": 121,
+      "name": "window8u",
+      "nativeKey": "64x64:cdc23cb68fb591ec",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 65536,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "c34b1a36edc3feb32abb86fe2f6fec9fa2ce28bedb1e3db06270aa61d24ab74e"
+    },
+    {
+      "reviewId": 122,
+      "name": "window8u",
+      "nativeKey": "64x64:d663b11a9d925488",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 65536,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "67cc508059fcbe171877093b0d0a8823837a5c865525849de634466c01d396a6"
+    },
+    {
+      "reviewId": 123,
+      "name": "window_blue1_2",
+      "nativeKey": "512x512:dfa75a7507bf1ecf",
+      "nativeDimensions": [
+        512,
+        512
+      ],
+      "outputDimensions": [
+        2048,
+        2048
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 4194304,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "f3f718002191689b3544f587e3e96c3ac8828715647008d39ab6a3d0d2e76c87"
+    },
+    {
+      "reviewId": 124,
+      "name": "windowc1_7",
+      "nativeKey": "64x64:33a2a7b92cdd0cab",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 65536,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "a22820fac891f5d7777d5b3de05c36bf44e54ee32525786a07991fbb8a07d75e"
+    },
+    {
+      "reviewId": 125,
+      "name": "windowl1",
+      "nativeKey": "256x256:b7d6209daebc88a7",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "outputDimensions": [
+        1024,
+        1024
+      ],
+      "factor": 4,
+      "panes": 53397,
+      "outside": 995179,
+      "lead": 17008,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "0e82261b1900850968f9bc305823ea896dc856f052960fd8cb4782b8b6c4cacf"
+    },
+    {
+      "reviewId": 126,
+      "name": "windowsqr1b",
+      "nativeKey": "64x64:7eb5da85cb86114f",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 19963,
+      "outside": 45573,
+      "lead": 15193,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "d4cfb52ee27d3f984fd37ebfcdbb9a2b3f95b5390fc8bba6b56049d9bda7d29d"
+    },
+    {
+      "reviewId": 127,
+      "name": "windr1",
+      "nativeKey": "64x64:6115c53ab8fe0da8",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 65536,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "f80f6578aa4554d76d9e69aa6eeb837441b32a12fdbe94119a5bd6e9f1994e34"
+    },
+    {
+      "reviewId": 128,
+      "name": "windr2",
+      "nativeKey": "64x64:c63b631d9950603f",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "outputDimensions": [
+        256,
+        256
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 65536,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "acd9d20afb5daf40466a705ce50119f4645abe8fe7cb7bbc5c1c48206118d5bc"
+    },
+    {
+      "reviewId": 129,
+      "name": "windr3",
+      "nativeKey": "32x32:5c8ab4a825882272",
+      "nativeDimensions": [
+        32,
+        32
+      ],
+      "outputDimensions": [
+        128,
+        128
+      ],
+      "factor": 4,
+      "panes": 0,
+      "outside": 16384,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "bb360eec3b61e95583418a2292a3d3a8967e66da3a68b2905f8ef9359ed819bc"
+    }
+  ]
+}

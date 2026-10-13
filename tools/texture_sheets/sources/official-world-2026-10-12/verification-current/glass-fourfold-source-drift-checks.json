@@ -1,0 +1,79 @@
+{
+  "qualification": "Independent CLI fixtures; only temporary source/stage copies were mutated",
+  "script": "/Users/bri/SOURCE/Quaked/tools/glass_materials/stage_fourfold.py",
+  "scriptSha256": "5ed8d23af5404aa4426a70e265361b16589528266df95bf85225a235a7214ba6",
+  "sourceReviewId": 1,
+  "sourceKey": "Window01|64x192:348c68cc10392a3e",
+  "checks": [
+    {
+      "scenario": "unchanged_control",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "{\"changed\": 1, \"authored\": 0, \"unchanged\": 1}\n",
+      "stderr": ""
+    },
+    {
+      "scenario": "existing_stage_is_not_overwritten",
+      "passed": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/unchanged_control/tools/glass_materials/stage_fourfold.py\", line 202, in <module>\n    (prepare if args.phase == 'prepare' else finish)(args.stage)\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/unchanged_control/tools/glass_materials/stage_fourfold.py\", line 42, in prepare\n    raise ValueError('Use a new staging directory; existing evidence is retained')\nValueError: Use a new staging directory; existing evidence is retained\n"
+    },
+    {
+      "scenario": "diffuse_drift",
+      "passed": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/diffuse_drift/tools/glass_materials/stage_fourfold.py\", line 202, in <module>\n    (prepare if args.phase == 'prepare' else finish)(args.stage)\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/diffuse_drift/tools/glass_materials/stage_fourfold.py\", line 69, in prepare\n    assert sha(source) == spec['sourceDiffuseSha256']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+    },
+    {
+      "scenario": "review_shape_drift",
+      "passed": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/review_shape_drift/tools/glass_materials/stage_fourfold.py\", line 202, in <module>\n    (prepare if args.phase == 'prepare' else finish)(args.stage)\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/review_shape_drift/tools/glass_materials/stage_fourfold.py\", line 71, in prepare\n    assert spec[field] == old['regionReview'][field]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+    },
+    {
+      "scenario": "finish_unchanged_control",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "Complete130-entry validation root: /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/finish_unchanged_control/stage/validation\n",
+      "stderr": ""
+    },
+    {
+      "scenario": "finish_index_drift",
+      "passed": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/finish_index_drift/tools/glass_materials/stage_fourfold.py\", line 202, in <module>\n    (prepare if args.phase == 'prepare' else finish)(args.stage)\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/finish_index_drift/tools/glass_materials/stage_fourfold.py\", line 140, in finish\n    unchanged_sources()\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/finish_index_drift/tools/glass_materials/stage_fourfold.py\", line 136, in unchanged_sources\n    assert sha(ROOT / name) == digest, 'Metadata changed during staging: ' + name\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Metadata changed during staging: newer/textures/index.json\n"
+    },
+    {
+      "scenario": "finish_native_drift",
+      "passed": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/finish_native_drift/tools/glass_materials/stage_fourfold.py\", line 202, in <module>\n    (prepare if args.phase == 'prepare' else finish)(args.stage)\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/finish_native_drift/tools/glass_materials/stage_fourfold.py\", line 140, in finish\n    unchanged_sources()\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/finish_native_drift/tools/glass_materials/stage_fourfold.py\", line 139, in unchanged_sources\n    assert sha(TEXTURES / name) == digest, 'Source changed during staging: ' + name\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Source changed during staging: glass/9c8c6c59f9a867ce-native.png\n"
+    },
+    {
+      "scenario": "finish_old_diffuse_drift",
+      "passed": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/finish_old_diffuse_drift/tools/glass_materials/stage_fourfold.py\", line 202, in <module>\n    (prepare if args.phase == 'prepare' else finish)(args.stage)\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/finish_old_diffuse_drift/tools/glass_materials/stage_fourfold.py\", line 140, in finish\n    unchanged_sources()\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/finish_old_diffuse_drift/tools/glass_materials/stage_fourfold.py\", line 139, in unchanged_sources\n    assert sha(TEXTURES / name) == digest, 'Source changed during staging: ' + name\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Source changed during staging: glass/9c8c6c59f9a867ce-diffuse.png\n"
+    },
+    {
+      "scenario": "finish_unchanged_diffuse_drift",
+      "passed": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/finish_unchanged_diffuse_drift/tools/glass_materials/stage_fourfold.py\", line 202, in <module>\n    (prepare if args.phase == 'prepare' else finish)(args.stage)\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/finish_unchanged_diffuse_drift/tools/glass_materials/stage_fourfold.py\", line 140, in finish\n    unchanged_sources()\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/finish_unchanged_diffuse_drift/tools/glass_materials/stage_fourfold.py\", line 139, in unchanged_sources\n    assert sha(TEXTURES / name) == digest, 'Source changed during staging: ' + name\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Source changed during staging: glass/885481e7c6409c77-diffuse.png\n"
+    },
+    {
+      "scenario": "finish_review_drift",
+      "passed": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/finish_review_drift/tools/glass_materials/stage_fourfold.py\", line 202, in <module>\n    (prepare if args.phase == 'prepare' else finish)(args.stage)\n  File \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-glass-stage-negative-_rmelvzd/finish_review_drift/tools/glass_materials/stage_fourfold.py\", line 153, in finish\n    assert staged_reviews[key] == record['currentReview'], 'Staged review changed: ' + key\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Staged review changed: Window01|64x192:348c68cc10392a3e\n"
+    }
+  ]
+}

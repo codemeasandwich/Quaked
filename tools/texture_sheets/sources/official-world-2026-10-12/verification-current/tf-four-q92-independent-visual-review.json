@@ -1,0 +1,402 @@
+{
+  "schema": 1,
+  "createdAt": "2026-10-13T11:20:59.750397+00:00",
+  "reviewer": "texture_plan independent subagent",
+  "scope": "Independent visual review of four finished diffuse candidates, with native source/provenance/companion dimension checks. No generation, registration or asset edits.",
+  "method": "Direct512diffuse views, native128comparison, BOX64half-native primary andBOX32quarter-native secondary enlarged nearest for inspection,3x3repeats. Metrics are diagnostics not acceptance thresholds.",
+  "result": "All4diffuse candidates acceptable for source binding and native trial.",
+  "rejectedInputRemainsRejected": "TF_Metal4b-generated-v1.png was not accepted or used in the reviewed final brown rivet candidate.",
+  "measuredSeamCoresNativeUnits": {
+    "source": [
+      8,
+      20,
+      71,
+      88,
+      111
+    ],
+    "TF_Metal4b": [
+      8.5,
+      20.25,
+      71.25,
+      88,
+      111.25
+    ],
+    "TF_Metal4_04": [
+      8,
+      19.75,
+      71.75,
+      88.75,
+      111.5
+    ]
+  },
+  "rows": [
+    {
+      "name": "TF_Metal4",
+      "inputs": {
+        "original": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4.png",
+          "sha256": "21ad8e4d4bcc6ff9b5e7b6e89026ed2f164b1a3450d57693bed54c10d21af7be"
+        },
+        "png": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4-photographic-4x.png",
+          "sha256": "eba1c9f6f86fc3c774557816218e6846ac7d8b65d5e1b30ca013be2d8aaf1400"
+        },
+        "q92": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-diffuse.webp",
+          "sha256": "b785077636ece997730c4f4015dc9fb9db592b30a2a25924380e31dfdd1849f8"
+        }
+      },
+      "metrics": {
+        "2": {
+          "nativeQ92MAE": 2.7481282552083335,
+          "nativeQ92Max": 23.0
+        },
+        "4": {
+          "nativeQ92MAE": 1.396484375,
+          "nativeQ92Max": 7.0
+        },
+        "edges": {
+          "wrapX": 8.946614583333334,
+          "wrapY": 9.407552083333334,
+          "interiorX": 7.091380259295499,
+          "interiorY": 7.452857448630137
+        },
+        "Q92vsPNGMAE": 2.0191256205240884
+      },
+      "nativeKey": "128x128:c09f973ad97a3b48",
+      "nativeRGBASha256": "d6b93e6d72d1a35288b40b9ed1502b75d3fd6f31e837f300601d7975b9fed5bb",
+      "visualDisposition": "Accept for source binding and native trial. Restrained dark brown/charcoal plain metal, photographic fine grain, no invented panel frame/rivets. Repeated grain is visible as expected but no strong edge line or vignette.",
+      "recipe": {
+        "path": "newer/textures/candidates-2026-10-12/TF_Metal4-photographic-4x.json",
+        "sha256": "71728abe0d1f9c206156d7ff0a79c8d2a4c5b27c04fc67e859afa8c192116e2d",
+        "generated": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Metal4-generated-v1.png",
+        "generatedSha256": "693e7454f5ac8fec89ceb40f1b8b939d4d5a34c69236d2d4694b1a1e86968852",
+        "sourceGeneratedOutputSHAReverified": true
+      },
+      "runtimeFiles": {
+        "diffuse": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-diffuse.webp",
+          "sha256": "b785077636ece997730c4f4015dc9fb9db592b30a2a25924380e31dfdd1849f8",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "height": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-height.webp",
+          "sha256": "4c4010aeeaac9e948a657ad35503c395ce52fc2c1095f57b7a55d0e9a8f48632",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalX": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-normalX.webp",
+          "sha256": "72ce6a1ed468a1d9c7bd624f533662cf0b5a634d5128e1e6606f90e16f00af22",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalY": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-normalY.webp",
+          "sha256": "d534d38d50a9ff8b23d173bcbdfcc8367a30a7f99b5f4eae8e90ac9473c905aa",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalZ": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-normalZ.webp",
+          "sha256": "0e87a28ed72f52c4925158c27fe01396e6400e970fab0883e4819ab3f1da977c",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      },
+      "repeatContact": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_Metal4-q92-repeat.jpg",
+        "sha256": "dc31cf69dce04f1f6aaeb4a75d583004f78393060b90ba6c57508848fae98e51"
+      }
+    },
+    {
+      "name": "TF_Metal4b",
+      "inputs": {
+        "original": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4b.png",
+          "sha256": "7824b40ef3a79aaeb47dfa03671b100119ea2c6dadb584d9fd85bf1aed0d247a"
+        },
+        "png": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4b-photographic-4x.png",
+          "sha256": "201594508b36f40f36ce45bd6d39451e0ff08e60da989c3961cc3fc76c55821c"
+        },
+        "q92": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-diffuse.webp",
+          "sha256": "32c772688970d801456be5e1ac69717bd1ba621fd9d6c57c3c60c1a6a7a76cf4"
+        }
+      },
+      "metrics": {
+        "2": {
+          "nativeQ92MAE": 3.635986328125,
+          "nativeQ92Max": 38.0
+        },
+        "4": {
+          "nativeQ92MAE": 2.1389973958333335,
+          "nativeQ92Max": 13.0
+        },
+        "edges": {
+          "wrapX": 10.245442708333334,
+          "wrapY": 14.247395833333334,
+          "interiorX": 6.943644763127854,
+          "interiorY": 7.926382603555121
+        },
+        "Q92vsPNGMAE": 2.2608019510904946
+      },
+      "nativeKey": "128x128:dc8e85a59866a19f",
+      "nativeRGBASha256": "cd8fdb54a02d999354b590b42ea7f86a79f3064f7cef339d1a9290af88cd0883",
+      "visualDisposition": "Accept correctedv2. Rejectedv1 extra deep grooves removed; five true horizontal seams and16/16/8/8 rivet rows retained. Fine original transition highlights are naturally interpreted. No added whole-image bevel.",
+      "recipe": {
+        "path": "newer/textures/candidates-2026-10-12/TF_Metal4b-photographic-4x.json",
+        "sha256": "6b4fbedbc8cfccf69881c33cc00f05c768f4993c772dd54fc5556c0abe5f554e",
+        "generated": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Metal4b-generated-v2.png",
+        "generatedSha256": "947c043d7c895e4dc790eb7017ce0ecfc60b89dc19c23987780894c04a9d180f",
+        "sourceGeneratedOutputSHAReverified": true
+      },
+      "runtimeFiles": {
+        "diffuse": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-diffuse.webp",
+          "sha256": "32c772688970d801456be5e1ac69717bd1ba621fd9d6c57c3c60c1a6a7a76cf4",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "height": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-height.webp",
+          "sha256": "2e91ea3140d2f5932a2ff6a6b475c8231c7240f382e877d57153b2e47d8f7f41",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalX": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-normalX.webp",
+          "sha256": "15d71ced19bc78918764d2e28e4db07a20f175bc592d154e15c93f04533af1ba",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalY": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-normalY.webp",
+          "sha256": "ecbd26bd86df567694068767e8aec70b68bec662806239bbfac6b69b0ac75e0c",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalZ": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-normalZ.webp",
+          "sha256": "394cce045c338cadd8b53c937addc1aff51e37542da2866e4f90b7e74c81c91d",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      },
+      "repeatContact": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_Metal4b-q92-repeat.jpg",
+        "sha256": "c3c0e6b2689c6bd3df993b00f41c53e9432df97cfc497c6c4e3feafa7decfeee"
+      }
+    },
+    {
+      "name": "TF_Metal4_04",
+      "inputs": {
+        "original": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4_04.png",
+          "sha256": "cb42069b4f75baf5b7c8bf0d8bdd322c7a8b40f3f33eb7d8408dd995c4e4f15d"
+        },
+        "png": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_04-photographic-4x.png",
+          "sha256": "b103a6961ea133bf27386bf13b13e148f524287fb2193c25c522ea8bb0e52975"
+        },
+        "q92": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-diffuse.webp",
+          "sha256": "c355c86132473a1c13f0e8dfd07660001a147e6e30cf22542b5520798500a4ff"
+        }
+      },
+      "metrics": {
+        "2": {
+          "nativeQ92MAE": 5.434651692708333,
+          "nativeQ92Max": 46.0
+        },
+        "4": {
+          "nativeQ92MAE": 2.7610677083333335,
+          "nativeQ92Max": 13.0
+        },
+        "edges": {
+          "wrapX": 11.083333333333334,
+          "wrapY": 13.5390625,
+          "interiorX": 8.264554794520548,
+          "interiorY": 8.575533573874756
+        },
+        "Q92vsPNGMAE": 1.9626057942708333
+      },
+      "nativeKey": "128x128:7edcc2d8aae39a1a",
+      "nativeRGBASha256": "5bdefc5add98f493b9a2f162b5bbd4a68779a86b126497362227517df351bfff",
+      "visualDisposition": "Accept landmark-alignedv1. Cool grey-blue metal retained; five main seams restored to source phase, four rivet rows and original cadence maintained. Middle transition highlights remain shallow, unlike rejected brownv1 grooves.",
+      "recipe": {
+        "path": "newer/textures/candidates-2026-10-12/TF_Metal4_04-photographic-4x.json",
+        "sha256": "98c4afd3d397cadedcd90de513c5fa832ca144b9e6e66b7e2db62bd3e30e12c9",
+        "generated": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Metal4_04-generated-v1.png",
+        "generatedSha256": "36e61d97286eb6ad187ed54932388508f185cecb0133b8940dc2757110bb87c8",
+        "sourceGeneratedOutputSHAReverified": true
+      },
+      "runtimeFiles": {
+        "diffuse": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-diffuse.webp",
+          "sha256": "c355c86132473a1c13f0e8dfd07660001a147e6e30cf22542b5520798500a4ff",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "height": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-height.webp",
+          "sha256": "0d1dd01df4165e51f309659969da3cb897cdc10217a797f3bf6595405b50e87e",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalX": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-normalX.webp",
+          "sha256": "21add1de19b066f1e288c556dcea0319c242d73afe6c8b4ced515cdaaefa87df",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalY": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-normalY.webp",
+          "sha256": "d1db6f944d36005ef0f9ea854b2dce0717312d99ec7b788e2e573d519d12ad9d",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalZ": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-normalZ.webp",
+          "sha256": "6f7680e537c70eb83f05ef8617c9154c86f6a72a080bf0eff436e19fb3a3267d",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      },
+      "repeatContact": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_Metal4_04-q92-repeat.jpg",
+        "sha256": "7880585c115a79a8ce62bb090a51b0b2c37323c8f675b319a15aa03b838ee5c5"
+      }
+    },
+    {
+      "name": "TF_MetWall4_02",
+      "inputs": {
+        "original": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_MetWall4_02.png",
+          "sha256": "f2540409cd5b6bbfce49b7adfaaec7314bc144c966edd55f163e8c2b2f64b5c9"
+        },
+        "png": {
+          "path": "newer/textures/candidates-2026-10-12/TF_MetWall4_02-photographic-4x.png",
+          "sha256": "74686e23b0b76165c88b1fe3bc9a2ffa47468870726ecc1040c29473c032bb06"
+        },
+        "q92": {
+          "path": "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-diffuse.webp",
+          "sha256": "aca1e2890843e14e972a1dd963a93446dfb1b69b6e30fc49dd4fe08591e38555"
+        }
+      },
+      "metrics": {
+        "2": {
+          "nativeQ92MAE": 6.461995442708333,
+          "nativeQ92Max": 29.0
+        },
+        "4": {
+          "nativeQ92MAE": 5.982096354166667,
+          "nativeQ92Max": 19.0
+        },
+        "edges": {
+          "wrapX": 10.782552083333334,
+          "wrapY": 15.561848958333334,
+          "interiorX": 5.819497105348989,
+          "interiorY": 5.90755590549576
+        },
+        "Q92vsPNGMAE": 2.639240264892578
+      },
+      "nativeKey": "128x128:dddb46e11f7d201b",
+      "nativeRGBASha256": "bbef700b1f764b0e77396cb950e9c51fe7c57f6cb9bf5ba42fe53238f90c9476",
+      "visualDisposition": "Accept. Ochre two-part plate, half-height seam and distinctive dark/blue-grey damaged spots remain recognisable. Reduced view is somewhat flatter and more mustard than native mottling, within representative material/palette interpretation. Repetition does not add a vertical frame or visible new edge jump.",
+      "recipe": {
+        "path": "newer/textures/candidates-2026-10-12/TF_MetWall4_02-photographic-4x.json",
+        "sha256": "058c6b003fa5e0d7c9491ddc9ee19f5ab37c635c47fcc9f4c9a7f799eb4457c6",
+        "generated": "tools/texture_sheets/sources/official-world-2026-10-12/TF_MetWall4_02-generated-v1.png",
+        "generatedSha256": "50eceb32a60f6946c6fbede957cef991b7b5a7ffd9b1d0e821a139ccbd9b8566",
+        "sourceGeneratedOutputSHAReverified": true
+      },
+      "runtimeFiles": {
+        "diffuse": {
+          "path": "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-diffuse.webp",
+          "sha256": "aca1e2890843e14e972a1dd963a93446dfb1b69b6e30fc49dd4fe08591e38555",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "height": {
+          "path": "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-height.webp",
+          "sha256": "4adda09488f2e7d3d874640498169e8a16b531d98e83817d7538c2fae9dd9810",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalX": {
+          "path": "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-normalX.webp",
+          "sha256": "783f430c3e995c9c1460aa1e422ef4c221fc233ddf97a096a4ace61d16787757",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalY": {
+          "path": "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-normalY.webp",
+          "sha256": "0fd40ac0fda3278c9171791690fef3d71c014bfb83986c7f0e04f998814b27b0",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalZ": {
+          "path": "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-normalZ.webp",
+          "sha256": "4a156a7a3bdb79b4d05355662015dd50f2594b9708a9051a81fd51607a34ed6e",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      },
+      "repeatContact": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_MetWall4_02-q92-repeat.jpg",
+        "sha256": "9695096c0085c1385b4e8f1995a58759679c97f1f0140903a62754d6f4f75d3c"
+      }
+    }
+  ],
+  "remaining": [
+    "Exact-case registration and native key binding still required.",
+    "This review checks512companion dimensions/hashes, not decoded normal direction/gloss semantics or GPU behavior.",
+    "MGDM3 material/camera/render trial remains separate; visual repeat review does not prove arbitrary cross-texture native joins.",
+    "No full missing-texture campaign completion or owner acceptance implied."
+  ],
+  "responsibleOwner": "root campaign coordinator",
+  "nextAction": "Bind the four exact-case/native identities, validate current material/normal path, then capture a clearly visible actual nativeMGDM3join with before/after and relief controls."
+}

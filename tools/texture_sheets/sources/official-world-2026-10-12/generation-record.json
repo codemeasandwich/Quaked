@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-12",
+  "ownerConstraints": [
+    "Photorealistic fine material detail with original colours, shape, style and feature scale",
+    "No invented bevel, rim, border, vignette or edge shading",
+    "Compare original and HD both at quarter original width and height",
+    "Owner explicitly approved deterministic source-locked finishing"
+  ],
+  "attempts": [
+    {
+      "image": "tech08_3-generated-v1.png",
+      "imageSha256": "d7ddd70ea7a4efb29b34de945fa85ebea466a444cf58c3e463d20a42e9081f5b",
+      "prompt": "tech08_3-prompt.txt",
+      "promptSha256": "de83f747bbaee17d49317df44f1cd77102e7d7dbd0b320b7a62b332da559f379",
+      "tool": "built-in GPT image_gen",
+      "state": "rejected: exaggerated edge shading"
+    },
+    {
+      "image": "tech08_3-generated-v2.png",
+      "imageSha256": "f2ed22b611ea3b699e0713bb878d3dc0578b5716e865fccf3fa732ca68ea5245",
+      "prompt": "tech08_3-v2-prompt.txt",
+      "promptSha256": "3580013a85161b5ec35ad5feb00bb9e060707901448d859f123d2bbac9387d12",
+      "tool": "built-in GPT image_gen",
+      "state": "selected as fine-detail donor; raw image not accepted"
+    },
+    {
+      "image": "tech08_4-generated-v1.png",
+      "imageSha256": "8ec20f9467d986b464dab54d1ea05a1abe306e399add6730a14d3261fc873f4b",
+      "prompt": "tech08_4-prompt.txt",
+      "promptSha256": "891e80af168a31fcdf60059654cae17b10353600fd4dbc616f7f000338210251",
+      "tool": "built-in GPT image_gen",
+      "state": "selected donor only after measured row registration; raw image fails fidelity"
+    },
+    {
+      "image": "tech08_4-generated-v2-rejected.png",
+      "imageSha256": "69b72b9ee7243f5bec48f3a02f4c26934fc60cbb875bd8f26d5d099c91c985f6",
+      "prompt": "tech08_4-v2-prompt.txt",
+      "promptSha256": "b4da5c72e97ac35da5c9535fbb7343a4034b59eb3b0bcac7dd0caf65d4eaf242",
+      "tool": "built-in GPT image_gen",
+      "state": "rejected: invented rivet rows"
+    }
+  ]
+}

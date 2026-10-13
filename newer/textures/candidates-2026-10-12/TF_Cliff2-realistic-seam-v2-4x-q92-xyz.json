@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "TF_Cliff2",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Cliff2.png",
+  "originalSha256": "0c7877fac54c7db6b7facb04f3162f65c45cd93d5be2720f772b35f779d8e54b",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-12/TF_Cliff2-realistic-seam-v2-4x.png",
+  "authoringDiffuseSha256": "ecb2da0ea1dd7f93bb0e6e8e259da765ea4e7450c3bf8eca011d0178fbcb547c",
+  "toolSha256": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.3,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-12/TF_Cliff2-realistic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "37d6930b6a52e6c51747fac38d7c3a5fe1376bac696eb2737a265b82333c1cd7",
+      "bytes": 448658,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-12/TF_Cliff2-realistic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "6c9e0a3458356dafba3148a46d93c87e8157f402e58d68821021f1b20dce9944",
+      "bytes": 351662,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-12/TF_Cliff2-realistic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "3de1b0c12b48789db0ac766318db7eff6878ae345664c7479b093803d51b8447",
+      "bytes": 437666,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-12/TF_Cliff2-realistic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "f4f08b326507fbb81807e7f8a4967a58a217e07b2fe86b42d37ddca97c584f27",
+      "bytes": 450322,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-12/TF_Cliff2-realistic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "92166cd30300d680650d5caa756a3c19b8e9c05358094d75414516cdba98f001",
+      "bytes": 102692,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    128,
+    128
+  ],
+  "distanceMAE": 16.476216634114582,
+  "distanceMaximum": 97.0,
+  "secondaryComparisonDimensions": [
+    64,
+    64
+  ],
+  "secondaryDistanceMAE": 10.7880859375,
+  "secondaryDistanceMaximum": 66.0,
+  "colourCompressionMAE": 1.709299087524414,
+  "heightCompressionMAE": 1.3005437850952148,
+  "heightCompressionMaximum": 11.0,
+  "normalAngularMean": 0.9843647320346586,
+  "normalAngularP99": 2.506887240684426,
+  "normalAngularMaximum": 4.735417570308616,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

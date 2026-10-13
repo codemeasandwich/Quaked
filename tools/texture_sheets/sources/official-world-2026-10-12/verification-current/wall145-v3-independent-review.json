@@ -1,0 +1,112 @@
+{
+  "schema": 1,
+  "createdAt": "2026-10-13T20:04:46.342866+00:00",
+  "reviewer": "texture_plan independent subagent",
+  "scope": "Read-only finalwallv3 actualdecodedQ92full/half32/quarter16/repeat/jointclose review andpublicauthoringCLIreplay. No integration,assetorengine edits.",
+  "result": "PASS for exactnativekeyguardedsourcebinding andruntime/ownertrial. Resolves priorwallv2ywrapjointweighthold.",
+  "nativeKey": "64x64:a9763815741a765f",
+  "runtimeFiles": {
+    "diffuse": {
+      "path": "newer/textures/candidates-2026-10-12/wall14_5-photographic-seam-v3-4x-q92-xyz-diffuse.webp",
+      "sha256": "3fdb58a23b19d33c660f5fd80ac9c86107c8d928f7b393cf8d540187df33fab7",
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "height": {
+      "path": "newer/textures/candidates-2026-10-12/wall14_5-photographic-seam-v3-4x-q92-xyz-height.webp",
+      "sha256": "d39dacb829a39d41a202885af3e31e7de308f452215349c0cb190a71a9aad39a",
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalX": {
+      "path": "newer/textures/candidates-2026-10-12/wall14_5-photographic-seam-v3-4x-q92-xyz-normalX.webp",
+      "sha256": "fd9a84c825d41796c0376189a7b60ca4726c8e44eac9d6a11bb8a556ef04f068",
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalY": {
+      "path": "newer/textures/candidates-2026-10-12/wall14_5-photographic-seam-v3-4x-q92-xyz-normalY.webp",
+      "sha256": "8ce851c71f49f573ec25e587b8c95c5e92a9774e4546dd92c08d1783a51a26fc",
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalZ": {
+      "path": "newer/textures/candidates-2026-10-12/wall14_5-photographic-seam-v3-4x-q92-xyz-normalZ.webp",
+      "sha256": "4c57dca2b586432d0e70ebd4ae334127273f05062095adf867c1a2ac213b06b3",
+      "dimensions": [
+        256,
+        256
+      ]
+    }
+  },
+  "authoring": {
+    "receipt": "newer/textures/candidates-2026-10-12/wall14_5-photographic-seam-v3-4x.json",
+    "sha256": "3cea390dadb8a59933410c3aa8ea5e8138b62ea5dbb63691b5c715af6077e57c",
+    "data": {
+      "source": "newer/textures/candidates-2026-10-12/wall14_5-photographic-seam-v2-4x.png",
+      "sourceSha256": "f4e325ed9a3f97c928174844e164dcced8c0ad330021b9a199408e1363b9dcea",
+      "output": "newer/textures/candidates-2026-10-12/wall14_5-photographic-seam-v3-4x.png",
+      "outputSha256": "66fb304f4e5788238459ffd44c9256d532d9b5dda22ffaf7ff92767e6a683d27",
+      "toolSha256": "1e61d045a2b2568c4a3c9f4c48d069e3d7608c1ff370b6666b532606fa3098b5",
+      "dimensions": [
+        256,
+        256
+      ],
+      "donorJointY": 128,
+      "donorHorizontalPhase": 128,
+      "wrapCorePixels": 4,
+      "wrapOuterPixels": 16,
+      "protectedRows": [
+        16,
+        240
+      ],
+      "protectedPixels": 57600,
+      "changedPixelFraction": 0.1122283935546875,
+      "qualification": "Real mortar copied at matching running-bond phase; visual and encoded-map checks remain required."
+    },
+    "publicReplayPNGByteExact": true,
+    "protectedRows16Through240InclusiveByteIdentical": true,
+    "changedPixelFraction": 0.1122283935546875
+  },
+  "visualFindings": [
+    "Ywrapdarkcore andwornmortarshoulders nowmatchthephysicalmiddlejoint; alternatingthinbrightjointdefect resolved.",
+    "Half-widthphase-shiftedjoint correctlykeepsuppercoursexwrapTjunction andlowercoursecentrex32Tjunction.",
+    "Two-course,one-fullblock/two-edgehalvesbond retained; lowercourseleft/rightcontinuousstone remains.",
+    "Quietphotographicstonewithsmallchips andcleavagesretained; no newgrainblanket, broadframebevel orobviouscropcut.",
+    "Half32andquarter16appearance remainsrepresentative; no pixel-equalitythresholdused."
+  ],
+  "evidence": [
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/wall14_5-photo-v3-comparison.png",
+      "sha256": "2623c006d0bf954efa58086b6ae7ede205d6c9a5fa5d759e9e77580db67c617e"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/wall14_5-photo-v3-repeat.png",
+      "sha256": "d09023a6f97433aaa2304503c886491c0fe119431ea941d1946037a8de160d42"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/wall145-wrap-vs-mid-v3.png",
+      "sha256": "e30c1c07423a8e95a026e9bbf73b8bd731fa9269db210ccbf5c52709e3a9294b"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/wall145-joint-v3-replay.png",
+      "sha256": "66fb304f4e5788238459ffd44c9256d532d9b5dda22ffaf7ff92767e6a683d27"
+    }
+  ],
+  "relatedMetal": "metal7_1v2acceptance andowner-artambiguityresolution remainboundtoexacthashes inwall-metal-v2-independent-review.json; preservecop1_1/ecop1_1/metal5_1ownerbindings.",
+  "limits": [
+    "Fivecompanionfilesverifiedhash/dimensiononly; GPU/normal/native/owneracceptance separate.",
+    "Oldwallv2remainsheld; passappliesonlylistedv3.",
+    "No cataloguewriteorcampaigncompletionclaimed."
+  ],
+  "nextOwner": "root campaign coordinator",
+  "nextAction": "Reconcilecurrentindex andpromoteonlyreviewedwallv3/metalv2exactsourcebindings, thenretainpublic/runtimeproof."
+}

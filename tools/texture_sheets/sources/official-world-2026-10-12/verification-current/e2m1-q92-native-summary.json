@@ -1,0 +1,150 @@
+{
+  "qualification": "Actual native E2M1 source/material/camera and toggle verification. Dark native lighting limits appearance judgement; no all-map or packaging qualification.",
+  "captures": [
+    {
+      "receipt": "e2m1-original-far-relief.json",
+      "sha256": "9d17004e1ab1f1fe27bcd208d20e27349bb21838cc8f788de0529786ad87f13d",
+      "state": "ready",
+      "art": "original",
+      "view": "far",
+      "relief": true,
+      "map": {
+        "name": "maps/e2m1.bsp",
+        "sha256": "de2f7b284ee64b24cdfe545ea4b09abdf9cce657f7ba6b1aab7ef06fecf2c26a",
+        "faces": 5976
+      },
+      "faces": [
+        4819,
+        4821
+      ],
+      "kind": "coplanar",
+      "cameraError": 0.05412658773652741,
+      "dimensions": [
+        "[128, 128]"
+      ],
+      "normalDimensions": [
+        "[128, 128]"
+      ],
+      "checks": 12,
+      "failedChecks": [],
+      "errors": [],
+      "shaderErrors": []
+    },
+    {
+      "receipt": "e2m1-q92-hd-far-relief.json",
+      "sha256": "598c8b05ddcfb6cc85f380033b7888c2edd8f42baa8c28ad74a9d4764b2e2467",
+      "state": "ready",
+      "art": "hd",
+      "view": "far",
+      "relief": true,
+      "map": {
+        "name": "maps/e2m1.bsp",
+        "sha256": "de2f7b284ee64b24cdfe545ea4b09abdf9cce657f7ba6b1aab7ef06fecf2c26a",
+        "faces": 5976
+      },
+      "faces": [
+        4819,
+        4821
+      ],
+      "kind": "coplanar",
+      "cameraError": 0.05412658773652741,
+      "dimensions": [
+        "[512, 512]"
+      ],
+      "normalDimensions": [
+        "[512, 512]"
+      ],
+      "checks": 12,
+      "failedChecks": [],
+      "errors": [],
+      "shaderErrors": []
+    },
+    {
+      "receipt": "e2m1-q92-hd-near-relief.json",
+      "sha256": "821dc13f5797c364bb3ec91a62ec3d77dd08e38a0eaceb93fde8129926488744",
+      "state": "ready",
+      "art": "hd",
+      "view": "near",
+      "relief": true,
+      "map": {
+        "name": "maps/e2m1.bsp",
+        "sha256": "de2f7b284ee64b24cdfe545ea4b09abdf9cce657f7ba6b1aab7ef06fecf2c26a",
+        "faces": 5976
+      },
+      "faces": [
+        4819,
+        4821
+      ],
+      "kind": "coplanar",
+      "cameraError": 0.05412658773652741,
+      "dimensions": [
+        "[512, 512]"
+      ],
+      "normalDimensions": [
+        "[512, 512]"
+      ],
+      "checks": 12,
+      "failedChecks": [],
+      "errors": [],
+      "shaderErrors": []
+    },
+    {
+      "receipt": "e2m1-q92-hd-oblique-flat.json",
+      "sha256": "cc8492aecc073cd03f5648d6a8a3d5702a0defe828ffa64c1b49484d4a236b6e",
+      "state": "ready",
+      "art": "hd",
+      "view": "oblique",
+      "relief": false,
+      "map": {
+        "name": "maps/e2m1.bsp",
+        "sha256": "de2f7b284ee64b24cdfe545ea4b09abdf9cce657f7ba6b1aab7ef06fecf2c26a",
+        "faces": 5976
+      },
+      "faces": [
+        4819,
+        4821
+      ],
+      "kind": "coplanar",
+      "cameraError": 0.05412658773652741,
+      "dimensions": [
+        "[512, 512]"
+      ],
+      "normalDimensions": [
+        "None"
+      ],
+      "checks": 12,
+      "failedChecks": [],
+      "errors": [],
+      "shaderErrors": []
+    },
+    {
+      "receipt": "e2m1-q92-hd-oblique-relief.json",
+      "sha256": "c59c6fbe959bd05921487bed7ca2c6e199582cbb76bed11a93c2616016530065",
+      "state": "ready",
+      "art": "hd",
+      "view": "oblique",
+      "relief": true,
+      "map": {
+        "name": "maps/e2m1.bsp",
+        "sha256": "de2f7b284ee64b24cdfe545ea4b09abdf9cce657f7ba6b1aab7ef06fecf2c26a",
+        "faces": 5976
+      },
+      "faces": [
+        4819,
+        4821
+      ],
+      "kind": "coplanar",
+      "cameraError": 0.05412658773652741,
+      "dimensions": [
+        "[512, 512]"
+      ],
+      "normalDimensions": [
+        "[512, 512]"
+      ],
+      "checks": 12,
+      "failedChecks": [],
+      "errors": [],
+      "shaderErrors": []
+    }
+  ]
+}

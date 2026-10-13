@@ -1,0 +1,70 @@
+{
+  "qualification": "Independent public-interface checks on isolated ordinary-texture integration worktree; no build, native UI, commit, push, or release performed by reviewer",
+  "workspace": "/Users/bri/.codex/worktrees/official-textures-q92/Quaked",
+  "baseCommit": "eb523c80dafc5433898e98c26ca6eb481dc8658b",
+  "nodeExecutable": "/Users/bri/.nvm/versions/node/v24.13.0/bin/node",
+  "nodeVersion": "v24.13.0",
+  "sourceRoot": "/Users/bri/quaked",
+  "indexSha256": "e35644be527818be967f46294f8b8da14506f82b3f72fade37f41828617f65a3",
+  "suites": [
+    "official_texture_registration",
+    "official_texture_expansion",
+    "official_texture_masonry",
+    "official_texture_q92",
+    "texture_sources",
+    "startup_texture_prefetch",
+    "level_texture_runtime",
+    "normal_prepare"
+  ],
+  "passed": 35,
+  "total": 35,
+  "skipped": 0,
+  "exitCode": 0,
+  "unchangedDevGlass": {
+    "names": 110,
+    "materials": 130,
+    "files": 659,
+    "baseline": "eb523c80dafc5433898e98c26ca6eb481dc8658b"
+  },
+  "firstRegistration": {
+    "bindings": 45,
+    "sourceOccurrences": 162,
+    "donors": 43,
+    "fullbrightSources": 16
+  },
+  "q92": {
+    "bindings": 40,
+    "artworks": 38,
+    "sourceOccurrences": 279,
+    "mapImages": 190
+  },
+  "priorAttempt": {
+    "log": "official-integration-public-tests.txt",
+    "exitCode": 1,
+    "nodeVersion": "v20.8.1",
+    "reason": "Import-time import.meta.dirname unavailable under old shell-selected Node; later19tests passed but entire run failed. No check was bypassed; reran all8suites under installed Node24."
+  },
+  "inputSha256": {
+    "tests/official_texture_registration_test.js": "34fde849d80c68980724b34ec0f76151d2756b4516885c50363390392126cced",
+    "tests/official_texture_expansion_test.js": "d5c6c65732c8f8b73d97194df62ac8a3cae5c643d1bab9454ae9497d6d95fa3a",
+    "tests/official_texture_masonry_test.js": "fb6fb2f762c019a4824f98f560dd1cb7149deb1640fa10a42c4fd7d9bdf05b0f",
+    "tests/official_texture_q92_test.js": "08311ea8556880eaffc4790868ede68d472461f51dd13d9fad2389e63e823061",
+    "tests/texture_sources_test.js": "d1497b77bcac1cec99d234894ef759e20181026203f0cf9af08954e82a34b766",
+    "tests/startup_texture_prefetch_test.js": "06c540e3b7fd692efc1f2ce5016f99a22b7135b5999cbe64ff777b68f7ea0a29",
+    "tests/level_texture_runtime_test.js": "d9e89ecb587bd3768f09b5e8ced265cc83546a5d0b8c2039ca9516b5e43ddbf5",
+    "tests/normal_prepare_test.js": "54441ec6e0b62ce116a4f2d16fb8f7347794cd20e14bcc5ea225beaa30d90f24",
+    "tests/official_texture_standard.js": "2cccb2a1b6ef226fe0a69fdc3f8491b23ec7a488dcbf68d009dd65e9a696e25b",
+    "newer/textures/index.json": "e35644be527818be967f46294f8b8da14506f82b3f72fade37f41828617f65a3",
+    "src/newer/render/r_newertextures.js": "5aabea2d4c5e713ae1c81cf4e606ef3b387ce98bcca0b6e293719a7cded32246",
+    "src/newer/render/gl_normals.js": "f7a7d66763b95e76a299ccea6e57884793b0db45f7ca10a7d397ca788d88d109",
+    "src/newer/assets/normal_prepare.js": "e543d48b5d4e9c27e5c4d28984197a7286237f9d84f3ef2050f3edcab75590f9",
+    "tools/texture_sheets/encode_official_maps.py": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9"
+  },
+  "evidenceSha256": {
+    "official-integration-public-tests.txt": "7129bfd037afcf8fefc5cd84d998e71b66df52c65730057336225f109752acb8",
+    "official-integration-node24-public-tests.txt": "e779c46f0d9446e3d695374970e6d3609077c69e4f5915ec874ea2ffddd2d9db",
+    "official-integration-registration-source-proof.json": "0f8203a28de7d54feaa9b2f46a04b74be67de52135d5c590535bed04c436504e",
+    "official-integration-q92-source-proof.json": "4eee3dea7a2da881da619240d00b2a2fd8e5b0a56e26f4cef9aef8a5341a8fb0",
+    "official-integration-masonry-source-proof.json": "807aff70241d2c5fca8960dd68ae3408ba758af7e83f30b11850d61e7158d1cf"
+  }
+}

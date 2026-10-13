@@ -1,0 +1,148 @@
+{
+  "qualification": "Wall-only correction after v2 visual hold: equal physical horizontal mortar at native running-bond phase. Independent finalv3 review passed. Metal and owner artwork untouched.",
+  "beforeIndexSha256": "6660d6989de4e1391ad275e19ebc768cc86031a68f067b1d237d0ffbf09346aa",
+  "afterIndexSha256": "7ec4f5683b64b3f44fa5182175397316df2112c15bced84e870de5d20c19f916",
+  "historicalRegistration": {
+    "file": "tools/texture_sheets/sources/official-world-2026-10-12/aged-wall-metal-registration.json",
+    "sha256": "1e819d260f7710bb3f0e06a3866cc20f3794b5e281d11be10572eaa8f2c2e4cf"
+  },
+  "entries": [
+    {
+      "name": "wall14_5",
+      "key": "64x64:a9763815741a765f",
+      "source": {
+        "id": "wall14_5|64x64:a9763815741a765f",
+        "name": "wall14_5",
+        "key": "64x64:a9763815741a765f",
+        "width": 64,
+        "height": 64,
+        "pixelSha256": "d099165f3ea37c124611184bec1e43bfb1982e5c56faefe5f1f2b6d5061da798",
+        "original": "originals/64x64-a9763815741a765f.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "No replacement entry",
+        "uses": [
+          {
+            "game": "id1",
+            "map": "maps/e2m2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Quake/pak0.pak",
+            "slot": 15,
+            "faces": 75,
+            "visibleCandidateFaces": 75,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "id1",
+            "map": "maps/e4m5.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Quake/pak0.pak",
+            "slot": 5,
+            "faces": 540,
+            "visibleCandidateFaces": 540,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "id1",
+            "map": "maps/e4m6.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Quake/pak0.pak",
+            "slot": 8,
+            "faces": 892,
+            "visibleCandidateFaces": 860,
+            "hiddenTriggerFaces": 32,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "hipnotic",
+            "map": "maps/hip3m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+            "slot": 19,
+            "faces": 772,
+            "visibleCandidateFaces": 772,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/start.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 10,
+            "faces": 75,
+            "visibleCandidateFaces": 75,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/r1m7.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 6,
+            "faces": 881,
+            "visibleCandidateFaces": 881,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/r2m7.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 7,
+            "faces": 1512,
+            "visibleCandidateFaces": 1500,
+            "hiddenTriggerFaces": 12,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "previousBinding": {
+        "file": "official/wall14_5-a9763815741a765f-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/wall14_5-a9763815741a765f-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/wall14_5-a9763815741a765f-4x-q92-normalX.webp",
+            "y": "official/wall14_5-a9763815741a765f-4x-q92-normalY.webp",
+            "z": "official/wall14_5-a9763815741a765f-4x-q92-normalZ.webp"
+          },
+          "strength": 0.25,
+          "cap": 0.5
+        }
+      },
+      "binding": {
+        "file": "official/wall14_5-a9763815741a765f-4x-q92-v3-diffuse.webp",
+        "normal": {
+          "file": "official/wall14_5-a9763815741a765f-4x-q92-v3-height.webp",
+          "normalChannels": {
+            "x": "official/wall14_5-a9763815741a765f-4x-q92-v3-normalX.webp",
+            "y": "official/wall14_5-a9763815741a765f-4x-q92-v3-normalY.webp",
+            "z": "official/wall14_5-a9763815741a765f-4x-q92-v3-normalZ.webp"
+          },
+          "strength": 0.25,
+          "cap": 0.5
+        }
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-12/native-wall14_5.png",
+      "sourceFileSha256": "538c7cff73ceaa0ecf117fee34be96afdf388087c83b6e998e07836995c07006",
+      "diffuseSha256": "3fdb58a23b19d33c660f5fd80ac9c86107c8d928f7b393cf8d540187df33fab7",
+      "heightSha256": "d39dacb829a39d41a202885af3e31e7de308f452215349c0cb190a71a9aad39a",
+      "normalChannelSha256": {
+        "x": "fd9a84c825d41796c0376189a7b60ca4726c8e44eac9d6a11bb8a556ef04f068",
+        "y": "8ce851c71f49f573ec25e587b8c95c5e92a9774e4546dd92c08d1783a51a26fc",
+        "z": "4c57dca2b586432d0e70ebd4ae334127273f05062095adf867c1a2ac213b06b3"
+      },
+      "encodingReceipt": "newer/textures/candidates-2026-10-12/wall14_5-photographic-seam-v3-4x-q92-xyz.json",
+      "candidate": "candidates-2026-10-12/wall14_5-photographic-seam-v3-4x-q92-xyz-diffuse.webp",
+      "candidateSha256": "3fdb58a23b19d33c660f5fd80ac9c86107c8d928f7b393cf8d540187df33fab7",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false
+    }
+  ]
+}

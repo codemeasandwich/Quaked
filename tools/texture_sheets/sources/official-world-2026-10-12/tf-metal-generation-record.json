@@ -1,0 +1,118 @@
+{
+  "qualification": "Four photographic candidates; visual and public checks precede runtime acceptance. Historical attempts retained.",
+  "entries": [
+    {
+      "name": "TF_Metal4",
+      "nativeKey": "128x128:c09f973ad97a3b48",
+      "reference": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4.png",
+        "sha256": "21ad8e4d4bcc6ff9b5e7b6e89026ed2f164b1a3450d57693bed54c10d21af7be"
+      },
+      "generator": "built-in GPT image generation",
+      "prompt": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Metal4-prompt.txt",
+        "sha256": "d94e40f23061a730efeca9091340cebe78a9c9bff283eae710eb036656415d77"
+      },
+      "selectedRaw": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Metal4-generated-v1.png",
+        "sha256": "693e7454f5ac8fec89ceb40f1b8b939d4d5a34c69236d2d4694b1a1e86968852"
+      },
+      "finisherReceipt": {
+        "file": "newer/textures/candidates-2026-10-12/TF_Metal4-photographic-4x.json",
+        "sha256": "71728abe0d1f9c206156d7ff0a79c8d2a4c5b27c04fc67e859afa8c192116e2d"
+      },
+      "encoderReceipt": {
+        "file": "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz.json",
+        "sha256": "6e36bd4e0d8d9a5c38686e29867136d1f85cdf4df80559098b2e96d58e096a49"
+      }
+    },
+    {
+      "name": "TF_Metal4b",
+      "nativeKey": "128x128:dc8e85a59866a19f",
+      "reference": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4b.png",
+        "sha256": "7824b40ef3a79aaeb47dfa03671b100119ea2c6dadb584d9fd85bf1aed0d247a"
+      },
+      "generator": "built-in GPT image generation",
+      "prompt": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Metal4b-prompt.txt",
+        "sha256": "e4d8b1738a11b7a61d372b54e9cc3f08bebe4105a5c643691d378e87c3001a19"
+      },
+      "selectedRaw": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Metal4b-generated-v2.png",
+        "sha256": "947c043d7c895e4dc790eb7017ce0ecfc60b89dc19c23987780894c04a9d180f"
+      },
+      "finisherReceipt": {
+        "file": "newer/textures/candidates-2026-10-12/TF_Metal4b-photographic-4x.json",
+        "sha256": "6b4fbedbc8cfccf69881c33cc00f05c768f4993c772dd54fc5556c0abe5f554e"
+      },
+      "encoderReceipt": {
+        "file": "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz.json",
+        "sha256": "8978a9a9bbacab7827e726cf367921af46ff416a97cc1d33f019eab866e0a9fd"
+      },
+      "refinementPrompt": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Metal4b-refine-prompt.txt",
+        "sha256": "f0b0512944b09af4e6f637447e59261e3506440439ee2f88bcda11a8bf35c49b"
+      },
+      "rejectedRaw": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Metal4b-generated-v1.png",
+        "reason": "Introduced deep grooves around rivet groups; refined to shallow transitions."
+      }
+    },
+    {
+      "name": "TF_MetWall4_02",
+      "nativeKey": "128x128:dddb46e11f7d201b",
+      "reference": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_MetWall4_02.png",
+        "sha256": "f2540409cd5b6bbfce49b7adfaaec7314bc144c966edd55f163e8c2b2f64b5c9"
+      },
+      "generator": "built-in GPT image generation",
+      "prompt": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/TF_MetWall4_02-prompt.txt",
+        "sha256": "39669fa5899a5a1601e3ef892ae6c8758e0ada7df3b5280edb65d9d13a612ae4"
+      },
+      "selectedRaw": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/TF_MetWall4_02-generated-v1.png",
+        "sha256": "50eceb32a60f6946c6fbede957cef991b7b5a7ffd9b1d0e821a139ccbd9b8566"
+      },
+      "finisherReceipt": {
+        "file": "newer/textures/candidates-2026-10-12/TF_MetWall4_02-photographic-4x.json",
+        "sha256": "058c6b003fa5e0d7c9491ddc9ee19f5ab37c635c47fcc9f4c9a7f799eb4457c6"
+      },
+      "encoderReceipt": {
+        "file": "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz.json",
+        "sha256": "53725532e0f06c72fdc742dfd00404e228a53d13df2e25a0c60ce30122e505cb"
+      }
+    },
+    {
+      "name": "TF_Metal4_04",
+      "nativeKey": "128x128:7edcc2d8aae39a1a",
+      "reference": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4_04.png",
+        "sha256": "cb42069b4f75baf5b7c8bf0d8bdd322c7a8b40f3f33eb7d8408dd995c4e4f15d"
+      },
+      "generator": "built-in GPT image generation",
+      "prompt": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Metal4_04-prompt.txt",
+        "sha256": "519042ac512db2bfa01aef28605d45399be8f83bd14fa04058f7a0e845e35429"
+      },
+      "selectedRaw": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Metal4_04-generated-v1.png",
+        "sha256": "36e61d97286eb6ad187ed54932388508f185cecb0133b8940dc2757110bb87c8"
+      },
+      "finisherReceipt": {
+        "file": "newer/textures/candidates-2026-10-12/TF_Metal4_04-photographic-4x.json",
+        "sha256": "98c4afd3d397cadedcd90de513c5fa832ca144b9e6e66b7e2db62bd3e30e12c9"
+      },
+      "encoderReceipt": {
+        "file": "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz.json",
+        "sha256": "08f783558fabff86602fe47d4d83f90b2fdf452e811d2b0c9625fd905220aad2"
+      },
+      "landmarks": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Metal4_04-v1-landmarks.json",
+        "sha256": "398942805529b5eacc087aac8886a5193f92bdd737722a0db069cd34aad74f3d",
+        "reason": "Measured generated seam positions registered to original rows8,20,71,88,111."
+      }
+    }
+  ]
+}

@@ -6,7 +6,10 @@
 //   QUAKED_THREE_MODULE=<three.module.js> node tools/build_texture_sources.mjs --pack games/shareware/pak0.pak --pack resources/id1/pak0.pak
 //
 // --pack is repeated in search-path order, Quake's own packs only. Reads the packs, never writes them; rewrites
-// "sources" in the index and leaves its other entries as they are.
+// "sources" in the index and leaves its other entries as they are. Existing
+// source allowlists are authored bindings: preserve them, including official
+// expansion aliases not present in these base packs. Infer only unrecorded names;
+// an explicit artwork/identity change requires reviewing that existing binding.
 import { register } from 'node:module';
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
@@ -42,11 +45,22 @@ for ( const name of maps ) {
 	}
 
 }
-const sources = Object.fromEntries( [ ...keys ].sort( ( a, b ) => a[ 0 ] < b[ 0 ] ? - 1 : 1 ).map( ( [ n, s ] ) => [ n, [ ...s ].sort() ] ) );
-// the index's last entry, written as text: the rest of the file (its hand-indented "glass" among it) stays byte for byte
-const text = await readFile( indexPath, 'utf8' ), at = text.indexOf( ',\n "sources": ' ), body = ( at >= 0 ? text.slice( 0, at ) : text.trimEnd().replace( /\n}$/, '' ) );
+const preserved = index.sources || {}, combined = { ...preserved };
+for ( const [ name, identities ] of keys ) if ( ! Object.hasOwn( combined, name ) ) combined[ name ] = [ ...identities ].sort();
+const sources = Object.fromEntries( Object.entries( combined ).sort( ( a, b ) => a[ 0 ] < b[ 0 ] ? - 1 : 1 ) );
+// Preserve historical sources-last formatting. A manifest may now put ordinary
+// variants or metadata after sources: use semantic JSON serialization there,
+// rather than slicing away those later siblings. Refuse concurrent index edits.
+const text = await readFile( indexPath, 'utf8' ), current = JSON.parse( text );
+if ( JSON.stringify(current) !== JSON.stringify(index) ) throw Error('Texture index changed during source scan; not overwritten');
+const at = text.indexOf( ',\n "sources": ' ), sourceLast = Object.keys(current).at(-1) === 'sources';
 const block = Object.entries( sources ).map( ( [ n, s ] ) => '  ' + JSON.stringify( n ) + ': [' + s.map( k => JSON.stringify( k ) ).join( ', ' ) + ']' ).join( ',\n' );
-await writeFile( indexPath, body + ',\n "sources": {\n' + block + '\n }\n}\n' );
+if ( at >= 0 && sourceLast || !Object.hasOwn(current,'sources') ) {
+ const body = at >= 0 ? text.slice(0,at) : text.trimEnd().replace(/\n}$/,'');
+ await writeFile(indexPath,body+',\n "sources": {\n'+block+'\n }\n}\n');
+} else {
+ current.sources=sources;await writeFile(indexPath,JSON.stringify(current,null,1)+'\n');
+}
 JSON.parse( await readFile( indexPath, 'utf8' ) ); // still JSON
 const missing = Object.keys( index.textures ).filter( n => ! keys.has( n ) );
-console.log( `${maps.length} maps; ${keys.size} of ${Object.keys( index.textures ).length} textures given their sources; ${[ ...keys.values() ].filter( s => s.size > 1 ).length} with more than one; not in these maps: ${missing.join( ' ' ) || 'none'}` );
+console.log( `${maps.length} maps; ${keys.size} catalogued names observed; ${Object.keys(sources).length} source bindings (${Object.keys(preserved).length} preserved); ${[ ...keys.values() ].filter( s => s.size > 1 ).length} observed with more than one picture; not in these maps: ${missing.join( ' ' ) || 'none'}` );

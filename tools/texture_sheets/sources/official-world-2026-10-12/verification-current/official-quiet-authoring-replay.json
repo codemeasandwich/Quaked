@@ -1,0 +1,83 @@
+{
+  "qualification": "Independent candidate authoring replay and feature-count verification; visual acceptance separate",
+  "testSha256": "dad6a2f993b1ab0453621d1d89f52f687ac10bb50f4e4e69a16d049478aeb2ef",
+  "edges": [
+    {
+      "name": "TF_Metal_02",
+      "axes": "xy",
+      "outputSha256": "69e9db506cafadf414216f7c6f9aebc34c4cc1bb5c914ee3d9c71f4be02ae8d9",
+      "unchangedInteriorPixels": 147456,
+      "independentSpatialConvolutionMaxError": 0,
+      "noGeometryResampling": true
+    },
+    {
+      "name": "metal1_2c",
+      "axes": "x",
+      "outputSha256": "a010f363dbbca78b0504ac38f3116174daa5ef3114130e26bb9e3db3421e7ca9",
+      "unchangedInteriorPixels": 49152,
+      "independentSpatialConvolutionMaxError": 0,
+      "noGeometryResampling": true
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "axes": "x",
+      "outputSha256": "9008f8e86a21349c5db7aa115e900458b5c4b666ac7a5ecf7d50d1b2e6f1c12f",
+      "unchangedInteriorPixels": 196608,
+      "independentSpatialConvolutionMaxError": 0,
+      "noGeometryResampling": true
+    },
+    {
+      "name": "cable1_1",
+      "axes": "x",
+      "outputSha256": "853b7d9e7f261bb3f4f61880cc96a36fdd242c827c7aee0b85bdc0003062988b",
+      "unchangedInteriorPixels": 49152,
+      "independentSpatialConvolutionMaxError": 0,
+      "noGeometryResampling": true
+    }
+  ],
+  "cable": {
+    "phaseReceiptSha256": "77a2da908919f75ad761fa95c6f0de2c98e0147cf9e7426049d3ce5d5b17c65a",
+    "outputSha256": "5e5214701fefa6a94053c5f851bc6f43b1cbd0238504de65b6ac14eff0702473",
+    "exactRowReplay": true,
+    "horizontalSamplesUnchanged": true,
+    "nativeCrests": [
+      0.0,
+      6.0,
+      12.0,
+      18.0,
+      24.0,
+      30.0,
+      36.0,
+      43.0,
+      49.0,
+      55.0,
+      61.0
+    ],
+    "donorInteriorCrests": [
+      1.4800637958532696,
+      7.655502392344498,
+      13.881977671451356,
+      20.363636363636363,
+      26.437001594896334,
+      33.07177033492823,
+      39.400318979266345,
+      45.728867623604465,
+      52.10845295055822,
+      58.334928229665074
+    ],
+    "fittedCrests": [
+      0.15311004784688995,
+      6.022328548644338,
+      11.993620414673046,
+      18.015948963317385,
+      23.936204146730464,
+      30.00956937799043,
+      36.0829346092504,
+      42.972886762360446,
+      49.046251993620416,
+      54.96650717703349,
+      60.9377990430622
+    ],
+    "maximumCrestErrorNativePixels": 0.15311004784688995
+  }
+}

@@ -1,0 +1,1711 @@
+{
+  "trialSha256": "bb434e6a4f27f7016fdb3c0987c91e6ae717123528a1071cfa002d04a9b5af9a",
+  "records": [
+    {
+      "alias": "tech08_3",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-tech08_3.png",
+          "sha256": "ab072185c51c0af6cc5a39b7b1458860bb5bffdea6fffe2f6cffaca60e41d515",
+          "dimensions": [
+            128,
+            128
+          ]
+        },
+        "prior": {
+          "path": "newer/textures/candidates-2026-10-12/tech08_3-photographic-edge-4x.png",
+          "sha256": "200b0fb6e50e64b97256d4bbb2e0ea218be9ad34272b94ace89ec577d1815e08",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "q92": {
+          "path": "newer/textures/candidates-2026-10-12/tech08_3-4x-q92-xyz-diffuse.webp",
+          "sha256": "62a322dbb4e7fb834ceb6f8ebbd7601e1deba701a498186ba3bad5df417a5825",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      },
+      "priorToQ92MAE": 2.0768102010091147,
+      "priorToQ92Max": 26.0,
+      "distance": {
+        "2": {
+          "dimensions": [
+            64,
+            64
+          ],
+          "nativeToQ92MAE": 2.509765625,
+          "priorToQ92MAE": 0.4586588541666667,
+          "priorToQ92Max": 3.0
+        },
+        "4": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "nativeToQ92MAE": 2.1490885416666665,
+          "priorToQ92MAE": 0.22037760416666666,
+          "priorToQ92Max": 2.0
+        }
+      },
+      "disposition": "Accept Q92 diffuse conversion for registration as derivative of reviewed trial art",
+      "visualReview": "Brown mottled metal retained. Faint repeated horizontal edge tone is inherited from prior edge finishing, not introduced by Q92; no new perimeter rim."
+    },
+    {
+      "alias": "tech08_4",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-tech08_4.png",
+          "sha256": "8fd09d9743aab088b07ec365a91a498fda916909ac67654e300a982c9d59097c",
+          "dimensions": [
+            128,
+            128
+          ]
+        },
+        "prior": {
+          "path": "newer/textures/candidates-2026-10-12/tech08_4-photographic-edge-4x.png",
+          "sha256": "19125d642668a6d12712b8df9ff84b8cab09a1bfe18d9a79c927e2c1e24ff829",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "q92": {
+          "path": "newer/textures/candidates-2026-10-12/tech08_4-4x-q92-xyz-diffuse.webp",
+          "sha256": "1b4b9620617a85b27bb27e311c0b806c48409cc6f8d36235c55c01e887689b3c",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      },
+      "priorToQ92MAE": 2.4385668436686196,
+      "priorToQ92Max": 28.0,
+      "distance": {
+        "2": {
+          "dimensions": [
+            64,
+            64
+          ],
+          "nativeToQ92MAE": 6.711344401041667,
+          "priorToQ92MAE": 0.4864095052083333,
+          "priorToQ92Max": 4.0
+        },
+        "4": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "nativeToQ92MAE": 4.7744140625,
+          "priorToQ92MAE": 0.23372395833333334,
+          "priorToQ92Max": 1.0
+        }
+      },
+      "disposition": "Accept Q92 diffuse conversion for registration as derivative of reviewed trial art",
+      "visualReview": "Eight grille bands and brown edge strips remain registered; rusty metal palette retained."
+    },
+    {
+      "alias": "hipnotic-metal5_6",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-hipnotic-metal5_6.png",
+          "sha256": "bbbdbb43016ff0a19797611372901911b221d25ad04ca648e186e2e9e2358a28",
+          "dimensions": [
+            32,
+            64
+          ]
+        },
+        "prior": {
+          "path": "newer/textures/candidates-2026-10-12/hipnotic-metal5_6-photographic-4x.png",
+          "sha256": "53e2a65efbcfa88f707f3756e85895b41120d502fb68b0d9604a3f41b7d5f799",
+          "dimensions": [
+            128,
+            256
+          ]
+        },
+        "q92": {
+          "path": "newer/textures/candidates-2026-10-12/hipnotic-metal5_6-4x-q92-xyz-diffuse.webp",
+          "sha256": "c3c59673f35fd35d3604ca41a455d0c9a89998fc0cd9d74509a21ed7270228f4",
+          "dimensions": [
+            128,
+            256
+          ]
+        }
+      },
+      "priorToQ92MAE": 2.8421427408854165,
+      "priorToQ92Max": 22.0,
+      "distance": {
+        "2": {
+          "dimensions": [
+            16,
+            32
+          ],
+          "nativeToQ92MAE": 7.442708333333333,
+          "priorToQ92MAE": 0.4505208333333333,
+          "priorToQ92Max": 2.0
+        },
+        "4": {
+          "dimensions": [
+            8,
+            16
+          ],
+          "nativeToQ92MAE": 4.625,
+          "priorToQ92MAE": 0.23177083333333334,
+          "priorToQ92Max": 1.0
+        }
+      },
+      "disposition": "Accept Q92 diffuse conversion for registration as derivative of reviewed trial art",
+      "visualReview": "Vertical oxidized ornamental strip, curls and side fasteners retained; original green-orange contrast is naturally softer in prior and new HD."
+    },
+    {
+      "alias": "mg1-comp1_2",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-comp1_2.png",
+          "sha256": "22815eef7acb4c7e59145477985ccafabb432dbd84ece567c289da6aa1f4a23e",
+          "dimensions": [
+            64,
+            64
+          ]
+        },
+        "prior": {
+          "path": "newer/textures/candidates-2026-10-12/mg1-comp1_2-photographic-4x.png",
+          "sha256": "d2bc3186f6d3cbd3b2d66c342245d7e6be3682e8cee2d853083826977779d0ed",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "q92": {
+          "path": "newer/textures/candidates-2026-10-12/mg1-comp1_2-4x-q92-xyz-diffuse.webp",
+          "sha256": "f5d4c33d46d148b688894f5502d5044af75fd5bc093a0e6db6a652a56325796a",
+          "dimensions": [
+            256,
+            256
+          ]
+        }
+      },
+      "priorToQ92MAE": 1.8184356689453125,
+      "priorToQ92Max": 37.0,
+      "distance": {
+        "2": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "nativeToQ92MAE": 11.313151041666666,
+          "priorToQ92MAE": 0.4983723958333333,
+          "priorToQ92Max": 6.0
+        },
+        "4": {
+          "dimensions": [
+            16,
+            16
+          ],
+          "nativeToQ92MAE": 7.247395833333333,
+          "priorToQ92MAE": 0.26171875,
+          "priorToQ92Max": 2.0
+        }
+      },
+      "disposition": "Accept Q92 diffuse conversion for registration as derivative of reviewed trial art",
+      "visualReview": "Three equipment bays, central vents and yellow accents retained."
+    },
+    {
+      "alias": "mg1-comp1_3",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-comp1_3.png",
+          "sha256": "75d80b8205e78f16a8231942739367b586d7c3b8db15dfb74644e43f62659c5a",
+          "dimensions": [
+            64,
+            64
+          ]
+        },
+        "prior": {
+          "path": "newer/textures/candidates-2026-10-12/mg1-comp1_3-photographic-4x.png",
+          "sha256": "67f142d65686b8b7bd830e76c5b747140d501db3730e514e20ff51348a654aae",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "q92": {
+          "path": "newer/textures/candidates-2026-10-12/mg1-comp1_3-4x-q92-xyz-diffuse.webp",
+          "sha256": "ebb2e7cac09ac1ab774d504e69b906847125487dcc9378611eaa54b61e8fea67",
+          "dimensions": [
+            256,
+            256
+          ]
+        }
+      },
+      "priorToQ92MAE": 1.9061177571614583,
+      "priorToQ92Max": 28.0,
+      "distance": {
+        "2": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "nativeToQ92MAE": 7.784830729166667,
+          "priorToQ92MAE": 0.4889322916666667,
+          "priorToQ92Max": 3.0
+        },
+        "4": {
+          "dimensions": [
+            16,
+            16
+          ],
+          "nativeToQ92MAE": 4.579427083333333,
+          "priorToQ92MAE": 0.2669270833333333,
+          "priorToQ92Max": 2.0
+        }
+      },
+      "disposition": "Accept Q92 diffuse conversion for registration as derivative of reviewed trial art",
+      "visualReview": "Amber bars and lower cable bundle retained; original small right-hand amber mark remains simplified as in prior HD."
+    },
+    {
+      "alias": "mg1-metal1_1",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-metal1_1.png",
+          "sha256": "b8da654238ed4496bd58df630e5df999ad528e7417cbaa9831537d554bfb878a",
+          "dimensions": [
+            64,
+            64
+          ]
+        },
+        "prior": {
+          "path": "newer/textures/candidates-2026-10-12/mg1-metal1_1-photographic-4x.png",
+          "sha256": "24971a7f28525a99afb984daa136e4ccf0243752105337ee61f5bb1ebac25eb1",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "q92": {
+          "path": "newer/textures/candidates-2026-10-12/mg1-metal1_1-4x-q92-xyz-diffuse.webp",
+          "sha256": "c88c0f0980290ea892961b2ab94cf06a4ed1825ee6f1e4e49f01139e6cdf1a62",
+          "dimensions": [
+            256,
+            256
+          ]
+        }
+      },
+      "priorToQ92MAE": 2.7393951416015625,
+      "priorToQ92Max": 29.0,
+      "distance": {
+        "2": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "nativeToQ92MAE": 5.944986979166667,
+          "priorToQ92MAE": 0.4671223958333333,
+          "priorToQ92Max": 3.0
+        },
+        "4": {
+          "dimensions": [
+            16,
+            16
+          ],
+          "nativeToQ92MAE": 4.095052083333333,
+          "priorToQ92MAE": 0.21875,
+          "priorToQ92Max": 1.0
+        }
+      },
+      "disposition": "Accept Q92 diffuse conversion for registration as derivative of reviewed trial art",
+      "visualReview": "Two vertical plates, seam and four rivets retained."
+    },
+    {
+      "alias": "mg1-metal1_3",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-metal1_3.png",
+          "sha256": "b94064bc6a8baf1bd520b3097cb374980d992904dbfa465310a7f6bf61d35190",
+          "dimensions": [
+            64,
+            64
+          ]
+        },
+        "prior": {
+          "path": "newer/textures/candidates-2026-10-12/mg1-metal1_3-photographic-4x.png",
+          "sha256": "9e8490ed83b3a97077265660cb42c9e461246ef52f4aa6afb2bc70860624c56c",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "q92": {
+          "path": "newer/textures/candidates-2026-10-12/mg1-metal1_3-4x-q92-xyz-diffuse.webp",
+          "sha256": "329e36ba7a7bc0a257d8c9c4ee5c8dd0a9c79ecb5185509979017d1671d6898d",
+          "dimensions": [
+            256,
+            256
+          ]
+        }
+      },
+      "priorToQ92MAE": 3.376500447591146,
+      "priorToQ92Max": 30.0,
+      "distance": {
+        "2": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "nativeToQ92MAE": 8.331705729166666,
+          "priorToQ92MAE": 0.4521484375,
+          "priorToQ92Max": 3.0
+        },
+        "4": {
+          "dimensions": [
+            16,
+            16
+          ],
+          "nativeToQ92MAE": 7.278645833333333,
+          "priorToQ92MAE": 0.21744791666666666,
+          "priorToQ92Max": 1.0
+        }
+      },
+      "disposition": "Accept Q92 diffuse conversion for registration as derivative of reviewed trial art",
+      "visualReview": "Square plate and corner rivets retained; rust mottling preserved."
+    },
+    {
+      "alias": "mg1-metal1_4",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-metal1_4.png",
+          "sha256": "a0ee2fca2d25e2e0dfdbfa8825e7747a85e3a9c98dc5e7537882773648550dff",
+          "dimensions": [
+            64,
+            64
+          ]
+        },
+        "prior": {
+          "path": "newer/textures/candidates-2026-10-12/mg1-metal1_4-photographic-4x.png",
+          "sha256": "103f85b306337d72a25446d2079654584b21ecf4d72b4ea734f04a68acd374b6",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "q92": {
+          "path": "newer/textures/candidates-2026-10-12/mg1-metal1_4-4x-q92-xyz-diffuse.webp",
+          "sha256": "d26a83b26822b0f58637243a91fc8135f4db2ed01d68620aeffe44735d82237a",
+          "dimensions": [
+            256,
+            256
+          ]
+        }
+      },
+      "priorToQ92MAE": 3.1128387451171875,
+      "priorToQ92Max": 25.0,
+      "distance": {
+        "2": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "nativeToQ92MAE": 9.38671875,
+          "priorToQ92MAE": 0.4755859375,
+          "priorToQ92Max": 3.0
+        },
+        "4": {
+          "dimensions": [
+            16,
+            16
+          ],
+          "nativeToQ92MAE": 6.303385416666667,
+          "priorToQ92MAE": 0.18880208333333334,
+          "priorToQ92Max": 1.0
+        }
+      },
+      "disposition": "Accept Q92 diffuse conversion for registration as derivative of reviewed trial art",
+      "visualReview": "Diagonal X braces, perimeter structure and four corner rivets retained."
+    },
+    {
+      "alias": "city6_8",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city6_8.png",
+          "sha256": "4bc60a1876f96405b9f45992f56a5e82aa20bb80fb263424eab790ca176d2347",
+          "dimensions": [
+            64,
+            64
+          ]
+        },
+        "prior": {
+          "path": "newer/textures/candidates-2026-10-12/city6_8-photographic-4x.png",
+          "sha256": "59bacf4c609707c4755ccf85d08e5ab25f71763eb10b99047ddd5c4203935f80",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "q92": {
+          "path": "newer/textures/candidates-2026-10-12/city6_8-4x-q92-xyz-diffuse.webp",
+          "sha256": "6f812fba0d73578e800186d1b3479393d93da3001453c2b270fcfccf924bc852",
+          "dimensions": [
+            256,
+            256
+          ]
+        }
+      },
+      "priorToQ92MAE": 2.5341593424479165,
+      "priorToQ92Max": 26.0,
+      "distance": {
+        "2": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "nativeToQ92MAE": 8.027994791666666,
+          "priorToQ92MAE": 0.4973958333333333,
+          "priorToQ92Max": 3.0
+        },
+        "4": {
+          "dimensions": [
+            16,
+            16
+          ],
+          "nativeToQ92MAE": 4.48828125,
+          "priorToQ92MAE": 0.25,
+          "priorToQ92Max": 1.0
+        }
+      },
+      "disposition": "Accept Q92 diffuse conversion for registration as derivative of reviewed trial art",
+      "visualReview": "Irregular rounded masonry courses and warm olive-brown palette retained."
+    },
+    {
+      "alias": "city4_2",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city4_2.png",
+          "sha256": "608b008142b8695a0593d42e500cc55accdc3edbf76ddbe64fb489edf28db72f",
+          "dimensions": [
+            64,
+            64
+          ]
+        },
+        "prior": {
+          "path": "newer/textures/candidates-2026-10-12/city4_2-photographic-v2-4x.png",
+          "sha256": "3398fc258e19915b5e476b2f84755337269a042c8fed256adbfd36bb6250bfc1",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "q92": {
+          "path": "newer/textures/candidates-2026-10-12/city4_2-4x-q92-xyz-diffuse.webp",
+          "sha256": "28082959b75586d72c992a6889c3e43442930e7d8a773186b7d73106868c6a3f",
+          "dimensions": [
+            256,
+            256
+          ]
+        }
+      },
+      "priorToQ92MAE": 2.4913736979166665,
+      "priorToQ92Max": 21.0,
+      "distance": {
+        "2": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "nativeToQ92MAE": 6.030598958333333,
+          "priorToQ92MAE": 0.5472005208333334,
+          "priorToQ92Max": 4.0
+        },
+        "4": {
+          "dimensions": [
+            16,
+            16
+          ],
+          "nativeToQ92MAE": 5.537760416666667,
+          "priorToQ92MAE": 0.2734375,
+          "priorToQ92Max": 2.0
+        }
+      },
+      "disposition": "Accept Q92 diffuse conversion for registration as derivative of reviewed trial art",
+      "visualReview": "Four courses and fractured masonry layout retained."
+    },
+    {
+      "alias": "city4_8",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city4_8.png",
+          "sha256": "2c26333e46faaa5e9c87b65b48eb1cc2ccaa9627a79c621bbdceea96e98fbc44",
+          "dimensions": [
+            64,
+            64
+          ]
+        },
+        "prior": {
+          "path": "newer/textures/candidates-2026-10-12/city4_8-photographic-joints-v2-4x.png",
+          "sha256": "a6b22b6f92f69269bf597996613da6b8ad94f8b350d89d77e86b174ea1f5d97c",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "q92": {
+          "path": "newer/textures/candidates-2026-10-12/city4_8-4x-q92-xyz-diffuse.webp",
+          "sha256": "2d16e7d81697f324ccb145e85e95ac518bf8707b9a28580c8c8a679cdbc1ff28",
+          "dimensions": [
+            256,
+            256
+          ]
+        }
+      },
+      "priorToQ92MAE": 2.178253173828125,
+      "priorToQ92Max": 22.0,
+      "distance": {
+        "2": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "nativeToQ92MAE": 3.5804036458333335,
+          "priorToQ92MAE": 0.4573567708333333,
+          "priorToQ92Max": 3.0
+        },
+        "4": {
+          "dimensions": [
+            16,
+            16
+          ],
+          "nativeToQ92MAE": 1.9830729166666667,
+          "priorToQ92MAE": 0.20182291666666666,
+          "priorToQ92Max": 1.0
+        }
+      },
+      "disposition": "Accept Q92 diffuse conversion for registration as derivative of reviewed trial art",
+      "visualReview": "Four courses and restored thirteen-paver arrangement retained, including three previously repaired joints."
+    },
+    {
+      "alias": "bricka2_4",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-bricka2_4.png",
+          "sha256": "7b957baafff66a9f86b20b43889f2db52634b1b1a9654af520ea91beca44069a",
+          "dimensions": [
+            64,
+            64
+          ]
+        },
+        "prior": {
+          "path": "newer/textures/candidates-2026-10-12/bricka2_4-photographic-v2-4x.png",
+          "sha256": "08995be75048678c8731a6550b1812db28aa7b982f6fb69796339c26414b8cef",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "q92": {
+          "path": "newer/textures/candidates-2026-10-12/bricka2_4-4x-q92-xyz-diffuse.webp",
+          "sha256": "d20699f84097ebecf1b22abbbad93114620a6c70921edb1c634ae05a06d26df0",
+          "dimensions": [
+            256,
+            256
+          ]
+        }
+      },
+      "priorToQ92MAE": 2.5401102701822915,
+      "priorToQ92Max": 25.0,
+      "distance": {
+        "2": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "nativeToQ92MAE": 3.6110026041666665,
+          "priorToQ92MAE": 0.5403645833333334,
+          "priorToQ92Max": 4.0
+        },
+        "4": {
+          "dimensions": [
+            16,
+            16
+          ],
+          "nativeToQ92MAE": 2.7864583333333335,
+          "priorToQ92MAE": 0.296875,
+          "priorToQ92Max": 2.0
+        }
+      },
+      "disposition": "Accept Q92 diffuse conversion for registration as derivative of reviewed trial art",
+      "visualReview": "Two broad courses and irregular natural rock contours retained."
+    }
+  ],
+  "schema": 1,
+  "createdAt": "2026-10-13T10:46:03.088716+00:00",
+  "reviewer": "texture_plan independent subagent",
+  "scope": "Read-only review of twelve Q92 diffuse conversions and existing native map receipts/screenshots. No registration, generation, engine or texture-asset edits. Analytical contact sheets only.",
+  "visualMethod": "Prior and new diffuse full views, original-versus-new half-native primary and quarter-native secondary using BOX reduction and nearest magnification, and new 3x3 repeats. Prior/original receipt hashes and exact4x dimensions independently checked.",
+  "result": "No blocking appearance regression introduced by Q92 diffuse conversion in these twelve assets.",
+  "metricsAreAcceptanceGate": false,
+  "receipts": [
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/dm5-q92-coplanar-setup-failed.json",
+      "sha256": "82ced26da11e0d131380a501d29dcbb18f0b49606c73980b336e5317fd12a7c8",
+      "screenshot": null,
+      "state": "failed",
+      "map": {
+        "name": "maps/dm5.bsp",
+        "sha256": "2837e106c53ae5f34e12172f3925ba9b8be48a18891972e51344ece54bd9194d",
+        "faces": 2026
+      },
+      "signon": 4,
+      "view": "near",
+      "sceneFrames": 7741,
+      "errors": [
+        "Error: maps/dm5.bsp has no verified clear near/far/oblique coplanar candidate join\n    at findJoin (http://127.0.0.1:8013/tests/official_texture_gameplay_trial.js:111:31)\n    at start (http://127.0.0.1:8013/tests/official_texture_gameplay_trial.js:154:10)\n    at async http://127.0.0.1:8013/tests/official_texture_gameplay_trial.js:161:74"
+      ],
+      "shaderErrors": [],
+      "passedChecks": 12,
+      "totalChecks": 12,
+      "cameraPositionErrorWorldUnits": null,
+      "joinKind": null,
+      "faces": null,
+      "boundFilesVerifiedNow": [
+        {
+          "alias": "city2_3",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-diffuse.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city2_3.png",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "normalx",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-normalX.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "normaly",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-normalY.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "normalz",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-normalZ.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-diffuse.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city2_6.png",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "normalx",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-normalX.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "normaly",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-normalY.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "normalz",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-normalZ.webp",
+          "matches": true
+        }
+      ],
+      "qualities": {
+        "city2_3": 92,
+        "city2_6": 92
+      }
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/dm5-q92-hd-far-relief.json",
+      "sha256": "e2d3e86b4a754a7ae4b277ebeb37c8592b78638688fd6548fe267e182e628ba0",
+      "screenshot": {
+        "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/dm5-q92-hd-far-relief.jpg",
+        "sha256": "8436d02173ed49018f07e127ee101cf75f21bc8f5db5ab2fa40b06bae4c07c90"
+      },
+      "state": "ready",
+      "map": {
+        "name": "maps/dm5.bsp",
+        "sha256": "2837e106c53ae5f34e12172f3925ba9b8be48a18891972e51344ece54bd9194d",
+        "faces": 2026
+      },
+      "signon": 4,
+      "view": "far",
+      "sceneFrames": 747,
+      "errors": [],
+      "shaderErrors": [],
+      "passedChecks": 12,
+      "totalChecks": 12,
+      "cameraPositionErrorWorldUnits": 0.06459587464259367,
+      "joinKind": "corner",
+      "faces": [
+        209,
+        210
+      ],
+      "boundFilesVerifiedNow": [
+        {
+          "alias": "city2_3",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-diffuse.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city2_3.png",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "normalx",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-normalX.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "normaly",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-normalY.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "normalz",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-normalZ.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-diffuse.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city2_6.png",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "normalx",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-normalX.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "normaly",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-normalY.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "normalz",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-normalZ.webp",
+          "matches": true
+        }
+      ],
+      "qualities": {
+        "city2_3": 92,
+        "city2_6": 92
+      }
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/dm5-q92-hd-near-relief.json",
+      "sha256": "af1b4712cd9c812dc7e120a8b3974e467d3474a0a5e50734a730fdf51aa1aeb9",
+      "screenshot": {
+        "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/dm5-q92-hd-near-relief.jpg",
+        "sha256": "0dfbbffb20d08780430f4f84e1abaf5ff56afb519727d5cd5906362a00ab5670"
+      },
+      "state": "ready",
+      "map": {
+        "name": "maps/dm5.bsp",
+        "sha256": "2837e106c53ae5f34e12172f3925ba9b8be48a18891972e51344ece54bd9194d",
+        "faces": 2026
+      },
+      "signon": 4,
+      "view": "near",
+      "sceneFrames": 548,
+      "errors": [],
+      "shaderErrors": [],
+      "passedChecks": 12,
+      "totalChecks": 12,
+      "cameraPositionErrorWorldUnits": 0.04012959598730172,
+      "joinKind": "corner",
+      "faces": [
+        209,
+        210
+      ],
+      "boundFilesVerifiedNow": [
+        {
+          "alias": "city2_3",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-diffuse.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city2_3.png",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "normalx",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-normalX.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "normaly",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-normalY.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "normalz",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-normalZ.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-diffuse.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city2_6.png",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "normalx",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-normalX.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "normaly",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-normalY.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "normalz",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-normalZ.webp",
+          "matches": true
+        }
+      ],
+      "qualities": {
+        "city2_3": 92,
+        "city2_6": 92
+      }
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/dm5-q92-hd-oblique-relief.json",
+      "sha256": "50d57fcf9496246574dfcc7225a9792e13d0222d66e001ebd2b350775166791a",
+      "screenshot": {
+        "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/dm5-q92-hd-oblique-relief.jpg",
+        "sha256": "4c9c2b5bde30860f9db16aee56f464fc0c58aab82796e7ca0f442c4952f114ac"
+      },
+      "state": "ready",
+      "map": {
+        "name": "maps/dm5.bsp",
+        "sha256": "2837e106c53ae5f34e12172f3925ba9b8be48a18891972e51344ece54bd9194d",
+        "faces": 2026
+      },
+      "signon": 4,
+      "view": "oblique",
+      "sceneFrames": 1018,
+      "errors": [],
+      "shaderErrors": [],
+      "passedChecks": 12,
+      "totalChecks": 12,
+      "cameraPositionErrorWorldUnits": 0.09842793883453248,
+      "joinKind": "corner",
+      "faces": [
+        209,
+        210
+      ],
+      "boundFilesVerifiedNow": [
+        {
+          "alias": "city2_3",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-diffuse.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city2_3.png",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "normalx",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-normalX.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "normaly",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-normalY.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_3",
+          "field": "normalz",
+          "path": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-xyz-normalZ.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-diffuse.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city2_6.png",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "normalx",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-normalX.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "normaly",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-normalY.webp",
+          "matches": true
+        },
+        {
+          "alias": "city2_6",
+          "field": "normalz",
+          "path": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-xyz-normalZ.webp",
+          "matches": true
+        }
+      ],
+      "qualities": {
+        "city2_3": 92,
+        "city2_6": 92
+      }
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/e4m3-4x-hd-far-relief.json",
+      "sha256": "3dcc0b6e5449ba32d2efcfd449fc9852ad655c3c5764872ddc5e2aa119edb87a",
+      "screenshot": {
+        "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/e4m3-4x-hd-far-relief.jpg",
+        "sha256": "8279022c63f62a4141fc1c4b34b14384a2e553cf7d63576ff873bde51725e111"
+      },
+      "state": "ready",
+      "map": {
+        "name": "maps/e4m3.bsp",
+        "sha256": "894714b277730e4fcb90b001da31bbab44c52ce7f361626cf4f322d6818a883f",
+        "faces": 4960
+      },
+      "signon": 4,
+      "view": "far",
+      "sceneFrames": 583,
+      "errors": [],
+      "shaderErrors": [],
+      "passedChecks": 12,
+      "totalChecks": 12,
+      "cameraPositionErrorWorldUnits": 0.05412658773652741,
+      "joinKind": "coplanar",
+      "faces": [
+        2598,
+        2600
+      ],
+      "boundFilesVerifiedNow": [
+        {
+          "alias": "bricka2_4",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/bricka2_4-photographic-v2-4x.png",
+          "matches": true
+        },
+        {
+          "alias": "bricka2_4",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/bricka2_4-photographic-v2-4x-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "bricka2_4",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-bricka2_4.png",
+          "matches": true
+        },
+        {
+          "alias": "city4_2",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city4_2-photographic-v2-4x.png",
+          "matches": true
+        },
+        {
+          "alias": "city4_2",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city4_2-photographic-v2-4x-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city4_2",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city4_2.png",
+          "matches": true
+        }
+      ],
+      "qualities": {
+        "bricka2_4": null,
+        "city4_2": null
+      }
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/e4m3-4x-hd-near-relief.json",
+      "sha256": "965374c9d02647f89b8cad2fca9734d660772d6bf5e772f975c9686af1f2a472",
+      "screenshot": {
+        "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/e4m3-4x-hd-near-relief.jpg",
+        "sha256": "d083dd1d3b829bbbdd8eede1ee94cb5cec73882090aea7fa9081706158ac08ce"
+      },
+      "state": "ready",
+      "map": {
+        "name": "maps/e4m3.bsp",
+        "sha256": "894714b277730e4fcb90b001da31bbab44c52ce7f361626cf4f322d6818a883f",
+        "faces": 4960
+      },
+      "signon": 4,
+      "view": "near",
+      "sceneFrames": 480,
+      "errors": [],
+      "shaderErrors": [],
+      "passedChecks": 12,
+      "totalChecks": 12,
+      "cameraPositionErrorWorldUnits": 0.05412658773652741,
+      "joinKind": "coplanar",
+      "faces": [
+        2598,
+        2600
+      ],
+      "boundFilesVerifiedNow": [
+        {
+          "alias": "bricka2_4",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/bricka2_4-photographic-v2-4x.png",
+          "matches": true
+        },
+        {
+          "alias": "bricka2_4",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/bricka2_4-photographic-v2-4x-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "bricka2_4",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-bricka2_4.png",
+          "matches": true
+        },
+        {
+          "alias": "city4_2",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city4_2-photographic-v2-4x.png",
+          "matches": true
+        },
+        {
+          "alias": "city4_2",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city4_2-photographic-v2-4x-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city4_2",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city4_2.png",
+          "matches": true
+        }
+      ],
+      "qualities": {
+        "bricka2_4": null,
+        "city4_2": null
+      }
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/e4m3-4x-hd-oblique-relief.json",
+      "sha256": "d248297f08470c1e095862f55719e0f43e916d2e118ef0dfd93f3359c684c82f",
+      "screenshot": {
+        "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/e4m3-4x-hd-oblique-relief.jpg",
+        "sha256": "bafbeba2461e3ea576e7e7c90fe943ed719000b95803fff38b7cb07036b38909"
+      },
+      "state": "ready",
+      "map": {
+        "name": "maps/e4m3.bsp",
+        "sha256": "894714b277730e4fcb90b001da31bbab44c52ce7f361626cf4f322d6818a883f",
+        "faces": 4960
+      },
+      "signon": 4,
+      "view": "oblique",
+      "sceneFrames": 837,
+      "errors": [],
+      "shaderErrors": [],
+      "passedChecks": 12,
+      "totalChecks": 12,
+      "cameraPositionErrorWorldUnits": 0.05412658773652741,
+      "joinKind": "coplanar",
+      "faces": [
+        2598,
+        2600
+      ],
+      "boundFilesVerifiedNow": [
+        {
+          "alias": "bricka2_4",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/bricka2_4-photographic-v2-4x.png",
+          "matches": true
+        },
+        {
+          "alias": "bricka2_4",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/bricka2_4-photographic-v2-4x-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "bricka2_4",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-bricka2_4.png",
+          "matches": true
+        },
+        {
+          "alias": "city4_2",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city4_2-photographic-v2-4x.png",
+          "matches": true
+        },
+        {
+          "alias": "city4_2",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city4_2-photographic-v2-4x-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city4_2",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city4_2.png",
+          "matches": true
+        }
+      ],
+      "qualities": {
+        "bricka2_4": null,
+        "city4_2": null
+      }
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/e4m3-4x-near-hd.json",
+      "sha256": "2094a49af53637d1766fcebd4e1f9e2617107c077bb32a770a936b39db810544",
+      "screenshot": {
+        "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/e4m3-4x-near-hd.jpg",
+        "sha256": "95bb14deef08271a73f72392a9c37a87ff68dda73a7177437e72acf202bd416a"
+      },
+      "state": "ready",
+      "map": {
+        "name": "maps/e4m3.bsp",
+        "sha256": "894714b277730e4fcb90b001da31bbab44c52ce7f361626cf4f322d6818a883f",
+        "faces": 4960
+      },
+      "signon": 4,
+      "view": "near",
+      "sceneFrames": 4649,
+      "errors": [],
+      "shaderErrors": [],
+      "passedChecks": 12,
+      "totalChecks": 12,
+      "cameraPositionErrorWorldUnits": 0.05412658773652741,
+      "joinKind": null,
+      "faces": [
+        2598,
+        2600
+      ],
+      "boundFilesVerifiedNow": [
+        {
+          "alias": "bricka2_4",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/bricka2_4-photographic-v2-4x.png",
+          "matches": true
+        },
+        {
+          "alias": "bricka2_4",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/bricka2_4-photographic-v2-4x-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "bricka2_4",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-bricka2_4.png",
+          "matches": true
+        },
+        {
+          "alias": "city4_2",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city4_2-photographic-v2-4x.png",
+          "matches": true
+        },
+        {
+          "alias": "city4_2",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city4_2-photographic-v2-4x-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city4_2",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city4_2.png",
+          "matches": true
+        }
+      ],
+      "qualities": {
+        "bricka2_4": null,
+        "city4_2": null
+      }
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/e2m7-4x-camera-overlay-limitation.json",
+      "sha256": "18ec256afdc46574036709b5c22b367b0c05a5a0090caf0af78bb4777c15736a",
+      "screenshot": null,
+      "state": "ready",
+      "map": {
+        "name": "maps/e2m7.bsp",
+        "sha256": "4aeff3a130dd2e0bfddb513e03b9f55d4c07adce3133be308270120c0658b0ff",
+        "faces": 6270
+      },
+      "signon": 4,
+      "view": "far",
+      "sceneFrames": 12197,
+      "errors": [],
+      "shaderErrors": [],
+      "passedChecks": 12,
+      "totalChecks": 12,
+      "cameraPositionErrorWorldUnits": 0.05412658773652741,
+      "joinKind": null,
+      "faces": [
+        1699,
+        1705
+      ],
+      "boundFilesVerifiedNow": [
+        {
+          "alias": "city6_8",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city6_8-photographic-4x.png",
+          "matches": true
+        },
+        {
+          "alias": "city6_8",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city6_8-photographic-4x-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city6_8",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city6_8.png",
+          "matches": true
+        },
+        {
+          "alias": "city4_8",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city4_8-photographic-joints-v2-4x.png",
+          "matches": true
+        },
+        {
+          "alias": "city4_8",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city4_8-photographic-joints-v2-4x-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city4_8",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city4_8.png",
+          "matches": true
+        }
+      ],
+      "qualities": {
+        "city6_8": null,
+        "city4_8": null
+      }
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/e2m7-4x-far-hd.json",
+      "sha256": "acc23d175f7ecb7345d40b255bbdf56bc99d70e127f28a8b156249639e371a38",
+      "screenshot": {
+        "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/e2m7-4x-far-hd.jpg",
+        "sha256": "906c0cb5eb48d0b46e4521b90867890428097207778644cbeaa871fb493141d5"
+      },
+      "state": "ready",
+      "map": {
+        "name": "maps/e2m7.bsp",
+        "sha256": "4aeff3a130dd2e0bfddb513e03b9f55d4c07adce3133be308270120c0658b0ff",
+        "faces": 6270
+      },
+      "signon": 4,
+      "view": "far",
+      "sceneFrames": 7661,
+      "errors": [],
+      "shaderErrors": [],
+      "passedChecks": 12,
+      "totalChecks": 12,
+      "cameraPositionErrorWorldUnits": 0.05412658773652741,
+      "joinKind": null,
+      "faces": [
+        1699,
+        1705
+      ],
+      "boundFilesVerifiedNow": [
+        {
+          "alias": "city6_8",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city6_8-photographic-4x.png",
+          "matches": true
+        },
+        {
+          "alias": "city6_8",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city6_8-photographic-4x-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city6_8",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city6_8.png",
+          "matches": true
+        },
+        {
+          "alias": "city4_8",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city4_8-photographic-joints-v2-4x.png",
+          "matches": true
+        },
+        {
+          "alias": "city4_8",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city4_8-photographic-joints-v2-4x-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city4_8",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city4_8.png",
+          "matches": true
+        }
+      ],
+      "qualities": {
+        "city6_8": null,
+        "city4_8": null
+      }
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/e2m7-4x-hd-far-relief.json",
+      "sha256": "e8f0371d3a831d4a55c0a05eb519de520eeaa4b56c6a4751c6c985bcbdb5384c",
+      "screenshot": {
+        "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/e2m7-4x-hd-far-relief.jpg",
+        "sha256": "25372d111a451a13040d566c2bacb7ae3b483f19626db8552eec523957e02e55"
+      },
+      "state": "ready",
+      "map": {
+        "name": "maps/e2m7.bsp",
+        "sha256": "4aeff3a130dd2e0bfddb513e03b9f55d4c07adce3133be308270120c0658b0ff",
+        "faces": 6270
+      },
+      "signon": 4,
+      "view": "far",
+      "sceneFrames": 796,
+      "errors": [],
+      "shaderErrors": [],
+      "passedChecks": 12,
+      "totalChecks": 12,
+      "cameraPositionErrorWorldUnits": 0.05412658773652741,
+      "joinKind": "coplanar",
+      "faces": [
+        1699,
+        1705
+      ],
+      "boundFilesVerifiedNow": [
+        {
+          "alias": "city6_8",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city6_8-photographic-4x.png",
+          "matches": true
+        },
+        {
+          "alias": "city6_8",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city6_8-photographic-4x-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city6_8",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city6_8.png",
+          "matches": true
+        },
+        {
+          "alias": "city4_8",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city4_8-photographic-joints-v2-4x.png",
+          "matches": true
+        },
+        {
+          "alias": "city4_8",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city4_8-photographic-joints-v2-4x-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city4_8",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city4_8.png",
+          "matches": true
+        }
+      ],
+      "qualities": {
+        "city6_8": null,
+        "city4_8": null
+      }
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/e2m7-4x-hd-near-relief.json",
+      "sha256": "8cb01a788b9d9504e2d01983c4d0da493fe69f282a7d89bbadb1a5bccd7095bf",
+      "screenshot": {
+        "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/e2m7-4x-hd-near-relief.jpg",
+        "sha256": "dc901e160ffb0abdd1f126890db80ecf2fcf07d0d7d416112fa037f1bef43981"
+      },
+      "state": "ready",
+      "map": {
+        "name": "maps/e2m7.bsp",
+        "sha256": "4aeff3a130dd2e0bfddb513e03b9f55d4c07adce3133be308270120c0658b0ff",
+        "faces": 6270
+      },
+      "signon": 4,
+      "view": "near",
+      "sceneFrames": 556,
+      "errors": [],
+      "shaderErrors": [],
+      "passedChecks": 12,
+      "totalChecks": 12,
+      "cameraPositionErrorWorldUnits": 0.05412658773652741,
+      "joinKind": "coplanar",
+      "faces": [
+        1699,
+        1705
+      ],
+      "boundFilesVerifiedNow": [
+        {
+          "alias": "city6_8",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city6_8-photographic-4x.png",
+          "matches": true
+        },
+        {
+          "alias": "city6_8",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city6_8-photographic-4x-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city6_8",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city6_8.png",
+          "matches": true
+        },
+        {
+          "alias": "city4_8",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city4_8-photographic-joints-v2-4x.png",
+          "matches": true
+        },
+        {
+          "alias": "city4_8",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city4_8-photographic-joints-v2-4x-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city4_8",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city4_8.png",
+          "matches": true
+        }
+      ],
+      "qualities": {
+        "city6_8": null,
+        "city4_8": null
+      }
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/e2m7-4x-hd-oblique-relief.json",
+      "sha256": "55a9275f83df41572e00a701bc0129b1037d6322905aaef27bb0a9224e6d5a6f",
+      "screenshot": {
+        "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/e2m7-4x-hd-oblique-relief.jpg",
+        "sha256": "8fab2584193e1303c598e6d303f0230f04abc31737aa6964690ff7b6928f94a0"
+      },
+      "state": "ready",
+      "map": {
+        "name": "maps/e2m7.bsp",
+        "sha256": "4aeff3a130dd2e0bfddb513e03b9f55d4c07adce3133be308270120c0658b0ff",
+        "faces": 6270
+      },
+      "signon": 4,
+      "view": "oblique",
+      "sceneFrames": 1091,
+      "errors": [],
+      "shaderErrors": [],
+      "passedChecks": 12,
+      "totalChecks": 12,
+      "cameraPositionErrorWorldUnits": 0.05412658773652741,
+      "joinKind": "coplanar",
+      "faces": [
+        1699,
+        1705
+      ],
+      "boundFilesVerifiedNow": [
+        {
+          "alias": "city6_8",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city6_8-photographic-4x.png",
+          "matches": true
+        },
+        {
+          "alias": "city6_8",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city6_8-photographic-4x-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city6_8",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city6_8.png",
+          "matches": true
+        },
+        {
+          "alias": "city4_8",
+          "field": "file",
+          "path": "newer/textures/candidates-2026-10-12/city4_8-photographic-joints-v2-4x.png",
+          "matches": true
+        },
+        {
+          "alias": "city4_8",
+          "field": "height",
+          "path": "newer/textures/candidates-2026-10-12/city4_8-photographic-joints-v2-4x-height.webp",
+          "matches": true
+        },
+        {
+          "alias": "city4_8",
+          "field": "original",
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-city4_8.png",
+          "matches": true
+        }
+      ],
+      "qualities": {
+        "city6_8": null,
+        "city4_8": null
+      }
+    }
+  ],
+  "nativeProofFindings": [
+    "Latest dm5-q92-hd near/far/oblique receipts bind Q92 diffuse/height/XYZ channels; all bound file hashes remain current, 12/12 checks, signon4, no errors or shader errors, exact4x materials. Actual camera positions differ only by normal protocol quantization. Corner209/210 visible in captures; darkness and UI obscure portions. This is corner proof, not coplanar continuity.",
+    "dm5-q92-coplanar-setup-failed is a retained setup failure and cannot be counted as a completed join trial.",
+    "Latest e4m3-4x-hd near/far/oblique and e2m7-4x-hd near/far/oblique bind prior 4x PNG diffuse/height assets, not pending Q92 derivatives. They prove native source identity, loaded material dimensions, camera placement and shader execution for their recorded files only.",
+    "E4M3 screenshots are heavily dark at the target; native-camera/material success does not qualify fine seam or relief appearance.",
+    "E2M7 old far-hd screenshot is obstructed by Bestiary; latest hd-*-relief captures remove that overlay and show both masonry types near the join, but dark shadows and controls still limit inspection.",
+    "All requested current captures show HD and relief on. These alone do not prove original/HD or relief-off/on visual comparison.",
+    "All bound original/diffuse/height/XYZ hashes in all 13 inspected JSON receipts were reverified against current files."
+  ],
+  "remaining": [
+    "Native Q92 rerun is needed before calling the pending twelve conversions native-runtime verified.",
+    "No photorealism completion, entire-game coverage, owner acceptance or release is implied."
+  ],
+  "analyticalContacts": [
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/q92-twelve-contact-1.png",
+      "sha256": "570c761e51a054a887fc56781d168f86d6cd246c7529673549d0c3bb5a41c401"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/q92-twelve-contact-2.png",
+      "sha256": "1c59c5a0f6b9ee2003fc7e4f0cc607bf62c429c57473113c602eed420d9fffcd"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/q92-twelve-contact-3.png",
+      "sha256": "652910a82d729f71a0247debc241e372767adb70a5cd35d7446799f0232649a8"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "source": {
+    "id": "metal1_2c|64x64:dd3e42851935951f",
+    "name": "metal1_2c",
+    "key": "64x64:dd3e42851935951f",
+    "width": 64,
+    "height": 64,
+    "pixelSha256": "afcb9377616f728e209bfe538f16ca5ffc898e61631bbab31417fd45c2e0d76f",
+    "original": "originals/64x64-dd3e42851935951f.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "mg1",
+        "map": "maps/mge4m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+        "slot": 6,
+        "faces": 3815,
+        "visibleCandidateFaces": 3815,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge4m2.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+        "slot": 119,
+        "faces": 3941,
+        "visibleCandidateFaces": 3941,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge4m2b.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+        "slot": 119,
+        "faces": 3943,
+        "visibleCandidateFaces": 3943,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "referenceSha256": "0fe7879c848c0b2fd04d2e1ff3665a01f25c6df3fea8eb895f42dc80a1985392"
+}

@@ -1,0 +1,55 @@
+{
+  "method": "photographic",
+  "factor": 4,
+  "verticalLandmarks": null,
+  "colorStrength": 0.65,
+  "fieldSigma": 0.75,
+  "edgeAnchor": false,
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    32,
+    32
+  ],
+  "distanceMeanMaxError": 27.796875,
+  "distanceMeanMAE": 6.1019846598307295,
+  "donorDistanceMAE": 14.666982014973959,
+  "newClippedChannelFraction": 0.019200642903645832,
+  "donorContourCorrelation": 0.9991337897992231,
+  "sourceMean": [
+    56.109375,
+    40.015625,
+    23.642822265625
+  ],
+  "outputMean": [
+    63.76667785644531,
+    44.58805847167969,
+    26.928329467773438
+  ],
+  "donorBoundaries": {
+    "wrap_x_mean": 19.052083333333336,
+    "wrap_y_mean": 20.065104166666664,
+    "interior_x_mean": 11.590257352941176,
+    "interior_y_mean": 8.914450571895424
+  },
+  "boundaries": {
+    "wrap_x_mean": 19.080729166666664,
+    "wrap_y_mean": 19.89453125,
+    "interior_x_mean": 11.503543709150327,
+    "interior_y_mean": 8.860350285947712
+  },
+  "passedDistanceCheck": null,
+  "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-rock3_8-base.png",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-12/rock3_8-base-generated-v1.png",
+  "output": "newer/textures/candidates-2026-10-12/rock3_8-base-photographic-4x.png",
+  "originalSha256": "f4a93ffa4e9184699faba321b9da453581051a55b63d07452ad2bb677341d097",
+  "generatedSha256": "ab617aa1b6c2300706f3a5442f4e357ed54fe19e63432883a0eb14041df18883",
+  "outputSha256": "3eff58818ac227846e8e77cca53c4a79192f2286676ae641e75a4b199196255c",
+  "outputDimensions": [
+    256,
+    256
+  ],
+  "toolSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+  "landmarkFile": null,
+  "landmarkSha256": null
+}

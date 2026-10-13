@@ -1,0 +1,86 @@
+{
+  "generator": "Built-in GPT image generation and precise cyclic-offset mortar repair",
+  "sourceRole": "Original palette, dimensions, broad colour distribution and joint phase; original pixels are not reused as fine-detail grain.",
+  "artDirection": "Smooth photographic stone and dark oxidized metal with restrained chips/patina/wear; no noise overlays or perimeter bevels.",
+  "files": [
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/wall14_5-photographic-prompt.txt",
+      "sha256": "b8e75e2f3b96387de7309ce468cd5ed8f0bd54d8a7c94b202e0d0855a951ac72"
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/wall14_5-photographic-generated-v1.png",
+      "sha256": "9621de7dea0d0cdc607405688d11da43876cd654f0f759e24d02f78c7d368bcb"
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/wall14_5-layout-colour-only-reference.png",
+      "sha256": "ee93cc6bd9408bc68e200c0c97b8805fb690863129ba8cc4aae4588fcb4f2c13"
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-wall14_5.png",
+      "sha256": "538c7cff73ceaa0ecf117fee34be96afdf388087c83b6e998e07836995c07006"
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-wall14_5.json",
+      "sha256": "1ee33409dbf96eb0ca5d329dd8c04790cdb2edc9f95a6aa61893ed210940ff8e"
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/metal7_1-photographic-prompt.txt",
+      "sha256": "89b8a1fd77fcc0d0927d229f733ccb525bfa1a8fd8f03254a3bad4ffd1229b49"
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/metal7_1-photographic-generated-v1.png",
+      "sha256": "68b35ea1a16b3f795c2f4dbe2d5d6c878c343a0fdb224242d6ef6be4d729ab78"
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/metal7_1-layout-colour-only-reference.png",
+      "sha256": "4edd4b5215bb27ae20c657d0923cc21b78bbf91c3096ad4ad84ab8ff49956383"
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-metal7_1.png",
+      "sha256": "583c956fa207ed2525fbaae8a01b728254ea461973398dad35818ba062a84f1e"
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-metal7_1.json",
+      "sha256": "d1b2082079642a75cae7b6476f7ef7df8fdf25703e341a6caf6daf797e0233cf"
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/wall14_5-offset-reference.png",
+      "sha256": "9778525eb7cf1d136566cdec0bc14d3960a66b3914e732376ba3abe05c19b692"
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/wall14_5-offset-repair-v1.png",
+      "sha256": "df7484711ae55607f75551f2476cc4e0ea4076d49421b6be9ee2898f5fa6bfac"
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/wall14_5-offset-repair-prompt.txt",
+      "sha256": "5bc5741257e804049a5bad36371ffd96a270dc815db1f6aceaaea1e4b92eb30c"
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/finish_character_stone.py",
+      "sha256": "a1e70d2e2d82c6e880f741b9470f6a58cd59b65f78ce4a716d0ec5a448256536"
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/finish_quiet_edges.py",
+      "sha256": "b4d0ffed5d127c976ca73d0fb203636cb33a0c1ba43bb04361407e3eb83642a1"
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/finish_realistic_edges.py",
+      "sha256": "e0ba992126bd5e591cf8fe319b4aae4c3296f651d342a329166f2f54c6666020"
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/restore_wall145_joint.py",
+      "sha256": "1e61d045a2b2568c4a3c9f4c48d069e3d7608c1ff370b6666b532606fa3098b5"
+    }
+  ],
+  "authoring": {
+    "wall14_5": "newer/textures/candidates-2026-10-12/wall14_5-photographic-seam-v3-4x.json",
+    "metal7_1": "newer/textures/candidates-2026-10-12/metal7_1-photographic-seam-v2-4x.json"
+  },
+  "encoding": {
+    "wall14_5": "newer/textures/candidates-2026-10-12/wall14_5-photographic-seam-v3-4x-q92-xyz.json",
+    "metal7_1": "newer/textures/candidates-2026-10-12/metal7_1-photographic-seam-v2-4x-q92-xyz.json"
+  },
+  "qualification": "Wallv2 visualpass revised to HOLD for weakwrapmortar; wallv3 finalreview PASS. Metalv2PASS. Prior drafts/tests retained as history.",
+  "registration": "tools/texture_sheets/sources/official-world-2026-10-12/aged-wall-metal-registration.json",
+  "correctionRegistration": "tools/texture_sheets/sources/official-world-2026-10-12/aged-wall-metal-v3-correction.json"
+}

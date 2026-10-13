@@ -52,6 +52,10 @@ export async function PackClassifier(root=process.cwd()){
  const textureFiles=new Map(),add=(file,name)=>{if(!file)return;const set=textureFiles.get(file)??new Set();set.add(name.toLowerCase());textureFiles.set(file,set);};
  for(const [name,file] of Object.entries(textures.textures))add('newer/textures/'+file,name);
  for(const [name,spec] of Object.entries(textures.normals??{}))add('newer/textures/'+spec.file,name);
+ // Exact-source ordinary variants retain the owning texture name for pack placement.
+ for(const [name,byKey] of Object.entries(textures.ordinaryVariants??{}))for(const v of Object.values(byKey)){
+  for(const f of [v.file,v.normal?.file,...Object.values(v.normal?.normalChannels??{})])if(f)add('newer/textures/'+f,name);
+ }
  for(const [name,byKey] of Object.entries(textures.glass??{}))for(const v of Object.values(byKey))for(const f of Object.values(v))if(typeof f==='string'&&/\.(png|webp)$/.test(f))add('newer/textures/'+f,name);
  return path=>{
   if(owner.has(path))return CommonAncestor(owner.get(path));

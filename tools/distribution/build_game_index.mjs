@@ -26,7 +26,7 @@ const repo=resolve(fileURLToPath(new URL('../..',import.meta.url))),library=reso
 const json=async path=>JSON.parse(await readFile(join(repo,path),'utf8'));
 export async function IndexSources(){
  const textureIndex=await json('newer/textures/index.json'),enemyIndex=await json('newer/enemies/index.json');
- const textures=[...new Set([...Object.keys(textureIndex.textures),...Object.keys(textureIndex.normals??{}),...Object.keys(textureIndex.glass??{})].map(name=>name.toLowerCase()))].sort();
+ const textures=[...new Set([...Object.keys(textureIndex.textures),...Object.keys(textureIndex.normals??{}),...Object.keys(textureIndex.glass??{}),...Object.keys(textureIndex.ordinaryVariants??{})].map(name=>name.toLowerCase()))].sort();
  const models=[...new Set([...Object.keys(enemyIndex.models),...Object.keys(enemyIndex.nativeHeights??{})].map(key=>'progs/'+key+'.mdl'))].sort();
  return {textures,models,sources:{textureNames:createHash('sha256').update(textures.join('\n')).digest('hex'),modelNames:createHash('sha256').update(models.join('\n')).digest('hex')}};
 }

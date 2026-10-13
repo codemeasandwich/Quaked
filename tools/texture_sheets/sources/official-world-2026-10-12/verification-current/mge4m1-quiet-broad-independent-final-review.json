@@ -1,0 +1,888 @@
+{
+  "schema": 1,
+  "createdAt": "2026-10-13T18:42:15.897909+00:00",
+  "reviewer": "texture_plan independent subagent",
+  "scope": "Bounded read-only review of five existing native receipts, six screenshots, summary and test-page diagnostic source. No new browser run, engine/index/assets edits or server actions.",
+  "result": "No blocking defect found for stated single-surface flashlight-assisted material proof on static world face39827.",
+  "summary": {
+    "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/quiet-native-broad-summary.json",
+    "sha256": "7a3b14192dd4a7a157e55e158b39ffa6709e97055f97b20a8733fc91ed918982"
+  },
+  "sourceReviewed": [
+    {
+      "path": "tests/official_texture_gameplay_trial.js",
+      "sha256": "8761210dfea279c2053ecef4c0dad3779f81082225d1cbb675afa1508604d728"
+    },
+    {
+      "path": "tests/official_texture_gameplay_trial.html",
+      "sha256": "2d3bd5355a75e0833f42ca69aab779ac4024e84e9d65387ee300af32a096bdec"
+    },
+    {
+      "path": "src/newer/render/r_flashlight.js",
+      "sha256": "986e62507a1d316015f73d05aaf67573af6cb749a009d0867b6606e6c47ef572"
+    }
+  ],
+  "sourceFindings": [
+    "findJoin iterates firstmodelsurface through first+nummodelsurfaces; inspectSurface checks the same staticworldrange and requestedmaterial.",
+    "Known face39827 agrees with independent native geometry probe. Single-surface near/far/oblique camera and centroid-nearinterior rays use liveSV_Move andempty-leaf check; existing signon/server guards remain.",
+    "Flashlight checkbox invokes existingR_FlashlightToggle only when checkbox andcvar differ. No newlightingimplementation; testpage disablespersistentcvarwrites.",
+    "Single-surface receipt isexplicit andHTMLcurrentcopy distinguishes it fromsharedjoins. Candidatecatalogue remains page-local withsourceidentityguard andlooseasset routing.",
+    "Existing stop lifecycle haltsloop andrestoresfetch/render/Bestiaryhooktable. This review doesnot prove processshutdown orinspectlater serverstop.",
+    "node --check tests/official_texture_gameplay_trial.js passed."
+  ],
+  "captures": [
+    {
+      "receipt": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/mge4m1-quiet-broad-lit-far.json",
+      "sha256": "a81a242efb0c37d10dbd5af73d4c9f3e3957de692f3eb9c580cad5fd99fd45ef",
+      "screenshots": [
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/mge4m1-quiet-broad-lit-far.png",
+          "sha256": "d5decb9b61e0058a9ba172e073d9936a1274e2cf2e9720c5736aeffd71593a56"
+        }
+      ],
+      "state": "ready",
+      "map": {
+        "name": "maps/mge4m1.bsp",
+        "sha256": "9c2711cd7cfababcc8b5620888c09dd7dffaf6d284c1c36eb0510650669b96fd",
+        "faces": 71470
+      },
+      "view": "far",
+      "art": "hd",
+      "relief": true,
+      "flashlightBeamOn": true,
+      "signon": 4,
+      "sceneFrames": 8276,
+      "checksPassed": 27,
+      "checkCount": 27,
+      "errors": [],
+      "shaderErrors": [],
+      "joinKind": "single-surface",
+      "faces": [
+        39827
+      ],
+      "actualEye": [
+        -1127.96875,
+        1808.03125,
+        64.03125
+      ],
+      "requestedView": {
+        "eye": [
+          -1128,
+          1808,
+          64
+        ],
+        "target": [
+          -984,
+          1808,
+          64
+        ],
+        "angles": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actualForward": [
+        1,
+        0,
+        0
+      ],
+      "cameraPositionError": 0.05412658773652741,
+      "lightingSettings": {
+        "r_newer_lighting": 1,
+        "r_newbright": 0.6,
+        "r_newcontrast": 1.4,
+        "r_newdark": 2.2,
+        "r_newedges": 1,
+        "r_flashlight": 1
+      },
+      "materialCount": 89,
+      "materialsWithNormal": 89,
+      "verifiedBoundFiles": [
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "366f73a0110416bb1c409436b7e2fbb56517b6930535eab28f11ae7bd49a8946"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "20a565185e9f05ce6e4382e2c59967ad184eec789a01b99c6862daac06aabe34"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal_02.png",
+          "sha256": "09262a1d456a477a22e28c74b754010f1724270602d9ba1648bd8b2d3f3da7c0"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "3df19db6be324d156efa493289ca2ab3bbc538c836107825f9de2d31d4c8f0a1"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "281b16fda8026238cc60e0d6240867931fbfd1b28e807de0aa25358805e9e130"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "b20a41b9dceb5c434424ef6913aa0cbdaedad26cd923ca2b4fc8c71039d0e628"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "84feed61e3251010e5032dcb33f11de9de2a7fe65f6e84ba3eee8bca922c823f"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "43354bfbf4bd9b4a8e490833a50fa3af2cc6e48d00a353e5a328740712de4e5f"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-metal1_2c.png",
+          "sha256": "0fe7879c848c0b2fd04d2e1ff3665a01f25c6df3fea8eb895f42dc80a1985392"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "723724b62d1b21eee160fb4ff2d98a4df3124f786bf7e8fe170c4977119c63ff"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "75a55eb64b91014abe9abba973f33022cdd8016f7f57adcc9f7ca58ae7f43c05"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "2ddbcec8ca73ba0963fc09ea05f58ff2b8d78cf3f0d2c498da3c650832ad7934"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "72b42f150ffdb931853b1d1348e2036d35941bf4443b5219d1c228441949b360"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "6173125f720a260b15bdc9cb5e435a0a88919c9a236e29a8b014328b45b7bd85"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4_6a.png",
+          "sha256": "e5b6e7427abaa18a78136b0f442b92fa50063454fb8eb3cd35aff04b35e1da65"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "971c0bcbc8722c5726f4d1ab28a49b9d612a819b163eb20c3dcfb27a9bf21aed"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "b3adb79ea3c87916a903fe233d7d649c909fd0cc7a076c59f85e13aeb864ba4d"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "716f941915ff2788d8604d3377a1f1a53d07eda84a8f753778049d5b63d9a1df"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "2f185c6a2fb7817652bf91ee533f7d7760a6b22c6a4dc57a7b3eb1080de6fcba"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "c743b79d5e75e53fd9ffe35410c68a67aab97e9b94753ec3855ca1445eb46f83"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-cable1_1.png",
+          "sha256": "0110c51da6a2f9826b87b1225317fbe55a35f0c0de11a4d83b98004736d91c02"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "487e33d865049595cf3f4945500cb986773f53965735354fd99762d81ddcd07b"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "e8f4791ccd484a7be18a5fd728489a1659944f2c0877dbad2b123b69993a0a6d"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "b54d04fe305aa2156fbe50f021c3d7fc1b11bdcf9201d9699502acbea69f198d"
+        }
+      ]
+    },
+    {
+      "receipt": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/mge4m1-quiet-broad-lit-flat.json",
+      "sha256": "c0c3cd57b7ad5b1e1a95b6022e71618f020f84323535021d7fc0d860f19a9122",
+      "screenshots": [
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/mge4m1-quiet-broad-lit-flat.png",
+          "sha256": "b0247d029f209ec7cc3719908e8557cc4e655fe87d4ad580b5ae25cd040c6014"
+        }
+      ],
+      "state": "ready",
+      "map": {
+        "name": "maps/mge4m1.bsp",
+        "sha256": "9c2711cd7cfababcc8b5620888c09dd7dffaf6d284c1c36eb0510650669b96fd",
+        "faces": 71470
+      },
+      "view": "oblique",
+      "art": "hd",
+      "relief": false,
+      "flashlightBeamOn": true,
+      "signon": 4,
+      "sceneFrames": 9681,
+      "checksPassed": 27,
+      "checkCount": 27,
+      "errors": [],
+      "shaderErrors": [],
+      "joinKind": "single-surface",
+      "faces": [
+        39827
+      ],
+      "actualEye": [
+        -1047.96875,
+        1792.03125,
+        64.03125
+      ],
+      "requestedView": {
+        "eye": [
+          -1048,
+          1792,
+          64
+        ],
+        "target": [
+          -984,
+          1808,
+          64
+        ],
+        "angles": [
+          0,
+          14.036243467926477,
+          0
+        ]
+      },
+      "actualForward": [
+        0.9757021069526672,
+        0.21910123527050018,
+        0
+      ],
+      "cameraPositionError": 0.05412658773652741,
+      "lightingSettings": {
+        "r_newer_lighting": 1,
+        "r_newbright": 0.6,
+        "r_newcontrast": 1.4,
+        "r_newdark": 2.2,
+        "r_newedges": 1,
+        "r_flashlight": 1
+      },
+      "materialCount": 89,
+      "materialsWithNormal": 0,
+      "verifiedBoundFiles": [
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "366f73a0110416bb1c409436b7e2fbb56517b6930535eab28f11ae7bd49a8946"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "20a565185e9f05ce6e4382e2c59967ad184eec789a01b99c6862daac06aabe34"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal_02.png",
+          "sha256": "09262a1d456a477a22e28c74b754010f1724270602d9ba1648bd8b2d3f3da7c0"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "3df19db6be324d156efa493289ca2ab3bbc538c836107825f9de2d31d4c8f0a1"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "281b16fda8026238cc60e0d6240867931fbfd1b28e807de0aa25358805e9e130"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "b20a41b9dceb5c434424ef6913aa0cbdaedad26cd923ca2b4fc8c71039d0e628"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "84feed61e3251010e5032dcb33f11de9de2a7fe65f6e84ba3eee8bca922c823f"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "43354bfbf4bd9b4a8e490833a50fa3af2cc6e48d00a353e5a328740712de4e5f"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-metal1_2c.png",
+          "sha256": "0fe7879c848c0b2fd04d2e1ff3665a01f25c6df3fea8eb895f42dc80a1985392"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "723724b62d1b21eee160fb4ff2d98a4df3124f786bf7e8fe170c4977119c63ff"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "75a55eb64b91014abe9abba973f33022cdd8016f7f57adcc9f7ca58ae7f43c05"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "2ddbcec8ca73ba0963fc09ea05f58ff2b8d78cf3f0d2c498da3c650832ad7934"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "72b42f150ffdb931853b1d1348e2036d35941bf4443b5219d1c228441949b360"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "6173125f720a260b15bdc9cb5e435a0a88919c9a236e29a8b014328b45b7bd85"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4_6a.png",
+          "sha256": "e5b6e7427abaa18a78136b0f442b92fa50063454fb8eb3cd35aff04b35e1da65"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "971c0bcbc8722c5726f4d1ab28a49b9d612a819b163eb20c3dcfb27a9bf21aed"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "b3adb79ea3c87916a903fe233d7d649c909fd0cc7a076c59f85e13aeb864ba4d"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "716f941915ff2788d8604d3377a1f1a53d07eda84a8f753778049d5b63d9a1df"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "2f185c6a2fb7817652bf91ee533f7d7760a6b22c6a4dc57a7b3eb1080de6fcba"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "c743b79d5e75e53fd9ffe35410c68a67aab97e9b94753ec3855ca1445eb46f83"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-cable1_1.png",
+          "sha256": "0110c51da6a2f9826b87b1225317fbe55a35f0c0de11a4d83b98004736d91c02"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "487e33d865049595cf3f4945500cb986773f53965735354fd99762d81ddcd07b"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "e8f4791ccd484a7be18a5fd728489a1659944f2c0877dbad2b123b69993a0a6d"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "b54d04fe305aa2156fbe50f021c3d7fc1b11bdcf9201d9699502acbea69f198d"
+        }
+      ]
+    },
+    {
+      "receipt": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/mge4m1-quiet-broad-lit-near.json",
+      "sha256": "b1a63e090c7012159aca78b3e09c08dfc90bd4e1b42bfcaf1cfbfcc030791b26",
+      "screenshots": [
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/mge4m1-quiet-broad-lit-ui.png",
+          "sha256": "1cad64b4eb7354b014773f86dc5eccc9defcc16aec2e1cb42503538ca2a24031",
+          "pairing": "Related same-view snapshot; not exact same frame as receipt."
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/mge4m1-quiet-broad-engine-frame.png",
+          "sha256": "10a3d14b9aa1f7172a69f406db19ab106b7978a581e367d25fff918218aadb85",
+          "pairing": "Related same-view snapshot; not exact same frame as receipt."
+        }
+      ],
+      "state": "ready",
+      "map": {
+        "name": "maps/mge4m1.bsp",
+        "sha256": "9c2711cd7cfababcc8b5620888c09dd7dffaf6d284c1c36eb0510650669b96fd",
+        "faces": 71470
+      },
+      "view": "near",
+      "art": "hd",
+      "relief": true,
+      "flashlightBeamOn": true,
+      "signon": 4,
+      "sceneFrames": 7982,
+      "checksPassed": 27,
+      "checkCount": 27,
+      "errors": [],
+      "shaderErrors": [],
+      "joinKind": "single-surface",
+      "faces": [
+        39827
+      ],
+      "actualEye": [
+        -1031.96875,
+        1808.03125,
+        64.03125
+      ],
+      "requestedView": {
+        "eye": [
+          -1032,
+          1808,
+          64
+        ],
+        "target": [
+          -984,
+          1808,
+          64
+        ],
+        "angles": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actualForward": [
+        1,
+        0,
+        0
+      ],
+      "cameraPositionError": 0.05412658773652741,
+      "lightingSettings": {
+        "r_newer_lighting": 1,
+        "r_newbright": 0.6,
+        "r_newcontrast": 1.4,
+        "r_newdark": 2.2,
+        "r_newedges": 1,
+        "r_flashlight": 1
+      },
+      "materialCount": 89,
+      "materialsWithNormal": 89,
+      "verifiedBoundFiles": [
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "366f73a0110416bb1c409436b7e2fbb56517b6930535eab28f11ae7bd49a8946"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "20a565185e9f05ce6e4382e2c59967ad184eec789a01b99c6862daac06aabe34"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal_02.png",
+          "sha256": "09262a1d456a477a22e28c74b754010f1724270602d9ba1648bd8b2d3f3da7c0"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "3df19db6be324d156efa493289ca2ab3bbc538c836107825f9de2d31d4c8f0a1"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "281b16fda8026238cc60e0d6240867931fbfd1b28e807de0aa25358805e9e130"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "b20a41b9dceb5c434424ef6913aa0cbdaedad26cd923ca2b4fc8c71039d0e628"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "84feed61e3251010e5032dcb33f11de9de2a7fe65f6e84ba3eee8bca922c823f"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "43354bfbf4bd9b4a8e490833a50fa3af2cc6e48d00a353e5a328740712de4e5f"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-metal1_2c.png",
+          "sha256": "0fe7879c848c0b2fd04d2e1ff3665a01f25c6df3fea8eb895f42dc80a1985392"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "723724b62d1b21eee160fb4ff2d98a4df3124f786bf7e8fe170c4977119c63ff"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "75a55eb64b91014abe9abba973f33022cdd8016f7f57adcc9f7ca58ae7f43c05"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "2ddbcec8ca73ba0963fc09ea05f58ff2b8d78cf3f0d2c498da3c650832ad7934"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "72b42f150ffdb931853b1d1348e2036d35941bf4443b5219d1c228441949b360"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "6173125f720a260b15bdc9cb5e435a0a88919c9a236e29a8b014328b45b7bd85"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4_6a.png",
+          "sha256": "e5b6e7427abaa18a78136b0f442b92fa50063454fb8eb3cd35aff04b35e1da65"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "971c0bcbc8722c5726f4d1ab28a49b9d612a819b163eb20c3dcfb27a9bf21aed"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "b3adb79ea3c87916a903fe233d7d649c909fd0cc7a076c59f85e13aeb864ba4d"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "716f941915ff2788d8604d3377a1f1a53d07eda84a8f753778049d5b63d9a1df"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "2f185c6a2fb7817652bf91ee533f7d7760a6b22c6a4dc57a7b3eb1080de6fcba"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "c743b79d5e75e53fd9ffe35410c68a67aab97e9b94753ec3855ca1445eb46f83"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-cable1_1.png",
+          "sha256": "0110c51da6a2f9826b87b1225317fbe55a35f0c0de11a4d83b98004736d91c02"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "487e33d865049595cf3f4945500cb986773f53965735354fd99762d81ddcd07b"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "e8f4791ccd484a7be18a5fd728489a1659944f2c0877dbad2b123b69993a0a6d"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "b54d04fe305aa2156fbe50f021c3d7fc1b11bdcf9201d9699502acbea69f198d"
+        }
+      ]
+    },
+    {
+      "receipt": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/mge4m1-quiet-broad-lit-oblique.json",
+      "sha256": "740f0de7ccb866c3019b4fd846a42e90aa20d83baf2ef753534a2ecf3fb09f8e",
+      "screenshots": [
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/mge4m1-quiet-broad-lit-oblique.png",
+          "sha256": "de26cdf71657c34f707d7af683c92d13747b9aef977f423b869a6d2ffd241bf1"
+        }
+      ],
+      "state": "ready",
+      "map": {
+        "name": "maps/mge4m1.bsp",
+        "sha256": "9c2711cd7cfababcc8b5620888c09dd7dffaf6d284c1c36eb0510650669b96fd",
+        "faces": 71470
+      },
+      "view": "oblique",
+      "art": "hd",
+      "relief": true,
+      "flashlightBeamOn": true,
+      "signon": 4,
+      "sceneFrames": 9315,
+      "checksPassed": 27,
+      "checkCount": 27,
+      "errors": [],
+      "shaderErrors": [],
+      "joinKind": "single-surface",
+      "faces": [
+        39827
+      ],
+      "actualEye": [
+        -1047.96875,
+        1792.03125,
+        64.03125
+      ],
+      "requestedView": {
+        "eye": [
+          -1048,
+          1792,
+          64
+        ],
+        "target": [
+          -984,
+          1808,
+          64
+        ],
+        "angles": [
+          0,
+          14.036243467926477,
+          0
+        ]
+      },
+      "actualForward": [
+        0.9757021069526672,
+        0.21910123527050018,
+        0
+      ],
+      "cameraPositionError": 0.05412658773652741,
+      "lightingSettings": {
+        "r_newer_lighting": 1,
+        "r_newbright": 0.6,
+        "r_newcontrast": 1.4,
+        "r_newdark": 2.2,
+        "r_newedges": 1,
+        "r_flashlight": 1
+      },
+      "materialCount": 89,
+      "materialsWithNormal": 89,
+      "verifiedBoundFiles": [
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "366f73a0110416bb1c409436b7e2fbb56517b6930535eab28f11ae7bd49a8946"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "20a565185e9f05ce6e4382e2c59967ad184eec789a01b99c6862daac06aabe34"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal_02.png",
+          "sha256": "09262a1d456a477a22e28c74b754010f1724270602d9ba1648bd8b2d3f3da7c0"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "3df19db6be324d156efa493289ca2ab3bbc538c836107825f9de2d31d4c8f0a1"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "281b16fda8026238cc60e0d6240867931fbfd1b28e807de0aa25358805e9e130"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "b20a41b9dceb5c434424ef6913aa0cbdaedad26cd923ca2b4fc8c71039d0e628"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "84feed61e3251010e5032dcb33f11de9de2a7fe65f6e84ba3eee8bca922c823f"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "43354bfbf4bd9b4a8e490833a50fa3af2cc6e48d00a353e5a328740712de4e5f"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-metal1_2c.png",
+          "sha256": "0fe7879c848c0b2fd04d2e1ff3665a01f25c6df3fea8eb895f42dc80a1985392"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "723724b62d1b21eee160fb4ff2d98a4df3124f786bf7e8fe170c4977119c63ff"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "75a55eb64b91014abe9abba973f33022cdd8016f7f57adcc9f7ca58ae7f43c05"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "2ddbcec8ca73ba0963fc09ea05f58ff2b8d78cf3f0d2c498da3c650832ad7934"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "72b42f150ffdb931853b1d1348e2036d35941bf4443b5219d1c228441949b360"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "6173125f720a260b15bdc9cb5e435a0a88919c9a236e29a8b014328b45b7bd85"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4_6a.png",
+          "sha256": "e5b6e7427abaa18a78136b0f442b92fa50063454fb8eb3cd35aff04b35e1da65"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "971c0bcbc8722c5726f4d1ab28a49b9d612a819b163eb20c3dcfb27a9bf21aed"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "b3adb79ea3c87916a903fe233d7d649c909fd0cc7a076c59f85e13aeb864ba4d"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "716f941915ff2788d8604d3377a1f1a53d07eda84a8f753778049d5b63d9a1df"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "2f185c6a2fb7817652bf91ee533f7d7760a6b22c6a4dc57a7b3eb1080de6fcba"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "c743b79d5e75e53fd9ffe35410c68a67aab97e9b94753ec3855ca1445eb46f83"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-cable1_1.png",
+          "sha256": "0110c51da6a2f9826b87b1225317fbe55a35f0c0de11a4d83b98004736d91c02"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "487e33d865049595cf3f4945500cb986773f53965735354fd99762d81ddcd07b"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "e8f4791ccd484a7be18a5fd728489a1659944f2c0877dbad2b123b69993a0a6d"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "b54d04fe305aa2156fbe50f021c3d7fc1b11bdcf9201d9699502acbea69f198d"
+        }
+      ]
+    },
+    {
+      "receipt": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/mge4m1-quiet-broad-original-far.json",
+      "sha256": "3cbeec066c18940e381a6633c8dbf55a2b443bdb0ba75e0b45950aef5800e75c",
+      "screenshots": [
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/mge4m1-quiet-broad-original-far.png",
+          "sha256": "d4e0c339123053eb0a70c8d95964d063c23efd0c4e73fd80f73fc97f5d171d3a"
+        }
+      ],
+      "state": "ready",
+      "map": {
+        "name": "maps/mge4m1.bsp",
+        "sha256": "9c2711cd7cfababcc8b5620888c09dd7dffaf6d284c1c36eb0510650669b96fd",
+        "faces": 71470
+      },
+      "view": "far",
+      "art": "original",
+      "relief": true,
+      "flashlightBeamOn": true,
+      "signon": 4,
+      "sceneFrames": 8749,
+      "checksPassed": 27,
+      "checkCount": 27,
+      "errors": [],
+      "shaderErrors": [],
+      "joinKind": "single-surface",
+      "faces": [
+        39827
+      ],
+      "actualEye": [
+        -1127.96875,
+        1808.03125,
+        64.03125
+      ],
+      "requestedView": {
+        "eye": [
+          -1128,
+          1808,
+          64
+        ],
+        "target": [
+          -984,
+          1808,
+          64
+        ],
+        "angles": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actualForward": [
+        1,
+        0,
+        0
+      ],
+      "cameraPositionError": 0.05412658773652741,
+      "lightingSettings": {
+        "r_newer_lighting": 1,
+        "r_newbright": 0.6,
+        "r_newcontrast": 1.4,
+        "r_newdark": 2.2,
+        "r_newedges": 1,
+        "r_flashlight": 1
+      },
+      "materialCount": 89,
+      "materialsWithNormal": 89,
+      "verifiedBoundFiles": [
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "366f73a0110416bb1c409436b7e2fbb56517b6930535eab28f11ae7bd49a8946"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "20a565185e9f05ce6e4382e2c59967ad184eec789a01b99c6862daac06aabe34"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal_02.png",
+          "sha256": "09262a1d456a477a22e28c74b754010f1724270602d9ba1648bd8b2d3f3da7c0"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "3df19db6be324d156efa493289ca2ab3bbc538c836107825f9de2d31d4c8f0a1"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "281b16fda8026238cc60e0d6240867931fbfd1b28e807de0aa25358805e9e130"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "b20a41b9dceb5c434424ef6913aa0cbdaedad26cd923ca2b4fc8c71039d0e628"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "84feed61e3251010e5032dcb33f11de9de2a7fe65f6e84ba3eee8bca922c823f"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "43354bfbf4bd9b4a8e490833a50fa3af2cc6e48d00a353e5a328740712de4e5f"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-metal1_2c.png",
+          "sha256": "0fe7879c848c0b2fd04d2e1ff3665a01f25c6df3fea8eb895f42dc80a1985392"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "723724b62d1b21eee160fb4ff2d98a4df3124f786bf7e8fe170c4977119c63ff"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "75a55eb64b91014abe9abba973f33022cdd8016f7f57adcc9f7ca58ae7f43c05"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "2ddbcec8ca73ba0963fc09ea05f58ff2b8d78cf3f0d2c498da3c650832ad7934"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "72b42f150ffdb931853b1d1348e2036d35941bf4443b5219d1c228441949b360"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "6173125f720a260b15bdc9cb5e435a0a88919c9a236e29a8b014328b45b7bd85"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4_6a.png",
+          "sha256": "e5b6e7427abaa18a78136b0f442b92fa50063454fb8eb3cd35aff04b35e1da65"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "971c0bcbc8722c5726f4d1ab28a49b9d612a819b163eb20c3dcfb27a9bf21aed"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "b3adb79ea3c87916a903fe233d7d649c909fd0cc7a076c59f85e13aeb864ba4d"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "716f941915ff2788d8604d3377a1f1a53d07eda84a8f753778049d5b63d9a1df"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "2f185c6a2fb7817652bf91ee533f7d7760a6b22c6a4dc57a7b3eb1080de6fcba"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "c743b79d5e75e53fd9ffe35410c68a67aab97e9b94753ec3855ca1445eb46f83"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-cable1_1.png",
+          "sha256": "0110c51da6a2f9826b87b1225317fbe55a35f0c0de11a4d83b98004736d91c02"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "487e33d865049595cf3f4945500cb986773f53965735354fd99762d81ddcd07b"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "e8f4791ccd484a7be18a5fd728489a1659944f2c0877dbad2b123b69993a0a6d"
+        },
+        {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "b54d04fe305aa2156fbe50f021c3d7fc1b11bdcf9201d9699502acbea69f198d"
+        }
+      ]
+    }
+  ],
+  "visualFindings": [
+    "NearUI andengine-only capture visibly showphotographic metal andrivets inside nativeflashlightpool. This overcomes earlier fullyblack narrowjoinframes.",
+    "Originalfar andHDfarshow sameactualeye/forward andlighting settings; nativegrainyart switches toquietphotographicmetal withrivetlayout retained.",
+    "Obliqueflat andrelief-onviews sharesameactualeye/forward;flat receipt removesnormalmaps fromall89recordedmaterials, whileonhas89.",
+    "Spotlightpool islimited andsurroundingmap remainsblack; this isusablematerialproof, not wholeface/wholemapvisualqualification."
+  ],
+  "limits": [
+    "No cross-materialjoin claim; onlymetal1_2cface39827 is visuallyshown, notall4textures. Othermaterialpresence isreceipt/materialpath evidence only.",
+    "Face39827hasnobakedlight perindependentprobe; lit here means flashlight-lit, not authoredlightmap.",
+    "No literal mge4m1-quiet-broad-lit-near.png exists;nearimages arelit-ui.pngandengine-frame.png. NearJSON7982framesandUI7782framesarerelatedsameview snapshots, notexactframepair.",
+    "CapturedUIcontainsolderboth-surfacesdescription; currentHTMLnowclarifies single-surface. Receiptqualificationandfaceidentity areauthoritativeforcapture scope.",
+    "Initialnarrowjoinblackframesremainunusablevisualevidence; this newresultdoesnot retroactivelypassthem.",
+    "Parent-reportedrenderer6/6and638materialchecks were notrerun inthisboundedreview andremainseparate evidence.",
+    "Native proof doesnot implyowneracceptance, release orfullcampaigncompletion."
+  ],
+  "nextOwner": "root campaign coordinator",
+  "nextAction": "Retainexactcapturehashes andsingle-surfacequalification; finishremainingmaterialcapture/servercleanup andcoordinateanysourceintegrationagainstcurrentindex."
+}

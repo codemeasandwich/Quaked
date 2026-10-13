@@ -1,0 +1,31 @@
+{
+  "source": {
+    "id": "metal1_1|64x64:5fdc8d86e1f32d2c",
+    "name": "metal1_1",
+    "key": "64x64:5fdc8d86e1f32d2c",
+    "width": 64,
+    "height": 64,
+    "pixelSha256": "8e6f168e91906f5d2b2a0dabcdbd00185d2a363b7acfb5437f75ac9c43f490bc",
+    "original": "originals/64x64-5fdc8d86e1f32d2c.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "Same name has different original pixels",
+    "uses": [
+      {
+        "game": "mg1",
+        "map": "maps/mge5m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+        "slot": 104,
+        "faces": 354,
+        "visibleCandidateFaces": 354,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "freshSnapshotSha256": "7e5c1e3cf87e41c8847406580a454736f51450ae7b8cc149b6dde4946c6c8802",
+  "referenceSha256": "b8da654238ed4496bd58df630e5df999ad528e7417cbaa9831537d554bfb878a",
+  "qualification": "Fresh verified source extraction after game-root relocation; not a reconstruction of vanished historical receipts"
+}

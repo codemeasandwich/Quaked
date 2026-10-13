@@ -1,0 +1,864 @@
+{
+  "schema": 1,
+  "createdAt": "2026-10-13T11:14:28.654850+00:00",
+  "reviewer": "texture_plan independent subagent",
+  "scope": "Read-only independent next-family planning and one raw-image review. No generation, registration or engine edits.",
+  "authority": "Current owner4x dimensions, lossyQ92 all maps, half-native primary/quarter-native secondary visual similarity.",
+  "recommendation": {
+    "minimumPair": [
+      "TF_Metal4",
+      "TF_Metal4b"
+    ],
+    "third": "TF_Metal4_04",
+    "optionalFourth": "TF_MetWall4_02",
+    "sequence": "Generate and review plain/banded dark pair first; keep cool banded and ochre plates distinct within a batch of at most4."
+  },
+  "inventory": {
+    "path": "/private/tmp/quaked-texture-audit-current/inventory.json",
+    "sha256": "669e68cdec11ebadf9fbf6b6ce082ed46d0c37c3d525e697ba99431c49f807ad",
+    "indexSha256": "221bce26a8ff6ce6ab4d21823c77c7d2c860146a572ba89ee3177cabeb2a9baa",
+    "liveIndexSha256": "221bce26a8ff6ce6ab4d21823c77c7d2c860146a572ba89ee3177cabeb2a9baa",
+    "exactPixelAliasNote": "Each queried native key occurs under one exact-case name in current inventory; repeated map uses share that exact identity."
+  },
+  "textures": [
+    {
+      "name": "TF_Metal4",
+      "nativeKey": "128x128:c09f973ad97a3b48",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "rawPath": "/private/tmp/quaked-texture-audit-current/originals/128x128-c09f973ad97a3b48.rgba",
+      "rawSha256": "d6b93e6d72d1a35288b40b9ed1502b75d3fd6f31e837f300601d7975b9fed5bb",
+      "status": "missing",
+      "inventoryTotalFaces": 146032,
+      "mapsWithFaces": 18,
+      "uses": [
+        {
+          "game": "mg1",
+          "map": "maps/start.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 20,
+          "faces": 31047,
+          "visibleCandidateFaces": 31047,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/hub.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 12,
+          "faces": 60688,
+          "visibleCandidateFaces": 60688,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mgdm1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 2,
+          "faces": 345,
+          "visibleCandidateFaces": 345,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mgdm2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 1,
+          "faces": 2954,
+          "visibleCandidateFaces": 2954,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mgdm3.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 12,
+          "faces": 1329,
+          "visibleCandidateFaces": 1329,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mgdm4.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 3,
+          "faces": 1316,
+          "visibleCandidateFaces": 1316,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge1m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 0,
+          "faces": 4311,
+          "visibleCandidateFaces": 4311,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge1m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 8,
+          "faces": 3881,
+          "visibleCandidateFaces": 3881,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge1m3.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 66,
+          "faces": 2064,
+          "visibleCandidateFaces": 2064,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge2m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 8,
+          "faces": 4211,
+          "visibleCandidateFaces": 4211,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge2m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 65,
+          "faces": 1788,
+          "visibleCandidateFaces": 1788,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge3m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 3,
+          "faces": 4591,
+          "visibleCandidateFaces": 4591,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge3m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 2,
+          "faces": 4834,
+          "visibleCandidateFaces": 4834,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge4m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 41,
+          "faces": 9439,
+          "visibleCandidateFaces": 9439,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge4m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 24,
+          "faces": 6100,
+          "visibleCandidateFaces": 6100,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge4m2b.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 24,
+          "faces": 6100,
+          "visibleCandidateFaces": 6100,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge5m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 42,
+          "faces": 131,
+          "visibleCandidateFaces": 131,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge5m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 122,
+          "faces": 903,
+          "visibleCandidateFaces": 903,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        }
+      ],
+      "constraints": [
+        "Plain, dark charcoal-brown aged metal; mottled oxidation and fine grain, no native rivets, rectangular panel frame, corner fasteners, or deep seams.",
+        "Maintain restrained darkness and low-frequency brown/black distribution; detail may become photographic, with no edge darkening or centered spotlight."
+      ]
+    },
+    {
+      "name": "TF_Metal4b",
+      "nativeKey": "128x128:dc8e85a59866a19f",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "rawPath": "/private/tmp/quaked-texture-audit-current/originals/128x128-dc8e85a59866a19f.rgba",
+      "rawSha256": "cd8fdb54a02d999354b590b42ea7f86a79f3064f7cef339d1a9290af88cd0883",
+      "status": "missing",
+      "inventoryTotalFaces": 133119,
+      "mapsWithFaces": 17,
+      "uses": [
+        {
+          "game": "mg1",
+          "map": "maps/start.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 4,
+          "faces": 20598,
+          "visibleCandidateFaces": 20598,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/hub.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 3,
+          "faces": 48489,
+          "visibleCandidateFaces": 48489,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mgdm1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 1,
+          "faces": 2249,
+          "visibleCandidateFaces": 2249,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mgdm3.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 53,
+          "faces": 1310,
+          "visibleCandidateFaces": 1310,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mgdm4.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 4,
+          "faces": 1890,
+          "visibleCandidateFaces": 1890,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge1m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 27,
+          "faces": 10197,
+          "visibleCandidateFaces": 10197,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge1m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 29,
+          "faces": 7723,
+          "visibleCandidateFaces": 7723,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge1m3.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 11,
+          "faces": 440,
+          "visibleCandidateFaces": 440,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge2m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 7,
+          "faces": 12192,
+          "visibleCandidateFaces": 12192,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge2m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 54,
+          "faces": 7243,
+          "visibleCandidateFaces": 7243,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge3m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 4,
+          "faces": 9663,
+          "visibleCandidateFaces": 9663,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge3m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 5,
+          "faces": 7286,
+          "visibleCandidateFaces": 7286,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge4m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 61,
+          "faces": 1335,
+          "visibleCandidateFaces": 1335,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge4m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 23,
+          "faces": 631,
+          "visibleCandidateFaces": 631,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge4m2b.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 23,
+          "faces": 631,
+          "visibleCandidateFaces": 631,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge5m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 43,
+          "faces": 592,
+          "visibleCandidateFaces": 592,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge5m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 61,
+          "faces": 650,
+          "visibleCandidateFaces": 650,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        }
+      ],
+      "constraints": [
+        "Dark brown metal matching TF_Metal4, with horizontal plate seams and four rivet rows.",
+        "Strong dark seam cores approximately native y8,20,71,88,111; subtle bright transitions near32,47-48,63 must not become new deep grooves.",
+        "Rivet rows approximately y36,44,52,60: first two rows16 rivets with centers x4+8n; lower two rows8 rivets with centers x8+16n. Preserve cadence and y phase across horizontal repeats."
+      ]
+    },
+    {
+      "name": "TF_Metal4_04",
+      "nativeKey": "128x128:7edcc2d8aae39a1a",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "rawPath": "/private/tmp/quaked-texture-audit-current/originals/128x128-7edcc2d8aae39a1a.rgba",
+      "rawSha256": "5bdefc5add98f493b9a2f162b5bbd4a68779a86b126497362227517df351bfff",
+      "status": "missing",
+      "inventoryTotalFaces": 38492,
+      "mapsWithFaces": 10,
+      "uses": [
+        {
+          "game": "mg1",
+          "map": "maps/mgdm3.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 139,
+          "faces": 170,
+          "visibleCandidateFaces": 170,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge1m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 43,
+          "faces": 15623,
+          "visibleCandidateFaces": 15623,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge1m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 17,
+          "faces": 6202,
+          "visibleCandidateFaces": 6202,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge2m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 40,
+          "faces": 3232,
+          "visibleCandidateFaces": 3232,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge2m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 66,
+          "faces": 6785,
+          "visibleCandidateFaces": 6785,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge3m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 43,
+          "faces": 4848,
+          "visibleCandidateFaces": 4848,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge4m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 152,
+          "faces": 128,
+          "visibleCandidateFaces": 128,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge4m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 0,
+          "faces": 12,
+          "visibleCandidateFaces": 12,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge4m2b.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 0,
+          "faces": 12,
+          "visibleCandidateFaces": 12,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge5m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 109,
+          "faces": 1480,
+          "visibleCandidateFaces": 1480,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        }
+      ],
+      "constraints": [
+        "Cool blue-grey counterpart to TF_Metal4b; same major horizontal seam and four-row rivet layout.",
+        "Reuse the measured layout constraints, but retain distinct cool palette and brighter metal. Different exact RGBA identity, never alias to brown artwork without its own color treatment and proof."
+      ]
+    },
+    {
+      "name": "TF_MetWall4_02",
+      "nativeKey": "128x128:dddb46e11f7d201b",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "rawPath": "/private/tmp/quaked-texture-audit-current/originals/128x128-dddb46e11f7d201b.rgba",
+      "rawSha256": "bbef700b1f764b0e77396cb950e9c51fe7c57f6cb9bf5ba42fe53238f90c9476",
+      "status": "missing",
+      "inventoryTotalFaces": 97311,
+      "mapsWithFaces": 11,
+      "uses": [
+        {
+          "game": "mg1",
+          "map": "maps/start.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 14,
+          "faces": 22738,
+          "visibleCandidateFaces": 22738,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/hub.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 7,
+          "faces": 44738,
+          "visibleCandidateFaces": 44738,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mgdm3.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 38,
+          "faces": 180,
+          "visibleCandidateFaces": 180,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge1m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 51,
+          "faces": 2182,
+          "visibleCandidateFaces": 2182,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge1m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 31,
+          "faces": 2249,
+          "visibleCandidateFaces": 2249,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge2m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 43,
+          "faces": 7241,
+          "visibleCandidateFaces": 7241,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge2m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 41,
+          "faces": 14974,
+          "visibleCandidateFaces": 14974,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge3m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 76,
+          "faces": 160,
+          "visibleCandidateFaces": 160,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge3m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 8,
+          "faces": 94,
+          "visibleCandidateFaces": 94,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge4m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 150,
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge5m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 166,
+          "faces": 72,
+          "visibleCandidateFaces": 72,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge5m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+          "slot": 108,
+          "faces": 2683,
+          "visibleCandidateFaces": 2683,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        }
+      ],
+      "constraints": [
+        "Distinct ochre/rust-orange plate with grey-blue corrosion, half-height horizontal seam near64, and sparse small dark fasteners near the left mid seam and lower center.",
+        "Keep broad two-part plate, restrained seam and fasteners. Do not substitute the dense rivet rows from the other two banded textures or recolor into dark brown."
+      ]
+    }
+  ],
+  "nativeProbe": {
+    "path": "/private/tmp/quaked-texture-independent-review/tf-metal-mgdm3-native-probe.json",
+    "sha256": "f3dab1d0320d98ae4e3ebbcc2868544d0a64e99fb78d0df7b628ccbcefa1de2d",
+    "map": "maps/mgdm3.bsp",
+    "mapSha256": "d981353b3b9bc03778153eb25ade436c9c03e035528c529502f12dcd6fe2caa2",
+    "faceCount": 21435,
+    "worldFaces": 19594,
+    "sourceFaceCounts": {
+      "TF_Metal4": 1329,
+      "TF_Metal4b": 1310,
+      "TF_MetWall4_02": 180,
+      "TF_Metal4_04": 170
+    },
+    "keys": {
+      "TF_Metal4": [
+        "128x128:c09f973ad97a3b48"
+      ],
+      "TF_Metal4b": [
+        "128x128:dc8e85a59866a19f"
+      ],
+      "TF_MetWall4_02": [
+        "128x128:dddb46e11f7d201b"
+      ],
+      "TF_Metal4_04": [
+        "128x128:7edcc2d8aae39a1a"
+      ]
+    },
+    "adjacencyCounts": {
+      "TF_MetWall4_02|TF_Metal4": {
+        "coplanar": 2,
+        "corner": 52
+      },
+      "TF_Metal4|TF_Metal4b": {
+        "coplanar": 31,
+        "corner": 1255
+      },
+      "TF_MetWall4_02|TF_Metal4b": {
+        "coplanar": 13,
+        "corner": 7
+      }
+    },
+    "limitations": "Engine loader confirms source identities and shared-edge geometry; camera clearance, visibility and UV phase at any chosen pair still require trial proof. No TF_Metal4_04 shared edge with other three in probedMGDM3."
+  },
+  "largeCountProbe": {
+    "path": "/private/tmp/quaked-texture-independent-review/tf-metal-bsp-count-probe.json",
+    "sha256": "b91210b6a8f2a66a0db32dcd532f799dc129711e91575d6b92f859d26cce80fb",
+    "maps": [
+      {
+        "map": "maps/start.bsp",
+        "sha256": "31503938dcdc1930a716c3e582d8e6d182558e01f75363bbefef0e0c8fed63b3",
+        "versionBytes": "42535032",
+        "faces": 83884,
+        "stride": 28,
+        "counts": {
+          "TF_Metal4": 31047,
+          "TF_Metal4b": 20598,
+          "TF_MetWall4_02": 22738,
+          "TF_Metal4_04": 0
+        }
+      },
+      {
+        "map": "maps/hub.bsp",
+        "sha256": "60a6ce2f18c2760c8b563dc77fa2b28d1de3d8eabd1b68d8120016abf54ee12c",
+        "versionBytes": "42535032",
+        "faces": 173674,
+        "stride": 28,
+        "counts": {
+          "TF_Metal4": 60688,
+          "TF_Metal4b": 48489,
+          "TF_MetWall4_02": 44738,
+          "TF_Metal4_04": 0
+        }
+      },
+      {
+        "map": "maps/mgdm3.bsp",
+        "sha256": "d981353b3b9bc03778153eb25ade436c9c03e035528c529502f12dcd6fe2caa2",
+        "versionBytes": "1d000000",
+        "faces": 21435,
+        "stride": 20,
+        "counts": {
+          "TF_Metal4": 1329,
+          "TF_Metal4b": 1310,
+          "TF_MetWall4_02": 180,
+          "TF_Metal4_04": 170
+        }
+      },
+      {
+        "map": "maps/mge1m1.bsp",
+        "sha256": "33c1a34645fdbf7abb56cd0766232062769ef5153be9456437b7d3f7bb43ef45",
+        "versionBytes": "42535032",
+        "faces": 65789,
+        "stride": 28,
+        "counts": {
+          "TF_Metal4": 4311,
+          "TF_Metal4b": 10197,
+          "TF_MetWall4_02": 2182,
+          "TF_Metal4_04": 15623
+        }
+      }
+    ],
+    "finding": "Independent PAK/BSP parser confirms large start/hub face counts with BSP2 28-byte faces. These are BSP fragments and include repeated/split surfaces, not rendered area or unique visibility. Inventory aggregates also count separate mge4m2/mge4m2b map entries; do not describe totals as unique architecture."
+  },
+  "runtimeConstraints": [
+    "src/newer/render/r_newertextures.js232-244 selects glass[name][key],ordinaryVariants[name][key],sources[name],idx[name] with exact JavaScript key case. Keep uppercase TF_ and exact mixed case including MetWall; file slugs may differ but catalogue name must not.",
+    "Current inventory lists these identities only in MG1. They do not close base Quake/Hipnotic/Rogue/DOPA missing artwork.",
+    "MG1 runtime uses Dimension of the Machine PAK with inherited base search/palette and protocol1015. Probe used actual sourcepack plus inherited palette.",
+    "All128x128 originals target512x512 diffuse and companions at lossyQ92. Generate larger only as retained donor; final runtime size512.",
+    "Inspect half comparison64x64 primary andquarter32x32 secondary plus repeats and at least one actual native join. No exact-pixel distance pass.",
+    "Neither ordinary name nor matching visual style establishes alias identity; bind measured native key and retain raw/source/generation/finishing hashes."
+  ],
+  "rawTFMetal4bReview": {
+    "path": "/Users/bri/.codex/generated_images/01a12eef-bc66-7c03-84c7-d2bb59f40c82/exec-1f711508-1692-43c8-80e4-e0d2562c5462.png",
+    "sha256": "499556d693b6bcc2d2cfd078877814e2e5b88fb6598c2337d9f22b34bd83e8d6",
+    "disposition": "Hold for revision",
+    "finding": "Generated image adds pronounced recessed divisions at approximately26%,37%,50%height where native source has only subtle highlighted transitions. Retain the five actual dark seam locations and four rivet-row cadence; soften these three extra divisions rather than erasing all middle transitions. Rivet count/scale appears16/16/8/8 and is not the detected failure.",
+    "referenceGuide": "/private/tmp/quaked-texture-independent-review/tf-metal4b-native-landmarks.png"
+  },
+  "nextOwner": "root campaign coordinator",
+  "nextAction": "Correct rawTF_Metal4b transition depth, finish faithful512Q92 trial pair, run source/material/normal/repeat checks and choose an actualMGDM3 join before registration."
+}

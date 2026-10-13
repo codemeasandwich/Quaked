@@ -1,0 +1,469 @@
+{
+  "qualification": "Actual source/material/camera and original-HD control proof. Dark END corner limits seam appearance judgement. MGDM3 final relief-off and END hide-controls timed out; neither action is claimed. Both native tabs closed.",
+  "captures": [
+    {
+      "file": "mgdm3-original-far-relief.json",
+      "sha256": "e992b43d78e4287bee4bc4ce663b1e71d26a443cc2cd68071cd1beed5de68ce8",
+      "map": {
+        "name": "maps/mgdm3.bsp",
+        "sha256": "d981353b3b9bc03778153eb25ade436c9c03e035528c529502f12dcd6fe2caa2",
+        "faces": 21435
+      },
+      "state": "ready",
+      "art": "original",
+      "view": "far",
+      "relief": true,
+      "joinKind": "coplanar",
+      "faces": [
+        8005,
+        8010
+      ],
+      "checks": 24,
+      "failedChecks": [],
+      "errors": [],
+      "shaderErrors": [],
+      "cameraError": 0.05412658773652741,
+      "materials": [
+        [
+          "TF_MetWall4_02",
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ]
+        ],
+        [
+          "TF_Metal4",
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ]
+        ],
+        [
+          "TF_Metal4_04",
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ]
+        ],
+        [
+          "TF_Metal4b",
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ]
+        ]
+      ]
+    },
+    {
+      "file": "mgdm3-tf-q92-hd-far-relief.json",
+      "sha256": "519df3ccdc7a288e3cf0aa2453c1e6f6764234653f3ca2250a89b693e769ccd4",
+      "map": {
+        "name": "maps/mgdm3.bsp",
+        "sha256": "d981353b3b9bc03778153eb25ade436c9c03e035528c529502f12dcd6fe2caa2",
+        "faces": 21435
+      },
+      "state": "ready",
+      "art": "hd",
+      "view": "far",
+      "relief": true,
+      "joinKind": "coplanar",
+      "faces": [
+        8005,
+        8010
+      ],
+      "checks": 24,
+      "failedChecks": [],
+      "errors": [],
+      "shaderErrors": [],
+      "cameraError": 0.05412658773652741,
+      "materials": [
+        [
+          "TF_MetWall4_02",
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        [
+          "TF_Metal4",
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        [
+          "TF_Metal4_04",
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        [
+          "TF_Metal4b",
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ]
+      ]
+    },
+    {
+      "file": "mgdm3-tf-q92-hd-near-relief.json",
+      "sha256": "24dd788221f4e86b976da6cb7dfa8bbb4d33de697994dc0b435889545c3afca2",
+      "map": {
+        "name": "maps/mgdm3.bsp",
+        "sha256": "d981353b3b9bc03778153eb25ade436c9c03e035528c529502f12dcd6fe2caa2",
+        "faces": 21435
+      },
+      "state": "ready",
+      "art": "hd",
+      "view": "near",
+      "relief": true,
+      "joinKind": "coplanar",
+      "faces": [
+        8005,
+        8010
+      ],
+      "checks": 24,
+      "failedChecks": [],
+      "errors": [],
+      "shaderErrors": [],
+      "cameraError": 0.05412658773652741,
+      "materials": [
+        [
+          "TF_MetWall4_02",
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        [
+          "TF_Metal4",
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        [
+          "TF_Metal4_04",
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        [
+          "TF_Metal4b",
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ]
+      ]
+    },
+    {
+      "file": "mgdm3-tf-q92-hd-oblique-relief.json",
+      "sha256": "7c5d24cdb62e22812bd971c9c23ab8e882c700c0df61017cb1af726f42a5d13e",
+      "map": {
+        "name": "maps/mgdm3.bsp",
+        "sha256": "d981353b3b9bc03778153eb25ade436c9c03e035528c529502f12dcd6fe2caa2",
+        "faces": 21435
+      },
+      "state": "ready",
+      "art": "hd",
+      "view": "oblique",
+      "relief": true,
+      "joinKind": "coplanar",
+      "faces": [
+        8005,
+        8010
+      ],
+      "checks": 24,
+      "failedChecks": [],
+      "errors": [],
+      "shaderErrors": [],
+      "cameraError": 0.05412658773652741,
+      "materials": [
+        [
+          "TF_MetWall4_02",
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        [
+          "TF_Metal4",
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        [
+          "TF_Metal4_04",
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        [
+          "TF_Metal4b",
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ]
+      ]
+    },
+    {
+      "file": "end-rock-original-far-relief.json",
+      "sha256": "dae1b92be5856c9d9706e9f26a7d850d3a1c8c25d8c45d78d5e84821c161eb8c",
+      "map": {
+        "name": "maps/end.bsp",
+        "sha256": "84bccc471793a2f457ee8e23e32b64e3fb2e73a016b3c831d5950323419dbb23",
+        "faces": 2885
+      },
+      "state": "ready",
+      "art": "original",
+      "view": "far",
+      "relief": true,
+      "joinKind": "corner",
+      "faces": [
+        1191,
+        1292
+      ],
+      "checks": 12,
+      "failedChecks": [],
+      "errors": [],
+      "shaderErrors": [],
+      "cameraError": 0.13021713558905196,
+      "materials": [
+        [
+          "rock3_8",
+          [
+            64,
+            64
+          ],
+          [
+            64,
+            64
+          ]
+        ],
+        [
+          "rock5_2",
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ]
+        ]
+      ]
+    },
+    {
+      "file": "end-rock-q92-hd-far-relief.json",
+      "sha256": "b6acc0946d0ea3fa24a008206086259222acce926de50df5b02decfd76ae282b",
+      "map": {
+        "name": "maps/end.bsp",
+        "sha256": "84bccc471793a2f457ee8e23e32b64e3fb2e73a016b3c831d5950323419dbb23",
+        "faces": 2885
+      },
+      "state": "ready",
+      "art": "hd",
+      "view": "far",
+      "relief": true,
+      "joinKind": "corner",
+      "faces": [
+        1191,
+        1292
+      ],
+      "checks": 12,
+      "failedChecks": [],
+      "errors": [],
+      "shaderErrors": [],
+      "cameraError": 0.13021713558905196,
+      "materials": [
+        [
+          "rock3_8",
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ]
+        ],
+        [
+          "rock5_2",
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ]
+      ]
+    },
+    {
+      "file": "end-rock-q92-hd-near-relief.json",
+      "sha256": "70eed7353e95ad23b5c3d37eaebd7d6422da54fb077de4d644a2f34d8bdba402",
+      "map": {
+        "name": "maps/end.bsp",
+        "sha256": "84bccc471793a2f457ee8e23e32b64e3fb2e73a016b3c831d5950323419dbb23",
+        "faces": 2885
+      },
+      "state": "ready",
+      "art": "hd",
+      "view": "near",
+      "relief": true,
+      "joinKind": "corner",
+      "faces": [
+        1191,
+        1292
+      ],
+      "checks": 12,
+      "failedChecks": [],
+      "errors": [],
+      "shaderErrors": [],
+      "cameraError": 0.10370855684082277,
+      "materials": [
+        [
+          "rock3_8",
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ]
+        ],
+        [
+          "rock5_2",
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ]
+      ]
+    },
+    {
+      "file": "end-rock-q92-hd-oblique-relief.json",
+      "sha256": "86306428ab93d64634d5504cb1b99a48327500e71c25ccd1bc073f86228bdff1",
+      "map": {
+        "name": "maps/end.bsp",
+        "sha256": "84bccc471793a2f457ee8e23e32b64e3fb2e73a016b3c831d5950323419dbb23",
+        "faces": 2885
+      },
+      "state": "ready",
+      "art": "hd",
+      "view": "oblique",
+      "relief": true,
+      "joinKind": "corner",
+      "faces": [
+        1191,
+        1292
+      ],
+      "checks": 12,
+      "failedChecks": [],
+      "errors": [],
+      "shaderErrors": [],
+      "cameraError": 0.11588008517239157,
+      "materials": [
+        [
+          "rock3_8",
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ]
+        ],
+        [
+          "rock5_2",
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "source": {
+    "id": "wall14_5|64x64:a9763815741a765f",
+    "name": "wall14_5",
+    "key": "64x64:a9763815741a765f",
+    "width": 64,
+    "height": 64,
+    "pixelSha256": "d099165f3ea37c124611184bec1e43bfb1982e5c56faefe5f1f2b6d5061da798",
+    "original": "originals/64x64-a9763815741a765f.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "id1",
+        "map": "maps/e2m2.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 15,
+        "faces": 75,
+        "visibleCandidateFaces": 75,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/e4m5.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 5,
+        "faces": 540,
+        "visibleCandidateFaces": 540,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/e4m6.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 8,
+        "faces": 892,
+        "visibleCandidateFaces": 860,
+        "hiddenTriggerFaces": 32,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "hipnotic",
+        "map": "maps/hip3m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+        "slot": 19,
+        "faces": 772,
+        "visibleCandidateFaces": 772,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "rogue",
+        "map": "maps/start.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+        "slot": 10,
+        "faces": 75,
+        "visibleCandidateFaces": 75,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "rogue",
+        "map": "maps/r1m7.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+        "slot": 6,
+        "faces": 881,
+        "visibleCandidateFaces": 881,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "rogue",
+        "map": "maps/r2m7.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+        "slot": 7,
+        "faces": 1512,
+        "visibleCandidateFaces": 1500,
+        "hiddenTriggerFaces": 12,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "referenceSha256": "538c7cff73ceaa0ecf117fee34be96afdf388087c83b6e998e07836995c07006"
+}

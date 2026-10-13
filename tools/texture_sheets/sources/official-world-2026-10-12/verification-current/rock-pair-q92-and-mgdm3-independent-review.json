@@ -1,0 +1,610 @@
+{
+  "schema": 1,
+  "createdAt": "2026-10-13T11:39:52.576001+00:00",
+  "reviewer": "texture_plan independent subagent",
+  "scope": "Read-only independent diffuse appearance review and existingMGDM3native evidence review. No generation, registration or asset edits.",
+  "method": "Exact full-resolution diffuse views; native andBOXhalf/quarter reductions;3x3repeat inspection. Metrics diagnostic, not pass thresholds.",
+  "result": "Both rocks acceptable for exact-source binding/native trial.",
+  "rows": [
+    {
+      "name": "rock5_2",
+      "inputs": {
+        "original": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-rock5_2.png",
+          "sha256": "f8e95fbf1353dcce0ecf2df186f3dcb059836e82f518b1cb3d6fe67ce535551d"
+        },
+        "png": {
+          "path": "newer/textures/candidates-2026-10-12/rock5_2-photographic-4x.png",
+          "sha256": "cca018126997d6d968dff8f8832416c8766971379e560be23eabb787d3a01fbe"
+        },
+        "q92": {
+          "path": "newer/textures/candidates-2026-10-12/rock5_2-4x-q92-xyz-diffuse.webp",
+          "sha256": "bdb5f87e33bfdf9a184b5d29fd98a6ada38ce606af50538ed2b46c5aa8f12c66"
+        }
+      },
+      "metrics": {
+        "2": {
+          "nativeQ92MAE": 2.0572102864583335,
+          "nativeQ92Max": 17.0
+        },
+        "4": {
+          "nativeQ92MAE": 1.2164713541666667,
+          "nativeQ92Max": 7.0
+        },
+        "edges": {
+          "wrapX": 11.971354166666666,
+          "wrapY": 13.030598958333334,
+          "interiorX": 7.222128791585127,
+          "interiorY": 7.957009591079583
+        },
+        "Q92vsPNGMAE": 2.0547332763671875
+      },
+      "visualDisposition": "Accept for exact-source binding/native trial. Dark brown/charcoal, angular rock masses and irregular diagonal/crosswise fractures retained. Natural detail has no new frame or regular masonry courses.",
+      "recipe": {
+        "path": "newer/textures/candidates-2026-10-12/rock5_2-photographic-4x.json",
+        "sha256": "6e17875defc4c9e9558fa8295881a4ba358ec10ab81780923cc0713e726f19be",
+        "generated": "tools/texture_sheets/sources/official-world-2026-10-12/rock5_2-generated-v1.png",
+        "generatedSha256": "0601782341bb87100d126bd1f1e775415a83eb7e7b8d419c21bf769807207135"
+      },
+      "provenanceSourceDonorOutputHashesReverified": true,
+      "runtimeFiles": {
+        "diffuse": {
+          "path": "newer/textures/candidates-2026-10-12/rock5_2-4x-q92-xyz-diffuse.webp",
+          "sha256": "bdb5f87e33bfdf9a184b5d29fd98a6ada38ce606af50538ed2b46c5aa8f12c66",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "height": {
+          "path": "newer/textures/candidates-2026-10-12/rock5_2-4x-q92-xyz-height.webp",
+          "sha256": "a373783f05a9546a2fa8e79d925344bd245a0de8a1103439b7d0e0871dd94ca1",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalX": {
+          "path": "newer/textures/candidates-2026-10-12/rock5_2-4x-q92-xyz-normalX.webp",
+          "sha256": "894681ba10154ab88547ee8e365cb29a43ec4427c9441c2acedb66967b66f5eb",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalY": {
+          "path": "newer/textures/candidates-2026-10-12/rock5_2-4x-q92-xyz-normalY.webp",
+          "sha256": "1c25513521a34c2449b3b933adf4cb5812b09fb05c6c3460fe98da696330aaa9",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalZ": {
+          "path": "newer/textures/candidates-2026-10-12/rock5_2-4x-q92-xyz-normalZ.webp",
+          "sha256": "06c356017ee627c9de23c14e14ad3f62ef2951a9558328c44d989fa38c11e019",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      }
+    },
+    {
+      "name": "rock3_8-base",
+      "inputs": {
+        "original": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-rock3_8-base.png",
+          "sha256": "f4a93ffa4e9184699faba321b9da453581051a55b63d07452ad2bb677341d097"
+        },
+        "png": {
+          "path": "newer/textures/candidates-2026-10-12/rock3_8-base-photographic-4x.png",
+          "sha256": "3eff58818ac227846e8e77cca53c4a79192f2286676ae641e75a4b199196255c"
+        },
+        "q92": {
+          "path": "newer/textures/candidates-2026-10-12/rock3_8-base-4x-q92-xyz-diffuse.webp",
+          "sha256": "ebe56bf46636b74842541cc621f555eb894b052787f7b27ae57fff5a53ad0ce2"
+        }
+      },
+      "metrics": {
+        "2": {
+          "nativeQ92MAE": 6.283854166666667,
+          "nativeQ92Max": 28.0
+        },
+        "4": {
+          "nativeQ92MAE": 5.2578125,
+          "nativeQ92Max": 17.0
+        },
+        "edges": {
+          "wrapX": 19.583333333333332,
+          "wrapY": 19.932291666666668,
+          "interiorX": 11.592299836601308,
+          "interiorY": 8.919495506535947
+        },
+        "Q92vsPNGMAE": 2.658055623372396
+      },
+      "visualDisposition": "Accept for exact-source binding/native trial. Tall narrow copper-brown slabs, vertical dark clefts and staggered cross fractures retained. Finished donor remains slightly brighter/more contrasted at distance, within representative original palette/style; no oversized replacement columns or lost vertical rhythm.",
+      "recipe": {
+        "path": "newer/textures/candidates-2026-10-12/rock3_8-base-photographic-4x.json",
+        "sha256": "2a9a27b47e268517b7bbe8170c07128a2ee965c7779456a382e4ce8b69de1015",
+        "generated": "tools/texture_sheets/sources/official-world-2026-10-12/rock3_8-base-generated-v1.png",
+        "generatedSha256": "ab617aa1b6c2300706f3a5442f4e357ed54fe19e63432883a0eb14041df18883"
+      },
+      "provenanceSourceDonorOutputHashesReverified": true,
+      "runtimeFiles": {
+        "diffuse": {
+          "path": "newer/textures/candidates-2026-10-12/rock3_8-base-4x-q92-xyz-diffuse.webp",
+          "sha256": "ebe56bf46636b74842541cc621f555eb894b052787f7b27ae57fff5a53ad0ce2",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "height": {
+          "path": "newer/textures/candidates-2026-10-12/rock3_8-base-4x-q92-xyz-height.webp",
+          "sha256": "9c89d491995825d81762532adf28ceb6d4b6e9fa557c9f8c569496451f0d931a",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "normalX": {
+          "path": "newer/textures/candidates-2026-10-12/rock3_8-base-4x-q92-xyz-normalX.webp",
+          "sha256": "0a2f454504c779a004686104c02cd1413d2bd4e3d634db23f833df0fc91306e4",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "normalY": {
+          "path": "newer/textures/candidates-2026-10-12/rock3_8-base-4x-q92-xyz-normalY.webp",
+          "sha256": "b93b6ae34594a2c18d4864e7747b6426f7efc13d1bd62fcde9e80ec128adcc78",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "normalZ": {
+          "path": "newer/textures/candidates-2026-10-12/rock3_8-base-4x-q92-xyz-normalZ.webp",
+          "sha256": "abecb20de0e4ef32a9b5b1d4f99dfc0f8d0c3fc36fae2d6a0ab765eec20acdd9",
+          "dimensions": [
+            256,
+            256
+          ]
+        }
+      }
+    }
+  ],
+  "rockLimits": [
+    "Held rock3_8:57663646989d1874 remains excluded. Reviewed base key64x64:5b26cfca296c1fa8 only.",
+    "All10runtimefiles dimensions and hashes checked; normal semantic/GPU behavior and native rock map visibility remain separate.",
+    "AnalyticalJPEGrock5repeat showed a small lower-right encoding artifact absent from decoded candidate; repeated inspection with exact losslessPNG montage confirmed no such artifact in source asset. Do not use that JPEG corner as candidate evidence."
+  ],
+  "mgdm3Receipts": [
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/mgdm3-original-far-relief.json",
+      "sha256": "e992b43d78e4287bee4bc4ce663b1e71d26a443cc2cd68071cd1beed5de68ce8",
+      "screenshot": {
+        "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/mgdm3-original-far-relief.png",
+        "sha256": "27f24f14abb03c9f170d5e9d661cef5a4801e2e62b209e522485a9cba728f267"
+      },
+      "state": "ready",
+      "map": {
+        "name": "maps/mgdm3.bsp",
+        "sha256": "d981353b3b9bc03778153eb25ade436c9c03e035528c529502f12dcd6fe2caa2",
+        "faces": 21435
+      },
+      "signon": 4,
+      "art": "original",
+      "relief": true,
+      "view": "far",
+      "passedChecks": 24,
+      "totalChecks": 24,
+      "errors": [],
+      "shaderErrors": [],
+      "cameraErrorWorldUnits": 0.05412658773652741,
+      "joinKind": "coplanar",
+      "joinFaces": [
+        8005,
+        8010
+      ],
+      "boundFilesReverified": [
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-diffuse.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-height.webp",
+        "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4.png",
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-normalX.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-normalY.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-normalZ.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-diffuse.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-height.webp",
+        "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4b.png",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-normalX.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-normalY.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-normalZ.webp",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-diffuse.webp",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-height.webp",
+        "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_MetWall4_02.png",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-normalX.webp",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-normalY.webp",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-normalZ.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-diffuse.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-height.webp",
+        "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4_04.png",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-normalX.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-normalY.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-normalZ.webp"
+      ],
+      "materialStates": [
+        [
+          "TF_MetWall4_02",
+          false,
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ]
+        ],
+        [
+          "TF_Metal4",
+          false,
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ]
+        ],
+        [
+          "TF_Metal4_04",
+          false,
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ]
+        ],
+        [
+          "TF_Metal4b",
+          false,
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ]
+        ]
+      ]
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/mgdm3-tf-q92-hd-far-relief.json",
+      "sha256": "519df3ccdc7a288e3cf0aa2453c1e6f6764234653f3ca2250a89b693e769ccd4",
+      "screenshot": {
+        "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/mgdm3-tf-q92-hd-far-relief.png",
+        "sha256": "cb661fd5834fb041d14ccdf59436b687ed7051a061df838bc50875fbeb185889"
+      },
+      "state": "ready",
+      "map": {
+        "name": "maps/mgdm3.bsp",
+        "sha256": "d981353b3b9bc03778153eb25ade436c9c03e035528c529502f12dcd6fe2caa2",
+        "faces": 21435
+      },
+      "signon": 4,
+      "art": "hd",
+      "relief": true,
+      "view": "far",
+      "passedChecks": 24,
+      "totalChecks": 24,
+      "errors": [],
+      "shaderErrors": [],
+      "cameraErrorWorldUnits": 0.05412658773652741,
+      "joinKind": "coplanar",
+      "joinFaces": [
+        8005,
+        8010
+      ],
+      "boundFilesReverified": [
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-diffuse.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-height.webp",
+        "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4.png",
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-normalX.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-normalY.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-normalZ.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-diffuse.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-height.webp",
+        "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4b.png",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-normalX.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-normalY.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-normalZ.webp",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-diffuse.webp",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-height.webp",
+        "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_MetWall4_02.png",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-normalX.webp",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-normalY.webp",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-normalZ.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-diffuse.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-height.webp",
+        "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4_04.png",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-normalX.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-normalY.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-normalZ.webp"
+      ],
+      "materialStates": [
+        [
+          "TF_MetWall4_02",
+          true,
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        [
+          "TF_Metal4",
+          true,
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        [
+          "TF_Metal4_04",
+          true,
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        [
+          "TF_Metal4b",
+          true,
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ]
+      ]
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/mgdm3-tf-q92-hd-near-relief.json",
+      "sha256": "24dd788221f4e86b976da6cb7dfa8bbb4d33de697994dc0b435889545c3afca2",
+      "screenshot": {
+        "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/mgdm3-tf-q92-hd-near-relief.png",
+        "sha256": "c4dc3187de914cc9258b67db21880c9f8ce007909d768d0d072b4a6542ae74c6"
+      },
+      "state": "ready",
+      "map": {
+        "name": "maps/mgdm3.bsp",
+        "sha256": "d981353b3b9bc03778153eb25ade436c9c03e035528c529502f12dcd6fe2caa2",
+        "faces": 21435
+      },
+      "signon": 4,
+      "art": "hd",
+      "relief": true,
+      "view": "near",
+      "passedChecks": 24,
+      "totalChecks": 24,
+      "errors": [],
+      "shaderErrors": [],
+      "cameraErrorWorldUnits": 0.05412658773652741,
+      "joinKind": "coplanar",
+      "joinFaces": [
+        8005,
+        8010
+      ],
+      "boundFilesReverified": [
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-diffuse.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-height.webp",
+        "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4.png",
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-normalX.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-normalY.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-normalZ.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-diffuse.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-height.webp",
+        "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4b.png",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-normalX.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-normalY.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-normalZ.webp",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-diffuse.webp",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-height.webp",
+        "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_MetWall4_02.png",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-normalX.webp",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-normalY.webp",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-normalZ.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-diffuse.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-height.webp",
+        "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4_04.png",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-normalX.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-normalY.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-normalZ.webp"
+      ],
+      "materialStates": [
+        [
+          "TF_MetWall4_02",
+          true,
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        [
+          "TF_Metal4",
+          true,
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        [
+          "TF_Metal4_04",
+          true,
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        [
+          "TF_Metal4b",
+          true,
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ]
+      ]
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/mgdm3-tf-q92-hd-oblique-relief.json",
+      "sha256": "7c5d24cdb62e22812bd971c9c23ab8e882c700c0df61017cb1af726f42a5d13e",
+      "screenshot": {
+        "path": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/mgdm3-tf-q92-hd-oblique-relief.png",
+        "sha256": "de3eb8754d38051f6b3b8438f823f749050ed958bf4a48709289e43e7e85c359"
+      },
+      "state": "ready",
+      "map": {
+        "name": "maps/mgdm3.bsp",
+        "sha256": "d981353b3b9bc03778153eb25ade436c9c03e035528c529502f12dcd6fe2caa2",
+        "faces": 21435
+      },
+      "signon": 4,
+      "art": "hd",
+      "relief": true,
+      "view": "oblique",
+      "passedChecks": 24,
+      "totalChecks": 24,
+      "errors": [],
+      "shaderErrors": [],
+      "cameraErrorWorldUnits": 0.05412658773652741,
+      "joinKind": "coplanar",
+      "joinFaces": [
+        8005,
+        8010
+      ],
+      "boundFilesReverified": [
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-diffuse.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-height.webp",
+        "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4.png",
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-normalX.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-normalY.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4-4x-q92-xyz-normalZ.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-diffuse.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-height.webp",
+        "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4b.png",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-normalX.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-normalY.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4b-4x-q92-xyz-normalZ.webp",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-diffuse.webp",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-height.webp",
+        "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_MetWall4_02.png",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-normalX.webp",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-normalY.webp",
+        "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-normalZ.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-diffuse.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-height.webp",
+        "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4_04.png",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-normalX.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-normalY.webp",
+        "newer/textures/candidates-2026-10-12/TF_Metal4_04-4x-q92-xyz-normalZ.webp"
+      ],
+      "materialStates": [
+        [
+          "TF_MetWall4_02",
+          true,
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        [
+          "TF_Metal4",
+          true,
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        [
+          "TF_Metal4_04",
+          true,
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        [
+          "TF_Metal4b",
+          true,
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ]
+      ]
+    }
+  ],
+  "mgdm3Findings": [
+    "All4receipts ready,signon4,24/24checks,noerrors/shadererrors. Map identity matches prior independent native-loader probe.",
+    "All4TFmaterials512diffuse and512normal inHDreceipts. Originalfar restores128dimensions and upgraded:false.",
+    "Visible coplanar join8005/8010showsTF_Metal4 andTF_MetWall4_02. Original andHDfar have identical actualcamera positions; palettes and large layout remain comparable with added photographic detail.",
+    "Dark scene and controls obscure part of frame; nevertheless both selected surfaces are visible near/far/oblique. This is not direct screenshot qualification of the separate rivetedTF_Metal4b/TF_Metal4_04faces, whose presence is proven by material receipts.",
+    "Relief-off control timed out per coordinator; no relief-off receipt/capture exists in reviewed set, so relief-toggle behavior remains unverified."
+  ],
+  "responsibleOwner": "root campaign coordinator",
+  "nextAction": "Register only reviewed exact rock identities, validate material/normal path and actual native rock trial. Retain unresolvedMGDM3relief-off check plainly."
+}

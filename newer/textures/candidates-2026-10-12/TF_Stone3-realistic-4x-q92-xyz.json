@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "TF_Stone3",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Stone3.png",
+  "originalSha256": "78d153ed44b848ff9112ea2023988bfb167ae0a7894b8c835b1854a9511115cd",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-12/TF_Stone3-realistic-4x.png",
+  "authoringDiffuseSha256": "e508fed626f50dcf914144ae89355b01f871f1ea5e3023ddcbf0a6839966805a",
+  "toolSha256": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.3,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-12/TF_Stone3-realistic-4x-q92-xyz-diffuse.webp",
+      "sha256": "56b3524378d508ae6b531d8d2c7da65da920f58e2950cf5b343b24d520096d3a",
+      "bytes": 100224,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-12/TF_Stone3-realistic-4x-q92-xyz-height.webp",
+      "sha256": "1224d8c1e3fd015e7437055a1c16b87ad7916e02716a7f80f69efd0351926483",
+      "bytes": 109372,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-12/TF_Stone3-realistic-4x-q92-xyz-normalX.webp",
+      "sha256": "30a8f0fa53eb1580015407e8da519ac7280169fc98094d08ee682cacbc84600a",
+      "bytes": 110900,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-12/TF_Stone3-realistic-4x-q92-xyz-normalY.webp",
+      "sha256": "efd33205bb43f56371ffe9d189e545b73951e299eca3ad79f90b9f6736b039aa",
+      "bytes": 107158,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-12/TF_Stone3-realistic-4x-q92-xyz-normalZ.webp",
+      "sha256": "71b0d2e0e110ef6eb733de895e4f1a1b6621b8c273289945c7f95c5d1b5b5ee9",
+      "bytes": 27250,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    64
+  ],
+  "distanceMAE": 10.142333984375,
+  "distanceMaximum": 72.0,
+  "secondaryComparisonDimensions": [
+    32,
+    32
+  ],
+  "secondaryDistanceMAE": 7.273111979166667,
+  "secondaryDistanceMaximum": 37.0,
+  "colourCompressionMAE": 1.8385874430338542,
+  "heightCompressionMAE": 1.3030166625976562,
+  "heightCompressionMaximum": 10.0,
+  "normalAngularMean": 1.0108353140075972,
+  "normalAngularP99": 2.6190227373121897,
+  "normalAngularMaximum": 4.732355973347516,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

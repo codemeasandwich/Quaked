@@ -1,0 +1,88 @@
+{
+  "qualification": "Photographic limestone v4: independent visual/replay review passed. Local source integration, not all-map qualification or release.",
+  "beforeIndexSha256": "d5105cd9378d897c6d3bcb42b64403075ab603dbaf2ce715c22b631ff063cf83",
+  "afterIndexSha256": "274aa97e384236d28575affa36acb5d5a90839c87bd1b516b3d16f6fb8011fa8",
+  "entries": [
+    {
+      "name": "wstone_03_JM",
+      "key": "256x256:685e88a59ef2729f",
+      "source": {
+        "id": "wstone_03_JM|256x256:685e88a59ef2729f",
+        "name": "wstone_03_JM",
+        "key": "256x256:685e88a59ef2729f",
+        "width": 256,
+        "height": 256,
+        "pixelSha256": "dc8c515d43219cb5405888d66954aa42453102833b32edc6f5f7deecd27298be",
+        "original": "originals/256x256-685e88a59ef2729f.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "No replacement entry",
+        "uses": [
+          {
+            "game": "mg1",
+            "map": "maps/mge4m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 18,
+            "faces": 7793,
+            "visibleCandidateFaces": 7793,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge4m2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 4,
+            "faces": 7112,
+            "visibleCandidateFaces": 7112,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge4m2b.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 4,
+            "faces": 7112,
+            "visibleCandidateFaces": 7112,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "previousBinding": null,
+      "binding": {
+        "file": "official/wstone_03_JM-685e88a59ef2729f-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/wstone_03_JM-685e88a59ef2729f-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/wstone_03_JM-685e88a59ef2729f-4x-q92-normalX.webp",
+            "y": "official/wstone_03_JM-685e88a59ef2729f-4x-q92-normalY.webp",
+            "z": "official/wstone_03_JM-685e88a59ef2729f-4x-q92-normalZ.webp"
+          },
+          "strength": 0.12,
+          "cap": 0.5
+        }
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-12/native-wstone_03_JM.png",
+      "sourceFileSha256": "d2e549fb56b9149b9b41acffc7c7b6c2fadd58a459b21254f778f3cf41d35a08",
+      "diffuseSha256": "c68f5a42402cfc8839d37c552cf17dc9e889a6e1a5793c31f084a0306f7b7075",
+      "heightSha256": "e4049309056ab5ad7f80358955a6480874c0da3f6e0944a48bd09e12da8d4163",
+      "normalChannelSha256": {
+        "x": "b17b09c932187fea96f00033582129493fd092e6615359d725f09193b843ebdc",
+        "y": "9ec03420a8c19b28e6a2ac6d442df9adee2db12caf7a88de0294eca85ddf82d3",
+        "z": "ee24770c453a4b2626aba9449e102502133a383f985088ce247136143eb2b535"
+      },
+      "encodingReceipt": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v4-4x-q92-xyz.json",
+      "candidate": "candidates-2026-10-12/wstone_03_JM-character-seam-v4-4x-q92-xyz-diffuse.webp",
+      "candidateSha256": "c68f5a42402cfc8839d37c552cf17dc9e889a6e1a5793c31f084a0306f7b7075",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false
+    }
+  ]
+}

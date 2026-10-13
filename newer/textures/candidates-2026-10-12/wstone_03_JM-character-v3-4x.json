@@ -1,0 +1,55 @@
+{
+  "method": "photographic",
+  "factor": 4,
+  "verticalLandmarks": null,
+  "colorStrength": 0.65,
+  "fieldSigma": 2.0,
+  "edgeAnchor": false,
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    128,
+    128
+  ],
+  "distanceMeanMaxError": 37.0,
+  "distanceMeanMAE": 5.680247942606608,
+  "donorDistanceMAE": 10.475229899088541,
+  "newClippedChannelFraction": 0.0,
+  "donorContourCorrelation": 0.9980960426653668,
+  "sourceMean": [
+    171.09088134765625,
+    154.65875244140625,
+    147.9459228515625
+  ],
+  "outputMean": [
+    175.66925621032715,
+    158.28757667541504,
+    149.95923328399658
+  ],
+  "donorBoundaries": {
+    "wrap_x_mean": 4.981119791666666,
+    "wrap_y_mean": 6.640299479166666,
+    "interior_x_mean": 2.206139011078527,
+    "interior_y_mean": 2.3098344203119914
+  },
+  "boundaries": {
+    "wrap_x_mean": 4.986002604166666,
+    "wrap_y_mean": 6.638671875,
+    "interior_x_mean": 2.213187507636853,
+    "interior_y_mean": 2.3159531300912346
+  },
+  "passedDistanceCheck": null,
+  "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-wstone_03_JM.png",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-12/wstone_03_JM-character-generated-v3.png",
+  "output": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-v3-4x.png",
+  "originalSha256": "d2e549fb56b9149b9b41acffc7c7b6c2fadd58a459b21254f778f3cf41d35a08",
+  "generatedSha256": "6a75134cdbbd3ba34cf3880f4479e8368c29198c7216d553583bc451fa07c8ea",
+  "outputSha256": "47fdcb90c19d921412cb00df1f5c7f95ff55f455ea0a889a4af541b51bdbb98d",
+  "outputDimensions": [
+    1024,
+    1024
+  ],
+  "toolSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+  "landmarkFile": null,
+  "landmarkSha256": null
+}

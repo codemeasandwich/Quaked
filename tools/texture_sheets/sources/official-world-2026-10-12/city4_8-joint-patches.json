@@ -1,0 +1,35 @@
+{
+  "authority": "Owner approved deterministic finishing to lock layout/edges while keeping GPT photographic detail",
+  "base": "newer/textures/candidates-2026-10-12/city4_8-photographic-v2.png",
+  "baseSha256": "2b0c5574e9c33dbdce6912ed31816fa6a2ba2941430965ac94ee01b163a52784",
+  "jointDonor": "tools/texture_sheets/sources/official-world-2026-10-12/city4_8-generated-v3.png",
+  "donorSha256": "4a3736bcda1523f2eb14d6bc76cbebfb1d94d4ae2a9337dc02fa973b4197a6a2",
+  "output": "tools/texture_sheets/sources/official-world-2026-10-12/city4_8-joint-restored-donor.png",
+  "outputSha256": "4893f19b9a5055f29b0b193a655764caaf25f5a87ebc8ab77f9b2915ba1535a2",
+  "patches512": [
+    {
+      "x": 384,
+      "y0": 128,
+      "y1": 256,
+      "halfWidth": 6,
+      "coreHalfWidth": 3
+    },
+    {
+      "x": 128,
+      "y0": 256,
+      "y1": 384,
+      "halfWidth": 6,
+      "coreHalfWidth": 3
+    },
+    {
+      "x": 256,
+      "y0": 384,
+      "y1": 512,
+      "halfWidth": 6,
+      "coreHalfWidth": 3
+    }
+  ],
+  "method": "Lanczos donor512; smoothstep stripmask; shoulder mean RGB match; all unmasked pixels byte-identical to base",
+  "changedFraction": 0.016017913818359375,
+  "qualification": "Restores exactly three macro mortar joints, retains the existing remaining joints; visual review pending"
+}

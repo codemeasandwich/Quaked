@@ -1,0 +1,179 @@
+{
+  "schema": 1,
+  "createdAt": "2026-10-13T10:36:11.506232+00:00",
+  "reviewer": "texture_plan independent subagent",
+  "scope": "Narrow source review and actual DM5 native-loader geometry probe for opt-in corner joins; no engine/assets changes.",
+  "source": {
+    "path": "tests/official_texture_gameplay_trial.js",
+    "sha256": "49d9fb92e0cb06506f432cd9acd60cc32280a0ff56a1c1d954b345ed0baf1643"
+  },
+  "probe": {
+    "path": "/private/tmp/quaked-texture-independent-review/dm5-city-corner-review-probe.json",
+    "sha256": "fe36f9fade98613e3794552cbef120cfb2b6c9eb70185aff614dcf01fc0c6a0a",
+    "map": "maps/dm5.bsp",
+    "mapSha256": "2837e106c53ae5f34e12172f3925ba9b8be48a18891972e51344ece54bd9194d",
+    "faceCount": 2026
+  },
+  "result": "No blocking issue found for the actual DM5 fixture.",
+  "checks": {
+    "nodeCheck": "pass",
+    "onlyCitybricksAllowsCorners": true,
+    "opposedNormalsRejected": true,
+    "normalizedBisectorFacesBothSurfaces": true,
+    "receiptSeparatesKindNormalsAndViewDirection": true,
+    "fixedViewEligibleCandidates": 48,
+    "eligibleInteriorProbesOutsideNativeConvexFace": 0,
+    "liveSignonAndSVMoveGuardsRetained": true
+  },
+  "selected": {
+    "faces": [
+      209,
+      210
+    ],
+    "length": 224,
+    "points": [
+      [
+        576,
+        312,
+        -32
+      ],
+      [
+        576,
+        312,
+        192
+      ]
+    ],
+    "center": [
+      576,
+      312,
+      80
+    ],
+    "normalDot": 0.7071067690849304,
+    "normal": [
+      -0.9238795338677012,
+      -0.38268342909041575,
+      0
+    ],
+    "faceProbes": [
+      [
+        576,
+        308,
+        80
+      ],
+      [
+        573.6,
+        314.4,
+        80
+      ]
+    ]
+  },
+  "selectedViews": [
+    {
+      "distance": 48,
+      "shift": 0,
+      "eye": [
+        531.6537823743504,
+        293.63119540366006,
+        80
+      ],
+      "traces": [
+        {
+          "clear": true,
+          "contents": -1,
+          "fraction": 1,
+          "startsolid": false,
+          "allsolid": false
+        },
+        {
+          "clear": true,
+          "contents": -1,
+          "fraction": 1,
+          "startsolid": false,
+          "allsolid": false
+        },
+        {
+          "clear": true,
+          "contents": -1,
+          "fraction": 1,
+          "startsolid": false,
+          "allsolid": false
+        }
+      ]
+    },
+    {
+      "distance": 64,
+      "shift": 32,
+      "eye": [
+        516.8717098324671,
+        287.5082605382134,
+        112
+      ],
+      "traces": [
+        {
+          "clear": true,
+          "contents": -1,
+          "fraction": 1,
+          "startsolid": false,
+          "allsolid": false
+        },
+        {
+          "clear": true,
+          "contents": -1,
+          "fraction": 1,
+          "startsolid": false,
+          "allsolid": false
+        },
+        {
+          "clear": true,
+          "contents": -1,
+          "fraction": 1,
+          "startsolid": false,
+          "allsolid": false
+        }
+      ]
+    },
+    {
+      "distance": 144,
+      "shift": 0,
+      "eye": [
+        442.96134712305104,
+        256.8935862109801,
+        80
+      ],
+      "traces": [
+        {
+          "clear": true,
+          "contents": -1,
+          "fraction": 1,
+          "startsolid": false,
+          "allsolid": false
+        },
+        {
+          "clear": true,
+          "contents": -1,
+          "fraction": 1,
+          "startsolid": false,
+          "allsolid": false
+        },
+        {
+          "clear": true,
+          "contents": -1,
+          "fraction": 1,
+          "startsolid": false,
+          "allsolid": false
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Native point-hull geometry check is independent of, and does not replace, live server SV_Move/entity/signon and rendered browser proof.",
+    "Selected join is a 45-degree corner, not coplanar; a corner does not prove flat cross-texture tile continuity.",
+    "Perpendicular centroid-derived insets have been checked inside all 48 eligible DM5 pairs. This is not a general convex-polygon containment guarantee for future arbitrary fixtures."
+  ],
+  "coordination": {
+    "bluey": "agent_whoami storage_error; mutationOutcome unknown; no retry",
+    "correlationId": "f4ba267e8c094a65bcbb5816a9eb69f9",
+    "responsibleOwner": "root campaign coordinator",
+    "nextAction": "Combine with root live browser proof and retain obligation on existing campaign record until Bluey recovers."
+  }
+}

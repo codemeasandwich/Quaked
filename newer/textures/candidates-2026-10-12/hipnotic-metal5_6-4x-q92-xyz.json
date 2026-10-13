@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "metal5_6",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-hipnotic-metal5_6.png",
+  "originalSha256": "bbbdbb43016ff0a19797611372901911b221d25ad04ca648e186e2e9e2358a28",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-12/hipnotic-metal5_6-photographic-4x.png",
+  "authoringDiffuseSha256": "53e2a65efbcfa88f707f3756e85895b41120d502fb68b0d9604a3f41b7d5f799",
+  "toolSha256": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "profile": {
+    "bands": [
+      0.8,
+      1,
+      0.5,
+      0.2
+    ],
+    "groove": 0.8,
+    "bump": 0.2,
+    "glow": 0,
+    "strength": 0.35,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-12/hipnotic-metal5_6-4x-q92-xyz-diffuse.webp",
+      "sha256": "c3c59673f35fd35d3604ca41a455d0c9a89998fc0cd9d74509a21ed7270228f4",
+      "bytes": 12888,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        128,
+        256
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-12/hipnotic-metal5_6-4x-q92-xyz-height.webp",
+      "sha256": "08c3baaba29d4f4148180def2ca952674120ee269d00d112e574574d27e01e6c",
+      "bytes": 20684,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        128,
+        256
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-12/hipnotic-metal5_6-4x-q92-xyz-normalX.webp",
+      "sha256": "653d526540637fac19a7cf2117e8af981b21d60bf3c4cbe1e0d71017e4573d38",
+      "bytes": 16454,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        128,
+        256
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-12/hipnotic-metal5_6-4x-q92-xyz-normalY.webp",
+      "sha256": "3f9edda8931beb743e1de4f5ff620bbe72e86454d5448f017cd1615cc45153a5",
+      "bytes": 16254,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        128,
+        256
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-12/hipnotic-metal5_6-4x-q92-xyz-normalZ.webp",
+      "sha256": "9439cffae378a94a1115272b87dfdc9565c05ffff2a23c1d647db8115b3b45ac",
+      "bytes": 4750,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        128,
+        256
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    16,
+    32
+  ],
+  "distanceMAE": 7.442708333333333,
+  "distanceMaximum": 35.0,
+  "secondaryComparisonDimensions": [
+    8,
+    16
+  ],
+  "secondaryDistanceMAE": 4.625,
+  "secondaryDistanceMaximum": 20.0,
+  "colourCompressionMAE": 2.8421427408854165,
+  "heightCompressionMAE": 1.470977783203125,
+  "heightCompressionMaximum": 8.0,
+  "normalAngularMean": 1.0549236063436838,
+  "normalAngularP99": 2.6181872974654583,
+  "normalAngularMaximum": 4.283961043669854,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}
