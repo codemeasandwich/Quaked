@@ -1,0 +1,27 @@
+meshing progs/eel2.mdl...
+
+260 tri 384 vert 831 cmd
+
+PASS All thirty Eel electrode anchors match actual native UV triangles and all twenty-one owned poses
+PASS Anchor sampling follows interpolated and replaced position attributes without stale pose caching
+PASS Canonical public skin preparation shares one base material across every native charge state
+PASS Electricity is finite bounded deterministic and prepared before render callbacks
+PASS Posed Eel child geometry follows native transforms and remains independent between entities
+PASS Scene-token lifecycle releases only unseen owners and never disposes native assets or shared noise
+PASS Pending missing wrong identity and failed custom textures retain native state without electrical overlays
+PASS Classic pass restores native skins without advancing or destroying the enhanced charge
+PASS Material substitution mesh reuse and invalid geometry fail closed without damaging body bindings
+PASS Eel electricity reuses shader and noise without changing the lightning gun singleton
+PASS Full-body sections agree with original body edges in every native pose and enclose the dorsal fin
+PASS Spine sampling follows interpolated attributes and excludes detached mouth geometry
+PASS Helices surround the full curved body with bounded sampling and increasing charge clearance
+PASS Spiral winding animation is deterministic and continuous across time and pose interpolation
+PASS Actual alias draws keep full-body spirals within 1872 vertices through every pose and charge state
+RESULT 15/15 passed (tests/eel_charge_test.js)
+PASS a live beam is the supplied ribbons from the true muzzle to the hit point, with its hood recessed into the gun and a light at the hit
+PASS the beam is the server's: no beam, nothing drawn; the ribbons move with the clock; Classic and the switch draw none
+PASS the supplied noise texture: the source's own generator, seed 897234, 256 by 256
+PASS only the player's own TE_LIGHTNING2 is taken, and only its native bolts are marked to be left out, in the Newer pass alone
+PASS built in the right frames: the hood recessed along the gun's own axes, every strip facing the eye, the channel spaced evenly on the screen, the hood's tuned strength, the power ramp and the light
+RESULT 5/5 passed (tests/lightning_test.js)
+TOTAL 20/20 passed

@@ -1,7 +1,7 @@
 /**
  * @module newer/render/r_eelcharge
  *
- * Procedural electricity on the original Eel's electrodes. Native skin state
+ * Procedural electricity spiralling around the posed Eel and its electrodes. Native skin state
  * owns the charge; this module never changes gameplay, skin, pose or lights.
  * One HD body is shared by every charge state. Ribbons reuse the gun's shader,
  * noise and path primitives, but not its material, cursor, clock or beam state.
@@ -15,7 +15,8 @@ export const EEL_CHARGE = Object.freeze({
  model: 'progs/eel2.mdl',
  sha: '58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7',
  width: 136, height: 194, maxVertices: 2048,
- energy: Object.freeze([0, .10, .20, .40, .65, .90])
+ energy: Object.freeze([0, .10, .20, .40, .65, .90]),
+ spiral: Object.freeze({segments:96,turns:2.75,minClearance:.55,width:.55,secondaryWidth:.32})
 });
 const electrodePixels = Array.from({length:15},(_,i)=>[i<9?15:i<13?16:17,42+i*5]);
 const entries = new Map();
@@ -71,6 +72,81 @@ export function R_EelChargeSample(geometry,anchors=R_EelChargeAnchors(geometry))
  });
 }
 
+// Native body strips exclude the detached mouth triangles at s45..65. Each
+// section binds triangle-edge weights once, then reads current posed attributes.
+const bodyRows = [3,9,16,24,34,44,54,64,74,84,94,104,114,124,134,144,154,164,174,184,188];
+const dot=(a,b)=>a.reduce((sum,v,i)=>sum+v*b[i],0);
+const sub=(a,b)=>a.map((v,i)=>v-b[i]);
+
+/** Full-body sections, including the fin, sampled from this draw's geometry.
+ * UV intersections are cached; centres/radii always follow the current pose.
+ */
+export function R_EelChargeSpine(geometry){
+ R_EelChargeAnchors(geometry);
+ const binding=bindings.get(geometry),uv=geometry.attributes.uv,index=geometry.index;
+ if(!binding.sections){
+  binding.sections=bodyRows.map(row=>{
+   const v=(row+.5)/EEL_CHARGE.height,anchors=[],seen=new Set();
+   for(let i=0;i<index.count;i+=3){
+    const ids=[index.getX(i),index.getX(i+1),index.getX(i+2)];
+    const s=ids.map(id=>uv.getX(id)*EEL_CHARGE.width);
+    const body=s.every(x=>x<40)||s.every(x=>x>=68&&x<108);
+    if(!body)continue;
+    for(let k=0;k<3;k++){
+     const a=ids[k],b=ids[(k+1)%3],ya=uv.getY(a),yb=uv.getY(b);
+     if(Math.abs(yb-ya)<1e-9||v<Math.min(ya,yb)||v>Math.max(ya,yb))continue;
+     const t=(v-ya)/(yb-ya),key=t<1e-6?'v'+a:t>1-1e-6?'v'+b:'e'+Math.min(a,b)+':'+Math.max(a,b);
+     if(seen.has(key))continue;
+     seen.add(key);anchors.push({vertices:[a,b,b],weights:[1-t,t,0]});
+    }
+   }
+   if(anchors.length<2)throw Error('Unmapped Eel body section '+row);
+   return {row,anchors};
+  });
+ }
+ return binding.sections.map(({row,anchors})=>{
+  const points=R_EelChargeSample(geometry,anchors).map(a=>a.point);
+  const centre=[0,1,2].map(k=>(Math.min(...points.map(p=>p[k]))+Math.max(...points.map(p=>p[k])))*.5);
+  const radius=Math.max(...points.map(p=>Math.hypot(...sub(p,centre))));
+  return {row,centre,radius,points};
+ });
+}
+
+/** Two animated helices around the curved body. Parallel transport prevents
+ * arbitrary radial flips at bends; a sphere enclosing each section keeps the
+ * authored dorsal fin inside the envelope. Only ribbon width/power taper.
+ */
+export function R_EelChargeSpiralPaths(geometry,time,seed,stage){
+ if(stage<2)return [];
+ const sections=R_EelChargeSpine(geometry),curve=new THREE.CatmullRomCurve3(sections.map(s=>new THREE.Vector3(...s.centre)),false,'centripetal');
+ const steps=EEL_CHARGE.spiral.segments,frames=[];let radial;
+ for(let i=0;i<=steps;i++){
+  const u=i/steps,tangent=curve.getTangent(u).toArray(),centre=curve.getPoint(u).toArray();
+  if(radial)radial=sub(radial,mul(tangent,dot(radial,tangent)));
+  if(!radial||Math.hypot(...radial)<1e-5)radial=cross(tangent,Math.abs(tangent[2])<.9?[0,0,1]:[0,1,0]);
+  radial=norm(radial);
+  const at=u*(sections.length-1),lo=Math.min(sections.length-2,Math.floor(at)),f=at-lo;
+  const radius=sections[lo].radius+(sections[lo+1].radius-sections[lo].radius)*f;
+  frames.push({u,centre,radial:[...radial],across:norm(cross(tangent,radial)),radius});
+ }
+ const paths=[];
+ for(let strand=0;strand<(stage>=4?2:1);strand++){
+  const phase=(seed%997)/997*Math.PI*2+strand*Math.PI-time*2.8;
+  const noise=R_LightningBoltPath(localView,1,[0,0,0],[0,0,1],time,seed+strand*91,1.25,steps,zero,false);
+  paths.push(frames.map(({u,centre,radial,across,radius},i)=>{
+   const angle=u*Math.PI*2*EEL_CHARGE.spiral.turns+phase+.08*Math.sin(u*71+time*13+seed);
+   const clearance=.4+stage*.22+.10*Math.sin(u*59-time*17+strand);
+   let x=Math.cos(angle)*(radius+clearance)+noise[i][0],y=Math.sin(angle)*(radius+clearance)+noise[i][1];
+   // Noise may bend the arc sideways, but must not push it into the enclosing
+   // body/fin radius. .55 covers the .187 primary half-width and chord margin.
+   const outward=Math.max(1,(radius+EEL_CHARGE.spiral.minClearance)/Math.max(1e-8,Math.hypot(x,y)));
+   x*=outward;y*=outward;
+   return add(centre,add(mul(radial,x),mul(across,y)));
+  }));
+ }
+ return paths;
+}
+
 /** Native charge states, including immediate skin-zero/pain/death reset. */
 export function R_EelChargeWanted(entity){
  const id=entity?.model?.aliasSourceIdentity,s=entity?.skinnum;
@@ -119,19 +195,14 @@ function buildEntry(entry,time,stage){
    for(let k=0;k<=4;k++){const angle=k*Math.PI*.5;ring.push(add(centre,add(mul(tangent,Math.cos(angle)*.14),mul(across,Math.sin(angle)*.14))));}
    ribbon(ring,.19,energy*.42,entry.seed+side*71+i,false);
   }
-  if(stage<3)continue;
-  for(let i=0;i<14;i++){
-   const a=nodes[side*15+i],b=nodes[side*15+i+1],normal=norm(add(a.normal,b.normal));
-   const start=add(a.point,mul(a.normal,.12)),end=add(b.point,mul(b.normal,.12));
-   const seed=(entry.seed%10007)+side*191+i*13;
-   const path=R_LightningBoltPath(localView,1,start,end,time,seed,.055+(stage-3)*.025,6,mul(normal,.22),false);
-   ribbon(path,.23,energy,seed);
-   if(stage>=4&&i%4===1){
-    const tip=add(path[3],add(mul(normal,.30),mul(norm(end.map((v,k)=>v-start[k])),.30)));
-    ribbon(R_LightningBoltPath(localView,1,path[3],tip,time,seed+59,.06,4,zero,false),.13,energy*.42,seed+59);
-   }
-  }
  }
+ const spirals=R_EelChargeSpiralPaths(entry.parent.geometry,time,entry.seed,stage);
+ for(let i=0;i<spirals.length;i++){
+  // The common gun writer scales kind-zero widths by .34: these values give
+  // visible, soft filaments without turning the enclosing spiral into a cage.
+  ribbon(spirals[i],i===0?EEL_CHARGE.spiral.width:EEL_CHARGE.spiral.secondaryWidth,energy*(i===0?1:.65),entry.seed+i*83);
+ }
+
  entry.buffer.clearUpdateRanges();entry.buffer.addUpdateRange(0,entry.cursor);entry.buffer.needsUpdate=true;
  entry.geometry.setDrawRange(0,entry.cursor/13);entry.fx.visible=entry.cursor>0;
  entry.stage=stage;entry.time=time;entry.seen=true;

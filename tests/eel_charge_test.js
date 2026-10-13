@@ -98,3 +98,87 @@ Deno.test('Eel electricity reuses shader and noise without changing the lightnin
  await ready(model,requests);if(!vars.Cvar_FindVar('r_hdr'))vars.Cvar_RegisterVariable(new cvar_t('r_hdr','1'));const oldHdr=vars.Cvar_FindVar('r_hdr').value,oldLightning=L.r_newer_lightning.value;vars.Cvar_SetValue('r_hdr',1);L.r_newer_lightning.value=1;const gunScene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(90,1.6,1,4096);camera.up.set(0,0,1);camera.lookAt(1,0,0);camera.updateMatrixWorld();const gunMatrix=new THREE.Matrix4(),setup=()=>L.R_LightningSetup({scene:gunScene,camera:()=>camera,muzzle:()=>({point:[18,-4,-6],matrix:gunMatrix}),beam:()=>({end:[300,10,20]})});const gunHash=()=>{const mesh=gunScene.getObjectByName('quake_lightning'),a=mesh.geometry.attributes.position.data.array;return hash(Buffer.from(a.buffer,a.byteOffset,mesh.geometry.drawRange.count*9*4));};
  try{setup();L.R_LightningClear();L.R_LightningFrame(10);L.R_LightningFrame(10.1);const gun=gunScene.getObjectByName('quake_lightning'),before=gunHash(),time=gun.material.uniforms.uTime.value,e=entity(model,21),m=draw(e,h),scene=new THREE.Scene();scene.add(m);const fx=E.R_EelChargeSeen(e,m,scene,90);fx.onBeforeRender();check(fx.material!==gun.material,'separate material uniforms');same(fx.material.fragmentShader,gun.material.fragmentShader,'same existing filament shader');same(fx.material.uniforms.uNoise.value,gun.material.uniforms.uNoise.value,'same seeded noise texture');same(gun.material.uniforms.uTime.value,time,'Eel clock never replaces gun clock');same(gunHash(),before,'Eel never rewrites gun buffer');E.R_EelChargeClear();L.R_LightningFrame(10.2);const after=gunHash();L.R_LightningClear();for(const t of [10,10.1,10.2])L.R_LightningFrame(t);same(gunHash(),after,'gun temporal output unchanged by interleaved Eel work');}finally{L.R_LightningClear();vars.Cvar_SetValue('r_hdr',oldHdr);L.r_newer_lightning.value=oldLightning;}
 }));
+
+// Independent oracle reads owned MDL edges directly, not the effect's cached
+// bindings. The first 32 vertices are separate mouth pieces, not the body.
+function originalSection(bytes,pose,row){
+ const vertexCount=148,triangleCount=260,stStart=84+6*(4+136*194),triStart=stStart+vertexCount*12,frameStart=triStart+triangleCount*16,points=[];
+ for(let tri=0;tri<triangleCount;tri++){
+  const at=triStart+tri*16,front=bytes.readInt32LE(at),ids=[0,1,2].map(k=>bytes.readInt32LE(at+4+k*4));
+  if(ids.some(v=>v<32))continue;
+  const uv=ids.map(v=>{const s=stStart+v*12;return[bytes.readInt32LE(s+4)+.5+(!front&&bytes.readInt32LE(s)?68:0),bytes.readInt32LE(s+8)+.5];});
+  for(let edge=0;edge<3;edge++){
+   const next=(edge+1)%3,a=uv[edge][1],b=uv[next][1],y=row+.5;
+   if(a===b||y<Math.min(a,b)||y>Math.max(a,b))continue;
+   const t=(y-a)/(b-a),point=[0,1,2].map(axis=>[edge,next].reduce((sum,k,j)=>{const raw=frameStart+pose*(28+vertexCount*4)+28+ids[k]*4;return sum+(j?t:1-t)*(bytes[raw+axis]*bytes.readFloatLE(8+axis*4)+bytes.readFloatLE(20+axis*4));},0));
+   points.push(point);
+  }
+ }
+ return points;
+}
+const separation=(a,b)=>Math.hypot(...a.map((v,i)=>v-b[i]));
+const tuple=p=>new THREE.Vector3(...p);
+Deno.test('Full-body sections agree with original body edges in every native pose and enclose the dorsal fin',async()=>{
+ const{header:h,bytes}=await native(),before=immutable(h);
+ for(let pose=0;pose<21;pose++){
+  const sections=E.R_EelChargeSpine(geo(h,pose));check(sections.length>=20,'enough full-body sections');same(sections[0].row,3,'nose section retained');same(sections.at(-1).row,188,'tail-tip section retained');
+  for(const section of sections){
+   const expected=originalSection(bytes,pose,section.row);check(expected.length>0,'real native section exists');check(section.points.length>=2,'body section has witnesses');
+   for(const point of section.points)check(expected.some(p=>separation(p,point)<1e-4),'sample belongs to an original body edge, pose '+pose+' row '+section.row);
+   for(const point of expected){check(section.points.some(p=>separation(p,point)<1e-4),'all native body/fin intersections retained, pose '+pose+' row '+section.row+' point '+JSON.stringify(point)+' nearest '+Math.min(...section.points.map(p=>separation(p,point)))+' radius '+section.radius+' pointRadius '+separation(point,section.centre));check(separation(point,section.centre)<=section.radius+1e-4,'envelope includes native fin');}
+   check(Number.isFinite(section.radius)&&section.radius>0,'finite positive section radius');
+  }
+  const length=sections.slice(1).reduce((sum,s,i)=>sum+separation(s.centre,sections[i].centre),0);check(length>35&&length<65,'full native bent-body length, not short electrode span');
+  if(pose===0){check(sections[0].centre[0]>19,'nose reaches original head');check(sections.at(-1).centre[0]<-18,'tail reaches original tip');check(Math.max(...sections.map(s=>s.radius))>4,'fin is not mistaken for two-unit side half-width');}
+ }
+ same(immutable(h),before,'original poses/commands untouched');
+});
+Deno.test('Spine sampling follows interpolated attributes and excludes detached mouth geometry',async()=>{
+ const{header:h}=await native(),g=geo(h,0),next=geo(h,5),a=E.R_EelChargeSpine(g),b=E.R_EelChargeSpine(next),blend=.37;
+ g.setAttribute('position',new THREE.BufferAttribute(Float32Array.from(g.attributes.position.array,(v,i)=>v*(1-blend)+next.attributes.position.array[i]*blend),3));
+ const mixed=E.R_EelChargeSpine(g);
+ for(let j=0;j<mixed.length;j++){same(mixed[j].points.length,a[j].points.length,'stable section binding');for(let p=0;p<mixed[j].points.length;p++)for(let k=0;k<3;k++)near(mixed[j].points[p][k],a[j].points[p][k]*(1-blend)+b[j].points[p][k]*blend,'current interpolated native edge',2e-5);}
+ const before=JSON.stringify(mixed),spiral=JSON.stringify(E.R_EelChargeSpiralPaths(g,8,17,5)),positions=g.attributes.position;
+ for(let v=0;v<positions.count;v++)if(h.meshVertexOrder[v]<32)positions.setXYZ(v,10000+v,-20000-v,30000+v);
+ same(JSON.stringify(E.R_EelChargeSpine(g)),before,'moving only detached mouth pieces cannot distort spine');same(JSON.stringify(E.R_EelChargeSpiralPaths(g,8,17,5)),spiral,'mouth geometry cannot inflate whole-body electrical envelope');
+ for(let v=0;v<positions.count;v++)positions.setXYZ(v,positions.getX(v)+7,positions.getY(v)-3,positions.getZ(v)+2);
+ const shifted=E.R_EelChargeSpine(g);for(let j=0;j<shifted.length;j++)for(let k=0;k<3;k++)near(shifted[j].centre[k],mixed[j].centre[k]+[7,-3,2][k],'in-place current positions invalidate no pose cache',2e-5);
+});
+Deno.test('Helices surround the full curved body with bounded sampling and increasing charge clearance',async()=>{
+ const{header:h}=await native();
+ // Several deterministic clocks and entity seeds expose inward jitter, not just one attractive frame.
+ for(const time of [0,4.25,7.25])for(const seed of [19,31])for(let pose=0;pose<21;pose++){
+  const g=geo(h,pose),sections=E.R_EelChargeSpine(g),low=E.R_EelChargeSpiralPaths(g,time,seed,2),high=E.R_EelChargeSpiralPaths(g,time,seed,5);
+  same(E.R_EelChargeSpiralPaths(g,time,seed,1).length,0,'initial electrode-only state');same(low.length,1,'charge two has one full coil');same(high.length,2,'peak charge has two coils');
+  for(const path of [...low,...high]){same(path.length,97,'96 bounded segments');check(path.flat().every(Number.isFinite),'finite complete coil');}
+  for(let j=0;j<sections.length;j++){
+   const s=sections[j],sample=j/(sections.length-1)*96,lo=Math.min(95,Math.floor(sample)),t=sample-lo;
+   const at=path=>path[lo].map((v,k)=>v*(1-t)+path[lo+1][k]*t),dLow=separation(at(low[0]),s.centre),dHigh=separation(at(high[0]),s.centre);
+   // The ribbon writer scales primary/secondary half-widths by .34.
+   check(dLow>s.radius+.55*.34,'low-stage ribbon clears body/fin envelope, time '+time+' seed '+seed+' pose '+pose+' row '+s.row+' radius '+s.radius+' coilDistance '+dLow);check(dHigh>dLow,'charge widens coil without replacing native centreline');
+   check(separation(at(high[1]),s.centre)>s.radius+.32*.34,'secondary coil clears native section');
+  }
+ }
+});
+Deno.test('Spiral winding animation is deterministic and continuous across time and pose interpolation',async()=>{
+ const{header:h}=await native(),g=geo(h,0),sections=E.R_EelChargeSpine(g),time=4.25,seed=19,path=E.R_EelChargeSpiralPaths(g,time,seed,5)[0];
+ same(JSON.stringify(E.R_EelChargeSpiralPaths(g,time,seed,5)[0]),JSON.stringify(path),'same pose/time/seed gives identical path');check(JSON.stringify(E.R_EelChargeSpiralPaths(g,time,seed+1,5)[0])!==JSON.stringify(path),'entity phase remains independent');
+ // Measure signed turns geometrically. Quaternion minimal rotations are an
+ // independent winding oracle, not the production projection-based frame.
+ const curve=new THREE.CatmullRomCurve3(sections.map(s=>tuple(s.centre)),false,'centripetal');let prior,priorTangent,total=0;
+ for(let i=0;i<path.length;i++){
+  const u=i/(path.length-1),tangent=curve.getTangent(u),offset=tuple(path[i]).sub(curve.getPoint(u)).normalize();
+  if(prior){const transported=prior.clone().applyQuaternion(new THREE.Quaternion().setFromUnitVectors(priorTangent,tangent)),step=Math.atan2(tangent.dot(new THREE.Vector3().crossVectors(transported,offset)),transported.dot(offset));check(Math.abs(step)<Math.PI*.5,'jagged winding has no radial flip');total+=step;}
+  prior=offset;priorTangent=tangent;
+ }
+ near(total/(2*Math.PI),2.75,'approximately two and three-quarter full-body turns',.05);
+ const later=E.R_EelChargeSpiralPaths(g,time+.0001,seed,5)[0];check(later.some((p,i)=>separation(p,path[i])>1e-5),'clock animates coil');check(Math.max(...later.map((p,i)=>separation(p,path[i])))<.01,'small time increment cannot flip radial frame');
+ const next=geo(h,1),original=Float32Array.from(g.attributes.position.array),blend=t=>g.setAttribute('position',new THREE.BufferAttribute(Float32Array.from(original,(v,i)=>v*(1-t)+next.attributes.position.array[i]*t),3));blend(.5);const middle=E.R_EelChargeSpiralPaths(g,time,seed,5)[0];blend(.5001);const adjacent=E.R_EelChargeSpiralPaths(g,time,seed,5)[0];check(Math.max(...adjacent.map((p,i)=>separation(p,middle[i])))<.01,'small pose interpolation change has no frame pop');
+});
+Deno.test('Actual alias draws keep full-body spirals within 1872 vertices through every pose and charge state',async()=>fixture(async({model,header:h},requests)=>{
+ await ready(model,requests);const e=entity(model,31),scene=new THREE.Scene(),before=immutable(h);
+ for(let pose=0;pose<21;pose++)for(let stage=1;stage<=5;stage++){
+  e.frame=pose;e.skinnum=stage;const m=draw(e,h);scene.add(m);const fx=E.R_EelChargeSeen(e,m,scene,11.25);check(fx,'actual posed public draw binds electrical effect');same(fx.geometry.drawRange.count,stage===1?720:stage<4?1296:1872,'coronas plus bounded full-body coils');check(fx.geometry.drawRange.count<=E.EEL_CHARGE.maxVertices,'fixed allocation respected');check(Array.from(array(fx)).every(Number.isFinite),'actual vertex attributes finite');
+ }
+ same(immutable(h),before,'all native pose data remain unchanged');same(E.R_EelChargeStatus().errors.length,0,'no hidden geometry fallback');
+}));

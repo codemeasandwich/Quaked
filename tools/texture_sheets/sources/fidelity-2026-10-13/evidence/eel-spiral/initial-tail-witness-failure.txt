@@ -1,0 +1,24 @@
+meshing progs/eel2.mdl...
+
+260 tri 384 vert 831 cmd
+
+PASS All thirty Eel electrode anchors match actual native UV triangles and all twenty-one owned poses
+PASS Anchor sampling follows interpolated and replaced position attributes without stale pose caching
+PASS Canonical public skin preparation shares one base material across every native charge state
+PASS Electricity is finite bounded deterministic and prepared before render callbacks
+PASS Posed Eel child geometry follows native transforms and remains independent between entities
+PASS Scene-token lifecycle releases only unseen owners and never disposes native assets or shared noise
+PASS Pending missing wrong identity and failed custom textures retain native state without electrical overlays
+PASS Classic pass restores native skins without advancing or destroying the enhanced charge
+PASS Material substitution mesh reuse and invalid geometry fail closed without damaging body bindings
+PASS Eel electricity reuses shader and noise without changing the lightning gun singleton
+PASS Spine sampling follows interpolated attributes and excludes detached mouth geometry
+PASS Helices surround the full curved body with bounded sampling and increasing charge clearance
+PASS Spiral winding animation is deterministic and continuous across time and pose interpolation
+PASS Actual alias draws keep full-body spirals within 1872 vertices through every pose and charge state
+RESULT 14/15 passed (tests/eel_charge_test.js)
+FAIL Full-body sections agree with original body edges in every native pose and enclose the dorsal fin Error: all native body/fin intersections retained, pose 0 row 174 point [-15.384352684020996,-5.23526468873024,1.4203590899705887] nearest 0.38471324143880375 radius 2.9864417522906934 pointRadius 1.0248992963889143
+    at check (file:///Users/bri/.codex/worktrees/eel-procedural-lightning/Quaked/tests/eel_charge_test.js:23:33)
+    at file:///Users/bri/.codex/worktrees/eel-procedural-lightning/Quaked/tests/eel_charge_test.js:128:33
+    at async file:///Users/bri/.codex/worktrees/eel-procedural-lightning/Quaked/tools/run_tests.mjs:93:9
+TOTAL 14/15 passed

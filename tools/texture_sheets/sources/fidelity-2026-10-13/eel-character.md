@@ -43,8 +43,9 @@ UV triangles, then samples their barycentric positions and normals from the actu
 posed/interpolated mesh each draw. Topology is cached; posed positions are not.
 The effect is a child of that mesh and inherits its entity and level-view transforms.
 
-Native skin 0 draws no electricity. States 1–2 build small node coronas; states 3–5
-add connecting arcs and stronger branches. The native skin remains the sole charge
+Native skin 0 draws no electricity. State 1 builds small node coronas. States 2–3
+add a full-body spiral; states 4–5 add a second, phase-offset strand. The spirals
+wrap 2.75 turns from snout to tail around the actual posed body and fins. The native skin remains the sole charge
 state. Pain/death/reset behavior follows the existing game's skin changes. There
 is no new attack clock, gameplay random source, light allocation or skin animation.
 
@@ -52,8 +53,13 @@ The effect reuses the gun's material construction, noise texture, deterministic
 path and ribbon writer. Its material, geometry, clock and cursors are independent.
 Physical paths are built before Three uploads attributes. Camera-facing width is
 expanded in the vertex shader for each actual draw camera. `onBeforeRender` changes
-only uniforms, avoiding a one-frame-late vertex upload. The maximum is 1,920 vertices
-within a fixed 2,048-vertex allocation per visible charging Eel.
+only uniforms, avoiding a one-frame-late vertex upload. The refined maximum is 1,872 vertices
+within the existing 2,048-vertex allocation per visible charging Eel. Native-UV
+body sections include the dorsal fin; indexed-edge bindings retain coincident UVs
+that belong to distinct tail vertices. A transported radial frame follows a
+centripetal spline through current section centres. Shared gun noise adds
+irregular motion, with an outward floor preserving ribbon clearance. No rigid
+world-space bounding box or new charge texture is used.
 
 Rendering is additive with depth testing and no depth writes; auxiliary MRT outputs
 are zero. Existing body/world depth occludes the electricity. This is emissive
@@ -106,3 +112,29 @@ Reproduce the fit using `/usr/bin/python3 tools/texture_sheets/fit_generated_ski
  --variant eel2/custom`, the same Rogue pack and external shareware palette pack.
 Set QUAKED_THREE_MODULE and QUAKED_CANVAS_MODULE to installed dependency paths.
 For Eel identity tests also set QUAKED_OWNED_PAK to Rogue and QUAKED_ID1_PAK to Quake.
+
+
+## Owner refinement: full-body spiral
+
+After the initial a7da6e7d delivery, the owner requested a stronger shock spiralling
+around the whole Eel. The short electrode links are replaced with one or two
+96-segment helices. The existing electrode coronas remain. Explicit tuning is in
+EEL_CHARGE.spiral; the shared writer applies its existing .34 width multiplier.
+The outer envelope includes the fin, with a .55 minimum radial margin before
+ribbon expansion. Geometry remains bounded and built before upload.
+
+The first trial exposed two issues that were corrected: UV-only deduplication
+merged distinct tail points, so bindings now deduplicate actual indexed edges
+and endpoints; inward noise could cross the low-charge enclosing radius, so it
+now retains its angular irregularity while its radial magnitude is bounded.
+The two-Eel pixel fixture also needed wider spacing because the full-body effect
+extends past the old screen-half controls. Its exact independence comparison is
+retained. These initial diagnostic failures are preserved with the refinement
+proof; previous delivery evidence is not overwritten.
+
+Independent maintained tests pass20/20 (15 Eel, five gun). New cases compare actual
+native edge intersections across21poses, exclude detached mouth geometry, verify
+interpolated attributes, full-body extent, winding, deterministic animation,
+clearance over multiple times/seeds and the exact1872-vertex maximum. Fresh GPU
+and staged-package evidence for this refinement is recorded separately from the
+initial single-skin delivery under evidence/eel-spiral/.
