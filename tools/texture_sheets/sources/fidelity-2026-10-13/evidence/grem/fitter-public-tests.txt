@@ -1,0 +1,14 @@
+PUBLIC_FIT actual grem {"dimensions": [1232, 676], "surfacePixels": 412197, "edgePixels": 5679}
+test_actual_gremlin_complete_coverage_and_measured_landmarks (__main__.GeneratedSkinFitTests) ... MAPPED_SOURCE_ANCHORS [{"components": [1, 3], "sourceSeed": [410, 389], "mappedAnchor": [309, 292]}, {"components": [2, 4], "sourceSeed": [1275, 389], "mappedAnchor": [925, 292]}, {"components": [5], "sourceSeed": [337, 658], "mappedAnchor": [255, 496]}, {"components": [6], "sourceSeed": [476, 659], "mappedAnchor": [355, 498]}, {"components": [7], "sourceSeed": [1205, 657], "mappedAnchor": [871, 495]}, {"components": [8], "sourceSeed": [1343, 659], "mappedAnchor": [970, 498]}, {"components": [9], "sourceSeed": [403, 782], "mappedAnchor": [304, 591]}, {"components": [10], "sourceSeed": [1271, 783], "mappedAnchor": [920, 591]}]
+ok
+test_detached_source_islands_cannot_colour_body_surfaces (__main__.GeneratedSkinFitTests) ... PUBLIC_FIT isolated-donor-proof grem {"dimensions": [1232, 676], "surfacePixels": 412197, "edgePixels": 5679}
+ok
+test_invalid_ownership_and_background_seeds_reject_before_writing (__main__.GeneratedSkinFitTests) ... ok
+test_legacy_fish_recipe_is_pixel_identical_to_committed_assets (__main__.GeneratedSkinFitTests) ... PUBLIC_FIT legacy-fish fish {"dimensions": [1040, 776], "surfacePixels": 434022, "edgePixels": 1656}
+LEGACY_FISH_PIXEL_IDENTITY diffuse.png height.webp
+ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 22.010s
+
+OK

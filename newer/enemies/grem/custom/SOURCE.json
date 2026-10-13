@@ -2,11 +2,11 @@
   "schema": 1,
   "model": "progs/grem.mdl",
   "nativeModelSha256": "bdc4443c3a0d0bb30b4302bb7b1d9759344690c6148bea08a747436191325763",
-  "source": "tools/texture_sheets/sources/generated-2026-10-12/grem.png",
-  "sourceSha256": "82ffaf95ffa2263f354e7c3d49ce1a716d8021281e17b887ff0c1cfc2532326b",
+  "source": "tools/texture_sheets/sources/fidelity-2026-10-12/grem-character-face.png",
+  "sourceSha256": "9733ca0523d1edcd2ea5899335d09746b85a907153cdae938abe127c9ef35a31",
   "sourceDimensions": [
     1692,
-    930
+    929
   ],
   "dimensions": [
     1232,
@@ -17,80 +17,88 @@
   "poses": 179,
   "vertices": 123,
   "triangles": 245,
-  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "transform": "measured source-component crop/resize per native UV component group; original UVs preserved",
   "atlasBox": [
     0,
     0,
     1232,
     676
   ],
-  "registration": null,
+  "registration": {
+    "method": "Independent measured source-component crop/resize using original native UV footprint and face/weapon anchors;8sourcepieces own10nativecomponents",
+    "sourcePigment": "Generated source only; native reference supplies no pigment",
+    "reachPixels": 24,
+    "surfacePixels": 412197,
+    "expectedEdgePixels": 5679,
+    "expectedMissingPixels": 0,
+    "outputStandard": "Owner-approved4x; measured6x destination boxes scaled2/3; source coordinates unchanged"
+  },
   "mattePolicy": "black",
   "nativeTexturePixelsUsed": 0,
   "islands": [
     {
       "id": 1,
       "surfacePixels": 184849,
-      "directPixels": 180825,
-      "edgePixels": 4024
+      "directPixels": 182763,
+      "edgePixels": 2086
     },
     {
       "id": 2,
       "surfacePixels": 184851,
-      "directPixels": 180562,
-      "edgePixels": 4289
+      "directPixels": 182089,
+      "edgePixels": 2762
     },
     {
       "id": 3,
       "surfacePixels": 1,
-      "directPixels": 0,
-      "edgePixels": 1
+      "directPixels": 1,
+      "edgePixels": 0
     },
     {
       "id": 4,
       "surfacePixels": 1,
-      "directPixels": 0,
-      "edgePixels": 1
+      "directPixels": 1,
+      "edgePixels": 0
     },
     {
       "id": 5,
       "surfacePixels": 3339,
-      "directPixels": 3084,
-      "edgePixels": 255
+      "directPixels": 3257,
+      "edgePixels": 82
     },
     {
       "id": 6,
       "surfacePixels": 3860,
-      "directPixels": 3485,
-      "edgePixels": 375
+      "directPixels": 3747,
+      "edgePixels": 113
     },
     {
       "id": 7,
       "surfacePixels": 3340,
-      "directPixels": 3088,
-      "edgePixels": 252
+      "directPixels": 3245,
+      "edgePixels": 95
     },
     {
       "id": 8,
       "surfacePixels": 3859,
-      "directPixels": 3495,
-      "edgePixels": 364
+      "directPixels": 3727,
+      "edgePixels": 132
     },
     {
       "id": 9,
       "surfacePixels": 14049,
-      "directPixels": 12078,
-      "edgePixels": 1971
+      "directPixels": 13888,
+      "edgePixels": 161
     },
     {
       "id": 10,
       "surfacePixels": 14048,
-      "directPixels": 12077,
-      "edgePixels": 1971
+      "directPixels": 13800,
+      "edgePixels": 248
     }
   ],
   "surfacePixels": 412197,
-  "edgePixels": 13503,
+  "edgePixels": 5679,
   "normalProfile": {
     "strength": 0.65,
     "cap": 0.55
@@ -102,13 +110,205 @@
     "height_for"
   ],
   "files": {
-    "diffuse.png": "6309948c5f1fe658420ae72768202aac89637bbce4d684e54dfeaf7792a8efd3",
-    "height.webp": "7bdfa94591412a08d70cdef6871187f1ede7839975b5a3f0219033cc87bfb481"
+    "diffuse.png": "664f182bdc547e998477edd5ace7f3adc5e8f191bebd57257ede049a59d0f4a5",
+    "height.webp": "e2aeb49dc77c8e2c097dda89771b1099e5b137f60e4bff2f04f0504a1c461f22"
   },
   "generation": {
     "tool": "ChatGPT built-in imagegen",
     "date": "2026-10-12",
-    "reference": "Original Hipnotic progs/grem.mdl skin0 decoded with native palette and nearest enlarged4x; all8body/weapon islands retained",
-    "prompt": "Create a faithful high-resolution repaint of this exact original Quake Scourge of Armagon Gremlin UV skin atlas. This is a production model texture bitmap, NOT concept art or a 3D render. Preserve exact 308:169 aspect ratio, the front and back halves, all eight UV islands, silhouettes, proportions, limb lengths, the tiny original face and its position, claw shapes, and every gap. Both body halves and all small islands must remain at their original proportional coordinates. IMPORTANT: preserve the two small triangular pieces and the metallic/brown weapon piece BETWEEN THE FEET of EACH HALF. These are used by real weapon-firing animation, not discarded background. Do not add another weapon or rearrange them. Keep the original dirty grey-brown leathery skin, dark nearly-black dorsal stripe, muted brown highlights, deep blood-red chest wound and bloody hands/claws, with the same placement and extent. Add restrained fine skin folds, scars and metal/wood detail within the original regions only. Do not create a large new head, change anatomy, add horns/armour/clothes, change palette or exaggerate gore. Keep the pure black background, with crisp boundaries and no cast shadows, text, labels, border or watermark. Preserve original design and UV fidelity above all; increase image detail while leaving the original atlas composition intact."
-  }
+    "reference": "Native Gremlin layout/colour blueprint; owner Shambler raw source and owner-selected Ogre as material/form/character references only",
+    "prompt": "Create a CLEAN, HIGH-RESOLUTION, PHOTOREALISTIC GREMLIN SKIN ATLAS with the same sculpted character quality as the owner's enhanced monsters in Images2 and3.\n\nIMAGE ROLES:\nImage1 = ORIGINAL GREMLIN layout/design/colour BLUEPRINT ONLY. Its pixels are low-resolution; DO NOT enlarge, sharpen, imitate its dithering or turn pixel patches into pores.\nImage2 = owner's enhanced SHAMBLER, the principal skin/form quality reference: coherent sculpted flesh, smooth continuous planes, meaningful directional wrinkles, localized wounds, strong readable creature character. Do NOT copy its white colour, stocky body, claws, giant mouth, text or sheet layout.\nImage3 = owner's enhanced OGRE, reference for lifelike anatomical surfaces, expressive facial modelling and clear material separation. Do NOT copy its human anatomy, clothes, face, weapons or markings.\n\nRECONSTRUCT the Gremlin's surface cleanly at high resolution, as if a skilled film-creature artist sculpted and photographed the ORIGINAL GREMLIN. Large and medium forms come first. Smooth leathery grey-brown skin with subtle natural colour variation, a few convincing folds following shoulders/elbows/hips, taut tendons, and controlled local scars. Details should be clean, intentional and well resolved. Most skin planes must remain QUIET and continuous. No all-over gravel, grit, cellular noise, pitted bronze, mottled pixel blocks, stippling, crispy sharpening or uniform busy texture. Pores are subtle and only close-up detail.\n\nRetain the original Gremlin's lanky hunched stylized proportions, hooked blade-fingers, dark central spine, low-set compact face and all original design landmarks. Give the existing face the readable predatory personality of the owner's creatures through coherent eyelids, taut lips and individually formed teeth within its existing bounds. Its two small eye accents stay small; no gigantic glowing eyeballs. It must remain the GREMLIN, not an Ogre, Shambler or a generic humanoid.\n\nOriginal palette: dark earthy grey-brown/taupe hide, nearly-black dorsal strip, original deep crimson wound/stain placement on chest/hands, charcoal metal and dark brown weapon parts. Preserve colour-family and broad marking boundaries. No gold/bronze skin, white skin, armour, new gore, new anatomy or invented accessories.\n\nSTRICT PRODUCTION LAYOUT: follow Image1's complete308:169 composition. Both front/back body halves, all FOUR triangular inserts and BOTH detached weapon surfaces between the feet stay at exactly the original normalized coordinates, sizes, silhouettes and orientations. Keep every gap and border fragment; no cropping, mirroring or rearranging. Flat black background, clean edges, no external shadows. Even neutral illumination suitable for a game diffuse map. No text, labels, logos or border.\nThe final image should look like a clean cinematic creature texture authored by the same artist as Images2/3, preserving Image1's identity, not a noisy upscale. Aim for a very high resolution complete atlas with crisp continuous detail.",
+    "styleReferences": [
+      {
+        "file": "tools/texture_sheets/sources/shambler-2026-10-01.png",
+        "sha256": "f65fd1bcc87f70862cfb7284f216c4b20b89a05ed82fd0cc71f4d7a51033a3e9"
+      },
+      {
+        "file": "tools/texture_sheets/sources/fidelity-2026-10-12/ogre-owner-base.png",
+        "sha256": "dd36fe10a6494e040a14c18966cc3dd8819ecc63c373c107fd084a8f867d9912"
+      }
+    ],
+    "supersedes": "Owner rejected previous grainy candidate; not installed",
+    "faceCorrectionPromptFile": "tools/texture_sheets/sources/fidelity-2026-10-12/grem-face-prompt.txt"
+  },
+  "piecePlacements": [
+    {
+      "name": "front body",
+      "nativeComponents": [
+        1,
+        3
+      ],
+      "sourceSeed": [
+        410,
+        389
+      ],
+      "sourceBox": [
+        23,
+        14,
+        802,
+        894
+      ],
+      "atlasBox": [
+        22,
+        10,
+        599,
+        671
+      ]
+    },
+    {
+      "name": "back body",
+      "nativeComponents": [
+        2,
+        4
+      ],
+      "sourceSeed": [
+        1275,
+        389
+      ],
+      "sourceBox": [
+        886,
+        13,
+        1669,
+        894
+      ],
+      "atlasBox": [
+        638,
+        10,
+        1215,
+        671
+      ]
+    },
+    {
+      "name": "front insert1",
+      "nativeComponents": [
+        5
+      ],
+      "sourceSeed": [
+        337,
+        658
+      ],
+      "sourceBox": [
+        292,
+        582,
+        401,
+        719
+      ],
+      "atlasBox": [
+        225,
+        442,
+        299,
+        539
+      ]
+    },
+    {
+      "name": "front insert2",
+      "nativeComponents": [
+        6
+      ],
+      "sourceSeed": [
+        476,
+        659
+      ],
+      "sourceBox": [
+        411,
+        582,
+        521,
+        720
+      ],
+      "atlasBox": [
+        310,
+        442,
+        387,
+        543
+      ]
+    },
+    {
+      "name": "back insert1",
+      "nativeComponents": [
+        7
+      ],
+      "sourceSeed": [
+        1205,
+        657
+      ],
+      "sourceBox": [
+        1160,
+        582,
+        1270,
+        719
+      ],
+      "atlasBox": [
+        841,
+        442,
+        915,
+        539
+      ]
+    },
+    {
+      "name": "back insert2",
+      "nativeComponents": [
+        8
+      ],
+      "sourceSeed": [
+        1343,
+        659
+      ],
+      "sourceBox": [
+        1280,
+        582,
+        1389,
+        720
+      ],
+      "atlasBox": [
+        926,
+        442,
+        1003,
+        543
+      ]
+    },
+    {
+      "name": "front weapon",
+      "nativeComponents": [
+        9
+      ],
+      "sourceSeed": [
+        403,
+        782
+      ],
+      "sourceBox": [
+        227,
+        731,
+        592,
+        854
+      ],
+      "atlasBox": [
+        174,
+        554,
+        443,
+        643
+      ]
+    },
+    {
+      "name": "back weapon",
+      "nativeComponents": [
+        10
+      ],
+      "sourceSeed": [
+        1271,
+        783
+      ],
+      "sourceBox": [
+        1095,
+        731,
+        1460,
+        854
+      ],
+      "atlasBox": [
+        790,
+        554,
+        1059,
+        643
+      ]
+    }
+  ]
 }

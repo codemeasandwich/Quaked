@@ -13,8 +13,8 @@ import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init, Mod_ForName, Mod_LoadModel, model_t } from '../src/engine/render/gl_model.js';
 import * as mode from '../src/newer/mode.js';
 const EXPECTED = 'bdc4443c3a0d0bb30b4302bb7b1d9759344690c6148bea08a747436191325763';
-const SOURCE = 'tools/texture_sheets/sources/generated-2026-10-12/grem.png';
-const SOURCE_SHA = '82ffaf95ffa2263f354e7c3d49ce1a716d8021281e17b887ff0c1cfc2532326b';
+const SOURCE = 'tools/texture_sheets/sources/fidelity-2026-10-12/grem-character-face.png';
+const SOURCE_SHA = '9733ca0523d1edcd2ea5899335d09746b85a907153cdae938abe127c9ef35a31';
 const NAME = 'progs/grem.mdl', BASE = 'newer/enemies/grem/custom/';
 const check = ( value, message ) => { if ( !value ) throw Error( message ); };
 const same = ( actual, expected, message ) => check( actual === expected, `${message}: ${actual} != ${expected}` );
@@ -65,7 +65,7 @@ Deno.test( 'owned Gremlin public loader preserves every native UV triangle and a
 Deno.test( 'actual Gremlin assets retain generated source, matching dimensions and other enemy entries', async () => {
  const provenance = JSON.parse( read( BASE + 'SOURCE.json' ) ); same( provenance.nativeModelSha256, EXPECTED, 'fit targets exact native model' ); same( provenance.model, NAME, 'fit model' );
  same( JSON.stringify( provenance.dimensions ), '[1232,676]', 'fourfold native atlas dimensions (the 4x standard)' );
- same( provenance.source, SOURCE, 'generated source provenance path' ); same( provenance.sourceSha256, SOURCE_SHA, 'generated source hash' ); same( sha( read( SOURCE ) ), SOURCE_SHA, 'actual generated PNG bytes' );
+ same(provenance.factor,4,'owner fourfold atlas standard'); same(provenance.transform,'measured source-component crop/resize per native UV component group; original UVs preserved','reviewed per-piece transform'); const placements=provenance.piecePlacements.map(({nativeComponents,sourceSeed,sourceBox,atlasBox})=>({nativeComponents,sourceSeed,sourceBox,atlasBox})); same(placements.length,8,'eight isolated source pieces'); same(sha(JSON.stringify(placements)),'279cd84ef05c5610352972a80936c0b51fb0e7cfad767a918d45778c173d78db','reviewed placements scaled to fourfold output'); same(placements.flatMap(p=>p.nativeComponents).sort((a,b)=>a-b).join(),'1,2,3,4,5,6,7,8,9,10','all native UV components uniquely owned including slivers'); same(provenance.surfacePixels,412197,'actual fourfold native UV footprint'); same(provenance.edgePixels,5679,'bounded own-piece edge extension'); same(provenance.nativeTexturePixelsUsed,0,'only generated pigment used'); same( provenance.source, SOURCE, 'generated source provenance path' ); same( provenance.sourceSha256, SOURCE_SHA, 'generated source hash' ); same( sha( read( SOURCE ) ), SOURCE_SHA, 'actual generated PNG bytes' );
  for ( const file of [ 'diffuse.png', 'height.webp' ] ) same( sha( read( BASE + file ) ), provenance.files[ file ], 'actual fitted asset digest: ' + file );
  same( index.models.grem.length, 1, 'single approved Gremlin variant' ); same( approved.skin, 0, 'only native skin zero admitted' ); same( approved.nativeModelSha256, EXPECTED, 'manifest requires native identity' );
  same( approved.dir, 'grem/custom', 'directory' ); same( approved.maps.diffuse, 'diffuse.png', 'lossless fitted PNG is used by the product' ); same( approved.maps.height, 'height.webp', 'matching stored height' ); same( Object.keys( approved.maps ).length, 2, 'only expected maps' ); same( approved.flipGreen, false, 'generated normal green convention' );
@@ -80,7 +80,7 @@ Deno.test( 'actual Gremlin assets retain generated source, matching dimensions a
  const canvas = await import( process.env.QUAKED_CANVAS_MODULE || '/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js' );
  const decode = async file => { const image = await canvas.loadImage( read( BASE + file ) ), surface = canvas.createCanvas( image.width, image.height ), ctx = surface.getContext( '2d' ); ctx.drawImage( image, 0, 0 ); return ctx.getImageData( 0, 0, image.width, image.height ); };
  // Read hash-pinned source dimensions from PNG IHDR. Both product maps undergo actual canvas decoding below.
- const generated = read( SOURCE ); same( generated.subarray( 0, 8 ).toString( 'hex' ), '89504e470d0a1a0a', 'generated source PNG signature' ); same( generated.toString( 'ascii', 12, 16 ), 'IHDR', 'generated source image header' ); same( generated.readUInt32BE( 16 ), 1692, 'generated source width' ); same( generated.readUInt32BE( 20 ), 930, 'generated source height' );
+ const generated = read( SOURCE ); same( generated.subarray( 0, 8 ).toString( 'hex' ), '89504e470d0a1a0a', 'generated source PNG signature' ); same( generated.toString( 'ascii', 12, 16 ), 'IHDR', 'generated source image header' ); same( generated.readUInt32BE( 16 ), 1692, 'generated source width' ); same( generated.readUInt32BE( 20 ), 929, 'generated source height' );
  const diffuse = await decode( 'diffuse.png' ), height = await decode( 'height.webp' ); same( diffuse.width, 1232, 'actual diffuse width' ); same( diffuse.height, 676, 'actual diffuse height' ); same( height.width, diffuse.width, 'height aligned horizontally' ); same( height.height, diffuse.height, 'height aligned vertically' );
  let min = 255, max = 0;
  for ( let i = 0; i < height.data.length; i += 4 ) { const value = height.data[i]; same( height.data[i+1], value, 'height green is grayscale' ); same( height.data[i+2], value, 'height blue is grayscale' ); same( height.data[i+3], 255, 'height fully opaque' ); same( diffuse.data[i+3], 255, 'diffuse fully opaque' ); min = Math.min( min, value ); max = Math.max( max, value ); }

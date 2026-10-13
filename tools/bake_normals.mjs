@@ -7,8 +7,8 @@ import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {gzipSync} from 'node:zlib';
 import {memberSearch,readMember,isolatedPack,sha256} from './pak_members.mjs';
-const args=process.argv.slice(2),packs=[],loose=[];let namespace='bundled',filter='.*',skins=false,variantFilter=null;
-for(let i=0;i<args.length;i++){if(args[i]==='--pack')packs.push(args[++i]);else if(args[i]==='--namespace')namespace=args[++i];else if(args[i]==='--maps')filter=args[++i];else if(args[i]==='--loose')loose.push(args[++i]);else if(args[i]==='--skins')skins=true;else if(args[i]==='--variant')variantFilter=args[++i];else throw Error('Unknown argument '+args[i]);}
+const args=process.argv.slice(2),packs=[],loose=[];let namespace='bundled',filter='.*',skins=false,variantFilter=null,palettePack='games/shareware/pak0.pak';
+for(let i=0;i<args.length;i++){if(args[i]==='--pack')packs.push(args[++i]);else if(args[i]==='--palette-pack')palettePack=args[++i];else if(args[i]==='--namespace')namespace=args[++i];else if(args[i]==='--maps')filter=args[++i];else if(args[i]==='--loose')loose.push(args[++i]);else if(args[i]==='--skins')skins=true;else if(args[i]==='--variant')variantFilter=args[++i];else throw Error('Unknown argument '+args[i]);}
 if(!process.env.QUAKED_THREE_MODULE||!process.env.QUAKED_CANVAS_MODULE)throw Error('Use existing Three and canvas runtime paths');
 const three=pathToFileURL(resolve(process.env.QUAKED_THREE_MODULE)).href;
 register('data:text/javascript,'+encodeURIComponent("let three;export function initialize(d){three=d.three;}export function resolve(s,c,next){return s==='three'?{url:three,shortCircuit:true}:next(s,c);}"),{data:{three}});
@@ -23,7 +23,7 @@ await import('../src/newer/install.js'); // Newer Game plugs into the engine's h
 const textures=await import('../src/newer/render/r_newertextures.js'),cvar=await import('../src/engine/common/cvar.js'),{r_hdr}=await import('../src/newer/render/gl_post.js');
 const {NormalInputs,NormalInputKey,NormalGenerate}=await import('../src/newer/assets/normal_prepare.js'),{NormalBakeEncode,NormalBakeDecode,NORMAL_GENERATOR_VERSION}=await import('../src/newer/assets/normal_bake_format.js');
 const members=await memberSearch(packs);for(const path of loose)members.set(path,{path,name:path,loose:true});
-const palette=await memberSearch(['games/shareware/pak0.pak']);pak.COM_AddPack(isolatedPack('gfx/palette.lmp',await readMember(palette.get('gfx/palette.lmp'))));vid.VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);vid.vid.fullbright=224;model.Mod_Init();model.R_InitTextures();cvar.Cvar_RegisterVariable(r_hdr);
+const palette=await memberSearch([palettePack]);pak.COM_AddPack(isolatedPack('gfx/palette.lmp',await readMember(palette.get('gfx/palette.lmp'))));vid.VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);vid.vid.fullbright=224;model.Mod_Init();model.R_InitTextures();cvar.Cvar_RegisterVariable(r_hdr);
 let manifest;try{manifest=JSON.parse(await readFile('newer/normals/manifest.json','utf8'));}catch{manifest={version:NORMAL_GENERATOR_VERSION,samples:{},levels:{}};}
 await mkdir('newer/normals',{recursive:true});
 async function bake(texture){

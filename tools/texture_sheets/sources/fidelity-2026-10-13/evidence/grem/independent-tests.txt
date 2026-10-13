@@ -1,0 +1,14 @@
+meshing progs/grem.mdl...
+
+245 tri 393 vert 861 cmd
+
+PASS owned Gremlin public loader preserves every native UV triangle and all 179 poses with exact source identity
+PASS actual Gremlin assets retain generated source, matching dimensions and other enemy entries
+meshing progs/grem.mdl...
+
+PASS actual manifest admits only matching Gremlin skin zero and preserves native geometry through preparation and selection
+PASS pending source waits for exact identity while unsupported and Classic preparations settle without art requests
+PASS failed Gremlin image loads settle native fallback and shutdown rejects late image and identity publication
+PASS Gremlin shipped normal cache is bound to actual decoded diffuse height and scalar settings
+RESULT 6/6 passed (tests/grem_skin_identity_test.js)
+TOTAL 6/6 passed

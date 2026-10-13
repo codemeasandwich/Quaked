@@ -39425,28 +39425,6 @@
       "bytes": 5661876,
       "compressedBytes": 2551989
     },
-    "25bb865ebb83b0df83c8c74624cfc4b714952e04bd9211393ff439013b05c911": {
-      "file": "newer/normals/25bb865ebb83b0df83c8c74624cfc4b714952e04bd9211393ff439013b05c911.nm.gz",
-      "input": {
-        "width": 1232,
-        "height": 676,
-        "crafted": true,
-        "derive": false,
-        "strength": 0.65,
-        "cap": 0.55,
-        "rgba": "9d5cf8577998aac8f678f0efa8edf19b0632a99ce5cff2949be2a6f5624084b5",
-        "fullbright": null,
-        "scalar": "31e1fb88ac72d591b55298188f4a467fff1da6be61ebac3078cb8abf53a5d7f1",
-        "edge": null,
-        "authored": null
-      },
-      "sha256": "af28deb11de32eb21a29395815f2f94d125352168229c013d33bf931f4f6d6b2",
-      "rawSha256": "d5ed9cc605a41ff14c8545d8991dced8248e1d6137011e5afee68beb1da5f990",
-      "width": 1232,
-      "height": 676,
-      "bytes": 6662840,
-      "compressedBytes": 3124927
-    },
     "134795a8f8433a493df37c8792334381232643dfb206a6dcb2ada44b15fe52ea": {
       "file": "newer/normals/134795a8f8433a493df37c8792334381232643dfb206a6dcb2ada44b15fe52ea.nm.gz",
       "input": {
@@ -39996,6 +39974,28 @@
       "height": 616,
       "bytes": 6071480,
       "compressedBytes": 2363660
+    },
+    "d850c3b15b9f8ae15af14c6ef84e2311ae1a8a01bde6f6e4195e2962178f2a2e": {
+      "file": "newer/normals/d850c3b15b9f8ae15af14c6ef84e2311ae1a8a01bde6f6e4195e2962178f2a2e.nm.gz",
+      "input": {
+        "width": 1232,
+        "height": 676,
+        "crafted": true,
+        "derive": false,
+        "strength": 0.65,
+        "cap": 0.55,
+        "rgba": "50efc04933cc70dd42a15b77d10a789173a5845fdf7826f2d5b46384a1398917",
+        "fullbright": null,
+        "scalar": "c7722f630370a0c55c4ce4e6a58db59a4842d1d64e4d997e2de4087554a4a122",
+        "edge": null,
+        "authored": null
+      },
+      "sha256": "96889bbd773b97147e2cfdd6087535c6aabf7be59590fff1ae7df60d8d13e7ac",
+      "rawSha256": "1d9cb8e5a992f3683c4b6ec8a2a02daeb0ab0c28a99aff26f2ef7ccdd4372da1",
+      "width": 1232,
+      "height": 676,
+      "bytes": 6662840,
+      "compressedBytes": 3169727
     }
   },
   "levels": {
@@ -70880,7 +70880,7 @@
     },
     "custom:grem/custom": {
       "keys": [
-        "25bb865ebb83b0df83c8c74624cfc4b714952e04bd9211393ff439013b05c911"
+        "d850c3b15b9f8ae15af14c6ef84e2311ae1a8a01bde6f6e4195e2962178f2a2e"
       ]
     },
     "hipnotic:progs/armabody.mdl": {

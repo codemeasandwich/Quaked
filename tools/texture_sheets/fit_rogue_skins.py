@@ -33,6 +33,44 @@ RECIPES = {
 def sha(data):
  return hashlib.sha256(data).hexdigest()
 
+def piece_placements(source, foreground, placements, width, height, component_count):
+ """Use measured piece registration without sharing donors between source islands.
+
+ This follows the Enforcer importer's connected-piece crop/resize approach.
+ Each native component has exactly one owner. Disconnected UV slivers may share
+ a source piece through an explicit group; the existing 24-pixel reach below
+ still rejects uncovered surfaces. Recipes without placements keep their path.
+ """
+ if not isinstance(placements,list) or not placements:raise ValueError('Empty piece placements')
+ source_labels,_=ndimage.label(foreground);owners={};used_sources=set()
+ def box(value,limit=None):
+  if not isinstance(value,list) or len(value)!=4 or any(type(v) is not int for v in value):raise ValueError('Invalid piece box')
+  l,t,r,b=value
+  if r<=l or b<=t or (limit and not (0<=l<r<=limit[0] and 0<=t<b<=limit[1])):raise ValueError('Piece box outside source')
+  return l,t,r,b
+ for placement in placements:
+  sl,st,sr,sb=box(placement['sourceBox'],source.size)
+  l,t,r,b=box(placement['atlasBox'])
+  if not (-width<=l<r<=2*width and -height<=t<b<=2*height):raise ValueError('Unbounded piece placement')
+  seed=placement['sourceSeed'];ids=placement['nativeComponents']
+  if not isinstance(seed,list) or len(seed)!=2 or any(type(v) is not int for v in seed) or not (sl<=seed[0]<sr and st<=seed[1]<sb):raise ValueError('Invalid source-piece seed')
+  source_id=int(source_labels[seed[1],seed[0]])
+  if source_id==0 or source_id in used_sources:raise ValueError('Background or duplicated source-piece owner')
+  used_sources.add(source_id)
+  if not isinstance(ids,list) or not ids or any(type(i) is not int or not 1<=i<=component_count or i in owners for i in ids) or len(set(ids))!=len(ids):raise ValueError('Duplicate or invalid native-piece owner')
+  cl,ct,cr,cb=max(0,l),max(0,t),min(width,r),min(height,b)
+  if cr<=cl or cb<=ct:raise ValueError('Piece misses native atlas')
+  size=(r-l,b-t)
+  isolated=source_labels[st:sb,sl:sr]==source_id
+  mask=np.asarray(Image.fromarray((isolated*255).astype(np.uint8)).resize(size,Image.Resampling.NEAREST))>0
+  colour=np.asarray(source.crop((sl,st,sr,sb)).resize(size,Image.Resampling.LANCZOS))
+  pixels=np.zeros((height,width,3),np.uint8);valid=np.zeros((height,width),bool)
+  pixels[ct:cb,cl:cr]=colour[ct-t:cb-t,cl-l:cr-l]
+  valid[ct:cb,cl:cr]=mask[ct-t:cb-t,cl-l:cr-l]
+  for i in ids:owners[i]=(pixels,valid)
+ if set(owners)!=set(range(1,component_count+1)):raise ValueError('Unassigned native UV component')
+ return owners
+
 def flatten_height(path, data, factor, vertex_range):
  """Keep non-solid flash surfaces flat and above all virtual height blockers.
 
@@ -116,6 +154,9 @@ def fit_one(key, pack, source_root, output, recipe=None):
  foreground=ndimage.binary_fill_holes(ndimage.binary_closing(foreground,iterations=8 if key=='mummy' else 4))
  footprint=uv_footprint(data,factor)
  labels,count=ndimage.label(footprint)
+ placements=spec.get('piecePlacements')
+ if placements and any(spec.get(k) for k in ('atlasBox','strictMatteDonors','nativeBlackRegions')):raise ValueError('Piece placements cannot combine with global registration or matte overrides')
+ owners=piece_placements(source,foreground,placements,W,H,count) if placements is not None else None
  # Normally the full atlas maps directly. A measured registration may correct
  # imagegen's content scale/offset without moving the model's original UVs.
  box=spec.get('atlasBox',[0,0,W,H]);left,top,right,bottom=box
@@ -153,15 +194,16 @@ def fit_one(key, pack, source_root, output, recipe=None):
   valid |= accepted_black
  canvas=np.zeros((H,W,3),np.uint8); covered=np.zeros((H,W),bool); islands=[]
  for index,bounds in enumerate(ndimage.find_objects(labels),1):
+  donor_pixels,donor_valid=owners[index] if owners is not None else (pixels,valid)
   top=max(0,bounds[0].start-40);bottom=min(H,bounds[0].stop+40)
   left=max(0,bounds[1].start-40);right=min(W,bounds[1].stop+40)
   area=np.s_[top:bottom,left:right];surface=labels[area]==index;local_footprint=footprint[area]
   # A donor must be near this component and may never belong to another UV
   # component. Four-pixel gutters retain proper mip/filtering edge colours.
   neighbourhood=ndimage.binary_dilation(surface,iterations=12)
-  seeds=valid[area] & neighbourhood & (~local_footprint|surface)
+  seeds=donor_valid[area] & neighbourhood & (~local_footprint|surface)
   if not seeds.any(): raise ValueError('No supplied colour for UV component '+str(index))
-  extended,reached=spread(pixels[area],seeds,24)
+  extended,reached=spread(donor_pixels[area],seeds,24)
   if np.any(surface & ~reached): raise ValueError('Uncovered UV component '+str(index))
   region=ndimage.binary_dilation(surface,iterations=4)&reached&(~local_footprint|surface)
   canvas[area][region]=extended[region];covered[area]|=region
@@ -185,6 +227,9 @@ def fit_one(key, pack, source_root, output, recipe=None):
   normalProfile=dict(strength=.65,cap=.55),reuse=['fit_vore.member','uv_footprint','fit_skin.spread','height_for'],
   files={f:sha((out/f).read_bytes()) for f in ['diffuse.png','height.webp']})
  if spec.get('generation'):report['generation']=spec['generation']
+ if owners is not None:
+  report['piecePlacements']=placements
+  report['transform']='measured source-component crop/resize per native UV component group; original UVs preserved'
  if spec.get('strictMatteDonors'):report['strictMatteDonors']=dict(policy='neutral stone donor pixels exclude blue-grey after resampling',rejectedPixels=rejected_matte)
  if flat:report['flatHeight']=flat
  if charge:report['chargeOverlay']=charge
