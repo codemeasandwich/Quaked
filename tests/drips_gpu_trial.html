@@ -1,0 +1,36 @@
+<!doctype html><meta charset="utf-8"><title>Drips GPU verification</title>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import * as m from '/src/newer/render/r_motes.js';
+import {r_drips} from '/src/newer/render/r_drips.js';
+import {r_hdr} from '/src/newer/render/gl_post.js';
+import {Cvar_RegisterVariable,Cvar_FindVar,Cvar_Set} from '/src/engine/common/cvar.js';
+import {R_AnimSetClassicPass} from '/src/newer/mode.js';
+import {R_PostInstallGBufferPatch} from '/src/newer/render/r_post_gbuffer.js';
+window.results=[];
+try{
+ for(const v of [r_hdr,r_drips])if(!Cvar_FindVar(v.name))Cvar_RegisterVariable(v);
+ R_PostInstallGBufferPatch();
+ const renderer=new THREE.WebGLRenderer({antialias:false});renderer.setSize(256,256);renderer.setClearColor(0,1);document.body.append(renderer.domElement);
+ const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(60,1,1,1000);camera.position.z=100;
+ function sample(kind,fov,height,fog=false){
+  m.R_MotesClear();Cvar_Set('r_hdr','1');Cvar_Set('r_drips','1');R_AnimSetClassicPass(false);
+  camera.fov=fov;camera.updateProjectionMatrix();scene.fog=fog?new THREE.FogExp2(0xff0000,.1):null;
+  m.R_MotesFrame(scene,0,[0,0,100],height);m.R_MoteSpawn(kind,0,0,0,0,0,0,0,{size:8,life:10});m.R_MotesFrame(scene,.3,[0,0,100],height);
+  const target=new THREE.WebGLRenderTarget(height,height,{count:4,type:THREE.UnsignedByteType});
+  const draw=()=>{renderer.setRenderTarget(target);renderer.render(scene,camera);const data=new Uint8Array(height*height*4);renderer.readRenderTargetPixels(target,0,0,height,height,data);let count=0,min=height,max=-1,red=0,green=0,blue=0;for(let y=0;y<height;y++)for(let x=0;x<height;x++){const i=(y*height+x)*4;red=Math.max(red,data[i]);green=Math.max(green,data[i+1]);blue=Math.max(blue,data[i+2]);if(data[i]+data[i+1]+data[i+2]>5){count++;min=Math.min(min,x);max=Math.max(max,x);}}return{count,width:Math.max(0,max-min+1),red,green,blue};};
+  const pixels=draw();return{pixels,draw,target};
+ }
+ const small=sample(m.MOTE_DRIP,60,64),large=sample(m.MOTE_DRIP,60,128),wide=sample(m.MOTE_DRIP,90,128);
+ window.results.push({check:'visible premultiplied drip',data:small.pixels,pass:small.pixels.count>5&&small.pixels.blue>small.pixels.red});
+ window.results.push({check:'physical viewport sizing',small:small.pixels.width,large:large.pixels.width,pass:large.pixels.width>=small.pixels.width*1.7&&large.pixels.width<=small.pixels.width*2.3});
+ window.results.push({check:'projection-correct world size',narrow:large.pixels.width,wide:wide.pixels.width,pass:large.pixels.width>wide.pixels.width*1.4});
+ const fog=sample(m.MOTE_DRIP,60,128,true);window.results.push({check:'drip distance fog is premultiplied',data:fog.pixels,pass:fog.pixels.red>10&&fog.pixels.green<2&&fog.pixels.blue<2});
+ const spark=sample(m.MOTE_SPARK,60,128,false),sparkFog=sample(m.MOTE_SPARK,60,128,true);window.results.push({check:'additive light attenuates without adding fog light',clear:spark.pixels,fog:sparkFog.pixels,pass:spark.pixels.count>0&&sparkFog.pixels.count===0});
+ const off=sample(m.MOTE_DRIP,60,128);Cvar_Set('r_drips','0');m.R_MotesFrame(scene,.3,[0,0,100],128);window.results.push({check:'paused off removes GPU output',data:off.draw(),pass:off.draw().count===0});
+ const classic=sample(m.MOTE_DRIP,60,128);R_AnimSetClassicPass(true);m.R_MotesFrame(scene,.3,[0,0,100],128);window.results.push({check:'Classic comparison removes GPU output',data:classic.draw(),pass:classic.draw().count===0});
+ for(const x of [small,large,wide,fog,spark,sparkFog,off,classic])x.target.dispose();
+ R_AnimSetClassicPass(false);renderer.setRenderTarget(null);renderer.render(scene,camera);window.complete=true;
+}catch(e){window.failure=String(e.stack??e);window.complete=true;}
+</script>

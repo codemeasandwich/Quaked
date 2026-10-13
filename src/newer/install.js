@@ -62,6 +62,9 @@ import { R_LavaBall, R_LavaBallImpact, R_LavaBallTakes, R_LavaBallsBegin, R_Lava
 import { R_LevelViewUseSnapshots, R_SetupLevelViews, R_SyncLevelViews, R_UpdateLevelViewEntities } from './render/r_levelview.js';
 import { LIGHTNING, R_LightningClear, R_LightningFrame, R_LightningSetup, R_LightningTakesBeam, r_newer_lightning } from './render/r_lightning.js';
 import { R_MistClear, R_MistFrame } from './render/r_mist.js';
+import { R_MotesFrame, R_MotesClear } from './render/r_motes.js';
+import { R_AmbientPlaced, R_AmbientPlacesClear } from './render/r_ambientplaces.js';
+import { r_drips } from './render/r_drips.js';
 import { R_MuzzleFlashFired, R_MuzzleFlashScale, R_MuzzleSetProbe, R_MuzzleSetView, R_MuzzleView } from './render/r_muzzle.js';
 import { R_AssetAliasMaterial, R_CloneAliasMaterial, R_EnemyAliasMaterial, R_HeldVisionTag, R_NewerAliasMaterial, R_NewerSkinsMaterials, R_NewerSkinsNewMap, R_NewerSkinsPrepare, R_NewerSkinsStatus, R_NewerSkinsTextures, R_ReleaseAliasReceiver, r_newer_variety } from './render/r_newerskins.js';
 import { R_ClassicTexture, R_NewerNormalsPrepare, R_NewerNormalsStatus, R_NewerTextureUpgrade, R_NewerTexturesFrame, R_NewerTexturesStatus } from './render/r_newertextures.js';
@@ -150,6 +153,7 @@ if ( ! Hooks_Installed() ) Hooks_Install( {
 	R_LevelViewUseSnapshots, R_SetupLevelViews, R_SyncLevelViews, R_UpdateLevelViewEntities,
 	LIGHTNING, R_LightningClear, R_LightningFrame, R_LightningSetup, R_LightningTakesBeam, r_newer_lightning,
 	R_MistClear, R_MistFrame,
+	R_MotesFrame, R_MotesClear, R_AmbientPlaced, R_AmbientPlacesClear, r_drips,
 	R_MuzzleFlashFired, R_MuzzleFlashScale, R_MuzzleSetProbe, R_MuzzleSetView, R_MuzzleView,
 	R_AssetAliasMaterial, R_CloneAliasMaterial, R_EnemyAliasMaterial, R_HeldVisionTag, R_NewerAliasMaterial, R_NewerSkinsMaterials, R_NewerSkinsNewMap, R_NewerSkinsPrepare, R_NewerSkinsStatus, R_NewerSkinsTextures, R_ReleaseAliasReceiver, r_newer_variety,
 	R_ClassicTexture, R_NewerNormalsPrepare, R_NewerNormalsStatus, R_NewerTextureUpgrade, R_NewerTexturesFrame, R_NewerTexturesStatus,

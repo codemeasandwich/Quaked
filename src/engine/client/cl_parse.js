@@ -1,3 +1,4 @@
+import { R_AmbientPlaced } from '../common/hooks.js';
 /**
  * @module engine/client/cl_parse
  *
@@ -1384,6 +1385,7 @@ export function CL_ParseStaticSound() {
 	const vol = MSG_ReadByte();
 	const atten = MSG_ReadByte();
 
+	R_AmbientPlaced( cl.sound_precache[ sound_num ]?.name, org ); // independent of audio output being enabled
 	S_StaticSound( cl.sound_precache[ sound_num ], org, vol, atten );
 
 }
