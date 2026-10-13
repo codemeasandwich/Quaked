@@ -897,7 +897,8 @@ function PF_Find() {
 	const s = G_STRING( OFS_PARM2 );
 
 	// As WinQuake's C, where a string is never NULL: an empty search string is valid and matches an empty field
-	// (Quoth's plats.qc searches with one, card c5dc18e1); only a missing one is an error.
+	// (Quoth's plats.qc searches with one, card c5dc18e1). G_STRING and E_STRING always return a string here, so the
+	// two null checks below mirror C's and never fire.
 	if ( s == null )
 		PR_RunError( 'PF_Find: bad search string' );
 

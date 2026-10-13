@@ -108,6 +108,15 @@ const MISSION_LEVEL_SELECT = Object.freeze( {
 			[ 3, 'mgend', 'Chthon\'s Vengeance' ],
 			[ 4, 'mgdm1', 'Art of the Condemned' ], [ 4, 'mgdm2', 'The Bad Space' ], [ 4, 'mgdm3', 'The Mustard Factory' ], [ 4, 'mgdm4', 'The Boiler' ] ]
 	},
+	// Quoth (an add-on, docs/add-ons-2026-10-13.md): runs with -hipnotic, so it is looked up by the running game first;
+	// the names are each map's own (its worldspawn message); kellbase1_fan is a prop with no player start
+	quoth: {
+		episodes: [ { episode: 0, name: 'Introduction' }, { episode: 1, name: 'Levels' }, { episode: 2, name: 'Test Maps' } ],
+		levels: [ [ 0, 'start', 'A Stranger Place Than This' ],
+			[ 1, 'e1m1quoth', 'The Slipgate Triplex' ], [ 1, 'e1m2quoth', 'Remix Of The Damned' ], [ 1, 'kellbase1', 'Base Matter' ],
+			[ 2, 'kelltest1', 'Slime Machine' ], [ 2, 'kelltest2', 'Birth Machine' ], [ 2, 'kelltest3', 'All The Men Of The Earth Shall Quake' ], [ 2, 'kelltest4', 'Diary of a Gug Fiend' ],
+			[ 2, 'kelltest5', 'Edie And The Sentinels' ], [ 2, 'breakable', 'Break Stuff' ], [ 2, 'ne_basetest', 'Base Test' ] ]
+	},
 	rogue: {
 		episodes: [ { episode: 0, name: 'Introduction' }, { episode: 1, name: 'R1 Fortress' }, { episode: 2, name: 'R2 Corridors' }, { episode: 3, name: 'Deathmatch Arena' } ],
 		levels: [ [ 0, 'start', 'Split Decision' ],
@@ -117,10 +126,11 @@ const MISSION_LEVEL_SELECT = Object.freeze( {
 	}
 } );
 
-// the tables for the game running: a mission pack's, else Quake's
+// the tables for the game running: its own (an add-on that runs with a mission pack's switch has one), else the
+// mission pack's its switch names, else Quake's
 function levelSelectTable() {
 
-	const mission = hipnotic ? MISSION_LEVEL_SELECT.hipnotic : rogue ? MISSION_LEVEL_SELECT.rogue : MISSION_LEVEL_SELECT[ GameSelection_Running() ] ?? null;
+	const mission = MISSION_LEVEL_SELECT[ GameSelection_Running() ] ?? ( hipnotic ? MISSION_LEVEL_SELECT.hipnotic : rogue ? MISSION_LEVEL_SELECT.rogue : null );
 	if ( mission === null ) return { levels: LEVEL_SELECT_LEVELS, episodes: LEVEL_SELECT_EPISODES };
 	return { levels: mission.levels.map( ( [ episode, map, name ] ) => ( { episode, map, name } ) ), episodes: mission.episodes };
 

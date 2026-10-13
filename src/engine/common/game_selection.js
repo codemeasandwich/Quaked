@@ -38,9 +38,10 @@ const MISSION_PACKS = Object.freeze( {
 	dopa: Object.freeze( { name: 'Dimension of the Past', switch: null, packs: Object.freeze( [ 'games/Dimension of the Past/pak0.pak', 'resources/dopa/pak0.pak' ] ) } ),
 	// its larger levels need more than 256 models and an 8 KB signon: the large-map protocol (card [34f])
 	mg1: Object.freeze( { name: 'Dimension of the Machine', switch: null, protocol: 1015, packs: Object.freeze( [ 'games/Dimension of the Machine/pak0.pak', 'resources/mg1/pak0.pak' ] ) } ),
-	// an add-on (docs/add-ons-2026-10-13.md): every one of its packs, in order (`all`); Quoth runs as Quakespasm runs
-	// it, with Scourge of Armagon's switch (its status bar is Scourge's)
-	quoth: Object.freeze( { name: 'Quoth', switch: '-hipnotic', all: true, packs: Object.freeze( [ 'games/Quoth/pak0.pak', 'games/Quoth/pak1.pak', 'games/Quoth/pak2.pak' ] ) } )
+	// an add-on (docs/add-ons-2026-10-13.md): every pack of its folder, pak0 up to the first gap, as Quake reads a game
+	// folder (`folders`: the first that has a pak0). Quoth runs as Quakespasm runs it, with Scourge of Armagon's switch
+	// (its status bar is Scourge's)
+	quoth: Object.freeze( { name: 'Quoth', switch: '-hipnotic', folders: Object.freeze( [ 'games/Quoth', 'resources/quoth' ] ) } )
 } );
 const NAMES = Object.freeze( { shareware: 'Quake (shareware)', quake: 'Quake', hipnotic: 'Scourge of Armagon', rogue: 'Dissolution of Eternity', dopa: 'Dimension of the Past', mg1: 'Dimension of the Machine', quoth: 'Quoth' } );
 export const GAME_SELECTION_CHOICES = Object.freeze( Object.keys( OWNED_PACKS ) );
@@ -118,16 +119,47 @@ export function GameSelection_OwnedPacks() {
 }
 
 /**
- * The mission pack or episode the current choice runs, if any: its name, its switch for COM_InitArgv (null for an
- * episode, which runs as standard Quake) and the packs to try for it (the first found), mounted over Quake and the
- * shareware.
+ * The mission pack, episode or add-on the current choice runs, if any: its name, its switch for COM_InitArgv (null for
+ * an episode or add-on that runs as standard Quake) and where its packs are, mounted over Quake and the shareware: a
+ * mission pack or episode names its pack (`packs`, the first found; `protocol` when it needs the large-map one), an
+ * add-on its folders (`folders`; see GameSelection_FetchMission).
  *
- * @returns {?{ name: string, switch: ?string, packs: ReadonlyArray<string> }} the pack, or null for the shareware, Quake
- *   or no choice
+ * @returns {?{ name: string, switch: ?string, packs?: ReadonlyArray<string>, folders?: ReadonlyArray<string>,
+ *   protocol?: number }} the entry, or null for the shareware, Quake or no choice
  */
 export function GameSelection_MissionPack() {
 
 	return MISSION_PACKS[ GameSelection_Current() ] ?? null;
+
+}
+
+/**
+ * Fetches the packs of a mission entry (GameSelection_MissionPack) for the source and web builds; the Mac app reads
+ * its library instead (src/platform/desktop.js). A mission pack or episode: its first pack found. An add-on: every
+ * pack of the first of its folders that has a pak0, from pak0 up to the first missing one (at most pak9), in order, so
+ * a later pack's files win (COM_AddPack), as Quake reads a game folder.
+ *
+ * @param {?object} mission the entry
+ * @param {function(string): Promise<?object>} fetchPak fetches one pack by URL, null when it is not there
+ * @returns {Promise<?(object|Array<object>)>} the pack, the add-on's packs, or null when none was found
+ */
+export async function GameSelection_FetchMission( mission, fetchPak ) {
+
+	if ( ! mission ) return null;
+	if ( mission.folders ) {
+
+		for ( const folder of mission.folders ) {
+
+			const found = [];
+			for ( let n = 0; n < 10; n ++ ) { const pack = await fetchPak( `${folder}/pak${n}.pak` ); if ( ! pack ) break; found.push( pack ); }
+			if ( found.length > 0 ) return found;
+
+		}
+		return null;
+
+	}
+	for ( const url of mission.packs ) { const pack = await fetchPak( url ); if ( pack ) return pack; }
+	return null;
 
 }
 
@@ -288,7 +320,7 @@ export function GameSelection_ReportStart( mounted, missionMounted = true ) {
 	}
 	if ( mission && ! missionMounted ) {
 
-		const line = `game: ${mission.name} was chosen, but its pack was not found (${mission.packs.join( ' or ' )}); Quake is running\n`;
+		const line = mission.folders ? `game: ${mission.name} was chosen, but its packs were not found (no pak0.pak in ${mission.folders.join( ' or ' )}); Quake is running\n` : `game: ${mission.name} was chosen, but its pack was not found (${mission.packs.join( ' or ' )}); Quake is running\n`;
 		Con_Printf( line ); Sys_Printf( line );
 		return false;
 

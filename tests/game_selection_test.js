@@ -2,7 +2,7 @@
 // full Quake's pack is fetched when there, saves under their original keys); choosing the shareware keeps the choice,
 // reloads the page, fetches no owned pack and keeps its own saves; a game the catalogue does not call playable, and
 // one whose support is not built (a mission pack), is refused with the reason; a blocked store refuses honestly.
-import { GameSelection_SetRunning, GameSelection_ConfigKey, GameSelection_MissionPack, GameSelection_Current, GameSelection_OwnedPacks, GameSelection_SavePrefix, GameSelection_Select, GameSelection_ReportStart, GameSelection_Startable } from '../src/engine/common/game_selection.js';
+import { GameSelection_SetRunning, GameSelection_ConfigKey, GameSelection_MissionPack, GameSelection_FetchMission, GameSelection_Current, GameSelection_OwnedPacks, GameSelection_SavePrefix, GameSelection_Select, GameSelection_ReportStart, GameSelection_Startable } from '../src/engine/common/game_selection.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
 const store = new Map();
@@ -145,5 +145,24 @@ Deno.test( 'one rule for the shelf and the console: what can start, including a 
 	check( ! a.ok && a.refusal === 'cannot be chosen yet' && /add-on support/.test( a.why ), 'an add-on is not offered, checked or not' );
 	const n = GameSelection_Startable( { id: 'rogue', name: 'Dissolution of Eternity', present: true, validated: true, playable: false, reason: 'its gfx.wad is missing', packs: [ { name: 'pak0.pak', state: 'valid' } ] } );
 	check( ! n.ok && /gfx\.wad/.test( n.why ), 'a checked mission pack that is not whole is refused' );
+
+} );
+
+Deno.test( 'an add-on fetches every pack of its folder in order, up to the first gap; a mission pack its first found', async () => {
+
+	const same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
+	const fetcher = present => { const asked = []; return { asked, fetch: async url => { asked.push( url ); return present.includes( url ) ? { url } : null; } }; };
+	const quoth = { name: 'Quoth', folders: [ 'games/Quoth', 'resources/quoth' ] };
+	let f = fetcher( [ 'games/Quoth/pak0.pak', 'games/Quoth/pak1.pak', 'games/Quoth/pak2.pak', 'games/Quoth/pak4.pak' ] );
+	let packs = await GameSelection_FetchMission( quoth, f.fetch );
+	same( packs.map( p => p.url ).join(), 'games/Quoth/pak0.pak,games/Quoth/pak1.pak,games/Quoth/pak2.pak', 'pak0 to pak2 in order (the last mounted wins); pak4 after the gap is not read' );
+	f = fetcher( [ 'resources/quoth/pak0.pak', 'resources/quoth/pak1.pak' ] );
+	packs = await GameSelection_FetchMission( quoth, f.fetch );
+	same( packs.map( p => p.url ).join(), 'resources/quoth/pak0.pak,resources/quoth/pak1.pak', 'the next folder when the first has no pak0' );
+	same( await GameSelection_FetchMission( quoth, fetcher( [ 'games/Quoth/pak1.pak' ] ).fetch ), null, 'no pak0 anywhere: nothing' );
+	f = fetcher( [ 'resources/rogue/pak0.pak' ] );
+	same( ( await GameSelection_FetchMission( { packs: [ 'games/Dissolution of Eternity/pak0.pak', 'resources/rogue/pak0.pak' ] }, f.fetch ) ).url, 'resources/rogue/pak0.pak', 'a mission pack: its first pack found' );
+	same( await GameSelection_FetchMission( null, f.fetch ), null, 'no mission: nothing' );
+	same( GameSelection_MissionPack(), null, 'with no choice there is no mission entry' );
 
 } );

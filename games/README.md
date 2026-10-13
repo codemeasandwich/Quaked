@@ -12,7 +12,8 @@ other folder holds instructions for a copy you own, which stays out of Git.
 | `Dimension of the Past/` | 20th-anniversary episode | `dopa` |
 | `Dimension of the Machine/` | 2021 re-release episode | `mg1` |
 | `Dawn of the Machine/` | Placeholder: not installed | |
-| `Arcane Dimensions/`, `Quoth/`, `Malice/`, `X-Men/`, `Abyss of Pandemonium/` | Community add-ons found installed; support not assumed | `ad`, `quoth`, `malice`, `xmen`, `aopfm_v2` |
+| `Quoth/` | Community add-on; plays over Quake ([add-ons](../docs/add-ons-2026-10-13.md)) | `quoth` |
+| `Arcane Dimensions/`, `Malice/`, `X-Men/`, `Abyss of Pandemonium/` | Community add-ons found installed; locked until each is shown to play | `ad`, `malice`, `xmen`, `aopfm_v2` |
 
 Card [34a] made this layout; [34b] detects what is installed, [34c] mounts and selects it, [34d] moves the owned packs
 here from `resources/`.
