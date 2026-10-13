@@ -39,7 +39,7 @@ const parms = {
 	argv: []
 };
 import { GameCatalogue_Refresh, GameCatalogue_Get } from './src/engine/common/game_catalogue.js';
-import { GameSelection_OwnedPacks, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember, GameSelection_MissionPack, GameSelection_FetchMission, GameSelection_SetRunning, GameSelection_Current, GameSelection_Startable } from './src/engine/common/game_selection.js';
+import { GameSelection_OwnedPacks, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember, GameSelection_MissionPack, GameSelection_FetchMission, GameSelection_FetchLoose, GameSelection_SetRunning, GameSelection_Current, GameSelection_Startable } from './src/engine/common/game_selection.js';
 import { GameShelf_Show } from './src/newer/ui/game_shelf.js';
 
 async function main() {
@@ -95,9 +95,9 @@ async function main() {
 		// downloaded; the full Quake's from games/Quake/ or resources/id1/ (the first found) otherwise, as before.
 		const ownedPack = desktop ? Promise.resolve(null) : ( async () => { for ( const url of GameSelection_OwnedPacks() ) { const pack = await COM_FetchOptionalPak( url, url ); if ( pack ) return pack; } return null; } )();
 		// A mission pack (card [34c]) or episode also fetches its own pack, from games/<name>/ or resources/<dir>/ (the first
-		// found); an add-on every pack of its folder (GameSelection_FetchMission)
+		// found); an add-on every pack of its folder and its loose game files (GameSelection_FetchMission)
 		const mission = GameSelection_MissionPack();
-		const missionLoad = mission && !desktop ? GameSelection_FetchMission( mission, url => COM_FetchOptionalPak( url, url ), url => fetch( url ).then( r => r.ok ? r.arrayBuffer().then( b => new Uint8Array( b ) ) : null ).catch( () => null ), ( name, files ) => COM_LoadPackFile( name, COM_BuildPack( files ) ) ) : Promise.resolve( null );
+		const missionLoad = mission && !desktop ? GameSelection_FetchMission( mission, url => COM_FetchOptionalPak( url, url ), url => GameSelection_FetchLoose( url ), ( name, files ) => COM_LoadPackFile( name, COM_BuildPack( files ) ) ) : Promise.resolve( null );
 		const [ sharewarePak, newerPak, hudPak, fullGamePak, missionPak ] = await Promise.all( [ nativePack, optionalPack, startupPack, ownedPack, missionLoad ] );
 		// it runs only over Quake: without Quake's pack, the shareware alone starts (and says so). Both packs are fetched
 		// together, so a missing Quake costs the mission pack's download (up to 80 MB), traded for a start not delayed

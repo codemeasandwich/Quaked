@@ -77,3 +77,14 @@ Deno.test( 'COM_BuildPack makes a pack the engine reads back file for file', () 
 	same( new TextDecoder().decode( COM_FindFile( 'autoexec.cfg' ).data ), 'bind i prevtoy\n', 'autoexec.cfg' );
 
 } );
+
+Deno.test( 'COM_BuildPack takes a 55-character name and refuses a longer one', () => {
+
+	const name = 'maps/' + 'x'.repeat( 46 ) + '.bsp', data = new Uint8Array( [ 1 ] );
+	same( name.length, 55, 'the longest name a 56-byte field holds with its NUL' );
+	const pack = COM_LoadPackFile( 'long-names', COM_BuildPack( [ { name, data } ] ) );
+	same( pack.files[ 0 ].name, name, 'read back whole' );
+	let error = ''; try { COM_BuildPack( [ { name: name + 'x', data } ] ); } catch ( e ) { error = e.message; }
+	check( /name too long/.test( error ), 'a 56-character name is refused: ' + error );
+
+} );

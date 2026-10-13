@@ -92,6 +92,9 @@ const server = createServer( ( req, res ) => {
 	if ( quirk ) return quirk( req, res, r0 );
 	if ( path === '/resources/xmen/pak0.pak' ) return; // never answers: the probe's time limit ends it
 	if ( path === '/resources/aopfm_v2/pak0.pak' ) { res.writeHead( 500 ); return res.end( 'boom' ); }
+	// a server that answers a missing loose file with its index page, and one that ignores Range for another: neither counts
+	if ( path === '/complete/games/Malice/quake.rc' ) { res.writeHead( 200, { 'Content-Type': 'text/html' } ); return res.end( '<!doctype html><title>index</title>' ); }
+	if ( path === '/complete/games/Malice/autoexec.cfg' ) { res.writeHead( 200, { 'Content-Length': 14 } ); return res.end( 'bind i prevtoy' ); }
 	if ( path === '/resources/ad/pak0.pak' ) { res.writeHead( 200, { 'Content-Type': 'text/html' } ); return res.end( '<!doctype html><title>Not found</title>' ); }
 	const range = /^bytes=(\d+)-(\d+)$/.exec( req.headers.range ?? '' );
 	if ( path === '/resources/mg1/pak0.pak' ) {
@@ -110,7 +113,7 @@ const server = createServer( ( req, res ) => {
 
 } );
 await new Promise( r => server.listen( 0, '127.0.0.1', r ) );
-const base = `http://127.0.0.1:${server.address().port}/`, options = { base, timeoutMs: 400 };
+const base = `http://127.0.0.1:${server.address().port}/`, options = { base, timeoutMs: 3000 }; // room for a loaded CI runner; only the never-answering pack waits it out
 
 Deno.test( 'the two mission packs and both episodes are playable on Quake when whole; never without Quake', async () => {
 
@@ -120,6 +123,7 @@ Deno.test( 'the two mission packs and both episodes are playable on Quake when w
 	check( g( 'mg1' ).playable && /large-map protocol/.test( g( 'mg1' ).reason ), 'Dimension of the Machine is playable, on the large-map protocol: ' + g( 'mg1' ).reason );
 	check( g( 'quoth' ).playable && /an add-on/.test( g( 'quoth' ).reason ), 'Quoth is playable from its three packs: ' + g( 'quoth' ).reason );
 	check( g( 'malice' ).playable && /an add-on/.test( g( 'malice' ).reason ), 'Malice is playable: ' + g( 'malice' ).reason );
+	check( g( 'malice' ).loose.length === 0, 'a page for a missing loose file, or a whole file sent for a range, is not a loose file: ' + g( 'malice' ).loose );
 	check( g( 'aopfm_v2' ).playable && /an add-on/.test( g( 'aopfm_v2' ).reason ), 'Abyss of Pandemonium is playable from its four packs: ' + g( 'aopfm_v2' ).reason );
 	check( g( 'soe' ).playable && /an add-on/.test( g( 'soe' ).reason ), 'Soul of Evil is playable: ' + g( 'soe' ).reason );
 	check( g( 'xmen' ).playable && /an add-on/.test( g( 'xmen' ).reason ) && g( 'xmen' ).loose.join() === 'progs.dat', 'X-Men is playable from its loose progs.dat: ' + g( 'xmen' ).reason );

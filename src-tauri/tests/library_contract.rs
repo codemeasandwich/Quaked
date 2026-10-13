@@ -221,3 +221,20 @@ fn lists_an_add_ons_loose_game_files_after_its_packs_and_nothing_else_loose() {
     assert_eq!(loose, [false, true, true]);
     assert_eq!(library::read_range(&found, "xmen/progs.dat", 0, 5).unwrap(), b"loose");
 }
+
+#[cfg(unix)]
+#[test]
+fn a_base_game_gets_no_loose_files_and_a_bad_loose_file_is_left_out_without_failing_the_scan() {
+    let f = Fixture::new();
+    f.write("Quake/pak0.pak", b"base");
+    f.write("Quake/autoexec.cfg", b"the player's own");
+    f.write("X-Men/pak0.pak", b"pack");
+    let elsewhere = Fixture::new();
+    let outside = elsewhere.write("progs.dat", b"outside the library");
+    symlink(&outside, &f.path("X-Men/progs.dat"));
+    std::os::unix::fs::symlink(f.path("missing"), f.path("X-Men/autoexec.cfg")).unwrap();
+    let big = fs::File::create(f.path("X-Men/quake.rc")).unwrap();
+    big.set_len((64 << 20) + 1).unwrap();
+    let found = library::scan(&f.0).expect("an unreadable, escaping or oversized loose file does not fail the scan");
+    assert_eq!(tokens(&found), ["quake/pak0.pak", "xmen/pak0.pak"], "no loose file for Quake; none of the bad ones");
+}

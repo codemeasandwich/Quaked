@@ -2,7 +2,7 @@
 // full Quake's pack is fetched when there, saves under their original keys); choosing the shareware keeps the choice,
 // reloads the page, fetches no owned pack and keeps its own saves; a game the catalogue does not call playable, and
 // one whose support is not built (a mission pack), is refused with the reason; a blocked store refuses honestly.
-import { GameSelection_SetRunning, GameSelection_ConfigKey, GameSelection_MissionPack, GameSelection_FetchMission, GameSelection_Current, GameSelection_OwnedPacks, GameSelection_SavePrefix, GameSelection_Select, GameSelection_ReportStart, GameSelection_Startable } from '../src/engine/common/game_selection.js';
+import { GameSelection_SetRunning, GameSelection_ConfigKey, GameSelection_MissionPack, GameSelection_FetchMission, GameSelection_LibraryOrder, GameSelection_FetchLoose, GameSelection_Current, GameSelection_OwnedPacks, GameSelection_SavePrefix, GameSelection_Select, GameSelection_ReportStart, GameSelection_Startable } from '../src/engine/common/game_selection.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
 const store = new Map();
@@ -178,5 +178,41 @@ Deno.test( 'an add-on\'s loose game files become one pack mounted under its own 
 	same( made.join( '|' ), 'progs.dat,autoexec.cfg', 'progs.dat and autoexec.cfg, not config.cfg' );
 	const none = await GameSelection_FetchMission( { name: 'Quoth', folders: [ 'games/Quoth' ] }, async url => url === 'games/Quoth/pak0.pak' ? { url } : null, async () => null, () => { throw Error( 'no loose files: no pack' ); } );
 	same( none.map( p => p.url ).join(), 'games/Quoth/pak0.pak', 'no loose files: only the packs' );
+
+} );
+
+Deno.test( 'the Mac app mounts base packs, then the add-on\'s loose files, then its packs; a base game\'s loose files never', () => {
+
+	const same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
+	const e = ( game, name, loose = false ) => ( { game, name, loose } );
+	const entries = [ e( 'quake', 'pak0.pak' ), e( 'quake', 'autoexec.cfg', true ), e( 'xmen', 'pak0.pak' ), e( 'xmen', 'pak1.pak' ), e( 'xmen', 'progs.dat', true ), e( 'xmen', 'autoexec.cfg', true ) ];
+	const show = steps => steps.map( s => s.loose ? 'loose(' + s.loose.map( x => x.name ).join( '+' ) + ')' : s.pack.game + '/' + s.pack.name ).join( ' ' );
+	same( show( GameSelection_LibraryOrder( entries, [ 'quake', 'xmen' ], 'xmen' ) ), 'quake/pak0.pak loose(progs.dat+autoexec.cfg) xmen/pak0.pak xmen/pak1.pak', 'an add-on over Quake' );
+	same( show( GameSelection_LibraryOrder( entries, [ 'quake' ], null ) ), 'quake/pak0.pak', 'Quake alone: the player\'s autoexec.cfg is not mounted' );
+
+} );
+
+Deno.test( 'a loose file is fetched whole; a page or an oversized file is refused', async () => {
+
+	const same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
+	const reply = ( body, headers = {} ) => async () => new Response( body, { status: 200, headers } );
+	same( new TextDecoder().decode( await GameSelection_FetchLoose( 'x', reply( 'bind i prevtoy' ) ) ), 'bind i prevtoy', 'a file' );
+	same( await GameSelection_FetchLoose( 'x', reply( 'quake.rc', { 'Content-Type': 'text/html' } ) ), null, 'an HTML content type' );
+	same( await GameSelection_FetchLoose( 'x', reply( '<!doctype html><p>index' ) ), null, 'a body that is a page' );
+	same( await GameSelection_FetchLoose( 'x', async () => new Response( null, { status: 404 } ) ), null, 'not there' );
+	// no Content-Length: counted as it streams
+	const big = new ReadableStream( { start( c ) { for ( let i = 0; i < 65; i ++ ) c.enqueue( new Uint8Array( 1024 * 1024 ) ); c.close(); } } );
+	same( await GameSelection_FetchLoose( 'x', async () => new Response( big ) ), null, 'over 64 MB with no Content-Length' );
+
+} );
+
+Deno.test( 'the app library gives loose files to exactly the catalogue\'s add-ons', async () => {
+
+	const { GAME_CATALOGUE_GAMES } = await import( '../src/engine/common/game_catalogue.js' );
+	const rust = await Deno.readTextFile( new URL( '../src-tauri/src/library.rs', import.meta.url ) );
+	const listed = /pub const ADDONS: &\[&str\] = &\[([^\]]*)\]/.exec( rust )[ 1 ].match( /"([^"]+)"/g ).map( s => s.slice( 1, -1 ) ).sort().join();
+	check( listed === GAME_CATALOGUE_GAMES.filter( g => g.kind === 'addon' ).map( g => g.id ).sort().join(), 'library.rs ADDONS: ' + listed );
+	const games = [ ...rust.matchAll( /\("([a-z0-9_]+)", &\[/g ) ].map( m => m[ 1 ] ).sort().join();
+	check( games === GAME_CATALOGUE_GAMES.filter( g => ! g.placeholder ).map( g => g.id ).sort().join(), 'library.rs GAMES: ' + games );
 
 } );

@@ -179,6 +179,70 @@ export async function GameSelection_FetchMission( mission, fetchPak, fetchFile =
 
 }
 
+/** At most this many bytes for a loose game file (src-tauri/src/library.rs LOOSE_LIMIT). */
+export const GAME_SELECTION_LOOSE_LIMIT = 64 * 1024 * 1024;
+/**
+ * Fetches one loose game file for the source build (GameSelection_FetchMission's `fetchFile`): its bytes, or null when
+ * it is not there or is refused, with the reason printed. Refused: a page instead of the file (an HTML content type, or
+ * a body starting with `<`, as a server that answers a missing path with its index page sends), and anything over
+ * GAME_SELECTION_LOOSE_LIMIT, counted as it streams (a missing Content-Length is no way round it).
+ *
+ * @param {string} url the file's URL
+ * @param {function(string): Promise<Response>} [fetchImpl] the fetch to use
+ * @returns {Promise<?Uint8Array>} the bytes, or null
+ */
+export async function GameSelection_FetchLoose( url, fetchImpl = globalThis.fetch ) {
+
+	let response;
+	try { response = await fetchImpl( url ); } catch ( error ) { Sys_Printf( 'Loose file %s could not be read: %s\n', url, error?.message ?? error ); return null; }
+	if ( ! response.ok ) { response.body?.cancel?.().catch?.( () => {} ); return null; }
+	const refuse = reason => { response.body?.cancel?.().catch?.( () => {} ); Sys_Printf( 'Loose file %s refused: %s\n', url, reason ); return null; };
+	if ( /text\/html/i.test( response.headers.get( 'content-type' ) ?? '' ) ) return refuse( 'a page, not the file' );
+	if ( Number( response.headers.get( 'content-length' ) ) > GAME_SELECTION_LOOSE_LIMIT ) return refuse( 'larger than 64 MB' );
+	const chunks = [], reader = response.body?.getReader?.();
+	let size = 0;
+	if ( ! reader ) { const bytes = new Uint8Array( await response.arrayBuffer() ); chunks.push( bytes ); size = bytes.length; }
+	else for ( ;; ) {
+
+		const { done, value } = await reader.read();
+		if ( done ) break;
+		size += value.length;
+		if ( size > GAME_SELECTION_LOOSE_LIMIT ) { reader.cancel().catch( () => {} ); Sys_Printf( 'Loose file %s refused: larger than 64 MB\n', url ); return null; }
+		chunks.push( value );
+
+	}
+	const bytes = new Uint8Array( size );
+	let at = 0; for ( const c of chunks ) { bytes.set( c, at ); at += c.length; }
+	if ( bytes[ 0 ] === 60 ) { Sys_Printf( 'Loose file %s refused: a page, not the file\n', url ); return null; } // '<'
+	return bytes;
+
+}
+
+/**
+ * The order the Mac app mounts a game's library entries in (src/platform/desktop.js): for each game, base first, its
+ * loose game files as one pack and then its packs, so the last mounted wins as Quake searches (a game's packs, then its
+ * folder, then its base). Only the add-on being run gets its loose files; a player's own autoexec.cfg beside Quake is
+ * not part of any game.
+ *
+ * @param {Array<{ game: string, loose?: boolean }>} entries the library's entries
+ * @param {Array<string>} ids the games to mount, base first
+ * @param {?string} addon the add-on being run, if any
+ * @returns {Array<{ loose: Array<object> }|{ pack: object }>} what to mount, in order
+ */
+export function GameSelection_LibraryOrder( entries, ids, addon ) {
+
+	const out = [];
+	for ( const game of ids ) {
+
+		const loose = game === addon ? entries.filter( e => e.game === game && e.loose ) : [];
+		if ( loose.length > 0 ) out.push( { loose } );
+		for ( const pack of entries.filter( e => e.game === game && ! e.loose ) ) out.push( { pack } );
+
+	}
+	return out;
+
+}
+
 // the game the page actually started (main.js, once its packs are mounted): it can differ from the choice when a
 // chosen game's pack is missing; null until then
 let running = null;

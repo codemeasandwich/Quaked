@@ -49,3 +49,17 @@ Deno.test('an unused edge 0 with vertices past the map loads; an edge a face use
  let error='';try{load(Buffer.from(joinBsp(parts.map((p,i)=>i===12?bad:p),29)),'maps/bad-edge.bsp');}catch(e){error=String(e?.message??e);}
  check(/Invalid BSP edge \d+ in maps\/bad-edge\.bsp/.test(error),'a used bad edge is refused with the map name: '+error);
 });
+
+Deno.test('the same in a BSP2 map: an unused edge 0 past the vertices loads',()=>{
+ const raw=native('maps/b_shell0.bsp'),fixture=convertBsp29(raw,BSP2,{fractional:true}),parts=splitBsp(fixture);
+ const edges=Buffer.from(parts[12]);edges.writeUInt32LE(0xffffff,0);edges.writeUInt32LE(0xfffffe,4);
+ const m=load(Buffer.from(joinBsp(parts.map((p,i)=>i===12?edges:p),BSP2)));check(m&&m.numsurfaces>0,'the BSP2 map with a garbage edge 0 loads');
+});
+
+Deno.test('a bad edge that only an unused surfedge names loads; faces are what count',()=>{
+ const raw=native('maps/b_shell0.bsp'),parts=splitBsp(raw),edges=Buffer.from(parts[12]),n=edges.length/4;
+ const bad=Buffer.alloc(4);bad.writeUInt16LE(0xffff,0);bad.writeUInt16LE(0xfffe,2);
+ const surf=Buffer.alloc(4);surf.writeInt32LE(n,0);
+ const m=load(Buffer.from(joinBsp(parts.map((p,i)=>i===12?Buffer.concat([edges,bad]):i===13?Buffer.concat([p,surf]):p),29)));
+ check(m&&m.numsurfaces>0,'the map with a trailing surfedge to a bad edge loads');
+});

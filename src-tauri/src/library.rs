@@ -47,8 +47,11 @@ pub const GAMES: &[(&str, &[&str])] = &[
 ];
 /// The loose files Quake reads from a game folder that add-ons ship outside their packs (X-Men's progs.dat, Malice's
 /// autoexec.cfg, Arcane Dimensions' quake.rc; docs/add-ons-2026-10-13.md). The same list as the source build's
-/// (src/engine/common/game_selection.js); config.cfg is not read: the port keeps its own settings.
+/// (GAME_CATALOGUE_LOOSE_FILES, src/engine/common/game_catalogue.js); config.cfg is not read: the port keeps its own
+/// settings. Listed only for add-ons (ADDONS): a player's own autoexec.cfg beside Quake is not part of any game.
 pub const LOOSE_FILES: &[&str] = &["progs.dat", "autoexec.cfg", "quake.rc"];
+/// The add-ons among GAMES (game_catalogue.js kind 'addon'): only they get loose files.
+pub const ADDONS: &[&str] = &["ad", "quoth", "malice", "xmen", "aopfm_v2", "soe"];
 /// At most this many bytes for a loose file.
 const LOOSE_LIMIT: u64 = 64 << 20;
 fn children(path: &Path) -> Result<BTreeMap<String, PathBuf>, String> {
@@ -114,12 +117,21 @@ pub fn scan(root: &Path) -> Result<Library, String> {
                     loose: false,
                 });
             }
-            for name in LOOSE_FILES {
+            // optional: a loose file that cannot be read, resolves outside the library (as for packs) or is too large is
+            // left out, never an error
+            for name in LOOSE_FILES.iter().filter(|_| ADDONS.contains(game)) {
                 let Some(path) = entries.get(*name) else {
                     continue;
                 };
-                let path = path.canonicalize().map_err(|e| e.to_string())?;
-                let meta = fs::metadata(&path).map_err(|e| e.to_string())?;
+                let Ok(path) = path.canonicalize() else {
+                    continue;
+                };
+                let Ok(meta) = fs::metadata(&path) else {
+                    continue;
+                };
+                let Ok(modified) = meta.modified() else {
+                    continue;
+                };
                 if !path.starts_with(&root) || !meta.is_file() || meta.len() > LOOSE_LIMIT {
                     continue;
                 }
@@ -129,7 +141,7 @@ pub fn scan(root: &Path) -> Result<Library, String> {
                     name: name.to_string(),
                     path,
                     bytes: meta.len(),
-                    modified: format!("{:?}", meta.modified().map_err(|e| e.to_string())?),
+                    modified: format!("{modified:?}"),
                     loose: true,
                 });
             }

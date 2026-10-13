@@ -205,8 +205,8 @@ export async function GameCatalogue_ProbePack( url, options = {} ) {
 const MISSION_PACKS = new Set( [ 'hipnotic', 'rogue' ] );
 // the episodes the engine runs: Dimension of the Past
 const EPISODES = new Set( [ 'dopa', 'mg1' ] ); // mg1 on the large-map protocol (card [34f])
-// the add-ons shown to play (docs/add-ons-2026-10-13.md): each over Quake, with its own QuakeC and maps
-const ADDONS = new Set( [ 'quoth', 'malice', 'aopfm_v2', 'soe', 'xmen' ] );
+// the add-ons shown to play (docs/add-ons-2026-10-13.md; not the app library's ADDONS, which lists every add-on): each over Quake, with its own QuakeC and maps
+const PLAYABLE_ADDONS = new Set( [ 'quoth', 'malice', 'aopfm_v2', 'soe', 'xmen' ] );
 
 // What a found game's files show it to be, and whether that is evidence enough to call it playable.
 function assess( game, files, byId ) {
@@ -247,7 +247,7 @@ function assess( game, files, byId ) {
 		return { playable: true, reason: game.id === 'mg1' ? 'an episode: its QuakeC and BSP2 maps, played on Quake with the large-map protocol' : 'an episode: its QuakeC and BSP2 maps, played on Quake' };
 
 	}
-	if ( game.kind === 'addon' && ADDONS.has( game.id ) ) {
+	if ( game.kind === 'addon' && PLAYABLE_ADDONS.has( game.id ) ) {
 
 		const missing = [ 'progs.dat', 'maps/start.bsp' ].filter( name => ! has( name ) );
 		if ( missing.length > 0 ) return { playable: false, reason: `its ${missing.join( ', ' )} ${missing.length === 1 ? 'is' : 'are'} missing` };
@@ -259,7 +259,8 @@ function assess( game, files, byId ) {
 }
 
 /**
- * Probes every known game's folders and builds the catalogue. Bounded: per pack at most a header and a directory;
+ * Probes every known game's folders and builds the catalogue (an add-on's entry also lists its loose game files found,
+ * `loose`, each probed with a one-byte ranged read). Bounded: per pack at most a header and a directory;
  * packs pak0..pak4, stopping at the first missing; the first folder holding a `pak0.pak` is the game's. A call while a
  * refresh runs returns that refresh (one probe at a time).
  *
@@ -291,12 +292,13 @@ export function GameCatalogue_Refresh( options ) {
 
 }
 
-// one game's folders: the first holding a pak0.pak is the game's; its packs pak0.. in order, stopping at a gap
 // The loose files Quake reads from a game folder that add-ons ship outside their packs (X-Men's progs.dat, Malice's
 // autoexec.cfg, Arcane Dimensions' quake.rc; docs/add-ons-2026-10-13.md); the Mac app's library lists the same
 // (src-tauri/src/library.rs LOOSE_FILES). config.cfg is not read: the port keeps its own settings.
 export const GAME_CATALOGUE_LOOSE_FILES = Object.freeze( [ 'progs.dat', 'autoexec.cfg', 'quake.rc' ] );
 
+// one game's folders: the first holding a pak0.pak is the game's; its packs pak0.. in order, stopping at a gap
+// (and, for an add-on, its loose game files: one byte each)
 async function probeGame( game, base, options ) {
 
 	const entry = { id: game.id, name: game.name, kind: game.kind, folder: null, packs: [], present: false, validated: false, playable: false, reason: '', fileCount: 0 };
@@ -332,7 +334,8 @@ async function probeGame( game, base, options ) {
 			for ( const name of GAME_CATALOGUE_LOOSE_FILES ) {
 
 				const got = await rangedGet( options.fetch ?? globalThis.fetch, new URL( folder.split( '/' ).map( encodeURIComponent ).join( '/' ) + '/' + name, base ).href, 0, 1, options.timeoutMs ?? GAME_CATALOGUE_LIMITS.timeoutMs );
-				if ( got.response?.ok && got.bytes.length > 0 ) { entry.loose.push( name ); files.add( name ); }
+				// only an exact ranged answer counts: a server that answers a missing path with a page must not make one
+				if ( got.response?.status === 206 && got.exact && got.bytes.length > 0 ) { entry.loose.push( name ); files.add( name ); }
 
 			}
 

@@ -196,7 +196,8 @@ export class medge_t {
 
 	/**
 	 * A BSP edge (gl_model.h): `v` the indices of its two vertices in `model_t.vertexes`; `cachededgeoffset` is
-	 * unused by the GL renderer. Filled by `Mod_LoadEdges`.
+	 * unused by the GL renderer; `bad` (set by `Mod_LoadEdges`) when a vertex index is past the map's, which is refused
+	 * only if a face uses the edge (`Mod_LoadFaces`). Filled by `Mod_LoadEdges`.
 	 */
 	constructor() {
 

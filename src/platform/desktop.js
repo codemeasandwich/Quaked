@@ -4,7 +4,7 @@
 import {invoke,convertFileSrc} from '@tauri-apps/api/core';
 import {listen} from '@tauri-apps/api/event';
 import {GAME_CATALOGUE_GAMES,GameCatalogue_Refresh,GameCatalogue_SetProvider} from '../engine/common/game_catalogue.js';
-import {GameSelection_Startable,GameSelection_Kept,GameSelection_Remember} from '../engine/common/game_selection.js';
+import {GameSelection_Startable,GameSelection_Kept,GameSelection_Remember,GameSelection_LibraryOrder} from '../engine/common/game_selection.js';
 import {COM_LoadPackFile,COM_BuildPack} from '../engine/common/pak.js';
 import {GameShelf_Show} from '../engine/common/hooks.js'; // filled by src/newer/install.js, which main.js loads first
 import {LoadingScreen_SetProgress} from '../newer/ui/loading_screen.js';
@@ -91,14 +91,11 @@ export async function Desktop_Prepare(){
    const bytes=await response.arrayBuffer();if(bytes.byteLength!==entry.bytes)throw Error('Archive changed: '+entry.name);
    return bytes;
   };
-  for(const game of ids){
-   // an add-on's loose game files (X-Men's progs.dat; library.rs LOOSE_FILES) as one pack under its own packs, as
-   // Quake searches a game folder after its packs (docs/add-ons-2026-10-13.md)
-   const loose=library.packs.filter(p=>p.game===game&&p.loose);
-   if(loose.length){const files=[];for(const entry of loose)files.push({name:entry.name,data:new Uint8Array(await read(entry))});packs.push(COM_LoadPackFile(game+'/loose',COM_BuildPack(files)));}
-   for(const entry of library.packs.filter(p=>p.game===game&&!p.loose)){
-    const pack=COM_LoadPackFile(entry.token,await read(entry));if(!pack)throw Error('Invalid archive: '+entry.name);packs.push(pack);
-   }
+  // the add-on's loose game files (X-Men's progs.dat; library.rs LOOSE_FILES) as one pack under its own packs, as
+  // Quake searches a game folder after its packs (GameSelection_LibraryOrder; docs/add-ons-2026-10-13.md)
+  for(const step of GameSelection_LibraryOrder(library.packs,ids,definition.kind==='addon'?id:null)){
+   if(step.loose){const files=[];for(const entry of step.loose)files.push({name:entry.name,data:new Uint8Array(await read(entry))});const pack=COM_LoadPackFile(id+'/loose',COM_BuildPack(files));if(!pack)throw Error('Invalid loose files: '+id);packs.push(pack);continue;}
+   const pack=COM_LoadPackFile(step.pack.token,await read(step.pack));if(!pack)throw Error('Invalid archive: '+step.pack.name);packs.push(pack);
   }
   // Re-read metadata after full reads so changing files cannot silently select a different game.
   for(const entry of library.packs.filter(p=>ids.includes(p.game)))await invoke('library_read',{token:entry.token,offset:0,length:12});
