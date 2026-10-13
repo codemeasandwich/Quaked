@@ -4,7 +4,8 @@ Trials behind [../../add-ons-2026-10-13.md](../../add-ons-2026-10-13.md) (card c
 
 `addon-trial-harness.mjs` is the harness as run: it serves the built app page (`dist/desktop`) to
 Playwright WebKit with a stand-in for the Tauri bridge and the owner's library (`~/quaked`), starts
-the add-on, then loads each map in `MAPS` with `map <name>`. A map passes when it loads (the client's
+the add-on (after its demo reaches signon 4; a found add-on, or one run with `NODEMO=1` such as
+Arcane Dimensions, once the engine takes commands), then loads each map in `MAPS` with `map <name>`. A map passes when it loads (the client's
 world is that map, signed on, the server running), the server runs, and game time advances by more
 than a second with no page error. Each `.jsonl` file is one run, a line per map, then the summary.
 (Paths in the harness are this machine's.)

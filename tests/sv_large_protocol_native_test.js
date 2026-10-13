@@ -13,9 +13,10 @@ import { SV_Init, SV_SpawnServer, SV_EmitPacketEntities, sv_protocol } from '../
 import { Host_InitCommands } from '../src/engine/server/host_cmd.js';
 import * as vars from '../src/engine/common/cvar.js';
 import { Cbuf_Init, Cmd_Init, Cbuf_AddText, Cbuf_Execute } from '../src/engine/common/cmd.js';
-import { PROTOCOL_VERSION, PROTOCOL_LARGE, svc_serversequence, svc_updatestat } from '../src/engine/common/protocol.js';
-import { sizebuf_t, SZ_Alloc, SZ_Clear, MSG_WriteByte, MSG_WriteLong, COM_SetNetMessage } from '../src/engine/common/common.js';
-import { cl } from '../src/engine/client/client.js';
+import { PROTOCOL_VERSION, PROTOCOL_LARGE, svc_serversequence, svc_updatestat, svc_packetentities, PE_ORIGIN1 } from '../src/engine/common/protocol.js';
+import { EDICT_NUM } from '../src/engine/progs/progs.js';
+import { sizebuf_t, SZ_Alloc, SZ_Clear, MSG_WriteByte, MSG_WriteShort, MSG_WriteLong, COM_SetNetMessage } from '../src/engine/common/common.js';
+import { cl, CL_EntitySlot } from '../src/engine/client/client.js';
 import { CL_ParseServerMessage } from '../src/engine/client/cl_parse.js';
 import { CL_GetEntityFrame } from '../src/engine/client/cl_pred.js';
 import { cls, ca_dedicated } from '../src/engine/client/client.js';
@@ -113,7 +114,11 @@ Deno.test( 'entity numbers past 1023 go out and come back whole in the large-map
 		same( sv.protocol, PROTOCOL_LARGE, 'a large-map server' );
 		cl.protocol = PROTOCOL_LARGE;
 		const client = new client_t(); client.delta_sequence = - 1;
-		const numbers = [ 5, 1023, 1024, 2051, MAX_EDICTS - 1 ]; // 1024: low bits 0, the word would be 0 without "more bits"
+		const numbers = [ 5, 1023, 1024, 2051, MAX_EDICTS - 1 ];
+		// 1024's baseline is exactly the state sent: nothing changed, its low bits 0, so its word would be 0, the list's
+		// end, without the forced "more bits" (SV_WriteDelta)
+		const b = EDICT_NUM( 1024 ).baseline; b.number = 1024; b.flags = 0; b.modelindex = 1; b.frame = 0; b.colormap = 0; b.skin = 0; b.effects = 0; b.origin[ 0 ] = 100 + 24; b.origin[ 1 ] = 8; b.origin[ 2 ] = 16; b.angles.fill( 0 );
+		CL_EntitySlot( 1024 ).baseline.copyFrom( b ); // and the client's, as the signon's baseline gives it
 		check( read( send( client, 1, numbers, 100 ) ), 'the full packet read to its end' );
 		same( got( 1 ), numbers.map( n => n + '@' + ( 100 + n % 1000 ) ).join(), 'every number and its state, from the baselines' );
 		client.delta_sequence = 1; // the client acknowledged frame 1: frame 2 is a delta, 1024 removed, the others moved
@@ -123,5 +128,11 @@ Deno.test( 'entity numbers past 1023 go out and come back whole in the large-map
 		client.delta_sequence = - 1; cl.protocol = PROTOCOL_VERSION;
 		let intact = false; try { intact = read( send( client, 3, numbers, 500 ) ); } catch {}
 		check( ! intact || got( 3 ) !== numbers.map( n => n + '@' + ( 500 + n % 1000 ) ).join(), 'read without the byte, the packet does not come back: ' + got( 3 ) );
+		// a packet cut off right after an entry's word ends the game cleanly (no high byte to read), not with a TypeError
+		cl.protocol = PROTOCOL_LARGE;
+		const cut = new sizebuf_t(); SZ_Alloc( cut, 16 ); SZ_Clear( cut );
+		MSG_WriteByte( cut, svc_serversequence ); MSG_WriteLong( cut, 4 ); MSG_WriteByte( cut, svc_packetentities ); MSG_WriteShort( cut, 5 | PE_ORIGIN1 );
+		let ended = ''; try { COM_SetNetMessage( cut ); CL_ParseServerMessage(); } catch ( e ) { ended = e.message; }
+		check( /msg_badread in packetentities/.test( ended ), 'a cut-off entry ends the game as a bad read: ' + ended );
 	} finally { vars.Cvar_Set( 'sv_protocol', String( PROTOCOL_VERSION ) ); sv.active = false; cl.protocol = PROTOCOL_VERSION; }
 } );

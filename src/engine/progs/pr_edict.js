@@ -1590,7 +1590,7 @@ PR_AllocEdicts
  * original C - we need this because JS doesn't have pointer arithmetic over a flat memory block. The array lives as
  * `sv.edicts` until the next map.
  *
- * @param {number} maxEdicts number of edicts (`sv.max_edicts`)
+ * @param {number} maxEdicts number of edicts to make now (`sv.max_edicts`, at most 1024; EDICT_NUM makes the rest)
  * @param {number} entityfields 32-bit field slots per edict (`progs.entityfields`)
  * @returns {Array<edict_t>} new edicts numbered 0..maxEdicts-1, all fields zero
  */

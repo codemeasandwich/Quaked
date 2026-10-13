@@ -137,9 +137,12 @@ const _pushmove_maxs = new Float32Array( 3 );
 const _pushmove_move = new Float32Array( 3 );
 const _pushmove_entorig = new Float32Array( 3 );
 const _pushmove_pushorig = new Float32Array( 3 );
+// a pusher's saved positions: 1024 made up front (WinQuake's 600 fit), more as a large map moves more (movedFrom)
+const MOVED_FIRST = 1024;
+const movedFrom = ( list, i ) => list[ i ] ?? ( list[ i ] = new Float32Array( 3 ) );
 const _pushmove_moved_edict = new Array( MAX_EDICTS );
 const _pushmove_moved_from = [];
-for ( let i = 0; i < MAX_EDICTS; i ++ )
+for ( let i = 0; i < MOVED_FIRST; i ++ )
 	_pushmove_moved_from[ i ] = new Float32Array( 3 );
 
 // Cached buffers for SV_CheckStuck (Golden Rule #4)
@@ -184,7 +187,7 @@ const _pushrotate_right = new Float32Array( 3 );
 const _pushrotate_up = new Float32Array( 3 );
 const _pushrotate_moved_edict = new Array( MAX_EDICTS );
 const _pushrotate_moved_from = [];
-for ( let i = 0; i < MAX_EDICTS; i ++ )
+for ( let i = 0; i < MOVED_FIRST; i ++ )
 	_pushrotate_moved_from[ i ] = new Float32Array( 3 );
 
 //
@@ -776,9 +779,7 @@ export function SV_PushRotate( pusher, movetime ) {
 	const up = _pushrotate_up;
 	const moved_edict = _pushrotate_moved_edict;
 	const moved_from = _pushrotate_moved_from;
-	// Clear moved_edict array for reuse
-	for ( let i = 0; i < MAX_EDICTS; i ++ )
-		moved_edict[ i ] = null;
+	// (moved_edict is read only below num_moved, which this move counts from 0: nothing to clear)
 
 	// If no angular velocity, just advance time
 	if ( pusher.v.avelocity[ 0 ] === 0 && pusher.v.avelocity[ 1 ] === 0 && pusher.v.avelocity[ 2 ] === 0 ) {
@@ -839,7 +840,7 @@ export function SV_PushRotate( pusher, movetime ) {
 			check.v.flags = ( check.v.flags | 0 ) & ~FL_ONGROUND;
 
 		VectorCopy( check.v.origin, entorig );
-		VectorCopy( check.v.origin, moved_from[ num_moved ] );
+		VectorCopy( check.v.origin, movedFrom( moved_from, num_moved ) );
 		moved_edict[ num_moved ] = check;
 		num_moved ++;
 
@@ -992,7 +993,7 @@ export function SV_PushMove( pusher, movetime ) {
 			check.v.flags = ( check.v.flags | 0 ) & ~FL_ONGROUND;
 
 		VectorCopy( check.v.origin, entorig );
-		VectorCopy( check.v.origin, moved_from[ num_moved ] );
+		VectorCopy( check.v.origin, movedFrom( moved_from, num_moved ) );
 		moved_edict[ num_moved ] = check;
 		num_moved ++;
 

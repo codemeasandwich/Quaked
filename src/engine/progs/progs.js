@@ -566,7 +566,8 @@ export function NUM_FOR_EDICT( e ) {
  * Gives the next edict in the array (C macro `NEXT_EDICT`), for loops over all edicts.
  *
  * @param {edict_t} e an edict of the current server
- * @returns {edict_t|undefined} the edict numbered one higher; undefined past the end of `sv.edicts`
+ * @returns {edict_t|undefined} the edict numbered one higher (made on first use, as EDICT_NUM); undefined at
+ *   `sv.max_edicts`
  */
 export function NEXT_EDICT( e ) {
 
@@ -591,7 +592,8 @@ export function EDICT_TO_PROG( e ) {
  * Converts a QuakeC entity value back to its edict (C macro `PROG_TO_EDICT`). No range check.
  *
  * @param {number} e entity value (an entity number in this port)
- * @returns {edict_t|undefined} the edict; undefined when the value is outside `sv.edicts`
+ * @returns {edict_t|undefined} the edict (made on first use below `sv.max_edicts`, as EDICT_NUM); undefined outside
+ *   0..`sv.max_edicts`-1
  */
 export function PROG_TO_EDICT( e ) {
 

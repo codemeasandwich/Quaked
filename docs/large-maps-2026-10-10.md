@@ -55,10 +55,11 @@ this port's own server and client speak it.
 |---|---|---|
 | models (`SV_ModelLimit`) | 256 | 2048 |
 | sounds (`SV_SoundLimit`) | 256 | 2048 |
-| edicts (`sv.max_edicts`) | 600 | 1024 |
+| edicts (`sv.max_edicts`) | 600 | 8192 (1024 until 13 October) |
 | signon | 8192 bytes | 48000 bytes |
 
-- **Edicts:** 1024 is the most the delta packets' 10-bit entity numbers can name.
+- **Edicts:** 8192 since 13 October: the delta packets add a byte for numbers past 1023 (the Entities entry in
+  docs/add-ons-2026-10-13.md).
 - **Models and sounds:** 2048 is the most the shorts may index, and the precache arrays hold that many. The serverinfo
   carries every name in one reliable message of at most 64000 bytes, so how many fit in practice depends on the
   names' lengths. 2048 of each was not tried; mge2m2's 361 models are the most any map here needs.
@@ -111,7 +112,7 @@ signon (sent in one message at prespawn) fit. The client's receive buffer was al
 
 ## What remains
 
-- **Delta packets** still carry 10-bit entity numbers (at most 1024 edicts). A local packet carries at most 512
+- **Delta packets** carry entity numbers up to 8191 since 13 October (docs/add-ons-2026-10-13.md). A local packet carries at most 512
   entities (`MAX_PACKET_ENTITIES_LOCAL`); past that the server leaves the rest out of that frame. How many entities
   these maps show at once was not measured, so it is not known whether any frame reaches 512.
 - **The add-ons** (Arcane Dimensions, Quoth, Malice, X-Men, Abyss of Pandemonium) are still "not playable yet".

@@ -596,7 +596,9 @@ function FlushEntityPacket() {
 		if ( word === 0 )
 			break; // done
 
-		CL_ParseDelta( _flushOlde, _flushNewe, word, CL_PacketEntityNumber( word ) );
+		const num = CL_PacketEntityNumber( word );
+		if ( msg_badread || num < 0 ) { _Host_EndGame( 'msg_badread in packetentities' ); return; } // cut off after the word
+		CL_ParseDelta( _flushOlde, _flushNewe, word, num );
 
 	}
 
@@ -702,6 +704,7 @@ function CL_ParsePacketEntities( delta ) {
 		}
 
 		const newnum = CL_PacketEntityNumber( word );
+		if ( msg_badread || newnum < 0 ) { _Host_EndGame( 'msg_badread in packetentities' ); return; } // cut off after the word
 		if ( newnum >= MAX_EDICTS ) { _Host_EndGame( 'CL_ParsePacketEntities: entity number ' + newnum ); return; }
 		CL_EntitySlot( newnum ); // its baseline (a large map's entities past 1023 are made as first named)
 		let oldnum = oldindex >= oldp.num_entities ? 9999 : oldp.entities[ oldindex ].number; // 9999: above any entity
@@ -1512,6 +1515,8 @@ export function CL_ParseServerMessage() {
 
 			case svc_setview:
 				cl.viewentity = MSG_ReadShort();
+				// a camera past 1023 may have had no baseline or packet yet: give it its slot (CL_EntitySlot)
+				if ( cl.viewentity >= 0 && cl.viewentity < MAX_EDICTS ) CL_EntitySlot( cl.viewentity );
 				break;
 
 			case svc_lightstyle:

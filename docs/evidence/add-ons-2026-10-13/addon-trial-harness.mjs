@@ -19,7 +19,7 @@ const server=createServer((req,res)=>{
  const url=new URL(req.url,'http://x');let path=decodeURIComponent(url.pathname);
  res.setHeader('Access-Control-Allow-Origin','*');
  if(path.startsWith('/fs/'))path=path.slice(3);else path=W+'/dist/desktop'+(path==='/'?'/index.html':path);
- let size;try{size=statSync(path).size;}catch{res.writeHead(404).end();return;}
+ try{statSync(path);}catch{res.writeHead(404).end();return;}
  res.setHeader('Content-Type',types[extname(path)]??'application/octet-stream');
  const range=/bytes=(\d+)-(\d+)/.exec(req.headers.range??'');
  if(range){const s=+range[1],e=Math.min(+range[2],size-1);res.writeHead(206,{'Content-Range':`bytes ${s}-${e}/${size}`,'Content-Length':e-s+1});createReadStream(path,{start:s,end:e}).pipe(res);}
@@ -54,7 +54,9 @@ await page.addInitScript(({base,library,PACKS,W,discovered})=>{
 await page.goto(`${base}/index.html?game=${game}`);
 const t0=Date.now();
 // the engine is up when it plays its demo, or (a game without demos: Arcane Dimensions) once it takes commands
-const ok=await page.waitForFunction(()=>window.cls?.signon===4||(typeof window.Cbuf_AddText==='function'&&window.cls&&window.cl),null,{timeout:180000}).then(()=>true).catch(()=>false);await page.waitForTimeout(3000);
+// a game with its own demos must reach signon 4 first; a found game, or one run with NODEMO=1, starts once the engine takes commands
+const noDemo=!!process.env.DISCOVER||process.env.NODEMO==='1';
+const ok=await page.waitForFunction(noDemo=>window.cls?.signon===4||(noDemo&&typeof window.Cbuf_AddText==='function'&&window.cls&&window.cl),noDemo,{timeout:180000}).then(()=>true).catch(()=>false);await page.waitForTimeout(3000);
 console.log('first signon',ok,Math.round((Date.now()-t0)/1000)+'s',JSON.stringify(await page.evaluate(()=>({map:window.cl?.worldmodel?.name,demo:window.cls?.demoplayback,body:document.body.innerText.slice(0,300)}))));
 if(!ok){await page.screenshot({path:J+'/shots/'+game+'-nosignon.png'}).catch(()=>{});console.log(logs.slice(0,30).join('\n'));await browser.close();server.close();process.exit(1);}
 const maps=(process.env.MAPS??'start').split(',').filter(Boolean),results=[];
