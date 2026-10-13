@@ -1,0 +1,19 @@
+Correct ONLY the small head/face area of Image 1. The chest and mechanical breathing port now map correctly; keep them unchanged.
+
+The current small face is drawn as a LEFT-FACING PROFILE, which makes the mouth point upward when mapped onto the actual model. Replace it with a FULL FRONTAL FACE ROTATED 90 DEGREES COUNTERCLOCKWISE in the atlas. BOTH cheeks and BOTH eye sockets must be visible. This is NOT a side profile.
+
+Think of turning the entire atlas90degrees CLOCKWISE: the new face must then look UPRIGHT, DIRECTLY TOWARD THE VIEWER, with the eyes above the mouth.
+
+Precise targets on the1324×1188 image:
+- Work only within x52..150,y493..720 in the LEFT/front body half.
+- Two fierce, recessed eye sockets near (76,565) and (76,625): same x, separated along image y.
+- Heavy brow/crown toward x55..70.
+- Nose/central facial bridge near (94,595).
+- Dark gaping mouth centred near (116,595), long opening axis along IMAGE Y.
+- Upper fang row on the LEFT edge of that mouth, lower fang row on its RIGHT edge; the teeth point inward across IMAGE X.
+- Lower jaw toward x140.
+No snout or open mouth protruding left beyond x52.
+
+Make this a vicious scarred biomechanical skull-face with irregular ivory fangs, deeply shadowed mouth and heavy angular brow, using Image2 (the owner's enhanced Shambler) for menace and flesh quality. Preserve the pale hide/dark wound palette. The chest breathing grille at roughly(200,590) remains a separate unchanged machine component, not another mouth.
+
+Keep absolutely everything outside the head/cheek edit area unchanged: both sideways body halves, back, all guns, muscle/tendon anatomy, waist, four flame islands, silhouettes, framing, resolution and black background. No text, new islands, extra faces, bloom or external shadows.

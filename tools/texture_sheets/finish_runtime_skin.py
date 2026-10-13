@@ -9,6 +9,8 @@ from io import BytesIO
 import hashlib
 import json
 import os
+import array
+import sys
 from PIL import Image
 
 ENCODING = {'format': 'webp', 'quality': 92}
@@ -31,6 +33,28 @@ def encoded(path, size):
     return result, dict(masterSha256=digest(original), sha256=digest(result),
                        pillowDecodedRgbaSha256=digest(rgba), bytes=len(result))
 
+def effective_height_receipt(encoded_bytes, policy):
+    """Authoring receipt only; runtime and baker share EnemyHeightScalars."""
+    if policy is None:
+        return {}
+    with Image.open(BytesIO(encoded_bytes)) as image:
+        width, height = image.size
+        rgba = image.convert('RGBA').tobytes()
+    if policy.get('policy') != 'armagon-flash-v1' or policy.get('modelSha256') != 'e827535032c8e83609fedf07c9989c504e7eaa6772ce0d5cf73788e00980f151' or [policy.get('width'), policy.get('height')] != [width, height]:
+        raise ValueError('Invalid authored Armagon flash policy')
+    previous = -1
+    for y, start, end in policy['spans']:
+        if not all(type(n) is int for n in [y, start, end]) or not (0 <= y < height and 0 <= start < end <= width) or y * width + start < previous:
+            raise ValueError('Invalid authored Armagon flash span')
+        previous = y * width + end
+    scalar = array.array('f', (rgba[i] / 255 for i in range(0, len(rgba), 4)))
+    for y, start, end in policy['spans']:
+        scalar[y * width + start:y * width + end] = array.array('f', [1.0]) * (end - start)
+    if sys.byteorder != 'little':
+        scalar.byteswap()
+    return dict(pillowEffectiveScalarSha256=digest(scalar.tobytes()), scalarEncoding='float32-le',
+                heightPolicySha256=digest(json.dumps(policy, sort_keys=True, separators=(',', ':')).encode()))
+
 def finish_runtime_skin(output, key, recipe):
     request = recipe.get('runtimeEncoding')
     if request is None:
@@ -47,6 +71,8 @@ def finish_runtime_skin(output, key, recipe):
         if digest(path.read_bytes()) != report['files'][source]:
             raise ValueError('Fitted master changed before encoding: ' + source)
         data, receipt = encoded(path, report['dimensions'])
+        if source == 'height.webp':
+            receipt.update(effective_height_receipt(data, report.get('flatHeight', {}).get('runtime')))
         pending.append((folder / target, data))
         receipts[target] = receipt
     native = report.get('nativeHeight')
@@ -56,6 +82,7 @@ def finish_runtime_skin(output, key, recipe):
         if digest(path.read_bytes()) != native['sha256']:
             raise ValueError('Native height master changed before encoding')
         data, receipt = encoded(path, native['dimensions'])
+        receipt.update(effective_height_receipt(data, (native.get('flatHeight') or {}).get('runtime')))
         pending.append((path, data))
         native['sha256'] = receipt['sha256']
         native['encoding'] = dict(format='webp', quality=92, lossless=False, **receipt)

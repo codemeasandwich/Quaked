@@ -58,6 +58,16 @@ A height map 1.5x smaller gives steeper per-pixel slopes at the same `heightStre
 relief on a resampled skin can read slightly stronger; side-by-side checks at display size
 showed no visible difference for the batch-1 texture, dog and shambler.
 
+## Later reviewed artwork replacements
+
+A later native-layout refit may explicitly supersede a resampled asset without
+rewriting its historical before/after receipt. The result records a native-refit
+successor linking the previous digest to the reviewed recipe and source record,
+with pinned model/source identities and both current map hashes. The maintained
+record contract verifies source bytes, provenance and actual4x map dimensions;
+missing or inconsistent successor data fails. Other rows retain the original
+resample checks. Armagon legs are the first such replacement.
+
 ## Batch 1: shareware (done)
 
 - Re-fitted at 4x: `dog/custom` (1872x1014 to 1248x676; PNG 1.48 MB to 760 KB).

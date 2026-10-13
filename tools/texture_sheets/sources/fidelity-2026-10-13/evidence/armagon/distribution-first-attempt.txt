@@ -1,0 +1,98 @@
+
+added 19 packages, and audited 20 packages in 4s
+
+5 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> quaked@0.1.0 pretest:distribution
+> npm run prepare:shareware
+
+
+> quaked@0.1.0 prepare:shareware
+> node tools/distribution/prepare-shareware.mjs
+
+Verified pinned shareware build input: /private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-b4A4NJ/.distribution-cache/shareware.pak
+
+> quaked@0.1.0 test:distribution
+> node --test tests/*_contract_test.mjs
+
+✔ artifact inventories enforce the original-game data boundary (18.21225ms)
+✔ web closure retains every Episode 1/hub normal and eligible custom enemy sample (1255.019666ms)
+✔ desktop inventory includes all prepared map transports and no bundled original game (878.166375ms)
+✔ embedded binary codec preserves bytes across word boundaries and excludes HTML delimiters (568.155375ms)
+✔ corrupt encoded data and impossible lengths are rejected (0.5845ms)
+✔ departing peer queued sends cannot close host or prevent another peer receiving (54.706792ms)
+✔ asynchronous sends preserve peer FIFO and copy bytes before caller reuse (6.261708ms)
+✔ poll events completing after close cannot reach the driver or restart polling (5.949791ms)
+✔ late poll failure after close cannot emit fresh driver events (11.144291ms)
+✔ late send failure after close cannot manufacture another peer departure (3.695458ms)
+✔ rejected client handshake closes that client without ending an independent host (4.608625ms)
+✔ desktop catalogue validates selected split archives and preserves legacy default mounting policy (185.548708ms)
+✔ native strict selection refuses unread directories, damaged packs and absent shareware (2.5735ms)
+✔ native catalogue refuses a pack set beyond the existing bounded limit (6.070042ms)
+✔ a game needs its own pack and its ancestors; shared assets go to the nearest common ancestor (3.899167ms)
+✔ the committed game index is current and covers every playable game (51.140083ms)
+✔ each playable game finds all of its assets in its own packs (733.157ms)
+✔ the shareware pack holds everything the HTML can start with (72.198708ms)
+✔ staged snapshot includes only index bytes and deletions, preserving working files (421.88625ms)
+✔ staged builds and tests never inherit the hook's Git environment (1.2325ms)
+✖ resampled files are exactly what their 4x plan recorded, and skin provenance agrees (291.484666ms)
+✔ the web build ships the core and shareware packs and the shareware PAK; other games stay out of it (226.623791ms)
+✔ a site is published only with exactly the data files its HTML names, byte for byte (143.359334ms)
+✔ the verifier runs when reached through a symlink, so a CI path can never make it skip (160.534792ms)
+✔ only Bestiary pictures are re-encoded; data maps and other assets keep their bytes (29.669709ms)
+✔ a Bestiary page becomes WebP at its own size, under the limit, at the highest quality that fits, and is cached (789.615375ms)
+✔ a page that cannot fit without resizing stops the build for an owner decision (18694.359875ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 26
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22352.605125
+
+✖ failing tests:
+
+test at tests/standard_4x_records_contract_test.mjs:11:1
+✖ resampled files are exactly what their 4x plan recorded, and skin provenance agrees (291.484666ms)
+  AssertionError [ERR_ASSERTION]: batch3-hipnotic.json: newer/enemies/armalegs/custom/diffuse.png changed since its 4x record
+  + actual - expected
+
+  + '5732924a077117a2a77d273f937746beb034989212b5e98dea81cfeb3b59a833'
+  - '9720e8237391f074ace690a7e4682de15c70bba62532194851fbf66456d583c4'
+
+      at TestContext.<anonymous> (file:///private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-b4A4NJ/tests/standard_4x_records_contract_test.mjs:19:11)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '5732924a077117a2a77d273f937746beb034989212b5e98dea81cfeb3b59a833',
+    expected: '9720e8237391f074ace690a7e4682de15c70bba62532194851fbf66456d583c4',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+Commit blocked. Failed staged snapshot retained at /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-b4A4NJ
+node:internal/errors:985
+  const err = new Error(message);
+              ^
+
+Error: Command failed: npm run test:distribution
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at checkExecSyncError (node:child_process:925:11)
+    at execFileSync (node:child_process:961:15)
+    at run (file:///Users/bri/.codex/worktrees/enemy-character-fidelity/Quaked/tools/distribution/precommit.mjs:9:44)
+    at precommit (file:///Users/bri/.codex/worktrees/enemy-character-fidelity/Quaked/tools/distribution/precommit.mjs:29:3)
+    at async file:///Users/bri/.codex/worktrees/enemy-character-fidelity/Quaked/tools/distribution/precommit.mjs:47:79 {
+  status: 1,
+  signal: null,
+  output: [ null, null, null ],
+  pid: 65194,
+  stdout: null,
+  stderr: null
+}
+
+Node.js v24.13.0

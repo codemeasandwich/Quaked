@@ -1,0 +1,72 @@
+PASS Armagon preserves all existing model and native-height families
+meshing progs/armabody.mdl...
+
+398 tri 602 vert 1307 cmd
+
+PASS armabody: public loader retains every native UV, triangle and pose byte
+PASS armabody: actual fitted images and provenance target the supplied art and exact native model
+meshing progs/armabody.mdl...
+
+PASS armabody: actual public selection is source-bound, preserves geometry and restores native options
+PASS armabody: pending identity, failed images and retired work remain native without late publication
+meshing progs/armalegs.mdl...
+
+318 tri 522 vert 1147 cmd
+
+PASS armalegs: public loader retains every native UV, triangle and pose byte
+PASS armalegs: actual fitted images and provenance target the supplied art and exact native model
+meshing progs/armalegs.mdl...
+
+PASS armalegs: actual public selection is source-bound, preserves geometry and restores native options
+PASS armalegs: pending identity, failed images and retired work remain native without late publication
+PASS armabody: exact custom and native normal inputs select shipped samples
+PASS armalegs: exact custom and native normal inputs select shipped samples
+PASS Armagon native parts have ninety-eight paired frames and genuine extended firing geometry
+PASS Armagon native authored height prewarms only its correct model with custom enemies off
+PASS Armagon native-only preparation waits for pending model identity and starts no premature height requests
+meshing progs/armabody.mdl...
+
+PASS Armagon mismatched and unavailable native identities never fetch constrained authored heights
+PASS Armagon reused native texture drops formerly approved relief and rejects cancelled late authored images
+RESULT 16/17 passed (tests/armagon_skin_identity_test.js)
+FAIL Armagon native and custom flames have maximal flat height and flat baked normals without padding another surface Error: flash and gutter height is maximal: 30 != 255
+    at check (file:///private/tmp/quaked-armagon-current-4x/tests/armagon_skin_identity_test.js:48:59)
+    at same (file:///private/tmp/quaked-armagon-current-4x/tests/armagon_skin_identity_test.js:49:47)
+    at file:///private/tmp/quaked-armagon-current-4x/tests/armagon_skin_identity_test.js:229:103
+    at async file:///private/tmp/quaked-armagon-current-4x/tools/run_tests.mjs:93:9
+TOTAL 16/17 passed
+
+RETEST: restored the maintained six-pixel sampled-geometry safety margin. Authoring deliberately uses seven PIL-raster pixels to account for its one-pixel raster difference. The prior stronger seven-geometric-pixel diagnostic failed at285outer pixels (first238,155,height30); actual sampled triangles, required six-pixel gutter and all42440 authored-PIL7 pixels are255, and all26400 sampled flash normals are128/128/255/255. Full diagnostic retained in padding-diagnostic.txt; product unchanged.
+PASS Armagon preserves all existing model and native-height families
+meshing progs/armabody.mdl...
+
+398 tri 602 vert 1307 cmd
+
+PASS armabody: public loader retains every native UV, triangle and pose byte
+PASS armabody: actual fitted images and provenance target the supplied art and exact native model
+meshing progs/armabody.mdl...
+
+PASS armabody: actual public selection is source-bound, preserves geometry and restores native options
+PASS armabody: pending identity, failed images and retired work remain native without late publication
+meshing progs/armalegs.mdl...
+
+318 tri 522 vert 1147 cmd
+
+PASS armalegs: public loader retains every native UV, triangle and pose byte
+PASS armalegs: actual fitted images and provenance target the supplied art and exact native model
+meshing progs/armalegs.mdl...
+
+PASS armalegs: actual public selection is source-bound, preserves geometry and restores native options
+PASS armalegs: pending identity, failed images and retired work remain native without late publication
+PASS armabody: exact custom and native normal inputs select shipped samples
+PASS armalegs: exact custom and native normal inputs select shipped samples
+PASS Armagon native and custom flames have maximal flat height and flat baked normals without padding another surface
+PASS Armagon native parts have ninety-eight paired frames and genuine extended firing geometry
+PASS Armagon native authored height prewarms only its correct model with custom enemies off
+PASS Armagon native-only preparation waits for pending model identity and starts no premature height requests
+meshing progs/armabody.mdl...
+
+PASS Armagon mismatched and unavailable native identities never fetch constrained authored heights
+PASS Armagon reused native texture drops formerly approved relief and rejects cancelled late authored images
+RESULT 17/17 passed (tests/armagon_skin_identity_test.js)
+TOTAL 17/17 passed

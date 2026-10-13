@@ -1,5 +1,7 @@
 # Armagon: coordinated body and mechanical legs
 
+> Historical implementation record: the initial generated art and lossless-map behavior below are superseded by the [photographic4x WebP92 correction](../tools/texture_sheets/sources/fidelity-2026-10-13/armagon-character.md).
+
 Owner-authorized official-game campaign T-bb7e6282; enemy increment T-b9e82259.
 Both models are one enemy and belong in one separate commit/push after Gremlin
 `ba2fdf4d`. Classic models, animations and gameplay remain unchanged.

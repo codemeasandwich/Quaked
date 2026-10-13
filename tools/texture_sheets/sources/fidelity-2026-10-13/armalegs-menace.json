@@ -1,0 +1,33 @@
+{
+  "key": "armalegs",
+  "sourceFile": "tools/texture_sheets/sources/fidelity-2026-10-13/armalegs-menace-candidate1.png",
+  "sourceSha": "9a4e224081f44e31a916dca7f3d1c83df0fe2f0a10831aef7158f00f42ff33d4",
+  "modelSha": "b33a8f7e4cd3fca9b8c9427d8002a5470da44ce919648e1a0045f3f131f73deb",
+  "layout": [
+    1,
+    228,
+    194,
+    134,
+    318,
+    98
+  ],
+  "size": [
+    1359,
+    1157
+  ],
+  "factor": 4,
+  "matte": "black",
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-13",
+    "reference": "Correctly mapped prior Armagon legs as edit target, new menacing body as metal-material reference, original native legs as layout/palette authority.",
+    "ownerDirection": "More liberties for a menacing boss, matching the enhanced Shambler level of character redesign.",
+    "prompt": "Edit Image 1, Armagon's mechanical-leg UV atlas, into a heavier and more threatening photorealistic boss design. The owner permits stronger visual design liberties, using their enhanced creatures as the quality target.\n\nImage 1 is the exact EDIT TARGET. Image 2 is the newly redesigned Armagon upper-body atlas: match its dark iron machinery and imposing weight, but do not copy its mouth, flesh or teeth onto the legs. Image 3 is the original native leg atlas and fixes part correspondence and the broad earthy-metal/red-accent palette.\n\nKeep Image 1's complete framing/aspect ratio, every outer island silhouette, all black cutouts and gaps, both distinct front/back halves, both small detached rectangular panels, and all normalized UV positions EXACTLY. This is an unwrapped production texture, not a picture of standing robot legs. Do not rearrange, straighten, crop, rotate or mirror any piece.\n\nGive the existing armor surfaces the impression of thick, brutally functional overlapping iron plates, deep recessed joints, weight-bearing pistons and sharpened-looking existing bevels. Keep large dark charcoal/brown metal planes calm and readable, with selective battered edges, scars and convincingly scaled fasteners. Make the original calf and toe plate shapes feel heavier through controlled material and depth cues within their current outlines. Preserve the small red vent/indicator locations and restrained existing blood stains; no bright neon or decorative gold.\n\nRemove the uniform sandy/gravel microtexture. Use smooth worn cast metal and purposeful machining rather than all-over pitting, filigree or tiny random scratches. Original palette families should remain recognizable, with stronger dark/light structural contrast and a coherent match to the upper-body guns.\n\nDo not add a face, skull motif, organic body parts, unsupported silhouette spikes, horns, extra feet or extra panels. No text, labels, symbols, watermark, scenery, external cast shadows or bloom. Pure black unused background. High-resolution photographic material quality under neutral diffuse lighting.",
+    "editTargetSha256": "80c7c5fb0b7d2315dd30dfbb06d71b65a36df4893bd21165a14b7ea215312bf2",
+    "bodyStyleReferenceSha256": "1766671a7d5f2e75a2537c3734738e440918f156d96608c1f28da4ef8e9b897b"
+  },
+  "runtimeEncoding": {
+    "format": "webp",
+    "quality": 92
+  }
+}

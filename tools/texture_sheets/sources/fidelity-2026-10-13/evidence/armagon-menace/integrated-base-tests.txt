@@ -1,0 +1,40 @@
+PASS Armagon preserves all existing model and native-height families
+meshing progs/armabody.mdl...
+
+398 tri 602 vert 1307 cmd
+
+PASS armabody: public loader retains every native UV, triangle and pose byte
+PASS armabody: actual fitted images and provenance target the supplied art and exact native model
+meshing progs/armabody.mdl...
+
+PASS armabody: actual public selection is source-bound, preserves geometry and restores native options
+PASS armabody: pending identity, failed images and retired work remain native without late publication
+meshing progs/armalegs.mdl...
+
+318 tri 522 vert 1147 cmd
+
+PASS armalegs: public loader retains every native UV, triangle and pose byte
+PASS armalegs: actual fitted images and provenance target the supplied art and exact native model
+meshing progs/armalegs.mdl...
+
+PASS armalegs: actual public selection is source-bound, preserves geometry and restores native options
+PASS armalegs: pending identity, failed images and retired work remain native without late publication
+PASS armabody: exact custom and native normal inputs select shipped samples
+PASS armalegs: exact custom and native normal inputs select shipped samples
+PASS Armagon native and custom flames have maximal flat height and flat baked normals without padding another surface
+PASS Armagon native parts have ninety-eight paired frames and genuine extended firing geometry
+PASS Armagon native authored height prewarms only its correct model with custom enemies off
+PASS Armagon native-only preparation waits for pending model identity and starts no premature height requests
+meshing progs/armabody.mdl...
+
+PASS Armagon mismatched and unavailable native identities never fetch constrained authored heights
+PASS Armagon reused native texture drops formerly approved relief and rejects cancelled late authored images
+PASS Malformed native flash policy drops its decoded height and preserves generated native relief
+PASS Armagon encoded, decoded and effective-height provenance matches the actual Q92 files
+PASS Actual native and custom material preparation reconstructs decoded flash heights before generating normals
+RESULT 20/20 passed (tests/armagon_skin_identity_test.js)
+PASS Ordinary enemy height scalars use exact decoded red without changing pixels or descriptors
+PASS Approved Armagon policy reconstructs only declared spans and keeps every other decoded scalar exact
+PASS Malformed or mismatched flat-height policies reject atomically instead of correcting another model
+RESULT 3/3 passed (tests/enemy_height_test.js)
+TOTAL 23/23 passed

@@ -1,0 +1,63 @@
+--- a/tests/armagon_skin_identity_test.js
++++ b/tests/armagon_skin_identity_test.js
+@@ -21,11 +21,11 @@
+   "triangles": 398,
+   "poses": 98,
+   "factor": 4,
+-  "source": "tools/texture_sheets/sources/generated-2026-10-12/armabody.png",
+-  "sourceSha": "ca4f0c246a5853fefa02444350ddbef1e928c2703a1ab0d355397b4e01a0ee69",
++  "source": "tools/texture_sheets/sources/fidelity-2026-10-12/armabody-character-fixed.png",
++  "sourceSha": "dbe050da48a5f4efecde87acbe18dbc8cc0ec453d77f1411ec7acdc91b9cb1c4",
+   "sourceSize": [
+-   1324,
+-   1188
++   1323,
++   1189
+   ]
+  },
+  {
+@@ -37,8 +37,8 @@
+   "triangles": 318,
+   "poses": 98,
+   "factor": 4,
+-  "source": "tools/texture_sheets/sources/generated-2026-10-12/armalegs.png",
+-  "sourceSha": "474955ee6ca53875c2829455030f81be9afa90dbcf2bd1f6c188b820d8418bbf",
++  "source": "tools/texture_sheets/sources/fidelity-2026-10-12/armalegs-character.png",
++  "sourceSha": "80c7c5fb0b7d2315dd30dfbb06d71b65a36df4893bd21165a14b7ea215312bf2",
+   "sourceSize": [
+    1360,
+    1157
+@@ -111,6 +111,7 @@
+   const sourceBytes = read( spec.source ); same( sourceBytes.subarray(0,8).toString('hex'), '89504e470d0a1a0a', 'source PNG signature' ); same( sourceBytes.toString('ascii',12,16), 'IHDR', 'source image header' ); same( sourceBytes.readUInt32BE(16), spec.sourceSize[0], 'source width' ); same( sourceBytes.readUInt32BE(20), spec.sourceSize[1], 'source height' );
+   const width = spec.width * spec.factor, height = spec.height * spec.factor;
+   same( JSON.stringify( source.dimensions ), JSON.stringify( [width, height] ), 'native-proportioned fitted size' );
++  same(source.factor,4,'owner fourfold atlas standard'); same(JSON.stringify(source.atlasBox),JSON.stringify([0,0,width,height]),'complete native-proportioned atlas'); same(source.piecePlacements,undefined,'no unreviewed piece rearrangement'); same(source.nativeTexturePixelsUsed,0,'only generated source pigment'); same(source.surfacePixels,spec.key==='armabody'?393303:370909,'exact fourfold UV coverage witness'); same(source.edgePixels,spec.key==='armabody'?4608:8825,'bounded edge extension'); if(spec.key==='armabody')same(source.flatHeight.padding,7,'fourfold custom flashes retain the corrected seven-pixel gutter');
+   same( approved.dir, spec.key + '/custom', 'variant directory' ); same( approved.nativeModelSha256, spec.sha, 'runtime hash boundary' ); same( approved.skin, 0, 'only original skin zero' ); same( approved.flipGreen, false, 'generated normal convention' );
+   same( approved.maps.diffuse, 'diffuse.png', 'supplied fitted PNG used by product' ); same( approved.maps.height, 'height.webp', 'matching stored height used by product' ); same( Object.keys( approved.maps ).length, 2, 'exact diffuse/height pair, no new emission' ); same( approved.maps.luma, undefined, 'current native alias brightness semantics retained' );
+   check( Number.isFinite( approved.heightStrength ) && approved.heightStrength > 0, 'positive stored normal strength' ); check( Number.isFinite( approved.heightCap ) && approved.heightCap > 0 && approved.heightCap <= 1, 'bounded stored normal cap' );
+@@ -188,7 +189,7 @@
+  if(spec.key==='armabody'){
+   const entry=index.nativeHeights.armabody?.[0]?.[0];check(entry,'authored native body height registered');same(entry.file,'heights/armabody/skin0_0.webp','native height file');
+   const h=await decodedImage('newer/enemies/'+entry.file);same(h.width,216,'native height width');same(h.height,194,'native height height');
+-  const source=JSON.parse(read(base+'SOURCE.json'));same(source.nativeHeight.file,entry.file,'native height provenance');same(sha(read('newer/enemies/'+entry.file)),source.nativeHeight.sha256,'native height hash');
++  const source=JSON.parse(read(base+'SOURCE.json'));same(source.nativeHeight.file,entry.file,'native height provenance');same(sha(read('newer/enemies/'+entry.file)),source.nativeHeight.sha256,'native height hash');same(sha(read('newer/enemies/'+entry.file)),'f7b42e940ffb27bb2d6b508d67feb5c1c261df9eb9619a3bc554b94053f2fc70','authored native body height is byte-identical to the original');
+   await verifyBake(companion(pixels,h,entry.strength,entry.cap),'hipnotic:progs/armabody.mdl',spec.sha);
+  }
+ });
+@@ -221,13 +222,13 @@
+ Deno.test('Armagon native and custom flames have maximal flat height and flat baked normals without padding another surface',async()=>{
+  const {model,bytes}=await native('armabody'),variant=index.models.armabody[0],nativeEntry=index.nativeHeights.armabody[0][0];
+  for(const factor of [1,4]){
+-  const nativeMap=factor===1,masks=uvMasks(bytes,factor),padded=squarePad(masks.flash,masks.width,masks.height,6),height=await decodedImage(nativeMap?'newer/enemies/'+nativeEntry.file:'newer/enemies/armabody/custom/height.webp');
++  const nativeMap=factor===1,gutter=nativeMap?6:7,masks=uvMasks(bytes,factor),padded=squarePad(masks.flash,masks.width,masks.height,gutter),height=await decodedImage(nativeMap?'newer/enemies/'+nativeEntry.file:'newer/enemies/armabody/custom/height.webp');
+   let surface=0,padding=0;
+   for(let i=0;i<padded.length;i++){
+    if(masks.flash[i])surface++;
+-   if(padded[i]){padding++;check(!masks.other[i],'six-pixel flash padding never reaches body UV');same(height.data[i*4],255,'flash and gutter height is maximal');same(height.data[i*4+1],255,'flash height green');same(height.data[i*4+2],255,'flash height blue');}
++   if(padded[i]){padding++;check(!masks.other[i],gutter+'-pixel flash padding never reaches body UV');same(height.data[i*4],255,'flash and gutter height is maximal');same(height.data[i*4+1],255,'flash height green');same(height.data[i*4+2],255,'flash height blue');}
+   }
+-  check(surface>1000&&padding>surface,'substantial actual flash coverage and six-pixel gutter exercised');
++  check(surface>1000&&padding>surface,'substantial actual flash coverage and '+gutter+'-pixel gutter exercised');
+   const pixels=nativeMap?model.cache.data.gl_texturenum[0][0].image:await decodedImage('newer/enemies/armabody/custom/diffuse.png'),settings=nativeMap?nativeEntry:{strength:variant.heightStrength,cap:variant.heightCap};
+   const decoded=await verifyBake(companion(pixels,height,settings.strength,settings.cap),nativeMap?'hipnotic:progs/armabody.mdl':'custom:armabody/custom');
+   for(let i=0;i<masks.flash.length;i++)if(masks.flash[i]){same(decoded.pixels[i*4],128,'flash normal X flat');same(decoded.pixels[i*4+1],128,'flash normal Y flat');same(decoded.pixels[i*4+2],255,'flash normal Z flat');same(decoded.pixels[i*4+3],255,'maximal flash height bypasses height-shadow receivers');}

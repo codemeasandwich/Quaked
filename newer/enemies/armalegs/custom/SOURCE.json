@@ -2,10 +2,10 @@
   "schema": 1,
   "model": "progs/armalegs.mdl",
   "nativeModelSha256": "b33a8f7e4cd3fca9b8c9427d8002a5470da44ce919648e1a0045f3f131f73deb",
-  "source": "tools/texture_sheets/sources/generated-2026-10-12/armalegs.png",
-  "sourceSha256": "474955ee6ca53875c2829455030f81be9afa90dbcf2bd1f6c188b820d8418bbf",
+  "source": "tools/texture_sheets/sources/fidelity-2026-10-13/armalegs-menace-candidate1.png",
+  "sourceSha256": "9a4e224081f44e31a916dca7f3d1c83df0fe2f0a10831aef7158f00f42ff33d4",
   "sourceDimensions": [
-    1360,
+    1359,
     1157
   ],
   "dimensions": [
@@ -20,45 +20,29 @@
   "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
   "atlasBox": [
     0,
-    4,
-    1368,
-    1210
+    0,
+    912,
+    776
   ],
-  "registration": {
-    "method": "Independent bounded full-atlas vertical registration against native detail over the actual UV footprint; source remains unchanged",
-    "analysisScale": 3,
-    "testedHeights": [
-      582,
-      612
-    ],
-    "testedOffsets": [
-      -5,
-      3
-    ],
-    "initialCorrelation": 0.0613,
-    "registeredCorrelation": 0.396,
-    "initialUncoveredPixels": 6727,
-    "registeredUncoveredPixels": 0,
-    "unchangedBleedLimit": 24
-  },
+  "registration": null,
   "mattePolicy": "black",
   "nativeTexturePixelsUsed": 0,
   "islands": [
     {
       "id": 1,
-      "surfacePixels": 416421,
-      "directPixels": 415441,
-      "edgePixels": 980
+      "surfacePixels": 185455,
+      "directPixels": 179944,
+      "edgePixels": 5511
     },
     {
       "id": 2,
-      "surfacePixels": 416420,
-      "directPixels": 416277,
-      "edgePixels": 143
+      "surfacePixels": 185454,
+      "directPixels": 180422,
+      "edgePixels": 5032
     }
   ],
-  "surfacePixels": 832841,
-  "edgePixels": 1123,
+  "surfacePixels": 370909,
+  "edgePixels": 10543,
   "normalProfile": {
     "strength": 0.65,
     "cap": 0.55
@@ -70,28 +54,36 @@
     "height_for"
   ],
   "files": {
-    "diffuse.png": "9720e8237391f074ace690a7e4682de15c70bba62532194851fbf66456d583c4",
-    "height.webp": "c17f99c9658befcc7529758a1efc3156d1b54f2d12d683cb7b2ee16b3c7fa8e0"
+    "diffuse.webp": "4fe0864eaebfb4bfcd851aed988278d80a01737c2d861b4312ba62a534347a72",
+    "height.webp": "ab09adf053a30e6d488fb7b90225ef0c2e78d167a6b1c6205936284554460a92"
   },
   "generation": {
     "tool": "ChatGPT built-in imagegen",
-    "date": "2026-10-12",
-    "reference": "Original Hipnotic armalegs.mdl skin0 with native palette, nearest enlarged4x; generated armabody source used only as finish/style reference",
-    "styleReferenceSha256": "ca4f0c246a5853fefa02444350ddbef1e928c2703a1ab0d355397b4e01a0ee69",
-    "prompt": "Image 1 is the EDIT TARGET: original Quake Scourge of Armagon ARMAGON MECHANICAL LEGS UV ATLAS. Image 2 is only a finish/detail-style reference for the matching upper-body skin; never copy its body, flames or layout into the legs. Faithfully repaint image1 at high resolution. Preserve EXACT 228:194 aspect ratio, both atlas halves, all original UV-island shapes, proportions, coordinates, mechanical panel layout, vents, joints, foot/tread shapes and red details. Do not rotate, mirror, crop or rearrange anything. Keep the original DARK EARTHY BROWN/BRONZE industrial metal and muted charcoal recesses, with the same restrained dark-red blood and vent details. Do not turn the armour silver, blue, glossy chrome or gold. Add restrained wear, rivet, seam, pipe and machining detail that follows existing features. The visual finish should belong with image2's dark weathered metal, but original image1 determines colours, design and layout. Keep the original pure black background and crisp boundaries; no cast shadow, scene, new body parts, guns, flames, labels, text, border or watermark. This is a production model skin atlas, not a rendered robot or concept sheet. Faithfulness to original silhouette, palette and UV placement is the priority."
+    "date": "2026-10-13",
+    "reference": "Correctly mapped prior Armagon legs as edit target, new menacing body as metal-material reference, original native legs as layout/palette authority.",
+    "ownerDirection": "More liberties for a menacing boss, matching the enhanced Shambler level of character redesign.",
+    "prompt": "Edit Image 1, Armagon's mechanical-leg UV atlas, into a heavier and more threatening photorealistic boss design. The owner permits stronger visual design liberties, using their enhanced creatures as the quality target.\n\nImage 1 is the exact EDIT TARGET. Image 2 is the newly redesigned Armagon upper-body atlas: match its dark iron machinery and imposing weight, but do not copy its mouth, flesh or teeth onto the legs. Image 3 is the original native leg atlas and fixes part correspondence and the broad earthy-metal/red-accent palette.\n\nKeep Image 1's complete framing/aspect ratio, every outer island silhouette, all black cutouts and gaps, both distinct front/back halves, both small detached rectangular panels, and all normalized UV positions EXACTLY. This is an unwrapped production texture, not a picture of standing robot legs. Do not rearrange, straighten, crop, rotate or mirror any piece.\n\nGive the existing armor surfaces the impression of thick, brutally functional overlapping iron plates, deep recessed joints, weight-bearing pistons and sharpened-looking existing bevels. Keep large dark charcoal/brown metal planes calm and readable, with selective battered edges, scars and convincingly scaled fasteners. Make the original calf and toe plate shapes feel heavier through controlled material and depth cues within their current outlines. Preserve the small red vent/indicator locations and restrained existing blood stains; no bright neon or decorative gold.\n\nRemove the uniform sandy/gravel microtexture. Use smooth worn cast metal and purposeful machining rather than all-over pitting, filigree or tiny random scratches. Original palette families should remain recognizable, with stronger dark/light structural contrast and a coherent match to the upper-body guns.\n\nDo not add a face, skull motif, organic body parts, unsupported silhouette spikes, horns, extra feet or extra panels. No text, labels, symbols, watermark, scenery, external cast shadows or bloom. Pure black unused background. High-resolution photographic material quality under neutral diffuse lighting.",
+    "editTargetSha256": "80c7c5fb0b7d2315dd30dfbb06d71b65a36df4893bd21165a14b7ea215312bf2",
+    "bodyStyleReferenceSha256": "1766671a7d5f2e75a2537c3734738e440918f156d96608c1f28da4ef8e9b897b"
   },
-  "standard4x": {
-    "fitDimensions": [
-      1368,
-      1164
-    ],
-    "fitFactor": 6,
-    "method": "Lanczos resample of this fit to 4x native (docs/texture-standard-4x-2026-10-12.md); height re-authored from the 4x diffuse",
-    "record": "tools/texture_sheets/sources/standard-4x/batch3-hipnotic.json",
-    "note": "factor and dimensions describe the shipped files; other pixel fields are in the fit's units",
-    "fitFiles": {
-      "diffuse.png": "e67f2e0829d49d5b34baec15df31ed708dfa2ea51f37beb4d5e518ab544dc4b9",
-      "height.webp": "5d3b88ec4f2e601da75f240ec9531ca47f93a89ae5ce645ba021da7a33208faf"
-    }
+  "runtimeEncoding": {
+    "format": "webp",
+    "quality": 92,
+    "lossless": false,
+    "maps": {
+      "diffuse.webp": {
+        "masterSha256": "0c322e6a031e9c377c50e4ea5eae8f40381366abb9eae3237ed1c6f1d5247baf",
+        "sha256": "4fe0864eaebfb4bfcd851aed988278d80a01737c2d861b4312ba62a534347a72",
+        "pillowDecodedRgbaSha256": "e454ae7b7b2dbb2364b83d9bdb16037ec3c567b0759ae31b174d097227fd672b",
+        "bytes": 158956
+      },
+      "height.webp": {
+        "masterSha256": "758aa2ab7d79ff49cee729167e47eee74904b98ee22be1800eb9046cefbf70f6",
+        "sha256": "ab09adf053a30e6d488fb7b90225ef0c2e78d167a6b1c6205936284554460a92",
+        "pillowDecodedRgbaSha256": "3204eb710f1c7944cca0af7c15f511fcefde1f32b276fc4ad26c8dc14ba9b730",
+        "bytes": 84632
+      }
+    },
+    "authoringSourceUnchanged": true
   }
 }

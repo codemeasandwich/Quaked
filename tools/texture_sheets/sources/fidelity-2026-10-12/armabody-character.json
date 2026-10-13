@@ -1,0 +1,47 @@
+{
+  "key": "armabody",
+  "sourceFile": "tools/texture_sheets/sources/fidelity-2026-10-12/armabody-character-fixed.png",
+  "sourceSha": "dbe050da48a5f4efecde87acbe18dbc8cc0ec453d77f1411ec7acdc91b9cb1c4",
+  "modelSha": "e827535032c8e83609fedf07c9989c504e7eaa6772ce0d5cf73788e00980f151",
+  "layout": [
+    1,
+    216,
+    194,
+    204,
+    398,
+    98
+  ],
+  "size": [
+    1323,
+    1189
+  ],
+  "factor": 4,
+  "matte": "black",
+  "flatHeightVertices": [
+    192,
+    204
+  ],
+  "nativeHeightFile": "heights/armabody/skin0_0.webp",
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Native Armagon atlas fixes layout and palette; owner Shambler organic and Enforcer industrial material quality only",
+    "prompt": "Create a clean photorealistic production game texture atlas for Armagon's upper body. Image1 is the original low-resolution Armagon skin: the absolute blueprint for silhouette, placement, proportions, colour families and every design feature. Images2 and3 are the owner's enhanced Shambler and Enforcer: references ONLY for sculptural flesh quality and convincing metal. Never copy their anatomy, armour design, palette, text or layout.\n\nReconstruct the original surface at high resolution as a film creature artist would sculpt and photograph it, not as an enlarged or sharpened pixel image. Broad continuous flesh volumes, meaningful skin folds and tendons, natural subdued skin coloration, localized wounds, and restrained pores. Strong character comes from the existing brutish flesh and embedded mechanical anatomy. Keep large areas quiet. No all-over gravel, stippling, grain, cellular cracks, embossed veins, bronze skin, ornamental carvings or noisy pixel-shaped details.\n\nPreserve original muted warm grey-tan flesh, deep crimson damaged areas, dark charcoal/brown gun housings. The existing cannons have broad worn metal surfaces, controlled seams and subtle edge wear. Do not brighten into gold, chrome or brass. Do not invent a new face, head, arms, armour, organs, weapons or accessories.\n\nSTRICT ATLAS: Image1 has 216:194 aspect ratio. KEEP BOTH BODY HALVES SIDEWAYS in exactly their original orientations and normalized locations; do not make an upright character portrait. Preserve original outer silhouettes and internal landmarks. Four detached orange-yellow muzzle-flash polygons are essential: retain their exact locations, length and pointed silhouettes, paint clean directional flame transitioning dark orange to pale yellow tips. These are fire, not cracked lava rocks; no sparks or bloom outside their boundaries. Keep all margins/gaps and every piece, no cropping or rearrangement. Use a flat solid black unused background with crisp clean silhouette boundaries. Neutral even diffuse lighting, no external shadow, labels, watermark, border or text. Deliver a large, sharp, smoothly resolved atlas with the material quality of the owner's enhanced creatures, faithfully retaining original Armagon identity.\n",
+    "refinementPrompt": "Make ONE tiny correction to Image1 and preserve everything else exactly. In the RIGHT-HAND BACK BODY HALF there is an accidental small glossy EYE-LIKE ORB in the dark inner crease below the top cannon's organic arm connection, around pixel (835,295) on the 1323x1189 atlas, roughly 63% across and25% down. Remove that eye-like orb, its pupil and catchlight. Replace ONLY this tiny region with an ordinary dark recessed skin fold/wound that continues the surrounding flesh. Image2 is the original atlas: this location is a shadowed flesh crease, NOT an eye. Do not add eyes anywhere. Keep absolutely all other flesh detail, colours, wounds, cannons, four flame shapes, silhouettes, positions and black background unchanged. Preserve resolution/aspect ratio and the exact sideways production atlas layout. No other edits.\n",
+    "styleReferences": [
+      {
+        "file": "tools/texture_sheets/sources/shambler-2026-10-01.png",
+        "sha256": "f65fd1bcc87f70862cfb7284f216c4b20b89a05ed82fd0cc71f4d7a51033a3e9"
+      },
+      {
+        "file": "Gemini_Generated_Image_hy0b7qhy0b7qhy0b.jpeg",
+        "sha256": "5046d3115bb3498a3dba44484223d1a9560f981bec8f02365b1961623156edcb"
+      }
+    ]
+  },
+  "runtimeEncoding": {
+    "format": "webp",
+    "quality": 92
+  },
+  "supersededBy": "tools/texture_sheets/sources/fidelity-2026-10-13/armabody-menace.json"
+}

@@ -34,6 +34,7 @@
 // Textures load in the background the first time a skin is chosen; until they
 // have arrived the original skin is shown.
 
+import { EnemyHeightScalars } from '../assets/enemy_height.js';
 import {R_NormalPrepare} from '../assets/normal_prepare.js';
 import { Face_Index, FACE_FRAGMENT_HEAD, FACE_MAP_FRAGMENT } from './enemy_face.js';
 import * as THREE from 'three';
@@ -389,6 +390,15 @@ function refreshHeight( set ) {
 		stored = null; // generate from this custom diffuse if no fallback exists yet
 
 	}
+	let storedScalars = null;
+	if ( stored != null ) {
+		try { storedScalars = EnemyHeightScalars( stored, set.variant, set.modelKey ); delete set.heightPolicyError; }
+		catch ( error ) {
+			// Invalid optional metadata must not break an otherwise usable enemy.
+			set.heightTexture.dispose(); set.heightTexture = null; set.heightFailed = true;
+			set.heightPolicyError = String( error.message || error ); stored = null;
+		}
+	}
 	const previousNormal = set.uniforms.qrNormal.value;
 	const ownedNormal = set.detailDiffuse != null ? set.detailDiffuse._normalMap : null;
 	if ( previousNormal != null && previousNormal !== ownedNormal ) previousNormal.dispose();
@@ -398,7 +408,7 @@ function refreshHeight( set ) {
 	set.detailDiffuse = new THREE.DataTexture( pixels.data, pixels.width, pixels.height, THREE.RGBAFormat );
 	set.detailDiffuse.offset.copy( set.diffuse.offset );
 
-	const height = stored != null ? Float32Array.from( { length: stored.width * stored.height }, ( _, i ) => stored.data[ i * 4 ] / 255 )
+	const height = stored != null ? storedScalars
 		: typeof window!=='undefined'?undefined:R_MultiScaleHeight( R_HeightFromRGBA( pixels.data, pixels.width, pixels.height, null ), pixels.width, pixels.height );
 	set.detailDiffuse.userData.newerHeight = {
 		file: 'enemy:' + set.version + ':' + set.key + ( stored != null ? ':stored' : ':generated' ),
@@ -478,6 +488,7 @@ export function R_EnemyAliasMaterial( texture, modelName, hasLighting, skinnum =
 		set.cancelHeight?.(); set.requestedHeight = null;
 		if ( set.heightTexture !== null ) { set.heightTexture.dispose(); set.heightTexture = null; }
 		set.variant.heightStrength = 0.65; set.variant.heightCap = 0.55;
+		delete set.variant.heightFlat; delete set.variant.nativeModelSha256; delete set.heightPolicyError;
 		refreshHeight( set );
 	}
 	const requestKey = stored != null ? skinVersion + ':' + stored.file : null;
@@ -493,6 +504,7 @@ export function R_EnemyAliasMaterial( texture, modelName, hasLighting, skinnum =
 			if ( set.heightTexture !== null ) set.heightTexture.dispose();
 			set.heightTexture = height; set.version = requestVersion;
 			set.variant.heightStrength = stored.strength; set.variant.heightCap = stored.cap;
+			set.variant.heightFlat = stored.heightFlat; set.variant.nativeModelSha256 = stored.nativeModelSha256;
 			refreshHeight( set );
 
 		} ); // generated height remains active on explicit failure/timeout
@@ -880,6 +892,7 @@ export function R_NewerSkinsStatus( modelNames ) {
 		else { fallback ++; if ( load.error ) errors[ set.modelKey + ':' + set.key + ':' + name ] = load.error; }
 	}
 	for(const set of selected)if(R_IsNewer()&&r_newer_normals.value!==0&&set.normalWork){if(set.normalWork.status!=='ready'){pending++;normals.pending++;if(set.normalWork.error){errors[set.modelKey+':normal']=set.normalWork.error;normals.errors[set.modelKey]=set.normalWork.error;}}else{normals.ready++;if(set.normalWork.source==='shipped')normals.shipped++;else if(set.normalWork.source==='disk')normals.disk++;else if(set.normalWork.source==='generated-and-stored'||set.normalWork.source==='generated')normals.generated++;if(set.normalWork.source==='generated')notes[set.modelKey+':normal']='generated for this session only ('+set.normalWork.persistence+')';}}
+	for ( const set of selected ) if ( set.heightPolicyError ) errors[set.modelKey+':height-policy'] = set.heightPolicyError;
 	if ( indexError ) errors.index = indexError;
 	return { index: indexState, normals, preparePending, pending, ready, fallback, total: pending + ready + fallback, settled: pending === 0, errors, notes };
 }

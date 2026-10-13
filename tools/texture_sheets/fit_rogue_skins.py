@@ -91,7 +91,16 @@ def flatten_height(path, data, factor, vertex_range):
  if height.shape!=surface.shape:raise ValueError('Flat-height dimensions differ')
  height[padded]=255
  Image.fromarray(height).save(path,'WEBP',lossless=True,method=6)
- return dict(vertexRange=vertex_range,value=255,padding=radius,surfacePixels=int(surface.sum()),paddedPixels=int(padded.sum()))
+ report=dict(vertexRange=vertex_range,value=255,padding=radius,surfacePixels=int(surface.sum()),paddedPixels=int(padded.sum()))
+ # Preserve this exact authored semantic region after lossy runtime encoding.
+ # Only the known Armagon flash vertices may opt into the narrow runtime policy.
+ if sha(data)=='e827535032c8e83609fedf07c9989c504e7eaa6772ce0d5cf73788e00980f151' and vertex_range==[192,204]:
+  spans=[]
+  for y,row in enumerate(padded):
+   edges=np.flatnonzero(np.diff(np.r_[False,row,False].astype(np.int8)))
+   spans.extend([int(y),int(a),int(b)] for a,b in zip(edges[::2],edges[1::2]))
+  report['runtime']=dict(policy='armagon-flash-v1',modelSha256=sha(data),width=int(padded.shape[1]),height=int(padded.shape[0]),spans=spans)
+ return report
 
 def native_single_skin(data, skin):
  """Read an explicitly selected single skin; never silently use animation frame0."""

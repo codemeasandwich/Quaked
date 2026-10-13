@@ -1,0 +1,38 @@
+{
+  "key": "armalegs",
+  "sourceFile": "tools/texture_sheets/sources/fidelity-2026-10-12/armalegs-character.png",
+  "sourceSha": "80c7c5fb0b7d2315dd30dfbb06d71b65a36df4893bd21165a14b7ea215312bf2",
+  "modelSha": "b33a8f7e4cd3fca9b8c9427d8002a5470da44ce919648e1a0045f3f131f73deb",
+  "layout": [
+    1,
+    228,
+    194,
+    134,
+    318,
+    98
+  ],
+  "size": [
+    1360,
+    1157
+  ],
+  "factor": 4,
+  "matte": "black",
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Native Armagon atlas fixes layout and palette; owner Shambler organic and Enforcer industrial material quality only",
+    "prompt": "Create a high-resolution photorealistic game skin atlas for ARMAGON'S MECHANICAL LEGS. Image1 is the original low-resolution atlas and the absolute blueprint for all shapes, proportions, positions, colours and panel layout. Image2 is the owner's enhanced Enforcer and is ONLY a material quality reference: broad quiet metal surfaces, clear functional seams, restrained edge wear, believable industrial weight. Never copy its human anatomy, costume, colours or atlas layout.\n\nReconstruct clean continuous industrial surfaces; do not enlarge, sharpen or imitate the original pixel dithering. Keep the original DARK EARTHY BROWN and CHARCOAL metal, dark grey-brown steel edges and restrained dark red vent/stain accents. Preserve original tonal balance. Do not turn this into bright bronze, gold, silver, chrome or polished steampunk machinery. Large panels should remain visually quiet. Clear existing vents, functional joints, layered plates and feet give the design character. Add only subtle localized roughness, recessed machining lines and believable wear following original features, never uniform speckles, dense random rivets, crackle, sandpaper grain or embossed ornament.\n\nSTRICT PRODUCTION ATLAS: retain Image1's 228:194 composition and both SIDEWAYS halves, exactly the same native silhouettes, all small detached pieces, border fragments, gaps, foot shapes and orientation, panel boundaries and red details. No rotation upright, rearrangement, perspective, cropping or mirroring. This remains the original Armagon leg design, not a new robot. Flat pure black background, crisp clean boundaries, neutral even diffuse lighting. No character torso, new equipment, flames, cast shadow, scene, labels, text, border or watermark. Clean photographic detail like the owner's enhanced game art, fully resolved and smooth rather than pixelated or grainy.\n",
+    "refinementPrompt": "Edit only the material finish and colour of Image1, the Armagon mechanical-legs atlas. Keep every silhouette, every panel/vent boundary, every detached piece, every position/orientation and the black backdrop EXACTLY unchanged. Image2 is the native colour authority. Image3 is the owner's enhanced Enforcer material quality reference.\n\nImage1 is too light bronze and its panels are too uniformly pitted/grainy. Replace those surfaces with much DARKER, subdued charcoal-brown industrial painted steel matching Image2's original colour balance. Broad panels should be smooth, coherent and quiet with subtle patina, clean continuous gradients, a few intentional worn edges, and sparse localized small scratches. Remove the all-over sandpaper noise, mottling, mottled bronze patina and stone-like pores. Keep crisp functional seams and vents, with deep nearly black recesses and the original restrained dark red accents. Do not brighten the metal into gold, brass, shiny chrome or silver; the appearance should be dark, weighty and convincingly photographic, like the quieter armour panels in Image3. Preserve underlying design, all hardware and the exact atlas geometry. No new details, text, objects, lights, shadows, layout changes or cropping. High-resolution clean finish.\n",
+    "styleReferences": [
+      {
+        "file": "Gemini_Generated_Image_hy0b7qhy0b7qhy0b.jpeg",
+        "sha256": "5046d3115bb3498a3dba44484223d1a9560f981bec8f02365b1961623156edcb"
+      }
+    ]
+  },
+  "runtimeEncoding": {
+    "format": "webp",
+    "quality": 92
+  },
+  "supersededBy": "tools/texture_sheets/sources/fidelity-2026-10-13/armalegs-menace.json"
+}

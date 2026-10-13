@@ -1,0 +1,26 @@
+✔ resampled files retain their historical 4x receipt or an explicitly verified native-refit successor (40.00775ms)
+✔ Armagon successor retains the actual before and after records rather than relabelling the old resample (1.087958ms)
+▶ missing invalid or mismatched successors cannot bypass the historical file gate
+  ✔ no successor (4.106666ms)
+  ✔ empty successor (0.600291ms)
+  ✔ wrong predecessor (0.526416ms)
+  ✔ missing recipe (0.445459ms)
+  ✔ missing source record (0.862834ms)
+  ✔ different source record (0.425334ms)
+  ✔ wrong pinned model (1.207167ms)
+  ✔ wrong pinned source (0.697625ms)
+  ✔ recipe not 4x (2.637791ms)
+  ✔ record not 4x (2.769125ms)
+  ✔ missing height pin (3.566166ms)
+  ✔ wrong current height (3.456875ms)
+  ✔ wrong current dimensions despite matching hashes (4.836042ms)
+✔ missing invalid or mismatched successors cannot bypass the historical file gate (28.012959ms)
+✔ nonsuperseded rows still enforce original file hashes and resample provenance (5.467208ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 166.328916

@@ -1,79 +1,93 @@
 {
- "batch": "hipnotic",
- "ruling": "Owner, 12 Oct 2026: 4x standard, one version",
- "method": "Lanczos resample of the accepted fit: armalegs: its recipe's registration box [0,4,1368,1210] is in factor-6 pixels and has no whole-pixel factor-4 equivalent, so re-fitting would change the accepted registration (changing only the factor misplaces the source and leaves a UV component uncovered); the scorpion source image is untracked and no longer on disk. Heights re-authored from the 4x diffuse by update_enemy_heights.height_for (which reproduced the committed heights first). armabody and grem were re-fitted at factor 4 through their recipes instead.",
- "files": [
-  {
-   "file": "newer/enemies/armalegs/custom/diffuse.png",
-   "target": [
-    912,
-    776
-   ],
-   "native": [
-    228,
-    194
-   ],
-   "kind": "skin-diffuse"
-  },
-  {
-   "file": "newer/enemies/scor/custom/diffuse.png",
-   "target": [
-    1232,
-    624
-   ],
-   "native": [
-    308,
-    156
-   ],
-   "kind": "skin-diffuse"
-  }
- ],
- "results": [
-  {
-   "file": "newer/enemies/armalegs/custom/diffuse.png",
-   "target": [
-    912,
-    776
-   ],
-   "before": {
-    "size": [
-     1368,
-     1164
-    ],
-    "sha256": "e67f2e0829d49d5b34baec15df31ed708dfa2ea51f37beb4d5e518ab544dc4b9",
-    "bytes": 1531067
-   },
-   "after": {
-    "size": [
-     912,
-     776
-    ],
-    "sha256": "9720e8237391f074ace690a7e4682de15c70bba62532194851fbf66456d583c4",
-    "bytes": 758502
-   }
-  },
-  {
-   "file": "newer/enemies/scor/custom/diffuse.png",
-   "target": [
-    1232,
-    624
-   ],
-   "before": {
-    "size": [
-     1540,
-     780
-    ],
-    "sha256": "8f753262342b706e4a7f56343e6f1542f26d332e2a8cc5dccd768e540f030238",
-    "bytes": 1511914
-   },
-   "after": {
-    "size": [
-     1232,
-     624
-    ],
-    "sha256": "2a3fa06475988b77dc59b76e58d89121337958a07cecd618e76c7640acf38c57",
-    "bytes": 1093635
-   }
-  }
- ]
+  "batch": "hipnotic",
+  "ruling": "Owner, 12 Oct 2026: 4x standard, one version",
+  "method": "Lanczos resample of the accepted fit: armalegs: its recipe's registration box [0,4,1368,1210] is in factor-6 pixels and has no whole-pixel factor-4 equivalent, so re-fitting would change the accepted registration (changing only the factor misplaces the source and leaves a UV component uncovered); the scorpion source image is untracked and no longer on disk. Heights re-authored from the 4x diffuse by update_enemy_heights.height_for (which reproduced the committed heights first). armabody and grem were re-fitted at factor 4 through their recipes instead.",
+  "files": [
+    {
+      "file": "newer/enemies/armalegs/custom/diffuse.png",
+      "target": [
+        912,
+        776
+      ],
+      "native": [
+        228,
+        194
+      ],
+      "kind": "skin-diffuse"
+    },
+    {
+      "file": "newer/enemies/scor/custom/diffuse.png",
+      "target": [
+        1232,
+        624
+      ],
+      "native": [
+        308,
+        156
+      ],
+      "kind": "skin-diffuse"
+    }
+  ],
+  "results": [
+    {
+      "file": "newer/enemies/armalegs/custom/diffuse.png",
+      "target": [
+        912,
+        776
+      ],
+      "before": {
+        "size": [
+          1368,
+          1164
+        ],
+        "sha256": "e67f2e0829d49d5b34baec15df31ed708dfa2ea51f37beb4d5e518ab544dc4b9",
+        "bytes": 1531067
+      },
+      "after": {
+        "size": [
+          912,
+          776
+        ],
+        "sha256": "9720e8237391f074ace690a7e4682de15c70bba62532194851fbf66456d583c4",
+        "bytes": 758502
+      },
+      "successor": {
+        "kind": "native-refit",
+        "reason": "Owner-directed menacing photographic boss refit at 4x and WebP quality92; historical resample receipt retained.",
+        "replacesSha256": "9720e8237391f074ace690a7e4682de15c70bba62532194851fbf66456d583c4",
+        "recipe": "tools/texture_sheets/sources/fidelity-2026-10-13/armalegs-menace.json",
+        "sourceRecord": "newer/enemies/armalegs/custom/SOURCE.json",
+        "nativeModelSha256": "b33a8f7e4cd3fca9b8c9427d8002a5470da44ce919648e1a0045f3f131f73deb",
+        "sourceSha256": "9a4e224081f44e31a916dca7f3d1c83df0fe2f0a10831aef7158f00f42ff33d4",
+        "files": {
+          "diffuse.webp": "4fe0864eaebfb4bfcd851aed988278d80a01737c2d861b4312ba62a534347a72",
+          "height.webp": "ab09adf053a30e6d488fb7b90225ef0c2e78d167a6b1c6205936284554460a92"
+        },
+        "diffuseFile": "diffuse.webp"
+      }
+    },
+    {
+      "file": "newer/enemies/scor/custom/diffuse.png",
+      "target": [
+        1232,
+        624
+      ],
+      "before": {
+        "size": [
+          1540,
+          780
+        ],
+        "sha256": "8f753262342b706e4a7f56343e6f1542f26d332e2a8cc5dccd768e540f030238",
+        "bytes": 1511914
+      },
+      "after": {
+        "size": [
+          1232,
+          624
+        ],
+        "sha256": "2a3fa06475988b77dc59b76e58d89121337958a07cecd618e76c7640acf38c57",
+        "bytes": 1093635
+      }
+    }
+  ]
 }
