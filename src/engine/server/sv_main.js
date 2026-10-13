@@ -49,7 +49,7 @@ import {
 	SU_ITEMS, SU_ONGROUND, SU_INWATER, SU_WEAPONFRAME, SU_ARMOR, SU_WEAPON,
 	DEFAULT_VIEWHEIGHT, svc_damage, svc_setangle,
 	svc_playerinfo, PF_MSEC, PF_COMMAND, PF_VELOCITY1, PF_VELOCITY2, PF_VELOCITY3,
-	PF_MODEL, PF_SKINNUM, PF_EFFECTS, PF_WEAPONFRAME, PF_DEAD, PF_GIB,
+	PF_MODEL, PF_SKINNUM, PF_EFFECTS, PF_WEAPONFRAME, PF_DEAD, PF_GIB, PF_CLOAK_BODY,
 	CM_ANGLE1, CM_ANGLE2, CM_ANGLE3, CM_FORWARD, CM_SIDE, CM_UP, CM_BUTTONS, CM_IMPULSE,
 	svc_packetentities, svc_deltapacketentities, svc_serversequence,
 	PE_ENT_BITS, PE_ENT_MASK, PE_ORIGIN1, PE_ORIGIN2, PE_ORIGIN3,
@@ -71,6 +71,7 @@ import {
 	SIGNON_SIZE, SIGNON_SIZE_STANDARD
 } from './server.js';
 import { hostname } from '../net/net_main.js';
+import { SV_CloakBodyFrame, SV_CloakResetPlayer } from './sv_cloak.js';
 import {
 	NET_CheckNewConnections, NET_SendMessage, NET_SendUnreliableMessage,
 	NET_CanSendMessage, NET_CanSendUnreliableMessage, NET_SendToAll, NET_Close, NET_GetMessage
@@ -348,6 +349,7 @@ SV_SendServerinfo
  * @param {client_t} client the client; `sendsignon` is set and `spawned` cleared (it needs prespawn, spawn, etc.)
  */
 export function SV_SendServerinfo( client ) {
+	client.cloakBodyCapability = false; // renegotiate on every map/signon
 
 	MSG_WriteByte( client.message, svc_print );
 	const message = '\x02\nVERSION 1.09 SERVER (' + pr_crc + ' CRC)';
@@ -451,6 +453,7 @@ export function SV_ConnectClient( clientnum ) {
 	client.active = true;
 	client.spawned = false;
 	client.edict = EDICT_NUM( edictnum );
+	SV_CloakResetPlayer( client.edict );
 	client.message.data = client.msgbuf;
 	client.message.maxsize = MAX_MSGLEN;
 	client.message.allowoverflow = true; // we can catch it
@@ -1317,6 +1320,8 @@ function SV_WritePlayersToClient( client, clent, pvs, msg ) {
 		}
 
 		let pflags = PF_MSEC | PF_COMMAND;
+		const cloakBodyFrame = client.cloakBodyCapability === true ? SV_CloakBodyFrame( ent ) : null;
+		if ( cloakBodyFrame !== null ) pflags |= PF_CLOAK_BODY;
 
 		if ( ent.v.modelindex !== sv_playermodel )
 			pflags |= PF_MODEL;
@@ -1413,6 +1418,8 @@ function SV_WritePlayersToClient( client, clent, pvs, msg ) {
 
 		if ( pflags & PF_WEAPONFRAME )
 			SV_WriteIndex( msg, ent.v.weaponframe );
+		if ( pflags & PF_CLOAK_BODY )
+			SV_WriteIndex( msg, cloakBodyFrame );
 
 	}
 
@@ -1614,6 +1621,8 @@ export function SV_DropClient( crash ) {
 
 	// free the client (the body stays around)
 	client.active = false;
+	client.cloakBodyCapability = false;
+	SV_CloakResetPlayer( client.edict );
 	client.name = '';
 	client.old_frags = - 999999;
 	client.spawned = false;

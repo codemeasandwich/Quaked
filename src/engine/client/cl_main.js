@@ -12,7 +12,7 @@
  * Errors: throws at 1 place; calls `Host_Error` at 2 places; catches at 2 places.
  */
 import {R_DemonBakeRelease} from '../common/hooks.js'; // installed by newer/assets/r_demonbakes.js
-import {R_PowerVisionReset} from '../common/hooks.js'; // installed by newer/render/r_powervision.js
+import {R_PowerVisionReset, R_CloakReset} from '../common/hooks.js'; // installed by Newer rendering
 import {R_QuadVisionReset} from '../common/hooks.js'; // installed by newer/render/r_quadvision.js
 import {R_FaceGameReset} from '../common/hooks.js'; // installed by newer/ui/r_facegame.js
 import { SV_RendVeilClientRecord } from '../common/hooks.js'; // installed by newer/gameplay/sv_rendveil.js
@@ -29,7 +29,7 @@ import { NET_Connect, NET_SendMessage, NET_SendUnreliableMessage, NET_CanSendMes
 import { cvar_t, Cvar_RegisterVariable, Cvar_VariableValue } from '../common/cvar.js';
 import { Cmd_AddCommand } from '../common/cmd.js';
 import { Cbuf_InsertText } from '../common/cmd.js';
-import { clc_disconnect, clc_stringcmd } from '../common/protocol.js';
+import { clc_disconnect, clc_stringcmd, CLOAK_BODY_CAPABILITY } from '../common/protocol.js';
 import { CL_GetMessage, CL_Record_f, CL_PlayDemo_f, CL_PlayAttractDemo_f, CL_TimeDemo_f, CL_StopPlayback, CL_Stop_f } from './cl_demo.js';
 import { CL_ParseServerMessage } from './cl_parse.js';
 import { SIGNONS, MAX_DLIGHTS, MAX_EFRAGS, MAX_BEAMS, MAX_TEMP_ENTITIES,
@@ -101,6 +101,7 @@ CL_ClearState
  * `cl.free_efrags` free list. `cl_static_entities` is left as is.
  */
 export function CL_ClearState() {
+	R_CloakReset();
 	R_PowerVisionReset();
 	R_QuadVisionReset();
 	R_FaceGameReset();
@@ -230,6 +231,9 @@ CL_Disconnect
  * cvars a demo split borrowed (R_DemoSplitEnd) and resets `cls.signon` to 0. Safe to call when already disconnected.
  */
 export function CL_Disconnect() {
+	R_CloakReset();
+	CL_ResetPrediction();
+	for ( let i = 1; i <= cl.maxclients; i ++ ) if ( cl_entities[ i ] ) cl_entities[ i ].cloakBodyFrame = null;
 	R_DemonBakeRelease();
 	if(R_WelcomeLoadingHolding())R_DemoLoadingCancel();
 
@@ -442,7 +446,7 @@ export function CL_SignonReply() {
 
 		case 1:
 			MSG_WriteByte( cls.message, clc_stringcmd );
-			MSG_WriteString( cls.message, 'prespawn' );
+			MSG_WriteString( cls.message, 'prespawn ' + CLOAK_BODY_CAPABILITY );
 			break;
 
 		case 2:
@@ -1043,6 +1047,7 @@ function CL_LinkPlayers() {
 		ent.skinnum = pplayer.skin;
 		ent.frame = pplayer.frame;
 		ent.effects = pplayer.effects;
+		ent.cloakBodyFrame = pplayer.cloakBodyFrame;
 
 		// Set origin from predicted/server position
 		VectorCopy( pplayer.origin, ent.origin );
@@ -1118,6 +1123,9 @@ CL_RelinkEntities
  * the packet entity frame (CL_LinkPacketEntities); demos use the NetQuake path for every entity.
  */
 export function CL_RelinkEntities() {
+	// Clear before every linker early return/PVS change. A demo/NQ frame also
+	// cannot inherit optional metadata from the live QW path.
+	for ( let i = 1; i <= cl.maxclients; i ++ ) if ( cl_entities[ i ] ) cl_entities[ i ].cloakBodyFrame = null;
 
 	// determine partial update time
 	const frac = CL_LerpPoint();

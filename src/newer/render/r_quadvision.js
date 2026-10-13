@@ -9,27 +9,39 @@
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
-// Quad-only, owner-authorized through-wall silhouettes. Read living local
-// server entities because ordinary client visibility intentionally omits PVS
-// outsiders. These proxies never enter gameplay, network or discovery state.
+// Quad-only, owner-authorized silhouettes. The established monster reveal reads
+// the paired single-player server. Multiplayer Ring subjects come exclusively
+// from current replicated cloak meshes; never expand the server's native PVS.
 import * as THREE from 'three';
 import { sv, FL_MONSTER } from '../../engine/server/server.js';
-import { cl } from '../../engine/client/client.js';
+import { cl, cl_entities } from '../../engine/client/client.js';
 import { IT_QUAD, STAT_HEALTH } from '../../engine/common/quakedef.js';
 import { SV_FaceLocalActive } from '../gameplay/sv_faceevents.js';
 import { GL_DrawAliasFrame } from '../../engine/render/gl_mesh.js';
 import { VISION_COORDINATES_GLSL } from './vision_coordinates.js';
 import { QuadVisionRegion, QUAD_REGION } from './quadvision_region.js';
+import { R_NewerGame } from '../mode.js';
+import { R_CloakSubjects } from './r_cloak.js';
 
 /**
- * True while Quad Damage's through-wall silhouettes should show: the paired local single-player Newer Game
- * (`SV_FaceLocalActive`), the player alive, not at intermission, and holding Quad. Asked each frame by gl_post.js
+ * True while the local Newer observer is alive, not at intermission, and holding Quad. Monster admission remains
+ * paired single-player only; current replicated Ring players can also receive its purple flame. Asked by gl_post.js
  * (whether post-processing runs and the vision pass is drawn) and view.js (which then drops the Quad colour shift).
  *
  * @returns {boolean} true when the effect is on
  */
 export function R_QuadVisionActive() {
-	return SV_FaceLocalActive() && cl.stats[STAT_HEALTH]>0 && !cl.intermission && Boolean(cl.items&IT_QUAD);
+	if(!R_NewerGame()||cl.stats[STAT_HEALTH]<=0||cl.intermission||!(cl.items&IT_QUAD))return false;
+	if(SV_FaceLocalActive())return true;
+	// Discover an eligible current snapshot before the cloak frame is built, so
+	// the first such player can start post even when ordinary optics are off.
+	// Without a local monster reveal or a replicated Ring subject, preserve the
+	// pre-existing native Quad/Suit colour-shift precedence.
+	for(let slot=1;slot<=cl.maxclients;slot++){
+		const e=cl_entities[slot];
+		if(slot!==cl.viewentity&&e?.model?.name==='progs/eyes.mdl'&&Number.isInteger(e.cloakBodyFrame)&&e.cloakBodyFrame>=0)return true;
+	}
+	return false;
 }
 /**
  * Each Newer frame (gl_post.js R_PostBegin), whether Quad is held or not: a local game (`SV_FaceLocalActive`) floods on
@@ -77,9 +89,10 @@ void main(){
   vec2 q=clamp(vUv+vec2(cos(a),sin(a))*r*radius*uTexel+rise,vec2(0),vec2(1));
   vec4 mask=texture2D(tMask,visionRawUV(q));float enemyZ=mask.g/max(mask.r,.001);
   float w=exp(-r*r*2.);
-  // Only the hidden portion receives the wall reveal. Ordinary visible
-  // enemy pigment and the held weapon remain readable.
-  float hidden=smoothstep(2.,10.,enemyZ-z);
+  // Preserve the established hidden-only monster policy (role1). A current
+  // replicated Ring player (role2) receives the same flame while visible too.
+  // World-hidden players can appear only while still in the native snapshot PVS.
+  float hidden=mask.a/max(mask.r,.001)>1.5?1.:smoothstep(2.,10.,enemyZ-z);
   alpha+=mask.r*hidden*exp(-(mask.b/max(mask.r,.001))/1400.)*w;weight+=w;
  }
  alpha=clamp(alpha/max(weight,.001)*(.65+.35*flame),0.,.85);
@@ -94,22 +107,26 @@ let state=null;
  */
 export function R_QuadVisionReset() {
 	if(!state)return;
-	state.mask.dispose();state.output.dispose();state.material.dispose();state.composite.dispose();
+	state.mask.dispose();state.output.dispose();state.material.dispose();state.playerMaterial.dispose();state.composite.dispose();
 	state.quad.geometry.dispose();for(const g of state.geometries.values())g.dispose();state=null;
 }
 function create(width,height,world) {
 	const mask=new THREE.WebGLRenderTarget(width,height,{type:THREE.HalfFloatType,depthBuffer:true});
 	const output=new THREE.WebGLRenderTarget(width,height,{type:THREE.HalfFloatType,depthBuffer:false});
-	const material=new THREE.ShaderMaterial({vertexShader:'varying vec2 distance;void main(){vec4 p=modelViewMatrix*vec4(position,1.);distance=vec2(-p.z,length(p.xyz));gl_Position=projectionMatrix*p;}',fragmentShader:'varying vec2 distance;void main(){gl_FragColor=vec4(1.,distance,1.);}',side:THREE.DoubleSide,blending:THREE.NoBlending});
+	const material=new THREE.ShaderMaterial({vertexShader:'varying vec2 distance;void main(){vec4 p=modelViewMatrix*vec4(position,1.);distance=vec2(-p.z,length(p.xyz));gl_Position=projectionMatrix*p;}',fragmentShader:'uniform float uRole;varying vec2 distance;void main(){gl_FragColor=vec4(1.,distance,uRole);}',uniforms:{uRole:{value:1}},side:THREE.DoubleSide,blending:THREE.NoBlending});
+	const playerMaterial=material.clone();playerMaterial.uniforms.uRole.value=2;
 	const composite=new THREE.ShaderMaterial({vertexShader:VERTEX,fragmentShader:QUAD_VISION_FRAGMENT,depthTest:false,depthWrite:false,uniforms:{tVisionCoordinates:{value:null},uVisionCoordinates:{value:0},tScene:{value:null},tMask:{value:mask.texture},tDepth:{value:null},tNormal:{value:null},uTexel:{value:new THREE.Vector2(1/width,1/height)},uNear:{value:4},uFar:{value:4096},uTime:{value:0}}});
 	const scene=new THREE.Scene(),screen=new THREE.Scene(),quad=new THREE.Mesh(new THREE.PlaneGeometry(2,2),composite);
 	screen.add(quad);quad.frustumCulled=false;
-	return {width,height,world,mask,output,material,composite,scene,screen,quad,camera:new THREE.Camera(),meshes:new Map(),geometries:new Map()};
+	return {width,height,world,mask,output,material,playerMaterial,composite,scene,screen,quad,camera:new THREE.Camera(),meshes:new Map(),geometries:new Map(),players:new Map(),fromWorld:new THREE.Matrix4()};
 }
 /**
  * Draws the silhouettes over the frame, from R_PostFinish (gl_post.js) once per rendered frame: renders proxy meshes
  * of every monster's current pose into a mask target (view depth and distance), then composites a flickering purple
- * glow wherever a monster is hidden behind something nearer. The targets are sized to `hdr` and rebuilt when its size
+ * glow wherever a monster is hidden behind something nearer. Current network-visible cloaked player meshes are
+ * borrowed into the same mask with a distinct role, so their animated silhouette receives the existing flame even
+ * in direct sight. Borrowed player geometries stay owned by the cloak module, including during reset. Multiplayer
+ * never reads local server monsters or reveals players omitted from the native PVS. The targets are rebuilt when size
  * or the map changes; they persist between frames until `R_QuadVisionReset`. The renderer's target and clear colour
  * are restored afterwards.
  *
@@ -125,10 +142,12 @@ function create(width,height,world) {
  */
 export function R_QuadVisionRender(renderer,source,hdr,camera,worldScene,coordinates=null) {
 	if(!R_QuadVisionActive()){R_QuadVisionReset();return source;}
-	if(!state || state.width!==hdr.width || state.height!==hdr.height || state.world!==sv.worldmodel){R_QuadVisionReset();state=create(hdr.width,hdr.height,sv.worldmodel);}
+	const local=SV_FaceLocalActive(),players=R_CloakSubjects(),world=local?sv.worldmodel:cl.worldmodel;
+	if(!local&&players.length===0){R_QuadVisionReset();return source;}
+	if(!state || state.width!==hdr.width || state.height!==hdr.height || state.world!==world){R_QuadVisionReset();state=create(hdr.width,hdr.height,world);}
 	const s=state,seen=new Set();
-	s.scene.matrixAutoUpdate=false;s.scene.matrix.copy(worldScene.matrixWorld);
-	for(const e of QuadVisionEnemies(sv)) {
+	s.scene.matrixAutoUpdate=false;s.scene.matrix.copy(worldScene.matrixWorld);s.scene.matrixWorldNeedsUpdate=true;
+	for(const e of local?QuadVisionEnemies(sv):[]) {
 		const header=sv.models[e.v.modelindex].cache.data,frame=header.frames[e.v.frame|0]||header.frames[0];
 		let pose=frame.firstpose;if(frame.numposes>1)pose+=Math.floor(sv.time/frame.interval)%frame.numposes;
 		const template=GL_DrawAliasFrame(header,pose);if(!template)continue;
@@ -139,6 +158,16 @@ export function R_QuadVisionRender(renderer,source,hdr,camera,worldScene,coordin
 		mesh.geometry=geometry;mesh.position.fromArray(e.v.origin);mesh.rotation.set(e.v.angles[2]*Math.PI/180,-e.v.angles[0]*Math.PI/180,e.v.angles[1]*Math.PI/180,'ZYX');seen.add(e);
 	}
 	for(const [e,mesh]of s.meshes)if(!seen.has(e)){s.scene.remove(mesh);s.meshes.delete(e);}
+	// The source meshes already carry interpolated alias positions and their
+	// actual current world transforms. Borrow buffers; never clone stale poses,
+	// reparent source meshes, or dispose them with this effect's own mask caches.
+	s.fromWorld.copy(s.scene.matrix).invert();
+	for(const subject of players){
+		if(!subject?.geometry)continue;
+		let mesh=s.players.get(subject);if(!mesh){mesh=new THREE.Mesh(subject.geometry,s.playerMaterial);mesh.matrixAutoUpdate=false;mesh.frustumCulled=false;s.players.set(subject,mesh);s.scene.add(mesh);}
+		mesh.geometry=subject.geometry;mesh.matrix.multiplyMatrices(s.fromWorld,subject.matrixWorld);mesh.matrixWorldNeedsUpdate=true;
+	}
+	for(const [subject,mesh]of s.players)if(!players.includes(subject)||!subject.geometry){s.scene.remove(mesh);s.players.delete(subject);}
 	const u=s.composite.uniforms;u.tScene.value=source;u.tDepth.value=hdr.depthTexture;u.tNormal.value=hdr.textures[1];u.uNear.value=camera.near;u.uFar.value=camera.far;u.uTime.value=cl.time;
 	u.tVisionCoordinates.value=coordinates;u.uVisionCoordinates.value=coordinates?(coordinates.userData?.visionEncoded?2:1):0;
 	const saved=renderer.getRenderTarget(),clear=new THREE.Color();renderer.getClearColor(clear);const alpha=renderer.getClearAlpha();

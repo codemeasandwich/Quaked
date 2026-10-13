@@ -1,3 +1,4 @@
+import { R_CloakReveal, R_CloakRevealReset } from './r_cloak.js';
 /**
  * @module newer/render/r_powervision
  *
@@ -36,8 +37,11 @@ export const POWER_VISION_PRESETS = Object.freeze({
 export function PowerVisionAdapt(source) {
 	const albedo = source.includes('tAlbedo;') ? '' : 'uniform sampler2D tAlbedo;\n';
 	const helpers = `${albedo}${VISION_COORDINATES_GLSL}
-vec4 visionNormal(vec2 uv){return texture(tNormal,visionRawUV(uv));}
-vec4 visionAlbedo(vec2 uv){return texture(tAlbedo,visionRawUV(uv));}
+uniform sampler2D tCloakSubjects;uniform float uCloakSubjects;
+vec4 cloakSubject(vec2 uv){return uCloakSubjects>.5?texture(tCloakSubjects,visionRawUV(uv)):vec4(0.);}
+
+vec4 visionNormal(vec2 uv){vec4 cloak=cloakSubject(uv);return cloak.a>0.?cloak:texture(tNormal,visionRawUV(uv));}
+vec4 visionAlbedo(vec2 uv){return cloakSubject(uv).a>0.?vec4(.6,.6,.6,.065):texture(tAlbedo,visionRawUV(uv));}
 vec4 visionMask(vec2 uv) {
  float tag=visionAlbedo(uv).a;
  return vec4(float(tag>.063 && tag<.067),0.,0.,1.);
@@ -45,6 +49,8 @@ vec4 visionMask(vec2 uv) {
 vec4 visionDepthPacket(vec2 uv) {
  float depth=texture(tDepth,visionRawUV(uv)).r;
  float packet=visionNormal(uv).a;
+ float cloakZ=cloakSubject(uv).a;
+ if(cloakZ>0.)depth=(uFar-uNear*uFar/max(cloakZ,uNear))/(uFar-uNear);
  if(packet < -2.) {
   float distance=-packet-2.;
   depth=(uFar-uNear*uFar/max(distance,uNear))/(uFar-uNear);
@@ -80,11 +86,11 @@ function create(w, h) {
 	const geometry = new THREE.BufferGeometry();
 	geometry.setAttribute('position', new THREE.Float32BufferAttribute([-1,-1,0,3,-1,0,-1,3,0],3));
 	const uniforms = {};
-	for (const name of ['tScene','tCurrent','tHistory','tDepth','tNormal','tMask','tAlbedo','tVisionCoordinates','tPreviousCoordinates']) uniforms[name] = { value: null };
+	for (const name of ['tScene','tCurrent','tHistory','tDepth','tNormal','tMask','tAlbedo','tVisionCoordinates','tPreviousCoordinates','tCloakSubjects']) uniforms[name] = { value: null };
 	for (const name of ['uInvProjection','uCameraWorld','uInvViewProjection','uPreviousViewProjection']) uniforms[name] = { value: new THREE.Matrix4() };
 	uniforms.uWorldUp = { value: new THREE.Vector3(0,0,1) };
 	uniforms.uResolution = { value: new THREE.Vector2(w,h) };
-	for (const [name,value] of Object.entries({uNear:4,uFar:4096,uWorldScale:1/32,uProtectViewmodel:1,
+	for (const [name,value] of Object.entries({uNear:4,uFar:4096,uWorldScale:1/32,uProtectViewmodel:1,uCloakSubjects:0,
 		uTime:0,uDelta:0,uValid:0,uAmount:1,uDebug:0,uHasAlbedo:1,uAccentMode:0,uVisionCoordinates:0,uPreviousCoordinates:0,
 		uFlow:ring.flow,uTrails:ring.trails,uGlow:ring.glow,uMist:ring.mist,uVignette:ring.vignette,uInk:demon.ink,uThreshold:demon.threshold,
 		uRelief:demon.relief,uEdges:demon.edges,uWhites:demon.whites,uWorldFloor:demon.worldFloor})) uniforms[name] = {value};
@@ -105,6 +111,7 @@ function create(w, h) {
  * @param {boolean} [dispose=false] also release the GPU resources (recreated on the next vision frame)
  */
 export function R_PowerVisionReset(dispose = false) {
+	R_CloakRevealReset();
 	previous = null; sequence++;
 	if (dispose && pipeline) {
 		pipeline.current.dispose(); pipeline.history.forEach(t => t.dispose());
@@ -130,6 +137,7 @@ export function R_PowerVisionReset(dispose = false) {
  *  (owned by the pipeline; valid until the next call)
  */
 export function R_PowerVisionRender(renderer, source, hdr, camera, mode, client, coordinates=null) {
+	if(mode!==1)R_CloakRevealReset();
 	if (renderer.domElement && !contexts.has(renderer.domElement)) {
 		contexts.add(renderer.domElement);
 		renderer.domElement.addEventListener('webglcontextlost',()=>R_PowerVisionReset(true));
@@ -149,6 +157,7 @@ export function R_PowerVisionRender(renderer, source, hdr, camera, mode, client,
 	u.tVisionCoordinates.value=coordinates;u.uVisionCoordinates.value=coordinates?(coordinates.userData?.visionEncoded?2:1):0;
 	u.tPreviousCoordinates.value=p.history[p.index]?.textures[1]||null;u.uPreviousCoordinates.value=previous?2:0;
 	u.tNormal.value=hdr.textures[1]; u.tAlbedo.value=hdr.textures[2];
+	u.tCloakSubjects.value=mode===1?R_CloakReveal(renderer,hdr,camera):null;u.uCloakSubjects.value=u.tCloakSubjects.value?1:0;
 	u.uNear.value=camera.near; u.uFar.value=camera.far; u.uTime.value=client.time;
 	u.uInvProjection.value.copy(camera.projectionMatrixInverse); u.uCameraWorld.value.copy(camera.matrixWorld);
 	u.uInvViewProjection.value.multiplyMatrices(camera.matrixWorld,camera.projectionMatrixInverse);

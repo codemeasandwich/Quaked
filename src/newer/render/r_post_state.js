@@ -21,7 +21,7 @@ import { r_newer_water } from '../mode.js';
  * by normals and liquids), relief detail, the eye under water, slime or lava (no lens drops, no edge outlines), and
  * the pipeline's render targets and materials (`gpu`: made by the first `R_PostBegin` that draws, freed by
  * `R_PostShutdown`; null between). */
-export const postState = { glowActive: false, postActive: false, detailActive: false, underwater: false, gpu: null };
+export const postState = { glowActive: false, postActive: false, detailActive: false, underwater: false, waterView: false, gpu: null };
 
 /** The light curve, shared with the lit world materials' shader. */
 export const lightCurve = { value: 1 };
@@ -35,11 +35,13 @@ export const lightingLook = { value: 0 };
  * Records whether the eye is under water, slime or lava (no drops on the lens, no edge outlines). Called once a
  * frame by gl_rmain.js `R_SetupFrame` from the view leaf's contents.
  *
+ * @param {number} [contents=-3] native BSP contents; only water/slime enable optical vision cues
  * @param {boolean} v true when the view leaf is water, slime or lava (anything but `true` counts as false)
  */
-export function R_PostSetUnderwater( v ) {
+export function R_PostSetUnderwater( v, contents = - 3 ) {
 
 	postState.underwater = v === true;
+	postState.waterView = v === true && ( contents === - 3 || contents === - 4 );
 
 }
 

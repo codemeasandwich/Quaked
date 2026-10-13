@@ -1,3 +1,4 @@
+import { R_CloakFrame, R_CloakRestore, R_CloakReset } from '../common/hooks.js';
 /**
  * @module engine/render/gl_rmain
  *
@@ -472,7 +473,7 @@ export function R_SetupFrame() {
 		R_ScreenDropsView( r_viewleaf.contents );
   R_WeaponSurfaceContext(R_NewerGame(),r_origin,_surfaceBloodVisible,_surfaceBloodContact);
   if(cls.signon===4)R_WeaponSurfaceFrame(cl.time,r_viewleaf.contents,cl.paused);
-		R_PostSetUnderwater( r_viewleaf.contents === - 3 || r_viewleaf.contents === - 4 || r_viewleaf.contents === - 5 );
+		R_PostSetUnderwater( r_viewleaf.contents === - 3 || r_viewleaf.contents === - 4 || r_viewleaf.contents === - 5, r_viewleaf.contents );
 
 	}
 
@@ -2056,6 +2057,9 @@ export function R_RenderView() {
 
 			}
 
+			// Remote cloak is an enhanced-only presentation, including split-view Classic exclusion.
+			R_CloakFrame(renderer, cl, cl_visedicts, cl_numvisedicts, R_NewerGame() && r_drawentities.value !== 0 && leaving === null);
+			try {
 			R_PostSetPortraitLight( R_BestiaryPortraitLight() ); // (the Bestiary's portrait light, if a page is up)
 			R_PostLightsFrame( renderer, scene, camera, r_visframecount, d_lightstylevalue, cl_dlights, cl != null ? cl.time : 0, R_MapHasSky() );
 			R_RendVeilCapture(renderer,scene,camera);
@@ -2067,7 +2071,9 @@ export function R_RenderView() {
 			R_PostSetSplit( split && ! R_DemoSplitFull() );
 			R_PostFinish( renderer, scene, camera, _viewport, r_visframecount, d_lightstylevalue,
 				cl_dlights, cl != null ? cl.time : 0, renderer.toneMappingExposure, R_MapHasSky() );
+			R_CloakRestore();
 			if ( split ) R_DemoSplitClassic( renderer, scene, camera, _viewport, R_ClassicOn, R_ClassicOff, sceneTarget );
+			} finally { R_CloakRestore(); }
 
 		} else {
 
@@ -2246,6 +2252,7 @@ export function R_Init() {
 	}
 
 	Cvar_RegisterVariable( r_portals );
+	Cvar_RegisterVariable( r_waterwarp );
 	Cvar_RegisterVariable( r_hdr );
 	Cvar_RegisterVariable( r_pointshadows );
 	Cvar_RegisterVariable( r_heightshadows );
@@ -2460,6 +2467,7 @@ function R_WarmShaders( renderer, scene, camera, extraMaterials=[], extraTexture
  * map; rebuilds the lightmaps; and sets up the views into the next levels for this level's seamless crossings.
  */
 export function R_NewMap() {
+ R_CloakReset();
 	R_DemonBakeRelease();
 	// All paired local Newer arrivals share the existing physics/input hold;
 	// network games and recorded/timed demos retain their established clocks.

@@ -1,3 +1,4 @@
+import { R_CloakReset, R_CloakWanted } from './r_cloak.js';
 /**
  * @module newer/render/gl_post
  *
@@ -61,6 +62,7 @@ export { r_hdr, r_pointshadows, r_bloom, r_heathaze, r_mist, r_water_look, r_ref
 import { postState, lightCurve, lightingLook } from './r_post_state.js';
 export { classicLook, R_PostSetUnderwater, R_PostActive, R_WaterActive } from './r_post_state.js';
 export { MAX_LIQUID_REGIONS, R_GetLiquidLinks, R_IsWaterTextureName, LIQUID_LOOKS, R_LiquidLookIndex, R_LiquidOpacity, R_GetLavaRegions, R_GetLiquidRegions, R_WaterProbesFrame, R_WaterStartupStatus } from './r_post_liquids.js';
+import { R_PostLiquidUniforms } from './r_post_liquids.js';
 import { R_PostInstallGBufferPatch, pulseLava, setGlowActive, setDetailActive } from './r_post_gbuffer.js';
 export { R_RegisterGlow, R_GlowBoostForTexture, R_PostInstallGBufferPatch, R_RegisterDetail, R_RefreshDetail } from './r_post_gbuffer.js';
 import { skyState, R_PostSkyUniforms } from './r_post_sky.js';
@@ -139,7 +141,7 @@ export function R_PostBegin( renderer, enabled, width, height ) {
 	// off keeps relief and liquid compositing available without relighting the world.
 	const newer = enabled && r_hdr.value !== 0;
 	if ( newer ) R_QuadVisionPrepare(); // (which monsters Quad may reveal, worked out ahead of a pickup)
-	const wanted = r_newer_lighting.value !== 0 || r_newer_normals.value !== 0 || r_newer_water.value !== 0 || PowerVisionMode(cl,newer) !== 0 || R_QuadVisionActive();
+	const wanted = R_CloakWanted() || r_newer_lighting.value !== 0 || r_newer_normals.value !== 0 || r_newer_water.value !== 0 || PowerVisionMode(cl,newer) !== 0 || R_QuadVisionActive();
 	const active = newer && wanted && R_PostSupported( renderer ) && width > 8 && height > 8;
 	postState.postActive = active;
 	const lighting = active && r_newer_lighting.value !== 0;
@@ -153,7 +155,7 @@ export function R_PostBegin( renderer, enabled, width, height ) {
 	if ( lighting ) pulseLava( performance.now() / 1000 );
 	skyState.seen = false;
 
-	if ( active === false ) { R_PowerVisionReset(); R_QuadVisionReset(); return false; }
+	if ( active === false ) { R_CloakReset(); R_PowerVisionReset(); R_QuadVisionReset(); return false; }
 
 	if ( postState.gpu === null ) postState.gpu = createPipeline();
 	dynResUpdate( performance.now() / 1000 );
@@ -230,6 +232,9 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 
 	}
 
+	// Both existing passes consume the current liquid state, including the
+	// first frame on entry/surfacing; never borrow last frame's pool or phase.
+	R_PostLiquidUniforms( p.compositeMaterial.uniforms, camera, time );
 	const { volume, bloom } = R_PostVolumeBloom( renderer, p, fireFrame, exposure, hasSkyView, lighting );
 	R_PostComposite( renderer, scene, camera, viewport, p, fireFrame, time, exposure, hasSkyView, lighting, volume, bloom );
 
@@ -242,6 +247,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
  * pipeline builds it again. Not called by the engine in the current tree; tests call it between fixtures.
  */
 export function R_PostShutdown() {
+ R_CloakReset();
 	R_PowerVisionReset(true);
 	R_QuadVisionReset();
 

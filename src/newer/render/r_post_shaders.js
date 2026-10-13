@@ -75,6 +75,49 @@ uniform vec3 uCookieMean;
 uniform vec3 uCookieNorm;
 uniform float uCookieDepth;
 const float COOKIE_SCALE = 700.0; // world units to one repeat of the sky picture
+uniform sampler2D tNormal;
+uniform float uTime;
+uniform float uCaustic;
+uniform int uWaterCount;
+uniform vec4 uWaterMin[ ${MAX_LIQUID_REGIONS} ]; // xy = min corner, z = surface height, w = kind
+uniform vec4 uWaterMax[ ${MAX_LIQUID_REGIONS} ]; // xy = max corner, z = physical bottom, w = optical look
+${liquidLookGLSL}
+uniform float uWaterView;
+
+// tiling water caustics: the bright network light makes when it is bent by ripples
+float caustic( vec2 uv, float t ) {
+	vec2 p = mod( uv * 6.28318, 6.28318 ) - 250.0;
+	vec2 i = p;
+	float c = 1.0;
+	float inten = 0.005;
+	for ( int n = 0; n < 4; n ++ ) {
+		float tt = t * ( 1.0 - ( 3.5 / float( n + 1 ) ) );
+		i = p + vec2( cos( tt - i.x ) + sin( tt + i.y ), sin( tt - i.y ) + cos( tt + i.x ) );
+		c += 1.0 / length( vec2( p.x / ( sin( i.x + tt ) / inten ), p.y / ( cos( i.y + tt ) / inten ) ) );
+	}
+	c /= 4.0;
+	c = 1.17 - pow( c, 1.4 );
+	return pow( abs( c ), 8.0 );
+}
+
+// BSP contents gates entry; the same finite optical volume clips both passes.
+bool insideWater( vec3 p, int i ) {
+ return all( greaterThanEqual( p, vec3( uWaterMin[i].xy, uWaterMax[i].z ) ) ) &&
+  all( lessThanEqual( p, vec3( uWaterMax[i].xy, uWaterMin[i].z ) ) );
+}
+int cameraWater() {
+ if ( uWaterView < 0.5 ) return -1;
+ for ( int i = 0; i < ${MAX_LIQUID_REGIONS}; i++ ) {
+  if ( i >= uWaterCount ) break;
+  if ( insideWater( uViewInv[3].xyz, i ) ) return i;
+ }
+ return -1;
+}
+float waterShaftPattern( vec3 p, int i ) {
+ // Identical phase and world coordinates to the horizontal receiver caustics.
+ return min( caustic( p.xy * 0.0045, uTime * 0.6 ), 2.0 ) * uCaustic * liquidCaustic( uWaterMax[i].w );
+}
+
 varying vec2 vUv;
 
 float sceneDist( vec2 uv ) {
@@ -154,6 +197,16 @@ void main() {
 	float jit = noise( gl_FragCoord.xy );
 
 	vec3 result = vec3( 0.0 );
+ int waterRegion = texture2D( tNormal, vUv ).a < -0.5 ? -1 : cameraWater();
+ float waterD = 0.0;
+ if ( waterRegion >= 0 ) {
+  vec3 cam = uViewInv[3].xyz, dw = mat3( uViewInv ) * dirV;
+  vec3 a = ( vec3( uWaterMin[waterRegion].xy, uWaterMax[waterRegion].z ) - cam ) / ( dw + vec3(1e-6) );
+  vec3 b = ( vec3( uWaterMax[waterRegion].xy, uWaterMin[waterRegion].z ) - cam ) / ( dw + vec3(1e-6) );
+  vec3 farT = max(a,b);
+  waterD = max( 0.0, min( D, min( farT.x, min( farT.y, farT.z ) ) ) );
+ }
+
 
 	// sun: march the view ray through the sun's shadow map
 	if ( uSunOn > 0.5 ) {
@@ -178,6 +231,7 @@ void main() {
 			// (squared: the edge of a pillar is where it goes from the full density to none, not a soft ramp)
 			float edge = 1.0 - around * 0.25;
 			float density = uOpenFog + edge * edge * uShaftFog;
+   if ( waterRegion >= 0 && t < waterD ) density += 0.06 * waterShaftPattern( pw, waterRegion );
 			lit += density * skyCookieRGB( pw ) * exp( - t * 0.0007 );
 		}
 		lit *= ds;
@@ -186,26 +240,29 @@ void main() {
 	}
 
 	// point lights: analytic scattering with the same whole-world static occlusion as receivers
-	vec3 acc = vec3( 0.0 );
-	if ( uScatter > 0.0 ) for ( int i = 0; i < ${MAX_VOLUME_LIGHTS}; i ++ ) {
+	vec3 acc = vec3( 0.0 ), waterAcc = vec3( 0.0 );
+	if ( uScatter > 0.0 || ( waterRegion >= 0 && uCaustic > 0.0 ) ) for ( int i = 0; i < ${MAX_VOLUME_LIGHTS}; i ++ ) {
 		if ( i >= uCount ) break;
 
 		vec3 L = uLightPos[ i ].xyz;
 		float R = uLightPos[ i ].w;
+  if ( uScatter <= 0.0 && ( uViewInv * vec4( L, 1.0 ) ).z <= uWaterMin[waterRegion].z ) continue;
 
-		float t0 = dot( L, dirV );
+		float pointD = uScatter > 0.0 ? D : waterD;
+  if ( pointD <= 0.0 ) continue;
+  float t0 = dot( L, dirV );
 		float h = sqrt( max( dot( L, L ) - t0 * t0, 0.0 ) + R * R );
-		float integral = ( atan( ( D - t0 ) / h ) + atan( t0 / h ) ) / h;
+		float integral = ( atan( ( pointD - t0 ) / h ) + atan( t0 / h ) ) / h;
 		float range = uLightCol[ i ].w;
 		integral *= 1.0 - smoothstep( 0.25 * range, range, h );
 		// An out-of-range light contributes exactly zero. Avoid its twelve depth
 		// marches rather than calculating a visibility that will be multiplied away.
 		if ( integral <= 0.0 ) continue;
 
-		vec3 Q = dirV * clamp( t0, 0.0, D );
+		vec3 Q = dirV * clamp( t0, 0.0, pointD );
   bool directional=dot(uLightDirection[i],uLightDirection[i])>.5;
   if(directional){
-   float begin=max(0.,t0-range),end=min(D,t0+range),stepLength=max(0.,end-begin)/12.;
+   float begin=max(0.,t0-range),end=min(pointD,t0+range),stepLength=max(0.,end-begin)/12.;
    integral=0.;float peak=0.;
    for(int k=0;k<12;k++){
     vec3 sampleV=dirV*(begin+(float(k)+.5)*stepLength);vec3 delta=sampleV-L;
@@ -238,7 +295,14 @@ void main() {
 
 
 		float phase = henyeyGreenstein( dot( normalize( Q - L ), - dirV ), 0.3 );
-		acc += uLightCol[ i ].rgb * integral * worldVisibility * lit * lit * phase;
+		vec3 incident = uLightCol[ i ].rgb * integral * worldVisibility * lit * lit * phase;
+  acc += incident;
+  if ( waterRegion >= 0 ) {
+   vec3 sourceW = ( uViewInv * vec4( L, 1.0 ) ).xyz;
+   vec3 sampleW = ( uViewInv * vec4( Q, 1.0 ) ).xyz;
+   if ( sourceW.z > uWaterMin[waterRegion].z && insideWater( sampleW, waterRegion ) )
+    waterAcc += incident * waterShaftPattern( sampleW, waterRegion ) * 0.045;
+  }
 	}
 
 	// the flashlight's beam: the air in the cone lights up, thickest where you look along it
@@ -255,13 +319,15 @@ void main() {
 			if ( cone <= 0.0 ) continue;
 			// thickest near the lamp, thinning out with distance: a faint shaft, not a veil
 			float beamVisibility=spotWorldVisibility((uViewInv*vec4(P,1.)).xyz);
-			beam += uSpotCol * cone * cone * beamVisibility / ( 1.0 + dist * dist / ( 200.0 * 200.0 ) );
+			float waterPattern = 1.0;
+   if ( waterRegion >= 0 && t < waterD ) waterPattern += 0.12 * waterShaftPattern( (uViewInv * vec4(P,1.0)).xyz, waterRegion );
+   beam += uSpotCol * cone * cone * beamVisibility * waterPattern / ( 1.0 + dist * dist / ( 200.0 * 200.0 ) );
 		}
 		float phase = henyeyGreenstein( dot( dirV, uSpotDir ), 0.5 );
 		result += beam * ds * 0.0000011 * phase;
 	}
 
-	gl_FragColor = vec4( result + acc * uScatter, 1.0 );
+	gl_FragColor = vec4( result + acc * uScatter + waterAcc, 1.0 );
 }`;
 
 export const BLOOM_PREFILTER_FRAGMENT = `
@@ -330,7 +396,6 @@ uniform float uPowerupFireOn;
 vec4 powerupFireAt(vec2 uv){return uPowerupFireOn>.5?texture2D(tPowerupFire,uv):vec4(0.);}
 vec3 powerupEmissionAt(vec2 uv){vec4 fire=powerupFireAt(uv);return fire.rgb*(1.-clamp(fire.a,0.,1.));}
 uniform sampler2D tScene;
-uniform sampler2D tNormal;
 uniform sampler2D tAlbedo;
 uniform sampler2D tVolume;
 uniform sampler2D tBloom;
@@ -343,6 +408,7 @@ uniform vec3 uSunSurfaceCol;
 uniform float uLightSurface;
 uniform float uLightFloor;
 uniform float uLightAdd[ ${MAX_VOLUME_LIGHTS} ];
+uniform float uLightSpecular[ ${MAX_VOLUME_LIGHTS} ];
 uniform float uEdge;
 uniform float uDropDensity;
 uniform float uDropBlood;
@@ -359,9 +425,8 @@ uniform float uContrast;
 uniform float uBright;
 uniform float uContrastGain;
 uniform float uContrastPivot;
-uniform float uTime;
-uniform float uCaustic;
 uniform float uUnderwater;
+uniform float uWaterWarp;
 uniform samplerCube tProbeA;
 uniform samplerCube tProbeB;
 uniform vec3 uProbeCenter[ 2 ];
@@ -374,29 +439,10 @@ uniform vec4 uLavaMin[ 4 ]; // xy = min corner, z = the lava's height
 uniform vec4 uLavaMax[ 4 ];
 uniform float uHeat;
 uniform float uReflect;
-uniform int uWaterCount;
 uniform float uMist;
-uniform vec4 uWaterMin[ ${MAX_LIQUID_REGIONS} ]; // xy = min corner, z = surface height, w = kind
-uniform vec4 uWaterMax[ ${MAX_LIQUID_REGIONS} ]; // xy = max corner, w = optical look
 
-${liquidLookGLSL}
 const int RELIGHT_STEPS = 8;
 
-// tiling water caustics: the bright network light makes when it is bent by ripples
-float caustic( vec2 uv, float t ) {
-	vec2 p = mod( uv * 6.28318, 6.28318 ) - 250.0;
-	vec2 i = p;
-	float c = 1.0;
-	float inten = 0.005;
-	for ( int n = 0; n < 4; n ++ ) {
-		float tt = t * ( 1.0 - ( 3.5 / float( n + 1 ) ) );
-		i = p + vec2( cos( tt - i.x ) + sin( tt + i.y ), sin( tt - i.y ) + cos( tt + i.x ) );
-		c += 1.0 / length( vec2( p.x / ( sin( i.x + tt ) / inten ), p.y / ( cos( i.y + tt ) / inten ) ) );
-	}
-	c /= 4.0;
-	c = 1.17 - pow( c, 1.4 );
-	return pow( abs( c ), 8.0 );
-}
 
 bool heldReceiver(vec4 packet){return packet.a < -2.;}
 float receiverDistance(vec4 packet){return heldReceiver(packet)?-packet.a-2.:packet.a;}
@@ -417,7 +463,7 @@ ${POWERUP_SHROUD_COMPOSITE_GLSL}
 
 // Share ordinary point/torch receiver lighting with confirmed water SSR
 // hits. Cheap incident estimates rank candidates before any shadow sampling.
-vec3 pointSurfaceIncident( vec3 P, vec3 normal, int index ) {
+vec3 pointSourceIncident( vec3 P, vec3 normal, int index ) {
 	vec3 L = uLightPos[ index ].xyz - P;
 	float distance = length( L ), range = uLightCol[ index ].w;
 	if ( distance >= range ) return vec3( 0.0 );
@@ -433,7 +479,13 @@ vec3 pointSurfaceIncident( vec3 P, vec3 normal, int index ) {
 	 vec3 direction=(uViewInv*vec4(P-uLightPos[index].xyz,0.)).xyz;
 	 cookie=powerupFlameCookie(powerupLocalDirection(direction,uLightRotation[index]),uPowerupTime);
 	}
-	return uLightCol[ index ].rgb * uLightSurface * facing * fall * cookie * pointCone(P,index);
+	return uLightCol[ index ].rgb * facing * fall * cookie * pointCone(P,index);
+}
+
+// Baked surfaces use a restrained diffuse supplement. Specular reflection
+// and focused caustic light use the source irradiance before that art weight.
+vec3 pointSurfaceIncident( vec3 P, vec3 normal, int index ) {
+	return pointSourceIncident( P, normal, index ) * uLightSurface;
 }
 
 float pointSurfaceVisibility( vec3 P, vec3 normal, int index, float bias ) {
@@ -582,21 +634,24 @@ vec3 litReflectionAt( vec2 uv ) {
 	return colour*receiverRockContrast(P,uv,shadowedWeight,visibleWeight)+powerupEmissionAt(uv);
 }
 
-// Dielectric GGX glint from the live shoulder light. Its normal is the same
-// ripple normal used by environment reflection, with no diffuse grey lift.
-float waterFlashlightSpecular( vec3 P, vec3 N, vec3 V ) {
-	vec3 L = normalize( uSpotPos - P );
+// Shared dielectric GGX glint for the shoulder light and map lights. The
+// result includes N dot L; incident radiance must not multiply facing again.
+float waterLightSpecular( vec3 P, vec3 N, vec3 V, vec3 lightPos, float alpha ) {
+	vec3 L = normalize( lightPos - P );
 	float nl = max( dot( N, L ), 0.0 ), nv = max( dot( N, V ), 0.0 );
 	if ( nl <= 0.0 || nv <= 0.0 ) return 0.0;
 	vec3 H = normalize( L + V );
 	float nh = max( dot( N, H ), 0.0 ), vh = max( dot( V, H ), 0.0 );
-	const float alpha = 0.08;
 	float denominator = nh * nh * ( alpha * alpha - 1.0 ) + 1.0;
 	float distribution = alpha * alpha / ( 3.141593 * denominator * denominator );
 	float masking = nl / ( nl * ( 1.0 - alpha * 0.5 ) + alpha * 0.5 )
 		* nv / ( nv * ( 1.0 - alpha * 0.5 ) + alpha * 0.5 );
 	float fresnel = 0.02 + 0.98 * pow( 1.0 - vh, 5.0 );
-	return min( distribution * masking * fresnel / max( 4.0 * nv, 0.001 ), 8.0 );
+	return distribution * masking * fresnel / max( 4.0 * nv, 0.001 );
+}
+
+float waterFlashlightSpecular( vec3 P, vec3 N, vec3 V ) {
+	return min( waterLightSpecular( P, N, V, uSpotPos, 0.08 ), 8.0 );
 }
 
 // Crossing capillary ripples share world coordinates across every face of a
@@ -610,12 +665,52 @@ vec3 waterRippleNormal( vec3 p3, float distance, float look ) {
 	vec2 a = vec2( 0.8, 0.6 );
 	vec2 b = vec2( - 0.45, 0.893 );
 	vec2 c = vec2( 0.933, - 0.36 );
-	slope += a * 0.055 * cos( dot( p, a ) * 0.07 + time * 0.8 ) * ( 1.0 - smoothstep( 9.0, 36.0, footprint ) );
-	slope += b * 0.015 * cos( dot( p, b ) * 0.145 - time * 1.2 ) * ( 1.0 - smoothstep( 4.0, 17.0, footprint ) );
-	slope += c * 0.009 * ( look > 1.5 && look < 2.5 ? 0.35 : 0.65 ) * cos( dot( p, c ) * 0.29 + time * 1.8 ) * ( 1.0 - smoothstep( 2.0, 8.0, footprint ) );
+	// Restore the original crossing spectrum for Clear (effective slopes
+	// .0455/.0455/.0444 after its profile), while preserving profile variation
+	// and the independent tight refraction-offset limit below.
+	slope += a * 0.100 * cos( dot( p, a ) * 0.07 + time * 0.8 ) * ( 1.0 - smoothstep( 9.0, 36.0, footprint ) );
+	slope += b * 0.100 * cos( dot( p, b ) * 0.145 - time * 1.2 ) * ( 1.0 - smoothstep( 4.0, 17.0, footprint ) );
+	slope += c * 0.150 * ( look > 1.5 && look < 2.5 ? 0.35 : 0.65 ) * cos( dot( p, c ) * 0.29 + time * 1.8 ) * ( 1.0 - smoothstep( 2.0, 8.0, footprint ) );
 	// Keep moving reflection definition without a faceted/prismatic surface. (The ripples from impacts, card [W1], bend the
 	// finished picture of the water in the present pass: PRESENT_FRAGMENT.)
 	return normalize( vec3( - slope * liquidRipple( look ) * 0.65, 1.0 ) );
+}
+
+// A restrained underwater-only sway shares the surface ripple phases. Keep
+// held objects, portals, dry banks and depth discontinuities on their own pixels.
+vec2 underwaterViewUv( vec2 uv ) {
+ if ( uWaterWarp < 0.5 || texture2D( tNormal, uv ).a < -0.5 ) return uv;
+ int region = cameraWater();
+ if ( region < 0 ) return uv;
+ vec3 p = viewPosAt( uv ), world = ( uViewInv * vec4( p, 1.0 ) ).xyz;
+ if ( ! insideWater( world, region ) ) return uv;
+ vec3 ripple = waterRippleNormal( world, length(p), uWaterMax[region].w );
+ vec3 sway = transpose( mat3(uViewInv) ) * vec3( ripple.xy, 0.0 );
+ vec2 offset = clamp( sway.xy * 0.018, vec2(-0.0015), vec2(0.0015) );
+ offset.x *= uProj[0][0] / uProj[1][1];
+ offset *= smoothstep( 0.0, 8.0, uWaterMin[region].z - uViewInv[3].z );
+ vec2 candidate = uv + offset;
+ if ( any(lessThan(candidate,vec2(0.0))) || any(greaterThan(candidate,vec2(1.0))) || texture2D(tNormal,candidate).a < -0.5 ) return uv;
+ vec3 nextP = viewPosAt(candidate), nextW = (uViewInv * vec4(nextP,1.0)).xyz;
+ if ( !insideWater(nextW,region) || abs(nextP.z-p.z) > max(4.0,abs(p.z)*0.02) ) return uv;
+ return candidate;
+}
+
+// Select the real interface along the view ray. A finite suspended pool can
+// be entered/exited through its underside; the legacy 900-unit depth cap is
+// not a physical underside and must never acquire a reflective surface.
+bool liquidInterface( vec3 cam, vec3 ray, vec4 lo, vec4 hi, out bool inside, out float height, out float side ) {
+	inside = uUnderwater > 0.5 && cam.z < lo.z && cam.z > hi.z && cam.x > lo.x && cam.x < hi.x && cam.y > lo.y && cam.y < hi.y;
+	bool finiteBottom = hi.z > lo.z - 899.5;
+	if ( abs( ray.z ) < 0.001 ) return false;
+	if ( inside ) {
+		if ( ray.z < 0.0 && ! finiteBottom ) return false;
+		height = ray.z > 0.0 ? lo.z : hi.z; side = ray.z > 0.0 ? - 1.0 : 1.0;
+		return true;
+	}
+	if ( cam.z > lo.z && ray.z < 0.0 ) { height = lo.z; side = 1.0; return true; }
+	if ( finiteBottom && cam.z < hi.z && ray.z > 0.0 ) { height = hi.z; side = - 1.0; return true; }
+	return false;
 }
 
 // Bend the submerged scene before its albedo, normals and deferred lighting
@@ -634,19 +729,19 @@ vec2 waterRefractionUv( vec2 uv ) {
 		if ( i >= uWaterCount ) break;
 		vec4 lo = uWaterMin[ i ];
 		vec4 hi = uWaterMax[ i ];
-		bool below = uUnderwater > 0.5 && cam.z < lo.z && cam.z > lo.z - 900.0 && cam.x > lo.x && cam.x < hi.x && cam.y > lo.y && cam.y < hi.y;
-		if ( below ) {
-			if ( ray.z <= 0.001 || ( ! sky && hit.z <= lo.z + 0.5 ) ) continue;
-		} else if ( sky || cam.z <= lo.z || ray.z >= - 0.001 || hit.z >= lo.z - 0.5 ) continue;
-		float tp = ( lo.z - cam.z ) / ray.z;
+		bool below; float interfaceZ, interfaceSide;
+		if ( ! liquidInterface( cam, ray, lo, hi, below, interfaceZ, interfaceSide ) ) continue;
+		if ( ( ! below && sky ) || ( ! sky && interfaceSide * ( hit.z - interfaceZ ) >= - 0.5 ) ) continue;
+		float tp = ( interfaceZ - cam.z ) / ray.z;
 		vec3 hp = cam + ray * tp;
 		float shore = min( min( hp.x - lo.x, hi.x - hp.x ), min( hp.y - lo.y, hi.y - hp.y ) );
 		if ( tp <= 0.0 || shore <= 0.0 || tp >= length( hit - cam ) ) continue;
-		vec3 n = waterRippleNormal( hp, tp, hi.w ) * ( below ? - 1.0 : 1.0 );
+		vec3 n = waterRippleNormal( hp, tp, hi.w ) * interfaceSide;
 		vec3 bent = refract( ray, n, below ? 1.333 : 1.0 / 1.333 );
 		// Outside the underwater Snell window there is no transmitted ray.
 		if ( dot( bent, bent ) < 0.0001 ) return uv;
-		float depth = min( abs( lo.z - hit.z ), 192.0 );
+		float depth = min( abs( interfaceZ - hit.z ), 192.0 );
+		if ( ! below ) depth = min( depth, lo.z - hi.z );
 		vec3 target = hp + bent * ( depth / max( abs( bent.z ), 0.1 ) );
 		vec3 straight = hp + ray * ( depth / max( abs( ray.z ), 0.1 ) );
 		mat3 toView = transpose( mat3( uViewInv ) );
@@ -663,15 +758,15 @@ vec2 waterRefractionUv( vec2 uv ) {
 		if ( candidateSky && ( ! below || ! sky ) ) return uv;
 		vec3 checkHit = ( uViewInv * vec4( viewPosAt( candidate ), 1.0 ) ).xyz;
 		if ( below ) {
-			if ( checkHit.z <= lo.z + 0.5 ) return uv;
+			if ( interfaceSide * ( checkHit.z - interfaceZ ) >= - 0.5 ) return uv;
 			vec3 candidateRay = normalize( checkHit - cam );
-			if ( candidateRay.z <= 0.001 ) return uv;
-			float candidateDistance = ( lo.z - cam.z ) / candidateRay.z;
+			if ( candidateRay.z * ray.z <= 0.0 ) return uv;
+			float candidateDistance = ( interfaceZ - cam.z ) / candidateRay.z;
 			vec3 candidateSurface = cam + candidateRay * candidateDistance;
 			if ( candidateDistance <= 0.0 || candidateDistance >= length( checkHit - cam )
 				|| candidateSurface.x <= lo.x || candidateSurface.x >= hi.x || candidateSurface.y <= lo.y || candidateSurface.y >= hi.y ) return uv;
 			if ( sky && ! candidateSky ) return uv;
-		} else if ( checkHit.z >= lo.z - 0.5 || checkHit.x < lo.x || checkHit.x > hi.x || checkHit.y < lo.y || checkHit.y > hi.y ) return uv;
+		} else if ( interfaceSide * ( checkHit.z - interfaceZ ) >= - 0.5 || checkHit.x < lo.x || checkHit.x > hi.x || checkHit.y < lo.y || checkHit.y > hi.y ) return uv;
 		return candidate;
 	}
 	return uv;
@@ -789,7 +884,7 @@ vec3 probeColor( int which, vec3 hp, vec3 rW ) {
 
 // Ineligible depth is empty space for an SSR crossing, including the floor
 // beneath an above-water ray. Each query uses one existing depth sample.
-float reflectionDistanceAt( vec2 uv, bool below, vec4 lo, vec4 hi ) {
+float reflectionDistanceAt( vec2 uv, bool below, vec4 lo, vec4 hi, float interfaceZ, float interfaceSide ) {
 	if ( any( lessThan( uv, vec2( 0.0 ) ) ) || any( greaterThan( uv, vec2( 1.0 ) ) ) ) return 1e6;
 	float depth = texture2D( tDepth, uv ).x;
  if(heldReceiver(texture2D(tNormal,uv)))return 1e6;
@@ -799,8 +894,8 @@ float reflectionDistanceAt( vec2 uv, bool below, vec4 lo, vec4 hi ) {
 	if ( - P.z < 8.0 ) return 1e6;
 	vec3 world = ( uViewInv * vec4( P, 1.0 ) ).xyz;
 	if ( below ) {
-		if ( world.z >= lo.z || world.x < lo.x || world.x > hi.x || world.y < lo.y || world.y > hi.y ) return 1e6;
-	} else if ( world.z < lo.z - 0.5 ) return 1e6;
+		if ( world.z >= lo.z || world.z <= hi.z || world.x < lo.x || world.x > hi.x || world.y < lo.y || world.y > hi.y ) return 1e6;
+	} else if ( interfaceSide * ( world.z - interfaceZ ) < - 0.5 ) return 1e6;
 	return - P.z;
 }
 
@@ -856,6 +951,8 @@ void main() {
 		}
 		uvd += wob * vec2( 1.0, 0.7 ) * 0.0055 * uHeat;
 	}
+	uvd = underwaterViewUv( uvd );
+	vec2 surfaceUv = uvd;
 	uvd = waterRefractionUv( uvd );
 	vec3 scene = texture2D( tScene, uvd ).rgb;
 	if ( uTeleChroma > 0.0 ) {
@@ -883,6 +980,8 @@ void main() {
 
 	vec3 c = scene;
 	vec3 Nw = vec3( 0.0, 0.0, 1.0 );
+	vec3 receiverPlaneW = Nw;
+	vec3 causticIncident = vec3( 0.0 );
 	float spotMask = 0.0;
 	float creaseK = 1.0; // the corner accent, applied after the liquids (which switch it off below their surface)
 
@@ -917,6 +1016,10 @@ void main() {
 		// full on (a white speckle) and the other side not at all (harsh contrast).
 		vec3 Ng = normalize( cross( dxG, dyG ) );
 		if ( dot( Ng, P ) > 0.0 ) Ng = - Ng;
+		// Project liquid light onto the actual receiver plane. A carved stone's
+		// shading normal must not switch projection axes or turn its floor into
+		// a wall; keep Nw unchanged for the existing detailed lighting paths.
+		receiverPlaneW = normalize( mat3( uViewInv ) * Ng );
 		bool actor=actorReceiver(texture2D(tAlbedo,uvd).a);
   bool glass=glassReceiver(texture2D(tAlbedo,uvd).a);
   if(actor)Ng=N;
@@ -948,16 +1051,19 @@ void main() {
 				}
 			}
 
+			vec3 causticSources = relit; // retain the existing received sun contribution
 			float jit = noise( gl_FragCoord.xy );
 			for ( int i = 0; i < ${MAX_VOLUME_LIGHTS}; i ++ ) {
 				if ( i >= uCount ) break;
-				vec3 incident = pointSurfaceIncident( P, Nl, i );
+				vec3 incident = pointSourceIncident( P, Nl, i );
 				if ( dot( incident, vec3( 1.0 ) ) <= 0.0 ) continue;
-				vec3 reached=incident*pointSurfaceVisibility(P,Ng,i,actor?.1:1.);
+				vec3 sourceReached=incident*pointSurfaceVisibility(P,Ng,i,actor?.1:1.);
+				vec3 reached=sourceReached*uLightSurface;
     float localShadow=receiverHeightVisibility(P,uvd,i),weight=dot(reached,vec3(.2126,.7152,.0722));
     visibleReliefWeight+=weight;shadowedReliefWeight+=weight*localShadow;
     vec3 lightHere=reached*localShadow;
 				relit += lightHere;
+				causticSources += sourceReached * localShadow;
     if(film>0.)surfaceSpecular+=uLightCol[i].rgb*pointCone(P,i)*pow(max(dot(Nl,normalize(normalize(uLightPos[i].xyz-P)+V)),0.),glass?24.:48.)*pointSurfaceVisibility(P,Ng,i,actor?.1:1.)*localShadow*pow(max(0.,1.-length(uLightPos[i].xyz-P)/uLightCol[i].a),2.);
 				flashAdd += lightHere * uLightAdd[ i ];
 			}
@@ -1035,6 +1141,10 @@ void main() {
 				bounce *= uBounce * 22.0 / float( BOUNCE_SAMPLES );
 			}
 			vec3 receiver = albedo * 0.55;
+			// Focusing bends the incident light already reaching this material.
+			// Do not focus only the intentionally dim lightmap-floor fallback:
+			// that erased caustics on dark stone even under a visible source.
+			causticIncident = albedo * ( causticSources + spot ) * carveAO;
 			c = actor ? scene + albedo*(relit*.55+spot*1.15+flashAdd*.3+bounce*.55)+surfaceSpecular*film*.16 : scene * ( 1.0 + relit * carveAO ) + ( bounce * receiver + relit * uLightFloor * albedo + spot * albedo * 1.15 + flashAdd * ( 0.3 * albedo + scene * 0.6 ) ) * carveAO;
 
    if(glass)c+=surfaceSpecular*.12;
@@ -1061,6 +1171,12 @@ void main() {
 		vec3 dirW = mat3( uViewInv ) * dirV;
 		vec3 inv = 1.0 / ( dirW + vec3( 1e-6 ) );
 		vec3 hitW = camW + dirW * D;
+		// Reflection belongs to the visible interface, not the refracted
+		// receiver texel. Moving a dry floor below a suspended pool must not
+		// move its reflected torch or change interface coverage.
+		vec3 surfaceP = viewPosAt( surfaceUv );
+		vec3 surfaceDirW = normalize( mat3( uViewInv ) * surfaceP );
+		float surfaceD = min( length( surfaceP ), uMaxRay );
 
 		for ( int i = 0; i < ${MAX_LIQUID_REGIONS}; i ++ ) {
 			if ( i >= uWaterCount ) break;
@@ -1070,7 +1186,7 @@ void main() {
 			float top = lo.z;
 			float look = hi.w;
 			bool toxic = look > 2.5;
-			vec3 bmin = vec3( lo.xy, top - 900.0 );
+			vec3 bmin = vec3( lo.xy, hi.z );
 			vec3 bmax = vec3( hi.xy, top );
 
 			vec3 t1 = ( bmin - camW ) * inv;
@@ -1105,7 +1221,11 @@ void main() {
 				}
 			}
 
-			vec3 transmittedReceiver = c;
+			// Measure the original lit receiver before absorption, sediment/emission
+			// and this pattern; otherwise the adaptation feeds back into itself.
+			float receiverLuminance = max( dot( c, vec3(0.2126, 0.7152, 0.0722) ) * uExposure, 0.0 );
+			vec3 receiverBase = c;
+			vec3 transmittedReceiver = max( c, causticIncident );
 			if ( tExit > tEnter ) {
 				vec3 sigma = liquidAbsorption( look );
 				float received = max( dot( c, vec3( 0.2126, 0.7152, 0.0722 ) ), 0.0 );
@@ -1129,35 +1249,54 @@ void main() {
 					received = max( softLight / weight + direct, sedimentLight * 0.45 );
 				}
 				vec3 T = exp( - sigma * ( tExit - tEnter ) );
-				transmittedReceiver = c * T;
+				transmittedReceiver *= T;
+			receiverBase *= T;
 				// Ordinary water scatters received light. Toxic liquid alone emits.
 				c = c * T + ( liquidScatter( look ) * received + liquidEmission( look ) ) * ( 1.0 - T );
 			}
 
 			// Caustics modulate transmitted receivers, never reflected walls.
+			// Light also projects onto dry stone below a suspended sheet: this
+			// receiver reach is distinct from its finite absorption thickness.
 			if ( d < 0.99999
 				&& hitW.x > bmin.x && hitW.x < bmax.x && hitW.y > bmin.y && hitW.y < bmax.y
-				&& hitW.z > bmin.z && hitW.z < top + 2.0 ) {
+				&& hitW.z > top - 900.0 && hitW.z < top + 2.0 ) {
 				float depth = top - hitW.z;
-				vec2 plane = abs( Nw.z ) > 0.5 ? hitW.xy : ( abs( Nw.x ) > abs( Nw.y ) ? hitW.yz : hitW.xz );
+				vec2 plane = abs( receiverPlaneW.z ) > 0.5 ? hitW.xy : ( abs( receiverPlaneW.x ) > abs( receiverPlaneW.y ) ? hitW.yz : hitW.xz );
 				float cs = caustic( plane * 0.0045, uTime * 0.6 );
-				float facing = 0.06 + 0.94 * smoothstep( 0.3, 0.9, Nw.z ); // on floors, not the walls
-				float fade = exp( - depth / 420.0 ) * smoothstep( 6.0, 40.0, depth );
+				// Slab-lit walls are real receivers too (the START reference is
+				// largely a vertical wall). Retain a floor bias without erasing
+				// their already source-facing, shadowed incident contribution.
+				float facing = 0.35 + 0.65 * smoothstep( 0.3, 0.9, receiverPlaneW.z );
+				// The owner wants full caustic strength on deep receivers too.
+				// Retain only the near-interface onset, not a depth falloff.
+				float fade = smoothstep( 6.0, 40.0, depth );
 				vec3 glow = toxic ? vec3( 0.35, 1.0, 0.16 ) : vec3( 1.0 );
-				// Sediment itself must not acquire the floor's caustic pattern.
-				// Only the transmitted Muddy receiver carries it, fading with path.
-				c += ( muddy ? transmittedReceiver : c ) * glow * cs * uCaustic * facing * fade * liquidCaustic( look );
+				// Dark stone reads through focused highlights; light stone through
+				// restrained redistribution. Scalar weights retain the pigment hue.
+				// Only receiver radiance participates, never sediment or emission.
+				float brightReceiver = smoothstep( 0.08, 0.55, receiverLuminance );
+				float strength = uCaustic * facing * fade * liquidCaustic( look );
+				float focus = min( cs, 2.0 ) * strength;
+				float highlight = mix( 1.8, 0.25, brightReceiver ) * focus / ( 1.0 + brightReceiver * focus );
+				float between = 1.0 - smoothstep( 0.04, 0.30, cs );
+				float shade = 0.12 * brightReceiver * between * min( strength, 1.0 );
+				c -= min( c, receiverBase ) * shade;
+				// Bright surfaces already carry visible radiance: bound their
+				// added highlight to that base, not the stronger raw-source reserve.
+				vec3 highlightReceiver = mix( transmittedReceiver, receiverBase, brightReceiver );
+				c += highlightReceiver * glow * highlight;
 			}
 
 			// Reflection: water gives back the picture of what is above it, more at a low angle than looking straight down.
 			// The reflected ray is marched across the screen against what is already drawn.
-			bool belowSurface = uUnderwater > 0.5 && camW.z < top && camW.z > top - 900.0 && camW.x > lo.x && camW.x < hi.x && camW.y > lo.y && camW.y < hi.y;
-			bool towardSurface = belowSurface ? dirW.z > 0.001 : camW.z > top && dirW.z < - 0.001;
-			if ( ( uReflect > 0.0 || uSpotOn > 0.5 ) && towardSurface && texture2D( tNormal, uvd ).a > - 0.5 ) {
-				float tp = ( top - camW.z ) / dirW.z;
-				vec3 hp = camW + dirW * tp;
-				if ( tp > 0.0 && tp < ( belowSurface ? D - 0.25 : D + 2.0 ) && hp.x > lo.x && hp.x < hi.x && hp.y > lo.y && hp.y < hi.y ) {
-					vec3 nW = waterRippleNormal( hp, tp, hi.w ) * ( belowSurface ? - 1.0 : 1.0 );
+			bool belowSurface; float interfaceZ, interfaceSide;
+			bool towardSurface = liquidInterface( camW, surfaceDirW, lo, hi, belowSurface, interfaceZ, interfaceSide );
+			if ( ( uReflect > 0.0 || uSpotOn > 0.5 ) && towardSurface && texture2D( tNormal, surfaceUv ).a > - 0.5 ) {
+				float tp = ( interfaceZ - camW.z ) / surfaceDirW.z;
+				vec3 hp = camW + surfaceDirW * tp;
+				if ( tp > 0.0 && tp < ( belowSurface ? surfaceD - 0.25 : surfaceD + 2.0 ) && hp.x > lo.x && hp.x < hi.x && hp.y > lo.y && hp.y < hi.y ) {
+					vec3 nW = waterRippleNormal( hp, tp, hi.w ) * interfaceSide;
 					float edge = smoothstep( 0.0, 6.0, min( min( hp.x - lo.x, hi.x - hp.x ), min( hp.y - lo.y, hi.y - hp.y ) ) );
 					mat3 toView = transpose( mat3( uViewInv ) );
 					vec3 hv = toView * ( hp - camW );
@@ -1167,15 +1306,43 @@ void main() {
 						float specular = waterFlashlightSpecular( hv, Nv, normalize( - hv ) );
 						if ( specular > 0.0 ) surfaceLight = uSpotCol * specular * flashlightIrradiance( hv, Nv ) * edge;
 					}
+					// Map torches already light solid receivers and SSR hits. Let
+					// the same source reach the existing water GGX lobe too; a
+					// reflected flame image alone cannot form its surface glint.
+					// Rank before shadows: at most two existing visibility queries.
+					if ( uLighting > 0.5 && uReflect > 0.0 ) {
+						vec3 Nv = toView * nW, V = normalize( - hv );
+						int firstLight = - 1, secondLight = - 1;
+						vec3 firstGlint = vec3( 0.0 ), secondGlint = vec3( 0.0 );
+						float firstScore = 0.0, secondScore = 0.0;
+						for ( int j = 0; j < ${MAX_VOLUME_LIGHTS}; j ++ ) {
+							if ( j >= uCount ) break;
+							if ( uLightSpecular[ j ] < 0.5 ) continue;
+							vec3 sourceW = ( uViewInv * vec4( uLightPos[ j ].xyz, 1.0 ) ).xyz;
+							if ( interfaceSide * ( sourceW.z - interfaceZ ) <= 0.0 ) continue;
+							if ( belowSurface && ( sourceW.z <= hi.z || sourceW.z >= top ) ) continue;
+							vec3 L = normalize( uLightPos[ j ].xyz - hv );
+							vec3 incident = pointSourceIncident( hv, L, j );
+							if ( dot( incident, vec3( 1.0 ) ) <= 0.0 ) continue;
+							// A compact map flame has a tighter highlight than the
+							// broad shoulder beam. Keep both lobes explicitly bounded.
+							vec3 glint = incident * min( waterLightSpecular( hv, Nv, V, uLightPos[ j ].xyz, 0.025 ), 32.0 );
+							float score = dot( glint, vec3( 0.2126, 0.7152, 0.0722 ) );
+							if ( score > firstScore ) { secondLight = firstLight; secondScore = firstScore; secondGlint = firstGlint; firstLight = j; firstScore = score; firstGlint = glint; }
+							else if ( score > secondScore ) { secondLight = j; secondScore = score; secondGlint = glint; }
+						}
+						if ( firstLight >= 0 ) surfaceLight += firstGlint * pointSurfaceVisibility( hv, Nv, firstLight ) * edge * uReflect;
+						if ( secondLight >= 0 ) surfaceLight += secondGlint * pointSurfaceVisibility( hv, Nv, secondLight ) * edge * uReflect;
+					}
 					if ( uReflect > 0.0 ) {
-						vec3 rW = reflect( dirW, nW );
+						vec3 rW = reflect( surfaceDirW, nW );
 						vec3 rv = toView * rW;
 						// nothing found on the screen: what the pool's probe shows (or a dark sky if it has none yet)
 						int pr = uProbeOf[ i ];
 						vec3 fallback = vec3( 0.0 );
 						// Existing probes are captured above the pool. An internal fallback
 						// may only look DOWN at captured submerged radiance, never up at sky.
-						if ( pr >= 0 && ( ! belowSurface || rW.z < - 0.001 ) ) {
+						if ( pr >= 0 && interfaceZ == top && ( ! belowSurface || rW.z < - 0.001 ) ) {
 							fallback = probeColor( pr, hp, rW );
 							if ( look > 1.5 && look < 2.5 ) {
 								vec3 spread = vec3( 0.035, 0.0, 0.0 );
@@ -1190,7 +1357,7 @@ void main() {
 						float previousGap = - 1e6;
 						if ( uScreenReflect > 0.0 && pv.z <= - uNear ) {
 							vec4 initial = uProj * vec4( pv, 1.0 );
-							previousGap = - pv.z - reflectionDistanceAt( initial.xy / initial.w * 0.5 + 0.5, belowSurface, lo, hi );
+							previousGap = - pv.z - reflectionDistanceAt( initial.xy / initial.w * 0.5 + 0.5, belowSurface, lo, hi, interfaceZ, interfaceSide );
 						}
 						if ( uScreenReflect > 0.0 ) for ( int k = 0; k < 28; k ++ ) {
 							vec3 previous = pv;
@@ -1213,7 +1380,7 @@ void main() {
 							if ( - qView.z < 8.0 ) break; // viewmodel's special depth range is not reflected geometry
 							float gap = - pv.z + qView.z;
 							vec3 coarseWorld = ( uViewInv * vec4( qView, 1.0 ) ).xyz;
-							bool eligible = belowSurface ? coarseWorld.z < top && coarseWorld.x >= lo.x && coarseWorld.x <= hi.x && coarseWorld.y >= lo.y && coarseWorld.y <= hi.y : coarseWorld.z >= top - 0.5;
+							bool eligible = belowSurface ? coarseWorld.z < top && coarseWorld.z > hi.z && coarseWorld.x >= lo.x && coarseWorld.x <= hi.x && coarseWorld.y >= lo.y && coarseWorld.y <= hi.y : interfaceSide * ( coarseWorld.z - interfaceZ ) >= - 0.5;
 							previousGap = eligible ? gap : - 1e6;
 							if ( ! eligible ) { if ( belowSurface ) break; else continue; }
 							if ( gap > 0.0 && gap < 60.0 + stepLen ) {
@@ -1229,7 +1396,7 @@ void main() {
 										vec4 clip = uProj * vec4( middle, 1.0 );
 										vec2 sampleUv = clip.xy / clip.w * 0.5 + 0.5;
 										if ( middle.z > - uNear || any( lessThan( sampleUv, vec2( 0.0 ) ) ) || any( greaterThan( sampleUv, vec2( 1.0 ) ) ) ) { before = middle; continue; }
-										float distance = reflectionDistanceAt( sampleUv, belowSurface, lo, hi );
+										float distance = reflectionDistanceAt( sampleUv, belowSurface, lo, hi, interfaceZ, interfaceSide );
 										if ( - middle.z > distance ) after = middle; else before = middle;
 								}
 								vec4 refined = uProj * vec4( after, 1.0 );
@@ -1239,8 +1406,8 @@ void main() {
 								}
 								if ( belowSurface ) {
 									vec3 qWorld = ( uViewInv * vec4( qView, 1.0 ) ).xyz;
-									if ( qWorld.z >= top || qWorld.x < lo.x || qWorld.x > hi.x || qWorld.y < lo.y || qWorld.y > hi.y ) break;
-								} else if ( ( uViewInv * vec4( qView, 1.0 ) ).z < top - 0.5 ) {
+									if ( qWorld.z >= top || qWorld.z <= hi.z || qWorld.x < lo.x || qWorld.x > hi.x || qWorld.y < lo.y || qWorld.y > hi.y ) break;
+								} else if ( interfaceSide * ( ( uViewInv * vec4( qView, 1.0 ) ).z - interfaceZ ) < - 0.5 ) {
 									// A wide depth tolerance can encounter the submerged floor
 									// before the actual wall/marker. Keep seeking an air-side hit.
 									continue;
@@ -1250,7 +1417,7 @@ void main() {
 								break;
 							}
 						}
-						float cosT = clamp( dot( - dirW, nW ), 0.0, 1.0 );
+						float cosT = clamp( dot( - surfaceDirW, nW ), 0.0, 1.0 );
 						float fres = waterInterfaceReflectance( cosT, belowSurface );
 						float k = clamp( fres * 1.65 * uReflect * edge, 0.0, 0.98 );
 						// TIR has no air transmission. Reflection-off remains an explicit

@@ -1,3 +1,4 @@
+import { R_CloakPending, R_CloakRender } from './r_cloak.js';
 /**
  * @module newer/render/r_post_composite
  *
@@ -15,9 +16,8 @@
  */
 import * as THREE from 'three';
 import { postState, R_WaterActive } from './r_post_state.js';
-import { r_volumetric, r_pillars, r_bloom, r_reflect_screen, r_newedges, r_caustics, r_newbright, r_newcontrast, SHAFT_GAIN, PILLAR_DEFAULT, OUTDOOR_BLOOM_THRESHOLD, BLOOM_LEVELS, CAUSTIC, HDR_EXPOSURE, OUTDOOR_EXPOSURE, OUTDOOR_BLOOM } from './r_post_config.js';
+import { r_volumetric, r_pillars, r_bloom, r_reflect_screen, r_newedges, r_newbright, r_newcontrast, SHAFT_GAIN, PILLAR_DEFAULT, OUTDOOR_BLOOM_THRESHOLD, BLOOM_LEVELS, HDR_EXPOSURE, OUTDOOR_EXPOSURE, OUTDOOR_BLOOM } from './r_post_config.js';
 import { runPass, makeRT, dyn } from './r_post_targets.js';
-import { R_PostLiquidUniforms } from './r_post_liquids.js';
 import { R_PerfStage } from './r_perf.js';
 import { R_PowerupShroudFrame } from './r_powerups.js';
 import { R_ScreenDropsUpdate } from './r_screendrops.js';
@@ -123,8 +123,6 @@ export function R_PostComposite( renderer, scene, camera, viewport, p, fireFrame
 	cm.tPowerupShrouds.value = shrouds.texture; cm.uPowerupShroudCount.value = shrouds.count;
 
 
-	R_PostLiquidUniforms( cm, camera );
-
 	cm.uScreenReflect.value = r_reflect_screen.value !== 0 ? 1 : 0;
 
 	cm.uEdge.value = postState.underwater || ! lighting ? 0 : Math.max( 0, r_newedges.value );
@@ -135,9 +133,7 @@ export function R_PostComposite( renderer, scene, camera, viewport, p, fireFrame
 	cm.uTeleStretch.value = tele.stretch;
 	cm.uTeleChroma.value = tele.chroma;
 	cm.uDropAge.value = drops.age;
-	cm.uTime.value = time;
  cm.uActorWet.value=R_ActiveWeaponSurface().wet;
-	cm.uCaustic.value = r_newer_water.value !== 0 ? CAUSTIC * Math.max( 0, r_caustics.value ) : 0;
 	cm.tScene.value = hdr.textures[ 0 ];
 	cm.tNormal.value = hdr.textures[ 1 ];
 	cm.tAlbedo.value = hdr.textures[ 2 ] || null;
@@ -167,7 +163,7 @@ export function R_PostComposite( renderer, scene, camera, viewport, p, fireFrame
 	// lighting is disabled. Its local optics never repeat bloom/display grading.
 	const rendFields = R_NewerGame() ? R_RendVeilFields() : [];
 	const dofFocus = R_DofFocus(); // (depth of field is drawn by the present pass, card [38])
-	const offscreen = upscale || rendFields.length > 0 || dofFocus > 0;
+	const offscreen = R_CloakPending() || upscale || rendFields.length > 0 || dofFocus > 0;
 	cm.uOffscreen.value = offscreen ? 1 : 0;
 	if ( offscreen ) {
 
@@ -183,7 +179,8 @@ export function R_PostComposite( renderer, scene, camera, viewport, p, fireFrame
 		const veiled = rendFields.length > 0
 			? R_RendVeilOptics( renderer, p.composite.texture, hdr.depthTexture, R_RendVeilBackgroundDepth(), camera, rendFields )
 			: p.composite.texture;
-		const visionSource=R_PowerVisionRender(renderer,veiled,hdr,camera,vision,cl,coordinates);
+		const cloaked=R_CloakRender(renderer,veiled,hdr.depthTexture,hdr.textures[1],camera,time,hdr.width,hdr.height);
+		const visionSource=R_PowerVisionRender(renderer,cloaked,hdr,camera,vision,cl,coordinates);
 		shown.tComposite.value = R_QuadVisionRender(renderer,visionSource,hdr,camera,scene,coordinates);
 		shown.uBright.value = cm.uBright.value;
 		shown.uContrastGain.value = cm.uContrastGain.value;

@@ -150,6 +150,7 @@ export class client_t {
 
 		this.active = false; // false = client is free
 		this.spawned = false; // false = don't send datagrams
+		this.cloakBodyCapability = false; // opt-in by this connection's current prespawn
 		this.dropasap = false; // has been told to go to another level
 		this.privileged = false; // can execute any host command
 		this.sendsignon = false; // only valid before spawned

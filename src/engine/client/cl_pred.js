@@ -24,6 +24,7 @@ import { pmove, movevars, PlayerMove, PM_HullPointContents, PM_GetOnGround, Pmov
 import { CONTENTS_EMPTY } from '../common/bspfile.js';
 import { cl, cl_entities, packet_entities_t } from './client.js';
 import { STAT_HEALTH } from '../common/quakedef.js';
+import { PF_CLOAK_BODY } from '../common/protocol.js';
 import { realtime } from '../common/host_state.js';
 import { sv } from '../server/server.js';
 
@@ -47,6 +48,7 @@ class predicted_player_t {
 		this.modelindex = 0;
 		this.msgtime = 0; // Last update time
 		this.frame = 0;
+		this.cloakBodyFrame = null;
 		this.flags = 0; // PF_DEAD, PF_GIB, etc.
 		this.skin = 0;
 		this.effects = 0;
@@ -601,6 +603,7 @@ export function CL_SetUpPlayerPrediction( dopred ) {
 		if ( pplayer.serverSequence !== server_sequence ) {
 
 			pplayer.active = false;
+			pplayer.cloakBodyFrame = null;
 			continue;
 
 		}
@@ -791,7 +794,7 @@ export function CL_GetPredictedPlayer( playernum ) {
 		return null;
 
 	const pplayer = predicted_players[ playernum ];
-	if ( ! pplayer.active )
+	if ( ! pplayer.active || pplayer.serverSequence !== server_sequence )
 		return null;
 
 	return pplayer;
@@ -823,8 +826,9 @@ CL_SetPlayerInfo
  * @param {?{ msec: number, angles: Float32Array, forwardmove: number, sidemove: number, upmove: number,
  *     buttons: number, impulse: number }} cmd the player's last movement command, or null to keep the previous one
  * @param {?number} [modelindex] model precache index; null or omitted keeps the previous value
+ * @param {?number} [cloakBodyFrame=null] opt-in native Ring body pose; absence clears old metadata
  */
-export function CL_SetPlayerInfo( playernum, origin, velocity, frame, flags, skin, effects, weaponframe, msec, cmd, modelindex ) {
+export function CL_SetPlayerInfo( playernum, origin, velocity, frame, flags, skin, effects, weaponframe, msec, cmd, modelindex, cloakBodyFrame = null ) {
 	if ( playernum < 0 || playernum >= MAX_CLIENTS )
 		return;
 
@@ -843,6 +847,10 @@ export function CL_SetPlayerInfo( playernum, origin, velocity, frame, flags, ski
 	pplayer.msec = msec;
 	if ( modelindex != null )
 		pplayer.modelindex = modelindex;
+	// Network metadata is usable only for a live native eyes player. Do not
+	// infer it from our inventory or retain it when a later snapshot omits it.
+	pplayer.cloakBodyFrame = ( flags & PF_CLOAK_BODY ) !== 0 && !( flags & ( PF_DEAD | PF_GIB ) ) && Number.isInteger( cloakBodyFrame ) && cloakBodyFrame >= 0 &&
+		cl.model_precache[ pplayer.modelindex ]?.name === 'progs/eyes.mdl' ? cloakBodyFrame : null;
 
 	// Copy movement command if provided
 	if ( cmd != null ) {
@@ -1165,6 +1173,11 @@ CL_ResetPrediction
  * change or disconnect, from CL_ClearState.
  */
 export function CL_ResetPrediction() {
+	for ( const p of predicted_players ) {
+		p.active = false;
+		p.serverSequence = - 1;
+		p.cloakBodyFrame = null;
+	}
 	outgoing_sequence = 0;
 	incoming_sequence = 0;
 	validsequence = 0;

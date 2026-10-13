@@ -411,6 +411,11 @@ export let R_PowerupSeen = Hooks_Missing( 'R_PowerupSeen' );
 export let r_powerups;
 
 // newer/render/r_powervision.js
+// Renderer-only remote Ring presentation; safe before Newer installation.
+export let R_CloakReset = () => {};
+export let R_CloakFrame = () => {};
+export let R_CloakRestore = () => {};
+
 export let R_PowerVisionReset = Hooks_Missing( 'R_PowerVisionReset' );
 
 // newer/render/r_prewarm.js
@@ -686,6 +691,7 @@ const HOOK_NAMES = Object.freeze( [
 	'R_ClassicTexture', 'R_NewerNormalsPrepare', 'R_NewerNormalsStatus', 'R_NewerTextureUpgrade', 'R_NewerTexturesFrame', 'R_NewerTexturesStatus',
 	'R_PerfFpsText', 'R_PerfFrameBegin', 'R_PerfFrameEnd', 'R_PerfInit', 'R_PerfProfiling', 'R_PerfScreenLines', 'R_PerfStage', 'R_PerfStop', 'cl_showfps',
 	'R_PowerupBegin', 'R_PowerupClear', 'R_PowerupEnd', 'R_PowerupSeen', 'r_powerups',
+	'R_CloakReset', 'R_CloakFrame', 'R_CloakRestore',
 	'R_PowerVisionReset',
 	'R_WarmFrame', 'R_WarmLevel',
 	'R_QuadVisionActive', 'R_QuadVisionReset',
@@ -795,6 +801,7 @@ export function Hooks_Install( table ) {
 	R_ClassicTexture = table.R_ClassicTexture; R_NewerNormalsPrepare = table.R_NewerNormalsPrepare; R_NewerNormalsStatus = table.R_NewerNormalsStatus; R_NewerTextureUpgrade = table.R_NewerTextureUpgrade; R_NewerTexturesFrame = table.R_NewerTexturesFrame; R_NewerTexturesStatus = table.R_NewerTexturesStatus;
 	R_PerfFpsText = table.R_PerfFpsText; R_PerfFrameBegin = table.R_PerfFrameBegin; R_PerfFrameEnd = table.R_PerfFrameEnd; R_PerfInit = table.R_PerfInit; R_PerfProfiling = table.R_PerfProfiling; R_PerfScreenLines = table.R_PerfScreenLines; R_PerfStage = table.R_PerfStage; R_PerfStop = table.R_PerfStop; cl_showfps = table.cl_showfps;
 	R_PowerupBegin = table.R_PowerupBegin; R_PowerupClear = table.R_PowerupClear; R_PowerupEnd = table.R_PowerupEnd; R_PowerupSeen = table.R_PowerupSeen; r_powerups = table.r_powerups;
+	R_CloakReset = table.R_CloakReset; R_CloakFrame = table.R_CloakFrame; R_CloakRestore = table.R_CloakRestore;
 	R_PowerVisionReset = table.R_PowerVisionReset;
 	R_WarmFrame = table.R_WarmFrame; R_WarmLevel = table.R_WarmLevel;
 	R_QuadVisionActive = table.R_QuadVisionActive; R_QuadVisionReset = table.R_QuadVisionReset;

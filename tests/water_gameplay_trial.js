@@ -2,19 +2,41 @@ import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (s
 const controls = document.querySelector( 'section' ); for ( const event of [ 'mousedown', 'mouseup', 'keydown', 'keyup', 'touchstart', 'touchend', 'pointerdown', 'pointerup' ] ) controls.addEventListener( event, e => e.stopPropagation() );
 await import( '../main.js' ); while ( ! window.Cbuf_AddText ) await new Promise( r => setTimeout( r, 20 ) );
 const menu = await import( '../src/engine/client/menu.js' );
+const { newerDefaults } = await import( '../src/engine/client/menu_common.js' );
 const { Cbuf_AddText, Cmd_ExecuteString } = await import( '../src/engine/common/cmd.js' ), cvar = await import( '../src/engine/common/cvar.js' ), keys = await import( '../src/engine/client/keys.js' );
-const { sv, MOVETYPE_NOCLIP } = await import( '../src/engine/server/server.js' ), { cl,cls } = await import( '../src/engine/client/client.js' );
+const { sv, MOVETYPE_NOCLIP, FL_GODMODE, FL_NOTARGET } = await import( '../src/engine/server/server.js' ), { cl,cls } = await import( '../src/engine/client/client.js' );
 const blendRuntime = await import( '../src/engine/render/glquake.js' );
 const viewRuntime = await import( '../src/engine/client/view.js' ), renderRuntime = await import( '../src/engine/render/gl_rmain.js' );
 const post = await import( '../src/newer/render/gl_post.js' ), split = await import( '../src/newer/render/r_demosplit.js' ), world = await import( '../src/engine/server/world.js' );
 const probe = await import( '../src/newer/render/r_waterprobe.js' );
 const loadingRuntime=await import('../src/newer/ui/r_demoloading.js');
+const { R_BestiaryCancel } = await import( '../src/newer/ui/r_bestiary.js' );
+const { R_ScreenDropsClear } = await import( '../src/newer/render/r_screendrops.js' );
 const { Mod_PointInLeaf } = await import( '../src/engine/render/gl_model.js' );
 window.addEventListener('error',e=>evidence.errors.push(e.message)); window.addEventListener('unhandledrejection',e=>evidence.errors.push(String(e.reason?.stack||e.reason)));
 const evidence = { sceneFrames: 0, errors: [], views: {}, pools: [], textures: [], captureFrames: 0, mode: 'startup', viewpoint: null };
 const renderer = window.renderer, render = renderer.render; let selected = null;
+let listedPools = null;
+let autoTrial = null;
+let lastOpticsSample = 0, sampledShader = null;
 renderer.render = function ( scene, camera ) {
 
+	// Inspection cameras must not be replaced by first-sighting cinematics.
+	// Reuse the public cancel operation only in this trial, after placement.
+	if ( evidence.viewpoint ) { R_BestiaryCancel(); R_ScreenDropsClear(); }
+	const composite = scene.children[ 0 ]?.material;
+	if ( composite?.uniforms?.uLightFloor && performance.now() - lastOpticsSample > 500 ) {
+		lastOpticsSample = performance.now(); const u = composite.uniforms;
+		evidence.optics = { caustic: u.uCaustic.value, lighting: u.uLighting.value, reflect: u.uReflect.value,
+			water: u.uWaterMin.value.slice( 0, u.uWaterCount.value ).map( ( min, i ) => ( { min: min.toArray(), max: u.uWaterMax.value[ i ].toArray() } ) ),
+			lights: u.uLightPos.value.slice( 0, u.uCount.value ).map( ( pos, i ) => ( { viewPosition: pos.toArray(), colourRange: u.uLightCol.value[ i ].toArray() } ) ) };
+		if ( sampledShader !== composite.fragmentShader ) {
+			sampledShader = composite.fragmentShader;
+			crypto.subtle.digest( 'SHA-256', new TextEncoder().encode( sampledShader ) ).then( hash => {
+				evidence.shaderSha256 = Array.from( new Uint8Array( hash ), b => b.toString( 16 ).padStart( 2, '0' ) ).join( '' );
+			} );
+		}
+	}
 	const target = this.getRenderTarget();
 	if ( target?.isWebGLCubeRenderTarget ) evidence.captureFrames ++;
 	if ( scene === window.scene && target?.depthTexture && target.textures.length >= 2 ) {
@@ -36,34 +58,76 @@ renderer.render = function ( scene, camera ) {
 function publish() {
 
 	evidence.loading=loadingRuntime.R_DemoLoadingStatus();evidence.signon=cls.signon;evidence.serverTime=sv.time;evidence.glError=renderer.getContext().getError(); evidence.clientTime = cl.time; evidence.paused = sv.paused;
-	evidence.options = { appearance: cvar.Cvar_VariableValue( 'r_water_look' ), water: cvar.Cvar_VariableValue( 'r_newer_water' ), lighting: cvar.Cvar_VariableValue( 'r_newer_lighting' ), reflect: cvar.Cvar_VariableValue( 'r_reflect' ), flashlight: cvar.Cvar_VariableValue( 'r_flashlight' ), normals:cvar.Cvar_VariableValue('r_newer_normals'), heightShadows:cvar.Cvar_VariableValue('r_heightshadows'), caustics:cvar.Cvar_VariableValue('r_caustics'), textures:cvar.Cvar_VariableValue('r_newer_textures') };
+	evidence.inspection = { god: !! ( sv.edicts?.[ 1 ]?.v.flags & FL_GODMODE ), notarget: !! ( sv.edicts?.[ 1 ]?.v.flags & FL_NOTARGET ), health: sv.edicts?.[ 1 ]?.v.health };
+	evidence.options = { appearance: cvar.Cvar_VariableValue( 'r_water_look' ), water: cvar.Cvar_VariableValue( 'r_newer_water' ), lighting: cvar.Cvar_VariableValue( 'r_newer_lighting' ), reflect: cvar.Cvar_VariableValue( 'r_reflect' ), flashlight: cvar.Cvar_VariableValue( 'r_flashlight' ), normals:cvar.Cvar_VariableValue('r_newer_normals'), heightShadows:cvar.Cvar_VariableValue('r_heightshadows'), caustics:cvar.Cvar_VariableValue('r_caustics'), textures:cvar.Cvar_VariableValue('r_newer_textures'), gamma:cvar.Cvar_VariableValue('gamma'), brightness:cvar.Cvar_VariableValue('r_newbright'), contrast:cvar.Cvar_VariableValue('r_newcontrast'), bakedDarkness:cvar.Cvar_VariableValue('r_newdark') };
 
-	evidence.pools = post.R_GetLiquidRegions().map( r => ( { kind: r.kind, mapLook: r.mapLook, min: r.min, max: r.max, z: r.z } ) );
+	evidence.pools = post.R_GetLiquidRegions().map( r => ( { kind: r.kind, mapLook: r.mapLook, min: r.min, max: r.max, z: r.z, bottom: r.bottom } ) );
+	evidence.viewport = { width: innerWidth, height: innerHeight, devicePixelRatio, fov: window.camera.fov, dynamicScale: post.R_DynResScale() };
+	const pools = post.R_GetLiquidRegions();
+	if ( pools !== listedPools ) {
+		listedPools = pools;
+		const selector = document.querySelector( '#pool-choice' ); selector.replaceChildren();
+		pools.forEach( ( r, i ) => {
+			const option = document.createElement( 'option' ); option.value = String( i );
+			option.textContent = `${i + 1}: ${r.kind === 1 ? 'Toxic slime' : r.mapLook === 2 ? 'Muddy/swamp' : 'Water'} at z ${r.z}`;
+			selector.append( option );
+		} );
+	}
 	evidence.level = cl.worldmodel?.name;
 	evidence.lights = post.R_GetWorldLights().map( l => ( { pos: l.pos, color: l.color, radius: l.radius } ) );
 	evidence.liquidFaces = cl.worldmodel?.surfaces?.filter( s => /^\*/.test( s.texinfo?.texture?.name || '' ) ).map( s => ( { name: s.texinfo.texture.name, normal: Array.from( s.plane.normal ), points: s.polys && Array.from( s.polys.verts ).map( v => Array.from( v ).slice( 0, 3 ) ) } ) );
 	evidence.probes = probe.R_WaterProbes().length;
 	evidence.probeLocations = probe.R_WaterProbes().map( p => ( { centre: p.center, currentPool: post.R_GetLiquidRegions().includes( p.region ), contents: cl.worldmodel ? Mod_PointInLeaf( p.center, cl.worldmodel ).contents : null } ) );
-	document.querySelector( '#status' ).textContent = `${evidence.sceneFrames} actual scene draws; ${evidence.mode}; ${evidence.probes || 0} cached probes`;
+	evidence.ready = cls.signon === 4 && ! loadingRuntime.R_IntroLoadingHolding();
+	document.querySelector( '#status' ).textContent = `${evidence.level || 'startup'} ${evidence.ready ? 'ready' : 'preparing'}; ${evidence.mode}; pool ${evidence.viewpoint?.poolIndex ?? '-'}; ${evidence.sceneFrames} scene draws; ${evidence.probes || 0} cached probes`;
 	document.querySelector( '#report' ).textContent = JSON.stringify( evidence, null, 2 );
+	if ( autoTrial ) {
+		if ( autoTrial.stage === 'startup' && cls.signon === 4 ) {
+			autoTrial.stage = 'map'; startLevel( autoTrial.map );
+		} else if ( autoTrial.stage === 'map' && evidence.ready && evidence.level === `maps/${autoTrial.map}.bsp` ) {
+			const request = autoTrial; autoTrial = null;
+			if ( request.brightness !== null ) cvar.Cvar_SetValue( 'r_newbright', request.brightness );
+			if ( request.camera ) {
+				document.querySelector( '#camera-values' ).value = request.camera;
+				document.querySelector( '#camera-apply' ).click();
+			} else {
+				selected = post.R_GetLiquidRegions()[ request.pool ] || null;
+				document.querySelector( '#pool-choice' ).value = String( request.pool );
+				place( 'pool' );
+			}
+		}
+	}
 
 }
 document.querySelector( '#look-cycle' ).onclick = () => { const choice = ( Math.round( cvar.Cvar_VariableValue( 'r_water_look' ) ) + 1 ) % 5; cvar.Cvar_SetValue( 'r_water_look', choice ); document.querySelector( '#look-cycle' ).textContent = 'Water: ' + [ 'Map', 'Clear', 'Tinted', 'Muddy', 'Toxic' ][ choice ]; evidence.mode = 'appearance-' + choice; };
 function startLevel( level ) {
 
 	split.R_DemoSplitRelease( true ); keys.set_key_dest( keys.key_game ); evidence.mode = 'loading';
-	selected = null;
-	Cbuf_AddText( 'disconnect\nmaxplayers 1\nr_hdr 1\nr_dynres 1\nr_demosplit 0\nr_newer_lighting 1\nr_newer_normals 1\nr_heightshadows 1\nr_newer_textures 1\nr_newer_water 1\nr_reflect 0.6\nr_reflect_screen 1\nr_flashlight 0\nr_water_look 0\nbgmvolume 0\nmap ' + level + '\n' );
+	selected = null; evidence.viewpoint = null;
+	Cbuf_AddText( 'disconnect\nmaxplayers 1\nr_hdr 1\n' + newerDefaults() + 'r_dynres 0\nr_demosplit 0\nr_reflect 0.6\nr_reflect_screen 1\nr_flashlight 0\nr_water_look 0\nbgmvolume 0\nmap ' + level + '\n' );
 
 }
 document.querySelector( '#start' ).onclick = () => startLevel( 'e1m1' );
 document.querySelector( '#e1m3' ).onclick = () => startLevel( 'e1m3' );
+document.querySelector( '#map-start' ).onclick = () => startLevel( document.querySelector( '#map-choice' ).value );
+document.querySelector( '#pool-choice' ).onchange = event => { selected = post.R_GetLiquidRegions()[ Number( event.target.value ) ] || null; };
+document.querySelector( '#caustic-apply' ).onclick = () => {
+	const value = Number( document.querySelector( '#caustic-strength' ).value );
+	if ( Number.isFinite( value ) ) cvar.Cvar_SetValue( 'r_caustics', Math.max( 0, Math.min( 8, value ) ) );
+};
+function protectInspection( player ) {
+	// Use native local-game controls so enemies cannot invalidate a fixed
+	// water camera through damage, knockback or respawn during inspection.
+	if ( ! ( player.v.flags & FL_GODMODE ) ) Cbuf_AddText( 'god\n' );
+	if ( ! ( player.v.flags & FL_NOTARGET ) ) Cbuf_AddText( 'notarget\n' );
+}
 document.querySelector( '#camera-apply' ).onclick = () => {
 	if(cls.signon!==4||loadingRuntime.R_IntroLoadingHolding()){evidence.mode='waiting-for-prepared-map';return;}
 	const values = document.querySelector( '#camera-values' ).value.split( /[ ,]+/ ).map( Number );
 	if ( values.length !== 5 || ! values.every( Number.isFinite ) || ! cl.worldmodel ) return;
 	const [ x, y, z, pitch, yaw ] = values, player = sv.edicts?.[ 1 ];
 	if ( ! player || Mod_PointInLeaf( [ x, y, z ], cl.worldmodel ).contents === - 2 ) return;
+	protectInspection( player );
 	player.v.movetype = MOVETYPE_NOCLIP; player.v.health = 100; player.v.velocity = [ 0, 0, 0 ];
 	player.v.origin = [ x, y, z - 22 ]; player.v.v_angle = [ pitch, yaw, 0 ]; player.v.angles = [ pitch, yaw, 0 ]; player.v.fixangle = 1;
 	cl.viewangles.set( player.v.v_angle ); world.SV_LinkEdict( player, false ); keys.set_key_dest( keys.key_game );
@@ -71,14 +135,15 @@ document.querySelector( '#camera-apply' ).onclick = () => {
 };
 function choosePool() {
 
-	const regions = post.R_GetLiquidRegions().filter( r => r.kind === 0 );
-	if ( ! selected || ! regions.includes( selected ) ) selected = regions.sort( ( a, b ) => ( b.max[ 0 ] - b.min[ 0 ] ) * ( b.max[ 1 ] - b.min[ 1 ] ) - ( a.max[ 0 ] - a.min[ 0 ] ) * ( a.max[ 1 ] - a.min[ 1 ] ) )[ 0 ];
+	const regions = post.R_GetLiquidRegions();
+	if ( ! selected || ! regions.includes( selected ) ) selected = regions.filter( r => r.kind === 0 ).sort( ( a, b ) => ( b.max[ 0 ] - b.min[ 0 ] ) * ( b.max[ 1 ] - b.min[ 1 ] ) - ( a.max[ 0 ] - a.min[ 0 ] ) * ( a.max[ 1 ] - a.min[ 1 ] ) )[ 0 ];
 	return selected;
 
 }
 function place( mode = 'pool', phase = 0 ) {
 
 	const pool = choosePool(), player = sv.edicts?.[ 1 ]; if ( ! pool || ! player ) return;
+	protectInspection( player );
 	let cx = ( pool.min[ 0 ] + pool.max[ 0 ] ) / 2, cy = ( pool.min[ 1 ] + pool.max[ 1 ] ) / 2;
 	const lights = post.R_GetWorldLights().filter( l => Math.abs( l.pos[ 2 ] - pool.z ) < 300 ); lights.sort( ( a, b ) => Math.hypot( a.pos[ 0 ] - cx, a.pos[ 1 ] - cy ) - Math.hypot( b.pos[ 0 ] - cx, b.pos[ 1 ] - cy ) );
 	let light = lights[ 0 ];
@@ -87,12 +152,13 @@ function place( mode = 'pool', phase = 0 ) {
 	const points = [];
 	for ( const surface of cl.worldmodel.surfaces ) {
 
-		if ( ! /water/i.test( surface.texinfo?.texture?.name || '' ) || Math.abs( surface.plane?.normal?.[ 2 ] || 0 ) < .95 ) continue;
+		const name = surface.texinfo?.texture?.name || '';
+		if ( ( selected.kind === 1 ? ! /^\*slime/i.test( name ) : ! post.R_IsWaterTextureName( name ) ) || Math.abs( surface.plane?.normal?.[ 2 ] || 0 ) < .95 ) continue;
 		for ( let p = surface.polys; p; p = p.next ) {
 
 			const xyz = [ 0, 0, 0 ]; for ( let i = 0; i < p.numverts; i ++ ) for ( let k = 0; k < 3; k ++ ) xyz[ k ] += p.verts instanceof Float32Array ? p.verts[ i * 7 + k ] : p.verts[ i ][ k ];
 			for ( let k = 0; k < 3; k ++ ) xyz[ k ] /= p.numverts;
-			if ( Math.abs( xyz[ 2 ] - pool.z ) > 2 || Mod_PointInLeaf( [ xyz[ 0 ], xyz[ 1 ], pool.z + 40 ], cl.worldmodel ).contents === - 2 ) continue;
+			if ( Math.abs( xyz[ 2 ] - pool.z ) > 2 || xyz[ 0 ] < pool.min[ 0 ] || xyz[ 0 ] > pool.max[ 0 ] || xyz[ 1 ] < pool.min[ 1 ] || xyz[ 1 ] > pool.max[ 1 ] || Mod_PointInLeaf( [ xyz[ 0 ], xyz[ 1 ], pool.z + 40 ], cl.worldmodel ).contents === - 2 ) continue;
 			points.push( xyz );
 
 		}
@@ -122,14 +188,23 @@ function place( mode = 'pool', phase = 0 ) {
 	// sent. Ordinary player physics restores the model's -pitch/3 afterward.
 	player.v.angles = Array.from( player.v.v_angle ); player.v.fixangle = 1;
 	cl.viewangles.set( player.v.v_angle ); world.SV_LinkEdict( player, false ); keys.set_key_dest( keys.key_game );
-	evidence.mode = mode; evidence.viewpoint = { pool: { min: pool.min, max: pool.max, z: pool.z }, eye: [ player.v.origin[ 0 ], player.v.origin[ 1 ], pool.z + height ], angles: Array.from( player.v.v_angle ), light: light?.pos || null };
+	evidence.mode = mode; evidence.viewpoint = { poolIndex: post.R_GetLiquidRegions().indexOf( pool ), pool: { min: pool.min, max: pool.max, z: pool.z }, eye: [ player.v.origin[ 0 ], player.v.origin[ 1 ], pool.z + height ], angles: Array.from( player.v.v_angle ), light: light?.pos || null };
 
 }
 for ( const mode of [ 'pool', 'grazing', 'down', 'under', 'under-near', 'under-mid', 'under-far' ] ) document.querySelector( '#' + mode ).onclick = () => place( mode );
 document.querySelector( '#walk' ).onclick = async () => { for ( let i = 0; i < 152; i ++ ) { place( 'grazing', i / 24 ); await new Promise( r => setTimeout( r, i % 3 === 1 ? 60 : 70 ) ); } };
-for ( const [ id, name ] of [ [ 'water', 'r_newer_water' ], [ 'lighting', 'r_newer_lighting' ], [ 'normals', 'r_newer_normals' ], [ 'height-shadows', 'r_heightshadows' ], [ 'caustics', 'r_caustics' ], [ 'reflection', 'r_reflect' ], [ 'flashlight', 'r_flashlight' ] ] ) document.querySelector( '#' + id ).onclick = () => { cvar.Cvar_SetValue( name, cvar.Cvar_VariableValue( name ) > 0 ? 0 : id === 'reflection' ? .6 : 1 ); evidence.mode = id + '-toggle'; };
+for ( const [ id, name ] of [ [ 'water', 'r_newer_water' ], [ 'lighting', 'r_newer_lighting' ], [ 'normals', 'r_newer_normals' ], [ 'height-shadows', 'r_heightshadows' ], [ 'caustics', 'r_caustics' ], [ 'reflection', 'r_reflect' ], [ 'flashlight', 'r_flashlight' ], [ 'dynres', 'r_dynres' ] ] ) document.querySelector( '#' + id ).onclick = () => { cvar.Cvar_SetValue( name, cvar.Cvar_VariableValue( name ) > 0 ? 0 : id === 'reflection' ? .6 : 1 ); evidence.mode = id + '-toggle'; };
 document.querySelector( '#features-menu' ).onclick = () => { Cmd_ExecuteString( 'menu_options' ); menu.M_Keydown( keys.K_ENTER ); };
 document.querySelector( '#classic-diagnostic' ).onclick = () => { cvar.Cvar_SetValue( 'r_demosplit', cvar.Cvar_VariableValue( 'r_demosplit' ) === 2 ? 0 : 2 ); evidence.mode = 'classic-diagnostic'; };
 document.querySelector( '#pause' ).onclick = () => Cbuf_AddText( 'pause\n' );
 document.querySelector( '#hide' ).onclick = () => { controls.style.display = 'none'; };
+// Reproducible owner trial links reuse the same visible controls and guards.
+const params = new URLSearchParams( location.search ), requestedMap = params.get( 'map' );
+if ( [ 'start', 'e1m1', 'e1m2', 'e1m3' ].includes( requestedMap ) ) {
+	document.querySelector( '#map-choice' ).value = requestedMap;
+	const pool = Number( params.get( 'pool' ) || 0 );
+	const brightness = params.has( 'brightness' ) ? Number( params.get( 'brightness' ) ) : null;
+	autoTrial = { stage: 'startup', map: requestedMap, camera: params.get( 'camera' ), pool: Number.isInteger( pool ) && pool >= 0 ? pool : 0,
+		brightness: brightness !== null && Number.isFinite( brightness ) ? Math.max( 0.6, Math.min( 1.4, brightness ) ) : null };
+}
 setInterval( publish, 500 ); publish();

@@ -86,7 +86,7 @@ export const HDR_EXPOSURE = 1.3; // the lit parts of a level should read as lit,
 export const OUTDOOR_EXPOSURE = 0.85; // open daylight needs less gain than a dim interior
 export const OUTDOOR_BLOOM_THRESHOLD = 2.4; // the sky itself is bright: only real highlights (lava, lights) glow, not the daylight
 export const OUTDOOR_BLOOM = 0.5; // and what does glow is softer under the open sky
-export const CAUSTIC = 0.75; // stronger received-light floor patterns, still subdued in sediment
+export const CAUSTIC = 2.0; // focused received-light network; profile and sediment attenuation remain separate
 export const BUMP_LIGHT = 0.3; // how much of the normal map's relief takes the direct light (1 = all of it) // brightness of caustics beneath water
 
 export const BLOOM_LEVELS = 5;

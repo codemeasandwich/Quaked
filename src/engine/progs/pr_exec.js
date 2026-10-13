@@ -50,6 +50,7 @@ import {
 } from './pr_comp.js';
 import { ED_Print, PR_GlobalString, PR_GlobalStringNoContents } from './pr_edict.js';
 import { ss_active } from '../server/server.js';
+import { SV_CloakAnimationEnter, SV_CloakAnimationLeave } from '../server/sv_cloak.js';
 import { SV_RespawnFunctionEnter, SV_RespawnFunctionLeave } from '../common/hooks.js'; // installed by newer/gameplay/sv_respawn.js
 import { SV_AxeFunctionEnter, SV_AxeFunctionLeave, SV_AxeReset } from '../common/hooks.js'; // installed by newer/gameplay/sv_axecut.js
 import { SV_FaceFunctionEnter, SV_FaceFunctionLeave, SV_FaceReset } from '../common/hooks.js'; // installed by newer/gameplay/sv_faceevents.js
@@ -331,6 +332,7 @@ export function PR_RunError( error, ...args ) {
 	Con_Printf( '%s\n', message );
 
 	PR_ResetStack(); // dump the stack so host_error can shutdown functions
+	for ( const frame of pr_stack ) frame.cloak = null; // the abandoned calls' cloak animation state
 	SV_AxeReset();
 	SV_FaceReset();
 
@@ -366,6 +368,7 @@ PR_EnterFunction
  * 2048 (`locals stack overflow`)
  */
 export function PR_EnterFunction( f ) {
+	pr_stack[ pr_depth ].cloak = SV_CloakAnimationEnter( f );
 	pr_stack[ pr_depth ].face = SV_FaceFunctionEnter( f, pr_xfunction );
 	pr_stack[ pr_depth ].axe = SV_AxeFunctionEnter( f, pr_xfunction );
 	pr_stack[ pr_depth ].respawn = SV_RespawnFunctionEnter( f, pr_xfunction );
@@ -440,6 +443,8 @@ export function PR_LeaveFunction() {
 
 	// up stack
 	pr_depth --;
+	SV_CloakAnimationLeave( pr_stack[ pr_depth ].cloak );
+	pr_stack[ pr_depth ].cloak = null;
 	SV_FaceFunctionLeave( pr_stack[ pr_depth ].face );
 	pr_stack[ pr_depth ].face = null;
 	SV_RespawnFunctionLeave( pr_stack[ pr_depth ].respawn );

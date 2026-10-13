@@ -1,12 +1,18 @@
 // Public bounded BSP directory parsing and existing decoded-asset cache reuse.
 // No renderer, model loader, palette setup or game is needed for prefetch.
 import {readFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {createHash} from 'node:crypto';
 import * as THREE from 'three';
 import {R_BspTextureNames} from '../src/newer/render/r_newertextures.js';
 import * as mode from '../src/newer/mode.js';
 import * as vars from '../src/engine/common/cvar.js';
 import {r_hdr} from '../src/newer/render/gl_post.js';
 import * as boot from '../src/newer/ui/r_demoloading.js';
+import {GAME_CATALOGUE_GAMES} from '../src/engine/common/game_catalogue.js';
+const sourceRoot=process.env.QUAKED_GAME_ROOT?resolve(process.env.QUAKED_GAME_ROOT):fileURLToPath(new URL('../',import.meta.url));
+const sharewarePack=process.env.QUAKED_GAME_ROOT?resolve(sourceRoot,GAME_CATALOGUE_GAMES.find(g=>g.id==='shareware').folders.find(f=>f.startsWith('games/')).slice(6),'pak0.pak'):resolve(sourceRoot,'games/shareware/pak0.pak');
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),flush=async()=>{for(let i=0;i<40;i++)await Promise.resolve();};
 function bsp(names){const offset=128,length=4+names.length*4+names.filter(n=>n!==null).length*40,bytes=new Uint8Array(offset+length),v=new DataView(bytes.buffer);v.setInt32(0,29,true);v.setInt32(20,offset,true);v.setInt32(24,length,true);v.setInt32(offset,names.length,true);let at=4+names.length*4;names.forEach((name,i)=>{v.setInt32(offset+4+i*4,name===null?-1:at,true);if(name===null)return;bytes.set(new TextEncoder().encode(name).subarray(0,16),offset+at);v.setInt32(offset+at+16,64,true);v.setInt32(offset+at+20,64,true);at+=40;});return bytes;}
 Deno.test('bounded BSP29 texture-directory prefetch handles real native views, duplicate names and unsupported directories without touching a model',()=>{
@@ -14,7 +20,7 @@ Deno.test('bounded BSP29 texture-directory prefetch handles real native views, d
  for(const bad of [null,{},bytes.buffer,new Int8Array(bytes),bytes.subarray(0,123)])same(R_BspTextureNames(bad).length,0,'unsupported view or short header is optional empty prefetch');
  const mutate=(label,change)=>{const bad=bytes.slice();change(new DataView(bad.buffer));same(R_BspTextureNames(bad).length,0,label+' rejects entire unsafe directory');};
  mutate('wrong BSP version',v=>v.setInt32(0,30,true));mutate('header-overlap texture lump',v=>v.setInt32(20,120,true));mutate('negative length',v=>v.setInt32(24,-1,true));mutate('truncated lump',v=>v.setInt32(24,bytes.length,true));mutate('negative entry count',v=>v.setInt32(128,-1,true));mutate('excessive entry count',v=>v.setInt32(128,4097,true));mutate('directory outside lump',v=>v.setInt32(128,100,true));mutate('offset points into directory',v=>v.setInt32(132,4,true));mutate('negative entry other than native missing',v=>v.setInt32(132,-2,true));mutate('truncated texture header',v=>v.setInt32(132,bytes.length-128-39,true));
- const pack=readFileSync(new URL('../games/shareware/pak0.pak',import.meta.url));for(let p=pack.readInt32LE(4),end=p+pack.readInt32LE(8);p<end;p+=64){const name=pack.subarray(p,p+56).toString().split('\0')[0];if(name!=='maps/e1m3.bsp')continue;const start=pack.readInt32LE(p+56),view=pack.subarray(start,start+pack.readInt32LE(p+60)),actual=R_BspTextureNames(view),expected=[],base=view.readInt32LE(20),count=view.readInt32LE(base);for(let i=0;i<count;i++){const off=view.readInt32LE(base+4+i*4);if(off<0)continue;const n=view.subarray(base+off,base+off+16).toString().split('\0')[0];if(n&&!n.startsWith('*')&&!n.startsWith('sky')&&!expected.includes(n))expected.push(n);}check(actual.length>20,'native demo fixture has a substantial real texture directory');same(actual.join(),expected.join(),'real PAK subview matches independent native directory walk');return;}throw Error('native demo map missing');
+ const pack=readFileSync(sharewarePack);console.log('PREFETCH_SOURCE_PACK '+JSON.stringify({source_root:sourceRoot,path:sharewarePack,sha256:createHash('sha256').update(pack).digest('hex')}));for(let p=pack.readInt32LE(4),end=p+pack.readInt32LE(8);p<end;p+=64){const name=pack.subarray(p,p+56).toString().split('\0')[0];if(name!=='maps/e1m3.bsp')continue;const start=pack.readInt32LE(p+56),view=pack.subarray(start,start+pack.readInt32LE(p+60)),actual=R_BspTextureNames(view),expected=[],base=view.readInt32LE(20),count=view.readInt32LE(base);for(let i=0;i<count;i++){const off=view.readInt32LE(base+4+i*4);if(off<0)continue;const n=view.subarray(base+off,base+off+16).toString().split('\0')[0];if(n&&!n.startsWith('*')&&!n.startsWith('sky')&&!expected.includes(n))expected.push(n);}check(actual.length>20,'native demo fixture has a substantial real texture directory');same(actual.join(),expected.join(),'real PAK subview matches independent native directory walk');return;}throw Error('native demo map missing');
 });
 async function assetsFixture(run){
  const saved={fetch:globalThis.fetch,Image:Object.getOwnPropertyDescriptor(globalThis,'Image'),document:Object.getOwnPropertyDescriptor(globalThis,'document'),classic:mode.R_ClassicPassActive()},options=[r_hdr,mode.r_newer_textures];for(const v of options)if(!vars.Cvar_FindVar(v.name))vars.Cvar_RegisterVariable(v);const values=options.map(v=>v.string),images=[],fetches=[],decoded=[],scalar=new Uint16Array([0,16384,32768,65535]);

@@ -65,6 +65,7 @@ import { R_AssetAliasMaterial, R_CloneAliasMaterial, R_EnemyAliasMaterial, R_Hel
 import { R_ClassicTexture, R_NewerNormalsPrepare, R_NewerNormalsStatus, R_NewerTextureUpgrade, R_NewerTexturesFrame, R_NewerTexturesStatus } from './render/r_newertextures.js';
 import { R_PerfFpsText, R_PerfFrameBegin, R_PerfFrameEnd, R_PerfInit, R_PerfProfiling, R_PerfScreenLines, R_PerfStage, R_PerfStop, cl_showfps } from './render/r_perf.js';
 import { R_PowerupBegin, R_PowerupClear, R_PowerupEnd, R_PowerupSeen, r_powerups } from './render/r_powerups.js';
+import { R_CloakReset, R_CloakFrame, R_CloakRestore } from './render/r_cloak.js';
 import { R_PowerVisionReset } from './render/r_powervision.js';
 import { R_WarmFrame, R_WarmLevel } from './render/r_prewarm.js';
 import { R_QuadVisionActive, R_QuadVisionReset } from './render/r_quadvision.js';
@@ -151,6 +152,7 @@ if ( ! Hooks_Installed() ) Hooks_Install( {
 	R_ClassicTexture, R_NewerNormalsPrepare, R_NewerNormalsStatus, R_NewerTextureUpgrade, R_NewerTexturesFrame, R_NewerTexturesStatus,
 	R_PerfFpsText, R_PerfFrameBegin, R_PerfFrameEnd, R_PerfInit, R_PerfProfiling, R_PerfScreenLines, R_PerfStage, R_PerfStop, cl_showfps,
 	R_PowerupBegin, R_PowerupClear, R_PowerupEnd, R_PowerupSeen, r_powerups,
+	R_CloakReset, R_CloakFrame, R_CloakRestore,
 	R_PowerVisionReset,
 	R_WarmFrame, R_WarmLevel,
 	R_QuadVisionActive, R_QuadVisionReset,

@@ -7,22 +7,24 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `liquidRegions`, `lavaRegions`, `liquidLinks`.
+ * State: no mutable exports; module-level regions, visibility links and current optical map name.
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  *
  * The level's pools and links are made by `R_BuildWorldLights` (gl_post.js) through `R_PostLiquidsReset`,
  * `R_PostAddLiquidLink` and `R_PostSetLiquidRegions`; everything else reads them through the getters.
  */
-import { r_water_look, r_reflect, r_mist, r_heathaze } from './r_post_config.js';
+import { r_water_look, r_reflect, r_mist, r_heathaze, r_caustics, CAUSTIC } from './r_post_config.js';
+import { r_waterwarp } from '../../engine/render/glquake.js';
 import { R_WaterActive, postState } from './r_post_state.js';
 import { r_newer_water } from '../mode.js';
 import { R_WaterProbeUpdate, R_WaterProbeReadiness, R_WaterProbes } from './r_waterprobe.js';
 
-// Pools of water and slime: { kind, min: [x, y], max: [x, y], z }.  A ray that
+// Pools of water and slime: { kind, min: [x, y], max: [x, y], z, bottom }. A ray that
 // passes through one loses light to it, and surfaces beneath it get caustics.
 let liquidRegions = [];
 let lavaRegions = [];
+let liquidMapName = '';
 
 export const MAX_LIQUID_REGIONS = 6;
 
@@ -84,7 +86,7 @@ export const LIQUID_LOOKS = Object.freeze( [
  *
  * @param {number} kind 0 water, 1 slime
  * @param {number} [mapLook=0] the look authored by the texture (2 brown sediment for E1M3's water and E3's murky
- *   water, else 0)
+ *   water, 1 for the owner's E1M2 appearance, else 0)
  * @returns {number} look index 0 Clear, 1 Tinted, 2 Muddy, 3 Toxic
  */
 export function R_LiquidLookIndex( kind, mapLook = 0 ) {
@@ -118,10 +120,13 @@ export function R_LiquidOpacity( name, fallback ) {
  * The optical look a level's own water texture asks for (`LIQUID_LOOKS`), for its pools' `mapLook`.
  *
  * @param {string} name the texture's name
- * @returns {number} 2 for brown sediment (E1M3's *04water1 and Episode 3's murky water), else 0 (the kind's own look)
+ * @returns {number} 1 for E1M2's *04water1, 2 for other brown sediment/murky water, else 0
  */
 export function liquidMapLook( name ) {
 	const n = name.toLowerCase();
+	// The owner's E1M2 reference uses the existing green-tinted clear look.
+	// Its reused texture must not also change E1M3's muddy/swamp water.
+	if ( liquidMapName === 'maps/e1m2.bsp' && n === '*04water1' ) return 1;
 	return n === '*04water1' || MURKY_WATER.test( n ) ? 2 : 0; // brown sediment: E1M3's water and E3's murky water
 }
 
@@ -145,7 +150,7 @@ function mergeLiquidFaces( faces ) {
 		for ( let j = i + 1; j < faces.length; j ++ ) {
 
 			const a = faces[ i ], b = faces[ j ];
-			if ( a.kind !== b.kind || a.mapLook !== b.mapLook || Math.abs( a.z - b.z ) > 1.5 ) continue;
+			if ( a.kind !== b.kind || a.mapLook !== b.mapLook || Math.abs( a.z - b.z ) > 1.5 || Math.abs( ( a.bottom ?? a.z - 900 ) - ( b.bottom ?? b.z - 900 ) ) > 1.5 ) continue;
 			if ( a.min[ 0 ] > b.max[ 0 ] + 24 || b.min[ 0 ] > a.max[ 0 ] + 24 ) continue;
 			if ( a.min[ 1 ] > b.max[ 1 ] + 24 || b.min[ 1 ] > a.max[ 1 ] + 24 ) continue;
 			parent[ find( i ) ] = find( j );
@@ -162,11 +167,12 @@ function mergeLiquidFaces( faces ) {
 		const m = merged.get( r );
 		if ( m === undefined ) {
 
-			merged.set( r, { kind: f.kind, mapLook: f.mapLook || 0, min: f.min.slice(), max: f.max.slice(), z: f.z, probePoints: f.probePoint ? [ f.probePoint ] : [] } );
+			merged.set( r, { kind: f.kind, mapLook: f.mapLook || 0, min: f.min.slice(), max: f.max.slice(), z: f.z, bottom: f.bottom ?? f.z - 900, probePoints: f.probePoint ? [ f.probePoint ] : [] } );
 
 		} else {
 
 			if ( f.probePoint ) m.probePoints.push( f.probePoint );
+			m.bottom = Math.min( m.bottom, f.bottom ?? f.z - 900 );
 			for ( let a = 0; a < 2; a ++ ) {
 
 				m.min[ a ] = Math.min( m.min[ a ], f.min[ a ] );
@@ -211,9 +217,11 @@ export function R_GetLiquidRegions() {
 
 /**
  * Forgets the last level's pools and links, as a level's lights are built (`R_BuildWorldLights`).
+ * @param {string} [mapName=''] current BSP path; omitted/reset callers retain texture-only defaults
  */
-export function R_PostLiquidsReset() {
+export function R_PostLiquidsReset( mapName = '' ) {
 
+	liquidMapName = mapName;
 	liquidRegions = [];
 	lavaRegions = [];
 	liquidLinks = [];
@@ -233,14 +241,25 @@ export function R_PostAddLiquidLink( link ) {
 }
 
 /**
- * Sets the level's pools, merging its water and slime faces and its lava faces into regions (`mergeLiquidFaces`).
+ * Sets the level's pools, pairing confirmed undersides with covered upper faces before merging.
+ * A bottom bounds absorption, not the reach of light projected below a suspended sheet.
  *
- * @param {Array<object>} liquidFaces the level's water and slime faces, as `R_BuildWorldLights` gathers them
+ * @param {Array<object>} liquidFaces water/slime faces, including BSP-confirmed `underside` boundaries;
+ *   unmatched tops retain the existing 900-unit depth fallback
  * @param {Array<object>} lavaFaces its lava faces
  */
 export function R_PostSetLiquidRegions( liquidFaces, lavaFaces ) {
 
-	liquidRegions = mergeLiquidFaces( liquidFaces );
+	const undersides = liquidFaces.filter( f => f.underside );
+	const tops = liquidFaces.filter( f => ! f.underside ).map( f => {
+		let bottom = f.bottom ?? f.z - 900;
+		for ( const lower of undersides ) {
+			if ( lower.kind !== f.kind || lower.mapLook !== f.mapLook || lower.z >= f.z || lower.z <= bottom ) continue;
+			if ( lower.min[ 0 ] <= f.min[ 0 ] && lower.max[ 0 ] >= f.max[ 0 ] && lower.min[ 1 ] <= f.min[ 1 ] && lower.max[ 1 ] >= f.max[ 1 ] ) bottom = lower.z;
+		}
+		return { ...f, bottom };
+	} );
+	liquidRegions = mergeLiquidFaces( tops );
 	lavaRegions = mergeLiquidFaces( lavaFaces );
 
 }
@@ -273,7 +292,9 @@ export function R_WaterProbesFrame( renderer, scene, camera, showAll, { initiali
 		if ( r.kind !== 0 && r.kind !== 1 ) continue;
 		const dx = Math.max( r.min[ 0 ] - cw[ 12 ], 0, cw[ 12 ] - r.max[ 0 ] );
 		const dy = Math.max( r.min[ 1 ] - cw[ 13 ], 0, cw[ 13 ] - r.max[ 1 ] );
-		const dist = Math.hypot( dx, dy, Math.max( 0, r.z - cw[ 14 ], cw[ 14 ] - r.z - 900 ) );
+		// Match the compositor's submerged volume [bottom, surface],
+		// not an air column above it, when choosing the nearest two probes.
+		const dist = Math.hypot( dx, dy, Math.max( r.bottom - cw[ 14 ], 0, cw[ 14 ] - r.z ) );
 		if ( dist < 2400 ) near.push( { r, dist } );
 
 	}
@@ -294,7 +315,8 @@ export function R_WaterProbesFrame( renderer, scene, camera, showAll, { initiali
 export function R_WaterStartupStatus(camera){
  if(!R_WaterActive()||r_reflect.value<=0)return {pending:0,ready:0};
  const p=camera.matrixWorld.elements,near=[];
- for(const r of liquidRegions){if(r.kind!==0&&r.kind!==1)continue;const distance=Math.hypot(Math.max(r.min[0]-p[12],0,p[12]-r.max[0]),Math.max(r.min[1]-p[13],0,p[13]-r.max[1]),Math.max(0,r.z-p[14],p[14]-r.z-900));if(distance<2400)near.push({r,distance});}
+ // Startup waits for the same submerged volumes that frame capture selects.
+ for(const r of liquidRegions){if(r.kind!==0&&r.kind!==1)continue;const distance=Math.hypot(Math.max(r.min[0]-p[12],0,p[12]-r.max[0]),Math.max(r.min[1]-p[13],0,p[13]-r.max[1]),Math.max(r.bottom-p[14],0,p[14]-r.z));if(distance<2400)near.push({r,distance});}
  near.sort((a,b)=>a.distance-b.distance);return R_WaterProbeReadiness(camera,near.map(n=>n.r));
 }
 
@@ -306,7 +328,7 @@ export function R_WaterStartupStatus(camera){
  * @param {object} cm the composite material's uniforms
  * @param {THREE.Camera} camera the view camera
  */
-export function R_PostLiquidUniforms( cm, camera ) {
+export function R_PostLiquidUniforms( cm, camera, time = 0 ) {
 
 	// the pools nearest the camera
 	const cw = camera.matrixWorld.elements;
@@ -315,7 +337,7 @@ export function R_PostLiquidUniforms( cm, camera ) {
 
 		const dx = Math.max( r.min[ 0 ] - cw[ 12 ], 0, cw[ 12 ] - r.max[ 0 ] );
 		const dy = Math.max( r.min[ 1 ] - cw[ 13 ], 0, cw[ 13 ] - r.max[ 1 ] );
-		const dz = Math.max( r.z - 900 - cw[ 14 ], 0, cw[ 14 ] - r.z );
+		const dz = Math.max( r.bottom - cw[ 14 ], 0, cw[ 14 ] - r.z );
 		const dist = Math.hypot( dx, dy, dz );
 		if ( dist < 3200 ) ranked.push( { r, dist } );
 
@@ -324,13 +346,17 @@ export function R_PostLiquidUniforms( cm, camera ) {
 	ranked.sort( ( a, b ) => a.dist - b.dist );
 	const waterCount = r_newer_water.value !== 0 ? Math.min( ranked.length, MAX_LIQUID_REGIONS ) : 0;
 	cm.uWaterCount.value = waterCount;
+	cm.uTime.value = time;
+	cm.uCaustic.value = r_newer_water.value !== 0 ? CAUSTIC * Math.max( 0, r_caustics.value ) : 0;
+	cm.uWaterView.value = R_WaterActive() && postState.waterView ? 1 : 0;
+	cm.uWaterWarp.value = r_waterwarp.value !== 0 ? 1 : 0;
 	cm.uMist.value = Math.max( 0, r_mist.value );
 	for ( let i = 0; i < waterCount; i ++ ) {
 
 		const r = ranked[ i ].r;
 		cm.uWaterMin.value[ i ].set( r.min[ 0 ], r.min[ 1 ], r.z, r.kind );
 		cm.uProbeOf.value[ i ] = - 1;
-		cm.uWaterMax.value[ i ].set( r.max[ 0 ], r.max[ 1 ], r.z, R_LiquidLookIndex( r.kind, r.mapLook ) );
+		cm.uWaterMax.value[ i ].set( r.max[ 0 ], r.max[ 1 ], r.bottom, R_LiquidLookIndex( r.kind, r.mapLook ) );
 
 	}
 

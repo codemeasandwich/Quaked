@@ -176,6 +176,12 @@ export function createPipeline() {
 	// uniforms shared by the volumetric and composite passes
 	const shared = {
 		tDepth: { value: null },
+		tNormal: { value: null },
+		uTime: { value: 0 }, uCaustic: { value: CAUSTIC },
+		uUnderwater: { value: 0 }, uWaterView: { value: 0 }, uWaterWarp: { value: 1 },
+		uWaterCount: { value: 0 },
+		uWaterMin: { value: Array.from( { length: MAX_LIQUID_REGIONS }, () => new THREE.Vector4() ) },
+		uWaterMax: { value: Array.from( { length: MAX_LIQUID_REGIONS }, () => new THREE.Vector4() ) },
 		tSunShadow: { value: null },
 		uProj: { value: new THREE.Matrix4() },
 		uProjInv: { value: new THREE.Matrix4() },
@@ -259,7 +265,7 @@ export function createPipeline() {
 		} ),
 		compositeMaterial: makeMaterial( COMPOSITE_FRAGMENT, Object.assign( {
 			tPowerupShrouds: { value: null }, uPowerupShroudCount: { value: 0 }, tPowerupFire: { value: null }, uPowerupFireOn: { value: 0 },
-			tScene: { value: null }, tNormal: { value: null }, tAlbedo: { value: null }, tVolume: { value: null }, tBloom: { value: null },
+			tScene: { value: null }, tAlbedo: { value: null }, tVolume: { value: null }, tBloom: { value: null },
 			uTexel: { value: new THREE.Vector2() },
 			uExposure: { value: 1 }, uBloom: { value: 0.6 }, uVolume: { value: 1 },
 			uSunSurface: { value: SUN_SURFACE },
@@ -267,6 +273,7 @@ export function createPipeline() {
 			uLightSurface: { value: LIGHT_SURFACE },
 			uLightFloor: { value: LIGHT_FLOOR },
 			uLightAdd: { value: new Array( MAX_VOLUME_LIGHTS ).fill( 0 ) },
+			uLightSpecular: { value: new Array( MAX_VOLUME_LIGHTS ).fill( 0 ) },
 			uEdge: { value: 1 },
 			uDropDensity: { value: 0 },
 			uDropBlood: { value: 0 },
@@ -282,8 +289,6 @@ export function createPipeline() {
 			uBright: { value: 0.6 },
 			uContrastGain: { value: 1.4 },
 			uContrastPivot: { value: 0.12 },
-			uTime: { value: 0 },
-			uCaustic: { value: CAUSTIC }, uUnderwater: { value: 0 },
 			tProbeA: { value: null },
 			tProbeB: { value: null },
 			uProbeCenter: { value: [ new THREE.Vector3(), new THREE.Vector3() ] },
@@ -296,10 +301,7 @@ export function createPipeline() {
 			uLavaMax: { value: Array.from( { length: 4 }, () => new THREE.Vector4() ) },
 			uHeat: { value: 0.6 },
 			uReflect: { value: 0.6 },
-			uWaterCount: { value: 0 },
-			uMist: { value: 0 },
-			uWaterMin: { value: Array.from( { length: MAX_LIQUID_REGIONS }, () => new THREE.Vector4() ) },
-			uWaterMax: { value: Array.from( { length: MAX_LIQUID_REGIONS }, () => new THREE.Vector4() ) }
+			uMist: { value: 0 }
 		}, shared ) ),
 		presentMaterial: makeMaterial( PRESENT_FRAGMENT, {
 			tComposite: { value: null }, uBright: { value: 1 },

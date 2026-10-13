@@ -48,7 +48,7 @@ import {
 	svc_intermission, svc_finale, svc_cdtrack, svc_sellscreen,
 	svc_cutscene,
 	svc_playerinfo, PF_MSEC, PF_COMMAND, PF_VELOCITY1, PF_VELOCITY2, PF_VELOCITY3,
-	PF_MODEL, PF_SKINNUM, PF_EFFECTS, PF_WEAPONFRAME, PF_DEAD, PF_GIB,
+	PF_MODEL, PF_SKINNUM, PF_EFFECTS, PF_WEAPONFRAME, PF_DEAD, PF_GIB, PF_CLOAK_BODY,
 	CM_ANGLE1, CM_ANGLE2, CM_ANGLE3, CM_FORWARD, CM_SIDE, CM_UP, CM_BUTTONS, CM_IMPULSE,
 	clc_nop,
 	SND_VOLUME, SND_ATTENUATION,
@@ -1302,9 +1302,10 @@ function CL_ParsePlayerInfo() {
 	let weaponframe = 0;
 	if ( flags & PF_WEAPONFRAME )
 		weaponframe = MSG_ReadIndex();
+	const cloakBodyFrame = ( flags & PF_CLOAK_BODY ) ? MSG_ReadIndex() : null;
 
 	// Store the player info for prediction and rendering
-	CL_SetPlayerInfo( playernum, origin, velocity, frame, flags, skin, effects, weaponframe, msec, cmd, modelindex );
+	CL_SetPlayerInfo( playernum, origin, velocity, frame, flags, skin, effects, weaponframe, msec, cmd, modelindex, cloakBodyFrame );
 
 }
 

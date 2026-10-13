@@ -161,6 +161,11 @@ export const PF_EFFECTS = ( 1 << 7 );
 export const PF_WEAPONFRAME = ( 1 << 8 ); // only sent for view player
 export const PF_DEAD = ( 1 << 9 ); // don't block movement any more
 export const PF_GIB = ( 1 << 10 ); // offset the view height differently
+// Opt-in per receiving connection: `prespawn cloakbody1`. Only that capability
+// permits this trailing body-frame index (byte in15, short in1015). The ordinary
+// model/frame remain native eyes/0. Absence clears previous cloak metadata.
+export const PF_CLOAK_BODY = ( 1 << 11 );
+export const CLOAK_BODY_CAPABILITY = 'cloakbody1';
 
 // command move bits (for delta compression of usercmd_t)
 export const CM_ANGLE1 = ( 1 << 0 );

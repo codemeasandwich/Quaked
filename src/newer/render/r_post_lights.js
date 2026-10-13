@@ -189,7 +189,7 @@ export function R_BuildWorldLights( model ) {
 
 	worldLights = [];
 	skyState.hasSky = false;
-	R_PostLiquidsReset();
+	R_PostLiquidsReset( model?.name );
 	buildSkyCookie();
 	skyState.sunDirection = [ - 0.28, - 0.18, 0.94 ];
 
@@ -282,11 +282,13 @@ export function R_BuildWorldLights( model ) {
 
 					const probePoint = [ info.center[ 0 ], info.center[ 1 ], info.center[ 2 ] + WATER_PROBE_LIFT ];
 					const validProbe = Mod_PointInLeaf( probePoint, model ).contents === - 1;
-					liquidFaces.push( { kind: liquid, mapLook: liquidMapLook( surf.texinfo.texture.name ), min: [ box[ 0 ], box[ 1 ] ], max: [ box[ 3 ], box[ 4 ] ], z: info.center[ 2 ], probePoint: validProbe ? probePoint : null } );
-
 					// the air above this face and the liquid just below it
 					const above = Mod_PointInLeaf( [ info.center[ 0 ], info.center[ 1 ], info.center[ 2 ] + 4 ], model );
 					const below = Mod_PointInLeaf( [ info.center[ 0 ], info.center[ 1 ], info.center[ 2 ] - 4 ], model );
+					// A suspended pool has a second, downward-facing boundary. It
+					// bounds the same water; it is not another pool to composite.
+					const underside = above.contents === ( liquid === 0 ? - 3 : - 4 ) && below.contents === - 1;
+					liquidFaces.push( { kind: liquid, mapLook: liquidMapLook( surf.texinfo.texture.name ), min: [ box[ 0 ], box[ 1 ] ], max: [ box[ 3 ], box[ 4 ] ], z: info.center[ 2 ], underside, probePoint: validProbe ? probePoint : null } );
 					if ( above !== below && below.contents !== - 2 ) {
 
 						const key = above.__portalKey ?? ( above.__portalKey = ++ leafKeyCounter );
@@ -621,6 +623,7 @@ export function R_PostLightUniforms( p, camera, frame, time, lighting ) {
 
 	const sh = p.shared, hdr = p.hdr;
 	sh.tDepth.value = hdr.depthTexture;
+	sh.tNormal.value = hdr.textures[ 1 ];
 	sh.uProj.value.copy( camera.projectionMatrix );
 	sh.uProjInv.value.copy( camera.projectionMatrixInverse );
 	sh.uViewInv.value.copy( camera.matrixWorld );
@@ -652,6 +655,9 @@ export function R_PostLightUniforms( p, camera, frame, time, lighting ) {
 		sh.uLightPos.value[ i ].set( s.pos[ 0 ], s.pos[ 1 ], s.pos[ 2 ], s.radius );
 		sh.uLightCol.value[ i ].set( s.color[ 0 ], s.color[ 1 ], s.color[ 2 ], s.range );
 		p.compositeMaterial.uniforms.uLightAdd.value[ i ] = s.add || 0;
+		// Invisible baked-light helpers illuminate receivers, but must not
+		// appear as floating lamps in a liquid's specular highlight.
+		p.compositeMaterial.uniforms.uLightSpecular.value[ i ] = s.source?.emitter === 1 || s.source?.fixture || s.source?.powerup || s.source?.rendVeil || s.add > 0 ? 1 : 0;
 		sh.uLightCookie.value[ i ] = s.source?.cookie || 0;
 		sh.uLightRotation.value[ i ].fromArray( s.powerupRotation );
   sh.uLightDirection.value[i].fromArray(s.viewDirection);

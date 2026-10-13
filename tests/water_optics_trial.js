@@ -69,7 +69,7 @@ function draw( time, moving = false, z = 48, vertical = false ) {
 		const right = new THREE.Vector3().setFromMatrixColumn( camera.matrixWorld, 0 ), up = new THREE.Vector3().setFromMatrixColumn( camera.matrixWorld, 1 );
 		flashlight.R_FlashlightUpdate( camera.position.toArray(), forward.toArray(), right.toArray(), up.toArray() );
 	}
-	post.R_PostSetUnderwater( surfaceView?.underwater ?? ( ( surfaceView ? surfaceView.depth : z ) < 0 ) ); post.R_PostBegin( renderer, true, 480, 270 );
+	post.R_PostSetUnderwater( surfaceView?.underwater ?? ( ( surfaceView ? surfaceView.depth : z ) < 0 ), surfaceView?.contents ); post.R_PostBegin( renderer, true, 480, 270 );
 	water.material = surfaceMaterial();
 	if ( water.material.vertexColors ) surf.R_UpdateWaterTextureLight( waterGeometry, lightWorld );
 	mist.R_MistFrame( scene, time );
@@ -405,10 +405,24 @@ document.querySelector( '#vapour-checks' ).onclick = () => {
 	const record = ( name, passed, data ) => { evidence.vapourChecks.push( { name, passed, ...data } ); if ( ! passed ) evidence.vapourFailures.push( name ); };
 	try {
 		cvar.Cvar_SetValue( 'r_newer_water', 1 ); cvar.Cvar_SetValue( 'r_water_look', 4 ); cvar.Cvar_SetValue( 'r_mist', .6 ); setEnvironment( 'bright' ); surfaceView = null; flashlightOn = false;
-		const error = draw( 1 ), image = pixels(), stream = scene.children.find( o => o.userData.liquidToxicMist ), positions = stream.geometry.attributes.position.array.slice();
-		const laterError = draw( 1.25 ), later = stream.geometry.attributes.position.array; let rising = 0, narrow = true;
-		for ( let i = 0; i < later.length; i += 3 ) { if ( later[ i + 2 ] > positions[ i + 2 ] && later[ i + 2 ] - positions[ i + 2 ] < 3 ) rising ++; if ( Math.hypot( later[ i ] - positions[ i ], later[ i + 1 ] - positions[ i + 1 ] ) > 3 ) narrow = false; }
-		record( 'small toxic streams rise slowly with narrow drift and retained geometry', error === 0 && laterError === 0 && stream.visible && scene.children.includes( stream ) && rising > positions.length / 3 * .75 && narrow, { sprites: positions.length / 3, rising, narrow, glError: laterError } );
+		const error = draw( 1 ), image = pixels(), stream = scene.children.find( o => o.userData.liquidToxicMist ), attribute = stream.geometry.attributes.position;
+		const positions = attribute.array.slice(), colours = stream.geometry.attributes.color.array.slice();
+		const laterError = draw( 1.25 ), later = stream.geometry.attributes.position.array, laterColours = stream.geometry.attributes.color.array;
+		let rising = 0, resets = 0, narrow = true, validMotion = true;
+		for ( let i = 0; i < later.length; i += 3 ) {
+			const dz = later[ i + 2 ] - positions[ i + 2 ];
+			// Public animation has a 60..100-unit, 20..33-second lifecycle.
+			// Its rare wrap is faded out and restarts within two units of base;
+			// it is not a sideways jump by a continuously live particle.
+			const faded = Math.max( ...colours.slice( i, i + 3 ), ...laterColours.slice( i, i + 3 ) ) < .0001;
+			const reset = dz < - 50 && faded && post.R_GetLiquidRegions().some( r => Math.abs( later[ i + 2 ] - ( r.z + 8 ) ) < 2 && positions[ i + 2 ] > r.z + 58 );
+			if ( reset ) { resets ++; continue; }
+			if ( dz > 0 && dz < 3 ) rising ++; else validMotion = false;
+			if ( Math.hypot( later[ i ] - positions[ i ], later[ i + 1 ] - positions[ i + 1 ] ) > 3 ) narrow = false;
+		}
+		record( 'small toxic streams rise slowly with narrow drift and retained geometry', error === 0 && laterError === 0 && stream.visible && scene.children.includes( stream )
+			&& stream.geometry.attributes.position === attribute && rising > positions.length / 3 * .75 && narrow && validMotion,
+			{ sprites: positions.length / 3, rising, resets, narrow, validMotion, glError: laterError } );
 		draw( 1 ); cvar.Cvar_SetValue( 'r_mist', 0 ); draw( 1 ); const hidden = delta( image, pixels() );
 		record( 'toxic vapour is visibly rendered and the haze slider hides it', ! stream.visible && hidden.changed > 15, hidden );
 		cvar.Cvar_SetValue( 'r_mist', .6 ); cvar.Cvar_SetValue( 'r_newer_water', 0 ); draw( 1 );
@@ -469,11 +483,22 @@ document.querySelector( '#torch-checks' ).onclick = () => {
 // Compare the current compositor with its previous water constants in this
 // fixture only. Same source pixels, camera, time, absorption and lights.
 let restraintMode='current';
-const restraintSources=new WeakMap(),restraintRender=renderer.render;
+const restraintSources=new WeakMap(),volumeSources=new WeakSet(),restraintRender=renderer.render;
 renderer.render=function(scene,camera){
  const material=scene.children[0]?.material;
- if(material?.uniforms?.uWaterCount && material.fragmentShader){
-  if(!restraintSources.has(material))restraintSources.set(material,{source:material.fragmentShader,mode:null});
+ if(material?.uniforms?.uScatter && material.fragmentShader && !volumeSources.has(material)){
+  volumeSources.add(material);
+  crypto.subtle.digest('SHA-256',new TextEncoder().encode(material.fragmentShader)).then(hash=>{
+   evidence.volumeShaderSha256=Array.from(new Uint8Array(hash),b=>b.toString(16).padStart(2,'0')).join('');
+  });
+ }
+ if(material?.uniforms?.uLightFloor && material.fragmentShader){
+  if(!restraintSources.has(material)){
+   restraintSources.set(material,{source:material.fragmentShader,mode:null});
+   crypto.subtle.digest('SHA-256',new TextEncoder().encode(material.fragmentShader)).then(hash=>{
+    evidence.shaderSha256=Array.from(new Uint8Array(hash),b=>b.toString(16).padStart(2,'0')).join('');
+   });
+  }
   const stored=restraintSources.get(material);
   if(stored.mode!==restraintMode){
    let source=stored.source;
@@ -500,4 +525,617 @@ document.querySelector('#restraint-checks').onclick=()=>{
   }
   evidence.restraint=records;
  }finally{restraintMode='current';draw(1);running=false;publish(evidence.failures.length?'FAIL — restrained water':'PASS — restrained water');}
+};
+
+// Public material/G-buffer regression: a receiver's shading normals may
+// describe steep relief without changing its geometric projection plane.
+// Constant radiance and caustic off/on pairs isolate projection from lighting;
+// no production shader replacement or duplicate caustic implementation.
+document.querySelector( '#caustic-projection-checks' ).onclick = () => {
+	if ( running ) return;
+	running = true; evidence.causticProjectionChecks = []; evidence.causticProjectionFailures = [];
+	const record = ( name, passed, data ) => {
+		evidence.causticProjectionChecks.push( { name, passed, ...data } );
+		if ( ! passed ) evidence.causticProjectionFailures.push( name );
+	};
+	const settings = vars.map( v => v.string );
+	const saved = { geometry: floor.geometry, material: floor.material, z: floor.position.z,
+		view: surfaceView, flashlight: flashlightOn, aim: flashlightAim,
+		visible: [ wall, lamp, red, ledge, water ].map( o => o.visible ) };
+	const geometry = new THREE.PlaneGeometry( 256, 320, 32, 40 );
+	const white = new THREE.DataTexture( new Uint8Array( [ 255, 255, 255, 255 ] ), 1, 1 ); white.needsUpdate = true;
+	const material = new THREE.MeshLambertMaterial( { map: white } );
+	post.R_RegisterDetail( material, null );
+	// Emission here is a controlled source-radiance fixture, not liquid glow.
+	// It keeps tScene identical while the real material writes different normals.
+	material.emissive.setRGB( .28, .28, .28 );
+	const roi = i => Math.abs( i % 480 - 240 ) < 70 && Math.abs( Math.floor( i / 480 ) - 135 ) < 60;
+	const normals = geometry.getAttribute( 'normal' );
+	function shade( relief ) {
+		for ( let i = 0; i < normals.count; i ++ ) {
+			const sign = ( Math.floor( i / 33 / 4 ) + Math.floor( i % 33 / 4 ) ) % 2 ? - 1 : 1;
+			normals.setXYZ( i, relief ? sign * Math.sqrt( 1 - .25 * .25 ) : 0, 0, relief ? .25 : 1 );
+		}
+		normals.needsUpdate = true;
+	}
+	function pair( relief, time = 1 ) {
+		shade( relief ); cvar.Cvar_SetValue( 'r_caustics', 0 ); const offError = draw( time, false, 80, true ), off = pixels();
+		cvar.Cvar_SetValue( 'r_caustics', 1 ); const onError = draw( time, false, 80, true ), on = pixels();
+		return { off, on, glError: offError || onError };
+	}
+	function patternDifference( a, b ) {
+		let total = 0, changed = 0, maximum = 0, sum = 0;
+		for ( let i = 0; i < a.off.length / 4; i ++ ) if ( roi( i ) ) {
+			let difference = 0;
+			for ( let c = 0; c < 3; c ++ ) {
+				const p = i * 4 + c;
+				difference = Math.max( difference, Math.abs( ( a.on[ p ] - a.off[ p ] ) - ( b.on[ p ] - b.off[ p ] ) ) );
+			}
+			total ++; if ( difference > 1 ) changed ++; maximum = Math.max( maximum, difference ); sum += difference;
+		}
+		return { total, changed, maximum, mean: sum / total };
+	}
+	try {
+		for ( const [ name, value ] of [ [ 'r_hdr', 1 ], [ 'r_newer_water', 1 ], [ 'r_newer_normals', 1 ], [ 'r_newer_lighting', 0 ], [ 'r_reflect', 0 ], [ 'r_mist', 0 ], [ 'r_bloom', 0 ], [ 'r_volumetric', 0 ] ] ) cvar.Cvar_SetValue( name, value );
+		flashlightOn = false; surfaceView = null;
+		[ wall, lamp, red, ledge, water ].forEach( o => { o.visible = false; } );
+		floor.geometry = geometry; floor.material = material; floor.position.z = - 64;
+		for ( let choice = 1; choice <= 4; choice ++ ) {
+			cvar.Cvar_SetValue( 'r_water_look', choice );
+			const name = post.LIQUID_LOOKS[ choice - 1 ].name, flat = pair( false ), relief = pair( true );
+			const baseline = delta( flat.off, relief.off, roi ), signal = delta( flat.off, flat.on, roi ), coherence = patternDifference( flat, relief );
+			record( name + ': shading normals alone leave received radiance unchanged', ! flat.glError && ! relief.glError && baseline.changed === 0, { baseline, glErrors: [ flat.glError, relief.glError ] } );
+			record( name + ': floor caustics retain their projection through steep shading relief', signal.changed > 100 && coherence.changed === 0, { signal, coherence } );
+			const later = pair( true, 2.7 ), motion = patternDifference( relief, later );
+			record( name + ': projected caustics continue to animate', ! later.glError && motion.changed > 100, { motion, glError: later.glError } );
+			floor.position.z = 8; const dry = pair( true ), exclusion = delta( dry.off, dry.on, roi ); floor.position.z = - 64;
+			record( name + ': dry receiver above the pool has no caustics', ! dry.glError && exclusion.changed === 0, { exclusion, glError: dry.glError } );
+		}
+	} catch ( error ) {
+		record( 'projection trial completes', false, { error: String( error.stack || error ) } );
+	} finally {
+		floor.geometry = saved.geometry; floor.material = saved.material; floor.position.z = saved.z;
+		[ wall, lamp, red, ledge, water ].forEach( ( o, i ) => { o.visible = saved.visible[ i ]; } );
+		surfaceView = saved.view; flashlightOn = saved.flashlight; flashlightAim = saved.aim;
+		vars.forEach( ( v, i ) => cvar.Cvar_Set( v.name, settings[ i ] ) );
+		geometry.dispose(); material.dispose(); white.dispose();
+		running = false;
+	}
+	publish( evidence.causticProjectionFailures.length ? 'FAIL — caustic projection' : 'PASS — caustic projection' );
+};
+
+// AIR / 32-unit liquid slab / AIR through the public BSP builder. This is the
+// START hanging-pool shape in a controlled scene, not a new optical renderer.
+document.querySelector( '#floating-slab-checks' ).onclick = () => {
+	if ( running ) return;
+	running = true; evidence.floatingSlabChecks = []; evidence.floatingSlabFailures = [];
+	const record = ( name, passed, data ) => {
+		evidence.floatingSlabChecks.push( { name, passed, ...data } );
+		if ( ! passed ) evidence.floatingSlabFailures.push( name );
+	};
+	const settings = vars.map( v => v.string ), saved = { geometry: floor.geometry, material: floor.material, z: floor.position.z,
+		nodes: model.nodes, leafs: model.leafs, numleafs: model.numleafs, surfaces: model.surfaces, count: model.nummodelsurfaces,
+		view: surfaceView, flashlight: flashlightOn, aim: flashlightAim, visible: [ wall, lamp, red, ledge, water ].map( o => o.visible ) };
+	const geometry = new THREE.PlaneGeometry( 4096, 4096 ), material = new THREE.MeshBasicMaterial( { color: new THREE.Color( .28, .28, .28 ) } );
+	let foreground = null;
+	const upperAir = { contents: - 1, visframe: 0, compressed_vis: null }, lowerAir = { contents: - 1, visframe: 0, compressed_vis: null }, wet = { contents: - 3, visframe: 0, compressed_vis: null };
+	const top = saved.surfaces[ 0 ], bottom = { ...top, plane: { normal: [ 0, 0, 1 ], dist: - 32 },
+		polys: { numverts: 4, verts: top.polys.verts.map( v => [ v[ 0 ], v[ 1 ], - 32, v[ 3 ], v[ 4 ] ] ), next: null } };
+	function pool( finite, height = 0 ) {
+		model.nodes = [ { contents: 0, plane: { normal: [ 0, 0, 1 ], dist: height }, children: [ upperAir,
+			finite ? { contents: 0, plane: { normal: [ 0, 0, 1 ], dist: height - 32 }, children: [ wet, lowerAir ] } : wet ] } ];
+		model.leafs = [ { contents: - 2 }, upperAir, wet, lowerAir ]; model.numleafs = 3;
+		const translated = face => height === 0 ? face : { ...face, plane: { ...face.plane, dist: face.plane.dist + height },
+			polys: { ...face.polys, verts: face.polys.verts.map( v => [ v[ 0 ], v[ 1 ], v[ 2 ] + height, v[ 3 ], v[ 4 ] ] ) } };
+		model.surfaces = ( finite ? [ top, bottom ] : [ top ] ).map( translated ); model.nummodelsurfaces = model.surfaces.length;
+		post.R_BuildWorldLights( model ); probes.R_WaterProbeClear();
+	}
+	const centre = i => Math.abs( i % 480 - 240 ) < 20 && Math.abs( Math.floor( i / 480 ) - 135 ) < 20;
+	function captureFloor( z, caustics = 0, vertical = true ) {
+		floor.position.z = z; cvar.Cvar_SetValue( 'r_caustics', caustics );
+		const glError = draw( 1, false, 80, vertical ); return { image: pixels(), glError };
+	}
+	function reflectionPair( z ) {
+		floor.position.z = z; cvar.Cvar_SetValue( 'r_reflect', 0 ); const offError = draw( 1 ), off = pixels();
+		cvar.Cvar_SetValue( 'r_reflect', .6 ); const onError = draw( 1 ), on = pixels();
+		const mask = new Uint8Array( 480 * 270 ), ray = new THREE.Raycaster(), hit = new THREE.Vector3();
+		const upper = new THREE.Plane( new THREE.Vector3( 0, 0, 1 ), 0 ), lower = new THREE.Plane( new THREE.Vector3( 0, 0, 1 ), 32 );
+		for ( let y = 20; y < 140; y ++ ) for ( let x = 140; x < 340; x ++ ) {
+			ray.setFromCamera( new THREE.Vector2( ( x + .5 ) / 480 * 2 - 1, ( y + .5 ) / 270 * 2 - 1 ), camera );
+			if ( ! ray.ray.intersectPlane( upper, hit ) || hit.x <= - 115 || hit.x >= 115 || hit.y <= - 95 || hit.y >= 190 ) continue;
+			if ( ! ray.ray.intersectPlane( lower, hit ) || hit.x <= - 115 || hit.x >= 115 || hit.y <= - 95 || hit.y >= 190 ) continue;
+			if ( ray.intersectObjects( [ floor, wall, lamp ], false )[ 0 ]?.object === floor ) mask[ y * 480 + x ] = 1;
+		}
+		return { off, on, mask, glError: offError || onError };
+	}
+	try {
+		for ( const [ name, value ] of [ [ 'r_hdr', 1 ], [ 'r_newer_water', 1 ], [ 'r_newer_lighting', 0 ], [ 'r_reflect', 0 ], [ 'r_reflect_screen', 0 ], [ 'r_mist', 0 ], [ 'r_caustics', 0 ], [ 'r_bloom', 0 ], [ 'r_volumetric', 0 ] ] ) cvar.Cvar_SetValue( name, value );
+		flashlightOn = false; surfaceView = null; floor.geometry = geometry; floor.material = material;
+		[ wall, lamp, red, ledge, water ].forEach( o => { o.visible = false; } );
+		for ( let choice = 1; choice <= 4; choice ++ ) {
+			cvar.Cvar_SetValue( 'r_water_look', choice ); const name = post.LIQUID_LOOKS[ choice - 1 ].name;
+			pool( true ); material.color.setRGB( .28, .28, .28 );
+			const near = captureFloor( - 64 ), far = captureFloor( - 192 ), finite = delta( near.image, far.image, centre );
+			record( name + ': additional dry space below suspended water adds no absorption', ! near.glError && ! far.glError && finite.changed === 0, { finite, centreNear: Array.from( near.image.slice( ( 135 * 480 + 240 ) * 4, ( 135 * 480 + 240 ) * 4 + 3 ) ), centreFar: Array.from( far.image.slice( ( 135 * 480 + 240 ) * 4, ( 135 * 480 + 240 ) * 4 + 3 ) ), glErrors: [ near.glError, far.glError ] } );
+			const lit = captureFloor( - 64, 1 ), projected = delta( near.image, lit.image, centre );
+			record( name + ': caustics still project onto the dry receiver below the slab', ! lit.glError && projected.changed > 100, { projected, glError: lit.glError } );
+			const dryOff = captureFloor( 8 ), dryOn = captureFloor( 8, 1 ), dry = delta( dryOff.image, dryOn.image, centre );
+			record( name + ': receiver above the slab stays free of caustics', ! dryOff.glError && ! dryOn.glError && dry.changed === 0, { dry } );
+			pool( false ); const submergedNear = captureFloor( - 64 ), submergedFar = captureFloor( - 192 ), depth = delta( submergedNear.image, submergedFar.image, centre );
+			record( name + ': ordinary unbounded pool retains increasing absorption with depth', ! submergedNear.glError && ! submergedFar.glError && depth.changed > 100, { depth } );
+		}
+		// Keep the world-space receiver/pattern and 32-unit optical path fixed;
+		// move only the slab's height. The old exp(-depth/420) dimmed the deeper
+		// projection even though the ray crossed exactly the same water thickness.
+		function projectedIncrement( height ) {
+			pool( true, height ); const off = captureFloor( - 384 ), on = captureFloor( - 384, 1 );
+			let sum = 0, count = 0;
+			for ( let i = 0; i < off.image.length / 4; i ++ ) if ( centre( i ) ) {
+				const p = i * 4;
+				sum += .2126 * ( on.image[ p ] - off.image[ p ] ) + .7152 * ( on.image[ p + 1 ] - off.image[ p + 1 ] ) + .0722 * ( on.image[ p + 2 ] - off.image[ p + 2 ] ); count ++;
+			}
+			return { meanIncrement: sum / count, signal: delta( off.image, on.image, centre ), glErrors: [ off.glError, on.glError ] };
+		}
+		for ( let choice = 1; choice <= 4; choice ++ ) {
+			cvar.Cvar_SetValue( 'r_water_look', choice ); material.color.setRGB( .28, .28, .28 );
+			const near = projectedIncrement( - 320 ), deep = projectedIncrement( 0 ), ratio = deep.meanIncrement / near.meanIncrement;
+			record( post.LIQUID_LOOKS[ choice - 1 ].name + ': caustic intensity does not fade with extra dry distance below the surface',
+				near.glErrors.concat( deep.glErrors ).every( error => error === 0 ) && near.signal.changed > 100 && deep.signal.changed > 100 && near.meanIncrement > .25 && ratio > .85 && ratio < 1.15,
+				{ receiverZ: - 384, waterThickness: 32, surfaceToReceiverDepths: [ 64, 384 ], near, deep, ratio } );
+		}
+		// Black transmission isolates the reflected lamp. Changing only the dry
+		// receiver's distance must not attenuate the already-composed reflection.
+		cvar.Cvar_SetValue( 'r_water_look', 1 ); cvar.Cvar_SetValue( 'r_caustics', 0 ); pool( true );
+		material.color.setScalar( 0 ); wall.visible = lamp.visible = true;
+		const near = reflectionPair( - 64 ), far = reflectionPair( - 192 ), wetOnly = i => near.mask[ i ] && far.mask[ i ];
+		const signal = delta( near.off, near.on, wetOnly ), stability = delta( near.on, far.on, wetOnly ), baseline = delta( near.off, far.off, wetOnly );
+		record( 'suspended slab retains lamp reflection without reabsorbing it in the dry cavern', ! near.glError && ! far.glError && signal.changed > 10 && baseline.changed === 0 && stability.changed === 0, { signal, stability, baseline, glErrors: [ near.glError, far.glError ] } );
+		// The same water-to-air interface exists at a suspended pool's bottom.
+		// Negative-depth surfaceView normally looks up: angles 180/115 point
+		// down at 0/65 degrees from that lower interface's normal.
+		wall.visible = lamp.visible = false; material.color.setRGB( .28, .28, .28 ); floor.position.z = - 192;
+		const luminance = p => {
+			let total = 0, count = 0;
+			for ( let i = 0; i < p.length / 4; i ++ ) if ( centre( i ) ) { total += .2126 * p[ i * 4 ] + .7152 * p[ i * 4 + 1 ] + .0722 * p[ i * 4 + 2 ]; count ++; }
+			return total / count;
+		};
+		surfaceView = { depth: - 20, angle: 180, underwater: true }; cvar.Cvar_SetValue( 'r_reflect', .6 );
+		const exitError = draw( 1 ), exitWindow = pixels();
+		surfaceView.angle = 115; const tirError = draw( 1 ), bottomTir = pixels();
+		cvar.Cvar_SetValue( 'r_reflect', .2 ); draw( 1 ); const weakTir = pixels();
+		const strength = delta( bottomTir, weakTir, centre );
+		record( 'lower slab exit has a clear Snell window and total internal reflection outside it', ! exitError && ! tirError && luminance( exitWindow ) > luminance( bottomTir ) + 20 && strength.changed === 0, { exitWindowMean: luminance( exitWindow ), outsideWindowMean: luminance( bottomTir ), strength, glErrors: [ exitError, tirError ] } );
+		cvar.Cvar_SetValue( 'r_reflect', 0 ); draw( 1 ); const bottomOptOut = pixels();
+		record( 'lower-interface reflection off preserves the explicit optics opt-out', luminance( bottomOptOut ) > luminance( bottomTir ) + 20, { optedOutMean: luminance( bottomOptOut ), reflectedMean: luminance( bottomTir ) } );
+		surfaceView.underwater = false; cvar.Cvar_SetValue( 'r_reflect', .6 ); draw( 1 ); const dryGap = delta( bottomOptOut, pixels(), centre );
+		record( 'actual dry contents cannot fabricate an internal lower-interface reflection', dryGap.changed === 0, dryGap );
+		// Dry camera below the actual bottom views a lit receiver beyond the
+		// slab. A stale underwater flag cannot turn this air-side view into TIR.
+		floor.position.z = 96; material.side = THREE.DoubleSide; material.needsUpdate = true;
+		surfaceView = { depth: - 48, angle: 65, underwater: false }; const outsideError = draw( 1 ), outside = pixels();
+		surfaceView.underwater = true; const staleError = draw( 1 ), outsideGuard = delta( outside, pixels(), centre );
+		record( 'camera in dry air below the suspended pool remains outside its finite volume', ! outsideError && ! staleError && luminance( outside ) > 20 && outsideGuard.changed === 0, { outsideMean: luminance( outside ), outsideGuard, glErrors: [ outsideError, staleError ] } );
+		// An opaque receiver between eye and underside must keep its own pixels.
+		floor.position.z = - 192; surfaceView = { depth: - 20, angle: 180, underwater: true };
+		foreground = new THREE.Mesh( new THREE.BoxGeometry( 32, 32, 2 ), new THREE.MeshBasicMaterial( { color: new THREE.Color( .1, .2, .4 ) } ) );
+		foreground.position.set( 0, 48, - 27 ); scene.add( foreground );
+		cvar.Cvar_SetValue( 'r_reflect', .6 ); const frontError = draw( 1 ), frontOn = pixels();
+		cvar.Cvar_SetValue( 'r_reflect', 0 ); const frontOffError = draw( 1 ), protectedFront = delta( frontOn, pixels(), centre );
+		record( 'opaque foreground before the lower interface is not replaced by liquid optics', ! frontError && ! frontOffError && protectedFront.changed === 0, { protectedFront, glErrors: [ frontError, frontOffError ] } );
+	} catch ( error ) {
+		record( 'floating slab trial completes', false, { error: String( error.stack || error ) } );
+	} finally {
+		if ( foreground ) { scene.remove( foreground ); foreground.geometry.dispose(); foreground.material.dispose(); }
+		floor.geometry = saved.geometry; floor.material = saved.material; floor.position.z = saved.z;
+		model.nodes = saved.nodes; model.leafs = saved.leafs; model.numleafs = saved.numleafs; model.surfaces = saved.surfaces; model.nummodelsurfaces = saved.count;
+		[ wall, lamp, red, ledge, water ].forEach( ( o, i ) => { o.visible = saved.visible[ i ]; } );
+		surfaceView = saved.view; flashlightOn = saved.flashlight; flashlightAim = saved.aim;
+		vars.forEach( ( v, i ) => cvar.Cvar_Set( v.name, settings[ i ] ) ); post.R_BuildWorldLights( model ); probes.R_WaterProbeClear();
+		geometry.dispose(); material.dispose(); running = false;
+	}
+	publish( evidence.floatingSlabFailures.length ? 'FAIL — floating water slab' : 'PASS — floating water slab' );
+};
+
+// Ordinary source-to-interface lighting, isolated from reflected geometry and
+// transmitted diffuse lighting. The very short black receiver path prevents
+// Muddy's legitimate incident-light sediment from being mistaken for a glint.
+document.querySelector( '#source-glint-checks' ).onclick = () => {
+	if ( running ) return;
+	running = true; evidence.sourceGlintChecks = []; evidence.sourceGlintFailures = [];
+	const record = ( name, passed, data ) => { evidence.sourceGlintChecks.push( { name, passed, ...data } ); if ( ! passed ) evidence.sourceGlintFailures.push( name ); };
+	if ( ! cvar.Cvar_FindVar( post.r_pointshadows.name ) ) cvar.Cvar_RegisterVariable( post.r_pointshadows );
+	const settings = vars.map( v => v.string ), saved = { entities: model.entities, z: floor.position.z, colour: floorMaterial.color.clone(),
+		view: surfaceView, flashlight: flashlightOn, aim: flashlightAim, background: scene.background, shadow: post.r_pointshadows.string,
+		style1: quake.d_lightstylevalue[ 1 ],
+		visible: [ wall, lamp, red, ledge, water ].map( o => o.visible ) };
+	let blocker = null, mask = null;
+	function source( on, x = 0, classname = 'light_torch_small_walltorch' ) {
+		// Let the actual entity parser classify the visible emitter. A fixed
+		// authored style disables source flicker so time checks isolate ripples.
+		model.entities = on ? '{ "classname" "' + classname + '" "origin" "' + x + ' 120 70" "light" "400" "style" "1" "_color" "1 .6 .2" }' : '';
+		post.R_BuildWorldLights( model ); probes.R_WaterProbeClear();
+	}
+	function frameWith( on, x = 0, time = 1, classname = 'light_torch_small_walltorch' ) { source( on, x, classname ); const glError = draw( time ); return { image: pixels(), glError }; }
+	const wetOnly = i => mask[ i ] !== 0;
+	function centroid( off, on ) {
+		let energy = 0, x = 0, y = 0;
+		for ( let i = 0; i < mask.length; i ++ ) if ( wetOnly( i ) ) {
+			const value = Math.max( 0, on[ i * 4 ] - off[ i * 4 ] ); energy += value; x += ( i % 480 ) * value; y += Math.floor( i / 480 ) * value;
+		}
+		return { energy, x: energy ? x / energy : null, y: energy ? y / energy : null };
+	}
+	try {
+		for ( const [ name, value ] of [ [ 'r_hdr', 1 ], [ 'r_newer_water', 1 ], [ 'r_newer_lighting', 1 ], [ 'r_newer_normals', 0 ], [ 'r_reflect', .6 ], [ 'r_reflect_screen', 0 ], [ 'r_bounce', 0 ], [ 'r_mist', 0 ], [ 'r_caustics', 0 ], [ 'r_bloom', 0 ], [ 'r_volumetric', 0 ], [ 'r_pointshadows', 1 ] ] ) cvar.Cvar_SetValue( name, value );
+		flashlightOn = false; surfaceView = null; scene.background = new THREE.Color( 0, 0, 0 );
+		quake.d_lightstylevalue[ 1 ] = 256;
+		[ wall, lamp, red, ledge, water ].forEach( o => { o.visible = false; } );
+		floor.position.z = - .01; floorMaterial.color.setScalar( 0 ); post.R_BuildSunOccluder( null );
+		source( false ); draw( 1 ); mask = new Uint8Array( 480 * 270 );
+		const ray = new THREE.Raycaster(), hit = new THREE.Vector3(), plane = new THREE.Plane( new THREE.Vector3( 0, 0, 1 ), 0 );
+		for ( let y = 5; y < 260; y ++ ) for ( let x = 5; x < 475; x ++ ) {
+			ray.setFromCamera( new THREE.Vector2( ( x + .5 ) / 480 * 2 - 1, ( y + .5 ) / 270 * 2 - 1 ), camera );
+			if ( ray.ray.intersectPlane( plane, hit ) && hit.x > - 115 && hit.x < 115 && hit.y > - 95 && hit.y < 190 ) mask[ y * 480 + x ] = 1;
+		}
+		for ( let choice = 1; choice <= 4; choice ++ ) {
+			cvar.Cvar_SetValue( 'r_water_look', choice ); cvar.Cvar_SetValue( 'r_reflect', .6 );
+			const name = post.LIQUID_LOOKS[ choice - 1 ].name, off = frameWith( false ), on = frameWith( true ), signal = delta( off.image, on.image, wetOnly );
+			record( name + ': ordinary source produces a water glint over black transmission and environment', ! off.glError && ! on.glError && signal.changed > 15, { signal, glErrors: [ off.glError, on.glError ] } );
+			cvar.Cvar_SetValue( 'r_reflect', 0 ); const disabledOff = frameWith( false ), disabledOn = frameWith( true ), disabled = delta( disabledOff.image, disabledOn.image, wetOnly );
+			record( name + ': reflection off suppresses the isolated ordinary-source glint', ! disabledOff.glError && ! disabledOn.glError && disabled.changed === 0, { disabled } );
+		}
+		cvar.Cvar_SetValue( 'r_water_look', 1 ); cvar.Cvar_SetValue( 'r_reflect', .6 );
+		const helperOff = frameWith( false ), helperOn = frameWith( true, 0, 1, 'light' ), helperSignal = delta( helperOff.image, helperOn.image, wetOnly );
+		const helper = post.R_GetWorldLights()[ 0 ];
+		record( 'invisible baked-light helper cannot fabricate a punctual water highlight', ! helperOn.glError && helper?.classname === 'light' && helper.emitter === 0 && helperSignal.changed === 0, { helperSignal, classname: helper?.classname, emitter: helper?.emitter } );
+		const off = frameWith( false ), left = frameWith( true, - 60 ), right = frameWith( true, 60 );
+		const parsedTorch = post.R_GetWorldLights()[ 0 ];
+		record( 'public entity parser identifies the visible torch without invented emitter metadata', parsedTorch?.classname === 'light_torch_small_walltorch' && parsedTorch.emitter === 1 && parsedTorch.style === 1 && parsedTorch.flicker === 0, { classname: parsedTorch?.classname, emitter: parsedTorch?.emitter, style: parsedTorch?.style, flicker: parsedTorch?.flicker } );
+		const leftPosition = centroid( off.image, left.image ), rightPosition = centroid( off.image, right.image );
+		record( 'moving the source moves its surface highlight', ! left.glError && ! right.glError && leftPosition.energy > 100 && rightPosition.energy > 100 && rightPosition.x > leftPosition.x + 5, { leftPosition, rightPosition } );
+		const first = frameWith( true, 0, 1 ), later = frameWith( true, 0, 2.7 ), motion = delta( first.image, later.image, wetOnly );
+		record( 'existing live liquid ripples animate the ordinary-source glint', ! first.glError && ! later.glError && motion.changed > 15, { motion } );
+		cvar.Cvar_SetValue( 'r_newer_lighting', 0 ); const unlitOff = frameWith( false ), unlitOn = frameWith( true ), unlit = delta( unlitOff.image, unlitOn.image, wetOnly );
+		record( 'lighting off suppresses the ordinary-source glint', unlit.changed === 0, unlit ); cvar.Cvar_SetValue( 'r_newer_lighting', 1 );
+		cvar.Cvar_SetValue( 'r_newer_water', 0 ); const nativeOff = frameWith( false ), nativeOn = frameWith( true ), native = delta( nativeOff.image, nativeOn.image, wetOnly );
+		record( 'liquids off suppresses the ordinary-source glint', native.changed === 0, native ); cvar.Cvar_SetValue( 'r_newer_water', 1 );
+		floor.position.z = 8; const dryOff = frameWith( false ), dryOn = frameWith( true ), dry = delta( dryOff.image, dryOn.image, wetOnly ); floor.position.z = - .01;
+		record( 'dry foreground before the interface receives no water glint', dry.changed === 0, dry );
+		// The blocker is supplied to the existing world-shadow builder and is
+		// drawn at the same position. It sits between source and pool, beyond
+		// the camera's ray to the central glint; this checks actual occlusion.
+		const openOff = frameWith( false ), openOn = frameWith( true );
+		blocker = new THREE.Mesh( new THREE.PlaneGeometry( 256, 160 ), new THREE.MeshBasicMaterial( { color: 0, side: THREE.DoubleSide } ) ); blocker.position.set( 0, 60, 35 ); scene.add( blocker );
+		post.R_BuildSunOccluder( { firstmodelsurface: 0, nummodelsurfaces: 1, surfaces: [ { flags: 0, plane: { normal: [ 0, 0, 1 ], dist: 35 }, texinfo: { texture: { name: 'stone' } }, polys: { numverts: 4, verts: [ [ - 128, - 20, 35 ], [ 128, - 20, 35 ], [ 128, 140, 35 ], [ - 128, 140, 35 ] ], next: null } } ] } );
+		const blockedOff = frameWith( false ), blockedOn = frameWith( true );
+		let candidates = 0, shadowed = 0;
+		for ( let i = 0; i < mask.length; i ++ ) if ( wetOnly( i ) ) {
+			const p = i * 4, glint = openOn.image[ p ] - openOff.image[ p ];
+			if ( glint <= 5 || Math.abs( openOff.image[ p ] - blockedOff.image[ p ] ) > 1 ) continue;
+			candidates ++; if ( blockedOn.image[ p ] - blockedOff.image[ p ] < glint * .5 ) shadowed ++;
+		}
+		record( 'existing world-shadow visibility occludes ordinary water highlights', ! blockedOff.glError && ! blockedOn.glError && candidates > 15 && shadowed > 15, { candidates, shadowed, shadowStatus: post.R_PointShadowStatus() } );
+	} catch ( error ) {
+		record( 'ordinary-source glint trial completes', false, { error: String( error.stack || error ) } );
+	} finally {
+		if ( blocker ) { scene.remove( blocker ); blocker.geometry.dispose(); blocker.material.dispose(); }
+		post.R_BuildSunOccluder( null ); model.entities = saved.entities; floor.position.z = saved.z; floorMaterial.color.copy( saved.colour );
+		[ wall, lamp, red, ledge, water ].forEach( ( o, i ) => { o.visible = saved.visible[ i ]; } );
+		surfaceView = saved.view; flashlightOn = saved.flashlight; flashlightAim = saved.aim; scene.background = saved.background;
+		quake.d_lightstylevalue[ 1 ] = saved.style1;
+		vars.forEach( ( v, i ) => cvar.Cvar_Set( v.name, settings[ i ] ) ); cvar.Cvar_Set( 'r_pointshadows', saved.shadow ); post.R_BuildWorldLights( model ); probes.R_WaterProbeClear(); running = false;
+	}
+	publish( evidence.sourceGlintFailures.length ? 'FAIL — ordinary water glints' : 'PASS — ordinary water glints' );
+};
+
+// Pigmented but black-baked material: focus only light actually reaching it.
+// Source × caustic off/on differences exclude Toxic emission and ordinary
+// diffuse/scattering changes from the measured projected-light contribution.
+document.querySelector( '#incident-caustic-checks' ).onclick = () => {
+	if ( running ) return;
+	running = true; evidence.incidentCausticChecks = []; evidence.incidentCausticFailures = [];
+	const record = ( name, passed, data ) => { evidence.incidentCausticChecks.push( { name, passed, ...data } ); if ( ! passed ) evidence.incidentCausticFailures.push( name ); };
+	if ( ! cvar.Cvar_FindVar( post.r_pointshadows.name ) ) cvar.Cvar_RegisterVariable( post.r_pointshadows );
+	const settings = vars.map( v => v.string ), saved = { entities: model.entities, geometry: floor.geometry, material: floor.material, position: floor.position.clone(),
+		view: surfaceView, flashlight: flashlightOn, aim: flashlightAim, shadow: post.r_pointshadows.string,
+		visible: [ wall, lamp, red, ledge, water ].map( o => o.visible ) };
+	const white = new THREE.DataTexture( new Uint8Array( [ 255, 255, 255, 255 ] ), 1, 1 ); white.needsUpdate = true;
+	const material = new THREE.MeshLambertMaterial( { map: white, color: new THREE.Color( .35, .45, .25 ) } ); post.R_RegisterDetail( material, null );
+	const horizontal = new THREE.PlaneGeometry( 256, 320 ), vertical = new THREE.PlaneGeometry( 256, 160 ); vertical.rotateX( Math.PI / 2 );
+	let blocker = null;
+	const roi = i => Math.abs( i % 480 - 240 ) < 30 && Math.abs( Math.floor( i / 480 ) - 135 ) < 30;
+	function pair( light, verticalView = false ) {
+		// Deliberately illuminate above the grade's black cutoff: the off-caustic
+		// diffuse control must be visible too, not merely present in float HDR.
+		model.entities = light ? '{ "classname" "light" "origin" "' + ( verticalView ? '0 176 32' : '100 48 80' ) + '" "light" "1600" "_color" "1 .6 .2" }' : '';
+		post.R_BuildWorldLights( model );
+		cvar.Cvar_SetValue( 'r_caustics', 0 ); const offError = draw( 1, false, 80, ! verticalView ), off = pixels();
+		cvar.Cvar_SetValue( 'r_caustics', 1 ); const onError = draw( 1, false, 80, ! verticalView ), on = pixels();
+		return { off, on, glError: offError || onError };
+	}
+	function focus( absent, present ) {
+		let changed = 0, maximum = 0, energy = 0, total = 0;
+		for ( let i = 0; i < present.off.length / 4; i ++ ) if ( roi( i ) ) {
+			let signal = 0;
+			for ( let c = 0; c < 3; c ++ ) { const p = i * 4 + c; signal = Math.max( signal, ( present.on[ p ] - present.off[ p ] ) - ( absent.on[ p ] - absent.off[ p ] ) ); }
+			total ++; if ( signal > 1 ) changed ++; maximum = Math.max( maximum, signal ); energy += Math.max( 0, signal );
+		}
+		return { total, changed, maximum, energy };
+	}
+	try {
+		for ( const [ name, value ] of [ [ 'r_hdr', 1 ], [ 'r_newer_water', 1 ], [ 'r_newer_lighting', 1 ], [ 'r_newer_normals', 0 ], [ 'r_reflect', 0 ], [ 'r_bounce', 0 ], [ 'r_mist', 0 ], [ 'r_bloom', 0 ], [ 'r_volumetric', 0 ], [ 'r_pointshadows', 1 ] ] ) cvar.Cvar_SetValue( name, value );
+		flashlightOn = false; surfaceView = null; [ wall, lamp, red, ledge, water ].forEach( o => { o.visible = false; } );
+		floor.material = material; floor.geometry = horizontal; floor.position.set( 0, 48, - 64 ); post.R_BuildSunOccluder( null );
+		for ( let choice = 1; choice <= 4; choice ++ ) {
+			cvar.Cvar_SetValue( 'r_water_look', choice ); const name = post.LIQUID_LOOKS[ choice - 1 ].name;
+			material.color.setRGB( .35, .45, .25 ); const absent = pair( false ), present = pair( true ), network = focus( absent, present );
+			const diffuse = delta( absent.off, present.off, roi );
+			record( name + ': received source light creates a caustic network on black-baked pigmented stone', ! absent.glError && ! present.glError && network.changed > 20 && diffuse.changed > 20, { network, diffuse, glErrors: [ absent.glError, present.glError ] } );
+			material.color.setScalar( 0 ); const blackAbsent = pair( false ), blackPresent = pair( true ), black = focus( blackAbsent, blackPresent );
+			record( name + ': zero pigment receives no extra source-focused caustics', ! blackAbsent.glError && ! blackPresent.glError && black.changed === 0, { black } );
+		}
+		// Shadow the source's route to the receiver without blocking the camera.
+		cvar.Cvar_SetValue( 'r_water_look', 1 ); material.color.setRGB( .35, .45, .25 );
+		const openAbsent = pair( false ), openPresent = pair( true ), open = focus( openAbsent, openPresent );
+		blocker = new THREE.Mesh( new THREE.PlaneGeometry( 160, 160 ), new THREE.MeshBasicMaterial( { color: 0, side: THREE.DoubleSide } ) ); blocker.rotation.y = Math.PI / 2; blocker.position.set( 50, 48, 0 ); scene.add( blocker );
+		post.R_BuildSunOccluder( { firstmodelsurface: 0, nummodelsurfaces: 1, surfaces: [ { flags: 0, plane: { normal: [ 1, 0, 0 ], dist: 50 }, texinfo: { texture: { name: 'stone' } }, polys: { numverts: 4, verts: [ [ 50, - 32, - 80 ], [ 50, 128, - 80 ], [ 50, 128, 80 ], [ 50, - 32, 80 ] ], next: null } } ] } );
+		const blockedAbsent = pair( false ), blockedPresent = pair( true ), blocked = focus( blockedAbsent, blockedPresent );
+		record( 'world occlusion suppresses the source-focused caustic network', ! blockedAbsent.glError && ! blockedPresent.glError && open.changed > 20 && blocked.energy < open.energy * .2, { open, blocked, shadowStatus: post.R_PointShadowStatus() } );
+		scene.remove( blocker ); blocker.geometry.dispose(); blocker.material.dispose(); blocker = null; post.R_BuildSunOccluder( null );
+		// The actual START front wall lies exactly on the pool's max XY bound.
+		// An inset control catches a vacuous wall test and quantifies edge loss.
+		floor.geometry = vertical; floor.position.set( 0, 207.75, - 64 ); surfaceView = { depth: 48, angle: 65, underwater: false };
+		const insetAbsent = pair( false, true ), insetPresent = pair( true, true ), inset = focus( insetAbsent, insetPresent );
+		floor.position.y = 208; const edgeAbsent = pair( false, true ), edgePresent = pair( true, true ), edge = focus( edgeAbsent, edgePresent );
+		record( 'vertical receiver on the exact shoreline retains its projected network', ! edgeAbsent.glError && ! edgePresent.glError && inset.changed > 20 && edge.changed >= inset.changed * .85, { inset, edge } );
+		floor.position.y = 210; const outsideAbsent = pair( false, true ), outsidePresent = pair( true, true ), outside = focus( outsideAbsent, outsidePresent );
+		record( 'wall two units outside the water footprint receives no caustic projection', ! outsideAbsent.glError && ! outsidePresent.glError && outside.changed === 0, { outside } );
+		floor.position.set( 0, 208, 64 ); surfaceView.angle = 90;
+		const dryAbsent = pair( false, true ), dryPresent = pair( true, true ), dry = focus( dryAbsent, dryPresent ), dryDiffuse = delta( dryAbsent.off, dryPresent.off, roi );
+		record( 'visible dry wall above the water receives light but no caustic projection', ! dryAbsent.glError && ! dryPresent.glError && dryDiffuse.changed > 20 && dry.changed === 0, { dry, dryDiffuse } );
+	} catch ( error ) {
+		record( 'incident caustic trial completes', false, { error: String( error.stack || error ) } );
+	} finally {
+		if ( blocker ) { scene.remove( blocker ); blocker.geometry.dispose(); blocker.material.dispose(); }
+		post.R_BuildSunOccluder( null ); model.entities = saved.entities; floor.geometry = saved.geometry; floor.material = saved.material; floor.position.copy( saved.position );
+		[ wall, lamp, red, ledge, water ].forEach( ( o, i ) => { o.visible = saved.visible[ i ]; } ); surfaceView = saved.view; flashlightOn = saved.flashlight; flashlightAim = saved.aim;
+		vars.forEach( ( v, i ) => cvar.Cvar_Set( v.name, settings[ i ] ) ); cvar.Cvar_Set( 'r_pointshadows', saved.shadow ); post.R_BuildWorldLights( model ); probes.R_WaterProbeClear();
+		horizontal.dispose(); vertical.dispose(); material.dispose(); white.dispose(); running = false;
+	}
+	publish( evidence.incidentCausticFailures.length ? 'FAIL — incident caustics' : 'PASS — incident caustics' );
+};
+
+// Public underwater-only view/volume controls. Fixed source style separates
+// caustic animation from flame flicker, while off/on differences isolate the
+// existing volume pass from lit receivers and liquid absorption.
+document.querySelector( '#underwater-checks' ).onclick = () => {
+	if ( running ) return;
+	running = true; evidence.underwaterChecks = []; evidence.underwaterFailures = [];
+	const record = ( name, passed, data ) => { evidence.underwaterChecks.push( { name, passed, ...data } ); if ( ! passed ) evidence.underwaterFailures.push( name ); };
+	const options = [ ...vars, post.r_pillars, post.r_pointshadows, quake.r_waterwarp ];
+	for ( const v of options ) if ( ! cvar.Cvar_FindVar( v.name ) ) cvar.Cvar_RegisterVariable( v );
+	const settings = options.map( v => v.string ), saved = { entities: model.entities, z: floor.position.z, colour: floorMaterial.color.clone(), side: floorMaterial.side,
+		wallColour: wallMaterial.color.clone(), wallZ: wall.position.z, view: surfaceView, flashlight: flashlightOn, aim: flashlightAim,
+		style1: quake.d_lightstylevalue[ 1 ], visible: [ wall, lamp, red, ledge, water ].map( o => o.visible ) };
+	let blocker = null;
+	const roi = i => Math.abs( i % 480 - 240 ) < 60 && Math.abs( Math.floor( i / 480 ) - 135 ) < 45;
+	function capture( time = 1 ) { const glError = draw( time ); return { image: pixels(), glError }; }
+	function motion() { const first = capture( 1 ), later = capture( 2.7 ); return { ...delta( first.image, later.image, roi ), glErrors: [ first.glError, later.glError ], first, later }; }
+	function plain( result ) { const { first, later, ...metrics } = result; return metrics; }
+	function meanDifference( a, b ) { let sum = 0, count = 0; for ( let i = 0; i < a.length / 4; i ++ ) if ( roi( i ) ) for ( let c = 0; c < 3; c ++ ) { sum += Math.abs( a[ i * 4 + c ] - b[ i * 4 + c ] ); count ++; } return sum / count; }
+	function source( active ) {
+		model.entities = active ? '{ "classname" "light_torch_small_walltorch" "origin" "0 120 96" "light" "1200" "style" "1" "_color" "1 .6 .2" }' : '';
+		post.R_BuildWorldLights( model ); probes.R_WaterProbeClear();
+	}
+	function shaftPair( time = 1 ) {
+		cvar.Cvar_SetValue( 'r_volumetric', 0 ); const off = capture( time ); cvar.Cvar_SetValue( 'r_volumetric', 1 ); const on = capture( time );
+		return { off, on, signal: delta( off.image, on.image, roi ), mean: meanDifference( off.image, on.image ) };
+	}
+	try {
+		for ( const [ name, value ] of [ [ 'r_hdr', 1 ], [ 'r_newer_water', 1 ], [ 'r_newer_lighting', 0 ], [ 'r_water_look', 1 ], [ 'r_reflect', 0 ], [ 'r_reflect_screen', 0 ], [ 'r_mist', 0 ], [ 'r_caustics', 0 ], [ 'r_volumetric', 0 ], [ 'r_bloom', 0 ], [ 'r_bounce', 0 ], [ 'r_pillars', .5 ], [ 'r_pointshadows', 1 ] ] ) cvar.Cvar_SetValue( name, value );
+		flashlightOn = false; quake.d_lightstylevalue[ 1 ] = 256;
+		[ wall, lamp, red, ledge, water ].forEach( o => { o.visible = false; } );
+		floorMaterial.color.setScalar( 3 ); floor.position.z = - 96; surfaceView = { depth: - 32, angle: 180, underwater: true, contents: - 3 }; source( false );
+		cvar.Cvar_SetValue( 'r_waterwarp', 0 ); const steady = motion();
+		record( 'underwater checker is temporally stable with vision warp off', steady.glErrors.every( e => e === 0 ) && steady.changed === 0, plain( steady ) );
+		cvar.Cvar_SetValue( 'r_waterwarp', 1 ); const swaying = motion(), restraint = meanDifference( steady.first.image, swaying.first.image );
+		record( 'source-free underwater vision moves gently with the existing warp control', swaying.glErrors.every( e => e === 0 ) && swaying.changed > 15 && restraint < 4, { ...plain( swaying ), meanWarpDifference: restraint } );
+		for ( const [ label, active, contents ] of [ [ 'dry', false, - 1 ], [ 'lava', true, - 5 ] ] ) {
+			surfaceView.underwater = active; surfaceView.contents = contents; const control = motion();
+			record( label + ' contents do not inherit underwater vision sway', control.glErrors.every( e => e === 0 ) && control.changed === 0, plain( control ) );
+		}
+		surfaceView.underwater = true; surfaceView.contents = - 3; cvar.Cvar_SetValue( 'r_newer_water', 0 ); const disabled = motion();
+		record( 'liquids off disables underwater vision sway', disabled.glErrors.every( e => e === 0 ) && disabled.changed === 0, plain( disabled ) ); cvar.Cvar_SetValue( 'r_newer_water', 1 );
+		// Compare at one time: existing Snell refraction may animate the bank,
+		// but the additional underwater-only view sway must leave it alone.
+		floor.position.z = 8; floorMaterial.side = THREE.DoubleSide; floorMaterial.needsUpdate = true; surfaceView.angle = 0;
+		cvar.Cvar_SetValue( 'r_waterwarp', 0 ); const bankOff = capture(); cvar.Cvar_SetValue( 'r_waterwarp', 1 ); const bankOn = capture(), bank = delta( bankOff.image, bankOn.image, roi );
+		record( 'extra underwater vision sway does not displace the dry bank beyond the interface', ! bankOff.glError && ! bankOn.glError && bank.changed === 0, bank );
+		// Black receivers and a horizontal submerged view isolate scattering.
+		floor.position.z = - 96; floorMaterial.color.setScalar( 0 ); wallMaterial.color.setScalar( 0 ); wall.position.z = - 32; wall.visible = true;
+		surfaceView = { depth: - 32, angle: 90, underwater: true, contents: - 3 };
+		cvar.Cvar_SetValue( 'r_waterwarp', 0 ); cvar.Cvar_SetValue( 'r_newer_lighting', 1 ); cvar.Cvar_SetValue( 'r_caustics', 1 ); post.R_BuildSunOccluder( null ); source( true );
+		const lit = shaftPair();
+		record( 'source-lit underwater caustic shafts appear over black receiver radiance', ! lit.off.glError && ! lit.on.glError && lit.signal.changed > 15, { signal: lit.signal, mean: lit.mean } );
+		const later = shaftPair( 2.7 ); let patternChanged = 0;
+		for ( let i = 0; i < lit.off.image.length / 4; i ++ ) if ( roi( i ) ) {
+			let difference = 0; for ( let c = 0; c < 3; c ++ ) { const p = i * 4 + c; difference = Math.max( difference, Math.abs( ( lit.on.image[ p ] - lit.off.image[ p ] ) - ( later.on.image[ p ] - later.off.image[ p ] ) ) ); }
+			if ( difference > 1 ) patternChanged ++;
+		}
+		record( 'underwater shaft pattern animates while the authored source intensity stays fixed', ! later.on.glError && patternChanged > 15, { patternChanged } );
+		source( false ); const dark = shaftPair(); record( 'underwater shafts manufacture no light without a source', dark.signal.changed === 0, dark.signal ); source( true );
+		cvar.Cvar_SetValue( 'r_caustics', 0 ); const causticsOff = shaftPair(); record( 'caustics off suppresses its matching underwater shafts', causticsOff.signal.changed === 0, causticsOff.signal ); cvar.Cvar_SetValue( 'r_caustics', 1 );
+		for ( const [ label, active, contents ] of [ [ 'dry submerged-coordinate view', false, - 1 ], [ 'lava', true, - 5 ] ] ) {
+			surfaceView.underwater = active; surfaceView.contents = contents; const control = shaftPair();
+			record( label + ' keeps the prior no-air-haze point-light behavior', control.signal.changed === 0, control.signal );
+		}
+		surfaceView.depth = 32; surfaceView.underwater = false; surfaceView.contents = - 1;
+		const above = shaftPair(); record( 'above-surface view retains the accepted no-air-haze appearance', above.signal.changed === 0, above.signal );
+		surfaceView.depth = - 32;
+		surfaceView.underwater = true; surfaceView.contents = - 3;
+		cvar.Cvar_SetValue( 'r_newer_water', 0 ); const waterOff = shaftPair(); record( 'liquids off suppresses underwater shafts', waterOff.signal.changed === 0, waterOff.signal ); cvar.Cvar_SetValue( 'r_newer_water', 1 );
+		cvar.Cvar_SetValue( 'r_newer_lighting', 0 ); const lightingOff = shaftPair(); record( 'lighting off bypasses underwater shaft rendering', lightingOff.signal.changed === 0, lightingOff.signal ); cvar.Cvar_SetValue( 'r_newer_lighting', 1 );
+		// The existing shoulder beam stays intact; caustics only modulate its
+		// immersed segment. Black receivers exclude diffuse flashlight changes.
+		source( false ); flashlightOn = true; cvar.Cvar_SetValue( 'r_volumetric', 1 );
+		// draw seeds the shoulder beam before beginning its frame. Settle the
+		// preceding lighting-off control before comparing two enabled samples.
+		capture();
+		function beamSample() {
+			const render = renderer.render; let volume = null;
+			renderer.render = function ( drawnScene, drawnCamera ) {
+				const result = render.call( this, drawnScene, drawnCamera ), u = drawnScene.children[ 0 ]?.material?.uniforms;
+				if ( u?.uScatter ) {
+					const target = this.getRenderTarget(), width = Math.min( 30, target.width ), height = Math.min( 22, target.height );
+					const half = target.texture.type === THREE.HalfFloatType, floating = target.texture.type === THREE.FloatType;
+					const buffer = half ? new Uint16Array( width * height * 4 ) : floating ? new Float32Array( width * height * 4 ) : new Uint8Array( width * height * 4 );
+					this.readRenderTargetPixels( target, Math.floor( ( target.width - width ) / 2 ), Math.floor( ( target.height - height ) / 2 ), width, height, buffer );
+					volume = { spotOn: u.uSpotOn.value, waterView: u.uWaterView.value, caustic: u.uCaustic.value,
+						values: Array.from( buffer, value => half ? THREE.DataUtils.fromHalfFloat( value ) : floating ? value : value / 255 ) };
+				}
+				return result;
+			};
+			try { return { ...capture(), volume }; } finally { renderer.render = render; }
+		}
+		function beamPatternPair() {
+			cvar.Cvar_SetValue( 'r_caustics', 0 ); const off = beamSample(); cvar.Cvar_SetValue( 'r_caustics', 1 ); const on = beamSample();
+			let rawChanged = 0, rawMaximum = 0, rawSum = 0, rawBase = 0, rawCount = 0;
+			if ( off.volume && on.volume ) for ( let i = 0; i < off.volume.values.length; i ++ ) if ( i % 4 !== 3 ) {
+				const difference = on.volume.values[ i ] - off.volume.values[ i ];
+				if ( difference > 1e-7 ) rawChanged ++; rawMaximum = Math.max( rawMaximum, difference ); rawSum += difference; rawBase += off.volume.values[ i ]; rawCount ++;
+			}
+			const state = sample => sample.volume && { spotOn: sample.volume.spotOn, waterView: sample.volume.waterView, caustic: sample.volume.caustic };
+			return { off, on, signal: delta( off.image, on.image, roi ), mean: meanDifference( off.image, on.image ),
+				linearVolume: { changed: rawChanged, maximum: rawMaximum, mean: rawCount ? rawSum / rawCount : null, baseMean: rawCount ? rawBase / rawCount : null, samples: rawCount, off: state( off ), on: state( on ) } };
+		}
+		const waterBeam = beamPatternPair();
+		// The black calibration receiver places this very small change below
+		// the display-grade cutoff. Check actual linear light, not a false claim
+		// that the extra flashlight modulation is visibly brighter here.
+		const linear = waterBeam.linearVolume;
+		record( 'caustics subtly modulate the existing linear flashlight volume', ! waterBeam.off.glError && ! waterBeam.on.glError
+			&& linear.off?.spotOn === 1 && linear.on?.spotOn === 1 && linear.off.waterView === 1 && linear.on.waterView === 1
+			&& linear.off.caustic === 0 && linear.on.caustic > 0 && linear.changed > 5 && linear.mean > 0 && linear.mean < linear.baseMean * .6 && waterBeam.signal.maximum <= 3,
+			{ signal: waterBeam.signal, mean: waterBeam.mean, linearVolume: linear, visibilityLimit: 'Positive linear modulation can remain below the black display-grade cutoff; no extra visible brightness is claimed for this fixture.' } );
+		cvar.Cvar_SetValue( 'r_volumetric', 0 ); const beamVolumeOff = beamPatternPair();
+		record( 'volume off removes the underwater flashlight caustic modulation', beamVolumeOff.signal.changed === 0 && beamVolumeOff.linearVolume.samples === 0, { signal: beamVolumeOff.signal, linearSamples: beamVolumeOff.linearVolume.samples } ); cvar.Cvar_SetValue( 'r_volumetric', 1 );
+		surfaceView.depth = 32; surfaceView.underwater = false; surfaceView.contents = - 1;
+		const airBeam = beamPatternPair(); flashlightOn = false; const withoutBeam = capture();
+		const retainedBeam = delta( airBeam.on.image, withoutBeam.image, roi );
+		record( 'above-water flashlight retains its real beam without water caustic modulation', airBeam.signal.changed === 0 && airBeam.linearVolume.changed === 0 && retainedBeam.changed > 15, { modulation: airBeam.signal, linearVolume: airBeam.linearVolume, retainedBeam } );
+		surfaceView.depth = - 32; surfaceView.underwater = true; surfaceView.contents = - 3; source( true );
+		// An opaque cap above the liquid blocks the light's route to the water
+		// while leaving the submerged horizontal view unobstructed.
+		blocker = new THREE.Mesh( new THREE.PlaneGeometry( 1024, 1024 ), new THREE.MeshBasicMaterial( { color: 0, side: THREE.DoubleSide } ) ); blocker.position.set( 0, 48, 16 ); scene.add( blocker );
+		post.R_BuildSunOccluder( { firstmodelsurface: 0, nummodelsurfaces: 1, surfaces: [ { flags: 0, plane: { normal: [ 0, 0, 1 ], dist: 16 }, texinfo: { texture: { name: 'stone' } }, polys: { numverts: 4, verts: [ [ - 512, - 464, 16 ], [ 512, - 464, 16 ], [ 512, 560, 16 ], [ - 512, 560, 16 ] ], next: null } } ] } );
+		const blocked = shaftPair();
+		record( 'existing world shadow blocks caustic light shafts below an opaque cap', ! blocked.on.glError && lit.mean > 0 && blocked.mean < lit.mean * .2, { unblockedMean: lit.mean, blockedMean: blocked.mean, shadowStatus: post.R_PointShadowStatus() } );
+	} catch ( error ) {
+		record( 'underwater trial completes', false, { error: String( error.stack || error ) } );
+	} finally {
+		if ( blocker ) { scene.remove( blocker ); blocker.geometry.dispose(); blocker.material.dispose(); } post.R_BuildSunOccluder( null );
+		model.entities = saved.entities; floor.position.z = saved.z; floorMaterial.color.copy( saved.colour ); floorMaterial.side = saved.side; floorMaterial.needsUpdate = true;
+		wallMaterial.color.copy( saved.wallColour ); wall.position.z = saved.wallZ; [ wall, lamp, red, ledge, water ].forEach( ( o, i ) => { o.visible = saved.visible[ i ]; } );
+		surfaceView = saved.view; flashlightOn = saved.flashlight; flashlightAim = saved.aim; quake.d_lightstylevalue[ 1 ] = saved.style1;
+		options.forEach( ( v, i ) => cvar.Cvar_Set( v.name, settings[ i ] ) ); post.R_BuildWorldLights( model ); probes.R_WaterProbeClear(); running = false;
+	}
+	publish( evidence.underwaterFailures.length ? 'FAIL — underwater shafts and vision' : 'PASS — underwater shafts and vision' );
+};
+
+// Luminance-adaptive caustics on fixed pigmented receivers. Neutral display
+// controls make pixel ratios interpretable; production defaults are restored.
+document.querySelector( '#adaptive-caustic-checks' ).onclick = () => {
+	if ( running ) return;
+	running = true; evidence.adaptiveCausticChecks = []; evidence.adaptiveCausticFailures = [];
+	const record = ( name, passed, data ) => { evidence.adaptiveCausticChecks.push( { name, passed, ...data } ); if ( ! passed ) evidence.adaptiveCausticFailures.push( name ); };
+	const settings = vars.map( v => v.string ), saved = { entities: model.entities, geometry: floor.geometry, material: floor.material, position: floor.position.clone(),
+		view: surfaceView, flashlight: flashlightOn, aim: flashlightAim, visible: [ wall, lamp, red, ledge, water ].map( o => o.visible ) };
+	const pigment = [ .18, .24, .12 ], white = new THREE.DataTexture( new Uint8Array( [ 255, 255, 255, 255 ] ), 1, 1 ); white.needsUpdate = true;
+	const material = new THREE.MeshLambertMaterial( { map: white, color: new THREE.Color( ...pigment ) } ); post.R_RegisterDetail( material, null );
+	const horizontal = new THREE.PlaneGeometry( 256, 320 ), vertical = new THREE.PlaneGeometry( 256, 160 ); vertical.rotateX( Math.PI / 2 );
+	let wallView = false, receiverMask = null;
+	const gallery = document.querySelector( '#look-views' ); gallery.replaceChildren();
+	const roi = i => receiverMask?.[ i ] === 1;
+	function receiverMaskFor( dry = false ) {
+		// Cover the actual visible receiver rather than a small screen crop
+		// that can miss every bright strand on a vertical caustic plane.
+		const mask = new Uint8Array( 480 * 270 ), ray = new THREE.Raycaster();
+		for ( let y = 0; y < 270; y ++ ) for ( let x = 0; x < 480; x ++ ) {
+			ray.setFromCamera( new THREE.Vector2( ( x + .5 ) / 480 * 2 - 1, ( y + .5 ) / 270 * 2 - 1 ), camera );
+			const hit = ray.intersectObject( floor, false )[ 0 ]?.point;
+			if ( ! hit || Math.abs( hit.x ) >= 112 ) continue;
+			if ( dry ? hit.z <= 2 : ( wallView ? hit.z <= - 136 || hit.z >= - 8 : hit.y <= - 96 || hit.y >= 192 ) ) continue;
+			mask[ y * 480 + x ] = 1;
+		}
+		return mask;
+	}
+	function preview( src, label ) {
+		const figure = document.createElement( 'figure' ), caption = document.createElement( 'figcaption' ), image = document.createElement( 'img' );
+		caption.textContent = label; image.src = src; image.alt = label; image.dataset.adaptive = label; figure.append( caption, image ); gallery.append( figure );
+	}
+	const luma = ( p, i ) => .2126 * p[ i ] + .7152 * p[ i + 1 ] + .0722 * p[ i + 2 ];
+	function captureAdaptive( strength ) { cvar.Cvar_SetValue( 'r_caustics', strength ); const glError = draw( 1, false, 80, ! wallView ); return { image: pixels(), glError }; }
+	function pair( level, label = null ) {
+		material.emissive.setRGB( ...pigment.map( c => c * level ) );
+		const off = captureAdaptive( 0 ), offPreview = label ? renderer.domElement.toDataURL( 'image/png' ) : null;
+		const on = captureAdaptive( 1 ), onPreview = label ? renderer.domElement.toDataURL( 'image/png' ) : null, gains = [];
+		if ( label ) { preview( offPreview, label + ' — caustics off' ); preview( onPreview, label + ' — caustics on' ); }
+		let brightened = 0, dimmed = 0, maximumDimming = 0, hueError = 0, total = 0, before = 0, after = 0;
+		for ( let i = 0; i < off.image.length / 4; i ++ ) if ( roi( i ) ) {
+			const p = i * 4, a = luma( off.image, p ), b = luma( on.image, p ), d = b - a; total ++; before += a; after += b;
+			if ( d > 1 ) brightened ++; if ( d < - 1 ) dimmed ++;
+			if ( a > 8 ) { if ( d > 1 ) gains.push( d / a ); maximumDimming = Math.max( maximumDimming, - d / a ); }
+			if ( a > 8 && b > 8 ) {
+				const sa = off.image[ p ] + off.image[ p + 1 ] + off.image[ p + 2 ], sb = on.image[ p ] + on.image[ p + 1 ] + on.image[ p + 2 ];
+				for ( let c = 0; c < 3; c ++ ) hueError = Math.max( hueError, Math.abs( off.image[ p + c ] / sa - on.image[ p + c ] / sb ) );
+			}
+		}
+		gains.sort( ( a, b ) => a - b );
+		return { off, on, metrics: { level, brightened, dimmed, total, peakRelativeGain: gains.length ? gains[ Math.floor( ( gains.length - 1 ) * .95 ) ] : 0,
+			maximumDimming, hueError, meanBefore: before / total, meanAfter: after / total, glErrors: [ off.glError, on.glError ] } };
+	}
+	try {
+		for ( const [ name, value ] of [ [ 'r_hdr', 1 ], [ 'r_dynres', 0 ], [ 'r_newer_water', 1 ], [ 'r_newer_lighting', 1 ], [ 'r_newer_normals', 0 ], [ 'r_water_look', 1 ],
+			[ 'r_reflect', 0 ], [ 'r_mist', 0 ], [ 'r_bloom', 0 ], [ 'r_volumetric', 0 ], [ 'r_bounce', 0 ], [ 'r_newbright', 1 ], [ 'r_newcontrast', 1 ] ] ) cvar.Cvar_SetValue( name, value );
+		model.entities = ''; post.R_BuildWorldLights( model ); flashlightOn = false; floor.material = material;
+		[ wall, lamp, red, ledge, water ].forEach( o => { o.visible = false; } );
+		for ( const receiver of [ 'floor', 'lower wall' ] ) {
+			wallView = receiver === 'lower wall'; floor.geometry = wallView ? vertical : horizontal;
+			floor.position.set( 0, wallView ? 207.75 : 48, - 64 ); surfaceView = wallView ? { depth: 48, angle: 55, underwater: false, contents: - 1 } : null;
+			captureAdaptive( 0 ); receiverMask = receiverMaskFor();
+			const levels = [ .25, .5, 1, 1.5, 2 ], samples = levels.map( level => pair( level, level === .25 ? 'Dark ' + receiver : level === 2 ? 'Bright ' + receiver : null ) ), dark = samples[ 0 ].metrics, bright = samples.at( - 1 ).metrics;
+			record( receiver + ': dark stone gains stronger relative highlights than bright stone', samples.every( s => s.metrics.glErrors.every( e => e === 0 ) )
+				&& dark.brightened > 20 && bright.brightened > 20 && bright.peakRelativeGain < dark.peakRelativeGain * .6, { ladder: samples.map( s => s.metrics ) } );
+			record( receiver + ': bright stone gains bounded inter-pattern shade while dark stone is not dimmed', bright.dimmed > 20 && dark.dimmed === 0 && bright.maximumDimming < .14,
+				{ dark, bright } );
+			record( receiver + ': adaptation retains the receiver hue', samples.every( s => s.metrics.hueError < .08 ), { maximumHueChange: Math.max( ...samples.map( s => s.metrics.hueError ) ) } );
+			// A strong source reserve must not lift an already bright receiver by
+			// a fraction of that reserve instead of its actual transmitted base.
+			model.entities = '{ "classname" "light" "origin" "' + ( wallView ? '0 176 32' : '100 48 80' ) + '" "light" "4000" "_color" "1 1 1" }'; post.R_BuildWorldLights( model );
+			const brightSource = pair( 2 );
+			record( receiver + ': bright highlights stay bounded even with a strong raw-source reserve', brightSource.metrics.glErrors.every( e => e === 0 ) && brightSource.metrics.brightened > 20 && brightSource.metrics.peakRelativeGain < .15, brightSource.metrics );
+			model.entities = ''; post.R_BuildWorldLights( model );
+			const transitions = [];
+			for ( const centreLevel of levels ) {
+				const low = pair( centreLevel - .005 ), high = pair( centreLevel + .005 ), change = delta( low.on.image, high.on.image, roi );
+				transitions.push( { level: centreLevel, ...change, glErrors: [ ...low.metrics.glErrors, ...high.metrics.glErrors ] } );
+			}
+			record( receiver + ': small illumination changes produce a smooth adaptation transition', transitions.every( t => t.glErrors.every( e => e === 0 ) && t.maximum <= 8 ), { transitions } );
+			material.color.setScalar( 0 ); const black = pair( 0 ), blackDifference = delta( black.off.image, black.on.image, roi ); material.color.setRGB( ...pigment );
+			record( receiver + ': unlit black receiver stays black with caustics enabled', black.metrics.meanBefore === 0 && black.metrics.meanAfter === 0 && blackDifference.changed === 0, blackDifference );
+			pair( 1 ); const disabledA = captureAdaptive( 0 ), disabledB = captureAdaptive( 0 ), disabled = delta( disabledA.image, disabledB.image, roi );
+			record( receiver + ': caustics off keeps the original illuminated receiver unchanged', disabled.changed === 0, disabled );
+			floor.position.z = wallView ? 64 : 8; if ( wallView ) surfaceView.angle = 90;
+			captureAdaptive( 0 ); receiverMask = receiverMaskFor( true );
+			const dry = pair( 1 ), dryDifference = delta( dry.off.image, dry.on.image, roi );
+			record( receiver + ': visible dry receiver above the water is not adapted', dry.metrics.meanBefore > 8 && dryDifference.changed === 0, { meanBefore: dry.metrics.meanBefore, ...dryDifference } );
+		}
+	} catch ( error ) {
+		record( 'adaptive caustic trial completes', false, { error: String( error.stack || error ) } );
+	} finally {
+		model.entities = saved.entities; floor.geometry = saved.geometry; floor.material = saved.material; floor.position.copy( saved.position );
+		[ wall, lamp, red, ledge, water ].forEach( ( o, i ) => { o.visible = saved.visible[ i ]; } ); surfaceView = saved.view; flashlightOn = saved.flashlight; flashlightAim = saved.aim;
+		vars.forEach( ( v, i ) => cvar.Cvar_Set( v.name, settings[ i ] ) ); post.R_BuildWorldLights( model ); probes.R_WaterProbeClear();
+		horizontal.dispose(); vertical.dispose(); material.dispose(); white.dispose(); running = false;
+	}
+	publish( evidence.adaptiveCausticFailures.length ? 'FAIL — adaptive caustics' : 'PASS — adaptive caustics' );
 };

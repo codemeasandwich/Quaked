@@ -23,7 +23,7 @@ import { Con_Printf, SZ_Write, SZ_Clear,
 	MSG_WriteString, MSG_WriteAngle, COM_Parse, com_token } from '../common/common.js';
 import { svc_signonnum, svc_time, svc_updatename, svc_updatefrags,
 	svc_updatecolors, svc_lightstyle, svc_updatestat, svc_setangle,
-	svc_setpause } from '../common/protocol.js';
+	svc_setpause, CLOAK_BODY_CAPABILITY } from '../common/protocol.js';
 import { STAT_TOTALSECRETS, STAT_TOTALMONSTERS, STAT_SECRETS, STAT_MONSTERS,
 	MAX_LIGHTSTYLES, SAVEGAME_COMMENT_LENGTH } from '../common/quakedef.js';
 import { NUM_FOR_EDICT, EDICT_NUM, EDICT_TO_PROG, PR_GetString, pr_global_struct } from '../progs/progs.js';
@@ -1421,6 +1421,9 @@ function Host_PreSpawn_f() {
 	}
 
 	SV_CheckSignon( 'prespawn' ); // a signon overflowed during play must not reach a client half cleared (card [34c])
+	// Old clients send no argument. Old servers ignore this new client's trailing
+	// argument. Exact matching and signon scope keep unknown peers on native bytes.
+	host_client.cloakBodyCapability = Cmd_Argc() === 2 && Cmd_Argv( 1 ) === CLOAK_BODY_CAPABILITY;
 	SZ_Write( host_client.message, sv.signon.data, sv.signon.cursize );
 	MSG_WriteByte( host_client.message, svc_signonnum );
 	MSG_WriteByte( host_client.message, 2 );
