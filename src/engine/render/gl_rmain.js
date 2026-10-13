@@ -1,5 +1,6 @@
 import { R_CloakFrame, R_CloakRestore, R_CloakReset, R_PostLastExposure } from '../common/hooks.js';
 import { R_FogInit, R_FogNewMap, R_FogApply } from './r_fog.js';
+import { R_SkyBoxInit, R_SkyBoxNewMap } from './r_skybox.js';
 /**
  * @module engine/render/gl_rmain
  *
@@ -2255,6 +2256,7 @@ export function R_Init() {
 	}
 
 	R_FogInit();
+	R_SkyBoxInit();
 	Cvar_RegisterVariable( r_portals );
 	Cvar_RegisterVariable( r_waterwarp );
 	Cvar_RegisterVariable( r_hdr );
@@ -2473,6 +2475,7 @@ function R_WarmShaders( renderer, scene, camera, extraMaterials=[], extraTexture
 export function R_NewMap() {
  R_CloakReset();
 	R_FogNewMap( cl?.worldmodel?.entities ); // the map's own fog (worldspawn "fog"), or none
+	R_SkyBoxNewMap( cl?.worldmodel?.entities ); // the map's skybox (worldspawn "sky"), or its scrolling sky
 	R_DemonBakeRelease();
 	// All paired local Newer arrivals share the existing physics/input hold;
 	// network games and recorded/timed demos retain their established clocks.

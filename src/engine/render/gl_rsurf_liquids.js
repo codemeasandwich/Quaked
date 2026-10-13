@@ -19,6 +19,7 @@
  */
 import * as THREE from 'three';
 import { R_FogSkyMaterial } from './r_fog.js';
+import { R_SkyBoxMaterial } from './r_skybox.js';
 import { R_NewerLightingActive } from '../common/hooks.js'; // installed by newer/mode.js
 import { cl } from '../client/client.js';
 import { R_RegisterGlow, R_GlowBoostForTexture, R_PostActive, R_WaterActive, R_PostNoteSky, R_LiquidOpacity, R_IsWaterTextureName, r_newdark } from '../common/hooks.js'; // installed by newer/render/gl_post.js
@@ -685,8 +686,9 @@ let alphaSkyMaterial = null;
  * Draws a frame's sky surfaces (from `DrawTextureChains`, gl_rsurf.js): two scrolling layers, the solid sky at
  * `realtime` * 8 and the alpha sky over it at `realtime` * 16, each surface's mesh kept on the surface and put in the
  * world's group. The sky materials are made on first use (a plain blue one when the map has no sky texture); under
- * the HDR pipeline they do not write depth, so the volumetric pass finds the openings, and they glow at 1.9. Does
- * nothing before the world's group exists.
+ * the HDR pipeline they do not write depth, so the volumetric pass finds the openings, and they glow at 1.9. With a
+ * skybox (r_skybox.js) the surfaces draw it instead, with the same rules, and the alpha layer is left out. Does nothing
+ * before the world's group exists.
  *
  * @param {?msurface_t} s the first sky surface of the frame's chain (linked through `texturechain`)
  */
@@ -737,6 +739,13 @@ export function R_DrawSkyChain( s ) {
 	if ( solidSkyMaterial && solidSkyMaterial.userData.glowBoost === undefined ) R_RegisterGlow( solidSkyMaterial, 1.9 );
 	if ( alphaSkyMaterial && alphaSkyMaterial.userData.glowBoost === undefined ) R_RegisterGlow( alphaSkyMaterial, 1.9 );
 
+	// a skybox (r_skybox.js) shows instead: the sky surfaces draw it, looked up by direction from whichever camera draws
+	// them, with the same depth, glow and fog rules as the scrolling sky; no cloud layer over it
+	const skyBoxMaterial = R_SkyBoxMaterial(), skyBox = skyBoxMaterial !== null;
+	if ( skyBox && skyBoxMaterial.depthWrite !== skyDepthWrite ) skyBoxMaterial.depthWrite = skyDepthWrite;
+	if ( skyBox && skyBoxMaterial.userData.glowBoost === undefined ) R_RegisterGlow( skyBoxMaterial, 1.9 );
+	const solidLayerMaterial = skyBox ? skyBoxMaterial : solidSkyMaterial;
+
 	// Solid sky layer (background, speed = realtime*8)
 	let solidSpeed = realtime * 8;
 	solidSpeed -= ( solidSpeed | 0 ) & ~127;
@@ -752,14 +761,14 @@ export function R_DrawSkyChain( s ) {
 			let mesh = fa._skyMesh;
 			if ( ! mesh ) {
 
-				mesh = new THREE.Mesh( geometry, solidSkyMaterial );
+				mesh = new THREE.Mesh( geometry, solidLayerMaterial );
 				mesh.userData.quakeSky = true;
 				fa._skyMesh = mesh;
 
 			} else {
 
 				if ( mesh.geometry !== geometry ) mesh.geometry = geometry;
-				mesh.material = solidSkyMaterial;
+				mesh.material = solidLayerMaterial;
 
 			}
 
@@ -777,8 +786,8 @@ export function R_DrawSkyChain( s ) {
 
 	}
 
-	// Alpha sky layer (overlay, speed = realtime*16)
-	if ( alphaSkyMaterial ) {
+	// Alpha sky layer (overlay, speed = realtime*16); none over a skybox
+	if ( alphaSkyMaterial && ! skyBox ) {
 
 		let alphaSpeed = realtime * 16;
 		alphaSpeed -= ( alphaSpeed | 0 ) & ~127;
