@@ -1,0 +1,3033 @@
+{
+ "version": 1,
+ "library": "~/quaked (owner library; folder names from the game catalogue)",
+ "games": {
+  "shareware": {
+   "paks": 1,
+   "maps": 21,
+   "textures": 309,
+   "models": 16
+  },
+  "quake": {
+   "paks": 1,
+   "maps": 55,
+   "textures": 315,
+   "models": 22
+  },
+  "hipnotic": {
+   "paks": 1,
+   "maps": 18,
+   "textures": 201,
+   "models": 4
+  },
+  "rogue": {
+   "paks": 1,
+   "maps": 23,
+   "textures": 146,
+   "models": 15
+  },
+  "dopa": {
+   "paks": 1,
+   "maps": 13,
+   "textures": 187,
+   "models": 0
+  },
+  "mg1": {
+   "paks": 1,
+   "maps": 20,
+   "textures": 165,
+   "models": 0
+  },
+  "dawn": {
+   "paks": 0
+  },
+  "ad": {
+   "paks": 3,
+   "maps": 39,
+   "textures": 309,
+   "models": 2
+  },
+  "quoth": {
+   "paks": 3,
+   "maps": 12,
+   "textures": 158,
+   "models": 9
+  },
+  "malice": {
+   "paks": 5,
+   "maps": 50,
+   "textures": 12,
+   "models": 1
+  },
+  "xmen": {
+   "paks": 5,
+   "maps": 25,
+   "textures": 6,
+   "models": 1
+  },
+  "aopfm_v2": {
+   "paks": 5,
+   "maps": 17,
+   "textures": 174,
+   "models": 0
+  }
+ },
+ "textures": {
+  "+0_box_side": [
+   "ad",
+   "dopa",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "+0_box_top": [
+   "ad",
+   "dopa",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "+0_med100": [
+   "quake",
+   "shareware"
+  ],
+  "+0_med25": [
+   "quake",
+   "shareware"
+  ],
+  "+0_med25s": [
+   "quake",
+   "shareware"
+  ],
+  "+0basebtn": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "malice",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "+0butn": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "+0butnn": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "+0button": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "malice",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "+0floorsw": [
+   "ad",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "+0light01": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "+0planet": [
+   "aopfm_v2",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "+0shoot": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "+0slip": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "+0slipbot": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "+0sliptop": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "+1_box_side": [
+   "ad",
+   "dopa",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "+1_box_top": [
+   "ad",
+   "dopa",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "+1_med100": [
+   "quake",
+   "shareware"
+  ],
+  "+1_med25": [
+   "quake",
+   "shareware"
+  ],
+  "+1_med25s": [
+   "quake",
+   "shareware"
+  ],
+  "+1basebtn": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "malice",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "+1butn": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "+1butnn": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "+1button": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "malice",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "+1floorsw": [
+   "ad",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "+1light01": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "+1planet": [
+   "aopfm_v2",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "+1shoot": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "+1slip": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "+2_med100": [
+   "quake",
+   "shareware"
+  ],
+  "+2_med25": [
+   "quake",
+   "shareware"
+  ],
+  "+2butn": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "+2butnn": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "+2button": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "+2floorsw": [
+   "ad",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "+2light01": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "+2planet": [
+   "aopfm_v2",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "+2shoot": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "+2slip": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "+3_med100": [
+   "quake",
+   "shareware"
+  ],
+  "+3_med25": [
+   "quake",
+   "shareware"
+  ],
+  "+3butn": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "+3butnn": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "+3button": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "+3floorsw": [
+   "ad",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "+3planet": [
+   "aopfm_v2",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "+3shoot": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "+3slip": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "+4slip": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "+5slip": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "+6slip": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "+abasebtn": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "malice",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "+abutn": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "+abutnn": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "+abutton": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "malice",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "+afloorsw": [
+   "ad",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "+ashoot": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "32glass": [
+   "quoth"
+  ],
+  "adoor01_2": [
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "adoor02_2": [
+   "ad",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "adoor03_3": [
+   "ad",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "adoor03_6": [
+   "ad",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "adoor09_2": [
+   "quake",
+   "shareware"
+  ],
+  "afloor3_1": [
+   "aopfm_v2",
+   "quake",
+   "shareware"
+  ],
+  "altar1_3": [
+   "ad",
+   "aopfm_v2",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "altar1_6": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "altar1_7": [
+   "ad",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "altarb_2": [
+   "aopfm_v2",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "arrow_m": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "basebutn3": [
+   "ad",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "batt0sid": [
+   "quake",
+   "shareware"
+  ],
+  "batt0top": [
+   "quake",
+   "shareware"
+  ],
+  "batt1sid": [
+   "quake",
+   "shareware"
+  ],
+  "batt1top": [
+   "quake",
+   "shareware"
+  ],
+  "brick1glass1": [
+   "ad"
+  ],
+  "brick1wind1": [
+   "ad"
+  ],
+  "bricka2_1": [
+   "ad",
+   "quake",
+   "shareware"
+  ],
+  "bricka2_2": [
+   "ad",
+   "dopa",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "carch03": [
+   "ad",
+   "dopa",
+   "quake",
+   "shareware"
+  ],
+  "carch04_2": [
+   "quake",
+   "shareware"
+  ],
+  "ceiling1_3": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "church1_2": [
+   "ad",
+   "quake",
+   "shareware"
+  ],
+  "city1_4": [
+   "ad",
+   "aopfm_v2",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "city2_1": [
+   "ad",
+   "dopa",
+   "quake",
+   "shareware"
+  ],
+  "city2_7": [
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "city2_8": [
+   "quake",
+   "shareware"
+  ],
+  "city4_6": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "city4_7": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "city5_1": [
+   "ad",
+   "dopa",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "city5_3": [
+   "ad",
+   "dopa",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "city5_3wind1": [
+   "ad"
+  ],
+  "city5_3wind2": [
+   "ad"
+  ],
+  "city5_3wind3": [
+   "ad"
+  ],
+  "city5_3wind3b": [
+   "ad"
+  ],
+  "city5_3wind4": [
+   "ad"
+  ],
+  "city5_3wind5": [
+   "ad"
+  ],
+  "city5_3wind5d": [
+   "ad"
+  ],
+  "city5_3wind5w": [
+   "ad"
+  ],
+  "city5_3wind7": [
+   "ad"
+  ],
+  "city5_3wind7b": [
+   "ad"
+  ],
+  "city5_4": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "quake",
+   "shareware"
+  ],
+  "city5_6": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "quake",
+   "shareware"
+  ],
+  "city5_7": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "shareware"
+  ],
+  "city5_8": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "city6_4": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "quake",
+   "shareware"
+  ],
+  "citya1_1": [
+   "ad",
+   "quake",
+   "shareware"
+  ],
+  "column1_2": [
+   "aopfm_v2",
+   "quake",
+   "shareware"
+  ],
+  "column1_5": [
+   "aopfm_v2",
+   "quake",
+   "shareware"
+  ],
+  "comp1_1": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "comp1_2": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "comp1_3": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "comp1_4": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "comp1_5": [
+   "ad",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "comp1_6": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "cop1_1": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "cop1_2": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "cop1_3": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "cop1_5": [
+   "ad",
+   "dopa",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "cop1_6": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "cop1_7": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "cop1_8": [
+   "ad",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "cop2_3": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "cop2_4": [
+   "ad",
+   "aopfm_v2",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "cop2_6": [
+   "ad",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "cop3_1": [
+   "ad",
+   "aopfm_v2",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "cop3_4": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "cop4_3": [
+   "ad",
+   "dopa",
+   "quake",
+   "shareware"
+  ],
+  "crate0_side": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "crate0_top": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "crate1_side": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "crate1_top": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "dem4_1": [
+   "ad",
+   "aopfm_v2",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "dem4_4": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "dem5_3": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "dk3_window1": [
+   "ad"
+  ],
+  "dk3_window4": [
+   "ad"
+  ],
+  "door01_2": [
+   "ad",
+   "dopa",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "door02_2": [
+   "ad",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "door03_2": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "door04_1": [
+   "hipnotic",
+   "quake",
+   "shareware"
+  ],
+  "door04_2": [
+   "ad",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "door05_2": [
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "door05_3": [
+   "ad",
+   "hipnotic",
+   "quake",
+   "shareware"
+  ],
+  "dr02_1": [
+   "aopfm_v2",
+   "hipnotic",
+   "quake",
+   "shareware"
+  ],
+  "dr07_1": [
+   "aopfm_v2",
+   "dopa",
+   "quake",
+   "shareware"
+  ],
+  "dwindow1_1": [
+   "xmen"
+  ],
+  "dwindow1_2a": [
+   "xmen"
+  ],
+  "ecop1_1": [
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "ecop1_4": [
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "ecop1_6": [
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "edoor01_1": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "elwall1_1": [
+   "aopfm_v2",
+   "quake",
+   "shareware"
+  ],
+  "enter01": [
+   "ad",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "exit02_2": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "glass2": [
+   "ad"
+  ],
+  "ground1_2": [
+   "ad",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "ground1_6": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "key01_3": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "key02_1": [
+   "ad",
+   "dopa",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "key02_2": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "key03_1": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "key03_2": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "key03_3": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "light1_4": [
+   "ad",
+   "aopfm_v2",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware",
+   "xmen"
+  ],
+  "light1_5": [
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "light1_7": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "shareware"
+  ],
+  "light3_6": [
+   "aopfm_v2",
+   "hipnotic",
+   "quake",
+   "shareware"
+  ],
+  "light3_7": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "light3_8": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "m5_3": [
+   "ad",
+   "quake",
+   "shareware"
+  ],
+  "m5_5": [
+   "ad",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "m5_8": [
+   "ad",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "med100": [
+   "quake",
+   "shareware"
+  ],
+  "med3_0": [
+   "quake",
+   "shareware"
+  ],
+  "med3_1": [
+   "quake",
+   "shareware"
+  ],
+  "met5_2": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "metal1_1": [
+   "ad",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "metal1_2": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "metal1_3": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "metal1_4": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "metal1_7": [
+   "ad",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "metal2_2": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "quake",
+   "shareware"
+  ],
+  "metal2_4": [
+   "ad",
+   "aopfm_v2",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "metal2_5": [
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "metal2_6": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "shareware"
+  ],
+  "metal4_2": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "metal4_3": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "shareware"
+  ],
+  "metal4_4": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "metal4_5": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "metal4_6": [
+   "ad",
+   "aopfm_v2",
+   "quake",
+   "shareware"
+  ],
+  "metal5_1": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "metal5_2": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "shareware"
+  ],
+  "metal5_3": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "metal5_4": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "metal5_6": [
+   "ad",
+   "hipnotic",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "metal6_1": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "metal6_2": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "shareware"
+  ],
+  "metal6_3": [
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "metal6_4": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "metalt1_1": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "metalt2_1": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "metalt2_2": [
+   "ad",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "metalt2_3": [
+   "ad",
+   "dopa",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "metalt2_5": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "metalt2_6": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "metalt2_8": [
+   "ad",
+   "dopa",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "mire_wind1": [
+   "ad"
+  ],
+  "mmetal1_1": [
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "mmetal1_2": [
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "mmetal1_5": [
+   "quake",
+   "shareware"
+  ],
+  "mmetal1_7": [
+   "dopa",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "mmetal1_8": [
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "mswtch_3": [
+   "quake",
+   "shareware"
+  ],
+  "mswtch_4": [
+   "hipnotic",
+   "quake",
+   "shareware"
+  ],
+  "nail0sid": [
+   "quake",
+   "shareware"
+  ],
+  "nail0top": [
+   "quake",
+   "shareware"
+  ],
+  "nail1sid": [
+   "quake",
+   "shareware"
+  ],
+  "nail1top": [
+   "quake",
+   "shareware"
+  ],
+  "nmetal2_1": [
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "nmetal2_6": [
+   "hipnotic",
+   "quake",
+   "shareware"
+  ],
+  "plat_side1": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "plat_stem": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "plat_top1": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "plat_top2": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "quake": [
+   "dopa",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "rock0sid": [
+   "quake",
+   "shareware"
+  ],
+  "rock1_2": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "rock1sid": [
+   "quake",
+   "shareware"
+  ],
+  "rock4_1": [
+   "ad",
+   "dopa",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "rock4_2": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "rockettop": [
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "rune1_6": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "rune1_7": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "rune2_1": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "rune2_2": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "quake",
+   "shareware"
+  ],
+  "rune2_3": [
+   "ad",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "rune2_4": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "rune_a": [
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "sfloor4_2": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "sfloor4_5": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "shot0sid": [
+   "quake",
+   "shareware"
+  ],
+  "shot0top": [
+   "quake",
+   "shareware"
+  ],
+  "shot1sid": [
+   "quake",
+   "shareware"
+  ],
+  "shot1top": [
+   "quake",
+   "shareware"
+  ],
+  "skill0": [
+   "dopa",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "skill1": [
+   "dopa",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "skill2": [
+   "dopa",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "skill3": [
+   "dopa",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "slip1": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "slipbotsd": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "sliplite": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "slipside": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "sliptopsd": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "stainedx_js": [
+   "xmen"
+  ],
+  "stone1_3": [
+   "ad",
+   "aopfm_v2",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "switch_1": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "swtch1_1": [
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "tallwindow1": [
+   "ad"
+  ],
+  "tech01_1": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "tech01_6": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "tech01_7": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "tech01_9": [
+   "ad",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "tech04_1": [
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware",
+   "xmen"
+  ],
+  "tech04_2": [
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "tech04_3": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "tech07_2": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "tech08_1": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "tech09_3": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "tech10_1": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "tech10_3": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "tech11_2": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "tlight01": [
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "tlight02": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "tlight07": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "tlight08": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "tlight10": [
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "shareware"
+  ],
+  "tlight11": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "twall1_1": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "twall1_2": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "twall2_1": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "twall2_2": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "twall2_3": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "twall2_5": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "twall2_6": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "twall3_1": [
+   "aopfm_v2",
+   "dopa",
+   "quake",
+   "shareware"
+  ],
+  "twall5_1": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "twall5_3": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "shareware"
+  ],
+  "uwall1_2": [
+   "aopfm_v2",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "vine1_2": [
+   "quake",
+   "shareware"
+  ],
+  "wall16_7": [
+   "dopa",
+   "hipnotic",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "wall9_8": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "wbrick1_5": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "wenter01": [
+   "dopa",
+   "hipnotic",
+   "quake",
+   "shareware"
+  ],
+  "wgrnd1_5": [
+   "aopfm_v2",
+   "dopa",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "wgrnd1_6": [
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "wind02a_330": [
+   "ad"
+  ],
+  "wind02a_340": [
+   "ad"
+  ],
+  "wind02b_330": [
+   "ad"
+  ],
+  "wind02b_340": [
+   "ad"
+  ],
+  "wind02c_330": [
+   "ad"
+  ],
+  "wind02c_340": [
+   "ad"
+  ],
+  "wind02d_340": [
+   "ad"
+  ],
+  "wind02r_340": [
+   "ad"
+  ],
+  "wind_dagg": [
+   "quoth"
+  ],
+  "windbrk1_3": [
+   "ad"
+  ],
+  "window01": [
+   "aopfm_v2"
+  ],
+  "window01_1": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth"
+  ],
+  "window01_2": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "quake",
+   "quoth"
+  ],
+  "window01_3": [
+   "ad",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue"
+  ],
+  "window01_4": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue"
+  ],
+  "window01_4dd": [
+   "ad"
+  ],
+  "window01_4sh": [
+   "ad"
+  ],
+  "window01_4tall": [
+   "ad"
+  ],
+  "window01_5tall": [
+   "ad"
+  ],
+  "window02": [
+   "aopfm_v2"
+  ],
+  "window02_1": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "window02_2": [
+   "malice"
+  ],
+  "window03": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "window030": [
+   "ad",
+   "aopfm_v2",
+   "mg1"
+  ],
+  "window031": [
+   "aopfm_v2"
+  ],
+  "window03_d": [
+   "ad"
+  ],
+  "window03d": [
+   "ad"
+  ],
+  "window03k": [
+   "quoth"
+  ],
+  "window03r": [
+   "ad"
+  ],
+  "window03w": [
+   "ad"
+  ],
+  "window03y": [
+   "ad"
+  ],
+  "window0_1": [
+   "mg1"
+  ],
+  "window1_1": [
+   "xmen"
+  ],
+  "window1_1a": [
+   "ad"
+  ],
+  "window1_1b": [
+   "ad"
+  ],
+  "window1_2": [
+   "ad",
+   "quake",
+   "quoth",
+   "rogue"
+  ],
+  "window1_3": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "quake",
+   "shareware"
+  ],
+  "window1_3b": [
+   "ad"
+  ],
+  "window1_4": [
+   "hipnotic",
+   "quake"
+  ],
+  "window1a": [
+   "ad"
+  ],
+  "window1ah": [
+   "ad"
+  ],
+  "window1aj": [
+   "ad"
+  ],
+  "window1c": [
+   "ad"
+  ],
+  "window1d": [
+   "ad"
+  ],
+  "window1d3": [
+   "ad"
+  ],
+  "window1h": [
+   "ad"
+  ],
+  "window1h_d": [
+   "ad"
+  ],
+  "window1sa": [
+   "ad"
+  ],
+  "window1sac23": [
+   "ad"
+  ],
+  "window1sasw": [
+   "ad"
+  ],
+  "window1saswh": [
+   "ad"
+  ],
+  "window1sb": [
+   "ad"
+  ],
+  "window1slot": [
+   "ad"
+  ],
+  "window1slot_d": [
+   "ad"
+  ],
+  "window2": [
+   "malice"
+  ],
+  "window2_1": [
+   "mg1",
+   "quoth",
+   "rogue"
+  ],
+  "window2_2": [
+   "mg1",
+   "quoth",
+   "rogue"
+  ],
+  "window2_3": [
+   "quoth",
+   "rogue"
+  ],
+  "window2_4": [
+   "quoth",
+   "rogue"
+  ],
+  "window2a": [
+   "ad"
+  ],
+  "window2b": [
+   "ad"
+  ],
+  "window2c": [
+   "ad"
+  ],
+  "window2c1": [
+   "ad"
+  ],
+  "window2c_c": [
+   "ad"
+  ],
+  "window2c_e": [
+   "ad"
+  ],
+  "window2c_f": [
+   "ad"
+  ],
+  "window2cc": [
+   "ad"
+  ],
+  "window2cg": [
+   "ad"
+  ],
+  "window2cga": [
+   "ad"
+  ],
+  "window2ch": [
+   "ad"
+  ],
+  "window2sh": [
+   "ad"
+  ],
+  "window2td": [
+   "ad"
+  ],
+  "window3a": [
+   "ad"
+  ],
+  "window3b": [
+   "ad"
+  ],
+  "window4a": [
+   "ad"
+  ],
+  "window4b": [
+   "ad"
+  ],
+  "window666_9": [
+   "ad"
+  ],
+  "window8a": [
+   "ad"
+  ],
+  "window8c1": [
+   "ad"
+  ],
+  "window8s": [
+   "ad"
+  ],
+  "window8u": [
+   "ad"
+  ],
+  "window_blue1_2": [
+   "ad"
+  ],
+  "windowc1_7": [
+   "mg1"
+  ],
+  "windowl1": [
+   "ad"
+  ],
+  "windowsqr1b": [
+   "ad"
+  ],
+  "windr1": [
+   "malice"
+  ],
+  "windr2": [
+   "malice"
+  ],
+  "windr3": [
+   "malice"
+  ],
+  "wiz1_1": [
+   "ad",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "wiz1_4": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "wizmet1_1": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "wizmet1_2": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "wizmet1_3": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "wizmet1_7": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "wizmet1_8": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "wizwood1_3": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "wizwood1_4": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "wizwood1_5": [
+   "ad",
+   "aopfm_v2",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "wizwood1_7": [
+   "ad",
+   "aopfm_v2",
+   "quake",
+   "shareware"
+  ],
+  "wizwood1_8": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "wkey02_1": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "wkey02_2": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "wmet2_1": [
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "wmet2_3": [
+   "aopfm_v2",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "wmet3_1": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "wmet4_3": [
+   "hipnotic",
+   "quake",
+   "shareware"
+  ],
+  "wmet4_4": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "wmet4_5": [
+   "aopfm_v2",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "wmet4_6": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "quake",
+   "shareware"
+  ],
+  "wmet4_7": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "wmet4_8": [
+   "ad",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "wood1_1": [
+   "ad",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "woodflr1_2": [
+   "ad",
+   "quake",
+   "rogue",
+   "shareware"
+  ],
+  "woodflr1_4": [
+   "ad",
+   "hipnotic",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "wswamp1_2": [
+   "ad",
+   "dopa",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "wswamp1_4": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "wswamp2_1": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ],
+  "wswamp2_2": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "mg1",
+   "quake",
+   "quoth",
+   "shareware"
+  ],
+  "z_exit": [
+   "ad",
+   "aopfm_v2",
+   "dopa",
+   "hipnotic",
+   "malice",
+   "mg1",
+   "quake",
+   "quoth",
+   "rogue",
+   "shareware"
+  ]
+ },
+ "models": {
+  "progs/armabody.mdl": {
+   "hipnotic": "e827535032c8e83609fedf07c9989c504e7eaa6772ce0d5cf73788e00980f151"
+  },
+  "progs/armalegs.mdl": {
+   "hipnotic": "b33a8f7e4cd3fca9b8c9427d8002a5470da44ce919648e1a0045f3f131f73deb"
+  },
+  "progs/armor.mdl": {
+   "shareware": "c7c0c6fea1a1d8b575388f3045b7dded09953d13ec070c8182e9b28b0506408d",
+   "quake": "c7c0c6fea1a1d8b575388f3045b7dded09953d13ec070c8182e9b28b0506408d"
+  },
+  "progs/backpack.mdl": {
+   "shareware": "4aaef7b8d28caa52dc230bed11cdea22f55c00b9b90aae400e1c19f7bf3dbbb6",
+   "quake": "4aaef7b8d28caa52dc230bed11cdea22f55c00b9b90aae400e1c19f7bf3dbbb6",
+   "quoth": "046d34a681439138dca323f54e54d358e225d2d958b21b36ee564fe6d4be7b82",
+   "malice": "fba2158fd4dbe65982bc3dbe9c1ab3f6bd9a7462f3ab5faf65dc607a4c3ffffe",
+   "xmen": "fd83291f5ec01cf7c3c2bcbed2ad29634253f399d824765c6e9fe5d5f840f148"
+  },
+  "progs/boss.mdl": {
+   "shareware": "4b802488480de2e36130e06ee03a31b2e96046a3ffe12f66e62d9bf4bd2f2eea",
+   "quake": "4b802488480de2e36130e06ee03a31b2e96046a3ffe12f66e62d9bf4bd2f2eea"
+  },
+  "progs/demon.mdl": {
+   "shareware": "388209db7e53cb0cde176c9976bb8004d37205a50a77b199cb4878a71e909db9",
+   "quake": "388209db7e53cb0cde176c9976bb8004d37205a50a77b199cb4878a71e909db9"
+  },
+  "progs/dog.mdl": {
+   "shareware": "c84104192b336b5360033a4efcc7e033fce4589d1af6c3c895101a9c6d6932b6",
+   "quake": "c84104192b336b5360033a4efcc7e033fce4589d1af6c3c895101a9c6d6932b6"
+  },
+  "progs/dragon.mdl": {
+   "rogue": "1ba01029d4113cc832aa5ab551c7bf060b5f7a4eb1afde35607564413bfee2ec"
+  },
+  "progs/eel2.mdl": {
+   "rogue": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7"
+  },
+  "progs/enforcer.mdl": {
+   "quake": "01eee88d78a0fe8014b86c57b45c235b59548bccc3436c97d8f59c420e865677",
+   "quoth": "230181ce6ea00c8e80c7d59189340424424ba5d99d71230b309907e206e07682"
+  },
+  "progs/fish.mdl": {
+   "quake": "e6a0396ac97d981cd49b39f7af8f1f32d9f910768f7a554f59bcb5926c2a3568",
+   "quoth": "037ebaf6566f8fed7609b4e2c79eb36c4c78c49d914b225e7aa37fd4e3d6fa17"
+  },
+  "progs/grem.mdl": {
+   "hipnotic": "bdc4443c3a0d0bb30b4302bb7b1d9759344690c6148bea08a747436191325763"
+  },
+  "progs/h_demon.mdl": {
+   "shareware": "7d4486d076bdf77ff9dffd55448c99d4a4b6d6a76c4c747c7256d3bbfa283fb6",
+   "quake": "7d4486d076bdf77ff9dffd55448c99d4a4b6d6a76c4c747c7256d3bbfa283fb6",
+   "ad": "ff73d5f8fcab46a806c47377679ec5473cdc0ea93a0fda6dda8b5dba8cfa4b97"
+  },
+  "progs/h_dog.mdl": {
+   "shareware": "5cfb291af097b8ed3604998ac11e3cca3c1ae92906137674b481c8e8bc0a2dd4",
+   "quake": "5cfb291af097b8ed3604998ac11e3cca3c1ae92906137674b481c8e8bc0a2dd4",
+   "ad": "49f28b9a13867ed4a88fcac541b8a9cbabddcc594557b3490951179b3d479509"
+  },
+  "progs/h_shams.mdl": {
+   "shareware": "8736acc7551dbad35bc1eed0008099fbea718413ed2959493234900d370febba",
+   "quake": "8736acc7551dbad35bc1eed0008099fbea718413ed2959493234900d370febba"
+  },
+  "progs/hknight.mdl": {
+   "quake": "78d0273de6850f92d059fa90969f66ee57435330b3c4954c836a7204bc7a9d5a",
+   "rogue": "ff5e8e7e0339d70fa0edca83a0d082cfc934ae6f60bbbd8f310f32c438646485",
+   "quoth": "2c3d4002e7c5f1682367c3f649e67333303d1763e6da0b3cfdce8c7519dfc2dc"
+  },
+  "progs/knight.mdl": {
+   "shareware": "094c278cba9851a940e3e40e4f209f372b916ad7bac68ba13efd7c0d7d676ed1",
+   "quake": "094c278cba9851a940e3e40e4f209f372b916ad7bac68ba13efd7c0d7d676ed1",
+   "rogue": "749325dd12abbfae8fc89416f217fa07c6d06bd30fed7359e599a04d969eefcf",
+   "quoth": "9e23eca66dbe332f49a1a82ceef197d5ee980abb24145050ea3088e05468dd4b"
+  },
+  "progs/lavaman.mdl": {
+   "rogue": "b81bb7f5cebb2889cfd2f431f743200f672d0195b05fe3faa98b50163fed7fb1"
+  },
+  "progs/morph_az.mdl": {
+   "rogue": "98d86ad428b5ab5643e12921f3f41572eb84c2025a8f05c7b882ccce6bdc4a5f"
+  },
+  "progs/morph_eg.mdl": {
+   "rogue": "14468fccffaa1508c03610dd58fb51cd9058ca3bab036bca18f7a41cb37c195b"
+  },
+  "progs/morph_gr.mdl": {
+   "rogue": "662aa03785b4a6d2689670bebc5a9d081c36541347e324fac3957f599eab3be8"
+  },
+  "progs/mummy.mdl": {
+   "rogue": "3926d2dcf2451deaf32e67877016884cfb91a313968beefe514b9274fc30a1d1"
+  },
+  "progs/ogre.mdl": {
+   "shareware": "d7e65c136645747dacb3901e61a4117bc9cdd062669d0f64fa562872d2bd0d4e",
+   "quake": "d7e65c136645747dacb3901e61a4117bc9cdd062669d0f64fa562872d2bd0d4e",
+   "rogue": "2bd7b6633d2c95627cca8b216ad2c84057e800778a94e0fa97f3a14f86420732",
+   "quoth": "e0bd8b2d3da7f2d8bdd59c4664b9202f00fa6dbe8c6321fd3651b3e857edd6c3"
+  },
+  "progs/oldone.mdl": {
+   "quake": "81966deede395272b220ae664ccdbf1c78fc5db79b56d19eb9b45dc2f807e407"
+  },
+  "progs/s_wrath.mdl": {
+   "rogue": "4c0653e3adba99be4d581c92a928fd6e8c27b0a2159a97f7ec5e885478249b8d"
+  },
+  "progs/scor.mdl": {
+   "hipnotic": "13f3baa6760b38c1a7ba30eea9b581754dd87eeb1875248ce6feb1d1efb3582f",
+   "quoth": "0350089b0bcf3a63a5d7b1e0bd070ac993be60f652f9bf9e3cf48957d31d561b"
+  },
+  "progs/shalrath.mdl": {
+   "quake": "da3dddbf592c05ce0c0340cc2eea842f28b5dcb9c0c03946abfb225c0b0a54ee"
+  },
+  "progs/shambler.mdl": {
+   "shareware": "45c4f21ce566bd4304222d581a6b015bf01c310035821f927f9b51d94193b8d3",
+   "quake": "45c4f21ce566bd4304222d581a6b015bf01c310035821f927f9b51d94193b8d3"
+  },
+  "progs/soldier.mdl": {
+   "shareware": "1e70eb11aad02793a8fb90ece4a17328605cf9165c7305049ff30fcc21b3ce75",
+   "quake": "1e70eb11aad02793a8fb90ece4a17328605cf9165c7305049ff30fcc21b3ce75",
+   "quoth": "9d3da38ea15726d8543413120414d4178efd900fd131a7fd84eff5a305df21f5"
+  },
+  "progs/suit.mdl": {
+   "shareware": "17d57805138e93283f133d1d4f42ffe5b61bedb946b62bb96cce6f5c1a7f9acf",
+   "quake": "17d57805138e93283f133d1d4f42ffe5b61bedb946b62bb96cce6f5c1a7f9acf"
+  },
+  "progs/sword.mdl": {
+   "rogue": "a72818767602e676cb08aa19db1780df9ee71b1f5c650f24c4f7ad2f761360d2"
+  },
+  "progs/tarbaby.mdl": {
+   "quake": "9933ee9b251e4c32a22129e2a9cda8cebfd2f317aeb2961a0591a098e9e823ea",
+   "rogue": "5dd6250329f64a9570021ced7a40d9c46020f46ad046366100cf0a7c6bd8612e"
+  },
+  "progs/wizard.mdl": {
+   "shareware": "41a0c51bbd21362874369fb64127886df67d8b0b605aad96574b671445926e2d",
+   "quake": "41a0c51bbd21362874369fb64127886df67d8b0b605aad96574b671445926e2d"
+  },
+  "progs/wrath.mdl": {
+   "rogue": "0a57ee912df3142c5e17183d5f6bd461021b141d53f7534014d59eda97e6bfa6"
+  },
+  "progs/zom_gib.mdl": {
+   "shareware": "55cf7733462c0fd3aa35849678d7a7eae6b705ff5be316fcaa44690ae38515ff",
+   "quake": "55cf7733462c0fd3aa35849678d7a7eae6b705ff5be316fcaa44690ae38515ff"
+  },
+  "progs/zombie.mdl": {
+   "shareware": "76430f4aebfb39e918f524d81d5012051e49d0749f6f9a692ae7445a15cc8dfe",
+   "quake": "76430f4aebfb39e918f524d81d5012051e49d0749f6f9a692ae7445a15cc8dfe",
+   "rogue": "42ab30ec209295b479e29cdf93e08720c778207b20210ff25c04ebf9c3634bae",
+   "quoth": "ee9db9fb4e224227574067dffb1b9c49af5b9536f8cea0527282d851aab81e73"
+  }
+ }
+}
