@@ -229,11 +229,15 @@ fn main() {
             app.set_menu(Menu::with_items(app, &[&submenu])?)?;
             #[cfg(target_os = "macos")]
             if let Some(window) = app.get_webview_window("main") {
-                window.with_webview(|webview| {
+                let hooked = window.with_webview(|webview| {
                     if !pointer_lock::allow(webview.inner()) {
                         eprintln!("Quaked: pointer lock could not be enabled; mouse look stays off");
                     }
-                })?;
+                });
+                // Mouse look is not worth refusing to start over.
+                if let Err(error) = hooked {
+                    eprintln!("Quaked: pointer lock not set up ({error}); mouse look stays off");
+                }
             }
             Ok(())
         })

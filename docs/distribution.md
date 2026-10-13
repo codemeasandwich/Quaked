@@ -76,21 +76,24 @@ Found in the owner's app trial, 13 October 2026, and fixed:
   classic default keys (`HOST_CLASSIC_DEFAULT_CFG`, `src/engine/server/host.js`). Saved settings
   still apply over them. The source build had hidden both problems, because it mounts the
   shareware PAK (with its `default.cfg` and `quake.rc`) over the full game.
-  `tests/exec_config_test.js` covers both. A WebKit run of the app's page with a stand-in for
+  `tests/exec_config_test.js` covers both, through the fallback Host_Init registers. A WebKit run of the app's page with a stand-in for
   the Tauri bridge showed W and the up arrow moving the player only after the fix.
 - **Mouse look did not work.** The engine turns the view only while the page holds the
   pointer lock. WKWebView grants it only when its UI delegate answers WebKit's
   `_webViewDidRequestPointerLock:completionHandler:`, which Tauri's (wry's) delegate does not.
   `src-tauri/src/pointer_lock.rs` adds that method at start-up, always allowing, and sets the
-  delegate again so WebKit sees it. Escape leaves the lock as before. This uses a private
-  WebKit method (present on macOS 26 and in WebKit's `WKUIDelegatePrivate` protocol), which
-  suits an app distributed outside the App Store; if a later macOS drops it, mouse look is
-  off as before, and the app logs that. It needs a click in the real app to trial; nothing
-  automated covers it.
-- **Quit.** Answering Y to Quit (or the `quit` command) saves the settings, then returns to the
-  game shelf in the app, or goes to https://github.com/codemeasandwich/Quaked in the same tab
-  in the HTML (`Sys_Quit`, `src/engine/common/sys.js`; `tests/sys_quit_test.js`). It used to
-  open the GitHub page in a new window and stay in the menu.
+  delegate again so WebKit sees it; it also answers the older `_webViewRequestPointerLock:`
+  (granting through `_didAllowPointerLock` where WebKit has it). Escape leaves the lock as
+  before. These are private WebKit methods (the first is in macOS 26's `WKUIDelegatePrivate`
+  protocol), which suits an app distributed outside the App Store. The app logs only when it
+  has no delegate to add them to; whether WebKit honours them shows only in the app, and
+  macOS 14 and 15 are untried. Nothing automated covers it: it needs a click in the real app.
+- **Quit.** Answering Y to Quit (or `quit` typed in the console) disconnects, shuts down a local
+  server, saves the settings, then returns to the game shelf in the app, or goes to
+  https://github.com/codemeasandwich/Quaked in the same tab in the HTML (`Host_Quit_f`,
+  `Sys_Quit`; `tests/sys_quit_test.js`). As in WinQuake, `quit` from anywhere else (F10, or a
+  server's stuffed text) only opens the "Are you sure" prompt. It used to open the GitHub page
+  in a new window and stay in the menu.
 
 ## LAN multiplayer
 

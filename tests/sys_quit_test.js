@@ -37,13 +37,41 @@ Deno.test( 'Y on the quit prompt runs the quit command instead of opening a wind
 
 		let quits = 0;
 		cmd.Cbuf_Init(); cmd.Cmd_AddCommand( 'quit', () => quits ++ );
-		main.M_Menu_Quit_f(); main.M_Quit_Key( 121 ); cmd.Cbuf_Execute();
+		const keys = await import( '../src/engine/client/keys.js' ), common = await import( '../src/engine/client/menu_common.js' );
+		common.M_SetExternals( { key_dest_set: keys.set_key_dest, key_dest_get: () => keys.key_dest } ); // as menu.js wires it
+		main.M_Menu_Quit_f(); main.M_Quit_Key( 121 );
+		same( keys.key_dest, keys.key_console, 'Y runs quit from the console, so it is not asked again' );
+		cmd.Cbuf_Execute();
 		same( quits, 1, 'the quit command ran' );
 		same( opened.length, 0, 'no new window' );
 
 	} finally {
 
 		if ( globalThis.window ) globalThis.window.open = oldOpen;
+
+	}
+
+} );
+
+Deno.test( 'the quit command asks first outside the console, and leaves from it', async () => {
+
+	const { Host_Quit_f } = await import( '../src/engine/server/host_cmd.js' ), cmd = await import( '../src/engine/common/cmd.js' ), keys = await import( '../src/engine/client/keys.js' );
+	const visits = [], oldLocation = Object.getOwnPropertyDescriptor( globalThis, 'location' ), old = globalThis.__QUAKED_DISTRIBUTION__;
+	Object.defineProperty( globalThis, 'location', { value: { pathname: '/index.html', assign: url => visits.push( url ) }, configurable: true, writable: true } );
+	globalThis.__QUAKED_DISTRIBUTION__ = { profile: 'desktop' };
+	try {
+
+		let prompts = 0;
+		cmd.Cbuf_Init(); cmd.Cmd_AddCommand( 'menu_quit', () => prompts ++ );
+		keys.set_key_dest( keys.key_game ); Host_Quit_f(); cmd.Cbuf_Execute();
+		same( prompts, 1, 'F10 or stuffed text in a game opens the prompt' ); same( visits.length, 0, 'and does not leave' );
+		keys.set_key_dest( keys.key_console ); Host_Quit_f();
+		same( visits.join(), '/index.html', 'from the console (and the prompt\'s Y) it leaves for the shelf' );
+
+	} finally {
+
+		if ( oldLocation ) Object.defineProperty( globalThis, 'location', oldLocation ); else delete globalThis.location;
+		if ( old === undefined ) delete globalThis.__QUAKED_DISTRIBUTION__; else globalThis.__QUAKED_DISTRIBUTION__ = old;
 
 	}
 

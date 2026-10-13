@@ -92,6 +92,7 @@ Memory is cleared / released when a server or client begins, not when they end.
 export let host_parms = null;
 
 export let host_initialized = false;
+let host_shut_down = false; // set by Host_Shutdown: the rest of that frame must not touch the closed renderer
 
 let host_time = 0;
 let oldrealtime = 0;
@@ -466,7 +467,7 @@ export async function Host_Init( parms ) {
 
 	// A game whose PAKs have no default.cfg (the 2021 re-release's Quake and Dissolution of Eternity) gets the classic
 	// default keys, so the arrow keys, Ctrl, the number keys, the console key and the rest work as in the original.
-	Cmd_SetExecFallback( 'default.cfg', HOST_CLASSIC_DEFAULT_CFG );
+	Host_SetDefaultCfgFallback();
 	Cbuf_InsertText( 'exec quake.rc\n' );
 
 	// Default WASD bindings for the web port (after quake.rc so user config can override)
@@ -643,6 +644,7 @@ function _Host_Frame_Internal( time ) {
 
 	// process console commands
 	Cbuf_Execute();
+	if ( host_shut_down ) return; // `quit` shut the engine down: the page is leaving
 
 	NET_Poll();
 
@@ -923,7 +925,16 @@ export function Host_ShutdownServer( crash ) {
 }
 
 /** The classic default keys, run as default.cfg when the game data has none (Cmd_SetExecFallback): the bindings the
- * original releases' default.cfg sets, minus its zoom aliases. The port's WASD, jump and flashlight keys follow it. */
+ * original releases' default.cfg sets, without its zoom aliases (F11), its `z`, `a`, `d` and `c` look and swim keys
+ * (the port's WASD takes `a` and `d`; swim with jump and look) and its cvar lines (the port keeps its own volume and
+ * gamma defaults). The port's WASD, jump and flashlight keys follow it (Host_Init). */
+/** Registers HOST_CLASSIC_DEFAULT_CFG as the text `exec default.cfg` runs when the game data has no default.cfg. */
+export function Host_SetDefaultCfgFallback() {
+
+	Cmd_SetExecFallback( 'default.cfg', HOST_CLASSIC_DEFAULT_CFG );
+
+}
+
 export const HOST_CLASSIC_DEFAULT_CFG = [
 	'unbindall',
 	'bind ALT +strafe', 'bind , +moveleft', 'bind . +moveright', 'bind DEL +lookdown', 'bind PGDN +lookup', 'bind END centerview',
@@ -998,6 +1009,7 @@ export function Host_Shutdown() {
 	Host_WriteConfiguration();
 
 	host_initialized = false;
+	host_shut_down = true;
 
 	// Shutdown subsystems in reverse order
 	CDAudio_Shutdown();

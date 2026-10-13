@@ -430,6 +430,7 @@ export function M_Options_Key( key ) {
 					Cbuf_AddText( 'bind d +moveright\n' );
 					Cbuf_AddText( 'bind SPACE +jump\n' );
 					Cbuf_AddText( 'bind MOUSE1 +attack\n' );
+					Cbuf_AddText( 'bind f flashlight\n' ); // Newer Game's shoulder flashlight, as Host_Init binds it
 					Cbuf_AddText( 'cl_forwardspeed 400\n' );
 					Cbuf_AddText( 'cl_backspeed 400\n' );
 					Cbuf_AddText( `gamma ${Cvar_VariableValue( 'r_hdr' ) !== 0 ? NEWER_DEFAULT_GAMMA : 1}\n` );

@@ -43,7 +43,7 @@ import { SV_SpawnServer, SV_SaveSpawnparms, SV_RestorePowerups, SV_ClearCarriedP
 import { sv, svs, host_client, set_host_client,
 	NUM_SPAWN_PARMS, NUM_PING_TIMES } from './server.js';
 import { cls, cl, ca_connected, ca_dedicated, MAX_DEMOS } from '../client/client.js';
-import { key_game, set_key_dest } from '../client/keys.js';
+import { key_game, key_console, key_dest, set_key_dest } from '../client/keys.js';
 import { CL_Disconnect, CL_EstablishConnection, CL_NextDemo,
 	cl_name, cl_color } from '../client/cl_main.js';
 import { CL_StopPlayback } from '../client/cl_demo.js';
@@ -121,10 +121,20 @@ function Host_Status_f() {
 
 }
 
-// quit: saves the settings and shuts the engine down (Host_Shutdown), then leaves for the game shelf (the app) or the
-// GitHub page (the HTML) through Sys_Quit.
-function Host_Quit_f() {
+// quit: as WinQuake, outside the console (a key bound to quit, such as F10, or a server's stuffed text) it only opens
+// the "Are you sure" prompt; the prompt's Y and the console run it. It then disconnects, shuts down a local server
+// (so its clients are told), saves the settings and shuts the engine down (Host_Shutdown), and leaves for the game
+// shelf (the app) or the GitHub page (the HTML) through Sys_Quit.
+export function Host_Quit_f() {
 
+	if ( key_dest !== key_console && cls.state !== ca_dedicated ) {
+
+		Cbuf_AddText( 'menu_quit\n' );
+		return;
+
+	}
+	CL_Disconnect();
+	Host_ShutdownServer( false );
 	Host_Shutdown();
 	Sys_Quit();
 

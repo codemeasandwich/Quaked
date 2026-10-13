@@ -18,7 +18,7 @@ import { MainMenu_SetInGame } from '../common/hooks.js'; // installed by newer/u
 import { R_BestiaryBookOpen, R_BestiaryBookKey } from '../common/hooks.js'; // installed by newer/ui/r_bestiary_book.js
 import { R_DemoSplitRelease } from '../common/hooks.js'; // installed by newer/render/r_demosplit.js
 import { Cbuf_AddText } from '../common/cmd.js';
-import { K_ESCAPE, K_ENTER, K_UPARROW, K_DOWNARROW, K_LEFTARROW, K_RIGHTARROW, key_game, key_menu } from './keys.js';
+import { K_ESCAPE, K_ENTER, K_UPARROW, K_DOWNARROW, K_LEFTARROW, K_RIGHTARROW, key_game, key_menu, key_console } from './keys.js';
 import { SAVEGAME_COMMENT_LENGTH } from '../common/quakedef.js';
 import { GameSelection_SavePrefix } from '../common/game_selection.js';
 import { m_none, m_main, m_singleplayer, m_load, m_save, m_quit, m_credits, m_bestiary, m_state, m_save_demonum, set_m_state, set_m_entersound, set_m_save_demonum, menuOpeners, _Touch_ExitFullscreen, _cls, _sv, _svs, _cl, _host_time_get, _realtime_get, _Draw_CachePic, _weaponModelsCredit, _S_LocalSound, _SCR_BeginLoadingPlaque, _IN_RequestPointerLock, _CL_NextDemo, getKeyDest, setKeyDest, M_DrawCharacter, M_Print, M_PrintWhite, M_DrawTransPic, M_DrawSubPic, M_DrawPic, M_DrawTextBox, M_InGame, newerDefaults } from './menu_common.js';
@@ -713,8 +713,9 @@ export function M_Quit_Key( key ) {
 
 		case 121: // 'y'
 		case 89: // 'Y'
-			// The quit command: settings saved, then the game shelf (the app) or the GitHub page (the HTML)
-			setKeyDest( key_game );
+			// The quit command, confirmed (from the console key_dest, as WinQuake): settings saved, then the game shelf
+			// (the app) or the GitHub page (the HTML)
+			setKeyDest( key_console );
 			Cbuf_AddText( 'quit\n' );
 			break;
 
