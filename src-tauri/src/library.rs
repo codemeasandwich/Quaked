@@ -40,6 +40,7 @@ pub const GAMES: &[(&str, &[&str])] = &[
     ("malice", &["malice"]),
     ("xmen", &["xmen", "X-Men"]),
     ("aopfm_v2", &["aopfm_v2", "Abyss of Pandemonium"]),
+    ("soe", &["soe", "Soul of Evil"]),
 ];
 fn children(path: &Path) -> Result<BTreeMap<String, PathBuf>, String> {
     let mut out = BTreeMap::new();

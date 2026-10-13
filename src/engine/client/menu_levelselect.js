@@ -132,6 +132,14 @@ const MISSION_LEVEL_SELECT = Object.freeze( {
 			[ 3, 'ddm6', 'Domino' ], [ 3, 'ddm7', 'Sandra\'s Ladder' ],
 			[ 4, 'isle', 'H-27 Cargo' ], [ 4, 'test', 'TESTosterone' ], [ 4, 'csm0__', 'csm0' ], [ 4, 'csm1____', 'csm1' ], [ 4, 'csm2____', 'csm2' ], [ 4, 'csm3_', 'Bubbah\'s Go' ], [ 4, 'show1', 'show1' ] ]
 	},
+	soe: {
+		episodes: [ { episode: 0, name: 'Introduction' }, { episode: 1, name: 'Episode 1' }, { episode: 2, name: 'Episode 2' }, { episode: 3, name: 'Epilogue' }, { episode: 4, name: 'Deathmatch' } ],
+		levels: [ [ 0, 'start', 'Welcome to Soul Of Evil' ], [ 0, 'soeintro', 'Introduction' ], [ 0, 'soestart', 'A Land In Need' ],
+			[ 1, 'soe1m1', 'Arms of Darken Wood' ], [ 1, 'soe1m2', 'Devil\'s Pass' ], [ 1, 'soe1m3', 'The Fallen Village' ], [ 1, 'soe1m4', 'The Autumn Citadel' ], [ 1, 'soe1m5', 'Tower Of Twilight' ], [ 1, 'soe1m6', 'The Den Of Zombies' ],
+			[ 2, 'soe2m1', 'The Blackness Beneath' ], [ 2, 'soe2m2', 'The Ogre Mines' ], [ 2, 'soe2m3', 'The Subterranean Swamp' ], [ 2, 'soe2m4', 'Whispers in Darkness' ], [ 2, 'soe2m5', 'The Morbid Manse' ], [ 2, 'soe2m6', 'Haunted Shadows' ], [ 2, 'soe2m7', 'Highlands' ],
+			[ 3, 'soeexit', 'Epilogue' ],
+			[ 4, 'soearena', 'Arena' ], [ 4, 'soedm1', 'The Graveyard of Heroes' ], [ 4, 'soedm2', 'soedm2' ], [ 4, 'soedm3', 'Halls Of Darkness' ], [ 4, 'soedm4', 'The Elder Sanctuary' ], [ 4, 'soedm5', 'Fortress of the Fading Day' ], [ 4, 'soedm6', 'Ancient Courtyard' ] ]
+	},
 	aopfm_v2: {
 		episodes: [ { episode: 0, name: 'Introduction' }, { episode: 1, name: 'Episode 1' }, { episode: 2, name: 'Episode 2' }, { episode: 3, name: 'Final Level' }, { episode: 4, name: 'Deathmatch' } ],
 		levels: [ [ 0, 'start', 'Enter the Abyss' ],

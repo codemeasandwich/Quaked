@@ -90,7 +90,7 @@ import { SV_ClearWorld, SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_UnlinkE
 import { SV_Physics, SV_SetState, SV_SetCallbacks,
 	sv_maxvelocity, sv_gravity, sv_nostep, sv_friction, sv_edgefriction,
 	sv_stopspeed, sv_maxspeed, sv_accelerate, sv_idealpitchscale } from './sv_phys.js';
-import { PR_ExecuteProgram, PR_SetHostError } from '../progs/pr_exec.js';
+import { PR_ExecuteProgram, PR_SetHostError, PR_ResetStack } from '../progs/pr_exec.js';
 import { SV_User_SetCallbacks, SV_SetIdealPitch } from './sv_user.js';
 import { V_CalcRoll } from '../client/view.js';
 import { key_dest } from '../common/key_dest.js';
@@ -1869,6 +1869,7 @@ export function SV_SpawnServer( server ) {
 	// Map commands can follow r_hdr in the same command batch, before a render
 	// frame has synchronized the asset mode. Choose geometry from this game mode.
 	COM_SetNewerActive( R_NewerGame() );
+	PR_ResetStack(); // no QuakeC runs between maps: nothing an earlier error abandoned stays counted
 	const useNewerMaps = R_NewerGame() && cls.state !== ca_dedicated && svs.maxclients === 1 && SV_SeamlessEnabled();
 	COM_SetNewerMapsEnabled( useNewerMaps );
 

@@ -80,6 +80,31 @@ let Host_Error = null;
  * @param {?function(string): void} callback the handler, expected never to return (`Host_Error` throws); null removes it
  * @returns {?function(string): void} the handler it replaces (null at first), so a test can restore it
  */
+/**
+ * Empties the QuakeC call stack and its locals stack. A program error abandons the functions that were running
+ * (PR_HostError, PR_RunError), and a new map starts with none running (SV_SpawnServer). WinQuake reset only the call
+ * depth, and only in PR_RunError, so the locals of every abandoned call stayed counted: after enough errors (Malice's
+ * 14 prop maps, each stopping with "no info_player_start") the next level's QuakeC ran out with "locals stack
+ * overflow" (docs/add-ons-2026-10-13.md).
+ */
+export function PR_ResetStack() {
+
+	pr_depth = 0;
+	localstack_used = 0;
+
+}
+
+/**
+ * The QuakeC call depth and locals in use, for tests.
+ *
+ * @returns {{ depth: number, locals: number }}
+ */
+export function PR_StackUsage() {
+
+	return { depth: pr_depth, locals: localstack_used };
+
+}
+
 export function PR_SetHostError( callback ) {
 
 	const previous = Host_Error;
@@ -99,6 +124,7 @@ export function PR_SetHostError( callback ) {
  */
 export function PR_HostError( error ) {
 
+	PR_ResetStack(); // the QuakeC that was running is abandoned: its frames and locals with it
 	if ( Host_Error === null )
 		Sys_Error( 'PR_HostError: Host_Error callback not set (' + error + ')' ); // the cause kept for the reader
 
@@ -298,7 +324,7 @@ export function PR_RunError( error, ...args ) {
 	PR_StackTrace();
 	Con_Printf( '%s\n', message );
 
-	pr_depth = 0; // dump the stack so host_error can shutdown functions
+	PR_ResetStack(); // dump the stack so host_error can shutdown functions
 	SV_AxeReset();
 	SV_FaceReset();
 

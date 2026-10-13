@@ -43,7 +43,8 @@ export const GAME_CATALOGUE_GAMES = Object.freeze( [
 	{ id: 'quoth', name: 'Quoth', kind: 'addon', base: 'quake', folders: [ 'games/Quoth', 'resources/quoth' ], quake: 'quoth' },
 	{ id: 'malice', name: 'Malice', kind: 'addon', base: 'quake', folders: [ 'games/Malice', 'resources/malice' ], quake: 'malice' },
 	{ id: 'xmen', name: 'X-Men', kind: 'addon', base: 'quake', folders: [ 'games/X-Men', 'resources/xmen' ], quake: 'xmen' },
-	{ id: 'aopfm_v2', name: 'Abyss of Pandemonium', kind: 'addon', base: 'quake', folders: [ 'games/Abyss of Pandemonium', 'resources/aopfm_v2' ], quake: 'aopfm_v2' }
+	{ id: 'aopfm_v2', name: 'Abyss of Pandemonium', kind: 'addon', base: 'quake', folders: [ 'games/Abyss of Pandemonium', 'resources/aopfm_v2' ], quake: 'aopfm_v2' },
+	{ id: 'soe', name: 'Soul of Evil', kind: 'addon', base: 'quake', folders: [ 'games/Soul of Evil', 'resources/soe' ], quake: 'soe' }
 ] );
 
 // Bounds: packs pak0..pak4 (Quake reads them in that numeric order and stops at a gap); a directory of at most
@@ -205,7 +206,7 @@ const MISSION_PACKS = new Set( [ 'hipnotic', 'rogue' ] );
 // the episodes the engine runs: Dimension of the Past
 const EPISODES = new Set( [ 'dopa', 'mg1' ] ); // mg1 on the large-map protocol (card [34f])
 // the add-ons shown to play (docs/add-ons-2026-10-13.md): each over Quake, with its own QuakeC and maps
-const ADDONS = new Set( [ 'quoth', 'malice', 'aopfm_v2' ] );
+const ADDONS = new Set( [ 'quoth', 'malice', 'aopfm_v2', 'soe' ] );
 
 // What a found game's files show it to be, and whether that is evidence enough to call it playable.
 function assess( game, files, byId ) {

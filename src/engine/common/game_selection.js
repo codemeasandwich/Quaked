@@ -29,7 +29,7 @@ const STORAGE_KEY = 'quaked.game.v1';
 // what each choosable game mounts on top of the shareware, in order tried (card [34a]'s folder, then the owner's
 // resources/ until card [34d] moves it there)
 const QUAKE_PACKS = Object.freeze( [ 'games/Quake/pak0.pak', 'resources/id1/pak0.pak' ] );
-const OWNED_PACKS = Object.freeze( { quake: QUAKE_PACKS, shareware: Object.freeze( [] ), hipnotic: QUAKE_PACKS, rogue: QUAKE_PACKS, dopa: QUAKE_PACKS, mg1: QUAKE_PACKS, quoth: QUAKE_PACKS, malice: QUAKE_PACKS, aopfm_v2: QUAKE_PACKS } );
+const OWNED_PACKS = Object.freeze( { quake: QUAKE_PACKS, shareware: Object.freeze( [] ), hipnotic: QUAKE_PACKS, rogue: QUAKE_PACKS, dopa: QUAKE_PACKS, mg1: QUAKE_PACKS, quoth: QUAKE_PACKS, malice: QUAKE_PACKS, aopfm_v2: QUAKE_PACKS, soe: QUAKE_PACKS } );
 // a mission pack, episode or add-on mounts its own packs over Quake (and the shareware); a mission pack also starts
 // with its switch, an episode runs as standard Quake (card [34c]), an add-on with the switch it needs, if any
 const MISSION_PACKS = Object.freeze( {
@@ -43,9 +43,10 @@ const MISSION_PACKS = Object.freeze( {
 	// (its status bar is Scourge's)
 	quoth: Object.freeze( { name: 'Quoth', switch: '-hipnotic', folders: Object.freeze( [ 'games/Quoth', 'resources/quoth' ] ) } ),
 	malice: Object.freeze( { name: 'Malice', switch: null, folders: Object.freeze( [ 'games/Malice', 'resources/malice' ] ) } ),
-	aopfm_v2: Object.freeze( { name: 'Abyss of Pandemonium', switch: null, folders: Object.freeze( [ 'games/Abyss of Pandemonium', 'resources/aopfm_v2' ] ) } )
+	aopfm_v2: Object.freeze( { name: 'Abyss of Pandemonium', switch: null, folders: Object.freeze( [ 'games/Abyss of Pandemonium', 'resources/aopfm_v2' ] ) } ),
+	soe: Object.freeze( { name: 'Soul of Evil', switch: null, folders: Object.freeze( [ 'games/Soul of Evil', 'resources/soe' ] ) } )
 } );
-const NAMES = Object.freeze( { shareware: 'Quake (shareware)', quake: 'Quake', hipnotic: 'Scourge of Armagon', rogue: 'Dissolution of Eternity', dopa: 'Dimension of the Past', mg1: 'Dimension of the Machine', quoth: 'Quoth', malice: 'Malice', aopfm_v2: 'Abyss of Pandemonium' } );
+const NAMES = Object.freeze( { shareware: 'Quake (shareware)', quake: 'Quake', hipnotic: 'Scourge of Armagon', rogue: 'Dissolution of Eternity', dopa: 'Dimension of the Past', mg1: 'Dimension of the Machine', quoth: 'Quoth', malice: 'Malice', aopfm_v2: 'Abyss of Pandemonium', soe: 'Soul of Evil' } );
 export const GAME_SELECTION_CHOICES = Object.freeze( Object.keys( OWNED_PACKS ) );
 
 const storage = () => { try { return globalThis.localStorage ?? null; } catch { return null; } };
