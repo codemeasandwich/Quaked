@@ -88,6 +88,7 @@ import { R_AliasFrameBox, R_WallBurnClear, R_WallBurnFrame, R_WallBurnSetup, R_W
 import { R_WaveImpact, R_WavesFrame, R_WavesReset, R_WavesSetup } from './render/r_waves.js';
 import { R_PlayerSurfaceBlood, R_WeaponSurfaceBloodAt, R_WeaponSurfaceContext, R_WeaponSurfaceFrame, weaponSurface } from './render/r_weapon_surface.js';
 import { R_WeaponAsset, R_WeaponHeldPullback, R_WeaponMaterials, R_WeaponRotorFrame, R_WeaponStatus, R_WeaponTextures, R_WeaponsEnabled, R_WeaponsPreload, r_newer_weapons } from './render/r_weapons.js';
+import { V_BlastShake, V_BlastShakeEvent, v_blastshake, BLAST_ROCKET, BLAST_SPAWN, BLAST_ERUPTION } from './render/v_blastshake.js';
 import { V_ShamblerStepShake, v_shamblersteps } from './render/v_shamblersteps.js';
 import { S_UpdateAmbientMusic } from './sound/s_ambientgame.js';
 import { S_AmbientMusicNotifyCombat, S_AmbientMusicShutdown, S_AmbientMusicStop, S_AmbientMusicUnlock } from './sound/s_ambientmusic.js';
@@ -177,6 +178,7 @@ if ( ! Hooks_Installed() ) Hooks_Install( {
 	R_WaveImpact, R_WavesFrame, R_WavesReset, R_WavesSetup,
 	R_PlayerSurfaceBlood, R_WeaponSurfaceBloodAt, R_WeaponSurfaceContext, R_WeaponSurfaceFrame, weaponSurface,
 	R_WeaponAsset, R_WeaponHeldPullback, R_WeaponMaterials, R_WeaponRotorFrame, R_WeaponStatus, R_WeaponTextures, R_WeaponsEnabled, R_WeaponsPreload, r_newer_weapons,
+	V_BlastShake, V_BlastShakeEvent, v_blastshake, BLAST_ROCKET, BLAST_SPAWN, BLAST_ERUPTION,
 	V_ShamblerStepShake, v_shamblersteps,
 	S_UpdateAmbientMusic,
 	S_AmbientMusicNotifyCombat, S_AmbientMusicShutdown, S_AmbientMusicStop, S_AmbientMusicUnlock,

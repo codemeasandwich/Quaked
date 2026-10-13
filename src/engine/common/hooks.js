@@ -559,6 +559,14 @@ export let R_WeaponsEnabled = Hooks_Missing( 'R_WeaponsEnabled' );
 export let R_WeaponsPreload = Hooks_Missing( 'R_WeaponsPreload' );
 export let r_newer_weapons;
 
+// newer/render/v_blastshake.js
+export let V_BlastShake = Hooks_Missing( 'V_BlastShake' );
+export let V_BlastShakeEvent = Hooks_Missing( 'V_BlastShakeEvent' );
+export let v_blastshake;
+export let BLAST_ROCKET;
+export let BLAST_SPAWN;
+export let BLAST_ERUPTION;
+
 // newer/render/v_shamblersteps.js
 export let V_ShamblerStepShake = Hooks_Missing( 'V_ShamblerStepShake' );
 export let v_shamblersteps;
@@ -727,6 +735,7 @@ const HOOK_NAMES = Object.freeze( [
 	'R_WaveImpact', 'R_WavesFrame', 'R_WavesReset', 'R_WavesSetup',
 	'R_PlayerSurfaceBlood', 'R_WeaponSurfaceBloodAt', 'R_WeaponSurfaceContext', 'R_WeaponSurfaceFrame', 'weaponSurface',
 	'R_WeaponAsset', 'R_WeaponHeldPullback', 'R_WeaponMaterials', 'R_WeaponRotorFrame', 'R_WeaponStatus', 'R_WeaponTextures', 'R_WeaponsEnabled', 'R_WeaponsPreload', 'r_newer_weapons',
+	'V_BlastShake', 'V_BlastShakeEvent', 'v_blastshake', 'BLAST_ROCKET', 'BLAST_SPAWN', 'BLAST_ERUPTION',
 	'V_ShamblerStepShake', 'v_shamblersteps',
 	'S_UpdateAmbientMusic',
 	'S_AmbientMusicNotifyCombat', 'S_AmbientMusicShutdown', 'S_AmbientMusicStop', 'S_AmbientMusicUnlock',
@@ -839,6 +848,7 @@ export function Hooks_Install( table ) {
 	R_WaveImpact = table.R_WaveImpact; R_WavesFrame = table.R_WavesFrame; R_WavesReset = table.R_WavesReset; R_WavesSetup = table.R_WavesSetup;
 	R_PlayerSurfaceBlood = table.R_PlayerSurfaceBlood; R_WeaponSurfaceBloodAt = table.R_WeaponSurfaceBloodAt; R_WeaponSurfaceContext = table.R_WeaponSurfaceContext; R_WeaponSurfaceFrame = table.R_WeaponSurfaceFrame; weaponSurface = table.weaponSurface;
 	R_WeaponAsset = table.R_WeaponAsset; R_WeaponHeldPullback = table.R_WeaponHeldPullback; R_WeaponMaterials = table.R_WeaponMaterials; R_WeaponRotorFrame = table.R_WeaponRotorFrame; R_WeaponStatus = table.R_WeaponStatus; R_WeaponTextures = table.R_WeaponTextures; R_WeaponsEnabled = table.R_WeaponsEnabled; R_WeaponsPreload = table.R_WeaponsPreload; r_newer_weapons = table.r_newer_weapons;
+	V_BlastShake = table.V_BlastShake; V_BlastShakeEvent = table.V_BlastShakeEvent; v_blastshake = table.v_blastshake; BLAST_ROCKET = table.BLAST_ROCKET; BLAST_SPAWN = table.BLAST_SPAWN; BLAST_ERUPTION = table.BLAST_ERUPTION;
 	V_ShamblerStepShake = table.V_ShamblerStepShake; v_shamblersteps = table.v_shamblersteps;
 	S_UpdateAmbientMusic = table.S_UpdateAmbientMusic;
 	S_AmbientMusicNotifyCombat = table.S_AmbientMusicNotifyCombat; S_AmbientMusicShutdown = table.S_AmbientMusicShutdown; S_AmbientMusicStop = table.S_AmbientMusicStop; S_AmbientMusicUnlock = table.S_AmbientMusicUnlock;

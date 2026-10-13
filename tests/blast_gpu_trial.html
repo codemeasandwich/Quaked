@@ -1,0 +1,36 @@
+<!doctype html><meta charset="utf-8"><title>Explosion shake GPU verification</title>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import '/src/newer/install.js';
+import * as THREE from 'three';
+import {V_Init,V_CalcRefdef} from '/src/engine/client/view.js';
+import {V_BlastShake,V_BlastShakeEvent} from '/src/newer/render/v_blastshake.js';
+import * as main from '/src/engine/render/gl_rmain.js';
+import {r_refdef} from '/src/engine/render/render.js';
+import {cl,cls,cl_entities,ca_connected,SIGNONS} from '/src/engine/client/client.js';
+import {sv} from '/src/engine/server/server.js';
+import {r_hdr} from '/src/newer/render/gl_post.js';
+import {Cvar_RegisterVariable,Cvar_FindVar,Cvar_Set} from '/src/engine/common/cvar.js';
+import {Cmd_Init,Cbuf_Init} from '/src/engine/common/cmd.js';
+import {key_game,set_key_dest} from '/src/engine/client/keys.js';
+window.results=[];
+try{
+ Cbuf_Init();Cmd_Init();if(!Cvar_FindVar('r_hdr'))Cvar_RegisterVariable(r_hdr);V_Init();Cvar_Set('r_hdr','1');Cvar_Set('v_blastshake','1');
+ cls.state=ca_connected;cls.signon=SIGNONS;cls.demoplayback=false;set_key_dest(key_game);sv.active=false;
+ cl.worldmodel={name:'maps/view-fixture.bsp'};cl.paused=false;cl.intermission=0;cl.stats[0]=100;cl.viewentity=0;cl.num_entities=1;cl.viewheight=22;cl.onground=true;
+ const self={origin:new Float32Array(3),angles:new Float32Array(3)};cl_entities[0]=self;cl.velocity.fill(0);cl.viewangles.fill(0);cl.punchangle.fill(0);cl.time=100;
+ r_refdef.vrect.width=256;r_refdef.vrect.height=256;r_refdef.fov_x=90;r_refdef.fov_y=90;
+ const renderer=new THREE.WebGLRenderer({antialias:false});renderer.setSize(256,256);document.body.append(renderer.domElement);const scene=new THREE.Scene();scene.background=new THREE.Color(0x101010);
+ for(let y=-64;y<=64;y+=16)for(let z=-42;z<=86;z+=16){const mesh=new THREE.Mesh(new THREE.BoxGeometry(3,14,14),new THREE.MeshBasicMaterial({color:((y+z)%32===0)?0xe5ad55:0x4a85b8}));mesh.position.set(96,y,z);scene.add(mesh);}
+ const target=new THREE.WebGLRenderTarget(256,256);const draw=()=>{V_CalcRefdef();main.R_SetupGL();renderer.setRenderTarget(target);renderer.render(scene,main.camera);const data=new Uint8Array(256*256*4);renderer.readRenderTargetPixels(target,0,0,256,256,data);return data;};
+ const delta=(a,b)=>{let n=0;for(let i=0;i<a.length;i+=4)if(Math.abs(a[i]-b[i])+Math.abs(a[i+1]-b[i+1])+Math.abs(a[i+2]-b[i+2])>6)n++;return n;};
+ const strictDelta=(a,b)=>{let n=0;for(let i=0;i<a.length;i++)if(a[i]!==b[i])n++;return n;};
+ V_BlastShake([0,0,0]);const baseline=draw();V_BlastShakeEvent([0,0,0]);cl.time=100.05;const shaken=draw();const changed=delta(baseline,shaken);
+ window.results.push({check:'real refdef and engine camera visibly shake',changed,pass:changed>100});
+ window.results.push({check:'aim and physical player origin remain unchanged',pass:[...cl.viewangles,...self.origin].every(v=>v===0)});
+ cl.time=101;const settled=draw();window.results.push({check:'image returns to baseline after blast',changed:delta(baseline,settled),changedBytes:strictDelta(baseline,settled),pass:strictDelta(baseline,settled)===0});
+ Cvar_Set('v_blastshake','0');V_BlastShakeEvent([0,0,0]);cl.time=101.05;const off=draw();window.results.push({check:'off setting preserves baseline pixels',changed:delta(baseline,off),changedBytes:strictDelta(baseline,off),pass:strictDelta(baseline,off)===0});
+ Cvar_Set('v_blastshake','1');Cvar_Set('r_hdr','0');V_BlastShakeEvent([0,0,0]);cl.time=101.1;const classic=draw();window.results.push({check:'Classic preserves baseline pixels',changed:delta(baseline,classic),changedBytes:strictDelta(baseline,classic),pass:strictDelta(baseline,classic)===0});
+ renderer.setRenderTarget(null);renderer.render(scene,main.camera);window.complete=true;
+}catch(e){window.failure=String(e.stack??e);window.complete=true;}
+</script>

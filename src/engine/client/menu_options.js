@@ -517,9 +517,23 @@ const NEWER_FEATURES = [
 	{ cvar: 'r_reflect', label: '      Water reflections', slider: true },
 	{ cvar: 'r_water_look', label: '      Water appearance', choices: [ 'Map', 'Clear', 'Tinted', 'Muddy', 'Toxic' ] },
 	// (added last, so the rows above keep their places)
-	{ cvar: 'r_dof', label: '        Depth of field', slider: true }
+	{ cvar: 'r_dof', label: '        Depth of field', slider: true },
+	// the add-on effects for every game (card T-3faa98e3, docs/addon-effects-integration-2026-10-13.md): past the
+	// first page, which the list scrolls to
+	{ cvar: 'v_blastshake', label: '      Explosion shake', slider: true }
 ];
-let m_newer_cursor = 0;
+// the page shows this many rows; a longer list scrolls with the cursor
+const NEWER_VISIBLE = 17;
+let m_newer_cursor = 0, m_newer_top = 0;
+
+// keeps the cursor's row on the page
+function M_Newer_Scroll() {
+
+	if ( m_newer_cursor < m_newer_top ) m_newer_top = m_newer_cursor;
+	if ( m_newer_cursor >= m_newer_top + NEWER_VISIBLE ) m_newer_top = m_newer_cursor - NEWER_VISIBLE + 1;
+	m_newer_top = Math.max( 0, Math.min( m_newer_top, NEWER_FEATURES.length - NEWER_VISIBLE ) );
+
+}
 
 function M_Menu_Newer_f() {
 
@@ -533,9 +547,10 @@ function M_Menu_Newer_f() {
 const NEWER_ROW0 = 44;
 
 /**
- * `M_Draw` while `m_state` is `m_newer`: a dark panel (unless the WebGL menu is skinned), the banner, each Newer Game
- * feature 8 pixels apart from y 44 with its on/off, slider or water appearance choice read from its cvar, a note, and
- * the cursor. Nothing until `Draw_CachePic` is wired.
+ * `M_Draw` while `m_state` is `m_newer`: a dark panel (unless the WebGL menu is skinned), the banner, a page of 17
+ * Newer Game features 8 pixels apart from y 44, each with its on/off, slider or water appearance choice read from its
+ * cvar, a note (which says when the list goes on above or below the page), and the cursor. The page follows the
+ * cursor. Nothing until `Draw_CachePic` is wired.
  */
 export function M_Newer_Draw() {
 
@@ -553,9 +568,11 @@ export function M_Newer_Draw() {
 	if ( banner != null ) M_DrawTransPic( ( 320 - banner.width ) / 2, 4, banner );
 	else M_DrawPic( ( 320 - 128 ) / 2, 4, _Draw_CachePic( 'gfx/p_option.lmp' ) );
 
-	for ( let i = 0; i < NEWER_FEATURES.length; i ++ ) {
+	M_Newer_Scroll();
+	const shown = Math.min( NEWER_VISIBLE, NEWER_FEATURES.length );
+	for ( let i = m_newer_top; i < m_newer_top + shown; i ++ ) {
 
-		const y = NEWER_ROW0 + i * 8;
+		const y = NEWER_ROW0 + ( i - m_newer_top ) * 8;
 		M_Print( 16, y, NEWER_FEATURES[ i ].label );
 		if ( NEWER_FEATURES[ i ].choices ) {
 
@@ -570,10 +587,13 @@ export function M_Newer_Draw() {
 
 	}
 
-	const notes = NEWER_ROW0 + NEWER_FEATURES.length * 8 + 6;
-	M_Print( 16, notes, ' Newer Game only. Each switches alone.' ); // (one line: the panel ends below it)
+	const notes = NEWER_ROW0 + shown * 8 + 6, below = NEWER_FEATURES.length - m_newer_top - shown;
+	// (one line: the panel ends below it)
+	if ( below > 0 ) M_Print( 16, notes, ` Newer Game only.   ${below} more below` );
+	else if ( m_newer_top > 0 ) M_Print( 16, notes, ` Newer Game only.   ${m_newer_top} more above` );
+	else M_Print( 16, notes, ' Newer Game only. Each switches alone.' );
 
-	M_DrawCharacter( 200, NEWER_ROW0 + m_newer_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
+	M_DrawCharacter( 200, NEWER_ROW0 + ( m_newer_cursor - m_newer_top ) * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
 
 }
 
@@ -607,7 +627,8 @@ function M_Newer_Toggle( dir ) {
 }
 
 /**
- * `M_Keydown` on the Newer Game features. ESC returns to the options; Up and Down move the cursor, wrapping. Left and
+ * `M_Keydown` on the Newer Game features. ESC returns to the options; Up and Down move the cursor, wrapping (the page
+ * follows it when the list is longer than a page). Left and
  * Right step the row: a slider by 0.05 within 0..1, a choice back or forward, a switch flipped. Enter flips a switch,
  * steps a choice forward, or steps a slider up 0.05, round to 0 past the top. The flashlight goes through
  * `R_FlashlightToggle`, the others through `Cvar_SetValue`.
@@ -645,17 +666,28 @@ export function M_Newer_Key( key ) {
 
 /**
  * `M_TouchInput` on the Newer Game features: a touch on a feature row (8 pixels a row from y 44) moves the cursor there
- * and changes it as Enter does.
+ * and changes it as Enter does; a touch on the note under the rows turns to the rest of the list (and back).
  *
  * @param {number} vx x in menu pixels (0..320; unused)
  * @param {number} vy y in menu pixels (0..200)
  */
 export function M_Newer_Touch( vx, vy ) {
 
-	if ( vy >= NEWER_ROW0 && vy < NEWER_ROW0 + NEWER_FEATURES.length * 8 ) {
+	const shown = Math.min( NEWER_VISIBLE, NEWER_FEATURES.length );
+	if ( vy >= NEWER_ROW0 && vy < NEWER_ROW0 + shown * 8 ) {
 
-		m_newer_cursor = Math.floor( ( vy - NEWER_ROW0 ) / 8 );
+		M_Newer_Scroll();
+		m_newer_cursor = m_newer_top + Math.floor( ( vy - NEWER_ROW0 ) / 8 );
 		M_Newer_Toggle( 0 );
+
+	} else if ( vy >= NEWER_ROW0 + shown * 8 + 4 && vy < NEWER_ROW0 + shown * 8 + 16 && NEWER_FEATURES.length > NEWER_VISIBLE ) {
+
+		// the note: the next page, or back to the top from the last
+		M_Newer_Scroll();
+		if ( _S_LocalSound ) _S_LocalSound( 'misc/menu1.wav' );
+		const last = NEWER_FEATURES.length - NEWER_VISIBLE;
+		m_newer_top = m_newer_top < last ? Math.min( last, m_newer_top + NEWER_VISIBLE ) : 0;
+		m_newer_cursor = m_newer_top;
 
 	}
 

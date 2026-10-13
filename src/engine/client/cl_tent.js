@@ -43,6 +43,7 @@ import { R_RunParticleEffect, R_ParticleExplosion, R_BlobExplosion,
 	R_ParticleExplosion2, R_LavaSplash, R_WizardSpikeImpact, R_KnightSpikeImpact } from '../render/render.js';
 import { Mod_ForName } from '../render/gl_model.js';
 import { R_DecalShot, R_DecalScorch, R_DecalBloodPool } from '../common/hooks.js'; // installed by newer/render/r_decals.js
+import { V_BlastShakeEvent, BLAST_ROCKET, BLAST_SPAWN, BLAST_ERUPTION } from '../common/hooks.js'; // installed by newer/render/v_blastshake.js
 
 let num_temp_entities = 0;
 // the player's beam lookup lives with the beams in client.js, so the renderer need not import this module ([44g], D1a)
@@ -244,6 +245,7 @@ export function CL_ParseTEnt() {
 			// one-shot light would only double it)
 			const fireball = R_ParticleExplosion( pos );
 			R_DecalScorch( pos );
+			V_BlastShakeEvent( pos, BLAST_ROCKET ); // (Newer Game: the blast shakes the view, card T-3faa98e3)
 			if ( ! fireball ) {
 
 				const dl = CL_AllocDlight( 0 );
@@ -263,6 +265,7 @@ export function CL_ParseTEnt() {
 			pos[ 1 ] = MSG_ReadCoord();
 			pos[ 2 ] = MSG_ReadCoord();
 			R_BlobExplosion( pos );
+			V_BlastShakeEvent( pos, BLAST_SPAWN );
 			S_StartSound( - 1, 0, cl_sfx_r_exp3, pos, 1, 1 );
 			break;
 
@@ -289,6 +292,7 @@ export function CL_ParseTEnt() {
 			pos[ 1 ] = MSG_ReadCoord();
 			pos[ 2 ] = MSG_ReadCoord();
 			R_LavaSplash( pos );
+			V_BlastShakeEvent( pos, BLAST_ERUPTION ); // (Chthon rising, and falling)
 			break;
 
 		case TE_GORE: { // Newer Game: a monster burst; the bigger it was, the bigger the pool
@@ -320,6 +324,7 @@ export function CL_ParseTEnt() {
 			pos[ 2 ] = MSG_ReadCoord();
 			const colorStart = MSG_ReadByte();
 			const colorLength = MSG_ReadByte();
+			V_BlastShakeEvent( pos, BLAST_ROCKET );
 			if ( ! R_ParticleExplosion2( pos, colorStart, colorLength ) ) {
 
 				const dl2 = CL_AllocDlight( 0 );
