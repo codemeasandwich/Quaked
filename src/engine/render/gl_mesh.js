@@ -11,6 +11,7 @@
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
+import { R_LavaManApply, R_LavaManPositions } from '../common/hooks.js';
 import { R_AliasMeshLookup, R_AliasMeshRemember } from '../common/hooks.js'; // installed by newer/assets/r_aliasmeshcache.js
 // Ported from: WinQuake/gl_mesh.c -- triangle model functions (alias models)
 
@@ -738,7 +739,7 @@ R_DrawAliasModel
  * @returns {?THREE.Mesh} the entity's mesh (the same object every frame), or null when the header has no pose data or
  *   the pose has no geometry
  */
-export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight ) {
+export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight, visualTime = cl ? cl.time : 0 ) {
 
 	if ( ! paliashdr || ! paliashdr.posedata )
 		return null;
@@ -959,6 +960,10 @@ export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight ) {
 		if ( mesh.material !== material ) mesh.material = material;
 
 	}
+
+	// Native interpolation stays canonical; cosmetic output never becomes a blend lead.
+	R_LavaManApply( entity, mesh, entity?._aliasBlended ? entity._aliasBlendPos : template.posAttr,
+		entity?._aliasBlended ? entity._aliasBlendNormal : template.normalAttr, visualTime );
 
 	// Apply entity transform — R_RotateForEntity equivalent
 	if ( entity ) {
@@ -1182,7 +1187,7 @@ export function GL_DrawAliasLightShadow( entity, paliashdr, posenum, floorZ, lig
 	entity._shadowKey = entity.origin[ 0 ] + entity.origin[ 1 ] * 3 + entity.origin[ 2 ] * 7 + ( entity.angles ? entity.angles[ 1 ] : 0 );
 
 	// the pose that is on screen (a blend between two while the animation is smoothed)
-	const src = entity._aliasBlended === true && entity._aliasBlendPos != null ? entity._aliasBlendPos.array : template.posAttr.array;
+	const src = R_LavaManPositions( entity ) || ( entity._aliasBlended === true && entity._aliasBlendPos != null ? entity._aliasBlendPos.array : template.posAttr.array );
 	const n = template.vertexCount;
 
 	// the model's place in the world

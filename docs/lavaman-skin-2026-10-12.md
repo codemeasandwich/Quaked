@@ -1,5 +1,11 @@
 # Lava Man: original molten skin and dark appendages
 
+> Artwork correction in progress: the owner rejected this first design. See
+> [the eldritch Lava Man record](lavaman-eldritch-2026-10-13.md) for the selected
+> replacement source and the separately requested runtime fire/smoke/deformation.
+> This document retains the original delivery history.
+
+
 Official-game campaign T-bb7e6282, increment T-51cf2d18. Owner authorizes ChatGPT
 original-reference generation and a separate per-enemy commit/push. Predecessor
 Wrath `0cf13349` is published and remote verified.

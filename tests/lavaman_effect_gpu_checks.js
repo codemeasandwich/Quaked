@@ -90,6 +90,17 @@ export async function runLavaEffectsChecks({renderer,scene,camera,part,draw,veri
   verify(again.max<1e-5,'Lava visual clock rewind returns to the same nonaccumulating surface',again);
   verify(pixelChange(samples[0].bodyImage.pixels,repeat.pixels).changed<4,'Lava identical fixed pose/time returns to the same rendered body');
   verify(originalPosition.every((v,i)=>v===template.posAttr.array[i])&&originalNormal.every((v,i)=>v===template.normalAttr.array[i]),'Lava effect never rewrites shared native pose position/normal arrays');
+  // Compile the actual reused transparent shaders with fog enabled as well.
+  // The clear scene above alone cannot exercise Three's USE_FOG branch.
+  const priorFog=scene.fog;
+  try{
+   scene.fog=new THREE.FogExp2(0x101014,.004);
+   const fogBody=capture('body',TIMES[0],false),fogAll=capture('all',TIMES[0]);
+   const clearFX=contribution(samples[0].bodyImage.pixels,samples[0].all.pixels,samples[0].z.mask),fogFX=contribution(fogBody.pixels,fogAll.pixels,samples[0].z.mask);
+   verify(fogBody.glError===0&&fogAll.glError===0,'Lava body and actual pixel-shader effects compile and render cleanly with distance fog');
+   verify(fogFX.outside>32&&fogFX.energy<clearFX.energy*.95,'Lava fire/smoke remain visible and attenuate at their own fogged depth',{clearFX,fogFX});
+   result.fog={clearFX,fogFX};
+  }finally{scene.fog=priorFog;}
   result.renderedVertices=template.posAttr.count;
  }finally{
   target.dispose();depthMaterial.dispose();camera.position.copy(savedCamera.position);camera.quaternion.copy(savedCamera.quaternion);if(savedSeed===undefined)delete part.entity._entityIndex;else part.entity._entityIndex=savedSeed;
@@ -100,6 +111,7 @@ export async function runLavaEffectsChecks({renderer,scene,camera,part,draw,veri
 /** Manual, bounded owner preview. Uses the same production draw as the checks,
  * but performs no pixel readbacks, screenshots or growing evidence collection. */
 export function createLavaMotionPreview({renderer,scene,camera,part,draw,runButton,insertBefore,release}){
+ document.querySelector('h1 + p').textContent='Actual owned-model rendering, native poses and Classic controls. The motion preview runs only when requested, for six seconds; no game or saved state is started.';
  const panel=document.createElement('section'),title=document.createElement('h2'),controls=document.createElement('p'),status=document.createElement('output');
  title.textContent='Lava Man motion preview';
  const startButton=document.createElement('button'),pauseButton=document.createElement('button'),stopButton=document.createElement('button');

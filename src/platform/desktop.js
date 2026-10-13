@@ -7,7 +7,7 @@ import {GameCatalogue_AllGames,GameCatalogue_Refresh,GameCatalogue_SetProvider,G
 import {GameSelection_Startable,GameSelection_Kept,GameSelection_Remember,GameSelection_LibraryOrder} from '../engine/common/game_selection.js';
 import {COM_LoadPackFile,COM_BuildPack} from '../engine/common/pak.js';
 import {GameShelf_Show} from '../engine/common/hooks.js'; // filled by src/newer/install.js, which main.js loads first
-import {LoadingScreen_SetProgress} from '../newer/ui/loading_screen.js';
+import {LoadingScreen_SetProgress} from '../engine/common/hooks.js';
 let listening=false;
 export async function Desktop_SelectLocation(){
   document.exitPointerLock?.();

@@ -1,0 +1,12 @@
+meshing progs/lavaman.mdl...
+
+meshing progs/boss.mdl...
+
+RESULT 0/1 passed (tests/lavaman_effects_audit_test.js)
+FAIL Releasing Lava Man must preserve attributes installed by a later visual owner Error: release cannot overwrite another owner position: [object Object] != [object Object]
+    at check (file:///Users/bri/.codex/worktrees/eel-procedural-lightning/Quaked/tests/lavaman_effects_audit_test.js:25:33)
+    at same (file:///Users/bri/.codex/worktrees/eel-procedural-lightning/Quaked/tests/lavaman_effects_audit_test.js:26:21)
+    at file:///Users/bri/.codex/worktrees/eel-procedural-lightning/Quaked/tests/lavaman_effects_audit_test.js:71:2
+    at async fixture (file:///Users/bri/.codex/worktrees/eel-procedural-lightning/Quaked/tests/lavaman_effects_audit_test.js:53:6)
+    at async file:///Users/bri/.codex/worktrees/eel-procedural-lightning/Quaked/tools/run_tests.mjs:93:9
+TOTAL 0/1 passed

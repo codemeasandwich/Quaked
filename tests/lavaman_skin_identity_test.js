@@ -4,6 +4,8 @@
 import * as THREE from 'three';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { gunzipSync } from 'node:zlib';
 import { NormalInputs, NormalInputWitness, R_NormalPrepare } from '../src/newer/assets/normal_prepare.js';
 import { NormalBakeDecode } from '../src/newer/assets/normal_bake_format.js';
@@ -13,8 +15,8 @@ import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init, Mod_ForName, Mod_LoadModel, model_t } from '../src/engine/render/gl_model.js';
 import * as mode from '../src/newer/mode.js';
 const EXPECTED = 'b81bb7f5cebb2889cfd2f431f743200f672d0195b05fe3faa98b50163fed7fb1';
-const SOURCE = 'tools/texture_sheets/sources/generated-2026-10-12/lavaman.png';
-const SOURCE_SHA = '18003a01584ad9d717c08c9518eaab9d0141f471100659a7c953d213bd7dfa1b';
+const SOURCE = 'tools/texture_sheets/sources/fidelity-2026-10-13/lavaman-eldritch-registered.png';
+const SOURCE_SHA = '1ea682fc68686340405b6b12bfd30f318c9348fb8a1f7db35b46faf9f3ff1ffc';
 const NAME = 'progs/lavaman.mdl', BASE = 'newer/enemies/lavaman/custom/';
 const check = ( value, message ) => { if ( !value ) throw Error( message ); };
 const same = ( actual, expected, message ) => check( actual === expected, `${message}: ${actual} != ${expected}` );
@@ -64,26 +66,43 @@ Deno.test( 'owned Lava Man public loader preserves every native UV triangle and 
 Deno.test( 'actual Lava Man assets retain generated source, matching dimensions and other enemy entries', async () => {
  const provenance = JSON.parse( read( BASE + 'SOURCE.json' ) ); same( provenance.nativeModelSha256, EXPECTED, 'fit targets exact native model' ); same( provenance.model, NAME, 'fit model' );
  same( JSON.stringify( provenance.dimensions ), '[1200,776]', 'fourfold native atlas dimensions (the 4x standard)' );
+ const recipe=JSON.parse(read('tools/texture_sheets/sources/fidelity-2026-10-13/lavaman-eldritch.json'));
+ same(recipe.sourceFile,SOURCE,'selected recipe uses exact prospective source');same(recipe.sourceSha,SOURCE_SHA,'recipe source identity');same(recipe.modelSha,EXPECTED,'recipe exact native model');same(JSON.stringify(recipe.layout),'[1,300,194,325,555,90]','recipe actual native topology');same(JSON.stringify(recipe.size),'[1558,1009]','recipe source size');same(recipe.factor,4,'recipe uses existing fourfold standard');same(JSON.stringify(recipe.runtimeEncoding),'{"format":"webp","quality":92}','explicit WebP92 recipe');
+ same(provenance.factor,4,'actual fitted scale');same(JSON.stringify(provenance.atlasBox),'[0,0,1200,776]','whole native atlas registered without rotation');same(provenance.nativeTexturePixelsUsed,0,'new material comes from generated source, not copied native pigment');same(provenance.surfacePixels,492698,'complete body/head/horn/claw native UV area');same(provenance.edgePixels,5686,'recorded bounded extension for selected source');same(provenance.islands.length,48,'every native body/head/horn/claw UV component fitted');for(const island of provenance.islands)same(island.directPixels+island.edgePixels,island.surfacePixels,'each half has accounted coverage');
+ same(approved.heightFlat,undefined,'solid molten body has no Armagon flash-height reconstruction');same(index.nativeHeights.lavaman,undefined,'native fallback still derives from its original skin');
+ const encoding=provenance.runtimeEncoding;same(encoding.format,'webp','runtime codec');same(encoding.quality,92,'owner-selected quality');same(encoding.lossless,false,'lossy runtime image format declared');same(encoding.authoringSourceUnchanged,true,'generated authoring original retained');
+ const receiptInputs=[];
+ for(const file of ['diffuse.webp','height.webp']){
+  const data=read(BASE+file),receipt=encoding.maps[file];same(data.toString('ascii',0,4),'RIFF','WebP container');same(data.toString('ascii',8,12),'WEBP','WebP signature');let offset=12,lossy=false;
+  while(offset+8<=data.length){const tag=data.toString('ascii',offset,offset+4),size=data.readUInt32LE(offset+4);if(tag==='VP8 ')lossy=true;check(tag!=='VP8L','lossless payload cannot masquerade as Q92');offset+=8+size+(size&1);}check(lossy,'actual lossy VP8 payload');same(receipt.sha256,sha(data),'encoding receipt binds shipped file');same(receipt.bytes,data.length,'encoded byte count');check(/^[0-9a-f]{64}$/.test(receipt.masterSha256),'retained lossless fit-master identity');
+  receiptInputs.push(fileURLToPath(new URL('../'+BASE+file,import.meta.url)));
+ }
+ // These receipts name Pillow explicitly. Runtime canvas decoding is separately
+ // used by the exact shipped-normal witness case below, never substituted here.
+ const proof=spawnSync(process.env.QUAKED_PYTHON||'/usr/bin/python3',['-c',"import sys,json,hashlib\nfrom PIL import Image\nfor path in json.load(sys.stdin):\n with Image.open(path) as im: print(hashlib.sha256(im.convert('RGBA').tobytes()).hexdigest())"],{input:JSON.stringify(receiptInputs),encoding:'utf8',env:{...process.env,PYTHONDONTWRITEBYTECODE:'1'}});same(proof.status,0,'decode actual Pillow provenance: '+proof.stderr);const decodedHashes=proof.stdout.trim().split('\n');same(decodedHashes.length,2,'both decoded maps checked');for(const[i,file]of ['diffuse.webp','height.webp'].entries())same(encoding.maps[file].pillowDecodedRgbaSha256,decodedHashes[i],'actual decoded receipt '+file);
+
+
  same(provenance.flatHeight,undefined,'solid molten body has no maximal flash plateau');same(approved.maps.luma,undefined,'no newly authorized emission');
  same( provenance.source, SOURCE, 'generated source provenance path' ); same( provenance.sourceSha256, SOURCE_SHA, 'generated source hash' ); same( sha( read( SOURCE ) ), SOURCE_SHA, 'actual generated PNG bytes' );
- for ( const file of [ 'diffuse.png', 'height.webp' ] ) same( sha( read( BASE + file ) ), provenance.files[ file ], 'actual fitted asset digest: ' + file );
+ for ( const file of [ 'diffuse.webp', 'height.webp' ] ) same( sha( read( BASE + file ) ), provenance.files[ file ], 'actual fitted asset digest: ' + file );
  same( index.models.lavaman.length, 1, 'single approved Lava Man variant' ); same( approved.skin, 0, 'only native skin zero admitted' ); same( approved.nativeModelSha256, EXPECTED, 'manifest requires native identity' );
- same( approved.dir, 'lavaman/custom', 'directory' ); same( approved.maps.diffuse, 'diffuse.png', 'lossless fitted PNG is used by the product' ); same( approved.maps.height, 'height.webp', 'matching stored height' ); same( Object.keys( approved.maps ).length, 2, 'only expected maps' ); same( approved.flipGreen, false, 'generated normal green convention' );
+ same( approved.dir, 'lavaman/custom', 'directory' ); same( approved.maps.diffuse, 'diffuse.webp', 'reviewed fit uses owner-required lossy WebP92' ); same( approved.maps.height, 'height.webp', 'matching stored height' ); same( Object.keys( approved.maps ).length, 2, 'only expected maps' ); same( approved.flipGreen, false, 'generated normal green convention' );
  const other = structuredClone( index );other.models.ogre=other.models.ogre.slice(0,1);other.nativeHeights.ogre=other.nativeHeights.ogre.slice(0,1);other.models.knight=other.models.knight.slice(0,1);other.nativeHeights.knight=other.nativeHeights.knight.slice(0,1); delete other.version;
- // Pin all existing families and their data while permitting future append-only enemy families.
+ // Same protected family projection, refreshed from committed HEAD0b8ffd71 after
+ // previously published photographic corrections; no prior family is omitted.
  const baselineKeys = ["boss", "knight", "ogre", "soldier", "wizard", "backpack", "suit", "armor", "shambler", "zombie", "demon", "h_demon", "h_dog", "zom_gib", "h_shams", "shalrath", "oldone", "enforcer", "tarbaby", "hknight", "scor", "dragon", "s_wrath", "mummy", "dog", "fish", "grem", "armabody", "armalegs", "eel2", "sword", "wrath"];
  other.models = Object.fromEntries(Object.entries(other.models).filter(([key]) => baselineKeys.includes(key)).map(([key,list])=>[key,['hknight','tarbaby'].includes(key)?list.slice(0,1):list]));
  const baselineHeightKeys = ["gib1", "gib2", "gib3", "zom_gib", "ogre", "h_ogre", "demon", "h_demon", "shambler", "h_shams", "knight", "h_knight", "soldier", "h_guard", "wizard", "h_wizard", "h_dog", "dog", "zombie", "h_zombie", "boss", "armabody", "eel2"];
  other.nativeHeights = Object.fromEntries(Object.entries(other.nativeHeights).filter(([key]) => baselineHeightKeys.includes(key)));
- same(sha(JSON.stringify(other)), 'ed0259d3a6e5d76f0c00e08d9d7ef26c4c479733f3fd70985fb4b937ade9eb37', 'all prior model and native-height families preserved');
+ same(sha(JSON.stringify(other)), '85aa0306a973a6bcafd06989d63afb1463d3b75580a35c84989e098101bd0cd1', 'all prior model and native-height families preserved');
  const canvas = await import( process.env.QUAKED_CANVAS_MODULE || '/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js' );
  const decode = async file => { const image = await canvas.loadImage( read( BASE + file ) ), surface = canvas.createCanvas( image.width, image.height ), ctx = surface.getContext( '2d' ); ctx.drawImage( image, 0, 0 ); return ctx.getImageData( 0, 0, image.width, image.height ); };
  // Read hash-pinned source dimensions from PNG IHDR. Both product maps undergo actual canvas decoding below.
- const generated = read( SOURCE ); same( generated.subarray( 0, 8 ).toString( 'hex' ), '89504e470d0a1a0a', 'generated source PNG signature' ); same( generated.toString( 'ascii', 12, 16 ), 'IHDR', 'generated source image header' ); same( generated.readUInt32BE( 16 ), 1559, 'generated source width' ); same( generated.readUInt32BE( 20 ), 1009, 'generated source height' );
- const diffuse = await decode( 'diffuse.png' ), height = await decode( 'height.webp' ); same( diffuse.width, 1200, 'actual diffuse width' ); same( diffuse.height, 776, 'actual diffuse height' ); same( height.width, diffuse.width, 'height aligned horizontally' ); same( height.height, diffuse.height, 'height aligned vertically' );
+ const generated = read( SOURCE ); same( generated.subarray( 0, 8 ).toString( 'hex' ), '89504e470d0a1a0a', 'generated source PNG signature' ); same( generated.toString( 'ascii', 12, 16 ), 'IHDR', 'generated source image header' ); same( generated.readUInt32BE( 16 ), 1558, 'generated source width' ); same( generated.readUInt32BE( 20 ), 1009, 'generated source height' );
+ const diffuse = await decode( 'diffuse.webp' ), height = await decode( 'height.webp' ); same( diffuse.width, 1200, 'actual diffuse width' ); same( diffuse.height, 776, 'actual diffuse height' ); same( height.width, diffuse.width, 'height aligned horizontally' ); same( height.height, diffuse.height, 'height aligned vertically' );
  let halfDifferences=0;for(let y=0;y<diffuse.height;y++)for(let x=0;x<diffuse.width/2;x++){const a=(y*diffuse.width+x)*4,b=a+diffuse.width/2*4;if(diffuse.data[a]!==diffuse.data[b]||diffuse.data[a+1]!==diffuse.data[b+1]||diffuse.data[a+2]!==diffuse.data[b+2])halfDifferences++;}check(halfDifferences>1559,'fitted front/back preserve distinct art instead of duplicating one half');
  let min = 255, max = 0;
- for ( let i = 0; i < height.data.length; i += 4 ) { const value = height.data[i]; same( height.data[i+1], value, 'height green is grayscale' ); same( height.data[i+2], value, 'height blue is grayscale' ); same( height.data[i+3], 255, 'height fully opaque' ); same( diffuse.data[i+3], 255, 'diffuse fully opaque' ); min = Math.min( min, value ); max = Math.max( max, value ); }
+ for ( let i = 0; i < height.data.length; i += 4 ) { const value = height.data[i]; check(Math.max(value,height.data[i+1],height.data[i+2])-Math.min(value,height.data[i+1],height.data[i+2])<=1,'neutral height remains gray within one codec rounding unit; runtime uses exact decoded red'); same( height.data[i+3], 255, 'height fully opaque' ); same( diffuse.data[i+3], 255, 'diffuse fully opaque' ); min = Math.min( min, value ); max = Math.max( max, value ); }
  check( max - min > 32, 'actual stored height is nonflat' );
 } );
 Deno.test( 'actual manifest admits only matching Lava Man skin zero and preserves native geometry through preparation and selection', async () => fixture( async ( skins, requests ) => {
@@ -93,7 +112,7 @@ Deno.test( 'actual manifest admits only matching Lava Man skin zero and preserve
  const id1=await pakDirectory(process.env.QUAKED_ID1_PAK),bossBytes=await readMember(id1.get('progs/boss.mdl'));same(sha(bossBytes),'4b802488480de2e36130e06ee03a31b2e96046a3ffe12f66e62d9bf4bd2f2eea','actual Chthon identity control');const uvStart=88+300*194,uvEnd=uvStart+325*12+555*16;check(bytes.subarray(uvStart,uvEnd).equals(bossBytes.subarray(uvStart,uvEnd)),'Chthon has identical UV/triangle bytes but remains a distinct enemy');let differing=0;for(let i=88;i<uvStart;i++)if(bytes[i]!==bossBytes[i])differing++;same(differing,56764,'actual original skins differ despite identical layout');COM_AddPack(isolatedPack('progs/boss.mdl',bossBytes));const boss=Mod_ForName('progs/boss.mdl',true);await boss.aliasSourceIdentity.promise;same(skins.R_NewerAliasMaterial({model:{...boss,name:NAME}},NAME,true,0),null,'actual Chthon bytes never wear Lava Man art under a spoofed filename');
  const preparing = skins.R_NewerSkinsPrepare( [ model ] ); same( skins.R_NewerSkinsPrepare( [ model, model ] ), preparing, 'matching preparation deduplicates' ); await preparing; same( requests.length, 2, 'exact diffuse and height requests' );
  check( requests.every( r => r.url.startsWith( BASE ) && r.url.endsWith( '?v=' + index.version ) ), 'both requests use approved directory and cache revision' ); same( skins.R_NewerSkinsStatus( [ model ] ).pending, 2, 'preparation acknowledgement is not image readiness' ); same( skins.R_NewerAliasMaterial( { model }, NAME, true, 0 ), null, 'pending diffuse retains native' );
- for ( const request of requests ) request.done( request.texture ); const material = skins.R_NewerAliasMaterial( { model, _entityIndex: 9 }, NAME, true, 0 ); check( material, 'matched skin zero material ready' ); same( material.map, requests.find( r => r.url.includes( 'diffuse.png' ) ).texture, 'draw uses approved decoded diffuse' );
+ for ( const request of requests ) request.done( request.texture ); const material = skins.R_NewerAliasMaterial( { model, _entityIndex: 9 }, NAME, true, 0 ); check( material, 'matched skin zero material ready' ); same( material.map, requests.find( r => r.url.includes( 'diffuse.webp' ) ).texture, 'draw uses approved decoded diffuse' );
  same( material.map.flipY, false, 'native top-row-first UV convention retained' ); same( material.map.colorSpace, THREE.SRGBColorSpace, 'diffuse uses native color contract' ); same( skins.R_NewerSkinsStatus( [ model ] ).ready, 2, 'both image callbacks counted' ); check( skins.R_NewerSkinsStatus( [ model ] ).settled, 'image family settled' );
  for ( const skin of [ 1, 2, 7 ] ) same( skins.R_NewerAliasMaterial( { model }, NAME, true, skin ), null, 'unapproved skin remains native' );
  for ( const unsupported of [ wrong, { name: NAME }, { ...model, name: 'progs/unsupported_lavaman.mdl' } ] ) { same( skins.R_NewerAliasMaterial( { model: unsupported }, unsupported.name, true, 0 ), null, 'unsupported source/model remains native after positive cache fill' ); same( skins.R_NewerSkinsMaterials( [ unsupported ] ).length, 0, 'unsupported model has no approved materials' ); same( skins.R_NewerSkinsTextures( [ unsupported ] ).length, 0, 'unsupported model has no approved textures' ); }
@@ -142,7 +161,7 @@ async function verifyBake(texture,family,expectedModelSha=null) {
  return decoded;
 }
 Deno.test('Lava Man custom and native generated inputs use exact shipped normal samples',async()=>{
- const {model}=await native(),pixels=model.cache.data.gl_texturenum[0][0].image,diffuse=await decodedImage(BASE+'diffuse.png'),height=await decodedImage(BASE+'height.webp');
+ const {model}=await native(),pixels=model.cache.data.gl_texturenum[0][0].image,diffuse=await decodedImage(BASE+'diffuse.webp'),height=await decodedImage(BASE+'height.webp');
  const custom=companion(diffuse,height,approved.heightStrength,approved.heightCap);await verifyBake(custom,'custom:lavaman/custom');
  await verifyBake(companion(pixels,null),'rogue:'+NAME,EXPECTED);
 });
@@ -158,7 +177,7 @@ Deno.test('All forty-eight native Lava Man UV components retain molten body and 
  const components=new Map();for(let i=0;i<triangles.length;i++){const key=root(i);if(!components.has(key))components.set(key,[]);components.get(key).push(triangles[i]);}
  same(components.size,48,'all native UV connectivity components');
  same([...components.values()].filter(ts=>ts[0].front).length,24,'front components');same([...components.values()].filter(ts=>!ts[0].front).length,24,'back components');
- const diffuse=await decodedImage(BASE+'diffuse.png'),height=await decodedImage(BASE+'height.webp');let molten=0,warm=0,charcoal=0,neutral=0;
+ const diffuse=await decodedImage(BASE+'diffuse.webp'),height=await decodedImage(BASE+'height.webp');let molten=0,warm=0,charcoal=0,neutral=0;
  for(const ts of components.values()){
   let visible=0;
   for(const {points}of ts){

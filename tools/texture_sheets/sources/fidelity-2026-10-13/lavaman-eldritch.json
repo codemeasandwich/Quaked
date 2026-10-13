@@ -1,0 +1,51 @@
+{
+  "key": "lavaman",
+  "modelSha": "b81bb7f5cebb2889cfd2f431f743200f672d0195b05fe3faa98b50163fed7fb1",
+  "layout": [
+    1,
+    300,
+    194,
+    325,
+    555,
+    90
+  ],
+  "matte": "black",
+  "sourceFile": "tools/texture_sheets/sources/fidelity-2026-10-13/lavaman-eldritch-registered.png",
+  "sourceSha": "1ea682fc68686340405b6b12bfd30f318c9348fb8a1f7db35b46faf9f3ff1ffc",
+  "size": [
+    1558,
+    1009
+  ],
+  "factor": 4,
+  "runtimeEncoding": {
+    "format": "webp",
+    "quality": 92
+  },
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-13",
+    "reference": "Original native Lava Man supplies UV silhouette/layout and warm palette; owner enhanced Shambler and approved Armagon supply photorealistic grotesque material and character direction.",
+    "prompt": "Design a genuinely unsettling, PHOTOREALISTIC ELDRITCH LAVA CREATURE as a production skin atlas for Quake's Lava Man. The owner explicitly rejected the previous repetitive lava-cell wallpaper and conventional cartoon demon face. This must be a major CHARACTER redesign inside the existing UV layout, not another surface-noise enhancement.\n\nINPUT ROLES: Image1 is the ORIGINAL native atlas and is ONLY the exact shape/UV-part layout and warm colour-family blueprint. Do NOT reproduce its repeated circular molten spots. Image2 is the owner's enhanced Shambler, a reference for convincing grotesque flesh, weight and a disturbing facial focal point. Image3 is the owner-approved enhanced Armagon, a reference for photorealistic biological detail and menace. Do not copy either creature's anatomy, machinery, weapons, pale colour palette or atlas orientation.\n\nCREATURE CONCEPT: an ancient living furnace whose own heat has fused and distorted its flesh. Make the torso feel like heavy, injured living tissue under tension: broad asymmetrical folds of deep burnt-red and orange flesh, thick twisted tendons, translucent heat-blistered membranes, and a FEW irregular deep fissures exposing amber/yellow molten tissue beneath. Suggest submerged vascular cords and swollen pockets of heat rather than a tiled pattern. Let the upper torso and shoulders have imposing readable masses; let the abdomen sag and pull in an unnerving asymmetrical way. Use quiet shadowed planes between the focal wounds. No repeated circles, lava leopard spots, evenly spaced cracks, texture stamps, all-over ember noise or neat superhero abs.\n\nFACE: the LEFT upper head must have a profoundly disturbing, asymmetrical face, within its existing outline. Heat-pulled skin and mineralised scar tissue partially seal one eye; the other is a deep recessed, tiny molten eye. Replace the symmetrical grumpy cartoon expression with a tense, almost screaming vertical tear of a mouth, irregular small charcoal teeth and stretched burnt tissue. The face should feel ancient and agonised, not cute, comic, ornamental or a generic snarling mask. Thick folds, sagging molten lips and torn scar ridges must look physically real. The RIGHT upper head remains the anatomical BACK of that same head with warped folded tissue, no second face.\n\nPALETTE/MATERIAL: retain Lava Man's recognizable deep red, orange and yellow heat, with dark charcoal/grey horns and claws. Dominant body colours are warm scorched red-orange; bright yellow/amber is concentrated in irregular wounds and depths, not spread uniformly like glowing wallpaper. No ordinary pale human skin, cold blue, decorative armour, metal machinery, jewellery or added symbols. Photograph-like flesh/mineral materials, strong sculptural depth under neutral diffuse lighting, selective wet highlights, no image grain.\n\nABSOLUTE MODEL FIT: complete300:194 atlas proportions. Preserve the native positions, sizes, orientation and OUTER silhouettes of all48 UV components: both large torso/arm pieces, separate front/rear heads, four horn surfaces, and every tiny charcoal finger/claw piece above/below. Body pieces stay[4,61,146,191] and[154,61,296,191] in nativecoordinates; fronthead[28,3,76,59], rearhead[178,3,226,59]. Do not add protrusions or tentacles outside the islands. The small fragments remain charcoal charred horn/keratin with restrained directional ridges, not lava or background. PureBLACK unused background and clean gaps; no scene, cast shadows, external bloom, smoke, sparks, text, labels, watermark or border. One complete atlas, not an upright character portrait.\n",
+    "ownerDirection": "Owner rejected the patterned design and explicitly requested a unique, interesting, photorealistic and unsettling eldritch horror.",
+    "styleReferences": [
+      {
+        "file": "tools/texture_sheets/sources/shambler-2026-10-01.png",
+        "sha256": "f65fd1bcc87f70862cfb7284f216c4b20b89a05ed82fd0cc71f4d7a51033a3e9"
+      },
+      {
+        "file": "tools/texture_sheets/sources/fidelity-2026-10-13/armabody-menace-candidate4.png",
+        "sha256": "91499ce3e20514d30d1ce97c33e43b8a5a987d7ffb8299d5136a212b0fd234d2"
+      }
+    ],
+    "rejectedPatternedSourceSha256": "d287d73b7194b031e2a393f71691416308d24efc2fa7446f1920b0b3d3037801",
+    "designReference": {
+      "file": "tools/texture_sheets/sources/fidelity-2026-10-13/lavaman-eldritch.png",
+      "sha256": "7ee8314e62f961da81f96d2e6a37d9ae3d94dd01f9742bc4075dc4019d27b24c"
+    },
+    "layoutEditTarget": {
+      "file": "tools/texture_sheets/sources/generated-2026-10-12/lavaman.png",
+      "sha256": "18003a01584ad9d717c08c9518eaab9d0141f471100659a7c953d213bd7dfa1b"
+    },
+    "registrationPrompt": "PRECISE ATLAS REGISTRATION EDIT. Image1 is the EDIT TARGET and exact working UV layout. Image2 is the new eldritch creature DESIGN to transfer. The character design in Image2 is wanted, but its small pieces and vertical spacing drifted and fail the model fit.\n\nKeep Image1's COMPLETE1559x1009 framing and ALL original part outlines, sizes, positions and black gaps EXACTLY. Do not rescale the canvas or add bottom padding. Especially retain every small grey finger/claw triangle and all curved horn pieces from Image1 IN PLACE and UNCHANGED. Do not copy the shifted horn/claw arrangement from Image2. These protected small pieces must not be regenerated, omitted, merged, recoloured or moved.\n\nReplace ONLY the surface artwork INSIDE the two large torso/arm silhouettes and the two separate head silhouettes in Image1 with Image2's unsettling scorched-flesh design. Transfer its thick asymmetric molten folds, twisted tissue cords, deep irregular heat wounds, sagging abdomen and warm burnt-red/orange/amber palette, fitted to Image1's existing body region boundaries. The LEFT head receives Image2's asymmetric melted face with one recessed molten eye and a dark vertical mouth. The RIGHT head receives only its folded rear-head tissue, never a face. Fit the whole face into the exact Image1 head region.\n\nThe old repeating orange lava-cell pattern in Image1 must be completely replaced on body and heads; it is NOT the desired style. Use Image2's photorealistic grotesque flesh and character. Preserve its large readable anatomical masses and selective molten recesses, no patterned wallpaper, image noise or cartoon expression.\n\nNo new anatomy outside silhouettes, no invented parts, no change to protected charcoal horn/claw pieces, no external glow, cast shadows, smoke, text, labels or watermark. One complete production atlas with the exact proven layout of Image1 and the new biological horror design of Image2.\n"
+  }
+}

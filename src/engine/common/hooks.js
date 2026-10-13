@@ -427,6 +427,18 @@ export let R_WarmLevel = Hooks_Missing( 'R_WarmLevel' );
 export let R_QuadVisionActive = Hooks_Missing( 'R_QuadVisionActive' );
 export let R_QuadVisionReset = Hooks_Missing( 'R_QuadVisionReset' );
 
+// newer/ui/loading_screen.js
+export let LoadingScreen_SetProgress = Hooks_Missing( 'LoadingScreen_SetProgress' );
+
+// newer/render/r_lavaman.js
+export let R_LavaManApply = Hooks_Missing( 'R_LavaManApply' );
+export let R_LavaManBegin = Hooks_Missing( 'R_LavaManBegin' );
+export let R_LavaManClear = Hooks_Missing( 'R_LavaManClear' );
+export let R_LavaManEnd = Hooks_Missing( 'R_LavaManEnd' );
+export let R_LavaManPositions = Hooks_Missing( 'R_LavaManPositions' );
+export let R_LavaManRelease = Hooks_Missing( 'R_LavaManRelease' );
+export let R_LavaManSeen = Hooks_Missing( 'R_LavaManSeen' );
+
 // newer/render/r_eelcharge.js
 export let R_EelChargeBegin = Hooks_Missing( 'R_EelChargeBegin' );
 export let R_EelChargeClear = Hooks_Missing( 'R_EelChargeClear' );
@@ -696,6 +708,8 @@ const HOOK_NAMES = Object.freeze( [
 	'R_PowerVisionReset',
 	'R_WarmFrame', 'R_WarmLevel',
 	'R_QuadVisionActive', 'R_QuadVisionReset',
+	'LoadingScreen_SetProgress',
+	'R_LavaManApply', 'R_LavaManBegin', 'R_LavaManClear', 'R_LavaManEnd', 'R_LavaManPositions', 'R_LavaManRelease', 'R_LavaManSeen',
 	'R_EelChargeBegin', 'R_EelChargeClear', 'R_EelChargeEnd', 'R_EelChargeRelease', 'R_EelChargeSeen',
 	'R_RendVeilBegin', 'R_RendVeilCapture', 'R_RendVeilClear', 'R_RendVeilEnd', 'R_RendVeilRelease', 'R_RendVeilSeen',
 	'R_RespawnCameraFrame',
@@ -806,6 +820,8 @@ export function Hooks_Install( table ) {
 	R_PowerVisionReset = table.R_PowerVisionReset;
 	R_WarmFrame = table.R_WarmFrame; R_WarmLevel = table.R_WarmLevel;
 	R_QuadVisionActive = table.R_QuadVisionActive; R_QuadVisionReset = table.R_QuadVisionReset;
+	LoadingScreen_SetProgress = table.LoadingScreen_SetProgress;
+	R_LavaManApply = table.R_LavaManApply; R_LavaManBegin = table.R_LavaManBegin; R_LavaManClear = table.R_LavaManClear; R_LavaManEnd = table.R_LavaManEnd; R_LavaManPositions = table.R_LavaManPositions; R_LavaManRelease = table.R_LavaManRelease; R_LavaManSeen = table.R_LavaManSeen;
 	R_EelChargeBegin = table.R_EelChargeBegin; R_EelChargeClear = table.R_EelChargeClear; R_EelChargeEnd = table.R_EelChargeEnd; R_EelChargeRelease = table.R_EelChargeRelease; R_EelChargeSeen = table.R_EelChargeSeen;
 	R_RendVeilBegin = table.R_RendVeilBegin; R_RendVeilCapture = table.R_RendVeilCapture; R_RendVeilClear = table.R_RendVeilClear; R_RendVeilEnd = table.R_RendVeilEnd; R_RendVeilRelease = table.R_RendVeilRelease; R_RendVeilSeen = table.R_RendVeilSeen;
 	R_RespawnCameraFrame = table.R_RespawnCameraFrame;

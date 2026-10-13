@@ -2,10 +2,11 @@
 // No browser, game or WebGL instance is started.
 import * as THREE from 'three';
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import {pakDirectory,readMember,isolatedPack} from '../tools/pak_members.mjs';
 import {COM_AddPack} from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/engine/render/vid.js';
-import {Mod_Init,Mod_ForName} from '../src/engine/render/gl_model.js';
+import {Mod_Init,Mod_LoadModel,model_t} from '../src/engine/render/gl_model.js';
 import * as height from '../src/newer/render/r_heightshadows.js';
 import * as post from '../src/newer/render/gl_post.js';
 import * as newerMode from '../src/newer/mode.js';
@@ -133,48 +134,99 @@ Deno.test( 'public pre-HDR frame freezes exact source slots and4MRT packed masks
 
 } ) );
 
-Deno.test( 'installed21 native and14 replacement enemy scalar assets reach public asynchronous material height-mask hooks with filtered alpha and unchanged diffuse', () => fixture( async () => {
+Deno.test( 'all installed official-game native and replacement height bindings reach public material hooks with independent filtered alpha and unchanged diffuse', () => fixture( async () => {
 
-	const sharp = ( await import( process.env.QUAKED_SHARP_MODULE || '/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/sharp/dist/index.mjs' ) ).default;
-	const index = JSON.parse( readFileSync( new URL( '../newer/enemies/index.json', import.meta.url ) ) ), pak = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
-	function nativeFile( name ) { const offset = pak.readInt32LE( 4 ), size = pak.readInt32LE( 8 ); for ( let at = offset; at < offset + size; at += 64 ) if ( pak.subarray( at, at + 56 ).toString().split( '\0' )[ 0 ] === name ) return pak.subarray( pak.readInt32LE( at + 56 ), pak.readInt32LE( at + 56 ) + pak.readInt32LE( at + 60 ) ); throw new Error( 'missing actual native asset ' + name ); }
-	const palette = nativeFile( 'gfx/palette.lmp' );
-	function nativeSkin( key ) { const mdl = nativeFile( 'progs/' + key + '.mdl' ), width = mdl.readInt32LE( 52 ), h = mdl.readInt32LE( 56 ); let at = 84; const group = mdl.readInt32LE( at ); at += 4; if ( group ) { const n = mdl.readInt32LE( at ); at += 4 + n * 4; } const data = new Uint8Array( width * h * 4 ); for ( let i = 0; i < width * h; i ++ ) { const color = mdl[ at + i ]; data.set( [ palette[ color * 3 ], palette[ color * 3 + 1 ], palette[ color * 3 + 2 ], 255 ], i * 4 ); } return new THREE.DataTexture( data, width, h ); }
-	const doc = Object.getOwnPropertyDescriptor( globalThis, 'document' ), oldLoad = THREE.TextureLoader.prototype.load, jobs = [], decoded = new Map();
-	Object.defineProperty( globalThis, 'document', { configurable: true, value: {} } );
-	THREE.TextureLoader.prototype.load = function ( url, done, progress, error ) {
-
-		const path = url.split( '?' )[ 0 ]; check( path.startsWith( 'newer/enemies/' ), 'actual public load path' );
-		jobs.push( ( async () => { const image = await sharp( new URL( '../' + path, import.meta.url ).pathname ).ensureAlpha().raw().toBuffer( { resolveWithObject: true } ); const texture = new THREE.DataTexture( new Uint8Array( image.data ), image.info.width, image.info.height ); decoded.set( path, image ); done( texture ); } )().catch( e => { error?.( e ); throw e; } ) ); return new THREE.Texture();
-
-	};
-	async function drain() { while ( jobs.length ) await Promise.all( jobs.splice( 0 ) ); }
-	function verify( material, path, key ) { check( material, key + ' actual public material ready' ); const shader = compile( material, 'basic' ), normal = shader.uniforms.qrNormal.value, expected = decoded.get( path ); check( expected, key + ' installed height decoded' ); same( normal.userData.heightSource, true, key + ' explicit scalar marker' ); same( shader.uniforms.uHasSkinHeightShadow.value, 1, key + ' height-mask compiler activates' ); same( normal.image.width, expected.info.width, key + ' scalar width matches original UV extent' ); same( normal.image.height, expected.info.height, key + ' scalar height matches original UV extent' ); // Two separable5tap passes equal this independent9tap convolution.
-		const kernel = [ 1, 8, 28, 56, 70, 56, 28, 8, 1 ], w = expected.info.width, h = expected.info.height;
-		for ( let probe = 0; probe < 161; probe ++ ) { const x = probe * 47 % w, y = probe * 79 % h; let alpha = 0; for ( let dy = -4; dy <= 4; dy ++ ) for ( let dx = -4; dx <= 4; dx ++ ) alpha += kernel[ dx + 4 ] * kernel[ dy + 4 ] * expected.data[ ( ( y + dy + h ) % h * w + ( x + dx + w ) % w ) * 4 ] / 65536; check( Math.abs( normal.image.data[ ( y * w + x ) * 4 + 3 ] - Math.round( alpha ) ) <= 1, key + ' alpha comes from actual installed scalar via existing bounded filter' ); } }
-	try {
-
-		newerMode.R_AnimSetNewer( true ); newerMode.R_AnimSetLighting( true ); skins.R_NewerSetIndex( index ); let nativeCount = 0, customCount = 0;
-		for ( const [ key, groups ] of Object.entries( index.nativeHeights ) ) {
-
-			const texture = nativeSkin( key ), original = Buffer.from( texture.image.data ), material = skins.R_EnemyAliasMaterial( texture, 'progs/' + key + '.mdl', true, 0, 0 ); await drain(); verify( material, 'newer/enemies/' + groups[ 0 ][ 0 ].file, key ); check( Buffer.from( texture.image.data ).equals( original ), key + ' native diffuse untouched' ); texture.dispose(); nativeCount ++;
-
-		}
-		// Source-constrained variants require the same actual loaded MDL identity
-		// as production. A bare filename must not bypass that admission contract.
-		const constrainedModels=new Map(),owned=await pakDirectory(process.env.QUAKED_OWNED_PAK||new URL('../resources/id1/pak0.pak',import.meta.url).pathname);
-		COM_AddPack(isolatedPack('gfx/palette.lmp',palette));VID_SetPalette(palette);Mod_Init();
-		for(const[key,variants]of Object.entries(index.models))if(variants.some(v=>v.maps.height&&v.nativeModelSha256)){
-			const name='progs/'+key+'.mdl';check(owned.has(name),'owned native source exists for constrained '+key);COM_AddPack(isolatedPack(name,await readMember(owned.get(name))));const model=Mod_ForName(name,true);await model.aliasSourceIdentity.promise;check(variants.some(v=>v.nativeModelSha256===model.aliasSourceIdentity.sha256),key+' actual owned model satisfies manifest identity');constrainedModels.set(key,model);
-		}
-		for ( const [ key, variants ] of Object.entries( index.models ) ) {
-
-			const variant = variants.find( v => v.maps.height ); if ( ! variant ) continue; const entity = { _entityIndex: customCount + 1, model:constrainedModels.get(key) }; skins.R_NewerAliasMaterial( entity, 'progs/' + key + '.mdl', true ); await drain(); const material = skins.R_NewerAliasMaterial( entity, 'progs/' + key + '.mdl', true ); verify( material, 'newer/enemies/' + variant.dir + '/' + variant.maps.height, key + ' replacement' ); const diffuse = decoded.get( 'newer/enemies/' + variant.dir + '/' + variant.maps.diffuse ); check( Buffer.from( material.map.image.data ).equals( diffuse.data ), key + ' replacement diffuse untouched' ); customCount ++;
-
-		}
-		same( nativeCount, 21, 'every installed native model height path covered' ); same( customCount, 17, 'every installed replacement height path covered (14, then the Enforcer, Spawn and Death Knight skins of 9 Oct 2026)' ); console.log( `HEIGHT_INSTALLED_ASSETS native=${nativeCount} replacement=${customCount}` );
-
-	} finally { await drain(); THREE.TextureLoader.prototype.load = oldLoad; if ( doc ) Object.defineProperty( globalThis, 'document', doc ); else delete globalThis.document; }
+ const sharp = ( await import( process.env.QUAKED_SHARP_MODULE || '/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/sharp/dist/index.mjs' ) ).default;
+ const index = JSON.parse( readFileSync( new URL( '../newer/enemies/index.json', import.meta.url ) ) );
+ const digest = bytes => createHash('sha256').update(bytes).digest('hex');
+ // Match the existing official-body audit's three explicit owned inputs. Do not
+ // let Mod_ForName's basename cache substitute id1 for a Rogue override.
+ const directories = {};
+ for(const game of ['id1','hipnotic','rogue'])directories[game]=await pakDirectory(process.env['QUAKED_BODY_'+game.toUpperCase()+'_PAK']||new URL('../resources/'+game+'/pak0.pak',import.meta.url).pathname);
+ const palette=await readMember(directories.id1.get('gfx/palette.lmp'));
+ COM_AddPack(isolatedPack('gfx/palette.lmp',palette));VID_SetPalette(palette);Mod_Init();
+ const sources=new Map(),models=new Map(),keys=new Set([...Object.keys(index.nativeHeights),...Object.keys(index.models)]);
+ for(const key of keys){
+  const name='progs/'+key+'.mdl',byIdentity=new Map();
+  for(const[game,directory]of Object.entries(directories))if(directory.has(name)){
+   const bytes=await readMember(directory.get(name)),sha=digest(bytes);
+   if(byIdentity.has(sha)){byIdentity.get(sha).games.push(game);continue;}
+   byIdentity.set(sha,{key,name,sha,bytes,skins:bytes.readInt32LE(48),games:[game]});
+  }
+  sources.set(key,[...byIdentity.values()]);
+ }
+ async function modelFor(source){
+  const id=source.key+':'+source.sha;
+  if(!models.has(id)){
+   COM_AddPack(isolatedPack(source.name,source.bytes));const model=new model_t();model.name=source.name;model.needload=true;Mod_LoadModel(model,true);await model.aliasSourceIdentity.promise;
+   same(model.aliasSourceIdentity.sha256,source.sha,'loaded identity matches the selected owned bytes '+id);same(model.cache.data.numskins,source.skins,'actual native skin inventory '+id);models.set(id,model);
+  }
+  return models.get(id);
+ }
+ const expectedNative=new Map(),expectedCustom=new Map(),nativeDescriptorIds=new Set(),customVariantIds=new Set();
+ let nativeDescriptors=0,heightKeys=0,heightVariants=0;
+ for(const[key,groups]of Object.entries(index.nativeHeights)){
+  check(sources.get(key).length>0,'native height family has an actual owned model '+key);
+  for(let skin=0;skin<groups.length;skin++)for(let n=0;n<groups[skin].length;n++){nativeDescriptors++;nativeDescriptorIds.add(key+':'+skin+':'+n);}
+  for(const source of sources.get(key))for(let skin=0;skin<source.skins;skin++)for(let frame=0;frame<4;frame++){
+   const list=groups[skin]||groups[0],candidate=list?.length?(list.length<=4?list[frame%list.length]:list.filter((_,i)=>(i&3)===frame).at(-1)):null;
+   const stored=candidate&&(candidate.nativeModelSha256===undefined||candidate.nativeModelSha256===source.sha)?candidate:null;
+   const id=[key,source.sha,skin,frame].join(':');check(!expectedNative.has(id),'unique native key/identity/skin/frame binding');expectedNative.set(id,{source,skin,frame,stored});
+  }
+ }
+ for(const[key,variants]of Object.entries(index.models)){
+  if(variants.some(v=>v.maps.height))heightKeys++;
+  for(const[variantIndex,variant]of variants.entries())if(variant.maps.height){
+   heightVariants++;customVariantIds.add(key+':'+variantIndex);check(skins.ENEMY_SKIN_MODELS.has(key),'every height-bearing replacement uses the enemy scalar path '+key);
+   const skin=variant.skin??0,matches=sources.get(key).filter(source=>skin<source.skins&&(variant.nativeModelSha256===undefined||variant.nativeModelSha256===source.sha));
+   check(matches.length>0,'every height-bearing variant matches actual owned identity/skin '+key+':'+variantIndex);
+   for(const source of matches){const id=[key,source.sha,skin,variant.dir].join(':');check(!expectedCustom.has(id),'unique custom key/identity/skin/directory binding');expectedCustom.set(id,{source,skin,variant,variantIndex});}
+  }
+ }
+ // Catalogue keys, stored descriptors, variant rows and concrete bindings are
+ // different inventories. Eel's six skin rows share one directory; unbound
+ // legacy entries also match some distinct Rogue models under the same name.
+ same(Object.keys(index.nativeHeights).length,23,'native-height catalogue key count');same(nativeDescriptors,28,'explicit stored native descriptors');
+ same(Object.keys(index.models).length,36,'whole replacement catalogue key count');same(heightKeys,33,'height-bearing replacement keys');same(heightVariants,51,'height-bearing replacement rows');
+ same(expectedNative.size,148,'all native identity/skin/four-frame bindings');same([...expectedNative.values()].filter(x=>x.stored).length,140,'stored native bindings');same([...expectedNative.values()].filter(x=>!x.stored).length,8,'explicit generated native opt-out bindings');
+ same(expectedCustom.size,54,'all eligible custom identity/skin bindings');same(new Set([...expectedCustom.values()].map(x=>x.variant.dir)).size,46,'distinct custom directories');
+ const doc=Object.getOwnPropertyDescriptor(globalThis,'document'),oldLoad=THREE.TextureLoader.prototype.load,jobs=[],decoded=new Map(),coverageNative=new Set(),coverageCustom=new Set(),seenDescriptors=new Set(),seenVariants=new Set();
+ Object.defineProperty(globalThis,'document',{configurable:true,value:{}});
+ THREE.TextureLoader.prototype.load=function(url,done,progress,error){
+  const path=url.split('?')[0];check(path.startsWith('newer/enemies/'),'actual public load path');
+  jobs.push((async()=>{let image=decoded.get(path);if(!image){image=await sharp(new URL('../'+path,import.meta.url).pathname).ensureAlpha().raw().toBuffer({resolveWithObject:true});decoded.set(path,image);}const texture=new THREE.DataTexture(new Uint8Array(image.data),image.info.width,image.info.height);done(texture);})().catch(e=>{error?.(e);throw e;}));return new THREE.Texture();
+ };
+ async function drain(){while(jobs.length)await Promise.all(jobs.splice(0));}
+ function verify(material,path,label,descriptor,modelKey,modelSha){
+  check(material,label+' actual public material ready');const shader=compile(material,'basic'),normal=shader.uniforms.qrNormal.value,expected=decoded.get(path);check(expected,label+' installed height decoded');
+  same(normal.userData.heightSource,true,label+' explicit scalar marker');same(shader.uniforms.uHasSkinHeightShadow.value,1,label+' height-mask compiler activates');same(normal.image.width,expected.info.width,label+' scalar width matches original UV extent');same(normal.image.height,expected.info.height,label+' scalar height matches original UV extent');
+  const kernel=[1,8,28,56,70,56,28,8,1],w=expected.info.width,h=expected.info.height,flat=descriptor.heightFlat,mask=new Uint8Array(w*h),probes=[];
+  if(flat){
+   same(modelKey,'armabody','only Armagon body has semantic flash heights');same(modelSha,'e827535032c8e83609fedf07c9989c504e7eaa6772ce0d5cf73788e00980f151','actual native identity authorizes flash semantics');same(descriptor.nativeModelSha256,modelSha,'flat policy descriptor is identity-bound');same(flat.modelSha256,modelSha,'flat policy model pin');same(flat.policy,'armagon-flash-v1','known flat policy');same(flat.width,w,'flat width');same(flat.height,h,'flat height');check(flat.spans.length>0,'nonempty exact semantic region');
+   let previous=-1;for(const[y,start,end]of flat.spans){check([y,start,end].every(Number.isSafeInteger)&&y>=0&&y<h&&start>=0&&end<=w&&start<end&&y*w+start>=previous,'sorted nonoverlapping bounded flat spans');previous=y*w+end;mask.fill(1,y*w+start,y*w+end);probes.push([start,y],[Math.floor((start+end-1)/2),y],[end-1,y]);}
+  }
+  for(let probe=0;probe<161;probe++)probes.push([probe*47%w,probe*79%h]);
+  // Independent oracle: two separable5tap passes equal this9tap convolution.
+  // Explicit semantic spans are height1; every other value is decoded red/255.
+  // Do not call EnemyHeightScalars here: its contract is checked independently.
+  for(const[x,y]of probes){let alpha=0;for(let dy=-4;dy<=4;dy++)for(let dx=-4;dx<=4;dx++){const at=((y+dy+h)%h*w+(x+dx+w)%w);alpha+=kernel[dx+4]*kernel[dy+4]*(mask[at]?255:expected.data[at*4])/65536;}check(Math.abs(normal.image.data[(y*w+x)*4+3]-Math.round(alpha))<=1,label+' alpha comes from actual scalar and bounded9tap filter at '+x+','+y);}
+ }
+ try{
+  newerMode.R_AnimSetNewer(true);newerMode.R_AnimSetLighting(true);skins.R_NewerSetIndex(index);
+  for(const[id,{source,skin,frame,stored}]of expectedNative){
+   const model=await modelFor(source),texture=model.cache.data.gl_texturenum[skin][frame],original=Buffer.from(texture.image.data),material=skins.R_EnemyAliasMaterial(texture,source.name,true,skin,frame,model);await drain();
+   if(stored){verify(material,'newer/enemies/'+stored.file,id,stored,source.key,source.sha);const groups=index.nativeHeights[source.key],groupIndex=groups[skin]?skin:0;seenDescriptors.add(source.key+':'+groupIndex+':'+groups[groupIndex].indexOf(stored));}
+   else{check(material,id+' generated fallback material');const shader=compile(material,'basic');same(shader.uniforms.uHasSkinHeightShadow.value,1,id+' generated fallback height mask remains active');same(shader.uniforms.qrNormal.value.userData.heightSource,true,id+' generated fallback scalar marker');}
+   check(Buffer.from(texture.image.data).equals(original),id+' native diffuse untouched');coverageNative.add(id);console.log('HEIGHT_NATIVE_BINDING '+JSON.stringify({key:source.key,sha:source.sha,games:source.games,skin,frame,stored:stored?.file??null}));
+  }
+  for(const[id,{source,skin,variant,variantIndex}]of expectedCustom){
+   const model=await modelFor(source),entity={_entityIndex:coverageCustom.size+1,model,skinnum:skin};skins.R_NewerAliasMaterial(entity,source.name,true,skin);await drain();const material=skins.R_NewerAliasMaterial(entity,source.name,true,skin);
+   verify(material,'newer/enemies/'+variant.dir+'/'+variant.maps.height,id,variant,source.key,source.sha);const diffuse=decoded.get('newer/enemies/'+variant.dir+'/'+variant.maps.diffuse);check(diffuse&&Buffer.from(material.map.image.data).equals(diffuse.data),id+' selected custom diffuse untouched');coverageCustom.add(id);seenVariants.add(source.key+':'+variantIndex);console.log('HEIGHT_CUSTOM_BINDING '+JSON.stringify({key:source.key,sha:source.sha,games:source.games,skin,dir:variant.dir}));
+  }
+  same(JSON.stringify([...coverageNative].sort()),JSON.stringify([...expectedNative.keys()].sort()),'each native key/skin/frame/identity covered');same(JSON.stringify([...coverageCustom].sort()),JSON.stringify([...expectedCustom.keys()].sort()),'each custom key/skin/identity/directory covered');
+  same(JSON.stringify([...seenDescriptors].sort()),JSON.stringify([...nativeDescriptorIds].sort()),'every explicit native descriptor exercised');same(JSON.stringify([...seenVariants].sort()),JSON.stringify([...customVariantIds].sort()),'every custom height variant exercised');
+  console.log('HEIGHT_INSTALLED_ASSETS '+JSON.stringify({nativeKeys:23,nativeDescriptors:28,nativeBindings:coverageNative.size,nativeStoredBindings:140,nativeGeneratedBindings:8,catalogueKeys:36,heightKeys:33,heightVariants:51,customBindings:coverageCustom.size,customDirectories:46}));
+ }finally{await drain();THREE.TextureLoader.prototype.load=oldLoad;if(doc)Object.defineProperty(globalThis,'document',doc);else delete globalThis.document;}
 
 } ) );
 

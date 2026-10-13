@@ -14,6 +14,8 @@
  * Loading it throws when `Hooks_Install` refuses its table (a hook missing from it, or a name `hooks.js` does not
  * declare), so a broken hook list fails at startup, not at the first call.
  */
+import { LoadingScreen_SetProgress } from './ui/loading_screen.js';
+import { R_LavaManApply, R_LavaManBegin, R_LavaManClear, R_LavaManEnd, R_LavaManPositions, R_LavaManRelease, R_LavaManSeen } from './render/r_lavaman.js';
 
 import { Hooks_Install, Hooks_Installed } from '../engine/common/hooks.js';
 import { R_AliasMeshLookup, R_AliasMeshRemember } from './assets/r_aliasmeshcache.js';
@@ -156,6 +158,8 @@ if ( ! Hooks_Installed() ) Hooks_Install( {
 	R_PowerVisionReset,
 	R_WarmFrame, R_WarmLevel,
 	R_QuadVisionActive, R_QuadVisionReset,
+	LoadingScreen_SetProgress,
+	R_LavaManApply, R_LavaManBegin, R_LavaManClear, R_LavaManEnd, R_LavaManPositions, R_LavaManRelease, R_LavaManSeen,
 	R_EelChargeBegin, R_EelChargeClear, R_EelChargeEnd, R_EelChargeRelease, R_EelChargeSeen,
 	R_RendVeilBegin, R_RendVeilCapture, R_RendVeilClear, R_RendVeilEnd, R_RendVeilRelease, R_RendVeilSeen,
 	R_RespawnCameraFrame,

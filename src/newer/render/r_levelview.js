@@ -10,6 +10,7 @@
  *
  * Errors: throws at 1 place; catches at 1 place.
  */
+import { R_LavaManSeen, R_LavaManRelease, R_LavaManNeedsFrame } from './r_lavaman.js';
 // A view of another level: the part of it you would see from where you arrive,
 // built as static meshes that live in the scene far away from the level you are
 // in, so a doorway or pit can be a window onto it (see gl_portal.js).
@@ -25,7 +26,7 @@ import { Mod_PointInLeaf, Mod_LeafPVS, Mod_LoadForPreview } from '../../engine/r
 import { R_BuildLightMap, createQuakeLightmapMaterial } from '../../engine/render/gl_rsurf.js';
 import { R_RegisterGlow } from './gl_post.js';
 import { R_NewerLightingActive } from '../mode.js';
-import { R_IsNewer } from '../mode.js';
+import { R_IsNewer, r_newer_portals } from '../mode.js';
 import { R_EelChargeSeen, R_EelChargeRelease, R_EelChargeWanted } from './r_eelcharge.js';
 import { R_RendVeilSeen, R_RendVeilRelease } from './r_rendveil.js';
 import { R_AddLevelPortal, R_ClearLevelPortals, R_RemoveLevelPortal } from './gl_portal.js';
@@ -369,7 +370,7 @@ function createGhost( ent, world ) {
 	if ( hdr == null || hdr.posedata == null ) return null;
 
 	const e = { _faceSeed: ent.faceSeed ?? null, _rendVeil: ent.rendVeil ?? null, _rendVeilTime: ent.rendVeilTime ?? null,
-		_rendVeilSnapshot: true,
+		_rendVeilSnapshot: true, _levelViewGhost: true, _levelViewActive: false,
 		model: m, frame: ent.frame, skinnum: ent.skin, origin: ent.origin.slice(), angles: ent.angles.slice() };
 	const frames = hdr.frames || [];
 
@@ -468,12 +469,13 @@ function ghostDraw( g, time ) {
 	}
 
 	const row = ( ( e.angles[ 1 ] * ( SHADEDOT_QUANT / 360 ) ) | 0 ) & ( SHADEDOT_QUANT - 1 );
-	const mesh = R_DrawAliasModel( e, g.hdr, r_avertexnormal_dots[ row ], shade / 200 );
+	const mesh = R_DrawAliasModel( e, g.hdr, r_avertexnormal_dots[ row ], shade / 200, time );
 	if ( mesh == null ) return false;
 
 	g.mesh = mesh;
 	drawGhostRite( g, mesh );
 	R_EelChargeSeen( e, mesh, g, time );
+	R_LavaManSeen( e, mesh, g, time );
 	g.last = time;
 	return true;
 
@@ -481,7 +483,7 @@ function ghostDraw( g, time ) {
 
 /**
  * Called every frame: what plays in the other levels (idle animations, spinning items, and skins that have finished
- * loading) while one of their windows is near. Called by `R_RenderView` (`gl_rmain.js`) when `r_newer_portals` is on.
+ * loading) while one of their windows is near. Called by `R_RenderView` (`gl_rmain.js`) also while portals are off, to retire their cosmetic buffers.
  * Only views whose window centre is within 2500 Quake units of the camera are animated; a still ghost is redrawn at
  * most once a second (flames and rend-veil figures every frame). Re-poses the ghosts' alias meshes in place.
  *
@@ -493,13 +495,18 @@ export function R_UpdateLevelViewEntities( camera, time ) {
 
 	for ( const v of views ) {
 
-		if ( v.ghosts.length === 0 || v.anchor === undefined ) continue;
-		const dx = camera[ 0 ] - v.anchor[ 0 ], dy = camera[ 1 ] - v.anchor[ 1 ], dz = camera[ 2 ] - v.anchor[ 2 ];
-		if ( dx * dx + dy * dy + dz * dz > 2500 * 2500 ) continue;
+		if ( v.ghosts.length === 0 ) continue;
+		const distance = v.anchor === undefined ? Infinity :
+			( camera[ 0 ] - v.anchor[ 0 ] ) ** 2 + ( camera[ 1 ] - v.anchor[ 1 ] ) ** 2 + ( camera[ 2 ] - v.anchor[ 2 ] ) ** 2;
+		if ( r_newer_portals.value === 0 || distance > 2500 * 2500 ) {
+			for ( const g of v.ghosts ) { g.e._levelViewActive = false; R_LavaManRelease( g.e ); }
+			continue;
+		}
 
 		for ( const g of v.ghosts ) {
 
-			if ( ! g.e._rendVeil && ! R_EelChargeWanted( g.e ) && g.seq === null && ! g.spin && ! g.flame && time - g.last < 1 ) continue; // (a flame burns on every frame)
+			g.e._levelViewActive = true;
+			if ( ! g.e._rendVeil && ! R_EelChargeWanted( g.e ) && ! R_LavaManNeedsFrame( g.e ) && g.seq === null && ! g.spin && ! g.flame && time - g.last < 1 ) continue; // (a flame burns on every frame)
 			ghostDraw( g, time );
 
 		}
@@ -616,6 +623,7 @@ export function R_RemoveLevelRunner( r ) {
 	r.view.ghosts = r.view.ghosts.filter( ( g ) => g !== r.g );
 	releaseGhostRite( r.g );
 	R_EelChargeRelease( r.g.e );
+	R_LavaManRelease( r.g.e );
 	if ( r.g.mesh.parent != null ) r.g.mesh.parent.remove( r.g.mesh );
 	if ( r.g.e._aliasGeo != null ) r.g.e._aliasGeo.dispose();
 	r.g = null;
@@ -880,6 +888,7 @@ export function R_BuildLevelView( model, origin, entities = [] ) {
 			for ( const g of ghosts ) {
 				releaseGhostRite( g );
 				R_EelChargeRelease( g.e );
+				R_LavaManRelease( g.e );
 				if ( g.e._aliasGeo != null ) g.e._aliasGeo.dispose();
 			}
 			for ( const g of cutGhosts ) g.dispose();
