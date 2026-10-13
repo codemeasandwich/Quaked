@@ -112,9 +112,35 @@ showed no visible difference for the batch-1 texture, dog and shambler.
 - Tests: the identity tests expect fourfold dimensions and the new digests. The Enforcer and
   Old One tests still stop at their pre-existing cache-revision pin.
 
+## Batch 3: Hipnotic (done)
+
+- Re-fitted at 4x through their recipes (`tools/texture_sheets/sources/generated-2026-10-12/`):
+  `armabody` (factor 7, 1512x1358 to 864x776) and `grem` (factor 6, 1848x1014 to 1232x676).
+  Both factor-6/7 runs reproduced the committed images first (the gremlin's `SOURCE.json`
+  gains the importer's newer `atlasBox` and `registration` fields).
+- Armagon's flames: `fit_rogue_skins.flatten_height` pads the flat flame region by six
+  pixels. At factor 4 the fitter's polygon rasterizer and the test's per-texel-centre
+  rasterizer differ by a pixel at triangle edges, so 285 test-padded pixels were left below
+  maximum height. Enlarged maps (factor above 1) now pad seven pixels (recorded as `padding`
+  in `SOURCE.json`); the fitter still
+  refuses padding that reaches another UV surface, and the native (factor 1) map keeps six,
+  so its height file and normals are unchanged.
+- Resampled from the accepted fit: `armalegs` (its recipe's registration box
+  `[0,4,1368,1210]` is in factor-6 pixels and has no whole-pixel factor-4 equivalent, so
+  re-fitting would change the accepted registration; changing only the factor misplaces the
+  source and leaves a UV component uncovered; 1368x1164 to 912x776) and `scor` (its source image is untracked and no longer on disk; 1540x780 to
+  1232x624). Heights re-authored; `SOURCE.json` as in batch 2; their docs' Reproduce steps fit
+  into a scratch directory and then resample. Record:
+  `tools/texture_sheets/sources/standard-4x/batch3-hipnotic.json`.
+- Re-baked the four custom variants in the `hipnotic` namespace with its PAK; 4 samples replace
+  4; skin cache version 49.
+- Tests: the Armagon test's recipe factors and flame-mask factor are 4; the Gremlin and
+  Centroid tests expect fourfold dimensions. The Centroid source check still fails as before
+  (its untracked source image).
+
 ## Remaining batches
 
-Hipnotic: `scor`, `armabody`, `armalegs`, `grem` and `sword`. Rogue: `dragon`, `s_wrath`,
-`mummy`, `lavaman`, `wrath`, `eel2` (six skins generated from one base, so re-fitted rather
-than resampled to keep their exact relationship), the nine Guardian skins, `knight/rogue1`,
+Rogue: `dragon`, `s_wrath`, `mummy`, `lavaman`, `wrath`, `sword` (the Phantom Swordsman is a
+Rogue model), `eel2` (six skins generated from one base, so re-fitted rather than
+resampled to keep their exact relationship), the nine Guardian skins, `knight/rogue1`,
 `tarbaby/rogue1` and `rogue2` and `hknight/rogue1`. Card T-06e53ceb.

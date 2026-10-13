@@ -9,29 +9,36 @@
     930
   ],
   "dimensions": [
-    1848,
-    1014
+    1232,
+    676
   ],
-  "factor": 6,
+  "factor": 4,
   "skin": 0,
   "poses": 179,
   "vertices": 123,
   "triangles": 245,
   "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    1232,
+    676
+  ],
+  "registration": null,
   "mattePolicy": "black",
   "nativeTexturePixelsUsed": 0,
   "islands": [
     {
       "id": 1,
-      "surfacePixels": 414703,
-      "directPixels": 406299,
-      "edgePixels": 8404
+      "surfacePixels": 184849,
+      "directPixels": 180825,
+      "edgePixels": 4024
     },
     {
       "id": 2,
-      "surfacePixels": 414705,
-      "directPixels": 405785,
-      "edgePixels": 8920
+      "surfacePixels": 184851,
+      "directPixels": 180562,
+      "edgePixels": 4289
     },
     {
       "id": 3,
@@ -47,43 +54,43 @@
     },
     {
       "id": 5,
-      "surfacePixels": 7443,
-      "directPixels": 6916,
-      "edgePixels": 527
+      "surfacePixels": 3339,
+      "directPixels": 3084,
+      "edgePixels": 255
     },
     {
       "id": 6,
-      "surfacePixels": 8608,
-      "directPixels": 7796,
-      "edgePixels": 812
+      "surfacePixels": 3860,
+      "directPixels": 3485,
+      "edgePixels": 375
     },
     {
       "id": 7,
-      "surfacePixels": 7444,
-      "directPixels": 6925,
-      "edgePixels": 519
+      "surfacePixels": 3340,
+      "directPixels": 3088,
+      "edgePixels": 252
     },
     {
       "id": 8,
-      "surfacePixels": 8607,
-      "directPixels": 7819,
-      "edgePixels": 788
+      "surfacePixels": 3859,
+      "directPixels": 3495,
+      "edgePixels": 364
     },
     {
       "id": 9,
-      "surfacePixels": 31459,
-      "directPixels": 27285,
-      "edgePixels": 4174
+      "surfacePixels": 14049,
+      "directPixels": 12078,
+      "edgePixels": 1971
     },
     {
       "id": 10,
-      "surfacePixels": 31458,
-      "directPixels": 27253,
-      "edgePixels": 4205
+      "surfacePixels": 14048,
+      "directPixels": 12077,
+      "edgePixels": 1971
     }
   ],
-  "surfacePixels": 924429,
-  "edgePixels": 28351,
+  "surfacePixels": 412197,
+  "edgePixels": 13503,
   "normalProfile": {
     "strength": 0.65,
     "cap": 0.55
@@ -95,8 +102,8 @@
     "height_for"
   ],
   "files": {
-    "diffuse.png": "29a9ac02735ba4941593e6cab58de048971e30618b5295f5cc0d41dfda1e8be2",
-    "height.webp": "8b7b263f6faf8758087f0938b7c6e79b92e28c0c8a354d3e92c1716cf01fd156"
+    "diffuse.png": "6309948c5f1fe658420ae72768202aac89637bbce4d684e54dfeaf7792a8efd3",
+    "height.webp": "7bdfa94591412a08d70cdef6871187f1ede7839975b5a3f0219033cc87bfb481"
   },
   "generation": {
     "tool": "ChatGPT built-in imagegen",

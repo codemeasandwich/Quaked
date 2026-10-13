@@ -9,10 +9,10 @@
     1157
   ],
   "dimensions": [
-    1368,
-    1164
+    912,
+    776
   ],
-  "factor": 6,
+  "factor": 4,
   "skin": 0,
   "poses": 98,
   "vertices": 134,
@@ -70,8 +70,8 @@
     "height_for"
   ],
   "files": {
-    "diffuse.png": "e67f2e0829d49d5b34baec15df31ed708dfa2ea51f37beb4d5e518ab544dc4b9",
-    "height.webp": "5d3b88ec4f2e601da75f240ec9531ca47f93a89ae5ce645ba021da7a33208faf"
+    "diffuse.png": "9720e8237391f074ace690a7e4682de15c70bba62532194851fbf66456d583c4",
+    "height.webp": "c17f99c9658befcc7529758a1efc3156d1b54f2d12d683cb7b2ee16b3c7fa8e0"
   },
   "generation": {
     "tool": "ChatGPT built-in imagegen",
@@ -79,5 +79,19 @@
     "reference": "Original Hipnotic armalegs.mdl skin0 with native palette, nearest enlarged4x; generated armabody source used only as finish/style reference",
     "styleReferenceSha256": "ca4f0c246a5853fefa02444350ddbef1e928c2703a1ab0d355397b4e01a0ee69",
     "prompt": "Image 1 is the EDIT TARGET: original Quake Scourge of Armagon ARMAGON MECHANICAL LEGS UV ATLAS. Image 2 is only a finish/detail-style reference for the matching upper-body skin; never copy its body, flames or layout into the legs. Faithfully repaint image1 at high resolution. Preserve EXACT 228:194 aspect ratio, both atlas halves, all original UV-island shapes, proportions, coordinates, mechanical panel layout, vents, joints, foot/tread shapes and red details. Do not rotate, mirror, crop or rearrange anything. Keep the original DARK EARTHY BROWN/BRONZE industrial metal and muted charcoal recesses, with the same restrained dark-red blood and vent details. Do not turn the armour silver, blue, glossy chrome or gold. Add restrained wear, rivet, seam, pipe and machining detail that follows existing features. The visual finish should belong with image2's dark weathered metal, but original image1 determines colours, design and layout. Keep the original pure black background and crisp boundaries; no cast shadow, scene, new body parts, guns, flames, labels, text, border or watermark. This is a production model skin atlas, not a rendered robot or concept sheet. Faithfulness to original silhouette, palette and UV placement is the priority."
+  },
+  "standard4x": {
+    "fitDimensions": [
+      1368,
+      1164
+    ],
+    "fitFactor": 6,
+    "method": "Lanczos resample of this fit to 4x native (docs/texture-standard-4x-2026-10-12.md); height re-authored from the 4x diffuse",
+    "record": "tools/texture_sheets/sources/standard-4x/batch3-hipnotic.json",
+    "note": "factor and dimensions describe the shipped files; other pixel fields are in the fit's units",
+    "fitFiles": {
+      "diffuse.png": "e67f2e0829d49d5b34baec15df31ed708dfa2ea51f37beb4d5e518ab544dc4b9",
+      "height.webp": "5d3b88ec4f2e601da75f240ec9531ca47f93a89ae5ce645ba021da7a33208faf"
+    }
   }
 }

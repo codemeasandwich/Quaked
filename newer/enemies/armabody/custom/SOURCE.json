@@ -9,10 +9,10 @@
     1188
   ],
   "dimensions": [
-    1512,
-    1358
+    864,
+    776
   ],
-  "factor": 7,
+  "factor": 4,
   "skin": 0,
   "poses": 98,
   "vertices": 204,
@@ -21,8 +21,8 @@
   "atlasBox": [
     0,
     0,
-    1512,
-    1358
+    864,
+    776
   ],
   "registration": null,
   "mattePolicy": "brown",
@@ -30,43 +30,43 @@
   "islands": [
     {
       "id": 1,
-      "surfacePixels": 560358,
-      "directPixels": 559212,
-      "edgePixels": 1146
+      "surfacePixels": 183330,
+      "directPixels": 182830,
+      "edgePixels": 500
     },
     {
       "id": 2,
-      "surfacePixels": 560374,
-      "directPixels": 558937,
-      "edgePixels": 1437
+      "surfacePixels": 183325,
+      "directPixels": 182586,
+      "edgePixels": 739
     },
     {
       "id": 3,
-      "surfacePixels": 20939,
-      "directPixels": 20939,
+      "surfacePixels": 6866,
+      "directPixels": 6866,
       "edgePixels": 0
     },
     {
       "id": 4,
-      "surfacePixels": 20939,
-      "directPixels": 20938,
+      "surfacePixels": 6866,
+      "directPixels": 6865,
       "edgePixels": 1
     },
     {
       "id": 5,
-      "surfacePixels": 19699,
-      "directPixels": 19699,
+      "surfacePixels": 6457,
+      "directPixels": 6457,
       "edgePixels": 0
     },
     {
       "id": 6,
-      "surfacePixels": 19701,
-      "directPixels": 19700,
+      "surfacePixels": 6459,
+      "directPixels": 6458,
       "edgePixels": 1
     }
   ],
-  "surfacePixels": 1202010,
-  "edgePixels": 2585,
+  "surfacePixels": 393303,
+  "edgePixels": 1241,
   "normalProfile": {
     "strength": 0.65,
     "cap": 0.55
@@ -78,8 +78,8 @@
     "height_for"
   ],
   "files": {
-    "diffuse.png": "69afec8a240968e32a69e92412cb9c070466af1ee4671bc55632e61cf4f143a1",
-    "height.webp": "d934152d59e6452991ade26ef1170fe30b7dec0c3c1239e187c2eb24c8f8b94c"
+    "diffuse.png": "be81a61a1477c752fad17b090d99c51bc04336a65cece064fbdf82dc6c9632dc",
+    "height.webp": "fab79fe046d2c88a3d145f3189e78ad74b7475b9d782136f1b9cb3c9485738c0"
   },
   "generation": {
     "tool": "ChatGPT built-in imagegen",
@@ -93,9 +93,9 @@
       204
     ],
     "value": 255,
-    "padding": 6,
-    "surfacePixels": 81278,
-    "paddedPixels": 104294
+    "padding": 7,
+    "surfacePixels": 26648,
+    "paddedPixels": 42440
   },
   "nativeHeight": {
     "file": "heights/armabody/skin0_0.webp",

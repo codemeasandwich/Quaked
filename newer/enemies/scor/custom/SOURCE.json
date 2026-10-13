@@ -13,10 +13,10 @@
     }
   ],
   "dimensions": [
-    1540,
-    780
+    1232,
+    624
   ],
-  "factor": 5,
+  "factor": 4,
   "skin": 0,
   "poses": 41,
   "parts": [
@@ -305,7 +305,21 @@
     "height_for"
   ],
   "files": {
-    "diffuse.png": "8f753262342b706e4a7f56343e6f1542f26d332e2a8cc5dccd768e540f030238",
-    "height.webp": "9a97fbfa6a33a04e24837796b16bd6cecfb16c158e51186d1a411e653a52c07c"
+    "diffuse.png": "2a3fa06475988b77dc59b76e58d89121337958a07cecd618e76c7640acf38c57",
+    "height.webp": "b0b4076cc648ec98cc9b3b323a8a3bd0924044e38e2aef87e6a9ec59350fb4a8"
+  },
+  "standard4x": {
+    "fitDimensions": [
+      1540,
+      780
+    ],
+    "fitFactor": 5,
+    "method": "Lanczos resample of this fit to 4x native (docs/texture-standard-4x-2026-10-12.md); height re-authored from the 4x diffuse",
+    "record": "tools/texture_sheets/sources/standard-4x/batch3-hipnotic.json",
+    "note": "factor and dimensions describe the shipped files; other pixel fields are in the fit's units",
+    "fitFiles": {
+      "diffuse.png": "8f753262342b706e4a7f56343e6f1542f26d332e2a8cc5dccd768e540f030238",
+      "height.webp": "9a97fbfa6a33a04e24837796b16bd6cecfb16c158e51186d1a411e653a52c07c"
+    }
   }
 }

@@ -20,7 +20,7 @@ const SPECS = [
   "vertices": 204,
   "triangles": 398,
   "poses": 98,
-  "factor": 7,
+  "factor": 4,
   "source": "tools/texture_sheets/sources/generated-2026-10-12/armabody.png",
   "sourceSha": "ca4f0c246a5853fefa02444350ddbef1e928c2703a1ab0d355397b4e01a0ee69",
   "sourceSize": [
@@ -36,7 +36,7 @@ const SPECS = [
   "vertices": 134,
   "triangles": 318,
   "poses": 98,
-  "factor": 6,
+  "factor": 4,
   "source": "tools/texture_sheets/sources/generated-2026-10-12/armalegs.png",
   "sourceSha": "474955ee6ca53875c2829455030f81be9afa90dbcf2bd1f6c188b820d8418bbf",
   "sourceSize": [
@@ -220,7 +220,7 @@ function squarePad(mask,width,height,radius){
 }
 Deno.test('Armagon native and custom flames have maximal flat height and flat baked normals without padding another surface',async()=>{
  const {model,bytes}=await native('armabody'),variant=index.models.armabody[0],nativeEntry=index.nativeHeights.armabody[0][0];
- for(const factor of [1,7]){
+ for(const factor of [1,4]){
   const nativeMap=factor===1,masks=uvMasks(bytes,factor),padded=squarePad(masks.flash,masks.width,masks.height,6),height=await decodedImage(nativeMap?'newer/enemies/'+nativeEntry.file:'newer/enemies/armabody/custom/height.webp');
   let surface=0,padding=0;
   for(let i=0;i<padded.length;i++){

@@ -18,12 +18,12 @@ are retained in `tools/texture_sheets/sources/generated-2026-10-12/armabody.*`
 and `armalegs.*`. The body retains wounded tan flesh, dark cannons and all four
 orange flash islands; the legs retain earthy brown/bronze machinery and red details.
 
-Runtime body1512×1358 and legs1368×1164 use unchanged native UVs. The first leg
+Runtime body1512×1358 and legs1368×1164 (first fits; under the [4x standard](texture-standard-4x-2026-10-12.md) the body is re-fitted at factor 4, 864×776, and the legs are resampled to 912×776) use unchanged native UVs. The first leg
 fit correctly failed:6727 actual metal-surface pixels lacked artwork. Independent
 bounded registration measured vertical compression in the generated source.
 The recorded affine box `[0,4,1368,1210]` resolves coverage with the existing24px
 edge limit unchanged. Missing coverage is zero; extension is1123/832841 leg
-surface pixels. Body extension is2585/1202010. No original low-resolution pigment
+surface pixels (in the legs' factor-6 fit units, which `SOURCE.json` keeps). Body extension was2585/1202010 at the first, factor-7 fit and is 1241/393303 at the 4x re-fit. No original low-resolution pigment
 is copied into either replacement. The fitter records every transform/hash.
 
 ## Normal maps and identity boundaries
@@ -34,7 +34,7 @@ cover body native-generated fallback, body authored-native height, body custom,
 legs native-generated and legs custom. Normal settings remain strength0.65/cap0.55.
 
 Actual body vertices192–203 form16 muzzle-flash triangles. Their height is255,
-with6pixels of padding at each output resolution, and their decoded normal is
+with 6 pixels of padding on the native map and 7 on the 4x map (`fit_rogue_skins.flatten_height`: one pixel more on enlarged maps, where the fitter's and the test's rasterizers can differ by a pixel at triangle edges), and their decoded normal is
 RGB128,128,255/A255. Padding must not overlap another body surface.255 is required
 because the height-shadow receiver treats maximum height as unoccluded;128 could
 incorrectly shadow the flash. Authored height also covers the original native body
@@ -64,7 +64,15 @@ Use a fresh browser origin when reviewing changed module dependencies.
 
 Reproduce each fit with `/usr/bin/python3 tools/texture_sheets/fit_generated_skin.py
 <recipe.json> --pack resources/hipnotic/pak0.pak`; the default palette archive is
-`resources/id1/pak0.pak`. Bake each model through `tools/bake_normals.mjs` using
+`resources/id1/pak0.pak`. Under the [4x standard](texture-standard-4x-2026-10-12.md) the body
+recipe says factor 4, so this reproduces the shipped body. The legs recipe keeps factor 6
+(its registration box `[0,4,1368,1210]` is in factor-6 pixels and has no whole-pixel
+factor-4 equivalent, so re-fitting would change the accepted registration): fit the legs
+with `--output <scratch dir>`, check the diffuse and height against
+`standard4x.fitFiles`, then the shipped files come from
+`tools/texture_sheets/standardise_4x.py` (record
+`tools/texture_sheets/sources/standard-4x/batch3-hipnotic.json`, which refuses to re-run once
+it holds results) and `update_enemy_heights.height_for` on the new diffuse. Bake each model through `tools/bake_normals.mjs` using
 `--namespace hipnotic --skins --maps '^progs/armabody\.mdl$' --variant armabody/custom`
 (or armalegs), with the existing configured Three/canvas dependencies.
 

@@ -7,7 +7,7 @@ work is outside this change.
 
 ## Result and how to try
 
-[Combined 1540 × 780 PNG](../newer/enemies/scor/custom/diffuse.png) is the actual
+[Combined PNG](../newer/enemies/scor/custom/diffuse.png) (1540 × 780 as first fitted; resampled to 1232 × 624 for the [4x standard](texture-standard-4x-2026-10-12.md)) is the actual
 runtime skin, with both halves fitted to the original Centroid from Scourge of
 Armagon (`progs/scor.mdl`, native 308 × 156). The original MDL has one skin,
 235 vertices, 422 triangles and 41 animation poses. It is distinct from Arcane
@@ -56,6 +56,12 @@ hash, every crop/placement, retained native area and output hashes. Reproduce:
 
 It requires Pillow, NumPy and SciPy. Alternative packs/source/output directories
 are explicit command-line arguments; mismatched source/model hashes are rejected.
+Under the [4x standard](texture-standard-4x-2026-10-12.md) the shipped files are this
+factor-5 fit resampled to 1232 × 624 (`tools/texture_sheets/standardise_4x.py`, record
+`tools/texture_sheets/sources/standard-4x/batch3-hipnotic.json`) with the height re-authored by
+`update_enemy_heights.height_for`; `SOURCE.json` keeps the fit's digests under
+`standard4x.fitFiles`. The fit's supplied source image is no longer on disk, so it cannot be
+re-run here; if it is, write to a scratch directory (`--out`), never over the shipped files.
 
 ## Engine wiring and failure handling
 

@@ -36,19 +36,24 @@ def sha(data):
 def flatten_height(path, data, factor, vertex_range):
  """Keep non-solid flash surfaces flat and above all virtual height blockers.
 
- Uses actual native triangles, plus six texels for the five-texel normal kernel
- and bilinear sampling. Refuse padding that reaches another real UV surface.
+ Uses actual native triangles, plus six pixels for the five-texel normal kernel and
+ bilinear sampling (seven on enlarged maps, below). Refuse padding that reaches another
+ real UV surface.
  """
  surface=uv_footprint(data,factor,vertex_range)
  if not surface.any():raise ValueError('Empty flat-height UV region')
- padded=ndimage.binary_dilation(surface,structure=np.ones((13,13),bool))
+ # At enlarged factors the polygon rasterizer and per-texel-centre sampling can differ by a
+ # pixel at triangle edges (seen at the 4x standard), so pad one pixel more there; the
+ # native (factor 1) map keeps its six.
+ radius=6+(factor>1)
+ padded=ndimage.binary_dilation(surface,structure=np.ones((2*radius+1,2*radius+1),bool))
  overlap=padded & uv_footprint(data,factor) & ~surface
  if overlap.any():raise ValueError('Flat-height padding reaches another UV surface')
  height=np.asarray(Image.open(path).convert('L')).copy()
  if height.shape!=surface.shape:raise ValueError('Flat-height dimensions differ')
  height[padded]=255
  Image.fromarray(height).save(path,'WEBP',lossless=True,method=6)
- return dict(vertexRange=vertex_range,value=255,padding=6,surfacePixels=int(surface.sum()),paddedPixels=int(padded.sum()))
+ return dict(vertexRange=vertex_range,value=255,padding=radius,surfacePixels=int(surface.sum()),paddedPixels=int(padded.sum()))
 
 def native_single_skin(data, skin):
  """Read an explicitly selected single skin; never silently use animation frame0."""

@@ -60,7 +60,7 @@ Deno.test( 'owned Centroid public loader preserves every native UV triangle and 
 } );
 Deno.test( 'actual Centroid assets retain both supplied sources, matching dimensions and other enemy entries', async () => {
  const provenance = JSON.parse( read( BASE + 'SOURCE.json' ) ); same( provenance.nativeModelSha256, EXPECTED, 'fit targets exact native model' ); same( provenance.model, NAME, 'fit model' );
- same( JSON.stringify( provenance.dimensions ), '[1540,780]', 'fivefold native atlas dimensions' );
+ same( JSON.stringify( provenance.dimensions ), '[1232,624]', 'fourfold native atlas dimensions (the 4x standard)' );
  check( Array.isArray( provenance.sources ) && provenance.sources.length === 2, 'exactly two recorded source images' );
  for ( const [ source, digest ] of Object.entries( SOURCES ) ) {
   same( sha( read( source ) ), digest, 'actual supplied JPEG bytes: ' + source );
@@ -78,7 +78,7 @@ Deno.test( 'actual Centroid assets retain both supplied sources, matching dimens
  same( sha( JSON.stringify( other ) ), '59d8a84a50a47a31e0601dcda3efbb4570155d8b1b235a8feff7aca08767e271', 'all pre-existing enemy variants and native height mappings unchanged' );
  const canvas = await import( process.env.QUAKED_CANVAS_MODULE || '/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js' );
  const decode = async file => { const image = await canvas.loadImage( read( BASE + file ) ), surface = canvas.createCanvas( image.width, image.height ), ctx = surface.getContext( '2d' ); ctx.drawImage( image, 0, 0 ); return ctx.getImageData( 0, 0, image.width, image.height ); };
- const diffuse = await decode( 'diffuse.png' ), height = await decode( 'height.webp' ); same( diffuse.width, 1540, 'actual diffuse width' ); same( diffuse.height, 780, 'actual diffuse height' ); same( height.width, diffuse.width, 'height aligned horizontally' ); same( height.height, diffuse.height, 'height aligned vertically' );
+ const diffuse = await decode( 'diffuse.png' ), height = await decode( 'height.webp' ); same( diffuse.width, 1232, 'actual diffuse width' ); same( diffuse.height, 624, 'actual diffuse height' ); same( height.width, diffuse.width, 'height aligned horizontally' ); same( height.height, diffuse.height, 'height aligned vertically' );
  let min = 255, max = 0;
  for ( let i = 0; i < height.data.length; i += 4 ) { const value = height.data[i]; same( height.data[i+1], value, 'height green is grayscale' ); same( height.data[i+2], value, 'height blue is grayscale' ); same( height.data[i+3], 255, 'height fully opaque' ); same( diffuse.data[i+3], 255, 'diffuse fully opaque' ); min = Math.min( min, value ); max = Math.max( max, value ); }
  check( max - min > 32, 'actual stored height is nonflat' );

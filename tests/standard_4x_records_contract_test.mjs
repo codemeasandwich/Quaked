@@ -22,7 +22,11 @@ test('resampled files are exactly what their 4x plan recorded, and skin provenan
     // Skins without provenance (the batch-1 items and monsters) have only the plan record.
     const text=await readFile(join(dirname(result.file),'SOURCE.json'),'utf8').catch(error=>{if(error.code==='ENOENT')return null;throw error;});
     const source=text&&JSON.parse(text),file=result.file.split('/').at(-1);
-    if(source?.standard4x){
+    if(source){
+     // A resampled skin with provenance must say so: shipped and fit identities both recorded.
+     assert.ok(source.standard4x,`${result.file}: SOURCE.json records the 4x resample (standard4x)`);
+     assert.equal(source.standard4x.record,join(PLANS,name),`${result.file}: SOURCE.json names its 4x record`);
+     assert.deepEqual(source.standard4x.fitDimensions,result.before.size,`${result.file}: SOURCE.json fit dimensions are the plan's before`);
      assert.equal(source.standard4x.fitFiles?.[file],result.before.sha256,`${result.file}: SOURCE.json fit digest is the plan's before`);
      assert.equal(source.files?.[file],result.after.sha256,`${result.file}: SOURCE.json shipped digest is the plan's after`);
      assert.deepEqual(source.dimensions,result.after.size,`${result.file}: SOURCE.json dimensions are the shipped size`);
