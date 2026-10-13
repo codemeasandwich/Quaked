@@ -1,0 +1,32 @@
+{
+  "key": "sword",
+  "sourceFile": "tools/texture_sheets/sources/fidelity-2026-10-13/sword-photographic.png",
+  "sourceSha": "cd42deecc6b2c584e75d5b189a8ce39f73296b76044a1053227b95d01ad72fdc",
+  "modelSha": "a72818767602e676cb08aa19db1780df9ee71b1f5c650f24c4f7ad2f761360d2",
+  "layout": [
+    1,
+    124,
+    195,
+    58,
+    106,
+    40
+  ],
+  "size": [
+    1000,
+    1573
+  ],
+  "factor": 4,
+  "matte": "black",
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-13",
+    "reference": "Direct original Rogue sword.mdl skin0 decoded with original Quake palette; no previous generated art used for this selected candidate.",
+    "prompt": "Create a photorealistic high-resolution repaint of this ORIGINAL pixel-art Quake sword texture atlas. Use the attached image only as the low-resolution shape, design and colour blueprint. It shows BOTH SIDES of the same floating Phantom sword. Output a production UV atlas with identical complete124:195 proportions and normalized placements, two vertical sword sides centred at25% and75%width, tip at1%height, guard at67%, grip ending92%, pointed pommel at98.5%. Keep narrow straight blades, triangular blade-base shoulders, rectangular dull brown metal collar with the original silver skull-like motif, angular wide grey crossguard with original dark inset details, muted olive-brown diagonally bound grip and pointed grey pommel. Preserve distinct blood coverage on the two sides. Pure black unused background, entire atlas visible, no crop.\n\nRender the actual materials as though these exact surfaces were PHOTOGRAPHED from a hand-forged fantasy prop: broad smooth satiny GREY STEEL with clear plane changes and polished bevel edges, soft metallic tonal gradients, just a handful of fine scratches; compressed old olive-brown LEATHER wraps with realistic overlapping edges. Make the skull collar and guard SOLID METAL with restrained wear, absolutely no crackle, fissure networks, marble, stone, gravel or noisy patina. Keep the blade's existing long central ridge and shallow diagonal grooves in the lower section. Dark burgundy blood is naturally smeared and dried on the blade, dense near the tips and sparse farther down; organic irregular stains, not a copied grid of pixel marks or repeated round beads. Preserve the separate front/back distribution visible in the original.\n\nPhotographic material character and clean large forms, not illustration, sharpened pixels, grain or artificial all-over microtexture. Do not invent a visible character, scenery, hand, new weapon shape, added runes, new precious-metal trim, glowing effects or external shadows. Original silhouettes, proportions, colour families and design must remain recognisable. No text, labels, borders or watermark.\n",
+    "ownerDirection": "Photorealistic detail and character while preserving original colors, shapes and artistic design.",
+    "discardedApproach": "Editing the previous generated source retained grain and stone-like crackle after two targeted refinements; restarted directly from the original atlas."
+  },
+  "runtimeEncoding": {
+    "format": "webp",
+    "quality": 92
+  }
+}

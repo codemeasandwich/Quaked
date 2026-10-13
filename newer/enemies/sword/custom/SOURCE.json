@@ -2,8 +2,8 @@
   "schema": 1,
   "model": "progs/sword.mdl",
   "nativeModelSha256": "a72818767602e676cb08aa19db1780df9ee71b1f5c650f24c4f7ad2f761360d2",
-  "source": "tools/texture_sheets/sources/generated-2026-10-12/sword.png",
-  "sourceSha256": "9ebff631899dea90bc1aa5e26bc2b3e2294a8442c6e58994bc37ae8fdfc0c671",
+  "source": "tools/texture_sheets/sources/fidelity-2026-10-13/sword-photographic.png",
+  "sourceSha256": "cd42deecc6b2c584e75d5b189a8ce39f73296b76044a1053227b95d01ad72fdc",
   "sourceDimensions": [
     1000,
     1573
@@ -31,18 +31,18 @@
     {
       "id": 1,
       "surfacePixels": 27626,
-      "directPixels": 27623,
-      "edgePixels": 3
+      "directPixels": 22875,
+      "edgePixels": 4751
     },
     {
       "id": 2,
       "surfacePixels": 27614,
-      "directPixels": 27590,
-      "edgePixels": 24
+      "directPixels": 24400,
+      "edgePixels": 3214
     }
   ],
   "surfacePixels": 55240,
-  "edgePixels": 27,
+  "edgePixels": 7965,
   "normalProfile": {
     "strength": 0.65,
     "cap": 0.55
@@ -54,13 +54,35 @@
     "height_for"
   ],
   "files": {
-    "diffuse.png": "f73cd5e2e04d6e3d89f622686643d87b809458d3368b213fa46efe2f2328b2b0",
-    "height.webp": "bad70062b7151e8cd73b564f86b7781e4e7e391222c08ff3d8beb1efbbf89e6a"
+    "diffuse.webp": "250eff93e4278de9e77263e73d642651fb134170714fd6e164e6594841382399",
+    "height.webp": "6df405476aa17396c9d5867c0bf537196e392300e1e7ba58f9920e33ae2c5c6b"
   },
   "generation": {
     "tool": "ChatGPT built-in imagegen",
-    "date": "2026-10-12",
-    "reference": "Original Rogue sword.mdl skin0 decoded with native palette, nearest enlarged5x; both distinct atlas halves",
-    "prompt": "Faithfully repaint this exact ORIGINAL Quake Dissolution of Eternity PHANTOM SWORDSMAN UV TEXTURE ATLAS at high resolution. It contains the front and back of ONE floating sword, not two redesigned weapons. Preserve the complete 124:195 atlas aspect ratio, both different halves, exact original silhouettes and proportional coordinates of the narrow blades, angular crossguards, small decorated blade bases, olive-brown wrapped grips and dark pointed pommels. Keep the original dark grey steel, subdued brown/olive grip and dark blood-red staining in its original distribution, heavier near each blade tip. The front/back blood patterns differ: preserve both, do not mirror or copy one onto the other. Add restrained fine scratches, steel wear, tiny engraving already suggested in the source and leather-wrap texture inside existing outlines. Do not enlarge or straighten the original shapes, invent new symbols or precious-metal colours. Pure black background, crisp boundaries, no cast shadow, halo, sparks, bloom, text or watermark. No visible person, hand, body, scenery or extra weapon. This is a precise production model skin atlas: original UV layout and design take priority over decorative changes."
+    "date": "2026-10-13",
+    "reference": "Direct original Rogue sword.mdl skin0 decoded with original Quake palette; no previous generated art used for this selected candidate.",
+    "prompt": "Create a photorealistic high-resolution repaint of this ORIGINAL pixel-art Quake sword texture atlas. Use the attached image only as the low-resolution shape, design and colour blueprint. It shows BOTH SIDES of the same floating Phantom sword. Output a production UV atlas with identical complete124:195 proportions and normalized placements, two vertical sword sides centred at25% and75%width, tip at1%height, guard at67%, grip ending92%, pointed pommel at98.5%. Keep narrow straight blades, triangular blade-base shoulders, rectangular dull brown metal collar with the original silver skull-like motif, angular wide grey crossguard with original dark inset details, muted olive-brown diagonally bound grip and pointed grey pommel. Preserve distinct blood coverage on the two sides. Pure black unused background, entire atlas visible, no crop.\n\nRender the actual materials as though these exact surfaces were PHOTOGRAPHED from a hand-forged fantasy prop: broad smooth satiny GREY STEEL with clear plane changes and polished bevel edges, soft metallic tonal gradients, just a handful of fine scratches; compressed old olive-brown LEATHER wraps with realistic overlapping edges. Make the skull collar and guard SOLID METAL with restrained wear, absolutely no crackle, fissure networks, marble, stone, gravel or noisy patina. Keep the blade's existing long central ridge and shallow diagonal grooves in the lower section. Dark burgundy blood is naturally smeared and dried on the blade, dense near the tips and sparse farther down; organic irregular stains, not a copied grid of pixel marks or repeated round beads. Preserve the separate front/back distribution visible in the original.\n\nPhotographic material character and clean large forms, not illustration, sharpened pixels, grain or artificial all-over microtexture. Do not invent a visible character, scenery, hand, new weapon shape, added runes, new precious-metal trim, glowing effects or external shadows. Original silhouettes, proportions, colour families and design must remain recognisable. No text, labels, borders or watermark.\n",
+    "ownerDirection": "Photorealistic detail and character while preserving original colors, shapes and artistic design.",
+    "discardedApproach": "Editing the previous generated source retained grain and stone-like crackle after two targeted refinements; restarted directly from the original atlas."
+  },
+  "runtimeEncoding": {
+    "format": "webp",
+    "quality": 92,
+    "lossless": false,
+    "maps": {
+      "diffuse.webp": {
+        "masterSha256": "f147f07880d5bb9a9f999255ef491601055bee79e37745de545a72a84540db5c",
+        "sha256": "250eff93e4278de9e77263e73d642651fb134170714fd6e164e6594841382399",
+        "pillowDecodedRgbaSha256": "4e501827af0269c34020cf59d6d11456870e93b010ba6aa48ff255472d6b2f6a",
+        "bytes": 30834
+      },
+      "height.webp": {
+        "masterSha256": "099ca0a4b93c3574bdbc49bbd22dccff19fe6542cda135607533fb78490b2c96",
+        "sha256": "6df405476aa17396c9d5867c0bf537196e392300e1e7ba58f9920e33ae2c5c6b",
+        "pillowDecodedRgbaSha256": "32a3069b376fdb41cfe98664c7e56a4487f994ef72d9d3be86219e2eae953d00",
+        "bytes": 23794
+      }
+    },
+    "authoringSourceUnchanged": true
   }
 }
