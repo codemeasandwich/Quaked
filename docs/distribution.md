@@ -327,6 +327,11 @@ hook configurations are never overwritten automatically.
 GitHub Actions runs the web checks and browser trial on an Apple Silicon Mac
 runner, and native builds on both Apple Silicon and Intel Mac runners.
 Successful `Dev` pushes deploy only the generated site (HTML and data files) to Pages.
+On a `Dev` push or version tag, the Apple Silicon Mac job also builds the app to download its
+game packs and uploads any parts the `data` release lacks before building it
+(`tools/distribution/upload-packs.mjs`; [per-game-packs-design-2026-10-13.md](per-game-packs-design-2026-10-13.md)).
+That job has `contents: write` for the upload only (no other step gets the token), and an
+upload failure fails it, so that push does not deploy Pages either.
 Tags matching `package.json`'s `v<version>` publish the universal app in a ZIP with checksums and release notes.
 Configure GitHub Pages to use Actions. Artifact generation, owner acceptance,
 commit/landing and actual publication are separate evidence states.

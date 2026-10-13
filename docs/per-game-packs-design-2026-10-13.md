@@ -10,12 +10,23 @@ Newer Game.
 
 Status, 13 October 2026: classification and the web build are built, tested and trialled in
 a browser. The app's download/verify/unpack step has Rust tests; it and its wait screen were
-trialled in the real app against a local stand-in host (Checks, below). The release workflow
-that uploads the packs is not yet written, and the first `data` release is created only with
-the owner's go-ahead. A desktop build downloads its packs only when the build names their
-host (`QUAKED_PACK_BASE`: the release, once it exists, or a local stand-in for trials);
-without one it bundles every pack as before, so CI-built apps keep working until the release
-is published, and `archive-mac.mjs` refuses to archive an app that downloads. Both kinds of
+trialled in the real app against a local stand-in host (Checks, below). The owner approved
+the `data` release on 13 October 2026. On a Dev push or a version tag, the Distribution
+workflow's Apple Silicon mac job builds with `QUAKED_PACK_BASE` set to the release
+(https://github.com/codemeasandwich/Quaked/releases/download/data/), then
+`tools/distribution/upload-packs.mjs` checks `dist/packs` against the parts the built app lists
+(each present at its size and SHA-256, nothing else), creates the release (a prerelease, not
+"latest") if it is missing, and uploads only the parts it lacks, before the app is built
+(`tests/pack_upload_contract_test.mjs`). An asset a cancelled run left incomplete is replaced
+(the one deletion); afterwards the uploader lists the release again (every part uploaded, at
+its size and digest), downloads the new parts through the address the app uses, and writes
+`dist/packs-receipt.json`, without which `archive-mac.mjs` will not archive an app that
+downloads from the release. The first real upload and an app's download from GitHub (a
+redirect to its download host, which the app's https-only client follows) are unproven until
+the first CI run and an app trial. Pull requests and the Intel leg build with every pack
+bundled, so that path stays tested; `archive-mac.mjs` archives a downloading app only when its host is the `data`
+release (or with `QUAKED_ARCHIVE_DOWNLOADING_APP` for a local trial). A local build without
+`QUAKED_PACK_BASE` (the pre-commit gate) bundles every pack, as before. Both kinds of
 app now load images from the asset protocol in CORS mode ([distribution.md](distribution.md)).
 
 ## Packs
@@ -111,12 +122,14 @@ SHA-256. A part before a changed asset keeps its name.
   content, so a later upload adds new parts beside the old ones and never replaces one (an
   existing name must be skipped, since GitHub refuses a second asset of the same name); old
   parts stay so earlier app versions keep working. GitHub limits a release's asset count
-  (about 1,000, to be confirmed), so at about 48 parts per full change a later `data-2`
+  (1,000; the uploader stops past it), so at about 48 parts per full change a later `data-2`
   release will be needed. The app embeds the list of packs, parts, sizes, hashes and each
   asset's offset, length and SHA-256. The build checks each downloadable asset's extension
   against the app's rule (a dot and 1 to 15 letters or digits), so it cannot ship a pack the
-  app would refuse. A verifier for `dist/packs` (every listed part present at its size and
-  SHA-256, nothing extra) belongs with the upload workflow, which is not written yet.
+  app would refuse. The uploader verifies `dist/packs` (every listed part present at its size and
+  SHA-256, nothing extra) and refuses a release past GitHub's 1,000 assets. The design needs the repository's
+  immutable releases to stay off (they are, 13 October 2026): with them on, no part could be
+  added to `data` once it is published.
 
 ## In the app
 

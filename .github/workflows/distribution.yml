@@ -80,10 +80,21 @@ jobs:
       matrix:
         runner: [macos-15, macos-15-intel]
     runs-on: ${{ matrix.runner }}
+    # contents: write for the data upload below. The job's other steps (cargo build scripts, the tauri CLI, tests) never
+    # see the token: checkout does not keep it (persist-credentials: false) and only the upload step is given GH_TOKEN.
+    # A pull request from a fork still gets a read-only token, and builds with every pack bundled.
+    permissions:
+      contents: write
     env:
       CARGO_TARGET_DIR: ${{ github.workspace }}/.distribution-cache/target
+      # A Dev push or version tag builds the Apple Silicon leg's app to download game packs from the `data` release
+      # (owner approval, 13 October 2026; docs/per-game-packs-design-2026-10-13.md), after uploading any parts the
+      # release lacks. Pull requests and the Intel leg build the app with every pack bundled, so both paths stay tested.
+      QUAKED_PACK_BASE: ${{ github.event_name == 'push' && matrix.runner == 'macos-15' && format('https://github.com/{0}/releases/download/data/', github.repository) || '' }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
@@ -91,6 +102,12 @@ jobs:
       - run: rustup target add aarch64-apple-darwin x86_64-apple-darwin
       - run: npm ci --ignore-scripts
       - run: npm run test:distribution && npm run build:desktop
+      # Parts are named by their content: only new ones are added, none replaced, so earlier apps keep theirs.
+      - name: Upload game packs to the data release
+        if: env.QUAKED_PACK_BASE != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node tools/distribution/upload-packs.mjs
       - run: cargo test --locked --manifest-path src-tauri/Cargo.toml
       - run: cargo build --locked --manifest-path src-tauri/Cargo.toml --example lan_test_bridge
       - run: node tools/distribution/engine-tests.mjs
