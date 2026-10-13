@@ -4,13 +4,15 @@ import {mkdtemp,mkdir,writeFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {createHash} from 'node:crypto';
-import {DataCategory} from '../tools/distribution/manifest.mjs';
+import {PackClassifier,WEB_DATA_FILES,WebDataFile} from '../tools/distribution/packs.mjs';
 import {VerifySite} from '../tools/distribution/verify-site.mjs';
-test('web assets go to one data file per category; the shareware PAK has its own',()=>{
- const cases={'games/shareware/pak0.pak':'pak0','newer/normals/ab.nm.gz':'normals','newer/textures/glass/x-height.png':'textures','newer/textures/adoor01_2.webp':'textures',
-  'newer/enemies/dog/custom/diffuse.webp':'skins','newer/weapons/rocket/diffuse.webp':'skins','newer/displacement/e1m1.bin':'maps','newer/rockfield/e1m1.bin':'maps',
-  'newer/maps.pak':'maps','newer/startup.pak':'maps','music/ambient.mp3':'music','newer/bestiary/cover.png':'images','newer/hud/sbar.png':'images','conback.webp':'images'};
- for(const [path,category] of Object.entries(cases))assert.equal(DataCategory(path),category,path);
+test('the web build ships the core and shareware packs and the shareware PAK; other games stay out of it',async()=>{
+ const classify=await PackClassifier();
+ const cases={'newer/textures/adoor01_2.webp':'shareware','newer/enemies/dog/custom/diffuse.png':'shareware','newer/displacement/shareware/e1m3.dm.gz':'shareware','newer/displacement/newer/start.dm.gz':'shareware',
+  'newer/bestiary/cover.png':'core','music/ambient.mp3':'core','newer/hud/index.json':'core','newer/displacement/rogue/r1m1.dm.gz':'rogue','newer/displacement/id1/e2m1.dm.gz':'quake'};
+ for(const [path,pack] of Object.entries(cases))assert.equal(WebDataFile(path,classify),pack,path);
+ assert.equal(WebDataFile('games/shareware/pak0.pak',classify),'pak0');
+ assert.deepEqual(WEB_DATA_FILES,['core','shareware','pak0']);
 });
 test('a site is published only with exactly the data files its HTML names, byte for byte',async()=>{
  const dir=await mkdtemp(join(tmpdir(),'quaked-site-test-'));

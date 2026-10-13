@@ -6,7 +6,26 @@ globalThis.__QUAKED_BOOT_READY__=(async()=>{
 const spec=JSON.parse(document.getElementById('quaked-assets').textContent);
 const resourceBase=spec.profile==='desktop'?await invoke('distribution_resources'):null;
 const urls=new Map(),packs=new Map();
-const metrics={decodedBytes:0,blobBytes:0,dataBytes:0,missing:[],startedAt:performance.now()};
+if(spec.profile==='desktop'){
+  // Images from the app's asset protocol (bundled and downloaded assets) are another origin
+  // than the page, so reading their pixels (textures, HUD, faces, folio, the menu font)
+  // failed with "The operation is insecure". Tauri answers that protocol with
+  // Access-Control-Allow-Origin set to the window's origin, so such images load in CORS
+  // mode; every other image is left as it is.
+  const descriptor=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,'src');
+  Object.defineProperty(HTMLImageElement.prototype,'src',{...descriptor,set(value){
+    if(this.crossOrigin===null&&/^(asset:|http:\/\/asset\.localhost\/)/.test(String(value)))this.crossOrigin='anonymous';
+    descriptor.set.call(this,value);
+  }});
+}
+const metrics={decodedBytes:0,blobBytes:0,dataBytes:0,missing:[],unavailable:[],startedAt:performance.now()};
+// Desktop: per-game packs unpacked by the app (src-tauri/src/packs.rs), one file per asset named by its SHA-256.
+const installed=new Set(['core']);let packAssets=null;
+const available=entry=>!entry.pack||(spec.profile==='web'?packs.has(entry.pack):installed.has(entry.pack));
+// An asset whose pack this copy does not have (the web ships core and shareware; the app has the
+// packs of the game it is playing): a URL that fails like a network error, which every loader
+// already handles by keeping the classic look. Not cached, so it resolves once the pack arrives.
+function unavailable(k){metrics.unavailable.push(k);const url=URL.createObjectURL(new Blob([]));URL.revokeObjectURL(url);return url;}
 function key(path) {
   if(typeof path!=='string')path=String(path);
   if(/^(blob:|data:|asset:|http:\/\/asset\.localhost)/.test(path))return null;
@@ -14,20 +33,26 @@ function key(path) {
   const url=new URL(path,'https://quaked.invalid/');
   return decodeURIComponent(url.pathname).replace(/^\//,'');
 }
-globalThis.__QUAKED_DISTRIBUTION__={profile:spec.profile,engineHash:spec.engineHash,metrics,
-  has(path){const k=key(path);return k===null||Object.hasOwn(spec.files,k);},
+globalThis.__QUAKED_DISTRIBUTION__={profile:spec.profile,engineHash:spec.engineHash,packBase:spec.packBase,metrics,
+  has(path){const k=key(path);return k===null||Object.hasOwn(spec.files,k)&&available(spec.files[k]);},
+  /** Desktop: the packs a game needs that are not bundled (core is), as packs_ensure takes them. */
+  packsFor(game){if(spec.profile!=='desktop')return [];return (spec.gamePacks?.[game]??[]).filter(name=>name!=='core'&&spec.packs?.[name]).map(name=>({name,parts:spec.packs[name].parts,assets:spec.packs[name].assets}));},
+  /** Desktop: the packs are unpacked in `dir`; their assets resolve from now on. */
+  usePacks(dir,names){packAssets=dir;for(const name of names)installed.add(name);},
   url(path){
     const k=key(path);if(k===null)return String(path);
     if(urls.has(k))return urls.get(k);
+    let url;
     const entry=spec.files[k];
     if(!entry){metrics.missing.push(k);throw Error('Asset absent from '+spec.profile+' package: '+k);}
+    if(!available(entry))return unavailable(k);
+    if(spec.profile==='desktop'&&entry.pack){url=convertFileSrc(packAssets+'/'+entry.sha256+entry.ext);urls.set(k,url);return url;}
     if(spec.profile==='desktop')return entry.external?convertFileSrc(resourceBase+'/'+entry.id):new URL('assets/'+entry.id,location.href.split('?')[0]).href;
-    let url;
     if(entry.pack){
       // A data-file asset becomes its own small Blob, made when first asked for (as the
       // single-file build did). Slices of large category Blobs broke intermittently
       // (ERR_BLOB_REFERENCED_BLOB_BROKEN on a cold start) and could stop the game starting.
-      const pack=packs.get(entry.pack);if(!pack)throw Error('Data file not loaded for '+k+': '+entry.pack);
+      const pack=packs.get(entry.pack);
       url=URL.createObjectURL(new Blob([pack.subarray(entry.offset,entry.offset+entry.length)],{type:entry.mime}));metrics.blobBytes+=entry.length;
     }else{
       const element=document.getElementById(entry.id);
@@ -42,7 +67,7 @@ globalThis.__QUAKED_DISTRIBUTION__={profile:spec.profile,engineHash:spec.engineH
 // index.html's own images are always embedded (build.mjs keeps page references out of data files).
 for(const el of document.querySelectorAll('[data-quaked-src]'))el.src=globalThis.__QUAKED_DISTRIBUTION__.url(el.dataset.quakedSrc);
 for(const el of document.querySelectorAll('[data-quaked-href]'))el.href=globalThis.__QUAKED_DISTRIBUTION__.url(el.dataset.quakedHref);
-if(spec.packs&&Object.keys(spec.packs).length){
+if(spec.profile==='web'&&spec.packs&&Object.keys(spec.packs).length){
   // Served over http(s) (GitHub Pages, or a local test server) the data files sit beside the
   // page; opened from disk, the page fetches them from GitHub Pages (spec.dataBase). Each part
   // is integrity-checked by the browser, which releases it only whole, so progress moves per part.

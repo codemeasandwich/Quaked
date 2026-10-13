@@ -128,7 +128,7 @@ try{
  page=await context.newPage();
  page.on('pageerror',error=>errors.push(error.stack??String(error)));
  page.on('crash',()=>errors.push('Browser page crashed'));
- page.on('console',msg=>{const text=msg.text();tail(consoleTail,{elapsedMs:elapsed(),type:msg.type(),text:text.slice(0,4000)});if(msg.type()==='error')consoleErrors.push(text);});
+ page.on('console',msg=>{const text=msg.text()+(msg.type()==='error'&&msg.location()?.url?` @ ${msg.location().url}`:'');tail(consoleTail,{elapsedMs:elapsed(),type:msg.type(),text:text.slice(0,4000)});if(msg.type()==='error')consoleErrors.push(text);});
  page.on('requestfailed',request=>tail(requestFailures,{elapsedMs:elapsed(),url:request.url().slice(0,1000),error:request.failure()?.errorText}));
  // Only the page's own site is reachable; a file:// page's GitHub Pages data requests are
  // answered from the local site, everything else is recorded and refused.
@@ -176,10 +176,29 @@ try{
    for(const path of paths){const image=new Image();image.src=__QUAKED_DISTRIBUTION__.url(path);try{await image.decode();if(image.naturalWidth>0&&image.naturalHeight>0)decoded++;else failed.push(path);}catch(error){failed.push(path+': '+error.message);}}
    return {checked:paths.length,decoded,failed:failed.slice(0,10)};
   }));
+  // Assets of games whose packs the web does not ship (docs/per-game-packs-design-2026-10-13.md)
+  // must be reported unavailable, failing like a network error that loaders already handle,
+  // never throwing or counting as a packaging fault.
+  const consoleBefore=consoleErrors.length;
+  const unshipped=await step('unshipped-assets',()=>page.evaluate(async()=>{
+   const spec=JSON.parse(document.getElementById('quaked-assets')?.textContent??'{}'),all=Object.entries(spec.files??{}).filter(([,entry])=>entry.unshipped).map(([path])=>path);
+   const sample=[all.find(path=>/\.(png|webp|jpg)$/.test(path)),all.find(path=>!/\.(png|webp|jpg)$/.test(path))].filter(Boolean),failed=[],urls=[];
+   for(const path of sample){
+    const d=__QUAKED_DISTRIBUTION__,url=d.url(path);urls.push(url);
+    if(d.has(path))failed.push(path+': has() is true');
+    let fetched=false;try{await fetch(url);fetched=true;}catch{}
+    if(fetched)failed.push(path+': fetch succeeded');
+    const image=new Image();image.src=url;let decoded=false;try{await image.decode();decoded=true;}catch{}
+    if(decoded)failed.push(path+': image decoded');
+   }
+   return {count:all.length,checked:sample.length,failed,urls,unavailable:__QUAKED_DISTRIBUTION__.metrics.unavailable.length};
+  }));
+  // Chrome logs each refused load; those lines are this check's own, so they are kept apart.
+  await page.waitForTimeout(500);unshipped.consoleErrors=consoleErrors.splice(consoleBefore).filter(text=>{const own=unshipped.urls.some(url=>text.includes(url));if(!own)consoleErrors.push(text);return own;});
   await step('bestiary-open',async()=>{await page.evaluate(()=>window.Cbuf_AddText('menu_bestiary\n'));await page.waitForTimeout(4000);await page.screenshot({path:reportPath.replace(/\.json$/,'-bestiary.png'),timeout:10000});});
   result=await page.evaluate(()=>({title:document.title,canvas:!!document.querySelector('canvas'),metrics:globalThis.__QUAKED_DISTRIBUTION__?.metrics,memory:performance.memory?{used:performance.memory.usedJSHeapSize,total:performance.memory.totalJSHeapSize}:null,body:document.body.innerText.slice(-1500)}));
-  result.scenarios=scenarios;result.bestiary=bestiary;
-  result.ok=errors.length===0&&consoleErrors.length===0&&requests.length===0&&result.canvas&&result.metrics?.missing.length===0&&scenarios.every(s=>s.active&&s.signon===4&&s.time>=s.startTime+1)&&bestiary.checked>0&&bestiary.decoded===bestiary.checked;
+  result.scenarios=scenarios;result.bestiary=bestiary;result.unshipped=unshipped;
+  result.ok=errors.length===0&&consoleErrors.length===0&&requests.length===0&&result.canvas&&result.metrics?.missing.length===0&&scenarios.every(s=>s.active&&s.signon===4&&s.time>=s.startTime+1)&&bestiary.checked>0&&bestiary.decoded===bestiary.checked&&unshipped.count>0&&unshipped.checked>0&&unshipped.failed.length===0;
  }
 }catch(error){result={ok:false,failure:String(error),failedPhase:phase};}
 finally{

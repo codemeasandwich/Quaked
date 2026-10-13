@@ -14,6 +14,12 @@ to extract **Quaked.app**. Double-click that app to launch it, or drag it into
 app bundle as one item. No installer, DMG, Deno installation or separate server is
 required. The ZIP is just the download container; it is not used when playing.
 
+The first time a game is chosen on the shelf, the app downloads that game's Newer Game
+data (its per-game packs: about 310 MB for the shareware, 610 MB for the full game and
+up to 940 MB for a mission pack, each including its bases), showing the progress, and then
+starts. It needs the internet that once; later launches reuse the downloaded data
+offline.
+
 ## Game files
 
 The default game location is **`~/quaked`**: the `quaked` directory inside the home
@@ -130,7 +136,13 @@ Asset bytes and bake identities are preserved; compression does not reduce visua
 quality (the web optimisation rulings below will change this for the web build
 only). The packaged resolver is installed before any engine module runs and hands
 the engine Blob URLs. Source-relative workers and asset URLs
-are resolved at build time. No global fetch interception is installed.
+are resolved at build time. No global fetch interception is installed. In the app,
+bundled and downloaded assets come through Tauri's asset protocol, another origin than the
+page; an image read for its pixels from there (textures, HUD, player face, folio, menu font)
+failed with "The operation is insecure" (found 13 October 2026 in the first app trial of
+downloaded packs). The app's boot loader therefore loads images whose URL is on that protocol
+in CORS mode, which Tauri answers with `Access-Control-Allow-Origin` set to the window's
+origin; other images are unchanged, and the web build has no such hook.
 
 A downloaded HTML also plays the shareware levels opened as a local file (it needs
 network access to fetch its data files from GitHub Pages). A
@@ -165,24 +177,25 @@ change does not invalidate everything else:
 
 - `index.html` (about 5.6 MB): the engine bundle, the rockfield worker and the few
   images the page shows before the engine runs, embedded as before.
-- `data/<category>-<sha256 prefix>.bin`, one per category (`DataCategory`,
-  `tools/distribution/manifest.mjs`): `pak0` (the shareware PAK), `textures`,
-  `normals`, `skins` (enemies and weapons), `maps` (prepared displacement and
-  rockfield data, `maps.pak`, `startup.pak`), `music` and `images` (bestiary, HUD,
-  UI, effects, credits). Each is the category's files concatenated in path order,
-  gzipped whole when that saves at least 5% (today only `pak0`: 18.7 to 8.9 MB),
-  then cut into parts of at most 32 MB, `data/<category>-<sha256 prefix of the
-  part>.bin`. Parts keep browser cache entries small, let per-part integrity show
-  progress, and keep their names when a later asset in the category changes.
-  First split build: 26 parts, 763 MB in all with the HTML, against 952 MB, since
-  base85 is gone.
+- `data/<pack>-<sha256 prefix of the part>.bin`: the `core` and `shareware` per-game
+  packs ([per-game-packs-design-2026-10-13.md](per-game-packs-design-2026-10-13.md),
+  13 October 2026; `PackClassifier`, `tools/distribution/packs.mjs`) and `pak0`, the
+  shareware PAK. Each is its files concatenated in path order, gzipped whole when that
+  saves at least 5% (today only `pak0`: 18.7 to 8.9 MB), then cut into parts of at most
+  32 MB named by their content. Parts keep browser cache entries small, let per-part
+  integrity show progress, and keep their names when a later asset in the pack changes.
+  Other games' Newer assets are not in the web build: the page reports them unavailable
+  and those games keep their classic look where they have no Newer data (the design note
+  explains why). From 12 to 13 October 2026 the files were one per category (`pak0`,
+  textures, normals, skins, maps, music, images); the first split build had 26 parts,
+  763 MB in all with the HTML, against 952 MB, since base85 is gone.
 
 The page lists every part with its size and `sha256` integrity. The boot loader
 (`tools/distribution/bootstrap.js`) fetches them all, four at a time, before the
 engine starts. The browser releases an integrity-checked response only once it is
 whole and verified, so the logo progress bar (`LoadingScreen_SetProgress`) moves
 per part; the engine does not move it again for the shareware PAK. Each part is
-written, as it arrives, at its offset in one `ArrayBuffer` per category (`pak0` is
+written, as it arrives, at its offset in one `ArrayBuffer` per data file (`pak0` is
 then un-gzipped with fflate); an asset's URL is a small Blob of its own bytes, made
 when first asked for, as the single-file build did, so the engine's loaders are
 unchanged. Large Blobs are avoided on purpose: holding categories as Blobs and
@@ -192,8 +205,8 @@ start in five with page-owned Blobs, breaking a 106 KB JSON asset; a broken asse
 can stop the game starting). With ArrayBuffers, 12 cold boots and every trial
 since have had no broken loads. The first failure aborts the other
 downloads; a part that fails verification is reported as "could not download or
-verify". The desktop profile shares the boot loader and is behaviourally unchanged
-(it has no data files). Served over http(s) the files are read beside the page;
+verify". The desktop profile shares the boot loader but not this download: its packs are
+fetched by the app itself (below). Served over http(s) the files are read beside the page;
 opened from disk the page fetches them from GitHub Pages (`dataBase`,
 `QUAKED_DATA_BASE` at build time, default https://codemeasandwich.github.io/Quaked/),
 which allows cross-origin reads (checked in Chrome only; Safari and Firefox are not
@@ -207,7 +220,10 @@ downloaded copy whose data has since changed fails its integrity or download che
 and says the latest is at the Pages address. Just after a deploy a browser may
 reuse a cached `index.html` whose parts are gone; over http(s) a 404 makes the page
 fetch itself afresh and reload once before reporting. The desktop app does not use
-data files; it keeps the full-resolution source files.
+these data files: it bundles the `core` pack and downloads a game's other packs from a
+GitHub release when the game is chosen, waiting on a progress screen
+([per-game-packs-design-2026-10-13.md](per-game-packs-design-2026-10-13.md)). It is not
+re-encoded for the web.
 
 To try a local web build, serve `dist/web` over http (for example
 `python3 -m http.server -d dist/web 8000`) and open http://localhost:8000/.
@@ -257,7 +273,7 @@ memory (summed process RSS) was 4.3 and 5.0 GB in those runs and 3.7 to 3.9 GB i
 local runs of the same build, against 3.5 GB for the live single-file build and
 1.6 GB for the earlier Blob-slice design. The rise comes with holding the 604 MB
 of data in page memory (ArrayBuffers), which fixed the broken Blob loads; reducing
-it (for example by freeing category buffers once their assets are made) is a
+it (for example by freeing data-file buffers once their assets are made) is a
 follow-up on card T-06e53ceb.
 
 ## Hook, CI and release

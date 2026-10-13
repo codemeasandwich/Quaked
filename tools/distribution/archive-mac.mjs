@@ -25,6 +25,9 @@ const hashFile=async path=>{const h=createHash('sha256');for await(const chunk o
 for(const row of inventory.files){
  const entry=manifest.files[row.path];
  if(!entry)throw Error('Native manifest missing '+row.path);
+ // Without a pack host the app must bundle every pack (docs/per-game-packs-design-2026-10-13.md); a
+ // downloading build is only for trials until the owner approves the `data` release.
+ if(entry.pack&&!process.env.QUAKED_ARCHIVE_DOWNLOADING_APP)throw Error('This app downloads '+row.path+' from '+manifest.packBase+'; release archives bundle every pack');
  if(entry.external){
   if(!/^q\d+(?:\.[a-z0-9]+)?$/i.test(entry.id))throw Error('Invalid packaged asset ID');
   if(await hashFile(join(app,'Contents/Resources/assets',entry.id))!==row.sha256)throw Error('Packaged asset mismatch: '+row.path);

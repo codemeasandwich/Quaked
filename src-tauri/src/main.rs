@@ -1,6 +1,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 mod lan;
 mod library;
+mod packs;
 use library::{Library, Settings};
 use std::{fs, path::PathBuf, sync::Mutex};
 use tauri::{Emitter, Manager};
@@ -55,6 +56,25 @@ async fn lan_stop(state: tauri::State<'_, lan::Lan>) -> Result<(), String> {
     tauri::async_runtime::spawn_blocking(move || network.stop())
         .await
         .map_err(|e| e.to_string())
+}
+/// Downloads, verifies and unpacks the per-game data packs a game needs (packs.rs), reporting
+/// `packs-progress` events; returns the folder of unpacked assets in the app data folder.
+#[tauri::command]
+async fn packs_ensure(app: tauri::AppHandle, base: String, packs: Vec<packs::Pack>) -> Result<PathBuf, String> {
+    let root = app.path().app_data_dir().map_err(|e| e.to_string())?.join("packs");
+    let events = app.clone();
+    let assets = tauri::async_runtime::spawn_blocking(move || {
+        packs::ensure(&root, &base, &packs, &mut |progress| {
+            let _ = events.emit("packs-progress", progress);
+        })
+    })
+    .await
+    .map_err(|e| e.to_string())??;
+    // Only the verified, content-named asset files: the parts folder stays out of the scope.
+    app.asset_protocol_scope()
+        .allow_directory(&assets, false)
+        .map_err(|e| e.to_string())?;
+    Ok(assets)
 }
 #[tauri::command]
 fn distribution_resources(app: tauri::AppHandle) -> Result<PathBuf, String> {
@@ -175,6 +195,7 @@ fn main() {
             library_read,
             library_choose,
             distribution_resources,
+            packs_ensure,
             lan_host,
             lan_join,
             lan_send,

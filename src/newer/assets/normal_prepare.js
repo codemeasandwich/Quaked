@@ -15,6 +15,7 @@ import {NORMAL_BAKES} from './normal_bakes.js';
 import {R_HeightFromRGBA,R_MultiScaleHeight,R_NormalsFromHeight,R_NormalsFromCraftedHeight} from '../render/normal_math.js';
 import {COM_NewerURL} from '../../engine/common/pak.js';
 import {NormalTransport} from './normal_transport.js';
+import {AssetAvailable} from '../../platform/distribution.js';
 const store=new DisplacementStore(),jobs=new WeakMap();
 // A page that can never have the store (file:// opaque origin, no OPFS or Web Locks) rather than one that failed once.
 const STORE_STRUCTURALLY_UNAVAILABLE=e=>e?.name==='SecurityError'||/filesystem\/locking unavailable/.test(String(e?.message));
@@ -129,7 +130,10 @@ export function R_NormalPrepare(diffuse,{disk=store,loader,generate=NormalGenera
  const work={status:'loading',data:null,error:null,input:NormalInputs(diffuse),revision:revision(diffuse)},controller=new AbortController();jobs.set(diffuse,work);
  const dispose=()=>{controller.abort();work.release?.();work.status='cancelled';work.data=null;if(jobs.get(diffuse)===work)jobs.delete(diffuse);diffuse.removeEventListener('dispose',dispose);};work.cancel=dispose;diffuse.addEventListener('dispose',dispose);
  work.promise=(async()=>{
-  const input=work.input,key=await NormalInputKey(input);work.key=key;const decode=bytes=>{const data=NormalBakeDecode(bytes,key,input.width,input.height);if(data.referenceWidth!==(input.edge?.width||0)||data.referenceHeight!==(input.edge?.height||0))throw Error('Prepared normal reference coverage mismatch');return data;},spec=NORMAL_BAKES[key];
+  const input=work.input,key=await NormalInputKey(input);work.key=key;const decode=bytes=>{const data=NormalBakeDecode(bytes,key,input.width,input.height);if(data.referenceWidth!==(input.edge?.width||0)||data.referenceHeight!==(input.edge?.height||0))throw Error('Prepared normal reference coverage mismatch');return data;},listed=NORMAL_BAKES[key];
+  // A shipped sample this copy does not have (in the pack of a game not being played) is generated instead, rather
+  // than failing and holding the level's readiness gate (docs/per-game-packs-design-2026-10-13.md).
+  const spec=listed&&AssetAvailable(listed.file)?listed:null;
   let result;
   if(spec){
    if(controller.signal.aborted)return;

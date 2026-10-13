@@ -80,13 +80,3 @@ export async function collectAssets({profile,root=process.cwd()}) {
   for(const path of result)if(!(await stat(assetPath(root,path))).isFile())throw Error('Missing required asset: '+path);
   return result;
 }
-/** The web data file an asset ships in (docs/distribution.md, "Web data files"); the desktop app never uses these. */
-export function DataCategory(path){
- if(path==='games/shareware/pak0.pak')return 'pak0';
- if(path.startsWith('newer/normals/'))return 'normals';
- if(path.startsWith('newer/textures/'))return 'textures';
- if(/^newer\/(enemies|weapons)\//.test(path))return 'skins';
- if(/^newer\/(displacement|rockfield)\//.test(path)||/^newer\/(maps|startup)\.pak$/.test(path))return 'maps';
- if(path.startsWith('music/'))return 'music';
- return 'images';
-}

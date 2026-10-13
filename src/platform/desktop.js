@@ -7,6 +7,7 @@ import {GAME_CATALOGUE_GAMES,GameCatalogue_Refresh,GameCatalogue_SetProvider} fr
 import {GameSelection_Startable,GameSelection_Kept,GameSelection_Remember} from '../engine/common/game_selection.js';
 import {COM_LoadPackFile} from '../engine/common/pak.js';
 import {GameShelf_Show} from '../engine/common/hooks.js'; // filled by src/newer/install.js, which main.js loads first
+import {LoadingScreen_SetProgress} from '../newer/ui/loading_screen.js';
 let listening=false;
 export async function Desktop_SelectLocation(){
   document.exitPointerLock?.();
@@ -34,6 +35,33 @@ async function snapshot(){
  const catalogue=await GameCatalogue_Refresh({games,allPacks:true,base:'https://quaked.invalid/',fetch:rangedFetch(library)});
  return {library,catalogue};
 }
+/** Per-game data packs (docs/per-game-packs-design-2026-10-13.md): the app bundles the core
+ * pack; a game's other packs are downloaded, verified and unpacked by the app (packs_ensure in
+ * src-tauri/src/packs.rs) before it starts, while the loading screen shows the progress. Once
+ * unpacked they are reused offline. A failure returns to the shelf saying so; choosing the game
+ * again retries, keeping the parts already verified. */
+async function ensurePacks(definition){
+ const distribution=globalThis.__QUAKED_DISTRIBUTION__,packs=distribution.packsFor(definition.id);
+ if(!packs.length)return;
+ const sizes=new Map(packs.map(p=>[p.name,p.parts.reduce((sum,part)=>sum+part.bytes,0)])),total=[...sizes.values()].reduce((a,b)=>a+b,0),done=new Map();
+ const status=document.createElement('div');status.id='pack-status';status.role='status';
+ status.style='position:fixed;left:5vw;right:5vw;bottom:12vh;color:#efd9ad;text-align:center;font:16px/1.4 system-ui,sans-serif';
+ status.textContent=`Checking the Newer Game data for ${definition.name}`;
+ (document.getElementById('loading')??document.body).append(status);
+ const mb=bytes=>(bytes/1e6).toFixed(0);
+ const stop=await listen('packs-progress',({payload})=>{
+  if(payload.phase==='download')done.set(payload.pack,payload.done);
+  if(payload.phase==='ready')done.set(payload.pack,sizes.get(payload.pack)??0);
+  const received=[...done.values()].reduce((a,b)=>a+b,0);
+  LoadingScreen_SetProgress(total?received/total:1);
+  status.textContent=payload.phase==='unpack'?`Unpacking the Newer Game data for ${definition.name}`:payload.phase==='download'?`Downloading the Newer Game data for ${definition.name}: ${mb(received)} of ${mb(total)} MB`:status.textContent;
+ });
+ try{
+  const dir=await invoke('packs_ensure',{base:distribution.packBase,packs});
+  distribution.usePacks(dir,packs.map(p=>p.name));
+ }catch(error){throw Error(`The Newer Game data for ${definition.name} could not be downloaded (${error?.message??error}). Choose the game again to retry.`);}
+ finally{stop();status.remove();}
+}
 export async function Desktop_ShowShelf(reason=''){
  const {library,catalogue}=await snapshot();
  document.getElementById('loading')?.remove();
@@ -55,6 +83,7 @@ export async function Desktop_Prepare(){
   const selected=catalogue.games.find(g=>g.id===id);
   if(!selected||!GameSelection_Startable(selected,{strict:true}).ok)throw Error(selected?.reason??'Unknown game');
   const definition=GAME_CATALOGUE_GAMES.find(g=>g.id===id);
+  await ensurePacks(definition);
   const ids=definition.base?[definition.base,id]:[id];
   const packs=[];
   for(const game of ids)for(const entry of library.packs.filter(p=>p.game===game)){
@@ -68,5 +97,5 @@ export async function Desktop_Prepare(){
   let identity;
   await (await import('./lan.js')).LAN_Init({maps,identity:()=>identity??=(async()=>{const hashes=[];for(const p of packs)hashes.push(Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',p.data)),b=>b.toString(16).padStart(2,'0')).join(''));return 'quaked-lan-v1|'+globalThis.__QUAKED_DISTRIBUTION__.engineHash+'|'+id+'|'+hashes.join('|');})()});
   return {id,packs,mission:!!definition.base};
- }catch(error){history.replaceState(null,'',location.pathname);await Desktop_ShowShelf(String(error));return null;}
+ }catch(error){history.replaceState(null,'',location.pathname);await Desktop_ShowShelf(String(error?.message??error));return null;}
 }
