@@ -12,7 +12,7 @@ import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init, Mod_ForName, Mod_LoadModel, model_t } from '../src/engine/render/gl_model.js';
 import * as mode from '../src/newer/mode.js';
 const MODEL_SHA = '58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7';
-const MODEL = 'progs/eel2.mdl', WIDTH = 136, HEIGHT = 194, FACTOR = 8;
+const MODEL = 'progs/eel2.mdl', WIDTH = 136, HEIGHT = 194, FACTOR=4;
 // Independently hashed final generated references; these identities do not come from the fitter report.
 const SOURCE_SHAS = [
  "ed8881a5cc70b359bda6e17c846ba3b877262014889b11a0835fb2f785c870ac",
@@ -114,10 +114,10 @@ Deno.test('Six generated Eel sources and fitted variants retain exact provenance
   const provenance=JSON.parse(read(base(skin)+'SOURCE.json')),source='tools/texture_sheets/sources/generated-2026-10-12/eel2-skin'+skin+'.png';
   same(provenance.model,MODEL,'fit model');same(provenance.nativeModelSha256,MODEL_SHA,'fit model identity');same(provenance.skin,skin,'fit skin slot');same(provenance.source,source,'state generation provenance');
   check(/^[a-f0-9]{64}$/.test(SOURCE_SHAS[skin]||''),'source identity independently pinned before qualification');same(provenance.sourceSha256,SOURCE_SHAS[skin],'recorded generation identity');same(sha(read(source)),SOURCE_SHAS[skin],'actual generated source');
-  same(JSON.stringify(provenance.dimensions),'[1088,1552]','eightfold native atlas');
+  same(JSON.stringify(provenance.dimensions),'[544,776]','fourfold native atlas (the 4x standard)');
   for(const file of ['diffuse.png','height.webp'])same(sha(read(base(skin)+file)),provenance.files[file],'fitted file digest '+skin+'/'+file);
   const diffuse=await decodedImage(base(skin)+'diffuse.png'),height=await decodedImage(base(skin)+'height.webp');
-  for(const image of [diffuse,height]){same(image.width,1088,'decoded width');same(image.height,1552,'decoded height');check(image.data.every((value,i)=>i%4!==3||value===255),'opaque asset');}
+  for(const image of [diffuse,height]){same(image.width,544,'decoded width');same(image.height,776,'decoded height');check(image.data.every((value,i)=>i%4!==3||value===255),'opaque asset');}
   const current=sha(height.data);heightHash??=current;same(current,heightHash,'all charge states use the identical anatomical height pixels');
   check(height.data.every((value,i)=>i%4===3||value===height.data[i-i%4]),'height is grayscale');
  }

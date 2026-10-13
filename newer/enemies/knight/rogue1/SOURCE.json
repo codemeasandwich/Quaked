@@ -9,10 +9,10 @@
     1067
   ],
   "dimensions": [
-    1608,
-    1164
+    1072,
+    776
   ],
-  "factor": 6,
+  "factor": 4,
   "skin": 1,
   "poses": 97,
   "vertices": 108,
@@ -21,8 +21,8 @@
   "atlasBox": [
     0,
     0,
-    1608,
-    1164
+    1072,
+    776
   ],
   "registration": null,
   "mattePolicy": "blue-grey",
@@ -30,19 +30,19 @@
   "islands": [
     {
       "id": 1,
-      "surfacePixels": 203143,
-      "directPixels": 197390,
-      "edgePixels": 5753
+      "surfacePixels": 90697,
+      "directPixels": 87996,
+      "edgePixels": 2701
     },
     {
       "id": 2,
-      "surfacePixels": 203147,
-      "directPixels": 197090,
-      "edgePixels": 6057
+      "surfacePixels": 90701,
+      "directPixels": 87831,
+      "edgePixels": 2870
     }
   ],
-  "surfacePixels": 406290,
-  "edgePixels": 11810,
+  "surfacePixels": 181398,
+  "edgePixels": 5571,
   "normalProfile": {
     "strength": 0.65,
     "cap": 0.55
@@ -54,8 +54,8 @@
     "height_for"
   ],
   "files": {
-    "diffuse.png": "995286381da29e94b5835c8b2e362b5c65f563094537622cf23f575c80bb0697",
-    "height.webp": "942d7f5065c7f5f8bc4e40b2abd87b5dddff3a271795f239f496e474e6917a20"
+    "diffuse.png": "79fede658b14cb4b7a9b55af05d1c8fd104b9a8dbabb07dc1273df687c9af88d",
+    "height.webp": "21f8f443db60404adccc938b79e26c8b43664d878e22a4ad41b93fd8fc549176"
   },
   "generation": {
     "tool": "ChatGPT built-in imagegen",
@@ -65,6 +65,6 @@
   },
   "strictMatteDonors": {
     "policy": "neutral stone donor pixels exclude blue-grey after resampling",
-    "rejectedPixels": 1227
+    "rejectedPixels": 458
   }
 }

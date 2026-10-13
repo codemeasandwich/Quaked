@@ -19,7 +19,7 @@ pointed pommel and distinct markings on both sides. The1000×1573source, exact
 prompt and model/source hashes are retained in
 `tools/texture_sheets/sources/generated-2026-10-12/sword.png` and `sword.json`.
 
-The existing fitter outputs992×1560. Native UVs and geometry are unchanged;
+The existing fitter output 992×1560 at the first, factor-8 fit (496×780 at factor 4 under the 4x standard). Native UVs and geometry are unchanged;
 26of217280surface pixels need bounded edge extension, with zero missing coverage
 and zero native low-resolution pigment copied. Source aspect differs by−0.0267%;
 measured UV detail correlation0.698 supports the visual correspondence.
@@ -60,3 +60,7 @@ water/cloak work. Distribution policy passes. Independent rendered/source review
 is retained in `docs/evidence/sword-skin-2026-10-12/review.md`. This qualifies the
 controlled asset/material behavior; live combat and owner appearance acceptance
 remain separate. All sources, receipts and selected screenshots are retained.
+
+Under the [4x standard](texture-standard-4x-2026-10-12.md), the skin is re-fitted at
+factor 4 through its recipe: 496×780. Sizes and pixel counts above describe the first
+fit.

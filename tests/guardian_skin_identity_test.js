@@ -11,7 +11,7 @@ import { COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init, Mod_ForName, Mod_LoadModel, model_t } from '../src/engine/render/gl_model.js';
 import * as mode from '../src/newer/mode.js';
-const WIDTH=276, HEIGHT=195, FACTOR=6;
+const WIDTH=276, HEIGHT=195, FACTOR=4;
 const NATIVE={
  morph_az:{sha:'98d86ad428b5ab5643e12921f3f41572eb84c2025a8f05c7b882ccce6bdc4a5f',skins:['5e6bc4f56833612c87e0dfebf546d3f63dfe1234a68b50c2f07ae72af618bf43','c05283239a9ba2935f5add416d8a6617268cc9fa43f910749f213ad5792ba6c8','c8cd3d457d9ea848a6c29cb233f2f07e274ca996a75d85ad2baec22cabb4be28']},
  morph_eg:{sha:'14468fccffaa1508c03610dd58fb51cd9058ca3bab036bca18f7a41cb37c195b',skins:['3110682a7a4ed0b2fe78ea3d5ba8a5dc193ece60ca9c8b16b9f07123515587ea','06576498e0c93b358a96f43ec45c8bc16775b0a4b0f87f4347ba0088c4051754','c8cd3d457d9ea848a6c29cb233f2f07e274ca996a75d85ad2baec22cabb4be28']},
@@ -201,10 +201,10 @@ for(const spec of TARGETS){
   same(index.models[key].length,3,'all three explicit state entries');const dirs=new Set(),diffuses=new Set(),heights=new Set();
   for(let skin=0;skin<3;skin++){
    const v=variant(key,skin);check(v,'state registered');same(v.dir,key+'/custom'+(skin||''),'unique state directory');dirs.add(v.dir);same(v.nativeModelSha256,expected.sha,'state hash boundary');same(v.maps.diffuse,'diffuse.png','diffuse file');same(v.maps.height,'height.webp','height file');same(Object.keys(v.maps).length,2,'no new emission');same(v.flipGreen,false,'generated normal convention');
-   const p=JSON.parse(read(base(key,skin)+'SOURCE.json')),source='tools/texture_sheets/sources/generated-2026-10-12/'+spec.sources[skin][0];same(p.model,NAME,'fit model');same(p.nativeModelSha256,expected.sha,'fit identity');same(p.skin,skin,'fit state');same(p.source,source,'source path');check(/^[a-f0-9]{64}$/.test(spec.sources[skin][1]||''),'final generation must be independently pinned before qualification');same(p.sourceSha256,spec.sources[skin][1],'pinned generation identity');same(sha(read(source)),spec.sources[skin][1],'actual generated reference');same(JSON.stringify(p.dimensions),'[1656,1170]','sixfold fitted size');
+   const p=JSON.parse(read(base(key,skin)+'SOURCE.json')),source='tools/texture_sheets/sources/generated-2026-10-12/'+spec.sources[skin][0];same(p.model,NAME,'fit model');same(p.nativeModelSha256,expected.sha,'fit identity');same(p.skin,skin,'fit state');same(p.source,source,'source path');check(/^[a-f0-9]{64}$/.test(spec.sources[skin][1]||''),'final generation must be independently pinned before qualification');same(p.sourceSha256,spec.sources[skin][1],'pinned generation identity');same(sha(read(source)),spec.sources[skin][1],'actual generated reference');same(JSON.stringify(p.dimensions),'[1104,780]','fourfold fitted size (the 4x standard)');
    const sourceBytes=read(source);same(sourceBytes.subarray(0,8).toString('hex'),'89504e470d0a1a0a','source PNG');check(spec.sources[skin][2]?.length===2,'final per-source dimensions independently pinned');same(sourceBytes.readUInt32BE(16),spec.sources[skin][2][0],'source width');same(sourceBytes.readUInt32BE(20),spec.sources[skin][2][1],'source height');
    for(const file of ['diffuse.png','height.webp'])same(sha(read(base(key,skin)+file)),p.files[file],'actual fitted bytes');
-   const d=await decodedImage(base(key,skin)+'diffuse.png'),h=await decodedImage(base(key,skin)+'height.webp');for(const image of [d,h]){same(image.width,1656,'decoded width');same(image.height,1170,'decoded height');check(image.data.every((v,i)=>i%4!==3||v===255),'opaque map');}
+   const d=await decodedImage(base(key,skin)+'diffuse.png'),h=await decodedImage(base(key,skin)+'height.webp');for(const image of [d,h]){same(image.width,1104,'decoded width');same(image.height,780,'decoded height');check(image.data.every((v,i)=>i%4!==3||v===255),'opaque map');}
    check(h.data.every((v,i)=>i%4===3||v===h.data[i-i%4]),'grayscale height');diffuses.add(sha(d.data));heights.add(sha(h.data));
   }
   same(dirs.size,3,'state cache keys distinct');same(diffuses.size,3,'three material states remain visually distinct');same(heights.size,3,'stone/transition/living relief is not reused like electrical pigment');
@@ -285,12 +285,12 @@ Deno.test('Egyptian increment preserves the published Aztec catalogue and every 
  const prior=structuredClone(index);prior.models.ogre=prior.models.ogre.slice(0,1);prior.nativeHeights.ogre=prior.nativeHeights.ogre.slice(0,1);prior.models.knight=prior.models.knight.slice(0,1);prior.nativeHeights.knight=prior.nativeHeights.knight.slice(0,1);delete prior.version;prior.models=Object.fromEntries(Object.entries(prior.models).filter(([key])=>modelKeys.includes(key)).map(([key,list])=>[key,['hknight','tarbaby'].includes(key)?list.slice(0,1):list]));prior.nativeHeights=Object.fromEntries(Object.entries(prior.nativeHeights).filter(([key])=>heightKeys.includes(key)));
  same(sha(JSON.stringify(prior)),'0ee72c958c80953caa83a20c8c64c303fa6383d58a6aec61af0dcc94ee961ead','all34prior model families and23native-height families unchanged');
  const files={
-  'custom/diffuse.png':'a7a4b703cb3cee74ea2ded463acaaa356ee25ecafc86541ee71154afc660ef25',
-  'custom/height.webp':'e75c9d504454d06c83f6c9301e97e064c7c2dd85b1c19029f60b106f59a55131',
-  'custom1/diffuse.png':'cd72b3258094c11b535136d4214e9b55a77c1a1c89e9fb8400cb0cad5e3d394f',
-  'custom1/height.webp':'c2d6fd52fdcf32959e6bdb0f3f31e73103b1fe00c0edc375df8823b642597ac1',
-  'custom2/diffuse.png':'6cbbd95c9fc3d0aa9035af2023a29c37cb743f2b26317a3fde3c0cae6c0afa04',
-  'custom2/height.webp':'bd3cbc1b5d47d7dd47d9eb2bdb5bf17a79d85266fc594c1759909a9c339d0137'
+  'custom/diffuse.png':'7e23dc111f450605644e37b1a4b092405905cc8fda2335ec52c19768223bcce2',
+  'custom/height.webp':'bca84905d22625ff2c5fb001d8e3e96be9931192ef152201f8882d7f9c7ceb53',
+  'custom1/diffuse.png':'43ab85eef5a586e1562131d9b413e0fee34af7d28aaef13959cdc20b2dcc606e',
+  'custom1/height.webp':'b1a7c1007959859f6d6dc658b6db71ba0ae3860a9fdf9d1a5c51a1ae283e54e9',
+  'custom2/diffuse.png':'87dc0aae1a328199af5bc79ca6cd808bbb40d5daa6887e5d44faca31f7e1ee5d',
+  'custom2/height.webp':'a6056da076a009d06e3920889b781e4a1d22e7a2eff88d3413140559a933f0a4'
  };
  for(const[file,digest]of Object.entries(files))same(sha(read('newer/enemies/morph_az/'+file)),digest,'published Aztec bytes retained: '+file);
 });
@@ -310,12 +310,12 @@ Deno.test('Greek increment preserves all published Aztec and Egyptian catalogue 
  const prior=structuredClone(index);prior.models.ogre=prior.models.ogre.slice(0,1);prior.nativeHeights.ogre=prior.nativeHeights.ogre.slice(0,1);prior.models.knight=prior.models.knight.slice(0,1);prior.nativeHeights.knight=prior.nativeHeights.knight.slice(0,1);delete prior.version;prior.models=Object.fromEntries(Object.entries(prior.models).filter(([key])=>modelKeys.includes(key)).map(([key,list])=>[key,['hknight','tarbaby'].includes(key)?list.slice(0,1):list]));prior.nativeHeights=Object.fromEntries(Object.entries(prior.nativeHeights).filter(([key])=>heightKeys.includes(key)));
  same(sha(JSON.stringify(prior)),'b2f2e3834b184e35342307520ddf397cba23b1a0b9d6594f99aa81a66f43d72e','all35prior model families and23native-height families unchanged');
  const files={
-  'custom/diffuse.png':'335363768ff102f1e3f1ae9e37468428e91c28876c731a02dc2b586175f23ea2',
-  'custom/height.webp':'7d93bfa06167aefb6461a5d98394cf90e504cc1da4c71dc77330b91ba1eb8369',
-  'custom1/diffuse.png':'6d282efb7c238d711aa9dcdadf679c1b642f8dc5c9c9a93375d5ca7e1a973dc7',
-  'custom1/height.webp':'ed88c75f59e1b844003ed01f9f8b54f3bf40b73c51710f6f7c2c3a8017d32b40',
-  'custom2/diffuse.png':'6cbbd95c9fc3d0aa9035af2023a29c37cb743f2b26317a3fde3c0cae6c0afa04',
-  'custom2/height.webp':'bd3cbc1b5d47d7dd47d9eb2bdb5bf17a79d85266fc594c1759909a9c339d0137'
+  'custom/diffuse.png':'bf758eb56a76f4adcb6e776a93f26e0d73e5ba299dff9f8768a9a07cf6de16aa',
+  'custom/height.webp':'c33c53d6a8d30356e491bbbccc4e0617fc1b9aa9e095e65bdbc1bce82b9c9a9b',
+  'custom1/diffuse.png':'26442a4caa42d2b09650d25883b98ef436fa0d31f558fa176147a36b8130ba99',
+  'custom1/height.webp':'5217738d9027d53a9e2239d00c21389d843280ea3bea5459b5a2d7775dc5a799',
+  'custom2/diffuse.png':'87dc0aae1a328199af5bc79ca6cd808bbb40d5daa6887e5d44faca31f7e1ee5d',
+  'custom2/height.webp':'a6056da076a009d06e3920889b781e4a1d22e7a2eff88d3413140559a933f0a4'
  };
  for(const[file,digest]of Object.entries(files))same(sha(read('newer/enemies/morph_eg/'+file)),digest,'published Egyptian bytes retained: '+file);
 });

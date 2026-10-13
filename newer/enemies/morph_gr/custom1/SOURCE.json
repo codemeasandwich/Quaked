@@ -9,10 +9,10 @@
     1055
   ],
   "dimensions": [
-    1656,
-    1170
+    1104,
+    780
   ],
-  "factor": 6,
+  "factor": 4,
   "skin": 1,
   "poses": 142,
   "vertices": 221,
@@ -21,8 +21,8 @@
   "atlasBox": [
     0,
     0,
-    1656,
-    1170
+    1104,
+    780
   ],
   "registration": null,
   "mattePolicy": "blue-grey",
@@ -30,43 +30,43 @@
   "islands": [
     {
       "id": 1,
-      "surfacePixels": 353621,
-      "directPixels": 353197,
-      "edgePixels": 424
+      "surfacePixels": 157661,
+      "directPixels": 157385,
+      "edgePixels": 276
     },
     {
       "id": 2,
-      "surfacePixels": 353612,
-      "directPixels": 353590,
-      "edgePixels": 22
+      "surfacePixels": 157652,
+      "directPixels": 157642,
+      "edgePixels": 10
     },
     {
       "id": 3,
-      "surfacePixels": 48333,
-      "directPixels": 48332,
-      "edgePixels": 1
+      "surfacePixels": 21711,
+      "directPixels": 21709,
+      "edgePixels": 2
     },
     {
       "id": 4,
-      "surfacePixels": 48333,
-      "directPixels": 46677,
-      "edgePixels": 1656
+      "surfacePixels": 21711,
+      "directPixels": 21139,
+      "edgePixels": 572
     },
     {
       "id": 5,
-      "surfacePixels": 27431,
-      "directPixels": 27431,
+      "surfacePixels": 12268,
+      "directPixels": 12268,
       "edgePixels": 0
     },
     {
       "id": 6,
-      "surfacePixels": 27430,
-      "directPixels": 27430,
+      "surfacePixels": 12267,
+      "directPixels": 12267,
       "edgePixels": 0
     }
   ],
-  "surfacePixels": 858760,
-  "edgePixels": 2103,
+  "surfacePixels": 383270,
+  "edgePixels": 860,
   "normalProfile": {
     "strength": 0.65,
     "cap": 0.55
@@ -78,8 +78,8 @@
     "height_for"
   ],
   "files": {
-    "diffuse.png": "db387be3eabdf2e94f00395fab61c7cd5675b1f642875ae735d38cafa2a5ac88",
-    "height.webp": "2f759f1f2820b65f6e300aca78b80fa459a3f8c3e30af4c7b92ae2bf1c84388f"
+    "diffuse.png": "59e499776bfb9acf0c4039fc26901ec5f3ef71912497e6ca4fb2e2543ed3f84f",
+    "height.webp": "a53a28ab737b59b19ee1ea240087a15cee5cb5a21a2e4e489be25f6f29a41b0f"
   },
   "generation": {
     "tool": "ChatGPT built-in imagegen",

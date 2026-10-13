@@ -68,3 +68,7 @@ Independent source/render review is retained with all receipts under
 `docs/evidence/morph_eg-skins-2026-10-12`. This qualifies controlled material/state
 rendering, not live level combat or owner aesthetic acceptance. Concurrent
 water/cloak changes remain excluded.
+
+Under the [4x standard](texture-standard-4x-2026-10-12.md), the three Egyptian Guardian
+skins are re-fitted at factor 4 through their recipes: 1104×780. Sizes and pixel counts
+above describe the first fit.

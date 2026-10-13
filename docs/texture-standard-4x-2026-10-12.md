@@ -138,9 +138,23 @@ showed no visible difference for the batch-1 texture, dog and shambler.
   Centroid tests expect fourfold dimensions. The Centroid source check still fails as before
   (its untracked source image).
 
-## Remaining batches
+## Batch 4: Rogue (done)
 
-Rogue: `dragon`, `s_wrath`, `mummy`, `lavaman`, `wrath`, `sword` (the Phantom Swordsman is a
-Rogue model), `eel2` (six skins generated from one base, so re-fitted rather than
-resampled to keep their exact relationship), the nine Guardian skins, `knight/rogue1`,
-`tarbaby/rogue1` and `rogue2` and `hknight/rogue1`. Card T-06e53ceb.
+- Re-fitted at 4x through their recipes (each first reproduced its committed images byte
+  for byte at its old factor): the dragon, Overlord and mummy (built-in recipes in
+  `fit_rogue_skins.py`), `lavaman`, `sword`, the six `eel2` skins (base first; the charge
+  skins are built from it and still differ only inside the electrical masks), the nine
+  Guardian skins (the three stone skins share one input), `knight/rogue1`,
+  `tarbaby/rogue1` and `rogue2` and `hknight/rogue1`.
+- Resampled from the accepted fit: `wrath` (its registration box `[0,0,1488,1180]` is in
+  factor-6 pixels with no whole-pixel factor-4 equivalent; 1488x1164 to 992x776), height
+  re-authored. Record: `tools/texture_sheets/sources/standard-4x/batch4-rogue.json`.
+- Re-baked the 25 variants in the `rogue` namespace; 23 samples replace 23; 1953 samples;
+  skin cache version 50.
+- Tests: identity tests expect fourfold sizes; checks that sampled the fit at a fixed
+  factor (Wrath's hood and eye windows, Lava Man's pigment points, the eel's charge
+  envelope, the knight statue's covered-surface floor) now use factor 4 and still pass.
+
+After this batch no texture or skin with a Quake original is above 4x (re-scanned against
+every PAK in the library). 66 textures have no original (Newer-only art such as crate
+variants and the hub logo), so the standard does not apply to them.

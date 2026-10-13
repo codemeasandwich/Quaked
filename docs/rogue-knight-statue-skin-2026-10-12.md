@@ -83,3 +83,7 @@ spot are retained honestly in `docs/evidence/knight-rogue-skin-2026-10-12`.
 This qualifies controlled material/pose behavior; live gameplay and owner aesthetic
 acceptance remain separate. Concurrent water/cloak work and owner deletions remain
 outside the commit.
+
+Under the [4x standard](texture-standard-4x-2026-10-12.md), the statue skin is re-fitted
+at factor 4 through its recipe: 1072×776. Sizes and pixel counts above describe the
+first fit.

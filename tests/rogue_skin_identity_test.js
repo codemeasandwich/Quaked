@@ -9,11 +9,11 @@ import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init, Mod_ForName, Mod_LoadModel, model_t } from '../src/engine/render/gl_model.js';
 import * as mode from '../src/newer/mode.js';
 const SPECS = [
- { key: 'dragon', sha: '1ba01029d4113cc832aa5ab551c7bf060b5f7a4eb1afde35607564413bfee2ec', width: 308, height: 179, vertices: 336, triangles: 608, poses: 101, factor: 5,
+ { key: 'dragon', sha: '1ba01029d4113cc832aa5ab551c7bf060b5f7a4eb1afde35607564413bfee2ec', width: 308, height: 179, vertices: 336, triangles: 608, poses: 101, factor: 4,
   source: 'Gemini_Generated_Image_6fxet96fxet96fxe.jpeg', sourceSha: '13bfde08a63b7bc15b5efd071a09c8f434e232cca64274a9d7948430e5803b4e' },
- { key: 's_wrath', sha: '4c0653e3adba99be4d581c92a928fd6e8c27b0a2159a97f7ec5e885478249b8d', width: 308, height: 186, vertices: 296, triangles: 564, poses: 108, factor: 5, confusable: 'wrath',
+ { key: 's_wrath', sha: '4c0653e3adba99be4d581c92a928fd6e8c27b0a2159a97f7ec5e885478249b8d', width: 308, height: 186, vertices: 296, triangles: 564, poses: 108, factor: 4, confusable: 'wrath',
   source: 'Gemini_Generated_Image_ekijfxekijfxekij.jpeg', sourceSha: '4ab505e3289ca7d0d804fc15178825f28cbee7481a26e04a1208082729e67bdc' },
- { key: 'mummy', sha: '3926d2dcf2451deaf32e67877016884cfb91a313968beefe514b9274fc30a1d1', width: 168, height: 194, vertices: 177, triangles: 347, poses: 192, factor: 6, confusable: 'zombie',
+ { key: 'mummy', sha: '3926d2dcf2451deaf32e67877016884cfb91a313968beefe514b9274fc30a1d1', width: 168, height: 194, vertices: 177, triangles: 347, poses: 192, factor: 4, confusable: 'zombie',
   source: 'Gemini_Generated_Image_jc5i6kjc5i6kjc5i.jpeg', sourceSha: '3bc0906638ddc4c6e9d22f894bb74337709fc760ddb2f817d5f6bc64e11cc640' }
 ];
 const check = ( value, message ) => { if ( !value ) throw Error( message ); };

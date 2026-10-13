@@ -9,57 +9,52 @@
     1109
   ],
   "dimensions": [
-    1008,
-    1164
+    672,
+    776
   ],
-  "factor": 6,
+  "factor": 4,
   "skin": 0,
   "poses": 192,
   "vertices": 177,
   "triangles": 347,
   "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    672,
+    776
+  ],
+  "registration": null,
   "mattePolicy": "dark brown gradient",
   "nativeTexturePixelsUsed": 0,
   "islands": [
     {
       "id": 1,
-      "surfacePixels": 202753,
-      "directPixels": 202042,
-      "edgePixels": 711
+      "surfacePixels": 90668,
+      "directPixels": 90321,
+      "edgePixels": 347
     },
     {
       "id": 2,
-      "surfacePixels": 202769,
-      "directPixels": 202211,
-      "edgePixels": 558
+      "surfacePixels": 90667,
+      "directPixels": 90394,
+      "edgePixels": 273
     },
     {
       "id": 3,
-      "surfacePixels": 36169,
-      "directPixels": 36151,
-      "edgePixels": 18
+      "surfacePixels": 16121,
+      "directPixels": 16107,
+      "edgePixels": 14
     },
     {
       "id": 4,
-      "surfacePixels": 36171,
-      "directPixels": 36166,
-      "edgePixels": 5
-    },
-    {
-      "id": 5,
-      "surfacePixels": 1,
-      "directPixels": 1,
-      "edgePixels": 0
-    },
-    {
-      "id": 6,
-      "surfacePixels": 1,
-      "directPixels": 1,
-      "edgePixels": 0
+      "surfacePixels": 16123,
+      "directPixels": 16122,
+      "edgePixels": 1
     }
   ],
-  "surfacePixels": 477864,
-  "edgePixels": 1292,
+  "surfacePixels": 213579,
+  "edgePixels": 635,
   "normalProfile": {
     "strength": 0.65,
     "cap": 0.55
@@ -71,7 +66,7 @@
     "height_for"
   ],
   "files": {
-    "diffuse.png": "b131bef5d0ce68a7aec30d554a98fa609a0613b3d1ea81aed629b09ab82addc6",
-    "height.webp": "a7dcf2ad36e9fa37006d91ef2e0b5469bf5ab64082f55f687ab2b3149e3051d0"
+    "diffuse.png": "f3262f4ae0563b18e351661f647174ef5eea3c9ff1b1dc91c79279e9f2e02a03",
+    "height.webp": "b17a345c9abc05a70b3278579f9067a35b6acb0878c961c1bf9057694a6c0f2f"
   }
 }

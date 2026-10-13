@@ -84,3 +84,7 @@ Independent final visual review is retained beside these receipts.
 
 This verifies controlled asset/material/state behavior. Full level combat and
 owner aesthetic acceptance remain separate. Concurrent water/cloak work is excluded.
+
+Under the [4x standard](texture-standard-4x-2026-10-12.md), the three Aztec Guardian
+skins are re-fitted at factor 4 through their recipes: 1104×780. Sizes and pixel counts
+above describe the first fit.

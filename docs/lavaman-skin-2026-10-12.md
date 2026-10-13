@@ -17,7 +17,7 @@ The molten orange/red/yellow pattern, original front face, plain rear head and a
 dark horns/digits remain in place.48UV components include many small detached
 appendage pieces, which must never be discarded as background.
 
-The existing fitter outputs1800×1164, matching anatomical height and SOURCE.json.
+The existing fitter output 1800×1164 at the first, factor-6 fit (1200×776 at factor 4 under the 4x standard), matching anatomical height and SOURCE.json.
 All1103422surface pixels are covered;12771(1.16%) use bounded edge extension.
 No black exception, native pigment copying or model/UV/pose edits were needed.
 Catalogue37 adds `lavaman/custom` with explicit skin0 and exact model hash; the
@@ -61,3 +61,7 @@ policy passes. Independent source/render review clears alignment and retained
 design. Concurrent water/cloak edits remain excluded. Full evidence is retained
 in `docs/evidence/lavaman-skin-2026-10-12`. This verifies controlled material/pose
 behavior; live combat and owner aesthetic acceptance remain separate.
+
+Under the [4x standard](texture-standard-4x-2026-10-12.md), the skin is re-fitted at
+factor 4 through its recipe: 1200×776. Sizes and pixel counts above describe the first
+fit.

@@ -117,7 +117,7 @@ Deno.test('Statue appends without changing original living art face metadata or 
  const prior=structuredClone(index);prior.models.ogre=prior.models.ogre.slice(0,1);prior.nativeHeights.ogre=prior.nativeHeights.ogre.slice(0,1);delete prior.version;prior.models=Object.fromEntries(Object.entries(prior.models).filter(([k])=>k in BASELINE_COUNTS).map(([k,v])=>[k,v.slice(0,BASELINE_COUNTS[k])]));prior.nativeHeights=Object.fromEntries(Object.entries(prior.nativeHeights).filter(([k])=>k in BASELINE_HEIGHTS).map(([k,v])=>[k,v.slice(0,BASELINE_HEIGHTS[k].length).map((g,i)=>g.slice(0,BASELINE_HEIGHTS[k][i]))]));
  same(sha(JSON.stringify(prior)),'a260f4c6365a757657b65a48085689d5c39e69b02bf2252ea06674362f06c910','entire pre-increment catalogue intact');for(const[file,digest]of Object.entries(BASE_FILES))same(sha(read(file)),digest,'unchanged prior file '+file);
  const base='newer/enemies/knight/rogue1/',report=JSON.parse(read(base+'SOURCE.json')),source=SOURCE_DIR+'knight-rogue-skin1.png',bytes=read(source);same(report.source,source,'source path');same(report.sourceSha256,SOURCE_SHA,'provenance source');same(sha(bytes),SOURCE_SHA,'immutable generated reference');same(bytes.readUInt32BE(16),1475,'source width');same(bytes.readUInt32BE(20),1067,'source height');same(report.nativeModelSha256,ROGUE_SHA,'fit identity');same(report.skin,1,'fit skin');
- for(const file of Object.values(stone.maps)){same(sha(read(base+file)),report.files[file],'actual output hash');const image=await decodedImage(base+file);same(image.width,1608,'fitted width');same(image.height,1164,'fitted height');check(image.data.every((v,i)=>i%4!==3||v===255),'opaque fitted asset');}
+ for(const file of Object.values(stone.maps)){same(sha(read(base+file)),report.files[file],'actual output hash');const image=await decodedImage(base+file);same(image.width,1072,'fitted width');same(image.height,776,'fitted height');check(image.data.every((v,i)=>i%4!==3||v===255),'opaque fitted asset');}
  const height=await decodedImage(base+'height.webp');check(height.data.every((v,i)=>i%4===3||v===height.data[i-i%4]),'grayscale authored relief');
 });
 Deno.test('Living faces remain available on base and Rogue slot0 but stone slot1 never acquires them',async()=>fixture(async(skins,requests)=>{
@@ -153,7 +153,7 @@ Deno.test('Actual Rogue Knight statue keeps its stone skin on waking and default
 });
 
 Deno.test('Decoded statue pigment contains no blue-grey backdrop inside actual native UV triangles',async()=>{
- const{rogue}=await pair(),bytes=rogue.bytes,r=records(bytes),v=rogueVariant(1),image=await decodedImage('newer/enemies/'+v.dir+'/'+v.maps.diffuse),factor=6,mask=new Uint8Array(image.width*image.height);
+ const{rogue}=await pair(),bytes=rogue.bytes,r=records(bytes),v=rogueVariant(1),image=await decodedImage('newer/enemies/'+v.dir+'/'+v.maps.diffuse),factor=4,mask=new Uint8Array(image.width*image.height);
  same(image.width,268*factor,'UV scale width');same(image.height,194*factor,'UV scale height');
  // Independent triangle rasterization at output pixel centers: test the consumer's UV surface,
  // not the fitter's silhouette, morphological coverage or donor bookkeeping.
@@ -166,5 +166,5 @@ Deno.test('Decoded statue pigment contains no blue-grey backdrop inside actual n
  }
  let covered=0,backdrop=0;const examples=[];
  for(let i=0;i<mask.length;i++)if(mask[i]){covered++;const r=image.data[i*4],g=image.data[i*4+1],b=image.data[i*4+2];if(b-r>=6||b-g>=8){backdrop++;if(examples.length<8)examples.push({x:i%image.width,y:Math.floor(i/image.width),rgb:[r,g,b]});}}
- check(covered>390000,'actual nondegenerate surface substantially exercised');console.log('STONE_UV_COLOR_AUDIT '+JSON.stringify({covered,blueGreyBackdrop:backdrop,examples}));same(backdrop,0,'neutral stone surface must never sample generated blue-grey backdrop');
+ check(covered>173000,'actual nondegenerate surface substantially exercised');console.log('STONE_UV_COLOR_AUDIT '+JSON.stringify({covered,blueGreyBackdrop:backdrop,examples}));same(backdrop,0,'neutral stone surface must never sample generated blue-grey backdrop');
 });

@@ -14,9 +14,9 @@ compared with each supplied sheet before fitting.
 
 | Source identifier | Target | Native atlas | New PNG | Native poses |
 | --- | --- | --- | --- | --- |
-| `6fxet96fxet96fxe` | Dragon, `progs/dragon.mdl` | 308×179 | [1540×895](../newer/enemies/dragon/custom/diffuse.png) | 101 |
-| `ekijfxekijfxekij` | Overlord, `progs/s_wrath.mdl` | 308×186 | [1540×930](../newer/enemies/s_wrath/custom/diffuse.png) | 108 |
-| `jc5i6kjc5i6kjc5i` | Mummy, `progs/mummy.mdl` | 168×194 | [1008×1164](../newer/enemies/mummy/custom/diffuse.png) | 192 |
+| `6fxet96fxet96fxe` | Dragon, `progs/dragon.mdl` | 308×179 | [1540×895 first fit; 1232×716 at 4x](../newer/enemies/dragon/custom/diffuse.png) | 101 |
+| `ekijfxekijfxekij` | Overlord, `progs/s_wrath.mdl` | 308×186 | [1540×930 first fit; 1232×744 at 4x](../newer/enemies/s_wrath/custom/diffuse.png) | 108 |
+| `jc5i6kjc5i6kjc5i` | Mummy, `progs/mummy.mdl` | 168×194 | [1008×1164 first fit; 672×776 at 4x](../newer/enemies/mummy/custom/diffuse.png) | 192 |
 
 The hooded sheet is the four-armed **Overlord**, not ordinary `wrath.mdl`.
 The bandaged sheet is **Mummy**, not Zombie. Rogue's Mummy and Zombie have identical
@@ -120,3 +120,7 @@ fine seam inspection. Full campaign traversal/combat, portal views, every lighti
 condition, owner appearance acceptance, landing and release remain separate.
 The owner can inspect the PNGs and finite previews now; the existing cards remain
 open for acceptance/qualified delivery. No unattended follow-up job is claimed.
+
+Under the [4x standard](texture-standard-4x-2026-10-12.md), the dragon, Overlord and
+mummy are re-fitted at factor 4 through the built-in recipes in `fit_rogue_skins.py`:
+1232×716, 1232×744 and 672×776. Sizes and pixel counts above describe the first fit.

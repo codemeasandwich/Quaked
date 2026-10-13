@@ -9,10 +9,10 @@
     1573
   ],
   "dimensions": [
-    992,
-    1560
+    496,
+    780
   ],
-  "factor": 8,
+  "factor": 4,
   "skin": 0,
   "poses": 40,
   "vertices": 58,
@@ -21,8 +21,8 @@
   "atlasBox": [
     0,
     0,
-    992,
-    1560
+    496,
+    780
   ],
   "registration": null,
   "mattePolicy": "black",
@@ -30,19 +30,19 @@
   "islands": [
     {
       "id": 1,
-      "surfacePixels": 108646,
-      "directPixels": 108642,
-      "edgePixels": 4
+      "surfacePixels": 27626,
+      "directPixels": 27623,
+      "edgePixels": 3
     },
     {
       "id": 2,
-      "surfacePixels": 108634,
-      "directPixels": 108612,
-      "edgePixels": 22
+      "surfacePixels": 27614,
+      "directPixels": 27590,
+      "edgePixels": 24
     }
   ],
-  "surfacePixels": 217280,
-  "edgePixels": 26,
+  "surfacePixels": 55240,
+  "edgePixels": 27,
   "normalProfile": {
     "strength": 0.65,
     "cap": 0.55
@@ -54,8 +54,8 @@
     "height_for"
   ],
   "files": {
-    "diffuse.png": "07d94244f095a6b9f838c3d4530e01ef7b05b06b284f063094814ca89803bc13",
-    "height.webp": "808a497e2bff1dce301a0a5e0296679e47ff0e115c02d468f7ca7b7e51310ba7"
+    "diffuse.png": "f73cd5e2e04d6e3d89f622686643d87b809458d3368b213fa46efe2f2328b2b0",
+    "height.webp": "bad70062b7151e8cd73b564f86b7781e4e7e391222c08ff3d8beb1efbbf89e6a"
   },
   "generation": {
     "tool": "ChatGPT built-in imagegen",

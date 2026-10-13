@@ -26,9 +26,9 @@ from update_head_skins import uv_footprint
 from update_enemy_heights import height_for
 
 RECIPES = {
- 'dragon': dict(source='6fxet96fxet96fxe', sourceSha='13bfde08a63b7bc15b5efd071a09c8f434e232cca64274a9d7948430e5803b4e', modelSha='1ba01029d4113cc832aa5ab551c7bf060b5f7a4eb1afde35607564413bfee2ec', layout=[1,308,179,336,608,101], size=[1349,784], factor=5),
- 's_wrath': dict(source='ekijfxekijfxekij', sourceSha='4ab505e3289ca7d0d804fc15178825f28cbee7481a26e04a1208082729e67bdc', modelSha='4c0653e3adba99be4d581c92a928fd6e8c27b0a2159a97f7ec5e885478249b8d', layout=[1,308,186,296,564,108], size=[1325,800], factor=5),
- 'mummy': dict(source='jc5i6kjc5i6kjc5i', sourceSha='3bc0906638ddc4c6e9d22f894bb74337709fc760ddb2f817d5f6bc64e11cc640', modelSha='3926d2dcf2451deaf32e67877016884cfb91a313968beefe514b9274fc30a1d1', layout=[1,168,194,177,347,192], size=[960,1109], factor=6),
+ 'dragon': dict(source='6fxet96fxet96fxe', sourceSha='13bfde08a63b7bc15b5efd071a09c8f434e232cca64274a9d7948430e5803b4e', modelSha='1ba01029d4113cc832aa5ab551c7bf060b5f7a4eb1afde35607564413bfee2ec', layout=[1,308,179,336,608,101], size=[1349,784], factor=4),
+ 's_wrath': dict(source='ekijfxekijfxekij', sourceSha='4ab505e3289ca7d0d804fc15178825f28cbee7481a26e04a1208082729e67bdc', modelSha='4c0653e3adba99be4d581c92a928fd6e8c27b0a2159a97f7ec5e885478249b8d', layout=[1,308,186,296,564,108], size=[1325,800], factor=4),
+ 'mummy': dict(source='jc5i6kjc5i6kjc5i', sourceSha='3bc0906638ddc4c6e9d22f894bb74337709fc760ddb2f817d5f6bc64e11cc640', modelSha='3926d2dcf2451deaf32e67877016884cfb91a313968beefe514b9274fc30a1d1', layout=[1,168,194,177,347,192], size=[960,1109], factor=4),
 }
 def sha(data):
  return hashlib.sha256(data).hexdigest()

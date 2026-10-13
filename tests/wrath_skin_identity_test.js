@@ -63,7 +63,7 @@ Deno.test( 'owned Wrath public loader preserves every native UV triangle and all
 } );
 Deno.test( 'actual Wrath assets retain generated source, matching dimensions and other enemy entries', async () => {
  const provenance = JSON.parse( read( BASE + 'SOURCE.json' ) ); same( provenance.nativeModelSha256, EXPECTED, 'fit targets exact native model' ); same( provenance.model, NAME, 'fit model' );
- same( JSON.stringify( provenance.dimensions ), '[1488,1164]', 'sixfold native atlas dimensions' );
+ same( JSON.stringify( provenance.dimensions ), '[992,776]', 'fourfold native atlas dimensions (the 4x standard)' );
  same(JSON.stringify(provenance.atlasBox),'[0,0,1488,1180]','reviewed vertical registration');
  same(JSON.stringify(provenance.generatedBlackSurface.nativeRegions),'[[7,85,10,88],[131,85,134,88]]','black acceptance has exact narrow native regions');same(provenance.generatedBlackSurface.nativePaletteIndex,0,'requires original pure black');same(provenance.generatedBlackSurface.maximumGeneratedChannel,1,'requires generated black');same(provenance.generatedBlackSurface.acceptedPixels,458,'independently measured black surface count');same(provenance.generatedBlackSurface.nativePigmentCopied,false,'only generated pigment is used');same(provenance.flatHeight,undefined,'solid eyes do not inherit flash-height override');
  same( provenance.source, SOURCE, 'generated source provenance path' ); same( provenance.sourceSha256, SOURCE_SHA, 'generated source hash' ); same( sha( read( SOURCE ) ), SOURCE_SHA, 'actual generated PNG bytes' );
@@ -81,10 +81,10 @@ Deno.test( 'actual Wrath assets retain generated source, matching dimensions and
  const decode = async file => { const image = await canvas.loadImage( read( BASE + file ) ), surface = canvas.createCanvas( image.width, image.height ), ctx = surface.getContext( '2d' ); ctx.drawImage( image, 0, 0 ); return ctx.getImageData( 0, 0, image.width, image.height ); };
  // Read hash-pinned source dimensions from PNG IHDR. Both product maps undergo actual canvas decoding below.
  const generated = read( SOURCE ); same( generated.subarray( 0, 8 ).toString( 'hex' ), '89504e470d0a1a0a', 'generated source PNG signature' ); same( generated.toString( 'ascii', 12, 16 ), 'IHDR', 'generated source image header' ); same( generated.readUInt32BE( 16 ), 1418, 'generated source width' ); same( generated.readUInt32BE( 20 ), 1109, 'generated source height' );
- const diffuse = await decode( 'diffuse.png' ), height = await decode( 'height.webp' ); same( diffuse.width, 1488, 'actual diffuse width' ); same( diffuse.height, 1164, 'actual diffuse height' ); same( height.width, diffuse.width, 'height aligned horizontally' ); same( height.height, diffuse.height, 'height aligned vertically' );
+ const diffuse = await decode( 'diffuse.png' ), height = await decode( 'height.webp' ); same( diffuse.width, 992, 'actual diffuse width' ); same( diffuse.height, 776, 'actual diffuse height' ); same( height.width, diffuse.width, 'height aligned horizontally' ); same( height.height, diffuse.height, 'height aligned vertically' );
  let halfDifferences=0;for(let y=0;y<diffuse.height;y++)for(let x=0;x<diffuse.width/2;x++){const a=(y*diffuse.width+x)*4,b=a+diffuse.width/2*4;if(diffuse.data[a]!==diffuse.data[b]||diffuse.data[a+1]!==diffuse.data[b+1]||diffuse.data[a+2]!==diffuse.data[b+2])halfDifferences++;}check(halfDifferences>1418,'fitted front/back preserve distinct art instead of duplicating one half');
  // Fixed interior of the native front hood opening: original atlas is entirely black here.
- for(let y=30*6;y<44*6;y++)for(let x=57*6;x<65*6;x++){const o=(y*diffuse.width+x)*4;check(Math.max(diffuse.data[o],diffuse.data[o+1],diffuse.data[o+2])<=4,'hood interior remains empty instead of gaining a painted face');}
+ for(let y=30*4;y<44*4;y++)for(let x=57*4;x<65*4;x++){const o=(y*diffuse.width+x)*4;check(Math.max(diffuse.data[o],diffuse.data[o+1],diffuse.data[o+2])<=4,'hood interior remains empty instead of gaining a painted face');}
  let min = 255, max = 0;
  for ( let i = 0; i < height.data.length; i += 4 ) { const value = height.data[i]; same( height.data[i+1], value, 'height green is grayscale' ); same( height.data[i+2], value, 'height blue is grayscale' ); same( height.data[i+3], 255, 'height fully opaque' ); same( diffuse.data[i+3], 255, 'diffuse fully opaque' ); min = Math.min( min, value ); max = Math.max( max, value ); }
  check( max - min > 32, 'actual stored height is nonflat' );
@@ -169,7 +169,7 @@ Deno.test('Wrath has two persistent native eye meshes and four separate red atla
  }
  const diffuse=await decodedImage(BASE+'diffuse.png'),height=await decodedImage(BASE+'height.webp');
  for(const [left,top,right,bottom]of [[29,163,49,179],[75,163,95,179],[153,163,173,179],[199,163,219,179]]){
-  let red=0,total=0,nonMaxHeight=0;for(let y=(top+4)*6;y<(bottom-4)*6;y++)for(let x=(left+6)*6;x<(right-6)*6;x++){
+  let red=0,total=0,nonMaxHeight=0;for(let y=(top+4)*4;y<(bottom-4)*4;y++)for(let x=(left+6)*4;x<(right-6)*4;x++){
    const o=(y*diffuse.width+x)*4;total++;if(diffuse.data[o]>diffuse.data[o+1]+10&&diffuse.data[o]>diffuse.data[o+2]+10)red++;if(height.data[o]<255)nonMaxHeight++;
   }
   check(red>total*.5,'each fitted eye island retains its red pigment');check(nonMaxHeight>total*.5,'eye height is not the maximal flash shadow-bypass plateau');

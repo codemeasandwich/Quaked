@@ -78,3 +78,7 @@ temporary candidate export; owner working-tree deletions remain untouched. All
 receipts and review are retained under `docs/evidence/tarbaby-rogue-skins-2026-10-12`.
 Controlled material/pose behavior is qualified; live gameplay and owner aesthetic
 acceptance remain separate. Concurrent water/cloak work is excluded.
+
+Under the [4x standard](texture-standard-4x-2026-10-12.md), both Rogue Spawn skins are
+re-fitted at factor 4 through their recipes (1216×776), and `rogue0` follows the
+resampled base Spawn skin. Sizes and pixel counts above describe the first fit.

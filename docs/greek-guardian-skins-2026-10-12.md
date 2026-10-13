@@ -62,3 +62,7 @@ policy passes. Independent source/render review cleared. Evidence is retained
 under `docs/evidence/morph_gr-skins-2026-10-12`. This verifies controlled material/
 state rendering; live level combat and owner appearance acceptance remain separate.
 Concurrent water/cloak changes are excluded.
+
+Under the [4x standard](texture-standard-4x-2026-10-12.md), the three Greek Guardian
+skins are re-fitted at factor 4 through their recipes: 1104×780. Sizes and pixel counts
+above describe the first fit.

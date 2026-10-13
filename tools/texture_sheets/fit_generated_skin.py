@@ -20,6 +20,8 @@ if __name__ == '__main__':
  parser.add_argument('--palette-pack',type=Path,default=ROOT/'resources/id1/pak0.pak')
  args=parser.parse_args();recipe=json.loads(args.recipe.read_text())
  key=recipe['key']
+ # A superseded recipe would write an old fit over the shipped skin; fit its successor instead.
+ if recipe.get('supersededBy'):raise SystemExit(f"{args.recipe} is superseded by {recipe['supersededBy']}")
  if not key.replace('_','').isalnum():raise ValueError('Invalid model key')
  fit_one(key,args.pack,ROOT,args.output,recipe)
  if recipe.get('nativeHeightFile'):

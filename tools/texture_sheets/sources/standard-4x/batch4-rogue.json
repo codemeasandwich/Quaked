@@ -1,0 +1,44 @@
+{
+ "batch": "rogue",
+ "ruling": "Owner, 12 Oct 2026: 4x standard, one version",
+ "method": "Lanczos resample of the accepted Wrath fit: its recipe's registration and atlasBox [0,0,1488,1180] are in factor-6 pixels with no whole-pixel factor-4 equivalent, so re-fitting would change the accepted registration. Height re-authored from the 4x diffuse by update_enemy_heights.height_for (which reproduced the committed height first). Every other Rogue skin above 4x was re-fitted at factor 4 through its recipe (ogre/rogue1 was already 4x; the rogue0 copies follow batch 2).",
+ "files": [
+  {
+   "file": "newer/enemies/wrath/custom/diffuse.png",
+   "target": [
+    992,
+    776
+   ],
+   "native": [
+    248,
+    194
+   ],
+   "kind": "skin-diffuse"
+  }
+ ],
+ "results": [
+  {
+   "file": "newer/enemies/wrath/custom/diffuse.png",
+   "target": [
+    992,
+    776
+   ],
+   "before": {
+    "size": [
+     1488,
+     1164
+    ],
+    "sha256": "067b1f0da0fb581932d97c28cdb628313ead6c0193d8b004c69c8e2f5df30fa4",
+    "bytes": 1586914
+   },
+   "after": {
+    "size": [
+     992,
+     776
+    ],
+    "sha256": "f847d9d26c50a9399a848aeb490992d86f5ec4b72cb0a1e2908a84567edd0087",
+    "bytes": 761575
+   }
+  }
+ ]
+}

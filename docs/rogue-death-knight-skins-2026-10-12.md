@@ -81,3 +81,7 @@ candidate export; the owner's working-tree deletion remains untouched.
 Evidence is retained in `docs/evidence/hknight-rogue-skins-2026-10-12`. Controlled
 material/pose behavior is qualified; live combat and owner aesthetic acceptance
 remain separate. Concurrent water/cloak work stays excluded.
+
+Under the [4x standard](texture-standard-4x-2026-10-12.md), the statue skin is re-fitted
+at factor 4 through its recipe (1232×616), and `rogue0` follows the resampled base Death
+Knight skin. Sizes and pixel counts above describe the first fit.

@@ -63,7 +63,7 @@ Deno.test( 'owned Lava Man public loader preserves every native UV triangle and 
 } );
 Deno.test( 'actual Lava Man assets retain generated source, matching dimensions and other enemy entries', async () => {
  const provenance = JSON.parse( read( BASE + 'SOURCE.json' ) ); same( provenance.nativeModelSha256, EXPECTED, 'fit targets exact native model' ); same( provenance.model, NAME, 'fit model' );
- same( JSON.stringify( provenance.dimensions ), '[1800,1164]', 'sixfold native atlas dimensions' );
+ same( JSON.stringify( provenance.dimensions ), '[1200,776]', 'fourfold native atlas dimensions (the 4x standard)' );
  same(provenance.flatHeight,undefined,'solid molten body has no maximal flash plateau');same(approved.maps.luma,undefined,'no newly authorized emission');
  same( provenance.source, SOURCE, 'generated source provenance path' ); same( provenance.sourceSha256, SOURCE_SHA, 'generated source hash' ); same( sha( read( SOURCE ) ), SOURCE_SHA, 'actual generated PNG bytes' );
  for ( const file of [ 'diffuse.png', 'height.webp' ] ) same( sha( read( BASE + file ) ), provenance.files[ file ], 'actual fitted asset digest: ' + file );
@@ -80,7 +80,7 @@ Deno.test( 'actual Lava Man assets retain generated source, matching dimensions 
  const decode = async file => { const image = await canvas.loadImage( read( BASE + file ) ), surface = canvas.createCanvas( image.width, image.height ), ctx = surface.getContext( '2d' ); ctx.drawImage( image, 0, 0 ); return ctx.getImageData( 0, 0, image.width, image.height ); };
  // Read hash-pinned source dimensions from PNG IHDR. Both product maps undergo actual canvas decoding below.
  const generated = read( SOURCE ); same( generated.subarray( 0, 8 ).toString( 'hex' ), '89504e470d0a1a0a', 'generated source PNG signature' ); same( generated.toString( 'ascii', 12, 16 ), 'IHDR', 'generated source image header' ); same( generated.readUInt32BE( 16 ), 1559, 'generated source width' ); same( generated.readUInt32BE( 20 ), 1009, 'generated source height' );
- const diffuse = await decode( 'diffuse.png' ), height = await decode( 'height.webp' ); same( diffuse.width, 1800, 'actual diffuse width' ); same( diffuse.height, 1164, 'actual diffuse height' ); same( height.width, diffuse.width, 'height aligned horizontally' ); same( height.height, diffuse.height, 'height aligned vertically' );
+ const diffuse = await decode( 'diffuse.png' ), height = await decode( 'height.webp' ); same( diffuse.width, 1200, 'actual diffuse width' ); same( diffuse.height, 776, 'actual diffuse height' ); same( height.width, diffuse.width, 'height aligned horizontally' ); same( height.height, diffuse.height, 'height aligned vertically' );
  let halfDifferences=0;for(let y=0;y<diffuse.height;y++)for(let x=0;x<diffuse.width/2;x++){const a=(y*diffuse.width+x)*4,b=a+diffuse.width/2*4;if(diffuse.data[a]!==diffuse.data[b]||diffuse.data[a+1]!==diffuse.data[b+1]||diffuse.data[a+2]!==diffuse.data[b+2])halfDifferences++;}check(halfDifferences>1559,'fitted front/back preserve distinct art instead of duplicating one half');
  let min = 255, max = 0;
  for ( let i = 0; i < height.data.length; i += 4 ) { const value = height.data[i]; same( height.data[i+1], value, 'height green is grayscale' ); same( height.data[i+2], value, 'height blue is grayscale' ); same( height.data[i+3], 255, 'height fully opaque' ); same( diffuse.data[i+3], 255, 'diffuse fully opaque' ); min = Math.min( min, value ); max = Math.max( max, value ); }
@@ -162,7 +162,7 @@ Deno.test('All forty-eight native Lava Man UV components retain molten body and 
  for(const ts of components.values()){
   let visible=0;
   for(const {points}of ts){
-   const x=points.reduce((s,p)=>s+p[0]+.5,0)/3,y=points.reduce((s,p)=>s+p[1]+.5,0)/3,nativeIndex=bytes[88+Math.floor(y)*300+Math.floor(x)],o=(Math.floor(y*6)*diffuse.width+Math.floor(x*6))*4;
+   const x=points.reduce((s,p)=>s+p[0]+.5,0)/3,y=points.reduce((s,p)=>s+p[1]+.5,0)/3,nativeIndex=bytes[88+Math.floor(y)*300+Math.floor(x)],o=(Math.floor(y*4)*diffuse.width+Math.floor(x*4))*4;
    const r=diffuse.data[o],g=diffuse.data[o+1],b=diffuse.data[o+2];if(Math.max(r,g,b)>3)visible++;
    if(nativeIndex>=224){molten++;if(r>=g&&r>b+20)warm++;}
    if(nativeIndex>0&&nativeIndex<16){charcoal++;if(Math.max(r,g,b)-Math.min(r,g,b)<60&&Math.max(r,g,b)>3)neutral++;}

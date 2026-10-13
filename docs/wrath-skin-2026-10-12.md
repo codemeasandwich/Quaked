@@ -67,9 +67,11 @@ attacks13–54, pain55–71, death72–86, plus native/custom/detail/Classic con
 
 ![Wrath with separate red eyes in its empty hood](evidence/wrath-skin-2026-10-12/view-0.png)
 
-Reproduce with `/usr/bin/python3 tools/texture_sheets/fit_generated_skin.py
+Reproduce the factor-6 fit with `/usr/bin/python3 tools/texture_sheets/fit_generated_skin.py
  tools/texture_sheets/sources/generated-2026-10-12/wrath.json
- --pack resources/rogue/pak0.pak`. Existing baker options: `--namespace rogue
+ --pack resources/rogue/pak0.pak --output <scratch dir>` (never the default output, which is
+the shipped directory), check it against `standard4x.fitFiles`, then resample and re-author
+the height as described below before baking. Existing baker options: `--namespace rogue
 --skins --maps '^progs/wrath\.mdl$' --variant wrath/custom`, with configured
 Three/canvas dependencies.
 
@@ -84,3 +86,13 @@ Isolated committed-HEAD plus scoped source passes95/95checks; distribution polic
 passes. Concurrent water/cloak edits are excluded. Evidence is retained under
 `docs/evidence/wrath-skin-2026-10-12`. Controlled asset rendering is qualified;
 live combat and owner appearance acceptance remain separate.
+
+Under the [4x standard](texture-standard-4x-2026-10-12.md) the shipped diffuse is this fit
+(1488×1164, factor 6) resampled to 992×776, with the height re-authored from it: the
+registration box `[0,0,1488,1180]` is in factor-6 pixels with no whole-pixel factor-4
+equivalent, so re-fitting would change the accepted registration. `SOURCE.json` keeps the
+fit's digests under `standard4x.fitFiles`. Reproduce the fit into a scratch directory
+(`--output`), check it against `standard4x.fitFiles`, then resample with
+`tools/texture_sheets/standardise_4x.py` (record
+`tools/texture_sheets/sources/standard-4x/batch4-rogue.json`) and re-author the height with
+`update_enemy_heights.height_for`.

@@ -9,10 +9,10 @@
     1109
   ],
   "dimensions": [
-    1488,
-    1164
+    992,
+    776
   ],
-  "factor": 6,
+  "factor": 4,
   "skin": 0,
   "poses": 87,
   "vertices": 212,
@@ -124,8 +124,8 @@
     "height_for"
   ],
   "files": {
-    "diffuse.png": "067b1f0da0fb581932d97c28cdb628313ead6c0193d8b004c69c8e2f5df30fa4",
-    "height.webp": "7e577a07637aefe7c1f5996bf734175cf289133761699fa037f69fcfa80a4dd4"
+    "diffuse.png": "f847d9d26c50a9399a848aeb490992d86f5ec4b72cb0a1e2908a84567edd0087",
+    "height.webp": "de1c04c4e72dab5958bcdcefc44a5b05d67bc2a6ad98c7d20cda108c9936c317"
   },
   "generation": {
     "tool": "ChatGPT built-in imagegen",
@@ -152,5 +152,19 @@
     "maximumGeneratedChannel": 1,
     "acceptedPixels": 458,
     "nativePigmentCopied": false
+  },
+  "standard4x": {
+    "fitDimensions": [
+      1488,
+      1164
+    ],
+    "fitFactor": 6,
+    "method": "Lanczos resample of this fit to 4x native (docs/texture-standard-4x-2026-10-12.md); height re-authored from the 4x diffuse",
+    "record": "tools/texture_sheets/sources/standard-4x/batch4-rogue.json",
+    "note": "factor and dimensions describe the shipped files; other pixel fields are in the fit's units",
+    "fitFiles": {
+      "diffuse.png": "067b1f0da0fb581932d97c28cdb628313ead6c0193d8b004c69c8e2f5df30fa4",
+      "height.webp": "7e577a07637aefe7c1f5996bf734175cf289133761699fa037f69fcfa80a4dd4"
+    }
   }
 }
