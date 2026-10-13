@@ -139,6 +139,17 @@ export function R_LightningNoise() {
 	return noise;
 }
 
+/** Shared electricity material. The caller owns the material, never the shared noise texture.
+ * Centreline mode expands ribbons in the vertex shader for the actual draw camera, including each XR eye.
+ */
+export function R_LightningRibbonMaterial( { centerline = false } = {} ) {
+ const vertex = centerline ? ( 'attribute vec3 aTangent;\nattribute float aWidth;\nuniform float uEffectOn;\n' + VERTEX.replace('vPower = aData.z;', 'vPower = aData.z*uEffectOn;') ).replace(
+  'gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );',
+  'vec3 centre=(modelViewMatrix*vec4(position,1.)).xyz; vec3 tangent=mat3(modelViewMatrix)*aTangent; vec3 side=cross(tangent,-centre); side=dot(side,side)>1e-10?normalize(side):vec3(1.,0.,0.); float scale=length(modelViewMatrix[0].xyz); gl_Position=projectionMatrix*vec4(centre+side*aData.x*aWidth*scale,1.);'
+ ) : VERTEX;
+ return material( vertex, FRAGMENT, { uTime: { value: 0 }, uNoise: { value: R_LightningNoise() }, ...(centerline ? {uEffectOn:{value:1}} : {}) }, THREE.AdditiveBlending );
+}
+
 function build() {
 	data = new Float32Array( LIGHTNING.maxFloats );
 	geometry = new THREE.BufferGeometry();
@@ -146,7 +157,7 @@ function build() {
 	geometry.setAttribute( 'position', new THREE.InterleavedBufferAttribute( buffer, 3, 0 ) );
 	geometry.setAttribute( 'aData', new THREE.InterleavedBufferAttribute( buffer, 4, 3 ) );
 	geometry.setAttribute( 'aExtra', new THREE.InterleavedBufferAttribute( buffer, 2, 7 ) );
-	mesh = new THREE.Mesh( geometry, material( VERTEX, FRAGMENT, { uTime: { value: 0 }, uNoise: { value: R_LightningNoise() } }, THREE.AdditiveBlending ) );
+	mesh = new THREE.Mesh( geometry, R_LightningRibbonMaterial() );
 	mesh.name = 'quake_lightning'; mesh.frustumCulled = false; mesh.renderOrder = 11; mesh.userData.newerOnly = true; mesh.visible = false;
 }
 
@@ -156,30 +167,33 @@ function vertex( p, side, along, a, kind, seed, local ) {
 	data[ cursor ++ ] = side; data[ cursor ++ ] = along; data[ cursor ++ ] = a; data[ cursor ++ ] = kind; data[ cursor ++ ] = seed; data[ cursor ++ ] = local;
 }
 // source ribbon(): a camera-facing strip, radius in world units (K Quake units each)
-function ribbon( points, radius, pow = 1, kind = 0, seed = 0, alongStart = 0, alongEnd = 1, taper = true ) {
+export function R_LightningWriteRibbon( writeVertex, eye, unit, points, radius, pow = 1, kind = 0, seed = 0, alongStart = 0, alongEnd = 1, taper = true, centerline = false ) {
 	const edge = []; let prior = [ 1, 0, 0 ];
 	for ( let i = 0; i < points.length; i ++ ) {
 		const t = i / ( points.length - 1 ), p = points[ i ], tangent = norm( sub( points[ Math.min( i + 1, points.length - 1 ) ], points[ Math.max( 0, i - 1 ) ] ) );
-		let side = norm( cross( tangent, norm( sub( view.eye, p ) ) ) ); if ( dot( side, prior ) < 0 ) side = mul( side, - 1 ); prior = side;
-		const w = ( typeof radius === 'function' ? radius( t ) : radius ) * ( kind === 1 ? 1 : .34 ) * LIGHTNING.K;
+		let side = norm( cross( tangent, norm( sub( eye, p ) ) ) ); if ( dot( side, prior ) < 0 ) side = mul( side, - 1 ); prior = side;
+		const w = ( typeof radius === 'function' ? radius( t ) : radius ) * ( kind === 1 ? 1 : .34 ) * unit;
 		let a = typeof pow === 'function' ? pow( t ) : pow;
 		if ( taper ) a *= Math.pow( Math.max( 0, Math.sin( PI * clamp( t, .002, .998 ) ) ), .08 );
-		edge.push( { l: add( p, mul( side, - w ) ), r: add( p, mul( side, w ) ), t, a } );
+		edge.push( { l: add( p, mul( side, - w ) ), r: add( p, mul( side, w ) ), p, tangent, w, t, a } );
 	}
 	for ( let i = 0; i < edge.length - 1; i ++ ) {
 		const a = edge[ i ], b = edge[ i + 1 ];
-		for ( const [ e, s ] of [ [ a, - 1 ], [ a, 1 ], [ b, 1 ], [ a, - 1 ], [ b, 1 ], [ b, - 1 ] ] ) vertex( s < 0 ? e.l : e.r, s, mix( alongStart, alongEnd, e.t ), e.a, kind, seed, e.t );
+		for ( const [ e, s ] of [ [ a, - 1 ], [ a, 1 ], [ b, 1 ], [ a, - 1 ], [ b, 1 ], [ b, - 1 ] ] ) writeVertex( centerline ? e.p : s < 0 ? e.l : e.r, s, mix( alongStart, alongEnd, e.t ), e.a, kind, seed, e.t, e.tangent, e.w );
 	}
 }
-const depthOf = p => dot( sub( p, view.eye ), view.forward );
+function ribbon( points, radius, pow = 1, kind = 0, seed = 0, alongStart = 0, alongEnd = 1, taper = true ) {
+ return R_LightningWriteRibbon( vertex, view.eye, LIGHTNING.K, points, radius, pow, kind, seed, alongStart, alongEnd, taper );
+}
 // source boltPath(): deterministic multi-rate displacement, spaced evenly on the screen (by depth)
-function boltPath( start, end, time, seed, amplitude, segments = 68, bow = [ 0, 0, 0 ] ) {
-	amplitude *= LIGHTNING.K;
+export function R_LightningBoltPath( view, unit, start, end, time, seed, amplitude, segments = 68, bow = [ 0, 0, 0 ], screenSpace = true ) {
+ const depthOf = p => dot( sub( p, view.eye ), view.forward );
+	amplitude *= unit;
 	const delta = sub( end, start ), dir = norm( delta ), U = norm( cross( dir, Math.abs( dot( dir, view.up ) ) > .96 ? view.right : view.up ) ), V = norm( cross( U, dir ) );
 	const tick = Math.floor( time * 28 ), blend = clamp( ( time * 28 - tick ) / .18, 0, 1 ), out = []; out.fractions = [];
-	const d0 = Math.max( .08 * LIGHTNING.K, depthOf( start ) ), d1 = Math.max( .08 * LIGHTNING.K, depthOf( end ) );
+	const d0 = Math.max( .08 * unit, depthOf( start ) ), d1 = Math.max( .08 * unit, depthOf( end ) );
 	for ( let i = 0; i <= segments; i ++ ) {
-		const screenT = i / segments, s = screenT * d0 / ( d1 * ( 1 - screenT ) + d0 * screenT ); out.fractions.push( s );
+		const screenT = i / segments, s = screenSpace ? screenT * d0 / ( d1 * ( 1 - screenT ) + d0 * screenT ) : screenT; out.fractions.push( s );
 		const envelope = Math.pow( Math.sin( PI * s ), .58 );
 		const coarse = noise1( s * 8.7 - time * 2.6, seed ), coarse2 = noise1( s * 10.7 - time * 2.1, seed + 37 );
 		const a = mix( noise1( s * 47 + tick * .71, seed + 11 ), noise1( s * 47 + ( tick + 1 ) * .71, seed + 11 ), blend );
@@ -190,6 +204,9 @@ function boltPath( start, end, time, seed, amplitude, segments = 68, bow = [ 0, 
 		p = add( p, mul( bow, Math.sin( s * PI ) ) ); out.push( p );
 	}
 	return out;
+}
+function boltPath( start, end, time, seed, amplitude, segments = 68, bow = [ 0, 0, 0 ] ) {
+ return R_LightningBoltPath( view, LIGHTNING.K, start, end, time, seed, amplitude, segments, bow );
 }
 function samplePath( path, s ) {
 	s = clamp( s, 0, 1 );

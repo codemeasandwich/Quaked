@@ -421,6 +421,13 @@ export let R_WarmLevel = Hooks_Missing( 'R_WarmLevel' );
 export let R_QuadVisionActive = Hooks_Missing( 'R_QuadVisionActive' );
 export let R_QuadVisionReset = Hooks_Missing( 'R_QuadVisionReset' );
 
+// newer/render/r_eelcharge.js
+export let R_EelChargeBegin = Hooks_Missing( 'R_EelChargeBegin' );
+export let R_EelChargeClear = Hooks_Missing( 'R_EelChargeClear' );
+export let R_EelChargeEnd = Hooks_Missing( 'R_EelChargeEnd' );
+export let R_EelChargeRelease = Hooks_Missing( 'R_EelChargeRelease' );
+export let R_EelChargeSeen = Hooks_Missing( 'R_EelChargeSeen' );
+
 // newer/render/r_rendveil.js
 export let R_RendVeilBegin = Hooks_Missing( 'R_RendVeilBegin' );
 export let R_RendVeilCapture = Hooks_Missing( 'R_RendVeilCapture' );
@@ -682,6 +689,7 @@ const HOOK_NAMES = Object.freeze( [
 	'R_PowerVisionReset',
 	'R_WarmFrame', 'R_WarmLevel',
 	'R_QuadVisionActive', 'R_QuadVisionReset',
+	'R_EelChargeBegin', 'R_EelChargeClear', 'R_EelChargeEnd', 'R_EelChargeRelease', 'R_EelChargeSeen',
 	'R_RendVeilBegin', 'R_RendVeilCapture', 'R_RendVeilClear', 'R_RendVeilEnd', 'R_RendVeilRelease', 'R_RendVeilSeen',
 	'R_RespawnCameraFrame',
 	'R_RockfieldBrushSeen', 'R_RockfieldBuild', 'R_RockfieldChart', 'R_RockfieldGeometry', 'R_RockfieldSetLimits', 'R_RockfieldStatus', 'R_RockfieldUpdate', 'r_rockfield',
@@ -790,6 +798,7 @@ export function Hooks_Install( table ) {
 	R_PowerVisionReset = table.R_PowerVisionReset;
 	R_WarmFrame = table.R_WarmFrame; R_WarmLevel = table.R_WarmLevel;
 	R_QuadVisionActive = table.R_QuadVisionActive; R_QuadVisionReset = table.R_QuadVisionReset;
+	R_EelChargeBegin = table.R_EelChargeBegin; R_EelChargeClear = table.R_EelChargeClear; R_EelChargeEnd = table.R_EelChargeEnd; R_EelChargeRelease = table.R_EelChargeRelease; R_EelChargeSeen = table.R_EelChargeSeen;
 	R_RendVeilBegin = table.R_RendVeilBegin; R_RendVeilCapture = table.R_RendVeilCapture; R_RendVeilClear = table.R_RendVeilClear; R_RendVeilEnd = table.R_RendVeilEnd; R_RendVeilRelease = table.R_RendVeilRelease; R_RendVeilSeen = table.R_RendVeilSeen;
 	R_RespawnCameraFrame = table.R_RespawnCameraFrame;
 	R_RockfieldBrushSeen = table.R_RockfieldBrushSeen; R_RockfieldBuild = table.R_RockfieldBuild; R_RockfieldChart = table.R_RockfieldChart; R_RockfieldGeometry = table.R_RockfieldGeometry; R_RockfieldSetLimits = table.R_RockfieldSetLimits; R_RockfieldStatus = table.R_RockfieldStatus; R_RockfieldUpdate = table.R_RockfieldUpdate; r_rockfield = table.r_rockfield;

@@ -11,17 +11,12 @@ import { COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init, Mod_ForName, Mod_LoadModel, model_t } from '../src/engine/render/gl_model.js';
 import * as mode from '../src/newer/mode.js';
+import * as canonicalSkins from '../src/newer/render/r_newerskins.js';
 const MODEL_SHA = '58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7';
 const MODEL = 'progs/eel2.mdl', WIDTH = 136, HEIGHT = 194, FACTOR=4;
-// Independently hashed final generated references; these identities do not come from the fitter report.
-const SOURCE_SHAS = [
- "ed8881a5cc70b359bda6e17c846ba3b877262014889b11a0835fb2f785c870ac",
- "b6632c9eda9e41de75fb97561a6f3895e6aa92464538b696a736a8d0ea6bd3ae",
- "65c9d256f3ccbd716d0873199e541e3f6d53cc9013bf65ee1fa1bb0232960a56",
- "153ec154ff2d7e4f90de3c1cae706880e3822a19fc8f715c039bf39561ef0a51",
- "e608016e3cd7c2e2d2d503fc265d9d872b9b70e2b9bc650e7c27750695ab6118",
- "21c309eb66f7c91bd78cb2e4a3bd0f042a9ba3061d5c0acb0f6a1414ccf31ef3"
-];
+// One reviewed uncharged source; native six-state data remains below for fallback/QC checks.
+const SOURCE='tools/texture_sheets/sources/fidelity-2026-10-13/eel-character.png';
+const SOURCE_SHA='19717bf4c1ff816de5a0ad3671d025b018fa658a0d6581289b06059ddae138d1';
 const SKIN_SHAS = [
  'f753a1e5f23f8c1527b07bf1b47a327aede49eacc52a2f4096012108ed48bfbe',
  '51a9a7938ad8ff43be98a50322ab0a90b429f00720ff46227aaaa5adb418dafe',
@@ -62,7 +57,7 @@ async function fixture( run ) {
  const requests = []; Object.defineProperty( globalThis, 'document', { configurable: true, value: {} } ); Object.defineProperty( globalThis, 'window', { configurable: true, value: {} } );
  THREE.TextureLoader.prototype.load = function ( url, done, _, fail ) { const texture = new THREE.DataTexture( new Uint8Array( 64 ).fill( 127 ), 4, 4 ); requests.push( { url: String( url ), done, fail, texture } ); return texture; };
  mode.R_AnimSetClassicPass( false ); mode.R_AnimSetNewer( true ); mode.r_newer_enemies.value = 1; mode.r_newer_normals.value = 0;
- const skins = await import( '../src/newer/render/r_newerskins.js?eel-public-' + ++serial ); skins.R_NewerSetIndex( index );
+ const skins=canonicalSkins;skins.R_NewerSkinsShutdown();skins.R_NewerSetIndex(index);
  try { await run( skins, requests ); } finally {
   skins.R_NewerSkinsShutdown(); THREE.TextureLoader.prototype.load = old.loader;
   for ( const key of [ 'document', 'window' ] ) { if ( old[ key ] ) Object.defineProperty( globalThis, key, old[ key ] ); else delete globalThis[ key ]; }
@@ -104,71 +99,50 @@ async function decodedImage(path){
   const image=await canvas.loadImage(read(path)),surface=canvas.createCanvas(image.width,image.height),context=surface.getContext('2d');context.drawImage(image,0,0);return context.getImageData(0,0,image.width,image.height);
  })());return decodedImages.get(path);
 }
-Deno.test('Six generated Eel sources and fitted variants retain exact provenance, dimensions and shared anatomical height',async()=>{
- same(index.models.eel2.length,6,'all six explicit skin variants');same(new Set(index.models.eel2.map(v=>v.dir)).size,6,'unique directories prevent skin-set cache collisions');
- same(index.models.eelgib,undefined,'separate Eel death model remains outside this body increment');same(index.models.eelhead,undefined,'unused archive head is not invented as a replacement');
- let heightHash;
- for(let skin=0;skin<6;skin++){
-  const v=variant(skin);check(v,'explicit skin '+skin);same(v.dir,'eel2/custom'+(skin||''),'stable unique variant directory');same(v.nativeModelSha256,MODEL_SHA,'variant bound to actual Eel');same(v.flipGreen,false,'height-generated normal convention');
-  same(v.maps.diffuse,'diffuse.png','runtime diffuse');same(v.maps.height,'height.webp','runtime height');same(Object.keys(v.maps).length,2,'no added emission maps');
-  const provenance=JSON.parse(read(base(skin)+'SOURCE.json')),source='tools/texture_sheets/sources/generated-2026-10-12/eel2-skin'+skin+'.png';
-  same(provenance.model,MODEL,'fit model');same(provenance.nativeModelSha256,MODEL_SHA,'fit model identity');same(provenance.skin,skin,'fit skin slot');same(provenance.source,source,'state generation provenance');
-  check(/^[a-f0-9]{64}$/.test(SOURCE_SHAS[skin]||''),'source identity independently pinned before qualification');same(provenance.sourceSha256,SOURCE_SHAS[skin],'recorded generation identity');same(sha(read(source)),SOURCE_SHAS[skin],'actual generated source');
-  same(JSON.stringify(provenance.dimensions),'[544,776]','fourfold native atlas (the 4x standard)');
-  for(const file of ['diffuse.png','height.webp'])same(sha(read(base(skin)+file)),provenance.files[file],'fitted file digest '+skin+'/'+file);
-  const diffuse=await decodedImage(base(skin)+'diffuse.png'),height=await decodedImage(base(skin)+'height.webp');
-  for(const image of [diffuse,height]){same(image.width,544,'decoded width');same(image.height,776,'decoded height');check(image.data.every((value,i)=>i%4!==3||value===255),'opaque asset');}
-  const current=sha(height.data);heightHash??=current;same(current,heightHash,'all charge states use the identical anatomical height pixels');
-  check(height.data.every((value,i)=>i%4===3||value===height.data[i-i%4]),'height is grayscale');
- }
+Deno.test('One reviewed uncharged Eel source supplies a single decoded Q92 image pair for all six aliases',async()=>{
+ same(index.models.eel2.length,6,'six explicit native-state aliases');same(new Set(index.models.eel2.map(v=>v.dir)).size,1,'one runtime directory and material cache family');
+ same(index.models.eelgib,undefined,'separate death model remains native');same(index.models.eelhead,undefined,'unused head is not introduced');
+ for(let skin=0;skin<6;skin++){const v=variant(skin);check(v,'explicit alias '+skin);same(v.dir,'eel2/custom','all states share the base');same(v.nativeModelSha256,MODEL_SHA,'exact Eel source boundary');same(v.flipGreen,false,'normal convention');same(v.maps.diffuse,'diffuse.webp','Q92 diffuse');same(v.maps.height,'height.webp','Q92 height');same(Object.keys(v.maps).length,2,'no stencil charge/emission texture');}
+ const report=JSON.parse(read(base(0)+'SOURCE.json')),bytes=read(SOURCE);same(report.model,MODEL,'fit model');same(report.nativeModelSha256,MODEL_SHA,'fit identity');same(report.skin,0,'only uncharged base is authored');same(report.source,SOURCE,'reviewed source path');same(report.sourceSha256,SOURCE_SHA,'source provenance');same(sha(bytes),SOURCE_SHA,'actual source SHA');same(bytes.readUInt32BE(16),1049,'source width');same(bytes.readUInt32BE(20),1499,'source height');same(JSON.stringify(report.dimensions),'[544,776]','fourfold native dimensions');same(report.factor,4,'owner4x standard');same(report.chargeOverlay,undefined,'no charge-mask compositing remains in active base');
+ const recipe=JSON.parse(read('tools/texture_sheets/sources/fidelity-2026-10-13/eel-character.json'));same(recipe.chargeOverlay,undefined,'active recipe has no old stencil states');same(JSON.stringify(recipe.runtimeEncoding),'{"format":"webp","quality":92}','explicit owner runtime encoding');
+ const encoding=report.runtimeEncoding;same(encoding.format,'webp','recorded encoding');same(encoding.quality,92,'recorded quality');same(encoding.lossless,false,'lossy runtime images are explicit');same(encoding.authoringSourceUnchanged,true,'original generated source preserved');
+ for(const file of ['diffuse.webp','height.webp']){const data=read(base(0)+file),receipt=encoding.maps[file];same(data.toString('ascii',0,4),'RIFF','actual WebP container');same(data.toString('ascii',8,12),'WEBP','actual WebP signature');same(sha(data),report.files[file],'runtime file SHA');same(sha(data),receipt.sha256,'encoding receipt SHA');same(data.length,receipt.bytes,'encoding byte length');check(/^[a-f0-9]{64}$/.test(receipt.masterSha256),'pre-encode master identity retained');const image=await decodedImage(base(0)+file);same(image.width,544,'actual decoded width');same(image.height,776,'actual decoded height');check(image.data.every((v,i)=>i%4!==3||v===255),'opaque runtime image');}
+ const native=report.nativeHeight,nativeData=read('newer/enemies/'+native.file),nativeImage=await decodedImage('newer/enemies/'+native.file);same(sha(nativeData),native.sha256,'encoded native height identity');same(native.encoding.quality,92,'native height encoding is also explicit');same(native.encoding.sha256,native.sha256,'native receipt matches bytes');same(nativeImage.width,136,'native height width');same(nativeImage.height,194,'native height height');
 });
-function chargeMask(original,state){
- const mask=new Uint8Array(WIDTH*HEIGHT);
- for(let y=0;y<HEIGHT;y++)for(let x=0;x<WIDTH;x++)if(original[y*WIDTH+x]!==state[y*WIDTH+x])
-  for(let dy=Math.max(0,y-1);dy<=Math.min(HEIGHT-1,y+1);dy++)for(let dx=Math.max(0,x-1);dx<=Math.min(WIDTH-1,x+1);dx++)mask[dy*WIDTH+dx]=1;
- return mask;
-}
-Deno.test('Generated charge skins preserve the fitted base exactly outside original electrical masks, including all sixteen triangle islands',async()=>{
- const {bytes}=await native('eel2'),nativeSkins=indexedSkins(bytes),zero=await decodedImage(base(0)+'diffuse.png');
- for(let skin=1;skin<6;skin++){
-  const mask=chargeMask(nativeSkins[0],nativeSkins[skin]),image=await decodedImage(base(skin)+'diffuse.png');let changed=0,unchanged=0,trianglePixels=0;
-  for(let y=0;y<image.height;y++)for(let x=0;x<image.width;x++){
-   const nx=Math.floor(x/FACTOR),ny=Math.floor(y/FACTOR),offset=(y*image.width+x)*4,allowed=mask[ny*WIDTH+nx];
-   const differs=image.data[offset]!==zero.data[offset]||image.data[offset+1]!==zero.data[offset+1]||image.data[offset+2]!==zero.data[offset+2]||image.data[offset+3]!==zero.data[offset+3];
-   if(!allowed){if(differs)throw Error('state '+skin+' altered anatomy outside native charge envelope at '+x+','+y);unchanged++;}else if(differs)changed++;
-   if((nx>=40&&nx<68)||nx>=108){check(!allowed,'native charge mask never reaches triangle columns');check(!differs,'triangle artwork remains the shared base');trianglePixels++;}
-  }
-  check(changed>20,'actual charged pigment differs from base: '+skin);check(unchanged>image.width*image.height*.8,'most anatomy is explicitly identical');check(trianglePixels>100000,'all auxiliary atlas columns compared');
- }
+Deno.test('The shared base replaces all active charge textures and has one exact custom normal family',()=>{
+ const aliases=index.models.eel2.map(v=>JSON.stringify({dir:v.dir,maps:v.maps,heightStrength:v.heightStrength,heightCap:v.heightCap,nativeModelSha256:v.nativeModelSha256,flipGreen:v.flipGreen}));same(new Set(aliases).size,1,'all state bindings share exactly the same pigment and height settings');
+ const m=JSON.parse(read('newer/normals/manifest.json')),families=new Set(index.models.eel2.map(v=>'custom:'+v.dir));same(families.size,1,'one active custom normal family');same(m.levels['custom:eel2/custom'].keys.length,1,'one prepared custom normal input');
+ // Old generated source archives may remain as historical evidence. They are not active bindings.
+ check(index.models.eel2.every(v=>!/^eel2\/custom[1-5]$/.test(v.dir)),'no active per-state stencil directory');
 });
-Deno.test('Public Eel selector binds all six distinct skin slots on one entity and retains native geometry/options',async()=>fixture(async(skins,requests)=>{
+Deno.test('Public Eel selector binds all six native states to one shared base while retaining native geometry/options',async()=>fixture(async(skins,requests)=>{
  const {model,bytes}=await native('eel2'),before=geometry(model),entity={model,_entityIndex:25};check(skins.ENEMY_SKIN_MODELS.has('eel2'),'Eel enters existing normal/material classification');
- await skins.R_NewerSkinsPrepare([model]);same(requests.length,12,'six diffuse and six height requests');
+ await skins.R_NewerSkinsPrepare([model]);same(requests.length,2,'one shared diffuse and height request');
  for(let skin=0;skin<6;skin++)same(skins.R_NewerAliasMaterial(entity,MODEL,true,skin),null,'pending slot retains native');
  for(const r of requests)r.done(r.texture);
  const chosen=[];for(let skin=0;skin<6;skin++){
-  const material=skins.R_NewerAliasMaterial(entity,MODEL,true,skin),request=requests.find(r=>r.url.startsWith(base(skin)+'diffuse.png?'));check(material&&request,'skin '+skin+' ready');same(material.map,request.texture,'selected exact state texture');chosen.push(material.map);
+  const material=skins.R_NewerAliasMaterial(entity,MODEL,true,skin),request=requests.find(r=>r.url.startsWith(base(skin)+'diffuse.webp?'));check(material&&request,'skin '+skin+' ready');same(material.map,request.texture,'selected exact state texture');chosen.push(material.map);
   same(material.map.flipY,false,'native top-row-first UV orientation');same(material.map.colorSpace,THREE.SRGBColorSpace,'diffuse colour convention');
  }
- same(new Set(chosen).size,6,'skin-set cache never aliases charge states');
+ same(new Set(chosen).size,1,'all native charge aliases use the same texture');
  for(const skin of [6,7,-1])same(skins.R_NewerAliasMaterial(entity,MODEL,true,skin),null,'unsupported skin remains native');
  const modified=Buffer.from(bytes);modified.writeInt32LE(modified.readInt32LE(76)^1,76);const wrong=reload(MODEL,modified);await wrong.aliasSourceIdentity.promise;
  for(let skin=0;skin<6;skin++)same(skins.R_NewerAliasMaterial({model:wrong},MODEL,true,skin),null,'different native source cannot acquire any charge state');
  mode.R_AnimSetClassicPass(true);for(let skin=0;skin<6;skin++)same(skins.R_NewerAliasMaterial(entity,MODEL,true,skin),null,'Classic retains native state');
  mode.R_AnimSetClassicPass(false);mode.r_newer_enemies.value=0;for(let skin=0;skin<6;skin++)same(skins.R_NewerAliasMaterial(entity,MODEL,true,skin),null,'custom-off retains native state');
- same(geometry(model),before,'all native geometry/poses/display UVs unchanged');same(requests.length,12,'negative paths start no art requests');COM_AddPack(isolatedPack(MODEL,bytes));
+ same(geometry(model),before,'all native geometry/poses/display UVs unchanged');same(requests.length,2,'negative paths start no art requests');COM_AddPack(isolatedPack(MODEL,bytes));
 }));
 Deno.test('Pending Eel identity blocks every charge request and resolves all six states together',async()=>fixture(async(skins,requests)=>{
  const {model}=await native('eel2');let finish;const identity={state:'pending',promise:new Promise(resolve=>finish=resolve)},pending={...model,aliasSourceIdentity:identity};
  const work=skins.R_NewerSkinsPrepare([pending]);await ticks();same(requests.length,0,'pending identity starts no state image');same(skins.R_NewerSkinsStatus([pending]).preparePending,1,'pending identity accountable');
- identity.state='ready';identity.sha256=MODEL_SHA;finish(MODEL_SHA);await work;same(requests.length,12,'matching identity admits all state pairs');
+ identity.state='ready';identity.sha256=MODEL_SHA;finish(MODEL_SHA);await work;same(requests.length,2,'matching identity admits one shared pair');
  for(const r of requests)r.done(r.texture);for(let skin=0;skin<6;skin++)check(skins.R_NewerAliasMaterial({model:pending},MODEL,true,skin),'resolved state '+skin+' usable');
 }));
 Deno.test('Failed or retired Eel state images settle to native and never publish late materials',async()=>fixture(async(skins,requests)=>{
- const {model}=await native('eel2');await skins.R_NewerSkinsPrepare([model]);requests.forEach(r=>r.fail());const status=skins.R_NewerSkinsStatus([model]);same(status.pending,0,'failed state downloads leave pending');same(status.fallback,12,'all failed state maps recorded');check(status.settled,'failed optional family settles');
+ const {model}=await native('eel2');await skins.R_NewerSkinsPrepare([model]);requests.forEach(r=>r.fail());const status=skins.R_NewerSkinsStatus([model]);same(status.pending,0,'failed state downloads leave pending');same(status.fallback,2,'both failed shared maps recorded');check(status.settled,'failed optional family settles');
  for(let skin=0;skin<6;skin++)same(skins.R_NewerAliasMaterial({model},MODEL,true,skin),null,'failed state uses original');
- let disposed=0;requests.forEach(r=>r.texture.addEventListener('dispose',()=>disposed++));skins.R_NewerSkinsShutdown();requests.forEach(r=>r.done(r.texture));same(disposed,12,'every late state image disposed');same(skins.R_NewerSkinsMaterials([model]).length,0,'retired images publish nothing');
- let finish;const identity={state:'pending',promise:new Promise(resolve=>finish=resolve)},pending={...model,aliasSourceIdentity:identity};const work=skins.R_NewerSkinsPrepare([pending]);await ticks();skins.R_NewerSkinsShutdown();identity.state='ready';identity.sha256=MODEL_SHA;finish(MODEL_SHA);check((await work).cancelled,'retired identity completion cancelled');same(requests.length,12,'retired preparation issues no requests');
+ let disposed=0;requests.forEach(r=>r.texture.addEventListener('dispose',()=>disposed++));skins.R_NewerSkinsShutdown();requests.forEach(r=>r.done(r.texture));same(disposed,2,'both late shared images disposed');same(skins.R_NewerSkinsMaterials([model]).length,0,'retired images publish nothing');
+ let finish;const identity={state:'pending',promise:new Promise(resolve=>finish=resolve)},pending={...model,aliasSourceIdentity:identity};const work=skins.R_NewerSkinsPrepare([pending]);await ticks();skins.R_NewerSkinsShutdown();identity.state='ready';identity.sha256=MODEL_SHA;finish(MODEL_SHA);check((await work).cancelled,'retired identity completion cancelled');same(requests.length,2,'retired preparation issues no requests');
 }));
 
 function companion(pixels,height,strength=.65,cap=.55) {
@@ -190,15 +164,15 @@ async function verifyBake(texture,family,expectedModelSha=null) {
  return decoded;
 }
 const authoredNormalHashes={custom:null,native:null};
-for(let skin=0;skin<6;skin++)Deno.test('Eel skin '+skin+': custom, generated native and authored native inputs each select their exact shipped normal',async()=>{
+for(let skin=0;skin<6;skin++)Deno.test('Eel native state '+skin+': shared custom, generated native and authored native decoded inputs select exact shipped normals',async()=>{
  const {model}=await native('eel2'),v=variant(skin),pixels=model.cache.data.gl_texturenum[skin][0].image,entry=index.nativeHeights.eel2?.[skin]?.[0];
  check(entry,'explicit authored native skin entry');same(entry.file,'heights/eel2/skin0_0.webp','shared native anatomical height');same(entry.nativeModelSha256,MODEL_SHA,'authored native height exact identity');
- const customHeight=await decodedImage(base(skin)+'height.webp'),nativeHeight=await decodedImage('newer/enemies/'+entry.file),diffuse=await decodedImage(base(skin)+'diffuse.png');
+ const customHeight=await decodedImage(base(skin)+'height.webp'),nativeHeight=await decodedImage('newer/enemies/'+entry.file),diffuse=await decodedImage(base(skin)+'diffuse.webp');
  same(nativeHeight.width,136,'native height width');same(nativeHeight.height,194,'native height height');
  const custom=await verifyBake(companion(diffuse,customHeight,v.heightStrength,v.heightCap),'custom:'+v.dir);
  await verifyBake(companion(pixels,null),'rogue:'+MODEL,MODEL_SHA);
  const nativeField=await verifyBake(companion(pixels,nativeHeight,entry.strength,entry.cap),'rogue:'+MODEL,MODEL_SHA);
- for(const [kind,decoded]of [['custom',custom],['native',nativeField]]){const hash=sha(decoded.pixels);authoredNormalHashes[kind]??=hash;same(hash,authoredNormalHashes[kind],'charge pigment never changes anatomical '+kind+' normals');}
+ for(const [kind,decoded]of [['custom',custom],['native',nativeField]]){const hash=sha(decoded.pixels);authoredNormalHashes[kind]??=hash;same(hash,authoredNormalHashes[kind],'all aliases retain the same anatomical '+kind+' normal pixels');}
 });
 function materialNormal(material){const shader={uniforms:{},vertexShader:'#include <project_vertex>',fragmentShader:'#include <map_fragment>\n#include <opaque_fragment>\n#include <colorspace_fragment>'};material.onBeforeCompile(shader);return shader.uniforms.qrNormal.value;}
 Deno.test('All six Eel authored native heights remain source-bound with replacement art disabled',async()=>fixture(async(skins,requests)=>{

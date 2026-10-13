@@ -14,6 +14,7 @@
  *
  * Errors: catches at 3 places.
  */
+import { R_EelChargeBegin, R_EelChargeClear, R_EelChargeEnd, R_EelChargeRelease, R_EelChargeSeen } from '../common/hooks.js'; // installed by newer/render/r_eelcharge.js
 import {R_RendVeilSeen,R_RendVeilRelease,R_RendVeilClear,R_RendVeilBegin,R_RendVeilEnd,R_RendVeilCapture} from '../common/hooks.js'; // installed by newer/render/r_rendveil.js
 import {sv,svs} from '../server/server.js';
 import { R_RespawnCameraFrame } from '../common/hooks.js'; // installed by newer/render/r_respawn.js
@@ -1035,6 +1036,7 @@ function _clearEntityMeshCache( entity, geometries, materials ) {
 
 	if ( entity == null ) return;
 	R_RendVeilRelease(entity);
+	R_EelChargeRelease(entity);
 
 	const spriteMesh = entity._spriteMesh;
 	const aliasMesh = entity._aliasMesh;
@@ -1302,7 +1304,10 @@ function R_DrawAliasModel( e ) {
 
 	}
 
-	if ( mesh && scene && e !== cl.viewent ) R_RendVeilSeen( e, mesh, scene );
+	if ( mesh && scene && e !== cl.viewent ) {
+		R_RendVeilSeen( e, mesh, scene );
+		R_EelChargeSeen( e, mesh, scene, cl.time );
+	}
 
 	// Draw shadow (Ported from WinQuake/gl_rmain.c:579-591); Newer Game casts it from the
 	// lights that really shine on the model instead
@@ -1803,6 +1808,7 @@ export function R_RenderScene() {
 	_entityMeshesThisFrame.clear();
 	R_PowerupBegin( scene );
 	R_RendVeilBegin(scene);
+	R_EelChargeBegin(scene);
 
 	// portal views are rendered per camera, which XR's stereo pair doesn't allow
 	R_PortalsBeginFrame( isXRActive() === false && envmap === false );
@@ -1830,6 +1836,7 @@ export function R_RenderScene() {
 	R_LavaBallsFlush( cl != null ? cl.time : 0, _fireballView ); // (after the list: it is this frame's lava balls)
 	R_PowerupEnd();
 	R_RendVeilEnd(scene);
+	R_EelChargeEnd(scene);
 	R_BestiaryObserve( scene, camera, cl_visedicts.slice( 0, cl_numvisedicts ) );
 
 	// Remove entity meshes that were in the scene last frame but not this frame
@@ -2523,6 +2530,7 @@ export function R_NewMap() {
 	// entities keep their JS identity across CL_ClearState, so invalidate the
 	// owner-side caches as well as the scene tracking sets.
 	R_RendVeilClear();
+	R_EelChargeClear();
 	const geometries = new Set();
 	const materials = new Set();
 	for ( const owner of _entityMeshCacheOwners )

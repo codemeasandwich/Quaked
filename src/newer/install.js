@@ -68,6 +68,7 @@ import { R_PowerupBegin, R_PowerupClear, R_PowerupEnd, R_PowerupSeen, r_powerups
 import { R_PowerVisionReset } from './render/r_powervision.js';
 import { R_WarmFrame, R_WarmLevel } from './render/r_prewarm.js';
 import { R_QuadVisionActive, R_QuadVisionReset } from './render/r_quadvision.js';
+import { R_EelChargeBegin, R_EelChargeClear, R_EelChargeEnd, R_EelChargeRelease, R_EelChargeSeen } from './render/r_eelcharge.js';
 import { R_RendVeilBegin, R_RendVeilCapture, R_RendVeilClear, R_RendVeilEnd, R_RendVeilRelease, R_RendVeilSeen } from './render/r_rendveil.js';
 import { R_RespawnCameraFrame } from './render/r_respawn.js';
 import { R_RockfieldBrushSeen, R_RockfieldBuild, R_RockfieldChart, R_RockfieldGeometry, R_RockfieldSetLimits, R_RockfieldStatus, R_RockfieldUpdate, r_rockfield } from './render/r_rockfield.js';
@@ -153,6 +154,7 @@ if ( ! Hooks_Installed() ) Hooks_Install( {
 	R_PowerVisionReset,
 	R_WarmFrame, R_WarmLevel,
 	R_QuadVisionActive, R_QuadVisionReset,
+	R_EelChargeBegin, R_EelChargeClear, R_EelChargeEnd, R_EelChargeRelease, R_EelChargeSeen,
 	R_RendVeilBegin, R_RendVeilCapture, R_RendVeilClear, R_RendVeilEnd, R_RendVeilRelease, R_RendVeilSeen,
 	R_RespawnCameraFrame,
 	R_RockfieldBrushSeen, R_RockfieldBuild, R_RockfieldChart, R_RockfieldGeometry, R_RockfieldSetLimits, R_RockfieldStatus, R_RockfieldUpdate, r_rockfield,

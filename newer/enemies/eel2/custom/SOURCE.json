@@ -2,11 +2,11 @@
   "schema": 1,
   "model": "progs/eel2.mdl",
   "nativeModelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7",
-  "source": "tools/texture_sheets/sources/generated-2026-10-12/eel2-skin0.png",
-  "sourceSha256": "ed8881a5cc70b359bda6e17c846ba3b877262014889b11a0835fb2f785c870ac",
+  "source": "tools/texture_sheets/sources/fidelity-2026-10-13/eel-character.png",
+  "sourceSha256": "19717bf4c1ff816de5a0ad3671d025b018fa658a0d6581289b06059ddae138d1",
   "sourceDimensions": [
-    1050,
-    1498
+    1049,
+    1499
   ],
   "dimensions": [
     544,
@@ -31,120 +31,120 @@
     {
       "id": 1,
       "surfacePixels": 86354,
-      "directPixels": 86139,
-      "edgePixels": 215
+      "directPixels": 85965,
+      "edgePixels": 389
     },
     {
       "id": 2,
       "surfacePixels": 86357,
-      "directPixels": 84411,
-      "edgePixels": 1946
+      "directPixels": 84725,
+      "edgePixels": 1632
     },
     {
       "id": 3,
       "surfacePixels": 2529,
-      "directPixels": 2504,
-      "edgePixels": 25
+      "directPixels": 2434,
+      "edgePixels": 95
     },
     {
       "id": 4,
       "surfacePixels": 2529,
-      "directPixels": 2247,
-      "edgePixels": 282
+      "directPixels": 2106,
+      "edgePixels": 423
     },
     {
       "id": 5,
       "surfacePixels": 1,
-      "directPixels": 1,
-      "edgePixels": 0
+      "directPixels": 0,
+      "edgePixels": 1
     },
     {
       "id": 6,
       "surfacePixels": 2501,
-      "directPixels": 2462,
-      "edgePixels": 39
+      "directPixels": 2317,
+      "edgePixels": 184
     },
     {
       "id": 7,
       "surfacePixels": 2501,
-      "directPixels": 2186,
-      "edgePixels": 315
+      "directPixels": 2003,
+      "edgePixels": 498
     },
     {
       "id": 8,
       "surfacePixels": 2657,
-      "directPixels": 2619,
-      "edgePixels": 38
+      "directPixels": 2426,
+      "edgePixels": 231
     },
     {
       "id": 9,
       "surfacePixels": 2657,
-      "directPixels": 2331,
-      "edgePixels": 326
+      "directPixels": 2110,
+      "edgePixels": 547
     },
     {
       "id": 10,
       "surfacePixels": 2379,
-      "directPixels": 2335,
-      "edgePixels": 44
+      "directPixels": 2164,
+      "edgePixels": 215
     },
     {
       "id": 11,
       "surfacePixels": 2379,
-      "directPixels": 2083,
-      "edgePixels": 296
+      "directPixels": 1857,
+      "edgePixels": 522
     },
     {
       "id": 12,
       "surfacePixels": 2529,
-      "directPixels": 2487,
-      "edgePixels": 42
+      "directPixels": 2354,
+      "edgePixels": 175
     },
     {
       "id": 13,
       "surfacePixels": 2529,
-      "directPixels": 2231,
-      "edgePixels": 298
+      "directPixels": 2006,
+      "edgePixels": 523
     },
     {
       "id": 14,
       "surfacePixels": 2379,
-      "directPixels": 2360,
-      "edgePixels": 19
+      "directPixels": 2249,
+      "edgePixels": 130
     },
     {
       "id": 15,
       "surfacePixels": 2379,
-      "directPixels": 2130,
-      "edgePixels": 249
+      "directPixels": 1955,
+      "edgePixels": 424
     },
     {
       "id": 16,
       "surfacePixels": 2379,
-      "directPixels": 2358,
-      "edgePixels": 21
+      "directPixels": 2289,
+      "edgePixels": 90
     },
     {
       "id": 17,
       "surfacePixels": 2379,
-      "directPixels": 2105,
-      "edgePixels": 274
+      "directPixels": 1978,
+      "edgePixels": 401
     },
     {
       "id": 18,
       "surfacePixels": 2379,
-      "directPixels": 2367,
-      "edgePixels": 12
+      "directPixels": 2210,
+      "edgePixels": 169
     },
     {
       "id": 19,
       "surfacePixels": 2379,
-      "directPixels": 2111,
-      "edgePixels": 268
+      "directPixels": 1892,
+      "edgePixels": 487
     }
   ],
   "surfacePixels": 212176,
-  "edgePixels": 4709,
+  "edgePixels": 7136,
   "normalProfile": {
     "strength": 0.65,
     "cap": 0.55
@@ -156,22 +156,59 @@
     "height_for"
   ],
   "files": {
-    "diffuse.png": "4d4fc4e7df58c2eea40c62e4ad5cb826895a57582df9244c1fcf6274103a2a23",
-    "height.webp": "d36ce59b014b225b986b55443ea10089ee8a81e566b7dba3e26d5023f5bcf158"
+    "diffuse.webp": "52397f907ae1b9a522a9df77dd18470abdd076a2493972e05f0dc80ab3616ad7",
+    "height.webp": "344712d134d8b592fee64b0522576da6602fc5cc111d7e90f63d570e5f920ebc"
   },
   "generation": {
     "tool": "ChatGPT built-in imagegen",
-    "date": "2026-10-12",
-    "reference": "Original Rogue eel2.mdl skin0, native palette, nearest enlarged4x",
-    "prompt": "Faithfully repaint this original Quake Dissolution of Eternity ELECTRIC EEL model UV atlas at high resolution. This is the ORIGINAL uncharged skin0 and is the exact layout reference. Preserve the complete 136:194 aspect ratio and EVERY island at precisely its original coordinates and silhouette: two long eel body strips with small heads at the top, and sixteen detached triangular mouth/flesh pieces in two vertical columns. Do not rotate, mirror, rearrange, crop, merge or omit any piece. Keep the original muted brown/olive-green scaly back, pale dirty cream/tan underside, dark lattice scale pattern and restrained red flesh at mouth pieces and tail tips. Add fine reptilian scales, wet leathery detail, believable tiny teeth and restrained flesh detail within the existing shapes, without changing design or broad colours. The right-hand column triangles are dark blood-maroon, not black missing pieces; retain all eight. Keep pure black atlas background and crisp original island boundaries, no cast shadows. No lightning, glow, new fins, anatomy, text, labels, scene or watermark. It must remain a precisely registered usable production texture atlas, not a rendered eel portrait."
+    "date": "2026-10-13",
+    "reference": "Original Rogue eel2 skin0 fixes layout/colour/design; owner Dragon atlas supplies organic material quality only",
+    "prompt": "Create a clean, photorealistic Electric Eel production game skin atlas with strong readable creature character, preserving the ORIGINAL game design.\n\nImage1 is the original Rogue eel2 skin0 and is the exact authority for all colour regions, anatomical proportions, markings, silhouettes and UV positions. Its low-resolution dithering is NOT surface detail: reconstruct cleanly instead of enlarging or sharpening pixels.\nImage2 is the owner's enhanced Dragon atlas, ONLY a reference for convincingly organic reptilian materials and controlled detail. Do not copy its anatomy, colours, wings, armour, wounds or layout.\n\nPreserve the original subdued olive/taupe back, dirty pale tan/cream ventral side, narrow dark green crossing lines, tiny muted yellow electrical nodes, small pale eye accents, and dark red tissue. The green lattice and node row are intentional electrical-organ markings: keep their exact placement, count and thin width. They are pigmentation/low-profile organs, not thick cords, jewellery, gold rivets or armour. The long body must have coherent rounded form, quieter wet leathery skin and subtle small natural scales. Use selective soft wet highlights, not glossy glitter. Most areas should have calm continuous material. Avoid uniform embossed diamond tiling, bronze/gold finish, pitted metal, sandpaper grain, pixel blocks, crackle or dense invented microdetail. Keep the pale region subdued; no brilliant white belly.\n\nGive the existing narrow head and jaw a predatory personality through the same small eye, convincing eyelids, jaw tissue and tiny teeth within their ORIGINAL boundaries. Do not enlarge the eye, add horns/fins, invent anatomy, change the snout, or replace the original stylized creature with a generic snake or natural eel.\n\nSTRICT UV LAYOUT: follow Image1's complete136:194 portrait aspect ratio. Retain both long body strips, both top heads, both lower discs/tail tips, and ALL SIXTEEN detached triangular mouth/tissue pieces, eight per column, at exactly their normalized original coordinates and silhouettes. The middle triangles have pale tissue centres; the far-right triangles stay dark blood-maroon, visibly separated from the black background. Preserve every gap, border, orientation and marking. No repositioning, mirroring, cropping, merged pieces or missing triangles. No electrical arcs, active-charge glow or bloom in this uncharged skin0. Flat pure black unused background, crisp boundaries, neutral even diffuse lighting, no external shadows, text, labels or watermark. Large high-resolution source with smooth, intentional, photographic detail.\n",
+    "refinementPrompt": "Edit only the MATERIAL FINISH of Image1, the Electric Eel skin0 atlas. Image2 is its original game palette/marking reference.\n\nKeep EXACTLY the current composition, pixel dimensions, silhouettes, all16 triangular mouth/tissue pieces, both narrow heads, eyes, tails/discs, colour-region boundaries, thin green lattice paths, and every yellow-node position/count.\n\nCorrect these specific faults:\n1. Yellow electrical nodes currently resemble shiny raised gold beads or rivets with white catchlights and black pupil centres. Make each a flat, muted yellow-olive low-profile ORGAN SPOT embedded in the skin. No metallic gold, black pupil hole, white sparkle, circular bulging bead or jewellery. Preserve all exact centres and sizes.\n2. The pale tan ventral surfaces have uniformly shiny crosshatched/diamond embossing. Replace this with calmer smooth wet leathery skin, very subtle fine scales and a few natural long soft folds. Greatly reduce repeating micro-diamond contrast and individual-cell highlights. Most of the pale surface must be quiet and continuous, with one or two broad soft damp highlights instead of hundreds of tiny glints. Maintain the existing pale tan colour, not white.\n3. The narrow green lattice must read as FLAT PIGMENT, not raised cords or embossed straps. Preserve its exact paths, thin widths and colour.\n\nKeep the olive/dark side naturally scaled but restrained, preserving the existing head character and small eyes. Do not change anatomy, add patterns, electrical charge, glow or active arcs. Preserve all triangles and black background exactly. This is an uncharged production texture, not a new character illustration. No layout, framing, rotation, crop or text changes.\n",
+    "runtimeIntent": "One shared base for all native Eel charge states; procedural lightning supplies charge, no texture overlays.",
+    "styleReferences": [
+      {
+        "file": "Gemini_Generated_Image_6fxet96fxet96fxe.jpeg",
+        "sha256": "13bfde08a63b7bc15b5efd071a09c8f434e232cca64274a9d7948430e5803b4e"
+      }
+    ]
   },
   "nativeHeight": {
     "file": "heights/eel2/skin0_0.webp",
-    "sha256": "8e16bdb0ff8f4ce40d0c2dfd78ce126d97d8d93c39466e1c766ec806ccbabca0",
+    "sha256": "13ed0e0fd7f0bf9fc5715bce53b1b3c7906486671c717349231c52e8ae127af9",
     "dimensions": [
       136,
       194
     ],
-    "flatHeight": null
+    "flatHeight": null,
+    "encoding": {
+      "format": "webp",
+      "quality": 92,
+      "lossless": false,
+      "masterSha256": "8e16bdb0ff8f4ce40d0c2dfd78ce126d97d8d93c39466e1c766ec806ccbabca0",
+      "sha256": "13ed0e0fd7f0bf9fc5715bce53b1b3c7906486671c717349231c52e8ae127af9",
+      "pillowDecodedRgbaSha256": "9d054835aea7fe8a65ea900d5f18579d0f001316af1b810170b71efbaf928082",
+      "bytes": 10734
+    }
+  },
+  "runtimeEncoding": {
+    "format": "webp",
+    "quality": 92,
+    "lossless": false,
+    "maps": {
+      "diffuse.webp": {
+        "masterSha256": "909759bc9583d386135d89a80e484694b4789588c9c3179dd15f8b437b6c22eb",
+        "sha256": "52397f907ae1b9a522a9df77dd18470abdd076a2493972e05f0dc80ab3616ad7",
+        "pillowDecodedRgbaSha256": "9be951bdae9d79ac2c36b364ddf84ea53607f76cf0b84dbd136d00c0bddc84c9",
+        "bytes": 88172
+      },
+      "height.webp": {
+        "masterSha256": "071563f407fd6664e460c8ff7dc7543347b8b13fd99f3b9a5fbdf1d376fbc24b",
+        "sha256": "344712d134d8b592fee64b0522576da6602fc5cc111d7e90f63d570e5f920ebc",
+        "pillowDecodedRgbaSha256": "d6680f47cdec91efc451e05cfd06e0ff6909c5da6d83d9cc5c4335ee99e405e2",
+        "bytes": 71182
+      }
+    },
+    "authoringSourceUnchanged": true
   }
 }
