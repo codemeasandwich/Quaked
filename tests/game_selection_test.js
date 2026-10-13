@@ -203,6 +203,13 @@ Deno.test( 'a loose file is fetched whole; a page or an oversized file is refuse
 	// no Content-Length: counted as it streams
 	const big = new ReadableStream( { start( c ) { for ( let i = 0; i < 65; i ++ ) c.enqueue( new Uint8Array( 1024 * 1024 ) ); c.close(); } } );
 	same( await GameSelection_FetchLoose( 'x', async () => new Response( big ) ), null, 'over 64 MB with no Content-Length' );
+	// a declared length over the limit is refused before reading (a hand-made response: Response would correct the header)
+	let read = false;
+	const declared = { ok: true, headers: new Headers( { 'Content-Length': String( 64 * 1024 * 1024 + 1 ) } ), body: { cancel: async () => {}, getReader: () => { read = true; return null; } }, arrayBuffer: async () => { read = true; return new ArrayBuffer( 0 ); } };
+	same( await GameSelection_FetchLoose( 'x', async () => declared ), null, 'a Content-Length over 64 MB' ); same( read, false, 'refused without reading' );
+	// a download that breaks off is left out, not an error that stops the start
+	const broken = new ReadableStream( { start( c ) { c.enqueue( new Uint8Array( 2 ) ); c.error( new Error( 'connection reset' ) ); } } );
+	same( await GameSelection_FetchLoose( 'x', async () => new Response( broken ) ), null, 'a broken download' );
 
 } );
 

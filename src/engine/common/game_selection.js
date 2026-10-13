@@ -201,14 +201,23 @@ export async function GameSelection_FetchLoose( url, fetchImpl = globalThis.fetc
 	if ( Number( response.headers.get( 'content-length' ) ) > GAME_SELECTION_LOOSE_LIMIT ) return refuse( 'larger than 64 MB' );
 	const chunks = [], reader = response.body?.getReader?.();
 	let size = 0;
-	if ( ! reader ) { const bytes = new Uint8Array( await response.arrayBuffer() ); chunks.push( bytes ); size = bytes.length; }
-	else for ( ;; ) {
+	try {
 
-		const { done, value } = await reader.read();
-		if ( done ) break;
-		size += value.length;
-		if ( size > GAME_SELECTION_LOOSE_LIMIT ) { reader.cancel().catch( () => {} ); Sys_Printf( 'Loose file %s refused: larger than 64 MB\n', url ); return null; }
-		chunks.push( value );
+		if ( ! reader ) { const bytes = new Uint8Array( await response.arrayBuffer() ); chunks.push( bytes ); size = bytes.length; }
+		else for ( ;; ) {
+
+			const { done, value } = await reader.read();
+			if ( done ) break;
+			size += value.length;
+			if ( size > GAME_SELECTION_LOOSE_LIMIT ) { reader.cancel().catch( () => {} ); Sys_Printf( 'Loose file %s refused: larger than 64 MB\n', url ); return null; }
+			chunks.push( value );
+
+		}
+
+	} catch ( error ) {
+
+		// a download that breaks off leaves the file out; the game still starts
+		Sys_Printf( 'Loose file %s could not be read: %s\n', url, error?.message ?? error ); return null;
 
 	}
 	const bytes = new Uint8Array( size );
