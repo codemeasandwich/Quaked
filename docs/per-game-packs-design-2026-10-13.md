@@ -21,9 +21,13 @@ workflow's Apple Silicon mac job builds with `QUAKED_PACK_BASE` set to the relea
 (the one deletion); afterwards the uploader lists the release again (every part uploaded, at
 its size and digest), downloads the new parts through the address the app uses, and writes
 `dist/packs-receipt.json`, without which `archive-mac.mjs` will not archive an app that
-downloads from the release. The first real upload and an app's download from GitHub (a
-redirect to its download host, which the app's https-only client follows) are unproven until
-the first CI run and an app trial. Pull requests and the Intel leg build with every pack
+downloads from the release. Proven on 13 October 2026: CI run 38427295588 created the
+release and uploaded, confirmed and downloaded back all 48 parts through the public address
+(the run was then cancelled by a newer push, whose run 38429194345 added 11 changed parts and
+archived the downloading app with its receipt), and the app's own downloader (`packs::ensure`,
+https-only, through GitHub's redirect to its download host) fetched, verified and unpacked
+Quoth's part (`QUAKED_RELEASE_TRIAL=1 cargo test --test packs_release_trial`). Not yet seen: a
+download in the app window itself. Pull requests and the Intel leg build with every pack
 bundled, so that path stays tested; `archive-mac.mjs` archives a downloading app only when its host is the `data`
 release (or with `QUAKED_ARCHIVE_DOWNLOADING_APP` for a local trial). A local build without
 `QUAKED_PACK_BASE` (the pre-commit gate) bundles every pack, as before. Both kinds of
