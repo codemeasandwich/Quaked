@@ -695,8 +695,9 @@ export function M_Quit_Draw() {
 }
 
 /**
- * `M_Keydown` on the quit prompt. ESC, `n` or `N` return to the main menu. `y` or `Y` do not quit: they open the
- * project's GitHub page in a new window (`window.open`) and return to the main menu.
+ * `M_Keydown` on the quit prompt. ESC, `n` or `N` return to the main menu. `y` or `Y` run the `quit` command
+ * (host_cmd.js `Host_Quit_f`): the settings are saved, then the Mac app returns to the game shelf and the HTML goes
+ * to the project's GitHub page (`Sys_Quit`).
  *
  * @param {number} key key number (0..255): ASCII or a keys.js `K_*` constant
  */
@@ -712,9 +713,9 @@ export function M_Quit_Key( key ) {
 
 		case 121: // 'y'
 		case 89: // 'Y'
-			// Navigate to the project page
-			window.open( 'https://github.com/codemeasandwich/Quaked', '_blank' );
-			M_Menu_Main_f();
+			// The quit command: settings saved, then the game shelf (the app) or the GitHub page (the HTML)
+			setKeyDest( key_game );
+			Cbuf_AddText( 'quit\n' );
 			break;
 
 	}

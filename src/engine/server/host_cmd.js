@@ -17,7 +17,7 @@ import { weaponSurface } from '../common/hooks.js'; // installed by newer/render
 import { SV_RespawnRestoreDropModel, SV_RespawnClearTravel, SV_RespawnFinishTravel } from '../common/hooks.js'; // installed by newer/gameplay/sv_respawn.js
 // Ported from: WinQuake/host_cmd.c
 
-import { Sys_Printf, Sys_Error, Sys_FloatTime } from '../common/sys.js';
+import { Sys_Printf, Sys_Error, Sys_FloatTime, Sys_Quit } from '../common/sys.js';
 import { Con_Printf, SZ_Write, SZ_Clear,
 	MSG_WriteByte, MSG_WriteShort, MSG_WriteLong, MSG_WriteFloat,
 	MSG_WriteString, MSG_WriteAngle, COM_Parse, com_token } from '../common/common.js';
@@ -121,9 +121,12 @@ function Host_Status_f() {
 
 }
 
+// quit: saves the settings and shuts the engine down (Host_Shutdown), then leaves for the game shelf (the app) or the
+// GitHub page (the HTML) through Sys_Quit.
 function Host_Quit_f() {
 
 	Host_Shutdown();
+	Sys_Quit();
 
 }
 

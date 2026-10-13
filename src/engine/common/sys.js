@@ -1,7 +1,8 @@
 /**
  * @module engine/common/sys
  *
- * The system interface for the browser (WinQuake sys.h/sys_win.c): printing, time, quitting and fatal errors.
+ * The system interface for the browser (WinQuake sys.h/sys_win.c): printing, time, quitting (to the game shelf in
+ * the app, to the GitHub page in the HTML) and fatal errors.
  *
  * Types: plain values and functions; no exported classes.
  *
@@ -12,6 +13,7 @@
  * `Sys_Error` logs, shows the message on the page and throws: the engine's fatal error.
  */
 // Ported from: WinQuake/sys.h + sys_win.c -- system interface (browser)
+import { Distribution_Profile } from '../../platform/distribution.js';
 
 /*
 ===============================================================================
@@ -142,13 +144,20 @@ export function Sys_Printf( fmt, ...args ) {
 
 }
 
+/** Where Quit takes a page that is not the app (owner ruling, 13 October 2026). */
+export const SYS_QUIT_PAGE = 'https://github.com/codemeasandwich/Quaked';
 /**
- * Logs `Sys_Quit` to the console. A browser page cannot exit, so this does not stop the engine (WinQuake sys_win.c
- * Sys_Quit exits the process); no current caller.
+ * Leaves the game after `Host_Quit_f` has saved the settings (WinQuake sys_win.c Sys_Quit exits the process; a page
+ * cannot). Owner ruling, 13 October 2026: in the Mac app Quit returns to the game shelf (the page without `?game`,
+ * src/platform/desktop.js); in the HTML it goes to the project's GitHub page, in the same tab.
+ *
+ * @param {{assign: function(string): void, pathname: string}} [where=globalThis.location] the page's location (tests pass their own)
  */
-export function Sys_Quit() {
+export function Sys_Quit( where = globalThis.location ) {
 
 	console.log( 'Sys_Quit' );
+	if ( ! where ) return;
+	where.assign( Distribution_Profile() === 'desktop' ? where.pathname : SYS_QUIT_PAGE );
 
 }
 

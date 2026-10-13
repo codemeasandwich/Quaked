@@ -2,6 +2,8 @@
 mod lan;
 mod library;
 mod packs;
+#[cfg(target_os = "macos")]
+mod pointer_lock;
 use library::{Library, Settings};
 use std::{fs, path::PathBuf, sync::Mutex};
 use tauri::{Emitter, Manager};
@@ -225,6 +227,14 @@ fn main() {
                 ],
             )?;
             app.set_menu(Menu::with_items(app, &[&submenu])?)?;
+            #[cfg(target_os = "macos")]
+            if let Some(window) = app.get_webview_window("main") {
+                window.with_webview(|webview| {
+                    if !pointer_lock::allow(webview.inner()) {
+                        eprintln!("Quaked: pointer lock could not be enabled; mouse look stays off");
+                    }
+                })?;
+            }
             Ok(())
         })
         .on_menu_event(|app, event| match event.id().as_ref() {

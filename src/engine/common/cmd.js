@@ -557,6 +557,21 @@ function Cmd_Wait_f() {
 
 }
 
+// Text `exec` runs for a file the game data does not have (Cmd_SetExecFallback): the 2021 re-release's PAKs carry no
+// default.cfg (its engine holds the default keys), so host.js supplies the classic default bindings.
+const execFallbacks = new Map();
+/**
+ * Sets the text `exec <name>` runs when the game data has no such file (host.js: `default.cfg`).
+ *
+ * @param {string} name the file name as `exec` is given it
+ * @param {?string} text the script, or null to remove the fallback
+ */
+export function Cmd_SetExecFallback( name, text ) {
+
+	if ( text === null ) execFallbacks.delete( name ); else execFallbacks.set( name, text );
+
+}
+
 /*
 ===============
 Cmd_Exec_f
@@ -564,6 +579,8 @@ Cmd_Exec_f
 Executes a script file from the game data
 ===============
 */
+// The file is inserted followed by a newline (as Quakespasm does): a script whose last line has none (the 2021
+// re-release's quake.rc) would otherwise run into the next command in the buffer, which swallowed `bind w +forward`.
 function Cmd_Exec_f() {
 
 	if ( Cmd_Argc() !== 2 ) {
@@ -573,7 +590,7 @@ function Cmd_Exec_f() {
 
 	}
 
-	const f = COM_LoadFileAsString( Cmd_Argv( 1 ) );
+	const f = COM_LoadFileAsString( Cmd_Argv( 1 ) ) ?? execFallbacks.get( Cmd_Argv( 1 ) ) ?? null;
 	if ( f === null ) {
 
 		Con_Printf( 'couldn\'t exec ' + Cmd_Argv( 1 ) + '\n' );
@@ -583,7 +600,7 @@ function Cmd_Exec_f() {
 
 	Con_Printf( 'execing ' + Cmd_Argv( 1 ) + '\n' );
 
-	Cbuf_InsertText( f );
+	Cbuf_InsertText( f.endsWith( '\n' ) ? f : f + '\n' );
 
 }
 

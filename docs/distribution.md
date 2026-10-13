@@ -63,6 +63,35 @@ only to a download you trust. Do not describe the local trial as a
 Gatekeeper-qualified download until the actual released ZIP has been downloaded,
 extracted and opened through this procedure. See [Apple’s opening instructions](https://support.apple.com/en-us/102445).
 
+## Keys, mouse look and Quit in the app
+
+Found in the owner's app trial, 13 October 2026, and fixed:
+
+- **W did not move the player in Quake or Dissolution of Eternity.** Those games come from
+  the 2021 re-release, whose `quake.rc` ends without a newline, so its last line ran into the
+  next queued command, `bind w +forward`. `exec` now ends every file with a newline (as
+  Quakespasm does; `Cmd_Exec_f`, `src/engine/common/cmd.js`). The re-release's PAKs also have
+  no `default.cfg` (its own engine holds the default keys), so the arrow keys, Ctrl, the number
+  keys and the rest were unbound. When a game has none, `exec default.cfg` now runs the
+  classic default keys (`HOST_CLASSIC_DEFAULT_CFG`, `src/engine/server/host.js`). Saved settings
+  still apply over them. The source build had hidden both problems, because it mounts the
+  shareware PAK (with its `default.cfg` and `quake.rc`) over the full game.
+  `tests/exec_config_test.js` covers both. A WebKit run of the app's page with a stand-in for
+  the Tauri bridge showed W and the up arrow moving the player only after the fix.
+- **Mouse look did not work.** The engine turns the view only while the page holds the
+  pointer lock. WKWebView grants it only when its UI delegate answers WebKit's
+  `_webViewDidRequestPointerLock:completionHandler:`, which Tauri's (wry's) delegate does not.
+  `src-tauri/src/pointer_lock.rs` adds that method at start-up, always allowing, and sets the
+  delegate again so WebKit sees it. Escape leaves the lock as before. This uses a private
+  WebKit method (present on macOS 26 and in WebKit's `WKUIDelegatePrivate` protocol), which
+  suits an app distributed outside the App Store; if a later macOS drops it, mouse look is
+  off as before, and the app logs that. It needs a click in the real app to trial; nothing
+  automated covers it.
+- **Quit.** Answering Y to Quit (or the `quit` command) saves the settings, then returns to the
+  game shelf in the app, or goes to https://github.com/codemeasandwich/Quaked in the same tab
+  in the HTML (`Sys_Quit`, `src/engine/common/sys.js`; `tests/sys_quit_test.js`). It used to
+  open the GitHub page in a new window and stay in the menu.
+
 ## LAN multiplayer
 
 Select the same game on both Macs. Open **LAN Multiplayer** from Quaked's native

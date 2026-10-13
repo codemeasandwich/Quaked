@@ -28,7 +28,7 @@ import { cvar_t, Cvar_RegisterVariable, Cvar_FindVar, Cvar_SetServerBroadcast, C
 import { SV_SeamlessFrame } from '../common/hooks.js'; // installed by newer/gameplay/sv_seamless.js
 import { R_WelcomeLoadingHolding } from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js
 import { R_BestiaryFrame, R_BestiaryTimeScale, R_BestiaryFrozen } from '../common/hooks.js'; // installed by newer/ui/r_bestiary.js
-import { Cmd_Init, Cbuf_Init, Cbuf_Execute, Cbuf_AddText, Cbuf_InsertText, Cmd_SetClientCallbacks } from '../common/cmd.js';
+import { Cmd_Init, Cbuf_Init, Cbuf_Execute, Cbuf_AddText, Cbuf_InsertText, Cmd_SetClientCallbacks, Cmd_SetExecFallback } from '../common/cmd.js';
 import { Memory_Init } from '../common/zone.js';
 import { V_Init, V_SetContentsColor, V_CalcBlend } from '../client/view.js';
 import { Chase_Init } from '../client/chase.js';
@@ -464,6 +464,9 @@ export async function Host_Init( parms ) {
 		cl: cl
 	} );
 
+	// A game whose PAKs have no default.cfg (the 2021 re-release's Quake and Dissolution of Eternity) gets the classic
+	// default keys, so the arrow keys, Ctrl, the number keys, the console key and the rest work as in the original.
+	Cmd_SetExecFallback( 'default.cfg', HOST_CLASSIC_DEFAULT_CFG );
 	Cbuf_InsertText( 'exec quake.rc\n' );
 
 	// Default WASD bindings for the web port (after quake.rc so user config can override)
@@ -918,6 +921,21 @@ export function Host_ShutdownServer( crash ) {
 	Object.assign( sv, new ( sv.constructor )() );
 
 }
+
+/** The classic default keys, run as default.cfg when the game data has none (Cmd_SetExecFallback): the bindings the
+ * original releases' default.cfg sets, minus its zoom aliases. The port's WASD, jump and flashlight keys follow it. */
+export const HOST_CLASSIC_DEFAULT_CFG = [
+	'unbindall',
+	'bind ALT +strafe', 'bind , +moveleft', 'bind . +moveright', 'bind DEL +lookdown', 'bind PGDN +lookup', 'bind END centerview',
+	'bind SHIFT +speed', 'bind CTRL +attack', 'bind UPARROW +forward', 'bind DOWNARROW +back', 'bind LEFTARROW +left', 'bind RIGHTARROW +right',
+	'bind SPACE +jump', 'bind ENTER +jump', 'bind TAB +showscores',
+	...[ 1, 2, 3, 4, 5, 6, 7, 8, 0 ].map( n => `bind ${n} "impulse ${n}"` ), 'bind / "impulse 10"',
+	'bind F1 help', 'bind F2 menu_save', 'bind F3 menu_load', 'bind F4 menu_options', 'bind F5 menu_multiplayer',
+	'bind F6 "echo Quicksaving...; wait; save quick"', 'bind F9 "echo Quickloading...; wait; load quick"', 'bind F10 quit', 'bind F12 screenshot',
+	'bind \\ +mlook', 'bind PAUSE pause', 'bind ESCAPE togglemenu', 'bind ~ toggleconsole', 'bind ` toggleconsole', 'bind t messagemode',
+	'bind + sizeup', 'bind = sizeup', 'bind - sizedown', 'bind INS +klook',
+	'bind MOUSE1 +attack', 'bind MOUSE2 +forward', 'bind MOUSE3 +mlook',
+].join( '\n' ) + '\n';
 
 // the bind lines of the default.cfg mounted (the mission pack's own when it has one)
 function Host_DefaultBinds() {
