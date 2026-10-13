@@ -24,6 +24,7 @@ import { cl } from '../client/client.js';
 import { R_GetPlayerSkinTexture } from './gl_rmisc.js';
 import { gl_nocolors } from './glquake.js';
 import { r_avertexnormals } from '../common/anorm_dots.js';
+import { MAXALIASTRIS } from './gl_model_types.js';
 
 /*
 =================================================================
@@ -36,16 +37,17 @@ ALIAS MODEL DISPLAY LIST GENERATION
 let aliasmodel = null; // model_t *
 let paliashdr = null; // aliashdr_t *
 
-const used = new Uint8Array( 8192 );
+const used = new Uint8Array( MAXALIASTRIS ); // one per triangle
 
 // the command list holds counts and s/t values that are valid for
-// every frame
-const commands = new Int32Array( 8192 );
+// every frame; sized for the worst case, a strip per triangle (a count and three s/t pairs each) and the end marker,
+// so a model at the triangle limit cannot overrun it (WinQuake's fixed 8192 fitted its 2048 triangles)
+const commands = new Int32Array( 7 * MAXALIASTRIS + 1 );
 let numcommands = 0;
 
 // all frames will have their vertexes rearranged and expanded
 // so they are in the order expected by the command list
-const vertexorder = new Int32Array( 8192 );
+const vertexorder = new Int32Array( 3 * MAXALIASTRIS ); // three per triangle at most
 let numorder = 0;
 
 let allverts = 0;

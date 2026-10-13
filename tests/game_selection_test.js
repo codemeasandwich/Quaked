@@ -85,6 +85,9 @@ Deno.test( 'a chosen game whose pack has gone is reported at start', () => {
 	check( GameSelection_ReportStart( true ) === true, 'mounted: nothing to report' );
 	store.set( 'quaked.game.v1', 'shareware' );
 	check( GameSelection_ReportStart( false ) === true, 'the shareware needs no owned pack' );
+	store.set( 'quaked.game.v1', 'mod_gone_since' ); // a found add-on whose folder was removed after it was chosen
+	check( GameSelection_ReportStart( true, true ) === false, 'a found add-on no folder names any more: reported, not run as Quake silently' );
+	store.clear();
 
 } );
 
@@ -182,6 +185,20 @@ Deno.test( 'an add-on\'s loose game files become one pack mounted under its own 
 	same( made.join( '|' ), 'progs.dat,autoexec.cfg', 'progs.dat and autoexec.cfg, not config.cfg' );
 	const none = await GameSelection_FetchMission( { name: 'Quoth', folders: [ 'games/Quoth' ] }, async url => url === 'games/Quoth/pak0.pak' ? { url } : null, async () => null, () => { throw Error( 'no loose files: no pack' ); } );
 	same( none.map( p => p.url ).join(), 'games/Quoth/pak0.pak', 'no loose files: only the packs' );
+
+} );
+
+Deno.test( 'a folder of loose files with its own QuakeC starts alone; folder names are fetched percent-encoded', async () => {
+
+	const same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
+	const loose = { 'games/Mod%20%232/progs.dat': 'qc' }, asked = [];
+	const packs = await GameSelection_FetchMission( { name: 'Mod #2', folders: [ 'games/Mod #2' ] }, async url => { asked.push( url ); return null; },
+		async url => { asked.push( url ); return loose[ url ] ? new TextEncoder().encode( loose[ url ] ) : null; }, name => ( { url: name } ) );
+	same( packs?.map( p => p.url ).join(), 'games/Mod #2/loose', 'no pack, but a progs.dat: the loose pack is the add-on (the catalogue calls it playable)' );
+	check( asked.includes( 'games/Mod%20%232/pak0.pak' ) && ! asked.some( u => u.includes( '#' ) ), 'every URL is percent-encoded: ' + asked.join() );
+	const cfgOnly = await GameSelection_FetchMission( { name: 'Cfg', folders: [ 'games/Cfg' ] }, async () => null,
+		async url => url === 'games/Cfg/autoexec.cfg' ? new Uint8Array( [ 98 ] ) : null, () => { throw Error( 'no add-on here' ); } );
+	same( cfgOnly, null, 'loose files without QuakeC or packs are not an add-on' );
 
 } );
 

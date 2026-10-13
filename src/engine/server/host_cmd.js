@@ -39,7 +39,9 @@ import { Cvar_Set, Cvar_SetValue, Cvar_VariableValue } from '../common/cvar.js';
 import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv, Cmd_Args, Cmd_ExecuteString,
 	Cmd_ForwardToServer, cmd_source, src_command, src_client, Cbuf_AddText } from '../common/cmd.js';
 import { SV_SpawnServer, SV_SaveSpawnparms, SV_RestorePowerups, SV_ClearCarriedPowerups, SV_DropClient,
-	SV_WriteClientdataToMessage, current_skill, SV_CheckSignon } from './sv_main.js';
+	SV_WriteClientdataToMessage, current_skill, SV_CheckSignon, sv_protocol } from './sv_main.js';
+import { PROTOCOL_LARGE } from '../common/protocol.js';
+import { MAX_EDICTS, MAX_EDICTS_STANDARD } from '../common/quakedef.js';
 import { sv, svs, host_client, set_host_client,
 	NUM_SPAWN_PARMS, NUM_PING_TIMES } from './server.js';
 import { cls, cl, ca_connected, ca_dedicated, MAX_DEMOS } from '../client/client.js';
@@ -1205,6 +1207,17 @@ function Host_Loadgame_f() {
 
 		} );
 		return;
+
+	}
+
+	// a save of a map that grew past protocol 15's 600 entities (it was playing on the large-map protocol, which a new
+	// session does not start with) loads on the large-map protocol; one past even that is refused
+	const saved = ( allLines.slice( lineIdx ).join( '\n' ).match( /{/g ) ?? [] ).length - 1; // the globals' block is first
+	if ( saved > MAX_EDICTS ) { Con_Printf( 'Couldn\'t load: the save has %i entities, more than %i\n', saved, MAX_EDICTS ); return; }
+	if ( saved > MAX_EDICTS_STANDARD && ( sv_protocol.value | 0 ) !== PROTOCOL_LARGE ) {
+
+		Con_Printf( 'The save has %i entities: loading it with the large-map protocol\n', saved );
+		Cvar_Set( 'sv_protocol', String( PROTOCOL_LARGE ) );
 
 	}
 

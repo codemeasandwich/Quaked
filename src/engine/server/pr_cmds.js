@@ -965,7 +965,7 @@ function PF_precache_sound() {
 		}
 
 		SV_LargeProtocolNeeded( sv, 'more than ' + limit + ' sounds' );
-		PR_RunError( 'PF_precache_sound: overflow (more than ' + limit + ' sounds' + ( limit === 256 ? '; a larger map needs sv_protocol 1015' : '' ) + ')' );
+		PR_RunError( 'PF_precache_sound: overflow (more than ' + limit + ' sounds)' );
 
 	}
 
@@ -999,7 +999,7 @@ function PF_precache_model() {
 		}
 
 		SV_LargeProtocolNeeded( sv, 'more than ' + limit + ' models' );
-		PR_RunError( 'PF_precache_model: overflow (more than ' + limit + ' models' + ( limit === 256 ? '; a larger map needs sv_protocol 1015' : '' ) + ')' );
+		PR_RunError( 'PF_precache_model: overflow (more than ' + limit + ' models)' );
 
 	}
 

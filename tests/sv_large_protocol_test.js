@@ -13,5 +13,8 @@ Deno.test( 'a protocol-15 limit passed while loading asks for the large-map prot
 	check( thrown?.largeProtocol === 'more than 256 models' && /large-map protocol/.test( thrown.message ), 'loading on protocol 15: asked' );
 	SV_LargeProtocolNeeded( { state: ss_active, protocol: PROTOCOL_VERSION }, 'during play' ); // returns: the caller errors as before
 	SV_LargeProtocolNeeded( { state: ss_loading, protocol: PROTOCOL_LARGE }, 'already large' ); // returns: a real limit
+	thrown = null;
+	try { SV_LargeProtocolNeeded( { state: ss_active, settling: true, protocol: PROTOCOL_VERSION }, 'in a settle frame' ); } catch ( e ) { thrown = e; }
+	check( thrown?.largeProtocol === 'in a settle frame', 'the two settle frames still count as loading' );
 
 } );

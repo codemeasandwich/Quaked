@@ -35,7 +35,10 @@ this port's own server and client speak it.
 
 - **When it is used.** A server speaks it when `sv_protocol` is 1015. `SV_SpawnServer` reads that once per map,
   before anything is precached or written. Dimension of the Machine's selection entry asks for it
-  (`MISSION_PACKS.mg1.protocol`), and `main.js` sets it after Host_Init, before any map loads.
+  (`MISSION_PACKS.mg1.protocol`), and `main.js` sets it after Host_Init, before any map loads. Since 13 October a map
+  also chooses it itself: one that passes a protocol-15 limit while it loads is loaded again on 1015, which then stays
+  for the session, and a save with more than 600 entities loads on it (`sv_large_protocol.js`,
+  docs/add-ons-2026-10-13.md).
 - **Protocol 15 is unchanged.** Every other game speaks protocol 15, byte for byte as before.
 - **How the client knows.** The client reads the protocol from the serverinfo (`cl.protocol`) and accepts either.
 - **On the server**, `SV_WriteIndex` writes a byte or a short. It is used for:
@@ -61,7 +64,8 @@ this port's own server and client speak it.
   names' lengths. 2048 of each was not tried; mge2m2's 361 models are the most any map here needs.
 - **Signon:** 48000 bytes leaves the prespawn message (the signon plus the serverinfo's other messages) room within
   64000.
-- **The overflow message** says that a larger map needs `sv_protocol 1015`.
+- **The overflow message** said that a larger map needs `sv_protocol 1015`; since the map now chooses 1015 itself, an
+  overflow on 1015 just names the limit.
 - **Newer Game's level travel** adds its resources within the same limits.
 - **Corpses:** Newer Game's axe-cut corpses now cap themselves against `sv.max_edicts`. They used the MAX_EDICTS
   constant, which is now above a protocol-15 server's limit.

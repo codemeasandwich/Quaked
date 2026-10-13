@@ -156,6 +156,8 @@ export function GameSelection_MissionPack() {
  * pack of the first of its folders that has a pak0, from pak0 up to the first missing one (at most pak9), in order, so
  * a later pack's files win (COM_AddPack), as Quake reads a game folder; and, first, a pack of the loose game files in
  * that folder (GAME_CATALOGUE_LOOSE_FILES, such as X-Men's progs.dat), which Quake searches after the folder's packs.
+ * A folder with no pack but a loose progs.dat is the add-on by itself (its QuakeC on Quake's maps). Paths are
+ * percent-encoded per segment, as the catalogue probes them, so a folder named "Mod #2" is fetched whole.
  *
  * @param {?object} mission the entry
  * @param {function(string): Promise<?object>} fetchPak fetches one pack by URL, null when it is not there
@@ -170,16 +172,13 @@ export async function GameSelection_FetchMission( mission, fetchPak, fetchFile =
 
 		for ( const folder of mission.folders ) {
 
-			const found = [];
-			for ( let n = 0; n < 10; n ++ ) { const pack = await fetchPak( `${folder}/pak${n}.pak` ); if ( ! pack ) break; found.push( pack ); }
-			if ( found.length === 0 ) continue;
-			if ( fetchFile && loosePack ) {
-
-				const loose = [];
-				for ( const name of GAME_CATALOGUE_LOOSE_FILES ) { const data = await fetchFile( `${folder}/${name}` ); if ( data ) loose.push( { name, data } ); }
-				if ( loose.length > 0 ) found.unshift( loosePack( `${folder}/loose`, loose ) );
-
-			}
+			const found = [], at = folder.split( '/' ).map( encodeURIComponent ).join( '/' ); // as the catalogue probes it
+			for ( let n = 0; n < 10; n ++ ) { const pack = await fetchPak( `${at}/pak${n}.pak` ); if ( ! pack ) break; found.push( pack ); }
+			const loose = [];
+			if ( fetchFile && loosePack ) for ( const name of GAME_CATALOGUE_LOOSE_FILES ) { const data = await fetchFile( `${at}/${encodeURIComponent( name )}` ); if ( data ) loose.push( { name, data } ); }
+			// a folder of loose files alone is an add-on when its QuakeC is among them (the catalogue's rule)
+			if ( found.length === 0 && ! loose.some( f => f.name === 'progs.dat' ) ) continue;
+			if ( loose.length > 0 ) found.unshift( loosePack( `${folder}/loose`, loose ) );
 			return found;
 
 		}
@@ -422,6 +421,14 @@ export function GameSelection_ReportStart( mounted, missionMounted = true ) {
 	if ( mission && ! missionMounted ) {
 
 		const line = mission.folders ? `game: ${mission.name} was chosen, but its packs were not found (no pak0.pak in ${mission.folders.join( ' or ' )}); Quake is running\n` : `game: ${mission.name} was chosen, but its pack was not found (${mission.packs.join( ' or ' )}); Quake is running\n`;
+		Con_Printf( line ); Sys_Printf( line );
+		return false;
+
+	}
+	if ( ! mission && isAddon( choice ) ) {
+
+		// a found add-on's folder that is gone (renamed or removed since it was chosen), or an address naming none
+		const line = `game: ${choice} was chosen, but no game folder of that name was found; ${mounted ? 'Quake' : 'the shareware'} is running\n`;
 		Con_Printf( line ); Sys_Printf( line );
 		return false;
 

@@ -4,7 +4,7 @@
 // server error and a request that never answers. Every read stays bounded; found, validated and playable are told
 // apart; a pack dropped in between refreshes is found by the next one; an unchanged pack's directory is not re-read.
 import { createServer } from 'node:http';
-import { GameCatalogue_Refresh, GameCatalogue_ProbePack, GAME_CATALOGUE_LIMITS } from '../src/engine/common/game_catalogue.js';
+import { GameCatalogue_Refresh, GameCatalogue_ProbePack, GameCatalogue_DiscoveredId, GAME_CATALOGUE_LIMITS } from '../src/engine/common/game_catalogue.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
 
@@ -60,6 +60,7 @@ const files = new Map( [
 	[ '/found/games/My Mod!/pak0.pak', pack( [ 'maps/mymap.bsp', 'sound/x.wav' ] ) ],
 	[ '/found/games/Empty/pak0.pak', pack( [ 'gfx/readme.lmp' ] ) ],
 	[ '/found/games/.hidden/pak0.pak', pack( [ 'maps/secret.bsp' ] ) ],
+	[ '/found/games/Dawn of the Machine/pak0.pak', pack( [ 'maps/dawn1.bsp' ] ) ], // a placeholder's folder
 	// Abyss of Pandemonium as released: its start map in pak1, its QuakeC in pak3
 	[ '/complete/games/Abyss of Pandemonium/pak0.pak', pack( [ 'gfx.wad' ] ) ],
 	[ '/complete/games/Abyss of Pandemonium/pak1.pak', pack( [ 'maps/start.bsp' ] ) ],
@@ -101,7 +102,7 @@ const server = createServer( ( req, res ) => {
 	if ( path === '/complete/games/Malice/quake.rc' ) { res.writeHead( 200, { 'Content-Type': 'text/html' } ); return res.end( '<!doctype html><title>index</title>' ); }
 	if ( path === '/complete/games/Malice/autoexec.cfg' ) { res.writeHead( 200, { 'Content-Length': 14 } ); return res.end( 'bind i prevtoy' ); }
 	// a source build's game library listing (tools/serve.py lists folders as links)
-	if ( path === '/found/games/' ) { res.writeHead( 200, { 'Content-Type': 'text/html' } ); return res.end( '<ul><li><a href="Quake/">Quake/</a><li><a href="My%20Mod%21/">My Mod!/</a><li><a href="Empty/">Empty/</a><li><a href=".hidden/">.hidden/</a><li><a href="notes.txt">notes.txt</a></ul>' ); }
+	if ( path === '/found/games/' ) { res.writeHead( 200, { 'Content-Type': 'text/html' } ); return res.end( '<ul><li><a href="Quake/">Quake/</a><li><a href="My%20Mod%21/">My Mod!/</a><li><a href="Empty/">Empty/</a><li><a href=".hidden/">.hidden/</a><li><a href="notes.txt">notes.txt</a><li><a href="Dawn%20of%20the%20Machine/">Dawn of the Machine/</a></ul>' ); }
 	if ( path === '/resources/ad/pak0.pak' ) { res.writeHead( 200, { 'Content-Type': 'text/html' } ); return res.end( '<!doctype html><title>Not found</title>' ); }
 	const range = /^bytes=(\d+)-(\d+)$/.exec( req.headers.range ?? '' );
 	if ( path === '/resources/mg1/pak0.pak' ) {
@@ -218,6 +219,19 @@ Deno.test( 'a source build finds add-ons by their folders; one with maps plays, 
 	check( g( 'mod_empty' )?.present && ! g( 'mod_empty' ).playable && /neither maps nor QuakeC/.test( g( 'mod_empty' ).reason ), 'nothing to play: ' + g( 'mod_empty' )?.reason );
 	check( ! catalogue.games.some( x => /hidden|notes/.test( x.id ) ), 'dot folders and files are not games' );
 	check( ! catalogue.games.some( x => x.id === 'mod_quake' ), 'a known game\'s folder is that game, not a found one' );
+	check( ! catalogue.games.some( x => /^mod_dawn/.test( x.id ) ), 'a placeholder\'s folder does not start as an add-on around it' );
+
+} );
+
+Deno.test( 'a found folder\'s id is the Mac app\'s: no empty id, one _ per character, a clash numbered', () => {
+
+	// the same cases as src-tauri/tests/library_contract.rs
+	const same = ( a, b ) => check( a === b, `${a} != ${b}` );
+	same( GameCatalogue_DiscoveredId( 'My Mod!' ), 'mod_my_mod' );
+	same( GameCatalogue_DiscoveredId( 'my-mod', [ 'mod_my_mod' ] ), 'mod_my_mod_2' );
+	same( GameCatalogue_DiscoveredId( '日本語' ), 'mod_addon' );
+	same( GameCatalogue_DiscoveredId( '!!!', [ 'mod_addon' ] ), 'mod_addon_2' );
+	same( GameCatalogue_DiscoveredId( 'Mod😀X' ), 'mod_mod_x' );
 
 } );
 

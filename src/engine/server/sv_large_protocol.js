@@ -16,16 +16,17 @@ import { PROTOCOL_LARGE } from '../common/protocol.js';
 import { ss_loading } from './server.js';
 
 /**
- * Called where a protocol-15 limit is passed: while a map loads on protocol 15, throws the error SV_SpawnServer answers
+ * Called where a protocol-15 limit is passed: while a map loads on protocol 15 (its spawn functions and its two settle
+ * frames, `settling`), throws the error SV_SpawnServer answers
  * by loading the map again with the large-map protocol; otherwise returns, and the caller reports the limit as before.
  *
- * @param {{ state: number, protocol: number }} server the server (`sv`)
+ * @param {{ state: number, protocol: number, settling?: boolean }} server the server (`sv`)
  * @param {string} reason which limit, for the console
  * @throws {Error} with `largeProtocol` set to the reason
  */
 export function SV_LargeProtocolNeeded( server, reason ) {
 
-	if ( server.state !== ss_loading || server.protocol === PROTOCOL_LARGE ) return;
+	if ( ( server.state !== ss_loading && ! server.settling ) || server.protocol === PROTOCOL_LARGE ) return;
 	const error = new Error( 'needs the large-map protocol: ' + reason );
 	error.largeProtocol = reason;
 	throw error;

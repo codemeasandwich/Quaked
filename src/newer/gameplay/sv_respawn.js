@@ -30,6 +30,8 @@ import {Mod_ForName} from '../../engine/render/gl_model.js';
 import {COM_FindFile} from '../../engine/common/pak.js';
 import {sv_gravity,SV_CheckWater} from '../../engine/server/sv_phys.js';
 import {SV_ModelLimit,SV_SoundLimit} from '../../engine/server/sv_main.js';
+import {SV_LargeProtocolNeeded} from '../../engine/server/sv_large_protocol.js';
+import {Host_Error} from '../../engine/server/host.js';
 import {Respawn_Sample,Respawn_NextFrame,RESPAWN_DELAY,RESPAWN_TURN} from '../ui/respawn_motion.js';
 import {RESPAWN_WEAPONS,RESPAWN_AMMO,Respawn_DropAmmo} from './respawn_record.js';
 import {IT_AXE,IT_KEY1,IT_KEY2,IT_INVISIBILITY,IT_INVULNERABILITY,IT_QUAD,IT_SUIT,STAT_AMMO,STAT_SHELLS,STAT_NAILS,STAT_ROCKETS,STAT_CELLS,STAT_TOTALMONSTERS} from '../../engine/common/quakedef.js';
@@ -89,9 +91,10 @@ function callNative(p,functionIndex){const self=pr_global_struct.self,other=pr_g
  * `sv.model_precache`/`sv.models`. Called by SV_SpawnServer after the level's spawn functions, and again from
  * `SV_RespawnRestoreDropModel` when a save brings back a drop. Lasts for the level.
  *
- * @throws {Error} 'Respawn drop model budget exhausted' when no free model slot below 256 remains
+ * @throws {Error} while a protocol-15 map loads and the table is full, the large-map retry (SV_LargeProtocolNeeded);
+ *   otherwise Host_Error 'Respawn drop model budget exhausted' when no free slot below SV_ModelLimit() remains
  */
-export function SV_RespawnPrecache(){if(!localContext())return;for(const n of new Set([...RESPAWN_WEAPONS.map(w=>w.model),'progs/backpack.mdl'])){if(sv.model_precache.includes(n)||!COM_FindFile(n))continue;const i=sv.model_precache.findIndex((v,i)=>i>0&&!v);if(i<1||i>=256)throw Error('Respawn drop model budget exhausted');sv.model_precache[i]=n;sv.models[i]=Mod_ForName(n,true);}}
+export function SV_RespawnPrecache(){if(!localContext())return;for(const n of new Set([...RESPAWN_WEAPONS.map(w=>w.model),'progs/backpack.mdl'])){if(sv.model_precache.includes(n)||!COM_FindFile(n))continue;const limit=SV_ModelLimit(),i=sv.model_precache.findIndex((v,i)=>i>0&&!v);if(i<1||i>=limit){SV_LargeProtocolNeeded(sv,'more than '+limit+' models');Host_Error('Respawn drop model budget exhausted (more than '+limit+' models)');}sv.model_precache[i]=n;sv.models[i]=Mod_ForName(n,true);}}
 /**
  * At a coordinated death (from the death hook, before QC's PlayerDie body runs), throws the player's weapons and
  * ammunition into the level as `dropped_weapon` entities that `SV_RespawnDropTouch` gives back: one per held weapon,

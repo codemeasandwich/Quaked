@@ -84,6 +84,7 @@ export class server_t {
 		this.lightstyles = new Array( MAX_LIGHTSTYLES ).fill( null );
 		this.num_edicts = 0;
 		this.max_edicts = 0;
+		this.settling = false; // in SV_SpawnServer's two settle frames, which still count as loading (sv_large_protocol.js)
 		this.edicts = null; // edict_t * -- can NOT be array indexed (variable sized)
 		this.state = ss_loading; // some actions are only valid during load
 

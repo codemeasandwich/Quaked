@@ -60,6 +60,9 @@ pub const GAMES: &[(&str, &[&str])] = &[
 pub const LOOSE_FILES: &[&str] = &["progs.dat", "autoexec.cfg", "quake.rc"];
 /// The add-ons among GAMES (game_catalogue.js kind 'addon'): only they get loose files.
 pub const ADDONS: &[&str] = &["ad", "quoth", "malice", "xmen", "aopfm_v2", "soe"];
+/// Names of games the catalogue lists but cannot play yet (game_catalogue.js `placeholder`): a folder so named is not
+/// discovered as an add-on, so it cannot start around the placeholder.
+pub const PLACEHOLDERS: &[&str] = &["Dawn of the Machine", "dawn"];
 /// At most this many bytes for a loose file.
 const LOOSE_LIMIT: u64 = 64 << 20;
 fn children(path: &Path) -> Result<BTreeMap<String, PathBuf>, String> {
@@ -137,10 +140,13 @@ fn list_game(dir: &Path, game: &str, root: &Path, addon: bool) -> Result<Option<
 }
 
 /// A discovered add-on's id: `mod_` and its folder name in lower case, other characters as `_` (so it is safe in a
-/// token, a URL and a storage key); a second folder with the same id gets `_2`, and so on.
+/// token, a URL and a storage key), `mod_addon` when nothing is left; a second folder with the same id gets `_2`, and
+/// so on. The same as the source build's (GameCatalogue_DiscoveredId, src/engine/common/game_catalogue.js).
 fn discovered_id(folder: &str, taken: &[String]) -> String {
     let slug: String = folder.to_lowercase().chars().map(|c| if c.is_ascii_alphanumeric() { c } else { '_' }).collect();
-    let base = format!("mod_{}", slug.trim_matches('_'));
+    let slug = slug.trim_matches('_');
+    // a name with no ASCII letter or digit (such as one in another script) still gets a usable id
+    let base = format!("mod_{}", if slug.is_empty() { "addon" } else { slug });
     let mut id = base.clone();
     let mut n = 2;
     while taken.contains(&id) {
@@ -183,7 +189,12 @@ pub fn scan(root: &Path) -> Result<Library, String> {
     // Any other folder holding a pak0.pak or a progs.dat is an add-on too (docs/add-ons-2026-10-13.md: the engine
     // loads what a player adds without its own entry), named from its folder. A folder that cannot be read, or
     // resolves outside the library, is skipped: one odd folder never hides the others.
-    let known: Vec<String> = GAMES.iter().flat_map(|(_, aliases)| aliases.iter().map(|a| a.to_lowercase())).collect();
+    let known: Vec<String> = GAMES
+        .iter()
+        .flat_map(|(_, aliases)| aliases.iter())
+        .chain(PLACEHOLDERS.iter())
+        .map(|a| a.to_lowercase())
+        .collect();
     let mut discovered: Vec<Discovered> = Vec::new();
     for (lower, path) in &top {
         if lower.starts_with('.') || known.contains(lower) {

@@ -258,3 +258,17 @@ fn any_folder_with_a_pak0_or_progs_dat_is_discovered_as_an_add_on_named_from_its
     let names: Vec<(&str, &str)> = found.discovered.iter().map(|d| (d.id.as_str(), d.name.as_str())).collect();
     assert_eq!(names, [("mod_my_mod", "My Mod!"), ("mod_my_mod_2", "my-mod")], "named from the folder; a clash gets _2");
 }
+
+#[test]
+fn a_folder_with_no_ascii_name_gets_a_usable_id_and_a_placeholder_folder_is_not_discovered() {
+    let f = Fixture::new();
+    f.write("Quake/pak0.pak", b"base");
+    f.write("日本語/pak0.pak", b"pack");
+    f.write("Mod😀X/pak0.pak", b"pack");
+    f.write("Dawn of the Machine/pak0.pak", b"not playable yet");
+    let found = library::scan(&f.0).unwrap();
+    let mut ids: Vec<&str> = found.discovered.iter().map(|d| d.id.as_str()).collect();
+    ids.sort();
+    // one `_` per character, as the source build's GameCatalogue_DiscoveredId (its test has the same cases)
+    assert_eq!(ids, ["mod_addon", "mod_mod_x"], "no empty id; the placeholder's folder is left to its placeholder");
+}

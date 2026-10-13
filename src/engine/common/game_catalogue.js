@@ -300,7 +300,7 @@ export function GameCatalogue_AllGames() {
 }
 /**
  * A found folder's id, as the Mac app's library makes it (src-tauri/src/library.rs discovered_id): `mod_` and the folder
- * name in lower case, other characters as `_`; a clash gets `_2`, and so on.
+ * name in lower case, other characters as `_` (`mod_addon` when nothing is left); a clash gets `_2`, and so on.
  *
  * @param {string} folder the folder's name
  * @param {Array<string>} taken ids already given
@@ -308,7 +308,8 @@ export function GameCatalogue_AllGames() {
  */
 export function GameCatalogue_DiscoveredId( folder, taken = [] ) {
 
-	const base = 'mod_' + folder.toLowerCase().replace( /[^a-z0-9]/g, '_' ).replace( /^_+|_+$/g, '' );
+	// per character, not per UTF-16 unit, as Rust's chars(); a name with no ASCII letter or digit gets `mod_addon`
+	const base = 'mod_' + ( folder.toLowerCase().replace( /[^a-z0-9]/gu, '_' ).replace( /^_+|_+$/g, '' ) || 'addon' );
 	let id = base;
 	for ( let n = 2; taken.includes( id ); n ++ ) id = `${base}_${n}`;
 	return id;
@@ -320,7 +321,8 @@ async function discoverFolders( base, fetchImpl ) {
 
 	let html = '';
 	try { const r = await fetchImpl( new URL( 'games/', base ).href, { cache: 'no-store' } ); if ( ! r.ok || ! /html/.test( r.headers.get( 'content-type' ) ?? '' ) ) return []; html = await r.text(); } catch { return []; }
-	const known = new Set( GAME_CATALOGUE_GAMES.flatMap( g => g.folders ).map( f => f.split( '/' ).pop().toLowerCase() ) ), out = [];
+	// a placeholder's name counts as known (library.rs PLACEHOLDERS): its folder never starts as an add-on around it
+	const known = new Set( [ ...GAME_CATALOGUE_GAMES.flatMap( g => g.folders ).map( f => f.split( '/' ).pop() ), ...GAME_CATALOGUE_GAMES.filter( g => g.placeholder ).flatMap( g => [ g.name, g.id ] ) ].map( f => f.toLowerCase() ) ), out = [];
 	for ( const m of html.matchAll( /href="([^"?#\/]+)\/"/g ) ) {
 
 		let name; try { name = decodeURIComponent( m[ 1 ] ); } catch { continue; }

@@ -1857,10 +1857,11 @@ SV_SpawnServer
  * Newer maps are used (single player, Newer Game, seamless travel on) and gives seamless travel the engine's model
  * functions.
  *
- * @param {string} server the map name without 'maps/' or '.bsp', e.g. 'e1m1'
- * A map that passes a protocol-15 limit while it loads (models, sounds, entities or the signon) is loaded again with
- * the large-map protocol, which then stays for the session (sv_large_protocol.js; docs/add-ons-2026-10-13.md).
+ * A map that passes a protocol-15 limit while it loads (models, sounds, entities, in its settle frames too, or the
+ * signon) is loaded again with the large-map protocol, which then stays for the session (sv_large_protocol.js;
+ * docs/add-ons-2026-10-13.md).
  *
+ * @param {string} server the map name without 'maps/' or '.bsp', e.g. 'e1m1'
  * @throws {Error} through `Sys_Error` when progs.dat cannot be loaded or the power-up carry sounds overflow the sound
  *   precache; a map that cannot be loaded prints a message and leaves `sv.active` false instead
  */
@@ -1876,6 +1877,7 @@ export function SV_SpawnServer( server ) {
 		Con_Printf( '%s %s: loading it with the large-map protocol\n', server, error.message );
 		Cvar_Set( 'sv_protocol', String( PROTOCOL_LARGE ) );
 		sv.active = false; // its clients were told to reconnect the first time
+		sv.settling = false;
 		spawnServer( server );
 
 	}
@@ -2084,7 +2086,7 @@ function spawnServer( server ) {
 		for (const sound of ['items/inv2.wav','items/inv3.wav','items/protect2.wav','items/protect3.wav','items/damage2.wav','items/damage3.wav','items/suit2.wav']) {
 			if (sv.sound_precache.includes(sound)) continue;
 			let slot=1;while(slot<MAX_SOUNDS && sv.sound_precache[slot])slot++;
-			if(slot>=SV_SoundLimit())Sys_Error('Power-up carry sound precache overflow');
+			if(slot>=SV_SoundLimit()){SV_LargeProtocolNeeded(sv,'more than '+SV_SoundLimit()+' sounds');Sys_Error('Power-up carry sound precache overflow');}
 			sv.sound_precache[slot]=sound;
 		}
 	}
@@ -2093,10 +2095,13 @@ function spawnServer( server ) {
 	// all setup is completed, any further precache statements are errors
 	sv.state = ss_active;
 
-	// run two frames to allow everything to settle
+	// run two frames to allow everything to settle (still part of loading for the protocol choice: a mod whose spawn
+	// functions create their entities on a first think passes 600 here, sv_large_protocol.js)
 	set_host_frametime( 0.1 );
+	sv.settling = true;
 	SV_Physics();
 	SV_Physics();
+	sv.settling = false;
 
 	// create a baseline for more efficient communications
 	SV_CreateBaseline();

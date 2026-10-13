@@ -403,6 +403,8 @@ export function Mod_LoadAliasModel( mod, buffer ) {
 		Sys_Error( 'model ' + mod.name + ' has too many vertices' );
 	if ( pheader.numtris <= 0 )
 		Sys_Error( 'model ' + mod.name + ' has no triangles' );
+	if ( pheader.numtris > MAXALIASTRIS )
+		Sys_Error( 'model ' + mod.name + ' has too many triangles' );
 	if ( pheader.numframes < 1 )
 		Sys_Error( 'Mod_LoadAliasModel: Invalid # of frames: ' + pheader.numframes );
 

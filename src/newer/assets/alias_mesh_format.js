@@ -9,7 +9,12 @@
  *
  * Errors: throws at 5 places.
  */
+import { MAXALIASTRIS } from '../../engine/render/gl_model_types.js';
 export const ALIAS_MESH_VERSION='quake-original-strip-fan-1';
+/** The most command ints a model at the triangle limit can need (a strip per triangle, and the end marker; gl_mesh.js). */
+export const ALIAS_MESH_MAX_COMMANDS=7*MAXALIASTRIS+1;
+/** The most vertex-order entries: three per triangle. */
+export const ALIAS_MESH_MAX_ORDER=3*MAXALIASTRIS;
 /**
  * Builds the identity key of an alias model's mesh: the format version plus every header field that `BuildTris`
  * (gl_mesh.js) reads to make its strip/fan command list. Two headers with the same signature mesh identically, so the
@@ -28,7 +33,7 @@ export function AliasMeshSignature(h){return JSON.stringify([ALIAS_MESH_VERSION,
  * totals must match `order` and `h.numtris`.
  *
  * @param {{ commands: Array<number>, order: Array<number> }} record untrusted record: `commands` int32 values (at most
- *   8192), `order` vertex indices in `0..h.numverts-1` (at most 8192), one per emitted vertex
+ *   ALIAS_MESH_MAX_COMMANDS), `order` vertex indices in `0..h.numverts-1` (at most ALIAS_MESH_MAX_ORDER), one per emitted vertex
  * @param {aliashdr_t} h the alias header the record is for; reads `numverts` and `numtris`
  * @returns {{ commands: Int32Array, order: Int32Array }} newly allocated typed copies of the validated arrays
  * @throws {Error} 'Invalid alias mesh record' for a missing or out-of-range array; 'Invalid alias mesh primitive' for a
@@ -36,7 +41,7 @@ export function AliasMeshSignature(h){return JSON.stringify([ALIAS_MESH_VERSION,
  *   terminator/order' when the 0 is not last or the totals disagree; 'Missing alias mesh terminator' when there is no 0
  */
 export function AliasMeshValidate(record,h){
- if(!record||!Array.isArray(record.commands)||!Array.isArray(record.order)||record.commands.length>8192||record.order.length>8192||!record.commands.every(v=>Number.isInteger(v)&&v>=-2147483648&&v<=2147483647)||!record.order.every(v=>Number.isInteger(v)&&v>=0&&v<h.numverts))throw Error('Invalid alias mesh record');
+ if(!record||!Array.isArray(record.commands)||!Array.isArray(record.order)||record.commands.length>ALIAS_MESH_MAX_COMMANDS||record.order.length>ALIAS_MESH_MAX_ORDER||!record.commands.every(v=>Number.isInteger(v)&&v>=-2147483648&&v<=2147483647)||!record.order.every(v=>Number.isInteger(v)&&v>=0&&v<h.numverts))throw Error('Invalid alias mesh record');
  const commands=new Int32Array(record.commands),order=new Int32Array(record.order),bits=new Int32Array(1),float=new Float32Array(bits.buffer);let at=0,vertices=0,triangles=0;
  while(at<commands.length){const count=commands[at++];if(!count){if(at!==commands.length||vertices!==order.length||triangles!==h.numtris)throw Error('Invalid alias mesh terminator/order');return {commands,order};}
   const size=Math.abs(count);if(size<3||at+size*2>=commands.length)throw Error('Invalid alias mesh primitive');

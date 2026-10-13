@@ -76,13 +76,13 @@ export function Cmd_SetClientCallbacks( callbacks ) {
 Cbuf_Init
 ============
 */
-/**
- * Allocates the 8192-byte command buffer (space for commands and script files). Called once from `Host_Init`, before
- * `Cmd_Init`; any text already queued is discarded because a new buffer replaces the old one.
- */
 /** The command buffer's size in bytes (Quakespasm's 1 << 18). */
 export const CMD_TEXT_SIZE = 1 << 18;
 
+/**
+ * Allocates the CMD_TEXT_SIZE command buffer (space for commands and script files). Called once from `Host_Init`,
+ * before `Cmd_Init`; any text already queued is discarded because a new buffer replaces the old one.
+ */
 export function Cbuf_Init() {
 
 	// space for commands and script files: 256 KB, as Quakespasm (1 << 18); WinQuake's 8192 bytes cannot take Arcane
