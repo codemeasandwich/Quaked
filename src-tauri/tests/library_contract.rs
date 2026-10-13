@@ -67,7 +67,8 @@ fn scans_known_case_insensitive_aliases_without_recursing_arbitrary_directories(
     let found = library::scan(&f.0).unwrap();
     assert_eq!(
         tokens(&found),
-        ["quake/pak0.pak", "quake/pak1.pak", "hipnotic/pak0.pak", "soe/pak0.pak", "soe/pak1.pak"]
+        ["quake/pak0.pak", "quake/pak1.pak", "hipnotic/pak0.pak", "soe/pak0.pak", "soe/pak1.pak", "mod_unknown/pak0.pak"],
+        "an unknown immediate folder with a pak0 is an add-on (docs/add-ons-2026-10-13.md); nested ones are not"
     );
     assert_eq!(found.root, f.0.canonicalize().unwrap());
     for pack in &found.packs {
@@ -214,11 +215,12 @@ fn lists_an_add_ons_loose_game_files_after_its_packs_and_nothing_else_loose() {
     f.write("X-Men/autoexec.cfg", b"bind i prevtoy");
     f.write("X-Men/config.cfg", b"unbindall");
     f.write("X-Men/readme.txt", b"not a game file");
-    f.write("Quoth/progs.dat", b"no pak0: not a game folder");
+    f.write("Quoth/progs.dat", b"an add-on of loose files only is a game too");
+    f.write("Scourge of Armagon/progs.dat", b"a mission pack without its pak0 is not");
     let found = library::scan(&f.0).unwrap();
-    assert_eq!(tokens(&found), ["xmen/pak0.pak", "xmen/progs.dat", "xmen/autoexec.cfg"]);
+    assert_eq!(tokens(&found), ["quoth/progs.dat", "xmen/pak0.pak", "xmen/progs.dat", "xmen/autoexec.cfg"]);
     let loose: Vec<bool> = found.packs.iter().map(|p| p.loose).collect();
-    assert_eq!(loose, [false, true, true]);
+    assert_eq!(loose, [true, false, true, true]);
     assert_eq!(library::read_range(&found, "xmen/progs.dat", 0, 5).unwrap(), b"loose");
 }
 
@@ -237,4 +239,22 @@ fn a_base_game_gets_no_loose_files_and_a_bad_loose_file_is_left_out_without_fail
     big.set_len((64 << 20) + 1).unwrap();
     let found = library::scan(&f.0).expect("an unreadable, escaping or oversized loose file does not fail the scan");
     assert_eq!(tokens(&found), ["quake/pak0.pak", "xmen/pak0.pak"], "no loose file for Quake; none of the bad ones");
+}
+
+#[test]
+fn any_folder_with_a_pak0_or_progs_dat_is_discovered_as_an_add_on_named_from_its_folder() {
+    let f = Fixture::new();
+    f.write("Quake/pak0.pak", b"base");
+    f.write("My Mod!/pak0.pak", b"pack");
+    f.write("My Mod!/autoexec.cfg", b"bind i prevtoy");
+    f.write("my-mod/progs.dat", b"loose quakec only");
+    f.write(".hidden/pak0.pak", b"not a game");
+    f.write("notes/readme.txt", b"not a game");
+    let found = library::scan(&f.0).unwrap();
+    assert_eq!(
+        tokens(&found),
+        ["quake/pak0.pak", "mod_my_mod/pak0.pak", "mod_my_mod/autoexec.cfg", "mod_my_mod_2/progs.dat"]
+    );
+    let names: Vec<(&str, &str)> = found.discovered.iter().map(|d| (d.id.as_str(), d.name.as_str())).collect();
+    assert_eq!(names, [("mod_my_mod", "My Mod!"), ("mod_my_mod_2", "my-mod")], "named from the folder; a clash gets _2");
 }

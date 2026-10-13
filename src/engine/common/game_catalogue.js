@@ -205,8 +205,6 @@ export async function GameCatalogue_ProbePack( url, options = {} ) {
 const MISSION_PACKS = new Set( [ 'hipnotic', 'rogue' ] );
 // the episodes the engine runs: Dimension of the Past
 const EPISODES = new Set( [ 'dopa', 'mg1' ] ); // mg1 on the large-map protocol (card [34f])
-// the add-ons shown to play (docs/add-ons-2026-10-13.md; not the app library's ADDONS, which lists every add-on): each over Quake, with its own QuakeC and maps
-const PLAYABLE_ADDONS = new Set( [ 'quoth', 'malice', 'aopfm_v2', 'soe', 'xmen' ] );
 
 // What a found game's files show it to be, and whether that is evidence enough to call it playable.
 function assess( game, files, byId ) {
@@ -247,11 +245,13 @@ function assess( game, files, byId ) {
 		return { playable: true, reason: game.id === 'mg1' ? 'an episode: its QuakeC and BSP2 maps, played on Quake with the large-map protocol' : 'an episode: its QuakeC and BSP2 maps, played on Quake' };
 
 	}
-	if ( game.kind === 'addon' && PLAYABLE_ADDONS.has( game.id ) ) {
+	// any add-on, known or found by its folder (docs/add-ons-2026-10-13.md): it plays over Quake when it brings maps,
+	// with its own QuakeC when it has one (otherwise Quake's); what it needs beyond that the engine adapts to
+	if ( game.kind === 'addon' ) {
 
-		const missing = [ 'progs.dat', 'maps/start.bsp' ].filter( name => ! has( name ) );
-		if ( missing.length > 0 ) return { playable: false, reason: `its ${missing.join( ', ' )} ${missing.length === 1 ? 'is' : 'are'} missing` };
-		return { playable: true, reason: 'an add-on: its QuakeC and maps, played on Quake' };
+		const maps = [ ...files ].some( name => /^maps\/[^/]+\.bsp$/.test( name ) );
+		if ( ! maps && ! has( 'progs.dat' ) ) return { playable: false, reason: 'it has neither maps nor QuakeC of its own' };
+		return { playable: true, reason: maps && has( 'progs.dat' ) ? 'an add-on: its QuakeC and maps, played on Quake' : maps ? 'an add-on: its maps, played on Quake with Quake\'s QuakeC' : 'an add-on: its QuakeC, played on Quake\'s maps' };
 
 	}
 	return { playable: false, reason: game.kind === 'addon' ? 'add-on support (its QuakeC, entities and limits) is not yet shown to work' : 'its HUD, QuakeC and protocol support are not yet shown to work' };
@@ -276,6 +276,61 @@ let defaultOptions = null;
 let embeddedShareware = null;
 /** A platform may supply fresh discovery options; explicit caller options still win. */
 export function GameCatalogue_SetProvider(provider) { defaultOptions = provider; }
+
+// Add-ons found by their contents rather than by a known name (docs/add-ons-2026-10-13.md: the engine loads what a
+// player adds without its own entry): `mod_<folder>`, played over Quake. Set by the Mac app from its library and by a
+// source build's refresh from the `games/` listing; kept until the next refresh replaces them.
+let discovered = Object.freeze( [] );
+/**
+ * Records the add-ons found in the game library that no known game names.
+ *
+ * @param {Array<{ id: string, name: string, folder: string }>} list each found folder: its id (`mod_...`), its name (the
+ *   folder's) and the folder as the catalogue probes it
+ */
+export function GameCatalogue_SetDiscovered( list ) {
+
+	discovered = Object.freeze( list.map( d => Object.freeze( { id: d.id, name: d.name, kind: 'addon', base: 'quake', folders: Object.freeze( [ d.folder ] ), discovered: true } ) ) );
+
+}
+/** The known games and the add-ons found by their contents. @returns {ReadonlyArray<object>} */
+export function GameCatalogue_AllGames() {
+
+	return [ ...GAME_CATALOGUE_GAMES, ...discovered ];
+
+}
+/**
+ * A found folder's id, as the Mac app's library makes it (src-tauri/src/library.rs discovered_id): `mod_` and the folder
+ * name in lower case, other characters as `_`; a clash gets `_2`, and so on.
+ *
+ * @param {string} folder the folder's name
+ * @param {Array<string>} taken ids already given
+ * @returns {string} the id
+ */
+export function GameCatalogue_DiscoveredId( folder, taken = [] ) {
+
+	const base = 'mod_' + folder.toLowerCase().replace( /[^a-z0-9]/g, '_' ).replace( /^_+|_+$/g, '' );
+	let id = base;
+	for ( let n = 2; taken.includes( id ); n ++ ) id = `${base}_${n}`;
+	return id;
+
+}
+// The folders a served `games/` listing names that no known game uses (a source build: tools/serve.py lists the game
+// library's folders). Dot folders are left out.
+async function discoverFolders( base, fetchImpl ) {
+
+	let html = '';
+	try { const r = await fetchImpl( new URL( 'games/', base ).href, { cache: 'no-store' } ); if ( ! r.ok || ! /html/.test( r.headers.get( 'content-type' ) ?? '' ) ) return []; html = await r.text(); } catch { return []; }
+	const known = new Set( GAME_CATALOGUE_GAMES.flatMap( g => g.folders ).map( f => f.split( '/' ).pop().toLowerCase() ) ), out = [];
+	for ( const m of html.matchAll( /href="([^"?#\/]+)\/"/g ) ) {
+
+		let name; try { name = decodeURIComponent( m[ 1 ] ); } catch { continue; }
+		if ( name.startsWith( '.' ) || known.has( name.toLowerCase() ) || out.some( d => d.name === name ) ) continue;
+		out.push( { id: GameCatalogue_DiscoveredId( name, out.map( d => d.id ) ), name, folder: 'games/' + name } );
+
+	}
+	return out;
+
+}
 export function GameCatalogue_Refresh( options ) {
   if(options===undefined&&Distribution_Profile()==='web')options={games:[GAME_CATALOGUE_GAMES[0]],fetch:async(url,init)=>{
     if(!new URL(url).pathname.endsWith('/games/shareware/pak0.pak'))return new Response(null,{status:404});
@@ -287,7 +342,7 @@ export function GameCatalogue_Refresh( options ) {
   }};
 
 	// one refresh at a time: a second request while one runs (the startup probe and the `games` command) shares it
-	if ( _pending === null ) _pending = Promise.resolve(options ?? defaultOptions?.() ?? {}).then(refresh).finally( () => { _pending = null; } );
+	if ( _pending === null ) _pending = Promise.resolve(options ?? defaultOptions?.() ?? { discover: Distribution_Profile() === 'source' }).then(refresh).finally( () => { _pending = null; } );
 	return _pending;
 
 }
@@ -299,6 +354,21 @@ export const GAME_CATALOGUE_LOOSE_FILES = Object.freeze( [ 'progs.dat', 'autoexe
 
 // one game's folders: the first holding a pak0.pak is the game's; its packs pak0.. in order, stopping at a gap
 // (and, for an add-on, its loose game files: one byte each)
+// An add-on folder's loose game files (GAME_CATALOGUE_LOOSE_FILES) that are there: one byte each, and only an exact
+// ranged answer counts (a server that answers a missing path with a page must not make one).
+async function probeLoose( folder, base, options ) {
+
+	const found = [];
+	for ( const name of GAME_CATALOGUE_LOOSE_FILES ) {
+
+		const got = await rangedGet( options.fetch ?? globalThis.fetch, new URL( folder.split( '/' ).map( encodeURIComponent ).join( '/' ) + '/' + name, base ).href, 0, 1, options.timeoutMs ?? GAME_CATALOGUE_LIMITS.timeoutMs );
+		if ( got.response?.status === 206 && got.exact && got.bytes.length > 0 ) found.push( name );
+
+	}
+	return found;
+
+}
+
 async function probeGame( game, base, options ) {
 
 	const entry = { id: game.id, name: game.name, kind: game.kind, folder: null, packs: [], present: false, validated: false, playable: false, reason: '', fileCount: 0 };
@@ -316,7 +386,10 @@ async function probeGame( game, base, options ) {
 			if ( probe.state === 'error' ) break;
 
 		}
-		if ( packs.length === 0 ) continue;
+		// an add-on's loose game files count as its files (one byte read to see each is there); an add-on of loose files
+		// alone (a progs.dat and no packs) is found too
+		const loose = game.kind === 'addon' ? await probeLoose( folder, base, options ) : [];
+		if ( packs.length === 0 && ! loose.includes( 'progs.dat' ) ) continue;
 		// at the bound: one more header says whether packs were left unread
 		if ( packs.length === GAME_CATALOGUE_LIMITS.packs && packs[ packs.length - 1 ].state !== 'error' ) {
 
@@ -327,19 +400,7 @@ async function probeGame( game, base, options ) {
 		entry.folder = folder; entry.packs = packs; entry.present = true;
 		entry.validated = packs.every( p => p.state === 'valid' );
 		for ( const p of packs ) for ( const f of p.files ?? [] ) files.add( f );
-		// an add-on's loose game files beside its packs count as its files (one byte read to see each is there)
-		if ( game.kind === 'addon' ) {
-
-			entry.loose = [];
-			for ( const name of GAME_CATALOGUE_LOOSE_FILES ) {
-
-				const got = await rangedGet( options.fetch ?? globalThis.fetch, new URL( folder.split( '/' ).map( encodeURIComponent ).join( '/' ) + '/' + name, base ).href, 0, 1, options.timeoutMs ?? GAME_CATALOGUE_LIMITS.timeoutMs );
-				// only an exact ranged answer counts: a server that answers a missing path with a page must not make one
-				if ( got.response?.status === 206 && got.exact && got.bytes.length > 0 ) { entry.loose.push( name ); files.add( name ); }
-
-			}
-
-		}
+		if ( game.kind === 'addon' ) { entry.loose = loose; for ( const name of loose ) files.add( name ); }
 		entry.fileCount = files.size;
 		break;
 
@@ -355,9 +416,12 @@ async function refresh( options ) {
 	const base = options.base ?? ( typeof document !== 'undefined' && document.baseURI ? document.baseURI : typeof location !== 'undefined' ? location.href : 'http://localhost/' );
 	// every game's folders are probed at once (the shelf waits on this before a game starts, card [M1]); each game's own
 	// packs stay in order, and the games are judged in order afterwards (an expansion is judged against its base)
-	const probed = await Promise.all( (options.games ?? GAME_CATALOGUE_GAMES).map( game => probeGame( game, base, options ) ) );
+	// a source build also finds the add-ons in its game library by their folders (a site serves no listing)
+	if ( options.discover ) GameCatalogue_SetDiscovered( await discoverFolders( base, options.fetch ?? globalThis.fetch ) );
+	const list = options.games ?? GameCatalogue_AllGames();
+	const probed = await Promise.all( list.map( game => probeGame( game, base, options ) ) );
 	const games = [], byId = new Map();
-	(options.games ?? GAME_CATALOGUE_GAMES).forEach( ( game, i ) => {
+	list.forEach( ( game, i ) => {
 
 		const { entry, files } = probed[ i ];
 		if ( entry.present && ! entry.validated ) entry.reason = 'found, not validated: ' + ( entry.packs.find( p => p.state !== 'valid' )?.reason ?? '' );

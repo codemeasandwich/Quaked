@@ -3,7 +3,7 @@
  */
 import {invoke,convertFileSrc} from '@tauri-apps/api/core';
 import {listen} from '@tauri-apps/api/event';
-import {GAME_CATALOGUE_GAMES,GameCatalogue_Refresh,GameCatalogue_SetProvider} from '../engine/common/game_catalogue.js';
+import {GameCatalogue_AllGames,GameCatalogue_Refresh,GameCatalogue_SetProvider,GameCatalogue_SetDiscovered} from '../engine/common/game_catalogue.js';
 import {GameSelection_Startable,GameSelection_Kept,GameSelection_Remember,GameSelection_LibraryOrder} from '../engine/common/game_selection.js';
 import {COM_LoadPackFile,COM_BuildPack} from '../engine/common/pak.js';
 import {GameShelf_Show} from '../engine/common/hooks.js'; // filled by src/newer/install.js, which main.js loads first
@@ -31,7 +31,9 @@ function rangedFetch(library){
 }
 async function snapshot(){
  const library=await invoke('library_scan');
- const games=GAME_CATALOGUE_GAMES.map(g=>({...g,folders:[`library/${g.id}`]}));
+ // the add-ons the library found by their folders (src-tauri/src/library.rs), then every game as the library names it
+ GameCatalogue_SetDiscovered((library.discovered??[]).map(d=>({...d,folder:`library/${d.id}`})));
+ const games=GameCatalogue_AllGames().map(g=>({...g,folders:[`library/${g.id}`]}));
  const catalogue=await GameCatalogue_Refresh({games,allPacks:true,base:'https://quaked.invalid/',fetch:rangedFetch(library)});
  return {library,catalogue};
 }
@@ -41,7 +43,7 @@ async function snapshot(){
  * unpacked they are reused offline. A failure returns to the shelf saying so; choosing the game
  * again retries, keeping the parts already verified. */
 async function ensurePacks(definition){
- const distribution=globalThis.__QUAKED_DISTRIBUTION__,packs=distribution.packsFor(definition.id);
+ const distribution=globalThis.__QUAKED_DISTRIBUTION__,packs=distribution.packsFor(definition.id,definition.base);
  if(!packs.length)return;
  const sizes=new Map(packs.map(p=>[p.name,p.parts.reduce((sum,part)=>sum+part.bytes,0)])),total=[...sizes.values()].reduce((a,b)=>a+b,0),done=new Map();
  const status=document.createElement('div');status.id='pack-status';status.role='status';
@@ -72,7 +74,8 @@ export async function Desktop_ShowShelf(reason=''){
 export async function Desktop_Prepare(){
  GameCatalogue_SetProvider(async()=>{
   const library=await invoke('library_scan');
-  return {games:GAME_CATALOGUE_GAMES.map(g=>({...g,folders:[`library/${g.id}`]})),allPacks:true,base:'https://quaked.invalid/',fetch:rangedFetch(library)};
+  GameCatalogue_SetDiscovered((library.discovered??[]).map(d=>({...d,folder:`library/${d.id}`})));
+  return {games:GameCatalogue_AllGames().map(g=>({...g,folders:[`library/${g.id}`]})),allPacks:true,base:'https://quaked.invalid/',fetch:rangedFetch(library)};
  });
  if(!listening){await listen('select-game-location',Desktop_SelectLocation);await listen('lan-menu',()=>globalThis.__QUAKED_LAN_MENU__?globalThis.__QUAKED_LAN_MENU__():alert('Select a game and wait for it to load first.'));listening=true;}
  globalThis.__QUAKED_SELECT_LOCATION__=Desktop_SelectLocation;
@@ -82,7 +85,7 @@ export async function Desktop_Prepare(){
   const {library,catalogue}=await snapshot();
   const selected=catalogue.games.find(g=>g.id===id);
   if(!selected||!GameSelection_Startable(selected,{strict:true}).ok)throw Error(selected?.reason??'Unknown game');
-  const definition=GAME_CATALOGUE_GAMES.find(g=>g.id===id);
+  const definition=GameCatalogue_AllGames().find(g=>g.id===id);
   await ensurePacks(definition);
   const ids=definition.base?[definition.base,id]:[id];
   const packs=[];

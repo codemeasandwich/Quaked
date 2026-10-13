@@ -36,7 +36,7 @@ function key(path) {
 globalThis.__QUAKED_DISTRIBUTION__={profile:spec.profile,engineHash:spec.engineHash,packBase:spec.packBase,metrics,
   has(path){const k=key(path);return k===null||Object.hasOwn(spec.files,k)&&available(spec.files[k]);},
   /** Desktop: the packs a game needs that are not bundled (core is), as packs_ensure takes them. */
-  packsFor(game){if(spec.profile!=='desktop')return [];return (spec.gamePacks?.[game]??[]).filter(name=>name!=='core'&&spec.packs?.[name]).map(name=>({name,parts:spec.packs[name].parts,assets:spec.packs[name].assets}));},
+  packsFor(game,base){if(spec.profile!=='desktop')return [];return (spec.gamePacks?.[game]??(base?[...(spec.gamePacks?.[base]??[])]:[])).filter(name=>name!=='core'&&spec.packs?.[name]).map(name=>({name,parts:spec.packs[name].parts,assets:spec.packs[name].assets}));},
   /** Desktop: the packs are unpacked in `dir`; their assets resolve from now on. */
   usePacks(dir,names){packAssets=dir;for(const name of names)installed.add(name);},
   url(path){

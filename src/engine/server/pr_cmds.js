@@ -50,6 +50,7 @@ import { PR_HostError, PR_RunError } from '../progs/pr_exec.js';
 import { SV_Move, SV_LinkEdict, SV_PointContents, SV_DropToFloor } from './world.js';
 import { SV_movestep, SV_CheckBottom, SV_MoveToGoal as SV_MoveToGoal_Real, SV_Move_SetCallbacks } from './sv_move.js';
 import { SV_StartSound, SV_StartParticle, sv_aim, SV_WriteIndex, SV_ModelLimit, SV_SoundLimit } from './sv_main.js';
+import { SV_LargeProtocolNeeded } from './sv_large_protocol.js';
 import { R_FlashlightSkillSelected } from '../common/hooks.js'; // installed by newer/render/r_flashlightrun.js
 import { SV_GoreOnSetModel } from '../common/hooks.js'; // installed by newer/gameplay/sv_gore.js
 import { SV_AxeGibSeen } from '../common/hooks.js'; // installed by newer/gameplay/sv_axecut.js
@@ -963,6 +964,7 @@ function PF_precache_sound() {
 
 		}
 
+		SV_LargeProtocolNeeded( sv, 'more than ' + limit + ' sounds' );
 		PR_RunError( 'PF_precache_sound: overflow (more than ' + limit + ' sounds' + ( limit === 256 ? '; a larger map needs sv_protocol 1015' : '' ) + ')' );
 
 	}
@@ -996,6 +998,7 @@ function PF_precache_model() {
 
 		}
 
+		SV_LargeProtocolNeeded( sv, 'more than ' + limit + ' models' );
 		PR_RunError( 'PF_precache_model: overflow (more than ' + limit + ' models' + ( limit === 256 ? '; a larger map needs sv_protocol 1015' : '' ) + ')' );
 
 	}

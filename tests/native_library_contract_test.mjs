@@ -105,8 +105,12 @@ test('native strict selection refuses unread directories, damaged packs and abse
   assert.equal(GameSelection_Startable(absentShareware).ok, true, 'legacy web shareware assumption remains intact');
   assert.equal(GameSelection_Startable(absentShareware, { strict: true }).ok, false, 'native app never assumes bundled shareware');
   assert.equal(GameSelection_Startable({ ...absentShareware, present: true, validated: true, playable: true }, { strict: true }).ok, true);
-  assert.equal(GameSelection_Startable({ id: 'ad', present: true, validated: true, playable: true }, { strict: true }).ok, false,
-    'archive discovery does not grant engine support for an add-on');
+  // the catalogue's own rule (maps or QuakeC of its own) decides an add-on's support, not a fixed list
+  // (docs/add-ons-2026-10-13.md "Any folder is a game")
+  assert.equal(GameSelection_Startable({ id: 'ad', present: true, validated: true, playable: false, reason: 'it has no maps or QuakeC of its own' }, { strict: true }).ok, false,
+    'an add-on the catalogue found unplayable is refused');
+  assert.equal(GameSelection_Startable({ id: 'ad', present: true, validated: true, playable: true }, { strict: true }).ok, true,
+    'an add-on the catalogue checked and found playable starts');
 });
 
 test('native catalogue refuses a pack set beyond the existing bounded limit', async () => {

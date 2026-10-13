@@ -23,13 +23,13 @@ import {Distribution_Profile} from '../../platform/distribution.js';
 import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './cmd.js';
 import { Con_Printf } from './console.js';
 import { Sys_Printf } from './sys.js';
-import { GameCatalogue_Refresh, GAME_CATALOGUE_LOOSE_FILES } from './game_catalogue.js';
+import { GameCatalogue_Refresh, GAME_CATALOGUE_LOOSE_FILES, GAME_CATALOGUE_GAMES, GameCatalogue_AllGames } from './game_catalogue.js';
 
 const STORAGE_KEY = 'quaked.game.v1';
 // what each choosable game mounts on top of the shareware, in order tried (card [34a]'s folder, then the owner's
 // resources/ until card [34d] moves it there)
 const QUAKE_PACKS = Object.freeze( [ 'games/Quake/pak0.pak', 'resources/id1/pak0.pak' ] );
-const OWNED_PACKS = Object.freeze( { quake: QUAKE_PACKS, shareware: Object.freeze( [] ), hipnotic: QUAKE_PACKS, rogue: QUAKE_PACKS, dopa: QUAKE_PACKS, mg1: QUAKE_PACKS, quoth: QUAKE_PACKS, malice: QUAKE_PACKS, aopfm_v2: QUAKE_PACKS, soe: QUAKE_PACKS, xmen: QUAKE_PACKS } );
+const OWNED_PACKS = Object.freeze( { quake: QUAKE_PACKS, shareware: Object.freeze( [] ), hipnotic: QUAKE_PACKS, rogue: QUAKE_PACKS, dopa: QUAKE_PACKS, mg1: QUAKE_PACKS, quoth: QUAKE_PACKS } );
 // a mission pack, episode or add-on mounts its own packs over Quake (and the shareware); a mission pack also starts
 // with its switch, an episode runs as standard Quake (card [34c]), an add-on with the switch it needs, if any
 const MISSION_PACKS = Object.freeze( {
@@ -38,18 +38,30 @@ const MISSION_PACKS = Object.freeze( {
 	dopa: Object.freeze( { name: 'Dimension of the Past', switch: null, packs: Object.freeze( [ 'games/Dimension of the Past/pak0.pak', 'resources/dopa/pak0.pak' ] ) } ),
 	// its larger levels need more than 256 models and an 8 KB signon: the large-map protocol (card [34f])
 	mg1: Object.freeze( { name: 'Dimension of the Machine', switch: null, protocol: 1015, packs: Object.freeze( [ 'games/Dimension of the Machine/pak0.pak', 'resources/mg1/pak0.pak' ] ) } ),
-	// an add-on (docs/add-ons-2026-10-13.md): every pack of its folder, pak0 up to the first gap, as Quake reads a game
-	// folder (`folders`: the first that has a pak0). Quoth runs as Quakespasm runs it, with Scourge of Armagon's switch
-	// (its status bar is Scourge's)
-	quoth: Object.freeze( { name: 'Quoth', switch: '-hipnotic', folders: Object.freeze( [ 'games/Quoth', 'resources/quoth' ] ) } ),
-	malice: Object.freeze( { name: 'Malice', switch: null, folders: Object.freeze( [ 'games/Malice', 'resources/malice' ] ) } ),
-	aopfm_v2: Object.freeze( { name: 'Abyss of Pandemonium', switch: null, folders: Object.freeze( [ 'games/Abyss of Pandemonium', 'resources/aopfm_v2' ] ) } ),
-	soe: Object.freeze( { name: 'Soul of Evil', switch: null, folders: Object.freeze( [ 'games/Soul of Evil', 'resources/soe' ] ) } ),
-	// X-Men's QuakeC is a loose progs.dat beside its packs
-	xmen: Object.freeze( { name: 'X-Men', switch: null, folders: Object.freeze( [ 'games/X-Men', 'resources/xmen' ] ) } )
+	// Quoth runs as Quakespasm runs it, with Scourge of Armagon's switch (its status bar is Scourge's); every other add-on
+	// needs no entry (addonEntry)
+	quoth: Object.freeze( { name: 'Quoth', switch: '-hipnotic', folders: Object.freeze( [ 'games/Quoth', 'resources/quoth' ] ) } )
 } );
-const NAMES = Object.freeze( { shareware: 'Quake (shareware)', quake: 'Quake', hipnotic: 'Scourge of Armagon', rogue: 'Dissolution of Eternity', dopa: 'Dimension of the Past', mg1: 'Dimension of the Machine', quoth: 'Quoth', malice: 'Malice', aopfm_v2: 'Abyss of Pandemonium', soe: 'Soul of Evil', xmen: 'X-Men' } );
-export const GAME_SELECTION_CHOICES = Object.freeze( Object.keys( OWNED_PACKS ) );
+const NAMES = Object.freeze( { shareware: 'Quake (shareware)', quake: 'Quake', hipnotic: 'Scourge of Armagon', rogue: 'Dissolution of Eternity', dopa: 'Dimension of the Past', mg1: 'Dimension of the Machine', quoth: 'Quoth' } );
+// Any add-on, known or found by its folder (`mod_<folder>`, game_catalogue.js), is chosen and run the same way, with no
+// entry of its own (docs/add-ons-2026-10-13.md): over Quake, every pack of its folder and its loose game files.
+const KNOWN_ADDONS = Object.freeze( GAME_CATALOGUE_GAMES.filter( g => g.kind === 'addon' ).map( g => g.id ) );
+const isAddon = id => typeof id === 'string' && ( KNOWN_ADDONS.includes( id ) || /^mod_[a-z0-9_]+$/.test( id ) );
+const addonDefinition = id => GameCatalogue_AllGames().find( g => g.id === id && g.kind === 'addon' ) ?? null;
+// an add-on's mission entry: its name and its folders as the source build reaches them (the Mac app reads its library)
+function addonEntry( id ) {
+
+	const def = addonDefinition( id );
+	if ( ! def ) return null;
+	return { name: def.name, switch: null, folders: def.folders.filter( f => /^(games|resources)\//.test( f ) ) };
+
+}
+const missionEntry = id => MISSION_PACKS[ id ] ?? ( isAddon( id ) ? addonEntry( id ) : null );
+const ownedPacks = id => OWNED_PACKS[ id ] ?? ( isAddon( id ) ? QUAKE_PACKS : null );
+const gameName = id => NAMES[ id ] ?? addonDefinition( id )?.name ?? id;
+const choosable = id => Object.hasOwn( OWNED_PACKS, id ) || isAddon( id );
+/** The games that can be chosen by name: the official ones and every known add-on (a found add-on, `mod_...`, too). */
+export const GAME_SELECTION_CHOICES = Object.freeze( [ ...Object.keys( OWNED_PACKS ), ...KNOWN_ADDONS.filter( id => ! Object.hasOwn( OWNED_PACKS, id ) ) ] );
 
 const storage = () => { try { return globalThis.localStorage ?? null; } catch { return null; } };
 
@@ -67,7 +79,7 @@ export function GameSelection_Current() {
 	if ( fromUrl !== null ) return fromUrl;
 	let value = null;
 	try { value = storage()?.getItem( STORAGE_KEY ) ?? null; } catch { value = null; }
-	return GAME_SELECTION_CHOICES.includes( value ) ? value : null;
+	return choosable( value ) ? value : null;
 
 }
 
@@ -80,7 +92,7 @@ export function GameSelection_Current() {
 export function GameSelection_UrlChoice( search ) {
 
 	const id = new URLSearchParams( search || '' ).get( 'game' );
-	return GAME_SELECTION_CHOICES.includes( id ) ? id : null;
+	return choosable( id ) ? id : null;
 
 }
 
@@ -93,7 +105,7 @@ export function GameSelection_UrlChoice( search ) {
  */
 export function GameSelection_Remember( id ) {
 
-	if ( ! GAME_SELECTION_CHOICES.includes( id ) ) return false;
+	if ( ! choosable( id ) ) return false;
 	try { storage()?.setItem( STORAGE_KEY, id ); return storage()?.getItem( STORAGE_KEY ) === id; } catch { return false; }
 
 }
@@ -107,7 +119,7 @@ export function GameSelection_Kept() {
 
 	let value = null;
 	try { value = storage()?.getItem( STORAGE_KEY ) ?? null; } catch { value = null; }
-	return GAME_SELECTION_CHOICES.includes( value ) ? value : null;
+	return choosable( value ) ? value : null;
 
 }
 
@@ -119,7 +131,7 @@ export function GameSelection_Kept() {
  */
 export function GameSelection_OwnedPacks() {
 
-	return OWNED_PACKS[ GameSelection_Current() ?? 'quake' ];
+	return ownedPacks( GameSelection_Current() ?? 'quake' );
 
 }
 
@@ -134,7 +146,7 @@ export function GameSelection_OwnedPacks() {
  */
 export function GameSelection_MissionPack() {
 
-	return MISSION_PACKS[ GameSelection_Current() ] ?? null;
+	return missionEntry( GameSelection_Current() );
 
 }
 
@@ -300,7 +312,7 @@ function savedGame() {
 export function GameSelection_SavePrefix() {
 
 	const game = savedGame();
-	return game === 'shareware' || MISSION_PACKS[ game ] ? `quake_save_${game}_` : 'quake_save_';
+	return game === 'shareware' || MISSION_PACKS[ game ] || isAddon( game ) ? `quake_save_${game}_` : 'quake_save_';
 
 }
 
@@ -315,7 +327,7 @@ export function GameSelection_SavePrefix() {
 export function GameSelection_ConfigKey() {
 
 	const game = savedGame();
-	return MISSION_PACKS[ game ] ? `quake_config_${game}` : 'quake_config';
+	return MISSION_PACKS[ game ] || isAddon( game ) ? `quake_config_${game}` : 'quake_config';
 
 }
 
@@ -336,7 +348,7 @@ export function GameSelection_Startable( game, options = {} ) {
 	if(options.strict && !(game.present && game.validated && game.playable))return {ok:false,unchecked:false,refusal:"is not playable",why:game.reason || "required game files are unavailable"};
 
 	if ( game.id === 'shareware' ) return { ok: true, unchecked: false, refusal: '', why: game.reason ?? '' };
-	if ( ! GAME_SELECTION_CHOICES.includes( game.id ) ) return { ok: false, unchecked: false, refusal: 'cannot be chosen yet', why: game.reason || 'its support is not built' };
+	if ( ! choosable( game.id ) ) return { ok: false, unchecked: false, refusal: 'cannot be chosen yet', why: game.reason || 'its support is not built' };
 	// found but not checked (a server that ignores byte ranges): allowed, as the start reads the whole pack and refuses
 	// a broken one; anything else must be playable
 	const packs = game.packs ?? [], broken = packs.find( p => p.state === 'invalid' || p.state === 'error' );
@@ -384,7 +396,7 @@ export async function GameSelection_Select( id, options = {} ) {
 	try { store.setItem( STORAGE_KEY, id ); } catch { return { ok: false, reason: 'the choice cannot be kept in this browser' }; }
 	if ( GameSelection_Kept() !== id ) return { ok: false, reason: 'the choice cannot be kept in this browser (it did not stay)' }; // the kept one: a ?game URL would mask it
 	reload();
-	return { ok: true, reason: `${NAMES[ id ]}: starting${warning}` };
+	return { ok: true, reason: `${gameName( id )}: starting${warning}` };
 
 }
 
@@ -399,10 +411,10 @@ export async function GameSelection_Select( id, options = {} ) {
 export function GameSelection_ReportStart( mounted, missionMounted = true ) {
 
 	const choice = GameSelection_Current();
-	const mission = MISSION_PACKS[ choice ];
+	const mission = missionEntry( choice );
 	if ( mission && ! mounted ) {
 
-		const line = `game: ${mission.name} was chosen, but it needs Quake, whose pack was not found (${OWNED_PACKS[ choice ].join( ' or ' )}); the shareware is running\n`;
+		const line = `game: ${mission.name} was chosen, but it needs Quake, whose pack was not found (${ownedPacks( choice ).join( ' or ' )}); the shareware is running\n`;
 		Con_Printf( line ); Sys_Printf( line );
 		return false;
 
@@ -414,9 +426,9 @@ export function GameSelection_ReportStart( mounted, missionMounted = true ) {
 		return false;
 
 	}
-	if ( choice !== null && OWNED_PACKS[ choice ].length > 0 && ! mounted ) {
+	if ( choice !== null && ownedPacks( choice )?.length > 0 && ! mounted ) {
 
-		const line = `game: ${choice} was chosen, but its pack was not found (${OWNED_PACKS[ choice ].join( ' or ' )}); the shareware is running\n`;
+		const line = `game: ${choice} was chosen, but its pack was not found (${ownedPacks( choice ).join( ' or ' )}); the shareware is running\n`;
 		Con_Printf( line ); Sys_Printf( line ); // the game's console and the browser's (as main.js reports its packs)
 		return false;
 
@@ -443,5 +455,18 @@ export function GameSelection_Init() {
 			.catch( error => Con_Printf( 'game: ' + ( error?.message ?? error ) + '\n' ) );
 
 	} );
+
+}
+
+/**
+ * Whether the chosen game is an add-on found by its folder that this page has not yet found (a `mod_...` choice at
+ * start, before the catalogue has listed the game library): main.js then refreshes the catalogue before mounting.
+ *
+ * @returns {boolean}
+ */
+export function GameSelection_NeedsDiscovery() {
+
+	const id = GameSelection_Current();
+	return isAddon( id ) && addonDefinition( id ) === null;
 
 }

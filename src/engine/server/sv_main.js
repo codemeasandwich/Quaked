@@ -14,6 +14,7 @@
  * `SV_SpawnServer` gives seamless travel the engine's model functions (`SV_SeamlessUseModels`); until [44g] (debt
  * D10) that ran as the module loaded.
  */
+import { SV_LargeProtocolNeeded } from './sv_large_protocol.js';
 import { SV_RespawnPrecache, SV_SetRespawnLandedHook, SV_SetRespawnEntryHook, SV_RespawnReserveGuards, SV_RespawnWorldStart, SV_RespawnCaptureTravel, SV_RespawnClearTravel, sv_respawnguard } from '../common/hooks.js'; // installed by newer/gameplay/sv_respawn.js
 // Ported from: WinQuake/sv_main.c -- server main program
 
@@ -1857,10 +1858,31 @@ SV_SpawnServer
  * functions.
  *
  * @param {string} server the map name without 'maps/' or '.bsp', e.g. 'e1m1'
+ * A map that passes a protocol-15 limit while it loads (models, sounds, entities or the signon) is loaded again with
+ * the large-map protocol, which then stays for the session (sv_large_protocol.js; docs/add-ons-2026-10-13.md).
+ *
  * @throws {Error} through `Sys_Error` when progs.dat cannot be loaded or the power-up carry sounds overflow the sound
  *   precache; a map that cannot be loaded prints a message and leaves `sv.active` false instead
  */
 export function SV_SpawnServer( server ) {
+
+	try {
+
+		spawnServer( server );
+
+	} catch ( error ) {
+
+		if ( ! error?.largeProtocol ) throw error;
+		Con_Printf( '%s %s: loading it with the large-map protocol\n', server, error.message );
+		Cvar_Set( 'sv_protocol', String( PROTOCOL_LARGE ) );
+		sv.active = false; // its clients were told to reconnect the first time
+		spawnServer( server );
+
+	}
+
+}
+
+function spawnServer( server ) {
 
 	// the engine's model functions, for seamless travel's views of other levels and its crossings (given here, before a
 	// level exists, not as this module loads: card [44g], debt D10)
@@ -2078,6 +2100,7 @@ export function SV_SpawnServer( server ) {
 
 	// create a baseline for more efficient communications
 	SV_CreateBaseline();
+	if ( sv.signon.overflowed ) SV_LargeProtocolNeeded( { state: ss_loading, protocol: sv.protocol }, 'a signon over ' + sv.signon.maxsize + ' bytes' );
 	SV_CheckSignon( 'SV_SpawnServer' );
 
 	// send serverinfo to all connected clients

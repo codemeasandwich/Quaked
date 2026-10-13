@@ -46,7 +46,7 @@ Deno.test( 'unplayable, unsupported and unknown games are refused with the reaso
 	const mission = await GameSelection_Select( 'hipnotic', { refresh: catalogue(), reload } );
 	check( ! mission.ok && /Scourge of Armagon is not playable: its HUD/.test( mission.reason ), 'a mission pack the catalogue does not call playable, with its reason' );
 	const addon = await GameSelection_Select( 'ad', { refresh: catalogue(), reload } );
-	check( ! addon.ok && /cannot be chosen yet/.test( addon.reason ), 'an add-on not yet supported (Arcane Dimensions)' );
+	check( ! addon.ok && /Arcane Dimensions is not playable: not yet/.test( addon.reason ), 'an add-on is chosen like any game: refused only when the catalogue says it cannot play, with its reason' );
 	const unknown = await GameSelection_Select( 'doom', { refresh: catalogue(), reload } );
 	check( ! unknown.ok && /no game called/.test( unknown.reason ), 'an unknown game' );
 	check( reloads === 0 && GameSelection_Current() === null, 'nothing kept, no reload' );
@@ -141,8 +141,12 @@ Deno.test( 'one rule for the shelf and the console: what can start, including a 
 	check( m.ok && ! m.unchecked, 'a checked, playable mission pack starts' );
 	const b = GameSelection_Startable( { id: 'quake', name: 'Quake', present: true, validated: false, playable: false, reason: 'x', packs: [ { name: 'pak0.pak', state: 'invalid', reason: 'not a packfile' } ] } );
 	check( ! b.ok && b.refusal === 'is not playable' && /is broken \(not a packfile\)/.test( b.why ), 'a broken pack is refused' );
-	const a = GameSelection_Startable( { id: 'ad', name: 'Arcane Dimensions', present: true, validated: false, playable: false, reason: 'add-on support is not yet shown to work', packs: [ unread ] } );
-	check( ! a.ok && a.refusal === 'cannot be chosen yet' && /add-on support/.test( a.why ), 'an add-on is not offered, checked or not' );
+	const a = GameSelection_Startable( { id: 'ad', name: 'Arcane Dimensions', present: true, validated: false, playable: false, reason: 'found, not validated', packs: [ unread ] } );
+	check( a.ok && a.unchecked, 'an add-on found but not checkable follows the same rule as any game: allowed, with a warning' );
+	const e = GameSelection_Startable( { id: 'mod_empty', name: 'Empty', present: true, validated: true, playable: false, reason: 'it has neither maps nor QuakeC of its own', packs: [ { name: 'pak0.pak', state: 'valid' } ] } );
+	check( ! e.ok && /neither maps nor QuakeC/.test( e.why ), 'an add-on with nothing to play is refused with the reason' );
+	const x = GameSelection_Startable( { id: 'doom', name: 'Doom', present: true, validated: true, playable: true, packs: [] } );
+	check( ! x.ok && x.refusal === 'cannot be chosen yet', 'a name that is no game of this engine is refused' );
 	const n = GameSelection_Startable( { id: 'rogue', name: 'Dissolution of Eternity', present: true, validated: true, playable: false, reason: 'its gfx.wad is missing', packs: [ { name: 'pak0.pak', state: 'valid' } ] } );
 	check( ! n.ok && /gfx\.wad/.test( n.why ), 'a checked mission pack that is not whole is refused' );
 

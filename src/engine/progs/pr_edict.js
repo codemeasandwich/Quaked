@@ -51,6 +51,7 @@ import {
 	RETURN_EDICT,
 } from './progs.js';
 import { PR_ExecuteProgram, PR_HostError } from './pr_exec.js';
+import { SV_LargeProtocolNeeded } from '../server/sv_large_protocol.js';
 import { SV_PinnedZombieSpawned } from '../common/hooks.js'; // installed by newer/gameplay/sv_pinnedzombies.js
 import { Axe_ParseRecord, Axe_ValidOwnerKey } from '../common/hooks.js'; // installed by newer/gameplay/axe_record.js
 import { SV_AxeReset } from '../common/hooks.js'; // installed by newer/gameplay/sv_axecut.js
@@ -171,8 +172,12 @@ export function ED_Alloc() {
 
 	// the server's own limit (600 in protocol 15, more in the large-map protocol), and a Host_Error, which ends the game
 	// and leaves the page able to load another map, not a Sys_Error that takes the page down (card [34f])
-	if ( i >= sv.max_edicts )
+	if ( i >= sv.max_edicts ) {
+
+		SV_LargeProtocolNeeded( sv, 'more than ' + sv.max_edicts + ' entities' );
 		PR_HostError( 'ED_Alloc: no free edicts' );
+
+	}
 
 	sv.num_edicts ++;
 	e = EDICT_NUM( i );

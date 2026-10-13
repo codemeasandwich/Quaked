@@ -123,9 +123,9 @@ export const EF_TRACER3 = 128;		// purple trail
 // ============================================================================
 
 export const MAX_SKINS = 32;
-export const MAXALIASVERTS = 1024;
+export const MAXALIASVERTS = 2000; // Quakespasm's (FitzQuake raised WinQuake's 1024): Arcane Dimensions' monsters need more (docs/add-ons-2026-10-13.md)
 export const MAXALIASFRAMES = 256;
-export const MAXALIASTRIS = 2048;
+export const MAXALIASTRIS = 4096; // Quakespasm's (WinQuake's 2048)
 
 // ============================================================================
 // In-memory model structures (m*_t)

@@ -80,9 +80,14 @@ Cbuf_Init
  * Allocates the 8192-byte command buffer (space for commands and script files). Called once from `Host_Init`, before
  * `Cmd_Init`; any text already queued is discarded because a new buffer replaces the old one.
  */
+/** The command buffer's size in bytes (Quakespasm's 1 << 18). */
+export const CMD_TEXT_SIZE = 1 << 18;
+
 export function Cbuf_Init() {
 
-	SZ_Alloc( cmd_text, 8192 ); // space for commands and script files
+	// space for commands and script files: 256 KB, as Quakespasm (1 << 18); WinQuake's 8192 bytes cannot take Arcane
+	// Dimensions' quake.rc (8530 bytes), which then overflowed and ran nothing (docs/add-ons-2026-10-13.md)
+	SZ_Alloc( cmd_text, CMD_TEXT_SIZE );
 
 }
 
@@ -97,7 +102,7 @@ Cbuf_AddText
  * `\n` or `;`.
  *
  * Prints `Cbuf_AddText: overflow` and drops the whole text, adding nothing, when it would not fit (the buffer holds
- * at most 8191 bytes of pending text).
+ * at most CMD_TEXT_SIZE - 1 bytes of pending text).
  *
  * @param {string} text command text, one or more commands separated by `\n` or `;`
  */

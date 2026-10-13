@@ -47,7 +47,7 @@ const files = new Map( [
 	[ '/complete/games/Dimension of the Past/pak0.pak', pack( [ 'progs.dat', 'maps/start.bsp', 'maps/e5m1.bsp' ] ) ],
 	[ '/complete/games/Dimension of the Machine/pak0.pak', pack( [ 'progs.dat', 'maps/start.bsp', 'maps/mge1m1.bsp' ] ) ],
 	// add-ons (docs/add-ons-2026-10-13.md): Quoth's QuakeC is in its last pack, its start map in the first; Malice plays;
-	// X-Men's QuakeC is a loose progs.dat beside its packs; Arcane Dimensions is not yet shown to play
+	// X-Men's QuakeC is a loose progs.dat beside its packs; Arcane Dimensions plays like any add-on
 	[ '/complete/games/Quoth/pak0.pak', pack( [ 'gfx.wad', 'maps/start.bsp' ] ) ],
 	[ '/complete/games/Quoth/pak1.pak', pack( [ 'quake.rc' ] ) ],
 	[ '/complete/games/Quoth/pak2.pak', pack( [ 'progs.dat' ] ) ],
@@ -55,6 +55,11 @@ const files = new Map( [
 	[ '/complete/games/X-Men/pak0.pak', pack( [ 'maps/start.bsp', 'xmen.cfg' ] ) ],
 	[ '/complete/games/X-Men/progs.dat', Buffer.from( 'loose quakec' ) ],
 	[ '/complete/games/Arcane Dimensions/pak0.pak', pack( [ 'progs.dat', 'maps/start.bsp' ] ) ],
+	// a fourth (/found/): Quake and two folders no known game names, found from the listing
+	[ '/found/games/Quake/pak0.pak', pack( [ 'progs.dat', 'maps/start.bsp', 'maps/e1m1.bsp', 'maps/e2m1.bsp', 'maps/e3m1.bsp', 'maps/e4m1.bsp' ] ) ],
+	[ '/found/games/My Mod!/pak0.pak', pack( [ 'maps/mymap.bsp', 'sound/x.wav' ] ) ],
+	[ '/found/games/Empty/pak0.pak', pack( [ 'gfx/readme.lmp' ] ) ],
+	[ '/found/games/.hidden/pak0.pak', pack( [ 'maps/secret.bsp' ] ) ],
 	// Abyss of Pandemonium as released: its start map in pak1, its QuakeC in pak3
 	[ '/complete/games/Abyss of Pandemonium/pak0.pak', pack( [ 'gfx.wad' ] ) ],
 	[ '/complete/games/Abyss of Pandemonium/pak1.pak', pack( [ 'maps/start.bsp' ] ) ],
@@ -95,6 +100,8 @@ const server = createServer( ( req, res ) => {
 	// a server that answers a missing loose file with its index page, and one that ignores Range for another: neither counts
 	if ( path === '/complete/games/Malice/quake.rc' ) { res.writeHead( 200, { 'Content-Type': 'text/html' } ); return res.end( '<!doctype html><title>index</title>' ); }
 	if ( path === '/complete/games/Malice/autoexec.cfg' ) { res.writeHead( 200, { 'Content-Length': 14 } ); return res.end( 'bind i prevtoy' ); }
+	// a source build's game library listing (tools/serve.py lists folders as links)
+	if ( path === '/found/games/' ) { res.writeHead( 200, { 'Content-Type': 'text/html' } ); return res.end( '<ul><li><a href="Quake/">Quake/</a><li><a href="My%20Mod%21/">My Mod!/</a><li><a href="Empty/">Empty/</a><li><a href=".hidden/">.hidden/</a><li><a href="notes.txt">notes.txt</a></ul>' ); }
 	if ( path === '/resources/ad/pak0.pak' ) { res.writeHead( 200, { 'Content-Type': 'text/html' } ); return res.end( '<!doctype html><title>Not found</title>' ); }
 	const range = /^bytes=(\d+)-(\d+)$/.exec( req.headers.range ?? '' );
 	if ( path === '/resources/mg1/pak0.pak' ) {
@@ -127,7 +134,7 @@ Deno.test( 'the two mission packs and both episodes are playable on Quake when w
 	check( g( 'aopfm_v2' ).playable && /an add-on/.test( g( 'aopfm_v2' ).reason ), 'Abyss of Pandemonium is playable from its four packs: ' + g( 'aopfm_v2' ).reason );
 	check( g( 'soe' ).playable && /an add-on/.test( g( 'soe' ).reason ), 'Soul of Evil is playable: ' + g( 'soe' ).reason );
 	check( g( 'xmen' ).playable && /an add-on/.test( g( 'xmen' ).reason ) && g( 'xmen' ).loose.join() === 'progs.dat', 'X-Men is playable from its loose progs.dat: ' + g( 'xmen' ).reason );
-	check( g( 'ad' ).present && ! g( 'ad' ).playable && /add-on support/.test( g( 'ad' ).reason ), 'an add-on not yet shown to play stays locked: ' + g( 'ad' ).reason );
+	check( g( 'ad' ).playable && /an add-on/.test( g( 'ad' ).reason ), 'every add-on with maps plays, with no list: ' + g( 'ad' ).reason );
 	const bare = await GameCatalogue_Refresh( { ...options, base: base + 'noquake/' } ), h = id => bare.games.find( x => x.id === id );
 	for ( const id of [ 'hipnotic', 'rogue' ] ) check( h( id ).present && h( id ).validated && ! h( id ).playable && /needs Quake/.test( h( id ).reason ), id + ' whole but without Quake: found, not playable (' + h( id ).reason + ')' );
 
@@ -201,6 +208,16 @@ Deno.test( 'a wrong range is not a directory; a failed read is retried; no valid
 	check( before.files.includes( 'progs.dat' ) && after.files.includes( 'quake.rc' ), 'without a validator a same-size replacement is noticed' );
 	const empty = await GameCatalogue_ProbePack( base + 'x/empty/pak0.pak', options );
 	check( empty.state === 'invalid' && /empty/.test( empty.reason ), 'an empty file is invalid, not an error' );
+
+} );
+
+Deno.test( 'a source build finds add-ons by their folders; one with maps plays, one with nothing to play does not', async () => {
+
+	const catalogue = await GameCatalogue_Refresh( { ...options, base: base + 'found/', discover: true } ), g = id => catalogue.games.find( x => x.id === id );
+	check( g( 'mod_my_mod' )?.name === 'My Mod!' && g( 'mod_my_mod' ).playable && /its maps, played on Quake with Quake's QuakeC/.test( g( 'mod_my_mod' ).reason ), 'found and playable: ' + JSON.stringify( g( 'mod_my_mod' ) ) );
+	check( g( 'mod_empty' )?.present && ! g( 'mod_empty' ).playable && /neither maps nor QuakeC/.test( g( 'mod_empty' ).reason ), 'nothing to play: ' + g( 'mod_empty' )?.reason );
+	check( ! catalogue.games.some( x => /hidden|notes/.test( x.id ) ), 'dot folders and files are not games' );
+	check( ! catalogue.games.some( x => x.id === 'mod_quake' ), 'a known game\'s folder is that game, not a found one' );
 
 } );
 

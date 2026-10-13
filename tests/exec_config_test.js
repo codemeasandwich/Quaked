@@ -88,3 +88,14 @@ Deno.test( 'COM_BuildPack takes a 55-character name and refuses a longer one', (
 	check( /name too long/.test( error ), 'a 56-character name is refused: ' + error );
 
 } );
+
+Deno.test( 'a script larger than WinQuake\'s 8 KB command buffer runs (Arcane Dimensions\' quake.rc is 8530 bytes)', () => {
+
+	Cbuf_Init(); Cmd_Init();
+	let ran = 0; Cmd_AddCommand( 'tick', () => ran ++ );
+	const script = '// ' + 'x'.repeat( 9000 ) + '\ntick\n';
+	COM_AddPack( COM_LoadPackFile( 'big-rc', COM_BuildPack( [ { name: 'bigscript.rc', data: new TextEncoder().encode( script ) } ] ) ) );
+	Cbuf_InsertText( 'exec bigscript.rc\n' ); Cbuf_AddText( 'tick\n' ); Cbuf_Execute();
+	same( ran, 2, 'the script and the command after it both ran' );
+
+} );

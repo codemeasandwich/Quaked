@@ -98,7 +98,7 @@ fn refresh(app: &tauri::AppHandle) -> Result<Library, String> {
     let root = if settings.exists() {
         match fs::read(settings).map_err(|e|e.to_string()).and_then(|bytes|serde_json::from_slice::<Settings>(&bytes).map_err(|e|e.to_string())){
    Ok(settings)=>settings.root,
-   Err(error)=>return Ok(Library{root:PathBuf::new(),packs:vec![],error:Some(format!("Saved game location could not be read: {error}. Select Game Locations to recover."))})
+   Err(error)=>return Ok(Library{root:PathBuf::new(),packs:vec![],discovered:vec![],error:Some(format!("Saved game location could not be read: {error}. Select Game Locations to recover."))})
   }
     } else {
         let root = app
@@ -112,6 +112,7 @@ fn refresh(app: &tauri::AppHandle) -> Result<Library, String> {
     let next = library::scan(&root).unwrap_or_else(|error| Library {
         root,
         packs: vec![],
+        discovered: vec![],
         error: Some(error),
     });
     let state = app.state::<State>();

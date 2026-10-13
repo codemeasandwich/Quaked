@@ -21,10 +21,18 @@ pub struct Pack {
     /// the game's own packs, as Quake searches a game folder after its packs.
     pub loose: bool,
 }
+/// A game folder found in the library that no known game names (`mod_<folder>`), played as an add-on over Quake.
+#[derive(Clone, Serialize, Debug, PartialEq)]
+pub struct Discovered {
+    pub id: String,
+    pub name: String,
+}
 #[derive(Clone, Serialize, Default)]
 pub struct Library {
     pub root: PathBuf,
     pub packs: Vec<Pack>,
+    /// Add-ons found by their contents, not by a known name (their packs are in `packs` under their ids).
+    pub discovered: Vec<Discovered>,
     pub error: Option<String>,
 }
 #[derive(Serialize, Deserialize)]
@@ -65,6 +73,83 @@ fn children(path: &Path) -> Result<BTreeMap<String, PathBuf>, String> {
     }
     Ok(out)
 }
+/// Lists one game folder's packs (pak0.. up to the first gap; pak5 only to detect the engine's bounded-set overflow)
+/// and, for an add-on, its loose game files. Returns None when the folder is not a game: no pak0.pak, and (for an
+/// add-on) no loose progs.dat either.
+fn list_game(dir: &Path, game: &str, root: &Path, addon: bool) -> Result<Option<Vec<Pack>>, String> {
+    let entries = children(dir)?;
+    if !entries.contains_key("pak0.pak") && !(addon && entries.contains_key("progs.dat")) {
+        return Ok(None);
+    }
+    let mut packs = Vec::new();
+    for n in 0..=5 {
+        let name = format!("pak{n}.pak");
+        let Some(path) = entries.get(&name) else {
+            break;
+        };
+        let path = path.canonicalize().map_err(|e| e.to_string())?;
+        if !path.starts_with(root) {
+            return Err("Game archive escapes selected location".into());
+        }
+        let meta = fs::metadata(&path).map_err(|e| e.to_string())?;
+        if !meta.is_file() {
+            return Err("Game archive is not a file".into());
+        }
+        packs.push(Pack {
+            token: format!("{game}/{name}"),
+            game: game.to_string(),
+            name,
+            path,
+            bytes: meta.len(),
+            modified: format!("{:?}", meta.modified().map_err(|e| e.to_string())?),
+            loose: false,
+        });
+    }
+    // optional: a loose file that cannot be read, resolves outside the library (as for packs) or is too large is
+    // left out, never an error
+    for name in LOOSE_FILES.iter().filter(|_| addon) {
+        let Some(path) = entries.get(*name) else {
+            continue;
+        };
+        let Ok(path) = path.canonicalize() else {
+            continue;
+        };
+        let Ok(meta) = fs::metadata(&path) else {
+            continue;
+        };
+        let Ok(modified) = meta.modified() else {
+            continue;
+        };
+        if !path.starts_with(root) || !meta.is_file() || meta.len() > LOOSE_LIMIT {
+            continue;
+        }
+        packs.push(Pack {
+            token: format!("{game}/{name}"),
+            game: game.to_string(),
+            name: name.to_string(),
+            path,
+            bytes: meta.len(),
+            modified: format!("{modified:?}"),
+            loose: true,
+        });
+    }
+    Ok(Some(packs))
+}
+
+/// A discovered add-on's id: `mod_` and its folder name in lower case, other characters as `_` (so it is safe in a
+/// token, a URL and a storage key); a second folder with the same id gets `_2`, and so on.
+fn discovered_id(folder: &str, taken: &[String]) -> String {
+    let slug: String = folder.to_lowercase().chars().map(|c| if c.is_ascii_alphanumeric() { c } else { '_' }).collect();
+    let base = format!("mod_{}", slug.trim_matches('_'));
+    let mut id = base.clone();
+    let mut n = 2;
+    while taken.contains(&id) {
+        id = format!("{base}_{n}");
+        n += 1;
+    }
+    id
+}
+
 pub fn scan(root: &Path) -> Result<Library, String> {
     let root = root
         .canonicalize()
@@ -89,68 +174,39 @@ pub fn scan(root: &Path) -> Result<Library, String> {
             if !dir.starts_with(&root) || !dir.is_dir() {
                 continue;
             }
-            let entries = children(&dir)?;
-            if !entries.contains_key("pak0.pak") {
-                continue;
+            if let Some(found) = list_game(&dir, game, &root, ADDONS.contains(game))? {
+                packs.extend(found);
+                break;
             }
-            // Include pak5 only to detect the engine's bounded-set overflow. Gaps end a set.
-            for n in 0..=5 {
-                let name = format!("pak{n}.pak");
-                let Some(path) = entries.get(&name) else {
-                    break;
-                };
-                let path = path.canonicalize().map_err(|e| e.to_string())?;
-                if !path.starts_with(&root) {
-                    return Err("Game archive escapes selected location".into());
-                }
-                let meta = fs::metadata(&path).map_err(|e| e.to_string())?;
-                if !meta.is_file() {
-                    return Err("Game archive is not a file".into());
-                }
-                packs.push(Pack {
-                    token: format!("{game}/{name}"),
-                    game: game.to_string(),
-                    name,
-                    path,
-                    bytes: meta.len(),
-                    modified: format!("{:?}", meta.modified().map_err(|e| e.to_string())?),
-                    loose: false,
-                });
-            }
-            // optional: a loose file that cannot be read, resolves outside the library (as for packs) or is too large is
-            // left out, never an error
-            for name in LOOSE_FILES.iter().filter(|_| ADDONS.contains(game)) {
-                let Some(path) = entries.get(*name) else {
-                    continue;
-                };
-                let Ok(path) = path.canonicalize() else {
-                    continue;
-                };
-                let Ok(meta) = fs::metadata(&path) else {
-                    continue;
-                };
-                let Ok(modified) = meta.modified() else {
-                    continue;
-                };
-                if !path.starts_with(&root) || !meta.is_file() || meta.len() > LOOSE_LIMIT {
-                    continue;
-                }
-                packs.push(Pack {
-                    token: format!("{game}/{name}"),
-                    game: game.to_string(),
-                    name: name.to_string(),
-                    path,
-                    bytes: meta.len(),
-                    modified: format!("{modified:?}"),
-                    loose: true,
-                });
-            }
-            break;
+        }
+    }
+    // Any other folder holding a pak0.pak or a progs.dat is an add-on too (docs/add-ons-2026-10-13.md: the engine
+    // loads what a player adds without its own entry), named from its folder. A folder that cannot be read, or
+    // resolves outside the library, is skipped: one odd folder never hides the others.
+    let known: Vec<String> = GAMES.iter().flat_map(|(_, aliases)| aliases.iter().map(|a| a.to_lowercase())).collect();
+    let mut discovered: Vec<Discovered> = Vec::new();
+    for (lower, path) in &top {
+        if lower.starts_with('.') || known.contains(lower) {
+            continue;
+        }
+        let Ok(dir) = path.canonicalize() else {
+            continue;
+        };
+        if !dir.starts_with(&root) || !dir.is_dir() {
+            continue;
+        }
+        let folder = path.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_default();
+        let taken: Vec<String> = discovered.iter().map(|d| d.id.clone()).collect();
+        let id = discovered_id(&folder, &taken);
+        if let Ok(Some(found)) = list_game(&dir, &id, &root, true) {
+            packs.extend(found);
+            discovered.push(Discovered { id, name: folder });
         }
     }
     Ok(Library {
         root,
         packs,
+        discovered,
         error: None,
     })
 }

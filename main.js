@@ -39,7 +39,7 @@ const parms = {
 	argv: []
 };
 import { GameCatalogue_Refresh, GameCatalogue_Get } from './src/engine/common/game_catalogue.js';
-import { GameSelection_OwnedPacks, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember, GameSelection_MissionPack, GameSelection_FetchMission, GameSelection_FetchLoose, GameSelection_SetRunning, GameSelection_Current, GameSelection_Startable } from './src/engine/common/game_selection.js';
+import { GameSelection_OwnedPacks, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember, GameSelection_MissionPack, GameSelection_FetchMission, GameSelection_FetchLoose, GameSelection_NeedsDiscovery, GameSelection_SetRunning, GameSelection_Current, GameSelection_Startable } from './src/engine/common/game_selection.js';
 import { GameShelf_Show } from './src/newer/ui/game_shelf.js';
 
 async function main() {
@@ -96,6 +96,8 @@ async function main() {
 		const ownedPack = desktop ? Promise.resolve(null) : ( async () => { for ( const url of GameSelection_OwnedPacks() ) { const pack = await COM_FetchOptionalPak( url, url ); if ( pack ) return pack; } return null; } )();
 		// A mission pack (card [34c]) or episode also fetches its own pack, from games/<name>/ or resources/<dir>/ (the first
 		// found); an add-on every pack of its folder and its loose game files (GameSelection_FetchMission)
+		// a chosen add-on found by its folder (`mod_...`) is known once the catalogue has listed the game library
+		if ( ! desktop && GameSelection_NeedsDiscovery() ) await GameCatalogue_Refresh().catch( error => Sys_Printf( 'Game catalogue: %s\n', error?.message ?? error ) );
 		const mission = GameSelection_MissionPack();
 		const missionLoad = mission && !desktop ? GameSelection_FetchMission( mission, url => COM_FetchOptionalPak( url, url ), url => GameSelection_FetchLoose( url ), ( name, files ) => COM_LoadPackFile( name, COM_BuildPack( files ) ) ) : Promise.resolve( null );
 		const [ sharewarePak, newerPak, hudPak, fullGamePak, missionPak ] = await Promise.all( [ nativePack, optionalPack, startupPack, ownedPack, missionLoad ] );
