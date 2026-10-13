@@ -1,7 +1,8 @@
 # Soul of Evil
 
 A community add-on for Quake (its folder is `soe`). Put the add-on's own files here, as its release ships them
-(`pak0.pak` to `pak3.pak`; upper-case `.PAK` names work too).
+(`pak0.pak` to `pak3.pak`). Its release names them `pak0.PAK` and on: the Mac app reads those as they are; the source
+build reads them on a Mac's case-insensitive disk, but a case-sensitive server needs them renamed to `.pak`.
 
 Soul of Evil plays over Quake (13 October 2026; [docs/add-ons-2026-10-13.md](../../docs/add-ons-2026-10-13.md)): choose it
 on the game shelf. Quake's packs are mounted first, then every pack here from `pak0` up to the first missing one, and it

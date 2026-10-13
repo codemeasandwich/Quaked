@@ -9,7 +9,8 @@ const same = ( a, b, m ) => { if ( a !== b ) throw Error( `${m}: ${a} != ${b}` )
 Deno.test( 'an error empties the QuakeC stacks, so later calls have their locals again', () => {
 
 	const oldInts = pr_globals_int, ints = new Int32Array( 4096 ), f = { locals: 600, parm_start: 0, first_statement: 1, s_name: 0, s_file: 0, numparms: 0, parm_size: [] };
-	const previous = PR_SetHostError( error => { throw Error( 'Host_Error: ' + error ); } );
+	let inHandler = null; // what Host_Error's own QuakeC (ClientDisconnect) would start on
+	const previous = PR_SetHostError( error => { inHandler = PR_StackUsage(); throw Error( 'Host_Error: ' + error ); } );
 	const oldStrings = pr_strings_data;
 	PR_SetGlobalsInt( ints ); PR_SetStringsData( new Uint8Array( 1 ) ); // the function's name is the empty string
 	try {
@@ -20,6 +21,7 @@ Deno.test( 'an error empties the QuakeC stacks, so later calls have their locals
 		let thrown = '';
 		try { PR_HostError( 'Program error' ); } catch ( error ) { thrown = error.message; } // QuakeC's error() mid-call
 		same( thrown, 'Host_Error: Program error', 'the error still ends the game through Host_Error' );
+		same( inHandler.locals + '/' + inHandler.depth, '0/0', 'released before Host_Error runs, so its own QuakeC starts clean' );
 		same( PR_StackUsage().locals, 0, 'the abandoned calls\' locals are released' );
 		same( PR_StackUsage().depth, 0, 'and their frames' );
 		for ( let i = 0; i < 3; i ++ ) PR_EnterFunction( f ); // the next level's QuakeC: would pass 2048 if they stayed

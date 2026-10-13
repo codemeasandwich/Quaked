@@ -60,12 +60,14 @@ fn scans_known_case_insensitive_aliases_without_recursing_arbitrary_directories(
     f.write("ID1/PAK0.PAK", b"base");
     f.write("ID1/pAk1.PaK", b"registered");
     f.write("sCoUrGe Of ArMaGoN/PaK0.pAk", b"expansion");
+    f.write("soul of evil/pak0.PAK", b"add-on, as its release names it");
+    f.write("soul of evil/pak1.PAK", b"add-on");
     f.write("unknown/pak0.pak", b"not a configured game");
     f.write("nested/rogue/pak0.pak", b"not an immediate known folder");
     let found = library::scan(&f.0).unwrap();
     assert_eq!(
         tokens(&found),
-        ["quake/pak0.pak", "quake/pak1.pak", "hipnotic/pak0.pak"]
+        ["quake/pak0.pak", "quake/pak1.pak", "hipnotic/pak0.pak", "soe/pak0.pak", "soe/pak1.pak"]
     );
     assert_eq!(found.root, f.0.canonicalize().unwrap());
     for pack in &found.packs {

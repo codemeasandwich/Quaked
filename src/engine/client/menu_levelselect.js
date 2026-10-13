@@ -132,6 +132,8 @@ const MISSION_LEVEL_SELECT = Object.freeze( {
 			[ 3, 'ddm6', 'Domino' ], [ 3, 'ddm7', 'Sandra\'s Ladder' ],
 			[ 4, 'isle', 'H-27 Cargo' ], [ 4, 'test', 'TESTosterone' ], [ 4, 'csm0__', 'csm0' ], [ 4, 'csm1____', 'csm1' ], [ 4, 'csm2____', 'csm2' ], [ 4, 'csm3_', 'Bubbah\'s Go' ], [ 4, 'show1', 'show1' ] ]
 	},
+	// Soul of Evil: as above, but where the message repeats the add-on's name ("Soul of Evil - Introduction", the
+	// arena's "Welcome to Soul Of Evil") the label keeps only the part that tells the maps apart
 	soe: {
 		episodes: [ { episode: 0, name: 'Introduction' }, { episode: 1, name: 'Episode 1' }, { episode: 2, name: 'Episode 2' }, { episode: 3, name: 'Epilogue' }, { episode: 4, name: 'Deathmatch' } ],
 		levels: [ [ 0, 'start', 'Welcome to Soul Of Evil' ], [ 0, 'soeintro', 'Introduction' ], [ 0, 'soestart', 'A Land In Need' ],

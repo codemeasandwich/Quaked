@@ -9,8 +9,9 @@
  *
  * Errors: calls `Sys_Error` (fatal) at 3 places; calls `Host_Error` at 1 place; calls `PR_RunError` at 9 places.
  *
- * `PR_RunError` prints the QuakeC statement and stack, resets Newer Game's per-call hooks (`SV_AxeReset`,
- * `SV_FaceReset`) and ends the game with `Host_Error`.
+ * `PR_RunError` prints the QuakeC statement and stack and ends the game through `PR_HostError`, which empties the call
+ * and locals stacks (`PR_ResetStack`; so does every other program error, and `SV_SpawnServer`), resets Newer Game's
+ * per-call hooks (`SV_AxeReset`, `SV_FaceReset`) and calls `Host_Error`.
  */
 // Ported from: WinQuake/pr_exec.c -- QuakeC bytecode interpreter
 
@@ -74,13 +75,6 @@ let localstack_used = 0;
 let Host_Error = null;
 
 /**
- * Installs the host's error handler that `PR_HostError` (and so `PR_RunError`) calls. Injected rather than imported
- * to keep the interpreter free of a host.js import; `SV_Init` installs `Host_Error` once at start-up.
- *
- * @param {?function(string): void} callback the handler, expected never to return (`Host_Error` throws); null removes it
- * @returns {?function(string): void} the handler it replaces (null at first), so a test can restore it
- */
-/**
  * Empties the QuakeC call stack and its locals stack. A program error abandons the functions that were running
  * (PR_HostError, PR_RunError), and a new map starts with none running (SV_SpawnServer). WinQuake reset only the call
  * depth, and only in PR_RunError, so the locals of every abandoned call stayed counted: after enough errors (Malice's
@@ -91,6 +85,7 @@ export function PR_ResetStack() {
 
 	pr_depth = 0;
 	localstack_used = 0;
+	PR_SetXFunction( null ); // no function is running: a later trace or hook sees no abandoned caller
 
 }
 
@@ -105,6 +100,13 @@ export function PR_StackUsage() {
 
 }
 
+/**
+ * Installs the host's error handler that `PR_HostError` (and so `PR_RunError`) calls. Injected rather than imported
+ * to keep the interpreter free of a host.js import; `SV_Init` installs `Host_Error` once at start-up.
+ *
+ * @param {?function(string): void} callback the handler, expected never to return (`Host_Error` throws); null removes it
+ * @returns {?function(string): void} the handler it replaces (null at first), so a test can restore it
+ */
 export function PR_SetHostError( callback ) {
 
 	const previous = Host_Error;
@@ -116,7 +118,9 @@ export function PR_SetHostError( callback ) {
 /**
  * Ends the game through the installed host error handler (`Host_Error`, which prints `Host_Error: <error>`, shuts
  * the server and client down and throws back to `Host_Frame`). Called by `PR_RunError`, by `PR_ExecuteProgram` for a
- * null function and by QuakeC builtins that hit a fatal program error. Never returns.
+ * null function and by QuakeC builtins that hit a fatal program error. First empties the QuakeC stacks and the axe and
+ * face hooks' per-call state (`PR_ResetStack`): the functions that were running are abandoned, and the QuakeC that
+ * Host_Error itself runs (ClientDisconnect) starts clean. Never returns.
  *
  * @param {string} error the message
  * @throws {Error} always: whatever the handler throws; or via `Sys_Error` when no handler is installed
@@ -125,6 +129,8 @@ export function PR_SetHostError( callback ) {
 export function PR_HostError( error ) {
 
 	PR_ResetStack(); // the QuakeC that was running is abandoned: its frames and locals with it
+	SV_AxeReset();
+	SV_FaceReset();
 	if ( Host_Error === null )
 		Sys_Error( 'PR_HostError: Host_Error callback not set (' + error + ')' ); // the cause kept for the reader
 

@@ -37,7 +37,7 @@ are also accepted, case-insensitively:
 | Dimension of the Past | `Dimension of the Past` | `dopa` |
 | Dimension of the Machine | `Dimension of the Machine` | `mg1` |
 | Shareware, if supplied by the user | `shareware` | — |
-| Other predefined add-ons | Existing shelf names | `ad`, `quoth`, `malice`, `xmen`, `aopfm_v2` |
+| Other predefined add-ons | Existing shelf names | `ad`, `quoth`, `malice`, `xmen`, `aopfm_v2`, `soe` (`Soul of Evil`) |
 
 Use **Select Game Locations** in the native application menu, shelf, or game Options
 to choose a different root. Settings are saved in the app configuration directory;
