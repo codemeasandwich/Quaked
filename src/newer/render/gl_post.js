@@ -74,7 +74,7 @@ export { R_BuildSunOccluder, R_PointShadowAtlas, R_PointShadowStatus, R_ReleaseS
 import { R_PostSupported, dyn, dynResUpdate, createPipeline, disposeTargets, ensureTargets } from './r_post_targets.js';
 export { R_DynResScale, R_PostSupported } from './r_post_targets.js';
 import { R_PostVolumeBloom, R_PostComposite } from './r_post_composite.js';
-export { R_PostSetSplit } from './r_post_composite.js';
+export { R_PostSetSplit, R_PostLastExposure } from './r_post_composite.js';
 
 // Unlit material colour is retained separately from baked lighting. A surface
 // without a light source need not be lifted merely to recover its colour later.

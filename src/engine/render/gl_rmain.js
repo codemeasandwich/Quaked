@@ -1,4 +1,5 @@
-import { R_CloakFrame, R_CloakRestore, R_CloakReset } from '../common/hooks.js';
+import { R_CloakFrame, R_CloakRestore, R_CloakReset, R_PostLastExposure } from '../common/hooks.js';
+import { R_FogInit, R_FogNewMap, R_FogApply } from './r_fog.js';
 /**
  * @module engine/render/gl_rmain
  *
@@ -2063,7 +2064,8 @@ export function R_RenderView() {
 			R_PostSetPortraitLight( R_BestiaryPortraitLight() ); // (the Bestiary's portrait light, if a page is up)
 			R_PostLightsFrame( renderer, scene, camera, r_visframecount, d_lightstylevalue, cl_dlights, cl != null ? cl.time : 0, R_MapHasSky() );
 			R_RendVeilCapture(renderer,scene,camera);
-			try { renderer.render( scene, camera ); } finally { R_HeightShadowScope( false ); }
+			R_FogApply( scene, R_PostLastExposure() ); // fog in the scene pass, each surface at its own distance (r_fog.js)
+			try { renderer.render( scene, camera ); } finally { R_HeightShadowScope( false ); scene.fog = null; }
 			R_PerfStage( 'world draw' );
 			// the title demo, half Newer and half classic
 			const split = R_DemoSplitActive();
@@ -2077,7 +2079,8 @@ export function R_RenderView() {
 
 		} else {
 
-			renderer.render( scene, camera );
+			R_FogApply( scene ); // the map's or the console's fog (r_fog.js), for this draw
+			try { renderer.render( scene, camera ); } finally { scene.fog = null; }
 			R_PerfStage( 'world draw' );
 
 		}
@@ -2251,6 +2254,7 @@ export function R_Init() {
 
 	}
 
+	R_FogInit();
 	Cvar_RegisterVariable( r_portals );
 	Cvar_RegisterVariable( r_waterwarp );
 	Cvar_RegisterVariable( r_hdr );
@@ -2468,6 +2472,7 @@ function R_WarmShaders( renderer, scene, camera, extraMaterials=[], extraTexture
  */
 export function R_NewMap() {
  R_CloakReset();
+	R_FogNewMap( cl?.worldmodel?.entities ); // the map's own fog (worldspawn "fog"), or none
 	R_DemonBakeRelease();
 	// All paired local Newer arrivals share the existing physics/input hold;
 	// network games and recorded/timed demos retain their established clocks.

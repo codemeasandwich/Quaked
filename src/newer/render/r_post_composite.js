@@ -144,6 +144,7 @@ export function R_PostComposite( renderer, scene, camera, viewport, p, fireFrame
 	// 0.6 is 40% darker and 1.4 is 40% more contrast as seen
 	const newBright = lighting ? Math.max( 0, r_newbright.value ) : 1;
 	cm.uExposure.value = lighting ? exposure * HDR_EXPOSURE * ( hasSkyView === true ? OUTDOOR_EXPOSURE : 1 ) : exposure;
+	lastExposure = cm.uExposure.value;
 	cm.uBright.value = newBright;
 	cm.uContrastGain.value = lighting ? Math.max( 0, r_newcontrast.value ) : 1;
 	cm.uContrastPivot.value = newBright * 0.2; // deviations are taken from a typical scene brightness
@@ -226,6 +227,19 @@ let splitLeft = false;
  *
  * @param {boolean} on true to draw only the left half (anything but `true` counts as false)
  */
+let lastExposure = 1;
+/**
+ * The exposure the composite last gave the picture, for the scene pass's fog (engine/render/r_fog.js), which divides
+ * its colour by it so the fog shows at the colour the map or command gave.
+ *
+ * @returns {number} the exposure (1 before the first composite)
+ */
+export function R_PostLastExposure() {
+
+	return lastExposure;
+
+}
+
 export function R_PostSetSplit( on ) {
 
 	splitLeft = on === true;

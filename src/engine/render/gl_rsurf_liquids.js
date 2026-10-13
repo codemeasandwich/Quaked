@@ -18,6 +18,7 @@
  * ones not drawn; `R_LiquidsClear` and `R_SkyClear` throw everything away at a map load.
  */
 import * as THREE from 'three';
+import { R_FogSkyMaterial } from './r_fog.js';
 import { R_NewerLightingActive } from '../common/hooks.js'; // installed by newer/mode.js
 import { cl } from '../client/client.js';
 import { R_RegisterGlow, R_GlowBoostForTexture, R_PostActive, R_WaterActive, R_PostNoteSky, R_LiquidOpacity, R_IsWaterTextureName, r_newdark } from '../common/hooks.js'; // installed by newer/render/gl_post.js
@@ -698,31 +699,31 @@ export function R_DrawSkyChain( s ) {
 	// Create or update sky materials from the sky textures
 	if ( solidskytexture && ! solidSkyMaterial ) {
 
-		solidSkyMaterial = new THREE.MeshBasicMaterial( {
+		solidSkyMaterial = R_FogSkyMaterial( new THREE.MeshBasicMaterial( {
 			map: solidskytexture,
 			side: THREE.DoubleSide
-		} );
+		} ) ); // fog: the sky's share, not its distance (r_fog.js)
 
 	}
 
 	if ( alphaskytexture && ! alphaSkyMaterial ) {
 
-		alphaSkyMaterial = new THREE.MeshBasicMaterial( {
+		alphaSkyMaterial = R_FogSkyMaterial( new THREE.MeshBasicMaterial( {
 			map: alphaskytexture,
 			side: THREE.DoubleSide,
 			transparent: true,
 			alphaTest: 0.05
-		} );
+		} ) );
 
 	}
 
 	// Fallback if sky textures not loaded
 	if ( ! solidSkyMaterial ) {
 
-		solidSkyMaterial = new THREE.MeshBasicMaterial( {
+		solidSkyMaterial = R_FogSkyMaterial( new THREE.MeshBasicMaterial( {
 			color: 0x3366aa,
 			side: THREE.DoubleSide
-		} );
+		} ) );
 
 	}
 
