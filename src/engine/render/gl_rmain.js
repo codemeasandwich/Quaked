@@ -1,4 +1,4 @@
-import { R_MotesFrame, R_MotesClear, R_AmbientPlacesClear, r_drips, r_sparks, r_nailhits, r_embers, s_gibs, s_lava, r_itemturn, r_mapliquids, r_storm, R_StormFrame, R_StormClear, s_impacts, s_footsteps, S_FootstepsFrame } from '../common/hooks.js';
+import { R_MotesFrame, R_MotesClear, R_AmbientPlacesClear, r_drips, r_sparks, r_nailhits, r_embers, s_gibs, s_lava, r_itemturn, r_mapliquids, r_storm, R_StormFrame, R_StormClear, s_impacts, s_footsteps, S_FootstepsFrame, joy_wheel, joy_prompts, joy_rumble } from '../common/hooks.js';
 /**
  * @module engine/render/gl_rmain
  *
@@ -2295,6 +2295,9 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_storm );
 	Cvar_RegisterVariable( s_impacts );
 	Cvar_RegisterVariable( s_footsteps );
+	Cvar_RegisterVariable( joy_wheel );
+	Cvar_RegisterVariable( joy_prompts );
+	Cvar_RegisterVariable( joy_rumble );
 	Cvar_RegisterVariable( r_fireball );
 	Cvar_RegisterVariable( r_fireballalpha );
 	Cvar_RegisterVariable( r_smoketrails );

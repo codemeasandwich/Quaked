@@ -532,6 +532,9 @@ const NEWER_FEATURES = [
 	{ cvar: 'r_storm', label: '      Storms and gusts' },
 	{ cvar: 's_impacts', label: '       Surface sounds' },
 	{ cvar: 's_footsteps', label: '            Footsteps' },
+	{ cvar: 'joy_wheel', label: '    Pad: weapon wheel' },
+	{ cvar: 'joy_prompts', label: '  Pad: button prompts' },
+	{ cvar: 'joy_rumble', label: '          Pad: rumble' }
 ];
 // the page shows this many rows; a longer list scrolls with the cursor
 const NEWER_VISIBLE = 17;

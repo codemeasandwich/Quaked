@@ -23,6 +23,7 @@ import { R_PerfStage, R_PerfFpsText, R_PerfScreenLines } from '../common/hooks.j
 import { Sbar_Draw, Sbar_Changed, Sbar_IntermissionOverlay, Sbar_FinaleOverlay, SBAR_HEIGHT, set_sb_lines as Sbar_set_sb_lines, Sbar_SetYOffset } from '../client/sbar.js';
 import { R_BestiaryInputLocked } from '../common/hooks.js'; // installed by newer/ui/r_bestiary.js
 import { R_BestiaryEncounterDraw } from '../common/hooks.js'; // installed by newer/ui/r_bestiary_book.js
+import { R_WeaponWheelDraw, R_ControllerPromptsDraw } from '../common/hooks.js'; // installed by newer/ui/r_controller.js
 import { Draw_Character, Draw_String, Draw_CachePic, Draw_Pic, Draw_FadeScreen, Draw_BeginFrame,
 	GL_Set2D, Draw_TileClear, Draw_PicFromWad, Draw_GetUIScale,
 	Draw_GetVirtualWidth, Draw_GetVirtualHeight } from './gl_draw.js';
@@ -1151,8 +1152,10 @@ export function SCR_UpdateScreen() {
 		SCR_DrawPause();
 		SCR_CheckDrawCenterString();
 		SCR_DrawStatusBar();
+		R_WeaponWheelDraw(); // (Newer Game: the controller's weapon wheel while held open)
 		SCR_DrawConsole();
 		_M_Draw();
+		R_ControllerPromptsDraw(); // (Newer Game: the controller's buttons at a menu's foot)
 
 	}
 

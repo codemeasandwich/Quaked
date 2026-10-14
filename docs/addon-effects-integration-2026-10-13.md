@@ -5,6 +5,32 @@ engine so every supported game gets them (stock Quake, the mission packs, the re
 any add-on). This is the review the owner asked for before building: what already exists, what each
 effect reuses, what it listens to, and what it must leave alone.
 
+## Status (14 Oct 2026)
+
+All 14 are built, each as its own commit with its own Mac app release, each independently reviewed
+before it landed (the reviews' findings fixed, and tested, in the same commit):
+
+| # | Effect | Release | Notes |
+|---|---|---|---|
+| 12 | Per-map sky fog | v0.114.135 | [fog-2026-10-13.md](fog-2026-10-13.md) |
+| 3 | Explosion shake | v0.115.135 | [blast-shake-2026-10-13.md](blast-shake-2026-10-13.md) |
+| 6 | Visible drips | v0.116.135 | [drips-2026-10-13.md](drips-2026-10-13.md) |
+| 7 | Sparks at sparking lights | v0.119.135 | [sparks-2026-10-13.md](sparks-2026-10-13.md) |
+| 8 | Nail impacts (not the shotgun or lightning gun) | v0.120.135 | [nail-impacts-2026-10-14.md](nail-impacts-2026-10-14.md) |
+| 9 | Embers over lava | v0.121.135 | [lava-embers-2026-10-14.md](lava-embers-2026-10-14.md) |
+| 11 | Blood running down walls | v0.122.135 | [blood-runs-2026-10-14.md](blood-runs-2026-10-14.md) |
+| 10 | Gibs that sound when they land | v0.123.135 | [gib-sounds-2026-10-14.md](gib-sounds-2026-10-14.md) |
+| 4 | Lava you can hear | v0.124.135 | [lava-ambient-2026-10-14.md](lava-ambient-2026-10-14.md) |
+| 13 | Small touches | v0.125.135 | [small-touches-2026-10-14.md](small-touches-2026-10-14.md): corpses on lifts, item spin and shadow exclusions were already in the engine |
+| 5 | Lightning with the thunder, gusts | v0.127.135 | [storms-2026-10-14.md](storms-2026-10-14.md) |
+| 2 | Surface-aware impacts | v0.128.135 | [material-sounds-2026-10-14.md](material-sounds-2026-10-14.md) |
+| 1 | Footsteps | v0.129.135 | [footsteps-2026-10-14.md](footsteps-2026-10-14.md) |
+| 14 | Weapon wheel, button prompts, rumble | v0.130.135 | [controller-2026-10-14.md](controller-2026-10-14.md) |
+
+(v0.126.135 is the glass textures at the 4x standard, not one of the 14.) Each has a switch in
+Options, Newer features; all are Newer Game only, New Game is the original. None was yet seen or
+heard in a browser or the app by the owner: that is the owner's to try.
+
 ## The owner's rules (13 Oct 2026)
 
 - Preserve every approved and landed enhancement: its look, behaviour and performance.

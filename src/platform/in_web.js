@@ -68,6 +68,7 @@ let codeToQuakeKey = {}; // built in IN_Init to avoid circular dep in Deno
 
 // Mouse state (replaces DirectInput mouse in in_win.c)
 import { R_BestiaryInputLocked } from '../engine/common/hooks.js'; // installed by newer/ui/r_bestiary.js
+import { R_ControllerPoll, R_ControllerCancel } from '../engine/common/hooks.js'; // installed by newer/ui/r_controller.js
 let mouse_x = 0;
 let mouse_y = 0;
 let old_mouse_x = 0;
@@ -209,6 +210,7 @@ function GP_Release( key, keyEvent ) {
 // the controller went away or another took over (or WebXR began): release what it holds, and only that
 function GP_ReleaseOwned( keyEvent ) {
 
+	R_ControllerCancel(); // (Newer Game: an open weapon wheel closes, taking nothing)
 	const keys = [ ...gpState.owned.keys() ];
 	gpState.owned.clear(); gpState.sent.clear();
 	for ( const key of keys ) keyEvent( key, false, 'pad' );
@@ -277,6 +279,8 @@ export function IN_GamepadPoll( cmd, keyEvent = Key_Event, print = Con_Printf ) 
 
 	}
 
+	// (Newer Game: the bestiary takes the controls, with the game's clock stopped: an open weapon wheel closes, taking nothing)
+	if ( R_BestiaryInputLocked() ) R_ControllerCancel();
 	// Standard mapping: 0 A, 1 B, 2 X, 3 Y, 4 LB, 5 RB, 6 LT, 7 RT, 8 Back, 9 Start, 10 LS, 11 RS, 12-15 D-pad.
 	const inMenu = key_dest === key_menu;
 	for ( const [ index, name, gameKey, menuKey, trigger ] of GP_BUTTONS() ) {
@@ -288,6 +292,9 @@ export function IN_GamepadPoll( cmd, keyEvent = Key_Event, print = Con_Printf ) 
 
 	}
 
+	// (Newer Game: the weapon wheel and rumble, once a frame as the command is built; while the wheel is open the right
+	// stick is the wheel's, not the view's. card T-3faa98e3)
+	const wheelHasStick = cmd ? R_ControllerPoll( gp, GP_ApplyDeadzone( gp.axes?.[ 2 ] ?? 0, 0.12 ), GP_ApplyDeadzone( gp.axes?.[ 3 ] ?? 0, 0.12 ), cl.time ) : false;
 	// Gameplay movement/look (skip in menus; skip when cmd is missing)
 	if ( ! cmd || key_dest !== key_game || cls.demoplayback || R_BestiaryInputLocked() ) return gp;
 
@@ -303,14 +310,14 @@ export function IN_GamepadPoll( cmd, keyEvent = Key_Event, print = Con_Printf ) 
 	cmd.forwardmove -= cl_forwardspeed.value * ly;
 	cmd.sidemove += cl_sidespeed.value * lx;
 
-	// Right stick → look (yaw + pitch), always active (no pointer lock required)
-	if ( rx !== 0 ) {
+	// Right stick → look (yaw + pitch), always active (no pointer lock required), unless the weapon wheel has it
+	if ( rx !== 0 && ! wheelHasStick ) {
 
 		cl.viewangles[ YAW ] -= rx * cl_yawspeed.value * host_frametime * gp_look_yaw.value;
 
 	}
 
-	if ( ry !== 0 ) {
+	if ( ry !== 0 && ! wheelHasStick ) {
 
 		V_StopPitchDrift();
 		cl.viewangles[ PITCH ] += ry * cl_pitchspeed.value * host_frametime * gp_look_pitch.value;

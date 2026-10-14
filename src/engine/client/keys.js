@@ -152,6 +152,8 @@ for ( let i = 0; i < 32; i ++ ) {
 export let key_linepos = 1;
 export let shift_down = false;
 export let key_lastpress = 0;
+/** What last pressed a key: 'kbd', 'mouse', 'pad', 'touch' (Key_Event's source); the controller's prompts read it. */
+export let key_lastsource = 'kbd';
 
 export let edit_line = 0;
 export let history_line = 0;
@@ -881,6 +883,7 @@ export function Key_Event( key, down, source = 'kbd' ) {
 		key_repeats[ key ] = 0;
 
 	key_lastpress = key;
+	if ( down ) key_lastsource = source;
 	key_count ++;
 
 	if ( key_count <= 0 ) {
