@@ -1,0 +1,36 @@
+<!doctype html><meta charset="utf-8"><title>Blood run original footprint verification</title>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import * as decals from '/src/newer/render/r_decals.js';
+import {r_hdr} from '/src/newer/render/gl_post.js';
+import {Cvar_RegisterVariable,Cvar_FindVar,Cvar_Set} from '/src/engine/common/cvar.js';
+import {cl} from '/src/engine/client/client.js';
+import {Mod_PointInLeaf} from '/src/engine/render/gl_model.js';
+window.results=[];
+try{
+ for(const c of [r_hdr,decals.r_decals])if(!Cvar_FindVar(c.name))Cvar_RegisterVariable(c);Cvar_Set('r_hdr','1');Cvar_Set('r_decals','1');
+ let time=1000;Object.defineProperty(performance,'now',{configurable:true,value:()=>time*1000});
+ const scene=new THREE.Scene();scene.background=new THREE.Color(0xb0b0b0);
+ const wall={flags:0,plane:{normal:[1,0,0],type:0,dist:0},texinfo:{vecs:[[0,1,0,0],[0,0,1,0]]},texturemins:[-128,0],extents:[256,256]};
+ const air={contents:-1,firstmarksurface:[wall],nummarksurfaces:1},solid={contents:-2};cl.worldmodel={leafs:[solid,air],nodes:[{contents:0,plane:wall.plane,children:[air,solid]}],hulls:[{planes:[wall.plane],clipnodes:[{planenum:0,children:[-1,-2]}],firstclipnode:0,lastclipnode:0}]};
+ decals.R_DecalsSetup({scene,cl:()=>cl,pointInLeaf:Mod_PointInLeaf,lightPoint:()=>128});
+ const renderer=new THREE.WebGLRenderer({antialias:false});renderer.setSize(256,256);document.body.append(renderer.domElement);
+ const target=new THREE.WebGLRenderTarget(256,256,{count:4,type:THREE.UnsignedByteType});
+ const camera=new THREE.OrthographicCamera(-32,32,32,-32,1,200);camera.up.set(0,0,1);camera.position.set(100,0,64);camera.lookAt(0,0,64);
+ const draw=()=>{renderer.setRenderTarget(target);renderer.render(scene,camera);const out=new Uint8Array(256*256*4);renderer.readRenderTargetPixels(target,0,0,256,256,out);return out;};
+ const random=Math.random;Math.random=()=>.25;decals.R_DecalPlace('blood',[.5,0,64],14,2);Math.random=random;const mesh=scene.getObjectByName('quake_decals');
+ for(const [halfWidth,age] of [[24,2],[24,2.5],[96,2.5]]){
+  camera.left=-halfWidth;camera.right=halfWidth;camera.top=halfWidth;camera.bottom=-halfWidth;camera.updateProjectionMatrix();
+  mesh.visible=false;const clear=draw();mesh.visible=true;time=1000+age;decals.R_DecalsFrame();mesh.geometry.setDrawRange(0,6);const original=draw();
+  time=1000+age;decals.R_DecalsFrame();mesh.geometry.setDrawRange(0,mesh.geometry.index.count>=384*12?12:6);const grown=draw();
+  let footprint=0,altered=0,tail=0;
+  for(let i=0;i<original.length;i+=4){const covered=original[i]!==clear[i]||original[i+1]!==clear[i+1]||original[i+2]!==clear[i+2];const changed=original[i]!==grown[i]||original[i+1]!==grown[i+1]||original[i+2]!==grown[i+2]||original[i+3]!==grown[i+3];if(covered){footprint++;if(changed)altered++;}else if(changed)tail++;}
+  window.results.push({check:'original footprint exact at halfWidth '+halfWidth+' age '+age,footprint,altered,pass:footprint>0&&altered===0});
+  window.results.push({check:'visible extension outside original footprint at halfWidth '+halfWidth+' age '+age,tail,pass:tail>0});
+ }
+ camera.left=-24;camera.right=24;camera.top=24;camera.bottom=-24;camera.updateProjectionMatrix();time=1005;decals.R_DecalsFrame();const pixels=draw();
+ const preview=document.createElement('canvas');preview.width=preview.height=256;const ctx=preview.getContext('2d'),img=ctx.createImageData(256,256);for(let y=0;y<256;y++)img.data.set(pixels.subarray(y*1024,(y+1)*1024),(255-y)*1024);ctx.putImageData(img,0,0);document.body.replaceChildren(preview);
+ window.complete=true;
+}catch(e){window.failure=String(e.stack??e);window.complete=true;}
+</script>

@@ -15,7 +15,8 @@
 // and blood spray come down or strike a wall.
 //
 // A mark is a small quad lying on the surface it hit.  Everything is one mesh (one
-// draw call) with a ring of the most recent MAX_DECALS marks, so a long fight
+// draw call) with a ring of the most recent MAX_DECALS marks. A large wall splash may grow a short run
+// in its own appended quad, sharing the same slot, atlas and lifetime (docs/blood-runs-2026-10-14.md), so a long fight
 // wears old marks away instead of slowing the game.  The surface is found from
 // the level's own polygons (the leaf the point is in has the surfaces that touch
 // it), so a mark takes the surface's angle and is kept inside that surface.  It
@@ -25,6 +26,8 @@
 import * as THREE from 'three';
 import { cvar_t } from '../../engine/common/cvar.js';
 import { R_NewerGame } from '../mode.js';
+import { GibRestObserved } from './gib_rest.js';
+import { FX_Contents, FX_SolidPolygon, FX_EMPTY } from './fx_world.js';
 
 export const r_decals = new cvar_t( 'r_decals', '1' );
 
@@ -56,6 +59,8 @@ let deps = null; // { scene, cl, pointInLeaf, lightPoint }
 let mesh = null;
 let geometry = null;
 let positions = null, uvs = null, colors = null;
+let sourceUvs=null, sourceCells=null, tailFlags=null;
+const runs=new Array(MAX_DECALS).fill(null);
 let born = null, life = null, base = null;
 let next = 0;
 let used = 0;
@@ -297,18 +302,20 @@ function ensureMesh() {
 
 	if ( mesh !== null || deps === null || typeof document === 'undefined' ) return mesh !== null;
 
-	positions = new Float32Array( MAX_DECALS * 4 * 3 );
-	uvs = new Float32Array( MAX_DECALS * 4 * 2 );
-	colors = new Float32Array( MAX_DECALS * 4 * 4 );
+	positions = new Float32Array( MAX_DECALS * 8 * 3 );
+	uvs = new Float32Array( MAX_DECALS * 8 * 2 );
+	colors = new Float32Array( MAX_DECALS * 8 * 4 );
 	born = new Float64Array( MAX_DECALS );
 	life = new Float32Array( MAX_DECALS );
 	base = new Float32Array( MAX_DECALS * 4 ); // r, g, b, a of each mark before fading
 
-	const index = new Uint16Array( MAX_DECALS * 6 );
+	sourceUvs = new Float32Array(MAX_DECALS*8*2); sourceCells = new Float32Array(MAX_DECALS*8*4); tailFlags = new Float32Array(MAX_DECALS*8);
+	const index = new Uint16Array( MAX_DECALS * 12 );
 	for ( let i = 0; i < MAX_DECALS; i ++ ) {
 
 		const v = i * 4;
-		index.set( [ v, v + 1, v + 2, v, v + 2, v + 3 ], i * 6 );
+		const tail=(MAX_DECALS+i)*4;
+		index.set( [ v, v + 1, v + 2, v, v + 2, v + 3, tail,tail+1,tail+2,tail,tail+2,tail+3 ], i * 12 );
 
 	}
 
@@ -316,6 +323,9 @@ function ensureMesh() {
 	geometry.setAttribute( 'position', new THREE.BufferAttribute( positions, 3 ).setUsage( THREE.DynamicDrawUsage ) );
 	geometry.setAttribute( 'uv', new THREE.BufferAttribute( uvs, 2 ).setUsage( THREE.DynamicDrawUsage ) );
 	geometry.setAttribute( 'color', new THREE.BufferAttribute( colors, 4 ).setUsage( THREE.DynamicDrawUsage ) );
+	geometry.setAttribute('aOriginalUv',new THREE.BufferAttribute(sourceUvs,2).setUsage(THREE.DynamicDrawUsage));
+	geometry.setAttribute('aOriginalCell',new THREE.BufferAttribute(sourceCells,4));
+	geometry.setAttribute('aTail',new THREE.BufferAttribute(tailFlags,1));
 	geometry.setIndex( new THREE.BufferAttribute( index, 1 ) );
 	geometry.setDrawRange( 0, 0 );
 	geometry.boundingSphere = new THREE.Sphere( new THREE.Vector3( 0, 0, 0 ), 1e6 );
@@ -339,6 +349,12 @@ function ensureMesh() {
 
 	// what is drawn is the multiplier: 1 where the mark is not, its colour where it is
 	material.onBeforeCompile = ( shader ) => {
+  shader.vertexShader='attribute vec2 aOriginalUv;\nattribute vec4 aOriginalCell;\nattribute float aTail;\nvarying vec2 vOriginalUv;\nvarying vec4 vOriginalCell;\nvarying float vTail;\n'+shader.vertexShader;
+  shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvOriginalUv=aOriginalUv; vOriginalCell=aOriginalCell; vTail=aTail;');
+  shader.fragmentShader='varying vec2 vOriginalUv;\nvarying vec4 vOriginalCell;\nvarying float vTail;\n'+shader.fragmentShader;
+  // Same projected UV derivatives select the original texture LOD. Never multiply covered splash pixels twice.
+  shader.fragmentShader=shader.fragmentShader.replace('#include <map_fragment>','#include <map_fragment>\nif(vTail>.5 && all(greaterThanEqual(vOriginalUv,vOriginalCell.xy)) && all(lessThanEqual(vOriginalUv,vOriginalCell.zw)) && texture2D(map,vOriginalUv).a>0.0) discard;');
+
 
 		shader.fragmentShader = 'layout(location = 1) out highp vec4 gNormal;\nlayout(location = 2) out highp vec4 gAlbedo;\nlayout(location = 3) out highp vec4 gHeightMask;\n' + shader.fragmentShader
 			.replace( '#include <opaque_fragment>', 'gl_FragColor = vec4( mix( vec3( 1.0 ), outgoingLight, diffuseColor.a ), 1.0 );' )
@@ -347,7 +363,7 @@ function ensureMesh() {
 
 	};
 
-	material.customProgramCacheKey = () => 'quake-decals';
+	material.customProgramCacheKey = () => 'quake-decals-runs';
 
 	mesh = new THREE.Mesh( geometry, material );
 	mesh.frustumCulled = false;
@@ -385,7 +401,8 @@ export function R_DecalPlace( kind, p, radius, maxDist ) {
 	const cl = deps.cl();
 	if ( cl == null || cl.worldmodel == null ) return false;
 
-	const hit = R_DecalSurface( cl.worldmodel, p, maxDist, deps.pointInLeaf );
+	const sharedHit = R_DecalSurface( cl.worldmodel, p, maxDist, deps.pointInLeaf );
+	const hit = sharedHit && {...sharedHit};
 	if ( hit === null ) return false;
 
 	// stay on the surface
@@ -440,12 +457,56 @@ export function R_DecalPlace( kind, p, radius, maxDist ) {
 	born[ slot ] = now();
 	life[ slot ] = k.life;
 
-	geometry.setDrawRange( 0, used * 6 );
+	prepareRun(slot,kind,r,hit,[cx,cy,cz],[r2x,r2y,r2z],[u2x,u2y,u2z],u0,v0,cl);
+	geometry.setDrawRange( 0, used * 12 );
 	dirty = true;
 
 	if ( mesh.parent !== deps.scene ) deps.scene.add( mesh );
 	return true;
 
+}
+
+// One optional run belongs to its original ring slot. Original vertices, atlas samples and RNG stay intact.
+function prepareRun(slot,kind,r,hit,center,right,up,u0,v0,cl){
+ runs[slot]=null;
+ const offset=(MAX_DECALS+slot)*4;
+ for(let c=0;c<4;c++)colors[(offset+c)*4+3]=0;
+ if(kind!=='blood'||r<8||Math.abs(hit.nz)>.25||!cl.worldmodel?.hulls?.[0])return;
+ const n=[hit.nx,hit.ny,hit.nz],down=[n[0]*n[2],n[1]*n[2],n[2]*n[2]-1];
+ const length=Math.hypot(...down);for(let a=0;a<3;a++)down[a]/=length;
+ const side=[n[1]*down[2]-n[2]*down[1],n[2]*down[0]-n[0]*down[2],n[0]*down[1]-n[1]*down[0]];
+ const start=r*.35;
+ const width=Math.min(.8,r*.05),surf=hit.surf;
+ const backing=[[-1,0],[1,0],[1,8],[-1,8]].map(([across,along])=>center.map((v,a)=>v+down[a]*(start+along)+side[a]*width*across-n[a]*.6));
+ if(!FX_SolidPolygon(cl.worldmodel,backing))return;
+ // Verify each narrow rail at one-unit intervals against the same surface and solid backing.
+ for(let t=0;t<=8;t++)for(const sideSign of [-1,0,1]){
+  const p=center.map((v,a)=>v+down[a]*(start+t)+side[a]*width*sideSign);
+  const match=R_DecalSurface(cl.worldmodel,p,.6,deps.pointInLeaf,s=>s===surf);
+  // the run lies in open air (never under water, slime or lava) on the same surface, with solid behind it
+  if(!match||FX_Contents(cl.worldmodel,p.map((v,a)=>v+n[a]*.6))!==FX_EMPTY||FX_Contents(cl.worldmodel,p.map((v,a)=>v-n[a]*.6))!==CONTENTS_SOLID)return;
+ }
+ const run={center,right,up,down,side,start,width,r,u0,v0,growth:-1};runs[slot]=run;
+ for(let c=0;c<4;c++){
+  const v=offset+c;tailFlags[v]=1;sourceCells.set([u0,v0,u0+.25,v0+.5],v*4);
+  uvs[v*2]=u0+(c===0||c===3?.115:.135);uvs[v*2+1]=v0+(c<2?.24:.26);
+  colors.set(base.subarray(slot*4,slot*4+4),v*4);
+ }
+ updateRun(slot,0);
+}
+function updateRun(slot,age){
+ const run=runs[slot];if(!run)return;
+ const growth=Math.min(1,Math.max(0,age/2.5));if(growth===run.growth)return;run.growth=growth;
+ const offset=(MAX_DECALS+slot)*4;
+ for(let c=0;c<4;c++){
+  const along=run.start+(c<2?0:8*growth),across=(c===0||c===3?-1:1)*run.width*(c<2?1:.65);
+  const q=run.center.map((v,a)=>v+run.down[a]*along+run.side[a]*across),relative=q.map((v,a)=>v-run.center[a]);
+  positions.set(q,(offset+c)*3);
+  const dot=a=>a.reduce((s,v,i)=>s+v*relative[i],0);
+  sourceUvs[(offset+c)*2]=run.u0+(dot(run.right)/run.r+1)*.125;
+  sourceUvs[(offset+c)*2+1]=run.v0+(dot(run.up)/run.r+1)*.25;
+ }
+ dirty=true;
 }
 
 //============================================================================
@@ -637,26 +698,7 @@ export function R_DecalGibTrack( e, time ) {
 
 	if ( R_DecalsEnabled() === false || e.origin == null ) return;
 
-	let g = e._gibState;
-	if ( g === undefined || time < g.t ) {
-
-		g = e._gibState = { x: e.origin[ 0 ], y: e.origin[ 1 ], z: e.origin[ 2 ], t: time, still: 0, done: false };
-		return;
-
-	}
-
-	if ( g.done || time - g.t < 0.1 ) return;
-
-	const moved = Math.hypot( e.origin[ 0 ] - g.x, e.origin[ 1 ] - g.y, e.origin[ 2 ] - g.z );
-	g.still = moved < 0.6 ? g.still + ( time - g.t ) : 0;
-	g.x = e.origin[ 0 ]; g.y = e.origin[ 1 ]; g.z = e.origin[ 2 ]; g.t = time;
-
-	if ( g.still > 0.3 ) {
-
-		g.done = true;
-		R_DecalGibLanded( e.origin );
-
-	}
+	if ( GibRestObserved( e, '_gibState', e.origin, time ) ) R_DecalGibLanded( e.origin );
 
 }
 
@@ -678,6 +720,7 @@ export function R_DecalsFrame() {
 	if ( on === false ) return;
 
 	const t = now();
+ for(let s=0;s<used;s++)updateRun(s,t-born[s]);
 
 	// fade the ones nearing the end of their lives, twice a second
 	if ( t - lastFade > 0.5 ) {
@@ -690,6 +733,7 @@ export function R_DecalsFrame() {
 
 			const alpha = Math.max( 0, remaining / FADE );
 			for ( let c = 0; c < 4; c ++ ) colors[ ( s * 4 + c ) * 4 + 3 ] = alpha;
+			if(runs[s])for(let c=0;c<4;c++)colors[((MAX_DECALS+s)*4+c)*4+3]=alpha;
 			base[ s * 4 + 3 ] = alpha > 0 ? 1 : 0;
 			dirty = true;
 
@@ -702,6 +746,7 @@ export function R_DecalsFrame() {
 		geometry.attributes.position.needsUpdate = true;
 		geometry.attributes.uv.needsUpdate = true;
 		geometry.attributes.color.needsUpdate = true;
+  geometry.attributes.aOriginalUv.needsUpdate=true; geometry.attributes.aOriginalCell.needsUpdate=true; geometry.attributes.aTail.needsUpdate=true;
 		dirty = false;
 
 	}
@@ -716,6 +761,7 @@ export function R_DecalsClear() {
 
 	next = 0;
 	used = 0;
+ runs.fill(null);
 	if ( geometry !== null ) geometry.setDrawRange( 0, 0 );
 	if ( mesh !== null && mesh.parent != null ) mesh.parent.remove( mesh );
 
