@@ -36,6 +36,7 @@ import { SMOKE, alphaBoost, forEachSmoke, R_SmokeTrailEmit, R_SmokeTrailClear, R
 import { R_NewerGame } from '../mode.js';
 import { R_DemoSplitActive } from './r_demosplit.js';
 import { R_DecalSurface } from './r_decals.js';
+import { R_ShaderWarmRegister } from './r_shaderwarm.js';
 
 // 0 puts the native particles back for every explosion
 export const r_fireball = new cvar_t( 'r_fireball', '1' );
@@ -434,6 +435,15 @@ function build() {
 	for ( const l of [ ring, puff, glow, spark ] ) group.add( l.mesh );
 
 }
+
+// (built for each level's shader warm-up as its first explosion or rocket would: r_shaderwarm.js)
+R_ShaderWarmRegister( 'fireball', () => {
+
+	if ( deps == null || deps.scene == null || ! R_NewerGame() || r_fireball.value === 0 && r_smoketrails.value === 0 ) return null;
+	if ( group === null ) build();
+	return group;
+
+} );
 
 /**
  * Installs the smoke atlas and noise textures, when the loader has both (or from tests). The effect needs both

@@ -54,6 +54,7 @@ import { CL_InitTEnts, CL_UpdateTEnts } from './cl_tent.js';
 import { host_frametime, realtime } from '../common/host_state.js';
 import { sv } from '../server/server.js';
 import { SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from '../render/gl_screen.js';
+import { R_LevelWarmHolding } from '../render/gl_rmain.js';
 import { S_StopAllSounds } from '../sound/snd_dma.js';
 import { M_ConnectionError, M_ShouldReturnOnError } from './menu.js';
 import { key_menu, set_key_dest } from './keys.js';
@@ -1352,7 +1353,8 @@ CL_ReadFromServer
 */
 /**
  * Read all incoming data from the server (WinQuake cl_main.c), once per Host_Frame while connected. Does nothing
- * while Newer Game's demo loading screen freezes a fully signed-on demo. Otherwise advances cl.time by
+ * while Newer Game's demo loading screen freezes a fully signed-on demo, or while a demo's new level is held on its first
+ * frame as its shaders compile (gl_rmain.js `R_LevelWarmHolding`). Otherwise advances cl.time by
  * `host_frametime`, parses every waiting message (recording `cl.last_received_message` in realtime seconds), relinks
  * entities, updates temporary entities, then runs client-side prediction in a remote live game, or copies `cl.velocity`
  * and the on-ground state into the prediction outputs (for view bob and roll) when a local server or a demo is running.
@@ -1363,7 +1365,7 @@ CL_ReadFromServer
  *   connection lost; also whatever Host_Error a parsed message raises
  */
 export function CL_ReadFromServer() {
-	if(R_DemoLoadingFreeze(cls.demoplayback,cls.signon,cls.timedemo))return;
+	if(R_DemoLoadingFreeze(cls.demoplayback,cls.signon,cls.timedemo)||R_LevelWarmHolding())return; // (a demo's level held while its shaders compile)
 
 	cl.oldtime = cl.time;
 	cl.time += host_frametime;

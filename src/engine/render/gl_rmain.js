@@ -24,7 +24,7 @@ import {R_RendVeilSeen,R_RendVeilRelease,R_RendVeilClear,R_RendVeilBegin,R_RendV
 import {sv,svs} from '../server/server.js';
 import { R_RespawnCameraFrame } from '../common/hooks.js'; // installed by newer/render/r_respawn.js
 import { R_DemonBakeRelease } from '../common/hooks.js'; // installed by newer/assets/r_demonbakes.js
-import { R_CompileSceneAsync, R_ShaderAssetStamp } from '../common/hooks.js'; // installed by newer/render/r_shaderwarm.js
+import { R_CompileSceneAsync, R_KeepPrograms, R_ShaderAssetStamp, R_ShaderWarmObjects, R_ShaderWarmScenes } from '../common/hooks.js'; // installed by newer/render/r_shaderwarm.js
 import { R_RockfieldSetLimits, R_RockfieldStatus } from '../common/hooks.js'; // installed by newer/render/r_rockfield.js
 import { R_IntroLoadingHolding, R_DemoLoadingWelcome, R_DemoLoadingFrame, R_IntroReadinessChecks } from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js
 import { R_NewerTexturesStatus,R_NewerNormalsStatus,R_NewerNormalsPrepare } from '../common/hooks.js'; // installed by newer/render/r_newertextures.js
@@ -79,7 +79,7 @@ import { R_BestiaryApplyCamera, R_BestiaryObserve, R_BestiaryInputLocked, R_Best
 import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate, R_FlashlightBeam } from '../common/hooks.js'; // installed by newer/render/r_flashlight.js
 import { R_MuzzleSetView, R_MuzzleSetProbe } from '../common/hooks.js'; // installed by newer/render/r_muzzle.js
 import { SV_SeamlessCrossings, SV_SeamlessPending, SV_SetLiquidLinks, SV_SetWarmLevel, SV_LevelSnapshotEntities } from '../common/hooks.js'; // installed by newer/gameplay/sv_seamless.js
-import { r_newer_variety, R_NewerSkinsNewMap, R_CloneAliasMaterial, R_ReleaseAliasReceiver, R_HeldVisionTag } from '../common/hooks.js'; // installed by newer/render/r_newerskins.js
+import { r_newer_variety, R_NewerSkinsNewMap, R_CloneAliasMaterial, R_HeldViewmodelMaterial, R_ReleaseAliasReceiver, R_HeldVisionTag } from '../common/hooks.js'; // installed by newer/render/r_newerskins.js
 import { PowerVisionMode } from '../common/hooks.js'; // installed by newer/gameplay/powervision_state.js
 import { R_PostSetPortraitLight, R_PostSetSplit, classicLook, R_WaterProbesFrame, r_reflect_screen, r_bounce, r_cloudspeed, r_pillars, r_heathaze, r_mist, r_reflect, r_water_look, r_hdr, r_pointshadows, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostLightsFrame, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks, R_GetWorldLights, R_FireFlicker, R_DynResScale, r_dynres, r_fps_target, SUN_SHADOW_LAYER } from '../common/hooks.js'; // installed by newer/render/gl_post.js
 import { vid, renderer } from './vid.js';
@@ -88,7 +88,7 @@ import {
 	M_PI, DotProduct, VectorCopy, VectorAdd, VectorSubtract, VectorMA,
 	VectorNormalize, AngleVectors, Length, RotatePointAroundVector, BoxOnPlaneSide
 } from '../common/mathlib.js';
-import { R_DrawWorld as R_DrawWorld_impl, R_MarkLeaves as R_MarkLeaves_impl, GL_BuildLightmaps as GL_BuildLightmaps_rsurf, R_DrawBrushModel as R_DrawBrushModel_rsurf, R_DrawWaterSurfaces as R_DrawWaterSurfaces_rsurf, R_CleanupWaterMeshes as R_CleanupWaterMeshes_rsurf, createQuakeLightmapMaterial, R_WorldShowAll, R_ClassicSurfaceMaterial, R_ClassicLightmapsFrame, R_ClassicLightmap } from './gl_rsurf.js';
+import { R_DrawWorld as R_DrawWorld_impl, R_MarkLeaves as R_MarkLeaves_impl, GL_BuildLightmaps as GL_BuildLightmaps_rsurf, R_DrawBrushModel as R_DrawBrushModel_rsurf, R_BrushModelWarmGroup, R_BrushModelWarmDispose, R_DrawWaterSurfaces as R_DrawWaterSurfaces_rsurf, R_CleanupWaterMeshes as R_CleanupWaterMeshes_rsurf, createQuakeLightmapMaterial, R_WorldShowAll, R_ClassicSurfaceMaterial, R_ClassicLightmapsFrame, R_ClassicLightmap } from './gl_rsurf.js';
 import { Mod_PointInLeaf, Mod_LeafPVS, SPR_SINGLE, SPR_ORIENTED } from './gl_model.js';
 import { R_AnimateLight as R_AnimateLight_impl, R_PushDlights as R_PushDlights_impl, R_RenderDlights as R_RenderDlights_impl, R_LightPoint, lightspot, lightplane } from './gl_rlight.js';
 import { R_DrawAliasModel as R_DrawAliasModel_mesh, GL_DrawAliasShadow, GL_DrawAliasLightShadow } from './gl_mesh.js';
@@ -97,7 +97,7 @@ import { CL_AllocDlight, CL_PlayerLightning } from '../client/client.js';
 import { chase_active } from '../client/chase.js';
 import {
 	R_InitParticles, R_SetParticleExternals, R_ClearParticles,
-	R_DrawParticles as R_DrawParticles_impl
+	R_DrawParticles as R_DrawParticles_impl, R_ParticleWarmObject
 } from './r_part.js';
 import { isXRActive, getXRRig, XR_SetCamera, XR_SCALE, XR_GetControllerWorldPose } from '../../platform/webxr.js';
 import {
@@ -979,9 +979,9 @@ export function R_DrawViewModel() {
 			let clone = currententity[ cacheSlot ].get( baseMaterial );
 			if ( ! clone ) {
 
-				clone = R_CloneAliasMaterial( baseMaterial );
-    if(slot==='_classicViewmodelMaterial')clone.transparent=true;
-    else {clone.userData.quakeViewmodel=true;clone.userData.quakePlayerSurface=true;}
+				// (the enhanced view's in-hand variant, r_newerskins.js: the recipe the warm-up compiles too)
+				if(slot==='_classicViewmodelMaterial'){clone=R_CloneAliasMaterial( baseMaterial );clone.transparent=true;}
+				else clone=R_HeldViewmodelMaterial( baseMaterial );
 				currententity[ cacheSlot ].set( baseMaterial, clone );
 
 			}
@@ -2115,6 +2115,9 @@ export function R_RenderView() {
 
 	R_PerfStage( 'overlays and water' );
 	if(R_IntroLoadingHolding())R_UpdateIntroReadiness();
+	else R_LevelShaderWarm();
+	if(cls.signon===4)_levelSignedFrames++;
+	R_KeepPrograms( renderer ); // (a program compiled once stays compiled: r_shaderwarm.js)
 
 	if ( r_speeds.value ) {
 
@@ -2366,6 +2369,75 @@ export function R_Init() {
 // R_NewMap
 //============================================================================
 
+// Every demo level, not only the one the loading welcome holds back (a demo going on to its next map, or the same map
+// loaded again): once the level's monster and item skins and the weapon models have settled, their materials, the
+// level's brush models and the effects built on first use are compiled together, so a monster, item, weapon, door or
+// effect first seen mid-demo does not stall the frame while its shader compiles (docs/demo-performance-2026-10-14.md).
+// Checked every 10 frames (each frame while the demo is held); warmed again when those bindings change, and, while the
+// demo is held, when the level's own textures land (a door's or box's detail maps change its program). Demos only: a
+// level the player enters is warmed by the loading welcome (R_UpdateIntroReadiness).
+let _levelWarmWorld=null,_levelWarmStamp='',_levelWarmCheap='',_levelWarmStart=0,_levelWarmDone=true,_levelWarmFailed=false;
+// A demo's level is held on its first frame while this runs, at most this long (a recorded game has no loading screen
+// of its own here: the welcome holds only the first)
+const LEVEL_WARM_HOLD_MS=4000,LEVEL_WARM_HOLD_FRAMES=4;
+let _levelSignedFrames=Infinity,_levelArtPending=false,_levelWarmTextures=''; // frames drawn since this level's demo signed on; its textures still loading
+function R_LevelShaderWarm(){
+ const model=cl?.worldmodel;
+ if(!model||!renderer||!scene||!camera||_needCompile||!cls.demoplayback||_levelWarmFailed||!R_PostActive())return;
+ const holding=R_LevelWarmHolding();
+ if(r_framecount%10!==0&&!holding)return;
+ try{
+  const models=cl.model_precache.filter(Boolean);
+  const skinRequired=r_newer_enemies.value!==0||r_newer_normals.value!==0,weaponRequired=R_WeaponsEnabled();
+  if(skinRequired)R_NewerSkinsPrepare(models);
+  const skins=skinRequired?R_NewerSkinsStatus(models):null,weapons=weaponRequired?R_WeaponStatus():null;
+  // (the level's textures, the world's and each separate brush file's: its `*N` doors share the world's list)
+  const textures=holding&&r_newer_textures.value!==0?models.filter(m=>m.type===mod_brush&&!m.name.startsWith('*')).map(m=>R_NewerTexturesStatus(m)):[];
+  // (the last counts seen while held stand afterwards, so the hold ending is not itself a change)
+  if(holding){_levelArtPending=textures.some(t=>!t.settled);_levelWarmTextures=textures.map(t=>t.ready+'/'+t.fallback).join();}
+  const cheap=JSON.stringify([model.name,skins?.ready,skins?.fallback,weapons?.ready,_levelWarmTextures]);
+  // (the welcome warmed this load of the level: R_NewMap clears _levelWarmWorld for each load)
+  const introWarm=_introWorld===model&&_introShaderStamp!==''&&!R_IntroLoadingHolding();
+  if(_levelWarmWorld!==model){_levelWarmWorld=model;_levelWarmStamp='';_levelWarmCheap=introWarm?cheap:'';if(introWarm)_levelWarmDone=true;}
+  if(skins&&!skins.settled||weapons&&!weapons.settled)return;
+  // (the full stamp walks every material: only when the counts move)
+  if(cheap===_levelWarmCheap){if(_shaderWarmPending===0)_levelWarmDone=true;return;}
+  _levelWarmCheap=cheap;
+  const materials=[...(skins?R_NewerSkinsMaterials(models):[]),...(weapons?R_WeaponMaterials():[])];
+  const uploaded=[...(skins?R_NewerSkinsTextures(models):[]),...(weapons?R_WeaponTextures():[])];
+  const stamp=R_ShaderAssetStamp([model.name,cheap],materials,uploaded);
+  if(stamp!==_levelWarmStamp){
+   const previous=renderer.getRenderTarget();let brushes=[];
+   try{brushes=R_LevelWarmBrushes(models);R_PostBind(renderer);R_WarmShaders(renderer,scene,camera,materials,uploaded,[...brushes,...R_LevelWarmEffects()]);}
+   finally{renderer.setRenderTarget(previous);for(const group of brushes)R_BrushModelWarmDispose(group);}
+   _levelWarmStamp=R_ShaderAssetStamp([model.name,cheap],materials,uploaded);
+  }
+  if(_shaderWarmPending===0)_levelWarmDone=true;
+ }catch(error){
+  // (a level that cannot be warmed plays as before: its shaders compile as they are first drawn)
+  console.warn('level shader warm-up failed',error);_levelWarmFailed=true;_levelWarmDone=true;_levelArtPending=false;
+ }
+}
+
+/**
+ * Whether a playing demo is held on its level's first frame while that level's skins and weapon models load and their
+ * shaders compile (`R_LevelShaderWarm`), so the compiles do not stall the demo mid-play
+ * (docs/demo-performance-2026-10-14.md). Only in the enhanced view (`R_PostActive`), once signed on, at most
+ * `LEVEL_WARM_HOLD_MS` after the level loaded (`R_NewMap`); also for its first `LEVEL_WARM_HOLD_FRAMES` signed-on
+ * frames and while the level's own textures land. Timedemos too (the profiler's runs); a timedemo's clock starts after
+ * the hold (cl_demo.js). Held frames show the level's first view, with its entities as last relinked. Asked by cl_main.js `CL_ReadFromServer` and cl_demo.js `CL_GetMessage` (the clock and the demo
+ * stand still) and by the profiler (r_perf.js: held frames are not timed).
+ *
+ * @returns {boolean} true while the demo is held
+ */
+export function R_LevelWarmHolding(){
+ if(!cls.demoplayback||cls.signon!==4||!R_PostActive())return false;
+ if(performance.now()-_levelWarmStart>LEVEL_WARM_HOLD_MS){_levelWarmDone=true;return false;}
+ // (and its first few frames, whose own first-sight compiles, the world's variants and the sky's fog, then also fall
+ // in the hold)
+ return !_levelWarmDone||_levelArtPending||_levelSignedFrames<LEVEL_WARM_HOLD_FRAMES;
+}
+
 // A new level's materials are compiled (and their textures put on the card) on its first
 // frames, while the screen is still held back, instead of one at a time as they first come
 // into view: each of those is a stall of a good fraction of a second.
@@ -2396,8 +2468,8 @@ function R_UpdateIntroReadiness(){
   // not these prepared shader families. Rewarm only changed actual bindings.
   const uploadStamp=R_ShaderAssetStamp([model.name,textures.ready,textures.fallback,skins.ready,skins.fallback,weapons.ready,hud.ready,hud.fallback],materials,uploaded);
   if(_introShaderStamp!==uploadStamp){
-   const previous=renderer.getRenderTarget();R_PostBind(renderer);
-   try{R_WarmShaders(renderer,scene,camera,materials,uploaded);}finally{renderer.setRenderTarget(previous);}
+   const previous=renderer.getRenderTarget(),brushes=R_LevelWarmBrushes(models);R_PostBind(renderer);
+   try{R_WarmShaders(renderer,scene,camera,materials,uploaded,[...brushes,...R_LevelWarmEffects()]);}finally{renderer.setRenderTarget(previous);for(const group of brushes)R_BrushModelWarmDispose(group);}
    // Three compiles both sides of transparent DoubleSide materials by changing
    // their version synchronously. Retain the completed compile's revision.
    _introShaderStamp=R_ShaderAssetStamp([model.name,textures.ready,textures.fallback,skins.ready,skins.fallback,weapons.ready,hud.ready,hud.fallback],materials,uploaded);
@@ -2411,13 +2483,30 @@ function R_UpdateIntroReadiness(){
  R_DemoLoadingFrame({world:model.name,signon:cls.signon,rendered:true,pending,fallbacks,revision:stamp+':'+(renderer.info?.programs?.length||0)});
 }
 
+// The level's brush models (doors, lifts, buttons, the `maps/b_*.bsp` ammo and health boxes), each built as its first
+// draw will build it (gl_rsurf_brush.js), so their programs compile with the rest; the caller disposes the groups
+function R_LevelWarmBrushes(models){
+ const groups=[];
+ for(const m of models)if(m.type===mod_brush&&m!==cl.worldmodel){const group=R_BrushModelWarmGroup(m);if(group)groups.push(group);}
+ return groups;
+}
+
+// Stand-ins for the effects built on first use (r_shaderwarm.js R_ShaderWarmObjects: fireballs, venom, marks, motes,
+// wall burns) and the particles (r_part.js), compiled with the level's other shaders; never in the scene
+function R_LevelWarmEffects(){
+ const objects=R_ShaderWarmObjects(),particles=R_ParticleWarmObject();
+ if(particles){const proxy=new THREE.Points(particles.geometry,particles.material);proxy.frustumCulled=false;objects.push(proxy);}
+ return objects;
+}
+
+
 // The kinds of material that only appear once something spawns, is fired or comes into view
 // (monster skins, sprites, marks, shadows, doors...). Each is a stall of a second or more the
 // first time it is drawn, so they are all started compiling up front, off the main thread
 // where the browser allows it. Nothing here is ever drawn.
 let _warmGroup = null;
 
-function R_WarmShaders( renderer, scene, camera, extraMaterials=[], extraTextures=[] ) {
+function R_WarmShaders( renderer, scene, camera, extraMaterials=[], extraTextures=[], extraObjects=[] ) {
 
 	if ( _warmGroup === null ) {
 
@@ -2470,9 +2559,15 @@ function R_WarmShaders( renderer, scene, camera, extraMaterials=[], extraTexture
 		const textures=new Set();for(const value of Object.values(material))if(value?.isTexture)textures.add(value);for(const uniform of Object.values(material.uniforms||{}))if(uniform?.value?.isTexture)textures.add(uniform.value);
 		if(renderer.initTexture)for(const texture of textures)renderer.initTexture(texture);
 	}
+	// (whole objects built as the game will draw them: the level's brush models, R_LevelWarmBrushes)
+	for(const object of extraObjects){_warmGroup.add(object);extra.push(object);}
 	scene.add( _warmGroup );
 
-		const started = R_CompileSceneAsync( renderer, scene, camera );
+		// (with the map's fog, as the scene pass draws: fog is part of a program's key; r_fog.js)
+		let started;
+		R_FogApply( scene, R_PostLastExposure() );
+		try{started = R_CompileSceneAsync( renderer, scene, camera );}finally{scene.fog=null;}
+		for(const own of R_ShaderWarmScenes())renderer.compile(own.scene,own.camera);
 		if(started&&typeof started.then==='function'){_shaderWarmPending++;Promise.resolve(started).catch(error=>{_shaderWarmFailure=String(error.message||error);}).finally(()=>{_shaderWarmPending--;});}
 
 	} catch ( e ) {
@@ -2490,7 +2585,8 @@ function R_WarmShaders( renderer, scene, camera, extraMaterials=[], extraTexture
 /**
  * Called when a new map is loaded: from gl_rmisc.js `R_NewMap`, which `CL_ParseServerInfo` runs once the world model
  * is in `cl.worldmodel`. Releases the demon bakes; shows the loading welcome for a local single-player Newer game
- * (`r_hdr` on, not a demo); clears the axe corpses and powerups; schedules the shader compile and resets the loading
+ * (`r_hdr` on, not a demo); re-arms a demo level's shader warm-up and its hold (`R_LevelWarmHolding`); clears the axe
+ * corpses and powerups; schedules the shader compile and resets the loading
  * intro's readiness; clears the view leaves; resets `r_worldentity` in place (WinQuake memsets one static entity, so
  * its identity is kept) and points it at the new world; rerolls the Newer skins; sets `r_framecount` to 1 and
  * `r_visframecount` to 0; clears the particles; re-wires and clears the per-map effects (decals, fireballs, torch fire,
@@ -2502,6 +2598,7 @@ export function R_NewMap() {
  R_CloakReset();
 	R_FogNewMap( cl?.worldmodel?.entities ); // the map's own fog (worldspawn "fog"), or none
 	R_SkyBoxNewMap( cl?.worldmodel?.entities ); // the map's skybox (worldspawn "sky"), or its scrolling sky
+	_levelWarmStart=performance.now();_levelWarmDone=false;_levelWarmFailed=false;_levelWarmWorld=null;_levelSignedFrames=0;_levelArtPending=false;_levelWarmTextures=''; // (a demo's level is held while its shaders compile: R_LevelWarmHolding)
 	R_DemonBakeRelease();
 	// All paired local Newer arrivals share the existing physics/input hold;
 	// network games and recorded/timed demos retain their established clocks.

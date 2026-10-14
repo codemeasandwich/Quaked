@@ -897,15 +897,8 @@ export function R_DrawParticles() {
 
 }
 
-function presentParticles( count, classic ) {
-
-	const mesh = classic ? classicMesh : pointsMesh;
-	if ( count === 0 ) {
-
-		if ( mesh && mesh.parent ) _scene.remove( mesh );
-		return;
-
-	}
+// The particles' points mesh and material, made on first use (and by the shader warm-up: R_ParticleWarmObject)
+function ensureParticleMesh( classic ) {
 
 	if ( ! pointsMaterial ) {
 
@@ -931,6 +924,33 @@ function presentParticles( count, classic ) {
 
 	}
 
+}
+
+/**
+ * The enhanced view's particle points (made now if they were not), for compiling their program with a level's other
+ * shaders (gl_rmain.js `R_LevelShaderWarm`) before the first particle appears. Not added to the scene.
+ *
+ * @returns {?THREE.Points} the points mesh, or null before the particle texture exists
+ */
+export function R_ParticleWarmObject() {
+
+	if ( particleTexture == null ) return null;
+	ensureParticleMesh( false );
+	return pointsMesh;
+
+}
+
+function presentParticles( count, classic ) {
+
+	const mesh = classic ? classicMesh : pointsMesh;
+	if ( count === 0 ) {
+
+		if ( mesh && mesh.parent ) _scene.remove( mesh );
+		return;
+
+	}
+
+	ensureParticleMesh( classic );
 	const geometry = classic ? classicGeometry : pointsGeometry, points = classic ? classicMesh : pointsMesh;
 
 	// In XR mode, scene.scale = 1/XR_SCALE but PointsMaterial.size is not

@@ -46,6 +46,7 @@ import { R_NewerGame, R_ClassicPassActive } from '../mode.js';
 import { MRT_OUT, MRT_ZERO, material } from './r_fireball.js';
 import { R_DecalSurface } from './r_decals.js';
 import { R_AnimEnabled } from './r_anim.js';
+import { R_ShaderWarmRegister } from './r_shaderwarm.js';
 
 // 0 puts the native Scrag spit back (its mesh, green tracer and impact particles)
 export const r_venom = new cvar_t( 'r_venom', '1' );
@@ -389,6 +390,8 @@ function build() {
 // ---------------------------------------------------------------------------
 
 const active = () => deps != null && deps.scene != null && r_venom.value !== 0 && R_NewerGame();
+// (built for each level's shader warm-up as the first Scrag's spit would: r_shaderwarm.js)
+R_ShaderWarmRegister( 'venom', () => { if ( ! active() ) return null; if ( group === null ) build(); return group; } );
 const isSpike = ent => ent != null && typeof ent.model?.name === 'string' && ent.model.name.endsWith( SPIKE_MODEL );
 const rand = ( a, b ) => a + ( b - a ) * Math.random();
 

@@ -797,6 +797,22 @@ export function R_CloneAliasMaterial( material ) {
 
 }
 
+/**
+ * The variant the gun in the player's hands is drawn with in the enhanced view: a clone (`R_CloneAliasMaterial`) flagged
+ * `quakeViewmodel` and `quakePlayerSurface`, its own program. One recipe for gl_rmain.js R_DrawViewModel, which draws
+ * with it, and r_weapons.js R_WeaponMaterials, which warms it, so the two cannot drift apart.
+ *
+ * @param {THREE.Material} material the view model's alias material
+ * @returns {THREE.Material} a new material owned by the caller
+ */
+export function R_HeldViewmodelMaterial( material ) {
+
+	const clone = R_CloneAliasMaterial( material );
+	clone.userData.quakeViewmodel = true; clone.userData.quakePlayerSurface = true;
+	return clone;
+
+}
+
 /*
 ================
 R_NewerAliasMaterial

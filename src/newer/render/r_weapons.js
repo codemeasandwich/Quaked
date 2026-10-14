@@ -16,7 +16,7 @@ import * as THREE from 'three';
 import { cvar_t } from '../../engine/common/cvar.js';
 import { R_NewerGame, R_ClassicPassActive } from '../mode.js';
 import { COM_NewerJSON, COM_NewerURL } from '../../engine/common/pak.js';
-import { R_AssetAliasMaterial } from './r_newerskins.js';
+import { R_AssetAliasMaterial, R_HeldViewmodelMaterial } from './r_newerskins.js';
 import { r_avertexnormals } from '../../engine/common/anorm_dots.js';
 
 export const r_newer_weapons = new cvar_t( 'r_newer_weapons', '1' );
@@ -367,12 +367,23 @@ export function R_WeaponStatus() {
 
 /**
  * Actual ready held/pickup/shell materials; shader warming reuses these objects without requesting new roles,
- * changing rendering gates or replacing assets (the intro readiness check in gl_rmain.js).
+ * changing rendering gates or replacing assets (the intro readiness check and each level's warm-up in gl_rmain.js).
+ * A view model (`v_*`) also brings the variant the gun in the player's hands is drawn with (gl_rmain.js
+ * R_DrawViewModel's clone, r_newerskins.js `R_HeldViewmodelMaterial`, its own program), made once per asset for
+ * warming only, so the first shot with a newly picked-up weapon does not stall while that program compiles.
  *
  * @returns {Array<THREE.Material>} a new array of the distinct live materials (shared; do not dispose)
  */
 export function R_WeaponMaterials() {
-	return [ ...new Set( Array.from( requests.values() ).map( request => request.asset?.material ).filter( Boolean ) ) ];
+	return [ ...new Set( Array.from( requests.values() ).flatMap( request => {
+
+		const asset = request.asset;
+		if ( ! asset?.material ) return [];
+		if ( ! asset.key.startsWith( 'v_' ) ) return [ asset.material ];
+		asset.heldWarmMaterial ||= R_HeldViewmodelMaterial( asset.material );
+		return [ asset.material, asset.heldWarmMaterial ];
+
+	} ) ) ];
 }
 
 /**

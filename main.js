@@ -14,7 +14,7 @@ import { R_PerfSetHost, R_PerfStart, R_PerfStop, R_PerfProfiling, R_PerfPump, R_
 import { R_DemoSplitEnd } from './src/newer/render/r_demosplit.js';
 import { cls, cl } from './src/engine/client/client.js';
 import { sv } from './src/engine/server/server.js';
-import { scene, camera } from './src/engine/render/gl_rmain.js';
+import { scene, camera, R_LevelWarmHolding } from './src/engine/render/gl_rmain.js';
 import { renderer } from './src/engine/render/vid.js';
 import { Draw_CachePicFromPNG, Draw_CacheSinglePlayerMenu, Draw_LoadConbackImage } from './src/engine/render/gl_draw.js';
 import { XR_Init } from './src/platform/webxr.js';
@@ -263,7 +263,8 @@ async function main() {
 			Cbuf_AddText, cls, log: Con_Printf, getCvar: Cvar_VariableValue, setCvar: Cvar_SetValue,
 			size: () => renderer.domElement.width + 'x' + renderer.domElement.height,
 			menuOpen: () => key_dest !== key_game,
-			endDemoSplit: R_DemoSplitEnd // (ends a title demo's split before profiling)
+			endDemoSplit: R_DemoSplitEnd, // (ends a title demo's split before profiling)
+			levelWarming: R_LevelWarmHolding // (held loading frames are not timed)
 		} );
 		Cmd_AddCommand( 'perfprofile', () => R_PerfStart( Cmd_Argc() > 1 ? parseInt( Cmd_Argv( 1 ), 10 ) : 0 ) ); // perfprofile [frames per demo]
 		Cmd_AddCommand( 'perfstop', () => R_PerfStop( 'stopped' ) );

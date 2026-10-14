@@ -77,7 +77,7 @@ import { s_impacts } from './sound/s_impacts.js';
 import { s_footsteps, S_FootstepsFrame } from './sound/s_footsteps.js';
 import { joy_wheel, joy_prompts, joy_rumble, R_ControllerPoll, R_ControllerCancel, R_WeaponWheelDraw, R_ControllerPromptsDraw, R_WeaponWheelTimeScale } from './ui/r_controller.js';
 import { R_MuzzleFlashFired, R_MuzzleFlashScale, R_MuzzleSetProbe, R_MuzzleSetView, R_MuzzleView } from './render/r_muzzle.js';
-import { R_AssetAliasMaterial, R_CloneAliasMaterial, R_EnemyAliasMaterial, R_HeldVisionTag, R_NewerAliasMaterial, R_NewerSkinsMaterials, R_NewerSkinsNewMap, R_NewerSkinsPrepare, R_NewerSkinsStatus, R_NewerSkinsTextures, R_ReleaseAliasReceiver, r_newer_variety } from './render/r_newerskins.js';
+import { R_AssetAliasMaterial, R_CloneAliasMaterial, R_HeldViewmodelMaterial, R_EnemyAliasMaterial, R_HeldVisionTag, R_NewerAliasMaterial, R_NewerSkinsMaterials, R_NewerSkinsNewMap, R_NewerSkinsPrepare, R_NewerSkinsStatus, R_NewerSkinsTextures, R_ReleaseAliasReceiver, r_newer_variety } from './render/r_newerskins.js';
 import { R_ClassicTexture, R_NewerNormalsPrepare, R_NewerNormalsStatus, R_NewerTextureUpgrade, R_NewerTexturesFrame, R_NewerTexturesStatus } from './render/r_newertextures.js';
 import { R_PerfFpsText, R_PerfFrameBegin, R_PerfFrameEnd, R_PerfInit, R_PerfProfiling, R_PerfScreenLines, R_PerfStage, R_PerfStop, cl_showfps } from './render/r_perf.js';
 import { R_PowerupBegin, R_PowerupClear, R_PowerupEnd, R_PowerupSeen, r_powerups } from './render/r_powerups.js';
@@ -90,7 +90,7 @@ import { R_RendVeilBegin, R_RendVeilCapture, R_RendVeilClear, R_RendVeilEnd, R_R
 import { R_RespawnCameraFrame } from './render/r_respawn.js';
 import { R_RockfieldBrushSeen, R_RockfieldBuild, R_RockfieldChart, R_RockfieldGeometry, R_RockfieldSetLimits, R_RockfieldStatus, R_RockfieldUpdate, r_rockfield } from './render/r_rockfield.js';
 import { R_ScreenDropsBloodAt, R_ScreenDropsReset, R_ScreenDropsSetView, R_ScreenDropsView } from './render/r_screendrops.js';
-import { R_CompileSceneAsync, R_ShaderAssetStamp } from './render/r_shaderwarm.js';
+import { R_CompileSceneAsync, R_KeepPrograms, R_ShaderAssetStamp, R_ShaderWarmObjects, R_ShaderWarmScenes } from './render/r_shaderwarm.js';
 import { R_ShellShot, R_ShellsFrame, R_ShellsNewMap, R_ShellsReset, R_ShellsRestore, R_ShellsSetup, R_ShellsSnapshot } from './render/r_shells.js';
 import { R_ShellTrace } from './render/r_shelltrace.js';
 import { R_ShotgunClear, R_ShotgunFrame, R_ShotgunSetup, r_shotgunfx, viewModelMuzzles } from './render/r_shotgun.js';
@@ -166,7 +166,7 @@ if ( ! Hooks_Installed() ) Hooks_Install( {
 	R_MistClear, R_MistFrame,
 	R_MotesFrame, R_MotesClear, R_AmbientPlaced, R_AmbientPlacesClear, r_drips, r_sparks, r_nailhits, R_NailHit, r_embers, s_gibs, S_GibRestObserve, S_GibRestPackets, s_lava, r_itemturn, R_ItemTurn, r_mapliquids, R_MapLiquidAlpha, R_MapLiquidAlphaAny, r_storm, R_StormFrame, R_StormClear, s_impacts, s_footsteps, S_FootstepsFrame, joy_wheel, joy_prompts, joy_rumble, R_ControllerPoll, R_ControllerCancel, R_WeaponWheelDraw, R_ControllerPromptsDraw, R_WeaponWheelTimeScale,
 	R_MuzzleFlashFired, R_MuzzleFlashScale, R_MuzzleSetProbe, R_MuzzleSetView, R_MuzzleView,
-	R_AssetAliasMaterial, R_CloneAliasMaterial, R_EnemyAliasMaterial, R_HeldVisionTag, R_NewerAliasMaterial, R_NewerSkinsMaterials, R_NewerSkinsNewMap, R_NewerSkinsPrepare, R_NewerSkinsStatus, R_NewerSkinsTextures, R_ReleaseAliasReceiver, r_newer_variety,
+	R_AssetAliasMaterial, R_CloneAliasMaterial, R_HeldViewmodelMaterial, R_EnemyAliasMaterial, R_HeldVisionTag, R_NewerAliasMaterial, R_NewerSkinsMaterials, R_NewerSkinsNewMap, R_NewerSkinsPrepare, R_NewerSkinsStatus, R_NewerSkinsTextures, R_ReleaseAliasReceiver, r_newer_variety,
 	R_ClassicTexture, R_NewerNormalsPrepare, R_NewerNormalsStatus, R_NewerTextureUpgrade, R_NewerTexturesFrame, R_NewerTexturesStatus,
 	R_PerfFpsText, R_PerfFrameBegin, R_PerfFrameEnd, R_PerfInit, R_PerfProfiling, R_PerfScreenLines, R_PerfStage, R_PerfStop, cl_showfps,
 	R_PowerupBegin, R_PowerupClear, R_PowerupEnd, R_PowerupSeen, r_powerups,
@@ -181,7 +181,7 @@ if ( ! Hooks_Installed() ) Hooks_Install( {
 	R_RespawnCameraFrame,
 	R_RockfieldBrushSeen, R_RockfieldBuild, R_RockfieldChart, R_RockfieldGeometry, R_RockfieldSetLimits, R_RockfieldStatus, R_RockfieldUpdate, r_rockfield,
 	R_ScreenDropsBloodAt, R_ScreenDropsReset, R_ScreenDropsSetView, R_ScreenDropsView,
-	R_CompileSceneAsync, R_ShaderAssetStamp,
+	R_CompileSceneAsync, R_ShaderAssetStamp, R_KeepPrograms, R_ShaderWarmObjects, R_ShaderWarmScenes,
 	R_ShellShot, R_ShellsFrame, R_ShellsNewMap, R_ShellsReset, R_ShellsRestore, R_ShellsSetup, R_ShellsSnapshot,
 	R_ShellTrace,
 	R_ShotgunClear, R_ShotgunFrame, R_ShotgunSetup, r_shotgunfx, viewModelMuzzles,

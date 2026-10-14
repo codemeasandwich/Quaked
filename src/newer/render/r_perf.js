@@ -124,7 +124,8 @@ export function R_PerfFrameBegin( now ) {
 
 	if ( profiling ) {
 
-		cur = { stages: {}, start: performance.now() };
+		// (a demo held while its level's shaders compile is loading, not play: gl_rmain.js R_LevelWarmHolding)
+		cur = { stages: {}, start: performance.now(), held: host?.levelWarming?.() === true };
 		stageLast = cur.start;
 		if ( rendererRef != null ) {
 
@@ -195,7 +196,7 @@ export function R_PerfFrameEnd() {
 
 	}
 
-	if ( run !== null && run.recording ) run.frames.push( cur );
+	if ( run !== null && run.recording && ! cur.held ) run.frames.push( cur );
 	cur = null;
 
 }
@@ -214,9 +215,10 @@ let frameLimit = 0;
  *
  * @param {{ Cbuf_AddText: (text: string) => void, cls: client_static_t, log: (text: string) => void,
  *   getCvar: (name: string) => number, setCvar: (name: string, value: number) => void, size: () => string,
- *   menuOpen: () => boolean, endDemoSplit: () => void }} h the command buffer, client state, console print, cvar get
- *   and set, the drawing buffer's size text (`<w>x<h>`), whether a menu or the console has the keys, and
- *   `R_DemoSplitEnd`
+ *   menuOpen: () => boolean, endDemoSplit: () => void, levelWarming?: () => boolean }} h the command buffer, client
+ *   state, console print, cvar get and set, the drawing buffer's size text (`<w>x<h>`), whether a menu or the console
+ *   has the keys, `R_DemoSplitEnd`, and whether a demo is held while its level's shaders compile (`R_LevelWarmHolding`,
+ *   whose frames are not timed)
  */
 export function R_PerfSetHost( h ) {
 

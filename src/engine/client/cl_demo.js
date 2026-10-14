@@ -14,6 +14,7 @@
 import { R_DemoSplitStart, R_DemoSplitEnd } from '../common/hooks.js'; // installed by newer/render/r_demosplit.js
 import { R_DemoLoadingAttract, R_DemoLoadingFreeze, R_DemoLoadingCancel } from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js
 import { R_PerfProfiling } from '../common/hooks.js'; // installed by newer/render/r_perf.js
+import { R_LevelWarmHolding } from '../render/gl_rmain.js';
 import { MAX_MSGLEN } from '../common/quakedef.js';
 import { Con_Printf, Con_DPrintf, SZ_Clear,
 	MSG_WriteByte, MSG_WriteString,
@@ -172,7 +173,9 @@ CL_GetMessage
  * `CL_ReadFromServer` each client frame to fetch the next server message into `net_message`.
  *
  * During playback it reads one record from `cls.demodata` (advancing `cls.demopos` and shifting `cl.mviewangles`),
- * but once fully signed on it holds back until `cl.time` passes `cl.mtime[0]` (or, for a timedemo, one message per host
+ * but once fully signed on it reads nothing while Newer Game's loading screen freezes the demo or its new level is held
+ * while its shaders compile (gl_rmain.js `R_LevelWarmHolding`; a held timedemo's clock then starts after the hold), and
+ * otherwise holds back until `cl.time` passes `cl.mtime[0]` (or, for a timedemo, one message per host
  * frame; the second frame's `realtime` becomes `cls.td_starttime`). Running out of data, or a truncated record, calls
  * `CL_StopPlayback`. Otherwise it reads from `cls.netcon` via `NET_GetMessage`, skipping single-byte `svc_nop`
  * keepalives, and records the message with `CL_WriteDemoMessage` when `cls.demorecording` is set.
@@ -188,6 +191,9 @@ export function CL_GetMessage() {
 		// decide if it is time to grab the next message
 		if ( cls.signon === SIGNONS ) { // allways grab until fully connected
 			if(R_DemoLoadingFreeze(true,cls.signon,cls.timedemo))return 0;
+			// a demo's new level held while its shaders compile (gl_rmain.js): a timedemo's clock starts from the frame after
+			// the hold, as it would from its first frame
+			if(R_LevelWarmHolding()){if(cls.timedemo)cls.td_startframe=host_framecount;return 0;}
 
 			if ( cls.timedemo ) {
 

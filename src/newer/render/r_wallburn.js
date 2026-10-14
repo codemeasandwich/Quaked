@@ -49,6 +49,7 @@ import { R_DecalSurface } from './r_decals.js';
 import { MRT_OUT, MRT_ZERO, material } from './r_fireball.js';
 import { R_TracePoint } from '../../engine/render/r_trace.js';
 import { VERTEXSIZE } from '../../engine/render/glquake.js';
+import { R_ShaderWarmRegister, R_ShaderWarmRegisterScene } from './r_shaderwarm.js';
 
 export const r_newer_wallburn = new cvar_t( 'r_newer_wallburn', '1' );
 
@@ -680,6 +681,32 @@ void main(){
  ${ MRT_ZERO }
 }`;
 
+// (built for each level's shader warm-up as the first burn would: the two paint passes, as drawn into the burn
+// targets, and the wall's marks and heat; r_shaderwarm.js. Nothing is drawn or allocated on the card here, and the
+// meshes join the scene only with the level's first burn: finish)
+let heatPassWarm = null;
+R_ShaderWarmRegister( 'wallburn', () => {
+
+	if ( ! R_WallBurnEnabled() || ensureGPU() === false ) return null;
+	ensureMeshes();
+	return [ marks, heat ];
+
+} );
+R_ShaderWarmRegisterScene( 'wallburn paint', () => {
+
+	if ( ! R_WallBurnEnabled() || ensureGPU() === false ) return null;
+	// (each pass's material in a scene like gpu.scene: no lights, the same full-screen triangle; the shared quad's
+	// material is whichever pass ran last)
+	heatPassWarm ||= [ gpu.permanent, gpu.heatPass ].map( material => {
+
+		const quad = new THREE.Mesh( gpu.quad.geometry, material ); quad.frustumCulled = false;
+		return { scene: new THREE.Scene().add( quad ), camera: gpu.camera };
+
+	} );
+	return heatPassWarm;
+
+} );
+
 function ensureMeshes() {
 
 	if ( marks !== null ) return;
@@ -791,7 +818,8 @@ export function R_WallBurnFrame( time ) {
 
 function finish() {
 
-	if ( gpu === null ) return;
+	// (nothing burnt on this level and the meshes not in the scene: the warm-up may have built them, nothing more)
+	if ( gpu === null || cellList.length === 0 && marks?.parent == null ) return;
 	ensureMeshes();
 	if ( geometryDirty ) rebuildGeometry();
 	heat.material.uniforms.uHeat.value = gpu.heatTargets[ front ].texture;

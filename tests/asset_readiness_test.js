@@ -118,7 +118,11 @@ Deno.test( 'successful weapon preload exposes terminal readiness and a stalled m
 	const weapons = await import( '../src/newer/render/r_weapons.js?readiness-success' ), preload = weapons.R_WeaponsPreload(); await flush();
 	for ( const request of env.textures ) request.onLoad( request.texture ); await preload;
 	const status = weapons.R_WeaponStatus(); equal( status.preload, 'ready', 'successful preload state' ); check( status.settled && status.ready.includes( 'v_shot' ) && status.ready.includes( 'shell' ), 'successful roles ready' );
-	const before = env.textures.length, materials = weapons.R_WeaponMaterials(); equal( materials.length, 2, 'readyheld+shell warmmaterials' );
+	const before = env.textures.length, materials = weapons.R_WeaponMaterials(); equal( materials.length, 3, 'ready held, its in-hand variant and shell warm materials' );
+	// the in-hand variant: the clone gl_rmain.js R_DrawViewModel draws the held gun with (its own program), made once
+	const held = materials.find( m => m.userData.quakeViewmodel ); check( held && held.userData.quakePlayerSurface && held !== weapons.R_WeaponAsset( 'progs/v_shot.mdl' ).material, 'in-hand variant warmed' );
+	check( held.customProgramCacheKey().endsWith( '-held-receiver-player-surface' ), 'in-hand program key: ' + held.customProgramCacheKey() );
+	check( weapons.R_WeaponMaterials().includes( held ), 'in-hand variant made once' );
 	check( materials.includes( weapons.R_WeaponAsset( 'progs/v_shot.mdl' ).material ), 'weapongetterreturns actualcachedmaterial' ); equal( env.textures.length, before, 'weapongetterrequests none' );
 	const textures = weapons.R_WeaponTextures(); equal( textures.length, 3, 'readyhelddiffuse/normal+shell actualtexturebindings' ); check( textures.includes( weapons.R_WeaponAsset( 'progs/v_shot.mdl' ).material.map ), 'weapontexturegetter exactdiffuseidentity' );
 	check( textures.includes( env.textures.find( request => request.url.includes( 'n.webp' ) ).texture ), 'weapontexturegetter exactnormalidentity' ); equal( env.textures.length, before, 'weapontexturegetterrequests none' );

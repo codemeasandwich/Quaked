@@ -152,6 +152,160 @@ function R_UpdateBrushDemon( e, brushGroup, clmodel ) {
 const _brushLeafOf = p => Mod_PointInLeaf( p, cl.worldmodel );
 
 /**
+ * Builds a brush model's scene group, as `R_DrawBrushModel` caches it on its entity: surfaces sharing a base texture,
+ * lightmap and rock chart merged into one mesh, materials shared through `_brushMaterialCache`. Also used, on an entity
+ * of its own, by `R_BrushModelWarmGroup` (each level's shader warm-up). Registers nothing.
+ *
+ * @param {model_t} clmodel the brush model
+ * @param {number} frame the entity's frame (a button's alternate textures; 0 for the first set)
+ * @returns {{ group: THREE.Group, animSurfaces: ?Array<Object> }} the new group and its animated faces (or null)
+ */
+function _buildBrushGroup( clmodel, frame ) {
+
+	// Surfaces sharing the same base texture + lightmap are merged into
+	// a single BufferGeometry so a 6-face box becomes 1 draw call.
+	const brushGroup = new THREE.Group();
+	let animSurfaces = null;
+
+	if ( clmodel.surfaces && clmodel.nummodelsurfaces ) {
+
+		// First pass: collect surfaces grouped by (baseTex, lightmap)
+		const surfaceGroups = [];
+		const startSurf = clmodel.firstmodelsurface;
+
+		for ( let i = 0; i < clmodel.nummodelsurfaces; i ++ ) {
+
+			const psurf = clmodel.surfaces[ startSurf + i ];
+			if ( psurf == null ) continue;
+			if ( psurf.flags & ( SURF_DRAWSKY | SURF_DRAWTURB ) ) continue;
+			if ( psurf.polys == null ) continue;
+
+			// Get plane normal, flip if SURF_PLANEBACK
+			let planeNormal = null;
+			if ( psurf.plane != null ) {
+
+				const pn = psurf.plane.normal;
+				if ( psurf.flags & SURF_PLANEBACK ) {
+
+					planeNormal = new Float32Array( [ - pn[ 0 ], - pn[ 1 ], - pn[ 2 ] ] );
+
+				} else {
+
+					planeNormal = pn;
+
+				}
+
+			}
+
+			const baseTex = psurf.texinfo.texture;
+			const lmTex = lightmapTextures[ psurf.lightmaptexturenum ];
+			const rockChart = R_RockfieldChart( psurf );
+
+			// Keep disconnected procedural components separate even when texture/lightmap match.
+			let group = null;
+			for ( let g = 0; g < surfaceGroups.length; g ++ ) {
+
+				if ( surfaceGroups[ g ].baseTex === baseTex && surfaceGroups[ g ].lmTex === lmTex && surfaceGroups[ g ].rockChart === rockChart ) {
+
+					group = surfaceGroups[ g ];
+					break;
+
+				}
+
+			}
+
+			if ( group === null ) {
+
+				group = { polys: [], normals: [], baseTex, lmTex, rockChart, surface: psurf };
+				surfaceGroups.push( group );
+
+			}
+
+			group.polys.push( psurf.polys );
+			group.normals.push( planeNormal );
+
+		}
+
+		// Second pass: create one merged mesh per group
+		let childIdx = 0;
+		for ( let g = 0; g < surfaceGroups.length; g ++ ) {
+
+			const group = surfaceGroups[ g ];
+			const geom = _mergeGLPolys( group.polys, group.normals );
+			if ( geom == null ) continue;
+			const rockField = R_RockfieldGeometry( geom, group.surface );
+
+			const t = R_TextureAnimation( group.baseTex, frame );
+			const diffuse = ( t != null && t.gl_texture != null ) ? t.gl_texture : null;
+			const lmTex = group.lmTex;
+
+			// Use cached material to avoid shader recompilation
+			const diffuseId = diffuse != null ? diffuse.id : 0;
+			const lmId = lmTex != null ? lmTex.id : 0;
+			const matKey = `${diffuseId}_${lmId}${rockField ? '_rock' : ''}`;
+			let material = _brushMaterialCache.get( matKey );
+			if ( material == null ) {
+
+				material = ( diffuse != null && lmTex != null )
+					? createQuakeLightmapMaterial( diffuse, lmTex )
+					: new THREE.MeshBasicMaterial( { map: diffuse } );
+				_brushMaterialCache.set( matKey, material );
+
+			}
+			if ( rockField && lmTex ) material.userData.rockField = true;
+
+			const mesh = new THREE.Mesh( geom, material );
+			mesh.userData.rockField = rockField;
+			brushGroup.add( mesh );
+
+			// Track surfaces with time-based animation for per-frame material updates
+			if ( group.baseTex != null && ( group.baseTex.anim_total > 0 || group.baseTex.alternate_anims != null ) ) {
+
+				if ( animSurfaces == null ) animSurfaces = [];
+				animSurfaces.push( { childIdx, baseTex: group.baseTex, lmTex } );
+
+			}
+
+			childIdx ++;
+
+		}
+
+	}
+	return { group: brushGroup, animSurfaces };
+
+}
+
+/**
+ * A brush model's group built just as `R_DrawBrushModel` would first draw it (frame 0), for compiling its materials'
+ * programs ahead of need (gl_rmain.js `R_LevelShaderWarm`): a door, a lift or an ammo box first coming into view then
+ * finds its shaders compiled. Not cached or registered; the caller disposes the geometries (`R_BrushModelWarmDispose`),
+ * never the shared materials.
+ *
+ * @param {model_t} clmodel a brush model (a `*N` submodel or a `maps/b_*.bsp` item)
+ * @returns {?THREE.Group} the group, or null for a model with no drawable surface
+ */
+export function R_BrushModelWarmGroup( clmodel ) {
+
+	if ( clmodel == null || ! clmodel.surfaces || ! clmodel.nummodelsurfaces ) return null;
+	const { group } = _buildBrushGroup( clmodel, 0 );
+	return group.children.length > 0 ? group : null;
+
+}
+
+/**
+ * Lets go of a group from `R_BrushModelWarmGroup`: its merged geometries are disposed, its shared materials kept.
+ *
+ * @param {?THREE.Group} group the warm group
+ */
+export function R_BrushModelWarmDispose( group ) {
+
+	if ( group == null ) return;
+	group.removeFromParent();
+	for ( const child of group.children ) child.geometry?.dispose();
+
+}
+
+/**
  * Draws a brush entity (a door, a plat, a button, a lift) for this frame (WinQuake gl_rsurf.c). Culls it by its
  * bounds (kept when a visible portal shows it), marks the dynamic lights on its surfaces, rebuilds its changed
  * lightmaps, then shows its cached THREE.Group: built the first time (surfaces sharing a base texture, lightmap and
@@ -258,115 +412,9 @@ export function R_DrawBrushModel( e ) {
 	if ( brushGroup == null ) {
 
 		// First time drawing this entity - build and cache the group.
-		// Surfaces sharing the same base texture + lightmap are merged into
-		// a single BufferGeometry so a 6-face box becomes 1 draw call.
-		brushGroup = new THREE.Group();
-		let animSurfaces = null;
-
-		if ( clmodel.surfaces && clmodel.nummodelsurfaces ) {
-
-			// First pass: collect surfaces grouped by (baseTex, lightmap)
-			const surfaceGroups = [];
-			const startSurf = clmodel.firstmodelsurface;
-
-			for ( let i = 0; i < clmodel.nummodelsurfaces; i ++ ) {
-
-				const psurf = clmodel.surfaces[ startSurf + i ];
-				if ( psurf == null ) continue;
-				if ( psurf.flags & ( SURF_DRAWSKY | SURF_DRAWTURB ) ) continue;
-				if ( psurf.polys == null ) continue;
-
-				// Get plane normal, flip if SURF_PLANEBACK
-				let planeNormal = null;
-				if ( psurf.plane != null ) {
-
-					const pn = psurf.plane.normal;
-					if ( psurf.flags & SURF_PLANEBACK ) {
-
-						planeNormal = new Float32Array( [ - pn[ 0 ], - pn[ 1 ], - pn[ 2 ] ] );
-
-					} else {
-
-						planeNormal = pn;
-
-					}
-
-				}
-
-				const baseTex = psurf.texinfo.texture;
-				const lmTex = lightmapTextures[ psurf.lightmaptexturenum ];
-				const rockChart = R_RockfieldChart( psurf );
-
-				// Keep disconnected procedural components separate even when texture/lightmap match.
-				let group = null;
-				for ( let g = 0; g < surfaceGroups.length; g ++ ) {
-
-					if ( surfaceGroups[ g ].baseTex === baseTex && surfaceGroups[ g ].lmTex === lmTex && surfaceGroups[ g ].rockChart === rockChart ) {
-
-						group = surfaceGroups[ g ];
-						break;
-
-					}
-
-				}
-
-				if ( group === null ) {
-
-					group = { polys: [], normals: [], baseTex, lmTex, rockChart, surface: psurf };
-					surfaceGroups.push( group );
-
-				}
-
-				group.polys.push( psurf.polys );
-				group.normals.push( planeNormal );
-
-			}
-
-			// Second pass: create one merged mesh per group
-			let childIdx = 0;
-			for ( let g = 0; g < surfaceGroups.length; g ++ ) {
-
-				const group = surfaceGroups[ g ];
-				const geom = _mergeGLPolys( group.polys, group.normals );
-				if ( geom == null ) continue;
-				const rockField = R_RockfieldGeometry( geom, group.surface );
-
-				const t = R_TextureAnimation( group.baseTex );
-				const diffuse = ( t != null && t.gl_texture != null ) ? t.gl_texture : null;
-				const lmTex = group.lmTex;
-
-				// Use cached material to avoid shader recompilation
-				const diffuseId = diffuse != null ? diffuse.id : 0;
-				const lmId = lmTex != null ? lmTex.id : 0;
-				const matKey = `${diffuseId}_${lmId}${rockField ? '_rock' : ''}`;
-				let material = _brushMaterialCache.get( matKey );
-				if ( material == null ) {
-
-					material = ( diffuse != null && lmTex != null )
-						? createQuakeLightmapMaterial( diffuse, lmTex )
-						: new THREE.MeshBasicMaterial( { map: diffuse } );
-					_brushMaterialCache.set( matKey, material );
-
-				}
-				if ( rockField && lmTex ) material.userData.rockField = true;
-
-				const mesh = new THREE.Mesh( geom, material );
-				mesh.userData.rockField = rockField;
-				brushGroup.add( mesh );
-
-				// Track surfaces with time-based animation for per-frame material updates
-				if ( group.baseTex != null && ( group.baseTex.anim_total > 0 || group.baseTex.alternate_anims != null ) ) {
-
-					if ( animSurfaces == null ) animSurfaces = [];
-					animSurfaces.push( { childIdx, baseTex: group.baseTex, lmTex } );
-
-				}
-
-				childIdx ++;
-
-			}
-
-		}
+		const built = _buildBrushGroup( clmodel, e.frame );
+		brushGroup = built.group;
+		const animSurfaces = built.animSurfaces;
 
 		// Cache on entity and track for disposal on map change
 		e._brushGroup = brushGroup;

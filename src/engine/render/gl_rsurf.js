@@ -36,7 +36,7 @@ export { R_DemonReliefStatus, R_MarkLeaves, R_WorldShowAll, R_ClassicArchVisibil
 import { R_AddPortalReceiverSurfaces, R_RecursiveWorldNode, DrawTextureChains } from './gl_rsurf_world.js';
 export { skytexturenum, set_skytexturenum, R_DrawSequentialPoly, R_RenderBrushPoly, R_RenderDynamicLightmaps, R_RecursiveWorldNode, DrawTextureChains, R_DrawWaterSurfaces } from './gl_rsurf_world.js';
 import { R_BrushClear, R_BrushBeginFrame } from './gl_rsurf_brush.js';
-export { R_DrawBrushModel } from './gl_rsurf_brush.js';
+export { R_DrawBrushModel, R_BrushModelWarmGroup, R_BrushModelWarmDispose } from './gl_rsurf_brush.js';
 
 //============================================================================
 // R_DrawWorld

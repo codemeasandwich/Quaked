@@ -19,6 +19,7 @@
  */
 import * as THREE from 'three';
 import { R_NewerGame } from '../mode.js';
+import { R_ShaderWarmRegister } from './r_shaderwarm.js';
 
 /** The kinds of mote. */
 export const MOTE_SPARK = 0, MOTE_DRIP = 1, MOTE_SPLASH = 2, MOTE_BUBBLE = 3, MOTE_PUFF = 4, MOTE_EMBER = 5;
@@ -72,6 +73,9 @@ function dot() {
 	return texture;
 
 }
+
+// (built for each level's shader warm-up as the first spark or ember would: r_shaderwarm.js)
+R_ShaderWarmRegister( 'motes', () => { if ( ! R_NewerGame() || typeof document === 'undefined' ) return null; if ( ! points ) build(); return points; } );
 
 function build() {
 

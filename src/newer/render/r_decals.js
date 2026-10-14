@@ -28,6 +28,7 @@ import { cvar_t } from '../../engine/common/cvar.js';
 import { R_NewerGame } from '../mode.js';
 import { GibRestObserved } from './gib_rest.js';
 import { FX_Contents, FX_SolidPolygon, FX_EMPTY } from './fx_world.js';
+import { R_ShaderWarmRegister } from './r_shaderwarm.js';
 
 export const r_decals = new cvar_t( 'r_decals', '1' );
 
@@ -297,6 +298,9 @@ function atlasTexture() {
 	return texture;
 
 }
+
+// (built for each level's shader warm-up as the first mark would: r_shaderwarm.js)
+R_ShaderWarmRegister( 'decals', () => R_DecalsEnabled() && ensureMesh() ? mesh : null );
 
 function ensureMesh() {
 

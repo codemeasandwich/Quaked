@@ -62,6 +62,65 @@ about 30-33 fps with dynamic resolution at its 50% floor; at 1x (the same window
   should-fix findings are fixed (above, and: sun-basis equality that forced redraws, error safety, disposal, the
   caster sphere no longer replacing the geometry's own, lazy reach, an interleaved buffer's version, test strength).
 
+## Step 2: shaders compiled before the demo plays (plan item 1)
+
+Measured first (`programs` in WebKit, the three demos in Newer Game): 38 shader programs were compiled mid-demo,
+each a frame of 20-700 ms (Apple's GPUs cannot compile in the background). Their causes, from comparing each late
+program's key with the ones already compiled:
+
+- **The level's monsters, items and weapons.** Their skin and weapon materials were warmed only for the level the
+  loading welcome holds back (the first one); a demo going on to its next map, or the same map loaded again, did not
+  warm them, and the gun in the player's hands has a variant of its own (`-held-receiver-player-surface`).
+- **Programs thrown away and compiled again.** three destroys a program when its last material is disposed. Every map
+  change disposes the entity materials, and the Quad's glow and fire are rebuilt each time the Quad comes back into
+  view (three times in demo3). For a ShaderMaterial the shader text's number is also part of the key, and it is
+  renumbered once no material holds it.
+- **Effects built on first use**: the fireball's ring and flash, the marks, the particles, the motes, the wall burns
+  (and their two paint passes, drawn in a scene of their own), the Scrag's venom.
+- **Doors, lifts and the ammo and health boxes**, built when first in view, and their relief maps arriving after the
+  level's first frames.
+
+What changed:
+
+- **Each demo level is warmed** (`R_LevelShaderWarm`, gl_rmain.js), not only the welcome's: once its skins and weapon
+  models have settled, their materials (and each view model's in-hand variant, `R_HeldViewmodelMaterial`, the recipe
+  R_DrawViewModel draws with), its brush models built as their first draw builds them (`R_BrushModelWarmGroup`,
+  gl_rsurf_brush.js, the build now a function of its own), the registered effects (`R_ShaderWarmRegister`,
+  `R_ShaderWarmRegisterScene`, r_shaderwarm.js: fireball, venom, marks, motes, wall burns and their paint passes in
+  their own scene) and the particles (`R_ParticleWarmObject`, r_part.js) are compiled together with the level, under
+  the map's fog (part of a program's key). three's compile already reaches the surfaces out of view. Stand-ins are
+  compiled, not the effects' own meshes, so nothing in the scene moves or shows. It is done again when those bindings
+  change, and, while the demo is held, when the level's own textures land. Demos only: a level the player enters has
+  the loading welcome. A level whose warm-up throws is reported and plays as before.
+- **A demo waits on its first frame while that runs** (`R_LevelWarmHolding`; cl_main.js and cl_demo.js stop its clock
+  and its reading), and for its first four frames and the level's own textures, at most 4 s after the level loaded.
+  Only in the enhanced view. Timedemos too, so the profiler's runs match: a timedemo's clock starts after the hold, and
+  the profiler does not time held frames. Measured (WebKit, the source build): 0.4, 1.3 and 1.1 s for demo1-3. A held
+  frame shows the level's opening view with its items. Waiting for the relief maps as well was tried and dropped: one
+  never finishes decoding in WebKit here, and every demo then waited out the cap.
+- **Programs are kept for the session** (`R_KeepPrograms`, at most 512), and the first material of each ShaderMaterial
+  text is kept undisposed (`R_DisposeKeepingShader`, used by r_powerups.js), so a material made again finds its program.
+- **Tried and dropped: putting the level's textures on the card during the hold.** Uploading every world texture
+  (about 300 a level) made playback markedly worse (173 stalls against 65), and without it the stalls returned to the
+  baseline's. Textures stay uploaded as they are first drawn.
+
+Result. `programs` (WebKit): mid-demo compiles 38 -> 3 (the Quad's glow and fire, now once per session; one world
+shader late in demo3; one material not yet identified in demo1); the rest happen at each level's start, in the hold.
+The profiler (perfprofile, 2x, a visible window): frames with new shader programs 12-13 -> 4 in every pairing, and the
+time lost in stalls 10.1 s -> 8.9 s (baseline and change profiled back to back). The average frame rate could not be
+compared: on the fanless MacBook Air it fell from 28 to 18 fps over successive runs of the same build as the machine
+heated, which also hides the depth of field's own cost (0.03 ms a frame in the profile; turning it off made no
+measurable difference, owner's question, 14 October 2026).
+
+Checks: `tests/shader_keep_test.js` (programs kept once and to the cap; one keeper per shader text; stand-ins leave
+the effects' meshes untouched; the particles' and a brush model's warm objects; three's own release, renumbering and
+compile rules pinned), `tests/level_warm_hold_test.js` (the hold's conditions, cap, release, failure, and a held
+timedemo's start time, each seen to fail with its fault put in by hand), `tests/profiler_demo_mode_test.js` (held frames
+not timed), `tests/asset_readiness_test.js` (the in-hand variant), and the suites that touch the changed modules.
+Independent review (Sonnet): its blocking findings (a held timedemo's start time; an experiment left in) and its
+should-fix findings are fixed, except the portal shaders' renumbering (gl_portal.js, r_levelview.js), left for a later
+step.
+
 ## Research and the plan (owner's choice, 14 October 2026: optimise and keep the look)
 
 Three researchers (Sonnet), on this engine's measurements; the plan in order, each step checked pixel for pixel:
@@ -92,5 +151,5 @@ Dummer 2006, Policarpo (GPU Gems 3 ch. 18), Tatarchuk 2006, Sloan & Cohen 2000.
 
 60 fps at 2x with every enhancement needs the GPU's per-pixel work roughly halved. Choices are with the owner (card
 T-efb1e55d): a lower dynamic-resolution floor, deeper shader work (a depth pre-pass so the heavy surface shader runs
-once a pixel, height shadows at a lower rate, light culling), and removing the shader-compile hitches (up to 400 ms
-when a new effect first appears).
+once a pixel, height shadows at a lower rate, light culling), and the remaining hitches (texture uploads, the
+GPU's own stalls; above).

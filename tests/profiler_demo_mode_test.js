@@ -25,7 +25,7 @@ function equal( actual, expected, label ) {
  if ( actual !== expected ) throw new Error( `${label}: expected ${expected}, got ${actual}` );
 }
 
-function withState( check, { hdr = 0, comparison = 1, demonum = 2, missing = false } = {} ) {
+function withState( check, { hdr = 0, comparison = 1, demonum = 2, missing = false, warming = null } = {} ) {
  const originalPreferences = preferences.map( variable => variable.string );
  const fields = [ 'state', 'demoplayback', 'timedemo', 'demonum', 'demodata', 'demopos', 'demofile', 'forcetrack', 'signon', 'td_startframe', 'td_lastframe', 'td_starttime' ];
  const originalClient = Object.fromEntries( fields.map( field => [ field, cls[ field ] ] ) );
@@ -41,6 +41,7 @@ function withState( check, { hdr = 0, comparison = 1, demonum = 2, missing = fal
  perf.R_PerfSetHost( {
   cls, getCvar: vars.Cvar_VariableValue, setCvar: vars.Cvar_SetValue, endDemoSplit: split.R_DemoSplitEnd, // (as main.js gives it)
   menuOpen: () => menu, log: text => logs.push( text ), size: () => '800x600',
+  ...( warming ? { levelWarming: warming } : {} ), // (gl_rmain.js R_LevelWarmHolding, as main.js gives it)
   Cbuf_AddText( text ) {
    commands.push( text );
    cmd.Cbuf_AddText( missing && text.startsWith( 'timedemo ' ) ? 'timedemo profiler_mode_missing\n' : text );
@@ -160,3 +161,20 @@ Deno.test( 'recovered Host_Error stops profiling through the actual Host_Frame c
  perf.R_PerfStart( 0 ); cmd.Cbuf_InsertText( command + '\n' );
  host.Host_Frame( .1 ); fixture.restored();
 } ) );
+
+Deno.test( 'frames while a demo is held for its level\'s shader warm-up are not timed', () => {
+ let held = true;
+ withState( fixture => {
+  perf.R_PerfStart( 1 );
+  // held (gl_rmain.js caps a real hold at 4 s): the demo is being timed but no frame counts, so it cannot finish
+  for ( let i = 0; i < 20; i ++ ) perf.R_PerfPump( fixture.frame );
+  equal( perf.R_PerfProfiling(), true, 'still profiling while held' );
+  equal( /timing demo1 \(0 frames\)/.test( perf.R_PerfStatus() ), true, 'no held frame timed: ' + perf.R_PerfStatus() );
+  // released: the same run times its frames and completes
+  held = false;
+  let pumps = 0;
+  while ( perf.R_PerfProfiling() && pumps++ < 50 ) perf.R_PerfPump( fixture.frame );
+  fixture.restored();
+  equal( perf.R_PerfLastReport().demos.every( entry => entry.frames >= 1 ), true, 'unheld frames timed' );
+ }, { warming: () => held } );
+} );

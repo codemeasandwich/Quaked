@@ -11,6 +11,7 @@
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 import { R_CreatePowerupFire, R_RenderPowerupFire, R_ClearPowerupFireTarget } from './r_powerupfire.js';
+import { R_DisposeKeepingShader } from './r_shaderwarm.js';
 // Enhanced world-pickup presentation only. The native entity/model, collision,
 // pickup rules and inventory remain owned by Quake. Main scene Begin/End owns
 // lifetime; Classic redraw never mutates this registry.
@@ -154,7 +155,8 @@ function dispose( entity, record ) {
  record.group.removeFromParent();
  record.glyphPlanes?.dispose();
  record.fire?.proxy.removeFromParent(); record.fire?.field.dispose();
- for ( const mesh of record.group.children ) { mesh.geometry.dispose(); mesh.material.dispose(); }
+ // (the materials' shaders stay known to three, so the next pickup's glow and fire find their programs: r_shaderwarm.js)
+ for ( const mesh of record.group.children ) { mesh.geometry.dispose(); R_DisposeKeepingShader( mesh.material ); }
  records.delete( entity );
 }
 /**

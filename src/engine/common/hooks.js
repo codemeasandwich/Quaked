@@ -408,6 +408,7 @@ export let R_MuzzleView = Hooks_Missing( 'R_MuzzleView' );
 // newer/render/r_newerskins.js
 export let R_AssetAliasMaterial = Hooks_Missing( 'R_AssetAliasMaterial' );
 export let R_CloneAliasMaterial = Hooks_Missing( 'R_CloneAliasMaterial' );
+export let R_HeldViewmodelMaterial = Hooks_Missing( 'R_HeldViewmodelMaterial' );
 export let R_EnemyAliasMaterial = Hooks_Missing( 'R_EnemyAliasMaterial' );
 export let R_HeldVisionTag;
 export let R_NewerAliasMaterial = Hooks_Missing( 'R_NewerAliasMaterial' );
@@ -510,6 +511,9 @@ export let R_ScreenDropsView = Hooks_Missing( 'R_ScreenDropsView' );
 // newer/render/r_shaderwarm.js
 export let R_CompileSceneAsync = Hooks_Missing( 'R_CompileSceneAsync' );
 export let R_ShaderAssetStamp = Hooks_Missing( 'R_ShaderAssetStamp' );
+export let R_KeepPrograms = Hooks_Missing( 'R_KeepPrograms' );
+export let R_ShaderWarmObjects = Hooks_Missing( 'R_ShaderWarmObjects' );
+export let R_ShaderWarmScenes = Hooks_Missing( 'R_ShaderWarmScenes' );
 
 // newer/render/r_shells.js
 export let R_ShellShot = Hooks_Missing( 'R_ShellShot' );
@@ -743,7 +747,7 @@ const HOOK_NAMES = Object.freeze( [
 	'R_MotesFrame', 'R_MotesClear', 'R_AmbientPlaced', 'R_AmbientPlacesClear', 'r_drips', 'r_sparks', 'r_nailhits', 'R_NailHit', 'r_embers', 's_gibs', 'S_GibRestObserve', 'S_GibRestPackets', 's_lava', 'r_itemturn', 'R_ItemTurn', 'r_mapliquids', 'R_MapLiquidAlpha', 'R_MapLiquidAlphaAny', 'r_storm', 'R_StormFrame', 'R_StormClear', 's_impacts', 's_footsteps', 'S_FootstepsFrame', 'joy_wheel', 'joy_prompts', 'joy_rumble', 'R_ControllerPoll', 'R_ControllerCancel', 'R_WeaponWheelDraw', 'R_ControllerPromptsDraw', 'R_WeaponWheelTimeScale',
 	'R_MistClear', 'R_MistFrame',
 	'R_MuzzleFlashFired', 'R_MuzzleFlashScale', 'R_MuzzleSetProbe', 'R_MuzzleSetView', 'R_MuzzleView',
-	'R_AssetAliasMaterial', 'R_CloneAliasMaterial', 'R_EnemyAliasMaterial', 'R_HeldVisionTag', 'R_NewerAliasMaterial', 'R_NewerSkinsMaterials', 'R_NewerSkinsNewMap', 'R_NewerSkinsPrepare', 'R_NewerSkinsStatus', 'R_NewerSkinsTextures', 'R_ReleaseAliasReceiver', 'r_newer_variety',
+	'R_AssetAliasMaterial', 'R_CloneAliasMaterial', 'R_HeldViewmodelMaterial', 'R_EnemyAliasMaterial', 'R_HeldVisionTag', 'R_NewerAliasMaterial', 'R_NewerSkinsMaterials', 'R_NewerSkinsNewMap', 'R_NewerSkinsPrepare', 'R_NewerSkinsStatus', 'R_NewerSkinsTextures', 'R_ReleaseAliasReceiver', 'r_newer_variety',
 	'R_ClassicTexture', 'R_NewerNormalsPrepare', 'R_NewerNormalsStatus', 'R_NewerTextureUpgrade', 'R_NewerTexturesFrame', 'R_NewerTexturesStatus',
 	'R_PerfFpsText', 'R_PerfFrameBegin', 'R_PerfFrameEnd', 'R_PerfInit', 'R_PerfProfiling', 'R_PerfScreenLines', 'R_PerfStage', 'R_PerfStop', 'cl_showfps',
 	'R_PowerupBegin', 'R_PowerupClear', 'R_PowerupEnd', 'R_PowerupSeen', 'r_powerups',
@@ -758,7 +762,7 @@ const HOOK_NAMES = Object.freeze( [
 	'R_RespawnCameraFrame',
 	'R_RockfieldBrushSeen', 'R_RockfieldBuild', 'R_RockfieldChart', 'R_RockfieldGeometry', 'R_RockfieldSetLimits', 'R_RockfieldStatus', 'R_RockfieldUpdate', 'r_rockfield',
 	'R_ScreenDropsBloodAt', 'R_ScreenDropsReset', 'R_ScreenDropsSetView', 'R_ScreenDropsView',
-	'R_CompileSceneAsync', 'R_ShaderAssetStamp',
+	'R_CompileSceneAsync', 'R_ShaderAssetStamp', 'R_KeepPrograms', 'R_ShaderWarmObjects', 'R_ShaderWarmScenes',
 	'R_ShellShot', 'R_ShellsFrame', 'R_ShellsNewMap', 'R_ShellsReset', 'R_ShellsRestore', 'R_ShellsSetup', 'R_ShellsSnapshot',
 	'R_ShellTrace',
 	'R_ShotgunClear', 'R_ShotgunFrame', 'R_ShotgunSetup', 'r_shotgunfx', 'viewModelMuzzles',
@@ -857,7 +861,7 @@ export function Hooks_Install( table ) {
 	R_MotesFrame = table.R_MotesFrame; R_MotesClear = table.R_MotesClear; R_AmbientPlaced = table.R_AmbientPlaced; R_AmbientPlacesClear = table.R_AmbientPlacesClear; r_drips = table.r_drips; r_sparks = table.r_sparks; r_nailhits = table.r_nailhits; r_embers = table.r_embers; s_gibs=table.s_gibs; S_GibRestObserve=table.S_GibRestObserve; S_GibRestPackets=table.S_GibRestPackets; s_lava = table.s_lava; r_itemturn = table.r_itemturn; R_ItemTurn = table.R_ItemTurn; r_mapliquids = table.r_mapliquids; R_MapLiquidAlpha = table.R_MapLiquidAlpha; R_MapLiquidAlphaAny = table.R_MapLiquidAlphaAny; r_storm = table.r_storm; R_StormFrame = table.R_StormFrame; R_StormClear = table.R_StormClear; s_impacts = table.s_impacts; s_footsteps = table.s_footsteps; S_FootstepsFrame = table.S_FootstepsFrame; joy_wheel = table.joy_wheel; joy_prompts = table.joy_prompts; joy_rumble = table.joy_rumble; R_ControllerPoll = table.R_ControllerPoll; R_ControllerCancel = table.R_ControllerCancel; R_WeaponWheelDraw = table.R_WeaponWheelDraw; R_ControllerPromptsDraw = table.R_ControllerPromptsDraw; R_WeaponWheelTimeScale = table.R_WeaponWheelTimeScale; R_NailHit = table.R_NailHit;
 	R_MistClear = table.R_MistClear; R_MistFrame = table.R_MistFrame;
 	R_MuzzleFlashFired = table.R_MuzzleFlashFired; R_MuzzleFlashScale = table.R_MuzzleFlashScale; R_MuzzleSetProbe = table.R_MuzzleSetProbe; R_MuzzleSetView = table.R_MuzzleSetView; R_MuzzleView = table.R_MuzzleView;
-	R_AssetAliasMaterial = table.R_AssetAliasMaterial; R_CloneAliasMaterial = table.R_CloneAliasMaterial; R_EnemyAliasMaterial = table.R_EnemyAliasMaterial; R_HeldVisionTag = table.R_HeldVisionTag; R_NewerAliasMaterial = table.R_NewerAliasMaterial; R_NewerSkinsMaterials = table.R_NewerSkinsMaterials; R_NewerSkinsNewMap = table.R_NewerSkinsNewMap; R_NewerSkinsPrepare = table.R_NewerSkinsPrepare; R_NewerSkinsStatus = table.R_NewerSkinsStatus; R_NewerSkinsTextures = table.R_NewerSkinsTextures; R_ReleaseAliasReceiver = table.R_ReleaseAliasReceiver; r_newer_variety = table.r_newer_variety;
+	R_AssetAliasMaterial = table.R_AssetAliasMaterial; R_CloneAliasMaterial = table.R_CloneAliasMaterial; R_HeldViewmodelMaterial = table.R_HeldViewmodelMaterial; R_EnemyAliasMaterial = table.R_EnemyAliasMaterial; R_HeldVisionTag = table.R_HeldVisionTag; R_NewerAliasMaterial = table.R_NewerAliasMaterial; R_NewerSkinsMaterials = table.R_NewerSkinsMaterials; R_NewerSkinsNewMap = table.R_NewerSkinsNewMap; R_NewerSkinsPrepare = table.R_NewerSkinsPrepare; R_NewerSkinsStatus = table.R_NewerSkinsStatus; R_NewerSkinsTextures = table.R_NewerSkinsTextures; R_ReleaseAliasReceiver = table.R_ReleaseAliasReceiver; r_newer_variety = table.r_newer_variety;
 	R_ClassicTexture = table.R_ClassicTexture; R_NewerNormalsPrepare = table.R_NewerNormalsPrepare; R_NewerNormalsStatus = table.R_NewerNormalsStatus; R_NewerTextureUpgrade = table.R_NewerTextureUpgrade; R_NewerTexturesFrame = table.R_NewerTexturesFrame; R_NewerTexturesStatus = table.R_NewerTexturesStatus;
 	R_PerfFpsText = table.R_PerfFpsText; R_PerfFrameBegin = table.R_PerfFrameBegin; R_PerfFrameEnd = table.R_PerfFrameEnd; R_PerfInit = table.R_PerfInit; R_PerfProfiling = table.R_PerfProfiling; R_PerfScreenLines = table.R_PerfScreenLines; R_PerfStage = table.R_PerfStage; R_PerfStop = table.R_PerfStop; cl_showfps = table.cl_showfps;
 	R_PowerupBegin = table.R_PowerupBegin; R_PowerupClear = table.R_PowerupClear; R_PowerupEnd = table.R_PowerupEnd; R_PowerupSeen = table.R_PowerupSeen; r_powerups = table.r_powerups;
@@ -872,7 +876,7 @@ export function Hooks_Install( table ) {
 	R_RespawnCameraFrame = table.R_RespawnCameraFrame;
 	R_RockfieldBrushSeen = table.R_RockfieldBrushSeen; R_RockfieldBuild = table.R_RockfieldBuild; R_RockfieldChart = table.R_RockfieldChart; R_RockfieldGeometry = table.R_RockfieldGeometry; R_RockfieldSetLimits = table.R_RockfieldSetLimits; R_RockfieldStatus = table.R_RockfieldStatus; R_RockfieldUpdate = table.R_RockfieldUpdate; r_rockfield = table.r_rockfield;
 	R_ScreenDropsBloodAt = table.R_ScreenDropsBloodAt; R_ScreenDropsReset = table.R_ScreenDropsReset; R_ScreenDropsSetView = table.R_ScreenDropsSetView; R_ScreenDropsView = table.R_ScreenDropsView;
-	R_CompileSceneAsync = table.R_CompileSceneAsync; R_ShaderAssetStamp = table.R_ShaderAssetStamp;
+	R_CompileSceneAsync = table.R_CompileSceneAsync; R_ShaderAssetStamp = table.R_ShaderAssetStamp; R_KeepPrograms = table.R_KeepPrograms; R_ShaderWarmObjects = table.R_ShaderWarmObjects; R_ShaderWarmScenes = table.R_ShaderWarmScenes;
 	R_ShellShot = table.R_ShellShot; R_ShellsFrame = table.R_ShellsFrame; R_ShellsNewMap = table.R_ShellsNewMap; R_ShellsReset = table.R_ShellsReset; R_ShellsRestore = table.R_ShellsRestore; R_ShellsSetup = table.R_ShellsSetup; R_ShellsSnapshot = table.R_ShellsSnapshot;
 	R_ShellTrace = table.R_ShellTrace;
 	R_ShotgunClear = table.R_ShotgunClear; R_ShotgunFrame = table.R_ShotgunFrame; R_ShotgunSetup = table.R_ShotgunSetup; r_shotgunfx = table.r_shotgunfx; viewModelMuzzles = table.viewModelMuzzles;
