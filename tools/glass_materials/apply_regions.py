@@ -5,8 +5,8 @@ from pathlib import Path
 from PIL import Image,ImageDraw
 from collections import deque
 import numpy as np,json,hashlib,ast,argparse
-p=argparse.ArgumentParser();p.add_argument('--stage',type=Path,required=True);args=p.parse_args();stage=args.stage;assets=stage/'assets'
-review=json.loads(Path(__file__).with_name('regions.json').read_text());provenance=json.loads((stage/'provenance.json').read_text());catalog=json.loads((stage/'catalog.json').read_text());proof=[]
+p=argparse.ArgumentParser();p.add_argument('--stage',type=Path,required=True);p.add_argument('--review',type=Path,default=Path(__file__).with_name('regions.json'),help='Explicit hash-bound reviewed regions; default is the existing source review');args=p.parse_args();stage=args.stage;assets=stage/'assets'
+review=json.loads(args.review.read_text());provenance=json.loads((stage/'provenance.json').read_text());catalog=json.loads((stage/'catalog.json').read_text());proof=[]
 tree=ast.parse(Path(__file__).with_name('generate.py').read_text());functions=[n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name in ['pane_distance','blurred']];exec(compile(ast.Module(body=functions,type_ignores=[]),'pane-helpers','exec'))
 unique={v['name']+'|'+v['nativeRGBAKey']:v for v in provenance['variants'] if v['runtime']}
 for key,v in unique.items():
