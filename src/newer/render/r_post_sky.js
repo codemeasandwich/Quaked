@@ -15,6 +15,7 @@
  */
 import * as THREE from 'three';
 import { solidskytexture, alphaskytexture } from '../../engine/render/gl_model.js';
+import { R_StormFlashNow } from './r_storm.js';
 import { SUN_COLOR, SUN_SURFACE_COLOR, SUN_SURFACE, SUN_SCATTER, PILLAR_MAX, PILLAR_DEFAULT, r_bounce, r_cloudspeed } from './r_post_config.js';
 
 // direction towards the sun (worldspawn "_sun_mangle" "yaw pitch" overrides it)
@@ -289,7 +290,9 @@ export function R_PostSkyUniforms( p, camera, time, lighting, hasSkyView ) {
 	sh.uSunOn.value = sunOn ? 1 : 0;
 
 	const bright = R_SkyBrightness( skyState.info.luma );
-	const sunGain = 0.5 + 0.9 * bright; // a dark sky still gives a little
+	// (a lightning flash lights open ground with the sky: r_storm.js, card T-3faa98e3)
+	const flash = R_StormFlashNow();
+	const sunGain = ( 0.5 + 0.9 * bright ) * ( 1 + flash ); // a dark sky still gives a little
 	const tint = R_SunTint();
 	sh.uSunCol.value.set(
 		SUN_COLOR[ 0 ] * sunGain * ( 0.55 + 0.45 * tint[ 0 ] ),
@@ -299,7 +302,7 @@ export function R_PostSkyUniforms( p, camera, time, lighting, hasSkyView ) {
 		SUN_SURFACE_COLOR[ 0 ] * ( 0.6 + 0.4 * tint[ 0 ] ),
 		SUN_SURFACE_COLOR[ 1 ] * ( 0.6 + 0.4 * tint[ 1 ] ),
 		SUN_SURFACE_COLOR[ 2 ] * ( 0.6 + 0.4 * tint[ 2 ] ) );
-	p.compositeMaterial.uniforms.uSunSurface.value = SUN_SURFACE * ( 0.5 + 0.8 * bright );
+	p.compositeMaterial.uniforms.uSunSurface.value = SUN_SURFACE * ( 0.5 + 0.8 * bright ) * ( 1 + flash );
 	// Hold the original nominal sun density. One common compositing gain below
 	// makes sun, point lights and the flashlight respond to the same slider once.
 	p.volumeMaterial.uniforms.uSunScatter.value = SUN_SCATTER * PILLAR_MAX * PILLAR_DEFAULT * ( 1.4 + 1.0 * bright );

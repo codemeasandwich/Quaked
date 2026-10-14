@@ -1,4 +1,4 @@
-import { R_MotesFrame, R_MotesClear, R_AmbientPlacesClear, r_drips, r_sparks, r_nailhits, r_embers, s_gibs, s_lava, r_itemturn, r_mapliquids } from '../common/hooks.js';
+import { R_MotesFrame, R_MotesClear, R_AmbientPlacesClear, r_drips, r_sparks, r_nailhits, r_embers, s_gibs, s_lava, r_itemturn, r_mapliquids, r_storm, R_StormFrame, R_StormClear } from '../common/hooks.js';
 /**
  * @module engine/render/gl_rmain
  *
@@ -2021,6 +2021,7 @@ export function R_RenderView() {
 	R_VenomFrame( cl != null ? cl.time : 0, r_refdef.vieworg, cl_visedicts, cl_numvisedicts, _fireballView ); // (the Scrags' spit, placed before the entities are drawn)
 
 	R_MotesFrame( scene, cl != null ? cl.time : 0, r_refdef.vieworg, _fireballView[ 1 ] );
+	R_StormFrame( cl != null ? cl.time : 0, r_refdef.vieworg ); // (Newer Game: lightning with the thunder, gusts; card T-3faa98e3)
 	R_ImpactRippleFrame( cl != null ? cl.time : 0 ); // (the detector's list of hits, aged)
 	R_WavesFrame( cl != null ? cl.time : 0 ); // (and the ripples they make, stepped to now)
 	// render normal view
@@ -2290,6 +2291,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( s_lava );
 	Cvar_RegisterVariable( r_itemturn );
 	Cvar_RegisterVariable( r_mapliquids );
+	Cvar_RegisterVariable( r_storm );
 	Cvar_RegisterVariable( r_fireball );
 	Cvar_RegisterVariable( r_fireballalpha );
 	Cvar_RegisterVariable( r_smoketrails );
@@ -2554,7 +2556,7 @@ export function R_NewMap() {
 		entity: id => cl_entities[ id ], light: p => R_LightPoint( p, cl ) } );
 	R_ShellsNewMap( cl?.worldmodel?.name || '' );
 	R_MistClear();
-	R_AmbientPlacesClear(); R_MotesClear();
+	R_AmbientPlacesClear(); R_MotesClear(); R_StormClear();
 	R_ScreenDropsReset();
 	R_MuzzleSetProbe( ( p ) => R_LightPoint( p, cl ) );
 

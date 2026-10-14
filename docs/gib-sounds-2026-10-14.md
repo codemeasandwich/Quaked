@@ -12,8 +12,9 @@ heard instead, through the ordinary sound search), at 0.3 of full volume, where 
 - **When:** the same rest the blood mark under a gib already waits for (`src/newer/render/gib_rest.js`,
   moved out of `r_decals.js` word for word: still for 0.3 s, moving less than 0.6 units in a tenth of
   a second). Each gib sounds once. A gib is any model with Quake's gib flag (`EF_GIB`, model flag 4).
-- **Never at the cost of a game sound:** it plays only on a dynamic channel that is free or finished
-  (`S_StartSoundIfFree`, `snd_dma.js`); if every channel is busy it is skipped. At most four gibs
+- **Never at the cost of a game sound:** it plays only while more than four dynamic channels are free
+  or finished (`S_StartSoundIfFree` keeps that reserve, `snd_dma.js`), so the game's own next sounds
+  always find a channel; otherwise it is skipped. At most four gibs
   sound in one frame.
 - **Off** in New Game, the classic half of the title demo, while paused, at intermission, and with
   `s_gibs 0` (saved; Options, Newer features, "Gib sounds").

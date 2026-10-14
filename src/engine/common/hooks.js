@@ -376,6 +376,9 @@ export let R_ItemTurn = Hooks_Missing( 'R_ItemTurn' );
 export let r_mapliquids;
 export let R_MapLiquidAlpha = Hooks_Missing( 'R_MapLiquidAlpha' );
 export let R_MapLiquidAlphaAny = Hooks_Missing( 'R_MapLiquidAlphaAny' );
+export let r_storm;
+export let R_StormFrame = Hooks_Missing( 'R_StormFrame' );
+export let R_StormClear = Hooks_Missing( 'R_StormClear' );
 export let S_GibRestObserve=Hooks_Missing('S_GibRestObserve');
 export let S_GibRestPackets=Hooks_Missing('S_GibRestPackets');
 export let R_NailHit = Hooks_Missing( 'R_NailHit' );
@@ -726,7 +729,7 @@ const HOOK_NAMES = Object.freeze( [
 	'R_LavaBall', 'R_LavaBallImpact', 'R_LavaBallTakes', 'R_LavaBallsBegin', 'R_LavaBallsClear', 'R_LavaBallsFlush', 'R_LavaBallsSetup', 'r_lavaballs',
 	'R_LevelViewUseSnapshots', 'R_SetupLevelViews', 'R_SyncLevelViews', 'R_UpdateLevelViewEntities',
 	'LIGHTNING', 'R_LightningClear', 'R_LightningFrame', 'R_LightningSetup', 'R_LightningTakesBeam', 'r_newer_lightning',
-	'R_MotesFrame', 'R_MotesClear', 'R_AmbientPlaced', 'R_AmbientPlacesClear', 'r_drips', 'r_sparks', 'r_nailhits', 'R_NailHit', 'r_embers', 's_gibs', 'S_GibRestObserve', 'S_GibRestPackets', 's_lava', 'r_itemturn', 'R_ItemTurn', 'r_mapliquids', 'R_MapLiquidAlpha', 'R_MapLiquidAlphaAny',
+	'R_MotesFrame', 'R_MotesClear', 'R_AmbientPlaced', 'R_AmbientPlacesClear', 'r_drips', 'r_sparks', 'r_nailhits', 'R_NailHit', 'r_embers', 's_gibs', 'S_GibRestObserve', 'S_GibRestPackets', 's_lava', 'r_itemturn', 'R_ItemTurn', 'r_mapliquids', 'R_MapLiquidAlpha', 'R_MapLiquidAlphaAny', 'r_storm', 'R_StormFrame', 'R_StormClear',
 	'R_MistClear', 'R_MistFrame',
 	'R_MuzzleFlashFired', 'R_MuzzleFlashScale', 'R_MuzzleSetProbe', 'R_MuzzleSetView', 'R_MuzzleView',
 	'R_AssetAliasMaterial', 'R_CloneAliasMaterial', 'R_EnemyAliasMaterial', 'R_HeldVisionTag', 'R_NewerAliasMaterial', 'R_NewerSkinsMaterials', 'R_NewerSkinsNewMap', 'R_NewerSkinsPrepare', 'R_NewerSkinsStatus', 'R_NewerSkinsTextures', 'R_ReleaseAliasReceiver', 'r_newer_variety',
@@ -840,7 +843,7 @@ export function Hooks_Install( table ) {
 	R_LavaBall = table.R_LavaBall; R_LavaBallImpact = table.R_LavaBallImpact; R_LavaBallTakes = table.R_LavaBallTakes; R_LavaBallsBegin = table.R_LavaBallsBegin; R_LavaBallsClear = table.R_LavaBallsClear; R_LavaBallsFlush = table.R_LavaBallsFlush; R_LavaBallsSetup = table.R_LavaBallsSetup; r_lavaballs = table.r_lavaballs;
 	R_LevelViewUseSnapshots = table.R_LevelViewUseSnapshots; R_SetupLevelViews = table.R_SetupLevelViews; R_SyncLevelViews = table.R_SyncLevelViews; R_UpdateLevelViewEntities = table.R_UpdateLevelViewEntities;
 	LIGHTNING = table.LIGHTNING; R_LightningClear = table.R_LightningClear; R_LightningFrame = table.R_LightningFrame; R_LightningSetup = table.R_LightningSetup; R_LightningTakesBeam = table.R_LightningTakesBeam; r_newer_lightning = table.r_newer_lightning;
-	R_MotesFrame = table.R_MotesFrame; R_MotesClear = table.R_MotesClear; R_AmbientPlaced = table.R_AmbientPlaced; R_AmbientPlacesClear = table.R_AmbientPlacesClear; r_drips = table.r_drips; r_sparks = table.r_sparks; r_nailhits = table.r_nailhits; r_embers = table.r_embers; s_gibs=table.s_gibs; S_GibRestObserve=table.S_GibRestObserve; S_GibRestPackets=table.S_GibRestPackets; s_lava = table.s_lava; r_itemturn = table.r_itemturn; R_ItemTurn = table.R_ItemTurn; r_mapliquids = table.r_mapliquids; R_MapLiquidAlpha = table.R_MapLiquidAlpha; R_MapLiquidAlphaAny = table.R_MapLiquidAlphaAny; R_NailHit = table.R_NailHit;
+	R_MotesFrame = table.R_MotesFrame; R_MotesClear = table.R_MotesClear; R_AmbientPlaced = table.R_AmbientPlaced; R_AmbientPlacesClear = table.R_AmbientPlacesClear; r_drips = table.r_drips; r_sparks = table.r_sparks; r_nailhits = table.r_nailhits; r_embers = table.r_embers; s_gibs=table.s_gibs; S_GibRestObserve=table.S_GibRestObserve; S_GibRestPackets=table.S_GibRestPackets; s_lava = table.s_lava; r_itemturn = table.r_itemturn; R_ItemTurn = table.R_ItemTurn; r_mapliquids = table.r_mapliquids; R_MapLiquidAlpha = table.R_MapLiquidAlpha; R_MapLiquidAlphaAny = table.R_MapLiquidAlphaAny; r_storm = table.r_storm; R_StormFrame = table.R_StormFrame; R_StormClear = table.R_StormClear; R_NailHit = table.R_NailHit;
 	R_MistClear = table.R_MistClear; R_MistFrame = table.R_MistFrame;
 	R_MuzzleFlashFired = table.R_MuzzleFlashFired; R_MuzzleFlashScale = table.R_MuzzleFlashScale; R_MuzzleSetProbe = table.R_MuzzleSetProbe; R_MuzzleSetView = table.R_MuzzleSetView; R_MuzzleView = table.R_MuzzleView;
 	R_AssetAliasMaterial = table.R_AssetAliasMaterial; R_CloneAliasMaterial = table.R_CloneAliasMaterial; R_EnemyAliasMaterial = table.R_EnemyAliasMaterial; R_HeldVisionTag = table.R_HeldVisionTag; R_NewerAliasMaterial = table.R_NewerAliasMaterial; R_NewerSkinsMaterials = table.R_NewerSkinsMaterials; R_NewerSkinsNewMap = table.R_NewerSkinsNewMap; R_NewerSkinsPrepare = table.R_NewerSkinsPrepare; R_NewerSkinsStatus = table.R_NewerSkinsStatus; R_NewerSkinsTextures = table.R_NewerSkinsTextures; R_ReleaseAliasReceiver = table.R_ReleaseAliasReceiver; r_newer_variety = table.r_newer_variety;

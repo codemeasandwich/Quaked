@@ -77,6 +77,19 @@ let _lavaAmbient = () => null;
  */
 export function S_SetLavaAmbient( fn ) { _lavaAmbient = fn; }
 
+// told of each sound as it starts (the add-on effects for every game, card T-3faa98e3: thunder lights the sky,
+// newer/render/r_storm.js; others listen for the sounds they go with)
+const _soundStarted = [];
+
+/**
+ * Adds someone to be told of each sound as it starts: a function called with the sound, where it is, its volume (0..1),
+ * its attenuation and the entity that made it, once the sound is playing on its channel (a sound that is not heard, or
+ * cannot be loaded, is not told). It cannot change or stop the sound; a listener that fails is reported and skipped.
+ *
+ * @param {function(sfx_t, ArrayLike<number>, number, number, number): void} fn
+ */
+export function S_AddSoundStarted( fn ) { _soundStarted.push( fn ); }
+
 // nosound cvar
 const nosound = { name: 'nosound', string: '0', value: 0 };
 const precache = { name: 'precache', string: '1', value: 1 };
@@ -564,16 +577,22 @@ function S_AdvancePaintedtime() {
 
 }
 
+/** How many dynamic channels an enhancement sound always leaves free for the game (S_StartSoundIfFree). */
+export const SOUND_RESERVE = 4;
+
 /**
- * Optional enhancement sound using only an empty or finished existing dynamic channel. The normal
+ * Optional enhancement sound using only an empty or finished existing dynamic channel, and only while more than
+ * SOUND_RESERVE are free. The normal
  * mixer/cache/spatialization still owns playback; accepted live sounds are never evicted by this call.
  * @returns {boolean} whether an existing spare channel allowed the attempt (not proof of audibility)
  */
 export function S_StartSoundIfFree(entnum,sfx,origin,volume,attenuation){
  if(!sound_started||nosound.value||!sfx)return false;
- let free=false;
- for(let i=NUM_AMBIENTS;i<NUM_AMBIENTS+MAX_DYNAMIC_CHANNELS;i++)if(!channels[i].sfx||!channels[i]._audioSource){free=true;break;}
- if(!free)return false;
+ // (a reserve is kept: with fewer than SOUND_RESERVE channels free the enhancement waits, so the game's own next
+ // sounds always find a free channel and never have to take one that is playing)
+ let free=0;
+ for(let i=NUM_AMBIENTS;i<NUM_AMBIENTS+MAX_DYNAMIC_CHANNELS;i++)if(!channels[i].sfx||!channels[i]._audioSource)free++;
+ if(free<=SOUND_RESERVE)return false;
  S_StartSound(entnum,0,sfx,origin,volume,attenuation);return true;
 }
 
@@ -655,6 +674,13 @@ export function S_StartSound( entnum, entchannel, sfx, origin, fvol, attenuation
 
 	// Play using Web Audio API
 	_playWebAudio( sc, target_chan );
+
+	// (only now, with the game's sound on its channel, so nothing told of it can take that channel first)
+	for ( const fn of _soundStarted ) {
+
+		try { fn( sfx, origin, fvol, attenuation, entnum ); } catch ( e ) { Con_DPrintf( 'a sound listener failed: %s\n', e?.message ?? e ); }
+
+	}
 
 }
 

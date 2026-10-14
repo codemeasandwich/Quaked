@@ -18,8 +18,8 @@ import { SV_HullPointContents, SV_RecursiveHullCheck, trace_t } from '../../engi
 /** Quake's contents numbers: nothing, solid, water, slime, lava, sky. */
 export const FX_EMPTY = - 1, FX_SOLID = - 2, FX_WATER = - 3, FX_SLIME = - 4, FX_LAVA = - 5, FX_SKY = - 6;
 
-const randomStates = new Int32Array( 4 );
-const streamIndex = owner => owner === 'sparks' ? 1 : owner === 'nails' ? 2 : owner === 'embers' ? 3 : 0;
+const randomStates = new Int32Array( 5 );
+const streamIndex = owner => owner === 'sparks' ? 1 : owner === 'nails' ? 2 : owner === 'embers' ? 3 : owner === 'storm' ? 4 : 0;
 FX_Seed( 0x2545f491 );
 
 /**
@@ -46,7 +46,7 @@ export function FX_Random( owner = 'drips' ) {
  *
  * @param {number} n any whole number
  */
-export function FX_Seed( n ) { for ( let i = 0; i < 4; i ++ ) randomStates[ i ] = ( n | 0 ) ^ Math.imul( i, 0x9e3779b9 ); }
+export function FX_Seed( n ) { for ( let i = 0; i < 5; i ++ ) randomStates[ i ] = ( n | 0 ) ^ Math.imul( i, 0x9e3779b9 ); }
 
 const hullOf = model => model?.hulls?.[ 0 ]?.clipnodes ? model.hulls[ 0 ] : null;
 

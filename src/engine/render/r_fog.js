@@ -36,6 +36,16 @@ export const r_skyfog = new cvar_t( 'r_skyfog', String( FOG_SKY ) );
 // of r_skyfog while the map plays (Arcane Dimensions' QuakeC sets it) takes over, as Quakespasm's r_skyfog callback does.
 // Observe writes, not numeric snapshots: different spellings and multiple writes between draws must count.
 const skyFogUniform = { value: FOG_SKY };
+// how much brighter the sky is drawn this frame: 0, or a lightning flash's (R_SkyFlashSet; newer/render/r_storm.js)
+const skyFlashUniform = { value: 0 };
+
+/**
+ * Sets how much brighter every sky material is drawn this frame (0 none; 1 twice as bright). The storm's lightning
+ * flashes use it (newer/render/r_storm.js, card T-3faa98e3 item 5); nothing else does, so it stays 0.
+ *
+ * @param {number} v 0..4
+ */
+export function R_SkyFlashSet( v ) { skyFlashUniform.value = Math.min( 4, Math.max( 0, Number.isFinite( v ) ? v : 0 ) ); }
 let mapSkyFog = null, seenSkyFogRevision = r_skyfog.changeRevision;
 // Quakespasm's colour when none is given
 const DEFAULT = Object.freeze( { density: 0, r: 0.3, g: 0.3, b: 0.3 } );
@@ -216,8 +226,9 @@ export function R_FogSkyMaterial( material ) {
 
 		before?.call( this, shader, renderer );
 		shader.uniforms.uQuakedSkyFog = skyFogUniform;
-		shader.fragmentShader = 'uniform float uQuakedSkyFog;\n' + shader.fragmentShader.replace( '#include <fog_fragment>',
-			'#ifdef USE_FOG\n\tgl_FragColor.rgb = mix( gl_FragColor.rgb, fogColor, uQuakedSkyFog ); // the sky\'s share (r_fog.js)\n#endif' );
+		shader.uniforms.uQuakedSkyFlash = skyFlashUniform;
+		shader.fragmentShader = 'uniform float uQuakedSkyFog;\nuniform float uQuakedSkyFlash;\n' + shader.fragmentShader.replace( '#include <fog_fragment>',
+			'gl_FragColor.rgb *= 1.0 + uQuakedSkyFlash; // a lightning flash (r_fog.js R_SkyFlashSet)\n#ifdef USE_FOG\n\tgl_FragColor.rgb = mix( gl_FragColor.rgb, fogColor, uQuakedSkyFog ); // the sky\'s share (r_fog.js)\n#endif' );
 
 	};
 	const key = material.customProgramCacheKey.bind( material );

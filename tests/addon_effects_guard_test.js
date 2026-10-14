@@ -24,7 +24,7 @@ const read = path => readFileSync( new URL( '../' + path, import.meta.url ), 'ut
 const sha = text => createHash( 'sha256' ).update( text ).digest( 'hex' );
 
 // the modules the add-on effects have added
-const NEW_MODULES = [ 'src/newer/render/v_blastshake.js', 'src/newer/render/r_motes.js', 'src/newer/render/fx_world.js', 'src/newer/render/r_ambientplaces.js', 'src/newer/render/r_drips.js', 'src/newer/render/r_sparks.js', 'src/newer/render/r_nailhits.js', 'src/newer/render/r_embers.js', 'src/newer/render/gib_rest.js', 'src/newer/sound/s_gibs.js', 'src/newer/sound/s_lava.js', 'src/newer/sound/s_synth.js', 'src/newer/render/r_itemturn.js', 'src/newer/render/r_mapliquids.js' ];
+const NEW_MODULES = [ 'src/newer/render/v_blastshake.js', 'src/newer/render/r_motes.js', 'src/newer/render/fx_world.js', 'src/newer/render/r_ambientplaces.js', 'src/newer/render/r_drips.js', 'src/newer/render/r_sparks.js', 'src/newer/render/r_nailhits.js', 'src/newer/render/r_embers.js', 'src/newer/render/gib_rest.js', 'src/newer/sound/s_gibs.js', 'src/newer/sound/s_lava.js', 'src/newer/sound/s_synth.js', 'src/newer/render/r_itemturn.js', 'src/newer/render/r_mapliquids.js', 'src/newer/render/r_storm.js' ];
 // the excluded weapons' own modules: the shotgun (pellets, bubbles, smoke, casings, its rays and flight), the
 // lightning gun's beam, and the wall burns both leave
 const EXCLUDED = [ 'r_shotgun.js', 'r_shells.js', 'r_shelltrace.js', 'r_wallburn.js', 'r_lightning.js', 'sv_shotrays.js', 'sv_shotdelay.js', 'shotgun_flight.js' ];
