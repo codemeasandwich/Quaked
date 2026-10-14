@@ -21,7 +21,7 @@ import { Con_Printf, Con_DPrintf } from '../common/console.js';
 import {
 	sfx_t, sfxcache_t, channel_t, dma_t,
 	channels, MAX_CHANNELS, MAX_DYNAMIC_CHANNELS, NUM_AMBIENTS,
-	AMBIENT_WATER, AMBIENT_SKY,
+	AMBIENT_WATER, AMBIENT_SKY, AMBIENT_LAVA,
 	total_channels, paintedtime, sn, shm,
 	listener_origin, listener_forward, listener_right, listener_up,
 	sound_nominal_clip_dist,
@@ -65,6 +65,17 @@ let snd_ambient = true; // whether ambient sounds are enabled
 
 // Callback for host_frametime (to avoid circular dependency)
 let _getHostFrametime = () => 0;
+// the sound for the lava ambient channel this frame, or null (Quake left the channel unused; the add-on effects for
+// every game fill it in Newer Game: newer/sound/s_lava.js, card T-3faa98e3)
+let _lavaAmbient = () => null;
+
+/**
+ * Sets what the lava ambient channel plays: a function called each frame returning the sound (or null for silence,
+ * the original behaviour). Called once by newer/sound/s_lava.js as it loads.
+ *
+ * @param {function(): ?sfx_t} fn
+ */
+export function S_SetLavaAmbient( fn ) { _lavaAmbient = fn; }
 
 // nosound cvar
 const nosound = { name: 'nosound', string: '0', value: 0 };
@@ -812,7 +823,11 @@ function S_UpdateAmbientSounds() {
 	for ( let ambient_channel = 0; ambient_channel < NUM_AMBIENTS; ambient_channel ++ ) {
 
 		const chan = channels[ ambient_channel ];
-		chan.sfx = ambient_sfx[ ambient_channel ];
+		// (the lava channel: switched off while playing, it keeps its sound and fades out like the others)
+		const lava = ambient_channel === AMBIENT_LAVA ? _lavaAmbient() : null;
+		if ( ambient_channel !== AMBIENT_LAVA ) chan.sfx = ambient_sfx[ ambient_channel ];
+		else if ( lava ) chan.sfx = lava;
+		else if ( ! chan._audioSource ) chan.sfx = null;
 
 		// Skip if no sound precached for this ambient type
 		if ( chan.sfx == null )
@@ -820,7 +835,7 @@ function S_UpdateAmbientSounds() {
 
 		// Calculate target volume from leaf's ambient level
 		let vol = ambient_level.value * leaf.ambient_sound_level[ ambient_channel ];
-		if ( vol < 8 )
+		if ( vol < 8 || ( ambient_channel === AMBIENT_LAVA && ! lava ) )
 			vol = 0;
 
 		// don't adjust volume too fast - smooth fade in/out

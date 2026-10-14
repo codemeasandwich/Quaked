@@ -69,6 +69,7 @@ import { r_sparks } from './render/r_sparks.js';
 import { r_nailhits, R_NailHit } from './render/r_nailhits.js';
 import { r_embers } from './render/r_embers.js';
 import { s_gibs, S_GibRestObserve, S_GibRestPackets } from './sound/s_gibs.js';
+import { s_lava } from './sound/s_lava.js';
 import { R_MuzzleFlashFired, R_MuzzleFlashScale, R_MuzzleSetProbe, R_MuzzleSetView, R_MuzzleView } from './render/r_muzzle.js';
 import { R_AssetAliasMaterial, R_CloneAliasMaterial, R_EnemyAliasMaterial, R_HeldVisionTag, R_NewerAliasMaterial, R_NewerSkinsMaterials, R_NewerSkinsNewMap, R_NewerSkinsPrepare, R_NewerSkinsStatus, R_NewerSkinsTextures, R_ReleaseAliasReceiver, r_newer_variety } from './render/r_newerskins.js';
 import { R_ClassicTexture, R_NewerNormalsPrepare, R_NewerNormalsStatus, R_NewerTextureUpgrade, R_NewerTexturesFrame, R_NewerTexturesStatus } from './render/r_newertextures.js';
@@ -157,7 +158,7 @@ if ( ! Hooks_Installed() ) Hooks_Install( {
 	R_LevelViewUseSnapshots, R_SetupLevelViews, R_SyncLevelViews, R_UpdateLevelViewEntities,
 	LIGHTNING, R_LightningClear, R_LightningFrame, R_LightningSetup, R_LightningTakesBeam, r_newer_lightning,
 	R_MistClear, R_MistFrame,
-	R_MotesFrame, R_MotesClear, R_AmbientPlaced, R_AmbientPlacesClear, r_drips, r_sparks, r_nailhits, R_NailHit, r_embers, s_gibs, S_GibRestObserve, S_GibRestPackets,
+	R_MotesFrame, R_MotesClear, R_AmbientPlaced, R_AmbientPlacesClear, r_drips, r_sparks, r_nailhits, R_NailHit, r_embers, s_gibs, S_GibRestObserve, S_GibRestPackets, s_lava,
 	R_MuzzleFlashFired, R_MuzzleFlashScale, R_MuzzleSetProbe, R_MuzzleSetView, R_MuzzleView,
 	R_AssetAliasMaterial, R_CloneAliasMaterial, R_EnemyAliasMaterial, R_HeldVisionTag, R_NewerAliasMaterial, R_NewerSkinsMaterials, R_NewerSkinsNewMap, R_NewerSkinsPrepare, R_NewerSkinsStatus, R_NewerSkinsTextures, R_ReleaseAliasReceiver, r_newer_variety,
 	R_ClassicTexture, R_NewerNormalsPrepare, R_NewerNormalsStatus, R_NewerTextureUpgrade, R_NewerTexturesFrame, R_NewerTexturesStatus,

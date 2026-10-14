@@ -346,6 +346,18 @@ function ResampleSfx( sfx, inrate, inwidth, data ) {
 
 }
 
+let _soundFallback = null;
+
+/**
+ * Sets where the sound cache turns for a sound the game has no file of: a function from the sound's name (without
+ * `sound/`) to the bytes of a WAV file, or null. The add-on effects for every game use it for the few sounds stock
+ * Quake lacks (newer/sound/s_synth.js; card T-3faa98e3), so a game's own file of the same name always wins and the
+ * made sound goes through this cache and the mixer exactly as a file would. Unset (null), nothing changes.
+ *
+ * @param {?function(string): ?(Uint8Array|ArrayBuffer)} fn
+ */
+export function S_RegisterSoundFallback( fn ) { _soundFallback = fn; }
+
 /*
 ==============
 S_LoadSound
@@ -372,10 +384,10 @@ export function S_LoadSound( s ) {
 	if ( s.cache )
 		return s.cache;
 
-	// load it in
+	// load it in: the game's file, else a sound the engine makes of that name (S_RegisterSoundFallback)
 	const namebuffer = 'sound/' + s.name;
 
-	const data = COM_LoadFile( namebuffer );
+	const data = COM_LoadFile( namebuffer ) ?? _soundFallback?.( s.name ) ?? null;
 
 	if ( ! data ) {
 
