@@ -19,13 +19,13 @@ import { R_ArchSurfaceHidden } from '../common/hooks.js'; // installed by newer/
 import { cl, MAX_VISEDICTS, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts } from '../client/client.js';
 import { R_StoreEfrags } from './gl_refrag.js';
 import { R_GetPortals, R_PortalsActive } from '../common/hooks.js'; // installed by newer/render/gl_portal.js
-import { PLANE_X, PLANE_Y, PLANE_Z, SURF_PLANEBACK, SURF_DRAWSKY, SURF_DRAWTURB, SURF_UNDERWATER, MAXLIGHTMAPS, modelorg, r_visframecount, r_framecount, mirror, mirrortexturenum, d_lightstylevalue, r_dynamic, r_wateralpha, r_mirroralpha, gl_texsort, R_CullBox, inc_c_brush_polys, set_mirror, set_mirror_plane } from './gl_rmain.js';
+import { PLANE_X, PLANE_Y, PLANE_Z, SURF_PLANEBACK, SURF_DRAWSKY, SURF_DRAWTURB, SURF_UNDERWATER, MAXLIGHTMAPS, modelorg, r_visframecount, r_framecount, mirror, mirrortexturenum, d_lightstylevalue, r_dynamic, r_mirroralpha, gl_texsort, R_CullBox, inc_c_brush_polys, set_mirror, set_mirror_plane } from './gl_rmain.js';
 import { DotProduct } from '../common/mathlib.js';
 import { realtime } from '../common/host_state.js';
 import { worldState } from './gl_rsurf_state.js';
 import { BLOCK_WIDTH, BLOCK_HEIGHT, lightmap_bytes, lightmap_polys, lightmap_modified, lightmap_rectchange, lightmaps, R_BuildLightMap } from './gl_rsurf_lightmaps.js';
 import { R_TextureAnimation } from './gl_rsurf_materials.js';
-import { _getWaterMaterial, _getWaterMesh, EmitWaterPolysQuake, R_DrawSkyChain } from './gl_rsurf_liquids.js';
+import { _getWaterMaterial, _getWaterMesh, EmitWaterPolysQuake, R_DrawSkyChain, R_LiquidAlpha, R_LiquidAlphaAny } from './gl_rsurf_liquids.js';
 
 //============================================================================
 // Module-level state
@@ -85,7 +85,7 @@ export function R_DrawSequentialPoly( s ) {
 			if ( geometry ) {
 
 				const t = R_TextureAnimation( s.texinfo.texture );
-				const material = _getWaterMaterial( t, r_wateralpha.value );
+				const material = _getWaterMaterial( t, R_LiquidAlpha( t ) );
 				_getWaterMesh( s, geometry, material, renderGroup );
 
 			}
@@ -151,7 +151,7 @@ export function R_RenderBrushPoly( fa ) {
 			const geometry = EmitWaterPolysQuake( fa, realtime );
 			if ( geometry ) {
 
-				const material = _getWaterMaterial( t, r_wateralpha.value );
+				const material = _getWaterMaterial( t, R_LiquidAlpha( t ) );
 				_getWaterMesh( fa, geometry, material, renderGroup );
 
 			}
@@ -579,7 +579,8 @@ export function R_RecursiveWorldNode( node ) {
 /**
  * Draws the world's texture chains built by the BSP walk (WinQuake gl_rsurf.c): the sky texture's chain as sky, the
  * mirror texture's chain marks the mirror when `r_mirroralpha` is below 1, translucent water is left for
- * `R_DrawWaterSurfaces` while `r_wateralpha` is below 1, and every other surface goes through `R_RenderBrushPoly`.
+ * `R_DrawWaterSurfaces` while its liquid's alpha (`R_LiquidAlpha`: `r_wateralpha`, or a map's own in Newer Game) is below
+ * 1, and every other surface goes through `R_RenderBrushPoly`.
  * Empties each chain it draws (the mirror chain and deferred water chains stay). With `gl_texsort` 0 only the sky
  * chain is drawn. Called by `R_DrawWorld` each frame.
  */
@@ -621,7 +622,7 @@ export function DrawTextureChains() {
 
 		} else {
 
-			if ( ( s.flags & SURF_DRAWTURB ) && r_wateralpha.value !== 1.0 )
+			if ( ( s.flags & SURF_DRAWTURB ) && R_LiquidAlpha( t ) !== 1.0 )
 				continue; // draw translucent water later
 
 			for ( ; s; s = s.texturechain )
@@ -642,14 +643,15 @@ export function DrawTextureChains() {
 /**
  * Draws the translucent water left out of the texture chains (WinQuake gl_rsurf.c): each turbulent surface on the
  * water chain (`gl_texsort` 0) or on a turbulent texture's chain gets its liquid mesh in the world group at
- * `r_wateralpha` for this frame, and the chains are emptied. Does nothing when `r_wateralpha` is 1 and `gl_texsort`
+ * its liquid's alpha (`R_LiquidAlpha`) for this frame, and the chains are emptied. Does nothing when no liquid is see-through
+ * (`R_LiquidAlphaAny`) and `gl_texsort`
  * is on (the water was drawn with the world). Called per frame by `R_RenderView` (gl_rmain.js) after the scene.
  */
 export function R_DrawWaterSurfaces() {
 
 	const cl_ref = cl;
 
-	if ( r_wateralpha.value === 1.0 && gl_texsort.value )
+	if ( ! R_LiquidAlphaAny() && gl_texsort.value )
 		return;
 
 	if ( ! gl_texsort.value ) {
@@ -665,7 +667,7 @@ export function R_DrawWaterSurfaces() {
 				const geometry = EmitWaterPolysQuake( s, realtime );
 				if ( geometry ) {
 
-					const material = _getWaterMaterial( s.texinfo.texture, r_wateralpha.value );
+					const material = _getWaterMaterial( s.texinfo.texture, R_LiquidAlpha( s.texinfo.texture ) );
 					_getWaterMesh( s, geometry, material, worldState.group );
 
 				}
@@ -699,7 +701,7 @@ export function R_DrawWaterSurfaces() {
 					const geometry = EmitWaterPolysQuake( s, realtime );
 					if ( geometry ) {
 
-						const material = _getWaterMaterial( t, r_wateralpha.value );
+						const material = _getWaterMaterial( t, R_LiquidAlpha( t ) );
 						_getWaterMesh( s, geometry, material, worldState.group );
 
 					}

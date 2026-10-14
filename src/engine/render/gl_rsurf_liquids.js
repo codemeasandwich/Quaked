@@ -24,6 +24,7 @@ import { R_NewerLightingActive } from '../common/hooks.js'; // installed by newe
 import { cl } from '../client/client.js';
 import { R_RegisterGlow, R_GlowBoostForTexture, R_PostActive, R_WaterActive, R_PostNoteSky, R_LiquidOpacity, R_IsWaterTextureName, r_newdark } from '../common/hooks.js'; // installed by newer/render/gl_post.js
 import { R_PortalsActive, R_PortalNoteVisible, R_PortalMaterial } from '../common/hooks.js'; // installed by newer/render/gl_portal.js
+import { R_NewerGame, R_MapLiquidAlpha, R_MapLiquidAlphaAny } from '../common/hooks.js'; // installed by newer/mode.js and newer/render/r_mapliquids.js
 import { R_LightPointValue } from './gl_rlight.js';
 import { r_origin } from './render.js';
 import { VERTEXSIZE, r_framecount, d_lightstylevalue, r_wateralpha, r_viewleaf } from './gl_rmain.js';
@@ -299,6 +300,32 @@ export function _getWaterMesh( s, geometry, material, renderGroup, wakePortal = 
 	_waterMeshesInScene.add( mesh );
 
 	return mesh;
+
+}
+
+/**
+ * How see-through a liquid surface is drawn: `r_wateralpha`, as WinQuake; in Newer Game a map's own value for that
+ * liquid where its Newer treatment is switched off (newer/render/r_mapliquids.js, card T-3faa98e3 item 13).
+ *
+ * @param {?texture_t} t the liquid's texture
+ * @returns {number} 0..1
+ */
+export function R_LiquidAlpha( t ) {
+
+	if ( ! R_NewerGame() ) return r_wateralpha.value;
+	return R_MapLiquidAlpha( t?.name ) ?? r_wateralpha.value;
+
+}
+
+/**
+ * Whether the translucent liquid pass has anything to draw: `r_wateralpha` below 1, or (Newer Game) a map's own
+ * see-through value in use.
+ *
+ * @returns {boolean}
+ */
+export function R_LiquidAlphaAny() {
+
+	return r_wateralpha.value !== 1.0 || ( R_NewerGame() && R_MapLiquidAlphaAny() );
 
 }
 

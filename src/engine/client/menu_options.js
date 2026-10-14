@@ -527,6 +527,8 @@ const NEWER_FEATURES = [
 	{ cvar: 'r_embers', label: '          Lava embers' },
 	{ cvar: 's_gibs', label: '           Gib sounds' },
 	{ cvar: 's_lava', label: '           Lava sound' },
+	{ cvar: 'r_itemturn', label: '    Turned item boxes' },
+	{ cvar: 'r_mapliquids', label: '       Map see-through' },
 ];
 // the page shows this many rows; a longer list scrolls with the cursor
 const NEWER_VISIBLE = 17;

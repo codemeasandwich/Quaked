@@ -25,13 +25,13 @@ import { cl, cl_dlights, MAX_DLIGHTS } from '../client/client.js';
 import { R_PortalsActive, R_BoxInPortalReceiver } from '../common/hooks.js'; // installed by newer/render/gl_portal.js
 import { R_MarkLights } from './gl_rlight.js';
 import { r_refdef } from './render.js';
-import { SURF_PLANEBACK, SURF_DRAWSKY, SURF_DRAWTURB, r_visframecount, r_framecount, gl_flashblend, R_CullBox, scene, r_wateralpha, BACKFACE_EPSILON } from './gl_rmain.js';
+import { SURF_PLANEBACK, SURF_DRAWSKY, SURF_DRAWTURB, r_visframecount, r_framecount, gl_flashblend, R_CullBox, scene, BACKFACE_EPSILON } from './gl_rmain.js';
 import { VectorAdd, AngleVectors } from '../common/mathlib.js';
 import { Mod_PointInLeaf } from './gl_model.js';
 import { R_BlendLightmaps, lightmapTextures } from './gl_rsurf_lightmaps.js';
 import { createQuakeLightmapMaterial, R_TextureAnimation, _mergeGLPolys } from './gl_rsurf_materials.js';
 import { R_RenderDynamicLightmaps } from './gl_rsurf_world.js';
-import { _getWaterMaterial, _getWaterMesh, EmitWaterPolysQuake } from './gl_rsurf_liquids.js';
+import { _getWaterMaterial, _getWaterMesh, EmitWaterPolysQuake, R_LiquidAlpha } from './gl_rsurf_liquids.js';
 
 // Brush entity rendering support
 // worldState.renderGroup is the THREE.Group that surface renderers add meshes to.
@@ -475,7 +475,7 @@ export function R_DrawBrushModel( e ) {
 			const n = s.plane.normal, dot = _brushModelOrg[ 0 ] * n[ 0 ] + _brushModelOrg[ 1 ] * n[ 1 ] + _brushModelOrg[ 2 ] * n[ 2 ] - s.plane.dist;
 			if ( ( s.flags & SURF_PLANEBACK ) ? dot >= - BACKFACE_EPSILON : dot <= BACKFACE_EPSILON ) continue; // (facing away)
 			const geometry = EmitWaterPolysQuake( s, time );
-			if ( geometry ) _getWaterMesh( s, geometry, _getWaterMaterial( R_TextureAnimation( s.texinfo.texture ), r_wateralpha.value ), brushGroup, ! outOfView );
+			if ( geometry ) _getWaterMesh( s, geometry, _getWaterMaterial( R_TextureAnimation( s.texinfo.texture ), R_LiquidAlpha( s.texinfo.texture ) ), brushGroup, ! outOfView );
 
 		}
 

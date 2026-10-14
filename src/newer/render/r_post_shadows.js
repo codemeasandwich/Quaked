@@ -269,7 +269,8 @@ export function R_PostShadowsFrame( renderer, scene, camera, lights, beam, hasSk
  sh.tHeightShadow.value = masks ? postState.gpu.hdr.textures[ 3 ] : null; sh.uHeightMasks.value = masks ? 1 : 0;
  R_HeightShadowFrame( {
   points: lights.map( light => ( { position: light.worldPos, range: light.range, color: light.color, direction:light.direction, cone:light.cone } ) ),
-  sun: { direction: skyState.sunDirection, on: postState.glowActive && hasSkyView, color: SUN_SURFACE_COLOR },
+  // (a map's own sun colour tints it as it tints the surfaces' sunlight; without one, as before)
+  sun: { direction: skyState.sunDirection, on: postState.glowActive && hasSkyView, color: skyState.sunColor ? SUN_SURFACE_COLOR.map( ( c, i ) => c * ( 0.6 + 0.4 * skyState.sunColor[ i ] ) ) : SUN_SURFACE_COLOR },
   spot: { position: beam.pos, range: 1500, direction: beam.dir, cone: [ FLASHLIGHT_INNER, FLASHLIGHT_OUTER ], on: postState.glowActive && beam.on,
    color: [ SPOT_POWER, SPOT_POWER * .985, SPOT_POWER * .96 ] }
  } );

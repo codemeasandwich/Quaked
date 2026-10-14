@@ -1,4 +1,5 @@
 import { S_GibRestObserve, S_GibRestPackets } from '../common/hooks.js'; // installed by newer/sound/s_gibs.js
+import { R_ItemTurn } from '../common/hooks.js'; // installed by newer/render/r_itemturn.js
 /**
  * @module engine/client/cl_main
  *
@@ -873,6 +874,7 @@ function CL_LinkPacketEntities( frac ) {
 			}
 
 		}
+		R_ItemTurn( ent ); // (Newer Game: a pickup box's drawn picture turned a little, card T-3faa98e3)
 
 		// Mark as updated this frame
 		ent.msgtime = cl.mtime[ 0 ];
@@ -1248,6 +1250,7 @@ export function CL_RelinkEntities() {
 		// rotate binary objects locally
 		if ( ent.model != null && ( ent.model.flags & 0x0008 ) ) // EF_ROTATE
 			ent.angles[ 1 ] = bobjrotate;
+		R_ItemTurn( ent ); // (Newer Game: a pickup box's drawn picture turned a little, card T-3faa98e3)
 
 		if ( ent.effects & 0x0001 ) // EF_BRIGHTFIELD
 			R_EntityParticles( ent );

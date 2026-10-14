@@ -49,7 +49,15 @@ const SKY_DEFAULT = { luma: 0.5, color: [ 1, 0.85, 0.65 ], contrast: 0 };
 /** What the stages read of the sky: the map's sky analysis (`R_AnalyseSky`), its light cookie and cloud cookie
  * textures (null without), the direction towards the sun (reassigned per map: read it through this object, never
  * keep the array), whether the map has sky and whether the world drew sky this frame (`R_PostNoteSky`). */
-export const skyState = { info: SKY_DEFAULT, cookie: null, cookieCloud: null, sunDirection: [ - 0.28, - 0.18, 0.94 ], hasSky: false, seen: false };
+export const skyState = { info: SKY_DEFAULT, cookie: null, cookieCloud: null, sunDirection: [ - 0.28, - 0.18, 0.94 ], sunColor: null, hasSky: false, seen: false };
+
+/**
+ * The colour the sun takes this map, 0..1 each: the map's own sun colour (worldspawn `_sunlight_color`, which
+ * skyState.sunColor holds; card T-3faa98e3 item 13) when it has one, otherwise the colour read from its sky, as before.
+ *
+ * @returns {ArrayLike<number>} red, green, blue
+ */
+export function R_SunTint() { return skyState.sunColor ?? skyState.info.color; }
 export const cookieNorm = new THREE.Vector3( 1, 1, 1 );
 export const cookieMean = new THREE.Vector3( 1, 1, 1 );
 export const cookieDepth = { value: 1 };
@@ -282,7 +290,7 @@ export function R_PostSkyUniforms( p, camera, time, lighting, hasSkyView ) {
 
 	const bright = R_SkyBrightness( skyState.info.luma );
 	const sunGain = 0.5 + 0.9 * bright; // a dark sky still gives a little
-	const tint = skyState.info.color;
+	const tint = R_SunTint();
 	sh.uSunCol.value.set(
 		SUN_COLOR[ 0 ] * sunGain * ( 0.55 + 0.45 * tint[ 0 ] ),
 		SUN_COLOR[ 1 ] * sunGain * ( 0.55 + 0.45 * tint[ 1 ] ),

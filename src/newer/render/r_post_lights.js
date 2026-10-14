@@ -192,6 +192,7 @@ export function R_BuildWorldLights( model ) {
 	R_PostLiquidsReset( model?.name );
 	buildSkyCookie();
 	skyState.sunDirection = [ - 0.28, - 0.18, 0.94 ];
+	skyState.sunColor = null;
 
 	if ( model == null || model.nodes == null ) return worldLights;
 
@@ -205,6 +206,14 @@ export function R_BuildWorldLights( model ) {
 
 			const a = parseVector( world._sun_mangle, null );
 			if ( a != null ) skyState.sunDirection = sunFromAngles( a[ 0 ], a[ 1 ] );
+
+		}
+		// the map's own sun colour (ericw-tools' worldspawn `_sunlight_color`, 0..1 or 0..255; card T-3faa98e3 item 13)
+		const sunColor = world != null ? parseVector( world._sunlight_color, null ) : null;
+		if ( sunColor != null && sunColor.every( v => Number.isFinite( v ) && v >= 0 ) && sunColor.some( v => v > 0 ) ) {
+
+			const scale = sunColor.some( v => v > 1 ) ? 1 / 255 : 1;
+			skyState.sunColor = sunColor.map( v => Math.min( 1, v * scale ) );
 
 		}
 
