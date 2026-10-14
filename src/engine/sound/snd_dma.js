@@ -553,6 +553,19 @@ function S_AdvancePaintedtime() {
 
 }
 
+/**
+ * Optional enhancement sound using only an empty or finished existing dynamic channel. The normal
+ * mixer/cache/spatialization still owns playback; accepted live sounds are never evicted by this call.
+ * @returns {boolean} whether an existing spare channel allowed the attempt (not proof of audibility)
+ */
+export function S_StartSoundIfFree(entnum,sfx,origin,volume,attenuation){
+ if(!sound_started||nosound.value||!sfx)return false;
+ let free=false;
+ for(let i=NUM_AMBIENTS;i<NUM_AMBIENTS+MAX_DYNAMIC_CHANNELS;i++)if(!channels[i].sfx||!channels[i]._audioSource){free=true;break;}
+ if(!free)return false;
+ S_StartSound(entnum,0,sfx,origin,volume,attenuation);return true;
+}
+
 /*
 =================
 S_StartSound

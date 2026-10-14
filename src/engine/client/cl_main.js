@@ -1,3 +1,4 @@
+import { S_GibRestObserve, S_GibRestPackets } from '../common/hooks.js'; // installed by newer/sound/s_gibs.js
 /**
  * @module engine/client/cl_main
  *
@@ -701,6 +702,7 @@ function CL_LinkPacketEntities( frac ) {
 		return;
 
 	const pack = eframe.packet_entities;
+	S_GibRestPackets( pack, cl.time ); // (Newer Game: gibs heard at rest, from the packets' places)
 	const autorotate = anglemod( 100 * cl.time );
 
 	for ( let pnum = 0; pnum < pack.num_entities; pnum ++ ) {
@@ -1284,6 +1286,8 @@ export function CL_RelinkEntities() {
 			dl.die = cl.time + 0.001;
 
 		}
+
+		S_GibRestObserve( ent, ent.model, ent.origin, cl.time ); // (Newer Game: a gib at rest sounds, card T-3faa98e3)
 
 		// a rocket, grenade or nail crossing a pool or a portal leaves a ring (card [W1]; demos: the entity's own forcelink says it is new)
 		if ( ent.model != null && ! ent.forcelink ) R_ImpactMissile( ent.model, _relinkOldorg, ent.origin, cl.time );
