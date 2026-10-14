@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="../">
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<title>Quaked</title>
+	<link rel="icon" type="image/svg+xml" href="icon.svg">
+	<link rel="apple-touch-icon" href="icon.png">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		html, body {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			background: #000;
+		}
+		canvas {
+			display: block;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			width: 100%;
+			height: 100%;
+		}
+		#loading {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 100;
+			background: #000;
+		}
+		#loading-bar {
+			width: 200px;
+			height: 2px;
+			background: #333;
+		}
+		#loading-progress {
+			width: 0%;
+			height: 100%;
+			background: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div id="loading">
+		<div id="loading-bar"><div id="loading-progress"></div></div>
+	</div>
+	<script type="importmap">
+	{
+		"imports": {
+			"three": "https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js",
+			"three/addons/": "https://cdn.jsdelivr.net/npm/three@0.183.0/examples/jsm/"
+		}
+	}
+	</script>
+<section id="controls" style="position:fixed;top:8px;left:8px;z-index:200;color:white;background:#111e;padding:8px;font:12px monospace;max-width:620px;max-height:90vh;overflow:auto">
+<strong>Operative cloak — real local multiplayer trial</strong>
+<div>Host uses native Local play, with three slots for a late observer. Stage controls only run on host.</div>
+<button id="host">Host E1M3 (3 slots)</button><button id="host-powers">Host E3M2 (Ring + Quad)</button><button id="newer">Newer Game</button><button id="classic">Classic Game</button><button id="dynres">Toggle dynamic resolution</button><button id="disconnect">Disconnect this player</button><button id="reconnect">Reconnect this player</button>
+<div><a id="join2" target="_blank">Player 2 join link</a> · <a id="join3" target="_blank">Player 3 late-join link</a></div>
+<label>Server player <select id="slot"><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label>
+<button id="ring">Stage at actual Ring and touch</button><button id="regen">Regenerate stock Ring (fixture)</button><button id="quad">Stage at actual Quad and touch</button><button id="quad-regen">Regenerate stock Quad (fixture)</button><button id="damage">Native lethal damage to selected player</button><button id="expire">Expire selected Ring at native timer boundary</button>
+<div><label>Position xyz pitch yaw <input id="position" value="-1656 -552 -336 0 180" size="36"></label><button id="stage">Stage selected player</button><button id="aim">Aim this client (pitch/yaw)</button><button id="pair">Stage observer beside Ring</button><button id="walkmode">Restore selected native walking</button></div>
+<div>E1M3 staging presets: <button id="start-wearer">Start area wearer</button><button id="start-observer">Start area observer</button><button id="torch-wearer">Torch hall wearer</button><button id="torch-observer">Torch hall observer</button></div>
+<div>Inputs affect THIS client's native controls:</div><button id="walk">Walk 0.7s</button><button id="turn">Turn 0.7s</button><button id="attack">Attack 0.7s</button><button id="jump">Jump</button><button id="kill">Native suicide / respawn</button><button id="respawn">Respawn (attack)</button>
+<button id="nextmap">Host changelevel E1M1</button><button id="backmap">Host changelevel E1M3</button><button id="powers-map">Host changelevel E3M2 (Ring + Quad)</button><button id="pause">Pause/resume server (native)</button><button id="snapshot">Record snapshot</button><button id="record">Record 5s observer canvas</button><button id="hide">Hide controls</button>
+<div id="status">Loading…</div><div id="capture-status" role="status"></div><div id="capture-output" hidden><video id="capture-video" controls playsinline style="width:300px;max-width:100%;display:block"></video><a id="capture-download">Download actual canvas recording</a></div><details><summary>Live production state and evidence</summary><pre id="report" style="white-space:pre-wrap"></pre></details>
+</section><button id="show" style="display:none;position:fixed;top:4px;left:4px;z-index:200">Show trial controls</button>
+<script type="module" src="tests/cloak_multiplayer_trial.js"></script></body></html>

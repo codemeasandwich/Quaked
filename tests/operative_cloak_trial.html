@@ -1,0 +1,14 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Operative cloak — production renderer GPU regression</title>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.183.0/examples/jsm/"}}</script>
+<style>
+body{margin:20px;background:#11171b;color:#e0e9e7;font:14px system-ui;max-width:1300px}button{padding:9px 14px;margin:0 8px 10px 0}canvas{max-width:100%;height:auto;display:block;border:1px solid #536366}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:12px monospace}#stills{display:flex;flex-wrap:wrap;gap:12px}figure{margin:0;width:400px}figure img{width:100%}figcaption{padding:6px 0;color:#b3c4bf}a{color:#acd5d0}
+</style>
+<h1>Operative cloak: native animated player and exact source comparison</h1>
+<p>This finite regression trial calls the production cloak renderer on native <code>player.mdl</code> poses. It checks scene refraction, original-reference agreement, depth, animation and cleanup. It is a renderer test, <strong>not multiplayer acceptance</strong>.</p>
+<p><a href="../fieldlab-fx-3d-updated.html" target="_blank">Authoritative reference: select 03 / Cloak &amp; lensing → Operative cloak</a></p>
+<button id="run">Run GPU regression checks</button><button id="motion">Capture animated player motion</button>
+<div id="status">Loading native model and production renderer…</div>
+<div id="view"></div><section id="stills"></section><pre id="evidence"></pre>
+<script type="module" src="operative_cloak_trial.js"></script>
