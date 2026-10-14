@@ -69,7 +69,7 @@ import { skyState, R_PostSkyUniforms } from './r_post_sky.js';
 export { R_AnalyseSky, R_SkyBrightness, R_GetSkyInfo, R_PostNoteSky, R_MapHasSky } from './r_post_sky.js';
 import { selectLights, _selected, R_PostSelectedCount, R_PostSetSelectedCount, R_PostLightUniforms } from './r_post_lights.js';
 export { R_BuildWorldLights, R_GetWorldLights, R_FireFlicker, R_PostSetPortraitLight, R_SelectWorldLights } from './r_post_lights.js';
-import { R_PostRenderSunShadow, R_PostShadowsFrame } from './r_post_shadows.js';
+import { R_PostRenderSunShadow, R_PostShadowsFrame, R_SunShadowCacheDispose } from './r_post_shadows.js';
 export { R_BuildSunOccluder, R_PointShadowAtlas, R_PointShadowStatus, R_ReleaseShadowCaster } from './r_post_shadows.js';
 import { R_PostSupported, dyn, dynResUpdate, createPipeline, disposeTargets, ensureTargets } from './r_post_targets.js';
 export { R_DynResScale, R_PostSupported } from './r_post_targets.js';
@@ -81,6 +81,13 @@ export { R_PostSetSplit, R_PostLastExposure } from './r_post_composite.js';
 
 
 let heightFrameSnapshot = null;
+/**
+ * Tests and trials only: the last frame's light snapshot (its camera, chosen lights and flashlight beam), so the same
+ * frame's shadows can be drawn again (tests/shadow_cache_trial.mjs). Null before a frame.
+ *
+ * @returns {?{ camera: THREE.Camera, lights: Array<object>, beam: object, hasSkyView: boolean }}
+ */
+export function R_PostLastShadowFrame() { return heightFrameSnapshot; }
 /**
  * Prepares this frame's lighting before the world is drawn (gl_rmain.js, after `R_PostBind`; again from
  * `R_PostFinish` when a caller skipped it): selects the lights, snapshots them and the flashlight beam, updates the
@@ -253,6 +260,7 @@ export function R_PostShutdown() {
 
 	R_ClearPowerupFireTarget();
 	R_RendVeilOpticsShutdown();
+	R_SunShadowCacheDispose();
 
 	if ( postState.gpu === null ) return;
 	disposeTargets();

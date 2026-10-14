@@ -30,6 +30,33 @@ const WIDTH = POINT_SHADOW_SIZE * 6, HEIGHT = NEAR_SUN_SHADOW_Y + NEAR_SUN_SHADO
 const DIRECTIONS = [ [ 1, 0, 0 ], [ -1, 0, 0 ], [ 0, 1, 0 ], [ 0, -1, 0 ], [ 0, 0, 1 ], [ 0, 0, -1 ] ];
 const UPS = [ [ 0, 0, 1 ], [ 0, 0, 1 ], [ 0, 0, 1 ], [ 0, 0, 1 ], [ 0, 1, 0 ], [ 0, 1, 0 ] ];
 const ABSENT = Object.freeze( { slot: -1, far: 0, ready: false } );
+const _entryCentre = new THREE.Vector3();
+const casterSpheres = new WeakMap(); // geometry -> { position, version, sphere } (the bounds of its current vertices)
+
+// Where a borrowed caster is: a world-space sphere round all its vertices (and every morph target's), or null for an
+// instanced caster (counted as reaching every light). Re-measured only when its vertices change.
+function casterSphere( clone ) {
+
+	if ( clone.isInstancedMesh ) return null;
+	const geometry = clone.geometry, position = geometry?.getAttribute( 'position' );
+	if ( ! position ) return null;
+	let known = casterSpheres.get( geometry );
+	const version = position.data?.version ?? position.version; // (an interleaved attribute's version is its buffer's)
+	if ( ! known || known.position !== position || known.version !== version || known.count !== position.count ) {
+
+		// measured without touching the geometry's own bounding sphere, which the view's culling owns
+		const owned = geometry.boundingSphere;
+		geometry.boundingSphere = null;
+		try { geometry.computeBoundingSphere(); known = { position, version, count: position.count, sphere: geometry.boundingSphere.clone() }; }
+		finally { geometry.boundingSphere = owned; }
+		casterSpheres.set( geometry, known );
+
+	}
+	const sphere = known.sphere.clone().applyMatrix4( clone.matrixWorld );
+	if ( ! ( sphere.radius >= 0 ) || ! [ sphere.center.x, sphere.center.y, sphere.center.z ].every( Number.isFinite ) ) return null; // (unknown: reaches all)
+	return sphere;
+
+}
 
 function coordinates( value ) {
 
@@ -187,6 +214,30 @@ export class PointShadowAtlas {
 			camera.up.fromArray( UPS[ face ] ); return camera;
 
 		} );
+		// Each light's cube of the level alone (its six faces in the same rows as the atlas), drawn once per light
+		// position and range. A light recaptured for what moves near it starts from a copy of it (distances and depth)
+		// and draws only those casters (14 October 2026: the level was drawn six times over for every light, every
+		// frame anything moved).
+		this.staticTarget = new THREE.WebGLRenderTarget( WIDTH, POINT_SHADOW_SIZE * POINT_SHADOW_SLOTS, {
+			format: THREE.RGBAFormat, type: THREE.UnsignedByteType, minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter,
+			generateMipmaps: false, depthBuffer: true, stencilBuffer: false,
+			depthTexture: new THREE.DepthTexture( WIDTH, POINT_SHADOW_SIZE * POINT_SHADOW_SLOTS ) } );
+		this.staticTarget.texture.name = 'quake_static_point_shadow_level';
+		this.staticTarget.texture.colorSpace = THREE.NoColorSpace;
+		const restoreMaterial = new THREE.ShaderMaterial( {
+			glslVersion: THREE.GLSL3, depthTest: true, depthFunc: THREE.AlwaysDepth, depthWrite: true, blending: THREE.NoBlending, toneMapped: false,
+			uniforms: { tColor: { value: this.staticTarget.texture }, tDepth: { value: this.staticTarget.depthTexture } },
+			vertexShader: 'void main() { gl_Position = vec4( position.xy, 0.0, 1.0 ); }',
+			fragmentShader: 'precision highp float; precision highp sampler2D; uniform sampler2D tColor; uniform sampler2D tDepth; layout( location = 0 ) out highp vec4 copied;\n' +
+				'void main() { ivec2 p = ivec2( gl_FragCoord.xy ); copied = texelFetch( tColor, p, 0 ); gl_FragDepth = texelFetch( tDepth, p, 0 ).r; }'
+		} );
+		restoreMaterial.onBeforeCompile = () => {}; // (a private data copy: no main-view MRT outputs)
+		restoreMaterial.customProgramCacheKey = () => 'quake-point-shadow-level-restore-v1';
+		const triangle = new THREE.BufferGeometry();
+		triangle.setAttribute( 'position', new THREE.Float32BufferAttribute( [ - 1, - 1, 0, 3, - 1, 0, - 1, 3, 0 ], 3 ) );
+		const restoreMesh = new THREE.Mesh( triangle, restoreMaterial ); restoreMesh.frustumCulled = false;
+		this.restore = { scene: new THREE.Scene().add( restoreMesh ), camera: new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 ), material: restoreMaterial };
+		this.staticCaptures = 0;
 		this.entries = new Map(); this.slots = new Array( POINT_SHADOW_SLOTS ).fill( null );
 		this.epoch = 0; this.access = 0; this.captures = 0; this.faceRenders = 0;
 		this.failedCaptures = 0; this.requested = 0; this.error = null; this.disposed = false;
@@ -349,7 +400,7 @@ export class PointShadowAtlas {
 		return { maxSlots: POINT_SHADOW_SLOTS, resident: this.entries.size, ready, pending: this.entries.size - ready,
 			requested: this.requested, chunks: this.chunks.length, triangles: this.triangles,
 			pointDynamicMeshes: this.pointDynamicMeshes, pointGeometryRevision: this.pointGeometryRevision,
-			captures: this.captures, faceRenders: this.faceRenders, failedCaptures: this.failedCaptures,
+			captures: this.captures, staticCaptures: this.staticCaptures, faceRenders: this.faceRenders, failedCaptures: this.failedCaptures,
 			spotReady: this.spotReady, spotCaptures: this.spotCaptures, spotRenders: this.spotRenders,
 			spotFailedCaptures: this.spotFailedCaptures, spotError: this.spotError, spotDynamicMeshes: this.spotDynamicMeshes,
 			sunReady: this.sunReady, sunCaptures: this.sunCaptures, sunRenders: this.sunRenders,
@@ -579,11 +630,13 @@ export class PointShadowAtlas {
 	 *  priority order: `source` the identity used by `lookup`, `position` world space, `far` capture range in Quake units
 	 *  (capped at 4096), `live` for moving or pulsing lights recaptured every frame
 	 * @param {Array<THREE.Mesh>} [dynamicMeshes=[]] live actor/brush meshes to borrow as casters
-	 * @param {{frozenPose?: boolean}} [options] `frozenPose` during an authoritative frozen intro: cubes are kept while
-	 *  the borrowed poses and reveal state are unchanged
+	 * @param {{frozenPose?: boolean, cache?: boolean}} [options] `frozenPose` during an authoritative frozen intro: cubes are
+	 *  kept while the borrowed poses and reveal state are unchanged; `cache` true (the game's, r_post_shadows.js) recaptures
+	 *  only the lights a moving caster reaches, each from its cached level-only cube; false (the default) recaptures every
+	 *  light in full whenever anything moves, as before 14 October 2026, the same pixels (tests and trials compare the two)
 	 * @returns {Object} `status()`
 	 */
-	update( renderer, sources = [], dynamicMeshes = [], { frozenPose = false } = {} ) {
+	update( renderer, sources = [], dynamicMeshes = [], { frozenPose = false, cache = false } = {} ) {
 
 		if ( this.disposed ) return this.status();
 		const clones = [];
@@ -605,10 +658,18 @@ export class PointShadowAtlas {
 			if(frozenPose&&!unchanged){this.frozenPose=ShadowPoseCapture(clones);this.frozenRendVersions=rendVersions;}
 			else if(!frozenPose){this.frozenPose=null;this.frozenRendVersions=null;}
 			const dynamicFrame = hasDynamic && !unchanged;
+			// A light's cube can change only where a moving caster can reach it: its six faces lie inside the sphere of
+			// radius far * sqrt(3) round the light, so a caster wholly outside that sphere draws nothing into it. A
+			// light is recaptured when a caster reaches it now, or reached it at its last capture (to take its old
+			// shadow away); every other light keeps its cube. (Until 14 October 2026 every light was recaptured, six
+			// views of the whole level each, whenever anything moved anywhere: most of a frame's work in the demos.)
+			// (4 units of slack: Rend the Veil's reveal displaces a caster's vertices by a couple of units in the shader)
+			const reaches = cache ? clones.map( casterSphere ) : null;
+			const reaching = entry => ! cache ? clones : clones.filter( ( clone, i ) => reaches[ i ] === null || reaches[ i ].center.distanceTo( _entryCentre.fromArray( entry.position ) ) <= reaches[ i ].radius + entry.far * Math.sqrt( 3 ) + 4 );
 			if ( dynamicFrame ) {
 
 				this.pointGeometryRevision ++;
-				for ( const entry of this.entries.values() ) entry.ready = false;
+				for ( const entry of this.entries.values() ) if ( ! cache || entry.withCasters || reaching( entry ).length ) entry.ready = false;
 
 			}
 			const normalize = item => {
@@ -661,11 +722,11 @@ export class PointShadowAtlas {
 						slot = oldest.slot; this.entries.delete( oldest.source );
 
 					}
-					entry = { ...value, slot, ready: false, used: 0 }; this.entries.set( value.source, entry ); this.slots[ slot ] = entry;
+					entry = { ...value, slot, ready: false, staticReady: false, used: 0 }; this.entries.set( value.source, entry ); this.slots[ slot ] = entry;
 
 				} else if ( entry.far !== value.far || value.position.some( ( coordinate, i ) => coordinate !== entry.position[ i ] ) ) {
 
-					entry.position = value.position; entry.far = value.far; entry.ready = false;
+					entry.position = value.position; entry.far = value.far; entry.ready = false; entry.staticReady = false;
 
 				}
 				entry.used = ++ this.access;
@@ -677,15 +738,20 @@ export class PointShadowAtlas {
 			}
 			const current = selected.map( value => this.entries.get( value.source ) ).filter( Boolean );
 			const captureAll = hasDynamic || current.some( entry => entry.live );
-			if ( !frozenPose && captureAll ) for ( const entry of current ) entry.ready = false;
+			// (every light a caster may touch shows this frame's pose: cached, only those it reaches or reached, and live ones)
+			if ( !frozenPose && captureAll ) for ( const entry of current ) if ( ! cache || entry.live || entry.withCasters || reaching( entry ).length ) entry.ready = false;
 			const pending = current.filter( entry => ! entry.ready );
 			if ( renderer && ( this.chunks.length || clones.length ) ) {
 
 				this.error = null;
 				for ( const entry of captureAll ? pending : pending.slice( 0, 1 ) ) {
 
-					try { this._capture( renderer, entry ); entry.ready = true; this.captures ++; }
+					// only the casters that can reach this light are drawn into it (the others cannot touch its cube)
+					const close = new Set( reaching( entry ) );
+					for ( const clone of clones ) clone.visible = close.has( clone );
+					try { this._capture( renderer, entry, cache ? close : null ); entry.ready = true; entry.withCasters = close.size > 0; this.captures ++; }
 					catch ( error ) { this.failedCaptures ++; this.error = String( error?.message || error ); }
+					finally { for ( const clone of clones ) clone.visible = true; }
 
 				}
 
@@ -701,17 +767,71 @@ export class PointShadowAtlas {
 
 	}
 
-	_capture( renderer, entry ) {
+	/**
+	 * Draws a light's six faces into its row: the level and the given casters together, or, with `casters` (the set
+	 * that can reach the light), its level-only cube (drawn once into `staticTarget`) copied in and those casters drawn
+	 * over it, depth tested (an exact tie is the same point, at the same distance, either way).
+	 */
+	_capture( renderer, entry, casters = null ) {
+
+		// (a light that moves or changes range every frame gains nothing from a level cube: drawn whole, as before)
+		if ( casters === null || entry.live && ! entry.staticReady ) return this._captureFaces( renderer, entry, this.target );
+		const clones = [ ...this._borrowedClones ].filter( clone => clone.parent === this.scene );
+		const shown = clones.map( clone => clone.visible );
+		try {
+
+			if ( ! entry.staticReady ) {
+
+				for ( const clone of clones ) clone.visible = false;
+				this._captureFaces( renderer, entry, this.staticTarget );
+				entry.staticReady = true; this.staticCaptures ++;
+
+			}
+			this._restoreRow( renderer, entry.slot );
+			if ( casters.size ) {
+
+				clones.forEach( ( clone, i ) => { clone.visible = shown[ i ]; } );
+				for ( const chunk of this.chunks ) chunk.visible = false;
+				try { this._captureFaces( renderer, entry, this.target, false ); }
+				finally { for ( const chunk of this.chunks ) chunk.visible = true; }
+
+			}
+
+		} finally { clones.forEach( ( clone, i ) => { clone.visible = shown[ i ]; } ); }
+
+	}
+
+	// copies a slot's row (six faces) of the level-only atlas into the atlas, distances and depth
+	_restoreRow( renderer, slot ) {
+
+		const target = renderer.getRenderTarget(), face = renderer.getActiveCubeFace?.() || 0, mip = renderer.getActiveMipmapLevel?.() || 0;
+		const autoClear = renderer.autoClear, viewport = this.target.viewport.clone(), scissor = this.target.scissor.clone(), scissorTest = this.target.scissorTest;
+		try {
+
+			renderer.autoClear = false;
+			this.target.viewport.set( 0, slot * POINT_SHADOW_SIZE, WIDTH, POINT_SHADOW_SIZE ); this.target.scissor.copy( this.target.viewport ); this.target.scissorTest = true;
+			renderer.setRenderTarget( this.target ); renderer.render( this.restore.scene, this.restore.camera );
+
+		} finally {
+
+			this.target.viewport.copy( viewport ); this.target.scissor.copy( scissor ); this.target.scissorTest = scissorTest;
+			renderer.setRenderTarget( target, face, mip ); renderer.autoClear = autoClear;
+
+		}
+
+	}
+
+	_captureFaces( renderer, entry, into, clear = true ) {
 
 		const target = renderer.getRenderTarget(), face = renderer.getActiveCubeFace?.() || 0, mip = renderer.getActiveMipmapLevel?.() || 0;
 		const viewport = renderer.getViewport( new THREE.Vector4() ), scissor = renderer.getScissor( new THREE.Vector4() );
 		const scissorTest = renderer.getScissorTest(), clearColor = renderer.getClearColor( new THREE.Color() ), clearAlpha = renderer.getClearAlpha();
 		const autoClear = renderer.autoClear, xrEnabled = renderer.xr?.enabled;
-		const atlasViewport = this.target.viewport.clone(), atlasScissor = this.target.scissor.clone(), atlasScissorTest = this.target.scissorTest;
+		const atlasViewport = into.viewport.clone(), atlasScissor = into.scissor.clone(), atlasScissorTest = into.scissorTest;
 		try {
 
 			if ( renderer.xr ) renderer.xr.enabled = false;
-			renderer.autoClear = false; renderer.setClearColor( 0xffffff, 1 ); this.target.scissorTest = true;
+			renderer.autoClear = false; renderer.setClearColor( 0xffffff, 1 ); into.scissorTest = true;
 			this.material.uniforms.pointShadowLight.value.fromArray( entry.position ); this.material.uniforms.pointShadowFar.value = entry.far;
 			for ( let side = 0; side < 6; side ++ ) {
 
@@ -721,9 +841,12 @@ export class PointShadowAtlas {
 				// Renderer setters are logical-screen coordinates and apply DPR even
 				// with a target bound. Target properties are physical texel coordinates;
 				// rebinding applies each face rectangle without scaling it by DPR.
-				this.target.viewport.set( side * POINT_SHADOW_SIZE, entry.slot * POINT_SHADOW_SIZE, POINT_SHADOW_SIZE, POINT_SHADOW_SIZE );
-				this.target.scissor.copy( this.target.viewport ); renderer.setRenderTarget( this.target );
-				renderer.clear( true, true, false ); renderer.render( this.scene, camera ); this.faceRenders ++;
+				into.viewport.set( side * POINT_SHADOW_SIZE, entry.slot * POINT_SHADOW_SIZE, POINT_SHADOW_SIZE, POINT_SHADOW_SIZE );
+				into.scissor.copy( into.viewport ); renderer.setRenderTarget( into );
+				if ( clear ) renderer.clear( true, true, false );
+				const background = this.scene.background; this.scene.background = null; // (nothing may clear what was copied in)
+				try { renderer.render( this.scene, camera ); } finally { this.scene.background = background; }
+				this.faceRenders ++;
 
 			}
 
@@ -731,7 +854,7 @@ export class PointShadowAtlas {
 
 			try {
 
-				this.target.viewport.copy( atlasViewport ); this.target.scissor.copy( atlasScissor ); this.target.scissorTest = atlasScissorTest;
+				into.viewport.copy( atlasViewport ); into.scissor.copy( atlasScissor ); into.scissorTest = atlasScissorTest;
 				// Restore logical defaults first, then bind the prior target last so
 				// its own unscaled viewport/scissor (and cube face/mip) win on the GPU.
 				renderer.setViewport( viewport ); renderer.setScissor( scissor ); renderer.setScissorTest( scissorTest );
@@ -751,7 +874,8 @@ export class PointShadowAtlas {
 
 		if ( this.disposed ) return;
 		this.invalidate(); this._clearChunks(); this.geometry = null;
-		this.target.dispose(); this.spotTarget.dispose(); this.material.dispose(); this.sunMaterial.dispose(); this.disposed = true;
+		this.target.dispose(); this.staticTarget.dispose(); this.restore.material.dispose(); this.restore.scene.children[ 0 ].geometry.dispose();
+		this.spotTarget.dispose(); this.material.dispose(); this.sunMaterial.dispose(); this.disposed = true;
 
 	}
 

@@ -2056,6 +2056,7 @@ export function R_RenderView() {
 		if ( post ) {
 
 			R_WaterProbesFrame( renderer, scene, camera, R_WorldShowAll, { initializing:R_IntroLoadingHolding(), ready:_introWaterReady } );
+			R_PerfStage( 'water probes' );
 
 			R_PostBind( renderer );
 
@@ -2073,7 +2074,9 @@ export function R_RenderView() {
 			try {
 			R_PostSetPortraitLight( R_BestiaryPortraitLight() ); // (the Bestiary's portrait light, if a page is up)
 			R_PostLightsFrame( renderer, scene, camera, r_visframecount, d_lightstylevalue, cl_dlights, cl != null ? cl.time : 0, R_MapHasSky() );
+			R_PerfStage( 'lights and shadows' );
 			R_RendVeilCapture(renderer,scene,camera);
+			R_PerfStage( 'rend veil capture' );
 			R_FogApply( scene, R_PostLastExposure() ); // fog in the scene pass, each surface at its own distance (r_fog.js)
 			try { renderer.render( scene, camera ); } finally { R_HeightShadowScope( false ); scene.fog = null; }
 			R_PerfStage( 'world draw' );

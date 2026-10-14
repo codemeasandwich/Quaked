@@ -159,3 +159,86 @@ Deno.test( 'shared shadow atlas point and focused sun captures clear only their 
   atlas.update( r, sources ); same( atlas.sunReady, true, 'subsequent point captures preserve focused sun readiness' ); restored( r, before );
  } finally { atlas.dispose(); g.dispose(); r.dispose(); }
 } );
+
+// The game's cached path (cache: true, r_post_shadows.js; 14 October 2026): a light is redrawn only when a moving caster
+// can reach it (or reached it at its last capture), starting from its level-only cube, drawn once per position and
+// range into staticTarget, and drawing only the casters that reach it. Same pixels as the full path (a GPU trial
+// compares both on the demos: docs/demo-performance-2026-10-14.md).
+Deno.test( 'cached: a light no moving thing reaches keeps its cube; one a caster reaches is redrawn from its level cube with only that caster', () => {
+ const g = geometry(), atlas = new PointShadowAtlas( g ), r = renderer(), before = state( r ), material = new THREE.MeshBasicMaterial();
+ const near = { source: {}, position: [ 0, 0, 8 ], far: 300 }, distant = { source: {}, position: [ 5000, 0, 8 ], far: 300 };
+ const actor = new THREE.Mesh( geometry(), material ); actor.position.set( 40, 0, 0 ); actor.updateMatrixWorld();
+ const draws = []; const record = r.render; r.render = ( scene, camera ) => { draws.push( { target: r.target, shown: scene.children.filter( c => c.visible ).map( c => c.name ) } ); record( scene, camera ); };
+ const opts = { cache: true };
+ try {
+  atlas.update( r, [ near, distant ], [], opts ); atlas.update( r, [ near, distant ], [], opts );
+  same( atlas.status().ready, 2, 'both lights captured (static budget: one a frame)' );
+  same( draws.filter( d => d.target === atlas.staticTarget ).length, 12, 'each light\'s level drawn once into the level atlas (six faces each)' );
+  draws.length = 0;
+  atlas.update( r, [ near, distant ], [ actor ], opts );
+  const restores = draws.filter( d => d.target === atlas.target && d.shown.length === 1 && d.shown[ 0 ] === '' ), casterFaces = draws.filter( d => d.target === atlas.target && d.shown.includes( 'quake_flashlight_borrowed_caster' ) );
+  same( draws.filter( d => d.target === atlas.staticTarget ).length, 0, 'the level is not drawn again' );
+  same( restores.length, 1, 'one light (the near one) starts from its level cube' );
+  same( casterFaces.length, 6, 'and draws the caster into its six faces' );
+  check( casterFaces.every( d => ! d.shown.includes( 'quake_point_shadow_chunk' ) ), 'without the level' );
+  check( atlas.lookup( near.source ).ready && atlas.lookup( distant.source ).ready, 'both cubes ready' );
+  // the caster stays: redrawn each frame (it may animate); the distant light never
+  draws.length = 0; atlas.update( r, [ near, distant ], [ actor ], opts ); same( draws.length, 7, 'near light redrawn (copy + six caster faces), distant untouched' );
+  // the caster goes: one more redraw takes its shadow away, then nothing
+  draws.length = 0; atlas.update( r, [ near, distant ], [], opts ); same( draws.length, 1, 'the near light\'s level cube copied back once, no caster' );
+  draws.length = 0; atlas.update( r, [ near, distant ], [], opts ); same( draws.length, 0, 'then left alone' );
+  // a light that moves needs its level drawn again
+  near.position = [ 4, 0, 8 ]; draws.length = 0; atlas.update( r, [ near, distant ], [], opts );
+  same( draws.filter( d => d.target === atlas.staticTarget ).length, 6, 'moved light: its level cube redrawn' );
+  restored( r, before );
+ } finally { atlas.dispose(); g.dispose(); material.dispose(); r.dispose(); }
+} );
+
+Deno.test( 'cached and full paths choose the same lights and casters; the full path is the default', () => {
+ const g = geometry(), material = new THREE.MeshBasicMaterial(), actor = new THREE.Mesh( geometry(), material ); actor.position.set( 40, 0, 0 ); actor.updateMatrixWorld();
+ for ( const cache of [ false, true ] ) {
+  const atlas = new PointShadowAtlas( g ), r = renderer(), sources = lights( 3 );
+  try {
+   for ( let i = 0; i < 4; i ++ ) atlas.update( r, sources, [ actor ], { cache } );
+   same( atlas.status().ready, 3, ( cache ? 'cached' : 'full' ) + ': every light ready' );
+   same( atlas.status().pointDynamicMeshes, 1, ( cache ? 'cached' : 'full' ) + ': the caster borrowed' );
+  } finally { atlas.dispose(); r.dispose(); }
+ }
+ g.dispose(); material.dispose();
+} );
+
+Deno.test( 'cached reach: a caster just inside a light\'s far x sqrt(3) sphere is drawn into it, just outside is not; instanced casters reach every light', () => {
+ const g = geometry(), material = new THREE.MeshBasicMaterial(), light = { source: {}, position: [ 0, 0, 0 ], far: 100 };
+ const casterGeometry = new THREE.BufferGeometry(); casterGeometry.setAttribute( 'position', new THREE.Float32BufferAttribute( [ - 1, 0, 0, 1, 0, 0, 0, 1, 0 ], 3 ) );
+ casterGeometry.computeBoundingSphere(); const radius = casterGeometry.boundingSphere.radius, centre = casterGeometry.boundingSphere.center.clone(), reach = 100 * Math.sqrt( 3 ) + 4 + radius;
+ for ( const [ offset, expected, label ] of [ [ reach - 0.5, 1, 'just inside' ], [ reach + 0.5, 0, 'just outside' ] ] ) {
+  const atlas = new PointShadowAtlas( g ), r = renderer(), actor = new THREE.Mesh( casterGeometry, material ); actor.position.set( offset - centre.x, - centre.y, - centre.z ); actor.updateMatrixWorld();
+  const shown = []; const record = r.render; r.render = ( scene, camera ) => { shown.push( scene.children.filter( c => c.visible && c.name === 'quake_flashlight_borrowed_caster' ).length ); record( scene, camera ); };
+  try {
+   atlas.update( r, [ light ], [], { cache: true } ); shown.length = 0;
+   atlas.update( r, [ light ], [ actor ], { cache: true } );
+   same( shown.some( n => n > 0 ) ? 1 : 0, expected, label + ': caster drawn into the light' );
+   same( atlas.lookup( light.source ).ready, true, label + ': cube ready' );
+  } finally { atlas.dispose(); r.dispose(); }
+ }
+ const atlas = new PointShadowAtlas( g ), r = renderer(), far = new THREE.InstancedMesh( casterGeometry, material, 1 ); far.position.set( 99999, 0, 0 ); far.updateMatrixWorld();
+ try { atlas.update( r, [ light ], [], { cache: true } ); const n = r.draws.length; atlas.update( r, [ light ], [ far ], { cache: true } ); check( r.draws.length > n, 'an instanced caster (no sphere) reaches every light' ); }
+ finally { atlas.dispose(); r.dispose(); }
+ g.dispose(); material.dispose(); casterGeometry.dispose();
+} );
+
+Deno.test( 'cached reach follows a caster\'s changed vertices and never replaces the geometry\'s own bounding sphere', () => {
+ const g = geometry(), material = new THREE.MeshBasicMaterial(), light = { source: {}, position: [ 0, 0, 0 ], far: 50 };
+ const shape = new THREE.BufferGeometry(); shape.setAttribute( 'position', new THREE.Float32BufferAttribute( [ 900, 0, 0, 901, 0, 0, 900, 1, 0 ], 3 ) );
+ const owned = new THREE.Sphere( new THREE.Vector3( 1, 2, 3 ), 4 ); shape.boundingSphere = owned;
+ const actor = new THREE.Mesh( shape, material ); actor.updateMatrixWorld();
+ const atlas = new PointShadowAtlas( g ), r = renderer();
+ try {
+  atlas.update( r, [ light ], [], { cache: true } ); let n = r.draws.length;
+  atlas.update( r, [ light ], [ actor ], { cache: true } ); same( r.draws.length, n, 'far away: the light untouched' );
+  same( shape.boundingSphere, owned, 'the geometry keeps its own bounding sphere object' ); same( owned.radius, 4, 'unchanged' );
+  shape.getAttribute( 'position' ).array.set( [ 0, 0, - 5, 1, 0, - 5, 0, 1, - 5 ] ); shape.getAttribute( 'position' ).needsUpdate = true;
+  n = r.draws.length; atlas.update( r, [ light ], [ actor ], { cache: true } ); check( r.draws.length > n, 'the vertices moved next to the light: redrawn' );
+  same( shape.boundingSphere, owned, 'still its own sphere' );
+ } finally { atlas.dispose(); r.dispose(); g.dispose(); material.dispose(); shape.dispose(); }
+} );

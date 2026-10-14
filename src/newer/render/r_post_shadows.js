@@ -153,6 +153,159 @@ export function R_PointShadowStatus() { return postState.gpu?.pointShadows?.stat
  */
 export function R_ReleaseShadowCaster( mesh ) { postState.gpu?.pointShadows?.forgetDynamic( mesh ); }
 
+//============================================================================
+// The sun's shadow map, cached
+//
+// The level in the sun's map (the occluder) never moves, but the map follows the view, so it was drawn again from the
+// whole level every frame: over a million triangles a frame in the demos. Now the occluder's depth is drawn into a
+// larger cache, SUN_CACHE_MARGIN texels wider each side on the same texel grid, and drawn again only when the view
+// has moved beyond that margin (across or along the sun), the occluder is rebuilt or the sun turns. Each frame the
+// map's window is copied out of the cache (the same texels; their depths moved from the cache camera's range to the
+// map camera's) and what moves is drawn over it. Only an occluder face less than one unit in front of the map
+// camera's near plane, 3400 units sunward of the view, could come out differently: as shadow.
+//============================================================================
+
+export const SUN_CACHE_MARGIN = 512;
+let shadowCache = true, sunShadowCache = true;
+/**
+ * Tests and trials only: turns the shadow caching off (every light's cube and the whole sun map drawn again every
+ * frame, as before 14 October 2026) or back on, so the same frame can be compared both ways.
+ *
+ * @param {boolean} on
+ * @param {'both'|'point'|'sun'} [which='both'] the point lights' cubes, the sun's map, or both
+ */
+export function R_ShadowCacheEnable( on, which = 'both' ) { if ( which !== 'sun' ) shadowCache = on !== false; if ( which !== 'point' ) sunShadowCache = on !== false; sunCache.valid = false; }
+const SUN_CACHE_SIZE = SUN_SHADOW_SIZE + 2 * SUN_CACHE_MARGIN;
+const sunCache = { target: null, camera: null, scene: null, centre: new THREE.Vector3(), right: new THREE.Vector3(), up: new THREE.Vector3(),
+	dir: new THREE.Vector3(), occluder: null, valid: false, renders: 0, copies: 0, fallbacks: 0 };
+let sunCopy = null;
+
+/**
+ * Where this frame's sun map lies in the cache and whether the cache must be drawn again. Pure (exported for tests).
+ * The map's texel ( i, j ) is the cache's ( i + margin + across, j + margin + upward ), both on one texel grid; a depth
+ * moves from the cache camera's range to the map camera's: z = uA + zCache * uB, from
+ * z = ( cacheNear + zCache * ( cacheFar - cacheNear ) + along - near ) / ( far - near ).
+ *
+ * @param {{ valid: boolean, sameOccluder: boolean, sameSun: boolean, delta: Array<number>, right: Array<number>,
+ *   up: Array<number>, dir: Array<number>, texel: number, pad: number, near: number, far: number, cacheNear: number,
+ *   cacheFar: number }} s `delta` the map's centre minus the cache's (world units); `right`, `up`, `dir` the cache's
+ *   axes; `pad` how far along the sun the view may move (units)
+ * @returns {{ stale: boolean, offset: Array<number>, uA: number, uB: number }} (`stale` also for a NaN centre)
+ */
+export function R_SunCachePlan( s ) {
+
+	const dot = ( a, b ) => a[ 0 ] * b[ 0 ] + a[ 1 ] * b[ 1 ] + a[ 2 ] * b[ 2 ];
+	const across = Math.round( dot( s.delta, s.right ) / s.texel ), upward = Math.round( dot( s.delta, s.up ) / s.texel ), along = dot( s.delta, s.dir );
+	const stale = ! s.valid || ! s.sameOccluder || ! s.sameSun || ! ( Math.abs( across ) <= SUN_CACHE_MARGIN ) ||
+		! ( Math.abs( upward ) <= SUN_CACHE_MARGIN ) || ! ( Math.abs( along ) <= s.pad );
+	const range = s.far - s.near;
+	return { stale, offset: [ SUN_CACHE_MARGIN + across, SUN_CACHE_MARGIN + upward ], uA: ( s.cacheNear + along - s.near ) / range, uB: ( s.cacheFar - s.cacheNear ) / range };
+
+}
+
+// whether every occluder corner stays at least `pad` beyond the map camera's near plane, so no view within the cache's
+// reach ever clips any of it (the copy cannot show what a clipped face hides): false for very tall maps, which keep
+// the whole redraw each frame
+function sunCacheSafe( cam, pad ) {
+
+	const geometry = occluder.geometry;
+	if ( geometry.boundingBox === null ) geometry.computeBoundingBox();
+	const box = geometry.boundingBox, corner = new THREE.Vector3();
+	for ( let i = 0; i < 8; i ++ ) {
+
+		corner.set( i & 1 ? box.max.x : box.min.x, i & 2 ? box.max.y : box.min.y, i & 4 ? box.max.z : box.min.z );
+		if ( ! ( new THREE.Vector3().subVectors( cam.position, corner ).dot( _sunDir ) >= cam.near + pad ) ) return false;
+
+	}
+	return true;
+
+}
+
+function sunCacheReady( renderer, p, cam, texel ) {
+
+	const pad = SUN_CACHE_MARGIN * texel;
+	if ( ! sunCacheSafe( cam, pad ) ) { sunCache.fallbacks ++; return false; }
+	if ( sunCache.target === null ) {
+
+		sunCache.target = new THREE.WebGLRenderTarget( SUN_CACHE_SIZE, SUN_CACHE_SIZE, { format: THREE.RedFormat, depthBuffer: true,
+			depthTexture: new THREE.DepthTexture( SUN_CACHE_SIZE, SUN_CACHE_SIZE ), generateMipmaps: false, minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter } );
+		sunCache.target.texture.name = 'quake_sun_shadow_cache';
+		sunCache.camera = new THREE.OrthographicCamera();
+		sunCache.scene = new THREE.Scene();
+		sunCopy = { scene: new THREE.Scene(), camera: new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 ), material: new THREE.ShaderMaterial( {
+			glslVersion: THREE.GLSL3, depthTest: true, depthFunc: THREE.AlwaysDepth, depthWrite: true, colorWrite: false, // (with the test off nothing would be written)
+			uniforms: { tCache: { value: null }, uOffset: { value: new THREE.Vector2() }, uA: { value: 0 }, uB: { value: 1 } },
+			vertexShader: 'void main() { gl_Position = vec4( position.xy, 0.0, 1.0 ); }',
+			// (beyond the map camera's far plane, or nothing there: the clear value; nothing can be in front of its near plane)
+			fragmentShader: 'precision highp float; precision highp sampler2D; uniform sampler2D tCache; uniform vec2 uOffset; uniform float uA; uniform float uB;\n' +
+				'void main() { float z = texelFetch( tCache, ivec2( gl_FragCoord.xy ) + ivec2( uOffset ), 0 ).r; float moved = uA + z * uB; gl_FragDepth = z >= 1.0 || moved >= 1.0 ? 1.0 : max( moved, 0.0 ); }'
+		} ) };
+		// (a private one-attachment depth pass: the engine's G-buffer patch of ordinary materials must not touch it)
+		sunCopy.material.onBeforeCompile = () => {};
+		sunCopy.material.customProgramCacheKey = () => 'quake-sun-shadow-cache-copy-v2';
+		const triangle = new THREE.BufferGeometry();
+		triangle.setAttribute( 'position', new THREE.Float32BufferAttribute( [ - 1, - 1, 0, 3, - 1, 0, - 1, 3, 0 ], 3 ) );
+		const quad = new THREE.Mesh( triangle, sunCopy.material ); quad.frustumCulled = false; sunCopy.scene.add( quad );
+
+	}
+	const c = sunCache.camera;
+	const plan = () => R_SunCachePlan( { valid: sunCache.valid, sameOccluder: sunCache.occluder === occluder, sameSun: sunCache.dir.equals( _sunDir ),
+		delta: new THREE.Vector3().subVectors( _sunCenter, sunCache.centre ).toArray(), right: sunCache.right.toArray(), up: sunCache.up.toArray(),
+		dir: sunCache.dir.toArray(), texel, pad, near: cam.near, far: cam.far, cacheNear: c.near, cacheFar: c.far } );
+	let where = plan();
+	if ( where.stale ) {
+
+		// draw the occluder alone into the cache, centred where the map is now, with room the view may move into
+		const extent = SUN_SHADOW_EXTENT * SUN_CACHE_SIZE / SUN_SHADOW_SIZE;
+		Object.assign( c, { left: - extent, right: extent, top: extent, bottom: - extent, near: cam.near - pad, far: cam.far + pad } );
+		c.up.copy( cam.up ); c.position.copy( cam.position ); c.quaternion.copy( cam.quaternion ); c.updateProjectionMatrix(); c.updateMatrixWorld( true );
+		c.layers.set( SUN_SHADOW_LAYER );
+		sunCache.scene.overrideMaterial = p.sunOverride;
+		sunCache.valid = false; // (until the draw has finished)
+		const parent = occluder.parent, autoClear = renderer.autoClear;
+		sunCache.scene.add( occluder );
+		try {
+
+			renderer.setRenderTarget( sunCache.target );
+			renderer.clear( true, true, false );
+			renderer.autoClear = false;
+			renderer.render( sunCache.scene, c );
+
+		} finally { renderer.autoClear = autoClear; if ( parent ) parent.add( occluder ); }
+		sunCache.centre.copy( _sunCenter ); sunCache.right.copy( _sunRight ); sunCache.up.copy( _sunUp ); sunCache.dir.copy( _sunDir );
+		sunCache.occluder = occluder; sunCache.valid = true; sunCache.renders ++;
+		where = plan();
+
+	}
+	const u = sunCopy.material.uniforms;
+	u.uOffset.value.fromArray( where.offset ); u.uA.value = where.uA; u.uB.value = where.uB;
+	return true;
+
+}
+
+/**
+ * Lets the sun shadow cache's GPU resources go and resets the caching (on; nothing cached). Called by `R_PostShutdown`
+ * (gl_post.js).
+ */
+export function R_SunShadowCacheDispose() {
+
+	sunCache.target?.dispose(); sunCache.target?.depthTexture?.dispose(); sunCache.target = null; sunCache.valid = false; sunCache.occluder = null;
+	if ( sunCopy ) { sunCopy.material.dispose(); sunCopy.scene.children[ 0 ]?.geometry.dispose(); sunCopy = null; }
+	shadowCache = true; sunShadowCache = true;
+
+}
+
+/**
+ * The sun shadow cache's counts, for tests and the profiler: how often the level was drawn into it and copied out.
+ *
+ * @returns {{ renders: number, copies: number, fallbacks: number, valid: boolean }} (`fallbacks`: frames drawn whole because the
+ *   map is too tall for the cache)
+ */
+export function R_SunShadowCacheStatus() { return { renders: sunCache.renders, copies: sunCache.copies, fallbacks: sunCache.fallbacks, valid: sunCache.valid }; }
+
+/** Tests and trials only: the cache's depth texture (null before the first cached frame). */
+export function R_SunShadowCacheTexture() { return sunCache.target?.depthTexture ?? null; }
+
 const _sunRight = new THREE.Vector3();
 const _sunUp = new THREE.Vector3();
 const _sunCenter = new THREE.Vector3();
@@ -207,13 +360,38 @@ export function R_PostRenderSunShadow( renderer, scene, camera ) {
 	const override = scene.overrideMaterial;
 
 	scene.overrideMaterial = p.sunOverride;
-	renderer.setRenderTarget( p.sunTarget );
 	renderer.setClearColor( 0xffffff, 1 );
-	renderer.clear( true, true, false );
-	renderer.render( scene, cam );
+	try {
 
-	scene.overrideMaterial = override;
-	renderer.setClearColor( _clearColor, clearAlpha );
+		if ( sunShadowCache && occluder !== null && sunCacheReady( renderer, p, cam, texel ) ) {
+
+			// the level from the cache (copied onto the same texel grid, its depths moved to this view's range), then only
+			// what moves (monsters, items, the axe's cut halves) drawn over it, depth tested as one draw of both would be
+			renderer.setRenderTarget( p.sunTarget );
+			sunCopy.material.uniforms.tCache.value = sunCache.target.depthTexture;
+			// (the copied depth must survive the second draw: no automatic clear, and no background, which three.js clears
+			// the target for whatever autoClear says)
+			const autoClear = renderer.autoClear, background = scene.background;
+			renderer.autoClear = false; scene.background = null;
+			occluder.visible = false;
+			try { renderer.render( sunCopy.scene, sunCopy.camera ); renderer.render( scene, cam ); }
+			finally { occluder.visible = true; renderer.autoClear = autoClear; scene.background = background; }
+			sunCache.copies ++;
+
+		} else {
+
+			renderer.setRenderTarget( p.sunTarget );
+			renderer.clear( true, true, false );
+			renderer.render( scene, cam );
+
+		}
+
+	} finally {
+
+		scene.overrideMaterial = override;
+		renderer.setClearColor( _clearColor, clearAlpha );
+
+	}
 
 	p.shared.uSunVP.value.multiplyMatrices( cam.projectionMatrix, cam.matrixWorldInverse );
 	p.shared.tSunShadow.value = p.sunTarget.depthTexture;
@@ -248,7 +426,7 @@ export function R_PostShadowsFrame( renderer, scene, camera, lights, beam, hasSk
    object.userData.quakePhysicalAlias=physicalAlias;
    if((physicalAlias||object.userData.quakeAxePart===true)&&r_newer_shadows.value!==0||physicalBrush)spotCasters.push(object);
   });
-  postState.gpu.pointShadows.update(renderer,shadowSources,spotCasters,{frozenPose:R_IntroLoadingHolding()});
+  postState.gpu.pointShadows.update(renderer,shadowSources,spotCasters,{frozenPose:R_IntroLoadingHolding(),cache:shadowCache});
  }
  postState.gpu.pointShadows.updateSun(renderer,{on:postState.glowActive&&hasSkyView&&r_pointshadows.value!==0,direction:skyState.sunDirection,focus:camera.position.toArray()},spotCasters);
  sh.tNearSunShadow.value=postState.gpu.pointShadows.sunTexture;sh.uNearSunShadowVP.value.copy(postState.gpu.pointShadows.sunVP);sh.uNearSunShadowOn.value=postState.gpu.pointShadows.sunReady?1:0;
