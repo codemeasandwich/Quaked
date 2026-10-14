@@ -367,6 +367,8 @@ export let R_AmbientPlaced = Hooks_Missing( 'R_AmbientPlaced' );
 export let R_AmbientPlacesClear = Hooks_Missing( 'R_AmbientPlacesClear' );
 export let r_drips;
 export let r_sparks;
+export let r_nailhits;
+export let R_NailHit = Hooks_Missing( 'R_NailHit' );
 
 // newer/render/r_mist.js
 export let R_MistClear = Hooks_Missing( 'R_MistClear' );
@@ -714,7 +716,7 @@ const HOOK_NAMES = Object.freeze( [
 	'R_LavaBall', 'R_LavaBallImpact', 'R_LavaBallTakes', 'R_LavaBallsBegin', 'R_LavaBallsClear', 'R_LavaBallsFlush', 'R_LavaBallsSetup', 'r_lavaballs',
 	'R_LevelViewUseSnapshots', 'R_SetupLevelViews', 'R_SyncLevelViews', 'R_UpdateLevelViewEntities',
 	'LIGHTNING', 'R_LightningClear', 'R_LightningFrame', 'R_LightningSetup', 'R_LightningTakesBeam', 'r_newer_lightning',
-	'R_MotesFrame', 'R_MotesClear', 'R_AmbientPlaced', 'R_AmbientPlacesClear', 'r_drips', 'r_sparks',
+	'R_MotesFrame', 'R_MotesClear', 'R_AmbientPlaced', 'R_AmbientPlacesClear', 'r_drips', 'r_sparks', 'r_nailhits', 'R_NailHit',
 	'R_MistClear', 'R_MistFrame',
 	'R_MuzzleFlashFired', 'R_MuzzleFlashScale', 'R_MuzzleSetProbe', 'R_MuzzleSetView', 'R_MuzzleView',
 	'R_AssetAliasMaterial', 'R_CloneAliasMaterial', 'R_EnemyAliasMaterial', 'R_HeldVisionTag', 'R_NewerAliasMaterial', 'R_NewerSkinsMaterials', 'R_NewerSkinsNewMap', 'R_NewerSkinsPrepare', 'R_NewerSkinsStatus', 'R_NewerSkinsTextures', 'R_ReleaseAliasReceiver', 'r_newer_variety',
@@ -828,7 +830,7 @@ export function Hooks_Install( table ) {
 	R_LavaBall = table.R_LavaBall; R_LavaBallImpact = table.R_LavaBallImpact; R_LavaBallTakes = table.R_LavaBallTakes; R_LavaBallsBegin = table.R_LavaBallsBegin; R_LavaBallsClear = table.R_LavaBallsClear; R_LavaBallsFlush = table.R_LavaBallsFlush; R_LavaBallsSetup = table.R_LavaBallsSetup; r_lavaballs = table.r_lavaballs;
 	R_LevelViewUseSnapshots = table.R_LevelViewUseSnapshots; R_SetupLevelViews = table.R_SetupLevelViews; R_SyncLevelViews = table.R_SyncLevelViews; R_UpdateLevelViewEntities = table.R_UpdateLevelViewEntities;
 	LIGHTNING = table.LIGHTNING; R_LightningClear = table.R_LightningClear; R_LightningFrame = table.R_LightningFrame; R_LightningSetup = table.R_LightningSetup; R_LightningTakesBeam = table.R_LightningTakesBeam; r_newer_lightning = table.r_newer_lightning;
-	R_MotesFrame = table.R_MotesFrame; R_MotesClear = table.R_MotesClear; R_AmbientPlaced = table.R_AmbientPlaced; R_AmbientPlacesClear = table.R_AmbientPlacesClear; r_drips = table.r_drips; r_sparks = table.r_sparks;
+	R_MotesFrame = table.R_MotesFrame; R_MotesClear = table.R_MotesClear; R_AmbientPlaced = table.R_AmbientPlaced; R_AmbientPlacesClear = table.R_AmbientPlacesClear; r_drips = table.r_drips; r_sparks = table.r_sparks; r_nailhits = table.r_nailhits; R_NailHit = table.R_NailHit;
 	R_MistClear = table.R_MistClear; R_MistFrame = table.R_MistFrame;
 	R_MuzzleFlashFired = table.R_MuzzleFlashFired; R_MuzzleFlashScale = table.R_MuzzleFlashScale; R_MuzzleSetProbe = table.R_MuzzleSetProbe; R_MuzzleSetView = table.R_MuzzleSetView; R_MuzzleView = table.R_MuzzleView;
 	R_AssetAliasMaterial = table.R_AssetAliasMaterial; R_CloneAliasMaterial = table.R_CloneAliasMaterial; R_EnemyAliasMaterial = table.R_EnemyAliasMaterial; R_HeldVisionTag = table.R_HeldVisionTag; R_NewerAliasMaterial = table.R_NewerAliasMaterial; R_NewerSkinsMaterials = table.R_NewerSkinsMaterials; R_NewerSkinsNewMap = table.R_NewerSkinsNewMap; R_NewerSkinsPrepare = table.R_NewerSkinsPrepare; R_NewerSkinsStatus = table.R_NewerSkinsStatus; R_NewerSkinsTextures = table.R_NewerSkinsTextures; R_ReleaseAliasReceiver = table.R_ReleaseAliasReceiver; r_newer_variety = table.r_newer_variety;

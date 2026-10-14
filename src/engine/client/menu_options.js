@@ -523,6 +523,7 @@ const NEWER_FEATURES = [
 	{ cvar: 'v_blastshake', label: '      Explosion shake', slider: true },
 	{ cvar: 'r_drips', label: '          Water drips' },
 	{ cvar: 'r_sparks', label: '         Light sparks' },
+	{ cvar: 'r_nailhits', label: '         Nail impacts' },
 ];
 // the page shows this many rows; a longer list scrolls with the cursor
 const NEWER_VISIBLE = 17;

@@ -42,7 +42,7 @@ import { S_PrecacheSound, S_StartSound } from '../sound/snd_dma.js';
 import { R_RunParticleEffect, R_ParticleExplosion, R_BlobExplosion,
 	R_ParticleExplosion2, R_LavaSplash, R_WizardSpikeImpact, R_KnightSpikeImpact } from '../render/render.js';
 import { Mod_ForName } from '../render/gl_model.js';
-import { R_DecalShot, R_DecalScorch, R_DecalBloodPool } from '../common/hooks.js'; // installed by newer/render/r_decals.js
+import { R_NailHit, R_DecalShot, R_DecalScorch, R_DecalBloodPool } from '../common/hooks.js'; // installed by newer/render/r_decals.js
 import { V_BlastShakeEvent, BLAST_ROCKET, BLAST_SPAWN, BLAST_ERUPTION } from '../common/hooks.js'; // installed by newer/render/v_blastshake.js
 
 let num_temp_entities = 0;
@@ -188,6 +188,7 @@ export function CL_ParseTEnt() {
 			pos[ 2 ] = MSG_ReadCoord();
 			R_RunParticleEffect( pos, vec3_origin, 0, 10 );
 			R_DecalShot( pos );
+			R_NailHit( pos, false );
 			if ( Math.random() * 5 | 0 )
 				S_StartSound( - 1, 0, cl_sfx_tink1, pos, 1, 1 );
 			else {
@@ -210,6 +211,7 @@ export function CL_ParseTEnt() {
 			pos[ 2 ] = MSG_ReadCoord();
 			R_RunParticleEffect( pos, vec3_origin, 0, 20 );
 			R_DecalShot( pos );
+			R_NailHit( pos, true );
 			if ( Math.random() * 5 | 0 )
 				S_StartSound( - 1, 0, cl_sfx_tink1, pos, 1, 1 );
 			else {
