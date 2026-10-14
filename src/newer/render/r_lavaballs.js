@@ -1,8 +1,8 @@
 /**
  * @module newer/render/r_lavaballs
  *
- * The supplied "FIREBALLS — Straight-flight FX Lab" fireball (the owner's "fire fan") drawn on Quake's flying lava
- * balls.
+ * The supplied "FIREBALLS — Straight-flight FX Lab" fireball (the owner's "fire fan") drawn on the Death Knight's shots
+ * (Quake's flying lava balls keep their own model since 14 October 2026).
  *
  * Types: plain values and functions; no exported classes.
  *
@@ -16,15 +16,14 @@
 // Game. Extraction map and provenance: newer/effects/lavaballs/provenance.json and
 // docs/lavaballs-2026-10-11.md.
 //
-// What it draws on. Every flying fireball in Quake is an entity drawn with progs/lavaball.mdl:
-// the lava balls misc_fireball throws out of lava pits (MOVETYPE_TOSS: they arc up and fall back
-// under gravity, and are removed when they touch something or after 5 s) and the balls Chthon
-// throws (boss.qc boss_missile: MOVETYPE_FLYMISSILE, 300 units/s, straight, exploding on contact).
-// One native ball draws one supplied fireball. The source's "fan" is a scripted volley of four
-// (fireballsPlan / burstPlan: four lanes, 120 ms apart); Quake decides how many balls there are and
-// where they go, so neither the volley nor its straight-line planner is used: each ball's picture
-// follows that ball's own interpolated origin, its direction is the ball's own motion this frame,
-// and no projectile is added, moved or removed.
+// What it draws on: the Death Knight's shots only. It was first drawn on Quake's lava balls too
+// (progs/lavaball.mdl: the balls misc_fireball throws out of lava pits and Chthon's), but the owner
+// ruled on 14 October 2026 that those keep their own ball model, with a thin trail like a rocket's
+// (render.js R_RocketTrail -> r_fireball.js R_SmokeTrail, `SMOKE.lavaBallScale` in r_smoketrail.js),
+// so `LAVABALL.models` names progs/k_spike.mdl alone and every lava ball draws natively. Each picture
+// follows its shot's own interpolated origin, its direction is the shot's own motion this frame, and
+// no projectile is added, moved or removed; the source's scripted volley of four (fireballsPlan /
+// burstPlan) is not used, since Quake decides how many shots there are and where they go.
 //
 // The Death Knight's shots (card [FB2]). hknight.qc's magic attack throws its fan of six
 // progs/k_spike.mdl shots (MOVETYPE_FLYMISSILE, 300 units/s, straight, EF_TRACER2), and the owner
@@ -34,13 +33,11 @@
 // draws the source's impact at the server's point in place of the native spray
 // (R_LavaBallImpact). A shot that hits a monster or player keeps its native blood.
 //
-// Ownership. The server still owns the ball (motion, touch, damage, removal), cl_main.js its
-// interpolated origin and its dynamic light (EF_ROCKET, radius 200), cl_tent.js Chthon's explosion
-// (which r_fireball.js draws). This module only replaces the *picture*: the lava ball model is not
-// drawn and its native trail (EF_ROCKET, which Newer otherwise turns into the r_smoketrails rocket
-// smoke) is not spawned; the source's fireball, its flame-and-spark trail and, when the ball goes
+// Ownership. The server still owns the shot (motion, touch, damage, removal), cl_main.js its
+// interpolated origin and its light. This module only replaces the *picture*: the shot's model is not
+// drawn and its native trail is not spawned; the source's fireball, its flame-and-spark trail and, when the ball goes
 // against a wall or floor, the source's small impact are drawn instead. Classic, the classic half of
-// the split title demo, r_lavaballs 0, no scene, and more balls than the pool holds keep the native
+// the split title demo, r_lavaballs 0, no scene, and more shots than the pool holds keep the native
 // model and trail exactly as before. Nothing needs loading: the source's effect is procedural.
 //
 // How it is built. The fireball is the source's three crossed planes (3.6 x 1.8 source units, the
@@ -56,13 +53,14 @@ import { hashJS } from './fx_math.js';
 import { FIREBALL, MRT_OUT, MRT_ZERO, layer, material } from './r_fireball.js';
 import { R_NewerGame } from '../mode.js';
 
-// 0 puts the native lava ball and Death Knight shot models, trails and impact back
+// 0 puts the native Death Knight shot model, trail and impact back (lava balls are always native)
 export const r_lavaballs = new cvar_t( 'r_lavaballs', '1' );
 
 export const LAVABALL = Object.freeze( {
-	// the lava balls, and the Death Knight's magic shots (card [FB2]: the owner's choice, one supplied fireball on each
-	// of the native shots of hknight.qc's fan, which keeps its count, damage, timing and aim)
-	models: Object.freeze( [ 'progs/lavaball.mdl', 'progs/k_spike.mdl' ] ),
+	// the Death Knight's magic shots (card [FB2]: the owner's choice, one supplied fireball on each of the native shots
+	// of hknight.qc's fan, which keeps its count, damage, timing and aim), and only those (owner, 14 October 2026: the lava pits' and Chthon's lava balls keep their own ball
+	// model, with a thin trail like a rocket's, r_smoketrail.js `SMOKE.lavaBallScale`)
+	models: Object.freeze( [ 'progs/k_spike.mdl' ] ),
 	knight: 'progs/k_spike.mdl',
 	knightNear: 64, // an impact this close to a held shot's last drawn origin takes that shot's direction
 	// shootFireballs() defaults of the source (size 0.42, power 1) at quality "high" (density 1)
@@ -346,7 +344,8 @@ export function R_LavaBallsBegin() { frame = ( frame + 1 ) | 0; } // (wraps with
 
 /**
  * Does the supplied fireball draw this model (used for its native trail as well as its mesh): Newer Game, outside the
- * classic pass, r_lavaballs on, a scene, and progs/lavaball.mdl or progs/k_spike.mdl (a Death Knight's shot); with an entity number, also a pool slot for it (the
+ * classic pass, r_lavaballs on, a scene, and a `LAVABALL.models` model (progs/k_spike.mdl, a Death Knight's shot; never a lava ball since
+ * 14 October 2026); with an entity number, also a pool slot for it (the
  * ball already holds one, or one is free), so a ball the full pool leaves native keeps its native trail too. Asked by
  * render.js R_RocketTrail for every EF_ROCKET and EF_TRACER2 trail segment and by `R_LavaBall`.
  *
@@ -370,7 +369,7 @@ function slotOf( key ) {
 }
 
 /**
- * Called while the entity list is drawn (R_DrawAliasModel), once per alias entity: registers a lava ball for this
+ * Called while the entity list is drawn (R_DrawAliasModel), once per alias entity: registers a Death Knight's shot for this
  * frame's `R_LavaBallsFlush`, at its interpolated origin, under its entity number. Allocates nothing.
  *
  * @param {entity_t} e entity being drawn (`model`, `origin` in Quake units, `_entityIndex` its entity number)
@@ -630,7 +629,9 @@ export function R_LavaBallsFlush( time, viewSize ) {
 
 			// gone this frame: the source's impact when it went against a wall or floor (a ball that left view or
 			// expired in the air just goes, as the native one does). A Death Knight shot's wall hit is the server's own
-			// TE_KNIGHTSPIKE (R_LavaBallImpact), and one that hit a monster or player bleeds natively, so it just goes
+			// TE_KNIGHTSPIKE (R_LavaBallImpact), and one that hit a monster or player bleeds natively, so it just goes.
+			// (Every model in LAVABALL.models is the knight's since lava balls went native, 14 October 2026; the probe
+			// stays for a fireball model named there again)
 			if ( slotKnight[ s ] === 0 && slotHasDir[ s ] === 1 && struck( s ) ) impact( slotLast[ o ], slotLast[ o + 1 ], slotLast[ o + 2 ], - slotDir[ o ], - slotDir[ o + 1 ], - slotDir[ o + 2 ] );
 			release( s );
 			continue;

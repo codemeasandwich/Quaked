@@ -1,5 +1,6 @@
-// The supplied "FIREBALLS — Straight-flight FX Lab" fireball on Quake's flying lava balls
-// (progs/lavaball.mdl: misc_fireball and Chthon). The source's shader statements and constants are
+// The supplied "FIREBALLS — Straight-flight FX Lab" fireball on the Death Knight's shots (progs/k_spike.mdl; until
+// 14 October 2026 also Quake's flying lava balls, progs/lavaball.mdl: misc_fireball and Chthon, which now keep their own
+// model and a thin smoke trail). The source's shader statements and constants are
 // compared against the port when the owner's page is present locally, and the public entry points
 // (R_LavaBall, the frame flush, R_RocketTrail) are driven with real entities and the real stock
 // models. WebGL is not involved: the instance buffers a frame writes are inspected, so these checks
@@ -26,6 +27,10 @@ const same = ( a, b, label ) => { if ( a !== b ) throw new Error( `${label}: ${a
 const pak = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
 COM_AddPack( COM_LoadPackFile( 'pak0.pak', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.length ) ) );
 const LAVABALL = Mod_ForName( 'progs/lavaball.mdl', true ), MISSILE = Mod_ForName( 'progs/missile.mdl', true );
+// Since 14 October 2026 (owner) the supplied fireball draws the Death Knight's shots only; the lava pits' and Chthon's
+// lava balls keep their own model, with a thin rocket-smoke trail. The effect reads a model's name alone, so its checks
+// run on the real lava ball model's data under the shot's name.
+const SHOT = Object.assign( Object.create( Object.getPrototypeOf( LAVABALL ) ), LAVABALL, { name: 'progs/k_spike.mdl' } );
 // The Death Knight's shot is in the registered game only, not the shareware pak: the module reads its name alone (the
 // browser trial draws the real model)
 const KSPIKE = { name: 'progs/k_spike.mdl', flags: 0x40 };
@@ -43,7 +48,7 @@ function setup( { contents = p => ( p[ 2 ] < 0 || p[ 0 ] > 1000 ? - 2 : - 1 ) } 
 	return { scene, time: 10, group: () => scene.children.find( c => c.name === 'quake_lavaballs' ) };
 
 }
-const ball = ( key, origin, model = LAVABALL ) => { const e = new entity_t(); e.model = model; e._entityIndex = key; e.origin = Float32Array.from( origin ); return e; };
+const ball = ( key, origin, model = SHOT ) => { const e = new entity_t(); e.model = model; e._entityIndex = key; e.origin = Float32Array.from( origin ); return e; };
 // one rendered frame: the entity list registers what is in view, then the flush draws it
 function frame( env, entities, dt = .02 ) {
 
@@ -98,22 +103,22 @@ Deno.test( 'only Newer Game\'s lava balls are taken: Classic, the classic pass, 
 	check( ! lb.R_LavaBall( ball( 41, [ 0, 0, 100 ], MISSILE ) ), 'a rocket is not a lava ball' );
 	check( ! lb.R_LavaBall( ball( undefined, [ 0, 0, 100 ] ) ), 'an entity without a number keeps its model' );
 	newer( false );
-	check( ! lb.R_LavaBall( e ) && ! lb.R_LavaBallTakes( LAVABALL ), 'Classic: native' );
+	check( ! lb.R_LavaBall( e ) && ! lb.R_LavaBallTakes( SHOT ), 'Classic: native' );
 	newer( true ); R_AnimSetClassicPass( true );
 	check( ! lb.R_LavaBall( e ), 'the classic half of the title demo: native' );
 	R_AnimSetClassicPass( false ); lb.r_lavaballs.value = 0;
-	check( ! lb.R_LavaBall( e ) && ! lb.R_LavaBallTakes( LAVABALL ), 'r_lavaballs 0: native' );
+	check( ! lb.R_LavaBall( e ) && ! lb.R_LavaBallTakes( SHOT ), 'r_lavaballs 0: native' );
 	lb.r_lavaballs.value = 1;
 	lb.R_LavaBallsSetup( { scene: null } );
 	check( ! lb.R_LavaBall( e ), 'no scene: native' );
 	setup();
-	check( lb.R_LavaBallTakes( LAVABALL ) && ! lb.R_LavaBallTakes( MISSILE ) && ! lb.R_LavaBallTakes( null ), 'the trail question answers the same' );
+	check( lb.R_LavaBallTakes( SHOT ) && ! lb.R_LavaBallTakes( MISSILE ) && ! lb.R_LavaBallTakes( null ), 'the trail question answers the same' );
 	// a full pool: the 65th ball keeps its native model and its native trail; the 64 held keep theirs replaced
 	const many = Array.from( { length: lb.LAVABALL.max }, ( _, k ) => ball( 100 + k, [ k * 10, 0, 100 ] ) );
 	lb.R_LavaBallsBegin();
 	check( many.every( e2 => lb.R_LavaBall( e2 ) ), 'the pool takes 64' );
-	check( ! lb.R_LavaBall( ball( 999, [ 0, 0, 0 ] ) ) && ! lb.R_LavaBallTakes( LAVABALL, 999 ), 'the 65th: native model and native trail' );
-	check( lb.R_LavaBallTakes( LAVABALL, 100 ), 'a held ball\'s trail stays replaced' );
+	check( ! lb.R_LavaBall( ball( 999, [ 0, 0, 0 ] ) ) && ! lb.R_LavaBallTakes( SHOT, 999 ), 'the 65th: native model and native trail' );
+	check( lb.R_LavaBallTakes( SHOT, 100 ), 'a held ball\'s trail stays replaced' );
 	void env;
 
 } );
@@ -155,7 +160,7 @@ Deno.test( 'one fireball per native ball, at its origin and along its motion; go
 	near( P[ 3 ], lb.LAVABALL.size * FIREBALL.unit, 1e-4, 'grown to its full size (0.42 source units at 24 Quake units each)' );
 	check( layerOf( env, 'lavaball_glow' ).geometry.instanceCount > 0, 'the trail is burning' );
 	// gameplay untouched: the entities are only read
-	same( a.model, LAVABALL, 'the model is untouched' ); same( a.origin.length, 3, 'the origin is untouched' );
+	same( a.model, SHOT, 'the model is untouched' ); same( a.origin.length, 3, 'the origin is untouched' );
 	// the middle ball goes (mid-air: no impact); the others stay
 	frame( env, [ a, c ] );
 	const after = lb.R_LavaBallsSnapshot();
@@ -172,17 +177,15 @@ Deno.test( 'one fireball per native ball, at its origin and along its motion; go
 
 } );
 
-Deno.test( 'a ball that went against a wall or floor ends with the source\'s impact; the trail and impact particles expire', () => {
+Deno.test( 'a Death Knight shot removed against a wall draws no impact of its own (the server\'s hit gives it one); its trail expires', () => {
 
 	const env = setup();
 	const e = ball( 60, [ 900, 0, 100 ] );
 	for ( let k = 0; k < 6; k ++ ) { frame( env, [ e ] ); e.origin[ 0 ] += 300 * .02; } // 300 units/s toward the wall at x = 1000
 	e.origin[ 0 ] = 996; frame( env, [ e ] );
-	const glowBefore = lb.R_LavaBallsSnapshot().glow;
 	frame( env, [] ); // removed on contact
 	const s = lb.R_LavaBallsSnapshot();
-	same( s.rings, 1, 'the impact ring' ); same( s.drawn, 0, 'the fireball is gone' );
-	check( s.glow >= glowBefore + 20, `the impact sparks (${glowBefore} -> ${s.glow})` ); check( s.smoke >= 5, 'and its smoke' );
+	same( s.rings, 0, 'no impact ring from the shot vanishing (R_KnightSpikeImpact draws it at the server\'s point)' ); same( s.drawn, 0, 'the fireball is gone' );
 	for ( let k = 0; k < 120; k ++ ) frame( env, [] );
 	const end = lb.R_LavaBallsSnapshot();
 	same( end.glow + end.smoke + end.rings, 0, 'everything expires' ); check( ! end.visible, 'and the layers hide' );
@@ -253,7 +256,7 @@ function particles( env, spawn ) {
 Deno.test( 'a lava ball\'s native trail gives way to the fireball\'s own in Newer Game only; the split demo\'s classic half keeps it', () => {
 
 	const env = setup();
-	const trail = () => R_RocketTrail( [ 0, 0, 100 ], [ 0, 0, 130 ], 0, 90, LAVABALL );
+	const trail = () => R_RocketTrail( [ 0, 0, 100 ], [ 0, 0, 130 ], 0, 90, SHOT );
 	same( particles( env, trail ).length, 0, 'Newer Game: no native trail for a lava ball' );
 	lb.r_lavaballs.value = 0;
 	check( particles( env, trail ).length > 0, 'r_lavaballs 0: the native trail is back (r_smoketrails is not set up here)' );
@@ -261,8 +264,8 @@ Deno.test( 'a lava ball\'s native trail gives way to the fireball\'s own in Newe
 	lb.r_lavaballs.value = 1;
 	lb.R_LavaBallsBegin();
 	for ( let k = 0; k < lb.LAVABALL.max; k ++ ) lb.R_LavaBall( ball( 200 + k, [ k * 10, 0, 100 ] ) );
-	check( particles( env, () => R_RocketTrail( [ 0, 0, 100 ], [ 0, 0, 130 ], 0, 999, LAVABALL ) ).length > 0, 'full pool: a new ball\'s native trail' );
-	same( particles( env, () => R_RocketTrail( [ 0, 0, 100 ], [ 0, 0, 130 ], 0, 200, LAVABALL ) ).length, 0, 'a held ball: none' );
+	check( particles( env, () => R_RocketTrail( [ 0, 0, 100 ], [ 0, 0, 130 ], 0, 999, SHOT ) ).length > 0, 'full pool: a new ball\'s native trail' );
+	same( particles( env, () => R_RocketTrail( [ 0, 0, 100 ], [ 0, 0, 130 ], 0, 200, SHOT ) ).length, 0, 'a held ball: none' );
 	lb.R_LavaBallsClear();
 	lb.r_lavaballs.value = 1; newer( false );
 	const classic = particles( env, trail );
@@ -371,12 +374,12 @@ Deno.test( 'a Death Knight shot hitting a wall ends in the source\'s impact at t
 	near( layerOf( env, 'lavaball_rings' ).geometry.getAttribute( 'aNormalAlpha' ).array[ 2 ], 1, 1e-6, 'facing up' );
 	// a lava ball nearer the point than the Knight's shot: the shot's direction is the one taken
 	env = setup();
-	const shot = ball( 330, [ 400, 0, 100 ], KSPIKE ), lava = ball( 331, [ 470, 0, 74 ] );
+	const shot = ball( 330, [ 400, 0, 100 ], KSPIKE ), lava = ball( 331, [ 470, 0, 74 ], LAVABALL );
 	for ( let k = 0; k < 6; k ++ ) { frame( env, [ shot, lava ] ); shot.origin[ 0 ] += 6; lava.origin[ 2 ] += 6; }
 	R_KnightSpikeImpact( Float32Array.of( 470, 0, 100 ) );
 	frame( env, [ lava ] );
 	const NA = layerOf( env, 'lavaball_rings' ).geometry.getAttribute( 'aNormalAlpha' ).array;
-	near( NA[ 0 ], - 1, 1e-5, 'the ring faces back along the Knight shot (-x), not the lava ball (up)' ); near( NA[ 2 ], 0, 1e-5, 'no vertical part' );
+	near( NA[ 0 ], - 1, 1e-5, 'the ring faces back along the Knight shot (-x); the lava ball, its own model now, is not a fireball' ); near( NA[ 2 ], 0, 1e-5, 'no vertical part' );
 	// the pool full with lava balls: a Knight shot left native ends in the native spray
 	env = setup();
 	lb.R_LavaBallsBegin();
@@ -421,5 +424,16 @@ Deno.test( 'a fireball put out on water bursts flat on the surface, even with a 
 	near( N[ 2 ], 1, 1e-6, 'the ring lies flat on the water, not across the shot' );
 	same( lb.R_LavaBallsSnapshot().rings, 1, 'one burst' );
 	lb.R_LavaBallsClear();
+
+} );
+
+
+Deno.test( 'lava balls (the lava pits\' and Chthon\'s) keep their own model in Newer Game; their trail is not the fireball\'s', () => {
+
+	const env = setup(); newer( true );
+	const e = ball( 77, [ 0, 0, 100 ], LAVABALL );
+	check( ! lb.R_LavaBall( e ) && ! lb.R_LavaBallTakes( LAVABALL, 77 ), 'a lava ball is not taken: its own model is drawn' );
+	check( lb.R_LavaBallTakes( SHOT ), 'a Death Knight shot still is' );
+	check( particles( env, () => R_RocketTrail( [ 0, 0, 100 ], [ 0, 0, 130 ], 0, 77, LAVABALL ) ).length > 0, 'its rocket-flag trail is drawn (the thin smoke when its textures are ready; here the native particles)' );
 
 } );

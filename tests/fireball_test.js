@@ -553,6 +553,32 @@ Deno.test( 'smoke puffs are drawn in the shared puff layer in world coordinates,
 
 } );
 
+Deno.test( 'a lava ball\'s rocket trail is the same smoke, thin and without the exhaust glow; a rocket\'s is unchanged (owner, 14 October 2026)', () => {
+
+	// the same flight from the same clock, once as a rocket and once as a lava ball (the model cl_main.js passes)
+	const fly = name => {
+
+		const env = setup(); smoke.R_SmokeTrailClear(); let glows = 0;
+		for ( let k = 0; k < 6; k ++ ) { env.time.now += .02; R_RocketTrail( [ k * 40, 0, 100 ], [ ( k + 1 ) * 40, 0, 100 ], 0, 7, { name } ); fb.R_FireballFrame( env.time.now, ...view ); glows = Math.max( glows, fb.R_FireballSnapshot().glows ); }
+		const sizes = []; smoke.forEachSmoke( env.time.now, smoke.SMOKE, smoke.SMOKE.timeScale, ( x, y, z, size ) => sizes.push( size ) );
+		return { sizes, glows, count: smoke.R_SmokeTrailCount() };
+
+	};
+	const rocket = fly( 'progs/missile.mdl' ), lava = fly( 'progs/lavaball.mdl' );
+	check( rocket.count > 20 && lava.count === rocket.count, `the same puffs at the same spacing: ${rocket.count} and ${lava.count}` );
+	for ( let i = 0; i < rocket.sizes.length; i ++ ) near( lava.sizes[ i ], rocket.sizes[ i ] * smoke.SMOKE.lavaBallScale, 1e-6 * rocket.sizes[ i ], 'puff ' + i + ' thin' );
+	same( rocket.glows, 1, 'the rocket keeps its exhaust glow' );
+	same( lava.glows, 0, 'the lava ball has none (the ball is its own light)' );
+	// a grenade (type 1) with the lava ball's model is never thinned (only a rocket trail is a lava ball's)
+	const env = setup(); smoke.R_SmokeTrailClear(); env.time.now += .02; R_RocketTrail( [ 0, 0, 100 ], [ 40, 0, 100 ], 1, 7, { name: 'progs/lavaball.mdl' } );
+	const g = []; smoke.forEachSmoke( env.time.now, smoke.SMOKE, smoke.SMOKE.timeScale, ( x, y, z, size ) => g.push( size ) );
+	const env2 = setup(); smoke.R_SmokeTrailClear(); env2.time.now += .02; R_RocketTrail( [ 0, 0, 100 ], [ 40, 0, 100 ], 1, 7 );
+	const g2 = []; smoke.forEachSmoke( env2.time.now, smoke.SMOKE, smoke.SMOKE.timeScale, ( x, y, z, size ) => g2.push( size ) );
+	same( g.join(), g2.join(), 'grenade smoke unchanged' );
+	smoke.R_SmokeTrailClear(); fb.R_FireballClear();
+
+} );
+
 Deno.test( 'smoke puffs are scaled, boosted and faded near the eye exactly as documented', () => {
 
 	const env = setup(); smoke.R_SmokeTrailClear();

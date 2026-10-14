@@ -1,8 +1,43 @@
 # Lava balls: the supplied "FIREBALLS" fire fan
 
 Card [FB1], "Fireball attach /Users/bri/Downloads/fireballs.html". Branch `claude-fx-fire`
-from Dev `459bde6d`. In Newer Game every flying lava ball is drawn as the supplied
+from Dev `459bde6d`. In Newer Game the Death Knight's shots are drawn as the supplied
 fireball; Classic keeps the original model and trail; gameplay is unchanged.
+
+## Lava balls keep their own ball (14 October 2026)
+
+The owner: "the death knights fire attack was wrongly applied to also cover lava fireballs and
+this is wrong as lava fireballs should retain their original ball mesh and have a thin trail
+similar to rockets".
+
+* `LAVABALL.models` (`r_lavaballs.js`) now names only `progs/k_spike.mdl`, the Death Knight's
+  shot. Every `progs/lavaball.mdl` ball (the lava pits' `misc_fireball` spurts and Chthon's
+  balls) draws its own native model again, in Classic and Newer Game alike.
+* Its `EF_ROCKET` trail is the rocket's supplied smoke (`r_smoketrail.js`), thin: `render.js`
+  `R_RocketTrail` tells `R_SmokeTrail` the trail is a lava ball's (the entity's model is
+  `progs/lavaball.mdl`), which emits the same puffs at the same spacing at `SMOKE.lavaBallScale`
+  (0.4) of a rocket's size, and adds no exhaust glow at its nose (the ball is its own light).
+* The Death Knight's fan (below) is unchanged: one supplied fireball per shot, its trail and
+  impact. Fire quench (card [FB3], `sv_firequench.js`) still puts both kinds out in water, and
+  a lava ball put out there still ends in that enhancement's small burst at the surface (an
+  approved enhancement, kept).
+* The sections below describe the first version, when lava balls were drawn as the fireball too;
+  for lava balls they are history.
+
+Checks: `tests/lavaballs_test.js` (a lava ball is not taken, by model or by trail; the Death
+Knight's shot is); `tests/fireball_test.js` (through `R_RocketTrail` with the model cl_main.js
+passes: a lava ball's puffs are exactly 0.4 of a rocket's over the same flight, the same count,
+no exhaust glow, the rocket's glow kept, grenade smoke unchanged); `tests/smoketrail_test.js`
+(each puff keeps its own size in a pool holding both trails, and a full pool's reused slot takes
+the new puff's size); `firequench_native_test`, `impact_ripples_test`. Each new check was seen to
+fail with the fault it guards against put in by hand (the flag not passed, the glow not skipped,
+one size for the whole pool). WebKit, Newer Game, the `start` map's
+lava fountain: the native red ball drawn mid-flight with a thin, continuous smoke trail behind it
+(`tests/lavaballs_trial.html`, the camera parked 120 units from the fountain; looked at by eye).
+Independent review (Sonnet): no blocking findings; its should-fix findings (the wiring and
+per-puff tests, stale text in the README, technical notes, add-on integration notes and code
+comments) are fixed. The wall-strike probe in `r_lavaballs.js` is kept for a fireball model
+named there again and is noted as unreached today.
 
 ## Source
 

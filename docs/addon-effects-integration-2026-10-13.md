@@ -54,7 +54,7 @@ heard in a browser or the app by the owner: that is the owner's to try.
 | Shotgun | `r_shotgun.js`, `r_shells.js`, `r_wallburn.js`, `gameplay/sv_shotrays.js` | Pellets, casings, underwater bubbles and smoke, wall burns. **Excluded.** |
 | Lightning gun | `r_lightning.js`, `r_wallburn.js` | The beam and its burn. **Excluded.** |
 | Explosions | `r_fireball.js`, `r_smoketrail.js` | Rocket and grenade fireball, trails. |
-| Other projectiles | `r_venom.js` (Scrag), `r_lavaballs.js` (Death Knight, lava balls), `r_stasisbolt.js` (laser) | Their flight and their impacts. |
+| Other projectiles | `r_venom.js` (Scrag), `r_lavaballs.js` (Death Knight; lava balls keep their model, thin smoke trail), `r_stasisbolt.js` (laser) | Their flight and their impacts. |
 | Liquids | `r_post_liquids.js`, `r_waves.js`, `r_impactripples.js`, `r_mist.js`, `r_screendrops.js` | Newer liquids, real ripples where things cross a surface (nails included), vapour over toxic pools, drops on the lens. |
 | Fire | `r_torchfire.js`, `r_powerupfire.js` | Torch flames with embers and smoke. |
 | Light and sky | `r_post_lights.js`, `r_post_sky.js`, `r_pointshadows.js`, `r_heightshadows.js`, `engine/render/r_fog.js`, `r_skybox.js` | The level's light list, the sun (`_sun_mangle`), shadows, fog, skyboxes. |

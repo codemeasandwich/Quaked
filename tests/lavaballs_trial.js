@@ -1,6 +1,7 @@
 import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Drives one ordinary game instance so a browser run can photograph the supplied fireball
-// (r_lavaballs.js) on Quake's own flying lava balls next to the native lava ball model. The game's
+// (r_lavaballs.js); first on Quake's own flying lava balls, which since 14 October 2026 keep their native model with
+// a thin smoke trail (`balls()` lists only the shots the fireball draws, now the Death Knight's). The game's
 // own `pause` freezes cl.time, so a paused frame holds a ball mid-flight. Since card [FB2] it also
 // photographs a Death Knight's fan (progs/k_spike.mdl shots, the registered game: open the page with
 // ?game=quake): `stand` moves one of the level's knights into view and `provoke` runs its own

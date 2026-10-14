@@ -180,3 +180,37 @@ Deno.test( 'two missiles in flight at once each keep exactly the spacing (indepe
 	}
 
 } );
+
+Deno.test( 'a lava ball\'s trail is the rocket smoke, thin: the same puffs at SMOKE.lavaBallScale of their size (owner, 14 October 2026)', () => {
+
+	const sizes = scale => { st.R_SmokeTrailClear(); st.R_SmokeTrailEmit( [ 0, 0, 0 ], [ 60, 0, 0 ], true, 'k', 10, .1, scale ); const out = []; st.forEachSmoke( 10.5, st.SMOKE, st.SMOKE.timeScale, ( x, y, z, size, angle, alpha, heat, tile, r, g, b, seed13 ) => out.push( { size: size / ( .8 + seed13 / 13 * .4 ) } ) ); return out; }; // (each puff's own random size factor taken out)
+	const rocket = sizes( 1 ), lava = sizes( st.SMOKE.lavaBallScale );
+	check( rocket.length > 5 && rocket.length === lava.length, 'the same puffs: ' + rocket.length + ' and ' + lava.length );
+	check( st.SMOKE.lavaBallScale > 0 && st.SMOKE.lavaBallScale < 1, 'thinner than a rocket\'s' );
+	for ( let i = 0; i < rocket.length; i ++ ) {
+
+		check( Math.abs( lava[ i ].size - rocket[ i ].size * st.SMOKE.lavaBallScale ) <= 1e-6 * rocket[ i ].size, // (the scale is kept as a 32-bit float)
+		 'puff ' + i + ' scaled: ' + lava[ i ].size + ' vs ' + rocket[ i ].size );
+
+	}
+	// each puff keeps its own size: a rocket's and a lava ball's trail in one pool, and a full pool's reused slots
+	// taking the new puff's size, not the old one's
+	st.R_SmokeTrailClear();
+	st.R_SmokeTrailEmit( [ 0, 0, 0 ], [ 60, 0, 0 ], true, 'r', 10, .1, 1 );
+	st.R_SmokeTrailEmit( [ 0, 0, 40 ], [ 60, 0, 40 ], true, 'l', 10, .1, st.SMOKE.lavaBallScale );
+	const mixed = []; st.forEachSmoke( 10.5, st.SMOKE, st.SMOKE.timeScale, ( x, y, z, size, angle, alpha, heat, tile, r, g, b, seed13 ) => mixed.push( { line: Math.round( y ), size: size / ( .8 + seed13 / 13 * .4 ) } ) );
+	const byLine = new Map(); for ( const p of mixed ) { if ( ! byLine.has( p.line ) ) byLine.set( p.line, [] ); byLine.get( p.line ).push( p.size ); }
+	check( byLine.size >= 2, 'two trails in one pool' );
+	const [ a, b ] = [ ...byLine.values() ].sort( ( x, y ) => y[ 0 ] - x[ 0 ] );
+	check( a.length === b.length, 'the same count' );
+	for ( let i = 0; i < a.length; i ++ ) check( Math.abs( b[ i ] - a[ i ] * st.SMOKE.lavaBallScale ) <= 1e-5 * a[ i ], 'mixed pool puff ' + i + ': ' + b[ i ] + ' vs ' + a[ i ] );
+	st.R_SmokeTrailClear();
+	for ( let n = 0; st.R_SmokeTrailCount() < st.SMOKE.cap && n < 10000; n ++ ) st.R_SmokeTrailEmit( [ n * 60, 0, 0 ], [ ( n + 1 ) * 60, 0, 0 ], true, 'fill', 10, .1, st.SMOKE.lavaBallScale );
+	check( st.R_SmokeTrailCount() === st.SMOKE.cap, 'the pool is full of thin puffs' );
+	const over = () => { st.R_SmokeTrailEmit( [ 0, 0, 500 ], [ 60, 0, 500 ], true, 'over', 10, .1, 1 ); const out = []; st.forEachSmoke( 10.5, st.SMOKE, st.SMOKE.timeScale, ( x, y, z, size, angle, alpha, heat, tile, r, g, b, seed13 ) => { if ( Math.abs( y - 500 / st.SMOKE.unit ) < 1 ) out.push( size / ( .8 + seed13 / 13 * .4 ) ); } ); return out; };
+	const reused = over(); st.R_SmokeTrailClear(); const alone = over();
+	check( reused.length > 5 && reused.length === alone.length, 'the new puffs took reused slots: ' + reused.length + ' and ' + alone.length );
+	for ( let i = 0; i < alone.length; i ++ ) check( Math.abs( reused[ i ] - alone[ i ] ) <= 1e-5 * alone[ i ], 'a reused slot takes the new puff\'s full size: ' + reused[ i ] + ' vs ' + alone[ i ] );
+	st.R_SmokeTrailClear();
+
+} );

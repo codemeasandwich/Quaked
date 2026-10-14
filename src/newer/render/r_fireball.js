@@ -718,10 +718,12 @@ let _noseCount = 0, _noseStamp = 0, _lastTime = 0;
  * @param {Array<number>} end its position now
  * @param {boolean} rocket true for a rocket, false for a grenade
  * @param {number} key the entity number (each trail has its own carried spacing)
+ * @param {boolean} [lavaBall=false] a lava ball's trail (progs/lavaball.mdl, flagged as a rocket's): the same smoke,
+ *   thin (`SMOKE.lavaBallScale`) and without the rocket's exhaust glow (the ball is its own light)
  * @returns {boolean} false when the native trail must be used (Classic, textures not loaded, no scene, no client,
  * r_smoketrails 0); true when the supplied smoke took it
  */
-export function R_SmokeTrail( start, end, rocket, key ) {
+export function R_SmokeTrail( start, end, rocket, key, lavaBall = false ) {
 
 	if ( deps == null || ! deps.scene || r_smoketrails.value === 0 || ! R_NewerGame() ) return false;
 	loadTextures();
@@ -729,10 +731,10 @@ export function R_SmokeTrail( start, end, rocket, key ) {
 	const cl = deps.cl?.();
 	if ( cl == null ) return false;
 	const step = cl.time - cl.oldtime, dt = step > 0 ? Math.min( .25, step ) : 0; // (never NaN)
-	R_SmokeTrailEmit( start, end, rocket, key, cl.time, dt );
+	R_SmokeTrailEmit( start, end, rocket, key, cl.time, dt, lavaBall ? SMOKE.lavaBallScale : 1 );
 	_noseStamp = cl.time;
 	const dx = end[ 0 ] - start[ 0 ], dy = end[ 1 ] - start[ 1 ], dz = end[ 2 ] - start[ 2 ], length = Math.hypot( dx, dy, dz );
-	if ( rocket && length > 1e-6 && length <= SMOKE.jump && _noseCount < NOSE_GLOWS ) {
+	if ( rocket && ! lavaBall && length > 1e-6 && length <= SMOKE.jump && _noseCount < NOSE_GLOWS ) {
 
 		const back = .47 * FIREBALL.unit / length, o = _noseCount ++ * 3;
 		_nose[ o ] = end[ 0 ] - dx * back; _nose[ o + 1 ] = end[ 1 ] - dy * back; _nose[ o + 2 ] = end[ 2 ] - dz * back;

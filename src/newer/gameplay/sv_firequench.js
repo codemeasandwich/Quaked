@@ -14,8 +14,8 @@
 // Fire goes out in water (owner request, 11 Oct 2026, card [FB3]; Newer Game only, Classic keeps Quake's rules).
 //
 // Quake's fireballs are missiles drawn with progs/lavaball.mdl (misc_fireball's lava spurts, Chthon's balls) and the
-// Death Knight's fan shots (progs/k_spike.mdl); in Newer Game both are drawn as the owner's fireballs.html fireball
-// (r_lavaballs.js). In stock Quake they fly on through water as through air: a Death Knight's shot still reaches a
+// Death Knight's fan shots (progs/k_spike.mdl); in Newer Game the shots are drawn as the owner's fireballs.html fireball
+// (r_lavaballs.js) and the lava balls keep their own model. Both go out in water with the fireball's small burst. In stock Quake they fly on through water as through air: a Death Knight's shot still reaches a
 // player hiding underwater. The owner's rule, chosen as real gameplay over a picture-only change: fire cannot travel
 // underwater. sv_phys.js SV_Physics_Toss asks this module twice per missile move:
 //

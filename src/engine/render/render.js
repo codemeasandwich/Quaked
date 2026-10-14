@@ -309,9 +309,10 @@ export function R_RunParticleEffect( org, dir, color, count, classicOnly = false
 
 /**
  * Spawns a missile's trail for one frame's movement; cl_main.js calls it per entity per frame from the model's trail
- * flags. In Newer Game a lava ball's rocket trail, and a Death Knight shot's tracer (type 5), is not spawned while the
- * supplied fireball draws that ball or shot (r_lavaballs.js, which draws its own trail). Rocket (type 0) and grenade (type 1) trails use the supplied smoke in Newer Game, placed by distance along
- * each frame's segment; `key` is the entity number, so every missile carries its own spacing (a call without one
+ * flags. In Newer Game a Death Knight shot's tracer (type 5) is not spawned while the supplied fireball draws that shot
+ * (r_lavaballs.js, which draws its own trail). Rocket (type 0) and grenade (type 1) trails use the supplied smoke in Newer
+ * Game, placed by distance along each frame's segment; a lava ball's rocket trail (progs/lavaball.mdl, which keeps its
+ * own model) is that smoke made thin (r_smoketrail.js `SMOKE.lavaBallScale`); `key` is the entity number, so every missile carries its own spacing (a call without one
  * keeps the native trail). The Scrag's spike's green tracer (type 3 with a key) is left out in Newer Game while
  * r_venom.js draws that spike as its venom stream. Everything else, and Classic, keeps the native trail. In the title demo's split view the
  * Classic half hides everything Newer, so the native trail is also spawned there, flagged to draw in that half only.
@@ -322,14 +323,15 @@ export function R_RunParticleEffect( org, dir, color, count, classicOnly = false
  *     adding 128 makes the native trail three times as dense
  * @param {number} [key] entity number, needed for the supplied smoke on types 0 and 1, the venom on type 3 and a lava
  *     ball's pool slot
- * @param {?Object} [model] the entity's model: a rocket trail (type 0) of a lava ball, or the tracer (type 5) of a
- *     Death Knight's shot, drawn by the supplied fireball (r_lavaballs.js, which draws its own trail) is not spawned
+ * @param {?Object} [model] the entity's model: the tracer (type 5) of a Death Knight's shot, drawn by the supplied
+ *     fireball (r_lavaballs.js, which draws its own trail), is not spawned; a lava ball's rocket trail (type 0) is thin.
+ *     (Type 0 is still asked of `R_LavaBallTakes`, so a fireball model with the rocket flag could be taken again.)
  * @throws {Error} for types 0, 1 and 3 with a key when the Newer hooks (`R_SmokeTrail`, `R_VenomTrail`,
  *     `R_DemoSplitActive`) are not installed, and for types 0 and 5 with a model when `R_LavaBallTakes` is not
  */
 export function R_RocketTrail( start, end, type, key, model ) {
 
-	// a lava ball's trail is the supplied fireball's own (in the split title demo the Classic half still gets the native one)
+	// a Death Knight shot's trail is the supplied fireball's own (in the split title demo the Classic half still gets the native one)
 	if ( ( type === 0 || type === 5 ) && model != null && R_LavaBallTakes( model, key ) ) {
 
 		if ( R_DemoSplitActive() ) _R_RocketTrail( start, end, type, true );
@@ -339,7 +341,7 @@ export function R_RocketTrail( start, end, type, key, model ) {
 
 	// (no entity number, no supplied smoke: its spacing is carried per missile, and two missiles must
 	// never share a carry)
-	if ( ( type === 0 || type === 1 ) && key !== undefined && R_SmokeTrail( start, end, type === 0, key ) ) {
+	if ( ( type === 0 || type === 1 ) && key !== undefined && R_SmokeTrail( start, end, type === 0, key, type === 0 && model?.name === 'progs/lavaball.mdl' ) ) {
 
 		if ( R_DemoSplitActive() ) _R_RocketTrail( start, end, type, true );
 		return;

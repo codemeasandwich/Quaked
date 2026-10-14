@@ -45,6 +45,8 @@ export const SMOKE = Object.freeze( {
 	noseRocket: .45,   // source units behind the rocket's centre where its smoke starts
 	noseGrenade: 0,
 	staleAfter: .5,    // a trail not extended for this long starts afresh (a new missile)
+	lavaBallScale: .4, // a lava ball's trail: the rocket's smoke, its puffs this size (owner, 14 October 2026: a thin trail
+	                   // like a rocket's, the ball's own model kept)
 	maxTrails: 64
 } );
 
@@ -59,6 +61,7 @@ const N = SMOKE.cap;
 const px = new Float64Array( N ), py = new Float64Array( N ), pz = new Float64Array( N );
 const dx = new Float64Array( N ), dy = new Float64Array( N ), dz = new Float64Array( N );
 const born = new Float64Array( N ), life = new Float64Array( N ), seeds = new Float64Array( N ), tiles = new Uint8Array( N );
+const scales = new Float32Array( N ).fill( 1 ); // each puff's size against a rocket's (a lava ball's trail is thinner)
 let head = 0, count = 0, counter = 0;
 
 // per-trail carry: the distance travelled since that trail's last puff
@@ -77,13 +80,13 @@ export function R_SmokeTrailClear() { head = 0; count = 0; counter = 0; trails.c
  */
 export function R_SmokeTrailCount() { return count; }
 
-function push( sx, sy, sz, ux, uy, uz, t, seed ) {
+function push( sx, sy, sz, ux, uy, uz, t, seed, scale = 1 ) {
 
 	let slot;
 	if ( count === N ) { slot = head; head = ( head + 1 ) % N; } // full: the oldest yields
 	else { slot = ( head + count ) % N; count ++; }
 	px[ slot ] = sx; py[ slot ] = sy; pz[ slot ] = sz; dx[ slot ] = ux; dy[ slot ] = uy; dz[ slot ] = uz;
-	born[ slot ] = t; seeds[ slot ] = seed; life[ slot ] = 4.4 + seed * 1.2; tiles[ slot ] = Math.floor( hashJS( seed * 120 ) * 16 );
+	born[ slot ] = t; seeds[ slot ] = seed; life[ slot ] = 4.4 + seed * 1.2; tiles[ slot ] = Math.floor( hashJS( seed * 120 ) * 16 ); scales[ slot ] = scale;
 
 }
 
@@ -100,9 +103,10 @@ function push( sx, sy, sz, ux, uy, uz, t, seed ) {
  * @param {*} key trail identity, the entity number (at most `SMOKE.maxTrails` are remembered)
  * @param {number} time client time now, seconds
  * @param {number} dt how long the segment took, seconds (puffs are born at their own point in it)
+ * @param {number} [scale=1] the puffs' size against a rocket's (`SMOKE.lavaBallScale` for a lava ball's thin trail)
  * @returns {number} the number of puffs emitted
  */
-export function R_SmokeTrailEmit( start, end, rocket, key, time, dt ) {
+export function R_SmokeTrailEmit( start, end, rocket, key, time, dt, scale = 1 ) {
 
 	const vx = end[ 0 ] - start[ 0 ], vy = end[ 1 ] - start[ 1 ], vz = end[ 2 ] - start[ 2 ];
 	const length = Math.hypot( vx, vy, vz );
@@ -125,7 +129,7 @@ export function R_SmokeTrailEmit( start, end, rocket, key, time, dt ) {
 	for ( ; d <= length + 1e-9; d += SMOKE.spacing ) {
 
 		const f = d / length, tb = time - dt * ( 1 - f ), seed = hashJS( ( counter ++ ) * 11.7 + tb * 37 );
-		push( ( start[ 0 ] + vx * f ) / K - ux * back, ( start[ 2 ] + vz * f ) / K - uy * back, ( start[ 1 ] + vy * f ) / K - uz * back, ux, uy, uz, tb, seed );
+		push( ( start[ 0 ] + vx * f ) / K - ux * back, ( start[ 2 ] + vz * f ) / K - uy * back, ( start[ 1 ] + vy * f ) / K - uz * back, ux, uy, uz, tb, seed, scale );
 		last = d; made ++;
 
 	}
@@ -158,7 +162,7 @@ export function forEachSmoke( time, p, scale, emit ) {
 		emit( px[ i ] + dx[ i ] * back + p.wind * age * 5 + Math.sin( spin ) * .05 * age * p.spread,
 			py[ i ] + dy[ i ] * back + .057 * Math.pow( age, 1.5 ) * p.spread,
 			pz[ i ] + dz[ i ] * back + Math.cos( spin * 1.35 ) * .08 * age * p.spread,
-			( .11 + .18 * age + .01 * age * age ) * ( .8 + seed * .4 ) * p.spread,
+			( .11 + .18 * age + .01 * age * age ) * ( .8 + seed * .4 ) * p.spread * scales[ i ],
 			seed * 6.28 + age * ( seed - .5 ) * .4,
 			smooth( 0, .08, age ) * Math.pow( 1 - f, .8 ) * .34 * p.density,
 			- 1, tiles[ i ], .88, .92, .92, seed * 13 );
