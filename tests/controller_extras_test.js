@@ -24,7 +24,7 @@ cmd.Cbuf_Init(); cmd.Cmd_Init();
 // every impulse the command buffer runs, once registered for the whole file (each test clears it)
 const seen = [];
 cmd.Cmd_AddCommand( 'impulse', () => seen.push( Number( cmd.Cmd_Argv( 1 ) ) ) );
-function frame( p ) { cl.time += 0.016; return input.IN_GamepadPoll( command(), () => {} ); }
+function frame( p ) { cl.time += 0.016; host.set_realtime( host.realtime + 0.016 ); host.set_host_framecount( host.host_framecount + 1 ); return input.IN_GamepadPoll( command(), () => {} ); }
 function reset() {
 
 	pads = [ pad() ]; effects = [];
@@ -121,7 +121,7 @@ Deno.test( 'the wheel never sticks open or takes a stale choice: a disconnect, a
 	const q = pad(); q.index = 1; q.id = 'Other'; pads = [ q ]; frame(); cmd.Cbuf_Execute();
 	same( ctl.R_WeaponWheelState().open, false, 'another controller took over: closed' ); same( seen.length, 0, 'and nothing taken' );
 	pads = [ p ]; frame(); p.axes[ 2 ] = 0; press( p, ctl.WHEEL_BUTTON, false ); frame();
-	press( p, ctl.WHEEL_BUTTON ); frame(); p.axes[ 2 ] = - 1; frame(); cl.time += 1; press( p, ctl.WHEEL_BUTTON, false ); frame(); cmd.Cbuf_Execute();
+	press( p, ctl.WHEEL_BUTTON ); frame(); p.axes[ 2 ] = - 1; frame(); cl.time += 1; host.set_realtime( host.realtime + 1 ); host.set_host_framecount( host.host_framecount + 60 ); press( p, ctl.WHEEL_BUTTON, false ); frame(); cmd.Cbuf_Execute();
 	same( seen.length, 0, 'not looked after for a second: closed, nothing taken' );
 	p.axes[ 2 ] = 0; frame();
 	// a bestiary encounter takes the controls with the game's clock stopped: the controller path closes the wheel
@@ -161,5 +161,172 @@ Deno.test( 'a hard landing (the game\'s land2.wav from the player) shakes the co
 	ctl.R_ControllerSound( { name: 'player/land2.wav' }, [ 0, 0, 0 ], 1, 1, 1 ); frame();
 	check( effects.length === 1 && effects[ 0 ].strongMagnitude >= 0.5, 'the player\'s hard landing: a strong shake: ' + JSON.stringify( effects ) );
 	cl.worldmodel = null;
+
+} );
+
+// The owner's design of 14 October 2026: a segmented ring over the blurred, slowed world; each weapon as grey line
+// art from its own model, with its ammunition over the most it can carry; the chosen segment blue.
+
+Deno.test( 'the wheel opens on the weapon in hand; letting go without pointing changes nothing', () => {
+
+	const p = reset(); seen.length = 0; cl.stats[ 10 ] = 1; // the shotgun in hand
+	press( p, ctl.WHEEL_BUTTON ); frame();
+	const s = ctl.R_WeaponWheelState();
+	check( s.open && s.choice === 1 && s.pointed === false, 'open on the shotgun, not yet pointed: ' + JSON.stringify( s ) );
+	press( p, ctl.WHEEL_BUTTON, false ); frame(); cmd.Cbuf_Execute();
+	same( seen.length, 0, 'let go without pointing: no impulse' );
+	cl.stats[ 10 ] = 0;
+
+} );
+
+Deno.test( 'while open, single-player time eases to a tenth in 0.15 s of real time and the world is blurred; closing restores both at once', () => {
+
+	const p = reset();
+	same( ctl.R_WeaponWheelTimeScale(), 1, 'closed: full speed' );
+	same( ctl.R_WeaponWheelBlur(), '', 'closed: no blur' );
+	press( p, ctl.WHEEL_BUTTON ); frame();
+	const start = ctl.R_WeaponWheelTimeScale();
+	check( start > 0.85 && start <= 1, 'just opened: still nearly full speed: ' + start );
+	for ( let i = 0; i < 12; i ++ ) frame(); // 0.19 s of real time
+	check( Math.abs( ctl.R_WeaponWheelTimeScale() - ctl.WHEEL_SLOW ) < 1e-9, 'eased to a tenth: ' + ctl.R_WeaponWheelTimeScale() );
+	ctl.R_WeaponWheelDraw();
+	same( ctl.R_WeaponWheelBlur(), `blur(${ctl.WHEEL_BLUR}px)`, 'fully open: the world blurred' );
+	press( p, ctl.WHEEL_BUTTON, false ); frame();
+	same( ctl.R_WeaponWheelTimeScale(), 1, 'let go: full speed at once' );
+	same( ctl.R_WeaponWheelBlur(), '', 'let go: no blur' );
+	// a wheel no one looks after (no poll for a quarter of a second of real time) never leaves the game slow or blurred
+	press( p, ctl.WHEEL_BUTTON ); frame(); for ( let i = 0; i < 12; i ++ ) frame(); ctl.R_WeaponWheelDraw();
+	check( ctl.R_WeaponWheelTimeScale() < 0.2 && ctl.R_WeaponWheelBlur() !== '', 'open again' );
+	host.set_realtime( host.realtime + 0.3 ); host.set_host_framecount( host.host_framecount + 18 );
+	same( ctl.R_WeaponWheelTimeScale(), 1, 'stale: full speed' );
+	same( ctl.R_WeaponWheelState().open, false, 'stale: closed' );
+	same( ctl.R_WeaponWheelBlur(), '', 'stale: no blur' );
+	press( p, ctl.WHEEL_BUTTON, false ); frame();
+
+} );
+
+Deno.test( 'the slowing is single player only, alongside host_timescale; never in New Game', async () => {
+
+	const { Host_SlowMotion } = await import( '../src/engine/server/host.js' );
+	same( Host_SlowMotion( 0.02, true, 1, 0.1 ), 0.002, 'single player, wheel open: a tenth' );
+	same( Host_SlowMotion( 0.02, false, 1, 0.1 ), 0.02, 'a network game or local play across windows: full speed' );
+	same( Host_SlowMotion( 0.02, true, 1, 1 ), 0.02, 'wheel closed: full speed' );
+	check( Math.abs( Host_SlowMotion( 0.02, true, 0.5, 0.1 ) - 0.001 ) < 1e-12, 'with host_timescale 0.5 as well: both' );
+	same( Host_SlowMotion( 0.02, true, 0.5, 1 ), 0.01, 'host_timescale alone, as before' );
+	same( Host_SlowMotion( 0.02, false, 0.5, 1 ), 0.02, 'host_timescale in a network game: ignored, as before' );
+	const source = ( await import( 'node:fs' ) ).readFileSync( new URL( '../src/engine/server/host.js', import.meta.url ), 'utf8' );
+	check( source.includes( 'set_host_frametime( Host_SlowMotion( host_frametime, sv.active && svs.maxclients === 1, host_timescale.value, R_WeaponWheelTimeScale() ) );' ), 'the host uses it each frame with the single-player rule' );
+	const p = reset(); cvar.Cvar_Set( 'r_hdr', '0' );
+	press( p, ctl.WHEEL_BUTTON ); frame(); for ( let i = 0; i < 12; i ++ ) frame();
+	same( ctl.R_WeaponWheelTimeScale(), 1, 'New Game: no wheel, full speed' );
+	press( p, ctl.WHEEL_BUTTON, false ); frame();
+
+} );
+
+Deno.test( 'the blur goes on the world\'s canvas only, scaled to its height; Newer turned off with the wheel open takes it away', () => {
+
+	const canvas = { style: { filter: '' }, clientHeight: 540 };
+	ctl.R_WeaponWheelBlurTarget( canvas );
+	const p = reset();
+	press( p, ctl.WHEEL_BUTTON ); frame(); for ( let i = 0; i < 12; i ++ ) frame(); ctl.R_WeaponWheelDraw();
+	same( canvas.style.filter, `blur(${ctl.WHEEL_BLUR / 2}px)`, 'half the height: half the blur, on that canvas' );
+	cvar.Cvar_Set( 'r_hdr', '0' ); ctl.R_WeaponWheelDraw();
+	same( canvas.style.filter, '', 'Newer turned off: no blur' );
+	cvar.Cvar_Set( 'r_hdr', '1' ); press( p, ctl.WHEEL_BUTTON, false ); frame();
+	ctl.R_WeaponWheelBlurTarget( null );
+
+} );
+
+Deno.test( 'one long frame (a hitch) does not close a wheel that is held, or lose what it points at', () => {
+
+	const p = reset(); seen.length = 0;
+	press( p, ctl.WHEEL_BUTTON ); frame(); p.axes[ 2 ] = - 1; frame(); p.axes[ 2 ] = 0;
+	host.set_realtime( host.realtime + 0.8 ); // one frame of 0.8 s
+	same( ctl.R_WeaponWheelTimeScale() < 1, true, 'still slowed after the long frame' );
+	frame();
+	const s = ctl.R_WeaponWheelState();
+	check( s.open && s.choice === 6 && s.pointed, 'still open on the rocket launcher: ' + JSON.stringify( s ) );
+	press( p, ctl.WHEEL_BUTTON, false ); frame(); cmd.Cbuf_Execute();
+	same( seen.join(), '7', 'let go: the rocket launcher taken' );
+
+} );
+
+Deno.test( 'ammunition beyond Quake\'s most (an add-on\'s) is written as the count alone', () => {
+
+	const p = reset(); cl.stats[ 6 ] = 130; // shells
+	press( p, ctl.WHEEL_BUTTON ); frame();
+	const ctx = recorder(); ctl.R_WeaponWheelPaint( ctx, 1920, 1080 );
+	const texts = ctx.log.filter( e => e[ 0 ] === 'text' ).map( e => e[ 1 ] );
+	check( texts.includes( '130' ) && ! texts.some( t => t.startsWith( '130 /' ) ), 'shells written 130: ' + JSON.stringify( texts ) );
+	press( p, ctl.WHEEL_BUTTON, false ); frame(); cl.stats[ 6 ] = 20;
+
+} );
+
+// a canvas context that keeps what was drawn
+function recorder() {
+
+	const log = [], ctx = { log, globalAlpha: 1 };
+	for ( const name of [ 'save', 'restore', 'setTransform', 'beginPath', 'arc', 'closePath', 'moveTo', 'lineTo', 'stroke' ] ) ctx[ name ] = ( ...a ) => log.push( [ name, ...a ] );
+	ctx.fill = () => log.push( [ 'fill', ctx.fillStyle ] );
+	ctx.fillText = ( text, x, y ) => log.push( [ 'text', text, x, y, ctx.globalAlpha ] );
+	ctx.drawImage = ( image, x, y, w, h ) => log.push( [ 'image', image.slot, x, y, w, h, ctx.globalAlpha ] );
+	ctx.createRadialGradient = () => ( { blue: true, addColorStop() {} } );
+	return ctx;
+
+}
+
+Deno.test( 'the ring: eight segments, the chosen one blue; each weapon\'s picture and its ammunition over the most it can carry', () => {
+
+	const p = reset(); // axe, shotgun (20 shells), nailgun (no nails), rocket launcher (5 rockets)
+	press( p, ctl.WHEEL_BUTTON ); frame(); p.axes[ 2 ] = - 1; frame(); // pointing left: the rocket launcher
+	const ctx = recorder(), asked = [];
+	ctl.R_WeaponWheelPaint( ctx, 1920, 1080, slot => { asked.push( slot ); return { slot, width: 512, height: 256 }; } );
+	const fills = ctx.log.filter( e => e[ 0 ] === 'fill' );
+	same( fills.length, 8, 'eight segments' );
+	same( fills.map( f => f[ 1 ]?.blue ? 'B' : 'g' ).join( '' ), 'ggggggBg', 'the rocket launcher\'s segment is the blue one' );
+	same( asked.join(), '0,1,2,3,4,5,6,7', 'a picture for every place' );
+	const images = ctx.log.filter( e => e[ 0 ] === 'image' );
+	same( images.length, 8, 'eight pictures' );
+	same( images.map( e => e[ 6 ] === 1 ? 'U' : e[ 6 ] === 0.5 ? 'o' : '-' ).join( '' ), 'UU-o--U-', 'bright when usable, dim with no ammunition, faint when not had' );
+	check( images.every( e => Math.abs( e[ 4 ] / e[ 5 ] - 2 ) < 1e-9 ), 'pictures keep their shape' );
+	const texts = ctx.log.filter( e => e[ 0 ] === 'text' ).map( e => e[ 1 ] );
+	for ( const t of [ '20 / 100', '0 / 200', '5 / 100', 'Rocket Launcher', 'ROCKETS  5 / 100' ] ) check( texts.includes( t ), `"${t}" is written: ` + JSON.stringify( texts ) );
+	check( ! texts.some( t => /\/ 100$/.test( t ) && t.startsWith( '0 / 100' ) ), 'nothing written for a weapon not had (the super shotgun)' );
+	same( texts.filter( t => / \/ /.test( t ) ).length, 4, 'ammunition under the three ammunition weapons had, and in the middle' );
+	// no picture (no WebGL, or the model not loaded): the weapon's name instead
+	const plain = recorder(); ctl.R_WeaponWheelPaint( plain, 1920, 1080 );
+	check( plain.log.some( e => e[ 0 ] === 'text' && e[ 1 ] === 'AXE' ), 'the axe\'s name written when it has no picture' );
+	p.axes[ 2 ] = 0; press( p, ctl.WHEEL_BUTTON, false ); frame();
+
+} );
+
+Deno.test( 'line art is quick: a full-size picture of a large weapon in well under a frame\'s allowance', async () => {
+
+	const { R_WheelIconStylise, ICON_WIDTH, ICON_HEIGHT } = await import( '../src/newer/ui/r_wheelicons.js' );
+	const px = new Uint8Array( ICON_WIDTH * ICON_HEIGHT * 4 );
+	for ( let y = 30; y < ICON_HEIGHT - 30; y ++ ) for ( let x = 20; x < ICON_WIDTH - 20; x ++ ) px.set( [ 128 + ( ( x >> 4 ) & 1 ) * 100, 160, ( x * 7 + y ) & 255, 255 ], ( y * ICON_WIDTH + x ) * 4 );
+	R_WheelIconStylise( px, ICON_WIDTH, ICON_HEIGHT ); // (warm)
+	const t = performance.now(); R_WheelIconStylise( px, ICON_WIDTH, ICON_HEIGHT ); const ms = performance.now() - t;
+	check( ms < 40, 'one picture in ' + ms.toFixed( 1 ) + ' ms' );
+
+} );
+
+Deno.test( 'line art: a black outline round the weapon, greys by the light, a line where surfaces meet sharply', async () => {
+
+	const { R_WheelIconStylise } = await import( '../src/newer/ui/r_wheelicons.js' );
+	const w = 40, h = 20, px = new Uint8Array( w * h * 4 );
+	// a block from x 10..29, y 5..14: its left half faces the viewer, its right half faces right (a sharp edge at x 20)
+	for ( let y = 5; y < 15; y ++ ) for ( let x = 10; x < 30; x ++ ) {
+
+		const o = ( y * w + x ) * 4;
+		px.set( x < 20 ? [ 128, 128, 100, 255 ] : [ 250, 128, 100, 255 ], o );
+
+	}
+	const out = R_WheelIconStylise( px, w, h ), at = ( x, y ) => Array.from( out.subarray( ( y * w + x ) * 4, ( y * w + x ) * 4 + 4 ) );
+	same( at( 0, 0 )[ 3 ], 0, 'far off the weapon: clear' );
+	same( at( 7, 10 ).join(), '16,16,16,255', 'just off its edge: the outline' );
+	same( at( 14, 10 ).join(), '190,190,190,255', 'facing the viewer, lit from above: a light grey' );
+	same( at( 19, 10 )[ 0 ], 16, 'where the surfaces meet: a line' );
+	check( at( 25, 10 )[ 0 ] < 190 && at( 25, 10 )[ 0 ] > 16, 'facing right, away from the light: a darker grey: ' + at( 25, 10 ) );
 
 } );

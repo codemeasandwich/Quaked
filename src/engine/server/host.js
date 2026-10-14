@@ -28,6 +28,7 @@ import { cvar_t, Cvar_RegisterVariable, Cvar_FindVar, Cvar_SetServerBroadcast, C
 import { SV_SeamlessFrame } from '../common/hooks.js'; // installed by newer/gameplay/sv_seamless.js
 import { R_WelcomeLoadingHolding } from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js
 import { R_BestiaryFrame, R_BestiaryTimeScale, R_BestiaryFrozen } from '../common/hooks.js'; // installed by newer/ui/r_bestiary.js
+import { R_WeaponWheelTimeScale } from '../common/hooks.js'; // installed by newer/ui/r_controller.js
 import { Cmd_Init, Cbuf_Init, Cbuf_Execute, Cbuf_AddText, Cbuf_InsertText, Cmd_SetClientCallbacks, Cmd_SetExecFallback } from '../common/cmd.js';
 import { Memory_Init } from '../common/zone.js';
 import { V_Init, V_SetContentsColor, V_CalcBlend } from '../client/view.js';
@@ -585,8 +586,8 @@ Host_Frame
 /**
  * Runs all active servers and the client for one frame, called by main.js's animation loop (or the profiler's pump).
  * Accumulates `realtime` and runs a frame only when at least 1/72 s has passed (except in a timedemo), with
- * `host_frametime` clamped to 0.001..0.1 s (or fixed by `host_framerate`), slowed by `host_timescale` in single
- * player and scaled by Newer Game's bestiary. A frame reads input and touch, runs the command buffer, polls the
+ * `host_frametime` clamped to 0.001..0.1 s (or fixed by `host_framerate`), slowed by `host_timescale` and Newer Game's
+ * open weapon wheel in single player, and scaled by Newer Game's bestiary. A frame reads input and touch, runs the command buffer, polls the
  * network, sends the client's move, runs the local server (`Host_ServerFrame`), reads server messages, draws the
  * screen, updates sound (at the view when signed on), CD and ambient music, and counts `host_framecount`. A
  * `Host_Error` or `Host_EndGame` thrown during the frame is caught here (the error's message is printed and the
@@ -719,6 +720,26 @@ _Host_FilterTime
 Returns false if the time is too short to run a frame
 ==================
 */
+/**
+ * Slow motion: a frame's length after `host_timescale` (0..1 slows it) and Newer Game's open weapon wheel
+ * (`R_WeaponWheelTimeScale`, r_controller.js), both in single player only: a network game, or local play across
+ * windows, cannot run at one player's speed. Called by `_Host_FilterTime` each frame.
+ *
+ * @param {number} frametime seconds, after clamping or `host_framerate`
+ * @param {boolean} singlePlayer a local server with one client (`sv.active && svs.maxclients === 1`)
+ * @param {number} timescale `host_timescale`
+ * @param {number} wheel the wheel's scale, 0..1 (1 closed)
+ * @returns {number} the frame's length in seconds
+ */
+export function Host_SlowMotion( frametime, singlePlayer, timescale, wheel ) {
+
+	if ( ! singlePlayer ) return frametime;
+	if ( timescale > 0 && timescale < 1 ) frametime *= timescale;
+	if ( wheel > 0 && wheel < 1 ) frametime *= wheel;
+	return frametime;
+
+}
+
 function _Host_FilterTime( time ) {
 
 	set_realtime( realtime + time );
@@ -745,9 +766,7 @@ function _Host_FilterTime( time ) {
 
 	}
 
-	// slow motion (single player only: a network game cannot run at its own speed)
-	if ( host_timescale.value > 0 && host_timescale.value < 1 && sv.active && svs.maxclients === 1 )
-		set_host_frametime( host_frametime * host_timescale.value );
+	set_host_frametime( Host_SlowMotion( host_frametime, sv.active && svs.maxclients === 1, host_timescale.value, R_WeaponWheelTimeScale() ) );
 	R_BestiaryFrame( realtime );
 	set_host_frametime( host_frametime * R_BestiaryTimeScale() );
 
