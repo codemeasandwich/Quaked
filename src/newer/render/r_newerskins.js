@@ -525,7 +525,9 @@ function materialFor( set, hasLighting ) {
 		if ( relit || set.isEnemy ) {
 
 			material.onBeforeCompile = patchShader( set );
-			material.customProgramCacheKey = () => 'quake-custom-skin-vision-v2-' + ( set.programKey || set.key ) + index;
+			// (one program for every skin whose patched shader is the same text: the key names what the patch puts in, not
+			// whose skin it is, so a gib, a head or a new monster no longer compiles its own copy mid-game)
+			material.customProgramCacheKey = function () { return 'quake-custom-skin-vision-v3-' + skinSourceKey( set ) + index + ( this.depthWrite === false ? '-nodepth' : '' ) + ( this.transparent ? '-transparent' : '' ); };
 
 		}
 		set.materials[ index ] = material;
@@ -636,9 +638,54 @@ const FRAGMENT_LIGHT = `
 // while the Ring's Unseen World vision is on, so the vision draws the gun as it draws the enemies (gl_rmain.js sets it each frame).
 export const R_HeldVisionTag = { value: .08 };
 
+// What a skin set puts into its patched shader (patchShader): its extra fragment code and whether it is an enemy's.
+// Hashed once per distinct combination (three.js asks for the key every frame).
+const sourceKeys = new Map();
+function skinSourceKey( set ) {
+
+	const parts = [ set.fragmentHead || '', set.mapFragment || '', set.emissionFragment || '', set.isEnemy ? 'enemy' : '' ];
+	const joined = parts.join( '\u0000' );
+	let key = sourceKeys.get( joined );
+	if ( key === undefined ) {
+
+		let hash = 2166136261; for ( let i = 0; i < joined.length; i ++ ) hash = Math.imul( hash ^ joined.charCodeAt( i ), 16777619 ) >>> 0;
+		key = hash.toString( 36 ) + '-' + joined.length.toString( 36 ); sourceKeys.set( joined, key );
+
+	}
+	return key;
+
+}
+// (the guard: the same key and the same three.js source must always be patched into the same text)
+const patchedSources = new Map(), sourceMismatches = [];
+const textHash = text => { let hash = 2166136261; for ( let i = 0; i < text.length; i ++ ) hash = Math.imul( hash ^ text.charCodeAt( i ), 16777619 ) >>> 0; return hash.toString( 36 ) + ':' + text.length; };
+/**
+ * Tests and trials only: every program key under which two skin materials' patched shaders came out different (none
+ * expected: materials sharing a key share one compiled program).
+ *
+ * @returns {Array<string>}
+ */
+export function R_SkinProgramMismatches() { return sourceMismatches.slice(); }
+
 function patchShader( set ) {
 
 	return function ( shader ) {
+
+		const inputKey = this.customProgramCacheKey() + '|' + textHash( shader.vertexShader + shader.fragmentShader );
+		try { return patchShaderInto.call( this, set, shader ); }
+		finally {
+
+			const out = textHash( shader.vertexShader + shader.fragmentShader ), seen = patchedSources.get( inputKey );
+			if ( seen === undefined ) patchedSources.set( inputKey, out ); else if ( seen !== out ) { sourceMismatches.push( inputKey ); console.error( 'Skin shader program key shared by different sources: ' + inputKey ); }
+
+		}
+
+	};
+
+}
+
+function patchShaderInto( set, shader ) {
+
+	{
 
 		Object.assign( shader.uniforms, set.uniforms, heightShadowUniforms );
   const surface=this.userData.quakePlayerSurface===true;
@@ -692,7 +739,7 @@ function patchShader( set ) {
  * @param {{ diffuse?: THREE.Texture, normal?: THREE.Texture, luma?: THREE.Texture }} maps the loaded maps; any may be
  *   absent
  * @param {string} key the model key: selects the style's native-skin rectangle (`R_WeaponStyleGLSL` role) and names
- *   the shader program (`quake-imported-alias-height-shadow-v1-<key>`)
+ *   the shader program (`quake-imported-alias-height-shadow-v2-<key>-<source signature>`)
  * @param {{ style?: object, baseColorFactor?: Array<number>, doubleSided?: boolean, normalFlipGreen?: boolean,
  *   emissiveFactor?: Array<number> }} [authored={}] the manifest's material: `style` for `R_WeaponStyleGLSL` (a
  *   wrapped core with opacity below 1 makes the material transparent), `baseColorFactor` the colour (linear 0..1),
@@ -722,7 +769,9 @@ export function R_AssetAliasMaterial( maps, key, authored = {} ) {
 
 	}
 	material.onBeforeCompile = patchShader( set );
-	material.customProgramCacheKey = () => 'quake-imported-alias-height-shadow-v1-' + key;
+	// (the key names the patched text: the same model key with different authored styles, as 'native-alias' gets, once
+	// shared one program between different shaders, drawing some models with another's)
+	material.customProgramCacheKey = function () { return 'quake-imported-alias-height-shadow-v2-' + key + '-' + skinSourceKey( set ) + ( this.depthWrite === false ? '-nodepth' : '' ) + ( this.transparent ? '-transparent' : '' ); };
 	return material;
 
 }
