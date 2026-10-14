@@ -22,7 +22,7 @@
 
 import { sv, svs } from '../../engine/server/server.js';
 import { R_NewerGame } from '../mode.js';
-import { pr_crc, pr_functions, pr_global_struct, pr_globals_float, PR_GetString, PROG_TO_EDICT } from '../../engine/progs/progs.js';
+import { pr_functions, pr_global_struct, pr_globals_float, PR_GetString, PROG_TO_EDICT, PR_StockProgs } from '../../engine/progs/progs.js';
 import { OFS_PARM0, OFS_PARM1 } from '../../engine/progs/pr_comp.js';
 import { ED_FindFunction } from '../../engine/progs/pr_edict.js';
 import { SV_StartParticle } from '../../engine/server/sv_main.js';
@@ -37,7 +37,7 @@ export const meleeStats = { bled: 0 }; // (for tests: sprays turned to blood)
  * engine hook table (installed by newer/install.js). When `SpawnMeatSpray` is entered with a player as the attacker's
  * `enemy`, it emits the blood particles instead (`SV_StartParticle` at the spray's origin, a tenth of its velocity,
  * colour 73, 24 particles) and counts it in `meleeStats.bled`. Acts only in local single player with the stock progs
- * (`pr_crc` 24778) while playing Newer Game. The function lookups are cached until `pr_functions` changes (progs
+ * (`PR_StockProgs`: 1.06 or the 2021 re-release) while playing Newer Game. The function lookups are cached until `pr_functions` changes (progs
  * reloaded).
  *
  * @param {dfunction_t} f the QuakeC function being entered (its arguments are already in OFS_PARM0 = origin and
@@ -47,7 +47,7 @@ export const meleeStats = { bled: 0 }; // (for tests: sprays turned to blood)
  */
 export function SV_MeleeSprayEnter( f ) {
 
-	if ( sv.active !== true || svs.maxclients !== 1 || pr_crc !== 24778 ) return null; // (local single player, the stock progs)
+	if ( sv.active !== true || svs.maxclients !== 1 || ! PR_StockProgs() ) return null; // (local single player, the stock progs)
 	if ( program !== pr_functions ) { program = pr_functions; fnSpray = ED_FindFunction( 'SpawnMeatSpray' ); fnNull = ED_FindFunction( 'SUB_Null' ); }
 	if ( f !== fnSpray || fnNull == null || ! R_NewerGame() ) return null;
 	const attacker = PROG_TO_EDICT( pr_global_struct.self ), victim = attacker ? PROG_TO_EDICT( attacker.v.enemy ) : null;

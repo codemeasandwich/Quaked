@@ -15,7 +15,7 @@
 import { sv, svs, MOVETYPE_STEP, FL_FLY, FL_SWIM } from '../../engine/server/server.js';
 import { SV_DropToFloor } from '../../engine/server/world.js';
 import { cls, ca_connected } from '../../engine/client/client.js';
-import { PR_GetString, pr_functions, pr_crc } from '../../engine/progs/progs.js';
+import { PR_GetString, pr_functions, PR_StockProgs } from '../../engine/progs/progs.js';
 import { R_NewerGame } from '../mode.js';
 import { Rend_Schedule } from './rend_veil_state.js';
 
@@ -56,7 +56,7 @@ export function Rend_ParseRecord( encoded ) {
 }
 
 /**
- * True when the rite may run: an active single-player Newer Game server running stock progs (CRC 24778) whose client 0
+ * True when the rite may run: an active single-player Newer Game server running stock progs (`PR_StockProgs`: 1.06 or the 2021 re-release) whose client 0
  * is this browser's own loopback connection, connected and not playing a demo or timedemo. Match the actual paired
  * local connection. An unrelated active server must never supply identity or a gameplay hold to a remote client or
  * recorded demo. Checked by every other function here.
@@ -65,7 +65,7 @@ export function Rend_ParseRecord( encoded ) {
  */
 export function SV_RendVeilLocalActive() {
 	const client = svs.clients?.[ 0 ], connection = cls.netcon, peer = connection?.driverdata;
-	return sv.active === true && svs.maxclients === 1 && pr_crc === 24778 &&
+	return sv.active === true && svs.maxclients === 1 && PR_StockProgs() &&
 		! cls.demoplayback && ! cls.timedemo && cls.state === ca_connected &&
 		connection?.driver === 0 && ! connection.disconnected && peer != null && ! peer.disconnected &&
 		peer === client?.netconnection && peer.driverdata === connection && client.active === true &&

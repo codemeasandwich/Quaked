@@ -739,6 +739,34 @@ function PF_stuffcmd() {
 
 }
 
+/**
+ * The 2021 re-release's `finaleFinished` (#79), which its QuakeC calls when the game's last text has been shown
+ * (`finale_5`), for the re-release's own achievements. Nothing to do here: the finale itself runs as before. Without
+ * it the re-release stopped at its finale with "Bad builtin call number".
+ */
+function PF_finaleFinished() {}
+
+/**
+ * The 2021 re-release's `localsound` (#80): a sound heard by one player only. Sent to that client as `play <sample>`
+ * (the engine's own command, which plays it at the listener), as `stuffcmd` sends text.
+ *
+ * @throws {Error} via `PR_RunError` when parm 0 is not a client
+ */
+function PF_localsound() {
+
+	const entnum = G_EDICTNUM( OFS_PARM0 );
+	if ( entnum < 1 || entnum > ( svs.maxclients || 1 ) )
+		PR_RunError( 'Parm 0 not a client' );
+	const sample = G_STRING( OFS_PARM1 ), client = svs.clients[ entnum - 1 ];
+	if ( client && /^[\w./-]+$/.test( sample ) ) {
+
+		MSG_WriteByte( client.message, svc_stufftext );
+		MSG_WriteString( client.message, 'play ' + sample + '\n' );
+
+	}
+
+}
+
 /*
 =================
 PF_localcmd
@@ -1608,6 +1636,10 @@ const pr_builtin = [
 	PF_precache_file,	// #77
 
 	PF_setspawnparms,	// #78
+
+	// the 2021 re-release's QuakeC (docs/stock-progs-2026-10-14.md)
+	PF_finaleFinished,	// void() finaleFinished = #79;
+	PF_localsound,		// void(entity client, string sample) localsound = #80;
 ];
 
 /*

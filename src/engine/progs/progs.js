@@ -340,7 +340,26 @@ export function PR_SetEdictSize( s ) { pr_edict_size = s; }
  *
  * @param {number} c CRC value (16-bit, from `CRC_Value`)
  */
-export function PR_SetCRC( c ) { pr_crc = c; }
+export function PR_SetCRC( c ) { pr_crc = c; stockProgs = STOCK_PROGS_CRCS.includes( c ); }
+
+/**
+ * The whole-file CRCs of the stock QuakeC that Newer Game's gameplay hooks (sv_faceevents.js, sv_shotdelay.js,
+ * sv_respawn.js, sv_axecut.js, sv_rendveil.js, sv_unseen.js, sv_firequench.js, sv_pronezombie.js, sv_meleespray.js,
+ * sv_teleporttrain.js, sv_cloak.js) are written against: id's 1.06 progs.dat (24778, the shareware's and the
+ * registered game's) and the 2021 re-release's (59507). The re-release keeps every QuakeC function and field those hooks
+ * name (it drops only CheckSpawnPoint, CopyToBodyQue, InitBodyQue, W_CheckNoAmmo, bodyque, nopain and the hit_z
+ * field, none of which they use; docs/stock-progs-2026-10-14.md). A mod's or mission pack's own QuakeC is not stock.
+ */
+export const STOCK_PROGS_CRCS = Object.freeze( [ 24778, 59507 ] );
+
+/**
+ * Whether the loaded progs.dat is stock QuakeC (`STOCK_PROGS_CRCS`), so Newer Game's gameplay hooks apply. Asked by
+ * those hooks each time they would act.
+ *
+ * @returns {boolean}
+ */
+export function PR_StockProgs() { return stockProgs; }
+let stockProgs = false; // (kept by PR_SetCRC: the hooks ask on every QuakeC call)
 /**
  * Stores where the 128-byte temp string area (C `pr_string_temp`) starts in `pr_strings_data`. Called by
  * `PR_LoadProgs` with the end of the progs strings.

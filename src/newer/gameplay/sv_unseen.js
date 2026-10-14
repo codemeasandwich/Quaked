@@ -29,7 +29,7 @@
 
 import { sv, svs, FL_MONSTER } from '../../engine/server/server.js';
 import { R_NewerGame } from '../mode.js';
-import { pr_crc, pr_functions, pr_global_struct, pr_globals_int, PR_GetString, PROG_TO_EDICT, EDICT_TO_PROG } from '../../engine/progs/progs.js';
+import { pr_functions, pr_global_struct, pr_globals_int, PR_GetString, PROG_TO_EDICT, EDICT_TO_PROG, PR_StockProgs } from '../../engine/progs/progs.js';
 import { OFS_PARM0 } from '../../engine/progs/pr_comp.js';
 import { GetEdictFieldValue, ED_FindFunction, ED_Alloc, ED_Free, ED_NewString } from '../../engine/progs/pr_edict.js';
 import { PR_ExecuteProgram } from '../../engine/progs/pr_exec.js';
@@ -49,13 +49,13 @@ function functions() {
 }
 const player = () => sv.edicts?.[ 1 ] ?? null;
 /**
- * True when the Ring's Newer Game rules apply: an active local single-player server on the stock progs (CRC 24778)
+ * True when the Ring's Newer Game rules apply: an active local single-player server on the stock progs (`PR_StockProgs`: 1.06 or the 2021 re-release)
  * in Newer Game. Checked each `SV_UnseenFrame`; outside it every marker is removed.
  *
  * @returns {boolean} true when unseen rules are in force
  */
 export function SV_UnseenActive() {
-	return sv.active === true && svs.maxclients === 1 && pr_crc === 24778 && R_NewerGame();
+	return sv.active === true && svs.maxclients === 1 && PR_StockProgs() && R_NewerGame();
 }
 const unseen = p => !! p && ! p.free && p.v.health > 0 && ( ( p.v.items | 0 ) & IT_INVISIBILITY ) !== 0;
 function field( e, name, value ) {
@@ -107,7 +107,7 @@ function freeMarker( e ) {
  */
 export function SV_UnseenFunctionEnter( fn ) {
 	// (called for every QuakeC function: cheap checks first, and no progs lookups outside a local stock game)
-	if ( sv.active !== true || svs.maxclients !== 1 || pr_crc !== 24778 ) return null;
+	if ( sv.active !== true || svs.maxclients !== 1 || ! PR_StockProgs() ) return null;
 	if ( program !== pr_functions || world !== sv.edicts ) functions();
 	if ( fn !== fnDamage && fn !== fnAttack ) return null;
 	if ( ! R_NewerGame() ) return null;

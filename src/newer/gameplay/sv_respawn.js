@@ -18,7 +18,7 @@
 import {sv,svs,FL_MONSTER,FL_ONGROUND,MOVETYPE_NONE,MOVETYPE_WALK,MOVETYPE_TOSS,SOLID_NOT,SOLID_TRIGGER,SOLID_SLIDEBOX,ss_loading} from '../../engine/server/server.js';
 import {cls,ca_dedicated} from '../../engine/client/client.js';
 import { R_NewerGame } from '../mode.js';
-import {pr_crc,PR_GetString,pr_functions,pr_global_struct,pr_globals_int,EDICT_TO_PROG,PROG_TO_EDICT} from '../../engine/progs/progs.js';
+import {pr_crc,PR_GetString,pr_functions,pr_global_struct,pr_globals_int,EDICT_TO_PROG,PROG_TO_EDICT,PR_StockProgs} from '../../engine/progs/progs.js';
 import {ED_Alloc,ED_Free,ED_FindFunction,ED_NewString,GetEdictFieldValue} from '../../engine/progs/pr_edict.js';
 import {PR_ExecuteProgram} from '../../engine/progs/pr_exec.js';
 import {SV_Move,SV_LinkEdict,SV_PointContents,MOVE_NOMONSTERS,MOVE_NORMAL} from '../../engine/server/world.js';
@@ -47,10 +47,10 @@ const HOOKS=new Set(['PlayerDie','ClientKill','DropBackpack','respawn','PutClien
 const fnIndex=n=>{const f=ED_FindFunction(n);return f?pr_functions.indexOf(f):0;};
 const slot=(e,n)=>GetEdictFieldValue(e,n);
 function field(e,n,value,integer=false){const f=slot(e,n);if(f){if(value!==undefined){if(integer)f.accessor.setInt32(f.ofs,value);else f.accessor.setFloat(f.ofs,value);}return integer?f.accessor.getInt32(f.ofs):f.accessor.getFloat(f.ofs);}return 0;}
-const localContext=()=>svs.maxclients===1&&cls.state!==ca_dedicated&&!cls.demoplayback&&pr_crc===24778;
+const localContext=()=>svs.maxclients===1&&cls.state!==ca_dedicated&&!cls.demoplayback&&PR_StockProgs();
 /**
  * True when this module's death and respawn replace Quake's own: a local single-player game (not dedicated, not
- * playing a demo) on the stock progs (CRC 24778) in Newer Game. Checked by other modules before relying on respawn
+ * playing a demo) on the stock progs (`PR_StockProgs`: 1.06 or the 2021 re-release) in Newer Game. Checked by other modules before relying on respawn
  * state (travel, powerups, the respawn notice).
  *
  * @returns {boolean} true when a death now would be coordinated here

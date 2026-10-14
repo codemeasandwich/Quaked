@@ -17,7 +17,7 @@
 // power-up axe damage and replace the confirmed kill's enhanced presentation.
 import {sv,svs} from '../../engine/server/server.js';
 import {cls,ca_dedicated} from '../../engine/client/client.js';
-import {pr_crc,pr_functions,PR_GetString,pr_globals_int,pr_globals_float,pr_global_struct,PROG_TO_EDICT} from '../../engine/progs/progs.js';
+import {pr_functions,PR_GetString,pr_globals_int,pr_globals_float,pr_global_struct,PROG_TO_EDICT,PR_StockProgs} from '../../engine/progs/progs.js';
 import {OFS_PARM0,OFS_PARM1,OFS_PARM2,OFS_PARM3} from '../../engine/progs/pr_comp.js';
 import {ED_Alloc,ED_FindFunction,ED_NewString,GetEdictFieldValue} from '../../engine/progs/pr_edict.js';
 import {COM_FindFile} from '../../engine/common/pak.js';
@@ -40,7 +40,7 @@ const field=(entity,name)=>{const f=GetEdictFieldValue(entity,name);return f?f.a
 /**
  * Hook run by `PR_EnterFunction` on every QuakeC call (its token is kept on the progs stack frame and handed back
  * to `SV_AxeFunctionLeave`). Starts tracking when `W_FireAxe` calls `T_Damage` in single-player Newer Game with the
- * stock progs (CRC 24778), on a live monster, by the player holding the Quad; with Pentagram too ("combo") it
+ * stock progs (`PR_StockProgs`: 1.06 or the 2021 re-release), on a live monster, by the player holding the Quad; with Pentagram too ("combo") it
  * raises the damage argument (`OFS_PARM3`) to a sure kill, (health + armour + 1000) / 4 + 1. Without the combo the
  * hit is tracked only if the axe pose gives a swing normal for the cut. While tracking, a `Killed` call on the
  * target marks the kill confirmed.
@@ -56,7 +56,7 @@ const field=(entity,name)=>{const f=GetEdictFieldValue(entity,name);return f?f.a
 export function SV_AxeFunctionEnter(fn,caller){
 	const name=functionName(fn);
 	if(active&&name==='Killed'&&PROG_TO_EDICT(pr_globals_int[OFS_PARM0])===active.target){active.killed=true;return null;}
-	if(name!=='T_Damage'||functionName(caller)!=='W_FireAxe'||pr_crc!==24778||svs.maxclients!==1||cls.state===ca_dedicated||!R_NewerGame())return null;
+	if(name!=='T_Damage'||functionName(caller)!=='W_FireAxe'||!PR_StockProgs()||svs.maxclients!==1||cls.state===ca_dedicated||!R_NewerGame())return null;
 	const attacker=PROG_TO_EDICT(pr_globals_int[OFS_PARM2]),target=PROG_TO_EDICT(pr_globals_int[OFS_PARM0]);
 	if(!attacker||attacker.index!==1||PROG_TO_EDICT(pr_globals_int[OFS_PARM1])!==attacker||!(field(attacker,'super_damage_finished')>sv.time)||!target||target.free||target.v.health<=0||target.v.takedamage===0||!PR_GetString(target.v.classname).startsWith('monster_'))return null;
 	const combo=field(attacker,'invincible_finished')>sv.time,normal=R_AxeSwingNormal(COM_FindFile('progs/v_axe.mdl')?.data,attacker.v.weaponframe,Array.from(attacker.v.v_angle));

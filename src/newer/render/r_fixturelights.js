@@ -12,8 +12,9 @@
 // Source-bound physical ceiling fixtures. No renderer, cvars or gameplay state.
 // FNV is a fast admission fingerprint, not a security/hash authenticity claim;
 // known geometry and unique helper matching are checked separately.
-const BUNDLED_E1M1_BYTES = 1365176;
-const BUNDLED_E1M1_FNV = 0xa7af00e6;
+// the E1M1s whose fixtures are known: the bundled 1.06 shareware's, and the 2021 re-release's (recompiled, the same
+// corridor and fixtures: docs/stock-progs-2026-10-14.md); each is still checked panel by panel
+const KNOWN_E1M1 = Object.freeze( [ { bytes: 1365176, fnv: 0xa7af00e6 }, { bytes: 1664336, fnv: 2048426756 } ] );
 export const FIXTURE_CONE = [ Math.cos(18*Math.PI/180), Math.cos(32*Math.PI/180) ];
 const finite3 = v => (Array.isArray(v)||ArrayBuffer.isView(v)) && v.length >= 3 && Array.from(v.slice(0,3)).every(Number.isFinite);
 /**
@@ -59,8 +60,8 @@ float pointCone(vec3 receiver,int index){
 }
 `;
 /**
- * Whether the world model is the bundled E1M1, the only map whose fixtures are known: its name is 'maps/e1m1.bsp' and
- * its source bytes have the bundled length and 32-bit FNV-1a fingerprint. FNV is a fast admission fingerprint, not a
+ * Whether the world model is a known E1M1, the only map whose fixtures are known: its name is 'maps/e1m1.bsp' and its
+ * source bytes have the length and 32-bit FNV-1a fingerprint of the bundled 1.06 E1M1 or the 2021 re-release's. FNV is a fast admission fingerprint, not a
  * security/hash authenticity claim; known geometry and unique helper matching are checked separately
  * (`R_ExitFixturePairs`).
  *
@@ -71,9 +72,9 @@ export function R_KnownFixtureSource(model) {
  if(model?.name!=='maps/e1m1.bsp')return false;
  const source=model.bspSourceBytes;
  const bytes=source instanceof ArrayBuffer?new Uint8Array(source):source;
- if(bytes?.byteLength!==BUNDLED_E1M1_BYTES)return false;
+ const known=KNOWN_E1M1.filter(k=>k.bytes===bytes?.byteLength);if(!known.length)return false;
  let hash=2166136261;for(let i=0;i<bytes.length;i++)hash=Math.imul(hash^bytes[i],16777619)>>>0;
- return hash===BUNDLED_E1M1_FNV;
+ return known.some(k=>k.fnv===hash);
 }
 /**
  * Return one-to-one known exit-corridor panel/helper pairs, never mutating inputs: the six downward-facing 32 x 32

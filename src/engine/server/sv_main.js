@@ -82,7 +82,7 @@ import { COM_LoadFile } from '../common/pak.js';
 import { VectorCopy, VectorAdd, DotProduct } from '../common/mathlib.js';
 import { Mod_ForName, Mod_LeafPVS, Mod_LoadForPreview, Mod_PointInLeaf } from '../render/gl_model.js';
 import { PR_LoadProgs, PR_AllocEdicts, ED_ClearEdict, ED_LoadFromFile, ED_NewString, GetEdictFieldValue, PR_SetCurrentSkill, PR_SetDeathmatch } from '../progs/pr_edict.js';
-import { pr_global_struct, pr_strings, pr_edict_size, progs, pr_crc, EDICT_NUM, NUM_FOR_EDICT, PR_SetSV, PR_SetSVS, EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, PR_GetString } from '../progs/progs.js';
+import { pr_global_struct, pr_strings, pr_edict_size, progs, pr_crc, EDICT_NUM, NUM_FOR_EDICT, PR_SetSV, PR_SetSVS, EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, PR_GetString, PR_StockProgs } from '../progs/progs.js';
 import { SV_SeamlessSetup, SV_SeamlessUseModels, SV_LiquidLinks, SV_SeamlessEnabled, SV_SeamlessCloseReturn, SV_SeamlessEntryYaw } from '../common/hooks.js'; // installed by newer/gameplay/sv_seamless.js
 import { R_NewerGame } from '../common/hooks.js'; // installed by newer/mode.js
 import { COM_SetNewerActive, COM_SetNewerMapsEnabled } from '../common/pak.js';
@@ -1995,6 +1995,8 @@ function spawnServer( server ) {
 	// load progs to get entity field count
 	const progsData = COM_LoadFile( 'progs.dat' );
 	PR_LoadProgs( progsData );
+	// said once a map, so it can never again go unnoticed (docs/stock-progs-2026-10-14.md)
+	if ( R_NewerGame() && ! PR_StockProgs() ) Con_Printf( 'Newer Game: this game\'s own QuakeC (CRC %d) is not stock Quake, so the gameplay additions (shotgun pellets, the face\'s reactions, respawn, ...) are off\n', pr_crc );
 	SV_RespawnWorldStart();
 
 	// Wire up sv_phys.js with server state and cross-module callbacks
@@ -2125,7 +2127,7 @@ function spawnServer( server ) {
 	// Enhanced travel/save restoration can retain powers whose pickup entity
 	// is absent in this map. Reserve their native warning/expiry sounds before
 	// serverinfo is sent; changing the sound table after signon is too late.
-	if (R_NewerGame() && svs.maxclients===1 && pr_crc===24778) {
+	if (R_NewerGame() && svs.maxclients===1 && PR_StockProgs()) {
 		for (const sound of ['items/inv2.wav','items/inv3.wav','items/protect2.wav','items/protect3.wav','items/damage2.wav','items/damage3.wav','items/suit2.wav']) {
 			if (sv.sound_precache.includes(sound)) continue;
 			let slot=1;while(slot<MAX_SOUNDS && sv.sound_precache[slot])slot++;

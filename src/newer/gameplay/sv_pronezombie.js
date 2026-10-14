@@ -36,7 +36,7 @@
 
 import { sv, svs } from '../../engine/server/server.js';
 import { R_NewerGame } from '../mode.js';
-import { pr_crc, pr_functions, pr_global_struct, PR_GetString, PROG_TO_EDICT } from '../../engine/progs/progs.js';
+import { pr_functions, pr_global_struct, PR_GetString, PROG_TO_EDICT, PR_StockProgs } from '../../engine/progs/progs.js';
 import { ED_FindFunction } from '../../engine/progs/pr_edict.js';
 import { SV_LinkEdict, SV_Move, MOVE_NORMAL } from '../../engine/server/world.js';
 
@@ -57,11 +57,11 @@ function functions() {
 }
 /**
  * Whether the prone-zombie rule applies now: an active local single-player server running the stock progs
- * (`pr_crc` 24778) in the Newer Game.
+ * (`PR_StockProgs`: 1.06 or the 2021 re-release) in the Newer Game.
  *
  * @returns {boolean} true when lying zombies are made hittable
  */
-export const SV_ProneZombieActive = () => sv.active === true && svs.maxclients === 1 && pr_crc === 24778 && R_NewerGame();
+export const SV_ProneZombieActive = () => sv.active === true && svs.maxclients === 1 && PR_StockProgs() && R_NewerGame();
 const zombie = e => !! e && ! e.free && e.v.health > 0 && PR_GetString( e.v.classname ) === 'monster_zombie' && PR_GetString( e.v.model ) === 'progs/zombie.mdl';
 function box( e, b, solid ) { e.v.mins = b.mins.slice(); e.v.maxs = b.maxs.slice(); for ( let a = 0; a < 3; a ++ ) e.v.size[ a ] = b.maxs[ a ] - b.mins[ a ]; e.v.solid = solid; SV_LinkEdict( e, false ); }
 /**
@@ -91,7 +91,7 @@ function fits( e ) { const t = SV_Move( e.v.origin, PRONE.mins, PRONE.maxs, e.v.
  *   the Newer Game; null when nothing is to be done
  */
 export function SV_ProneZombieEnter( f ) {
-	if ( sv.active !== true || svs.maxclients !== 1 || pr_crc !== 24778 ) return null;
+	if ( sv.active !== true || svs.maxclients !== 1 || ! PR_StockProgs() ) return null;
 	functions();
 	if ( f !== waking && ! zombieFns.has( f ) && ! lying.has( f ) ) return null;
 	const self = PROG_TO_EDICT( pr_global_struct.self );

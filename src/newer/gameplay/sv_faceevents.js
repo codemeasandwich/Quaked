@@ -20,7 +20,7 @@
 import { sv, svs, FL_MONSTER } from '../../engine/server/server.js';
 import { cls, ca_connected } from '../../engine/client/client.js';
 import { R_NewerGame } from '../mode.js';
-import { pr_crc, pr_functions, pr_global_struct, pr_globals_int, PR_GetString, PROG_TO_EDICT, pr_xfunction } from '../../engine/progs/progs.js';
+import { pr_functions, pr_global_struct, pr_globals_int, PR_GetString, PROG_TO_EDICT, pr_xfunction, PR_StockProgs } from '../../engine/progs/progs.js';
 import { OFS_PARM0, OFS_PARM1 } from '../../engine/progs/pr_comp.js';
 import { GetEdictFieldValue, ED_FindFunction } from '../../engine/progs/pr_edict.js';
 import { shotRaysNew, shotRayRecord, shotRayEvent, shotBlastId } from './sv_shotrays.js';
@@ -64,7 +64,7 @@ export function SV_FaceReset() {
 function syncEpoch() { if ( program !== pr_functions || world !== sv.edicts || map !== sv.name ) SV_FaceReset(); }
 
 /**
- * Whether the observations apply: an active single-player server running stock progs (CRC 24778), not playing a demo,
+ * Whether the observations apply: an active single-player server running stock progs (`PR_StockProgs`: 1.06 or the 2021 re-release), not playing a demo,
  * whose client 0 is this browser's own connected loopback connection with a live player edict (edict 1), in Newer
  * Game. Checked here before any event is recorded; the HUD face (r_facegame.js) uses it to tell native observations
  * from demo/network fallbacks, and the Quad vision (r_quadvision.js) and Quad movement (sv_quadmovement.js) as their
@@ -74,7 +74,7 @@ function syncEpoch() { if ( program !== pr_functions || world !== sv.edicts || m
  */
 export function SV_FaceLocalActive() {
  const client = svs.clients?.[0], peer = cls.netcon?.driverdata;
- return sv.active === true && svs.maxclients === 1 && pr_crc === 24778 && !cls.demoplayback &&
+ return sv.active === true && svs.maxclients === 1 && PR_StockProgs() && !cls.demoplayback &&
   cls.state === ca_connected && cls.netcon?.driver === 0 && !cls.netcon.disconnected &&
   !!peer && !peer.disconnected && peer === client?.netconnection && client.active === true &&
   client.edict === sv.edicts?.[1] && !client.edict?.free && R_NewerGame();

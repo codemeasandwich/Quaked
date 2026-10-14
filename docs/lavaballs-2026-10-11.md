@@ -134,7 +134,7 @@ twice per missile move:
   * the edict is removed, so it deals no damage.
 
 **Where it applies.** As the other Newer gameplay rules do, it applies to a local single-player
-game (not dedicated, not a demo) on the stock progs (CRC 24778). A mod's QuakeC that still holds
+game (not dedicated, not a demo) on the stock progs (stock QuakeC: `PR_StockProgs`, 1.06 or the 2021 re-release). A mod's QuakeC that still holds
 such a missile is never surprised by the engine removing it. A multiplayer host does not change
 the rules for its clients.
 

@@ -19,7 +19,7 @@
 // function: it reads the next corner and starts SUB_CalcMove). Its path, speed and the corners it passes are the
 // level's own; only the pauses go. Other trains (doors, platforms, func_train) and every rule outside Newer Game are
 // unchanged; as the other Newer gameplay rules, it applies to a local single-player game on the stock progs.
-import { PR_GetString, pr_functions, pr_global_struct, EDICT_TO_PROG, pr_crc } from '../../engine/progs/progs.js';
+import { PR_GetString, pr_functions, pr_global_struct, EDICT_TO_PROG, PR_StockProgs } from '../../engine/progs/progs.js';
 import { cls, ca_dedicated } from '../../engine/client/client.js';
 import { PR_ExecuteProgram } from '../../engine/progs/pr_exec.js';
 import { ED_FindFunction } from '../../engine/progs/pr_edict.js';
@@ -37,7 +37,7 @@ let program = null, fnNext = 0;
 export function SV_TeleportTrainThought( ent ) {
 
 	// (as the other Newer gameplay rules: a local single-player game, not dedicated, not a demo, on the stock progs)
-	if ( ent == null || ent.free || sv.active !== true || svs.maxclients !== 1 || cls.state === ca_dedicated || cls.demoplayback || pr_crc !== 24778 || ! R_NewerGame() ) return;
+	if ( ent == null || ent.free || sv.active !== true || svs.maxclients !== 1 || cls.state === ca_dedicated || cls.demoplayback || ! PR_StockProgs() || ! R_NewerGame() ) return;
 	if ( program !== pr_functions ) { program = pr_functions; const f = ED_FindFunction( 'train_next' ); fnNext = f ? pr_functions.indexOf( f ) : 0; }
 	if ( fnNext <= 0 || ent.v.think !== fnNext || ent.v.wait ) return;
 	if ( PR_GetString( ent.v.classname ) !== 'misc_teleporttrain' ) return;

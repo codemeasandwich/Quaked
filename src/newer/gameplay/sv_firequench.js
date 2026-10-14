@@ -32,7 +32,7 @@
 //
 // No damage is dealt: the fire went out. Lava is not water: misc_fireball's balls rise out of lava and fall back into
 // it unchanged. As the other Newer gameplay rules, it applies to a local single-player game (not dedicated, not a
-// demo) on the stock progs (CRC 24778): a mod's QuakeC that still holds such a missile is never surprised by the
+// demo) on the stock progs (`PR_StockProgs`: 1.06 or the 2021 re-release): a mod's QuakeC that still holds such a missile is never surprised by the
 // engine removing it, and a multiplayer host does not change the rules for its clients. The burst is at the surface,
 // so the defence is being fully under it: a player whose eyes are just under the water still has up to 10 units of
 // body above it (maxs z 32, view height 22).
@@ -41,7 +41,7 @@ import { cls, ca_dedicated } from '../../engine/client/client.js';
 import { SV_PointContents } from '../../engine/server/world.js';
 import { SV_StartSound } from '../../engine/server/sv_main.js';
 import { ED_Free } from '../../engine/progs/pr_edict.js';
-import { PR_GetString, pr_crc } from '../../engine/progs/progs.js';
+import { PR_GetString, PR_StockProgs } from '../../engine/progs/progs.js';
 import { MSG_WriteByte, MSG_WriteCoord } from '../../engine/common/common.js';
 import { svc_temp_entity, TE_KNIGHTSPIKE } from '../../engine/common/protocol.js';
 import { CONTENTS_WATER, CONTENTS_SLIME } from '../../engine/common/bspfile.js';
@@ -52,8 +52,7 @@ export const FIRE_QUENCH = Object.freeze( {
 	models: Object.freeze( [ 'progs/lavaball.mdl', 'progs/k_spike.mdl' ] ), // the fireballs
 	sound: 'misc/h2ohit1.wav', // stock Quake's missile-into-water splash (precached by world.qc)
 	sample: 2,                 // Quake units between the points sampled along a step for the water
-	halvings: 8,               // then the surface found to 1/256 of that
-	progs: 24778               // the stock progs' CRC
+	halvings: 8                // then the surface found to 1/256 of that
 } );
 
 const wet = c => c === CONTENTS_WATER || c === CONTENTS_SLIME;
@@ -82,7 +81,7 @@ function fireball( ent ) {
  */
 export function SV_FireQuenchActive() {
 
-	return sv.active === true && svs.maxclients === 1 && cls.state !== ca_dedicated && ! cls.demoplayback && pr_crc === FIRE_QUENCH.progs && R_NewerGame();
+	return sv.active === true && svs.maxclients === 1 && cls.state !== ca_dedicated && ! cls.demoplayback && PR_StockProgs() && R_NewerGame();
 
 }
 
