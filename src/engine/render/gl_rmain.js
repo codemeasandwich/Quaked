@@ -1,4 +1,4 @@
-import { R_MotesFrame, R_MotesClear, R_AmbientPlacesClear, r_drips, r_sparks, r_nailhits, r_embers, s_gibs, s_lava, r_itemturn, r_mapliquids, r_storm, R_StormFrame, R_StormClear, s_impacts } from '../common/hooks.js';
+import { R_MotesFrame, R_MotesClear, R_AmbientPlacesClear, r_drips, r_sparks, r_nailhits, r_embers, s_gibs, s_lava, r_itemturn, r_mapliquids, r_storm, R_StormFrame, R_StormClear, s_impacts, s_footsteps, S_FootstepsFrame } from '../common/hooks.js';
 /**
  * @module engine/render/gl_rmain
  *
@@ -2022,6 +2022,7 @@ export function R_RenderView() {
 
 	R_MotesFrame( scene, cl != null ? cl.time : 0, r_refdef.vieworg, _fireballView[ 1 ] );
 	R_StormFrame( cl != null ? cl.time : 0, r_refdef.vieworg ); // (Newer Game: lightning with the thunder, gusts; card T-3faa98e3)
+	S_FootstepsFrame( cl != null ? cl.time : 0 ); // (Newer Game: footsteps of the player and all that walks)
 	R_ImpactRippleFrame( cl != null ? cl.time : 0 ); // (the detector's list of hits, aged)
 	R_WavesFrame( cl != null ? cl.time : 0 ); // (and the ripples they make, stepped to now)
 	// render normal view
@@ -2293,6 +2294,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_mapliquids );
 	Cvar_RegisterVariable( r_storm );
 	Cvar_RegisterVariable( s_impacts );
+	Cvar_RegisterVariable( s_footsteps );
 	Cvar_RegisterVariable( r_fireball );
 	Cvar_RegisterVariable( r_fireballalpha );
 	Cvar_RegisterVariable( r_smoketrails );

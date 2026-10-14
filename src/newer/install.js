@@ -74,6 +74,7 @@ import { r_itemturn, R_ItemTurn } from './render/r_itemturn.js';
 import { r_mapliquids, R_MapLiquidAlpha, R_MapLiquidAlphaAny } from './render/r_mapliquids.js';
 import { r_storm, R_StormFrame, R_StormClear } from './render/r_storm.js';
 import { s_impacts } from './sound/s_impacts.js';
+import { s_footsteps, S_FootstepsFrame } from './sound/s_footsteps.js';
 import { R_MuzzleFlashFired, R_MuzzleFlashScale, R_MuzzleSetProbe, R_MuzzleSetView, R_MuzzleView } from './render/r_muzzle.js';
 import { R_AssetAliasMaterial, R_CloneAliasMaterial, R_EnemyAliasMaterial, R_HeldVisionTag, R_NewerAliasMaterial, R_NewerSkinsMaterials, R_NewerSkinsNewMap, R_NewerSkinsPrepare, R_NewerSkinsStatus, R_NewerSkinsTextures, R_ReleaseAliasReceiver, r_newer_variety } from './render/r_newerskins.js';
 import { R_ClassicTexture, R_NewerNormalsPrepare, R_NewerNormalsStatus, R_NewerTextureUpgrade, R_NewerTexturesFrame, R_NewerTexturesStatus } from './render/r_newertextures.js';
@@ -162,7 +163,7 @@ if ( ! Hooks_Installed() ) Hooks_Install( {
 	R_LevelViewUseSnapshots, R_SetupLevelViews, R_SyncLevelViews, R_UpdateLevelViewEntities,
 	LIGHTNING, R_LightningClear, R_LightningFrame, R_LightningSetup, R_LightningTakesBeam, r_newer_lightning,
 	R_MistClear, R_MistFrame,
-	R_MotesFrame, R_MotesClear, R_AmbientPlaced, R_AmbientPlacesClear, r_drips, r_sparks, r_nailhits, R_NailHit, r_embers, s_gibs, S_GibRestObserve, S_GibRestPackets, s_lava, r_itemturn, R_ItemTurn, r_mapliquids, R_MapLiquidAlpha, R_MapLiquidAlphaAny, r_storm, R_StormFrame, R_StormClear, s_impacts,
+	R_MotesFrame, R_MotesClear, R_AmbientPlaced, R_AmbientPlacesClear, r_drips, r_sparks, r_nailhits, R_NailHit, r_embers, s_gibs, S_GibRestObserve, S_GibRestPackets, s_lava, r_itemturn, R_ItemTurn, r_mapliquids, R_MapLiquidAlpha, R_MapLiquidAlphaAny, r_storm, R_StormFrame, R_StormClear, s_impacts, s_footsteps, S_FootstepsFrame,
 	R_MuzzleFlashFired, R_MuzzleFlashScale, R_MuzzleSetProbe, R_MuzzleSetView, R_MuzzleView,
 	R_AssetAliasMaterial, R_CloneAliasMaterial, R_EnemyAliasMaterial, R_HeldVisionTag, R_NewerAliasMaterial, R_NewerSkinsMaterials, R_NewerSkinsNewMap, R_NewerSkinsPrepare, R_NewerSkinsStatus, R_NewerSkinsTextures, R_ReleaseAliasReceiver, r_newer_variety,
 	R_ClassicTexture, R_NewerNormalsPrepare, R_NewerNormalsStatus, R_NewerTextureUpgrade, R_NewerTexturesFrame, R_NewerTexturesStatus,
