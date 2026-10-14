@@ -293,7 +293,8 @@ function patchDetailShader( shader ) {
 
 	if ( rock ) {
 		f = f.replace( '#include <opaque_fragment>', 'outgoingLight = (outgoingLight - totalEmissiveRadiance) * qrRockAO + totalEmissiveRadiance;\n#include <opaque_fragment>' );
-		f = f.replace( 'vec4( gDiffuse, 1.0 )', 'vec4( gDiffuse, 0.51 + 0.49 * qrRockSunVisibility )' );
+		// .51 .. .99, never 1: the compositor tells rock from an ordinary surface (r_post_shaders.js rockReceiver)
+		f = f.replace( 'vec4( gDiffuse, 1.0 )', 'vec4( gDiffuse, 0.51 + 0.48 * qrRockSunVisibility )' );
 	}
 	if ( reference ) {
 
@@ -306,7 +307,7 @@ function patchDetailShader( shader ) {
 		outgoingLight = ( outgoingLight - totalEmissiveRadiance ) * carveAO + totalEmissiveRadiance;
 		#include <opaque_fragment>` );
 		// A separate byte-safe alpha band carries recess occlusion to deferred
-		// lights. RGB is still the original pigment; rock's .51..1 band is intact.
+		// lights. RGB is still the original pigment; rock's .51 to .99 band is intact.
 		f = f.replace( 'vec4( gDiffuse, 1.0 )', 'vec4( gDiffuse, 0.1 + 0.39 * carveAO )' );
 
 	}

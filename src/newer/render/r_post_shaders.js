@@ -448,6 +448,8 @@ bool heldReceiver(vec4 packet){return packet.a < -2.;}
 float receiverDistance(vec4 packet){return heldReceiver(packet)?-packet.a-2.:packet.a;}
 bool actorReceiver(float tag){return tag>.05&&tag<.095;}
 bool glassReceiver(float tag){return tag>.495&&tag<.505;}
+// the rock materials' surfaces (r_post_gbuffer.js: .51 + .48 x their sun visibility; an ordinary surface is 1)
+bool rockReceiver(float tag){return tag>.505&&tag<.995;}
 vec3 viewPosAt( vec2 uv ) {
  vec4 packet=texture2D(tNormal,uv);
  if(heldReceiver(packet)){
@@ -1027,9 +1029,9 @@ void main() {
 
 		if ( uLighting > 0.5 ) {
 			vec4 base = texture2D( tAlbedo, uvd );
-			// 0 is unavailable, .1.. .49 carries carving AO, .51..1 carries
+			// 0 is unavailable, .1 to .49 carries carving AO, .51 to .99 carries
 			// rock sun visibility. Ordinary opaque pixels remain at 1.
-			float rockSunVisibility = heightMaskValid(uvd) ? receiverHeightVisibility(P,uvd,8) : ( glass ? 1.0 : ( base.a > 0.5 ? clamp( ( base.a - 0.51 ) / 0.49, 0.0, 1.0 ) : 1.0 ) );
+			float rockSunVisibility = heightMaskValid(uvd) ? receiverHeightVisibility(P,uvd,8) : ( glass ? 1.0 : ( rockReceiver( base.a ) ? clamp( ( base.a - 0.51 ) / 0.48, 0.0, 1.0 ) : 1.0 ) );
 			float carveAO = surfaceCarveAO( base.a );
 			vec3 relit = vec3( 0.0 );
    float visibleReliefWeight=0.,shadowedReliefWeight=0.;
@@ -1159,8 +1161,9 @@ void main() {
 
 		} // advanced lighting
 
-		// corners and edges
-		if ( uEdge > 0.0 && !actorReceiver(texture2D(tAlbedo,uvd).a) ) creaseK = creaseAccent( P, normalize( cross( dxG, dyG ) ) * ( dot( normalize( cross( dxG, dyG ) ), P ) > 0.0 ? - 1.0 : 1.0 ) );
+		// corners and edges: an accent for built things (a beam's edge, a doorway's corner). Not on the rock materials: their
+		// folds are natural ground, and the accent drew them as black contours (owner, 14 October 2026)
+		if ( uEdge > 0.0 && !actorReceiver(texture2D(tAlbedo,uvd).a) && !rockReceiver(texture2D(tAlbedo,uvd).a) ) creaseK = creaseAccent( P, normalize( cross( dxG, dyG ) ) * ( dot( normalize( cross( dxG, dyG ) ), P ) > 0.0 ? - 1.0 : 1.0 ) );
 	}
 
 	// Liquids: water and slime take light out of any ray that travels through

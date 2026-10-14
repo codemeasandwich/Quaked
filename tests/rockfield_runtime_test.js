@@ -539,16 +539,22 @@ Deno.test( 'public material/compositor shader preserves UV conversion and ordina
 			post.R_PostFinish( renderer, new THREE.Scene(), camera, { lx: 0, ly: 0, lw: 320, lh: 200 }, 0, [], [], 0, 1, false );
 			const expression = /float rockSunVisibility = ([^;]+);/.exec( composite.fragmentShader )[ 1 ];
 			const clamp = ( value, lo, hi ) => Math.max( lo, Math.min( hi, value ) );
-			const unpack = new Function( 'alpha', 'clamp', 'heightMaskValid', 'receiverHeightVisibility', 'uvd', 'P', 'glass', 'return ' + expression.replaceAll( 'base.a', 'alpha' ) ); // (glass: a glass pane's receiver tag, false when omitted)
+			// (the compositor's own rock test, from its source: rock is .51 .. .99, an ordinary surface 1)
+			const rockReceiver = new Function( 'tag', 'return ' + /bool rockReceiver\(float tag\)\{return ([^;]+);\}/.exec( composite.fragmentShader )[ 1 ] );
+			const unpackWith = new Function( 'alpha', 'clamp', 'heightMaskValid', 'receiverHeightVisibility', 'uvd', 'P', 'glass', 'rockReceiver', 'return ' + expression.replaceAll( 'base.a', 'alpha' ) ); // (glass: a glass pane's receiver tag, false when omitted)
+			const unpack = ( alpha, clamp, valid, visibility, uvd, P, glass = false ) => unpackWith( alpha, clamp, valid, visibility, uvd, P, glass, rockReceiver );
 			const decode = (alpha,clamp) => unpack(alpha,clamp,()=>false,()=>1,{},{});
 			near(unpack(encode(.2),clamp,()=>true,()=>.3,{},{}),.3,'valid combined height mask replaces macro alpha instead of multiplying it twice');
 			near( decode( 1, clamp ), 1, 'ordinary alpha1 retains full sun' );
-			near( unpack( .6, clamp, () => false, () => 1, {}, {}, true ), 1, 'a glass receiver keeps full sun whatever its alpha' ); near( decode( .6, clamp ), ( .6 - .51 ) / .49, 'the same alpha on an ordinary receiver is its encoded visibility' );
+			near( unpack( .6, clamp, () => false, () => 1, {}, {}, true ), 1, 'a glass receiver keeps full sun whatever its alpha' ); near( decode( .6, clamp ), ( .6 - .51 ) / .48, 'the same alpha on an ordinary receiver is its encoded visibility' );
 			near( decode( 0, clamp ), 1, 'unavailable legacy albedo retains full sun instead of artificial occlusion' );
 			for ( const visibility of [ 0, .1, .5, .9, 1 ] ) {
 
 				const alpha = Math.round( clamp( encode( visibility ), 0, 1 ) * 255 ) / 255;
 				check( alpha > .5, 'rock pixel remains valid authored albedo' ); near( decode( alpha, clamp ), visibility, 'sun shadow survives actual UNORM quantization', .0041 );
+				// the material's own encoding stays rock after byte storage, whatever its sunlight: never the ordinary 1,
+				// never glass (the edge accent's black contours came back the moment sunlit rock wrote 1)
+				check( rockReceiver( alpha ) && alpha < 1 && ( alpha < .495 || alpha > .505 ), 'the encoded rock tag stays rock at sun visibility ' + visibility + ': ' + alpha );
 
 			}
 

@@ -252,8 +252,15 @@ Deno.test( 'byte-packed carved occlusion stays distinct from rock/ordinary tags 
 		const decode = new Function( 'tag', 'clamp', 'return ' + expression );
 		const encode = new Function( 'carveAO', 'return ' + carvedAlphaExpression );
 		const sunExpression = /float rockSunVisibility = ([^;]+);/.exec( fragment )[ 1 ];
-		const unpackSun = new Function( 'tag', 'clamp', 'heightMaskValid', 'receiverHeightVisibility', 'uvd', 'P', 'glass', 'return ' + sunExpression.replaceAll( 'base.a', 'tag' ) );
-		const sun = ( tag, clamp ) => unpackSun( tag, clamp, () => false, () => 1, {}, {}, false ); // (no height mask, not glass: the tag alone decides)
+		// the compositor's own rock test, from its source (r_post_shaders.js rockReceiver)
+		const rockTest = /bool rockReceiver\(float tag\)\{return ([^;]+);\}/.exec( fragment )[ 1 ];
+		const rockReceiver = new Function( 'tag', 'return ' + rockTest );
+		const unpackSun = new Function( 'tag', 'clamp', 'heightMaskValid', 'receiverHeightVisibility', 'uvd', 'P', 'glass', 'rockReceiver', 'return ' + sunExpression.replaceAll( 'base.a', 'tag' ) );
+		const sun = ( tag, clamp ) => unpackSun( tag, clamp, () => false, () => 1, {}, {}, false, rockReceiver ); // (no height mask, not glass: the tag alone decides)
+		// rock, glass and an ordinary surface stay apart after UNORM storage (the edge accent leaves rock alone)
+		for ( const visibility of [ 0, .5, 1 ] ) check( rockReceiver( Math.round( ( .51 + .48 * visibility ) * 255 ) / 255 ), 'rock tag recognised at sun visibility ' + visibility );
+		check( ! rockReceiver( 1 ) && ! rockReceiver( 127 / 255 ) && ! rockReceiver( 128 / 255 ), 'an ordinary surface (1) and glass (.5, stored as byte 127 or 128) are not rock' );
+		check( fragment.includes( '!rockReceiver(texture2D(tAlbedo,uvd).a) ) creaseK' ), 'the edge accent skips the rock relief' );
 		for ( const ao of [ .08, .15, .5, .6, .75, .9, 1 ] ) {
 
 			const tag = Math.round( encode( ao ) * 255 ) / 255;
@@ -265,7 +272,7 @@ Deno.test( 'byte-packed carved occlusion stays distinct from rock/ordinary tags 
 		for ( const tag of [ 0, .05, .5, .51, .75, 1 ] ) equal( decode( tag, clamp ), 1, 'invalid/boundary/rock/ordinary tags unaffected' );
 		for ( const visibility of [ 0, .1, .5, .9, 1 ] ) {
 
-			const tag = Math.round( ( .51 + .49 * visibility ) * 255 ) / 255;
+			const tag = Math.round( ( .51 + .48 * visibility ) * 255 ) / 255;
 			check( tag > .5 && Math.abs( sun( tag, clamp ) - visibility ) < .0041, 'rock visibility encoding preserved' ); equal( decode( tag, clamp ), 1, 'rock is not treated as a carving' );
 
 		}
