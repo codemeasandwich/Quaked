@@ -530,6 +530,7 @@ const NEWER_FEATURES = [
 	{ cvar: 'r_itemturn', label: '    Turned item boxes' },
 	{ cvar: 'r_mapliquids', label: '       Map see-through' },
 	{ cvar: 'r_storm', label: '      Storms and gusts' },
+	{ cvar: 's_impacts', label: '       Surface sounds' },
 ];
 // the page shows this many rows; a longer list scrolls with the cursor
 const NEWER_VISIBLE = 17;
