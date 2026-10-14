@@ -524,6 +524,7 @@ const NEWER_FEATURES = [
 	{ cvar: 'r_drips', label: '          Water drips' },
 	{ cvar: 'r_sparks', label: '         Light sparks' },
 	{ cvar: 'r_nailhits', label: '         Nail impacts' },
+	{ cvar: 'r_embers', label: '          Lava embers' },
 ];
 // the page shows this many rows; a longer list scrolls with the cursor
 const NEWER_VISIBLE = 17;

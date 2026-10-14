@@ -24,6 +24,7 @@ import { R_WaterProbeUpdate, R_WaterProbeReadiness, R_WaterProbes } from './r_wa
 // passes through one loses light to it, and surfaces beneath it get caustics.
 let liquidRegions = [];
 let lavaRegions = [];
+let lavaSourceFaces = [];
 let liquidMapName = '';
 
 export const MAX_LIQUID_REGIONS = 6;
@@ -188,6 +189,9 @@ function mergeLiquidFaces( faces ) {
 
 }
 
+/** Unfiltered existing lava-face candidates, replaced per map; borrowed read-only, never spawn proof. */
+export function R_GetLavaFaces() { return lavaSourceFaces; }
+
 /**
  * The level's lava pools, merged from its level lava faces at `R_BuildWorldLights` (the heat shimmers over them).
  *
@@ -224,6 +228,7 @@ export function R_PostLiquidsReset( mapName = '' ) {
 	liquidMapName = mapName;
 	liquidRegions = [];
 	lavaRegions = [];
+	lavaSourceFaces = [];
 	liquidLinks = [];
 
 }
@@ -261,6 +266,7 @@ export function R_PostSetLiquidRegions( liquidFaces, lavaFaces ) {
 	} );
 	liquidRegions = mergeLiquidFaces( tops );
 	lavaRegions = mergeLiquidFaces( lavaFaces );
+	lavaSourceFaces = lavaFaces;
 
 }
 
