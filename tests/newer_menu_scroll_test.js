@@ -67,28 +67,27 @@ Deno.test( 'the page follows the cursor down to the rows past it and back up; Up
 
 } );
 
-Deno.test( 'the explosion shake row is a slider: Right and Left step it, a touch on it steps it, a touch on the note turns the page', () => {
-
-	open(); cvar.Cvar_SetValue( 'v_blastshake', 1 );
-	while ( ! ( page().labels.find( r => r.text === 'Explosion shake' )?.y === page().cursorY ) ) menu.M_Keydown( keys.K_DOWNARROW );
-	menu.M_Keydown( keys.K_LEFTARROW ); same( cvar.Cvar_VariableValue( 'v_blastshake' ), 0.95, 'Left: a step down' );
-	menu.M_Keydown( keys.K_RIGHTARROW ); same( cvar.Cvar_VariableValue( 'v_blastshake' ), 1, 'Right: back up' );
-	menu.M_Keydown( keys.K_ENTER ); same( cvar.Cvar_VariableValue( 'v_blastshake' ), 0, 'Enter past the top: off' );
-	const lighting = cvar.Cvar_VariableValue( 'r_newer_lighting' );
-	touch( 220, page().cursorY + 2 ); same( cvar.Cvar_VariableValue( 'v_blastshake' ), 0.05, 'a touch on the row steps it' );
-	same( cvar.Cvar_VariableValue( 'r_newer_lighting' ), lighting, 'and not the row that was at that place on the first page' );
-	cvar.Cvar_SetValue( 'v_blastshake', 1 );
-	while ( ! /more above/.test( page().note ) ) menu.M_Keydown( keys.K_DOWNARROW );
-	touch( 100, 44 + 17 * 8 + 8 ); // the note, on the last page: back to the top
-	let p = page(); same( p.labels[ 0 ].text, 'Newer lighting', 'the note on the last page turns back to the first' ); same( p.cursorY, 44, 'cursor at its top' );
-	touch( 100, 44 + 17 * 8 + 8 );
-	p = page(); check( p.labels.some( r => r.text === 'Explosion shake' ) && /more above/.test( p.note ), 'the note on the first page turns to the rest' );
-	const topCvar = { 'Normal maps': 'r_newer_normals', 'Newer liquids': 'r_newer_water' }[ page().labels[ 0 ].text ];
-	check( !! topCvar, 'known visible row on this page' );
-	const previous = cvar.Cvar_VariableValue( topCvar );
-	touch( 220, 44 ); // the top row of this page
-	same( cvar.Cvar_VariableValue( topCvar ), previous ? 0 : 1, 'touch actually toggles the visible second-page row' );
-	check( cvar.Cvar_VariableValue( 'r_newer_lighting' ) === lighting, 'a touch on this page\'s top row is not the first page\'s top row' );
-	menu.M_Keydown( keys.K_ESCAPE ); same( common.m_state, common.m_options, 'ESC: back to the options' );
-
+Deno.test( 'the explosion shake slider and note paging use the actual visible rows', () => {
+ open(); cvar.Cvar_SetValue( 'v_blastshake', 1 );
+ let steps = 0;
+ while ( ! ( page().labels.find( r => r.text === 'Explosion shake' )?.y === page().cursorY ) && steps ++ < 64 ) menu.M_Keydown( keys.K_DOWNARROW );
+ check( steps < 64, 'public navigation reaches Explosion shake' );
+ menu.M_Keydown( keys.K_LEFTARROW ); same( cvar.Cvar_VariableValue( 'v_blastshake' ), 0.95, 'Left steps down' );
+ menu.M_Keydown( keys.K_RIGHTARROW ); same( cvar.Cvar_VariableValue( 'v_blastshake' ), 1, 'Right steps up' );
+ menu.M_Keydown( keys.K_ENTER ); same( cvar.Cvar_VariableValue( 'v_blastshake' ), 0, 'Enter wraps to off' );
+ const lighting = cvar.Cvar_VariableValue( 'r_newer_lighting' );
+ touch( 220, page().cursorY + 2 ); same( cvar.Cvar_VariableValue( 'v_blastshake' ), 0.05, 'public touch changes the displayed row' );
+ same( page().labels[ 0 ].text, 'Normal maps', 'first scroll keeps the established second row at the top' );
+ const normal = cvar.Cvar_VariableValue( 'r_newer_normals' );
+ touch( 220, 46 ); same( cvar.Cvar_VariableValue( 'r_newer_normals' ), normal ? 0 : 1, 'touch mutates the real visible first row' );
+ same( cvar.Cvar_VariableValue( 'r_newer_lighting' ), lighting, 'original first-page row untouched' );
+ let pages = 0;
+ while ( /more below/.test( page().note ) && pages ++ < 10 ) touch( 100, 44 + 17 * 8 + 8 );
+ check( pages < 10 && /more above/.test( page().note ), 'note paging reaches the last page' );
+ touch( 100, 44 + 17 * 8 + 8 );
+ same( page().labels[ 0 ].text, 'Newer lighting', 'note on last page returns to first' );
+ same( page().cursorY, 44, 'cursor at first row' );
+ touch( 100, 44 + 17 * 8 + 8 );
+ check( page().labels[ 0 ].text !== 'Newer lighting' && page().cursorY === 44, 'note advances to another page with cursor visible' );
+ menu.M_Keydown( keys.K_ESCAPE ); same( common.m_state, common.m_options, 'ESC returns to Options' );
 } );

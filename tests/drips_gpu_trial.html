@@ -17,7 +17,7 @@ try{
  function sample(kind,fov,height,fog=false){
   m.R_MotesClear();Cvar_Set('r_hdr','1');Cvar_Set('r_drips','1');R_AnimSetClassicPass(false);
   camera.fov=fov;camera.updateProjectionMatrix();scene.fog=fog?new THREE.FogExp2(0xff0000,.1):null;
-  m.R_MotesFrame(scene,0,[0,0,100],height);m.R_MoteSpawn(kind,0,0,0,0,0,0,0,{size:8,life:10});m.R_MotesFrame(scene,.3,[0,0,100],height);
+  m.R_MotesFrame(scene,0,[0,0,100],height);m.R_MoteSpawn(kind,0,0,0,0,0,0,0,{size:8,life:10,owner:kind===m.MOTE_SPARK?'nails':'drips'});m.R_MotesFrame(scene,.3,[0,0,100],height);
   const target=new THREE.WebGLRenderTarget(height,height,{count:4,type:THREE.UnsignedByteType});
   const draw=()=>{renderer.setRenderTarget(target);renderer.render(scene,camera);const data=new Uint8Array(height*height*4);renderer.readRenderTargetPixels(target,0,0,height,height,data);let count=0,min=height,max=-1,red=0,green=0,blue=0;for(let y=0;y<height;y++)for(let x=0;x<height;x++){const i=(y*height+x)*4;red=Math.max(red,data[i]);green=Math.max(green,data[i+1]);blue=Math.max(blue,data[i+2]);if(data[i]+data[i+1]+data[i+2]>5){count++;min=Math.min(min,x);max=Math.max(max,x);}}return{count,width:Math.max(0,max-min+1),red,green,blue};};
   const pixels=draw();return{pixels,draw,target};

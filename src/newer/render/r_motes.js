@@ -12,7 +12,8 @@
  * Types: plain values and functions; no exported classes.
  *
  * State: no mutable exports; module-level typed arrays for the motes, `points` (the layer, made when first needed),
- * `lastTime`, `cursors`, `alive`, `empty`, and the lists `listeners` and `makers`.
+ * `lastTime`, `cursors` (one per owner's reservation), `alive`, `empty`, and the lists `listeners`, `makers` and
+ * `motionBlocks` (each owner's collision check).
  *
  * Errors: none raised here.
  */
@@ -26,15 +27,16 @@ export const MOTE_SPARK = 0, MOTE_DRIP = 1, MOTE_SPLASH = 2, MOTE_BUBBLE = 3, MO
  * What each kind is: `size` across in Quake units (`grow` more by the end of its life), `gravity` in units a second
  * squared (negative rises), `drag` (the share of its speed lost a second), `life` in seconds, `color` in linear light
  * (above 1 glows in the Newer picture), `alpha` (0 for a glowing kind, which is added to the picture rather than laid
- * over it), and `sway` (units of sideways drift, for what floats).
+ * over it), and `sway` (units of sideways drift; 0 for every kind today: bubbles and embers rise straight, as the
+ * reviewed nail and ember effects draw them).
  */
 export const MOTES = Object.freeze( [
 	Object.freeze( { name: 'spark', size: 1.5, grow: 0, gravity: 520, drag: 1.4, life: 0.55, color: [ 3.2, 2.1, 0.7 ], alpha: 0, sway: 0 } ),
 	Object.freeze( { name: 'drip', size: 2.2, grow: 0, gravity: 800, drag: 0, life: 4, color: [ 0.62, 0.72, 0.8 ], alpha: 0.5, sway: 0 } ),
 	Object.freeze( { name: 'splash', size: 1.4, grow: 0, gravity: 620, drag: 0.5, life: 0.28, color: [ 0.66, 0.76, 0.84 ], alpha: 0.42, sway: 0 } ),
-	Object.freeze( { name: 'bubble', size: 2.4, grow: 0.8, gravity: - 110, drag: 2.2, life: 2.2, color: [ 0.72, 0.86, 0.96 ], alpha: 0.4, sway: 5 } ),
+	Object.freeze( { name: 'bubble', size: 2.4, grow: 0.8, gravity: - 110, drag: 2.2, life: 2.2, color: [ 0.72, 0.86, 0.96 ], alpha: 0.4, sway: 0 } ),
 	Object.freeze( { name: 'puff', size: 5, grow: 11, gravity: - 14, drag: 2.6, life: 0.7, color: [ 0.46, 0.44, 0.42 ], alpha: 0.2, sway: 0 } ),
-	Object.freeze( { name: 'ember', size: 1.7, grow: 0, gravity: - 16, drag: 0.5, life: 3.2, color: [ 2.6, 0.95, 0.22 ], alpha: 0, sway: 9 } )
+	Object.freeze( { name: 'ember', size: 1.7, grow: 0, gravity: - 16, drag: 0.5, life: 3.2, color: [ 2.6, 0.95, 0.22 ], alpha: 0, sway: 0 } )
 ] );
 
 /** How many motes there can be at once; four reserved effect budgets never overwrite another live mote. */
@@ -52,7 +54,8 @@ const kindOf = new Uint8Array( MAX_MOTES ), scale = new Float32Array( MAX_MOTES 
 const low = new Float32Array( MAX_MOTES ), high = new Float32Array( MAX_MOTES ); // it ends on reaching either height
 const drawPos = new Float32Array( MAX_MOTES * 3 ), drawColor = new Float32Array( MAX_MOTES * 4 ), drawSize = new Float32Array( MAX_MOTES ), drawKind = new Uint8Array( MAX_MOTES );
 let points = null, lastTime = null, alive = 0, empty = true;
-const listeners = [], makers = [];
+const listeners = [], makers = [], motionBlocks = [];
+const motionFrom = new Float32Array( 3 ), motionTo = new Float32Array( 3 );
 
 // a soft round dot, its colour already multiplied by its cover (so one blend serves glowing and plain motes alike)
 function dot() {
@@ -76,6 +79,7 @@ function build() {
 	geometry.setAttribute( 'position', new THREE.BufferAttribute( drawPos, 3 ) );
 	geometry.setAttribute( 'color', new THREE.BufferAttribute( drawColor, 4 ) );
 	geometry.setAttribute( 'aSize', new THREE.BufferAttribute( drawSize, 1 ) );
+	geometry.setAttribute( 'aKind', new THREE.BufferAttribute( drawKind, 1 ) );
 	// colour is laid on as (colour x cover) + what is behind x (1 - alpha x cover): alpha 0 adds light, alpha 1 covers
 	const material = new THREE.PointsMaterial( { map: dot(), size: 1, sizeAttenuation: true, vertexColors: true, transparent: true, depthWrite: false, fog: true,
 		blending: THREE.CustomBlending, blendEquation: THREE.AddEquation, blendSrc: THREE.OneFactor, blendDst: THREE.OneMinusSrcAlphaFactor } );
@@ -85,11 +89,14 @@ function build() {
 		before?.call( this, shader, renderer );
 		// each mote its own size
 		shader.uniforms.uMoteViewportHeight = viewportHeight;
-  shader.vertexShader = 'attribute float aSize;\nuniform float uMoteViewportHeight;\n' + shader.vertexShader
+  shader.vertexShader = 'attribute float aSize;\nattribute float aKind;\nvarying float vMoteKind;\nuniform float uMoteViewportHeight;\n' + shader.vertexShader
+   .replace( '#include <begin_vertex>', '#include <begin_vertex>\nvMoteKind = aKind;' )
    .replace( 'gl_PointSize = size;', 'gl_PointSize = aSize * uMoteViewportHeight * 0.5 * projectionMatrix[1][1];' )
    .replace( 'gl_PointSize *= ( scale / - mvPosition.z );', 'gl_PointSize /= -mvPosition.z;' );
   // The layer is already premultiplied. Additive kinds (alpha 0) lose light in fog; they must not add fog light.
-  shader.fragmentShader = shader.fragmentShader.replace( '#include <fog_fragment>', THREE.ShaderChunk.fog_fragment
+  shader.fragmentShader = ('varying float vMoteKind;\n' + shader.fragmentShader)
+   .replace( '#include <opaque_fragment>', '#include <opaque_fragment>\nif (abs(vMoteKind - 3.0) < 0.25) { float radius = length(gl_PointCoord - vec2(0.5)); float rim = smoothstep(0.21, 0.29, radius); gl_FragColor *= rim; }' )
+   .replace( '#include <fog_fragment>', THREE.ShaderChunk.fog_fragment
    .replace( 'fogColor, fogFactor', 'fogColor * gl_FragColor.a, fogFactor' ) );
 
 	};
@@ -153,10 +160,18 @@ export function R_MotesListen( kind, fn ) { ( listeners[ kind ] ??= [] ).push( f
  * Adds something that makes motes: `frame` is called once a frame, before the motes move, to make its new ones, and
  * `reset` for each new map. Each of the add-on effects registers itself as it is loaded.
  *
- * @param {{ frame?: function(number, ?ArrayLike<number>): void, reset?: function(): void }} maker `frame( time, eye, advancing )`
+ * Collision callbacks are owner-scoped. Their from/to vectors are borrowed scratch arrays: inspect them
+ * synchronously; never retain or mutate them. A blocked move retires that mote without landing callbacks.
+ *
+ * @param {{ owner?: string, frame?: function(number, ?ArrayLike<number>, boolean): void,
+ *   reset?: function(): void, blocksMotion?: function(ArrayLike<number>, ArrayLike<number>): boolean }} maker `frame( time, eye, advancing )`
  *   with the game's time, view position, and whether emission may advance (false while paused); `reset()`
  */
-export function R_MotesRegister( maker ) { makers.push( maker ); }
+export function R_MotesRegister( maker ) {
+ makers.push( maker );
+ const owner = MOTE_OWNERS.indexOf( maker.owner );
+ if ( owner >= 0 && typeof maker.blocksMotion === 'function' ) motionBlocks[ owner ] = maker.blocksMotion;
+}
 
 /**
  * Moves every mote on to `time` and puts those still living into the layer. Called once a frame by the renderer
@@ -188,9 +203,15 @@ export function R_MotesFrame( scene, time, eye = null, height = 480 ) {
 		const k = MOTES[ kindOf[ i ] ], p = i * 3, dt = Math.min( frameDt, age );
 		if ( dt > 0 ) {
 
+			for ( let axis = 0; axis < 3; axis ++ ) motionFrom[ axis ] = pos[ p + axis ];
 			const keep = Math.max( 0, 1 - k.drag * dt );
 			vel[ p ] *= keep; vel[ p + 1 ] *= keep; vel[ p + 2 ] = vel[ p + 2 ] * keep - k.gravity * dt;
 			pos[ p ] += vel[ p ] * dt; pos[ p + 1 ] += vel[ p + 1 ] * dt; pos[ p + 2 ] += vel[ p + 2 ] * dt;
+			const blocked = motionBlocks[ Math.floor( i / MOTES_PER_OWNER ) ];
+			if ( blocked ) {
+				for ( let axis = 0; axis < 3; axis ++ ) motionTo[ axis ] = pos[ p + axis ];
+				if ( blocked( motionFrom, motionTo ) ) { born[ i ] = - Infinity; continue; }
+			}
 			const atLow = pos[ p + 2 ] <= low[ i ], atHigh = pos[ p + 2 ] >= high[ i ];
 			if ( atLow || atHigh ) {
 
@@ -219,7 +240,7 @@ export function R_MotesFrame( scene, time, eye = null, height = 480 ) {
 	if ( ! points ) build();
 	if ( scene && points.parent !== scene ) scene.add( points );
 	const g = points.geometry;
-	g.attributes.position.needsUpdate = true; g.attributes.color.needsUpdate = true; g.attributes.aSize.needsUpdate = true;
+	g.attributes.position.needsUpdate = true; g.attributes.color.needsUpdate = true; g.attributes.aSize.needsUpdate = true; g.attributes.aKind.needsUpdate = true;
 	g.setDrawRange( 0, count );
 	points.visible = true;
 	return count;

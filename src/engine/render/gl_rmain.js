@@ -1,4 +1,4 @@
-import { R_MotesFrame, R_MotesClear, R_AmbientPlacesClear, r_drips } from '../common/hooks.js';
+import { R_MotesFrame, R_MotesClear, R_AmbientPlacesClear, r_drips, r_sparks } from '../common/hooks.js';
 /**
  * @module engine/render/gl_rmain
  *
@@ -2283,6 +2283,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_heathaze );
 	Cvar_RegisterVariable( r_mist );
 	Cvar_RegisterVariable( r_drips );
+	Cvar_RegisterVariable( r_sparks );
 	Cvar_RegisterVariable( r_fireball );
 	Cvar_RegisterVariable( r_fireballalpha );
 	Cvar_RegisterVariable( r_smoketrails );

@@ -521,7 +521,8 @@ const NEWER_FEATURES = [
 	// the add-on effects for every game (card T-3faa98e3, docs/addon-effects-integration-2026-10-13.md): past the
 	// first page, which the list scrolls to
 	{ cvar: 'v_blastshake', label: '      Explosion shake', slider: true },
-	{ cvar: 'r_drips', label: '          Water drips' }
+	{ cvar: 'r_drips', label: '          Water drips' },
+	{ cvar: 'r_sparks', label: '         Light sparks' },
 ];
 // the page shows this many rows; a longer list scrolls with the cursor
 const NEWER_VISIBLE = 17;
