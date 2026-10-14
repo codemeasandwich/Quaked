@@ -832,8 +832,12 @@ function SCR_DrawNotifyString() {
 SCR_TileClear
 ==================
 */
-// the frame counter (Options > FPS counter) and the profiler's status
-function SCR_DrawPerf() {
+/**
+ * The frame counter (Options > FPS counter, `cl_showfps`) at the top right, with the view's position and angles on two
+ * lines under it in a level (`SCR_PositionLines`), and the profiler's status at the top left. Called once a frame from
+ * `SCR_UpdateScreen`.
+ */
+export function SCR_DrawPerf() {
 
 	const status = R_PerfScreenLines();
 	if ( status !== null ) {
@@ -846,12 +850,42 @@ function SCR_DrawPerf() {
 
 	const text = R_PerfFpsText();
 	Draw_String( _vid.width - text.length * 8 - 8, 4, text );
+	// where the view is and which way it looks, under it (owner, 14 October 2026: a screenshot then says exactly where
+	// to look from), one line each
+	if ( _cls.signon === 4 && _cl.worldmodel && _r_refdef?.vieworg ) {
+
+		const lines = SCR_PositionLines( _r_refdef.vieworg, _r_refdef.viewangles || _cl.viewangles );
+		for ( let i = 0; i < lines.length; i ++ ) Draw_String( _vid.width - lines[ i ].length * 8 - 8, SCR_POSITION_Y + i * SCR_LINE_STEP, lines[ i ] );
+
+	}
+
+}
+
+// the FPS counter's second and third lines (virtual pixels from the top, then line to line), and the corner message's
+// place below all three
+export const SCR_POSITION_Y = 14, SCR_LINE_STEP = 10;
+const SCR_NOTICE_Y = 16, SCR_NOTICE_Y_UNDER_FPS = 36;
+
+/**
+ * The FPS counter's second and third lines: the view's position, then its direction, whole numbers, e.g.
+ * `x 704 y 1376 z 900` and `yaw 270 pitch -10`, of the view drawn (r_refdef: the eye's position in Quake units, or the
+ * respawn or chase camera's). Yaw is Quake's, in degrees 0..359, counter-clockwise seen from above (0 along +x, 90
+ * along +y: east and north on a map drawn north up); pitch is Quake's own (positive looks down).
+ *
+ * @param {ArrayLike<number>} origin the view's position
+ * @param {ArrayLike<number>} angles the view's angles, Quake's order: pitch, yaw, roll
+ * @returns {Array<string>} the two lines
+ */
+export function SCR_PositionLines( origin, angles ) {
+
+	const yaw = ( ( Math.round( angles[ 1 ] ) % 360 ) + 360 ) % 360, pitch = Math.round( angles[ 0 ] ) || 0;
+	return [ 'x ' + Math.round( origin[ 0 ] ) + ' y ' + Math.round( origin[ 1 ] ) + ' z ' + Math.round( origin[ 2 ] ), 'yaw ' + yaw + ' pitch ' + pitch ];
 
 }
 
 /**
- * The respawn-health rule's corner message (card [4]), just under the FPS line at the top right (y = 16 virtual
- * pixels, right-aligned 8 pixels in). Called once a frame from `SCR_UpdateScreen`, straight after the FPS counter.
+ * The respawn-health rule's corner message (card [4]), at the top right (y = 16 virtual pixels, or 36 under the FPS
+ * counter's three lines when it is on; right-aligned 8 pixels in). Called once a frame from `SCR_UpdateScreen`, straight after the FPS counter.
  * The text, if any, comes from `Respawn_NoticeAt` (newer/ui/respawn_notice.js) for the current `cl.time`. Not drawn
  * over a demo, the menu or the console.
  *
@@ -861,7 +895,8 @@ export function SCR_DrawRespawnNotice() {
 
 	if ( _cls.demoplayback || key_dest !== key_game ) return; // not over a demo, the menu or the console
 	const text = Respawn_NoticeAt( _cl.time );
-	if ( text !== null ) Draw_String( _vid.width - text.length * 8 - 8, 16, text );
+	// (below the FPS counter's three lines when it is on)
+	if ( text !== null ) Draw_String( _vid.width - text.length * 8 - 8, Cvar_VariableValue( 'cl_showfps' ) === 0 ? SCR_NOTICE_Y : SCR_NOTICE_Y_UNDER_FPS, text );
 
 }
 
