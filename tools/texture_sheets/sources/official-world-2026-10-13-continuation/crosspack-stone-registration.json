@@ -1,0 +1,283 @@
+{
+  "qualification": "Three independently art-reviewed base/Dopa/Rogue materials; local sourceintegration, publictests/owneracceptance separate.",
+  "beforeIndexSha256": "9784a1eca0edfb8060f00abbccd3add8ad1eb36c4ff0a78dc1e1f138c2e2279b",
+  "afterIndexSha256": "fdf4f9135262db5b1baeb2d4a7a49882110e5bc09febbdf9f0265310e4a7f6ac",
+  "entries": [
+    {
+      "name": "city6_7",
+      "key": "64x64:ab05ac59977a40ab",
+      "source": {
+        "id": "city6_7|64x64:ab05ac59977a40ab",
+        "name": "city6_7",
+        "key": "64x64:ab05ac59977a40ab",
+        "width": 64,
+        "height": 64,
+        "pixelSha256": "1b30711b9c3f28298c223ee408e8605e670aaeb890df816d5782af8c528e738e",
+        "original": "originals/64x64-ab05ac59977a40ab.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "No replacement entry",
+        "uses": [
+          {
+            "game": "id1",
+            "map": "maps/e4m3.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Quake/pak0.pak",
+            "slot": 19,
+            "faces": 196,
+            "visibleCandidateFaces": 196,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "dopa",
+            "map": "maps/e5m4.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Past/pak0.pak",
+            "slot": 30,
+            "faces": 724,
+            "visibleCandidateFaces": 724,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "dopa",
+            "map": "maps/e5m7.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Past/pak0.pak",
+            "slot": 33,
+            "faces": 1157,
+            "visibleCandidateFaces": 1157,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "dopa",
+            "map": "maps/e5sm1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Past/pak0.pak",
+            "slot": 22,
+            "faces": 2798,
+            "visibleCandidateFaces": 2798,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "previousBinding": null,
+      "binding": {
+        "file": "official/city6_7-ab05ac59977a40ab-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/city6_7-ab05ac59977a40ab-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/city6_7-ab05ac59977a40ab-4x-q92-normalX.webp",
+            "y": "official/city6_7-ab05ac59977a40ab-4x-q92-normalY.webp",
+            "z": "official/city6_7-ab05ac59977a40ab-4x-q92-normalZ.webp"
+          },
+          "strength": 0.25,
+          "cap": 0.5
+        }
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-city6_7.png",
+      "sourceFileSha256": "0679f5f68ad7d24e8163a28e400cdb61a930740bc4267add4bd526f6a1b80a7b",
+      "diffuseSha256": "7202c4374f0361b3c1e70ac6b7ef192d0ec7b13859feb9c937d2f2e80f75ab61",
+      "heightSha256": "8befbf631c49e99daca38a7ca9b53b6b28d928c99ca095e61fb61b51a548b115",
+      "normalChannelSha256": {
+        "x": "6698c65088a3c178e7e971b2c761e7143ab2b72584b787522aed3bceb92d11a7",
+        "y": "5bd819ed5a65ccb776ee688c2d3278b0c23245d16b634a94a9475773f89dec68",
+        "z": "5a55d7b6973aaa1e43c18bf78c29ebf53365b4fb2dd11498a19ff0097abf6281"
+      },
+      "encodingReceipt": "newer/textures/candidates-2026-10-13/city6_7-photographic-seam-v2-4x-q92-xyz.json",
+      "candidate": "candidates-2026-10-13/city6_7-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "candidateSha256": "7202c4374f0361b3c1e70ac6b7ef192d0ec7b13859feb9c937d2f2e80f75ab61",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false
+    },
+    {
+      "name": "cliff2",
+      "key": "128x128:405994ea1e10e728",
+      "source": {
+        "id": "cliff2|128x128:405994ea1e10e728",
+        "name": "cliff2",
+        "key": "128x128:405994ea1e10e728",
+        "width": 128,
+        "height": 128,
+        "pixelSha256": "9ca6c178614bb4205f8ed3ccbc09a0527dbd3465d73d20cfb55b619d56211246",
+        "original": "originals/128x128-405994ea1e10e728.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "No replacement entry",
+        "uses": [
+          {
+            "game": "rogue",
+            "map": "maps/start.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 33,
+            "faces": 14,
+            "visibleCandidateFaces": 14,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/r1m4.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 1,
+            "faces": 1802,
+            "visibleCandidateFaces": 1802,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/r1m7.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 15,
+            "faces": 204,
+            "visibleCandidateFaces": 204,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/r2m8.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 0,
+            "faces": 1510,
+            "visibleCandidateFaces": 1510,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "previousBinding": null,
+      "binding": {
+        "file": "official/cliff2-405994ea1e10e728-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/cliff2-405994ea1e10e728-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/cliff2-405994ea1e10e728-4x-q92-normalX.webp",
+            "y": "official/cliff2-405994ea1e10e728-4x-q92-normalY.webp",
+            "z": "official/cliff2-405994ea1e10e728-4x-q92-normalZ.webp"
+          },
+          "strength": 0.3,
+          "cap": 0.5
+        }
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-cliff2.png",
+      "sourceFileSha256": "16bd879178cb2b6269b217e5f4c460f84fa8e8a3450a138acae20343d2dc4347",
+      "diffuseSha256": "f38ca29a52ece498c233cb57e8219466e709d71edd2121bb13b4c28d47b10d22",
+      "heightSha256": "89cc4deef138d67e19b0c584cff2caba9cea75bdda6930ff65f261c60dc1aaaf",
+      "normalChannelSha256": {
+        "x": "4935c80f34af17138c1d67ce7f5fead3ab0a2bcf6cbddda80bba3f94270f04d8",
+        "y": "973fca52b74d7b31eec26450f2d8a2e4cf31e51f19d3e4542fc580f0dff15157",
+        "z": "fd3ddb4a9eb3a5e2d70db06d27ec2e8e045c65a1bc8cb88e189981564d94ff08"
+      },
+      "encodingReceipt": "newer/textures/candidates-2026-10-13/cliff2-photographic-seam-v2-4x-q92-xyz.json",
+      "candidate": "candidates-2026-10-13/cliff2-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "candidateSha256": "f38ca29a52ece498c233cb57e8219466e709d71edd2121bb13b4c28d47b10d22",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false
+    },
+    {
+      "name": "stone5_0",
+      "key": "128x128:c28bbacf8cca643d",
+      "source": {
+        "id": "stone5_0|128x128:c28bbacf8cca643d",
+        "name": "stone5_0",
+        "key": "128x128:c28bbacf8cca643d",
+        "width": 128,
+        "height": 128,
+        "pixelSha256": "5a513d847a75e5dc95db69fa156b15b7c4a2c8401fa3d6f64da5f8e3866a2ede",
+        "original": "originals/128x128-c28bbacf8cca643d.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "No replacement entry",
+        "uses": [
+          {
+            "game": "rogue",
+            "map": "maps/start.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 7,
+            "faces": 737,
+            "visibleCandidateFaces": 737,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/r1m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 4,
+            "faces": 324,
+            "visibleCandidateFaces": 324,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/r2m4.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 6,
+            "faces": 1560,
+            "visibleCandidateFaces": 1560,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/r2m5.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 8,
+            "faces": 218,
+            "visibleCandidateFaces": 218,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "previousBinding": null,
+      "binding": {
+        "file": "official/stone5_0-c28bbacf8cca643d-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/stone5_0-c28bbacf8cca643d-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/stone5_0-c28bbacf8cca643d-4x-q92-normalX.webp",
+            "y": "official/stone5_0-c28bbacf8cca643d-4x-q92-normalY.webp",
+            "z": "official/stone5_0-c28bbacf8cca643d-4x-q92-normalZ.webp"
+          },
+          "strength": 0.25,
+          "cap": 0.5
+        }
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-stone5_0.png",
+      "sourceFileSha256": "467c18c3d6a6c8395fef2bbb9b83b3e6d7b59eef50c1a32536fb8234adee7a2a",
+      "diffuseSha256": "5a775cb0f13b2a4f8cb4f1e6136ba263bb3d4f492626b290d287418f38e7e06e",
+      "heightSha256": "4756bb8a16495e354bfa3924214f0c8a1dfef34731e7098600404142a0da140b",
+      "normalChannelSha256": {
+        "x": "8cdb8bb9988aac3f512fac66035c7135fbfa580e2bf41e4054e85b2ee636883a",
+        "y": "22b80ed4ffa1c5af5566c66c10bb652647edbfa7effca9c6861bfa112360cab1",
+        "z": "082d3b8b4603d6b6fd7613bcfb9ce27fc0b89b09f0bf3733b55a2a8173b0f45d"
+      },
+      "encodingReceipt": "newer/textures/candidates-2026-10-13/stone5_0-photographic-seam-v2-4x-q92-xyz.json",
+      "candidate": "candidates-2026-10-13/stone5_0-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "candidateSha256": "5a775cb0f13b2a4f8cb4f1e6136ba263bb3d4f492626b290d287418f38e7e06e",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false
+    }
+  ]
+}

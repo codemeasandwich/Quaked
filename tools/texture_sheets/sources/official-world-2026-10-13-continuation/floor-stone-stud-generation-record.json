@@ -1,0 +1,67 @@
+{
+  "generator": "Built-in GPT image generation",
+  "sourceRole": "Original layout/colour/scale/distance; no pixelgrain reconstruction",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "comparisonDivisors": [
+    2,
+    4
+  ],
+  "files": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/TF_Floor7_01-prompt.txt",
+      "sha256": "d472f7c1b4193c9180e4a1b7b76af32bbfc7b29c1c52c3f68870329014da3f40"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/TF_Floor7_01-generated-v1.png",
+      "sha256": "f27e8200bae0107cc4b9fa344e3981f43ddb586b4c46447827d555e86fc1b4c2"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/TF_Floor7_01-layout-colour-reference.png",
+      "sha256": "3be8b506315b6bdad5f6ccd1b3b7bf87230ec628433c8a7be711dfd5b37ee3b1"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/TF_Floor7_02-prompt.txt",
+      "sha256": "fdd25af5cad2cbdff31ba8a40fbb646dc138845f2f4b0093e0f49ee6e8e8907d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/TF_Floor7_02-generated-v1.png",
+      "sha256": "e7d1c6b0736481b64465ed3653e492ade702ffd19728f85610bfc3135332b5a1"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/TF_Floor7_02-layout-colour-reference.png",
+      "sha256": "fb7d71955798b3d411149e489f39c4157339ffba04a06961a2ceb94f6760aecd"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/wstone_07_JM-prompt.txt",
+      "sha256": "df91be459140e8ddfb8154dc5cf5156f16baa982c2e8f50160435185f6802852"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/wstone_07_JM-generated-v1.png",
+      "sha256": "bbb088f668c6677e8ff3242b20ea93eb60e73829b6267fe2eefe87ab1c1cbdd1"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/wstone_07_JM-layout-colour-reference.png",
+      "sha256": "1eced8360b59b9c558d4121952a179c26d103fe9da5857589c44fe06d415738c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/met5_1-prompt.txt",
+      "sha256": "8aaf21ebfbb2bc25098de6bf435d6e92b7188030332b547d3ae90bf19d1534c8"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/met5_1-generated-v1.png",
+      "sha256": "3430e6d24a24757ae00563b27c5773487aa595ea2da3b1bf26ad0ac3803740a3"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/met5_1-layout-guide.png",
+      "sha256": "68db551aa732ef9508c16a83c19f14e959b545ac82242daa20a36639e78dce8b"
+    }
+  ],
+  "registration": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/floor-stone-stud-registration.json",
+  "methods": [
+    "finish_official_texture.py photographic field-sigma2",
+    "finish_character_stone.py smoothxyedgeoffsets",
+    "encode_official_maps.py decodedQ92height/XYZ"
+  ]
+}

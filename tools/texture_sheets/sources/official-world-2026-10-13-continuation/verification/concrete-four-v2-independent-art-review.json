@@ -1,0 +1,396 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent campaign_plan agent",
+  "reviewedAt": "2026-10-13T22:56:23.982987+00:00",
+  "result": "4 of4 pass decoded-image art review with explicit axis semantics",
+  "scope": "Actual decoded512px images,64/32px distance and declared-axis repeat/offset. All20maps hash/dimension bound. Authoring wrapper reviewed and direct implementation replay verified for all4. No renderer/native-level claim.",
+  "wrapperReview": {
+    "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/finish_continuation_edges.py",
+    "sha256": "b08560ee22d7d3dbc29c01e6b9ae4c43d532ab9b8400381831696e54e46cf94e",
+    "implementation": "tools/texture_sheets/sources/official-world-2026-10-12/finish_quiet_edges.py",
+    "implementationSha256": "b4d0ffed5d127c976ca73d0fb203636cb33a0c1ba43bb04361407e3eb83642a1",
+    "finding": "Minimal authoring-only delegation to existing finisher; asserts unchanged protected interior; does not register assets or alter engine. TF_Conc_08 landmarks recorded and monotonic, restored lip visible at native-equivalent16."
+  },
+  "entries": [
+    {
+      "name": "TF_Conc_06",
+      "verdict": "pass-art-review",
+      "wrapAxesQualified": "xy",
+      "verticalSelfTileClaim": true,
+      "original": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-TF_Conc_06.png",
+      "originalSha256": "803e89e672f684ee9b6c1484529c998d80b8ab3e2533e6bdd746919c56bb6597",
+      "diffuse": "newer/textures/candidates-2026-10-13/TF_Conc_06-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "diffuseSha256": "d01bc44ada9e733fcb9549c5fce3be86b10483e2f40d659eea5f513c57933f94",
+      "encodingReceipt": "newer/textures/candidates-2026-10-13/TF_Conc_06-photographic-seam-v2-4x-q92-xyz.json",
+      "encodingReceiptSha256": "bb32400aaa32c2669f8c7d2cfe3d7fdcf1a170a46406f7652a31868f2687fe48",
+      "dimensions": [
+        512,
+        512
+      ],
+      "halfComparison": [
+        64,
+        64
+      ],
+      "quarterComparison": [
+        32,
+        32
+      ],
+      "notes": [
+        "Four columns and two tall panel rows retained; divisions align near native x32/64/96 and y64. Dirty horizontal band remains a stain, not an extra panel row.",
+        "Pale cool grey concrete retains native distance character at64px and32px. Sparse pits and smooth aggregate are photographic; no native colour dithering.",
+        "Both axes reviewed in3x3repeat and cyclic offset. Border divisions are legitimate continuation of the panel grid, with no outer decorative bevel."
+      ],
+      "maps": [
+        {
+          "role": "diffuse",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc_06-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "d01bc44ada9e733fcb9549c5fce3be86b10483e2f40d659eea5f513c57933f94"
+        },
+        {
+          "role": "height",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc_06-photographic-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "dc531bed7286e267b51c3d5844e9c8a9a58728196f54c2a90cfb772dbffd0022"
+        },
+        {
+          "role": "normalX",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc_06-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "10201f460b08448c1c8d5d24ab558a9d7d2d2359c151e74e1fac6a8c68c61415"
+        },
+        {
+          "role": "normalY",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc_06-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "a1e34bec585b50c30c8131a37330a867edc9011e8f36f6eb50e714d613f0d525"
+        },
+        {
+          "role": "normalZ",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc_06-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "3756031db83baa2db73eb7e5d849fb1dceb21553278678e396fe9f72462a397d"
+        }
+      ],
+      "evidence": [
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/TF_Conc_06-review-v2-contact.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/TF_Conc_06-review-v2-repeat.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/TF_Conc_06-review-v2-offset.png"
+      ],
+      "edgeAuthoringReplay": {
+        "matchesSavedAuthoringPixels": true,
+        "outsideDeclaredBandsUnchanged": true,
+        "axes": "xy",
+        "spatialResampling": false,
+        "clippingFraction": 4.3233235677083336e-05
+      },
+      "transitionDiagnostic": {
+        "nativeTop8RGB": [
+          100.078125,
+          99.98828125,
+          96.64453125
+        ],
+        "nativeBottom8RGB": [
+          96.18359375,
+          94.73046875,
+          90.84375
+        ],
+        "decodedTop32RGB": [
+          107.580078125,
+          107.0101318359375,
+          104.39404296875
+        ],
+        "decodedBottom32RGB": [
+          119.75494384765625,
+          118.946044921875,
+          114.934326171875
+        ]
+      },
+      "encoderDiagnostics": {
+        "distanceMAE": 14.319661458333334,
+        "secondaryDistanceMAE": 13.226236979166666,
+        "normalAngularP99": 2.5593005432096843
+      }
+    },
+    {
+      "name": "TF_Conc4",
+      "verdict": "pass-art-review",
+      "wrapAxesQualified": "x",
+      "verticalSelfTileClaim": false,
+      "original": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-TF_Conc4.png",
+      "originalSha256": "a8ef073e13b93852858d5c9e0a9877ff15b5e3c916551f8940ca9d2baa8e3aed",
+      "diffuse": "newer/textures/candidates-2026-10-13/TF_Conc4-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "diffuseSha256": "0bad3c01f82e9c0433105697968f7e470997d102e8329ec191dc6e93cdf5d462",
+      "encodingReceipt": "newer/textures/candidates-2026-10-13/TF_Conc4-photographic-seam-v2-4x-q92-xyz.json",
+      "encodingReceiptSha256": "1a96c9defe02929399f503d050aeabb58560a6f48b31400a1966609a126c7ae3",
+      "dimensions": [
+        512,
+        512
+      ],
+      "halfComparison": [
+        64,
+        64
+      ],
+      "quarterComparison": [
+        32,
+        32
+      ],
+      "notes": [
+        "Four horizontal slab courses retained; no invented regular vertical masonry joints. Sparse diagonal cracks and fine pores are restrained.",
+        "Warm grey-brown material and darker lower grime transition remain similar at64px and32px. Lower edge intentionally differs from upper edge.",
+        "Three-wide horizontal repeat and256px horizontal offset inspected. x-only finishing preserves vertical transition; vertical self-tiling is not qualified."
+      ],
+      "maps": [
+        {
+          "role": "diffuse",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc4-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "0bad3c01f82e9c0433105697968f7e470997d102e8329ec191dc6e93cdf5d462"
+        },
+        {
+          "role": "height",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc4-photographic-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "076cd1bf29503e9896acc14bae0ed5b99d94956987b3eee7c65e41a226e062f3"
+        },
+        {
+          "role": "normalX",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc4-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "f691aebe814e4df935ac35ff5d00fd915ad5b13bb441af6bd1f7d68bcf1cd923"
+        },
+        {
+          "role": "normalY",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc4-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "d2f74532406d414426626c2f9a2e1314b062fb06923cc3f274e3a7b0dfd211fd"
+        },
+        {
+          "role": "normalZ",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc4-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "9f9556673ea1413357139e61294ec6d298fd92853fc8816e3920b614aa9ff98a"
+        }
+      ],
+      "evidence": [
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/TF_Conc4-review-v2-contact.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/TF_Conc4-review-v2-repeat.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/TF_Conc4-review-v2-offset.png"
+      ],
+      "edgeAuthoringReplay": {
+        "matchesSavedAuthoringPixels": true,
+        "outsideDeclaredBandsUnchanged": true,
+        "axes": "x",
+        "spatialResampling": false,
+        "clippingFraction": 0.00011444091796875
+      },
+      "transitionDiagnostic": {
+        "nativeTop8RGB": [
+          71.34375,
+          59.046875,
+          48.57421875
+        ],
+        "nativeBottom8RGB": [
+          40.8828125,
+          30.58203125,
+          18.666015625
+        ],
+        "decodedTop32RGB": [
+          81.93310546875,
+          70.13739013671875,
+          58.9736328125
+        ],
+        "decodedBottom32RGB": [
+          41.7386474609375,
+          29.46954345703125,
+          15.91455078125
+        ]
+      },
+      "encoderDiagnostics": {
+        "distanceMAE": 9.0595703125,
+        "secondaryDistanceMAE": 6.818033854166667,
+        "normalAngularP99": 2.4763867896188363
+      }
+    },
+    {
+      "name": "TF_Conc_08",
+      "verdict": "pass-art-review",
+      "wrapAxesQualified": "x",
+      "verticalSelfTileClaim": false,
+      "original": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-TF_Conc_08.png",
+      "originalSha256": "dff62c28677b1d4be7b461b11f7efd2a900354f4570c98d029794667c64ff0dd",
+      "diffuse": "newer/textures/candidates-2026-10-13/TF_Conc_08-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "diffuseSha256": "f41ce8896c032c6ac651f2e7f358b8698a27e8b8a320abc393b42d09a478645e",
+      "encodingReceipt": "newer/textures/candidates-2026-10-13/TF_Conc_08-photographic-seam-v2-4x-q92-xyz.json",
+      "encodingReceiptSha256": "2282d628e1607e1e67debad7e73c42f1a372c47aea883bf9e7e223aa6707a5fb",
+      "dimensions": [
+        512,
+        512
+      ],
+      "halfComparison": [
+        64,
+        64
+      ],
+      "quarterComparison": [
+        32,
+        32
+      ],
+      "notes": [
+        "Top dark band ends near native y16 (replacement y64) with chipped lip. Main surface has vertical runoff and lower worn band near native y100. No invented brick courses.",
+        "64px and32px views retain dark top and streaked grey-brown face with lighter lower wear. Original harsh pixel chips become physical subtle erosion.",
+        "Three-wide horizontal repeat and256px horizontal offset inspected. x-only edge treatment preserves unequal top and bottom; no vertical self-tiling claim."
+      ],
+      "maps": [
+        {
+          "role": "diffuse",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc_08-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "f41ce8896c032c6ac651f2e7f358b8698a27e8b8a320abc393b42d09a478645e"
+        },
+        {
+          "role": "height",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc_08-photographic-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "f42c5aea137eb7f712bb66af29b2926dfac0880d7ae84b61265a8874f28d3536"
+        },
+        {
+          "role": "normalX",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc_08-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "2507a52073f7a884364fb915f1396b717e8e8b012d2cfde184e07dbf74fedef8"
+        },
+        {
+          "role": "normalY",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc_08-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "c0d5bd1f936eb6635f7783854d9077a73e7693bd4735f2bb1a7b11b2672b3c39"
+        },
+        {
+          "role": "normalZ",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc_08-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "10b1cc4621a2d83b1d2d99d0922cb1ef372df46da2bf0cffde056fa153ed7734"
+        }
+      ],
+      "evidence": [
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/TF_Conc_08-review-v2-contact.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/TF_Conc_08-review-v2-repeat.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/TF_Conc_08-review-v2-offset.png"
+      ],
+      "edgeAuthoringReplay": {
+        "matchesSavedAuthoringPixels": true,
+        "outsideDeclaredBandsUnchanged": true,
+        "axes": "x",
+        "spatialResampling": false,
+        "clippingFraction": 3.814697265625e-06
+      },
+      "transitionDiagnostic": {
+        "nativeTop8RGB": [
+          50.015625,
+          46.08203125,
+          41.91015625
+        ],
+        "nativeBottom8RGB": [
+          92.92578125,
+          80.88671875,
+          71.6015625
+        ],
+        "decodedTop32RGB": [
+          51.435546875,
+          46.88299560546875,
+          42.438720703125
+        ],
+        "decodedBottom32RGB": [
+          98.02001953125,
+          85.5904541015625,
+          74.7908935546875
+        ]
+      },
+      "encoderDiagnostics": {
+        "distanceMAE": 10.26953125,
+        "secondaryDistanceMAE": 6.686848958333333,
+        "normalAngularP99": 2.4848016254482057
+      }
+    },
+    {
+      "name": "TF_Conc_07b",
+      "verdict": "pass-art-review",
+      "wrapAxesQualified": "xy",
+      "verticalSelfTileClaim": true,
+      "original": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-TF_Conc_07b.png",
+      "originalSha256": "69c96feccbe348fc72d91e65fa068df06351ec6754837b646e221fb3db0e4e8e",
+      "diffuse": "newer/textures/candidates-2026-10-13/TF_Conc_07b-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "diffuseSha256": "43fd6fdc7771a8f7d8eced868c6460d98813ef5a72b7c8469608b3639a2cdd5c",
+      "encodingReceipt": "newer/textures/candidates-2026-10-13/TF_Conc_07b-photographic-seam-v2-4x-q92-xyz.json",
+      "encodingReceiptSha256": "23328a3e7031cc00783f9d39f21e93abcc6e4e6913d1ccc50b6c8c1302d58cd5",
+      "dimensions": [
+        512,
+        512
+      ],
+      "halfComparison": [
+        64,
+        64
+      ],
+      "quarterComparison": [
+        32,
+        32
+      ],
+      "notes": [
+        "Four courses with irregular half-block stagger retained. Upper joints near native28/92; next rows near0/64,32/96,0/64.",
+        "Brown runoff and grey worn areas retain source style at64px and32px, without vivid orange rust or coloured speckling.",
+        "Both axes reviewed in3x3repeat and cyclic offset. No conspicuous rectangular texture frame, displaced row or extra joint."
+      ],
+      "maps": [
+        {
+          "role": "diffuse",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc_07b-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "43fd6fdc7771a8f7d8eced868c6460d98813ef5a72b7c8469608b3639a2cdd5c"
+        },
+        {
+          "role": "height",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc_07b-photographic-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "6f9cc905f787970101043a85e78926328330f1008686b691e4fad5b3546ceff6"
+        },
+        {
+          "role": "normalX",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc_07b-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "fc18743d05dbc1d1ae45ab3743647e67aee5c8e6d966c96931b9b00383272815"
+        },
+        {
+          "role": "normalY",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc_07b-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "b081b0846fd7a1957671fa09ef8cf909701d77a7ba50c702e734f9c36d852cd9"
+        },
+        {
+          "role": "normalZ",
+          "file": "newer/textures/candidates-2026-10-13/TF_Conc_07b-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "6197d636756d8cf89b899d0cf7d79c7eb85a0dee4b63f7f4a22313771fa463fd"
+        }
+      ],
+      "evidence": [
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/TF_Conc_07b-review-v2-contact.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/TF_Conc_07b-review-v2-repeat.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/TF_Conc_07b-review-v2-offset.png"
+      ],
+      "edgeAuthoringReplay": {
+        "matchesSavedAuthoringPixels": true,
+        "outsideDeclaredBandsUnchanged": true,
+        "axes": "xy",
+        "spatialResampling": false,
+        "clippingFraction": 6.4849853515625e-05
+      },
+      "transitionDiagnostic": {
+        "nativeTop8RGB": [
+          56.11328125,
+          44.94140625,
+          34.7705078125
+        ],
+        "nativeBottom8RGB": [
+          54.1328125,
+          39.51953125,
+          27.6337890625
+        ],
+        "decodedTop32RGB": [
+          46.83355712890625,
+          35.63275146484375,
+          26.551513671875
+        ],
+        "decodedBottom32RGB": [
+          61.926025390625,
+          44.42236328125,
+          30.57330322265625
+        ]
+      },
+      "encoderDiagnostics": {
+        "distanceMAE": 7.10205078125,
+        "secondaryDistanceMAE": 5.052408854166667,
+        "normalAngularP99": 2.5361823663170515
+      }
+    }
+  ]
+}

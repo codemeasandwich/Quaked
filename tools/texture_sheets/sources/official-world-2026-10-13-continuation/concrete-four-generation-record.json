@@ -1,0 +1,72 @@
+{
+  "generator": "Built-in GPT image generation",
+  "files": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/TF_Conc_06-prompt.txt",
+      "sha256": "7b35b2c0041eb89a0880b603a376a5dc121eff9c5dcf8fd991e717a54f7a75e4"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/TF_Conc_06-generated-v1.png",
+      "sha256": "7d048faf2094459813e28f1ca8fd3c8dca25df600b6752b0463e4c2adbf3fdd0"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/TF_Conc_06-layout-colour-reference.png",
+      "sha256": "8ec8edb1aa24f0bbb7bf4d5be0e286df3f7171bd9de3adb75a04dc35c61224c0"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/TF_Conc4-prompt.txt",
+      "sha256": "f2a09ba0af6748dad37dfe4ad76d103df12857a2e8e804d55ca23010e5da3f82"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/TF_Conc4-generated-v1.png",
+      "sha256": "def151d50a80e8a82d6505ca3c1ba7fe43784f744e33432517135dda69d45109"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/TF_Conc4-layout-colour-reference.png",
+      "sha256": "978f48d957729a1db4515d1f7fdb289a1058a55a23ad2e23cf65385dacd2300a"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/TF_Conc_08-prompt.txt",
+      "sha256": "3df17a7a3807d9f404ffac4ee5e7b879cc1eb3f7a16d625d2bd795335ee5159a"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/TF_Conc_08-generated-v1.png",
+      "sha256": "ef1d320938a0662e66eead6997514ae3a1c3e38d219d452f1101df401fc661e9"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/TF_Conc_08-layout-colour-reference.png",
+      "sha256": "998a27d016f8cc403ec0b8d31b14d731c76e222c852273a3017c0f3673ff4ace"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/TF_Conc_08-vertical-landmarks.json",
+      "sha256": "54dce74f36382e834607e0328bf7c067c6e6ee706c4f6864c1f5ad661028fdf0"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/TF_Conc_07b-prompt.txt",
+      "sha256": "294bd331aac2e49d1aa9a12b8aff1445e51270b1ae811f2d837dccb79bb1869c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/TF_Conc_07b-generated-v1.png",
+      "sha256": "a7ab8256995d552b5c01e6f42f3a6a128bd0b47f5acb3118cc7e097b45e0af78"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/TF_Conc_07b-layout-colour-reference.png",
+      "sha256": "e3e1ae53cfd0badcf504bbaf5fd59ed129dd3d0e09ebc73127ca8eb55e0a8633"
+    }
+  ],
+  "registration": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/concrete-four-registration.json",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "comparisonDivisors": [
+    2,
+    4
+  ],
+  "tileAxes": {
+    "TF_Conc_06": "xy",
+    "TF_Conc4": "x",
+    "TF_Conc_08": "x",
+    "TF_Conc_07b": "xy"
+  },
+  "landmarkExplanation": "Conc08 generatedupperlip near10.2nativepx remapped tosource16; lowerband100.8\u2192100. Preserve intentionaldarktop/lightbottom."
+}

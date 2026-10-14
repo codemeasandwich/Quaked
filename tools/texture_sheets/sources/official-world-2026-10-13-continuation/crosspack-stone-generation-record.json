@@ -1,0 +1,51 @@
+{
+  "generator": "Built-in GPT image generation",
+  "files": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/city6_7-prompt.txt",
+      "sha256": "1a135037fb0e1d557493ccd7415a592b4abaf9d7eaed358e39e22d32742e84eb"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/city6_7-generated-v1.png",
+      "sha256": "269e1114a51e13f885dc2397b969174fb375021c8717d2cd68b08d30ee0e10e1"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/city6_7-layout-colour-reference.png",
+      "sha256": "10d16420dc1a598e3ce183cf6b554db965b7ab19eccd270e9da2ab8596e9ea0a"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/cliff2-prompt.txt",
+      "sha256": "0d220c6b75b359cdfba4437c0cb0fff43d3098f043e9d3fddd94841a537cdbb6"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/cliff2-generated-v1.png",
+      "sha256": "6b85084a285d50f4af5d7db8ca6a0a25c2d8152bfdb59f0aa21b0f346c056b7d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/cliff2-layout-colour-reference.png",
+      "sha256": "4fff71acfe2608d29e4958b53ff17a6e7b2f3bc6acef4ebb70070b163763fcd3"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/stone5_0-prompt.txt",
+      "sha256": "f22b95a0d620b8d34862c21143d9017b241a0fe9845ec04ba5ac5086a70dd788"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/stone5_0-generated-v1.png",
+      "sha256": "870163d25480b289bf1d6608ed5d501152f6445f4eccc7ba58ff21432c613d5d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/stone5_0-layout-colour-reference.png",
+      "sha256": "429add92cfeaaf1ed5dccf8f1f68c9340bed5f9ba28cbfdc24a86548d8a0de0d"
+    }
+  ],
+  "registration": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/crosspack-stone-registration.json",
+  "review": "verification/crosspack-three-v2-independent-art-review.json",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "comparisonDivisors": [
+    2,
+    4
+  ],
+  "finishing": "Existing photographic field-sigma2 and pairedxyedgecolourcorrection; existing decodedQ92height/XYZencoder"
+}

@@ -1,0 +1,62 @@
+{
+  "source": {
+    "id": "dung01_3|64x64:2410e6e5b2d58537",
+    "name": "dung01_3",
+    "key": "64x64:2410e6e5b2d58537",
+    "width": 64,
+    "height": 64,
+    "pixelSha256": "7dfa36e69d5d52074149eeab3dc3886929d6e2183dca661914cc0bdaddb2c672",
+    "original": "originals/64x64-2410e6e5b2d58537.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "id1",
+        "map": "maps/dm1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 17,
+        "faces": 38,
+        "visibleCandidateFaces": 38,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/e4m8.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 6,
+        "faces": 824,
+        "visibleCandidateFaces": 812,
+        "hiddenTriggerFaces": 12,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "hipnotic",
+        "map": "maps/hip2m3.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+        "slot": 28,
+        "faces": 159,
+        "visibleCandidateFaces": 159,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "hipnotic",
+        "map": "maps/hip3m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+        "slot": 23,
+        "faces": 7,
+        "visibleCandidateFaces": 7,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "referenceSha256": "85f84e7270af2f23bd922d89373a16cb2bd649967cab7ac19de1ef2f7098c8b0"
+}

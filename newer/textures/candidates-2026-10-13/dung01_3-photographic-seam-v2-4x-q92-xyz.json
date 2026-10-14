@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "dung01_3",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-dung01_3.png",
+  "originalSha256": "85f84e7270af2f23bd922d89373a16cb2bd649967cab7ac19de1ef2f7098c8b0",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-13/dung01_3-photographic-seam-v2-4x.png",
+  "authoringDiffuseSha256": "4a4d75e7e6ca01f2ad16e11d47ccb59164672c6df7ec879f59a8c761af1938f0",
+  "toolSha256": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.16,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-13/dung01_3-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "ed1e6e8d45ad0c48b8fbe9bebfbf91beacf7e4fabddfd8aa3b180bb27c847a45",
+      "bytes": 17926,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-13/dung01_3-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "461b8c78bd04995cd5e79b8ef4d753b202213ebbd4a655ff723b393e676773f8",
+      "bytes": 30412,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-13/dung01_3-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "6bf2a56aab74abc3b2011a9b5c4b4fae040fc5b531dd4f958d491c96e0240191",
+      "bytes": 22320,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-13/dung01_3-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "d9f270354efc269187f371a90750a42664b365c506159645b7756ac5623ffb3e",
+      "bytes": 18674,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-13/dung01_3-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "f33dd5724f75f17c585fca4bc56ca2cc213b801b98d8fe3fec203b71901868e2",
+      "bytes": 6146,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    32,
+    32
+  ],
+  "distanceMAE": 5.1455078125,
+  "distanceMaximum": 27.0,
+  "secondaryComparisonDimensions": [
+    16,
+    16
+  ],
+  "secondaryDistanceMAE": 3.29296875,
+  "secondaryDistanceMaximum": 18.0,
+  "colourCompressionMAE": 2.514439900716146,
+  "heightCompressionMAE": 1.3829345703125,
+  "heightCompressionMaximum": 9.0,
+  "normalAngularMean": 0.9910922757988462,
+  "normalAngularP99": 2.5386782115657316,
+  "normalAngularMaximum": 4.546657172290872,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

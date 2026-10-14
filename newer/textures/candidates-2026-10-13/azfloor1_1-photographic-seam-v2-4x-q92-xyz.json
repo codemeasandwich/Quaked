@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "azfloor1_1",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-azfloor1_1.png",
+  "originalSha256": "5060e42a2c063685d4bb69486b5839399a4ea2d069c01a871a3a0cce147728eb",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-13/azfloor1_1-photographic-seam-v2-4x.png",
+  "authoringDiffuseSha256": "f526b60f767afacb3dc01df061d7adabd7a222f6fa3bcd7b577158d5714876fc",
+  "toolSha256": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.25,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-13/azfloor1_1-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "6f2553f17583ea3d6d920fc088cfde0f4398b7b0d8f2dc6ad24773f01be8bcb9",
+      "bytes": 21336,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-13/azfloor1_1-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "180aeb1075062e04daaad673d3478f799c65a677a54c5c475458001072858d12",
+      "bytes": 35638,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-13/azfloor1_1-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "2ed117b69a7c737483c606df7c30689cebd1e3b996895ccd19533dda4d705d51",
+      "bytes": 29140,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-13/azfloor1_1-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "7f02ecdff6d9c830a59e657d4f3ee2a9ae7d123a5b34d8687f9a05c9c0ecb69c",
+      "bytes": 28834,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-13/azfloor1_1-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "1952c47c187c169ac22edaec899b3641c81786be5e9312d783f7bdf42a215651",
+      "bytes": 8196,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    32,
+    32
+  ],
+  "distanceMAE": 8.074544270833334,
+  "distanceMaximum": 43.0,
+  "secondaryComparisonDimensions": [
+    16,
+    16
+  ],
+  "secondaryDistanceMAE": 6.212239583333333,
+  "secondaryDistanceMaximum": 22.0,
+  "colourCompressionMAE": 1.9113210042317708,
+  "heightCompressionMAE": 1.380645751953125,
+  "heightCompressionMaximum": 9.0,
+  "normalAngularMean": 1.0586074650734296,
+  "normalAngularP99": 2.644796263690818,
+  "normalAngularMaximum": 4.5580461691604235,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

@@ -1,0 +1,73 @@
+{
+  "source": {
+    "id": "azfloor1_1|64x64:bfbcf176564b2ff4",
+    "name": "azfloor1_1",
+    "key": "64x64:bfbcf176564b2ff4",
+    "width": 64,
+    "height": 64,
+    "pixelSha256": "04883b7ea2a5997d16101a28cef9efadf9168db62e86a947511c53143adb3686",
+    "original": "originals/64x64-bfbcf176564b2ff4.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "id1",
+        "map": "maps/e2m3.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 8,
+        "faces": 66,
+        "visibleCandidateFaces": 66,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/e4m8.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 2,
+        "faces": 749,
+        "visibleCandidateFaces": 749,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/test/test_characters.bsp",
+        "scope": "installed-test",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 1,
+        "faces": 54,
+        "visibleCandidateFaces": 54,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "hipnotic",
+        "map": "maps/hip2m5.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+        "slot": 38,
+        "faces": 18,
+        "visibleCandidateFaces": 18,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "dopa",
+        "map": "maps/e5sm2.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dimension of the Past/pak0.pak",
+        "slot": 25,
+        "faces": 37,
+        "visibleCandidateFaces": 37,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "referenceSha256": "5060e42a2c063685d4bb69486b5839399a4ea2d069c01a871a3a0cce147728eb"
+}

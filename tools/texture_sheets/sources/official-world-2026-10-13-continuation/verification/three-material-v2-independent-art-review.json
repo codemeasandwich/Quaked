@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent campaign_plan agent",
+  "reviewedAt": "2026-10-13T21:59:44.359295+00:00",
+  "result": "3 of 3 pass visual authoring review",
+  "scope": "Actual decoded Q92 diffuse inspected at full1024, half128, quarter64,3x3 repeats and 512-pixel cyclic offsets. Hash/dimension binding of all15encoded maps only; no new shader or native-level proof from this review.",
+  "acceptance": "similar distant appearance with photographic material interpretation; no exact pixel-equality criterion",
+  "entries": [
+    {
+      "name": "TF_Floor7_01",
+      "verdict": "pass-art-review",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-TF_Floor7_01.png",
+      "originalSha256": "e5199c99754d16adb82dbcb21be99126bfbb86ed502a86a3ac09cdc03ac9c183",
+      "diffuse": "newer/textures/candidates-2026-10-13/TF_Floor7_01-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "diffuseSha256": "800446d0930813a1835edc0595bfa2f0d919f01601abd0e8a0c84a230b1a1b42",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "halfComparison": [
+        128,
+        128
+      ],
+      "quarterComparison": [
+        64,
+        64
+      ],
+      "notes": [
+        "Dark grey-brown floor reads as dense stone with restrained pits and surface wear. Fine material texture remains but native coloured speckling and hard pixel edges are gone.",
+        "Broad patches and dark value remain recognisable at 128 and 64 pixels. Small natural pits are interpretive rather than literal native noise.",
+        "Repeated field and shifted wrap view show no rectangular border, bevel, or conspicuous tile-edge stripe."
+      ],
+      "evidence": [
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/TF_Floor7_01-review-v2-contact.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/TF_Floor7_01-review-v2-repeat.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/TF_Floor7_01-review-v2-offset.png"
+      ],
+      "maps": [
+        {
+          "role": "diffuse",
+          "file": "newer/textures/candidates-2026-10-13/TF_Floor7_01-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "800446d0930813a1835edc0595bfa2f0d919f01601abd0e8a0c84a230b1a1b42"
+        },
+        {
+          "role": "height",
+          "file": "newer/textures/candidates-2026-10-13/TF_Floor7_01-photographic-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "18207adafa9927d483daa72ff55d5d9494cbb95bd73611a333768e0499193c44"
+        },
+        {
+          "role": "normalX",
+          "file": "newer/textures/candidates-2026-10-13/TF_Floor7_01-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "bd605d4812bd0560f3729eba75bb48b0c1f8d97b70e8f23b372e2a30179957f8"
+        },
+        {
+          "role": "normalY",
+          "file": "newer/textures/candidates-2026-10-13/TF_Floor7_01-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "adbc5aad2f006997e640c4105da0c8a7139c6d9a11f1fe72ac5ff44f46a2b8b8"
+        },
+        {
+          "role": "normalZ",
+          "file": "newer/textures/candidates-2026-10-13/TF_Floor7_01-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "719b6ef27f363e606acf7ca11ba3164808e3703ea420c9c5939e653ffb3d0f3a"
+        }
+      ],
+      "encoderDiagnostics": {
+        "distanceMAE": 6.192586263020833,
+        "secondaryDistanceMAE": 4.407389322916667,
+        "normalAngularP99": 2.5089826361798764
+      }
+    },
+    {
+      "name": "TF_Floor7_02",
+      "verdict": "pass-art-review",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-TF_Floor7_02.png",
+      "originalSha256": "48c2eef1a7216b33f8eae30b8bffcaf98ffbb11e755f2c050def8b50f93d6380",
+      "diffuse": "newer/textures/candidates-2026-10-13/TF_Floor7_02-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "diffuseSha256": "1a26c2e2008f9ae9f4e306b4edc227b548e298ce438a83862ffc46769ababd00",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "halfComparison": [
+        128,
+        128
+      ],
+      "quarterComparison": [
+        64,
+        64
+      ],
+      "notes": [
+        "Shares the dense worn floor character while retaining a distinctly more fractured right/lower region. Cracks are small physical fissures rather than bright decorative veins.",
+        "Major fracture grouping and sparse middle-left area remain close at 128 and 64 pixels. Individual fine branches are artistic interpretations, not exact tracing.",
+        "3x3 repeat and full-resolution wrap offset inspected. Fine crack tips taper naturally; no conspicuous chopped high-contrast tips or straight rectangular seam identified."
+      ],
+      "evidence": [
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/TF_Floor7_02-review-v2-contact.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/TF_Floor7_02-review-v2-repeat.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/TF_Floor7_02-review-v2-offset.png"
+      ],
+      "maps": [
+        {
+          "role": "diffuse",
+          "file": "newer/textures/candidates-2026-10-13/TF_Floor7_02-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "1a26c2e2008f9ae9f4e306b4edc227b548e298ce438a83862ffc46769ababd00"
+        },
+        {
+          "role": "height",
+          "file": "newer/textures/candidates-2026-10-13/TF_Floor7_02-photographic-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "ba236a0633b64faedc6487a85c00a282924b4499aaff29f780965b479f9f7eb0"
+        },
+        {
+          "role": "normalX",
+          "file": "newer/textures/candidates-2026-10-13/TF_Floor7_02-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "d4bc3609a9949a3a84a645e0b161ca0b45ee0aa6e9e7ae18199a0e75ee1a1fb3"
+        },
+        {
+          "role": "normalY",
+          "file": "newer/textures/candidates-2026-10-13/TF_Floor7_02-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "d9250d7bfcf52976939cfe0061ece44e9aedbfacc27148eb33dae264c9f719e6"
+        },
+        {
+          "role": "normalZ",
+          "file": "newer/textures/candidates-2026-10-13/TF_Floor7_02-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "3b2a208eaae802baf4fb0f1c37746e8ca2c04b36976dd4470aafc87e3a152835"
+        }
+      ],
+      "encoderDiagnostics": {
+        "distanceMAE": 6.903645833333333,
+        "secondaryDistanceMAE": 4.876383463541667,
+        "normalAngularP99": 2.5169994097362225
+      }
+    },
+    {
+      "name": "wstone_07_JM",
+      "verdict": "pass-art-review",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-wstone_07_JM.png",
+      "originalSha256": "9865d754944f7f78c7386626a0618e53474e7c237b1bca6b6871c4bdfed1d9f0",
+      "diffuse": "newer/textures/candidates-2026-10-13/wstone_07_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "diffuseSha256": "751c79e434dba6dcd0366b4d97c3d7837f8da00c037a24a9d35d15f18941591e",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "halfComparison": [
+        128,
+        128
+      ],
+      "quarterComparison": [
+        64,
+        64
+      ],
+      "notes": [
+        "Warm pale stone has smooth mineral variation and several dominant diagonal fractures. Fine vein and surface variations add character without pixel reconstruction.",
+        "Dominant lower-left to upper-right diagonals and upper-right junction retain clear similarity at half and quarter native sizes. New mineral mottling does not replace the original fracture hierarchy.",
+        "Both wrap axes inspected in repeat and shifted view. No exterior frame or conspicuous straight seam; natural fracture and tone continuity judged acceptable."
+      ],
+      "evidence": [
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/wstone_07_JM-review-v2-contact.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/wstone_07_JM-review-v2-repeat.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/wstone_07_JM-review-v2-offset.png"
+      ],
+      "maps": [
+        {
+          "role": "diffuse",
+          "file": "newer/textures/candidates-2026-10-13/wstone_07_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "751c79e434dba6dcd0366b4d97c3d7837f8da00c037a24a9d35d15f18941591e"
+        },
+        {
+          "role": "height",
+          "file": "newer/textures/candidates-2026-10-13/wstone_07_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "d7ff843f07e85540450949581d8b2efc1c24ca472e7ac385e11199d547375dd6"
+        },
+        {
+          "role": "normalX",
+          "file": "newer/textures/candidates-2026-10-13/wstone_07_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "829702db6e30ddb6feef6d514b271c759a3bb7c2136e211ed1d4da2cf4fc3687"
+        },
+        {
+          "role": "normalY",
+          "file": "newer/textures/candidates-2026-10-13/wstone_07_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "e73d6b1406910b35a45a697e9d732c9466bc9770fbc3e1e435ab23ecb88f32e8"
+        },
+        {
+          "role": "normalZ",
+          "file": "newer/textures/candidates-2026-10-13/wstone_07_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "c87fef8d24b0e4a7e6e7dc13e39e300ed9b0fabffed0567ef90adb791b4227b8"
+        }
+      ],
+      "encoderDiagnostics": {
+        "distanceMAE": 8.4156494140625,
+        "secondaryDistanceMAE": 6.64404296875,
+        "normalAngularP99": 2.4639785775639025
+      }
+    }
+  ]
+}

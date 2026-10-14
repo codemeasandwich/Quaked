@@ -1,0 +1,1730 @@
+{
+  "qualification": "Asset collector closure and per-game accessibility only; not a packaged build, runtime visual acceptance, landing or release.",
+  "node": "v24.19.0",
+  "indexSha256": "dde5dab1f8cb3ff90e59d98dc8242e41fed6e2743609b2ee400f5ae111143990",
+  "gamesSha256": "8f1b016ced67c9f42240f7d70c6e2c8dcb5ca0d56b8d1eff7a2f313b5f5a9ca7",
+  "bindings": 51,
+  "uniqueQ92Files": 245,
+  "profiles": {
+    "web": {
+      "assetCount": 2893,
+      "requiredQ92Files": 245,
+      "present": 245,
+      "missing": []
+    },
+    "desktop": {
+      "assetCount": 4534,
+      "requiredQ92Files": 245,
+      "present": 245,
+      "missing": []
+    }
+  },
+  "ownership": [
+    {
+      "name": "metal5_6",
+      "key": "32x64:b15237abb6d97cf1",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "hipnotic",
+        "quake",
+        "rogue",
+        "shareware",
+        "soe"
+      ],
+      "expectedIndividualOwner": "shareware",
+      "maps": [
+        {
+          "file": "newer/textures/official/hipnotic-metal5_6-b15237abb6d97cf1-4x-q92-diffuse.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/hipnotic-metal5_6-b15237abb6d97cf1-4x-q92-height.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/hipnotic-metal5_6-b15237abb6d97cf1-4x-q92-normalX.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/hipnotic-metal5_6-b15237abb6d97cf1-4x-q92-normalY.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/hipnotic-metal5_6-b15237abb6d97cf1-4x-q92-normalZ.webp",
+          "pack": "shareware"
+        }
+      ]
+    },
+    {
+      "name": "comp1_2",
+      "key": "64x64:a823407b09df4331",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "aopfm_v2",
+        "dopa",
+        "hipnotic",
+        "mg1",
+        "quake",
+        "quoth",
+        "shareware"
+      ],
+      "expectedIndividualOwner": "shareware",
+      "maps": [
+        {
+          "file": "newer/textures/official/mg1-comp1_2-a823407b09df4331-4x-q92-diffuse.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-comp1_2-a823407b09df4331-4x-q92-height.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-comp1_2-a823407b09df4331-4x-q92-normalX.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-comp1_2-a823407b09df4331-4x-q92-normalY.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-comp1_2-a823407b09df4331-4x-q92-normalZ.webp",
+          "pack": "shareware"
+        }
+      ]
+    },
+    {
+      "name": "comp1_3",
+      "key": "64x64:4b7a14875bfadccd",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "aopfm_v2",
+        "dopa",
+        "hipnotic",
+        "mg1",
+        "quake",
+        "quoth",
+        "rogue",
+        "shareware"
+      ],
+      "expectedIndividualOwner": "shareware",
+      "maps": [
+        {
+          "file": "newer/textures/official/mg1-comp1_3-4b7a14875bfadccd-4x-q92-diffuse.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-comp1_3-4b7a14875bfadccd-4x-q92-height.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-comp1_3-4b7a14875bfadccd-4x-q92-normalX.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-comp1_3-4b7a14875bfadccd-4x-q92-normalY.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-comp1_3-4b7a14875bfadccd-4x-q92-normalZ.webp",
+          "pack": "shareware"
+        }
+      ]
+    },
+    {
+      "name": "metal1_1",
+      "key": "64x64:5fdc8d86e1f32d2c",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "hipnotic",
+        "mg1",
+        "quake",
+        "quoth",
+        "shareware"
+      ],
+      "expectedIndividualOwner": "shareware",
+      "maps": [
+        {
+          "file": "newer/textures/official/mg1-metal1_1-5fdc8d86e1f32d2c-4x-q92-diffuse.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-metal1_1-5fdc8d86e1f32d2c-4x-q92-height.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-metal1_1-5fdc8d86e1f32d2c-4x-q92-normalX.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-metal1_1-5fdc8d86e1f32d2c-4x-q92-normalY.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-metal1_1-5fdc8d86e1f32d2c-4x-q92-normalZ.webp",
+          "pack": "shareware"
+        }
+      ]
+    },
+    {
+      "name": "metal1_3",
+      "key": "64x64:7c6b8625f6f16f6f",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "aopfm_v2",
+        "dopa",
+        "hipnotic",
+        "mg1",
+        "quake",
+        "rogue",
+        "shareware",
+        "soe"
+      ],
+      "expectedIndividualOwner": "shareware",
+      "maps": [
+        {
+          "file": "newer/textures/official/mg1-metal1_3-7c6b8625f6f16f6f-4x-q92-diffuse.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-metal1_3-7c6b8625f6f16f6f-4x-q92-height.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-metal1_3-7c6b8625f6f16f6f-4x-q92-normalX.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-metal1_3-7c6b8625f6f16f6f-4x-q92-normalY.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-metal1_3-7c6b8625f6f16f6f-4x-q92-normalZ.webp",
+          "pack": "shareware"
+        }
+      ]
+    },
+    {
+      "name": "metal1_4",
+      "key": "64x64:5fcb234d8850a05f",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "aopfm_v2",
+        "dopa",
+        "hipnotic",
+        "mg1",
+        "quake",
+        "rogue",
+        "shareware"
+      ],
+      "expectedIndividualOwner": "shareware",
+      "maps": [
+        {
+          "file": "newer/textures/official/mg1-metal1_4-5fcb234d8850a05f-4x-q92-diffuse.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-metal1_4-5fcb234d8850a05f-4x-q92-height.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-metal1_4-5fcb234d8850a05f-4x-q92-normalX.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-metal1_4-5fcb234d8850a05f-4x-q92-normalY.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/mg1-metal1_4-5fcb234d8850a05f-4x-q92-normalZ.webp",
+          "pack": "shareware"
+        }
+      ]
+    },
+    {
+      "name": "city6_8",
+      "key": "64x64:3300e41335b7e451",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "dopa",
+        "hipnotic",
+        "mg1",
+        "quake",
+        "rogue",
+        "soe"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/city6_8-3300e41335b7e451-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city6_8-3300e41335b7e451-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city6_8-3300e41335b7e451-4x-q92-normalX.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city6_8-3300e41335b7e451-4x-q92-normalY.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city6_8-3300e41335b7e451-4x-q92-normalZ.webp",
+          "pack": "quake"
+        }
+      ]
+    },
+    {
+      "name": "city4_2",
+      "key": "64x64:0621dd3e82b96b24",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "dopa",
+        "mg1",
+        "quake",
+        "quoth",
+        "rogue",
+        "soe"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/city4_2-0621dd3e82b96b24-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city4_2-0621dd3e82b96b24-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city4_2-0621dd3e82b96b24-4x-q92-normalX.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city4_2-0621dd3e82b96b24-4x-q92-normalY.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city4_2-0621dd3e82b96b24-4x-q92-normalZ.webp",
+          "pack": "quake"
+        }
+      ]
+    },
+    {
+      "name": "city4_8",
+      "key": "64x64:3eb3f2adf6aa1457",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "hipnotic",
+        "quake",
+        "quoth",
+        "soe"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/city4_8-3eb3f2adf6aa1457-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city4_8-3eb3f2adf6aa1457-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city4_8-3eb3f2adf6aa1457-4x-q92-normalX.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city4_8-3eb3f2adf6aa1457-4x-q92-normalY.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city4_8-3eb3f2adf6aa1457-4x-q92-normalZ.webp",
+          "pack": "quake"
+        }
+      ]
+    },
+    {
+      "name": "metflor1_3",
+      "key": "64x64:3eb3f2adf6aa1457",
+      "route": "ordinaryVariants",
+      "users": [
+        "rogue"
+      ],
+      "expectedIndividualOwner": "rogue",
+      "maps": [
+        {
+          "file": "newer/textures/official/city4_8-3eb3f2adf6aa1457-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city4_8-3eb3f2adf6aa1457-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city4_8-3eb3f2adf6aa1457-4x-q92-normalX.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city4_8-3eb3f2adf6aa1457-4x-q92-normalY.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city4_8-3eb3f2adf6aa1457-4x-q92-normalZ.webp",
+          "pack": "quake"
+        }
+      ]
+    },
+    {
+      "name": "bricka2_4",
+      "key": "64x64:4b2a165efc1a200c",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "dopa",
+        "quake",
+        "rogue",
+        "soe"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/bricka2_4-4b2a165efc1a200c-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/bricka2_4-4b2a165efc1a200c-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/bricka2_4-4b2a165efc1a200c-4x-q92-normalX.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/bricka2_4-4b2a165efc1a200c-4x-q92-normalY.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/bricka2_4-4b2a165efc1a200c-4x-q92-normalZ.webp",
+          "pack": "quake"
+        }
+      ]
+    },
+    {
+      "name": "brick2_4",
+      "key": "64x64:4b2a165efc1a200c",
+      "route": "ordinaryVariants",
+      "users": [
+        "hipnotic",
+        "soe"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/bricka2_4-4b2a165efc1a200c-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/bricka2_4-4b2a165efc1a200c-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/bricka2_4-4b2a165efc1a200c-4x-q92-normalX.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/bricka2_4-4b2a165efc1a200c-4x-q92-normalY.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/bricka2_4-4b2a165efc1a200c-4x-q92-normalZ.webp",
+          "pack": "quake"
+        }
+      ]
+    },
+    {
+      "name": "city2_3",
+      "key": "64x64:2129a131b015141b",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "mg1",
+        "quake",
+        "soe"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/city2_3-2129a131b015141b-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city2_3-2129a131b015141b-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city2_3-2129a131b015141b-4x-q92-normalX.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city2_3-2129a131b015141b-4x-q92-normalY.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city2_3-2129a131b015141b-4x-q92-normalZ.webp",
+          "pack": "quake"
+        }
+      ]
+    },
+    {
+      "name": "city2_5",
+      "key": "64x64:45938b9e3abd5f2c",
+      "route": "ordinaryVariants",
+      "users": [
+        "quake",
+        "soe"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/city2_5-45938b9e3abd5f2c-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city2_5-45938b9e3abd5f2c-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city2_5-45938b9e3abd5f2c-4x-q92-normalX.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city2_5-45938b9e3abd5f2c-4x-q92-normalY.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city2_5-45938b9e3abd5f2c-4x-q92-normalZ.webp",
+          "pack": "quake"
+        }
+      ]
+    },
+    {
+      "name": "city2_6",
+      "key": "64x64:86c3ff49a01388ab",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "aopfm_v2",
+        "mg1",
+        "quake",
+        "soe"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/city2_6-86c3ff49a01388ab-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city2_6-86c3ff49a01388ab-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city2_6-86c3ff49a01388ab-4x-q92-normalX.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city2_6-86c3ff49a01388ab-4x-q92-normalY.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city2_6-86c3ff49a01388ab-4x-q92-normalZ.webp",
+          "pack": "quake"
+        }
+      ]
+    },
+    {
+      "name": "tech10_2",
+      "key": "128x128:7e69745d82cfe79f",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "hipnotic",
+        "mg1",
+        "quake",
+        "quoth"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/tech10_2-7e69745d82cfe79f-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/tech10_2-7e69745d82cfe79f-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/tech10_2-7e69745d82cfe79f-4x-q92-normalX.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/tech10_2-7e69745d82cfe79f-4x-q92-normalY.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/tech10_2-7e69745d82cfe79f-4x-q92-normalZ.webp",
+          "pack": "quake"
+        }
+      ]
+    },
+    {
+      "name": "tech04_4",
+      "key": "16x128:c01c37b5e92569b7",
+      "route": "ordinaryVariants",
+      "users": [
+        "aopfm_v2",
+        "dopa",
+        "hipnotic",
+        "quake",
+        "quoth"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/tech04_4-c01c37b5e92569b7-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/tech04_4-c01c37b5e92569b7-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/tech04_4-c01c37b5e92569b7-4x-q92-normalX.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/tech04_4-c01c37b5e92569b7-4x-q92-normalY.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/tech04_4-c01c37b5e92569b7-4x-q92-normalZ.webp",
+          "pack": "quake"
+        }
+      ]
+    },
+    {
+      "name": "door02_1",
+      "key": "16x128:3941ea46f27a7cac",
+      "route": "ordinaryVariants",
+      "users": [
+        "hipnotic",
+        "mg1",
+        "quake",
+        "quoth",
+        "shareware"
+      ],
+      "expectedIndividualOwner": "shareware",
+      "maps": [
+        {
+          "file": "newer/textures/official/door02_1-3941ea46f27a7cac-4x-q92-diffuse.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/door02_1-3941ea46f27a7cac-4x-q92-height.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/door02_1-3941ea46f27a7cac-4x-q92-normalX.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/door02_1-3941ea46f27a7cac-4x-q92-normalY.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/door02_1-3941ea46f27a7cac-4x-q92-normalZ.webp",
+          "pack": "shareware"
+        }
+      ]
+    },
+    {
+      "name": "ceil1_1",
+      "key": "16x16:d42b01851aa0cd87",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "aopfm_v2",
+        "hipnotic",
+        "mg1",
+        "quake",
+        "quoth"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/ceil1_1-d42b01851aa0cd87-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/ceil1_1-d42b01851aa0cd87-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/ceil1_1-d42b01851aa0cd87-4x-q92-normalX.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/ceil1_1-d42b01851aa0cd87-4x-q92-normalY.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/ceil1_1-d42b01851aa0cd87-4x-q92-normalZ.webp",
+          "pack": "quake"
+        }
+      ]
+    },
+    {
+      "name": "TF_Metal4",
+      "key": "128x128:c09f973ad97a3b48",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/TF_Metal4-c09f973ad97a3b48-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal4-c09f973ad97a3b48-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal4-c09f973ad97a3b48-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal4-c09f973ad97a3b48-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal4-c09f973ad97a3b48-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "TF_Metal4b",
+      "key": "128x128:dc8e85a59866a19f",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/TF_Metal4b-dc8e85a59866a19f-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal4b-dc8e85a59866a19f-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal4b-dc8e85a59866a19f-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal4b-dc8e85a59866a19f-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal4b-dc8e85a59866a19f-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "TF_MetWall4_02",
+      "key": "128x128:dddb46e11f7d201b",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/TF_MetWall4_02-dddb46e11f7d201b-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_MetWall4_02-dddb46e11f7d201b-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_MetWall4_02-dddb46e11f7d201b-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_MetWall4_02-dddb46e11f7d201b-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_MetWall4_02-dddb46e11f7d201b-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "TF_Metal4_04",
+      "key": "128x128:7edcc2d8aae39a1a",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/TF_Metal4_04-7edcc2d8aae39a1a-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal4_04-7edcc2d8aae39a1a-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal4_04-7edcc2d8aae39a1a-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal4_04-7edcc2d8aae39a1a-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal4_04-7edcc2d8aae39a1a-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "rock5_2",
+      "key": "128x128:bd31b650a4fb2682",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "dopa",
+        "hipnotic",
+        "mg1",
+        "quake",
+        "rogue",
+        "soe"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/rock5_2-bd31b650a4fb2682-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/rock5_2-bd31b650a4fb2682-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/rock5_2-bd31b650a4fb2682-4x-q92-normalX.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/rock5_2-bd31b650a4fb2682-4x-q92-normalY.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/rock5_2-bd31b650a4fb2682-4x-q92-normalZ.webp",
+          "pack": "quake"
+        }
+      ]
+    },
+    {
+      "name": "rock3_8",
+      "key": "64x64:5b26cfca296c1fa8",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "aopfm_v2",
+        "dopa",
+        "hipnotic",
+        "mg1",
+        "quake",
+        "quoth",
+        "rogue",
+        "soe"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/rock3_8-5b26cfca296c1fa8-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/rock3_8-5b26cfca296c1fa8-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/rock3_8-5b26cfca296c1fa8-4x-q92-normalX.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/rock3_8-5b26cfca296c1fa8-4x-q92-normalY.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/rock3_8-5b26cfca296c1fa8-4x-q92-normalZ.webp",
+          "pack": "quake"
+        }
+      ]
+    },
+    {
+      "name": "TF_Metal_02",
+      "key": "128x128:6b357bb99759b7db",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/TF_Metal_02-6b357bb99759b7db-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal_02-6b357bb99759b7db-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal_02-6b357bb99759b7db-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal_02-6b357bb99759b7db-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal_02-6b357bb99759b7db-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "key": "64x64:dd3e42851935951f",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "mg1"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/metal1_2c-dd3e42851935951f-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/metal1_2c-dd3e42851935951f-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/metal1_2c-dd3e42851935951f-4x-q92-normalX.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/metal1_2c-dd3e42851935951f-4x-q92-normalY.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/metal1_2c-dd3e42851935951f-4x-q92-normalZ.webp",
+          "pack": "quake"
+        }
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "key": "128x128:fc84e0f963258783",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/TF_Metal4_6a-fc84e0f963258783-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal4_6a-fc84e0f963258783-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal4_6a-fc84e0f963258783-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal4_6a-fc84e0f963258783-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Metal4_6a-fc84e0f963258783-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "cable1_1",
+      "key": "64x64:2f8eb5151663ac6f",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/cable1_1-2f8eb5151663ac6f-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/cable1_1-2f8eb5151663ac6f-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/cable1_1-2f8eb5151663ac6f-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/cable1_1-2f8eb5151663ac6f-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/cable1_1-2f8eb5151663ac6f-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "TF_Wood01",
+      "key": "128x128:1f21e137ac4d2bbd",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/TF_Wood01-1f21e137ac4d2bbd-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Wood01-1f21e137ac4d2bbd-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Wood01-1f21e137ac4d2bbd-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Wood01-1f21e137ac4d2bbd-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Wood01-1f21e137ac4d2bbd-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "TF_Wood01c",
+      "key": "128x128:3d50333c50ffa64e",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/TF_Wood01c-3d50333c50ffa64e-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Wood01c-3d50333c50ffa64e-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Wood01c-3d50333c50ffa64e-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Wood01c-3d50333c50ffa64e-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Wood01c-3d50333c50ffa64e-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "TF_Stone_01",
+      "key": "128x128:d668b0a1a10e9b4b",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/TF_Stone_01-d668b0a1a10e9b4b-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Stone_01-d668b0a1a10e9b4b-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Stone_01-d668b0a1a10e9b4b-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Stone_01-d668b0a1a10e9b4b-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Stone_01-d668b0a1a10e9b4b-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "TF_Stone3",
+      "key": "128x128:6fed0fc2a1295418",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/TF_Stone3-6fed0fc2a1295418-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Stone3-6fed0fc2a1295418-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Stone3-6fed0fc2a1295418-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Stone3-6fed0fc2a1295418-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Stone3-6fed0fc2a1295418-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "TF_Cliff2",
+      "key": "256x256:95242fe0989bb5ba",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/TF_Cliff2-95242fe0989bb5ba-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Cliff2-95242fe0989bb5ba-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Cliff2-95242fe0989bb5ba-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Cliff2-95242fe0989bb5ba-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Cliff2-95242fe0989bb5ba-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "TF_Cliff2b",
+      "key": "256x256:c32d03d5ea95034f",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/TF_Cliff2b-c32d03d5ea95034f-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Cliff2b-c32d03d5ea95034f-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Cliff2b-c32d03d5ea95034f-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Cliff2b-c32d03d5ea95034f-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Cliff2b-c32d03d5ea95034f-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "wstone_03_JM",
+      "key": "256x256:685e88a59ef2729f",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/wstone_03_JM-685e88a59ef2729f-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/wstone_03_JM-685e88a59ef2729f-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/wstone_03_JM-685e88a59ef2729f-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/wstone_03_JM-685e88a59ef2729f-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/wstone_03_JM-685e88a59ef2729f-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "wall14_5",
+      "key": "64x64:a9763815741a765f",
+      "route": "ordinaryVariants",
+      "users": [
+        "hipnotic",
+        "quake",
+        "rogue",
+        "soe"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/wall14_5-a9763815741a765f-4x-q92-v3-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/wall14_5-a9763815741a765f-4x-q92-v3-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/wall14_5-a9763815741a765f-4x-q92-v3-normalX.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/wall14_5-a9763815741a765f-4x-q92-v3-normalY.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/wall14_5-a9763815741a765f-4x-q92-v3-normalZ.webp",
+          "pack": "quake"
+        }
+      ]
+    },
+    {
+      "name": "metal7_1",
+      "key": "64x64:d97a6a868b8864ec",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1",
+        "quake",
+        "rogue",
+        "soe"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/metal7_1-d97a6a868b8864ec-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/metal7_1-d97a6a868b8864ec-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/metal7_1-d97a6a868b8864ec-4x-q92-normalX.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/metal7_1-d97a6a868b8864ec-4x-q92-normalY.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/metal7_1-d97a6a868b8864ec-4x-q92-normalZ.webp",
+          "pack": "quake"
+        }
+      ]
+    },
+    {
+      "name": "TF_Floor7_01",
+      "key": "256x256:7c7ab0a6b50f72cc",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/TF_Floor7_01-7c7ab0a6b50f72cc-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Floor7_01-7c7ab0a6b50f72cc-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Floor7_01-7c7ab0a6b50f72cc-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Floor7_01-7c7ab0a6b50f72cc-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Floor7_01-7c7ab0a6b50f72cc-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "TF_Floor7_02",
+      "key": "256x256:7ff4b89603927eac",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/TF_Floor7_02-7ff4b89603927eac-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Floor7_02-7ff4b89603927eac-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Floor7_02-7ff4b89603927eac-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Floor7_02-7ff4b89603927eac-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Floor7_02-7ff4b89603927eac-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "wstone_07_JM",
+      "key": "256x256:279b8b2dea8ee537",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/wstone_07_JM-279b8b2dea8ee537-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/wstone_07_JM-279b8b2dea8ee537-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/wstone_07_JM-279b8b2dea8ee537-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/wstone_07_JM-279b8b2dea8ee537-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/wstone_07_JM-279b8b2dea8ee537-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "met5_1",
+      "key": "64x64:1fd0c5629f60c768",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "aopfm_v2",
+        "dopa",
+        "hipnotic",
+        "mg1",
+        "quake",
+        "quoth",
+        "rogue",
+        "shareware",
+        "soe"
+      ],
+      "expectedIndividualOwner": "shareware",
+      "maps": [
+        {
+          "file": "newer/textures/official/met5_1-1fd0c5629f60c768-4x-q92-diffuse.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/met5_1-1fd0c5629f60c768-4x-q92-height.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/met5_1-1fd0c5629f60c768-4x-q92-normalX.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/met5_1-1fd0c5629f60c768-4x-q92-normalY.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/met5_1-1fd0c5629f60c768-4x-q92-normalZ.webp",
+          "pack": "shareware"
+        }
+      ]
+    },
+    {
+      "name": "city6_7",
+      "key": "64x64:ab05ac59977a40ab",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "dopa",
+        "quake",
+        "soe"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/city6_7-ab05ac59977a40ab-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city6_7-ab05ac59977a40ab-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city6_7-ab05ac59977a40ab-4x-q92-normalX.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city6_7-ab05ac59977a40ab-4x-q92-normalY.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/city6_7-ab05ac59977a40ab-4x-q92-normalZ.webp",
+          "pack": "quake"
+        }
+      ]
+    },
+    {
+      "name": "cliff2",
+      "key": "128x128:405994ea1e10e728",
+      "route": "ordinaryVariants",
+      "users": [
+        "ad",
+        "rogue"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/cliff2-405994ea1e10e728-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/cliff2-405994ea1e10e728-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/cliff2-405994ea1e10e728-4x-q92-normalX.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/cliff2-405994ea1e10e728-4x-q92-normalY.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/cliff2-405994ea1e10e728-4x-q92-normalZ.webp",
+          "pack": "quake"
+        }
+      ]
+    },
+    {
+      "name": "stone5_0",
+      "key": "128x128:c28bbacf8cca643d",
+      "route": "ordinaryVariants",
+      "users": [
+        "rogue"
+      ],
+      "expectedIndividualOwner": "rogue",
+      "maps": [
+        {
+          "file": "newer/textures/official/stone5_0-c28bbacf8cca643d-4x-q92-diffuse.webp",
+          "pack": "rogue"
+        },
+        {
+          "file": "newer/textures/official/stone5_0-c28bbacf8cca643d-4x-q92-height.webp",
+          "pack": "rogue"
+        },
+        {
+          "file": "newer/textures/official/stone5_0-c28bbacf8cca643d-4x-q92-normalX.webp",
+          "pack": "rogue"
+        },
+        {
+          "file": "newer/textures/official/stone5_0-c28bbacf8cca643d-4x-q92-normalY.webp",
+          "pack": "rogue"
+        },
+        {
+          "file": "newer/textures/official/stone5_0-c28bbacf8cca643d-4x-q92-normalZ.webp",
+          "pack": "rogue"
+        }
+      ]
+    },
+    {
+      "name": "TF_Conc_06",
+      "key": "128x128:7cccbb5c32b1669e",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/TF_Conc_06-7cccbb5c32b1669e-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Conc_06-7cccbb5c32b1669e-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Conc_06-7cccbb5c32b1669e-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Conc_06-7cccbb5c32b1669e-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Conc_06-7cccbb5c32b1669e-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "TF_Conc4",
+      "key": "128x128:b741b923b0753161",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/TF_Conc4-b741b923b0753161-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Conc4-b741b923b0753161-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Conc4-b741b923b0753161-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Conc4-b741b923b0753161-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Conc4-b741b923b0753161-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "TF_Conc_08",
+      "key": "128x128:c7945ad4bfbb79be",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/TF_Conc_08-c7945ad4bfbb79be-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Conc_08-c7945ad4bfbb79be-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Conc_08-c7945ad4bfbb79be-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Conc_08-c7945ad4bfbb79be-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Conc_08-c7945ad4bfbb79be-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "TF_Conc_07b",
+      "key": "128x128:ea84df98e39e23c2",
+      "route": "ordinaryVariants",
+      "users": [
+        "mg1"
+      ],
+      "expectedIndividualOwner": "mg1",
+      "maps": [
+        {
+          "file": "newer/textures/official/TF_Conc_07b-ea84df98e39e23c2-4x-q92-diffuse.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Conc_07b-ea84df98e39e23c2-4x-q92-height.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Conc_07b-ea84df98e39e23c2-4x-q92-normalX.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Conc_07b-ea84df98e39e23c2-4x-q92-normalY.webp",
+          "pack": "mg1"
+        },
+        {
+          "file": "newer/textures/official/TF_Conc_07b-ea84df98e39e23c2-4x-q92-normalZ.webp",
+          "pack": "mg1"
+        }
+      ]
+    },
+    {
+      "name": "tech08_3",
+      "keys": [
+        "128x128:3fac30dd4bbf39af"
+      ],
+      "route": "textures",
+      "users": [
+        "quake",
+        "quoth"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/tech08_3-3fac30dd4bbf39af-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/tech08_3-3fac30dd4bbf39af-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/tech08_3-3fac30dd4bbf39af-4x-q92-normalX.webp",
+          "pack": "core"
+        },
+        {
+          "file": "newer/textures/official/tech08_3-3fac30dd4bbf39af-4x-q92-normalY.webp",
+          "pack": "core"
+        },
+        {
+          "file": "newer/textures/official/tech08_3-3fac30dd4bbf39af-4x-q92-normalZ.webp",
+          "pack": "core"
+        }
+      ]
+    },
+    {
+      "name": "tech08_4",
+      "keys": [
+        "128x128:4ded45e5c3061437"
+      ],
+      "route": "textures",
+      "users": [
+        "quake"
+      ],
+      "expectedIndividualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/tech08_4-4ded45e5c3061437-4x-q92-diffuse.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/tech08_4-4ded45e5c3061437-4x-q92-height.webp",
+          "pack": "quake"
+        },
+        {
+          "file": "newer/textures/official/tech08_4-4ded45e5c3061437-4x-q92-normalX.webp",
+          "pack": "core"
+        },
+        {
+          "file": "newer/textures/official/tech08_4-4ded45e5c3061437-4x-q92-normalY.webp",
+          "pack": "core"
+        },
+        {
+          "file": "newer/textures/official/tech08_4-4ded45e5c3061437-4x-q92-normalZ.webp",
+          "pack": "core"
+        }
+      ]
+    }
+  ]
+}

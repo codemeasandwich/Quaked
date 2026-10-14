@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "stone1_7",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-stone1_7.png",
+  "originalSha256": "4ff813bc9614ff1ed686d5f92a4988d6d399d265341e6760b74a9c659156f462",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-13/stone1_7-photographic-seam-v2-4x.png",
+  "authoringDiffuseSha256": "fc6149f0fec1f806caa7fcf4f8ea6f35a03d2d24eae5f5652f37785071b54583",
+  "toolSha256": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "profile": {
+    "bands": [
+      0.35,
+      1,
+      1.4,
+      1
+    ],
+    "groove": 1.4,
+    "bump": 0.7,
+    "glow": 0,
+    "strength": 0.2,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-13/stone1_7-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "2f5c16a4cad73da661d2e365854cc0354692dcff30bb226bf9138d2d7aa91a1f",
+      "bytes": 28992,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-13/stone1_7-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "884134871e158476223b9213229266c730784faea98a693a82b8ea5991fb27b7",
+      "bytes": 35162,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-13/stone1_7-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "83c47f9fd0ce31f6714c685d42b660d112250abdd6146786f8e3157e53451adc",
+      "bytes": 27828,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-13/stone1_7-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "eb73e94bbf0dbe0adc19526a3721e83130a228f916ee5650b6c0ac550a6c374d",
+      "bytes": 27256,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-13/stone1_7-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "caefe7bde7b5e64ea3051f77e9b88377c6fa0f192e3995a4a8b4d0a015cf60e1",
+      "bytes": 8294,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    32,
+    32
+  ],
+  "distanceMAE": 11.8720703125,
+  "distanceMaximum": 45.0,
+  "secondaryComparisonDimensions": [
+    16,
+    16
+  ],
+  "secondaryDistanceMAE": 9.31640625,
+  "secondaryDistanceMaximum": 31.0,
+  "colourCompressionMAE": 1.825897216796875,
+  "heightCompressionMAE": 1.4100189208984375,
+  "heightCompressionMaximum": 10.0,
+  "normalAngularMean": 1.0115603313278339,
+  "normalAngularP99": 2.517941917607703,
+  "normalAngularMaximum": 4.479197566167696,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

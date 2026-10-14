@@ -1,0 +1,224 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent campaign_plan agent",
+  "reviewedAt": "2026-10-13T22:25:59.160732+00:00",
+  "result": "3 of 3 pass decoded-image art review",
+  "scope": "Separate actual decoded Q92 full, half/quarter,3x3repeat and cyclic-offset review. All15maps hash/dimension bound. No renderer/native-level qualification claimed.",
+  "entries": [
+    {
+      "name": "city6_7",
+      "verdict": "pass-art-review",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-city6_7.png",
+      "originalSha256": "0679f5f68ad7d24e8163a28e400cdb61a930740bc4267add4bd526f6a1b80a7b",
+      "diffuse": "newer/textures/candidates-2026-10-13/city6_7-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "diffuseSha256": "7202c4374f0361b3c1e70ac6b7ef192d0ec7b13859feb9c937d2f2e80f75ab61",
+      "encodingReceipt": "newer/textures/candidates-2026-10-13/city6_7-photographic-seam-v2-4x-q92-xyz.json",
+      "encodingReceiptSha256": "2c4ff5eed48ff88af62ff03a11bd6d0e96bdb52c6817c77bae2543a7f80f6375",
+      "dimensions": [
+        256,
+        256
+      ],
+      "halfComparison": [
+        32,
+        32
+      ],
+      "quarterComparison": [
+        16,
+        16
+      ],
+      "notes": [
+        "Six courses and uneven staggered block widths remain legible. Coarse dark ochre/brown stone and grey recessed joints retain source intention.",
+        "32px primary and16px secondary views remain similar in colour, block density and overall joint arrangement, allowing natural shape interpretation.",
+        "3x3repeat and128px cyclic offset show continuous masonry scale and no added tile frame. Natural block edging is confined to actual mortar boundaries."
+      ],
+      "maps": [
+        {
+          "role": "diffuse",
+          "file": "newer/textures/candidates-2026-10-13/city6_7-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "7202c4374f0361b3c1e70ac6b7ef192d0ec7b13859feb9c937d2f2e80f75ab61"
+        },
+        {
+          "role": "height",
+          "file": "newer/textures/candidates-2026-10-13/city6_7-photographic-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "8befbf631c49e99daca38a7ca9b53b6b28d928c99ca095e61fb61b51a548b115"
+        },
+        {
+          "role": "normalX",
+          "file": "newer/textures/candidates-2026-10-13/city6_7-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "6698c65088a3c178e7e971b2c761e7143ab2b72584b787522aed3bceb92d11a7"
+        },
+        {
+          "role": "normalY",
+          "file": "newer/textures/candidates-2026-10-13/city6_7-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "5bd819ed5a65ccb776ee688c2d3278b0c23245d16b634a94a9475773f89dec68"
+        },
+        {
+          "role": "normalZ",
+          "file": "newer/textures/candidates-2026-10-13/city6_7-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "5a55d7b6973aaa1e43c18bf78c29ebf53365b4fb2dd11498a19ff0097abf6281"
+        }
+      ],
+      "evidence": [
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/city6_7-review-v2-contact.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/city6_7-review-v2-repeat.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/city6_7-review-v2-offset.png"
+      ],
+      "boundaryDiagnostics": {
+        "wrapXMeanRGB": 6.337239583333333,
+        "wrapYMeanRGB": 6.361979166666667,
+        "interiorXMeanRGB": 6.565507557189543,
+        "interiorYMeanRGB": 9.101695261437909,
+        "qualification": "Diagnostic only; geometry is visually reviewed rather than accepted by a numeric edge threshold."
+      },
+      "encoderDiagnostics": {
+        "distanceMAE": 11.778971354166666,
+        "secondaryDistanceMAE": 8.108072916666666,
+        "normalAngularP99": 2.538340036475031
+      }
+    },
+    {
+      "name": "cliff2",
+      "verdict": "pass-art-review",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-cliff2.png",
+      "originalSha256": "16bd879178cb2b6269b217e5f4c460f84fa8e8a3450a138acae20343d2dc4347",
+      "diffuse": "newer/textures/candidates-2026-10-13/cliff2-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "diffuseSha256": "f38ca29a52ece498c233cb57e8219466e709d71edd2121bb13b4c28d47b10d22",
+      "encodingReceipt": "newer/textures/candidates-2026-10-13/cliff2-photographic-seam-v2-4x-q92-xyz.json",
+      "encodingReceiptSha256": "994476dbcaf8ef487415882e86ac060531a2b6c04e91e2429ba0a8cefd7ed1c6",
+      "dimensions": [
+        512,
+        512
+      ],
+      "halfComparison": [
+        64,
+        64
+      ],
+      "quarterComparison": [
+        32,
+        32
+      ],
+      "notes": [
+        "Near-black neutral charcoal and predominantly vertical irregular fissures remain consistent with the original. Physical fractured faces replace square pixels; roughness reads as rock, not coloured digital grain.",
+        "64px primary and32px secondary views preserve the dark vertical ridge/fissure distribution. No invented horizontal layering or regular columns.",
+        "512px full,3x3repeat and256px cyclic offset inspected: local fractures remain irregular without a conspicuous straight rectangular seam or exterior bevel. High-contrast internal fissures are legitimate source material."
+      ],
+      "maps": [
+        {
+          "role": "diffuse",
+          "file": "newer/textures/candidates-2026-10-13/cliff2-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "f38ca29a52ece498c233cb57e8219466e709d71edd2121bb13b4c28d47b10d22"
+        },
+        {
+          "role": "height",
+          "file": "newer/textures/candidates-2026-10-13/cliff2-photographic-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "89cc4deef138d67e19b0c584cff2caba9cea75bdda6930ff65f261c60dc1aaaf"
+        },
+        {
+          "role": "normalX",
+          "file": "newer/textures/candidates-2026-10-13/cliff2-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "4935c80f34af17138c1d67ce7f5fead3ab0a2bcf6cbddda80bba3f94270f04d8"
+        },
+        {
+          "role": "normalY",
+          "file": "newer/textures/candidates-2026-10-13/cliff2-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "973fca52b74d7b31eec26450f2d8a2e4cf31e51f19d3e4542fc580f0dff15157"
+        },
+        {
+          "role": "normalZ",
+          "file": "newer/textures/candidates-2026-10-13/cliff2-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "fd3ddb4a9eb3a5e2d70db06d27ec2e8e045c65a1bc8cb88e189981564d94ff08"
+        }
+      ],
+      "evidence": [
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/cliff2-review-v2-contact.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/cliff2-review-v2-repeat.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/cliff2-review-v2-offset.png"
+      ],
+      "boundaryDiagnostics": {
+        "wrapXMeanRGB": 11.114583333333334,
+        "wrapYMeanRGB": 10.63671875,
+        "interiorXMeanRGB": 10.51387954582518,
+        "interiorYMeanRGB": 8.431621514187867,
+        "qualification": "Diagnostic only; geometry is visually reviewed rather than accepted by a numeric edge threshold."
+      },
+      "encoderDiagnostics": {
+        "distanceMAE": 15.833414713541666,
+        "secondaryDistanceMAE": 11.742838541666666,
+        "normalAngularP99": 2.5746307894463927
+      }
+    },
+    {
+      "name": "stone5_0",
+      "verdict": "pass-art-review",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-stone5_0.png",
+      "originalSha256": "467c18c3d6a6c8395fef2bbb9b83b3e6d7b59eef50c1a32536fb8234adee7a2a",
+      "diffuse": "newer/textures/candidates-2026-10-13/stone5_0-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "diffuseSha256": "5a775cb0f13b2a4f8cb4f1e6136ba263bb3d4f492626b290d287418f38e7e06e",
+      "encodingReceipt": "newer/textures/candidates-2026-10-13/stone5_0-photographic-seam-v2-4x-q92-xyz.json",
+      "encodingReceiptSha256": "35c091251bea8096601ae6445390dfce48c38c63f6f833a0420b81ba8efa2650",
+      "dimensions": [
+        512,
+        512
+      ],
+      "halfComparison": [
+        64,
+        64
+      ],
+      "quarterComparison": [
+        32,
+        32
+      ],
+      "notes": [
+        "Exactly two courses: upper centre joint and lower quarter/three-quarter joints, with half-block stagger. Width/height ratio and large stone scale preserved.",
+        "64px and32px views retain dark warm-brown field and dominant mortar phase. Fine diagonal tool scars add restrained character.",
+        "Lower horizontal wrap inspected separately at3x pixel enlargement. One block remains continuous across this boundary; no extra mortar joint/frame. Minor tool-mark direction change is visually natural rather than a conspicuous clipped perimeter.",
+        "Top/bottom wrap lies in intentional horizontal mortar; repeat does not introduce a new material seam."
+      ],
+      "maps": [
+        {
+          "role": "diffuse",
+          "file": "newer/textures/candidates-2026-10-13/stone5_0-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "5a775cb0f13b2a4f8cb4f1e6136ba263bb3d4f492626b290d287418f38e7e06e"
+        },
+        {
+          "role": "height",
+          "file": "newer/textures/candidates-2026-10-13/stone5_0-photographic-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "4756bb8a16495e354bfa3924214f0c8a1dfef34731e7098600404142a0da140b"
+        },
+        {
+          "role": "normalX",
+          "file": "newer/textures/candidates-2026-10-13/stone5_0-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "8cdb8bb9988aac3f512fac66035c7135fbfa580e2bf41e4054e85b2ee636883a"
+        },
+        {
+          "role": "normalY",
+          "file": "newer/textures/candidates-2026-10-13/stone5_0-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "22b80ed4ffa1c5af5566c66c10bb652647edbfa7effca9c6861bfa112360cab1"
+        },
+        {
+          "role": "normalZ",
+          "file": "newer/textures/candidates-2026-10-13/stone5_0-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "082d3b8b4603d6b6fd7613bcfb9ce27fc0b89b09f0bf3733b55a2a8173b0f45d"
+        }
+      ],
+      "evidence": [
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/stone5_0-review-v2-contact.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/stone5_0-review-v2-repeat.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/stone5_0-review-v2-offset.png",
+        "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/stone5_0-review-v2-lower-wrap-detail.png"
+      ],
+      "boundaryDiagnostics": {
+        "wrapXMeanRGB": 3.96875,
+        "wrapYMeanRGB": 2.0651041666666665,
+        "interiorXMeanRGB": 3.792041238584475,
+        "interiorYMeanRGB": 3.9764045172863667,
+        "qualification": "Diagnostic only; geometry is visually reviewed rather than accepted by a numeric edge threshold."
+      },
+      "encoderDiagnostics": {
+        "distanceMAE": 4.786539713541667,
+        "secondaryDistanceMAE": 3.3610026041666665,
+        "normalAngularP99": 2.4477396791168937
+      }
+    }
+  ]
+}

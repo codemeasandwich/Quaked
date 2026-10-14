@@ -1,5 +1,5 @@
 {
-  "version": 2026101312,
+  "version": 2026101401,
   "textures": {
     "afloor3_1": "afloor3_1.webp",
     "ceiling1_3": "ceiling1_3.webp",
@@ -5029,6 +5029,261 @@
             "z": "official/metal7_1-d97a6a868b8864ec-4x-q92-normalZ.webp"
           },
           "strength": 0.12,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Floor7_01": {
+      "256x256:7c7ab0a6b50f72cc": {
+        "file": "official/TF_Floor7_01-7c7ab0a6b50f72cc-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Floor7_01-7c7ab0a6b50f72cc-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Floor7_01-7c7ab0a6b50f72cc-4x-q92-normalX.webp",
+            "y": "official/TF_Floor7_01-7c7ab0a6b50f72cc-4x-q92-normalY.webp",
+            "z": "official/TF_Floor7_01-7c7ab0a6b50f72cc-4x-q92-normalZ.webp"
+          },
+          "strength": 0.12,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Floor7_02": {
+      "256x256:7ff4b89603927eac": {
+        "file": "official/TF_Floor7_02-7ff4b89603927eac-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Floor7_02-7ff4b89603927eac-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Floor7_02-7ff4b89603927eac-4x-q92-normalX.webp",
+            "y": "official/TF_Floor7_02-7ff4b89603927eac-4x-q92-normalY.webp",
+            "z": "official/TF_Floor7_02-7ff4b89603927eac-4x-q92-normalZ.webp"
+          },
+          "strength": 0.16,
+          "cap": 0.5
+        }
+      }
+    },
+    "wstone_07_JM": {
+      "256x256:279b8b2dea8ee537": {
+        "file": "official/wstone_07_JM-279b8b2dea8ee537-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/wstone_07_JM-279b8b2dea8ee537-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/wstone_07_JM-279b8b2dea8ee537-4x-q92-normalX.webp",
+            "y": "official/wstone_07_JM-279b8b2dea8ee537-4x-q92-normalY.webp",
+            "z": "official/wstone_07_JM-279b8b2dea8ee537-4x-q92-normalZ.webp"
+          },
+          "strength": 0.18,
+          "cap": 0.5
+        }
+      }
+    },
+    "met5_1": {
+      "64x64:1fd0c5629f60c768": {
+        "file": "official/met5_1-1fd0c5629f60c768-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/met5_1-1fd0c5629f60c768-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/met5_1-1fd0c5629f60c768-4x-q92-normalX.webp",
+            "y": "official/met5_1-1fd0c5629f60c768-4x-q92-normalY.webp",
+            "z": "official/met5_1-1fd0c5629f60c768-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "city6_7": {
+      "64x64:ab05ac59977a40ab": {
+        "file": "official/city6_7-ab05ac59977a40ab-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/city6_7-ab05ac59977a40ab-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/city6_7-ab05ac59977a40ab-4x-q92-normalX.webp",
+            "y": "official/city6_7-ab05ac59977a40ab-4x-q92-normalY.webp",
+            "z": "official/city6_7-ab05ac59977a40ab-4x-q92-normalZ.webp"
+          },
+          "strength": 0.25,
+          "cap": 0.5
+        }
+      }
+    },
+    "cliff2": {
+      "128x128:405994ea1e10e728": {
+        "file": "official/cliff2-405994ea1e10e728-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/cliff2-405994ea1e10e728-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/cliff2-405994ea1e10e728-4x-q92-normalX.webp",
+            "y": "official/cliff2-405994ea1e10e728-4x-q92-normalY.webp",
+            "z": "official/cliff2-405994ea1e10e728-4x-q92-normalZ.webp"
+          },
+          "strength": 0.3,
+          "cap": 0.5
+        }
+      }
+    },
+    "stone5_0": {
+      "128x128:c28bbacf8cca643d": {
+        "file": "official/stone5_0-c28bbacf8cca643d-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/stone5_0-c28bbacf8cca643d-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/stone5_0-c28bbacf8cca643d-4x-q92-normalX.webp",
+            "y": "official/stone5_0-c28bbacf8cca643d-4x-q92-normalY.webp",
+            "z": "official/stone5_0-c28bbacf8cca643d-4x-q92-normalZ.webp"
+          },
+          "strength": 0.25,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Conc_06": {
+      "128x128:7cccbb5c32b1669e": {
+        "file": "official/TF_Conc_06-7cccbb5c32b1669e-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Conc_06-7cccbb5c32b1669e-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Conc_06-7cccbb5c32b1669e-4x-q92-normalX.webp",
+            "y": "official/TF_Conc_06-7cccbb5c32b1669e-4x-q92-normalY.webp",
+            "z": "official/TF_Conc_06-7cccbb5c32b1669e-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Conc4": {
+      "128x128:b741b923b0753161": {
+        "file": "official/TF_Conc4-b741b923b0753161-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Conc4-b741b923b0753161-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Conc4-b741b923b0753161-4x-q92-normalX.webp",
+            "y": "official/TF_Conc4-b741b923b0753161-4x-q92-normalY.webp",
+            "z": "official/TF_Conc4-b741b923b0753161-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Conc_08": {
+      "128x128:c7945ad4bfbb79be": {
+        "file": "official/TF_Conc_08-c7945ad4bfbb79be-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Conc_08-c7945ad4bfbb79be-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Conc_08-c7945ad4bfbb79be-4x-q92-normalX.webp",
+            "y": "official/TF_Conc_08-c7945ad4bfbb79be-4x-q92-normalY.webp",
+            "z": "official/TF_Conc_08-c7945ad4bfbb79be-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Conc_07b": {
+      "128x128:ea84df98e39e23c2": {
+        "file": "official/TF_Conc_07b-ea84df98e39e23c2-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Conc_07b-ea84df98e39e23c2-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Conc_07b-ea84df98e39e23c2-4x-q92-normalX.webp",
+            "y": "official/TF_Conc_07b-ea84df98e39e23c2-4x-q92-normalY.webp",
+            "z": "official/TF_Conc_07b-ea84df98e39e23c2-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "wall11_2": {
+      "64x64:0978a005159096d7": {
+        "file": "official/wall11_2-0978a005159096d7-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/wall11_2-0978a005159096d7-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/wall11_2-0978a005159096d7-4x-q92-normalX.webp",
+            "y": "official/wall11_2-0978a005159096d7-4x-q92-normalY.webp",
+            "z": "official/wall11_2-0978a005159096d7-4x-q92-normalZ.webp"
+          },
+          "strength": 0.25,
+          "cap": 0.5
+        }
+      }
+    },
+    "city4_5": {
+      "64x64:2bf13acdb18df2b7": {
+        "file": "official/city4_5-2bf13acdb18df2b7-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/city4_5-2bf13acdb18df2b7-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/city4_5-2bf13acdb18df2b7-4x-q92-normalX.webp",
+            "y": "official/city4_5-2bf13acdb18df2b7-4x-q92-normalY.webp",
+            "z": "official/city4_5-2bf13acdb18df2b7-4x-q92-normalZ.webp"
+          },
+          "strength": 0.25,
+          "cap": 0.5
+        }
+      }
+    },
+    "dung01_3": {
+      "64x64:2410e6e5b2d58537": {
+        "file": "official/dung01_3-2410e6e5b2d58537-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/dung01_3-2410e6e5b2d58537-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/dung01_3-2410e6e5b2d58537-4x-q92-normalX.webp",
+            "y": "official/dung01_3-2410e6e5b2d58537-4x-q92-normalY.webp",
+            "z": "official/dung01_3-2410e6e5b2d58537-4x-q92-normalZ.webp"
+          },
+          "strength": 0.16,
+          "cap": 0.5
+        }
+      }
+    },
+    "azfloor1_1": {
+      "64x64:bfbcf176564b2ff4": {
+        "file": "official/azfloor1_1-bfbcf176564b2ff4-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/azfloor1_1-bfbcf176564b2ff4-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/azfloor1_1-bfbcf176564b2ff4-4x-q92-normalX.webp",
+            "y": "official/azfloor1_1-bfbcf176564b2ff4-4x-q92-normalY.webp",
+            "z": "official/azfloor1_1-bfbcf176564b2ff4-4x-q92-normalZ.webp"
+          },
+          "strength": 0.25,
+          "cap": 0.5
+        }
+      }
+    },
+    "stone1_7": {
+      "64x64:d0bd9df912e912e3": {
+        "file": "official/stone1_7-d0bd9df912e912e3-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/stone1_7-d0bd9df912e912e3-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/stone1_7-d0bd9df912e912e3-4x-q92-normalX.webp",
+            "y": "official/stone1_7-d0bd9df912e912e3-4x-q92-normalY.webp",
+            "z": "official/stone1_7-d0bd9df912e912e3-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "q2_metal1_4": {
+      "64x64:5fcb234d8850a05f": {
+        "file": "official/mg1-metal1_4-5fcb234d8850a05f-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/mg1-metal1_4-5fcb234d8850a05f-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/mg1-metal1_4-5fcb234d8850a05f-4x-q92-normalX.webp",
+            "y": "official/mg1-metal1_4-5fcb234d8850a05f-4x-q92-normalY.webp",
+            "z": "official/mg1-metal1_4-5fcb234d8850a05f-4x-q92-normalZ.webp"
+          },
+          "strength": 0.35,
           "cap": 0.5
         }
       }

@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent campaign_plan agent",
+  "reviewedAt": "2026-10-13T22:04:22.494347+00:00",
+  "name": "met5_1",
+  "verdict": "pass-art-review",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-met5_1.png",
+  "originalSha256": "a98d0ec40824b7ca0e7e33958207a20d9f2971087e65143e3c31c0aab270c992",
+  "diffuse": "newer/textures/candidates-2026-10-13/met5_1-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+  "diffuseSha256": "3fba802968f874f2638bd8a0091655483ef07867893351c4b334d1f89ec44fee",
+  "dimensions": [
+    256,
+    256
+  ],
+  "halfComparison": [
+    32,
+    32
+  ],
+  "quarterComparison": [
+    16,
+    16
+  ],
+  "notes": [
+    "Counted64heads in8rows and8columns; consistent8native-texel pitch with half-cell margins, including repeats.",
+    "Studs retain small warm brass/brown highlights on a very dark field. Circular forged heads are a reasonable physical interpretation of the pixel highlights; their scale and source phase remain close.",
+    "Sparse tool/dent variations add character without high-frequency coloured grit. No perimeter bevel or plate frame.",
+    "Actual32px and16px side-by-side distance views remain similar in colour, stud frequency and density. Candidate background is calmer by design.",
+    "3x3repeat and cyclicoffset inspected: no discontinuous border or off-pitch row."
+  ],
+  "phaseDiagnostic": {
+    "method": "Positive luminance above70th-percentile cell background, weighted centroid in each8x8native cell; qualitative art review remains authority",
+    "maxCentroidDisplacementNativeTexels": 1.2477955348946907,
+    "meanCentroidDisplacementNativeTexels": 0.7408102598753494
+  },
+  "maps": [
+    {
+      "role": "diffuse",
+      "file": "newer/textures/candidates-2026-10-13/met5_1-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "3fba802968f874f2638bd8a0091655483ef07867893351c4b334d1f89ec44fee"
+    },
+    {
+      "role": "height",
+      "file": "newer/textures/candidates-2026-10-13/met5_1-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "824725d6f4857f79d2b17b8b6a82d13dacff94c1b7755b4939dba284992ff60f"
+    },
+    {
+      "role": "normalX",
+      "file": "newer/textures/candidates-2026-10-13/met5_1-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "2992d944b94ad80c74ce1c5a2c75b977fac2f73bbed3ff76e76c1c9087dccacf"
+    },
+    {
+      "role": "normalY",
+      "file": "newer/textures/candidates-2026-10-13/met5_1-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "b8b2c1a02fe5e501ad1dacb8458cd446e66bd71ba89d67b8c6a4b037dbe49178"
+    },
+    {
+      "role": "normalZ",
+      "file": "newer/textures/candidates-2026-10-13/met5_1-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "9c068be020ecc7a284e95c2c260c382bd17f6bbda55b000a1a6227fe41c18c7b"
+    }
+  ],
+  "encoderDiagnostics": {
+    "distanceMAE": 6.102864583333333,
+    "secondaryDistanceMAE": 4.41796875,
+    "normalAngularP99": 2.388826307038977
+  },
+  "evidence": [
+    "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/met5_1-review-v2-contact.png",
+    "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/met5_1-review-v2-repeat.png",
+    "tools/texture_sheets/sources/official-world-2026-10-13-continuation/verification/met5_1-review-v2-offset.png"
+  ],
+  "qualification": "Independent decoded-image art and dimensions/hash review. No renderer/native-level proof claimed."
+}

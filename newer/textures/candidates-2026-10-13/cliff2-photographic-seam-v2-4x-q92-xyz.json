@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "cliff2",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-cliff2.png",
+  "originalSha256": "16bd879178cb2b6269b217e5f4c460f84fa8e8a3450a138acae20343d2dc4347",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-13/cliff2-photographic-seam-v2-4x.png",
+  "authoringDiffuseSha256": "e7d944c0d0a7c25107bb8d93d82c6eb284137fa9b4fd104cffff29c5913343c2",
+  "toolSha256": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.3,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-13/cliff2-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "f38ca29a52ece498c233cb57e8219466e709d71edd2121bb13b4c28d47b10d22",
+      "bytes": 94658,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-13/cliff2-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "89cc4deef138d67e19b0c584cff2caba9cea75bdda6930ff65f261c60dc1aaaf",
+      "bytes": 111086,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-13/cliff2-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "4935c80f34af17138c1d67ce7f5fead3ab0a2bcf6cbddda80bba3f94270f04d8",
+      "bytes": 107342,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-13/cliff2-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "973fca52b74d7b31eec26450f2d8a2e4cf31e51f19d3e4542fc580f0dff15157",
+      "bytes": 104558,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-13/cliff2-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "fd3ddb4a9eb3a5e2d70db06d27ec2e8e045c65a1bc8cb88e189981564d94ff08",
+      "bytes": 26532,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    64
+  ],
+  "distanceMAE": 15.833414713541666,
+  "distanceMaximum": 78.0,
+  "secondaryComparisonDimensions": [
+    32,
+    32
+  ],
+  "secondaryDistanceMAE": 11.742838541666666,
+  "secondaryDistanceMaximum": 48.0,
+  "colourCompressionMAE": 1.5148417154947917,
+  "heightCompressionMAE": 1.327728271484375,
+  "heightCompressionMaximum": 9.0,
+  "normalAngularMean": 0.9996219383866034,
+  "normalAngularP99": 2.5746307894463927,
+  "normalAngularMaximum": 4.319664830577837,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

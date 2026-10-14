@@ -1,0 +1,815 @@
+{
+  "qualification": "Four independently art-reviewed photographic materials, exact native name/pixel identities. Local integration; public renderer checks and owner acceptance separate.",
+  "beforeIndexSha256": "e35644be527818be967f46294f8b8da14506f82b3f72fade37f41828617f65a3",
+  "afterIndexSha256": "9784a1eca0edfb8060f00abbccd3add8ad1eb36c4ff0a78dc1e1f138c2e2279b",
+  "entries": [
+    {
+      "name": "TF_Floor7_01",
+      "key": "256x256:7c7ab0a6b50f72cc",
+      "source": {
+        "id": "TF_Floor7_01|256x256:7c7ab0a6b50f72cc",
+        "name": "TF_Floor7_01",
+        "key": "256x256:7c7ab0a6b50f72cc",
+        "width": 256,
+        "height": 256,
+        "pixelSha256": "5ce5a7c85a11fc43905cc9b766701cd79720af67e748a567ce4f0bb8489ddb12",
+        "original": "originals/256x256-7c7ab0a6b50f72cc.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "No replacement entry",
+        "uses": [
+          {
+            "game": "mg1",
+            "map": "maps/mgdm3.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 11,
+            "faces": 391,
+            "visibleCandidateFaces": 391,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mgdm4.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 8,
+            "faces": 280,
+            "visibleCandidateFaces": 280,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge1m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 12,
+            "faces": 327,
+            "visibleCandidateFaces": 327,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge2m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 104,
+            "faces": 21,
+            "visibleCandidateFaces": 21,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge4m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 20,
+            "faces": 2366,
+            "visibleCandidateFaces": 2366,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge4m2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 35,
+            "faces": 1989,
+            "visibleCandidateFaces": 1989,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge4m2b.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 35,
+            "faces": 1989,
+            "visibleCandidateFaces": 1989,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "previousBinding": null,
+      "binding": {
+        "file": "official/TF_Floor7_01-7c7ab0a6b50f72cc-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Floor7_01-7c7ab0a6b50f72cc-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Floor7_01-7c7ab0a6b50f72cc-4x-q92-normalX.webp",
+            "y": "official/TF_Floor7_01-7c7ab0a6b50f72cc-4x-q92-normalY.webp",
+            "z": "official/TF_Floor7_01-7c7ab0a6b50f72cc-4x-q92-normalZ.webp"
+          },
+          "strength": 0.12,
+          "cap": 0.5
+        }
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-TF_Floor7_01.png",
+      "sourceFileSha256": "e5199c99754d16adb82dbcb21be99126bfbb86ed502a86a3ac09cdc03ac9c183",
+      "diffuseSha256": "800446d0930813a1835edc0595bfa2f0d919f01601abd0e8a0c84a230b1a1b42",
+      "heightSha256": "18207adafa9927d483daa72ff55d5d9494cbb95bd73611a333768e0499193c44",
+      "normalChannelSha256": {
+        "x": "bd605d4812bd0560f3729eba75bb48b0c1f8d97b70e8f23b372e2a30179957f8",
+        "y": "adbc5aad2f006997e640c4105da0c8a7139c6d9a11f1fe72ac5ff44f46a2b8b8",
+        "z": "719b6ef27f363e606acf7ca11ba3164808e3703ea420c9c5939e653ffb3d0f3a"
+      },
+      "encodingReceipt": "newer/textures/candidates-2026-10-13/TF_Floor7_01-photographic-seam-v2-4x-q92-xyz.json",
+      "candidate": "candidates-2026-10-13/TF_Floor7_01-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "candidateSha256": "800446d0930813a1835edc0595bfa2f0d919f01601abd0e8a0c84a230b1a1b42",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false
+    },
+    {
+      "name": "TF_Floor7_02",
+      "key": "256x256:7ff4b89603927eac",
+      "source": {
+        "id": "TF_Floor7_02|256x256:7ff4b89603927eac",
+        "name": "TF_Floor7_02",
+        "key": "256x256:7ff4b89603927eac",
+        "width": 256,
+        "height": 256,
+        "pixelSha256": "736f055a98013b5540c78ae345d3c818e248c2471117d7d119061334e50396ee",
+        "original": "originals/256x256-7ff4b89603927eac.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "No replacement entry",
+        "uses": [
+          {
+            "game": "mg1",
+            "map": "maps/mgdm1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 0,
+            "faces": 1188,
+            "visibleCandidateFaces": 1188,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mgdm2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 2,
+            "faces": 369,
+            "visibleCandidateFaces": 369,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mgdm3.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 1,
+            "faces": 750,
+            "visibleCandidateFaces": 750,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge1m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 18,
+            "faces": 312,
+            "visibleCandidateFaces": 312,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge2m2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 39,
+            "faces": 690,
+            "visibleCandidateFaces": 690,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge4m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 31,
+            "faces": 620,
+            "visibleCandidateFaces": 620,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge4m2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 31,
+            "faces": 436,
+            "visibleCandidateFaces": 436,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge4m2b.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 31,
+            "faces": 436,
+            "visibleCandidateFaces": 436,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge5m2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 9,
+            "faces": 1451,
+            "visibleCandidateFaces": 1451,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "previousBinding": null,
+      "binding": {
+        "file": "official/TF_Floor7_02-7ff4b89603927eac-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Floor7_02-7ff4b89603927eac-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Floor7_02-7ff4b89603927eac-4x-q92-normalX.webp",
+            "y": "official/TF_Floor7_02-7ff4b89603927eac-4x-q92-normalY.webp",
+            "z": "official/TF_Floor7_02-7ff4b89603927eac-4x-q92-normalZ.webp"
+          },
+          "strength": 0.16,
+          "cap": 0.5
+        }
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-TF_Floor7_02.png",
+      "sourceFileSha256": "48c2eef1a7216b33f8eae30b8bffcaf98ffbb11e755f2c050def8b50f93d6380",
+      "diffuseSha256": "1a26c2e2008f9ae9f4e306b4edc227b548e298ce438a83862ffc46769ababd00",
+      "heightSha256": "ba236a0633b64faedc6487a85c00a282924b4499aaff29f780965b479f9f7eb0",
+      "normalChannelSha256": {
+        "x": "d4bc3609a9949a3a84a645e0b161ca0b45ee0aa6e9e7ae18199a0e75ee1a1fb3",
+        "y": "d9250d7bfcf52976939cfe0061ece44e9aedbfacc27148eb33dae264c9f719e6",
+        "z": "3b2a208eaae802baf4fb0f1c37746e8ca2c04b36976dd4470aafc87e3a152835"
+      },
+      "encodingReceipt": "newer/textures/candidates-2026-10-13/TF_Floor7_02-photographic-seam-v2-4x-q92-xyz.json",
+      "candidate": "candidates-2026-10-13/TF_Floor7_02-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "candidateSha256": "1a26c2e2008f9ae9f4e306b4edc227b548e298ce438a83862ffc46769ababd00",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false
+    },
+    {
+      "name": "wstone_07_JM",
+      "key": "256x256:279b8b2dea8ee537",
+      "source": {
+        "id": "wstone_07_JM|256x256:279b8b2dea8ee537",
+        "name": "wstone_07_JM",
+        "key": "256x256:279b8b2dea8ee537",
+        "width": 256,
+        "height": 256,
+        "pixelSha256": "ba46c0af2715c9cee20dedacc0345a998c9be5294c26ca65fa9332d884a8cbed",
+        "original": "originals/256x256-279b8b2dea8ee537.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "No replacement entry",
+        "uses": [
+          {
+            "game": "mg1",
+            "map": "maps/mge4arena.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 3,
+            "faces": 1827,
+            "visibleCandidateFaces": 1827,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge4m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 19,
+            "faces": 1976,
+            "visibleCandidateFaces": 1976,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge4m2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 1,
+            "faces": 2538,
+            "visibleCandidateFaces": 2538,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge4m2b.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 1,
+            "faces": 2538,
+            "visibleCandidateFaces": 2538,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "previousBinding": null,
+      "binding": {
+        "file": "official/wstone_07_JM-279b8b2dea8ee537-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/wstone_07_JM-279b8b2dea8ee537-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/wstone_07_JM-279b8b2dea8ee537-4x-q92-normalX.webp",
+            "y": "official/wstone_07_JM-279b8b2dea8ee537-4x-q92-normalY.webp",
+            "z": "official/wstone_07_JM-279b8b2dea8ee537-4x-q92-normalZ.webp"
+          },
+          "strength": 0.18,
+          "cap": 0.5
+        }
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-wstone_07_JM.png",
+      "sourceFileSha256": "9865d754944f7f78c7386626a0618e53474e7c237b1bca6b6871c4bdfed1d9f0",
+      "diffuseSha256": "751c79e434dba6dcd0366b4d97c3d7837f8da00c037a24a9d35d15f18941591e",
+      "heightSha256": "d7ff843f07e85540450949581d8b2efc1c24ca472e7ac385e11199d547375dd6",
+      "normalChannelSha256": {
+        "x": "829702db6e30ddb6feef6d514b271c759a3bb7c2136e211ed1d4da2cf4fc3687",
+        "y": "e73d6b1406910b35a45a697e9d732c9466bc9770fbc3e1e435ab23ecb88f32e8",
+        "z": "c87fef8d24b0e4a7e6e7dc13e39e300ed9b0fabffed0567ef90adb791b4227b8"
+      },
+      "encodingReceipt": "newer/textures/candidates-2026-10-13/wstone_07_JM-photographic-seam-v2-4x-q92-xyz.json",
+      "candidate": "candidates-2026-10-13/wstone_07_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "candidateSha256": "751c79e434dba6dcd0366b4d97c3d7837f8da00c037a24a9d35d15f18941591e",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false
+    },
+    {
+      "name": "met5_1",
+      "key": "64x64:1fd0c5629f60c768",
+      "source": {
+        "id": "met5_1|64x64:1fd0c5629f60c768",
+        "name": "met5_1",
+        "key": "64x64:1fd0c5629f60c768",
+        "width": 64,
+        "height": 64,
+        "pixelSha256": "40e6aeae3f51d694d69b3a0a84f59473f33621d4c7767504d3921800cbf46cf3",
+        "original": "originals/64x64-1fd0c5629f60c768.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "No replacement entry",
+        "uses": [
+          {
+            "game": "id1",
+            "map": "maps/death32c.bsp",
+            "scope": "installed-extra-review",
+            "pack": "/Users/bri/quaked/Quake/pak0.pak",
+            "slot": 4,
+            "faces": 614,
+            "visibleCandidateFaces": 614,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "id1",
+            "map": "maps/dm2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Quake/pak0.pak",
+            "slot": 5,
+            "faces": 416,
+            "visibleCandidateFaces": 416,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "id1",
+            "map": "maps/dm7.bsp",
+            "scope": "installed-extra-review",
+            "pack": "/Users/bri/quaked/Quake/pak0.pak",
+            "slot": 11,
+            "faces": 96,
+            "visibleCandidateFaces": 96,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "id1",
+            "map": "maps/dm8.bsp",
+            "scope": "installed-extra-review",
+            "pack": "/Users/bri/quaked/Quake/pak0.pak",
+            "slot": 0,
+            "faces": 281,
+            "visibleCandidateFaces": 281,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "id1",
+            "map": "maps/e1m6.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/shareware/pak0.pak",
+            "slot": 2,
+            "faces": 166,
+            "visibleCandidateFaces": 166,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "id1",
+            "map": "maps/e1m7.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/shareware/pak0.pak",
+            "slot": 1,
+            "faces": 196,
+            "visibleCandidateFaces": 196,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "id1",
+            "map": "maps/e1m8.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/shareware/pak0.pak",
+            "slot": 10,
+            "faces": 8,
+            "visibleCandidateFaces": 8,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "id1",
+            "map": "maps/e3m2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Quake/pak0.pak",
+            "slot": 12,
+            "faces": 295,
+            "visibleCandidateFaces": 295,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "id1",
+            "map": "maps/e3m3.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Quake/pak0.pak",
+            "slot": 3,
+            "faces": 244,
+            "visibleCandidateFaces": 244,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "id1",
+            "map": "maps/e3m4.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Quake/pak0.pak",
+            "slot": 1,
+            "faces": 716,
+            "visibleCandidateFaces": 710,
+            "hiddenTriggerFaces": 6,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "id1",
+            "map": "maps/e3m5.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Quake/pak0.pak",
+            "slot": 3,
+            "faces": 194,
+            "visibleCandidateFaces": 194,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "id1",
+            "map": "maps/e3m6.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Quake/pak0.pak",
+            "slot": 8,
+            "faces": 190,
+            "visibleCandidateFaces": 190,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "id1",
+            "map": "maps/e3m7.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Quake/pak0.pak",
+            "slot": 8,
+            "faces": 194,
+            "visibleCandidateFaces": 194,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "id1",
+            "map": "maps/start.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/shareware/pak0.pak",
+            "slot": 39,
+            "faces": 259,
+            "visibleCandidateFaces": 253,
+            "hiddenTriggerFaces": 6,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "id1",
+            "map": "maps/test/test_obstacles.bsp",
+            "scope": "installed-test",
+            "pack": "/Users/bri/quaked/Quake/pak0.pak",
+            "slot": 11,
+            "faces": 6,
+            "visibleCandidateFaces": 6,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "hipnotic",
+            "map": "maps/hip2m4.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+            "slot": 12,
+            "faces": 353,
+            "visibleCandidateFaces": 353,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "hipnotic",
+            "map": "maps/hip2m5.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+            "slot": 12,
+            "faces": 244,
+            "visibleCandidateFaces": 244,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "hipnotic",
+            "map": "maps/hip3m2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+            "slot": 3,
+            "faces": 775,
+            "visibleCandidateFaces": 775,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "hipnotic",
+            "map": "maps/hip3m3.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+            "slot": 26,
+            "faces": 163,
+            "visibleCandidateFaces": 163,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "hipnotic",
+            "map": "maps/hip3m4.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+            "slot": 7,
+            "faces": 210,
+            "visibleCandidateFaces": 210,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "hipnotic",
+            "map": "maps/hipdm1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+            "slot": 10,
+            "faces": 17,
+            "visibleCandidateFaces": 17,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "hipnotic",
+            "map": "maps/hipend.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+            "slot": 26,
+            "faces": 44,
+            "visibleCandidateFaces": 44,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/start.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 54,
+            "faces": 38,
+            "visibleCandidateFaces": 38,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/r2m2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 26,
+            "faces": 17,
+            "visibleCandidateFaces": 17,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/r2m3.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 9,
+            "faces": 46,
+            "visibleCandidateFaces": 46,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/r2m5.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 17,
+            "faces": 59,
+            "visibleCandidateFaces": 59,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "dopa",
+            "map": "maps/e5m5.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Past/pak0.pak",
+            "slot": 37,
+            "faces": 38,
+            "visibleCandidateFaces": 38,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "dopa",
+            "map": "maps/e5m7.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Past/pak0.pak",
+            "slot": 10,
+            "faces": 293,
+            "visibleCandidateFaces": 293,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "dopa",
+            "map": "maps/e5sm2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Past/pak0.pak",
+            "slot": 26,
+            "faces": 18,
+            "visibleCandidateFaces": 18,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mgdm3.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 119,
+            "faces": 2,
+            "visibleCandidateFaces": 2,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge1m3.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 42,
+            "faces": 5,
+            "visibleCandidateFaces": 5,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge2m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 35,
+            "faces": 56,
+            "visibleCandidateFaces": 56,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge2m2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 33,
+            "faces": 551,
+            "visibleCandidateFaces": 551,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge4m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 128,
+            "faces": 35,
+            "visibleCandidateFaces": 35,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge4m2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 19,
+            "faces": 104,
+            "visibleCandidateFaces": 104,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge4m2b.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 19,
+            "faces": 104,
+            "visibleCandidateFaces": 104,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "previousBinding": null,
+      "binding": {
+        "file": "official/met5_1-1fd0c5629f60c768-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/met5_1-1fd0c5629f60c768-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/met5_1-1fd0c5629f60c768-4x-q92-normalX.webp",
+            "y": "official/met5_1-1fd0c5629f60c768-4x-q92-normalY.webp",
+            "z": "official/met5_1-1fd0c5629f60c768-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-met5_1.png",
+      "sourceFileSha256": "a98d0ec40824b7ca0e7e33958207a20d9f2971087e65143e3c31c0aab270c992",
+      "diffuseSha256": "3fba802968f874f2638bd8a0091655483ef07867893351c4b334d1f89ec44fee",
+      "heightSha256": "824725d6f4857f79d2b17b8b6a82d13dacff94c1b7755b4939dba284992ff60f",
+      "normalChannelSha256": {
+        "x": "2992d944b94ad80c74ce1c5a2c75b977fac2f73bbed3ff76e76c1c9087dccacf",
+        "y": "b8b2c1a02fe5e501ad1dacb8458cd446e66bd71ba89d67b8c6a4b037dbe49178",
+        "z": "9c068be020ecc7a284e95c2c260c382bd17f6bbda55b000a1a6227fe41c18c7b"
+      },
+      "encodingReceipt": "newer/textures/candidates-2026-10-13/met5_1-photographic-seam-v2-4x-q92-xyz.json",
+      "candidate": "candidates-2026-10-13/met5_1-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "candidateSha256": "3fba802968f874f2638bd8a0091655483ef07867893351c4b334d1f89ec44fee",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "source": {
+    "id": "wall11_2|64x64:0978a005159096d7",
+    "name": "wall11_2",
+    "key": "64x64:0978a005159096d7",
+    "width": 64,
+    "height": 64,
+    "pixelSha256": "d0ece72b65d559060d6c28ef2bbe7d0edc80f0b3fad039d2cac1a8d0d9c0f6bd",
+    "original": "originals/64x64-0978a005159096d7.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "id1",
+        "map": "maps/e2m4.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 1,
+        "faces": 694,
+        "visibleCandidateFaces": 694,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/e4m5.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 0,
+        "faces": 671,
+        "visibleCandidateFaces": 665,
+        "hiddenTriggerFaces": 6,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/e4m6.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 7,
+        "faces": 276,
+        "visibleCandidateFaces": 276,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "rogue",
+        "map": "maps/r1m5.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+        "slot": 20,
+        "faces": 261,
+        "visibleCandidateFaces": 261,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "dopa",
+        "map": "maps/e5m7.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dimension of the Past/pak0.pak",
+        "slot": 13,
+        "faces": 56,
+        "visibleCandidateFaces": 56,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "referenceSha256": "3720583534c725909c71b95c56fd42968852324d8fa737a220413432967c5d92"
+}

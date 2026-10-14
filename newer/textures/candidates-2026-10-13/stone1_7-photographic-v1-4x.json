@@ -1,0 +1,55 @@
+{
+  "method": "photographic",
+  "factor": 4,
+  "verticalLandmarks": null,
+  "colorStrength": 0.65,
+  "fieldSigma": 2.0,
+  "edgeAnchor": false,
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    32,
+    32
+  ],
+  "distanceMeanMaxError": 47.625,
+  "distanceMeanMAE": 11.708663940429688,
+  "donorDistanceMAE": 24.646474202473957,
+  "newClippedChannelFraction": 0.0,
+  "donorContourCorrelation": 0.9998996876859771,
+  "sourceMean": [
+    50.3857421875,
+    50.3837890625,
+    65.2236328125
+  ],
+  "outputMean": [
+    58.70001220703125,
+    59.410308837890625,
+    73.39213562011719
+  ],
+  "donorBoundaries": {
+    "wrap_x_mean": 13.842447916666668,
+    "wrap_y_mean": 16.1484375,
+    "interior_x_mean": 11.811463439542482,
+    "interior_y_mean": 13.193249591503267
+  },
+  "boundaries": {
+    "wrap_x_mean": 13.8515625,
+    "wrap_y_mean": 16.138020833333336,
+    "interior_x_mean": 11.812040441176471,
+    "interior_y_mean": 13.193658088235292
+  },
+  "passedDistanceCheck": null,
+  "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/native-stone1_7.png",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-13-continuation/stone1_7-generated-v1.png",
+  "output": "newer/textures/candidates-2026-10-13/stone1_7-photographic-v1-4x.png",
+  "originalSha256": "4ff813bc9614ff1ed686d5f92a4988d6d399d265341e6760b74a9c659156f462",
+  "generatedSha256": "fb4dd73e171d5e56e849dc8adb94e6ccda548893442b0862c0f618cca399bfa2",
+  "outputSha256": "f02bd24f70eb6fbba2a3d026992c2ce26aa40b76cbcc8344a3403fa0320ad83d",
+  "outputDimensions": [
+    256,
+    256
+  ],
+  "toolSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+  "landmarkFile": null,
+  "landmarkSha256": null
+}
