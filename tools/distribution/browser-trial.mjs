@@ -169,6 +169,14 @@ try{
     scenarios.push(await page.evaluate(startTime=>({map:cl.worldmodel.name,signon:cls.signon,active:sv.active,entities:sv.num_edicts,startTime,time:cl.time}),startTime));
    });
   }
+  // The hub jingle and the first explosion textures must be resident before control, not
+  // background placeholders: the chime would be silent and fireballs would draw square.
+  await step( 'startup-assets', () => page.evaluate( () => {
+
+   const paths = [ 'assets/sounds/quake1newereGame_firstLevelEasyMidHard.mp3', 'newer/effects/fireball/smoke-atlas.png', 'newer/effects/fireball/noise.png' ];
+   for ( const path of paths ) if ( ! __QUAKED_DISTRIBUTION__.has( path ) ) throw Error( 'required startup asset unavailable: ' + path );
+
+  } ) );
   // Background parts are allowed to arrive after play starts, but the verification waits for
   // them so the images checked below are the real re-encoded bytes, not pending placeholders.
   await step('background-data',()=>page.waitForFunction(()=>globalThis.__QUAKED_DISTRIBUTION__?.metrics?.backgroundComplete===true,null,{timeout:180000}));

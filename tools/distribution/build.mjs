@@ -65,10 +65,13 @@ function topicOf(path){
 }
 function priorityOf(path){
  if(path==='games/shareware/pak0.pak'||path==='newer/maps.pak'||path==='newer/startup.pak')return PRIORITY_START;
+ // The hub jingle must be resident before the player gains control, or the audio element
+ // receives a pending placeholder instead of the track. Explosion textures are needed by
+ // the first fireballs, so effects are actors rather than background material.
+ if(path==='assets/sounds/quake1newereGame_firstLevelEasyMidHard.mp3')return PRIORITY_START;
  if(/^src\//.test(path)||/^newer\/(ui|hud|textures|normals|displacement|rockfield)\//.test(path))return PRIORITY_START;
- if(/^newer\/(enemies|weapons)\//.test(path))return PRIORITY_ACTORS;
- if(/^(assets\/sounds|music)\//.test(path))return PRIORITY_BACKGROUND;
- if(/^newer\/(effects|bestiary)\//.test(path)||/^assets\/(credits|boxes)\//.test(path))return PRIORITY_BACKGROUND;
+ if(/^newer\/(enemies|weapons|effects)\//.test(path))return PRIORITY_ACTORS;
+ if(/^(assets\/sounds|music)\//.test(path)||/^newer\/bestiary\//.test(path)||/^assets\/(credits|boxes)\//.test(path))return PRIORITY_BACKGROUND;
  return PRIORITY_ACTORS;
 }
 // Per-game data packs (owner rulings, 12 and 13 October 2026; docs/distribution.md and
@@ -139,8 +142,10 @@ try {
   const body=Buffer.concat(list.map(record=>record.bytes)),parts=[],dir=profile==='web'?resolve(out,'data'):resolve(root,'dist/packs');
   for(let start=0;start<body.length;start+=PART_BYTES){
    const end=Math.min(body.length,start+PART_BYTES),chunk=body.subarray(start,end);
-   const first=list.find(record=>record.offset<end&&record.offset+record.length>start);
-   const priority=first?.priority??PRIORITY_START,topic=first?.topic??'core',file=`${pack}-${sha(chunk).slice(0,16)}.bin`,integrity='sha256-'+createHash('sha256').update(chunk).digest('base64');
+   const touched=list.filter(record=>record.offset<end&&record.offset+record.length>start),first=touched[0];
+   // If a part holds any byte of an urgent asset it must be fetched urgently too; a
+   // straddling asset can otherwise hide behind a later group's part.
+   const priority=touched.reduce((urgent,record)=>Math.min(urgent,record.priority),PRIORITY_BACKGROUND),topic=first?.topic??'core',file=`${pack}-${sha(chunk).slice(0,16)}.bin`,integrity='sha256-'+createHash('sha256').update(chunk).digest('base64');
    await writeFile(resolve(dir,file),chunk);
    parts.push(profile==='web'?{file:`data/${file}`,bytes:chunk.length,sha256:sha(chunk),integrity,priority,topic}:{file,bytes:chunk.length,sha256:sha(chunk),priority,topic});
   }
