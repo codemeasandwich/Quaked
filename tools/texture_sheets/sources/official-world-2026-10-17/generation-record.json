@@ -1,0 +1,102 @@
+{
+  "generator": "Built-in GPT image generation and reference-guided edits",
+  "sources": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Wood01c_2-generated-v1.png",
+      "sha256": "95981163aa25ce4f4aab99b63f76832a731525df83a2b82a9f842a4d1ebc1072"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Wood01_4-generated-v1.png",
+      "sha256": "07f99a63134df0eaead94f7232938138ae09bcef2481b95f8ff232dea5de6723"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/inventory-all58.json",
+      "sha256": "3f19e8ac02db3e072374326995a4b9bc2ff79aca8978a5315f7d3e5d98561366"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/compose_braces.py",
+      "sha256": "2158c0d4b8767291f58581df26dff1c3e79b59e51fdfa5bcc54ccf580505073d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/braced-wood-registration.json",
+      "sha256": "c22c515f77a8de4d6a11e9769e5218f9ae721c52286af94e3a624ebb685bf8dc"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Wood01_2-vertical-landmarks.json",
+      "sha256": "a3433b7289b6ed9387c6680cf7bedcccc7a959d308b6d72e4f44ef72a765fd6c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Wood01c_4-prompt.txt",
+      "sha256": "bdf27bdbd94b5c3efddbaabc80faf8c20f70b33f1b3ba7cb23e563409ed47da4"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Wood01_4-prompt.txt",
+      "sha256": "c0a06da93f9adc1652e78bd85426d7fe4369d906d279b46c62d7f14c77ea9503"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Wood01_2-generated-v1.png",
+      "sha256": "26d6eba4458e8117e903ff122ccb24c4b86c11da31dcb0e699fd7466963260ca"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Wood01_2.png",
+      "sha256": "493f2654d9a4ff1aa400cea366b379d5d2195a837f11391702243842554bac58"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Wood01c_4-generated-v1.png",
+      "sha256": "55e2fda63d873ffb40142e8877cca1a5749fc498d4948577abff4162ae17fa38"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Wood01_2-prompt.txt",
+      "sha256": "6448d2df272e0922d44f92bcf2e977a650db6a978217a56b57f61b748535eab6"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Wood01c_4.json",
+      "sha256": "a2d4e90230dfe90a3a6c565ce87e09e2984d98c399d74614f45026c48ad224c6"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Wood01_2.json",
+      "sha256": "caed6097b2cf9ad88920d125bd7a5c194084cf10564b0644068cf26a27e1400b"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Wood01_4.png",
+      "sha256": "0c62e41985a163f4ea93ab12b3a88772a2829e12ed3586316f07e9a2bd78ad65"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Wood01c_2-prompt.txt",
+      "sha256": "10d09ab415062623bd396d72966470a5591667bf6ced9e321eb75e7c1a181e44"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Wood01_4-vertical-landmarks.json",
+      "sha256": "55c4ca0890e36ce2ea913d083a1ce9d75e75fe4c708cd247e281ae66e1d33402"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Wood01c_2.png",
+      "sha256": "efdac4f90d58649bc019e74000e4db8df824a1cc78a5b66fda38d17adf501ee0"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Wood01c_4.png",
+      "sha256": "b5f4af61e15a3b20af63c552074bc6494ee9d4ed320816809aa0bcf43c254f6f"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Wood01c_2.json",
+      "sha256": "b0c158298a7c5c3928bd946837f592d8d3668f21b31cefe968bdcbff39ef9935"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Wood01_4.json",
+      "sha256": "98a3797f02f6a09abacb3e4392617e57c4b73c700851f3c31165b3e7830405f3"
+    }
+  ],
+  "criteria": {
+    "factor": 4,
+    "quality": 92,
+    "lossless": false,
+    "comparisons": [
+      "half-native64",
+      "quarter-native32"
+    ]
+  },
+  "recipe": "Light brace donors fitted by recorded native-coordinate landmarks; dark variants generated separately. Source-positioned brace bands+8pxfeather composited onto approved base after existing x-edge colour correction; protected authoring plank rows unchanged. Current decodedQ92 height/XYZ encoder reused.",
+  "registration": "tools/texture_sheets/sources/official-world-2026-10-17/braced-wood-registration.json",
+  "selected": "newer/textures/candidates-2026-10-17/*-braced-v3-4x-q92-xyz-*",
+  "diagnostics": "Earlier absolute-path v1/v2 authoring diagnostics retained in original root but not used by installed registration. Selectedv3records use repository-relative paths."
+}

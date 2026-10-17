@@ -1,0 +1,27 @@
+{
+  "base": "newer/textures/candidates-2026-10-12/TF_Wood01c-realistic-seam-v2-4x.png",
+  "baseSha256": "26a9e033af0e73cc138cea8ee820b16b1f9b538d3964e9c4f8852cd6854cc439",
+  "donor": "newer/textures/candidates-2026-10-17/TF_Wood01c_2-photographic-v2-4x.png",
+  "donorSha256": "44879f52d37d72c407022ba87bdba65c61dbbafaa0c220e1f11605180e7bf389",
+  "output": "newer/textures/candidates-2026-10-17/TF_Wood01c_2-braced-v3-4x.png",
+  "outputSha256": "c05fa2c6287e5b12d20eb032643fa6d51dcb86214a3a95a5358e0ce3c2f69603",
+  "dimensions": [
+    512,
+    512
+  ],
+  "braceBands": [
+    [
+      192,
+      320
+    ]
+  ],
+  "featherPixels": 8,
+  "donorEdgeAxes": "x",
+  "donorClippingFraction": 0.0024655659993489585,
+  "protectedPixelCount": 188416,
+  "unchangedOutsideBands": true,
+  "implementation": "tools/texture_sheets/sources/official-world-2026-10-12/finish_quiet_edges.py",
+  "implementationSha256": "b4d0ffed5d127c976ca73d0fb203636cb33a0c1ba43bb04361407e3eb83642a1",
+  "toolSha256": "2158c0d4b8767291f58581df26dff1c3e79b59e51fdfa5bcc54ccf580505073d",
+  "qualification": "Source-positioned brace composition; encoded visual/source/renderer qualification separate."
+}

@@ -47,10 +47,12 @@ const concreteFourReceiptPath='tools/texture_sheets/sources/official-world-2026-
 const concreteFourReceipt=JSON.parse(read(concreteFourReceiptPath));
 const baseFiveAliasReceiptPath='tools/texture_sheets/sources/official-world-2026-10-13-continuation/base-five-and-alias-registration.json';
 const baseFiveAliasReceipt=JSON.parse(read(baseFiveAliasReceiptPath));
-const baselineEntries=[...firstReceipt.entries,...migration.entries,...tfReceipt.entries,...rockReceipt.entries,...quietReceipt.entries,...realismReceipt.entries,...characterReceipt.entries,...agedReceipt.entries,...floorStoneStudReceipt.entries,...crosspackStoneReceipt.entries,...concreteFourReceipt.entries,...baseFiveAliasReceipt.entries];
+const bracedWoodReceiptPath='tools/texture_sheets/sources/official-world-2026-10-17/braced-wood-registration.json';
+const bracedWoodReceipt=JSON.parse(read(bracedWoodReceiptPath));
+const baselineEntries=[...firstReceipt.entries,...migration.entries,...tfReceipt.entries,...rockReceipt.entries,...quietReceipt.entries,...realismReceipt.entries,...characterReceipt.entries,...agedReceipt.entries,...floorStoneStudReceipt.entries,...crosspackStoneReceipt.entries,...concreteFourReceipt.entries,...baseFiveAliasReceipt.entries,...bracedWoodReceipt.entries];
 const receipt={entries:baselineEntries.map(e=>{const correction=agedCorrection.entries.find(c=>c.name===e.name&&c.key===e.key);return correction?{...correction,_correction:true}:e;})};
 const indexBytes = read('newer/textures/index.json'), index = JSON.parse(indexBytes);
-const names = ['city2_3','city2_5','city2_6','tech10_2','tech04_4','door02_1','ceil1_1','tech08_3','tech08_4','metal5_6','comp1_2','comp1_3','metal1_1','metal1_3','metal1_4','city6_8','city4_2','city4_8','metflor1_3','bricka2_4','brick2_4','TF_Metal4','TF_Metal4b','TF_MetWall4_02','TF_Metal4_04','rock5_2','rock3_8','TF_Metal_02','metal1_2c','TF_Metal4_6a','cable1_1','TF_Wood01','TF_Wood01c','TF_Stone_01','TF_Stone3','TF_Cliff2','TF_Cliff2b','wstone_03_JM','wall14_5','metal7_1','TF_Floor7_01','TF_Floor7_02','wstone_07_JM','met5_1','city6_7','cliff2','stone5_0','TF_Conc_06','TF_Conc4','TF_Conc_08','TF_Conc_07b','wall11_2','city4_5','dung01_3','azfloor1_1','stone1_7','q2_metal1_4'].sort();
+const names = ['city2_3','city2_5','city2_6','tech10_2','tech04_4','door02_1','ceil1_1','tech08_3','tech08_4','metal5_6','comp1_2','comp1_3','metal1_1','metal1_3','metal1_4','city6_8','city4_2','city4_8','metflor1_3','bricka2_4','brick2_4','TF_Metal4','TF_Metal4b','TF_MetWall4_02','TF_Metal4_04','rock5_2','rock3_8','TF_Metal_02','metal1_2c','TF_Metal4_6a','cable1_1','TF_Wood01','TF_Wood01c','TF_Stone_01','TF_Stone3','TF_Cliff2','TF_Cliff2b','wstone_03_JM','wall14_5','metal7_1','TF_Floor7_01','TF_Floor7_02','wstone_07_JM','met5_1','city6_7','cliff2','stone5_0','TF_Conc_06','TF_Conc4','TF_Conc_08','TF_Conc_07b','wall11_2','city4_5','dung01_3','azfloor1_1','stone1_7','q2_metal1_4','TF_Wood01_2','TF_Wood01c_2','TF_Wood01_4','TF_Wood01c_4'].sort();
 const historicalCity = JSON.parse(read('tools/texture_sheets/sources/official-world-2026-10-12/city2-registration.json'));
 const axes = ['x','y','z'];
 const roles = ['diffuse','height','normalX','normalY','normalZ'];
@@ -150,7 +152,7 @@ function diffuseMatches( texture, expected, label ) {
 }
 
 
-Deno.test('57 q92 channel bindings pin exact original identities and real lossy colour/height/normal companions', async () => {
+Deno.test('61 q92 channel bindings pin exact original identities and real lossy colour/height/normal companions', async () => {
  const alias=baseFiveAliasReceipt.entries.find(e=>e.name==='q2_metal1_4'),donor=receipt.entries.find(e=>e.name==='metal1_4');
  check(alias&&donor,'exact native alias and already approved donor both present');
  same(alias.key,'64x64:5fcb234d8850a05f','alias exact audited native identity');same(alias.key,donor.key,'alias/donor native key equality');
@@ -191,7 +193,7 @@ Deno.test('57 q92 channel bindings pin exact original identities and real lossy 
    finally { dispose(actual.texture); }
   }
  }
- const result={qualification:'Actual PAK and public renderer current-state verification; visual acceptance separate',indexSha256:sha256(indexBytes),registrationSha256:sha256(read(receiptPath)),migrationSha256:sha256(read(migrationPath)),tfRegistrationSha256:sha256(read(tfReceiptPath)),rockRegistrationSha256:sha256(read(rockReceiptPath)),quietRegistrationSha256:sha256(read(quietReceiptPath)),realismRegistrationSha256:sha256(read(realismReceiptPath)),characterRegistrationSha256:sha256(read(characterReceiptPath)),agedRegistrationSha256:sha256(read(agedReceiptPath)),agedCorrectionSha256:sha256(read(agedCorrectionPath)),floorStoneStudRegistrationSha256:sha256(read(floorStoneStudReceiptPath)),crosspackStoneRegistrationSha256:sha256(read(crosspackStoneReceiptPath)),concreteFourRegistrationSha256:sha256(read(concreteFourReceiptPath)),baseFiveAliasRegistrationSha256:sha256(read(baseFiveAliasReceiptPath)),bindings:receipt.entries.length,occurrences:sources.length,sources};
+ const result={qualification:'Actual PAK and public renderer current-state verification; visual acceptance separate',indexSha256:sha256(indexBytes),registrationSha256:sha256(read(receiptPath)),migrationSha256:sha256(read(migrationPath)),tfRegistrationSha256:sha256(read(tfReceiptPath)),rockRegistrationSha256:sha256(read(rockReceiptPath)),quietRegistrationSha256:sha256(read(quietReceiptPath)),realismRegistrationSha256:sha256(read(realismReceiptPath)),characterRegistrationSha256:sha256(read(characterReceiptPath)),agedRegistrationSha256:sha256(read(agedReceiptPath)),agedCorrectionSha256:sha256(read(agedCorrectionPath)),floorStoneStudRegistrationSha256:sha256(read(floorStoneStudReceiptPath)),crosspackStoneRegistrationSha256:sha256(read(crosspackStoneReceiptPath)),concreteFourRegistrationSha256:sha256(read(concreteFourReceiptPath)),baseFiveAliasRegistrationSha256:sha256(read(baseFiveAliasReceiptPath)),bracedWoodRegistrationSha256:sha256(read(bracedWoodReceiptPath)),bindings:receipt.entries.length,occurrences:sources.length,sources};
  if(process.env.QUAKED_Q92_TEXTURE_RECEIPT) writeFileSync(process.env.QUAKED_Q92_TEXTURE_RECEIPT,JSON.stringify(result,null,2)+'\n');
  console.log('Q92_NATIVE_SOURCES '+JSON.stringify({bindings:result.bindings,occurrences:result.occurrences,indexSha256:result.indexSha256}));
 });

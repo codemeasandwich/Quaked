@@ -1,0 +1,72 @@
+{
+  "method": "photographic",
+  "factor": 4,
+  "verticalLandmarks": [
+    [
+      0,
+      0
+    ],
+    [
+      48,
+      51.8
+    ],
+    [
+      80,
+      75.0
+    ],
+    [
+      128,
+      128
+    ]
+  ],
+  "colorStrength": 0.65,
+  "fieldSigma": 2.0,
+  "edgeAnchor": false,
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    64
+  ],
+  "distanceMeanMaxError": 78.03125,
+  "distanceMeanMAE": 13.376827239990234,
+  "donorDistanceMAE": 18.726436010996498,
+  "newClippedChannelFraction": 0.017103830973307293,
+  "donorContourCorrelation": 0.9968004416612221,
+  "sourceMean": [
+    75.45770263671875,
+    56.8262939453125,
+    44.02508544921875
+  ],
+  "outputMean": [
+    82.08929061889648,
+    62.24571990966797,
+    47.929908752441406
+  ],
+  "donorBoundaries": {
+    "wrap_x_mean": 20.380082194010427,
+    "wrap_y_mean": 6.178290473090281,
+    "interior_x_mean": 8.181819048319776,
+    "interior_y_mean": 4.901610967142994
+  },
+  "boundaries": {
+    "wrap_x_mean": 20.35546875,
+    "wrap_y_mean": 6.083984375,
+    "interior_x_mean": 7.973005340834963,
+    "interior_y_mean": 4.873610006930855
+  },
+  "passedDistanceCheck": null,
+  "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Wood01_2.png",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Wood01_2-generated-v1.png",
+  "output": "newer/textures/candidates-2026-10-17/TF_Wood01_2-photographic-v2-4x.png",
+  "originalSha256": "493f2654d9a4ff1aa400cea366b379d5d2195a837f11391702243842554bac58",
+  "generatedSha256": "26d6eba4458e8117e903ff122ccb24c4b86c11da31dcb0e699fd7466963260ca",
+  "outputSha256": "41067d642f1e60bbd8a9f3051f7cdbc1c13450a5b7f37ee01e8a3508f92abfee",
+  "outputDimensions": [
+    512,
+    512
+  ],
+  "toolSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+  "landmarkFile": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Wood01_2-vertical-landmarks.json",
+  "landmarkSha256": "a3433b7289b6ed9387c6680cf7bedcccc7a959d308b6d72e4f44ef72a765fd6c"
+}
