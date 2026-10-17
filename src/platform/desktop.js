@@ -43,7 +43,7 @@ async function snapshot(){
  * unpacked they are reused offline. A failure returns to the shelf saying so; choosing the game
  * again retries, keeping the parts already verified. */
 async function ensurePacks(definition){
- const distribution=globalThis.__QUAKED_DISTRIBUTION__,packs=distribution.packsFor(definition.id,definition.base);
+ const distribution=globalThis.__QUAKED_DISTRIBUTION__,groups=distribution.packsForPriority(definition.id,definition.base),packs=groups.required;
  if(!packs.length)return;
  const sizes=new Map(packs.map(p=>[p.name,p.parts.reduce((sum,part)=>sum+part.bytes,0)])),total=[...sizes.values()].reduce((a,b)=>a+b,0),done=new Map();
  const status=document.createElement('div');status.id='pack-status';status.role='status';
@@ -61,6 +61,11 @@ async function ensurePacks(definition){
  try{
   const dir=await invoke('packs_ensure',{base:distribution.packBase,packs});
   distribution.usePacks(dir,packs.map(p=>p.name));
+  // The remaining parts continue in the background; a failure leaves the verified start data
+  // usable and is retried the next time the game is chosen.
+  if(groups.background.length)void invoke('packs_ensure',{base:distribution.packBase,packs:groups.background})
+   .then(next=>distribution.usePacks(next,groups.background.map(p=>p.name)))
+   .catch(()=>{});
  }catch(error){throw Error(`The Newer Game data for ${definition.name} could not be downloaded (${error?.message??error}). Choose the game again to retry.`);}
  finally{stop();status.remove();}
 }

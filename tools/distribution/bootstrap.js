@@ -5,7 +5,7 @@ import {LoadingScreen_SetProgress} from '../../src/newer/ui/loading_screen.js';
 globalThis.__QUAKED_BOOT_READY__=(async()=>{
 const spec=JSON.parse(document.getElementById('quaked-assets').textContent);
 const resourceBase=spec.profile==='desktop'?await invoke('distribution_resources'):null;
-const urls=new Map(),packs=new Map();
+const urls=new Map(),packs=new Map(),readyParts=new Map();
 if(spec.profile==='desktop'){
   // Images from the app's asset protocol (bundled and downloaded assets) are another origin
   // than the page, so reading their pixels (textures, HUD, faces, folio, the menu font)
@@ -21,7 +21,7 @@ if(spec.profile==='desktop'){
 const metrics={decodedBytes:0,blobBytes:0,dataBytes:0,missing:[],unavailable:[],startedAt:performance.now()};
 // Desktop: per-game packs unpacked by the app (src-tauri/src/packs.rs), one file per asset named by its SHA-256.
 const installed=new Set(['core']);let packAssets=null;
-const available=entry=>!entry.pack||(spec.profile==='web'?packs.has(entry.pack):installed.has(entry.pack));
+const available=entry=>!entry.pack||(spec.profile==='web'?Boolean(entry.parts&&readyParts.get(entry.pack)&&entry.parts.every(index=>readyParts.get(entry.pack).has(index))):installed.has(entry.pack));
 // An asset whose pack this copy does not have (the web ships core and shareware; the app has the
 // packs of the game it is playing): a URL that fails like a network error, which every loader
 // already handles by keeping the classic look. Not cached, so it resolves once the pack arrives.
@@ -33,10 +33,28 @@ function key(path) {
   const url=new URL(path,'https://quaked.invalid/');
   return decodeURIComponent(url.pathname).replace(/^\//,'');
 }
-globalThis.__QUAKED_DISTRIBUTION__={profile:spec.profile,engineHash:spec.engineHash,packBase:spec.packBase,metrics,
+globalThis.__QUAKED_DISTRIBUTION__={profile:spec.profile,engineHash:spec.engineHash,packBase:spec.packBase,startPriority:spec.startPriority??1,metrics,
   has(path){const k=key(path);return k===null||Object.hasOwn(spec.files,k)&&available(spec.files[k]);},
   /** Desktop: the packs a game needs that are not bundled (core is), as packs_ensure takes them. */
   packsFor(game,base){if(spec.profile!=='desktop')return [];return (spec.gamePacks?.[game]??(base?[...(spec.gamePacks?.[base]??[])]:[])).filter(name=>name!=='core'&&spec.packs?.[name]).map(name=>({name,parts:spec.packs[name].parts,assets:spec.packs[name].assets}));},
+  /** Desktop: split a game's packs into the parts needed to start and the rest. */
+  packsForPriority(game,base,cutoff=spec.startPriority??1){
+    const all=this.packsFor(game,base),required=[],background=[];
+    for(const pack of all){
+      const spans=[];let start=0;for(const part of pack.parts){spans.push([start,start+part.bytes]);start+=part.bytes;}
+      const take=new Set(pack.parts.filter(part=>part.priority<=cutoff));
+      if(!take.size)continue;
+      const overlaps=(asset,part)=>{const index=pack.parts.indexOf(part),span=spans[index];return asset.offset<span[1]&&asset.offset+asset.length>span[0];};
+      const requiredAssets=()=>pack.assets.filter(asset=>[...take].some(part=>overlaps(asset,part)));
+      // An asset may straddle a part boundary; include every part holding its bytes.
+      for(const part of pack.parts)if(requiredAssets().some(asset=>overlaps(asset,part)))take.add(part);
+      const parts=pack.parts.filter(part=>take.has(part)),assets=pack.assets.filter(asset=>parts.some(part=>overlaps(asset,part)));
+      if(parts.length&&assets.length)required.push({name:pack.name,parts,assets});
+      const restParts=pack.parts.filter(part=>!take.has(part)),restAssets=pack.assets.filter(asset=>!assets.includes(asset)&&restParts.some(part=>overlaps(asset,part)));
+      if(restParts.length&&restAssets.length)background.push({name:pack.name,parts:restParts,assets:restAssets});
+    }
+    return {required,background};
+  },
   /** Desktop: the packs are unpacked in `dir`; their assets resolve from now on. */
   usePacks(dir,names){packAssets=dir;for(const name of names)installed.add(name);},
   url(path){
@@ -69,38 +87,39 @@ for(const el of document.querySelectorAll('[data-quaked-src]'))el.src=globalThis
 for(const el of document.querySelectorAll('[data-quaked-href]'))el.href=globalThis.__QUAKED_DISTRIBUTION__.url(el.dataset.quakedHref);
 if(spec.profile==='web'&&spec.packs&&Object.keys(spec.packs).length){
   // Served over http(s) (GitHub Pages, or a local test server) the data files sit beside the
-  // page; opened from disk, the page fetches them from GitHub Pages (spec.dataBase). Each part
-  // is integrity-checked by the browser, which releases it only whole, so progress moves per part.
+  // page; opened from disk, the page fetches them from GitHub Pages (spec.dataBase). Parts at
+  // or below startPriority are fetched before the engine starts; the rest continue in the
+  // background. Each part is integrity-checked by the browser, which releases it only whole.
   const http=/^https?:$/.test(location.protocol),base=http?new URL('.',location.href).href:spec.dataBase;
   const jobs=Object.entries(spec.packs).flatMap(([name,pack])=>pack.parts.map((part,index)=>({name,index,part})));
-  // Each category's bytes land in one ArrayBuffer, each part written at its own offset as it arrives.
+  const required=jobs.filter(job=>job.part.priority<=spec.startPriority),background=jobs.filter(job=>job.part.priority>spec.startPriority);
+  // Each pack's bytes land in one ArrayBuffer, each part written at its own offset as it arrives.
   const joined=new Map(Object.entries(spec.packs).map(([name,pack])=>[name,{bytes:new Uint8Array(pack.bytes),offsets:pack.parts.map((_,index)=>pack.parts.slice(0,index).reduce((sum,part)=>sum+part.bytes,0))}]));
-  const total=jobs.reduce((sum,job)=>sum+job.part.bytes,0),abort=new AbortController();let received=0,next=0,stale=false;
+  const total=required.reduce((sum,job)=>sum+job.part.bytes,0),abort=new AbortController();let received=0,stale=false;
   const latest=`This copy of Quaked may be out of date: the latest is at ${spec.dataBase}`;
-  async function fetchPart({name,index,part}){
-    const where=new URL(part.file,base).href;let response;
+  const mark=job=>{let set=readyParts.get(job.name);if(!set)readyParts.set(job.name,set=new Set());set.add(job.index);};
+  async function fetchPart(job,track){
+    const {name,index,part}=job,where=new URL(part.file,base).href;let response;
     try{response=await fetch(where,{integrity:part.integrity,mode:'cors',signal:abort.signal});}
     catch(error){if(abort.signal.aborted&&error.name==='AbortError')return;throw Error(`could not download or verify ${where} (${error.message}). ${latest}`);}
     if(!response.ok){if(response.status===404)stale=true;throw Error(`${where} answered HTTP ${response.status}. ${latest}`);}
     const bytes=new Uint8Array(await response.arrayBuffer());
     if(bytes.byteLength!==part.bytes)throw Error(`${where} is ${bytes.byteLength} bytes, expected ${part.bytes}`);
-    const target=joined.get(name);target.bytes.set(bytes,target.offsets[index]);received+=part.bytes;LoadingScreen_SetProgress(received/total);
+    const target=joined.get(name);target.bytes.set(bytes,target.offsets[index]);mark(job);
+    if(track){received+=part.bytes;LoadingScreen_SetProgress(received/total);}
   }
-  const worker=async()=>{while(next<jobs.length)await fetchPart(jobs[next++]);};
-  try{await Promise.all(Array.from({length:Math.min(4,jobs.length)},worker));}
+  const workers=async(list,track)=>{let next=0;const run=async()=>{while(next<list.length)await fetchPart(list[next++],track);};await Promise.all(Array.from({length:Math.min(4,list.length)},run));};
+  try{await workers(required,true);}
   catch(error){
     abort.abort();
-    // Just after a deploy the browser may reuse a cached index.html whose data files are gone:
-    // fetch the page afresh and reload once before reporting.
     if(http&&stale&&!sessionStorage.getItem('quaked-data-reload')){sessionStorage.setItem('quaked-data-reload','1');await fetch(location.href,{cache:'reload'}).catch(()=>{});location.reload();await new Promise(()=>{});}
     throw error;
   }
   if(http)sessionStorage.removeItem('quaked-data-reload');
-  for(const [name,pack] of Object.entries(spec.packs)){
-    const bytes=pack.gzip?gunzipSync(joined.get(name).bytes):joined.get(name).bytes;joined.delete(name);
-    if(bytes.byteLength!==pack.rawBytes)throw Error(`${name} data unpacked to ${bytes.byteLength} bytes, expected ${pack.rawBytes}`);
-    packs.set(name,bytes);metrics.dataBytes+=pack.bytes;
-  }
+  for(const [name,pack] of Object.entries(spec.packs))if(readyParts.has(name)){packs.set(name,pack.gzip?gunzipSync(joined.get(name).bytes):joined.get(name).bytes);metrics.dataBytes+=pack.bytes;}
   metrics.dataReadyMs=performance.now()-metrics.startedAt;
+  // The application can start now; later parts fill the same buffers and become available.
+  if(background.length)void workers(background,false).catch(error=>{metrics.backgroundError=String(error);});
 }
+
 })();

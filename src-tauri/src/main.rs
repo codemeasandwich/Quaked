@@ -5,7 +5,7 @@ mod packs;
 #[cfg(target_os = "macos")]
 mod pointer_lock;
 use library::{Library, Settings};
-use std::{fs, path::PathBuf, sync::Mutex};
+use std::{fs, path::{Path, PathBuf}, sync::Mutex};
 use tauri::{Emitter, Manager};
 use tauri_plugin_dialog::DialogExt;
 
@@ -59,14 +59,95 @@ async fn lan_stop(state: tauri::State<'_, lan::Lan>) -> Result<(), String> {
         .await
         .map_err(|e| e.to_string())
 }
+/// The writable shared data cache: `QUAKED_DATA_DIR` for trials, else `~/quaked/.data`.
+/// The game shelf ignores dot-directories, so `.data` never appears as a game.
+fn data_cache(app: &tauri::AppHandle) -> Result<PathBuf, String> {
+    if let Some(dir) = std::env::var_os("QUAKED_DATA_DIR") {
+        let path = PathBuf::from(dir);
+        fs::create_dir_all(&path).map_err(|e| e.to_string())?;
+        return Ok(path);
+    }
+    let path = app.path().home_dir().map_err(|e| e.to_string())?.join("quaked").join(".data");
+    fs::create_dir_all(&path).map_err(|e| e.to_string())?;
+    Ok(path)
+}
+
+/// A read-only `data/` directory beside `Quaked.app`, for a downloaded app + data folder.
+/// Finder launches with `/` as the working directory, so the bundle path is used instead.
+/// A quarantined app may be translocated to a random read-only path; in that case the
+/// original download folder is unknown here, so the user cache is used.
+fn same_dir_data() -> Option<PathBuf> {
+    let exe = std::env::current_exe().ok()?;
+    if exe.to_string_lossy().contains("/AppTranslocation/") {
+        return None;
+    }
+    let mut current = exe.parent()?;
+    loop {
+        if current.extension().and_then(|value| value.to_str()) == Some("app") {
+            let parent = current.parent()?;
+            // The assembled build keeps the app's per-game packs in app-data/ and the
+            // HTML's shareware-only data in data/. Prefer the app packs; a legacy folder
+            // with parts at data/ still works.
+            for name in ["app-data", "data"] {
+                let data = parent.join(name);
+                if data.is_dir() {
+                    return Some(data);
+                }
+            }
+            return None;
+        }
+        current = current.parent()?;
+    }
+}
+
+fn copy_dir(from: &Path, to: &Path) -> std::io::Result<()> {
+    fs::create_dir_all(to)?;
+    for entry in fs::read_dir(from)? {
+        let entry = entry?;
+        let path = entry.path();
+        let target = to.join(entry.file_name());
+        if path.is_dir() {
+            copy_dir(&path, &target)?;
+        } else {
+            fs::copy(&path, &target)?;
+        }
+    }
+    Ok(())
+}
+
+/// Carries the old `app_data_dir()/packs/assets` cache into `~/quaked/.data` once, so an
+/// upgrade does not re-download data the user already has. A rename is used when possible.
+fn migrate_old_cache(app: &tauri::AppHandle, cache: &Path) -> Result<(), String> {
+    let new = cache.join("assets");
+    let has_new = fs::read_dir(&new).map(|mut dir| dir.next().is_some()).unwrap_or(false);
+    if has_new {
+        return Ok(());
+    }
+    let old = app.path().app_data_dir().map_err(|e| e.to_string())?.join("packs").join("assets");
+    if !old.is_dir() {
+        return Ok(());
+    }
+    if new.is_dir() {
+        fs::remove_dir(&new).map_err(|e| e.to_string())?;
+    }
+    if fs::rename(&old, &new).is_ok() {
+        return Ok(());
+    }
+    copy_dir(&old, &new).map_err(|e| e.to_string())
+}
+
 /// Downloads, verifies and unpacks the per-game data packs a game needs (packs.rs), reporting
-/// `packs-progress` events; returns the folder of unpacked assets in the app data folder.
+/// `packs-progress` events. Parts are read from a `data/` directory beside the app when one
+/// exists, downloaded into `~/quaked/.data/` otherwise, and kept there for later builds and
+/// for the HTML copy. Returns the folder of unpacked assets.
 #[tauri::command]
 async fn packs_ensure(app: tauri::AppHandle, base: String, packs: Vec<packs::Pack>) -> Result<PathBuf, String> {
-    let root = app.path().app_data_dir().map_err(|e| e.to_string())?.join("packs");
+    let cache = data_cache(&app)?;
+    migrate_old_cache(&app, &cache)?;
+    let source = same_dir_data().unwrap_or_else(|| cache.clone());
     let events = app.clone();
     let assets = tauri::async_runtime::spawn_blocking(move || {
-        packs::ensure(&root, &base, &packs, &mut |progress| {
+        packs::ensure_from(&source, &cache, &base, &packs, &mut |progress| {
             let _ = events.emit("packs-progress", progress);
         })
     })

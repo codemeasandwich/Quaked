@@ -16,7 +16,7 @@ fn a_real_part_downloads_from_the_data_release() {
     let sha = "106b23b9311a193ed5f2622a65fe233c361152fae68ba24827fdaa4114af8d22".to_string();
     let pack = packs::Pack {
         name: "quoth".into(),
-        parts: vec![packs::Part { file: "quoth-106b23b9311a193e.bin".into(), bytes: 1_081_235, sha256: sha.clone() }],
+        parts: vec![packs::Part { file: "quoth-106b23b9311a193e.bin".into(), bytes: 1_081_235, sha256: sha.clone(), priority: 0 }],
         assets: vec![packs::Asset { sha256: sha.clone(), offset: 0, length: 1_081_235, ext: ".bin".into() }],
     };
     let root = std::env::temp_dir().join(format!("quaked-release-trial-{}", std::process::id()));

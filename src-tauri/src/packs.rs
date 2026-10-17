@@ -16,6 +16,10 @@ pub struct Part {
     pub file: String,
     pub bytes: u64,
     pub sha256: String,
+    /// 0 = needed to open the first level, 1 = actors/weapons, 2 = background.
+    /// Older manifests omit it; zero keeps their original order.
+    #[serde(default)]
+    pub priority: u8,
 }
 
 #[derive(Deserialize, Clone, Debug)]
@@ -192,20 +196,26 @@ fn read_range(parts: &[(PathBuf, u64)], offset: u64, length: u64) -> Result<Vec<
 /// same temporary files.
 static ENSURE: std::sync::Mutex<()> = std::sync::Mutex::new(());
 
-/// Makes sure every listed pack is unpacked under `root`, downloading from `base` only the parts
-/// that hold assets not yet unpacked (so a pack that changed in a later app version costs only
-/// its changed parts). Returns the directory of unpacked assets.
-pub fn ensure(root: &Path, base: &str, packs: &[Pack], progress: &mut dyn FnMut(Progress)) -> Result<PathBuf, String> {
+fn part_ok(path: &Path, part: &Part) -> bool {
+    fs::metadata(path).map(|m| m.len() == part.bytes).unwrap_or(false)
+        && file_sha256(path).map(|hash| hash == part.sha256).unwrap_or(false)
+}
+
+/// Makes sure every listed pack is unpacked under `cache`, reading verified parts from the
+/// read-only `source` first and downloading only the parts that neither `source` nor `cache`
+/// can supply. Parts stay in `cache/parts` (and `source` is never written), so the same data
+/// can be shared with the HTML and reused by a later app version. Returns the unpacked assets.
+pub fn ensure_from(source: &Path, cache: &Path, base: &str, packs: &[Pack], progress: &mut dyn FnMut(Progress)) -> Result<PathBuf, String> {
     let https = check_base(base)?;
     for pack in packs {
         check_names(pack)?;
     }
     let _only = ENSURE.lock().unwrap_or_else(|poisoned| poisoned.into_inner());
     let agent = ureq::AgentBuilder::new().https_only(https).timeout_connect(Duration::from_secs(30)).timeout_read(Duration::from_secs(60)).build();
-    fs::create_dir_all(root.join("assets")).map_err(|e| e.to_string())?;
-    fs::create_dir_all(root.join("parts")).map_err(|e| e.to_string())?;
+    fs::create_dir_all(cache.join("assets")).map_err(|e| e.to_string())?;
+    fs::create_dir_all(cache.join("parts")).map_err(|e| e.to_string())?;
     for pack in packs {
-        let missing: Vec<&Asset> = pack.assets.iter().filter(|asset| !present(root, asset)).collect();
+        let missing: Vec<&Asset> = pack.assets.iter().filter(|asset| !present(cache, asset)).collect();
         if missing.is_empty() {
             progress(Progress { pack: pack.name.clone(), phase: "ready", done: 1, total: 1 });
             continue;
@@ -219,30 +229,45 @@ pub fn ensure(root: &Path, base: &str, packs: &[Pack], progress: &mut dyn FnMut(
         }).collect();
         let needed: Vec<bool> = spans.iter().map(|(from, to)| missing.iter().any(|a| a.offset < *to && a.offset + a.length > *from)).collect();
         let total: u64 = pack.parts.iter().zip(&needed).filter(|(_, n)| **n).map(|(p, _)| p.bytes).sum();
-        let mut done = 0u64;
-        let mut local_parts = Vec::new();
-        for (part, needed) in pack.parts.iter().zip(&needed) {
-            let path = root.join("parts").join(&part.file);
-            if *needed {
-                let verified = fs::metadata(&path).map(|m| m.len() == part.bytes).unwrap_or(false) && file_sha256(&path)? == part.sha256;
-                if !verified {
-                    let name = pack.name.clone();
-                    let mut report = |bytes: u64| {
-                        done += bytes;
-                        progress(Progress { pack: name.clone(), phase: "download", done, total });
-                    };
-                    download(&agent, base, part, &path, &mut report)?;
-                } else {
-                    done += part.bytes;
-                    progress(Progress { pack: pack.name.clone(), phase: "download", done, total });
-                }
+        // Resolve each part from the read-only source first, then the writable cache. Missing
+        // parts download into the cache in priority order; the part order itself stays the
+        // pack's byte order because asset offsets depend on it.
+        let mut paths: Vec<PathBuf> = Vec::with_capacity(pack.parts.len());
+        let mut downloads: Vec<usize> = Vec::new();
+        for (index, part) in pack.parts.iter().enumerate() {
+            // The shared data folder keeps parts at its root; a tests/local cache may use parts/.
+            let source_path = if source.join(&part.file).is_file() { source.join(&part.file) } else { source.join("parts").join(&part.file) };
+            let cache_path = cache.join("parts").join(&part.file);
+            if needed[index] && part_ok(&source_path, part) {
+                paths.push(source_path);
+            } else if part_ok(&cache_path, part) {
+                paths.push(cache_path);
+            } else {
+                paths.push(cache_path);
+                if needed[index] { downloads.push(index); }
             }
-            local_parts.push((path, part.bytes));
         }
+        downloads.sort_by_key(|index| pack.parts[*index].priority);
+        let mut done = 0u64;
+        for index in downloads {
+            let part = &pack.parts[index];
+            let target = cache.join("parts").join(&part.file);
+            let name = pack.name.clone();
+            let mut report = |bytes: u64| {
+                done += bytes;
+                progress(Progress { pack: name.clone(), phase: "download", done, total });
+            };
+            download(&agent, base, part, &target, &mut report)?;
+            if !part_ok(&target, part) {
+                return Err(format!("Pack {} part {} failed verification", pack.name, part.file));
+            }
+        }
+        progress(Progress { pack: pack.name.clone(), phase: "download", done: total, total });
+        let local_parts: Vec<(PathBuf, u64)> = paths.into_iter().zip(pack.parts.iter()).map(|(path, part)| (path, part.bytes)).collect();
         let count = missing.len() as u64;
         for (index, asset) in missing.iter().enumerate() {
-            let target = asset_path(root, asset);
-            if present(root, asset) {
+            let target = asset_path(cache, asset);
+            if present(cache, asset) {
                 continue;
             }
             let bytes = read_range(&local_parts, asset.offset, asset.length)?;
@@ -256,13 +281,17 @@ pub fn ensure(root: &Path, base: &str, packs: &[Pack], progress: &mut dyn FnMut(
             fs::rename(&temp, &target).map_err(|e| e.to_string())?;
             progress(Progress { pack: pack.name.clone(), phase: "unpack", done: index as u64 + 1, total: count });
         }
-        // The unpacked assets are the cache; the parts are no longer needed.
-        for (path, _) in &local_parts {
-            let _ = fs::remove_file(path);
-        }
+        // Keep the parts: they are the shared data files, and a later app version can reuse
+        // every part whose content did not change.
         progress(Progress { pack: pack.name.clone(), phase: "ready", done: 1, total: 1 });
     }
-    Ok(root.join("assets"))
+    Ok(cache.join("assets"))
+}
+
+/// Backwards-compatible entry point when the read-only source and writable cache are the
+/// same directory (unit tests, a local stand-in host).
+pub fn ensure(root: &Path, base: &str, packs: &[Pack], progress: &mut dyn FnMut(Progress)) -> Result<PathBuf, String> {
+    ensure_from(root, root, base, packs, progress)
 }
 
 #[cfg(test)]
@@ -321,7 +350,7 @@ mod tests {
         let mut parts = Vec::new();
         for chunk in [a, b] {
             let file = format!("quake-{}.bin", &sha(chunk)[..16]);
-            parts.push(Part { file: file.clone(), bytes: chunk.len() as u64, sha256: sha(chunk) });
+            parts.push(Part { file: file.clone(), bytes: chunk.len() as u64, sha256: sha(chunk), priority: 0 });
             files.insert(file, chunk.to_vec());
         }
         let mut offset = 0u64;
@@ -352,7 +381,7 @@ mod tests {
         for (asset, bytes) in pack.assets.iter().zip(&assets) {
             assert_eq!(&fs::read(dir.join(format!("{}.webp", asset.sha256))).unwrap(), bytes);
         }
-        assert_eq!(fs::read_dir(root.join("parts")).unwrap().count(), 0, "parts are removed once unpacked");
+        assert_eq!(fs::read_dir(root.join("parts")).unwrap().count(), 2, "parts are retained for later builds and HTML sharing");
         assert_eq!(events.last().unwrap().phase, "ready");
         assert!(events.iter().any(|e| e.phase == "download" && e.done == e.total));
         assert_eq!(asked.lock().unwrap().len(), 2);
@@ -398,13 +427,41 @@ mod tests {
     }
 
     #[test]
+    fn a_read_only_source_part_is_used_without_downloading() {
+        let (pack, files, assets) = fixture();
+        let source = temp("source");
+        let cache = temp("cache");
+        fs::create_dir_all(source.join("parts")).unwrap();
+        let first = pack.parts[0].file.clone();
+        fs::write(source.join("parts").join(&first), &files[&first]).unwrap();
+        let mut rest = files.clone();
+        rest.remove(&first);
+        let (base, asked) = serve(rest);
+        ensure_from(&source, &cache, &base, &[pack.clone()], &mut |_| {}).unwrap();
+        assert_eq!(*asked.lock().unwrap(), vec![pack.parts[1].file.clone()], "only the part absent from the read-only source is downloaded");
+        for (asset, bytes) in pack.assets.iter().zip(&assets) {
+            assert_eq!(&fs::read(asset_path(&cache, asset)).unwrap(), bytes);
+        }
+        assert!(source.join("parts").join(&first).exists(), "the read-only source is never written");
+        let _ = fs::remove_dir_all(&source);
+        let _ = fs::remove_dir_all(&cache);
+    }
+
+    #[test]
     fn only_the_parts_holding_missing_assets_are_downloaded() {
         let (pack, files, assets) = fixture();
         let (base, asked) = serve(files);
         let root = temp("incremental");
         ensure(&root, &base, &[pack.clone()], &mut |_| {}).unwrap();
-        // As if a later app version changed the last asset: only the second part holds it.
+        // A retained part can rebuild a missing asset without any download.
         fs::remove_file(asset_path(&root, &pack.assets[2])).unwrap();
+        asked.lock().unwrap().clear();
+        ensure(&root, &base, &[pack.clone()], &mut |_| {}).unwrap();
+        assert_eq!(*asked.lock().unwrap(), Vec::<String>::new(), "retained parts rebuild missing assets offline");
+        assert_eq!(fs::read(asset_path(&root, &pack.assets[2])).unwrap(), assets[2]);
+        // If the later app version's part itself is gone, only that part is downloaded.
+        fs::remove_file(asset_path(&root, &pack.assets[2])).unwrap();
+        fs::remove_file(root.join("parts").join(&pack.parts[1].file)).unwrap();
         asked.lock().unwrap().clear();
         ensure(&root, &base, &[pack.clone()], &mut |_| {}).unwrap();
         assert_eq!(*asked.lock().unwrap(), vec![pack.parts[1].file.clone()]);
