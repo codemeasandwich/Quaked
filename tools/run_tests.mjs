@@ -17,6 +17,7 @@ const files = process.argv.slice( 2 );
 // in fact missing, so a wrong name under an input that is present, or a refused write, still fails.
 const ROOT = process.cwd();
 const LISTED = new Set( [ 'rocketlauncher.zip', 'thuderbolt.zip', 'supershotgun.zip', 'supernailgun.zip', 'supernailgun2.zip',
+	'.distribution-cache/shareware.pak',
 	'fieldlab-fx-3d-updated.html', 'arc-weapons-wall-canvas-shotgun.html', 'demon-vision.html', 'player-face-layers-v4.4.0.html',
 	'newer/hud/playerface/blood.png', 'rockfield-v1.0.0.html', 'rockfield-v1.6.0.html', 'stasis-combat-fx-v2.html', 'twin-shot-venom.html', 'fireballs.html' ].map( f => resolve( ROOT, f ) ) );
 const RESOURCES = resolve( ROOT, 'resources' ), PAK3 = resolve( homedir(), 'Downloads/Quake/Id1/PAK3.pk3' );

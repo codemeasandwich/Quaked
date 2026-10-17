@@ -7,7 +7,7 @@ import {pakDirectory,readMember,sha256} from '../pak_members.mjs';
 import {existsSync} from 'node:fs';
 
 const DIRECTORIES = ['newer/textures','newer/enemies','newer/weapons','newer/hud','newer/ui','newer/effects','newer/bestiary','assets/credits'];
-const FILES = ['icon.svg','icon.png','conback.webp','enhancedmenu.png','newer/maps.pak','newer/startup.pak','music/ambient.mp3','music/CREDITS.txt','LICENSE'];
+const FILES = ['icon.svg','icon.png','conback.webp','enhancedmenu.png','newer/maps.pak','newer/startup.pak','music/ambient.mp3','music/CREDITS.txt','assets/sounds/quake1newereGame_firstLevelEasyMidHard.mp3','assets/sounds/lowHealt.mp3','LICENSE'];
 const excluded = /(?:^|\/)(?:\.[^/]+|_unused|alternates|candidates[^/]*|sources)(?:\/|$)|(?:source|provenance)\.json$/i;
 export function assetPath(root,path){
  if(path!=='games/shareware/pak0.pak')return resolve(root,path);
