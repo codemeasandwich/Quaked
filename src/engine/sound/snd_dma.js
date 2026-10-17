@@ -34,6 +34,7 @@ import { cl } from '../client/client.js';
 import { Mod_PointInLeaf } from '../render/gl_model.js';
 import { S_AmbientMusicUnlock, S_AmbientMusicStop, S_AmbientMusicShutdown, S_AmbientMusicNotifyCombat } from '../common/hooks.js'; // installed by newer/sound/s_ambientmusic.js
 import { S_ExitMachineFalloff } from '../common/hooks.js'; // installed by newer/sound/s_exitmachine.js
+import { S_WelcomeJingleShutdown } from '../common/hooks.js'; // installed by newer/sound/s_welcomejingle.js
 import { R_NewerGame } from '../common/hooks.js'; // installed by newer/mode.js
 
 /*
@@ -172,6 +173,7 @@ S_Shutdown
 export function S_Shutdown() {
 
 	S_AmbientMusicShutdown();
+	S_WelcomeJingleShutdown();
 
 	if ( ! sound_started )
 		return;

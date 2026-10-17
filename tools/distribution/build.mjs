@@ -70,5 +70,9 @@ try {
  await writeFile(resolve(out,'bundle-metafile.json'),JSON.stringify(runtime.metafile));
 } finally {await output.close();}
 const size=(await stat(resolve(out,'index.html'))).size;
-if(profile==='web'&&size>=1_000_000_000)throw Error(`Single HTML is ${size} bytes, exceeding the conservative 1 GB Pages site budget. No features were removed; owner decision required.`);
+// Owner-raised ceiling. The web profile is ~1.16 GB, past GitHub Pages' hard
+// published-site cap of 1 GB ("Published GitHub Pages sites may be no larger than
+// 1 GB"), so a web build now succeeds here and fails at deploy time instead. This
+// guard only catches runaway growth; hosting the web profile is an owner decision.
+if(profile==='web'&&size>=2_000_000_000)throw Error(`Single HTML is ${size} bytes, exceeding the 2 GB build ceiling. No features were removed; owner decision required.`);
 console.log(JSON.stringify({profile,htmlBytes:size,assets:inventory.length,output:relative(root,out),buildPeakRssBytes:process.resourceUsage().maxRSS*1024}));

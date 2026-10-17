@@ -30,6 +30,7 @@ test('web closure retains every Episode 1/hub normal and eligible custom enemy s
   assert(included.has('games/shareware/pak0.pak'));
   assert(included.has('newer/maps.pak'));
   assert(included.has('music/ambient.mp3'));
+  assert(included.has('assets/sounds/quake1newereGame_firstLevelEasyMidHard.mp3'));
 
   const normals = await json('newer/normals/manifest.json');
   const required = new Set();

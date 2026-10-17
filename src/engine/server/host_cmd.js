@@ -57,6 +57,7 @@ import { COM_FindFile, COM_EnsureFile } from '../common/pak.js';
 import { R_FlashlightNewRun, R_FlashlightRunLoaded } from '../common/hooks.js'; // installed by newer/render/r_flashlightrun.js
 import { R_DemoLoadingCancel, R_DemoLoadingWelcome } from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js
 import { R_ShellsReset, R_ShellsSnapshot, R_ShellsRestore } from '../common/hooks.js'; // installed by newer/render/r_shells.js
+import { S_WelcomeJingle } from '../common/hooks.js'; // installed by newer/sound/s_welcomejingle.js
 
 const SHELL_SAVE_PREFIX = '// quaked-shells-v1 ';
 import { set_noclip_anglehack } from '../common/host_state.js';
@@ -199,8 +200,13 @@ function Host_Map_f() {
 	}
 	// Connect performs its own disconnect first; begin the run only after that
 	// succeeds. changelevel/seamless travel never enters this fresh-map path.
-	R_FlashlightNewRun( name, current_skill, cls.state === ca_connected && Cvar_VariableValue( 'r_hdr' ) !== 0 );
-	if(cls.state===ca_connected&&svs.maxclients===1&&Cvar_VariableValue('r_hdr')!==0)R_DemoLoadingWelcome();
+	// Read r_hdr directly rather than through the cached renderer state: it was set
+	// in the same command batch as this `map`, and the three Newer welcome steps below
+	// all key off the one connected-and-Newer answer.
+	const connectedNewer = cls.state === ca_connected && Cvar_VariableValue( 'r_hdr' ) !== 0;
+	R_FlashlightNewRun( name, current_skill, connectedNewer );
+	if(connectedNewer&&svs.maxclients===1)R_DemoLoadingWelcome();
+	S_WelcomeJingle( name, connectedNewer );
 
 }
 

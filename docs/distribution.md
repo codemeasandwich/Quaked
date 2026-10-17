@@ -125,8 +125,12 @@ installed before any engine module runs. Source-relative workers and asset URLs
 are resolved at build time. No global fetch interception is installed.
 
 The current enhanced HTML is close to one GiB. Build receipts report actual byte
-counts; a build at or above the Pages site limit fails rather than discarding
-features. Browser heap measurements describe observed JavaScript heap, not total
+counts; a build at or above the build ceiling fails rather than discarding
+features. The ceiling was raised to 2 GB by owner decision, so the web profile is
+now larger than GitHub Pages' hard published-site cap of 1 GB: the web build
+succeeds and the Pages deployment fails instead. Hosting the web profile is
+therefore an owner decision, and the Mac app is unaffected.
+Browser heap measurements describe observed JavaScript heap, not total
 GPU/process memory. `inventory.json` records per-asset SHA-256 and the engine
 bundle metadata; a staged build additionally records its exact Git tree identity.
 
