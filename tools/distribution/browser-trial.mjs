@@ -169,6 +169,9 @@ try{
     scenarios.push(await page.evaluate(startTime=>({map:cl.worldmodel.name,signon:cls.signon,active:sv.active,entities:sv.num_edicts,startTime,time:cl.time}),startTime));
    });
   }
+  // Background parts are allowed to arrive after play starts, but the verification waits for
+  // them so the images checked below are the real re-encoded bytes, not pending placeholders.
+  await step('background-data',()=>page.waitForFunction(()=>globalThis.__QUAKED_DISTRIBUTION__?.metrics?.backgroundComplete===true,null,{timeout:180000}));
   // The Bestiary's images, re-encoded for the web build (web_images.mjs), must each decode at a
   // real size through the distribution's own resolver; then the Bestiary itself is opened.
   const bestiary=await step('bestiary-images',()=>page.evaluate(async()=>{
@@ -198,7 +201,7 @@ try{
   await step('bestiary-open',async()=>{await page.evaluate(()=>window.Cbuf_AddText('menu_bestiary\n'));await page.waitForTimeout(4000);await page.screenshot({path:reportPath.replace(/\.json$/,'-bestiary.png'),timeout:10000});});
   result=await page.evaluate(()=>({title:document.title,canvas:!!document.querySelector('canvas'),metrics:globalThis.__QUAKED_DISTRIBUTION__?.metrics,memory:performance.memory?{used:performance.memory.usedJSHeapSize,total:performance.memory.totalJSHeapSize}:null,body:document.body.innerText.slice(-1500)}));
   result.scenarios=scenarios;result.bestiary=bestiary;result.unshipped=unshipped;
-  result.ok=errors.length===0&&consoleErrors.length===0&&requests.length===0&&result.canvas&&result.metrics?.missing.length===0&&scenarios.every(s=>s.active&&s.signon===4&&s.time>=s.startTime+1)&&bestiary.checked>0&&bestiary.decoded===bestiary.checked&&unshipped.count>0&&unshipped.checked>0&&unshipped.failed.length===0;
+  result.ok=errors.length===0&&consoleErrors.length===0&&requests.length===0&&result.canvas&&result.metrics?.missing.length===0&&scenarios.every(s=>s.active&&s.signon===4&&s.time>=s.startTime+1)&&bestiary.checked>0&&bestiary.decoded===bestiary.checked&&!result.metrics?.backgroundError&&unshipped.count>0&&unshipped.checked>0&&unshipped.failed.length===0;
  }
 }catch(error){result={ok:false,failure:String(error),failedPhase:phase};}
 finally{

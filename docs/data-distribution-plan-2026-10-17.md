@@ -309,7 +309,7 @@ CORS requirement is the same as today: Pages/mirror, not release assets.
   background parts; Rust tests cover source/cache reads, retained parts, priority
   order and the `~/quaked/.data` cache; distribution contracts pass 58/58; the modular
   app builds (439 MiB) and archives (422 MiB).
-- **Status:** committed on the local feature branch `data-priority-20261017`;
-  not merged or pushed. Remaining: run the full pre-commit gate, merge to Dev,
-  publish changed parts to the data release and Pages, and update the release
-  workflow's changed-part upload/receipt for the new 8 MB parts.
+- **Status:** merged to Dev and pushed as `a0811c11`; the full pre-commit gate
+  passed, and the browser trials pass in http, file and tamper modes. A follow-up
+  fix keeps pending background assets loadable while their parts arrive. Remaining:
+  rerun CI (Pages/data release) and confirm the published artifacts.

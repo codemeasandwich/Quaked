@@ -26,6 +26,14 @@ const available=entry=>!entry.pack||(spec.profile==='web'?Boolean(entry.parts&&r
 // packs of the game it is playing): a URL that fails like a network error, which every loader
 // already handles by keeping the classic look. Not cached, so it resolves once the pack arrives.
 function unavailable(k){metrics.unavailable.push(k);const url=URL.createObjectURL(new Blob([]));URL.revokeObjectURL(url);return url;}
+// A shipped pack whose background part has not arrived yet is not a packaging fault. Give
+// the engine a valid placeholder (transparent image, silence, empty JSON) instead of a broken
+// blob, and do not cache it, so the real asset resolves as soon as its part is written.
+const PNG_1X1=Uint8Array.from(atob('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII='),c=>c.charCodeAt(0));
+function silentWav(){const samples=800,bytes=new Uint8Array(44+samples*2),view=new DataView(bytes.buffer),text=(offset,value)=>{for(let i=0;i<value.length;i++)bytes[offset+i]=value.charCodeAt(i);};text(0,'RIFF');view.setUint32(4,36+samples*2,true);text(8,'WAVE');text(12,'fmt ');view.setUint32(16,16,true);view.setUint16(20,1,true);view.setUint16(22,1,true);view.setUint32(24,8000,true);view.setUint32(28,16000,true);view.setUint16(32,2,true);view.setUint16(34,16,true);text(36,'data');view.setUint32(40,samples*2,true);return bytes;}
+const placeholders=new Map();
+function placeholder(entry){const kind=(entry?.mime??'').startsWith('image/')?'image':(entry?.mime??'').startsWith('audio/')?'audio':entry?.mime==='application/json'?'json':'empty',cached=placeholders.get(kind);if(cached)return cached;const body=kind==='image'?PNG_1X1:kind==='audio'?silentWav():kind==='json'?new TextEncoder().encode('{}'):new Uint8Array(),type=kind==='image'?'image/png':kind==='audio'?'audio/wav':kind==='json'?'application/json':'application/octet-stream',url=URL.createObjectURL(new Blob([body],{type}));placeholders.set(kind,url);return url;}
+const pending=entry=>spec.profile==='web'&&!entry.unshipped&&entry.pack&&Object.hasOwn(spec.packs??{},entry.pack)&&!available(entry);
 function key(path) {
   if(typeof path!=='string')path=String(path);
   if(/^(blob:|data:|asset:|http:\/\/asset\.localhost)/.test(path))return null;
@@ -63,7 +71,7 @@ globalThis.__QUAKED_DISTRIBUTION__={profile:spec.profile,engineHash:spec.engineH
     let url;
     const entry=spec.files[k];
     if(!entry){metrics.missing.push(k);throw Error('Asset absent from '+spec.profile+' package: '+k);}
-    if(!available(entry))return unavailable(k);
+    if(!available(entry))return pending(entry)?placeholder(entry):unavailable(k);
     if(spec.profile==='desktop'&&entry.pack){url=convertFileSrc(packAssets+'/'+entry.sha256+entry.ext);urls.set(k,url);return url;}
     if(spec.profile==='desktop')return entry.external?convertFileSrc(resourceBase+'/'+entry.id):new URL('assets/'+entry.id,location.href.split('?')[0]).href;
     if(entry.pack){
@@ -119,7 +127,8 @@ if(spec.profile==='web'&&spec.packs&&Object.keys(spec.packs).length){
   for(const [name,pack] of Object.entries(spec.packs))if(readyParts.has(name)){packs.set(name,pack.gzip?gunzipSync(joined.get(name).bytes):joined.get(name).bytes);metrics.dataBytes+=pack.bytes;}
   metrics.dataReadyMs=performance.now()-metrics.startedAt;
   // The application can start now; later parts fill the same buffers and become available.
-  if(background.length)void workers(background,false).catch(error=>{metrics.backgroundError=String(error);});
+  if(background.length)void workers(background,false).then(()=>{metrics.backgroundComplete=true;}).catch(error=>{metrics.backgroundError=String(error);metrics.backgroundComplete=true;});
+  else metrics.backgroundComplete=true;
 }
 
 })();
