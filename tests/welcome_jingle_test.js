@@ -14,20 +14,22 @@ import * as cmd from '../src/engine/common/cmd.js';
 import * as vars from '../src/engine/common/cvar.js';
 import { Host_InitCommands } from '../src/engine/server/host_cmd.js';
 import { CL_Init } from '../src/engine/client/cl_main.js';
-import { cls, cl, ca_disconnected } from '../src/engine/client/client.js';
+import { cls, cl, cl_entities, ca_connected, SIGNONS, ca_disconnected } from '../src/engine/client/client.js';
 import { NET_Init, NET_SendMessage, NET_GetMessage, NET_CanSendMessage } from '../src/engine/net/net_main.js';
 import { SZ_Clear, COM_InitArgv } from '../src/engine/common/common.js';
 import { R_Init } from '../src/engine/render/gl_rmain.js';
 import { V_Init } from '../src/engine/client/view.js';
 import { r_hdr } from '../src/newer/render/gl_post.js';
 import * as travel from '../src/newer/gameplay/sv_seamless.js';
+import * as mode from '../src/newer/mode.js';
 import * as menu from '../src/engine/client/menu.js';
 import * as draw from '../src/engine/render/gl_draw.js';
 import * as keys from '../src/engine/client/keys.js';
 import * as sound from '../src/engine/sound/sound.js';
 import * as dma from '../src/engine/sound/snd_dma.js';
-import { WELCOME_TRACK_URL } from '../src/newer/sound/s_welcomejingle.js';
+import { WELCOME_TRACK_URL, S_UpdateWelcomeJingle } from '../src/newer/sound/s_welcomejingle.js';
 import { LEVEL_SELECT_LEVELS } from '../src/engine/client/menu_levelselect.js';
+import { STAT_HEALTH } from '../src/engine/common/quakedef.js';
 import { MediaDouble, ContextDouble } from './ambient_music_test.js';
 import { assetPath } from '../tools/distribution/manifest.mjs';
 
@@ -44,6 +46,7 @@ for ( const path of [ 'games/shareware/pak0.pak', 'newer/maps.pak' ] ) {
 
 }
 
+mode.R_AnimSetClassicPass( false );
 VID_SetPalette( pak.COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init(); PR_InitBuiltins(); cmd.Cbuf_Init(); cmd.Cmd_Init(); CL_Init(); R_Init(); V_Init(); Host_InitCommands(); menu.M_Init();
 for ( const c of [ r_hdr, skill, travel.sv_seamless ] ) if ( ! vars.Cvar_FindVar( c.name ) ) vars.Cvar_RegisterVariable( c );
 svs.maxclients = svs.maxclientslimit = 1; svs.clients = [ new client_t() ]; NET_Init(); cls.state = ca_disconnected; cls.demoplayback = false;
@@ -69,8 +72,20 @@ async function start( map = 'start', newer = true, menuRow = null ) {
 
 }
 
+/** The local player is spawned and the welcome hold is over: real control. */
+function control() {
+	cl.worldmodel = { name: 'maps/start.bsp' };
+	cl.viewentity = 1;
+	cl_entities[ 1 ] = { _entityIndex: 1, model: { name: 'progs/player.mdl' } };
+	cl.stats[ STAT_HEALTH ] = 100;
+	cl.paused = false; cl.intermission = 0;
+	keys.set_key_dest( keys.key_game );
+	cls.state = ca_connected; cls.signon = SIGNONS; cls.demoplayback = false;
+	svs.maxclients = 1;
+}
+
 /** Play count across a step, so "must not play" needs no live deck to exist yet. */
-function played( step ) { const count = () => decks().reduce( ( n, d ) => n + d.plays, 0 ); const before = count(); return step().then( () => count() - before ); }
+async function played( step ) { const count = () => decks().reduce( ( n, d ) => n + d.plays, 0 ); const before = count(); await step(); return count() - before; }
 
 let decks = () => [];
 
@@ -108,7 +123,10 @@ async function withAudio( run ) {
 
 Deno.test( 'the real Newer Game menu row starts the intro jingle once, at the Music Volume gain', () => withAudio( async () => {
 
-	same( await played( () => start( 'start', true, 42 ) ), 1, 'actual Newer Game menu -> Host map starts the jingle exactly once' );
+	await start( 'start', true, 42 );
+	same( await played( () => S_UpdateWelcomeJingle( true ) ), 0, 'the welcome loading hold keeps the jingle silent' );
+	control();
+	same( await played( () => S_UpdateWelcomeJingle( false ) ), 1, 'control starts the jingle exactly once' );
 	const deck = decks()[ 0 ];
 	check( deck.src.endsWith( 'assets/sounds/quake1newereGame_firstLevelEasyMidHard.mp3' ), 'the element loaded the packaged jingle' );
 	same( deck.src, WELCOME_TRACK_URL, 'the element source is the module URL the bundler rewrites' );
@@ -130,9 +148,10 @@ Deno.test( 'New Game, a directly chosen level and level travel never start the j
 
 Deno.test( 're-entering the intro map replays the jingle from the top', () => withAudio( async () => {
 
-	await start( 'start', true, 42 );
+	await start( 'start', true, 42 ); control(); await played( () => S_UpdateWelcomeJingle( false ) );
 	decks()[ 0 ].currentTime = 12;
-	same( await played( () => start( 'start', true ) ), 1, 'a second intro start plays again' );
+	await start( 'start', true ); control();
+	same( await played( () => S_UpdateWelcomeJingle( false ) ), 1, 'a second intro start plays again after control' );
 	same( decks().length, 1, 'the session reuses one element rather than making more' );
 	same( decks()[ 0 ].currentTime, 0, 'the replay rewound instead of resuming' );
 
@@ -140,11 +159,15 @@ Deno.test( 're-entering the intro map replays the jingle from the top', () => wi
 
 Deno.test( 'a muted Music Volume and nosound silence the jingle instead of playing inaudibly', () => withAudio( async () => {
 
-	sound.bgmvolume.value = 0; same( await played( () => start( 'start', true, 42 ) ), 0, 'Music Volume 0 stays silent' );
+	sound.bgmvolume.value = 0; await start( 'start', true, 42 ); control();
+	same( await played( () => S_UpdateWelcomeJingle( false ) ), 0, 'Music Volume 0 stays silent' );
+	same( decks().length, 0, 'a muted start creates no deck' );
 	sound.bgmvolume.value = 1; vars.Cvar_SetValue( 'nosound', 1 );
-	same( await played( () => start( 'start', true, 42 ) ), 0, 'nosound stays silent' );
+	await start( 'start', true, 42 ); control();
+	same( await played( () => S_UpdateWelcomeJingle( false ) ), 0, 'nosound stays silent' );
 	vars.Cvar_SetValue( 'nosound', 0 );
-	same( await played( () => start( 'start', true, 42 ) ), 1, 'unmuting restores the jingle' );
+	await start( 'start', true, 42 ); control();
+	same( await played( () => S_UpdateWelcomeJingle( false ) ), 1, 'unmuting restores the jingle' );
 	same( decks()[ 0 ].bus.gain.value, 1, 'the muted starts left no live gain behind' );
 
 } ) );
@@ -156,18 +179,33 @@ Deno.test( 'the Scourge of Armagon and Dissolution of Eternity identities start 
 
 		COM_InitArgv( [ 'quaked', flag ] );
 		check( pak.COM_FindFile( 'maps/start.bsp' ) !== null, title + ' intro level is mounted for the start' );
-		same( await played( () => start( 'start', true, 42 ) ), 1, title + ' intro start plays the jingle' );
+		await start( 'start', true, 42 ); control();
+		same( await played( () => S_UpdateWelcomeJingle( false ) ), 1, title + ' hub start plays the jingle after control' );
 
 	}
 
 } ) );
 
+Deno.test( 'the jingle waits for the welcome loading hold and real player control', () => withAudio( async () => {
+
+	await start( 'start', true, 42 ); control();
+	same( await played( () => S_UpdateWelcomeJingle( true ) ), 0, 'the welcome loading hold stays silent' );
+	cl.paused = true; same( await played( () => S_UpdateWelcomeJingle( false ) ), 0, 'a paused player is not in control' ); cl.paused = false;
+	cl.intermission = 1; same( await played( () => S_UpdateWelcomeJingle( false ) ), 0, 'intermission is not control' ); cl.intermission = 0;
+	keys.set_key_dest( keys.key_menu ); same( await played( () => S_UpdateWelcomeJingle( false ) ), 0, 'a menu is not control' ); keys.set_key_dest( keys.key_game );
+	cl.viewentity = 0; same( await played( () => S_UpdateWelcomeJingle( false ) ), 0, 'the player must be spawned' );
+	control();
+	same( await played( () => S_UpdateWelcomeJingle( false ) ), 1, 'the hub starts the jingle once control is granted' );
+
+} ) );
+
 Deno.test( 'an autoplay refusal leaves silence rather than an unhandled rejection', () => withAudio( async () => {
 
-	await start( 'start', true, 42 );
+	await start( 'start', true, 42 ); control(); await played( () => S_UpdateWelcomeJingle( false ) );
 	const deck = decks()[ 0 ];
 	deck.rejection = { name: 'NotAllowedError' };
-	same( await played( () => start( 'start', true ) ), 1, 'the refusal was reported to the element' );
+	await start( 'start', true ); control();
+	same( await played( () => S_UpdateWelcomeJingle( false ) ), 1, 'the refusal was reported to the element' );
 	await Promise.resolve(); await Promise.resolve();
 	same( deck.bus.gain.value, 0, 'a refused play stays silent' );
 
