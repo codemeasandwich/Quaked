@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtemp,readdir,rm} from 'node:fs/promises';
+import {mkdtemp,readFile,readdir,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import sharp from 'sharp';
@@ -31,6 +31,15 @@ test('a Bestiary page becomes WebP at its own size, under the limit, at the high
   const again=await WebOptimise('newer/bestiary/cover.png',bytes,dir);
   assert.ok(again.bytes.equals(first.bytes)&&again.quality===first.quality,'cache returns the same bytes');
  }finally{await rm(dir,{recursive:true,force:true});}
+});
+test('the web and desktop builds both derive Bestiary pages from the same PNG masters',async()=>{
+ const build=await readFile(new URL('../tools/distribution/build.mjs',import.meta.url),'utf8');
+ assert.match(build,/const optimised=!generated\.has\(path\)\?await WebOptimise\(/,'the optimiser is not gated to one profile');
+ assert.doesNotMatch(build,/profile==='web'&&!generated\.has\(path\)\?await WebOptimise/, 'the old web-only gate is gone');
+ assert.match(build,/const bytes=optimised\?\.bytes\?\?source/,'both profiles deliver the derived bytes');
+ assert.match(build,/ext=optimised\?'\.webp':extname\(path\)/,'the derived WebP keeps its own extension');
+ assert.match(build,/ext,mime:type/,'pack records use the derived extension');
+ assert.match(build,/QUAKED_BESTIARY_IMAGE_CACHE/,'the shared cache can be selected');
 });
 test('a page that cannot fit without resizing stops the build for an owner decision',async()=>{
  const width=1024,height=1536,noise=Buffer.alloc(width*height*3);for(let i=0;i<noise.length;i++)noise[i]=(Math.imul(i,2654435761)>>>13)&255;

@@ -1,5 +1,7 @@
-/** Web-only image optimisation (owner rulings, 12 October 2026; docs/distribution.md, "Web data
- * files"). The desktop app keeps the full-resolution sources and never calls this.
+/** Bestiary delivery optimisation shared by every build profile (owner ruling, 17 October 2026;
+ * docs/distribution.md, "Web data files"). The PNG masters under newer/bestiary/ are the single
+ * source of truth: this module derives the one WebP variant that both the web build and the
+ * desktop app ship, and never writes to the source tree.
  *
  * Data maps are never re-encoded: their pixels are numbers, not pictures (the folio's
  * `<id>.reveal.png` holds each texel's pencil-stroke timing for r_folio.js; height, normal, gloss
@@ -9,7 +11,8 @@
  * starting at quality 92 and stepping down only as far as BESTIARY_MAX_BYTES needs; alpha stays
  * lossless. A page that cannot fit at BESTIARY_MIN_QUALITY fails the build rather than being
  * resized: that is an owner decision. Results are cached by input digest under
- * .distribution-cache/web-images, so a rebuild re-encodes only changed pages.
+ * .distribution-cache/web-images, shared by both profiles, so the web and app carry byte-identical
+ * pages and a rebuild re-encodes only changed pages.
  */
 import {createHash} from 'node:crypto';
 import {mkdir,readFile,writeFile} from 'node:fs/promises';
