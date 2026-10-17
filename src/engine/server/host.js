@@ -39,7 +39,7 @@ import { Key_Init, Key_WriteBindings, key_lines, edit_line, key_linepos, chat_bu
 import { Con_Init, Con_SetExternals, Con_Printf as RealConPrintf, Con_DPrintf as RealConDPrintf, Con_Sprintf } from '../common/console.js';
 import { M_Init, M_SetExternals, M_Draw, M_ConnectionError } from '../client/menu.js';
 import { Touch_BottomInset, Touch_ExitFullscreen } from '../../platform/touch.js';
-import { MainMenu_Destroy } from '../common/hooks.js'; // installed by newer/ui/menu_webgl.js
+import { MainMenu_Destroy, MainMenu_Preload } from '../common/hooks.js'; // installed by newer/ui/menu_webgl.js
 import { PR_Init } from '../progs/pr_edict.js';
 import { PR_InitBuiltins } from './pr_cmds.js';
 import { Mod_Init, Mod_ClearAll, R_InitTextures } from '../render/gl_model.js';
@@ -320,6 +320,7 @@ export async function Host_Init( parms ) {
 	Con_SetPrintFunctions( RealConPrintf, RealConDPrintf );
 
 	M_Init();
+	MainMenu_Preload();
 	PR_Init();
 	PR_InitBuiltins(); // the QuakeC built-ins (server/pr_cmds.js)
 	Mod_Init();

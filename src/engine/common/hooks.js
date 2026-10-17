@@ -639,6 +639,7 @@ export let BuildSinglePlayerMenuArt = Hooks_Missing( 'BuildSinglePlayerMenuArt' 
 
 // newer/ui/menu_webgl.js
 export let MainMenu_Begin = Hooks_Missing( 'MainMenu_Begin' );
+export let MainMenu_Blocking = Hooks_Missing( 'MainMenu_Blocking' );
 export let MainMenu_Destroy = Hooks_Missing( 'MainMenu_Destroy' );
 export let MainMenu_End = Hooks_Missing( 'MainMenu_End' );
 export let MainMenu_Glyph = Hooks_Missing( 'MainMenu_Glyph' );
@@ -647,6 +648,7 @@ export let MainMenu_Panel = Hooks_Missing( 'MainMenu_Panel' );
 export let MainMenu_SetInGame = Hooks_Missing( 'MainMenu_SetInGame' );
 export let MainMenu_SetVisible = Hooks_Missing( 'MainMenu_SetVisible' );
 export let MainMenu_Skinned = Hooks_Missing( 'MainMenu_Skinned' );
+export let MainMenu_Preload = Hooks_Missing( 'MainMenu_Preload' );
 export let MainMenu_Slider = Hooks_Missing( 'MainMenu_Slider' );
 export let MainMenu_Text = Hooks_Missing( 'MainMenu_Text' );
 export let MainMenu_TextBox = Hooks_Missing( 'MainMenu_TextBox' );
@@ -792,7 +794,7 @@ const HOOK_NAMES = Object.freeze( [
 	'S_UpdateWelcomeJingle', 'S_WelcomeJingle', 'S_WelcomeJingleShutdown',
 	'GameShelf_Show',
 	'BuildMenuTextArt', 'BuildSinglePlayerMenuArt',
-	'MainMenu_Begin', 'MainMenu_Destroy', 'MainMenu_End', 'MainMenu_Glyph', 'MainMenu_Image', 'MainMenu_Panel', 'MainMenu_SetInGame', 'MainMenu_SetVisible', 'MainMenu_Skinned', 'MainMenu_Slider', 'MainMenu_Text', 'MainMenu_TextBox',
+	'MainMenu_Begin', 'MainMenu_Blocking', 'MainMenu_Destroy', 'MainMenu_End', 'MainMenu_Glyph', 'MainMenu_Image', 'MainMenu_Panel', 'MainMenu_Preload', 'MainMenu_SetInGame', 'MainMenu_SetVisible', 'MainMenu_Skinned', 'MainMenu_Slider', 'MainMenu_Text', 'MainMenu_TextBox',
 	'NEWER_ENABLED_FEATURES',
 	'R_BestiaryApplyCamera', 'R_BestiaryFrame', 'R_BestiaryFrozen', 'R_BestiaryInputLocked', 'R_BestiaryKey', 'R_BestiaryObserve', 'R_BestiaryPortraitLight', 'R_BestiaryTimeScale',
 	'R_BestiaryBookCorner', 'R_BestiaryBookDraw', 'R_BestiaryBookKey', 'R_BestiaryBookOpen', 'R_BestiaryBookTouch', 'R_BestiaryEncounterDraw',
@@ -908,7 +910,7 @@ export function Hooks_Install( table ) {
 	S_UpdateWelcomeJingle = table.S_UpdateWelcomeJingle; S_WelcomeJingle = table.S_WelcomeJingle; S_WelcomeJingleShutdown = table.S_WelcomeJingleShutdown;
 	GameShelf_Show = table.GameShelf_Show;
 	BuildMenuTextArt = table.BuildMenuTextArt; BuildSinglePlayerMenuArt = table.BuildSinglePlayerMenuArt;
-	MainMenu_Begin = table.MainMenu_Begin; MainMenu_Destroy = table.MainMenu_Destroy; MainMenu_End = table.MainMenu_End; MainMenu_Glyph = table.MainMenu_Glyph; MainMenu_Image = table.MainMenu_Image; MainMenu_Panel = table.MainMenu_Panel; MainMenu_SetInGame = table.MainMenu_SetInGame; MainMenu_SetVisible = table.MainMenu_SetVisible; MainMenu_Skinned = table.MainMenu_Skinned; MainMenu_Slider = table.MainMenu_Slider; MainMenu_Text = table.MainMenu_Text; MainMenu_TextBox = table.MainMenu_TextBox;
+	MainMenu_Begin = table.MainMenu_Begin; MainMenu_Blocking = table.MainMenu_Blocking; MainMenu_Destroy = table.MainMenu_Destroy; MainMenu_End = table.MainMenu_End; MainMenu_Glyph = table.MainMenu_Glyph; MainMenu_Image = table.MainMenu_Image; MainMenu_Panel = table.MainMenu_Panel; MainMenu_SetInGame = table.MainMenu_SetInGame; MainMenu_SetVisible = table.MainMenu_SetVisible; MainMenu_Preload = table.MainMenu_Preload; MainMenu_Skinned = table.MainMenu_Skinned; MainMenu_Slider = table.MainMenu_Slider; MainMenu_Text = table.MainMenu_Text; MainMenu_TextBox = table.MainMenu_TextBox;
 	NEWER_ENABLED_FEATURES = table.NEWER_ENABLED_FEATURES;
 	R_BestiaryApplyCamera = table.R_BestiaryApplyCamera; R_BestiaryFrame = table.R_BestiaryFrame; R_BestiaryFrozen = table.R_BestiaryFrozen; R_BestiaryInputLocked = table.R_BestiaryInputLocked; R_BestiaryKey = table.R_BestiaryKey; R_BestiaryObserve = table.R_BestiaryObserve; R_BestiaryPortraitLight = table.R_BestiaryPortraitLight; R_BestiaryTimeScale = table.R_BestiaryTimeScale;
 	R_BestiaryBookCorner = table.R_BestiaryBookCorner; R_BestiaryBookDraw = table.R_BestiaryBookDraw; R_BestiaryBookKey = table.R_BestiaryBookKey; R_BestiaryBookOpen = table.R_BestiaryBookOpen; R_BestiaryBookTouch = table.R_BestiaryBookTouch; R_BestiaryEncounterDraw = table.R_BestiaryEncounterDraw;

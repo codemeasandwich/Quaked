@@ -20,7 +20,7 @@
  */
 // Ported from: WinQuake/menu.c, WinQuake/menu.h -- menu system
 
-import { MainMenu_Begin, MainMenu_End, MainMenu_SetVisible } from '../common/hooks.js'; // installed by newer/ui/menu_webgl.js
+import { MainMenu_Begin, MainMenu_Blocking, MainMenu_End, MainMenu_SetVisible } from '../common/hooks.js'; // installed by newer/ui/menu_webgl.js
 import { R_BestiaryBookDraw, R_BestiaryBookTouch, R_BestiaryBookCorner } from '../common/hooks.js'; // installed by newer/ui/r_bestiary_book.js
 import { R_DemoLoadingConsoleOverride, R_WelcomeLoadingHolding } from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js
 import { Draw_StudioLogo } from '../common/hooks.js'; // installed by newer/ui/studio_logo.js
@@ -204,6 +204,17 @@ export function M_Draw() {
 		return;
 
 	MainMenu_Begin();
+
+	// The supplied menu is the only menu shown once it is wanted. Its renderer loads
+	// asynchronously; drawing the classic screens during that wait would flash the old
+	// menu first. A permanent renderer failure releases this and keeps the native menu usable.
+	if ( MainMenu_Blocking() ) {
+
+		if ( _Draw_Fill ) _Draw_Fill( 0, 0, _vid.width, _vid.height, 0, 1 );
+		MainMenu_End( _realtime_get() );
+		return;
+
+	}
 
 	if ( ! m_recursiveDraw ) {
 

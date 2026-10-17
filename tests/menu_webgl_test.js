@@ -274,3 +274,17 @@ Deno.test('Multiplayer screen: Online is drawn disabled by the supplied renderer
  same(chars.filter(c=>c.disabled).map(c=>c.text).join(''),'ONLINE','only Online\'s letters are disabled');
  check(chars.filter(c=>!c.disabled).map(c=>c.text).join('').includes('LOCAL(SPLITSCREEN)'),'Local is drawn enabled');
 }));
+
+Deno.test( 'the classic menu is never drawn while the high-quality menu loads', () => fixture( async api => {
+
+	api.server.active = false; api.client.state = 0;
+	gpu.MainMenu_SetVisible( true ); gpu.MainMenu_Begin();
+	same( gpu.MainMenu_Blocking(), true, 'a visible renderer still loading blocks the native menu' );
+	gpu.MainMenu_End( 1 );
+	api.open();
+	same( api.fallback.length, 0, 'M_Draw draws no native menu while the renderer loads' );
+	const state = await api.ready();
+	check( state.ready, 'supplied renderer becomes ready' );
+	same( gpu.MainMenu_Blocking(), false, 'readiness releases the classic-menu block' );
+
+} ) );

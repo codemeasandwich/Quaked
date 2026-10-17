@@ -111,7 +111,7 @@ import { S_UpdateLowHealth, S_LowHealthShutdown } from './sound/s_lowhealth.js';
 import { S_UpdateWelcomeJingle, S_WelcomeJingle, S_WelcomeJingleShutdown } from './sound/s_welcomejingle.js';
 import { GameShelf_Show } from './ui/game_shelf.js';
 import { BuildMenuTextArt, BuildSinglePlayerMenuArt } from './ui/menu_art.js';
-import { MainMenu_Begin, MainMenu_Destroy, MainMenu_End, MainMenu_Glyph, MainMenu_Image, MainMenu_Panel, MainMenu_SetInGame, MainMenu_SetVisible, MainMenu_Skinned, MainMenu_Slider, MainMenu_Text, MainMenu_TextBox } from './ui/menu_webgl.js';
+import { MainMenu_Begin, MainMenu_Blocking, MainMenu_Destroy, MainMenu_End, MainMenu_Glyph, MainMenu_Image, MainMenu_Panel, MainMenu_Preload, MainMenu_SetInGame, MainMenu_SetVisible, MainMenu_Skinned, MainMenu_Slider, MainMenu_Text, MainMenu_TextBox } from './ui/menu_webgl.js';
 import { NEWER_ENABLED_FEATURES } from './ui/newer_defaults.js';
 import { R_BestiaryApplyCamera, R_BestiaryFrame, R_BestiaryFrozen, R_BestiaryInputLocked, R_BestiaryKey, R_BestiaryObserve, R_BestiaryPortraitLight, R_BestiaryTimeScale } from './ui/r_bestiary.js';
 import { R_BestiaryBookCorner, R_BestiaryBookDraw, R_BestiaryBookKey, R_BestiaryBookOpen, R_BestiaryBookTouch, R_BestiaryEncounterDraw } from './ui/r_bestiary_book.js';
@@ -204,7 +204,7 @@ if ( ! Hooks_Installed() ) Hooks_Install( {
 	S_UpdateWelcomeJingle, S_WelcomeJingle, S_WelcomeJingleShutdown,
 	GameShelf_Show,
 	BuildMenuTextArt, BuildSinglePlayerMenuArt,
-	MainMenu_Begin, MainMenu_Destroy, MainMenu_End, MainMenu_Glyph, MainMenu_Image, MainMenu_Panel, MainMenu_SetInGame, MainMenu_SetVisible, MainMenu_Skinned, MainMenu_Slider, MainMenu_Text, MainMenu_TextBox,
+	MainMenu_Begin, MainMenu_Blocking, MainMenu_Destroy, MainMenu_End, MainMenu_Glyph, MainMenu_Image, MainMenu_Panel, MainMenu_Preload, MainMenu_SetInGame, MainMenu_SetVisible, MainMenu_Skinned, MainMenu_Slider, MainMenu_Text, MainMenu_TextBox,
 	NEWER_ENABLED_FEATURES,
 	R_BestiaryApplyCamera, R_BestiaryFrame, R_BestiaryFrozen, R_BestiaryInputLocked, R_BestiaryKey, R_BestiaryObserve, R_BestiaryPortraitLight, R_BestiaryTimeScale,
 	R_BestiaryBookCorner, R_BestiaryBookDraw, R_BestiaryBookKey, R_BestiaryBookOpen, R_BestiaryBookTouch, R_BestiaryEncounterDraw,

@@ -56,7 +56,11 @@ export function MainMenu_Destroy() {
 
 function prepare() {
 
-	if ( renderer || loading || failed || typeof document === 'undefined' ) return;
+	// A headless/native-menu context has no DOM canvas API; mark it unavailable at once so
+	// the native menu is used rather than blocking the screen waiting for a renderer that
+	// can never be created.
+	if ( typeof document === 'undefined' || typeof document.createElement !== 'function' ) { failed = 'no DOM canvas'; return; }
+	if ( renderer || loading || failed ) return;
 	const generation = epoch;
 	loading = import( './menu_webgl_source.js' ).then( async ( { QuakeMenu } ) => {
 
@@ -85,10 +89,18 @@ function prepare() {
 }
 
 /**
+ * Starts loading the high-quality menu renderer at startup, before the menu is first opened. The
+ * import and font/image preparation then overlap the intro/loading screen instead of happening
+ * on the first menu frame. Safe to call repeatedly and in a headless/server context (it does
+ * nothing without `document`).
+ */
+export function MainMenu_Preload() { prepare(); }
+
+/**
  * Starts one menu frame: clears the queued commands and blits, starts loading the renderer on first use (a dynamic
  * import of `menu_webgl_source.js`), and decides whether this frame is skinned (the renderer is loaded and its context
- * not lost). Called by `M_Draw` each frame the menu is up, before the native drawing helpers. Until the renderer is
- * ready, or after it has failed, every `MainMenu_*` draw call returns false and the native drawing is used.
+ * not lost). Called by `M_Draw` each frame the menu is up, before the native drawing helpers. While the renderer is
+ * still loading `M_Draw` blocks the classic menu; only a permanent failure falls back to it.
  */
 export function MainMenu_Begin() {
 
@@ -107,6 +119,15 @@ export function MainMenu_Begin() {
  * @returns {boolean} true while this frame is skinned
  */
 export function MainMenu_Skinned() { return frameSkin; }
+
+/**
+ * Whether the high-quality menu is expected but not ready yet. `M_Draw` uses this to draw a
+ * neutral backdrop instead of the classic menu while the renderer loads. A permanent failure
+ * returns false so the native menu remains usable.
+ *
+ * @returns {boolean} true while visible, not failed, and the renderer has not finished loading
+ */
+export function MainMenu_Blocking() { return visible && ! failed && ! ( renderer?.loaded && ! renderer.contextLost ); }
 
 function physical( x, y ) {
 
