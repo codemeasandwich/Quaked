@@ -1,0 +1,288 @@
+{
+  "entries": [
+    {
+      "name": "TF_Wood01_2",
+      "diffuseSha256": "793a6556a783b70c157f9ee719ed15b15e51d3396cfc63d618157ec0b18424d6",
+      "size": [
+        512,
+        512
+      ],
+      "distanceMetricsDiagnosticOnly": {
+        "64": {
+          "rgbMeanOriginal": [
+            75.603271484375,
+            56.966796875,
+            44.150390625
+          ],
+          "rgbMeanNew": [
+            87.886962890625,
+            68.1787109375,
+            53.254150390625
+          ],
+          "rmse": 20.08095797134377,
+          "meanAbsolute": 16.345784505208332
+        },
+        "32": {
+          "rgbMeanOriginal": [
+            75.705078125,
+            57.0322265625,
+            44.193359375
+          ],
+          "rgbMeanNew": [
+            87.8857421875,
+            68.181640625,
+            53.2431640625
+          ],
+          "rmse": 14.946159885151102,
+          "meanAbsolute": 12.362955729166666
+        }
+      },
+      "xWrapMeanAbs": 19.609375,
+      "yWrapMeanAbs": 5.776041666666667,
+      "authoringReplayByteExact": true,
+      "protectedBaseRowsByteExact": true,
+      "receipt": {
+        "base": "newer/textures/candidates-2026-10-12/TF_Wood01-realistic-seam-v2-4x.png",
+        "baseSha256": "56e96fb1dab2d38ebc39a0ee5212a4721a5e70435f613b0439dcad5528c851f4",
+        "donor": "newer/textures/candidates-2026-10-17/TF_Wood01_2-photographic-v2-4x.png",
+        "donorSha256": "41067d642f1e60bbd8a9f3051f7cdbc1c13450a5b7f37ee01e8a3508f92abfee",
+        "output": "newer/textures/candidates-2026-10-17/TF_Wood01_2-braced-v3-4x.png",
+        "outputSha256": "3af9e8c8d722b0682e6f56fce6cb4d80408ae055a341c134f9a73874dd10029d",
+        "dimensions": [
+          512,
+          512
+        ],
+        "braceBands": [
+          [
+            192,
+            320
+          ]
+        ],
+        "featherPixels": 8,
+        "donorEdgeAxes": "x",
+        "donorClippingFraction": 0.000946044921875,
+        "protectedPixelCount": 188416,
+        "unchangedOutsideBands": true,
+        "implementation": "tools/texture_sheets/sources/official-world-2026-10-12/finish_quiet_edges.py",
+        "implementationSha256": "b4d0ffed5d127c976ca73d0fb203636cb33a0c1ba43bb04361407e3eb83642a1",
+        "toolSha256": "2158c0d4b8767291f58581df26dff1c3e79b59e51fdfa5bcc54ccf580505073d",
+        "qualification": "Source-positioned brace composition; encoded visual/source/renderer qualification separate."
+      }
+    },
+    {
+      "name": "TF_Wood01c_2",
+      "diffuseSha256": "bd10388afdbe43668c7981458bb2132a20c8eaf21c35f49fd0d6f872761b9609",
+      "size": [
+        512,
+        512
+      ],
+      "distanceMetricsDiagnosticOnly": {
+        "64": {
+          "rgbMeanOriginal": [
+            47.548583984375,
+            35.47607421875,
+            26.871826171875
+          ],
+          "rgbMeanNew": [
+            57.7880859375,
+            44.306640625,
+            34.159912109375
+          ],
+          "rmse": 14.548765765055753,
+          "meanAbsolute": 11.942626953125
+        },
+        "32": {
+          "rgbMeanOriginal": [
+            47.6142578125,
+            35.5107421875,
+            26.921875
+          ],
+          "rgbMeanNew": [
+            57.8134765625,
+            44.31640625,
+            34.1728515625
+          ],
+          "rmse": 11.359536192116297,
+          "meanAbsolute": 9.522135416666666
+        }
+      },
+      "xWrapMeanAbs": 13.664713541666666,
+      "yWrapMeanAbs": 4.68359375,
+      "authoringReplayByteExact": true,
+      "protectedBaseRowsByteExact": true,
+      "receipt": {
+        "base": "newer/textures/candidates-2026-10-12/TF_Wood01c-realistic-seam-v2-4x.png",
+        "baseSha256": "26a9e033af0e73cc138cea8ee820b16b1f9b538d3964e9c4f8852cd6854cc439",
+        "donor": "newer/textures/candidates-2026-10-17/TF_Wood01c_2-photographic-v2-4x.png",
+        "donorSha256": "44879f52d37d72c407022ba87bdba65c61dbbafaa0c220e1f11605180e7bf389",
+        "output": "newer/textures/candidates-2026-10-17/TF_Wood01c_2-braced-v3-4x.png",
+        "outputSha256": "c05fa2c6287e5b12d20eb032643fa6d51dcb86214a3a95a5358e0ce3c2f69603",
+        "dimensions": [
+          512,
+          512
+        ],
+        "braceBands": [
+          [
+            192,
+            320
+          ]
+        ],
+        "featherPixels": 8,
+        "donorEdgeAxes": "x",
+        "donorClippingFraction": 0.0024655659993489585,
+        "protectedPixelCount": 188416,
+        "unchangedOutsideBands": true,
+        "implementation": "tools/texture_sheets/sources/official-world-2026-10-12/finish_quiet_edges.py",
+        "implementationSha256": "b4d0ffed5d127c976ca73d0fb203636cb33a0c1ba43bb04361407e3eb83642a1",
+        "toolSha256": "2158c0d4b8767291f58581df26dff1c3e79b59e51fdfa5bcc54ccf580505073d",
+        "qualification": "Source-positioned brace composition; encoded visual/source/renderer qualification separate."
+      }
+    },
+    {
+      "name": "TF_Wood01_4",
+      "diffuseSha256": "06ac81f5b02fa36f553a3ca0af35287590e8eedf5402d40f5f1a82e6c18c15ef",
+      "size": [
+        512,
+        512
+      ],
+      "distanceMetricsDiagnosticOnly": {
+        "64": {
+          "rgbMeanOriginal": [
+            76.485107421875,
+            57.573974609375,
+            44.612060546875
+          ],
+          "rgbMeanNew": [
+            88.616455078125,
+            68.91796875,
+            54.100830078125
+          ],
+          "rmse": 20.217697438470626,
+          "meanAbsolute": 16.474527994791668
+        },
+        "32": {
+          "rgbMeanOriginal": [
+            76.6201171875,
+            57.6669921875,
+            44.6435546875
+          ],
+          "rgbMeanNew": [
+            88.6337890625,
+            68.9091796875,
+            54.1171875
+          ],
+          "rmse": 14.811368188123833,
+          "meanAbsolute": 12.5166015625
+        }
+      },
+      "xWrapMeanAbs": 20.540364583333332,
+      "yWrapMeanAbs": 5.774739583333333,
+      "authoringReplayByteExact": true,
+      "protectedBaseRowsByteExact": true,
+      "receipt": {
+        "base": "newer/textures/candidates-2026-10-12/TF_Wood01-realistic-seam-v2-4x.png",
+        "baseSha256": "56e96fb1dab2d38ebc39a0ee5212a4721a5e70435f613b0439dcad5528c851f4",
+        "donor": "newer/textures/candidates-2026-10-17/TF_Wood01_4-photographic-v2-4x.png",
+        "donorSha256": "5e7973e816fc982165d0c6dda0a4c29132282d5a20553df4521ebe551308f1dc",
+        "output": "newer/textures/candidates-2026-10-17/TF_Wood01_4-braced-v3-4x.png",
+        "outputSha256": "f987d2e1e51c6f77c47b89b9d2c15b1b14a932e8db43207303c96c4a51fe1786",
+        "dimensions": [
+          512,
+          512
+        ],
+        "braceBands": [
+          [
+            64,
+            128
+          ],
+          [
+            384,
+            448
+          ]
+        ],
+        "featherPixels": 8,
+        "donorEdgeAxes": "x",
+        "donorClippingFraction": 0.0004590352376302083,
+        "protectedPixelCount": 180224,
+        "unchangedOutsideBands": true,
+        "implementation": "tools/texture_sheets/sources/official-world-2026-10-12/finish_quiet_edges.py",
+        "implementationSha256": "b4d0ffed5d127c976ca73d0fb203636cb33a0c1ba43bb04361407e3eb83642a1",
+        "toolSha256": "2158c0d4b8767291f58581df26dff1c3e79b59e51fdfa5bcc54ccf580505073d",
+        "qualification": "Source-positioned brace composition; encoded visual/source/renderer qualification separate."
+      }
+    },
+    {
+      "name": "TF_Wood01c_4",
+      "diffuseSha256": "3190ec05f681862b88eb11685c71982a66e359e1aefbb11cae9ed93d0eaaa1ff",
+      "size": [
+        512,
+        512
+      ],
+      "distanceMetricsDiagnosticOnly": {
+        "64": {
+          "rgbMeanOriginal": [
+            48.214111328125,
+            35.78173828125,
+            26.445068359375
+          ],
+          "rgbMeanNew": [
+            59.02978515625,
+            45.23095703125,
+            34.781494140625
+          ],
+          "rmse": 14.83558711956799,
+          "meanAbsolute": 12.259684244791666
+        },
+        "32": {
+          "rgbMeanOriginal": [
+            48.296875,
+            35.8125,
+            26.4658203125
+          ],
+          "rgbMeanNew": [
+            59.025390625,
+            45.248046875,
+            34.8056640625
+          ],
+          "rmse": 11.60541024156406,
+          "meanAbsolute": 9.888020833333334
+        }
+      },
+      "xWrapMeanAbs": 14.212239583333334,
+      "yWrapMeanAbs": 4.384765625,
+      "authoringReplayByteExact": true,
+      "protectedBaseRowsByteExact": true,
+      "receipt": {
+        "base": "newer/textures/candidates-2026-10-12/TF_Wood01c-realistic-seam-v2-4x.png",
+        "baseSha256": "26a9e033af0e73cc138cea8ee820b16b1f9b538d3964e9c4f8852cd6854cc439",
+        "donor": "newer/textures/candidates-2026-10-17/TF_Wood01c_4-photographic-v2-4x.png",
+        "donorSha256": "58071fc77e9eee164a92f01793a531ce3e3ace3e5888e4a9d107a0279893503a",
+        "output": "newer/textures/candidates-2026-10-17/TF_Wood01c_4-braced-v3-4x.png",
+        "outputSha256": "54f0f76673c2701e9c5202c9bc7ede6f41fe0ec8b1669584be2f7cbbef93fa42",
+        "dimensions": [
+          512,
+          512
+        ],
+        "braceBands": [
+          [
+            64,
+            128
+          ],
+          [
+            384,
+            448
+          ]
+        ],
+        "featherPixels": 8,
+        "donorEdgeAxes": "x",
+        "donorClippingFraction": 0.0021616617838541665,
+        "protectedPixelCount": 180224,
+        "unchangedOutsideBands": true,
+        "implementation": "tools/texture_sheets/sources/official-world-2026-10-12/finish_quiet_edges.py",
+        "implementationSha256": "b4d0ffed5d127c976ca73d0fb203636cb33a0c1ba43bb04361407e3eb83642a1",
+        "toolSha256": "2158c0d4b8767291f58581df26dff1c3e79b59e51fdfa5bcc54ccf580505073d",
+        "qualification": "Source-positioned brace composition; encoded visual/source/renderer qualification separate."
+      }
+    }
+  ]
+}

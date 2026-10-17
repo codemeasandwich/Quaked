@@ -1,0 +1,59 @@
+{
+  "reviewer": "Independent oct17_plan_review agent",
+  "qualification": "Independent decoded diffuse art review and protected-base authoring replay only. Runtime renderer checks, complete map encoder checks, Dev landing and owner acceptance are separate.",
+  "verdict": "pass for four v3 braced photographic candidates",
+  "reviewedSurfaces": [
+    "actual 512px decoded lossy Q92 diffuse",
+    "original and replacement both downsampled to64px half-native",
+    "original and replacement both downsampled to32px quarter-native",
+    "3x3 decoded repetitions",
+    "cyclic half-width/half-height offset at512px"
+  ],
+  "findings": [
+    "Eight-board spacing and one/two brace placement match source intention.",
+    "Natural grain, knots and small iron fasteners add character without a new global noise overlay or pixel stair-step detail.",
+    "Light and dark variants remain visibly distinct; distance colour/style similarity is clear. The selected photographic family is modestly brighter than the originals, consistent with approved base reuse; no exact colour equality is claimed.",
+    "No whole-image bevel, vignette or perimeter frame. Brace edge contact shading belongs to the physical brace.",
+    "No new cross-tile seam visible in cyclic or 3x3 views; the x boundary is a legitimate plank joint, so raw edge pixel equality is not an acceptance criterion.",
+    "Authoring CLI compositor replay is byte-exact for all four. Protected base rows are byte-exact; Q92 encoding naturally changes decoded values and is not covered by that assertion."
+  ],
+  "entries": [
+    {
+      "name": "TF_Wood01_2",
+      "verdict": "pass",
+      "diffuseSha256": "793a6556a783b70c157f9ee719ed15b15e51d3396cfc63d618157ec0b18424d6",
+      "authoringReplayByteExact": true,
+      "protectedBaseRowsByteExact": true,
+      "reviewContact": "TF_Wood01_2-independent-v3-review.png",
+      "reviewOffset": "TF_Wood01_2-independent-v3-offset.png"
+    },
+    {
+      "name": "TF_Wood01c_2",
+      "verdict": "pass",
+      "diffuseSha256": "bd10388afdbe43668c7981458bb2132a20c8eaf21c35f49fd0d6f872761b9609",
+      "authoringReplayByteExact": true,
+      "protectedBaseRowsByteExact": true,
+      "reviewContact": "TF_Wood01c_2-independent-v3-review.png",
+      "reviewOffset": "TF_Wood01c_2-independent-v3-offset.png"
+    },
+    {
+      "name": "TF_Wood01_4",
+      "verdict": "pass",
+      "diffuseSha256": "06ac81f5b02fa36f553a3ca0af35287590e8eedf5402d40f5f1a82e6c18c15ef",
+      "authoringReplayByteExact": true,
+      "protectedBaseRowsByteExact": true,
+      "reviewContact": "TF_Wood01_4-independent-v3-review.png",
+      "reviewOffset": "TF_Wood01_4-independent-v3-offset.png"
+    },
+    {
+      "name": "TF_Wood01c_4",
+      "verdict": "pass",
+      "diffuseSha256": "3190ec05f681862b88eb11685c71982a66e359e1aefbb11cae9ed93d0eaaa1ff",
+      "authoringReplayByteExact": true,
+      "protectedBaseRowsByteExact": true,
+      "reviewContact": "TF_Wood01c_4-independent-v3-review.png",
+      "reviewOffset": "TF_Wood01c_4-independent-v3-offset.png"
+    }
+  ],
+  "diagnosticData": "braced-four-independent-v3-data.json"
+}
