@@ -1,7 +1,10 @@
 /**
  * @module newer/ui/r_newerhud
  *
- * Newer Game's status bar graphics: higher-resolution versions of the original sprites.
+ * Newer Game's status bar face preload and native-sprite override hook. The layered
+ * player face (`r_playerface.js`) is the primary art; the earlier upscaled native face
+ * sprites are retired, so the sprite index is empty and `R_NewerHudCanvas` keeps the
+ * native WAD pixels.
  *
  * Types: plain values and functions; no exported classes.
  *
@@ -10,12 +13,10 @@
  *
  * Errors: throws at 1 place; catches at 3 places.
  */
-// Newer Game's status bar graphics: our own higher resolution versions of the
-// original sprites (see newer/hud/CREDITS.txt).
-//
-// newer/hud/index.json lists them by the game's own names (face1, num_0 ...).  A
-// sprite is drawn the ordinary way until its higher resolution picture has arrived;
-// the picture is still laid out at the sprite's original size, so nothing moves.
+// Newer Game's status bar face. The layered player face is primary. The old upscaled
+// native face sprites were retired on 18 October 2026; newer/hud/index.json remains the
+// (empty) native-sprite manifest, and R_NewerHudCanvas is the compatibility hook that
+// lets the native WAD pixels draw.
 
 import { R_NewerGame, r_newer_hud } from '../mode.js';
 import { COM_NewerJSON, COM_NewerURL } from '../../engine/common/pak.js';

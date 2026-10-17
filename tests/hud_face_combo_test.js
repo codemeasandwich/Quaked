@@ -2,7 +2,6 @@
 // Native fallback sprites come from pak0's actual WAD; only DOM image/canvas
 // surfaces are stubbed. No renderer, game or browser instance is launched.
 import { readFileSync } from 'node:fs';
-import { createHash } from 'node:crypto';
 await import( '../src/engine/render/gl_rsurf.js' );
 const sbar = await import( '../src/engine/client/sbar.js' ), draw = await import( '../src/engine/render/gl_draw.js' );
 const layer = await import('../src/newer/ui/r_playerface.js');
@@ -92,17 +91,16 @@ Deno.test( 'HUD portrait: ready donor layers use the real Draw_Pic path at nativ
  for(let mask=0;mask<8;mask++){const chosen=selected(mask).pic;check(chosen._layeredFace,'enhanced face uses layered canvas for combination '+mask);equal(chosen.width,24,'native layout width');equal(chosen.height,24,'native layout height');equal(chosen.canvas.width,96,'donor full-cell width');const nodes=graph(chosen.canvas);check(nodes.has(layer.R_PlayerFaceLayer(pose.blood_layers[2].asset,pose.id).canvas),'health70 blood remains alongside every power combination');const effect=(mask&3)===3?'mixed':mask&1?'purple':mask&2?'yellow':null;if(effect)check(nodes.has(layer.R_PlayerFaceLayer(pose.eye_layers[effect].asset,pose.id).canvas),'selected real power-eye layer present '+effect);const maskCanvas=layer.R_PlayerFaceLayer(pose.mask_asset,pose.id).canvas;equal(nodes.has(maskCanvas),!!(mask&4),'invisibility mask chosen independently');const rendered=calls.find(call=>call.canvas===overlay&&call.args[0]===chosen.canvas);check(rendered,'actual public Draw_Pic draws composed donor canvas');equal(rendered.smoothing,false,'actual donor draw uses nearest sampling');equal(rendered.args[3],24,'rendered native width');equal(rendered.args[4],24,'rendered native height');}
  const legacy=['face2','face_quad','face_invul2','face_quad','face_invis','face_quad','face_inv2','face_inv2'];for(const mode of['new-game','hud-off','classic-half']){vars.Cvar_SetValue('r_hdr',mode==='new-game'?0:1);newerMode.r_newer_hud.value=mode==='hud-off'?0:1;newerMode.R_AnimSetClassicPass(mode==='classic-half');for(let mask=0;mask<8;mask++){const chosen=selected(mask).pic;equal(chosen._name,legacy[mask],mode+' native priority '+mask);check(!chosen._layeredFace,'cached enhanced canvas cannot escape mode boundary');}}
  newerMode.R_AnimSetClassicPass(false);vars.Cvar_SetValue('r_hdr',1);newerMode.r_newer_hud.value=1;
- for(const name of['face2','face_quad','face_invul1']){const bytes=read('newer/hud/'+name+'.webp');check(bytes.subarray(0,4).toString()==='RIFF'&&bytes.subarray(8,12).toString()==='WEBP','existing optional fallback '+name+' remains installed');}
- equal(createHash('sha256').update(read('newer/hud/face1.webp')).digest('hex'),'95e5843218d742f77d93653a5a35b009ac5b8ce43c05c0fd3272fa3b4ffb2775','unrequested ordinary face1 unchanged from accepted commit');
+ const hudIndex=JSON.parse(read('newer/hud/index.json'));equal(Object.keys(hudIndex.sprites).length,0,'retired enhanced face sprites no longer enter the HUD manifest');
 } );
 
-Deno.test( 'HUD portrait: failed optional combination load retains native FACE_INVUL1 pixels at native size', async () => {
+Deno.test( 'HUD portrait: retired optional combination art retains native FACE_INVUL1 pixels at native size', async () => {
 
 	const isolated = await import( '../src/newer/ui/r_newerhud.js?hud-face-failure' ), nativeCombo = nativePics.get( 'face_invul1' );
 	const pic = { _name: 'face_invul1', width: nativeCombo.width, height: nativeCombo.height, canvas: nativeCombo.canvas, imageData: nativeCombo.imageData };
-	failed.add( 'newer/hud/face_invul1.webp' ); equal( isolated.R_NewerHudCanvas( pic ), null, 'native fallback while loading' ); await flush();
-	equal( pic._hi, null, 'image failure settles safely' ); calls.length = 0; draw.Draw_Pic( 112, 216, pic );
-	const rendered = calls.find( call => call.canvas === overlay ); equal( rendered.args[ 0 ], nativeCombo.canvas, 'failed combination uses original FACE_INVUL1 pixels' ); equal( nativeCombo.canvas.width, 24, 'fallback native width' ); equal( nativeCombo.canvas.height, 24, 'fallback native height' );
+	equal( isolated.R_NewerHudCanvas( pic ), null, 'no optional enhanced art: native fallback' ); await flush();
+	equal( pic._hi, null, 'native fallback settles safely' ); calls.length = 0; draw.Draw_Pic( 112, 216, pic );
+	const rendered = calls.find( call => call.canvas === overlay ); equal( rendered.args[ 0 ], nativeCombo.canvas, 'retired combination uses original FACE_INVUL1 pixels' ); equal( nativeCombo.canvas.width, 24, 'fallback native width' ); equal( nativeCombo.canvas.height, 24, 'fallback native height' );
 	failed.clear();
 
 } );
