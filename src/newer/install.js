@@ -88,6 +88,7 @@ import { V_ShamblerStepShake, v_shamblersteps } from './render/v_shamblersteps.j
 import { S_UpdateAmbientMusic } from './sound/s_ambientgame.js';
 import { S_AmbientMusicNotifyCombat, S_AmbientMusicShutdown, S_AmbientMusicStop, S_AmbientMusicUnlock } from './sound/s_ambientmusic.js';
 import { S_ExitMachineFalloff } from './sound/s_exitmachine.js';
+import { S_UpdateLowHealth, S_LowHealthShutdown } from './sound/s_lowhealth.js';
 import { S_WelcomeJingle, S_WelcomeJingleShutdown } from './sound/s_welcomejingle.js';
 import { BuildMenuTextArt, BuildSinglePlayerMenuArt } from './ui/menu_art.js';
 import { MainMenu_Begin, MainMenu_Destroy, MainMenu_End, MainMenu_Glyph, MainMenu_Image, MainMenu_Panel, MainMenu_SetInGame, MainMenu_SetVisible, MainMenu_Skinned, MainMenu_Slider, MainMenu_Text, MainMenu_TextBox } from './ui/menu_webgl.js';
@@ -173,6 +174,7 @@ if ( ! Hooks_Installed() ) Hooks_Install( {
 	S_UpdateAmbientMusic,
 	S_AmbientMusicNotifyCombat, S_AmbientMusicShutdown, S_AmbientMusicStop, S_AmbientMusicUnlock,
 	S_ExitMachineFalloff,
+	S_UpdateLowHealth, S_LowHealthShutdown,
 	S_WelcomeJingle, S_WelcomeJingleShutdown,
 	BuildMenuTextArt, BuildSinglePlayerMenuArt,
 	MainMenu_Begin, MainMenu_Destroy, MainMenu_End, MainMenu_Glyph, MainMenu_Image, MainMenu_Panel, MainMenu_SetInGame, MainMenu_SetVisible, MainMenu_Skinned, MainMenu_Slider, MainMenu_Text, MainMenu_TextBox,
