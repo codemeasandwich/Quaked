@@ -1,6 +1,6 @@
 // Native W_FireAxe -> trace -> T_Damage -> Killed/death callback. Presentation
 // metadata is observed only after native QC has confirmed the outcome.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

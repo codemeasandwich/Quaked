@@ -25,12 +25,14 @@ engine turns the height into normals when the texture loads, with the same maths
 is a fraction of the size of the normals and compresses well. --preview writes a picture for each (the
 texture, its normals and the texture lit from above left) to check them by eye.
 """
+
+from resource_paths import resource_path
 import json, os, re, sys
 import numpy as np
 from PIL import Image
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
-TEX = os.path.join(ROOT, 'newer', 'textures')
+TEX = str(resource_path(ROOT, 'newer/textures'))
 
 # name patterns (first match wins) -> how to treat the texture
 #   bands   weights of fine grain, cracks, blocks, broad shape

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFile,readdir} from 'node:fs/promises';
+import {readFile,readdir} from './helpers/resource_fs_promises.mjs';
 import {createHash} from 'node:crypto';
 import {basename,dirname,isAbsolute,join} from 'node:path';
 // Historical before/after resample receipts remain immutable. A later reviewed native refit

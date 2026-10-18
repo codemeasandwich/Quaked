@@ -1,7 +1,7 @@
 // Independent stock-QC/public parser proof. Existing native pickup functions own
 // timer changes; no synthetic cue callback is used to make a sound assertion pass.
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { fileURLToPath } from 'node:url';
 import { assetPath } from '../tools/distribution/manifest.mjs';
 import * as pak from '../src/engine/common/pak.js';

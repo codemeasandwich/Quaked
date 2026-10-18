@@ -14,6 +14,9 @@
 // analyzer, the template, the schedule or the encoder changes (each recorded per page, as `made`). Usage:
 //   node tools/prepare_folio.mjs [page-id ...]      (default: every page; skips pages whose image hash is unchanged)
 //   QUAKED_CANVAS_MODULE=<@napi-rs/canvas index.js> selects the canvas module (it decodes and encodes the images).
+import {assetPath} from './distribution/manifest.mjs';
+import {fileURLToPath as resourceFileURLToPath} from 'node:url';
+const resourcePath = path => assetPath(resourceFileURLToPath(new URL('../', import.meta.url)), path);
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
@@ -23,7 +26,7 @@ import { Worker, isMainThread, parentPort, workerData } from 'node:worker_thread
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve( path.dirname( fileURLToPath( import.meta.url ) ), '..' );
-const OUT = path.join( ROOT, 'newer/bestiary/folio' );
+const OUT = resourcePath(path.join( ROOT, 'newer/bestiary/folio' ));
 const SOURCE = { file: 'folio-pencil-fast-replay.html', sha256: 'b864769450933bf95e23af478223bdbca6ed808fef7af14d1b559b7e3f115295' };
 export const FOLIO_SCHEDULE = { artSeconds: 7, noteSeconds: 4, firstShare: .68, speed: 3 }; // the supplied defaults
 export const FOLIO_ENCODER = 1; // (raise when encodeReveal changes: every page is made again)
@@ -87,7 +90,7 @@ export function encodeReveal( paths, ownership, width, height, duration ) {
 // what a page was made by: the analyzer's and template's bytes, the schedule and the encoder's version
 export function folioMade() {
 
-	return { analyzer: sha256( fs.readFileSync( path.join( ROOT, 'tools/folio/analysis_worker.js' ) ) ), template: sha256( fs.readFileSync( path.join( ROOT, 'tools/folio/template.json' ) ) ),
+	return { analyzer: sha256( fs.readFileSync(resourcePath(path.join( ROOT, 'tools/folio/analysis_worker.js' ))) ), template: sha256( fs.readFileSync(resourcePath(path.join( ROOT, 'tools/folio/template.json' ))) ),
 		schedule: sha256( JSON.stringify( FOLIO_SCHEDULE ) ), encoder: FOLIO_ENCODER };
 
 }
@@ -95,12 +98,12 @@ export function folioMade() {
 async function analyzePage( file ) {
 
 	const { createCanvas, loadImage } = await canvasModule();
-	const source = fs.readFileSync( path.join( ROOT, 'tools/folio/analysis_worker.js' ), 'utf8' );
+	const source = fs.readFileSync(resourcePath(path.join( ROOT, 'tools/folio/analysis_worker.js' )), 'utf8' );
 	const ctx = { self: {}, postMessage: () => {}, console, performance, Math, JSON, Error, Map, Set, Object, Number, Array,
 		Uint8ClampedArray, Uint8Array, Int8Array, Uint16Array, Int16Array, Uint32Array, Int32Array, Float32Array, Float64Array };
 	vm.createContext( ctx ); vm.runInContext( source + '\n;globalThis.__analyze = analyze;', ctx );
-	const template = JSON.parse( fs.readFileSync( path.join( ROOT, 'tools/folio/template.json' ), 'utf8' ) );
-	const bytes = fs.readFileSync( file ), im = await loadImage( bytes );
+	const template = JSON.parse( fs.readFileSync(resourcePath(path.join( ROOT, 'tools/folio/template.json' )), 'utf8' ) );
+	const bytes = fs.readFileSync(resourcePath(file)), im = await loadImage( bytes );
 	// the supplied loadPage: analysis at native size up to 1536 on the long side, over the supplied paper colour
 	// (the game's replay reads the maps texel for texel against the image: a page analysed smaller would never be replayed)
 	if ( Math.max( im.width, im.height ) > 1536 ) throw Error( file + ' is larger than 1536 on its long side: the replay needs maps at its own size' );
@@ -126,13 +129,13 @@ if ( ! isMainThread ) {
 
 	const { BESTIARY_ENTRIES } = await import( path.join( ROOT, 'src/newer/ui/bestiary_state.js' ) );
 	const wanted = process.argv.slice( 2 ), entries = BESTIARY_ENTRIES.filter( e => e.image && ( ! wanted.length || wanted.includes( e.id ) ) );
-	fs.mkdirSync( OUT, { recursive: true } );
+	fs.mkdirSync(resourcePath(OUT), { recursive: true } );
 	const indexPath = path.join( OUT, 'index.json' );
-	const index = fs.existsSync( indexPath ) ? JSON.parse( fs.readFileSync( indexPath, 'utf8' ) ) : { pages: {} };
-	Object.assign( index, { version: 1, source: SOURCE, analyzer: { file: 'tools/folio/analysis_worker.js', sha256: sha256( fs.readFileSync( path.join( ROOT, 'tools/folio/analysis_worker.js' ) ) ) },
+	const index = fs.existsSync(resourcePath(indexPath)) ? JSON.parse( fs.readFileSync(resourcePath(indexPath), 'utf8' ) ) : { pages: {} };
+	Object.assign( index, { version: 1, source: SOURCE, analyzer: { file: 'tools/folio/analysis_worker.js', sha256: sha256( fs.readFileSync(resourcePath(path.join( ROOT, 'tools/folio/analysis_worker.js' ))) ) },
 		template: 'tools/folio/template.json', schedule: FOLIO_SCHEDULE } );
 	const made = folioMade();
-	const todo = entries.filter( e => { const have = index.pages[ e.id ], bytes = fs.readFileSync( path.join( ROOT, 'newer/bestiary', e.image ) ); return ! ( have && have.image?.sha256 === sha256( bytes ) && JSON.stringify( have.made ) === JSON.stringify( made ) && fs.existsSync( path.join( OUT, have.reveal ) ) ); } );
+	const todo = entries.filter( e => { const have = index.pages[ e.id ], bytes = fs.readFileSync(resourcePath(path.join( ROOT, 'newer/bestiary', e.image ))); return ! ( have && have.image?.sha256 === sha256( bytes ) && JSON.stringify( have.made ) === JSON.stringify( made ) && fs.existsSync(resourcePath(path.join( OUT, have.reveal ))) ); } );
 	console.log( `${ todo.length } of ${ entries.length } pages to prepare` );
 	const lanes = Math.max( 1, Math.min( todo.length, os.cpus().length - 1, 8 ) );
 	let next = 0;
@@ -141,11 +144,11 @@ if ( ! isMainThread ) {
 		while ( next < todo.length ) {
 
 			const e = todo[ next ++ ], t0 = Date.now();
-			const r = await new Promise( ( resolve, reject ) => { const w = new Worker( fileURLToPath( import.meta.url ), { workerData: { file: path.join( ROOT, 'newer/bestiary', e.image ) } } ); w.once( 'message', resolve ); w.once( 'error', reject ); } );
-			fs.writeFileSync( path.join( OUT, e.id + '.reveal.png' ), Buffer.from( r.reveal ) );
-			fs.writeFileSync( path.join( OUT, e.id + '.paper.webp' ), Buffer.from( r.paper ) );
+			const r = await new Promise( ( resolve, reject ) => { const w = new Worker( fileURLToPath( import.meta.url ), { workerData: { file: resourcePath(path.join( ROOT, 'newer/bestiary', e.image )) } } ); w.once( 'message', resolve ); w.once( 'error', reject ); } );
+			fs.writeFileSync(resourcePath(path.join( OUT, e.id + '.reveal.png' )), Buffer.from( r.reveal ) );
+			fs.writeFileSync(resourcePath(path.join( OUT, e.id + '.paper.webp' )), Buffer.from( r.paper ) );
 			index.pages[ e.id ] = { image: { file: e.image, ...r.image }, map: r.map, duration: r.duration, reveal: e.id + '.reveal.png', paper: e.id + '.paper.webp', made, stats: r.stats };
-			fs.writeFileSync( indexPath, JSON.stringify( index, null, 1 ) + '\n' );
+			fs.writeFileSync(resourcePath(indexPath), JSON.stringify( index, null, 1 ) + '\n' );
 			console.log( `${ e.id }: ${ r.stats.paths } strokes, ${ Math.round( ( Date.now() - t0 ) / 1000 ) } s, reveal ${ r.reveal.byteLength } B, paper ${ r.paper.byteLength } B` );
 
 		}

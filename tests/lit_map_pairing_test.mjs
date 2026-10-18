@@ -2,7 +2,7 @@
 // Run: node --test tests/lit_map_pairing_test.mjs
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync } from './helpers/resource_fs.mjs';
 import { Lit_Parse, LIT_MAGIC } from '../src/engine/render/lit.js';
 
 function lighting(samples) {

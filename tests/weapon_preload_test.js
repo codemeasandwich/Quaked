@@ -1,8 +1,9 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Execute the actual ordinary entry-point body against its host/UI boundaries,
 // using the real optional weapon loader. Hold image decoding to prove that the
 // asset-gated intro draws cannot become visible before art is ready. The host
 // loop now warms assets behind the native console. No browser/game is launched.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { Script } from 'node:vm';
 await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
@@ -23,15 +24,15 @@ Deno.test( 'weapon startup: ordinary app warms held/pickup art behind its first 
 	vars.Cvar_SetValue( 'r_hdr', 0 );
 	globalThis.fetch = async path => {
 
-		fetched.push( String( path ) );
-		if ( String( path ).endsWith( '/g_rock2.json' ) ) return { ok: false };
-		try { return { ok: true, json: async () => JSON.parse( read( String( path ) ) ) }; } catch { return { ok: false }; }
+		fetched.push( ResourceURL(path,true) );
+		if ( ResourceURL(path,true).endsWith( '/g_rock2.json' ) ) return { ok: false };
+		try { return { ok: true, json: async () => JSON.parse( read( ResourceURL(path,true) ) ) }; } catch { return { ok: false }; }
 
 	};
 	THREE.TextureLoader.prototype.load = function ( path, done ) {
 
 		const texture = new THREE.DataTexture( new Uint8Array( [ 180, 140, 100, 255 ] ), 1, 1 );
-		images.push( { path: String( path ), release: () => done( texture ) } ); return texture;
+		images.push( { path: ResourceURL(path,true), release: () => done( texture ) } ); return texture;
 
 	};
 	try {

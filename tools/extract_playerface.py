@@ -1,8 +1,10 @@
 """Extract the owner's complete v4.4.0 face kit without changing PNG bytes."""
+
+from pathlib import Path
+from resource_paths import resource_path
 import base64
 import hashlib
 import json
-from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'player-face-layers-v4.4.0.html'
@@ -17,7 +19,7 @@ def main():
     manifest = data['manifest']
     assert manifest['version'] == '4.4.0' and len(manifest['assets']) == 285
     assert len(manifest['poses']) == 25 and len(data['images']) == 271
-    output = ROOT / 'newer/hud/playerface'
+    output = resource_path(ROOT, 'newer/hud/playerface')
     output.mkdir(parents=True, exist_ok=True)
     images = {}
     for name, url in data['images'].items():

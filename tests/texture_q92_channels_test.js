@@ -1,3 +1,4 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Public channel-composition contracts. The fixture controls decoded image
 // transport; real R_NewerTextureUpgrade, R_NormalMapFor and normal preparation
 // snapshots/keys run unchanged. Actual Q92 codec errors are separate evidence.
@@ -48,10 +49,10 @@ async function fixture( run ) {
 	}, glass: {} };
 	const addGlass = ( name, overrides = {} ) => manifest.glass[ name ] = { [ key ]: { file: 'diffuse.webp', heightFile: 'height.webp', normalChannels: channels, glossFile: 'sheen.webp', glossOpeningFile: 'opening.webp', composeOutsideGlass: true, ...overrides } };
 	addGlass( 'glass' );
-	globalThis.fetch = async url => { fetches.push( String( url ) ); same( String( url ), 'newer/textures/index.json', 'only public index fetched' ); return { ok: true, json: async () => manifest }; };
+	globalThis.fetch = async url => { fetches.push( ResourceURL(url,true) ); same( ResourceURL(url,true), 'newer/textures/index.json', 'only public index fetched' ); return { ok: true, json: async () => manifest }; };
 	Object.defineProperty( globalThis, 'Image', { configurable: true, value: class {
 		constructor() { images.push( this ); }
-		set src( url ) { this.file = String( url ).replace( /^newer\/textures\//, '' ).split( '?' )[ 0 ]; }
+		set src( url ) { this.file = ResourceURL(url,true).replace( /^newer\/textures\//, '' ).split( '?' )[ 0 ]; }
 		finish() {
 			const source = assets[ this.file ]; if ( ! source ) { this.onerror?.( Error( 'fixture missing ' + this.file ) ); return; }
 			this.width = source.width; this.height = source.height; this.pixels = source.data; this.onload?.();

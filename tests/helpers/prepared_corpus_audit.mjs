@@ -1,7 +1,7 @@
 // Independent read-only streaming asset audit. No renderer, bake, model
 // generation, archive extraction, or expanded geometry allocation is used.
-import {open,readFile,readdir,writeFile,stat} from 'node:fs/promises';
-import {createReadStream} from 'node:fs';
+import {open,readFile,readdir,writeFile,stat} from './resource_fs_promises.mjs';
+import {createReadStream} from './resource_fs.mjs';
 import {resolve,relative,join} from 'node:path';
 import {createHash} from 'node:crypto';
 import {Readable} from 'node:stream';

@@ -35,13 +35,17 @@ tests/texture_seams_test.py checks that no clear seam line remains.
 Re-run this after any tool that regenerates replacements (update_level_sheets.py,
 update_wizard.py); it changes nothing where there is no line.
 """
-import argparse, io, json, struct, sys
+
+import sys
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from resource_paths import resource_path
+import argparse, io, json, struct, sys
 import numpy as np
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
-TEXTURES = ROOT / 'newer/textures'
+TEXTURES = resource_path(ROOT, 'newer/textures')
 RECORD = Path(__file__).resolve().parent / 'seam_fixes.json'
 SIDES = 'tblr'
 LIMIT = 0.8

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build newer.pak, the Newer Game pack, from the loose files in newer/.
+"""Build newer.pak, the Newer Game pack, from canonical assets/game files.
 
     python3 tools/build_newer_pak.py [out.pak]
 
@@ -12,21 +12,22 @@ game's own maps):
     e1m1.lit   coloured lightmaps for the map (RGB light, made by ericw-tools' light -lit)
     e1m1.ent   the map's entity list, in place of the one in the BSP
 """
+
+from pathlib import Path
+from resource_paths import resource_path, resource_files
 import os, struct, sys
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
-SRC = os.path.join(ROOT, 'newer')
+SRC = str(resource_path(ROOT, 'newer'))
 
 def entries():
     out = []
-    for dirpath, dirs, files in os.walk(SRC):
-        dirs[:] = [d for d in dirs if not d.startswith('_')]  # _unused and the like stay out
-        for f in sorted(files):
-            if f.startswith('.'): continue
-            full = os.path.join(dirpath, f)
-            rel = os.path.relpath(full, SRC).replace(os.sep, '/')
-            name = rel if rel.startswith('maps/') else 'newer/' + rel
-            out.append((name, full))
+    for logical, full in resource_files(ROOT, 'newer'):
+        rel = logical[len('newer/'):]
+        if any(part.startswith(('_', '.')) for part in Path(rel).parts):
+            continue
+        name = rel if rel.startswith('maps/') else logical
+        out.append((name, str(full)))
     return sorted(out)
 
 def main(out_path):
@@ -41,4 +42,4 @@ def main(out_path):
     print(f'{out_path}: {len(table)} files, {len(data) / 1e6:.1f} MB')
 
 if __name__ == '__main__':
-    main(sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, 'newer.pak'))
+    main(sys.argv[1] if len(sys.argv) > 1 else resource_path(ROOT, 'newer.pak'))

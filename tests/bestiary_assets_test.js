@@ -1,7 +1,7 @@
 // Immutable corpus oracle independently read from the owner sources. Earlier
 // nine files were also compared with the prior qualified SHA manifest. Tests
 // require only installed assets; ephemeral clipboard files are not a CI input.
-import {readFileSync,readdirSync,existsSync} from 'node:fs';
+import {readFileSync,readdirSync,existsSync} from './helpers/resource_fs.mjs';
 import {createHash} from 'node:crypto';
 const expected=Object.freeze({
   "rottweiler.png": "e763d40b17723043a289563450e1fe09199fa119db8374078246a086ca4ffeaa",

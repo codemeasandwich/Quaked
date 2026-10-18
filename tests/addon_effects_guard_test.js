@@ -4,7 +4,7 @@
 // client's handling of a gunshot and of the lightning bolts is word for word what it was, none of the new effects'
 // modules reaches into the excluded weapons' modules, and the Shambler's shudder is the same with the explosion shake
 // beside it. Each new effect adds its module to NEW_MODULES below.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import { V_ShamblerStepShake } from '../src/newer/render/v_shamblersteps.js';
 import { V_BlastShake, V_BlastShakeEvent } from '../src/newer/render/v_blastshake.js';

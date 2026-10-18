@@ -10,9 +10,13 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
+import sys
+sys.path.insert(0, str(ROOT / 'tools'))
+from resource_paths import resource_path
+
 SOURCE = ROOT / 'tools/texture_sheets/sources/level-2026-10-02'
 RECIPE = json.loads((SOURCE / 'manifest.json').read_text())
-INDEX = json.loads((ROOT / 'newer/textures/index.json').read_text())
+INDEX = json.loads((resource_path(ROOT, 'newer/textures/index.json')).read_text())
 # Later seam repairs (tools/texture_sheets/fix_seams.py) mend recorded edge rows only.
 SEAMS = json.loads((ROOT / 'tools/texture_sheets/seam_fixes.json').read_text())['fixed']
 
@@ -54,8 +58,8 @@ def owner_legacy_file(name, role):
     previous = entry['previous']['file'] if role == 'diffuse' else entry['previous']['normal']['file']
     record = next(m for m in _OWNER_Q92['maps'] if m['file'] == 'newer/textures/' + current)
     assert record['role'] == role and record['predecessor'] == 'newer/textures/' + previous
-    assert hashlib.sha256((ROOT / record['predecessor']).read_bytes()).hexdigest() == record['masterSha256']
-    assert hashlib.sha256((ROOT / record['file']).read_bytes()).hexdigest() == record['sha256']
+    assert hashlib.sha256((resource_path(ROOT, record['predecessor'])).read_bytes()).hexdigest() == record['masterSha256']
+    assert hashlib.sha256((resource_path(ROOT, record['file'])).read_bytes()).hexdigest() == record['sha256']
     return previous
 
 def owner_current_file(name, baseline):
@@ -118,7 +122,7 @@ class LevelTextureAssets(unittest.TestCase):
                 expected = np.array(source.crop(tile['crop']).resize((256, 256), Image.Resampling.LANCZOS))
                 dx, dy = tile.get('phaseNative', [0, 0])
                 expected = np.roll(expected, (dy * 4, dx * 4), (0, 1))
-                actual = np.array(Image.open(ROOT / 'newer/textures' / owner_legacy_file(name, 'diffuse')).convert('RGB'))
+                actual = np.array(Image.open(resource_path(ROOT, 'newer/textures') / owner_legacy_file(name, 'diffuse')).convert('RGB'))
                 keep = ~seam_mask(name, actual.shape)
                 np.testing.assert_array_equal(actual[keep], expected[keep])
         self.assertEqual(RECIPE['tiles']['column1_2']['crop'][3], 620, 'marble separator excluded')
@@ -128,7 +132,7 @@ class LevelTextureAssets(unittest.TestCase):
         for name in NAMES:
             with self.subTest(texture=name):
                 normal = INDEX['normals'][name]
-                image = Image.open(ROOT / 'newer/textures' / normal['file'])
+                image = Image.open(resource_path(ROOT, 'newer/textures') / normal['file'])
                 self.assertEqual(image.size, (256, 256))
                 pixels = np.array(image.convert('RGB'))
                 gray_authority = pixels
@@ -136,7 +140,7 @@ class LevelTextureAssets(unittest.TestCase):
                     # Only these explicit Q92 successors use decoded R as the
                     # scalar. The retained lossless master must still be exactly
                     # gray; unused G may differ by one after lossy WebP decode.
-                    gray_authority = np.array(Image.open(ROOT / 'newer/textures' / owner_legacy_file(name, 'height')).convert('RGB'))
+                    gray_authority = np.array(Image.open(resource_path(ROOT, 'newer/textures') / owner_legacy_file(name, 'height')).convert('RGB'))
                 np.testing.assert_array_equal(gray_authority[:, :, 0], gray_authority[:, :, 1])
                 np.testing.assert_array_equal(gray_authority[:, :, 0], gray_authority[:, :, 2])
                 self.assertTrue(np.isfinite(normal['strength']) and normal['strength'] >= 0)
@@ -145,14 +149,14 @@ class LevelTextureAssets(unittest.TestCase):
                     self.assertGreater(float(pixels[:, :, 0].std()), 2, 'actual relief remains')
         marble = INDEX['normals']['column1_2']
         self.assertEqual(marble['strength'], 0)
-        self.assertTrue(np.all(np.array(Image.open(ROOT / 'newer/textures' / marble['file']).convert('L')) == 255), 'no pigment relief or constant POM displacement')
-        checker = np.array(Image.open(ROOT / 'newer/textures' / INDEX['normals']['wall9_8']['file']).convert('L'), dtype=float) / 255
+        self.assertTrue(np.all(np.array(Image.open(resource_path(ROOT, 'newer/textures') / marble['file']).convert('L')) == 255), 'no pigment relief or constant POM displacement')
+        checker = np.array(Image.open(resource_path(ROOT, 'newer/textures') / INDEX['normals']['wall9_8']['file']).convert('L'), dtype=float) / 255
         means = [checker[y:y + 80, x:x + 80].mean() for y in (24, 152) for x in (24, 152)]
         self.assertLess(max(means) - min(means), .015, 'different pigments do not become quarter-height steps')
         self.assertEqual(INDEX['normals']['city5_6']['strength'], 2.0)
         self.assertEqual(INDEX['normals']['wizwood1_7']['strength'], 2.6)
         self.assertEqual(INDEX['normals']['wall16_7']['strength'], 1.4)
-        veneer = np.array(Image.open(ROOT / 'newer/textures' / INDEX['normals']['city5_1']['file']).convert('L'), dtype=float) / 255
+        veneer = np.array(Image.open(resource_path(ROOT, 'newer/textures') / INDEX['normals']['city5_1']['file']).convert('L'), dtype=float) / 255
         layering = RECIPE['tiles']['city5_1']['layering']
         # Spatial landmarks independently distinguish all four corners, the
         # large oval and three small holes from the upper patterned facing.

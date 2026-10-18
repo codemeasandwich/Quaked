@@ -1,7 +1,7 @@
 // Public, source-bound Rogue enemy skin verification. Reads bounded owned PAK members without exporting them.
 // Async selection/failure tests replace only image transport; asset tests decode the actual shipped PNG/WebP files.
 import * as THREE from 'three';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import { pakDirectory, readMember, isolatedPack } from '../tools/pak_members.mjs';
 import { COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';

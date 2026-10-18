@@ -1,5 +1,8 @@
 // Software-canvas preview of the real credits/options menu. No game, browser or
 // server is started. Uses the supplied PNG loader and original Quake charset.
+import {assetPath} from './distribution/manifest.mjs';
+import {fileURLToPath as resourceFileURLToPath} from 'node:url';
+const resourcePath = path => assetPath(resourceFileURLToPath(new URL('../', import.meta.url)), path);
 import { register } from 'node:module';
 import { readFile, writeFile } from 'node:fs/promises';
 import { pathToFileURL, fileURLToPath } from 'node:url';
@@ -15,7 +18,7 @@ await import( '../src/engine/render/gl_rsurf.js' );
 await import( '../src/newer/install.js' ); // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js), after the loader and the renderer's bootstrap
 const pak = await import( '../src/engine/common/pak.js' ), wad = await import( '../src/engine/common/wad.js' ), vid = await import( '../src/engine/render/vid.js' );
 const draw = await import( '../src/engine/render/gl_draw.js' ), menu = await import( '../src/engine/client/menu.js' ), cmd = await import( '../src/engine/common/cmd.js' ), keys = await import( '../src/engine/client/keys.js' );
-const raw = await readFile( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
+const raw = await readFile(resourcePath(new URL( '../games/shareware/pak0.pak', import.meta.url )));
 pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', raw.buffer.slice( raw.byteOffset, raw.byteOffset + raw.length ) ) );
 const gfx = pak.COM_FindFile( 'gfx.wad' ).data;
 wad.W_LoadWadFile( gfx.buffer.slice( gfx.byteOffset, gfx.byteOffset + gfx.length ) );
@@ -32,5 +35,5 @@ draw.Draw_BeginFrame();
 canvas.getContext( '2d' ).fillStyle = '#282522'; canvas.getContext( '2d' ).fillRect( 0, 0, 320, 200 );
 cmd.Cmd_ExecuteString( options ? 'menu_options' : 'menu_credits' ); menu.M_Draw();
 const name = options ? 'options-music-sound-volume' : 'weapon-models-credits';
-await writeFile( new URL( '../docs/images/' + name + ( height === 400 ? '-small' : '' ) + '-2026-10-02.png', import.meta.url ), canvas.toBuffer( 'image/png' ) );
+await writeFile(resourcePath(new URL( '../docs/images/' + name + ( height === 400 ? '-small' : '' ) + '-2026-10-02.png', import.meta.url )), canvas.toBuffer( 'image/png' ) );
 console.log( 'Rendered real ' + ( options ? 'options' : 'credits' ) + ' menu using native glyphs.' );

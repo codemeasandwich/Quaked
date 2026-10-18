@@ -12,13 +12,17 @@ import numpy as np
 from PIL import Image
 
 ROOT=Path(__file__).resolve().parents[1]
+import sys
+sys.path.insert(0, str(ROOT / 'tools'))
+from resource_paths import resource_path
+
 SOURCE=ROOT/'tools/texture_sheets/sources/official-world-2026-10-12'
-CANDIDATES=ROOT/'newer/textures/candidates-2026-10-12'
+CANDIDATES=resource_path(ROOT, 'newer/textures/candidates-2026-10-12')
 def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 def pixels(path): return np.asarray(Image.open(path).convert('RGB'))
 actual=CANDIDATES/'TF_Stone3-realistic-seam-v3-4x.png'
 record=json.loads(actual.with_suffix('.json').read_text())
-master=Path(record['master'])
+master=resource_path(ROOT, record['master'])
 assert sha(master)==record['masterSha256']
 assert sha(SOURCE/'restore_stone3_joint.py')==record['toolSha256']
 with tempfile.TemporaryDirectory(prefix='quaked-stone3-joint-replay-') as d:

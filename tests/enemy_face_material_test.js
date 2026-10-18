@@ -1,6 +1,6 @@
 // Exercise the production loader and material/public readiness interfaces.
 import * as THREE from 'three';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import * as skins from '../src/newer/render/r_newerskins.js';
 import * as mode from '../src/newer/mode.js';

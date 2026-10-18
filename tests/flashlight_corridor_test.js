@@ -1,7 +1,7 @@
 // Real shipped START + native QuakeC + collision/movement dispatch. The entry
 // trigger is the corridor's floor message brush, hundreds of units before the
 // stock skill-setting and teleport brushes. No browser/game loop is started.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init } from '../src/engine/render/gl_model.js';

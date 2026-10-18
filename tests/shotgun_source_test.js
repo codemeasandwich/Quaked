@@ -1,7 +1,8 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Independent source port and public draw checks for the supplied single SG.
 // Reads shotgun.zip and original MDL; other missing source archives are neither
 // restored nor hidden by this focused test.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { inflateRawSync } from 'node:zlib';
 import { createHash } from 'node:crypto';
 await import( '../src/engine/render/gl_rsurf.js' );
@@ -91,8 +92,8 @@ function nativeBounds( header ) {
 
 const oldFetch = globalThis.fetch, oldLoad = THREE.TextureLoader.prototype.load;
 const previous = { hdr: r_hdr.string, weapons: weapons.r_newer_weapons.value, lerp: anim.r_lerpmodels.value };
-globalThis.fetch = async path => { try { return { ok: true, json: async () => JSON.parse( bytes( String( path ) ).toString() ) }; } catch { return { ok: false }; } };
-THREE.TextureLoader.prototype.load = function ( url, loaded ) { const texture = new THREE.Texture(); texture._sourceRequest = String( url ); queueMicrotask( () => loaded( texture ) ); return texture; };
+globalThis.fetch = async path => { try { return { ok: true, json: async () => JSON.parse( bytes( ResourceURL(path,true) ).toString() ) }; } catch { return { ok: false }; } };
+THREE.TextureLoader.prototype.load = function ( url, loaded ) { const texture = new THREE.Texture(); texture._sourceRequest = ResourceURL(url,true); queueMicrotask( () => loaded( texture ) ); return texture; };
 if ( ! vars.Cvar_FindVar( 'r_hdr' ) ) vars.Cvar_RegisterVariable( r_hdr );
 vars.Cvar_SetValue( 'r_hdr', 1 ); weapons.r_newer_weapons.value = 1; anim.r_lerpmodels.value = 0;
 const manifest = await weapons.R_WeaponsLoad(); await weapons.R_WeaponLoad( 'v_shot' );

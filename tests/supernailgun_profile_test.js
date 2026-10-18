@@ -1,6 +1,7 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Independently decode the new source FBX and native MDLs. Qualify uniform
 // source-shape transforms and barrel-only mild grading at the public draw.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { inflateRawSync, inflateSync } from 'node:zlib';
 await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
@@ -262,8 +263,8 @@ function rotorExpected( fit, id, angle, normal = false ) {
 }
 const oldFetch = globalThis.fetch, oldLoad = THREE.TextureLoader.prototype.load;
 const old = { hdr: r_hdr.string, weapons: weapons.r_newer_weapons.value, lerp: r_lerpmodels.value };
-globalThis.fetch = async path => { try { return { ok: true, json: async () => JSON.parse( read( String( path ) ).toString() ) }; } catch { return { ok: false }; } };
-THREE.TextureLoader.prototype.load = function ( path, done ) { const texture = new THREE.Texture(); texture._testPath = String( path ); queueMicrotask( () => done( texture ) ); return texture; };
+globalThis.fetch = async path => { try { return { ok: true, json: async () => JSON.parse( read( ResourceURL(path,true) ).toString() ) }; } catch { return { ok: false }; } };
+THREE.TextureLoader.prototype.load = function ( path, done ) { const texture = new THREE.Texture(); texture._testPath = ResourceURL(path,true); queueMicrotask( () => done( texture ) ); return texture; };
 if ( ! Cvar_FindVar( 'r_hdr' ) ) Cvar_RegisterVariable( r_hdr );
 Cvar_SetValue( 'r_hdr', 1 ); weapons.r_newer_weapons.value = 1; r_lerpmodels.value = 0;
 await weapons.R_WeaponsPreload();

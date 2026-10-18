@@ -1,7 +1,7 @@
 // Options > Cheats power-ups (owner request, 9 Oct 2026): the Ring, the Quad and the Pentagram as switches that stay on until
 // switched off, and all weapons, applied at once so the game under the menu shows them. Real QuakeC, real server, the real
 // client update path; no physics runs where the test says the game is held by the menu.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

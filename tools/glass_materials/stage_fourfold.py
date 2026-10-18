@@ -4,11 +4,15 @@ prepare -> baseline.mjs -> apply_regions.py --review STAGE/reviews.json -> finis
 finish creates a complete validation root. Installation is a separate reviewed step.
 Native references, reviewed apertures and original runtime files are never changed.
 """
+
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from resource_paths import resource_path
 import argparse
 import copy
 import hashlib
 import json
-from pathlib import Path
 import shutil
 import tempfile
 
@@ -16,7 +20,7 @@ import numpy as np
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
-TEXTURES = ROOT / 'newer/textures'
+TEXTURES = resource_path(ROOT, 'newer/textures')
 sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
 TOOL_SHA = sha(Path(__file__))
 read = lambda p: json.loads(p.read_text())
@@ -46,7 +50,7 @@ def prepare(stage):
     (stage / 'before').mkdir()
     snapshots = {}
     for name in METADATA:
-        path = ROOT / name
+        path = resource_path(ROOT, name)
         target = stage / 'before' / name
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(path.read_bytes())
@@ -118,7 +122,7 @@ def prepare(stage):
                             previousReview=spec, currentReview=derivative, authored=authored))
     # No source drift during staging, including unrelated metadata owned by this operation.
     for name, digest in snapshots.items():
-        assert sha(ROOT / name) == digest, name
+        assert sha(resource_path(ROOT, name)) == digest, name
     for name, digest in source_files.items():
         assert sha(TEXTURES / name) == digest, name
     write(stage / 'catalog.json', catalog)
@@ -134,7 +138,7 @@ def finish(stage):
     migration = read(stage / 'migration.json')
     def unchanged_sources():
         for name, digest in migration['snapshots'].items():
-            assert sha(ROOT / name) == digest, 'Metadata changed during staging: ' + name
+            assert sha(resource_path(ROOT, name)) == digest, 'Metadata changed during staging: ' + name
             assert sha(stage / 'before' / name) == digest, 'Pinned metadata snapshot changed: ' + name
         for name, digest in migration['sourceFiles'].items():
             assert sha(TEXTURES / name) == digest, 'Source changed during staging: ' + name
@@ -220,7 +224,7 @@ def install(stage, verification):
     for name, digest in migration['snapshots'].items():
         assert sha(stage / 'before' / name) == digest
         if name != 'newer/textures/index.json':
-            assert sha(ROOT / name) == digest, 'Live metadata changed: ' + name
+            assert sha(resource_path(ROOT, name)) == digest, 'Live metadata changed: ' + name
     for name, digest in migration['sourceFiles'].items():
         assert sha(TEXTURES / name) == digest, 'Live source changed: ' + name
     index_path = TEXTURES / 'index.json'
@@ -297,7 +301,7 @@ def install(stage, verification):
     assert index_path.read_bytes() == current_bytes, 'Concurrent catalogue change; no switch made'
     originals = {p: p.read_bytes() for p in pending}
     for path in pending:
-        assert sha(path) == migration['snapshots'][str(path.relative_to(ROOT))]
+        assert sha(path) == migration['snapshots'][next(name for name in migration['snapshots'] if resource_path(ROOT, name) == path)]
     pending[index_path] = text.encode()
     originals[index_path] = current_bytes
     temporary, published = {}, []

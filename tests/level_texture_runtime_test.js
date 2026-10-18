@@ -1,6 +1,7 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Public texture upgrade with actual lossless WebPs and software canvas. No
 // browser, game or GPU instance. Set QUAKED_CANVAS_MODULE to installed canvas.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { pathToFileURL } from 'node:url';
 import * as THREE from 'three';
 import * as vars from '../src/engine/common/cvar.js';
@@ -34,7 +35,7 @@ async function fixture( fn ) {
 	vars.Cvar_Set( r_hdr.name, '1' ); r_newer_textures.value = 1;
 	globalThis.Image = class extends NativeImage {
 
-		set src( path ) { requests.push( path ); super.src = read( String( path ).split( '?' )[ 0 ] ); }
+		set src( path ) { requests.push( path ); super.src = read( ResourceURL(path,true).split( '?' )[ 0 ] ); }
 
 	};
 	globalThis.document = { createElement: name => { same( name, 'canvas', 'loader uses canvas' ); return createCanvas( 1, 1 ); } };

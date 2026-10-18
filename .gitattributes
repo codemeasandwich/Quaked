@@ -4,4 +4,8 @@
 /docs/evidence/*.patch -whitespace
 
 # Exact donor excerpt retains its original CRLF and spacing for hash verification.
-/newer/effects/quad/quad-effectinfo.txt -whitespace
+/assets/game/effects/quad/quad-effectinfo.txt -whitespace
+
+# Retained resource-migration machine logs keep their original bytes.
+/docs/verification/resource-layout/*.txt -whitespace
+/docs/verification/resource-layout/**/*.txt -whitespace

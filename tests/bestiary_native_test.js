@@ -1,6 +1,6 @@
 // Actual native loopback, renderer alias/camera, input and host-loop boundaries.
 // Browser GPU presentation is independently exercised by bestiary_trial.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import * as pak from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/engine/render/vid.js';
 import {Mod_Init} from '../src/engine/render/gl_model.js';

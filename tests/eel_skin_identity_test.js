@@ -1,7 +1,7 @@
 // Public, source-bound Rogue Electric Eel skin verification. Reads bounded owned PAK members without exporting them.
 // Async selection/failure tests replace only image transport; asset tests decode the actual shipped PNG/WebP files.
 import * as THREE from 'three';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import { gunzipSync } from 'node:zlib';
 import { NormalInputs, NormalInputWitness, R_NormalPrepare } from '../src/newer/assets/normal_prepare.js';

@@ -1,7 +1,7 @@
 // The FPS counter's second and third lines (owner, 14 October 2026): the view's position, then its direction, so a
 // screenshot says exactly where it was taken from (gl_screen.js SCR_PositionLines, drawn by SCR_DrawPerf under the
 // frame rate while a level is up; the respawn corner message moves below all three while the counter is on).
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { SCR_PositionLines, SCR_POSITION_Y, SCR_LINE_STEP } from '../src/engine/render/gl_screen.js';

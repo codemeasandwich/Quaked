@@ -1,6 +1,7 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Independent public-interface checks. Assets and original MDLs are read from
 // the checkout; texture decoding is stubbed, while Three geometry stays real.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { inflateRawSync } from 'node:zlib';
 await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
@@ -27,7 +28,7 @@ const previousState = { hdr: r_hdr.value, weapons: weapons.r_newer_weapons.value
 const requestedTextures = [];
 globalThis.fetch = async path => {
 
-	try { const data = bytes( String( path ) ); return { ok: true, json: async () => JSON.parse( data.toString() ) }; }
+	try { const data = bytes( ResourceURL(path,true) ); return { ok: true, json: async () => JSON.parse( data.toString() ) }; }
 	catch { return { ok: false }; }
 
 };

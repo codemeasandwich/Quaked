@@ -1,0 +1,5 @@
+Independent read-only planning and review: /root/source_layout_review
+Verdict: CLEAR after explicit pinned-shareware checksum and monotonic catalog version fixes.
+Reviewer independently compared all seven extracted payloads and supplied manifest semantics against the original ZIP in HEAD. Historical height.png, runtime R16 and runtime WebP match HEAD. Runtime index was already modified at start: preservation is relative to the captured working-tree baseline, not HEAD.
+Review covered code/documentation/source identities; coordinator executed tests and scratch probes. No release build, gameplay performance or owner visual acceptance claimed.
+Final verification-script re-review: CLEAR. Scratch copies/corruption/output paths are confined to TemporaryDirectory and cleanup. Hash assertions cover listed input/output files, not every possible filesystem write. Reviewer did not rerun probes.

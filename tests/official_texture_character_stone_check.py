@@ -4,13 +4,17 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 ROOT=Path(__file__).resolve().parents[1]
+import sys
+sys.path.insert(0, str(ROOT / 'tools'))
+from resource_paths import resource_path
+
 SOURCE=ROOT/'tools/texture_sheets/sources/official-world-2026-10-12'
-CANDIDATES=ROOT/'newer/textures/candidates-2026-10-12'
+CANDIDATES=resource_path(ROOT, 'newer/textures/candidates-2026-10-12')
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def rgb(p):return np.asarray(Image.open(p).convert('RGB'))
 actual=CANDIDATES/'wstone_03_JM-character-seam-v4-4x.png'
 record=json.loads(actual.with_suffix('.json').read_text())
-master=ROOT/record['source'];repair=ROOT/record['generatedRepair']
+master=resource_path(ROOT, record['source']);repair=resource_path(ROOT, record['generatedRepair'])
 assert sha(master)==record['sourceSha256'] and sha(repair)==record['generatedRepairSha256']
 wrapper=SOURCE/'finish_character_stone.py'
 current_wrapper=wrapper.read_text()

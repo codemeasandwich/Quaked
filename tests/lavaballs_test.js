@@ -5,7 +5,7 @@
 // (R_LavaBall, the frame flush, R_RocketTrail) are driven with real entities and the real stock
 // models. WebGL is not involved: the instance buffers a frame writes are inspected, so these checks
 // claim no GPU pixel parity (tests/lavaballs_trial.html photographs it).
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import * as THREE from 'three';
 import { cvar_t, Cvar_RegisterVariable, Cvar_SetValue } from '../src/engine/common/cvar.js';

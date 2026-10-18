@@ -1,7 +1,7 @@
 // Independent stock-QC execution proof: actual attacks own ammo, traces, water
 // discharge and damage. The sound observer may only report those outcomes.
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { fileURLToPath } from 'node:url';
 import { assetPath } from '../tools/distribution/manifest.mjs';
 import * as pak from '../src/engine/common/pak.js';

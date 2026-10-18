@@ -3,7 +3,7 @@
 // back images; a game's own URL (?game=<id>) choosing the game for that page, over the choice kept in the browser,
 // which the shelf starts on. The shelf on the page (3-D boxes, cycling, turning over, the folder picker) is the
 // browser trial's (docs/game-shelf-2026-10-10.md).
-import { existsSync } from 'node:fs';
+import { existsSync } from './helpers/resource_fs.mjs';
 import { GAME_BOXES, GameShelf_Box, GameShelf_ReadFolder, GameShelf_Url } from '../src/newer/ui/game_shelf.js';
 import { GAME_CATALOGUE_GAMES } from '../src/engine/common/game_catalogue.js';
 import * as selection from '../src/engine/common/game_selection.js';

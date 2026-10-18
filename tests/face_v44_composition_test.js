@@ -1,8 +1,9 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Independent oracle: execute the complete supplied HTML script unchanged in a
 // VM with a small DOM boundary, then compare real Canvas2D pixels against the
 // production module. No copied composition algorithm is used as the oracle.
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import {createHash} from 'node:crypto';
 import {Script} from 'node:vm';
 const canvas=await import(process.env.QUAKED_CANVAS_MODULE||'/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js');
@@ -16,7 +17,7 @@ const deadline=Date.now()+10000;while(!sourceWindow.faceKit.ready){if(Date.now()
 const source=sourceWindow.faceKit,descriptors=Object.fromEntries(['Image','document'].map(key=>[key,Object.getOwnPropertyDescriptor(globalThis,key)])),oldFetch=globalThis.fetch;
 Object.defineProperty(globalThis,'document',{configurable:true,value:{createElement:()=>canvas.createCanvas(96,96)}});
 class ProductionImage extends canvas.Image{set src(value){super.src=new URL(String(value).split('?')[0]).pathname;}get src(){return super.src;}}
-Object.defineProperty(globalThis,'Image',{configurable:true,value:ProductionImage});globalThis.fetch=async url=>({ok:true,json:async()=>JSON.parse(readFileSync(new URL(String(url).split('?')[0])))});
+Object.defineProperty(globalThis,'Image',{configurable:true,value:ProductionImage});globalThis.fetch=async url=>({ok:true,json:async()=>JSON.parse(readFileSync(new URL(ResourceURL(url,true).split('?')[0])))});
 const face=await import('../src/newer/ui/r_playerface.js');await face.R_PlayerFacePreload();
 const pixels=surface=>Buffer.from(surface.getContext('2d').getImageData(0,0,96,96).data);
 function compare(state,label){const expected=source.renderComposite(state),actual=face.R_PlayerFaceCompose(state);assert.equal(expected.complete,true,label+' source complete');assert.equal(actual.complete,true,label+' production complete');assert.equal(JSON.stringify(actual.selection),JSON.stringify(expected.selection),label+' exact selection/order');assert.ok(pixels(actual.canvas).equals(pixels(expected.canvas)),label+' exact RGBA pixel parity');}

@@ -1,3 +1,4 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Public loader contract for ordinary expansion artwork sharing a base-game name.
 // Only fetch/Image/canvas transport is controlled; selection, identities, normal
 // binding, readiness, Classic isolation and decoded-cache reuse run real code.
@@ -38,10 +39,10 @@ async function fixture( run ) {
 		glass: { glass_name: { [ variantKey ]: { file: 'glass.png', heightFile: 'glass-height.png', normalFile: 'glass-normal.png' } } }
 	};
 	const pigments = { 'base.png': 20, 'expansion.png': 160, 'only.png': 170, 'free.png': 190, 'base-height.png': 50, 'expansion-height.png': 120, 'expansion-normal.png': 128, 'glass.png': 210, 'glass-height.png': 100, 'glass-normal.png': 128 };
-	globalThis.fetch = async url => { fetches.push( String( url ) ); same( String( url ), 'newer/textures/index.json', 'only manifest fetched' ); return { ok: true, json: async () => manifest }; };
+	globalThis.fetch = async url => { fetches.push( ResourceURL(url,true) ); same( ResourceURL(url,true), 'newer/textures/index.json', 'only manifest fetched' ); return { ok: true, json: async () => manifest }; };
 	Object.defineProperty( globalThis, 'Image', { configurable: true, value: class {
 		constructor() { this.width = this.height = 4; images.push( this ); }
-		set src( url ) { this.url = String( url ); this.file = this.url.replace( /^newer\/textures\//, '' ).split( '?' )[ 0 ]; }
+		set src( url ) { this.url = ResourceURL(url,true); this.file = this.url.replace( /^newer\/textures\//, '' ).split( '?' )[ 0 ]; }
 		finish( fail = false ) {
 			if ( fail ) { this.onerror?.( Error( 'fixture missing image' ) ); return; }
 			check( pigments[ this.file ] !== undefined, 'unexpected image requested: ' + this.file );

@@ -2,7 +2,7 @@
 // collector/warm bodies with real Three resources and public startup/lease APIs.
 // The recording compiler reproduces Three's synchronous prepareMaterial pass
 // and defers its async completion, so the version+2 cannot be hidden by mocks.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import {Script} from 'node:vm';
 import * as THREE from 'three';
 import {R_ShaderAssetStamp,R_CompileSceneAsync} from '../src/newer/render/r_shaderwarm.js';

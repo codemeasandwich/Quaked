@@ -1,5 +1,5 @@
 // Real shipped BSPs, original polygons and unchanged texture/lightmap UVs.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

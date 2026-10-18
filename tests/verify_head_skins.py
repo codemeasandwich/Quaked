@@ -6,17 +6,20 @@ sys.dont_write_bytecode=True
 import numpy as np
 from PIL import Image
 ROOT=Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / 'tools'))
+from resource_paths import resource_path
+
 sys.path.insert(0,str(ROOT/'tools/texture_sheets'))
 from update_head_skins import fit,uv_footprint
 from update_enemy_heights import native_skins
 from make_sheets import read_pak
-recipe=json.loads((ROOT/'tools/texture_sheets/sources/head-skins-2026-10-01.json').read_text());index=json.loads((ROOT/'newer/enemies/index.json').read_text());pak=read_pak(ROOT/'games/shareware/pak0.pak');palette=np.frombuffer(pak['gfx/palette.lmp'],dtype=np.uint8).reshape(256,3)
+recipe=json.loads((ROOT/'tools/texture_sheets/sources/head-skins-2026-10-01.json').read_text());index=json.loads((resource_path(ROOT, 'newer/enemies/index.json')).read_text());pak=read_pak(ROOT/'games/shareware/pak0.pak');palette=np.frombuffer(pak['gfx/palette.lmp'],dtype=np.uint8).reshape(256,3)
 checks=0;reports=[]
 for model,spec in recipe['models'].items():
  source=ROOT/'tools/texture_sheets/sources'/spec['source'];assert hashlib.sha256(source.read_bytes()).hexdigest()==spec['source_sha256'];checks+=1
  data=pak['progs/'+model+'.mdl'];original=native_skins(data,palette)[0][0];expected,coverage=fit(original,Image.open(source).convert('RGB'),spec,data,recipe['factor'],recipe['bleed_pixels'])
  variant=index['models'][model][0];assert variant['dir']==model+'/custom' and not variant['flipGreen'];checks+=1
- diffuse=Image.open(ROOT/'newer/enemies'/variant['dir']/variant['maps']['diffuse']).convert('RGB');height=Image.open(ROOT/'newer/enemies'/variant['dir']/variant['maps']['height'])
+ diffuse=Image.open(resource_path(ROOT, 'newer/enemies')/variant['dir']/variant['maps']['diffuse']).convert('RGB');height=Image.open(resource_path(ROOT, 'newer/enemies')/variant['dir']/variant['maps']['height'])
  assert diffuse.size==height.size==(original.width*4,original.height*4);checks+=1
  assert diffuse.tobytes()==expected.tobytes();checks+=1
  assert coverage['surface_coverage']==1.0;checks+=1

@@ -1,3 +1,4 @@
+import {resourceGitPath} from './helpers/resource_path.mjs';
 // Real surface charts, geometry, Three textures and public shader hooks. Worker
 // transport and WebGL rendering are observed at their endpoints, not started.
 import * as THREE from 'three';
@@ -8,7 +9,7 @@ import { DrawGLPoly, createQuakeLightmapMaterial } from '../src/engine/render/gl
 import * as post from '../src/newer/render/gl_post.js';
 import * as newerMode from '../src/newer/mode.js';
 import * as cvar from '../src/engine/common/cvar.js';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { execFileSync } from 'node:child_process';
 import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
@@ -355,7 +356,7 @@ Deno.test( 'actual START hub ground/wall rock4_1 and Hard bricka2_2 use exact ow
 		const index = JSON.parse( readFileSync( new URL( '../newer/textures/index.json', import.meta.url ) ) );
 		for ( const file of [ index.textures.bricka2_2, index.normals.bricka2_2.file ] ) {
 
-			const path = 'newer/textures/' + file, current = readFileSync( new URL( '../' + path, import.meta.url ) ), committed = execFileSync( 'git', [ 'show', 'HEAD:' + path ], { cwd: new URL( '../', import.meta.url ) } );
+			const path = 'newer/textures/' + file, current = readFileSync( new URL( '../' + path, import.meta.url ) ), committed = execFileSync( 'git', [ 'show', 'HEAD:' + resourceGitPath(path) ], { cwd: new URL( '../', import.meta.url ) } );
 			check( current.equals( committed ), 'Hard supplied texture/height artwork bytes unchanged: ' + file );
 
 		}

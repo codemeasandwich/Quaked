@@ -3,7 +3,7 @@
 // bring a quiet second sound of the surface, beside the game's own sound and never instead of it; the shotgun and
 // lightning gun bring none; New Game, demos and the switch off bring none. Through the public sound system, the
 // client's real nail parser (CL_ParseTEnt) and e1m1's real surfaces.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 await import( '../src/newer/install.js' );
 const dma = await import( '../src/engine/sound/snd_dma.js' ), sound = await import( '../src/engine/sound/sound.js' ), pak = await import( '../src/engine/common/pak.js' );
 const { Mod_Init, Mod_ForName, Mod_PointInLeaf } = await import( '../src/engine/render/gl_model.js' );

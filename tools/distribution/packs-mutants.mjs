@@ -3,7 +3,7 @@
 // one. Mutants run on a copy of the classifier in a temporary tree (the repository is untouched).
 //
 //   node tools/distribution/packs-mutants.mjs
-import {mkdtemp,mkdir,readFile,writeFile,symlink,rm} from 'node:fs/promises';
+import {mkdtemp,mkdir,readFile,writeFile,symlink,rm,cp} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -24,9 +24,11 @@ const source=await readFile(join(repo,'tools/distribution/packs.mjs'),'utf8');
 const dir=await mkdtemp(join(tmpdir(),'quaked-packs-mutants-'));let survived=0;
 try{
  await mkdir(join(dir,'tools/distribution'),{recursive:true});await mkdir(join(dir,'tests'));
- for(const name of ['src','newer','node_modules'])await symlink(join(repo,name),join(dir,name));
+ for(const name of ['src','assets','node_modules'])await symlink(join(repo,name),join(dir,name));
+ await symlink(join(repo,'tools/distribution/manifest.mjs'),join(dir,'tools/distribution/manifest.mjs'));
  await symlink(join(repo,'tools/distribution/build_game_index.mjs'),join(dir,'tools/distribution/build_game_index.mjs'));
  await symlink(join(repo,'tools/pak_members.mjs'),join(dir,'tools/pak_members.mjs'));
+ await cp(join(repo,'tests/helpers'),join(dir,'tests/helpers'),{recursive:true});
  await writeFile(join(dir,'tests/packs_contract_test.mjs'),await readFile(join(repo,'tests/packs_contract_test.mjs')));
  const run=()=>spawnSync(process.execPath,['--test','tests/packs_contract_test.mjs'],{cwd:dir,encoding:'utf8'}).status;
  await writeFile(join(dir,'tools/distribution/packs.mjs'),source);

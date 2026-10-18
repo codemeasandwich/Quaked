@@ -1,7 +1,7 @@
 // The native rays of the stock shotgun and super shotgun, observed through the actual QuakeC firing
 // functions on a real local server (the same harness as face_native_test.js). This tests the read-only
 // observer: it must see exactly the rays the game traced and change nothing.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import * as pak from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/engine/render/vid.js';
 import {Mod_Init} from '../src/engine/render/gl_model.js';

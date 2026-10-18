@@ -4,11 +4,14 @@
 Source PNGs remain unchanged. Only listed diffuse/height files and their existing
 catalogue records change. Normals are derived by the engine from stored heights.
 """
+
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from resource_paths import resource_path
 import argparse
 import hashlib
 import json
-from pathlib import Path
-import sys
 import numpy as np
 from PIL import Image, ImageDraw
 
@@ -71,9 +74,9 @@ def authored_height(rgb, name, policy, layering=None):
 
 def update(manifest_path, output=None, preview=None):
     recipe = json.loads(manifest_path.read_text())
-    index_path = ROOT / 'newer/textures/index.json'
+    index_path = resource_path(ROOT, 'newer/textures/index.json')
     index = json.loads(index_path.read_text())
-    target = output or ROOT / 'newer/textures'
+    target = output or resource_path(ROOT, 'newer/textures')
     target.mkdir(parents=True, exist_ok=True); (target / 'normals').mkdir(exist_ok=True)
     if preview: preview.mkdir(parents=True, exist_ok=True)
     sources = {}

@@ -1,7 +1,7 @@
 // Public identity-bound reuse of the base Ogre art on Rogue's two-skin model.
 // Native frame padding is intentionally not interpreted as geometry; all meaningful native records are checked.
 import * as THREE from 'three';
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {pakDirectory,readMember,isolatedPack} from '../tools/pak_members.mjs';

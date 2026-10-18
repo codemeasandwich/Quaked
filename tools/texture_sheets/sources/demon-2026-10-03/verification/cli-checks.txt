@@ -1,0 +1,1 @@
+PASS: read-only check writes no input/output files; truncated R16 and corrupt displacement reject without writes; normal import succeeds in scratch, preserves exact R16, advances the catalog revision by one, creates no duplicate evidence recipe, and passes --check.

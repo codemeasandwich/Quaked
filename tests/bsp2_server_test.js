@@ -1,6 +1,6 @@
 // Native QC edicts + public linking and server datagram endpoint. The fixture's
 // PVS contains ONLY a high leaf bit, so narrowing to16bits cannot pass by chance.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import {BSP2,convertBsp29,widenFixture,splitBsp,joinBsp} from './helpers/bsp2_fixture.mjs';
 import {COM_AddPack,COM_LoadPackFile,COM_FindFile} from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/engine/render/vid.js';

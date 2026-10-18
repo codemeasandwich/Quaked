@@ -6,13 +6,16 @@ atlas transform; extend only supplied edge colour at UV boundaries. Per-island
 ownership prevents a neighbouring body part becoming a filtering donor. The
 native palette/model is a layout reference, never a source of output colour.
 """
+
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from resource_paths import resource_path
 import argparse
 import hashlib
 import json
-from pathlib import Path
 import struct
 import shutil
-import sys
 sys.dont_write_bytecode = True
 import numpy as np
 from PIL import Image
@@ -250,6 +253,6 @@ if __name__=='__main__':
  parser.add_argument('--model',choices=list(RECIPES),action='append')
  parser.add_argument('--pack',type=Path,default=ROOT/'resources/rogue/pak0.pak')
  parser.add_argument('--source-root',type=Path,default=ROOT)
- parser.add_argument('--output',type=Path,default=ROOT/'newer/enemies')
+ parser.add_argument('--output',type=Path,default=resource_path(ROOT, 'newer/enemies'))
  args=parser.parse_args()
  for key in args.model or RECIPES:fit_one(key,args.pack,args.source_root,args.output)

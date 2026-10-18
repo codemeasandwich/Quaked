@@ -11,7 +11,7 @@
  */
 // Two streamed decks share Quake's unlocked audio context. Never decode this
 // hour-long recording into an AudioBuffer or advance it with simulation time.
-export const AMBIENT_TRACK_URL = new URL( '../../../music/ambient.mp3', import.meta.url ).href;
+export const AMBIENT_TRACK_URL = new URL( '../../../assets/audio/music/ambient.mp3', import.meta.url ).href;
 export const AMBIENT_SLOT_SECONDS = 20 * 60;
 export const AMBIENT_FADE_SECONDS = 12;
 export const AMBIENT_BASE_GAIN = 0.075;

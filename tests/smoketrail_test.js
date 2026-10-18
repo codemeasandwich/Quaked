@@ -1,7 +1,7 @@
 // "01 RPG smoke" port: the ported emission and per-puff motion against the source's own
 // functions, and the Quake-specific behaviour (distance-based emission independent of frame
 // rate, no bridging across teleports, bounded pool). The renderer is not involved.
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import { runInNewContext } from 'node:vm';
 import * as st from '../src/newer/render/r_smoketrail.js';

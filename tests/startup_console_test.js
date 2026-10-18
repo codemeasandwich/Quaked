@@ -1,6 +1,6 @@
 // Real native console canvas and public SCR_UpdateScreen, with a recording world
 // draw endpoint. The coordinator still requires three actual-ready snapshots.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import * as boot from '../src/newer/ui/r_demoloading.js';
 import * as screen from '../src/engine/render/gl_screen.js';
 import * as draw from '../src/engine/render/gl_draw.js';

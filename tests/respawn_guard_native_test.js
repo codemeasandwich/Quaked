@@ -1,7 +1,7 @@
 // A guard monster is left where the player fell (card [2]): a native Fiend on Normal, a Shambler on Hard and Nightmare, none on Easy.
 // The game's own spawn function makes it after the respawn lands. Real QuakeC, real server, stock maps.
 // (the drop and health tests turn the guard off with sv_respawnguard 0; here it is on)
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

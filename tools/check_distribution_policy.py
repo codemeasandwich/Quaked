@@ -5,6 +5,7 @@ import json
 import re
 import subprocess
 from pathlib import Path
+from resource_paths import resource_path
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--preservation-root', type=Path)
@@ -12,7 +13,7 @@ args = parser.parse_args()
 root = Path(__file__).resolve().parents[1]
 policy = json.loads((root / 'docs/distribution-local-only.json').read_text())
 rows = policy['paths']
-paths = {row['path'] for row in rows}
+paths = {resource_path(root, row['path']).relative_to(root).as_posix() for row in rows}
 assert len(paths) == len(rows), 'duplicate classification paths'
 assert all(not p.startswith('/') and '..' not in Path(p).parts for p in paths)
 
@@ -21,17 +22,21 @@ def git(*argv, input=None):
                           stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
 
 def ignored(items, no_index=True):
+    items = {resource_path(root, path).relative_to(root).as_posix() for path in items}
     data = ('\0'.join(sorted(items)) + '\0').encode()
     result = git('check-ignore', *(['--no-index'] if no_index else []), '-z', '--stdin', input=data)
     assert result.returncode in (0, 1), result.stderr.decode()
     return set(result.stdout.decode().rstrip('\0').split('\0')) if result.stdout else set()
 
 assert ignored(paths) == paths, 'classified path missing an effective exact ignore rule'
-tracked = set(git('ls-files', '-z').stdout.decode().rstrip('\0').split('\0'))
+tracked_index = set(git('ls-files', '-z').stdout.decode().rstrip('\0').split('\0'))
+tracked = {resource_path(root, path).relative_to(root).as_posix() for path in tracked_index}
 assert not ignored(tracked - paths), 'required tracked source matched local-only policy'
-assert not ignored(paths, no_index=False) & tracked, 'Git must retain already tracked developer files'
+assert not ignored(paths, no_index=False) & tracked_index, 'Git must retain already tracked developer files'
 controls = {'assets/docs/procedural-surface-enhancement.png', 'newer/ui/studio-logo.png',
-            'logo.svg', 'shotgun.zip', 'dem4_4_maps.zip', 'LICENSE', 'README.md',
+            'logo.svg', 'shotgun.zip', 'LICENSE', 'README.md',
+            'tools/texture_sheets/sources/demon-2026-10-03/manifest.json',
+            'tools/texture_sheets/sources/demon-2026-10-03/dem4_4_displacement_16bit.png',
             'docs/future-public-guide.md', 'src/future-engine.js', 'newer/future-runtime.png',
             'newer/enemies/ogre/custom/diffuse.webp', 'server/README.md', 'music/CREDITS.txt'}
 assert not ignored(controls), 'runtime, public docs, build or legal control excluded'
@@ -41,14 +46,14 @@ def payloads(data, kind):
     return {path for row in rows for path in ([part['file'] for part in row['parts']] if row.get('parts') else [row['file']])}
 
 for group in policy['runtimeClosure']:
-    manifest = json.loads((root / group['manifest']).read_text())
+    manifest = json.loads(resource_path(root, group['manifest']).read_text())
     text = (root / group['registry']).read_text()
     registry = json.loads(text[text.index('{'):].strip().removesuffix(';'))
     actual = payloads(manifest['samples' if group['kind'] == 'normals' else 'levels'], group['kind'])
     assert actual == payloads(registry, group['kind']), 'current registry/manifest disagreement'
     assert actual == set(group['referencedFiles']), 'classification runtime snapshot changed; review new dependencies'
     for path in actual:
-        assert (root / path).is_file(), 'missing runtime dependency: ' + path
+        assert resource_path(root, path).is_file(), 'missing runtime dependency: ' + path
     closure.update(actual)
     closure.update([group['manifest'], group['registry']])
 assert not ignored(closure), 'runtime manifest dependency excluded'

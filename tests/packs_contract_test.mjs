@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFile} from 'node:fs/promises';
+import {readFile} from './helpers/resource_fs_promises.mjs';
 import {PackChain,CommonAncestor,PacksFor,PackClassifier,NAMESPACE} from '../tools/distribution/packs.mjs';
 import {IndexSources} from '../tools/distribution/build_game_index.mjs';
 import {GAME_CATALOGUE_GAMES} from '../src/engine/common/game_catalogue.js';

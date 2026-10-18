@@ -1,7 +1,8 @@
+import {resourcePath} from './helpers/resource_path.mjs';
 // Public, source-bound Hipnotic Armagon skin verification. Reads bounded owned PAK members without exporting them.
 // Async selection/failure tests replace only image transport; asset tests decode the actual shipped PNG/WebP files.
 import * as THREE from 'three';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -318,11 +319,11 @@ Deno.test('Armagon encoded, decoded and effective-height provenance matches the 
  const tasks=[];
  for(const spec of SPECS){
   const base='newer/enemies/'+spec.key+'/custom/',report=JSON.parse(read(base+'SOURCE.json')),variant=index.models[spec.key][0];
-  for(const file of ['diffuse.webp','height.webp'])tasks.push({path:fileURLToPath(new URL('../'+base+file,import.meta.url)),receipt:report.runtimeEncoding.maps[file],policy:file==='height.webp'?report.flatHeight?.runtime:null});
+  for(const file of ['diffuse.webp','height.webp'])tasks.push({path:resourcePath(new URL('../'+base+file,import.meta.url)),receipt:report.runtimeEncoding.maps[file],policy:file==='height.webp'?report.flatHeight?.runtime:null});
   if(spec.key==='armabody'){
    same(JSON.stringify(variant.heightFlat),JSON.stringify(report.flatHeight.runtime),'custom runtime policy is exactly source-authored');
    const native=report.nativeHeight,entry=index.nativeHeights.armabody[0][0];same(JSON.stringify(entry.heightFlat),JSON.stringify(native.flatHeight.runtime),'native runtime policy is exactly source-authored');same(native.encoding.format,'webp','native authored height runtime codec');same(native.encoding.quality,92,'native authored height is Q92');same(native.encoding.lossless,false,'native authored height is not secretly lossless');
-   tasks.push({path:fileURLToPath(new URL('../newer/enemies/'+native.file,import.meta.url)),receipt:native.encoding,policy:native.flatHeight.runtime});
+   tasks.push({path:resourcePath(new URL('../newer/enemies/'+native.file,import.meta.url)),receipt:native.encoding,policy:native.flatHeight.runtime});
   }else same(variant.heightFlat,undefined,'legs have no flash reconstruction');
  }
  // Receipts explicitly name Pillow's decoder. Verify that provenance with its

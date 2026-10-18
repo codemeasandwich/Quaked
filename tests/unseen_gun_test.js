@@ -2,7 +2,7 @@
 // R_DrawViewModel no longer hides it there, it is tagged an enemy subject, and the Unseen pass no longer passes it through
 // untouched (the history pass still keeps it out of the trails). Classic and Demon vision keep their behaviour.
 await import( '../src/engine/render/gl_rsurf.js' );
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 const skins = await import( '../src/newer/render/r_newerskins.js' );
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
 const read = f => readFileSync( new URL( '../src/' + f, import.meta.url ), 'utf8' );

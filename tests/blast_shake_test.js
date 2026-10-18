@@ -1,7 +1,7 @@
 // The view's shake at a nearby explosion (src/newer/render/v_blastshake.js; docs/blast-shake-2026-10-13.md, card
 // T-3faa98e3 item 3), through its two public entry points, through the client's real explosion parser (CL_ParseTEnt)
 // and through the real view path (V_CalcRefdef). Client, server, key and cvar state are the real module singletons.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { V_BlastShake, V_BlastShakeEvent, v_blastshake, BLAST_ROCKET, BLAST_SPAWN, BLAST_ERUPTION } from '../src/newer/render/v_blastshake.js';
 import { V_CalcRefdef, V_Init, V_RenderView } from '../src/engine/client/view.js';
 import { r_refdef } from '../src/engine/render/render.js';

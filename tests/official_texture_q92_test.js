@@ -1,7 +1,8 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Independent public-interface verification of the quality92 channel-normal world families.
 // Reads real PAK/BSP inputs, decodes real lossy WebPs and uses renderer endpoints.
 // Passing these checks is not visual acceptance or GPU gameplay verification.
-import { readFileSync, writeFileSync, mkdtempSync, rmSync, realpathSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdtempSync, rmSync, realpathSync, mkdirSync } from './helpers/resource_fs.mjs';
 import { execFileSync } from 'node:child_process';
 import { resolve, join } from 'node:path';
 import { tmpdir } from 'node:os';
@@ -145,8 +146,8 @@ async function imagesFixture( run ) {
 	const saved = { fetch: globalThis.fetch, Image: Object.getOwnPropertyDescriptor( globalThis, 'Image' ), document: Object.getOwnPropertyDescriptor( globalThis, 'document' ), classic: mode.R_ClassicPassActive() };
 	const controls = [ r_hdr, mode.r_newer_textures ]; for ( const c of controls ) if ( ! vars.Cvar_FindVar( c.name ) ) vars.Cvar_RegisterVariable( c );
 	const values = controls.map( c => c.string ), requests = [], fetches = [];
-	globalThis.fetch = async url => { fetches.push( String( url ) ); same( String( url ), 'newer/textures/index.json', 'public index fetch' ); return { ok: true, json: async () => index }; };
-	Object.defineProperty( globalThis, 'Image', { configurable: true, value: class extends NativeImage { set src( url ) { requests.push( String( url ) ); super.src = read( String( url ).split( '?' )[ 0 ] ); } } } );
+	globalThis.fetch = async url => { fetches.push( ResourceURL(url,true) ); same( ResourceURL(url,true), 'newer/textures/index.json', 'public index fetch' ); return { ok: true, json: async () => index }; };
+	Object.defineProperty( globalThis, 'Image', { configurable: true, value: class extends NativeImage { set src( url ) { requests.push( ResourceURL(url,true) ); super.src = read( ResourceURL(url,true).split( '?' )[ 0 ] ); } } } );
 	Object.defineProperty( globalThis, 'document', { configurable: true, value: { createElement: name => { same( name, 'canvas', 'actual decoding canvas' ); return createCanvas( 1, 1 ); } } } );
 	mode.R_AnimSetClassicPass( false ); vars.Cvar_SetValue( r_hdr.name, 1 ); vars.Cvar_SetValue( mode.r_newer_textures.name, 1 );
 	const decode = async (file, rootRelative = false) => {

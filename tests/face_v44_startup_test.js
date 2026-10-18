@@ -1,7 +1,7 @@
 // Actual startup PAK must supply one coherent v4.4 manifest/raster family even
 // when a previously-mounted optional PAK has stale face bytes and cached URLs.
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import {COM_LoadPackFile,COM_SetNewerStartupPack,COM_SetNewerPack,COM_NewerFile,COM_NewerURL,COM_NewerJSON} from '../src/engine/common/pak.js';
 import {STARTUP_PACK} from '../src/newer/assets/startup_pack.js';
 const read=path=>readFileSync(new URL('../'+path,import.meta.url)),ab=bytes=>bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.length),manifest=JSON.parse(read('newer/hud/playerface/manifest.json'));

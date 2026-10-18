@@ -10,10 +10,13 @@ Run from any directory: python3 tools/texture_sheets/update_wizard.py
 Requires Pillow and NumPy, as do the existing texture tools. Height generation
 and version invalidation use the existing craft_normals.main implementation.
 """
-import json
+
 import sys
-sys.dont_write_bytecode = True
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from resource_paths import resource_path
+import json
+sys.dont_write_bytecode = True
 from PIL import Image
 import numpy as np
 
@@ -27,7 +30,7 @@ from align_frames import shifted
 def main():
     recipe = json.loads((HERE / 'sources/wizard-2026-10-01.json').read_text())
     source = Image.open(HERE / 'sources' / recipe['source']).convert('RGB')
-    index = json.loads((ROOT / 'newer/textures/index.json').read_text())
+    index = json.loads((resource_path(ROOT, 'newer/textures/index.json')).read_text())
     # Check the entire batch before overwriting any asset. Existing profile
     # metadata is retained, so a future profile change needs an explicit review.
     for tile in recipe['textures']:
@@ -39,11 +42,11 @@ def main():
         box = tile['box']
         if name not in index['textures'] or not (0 <= box[0] < box[2] <= source.width and 0 <= box[1] < box[3] <= source.height):
             raise ValueError(f'Invalid texture or source bounds: {name}')
-        if Image.open(ROOT / 'newer/textures' / index['textures'][name]).size != tuple(recipe['output_size']):
+        if Image.open(resource_path(ROOT, 'newer/textures') / index['textures'][name]).size != tuple(recipe['output_size']):
             raise ValueError(f'Refusing to change existing resolution: {name}')
     for tile in recipe['textures']:
         name, box = tile['name'], tile['box']
-        target = ROOT / 'newer/textures' / index['textures'][name]
+        target = resource_path(ROOT, 'newer/textures') / index['textures'][name]
         # Lossless WebP retains the extracted/resized pixels without another
         # lossy pass. Never include black unused atlas cells in a replacement.
         image = source.crop(box).resize(recipe['output_size'], Image.Resampling.LANCZOS)
@@ -61,7 +64,7 @@ def main():
     craft_normals.main(names)
     # The existing profile metadata already carries the effective strength/cap.
     # Keep its exact representation (including an implicit default cap) intact.
-    manifest_path = ROOT / 'newer/textures/index.json'
+    manifest_path = resource_path(ROOT, 'newer/textures/index.json')
     updated = json.loads(manifest_path.read_text())
     for name in names:
         updated['normals'][name] = index['normals'][name]

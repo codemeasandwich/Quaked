@@ -1,7 +1,7 @@
 // Every installed shareware MDL, loaded in reverse directory order rather than
 // the baker's sorted order. The golden is from SHA-bound retained HEAD greedy
 // strip/fan code, not from the optimized cache or generated baked records.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import {createHash} from 'node:crypto';
 import {COM_LoadPackFile,COM_AddPack,COM_FindFile} from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/engine/render/vid.js';

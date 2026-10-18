@@ -2,7 +2,7 @@
 // plays lights the sky in quick flickers, stronger the louder and nearer it is; out under the sky a gust passes now
 // and then, the game's own gust sounds first; New Game, demos and the switch off are untouched. Through the public
 // sound system (S_Init, S_StartSound) and the sky's material, with the shareware pack's real sounds and e1m1's leaves.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 await import( '../src/newer/install.js' );
 const dma = await import( '../src/engine/sound/snd_dma.js' ), sound = await import( '../src/engine/sound/sound.js' ), pak = await import( '../src/engine/common/pak.js' );
 const { Mod_Init, Mod_ForName } = await import( '../src/engine/render/gl_model.js' );

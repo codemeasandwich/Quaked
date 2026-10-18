@@ -1,9 +1,10 @@
+import {resourcePath} from './helpers/resource_path.mjs';
 import {fileURLToPath} from 'node:url';
 import {resolve,sep} from 'node:path';
 import {isDeepStrictEqual} from 'node:util';
 import * as THREE from 'three';
 import './glass_materials_test.js';
-import {readFileSync,writeFileSync} from 'node:fs';
+import {readFileSync,writeFileSync} from './helpers/resource_fs.mjs';
 import {createRequire} from 'node:module';
 import {createHash} from 'node:crypto';
 import {R_GenerateNormalData} from '../src/newer/render/gl_normals.js';
@@ -11,7 +12,7 @@ import {R_GlassTextureKey} from '../src/newer/render/r_newertextures.js';
 const require=createRequire(import.meta.url),{createCanvas,loadImage}=require('/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas');
 // A validation stage has the same index.json/glass layout as newer/textures.
 // Selecting it changes read inputs only; no material or review is rewritten.
-const root=resolve(process.env.QUAKED_GLASS_TEXTURE_ROOT||fileURLToPath(new URL('../newer/textures/',import.meta.url)))+sep;
+const root=resolve(process.env.QUAKED_GLASS_TEXTURE_ROOT||resourcePath(new URL('../newer/textures/',import.meta.url)))+sep;
 const inputBytes={'index.json':readFileSync(root+'index.json'),'glass/region-review.json':readFileSync(root+'glass/region-review.json'),'glass/region-proof.json':readFileSync(root+'glass/region-proof.json')};
 const index=JSON.parse(inputBytes['index.json']),reviews=JSON.parse(inputBytes['glass/region-review.json']),proof=JSON.parse(inputBytes['glass/region-proof.json']),own=Object.fromEntries(reviews.filter(v=>v.reviewId>=72).map(v=>[String(v.reviewId),v.regionReview]));
 const check=(v,m)=>{if(!v)throw Error(m)},sha=b=>createHash('sha256').update(b).digest('hex');

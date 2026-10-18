@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-18",
+  "scope": "Unpacked demon plaque authoring sources; shared manifest; no runtime data regeneration",
+  "baseHead": "616ee09ca4eae3121d5417b081623a144f498671",
+  "branch": "codex/main-work-preserved-20261013T164224Z",
+  "implementationSha256": {
+    "tests/demon_face_relief_test.js": "8d6a900ebf3793308ff52f5e4678e99bea17e2fe5d614e6cf094ca10861b124d",
+    "tools/check_distribution_policy.py": "141da54dade7eac83c41e6e24c32a1ea551813d8b97ea5390b3ad6367aa4c054",
+    "tools/sculpt_demon_faces.py": "b19225ce8d353dd35ddc159fc1d28f1415951a90af5465f3aa75f8e2e7f1d827",
+    "tools/texture_sheets/sources/demon-2026-10-03/README.md": "19d6f39330d611f83480e2a9c6c7c19fc322da022cd9890e134c99820324e74c",
+    "tools/texture_sheets/sources/demon-2026-10-03/README.txt": "05b949374b6d86b412e17add2527a5bdfbcf5ac5f6876f6e54903b4e4684674b",
+    "tools/texture_sheets/sources/demon-2026-10-03/dem4_4_displacement_16bit.png": "d5e89e6d2a3109e0507b91b53ed65b4ce072f1789296190ecc4b94f87009ef45",
+    "tools/texture_sheets/sources/demon-2026-10-03/dem4_4_normal_directx.png": "4c9ed5ad050c494907275f7aeb58ff18ebd2727c6ecd7b0579b5ff24073fb50f",
+    "tools/texture_sheets/sources/demon-2026-10-03/dem4_4_normal_opengl.png": "604de25a67716c23ba85c79da11e337d89f7c55f2968a1865048e189aaa4b6cf",
+    "tools/texture_sheets/sources/demon-2026-10-03/encode_maps.mjs": "97aa063cfd41694fccef0243a69098419e09c426ef490800544e49f7adbafd1d",
+    "tools/texture_sheets/sources/demon-2026-10-03/height.png": "aab20e6d55542d794a8fe35470018b0155e9b6388f5a95a52b7ece65464a0de2",
+    "tools/texture_sheets/sources/demon-2026-10-03/manifest.json": "6286860bc789e231372e3fd87f63be0bc734dc2012946a716a68871dfde0d9d2",
+    "tools/texture_sheets/sources/demon-2026-10-03/sources/dem4_4_height_inferred_native.png": "d348dbc26c75776abd38b72eb93fb9e5a83555be248423d193e062ca42429743",
+    "tools/texture_sheets/sources/demon-2026-10-03/sources/dem4_4_original.webp": "3171058b412f3ed1ba76e9e5022a64faf56492deac2ec431464ed3c2295e8ad5"
+  },
+  "protectedBeforeSha256": {
+    "newer/textures/index.json": "7ec4f5683b64b3f44fa5182175397316df2112c15bced84e870de5d20c19f916",
+    "newer/textures/normals/demon-face.r16": "471edf6290158d4956e85aadbff1a302f3e20473be446d45570c7fc78e34af4e",
+    "newer/textures/normals/demon-face.webp": "1d1ee1d2529378af77218a84814e81c33357c7958a2dc9a0347750d3e0367765",
+    "newer/textures/dem4_1.webp": "760bf513bd1de608f0bf3eb50ce75aebb347110f0e0e0376c6dbc581972da4b2",
+    "newer/textures/dem4_4.webp": "3171058b412f3ed1ba76e9e5022a64faf56492deac2ec431464ed3c2295e8ad5",
+    "newer/textures/dem5_3.webp": "4de19e46b16f0c3cfe0d1467acb78fdbf80987802052cfbde7e068aba77defd3",
+    "newer/displacement/manifest.json": "131cba42618ddebb0f259c732d9dde5b316cd345e9c6fae90c8084c909748624",
+    "tools/texture_sheets/sources/demon-2026-10-03/height.png": "aab20e6d55542d794a8fe35470018b0155e9b6388f5a95a52b7ece65464a0de2"
+  },
+  "protectedAfterSha256": {
+    "newer/textures/index.json": "7ec4f5683b64b3f44fa5182175397316df2112c15bced84e870de5d20c19f916",
+    "newer/textures/normals/demon-face.r16": "471edf6290158d4956e85aadbff1a302f3e20473be446d45570c7fc78e34af4e",
+    "newer/textures/normals/demon-face.webp": "1d1ee1d2529378af77218a84814e81c33357c7958a2dc9a0347750d3e0367765",
+    "newer/textures/dem4_1.webp": "760bf513bd1de608f0bf3eb50ce75aebb347110f0e0e0376c6dbc581972da4b2",
+    "newer/textures/dem4_4.webp": "3171058b412f3ed1ba76e9e5022a64faf56492deac2ec431464ed3c2295e8ad5",
+    "newer/textures/dem5_3.webp": "4de19e46b16f0c3cfe0d1467acb78fdbf80987802052cfbde7e068aba77defd3",
+    "newer/displacement/manifest.json": "131cba42618ddebb0f259c732d9dde5b316cd345e9c6fae90c8084c909748624",
+    "tools/texture_sheets/sources/demon-2026-10-03/height.png": "aab20e6d55542d794a8fe35470018b0155e9b6388f5a95a52b7ece65464a0de2"
+  },
+  "rootArchiveAbsent": true,
+  "checks": {
+    "renderer": "7/7 passed; no ZIP present",
+    "distributionContracts": "3/3 passed",
+    "installedImporterCheck": "passed, all 131072 uint16 values",
+    "cliFixtures": "passed; see cli-checks.txt and check_import_cli.py",
+    "inventories": "web and desktop authoring exclusion/runtime retention passed",
+    "independentReview": "CLEAR including retained CLI probe; reviewer did not rerun tests; hash assertions cover listed inputs/outputs",
+    "policy": "blocked by pre-existing deleted docs/distribution-local-only.json",
+    "board": "identity/inbox/checkpoint storage_error; no acknowledged tracking mutation"
+  },
+  "qualification": "Reviewed working-tree change. No commit, landing, release or owner visual acceptance."
+}

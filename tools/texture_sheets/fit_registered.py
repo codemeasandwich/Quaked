@@ -19,8 +19,12 @@ on a plain background:
 
 RECIPES names each supported sheet: the model, both digests, the expected layout and sizes.
 """
-import argparse, hashlib, json, struct, sys
+
+import sys
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from resource_paths import resource_path
+import argparse, hashlib, json, struct, sys
 sys.dont_write_bytecode = True
 import numpy as np
 from PIL import Image
@@ -128,7 +132,7 @@ def main():
 	parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
 	parser.add_argument('name', choices=sorted(RECIPES)); parser.add_argument('--source', type=Path, required=True); parser.add_argument('--pack', type=Path, required=True)
 	parser.add_argument('--out', type=Path); args = parser.parse_args()
-	recipe = RECIPES[args.name]; out = args.out or ROOT / 'newer/enemies' / args.name / 'custom'
+	recipe = RECIPES[args.name]; out = args.out or resource_path(ROOT, 'newer/enemies') / args.name / 'custom'
 	if hashlib.sha256(args.source.read_bytes()).hexdigest() != recipe['sourceSha256']: raise ValueError('Supplied source changed; review fit recipe')
 	data = member(args.pack, recipe['model'])
 	if hashlib.sha256(data).hexdigest() != recipe['modelSha256']: raise ValueError('Native model differs from this fit recipe')

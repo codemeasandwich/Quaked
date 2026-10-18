@@ -1,7 +1,7 @@
 // Public menu/touch/key -> real command buffer -> actual cvar state. The map
 // command is the only gameplay endpoint replaced: its capture proves options
 // are applied BEFORE dispatch, without starting an extra server/browser loop.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import * as cmd from '../src/engine/common/cmd.js';
 import * as menu from '../src/engine/client/menu.js';

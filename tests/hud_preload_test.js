@@ -1,6 +1,7 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Public HUD preload/status uses the existing lazy sprite canvas cache. No game
 // or RAF loop is started; only fetch/image/deadline endpoints are controlled.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 const faceManifest=JSON.parse(readFileSync(new URL('../newer/hud/playerface/manifest.json',import.meta.url),'utf8'));
 const faceSources=new Set(faceManifest.assets.map(a=>a.source).filter(Boolean));
 import { r_hdr } from '../src/newer/render/gl_post.js';
@@ -25,7 +26,7 @@ async function fixture( fn ) {
 }
 
 Deno.test( 'HUD preload starts all unique catalog images behind fullconsole and shares cached canvases with lazy sprite requests', async () => fixture( async env => {
-	globalThis.fetch = async path => ( { ok: true, json: async () => String(path).includes('/playerface/manifest.json')?faceManifest:({ version: 7, sprites: { face1: 'face.webp', face2: 'face.webp', num_0: 'zero.webp' } }) } );
+	globalThis.fetch = async path => ( { ok: true, json: async () => ResourceURL(path,true).includes('/playerface/manifest.json')?faceManifest:({ version: 7, sprites: { face1: 'face.webp', face2: 'face.webp', num_0: 'zero.webp' } }) } );
 	const hud = await import( '../src/newer/ui/r_newerhud.js?preload-success' ), preload = hud.R_NewerHudPreload(); equal( hud.R_NewerHudPreload(), preload, 'preloadidempotent' );
 	await flush(); equal( env.images.length, 2+faceSources.size, 'unique catalog plus all donor source images start without Sbar draws' ); equal( hud.R_NewerHudStatus().pending, 3, 'two catalog images and one shared face batch pending' ); check( ! hud.R_NewerHudStatus().settled, 'preload holds until images terminal' );
 	const pic = { _name: 'face1', width: 24, height: 24 }; equal( hud.R_NewerHudCanvas( pic ), null, 'lazy native until decoded' ); await flush(); equal( env.images.length, 2+faceSources.size, 'lazy request shares existing preload promise' );

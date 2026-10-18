@@ -1,7 +1,7 @@
 // Independent Quad gameplay proof through native map/spawn/QC pickup and
 // server movement/physics. Headless local loopback only; no browser or render
 // loop is launched. The jump apex uses actual collision/gravity integration.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import * as pak from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/engine/render/vid.js';
 import {Mod_Init} from '../src/engine/render/gl_model.js';

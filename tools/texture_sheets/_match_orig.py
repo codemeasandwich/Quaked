@@ -1,3 +1,8 @@
+from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from resource_paths import resource_path
+TEXTURES = resource_path(Path(__file__).resolve().parents[2], 'newer/textures')
 import json, glob, os, sys
 import numpy as np
 from PIL import Image
@@ -21,7 +26,7 @@ def best(im,cands):
     res.sort(reverse=True); return res[:3]
 if False:
     rows=[]
-    for f in sorted(glob.glob('/home/user/repo/newer/textures/*.webp')):
+    for f in sorted(TEXTURES.glob('*.webp')):
         n=os.path.basename(f)[:-5]
         n=n.replace('p_','+') if n.startswith('p_') else n
         im=Image.open(f).convert('RGB')

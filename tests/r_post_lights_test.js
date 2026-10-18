@@ -1,7 +1,7 @@
 // The post pipeline's lights stage on its own (card [44h]): E1M1's light database, and the frame's selection, capped
 // at MAX_VOLUME_LIGHTS and with the Bestiary's portrait light among the candidates. Through the
 // public interface of r_post_lights.js, on the shareware pack's real map.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import * as lights from '../src/newer/render/r_post_lights.js';
 import { MAX_VOLUME_LIGHTS } from '../src/newer/render/r_post_config.js';

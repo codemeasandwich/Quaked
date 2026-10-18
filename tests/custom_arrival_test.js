@@ -1,6 +1,6 @@
 // Actual native server, reciprocal loopback sockets, public renderer new-map,
 // client command and host physics endpoints. GPU readiness remains a browser test.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import {COM_AddPack,COM_LoadPackFile,COM_FindFile} from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/engine/render/vid.js';
 import {Mod_Init} from '../src/engine/render/gl_model.js';

@@ -1,6 +1,6 @@
 // Teleporter-pad exits show the next level (card [B2], owner request 9 Oct 2026): a window in the slipgate, a picture only; the pad
 // still teleports as before. Real server, stock E1M8 and E1M4 (E1M8's exit and E1M4's secret exit were among those reported).
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

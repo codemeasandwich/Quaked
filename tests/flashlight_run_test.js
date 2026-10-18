@@ -1,6 +1,6 @@
 // Public run policy, command/menu input, native QuakeC builtin and notify UI.
 // No game/server loop or browser is launched.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as run from '../src/newer/render/r_flashlightrun.js';
 import * as flashlight from '../src/newer/render/r_flashlight.js';
 import * as vars from '../src/engine/common/cvar.js';

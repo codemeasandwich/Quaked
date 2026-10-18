@@ -1,6 +1,7 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Public loader/normal pipeline against the shipped START plaque and installed
 // SVG-derived artwork. A software canvas decodes assets; no server is started.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 import * as THREE from 'three';
@@ -63,7 +64,7 @@ async function fixture( fn ) {
 	const saved = { Image: globalThis.Image, document: globalThis.document, fetch: globalThis.fetch, hdr: r_hdr.string, textures: r_newer_textures.value };
 	if ( ! vars.Cvar_FindVar( r_hdr.name ) ) vars.Cvar_RegisterVariable( r_hdr );
 	vars.Cvar_Set( r_hdr.name, '1' ); r_newer_textures.value = 1;
-	globalThis.Image = class extends NativeImage { set src( path ) { requests.push( path ); super.src = read( String( path ).split( '?' )[ 0 ] ); } };
+	globalThis.Image = class extends NativeImage { set src( path ) { requests.push( ResourceURL(path,true) ); super.src = read( ResourceURL(path,true).split( '?' )[ 0 ] ); } };
 	globalThis.document = { createElement: name => { equal( name, 'canvas', 'software decoder' ); return createCanvas( 1, 1 ); } };
 	globalThis.fetch = async () => ( { ok: true, json: async () => index } );
 	try { await fn(); } finally {

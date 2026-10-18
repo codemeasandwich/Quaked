@@ -19,11 +19,14 @@ import numpy as np
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'tools'))
+from resource_paths import resource_path
+
 sys.path.insert(0, str(ROOT / 'tools/texture_sheets'))
 import fix_seams  # noqa: E402  (pak reading and the edge measurement)
 
 BASE = 'd780a96'
-TEXTURES = ROOT / 'newer/textures'
+TEXTURES = resource_path(ROOT, 'newer/textures')
 INDEX = json.loads((TEXTURES / 'index.json').read_text())
 FIXED = json.loads((ROOT / 'tools/texture_sheets/seam_fixes.json').read_text())['fixed']
 NATIVES = fix_seams.native_textures()

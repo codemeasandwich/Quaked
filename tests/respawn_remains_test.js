@@ -1,6 +1,6 @@
 // Independent native QC death/remains and atomic inventory-custody tests.
 // Owner override: the axe is NOT dropped, despite the supplied demo's README.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

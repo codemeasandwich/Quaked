@@ -1,7 +1,7 @@
 // Shotgun pickups (card [12], owner request): the super shotgun pickup twice as wide across, its length unchanged; the basic
 // shotgun's death drop distinct (skin 1 of g_shot.mdl, drawn as its own art, role g_shot1). The baked art, the renderer's role
 // choice and real death drops on stock E1M1, saved and restored.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

@@ -10,7 +10,7 @@ window.addEventListener( 'unhandledrejection', event => errors.push( String( eve
 try {
 	vars.Cvar_RegisterVariable( ( await import( '../src/newer/render/gl_post.js' ) ).r_hdr ); vars.Cvar_SetValue( 'r_hdr', 1 );
 	newerMode.R_AnimSetNewer( true ); newerMode.R_AnimSetLighting( false ); newerMode.r_newer_normals.value = 0;
-	const manifest = await ( await fetch( 'newer/enemies/index.json', { cache: 'no-store' } ) ).json(); if ( new URL( location.href ).searchParams.get( 'sourceTone' ) === '1' ) manifest.models.ogre[ 0 ].faces.colorBalance = [ 1, 1, 1 ];
+	const manifest = await ( await fetch( 'assets/game/enemies/index.json', { cache: 'no-store' } ) ).json(); if ( new URL( location.href ).searchParams.get( 'sourceTone' ) === '1' ) manifest.models.ogre[ 0 ].faces.colorBalance = [ 1, 1, 1 ];
 	skins.R_NewerSetIndex( manifest );
 	pak.COM_AddPack( await pak.COM_FetchPak( 'games/shareware/pak0.pak', 'pak0.pak' ) ); vid.VID_SetPalette( pak.COM_FindFile( 'gfx/palette.lmp' ).data ); models.Mod_Init();
 	const renderer = new THREE.WebGLRenderer( { antialias: true, preserveDrawingBuffer: true } ); renderer.setSize( 1200, 900 ); renderer.domElement.style.width = '100%'; renderer.domElement.style.height = 'auto'; renderer.setScissorTest( true ); document.body.append( renderer.domElement );

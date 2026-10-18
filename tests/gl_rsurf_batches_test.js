@@ -2,7 +2,7 @@
 // the potentially visible set from a leaf showing only some of their instances, and a reflection probe's "show all"
 // and back. Through the public interface of gl_rsurf_batches.js (the map loaded by gl_rsurf.js's GL_BuildLightmaps),
 // on the shareware pack's real map.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as batches from '../src/engine/render/gl_rsurf_batches.js';
 import { GL_BuildLightmaps } from '../src/engine/render/gl_rsurf.js';
 import { worldState } from '../src/engine/render/gl_rsurf_state.js';

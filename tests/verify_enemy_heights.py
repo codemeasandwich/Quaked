@@ -9,6 +9,9 @@ sys.dont_write_bytecode = True
 import numpy as np
 from PIL import Image
 ROOT=Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / 'tools'))
+from resource_paths import resource_path
+
 sys.path.insert(0,str(ROOT/'tools/texture_sheets'))
 from update_enemy_heights import ENEMIES, PROFILE, native_skins
 from make_sheets import read_pak
@@ -16,7 +19,7 @@ import craft_normals
 from enemy_height_authoring import author_height
 
 pak=read_pak(ROOT/'games/shareware/pak0.pak');palette=np.frombuffer(pak['gfx/palette.lmp'],dtype=np.uint8).reshape(256,3)
-index=json.loads((ROOT/'newer/enemies/index.json').read_text());records=[];checks=0;stale=[]
+index=json.loads((resource_path(ROOT, 'newer/enemies/index.json')).read_text());records=[];checks=0;stale=[]
 source=ROOT/'tools/texture_sheets/sources/shambler-2026-10-01.png'
 assert hashlib.sha256(source.read_bytes()).hexdigest()=='f65fd1bcc87f70862cfb7284f216c4b20b89a05ed82fd0cc71f4d7a51033a3e9';checks+=1
 available={name[6:-4]:native_skins(data,palette) for name,data in pak.items() if name.startswith('progs/') and name.endswith('.mdl') and name[6:-4] in ENEMIES}
@@ -24,7 +27,7 @@ assert set(index['nativeHeights'])==set(available);checks+=1
 
 def verify(model,file,diffuse,spec,kind,authoring_key=None):
  global checks
- path=ROOT/'newer/enemies'/file;height=Image.open(path).convert('L');assert height.size==diffuse.size;checks+=1
+ path=resource_path(ROOT, 'newer/enemies')/file;height=Image.open(path).convert('L');assert height.size==diffuse.size;checks+=1
  data=np.asarray(height);assert data.max()-int(data.min())>20;checks+=1
  expected=author_height(np.asarray(diffuse.convert('RGB'),dtype=np.float32)/255,PROFILE,authoring_key or model)
  # the stored lossless WebP holds exactly the authored heights; its bytes depend on the encoder's version, so the
@@ -45,7 +48,7 @@ for model,variants in index['models'].items():
   if model not in ENEMIES:
    assert 'height' not in variant['maps'];checks+=1;continue
   assert 'height' in variant['maps'];checks+=1
-  directory=ROOT/'newer/enemies'/variant['dir'];verify(model,variant['dir']+'/'+variant['maps']['height'],Image.open(directory/variant['maps']['diffuse']),dict(strength=variant['heightStrength'],cap=variant['heightCap']),'custom',variant['dir'])
+  directory=resource_path(ROOT, 'newer/enemies')/variant['dir'];verify(model,variant['dir']+'/'+variant['maps']['height'],Image.open(directory/variant['maps']['diffuse']),dict(strength=variant['heightStrength'],cap=variant['heightCap']),'custom',variant['dir'])
 fit=json.loads((ROOT/'docs/evidence/shambler-uv-fit-2026-10-01.json').read_text());assert fit['surface_coverage']==1.0;checks+=1
 report=dict(checks=checks,version=index['version'],source_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),stored_height_count=len(records),available_models=sorted(available),runtime_model_keys=sorted(ENEMIES),records=records)
 # the dated evidence record is rewritten only on request (--write-evidence); a plain run checks and changes nothing

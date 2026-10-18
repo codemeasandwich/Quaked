@@ -148,7 +148,7 @@ try{
  for(const spec of partSpecs){const model=models.Mod_ForName('progs/'+spec.key+'.mdl',true);await model.aliasSourceIdentity.promise;if(model.aliasSourceIdentity.sha256!==spec.sha)throw Error('Actual model identity mismatch: '+spec.key);const h=model.cache.data;parts.push({key:spec.key,model,header:h,initialShape:shape(h)});}
  body=parts[0].model;header=parts[0].header;head=models.Mod_ForName('progs/'+(trial.negative||'wrath')+'.mdl',true);await head.aliasSourceIdentity.promise;
  if(parts.some(part=>part.header.numframes!==header.numframes))throw Error('Paired model frame counts differ');
- const index=await(await fetch('newer/enemies/index.json')).json();skins.R_NewerSetIndex(index);
+ const index=await(await fetch('assets/game/enemies/index.json')).json();skins.R_NewerSetIndex(index);
  renderer=new THREE.WebGLRenderer({antialias:false,preserveDrawingBuffer:true});renderer.setPixelRatio(1);renderer.setSize(W,H);renderer.setClearColor(0,0);renderer.autoClear=false;renderer.debug.onShaderError=(gl,p,v,f)=>errors.push({program:gl.getProgramInfoLog(p),vertex:gl.getShaderInfoLog(v),fragment:gl.getShaderInfoLog(f)});
  scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(42,1,4,1500);camera.up.set(0,0,1);for(const part of parts){part.entity=new entity_t();part.entity.model=part.model;part.entity.skinnum=0;}
  const box=new THREE.Box3();for(const part of parts)for(let frame=0;frame<part.header.numframes;frame++){const native=mesh.GL_DrawAliasFrame(part.header,frame);box.union(new THREE.Box3().setFromBufferAttribute(native.posAttr));}const center=box.getCenter(new THREE.Vector3()),size=box.getSize(new THREE.Vector3()),span=Math.max(...size.toArray());camera.position.set(center.x+span*1.55,center.y,center.z+span*.65);camera.lookAt(center);

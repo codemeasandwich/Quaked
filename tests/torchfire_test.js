@@ -4,7 +4,7 @@
 // flush, the alias mesh's part drawing) are driven with real entities. WebGL is not involved: the
 // instance buffers a frame writes are inspected, so these checks claim no GPU pixel parity
 // (tests/torchfire_trial.html photographs it).
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import { runInNewContext } from 'node:vm';
 import * as THREE from 'three';

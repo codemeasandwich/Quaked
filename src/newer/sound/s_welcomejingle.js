@@ -34,7 +34,7 @@ import { Cvar_VariableValue } from '../../engine/common/cvar.js';
  * distribution bundler rewrites exactly that form into its asset resolver (a bare
  * string literal would 404 in the packaged single-file web and Tauri builds).
  */
-export const WELCOME_TRACK_URL = new URL( '../../../assets/sounds/quake1newereGame_firstLevelEasyMidHard.mp3', import.meta.url ).href;
+export const WELCOME_TRACK_URL = new URL( '../../../assets/audio/sounds/quake1newereGame_firstLevelEasyMidHard.mp3', import.meta.url ).href;
 
 // One deck for the whole session; the track is the same one-shot on Easy,
 // Medium and Hard, so the skill never branches it.

@@ -1,7 +1,7 @@
 // Pixel-level independent oracle for the authored five-piece reveal. The
 // registered guide was checked separately against its red strokes; these
 // literal boundaries are independent of the compositor's exported polygons.
-import {readFileSync,readdirSync} from 'node:fs';
+import {readFileSync,readdirSync} from './helpers/resource_fs.mjs';
 import {createHash} from 'node:crypto';
 import {BESTIARY_ENTRIES,BestiaryJournal} from '../src/newer/ui/bestiary_state.js';
 import {BESTIARY_FRONTISPIECE_PIECES,Bestiary_ComposeFrontispiece,Bestiary_FrontispieceMask,Bestiary_HeaderHeight} from '../src/newer/ui/bestiary_art.js';

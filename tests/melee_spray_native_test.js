@@ -1,7 +1,7 @@
 // Melee hits on the player bleed but throw nothing of the player (card [K1], owner 9 Oct 2026). Real QuakeC melee attackers on stock
 // E1M5: the ogre's chainsaw and the shambler's ShamClaw (which throw a chunk in Quake), the knight's ai_melee (which never did);
 // the real T_Damage and SpawnMeatSpray. Classic keeps Quake's.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

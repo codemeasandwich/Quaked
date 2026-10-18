@@ -1,7 +1,7 @@
 // Independent packed-data, geometric-ray and public compiler/frame contracts.
 // No browser, game or WebGL instance is started.
 import * as THREE from 'three';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import {pakDirectory,readMember,isolatedPack} from '../tools/pak_members.mjs';
 import {COM_AddPack} from '../src/engine/common/pak.js';

@@ -8,6 +8,7 @@ import { resolve, sep } from 'node:path';
 import { existsSync, accessSync, constants } from 'node:fs';
 import { homedir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import {resourcePath} from '../tests/helpers/resource_path.mjs';
 
 if ( ! process.env.QUAKED_THREE_MODULE ) throw new Error( 'Set QUAKED_THREE_MODULE to the absolute path of Three.js 0.183.0 three.module.js (with its three.core.js sibling).' );
 const files = process.argv.slice( 2 );
@@ -19,7 +20,7 @@ const ROOT = process.cwd();
 const LISTED = new Set( [ 'rocketlauncher.zip', 'thuderbolt.zip', 'supershotgun.zip', 'supernailgun.zip', 'supernailgun2.zip',
 	'.distribution-cache/shareware.pak',
 	'fieldlab-fx-3d-updated.html', 'arc-weapons-wall-canvas-shotgun.html', 'demon-vision.html', 'player-face-layers-v4.4.0.html',
-	'newer/hud/playerface/blood.png', 'rockfield-v1.0.0.html', 'rockfield-v1.6.0.html', 'stasis-combat-fx-v2.html', 'twin-shot-venom.html', 'fireballs.html' ].map( f => resolve( ROOT, f ) ) );
+	'newer/hud/playerface/blood.png', 'rockfield-v1.0.0.html', 'rockfield-v1.6.0.html', 'stasis-combat-fx-v2.html', 'twin-shot-venom.html', 'fireballs.html' ].map( f => resourcePath(resolve( ROOT, f )) ) );
 const RESOURCES = resolve( ROOT, 'resources' ), PAK3 = resolve( homedir(), 'Downloads/Quake/Id1/PAK3.pk3' );
 const unreadable = path => { try { accessSync( path, constants.R_OK ); return false; } catch { return true; } };
 function missingInput( error ) {
@@ -29,7 +30,7 @@ function missingInput( error ) {
 	const quoted = error?.path ?? /(?:ENOENT|EPERM|EACCES)[^']*'([^']+)'/.exec( text )?.[ 1 ];
 	if ( quoted ) {
 
-		const path = resolve( quoted );
+		const path = resourcePath(resolve( quoted ));
 		if ( code === 'ENOENT' ) {
 
 			if ( LISTED.has( path ) && ! existsSync( path ) ) return path;
@@ -70,7 +71,7 @@ export async function resolve(specifier, context, next) {
 }`;
 	register( 'data:text/javascript,' + encodeURIComponent( loader ), { data: { three: pathToFileURL( resolve( process.env.QUAKED_THREE_MODULE ) ).href } } );
 	const tests = [];
-	globalThis.Deno = { readFile, readTextFile: path => readFile( path, 'utf8' ), stat, test: ( name, fn ) => tests.push( { name, fn } ) };
+	globalThis.Deno = { readFile: path => readFile(resourcePath(path)), readTextFile: path => readFile(resourcePath(path), 'utf8'), stat: path => stat(resourcePath(path)), test: ( name, fn ) => tests.push( { name, fn } ) };
 	// Bootstrap the renderer graph before individual test fixtures, as the
 	// browser entry does. Direct leaf imports otherwise reach cyclic render
 	// definitions before vrect_t is initialized under the real Three runtime.

@@ -10,6 +10,9 @@
 // source allowlists are authored bindings: preserve them, including official
 // expansion aliases not present in these base packs. Infer only unrecorded names;
 // an explicit artwork/identity change requires reviewing that existing binding.
+import {assetPath} from './distribution/manifest.mjs';
+import {fileURLToPath as resourceFileURLToPath} from 'node:url';
+const resourcePath = path => assetPath(resourceFileURLToPath(new URL('../', import.meta.url)), path);
 import { register } from 'node:module';
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
@@ -29,7 +32,7 @@ pak.COM_AddPack( isolatedPack( 'gfx/palette.lmp', await readMember( members.get(
 vid.vid.fullbright = 256 - 32; // VID_Init's value (it needs a page): the palette's last 32 colours glow, split out as the game does
 vid.VID_SetPalette( pak.COM_FindFile( 'gfx/palette.lmp' ).data ); model.Mod_Init(); model.R_InitTextures();
 
-const indexPath = 'newer/textures/index.json', index = JSON.parse( await readFile( indexPath, 'utf8' ) );
+const indexPath = 'newer/textures/index.json', index = JSON.parse( await readFile(resourcePath(indexPath), 'utf8' ) );
 const keys = new Map(), maps = [ ...members.keys() ].filter( n => /^maps\/[^/]+\.bsp$/.test( n ) ).sort();
 for ( const name of maps ) {
 
@@ -51,16 +54,16 @@ const sources = Object.fromEntries( Object.entries( combined ).sort( ( a, b ) =>
 // Preserve historical sources-last formatting. A manifest may now put ordinary
 // variants or metadata after sources: use semantic JSON serialization there,
 // rather than slicing away those later siblings. Refuse concurrent index edits.
-const text = await readFile( indexPath, 'utf8' ), current = JSON.parse( text );
+const text = await readFile(resourcePath(indexPath), 'utf8' ), current = JSON.parse( text );
 if ( JSON.stringify(current) !== JSON.stringify(index) ) throw Error('Texture index changed during source scan; not overwritten');
 const at = text.indexOf( ',\n "sources": ' ), sourceLast = Object.keys(current).at(-1) === 'sources';
 const block = Object.entries( sources ).map( ( [ n, s ] ) => '  ' + JSON.stringify( n ) + ': [' + s.map( k => JSON.stringify( k ) ).join( ', ' ) + ']' ).join( ',\n' );
 if ( at >= 0 && sourceLast || !Object.hasOwn(current,'sources') ) {
  const body = at >= 0 ? text.slice(0,at) : text.trimEnd().replace(/\n}$/,'');
- await writeFile(indexPath,body+',\n "sources": {\n'+block+'\n }\n}\n');
+ await writeFile(resourcePath(indexPath),body+',\n "sources": {\n'+block+'\n }\n}\n');
 } else {
- current.sources=sources;await writeFile(indexPath,JSON.stringify(current,null,1)+'\n');
+ current.sources=sources;await writeFile(resourcePath(indexPath),JSON.stringify(current,null,1)+'\n');
 }
-JSON.parse( await readFile( indexPath, 'utf8' ) ); // still JSON
+JSON.parse( await readFile(resourcePath(indexPath), 'utf8' ) ); // still JSON
 const missing = Object.keys( index.textures ).filter( n => ! keys.has( n ) );
 console.log( `${maps.length} maps; ${keys.size} catalogued names observed; ${Object.keys(sources).length} source bindings (${Object.keys(preserved).length} preserved); ${[ ...keys.values() ].filter( s => s.size > 1 ).length} observed with more than one picture; not in these maps: ${missing.join( ' ' ) || 'none'}` );

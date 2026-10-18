@@ -17,13 +17,13 @@ import { SV_AddPowerupObserver, SV_FaceLocalActive, SV_PlayerPowerMask } from '.
 import { createEffectDeck, startEffect, stopEffect, releaseEffect } from './s_effectdeck.js';
 
 export const PLAYER_EVENT_TRACK_URLS = Object.freeze( {
-	end: new URL( '../../../assets/sounds/end_of_quake1.mp3', import.meta.url ).href,
-	death: new URL( '../../../assets/sounds/newerGame_die_reset.mp3', import.meta.url ).href,
-	quad: new URL( '../../../assets/sounds/on-quad-pickup.mp3', import.meta.url ).href,
-	ring: new URL( '../../../assets/sounds/on-ring-pickup.mp3', import.meta.url ).href,
-	pentagram: new URL( '../../../assets/sounds/on-pentagram-pickup.mp3', import.meta.url ).href,
-	pair: new URL( '../../../assets/sounds/two-active-powerups.mp3', import.meta.url ).href,
-	triple: new URL( '../../../assets/sounds/third-powerup-pickup.mp3', import.meta.url ).href
+	end: new URL( '../../../assets/audio/sounds/end_of_quake1.mp3', import.meta.url ).href,
+	death: new URL( '../../../assets/audio/sounds/newerGame_die_reset.mp3', import.meta.url ).href,
+	quad: new URL( '../../../assets/audio/sounds/on-quad-pickup.mp3', import.meta.url ).href,
+	ring: new URL( '../../../assets/audio/sounds/on-ring-pickup.mp3', import.meta.url ).href,
+	pentagram: new URL( '../../../assets/audio/sounds/on-pentagram-pickup.mp3', import.meta.url ).href,
+	pair: new URL( '../../../assets/audio/sounds/two-active-powerups.mp3', import.meta.url ).href,
+	triple: new URL( '../../../assets/audio/sounds/third-powerup-pickup.mp3', import.meta.url ).href
 } );
 export const PLAYER_PAIR_FADE_OUT = 1.8;
 const MASK = IT_QUAD | IT_INVISIBILITY | IT_INVULNERABILITY;

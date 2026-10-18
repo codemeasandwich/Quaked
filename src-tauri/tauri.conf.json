@@ -12,5 +12,5 @@
       "assetProtocol": {"enable": true, "scope": ["$RESOURCE/assets/*"]}
     }
   },
-  "bundle": {"active": true, "targets": ["app"], "icon": ["icons/icon.png", "icons/icon.icns"], "resources": {"../dist/desktop-assets/": "assets/"}, "macOS": {"minimumSystemVersion": "14.0", "signingIdentity": "-"}}
+  "bundle": {"active": true, "targets": ["app"], "icon": ["../assets/branding/native/icon.png", "../assets/branding/native/icon.icns"], "resources": {"../dist/desktop-assets/": "assets/"}, "macOS": {"minimumSystemVersion": "14.0", "signingIdentity": "-"}}
 }

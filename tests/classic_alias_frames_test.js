@@ -1,6 +1,6 @@
 // Native enemy/object assets through public draw and same-tick rollback APIs.
 // No browser/game/GPU is started and no replacement model fixture is used.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';

@@ -3,7 +3,7 @@
 // Execute only after the final Ogre increment is ready; every unresolved slot fails, never skips.
 import * as THREE from 'three';
 import {EnemyHeightScalars} from '../src/newer/assets/enemy_height.js';
-import {readFileSync,writeFileSync} from 'node:fs';
+import {readFileSync,writeFileSync} from './helpers/resource_fs.mjs';
 import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {pakDirectory,readMember,isolatedPack} from '../tools/pak_members.mjs';

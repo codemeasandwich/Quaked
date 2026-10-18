@@ -1,6 +1,6 @@
 // Actual public menu/map/load commands, loopback connection, native START
 // trigger geometry and QC. No helper directly applies welcome policy.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import * as pak from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/engine/render/vid.js';
 import {Mod_Init} from '../src/engine/render/gl_model.js';

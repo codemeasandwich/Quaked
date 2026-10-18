@@ -1,6 +1,6 @@
 // The Bestiary's pencil replay (card: Folio pencil fast replay): the supplied schedulePaths and replay rule as prepared by
 // tools/prepare_folio.mjs, and the prepared pages in newer/bestiary/folio/ matching today's page images.
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 const { schedule, encodeReveal, FOLIO_SCHEDULE, folioMade } = await import( '../tools/prepare_folio.mjs' );
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` ), near = ( a, b, e, m ) => check( Math.abs( a - b ) <= e, `${m}: ${a} != ${b}` );

@@ -1,7 +1,7 @@
 // Public startup preparation of unseen model precaches, using the existing
 // native alias-header layout and later actual material selection cache.
 import * as THREE from 'three';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init, Mod_ForName, aliashdr_t } from '../src/engine/render/gl_model.js';

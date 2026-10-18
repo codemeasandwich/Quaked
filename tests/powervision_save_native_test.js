@@ -1,7 +1,7 @@
 // Native power-up save/load and overlap checks using actual host commands,
 // QuakeC touches, ED serialization and clientdata packets. Time advancement is
 // simulated server time; no timer field is shortened and no gameplay loop runs.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import * as pak from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/engine/render/vid.js';
 import {Mod_Init} from '../src/engine/render/gl_model.js';

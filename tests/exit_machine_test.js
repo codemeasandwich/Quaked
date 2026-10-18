@@ -1,6 +1,6 @@
 // Native E1M1 signon sound -> public client static-sound parser -> real channel
 // spatializer/mixer. Only Web Audio output nodes are silent endpoint doubles.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init } from '../src/engine/render/gl_model.js';

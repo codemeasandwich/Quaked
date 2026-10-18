@@ -3,7 +3,7 @@
 // (docs/stock-progs-2026-10-14.md). Until 14 October 2026 only the 1.06 shareware E1M1's bytes were admitted, so in the
 // app, which plays the owner's re-release Quake, the corridor kept its plain lights.
 import { memberSearch, readMember, isolatedPack } from '../tools/pak_members.mjs';
-import { readdirSync, existsSync, readFileSync } from 'node:fs';
+import { readdirSync, existsSync, readFileSync } from './helpers/resource_fs.mjs';
 import { COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
 import { VID_SetPalette, vid } from '../src/engine/render/vid.js';

@@ -1,0 +1,127 @@
+
+added 19 packages, and audited 20 packages in 5s
+
+5 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> quaked@0.132.3 pretest:distribution
+> npm run prepare:shareware
+
+
+> quaked@0.132.3 prepare:shareware
+> node tools/distribution/prepare-shareware.mjs
+
+Verified explicit shareware build input.
+
+> quaked@0.132.3 test:distribution
+> node --test tests/*_contract_test.mjs
+
+✔ artifact inventories enforce the original-game data boundary (0.804084ms)
+✔ web closure retains every Episode 1/hub normal and eligible custom enemy sample (612.042042ms)
+✔ desktop inventory includes all prepared map transports and no bundled original game (204.606583ms)
+✔ embedded binary codec preserves bytes across word boundaries and excludes HTML delimiters (517.435459ms)
+✔ corrupt encoded data and impossible lengths are rejected (0.4745ms)
+✔ departing peer queued sends cannot close host or prevent another peer receiving (9.761792ms)
+✔ asynchronous sends preserve peer FIFO and copy bytes before caller reuse (4.709917ms)
+✔ poll events completing after close cannot reach the driver or restart polling (0.663458ms)
+✔ late poll failure after close cannot emit fresh driver events (1.705334ms)
+✔ late send failure after close cannot manufacture another peer departure (2.8425ms)
+✔ rejected client handshake closes that client without ending an independent host (1.276833ms)
+✔ desktop catalogue validates selected split archives and preserves legacy default mounting policy (98.001542ms)
+✔ native strict selection refuses unread directories, damaged packs and absent shareware (135.2145ms)
+✔ native catalogue refuses a pack set beyond the existing bounded limit (27.634959ms)
+✔ only the parts the release lacks are uploaded; core is bundled, never uploaded (1.168667ms)
+✔ a dist/packs that is not exactly the listed parts is refused (0.353125ms)
+✔ a release asset of a part's name but another size is refused, and so is passing the asset limit (4.115375ms)
+✔ the manifest is read from the built page, and a bundled build has nothing to upload (3.341959ms)
+✔ an asset a cancelled upload left incomplete is replaced, never taken as present; the result is confirmed afresh (1.040625ms)
+✔ a game needs its own pack and its ancestors; shared assets go to the nearest common ancestor (1.210792ms)
+✔ the committed game index is current and covers every playable game (97.056583ms)
+✔ each playable game finds all of its assets in its own packs (518.237916ms)
+✔ the shareware pack holds everything the HTML can start with (36.097667ms)
+✔ ordinary variant names and all companion images use their owning game packs (22.87975ms)
+✔ one canonical physical path resolves each retained logical resource identifier (3.9315ms)
+✔ source URL routing preserves base paths, queries, code and external URLs (0.520375ms)
+✔ both product inventories resolve uniquely to the same authored files (801.550083ms)
+✔ staged snapshot includes only index bytes and deletions, preserving working files (235.032542ms)
+✔ staged builds and tests never inherit the hook's Git environment (0.432417ms)
+✔ resampled files retain their historical 4x receipt or an explicitly verified native-refit successor (163.981291ms)
+✔ Armagon successor retains the actual before and after records rather than relabelling the old resample (1.432417ms)
+▶ missing invalid or mismatched successors cannot bypass the historical file gate
+  ✔ no successor (1.899209ms)
+  ✔ empty successor (1.392209ms)
+  ✔ wrong predecessor (0.795625ms)
+  ✔ missing recipe (0.729167ms)
+  ✔ missing source record (1.529708ms)
+  ✔ different source record (0.915167ms)
+  ✔ wrong pinned model (1.561833ms)
+  ✔ wrong pinned source (2.053083ms)
+  ✔ recipe not 4x (4.288625ms)
+  ✔ record not 4x (4.117ms)
+  ✔ missing height pin (4.984167ms)
+  ✔ wrong current height (5.760666ms)
+  ✔ wrong current dimensions despite matching hashes (6.247833ms)
+✔ missing invalid or mismatched successors cannot bypass the historical file gate (38.677667ms)
+✔ nonsuperseded rows still enforce original file hashes and resample provenance (7.166792ms)
+▶ renamed Q92 successor requires explicit safe filename, real codec and current catalogue
+  ✔ undisclosed rename (5.263666ms)
+  ✔ path escape rename (1.471916ms)
+  ✔ wrong codec despite matching hashes (6.965583ms)
+  ✔ wrong catalogue rename (3.131166ms)
+  ✔ wrong catalogue identity (3.383ms)
+  ✔ recipe Q92 intent missing (2.485917ms)
+  ✔ SOURCE Q92 intent wrong (2.05475ms)
+  ✔ runtime receipt hash wrong (3.76025ms)
+✔ renamed Q92 successor requires explicit safe filename, real codec and current catalogue (29.709416ms)
+✔ the web build ships the core and shareware packs and the shareware PAK; other games stay out of it (55.873208ms)
+✔ a site is published only with exactly the data files its HTML names, byte for byte (10.409167ms)
+✔ the verifier runs when reached through a symlink, so a CI path can never make it skip (49.584792ms)
+✔ only Bestiary pictures are re-encoded; data maps and other assets keep their bytes (11.1075ms)
+✔ a Bestiary page becomes WebP at its own size, under the limit, at the highest quality that fits, and is cached (299.720375ms)
+✔ the web and desktop builds both derive Bestiary pages from the same PNG masters (0.945458ms)
+✔ a page that cannot fit without resizing stops the build for an owner decision (9925.520625ms)
+ℹ tests 62
+ℹ suites 0
+ℹ pass 62
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12428.992375
+
+> quaked@0.132.3 prebuild:web
+> npm run prepare:shareware
+
+
+> quaked@0.132.3 prepare:shareware
+> node tools/distribution/prepare-shareware.mjs
+
+Verified explicit shareware build input.
+
+> quaked@0.132.3 build:web
+> node tools/distribution/build.mjs web
+
+Commit blocked. Failed staged snapshot retained at /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-GMUNQf
+node:internal/errors:985
+  const err = new Error(message);
+              ^
+
+Error: Command failed: npm run build:web
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at checkExecSyncError (node:child_process:925:11)
+    at execFileSync (node:child_process:961:15)
+    at run (file:///Users/bri/.codex/worktrees/unified-assets/Quaked/tools/distribution/precommit.mjs:9:44)
+    at precommit (file:///Users/bri/.codex/worktrees/unified-assets/Quaked/tools/distribution/precommit.mjs:30:3)
+    at async file:///Users/bri/.codex/worktrees/unified-assets/Quaked/tools/distribution/precommit.mjs:47:79 {
+  status: null,
+  signal: 'SIGTERM',
+  output: [ null, null, null ],
+  pid: 4329,
+  stdout: null,
+  stderr: null
+}
+
+Node.js v24.13.0

@@ -1,6 +1,6 @@
 // Production Unseen adapter and native player mesh: recorded GPU boundary,
 // independent from the finite pixel test and from multiplayer acceptance.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 await import('../src/engine/render/gl_rsurf.js');await import('../src/newer/install.js');
 const THREE=await import('three'),cloak=await import('../src/newer/render/r_cloak.js'),power=await import('../src/newer/render/r_powervision.js'),pak=await import('../src/engine/common/pak.js'),models=await import('../src/engine/render/gl_model.js'),{VID_SetPalette}=await import('../src/engine/render/vid.js'),vars=await import('../src/engine/common/cvar.js'),mode=await import('../src/newer/mode.js');
 const {IT_INVISIBILITY}=await import('../src/engine/common/quakedef.js'),{PowerVisionMode}=await import('../src/newer/gameplay/powervision_state.js');

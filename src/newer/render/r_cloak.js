@@ -49,7 +49,7 @@ export function R_CloakReady(){
  if(noise)return true;
  if(!pending&&!failed&&typeof document!=='undefined'){
   const epoch=generation;
-  pending=new THREE.TextureLoader().load(new URL('./assets/operative-cloak-noise.png',import.meta.url).href,t=>{
+  pending=new THREE.TextureLoader().load(new URL('../../../assets/game/effects/cloak/operative-cloak-noise.png',import.meta.url).href,t=>{
    if(epoch!==generation){t.dispose();return;}
    t.wrapS=t.wrapT=THREE.RepeatWrapping;t.minFilter=t.magFilter=THREE.LinearFilter;
    t.generateMipmaps=false;t.flipY=true;t.colorSpace=THREE.NoColorSpace;noise=t;pending=null;

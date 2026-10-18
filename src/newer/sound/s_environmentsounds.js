@@ -15,8 +15,8 @@ import { R_VisibleAliasBounds } from '../render/r_aliasvisibility.js';
 import { createEffectDeck, startEffect, stopEffect, releaseEffect } from './s_effectdeck.js';
 
 export const ENVIRONMENT_TRACK_URLS = Object.freeze( {
-	fire: new URL( '../../../assets/sounds/fire-Environmental.mp3', import.meta.url ).href,
-	shub: new URL( '../../../assets/sounds/firstSee_Shub.mp3', import.meta.url ).href
+	fire: new URL( '../../../assets/audio/sounds/fire-Environmental.mp3', import.meta.url ).href,
+	shub: new URL( '../../../assets/audio/sounds/firstSee_Shub.mp3', import.meta.url ).href
 } );
 export const ENVIRONMENT_FIRE_RADIUS = 800, ENVIRONMENT_FIRE_GAIN = .3;
 export const ENVIRONMENT_FIRE_FADE_IN = .2, ENVIRONMENT_FIRE_FADE_OUT = .8;

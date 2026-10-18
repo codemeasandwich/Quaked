@@ -1,0 +1,23 @@
+PASS dedicated-server filesystem loader resolves moved maps beneath its configured root
+PASS browser loose-map loader requests the same canonical tree and preserves map identity
+RESULT 2/2 passed (tests/resource_maps_test.js)
+Added packfile newer.pak (2 files)
+
+PASS the Newer Game pack is only visible while Newer Game is on
+Added packfile newer.pak (1 files)
+
+PASS json comes out of the pack, and from the loose file without one
+PASS LIT files: only the right size and version are taken
+PASS an entity list file must hold entities
+RESULT 4/4 passed (tests/newer_pack_test.js)
+Added packfile independent-startup-pack (288 files)
+
+PASS startup PACK contains exactly the287 manifest-referenced canonical HUD sources with every original byte and provenance hash intact
+Added packfile independent-startup-pack (288 files)
+
+PASS explicit full art pack retains priority over startup aliases and null reset invalidates only optional routing while loose fallback remains usable
+Added packfile independent-startup-pack (288 files)
+
+PASS malformed startup aliases are rejected atomically without replacing previously valid routing
+RESULT 3/3 passed (tests/startup_pack_test.js)
+TOTAL 9/9 passed

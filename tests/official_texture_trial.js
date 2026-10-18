@@ -1,3 +1,4 @@
+import {AssetFetch} from '../src/platform/distribution.js';
 import * as THREE from 'three';
 import '../src/newer/install.js';
 import {createQuakeLightmapMaterial} from '../src/engine/render/gl_rsurf_materials.js';
@@ -12,19 +13,19 @@ const candidate='newer/textures/candidates-2026-10-12/';
 const batch=new URL(location.href).searchParams.get('batch');
 // Keep new-material GPU review bounded; the separate public suite checks the full catalogue.
 const manifest=({realism:'realism-trial.json',character:'character-trial.json',aged:'aged-trial.json',industrial:'../candidates-2026-10-17/industrial-trial.json',owner:'../candidates-2026-10-17/owner-q92-trial.json',legacytech:'../candidates-2026-10-17/legacy-tech-q92-trial.json',nexteight:'../candidates-2026-10-17/next-eight-trial.json',building:'../candidates-2026-10-17/building-trial.json',crosspack:'../candidates-2026-10-17/crosspack-trial.json'})[batch]||'trial.json';
-const specs=await fetch(candidate+manifest).then(r=>r.json()),index=await fetch('newer/textures/index.json').then(r=>r.json());
+const specs=await AssetFetch(candidate+manifest).then(r=>r.json()),index=await fetch('assets/game/textures/index.json').then(r=>r.json());
 document.querySelector('#asset-count').textContent=String(Object.keys(specs).length);
 document.querySelector('#asset').replaceChildren(...Object.keys(specs).map(name=>{const option=document.createElement('option');option.value=option.textContent=name;return option;}));
 const originals={},finished={},textures={},checks=[];
 const check=(ok,label)=>{checks.push({passed:!!ok,label});if(!ok)throw Error(label);};
-async function image(src,sha){const r=await fetch(src);check(r.ok,'Image available: '+src);const bytes=await r.arrayBuffer();const digest=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('');check(digest===sha,'Image SHA matches trial: '+src);const url=URL.createObjectURL(new Blob([bytes]));try{return await new Promise((resolve,reject)=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=()=>reject(Error('Image unavailable: '+src));i.src=url;});}finally{URL.revokeObjectURL(url);}}
+async function image(src,sha){const r=await AssetFetch(src);check(r.ok,'Image available: '+src);const bytes=await r.arrayBuffer();const digest=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('');check(digest===sha,'Image SHA matches trial: '+src);const url=URL.createObjectURL(new Blob([bytes]));try{return await new Promise((resolve,reject)=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=()=>reject(Error('Image unavailable: '+src));i.src=url;});}finally{URL.revokeObjectURL(url);}}
 function pixels(image){const c=document.createElement('canvas');c.width=image.width;c.height=image.height;const ctx=c.getContext('2d',{willReadFrequently:true});ctx.drawImage(image,0,0);return new Uint8Array(ctx.getImageData(0,0,c.width,c.height).data);}
 const receipt={qualification:'Candidate-only material/source trial. No gameplay catalogue edit or owner appearance acceptance.',manifest,checks,assets:{}};
 const realFetch=globalThis.fetch.bind(globalThis);
 // Only this page sees these candidate bindings, keyed by the actual native identity.
 globalThis.fetch=(input,init)=>{
  const url=new URL(typeof input==='string'?input:input.url,location.href);
- if(url.pathname.endsWith('/newer/textures/index.json'))return Promise.resolve(new Response(JSON.stringify(index),{headers:{'Content-Type':'application/json'}}));
+ if(url.pathname.endsWith('/assets/game/textures/index.json'))return Promise.resolve(new Response(JSON.stringify(index),{headers:{'Content-Type':'application/json'}}));
  return realFetch(input,init);
 };
 for(const c of [post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,mode.r_newer_lighting,mode.r_newer_normals,mode.r_newer_water,mode.r_newer_textures])if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);

@@ -1,7 +1,7 @@
 // Independent public-interface coverage. Actual stock QuakeC monster spawn
 // functions execute the native setmodel builtin; no Face_Assign call is used.
 // Rendering/masks are checked separately: these tests prove lifetime identity.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

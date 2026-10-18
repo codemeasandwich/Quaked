@@ -15,10 +15,10 @@ import { createEffectDeck, startEffect as start, stopEffect as stop, releaseEffe
 
 // Keep literal new URL calls: the distribution bundler rewrites these assets.
 export const WATER_TRACK_URLS = Object.freeze( {
-	bubbles: new URL( '../../../assets/sounds/player-bubbles.mp3', import.meta.url ).href,
-	underwater: new URL( '../../../assets/sounds/underwater.mp3', import.meta.url ).href,
-	enter: new URL( '../../../assets/sounds/enter-underwater.mp3', import.meta.url ).href,
-	walking: new URL( '../../../assets/sounds/walking-in-water.mp3', import.meta.url ).href
+	bubbles: new URL( '../../../assets/audio/sounds/player-bubbles.mp3', import.meta.url ).href,
+	underwater: new URL( '../../../assets/audio/sounds/underwater.mp3', import.meta.url ).href,
+	enter: new URL( '../../../assets/audio/sounds/enter-underwater.mp3', import.meta.url ).href,
+	walking: new URL( '../../../assets/audio/sounds/walking-in-water.mp3', import.meta.url ).href
 } );
 export const WATER_WALK_FADE_IN = .12, WATER_WALK_FADE_OUT = 1.8;
 let decks = {}, epoch, wasSubmerged = false, lastTime = null;

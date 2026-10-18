@@ -1,5 +1,8 @@
 // Uses the native palette/model and actual Newer texture upgrade functions.
 // Only decoded CPU samples are prepared; no WebGL/browser/game instances.
+import {assetPath} from './distribution/manifest.mjs';
+import {fileURLToPath as resourceFileURLToPath} from 'node:url';
+const resourcePath = path => assetPath(resourceFileURLToPath(new URL('../', import.meta.url)), path);
 import {register} from 'node:module';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {readFileSync} from 'node:fs';
@@ -14,10 +17,10 @@ if(!process.env.QUAKED_THREE_MODULE||!process.env.QUAKED_CANVAS_MODULE)throw Err
 const three=pathToFileURL(resolve(process.env.QUAKED_THREE_MODULE)).href;
 register('data:text/javascript,'+encodeURIComponent("let three;export function initialize(d){three=d.three;}export function resolve(s,c,next){return s==='three'?{url:three,shortCircuit:true}:next(s,c);}"),{data:{three}});
 const canvas=await import(pathToFileURL(process.env.QUAKED_CANVAS_MODULE).href);
-class FileImage extends canvas.Image{set src(url){super.src=typeof url==='string'?readFileSync(url.split('?')[0]):url;}get src(){return super.src;}}
+class FileImage extends canvas.Image{set src(url){super.src=typeof url==='string'?readFileSync(resourcePath(url.split('?')[0])):url;}get src(){return super.src;}}
 globalThis.Image=FileImage;globalThis.document={createElement:tag=>{if(tag!=='canvas')throw Error('Unexpected offline DOM '+tag);return canvas.createCanvas(1,1);}};
 globalThis.fetch=async url=>{
- const path=String(url).split('?')[0];try{const data=await readFile(path);return new Response(data);}catch{return new Response(null,{status:404});}
+ const path=String(url).split('?')[0];try{const data=await readFile(resourcePath(path));return new Response(data);}catch{return new Response(null,{status:404});}
 };
 const surface=await import('../src/engine/render/gl_rsurf.js'),pak=await import('../src/engine/common/pak.js'),model=await import('../src/engine/render/gl_model.js'),vid=await import('../src/engine/render/vid.js');
 await import('../src/newer/install.js'); // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js), after the loader and the renderer's bootstrap
@@ -25,15 +28,15 @@ const textures=await import('../src/newer/render/r_newertextures.js'),cvar=await
 const {NormalInputs,NormalInputKey,NormalGenerate}=await import('../src/newer/assets/normal_prepare.js'),{NormalBakeEncode,NormalBakeDecode,NORMAL_GENERATOR_VERSION}=await import('../src/newer/assets/normal_bake_format.js');
 const members=await memberSearch(packs);for(const path of loose)members.set(path,{path,name:path,loose:true});
 const palette=await memberSearch([palettePack]);pak.COM_AddPack(isolatedPack('gfx/palette.lmp',await readMember(palette.get('gfx/palette.lmp'))));vid.VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);vid.vid.fullbright=224;model.Mod_Init();model.R_InitTextures();cvar.Cvar_RegisterVariable(r_hdr);
-let manifest;try{manifest=JSON.parse(await readFile('newer/normals/manifest.json','utf8'));}catch{manifest={version:NORMAL_GENERATOR_VERSION,samples:{},levels:{}};}
-await mkdir('newer/normals',{recursive:true});
+let manifest;try{manifest=JSON.parse(await readFile(resourcePath('newer/normals/manifest.json'),'utf8'));}catch{manifest={version:NORMAL_GENERATOR_VERSION,samples:{},levels:{}};}
+await mkdir(resourcePath('newer/normals'),{recursive:true});
 async function bake(texture){
  const input=NormalInputs(texture),key=await NormalInputKey(input),old=manifest.samples[key];const viewHash=v=>v?sha256(new Uint8Array(v.buffer,v.byteOffset,v.byteLength)):null;
  const witness={width:input.width,height:input.height,crafted:input.crafted,derive:input.derive,strength:input.strength,cap:input.cap,rgba:viewHash(input.rgba),fullbright:viewHash(input.fullbright),scalar:viewHash(input.scalar),edge:input.edge?[input.edge.width,input.edge.height,input.edge.offset,viewHash(input.edge.data)]:null,authored:viewHash(input.authored)};if(old)old.input=witness;
- if(old){const saved=await readFile(old.file).catch(()=>null);if(saved&&sha256(saved)===old.sha256)return key;}
+ if(old){const saved=await readFile(resourcePath(old.file)).catch(()=>null);if(saved&&sha256(saved)===old.sha256)return key;}
  const data=NormalGenerate(input),raw=NormalBakeEncode(key,input.width,input.height,data),decoded=NormalBakeDecode(raw.buffer,key,input.width,input.height);
  for(const name of ['pixels','scalar','reference'])if(data[name]&&!Buffer.from(data[name].buffer,data[name].byteOffset,data[name].byteLength).equals(Buffer.from(decoded[name].buffer,decoded[name].byteOffset,decoded[name].byteLength)))throw Error('Prepared normal roundtrip differs '+key+':'+name);
- const compressed=gzipSync(raw,{level:9}),file='newer/normals/'+key+'.nm.gz';await writeFile(file,compressed);manifest.samples[key]={file,input:witness,sha256:sha256(compressed),rawSha256:sha256(raw),width:input.width,height:input.height,bytes:raw.length,compressedBytes:compressed.length};return key;
+ const compressed=gzipSync(raw,{level:9}),file='newer/normals/'+key+'.nm.gz';await writeFile(resourcePath(file),compressed);manifest.samples[key]={file,input:witness,sha256:sha256(compressed),rawSha256:sha256(raw),width:input.width,height:input.height,bytes:raw.length,compressedBytes:compressed.length};return key;
 }
 for(const[name,entry]of members)if(!skins&&/^maps\/[^/]+\.bsp$/.test(name)&&new RegExp(filter).test(name)){
  cvar.Cvar_SetValue('r_hdr',0);model.Mod_ClearAll();const bytes=await readMember(entry);pak.COM_AddPack(isolatedPack(name,bytes));const world=model.Mod_ForName(name,true),keys=new Set(),nativeKeys=new Set(),upgradedKeys=new Set();
@@ -43,11 +46,11 @@ for(const[name,entry]of members)if(!skins&&/^maps\/[^/]+\.bsp$/.test(name)&&new 
  const status=textures.R_NewerTexturesStatus(world);if(Object.keys(status.errors).length)throw Error('Offline picture errors '+JSON.stringify(status.errors));
  for(const t of new Set([...(world.textures||[]),...(world.texinfo||[]).map(info=>info?.texture)]))if(t?.gl_texture&&!t.name.startsWith('*')&&!t.name.startsWith('sky')){const key=await bake(t.gl_texture);keys.add(key);upgradedKeys.add(key);}
  manifest.levels[namespace+':'+name]={bspSha256:sha256(bytes),keys:[...keys],nativeKeys:[...nativeKeys],upgradedKeys:[...upgradedKeys]};
- await writeFile('newer/normals/manifest.json',JSON.stringify(manifest,null,2)+'\n');await writeFile('src/newer/assets/normal_bakes.js','/**\n * @module newer/assets/normal_bakes\n *\n * Prepared normal and height samples, generated by `tools/bake_normals.mjs` (do not edit: re-run the tool).\n *\n * Types: plain values and functions; no exported classes.\n *\n * State: no mutable exports.\n *\n * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).\n */\n// Generated exact normal/scalar samples; full input identity.\nexport const NORMAL_BAKES = '+JSON.stringify(Object.fromEntries(Object.entries(manifest.samples).map(([key,{input,...spec}])=>[key,spec])),null,1)+';\n');console.log('BAKED NORMALS '+namespace+':'+name+' '+keys.size+' input variants');
+ await writeFile(resourcePath('newer/normals/manifest.json'),JSON.stringify(manifest,null,2)+'\n');await writeFile(resourcePath('src/newer/assets/normal_bakes.js'),'/**\n * @module newer/assets/normal_bakes\n *\n * Prepared normal and height samples, generated by `tools/bake_normals.mjs` (do not edit: re-run the tool).\n *\n * Types: plain values and functions; no exported classes.\n *\n * State: no mutable exports.\n *\n * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).\n */\n// Generated exact normal/scalar samples; full input identity.\nexport const NORMAL_BAKES = '+JSON.stringify(Object.fromEntries(Object.entries(manifest.samples).map(([key,{input,...spec}])=>[key,spec])),null,1)+';\n');console.log('BAKED NORMALS '+namespace+':'+name+' '+keys.size+' input variants');
 }
 
 if(skins){
- const THREE=await import('three'),{ENEMY_SKIN_MODELS}=await import('../src/newer/render/r_newerskins.js'),skinIndex=JSON.parse(await readFile('newer/enemies/index.json','utf8'));
+ const THREE=await import('three'),{ENEMY_SKIN_MODELS}=await import('../src/newer/render/r_newerskins.js'),skinIndex=JSON.parse(await readFile(resourcePath('newer/enemies/index.json'),'utf8'));
  const runsCustom=namespace==='shareware'||variantFilter!==null;
  const selectedVariants=runsCustom?Object.entries(skinIndex.models||{}).flatMap(([key,variants])=>ENEMY_SKIN_MODELS.has(key)&&new RegExp(filter).test('progs/'+key+'.mdl')?variants.filter(variant=>variantFilter===null||variant.dir===variantFilter).map(variant=>({key,variant})):[]):[];
  if(variantFilter!==null&&!selectedVariants.length)throw Error('No matching custom skin variant: '+variantFilter);
@@ -77,5 +80,5 @@ if(skins){
   if(diffuse.width!==height.width||diffuse.height!==height.height)throw Error('Canonical enemy height alignment mismatch '+key);
   const input=await bake(companion(diffuse,height,variant.heightStrength??.65,variant.heightCap??.55,variant,key));manifest.levels['custom:'+variant.dir]={keys:[input]};console.log('BAKED CUSTOM NORMALS '+variant.dir);
  }
- await writeFile('newer/normals/manifest.json',JSON.stringify(manifest,null,2)+'\n');await writeFile('src/newer/assets/normal_bakes.js','/**\n * @module newer/assets/normal_bakes\n *\n * Prepared normal and height samples, generated by `tools/bake_normals.mjs` (do not edit: re-run the tool).\n *\n * Types: plain values and functions; no exported classes.\n *\n * State: no mutable exports.\n *\n * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).\n */\n// Generated exact normal/scalar samples; full input identity.\nexport const NORMAL_BAKES = '+JSON.stringify(Object.fromEntries(Object.entries(manifest.samples).map(([key,{input,...spec}])=>[key,spec])),null,1)+';\n');
+ await writeFile(resourcePath('newer/normals/manifest.json'),JSON.stringify(manifest,null,2)+'\n');await writeFile(resourcePath('src/newer/assets/normal_bakes.js'),'/**\n * @module newer/assets/normal_bakes\n *\n * Prepared normal and height samples, generated by `tools/bake_normals.mjs` (do not edit: re-run the tool).\n *\n * Types: plain values and functions; no exported classes.\n *\n * State: no mutable exports.\n *\n * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).\n */\n// Generated exact normal/scalar samples; full input identity.\nexport const NORMAL_BAKES = '+JSON.stringify(Object.fromEntries(Object.entries(manifest.samples).map(([key,{input,...spec}])=>[key,spec])),null,1)+';\n');
 }

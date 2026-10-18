@@ -3,11 +3,14 @@
 Run with Pillow/NumPy: python3 tools/texture_sheets/update_enemy_heights.py
 Uses original pak0 UV skins, existing fit_skin/craft helpers and material names.
 """
+
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from resource_paths import resource_path
 import hashlib
 import json
-from pathlib import Path
 import struct
-import sys
 sys.dont_write_bytecode = True
 import numpy as np
 from PIL import Image, ImageDraw
@@ -125,7 +128,7 @@ def fit_shambler(original, model_data):
     # replacing accepted UV evidence during full asset reconstruction.
     validate_recipe_artwork(canvas.astype(np.float32)/255,json.loads(RECIPE.read_text()))
     (ROOT/'docs/evidence/shambler-uv-fit-2026-10-01.json').write_text(json.dumps(dict(surface_pixels=int(surface.sum()),source_fitted_pixels=int((surface&painted).sum()),edge_fill_pixels=int(missing.sum()),surface_coverage=1.0),indent=2)+'\n')
-    target = ROOT/'newer/enemies/shambler/custom/diffuse.webp'
+    target = resource_path(ROOT, 'newer/enemies/shambler/custom/diffuse.webp')
     Image.fromarray(canvas).save(target,'WEBP',lossless=True,method=6)
     return hashlib.sha256((HERE/'sources'/recipe['source']).read_bytes()).hexdigest()
 
@@ -141,11 +144,11 @@ def main():
     native = {name[6:-4]:native_skins(data,palette) for name,data in pak.items() if name.startswith('progs/') and name.endswith('.mdl') and name[6:-4] in ENEMIES}
     source_hash = hashlib.sha256((HERE/'sources/shambler-2026-10-01.png').read_bytes()).hexdigest()
     if '--heights-only' not in sys.argv:source_hash = fit_shambler(native['shambler'][0][0],pak['progs/shambler.mdl'])
-    index_path = ROOT/'newer/enemies/index.json';index = json.loads(index_path.read_text());custom_count = 0
+    index_path = resource_path(ROOT, 'newer/enemies/index.json');index = json.loads(index_path.read_text());custom_count = 0
     for model,variants in index['models'].items():
         if model not in ENEMIES:continue
         for variant in variants:
-            directory = ROOT/'newer/enemies'/variant['dir'];image = Image.open(directory/variant['maps']['diffuse'])
+            directory = resource_path(ROOT, 'newer/enemies')/variant['dir'];image = Image.open(directory/variant['maps']['diffuse'])
             height_for(image,directory/'height.webp',variant['dir']);variant['maps']['height']='height.webp';variant['heightStrength']=.65;variant['heightCap']=.55;custom_count+=1
     height_index = {}
     for model,skins in native.items():
@@ -153,7 +156,7 @@ def main():
         for skin,frames in enumerate(skins):
             maps=[]
             for frame,image in enumerate(frames):
-                file=f'heights/{model}/skin{skin}_{frame}.webp';height_for(image,ROOT/'newer/enemies'/file,model)
+                file=f'heights/{model}/skin{skin}_{frame}.webp';height_for(image,resource_path(ROOT, 'newer/enemies')/file,model)
                 maps.append(dict(file=file,strength=.65,cap=.55))
             groups.append(maps)
         height_index[model]=groups

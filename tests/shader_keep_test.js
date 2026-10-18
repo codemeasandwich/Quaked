@@ -4,7 +4,7 @@
 // R_BrushModelWarmGroup. The first test pins the three.js behaviour these rely on, so an upgrade that changes it fails
 // here rather than silently bringing the stalls back.
 import * as THREE from 'three';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { memberSearch, readMember, isolatedPack } from '../tools/pak_members.mjs';
 import { COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';

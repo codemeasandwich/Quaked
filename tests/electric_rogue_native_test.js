@@ -1,7 +1,7 @@
 // Independent actual Rogue-program execution proof. The owned mission pack
 // remains read-only; base PR_StockProgs qualification must remain unchanged.
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { fileURLToPath } from 'node:url';
 import { assetPath } from '../tools/distribution/manifest.mjs';
 import * as pak from '../src/engine/common/pak.js';

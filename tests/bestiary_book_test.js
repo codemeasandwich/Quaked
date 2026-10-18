@@ -1,7 +1,7 @@
 // Execute the unchanged public book module with controlled runtime endpoints
 // and a real canvas. This proves presentation/input routing, separately from
 // the native discovery and persistent-journal integration tests.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import {Script} from 'node:vm';
 import {BESTIARY_ENTRIES,BESTIARY_SPREADS,Bestiary_SpreadMapping} from '../src/newer/ui/bestiary_state.js';
 import * as keys from '../src/engine/client/keys.js';

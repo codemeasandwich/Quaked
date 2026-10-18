@@ -5,19 +5,21 @@ Requires numpy. Run with Codex's bundled Python or another Python with numpy.
 Source archives remain untouched. Only the shotgun-shell mesh is read from the
 Weapon Pack. Native MDLs supply independent held/pickup fits and rigid motion.
 """
+
+from pathlib import Path
+from resource_paths import resource_path
 import hashlib
 import json
 import struct
 import zipfile
 import io
 import argparse
-from pathlib import Path
 
 import numpy as np
 from fbx_mesh import read_mesh
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'newer/weapons'
+OUT = resource_path(ROOT, 'newer/weapons')
 SOURCES = {
     'shotgun': ('shotgun.zip', ['v_shot', 'g_shot1'], [-1, 3, 2]),
     'supershotgun': ('supershotgun.zip', ['v_shot2', 'g_shot'], [1, -3, 2]),

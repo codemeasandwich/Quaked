@@ -1,7 +1,7 @@
 // Public presentation/selection contracts, using real Three objects and native
 // PAK aliases. GPU shader behavior is verified separately by the bounded trial.
 import * as THREE from 'three';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as power from '../src/newer/render/r_powerups.js';
 import * as newerMode from '../src/newer/mode.js';
 import * as vars from '../src/engine/common/cvar.js';

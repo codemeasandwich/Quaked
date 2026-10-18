@@ -4,12 +4,15 @@
 Reads only the named native PAK members. Never copies native texture pixels
 into the output; source anatomy and existing edge extension supply every UV.
 """
+
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from resource_paths import resource_path
 import argparse
 import hashlib
 import json
-from pathlib import Path
 import struct
-import sys
 sys.dont_write_bytecode = True
 import numpy as np
 from PIL import Image, ImageDraw
@@ -74,7 +77,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source',type=Path,required=True)
     parser.add_argument('--pack',type=Path,required=True)
-    parser.add_argument('--out',type=Path,default=ROOT/'newer/enemies/shalrath/custom')
+    parser.add_argument('--out',type=Path,default=resource_path(ROOT, 'newer/enemies/shalrath/custom'))
     args=parser.parse_args()
     source_bytes=args.source.read_bytes()
     if hashlib.sha256(source_bytes).hexdigest()!=SOURCE_SHA:

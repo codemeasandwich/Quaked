@@ -2,7 +2,7 @@
 // public behaviour that replaces an ordinary explosion's particles. WebGL is not
 // involved: the instance buffers a frame writes are inspected directly, so these
 // checks do not claim GPU pixel parity (tests/fireball_trial.html does).
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import { runInNewContext } from 'node:vm';
 import * as THREE from 'three';

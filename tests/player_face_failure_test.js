@@ -1,7 +1,8 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Terminal layered-head failure through real Sbar and native WAD fallback boundaries.
 // Native fallback sprites come from pak0's actual WAD; only DOM image/canvas
 // surfaces are stubbed. No renderer, game or browser instance is launched.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 await import( '../src/engine/render/gl_rsurf.js' );
 const sbar = await import( '../src/engine/client/sbar.js' ), draw = await import( '../src/engine/render/gl_draw.js' );
@@ -35,7 +36,7 @@ Object.defineProperty( globalThis, 'Image', { configurable: true, value: class {
 	set src( value ) { this.url = value; this.width = this.height = 96; images.push( value ); queueMicrotask( () => failed.has( String( value ).split( '?' )[ 0 ] ) ? this.onerror() : this.onload() ); }
 
 } } );
-globalThis.fetch = async path => { try { return { ok: true, json: async () => JSON.parse((String(path).startsWith('file:')?readFileSync(new URL(String(path).split('?')[0])):read(String(path).split('?')[0])).toString()) }; } catch { return { ok: false }; } };
+globalThis.fetch = async path => { try { return { ok: true, json: async () => JSON.parse((ResourceURL(path,true).startsWith('file:')?readFileSync(new URL(ResourceURL(path,true).split('?')[0])):read(ResourceURL(path,true).split('?')[0])).toString()) }; } catch { return { ok: false }; } };
 const pak = read( 'games/shareware/pak0.pak' ), entries = [], native = new Map();
 for ( let offset = pak.readInt32LE( 4 ), end = offset + pak.readInt32LE( 8 ); offset < end; offset += 64 ) {
 

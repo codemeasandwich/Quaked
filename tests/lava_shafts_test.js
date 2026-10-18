@@ -5,7 +5,7 @@ import * as post from '../src/newer/render/gl_post.js';
 import * as surf from '../src/engine/render/gl_rsurf.js';
 import * as mode from '../src/newer/mode.js';
 import * as vars from '../src/engine/common/cvar.js';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

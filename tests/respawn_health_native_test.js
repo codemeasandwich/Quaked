@@ -1,7 +1,7 @@
 // Normal-difficulty respawn health (card [4]): 100 on a new game, 10 less at each completed respawn down to 60, 10 back (up to 100)
 // on the first arrival in a level not seen before in the run; other difficulties untouched. Real QuakeC and real server.
 // Level changes use the game's own spawn-parameter path (SV_SaveSpawnparms, SV_SpawnServer, ClientConnect, PutClientInServer).
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

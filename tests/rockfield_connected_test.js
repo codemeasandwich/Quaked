@@ -1,6 +1,6 @@
 // Public graph/worker/geometry contracts against the unmodified donor core.
 // Real Three objects; no browser/game or real worker is started.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import { runInNewContext } from 'node:vm';
 import * as THREE from 'three';

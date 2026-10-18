@@ -63,7 +63,7 @@ try{
  }
  VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);vid.fullbright=224;models.Mod_Init();body=models.Mod_ForName('progs/scor.mdl',true);head=models.Mod_ForName('progs/h_scourg.mdl',true);await body.aliasSourceIdentity.promise;
  if(body.aliasSourceIdentity.sha256!=='13f3baa6760b38c1a7ba30eea9b581754dd87eeb1875248ce6feb1d1efb3582f')throw Error('Actual Centroid body identity mismatch');header=body.cache.data;initialShape=shape(header);
- const index=await(await fetch('newer/enemies/index.json')).json();skins.R_NewerSetIndex(index);
+ const index=await(await fetch('assets/game/enemies/index.json')).json();skins.R_NewerSetIndex(index);
  renderer=new THREE.WebGLRenderer({antialias:false,preserveDrawingBuffer:true});renderer.setPixelRatio(1);renderer.setSize(W,H);renderer.setClearColor(0,0);renderer.autoClear=false;renderer.debug.onShaderError=(gl,p,v,f)=>errors.push({program:gl.getProgramInfoLog(p),vertex:gl.getShaderInfoLog(v),fragment:gl.getShaderInfoLog(f)});
  scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(42,1,4,1500);camera.up.set(0,0,1);entity=new entity_t();entity.model=body;entity.skinnum=0;
  const box=new THREE.Box3();for(let frame=0;frame<header.numframes;frame++){const native=mesh.GL_DrawAliasFrame(header,frame);box.union(new THREE.Box3().setFromBufferAttribute(native.posAttr));}const center=box.getCenter(new THREE.Vector3()),size=box.getSize(new THREE.Vector3()),span=Math.max(...size.toArray());camera.position.set(center.x+span*1.55,center.y,center.z+span*.65);camera.lookAt(center);

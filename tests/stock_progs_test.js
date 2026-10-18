@@ -2,7 +2,7 @@
 // (src/engine/progs/progs.js PR_StockProgs; docs/stock-progs-2026-10-14.md). Until 14 October 2026 they demanded the
 // 1.06 file's CRC alone, so in the app, which plays the owner's own (re-release) Quake, the shotgun's pellets, the
 // face's water and reactions, respawn, Rend the Veil, axe cuts and the rest were all silently off.
-import { readFileSync, readdirSync, existsSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from './helpers/resource_fs.mjs';
 const progs = await import( '../src/engine/progs/progs.js' );
 const { CRC_Init, CRC_ProcessByte, CRC_Value } = await import( '../src/engine/common/crc.js' );
 const { pakDirectory, readMember } = await import( '../tools/pak_members.mjs' );

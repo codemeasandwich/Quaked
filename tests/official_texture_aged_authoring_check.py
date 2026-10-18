@@ -4,8 +4,12 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 ROOT=Path(__file__).resolve().parents[1]
+import sys
+sys.path.insert(0, str(ROOT / 'tools'))
+from resource_paths import resource_path
+
 SOURCE=ROOT/'tools/texture_sheets/sources/official-world-2026-10-12'
-CANDIDATES=ROOT/'newer/textures/candidates-2026-10-12'
+CANDIDATES=resource_path(ROOT, 'newer/textures/candidates-2026-10-12')
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def rgb(p):return np.asarray(Image.open(p).convert('RGB'))
 def smooth_spatial(line,sigma):
@@ -14,12 +18,12 @@ def smooth_spatial(line,sigma):
 rows=[]
 with tempfile.TemporaryDirectory(prefix='quaked-aged-authoring-') as temp:
     for name in ['wall14_5','metal7_1']:
-        actual=CANDIDATES/f'{name}-photographic-seam-v2-4x.png';record=json.loads(actual.with_suffix('.json').read_text());master=ROOT/record['source'];output=Path(temp)/actual.name
+        actual=CANDIDATES/f'{name}-photographic-seam-v2-4x.png';record=json.loads(actual.with_suffix('.json').read_text());master=resource_path(ROOT, record['source']);output=Path(temp)/actual.name
         assert sha(master)==record['sourceSha256'] and sha(SOURCE/'finish_character_stone.py')==record['toolSha256']
         assert sha(record['implementation'])==record['implementationSha256']
         command=['/usr/bin/python3',str(SOURCE/'finish_character_stone.py'),'--input',str(master),'--output',str(output)]
         if 'generatedRepair' in record:
-            repair=ROOT/record['generatedRepair'];assert sha(repair)==record['generatedRepairSha256'];command+=['--offset-repair',str(repair)]
+            repair=resource_path(ROOT, record['generatedRepair']);assert sha(repair)==record['generatedRepairSha256'];command+=['--offset-repair',str(repair)]
         subprocess.run(command,check=True,capture_output=True)
         assert sha(output)==sha(actual)==record['outputSha256'],'CLI output changed'
         before,after=rgb(master),rgb(actual);assert before.shape==after.shape==(256,256,3)

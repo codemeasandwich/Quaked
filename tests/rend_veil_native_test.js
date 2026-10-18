@@ -1,6 +1,6 @@
 // Independent real stock QuakeC teleport/server clock/save boundaries.
 // GPU effect fidelity is a separate browser proof owned by the implementer.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile, COM_SetNewerMapsEnabled } from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init } from '../src/engine/render/gl_model.js';

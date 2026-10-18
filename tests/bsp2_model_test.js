@@ -1,6 +1,6 @@
 // Public loader tests; independent widened record layouts are in the helper.
 // References: QuakeSpasm Quake/bspfile.h and Quake/gl_model.c.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import {createHash} from 'node:crypto';
 import {BSP2,PSB2,convertBsp29,splitBsp,joinBsp,widenFixture} from './helpers/bsp2_fixture.mjs';
 import {COM_AddPack,COM_LoadPackFile,COM_FindFile} from '../src/engine/common/pak.js';

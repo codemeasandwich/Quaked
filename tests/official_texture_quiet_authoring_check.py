@@ -4,8 +4,12 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 ROOT=Path(__file__).resolve().parents[1]
+import sys
+sys.path.insert(0, str(ROOT / 'tools'))
+from resource_paths import resource_path
+
 SOURCE=ROOT/'tools/texture_sheets/sources/official-world-2026-10-12'
-CANDIDATES=ROOT/'newer/textures/candidates-2026-10-12'
+CANDIDATES=resource_path(ROOT, 'newer/textures/candidates-2026-10-12')
 CONFIG={'TF_Metal_02':'xy','metal1_2c':'x','TF_Metal4_6a':'x','cable1_1':'x'}
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def rgb(p):return np.asarray(Image.open(p).convert('RGB'))

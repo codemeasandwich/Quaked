@@ -2,7 +2,7 @@
 // steps at a walker's cadence on the floor's own material; monsters step by their size; nothing in the air, standing
 // still or swimming steps; a game's own footsteps win; New Game, demos and the switch off are silent. Through the
 // public frame function and the real sound system, with e1m1's real floors and the shareware pack's real models.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 await import( '../src/newer/install.js' );
 const dma = await import( '../src/engine/sound/snd_dma.js' ), sound = await import( '../src/engine/sound/sound.js' ), pak = await import( '../src/engine/common/pak.js' );
 const { Mod_Init, Mod_ForName } = await import( '../src/engine/render/gl_model.js' );

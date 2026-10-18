@@ -5,19 +5,31 @@ import {readFile, readdir, stat} from 'node:fs/promises';
 import {resolve, relative} from 'node:path';
 import {pakDirectory,readMember,sha256} from '../pak_members.mjs';
 import {existsSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import {ResourcePath,ResourceLogicalPath} from '../../src/platform/resource_paths.js';
 
 const DIRECTORIES = ['newer/textures','newer/enemies','newer/weapons','newer/hud','newer/ui','newer/effects','newer/bestiary','assets/credits'];
-const FILES = ['icon.svg','icon.png','conback.webp','enhancedmenu.png','newer/maps.pak','newer/startup.pak','music/ambient.mp3','music/CREDITS.txt','assets/sounds/quake1newereGame_firstLevelEasyMidHard.mp3','assets/sounds/lowHealt.mp3','assets/sounds/player-bubbles.mp3','assets/sounds/underwater.mp3','assets/sounds/enter-underwater.mp3','assets/sounds/walking-in-water.mp3','assets/sounds/end_of_quake1.mp3','assets/sounds/newerGame_die_reset.mp3','assets/sounds/on-quad-pickup.mp3','assets/sounds/on-ring-pickup.mp3','assets/sounds/on-pentagram-pickup.mp3','assets/sounds/two-active-powerups.mp3','assets/sounds/third-powerup-pickup.mp3','assets/sounds/fire-Environmental.mp3','assets/sounds/firstSee_Shub.mp3','assets/sounds/electric/electric-spell-02.mp3','assets/sounds/electric/electric-spell-03.mp3','assets/sounds/electric/electric-spell-04.mp3','assets/sounds/electric/electric-spell-05.mp3','assets/sounds/electric/electric-spell-06.mp3','assets/sounds/electric/electric-spell-08.mp3','assets/sounds/electric/electric-spell-09.mp3','assets/sounds/electric/electric-spell-10.mp3','assets/sounds/electric/electric-spell-12.mp3','assets/sounds/electric/electric-spell-14.mp3','assets/sounds/electric/electric-spell-20.mp3','assets/sounds/electric/electric-spell-28.mp3','LICENSE'];
+const FILES = ['icon.svg','icon.png','conback.webp','enhancedmenu.png','newer/ui/studio-logo.png','newer/maps.pak','newer/startup.pak','music/ambient.mp3','music/CREDITS.txt','assets/sounds/quake1newereGame_firstLevelEasyMidHard.mp3','assets/sounds/lowHealt.mp3','assets/sounds/player-bubbles.mp3','assets/sounds/underwater.mp3','assets/sounds/enter-underwater.mp3','assets/sounds/walking-in-water.mp3','assets/sounds/end_of_quake1.mp3','assets/sounds/newerGame_die_reset.mp3','assets/sounds/on-quad-pickup.mp3','assets/sounds/on-ring-pickup.mp3','assets/sounds/on-pentagram-pickup.mp3','assets/sounds/two-active-powerups.mp3','assets/sounds/third-powerup-pickup.mp3','assets/sounds/fire-Environmental.mp3','assets/sounds/firstSee_Shub.mp3','assets/sounds/electric/electric-spell-02.mp3','assets/sounds/electric/electric-spell-03.mp3','assets/sounds/electric/electric-spell-04.mp3','assets/sounds/electric/electric-spell-05.mp3','assets/sounds/electric/electric-spell-06.mp3','assets/sounds/electric/electric-spell-08.mp3','assets/sounds/electric/electric-spell-09.mp3','assets/sounds/electric/electric-spell-10.mp3','assets/sounds/electric/electric-spell-12.mp3','assets/sounds/electric/electric-spell-14.mp3','assets/sounds/electric/electric-spell-20.mp3','assets/sounds/electric/electric-spell-28.mp3','LICENSE'];
 const excluded = /(?:^|\/)(?:\.[^/]+|_unused|alternates|candidates[^/]*|sources)(?:\/|$)|(?:source|provenance)\.json$/i;
 export function assetPath(root,path){
+ root=resolve(root);
+ if(path instanceof URL)path=fileURLToPath(path);
+ if(typeof path!=='string')return path;
+ if(path.startsWith('/')){
+  const local=relative(root,path);
+  if(local==='..'||local.startsWith('../'))return path;
+  path=local;
+ }
+ const physical=ResourcePath(path);
+ if(physical!==path)return resolve(root,physical);
  if(path!=='games/shareware/pak0.pak')return resolve(root,path);
  if(process.env.QUAKED_SHAREWARE_PAK)return resolve(process.env.QUAKED_SHAREWARE_PAK);
  return existsSync(resolve(root,path))?resolve(root,path):resolve(root,'.distribution-cache/shareware.pak');
 }
 async function walk(root, dir) {
   const out=[];
-  for (const entry of await readdir(resolve(root,dir),{withFileTypes:true})) {
-    const path=dir+'/'+entry.name;
+  for (const entry of await readdir(assetPath(root,dir),{withFileTypes:true})) {
+    const path=ResourceLogicalPath(ResourcePath(dir)+'/'+entry.name);
     if(excluded.test(path)||entry.isSymbolicLink()) continue;
     if(entry.isDirectory())out.push(...await walk(root,path));
     else if(entry.isFile())out.push(path);
@@ -39,12 +51,12 @@ export async function collectAssets({profile,root=process.cwd()}) {
   if(profile==='desktop')for(const path of await walk(root,'assets/boxes'))files.add(path);
   if(profile==='web')files.add('games/shareware/pak0.pak');
   for(const kind of ['displacement','rockfield']) {
-    const manifest=JSON.parse(await readFile(resolve(root,`newer/${kind}/manifest.json`),'utf8'));
+    const manifest=JSON.parse(await readFile(assetPath(root,`newer/${kind}/manifest.json`),'utf8'));
     for(const value of Object.values(manifest.levels))for(const row of Array.isArray(value)?value:[value]) {
       if(profile==='desktop'||['shareware','newer'].includes(row.namespace))for(const path of payloads(row))files.add(path);
     }
   }
-  const normals=JSON.parse(await readFile(resolve(root,'newer/normals/manifest.json'),'utf8'));
+  const normals=JSON.parse(await readFile(assetPath(root,'newer/normals/manifest.json'),'utf8'));
   const keys=new Set();
   for(const [level,row] of Object.entries(normals.levels))if(profile==='desktop'||/^(shareware|newer):/.test(level))for(const key of row.keys)keys.add(key);
   // Newly published skin revisions can be registered before the level-to-input
@@ -52,7 +64,7 @@ export async function collectAssets({profile,root=process.cwd()}) {
   const assigned=new Set(Object.values(normals.levels).flatMap(row=>row.keys));
   for(const key of Object.keys(normals.samples))if(!assigned.has(key))keys.add(key);
   if(profile==='web') {
-    const enemyIndex=JSON.parse(await readFile(resolve(root,'newer/enemies/index.json'),'utf8'));
+    const enemyIndex=JSON.parse(await readFile(assetPath(root,'newer/enemies/index.json'),'utf8'));
     const models=enemyIndex.models;
     files.add('newer/enemies/index.json');
     const source=assetPath(root,'games/shareware/pak0.pak');

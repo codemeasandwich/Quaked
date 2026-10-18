@@ -1,0 +1,11 @@
+DEMON_PACKAGE {"normalSamples":15969,"maxChannelError":0,"greenFlipAllPixels":true,"sourceWidth":2048,"amplitude":0.05,"sub8bitSamples":130288}
+PASS only three horned plaque materials get enhanced relief; native BSP proportions and original pigment files stay unchanged
+PASS registered materials asynchronously load shared displacement metadata and bounded microdetail while sourceBSP geometryUVs stay untouched
+PASS ordinary detail remains10 layers and original carved-logo reference retains60-layer precedence
+PASS invalid relief metadata is ignored before shader compilation while valid art still loads
+PASS missing or truncated saved16 data cannot silently create geometry from its8-bit preview or poison valid scalar normals
+DEMON_GLOW_PIXELS {"leftEye":583,"rightEye":553,"mouth":2501}
+PASS actual dem5_3 picture supplies both eyes and mouth glow without horns or pigment loss after native had no fullbright mask
+PASS classic comparison and New Game rollback recover exact native plaque pixels and remove enhanced relief
+RESULT 7/7 passed (tests/demon_face_relief_test.js)
+TOTAL 7/7 passed

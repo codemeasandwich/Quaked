@@ -21,6 +21,9 @@ import numpy as np
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'tools'))
+from resource_paths import resource_path
+
 TOOL = ROOT / 'tools/texture_sheets/finish_official_texture.py'
 GENERATED = ROOT / 'tools/texture_sheets/sources/official-world-2026-10-12'
 LUMA = np.array([.299, .587, .114])
@@ -34,7 +37,7 @@ def fresh_reference(name, retained_sha256):
     if len(matches) != 1:
         raise AssertionError('Exactly one fresh reference required for ' + name)
     entry = matches[0]
-    path = ROOT / entry['freshReference']
+    path = resource_path(ROOT, entry['freshReference'])
     actual = hashlib.sha256(path.read_bytes()).hexdigest()
     if actual != retained_sha256 or actual != entry['sha256'] or retained_sha256 not in entry['retainedOriginalHashes']:
         raise AssertionError('Fresh reference differs from retained original bytes: ' + name)
@@ -78,7 +81,7 @@ class OfficialTextureFidelity(unittest.TestCase):
         cls.addClassCleanup(cls.directory.cleanup)
         cls.samples = {}
         for name, version in [('tech08_3', 'v2'), ('tech08_4', 'v1')]:
-            retained = json.loads((ROOT / 'newer/textures/candidates-2026-10-12' / (name + '-quarter.json')).read_text())
+            retained = json.loads((resource_path(ROOT, 'newer/textures/candidates-2026-10-12') / (name + '-quarter.json')).read_text())
             original = fresh_reference(name, retained['originalSha256'])
             donor = GENERATED / (name + '-generated-' + version + '.png')
             candidate = Path(cls.directory.name) / (name + '.png')

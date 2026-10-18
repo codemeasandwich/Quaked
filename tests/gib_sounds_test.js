@@ -3,7 +3,7 @@
 // on a spare channel, so no game sound is ever cut off; at most four in a frame; Newer Game only. Through the public
 // S_GibRestObserve and the real sound system (S_Init, S_StartSound) with the shareware pack's real sound; only the
 // browser's AudioContext is a double.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as dma from '../src/engine/sound/snd_dma.js';
 import * as sound from '../src/engine/sound/sound.js';
 import { COM_LoadPackFile, COM_AddPack } from '../src/engine/common/pak.js';

@@ -1,7 +1,7 @@
 // The way back to the previous level is shut once a respawn lands (card [3]): the server stops crossing it and warming it, the
 // hidden arch surfaces are drawn again, and the renderer drops its window and view; forward exits and pads are untouched.
 // Real QuakeC, real server, stock maps (E1M2 -> E1M3), the real level-view and portal modules.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

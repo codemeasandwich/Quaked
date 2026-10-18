@@ -2,7 +2,7 @@
 // bubbles against the source's own code, and the public behaviour that turns native rays into pellets. WebGL
 // is not involved: the instance buffers a frame writes are inspected, so these checks claim no GPU pixel
 // parity (tests/shotgun_trial.html photographs it). The native rays themselves are tests/shotgun_native_test.js.
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import { runInNewContext } from 'node:vm';
 import * as THREE from 'three';

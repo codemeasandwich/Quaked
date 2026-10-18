@@ -5,8 +5,12 @@ Both authored sides already share the native atlas proportions. A full-atlas
 transform preserves their placement; triangle/onseam coverage drives edge bleed.
 No native pigment, generated anatomy or model modification enters the output.
 """
-import argparse, hashlib, json, struct, sys
+
+import sys
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from resource_paths import resource_path
+import argparse, hashlib, json, struct, sys
 sys.dont_write_bytecode = True
 import numpy as np
 from PIL import Image
@@ -22,7 +26,7 @@ PARTS = [dict(name='complete authored front/back atlas', src=[0,0,1120,958], dst
 def main():
  parser=argparse.ArgumentParser(description=__doc__)
  parser.add_argument('--source',type=Path,required=True);parser.add_argument('--pack',type=Path,required=True)
- parser.add_argument('--out',type=Path,default=ROOT/'newer/enemies/oldone/custom');args=parser.parse_args()
+ parser.add_argument('--out',type=Path,default=resource_path(ROOT, 'newer/enemies/oldone/custom'));args=parser.parse_args()
  if hashlib.sha256(args.source.read_bytes()).hexdigest()!=SOURCE_SHA:raise ValueError('Supplied source changed; review fit recipe')
  data=member(args.pack,'progs/oldone.mdl')
  if hashlib.sha256(data).hexdigest()!=MODEL_SHA:raise ValueError('Native model differs from this fit recipe')

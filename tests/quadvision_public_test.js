@@ -1,7 +1,7 @@
 // Quad vision public contract using actual local QC pickup and native alias
 // pose geometry. Renderer calls are recorded; the finite GPU trial separately
 // checks mask and post pixels. No browser or gameplay loop is launched.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import * as pak from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/engine/render/vid.js';
 import {Mod_Init} from '../src/engine/render/gl_model.js';

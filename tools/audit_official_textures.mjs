@@ -1,6 +1,9 @@
 // Read-only official BSP texture inventory. Reuses bounded PAK reads and the
 // renderer's actual palette conversion / native-pixel identity. No pack edits.
 // QUAKED_THREE_MODULE=/path/three.module.js node tools/audit_official_textures.mjs [output-directory] --game-root /path/to/owned/games
+import {assetPath} from './distribution/manifest.mjs';
+import {fileURLToPath as resourceFileURLToPath} from 'node:url';
+const resourcePath = path => assetPath(resourceFileURLToPath(new URL('../', import.meta.url)), path);
 import {register} from 'node:module';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -30,8 +33,8 @@ const ownedPack=game=>{
 };
 const displayPath=path=>path.startsWith(root+'/')?path.slice(root.length+1):path;
 await import('../src/newer/install.js');
-const indexBytes=await readFile(root+'/newer/textures/index.json'),index=JSON.parse(indexBytes);
-await mkdir(out+'/originals',{recursive:true});
+const indexBytes=await readFile(resourcePath(root+'/newer/textures/index.json')),index=JSON.parse(indexBytes);
+await mkdir(resourcePath(out+'/originals'),{recursive:true});
 const variants=new Map(),games={},errors=[];
 function mapScope(game,map){
  if(/^maps\/b_[^/]+\.bsp$/.test(map))return 'brush-asset';
@@ -116,8 +119,8 @@ for(const game of ['id1','hipnotic','rogue','dopa','mg1']){
      else if(glass){if(variant){status='catalogued';file=variant.file;reason='Exact glass identity';}else reason='Glass name exists but native identity is missing';}
      else if(ordinary){if(typeof ordinary.file==='string'&&ordinary.file){status='catalogued';file=ordinary.file;reason='Exact ordinary material variant';}else reason='Malformed ordinary variant';}
      else if(index.textures[name]){if(!index.sources?.[name]||index.sources[name].includes(key)){status='catalogued';file=index.textures[name];reason=index.sources?.[name]?'Exact native identity':'Legacy name-only binding';}else reason='Same name has different original pixels';}
-     if(file){try{await readFile(root+'/newer/textures/'+file);}catch{status='missing-file';reason='Catalogue target is unavailable';}}
-     const original='originals/'+stem+'.rgba';await writeFile(out+'/'+original,rgba);
+     if(file){try{await readFile(resourcePath(root+'/newer/textures/'+file));}catch{status='missing-file';reason='Catalogue target is unavailable';}}
+     const original='originals/'+stem+'.rgba';await writeFile(resourcePath(out+'/'+original),rgba);
      v={id,name,key,width,height,pixelSha256,original,status,file,reason,uses:[]};variants.set(id,v);
     }
     const direct=faceUsage.get(i)||{faces:0,visibleCandidateFaces:0,hiddenTriggerFaces:0};
@@ -137,6 +140,6 @@ const counts={},actions={};for(const v of rows){
  actions[v.action]=(actions[v.action]||0)+1;
 }
 const report={schemaVersion:3,gameRoot,scope:'Installed official-game BSP directory inventory; actions distinguish stock base campaign/dm1-6/brush assets from installed extras requiring provenance review, unused miptexes and invisible triggers. Expansion own BSPs use base palette/search inheritance; explicit game-root uses the engine catalogue canonical folders. Enemy MDL skins tracked separately.',indexSha256:sha256(indexBytes),games,counts,actions,errors,variants:rows};
-await writeFile(out+'/inventory.json',JSON.stringify(report,null,2)+'\n');
+await writeFile(resourcePath(out+'/inventory.json'),JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify({games,counts,actions,errors,output:out+'/inventory.json'},null,2));
 if(errors.length)process.exitCode=1;

@@ -1,6 +1,7 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Independent installed public checks for two owner-authored height-only pairs.
 // Run only after the reviewed four-file/four-binding successor is installed.
-import {readFileSync,writeFileSync} from 'node:fs';
+import {readFileSync,writeFileSync} from './helpers/resource_fs.mjs';
 import {execFileSync} from 'node:child_process';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
@@ -38,8 +39,8 @@ async function native(entry,use){
 async function fixture(run){
  check(process.env.QUAKED_CANVAS_MODULE,'set actual canvas module');const{createCanvas,Image:NativeImage}=await import(pathToFileURL(process.env.QUAKED_CANVAS_MODULE).href);
  const saved={fetch:globalThis.fetch,Image:Object.getOwnPropertyDescriptor(globalThis,'Image'),document:Object.getOwnPropertyDescriptor(globalThis,'document'),classic:mode.R_ClassicPassActive()},controls=[r_hdr,mode.r_newer_textures];for(const c of controls)if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);const values=controls.map(c=>c.string),requests=[];
- globalThis.fetch=async url=>{same(String(url),'newer/textures/index.json','public index fetch');return{ok:true,json:async()=>index};};
- Object.defineProperty(globalThis,'Image',{configurable:true,value:class extends NativeImage{set src(url){requests.push(String(url));super.src=read(String(url).split('?')[0]);}}});Object.defineProperty(globalThis,'document',{configurable:true,value:{createElement:n=>{same(n,'canvas','public image canvas');return createCanvas(1,1);}}});mode.R_AnimSetClassicPass(false);vars.Cvar_SetValue(r_hdr.name,1);vars.Cvar_SetValue(mode.r_newer_textures.name,1);
+ globalThis.fetch=async url=>{same(ResourceURL(url,true),'newer/textures/index.json','public index fetch');return{ok:true,json:async()=>index};};
+ Object.defineProperty(globalThis,'Image',{configurable:true,value:class extends NativeImage{set src(url){requests.push(ResourceURL(url,true));super.src=read(ResourceURL(url,true).split('?')[0]);}}});Object.defineProperty(globalThis,'document',{configurable:true,value:{createElement:n=>{same(n,'canvas','public image canvas');return createCanvas(1,1);}}});mode.R_AnimSetClassicPass(false);vars.Cvar_SetValue(r_hdr.name,1);vars.Cvar_SetValue(mode.r_newer_textures.name,1);
  const decode=async file=>{const im=new NativeImage(),loaded=new Promise((resolve,reject)=>{im.onload=resolve;im.onerror=reject;});im.src=read(file);await loaded;const ctx=createCanvas(im.width,im.height).getContext('2d');ctx.drawImage(im,0,0);return{width:im.width,height:im.height,data:ctx.getImageData(0,0,im.width,im.height).data};};
  try{const api=await import('../src/newer/render/r_newertextures.js?owner-q92-'+Math.random());await run({api,requests,decode});}finally{globalThis.fetch=saved.fetch;for(const k of['Image','document'])if(saved[k])Object.defineProperty(globalThis,k,saved[k]);else delete globalThis[k];controls.forEach((c,i)=>vars.Cvar_Set(c.name,values[i]));mode.R_AnimSetClassicPass(saved.classic);}
 }

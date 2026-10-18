@@ -3,11 +3,14 @@
 Requires Pillow/NumPy: python3 tools/texture_sheets/update_head_skins.py
 Source bytes, island bounds, backdrop and output scale are recorded in the recipe.
 """
+
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from resource_paths import resource_path
 import hashlib
 import json
-from pathlib import Path
 import struct
-import sys
 sys.dont_write_bytecode=True
 import numpy as np
 from PIL import Image,ImageDraw
@@ -114,9 +117,9 @@ def main():
         data=pak['progs/'+model+'.mdl'];original=native_skins(data,palette)[0][0]
         image,report=fit(original,Image.open(file).convert('RGB'),spec,data,recipe['factor'],recipe['bleed_pixels'])
         prepared.append((model,image,report,spec))
-    index_path=ROOT/'newer/enemies/index.json';index=json.loads(index_path.read_text());reports=[]
+    index_path=resource_path(ROOT, 'newer/enemies/index.json');index=json.loads(index_path.read_text());reports=[]
     for model,image,report,spec in prepared:
-        directory=ROOT/'newer/enemies'/model/'custom';directory.mkdir(parents=True,exist_ok=True)
+        directory=resource_path(ROOT, 'newer/enemies')/model/'custom';directory.mkdir(parents=True,exist_ok=True)
         image.save(directory/'diffuse.webp','WEBP',lossless=True,method=6)
         height_for(image,directory/'height.webp',model+'/custom')
         index['models'][model]=[dict(dir=model+'/custom',flipGreen=False,maps=dict(diffuse='diffuse.webp',height='height.webp'),heightStrength=.65,heightCap=.55)]

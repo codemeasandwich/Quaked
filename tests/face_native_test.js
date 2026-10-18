@@ -2,7 +2,7 @@
 // Stock QuakeC events through actual local host/loopback commands. This tests
 // the gameplay observer and public HUD adapter, not an alternate combat path.
 // Native damage packets and server spawn/begin exercise hidden-HUD lifecycle.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import * as pak from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/engine/render/vid.js';
 import {Mod_Init} from '../src/engine/render/gl_model.js';

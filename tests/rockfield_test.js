@@ -1,6 +1,6 @@
 // Public ES module output compared with the unmodified owner-supplied core,
 // evaluated in a separate VM. No renderer, browser, game or worker is started.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { runInNewContext } from 'node:vm';
 import * as rock from '../src/newer/assets/rockfield.js';
 

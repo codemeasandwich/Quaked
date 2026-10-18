@@ -3,7 +3,7 @@
 // leading _ allowed, as Quakespasm reads them). In Newer Game the existing treatments win (Newer liquids' looks for
 // water and slime, solid lava, camera portals for teleporters), so a map's value is used only where that treatment is
 // switched off; New Game is always r_wateralpha. Every liquid draw path asks the one function.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 await import( '../src/newer/install.js' );
 const { cl } = await import( '../src/engine/client/client.js' );
 const cvar = await import( '../src/engine/common/cvar.js' );

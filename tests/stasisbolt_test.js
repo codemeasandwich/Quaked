@@ -4,7 +4,7 @@
 // real entity draw loop (R_DrawEntitiesOnList), the real TE_GUNSHOT parser (CL_ParseTEnt) and the frame. WebGL is not
 // involved: instance buffers are inspected, so no GPU pixel parity is claimed here (tests/stasisbolt_trial.html shows
 // it in the browser).
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import { runInNewContext } from 'node:vm';
 import * as THREE from 'three';

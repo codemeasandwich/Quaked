@@ -1,6 +1,6 @@
 // Native host commands, paired loopback, QC death and collision-driven seamless
 // travel. Only localStorage is isolated; no real user save slot is touched.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

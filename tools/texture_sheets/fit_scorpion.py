@@ -5,12 +5,15 @@ The top-left body pieces are sampled directly; rendered references and detached
 head panels are excluded. Native pixels survive only on the two small red joint
 islands absent from the supplied art. Model geometry and source files are read-only.
 """
+
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from resource_paths import resource_path
 import argparse
 import hashlib
 import json
-from pathlib import Path
 import struct
-import sys
 sys.dont_write_bytecode = True
 import numpy as np
 from PIL import Image, ImageDraw
@@ -149,6 +152,6 @@ if __name__ == '__main__':
     parser.add_argument('--pack', type=Path, default=ROOT/'resources/hipnotic/pak0.pak')
     parser.add_argument('--palette-pack', type=Path, default=ROOT/'resources/id1/pak0.pak')
     parser.add_argument('--source-root', type=Path, default=ROOT)
-    parser.add_argument('--out', type=Path, default=ROOT/'newer/enemies/scor/custom')
+    parser.add_argument('--out', type=Path, default=resource_path(ROOT, 'newer/enemies/scor/custom'))
     args = parser.parse_args()
     build(args.pack, args.palette_pack, args.source_root, args.out)

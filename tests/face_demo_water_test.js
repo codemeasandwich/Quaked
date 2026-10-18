@@ -1,7 +1,7 @@
 // Independent public-interface checks: real demo2 packets supply the player position,
 // health and suit. No local-server air clock is substituted for recorded playback.
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { fileURLToPath } from 'node:url';
 import { assetPath } from '../tools/distribution/manifest.mjs';
 import * as pak from '../src/engine/common/pak.js';

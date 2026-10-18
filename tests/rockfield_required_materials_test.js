@@ -1,6 +1,6 @@
 // Required material coverage from native BSP data, plus real world-batch hooks.
 // No browser, game loop or worker instance is started.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import * as THREE from 'three';
 import { R_RockBakePrefetch } from '../src/newer/assets/r_rockbakes.js';

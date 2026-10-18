@@ -1,7 +1,7 @@
 // The post pipeline's shadows stage on its own (card [44h]): E1M1's sun occluder (its world, on the sun shadow layer
 // only, sky left out so skylights let light in), and the shadow atlas's answers before the pipeline exists. Through
 // the public interface of r_post_shadows.js, on the shareware pack's real map.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import * as shadows from '../src/newer/render/r_post_shadows.js';
 import { SUN_SHADOW_LAYER } from '../src/newer/render/r_post_config.js';

@@ -2,7 +2,7 @@
 // large faces carry dem5_3, like the world's plaques. The world's relief is a mesh in the world batch; an entity's
 // surfaces are not in it, so before this change the door's face was flat. These checks call the public brush draw
 // with the real stock level and the retained sculpted field; no renderer or game is started.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import { R_DemonSurfaceData } from '../src/newer/render/r_demonrelief.js';
 import * as surf from '../src/engine/render/gl_rsurf.js';

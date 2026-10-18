@@ -1,6 +1,7 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Owner-restored axe: native mesh, UVs, skin, complete arm and animation
 // in every game mode. Decode the original PAK directly; no donated axe art.
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync } from './helpers/resource_fs.mjs';
 import { execFileSync } from 'node:child_process';
 await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
@@ -56,13 +57,13 @@ const old = { hdr: r_hdr.string, enabled: weapons.r_newer_weapons.value, lerp: a
 const requested = [];
 globalThis.fetch = async path => {
 
-	requested.push( String( path ) );
-	try { return { ok: true, json: async () => JSON.parse( read( String( path ) ).toString() ) }; } catch { return { ok: false }; }
+	requested.push( ResourceURL(path,true) );
+	try { return { ok: true, json: async () => JSON.parse( read( ResourceURL(path,true) ).toString() ) }; } catch { return { ok: false }; }
 
 };
 THREE.TextureLoader.prototype.load = function ( path, done ) {
 
-	requested.push( String( path ) ); const texture = new THREE.Texture(); queueMicrotask( () => done( texture ) ); return texture;
+	requested.push( ResourceURL(path,true) ); const texture = new THREE.Texture(); queueMicrotask( () => done( texture ) ); return texture;
 
 };
 if ( ! Cvar_FindVar( 'r_hdr' ) ) Cvar_RegisterVariable( r_hdr );

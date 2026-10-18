@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { PowerVisionMode, PowerVisionHistory } from '../src/newer/gameplay/powervision_state.js';
 import { PowerVisionAdapt } from '../src/newer/render/r_powervision.js';
 import * as shaders from '../src/newer/render/powervision_shaders.js';

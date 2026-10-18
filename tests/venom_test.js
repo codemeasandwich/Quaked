@@ -3,7 +3,7 @@
 // and the engine wrappers that use them (render.js R_RocketTrail and R_WizardSpikeImpact). WebGL is not involved: the
 // instance counts a frame writes and the diagnostic snapshot are inspected, so these checks do not claim GPU pixel
 // parity (tests/venom_trial.html and the browser screenshots do).
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import { runInNewContext } from 'node:vm';
 import * as THREE from 'three';

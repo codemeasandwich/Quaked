@@ -20,6 +20,18 @@ from PIL import Image
 from scipy import ndimage
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'tools'))
+from resource_paths import resource_path
+
+
+def head_resource_path(logical):
+    """Choose a name inside HEAD, including history before the layout move."""
+    physical = resource_path(ROOT, logical).relative_to(ROOT).as_posix()
+    present = subprocess.run(['git', 'cat-file', '-e', 'HEAD:' + physical], cwd=ROOT,
+                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    return physical if present.returncode == 0 else logical
+
+
 sys.path.insert(0, str(ROOT / 'tools/texture_sheets'))
 from fit_vore import member
 from update_head_skins import uv_footprint
@@ -185,7 +197,7 @@ class GeneratedSkinFitTests(unittest.TestCase):
         pack = Path(os.environ.get('QUAKED_ID1_PAK', Path('/Users/bri/quaked/Quake/pak0.pak')))
         output = self.run_fit(recipe, 'legacy-fish', pack)
         for name in ['diffuse.png', 'height.webp']:
-            committed = subprocess.check_output(['git', 'show', 'HEAD:newer/enemies/fish/custom/' + name], cwd=ROOT)
+            committed = subprocess.check_output(['git', 'show', 'HEAD:' + head_resource_path('newer/enemies/fish/custom/' + name)], cwd=ROOT)
             path = self.work / ('committed-' + name)
             path.write_bytes(committed)
             self.assertTrue(np.array_equal(rgba(output / name), rgba(path)), 'legacy decoded pixels changed: ' + name)

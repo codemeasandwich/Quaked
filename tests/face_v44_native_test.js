@@ -1,7 +1,7 @@
 // Independent v4.4 native adapter checks. Real bundled QC owns all deadlines;
 // tests move the player into real BSP water and advance only the server clock.
 // Save/load uses the actual host commands with isolated in-memory storage.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import * as pak from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/engine/render/vid.js';
 import {Mod_Init} from '../src/engine/render/gl_model.js';

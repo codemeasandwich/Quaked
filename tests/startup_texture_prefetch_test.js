@@ -1,6 +1,7 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Public bounded BSP directory parsing and existing decoded-asset cache reuse.
 // No renderer, model loader, palette setup or game is needed for prefetch.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
@@ -25,8 +26,8 @@ Deno.test('bounded BSP29 texture-directory prefetch handles real native views, d
 async function assetsFixture(run){
  const saved={fetch:globalThis.fetch,Image:Object.getOwnPropertyDescriptor(globalThis,'Image'),document:Object.getOwnPropertyDescriptor(globalThis,'document'),classic:mode.R_ClassicPassActive()},options=[r_hdr,mode.r_newer_textures];for(const v of options)if(!vars.Cvar_FindVar(v.name))vars.Cvar_RegisterVariable(v);const values=options.map(v=>v.string),images=[],fetches=[],decoded=[],scalar=new Uint16Array([0,16384,32768,65535]);
  const manifest={version:991,textures:{prefetch_a:'diffuse.png',prefetch_alias:'diffuse.png',prefetch_good:'good.png',prefetch_bad:'bad.png'},normals:{prefetch_a:{file:'height.png',dataFile:'height.r16',sampling:'clamp',displacement:{depth:4,step:1},edgeSource:{file:'edge.png'}},prefetch_alias:{file:'height.png',dataFile:'height.r16',sampling:'clamp',displacement:{depth:4,step:1},edgeSource:{file:'edge.png'}}}};
- globalThis.fetch=async url=>{fetches.push(String(url));if(String(url).endsWith('index.json'))return{ok:true,json:async()=>manifest};if(String(url).includes('height.r16'))return{ok:true,arrayBuffer:async()=>scalar.buffer.slice(0)};throw Error('unexpected prefetch '+url);};
- Object.defineProperty(globalThis,'Image',{configurable:true,value:class{constructor(){this.width=this.height=2;images.push(this);}set src(url){this.url=String(url);}finish(fail=false){if(fail){this.onerror?.(Error('controlled missing picture'));return;}this.pixels=new Uint8ClampedArray([10,20,30,255,40,50,60,255,70,80,90,255,100,110,120,255]);this.onload?.();}}});
+ globalThis.fetch=async url=>{fetches.push(ResourceURL(url,true));if(ResourceURL(url,true).endsWith('index.json'))return{ok:true,json:async()=>manifest};if(ResourceURL(url,true).includes('height.r16'))return{ok:true,arrayBuffer:async()=>scalar.buffer.slice(0)};throw Error('unexpected prefetch '+url);};
+ Object.defineProperty(globalThis,'Image',{configurable:true,value:class{constructor(){this.width=this.height=2;images.push(this);}set src(url){this.url=ResourceURL(url,true);}finish(fail=false){if(fail){this.onerror?.(Error('controlled missing picture'));return;}this.pixels=new Uint8ClampedArray([10,20,30,255,40,50,60,255,70,80,90,255,100,110,120,255]);this.onload?.();}}});
  Object.defineProperty(globalThis,'document',{configurable:true,value:{createElement:tag=>{same(tag,'canvas','only decoding canvas requested');let image;return{width:0,height:0,getContext:()=>({drawImage:i=>image=i,getImageData:()=>{decoded.push(image.url);return{data:image.pixels};}})};}}});
  mode.R_AnimSetClassicPass(false);vars.Cvar_SetValue('r_hdr',0);vars.Cvar_SetValue('r_newer_textures',1);boot.R_DemoLoadingBoot();boot.R_DemoLoadingWelcome();
  const native=()=>new THREE.DataTexture(new Uint8Array([1,2,3,255]),1,1);

@@ -2,7 +2,7 @@
 // Actual stock Ring pickup, native animation/CheckPowerups, production snapshot
 // writer and parser. Only transport delivery is recorded; this is NOT a two-client
 // multiplayer acceptance trial. The original red receipt is retained separately.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

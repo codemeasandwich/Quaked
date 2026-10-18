@@ -35,7 +35,7 @@ try {
  Cvar_RegisterVariable(r_hdr); Cvar_RegisterVariable(r_newer_textures);
  Cvar_SetValue('r_hdr',1); Cvar_SetValue('r_newer_textures',1); R_AnimSetNewer(true);
  const recipe = await (await fetch('../tools/texture_sheets/sources/wizard-2026-10-01.json',{cache:'no-store'})).json();
- const index = await (await fetch('../newer/textures/index.json',{cache:'no-store'})).json();
+ const index = await (await fetch('assets/game/textures/index.json',{cache:'no-store'})).json();
  const results = [];
  for (const tile of recipe.textures) {
   const name = tile.name;

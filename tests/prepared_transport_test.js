@@ -1,3 +1,4 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 import {gzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {PreparedLoad} from '../src/newer/assets/prepared_transport.js';
@@ -6,7 +7,7 @@ function parts(){const cuts=[0,1,7,Math.floor(compressed.length/2),compressed.le
 async function rejects(p,label){let error;try{await p;}catch(e){error=e;}check(error instanceof Error,label+' rejected');return error;}
 Deno.test('prepared gzip chunks are verified and fetched sequentially while restoring exactly the same decoded bytes as one file',async()=>{
  const old=globalThis.fetch,p=parts(),calls=[];let active=0,peak=0;
- globalThis.fetch=async(url,options)=>{calls.push({url:String(url),signal:options?.signal});if(String(url).startsWith('single'))return new Response(compressed);const index=p.findIndex(v=>String(url).startsWith(v.file+'?v='+v.sha256));check(index>=0,'real chunk URL includes its immutable hash');active++;peak=Math.max(peak,active);return{ok:true,body:new ReadableStream({async start(controller){await new Promise(r=>setTimeout(r,1));controller.enqueue(p[index].data);active--;controller.close();}})};};
+ globalThis.fetch=async(url,options)=>{calls.push({url:ResourceURL(url,true),signal:options?.signal});if(ResourceURL(url,true).startsWith('single'))return new Response(compressed);const index=p.findIndex(v=>ResourceURL(url,true).startsWith(v.file+'?v='+v.sha256));check(index>=0,'real chunk URL includes its immutable hash');active++;peak=Math.max(peak,active);return{ok:true,body:new ReadableStream({async start(controller){await new Promise(r=>setTimeout(r,1));controller.enqueue(p[index].data);active--;controller.close();}})};};
  try{const signal=new AbortController().signal,split=await PreparedLoad(p.map(({data,...spec})=>spec),{signal,limit:raw.length});same(Buffer.compare(Buffer.from(split),Buffer.from(raw)),0,'exact expanded bytes across cuts inside gzip header/body');same(peak,1,'no parallel compressed-part retention');same(calls.length,p.length,'each declared part fetched once');check(calls.every(c=>c.signal===signal),'actual cancellation signal forwarded to every request');same(Buffer.compare(Buffer.from(await PreparedLoad('single.gz?v=known',{limit:raw.length})),Buffer.from(raw)),0,'ordinary single-file path unchanged');}
  finally{globalThis.fetch=old;}
 });

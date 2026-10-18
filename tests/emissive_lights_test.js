@@ -1,6 +1,6 @@
 // Actual E1M3 sources, public selection/capture/pipeline endpoints. Renderer
 // endpoints are observed without creating WebGL, a browser or a game loop.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName, Mod_PointInLeaf, Mod_LeafPVS } from '../src/engine/render/gl_model.js';

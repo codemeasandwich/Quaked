@@ -2,7 +2,7 @@
 // 11 Oct 2026, card [QV1]). Real maps and progs, real edicts moved by the real SV_Physics; the expectations are fixtures
 // checked by hand against each map's geometry and entities (and, for the registered maps, a reviewer's independent
 // flood), not the rule's own idea of a closet.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

@@ -21,18 +21,18 @@ export const ELECTRIC_ROLES = Object.freeze( Object.fromEntries( Object.entries(
  hit: [ 6, 14 ], miss: [ 2, 12 ], water: [ 4, 10 ], eel: [ 28 ]
 } ).map( ( [ role, clips ] ) => [ role, Object.freeze( clips ) ] ) ) );
 export const ELECTRIC_TRACK_URLS = Object.freeze( {
- 2: new URL( '../../../assets/sounds/electric/electric-spell-02.mp3', import.meta.url ).href,
- 3: new URL( '../../../assets/sounds/electric/electric-spell-03.mp3', import.meta.url ).href,
- 4: new URL( '../../../assets/sounds/electric/electric-spell-04.mp3', import.meta.url ).href,
- 5: new URL( '../../../assets/sounds/electric/electric-spell-05.mp3', import.meta.url ).href,
- 6: new URL( '../../../assets/sounds/electric/electric-spell-06.mp3', import.meta.url ).href,
- 8: new URL( '../../../assets/sounds/electric/electric-spell-08.mp3', import.meta.url ).href,
- 9: new URL( '../../../assets/sounds/electric/electric-spell-09.mp3', import.meta.url ).href,
- 10: new URL( '../../../assets/sounds/electric/electric-spell-10.mp3', import.meta.url ).href,
- 12: new URL( '../../../assets/sounds/electric/electric-spell-12.mp3', import.meta.url ).href,
- 14: new URL( '../../../assets/sounds/electric/electric-spell-14.mp3', import.meta.url ).href,
- 20: new URL( '../../../assets/sounds/electric/electric-spell-20.mp3', import.meta.url ).href,
- 28: new URL( '../../../assets/sounds/electric/electric-spell-28.mp3', import.meta.url ).href,
+ 2: new URL( '../../../assets/audio/sounds/electric/electric-spell-02.mp3', import.meta.url ).href,
+ 3: new URL( '../../../assets/audio/sounds/electric/electric-spell-03.mp3', import.meta.url ).href,
+ 4: new URL( '../../../assets/audio/sounds/electric/electric-spell-04.mp3', import.meta.url ).href,
+ 5: new URL( '../../../assets/audio/sounds/electric/electric-spell-05.mp3', import.meta.url ).href,
+ 6: new URL( '../../../assets/audio/sounds/electric/electric-spell-06.mp3', import.meta.url ).href,
+ 8: new URL( '../../../assets/audio/sounds/electric/electric-spell-08.mp3', import.meta.url ).href,
+ 9: new URL( '../../../assets/audio/sounds/electric/electric-spell-09.mp3', import.meta.url ).href,
+ 10: new URL( '../../../assets/audio/sounds/electric/electric-spell-10.mp3', import.meta.url ).href,
+ 12: new URL( '../../../assets/audio/sounds/electric/electric-spell-12.mp3', import.meta.url ).href,
+ 14: new URL( '../../../assets/audio/sounds/electric/electric-spell-14.mp3', import.meta.url ).href,
+ 20: new URL( '../../../assets/audio/sounds/electric/electric-spell-20.mp3', import.meta.url ).href,
+ 28: new URL( '../../../assets/audio/sounds/electric/electric-spell-28.mp3', import.meta.url ).href,
 } );
 export const ELECTRIC_VOICE_LIMIT = 24, ELECTRIC_PULSE_HOLD = .25;
 const QUEUE_LIMIT = 128, ACTOR_LIMIT = 128, REACH = 1600, BASE_GAIN = .32;

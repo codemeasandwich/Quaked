@@ -2,6 +2,12 @@
 prints those that look more like some other texture (a wrong name), best first.
 Smooth noisy textures (rust, dark metal) are unreliable here: look at them by eye.
 Needs wall-sheets/ (from make_sheets.py)."""
+from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from resource_paths import resource_path
+TEXTURES = resource_path(Path(__file__).resolve().parents[2], 'newer/textures')
+
 import sys,glob,os,json
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
@@ -20,8 +26,8 @@ def rank(im,size):
         sc.append((ncc-cd/200,k))
     sc.sort(reverse=True); return sc
 if __name__=='__main__':
-    idx=json.load(open('/home/user/repo/newer/textures/index.json'))['textures']
+    idx=json.load(open(TEXTURES / 'index.json'))['textures']
     for n,fn in idx.items():
-        im=Image.open('/home/user/repo/newer/textures/'+fn).convert('RGB')
+        im=Image.open(TEXTURES / fn).convert('RGB')
         r=rank(im,orig[n].size)
         print('OK ' if r[0][1]==n else 'BAD',n,[(round(s,2),k) for s,k in r[:2]], 'rank',[k for _,k in r].index(n)+1)

@@ -1,3 +1,4 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // A shipped normal sample whose file this copy does not have (its game pack is not installed,
 // docs/per-game-packs-design-2026-10-13.md) is generated instead of failing, so a level's
 // readiness gate never waits on it; a sample the copy has is still the one used.
@@ -18,7 +19,7 @@ Deno.test('a listed normal sample the package does not have is generated; one it
    keys.push([key,NORMAL_BAKES[key]]);NORMAL_BAKES[key]={file:name,sha256:'fixture',rawSha256:createHash('sha256').update(raw).digest('hex')};files.set(name,bytes);
   }
   globalThis.__QUAKED_DISTRIBUTION__={profile:'desktop',has:path=>path!=='newer/normals/unshipped-sample.nm.gz',url:path=>path};
-  globalThis.fetch=async url=>{requests++;const bytes=files.get(String(url).split('?')[0]);check(bytes&&!String(url).includes('unshipped'),'only the sample this copy has is fetched: '+url);return new Response(bytes);};
+  globalThis.fetch=async url=>{requests++;const bytes=files.get(ResourceURL(url,true).split('?')[0]);check(bytes&&!ResourceURL(url,true).includes('unshipped'),'only the sample this copy has is fetched: '+url);return new Response(bytes);};
   const missing=R_NormalPrepare(absent);await missing.promise;
   same(missing.status,'ready','unavailable sample still prepares');check(missing.source!=='shipped','unavailable sample is generated, not shipped: '+missing.source);
   same(requests,0,'no request for a file the copy does not have');

@@ -3,7 +3,7 @@
  */
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { readFile } from 'node:fs/promises';
+import { readFile } from './helpers/resource_fs_promises.mjs';
 import { fileURLToPath } from 'node:url';
 import { assetPath, collectAssets, validateArtifactInventory } from '../tools/distribution/manifest.mjs';
 import { pakDirectory, readMember, sha256 } from '../tools/pak_members.mjs';

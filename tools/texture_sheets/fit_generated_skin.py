@@ -4,10 +4,14 @@
 Recipes pin the actual native model and generated-image bytes. Generation is a
 separate owner-authorized ChatGPT imagegen step; this command never calls a model.
 """
+
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from resource_paths import resource_path
 import argparse
 import json
 import hashlib
-from pathlib import Path
 import numpy as np
 from fit_rogue_skins import ROOT, fit_one, flatten_height, member
 from update_enemy_heights import native_skins, height_for
@@ -17,7 +21,7 @@ if __name__ == '__main__':
  parser=argparse.ArgumentParser(description=__doc__)
  parser.add_argument('recipe',type=Path)
  parser.add_argument('--pack',type=Path,required=True)
- parser.add_argument('--output',type=Path,default=ROOT/'newer/enemies')
+ parser.add_argument('--output',type=Path,default=resource_path(ROOT, 'newer/enemies'))
  parser.add_argument('--palette-pack',type=Path,default=ROOT/'resources/id1/pak0.pak')
  args=parser.parse_args();recipe=json.loads(args.recipe.read_text())
  if recipe.get('runtimeEncoding') is not None and recipe['runtimeEncoding'] != ENCODING:raise ValueError('Runtime skin encoding must be explicit WebP quality92')

@@ -1,10 +1,11 @@
+import {ResourcePath} from '../src/platform/resource_paths.js';
 // Independent texture-only material, native attachment and bounded-performance audit.
 // Earlier CPU mesh deformation is deliberately excluded by the revised owner contract.
 // Fixture setup follows the existing public model/image transport conventions.
 // Owned models are read-only. Image transport is controlled; GPU appearance and
 // compositor behavior belong to the separate actual-browser trial.
 import * as THREE from 'three';
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import {createHash} from 'node:crypto';
 import {pakDirectory,readMember,isolatedPack} from '../tools/pak_members.mjs';
 import {COM_AddPack,COM_FindFile} from '../src/engine/common/pak.js';
@@ -43,7 +44,7 @@ async function fixture(run){
  THREE.TextureLoader.prototype.load=function(url,done,_,fail){const texture=new THREE.DataTexture(new Uint8Array(64).fill(127),4,4);requests.push({url:String(url),done,fail,texture});return texture;};
  mode.R_AnimSetClassicPass(false);mode.R_AnimSetNewer(true);mode.r_newer_enemies.value=1;mode.r_newer_normals.value=0;anim.r_lerpmodels.value=0;
  fire.R_FireballTextures(null,null);skins.R_NewerSetIndex({...originalIndex,version:'lava-effects-public-'+ ++serial});
- const ctx={...nativeData,requests,ready:async()=>{await skins.R_NewerSkinsPrepare([ctx.model]);const maps=requests.filter(r=>r.url.startsWith('newer/enemies/lavaman/custom/'));same(maps.length,2,'actual custom diffuse/height pair requested');maps.forEach(r=>r.done(r.texture));check(skins.R_NewerSkinsStatus([ctx.model]).settled,'custom material preparation settles');},fireReady:()=>{const atlas=new THREE.DataTexture(new Uint8Array(64).fill(255),4,4),noise=new THREE.DataTexture(new Uint8Array(64).fill(127),4,4);owned.push(atlas,noise);fire.R_FireballTextures(atlas,noise);}};
+ const ctx={...nativeData,requests,ready:async()=>{await skins.R_NewerSkinsPrepare([ctx.model]);const maps=requests.filter(r=>r.url.startsWith(ResourcePath('newer/enemies/lavaman/custom/')));same(maps.length,2,'actual custom diffuse/height pair requested');maps.forEach(r=>r.done(r.texture));check(skins.R_NewerSkinsStatus([ctx.model]).settled,'custom material preparation settles');},fireReady:()=>{const atlas=new THREE.DataTexture(new Uint8Array(64).fill(255),4,4),noise=new THREE.DataTexture(new Uint8Array(64).fill(127),4,4);owned.push(atlas,noise);fire.R_FireballTextures(atlas,noise);}};
  try{await run(ctx);}finally{
   lava.R_LavaManClear();skins.R_NewerSkinsShutdown();skins.R_NewerSetIndex(originalIndex);fire.R_FireballTextures(old.fire?.atlas??null,old.fire?.noise??null);owned.forEach(t=>t.dispose());THREE.TextureLoader.prototype.load=old.loader;
   for(const key of ['document','window']){if(old[key])Object.defineProperty(globalThis,key,old[key]);else delete globalThis[key];}

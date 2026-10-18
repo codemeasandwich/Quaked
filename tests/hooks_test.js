@@ -2,7 +2,7 @@
 // src/engine or src/platform imports src/newer; src/newer/install.js (loaded by the harness, as by the page) fills every
 // hook with the Newer module's own export, once; and Hooks_Install refuses a table that lacks a hook or names one the
 // list does not declare.
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync } from './helpers/resource_fs.mjs';
 import { join, dirname, resolve, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as hooks from '../src/engine/common/hooks.js';

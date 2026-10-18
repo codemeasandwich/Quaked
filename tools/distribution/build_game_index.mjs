@@ -16,6 +16,7 @@
 // A playable (non-placeholder) catalogue game with no PAKs in the library is refused: its shared
 // assets would otherwise be classified as if it did not exist.
 import {readFile,readdir,writeFile,mkdir} from 'node:fs/promises';
+import {assetPath} from './manifest.mjs';
 import {homedir} from 'node:os';
 import {join,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -23,7 +24,7 @@ import {createHash} from 'node:crypto';
 import {pakDirectory,readMember,sha256} from '../pak_members.mjs';
 import {GAME_CATALOGUE_GAMES} from '../../src/engine/common/game_catalogue.js';
 const repo=resolve(fileURLToPath(new URL('../..',import.meta.url))),library=resolve(process.argv[2]??join(homedir(),'quaked'));
-const json=async path=>JSON.parse(await readFile(join(repo,path),'utf8'));
+const json=async path=>JSON.parse(await readFile(assetPath(repo,path),'utf8'));
 export async function IndexSources(){
  const textureIndex=await json('newer/textures/index.json'),enemyIndex=await json('newer/enemies/index.json');
  const textures=[...new Set([...Object.keys(textureIndex.textures),...Object.keys(textureIndex.normals??{}),...Object.keys(textureIndex.glass??{}),...Object.keys(textureIndex.ordinaryVariants??{})].map(name=>name.toLowerCase()))].sort();
@@ -67,6 +68,6 @@ if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  }
  for(const list of Object.values(index.textures))list.sort();
  index.textures=Object.fromEntries(Object.entries(index.textures).sort());index.models=Object.fromEntries(Object.entries(index.models).sort());
- await mkdir(join(repo,'newer/packs'),{recursive:true});await writeFile(join(repo,'newer/packs/games.json'),JSON.stringify(index,null,1)+'\n');
+ await mkdir(assetPath(repo,'newer/packs'),{recursive:true});await writeFile(assetPath(repo,'newer/packs/games.json'),JSON.stringify(index,null,1)+'\n');
  console.log(JSON.stringify(Object.fromEntries(Object.entries(index.games).map(([id,g])=>[id,{paks:g.paks,bsps:g.bsps.length}]))));
 }

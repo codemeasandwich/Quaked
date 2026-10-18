@@ -10,6 +10,9 @@ the rest repeat their edge). Only clear cases are touched: the match must be goo
 no shift. Crates, ammo and item pictures are left out (they are fitted by hand). Run
 tools/craft_normals.py on the ones changed afterwards.
 """
+
+from pathlib import Path
+from resource_paths import resource_path
 import sys, json, os
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'texture_sheets'))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -41,11 +44,11 @@ def measure(n, fn):
 
 def main(args):
     dry = '--dry' in args; args = [a for a in args if a != '--dry']
-    p = 'newer/textures/index.json'; idx = json.load(open(p)); tex = idx['textures']; done = []
+    p = str(resource_path(Path(__file__).resolve().parents[1], 'newer/textures/index.json')); idx = json.load(open(p)); tex = idx['textures']; done = []
     for n, f in tex.items():
         if n not in orig or n.startswith('+') or (args and n not in args): continue
         if not args and n.startswith(SKIP): continue
-        fn = 'newer/textures/' + f
+        fn = str(resource_path(Path(__file__).resolve().parents[1], 'newer/textures/' + f))
         v, z, dx, dy, im = measure(n, fn)
         if not args and not (v >= 0.5 and v - z >= 0.08 and max(abs(dx), abs(dy)) >= 0.6): continue
         print('%-10s moved by (%.2f, %.2f) texels   match %.2f (was %.2f)' % (n, dx, dy, v, z))

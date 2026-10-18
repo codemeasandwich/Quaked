@@ -1,7 +1,8 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Actual native BSP, shipped gzip, public world/PVS and sun-caster integration.
 // CPU-only: source scalar validation is guarded to detect any runtime sculpt
 // generation after prepared authority is admitted. No renderer is simulated.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {DemonBakeDecode,DemonSurfaceSignature} from '../src/newer/assets/demon_bake_format.js';
@@ -31,7 +32,7 @@ Deno.test('native prepared START preserves exact rendered/caster geometry, block
  const raw=read('newer/textures/normals/demon-face.r16'),recipe=JSON.parse(read('newer/textures/index.json')).normals.dem4_1,field={width:256,height:512,sampling:recipe.sampling,data:Float32Array.from({length:256*512},(_,i)=>raw.readUInt16LE(i*2)/65535),displacement:{...recipe.displacement}};
  let release,requests=0,scalarGeneratorReads=0,reference,rawPayloadBytes,activeField=field;const requestURLs=[];
  field.data.every=()=>{scalarGeneratorReads++;throw Error('Prepared path unexpectedly invoked runtime sculpt generator');};
- globalThis.fetch=async url=>{requestURLs.push(String(url));const path=String(url).split('?')[0];if(path.startsWith('newer/rockfield/'))return new Response(read(path),{status:200});check(path.startsWith('newer/displacement/'),'native fixture loads actual prepared artifact only');requests++;await new Promise(r=>release=r);const compressed=read(path),expanded=gunzipSync(compressed);rawPayloadBytes=expanded.length;reference=DemonBakeDecode(expanded.buffer.slice(expanded.byteOffset,expanded.byteOffset+expanded.byteLength),model.name,createHash('sha256').update(model.bspSourceBytes).digest('hex'));return new Response(compressed,{status:200});};
+ globalThis.fetch=async url=>{requestURLs.push(ResourceURL(url,true));const path=ResourceURL(url,true).split('?')[0];if(path.startsWith('newer/rockfield/'))return new Response(read(path),{status:200});check(path.startsWith('newer/displacement/'),'native fixture loads actual prepared artifact only');requests++;await new Promise(r=>release=r);const compressed=read(path),expanded=gunzipSync(compressed);rawPayloadBytes=expanded.length;reference=DemonBakeDecode(expanded.buffer.slice(expanded.byteOffset,expanded.byteOffset+expanded.byteLength),model.name,createHash('sha256').update(model.bspSourceBytes).digest('hex'));return new Response(compressed,{status:200});};
  try{
   mode.R_AnimSetClassicPass(false);for(const v of options)vars.Cvar_SetValue(v.name,1);vars.Cvar_SetValue('r_newer_normals',0);const nativeCount=post.R_BuildSunOccluder(model);vars.Cvar_SetValue('r_newer_normals',1);
   for(const s of faces)s.texinfo.texture.gl_texture.userData.newerHeight=field;main.set_r_worldentity(new entity_t());main.set_r_viewleaf(null);r_refdef.vieworg.set([512,224,64]);main.d_lightstylevalue.fill(264);surf.R_MarkLeaves();

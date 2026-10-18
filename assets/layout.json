@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "files": {
+    "newer.pak": "assets/game/newer.pak",
+    "icon.svg": "assets/branding/icon.svg",
+    "icon.png": "assets/branding/icon.png",
+    "logo.svg": "assets/branding/logo.svg",
+    "logo.png": "assets/branding/logo.png",
+    "enhancedmenu.png": "assets/ui/enhancedmenu.png",
+    "conback.webp": "assets/ui/conback.webp",
+    "newer/ui/studio-logo.png": "assets/branding/studio-logo.png",
+    "src/newer/render/assets/operative-cloak-noise.png": "assets/game/effects/cloak/operative-cloak-noise.png"
+  },
+  "prefixes": {
+    "maps/": "assets/game/maps/community/",
+    "src-tauri/icons/": "assets/branding/native/",
+    "newer/": "assets/game/",
+    "music/": "assets/audio/music/",
+    "assets/sounds/": "assets/audio/sounds/",
+    "docs/images/": "assets/docs/"
+  }
+}

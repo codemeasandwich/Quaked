@@ -1,10 +1,11 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Newer Game's wall textures go only on the pictures they were made from (card [34e]): newer/textures/index.json's
 // "sources" holds, for each upgraded name, the native-RGBA identities (R_GlassTextureKey) of Quake's own pictures by
 // that name (tools/build_texture_sources.mjs). Through the public R_NewerTextureUpgrade with the real index and real
 // textures from the shareware pack: Quake's own metal5_6 asks for its upgrade; unrelated same-name pixels keep native
 // art; a name with no recorded source (Newer Game's own crate variants) still goes by name. Scourge of Armagon's
 // real metal5_6 now selects its own exact-identity variant, while an altered expansion source still falls back.
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync } from './helpers/resource_fs.mjs';
 import { resolve } from 'node:path';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
@@ -42,8 +43,8 @@ async function upgrades( run ) {
 	const saved = { fetch: globalThis.fetch, Image: Object.getOwnPropertyDescriptor( globalThis, 'Image' ), document: Object.getOwnPropertyDescriptor( globalThis, 'document' ) };
 	for ( const v of [ post.r_hdr, mode.r_newer_textures ] ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v );
 	const asked = [];
-	globalThis.fetch = async url => { check( String( url ).includes( 'textures/index.json' ), 'only the index is fetched: ' + url ); return { ok: true, json: async () => INDEX }; };
-	Object.defineProperty( globalThis, 'Image', { configurable: true, value: class { set src( url ) { asked.push( String( url ) ); } } } );
+	globalThis.fetch = async url => { check( ResourceURL(url,true).includes( 'textures/index.json' ), 'only the index is fetched: ' + url ); return { ok: true, json: async () => INDEX }; };
+	Object.defineProperty( globalThis, 'Image', { configurable: true, value: class { set src( url ) { asked.push( ResourceURL(url,true) ); } } } );
 	Object.defineProperty( globalThis, 'document', { configurable: true, value: {} } );
 	mode.R_AnimSetClassicPass( false ); vars.Cvar_SetValue( 'r_hdr', 1 ); vars.Cvar_SetValue( 'r_newer_textures', 1 );
 	try {

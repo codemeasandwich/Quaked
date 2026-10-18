@@ -13,8 +13,12 @@ import numpy as np
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
+import sys
+sys.path.insert(0, str(ROOT / 'tools'))
+from resource_paths import resource_path
+
 SOURCE = ROOT / 'tools/texture_sheets/sources/official-world-2026-10-12'
-CANDIDATES = ROOT / 'newer/textures/candidates-2026-10-12'
+CANDIDATES = resource_path(ROOT, 'newer/textures/candidates-2026-10-12')
 NAMES = ['TF_Wood01', 'TF_Wood01c', 'TF_Stone_01', 'TF_Stone3', 'TF_Cliff2', 'TF_Cliff2b']
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -31,9 +35,9 @@ with tempfile.TemporaryDirectory(prefix='quaked-realism-edge-replay-') as direct
         record = json.loads(actual.with_suffix('.json').read_text())
         assert sha(output) == sha(actual) == record['outputSha256'], name + ': replay differs'
         assert sha(SOURCE / 'finish_realistic_edges.py') == record['toolSha256']
-        assert sha(Path(record['master'])) == record['masterSha256']
-        assert sha(Path(record['generatedRepair'])) == record['generatedRepairSha256']
-        before, after = pixels(Path(record['master'])), pixels(output)
+        assert sha(resource_path(ROOT, record['master'])) == record['masterSha256']
+        assert sha(resource_path(ROOT, record['generatedRepair'])) == record['generatedRepairSha256']
+        before, after = pixels(resource_path(ROOT, record['master'])), pixels(output)
         h, w = before.shape[:2]
         assert after.shape == before.shape
         y, x = np.mgrid[:h, :w]

@@ -1,5 +1,5 @@
 // Bounded tests-only successor contract. Owner artwork/registrations remain immutable.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { resolve } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
 import { sha256 } from '../tools/pak_members.mjs';

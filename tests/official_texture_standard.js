@@ -1,7 +1,7 @@
 // Tests-only adapter for the owner's 13 October 4x format migration. Historical
 // registration inputs stay immutable; each new expectation must link back to its
 // exact earlier binding and hashes through the separate migration ledger.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';

@@ -3,7 +3,7 @@
 // its middle, never with a corner in a wall; the same box gets the same turn every time; New Game, the switch off,
 // a mapper's own angle and the exploding box are left alone. Through the public R_ItemTurn with the shareware pack's
 // real box models and e1m1's real walls.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { COM_LoadPackFile, COM_AddPack } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
 import { cl, cls } from '../src/engine/client/client.js';

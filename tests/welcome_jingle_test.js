@@ -1,7 +1,8 @@
+import {ResourcePath} from '../src/platform/resource_paths.js';
 // Actual public menu/map/changelevel commands and a loopback connection drive the
 // start; only the Audio/AudioContext objects are doubled. No helper applies the
 // jingle policy directly to make an assertion pass.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { fileURLToPath } from 'node:url';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
@@ -128,7 +129,7 @@ Deno.test( 'the real Newer Game menu row starts the intro jingle once, at the Mu
 	control();
 	same( await played( () => S_UpdateWelcomeJingle( false ) ), 1, 'control starts the jingle exactly once' );
 	const deck = decks()[ 0 ];
-	check( deck.src.endsWith( 'assets/sounds/quake1newereGame_firstLevelEasyMidHard.mp3' ), 'the element loaded the packaged jingle' );
+	check( deck.src.endsWith( ResourcePath('assets/sounds/quake1newereGame_firstLevelEasyMidHard.mp3') ), 'the element loaded the packaged jingle' );
 	same( deck.src, WELCOME_TRACK_URL, 'the element source is the module URL the bundler rewrites' );
 	same( deck.paused, false, 'the element is producing audio' );
 	same( deck.bus.gain.value, sound.bgmvolume.value, 'Music Volume gain applied' );

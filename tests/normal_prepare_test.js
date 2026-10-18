@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import * as fs from 'node:fs/promises';
+import * as fs from './helpers/resource_fs_promises.mjs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {createHash} from 'node:crypto';

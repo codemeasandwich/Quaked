@@ -1,7 +1,7 @@
 // Public native menu routing and the supplied menu's placement on the original
 // menu geometry. WebGL calls are recording endpoints: these checks do not claim
 // GPU shader/pixel proof (tests/menu_webgl_gpu_trial.html and the live capture do).
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import * as menu from '../src/engine/client/menu.js';
 import * as draw from '../src/engine/render/gl_draw.js';
 import * as gpu from '../src/newer/ui/menu_webgl.js';

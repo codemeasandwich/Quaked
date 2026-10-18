@@ -1,6 +1,6 @@
 // Real stock QuakeC spawn, shotgun traces, damage/death and save fields.
 // Only the renderer/audio devices are absent; no substitute damage function.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';

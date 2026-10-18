@@ -1,7 +1,7 @@
 // Public source-bound Old One skin contract. Read only bounded owned PAK members;
 // no owned model or native texture is written or redistributed by this test.
 import * as THREE from 'three';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import { gunzipSync } from 'node:zlib';
 import { pakDirectory, readMember, isolatedPack } from '../tools/pak_members.mjs';

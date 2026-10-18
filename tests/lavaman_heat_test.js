@@ -1,8 +1,9 @@
+import {ResourcePath} from '../src/platform/resource_paths.js';
 // Independent CPU proof through the real owned Rogue model, alias draw,
 // Lava Man lifecycle producer and composite uniform consumer. Only image
 // transport is doubled. These checks do not claim GPU distortion or HDR pixels.
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import {createHash} from 'node:crypto';
 import * as THREE from 'three';
 import {pakDirectory,readMember,isolatedPack} from '../tools/pak_members.mjs';
@@ -54,7 +55,7 @@ async function fixture(run){
  mode.R_AnimSetClassicPass(false);mode.R_AnimSetNewer(true);vars.Cvar_SetValue(r_hdr.name,1);mode.r_newer_enemies.value=1;mode.r_newer_normals.value=0;mode.r_newer_water.value=1;anim.r_lerpmodels.value=0;r_heathaze.value=.6;r_reflect.value=0;postState.underwater=false;postState.waterView=false;cl.time=3;cl_entities.length=0;
  fire.R_FireballTextures(null,null);skins.R_NewerSetIndex({...index,version:'independent-lava-heat-'+ ++serial});
  try{
-  await skins.R_NewerSkinsPrepare([data.model]);const maps=requests.filter(r=>r.url.startsWith('newer/enemies/lavaman/custom/'));assert.equal(maps.length,2);maps.forEach(r=>r.done(r.texture));assert.ok(skins.R_NewerSkinsStatus([data.model]).settled);
+  await skins.R_NewerSkinsPrepare([data.model]);const maps=requests.filter(r=>r.url.startsWith(ResourcePath('newer/enemies/lavaman/custom/')));assert.equal(maps.length,2);maps.forEach(r=>r.done(r.texture));assert.ok(skins.R_NewerSkinsStatus([data.model]).settled);
   gpu=createPipeline();const cm=gpu.compositeMaterial.uniforms,camera=new THREE.PerspectiveCamera(75,1.6,4,8192);camera.updateMatrixWorld();
   const scene=new THREE.Scene(),ctx={...data,scene,cm,camera,gpu,requests,update(){camera.updateMatrixWorld(true);liquids.R_PostLiquidUniforms(cm,camera,cl.time);return cm;},actor(id=31,position=[0,0,0],frame=17,owner=scene){
    const entity=new entity_t();entity.model=data.model;entity.skinnum=0;entity._entityIndex=id;entity.frame=frame;cl_entities[id]=entity;

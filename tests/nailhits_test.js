@@ -3,7 +3,7 @@
 // checks the game's sounds and random draws are the same with it on or off, so this test leaves it out)
 // BSP lookup, decal geometry, sound mixer/channels, cvars and mote layer are real. No implementation imports.
 import * as THREE from 'three';
-import {readFileSync,writeFileSync,realpathSync} from 'node:fs';
+import {readFileSync,writeFileSync,realpathSync} from './helpers/resource_fs.mjs';
 const root=process.cwd();
 const mod=path=>import(root+'/src/'+path);
 const [tent,part,decals,motes,fx,vars,client,mode,glpost,pak,vid,common,model,dma,sound,cmd,places]=await Promise.all([

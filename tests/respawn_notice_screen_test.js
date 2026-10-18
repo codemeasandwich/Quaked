@@ -3,7 +3,7 @@
 // (SCR_UpdateScreen calls it once, after SCR_DrawPerf; the last test reads that call out of the source.)
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 Deno.test( 'the corner message is drawn while active at the top right, and not before or after', async () => {
 

@@ -1,6 +1,7 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Independent owner-correction tests: decode the donated archives and original
 // MDLs directly, then exercise the public draw and material interfaces.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { inflateRawSync } from 'node:zlib';
 await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
@@ -147,7 +148,7 @@ async function withAssets( fn ) {
 
 	const oldFetch = globalThis.fetch, oldLoad = THREE.TextureLoader.prototype.load;
 	const old = { hdr: r_hdr.value, weapons: weapons.r_newer_weapons.value, lerp: r_lerpmodels.value };
-	globalThis.fetch = async path => { try { return { ok: true, json: async () => JSON.parse( read( String( path ) ) ) }; } catch { return { ok: false }; } };
+	globalThis.fetch = async path => { try { return { ok: true, json: async () => JSON.parse( read( ResourceURL(path,true) ) ) }; } catch { return { ok: false }; } };
 	THREE.TextureLoader.prototype.load = function ( url, loaded ) { const texture = new THREE.DataTexture( new Uint8Array( [ 200, 180, 150, 255 ] ), 1, 1 ); texture._reviewSourceUrl = url; queueMicrotask( () => loaded( texture ) ); return texture; };
 	if ( ! Cvar_FindVar( 'r_hdr' ) ) Cvar_RegisterVariable( r_hdr );
 	Cvar_SetValue( 'r_hdr', 1 ); weapons.r_newer_weapons.value = 1; r_lerpmodels.value = 0;

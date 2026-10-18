@@ -1,6 +1,6 @@
 // Shipped enhanced map pack through the public COM/server/seamless paths.
 // Native BSP hull traces and player movement; no alternate collision geometry.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

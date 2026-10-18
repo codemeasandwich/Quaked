@@ -1,6 +1,6 @@
 // Independent review checks at the material, collision and casing interfaces.
 // The fixtures use real Three geometry and Quake BSP hull traversal.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
 const { R_AssetAliasMaterial, R_CloneAliasMaterial } = await import( '../src/newer/render/r_newerskins.js' );

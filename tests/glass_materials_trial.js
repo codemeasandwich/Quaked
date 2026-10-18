@@ -15,8 +15,8 @@ const renderer=new THREE.WebGLRenderer({preserveDrawingBuffer:true,antialias:fal
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(48,W/H,1,1200),lm=new THREE.DataTexture(new Uint8Array([180,180,180,255]),1,1);lm.needsUpdate=true;
 const classicTarget=new THREE.WebGLRenderTarget(W,H);
 let mesh,diffuse,nativeMaterial,classicMaterial,turn=false,lightSide=1,normalOn=true,classic=false,entry,decodeExact=false,generation=0;
-const options=await(await fetch('newer/textures/glass/trial-options.json')).json();
-const regionReviews=await(await fetch('newer/textures/glass/region-review.json')).json();
+const options=await(await fetch('assets/game/textures/glass/trial-options.json')).json();
+const regionReviews=await(await fetch('assets/game/textures/glass/region-review.json')).json();
 const selector=document.querySelector('#variant');options.forEach((e,i)=>{const o=document.createElement('option');o.value=i;o.textContent=e.campaigns.join('/')+' · '+e.name+' · '+e.key.slice(0,8);selector.add(o)});
 async function pixels(url){const image=new Image();image.src=url;await image.decode();const canvas=document.createElement('canvas');canvas.width=image.width;canvas.height=image.height;const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(image,0,0);return{data:new Uint8Array(ctx.getImageData(0,0,image.width,image.height).data),width:image.width,height:image.height};}
 function lights(side=lightSide){post.R_BuildWorldLights({nodes:[{contents:-1,visframe:1}],surfaces:[],entities:'{"classname" "worldspawn"}\n{"classname" "light" "origin" "'+[side*48,48,85].join(' ')+'" "light" "500" "_color" "1 0.85 0.55"}'});post.R_BuildSunOccluder({surfaces:[]});}

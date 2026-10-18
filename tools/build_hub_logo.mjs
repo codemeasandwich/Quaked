@@ -1,12 +1,15 @@
 // Faithful rasterisation of the owner's logo.svg into the existing quake plaque.
 // No font substitution or generated lettering. Native UV dimensions stay those of the original plaque.
+import {assetPath} from './distribution/manifest.mjs';
+import {fileURLToPath as resourceFileURLToPath} from 'node:url';
+const resourcePath = path => assetPath(resourceFileURLToPath(new URL('../', import.meta.url)), path);
 import { readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 const sharpPath = process.env.QUAKED_SHARP_MODULE;
 if ( ! sharpPath ) throw new Error( 'Set QUAKED_SHARP_MODULE to installed sharp module entry.' );
 const { default: sharp } = await import( pathToFileURL( sharpPath ).href );
-const svg = await readFile( 'logo.svg' ), pak = await readFile( 'games/shareware/pak0.pak' );
+const svg = await readFile(resourcePath('logo.svg')), pak = await readFile(resourcePath('games/shareware/pak0.pak'));
 const packFile = name => {
  const offset = pak.readInt32LE( 4 ), length = pak.readInt32LE( 8 );
  for ( let i = offset; i < offset + length; i += 64 ) if ( pak.subarray( i, i + 56 ).toString().split( '\0' )[ 0 ] === name ) return pak.subarray( pak.readInt32LE( i + 56 ), pak.readInt32LE( i + 56 ) + pak.readInt32LE( i + 60 ) );
@@ -24,7 +27,7 @@ if ( ! native || native.w !== 288 || native.h !== 64 ) throw new Error( 'Expecte
 // Native neighboring wall/pillars: wizmet1_2 S=x,T=-z+8. The old
 // quake plaque uses S=x-112,T=-z+8 at x400..688,z264..328.
 // Its image origin therefore samples the wall at x400,z328: source(64,0).
-const indexPath = 'newer/textures/index.json', index = JSON.parse( await readFile( indexPath, 'utf8' ) );
+const indexPath = 'newer/textures/index.json', index = JSON.parse( await readFile(resourcePath(indexPath), 'utf8' ) );
 const sourceTexture = 'wizmet1_2', sourceEntry = index.normals[ sourceTexture ];
 const sourceAlbedo = 'newer/textures/' + index.textures[ sourceTexture ];
 const sourceHeight = 'newer/textures/' + sourceEntry.file;
@@ -45,10 +48,10 @@ for ( let y = 0; y < height; y ++ ) for ( let x = 0; x < width; x ++ ) {
  heights[ i ] = Math.round( Math.max( 0, wallHeight[ source ] - alpha * .56 * 255 ) );
  if ( alpha > .99 ) { glyphPixels ++; glyphHeight += heights[ i ]; } else if ( alpha === 0 ) { backgroundPixels ++; backgroundHeight += heights[ i ]; }
 }
-await sharp( diffuse, { raw: { width, height, channels: 4 } } ).webp( { lossless: true } ).toFile( 'newer/textures/hub-quaked-logo.webp' );
-await sharp( heights, { raw: { width, height, channels: 1 } } ).webp( { lossless: true } ).toFile( 'newer/textures/normals/hub-quaked-logo.webp' );
+await sharp( diffuse, { raw: { width, height, channels: 4 } } ).webp( { lossless: true } ).toFile( resourcePath('newer/textures/hub-quaked-logo.webp') );
+await sharp( heights, { raw: { width, height, channels: 1 } } ).webp( { lossless: true } ).toFile( resourcePath('newer/textures/normals/hub-quaked-logo.webp') );
 const normalStrength = sourceEntry.strength / Math.sqrt( width * height / ( 256 * 256 ) );
 index.version = 2026100302; index.textures.quake = 'hub-quaked-logo.webp'; index.normals.quake = { file: 'normals/hub-quaked-logo.webp', strength: normalStrength, cap: sourceEntry.cap, edgeSource: { file: sourceEntry.file, offset: [ 64, 0 ] } };
-await writeFile( indexPath, JSON.stringify( index, null, ' ' ).replace( /"strength": 2,/g, '"strength": 2.0,' ).replace( /"strength": 0,/g, '"strength": 0.0,' ) + '\n' );
-await writeFile( 'docs/evidence/hub-logo-assets-2026-10-03.json', JSON.stringify( { svg: 'logo.svg', svgSha256: createHash( 'sha256' ).update( svg ).digest( 'hex' ), nativeTexture: 'quake', nativeSize: [ native.w, native.h ], outputSize: [ width, height ], glyphBounds: [ left, top, info.width, info.height ], sourceTexture, sourceAlbedo, sourceHeight, sourceSize: [ 256, 256 ], sourceOffset: [ 64, 0 ], albedoOverlay: false, glyphPixels, meanGlyphHeight: glyphHeight / glyphPixels / 255, meanBackgroundHeight: backgroundHeight / backgroundPixels / 255, recessSign: 'glyph lower than panel', originalLetteringReused: false, normalStrength, normalCap: sourceEntry.cap }, null, 2 ) + '\n' );
+await writeFile(resourcePath(indexPath), JSON.stringify( index, null, ' ' ).replace( /"strength": 2,/g, '"strength": 2.0,' ).replace( /"strength": 0,/g, '"strength": 0.0,' ) + '\n' );
+await writeFile(resourcePath('docs/evidence/hub-logo-assets-2026-10-03.json'), JSON.stringify( { svg: 'logo.svg', svgSha256: createHash( 'sha256' ).update( svg ).digest( 'hex' ), nativeTexture: 'quake', nativeSize: [ native.w, native.h ], outputSize: [ width, height ], glyphBounds: [ left, top, info.width, info.height ], sourceTexture, sourceAlbedo, sourceHeight, sourceSize: [ 256, 256 ], sourceOffset: [ 64, 0 ], albedoOverlay: false, glyphPixels, meanGlyphHeight: glyphHeight / glyphPixels / 255, meanBackgroundHeight: backgroundHeight / backgroundPixels / 255, recessSign: 'glyph lower than panel', originalLetteringReused: false, normalStrength, normalCap: sourceEntry.cap }, null, 2 ) + '\n' );
 console.log( 'Built faithful SVG logo diffuse and recessed height, leaving native UV dimensions unchanged.' );

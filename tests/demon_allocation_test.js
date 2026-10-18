@@ -1,7 +1,7 @@
 // Byte oracle was generated once from the retained pre-allocation implementation
 // SHA256 59cf94277d294aeb0417a9a5257b48aede7893fc172cd6e3997a466947be37de.
 // No old implementation or temporary file is needed to run this regression.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import {createHash} from 'node:crypto';
 import * as current from '../src/newer/render/r_demonrelief.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);

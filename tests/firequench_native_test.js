@@ -2,7 +2,7 @@
 // the Death Knight's shot; progs/lavaball.mdl) that enters water or slime is removed at the surface with a small burst
 // (TE_KNIGHTSPIKE at the surface point) and the splash sound; Classic, other missiles and lava keep Quake's rules.
 // The real server: a shareware map's own water and lava, real edicts moved by the real SV_Physics_Toss.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

@@ -1,7 +1,7 @@
 // Independent native-source -> public Milky Way selection/material -> public
 // sky-chain proof. Only JPEG transport is doubled; no WebGL render is claimed.
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import * as THREE from 'three';

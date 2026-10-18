@@ -1,7 +1,7 @@
 // Respawn after dying in slime or lava (card [41]): the respawned player must not inherit the old liquid's waterlevel,
 // watertype or damage timer, so no stale hazard damage lands on the first tick, while a spawn that really is wet and a
 // later walk into a hazard still obey the native rules. Real QuakeC, real server physics, real stock levels.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

@@ -2,7 +2,7 @@
 // (62 installed maps set it, Arcane Dimensions' among them) colours the Newer Game sun everywhere the sun's colour is
 // used: the sky's sunlight, the surfaces' sunlight and the height shadows. A map without one keeps the colour read
 // from its sky, exactly as before; the next map starts over. Through the public map builder (R_BuildWorldLights).
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 await import( '../src/engine/render/gl_rsurf.js' );
 const post = await import( '../src/newer/render/gl_post.js' );
 const { skyState, R_SunTint } = await import( '../src/newer/render/r_post_sky.js' );

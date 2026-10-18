@@ -2,7 +2,7 @@
 // The face glances toward an off-screen enemy that has just noticed the player (card [F1]). Real QuakeC FoundTarget on a real
 // connected local game, the real event hooks and the real face state; the sight sound is the game's own (FoundTarget -> SightSound).
 // Hidden-HUD lifecycle and stock maps as in face_native_test.js.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import * as pak from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/engine/render/vid.js';
 import {Mod_Init} from '../src/engine/render/gl_model.js';

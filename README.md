@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://codemeasandwich.github.io/Quaked/">
-    <img src="docs/images/quaked-banner.png" alt="Play Quaked — project banner" width="100%">
+    <img src="assets/docs/quaked-banner.png" alt="Play Quaked — project banner" width="100%">
   </a>
 </p>
 
@@ -97,7 +97,7 @@ Quaked is a working, playable project under active development, and has had litt
 
 ## For developers
 
-Source lives in `src/` (a JavaScript port of the Quake engine and its QuakeC virtual machine, with the Three.js renderer), tests in `tests/`, build and asset tools in `tools/`, and Newer Game's art and data in `newer/`. The docs are written so that a future contributor can continue the work: each says what a change is for, what it touches and what was checked. `python3 tests/docs_index_test.py` checks the links in this README, the index and the technical notes; `python3 tools/build_docs_index.py` rebuilds the index after you add a document. GitHub Actions builds the shareware web page and its data files from `Dev` and deploys only that generated site after its required checks pass.
+Source lives in `src/` (a JavaScript port of the Quake engine and its QuakeC virtual machine, with the Three.js renderer), tests in `tests/`, build and asset tools in `tools/`, and shared art and data in [`assets/`](assets/README.md). The docs are written so that a future contributor can continue the work: each says what a change is for, what it touches and what was checked. `python3 tests/docs_index_test.py` checks the links in this README, the index and the technical notes; `python3 tools/build_docs_index.py` rebuilds the index after you add a document. GitHub Actions builds the shareware web page and its data files from `Dev` and deploys only that generated site after its required checks pass.
 
 ## License
 
@@ -114,7 +114,7 @@ Code: GPL v2. Quake is a trademark of id Software; the shareware data included i
 - Original game by id Software ([source](https://github.com/id-Software/Quake))
 - Three.js port ([three-quake](https://github.com/mrdoob/three-quake)) by [@mrdoob](https://github.com/mrdoob) with [@claude](https://github.com/claude)
 
-- Ambient music by **Iron Cthulhu Apocalypse**: *Hallucinations (Lovecraftian Dark Ambient Hour)* ([asset credits](music/CREDITS.txt)).
+- Ambient music by **Iron Cthulhu Apocalypse**: *Hallucinations (Lovecraftian Dark Ambient Hour)* ([asset credits](assets/audio/music/CREDITS.txt)).
 - Weapon models by **[小林 団那紀](https://sketchfab.com/dannaki_)** (the archives retain the original author metadata, 旦那気 大安 / dannaki_tayan).
-- Shotgun-shell asset: only the shell from Weapon Pack is used. [Source and supplied license](newer/weapons/shell/license.txt).
+- Shotgun-shell asset: only the shell from Weapon Pack is used. [Source and supplied license](assets/game/weapons/shell/license.txt).
 

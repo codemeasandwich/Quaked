@@ -1,0 +1,938 @@
+PASS index.html carries logo.svg unchanged, cropped to the artwork
+PASS progress fills the logo from the bottom up and reports it
+PASS removing the screen, and pages without the logo, are safe
+PASS main.js drives pak progress, then reveals a real startup console only after the frame and conback are ready
+RESULT 4/4 passed (tests/loading_screen_test.js)
+Added packfile independent-startup-pack (288 files)
+
+PASS startup PACK contains exactly the287 manifest-referenced canonical HUD sources with every original byte and provenance hash intact
+Added packfile independent-startup-pack (288 files)
+
+PASS explicit full art pack retains priority over startup aliases and null reset invalidates only optional routing while loose fallback remains usable
+Added packfile independent-startup-pack (288 files)
+
+PASS malformed startup aliases are rejected atomically without replacing previously valid routing
+RESULT 3/3 passed (tests/startup_pack_test.js)
+Added packfile newer.pak (2 files)
+
+PASS the Newer Game pack is only visible while Newer Game is on
+Added packfile newer.pak (1 files)
+
+PASS json comes out of the pack, and from the loose file without one
+PASS LIT files: only the right size and version are taken
+PASS an entity list file must hold entities
+RESULT 4/4 passed (tests/newer_pack_test.js)
+PASS normal transport reuses one validated request, retries actual failures, and evicts beyond256 unpinned entries
+PASS normal transport128MiB budget uses actual decoded payload bytes and keeps leased data alive during eviction
+PASS normal transport has a real10s request deadline and late loader completion cannot publish timed-out data
+PASS default normal transport enforces its decompressed64MiB stream bound before any oversized normal decode
+RESULT 4/4 passed (tests/normal_transport_test.js)
+PASS two streamed decks use one master path, bounded random offsets and the real twenty-minute default
+PASS actual media progress crossfades separated sections and caps each source at twenty minutes
+PASS pause, mute and a late play promise cannot leak or advance a partial crossfade
+PASS safe walking produces gentle random swells, then returns to background when unsafe or stationary
+PASS stalled incoming media cannot complete a fade; expired old section recovers to another bounded section
+PASS incoming playback failure recovers without repeating a failing play on every frame
+PASS autoplay rejection waits for a real unlock and shutdown releases every owned node and listener
+PASS short recordings remain bounded and use a proportional overlap
+RESULT 8/8 passed (tests/ambient_music_test.js)
+PASS every box image named is in the repository, and each names a known game
+PASS a game's box: its own art, placeholders where it has none, and whether it plays
+PASS a picked folder: its name and its front, side (or spine) and back images, whatever their type
+PASS a game's URL chooses that page's game over the kept choice; the shelf starts on the kept one
+PASS on a game's own URL the game command switches by going to the new game's URL
+PASS a local-play player window opens on its host's game
+RESULT 6/6 passed (tests/game_shelf_test.js)
+PASS supplied seven-row main menu remains byte-identical and uses the existing native-pitch PNG loader
+PASS actual main menu artwork and fallback follow title order and every keyboard/touch action matches its authored row
+RESULT 2/2 passed (tests/main_menu_art_test.js)
+Menu artwork unavailable; native menu remains active: document is not defined
+PASS studio PNG is unchanged and present inside the initial black loading overlay with bounded safe-area layout
+PASS actual studio canvas draw preserves source aspect and bottom-right safe margins over CSS and device-pixel viewport sizes
+PASS studio loader settles on error or timeout without retry waves and rendering restores state even on draw exceptions
+PASS unchanged public M_Draw body draws studio pixels after every active menu, and never for inactive gameplay or console states
+STUDIO_BOOK_RESERVATION {"viewport":{"width":640,"height":480},"corner":{"right":579,"bottom":457.6},"logo":{"x":579,"y":419,"w":45,"h":45},"logoPixels":1026,"overwritten":0}
+STUDIO_BOOK_RESERVATION {"viewport":{"width":800,"height":600},"corner":{"right":723,"bottom":565.6},"logo":{"x":723,"y":523,"w":61,"h":61},"logoPixels":1907,"overwritten":0}
+STUDIO_BOOK_RESERVATION {"viewport":{"width":360,"height":780},"corner":{"right":337,"bottom":535.725},"logo":{"x":272,"y":692,"w":72,"h":72},"logoPixels":2663,"overwritten":0}
+STUDIO_BOOK_RESERVATION {"viewport":{"width":640,"height":480,"dprX":2},"corner":{"right":579,"bottom":457.6},"logo":{"x":1158,"y":838,"w":90,"h":90},"logoPixels":4137,"overwritten":0}
+STUDIO_BOOK_RESERVATION {"viewport":{"width":400,"height":860,"dprX":3,"safeRight":34,"safeBottom":40},"corner":{"right":373.3333333333333,"bottom":591.825},"logo":{"x":858,"y":2220,"w":240,"h":240},"logoPixels":29415,"overwritten":0}
+STUDIO_BOOK_RESERVATION {"viewport":{"width":700,"height":400,"dprX":2,"dprY":3},"corner":{"right":673,"bottom":377.06666666666666},"logo":{"x":1346,"y":1119,"w":22,"h":33},"logoPixels":366,"overwritten":0}
+PASS studio logo avoids actual book pages and measured bitmap footer at small, portrait and device-pixel-scaled sizes
+RESULT 5/5 passed (tests/studio_logo_test.js)
+PASS world readiness is selected-model scoped and image timeout permanently settles native without late pixel replacement
+PASS failed or stalled texture manifest is terminal native and ignores late manifest response
+PASS successful world diffuse/height readiness waits for all selected art and explicit image failure settles native
+PASS selected custom and native skin height requests settle with diagnostics and reject late textures
+PASS skin index timeout is terminal and late response cannot create a replacement
+PASS failed authored skin normal is terminal and generates matching relief from the loaded diffuse
+PASS weapon preload status observes concurrent requests, bounds stalled textures, and rejects late art after native fallback
+PASS successful weapon preload exposes terminal readiness and a stalled manifest cannot later enable art
+RESULT 8/8 passed (tests/asset_readiness_test.js)
+Weapon art fallback: v_shot Error: shotgun/d.webp timed out
+    at file:///Users/bri/SOURCE/Quaked/src/newer/render/r_weapons.js?readiness-preload:51:41
+    at Object.expire (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:25:111)
+    at file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:110:6
+    at async endpoints (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:25:8)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:95:9
+Weapon art fallback: shell Error: shell/s.webp timed out
+    at file:///Users/bri/SOURCE/Quaked/src/newer/render/r_weapons.js?readiness-preload:51:41
+    at Object.expire (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:25:111)
+    at file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:110:6
+    at async endpoints (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:25:8)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:95:9
+Weapon manifest fallback: Error: Weapon manifest timed out
+    at file:///Users/bri/SOURCE/Quaked/src/newer/render/r_weapons.js?readiness-manifest-stall:34:100
+    at Object.expire (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:25:111)
+    at file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:127:149
+    at async endpoints (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:25:8)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:95:9
+PASS prepared tuple-bit dedup restores exact Float32 signed-zero bits, complete attributes, triangle order and closed-skirt metadata
+PASS decoder rejects mismatched source, malformed sizes/indices/samples and nested region boundaries before publishing any data
+PASS prepared transport shares exact native byte subviews and validates surface settings/height before publishing reusable geometry
+PASS different source bytes at the same filename and subviews never borrow prepared geometry, while known corruption is an explicit blocking error
+PASS changed recipes, native polygon signatures and height bytes cannot inherit a previously validated prepared surface
+PASS late obsolete field hash completion cannot overwrite a replacement field decision, and evicted active transports still finish safely
+PASS prepared transport deadline aborts its actual request and late fulfillment cannot promote the errored entry to ready
+PASS reused native model objects rebind prepared authority when COM source bytes change at the same map name
+PASS bounded eviction cancels unadmitted prefetch while copied identical content shares one validated decode
+RESULT 9/9 passed (tests/demon_bakes_test.js)
+PASS all fifty-five canonical bestiary PNGs retain exact owner bytes, including the earlier nine-page corpus
+PASS public cover and frontispiece decode without discovery or journal writes while every undiscovered monster image stays gated
+PASS previously discovered Spawn Chthon and Shub use their new supplied artwork without changing legacy IDs or storage version
+PASS front matter failure settles once and late callbacks cannot replace terminal fallback or mutate discovery progress
+PASS full five-piece frontispiece remains visible until all47 completed artwork successfully decodes
+PASS complete edition failure retains decoded five-piece clean illustration and never retries indefinitely
+BESTIARY_OPTIONAL_ALTERNATES {"retainedInThisWorkspace":3,"requiredForRuntime":false}
+PASS canonical revisions are mandatory while any retained workspace alternates preserve their exact original bytes
+PASS failed dedication loading cannot clear progress or disturb decoded inner and parchment caches
+PASS locked folios may load dedicated title crops and the blank body but never request undiscovered full illustrations
+PASS five discovered fragments remain available when optional blank art fails while partial discovery never leaks full clean artwork
+RESULT 10/10 passed (tests/bestiary_assets_test.js)
+PASS the supplied schedule: hatching and contours together from 0 over 68% of 7 s, the deepening after, the notes over 4 s from 0
+PASS the reveal map: each texel when its strokes reach it (later along a stroke, later), the hatching's pressure, the page's own pixels untouched
+PASS the reveal moment follows the supplied progress curve mix( t, smoothstep( t ), .65 ), not a straight line; only the hatching has pressure
+PASS the prepared pages: one for every page image, each matching today's image and present
+PASS r_folio: loading, ready and none; a page whose maps are not its image's size is never replayed
+RESULT 5/5 passed (tests/folio_test.js)
+PASS real face manifest starts every unique donor image once and settles only after the complete bounded batch
+PASS failed or timed-out donor sources settle as fallback and late callbacks cannot resurrect incomplete portraits
+PASS stalled or invalid face manifests settle and late manifest completion cannot start an image wave
+RESULT 3/3 passed (tests/player_face_preload_test.js)
+Added packfile games/shareware/pak0.pak (339 files)
+
+Added packfile newer/maps.pak (1 files)
+
+R_Init
+R_Init: Three.js renderer ready
+NET_Init complete
+
+PASS two streamed decks use one master path, bounded random offsets and the real twenty-minute default
+PASS actual media progress crossfades separated sections and caps each source at twenty minutes
+PASS pause, mute and a late play promise cannot leak or advance a partial crossfade
+PASS safe walking produces gentle random swells, then returns to background when unsafe or stationary
+PASS stalled incoming media cannot complete a fade; expired old section recovers to another bounded section
+PASS incoming playback failure recovers without repeating a failing play on every frame
+PASS autoplay rejection waits for a real unlock and shutdown releases every owned node and listener
+PASS short recordings remain bounded and use a proportional overlap
+Cvar_Set: variable deathmatch not found
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+Cvar_Set: variable sv_gravity not found
+
+meshing progs/player.mdl...
+
+meshing progs/eyes.mdl...
+
+meshing progs/h_player.mdl...
+
+meshing progs/gib1.mdl...
+
+meshing progs/gib2.mdl...
+
+meshing progs/gib3.mdl...
+
+meshing progs/v_axe.mdl...
+
+meshing progs/v_shot.mdl...
+
+meshing progs/v_nail.mdl...
+
+meshing progs/v_rock.mdl...
+
+meshing progs/v_shot2.mdl...
+
+meshing progs/v_nail2.mdl...
+
+meshing progs/v_rock2.mdl...
+
+meshing progs/bolt.mdl...
+
+meshing progs/bolt2.mdl...
+
+meshing progs/bolt3.mdl...
+
+meshing progs/lavaball.mdl...
+
+meshing progs/missile.mdl...
+
+meshing progs/grenade.mdl...
+
+meshing progs/spike.mdl...
+
+meshing progs/s_spike.mdl...
+
+meshing progs/backpack.mdl...
+
+meshing progs/zom_gib.mdl...
+
+meshing progs/v_light.mdl...
+
+meshing progs/flame2.mdl...
+
+meshing progs/flame.mdl...
+
+meshing progs/zombie.mdl...
+
+meshing progs/h_zombie.mdl...
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+meshing progs/g_shot.mdl...
+
+meshing progs/g_nail.mdl...
+
+meshing progs/g_nail2.mdl...
+
+meshing progs/g_rock.mdl...
+
+meshing progs/g_rock2.mdl...
+
+meshing progs/g_light.mdl...
+
+meshing progs/demon.mdl...
+
+meshing progs/h_demon.mdl...
+
+meshing progs/shambler.mdl...
+
+meshing progs/s_light.mdl...
+
+meshing progs/h_shams.mdl...
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+PASS the real Newer Game menu row starts the intro jingle once, at the Music Volume gain
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+Cvar_Set: variable deathmatch not found
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+Cvar_Set: variable sv_gravity not found
+
+40 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+Cvar_Set: variable sv_gravity not found
+
+meshing progs/armor.mdl...
+
+meshing progs/soldier.mdl...
+
+meshing progs/h_guard.mdl...
+
+meshing progs/quaddama.mdl...
+
+meshing progs/h_dog.mdl...
+
+meshing progs/dog.mdl...
+
+meshing progs/suit.mdl...
+
+33 entities inhibited
+
+seamless: 1 exit(s) on e1m1
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+Cvar_Set: variable sv_gravity not found
+
+meshing progs/ogre.mdl...
+
+meshing progs/h_ogre.mdl...
+
+meshing progs/knight.mdl...
+
+meshing progs/h_knight.mdl...
+
+meshing progs/w_s_key.mdl...
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+Cvar_Set: variable sv_gravity not found
+
+meshing progs/w_g_key.mdl...
+
+meshing progs/wizard.mdl...
+
+meshing progs/h_wizard.mdl...
+
+meshing progs/w_spike.mdl...
+
+meshing progs/invisibl.mdl...
+
+75 entities inhibited
+
+seamless: 1 exit(s) on e1m3
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+PASS New Game, a directly chosen level and level travel never start the jingle
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+Cvar_Set: variable deathmatch not found
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+Cvar_Set: variable sv_gravity not found
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+Cvar_Set: variable sv_gravity not found
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+PASS re-entering the intro map replays the jingle from the top
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+Cvar_Set: variable deathmatch not found
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+Cvar_Set: variable sv_gravity not found
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+Cvar_Set: variable deathmatch not found
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+Cvar_Set: variable sv_gravity not found
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+Cvar_Set: variable deathmatch not found
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+Cvar_Set: variable sv_gravity not found
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+PASS a muted Music Volume and nosound silence the jingle instead of playing inaudibly
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+Cvar_Set: variable deathmatch not found
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+Cvar_Set: variable sv_gravity not found
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+Cvar_Set: variable deathmatch not found
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+Cvar_Set: variable sv_gravity not found
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+PASS the Scourge of Armagon and Dissolution of Eternity identities start the same jingle on their own intro map
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+Cvar_Set: variable deathmatch not found
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+Cvar_Set: variable sv_gravity not found
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+Cvar_Set: variable sv_gravity not found
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+PASS an autoplay refusal leaves silence rather than an unhandled rejection
+RESULT 14/14 passed (tests/welcome_jingle_test.js)
+PREFETCH_SOURCE_PACK {"source_root":"/Users/bri/SOURCE/Quaked/","path":"/Users/bri/SOURCE/Quaked/games/shareware/pak0.pak","sha256":"35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af"}
+PASS bounded BSP29 texture-directory prefetch handles real native views, duplicate names and unsupported directories without touching a model
+PASS named prefetch shares exact decoded pigment/height/edge/scalar caches while actual textures and startup readiness remain authoritative
+PASS optional prefetch failure remains a recorded native fallback and cannot conceal another actual texture still loading
+RESULT 3/3 passed (tests/startup_texture_prefetch_test.js)
+PASS early skin inspection rejects malformed BSP views and starts only actual all-skill model, head and shared-gib sets through ordinary cached loads
+PASS actual E1M3 bytes prefetch only 19 unbound authored maps and the Ogre face sheet while identity-bound variants wait for model loading
+PASS both BSP2 entity directory versions positively initiate needed skin requests before any model or game exists
+RESULT 3/3 passed (tests/startup_skins_test.js)
+SKIPPED source equivalence: source file not present locally
+PASS ported cloud, spark and spark-position functions equal the source's own
+PASS burst is bounded and finite: counts within the source caps, nothing left after the duration
+PASS native particles remain when Classic, textures are not ready, or nothing was set up
+PASS a frame writes world-space Quake coordinates: rising clouds, flash, sparks and a wall/floor ring
+PASS the ring faces the camera from any side, above and below: always a circle, never an edge-on line
+PASS r_fireballalpha scales the explosion clouds' opacity (default 0.7, clamped to 0..1) and nothing else
+PASS the ring fades out as the eye comes inside it, so a burst beside the player does not sweep a band across the screen
+PASS bursts are bounded, expire after 4.8 s, survive nothing across maps or into Classic
+PASS every explosion family uses the Fireball in Newer Game and the native particles otherwise
+PASS an exploding box (particle message with count 255) is the Fireball in Newer Game, and its sprite is hidden only while a Fireball stands in for it
+PASS a box blast keeps its native particles for Classic and for a pool that cannot take it, and drops them when the Fireball does
+PASS the sprite draw asks the Fireball, and the particle parser routes count 255 (read from the source)
+PASS no wall or floor in reach: the burst still works and simply has no ring
+PASS frames are rebuilt from the current bursts every time (no state stuck from an earlier frame)
+PASS fireball layers draw after the scorch decals and in the source order; sparks honour the model matrix (XR)
+PASS the dynamic light follows the source curve (strength and radius) and exists only where there was one
+PASS a burst survives the client clock being stepped back after the message was parsed
+PASS a full pool lets its oldest burst go once that burst is old, and no sooner
+PASS title-demo split: the enhanced half gets the Fireball, the classic half the original explosion, never both in one half
+PASS rocket and grenade trails use the supplied smoke in Newer Game; everything else keeps the native trail
+PASS smoke puffs are drawn in the shared puff layer in world coordinates, with the rocket's exhaust glow
+PASS smoke puffs are scaled, boosted and faded near the eye exactly as documented
+PASS trail smoke and explosion clouds are sorted together, expire, and clear on Classic, a clock jump and a map change
+PASS title-demo split: trails get the supplied smoke for the enhanced half and a hidden native trail for the classic half
+PASS the engine passes each missile's entity number so every trail keeps its own spacing
+RESULT 25/25 passed (tests/fireball_test.js)
+PASS HUD preload starts all unique catalog images behind fullconsole and shares cached canvases with lazy sprite requests
+PASS HUD image timeout/error resolves preload as native fallback and late images cannot populate lazy sprites
+PASS HUD missing and stalled indices settle preload without late catalog requests
+RESULT 3/3 passed (tests/hud_preload_test.js)
+PASS a test missing a listed local input is skipped and named; an ordinary failure still fails
+PASS unlisted, wrongly named under a present input, or a refused write: each fails
+PASS a suite that cannot load for a listed input is skipped as a whole, the input named
+RESULT 3/3 passed (tests/run_tests_skip_test.js)
+PASS actual startup overlaps independent pack and UI transports, installs routing before early preload, and still waits for all required UI preparation
+PASS mandatory pack failure cannot initialize a host or declare startup ready while optional pack transport remains independent
+PASS room auto-join retains the complete UI barrier before connect, cancellation and animation-loop installation
+PASS two installed games: the shelf opens before any game starts; a game URL starts at once
+PASS a mission pack mounts last with its switch before the host; without Quake it is left out
+PASS a player window boots read-only, without attract prefetches, then joins its host after the UI barrier
+PASS actual main defers hub normal transport until completed demo presentation, then starts it exactly once with retained exact source bytes
+PASS hub selection may start deferred normals while its welcome remains held, but another level welcome cannot steal current-map cache space
+PASS real weapon and HUD preload can settle before any palette or renderer exists without enabling Classic rendering
+PASS actual main accepts only the pinned startup-pack bytes and continues through ordinary loose fallback on missing, rejected or corrupt optional transport
+PASS actual main waits for the owned optional archive and mounts it below bundled native content before host setup
+RESULT 11/11 passed (tests/startup_preload_test.js)
+PASS same-name native identities select separate ordinary pictures and their own relief without changing UVs
+PASS unknown identity retains native art while legacy unguarded names remain compatible
+PASS variant-only names remain pending until actual installation and unknown variants settle to native fallback
+PASS ordinary variant without relief never borrows another identity base height
+PASS malformed exact variant cannot silently substitute unrelated base artwork
+PASS glass selection and glass mismatch remain authoritative over ordinary variants
+PASS name-only prefetch requests base art only; actual identity then reuses caches and requests expansion art on demand
+PASS variant image failure records a terminal native fallback and leaves other actual requests pending
+PASS Classic pass, disabled Newer mode and disabled texture option suppress variant transport; reversion restores native art
+RESULT 9/9 passed (tests/texture_identity_variants_test.js)
+PASS actual offline skin image helper waits for decoded pixels before reading canvas; removing await recreates the original empty input
+Added packfile normal-baker-native-source (339 files)
+
+Can't register variable gl_subdivide_size, already defined
+
+NORMAL_PALETTE_WITNESS {"texture":"wswamp2_1","runtimeFullbright":224,"correctKey":"0b6fbc0eb1ccc62fcd02599c35e543e0d012626b8386f062e61cd10ca4e176f3","oldKey":"1f9f6bd20033c4092cc5da5e5142c3985a7e79364ee42628e5d0b024f7dba84d"}
+PASS actual baker palette initialization matches runtime224 fullbright boundary and prevents old all-black native normal inputs
+RESULT 2/2 passed (tests/normal_baker_inputs_test.js)
+TOTAL 144/144 passed

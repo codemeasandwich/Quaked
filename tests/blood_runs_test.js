@@ -1,6 +1,6 @@
 // Independent effect11 public fixture. Native snapshot captured before implementation; only Canvas2D is doubled.
 import * as THREE from 'three';
-import {readFileSync,writeFileSync} from 'node:fs';
+import {readFileSync,writeFileSync} from './helpers/resource_fs.mjs';
 import {createHash} from 'node:crypto';
 const root=process.cwd(),load=p=>import(root+'/src/'+p);
 const [d,vars,post,mode,client,model]=await Promise.all([load('newer/render/r_decals.js'),load('engine/common/cvar.js'),load('newer/render/gl_post.js'),load('newer/mode.js'),load('engine/client/client.js'),load('engine/render/gl_model.js')]);

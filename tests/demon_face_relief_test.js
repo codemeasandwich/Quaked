@@ -1,9 +1,12 @@
+import {resourceGitPath} from './helpers/resource_path.mjs';
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Installed art and public async texture/material pipeline. Software canvas
 // decodes actual assets; native textures are independently decoded from BSPs.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { execFileSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
+import { assetPath } from '../tools/distribution/manifest.mjs';
 import * as THREE from 'three';
 import * as vars from '../src/engine/common/cvar.js';
 import * as post from '../src/newer/render/gl_post.js';
@@ -16,12 +19,16 @@ import { R_NormalMapFor, R_NormalsFromCraftedHeight } from '../src/newer/render/
 const { createCanvas, Image: NativeImage } = await import( pathToFileURL( process.env.QUAKED_CANVAS_MODULE ).href );
 const read = file => readFileSync( new URL( '../' + file, import.meta.url ) );
 const catalogue = JSON.parse( read( 'newer/textures/index.json' ) );
+const sourceDirectory = 'tools/texture_sheets/sources/demon-2026-10-03/';
+const sourceManifest = JSON.parse( read( sourceDirectory + 'manifest.json' ) );
+const recipe = sourceManifest.runtimeImport;
 const targets = [ 'dem4_1', 'dem4_4', 'dem5_3' ], PROFILE = { depth: .02, layers: 10, cavityFloor: .397385627, cavityScale: 3, cavityMin: .3 };
 const DISPLACEMENT = { depth: .05 * 64 * 3, step: .5, smoothing: .6 }, scalarBytes = read( 'newer/textures/normals/demon-face.r16' );
 const check = ( value, message ) => { if ( ! value ) throw new Error( message ); };
 const same = ( a, b, message ) => check( a === b, `${message}: ${a} != ${b}` );
 const near = ( a, b, message, epsilon = 1e-8 ) => check( Math.abs( a - b ) <= epsilon, `${message}: ${a} != ${b}` );
-const pack = read( 'games/shareware/pak0.pak' ), maps = [], native = new Map(); let palette;
+const pack = readFileSync( assetPath( new URL( '../', import.meta.url ).pathname, 'games/shareware/pak0.pak' ) ), maps = [], native = new Map(); let palette;
+same( createHash( 'sha256' ).update( pack ).digest( 'hex' ), '35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af', 'pinned Quake 1.06 shareware fixture' );
 for ( let p = pack.readInt32LE( 4 ), end = p + pack.readInt32LE( 8 ); p < end; p += 64 ) {
 
 	const name = pack.subarray( p, p + 56 ).toString().split( '\0' )[ 0 ], start = pack.readInt32LE( p + 56 ), data = pack.subarray( start, start + pack.readInt32LE( p + 60 ) );
@@ -66,15 +73,15 @@ async function fixture( fn ) {
 	const controls = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, newerMode.r_newer_normals, newerMode.r_newer_lighting, newerMode.r_newer_water, newerMode.r_newer_textures ];
 	for ( const variable of controls ) if ( ! vars.Cvar_FindVar( variable.name ) ) vars.Cvar_RegisterVariable( variable );
 	const saved = controls.map( v => v.string );
-	globalThis.Image = class extends NativeImage { set src( file ) { requests.push( file ); super.src = read( String( file ).split( '?' )[ 0 ] ); } };
+	globalThis.Image = class extends NativeImage { set src( file ) { requests.push( ResourceURL(file,true) ); super.src = read( String( file ).split( '?' )[ 0 ] ); } };
 	globalThis.document = { createElement: name => { same( name, 'canvas', 'public decoder canvas' ); return createCanvas( 1, 1 ); } };
 	globalThis.fetch = async url => {
 
-		requests.push( String( url ) );
-		if ( String( url ).includes( '.r16' ) ) {
+		requests.push( ResourceURL(url,true) );
+		if ( ResourceURL(url,true).includes( '.r16' ) ) {
 
-			if ( String( url ).includes( 'missing-scalar' ) ) return { ok: false };
-			const bytes = String( url ).includes( 'truncated-scalar' ) ? scalarBytes.subarray( 0, scalarBytes.length - 2 ) : scalarBytes;
+			if ( ResourceURL(url,true).includes( 'missing-scalar' ) ) return { ok: false };
+			const bytes = ResourceURL(url,true).includes( 'truncated-scalar' ) ? scalarBytes.subarray( 0, scalarBytes.length - 2 ) : scalarBytes;
 			return { ok: true, arrayBuffer: async () => bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.byteLength ) };
 
 		}
@@ -109,35 +116,40 @@ Deno.test( 'only three horned plaque materials get enhanced relief; native BSP p
 	for ( const name of targets ) {
 
 		const original = native.get( name ); check( original, name + ' occurs in real bundled BSP' ); same( original.width, 64, 'native width' ); same( original.height, 128, 'native height' ); same( Array.from( original.indices ).filter( value => value >= 224 ).length, 0, 'native model has no glow mask to inherit' );
-		const file = 'newer/textures/' + catalogue.textures[ name ]; check( read( file ).equals( execFileSync( 'git', [ 'show', 'HEAD:' + file ], { cwd: new URL( '../', import.meta.url ) } ) ), name + ' original albedo bytes untouched' );
+		const file = 'newer/textures/' + catalogue.textures[ name ]; check( read( file ).equals( execFileSync( 'git', [ 'show', 'HEAD:' + resourceGitPath(file) ], { cwd: new URL( '../', import.meta.url ) } ) ), name + ' original albedo bytes untouched' );
 		const picture = await decode( file ), height = await decode( 'newer/textures/' + catalogue.normals[ name ].file ); same( picture.width, 256, 'provided diffuse width' ); same( picture.height, 512, 'provided diffuse height' ); same( height.width, picture.width, 'height alignedU' ); same( height.height, picture.height, 'height alignedV' );
 		for ( let i = 0; i < height.data.length; i += 4 ) { same( height.data[ i ], height.data[ i + 1 ], 'linear grayscale height' ); same( height.data[ i ], height.data[ i + 2 ], 'linear grayscale heightB' ); same( height.data[ i + 3 ], 255, 'opaque height data' ); }
 		same( JSON.stringify( catalogue.normals[ name ].relief ), JSON.stringify( PROFILE ), name + ' scoped depth/layers/cavity recipe' );
 
 	}
 	check( ! catalogue.normals.altarb_2.relief && ! catalogue.normals.wmet3_1.relief, 'other face/altar families excluded' );
-	const recipe = JSON.parse( read( 'docs/evidence/demon-face-assets-2026-10-03.json' ) );
-	same( recipe.archiveSha256, 'b6b31e9b6916a9393bb772bebc1db17123db3f02efe1444b884b8297c50bddc8', 'exact supplied complete-package fingerprint' );
-	same( createHash( 'sha256' ).update( read( recipe.sourceArchive ) ).digest( 'hex' ), recipe.archiveSha256, 'retained ZIP bytes unchanged' );
-	same( recipe.savedHeightSha256, 'd5e89e6d2a3109e0507b91b53ed65b4ce072f1789296190ecc4b94f87009ef45', 'canonical saved16 height fingerprint' );
-	same( recipe.sourceSize.join(), '2048,4096', 'saved1:2 source aspect' );
+	same( sourceManifest.provenance.originalArchiveSha256, 'b6b31e9b6916a9393bb772bebc1db17123db3f02efe1444b884b8297c50bddc8', 'historical supplied-package fingerprint' );
+	for ( const [ file, sha256 ] of Object.entries( sourceManifest.provenance.originalMembers ) ) {
+
+		if ( file === 'manifest.json' ) continue; // The active manifest adds the runtime import contract.
+		same( createHash( 'sha256' ).update( read( sourceDirectory + file ) ).digest( 'hex' ), sha256, 'unpacked source bytes unchanged: ' + file );
+
+	}
+	same( sourceManifest.files.displacement.sha256, 'd5e89e6d2a3109e0507b91b53ed65b4ce072f1789296190ecc4b94f87009ef45', 'canonical saved16 height fingerprint' );
+	same( sourceManifest.files.displacement.resolution.join(), '2048,4096', 'saved1:2 source aspect' );
 	same( recipe.ownerDepthMultiplier, 3, 'owner requested triple depth recorded separately from package scale' );
 	for ( const name of targets ) { same( catalogue.normals[ name ].file, recipe.heightFile, 'all variants share preview' ); same( catalogue.normals[ name ].dataFile, recipe.dataFile, 'all variants share16-bit geometry data' ); same( catalogue.normals[ name ].sampling, 'clamp', 'explicit nonseamless package boundary contract' ); for ( const [ key, value ] of Object.entries( DISPLACEMENT ) ) near( catalogue.normals[ name ].displacement[ key ], value, 'scoped physical mesh ' + key ); near( catalogue.normals[ name ].displacement.depth, recipe.amplitudeFraction * native.get( name ).width * recipe.ownerDepthMultiplier, 'owner triples documented .05×native world width scale' ); }
 	if ( ! process.env.QUAKED_PYTHON ) throw new Error( 'Set QUAKED_PYTHON to the installed Python runtime with Pillow for exact source-resampling verification.' );
-	// Independent decoder and scalar arithmetic, never the ZIP's executable script.
-	const expected = execFileSync( process.env.QUAKED_PYTHON, [ '-c', "from PIL import Image; import sys,zipfile,io,numpy as np\nz=zipfile.ZipFile(sys.argv[1]);q=np.asarray(Image.open(io.BytesIO(z.read('dem4_4_maps/dem4_4_displacement_16bit.png'))),dtype=np.uint16)\ns=((q[3::8,3::8].astype(np.uint32)+q[3::8,4::8]+q[4::8,3::8]+q[4::8,4::8]+2)//4).astype('<u2');sys.stdout.buffer.write(s.tobytes())", new URL( '../' + recipe.sourceArchive, import.meta.url ).pathname ] );
+	// Independent decoder and scalar arithmetic, never the supplied encoder.
+	const expected = execFileSync( process.env.QUAKED_PYTHON, [ '-c', "from PIL import Image; from pathlib import Path; import sys,json,numpy as np\np=Path(sys.argv[1]);m=json.loads((p/'manifest.json').read_text());q=np.asarray(Image.open(p/m['files']['displacement']['filename']),dtype=np.uint16)\ns=((q[3::8,3::8].astype(np.uint32)+q[3::8,4::8]+q[4::8,3::8]+q[4::8,4::8]+2)//4).astype('<u2');sys.stdout.buffer.write(s.tobytes())", new URL( '../' + sourceDirectory, import.meta.url ).pathname ] );
 	same( scalarBytes.length, 256 * 512 * 2, 'exact little-endian16 byte count' ); check( scalarBytes.equals( expected ), 'every runtime16 sample equals saved canonical centre-bilinear resample' );
 	const proof = JSON.parse( execFileSync( process.env.QUAKED_PYTHON, [ '-c', `from PIL import Image
-import sys,zipfile,io,numpy as np,hashlib,json
-z=zipfile.ZipFile(sys.argv[1]);m=json.loads(z.read('dem4_4_maps/manifest.json'))
+from pathlib import Path
+import sys,numpy as np,hashlib,json
+p=Path(sys.argv[1]);m=json.loads((p/'manifest.json').read_text())
 for f in m['files'].values():
- b=z.read('dem4_4_maps/'+f['filename']);assert hashlib.sha256(b).hexdigest()==f['sha256']
-assert hashlib.sha256(z.read('dem4_4_maps/'+m['source']['archive_path'])).hexdigest()==m['source']['sha256']
+ b=(p/f['filename']).read_bytes();assert hashlib.sha256(b).hexdigest()==f['sha256']
+assert hashlib.sha256((p/m['source']['path']).read_bytes()).hexdigest()==m['source']['sha256']
 assert m['source']['sha256']=='d348dbc26c75776abd38b72eb93fb9e5a83555be248423d193e062ca42429743'
-assert z.read('dem4_4_maps/sources/dem4_4_original.webp')==open(sys.argv[2],'rb').read()
-q=np.asarray(Image.open(io.BytesIO(z.read('dem4_4_maps/'+m['files']['displacement']['filename']))),dtype=np.uint16)
-g=np.asarray(Image.open(io.BytesIO(z.read('dem4_4_maps/'+m['files']['normal_opengl']['filename']))),dtype=np.uint8)
-d=np.asarray(Image.open(io.BytesIO(z.read('dem4_4_maps/'+m['files']['normal_directx']['filename']))),dtype=np.uint8)
+assert (p/m['original_reference']['filename']).read_bytes()==Path(sys.argv[2]).read_bytes()
+q=np.asarray(Image.open(p/m['files']['displacement']['filename']),dtype=np.uint16)
+g=np.asarray(Image.open(p/m['files']['normal_opengl']['filename']),dtype=np.uint8)
+d=np.asarray(Image.open(p/m['files']['normal_directx']['filename']),dtype=np.uint8)
 assert np.array_equal(g[:,:,0],d[:,:,0]) and np.array_equal(g[:,:,2],d[:,:,2]) and np.array_equal(255-g[:,:,1],d[:,:,1])
 points=set((x,y) for y in range(0,4096,61) for x in range(0,2048,37))
 points.update((x,y) for x in range(2048) for y in [0,4095]);points.update((x,y) for y in range(4096) for x in [0,2047])
@@ -149,7 +161,7 @@ for x,y in points:
  err=max(err,int(np.max(np.abs(encoded-g[y,x].astype(int)))))
 assert err==0
 print(json.dumps({'normalSamples':len(points),'maxChannelError':err,'greenFlipAllPixels':True,'sourceWidth':q.shape[1],'amplitude':m['normals']['amplitude_as_fraction_of_texture_world_width']}))
-`, new URL( '../' + recipe.sourceArchive, import.meta.url ).pathname, new URL( '../newer/textures/' + catalogue.textures.dem4_4, import.meta.url ).pathname ] ).toString() );
+`, new URL( '../' + sourceDirectory, import.meta.url ).pathname, assetPath( new URL( '../', import.meta.url ).pathname, 'newer/textures/' + catalogue.textures.dem4_4 ) ] ).toString() );
 	check( proof.normalSamples > 15000 && proof.greenFlipAllPixels, 'substantive actual savedheight/OGL pair and all-pixelDirectX check' ); same( proof.maxChannelError, 0, 'sampled actual normal bytes match saved16 slopes including one-sided boundaries' ); near( proof.amplitude, .05, 'source normal physical scale' );
 	const actual = await decode( 'newer/textures/' + recipe.heightFile );
 	let fine = 0; for ( let i = 0; i < expected.length / 2; i ++ ) { const q = expected.readUInt16LE( i * 2 ); if ( q % 257 ) fine ++; same( actual.data[ i * 4 ], Math.round( q / 65535 * 255 ), '8-bit preview derived from canonical16 data' ); }

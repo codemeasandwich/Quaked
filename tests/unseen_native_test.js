@@ -1,7 +1,7 @@
 // The Ring of Shadows in Newer Game (owner request, 9 Oct 2026): a monster hunting the player loses track the moment the
 // player is unseen, and a monster the unseen player hurts hunts the place the player fired from, not the player. Real QuakeC
 // monsters, the real T_Damage and W_Attack, real physics frames; Classic keeps Quake's rules.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

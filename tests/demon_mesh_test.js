@@ -1,6 +1,7 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Actual native START surfaces plus the retained supplied height map. These
 // checks call geometry/world/PVS/shadow APIs; no renderer or game is started.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import { R_DemonHeight, R_DemonSurfaceData, R_DemonGeometryField } from '../src/newer/render/r_demonrelief.js';
 import { R_DemonBakePrefetch, R_DemonBakePrepare, R_DemonBakeSurface } from '../src/newer/assets/r_demonbakes.js';
@@ -30,7 +31,7 @@ const faces = model.surfaces.slice( model.firstmodelsurface, model.firstmodelsur
 check( faces.length > 0 && worldGroup, 'real native plaque surfaces and world group exist' );
 // The shipped source now enters through prepared geometry. Decode its actual
 // artifact rather than bypassing the new asynchronous admission contract.
-globalThis.fetch = async url => new Response( read( String( url ).split( '?' )[ 0 ] ), { status: 200 } );
+globalThis.fetch = async url => new Response( read( ResourceURL(url,true).split( '?' )[ 0 ] ), { status: 200 } );
 const preparedEntry = R_DemonBakePrefetch( model.name, model.bspSourceBytes );
 await preparedEntry.promise; check( preparedEntry.status === 'ready', 'actual installed native displacement artifact validates' );
 async function prepareFaces() {

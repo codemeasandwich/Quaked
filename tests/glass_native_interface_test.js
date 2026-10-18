@@ -1,6 +1,6 @@
 import {fileURLToPath} from 'node:url';
 import * as THREE from 'three';
-import {openSync,readSync,closeSync,readFileSync,writeFileSync} from 'node:fs';
+import {openSync,readSync,closeSync,readFileSync,writeFileSync} from './helpers/resource_fs.mjs';
 import {createHash} from 'node:crypto';
 import {COM_LoadPackFile,COM_AddPack} from '../src/engine/common/pak.js';
 import {Mod_Init,Mod_ClearAll,Mod_ForName} from '../src/engine/render/gl_model.js';

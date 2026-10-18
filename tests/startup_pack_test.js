@@ -1,4 +1,4 @@
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import {createHash} from 'node:crypto';
 import {STARTUP_PACK} from '../src/newer/assets/startup_pack.js';
 import {COM_LoadPackFile,COM_SetNewerStartupPack,COM_SetNewerPack,COM_NewerFile,COM_NewerURL} from '../src/engine/common/pak.js';

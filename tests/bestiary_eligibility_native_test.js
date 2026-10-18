@@ -1,7 +1,7 @@
 // Independent facing/eligibility proof at actual native QC and observation
 // boundaries. Owned Rogue data is read in bounded members; no owned bytes are
 // written, and no browser or background gameplay is launched.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import * as pak from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/engine/render/vid.js';
 import {Mod_Init} from '../src/engine/render/gl_model.js';

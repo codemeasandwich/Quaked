@@ -1,7 +1,7 @@
 // Runs the supported source-builder CLI in a fresh temporary cwd. Only the
 // fixture catalogue can be rewritten; real PAKs are read via bounded member IO.
 // Actual e1m2 BSP/palette data supplies native renderer identity expectations.
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } from './helpers/resource_fs.mjs';
 import { join, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { spawnSync } from 'node:child_process';

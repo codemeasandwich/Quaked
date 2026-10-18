@@ -1,7 +1,7 @@
 // Real Canvas2D compositor with controlled image completion/failure. A missing
 // water atlas or interior mask must never publish a completed water portrait.
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import {validatePlayerFaceManifest} from '../src/newer/ui/playerface_manifest.js';
 const canvas=await import(process.env.QUAKED_CANVAS_MODULE||'/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js'),manifest=JSON.parse(readFileSync(new URL('../newer/hud/playerface/manifest.json',import.meta.url)));
 let serial=0;const flush=async()=>{for(let i=0;i<20;i++)await Promise.resolve();};

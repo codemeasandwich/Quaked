@@ -3,7 +3,7 @@
 // the 1996 e1m7, compiled without lava levels, gets them worked out as vis does; a game's own lava1.wav wins over
 // the engine's made one. Through the public sound system (S_Init, S_Update) with the shareware pack's real e1m7; only
 // the browser's AudioContext is a double.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import * as dma from '../src/engine/sound/snd_dma.js';
 import * as sound from '../src/engine/sound/sound.js';

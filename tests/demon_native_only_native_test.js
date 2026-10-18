@@ -1,7 +1,7 @@
 // Actual registered id1 face5570 was the first shipped over-budget plaque.
 // The fixture supplies a source-bound record for this one original surface;
 // it does not depend on an in-progress corpus bake or mutate its artifacts.
-import {openSync,readSync,closeSync,readFileSync} from 'node:fs';
+import {openSync,readSync,closeSync,readFileSync} from './helpers/resource_fs.mjs';
 import {createHash} from 'node:crypto';
 import * as THREE from 'three';
 import {COM_AddPack,COM_LoadPackFile,COM_FindFile} from '../src/engine/common/pak.js';

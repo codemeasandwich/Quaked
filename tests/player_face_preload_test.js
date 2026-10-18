@@ -1,7 +1,7 @@
 // Public optional-asset deadlines and complete/incomplete compositor state.
 // Canvas and image transport are controlled endpoints; browser pixel correctness
 // is verified separately by player_face_trial.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 const manifest=JSON.parse(readFileSync(new URL('../newer/hud/playerface/manifest.json',import.meta.url),'utf8'));
 const sources=new Set(manifest.assets.map(a=>a.source).filter(Boolean));
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);

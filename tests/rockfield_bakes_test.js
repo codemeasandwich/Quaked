@@ -1,7 +1,7 @@
 // Public bake decoder/source/cache tests. Actual field generation, Three half
 // storage and shipped BSP chart discovery are used; only transport is injected.
 import * as THREE from 'three';
-import { readFileSync, readdirSync, existsSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import { gunzipSync, gzipSync } from 'node:zlib';
 import { ROCK_BAKES } from '../src/newer/assets/rockfield_bakes.js';

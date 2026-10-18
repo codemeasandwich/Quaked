@@ -10,11 +10,13 @@ only the parts of the picture that stay the same from frame to frame (the bezel,
 shifts the frame back (bicubic, edge pixels repeated). The normal maps are made again afterwards
 (tools/craft_normals.py), because they are made from these pictures.
 """
+
+from resource_paths import resource_path
 import json, os, sys
 import numpy as np
 from PIL import Image
 
-TEX = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'newer', 'textures')
+TEX = str(resource_path(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'), 'newer/textures'))
 
 def grad(a):
     gx = np.zeros_like(a); gy = np.zeros_like(a)

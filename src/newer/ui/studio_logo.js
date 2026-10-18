@@ -26,7 +26,7 @@ function artwork() {
   };
   const timer = setTimeout(() => { finish(false); candidate.src = ''; },30000);
   candidate.onload = () => finish(true); candidate.onerror = () => finish(false);
-  try { candidate.src = new URL('../../../newer/ui/studio-logo.png',import.meta.url).href; }
+  try { candidate.src = new URL('../../../assets/branding/studio-logo.png',import.meta.url).href; }
   catch { finish(false); }
  }
  return image;

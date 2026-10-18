@@ -1,6 +1,6 @@
 // A knocked-down zombie can be finished off (card [40]). Real QuakeC zombies on stock E1M3: knocked down by the game's own
 // zombie_pain, its own paine frames run, real traces, T_Damage, T_RadiusDamage and zombie_die. Classic keeps Quake's.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

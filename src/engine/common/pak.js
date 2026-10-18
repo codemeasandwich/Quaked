@@ -1,4 +1,5 @@
 import {AssetURL, AssetFetch} from '../../platform/distribution.js';
+import {ResourcePath} from '../../platform/resource_paths.js';
 /**
  * @module engine/common/pak
  *
@@ -97,6 +98,13 @@ export function COM_SetNewerMapsPack( pack ) {
 // Browser: '' (relative URLs like 'maps/foo.bsp')
 // Deno: '/opt/three-quake/' (absolute filesystem path)
 let looseFileBasePath = '';
+
+// Dedicated-server filesystem boundary; pack member names remain logical.
+function resourceFilePath( path ) {
+ if ( typeof path !== 'string' ) return path;
+ return looseFileBasePath && path.startsWith( looseFileBasePath ) ?
+  looseFileBasePath + ResourcePath( path.slice( looseFileBasePath.length ) ) : ResourcePath( path );
+}
 
 /*
 =================
@@ -617,7 +625,7 @@ export async function COM_PreloadLooseFile( filename, url ) {
 			// Load from filesystem in Deno
 			try {
 
-				data = await Deno.readFile( url );
+				data = await Deno.readFile( resourceFilePath( url ) );
 
 			} catch ( e ) {
 
@@ -774,7 +782,7 @@ export async function COM_FetchPak( url, filename, onProgress ) {
 		// Load from filesystem in Deno
 		try {
 
-			const data = await Deno.readFile( url );
+			const data = await Deno.readFile( resourceFilePath( url ) );
 			if ( onProgress ) onProgress( 1 );
 			return COM_LoadPackFile( filename, data.buffer );
 
@@ -861,7 +869,7 @@ export async function COM_FetchOptionalPak( url, filename ) {
 
 		if ( typeof Deno !== 'undefined' ) {
 
-			const data = await Deno.readFile( url );
+			const data = await Deno.readFile( resourceFilePath( url ) );
 			return isPack( data ) ? COM_LoadPackFile( filename, data.buffer.slice( data.byteOffset, data.byteOffset + data.byteLength ) ) : null;
 
 		}

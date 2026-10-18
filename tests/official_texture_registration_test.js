@@ -1,9 +1,10 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Current-state verification of 45 official-level texture bindings: actual
 // PAK/BSP pixels -> GL_LoadTexture -> public identity and upgrade APIs, with
 // real local WebP decoding. Inputs are a NEW source snapshot plus a fixed Git
 // baseline; deleted historical receipts/inventory are neither required nor
 // recreated. This verifies current assets, not past delivery or GPU appearance.
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from './helpers/resource_fs.mjs';
 import { execFileSync } from 'node:child_process';
 import { resolve, basename } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -193,9 +194,9 @@ async function imagesFixture( run ) {
 	const options = [ r_hdr, mode.r_newer_textures ];
 	for ( const v of options ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v );
 	const values = options.map( v => v.string ), requests = [];
-	globalThis.fetch = async url => { same( String( url ), 'newer/textures/index.json', 'actual public manifest endpoint' ); return { ok: true, json: async () => index }; };
+	globalThis.fetch = async url => { same( ResourceURL(url,true), 'newer/textures/index.json', 'actual public manifest endpoint' ); return { ok: true, json: async () => index }; };
 	Object.defineProperty( globalThis, 'Image', { configurable: true, value: class extends NativeImage {
-		set src( url ) { requests.push( String( url ) ); super.src = read( String( url ).split( '?' )[ 0 ] ); }
+		set src( url ) { requests.push( ResourceURL(url,true) ); super.src = read( ResourceURL(url,true).split( '?' )[ 0 ] ); }
 	} } );
 	Object.defineProperty( globalThis, 'document', { configurable: true, value: { createElement: tag => { same( tag, 'canvas', 'actual decoding/glow canvases' ); return createCanvas( 1, 1 ); } } } );
 	mode.R_AnimSetClassicPass( false ); vars.Cvar_SetValue( r_hdr.name, 1 ); vars.Cvar_SetValue( mode.r_newer_textures.name, 1 );

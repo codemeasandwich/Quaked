@@ -1,0 +1,319 @@
+{
+  "title": "dem4_4 inferred height and coherent tangent-space normals",
+  "encoder_version": 1,
+  "source": {
+    "filename": "dem4_4_height_inferred_native.png",
+    "sha256": "d348dbc26c75776abd38b72eb93fb9e5a83555be248423d193e062ca42429743",
+    "native_resolution": [
+      887,
+      1774
+    ],
+    "native_bit_depth": 8,
+    "native_channels": 3,
+    "native_color_space": "srgb",
+    "scalar_conversion": "Float32(mean(R,G,B)/255); RGB values treated directly as data; ICC ignored; no sRGB linearization",
+    "rgb_channel_differences": {
+      "unequal_pixel_count": 1178464,
+      "unequal_pixel_fraction": 0.7489263049255881,
+      "mean_rgb_bytes": [
+        106.11844836286127,
+        105.69582622091109,
+        105.36561684560526
+      ],
+      "pair_order": [
+        "R-G",
+        "G-B",
+        "R-B"
+      ],
+      "maximum_absolute_difference_bytes": [
+        5,
+        4,
+        5
+      ],
+      "mean_absolute_difference_bytes": [
+        0.5571686225563031,
+        0.5044129852599682,
+        0.8202108878209488
+      ],
+      "maximum_channel_range_bytes": 5,
+      "mean_channel_range_bytes": 0.94089624781861
+    },
+    "height_statistics": {
+      "count": 1573538,
+      "mean": 0.4146142466982217,
+      "percentiles": {
+        "p0": 0.08758170157670975,
+        "p1": 0.11372549086809158,
+        "p5": 0.16078431904315948,
+        "p10": 0.250980406999588,
+        "p25": 0.34379085898399353,
+        "p50": 0.4000000059604645,
+        "p75": 0.4797385632991791,
+        "p90": 0.6000000238418579,
+        "p95": 0.6836601495742798,
+        "p99": 0.7986928224563599,
+        "p100": 0.9581699371337891
+      }
+    },
+    "background_midlevel_estimate": {
+      "method": "Combined top and bottom 15% bands, rounded up to whole rows; median, no foreground mask",
+      "rows_per_band": 267,
+      "top_rows_inclusive": [
+        0,
+        266
+      ],
+      "bottom_rows_inclusive": [
+        1507,
+        1773
+      ],
+      "suggested_midlevel": 0.3973856270313263,
+      "statistics": {
+        "count": 473658,
+        "mean": 0.4052546192903343,
+        "percentiles": {
+          "p0": 0.2718954384326935,
+          "p1": 0.30980393290519714,
+          "p5": 0.32549020648002625,
+          "p10": 0.335947722196579,
+          "p25": 0.3607843220233917,
+          "p50": 0.3973856270313263,
+          "p75": 0.4457516372203827,
+          "p90": 0.48627451062202454,
+          "p95": 0.5058823823928833,
+          "p99": 0.5333333611488342,
+          "p100": 0.5973856449127197
+        }
+      },
+      "caution": "These bands can contain relief or residual lighting; this is a suggested background offset, not a measured geometric zero."
+    },
+    "path": "sources/dem4_4_height_inferred_native.png"
+  },
+  "resampling": {
+    "method": "Bilinear scalar interpolation, texel-center mapping, clamped boundaries, Float32 intermediate",
+    "source_resolution": [
+      887,
+      1774
+    ],
+    "exported_resolution": [
+      2048,
+      4096
+    ],
+    "aspect_ratio": "1:2, preserved",
+    "range_normalization": false,
+    "added_relief": false,
+    "sharpened": false
+  },
+  "displacement": {
+    "representation": "Unsigned normalized 16-bit single-channel grayscale PNG",
+    "height_formula": "H = stored_uint16 / 65535; white is high, black is low",
+    "quantization": "round(clamp(Float32_resampled_height, 0, 1) * 65535)",
+    "output_bit_depth_is_encoding_precision_only": true,
+    "height_statistics": {
+      "count": 8388608,
+      "mean": 0.41461425410166886,
+      "percentiles": {
+        "p0": 0.08798351883888245,
+        "p1": 0.11430533230304718,
+        "p5": 0.16183719038963318,
+        "p10": 0.2518196403980255,
+        "p25": 0.34444189071655273,
+        "p50": 0.400473028421402,
+        "p75": 0.4789654314517975,
+        "p90": 0.5995879769325256,
+        "p95": 0.6840619444847107,
+        "p99": 0.7976958751678467,
+        "p100": 0.95753413438797
+      }
+    },
+    "suggested_midlevel": 0.3973856270313263
+  },
+  "normals": {
+    "source": "Exact uint16 samples decoded from the exported displacement PNG",
+    "axes": "+U right, +V up, +Z outward; image y increases downward",
+    "world_width": 1,
+    "world_height": 2,
+    "physical_texel_width": 0.00048828125,
+    "physical_texel_height": 0.00048828125,
+    "amplitude_as_fraction_of_texture_world_width": 0.05,
+    "height_in_world_units": "z = amplitude * world_width * (H - midlevel); a constant midlevel does not affect normals",
+    "derivative": "Central differences per pixel in the interior; first-order one-sided differences at image boundaries; no wrapping",
+    "opengl_formula": "normalize(-amplitude * width * dH/dx_pixel, +amplitude * width * dH/dy_image_pixel, 1)",
+    "rgb8_encoding": "round(clamp(0.5 * normal_component + 0.5, 0, 1) * 255)",
+    "directx_conversion": "Identical R and B bytes; G_DirectX = 255 - G_OpenGL",
+    "green_flip_byte_exact_verified": true,
+    "all_finite": true,
+    "floating_unit_length_min": 0.9999999999999997,
+    "floating_unit_length_max": 1.0000000000000004,
+    "floating_unit_length_max_error": 4.440892098500626e-16,
+    "verification": {
+      "checked_pixels": 8388608,
+      "recomputed_from_saved_height_max_channel_error_bytes": 0,
+      "decoded_rgb8_unit_length_min": 0.9934115913221286,
+      "decoded_rgb8_unit_length_max": 1.0066369527455434,
+      "decoded_rgb8_max_angular_error_degrees": 0.38290148009379715,
+      "note": "RGB8 quantization slightly changes length; normalize sampled vectors in the shader."
+    },
+    "preview": "Not generated"
+  },
+  "import_settings": {
+    "texture_color_space": "Non-color / linear data; disable sRGB decoding for all maps",
+    "normal_convention": "Choose the OpenGL +Y or DirectX -Y file required by the renderer",
+    "displacement_amplitude": "Normal maps assume total height range 0.05 times texture world width; regenerate normals if this scale changes.",
+    "displacement_midlevel": "Suggested background median above; adjust to the mesh. This changes offset only, not normals."
+  },
+  "limitations": [
+    "Height was inferred from one color image; it is not measured geometry or a uniquely recoverable ground-truth displacement.",
+    "The inference contains residual lighting and feature drift; exact registration to the original texture is not claimed.",
+    "The native inferred source is 887x1774 RGB8; the 2048x4096 field is a mathematical resampling.",
+    "16-bit PNG preserves the resampled field with finer quantization; it does not create native 16-bit detail or recover additional measured detail.",
+    "No seamless tiling is claimed; boundaries use clamped scalar sampling and one-sided derivatives.",
+    "Normals are mathematically coherent with this exported displacement at the stated amplitude, not with unknown original surface geometry."
+  ],
+  "files": {
+    "displacement": {
+      "filename": "dem4_4_displacement_16bit.png",
+      "resolution": [
+        2048,
+        4096
+      ],
+      "bit_depth": 16,
+      "color_type": "grayscale, one channel",
+      "bytes": 12059193,
+      "sha256": "d5e89e6d2a3109e0507b91b53ed65b4ce072f1789296190ecc4b94f87009ef45",
+      "png_chunks": [
+        "IHDR",
+        "IDAT",
+        "IEND"
+      ],
+      "all_chunk_crcs_valid": true,
+      "exact_sample_round_trip": true,
+      "color_profile_or_gamma_chunks": false
+    },
+    "normal_opengl": {
+      "filename": "dem4_4_normal_opengl.png",
+      "resolution": [
+        2048,
+        4096
+      ],
+      "bit_depth": 8,
+      "color_type": "RGB, three channels",
+      "bytes": 14073744,
+      "sha256": "604de25a67716c23ba85c79da11e337d89f7c55f2968a1865048e189aaa4b6cf",
+      "png_chunks": [
+        "IHDR",
+        "IDAT",
+        "IEND"
+      ],
+      "all_chunk_crcs_valid": true,
+      "exact_sample_round_trip": true,
+      "color_profile_or_gamma_chunks": false
+    },
+    "normal_directx": {
+      "filename": "dem4_4_normal_directx.png",
+      "resolution": [
+        2048,
+        4096
+      ],
+      "bit_depth": 8,
+      "color_type": "RGB, three channels",
+      "bytes": 14071622,
+      "sha256": "4c9ed5ad050c494907275f7aeb58ff18ebd2727c6ecd7b0579b5ff24073fb50f",
+      "png_chunks": [
+        "IHDR",
+        "IDAT",
+        "IEND"
+      ],
+      "all_chunk_crcs_valid": true,
+      "exact_sample_round_trip": true,
+      "color_profile_or_gamma_chunks": false
+    }
+  },
+  "original_reference": {
+    "filename": "sources/dem4_4_original.webp",
+    "resolution": [
+      256,
+      512
+    ],
+    "unchanged": true
+  },
+  "runtimeImport": {
+    "heightFile": "normals/demon-face.webp",
+    "dataFile": "normals/demon-face.r16",
+    "outputSize": [
+      256,
+      512
+    ],
+    "encoding": "uint16 little endian /65535; non-colour",
+    "method": "bilinear saved scalar texel-centres, requantizeduint16; no anatomical redraw",
+    "amplitudeFraction": 0.05,
+    "textures": {
+      "dem4_1": {
+        "albedoSha256": "760bf513bd1de608f0bf3eb50ce75aebb347110f0e0e0376c6dbc581972da4b2",
+        "nativeSize": [
+          64,
+          128
+        ],
+        "outputSize": [
+          256,
+          512
+        ]
+      },
+      "dem4_4": {
+        "albedoSha256": "3171058b412f3ed1ba76e9e5022a64faf56492deac2ec431464ed3c2295e8ad5",
+        "nativeSize": [
+          64,
+          128
+        ],
+        "outputSize": [
+          256,
+          512
+        ]
+      },
+      "dem5_3": {
+        "albedoSha256": "4de19e46b16f0c3cfe0d1467acb78fdbf80987802052cfbde7e068aba77defd3",
+        "nativeSize": [
+          64,
+          128
+        ],
+        "outputSize": [
+          256,
+          512
+        ]
+      }
+    },
+    "ownerDepthMultiplier": 3,
+    "appliedDepthWorld": 9.6,
+    "material": {
+      "sampling": "clamp",
+      "strength": 2.0,
+      "cap": 1.8,
+      "displacement": {
+        "depth": 9.600000000000001,
+        "step": 0.5,
+        "smoothing": 0.6
+      },
+      "relief": {
+        "depth": 0.02,
+        "layers": 10,
+        "cavityFloor": 0.397385627,
+        "cavityScale": 3,
+        "cavityMin": 0.3
+      }
+    }
+  },
+  "provenance": {
+    "originalArchive": "dem4_4_maps.zip",
+    "originalArchiveSha256": "b6b31e9b6916a9393bb772bebc1db17123db3f02efe1444b884b8297c50bddc8",
+    "originalMembers": {
+      "README.txt": "05b949374b6d86b412e17add2527a5bdfbcf5ac5f6876f6e54903b4e4684674b",
+      "dem4_4_displacement_16bit.png": "d5e89e6d2a3109e0507b91b53ed65b4ce072f1789296190ecc4b94f87009ef45",
+      "dem4_4_normal_directx.png": "4c9ed5ad050c494907275f7aeb58ff18ebd2727c6ecd7b0579b5ff24073fb50f",
+      "dem4_4_normal_opengl.png": "604de25a67716c23ba85c79da11e337d89f7c55f2968a1865048e189aaa4b6cf",
+      "encode_maps.mjs": "97aa063cfd41694fccef0243a69098419e09c426ef490800544e49f7adbafd1d",
+      "manifest.json": "1170e8065fc9993edc0adfaf4fdaf63752907cfda98ae0feef16a67796f47460",
+      "sources/dem4_4_height_inferred_native.png": "d348dbc26c75776abd38b72eb93fb9e5a83555be248423d193e062ca42429743",
+      "sources/dem4_4_original.webp": "3171058b412f3ed1ba76e9e5022a64faf56492deac2ec431464ed3c2295e8ad5"
+    },
+    "migration": "2026-10-18: ordinary authoring files replace the root ZIP. Manifest source.archive_path renamed to source.path; runtimeImport recovered from HEAD:docs/evidence/demon-face-assets-2026-10-03.json and the unchanged runtime material index. The original README and encoder are preserved as supplied documentation, not the active import contract."
+  }
+}

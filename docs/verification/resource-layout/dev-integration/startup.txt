@@ -1,0 +1,13 @@
+PASS actual startup overlaps independent pack and UI transports, installs routing before early preload, and still waits for all required UI preparation
+PASS mandatory pack failure cannot initialize a host or declare startup ready while optional pack transport remains independent
+PASS room auto-join retains the complete UI barrier before connect, cancellation and animation-loop installation
+PASS two installed games: the shelf opens before any game starts; a game URL starts at once
+PASS a mission pack mounts last with its switch before the host; without Quake it is left out
+PASS a player window boots read-only, without attract prefetches, then joins its host after the UI barrier
+PASS actual main defers hub normal transport until completed demo presentation, then starts it exactly once with retained exact source bytes
+PASS hub selection may start deferred normals while its welcome remains held, but another level welcome cannot steal current-map cache space
+PASS real weapon and HUD preload can settle before any palette or renderer exists without enabling Classic rendering
+PASS actual main accepts only the pinned startup-pack bytes and continues through ordinary loose fallback on missing, rejected or corrupt optional transport
+PASS actual main waits for the owned optional archive and mounts it below bundled native content before host setup
+RESULT 11/11 passed (tests/startup_preload_test.js)
+TOTAL 11/11 passed

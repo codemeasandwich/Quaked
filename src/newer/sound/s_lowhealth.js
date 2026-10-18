@@ -31,7 +31,7 @@ import { R_NewerGame } from '../mode.js';
  * distribution bundler rewrites exactly that form into its asset resolver (a bare
  * string literal would 404 in the packaged single-file web and Tauri builds).
  */
-export const LOWHEALTH_TRACK_URL = new URL( '../../../assets/sounds/lowHealt.mp3', import.meta.url ).href;
+export const LOWHEALTH_TRACK_URL = new URL( '../../../assets/audio/sounds/lowHealt.mp3', import.meta.url ).href;
 
 /**
  * Health at or below which the strain plays. The band is therefore 1..11: the

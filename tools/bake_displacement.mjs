@@ -1,6 +1,9 @@
 // Reproducible prepared decorative geometry. Never edits game/source archives.
 // --pack may be repeated in native search-path order; --namespace names output.
 // QUAKED_THREE_MODULE supplies the existing installed Three module.
+import {assetPath} from './distribution/manifest.mjs';
+import {fileURLToPath as resourceFileURLToPath} from 'node:url';
+const resourcePath = path => assetPath(resourceFileURLToPath(new URL('../', import.meta.url)), path);
 import {register} from 'node:module';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -23,17 +26,17 @@ pak.COM_AddPack(isolatedPack('gfx/palette.lmp',await readMember(palette.get('gfx
 for(const [name,entry] of members)if(/^maps\/[^/]+\.bsp$/.test(name)&&new RegExp(filter).test(name))names.add(name);
 for(const path of packs)archives.push({path});
 vid.VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);model.Mod_Init();model.R_InitTextures();
-const manifestPath='newer/displacement/manifest.json';let manifest;try{manifest=JSON.parse(await readFile(manifestPath,'utf8'));}catch{manifest={version:1,sources:{},levels:{}};}
-for(const path of ['src/newer/render/r_demonrelief.js','src/newer/assets/demon_bake_format.js','src/engine/render/gl_model.js','src/engine/render/gl_rsurf.js','src/engine/render/gl_rsurf_state.js','src/engine/render/gl_rsurf_lightmaps.js','src/engine/render/gl_rsurf_materials.js','src/engine/render/gl_rsurf_liquids.js','src/engine/render/gl_rsurf_batches.js','src/engine/render/gl_rsurf_world.js','src/engine/render/gl_rsurf_brush.js','newer/textures/index.json','newer/textures/normals/demon-face.r16'])manifest.sources[path]=sha(await readFile(path));
+const manifestPath='newer/displacement/manifest.json';let manifest;try{manifest=JSON.parse(await readFile(resourcePath(manifestPath),'utf8'));}catch{manifest={version:1,sources:{},levels:{}};}
+for(const path of ['src/newer/render/r_demonrelief.js','src/newer/assets/demon_bake_format.js','src/engine/render/gl_model.js','src/engine/render/gl_rsurf.js','src/engine/render/gl_rsurf_state.js','src/engine/render/gl_rsurf_lightmaps.js','src/engine/render/gl_rsurf_materials.js','src/engine/render/gl_rsurf_liquids.js','src/engine/render/gl_rsurf_batches.js','src/engine/render/gl_rsurf_world.js','src/engine/render/gl_rsurf_brush.js','newer/textures/index.json','newer/textures/normals/demon-face.r16'])manifest.sources[path]=sha(await readFile(resourcePath(path)));
 const generatorFingerprint=sha(new TextEncoder().encode(JSON.stringify(manifest.sources)));
-const recipes=JSON.parse(await readFile('newer/textures/index.json','utf8')).normals,fields=new Map();
+const recipes=JSON.parse(await readFile(resourcePath('newer/textures/index.json'),'utf8')).normals,fields=new Map();
 for(const name of DEMON_TEXTURES){const recipe=recipes[name];if(!recipe?.displacement||!recipe.dataFile)throw Error('Missing exact saved scalar recipe '+name);
- const raw=await readFile('newer/textures/'+recipe.dataFile);const w=256,h=512;if(raw.length!==w*h*2)throw Error('Unexpected scalar dimensions');
+ const raw=await readFile(resourcePath('newer/textures/'+recipe.dataFile));const w=256,h=512;if(raw.length!==w*h*2)throw Error('Unexpected scalar dimensions');
  const field={width:w,height:h,data:Float32Array.from({length:w*h},(_,i)=>raw.readUInt16LE(i*2)/65535),sampling:recipe.sampling,displacement:{...recipe.displacement}};fields.set(name,field);
 }
-await mkdir('newer/displacement/'+namespace,{recursive:true});
+await mkdir(resourcePath('newer/displacement/'+namespace),{recursive:true});
 for(const name of [...names].sort()){
- model.Mod_ClearAll();const bytes=await readMember(members.get(name)),bspSha256=sha(bytes);pak.COM_AddPack(isolatedPack(name,bytes));const previous=manifest.levels[name]?.find(s=>s.namespace===namespace&&s.bspSha256===bspSha256&&s.generatorFingerprint===generatorFingerprint);if(previous){const saved=await readFile(previous.file).catch(()=>null);if(saved&&sha(saved)===previous.sha256){console.log('REUSED '+namespace+':'+name);continue;}}const header=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength).getInt32(0,true);if(![29,0x32505342,0x42535032].includes(header))throw Error('Unsupported native BSP version '+header+' in '+name);
+ model.Mod_ClearAll();const bytes=await readMember(members.get(name)),bspSha256=sha(bytes);pak.COM_AddPack(isolatedPack(name,bytes));const previous=manifest.levels[name]?.find(s=>s.namespace===namespace&&s.bspSha256===bspSha256&&s.generatorFingerprint===generatorFingerprint);if(previous){const saved=await readFile(resourcePath(previous.file)).catch(()=>null);if(saved&&sha(saved)===previous.sha256){console.log('REUSED '+namespace+':'+name);continue;}}const header=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength).getInt32(0,true);if(![29,0x32505342,0x42535032].includes(header))throw Error('Unsupported native BSP version '+header+' in '+name);
  const world=model.Mod_ForName(name,true);cl.worldmodel=world;cl.model_precache[1]=world;cl.model_precache[2]=null;surface.GL_BuildLightmaps();
  const records=[];for(let id=0;id<world.surfaces.length;id++){
   const original=world.surfaces[id],field=fields.get(original.texinfo.texture.name);if(!field)continue;
@@ -49,8 +52,8 @@ for(const name of [...names].sort()){
   for(let i=0;i<actual.indices.length;i++)for(let a=0;a<4;a++)for(let k=0;k<widths[a];k++)if(!Object.is(actual.interleaved[actual.indices[i]*10+offsets[a]+k],record.data[keys[a]][i*widths[a]+k]))throw Error('Roundtrip changed '+name+':'+record.surfaceId+':'+keys[a]);
  }
 
- const compressed=gzipSync(raw,{level:9}),file='newer/displacement/'+namespace+'/'+name.slice(5,-4)+'.dm.gz';await writeFile(file,compressed);
+ const compressed=gzipSync(raw,{level:9}),file='newer/displacement/'+namespace+'/'+name.slice(5,-4)+'.dm.gz';await writeFile(resourcePath(file),compressed);
  const spec={file,generatorFingerprint,generatorVersion:DEMON_GENERATOR_VERSION,bspSha256,sha256:sha(compressed),rawSha256:sha(raw),surfaces:records.length,nativeOnly:records.filter(r=>r.nativeOnly).length,triangles:records.reduce((n,r)=>n+(r.data?.triangles||0),0),bytes:raw.length,compressedBytes:compressed.length,namespace};
  const existing=manifest.levels[name]||[];manifest.levels[name]=existing.filter(s=>s.namespace!==namespace).concat(spec);console.log('BAKED '+name+' '+records.length+' sculpt surfaces '+compressed.length+' bytes');
- delete manifest.sourcesNote;await writeFile(manifestPath,JSON.stringify(manifest,null,2)+'\n');await writeFile('src/newer/assets/demon_bakes.js','/**\n * @module newer/assets/demon_bakes\n *\n * Prepared plaque displacement, generated by `tools/bake_displacement.mjs` and `tools/split_prepared_bundles.mjs` (do\n * not edit: re-run them).\n *\n * Types: plain values and functions; no exported classes.\n *\n * State: no mutable exports.\n *\n * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).\n */\n// Generated by tools/bake_displacement.mjs. BSP content identity separates campaigns.\nexport const DEMON_BAKES = '+JSON.stringify(manifest.levels,null,1)+';\n');
+ delete manifest.sourcesNote;await writeFile(resourcePath(manifestPath),JSON.stringify(manifest,null,2)+'\n');await writeFile(resourcePath('src/newer/assets/demon_bakes.js'),'/**\n * @module newer/assets/demon_bakes\n *\n * Prepared plaque displacement, generated by `tools/bake_displacement.mjs` and `tools/split_prepared_bundles.mjs` (do\n * not edit: re-run them).\n *\n * Types: plain values and functions; no exported classes.\n *\n * State: no mutable exports.\n *\n * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).\n */\n// Generated by tools/bake_displacement.mjs. BSP content identity separates campaigns.\nexport const DEMON_BAKES = '+JSON.stringify(manifest.levels,null,1)+';\n');
 }

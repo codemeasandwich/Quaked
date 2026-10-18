@@ -1,8 +1,10 @@
+import {resourcePath} from './helpers/resource_path.mjs';
+import {ResourcePath} from '../src/platform/resource_paths.js';
 // Public source-bound Quake Lava Man skin contract. Adapted from the Death Knight public-interface tests.
 // Read only bounded owned PAK members;
 // no owned model or native texture is written or redistributed by this test.
 import * as THREE from 'three';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -75,7 +77,7 @@ Deno.test( 'actual Lava Man assets retain generated source, matching dimensions 
  for(const file of ['diffuse.webp','height.webp']){
   const data=read(BASE+file),receipt=encoding.maps[file];same(data.toString('ascii',0,4),'RIFF','WebP container');same(data.toString('ascii',8,12),'WEBP','WebP signature');let offset=12,lossy=false;
   while(offset+8<=data.length){const tag=data.toString('ascii',offset,offset+4),size=data.readUInt32LE(offset+4);if(tag==='VP8 ')lossy=true;check(tag!=='VP8L','lossless payload cannot masquerade as Q92');offset+=8+size+(size&1);}check(lossy,'actual lossy VP8 payload');same(receipt.sha256,sha(data),'encoding receipt binds shipped file');same(receipt.bytes,data.length,'encoded byte count');check(/^[0-9a-f]{64}$/.test(receipt.masterSha256),'retained lossless fit-master identity');
-  receiptInputs.push(fileURLToPath(new URL('../'+BASE+file,import.meta.url)));
+  receiptInputs.push(resourcePath(fileURLToPath(new URL('../'+BASE+file,import.meta.url))));
  }
  // These receipts name Pillow explicitly. Runtime canvas decoding is separately
  // used by the exact shipped-normal witness case below, never substituted here.
@@ -111,7 +113,7 @@ Deno.test( 'actual manifest admits only matching Lava Man skin zero and preserve
  const changed = Buffer.from( bytes ); changed.writeInt32LE( changed.readInt32LE( 76 ) ^ 1, 76 ); const wrong = reload( changed ); await wrong.aliasSourceIdentity.promise; check( wrong.aliasSourceIdentity.sha256 !== EXPECTED, 'same filename different native bytes' );
  const id1=await pakDirectory(process.env.QUAKED_ID1_PAK),bossBytes=await readMember(id1.get('progs/boss.mdl'));same(sha(bossBytes),'4b802488480de2e36130e06ee03a31b2e96046a3ffe12f66e62d9bf4bd2f2eea','actual Chthon identity control');const uvStart=88+300*194,uvEnd=uvStart+325*12+555*16;check(bytes.subarray(uvStart,uvEnd).equals(bossBytes.subarray(uvStart,uvEnd)),'Chthon has identical UV/triangle bytes but remains a distinct enemy');let differing=0;for(let i=88;i<uvStart;i++)if(bytes[i]!==bossBytes[i])differing++;same(differing,56764,'actual original skins differ despite identical layout');COM_AddPack(isolatedPack('progs/boss.mdl',bossBytes));const boss=Mod_ForName('progs/boss.mdl',true);await boss.aliasSourceIdentity.promise;same(skins.R_NewerAliasMaterial({model:{...boss,name:NAME}},NAME,true,0),null,'actual Chthon bytes never wear Lava Man art under a spoofed filename');
  const preparing = skins.R_NewerSkinsPrepare( [ model ] ); same( skins.R_NewerSkinsPrepare( [ model, model ] ), preparing, 'matching preparation deduplicates' ); await preparing; same( requests.length, 2, 'exact diffuse and height requests' );
- check( requests.every( r => r.url.startsWith( BASE ) && r.url.endsWith( '?v=' + index.version ) ), 'both requests use approved directory and cache revision' ); same( skins.R_NewerSkinsStatus( [ model ] ).pending, 2, 'preparation acknowledgement is not image readiness' ); same( skins.R_NewerAliasMaterial( { model }, NAME, true, 0 ), null, 'pending diffuse retains native' );
+ check( requests.every( r => r.url.startsWith( ResourcePath(BASE) ) && r.url.endsWith( '?v=' + index.version ) ), 'both requests use approved directory and cache revision' ); same( skins.R_NewerSkinsStatus( [ model ] ).pending, 2, 'preparation acknowledgement is not image readiness' ); same( skins.R_NewerAliasMaterial( { model }, NAME, true, 0 ), null, 'pending diffuse retains native' );
  for ( const request of requests ) request.done( request.texture ); const material = skins.R_NewerAliasMaterial( { model, _entityIndex: 9 }, NAME, true, 0 ); check( material, 'matched skin zero material ready' ); same( material.map, requests.find( r => r.url.includes( 'diffuse.webp' ) ).texture, 'draw uses approved decoded diffuse' );
  same( material.map.flipY, false, 'native top-row-first UV convention retained' ); same( material.map.colorSpace, THREE.SRGBColorSpace, 'diffuse uses native color contract' ); same( skins.R_NewerSkinsStatus( [ model ] ).ready, 2, 'both image callbacks counted' ); check( skins.R_NewerSkinsStatus( [ model ] ).settled, 'image family settled' );
  for ( const skin of [ 1, 2, 7 ] ) same( skins.R_NewerAliasMaterial( { model }, NAME, true, skin ), null, 'unapproved skin remains native' );

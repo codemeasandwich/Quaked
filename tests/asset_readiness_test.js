@@ -1,3 +1,4 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Public selected-asset readiness and terminal native fallbacks. Timers/image
 // transport are controlled at endpoints; actual loaders/materials remain used.
 import * as THREE from 'three';
@@ -103,7 +104,7 @@ Deno.test( 'failed authored skin normal is terminal and generates matching relie
 Deno.test( 'weapon preload status observes concurrent requests, bounds stalled textures, and rejects late art after native fallback', async () => endpoints( async env => {
 	const manifest = { models: { v_shot: { source: 'shotgun' } }, sources: { shotgun: { maps: { diffuse: 'd.webp', normal: 'n.webp' } }, shell: { maps: { diffuse: 's.webp' } } } };
 	const geometry = { poses: [ [ 0, 0, 0, 1, 0, 0, 0, 1, 0 ] ], uv: [ 0, 0, 1, 0, 0, 1 ], indices: [ 0, 1, 2 ] };
-	globalThis.fetch = async path => ( { ok: true, json: async () => String( path ).endsWith( 'index.json' ) ? manifest : geometry } );
+	globalThis.fetch = async path => ( { ok: true, json: async () => ResourceURL(path,true).endsWith( 'index.json' ) ? manifest : geometry } );
 	const weapons = await import( '../src/newer/render/r_weapons.js?readiness-preload' ), preload = weapons.R_WeaponsPreload(); await flush();
 	equal( weapons.R_WeaponStatus().preload, 'loading', 'preload loading' ); equal( weapons.R_WeaponStatus().pending.length, 2, 'held and shell concurrent' ); check( ! weapons.R_WeaponStatus().settled, 'images keep startup unready' );
 	env.expire(); await preload; const status = weapons.R_WeaponStatus(); check( status.settled, 'preload failures terminal' ); equal( status.preload, 'fallback', 'preload fallback diagnostic' ); equal( status.pending.length, 0, 'no dangling role pending' );
@@ -114,7 +115,7 @@ Deno.test( 'weapon preload status observes concurrent requests, bounds stalled t
 
 Deno.test( 'successful weapon preload exposes terminal readiness and a stalled manifest cannot later enable art', async () => endpoints( async env => {
 	const manifest = { models: { v_shot: { source: 'shotgun' } }, sources: { shotgun: { maps: { diffuse: 'd.webp', normal: 'n.webp' } }, shell: { maps: { diffuse: 's.webp' } } } }, geometry = { poses: [ [ 0, 0, 0, 1, 0, 0, 0, 1, 0 ] ], uv: [ 0, 0, 1, 0, 0, 1 ], indices: [ 0, 1, 2 ] };
-	globalThis.fetch = async path => ( { ok: true, json: async () => String( path ).endsWith( 'index.json' ) ? manifest : geometry } );
+	globalThis.fetch = async path => ( { ok: true, json: async () => ResourceURL(path,true).endsWith( 'index.json' ) ? manifest : geometry } );
 	const weapons = await import( '../src/newer/render/r_weapons.js?readiness-success' ), preload = weapons.R_WeaponsPreload(); await flush();
 	for ( const request of env.textures ) request.onLoad( request.texture ); await preload;
 	const status = weapons.R_WeaponStatus(); equal( status.preload, 'ready', 'successful preload state' ); check( status.settled && status.ready.includes( 'v_shot' ) && status.ready.includes( 'shell' ), 'successful roles ready' );

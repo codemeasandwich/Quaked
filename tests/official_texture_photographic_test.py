@@ -18,6 +18,9 @@ import numpy as np
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'tools'))
+from resource_paths import resource_path
+
 TOOL = ROOT / 'tools/texture_sheets/finish_official_texture.py'
 SOURCES = ROOT / 'tools/texture_sheets/sources/official-world-2026-10-12'
 
@@ -29,7 +32,7 @@ def fresh_reference(name, retained_sha256):
     if len(matches) != 1:
         raise AssertionError('Exactly one fresh reference required for ' + name)
     entry = matches[0]
-    path = ROOT / entry['freshReference']
+    path = resource_path(ROOT, entry['freshReference'])
     actual = hashlib.sha256(path.read_bytes()).hexdigest()
     if actual != retained_sha256 or actual != entry['sha256'] or retained_sha256 not in entry['retainedOriginalHashes']:
         raise AssertionError('Fresh reference differs from retained original bytes: ' + name)
@@ -65,7 +68,7 @@ class PhotographicFinishing(unittest.TestCase):
         cls.temp = tempfile.TemporaryDirectory(prefix='quaked-photographic-')
         cls.addClassCleanup(cls.temp.cleanup)
         cls.directory = Path(cls.temp.name)
-        retained = json.loads((ROOT / 'newer/textures/candidates-2026-10-12/ceil1_1-photographic-v2.json').read_text())
+        retained = json.loads((resource_path(ROOT, 'newer/textures/candidates-2026-10-12/ceil1_1-photographic-v2.json')).read_text())
         cls.original = fresh_reference('ceil1_1', retained['originalSha256'])
         cls.donor = SOURCES / 'ceil1_1-artistic-v2.png'
         cls.finished, cls.receipt = cls.run_cli('lamp', cls.original, cls.donor)
@@ -203,12 +206,12 @@ class PhotographicFinishing(unittest.TestCase):
         pairs = json.loads((SOURCES / 'owner-style-calibration.json').read_text())['entries']
         for pair in pairs:
             with self.subTest(texture=pair['name']):
-                original_path = ROOT / pair['sourceReference']
+                original_path = resource_path(ROOT, pair['sourceReference'])
                 self.assertEqual(hashlib.sha256(original_path.read_bytes()).hexdigest(), pair['sourceFileSha256'])
                 with Image.open(original_path) as decoded:
                     self.assertEqual(hashlib.sha256(decoded.convert('RGBA').tobytes()).hexdigest(), pair['sourceRGBAsha256'])
                     original = decoded.convert('RGB')
-                donor_path = ROOT / 'newer/textures' / pair['enhanced']
+                donor_path = resource_path(ROOT, 'newer/textures') / pair['enhanced']
                 self.assertEqual(hashlib.sha256(donor_path.read_bytes()).hexdigest(), pair['enhancedFileSha256'])
                 output, receipt = self.run_cli('owner-' + pair['name'], original_path, donor_path, ['--factor', '4', '--color-strength', '0'])
                 self.assertTrue(np.array_equal(rgb(output), rgb(donor_path)), 'zero correction must not erase owner-approved detail')
@@ -221,7 +224,7 @@ class PhotographicFinishing(unittest.TestCase):
                 self.assertGreater(pair['quarterMax'], 1, 'positive examples refute the obsolete strict threshold')
 
     def test_retained_strict_candidate_is_reproducible(self):
-        retained = ROOT / 'newer/textures/candidates-2026-10-12/tech08_3-quarter.png'
+        retained = resource_path(ROOT, 'newer/textures/candidates-2026-10-12/tech08_3-quarter.png')
         recipe = json.loads(retained.with_suffix('.json').read_text())
         output, receipt = self.run_cli('strict-replay', fresh_reference('tech08_3', recipe['originalSha256']), ROOT / recipe['generated'],
                                        ['--method', 'strict', '--factor', str(recipe['factor']),
@@ -239,7 +242,7 @@ class PhotographicFinishing(unittest.TestCase):
 
         for name in ['tech08_3', 'tech08_4']:
             with self.subTest(texture=name):
-                retained = ROOT / 'newer/textures/candidates-2026-10-12' / (name + '-photographic.png')
+                retained = resource_path(ROOT, 'newer/textures/candidates-2026-10-12') / (name + '-photographic.png')
                 recipe = json.loads(retained.with_suffix('.json').read_text())
                 options = ['--factor', str(recipe['factor']), '--color-strength', str(recipe['colorStrength']), '--field-sigma', str(recipe['fieldSigma'])]
                 if recipe.get('landmarkFile'):

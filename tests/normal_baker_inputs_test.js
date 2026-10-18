@@ -1,6 +1,6 @@
 // Regression witnesses for the two concrete offline/runtime identity defects.
 // Runs the actual baker image helper and initialization statements; no bake.
-import {readFileSync} from 'node:fs';
+import {readFileSync} from './helpers/resource_fs.mjs';
 import {Script} from 'node:vm';
 import * as vid from '../src/engine/render/vid.js';
 import * as model from '../src/engine/render/gl_model.js';

@@ -1,6 +1,6 @@
 // Real decoded pak0 glyph pixels, public menu-art builder and gl_draw cache.
 // Uses the supported Canvas2D runtime, without launching the browser or game.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import { BuildMenuTextArt } from '../src/newer/ui/menu_art.js';
 import * as draw from '../src/engine/render/gl_draw.js';
 import * as pak from '../src/engine/common/pak.js';

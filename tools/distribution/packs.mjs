@@ -11,6 +11,7 @@
  * whose model they can bind to. Built only from data committed in the repository.
  */
 import {readFile} from 'node:fs/promises';
+import {assetPath} from './manifest.mjs';
 import {resolve} from 'node:path';
 import {GAME_CATALOGUE_GAMES} from '../../src/engine/common/game_catalogue.js';
 export const PACK_PARENT=Object.freeze(Object.fromEntries([['core',null],['shareware','core'],['quake','shareware'],...GAME_CATALOGUE_GAMES.filter(game=>!['shareware','quake'].includes(game.id)).map(game=>[game.id,game.base??'quake'])]));
@@ -25,7 +26,7 @@ export function CommonAncestor(games){
 /** Manifest namespaces to games: id1 and the bundled loose maps belong to the full game; the hub to the shareware. */
 export const NAMESPACE={shareware:'shareware',newer:'shareware',id1:'quake',quake:'quake',loose:'quake',hipnotic:'hipnotic',rogue:'rogue',dopa:'dopa',mg1:'mg1'};
 export async function PackClassifier(root=process.cwd()){
- const json=async path=>JSON.parse(await readFile(resolve(root,path),'utf8'));
+ const json=async path=>JSON.parse(await readFile(assetPath(root,path),'utf8'));
  const [games,enemies,textures,normals,displacement,rockfield]=await Promise.all(['newer/packs/games.json','newer/enemies/index.json','newer/textures/index.json','newer/normals/manifest.json','newer/displacement/manifest.json','newer/rockfield/manifest.json'].map(json));
  const bspGames=new Map();for(const [id,game] of Object.entries(games.games))for(const sha of game.bsps??[])(bspGames.get(sha)??bspGames.set(sha,new Set()).get(sha)).add(id);
  const byBsp=sha=>[...(sha&&bspGames.get(sha)||[])];

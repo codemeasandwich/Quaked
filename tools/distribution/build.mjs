@@ -9,16 +9,17 @@ import {PackClassifier,PacksFor,WEB_DATA_FILES,WebDataFile} from './packs.mjs';
 import {GAME_CATALOGUE_GAMES} from '../../src/engine/common/game_catalogue.js';
 import {encode85} from './base85.js';
 import {WebOptimise} from './web_images.mjs';
+import {ResourceLogicalPath} from '../../src/platform/resource_paths.js';
 
 const profile=process.argv[2];
 if(!['web','desktop'].includes(profile))throw Error('Usage: build.mjs web|desktop');
-const root=process.cwd(),out=resolve(root,'dist',profile);
-for(const path of [resolve(root,'dist'),out,resolve(root,'dist/desktop-assets')]){
+const root=process.cwd(),dist=resolve(root,process.env.QUAKED_DIST_DIR??'dist'),out=resolve(dist,profile);
+for(const path of [dist,out,resolve(dist,'desktop-assets')]){
  const info=await lstat(path).catch(e=>{if(e.code==='ENOENT')return null;throw e;});
  if(info?.isSymbolicLink())throw Error('Refusing symlink build output: '+path);
 }
 await rm(out,{recursive:true,force:true});
-if(profile==='desktop')await rm(resolve(root,'dist/desktop-assets'),{recursive:true,force:true});
+if(profile==='desktop')await rm(resolve(dist,'desktop-assets'),{recursive:true,force:true});
 await mkdir(out,{recursive:true});
 const paths=await collectAssets({profile,root});
 const generated=new Map();
@@ -95,15 +96,15 @@ if(PACK_BASE){const url=URL.parse(PACK_BASE);if(!url||!PACK_BASE.endsWith('/')||
 const classify=await PackClassifier(root),WEB_PACKS=new Set(WEB_DATA_FILES);
 const packOf=path=>generated.has(path)?'core':WebDataFile(path,classify);
 let html=await readFile('index.html','utf8');
-const pageRefs=new Set([...html.matchAll(/\b(?:src|href)="([^"#][^"]*)"/g)].map(match=>match[1]));
+const pageRefs=new Set([...html.matchAll(/\b(?:src|href)="([^"#][^"]*)"/g)].map(match=>ResourceLogicalPath(match[1])));
 html=html.replace(/<script type="importmap">[\s\S]*?<\/script>/,'').replace(/<script type="module" src="main.js"><\/script>/,'');
-html=html.replace(/\b(src|href)="([^"#][^"]*)"/g,(whole,attr,path)=>paths.includes(path)?`data-quaked-${attr}="${path}"`:whole);
+html=html.replace(/\b(src|href)="([^"#][^"]*)"/g,(whole,attr,path)=>paths.includes(ResourceLogicalPath(path))?`data-quaked-${attr}="${ResourceLogicalPath(path)}"`:whole);
 html=html.replace('</body>','').replace('</html>','');
 const files={},inventory=[],packs={},records=new Map();
 const output=await open(resolve(out,'index.html'),'w');
 try {
  await output.write(html);
- if(profile==='desktop'){await mkdir(resolve(out,'assets'),{recursive:true});await mkdir(resolve(root,'dist/desktop-assets'),{recursive:true});await rm(resolve(root,'dist/packs'),{recursive:true,force:true});await mkdir(resolve(root,'dist/packs'),{recursive:true});}
+ if(profile==='desktop'){await mkdir(resolve(out,'assets'),{recursive:true});await mkdir(resolve(dist,'desktop-assets'),{recursive:true});await rm(resolve(dist,'packs'),{recursive:true,force:true});await mkdir(resolve(dist,'packs'),{recursive:true});}
  if(profile==='web')await mkdir(resolve(out,'data'),{recursive:true});
  const addRecord=(pack,record)=>{const list=records.get(pack);if(list)list.push(record);else records.set(pack,[record]);};
  let i=0,total=0;
@@ -135,7 +136,7 @@ try {
    files[path]={pack,sha256:hash,ext,mime:type};
   } else {
    const id='q'+i+++ext,external=!generated.has(path);
-   await writeFile(resolve(external?resolve(root,'dist/desktop-assets'):resolve(out,'assets'),id),bytes);
+   await writeFile(resolve(external?resolve(dist,'desktop-assets'):resolve(out,'assets'),id),bytes);
    total+=bytes.length;files[path]={id,mime:type,external};
   }
   inventory.push({path,bytes:bytes.length,sha256:hash,pack,priority,topic,...(optimised?{sourceBytes:source.length,sourceSha256:sha(source),webp:{quality:optimised.quality,width:optimised.width,height:optimised.height}}:{})});
@@ -146,7 +147,7 @@ try {
  for(const [pack,list] of [...records].sort(([a],[b])=>a.localeCompare(b))){
   list.sort((a,b)=>a.priority-b.priority||a.path.localeCompare(b.path));
   let offset=0;for(const record of list){record.offset=offset;record.length=record.bytes.length;offset+=record.length;}
-  const body=Buffer.concat(list.map(record=>record.bytes)),parts=[],dir=profile==='web'?resolve(out,'data'):resolve(root,'dist/packs');
+  const body=Buffer.concat(list.map(record=>record.bytes)),parts=[],dir=profile==='web'?resolve(out,'data'):resolve(dist,'packs');
   for(let start=0;start<body.length;start+=PART_BYTES){
    const end=Math.min(body.length,start+PART_BYTES),chunk=body.subarray(start,end);
    const touched=list.filter(record=>record.offset<end&&record.offset+record.length>start),first=touched[0];

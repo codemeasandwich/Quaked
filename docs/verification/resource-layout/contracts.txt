@@ -1,0 +1,26 @@
+✔ artifact inventories enforce the original-game data boundary (6.207ms)
+✔ web closure retains every Episode 1/hub normal and eligible custom enemy sample (1258.609042ms)
+✔ desktop inventory includes all prepared map transports and no bundled original game (1053.204959ms)
+✔ embedded binary codec preserves bytes across word boundaries and excludes HTML delimiters (526.043417ms)
+✔ corrupt encoded data and impossible lengths are rejected (0.439292ms)
+✔ departing peer queued sends cannot close host or prevent another peer receiving (15.829375ms)
+✔ asynchronous sends preserve peer FIFO and copy bytes before caller reuse (1.459083ms)
+✔ poll events completing after close cannot reach the driver or restart polling (0.83125ms)
+✔ late poll failure after close cannot emit fresh driver events (4.573875ms)
+✔ late send failure after close cannot manufacture another peer departure (0.931459ms)
+✔ rejected client handshake closes that client without ending an independent host (1.250708ms)
+✔ desktop catalogue validates selected split archives and preserves legacy default mounting policy (172.4895ms)
+✔ native strict selection refuses unread directories, damaged packs and absent shareware (21.13175ms)
+✔ native catalogue refuses a pack set beyond the existing bounded limit (5.943125ms)
+✔ one canonical physical path resolves each retained logical resource identifier (6.639791ms)
+✔ source URL routing preserves base paths, queries, code and external URLs (9.765083ms)
+✔ both product inventories resolve uniquely to the same authored files (2466.425833ms)
+✔ staged snapshot includes only index bytes and deletions, preserving working files (324.419875ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2679.314

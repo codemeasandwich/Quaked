@@ -2,7 +2,7 @@
 // report, 11 Oct 2026, card [END1]). The real map, progs and edicts from the owner's local registered pak (a named skip
 // without it): the train started by the level's own trigger, moved by the real SV_Physics_Pusher, and the final
 // teleporter's own teleport_touch telefragging Shub-Niggurath.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';

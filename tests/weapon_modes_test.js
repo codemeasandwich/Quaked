@@ -1,7 +1,8 @@
+import {ResourceURL} from '../src/platform/resource_paths.js';
 // Public menu/command and demo-comparison boundaries with real native MDLs,
 // Three meshes and weapon materials. Map dispatch and GPU presentation are
 // observed, not launched; live gameplay/rendering remains a browser check.
-import { readFileSync } from 'node:fs';
+import { readFileSync } from './helpers/resource_fs.mjs';
 await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
 const vars = await import( '../src/engine/common/cvar.js' );
@@ -55,10 +56,10 @@ const old = { hdr: r_hdr.string, split: split.r_demosplit.string, weapons: weapo
 	playback: cls.demoplayback, timedemo: cls.timedemo, demonum: cls.demonum };
 for ( const variable of [ r_hdr, split.r_demosplit, weapons.r_newer_weapons ] ) if ( ! vars.Cvar_FindVar( variable.name ) ) vars.Cvar_RegisterVariable( variable );
 for ( const name of [ 'r_flashlight', 'gamma', 'cl_showfps' ] ) if ( ! vars.Cvar_FindVar( name ) ) vars.Cvar_RegisterVariable( new vars.cvar_t( name, '0' ) );
-globalThis.fetch = async path => { try { return { ok: true, json: async () => JSON.parse( read( String( path ) ).toString() ) }; } catch { return { ok: false }; } };
+globalThis.fetch = async path => { try { return { ok: true, json: async () => JSON.parse( read( ResourceURL(path,true) ).toString() ) }; } catch { return { ok: false }; } };
 THREE.TextureLoader.prototype.load = function ( path, done ) {
 
-	const texture = new THREE.Texture(); texture._testSource = String( path ); queueMicrotask( () => done( texture ) ); return texture;
+	const texture = new THREE.Texture(); texture._testSource = ResourceURL(path,true); queueMicrotask( () => done( texture ) ); return texture;
 
 };
 weapons.r_newer_weapons.value = 1; anim.r_lerpmodels.value = 0;
