@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-18T14:55:12.009930+00:00",
+  "verdict": "PASS bounded follow-up plan",
+  "scope": "Read-only cache source/caller and supplemental stash custody inspection; no edits, staging, tests or builds. Running94bd gate tree remains immutable.",
+  "cache": {
+    "path": "tools/texture_sheets/__pycache__/_match_orig.cpython-311.pyc",
+    "qualifiedBlob": "e830041d90f6c0b21ef4c04e7c8446cfe85764df",
+    "sha256": "0730f8df0e80aebc48b754a880ebd1c7062b8254c569f5a24abfbbe9aa6e047b",
+    "bytes": 3001,
+    "classification": "Safely superseded generated CPython3.11 cache; not unique authored behavior.",
+    "source": "tools/texture_sheets/_match_orig.py",
+    "sourceSha256": "8339657ff125a98f5b6d350fc5f4a4885fea5589c1f5bca8c5d88fe7821dfe79",
+    "sourceUnchangedFromQualifiedDev": true,
+    "caller": "tools/texture_sheets/verify_textures.py imports _match_orig source normally. No explicit .pyc path/cached-only import found.",
+    "ignoreRule": "__pycache__/ already present. Normal source import can regenerate local cache while it stays untracked.",
+    "action": "After current gate/commit finishes, remove this single tracked cache via a real follow-up change; preserve source and existing generic ignore. Include doc clarification in the same bounded follow-up."
+  },
+  "stashCustody": {
+    "mainBundleCoverage": "Every advertised ref and latest reachable stash history; not older stash reflog entries automatically.",
+    "supplementalBundle": "/Users/bri/build/quaked-consolidation-retained-20261018/stash-custody.bundle",
+    "sha256": "cef0d91ff0cc18e45a5774d122b33de5977cbb30e9f6db189f676938b56e3d95",
+    "bytes": 6482790,
+    "incrementalPrerequisite": "Qualified091818cc objects are available in all-refs-before.bundle; restore complete bundle first, then fetch supplemental archive refs.",
+    "allThreeRestoreReceipts": [
+      {
+        "sha": "57bd4a6de7be8bb0daad4c2ad61e8ec64fd3c156",
+        "name": "stash@{0}",
+        "subject": "On codex/official-candidate-retirement: candidate-retirement-preserve-before-e16f6cda-20261018",
+        "existsInRestoredBundle": true,
+        "restoreVerified": true
+      },
+      {
+        "sha": "9ee94c59988499c52c4d735e8ab666f407582653",
+        "name": "stash@{1}",
+        "subject": "On codex/demo-water-sounds: full-distribution sky custody 2026-10-18",
+        "existsInRestoredBundle": false,
+        "archiveRef": "refs/archive/consolidation-20261018/stash-1",
+        "restoreVerified": true
+      },
+      {
+        "sha": "3a728bb6cde837f80a50bd70312906c2163c00d9",
+        "name": "stash@{2}",
+        "subject": "On main-reconcile: codex/01a13712 retained effects custody before verified Dev110ad1fb",
+        "existsInRestoredBundle": false,
+        "archiveRef": "refs/archive/consolidation-20261018/stash-2",
+        "restoreVerified": true
+      }
+    ],
+    "olderArchiveRefsMatchSupplementalHeader": {
+      "refs/archive/consolidation-20261018/stash-1": "9ee94c59988499c52c4d735e8ab666f407582653",
+      "refs/archive/consolidation-20261018/stash-2": "3a728bb6cde837f80a50bd70312906c2163c00d9"
+    },
+    "recoveryNote": {
+      "path": "/Users/bri/build/quaked-consolidation-retained-20261018/RECOVERY.md",
+      "sha256": "c9cf22811fdf3b37712a6c7ea64b5bac2aa783391f3000f3600e2038e6ec9d0c"
+    },
+    "limit": "Accepted parent recorded standalone restoration result; reviewer independently checked6.5MB supplemental bytes/hash/header but did not repeat bare clone."
+  },
+  "requiredDocClarification": "Replace all-refs bundle complete stash history wording with branch/archive/tag refs plus latest reachable stash; add supplemental stash-custody.bundle and recovery order, preserving both older entries. Prior review stashIncluded=true confirms latest refs/stash only, not full reflog custody.",
+  "commitDisposition": "No missing feature needs porting from cache deletion, but if final Dev is to retire the tracked artifact and correct the inaccurate custody document, those are actual Git changes and require a follow-up commit. Calling artifact superseded does not remove the tracked file or fix the claim. Do not amend running frozen gate inputs or report changed bytes as covered by its exact-tree qualification.",
+  "verificationLimitsAndNextAction": [
+    "Parent completes current94bd normal gate/commit unchanged.",
+    "Parent makes only cache deletion and truthful custody clarification/review appendage afterward, then uses maintained required commit/gate policy without bypass. No new feature tests or trial execution required for this review.",
+    "Retain prior cache blob in existing complete history; do not delete authored source, historical snapshots or supplemental bundle.",
+    "Final cleanup closure checks actual committed deletion/doc content and remoteDev readback; this plan PASS is not execution completion."
+  ],
+  "blockers": [],
+  "state": "Complete; quiescent."
+}
