@@ -1,0 +1,60 @@
+{
+  "frames": [
+    {
+      "time": 31.62772560119629,
+      "stage": 1,
+      "waterPercent": 0,
+      "complete": true
+    },
+    {
+      "time": 37.64080047607422,
+      "stage": 6,
+      "waterPercent": 50.108957290649414,
+      "complete": true
+    },
+    {
+      "time": 42.462799072265625,
+      "stage": 10,
+      "waterPercent": 90.29227892557779,
+      "complete": true
+    }
+  ],
+  "samples": 604,
+  "faceAssets": {
+    "state": "ready",
+    "settled": true,
+    "pending": 0,
+    "errors": [],
+    "version": "4.4.0",
+    "assets": 285,
+    "loadedImages": 270
+  },
+  "decoded": [
+    {
+      "cue": "bubbles",
+      "duration": 34.377125,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "cue": "underwater",
+      "duration": 22.073458333333335,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "cue": "enter",
+      "duration": 3.312,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "cue": "walking",
+      "duration": 20.035916666666665,
+      "channels": 2,
+      "sampleRate": 48000
+    }
+  ],
+  "scope": "Actual Chromium canvas composition from real demo2 packets and real MP3 decoder; no native app or owner listening acceptance.",
+  "errors": []
+}

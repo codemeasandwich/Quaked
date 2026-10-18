@@ -32,6 +32,8 @@ test('web closure retains every Episode 1/hub normal and eligible custom enemy s
   assert(included.has('music/ambient.mp3'));
   assert(included.has('assets/sounds/quake1newereGame_firstLevelEasyMidHard.mp3'));
   assert(included.has('assets/sounds/lowHealt.mp3'));
+  for (const name of ['player-bubbles', 'underwater', 'enter-underwater', 'walking-in-water'])
+    assert(included.has('assets/sounds/' + name + '.mp3'), 'packaged water cue: ' + name);
 
   const normals = await json('newer/normals/manifest.json');
   const required = new Set();
@@ -74,6 +76,8 @@ test('desktop inventory includes all prepared map transports and no bundled orig
   const assets = await collectAssets({ profile: 'desktop', root }), included = new Set(assets);
   assert.deepEqual(assets, [...included].sort());
   assert(!assets.some(path => /^(games|resources)\//.test(path)));
+  for (const name of ['player-bubbles', 'underwater', 'enter-underwater', 'walking-in-water'])
+    assert(included.has('assets/sounds/' + name + '.mp3'), 'packaged water cue: ' + name);
   for (const kind of ['displacement', 'rockfield']) {
     const manifest = await json(`newer/${kind}/manifest.json`);
     for (const value of Object.values(manifest.levels)) for (const row of Array.isArray(value) ? value : [value]) {

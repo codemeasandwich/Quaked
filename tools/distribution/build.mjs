@@ -69,6 +69,9 @@ function priorityOf(path){
  // receives a pending placeholder instead of the track. Explosion textures are needed by
  // the first fireballs, so effects are actors rather than background material.
  if(path==='assets/sounds/quake1newereGame_firstLevelEasyMidHard.mp3')return PRIORITY_START;
+ // Water cues resolve when their module loads: background audio could otherwise
+ // bind these decks permanently to the bootstrap's silent placeholder.
+ if(/^assets\/sounds\/(player-bubbles|underwater|enter-underwater|walking-in-water)\.mp3$/.test(path))return PRIORITY_START;
  if(/^src\//.test(path)||/^newer\/(ui|hud|textures|normals|displacement|rockfield)\//.test(path))return PRIORITY_START;
  if(/^newer\/(enemies|weapons|effects)\//.test(path))return PRIORITY_ACTORS;
  if(/^(assets\/sounds|music)\//.test(path)||/^newer\/bestiary\//.test(path)||/^assets\/(credits|boxes)\//.test(path))return PRIORITY_BACKGROUND;

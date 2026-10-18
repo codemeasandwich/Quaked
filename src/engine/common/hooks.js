@@ -621,6 +621,10 @@ export let S_AmbientMusicUnlock = Hooks_Missing( 'S_AmbientMusicUnlock' );
 // newer/sound/s_exitmachine.js
 export let S_ExitMachineFalloff = Hooks_Missing( 'S_ExitMachineFalloff' );
 
+// newer/sound/s_playerwater.js
+export let S_UpdatePlayerWater = Hooks_Missing( 'S_UpdatePlayerWater' );
+export let S_PlayerWaterShutdown = Hooks_Missing( 'S_PlayerWaterShutdown' );
+
 // newer/sound/s_lowhealth.js
 export let S_UpdateLowHealth = Hooks_Missing( 'S_UpdateLowHealth' );
 export let S_LowHealthShutdown = Hooks_Missing( 'S_LowHealthShutdown' );
@@ -790,6 +794,7 @@ const HOOK_NAMES = Object.freeze( [
 	'S_UpdateAmbientMusic',
 	'S_AmbientMusicNotifyCombat', 'S_AmbientMusicShutdown', 'S_AmbientMusicStop', 'S_AmbientMusicUnlock',
 	'S_ExitMachineFalloff',
+	'S_UpdatePlayerWater', 'S_PlayerWaterShutdown',
 	'S_UpdateLowHealth', 'S_LowHealthShutdown',
 	'S_UpdateWelcomeJingle', 'S_WelcomeJingle', 'S_WelcomeJingleShutdown',
 	'GameShelf_Show',
@@ -906,6 +911,7 @@ export function Hooks_Install( table ) {
 	S_UpdateAmbientMusic = table.S_UpdateAmbientMusic;
 	S_AmbientMusicNotifyCombat = table.S_AmbientMusicNotifyCombat; S_AmbientMusicShutdown = table.S_AmbientMusicShutdown; S_AmbientMusicStop = table.S_AmbientMusicStop; S_AmbientMusicUnlock = table.S_AmbientMusicUnlock;
 	S_ExitMachineFalloff = table.S_ExitMachineFalloff;
+	S_UpdatePlayerWater = table.S_UpdatePlayerWater; S_PlayerWaterShutdown = table.S_PlayerWaterShutdown;
 	S_UpdateLowHealth = table.S_UpdateLowHealth; S_LowHealthShutdown = table.S_LowHealthShutdown;
 	S_UpdateWelcomeJingle = table.S_UpdateWelcomeJingle; S_WelcomeJingle = table.S_WelcomeJingle; S_WelcomeJingleShutdown = table.S_WelcomeJingleShutdown;
 	GameShelf_Show = table.GameShelf_Show;

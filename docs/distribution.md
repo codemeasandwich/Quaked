@@ -401,3 +401,6 @@ deploys it. Pages
 deploys only when the web job and both Mac jobs pass; a failed or skipped run
 leaves the previous site in place. The `github-pages` environment allows the
 `Dev` branch (checked 12 October 2026).
+
+The [player water and demo-face contract](player-water-2026-10-18.md) records the
+four supplied water sounds, their SFX routing and the demo-only visual air estimate.

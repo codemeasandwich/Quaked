@@ -15,8 +15,8 @@ import { FaceState, FaceWaterState, faceWaterStage } from './face_state.js';
 import { cl, cls } from '../../engine/client/client.js';
 import { r_refdef } from '../../engine/render/render.js';
 import { in_attack } from '../../engine/client/cl_input.js';
-import { sv, MOVETYPE_NOCLIP } from '../../engine/server/server.js';
-import { GetEdictFieldValue } from '../../engine/progs/pr_edict.js';
+import { sv } from '../../engine/server/server.js';
+import { CL_PlayerWater, CL_WaterReset } from '../gameplay/cl_water.js';
 import { SV_FaceDrain, SV_FaceLocalActive, SV_FaceReset } from '../gameplay/sv_faceevents.js';
 import { IT_AXE, IT_QUAD, IT_INVULNERABILITY, IT_INVISIBILITY, IT_SUIT, STAT_HEALTH, STAT_WEAPONFRAME } from '../../engine/common/quakedef.js';
 const live = new FaceState(), demo = new FaceState();
@@ -27,7 +27,7 @@ let liveEdicts, demoFile;
  * Forgets every face state (the live game's, the demo's and the water overlay) and the remembered worlds, so the next
  * use starts fresh. Called by `CL_ClearState` (cl_main.js) whenever the client state is cleared.
  */
-export function R_FaceGameReset(){live.reset();demo.reset();waterVisual.reset();liveWorld=demoWorld=liveEdicts=demoFile=undefined;lastFrame=-1;lastWeaponFrame=0;}
+export function R_FaceGameReset(){live.reset();demo.reset();waterVisual.reset();CL_WaterReset();liveWorld=demoWorld=liveEdicts=demoFile=undefined;lastFrame=-1;lastWeaponFrame=0;}
 function controller( client = cl ) {
 	const playback = cls.demoplayback, state = playback ? demo : live;
 	if ( playback ? demoWorld !== client.worldmodel || demoFile!==cls.demofile : liveWorld !== client.worldmodel || liveEdicts!==sv.edicts ) {
@@ -120,7 +120,7 @@ export function R_FaceSecret() { if ( cls.signon === 4 ) controller().reward( cl
  */
 export function R_FaceHealthChanged( health ) {
 	const state = controller(), respawning = state.dead && health > 0;
-	if(health<=0 || respawning)waterVisual.reset();
+	if(health<=0 || respawning){waterVisual.reset();CL_WaterReset();}
 	state.life( health, cl.time );
 	if ( respawning && ! cls.demoplayback ) SV_FaceReset();
 }
@@ -135,26 +135,23 @@ export function R_FaceShot( cadence = .6 ) { controller().shot( { time: cl.time,
 /**
  * The drowning overlay for the face, once per HUD frame from `R_PlayerFaceFrame`. Stock native WaterMove refreshes
  * air_finished=time+12 below waterlevel3; CheckPowerups refreshes it while the suit timer is active. Read that clock,
- * never start a second breathing timer or infer head submersion from SU_INWATER. Known only in local single player
- * (not a demo) with the native face events, the player alive and not noclipping.
+ * never alter a breathing timer or infer head submersion from SU_INWATER. Demo playback uses the recorded
+ * player eye and BSP contents with a visual-only estimate (waterEstimated); native air remains waterKnown.
  *
  * @param {client_state_t} [client=cl] the client state
  * @returns {{ waterPercent: number, waterSubmerged: boolean, waterStage: number, waterVisualStage: number,
- *   waterOpacity: number, waterKnown: boolean }} a new object: how much of the 12 s of air is used (0..100), whether
+ *   waterOpacity: number, waterKnown: boolean, waterEstimated: boolean }} a new object: how much of the 12 s of air is used (0..100), whether
  *   the head is under water, the overlay stage to draw 0..10 (both stage fields; it drains back after surfacing), the
  *   overlay opacity (always 50), and whether the air clock could be read
  */
 export function R_FaceWater(client=cl) {
-	const known=client===cl && !cls.demoplayback && SV_FaceLocalActive() && client.worldmodel===sv.worldmodel;
-	const p=known?sv.edicts[1]:null,field=p&&GetEdictFieldValue(p,'air_finished');
-	let waterPercent=0;
-	const waterSubmerged=!!(field && p.v.waterlevel===3 && p.v.health>0 && p.v.movetype!==MOVETYPE_NOCLIP);
-	if(waterSubmerged) {
-		const air=field.accessor.getFloat(field.ofs);
-		if(Number.isFinite(air))waterPercent=Math.max(0,Math.min(100,(12-(air-sv.time))/12*100));
-	}
-	const stage=waterVisual.frame({time:client.time,epoch:sv.edicts,submerged:waterSubmerged,stage:faceWaterStage(waterPercent,waterSubmerged),enabled:!!(known&&field&&p.v.health>0&&p.v.movetype!==MOVETYPE_NOCLIP)});
-	return {waterPercent,waterSubmerged,waterStage:stage,waterVisualStage:stage,waterOpacity:50,waterKnown:!!(known&&field)};
+	const water = CL_PlayerWater( client );
+	const { waterPercent, submerged: waterSubmerged } = water;
+	const enabled = water.known && ( water.airKnown || cls.demoplayback );
+	const stage = waterVisual.frame( { time: client.time, epoch: water.epoch, submerged: waterSubmerged,
+		stage: faceWaterStage( waterPercent, waterSubmerged ), enabled } );
+	return { waterPercent, waterSubmerged, waterStage: stage, waterVisualStage: stage, waterOpacity: 50,
+		waterKnown: water.airKnown, waterEstimated: enabled && ! water.airKnown };
 }
 /**
  * Everything the status-bar face shows this frame, from `Sbar_Draw`/`Sbar_DrawFace` (sbar.js). Events choose
@@ -167,7 +164,7 @@ export function R_FaceWater(client=cl) {
  * @returns {{ look: string, target: string, expression: string, eyeState: string, health: number,
  *   healthPercent: number, strength: boolean, invulnerability: boolean, invisibility: boolean, dead: boolean,
  *   divingSuit: boolean, waterPercent: number, waterSubmerged: boolean, waterStage: number, waterVisualStage: number,
- *   waterOpacity: number, waterKnown: boolean }} a fresh object: `FaceState.frame`'s result, whether the Biosuit is
+ *   waterOpacity: number, waterKnown: boolean, waterEstimated: boolean }} a fresh object: `FaceState.frame`'s result, whether the Biosuit is
  *   held, and `R_FaceWater`'s fields
  */
 export function R_PlayerFaceFrame( client = cl ) {
