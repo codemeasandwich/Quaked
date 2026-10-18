@@ -30,6 +30,40 @@ def seam_mask(name, shape, key='touched'):
 NAMES = set('city5_1 city5_3 city5_4 city5_6 city5_7 city5_8 city6_4 citya1_1 column1_2 column1_5 stone1_3 wall16_7 wall9_8 wbrick1_5 wiz1_1 wiz1_4 wizmet1_1 wizmet1_2 wizmet1_3 wizmet1_7 wizmet1_8 wizwood1_3 wizwood1_4 wizwood1_5 wizwood1_7 wizwood1_8'.split())
 
 
+# Only these two owner materials have an explicit format successor. Their
+# lossless masters still carry the exact atlas/seam history checked below.
+_OWNER_BASE = ROOT / 'tools/texture_sheets/sources/official-world-2026-10-17'
+_OWNER_BYTES = (_OWNER_BASE / 'owner-q92-first-tranche-v2.json').read_bytes()
+_OWNER_Q92 = json.loads(_OWNER_BYTES)
+_OWNER_BEFORE_BYTES = (_OWNER_BASE / 'owner-q92-first-tranche-index-before.json').read_bytes()
+_OWNER_BEFORE = json.loads(_OWNER_BEFORE_BYTES)
+assert hashlib.sha256(_OWNER_BEFORE_BYTES).hexdigest() == _OWNER_Q92['indexBeforeSha256']
+assert [_OWNER_Q92[k] for k in ('factor', 'quality', 'lossless', 'method')] == [4, 92, False, 6]
+_OWNER_NAMES = {'city5_3', 'wizmet1_3'}
+
+def owner_legacy_file(name, role):
+    current = INDEX['textures'][name] if role == 'diffuse' else INDEX['normals'][name]['file']
+    if name not in _OWNER_NAMES:
+        return current
+    entry = next(e for e in _OWNER_Q92['bindings'] if e['name'] == name)
+    assert entry['previous'] == {'file': _OWNER_BEFORE['textures'][name], 'normal': _OWNER_BEFORE['normals'][name]}
+    assert INDEX['textures'][name] == entry['current']['file']
+    assert INDEX['normals'][name] == entry['current']['normal']
+    assert INDEX['sources'][name] == entry['sourceAllowlist'] == _OWNER_BEFORE['sources'][name]
+    assert {**entry['current']['normal'], 'file': entry['previous']['normal']['file']} == entry['previous']['normal']
+    previous = entry['previous']['file'] if role == 'diffuse' else entry['previous']['normal']['file']
+    record = next(m for m in _OWNER_Q92['maps'] if m['file'] == 'newer/textures/' + current)
+    assert record['role'] == role and record['predecessor'] == 'newer/textures/' + previous
+    assert hashlib.sha256((ROOT / record['predecessor']).read_bytes()).hexdigest() == record['masterSha256']
+    assert hashlib.sha256((ROOT / record['file']).read_bytes()).hexdigest() == record['sha256']
+    return previous
+
+def owner_current_file(name, baseline):
+    previous = owner_legacy_file(name, 'diffuse')
+    assert previous == baseline, name + ' retained historical filename'
+    return INDEX['textures'][name]
+
+
 class LevelTextureAssets(unittest.TestCase):
     def test_exact_source_crop_phase_and_lossless_diffuse(self):
         self.assertEqual(set(RECIPE['tiles']), NAMES)
@@ -50,7 +84,7 @@ class LevelTextureAssets(unittest.TestCase):
                 expected = np.array(source.crop(tile['crop']).resize((256, 256), Image.Resampling.LANCZOS))
                 dx, dy = tile.get('phaseNative', [0, 0])
                 expected = np.roll(expected, (dy * 4, dx * 4), (0, 1))
-                actual = np.array(Image.open(ROOT / 'newer/textures' / INDEX['textures'][name]).convert('RGB'))
+                actual = np.array(Image.open(ROOT / 'newer/textures' / owner_legacy_file(name, 'diffuse')).convert('RGB'))
                 keep = ~seam_mask(name, actual.shape)
                 np.testing.assert_array_equal(actual[keep], expected[keep])
         self.assertEqual(RECIPE['tiles']['column1_2']['crop'][3], 620, 'marble separator excluded')
@@ -63,8 +97,14 @@ class LevelTextureAssets(unittest.TestCase):
                 image = Image.open(ROOT / 'newer/textures' / normal['file'])
                 self.assertEqual(image.size, (256, 256))
                 pixels = np.array(image.convert('RGB'))
-                np.testing.assert_array_equal(pixels[:, :, 0], pixels[:, :, 1])
-                np.testing.assert_array_equal(pixels[:, :, 0], pixels[:, :, 2])
+                gray_authority = pixels
+                if name in _OWNER_NAMES:
+                    # Only these explicit Q92 successors use decoded R as the
+                    # scalar. The retained lossless master must still be exactly
+                    # gray; unused G may differ by one after lossy WebP decode.
+                    gray_authority = np.array(Image.open(ROOT / 'newer/textures' / owner_legacy_file(name, 'height')).convert('RGB'))
+                np.testing.assert_array_equal(gray_authority[:, :, 0], gray_authority[:, :, 1])
+                np.testing.assert_array_equal(gray_authority[:, :, 0], gray_authority[:, :, 2])
                 self.assertTrue(np.isfinite(normal['strength']) and normal['strength'] >= 0)
                 self.assertTrue(np.isfinite(normal['cap']) and normal['cap'] > 0)
                 if name != 'column1_2':
@@ -140,13 +180,13 @@ class LevelTextureAssets(unittest.TestCase):
         self.assertTrue(all(size == (64, 64) for size in found.values()))
         baseline = json.loads(subprocess.check_output(['git', 'show', '8e4fefc:newer/textures/index.json'], cwd=ROOT))
         # this increment's names keep their files (later increments add their own, such as the hub logo, 2b1593b7)
-        self.assertEqual({n: INDEX['textures'][n] for n in NAMES}, {n: baseline['textures'][n] for n in NAMES}, 'runtime names/files not remapped')
+        self.assertEqual({n: INDEX['textures'][n] for n in NAMES}, {n: owner_current_file(n, baseline['textures'][n]) for n in NAMES}, 'runtime names retain baseline or exact validated Q92 successor')
         # the entries that update did not select are as they were, in the shipped index; by name, the ones a later
         # increment changed by design: the demon plaques' crafted relief (2b1593b7)
         LATER = {'dem4_1': '2b1593b7', 'dem4_4': '2b1593b7', 'dem5_3': '2b1593b7'}
         for name in set(baseline['normals']) - NAMES - set(LATER):
             self.assertEqual(INDEX['normals'][name], baseline['normals'][name], name)
-        allowed = {'newer/textures/index.json'} | {'newer/textures/' + INDEX['textures'][name] for name in NAMES} | {'newer/textures/' + INDEX['normals'][name]['file'] for name in NAMES}
+        allowed = {'newer/textures/index.json'} | {'newer/textures/' + owner_legacy_file(name, 'diffuse') for name in NAMES} | {'newer/textures/' + owner_legacy_file(name, 'height') for name in NAMES}
         # The boundary of that update itself (9a71a46); later increments, such as the seam
         # repairs, change other textures by design.
         changed = set(subprocess.check_output(['git', 'diff', '--name-only', '8e4fefc', '9a71a46', '--', 'newer/textures'], cwd=ROOT, text=True).splitlines())

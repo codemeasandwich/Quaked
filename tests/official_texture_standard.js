@@ -9,6 +9,7 @@ import * as THREE from 'three';
 import { sha256 } from '../tools/pak_members.mjs';
 import { R_GlassTextureKey } from '../src/newer/render/r_newertextures.js';
 import { R_NormalMapFor } from '../src/newer/render/gl_normals.js';
+import { ownerQ92Registration } from './owner_texture_q92_standard.js';
 import { NormalInputs, NormalGenerate } from '../src/newer/assets/normal_prepare.js';
 
 const root = resolve( import.meta.dirname, '..' );
@@ -131,7 +132,7 @@ export function registrationsAtFourTimes( historicalEntries ) {
 		const migration = bindings.get( original.name + '|' + original.key );
 		if ( ! migration ) {
 			check( original.kind === 'exact-original-reuse', 'generated binding must have an explicit migration: ' + original.name );
-			return original;
+			return ownerQ92Registration( original );
 		}
 		const previous = original.binding || { file: original.file, normal: original.normal };
 		equal( migration.previous.binding, previous, original.name + ' migration starts from exact historical binding' );

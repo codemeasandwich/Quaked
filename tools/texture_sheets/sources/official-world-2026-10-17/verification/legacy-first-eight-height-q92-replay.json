@@ -1,0 +1,388 @@
+{
+  "qualification": "One bounded read-only verification pass over exactly the first8 planned legacyheight candidates. Each candidate was generated once inBytesIO by the maintained producer and compared to existing bytes. No runtime asset, binding, test, source or staged tree mutation. Matching outputs prove existingQ92 bytes without another runtime lossy pass; mismatches remain unresolved.",
+  "root": "/Users/bri/.codex/worktrees/official-textures-next/Quaked",
+  "head": "101fc5557c552324a844860f983445420090b9e9",
+  "parentFrozenTreePrefix": "d7fc5b65",
+  "indexSha256": "9335e9d07d531a1c66df7d7966cc5c325f3e35bbcecf9c8e88aa50b0b4e5463d",
+  "plan": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-owner-q92-first-tranche-plan.json",
+  "planSha256": "a6fdf364d5f9ff92d297ebab20132b068701a0134ac555accbf624814136cf48",
+  "producer": "tools/craft_normals.py",
+  "producerSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+  "runtime": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "numpy": "1.26.2",
+    "pillow": "10.1.0",
+    "webp": "1.3.2"
+  },
+  "requestedCandidates": 8,
+  "executedCandidates": 8,
+  "positiveMatches": 6,
+  "unresolvedMismatches": 2,
+  "runtimeInputsUnchanged": true,
+  "results": [
+    {
+      "name": "adoor01_2",
+      "runtimeFile": "newer/textures/normals/adoor01_2.webp",
+      "currentRuntimeSha256": "f3e28b6de7f6acf8ab9aaf246d4f42f30e0d93e567f0f014216df94a7f0e0c08",
+      "currentPayloadChunks": [
+        "VP8 "
+      ],
+      "sourceDiffuse": "newer/textures/adoor01_2.webp",
+      "sourceDiffuseSha256": "74a78d48bbe7436b977b2d802622f73a269351da51ce1ebc123edecc49bbc9ff",
+      "sourceDecodedRgbSha256": "a716bc84c5c9ca5938c050bacb7f64ff5a1388ec4a6dd5e85810b846e72c5081",
+      "sourceArrayEncoding": "float32 RGB in0..1, matching craft_normals.main",
+      "producerSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+      "profileForCanonicalName": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.8,
+        "bump": 0.6,
+        "glow": 0.2,
+        "strength": 1.15
+      },
+      "currentNormalDescriptor": {
+        "file": "normals/adoor01_2.webp",
+        "strength": 1.15,
+        "cap": 1.1
+      },
+      "dimensions": [
+        512,
+        768
+      ],
+      "uncompressedCraftedHeightR8Sha256": "e83332790207f53050e2c8283b1ad2bdccc9556331d0e5dad582bce85340683b",
+      "replayQuality": 92,
+      "replayMethod": 6,
+      "replayPayloadChunks": [
+        "VP8 "
+      ],
+      "replaySha256": "f3e28b6de7f6acf8ab9aaf246d4f42f30e0d93e567f0f014216df94a7f0e0c08",
+      "replayBytes": 104818,
+      "exactCurrentEncodedBytesMatch": true,
+      "decodedReplayRgbSha256": "1ee4d2abbc4f4591e172efdf1ac585248787830b4f35d90bef14a1da861897cb",
+      "status": "existing-Q92-byte-proven",
+      "runtimeFilesWritten": false
+    },
+    {
+      "name": "adoor02_2",
+      "runtimeFile": "newer/textures/normals/adoor02_2.webp",
+      "currentRuntimeSha256": "7c6430206662423ac44fb1a72cc449cd34a54e12b12d828886bf105f66df3085",
+      "currentPayloadChunks": [
+        "VP8 "
+      ],
+      "sourceDiffuse": "newer/textures/adoor02_2.webp",
+      "sourceDiffuseSha256": "23490dde9985e301ce9241bb6f96c43e5d2ad1a7748a95d99b39bc160c0adce6",
+      "sourceDecodedRgbSha256": "019af9e3a7e63e27c8ce6ee709a04aa12705aa6691b2f59506465e590a8f3e06",
+      "sourceArrayEncoding": "float32 RGB in0..1, matching craft_normals.main",
+      "producerSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+      "profileForCanonicalName": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.8,
+        "bump": 0.6,
+        "glow": 0.2,
+        "strength": 1.15
+      },
+      "currentNormalDescriptor": {
+        "file": "normals/adoor02_2.webp",
+        "strength": 1.15,
+        "cap": 1.1
+      },
+      "dimensions": [
+        512,
+        768
+      ],
+      "uncompressedCraftedHeightR8Sha256": "175cbaf1fc7454002cc85cee426cbad4085ae2d75a9e74ed20ae72d9c38e13e9",
+      "replayQuality": 92,
+      "replayMethod": 6,
+      "replayPayloadChunks": [
+        "VP8 "
+      ],
+      "replaySha256": "7c6430206662423ac44fb1a72cc449cd34a54e12b12d828886bf105f66df3085",
+      "replayBytes": 106792,
+      "exactCurrentEncodedBytesMatch": true,
+      "decodedReplayRgbSha256": "6b3408821ff487e50d01ab939c40d484b87c6dcf4066b66b3650fd2644c241a9",
+      "status": "existing-Q92-byte-proven",
+      "runtimeFilesWritten": false
+    },
+    {
+      "name": "adoor03_3",
+      "runtimeFile": "newer/textures/normals/adoor03_3.webp",
+      "currentRuntimeSha256": "07ed2a8f34c37f6a81cb3dc423c06052d72696cee7aad13b2fb88d0b55602d49",
+      "currentPayloadChunks": [
+        "VP8 "
+      ],
+      "sourceDiffuse": "newer/textures/adoor03_3.webp",
+      "sourceDiffuseSha256": "ea97492b108eec82e982f23f9a7513955e203f9dda3780f279da2b565968be8e",
+      "sourceDecodedRgbSha256": "e6f723e17a1177ccf438922d8c584cd02e355a5361617f0c073e44ddeec7dbcc",
+      "sourceArrayEncoding": "float32 RGB in0..1, matching craft_normals.main",
+      "producerSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+      "profileForCanonicalName": {
+        "bands": [
+          0.4,
+          1,
+          0.9,
+          0.6
+        ],
+        "groove": 0.6,
+        "bump": 0.7,
+        "glow": 0.8,
+        "strength": 1.2
+      },
+      "currentNormalDescriptor": {
+        "file": "normals/adoor03_3.webp",
+        "strength": 1.2
+      },
+      "dimensions": [
+        128,
+        128
+      ],
+      "uncompressedCraftedHeightR8Sha256": "52a727288ce0448513647da1eaf769ba332541513a728c6a6d70f982c355fd19",
+      "replayQuality": 92,
+      "replayMethod": 6,
+      "replayPayloadChunks": [
+        "VP8 "
+      ],
+      "replaySha256": "07ed2a8f34c37f6a81cb3dc423c06052d72696cee7aad13b2fb88d0b55602d49",
+      "replayBytes": 9246,
+      "exactCurrentEncodedBytesMatch": true,
+      "decodedReplayRgbSha256": "256215b0a5a5aa6c6042ee9232a00caf10adbf9b5f0815e5097d23352763b9ca",
+      "status": "existing-Q92-byte-proven",
+      "runtimeFilesWritten": false
+    },
+    {
+      "name": "adoor03_6",
+      "runtimeFile": "newer/textures/normals/adoor03_6.webp",
+      "currentRuntimeSha256": "631c7bd95a054fa29b661fa82a304d4d2bee2f8e4140789e23b8291c2d425fb0",
+      "currentPayloadChunks": [
+        "VP8 "
+      ],
+      "sourceDiffuse": "newer/textures/adoor03_6.webp",
+      "sourceDiffuseSha256": "70c2cd0a27b9ef3a4d75087705f32a1d617c276ea0dc584c0e77ba40938fbb09",
+      "sourceDecodedRgbSha256": "f81020644db55c2351b12c6db1ed21c48dfddbf318662cec3511d2384f1eebf9",
+      "sourceArrayEncoding": "float32 RGB in0..1, matching craft_normals.main",
+      "producerSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+      "profileForCanonicalName": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.8,
+        "bump": 0.6,
+        "glow": 0.2,
+        "strength": 1.15
+      },
+      "currentNormalDescriptor": {
+        "file": "normals/adoor03_6.webp",
+        "strength": 1.15
+      },
+      "dimensions": [
+        64,
+        64
+      ],
+      "uncompressedCraftedHeightR8Sha256": "728c75964b4bcba5504244eba6179e5e0f1c8fb1f9ca7ccabbf1d77b09858a26",
+      "replayQuality": 92,
+      "replayMethod": 6,
+      "replayPayloadChunks": [
+        "VP8 "
+      ],
+      "replaySha256": "4a2853068cac4e169f3ad2fa5e10f48e03cc25811619cbe283e8d33328302322",
+      "replayBytes": 2654,
+      "exactCurrentEncodedBytesMatch": false,
+      "decodedReplayRgbSha256": "bd14cc716c19f3e835eba4c831bf2a388816323fe53c11cb166b3a8fd4444aa8",
+      "status": "unresolved-no-retry",
+      "runtimeFilesWritten": false
+    },
+    {
+      "name": "adoor09_2",
+      "runtimeFile": "newer/textures/normals/adoor09_2.webp",
+      "currentRuntimeSha256": "7e9e29d9d0ff006bc126b8e717498cc2bea7cf11daf77ad5cbbbaac737e58c3f",
+      "currentPayloadChunks": [
+        "VP8 "
+      ],
+      "sourceDiffuse": "newer/textures/adoor09_2.webp",
+      "sourceDiffuseSha256": "a4d4285f4fb4cf6f690427493ab49d31c9a12f3113093bf6d023181b6eccb481",
+      "sourceDecodedRgbSha256": "6fb7ee8da5a8220cb1918f799c218cf03cd70bbf93ea333f4ed29275b4041967",
+      "sourceArrayEncoding": "float32 RGB in0..1, matching craft_normals.main",
+      "producerSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+      "profileForCanonicalName": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.8,
+        "bump": 0.6,
+        "glow": 0.2,
+        "strength": 1.15
+      },
+      "currentNormalDescriptor": {
+        "file": "normals/adoor09_2.webp",
+        "strength": 1.15,
+        "cap": 1.1
+      },
+      "dimensions": [
+        512,
+        768
+      ],
+      "uncompressedCraftedHeightR8Sha256": "71a9fa0f34782c6142d99db226db32911dbdf01cdb7218f759a0630842fc93fa",
+      "replayQuality": 92,
+      "replayMethod": 6,
+      "replayPayloadChunks": [
+        "VP8 "
+      ],
+      "replaySha256": "7e9e29d9d0ff006bc126b8e717498cc2bea7cf11daf77ad5cbbbaac737e58c3f",
+      "replayBytes": 108908,
+      "exactCurrentEncodedBytesMatch": true,
+      "decodedReplayRgbSha256": "218e9c793cafd1296df60de15ead295b38a07cfe2ef2635288557d3a05a05d6e",
+      "status": "existing-Q92-byte-proven",
+      "runtimeFilesWritten": false
+    },
+    {
+      "name": "afloor3_1",
+      "runtimeFile": "newer/textures/normals/afloor3_1.webp",
+      "currentRuntimeSha256": "466c8cb39803db0e9ed0613d84aff3a4f98bf6c26625983a71d4e2079cfefa8e",
+      "currentPayloadChunks": [
+        "VP8 "
+      ],
+      "sourceDiffuse": "newer/textures/afloor3_1.webp",
+      "sourceDiffuseSha256": "2757a5ce7f3b362a1e7eb9f32ff1576803c02440b0113f612d491b4788cbade2",
+      "sourceDecodedRgbSha256": "31f6c432f4a928b6a5d2f7b5082d216064a7f32e9cafa32bf9ebbc9e2f0b8dfc",
+      "sourceArrayEncoding": "float32 RGB in0..1, matching craft_normals.main",
+      "producerSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+      "profileForCanonicalName": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.8,
+        "bump": 0.6,
+        "glow": 0.2,
+        "strength": 1.15
+      },
+      "currentNormalDescriptor": {
+        "file": "normals/afloor3_1.webp",
+        "strength": 1.15
+      },
+      "dimensions": [
+        256,
+        256
+      ],
+      "uncompressedCraftedHeightR8Sha256": "334d3aa59a7e9847a77f3c84d18052288b15138507c410f0de6757f8ccee9ca4",
+      "replayQuality": 92,
+      "replayMethod": 6,
+      "replayPayloadChunks": [
+        "VP8 "
+      ],
+      "replaySha256": "466c8cb39803db0e9ed0613d84aff3a4f98bf6c26625983a71d4e2079cfefa8e",
+      "replayBytes": 25270,
+      "exactCurrentEncodedBytesMatch": true,
+      "decodedReplayRgbSha256": "2a70eff36fc0f242d5d1af30cddb4d2b13301455a4aa445813b35c1e9864ab05",
+      "status": "existing-Q92-byte-proven",
+      "runtimeFilesWritten": false
+    },
+    {
+      "name": "altar1_3",
+      "runtimeFile": "newer/textures/normals/altar1_3.webp",
+      "currentRuntimeSha256": "304403716c464b38fdf89f888942bd624c86fa8088ddbff2bef07e5f419eefeb",
+      "currentPayloadChunks": [
+        "VP8 "
+      ],
+      "sourceDiffuse": "newer/textures/altar1_3.webp",
+      "sourceDiffuseSha256": "1bbb486bd10a37685b6ef7e3f86002d0ac6ed8a43b053d90bc1eebc8526b6a42",
+      "sourceDecodedRgbSha256": "ca22a2779516a16a9c737f35689772ed11dfb1571edbc83abdaf179bee46b4b0",
+      "sourceArrayEncoding": "float32 RGB in0..1, matching craft_normals.main",
+      "producerSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+      "profileForCanonicalName": {
+        "bands": [
+          0.5,
+          1,
+          1.2,
+          1
+        ],
+        "groove": 0.3,
+        "bump": 0.3,
+        "glow": 0.25,
+        "strength": 1.45
+      },
+      "currentNormalDescriptor": {
+        "file": "normals/altar1_3.webp",
+        "strength": 1.45,
+        "cap": 1.1
+      },
+      "dimensions": [
+        256,
+        256
+      ],
+      "uncompressedCraftedHeightR8Sha256": "f9601b653427a216c7956394431968ea4c6fc1b90c28c652860153e8b3f95196",
+      "replayQuality": 92,
+      "replayMethod": 6,
+      "replayPayloadChunks": [
+        "VP8 "
+      ],
+      "replaySha256": "304403716c464b38fdf89f888942bd624c86fa8088ddbff2bef07e5f419eefeb",
+      "replayBytes": 27422,
+      "exactCurrentEncodedBytesMatch": true,
+      "decodedReplayRgbSha256": "ce3681ba1c64223e6ef8950b9b22057d3d1c7a0b3fa36b0e4a45ef5dcb931962",
+      "status": "existing-Q92-byte-proven",
+      "runtimeFilesWritten": false
+    },
+    {
+      "name": "altar1_6",
+      "runtimeFile": "newer/textures/normals/altar1_6.webp",
+      "currentRuntimeSha256": "642d0bd63a2d57f72f74ff81cdef792442cc2a699478781d8ef6a78545e17a22",
+      "currentPayloadChunks": [
+        "VP8 "
+      ],
+      "sourceDiffuse": "newer/textures/altar1_6.webp",
+      "sourceDiffuseSha256": "ff650473d6d0faf7c66405213873eada4ff9ded3f145674aeb43dbbbbed1da65",
+      "sourceDecodedRgbSha256": "cac9c841ff1b39c903656f887154ab148eb1056bee240f1de169ceb886dd45c3",
+      "sourceArrayEncoding": "float32 RGB in0..1, matching craft_normals.main",
+      "producerSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+      "profileForCanonicalName": {
+        "bands": [
+          0.5,
+          1,
+          1.2,
+          1
+        ],
+        "groove": 0.3,
+        "bump": 0.3,
+        "glow": 0.25,
+        "strength": 1.45
+      },
+      "currentNormalDescriptor": {
+        "file": "normals/altar1_6.webp",
+        "strength": 1.45
+      },
+      "dimensions": [
+        256,
+        256
+      ],
+      "uncompressedCraftedHeightR8Sha256": "4aa383b378b4c9053f6f0c77c856ea884043aac179c484ad8f6a191a9cc04461",
+      "replayQuality": 92,
+      "replayMethod": 6,
+      "replayPayloadChunks": [
+        "VP8 "
+      ],
+      "replaySha256": "4bbe791cbacf5906a872038aa353f94462f18349000e942b496036b0723f9387",
+      "replayBytes": 25700,
+      "exactCurrentEncodedBytesMatch": false,
+      "decodedReplayRgbSha256": "a0c405d61e927a80a09313d78477bfd7b8f1fe5d509d7b75fb6361023e3be93d",
+      "status": "unresolved-no-retry",
+      "runtimeFilesWritten": false
+    }
+  ]
+}

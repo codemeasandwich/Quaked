@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "method": 6,
+  "qualification": "Uninstalled owner-art format derivatives; no new generated artwork.",
+  "indexBeforeSha256": "9335e9d07d531a1c66df7d7966cc5c325f3e35bbcecf9c8e88aa50b0b4e5463d",
+  "encoder": "tools/texture_sheets/finish_runtime_skin.py::encoded",
+  "encoderSha256": "9f5f0fccd3207c4cac58b4c3db12d949b64ad381838cdfacf88c0f30106c0c34",
+  "authoringScriptSha256": "0ad03cde4cb538c9a4226f9c30fc8800fd2ef1ec4aee590fa94f2eb1b64a017c",
+  "planSha256": "a6fdf364d5f9ff92d297ebab20132b068701a0134ac555accbf624814136cf48",
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "maps": [
+    {
+      "role": "diffuse",
+      "donor": "city5_3",
+      "predecessor": "newer/textures/city5_3.webp",
+      "file": "newer/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-diffuse.webp",
+      "dimensions": [
+        256,
+        256
+      ],
+      "masterSha256": "5e6bcbb271a93d66c7d23108061394a85b55a59b8d0a7263d020bc801144b196",
+      "sha256": "27e1208ab5483044339996c873a2dbf0ea32f743f23b7c969d205043b5b9d045",
+      "pillowDecodedRgbaSha256": "aea3f25c2c6dc6ad818d416b1359c39a508c14da58006dd661d5aff36e405556",
+      "bytes": 37332
+    },
+    {
+      "role": "height",
+      "donor": "city5_3",
+      "predecessor": "newer/textures/normals/city5_3.webp",
+      "file": "newer/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-height.webp",
+      "dimensions": [
+        256,
+        256
+      ],
+      "masterSha256": "53b2a5d526a7446f16fbbc2e6d270f0a62a08d2665c04209dec30189a9e48f48",
+      "sha256": "966ede9e96096d9fdfad9637c0ddccbe263ffd7d0d5206d5d9967eeb742a4847",
+      "pillowDecodedRgbaSha256": "128e7d505e7ae7f2f2d06a2b398b0bb835e5844b9a4562e6e02fc3fea71e6a96",
+      "bytes": 35530
+    },
+    {
+      "role": "diffuse",
+      "donor": "wizmet1_3",
+      "predecessor": "newer/textures/wizmet1_3.webp",
+      "file": "newer/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-diffuse.webp",
+      "dimensions": [
+        256,
+        256
+      ],
+      "masterSha256": "e35608c4ad95b5f42b1a8295c3b04155f054ba591863a9e240e5ad542847ab93",
+      "sha256": "79616b4d407117050d10589c317938498dd5287d5708243af3fad8755d9c5d01",
+      "pillowDecodedRgbaSha256": "189480c22367dd9c20e7152e9115cdcf7aa154860fe9ac8a83325d854a4c308d",
+      "bytes": 26152
+    },
+    {
+      "role": "height",
+      "donor": "wizmet1_3",
+      "predecessor": "newer/textures/normals/wizmet1_3.webp",
+      "file": "newer/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-height.webp",
+      "dimensions": [
+        256,
+        256
+      ],
+      "masterSha256": "fa6c511c34465652a23cc56b468b970be2c0180d2bfbab33819d9a4ee81af756",
+      "sha256": "a06ef383cba5046d4431a7370a29e2e9d510cb62c003c1f6be4bd9b3f0768ddf",
+      "pillowDecodedRgbaSha256": "7bc40a691d11f8d3d6cfe2b9918cd3b61a9bb6123d9cd65f962ae39bef3277c9",
+      "bytes": 33600
+    }
+  ],
+  "bindings": [
+    {
+      "name": "city5_3",
+      "nativeKey": "64x64:837ce7b57349da7f",
+      "sourcePixelSha256": "e28d8871f913e81461191ba4754aaba840ee209161867eee84b171804ae9014b",
+      "previous": {
+        "file": "city5_3.webp",
+        "normal": {
+          "file": "normals/city5_3.webp",
+          "strength": 2.4,
+          "cap": 2.1
+        }
+      },
+      "current": {
+        "file": "official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-height.webp",
+          "strength": 2.4,
+          "cap": 2.1
+        }
+      },
+      "sourceAllowlist": [
+        "64x64:837ce7b57349da7f"
+      ]
+    },
+    {
+      "name": "metflor2_1",
+      "nativeKey": "64x64:837ce7b57349da7f",
+      "sourcePixelSha256": "e28d8871f913e81461191ba4754aaba840ee209161867eee84b171804ae9014b",
+      "previous": {
+        "file": "city5_3.webp",
+        "normal": {
+          "file": "normals/city5_3.webp",
+          "strength": 2.4,
+          "cap": 2.1
+        }
+      },
+      "current": {
+        "file": "official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-height.webp",
+          "strength": 2.4,
+          "cap": 2.1
+        }
+      },
+      "sourceAllowlist": [
+        "64x64:837ce7b57349da7f"
+      ]
+    },
+    {
+      "name": "wizmet1_3",
+      "nativeKey": "64x64:006f4d1505d7fbd7",
+      "sourcePixelSha256": "52d7c8c1b6d1dc88c3c5e734f93a47db8db760efe83cc3920e8ad9715e533ed0",
+      "previous": {
+        "file": "wizmet1_3.webp",
+        "normal": {
+          "file": "normals/wizmet1_3.webp",
+          "strength": 1.2,
+          "cap": 1.1
+        }
+      },
+      "current": {
+        "file": "official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-height.webp",
+          "strength": 1.2,
+          "cap": 1.1
+        }
+      },
+      "sourceAllowlist": [
+        "64x64:006f4d1505d7fbd7"
+      ]
+    },
+    {
+      "name": "mmetal1_3",
+      "nativeKey": "64x64:006f4d1505d7fbd7",
+      "sourcePixelSha256": "52d7c8c1b6d1dc88c3c5e734f93a47db8db760efe83cc3920e8ad9715e533ed0",
+      "previous": {
+        "file": "wizmet1_3.webp",
+        "normal": {
+          "file": "normals/wizmet1_3.webp",
+          "strength": 1.2,
+          "cap": 1.1
+        }
+      },
+      "current": {
+        "file": "official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-height.webp",
+          "strength": 1.2,
+          "cap": 1.1
+        }
+      },
+      "sourceAllowlist": [
+        "64x64:006f4d1505d7fbd7"
+      ]
+    }
+  ]
+}

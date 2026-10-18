@@ -1,0 +1,81 @@
+{
+  "id": "city5_3|64x64:837ce7b57349da7f",
+  "name": "city5_3",
+  "key": "64x64:837ce7b57349da7f",
+  "width": 64,
+  "height": 64,
+  "pixelSha256": "e28d8871f913e81461191ba4754aaba840ee209161867eee84b171804ae9014b",
+  "original": "originals/64x64-837ce7b57349da7f.rgba",
+  "status": "catalogued",
+  "file": "city5_3.webp",
+  "reason": "Exact native identity",
+  "uses": [
+    {
+      "game": "id1",
+      "map": "maps/e1m5.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/shareware/pak0.pak",
+      "slot": 20,
+      "faces": 35,
+      "visibleCandidateFaces": 35,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "id1",
+      "map": "maps/e4m3.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+      "slot": 4,
+      "faces": 550,
+      "visibleCandidateFaces": 538,
+      "hiddenTriggerFaces": 12,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "rogue",
+      "map": "maps/r2m7.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Dissolution of Eternity/pak0.pak",
+      "slot": 30,
+      "faces": 37,
+      "visibleCandidateFaces": 37,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "rogue",
+      "map": "maps/r2m8.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Dissolution of Eternity/pak0.pak",
+      "slot": 28,
+      "faces": 47,
+      "visibleCandidateFaces": 47,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "dopa",
+      "map": "maps/e5m4.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+      "slot": 13,
+      "faces": 71,
+      "visibleCandidateFaces": 71,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "mg1",
+      "map": "maps/mge2m1.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+      "slot": 50,
+      "faces": 59,
+      "visibleCandidateFaces": 59,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    }
+  ],
+  "action": "check-hd-dimensions"
+}

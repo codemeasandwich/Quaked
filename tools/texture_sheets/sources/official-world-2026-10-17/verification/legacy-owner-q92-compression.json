@@ -1,0 +1,51 @@
+{
+  "qualification": "Uninstalled four-map derivatives. Numeric diagnostics, visual/public acceptance separate.",
+  "metrics": [
+    {
+      "name": "city5_3",
+      "ownerVsSuccessorMeanAbs": 3.015375773111979,
+      "ownerVsSuccessorMaxAbs": 37.0,
+      "distance": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "rgbMeanAbs": 10.364583333333334
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            16
+          ],
+          "rgbMeanAbs": 6.30078125
+        }
+      ]
+    },
+    {
+      "name": "wizmet1_3",
+      "ownerVsSuccessorMeanAbs": 2.5396525065104165,
+      "ownerVsSuccessorMaxAbs": 30.0,
+      "distance": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "rgbMeanAbs": 13.734049479166666
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            16
+          ],
+          "rgbMeanAbs": 12.470052083333334
+        }
+      ]
+    }
+  ]
+}

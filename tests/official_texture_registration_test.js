@@ -18,6 +18,7 @@ import { R_GlassTextureKey } from '../src/newer/render/r_newertextures.js';
 import { memberSearch, readMember, sha256 } from '../tools/pak_members.mjs';
 import { GAME_CATALOGUE_GAMES } from '../src/engine/common/game_catalogue.js';
 import { registrationsAtFourTimes, verifyFourTimesTrialDimensions, verifyRegisteredNormalChannels } from './official_texture_standard.js';
+import { ownerQ92Baseline, ownerQ92Previous, ownerQ92Binding } from './owner_texture_q92_standard.js';
 
 const root = resolve( import.meta.dirname, '..' );
 // QUAKED_GAME_ROOT is the external /games/ mount itself (its direct children
@@ -95,10 +96,10 @@ async function source( use, expectedName ) {
 const dispose = texture => { texture._fullbright?.dispose(); texture.dispose(); };
 const eligible = e => e.sourceUses.find( u => [ 'brush-asset', 'campaign-or-multiplayer' ].includes( u.scope ) );
 
-// This ordinary-texture integration deliberately excludes the root checkout's
-// experimental glass migration. Verify the entire committed Dev glass catalogue
-// and its tracked material/metadata bytes stay exact; do not skip glass checks.
-const integrationBase = 'eb523c80dafc5433898e98c26ca6eb481dc8658b';
+// The approved 4x glass migration was published in this fixed Dev commit.
+// Preserve its entire catalogue and tracked material/metadata bytes exactly;
+// neither the current HEAD nor a root-only trial can establish this baseline.
+const integrationBase = '36997f21e041ec47512eafa2fca505efa2cb480e';
 function unchangedIntegrationGlass() {
 	const baseline = JSON.parse( execFileSync( 'git', [ 'show', integrationBase + ':newer/textures/index.json' ], { cwd: root } ) );
 	equal( index.glass, baseline.glass, 'every Dev glass binding preserved exactly, with no root-only migration' );
@@ -128,7 +129,7 @@ Deno.test( 'current catalogue contains the 45 source-bound additions and preserv
 	const expectedGlass = unchangedIntegrationGlass();
 	for ( const [ field, value ] of Object.entries( before ) ) {
 		if ( field === 'version' ) continue;
-		for ( const [ name, entry ] of Object.entries( value ) ) equal( index[ field ]?.[ name ], field === 'glass' ? expectedGlass[ name ] : entry, 'existing ' + field + '.' + name + ' preserved against historical ordinary and current Dev glass baselines' );
+		for ( const [ name, entry ] of Object.entries( value ) ) equal( index[ field ]?.[ name ], field === 'glass' ? expectedGlass[ name ] : ownerQ92Baseline( field, name, entry ), 'existing ' + field + '.' + name + ' preserved against historical ordinary and current Dev glass baselines' );
 	}
 	for ( const e of receipt.entries ) {
 		check( ! before.textures[ e.name ], e.name + ' was not already installed' );
@@ -138,8 +139,11 @@ Deno.test( 'current catalogue contains the 45 source-bound additions and preserv
 		same( sha256( read( 'newer/textures/' + e.file ) ), e.diffuseSha256, e.name + ' diffuse file digest' );
 		same( sha256( read( 'newer/textures/' + e.normal.file ) ), e.heightSha256, e.name + ' height file digest' );
 		if ( e.donor ) {
-			same( before.textures[ e.donor ], e.file, e.name + ' uses actual previous donor art' );
-			equal( before.normals[ e.donor ], e.normal, e.name + ' uses complete previous donor height recipe' );
+			const previous = ownerQ92Previous( e.name, { file: e.file, normal: e.normal } );
+			same( before.textures[ e.donor ], previous.file, e.name + ' uses actual previous donor art' );
+			equal( before.normals[ e.donor ], previous.normal, e.name + ' uses complete previous donor height recipe' );
+			const successor = ownerQ92Binding( e.name );
+			if ( successor ) equal( { file: index.textures[ e.donor ], normal: index.normals[ e.donor ] }, successor, e.name + ' current canonical donor shares the exact validated Q92 pair' );
 			check( before.sources[ e.donor ].includes( e.key ), e.name + ' donor also binds this exact native identity' );
 		}
 	}

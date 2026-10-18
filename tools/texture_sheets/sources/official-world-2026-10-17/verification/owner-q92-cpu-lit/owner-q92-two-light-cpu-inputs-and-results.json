@@ -1,0 +1,265 @@
+{
+  "qualification": "Independent two-light CPU reference render of uninstalled reviewed owner derivatives. Actual production R_NormalsFromCraftedHeight consumes actual canvas-decoded R/255 Float32 scalars at original strength/cap. This is not the actual engine GPU/PBR light path, installed-public verification, owner acceptance or a runtime texture.",
+  "sourceRoot": "/Users/bri/.codex/worktrees/official-textures-next/Quaked",
+  "assetRoot": "/Users/bri/SOURCE/Quaked",
+  "indexSha256": "9335e9d07d531a1c66df7d7966cc5c325f3e35bbcecf9c8e88aa50b0b4e5463d",
+  "receiptSha256": "a355ea23df535603ce59c70e9254414faeb97bf65c0fb8b9cd32bd0ec4f962ed",
+  "productionNormalMath": {
+    "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/src/newer/render/normal_math.js",
+    "sha256": "303390e4216a26d6aaa2ceb47b841484a9b5f6b6dd88118922f70dc1682a7125"
+  },
+  "lighting": {
+    "model": "linear-albedo Lambert reference, no specular/postprocess/filtering/smoothing",
+    "ambient": 0.22,
+    "key": 0.78,
+    "lights": [
+      {
+        "id": "upper-left",
+        "label": "Light A: upper left",
+        "direction": [
+          -0.6476082659683139,
+          -0.3487121432137074,
+          0.6774978782437745
+        ]
+      },
+      {
+        "id": "lower-right",
+        "label": "Light B: lower right",
+        "direction": [
+          0.6476082659683139,
+          0.3487121432137074,
+          0.6774978782437745
+        ]
+      }
+    ]
+  },
+  "node": "v24.19.0",
+  "rendererScriptSha256": "8141e372f826a71d678ae2c8a4f7b2569aa98d11612ccf693ea3cdce62871b12",
+  "results": [
+    {
+      "name": "city5_3",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "renderDimensions": [
+        256,
+        256
+      ],
+      "repeatContact": [
+        2,
+        2
+      ],
+      "inputs": {
+        "retained": {
+          "diffuseFile": "city5_3.webp",
+          "heightFile": "normals/city5_3.webp",
+          "decodedDiffuseRgbaSha256": "561344b23783da86b67e11bdd484a1c8aa5cf632cf223bb7a111a8f1111d82d1",
+          "decodedHeightRgbaSha256": "2990ff5becad22a7e494709b78c438c685f8e428d383bee02987751b1d80ffce",
+          "decodedHeightR8Sha256": "b02851ae401f26d8ce919e7970695a6373a28be2252d3f465fcc7547d5281391",
+          "scalarFloat32LeSha256": "c782f3b45dbb7f14b6b293baa2eda9b40f996fa4aa3812fda512120d594ec3d1",
+          "productionNormalRgbaSha256": "7f01f14c282e1565672d4c20512c5d02d7ef8146b742f532585fbaf69c5d75a3",
+          "strength": 2.4,
+          "cap": 2.1
+        },
+        "q92": {
+          "diffuseFile": "official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-diffuse.webp",
+          "heightFile": "official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-height.webp",
+          "decodedDiffuseRgbaSha256": "aea3f25c2c6dc6ad818d416b1359c39a508c14da58006dd661d5aff36e405556",
+          "decodedHeightRgbaSha256": "128e7d505e7ae7f2f2d06a2b398b0bb835e5844b9a4562e6e02fc3fea71e6a96",
+          "decodedHeightR8Sha256": "d198aa68880420b676d3a9ff0b296d96d4db27478792f3a21de987b846ac793e",
+          "scalarFloat32LeSha256": "26d3542f90ccfed87cca5b0b615182621622b2edc4fafa336604e1f2a58e387e",
+          "productionNormalRgbaSha256": "fc802a0b9c5dd95000c2562363b17288afcec0a2b3ed8911bcaf0ae511fc7fae",
+          "strength": 2.4,
+          "cap": 2.1
+        }
+      },
+      "metrics": [
+        {
+          "light": "upper-left",
+          "meanAbsoluteRgbDelta": 2.250940958658854,
+          "rmsRgbDelta": 3.229731815884883,
+          "p99AbsoluteRgbDelta": 11,
+          "maximumRgbDelta": 33,
+          "threePixelPerimeterMeanDelta": 2.2659200702678963,
+          "brighterPixelsOver15Rgb": 0,
+          "darkerPixelsOver15Rgb": 0
+        },
+        {
+          "light": "lower-right",
+          "meanAbsoluteRgbDelta": 2.242070515950521,
+          "rmsRgbDelta": 3.1730782367315293,
+          "p99AbsoluteRgbDelta": 10,
+          "maximumRgbDelta": 35,
+          "threePixelPerimeterMeanDelta": 2.1910408432147563,
+          "brighterPixelsOver15Rgb": 0,
+          "darkerPixelsOver15Rgb": 0
+        }
+      ]
+    },
+    {
+      "name": "wizmet1_3",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "renderDimensions": [
+        256,
+        256
+      ],
+      "repeatContact": [
+        2,
+        2
+      ],
+      "inputs": {
+        "retained": {
+          "diffuseFile": "wizmet1_3.webp",
+          "heightFile": "normals/wizmet1_3.webp",
+          "decodedDiffuseRgbaSha256": "3d722b95dbe1c3c9d5533831e2429fe125d58eac412c78a1096ae9c841fc0e20",
+          "decodedHeightRgbaSha256": "f7890a08e15722bfc01bd778cc25afbdf5d82c3f3205bec5fb4532df6abd506a",
+          "decodedHeightR8Sha256": "bcf96fa8d0e8d6ef3c143a901977da237da6731e21c8dc6901bd77956269dd90",
+          "scalarFloat32LeSha256": "edad4223a13c5c4401cd365f49c35aedd40a9a4e74030297170e718e84494c99",
+          "productionNormalRgbaSha256": "a5346d2d0e6e00c6b434106a3f8b90cf4d3838682b4508dbde9609e90aea72f0",
+          "strength": 1.2,
+          "cap": 1.1
+        },
+        "q92": {
+          "diffuseFile": "official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-diffuse.webp",
+          "heightFile": "official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-height.webp",
+          "decodedDiffuseRgbaSha256": "189480c22367dd9c20e7152e9115cdcf7aa154860fe9ac8a83325d854a4c308d",
+          "decodedHeightRgbaSha256": "7bc40a691d11f8d3d6cfe2b9918cd3b61a9bb6123d9cd65f962ae39bef3277c9",
+          "decodedHeightR8Sha256": "65c68bb88f1f29be99e464c5e75015c6e44091ff04f0bf8129fa3e43621569e7",
+          "scalarFloat32LeSha256": "525895b8d6496130be07483dd5ef12deed69028608ed00d1e55ae3d6902ebc30",
+          "productionNormalRgbaSha256": "6cd973a74e2a0d9f0465269ad8fd6d3afe2537641b87d3354611ff0cc10dede1",
+          "strength": 1.2,
+          "cap": 1.1
+        }
+      },
+      "metrics": [
+        {
+          "light": "upper-left",
+          "meanAbsoluteRgbDelta": 2.0088094075520835,
+          "rmsRgbDelta": 2.821087872409182,
+          "p99AbsoluteRgbDelta": 9,
+          "maximumRgbDelta": 26,
+          "threePixelPerimeterMeanDelta": 2.039086517347387,
+          "brighterPixelsOver15Rgb": 0,
+          "darkerPixelsOver15Rgb": 0
+        },
+        {
+          "light": "lower-right",
+          "meanAbsoluteRgbDelta": 2.001134236653646,
+          "rmsRgbDelta": 2.8180870793472397,
+          "p99AbsoluteRgbDelta": 9,
+          "maximumRgbDelta": 27,
+          "threePixelPerimeterMeanDelta": 2.086846728151076,
+          "brighterPixelsOver15Rgb": 0,
+          "darkerPixelsOver15Rgb": 0
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/index.json",
+      "sha256": "9335e9d07d531a1c66df7d7966cc5c325f3e35bbcecf9c8e88aa50b0b4e5463d"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/owner-q92-first-tranche-v2.json",
+      "sha256": "a355ea23df535603ce59c70e9254414faeb97bf65c0fb8b9cd32bd0ec4f962ed"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/src/newer/render/normal_math.js",
+      "sha256": "303390e4216a26d6aaa2ceb47b841484a9b5f6b6dd88118922f70dc1682a7125"
+    },
+    {
+      "file": "/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js",
+      "sha256": "bbdad32cab670261983ea56d4625fc7d07b1382f8bb7d6d31232bb2834861597"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/city5_3.webp",
+      "sha256": "5e6bcbb271a93d66c7d23108061394a85b55a59b8d0a7263d020bc801144b196"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/normals/city5_3.webp",
+      "sha256": "53b2a5d526a7446f16fbbc2e6d270f0a62a08d2665c04209dec30189a9e48f48"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-diffuse.webp",
+      "sha256": "27e1208ab5483044339996c873a2dbf0ea32f743f23b7c969d205043b5b9d045"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-height.webp",
+      "sha256": "966ede9e96096d9fdfad9637c0ddccbe263ffd7d0d5206d5d9967eeb742a4847"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/wizmet1_3.webp",
+      "sha256": "e35608c4ad95b5f42b1a8295c3b04155f054ba591863a9e240e5ad542847ab93"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/normals/wizmet1_3.webp",
+      "sha256": "fa6c511c34465652a23cc56b468b970be2c0180d2bfbab33819d9a4ee81af756"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-diffuse.webp",
+      "sha256": "79616b4d407117050d10589c317938498dd5287d5708243af3fad8755d9c5d01"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-height.webp",
+      "sha256": "a06ef383cba5046d4431a7370a29e2e9d510cb62c003c1f6be4bd9b3f0768ddf"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-cpu-lit/city5_3-retained-upper-left.png",
+      "sha256": "149edb361bde5949395d4906ebd6695b124b5eb3909500f64e0b2ce9461a87cf",
+      "kind": "CPU-lit evidence, not runtime map"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-cpu-lit/city5_3-q92-upper-left.png",
+      "sha256": "b1faebc026f6c9358f27089567347a4b56f3d59b1105555319af23d148d08975",
+      "kind": "CPU-lit evidence, not runtime map"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-cpu-lit/city5_3-retained-lower-right.png",
+      "sha256": "a584f64c952e02992eb361d37d11a4ddedb19bfcd6658101e29617f06de468f6",
+      "kind": "CPU-lit evidence, not runtime map"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-cpu-lit/city5_3-q92-lower-right.png",
+      "sha256": "61fda2acc8edd4073d5bc4e585ae7acbb60f4633effd79b2ffdcf2f09ba196eb",
+      "kind": "CPU-lit evidence, not runtime map"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-cpu-lit/city5_3-two-light-contact.png",
+      "sha256": "7ed461fc9762f3218adce4a4c8539ba8117b36a8403090bf776414fc291bf0d2",
+      "kind": "CPU comparison contact evidence"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-cpu-lit/wizmet1_3-retained-upper-left.png",
+      "sha256": "a168b95ff14b8e6992fe9974a8587eb2efe83105c1eed95c6210da06d000db52",
+      "kind": "CPU-lit evidence, not runtime map"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-cpu-lit/wizmet1_3-q92-upper-left.png",
+      "sha256": "8e8e39a03666ed77e11b1ca2b903c34056896c205d0eba5a26d10fa604a03e45",
+      "kind": "CPU-lit evidence, not runtime map"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-cpu-lit/wizmet1_3-retained-lower-right.png",
+      "sha256": "95192eb909a1fe8654c9d730ada14efc019f59fa417cc5dfebb45bf3a3333f3e",
+      "kind": "CPU-lit evidence, not runtime map"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-cpu-lit/wizmet1_3-q92-lower-right.png",
+      "sha256": "457ca16a1fe6bfd365a4e0d2e492863723f98d5a1fc4dff462fcea6f4cb95b20",
+      "kind": "CPU-lit evidence, not runtime map"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-cpu-lit/wizmet1_3-two-light-contact.png",
+      "sha256": "879311d2a06817adef9c56be7396f571063e4584bf09cee667fd00596e64f823",
+      "kind": "CPU comparison contact evidence"
+    }
+  ],
+  "runtimeInputsUnchanged": true
+}

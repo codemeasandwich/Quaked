@@ -1,0 +1,87 @@
+{
+  "qualification": "Independent decoded-format diagnostics and direct near-view review of uninstalled drafts; not installed-public or actual-GPU lighting acceptance. No maps were recrafted/encoded or rebound.",
+  "receiptSha256": "a355ea23df535603ce59c70e9254414faeb97bf65c0fb8b9cd32bd0ec4f962ed",
+  "results": [
+    {
+      "name": "city5_3",
+      "diffuseMAE": 3.015375773111979,
+      "diffuseMaximum": 37.0,
+      "heightMAE0to1": 0.005562038047640931,
+      "heightMaximum0to1": 0.03529411764705892,
+      "retainedMasterGrayRGB": true,
+      "unusedGreenDifferencePixels": 668,
+      "unusedGreenDifferenceMaximum": 1,
+      "runtimeScalarChannel": "R",
+      "normalAngularMean": 1.8014485635891357,
+      "normalAngularP99": 11.608910736289577,
+      "normalAngularMaximum": 26.53200746828042,
+      "edgeHeightMAE0to1": 0.005405613225682429,
+      "edgeNormalAngularP99": 8.341670802078609,
+      "distance": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "ownerToQ92MAE": 0.5208333333333334,
+          "ownerToQ92Maximum": 4.0,
+          "nativeToOwnerMAE": 10.547526041666666,
+          "nativeToQ92MAE": 10.550130208333334
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            16
+          ],
+          "ownerToQ92MAE": 0.23567708333333334,
+          "ownerToQ92Maximum": 2.0,
+          "nativeToOwnerMAE": 6.72265625,
+          "nativeToQ92MAE": 6.744791666666667
+        }
+      ]
+    },
+    {
+      "name": "wizmet1_3",
+      "diffuseMAE": 2.5396525065104165,
+      "diffuseMaximum": 30.0,
+      "heightMAE0to1": 0.005672978419883578,
+      "heightMaximum0to1": 0.03529411764705884,
+      "retainedMasterGrayRGB": true,
+      "unusedGreenDifferencePixels": 909,
+      "unusedGreenDifferenceMaximum": 1,
+      "runtimeScalarChannel": "R",
+      "normalAngularMean": 1.3031661684489213,
+      "normalAngularP99": 6.679048333042053,
+      "normalAngularMaximum": 15.062520343378514,
+      "edgeHeightMAE0to1": 0.005924644367550943,
+      "edgeNormalAngularP99": 6.568114973334236,
+      "distance": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "ownerToQ92MAE": 0.5201822916666666,
+          "ownerToQ92Maximum": 3.0,
+          "nativeToOwnerMAE": 13.919596354166666,
+          "nativeToQ92MAE": 13.926106770833334
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            16
+          ],
+          "ownerToQ92MAE": 0.2643229166666667,
+          "ownerToQ92Maximum": 2.0,
+          "nativeToOwnerMAE": 12.514322916666666,
+          "nativeToQ92MAE": 12.544270833333334
+        }
+      ]
+    }
+  ],
+  "visualReview": "Both Q92 diffuse drafts retain the owner diagonal stone-grid and vertical rusted-rib feature layout without new bevels or framing. Full-resolution review finds no visible new large-scale colour/layout change. Height-induced lighting differences are quantified; independent actual lit/GPU review remains separate."
+}

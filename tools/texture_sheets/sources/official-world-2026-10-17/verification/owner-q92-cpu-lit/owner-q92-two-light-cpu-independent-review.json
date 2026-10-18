@@ -1,0 +1,53 @@
+{
+  "qualification": "Independent visual review of two opposing-light CPU reference renders. Pass for this bounded uninstalled CPU comparison only; actual engine GPU/PBR, installed public interfaces, owner acceptance and release remain separate.",
+  "renderProof": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-cpu-lit/owner-q92-two-light-cpu-inputs-and-results.json",
+  "renderProofSha256": "b53ff0dad143b65f51bc1d50bf243f2a96192688d31d4ead409e76dab81f62c4",
+  "productionNormalMath": {
+    "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/src/newer/render/normal_math.js",
+    "sha256": "303390e4216a26d6aaa2ceb47b841484a9b5f6b6dd88118922f70dc1682a7125"
+  },
+  "contactsInspected": [
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-cpu-lit/city5_3-two-light-contact.png",
+      "sha256": "7ed461fc9762f3218adce4a4c8539ba8117b36a8403090bf776414fc291bf0d2",
+      "kind": "CPU comparison contact evidence"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-cpu-lit/wizmet1_3-two-light-contact.png",
+      "sha256": "879311d2a06817adef9c56be7396f571063e4584bf09cee667fd00596e64f823",
+      "kind": "CPU comparison contact evidence"
+    }
+  ],
+  "verdicts": [
+    {
+      "name": "city5_3",
+      "result": "pass-bounded-two-light-CPU",
+      "observations": "Diagonal stone-grid phase, dark joints and dense aged stone pitting retain their structure under both light directions. Q92 changes tiny highlights and slightly softens some fine pitting, without adding coarse grain, pixel blocks, perimeter shading or a new repeated seam. Analytical normal-angle outliers did not produce a new conspicuous highlight pattern in these reference views."
+    },
+    {
+      "name": "wizmet1_3",
+      "result": "pass-bounded-two-light-CPU",
+      "observations": "Vertical rib spacing, paint chips and oxidation remain aligned. Q92 has slightly softer local detail; neither light shows a new rim, edge discontinuity or added grain field. The source itself already has dense weathering, which this format-only derivative preserves."
+    }
+  ],
+  "metricContext": {
+    "cityMeanAbsoluteRgbDeltaRange": [
+      2.242070515950521,
+      2.250940958658854
+    ],
+    "wizMeanAbsoluteRgbDeltaRange": [
+      2.001134236653646,
+      2.0088094075520835
+    ],
+    "maximumIndividualRgbChannelDeltaCity": 35,
+    "maximumIndividualRgbChannelDeltaWiz": 27,
+    "perimeter": "Mean3px-edge error is comparable to overall error, with no new outline concentration.",
+    "highlightThresholdObservation": "No pixel changed mean RGB brightness by more than15/255 under either light. This is a diagnostic observation, not a new acceptance threshold."
+  },
+  "limitations": [
+    "Reference Lambert lighting only: no engine GPU, specular response, postprocess, TBN world geometry or mip filtering was reproduced.",
+    "Original strength/cap and actual production normal data were used; no normal smoothing, height recrafting, albedo repair or colour adjustment.",
+    "Inputs remained byte-identical throughout; no WT, index, runtime map or binding mutation."
+  ],
+  "nextAction": "Proceed to reviewed binding installation and bounded real public tests after the current material batch lands; actual engine lighting review remains separate."
+}

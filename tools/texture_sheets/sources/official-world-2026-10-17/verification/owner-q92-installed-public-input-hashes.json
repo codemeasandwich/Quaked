@@ -1,0 +1,245 @@
+{
+  "qualification": "Independent installed-public and retained-source/pack verification only. No build gate, staging, merge, release or actual GPU review performed by this helper.",
+  "node": "v24.19.0",
+  "head": "422b5376c7ea2e2ef3ff14662cf87ac52f0ac511",
+  "indexSha256": "c41cda847c204aca936eb753230c6291dba49460b7f09626efe6c942e19d8768",
+  "tests": {
+    "ownerPublic": {
+      "pass": 4,
+      "fail": 0,
+      "skip": 0
+    },
+    "historical45Public": {
+      "pass": 4,
+      "fail": 0,
+      "skip": 0
+    },
+    "levelAssetsPython": {
+      "pass": 3,
+      "fail": 0,
+      "skip": 0
+    },
+    "generated84Public": {
+      "pass": 7,
+      "fail": 0,
+      "skip": 0
+    },
+    "packContracts": {
+      "pass": 5,
+      "fail": 0,
+      "skip": 0
+    },
+    "total": 23
+  },
+  "sourceCoverage": {
+    "ownerBindings": 4,
+    "ownerOccurrences": 24,
+    "historicalBindings": 45,
+    "historicalOccurrences": 162,
+    "historicalDonorChecks": 43,
+    "generatedBindings": 87,
+    "generatedArtworks": 84,
+    "generatedOccurrences": 595,
+    "note": "Source occurrence sets overlap and are not summed as distinct coverage."
+  },
+  "imageClosure": {
+    "newOwnerQ92Images": 4,
+    "generatedQ92Images": 420,
+    "combinedSelectedQ92Images": 424,
+    "webAssets": 3418,
+    "desktopAssets": 5059,
+    "missing": 0
+  },
+  "preservation": "Owner lossless predecessor bytes, source guards, strengths/caps and all unrelated metadata retained. New decoded R feeds ordinary derived normals and content cache; no engine change. games.json has no net diff.",
+  "testFix": {
+    "file": "tests/official_texture_registration_test.js",
+    "problem": "Obsolete pre-glass-migration fixed integration baseline eb523c80 rejected already published approved4x glass.",
+    "correction": "Pin fixed approved glass publication36997f21e041ec47512eafa2fca505efa2cb480e, preserving entire130material catalogue and1003tracked glass files byte-exact. Ordinary original baseline a28d939 remains unchanged; no skip or moving HEAD baseline.",
+    "verification": "Current glass is exactly old baseline plus86 maintained fourfold successors; all86 predecessor descriptors match records. Initial3/4 failure retained in owner-q92-historical45-pre-glass-successor-failure.txt; corrected suite4/4."
+  },
+  "inputs": [
+    {
+      "file": "tests/official_texture_owner_q92_test.js",
+      "sha256": "22d2102cea22953a241425e2c6ff92e68977e37b89f1650336510e471687e571"
+    },
+    {
+      "file": "tests/owner_texture_q92_standard.js",
+      "sha256": "4ebe5b3a65a1fce1eda12426e28fca38e4747d30e954f2577a895f1f39ade158"
+    },
+    {
+      "file": "tests/official_texture_standard.js",
+      "sha256": "3bdd111ee1987c310bf6221e9763242b16f104243a1059cd8b143fe95db8db26"
+    },
+    {
+      "file": "tests/official_texture_registration_test.js",
+      "sha256": "ec5d497952cb7365c546b7008588c06e3b4afe0ccc244ae4808a63981aec7fd5"
+    },
+    {
+      "file": "tests/level_texture_assets_test.py",
+      "sha256": "74148f55a599987f13d5de3aa57ed314b4504cb19b017b9f4e692f361ebaf4b1"
+    },
+    {
+      "file": "tests/official_texture_q92_test.js",
+      "sha256": "73d1f29caaedb3629082b43d6433d0f1feb31b7b1fc83362f5f5848f8c0e4aba"
+    },
+    {
+      "file": "tools/texture_sheets/encode_official_maps.py",
+      "sha256": "e8d825dcb3e79bb9f419af6558363e0ab00534389e7b21f5423177b2e1f9af9b"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5"
+    },
+    {
+      "file": "tools/texture_sheets/finish_runtime_skin.py",
+      "sha256": "9f5f0fccd3207c4cac58b4c3db12d949b64ad381838cdfacf88c0f30106c0c34"
+    },
+    {
+      "file": "newer/textures/index.json",
+      "sha256": "c41cda847c204aca936eb753230c6291dba49460b7f09626efe6c942e19d8768"
+    },
+    {
+      "file": "newer/packs/games.json",
+      "sha256": "c5c69a6651e0f2a2c438168c87e4447b4c68a41dd199884baf60d1c8b308f725"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/owner-q92-first-tranche-v2.json",
+      "sha256": "a355ea23df535603ce59c70e9254414faeb97bf65c0fb8b9cd32bd0ec4f962ed"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/owner-q92-first-tranche.json",
+      "sha256": "32402de2d7952d764f37e433d7a5bcdf02015995c36e6cfa579e70ed6f215775"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/owner-q92-first-tranche-index-before.json",
+      "sha256": "9335e9d07d531a1c66df7d7966cc5c325f3e35bbcecf9c8e88aa50b0b4e5463d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/normalize_owner_pair.py",
+      "sha256": "07a9ae9c0e3d11e8fa01dd87137326ac1a272f833f6e53af9ee38fce941cbb34"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/normalize_owner_pair_v1.py",
+      "sha256": "0ad03cde4cb538c9a4226f9c30fc8800fd2ef1ec4aee590fa94f2eb1b64a017c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-owner-q92-first-tranche-plan.json",
+      "sha256": "a6fdf364d5f9ff92d297ebab20132b068701a0134ac555accbf624814136cf48"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-installed-public-source-proof.json",
+      "sha256": "561a140735018807b975823e9295d304f9de980de9d2457a5870d0535fa474be"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-historical45-source-proof.json",
+      "sha256": "e2e901b8cc403944dc5f2e9a5abbfa3dc7993af925582a65bbfcf77a297f4758"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-all84-public-source-proof.json",
+      "sha256": "8ddf33f46949f67a550704b63f07671818f5459edf9934e2d8ff96f8f699d642"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-all84-directed-normal-math.json",
+      "sha256": "bce9eda60dbd9065b6f2d71b70a008d3e7644ddc4cc1b11f041c5f2cda98b9ad"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-delivery-closure.json",
+      "sha256": "6a8c63f2705fe2cf39b65453296b49575d09c9f4fbb1c892941547f4700016df"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-historical45-pre-glass-successor-failure.txt",
+      "sha256": "7c46c9f3a5b3808d198b26c11ff85810c66c7a6155ab973c1392e4cbc1efb9a7"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-installed-public-tests.txt",
+      "sha256": "f2e814ce5dcbadd2997684ea59362dcaa87081537c885e8beeac76480c8fca67"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-historical45-public-tests.txt",
+      "sha256": "c878f8c28f666b48b73b23392bcd1dd5ed4f8dcd7f12586607b3dfeba9f7cddc"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-all84-public-tests.txt",
+      "sha256": "23f05f0b74fdca31a14e8c1fe10f30fbccc4e27e104a2c142174feb4d83c3938"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-level-assets-tests.txt",
+      "sha256": "a4137269a54e1a43fa257640f234b805768776fe8c116c040cdb630883829f67"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-pack-contract-tests.txt",
+      "sha256": "35a479855a904c426d7c34cf126c399c909402fc7bf9ad9068a6aaef68b15e39"
+    },
+    {
+      "file": "newer/textures/city5_3.webp",
+      "sha256": "5e6bcbb271a93d66c7d23108061394a85b55a59b8d0a7263d020bc801144b196"
+    },
+    {
+      "file": "newer/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-diffuse.webp",
+      "sha256": "27e1208ab5483044339996c873a2dbf0ea32f743f23b7c969d205043b5b9d045"
+    },
+    {
+      "file": "newer/textures/normals/city5_3.webp",
+      "sha256": "53b2a5d526a7446f16fbbc2e6d270f0a62a08d2665c04209dec30189a9e48f48"
+    },
+    {
+      "file": "newer/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-height.webp",
+      "sha256": "966ede9e96096d9fdfad9637c0ddccbe263ffd7d0d5206d5d9967eeb742a4847"
+    },
+    {
+      "file": "newer/textures/wizmet1_3.webp",
+      "sha256": "e35608c4ad95b5f42b1a8295c3b04155f054ba591863a9e240e5ad542847ab93"
+    },
+    {
+      "file": "newer/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-diffuse.webp",
+      "sha256": "79616b4d407117050d10589c317938498dd5287d5708243af3fad8755d9c5d01"
+    },
+    {
+      "file": "newer/textures/normals/wizmet1_3.webp",
+      "sha256": "fa6c511c34465652a23cc56b468b970be2c0180d2bfbab33819d9a4ee81af756"
+    },
+    {
+      "file": "newer/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-height.webp",
+      "sha256": "a06ef383cba5046d4431a7370a29e2e9d510cb62c003c1f6be4bd9b3f0768ddf"
+    }
+  ],
+  "packs": [
+    {
+      "path": "/private/tmp/quaked-official-library-20261017/shareware/pak0.pak",
+      "actualPath": "/Users/bri/quaked/Quake shareware/pak0.pak",
+      "bytes": 18689235,
+      "sha256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af"
+    },
+    {
+      "path": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+      "actualPath": "/Users/bri/quaked/Quake/pak0.pak",
+      "bytes": 179618935,
+      "sha256": "9de6f83944011ae4647beef1966ca4fbf490b35baf1f333097a0d363116ebea0"
+    },
+    {
+      "path": "/private/tmp/quaked-official-library-20261017/Dissolution of Eternity/pak0.pak",
+      "actualPath": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+      "bytes": 44484697,
+      "sha256": "6ff24b3857303f3c38aa091461cac9fe8c740554c6e693ef8a37a91ad930182f"
+    },
+    {
+      "path": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+      "actualPath": "/Users/bri/quaked/Dimension of the Past/pak0.pak",
+      "bytes": 40557898,
+      "sha256": "3ec75633670e6178ed0508ba114fe7bd77344861fbe2191ed55e379716814e55"
+    },
+    {
+      "path": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+      "actualPath": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+      "bytes": 760105822,
+      "sha256": "6da314d85d07eb2ebdd08502239c93efab1060fbbe2be78fcf18e7ec0a2851aa"
+    },
+    {
+      "path": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+      "actualPath": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+      "bytes": 79912030,
+      "sha256": "e6c268cf86081b2926e5745cff718600672fcdac7c94998fbb2555d74cad6ed1"
+    }
+  ],
+  "helperEffects": "Verification evidence and the one documented stale historical-test baseline fix only. No runtime asset/index/staging/build mutations."
+}

@@ -1,0 +1,70 @@
+{
+  "id": "wizmet1_3|64x64:006f4d1505d7fbd7",
+  "name": "wizmet1_3",
+  "key": "64x64:006f4d1505d7fbd7",
+  "width": 64,
+  "height": 64,
+  "pixelSha256": "52d7c8c1b6d1dc88c3c5e734f93a47db8db760efe83cc3920e8ad9715e533ed0",
+  "original": "originals/64x64-006f4d1505d7fbd7.rgba",
+  "status": "catalogued",
+  "file": "wizmet1_3.webp",
+  "reason": "Exact native identity",
+  "uses": [
+    {
+      "game": "id1",
+      "map": "maps/e2m4.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+      "slot": 0,
+      "faces": 2218,
+      "visibleCandidateFaces": 2218,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "id1",
+      "map": "maps/start.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/shareware/pak0.pak",
+      "slot": 56,
+      "faces": 189,
+      "visibleCandidateFaces": 189,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "hipnotic",
+      "map": "maps/hip2m3.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+      "slot": 41,
+      "faces": 127,
+      "visibleCandidateFaces": 127,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "hipnotic",
+      "map": "maps/hip2m5.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+      "slot": 63,
+      "faces": 20,
+      "visibleCandidateFaces": 20,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "hipnotic",
+      "map": "maps/hip3m1.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+      "slot": 25,
+      "faces": 31,
+      "visibleCandidateFaces": 31,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    }
+  ],
+  "action": "check-hd-dimensions"
+}

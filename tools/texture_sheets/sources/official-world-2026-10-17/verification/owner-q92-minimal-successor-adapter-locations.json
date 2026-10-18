@@ -1,0 +1,94 @@
+{
+  "qualification": "Exact minimal successor-adapter plan only; no maintainedtest, production or stagedtree mutation.",
+  "frozenIndexSha256": "9335e9d07d531a1c66df7d7966cc5c325f3e35bbcecf9c8e88aa50b0b4e5463d",
+  "newReceipt": "tools/texture_sheets/sources/official-world-2026-10-17/owner-q92-first-tranche-v2.json",
+  "locations": [
+    {
+      "file": "tests/official_texture_standard.js",
+      "line": 129,
+      "function": "registrationsAtFourTimes",
+      "change": "In the no-fourfold-migration branch132-135, apply only an explicit validated owner-Q92 successor for the two alias names. Validate predecessor binding and old map hashes against immutable original entries before returning current file/normal/outputhash expectations. All other exact-original-reuse entries return unchanged. Do not use validateQ92Entry unmodified: it assumes3authored normalChannels images.",
+      "names": [
+        "metflor2_1",
+        "mmetal1_3"
+      ],
+      "currentFileSha256": "2cccb2a1b6ef226fe0a69fdc3f8491b23ec7a488dcbf68d009dd65e9a696e25b"
+    },
+    {
+      "file": "tests/official_texture_registration_test.js",
+      "line": 131,
+      "function": "fixed baseline preservation loop",
+      "change": "Use a validated expected-baseline overlay only for /textures/{city5_3,wizmet1_3} and /normals/{city5_3,wizmet1_3}; validate their original baseline values and retained bytes against the successorprevious state, then compare currentnew values. Every other field/name remains exactly compared against fixedGit baseline. Source allowlists remain unchanged.",
+      "names": [
+        "city5_3",
+        "wizmet1_3"
+      ],
+      "currentFileSha256": "34fde849d80c68980724b34ec0f76151d2756b4516885c50363390392126cced"
+    },
+    {
+      "file": "tests/official_texture_registration_test.js",
+      "line": 141,
+      "function": "donor preservation assertions",
+      "change": "For only the two migratedaliases, compare before donor art/normal recipe to their validated predecessor (not e.current file); also assert current canonicaldonor binding equals the currentalias pair and that original key/nativepixel identity is unchanged. Leave all other43reuse semantics strict.",
+      "currentFileSha256": "34fde849d80c68980724b34ec0f76151d2756b4516885c50363390392126cced"
+    },
+    {
+      "file": "tests/level_texture_assets_test.py",
+      "line": 53,
+      "function": "test_exact_source_crop_phase_and_lossless_diffuse",
+      "change": "For only city5_3/wizmet1_3, select the retained losslesspredecessor path through the validated explicit successor receipt before the unchanged exact atlas/phase/seammask comparison at55. Add successor checks separately: exactparent/output hashes, new256square lossy92 bytes from retainedinputs, unchanged normal metadata, decodedcompression/distance/lighting checks. Other24materials keep reading live currentdiffuse and exactcomparison unchanged.",
+      "currentFileSha256": "faa4bcf45bacedd94f2c00effe5da90ae21aeb5bdcb2940e38d9035de8dd345d"
+    },
+    {
+      "file": "tests/level_texture_runtime_test.js",
+      "line": 60,
+      "function": "all26 live-index public integration",
+      "change": "No behavioural change required: it already uses index.textures/normal.file and derives actual lighting from decodedheight. Add explicit2alias+2donor realnative/source controls in the bounded owner-Q92 test; existingstandin test does not cover nativeguards.",
+      "currentFileSha256": "d9e89ecb587bd3768f09b5e8ced265cc83546a5d0b8c2039ca9516b5e43ddbf5"
+    },
+    {
+      "file": "tests/official_texture_standard.js",
+      "line": 192,
+      "function": "verifyRegisteredNormalChannels",
+      "change": "No change required: it already returns for a height-only recipe, and the bounded newtest will explicitly prove height-only derivednormals.",
+      "currentFileSha256": "2cccb2a1b6ef226fe0a69fdc3f8491b23ec7a488dcbf68d009dd65e9a696e25b"
+    },
+    {
+      "file": "tools/distribution/build_game_index.mjs",
+      "line": 27,
+      "function": "IndexSources",
+      "change": "No game-indexregeneration needed for file-only overlays: sourcefingerprint covers texture/model names, unchanged in this4binding formattranche. Still rerun existing packcontracts/collector reachability; all4newfiles classifyshareware.",
+      "currentFileSha256": "fa2a57b74c8db66adf2ba2ad407a53ea388bc92560a17dec88b5f78ff6093798"
+    },
+    {
+      "file": "tests/level_texture_assets_test.py",
+      "line": 66,
+      "function": "strict grayscale checks",
+      "change": "Only for city5_3/wizmet1_3 exact successors, retain strict R=G=B comparison on original lossless height master. Verify new current Q92 bytes independently and runtime scalar equals decodedR. Decoded unusedG differs by1 at668/909texels; no repair or blanket tolerance. Other24live height checks are unchanged."
+    },
+    {
+      "file": "tests/level_texture_assets_test.py",
+      "line": 143,
+      "function": "native-period runtime filename comparison",
+      "change": "Use a validated two-name successor overlay; assert predecessor filename equals historical8e4fefc baseline and livecurrent equals exact receiptcurrent. Other24names remain fixed baseline exactly."
+    },
+    {
+      "file": "tests/level_texture_assets_test.py",
+      "line": 149,
+      "function": "historical allowed changed-path set",
+      "change": "Build only the two donor paths from retained predecessors, for diffuse and height. Preserve exact8e4fefc..9a71a46 changed-set equality: historical26diffuses+26heights+index. Never derive those2historical names from current Q92 filenames."
+    }
+  ],
+  "invariants": [
+    "Immutable earlier registrations, before/after resample records, original4losslessfiles and sourceallowlists remain unchanged.",
+    "No skip, blanket tolerance or changedhistoricalhash to accommodate lossycurrentmaps.",
+    "Generated84artwork/channelnormal aggregation stays separate from this2owner formatderivative tranche."
+  ],
+  "additionalReplayObservation": "adoor03_6 and altar1_6 remained unresolved after the singleallowedfirst8replay. Existing seam_fixes.json records heightTouched10bottom for adoor03_6 and heightTouched1top/1left for altar1_6; this is a followup provenancehypothesis, not proof ofQ92 and no replayretry was performed.",
+  "preparedPublicSources": [
+    "tests/owner_texture_q92_standard.js",
+    "tests/official_texture_owner_q92_test.js"
+  ],
+  "exactPatch": "tools/texture_sheets/sources/official-world-2026-10-17/verification/owner-q92-minimal-successors-v2.patch",
+  "status": "Prepared in ROOT only. Syntax and patch dry-run pass; installed public testing awaits reviewed binding installation after current10-material Dev publication."
+}

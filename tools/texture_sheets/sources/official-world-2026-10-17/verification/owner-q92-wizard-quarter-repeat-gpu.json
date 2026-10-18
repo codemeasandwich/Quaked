@@ -1,0 +1,157 @@
+{
+  "qualification": "Candidate-only material/source trial. No gameplay catalogue edit or owner appearance acceptance.",
+  "manifest": "../candidates-2026-10-17/owner-q92-trial.json",
+  "checks": [
+    {
+      "passed": true,
+      "label": "Image available: tools/texture_sheets/sources/official-world-2026-10-17/native-city5_3.png"
+    },
+    {
+      "passed": true,
+      "label": "Image SHA matches trial: tools/texture_sheets/sources/official-world-2026-10-17/native-city5_3.png"
+    },
+    {
+      "passed": true,
+      "label": "Image available: newer/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Image SHA matches trial: newer/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Image available: newer/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "Image SHA matches trial: newer/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "city5_3: height image dimensions"
+    },
+    {
+      "passed": true,
+      "label": "city5_3: four-times native dimensions"
+    },
+    {
+      "passed": true,
+      "label": "city5_3: actual native identity matches"
+    },
+    {
+      "passed": true,
+      "label": "Image available: tools/texture_sheets/sources/official-world-2026-10-17/native-wizmet1_3.png"
+    },
+    {
+      "passed": true,
+      "label": "Image SHA matches trial: tools/texture_sheets/sources/official-world-2026-10-17/native-wizmet1_3.png"
+    },
+    {
+      "passed": true,
+      "label": "Image available: newer/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Image SHA matches trial: newer/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Image available: newer/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "Image SHA matches trial: newer/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "wizmet1_3: height image dimensions"
+    },
+    {
+      "passed": true,
+      "label": "wizmet1_3: four-times native dimensions"
+    },
+    {
+      "passed": true,
+      "label": "wizmet1_3: actual native identity matches"
+    },
+    {
+      "passed": true,
+      "label": "city5_3: public loader selected candidate"
+    },
+    {
+      "passed": true,
+      "label": "city5_3: original image preserved"
+    },
+    {
+      "passed": true,
+      "label": "city5_3: full candidate resolution"
+    },
+    {
+      "passed": true,
+      "label": "city5_3: prepared normal dimensions"
+    },
+    {
+      "passed": true,
+      "label": "wizmet1_3: public loader selected candidate"
+    },
+    {
+      "passed": true,
+      "label": "wizmet1_3: original image preserved"
+    },
+    {
+      "passed": true,
+      "label": "wizmet1_3: full candidate resolution"
+    },
+    {
+      "passed": true,
+      "label": "wizmet1_3: prepared normal dimensions"
+    }
+  ],
+  "assets": {
+    "city5_3": {
+      "native": [
+        64,
+        64
+      ],
+      "candidate": [
+        256,
+        256
+      ],
+      "normal": [
+        256,
+        256
+      ],
+      "sourceIdentity": "64x64:837ce7b57349da7f",
+      "normalHeightSource": true
+    },
+    "wizmet1_3": {
+      "native": [
+        64,
+        64
+      ],
+      "candidate": [
+        256,
+        256
+      ],
+      "normal": [
+        256,
+        256
+      ],
+      "sourceIdentity": "64x64:006f4d1505d7fbd7",
+      "normalHeightSource": true
+    }
+  },
+  "shaderErrors": [],
+  "lastDraw": {
+    "name": "wizmet1_3",
+    "view": "quarter",
+    "comparisonDimensions": [
+      16,
+      16
+    ],
+    "repeat": 3,
+    "relief": true,
+    "material": "MeshLambertMaterial",
+    "drawCalls": 1
+  }
+}
