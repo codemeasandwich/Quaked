@@ -1,0 +1,327 @@
+{
+  "url": "http://127.0.0.1:49839/tests/lavaman_effect_trial.html",
+  "errors": [],
+  "consoleErrors": [],
+  "result": {
+    "status": "PASS",
+    "scope": "Controlled actual native owned model/BSP texture, public materials and shared compositor; gameplay and owner visual acceptance separate",
+    "source": {
+      "model": "progs/lavaman.mdl",
+      "modelSHA256": "b81bb7f5cebb2889cfd2f431f743200f672d0195b05fe3faa98b50163fed7fb1",
+      "BSP": "maps/start.bsp",
+      "BSPSHA256": "a4e907bb36bb13e82be5656342a75cfd412e843784014f76a1df5bdcb63896d0",
+      "paletteSHA256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+      "texture": "*lava1",
+      "nativeLavaRGBA": "a2f6e41ca7ce81ca8d88d14ba26084cc83ca9ed544294ea00ea3900c2e9cf0a1",
+      "nativeLavaDimensions": [
+        64,
+        64
+      ],
+      "originalSourceBytesRetained": true
+    },
+    "bodyHDR": {
+      "warmPixels": 4682,
+      "redP50": 1.748046875,
+      "redP90": 2.978515625,
+      "redP99": 3.54296875,
+      "redMax": 3.66015625,
+      "brightMeanRGB": [
+        3.2723297574626864,
+        0.44735834898470817,
+        0.03183344330614818
+      ],
+      "brightGreenToRed": 0.13670943399407975,
+      "brightBlueToRed": 0.009728067054840871
+    },
+    "nativeHDR": {
+      "warmPixels": 166344,
+      "redP50": 1.9677734375,
+      "redP90": 3.359375,
+      "redP99": 4.0390625,
+      "redMax": 4.77734375,
+      "brightMeanRGB": [
+        3.677092256537421,
+        0.4955798438908927,
+        0.08364233780021885
+      ],
+      "brightGreenToRed": 0.1347749279365543,
+      "brightBlueToRed": 0.02274686952754938
+    },
+    "bodyDisplay": {
+      "selection": "same pixels as brightest 10 percent of pre-tone warm red samples",
+      "pixels": 469,
+      "meanRGB": [
+        255,
+        187.9360341151386,
+        176.0682302771855
+      ],
+      "greenToRed": 0.7370040553534847,
+      "blueToRed": 0.6904636481458255
+    },
+    "nativeDisplay": {
+      "selection": "same pixels as brightest 10 percent of pre-tone warm red samples",
+      "pixels": 16635,
+      "meanRGB": [
+        255,
+        187.75154794108806,
+        177.22344454463482
+      ],
+      "greenToRed": 0.7362805801611296,
+      "blueToRed": 0.6949939001750385
+    },
+    "hotRedP90Ratio": 0.8866279069767442,
+    "heat": {
+      "shimmer": {
+        "changed": 5474,
+        "energy": 686439
+      },
+      "motion": {
+        "changed": 8156,
+        "energy": 1001576
+      },
+      "blocked": {
+        "changed": 0,
+        "energy": 0
+      },
+      "heldDelta": {
+        "changed": 0,
+        "energy": 0
+      },
+      "wet": {
+        "changed": 0,
+        "energy": 0
+      },
+      "poolHeat": {
+        "changed": 14195,
+        "energy": 1511528
+      }
+    },
+    "checks": [
+      {
+        "passed": true,
+        "name": "Literal native lava and posed actor render cleanly through actual shared HDR"
+      },
+      {
+        "passed": true,
+        "name": "Actual pre-tone-map HDR buffers contain bright warm texels from both native lava and the creature",
+        "bodyHDR": {
+          "warmPixels": 4682,
+          "redP50": 1.748046875,
+          "redP90": 2.978515625,
+          "redP99": 3.54296875,
+          "redMax": 3.66015625,
+          "brightMeanRGB": [
+            3.2723297574626864,
+            0.44735834898470817,
+            0.03183344330614818
+          ],
+          "brightGreenToRed": 0.13670943399407975,
+          "brightBlueToRed": 0.009728067054840871
+        },
+        "nativeHDR": {
+          "warmPixels": 166344,
+          "redP50": 1.9677734375,
+          "redP90": 3.359375,
+          "redP99": 4.0390625,
+          "redMax": 4.77734375,
+          "brightMeanRGB": [
+            3.677092256537421,
+            0.4955798438908927,
+            0.08364233780021885
+          ],
+          "brightGreenToRed": 0.1347749279365543,
+          "brightBlueToRed": 0.02274686952754938
+        }
+      },
+      {
+        "passed": true,
+        "name": "Actual registered actor and native liquid use the same live shared HDR pulse",
+        "body": 6.757060395221568,
+        "native": 6.757060395221568
+      },
+      {
+        "passed": true,
+        "name": "Hot creature pigment matches literal native lava HDR red intensity within 30 percent",
+        "ratio": 0.8866279069767442,
+        "bodyHDR": {
+          "warmPixels": 4682,
+          "redP50": 1.748046875,
+          "redP90": 2.978515625,
+          "redP99": 3.54296875,
+          "redMax": 3.66015625,
+          "brightMeanRGB": [
+            3.2723297574626864,
+            0.44735834898470817,
+            0.03183344330614818
+          ],
+          "brightGreenToRed": 0.13670943399407975,
+          "brightBlueToRed": 0.009728067054840871
+        },
+        "nativeHDR": {
+          "warmPixels": 166344,
+          "redP50": 1.9677734375,
+          "redP90": 3.359375,
+          "redP99": 4.0390625,
+          "redMax": 4.77734375,
+          "brightMeanRGB": [
+            3.677092256537421,
+            0.4955798438908927,
+            0.08364233780021885
+          ],
+          "brightGreenToRed": 0.1347749279365543,
+          "brightBlueToRed": 0.02274686952754938
+        }
+      },
+      {
+        "passed": true,
+        "name": "Bright hot pigment matches native lava HDR green/red chroma within .05",
+        "body": 0.13670943399407975,
+        "native": 0.1347749279365543
+      },
+      {
+        "passed": true,
+        "name": "Bright hot pigment matches native lava HDR blue/red chroma within .035",
+        "body": 0.009728067054840871,
+        "native": 0.02274686952754938
+      },
+      {
+        "passed": true,
+        "name": "Bright post-tone hot pigment matches native lava within 20 levels per RGB channel",
+        "bodyDisplay": {
+          "selection": "same pixels as brightest 10 percent of pre-tone warm red samples",
+          "pixels": 469,
+          "meanRGB": [
+            255,
+            187.9360341151386,
+            176.0682302771855
+          ],
+          "greenToRed": 0.7370040553534847,
+          "blueToRed": 0.6904636481458255
+        },
+        "nativeDisplay": {
+          "selection": "same pixels as brightest 10 percent of pre-tone warm red samples",
+          "pixels": 16635,
+          "meanRGB": [
+            255,
+            187.75154794108806,
+            177.22344454463482
+          ],
+          "greenToRed": 0.7362805801611296,
+          "blueToRed": 0.6949939001750385
+        },
+        "displayDelta": [
+          0,
+          0.1844861740505337,
+          1.1552142674493098
+        ]
+      },
+      {
+        "passed": true,
+        "name": "Actual registered visible native actor enters the separate production heat pool"
+      },
+      {
+        "passed": true,
+        "name": "Separate actor heat refracts real patterned background and animates with its compositor clock",
+        "shimmer": {
+          "changed": 5474,
+          "energy": 686439
+        },
+        "motion": {
+          "changed": 8156,
+          "energy": 1001576
+        }
+      },
+      {
+        "passed": true,
+        "name": "Actor heat uses the existing GL-clean compositor"
+      },
+      {
+        "passed": true,
+        "name": "An opaque foreground depth blocker suppresses heat behind it",
+        "blocked": {
+          "changed": 0,
+          "energy": 0
+        },
+        "actorCount": 1
+      },
+      {
+        "passed": true,
+        "name": "Actual public held-receiver material protects its pixels from background heat",
+        "heldDelta": {
+          "changed": 0,
+          "energy": 0
+        },
+        "heldPixels": 288281
+      },
+      {
+        "passed": true,
+        "name": "Underwater suppresses the separate actor-heat addition",
+        "wet": {
+          "changed": 0,
+          "energy": 0
+        }
+      },
+      {
+        "passed": true,
+        "name": "Actor heat never evicts or rewrites the four existing pool slots",
+        "withActor": 4,
+        "withoutActor": 4
+      },
+      {
+        "passed": true,
+        "name": "Existing pool-only heat still refracts the actual GPU background independently",
+        "poolHeat": {
+          "changed": 14195,
+          "energy": 1511528
+        }
+      },
+      {
+        "passed": true,
+        "name": "No runtime or shader errors in the actual HDR/heat trial",
+        "errors": []
+      }
+    ],
+    "draws": 16,
+    "elapsedMs": 3819.7000000178814,
+    "errors": []
+  },
+  "gpu": {
+    "vendor": "WebKit",
+    "renderer": "WebKit WebGL",
+    "unmaskedVendor": "Google Inc. (Apple)",
+    "unmaskedRenderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)"
+  },
+  "views": [
+    {
+      "index": 0,
+      "label": "Lava Man: shared HDR, heat off",
+      "path": "/private/tmp/quaked-lavaman-hdr-heat-final-view-0.png",
+      "retainedPath": "docs/evidence/lavaman-skin-flow-2026-10-18/hdr-heat-final-view-0.png"
+    },
+    {
+      "index": 1,
+      "label": "Literal native *lava1: same HDR/exposure",
+      "path": "/private/tmp/quaked-lavaman-hdr-heat-final-view-1.png",
+      "retainedPath": "docs/evidence/lavaman-skin-flow-2026-10-18/hdr-heat-final-view-1.png"
+    },
+    {
+      "index": 2,
+      "label": "Actor heat on: same paused skin pose",
+      "path": "/private/tmp/quaked-lavaman-hdr-heat-final-view-2.png",
+      "retainedPath": "docs/evidence/lavaman-skin-flow-2026-10-18/hdr-heat-final-view-2.png"
+    },
+    {
+      "index": 3,
+      "label": "Only heat clock advanced; body UV clock held",
+      "path": "/private/tmp/quaked-lavaman-hdr-heat-final-view-3.png",
+      "retainedPath": "docs/evidence/lavaman-skin-flow-2026-10-18/hdr-heat-final-view-3.png"
+    },
+    {
+      "index": 4,
+      "label": "Existing pool-only heat: actor heat excluded",
+      "path": "/private/tmp/quaked-lavaman-hdr-heat-final-view-4.png",
+      "retainedPath": "docs/evidence/lavaman-skin-flow-2026-10-18/hdr-heat-final-view-4.png"
+    }
+  ],
+  "originalReceiptSha256": "ba08cbb71959eef7cd4f2c040fcb52674c1096953ce96cd476ccfc7d636a3c6c"
+}

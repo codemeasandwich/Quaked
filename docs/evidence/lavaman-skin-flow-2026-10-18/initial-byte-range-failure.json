@@ -1,0 +1,6 @@
+{
+  "url": "http://127.0.0.1:52187/tests/rogue_skin_gpu_trial.html?model=lavaman&externalGames=1&lavaEffects=1",
+  "errors": [],
+  "consoleErrors": [],
+  "error": "Error: Error: Serve this trial with tools/serve.py (byte ranges required)\n    at range (http://127.0.0.1:52187/tests/rogue_skin_gpu_trial.js:140:140)\n    at async http://127.0.0.1:52187/tests/rogue_skin_gpu_trial.js:141:24\n    at file:///private/tmp/quaked-lavaman-flow-browser.mjs:11:51\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:449:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)"
+}

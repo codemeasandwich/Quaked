@@ -1,0 +1,43 @@
+meshing progs/lavaman.mdl...
+
+meshing progs/boss.mdl...
+
+PASS Texture animation preserves exact native geometry, normals, UVs, indices and bounds across90 poses and times
+PASS Each Lava actor owns a material clone while borrowing unchanged base maps and compiler bindings
+PASS Texture uniforms remain isolated, deterministic and reusable through pause rewind and native pose changes
+PASS Texture animation leaves native and interpolated shadow poses and interrupted-blend leads unchanged
+PASS Actual ready fire and smoke roots follow native triangles without mesh deformation
+PASS Pending failed wrong-identity and alternate-skin actors cannot acquire texture animation
+PASS Foreign material ownership, model replacement and custom disable retire only Lava-owned materials
+PASS Catalogue reload replaces owned texture material without disposing its new borrowed base
+PASS Real Classic save/restore retains texture clock, native geometry and actual borrowed FX visibility
+PASS Eight-actor texture pool is bounded and main actors retain priority over inactive portal ghosts
+PASS Scene-token lifecycle restores base materials and never disposes native geometry or shared effects textures
+RESULT 11/11 passed (tests/lavaman_effects_test.js)
+meshing progs/lavaman.mdl...
+
+meshing progs/boss.mdl...
+
+PASS Releasing Lava Man must preserve attributes installed by a later visual owner
+PASS All eight Lava emitters attach to independently resolved canonical native triangles
+PASS Lava shader assets may disappear and recover without disposing borrowed textures or native geometry
+PASS Main Lava actors reclaim ghost capacity but ghosts cannot displace eight main actors
+LAVA_TEXTURE_CPU_AUDIT {"environment":"Node CPU public native draw+Seen+invariant checks; no WebGL timing or pixel qualification","node":"v20.8.1","actors":8,"expandedVertices":859,"warmFrames":120,"measuredFrames":240,"wallMs":151.10483300685883,"cpuUserMs":109.558,"cpuSystemMs":2.553,"meanMs":0.6296034708619118,"medianMs":0.24695798754692078,"p95Ms":1.7305409908294678,"maxMs":20.65462499856949,"ownedEffectTypedArrayBytes":11264,"ownedEffectArrays":40,"ownedMaterials":8,"retainedHeapDelta":-10158408,"arrayBufferDelta":-832484,"gcAvailable":false}
+PASS Eight-actor texture animation reuses owned materials uniforms and bounded effect arrays over native poses
+PASS Actual floor-shadow projection remains canonical in Newer and Classic while texture phase changes
+meshing progs/lavaman.mdl...
+
+PASS Actual level-view API admits only nearby enabled Lava ghosts and retires inactive cached views
+PASS Actual compiled UV domain conservatively covers native charts and has shared controller ownership
+RESULT 8/8 passed (tests/lavaman_effects_audit_test.js)
+meshing progs/lavaman.mdl...
+
+PASS Main native Lava Man heat uses actual transformed current-pose bounds without mutating geometry or requiring optional fire assets
+PASS Actor heat and existing four pool slots remain independent and bounded while nearest-source order and water-off behavior stay correct
+PASS Actor heat resets on heat-off underwater Classic and custom-off and resumes only for an eligible current actor
+PASS Unseen stale detached hidden ghost dead and reused render actors do not leave creature heat behind
+PASS Actual composite actor boxes update with native movement and reject distant sources without changing native pose or pool selection
+PASS Owned Lava Man material shares the actual native lava HDR pulse and unregisters on release without changing borrowed base material
+PASS Pending failed and unsupported native-skin admissions cannot become heat sources
+RESULT 7/7 passed (tests/lavaman_heat_test.js)
+TOTAL 26/26 passed

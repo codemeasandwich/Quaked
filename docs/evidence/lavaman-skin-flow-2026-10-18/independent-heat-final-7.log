@@ -1,0 +1,11 @@
+meshing progs/lavaman.mdl...
+
+PASS Main native Lava Man heat uses actual transformed current-pose bounds without mutating geometry or requiring optional fire assets
+PASS Actor heat and existing four pool slots remain independent and bounded while nearest-source order and water-off behavior stay correct
+PASS Actor heat resets on heat-off underwater Classic and custom-off and resumes only for an eligible current actor
+PASS Unseen stale detached hidden ghost dead and reused render actors do not leave creature heat behind
+PASS Actual composite actor boxes update with native movement and reject distant sources without changing native pose or pool selection
+PASS Owned Lava Man material shares the actual native lava HDR pulse and unregisters on release without changing borrowed base material
+PASS Pending failed and unsupported native-skin admissions cannot become heat sources
+RESULT 7/7 passed (tests/lavaman_heat_test.js)
+TOTAL 7/7 passed

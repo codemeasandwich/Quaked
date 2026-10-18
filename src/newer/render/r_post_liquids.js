@@ -17,8 +17,12 @@
 import { r_water_look, r_reflect, r_mist, r_heathaze, r_caustics, CAUSTIC } from './r_post_config.js';
 import { r_waterwarp } from '../../engine/render/glquake.js';
 import { R_WaterActive, postState } from './r_post_state.js';
-import { r_newer_water } from '../mode.js';
+import { r_newer_water, R_NewerGame } from '../mode.js';
+import { R_LavaManHeatSources } from './r_lavaman.js';
 import { R_WaterProbeUpdate, R_WaterProbeReadiness, R_WaterProbes } from './r_waterprobe.js';
+
+// Independent creature capacity; never consumes a static lava-pool slot.
+export const MAX_LAVA_ACTOR_HEAT = 8;
 
 // Pools of water and slime: { kind, min: [x, y], max: [x, y], z, bottom }. A ray that
 // passes through one loses light to it, and surfaces beneath it get caustics.
@@ -392,6 +396,25 @@ export function R_PostLiquidUniforms( cm, camera, time = 0 ) {
 
 	}
 
+ // Creature heat is independent of the water-rendering switch and has its own
+ // bounded slots: an actor can never evict one of the existing four lava pools.
+ const actorHeat = [];
+ if ( R_NewerGame() && r_heathaze.value > 0 && ! postState.underwater ) {
+  for ( const source of R_LavaManHeatSources() ) {
+   const lo = source.min, hi = source.max;
+   if ( lo?.length !== 3 || hi?.length !== 3 || ! [ ...lo, ...hi ].every( Number.isFinite ) || lo.some( ( v, i ) => v > hi[ i ] ) ) continue;
+   const dist = Math.hypot( ...lo.map( ( v, i ) => Math.max( v - cw[ 12 + i ], 0, cw[ 12 + i ] - hi[ i ] ) ) );
+   if ( dist < 2400 ) actorHeat.push( { source, dist } );
+  }
+ }
+ actorHeat.sort( ( a, b ) => a.dist - b.dist );
+ const actorCount = Math.min( actorHeat.length, MAX_LAVA_ACTOR_HEAT );
+ cm.uLavaActorCount.value = actorCount;
+ for ( let i = 0; i < actorCount; i ++ ) {
+  const { min, max } = actorHeat[ i ].source;
+  cm.uLavaActorMin.value[ i ].set( min[ 0 ] - 12, min[ 1 ] - 12, min[ 2 ], 0 );
+  cm.uLavaActorMax.value[ i ].set( max[ 0 ] + 12, max[ 1 ] + 12, max[ 2 ] + 80, 0 );
+ }
 	cm.uLavaCount.value = lavaCount;
 	cm.uUnderwater.value = postState.underwater ? 1 : 0;
 	cm.uHeat.value = postState.underwater ? 0 : Math.max( 0, r_heathaze.value );

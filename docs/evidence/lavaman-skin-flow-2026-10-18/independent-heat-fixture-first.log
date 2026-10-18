@@ -1,0 +1,37 @@
+meshing progs/lavaman.mdl...
+
+RESULT 0/5 passed (tests/lavaman_heat_test.js)
+FAIL Main native Lava Man heat uses actual transformed current-pose bounds without mutating geometry or requiring optional fire assets AssertionError [ERR_ASSERTION]: actual seen native actor produces heat even with optional fire assets unavailable
+
+0 !== 1
+
+    at file:///Users/bri/SOURCE/Quaked/.worktrees/faces-cleanup/tests/lavaman_heat_test.js:81:51
+    at fixture (file:///Users/bri/SOURCE/Quaked/.worktrees/faces-cleanup/tests/lavaman_heat_test.js:61:9)
+    at async file:///Users/bri/SOURCE/Quaked/.worktrees/faces-cleanup/tools/run_tests.mjs:94:9
+FAIL Actor heat and existing four pool slots remain independent and bounded while nearest-source order and water-off behavior stay correct AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+0 !== 8
+
+    at file:///Users/bri/SOURCE/Quaked/.worktrees/faces-cleanup/tests/lavaman_heat_test.js:91:31
+    at fixture (file:///Users/bri/SOURCE/Quaked/.worktrees/faces-cleanup/tests/lavaman_heat_test.js:61:9)
+    at async file:///Users/bri/SOURCE/Quaked/.worktrees/faces-cleanup/tools/run_tests.mjs:94:9
+FAIL Actor heat resets on heat-off underwater Classic and custom-off and resumes only for an eligible current actor AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+0 !== 1
+
+    at file:///Users/bri/SOURCE/Quaked/.worktrees/faces-cleanup/tests/lavaman_heat_test.js:99:38
+    at fixture (file:///Users/bri/SOURCE/Quaked/.worktrees/faces-cleanup/tests/lavaman_heat_test.js:61:9)
+    at async file:///Users/bri/SOURCE/Quaked/.worktrees/faces-cleanup/tools/run_tests.mjs:94:9
+FAIL Unseen stale detached hidden ghost dead and reused render actors do not leave creature heat behind AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+0 !== 1
+
+    at file:///Users/bri/SOURCE/Quaked/.worktrees/faces-cleanup/tests/lavaman_heat_test.js:109:36
+    at fixture (file:///Users/bri/SOURCE/Quaked/.worktrees/faces-cleanup/tests/lavaman_heat_test.js:61:9)
+    at async file:///Users/bri/SOURCE/Quaked/.worktrees/faces-cleanup/tools/run_tests.mjs:94:9
+FAIL Actual composite actor boxes update with native movement and reject distant sources without changing native pose or pool selection AssertionError [ERR_ASSERTION]: heat follows actual actor transform: 0 != 215
+    at near (file:///Users/bri/SOURCE/Quaked/.worktrees/faces-cleanup/tests/lavaman_heat_test.js:28:32)
+    at file:///Users/bri/SOURCE/Quaked/.worktrees/faces-cleanup/tests/lavaman_heat_test.js:124:78
+    at fixture (file:///Users/bri/SOURCE/Quaked/.worktrees/faces-cleanup/tests/lavaman_heat_test.js:61:9)
+    at async file:///Users/bri/SOURCE/Quaked/.worktrees/faces-cleanup/tools/run_tests.mjs:94:9
+TOTAL 0/5 passed

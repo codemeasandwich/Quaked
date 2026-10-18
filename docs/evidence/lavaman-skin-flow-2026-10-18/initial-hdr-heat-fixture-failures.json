@@ -1,0 +1,204 @@
+{
+  "url": "http://127.0.0.1:49839/tests/lavaman_effect_trial.html",
+  "errors": [],
+  "consoleErrors": [],
+  "result": {
+    "status": "FAIL",
+    "scope": "Controlled actual native owned model/BSP texture, public materials and shared compositor; gameplay and owner visual acceptance separate",
+    "source": {
+      "model": "progs/lavaman.mdl",
+      "modelSHA256": "b81bb7f5cebb2889cfd2f431f743200f672d0195b05fe3faa98b50163fed7fb1",
+      "BSP": "maps/start.bsp",
+      "BSPSHA256": "a4e907bb36bb13e82be5656342a75cfd412e843784014f76a1df5bdcb63896d0",
+      "paletteSHA256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+      "texture": "*lava1",
+      "nativeLavaRGBA": "a2f6e41ca7ce81ca8d88d14ba26084cc83ca9ed544294ea00ea3900c2e9cf0a1",
+      "nativeLavaDimensions": [
+        64,
+        64
+      ],
+      "originalSourceBytesRetained": true
+    },
+    "bodyHDR": {
+      "warmPixels": 5655,
+      "redP50": 2.82421875,
+      "redP90": 5.24609375,
+      "redP99": 6.3984375,
+      "redMax": 6.65625,
+      "greenMean": 0.5187623608333679,
+      "blueMean": 0.18881668542782676
+    },
+    "nativeHDR": {
+      "warmPixels": 143617,
+      "redP50": 1.806640625,
+      "redP90": 2.904296875,
+      "redP99": 3.9140625,
+      "redMax": 4.44921875,
+      "greenMean": 0.11114876195440282,
+      "blueMean": 0.018600033024759394
+    },
+    "hotRedP90Ratio": 1.8063214525891056,
+    "heat": {
+      "shimmer": {
+        "changed": 5499,
+        "energy": 697308
+      },
+      "motion": {
+        "changed": 0,
+        "energy": 0
+      },
+      "blocked": {
+        "changed": 0,
+        "energy": 0
+      },
+      "heldDelta": {
+        "changed": 0,
+        "energy": 0
+      },
+      "wet": {
+        "changed": 0,
+        "energy": 0
+      }
+    },
+    "checks": [
+      {
+        "passed": true,
+        "name": "Literal native lava and posed actor render cleanly through actual shared HDR"
+      },
+      {
+        "passed": true,
+        "name": "Actual pre-tone-map HDR buffers contain bright warm texels from both native lava and the creature",
+        "bodyHDR": {
+          "warmPixels": 5655,
+          "redP50": 2.82421875,
+          "redP90": 5.24609375,
+          "redP99": 6.3984375,
+          "redMax": 6.65625,
+          "greenMean": 0.5187623608333679,
+          "blueMean": 0.18881668542782676
+        },
+        "nativeHDR": {
+          "warmPixels": 143617,
+          "redP50": 1.806640625,
+          "redP90": 2.904296875,
+          "redP99": 3.9140625,
+          "redMax": 4.44921875,
+          "greenMean": 0.11114876195440282,
+          "blueMean": 0.018600033024759394
+        }
+      },
+      {
+        "passed": true,
+        "name": "Actual registered actor and native liquid use the same live shared HDR pulse",
+        "body": 6.757060395221568,
+        "native": 6.757060395221568
+      },
+      {
+        "passed": false,
+        "name": "Hot creature pigment occupies the same HDR intensity range as literal native lava",
+        "ratio": 1.8063214525891056,
+        "bodyHDR": {
+          "warmPixels": 5655,
+          "redP50": 2.82421875,
+          "redP90": 5.24609375,
+          "redP99": 6.3984375,
+          "redMax": 6.65625,
+          "greenMean": 0.5187623608333679,
+          "blueMean": 0.18881668542782676
+        },
+        "nativeHDR": {
+          "warmPixels": 143617,
+          "redP50": 1.806640625,
+          "redP90": 2.904296875,
+          "redP99": 3.9140625,
+          "redMax": 4.44921875,
+          "greenMean": 0.11114876195440282,
+          "blueMean": 0.018600033024759394
+        }
+      },
+      {
+        "passed": true,
+        "name": "Actual registered visible native actor enters the separate production heat pool"
+      },
+      {
+        "passed": false,
+        "name": "Separate actor heat refracts real patterned background and animates with its compositor clock",
+        "shimmer": {
+          "changed": 5499,
+          "energy": 697308
+        },
+        "motion": {
+          "changed": 0,
+          "energy": 0
+        }
+      },
+      {
+        "passed": true,
+        "name": "Actor heat uses the existing GL-clean compositor"
+      },
+      {
+        "passed": true,
+        "name": "An opaque foreground depth blocker suppresses heat behind it",
+        "blocked": {
+          "changed": 0,
+          "energy": 0
+        },
+        "actorCount": 1
+      },
+      {
+        "passed": true,
+        "name": "Actual public held-receiver material protects its pixels from background heat",
+        "heldDelta": {
+          "changed": 0,
+          "energy": 0
+        },
+        "heldPixels": 288281
+      },
+      {
+        "passed": true,
+        "name": "Underwater suppresses the separate actor-heat addition",
+        "wet": {
+          "changed": 0,
+          "energy": 0
+        }
+      },
+      {
+        "passed": true,
+        "name": "Actor heat never evicts or rewrites the four existing pool slots",
+        "withActor": 4,
+        "withoutActor": 4
+      }
+    ],
+    "draws": 14,
+    "elapsedMs": 2975.0999999940395,
+    "errors": []
+  },
+  "gpu": {
+    "vendor": "WebKit",
+    "renderer": "WebKit WebGL",
+    "unmaskedVendor": "Google Inc. (Apple)",
+    "unmaskedRenderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)"
+  },
+  "views": [
+    {
+      "index": 0,
+      "label": "Lava Man: shared HDR, heat off",
+      "path": "/private/tmp/quaked-lavaman-hdr-heat-run2-view-0.png"
+    },
+    {
+      "index": 1,
+      "label": "Literal native *lava1: same HDR/exposure",
+      "path": "/private/tmp/quaked-lavaman-hdr-heat-run2-view-1.png"
+    },
+    {
+      "index": 2,
+      "label": "Actor heat on: same paused skin pose",
+      "path": "/private/tmp/quaked-lavaman-hdr-heat-run2-view-2.png"
+    },
+    {
+      "index": 3,
+      "label": "Only heat clock advanced; body UV clock held",
+      "path": "/private/tmp/quaked-lavaman-hdr-heat-run2-view-3.png"
+    }
+  ]
+}

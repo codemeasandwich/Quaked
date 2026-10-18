@@ -1,0 +1,550 @@
+{
+  "capturedAt": "2026-10-18T09:37:01.781776+00:00",
+  "baseHEAD": "28765ac38a3da144a7c73986de7d953a76e8d1f1",
+  "scope": "Final unstaged owner-corrected Lava Man skin flow, native lava HDR calibration and independent actor heat; controlled actual browser/native sources, not live gameplay or owner acceptance.",
+  "sourceInputs": {
+    "src/newer/render/r_lavaman.js": {
+      "bytes": 18327,
+      "sha256": "76a0c9a9e93e49e0a51459b2aa3a9ef8304481bc0c53c869b2223c88fb3d7945"
+    },
+    "src/newer/render/r_post_liquids.js": {
+      "bytes": 19958,
+      "sha256": "f11247d4f04d4566d8baecac72004cf1b750ec35ec1ba13a2a12159a1f86c0c9"
+    },
+    "src/newer/render/r_post_shaders.js": {
+      "bytes": 79693,
+      "sha256": "8b7af0b7d49bf825b6337a10a73a690b81199d351f1ee28514709c5b2c456091"
+    },
+    "src/newer/render/r_post_targets.js": {
+      "bytes": 18467,
+      "sha256": "691b4f22bc4a44204400655e06fddc1c0683eba8bf55fbb97fba417c0a57940b"
+    },
+    "tests/lavaman_effects_test.js": {
+      "bytes": 25246,
+      "sha256": "58e1f6488398bedf675b813b3a0ed439ae1c25fe870a564c13ec766a27193370"
+    },
+    "tests/lavaman_effects_audit_test.js": {
+      "bytes": 26370,
+      "sha256": "4959bd877c9b76d73f5e7e08c4ae10710db7839600632ec55a12f9fac20773ad"
+    },
+    "tests/lavaman_effect_gpu_checks.js": {
+      "bytes": 23917,
+      "sha256": "79b49c74364116f6274627a417d8b3610ed31659e28f1158082f858e47bf1c7b"
+    },
+    "tests/lavaman_heat_test.js": {
+      "bytes": 18504,
+      "sha256": "9afaea89122226c91efd2cb40d0443e26892e3713add58b055ab70cde4210886"
+    },
+    "tests/lavaman_effect_trial.html": {
+      "bytes": 1096,
+      "sha256": "f6ce991bcc3f80e3a831f184e008b84edc723e9f7e1b758a5e6a0ed0f553f526"
+    },
+    "tests/lavaman_effect_trial.js": {
+      "bytes": 18118,
+      "sha256": "092a53e911a091a775f3098615ba2ca2ccddbc9bab679ff8760387dd318ffe21"
+    },
+    "newer/enemies/lavaman/custom/diffuse.webp": {
+      "bytes": 272602,
+      "sha256": "30348fe28f83481d995b5b259bacb15dbda92b8d11660e00a3c2097f5c7d9abb"
+    },
+    "newer/enemies/lavaman/custom/height.webp": {
+      "bytes": 164218,
+      "sha256": "1ae1cd5af01f9db008b97cfd4879b9b4be0b46f151e2be1799ace6173fcb46eb"
+    }
+  },
+  "artifacts": [
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-0.png",
+      "sha256": "a664934a7b98bd463b0c9a3edfd84c1d8742cd5989b5411e59bbe986f6365ffe",
+      "bytes": 73104,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-0.png",
+      "sourceSha256": "a664934a7b98bd463b0c9a3edfd84c1d8742cd5989b5411e59bbe986f6365ffe"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-1.png",
+      "sha256": "512565eb857a75156df11b1fba8be728d32d4a32a9c940ca5e29818b1e155f42",
+      "bytes": 68086,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-1.png",
+      "sourceSha256": "512565eb857a75156df11b1fba8be728d32d4a32a9c940ca5e29818b1e155f42"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-2.png",
+      "sha256": "32c9cfc530c84b7f3e506c95356ebbfbd88f5f632cc292e7d62797d962bd8b20",
+      "bytes": 65954,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-2.png",
+      "sourceSha256": "32c9cfc530c84b7f3e506c95356ebbfbd88f5f632cc292e7d62797d962bd8b20"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-3.png",
+      "sha256": "71ecf7b9cef9f9a6ea8e684ca806808b6f34388666e2cdc2cb382a34137bcca2",
+      "bytes": 64107,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-3.png",
+      "sourceSha256": "71ecf7b9cef9f9a6ea8e684ca806808b6f34388666e2cdc2cb382a34137bcca2"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-4.png",
+      "sha256": "075ad786286d3e9316f8430053bfdf916f168eb2a324c51702f87ae54768d111",
+      "bytes": 73484,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-4.png",
+      "sourceSha256": "075ad786286d3e9316f8430053bfdf916f168eb2a324c51702f87ae54768d111"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-5.png",
+      "sha256": "0f0b60903c88f96155448c4a4d4632742017b49362ea26e8c874ebbea1928f65",
+      "bytes": 83358,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-5.png",
+      "sourceSha256": "0f0b60903c88f96155448c4a4d4632742017b49362ea26e8c874ebbea1928f65"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-6.png",
+      "sha256": "729413b0331cb8525246c5eb4cb8534b6ed498c922bdcf4841160d20ca45ed24",
+      "bytes": 79153,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-6.png",
+      "sourceSha256": "729413b0331cb8525246c5eb4cb8534b6ed498c922bdcf4841160d20ca45ed24"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-7.png",
+      "sha256": "38cc3392dc0bae163050e1c29b9ea57cebf679fcfe8d7bed9e4b4632d1ca0c49",
+      "bytes": 87731,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-7.png",
+      "sourceSha256": "38cc3392dc0bae163050e1c29b9ea57cebf679fcfe8d7bed9e4b4632d1ca0c49"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-8.png",
+      "sha256": "beb15d34413af3f1b3cf57c81f8e6775c0f4bf9eda50936f4a80236b53eacae7",
+      "bytes": 78249,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-8.png",
+      "sourceSha256": "beb15d34413af3f1b3cf57c81f8e6775c0f4bf9eda50936f4a80236b53eacae7"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-9.png",
+      "sha256": "954c980b8b5a647fb7a8bc1db852ef58b6e2b0fd1184b238870103ce095de89b",
+      "bytes": 93197,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-9.png",
+      "sourceSha256": "954c980b8b5a647fb7a8bc1db852ef58b6e2b0fd1184b238870103ce095de89b"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-10.png",
+      "sha256": "bbcd6efc0b98a2a2f4199c75f9ed3c7b94da6f4874de7fa8ceb90a181c7a5af6",
+      "bytes": 71420,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-10.png",
+      "sourceSha256": "bbcd6efc0b98a2a2f4199c75f9ed3c7b94da6f4874de7fa8ceb90a181c7a5af6"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-11.png",
+      "sha256": "9eb6361b1791efb701ca8b5bd20b9103457954deb2455b2b0a0408403303ec2b",
+      "bytes": 80156,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-11.png",
+      "sourceSha256": "9eb6361b1791efb701ca8b5bd20b9103457954deb2455b2b0a0408403303ec2b"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-12.png",
+      "sha256": "fa76539032cc0d5301573f786ed7dc55c101b181c40e7bee735940c4e166652a",
+      "bytes": 70607,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-12.png",
+      "sourceSha256": "fa76539032cc0d5301573f786ed7dc55c101b181c40e7bee735940c4e166652a"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-13.png",
+      "sha256": "a08400e806346d5cc430a87f88631e6758fd645c633f270147051586c5dd9ae0",
+      "bytes": 82183,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-13.png",
+      "sourceSha256": "a08400e806346d5cc430a87f88631e6758fd645c633f270147051586c5dd9ae0"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-14.png",
+      "sha256": "45a4c8b46990b3eff0fc5c1fe138938e9046c149b4ad8ce4d5d4d4a165a7d828",
+      "bytes": 91997,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-14.png",
+      "sourceSha256": "45a4c8b46990b3eff0fc5c1fe138938e9046c149b4ad8ce4d5d4d4a165a7d828"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-15.png",
+      "sha256": "46209cbb2967bdfc219a02480587b85cac571bd65836a49a89af499c3b5e2f92",
+      "bytes": 80884,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-15.png",
+      "sourceSha256": "46209cbb2967bdfc219a02480587b85cac571bd65836a49a89af499c3b5e2f92"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-16.png",
+      "sha256": "89d3410fa870d79a3c559eceda86023fd5521c48ac80cbc9b41493d7b6476bd9",
+      "bytes": 184029,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-16.png",
+      "sourceSha256": "89d3410fa870d79a3c559eceda86023fd5521c48ac80cbc9b41493d7b6476bd9"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-17.png",
+      "sha256": "0a812e3216f73387885a176613c098716d6bfb322e223946443a4435bddd4ae8",
+      "bytes": 247193,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-17.png",
+      "sourceSha256": "0a812e3216f73387885a176613c098716d6bfb322e223946443a4435bddd4ae8"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-18.png",
+      "sha256": "93d8f54ba20015f711aa21947f61e4f1df45183ecc9a507808ab1c3886ff5a66",
+      "bytes": 107288,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-18.png",
+      "sourceSha256": "93d8f54ba20015f711aa21947f61e4f1df45183ecc9a507808ab1c3886ff5a66"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-19.png",
+      "sha256": "5c6b4eb4b056e72c9995884cae5cddb72fe86684773b08b7d1406108da2d50af",
+      "bytes": 145121,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-19.png",
+      "sourceSha256": "5c6b4eb4b056e72c9995884cae5cddb72fe86684773b08b7d1406108da2d50af"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-20.png",
+      "sha256": "a5ba6eb232cf16db74c69a5a200ca83a1903634b4e42f00c2800928cd2c4a05f",
+      "bytes": 137889,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-20.png",
+      "sourceSha256": "a5ba6eb232cf16db74c69a5a200ca83a1903634b4e42f00c2800928cd2c4a05f"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-21.png",
+      "sha256": "971011b64286ba42f6cbb7b21ff0c79d7e2204b545244ad9b14c6abb6821e5b3",
+      "bytes": 188805,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-21.png",
+      "sourceSha256": "971011b64286ba42f6cbb7b21ff0c79d7e2204b545244ad9b14c6abb6821e5b3"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-22.png",
+      "sha256": "ec8de85342d6bcba0fb608eaa88d99e71599c320ed0102b97bb91cea833876b6",
+      "bytes": 106819,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-22.png",
+      "sourceSha256": "ec8de85342d6bcba0fb608eaa88d99e71599c320ed0102b97bb91cea833876b6"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-23.png",
+      "sha256": "8952ecec2b37d67ffed2222ec0a07caa23fda7a7cc2c053c29d81d472a320b63",
+      "bytes": 140674,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-23.png",
+      "sourceSha256": "8952ecec2b37d67ffed2222ec0a07caa23fda7a7cc2c053c29d81d472a320b63"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-24.png",
+      "sha256": "b5a6ddef3ddc9b7809c4619b409692332663f0180b43aac2a742b2c5642c16ed",
+      "bytes": 73749,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-24.png",
+      "sourceSha256": "b5a6ddef3ddc9b7809c4619b409692332663f0180b43aac2a742b2c5642c16ed"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-25.png",
+      "sha256": "8cacb8ed3c5181da5c2547a676200aed087348266d870458a58d0853eee3ac93",
+      "bytes": 73770,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-25.png",
+      "sourceSha256": "8cacb8ed3c5181da5c2547a676200aed087348266d870458a58d0853eee3ac93"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-26.png",
+      "sha256": "9c8de2aa63540a25dc4861d59c78a91b49081ca144a328375fbfb60a1f4a92c3",
+      "bytes": 64166,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-26.png",
+      "sourceSha256": "9c8de2aa63540a25dc4861d59c78a91b49081ca144a328375fbfb60a1f4a92c3"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-27.png",
+      "sha256": "a664934a7b98bd463b0c9a3edfd84c1d8742cd5989b5411e59bbe986f6365ffe",
+      "bytes": 73104,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-27.png",
+      "sourceSha256": "a664934a7b98bd463b0c9a3edfd84c1d8742cd5989b5411e59bbe986f6365ffe"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-28.png",
+      "sha256": "1ff181dd730cb31618871290e26457c2baff0c69229e58029442793e4aac3c1c",
+      "bytes": 51785,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-28.png",
+      "sourceSha256": "1ff181dd730cb31618871290e26457c2baff0c69229e58029442793e4aac3c1c"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-29.png",
+      "sha256": "1ff181dd730cb31618871290e26457c2baff0c69229e58029442793e4aac3c1c",
+      "bytes": 51785,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-29.png",
+      "sourceSha256": "1ff181dd730cb31618871290e26457c2baff0c69229e58029442793e4aac3c1c"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-30.png",
+      "sha256": "5a98d63a2dec012013989f0d74e65fa891b5ba22aa491bbf82336f10ce26dbcd",
+      "bytes": 180806,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-30.png",
+      "sourceSha256": "5a98d63a2dec012013989f0d74e65fa891b5ba22aa491bbf82336f10ce26dbcd"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-31.png",
+      "sha256": "d28b2f287b82cac12a5cdb4b73e0c6eb26ba40ac712f7b2b0de46fdba9beecfc",
+      "bytes": 187498,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-31.png",
+      "sourceSha256": "d28b2f287b82cac12a5cdb4b73e0c6eb26ba40ac712f7b2b0de46fdba9beecfc"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-32.png",
+      "sha256": "d25b17e997c1c2679bdb6ac83db861a1784743b4a3c0a301adb4da76c8b4ff39",
+      "bytes": 187946,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-32.png",
+      "sourceSha256": "d25b17e997c1c2679bdb6ac83db861a1784743b4a3c0a301adb4da76c8b4ff39"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-33.png",
+      "sha256": "6ddd21ba944a2d73bfad4d351300270eab7f95f07e3e9db8bdfd48e3e885631d",
+      "bytes": 191714,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-33.png",
+      "sourceSha256": "6ddd21ba944a2d73bfad4d351300270eab7f95f07e3e9db8bdfd48e3e885631d"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-34.png",
+      "sha256": "11cd044e09a7ce208622b68f090dc5229692b0746775a559f23582dd89e733c9",
+      "bytes": 179777,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-34.png",
+      "sourceSha256": "11cd044e09a7ce208622b68f090dc5229692b0746775a559f23582dd89e733c9"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-35.png",
+      "sha256": "a7792615fb58d913460c566ce0a5ca09ce533ff3f81ab1724f0b4cf4cfd7932a",
+      "bytes": 186595,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-35.png",
+      "sourceSha256": "a7792615fb58d913460c566ce0a5ca09ce533ff3f81ab1724f0b4cf4cfd7932a"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-36.png",
+      "sha256": "c3239c19d14e4722b04a873a1e52bc2e4a6e5bc737457a62e70b0ac320e0386e",
+      "bytes": 187181,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-36.png",
+      "sourceSha256": "c3239c19d14e4722b04a873a1e52bc2e4a6e5bc737457a62e70b0ac320e0386e"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-37.png",
+      "sha256": "845a6cd2875d48e2d89507bfb03a342d112c8a972214bb7fa55e7256810478a1",
+      "bytes": 190764,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-37.png",
+      "sourceSha256": "845a6cd2875d48e2d89507bfb03a342d112c8a972214bb7fa55e7256810478a1"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-38.png",
+      "sha256": "e9371d6c56bc189abb9c5bdd71f077a266314858f2a133462834676313e32f2c",
+      "bytes": 184277,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-38.png",
+      "sourceSha256": "e9371d6c56bc189abb9c5bdd71f077a266314858f2a133462834676313e32f2c"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-39.png",
+      "sha256": "29111934b065b6b570adfe003c067a9bc464404a7b4b05aada545c983e8205b9",
+      "bytes": 190813,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-39.png",
+      "sourceSha256": "29111934b065b6b570adfe003c067a9bc464404a7b4b05aada545c983e8205b9"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-40.png",
+      "sha256": "cc60c52e499a718631f422a131e4df2de3834da1a7bfc5090b1927cbd0ec1103",
+      "bytes": 191568,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-40.png",
+      "sourceSha256": "cc60c52e499a718631f422a131e4df2de3834da1a7bfc5090b1927cbd0ec1103"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-41.png",
+      "sha256": "cb9181e7c5adf47837317fcd076196298036833b93dd974ff1f1542e00309d5a",
+      "bytes": 195300,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-41.png",
+      "sourceSha256": "cb9181e7c5adf47837317fcd076196298036833b93dd974ff1f1542e00309d5a"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-42.png",
+      "sha256": "84c4f159a66fe8159da7c973ca6dbbdab866652198dcb18948a71de738c30254",
+      "bytes": 185023,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-42.png",
+      "sourceSha256": "84c4f159a66fe8159da7c973ca6dbbdab866652198dcb18948a71de738c30254"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-43.png",
+      "sha256": "1afa38a4d09e88e636b4ff4ba18448d099f3b5216a7acd6ed78e43f2016a21ef",
+      "bytes": 191465,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-43.png",
+      "sourceSha256": "1afa38a4d09e88e636b4ff4ba18448d099f3b5216a7acd6ed78e43f2016a21ef"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-44.png",
+      "sha256": "c92b93ea331ec982c88f07959721e8bf9ca4a7152af8b1f7528c520aaa9d6a76",
+      "bytes": 192399,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-44.png",
+      "sourceSha256": "c92b93ea331ec982c88f07959721e8bf9ca4a7152af8b1f7528c520aaa9d6a76"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-45.png",
+      "sha256": "d84de50fd38ca82bb062ec5a67898e6040e18c6a033404bdcd08f7c0dbab5139",
+      "bytes": 196150,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-45.png",
+      "sourceSha256": "d84de50fd38ca82bb062ec5a67898e6040e18c6a033404bdcd08f7c0dbab5139"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final-view-46.png",
+      "sha256": "62f194afbcb83c4669b103c06586c9c66420c9f93433588be19a3dab083a2b12",
+      "bytes": 189536,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu-view-46.png",
+      "sourceSha256": "62f194afbcb83c4669b103c06586c9c66420c9f93433588be19a3dab083a2b12"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final.json",
+      "sha256": "c518cafd1de1bedfbfbb00bf2c139bf5577d0fe7b7c414f4aff26f4c262ff2d0",
+      "bytes": 206000,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu.json",
+      "sourceSha256": "b142b2caf4aa26d89b054c40d643750c7ac18cc7a158ea23b445cb88ff8ac315"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/skin-flow-final.log.gz",
+      "sha256": "618a2233768e104e169e324f837e668b9adc96084ac905bbc7d3d6b9884022e8",
+      "bytes": 133,
+      "source": "/private/tmp/quaked-lavaman-flow-final-gpu.log",
+      "sourceSha256": "f4fc75b4479e0333fb3c3e768baa9b7191a077aeee5c83bdb6f89e37ea60dbbf"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/hdr-heat-final-view-0.png",
+      "sha256": "de23c1cd7667209265b5b36cb189ac60beff0ce25a055bbb5002bf4587ceab1f",
+      "bytes": 51427,
+      "source": "/private/tmp/quaked-lavaman-hdr-heat-final-view-0.png",
+      "sourceSha256": "de23c1cd7667209265b5b36cb189ac60beff0ce25a055bbb5002bf4587ceab1f"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/hdr-heat-final-view-1.png",
+      "sha256": "93b9bb415c858da9da58ef3eca11b94db48f5d95ea2be613c73e058a12b2785c",
+      "bytes": 351563,
+      "source": "/private/tmp/quaked-lavaman-hdr-heat-final-view-1.png",
+      "sourceSha256": "93b9bb415c858da9da58ef3eca11b94db48f5d95ea2be613c73e058a12b2785c"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/hdr-heat-final-view-2.png",
+      "sha256": "87cbdf39d290934e95522bf026be849c9a48395a7bdf48f26ca4b438259c22dc",
+      "bytes": 73606,
+      "source": "/private/tmp/quaked-lavaman-hdr-heat-final-view-2.png",
+      "sourceSha256": "87cbdf39d290934e95522bf026be849c9a48395a7bdf48f26ca4b438259c22dc"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/hdr-heat-final-view-3.png",
+      "sha256": "eb98f6c6c848681dfeebea3c0765fe49903006a15911431764b21ab2559d70aa",
+      "bytes": 73348,
+      "source": "/private/tmp/quaked-lavaman-hdr-heat-final-view-3.png",
+      "sourceSha256": "eb98f6c6c848681dfeebea3c0765fe49903006a15911431764b21ab2559d70aa"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/hdr-heat-final-view-4.png",
+      "sha256": "277dd3df6f3941175cf11edf3f208cf6a1327f390eb45b7516ed67d92e98cb0c",
+      "bytes": 76338,
+      "source": "/private/tmp/quaked-lavaman-hdr-heat-final-view-4.png",
+      "sourceSha256": "277dd3df6f3941175cf11edf3f208cf6a1327f390eb45b7516ed67d92e98cb0c"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/hdr-heat-final.json",
+      "sha256": "27e352742113186dc43f111066478fdf7b1e3af0a73551a96335e3d1fe95979b",
+      "bytes": 9987,
+      "source": "/private/tmp/quaked-lavaman-hdr-heat-final.json",
+      "sourceSha256": "ba08cbb71959eef7cd4f2c040fcb52674c1096953ce96cd476ccfc7d636a3c6c"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/hdr-heat-final.log.gz",
+      "sha256": "a9dcc46d778c57adb121b6cd88f9e25feefc87783c707a8d1faaa9c555e9732f",
+      "bytes": 131,
+      "source": "/private/tmp/quaked-lavaman-hdr-heat-final.log",
+      "sourceSha256": "82220006af24194e57a33a3faefe8c636bb83ecda65467e83782f75ffc88f4df"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/cpu-public-final.log.gz",
+      "sha256": "76f8f4e5d6f6e1d68d8a030691dde8017020ea998e2d58744220af2682b3616d",
+      "bytes": 1712,
+      "source": "/private/tmp/quaked-lavaman-flow-final-cpu.log",
+      "sourceSha256": "93f246179b05b177cd90b1137dc5f9907f1b36a03dc482193cb13cd872563cb1"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/initial-missing-heat-export.log.gz",
+      "sha256": "4457edb5257be434146a7c3c52334aabaeb08faa0a356805238727b3e819eb2e",
+      "bytes": 360,
+      "source": "/private/tmp/lavaman-flow-cpu-initial.log",
+      "sourceSha256": "a00c3534d66dfce2e14bc29a46ac40271ad511d02a3bdfb970454aa7cb6739b1"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/initial-chrome-sandbox-launch.log.gz",
+      "sha256": "68a68460a0eed6ee6119d17fcd04b0ef403cb555b91a1939d6b15bc4b3a154e0",
+      "bytes": 1431,
+      "source": "/private/tmp/quaked-lavaman-flow-first.log",
+      "sourceSha256": "4ab47016a67f8af4595366b6ad972beec4215b78adc940e24ca9bcbf547ca427"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/initial-byte-range-failure.json",
+      "sha256": "0e96fdd294c3e0e673d47df5a8818a783c3dd955fc15f4de8bff821b3f50b0c0",
+      "bytes": 652,
+      "source": "/private/tmp/quaked-lavaman-flow-gpu-first.json",
+      "sourceSha256": "0e96fdd294c3e0e673d47df5a8818a783c3dd955fc15f4de8bff821b3f50b0c0"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/initial-hdr-clock-confound-165-of-166.json",
+      "sha256": "df2e99bc77c9f160bfb14a7e093d416598d7701f3a1a8896e6fc69ccd8040ae5",
+      "bytes": 200957,
+      "source": "/private/tmp/quaked-lavaman-flow-gpu-run1.json",
+      "sourceSha256": "df2e99bc77c9f160bfb14a7e093d416598d7701f3a1a8896e6fc69ccd8040ae5"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/rejected-local-clock-fork.json",
+      "sha256": "9f4fa417d599d2ea1ff1b92b28955f023481a9ffdd8429d2d886a37a4b88b08f",
+      "bytes": 200945,
+      "source": "/private/tmp/quaked-lavaman-flow-gpu-run2.json",
+      "sourceSha256": "9f4fa417d599d2ea1ff1b92b28955f023481a9ffdd8429d2d886a37a4b88b08f"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/rejected-local-clock-fork.js.txt.gz",
+      "sha256": "d3225bacf7645cd56bba5c9f603009ccf775453e647b1d9540494d38c57f941d",
+      "bytes": 7156,
+      "source": "/private/tmp/quaked-lavaman-forked-clock-attempt.js",
+      "sourceSha256": "7608b1e6b8be0607fbdfdb2e509f092fce97c86dadbd18e30187f2c1ce9ea8dd"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/initial-native-lava-source-selection-failure.json",
+      "sha256": "fab1206c46002cadb54f450287e1306c6ec5219da99bf2114370f9a8540f117a",
+      "bytes": 503,
+      "source": "/private/tmp/quaked-lavaman-hdr-heat-first.json",
+      "sourceSha256": "fab1206c46002cadb54f450287e1306c6ec5219da99bf2114370f9a8540f117a"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/initial-hdr-heat-fixture-failures.json",
+      "sha256": "9c2df8999fe0462b7d6ff000ced22e7d48f62a6b9bde370a3becb3713ad81daa",
+      "bytes": 5911,
+      "source": "/private/tmp/quaked-lavaman-hdr-heat-run2.json",
+      "sourceSha256": "9c2df8999fe0462b7d6ff000ced22e7d48f62a6b9bde370a3becb3713ad81daa"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/superseded-broad-hdr-oracle.json",
+      "sha256": "ce4842559d4abd5eec1d99d17d7bf7f612ae45257f729b2126aefc1c86e80f7d",
+      "bytes": 8046,
+      "source": "/private/tmp/quaked-lavaman-hdr-heat-run3.json",
+      "sourceSha256": "ce4842559d4abd5eec1d99d17d7bf7f612ae45257f729b2126aefc1c86e80f7d"
+    },
+    {
+      "path": "docs/evidence/lavaman-skin-flow-2026-10-18/pre-frame-fix-hdr-oracle.json",
+      "sha256": "df5c83eb614c58b3859d264209a27090e2ebaf3373f9857b405ca1de8be78ee8",
+      "bytes": 9465,
+      "source": "/private/tmp/quaked-lavaman-hdr-heat-qualified-oracle.json",
+      "sourceSha256": "df5c83eb614c58b3859d264209a27090e2ebaf3373f9857b405ca1de8be78ee8"
+    }
+  ],
+  "verification": {
+    "CPU": {
+      "passed": 26,
+      "total": 26
+    },
+    "actualGPUSkinFlow": {
+      "passed": 166,
+      "total": 166,
+      "draws": 144
+    },
+    "actualGPUHDRAndHeat": {
+      "passed": 16,
+      "total": 16
+    },
+    "gpu": "ANGLE Metal Renderer: Apple M2",
+    "runtimeShaderConsoleErrors": 0
+  },
+  "limits": [
+    "Maintained staged full gate, final Dev commit/push and final full-distribution artifacts are coordinator-owned next actions, not completed by this evidence.",
+    "UV/fire clocks follow caller visual time; native HDR pulse retains the existing wall-clock policy. Deterministic GPU snapshots explicitly freeze both with public pulseLava(time).",
+    "Discarded local clock fork and earlier failed/broad-oracle trials are retained but do not qualify the final candidate."
+  ],
+  "previewURL": "http://127.0.0.1:49839/tests/lavaman_effect_trial.html",
+  "previewServerSession": 6071
+}

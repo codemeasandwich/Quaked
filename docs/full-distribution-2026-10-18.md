@@ -118,3 +118,51 @@ hashes from their active worktree. They preserve the completed publication recei
 and the status of held/unbound drafts; they do not register those unfinished images
 as runtime replacements. Public texture-channel tests pass 9/9 in current code.
 The completed integration is now ready for its immutable exact-index build gate.
+
+
+## Additional owner Lava Man direction during the build
+
+The combined baseline passed its full exact-index gate and was committed as
+28765ac38a3da144a7c73986de7d953a76e8d1f1, tree
+0e52a708007e98da20adf81f9bb356f17bf2b9b4. The normal Dev push succeeded and
+remote readback matched. The inventories confirm all 55 full Bestiary pages and
+47 derived strips have identical web/desktop hashes, while source masters and
+numeric reveal maps remain intact. This is an intermediate qualified baseline.
+
+The owner then explicitly clarified that the Lava Man skin must stretch/flow over
+unchanged native geometry, with an additional, separate heat shimmer, and color/
+intensity matching native HDR lava. That activates the retained unfinished
+texture-flow contract; the final distribution must include a verified corrected
+implementation. The earlier parked-test disposition is superseded by this new
+scope. Independent planning, implementation and public tests are underway in the
+working tree; the current built baseline is not claimed to contain those edits.
+
+No natural-surface or rock-edge work is resumed. Current next owner/action: this
+session completes skin and separate heat/HDR verification, reruns the enforced
+exact-index gate for that new source, updates Dev and then packages/verifies the
+final distributions. Intermediate exact-tree outputs and failed checks are retained.
+
+### Live progress 2026-10-18T09:27:20.773195+00:00
+
+The native skin-flow contracts pass 19/19 CPU checks, the independently authored
+heat-source/pipeline suite passes 7/7, and the shared-clock actual Apple GPU trial
+passes 166/166 across 144 draws with no shader/page/console errors. Independent
+source review finds no blocking issue. Actual native-art HDR and separate heat
+GPU controls are still being completed; a helper time-argument mistake was found
+by independent review before qualification and is being corrected. The final
+distribution is waiting for those technical checks and the subsequent exact-index
+gate; the already published combined baseline remains preserved and distinct.
+
+
+### Final Lava Man source freeze
+
+The clarified feature now passes all 26 CPU, 166 skin-GPU and 16 native-lava
+HDR/heat-GPU checks, with independent reviews and no shader/page/console errors.
+The four production source SHA256 values are pinned by the final feature records.
+The next exact-index gate includes the additional owned-model suites through
+explicit QUAKED_OWNED_PAK and QUAKED_ID1_PAK inputs. The final Dev push and archives
+must use that resulting tree, not the earlier baseline. A verified APFS clone of
+the prior working app is retained at dist/retained-app-28765ac3/Quaked.app, in
+addition to the exact staged receipts, before the next app build replaces its
+shared target output. Current next owner: this session runs that full gate,
+lands Dev and verifies/packages both final distributions.

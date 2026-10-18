@@ -18,7 +18,7 @@ import { MAX_VOLUME_LIGHTS } from './r_post_config.js';
 import { POINT_CONE_GLSL } from './r_fixturelights.js';
 import { POWERUP_COOKIE_GLSL, POWERUP_SHROUD_COMPOSITE_GLSL } from './r_powerups.js';
 import { VISION_UV_PACK_GLSL } from './vision_coordinates.js';
-import { MAX_LIQUID_REGIONS, liquidLookGLSL } from './r_post_liquids.js';
+import { MAX_LIQUID_REGIONS, MAX_LAVA_ACTOR_HEAT, liquidLookGLSL } from './r_post_liquids.js';
 import { WATER as WAVE_WATER, SIZE as WAVE_SIZE, WAVE_GLSL } from './r_waves.js';
 
 export const QUAD_VERTEX = `
@@ -437,6 +437,9 @@ uniform float uScreenReflect;
 uniform int uLavaCount;
 uniform vec4 uLavaMin[ 4 ]; // xy = min corner, z = the lava's height
 uniform vec4 uLavaMax[ 4 ];
+uniform int uLavaActorCount;
+uniform vec4 uLavaActorMin[ ${MAX_LAVA_ACTOR_HEAT} ];
+uniform vec4 uLavaActorMax[ ${MAX_LAVA_ACTOR_HEAT} ];
 uniform float uHeat;
 uniform float uReflect;
 uniform float uMist;
@@ -901,6 +904,20 @@ float reflectionDistanceAt( vec2 uv, bool below, vec4 lo, vec4 hi, float interfa
 	return - P.z;
 }
 
+// Shared by static lava pools and independent creature-heat volumes. Scene
+// depth caps the ray, so a heat source behind an opaque wall contributes zero.
+vec2 lavaHeatColumn(vec3 bmin, vec3 bmax, vec3 cam0, vec3 dw0, vec3 inv0, float D0) {
+ vec3 t1=(bmin-cam0)*inv0, t2=(bmax-cam0)*inv0;
+ vec3 tn=min(t1,t2), tf=max(t1,t2);
+ float tIn=max(max(tn.x,tn.y),max(tn.z,0.0));
+ float tOut=min(min(tf.x,tf.y),min(tf.z,D0));
+ if(tOut<=tIn) return vec2(0.0);
+ float len=clamp((tOut-tIn)/170.0,0.0,1.0);
+ vec3 mid=cam0+dw0*(0.5*(tIn+tOut));
+ float up=mid.z*0.11-uTime*3.4;
+ float fade=1.0-smoothstep(bmin.z+min(30.0,(bmax.z-bmin.z)*0.2),bmax.z,mid.z);
+ return vec2(sin(up+mid.x*0.06)+0.5*sin(up*1.7+mid.y*0.09),cos(up*0.8+mid.y*0.05))*len*0.5*fade;
+}
 void main() {
 	vec2 uvd = vUv;
 	float jit0 = noise( gl_FragCoord.xy );
@@ -921,7 +938,7 @@ void main() {
 	}
 	// Heat haze: over a pool of lava the air shimmers, and whatever is seen through that column of air wobbles.  Each
 	// pool is a box from its surface up; the longer the sight line runs through it, the more the picture is bent.
-	if ( uLavaCount > 0 && uHeat > 0.0 && !heldReceiver(texture2D(tNormal,uvd)) ) {
+	if ( (uLavaCount > 0 || uLavaActorCount > 0) && uHeat > 0.0 && !heldReceiver(texture2D(tNormal,uvd)) ) {
 		float d0 = texture2D( tDepth, uvd ).x;
 		vec4 r0 = uProjInv * vec4( uvd * 2.0 - 1.0, 1.0, 1.0 );
 		vec3 dv0 = normalize( r0.xyz / r0.w );
@@ -936,21 +953,15 @@ void main() {
 			vec4 hi = uLavaMax[ i ];
 			vec3 bmin = vec3( lo.xy - 48.0, lo.z );
 			vec3 bmax = vec3( hi.xy + 48.0, lo.z + 150.0 );
-			vec3 t1 = ( bmin - cam0 ) * inv0;
-			vec3 t2 = ( bmax - cam0 ) * inv0;
-			vec3 tn = min( t1, t2 );
-			vec3 tf = max( t1, t2 );
-			float tIn = max( max( tn.x, tn.y ), max( tn.z, 0.0 ) );
-			float tOut = min( min( tf.x, tf.y ), min( tf.z, D0 ) );
-			if ( tOut > tIn ) {
-				float len = clamp( ( tOut - tIn ) / 170.0, 0.0, 1.0 );
-				vec3 mid = cam0 + dw0 * ( 0.5 * ( tIn + tOut ) );
-				// rising, rippling columns of warm air
-				float up = mid.z * 0.11 - uTime * 3.4;
-				wob += vec2( sin( up + mid.x * 0.06 ) + 0.5 * sin( up * 1.7 + mid.y * 0.09 ),
-					cos( up * 0.8 + mid.y * 0.05 ) ) * len * 0.5 * smoothstep( lo.z + 150.0, lo.z + 30.0, mid.z );
-			}
+			wob += lavaHeatColumn(bmin,bmax,cam0,dw0,inv0,D0);
 		}
+  vec2 actorWob=vec2(0.0);
+  for(int i=0;i<${MAX_LAVA_ACTOR_HEAT};i++) {
+   if(i>=uLavaActorCount) break;
+   actorWob+=lavaHeatColumn(uLavaActorMin[i].xyz,uLavaActorMax[i].xyz,cam0,dw0,inv0,D0);
+  }
+  // Overlapping creatures cannot amplify this separate addition without bound.
+  wob+=clamp(actorWob,vec2(-1.0),vec2(1.0));
 		uvd += wob * vec2( 1.0, 0.7 ) * 0.0055 * uHeat;
 	}
 	uvd = underwaterViewUv( uvd );

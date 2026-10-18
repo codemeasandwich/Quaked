@@ -17,7 +17,7 @@ import { postState, lightingLook } from './r_post_state.js';
 import { r_dynres, r_fps_target, MAX_VOLUME_LIGHTS, SPOT_POWER, SUN_COLOR, SUN_SHADOW_SIZE, SUN_SHADOW_EXTENT, SUN_SHADOW_DEPTH, MAX_RAY, SUN_SCATTER, SCATTER, SUN_SURFACE, SUN_SURFACE_COLOR, LIGHT_SURFACE, LIGHT_FLOOR, BUMP_LIGHT, SATURATION, VIBRANCE, CONTRAST, CAUSTIC, BLOOM_LEVELS } from './r_post_config.js';
 import { QUAD_VERTEX, VOLUME_FRAGMENT, BLOOM_PREFILTER_FRAGMENT, BLOOM_DOWN_FRAGMENT, BLOOM_UP_FRAGMENT, COMPOSITE_FRAGMENT, PRESENT_FRAGMENT, DOF_FRAGMENT } from './r_post_shaders.js';
 import { cookieMean, cookieNorm, cookieDepth } from './r_post_sky.js';
-import { MAX_LIQUID_REGIONS } from './r_post_liquids.js';
+import { MAX_LIQUID_REGIONS, MAX_LAVA_ACTOR_HEAT } from './r_post_liquids.js';
 import { R_PostOccluder } from './r_post_shadows.js';
 import { PointShadowAtlas, R_CreateShadowCaptureMaterial } from './r_pointshadows.js';
 import { r_heightshadows } from './r_heightshadows.js';
@@ -299,6 +299,9 @@ export function createPipeline() {
 			uLavaCount: { value: 0 },
 			uLavaMin: { value: Array.from( { length: 4 }, () => new THREE.Vector4() ) },
 			uLavaMax: { value: Array.from( { length: 4 }, () => new THREE.Vector4() ) },
+   uLavaActorCount: { value: 0 },
+   uLavaActorMin: { value: Array.from( { length: MAX_LAVA_ACTOR_HEAT }, () => new THREE.Vector4() ) },
+   uLavaActorMax: { value: Array.from( { length: MAX_LAVA_ACTOR_HEAT }, () => new THREE.Vector4() ) },
 			uHeat: { value: 0.6 },
 			uReflect: { value: 0.6 },
 			uMist: { value: 0 }

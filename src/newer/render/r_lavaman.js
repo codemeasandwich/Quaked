@@ -1,44 +1,47 @@
 /**
  * @module newer/render/r_lavaman
  *
- * Lava Man's living surface. Cosmetic deformation follows native interpolation
- * into private buffers; it never becomes a pose or an interrupted-blend lead.
- * Flame and smoke reuse the torch/fireball pixel shaders and borrowed textures,
- * with their own bounded instanced layers. No gameplay, lights or native assets
- * are changed. See docs/lavaman-eldritch-2026-10-13.md.
+ * Lava Man's photographed skin flows over the exact native animated mesh.
+ * An actor owns one alias-material clone and live uniforms; diffuse, normals,
+ * height gradients and height rays share one chart-bounded UV domain. No pose,
+ * normal, UV, index, bounds, collision or geometric shadow data is rewritten.
+ * Flame/smoke retain their existing bounded source shaders and native roots.
+ * See docs/lavaman-skin-flow-2026-10-18.md for the owner-corrected contract.
  */
 import * as THREE from 'three';
 import { R_IsNewer, R_ClassicPassActive, r_newer_enemies } from '../mode.js';
-import { R_NewerAliasMaterial } from './r_newerskins.js';
+import { R_NewerAliasMaterial, R_CloneAliasMaterial } from './r_newerskins.js';
 import { TORCH, TORCH_SHADERS, forEachSmoke } from './r_torchfire.js';
 import { PUFF_VERTEX, PUFF_FRAGMENT, layer, material, R_FireballAssets } from './r_fireball.js';
+import { R_RegisterGlow } from './r_post_gbuffer.js';
+import { LAVA_BOOST } from './r_post_config.js';
+import { cl, cl_entities } from '../../engine/client/client.js';
+import { sv } from '../../engine/server/server.js';
 
-export const LAVA_MAN = Object.freeze({model:'progs/lavaman.mdl',sha:'b81bb7f5cebb2889cfd2f431f743200f672d0195b05fe3faa98b50163fed7fb1',maxEntities:8,maxVertices:2048,maxDisplacement:8});
-const entries = new Map();
+export const LAVA_MAN = Object.freeze({model:'progs/lavaman.mdl',sha:'b81bb7f5cebb2889cfd2f431f743200f672d0195b05fe3faa98b50163fed7fb1',maxEntities:8,maxVertices:2048,maxDisplacement:0,hotRadianceTint:Object.freeze([.55,.25,.08])});
+const WIDTH=300,HEIGHT=194,entries=new Map(),domains=new Map();
 let lastError=null,overflow=0;
-// Native texel centres, independently measured on upper head/shoulder/chest/back
-// triangles. Resolve UV topology once, then sample the deformed triangle itself.
 const emitterPixels=[[52,8],[202,8],[32,68],[116,68],[182,68],[266,68],[65,82],[215,82]];
+// Only Lava Man's colour function changes. Torch erosion/noise/coverage, fog,
+// instancing and all wall/projectile flame palettes remain owned by their source.
+const LAVA_FLAME_FRAGMENT=TORCH_SHADERS.fragment.replace(/vec3 flameColor\(float h\)\{[^}]+\}/,
+ 'vec3 flameColor(float h){return mix(vec3(.78,.025,.001),vec3(1.,.18,.006),smoothstep(.0,1.,h));}');
+
 export function R_LavaManWanted(e){
  const id=e?.model?.aliasSourceIdentity;
  return R_IsNewer()&&r_newer_enemies.value!==0&&!(e?._levelViewGhost&&e._levelViewActive===false)&&e?.model?.name===LAVA_MAN.model&&e.skinnum===0&&id?.state==='ready'&&id.sha256===LAVA_MAN.sha;
 }
 export function R_LavaManNeedsFrame(e){return entries.has(e)||R_LavaManWanted(e);}
 function selected(e,mesh){
- if(!R_LavaManWanted(e))return false;
- const base=R_NewerAliasMaterial(e,e.model.name,!!mesh.material?.vertexColors,0);
- return !!base&&mesh.material===base;
+ if(!R_LavaManWanted(e))return null;
+ const base=R_NewerAliasMaterial(e,e.model.name,!!mesh.material?.vertexColors,0),entry=entries.get(e);
+ return base&&(mesh.material===base||(entry?.base===base&&mesh.material===entry.material))?base:null;
 }
 function topology(geometry){
- const uv=geometry.attributes.uv,index=geometry.index,head=[];
- if(!uv||!index)throw Error('Lava Man needs native indexed UVs');
- for(let i=0;i<uv.count;i++){
-  const s=uv.getX(i)*300-.5,t=uv.getY(i)*194-.5;
-  if(t>=3-1e-3&&t<=59+1e-3&&((s>=28-1e-3&&s<=76+1e-3)||(s>=178-1e-3&&s<=226+1e-3)))head.push(i);
- }
- if(head.length<10)throw Error('Lava Man head UVs unavailable');
+ const uv=geometry.attributes.uv,index=geometry.index;
+ if(!uv||!index||index.count%3)throw Error('Lava Man needs native indexed UVs');
  const anchors=emitterPixels.map(([s,t])=>{
-  const u=(s+.5)/300,v=(t+.5)/194;
+  const u=(s+.5)/WIDTH,v=(t+.5)/HEIGHT;
   for(let j=0;j<index.count;j+=3){
    const ids=[index.getX(j),index.getX(j+1),index.getX(j+2)],a=ids.map(i=>[uv.getX(i),uv.getY(i)]);
    const den=(a[1][1]-a[2][1])*(a[0][0]-a[2][0])+(a[2][0]-a[1][0])*(a[0][1]-a[2][1]);
@@ -49,92 +52,134 @@ function topology(geometry){
   }
   throw Error('Unmapped Lava Man emitter '+s+','+t);
  });
- return{head,anchors,uv,index};
+ return{anchors,uv,index};
 }
-function canonical(entry){
- const g=entry.geometry;
- // Another renderer adapter may have taken these attributes since our draw.
- // Restore only what this effect still owns, never overwrite its successor.
- if(g.attributes.position===entry.position){g.setAttribute('position',entry.sourcePosition);g.computeBoundingBox();g.computeBoundingSphere();}
- if(g.attributes.normal===entry.normal)g.setAttribute('normal',entry.sourceNormal);
+/** A domain belongs to native UV topology, never a decoded replacement image or
+ * the loader's scratch stverts/triangles. Connected UV triangles share a label.
+ * Ambiguous overlaps stay zero. Eight-neighbour distance is a conservative lower
+ * bound on Euclidean clearance; the shader reserves an additional filter margin.
+ */
+function domainFor(key,geometry){
+ let domain=domains.get(key);if(domain){domain.users++;return domain;}
+ const uv=geometry.attributes.uv,index=geometry.index,count=index.count/3;
+ const parents=Array.from({length:count},(_,i)=>i),points=new Map(),triangles=[];
+ const find=i=>parents[i]===i?i:(parents[i]=find(parents[i]));
+ for(let i=0;i<count;i++){
+  const triangle=[0,1,2].map(k=>{const at=index.getX(i*3+k);return[Math.round(uv.getX(at)*WIDTH-.5),Math.round(uv.getY(at)*HEIGHT-.5)];});triangles.push(triangle);
+  for(const p of triangle){const point=p.join(',');if(points.has(point))parents[find(i)]=find(points.get(point));else points.set(point,i);}
+ }
+ const labels=new Map(),owners=new Int16Array(WIDTH*HEIGHT);
+ for(let t=0;t<count;t++){
+  const root=find(t);if(!labels.has(root)){if(labels.size>=255)throw Error('Too many Lava Man UV charts');labels.set(root,labels.size+1);}
+  const id=labels.get(root),[a,b,c]=triangles[t],den=(b[1]-c[1])*(a[0]-c[0])+(c[0]-b[0])*(a[1]-c[1]);if(Math.abs(den)<1e-9)continue;
+  for(let y=Math.max(0,Math.ceil(Math.min(a[1],b[1],c[1])));y<=Math.min(HEIGHT-1,Math.floor(Math.max(a[1],b[1],c[1])));y++)for(let x=Math.max(0,Math.ceil(Math.min(a[0],b[0],c[0])));x<=Math.min(WIDTH-1,Math.floor(Math.max(a[0],b[0],c[0])));x++){
+   const w0=((b[1]-c[1])*(x-c[0])+(c[0]-b[0])*(y-c[1]))/den,w1=((c[1]-a[1])*(x-c[0])+(a[0]-c[0])*(y-c[1]))/den;
+   if(Math.min(w0,w1,1-w0-w1)<-1e-8)continue;
+   const at=y*WIDTH+x;if(owners[at]===0)owners[at]=id;else if(owners[at]!==id)owners[at]=-1;
+  }
+ }
+ const distance=new Int16Array(owners.length).fill(-1),queue=new Int32Array(owners.length);let first=0,last=0;
+ for(let y=0;y<HEIGHT;y++)for(let x=0;x<WIDTH;x++){
+  const at=y*WIDTH+x,id=owners[at];if(id<=0){distance[at]=0;continue;}
+  let edge=false;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const xx=x+dx,yy=y+dy;if(xx<0||xx>=WIDTH||yy<0||yy>=HEIGHT||owners[yy*WIDTH+xx]!==id)edge=true;}
+  if(edge){distance[at]=0;queue[last++]=at;}
+ }
+ while(first<last){const at=queue[first++],x=at%WIDTH,y=(at/WIDTH)|0;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
+  const xx=x+dx,yy=y+dy;if(xx<0||xx>=WIDTH||yy<0||yy>=HEIGHT)continue;const next=yy*WIDTH+xx;
+  if(owners[next]===owners[at]&&distance[next]<0){distance[next]=distance[at]+1;queue[last++]=next;}
+ }}
+ const data=new Uint8Array(WIDTH*HEIGHT*4);for(let i=0;i<owners.length;i++){data[i*4]=owners[i]>0?Math.min(255,Math.max(0,distance[i])):0;data[i*4+1]=Math.max(0,owners[i]);data[i*4+3]=255;}
+ const texture=new THREE.DataTexture(data,WIDTH,HEIGHT,THREE.RGBAFormat);texture.colorSpace=THREE.NoColorSpace;texture.generateMipmaps=false;
+ texture.minFilter=texture.magFilter=THREE.LinearFilter;texture.wrapS=texture.wrapT=THREE.ClampToEdgeWrapping;texture.needsUpdate=true;
+ domain={key,texture,users:1};domains.set(key,domain);return domain;
+}
+const FLOW_GLSL=`
+uniform float uLavaTime,uLavaPhase,uLavaGlow;
+uniform vec3 uLavaHotTint;
+uniform sampler2D uLavaDomain;
+uniform vec2 uLavaAtlasSize;
+vec2 qrLavaUv;float qrLavaChart;
+float qrLavaId(vec2 uv){
+ if(any(lessThan(uv,vec2(0.)))||any(greaterThanEqual(uv,vec2(1.))))return 0.;
+ vec2 centre=(floor(uv*uLavaAtlasSize)+.5)/uLavaAtlasSize;
+ return floor(texture2D(uLavaDomain,centre).g*255.+.5);
+}
+float qrLavaClearance(vec2 uv){return texture2D(uLavaDomain,uv).r*255.;}
+vec2 qrLavaFlow(vec2 uv){
+ float id=qrLavaId(uv);if(id<.5)return uv;
+ vec2 p=uv*uLavaAtlasSize;float t=uLavaTime+uLavaPhase;
+ vec2 movement=vec2(sin(p.y*.085+t*1.3)+.45*sin(p.x*.14-t*.87),.7*sin(p.x*.065-t*1.1)+.35*cos(p.y*.1+t*.65));
+ movement/=max(1.,length(movement));
+ float room=max(0.,qrLavaClearance(uv)-2.);
+ vec2 flowed=uv+movement*min(room*.5,4.5)/uLavaAtlasSize;
+ return abs(qrLavaId(flowed)-id)<.5?flowed:uv;
+}
+bool qrLavaKnown(vec2 uv){return qrLavaChart>.5&&abs(qrLavaId(uv)-qrLavaChart)<.5&&qrLavaClearance(uv)>=1.5;}
+`;
+function animatedMaterial(e){
+ const clone=R_CloneAliasMaterial(e.base),before=clone.onBeforeCompile,key=clone.customProgramCacheKey;
+ e.uniforms={uLavaTime:{value:0},uLavaHotTint:{value:new THREE.Vector3(...LAVA_MAN.hotRadianceTint)},uLavaPhase:{value:e.phase},uLavaDomain:{value:e.domain.texture},uLavaAtlasSize:{value:new THREE.Vector2(WIDTH,HEIGHT)},uLavaGlow:{get value(){return Math.max(1,clone.color.r);}}};
+ clone.onBeforeCompile=function(shader,renderer){
+  before.call(this,shader,renderer);Object.assign(shader.uniforms,e.uniforms);
+  // Expand only map sampling; retain the existing alias compiler's lighting,
+  // Classic, material/normal and packed-height outputs. All existing UV uses in
+  // main (including covariant derivatives) share one flowed coordinate.
+  let fragment=shader.fragmentShader.replace('#include <map_fragment>',THREE.ShaderChunk.map_fragment+`
+ vec3 qrLavaPigment=diffuseColor.rgb/max(uLavaGlow,1.);
+ float qrLavaHot=smoothstep(.04,.24,qrLavaPigment.r-qrLavaPigment.b)*smoothstep(.08,.35,qrLavaPigment.r);
+ vec3 qrLavaRadiance=mix(vec3(1.),uLavaHotTint*uLavaGlow,step(1.001,uLavaGlow));
+ diffuseColor.rgb=qrLavaPigment*mix(vec3(1.),qrLavaRadiance,qrLavaHot);
+`);
+  fragment=fragment.replace(/\bvMapUv\b/g,'qrLavaUv').replace('#define qrLavaUv vActorUv','#define vMapUv vActorUv');
+  fragment=fragment.replace('bool qrShadowKnown(vec2 uv,int layer){return all(greaterThanEqual(uv,vec2(0.)))&&all(lessThanEqual(uv,vec2(1.)));}',
+   'bool qrShadowKnown(vec2 uv,int layer){return qrLavaKnown(uv);}');
+  fragment=fragment.replace('hctx.microMaxUv=.03;', 'hctx.microMaxUv=min(.03,max(0.,qrLavaClearance(qrLavaUv)-1.5)/max(uLavaAtlasSize.x,uLavaAtlasSize.y));');
+  fragment=fragment.replace('void main() {','void main() {\n qrLavaChart=qrLavaId(vMapUv);qrLavaUv=qrLavaFlow(vMapUv);');
+  // R_RegisterGlow supplies the SAME live LAVA_BOOST/pulse as native lava.
+  // Hot photograph pigment is calibrated against the literal native hub lava
+  // in the same HDR/exposure trial. Charcoal retains its original pigment. Avoid
+  // multiplying by the boost twice, and free hot wounds from baked vertex shade.
+  fragment=fragment.replace('#include <opaque_fragment>', 'outgoingLight=mix(outgoingLight,qrAlbedo,qrLavaHot*step(1.001,uLavaGlow));\n#include <opaque_fragment>');
+  shader.fragmentShader=FLOW_GLSL+fragment;
+ };
+ clone.customProgramCacheKey=function(){return key.call(this)+'-lava-skin-flow-v1';};
+ R_RegisterGlow(clone,LAVA_BOOST);return clone;
+}
+function makeEntry(entity,mesh,p,n,base){
+ const bind=topology(mesh.geometry),header=entity.model.cache?.data,domain=domainFor(header,mesh.geometry);
+ const e={entity,model:entity.model,header,mesh,geometry:mesh.geometry,bind,base,domain,sourcePosition:p,sourceNormal:n,
+  scene:null,seen:false,time:0,fire:null,smoke:null,assets:null,phase:((entity._entityIndex??0)>>>0)%997*.137,
+  point:new Float64Array(3),direction:new Float64Array(3)};
+ try{e.material=animatedMaterial(e);}catch(error){if(--domain.users===0){domain.texture.dispose();domains.delete(domain.key);}throw error;}
+ entries.set(entity,e);return e;
+}
+/** The caller owns canonical pose/blend attributes. Texture time changes only
+ * actor-local uniforms; native geometry, bounds and shadow poses stay untouched.
+ */
+export function R_LavaManApply(entity,mesh,p,n,time){
+ let e=entries.get(entity);if(!mesh?.geometry||!p||!n)return null;
+ if(R_ClassicPassActive()){if(e)hide(e);return null;}
+ const base=selected(entity,mesh);
+ if(e&&(e.mesh!==mesh||e.model!==entity.model||e.header!==entity.model.cache?.data||e.base!==base||e.sourcePosition.count!==p.count||e.bind.index.count!==mesh.geometry.index?.count)){
+  R_LavaManRelease(entity);e=null;
+ }
+ if(!base||!Number.isFinite(time)||p.count!==n.count||p.count>LAVA_MAN.maxVertices){R_LavaManRelease(entity);return null;}
+ try{
+  if(!e){
+   if(entries.size>=LAVA_MAN.maxEntities&&!entity._levelViewGhost)for(const [other,entry]of entries)if(entry.entity._levelViewGhost){R_LavaManRelease(other);break;}
+   if(entries.size>=LAVA_MAN.maxEntities){overflow++;return null;}
+   e=makeEntry(entity,mesh,p,n,base);
+  }
+  e.geometry=mesh.geometry;e.sourcePosition=p;e.sourceNormal=n;e.time=time;e.uniforms.uLavaTime.value=time;
+  mesh.material=e.material;return mesh;
+ }catch(error){lastError=String(error.message||error);R_LavaManRelease(entity);return null;}
 }
 function hide(entry){if(entry.fire){entry.fire.mesh.visible=false;entry.smoke.mesh.visible=false;}}
 function destroyEffects(entry){
  for(const fx of [entry.fire,entry.smoke])if(fx){fx.mesh.removeFromParent();fx.geometry.dispose();fx.mesh.material.dispose();}
  entry.fire=null;entry.smoke=null;entry.assets=null;
 }
-function makeEntry(entity,mesh,p,n){
- const bind=topology(mesh.geometry),size=p.count*3;
- const entry={entity,model:entity.model,header:entity.model.cache?.data,mesh,geometry:mesh.geometry,bind,sourcePosition:p,sourceNormal:n,
-  position:new THREE.BufferAttribute(new Float32Array(size),3).setUsage(THREE.DynamicDrawUsage),
-  normal:new THREE.BufferAttribute(new Float32Array(size),3).setUsage(THREE.DynamicDrawUsage),
-  scene:null,seen:false,time:0,fire:null,smoke:null,assets:null,frustumCulled:mesh.frustumCulled,
-  phase:((entity._entityIndex??0)>>>0)%997*.137,point:new Float64Array(3),direction:new Float64Array(3)};
- entries.set(entity,entry);return entry;
-}
-/** Always supply canonical template/blend attributes, even on an unchanged pose.
- * Reading geometry.position here would recursively deform the previous output.
- */
-export function R_LavaManApply(entity,mesh,p,n,time){
- let e=entries.get(entity);
- if(!mesh?.geometry||!p||!n)return null;
- // A temporary Classic pass may use another pose's UV/index objects. Handle it
- // before ownership/topology checks, keeping all retained Newer state intact.
- if(R_ClassicPassActive()){
-  mesh.geometry.setAttribute('position',p);mesh.geometry.setAttribute('normal',n);
-  if(e)hide(e);
-  return null;
- }
- // Every native pose has the same expanded topology, but template attributes
- // are different objects. Do not discard private buffers at every pose change.
- if(e&&(e.mesh!==mesh||e.geometry!==mesh.geometry||e.model!==entity.model||e.header!==entity.model.cache?.data||e.position.count!==p.count||e.bind.index.count!==mesh.geometry.index?.count)){
-  R_LavaManRelease(entity);e=null;
-  mesh.geometry.setAttribute('position',p);mesh.geometry.setAttribute('normal',n);
- }
- if(e){e.sourcePosition=p;e.sourceNormal=n;}
- if(!selected(entity,mesh)||!Number.isFinite(time)||p.count!==n.count||p.count>LAVA_MAN.maxVertices){R_LavaManRelease(entity);return null;}
- try{
-  if(!e){
-   // Cached portal figures cannot reserve every slot ahead of a live actor.
-   if(entries.size>=LAVA_MAN.maxEntities&&!entity._levelViewGhost){
-    for(const [other,entry]of entries)if(entry.entity._levelViewGhost){R_LavaManRelease(other);break;}
-   }
-   if(entries.size>=LAVA_MAN.maxEntities){overflow++;return null;}
-   e=makeEntry(entity,mesh,p,n);
-  }
-  let x0=Infinity,y0=Infinity,z0=Infinity,x1=-Infinity,y1=-Infinity,z1=-Infinity;
-  for(const i of e.bind.head){const x=p.getX(i),y=p.getY(i),z=p.getZ(i);x0=Math.min(x0,x);y0=Math.min(y0,y);z0=Math.min(z0,z);x1=Math.max(x1,x);y1=Math.max(y1,y);z1=Math.max(z1,z);}
-  const hx=(x0+x1)/2,hy=(y0+y1)/2,hz=(z0+z1)/2,t=time+e.phase,out=e.position.array,norm=e.normal.array;
-  for(let i=0;i<p.count;i++){
-   const x=p.getX(i),y=p.getY(i),z=p.getZ(i),dx=x-hx,dy=y-hy,dz=z-hz;
-   const w=Math.exp(-(dx*dx/625+dy*dy/484+dz*dz/625)),wx=-2*dx/625*w,wy=-2*dy/484*w,wz=-2*dz/625*w;
-   const a=.035*z+1.4*t,b=.045*y-.9*t,c=.033*x-.8*t,d=.031*y+1.1*t,f=.029*x-1.4*t;
-   const ha=.09*dz+2.1*t,hb=.09*dx-1.7*t,hc=.08*dy+1.6*t;
-   const ax=1.8*Math.sin(ha),ay=1.6*Math.sin(hb),az=1.8*Math.sin(hc);
-   out[i*3]=x+1.8*Math.sin(a)+.8*Math.sin(b)+w*ax;
-   out[i*3+1]=y+1.4*Math.sin(c)+w*ay;
-   out[i*3+2]=z+1.8*Math.sin(d)+.9*Math.sin(f)+w*az;
-   // Analytic Jacobian, with the head centre fixed for this draw. The spatial
-   // derivatives stay small; displacement is bounded by sqrt(4.4²+3²+4.5²)<7.
-   const A=1+wx*ax,B=.036*Math.cos(b)+wy*ax,C=.063*Math.cos(a)+wz*ax+w*.162*Math.cos(ha);
-   const D=.0462*Math.cos(c)+wx*ay,E=1+wy*ay,F=wz*ay;
-   const G=.0261*Math.cos(f)+wx*az,H=.0558*Math.cos(d)+wy*az+w*.144*Math.cos(hc),I=1+wz*az;
-   // y's head oscillation depends on x, too.
-   const J=D+w*.144*Math.cos(hb),nx=n.getX(i),ny=n.getY(i),nz=n.getZ(i);
-   const qx=(E*I-F*H)*nx+(F*G-J*I)*ny+(J*H-E*G)*nz;
-   const qy=(C*H-B*I)*nx+(A*I-C*G)*ny+(B*G-A*H)*nz;
-   const qz=(B*F-C*E)*nx+(C*J-A*F)*ny+(A*E-B*J)*nz;
-   const length=Math.hypot(qx,qy,qz)||1;
-   norm[i*3]=qx/length;norm[i*3+1]=qy/length;norm[i*3+2]=qz/length;
-  }
-  e.position.needsUpdate=true;e.normal.needsUpdate=true;e.time=time;
-  mesh.geometry.setAttribute('position',e.position);mesh.geometry.setAttribute('normal',e.normal);
-  mesh.geometry.computeBoundingBox();mesh.geometry.computeBoundingSphere();
-  // Emitters can extend beyond the native body's sphere. Bounded to eight actors.
-  mesh.frustumCulled=false;
-  return mesh;
- }catch(error){lastError=String(error.message||error);R_LavaManRelease(entity);return null;}
-}
+
 // Three's built-in fog math, with the fog colour premultiplied like these shared
 // transparent effects. Reuse shader bodies unchanged; clipping/MRT remain intact.
 function effectMaterial(vertex,fragment,uniforms){
@@ -146,7 +191,7 @@ function effectMaterial(vertex,fragment,uniforms){
 function effects(e,assets){
  if(e.assets===assets)return;
  destroyEffects(e);e.assets=assets;
- e.fire=layer('lavaman_fire',8,{aPosSize:4,aInfo:4},effectMaterial(TORCH_SHADERS.vertex,TORCH_SHADERS.fragment,{uNoise:{value:assets.noise},uTime:{value:0},uParams:{value:new THREE.Vector4(1,1.6,1.8,0)} }),7);
+ e.fire=layer('lavaman_fire',8,{aPosSize:4,aInfo:4},effectMaterial(TORCH_SHADERS.vertex,LAVA_FLAME_FRAGMENT,{uNoise:{value:assets.noise},uTime:{value:0},uParams:{value:new THREE.Vector4(1,1.6,1.8,0)} }),7);
  e.smoke=layer('lavaman_smoke',24,{aPosSize:4,aInfo:4,aTint:4},effectMaterial(PUFF_VERTEX,PUFF_FRAGMENT,{uAtlas:{value:assets.atlas},uNoise:{value:assets.noise},uTime:{value:0}}),6);
  for(const fx of [e.fire,e.smoke]){fx.mesh.castShadow=false;fx.mesh.receiveShadow=false;e.mesh.add(fx.mesh);}
 }
@@ -157,11 +202,11 @@ export function R_LavaManSeen(entity,mesh,scene,time){
  if(R_ClassicPassActive()){hide(e);return null;}
  if(!selected(entity,mesh)||e.mesh!==mesh||!Number.isFinite(time)){R_LavaManRelease(entity);return null;}
  if(e.scene!==scene){destroyEffects(e);e.scene=scene;}
- e.seen=true;
+ e.seen=true;e.seenTime=time;e.seenFrame=entity.frame;
  const assets=R_FireballAssets();
  if(!assets){destroyEffects(e);return null;}
  try{
-  effects(e,assets);const p=e.position,n=e.normal,t=time+e.phase,fire=e.fire.arrays,smoke=e.smoke.arrays;
+  effects(e,assets);const p=e.sourcePosition,n=e.sourceNormal,t=time+e.phase,fire=e.fire.arrays,smoke=e.smoke.arrays;
   let puff=0;
   for(let a=0;a<e.bind.anchors.length;a++){
    const anchor=e.bind.anchors[a],point=e.point,direction=e.direction;point.fill(0);direction.fill(0);
@@ -187,9 +232,41 @@ export function R_LavaManSeen(entity,mesh,scene,time){
   return e.fire.mesh;
  }catch(error){lastError=String(error.message||error);destroyEffects(e);return null;}
 }
-export function R_LavaManPositions(entity){const e=entries.get(entity);return e&&R_LavaManWanted(entity)&&e.mesh.geometry.attributes.position===e.position?e.position.array:null;}
+export function R_LavaManPositions(){return null;} // Native geometry is always the shadow source.
 export function R_LavaManBegin(scene){if(R_ClassicPassActive())return;for(const e of entries.values())if(e.scene===scene){e.seen=false;hide(e);}}
 export function R_LavaManEnd(scene){if(R_ClassicPassActive())return;for(const [entity,e]of entries)if(e.scene===scene&&!e.seen)R_LavaManRelease(entity);}
-export function R_LavaManRelease(entity){const e=entries.get(entity);if(!e)return;canonical(e);e.mesh.frustumCulled=e.frustumCulled;destroyEffects(e);entries.delete(entity);}
+export function R_LavaManRelease(entity){
+ const e=entries.get(entity);if(!e)return;
+ if(e.mesh.material===e.material)e.mesh.material=e.base;
+ destroyEffects(e);e.material.dispose();
+ if(--e.domain.users===0){e.domain.texture.dispose();domains.delete(e.domain.key);}
+ entries.delete(entity);
+}
 export function R_LavaManClear(){for(const entity of entries.keys())R_LavaManRelease(entity);lastError=null;overflow=0;}
 export function R_LavaManStatus(){return{entities:entries.size,maxEntities:LAVA_MAN.maxEntities,lastError,overflow};}
+
+/** Current live main-scene actor heat receipts for the existing post heat pass.
+ * Bounds come from canonical posed vertices; neither geometry bounds nor native
+ * attributes are written. Copies prevent consumers from mutating retained state.
+ */
+export function R_LavaManHeatSources(){
+ if(!R_IsNewer()||R_ClassicPassActive()||r_newer_enemies.value===0)return[];
+ const sources=[];
+ for(const e of entries.values()){
+  const actor=e.entity,index=actor._entityIndex;
+  if(!e.seen||e.seenTime!==cl.time||e.seenFrame!==actor.frame||actor._levelViewGhost||!e.scene?.isScene||
+   !R_LavaManWanted(actor)||actor.model!==e.model||actor.model.cache?.data!==e.header||cl_entities[index]!==actor||
+   actor._aliasMesh!==e.mesh||e.mesh.material!==e.material||e.mesh.geometry!==e.geometry||
+   e.geometry.attributes.position!==e.sourcePosition||e.geometry.attributes.normal!==e.sourceNormal||
+   (Number.isFinite(actor.health)&&actor.health<=0)||actor.dead===true||actor.deadflag>0)continue;
+  const native=sv.active&&sv.worldmodel===cl.worldmodel?sv.edicts?.[index]:null;
+  if(native&&(native.free||native.v.health<=0||native.v.deadflag>0))continue;
+  let attached=false,visible=true;for(let node=e.mesh;node;node=node.parent){if(node.visible===false)visible=false;if(node===e.scene){attached=true;break;}}
+  if(!attached||!visible)continue;
+  e.heatBox??=new THREE.Box3();e.heatBox.setFromBufferAttribute(e.sourcePosition).applyMatrix4(e.mesh.matrixWorld);
+  if(e.heatBox.isEmpty()||![...e.heatBox.min.toArray(),...e.heatBox.max.toArray()].every(Number.isFinite))continue;
+  sources.push({min:e.heatBox.min.toArray(),max:e.heatBox.max.toArray()});
+  if(sources.length===LAVA_MAN.maxEntities)break;
+ }
+ return sources;
+}
