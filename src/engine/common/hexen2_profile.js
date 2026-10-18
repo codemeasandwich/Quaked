@@ -165,6 +165,26 @@ export function Hexen2_ClassNumber( classId ) { return Object.hasOwn( HEXEN2_CLA
 export function Hexen2_ClassFromNumber( number ) { return Object.values( HEXEN2_CLASSES ).find( entry => entry.number === number ) ?? null; }
 
 /**
+ * Validates a class choice for an edition. The Succubus exists only with Portal of Praevus; the demo keeps the four
+ * base classes, and an unknown class is refused rather than defaulted.
+ *
+ * @param {string} gameId `hexen2`, `hexen2-portals` or `hexen2-demo`
+ * @param {string} classId a class id
+ * @returns {{ ok: true, classId: string, number: number } | { ok: false, reason: string }} the native class number
+ */
+export function Hexen2_SelectClass( gameId, classId ) {
+
+	const profile = Hexen2_Profile( gameId );
+	if ( profile === null ) return { ok: false, reason: `unknown Hexen game id: ${String( gameId )}` };
+	const entry = HEXEN2_CLASSES[ classId ];
+	if ( entry === undefined ) return { ok: false, reason: `unknown Hexen class: ${String( classId )}` };
+	if ( ! profile.classes.includes( entry.id ) )
+		return { ok: false, reason: `${entry.name} is not available in ${profile.name}` };
+	return { ok: true, classId: entry.id, number: entry.number };
+
+}
+
+/**
  * The digest of a descriptor's simulation fields alone: edition, gamecode mode and digest, rules preset, private
  * protocol and the named SP features. Content root and presentation settings are deliberately excluded.
  *
