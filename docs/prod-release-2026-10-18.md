@@ -117,7 +117,13 @@ or silently retry. The controller atomically moves remote Prod and creates its
 version tag. It reports publication as pending, then the Prod push workflow tests
 and publishes the same source. It does not rewrite an existing tag, bypass history
 rules or make a commit on Prod. Refresh local tracking with `git fetch origin`;
-any local Prod alignment must likewise use `git merge --ff-only`.
+local Prod alignment must also be fast-forward only. Use `git merge --ff-only` in
+its own checkout. For a local Prod mirror that is not checked out, first verify
+the selected full SHA is the remote Prod/tag target and descends from local Prod,
+then use `git fetch --no-tags . FULL_RELEASE_SHA:refs/heads/Prod`. Git's normal
+non-forced branch-fetch check enforces the fast-forward without switching the Dev
+checkout. Do not use a `+` refspec, `--force` or `--update-head-ok`; verify the
+primary HEAD/index/worktree are unchanged afterwards.
 
 A second selection is blocked until the current Prod push has an acknowledged,
 successful publication run. The only explicit bootstrap exception is the original
