@@ -9,14 +9,17 @@ import { model_t } from '../src/engine/render/gl_model_types.js';
 import { set_loadmodel, Mod_FindName } from '../src/engine/render/gl_model_common.js';
 import { Mod_LoadBrushModel, Mod_SetHexenHullLayout } from '../src/engine/render/gl_model_bsp.js';
 import { SV_ClearWorld, SV_LinkEdict, SV_PointContents, SV_TestEntityPosition, SV_Move } from '../src/engine/server/world.js';
-import { SV_SetCallbacks } from '../src/engine/server/sv_phys.js';
 import { PR_LoadProgs, PR_AllocEdicts, ED_LoadFromFile } from '../src/engine/progs/pr_edict.js';
 import { PR_SetSV, PR_SetSVS, PR_GetString, pr_global_struct, svs } from '../src/engine/progs/progs.js';
 import { sv as serverSv, ss_loading, ss_active, SOLID_BSP, MOVETYPE_PUSH, SIGNON_SIZE, FL_CLIENT, FL_ONGROUND } from '../src/engine/server/server.js';
 import { PR_LastRunError, PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
+import { Hexen2_CallBuiltin } from '../src/engine/progs/hexen2_cmds.js';
+import { pr_globals } from '../src/engine/progs/progs.js';
+import { OFS_PARM0, OFS_PARM1, OFS_RETURN } from '../src/engine/progs/pr_comp.js';
 import '../src/engine/progs/hexen2_world_cmds.js';
 import '../src/engine/progs/hexen2_precache_cmds.js';
 import '../src/engine/progs/hexen2_server_cmds.js';
+import { installServerCallbacks } from './helpers/hexen2_server_setup.mjs';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const HEXEN = '/Users/bri/quaked/Hexen 2/data1';
@@ -49,7 +52,7 @@ Deno.test( 'a Paladin is placed in the supplied level by the supplied gamecode',
 	sv.signon.data = sv.signon_buf; sv.signon.maxsize = SIGNON_SIZE; sv.signon.cursize = 0;
 	const world = sv.edicts[ 0 ]; world.v.solid = SOLID_BSP; world.v.movetype = MOVETYPE_PUSH; world.v.modelindex = 1;
 	SV_ClearWorld();
-	SV_SetCallbacks( { SV_Move, SV_PointContents, SV_LinkEdict, SV_TestEntityPosition } );
+	installServerCallbacks( { SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_PointContents, PR_ExecuteProgram } );
 	pr_global_struct.time = 0.1; pr_global_struct.self = 0;
 	ED_LoadFromFile( map.entities );
 	sv.state = ss_active;
@@ -80,5 +83,21 @@ Deno.test( 'a Paladin is placed in the supplied level by the supplied gamecode',
 	same( player.v.health, 100, 'the starting health' );
 	same( player.v.size.join( ',' ), '32,32,56', 'the player hull size' );
 	check( Math.abs( player.v.origin[ 0 ] ) > 1 || Math.abs( player.v.origin[ 1 ] ) > 1, 'the player stands at the map spawn: ' + player.v.origin );
+
+	// the Paladin can walk: with the native player hull (hull 1's box) one step of 32 units moves it in +x and it
+	// stays on the floor. The box the gamecode derives from the RAPO model's frame bounds is feet-origin
+	// (mins z 0, maxs z 56); reconciling that with the engine's centre-origin hull offset is an open item (recorded).
+	const before = [ player.v.origin[ 0 ], player.v.origin[ 1 ], player.v.origin[ 2 ] ];
+	player.v.mins = [ - 16, - 16, - 24 ]; player.v.maxs = [ 16, 16, 32 ]; player.v.size = [ 32, 32, 56 ];
+	player.v.flags = ( player.v.flags | 0 ) | FL_ONGROUND;
+	pr_global_struct.self = 1;
+	pr_global_struct.time = sv.time;
+	pr_globals.setFloat( OFS_PARM0, 0 );
+	pr_globals.setFloat( OFS_PARM1, 32 );
+	check( Hexen2_CallBuiltin( 32, { random: () => 0.5 } ) === true, 'walkmove is implemented' );
+	same( pr_globals.getFloat( OFS_RETURN ), 1, 'the step succeeded' );
+	check( Math.abs( player.v.origin[ 0 ] - ( before[ 0 ] + 32 ) ) < 0.1, 'the player advanced 32 units in +x: ' + player.v.origin );
+	same( player.v.origin[ 1 ], before[ 1 ], 'the player did not slide sideways' );
+	check( Math.abs( player.v.origin[ 2 ] - before[ 2 ] ) < 2, 'the player stayed on the floor: ' + player.v.origin[ 2 ] );
 
 } );

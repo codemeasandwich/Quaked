@@ -9,7 +9,6 @@ import { model_t, mod_alias } from '../src/engine/render/gl_model_types.js';
 import { set_loadmodel } from '../src/engine/render/gl_model_common.js';
 import { Mod_LoadBrushModel, Mod_SetHexenHullLayout } from '../src/engine/render/gl_model_bsp.js';
 import { SV_ClearWorld, SV_LinkEdict, SV_PointContents, SV_TestEntityPosition, SV_Move } from '../src/engine/server/world.js';
-import { SV_SetCallbacks } from '../src/engine/server/sv_phys.js';
 import { PR_LoadProgs, PR_AllocEdicts } from '../src/engine/progs/pr_edict.js';
 import { pr_globals, PR_SetSV, PR_SetTempString } from '../src/engine/progs/progs.js';
 import { sv as serverSv, ss_loading, SOLID_BSP, MOVETYPE_PUSH } from '../src/engine/server/server.js';
@@ -17,6 +16,8 @@ import { Hexen2_CallBuiltin } from '../src/engine/progs/hexen2_cmds.js';
 import '../src/engine/progs/hexen2_world_cmds.js';
 import '../src/engine/progs/hexen2_precache_cmds.js';
 import { OFS_PARM0, OFS_PARM1, OFS_RETURN } from '../src/engine/progs/pr_comp.js';
+import { installServerCallbacks } from './helpers/hexen2_server_setup.mjs';
+import { PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const HEXEN = '/Users/bri/quaked/Hexen 2/data1';
@@ -51,7 +52,7 @@ const state = ( () => {
 	const world = sv.edicts[ 0 ];
 	world.v.solid = SOLID_BSP; world.v.movetype = MOVETYPE_PUSH; world.v.modelindex = 0;
 	SV_ClearWorld();
-	SV_SetCallbacks( { SV_Move, SV_PointContents, SV_LinkEdict, SV_TestEntityPosition } );
+	installServerCallbacks( { SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_PointContents, PR_ExecuteProgram } );
 	return sv;
 
 } )();
