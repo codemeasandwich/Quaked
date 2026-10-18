@@ -637,6 +637,7 @@ export class model_t {
 		this.nummodelsurfaces = 0;
 
 		this.numsubmodels = 0;
+		this.hullCount = 4;		// hulls this level defines: 4 for Quake, 8 for Hexen II
 		this.submodels = null;		// array of dmodel_t
 
 		this.numplanes = 0;

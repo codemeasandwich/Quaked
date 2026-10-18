@@ -13,7 +13,7 @@
 
 // upper design bounds
 
-export const MAX_MAP_HULLS = 4;
+export const MAX_MAP_HULLS = 8; // Hexen II's eight hulls; a Quake BSP's four-hull records load only 0..3 (`model_t.hullCount`)
 
 export const MAX_MAP_MODELS = 256;
 export const MAX_MAP_BRUSHES = 4096;
