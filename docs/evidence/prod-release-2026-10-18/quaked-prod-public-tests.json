@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-18T16:08:41.029276+00:00",
+  "verdict": "PASS: all15 current independent promotion cases including atomic Prod/tag transaction",
+  "scope": "Only tests/prod_promotion_contract_test.mjs and private temp evidence written. No productionsource edit/staging/commit/build/provider/remote mutation/other-chat message. Git writes only disposable temporary repositories; all controller HTTP synthetic.",
+  "head": "5608cd50251103c26f6411273073854640791112",
+  "node": "v24.19.0",
+  "results": {
+    "tests": 15,
+    "pass": 15,
+    "fail": 0,
+    "skipped": 0,
+    "log": "/private/tmp/quaked-prod-atomic-tags-public.log",
+    "logSha256": "f0661173ed878d099887c47de58d75406b0e38ba3a108bd873a791fa6cd07c23"
+  },
+  "passingCoverage": [
+    "Plan exact full SHA/repository/commit identity, Dev ancestry, fast-forward and numeric version/workflow/tag guards",
+    "CI matching commit/branch/event/path/repository/completed-success and pending/failed/missing Prod run",
+    "CAS exact beforeOid+afterOid, forcefalse, GraphQL stale/no-ack/readback rejection",
+    "CAS oneatomic request exact Prod beforeOid and zero-before versiontag; both forcefalse, both directcommit readbacks; GraphQL stale/noack/transportunknown and either corruptedreadback reject",
+    "Repository controller rejection; standalone RSA fake App identity JWT signature/lifetime, repository-scoped token request, exact update/history gates and CAS",
+    "Actions/private-file0600/outsideGit/symlink-key/canonical controller hash guards; stale current Prod, identity mismatch, emptybypass and history-gate rejection; token revoke on normal/guard/CAS paths",
+    "Actual production precommit hook rejects attempted Prod commit before any build, leaves disposable HEAD/index unchanged",
+    "Actual prepush hook rejects update/creation/deletion of Prod; permits Dev and rejects malformed stdin"
+  ],
+  "findings": [],
+  "sourceInputs": [
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/distribution/promote.mjs",
+      "sha256": "68d50c867f031cd6cff758c197f3fd91f2fe5c6458aecf462c5c9a29c925e54d"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/distribution/prod-push-guard.mjs",
+      "sha256": "379336075720146f647812921a6c7cb72873e1d8bf0bcc6ccb6a1172a1ff60f5"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/distribution/precommit.mjs",
+      "sha256": "b5c926c50ea0db2cf3015353f36d16b845eef34f712ddd8d348f06411e4aafcb"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/.githooks/pre-push",
+      "sha256": "7432eaf34914f6008a8218ab1f9f149dc052253742663765dc4407a99f28b95e"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/.githooks/pre-commit",
+      "sha256": "96757f4cfc27408fe10db4cc88ec2408a301392d280f2ea8205d16a3d6c4a951"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tests/prod_promotion_contract_test.mjs",
+      "sha256": "8b3e27e8f6f9a3ed33e9ac65da276f5041c8ef20dd8377f4aad2508867627093"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/.github/workflows/distribution.yml",
+      "sha256": "e35858123fd08bca94266f4c32c41111c56215276a9d1a87175eaea6465c8311"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/.github/protection/prod-updates.json",
+      "sha256": "57a61647470478243beb56c813e142931a16881e1c15e570c465cff25eaca343"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/.github/protection/prod-history.json",
+      "sha256": "bf20633b1ddd17a886dc398fadd9f9be5a764d171a09d5b0adc97c51dd4d6584"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/.github/protection/dev-history.json",
+      "sha256": "8131cc093f69903b5a0238bf3de6277ff6ecf0b9d2a042043ce78b2235426e53"
+    }
+  ],
+  "initialLogsRetained": [
+    "/private/tmp/quaked-prod-public-tests-initial.log",
+    "/private/tmp/quaked-prod-public-tests-canonical.log",
+    "/private/tmp/quaked-prod-public-tests-second.log",
+    "/private/tmp/quaked-prod-public-tests-current.log",
+    "/private/tmp/quaked-prod-public-tests-final-initial.log",
+    "/private/tmp/quaked-prod-public-tests-initial-report.json"
+  ],
+  "initialLogExplanation": "Historical first run exposed CLI no-op via the normal macOS/var temporary alias; canonical fixture then isolated it as an explicit symlink regression. Fixtures were extended for concurrently added Prod acknowledgment, history rulesets and token permissions. Both discovered production defects were fixed by parent; all14 current public cases PASS. Historical failure logs remain retained, not current failures.",
+  "ciTriage": {
+    "path": "/private/tmp/quaked-prod-ci-triage.json",
+    "sha256": "61f2f5e357d40b3e0f7f7d72193efe56afd7d8bae37102760b0b356912469298"
+  },
+  "qualificationLimits": "Synthetic App/JWT/CAS proves local public contracts only. Dedicated real App owner/config not supplied; no Prod movement or live App/server acceptance claimed. No heavy/fullgate run.",
+  "nextAction": "Parent combines publisher missingtag refusal fixture and runs full current contracts/gate before publication. No actual Prod/versiontag/App writes by independent reviewer.",
+  "state": "Complete; quiescent.",
+  "resolvedDuringReview": [
+    {
+      "id": "REJECTED_ISSUED_TOKEN_NOT_REVOKED",
+      "file": "tools/distribution/promote.mjs",
+      "symptom": "App access token is issued, but rejected returned permissions throw before entering try/finally; DELETE /installation/token is never called. Synthetic test confirms no CAS and last request remains access_tokens.",
+      "requiredOutcome": "Ensure every issued stringtoken is revoked on all subsequent rejection/error paths, including permission validation.",
+      "test": "a rejected installation-token permission response is revoked without attempting promotion",
+      "status": "Parent concurrently fixed production token-permission validation into credential cleanup. Identical regression now PASS; no agent production edit."
+    },
+    {
+      "id": "CLI_SYMLINK_SILENT_SUCCESS",
+      "file": "tools/distribution/promote.mjs",
+      "symptom": "node <symlink-to-trusted-outsideGit-controller> --repository owner/project --sha FULL_SHA exits0 with emptystdout and no requests. import.meta.url is canonical while process.argv[1] preserves symlink pathname; main guard does not execute. Also initially exposed by normal macOS/var tmp alias.",
+      "requiredOutcome": "Recognize canonical identity for CLI invocation or fail clearly; never silently report success without a plan.",
+      "test": "actual standalone CLI invoked through a symlink still executes and prints the reviewed dry-run plan",
+      "status": "Parent fixed canonical CLI main-entry detection; identical symlink regression now PASS. No agent production edit."
+    }
+  ],
+  "previousStableRunInputs": {
+    "proof": "/private/tmp/quaked-prod-final-run-input.json",
+    "sha256": "0189e6234c824712d473c0ee40ef7f716e833ea5e4be48d5f55e4b8383f76b80",
+    "promoteBeforeAfterSha256": "f09615346cc9a9c7e98598cf6d68f8a5f4d97e36c93bc23093b1f61f28bafffe",
+    "testBeforeAfterSha256": "38466e8aad64247d3ba27afe44265673be512327b7c85c52f56ea1ad699e0d96",
+    "unchangedDuringFinalRun": true
+  },
+  "currentInputsRecordedAfterRun": true,
+  "atomicTagContract": {
+    "receipt": "/private/tmp/quaked-prod-atomic-tags-public.json",
+    "sha256": "855e8d07fac27b8bc2486b3815edc194efcbcea3a79cc61cfe261f551c62e81a",
+    "inputsStableBeforeAfter": true,
+    "semantics": [
+      "One GraphQL request contains exactly2forcefalse updates: expectedoldProd to selectedcommit and allzeroabsent versiontag to samecommit",
+      "Acknowledgement requires Prod and directcommit versiontag readbacks both exactly selectedcommit",
+      "WrongProd/tagreadback, tagobjecttype, missingack, staleGraphQL and uncertain transport outcome fail",
+      "DedicatedApp-only tagcreation, no actorbypass for tagupdate/deletion, mandatory2tagconfigIDs before auth",
+      "Invalidtag policies revoke issuedtoken without any refmutation"
+    ]
+  },
+  "historicalFullContractRunBeforeAtomicTags": {
+    "schemaVersion": 1,
+    "startedAt": "2026-10-18T16:03:04.851079+00:00",
+    "endedAt": "2026-10-18T16:03:25.012650+00:00",
+    "command": [
+      "/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "--test",
+      "tests/authoring_images_contract_test.mjs",
+      "tests/distribution_contract_test.mjs",
+      "tests/embedded_asset_contract_test.mjs",
+      "tests/lan_channel_contract_test.mjs",
+      "tests/native_library_contract_test.mjs",
+      "tests/official_texture_retirement_contract_test.mjs",
+      "tests/pack_upload_contract_test.mjs",
+      "tests/packs_contract_test.mjs",
+      "tests/prod_promotion_contract_test.mjs",
+      "tests/prod_release_contract_test.mjs",
+      "tests/resource_layout_contract_test.mjs",
+      "tests/staged_contract_test.mjs",
+      "tests/standard_4x_records_contract_test.mjs",
+      "tests/web_data_contract_test.mjs",
+      "tests/web_images_contract_test.mjs"
+    ],
+    "exit": 0,
+    "sourceFixtureInputScope": "All src JS/JSON; tests JS/MJS/JSON/Python/HTML/fixtures; distribution helpers; hooks/protection/workflows; selected package/native/resource/catalogue records; exactsharp/esbuild package metadata. Asset content identities are independently asserted by the invoked maintained contract suites; this snapshot is the source/test/fixture stability proof, not a separate rehash of all artwork.",
+    "inputCount": 953,
+    "inputsStableBeforeAfter": true,
+    "changedInputs": [],
+    "before": {
+      "path": "/private/tmp/quaked-prod-full-contract-inputs-before.json",
+      "sha256": "21f23cb5c7fb7d185a88a4784c27d32955fd7251d8ea09fa9511a8c7fadc9af0"
+    },
+    "after": {
+      "path": "/private/tmp/quaked-prod-full-contract-inputs-after.json",
+      "sha256": "21f23cb5c7fb7d185a88a4784c27d32955fd7251d8ea09fa9511a8c7fadc9af0"
+    },
+    "log": {
+      "path": "/private/tmp/quaked-prod-independent-full-contracts-lockdeps.log",
+      "sha256": "273031ce002b181c930f3a83a84ae9002b2c97a25c700be39c6d5e6b3d7e9707"
+    },
+    "node": "v24.19.0",
+    "sharpVersion": "0.35.5",
+    "scope": "Read-only full contract execution with temporary fixtures. No builds/installs/source edits/staging/commit/real API mutation by reviewer.",
+    "summaryLines": [
+      "\u2139 tests 93",
+      "\u2139 suites 0",
+      "\u2139 pass 93",
+      "\u2139 fail 0",
+      "\u2139 cancelled 0",
+      "\u2139 skipped 0",
+      "\u2139 todo 0",
+      "\u2139 duration_ms 19749.653791"
+    ]
+  },
+  "fullContractCurrentStatus": "Prior93case fullsuite PASS retained as historical; this bounded successor reran15current promotion cases only. Parent owns simultaneous publisherfixture successor and nextcombinedfullsuite."
+}

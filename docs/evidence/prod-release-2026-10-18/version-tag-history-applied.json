@@ -1,0 +1,40 @@
+{
+  "id": 25348918,
+  "name": "Quaked version-tag-history",
+  "target": "tag",
+  "source_type": "Repository",
+  "source": "codemeasandwich/Quaked",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "exclude": [],
+      "include": [
+        "refs/tags/v*"
+      ]
+    }
+  },
+  "rules": [
+    {
+      "type": "update",
+      "parameters": {
+        "update_allows_fetch_and_merge": false
+      }
+    },
+    {
+      "type": "deletion"
+    }
+  ],
+  "node_id": "RRS_lACqUmVwb3NpdG9yec5TIxcdzgGCyzY",
+  "created_at": "2026-10-18T17:08:59.783+01:00",
+  "updated_at": "2026-10-18T17:08:59.806+01:00",
+  "bypass_actors": [],
+  "current_user_can_bypass": "never",
+  "_links": {
+    "self": {
+      "href": "https://api.github.com/repos/codemeasandwich/Quaked/rulesets/25348918"
+    },
+    "html": {
+      "href": "https://github.com/codemeasandwich/Quaked/rules/25348918"
+    }
+  }
+}

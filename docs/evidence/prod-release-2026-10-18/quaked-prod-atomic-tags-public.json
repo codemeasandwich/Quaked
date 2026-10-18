@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-18T16:08:07.924431+00:00",
+  "endedAt": "2026-10-18T16:08:12.265238+00:00",
+  "command": [
+    "/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--test",
+    "tests/prod_promotion_contract_test.mjs"
+  ],
+  "exit": 0,
+  "tests": 15,
+  "inputScope": "Maintained independent test, controller, production Git guard/precommit/hooks and current protection JSONs",
+  "sourceBefore": {
+    "tests/prod_promotion_contract_test.mjs": "8b3e27e8f6f9a3ed33e9ac65da276f5041c8ef20dd8377f4aad2508867627093",
+    "tools/distribution/promote.mjs": "68d50c867f031cd6cff758c197f3fd91f2fe5c6458aecf462c5c9a29c925e54d",
+    "tools/distribution/prod-push-guard.mjs": "379336075720146f647812921a6c7cb72873e1d8bf0bcc6ccb6a1172a1ff60f5",
+    "tools/distribution/precommit.mjs": "b5c926c50ea0db2cf3015353f36d16b845eef34f712ddd8d348f06411e4aafcb",
+    ".githooks/pre-commit": "96757f4cfc27408fe10db4cc88ec2408a301392d280f2ea8205d16a3d6c4a951",
+    ".githooks/pre-push": "7432eaf34914f6008a8218ab1f9f149dc052253742663765dc4407a99f28b95e",
+    ".github/protection/dev-history.json": "8131cc093f69903b5a0238bf3de6277ff6ecf0b9d2a042043ce78b2235426e53",
+    ".github/protection/prod-history.json": "bf20633b1ddd17a886dc398fadd9f9be5a764d171a09d5b0adc97c51dd4d6584",
+    ".github/protection/prod-updates.json": "57a61647470478243beb56c813e142931a16881e1c15e570c465cff25eaca343",
+    ".github/protection/version-tag-create.json": "8de800af398ae0e91ad6be99f3f42ef6f9569ab54e0bb5c75b5a6ab7bc6ef8ce",
+    ".github/protection/version-tag-history.json": "5fa89d5e442adec414b4df603c0055ea0c51da0224ee8ad9327a51695e13e78f"
+  },
+  "sourceAfter": {
+    "tests/prod_promotion_contract_test.mjs": "8b3e27e8f6f9a3ed33e9ac65da276f5041c8ef20dd8377f4aad2508867627093",
+    "tools/distribution/promote.mjs": "68d50c867f031cd6cff758c197f3fd91f2fe5c6458aecf462c5c9a29c925e54d",
+    "tools/distribution/prod-push-guard.mjs": "379336075720146f647812921a6c7cb72873e1d8bf0bcc6ccb6a1172a1ff60f5",
+    "tools/distribution/precommit.mjs": "b5c926c50ea0db2cf3015353f36d16b845eef34f712ddd8d348f06411e4aafcb",
+    ".githooks/pre-commit": "96757f4cfc27408fe10db4cc88ec2408a301392d280f2ea8205d16a3d6c4a951",
+    ".githooks/pre-push": "7432eaf34914f6008a8218ab1f9f149dc052253742663765dc4407a99f28b95e",
+    ".github/protection/dev-history.json": "8131cc093f69903b5a0238bf3de6277ff6ecf0b9d2a042043ce78b2235426e53",
+    ".github/protection/prod-history.json": "bf20633b1ddd17a886dc398fadd9f9be5a764d171a09d5b0adc97c51dd4d6584",
+    ".github/protection/prod-updates.json": "57a61647470478243beb56c813e142931a16881e1c15e570c465cff25eaca343",
+    ".github/protection/version-tag-create.json": "8de800af398ae0e91ad6be99f3f42ef6f9569ab54e0bb5c75b5a6ab7bc6ef8ce",
+    ".github/protection/version-tag-history.json": "5fa89d5e442adec414b4df603c0055ea0c51da0224ee8ad9327a51695e13e78f"
+  },
+  "inputsStableBeforeAfter": true,
+  "log": "/private/tmp/quaked-prod-atomic-tags-public.log",
+  "logSha256": "f0661173ed878d099887c47de58d75406b0e38ba3a108bd873a791fa6cd07c23",
+  "scope": "Only owned test edits and private temp evidence. Synthetic HTTP, fake RSA key and disposable Git repos only; no GitHub mutations or real Prod/tag writes."
+}

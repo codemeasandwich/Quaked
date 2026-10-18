@@ -1,0 +1,119 @@
+
+> quaked@0.132.3 pretest:distribution
+> npm run prepare:shareware
+
+
+> quaked@0.132.3 prepare:shareware
+> node tools/distribution/prepare-shareware.mjs
+
+Verified explicit shareware build input.
+
+> quaked@0.132.3 test:distribution
+> node --test tests/*_contract_test.mjs
+
+✔ every relocated image has one canonical file with its original byte identity (3357.872625ms)
+✔ tools retain their code and records while authoring images stay under assets (23.171709ms)
+✔ retained fitting recipes still resolve their exact source image bytes (918.460417ms)
+✔ neither distribution includes authoring images or retained source records (596.997042ms)
+✔ public HTTP image aliases, ranges and owned-game boundaries remain valid (2951.075875ms)
+✔ artifact inventories enforce the original-game data boundary (0.863667ms)
+✔ web closure retains every Episode 1/hub normal and eligible custom enemy sample (812.35175ms)
+✔ desktop inventory includes all prepared map transports and no bundled original game (510.877708ms)
+✔ embedded binary codec preserves bytes across word boundaries and excludes HTML delimiters (472.608917ms)
+✔ corrupt encoded data and impossible lengths are rejected (0.460125ms)
+✔ departing peer queued sends cannot close host or prevent another peer receiving (37.079875ms)
+✔ asynchronous sends preserve peer FIFO and copy bytes before caller reuse (1.140791ms)
+✔ poll events completing after close cannot reach the driver or restart polling (1.55275ms)
+✔ late poll failure after close cannot emit fresh driver events (1.605667ms)
+✔ late send failure after close cannot manufacture another peer departure (1.4995ms)
+✔ rejected client handshake closes that client without ending an independent host (1.264416ms)
+✔ desktop catalogue validates selected split archives and preserves legacy default mounting policy (111.016958ms)
+✔ native strict selection refuses unread directories, damaged packs and absent shareware (1.09525ms)
+✔ native catalogue refuses a pack set beyond the existing bounded limit (1.763584ms)
+✔ dated candidate folders are absent; accepted selections point to official assets (7.261792ms)
+✔ every accepted binding and all five official map hashes survive candidate removal (884.702375ms)
+✔ comparison references remain the exact original native game extractions (167.917625ms)
+✔ only the parts the release lacks are uploaded; core is bundled, never uploaded (1.698375ms)
+✔ a dist/packs that is not exactly the listed parts is refused (0.36425ms)
+✔ a release asset of a part's name but another size is refused, and so is passing the asset limit (1.765417ms)
+✔ the manifest is read from the built page, and a bundled build has nothing to upload (0.595ms)
+✔ an asset a cancelled upload left incomplete is replaced, never taken as present; the result is confirmed afresh (0.228291ms)
+✔ a game needs its own pack and its ancestors; shared assets go to the nearest common ancestor (1.257875ms)
+✔ the committed game index is current and covers every playable game (9.701167ms)
+✔ each playable game finds all of its assets in its own packs (658.880209ms)
+✔ the shareware pack holds everything the HTML can start with (50.335084ms)
+✔ ordinary variant names and all companion images use their owning game packs (24.462ms)
+✔ promotion plan selects an explicit qualified Dev ancestor without mutating anything (4.100709ms)
+✔ plan rejects abbreviated/uppercase/non-SHA selections and invalid repository before API access (0.482083ms)
+✔ plan rejects a non-Dev commit, non-fast-forward and wrong commit object (1.294875ms)
+✔ release source, numeric version and unused tag are mandatory (0.632792ms)
+✔ CI qualification binds commit, Dev branch, push event, workflow, repository and completed success (0.759917ms)
+✔ a pending/failed current Prod publication blocks a later selection; already-selected is explicit (0.478375ms)
+✔ CAS atomically sends exact non-forced Prod and new version-tag refs and verifies both readbacks (0.967417ms)
+✔ actual CLI defaults to a GET-only dry run and rejects applying from a Git checkout (531.106208ms)
+✔ standalone App CLI verifies fake RSA JWT, exact gate, fresh plan and CAS then revokes token (430.957208ms)
+✔ App apply rejects Actions, insecure/in-repository private files, symlink bypass and wrong controller identity (695.1645ms)
+✔ App rejects a stale reviewed plan or any other bypass actor and revokes issued credentials (1128.354875ms)
+✔ actual production pre-commit and pre-push hooks prohibit direct Prod writes in disposable Git (1397.743167ms)
+✔ actual standalone CLI invoked through a symlink still executes and prints the reviewed dry-run plan (112.453625ms)
+✔ a rejected installation-token permission response is revoked without attempting promotion (153.3235ms)
+✔ App requires creation by only its dedicated identity and immutable no-bypass version-tag history (2354.327709ms)
+✔ verification events never become publication authority; native/package versions must agree (513.287583ms)
+✔ Prod requires an exact workflow SHA, existing branch FF lineage and Dev membership (343.998875ms)
+✔ artifact identity binds the tested HTML, exact commit/version and native ZIP/receipt bytes (220.704542ms)
+✔ another commit, version, tree-only provenance or escaping archive is refused (134.204125ms)
+✔ existing released artifacts must match both the common identity and GitHub asset digests (101.927917ms)
+✔ Pages CLI rejects a self-consistent counterfeit pair against upstream artifact digests (654.834333ms)
+✔ publication creates a draft, verifies immutable assets, then publishes a shared identity (1329.329833ms)
+✔ partial upload stays draft; retry completes the same artifacts without replacement (1971.212375ms)
+✔ published retry keeps the original Mac build when the same source rebuild differs (1741.057416ms)
+✔ publisher cannot create a version tag outside the atomic App promotion (1167.030375ms)
+✔ web stamping checks the exact browser-tested bytes and clean commit provenance (287.795875ms)
+✔ one canonical physical path resolves each retained logical resource identifier (1.365708ms)
+✔ source URL routing preserves base paths, queries, code and external URLs (0.607542ms)
+✔ both product inventories resolve uniquely to the same authored files (973.709125ms)
+✔ staged snapshot includes only index bytes and deletions, preserving working files (179.674917ms)
+✔ staged builds and tests never inherit the hook's Git environment (0.482583ms)
+✔ resampled files retain their historical 4x receipt or an explicitly verified native-refit successor (63.352541ms)
+✔ Armagon successor retains the actual before and after records rather than relabelling the old resample (5.060875ms)
+▶ missing invalid or mismatched successors cannot bypass the historical file gate
+  ✔ no successor (0.786542ms)
+  ✔ empty successor (14.762542ms)
+  ✔ wrong predecessor (12.577875ms)
+  ✔ missing recipe (0.781167ms)
+  ✔ missing source record (1.154125ms)
+  ✔ different source record (1.079875ms)
+  ✔ wrong pinned model (1.347125ms)
+  ✔ wrong pinned source (1.672625ms)
+  ✔ recipe not 4x (3.655792ms)
+  ✔ record not 4x (3.698792ms)
+  ✔ missing height pin (10.039375ms)
+  ✔ wrong current height (8.072417ms)
+  ✔ wrong current dimensions despite matching hashes (3.247166ms)
+✔ missing invalid or mismatched successors cannot bypass the historical file gate (65.201041ms)
+✔ nonsuperseded rows still enforce original file hashes and resample provenance (8.656958ms)
+▶ renamed Q92 successor requires explicit safe filename, real codec and current catalogue
+  ✔ undisclosed rename (7.096959ms)
+  ✔ path escape rename (2.277917ms)
+  ✔ wrong codec despite matching hashes (7.232667ms)
+  ✔ wrong catalogue rename (3.35925ms)
+  ✔ wrong catalogue identity (5.860458ms)
+  ✔ recipe Q92 intent missing (7.6895ms)
+  ✔ SOURCE Q92 intent wrong (4.284459ms)
+  ✔ runtime receipt hash wrong (5.515459ms)
+✔ renamed Q92 successor requires explicit safe filename, real codec and current catalogue (44.920334ms)
+✔ the web build ships the core and shareware packs and the shareware PAK; other games stay out of it (49.921375ms)
+✔ a site is published only with exactly the data files its HTML names, byte for byte (17.005666ms)
+✔ the verifier runs when reached through a symlink, so a CI path can never make it skip (65.441167ms)
+✔ only Bestiary pictures are re-encoded; data maps and other assets keep their bytes (21.835666ms)
+✔ a Bestiary page becomes WebP at its own size, under the limit, at the highest quality that fits, and is cached (429.397417ms)
+✔ the web and desktop builds both derive Bestiary pages from the same PNG masters (1.758333ms)
+✔ a page that cannot fit without resizing stops the build for an owner decision (10799.311458ms)
+ℹ tests 96
+ℹ suites 0
+ℹ pass 96
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12902.628583

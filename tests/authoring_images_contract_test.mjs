@@ -51,7 +51,7 @@ test('neither distribution includes authoring images or retained source records'
 });
 
 test('public HTTP image aliases, ranges and owned-game boundaries remain valid',()=>{
- const result=spawnSync(process.env.QUAKED_PYTHON??'python3',['tests/resource_http_test.py'],{
+ const result=spawnSync(process.env.QUAKED_PYTHON??'python3',['-I','-B','-u','tests/resource_http_test.py'],{
   cwd:root,encoding:'utf8',timeout:15000,env:{...process.env,PYTHONDONTWRITEBYTECODE:'1'}});
  assert.equal(result.status,0,result.stdout+result.stderr+(result.error?.message??''));
 });

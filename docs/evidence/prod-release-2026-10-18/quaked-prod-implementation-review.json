@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-18T15:53:39.535711+00:00",
+  "verdict": "HOLD pending fixes and bounded successor review/public verification",
+  "scope": "Independent readonly source review while parent implements. No edits, tests/builds, staging, providers or other-chat operations. Not a frozenfinaltree approval.",
+  "findings": [
+    {
+      "id": "R1",
+      "priority": 1,
+      "path": "tools/distribution/release.mjs",
+      "linesObserved": "VerifyWeb44-47 and CLIverify-web110; workflowPagesenv",
+      "finding": "Pages verification initially ignores RELEASE_IDENTITY_SHA256 and RELEASE_HTML_SHA256 exported by trusted upstream jobs. It checks only self-consistency of downloaded release.json/index.html and embedded commit/version, dropping the intended independent digest handoff.",
+      "requiredFix": "At CLI publication boundary require valid external identity+testedHTML digests, hash exact release.json/index.html against them, then existingVerifyWeb/VerifySite. Bind release artifact publication to trusted testedHTML hash too where applicable. Do not require unrelated pure helper calls/local snapshots to invent release env.",
+      "meaningfulCase": "Mutate HTML plus matchingJSON to remain internally coherent; external trusted digest must reject. Mutate releaseidentity bytes only; reject. Missing/malformed digests failclosed for PagesCLI.",
+      "status": "Parent reports fixing; reviewer has not qualified successor."
+    },
+    {
+      "id": "R2",
+      "priority": 1,
+      "path": "tools/distribution/promote.mjs",
+      "linesObserved": "Plan42-43",
+      "finding": "No priorProdpush workflow run is treated as permission for another promotion. Immediately after CAS, GitHub may not yet list the newProdrun, allowing another owner command to advanceProd and supersede its first incomplete publication.",
+      "requiredFix": "Allow no-run bootstrap only for exactknownlegacyProd3f2084c043eec0108bc70f12fd47f4d5060a53ff. Any modernProdwithmissingrun is pending/unknown and blocks nextpromotion. Failed/incomplete runs remainblocked. SameSHA retry must notmoveProd.",
+      "meaningfulCase": "FirstCAS landsS butrunAPIreturns[]; secondS2planrejects. Exactlegacybootstrapmayproceed; arbitrarymissingrunSHAcannot.",
+      "status": "Parent reports fixing; reviewer has not qualified successor."
+    },
+    {
+      "id": "R3",
+      "priority": 1,
+      "path": "tools/distribution/promote.mjs",
+      "linesObserved": "Apply74-79",
+      "finding": "Apply initially validates only App-exclusive update gate; it never validates separately required zero-bypassProdhistory andDevhistory policies. If configuration drifts, trustedcontroller can no longer claim the stated server invariant or stableDevmembership.",
+      "requiredFix": "Privateconfigpins realhistoryrulesetIDs; readback activebranch targets/excludes, expectedruletypes, zero bypass, and currentupdategateAppidentity immediatelybeforefreshPlan/CAS. No reuse of Appbypass in historysets.",
+      "meaningfulCase": "Disable/wrongtarget/remove-nonFF/addbypass on eitherhistoryset: refuse beforeCAS; exact3sets permit policycontinuation.",
+      "status": "Parent reports fixing IDs25348048/25348049; reviewer has not qualified successor."
+    },
+    {
+      "id": "R4",
+      "priority": 2,
+      "path": "tools/distribution/promote.mjs",
+      "linesObserved": "Client11-18 and Apply80",
+      "finding": "API fetches have no timeout. A stalled read/CAS/revocation can hang indefinitely with a privileged installationtoken alive. In addition a revocation exception in finally overwrites the outcome afterCAS/readback succeeds, reporting only cleanupfailure and obscuring thatProdalreadychanged.",
+      "requiredFix": "Bound everyAPIrequest with timeout/abort. Preserve success/unknownCASoutcome and communicate revocationfailure separately; attempt boundedrevoke on all tokenissued paths. IfCASacknowledged butrevocationfailed, emit explicitcommit/promotionacknowledgement plus credentialcleanupfailure, never blindretry. IfCAS response is lost, report unknown andrequirefreshreadback.",
+      "meaningfulCase": "CASsucceeds/readbackmatches/revoke500 => caller learnsupdatedSHA andcleanupfailure. APItimeout attemptsboundedrevoke; CASerror plusrevokefailure preserves both withouttokenlogging.",
+      "status": "Additional bounded failure-handling correction recommended before qualification."
+    }
+  ],
+  "soundImplementation": [
+    "Distinct audited standalone controller outsideGit/Actions with private0600 config/key and selfhash pin; one-repository installationtoken, explicitAppidentity check, requestpermissions minimized and revoked in finally. SharedActions attestation removed.",
+    "GraphQLupdateRefs uses beforeOid+afterOid+force:false and exactProdreadback; genuineCAS intent, no gitforce/reset/branch bypass. API/schema capability proof supplied by parent rather than independently called here.",
+    "ExplicitfullSHA, freshDevancestry/currentProdFF, strictnumericversion, no existingtag for newpromotion, actualDistribution Devpush success, Prodpublication state gate and no implicitlatestDev choice.",
+    "SingleDistribution workflow now Prodpush-only publication, immutableSHA checkout at everyjob, tags/manual/Devnotpublishing. Pages depends on release+web+allmac; all priorHTTP/file/tamper/native/Rust/LAN/universal/archive checks retained.",
+    "Build verifies clean exactselectedHEAD andversion, embeds sourceCommit/version, keeps stagedtreeidentity distinct; archive checks expectedsource/version and retains normalnativeverification.",
+    "Release draftstaging, exacttag resolution, immutablematchingexistingassets, publishedrelease reuse and explicitdifferentartifact refusal avoidclobber. Identicalretry depends on retainedoriginalartifacts; failures mustremaintruthful.",
+    "Prodprecommit guard is early and doesnot weaken normalgate. Localprepush rejects all directProdrefs as convenience; serverrule/App remains authority."
+  ],
+  "securityBoundaryLimits": [
+    "Current serverProdgate is reported active/no bypass; no Appidentity/key/controllerinstallation exists. Thusworkingpromotion is intentionally unavailable, not deliverycomplete. No actualProdmove/releaseallowed.",
+    "Controller localhost and administrator configuration remain trusted. OutsideGit key doesnot protect against arbitrary same-UID malware; isolatedcredentialaccess is needed if that threatis included.",
+    "GenericActionsGITHUB_TOKEN still builds/publishes acceptedProdsource, but cannot bypassProdref updategate. Do not put dedicatedAppcredential in Actions.",
+    "Any successfulDevworkflow run is currentlyaccepted rather than newestattempt; define thispolicy explicitly or reject knownnewerfailedreruns if currentqualification is required.",
+    "GitHubActions artifact retention7days may make partialdraftretry impossible afteroriginalartifacts expire. Existingcode safelyrefuses differingrebuiltartifacts; retain originalreceipt/artifacts or require explicitrecoverydecision, neverpromiseautomaticretry indefinitely.",
+    "No actualAPIreadback/applicationcontrollerpermission test, publicationreadback or rerun performed byreviewer."
+  ],
+  "parentFixNotice": "Parent acceptedR1/R2/R3 and is changingthem while thisreviewseals; findingsrefer initialobservedsource and require successorreadback. R4 adds boundedAPI/cleanupoutcome handling. Sourcehashes below are the currentread snapshot, not an assertion allinitialfindingspersist byte-for-byte.",
+  "inputs": [
+    {
+      "path": "tools/distribution/promote.mjs",
+      "sha256": "6272f5aaca98b5a362d9c36d987f550511d7d620a0c7a5e985a25dfa0d2dae71"
+    },
+    {
+      "path": "tools/distribution/release.mjs",
+      "sha256": "4e3d7dee1676662af5b50e02b29244eafce1581a6fd1a477549a306e1430b43e"
+    },
+    {
+      "path": "tools/distribution/prod-push-guard.mjs",
+      "sha256": "379336075720146f647812921a6c7cb72873e1d8bf0bcc6ccb6a1172a1ff60f5"
+    },
+    {
+      "path": "tools/distribution/precommit.mjs",
+      "sha256": "b5c926c50ea0db2cf3015353f36d16b845eef34f712ddd8d348f06411e4aafcb"
+    },
+    {
+      "path": "tools/distribution/build.mjs",
+      "sha256": "c48727f20e920c5f10fbad56654dfa6d10dec6c26162220905824274fa60a175"
+    },
+    {
+      "path": "tools/distribution/archive-mac.mjs",
+      "sha256": "31ee3f288f068259ed57f8e3510add1c01a524429ed0dcc8f7be3a50723e59bf"
+    },
+    {
+      "path": ".github/workflows/distribution.yml",
+      "sha256": "e35858123fd08bca94266f4c32c41111c56215276a9d1a87175eaea6465c8311"
+    },
+    {
+      "path": ".githooks/pre-push",
+      "sha256": "7432eaf34914f6008a8218ab1f9f149dc052253742663765dc4407a99f28b95e"
+    }
+  ],
+  "nextAction": "Completeboundedfixes, publicCLI/API fixture cases and releaseartifactcontracts; thenfreezeexacttree forread-onlyfinalreview beforemaintainedgate. Do notselectrelease ormoveProd.",
+  "state": "Review delivered; quiescent pending successor."
+}

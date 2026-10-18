@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-18T15:39:33.373495+00:00",
+  "verdict": "PASS exact fail-closed payloads and split App trust-boundary plan; operational promotion not yet implemented or qualified.",
+  "scope": "Read-only three concrete ruleset payloads. No API/provider calls, server mutations, ref movements, builds or release.",
+  "files": [
+    {
+      "path": ".github/protection/prod-updates.json",
+      "sha256": "57a61647470478243beb56c813e142931a16881e1c15e570c465cff25eaca343",
+      "branch": "Prod",
+      "rules": [
+        "update"
+      ],
+      "bypassActors": []
+    },
+    {
+      "path": ".github/protection/prod-history.json",
+      "sha256": "bf20633b1ddd17a886dc398fadd9f9be5a764d171a09d5b0adc97c51dd4d6584",
+      "branch": "Prod",
+      "rules": [
+        "creation",
+        "deletion",
+        "non_fast_forward"
+      ],
+      "bypassActors": []
+    },
+    {
+      "path": ".github/protection/dev-history.json",
+      "sha256": "8131cc093f69903b5a0238bf3de6277ff6ecf0b9d2a042043ce78b2235426e53",
+      "branch": "Dev",
+      "rules": [
+        "deletion",
+        "non_fast_forward"
+      ],
+      "bypassActors": []
+    }
+  ],
+  "currentIntendedEnforcement": [
+    "Prod update ruleset active with zero bypass actors denies all normal ref updates, including Actions and direct user/admin pushes while rules remain active. This deliberately blocks every promotion until a verified dedicatedApp is configured.",
+    "Independent Prod history ruleset with zero bypass forbids creation/deletion/nonFF. Later add App bypass ONLY to prod-updates; do not add it to prod-history. All applicable rulesets must pass, so bypassing update gate cannot waive history constraints.",
+    "Dev noforce/nodelete, zero bypass preserves ancestry of existing commits. It does not qualify arbitrary new Dev commits; trusted controller must still validate full CI and owner-selected identity."
+  ],
+  "dedicatedControllerBoundary": [
+    "Distinct dedicatedApp identity, not genericActions, removes same-name Actions check spoofing from the promotion authority boundary. App alone is update-gate bypass actor; no sharedActions/user/admin/role bypass added. Verify realApp ID independently before configuration, not guessed installationID or genericActionsApp ID.",
+    "App privatekey/token never stored in repository, Actions secrets/runtime or CI artifacts. Controller installed outside repository, audited/version/hash pinned, not loaded/imported from selected release source; no arbitrary repo scripts/build hooks run with credential access.",
+    "Outside-repository key placement protects against GitHub workflow access but not every same-user local process. If hostile local repo code is in threat model, isolate controller credential under separate OS principal or secret-store access control. State trusted-local-host assumption otherwise.",
+    "Controller validates immutable selectedSHA, freshDev ancestry, exactoldProd, FF relation, full maintained qualification, uniqueversion/tag and publication policy; no caller can supply a fakequalification result. Branch state protection is necessary but does not implement these checks."
+  ],
+  "CASConcern": {
+    "finding": "Do not label ordinary REST PATCH git/refs with force:false as expected-old compare-and-swap. It enforces FF but has no caller supplied oldOID precondition. A read-before-write alone has a race.",
+    "requirement": "Use a verified server primitive carrying expectedoldOID (for example a supported GitHub GraphQL ref-update beforeOid contract or authenticated Git protocol expected-old update), while retaining server nonFF protection; otherwise document weaker serialized-controller/FF behavior instead of claiming CAS. Verify actual supported schema before implementation. No API choice or request executed here."
+  },
+  "applyPrerequisites": [
+    "Read back server-created rulesets by returnedIDs and effective rules for both refs, confirming active enforcement, exactcase refs, no excludes/bypass, no force/delete waiver; preserve any other existing policy. API plan/permission/rejection means not applied, never success.",
+    "Confirm actualProdSHA remains3f2084c043eec0108bc70f12fd47f4d5060a53ff before/after rule application. No releaseSHA chosen and no Prod move now.",
+    "Record ruleIDs, payloads/readback hashes/time and failclosed pendingApp state in ledger. Do not claim App setup, working promotion, rejection-test execution or publication complete.",
+    "Owner/admin can later edit/delete rulesets; this is an administrative policy boundary, not immunity from repository-owner configuration changes.",
+    "Leave all publication/tests/data immutability requirements from prior release plan intact. Local hooks are accidental-misuse guards, bypassable locally, not the server boundary."
+  ],
+  "remainingWork": [
+    "Apply/read back exact failclosed server policy.",
+    "Create/identify authorized dedicatedApp and install isolated immutable controller only with owner authority; add realApp bypass to update-gate only, retain history no-bypass.",
+    "Complete supportedCAS/FF/controller qualification and sameSHA release+Pages workflow before a separately chosen release."
+  ],
+  "blockersToApplyPayloads": [],
+  "blockersToPromoteNow": [
+    "NoApp identity/controller, no chosenreleaseSHA, no operationalqualification. Denyall update rule is intentionally active."
+  ],
+  "state": "Review complete; quiescent."
+}

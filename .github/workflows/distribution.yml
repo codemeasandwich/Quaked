@@ -1,29 +1,50 @@
+# quaked-prod-release-v1
 name: Distribution
 on:
   pull_request:
   push:
-    branches: [Dev]
-    tags: ['v*']
+    branches: [Dev, Prod]
   workflow_dispatch:
 permissions:
   contents: read
 concurrency:
   group: distribution-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.ref != 'refs/heads/Prod' }}
 jobs:
+  source:
+    runs-on: ubuntu-latest
+    outputs:
+      publish: ${{ steps.identity.outputs.publish }}
+      commit: ${{ steps.identity.outputs.commit }}
+      version: ${{ steps.identity.outputs.version }}
+      tag: ${{ steps.identity.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - id: identity
+        run: node tools/distribution/release.mjs context
+        env:
+          GH_TOKEN: ${{ github.token }}
   web:
-    # The game needs real WebGL. Linux runners have only software WebGL; run
-    # 38240397203 timed out at startup there, and a local SwiftShader profile showed
-    # 62 s of shader linking (docs/distribution.md). GitHub's macOS runners come
-    # with Google Chrome; whether they give it hardware WebGL is unproven until a
-    # run's receipt records it. The receipt's webglRenderer field records the WebGL
-    # renderer the runner provided and browserMemory the Chrome process-tree RSS.
+    needs: source
+    # Keep the existing real Chrome HTTP/file/tamper trials on macOS.
     runs-on: macos-15
     timeout-minutes: 60
+    env:
+      RELEASE_COMMIT: ${{ needs.source.outputs.commit }}
+      RELEASE_VERSION: ${{ needs.source.outputs.version }}
     outputs:
       html-sha256: ${{ steps.digest.outputs.sha256 }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.source.outputs.commit }}
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
@@ -32,41 +53,37 @@ jobs:
       - run: npm run test:distribution
       - run: npm run build:web
       - run: node tools/distribution/verify-site.mjs dist/web
-      # As served by GitHub Pages: index.html and its data files over http.
       - run: node tools/distribution/browser-trial.mjs
         timeout-minutes: 30
         env:
           QUAKED_CHROME_CHANNEL: chrome
-      # As a downloaded copy: index.html from disk, data from the Pages host (mapped locally).
       - run: node tools/distribution/browser-trial.mjs "" dist/browser-trial-file.json
         timeout-minutes: 30
         env:
           QUAKED_CHROME_CHANNEL: chrome
           QUAKED_TRIAL_MODE: file
-      # One flipped byte in one data part: the page must refuse to start.
       - run: node tools/distribution/browser-trial.mjs "" dist/browser-trial-tamper.json
         timeout-minutes: 10
         env:
           QUAKED_CHROME_CHANNEL: chrome
           QUAKED_TRIAL_TAMPER: '1'
-      # Only a Dev push deploys, so only it hands the tested site to the pages job. The HTML
-      # names each data file's sha256 (fetch integrity), so its digest binds the data too.
       - id: digest
-        if: github.event_name == 'push' && github.ref == 'refs/heads/Dev'
-        # The exported digest must be the one the trial hashed before it ran.
+        if: github.event_name == 'push' && github.ref == 'refs/heads/Prod'
         run: |
+          node tools/distribution/release.mjs stamp-web dist/web
           tested=$(node -p "require('./dist/browser-trial.json').targetSha256")
           actual=$(shasum -a 256 dist/web/index.html | cut -d' ' -f1)
           test "$tested" = "$actual"
           echo "sha256=$actual" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@v4
-        if: github.event_name == 'push' && github.ref == 'refs/heads/Dev'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/Prod'
         with:
-          name: web-html
+          name: tested-web
           path: |
             dist/web/index.html
             dist/web/data/
-          retention-days: 1
+            dist/web/web-release.json
+          retention-days: 7
           compression-level: 0
       - uses: actions/upload-artifact@v4
         if: always()
@@ -76,24 +93,24 @@ jobs:
             dist/web/inventory.json
             dist/browser-trial*
   mac:
+    needs: source
     strategy:
       matrix:
         runner: [macos-15, macos-15-intel]
     runs-on: ${{ matrix.runner }}
-    # contents: write for the data upload below. The job's other steps (cargo build scripts, the tauri CLI, tests) never
-    # see the token: checkout does not keep it (persist-credentials: false) and only the upload step is given GH_TOKEN.
-    # A pull request from a fork still gets a read-only token, and builds with every pack bundled.
     permissions:
       contents: write
     env:
+      RELEASE_COMMIT: ${{ needs.source.outputs.commit }}
+      RELEASE_VERSION: ${{ needs.source.outputs.version }}
       CARGO_TARGET_DIR: ${{ github.workspace }}/.distribution-cache/target
-      # A Dev push or version tag builds the Apple Silicon leg's app to download game packs from the `data` release
-      # (owner approval, 13 October 2026; docs/per-game-packs-design-2026-10-13.md), after uploading any parts the
-      # release lacks. Pull requests and the Intel leg build the app with every pack bundled, so both paths stay tested.
-      QUAKED_PACK_BASE: ${{ github.event_name == 'push' && matrix.runner == 'macos-15' && format('https://github.com/{0}/releases/download/data/', github.repository) || '' }}
+      # Only the Prod Apple Silicon leg uploads immutable data parts. Dev/PR
+      # qualification and the Intel leg keep testing the fully bundled path.
+      QUAKED_PACK_BASE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/Prod' && matrix.runner == 'macos-15' && format('https://github.com/{0}/releases/download/data/', github.repository) || '' }}
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ needs.source.outputs.commit }}
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
@@ -101,31 +118,69 @@ jobs:
           cache: npm
       - run: rustup target add aarch64-apple-darwin x86_64-apple-darwin
       - run: npm ci --ignore-scripts
-      - run: npm run test:distribution && npm run build:desktop
-      # Parts are named by their content: only new ones are added, none replaced, so earlier apps keep theirs.
-      - name: Upload game packs to the data release
-        if: env.QUAKED_PACK_BASE != ''
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: node tools/distribution/upload-packs.mjs
+      - run: npm run test:distribution
+      - run: npm run build:desktop
       - run: cargo test --locked --manifest-path src-tauri/Cargo.toml
       - run: cargo build --locked --manifest-path src-tauri/Cargo.toml --example lan_test_bridge
       - run: node tools/distribution/engine-tests.mjs
         env:
           QUAKED_LAN_TEST_BRIDGE: ${{ github.workspace }}/.distribution-cache/target/debug/examples/lan_test_bridge
+      - name: Upload immutable game-pack parts
+        if: github.event_name == 'push' && github.ref == 'refs/heads/Prod' && matrix.runner == 'macos-15'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node tools/distribution/upload-packs.mjs
       - run: npm run tauri -- build --target universal-apple-darwin -- --locked
-      - name: Archive the self-contained application
-        run: node tools/distribution/archive-mac.mjs
+      - run: node tools/distribution/archive-mac.mjs
       - uses: actions/upload-artifact@v4
         with:
           name: mac-${{ matrix.runner }}
-          path: |
-            dist/release/*.zip
-            dist/release/*.json
-            dist/desktop/inventory.json
+          path: dist/release/
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mac-evidence-${{ matrix.runner }}
+          path: dist/desktop/inventory.json
+  release:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/Prod'
+    needs: [source, web, mac]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      RELEASE_COMMIT: ${{ needs.source.outputs.commit }}
+      RELEASE_VERSION: ${{ needs.source.outputs.version }}
+    outputs:
+      identity-sha256: ${{ steps.publish.outputs.identity_sha256 }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.source.outputs.commit }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/download-artifact@v4
+        with:
+          name: tested-web
+          path: tested-web
+      - uses: actions/download-artifact@v4
+        with:
+          name: mac-macos-15
+          path: tested-mac
+      - id: publish
+        name: Publish or verify this exact release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node tools/distribution/release.mjs publish tested-web tested-mac
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-identity
+          path: dist/release-identity/release.json
+          retention-days: 7
   pages:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/Dev'
-    needs: [web, mac]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/Prod'
+    needs: [source, web, mac, release]
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -134,54 +189,38 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      RELEASE_COMMIT: ${{ needs.source.outputs.commit }}
+      RELEASE_VERSION: ${{ needs.source.outputs.version }}
+      RELEASE_IDENTITY_SHA256: ${{ needs.release.outputs.identity-sha256 }}
+      RELEASE_HTML_SHA256: ${{ needs.web.outputs.html-sha256 }}
     steps:
-      # Publish exactly the site (HTML and data files) the web job's browser trials passed.
       - uses: actions/download-artifact@v4
         with:
-          name: web-html
+          name: tested-web
           path: dist/pages
-      - name: Verify the HTML is the tested file
-        env:
-          TESTED_SHA256: ${{ needs.web.outputs.html-sha256 }}
-        run: |
-          test -n "$TESTED_SHA256"
-          echo "$TESTED_SHA256  dist/pages/index.html" | sha256sum -c -
-      # Data files must be exactly the ones the tested HTML names; only the verifier script
-      # is checked out, and no repository code builds anything here.
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-identity
+          path: dist/pages
       - uses: actions/checkout@v4
         with:
+          ref: ${{ needs.source.outputs.commit }}
           path: source
           persist-credentials: false
-          sparse-checkout: tools/distribution/verify-site.mjs
+          sparse-checkout: |
+            tools/distribution/verify-site.mjs
+            tools/distribution/release.mjs
           sparse-checkout-cone-mode: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
       - run: node source/tools/distribution/verify-site.mjs dist/pages
+      - run: node source/tools/distribution/release.mjs verify-web dist/pages
+        env:
+          GH_TOKEN: ${{ github.token }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/pages
       - uses: actions/deploy-pages@v4
         id: deployment
-  release:
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
-    needs: [web, mac]
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-      - name: Verify version tag
-        env:
-          RELEASE_TAG: ${{ github.ref_name }}
-        run: node -e 'if(process.env.RELEASE_TAG!=="v"+require("./package.json").version)throw Error("Tag does not match package version")'
-      - uses: actions/download-artifact@v4
-        with:
-          name: mac-macos-15
-          path: release
-      - name: Publish Mac application
-        env:
-          GH_TOKEN: ${{ github.token }}
-          RELEASE_TAG: ${{ github.ref_name }}
-        run: |
-          find release -mindepth 2 -name '*.zip' -exec cp {} release/ \;
-          cd release
-          sha256sum ./*.zip > SHA256SUMS.txt
-          gh release create "$RELEASE_TAG" ./*.zip SHA256SUMS.txt --repo "$GITHUB_REPOSITORY" --generate-notes --title "Quaked $RELEASE_TAG"

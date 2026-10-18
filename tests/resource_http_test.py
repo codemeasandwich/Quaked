@@ -1,4 +1,8 @@
 """Public HTTP regression for canonical/retained image URLs and game ranges."""
+import faulthandler
+if __name__=='__main__':
+    faulthandler.enable()
+    faulthandler.dump_traceback_later(10)
 import functools
 import http.server
 import json
@@ -8,7 +12,8 @@ import tempfile
 import threading
 import unittest
 from urllib.error import HTTPError
-from urllib.request import Request, urlopen
+from urllib.request import Request, build_opener, ProxyHandler
+from unittest.mock import patch
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 from serve import RangeHandler
@@ -42,6 +47,8 @@ class ResourceHttpTests(unittest.TestCase):
         self.thread.start()
         self.addCleanup(self.close_server)
         self.base='http://127.0.0.1:'+str(self.server.server_port)
+        # A loopback fixture must not consult macOS/system/environment proxies.
+        self.opener=build_opener(ProxyHandler({}))
 
     def close_server(self):
         self.server.shutdown()
@@ -49,7 +56,12 @@ class ResourceHttpTests(unittest.TestCase):
         self.thread.join()
 
     def get(self,path,headers=None):
-        return urlopen(Request(self.base+path,headers=headers or {}),timeout=5)
+        return self.opener.open(Request(self.base+path,headers=headers or {}),timeout=5)
+
+    def test_loopback_ignores_external_proxy_discovery(self):
+        with patch('urllib.request._opener',None), patch('urllib.request.getproxies',side_effect=AssertionError('external proxy discovery')):
+            with self.get('/tools/source/example.png') as response:
+                self.assertEqual(response.read(),self.body)
 
     def test_canonical_and_retained_urls_read_same_physical_bytes(self):
         for path in ['/assets/authoring/example.png','/tools/source/example.png?v=2']:
@@ -79,4 +91,7 @@ class ResourceHttpTests(unittest.TestCase):
 
 
 if __name__=='__main__':
-    unittest.main()
+    try:
+        unittest.main(verbosity=2)
+    finally:
+        faulthandler.cancel_dump_traceback_later()

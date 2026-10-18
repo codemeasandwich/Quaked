@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-18T15:33:08.833709+00:00",
+  "verdict": "CONDITIONAL PASS for trusted-workflow operational guard; HOLD any claim of an unforgeable server guarantee using GitHubActions app_id alone.",
+  "scope": "Read-only proposed security-model/source review; no API/provider calls, ref writes, protection mutations, builds or publication.",
+  "importantFinding": {
+    "severity": "high for literal hard requirement",
+    "finding": "Required check context plus generic GitHubActions app_id identifies the shared Actions app, not the trusted workflow/event that issued a check. Another writable workflow/branch can create a same-named check with that app identity; a same-name job check can also collide, including the skipped-job concern. A custom check solves accidental skipping of the intended attester, but does not bind the required check to that attester.",
+    "concreteBypass": "A writer creates a new FF descendant of currentProd on another branch and a workflow/job named Quaked / Dev-qualified (or a checks:write workflow posting the custom context), obtains success from the same Actions integration, then pushes that SHA to Prod. Context+app matches despite SHA never reaching Dev. This is a source-policy counterexample, not a performed exploit.",
+    "consequence": "Do not describe genericActions app pin as server-enforced Dev membership against workflow-capable writers. Enforce-admins also does not stop an administrator changing the protection configuration."
+  },
+  "soundParts": [
+    "Exact-SHA custom success posted only after BOTH web and mac matrix succeeded on Devpush is the correct trusted-source eligibility policy. Do not use a conditionally skipped attester job check as the required context.",
+    "Prod protection: enforce_admins=true, allow_force_pushes=false, allow_deletions=false; required exact context pinned to actual appID; no bypass actors. Dev nonforce/nondelete/admin enforcement preserves ancestry of genuinely attested Dev commits.",
+    "Local precommit blocking on attached Prod and fresh-remote prepush FF/Dev-membership guard prevent ordinary accidental misuse; normal Git push must remain nonforce. Explicit promotionSHA/dryrun is correct.",
+    "A commit cannot reveal which local branch it was authored on. The enforceable content rule is remoteProd advances FF only to a commit already in trustedDev history, not proof of where gitcommit was typed."
+  ],
+  "minimalHardeningChoices": [
+    {
+      "choice": "If repository policy trusts every workflow-capable writer",
+      "action": "Reserve the context, remove checks/status-write grants from nonattester jobs, minimize attestation job inputs, audit all workflow/event permissions and document this explicit trust assumption. It is an operational guard, not a hard workflow-origin boundary.",
+      "limit": "A writer able to add/run workflows can still use sharedActions identity; default read-only token settings alone do not prove per-workflow exclusivity."
+    },
+    {
+      "choice": "If owner requires the literal hard server boundary",
+      "action": "Use a required trusted workflow rule bound by server to a protected workflow identity if this repository plan/API supports it, OR pin the required attestation to a distinct dedicatedGitHubApp identity whose token/key is unavailable to arbitrary repository workflows. The issuer validates exactDev membership and fullCI qualification. Prefer existing organization capability/App; do not silently create a new service or assume availability.",
+      "limit": "A dedicatedApp is materially more setup than one genericActions check; raise that tradeoff. Keep its credentials behind server-enforced trustedDev/environment policy, never reusable from arbitrarybranches/PRs; same-name Actions checks then fail appID pin."
+    }
+  ],
+  "attesterRequirements": [
+    "Single Devpush-only post-success job, no always fallback that turns skipped/failed dependency into success; verify both dependency results explicitly before posting.",
+    "Per-job contents:read/checks:write only in attester. No tests, dependencies, untrusted artifacts or repository scripts execute with its write token. Fixed inline issuer code and literal context; head_sha from immutableevent, not artifact JSON or userinput.",
+    "Bind context details/summary to workflow/runID/sourceSHA/version and prerequisite run outcomes. Never accept generic/manual/user-supplied success or a customcheck at a differentSHA.",
+    "Failed/cancelled rerun policy must be explicit: do not leave a success falsely current after known contradictory later qualification. Never publish merely because an old success exists without reading intended qualification identity."
+  ],
+  "APIReadbackContract": {
+    "providedState": "Parent reports currently unprotectedProd, no rulesets, admin access. Not independently API-verified by this reviewer.",
+    "beforeClaimingEnforced": [
+      "Read back Prod and Dev protection/rulesets after apply: exactcheckcontext+actualintegrationID, enforceadmins, force/deletefalse, no enabled bypass that permits ordinarywriters.",
+      "Verify existing protection/ruleset rules are preserved, not erased by replacing the policy body; API error/plan limitation fails closed and is recorded.",
+      "Inspect workflow permissions/trusted-workflow availability and selectedApp identity; server configuration alone with genericActions app does not remove the counterexample above.",
+      "Negative acceptance should use a separately owner-authorized disposable protected testbranch/repository for absent/wrong-app/spoofed context, nonDevSHA and nonFF updates; do not move actualProd to probe. Gitpush--dryrun is not evidence receive-side protection rejects an update.",
+      "Do not move Prod or publish now: no release SHA chosen; ancestry reconciliation and implementation qualification remain prerequisites."
+    ]
+  },
+  "currentSourceObservation": {
+    "workflowSha256": "dbcc7fa62a82fe757416d2ed42d5230ee3bff9864a04963241a72be1a668298c",
+    "precommitSha256": "bdcdbb5814a2379c28b46a6f20285b73b8f8319f6786250274785621d9b1c56f",
+    "state": "Current reviewed source still has original DevPages/tagRelease workflow; precommit lacks proposed earlyProd guard and .githooks has no prepush. Proposed protections/attester/local guards are not implemented or proven by this review."
+  },
+  "nextAction": "Parent must resolve/document genericActions workflow-writer trust limitation before claiming hard enforcement. Implement chosen existing policy, read back actual API state, preserve all required qualification/publication gates, and obtain bounded review. No actual release selection/promotion now.",
+  "state": "Review complete; quiescent."
+}

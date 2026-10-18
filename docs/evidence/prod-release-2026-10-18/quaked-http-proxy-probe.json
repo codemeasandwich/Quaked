@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-18T15:58:50.749169+00:00",
+  "scope": "Originalfixture normal and failure-injection public HTTP probe, no source edits. Temporary loopback fixture server only; no external network or real GitHub/API writes.",
+  "sourceFile": "tests/resource_http_test.py",
+  "sourceBeforeSha256": "66679b17cc8f16568ed81f11e5e7219b7139d0b266d5bea76b06a458fd8dc64a",
+  "sourceAfterSha256": "66679b17cc8f16568ed81f11e5e7219b7139d0b266d5bea76b06a458fd8dc64a",
+  "interpreter": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+  "normalOriginal": {
+    "command": [
+      "/usr/bin/python3",
+      "-u",
+      "tests/resource_http_test.py",
+      "-v"
+    ],
+    "exit": 0,
+    "log": "/private/tmp/quaked-http-proxy-normal-original.log",
+    "timedOut": false,
+    "logSha256": "f5e7752b2202c19deaab0f4e8929a9af658302443759659e043d91fbaaef703d",
+    "testsRun": 4,
+    "passCount": 4,
+    "durationSeconds": 2.049
+  },
+  "injectedOriginal": {
+    "command": [
+      "/usr/bin/python3",
+      "-u",
+      "/private/tmp/quaked-http-proxy-probe-command.py"
+    ],
+    "exit": 1,
+    "log": "/private/tmp/quaked-http-proxy-injected-original.log",
+    "timedOut": false,
+    "logSha256": "adbd4ebb3a9e804189181b97b2721ee4114ea492af407106733ff784ab23f04f",
+    "testsRun": 4,
+    "expectedFailures": 4,
+    "proxyDiscoveryCalls": 4,
+    "durationSeconds": 2.035
+  },
+  "injectedMethod": "urllib.request.getproxies patched to raise AssertionError('unexpected external proxy discovery'); default opener reset before loading test cases",
+  "qualificationLimit": "Shows host-proxy-discovery dependence if injected call fails. It does not prove the empty-output CI timeout was caused by proxy discovery. New current CI PASS remains required.",
+  "state": "Local independent before/after and fullsuite qualification complete; CI timeout cause still not claimed solely from proxy evidence.",
+  "expectedFailureProved": true,
+  "sandboxInitialAttempt": {
+    "result": "Socket-bind EPERM before requests; not product failure. Repeated identical commands with reviewed loopback access.",
+    "evidence": [
+      "/private/tmp/quaked-http-proxy-normal-original.log.sandbox-initial",
+      "/private/tmp/quaked-http-proxy-injected-original.log.sandbox-initial",
+      "/private/tmp/quaked-http-proxy-probe.json.sandbox-initial"
+    ]
+  },
+  "fixedProbe": {
+    "normal": {
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "tests/resource_http_test.py",
+        "-v"
+      ],
+      "exit": 0,
+      "log": "/private/tmp/quaked-http-proxy-normal-fixed.log",
+      "timedOut": false,
+      "logSha256": "30ac514a7580972ca42bbd82bddffcfc189acfe376caa9b958814ee0cf84d40d"
+    },
+    "injected": {
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/private/tmp/quaked-http-proxy-probe-command.py"
+      ],
+      "exit": 0,
+      "log": "/private/tmp/quaked-http-proxy-injected-fixed.log",
+      "timedOut": false,
+      "logSha256": "5158d86f20e03441f3619bf762b1c61eca35c40e3e694b8bede61e39c86d5a21"
+    },
+    "sourceBeforeSha256": "ca5afe35e28e4cabc6f525d5f3ae595ebab4ee3029c8c9d2f1d1b8005599e1e9",
+    "sourceAfterSha256": "ca5afe35e28e4cabc6f525d5f3ae595ebab4ee3029c8c9d2f1d1b8005599e1e9",
+    "testsRunEach": 5,
+    "passEach": 5,
+    "proxyDiscoveryCallsUnderInjectedFailure": 0,
+    "rawEvidence": "/private/tmp/quaked-http-proxy-fixed-probe-raw.json",
+    "rawEvidenceSha256": "49c5c179d8f0e56ee3fb42487ab9b43b294e2a7f4cfe12cf162f9ae43d3e6ad8"
+  },
+  "verdict": "PASS local before/after dependency isolation; originalCI root cause remains unproven",
+  "fixedMethod": "Explicit build_opener(ProxyHandler({})) supplies only loopback requests. Original global getproxies failure injection is identical before/after. New fixture regression also resets global opener and rejects proxy discovery.",
+  "preservedLimits": {
+    "requestTimeoutSeconds": 5,
+    "nodeSubprocessTimeoutSeconds": 15,
+    "addedFaulthandlerDumpSeconds": 10,
+    "pythonFlags": [
+      "-I",
+      "-B",
+      "-u"
+    ],
+    "originalHTTPAssertions": "canonical/retained byteidentity, ranges, record paths, external owned-game range and traversal404 retained"
+  },
+  "currentSourceHashes": [
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tests/resource_http_test.py",
+      "sha256": "ca5afe35e28e4cabc6f525d5f3ae595ebab4ee3029c8c9d2f1d1b8005599e1e9"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tests/authoring_images_contract_test.mjs",
+      "sha256": "819a9fc90932afec5ab0d5560fcba8692945c048dc92ab859e37e44f961f1f33"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/serve.py",
+      "sha256": "dbe3de028b9464e9a896310e4c970591f60cfd42311665f7cc88db788b8592ec"
+    }
+  ],
+  "fullContractAttemptRetained": {
+    "log": "/private/tmp/quaked-prod-independent-full-contracts.log",
+    "logSha256": "6c8f467aea0fc21f9a4c72ef4d75742008b668e23ee082415290d54b22c7c8a1",
+    "observedTests": 90,
+    "pass": 89,
+    "fail": 1,
+    "failedFile": "tests/web_images_contract_test.mjs",
+    "failure": "ERR_MODULE_NOT_FOUND: sharp absent from Root node_modules before test module could load",
+    "httpContractPass": true,
+    "promotion14Pass": true,
+    "release9Pass": true,
+    "classification": "Dependency environment failure retained; no install/source workaround undertaken."
+  },
+  "fullContractCurrent": {
+    "resultFile": "/private/tmp/quaked-prod-full-contract-lockdeps-result.json",
+    "sha256": "35051d488c3263d381dd5e444602b487a1686bd0e9502ea2c8aeab0f915a85ae",
+    "tests": 93,
+    "pass": 93,
+    "fail": 0,
+    "sourceFixtureInputs": 953,
+    "inputsStableBeforeAfter": true,
+    "sourceBeforeAfterSha256": "21f23cb5c7fb7d185a88a4784c27d32955fd7251d8ea09fa9511a8c7fadc9af0",
+    "exactSharpVersion": "0.35.5"
+  }
+}

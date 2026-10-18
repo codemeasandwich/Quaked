@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-18T15:40:16.526917+00:00",
+  "rulesets": [
+    {
+      "name": "prod-updates",
+      "id": 25348047,
+      "enforcement": "active",
+      "bypassActors": []
+    },
+    {
+      "name": "prod-history",
+      "id": 25348048,
+      "enforcement": "active",
+      "bypassActors": []
+    },
+    {
+      "name": "dev-history",
+      "id": 25348049,
+      "enforcement": "active",
+      "bypassActors": []
+    }
+  ],
+  "ProdSHAUnchanged": "3f2084c043eec0108bc70f12fd47f4d5060a53ff",
+  "state": "Failclosed. No actor can updateProd until dedicatedApp is installed and explicitly granted update-onlybypass."
+}

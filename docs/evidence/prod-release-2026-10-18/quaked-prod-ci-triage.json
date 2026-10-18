@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "run": 39139123633,
+  "url": "https://github.com/codemeasandwich/Quaked/actions/runs/39139123633",
+  "commit": "22bfbebcc110ea4fd8dd7b85c8d4e96d0a2a04e5",
+  "conclusion": "failure",
+  "metadata": {
+    "path": "/private/tmp/quaked-prod-ci-39139123633-metadata.json",
+    "sha256": "27db52ea3fec074aed9014b8df6b814ba4b017a6bcd142c2edaa9f43bc690a6b"
+  },
+  "failedLog": {
+    "path": "/private/tmp/quaked-prod-ci-39139123633-failed.log",
+    "sha256": "706280a54d444f9292aba975267e137f57937a3d34aca61cbef93504b72c872e"
+  },
+  "actualFailures": [
+    {
+      "job": "web",
+      "step": "Run npm run test:distribution",
+      "test": "public HTTP image aliases, ranges and owned-game boundaries remain valid",
+      "failure": "spawnSync python3 ETIMEDOUT at tests/authoring_images_contract_test.mjs:56, timeout15000ms"
+    },
+    {
+      "job": "mac (macos-15-intel)",
+      "step": "Run npm run test:distribution && npm run build:desktop",
+      "test": "same public HTTP contract case",
+      "failure": "same subprocess timeout15000ms; && prevents desktop build execution"
+    }
+  ],
+  "otherJobs": {
+    "mac (macos-15)": "cancelled, not an independently established pass/failure of source",
+    "pages": "skipped",
+    "release": "skipped"
+  },
+  "scope": "Read-only GitHub metadata/log inspection; no run dispatch/rerun/cancellation or publication.",
+  "diagnosisLimit": "Captured failure has empty Python output before timeout. It proves the bounded subprocess timed out, not why. Four HTTP unittest fixtures launch a thread server and shutdown in cleanup; requests have5s timeouts. Root cause needs targeted instrumentation/reproduction rather than merely relaxing the15s contract.",
+  "relevance": "Failures predate the new promotion sources; they block a successful required Distribution run. Current controller requires a successful same-commit Dev push run before promotion.",
+  "nextOwner": "Parent fixes required HTTP contract failure and obtains current Dev CI qualification; this agent has no authority to edit that test/server."
+}

@@ -1,0 +1,40 @@
+{
+  "id": 25348048,
+  "name": "Quaked prod-history",
+  "target": "branch",
+  "source_type": "Repository",
+  "source": "codemeasandwich/Quaked",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "exclude": [],
+      "include": [
+        "refs/heads/Prod"
+      ]
+    }
+  },
+  "rules": [
+    {
+      "type": "deletion"
+    },
+    {
+      "type": "non_fast_forward"
+    },
+    {
+      "type": "creation"
+    }
+  ],
+  "node_id": "RRS_lACqUmVwb3NpdG9yec5TIxcdzgGCx9A",
+  "created_at": "2026-10-18T16:40:15.788+01:00",
+  "updated_at": "2026-10-18T16:40:15.813+01:00",
+  "bypass_actors": [],
+  "current_user_can_bypass": "never",
+  "_links": {
+    "self": {
+      "href": "https://api.github.com/repos/codemeasandwich/Quaked/rulesets/25348048"
+    },
+    "html": {
+      "href": "https://github.com/codemeasandwich/Quaked/rules/25348048"
+    }
+  }
+}

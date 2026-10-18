@@ -12,6 +12,10 @@ const run=(file,args,cwd,env=process.env)=>execFileSync(file,args,{cwd,env,stdio
 // `git init` would otherwise re-initialise the real repository (it set core.bare=true
 // on 12 October 2026). Only snapshotIndex reads the commit's index through them.
 export const withoutGitEnvironment=(env=process.env)=>Object.fromEntries(Object.entries(env).filter(([key])=>!key.startsWith('GIT_')));
+export function assertCommitBranch(root,env=process.env){
+ const branch=execFileSync('git',['branch','--show-current'],{cwd:root,env,encoding:'utf8'}).trim();
+ if(branch==='Prod')throw Error('Direct commits to Prod are forbidden. Select a qualified Dev commit through the release promotion controller.');
+}
 export async function snapshotIndex(root,target,env=process.env){
  const tree=execFileSync('git',['write-tree'],{cwd:root,env,encoding:'utf8'}).trim();
  await mkdir(target,{recursive:true});
@@ -19,6 +23,7 @@ export async function snapshotIndex(root,target,env=process.env){
  return tree;
 }
 export async function precommit(root=process.cwd()){
+ assertCommitBranch(root);
  const snapshot=await mkdtemp(join(tmpdir(),'quaked-staged-'));
  const tree=await snapshotIndex(root,snapshot);
  // The snapshot reuses the repository's encoded web images (keyed by source and encoder).

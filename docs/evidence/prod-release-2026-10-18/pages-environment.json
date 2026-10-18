@@ -1,0 +1,44 @@
+{
+  "at": "2026-10-18T15:50:58.844615+00:00",
+  "before": {
+    "total_count": 4,
+    "branch_policies": [
+      {
+        "id": 62776499,
+        "node_id": "MDE2OkdhdGVCcmFuY2hQb2xpY3k2Mjc3NjQ5OQ==",
+        "name": "Dev",
+        "type": "branch"
+      },
+      {
+        "id": 62108448,
+        "node_id": "MDE2OkdhdGVCcmFuY2hQb2xpY3k2MjEwODQ0OA==",
+        "name": "Prod",
+        "type": "branch"
+      },
+      {
+        "id": 61474541,
+        "node_id": "MDE2OkdhdGVCcmFuY2hQb2xpY3k2MTQ3NDU0MQ==",
+        "name": "gh-pages",
+        "type": "branch"
+      },
+      {
+        "id": 61474542,
+        "node_id": "MDE2OkdhdGVCcmFuY2hQb2xpY3k2MTQ3NDU0Mg==",
+        "name": "main",
+        "type": "branch"
+      }
+    ]
+  },
+  "after": {
+    "total_count": 1,
+    "branch_policies": [
+      {
+        "id": 62108448,
+        "node_id": "MDE2OkdhdGVCcmFuY2hQb2xpY3k2MjEwODQ0OA==",
+        "name": "Prod",
+        "type": "branch"
+      }
+    ]
+  },
+  "otherProtectionSettingsUnchanged": true
+}

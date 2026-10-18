@@ -337,15 +337,38 @@ hook configurations are never overwritten automatically.
 
 GitHub Actions runs the web checks and browser trial on an Apple Silicon Mac
 runner, and native builds on both Apple Silicon and Intel Mac runners.
-Successful `Dev` pushes deploy only the generated site (HTML and data files) to Pages.
-On a `Dev` push or version tag, the Apple Silicon Mac job also builds the app to download its
-game packs and uploads any parts the `data` release lacks before building it
-(`tools/distribution/upload-packs.mjs`; [per-game-packs-design-2026-10-13.md](per-game-packs-design-2026-10-13.md)).
-That job has `contents: write` for the upload only (no other step gets the token), and an
-upload failure fails it, so that push does not deploy Pages either.
-Tags matching `package.json`'s `v<version>` publish the universal app in a ZIP with checksums and release notes.
-Configure GitHub Pages to use Actions. Artifact generation, owner acceptance,
-commit/landing and actual publication are separate evidence states.
+`Dev` pushes verify only. Production publication begins only when the dedicated
+promotion controller fast-forwards `Prod` to an explicitly selected, successfully
+tested Dev commit. It atomically creates that commit's new version tag at the same
+SHA. Every workflow checkout is pinned to the event SHA; the version comes from
+that commit's package metadata, shared with the native bundle. Tag pushes and manual
+verification runs do not publish.
+
+Only the Prod Apple Silicon Mac job uploads immutable missing game-pack parts to
+`data`, after its local tests; earlier installed versions keep their content-named
+parts. Other qualification jobs build the fully bundled path. Both Mac runners and
+all web browser trials must succeed before publication. A failure may leave unused
+immutable data parts, but cannot publish a release/site through this workflow.
+
+The publisher verifies the tested web HTML, native archive and source/version
+receipts, prepares a draft release, uploads immutable assets without clobbering,
+and verifies their digests before making it public. Pages depends on that release
+job and deploys the same tested web artifact plus the identical `release.json`
+attached to the release. The Pages environment accepts only Prod. Rerunning a
+published version reuses its original verified Mac artifact when the same source
+rebuild has different ZIP bytes; a changed source/version/web identity is refused.
+
+[Enforcement, recovery, App setup and promotion procedure](prod-release-2026-10-18.md)
+record the exact server rules and remaining one-time owner setup. The App alone may
+bypass the Prod update and version-tag creation gates. History and tag mutation
+rules have no bypass, including for the App. Local hooks reject ordinary Prod
+commits/pushes, while GitHub enforces the remote boundary.
+
+Release and Pages are separate operations. A partial failure remains incomplete;
+retry the same commit/version and retained artifacts. No rollback, tag replacement,
+new release selection or actual publication is authorized merely by configuring
+this mechanism. Artifact generation, owner acceptance, landing and live publication
+remain separate evidence states.
 
 ## Verification and continuing work
 

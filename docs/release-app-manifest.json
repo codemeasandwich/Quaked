@@ -1,0 +1,15 @@
+{
+  "name": "Quaked Release Promotion",
+  "url": "https://github.com/codemeasandwich/Quaked",
+  "public": false,
+  "hook_attributes": {
+    "active": false
+  },
+  "default_permissions": {
+    "contents": "write",
+    "workflows": "write",
+    "actions": "read",
+    "metadata": "read"
+  },
+  "default_events": []
+}

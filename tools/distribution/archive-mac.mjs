@@ -19,6 +19,7 @@ if(run('/usr/bin/plutil',['-extract','CFBundleShortVersionString','raw','-o','-'
 const inventoryPath=resolve(process.env.QUAKED_NATIVE_INVENTORY??'dist/desktop/inventory.json');
 const inventoryBytes=await readFile(inventoryPath),inventory=JSON.parse(inventoryBytes);
 if(inventory.profile!=='desktop'||inventory.version!==version)throw Error('Native inventory profile/version mismatch');
+if(process.env.RELEASE_COMMIT&&(inventory.sourceCommit!==process.env.RELEASE_COMMIT||inventory.source!==process.env.RELEASE_COMMIT||inventory.sourceKind!=='working-tree-based-on-commit'))throw Error('Native archive does not identify the selected release commit');
 const html=await readFile(join(dirname(inventoryPath),'index.html'),'utf8');
 const manifest=JSON.parse(html.match(/<script id="quaked-assets" type="application\/json">([\s\S]*?)<\/script>/)?.[1]??'null');
 if(manifest?.profile!=='desktop')throw Error('Native asset manifest missing');
@@ -46,7 +47,7 @@ const name=`Quaked_${version}_universal.zip`,archive=join(output,name);
 // ditto replaces this generated archive; it never changes the built application.
 run('/usr/bin/ditto',['-c','-k','--sequesterRsrc','--keepParent',app,archive]);
 run('/usr/bin/unzip',['-tq',archive]);
-const receipt={version,archive:name,packBase:manifest.packBase??null,downloadsPacks:Object.values(manifest.files).some(entry=>entry.pack),bytes:(await stat(archive)).size,sha256:await hashFile(archive),
+const receipt={version,sourceCommit:inventory.sourceCommit??null,archive:name,packBase:manifest.packBase??null,downloadsPacks:Object.values(manifest.files).some(entry=>entry.pack),bytes:(await stat(archive)).size,sha256:await hashFile(archive),
  inventorySource:inventory.source,inventorySourceKind:inventory.sourceKind,
  inventorySha256:createHash('sha256').update(inventoryBytes).digest('hex'),executableSha256:await hashFile(executable),
  architectures:['arm64','x86_64'],signature:'ad-hoc; no Developer ID or notarization',

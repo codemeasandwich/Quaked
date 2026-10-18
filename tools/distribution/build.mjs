@@ -14,6 +14,11 @@ import {ResourceLogicalPath} from '../../src/platform/resource_paths.js';
 const profile=process.argv[2];
 if(!['web','desktop'].includes(profile))throw Error('Usage: build.mjs web|desktop');
 const root=process.cwd(),dist=resolve(root,process.env.QUAKED_DIST_DIR??'dist'),out=resolve(dist,profile);
+const version=JSON.parse(await readFile('package.json')).version,sourceCommit=process.env.RELEASE_COMMIT??null;
+if(sourceCommit){
+ if(!/^[0-9a-f]{40}$/.test(sourceCommit)||process.env.QUAKED_SOURCE_TREE||execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim()!==sourceCommit||execFileSync('git',['status','--porcelain','--untracked-files=no'],{encoding:'utf8'}).trim())throw Error('Release builds require the exact clean selected commit');
+ if(process.env.RELEASE_VERSION!==version)throw Error('Release version differs from package.json');
+}
 for(const path of [dist,out,resolve(dist,'desktop-assets')]){
  const info=await lstat(path).catch(e=>{if(e.code==='ENOENT')return null;throw e;});
  if(info?.isSymbolicLink())throw Error('Refusing symlink build output: '+path);
@@ -168,9 +173,9 @@ try {
   total+=body.length;
  }
  if(profile==='web'&&Object.keys(packs).length===0)throw Error('Web build produced no data files');
- await output.write(`<script id="quaked-assets" type="application/json">${JSON.stringify({profile,files,packs,dataBase:DATA_BASE,packBase:PACK_BASE,partBytes:PART_BYTES,startPriority:PRIORITY_ACTORS,gamePacks:Object.fromEntries(GAME_CATALOGUE_GAMES.filter(game=>!game.placeholder).map(game=>[game.id,PacksFor(game.id)])),engineHash:sha(generated.get('__runtime.js'))}).replaceAll('<','\\u003c')}</script>\n<script>${bootstrap.outputFiles[0].text.replaceAll('</script','<\\/script')}</script>\n<script>__QUAKED_BOOT_READY__.then(()=>{const run=document.createElement('script');run.src=__QUAKED_DISTRIBUTION__.url('__runtime.js');document.body.append(run);}).catch(error=>{document.body.textContent='Quaked could not start: '+error;});</script></body></html>`);
+ await output.write(`<script id="quaked-assets" type="application/json">${JSON.stringify({profile,version,sourceCommit,files,packs,dataBase:DATA_BASE,packBase:PACK_BASE,partBytes:PART_BYTES,startPriority:PRIORITY_ACTORS,gamePacks:Object.fromEntries(GAME_CATALOGUE_GAMES.filter(game=>!game.placeholder).map(game=>[game.id,PacksFor(game.id)])),engineHash:sha(generated.get('__runtime.js'))}).replaceAll('<','\\u003c')}</script>\n<script>${bootstrap.outputFiles[0].text.replaceAll('</script','<\\/script')}</script>\n<script>__QUAKED_BOOT_READY__.then(()=>{const run=document.createElement('script');run.src=__QUAKED_DISTRIBUTION__.url('__runtime.js');document.body.append(run);}).catch(error=>{document.body.textContent='Quaked could not start: '+error;});</script></body></html>`);
  let source=process.env.QUAKED_SOURCE_TREE??'unknown';if(source==='unknown')try{source=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();}catch{}
- await writeFile(resolve(out,'inventory.json'),JSON.stringify({profile,source,sourceKind:process.env.QUAKED_SOURCE_TREE?'staged-tree':'working-tree-based-on-commit',sourceInputs:Object.fromEntries([...sourceInputs].sort()),packageLockSha256:sha(await readFile('package-lock.json')),version:JSON.parse(await readFile('package.json')).version,partBytes:PART_BYTES,startPriority:PRIORITY_ACTORS,packedBytes:total,packs:Object.fromEntries(Object.entries(packs).map(([name,pack])=>[name,{...pack,assets:pack.assets?.length}])),files:inventory},null,2)+'\n');
+ await writeFile(resolve(out,'inventory.json'),JSON.stringify({profile,version,sourceCommit,source,sourceKind:process.env.QUAKED_SOURCE_TREE?'staged-tree':'working-tree-based-on-commit',sourceInputs:Object.fromEntries([...sourceInputs].sort()),packageLockSha256:sha(await readFile('package-lock.json')),partBytes:PART_BYTES,startPriority:PRIORITY_ACTORS,packedBytes:total,packs:Object.fromEntries(Object.entries(packs).map(([name,pack])=>[name,{...pack,assets:pack.assets?.length}])),files:inventory},null,2)+'\n');
  await writeFile(resolve(out,'bundle-metafile.json'),JSON.stringify(runtime.metafile));
 } finally {await output.close();}
 const size=(await stat(resolve(out,'index.html'))).size,site=size+Object.values(packs).reduce((sum,pack)=>sum+pack.bytes,0);

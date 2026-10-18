@@ -7,7 +7,7 @@
 // an asset a cancelled run left incomplete, which is uploaded again. Creates the release on first use. Afterwards it
 // lists the release again (every part uploaded, at its size and digest), downloads the new parts through the address
 // the app uses, and writes dist/packs-receipt.json, which archive-mac.mjs requires. Run by the Distribution workflow's
-// mac job on a Dev push or a version tag; needs `gh`, GH_TOKEN with contents: write, and GITHUB_REPOSITORY.
+// Apple Silicon Mac job on a Prod promotion; needs `gh`, GH_TOKEN with contents: write, and GITHUB_REPOSITORY.
 //
 //   node tools/distribution/upload-packs.mjs [--dry-run]
 import { createHash } from 'node:crypto';

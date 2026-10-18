@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-18T16:09:36.380997+00:00",
+  "verdict": "MODEL/PAYLOAD PASS for applying failclosed tag rulesets. Source successor broadly correct, pending one bounded R4 diagnostic correction plus current public/frozen verification.",
+  "scope": "Read-only exact tagpayload/model and compact source successor review. No API/providers/ref/tag/ruleset mutation, tests/builds/staging or other-chat operations.",
+  "tagPayloads": [
+    {
+      "path": ".github/protection/version-tag-create.json",
+      "sha256": "8de800af398ae0e91ad6be99f3f42ef6f9569ab54e0bb5c75b5a6ab7bc6ef8ce"
+    },
+    {
+      "path": ".github/protection/version-tag-history.json",
+      "sha256": "5fa89d5e442adec414b4df603c0055ea0c51da0224ee8ad9327a51695e13e78f"
+    }
+  ],
+  "model": [
+    "Active v*creation gate has no bypass now, so no ordinary writer/Actions may create a versiontag. Later grant only dedicatedApp bypass to creation gate.",
+    "Separate v*update/deletion ruleset has zero bypass includingApp. Existingversiontags remain immutable; Prod/Devhistory stay independent and nonbypassed.",
+    "One GraphQLupdateRefs mutation carries expectedoldProd->S(forcefalse) and absenttagzeroOID->S(forcefalse). Parent supplied live schema atomicity/zeroOID evidence; reviewer didnot query provider. A tag collision or refcondition failure must reject both, never advanceProd alone.",
+    "Bothrefs readback match exactS and lightweightcommittag. Publisher now refuses missingtag and never callsPOSTgitrefs; Actions can onlypublish alreadyselectedApp-createdtagS. New workflow has no tagtrigger.",
+    "This closes NEW historicalversiontag creation/retarget path; it is not removal of historicalworkflowruns or broad GitHubrelease APIadministrator powers."
+  ],
+  "priorFindingsReadback": {
+    "R1": "Fixed: PagesCLI requires independent releaseidentity and testedHTMLSHA, then verifies identity/manifest plus freshProdtip beforedeployment.",
+    "R2": "Fixed: missingcurrentProdrun blocks nextpromotion except exactexplicitlegacybootstrap3f2084c0.",
+    "R3": "Fixed: controller validatesProd/Devhistory andtagcreate/history withactiveexactref/noexcludes/appropriatebypass beforefreshPlan/CAS.",
+    "R4": "Substantiallyfixed: 30sfetch/metadata and15massetcommands, revokefailure preservesacknowledgedProdSHA; GraphQLtransporterrors labelledunknown. Onepostmutationreadback failure path remains generic as below."
+  },
+  "remainingSourceFinding": {
+    "id": "R4-readback",
+    "priority": 2,
+    "path": "tools/distribution/promote.mjs",
+    "scope": "CompareAndSwap after result.data.updateRefs acknowledgement",
+    "finding": "ProdGET/tagGET transport failure after acknowledgedatomicmutation currently escapes as generic GitHubGET/timeout error. It obscures that both refs may already have moved, unlike the explicit unknown wording on mutationtransport failure.",
+    "requiredSmallFix": "Wrap BOTHpost-CASreadbacks and report atomicupdateacknowledged forselectedS butreadbackincomplete/unknown; inspectProdANDtag before retry. Preserve thismessage ifrevocation alsofails. No protocol or architecturechange.",
+    "publicCase": "Return successfulmutation then fail first orsecondreadback; verify error explicitly statesacknowledged/uncertainrefstate and no blindretry, withtokenrevocationattempted."
+  },
+  "retainedSourceContracts": [
+    "StandaloneoutsideGit/Actions hashpinnedcontroller, privatekey/config boundary and one-repo minimalApppermissions; revokeafteruse.",
+    "ExplicitfullimmutableDevSHA, correctancestrydirections, knownlegacybootstraponly, successfulactualDevworkflowrun andno reusetag fornewpromotion.",
+    "Native/websource/versionmetadata and nativeversionchecks, streaminglargearchivehashing, immutablepublished/draftartifactmatching and nonclobberretry.",
+    "Prodonlypublicationworkflow andminimalwritetokenexposure, HTTP/file/tamper/native/Rust/LAN/universal qualification gates retained, Pages depends on release plusallbuilds.",
+    "LocalProdcommit/pushguards remainconvenienceonly; actualserverrules/App enforce remote ref policy."
+  ],
+  "limitsAndPreconditions": [
+    "Appnotinstalled andupdate/creategates empty, soactualpromotionremains deliberately unavailable; no chosenreleaseSHA/tag.",
+    "Readback each serverruleset/effectiverefrules andProd/tagidentity afterapply; payloadPASS isnot actualAPIenforcementproof.",
+    "Existing queued/rerunnable historicalDev/tag workflows and administrator directRelease APIpermissions remain separate administrativepublication powers. Cancel/audit oldinflightpublicationruns and enforce intendedPagesenvironmentrefpolicy; do not claim taglocks alone forbid everyhistoricalrerun or manualrelease.",
+    "Installedcontrollerkey isolation/trusted localhost and administrators remain explicittrustboundaries.",
+    "Current14pretagpromotion/11release tests reported byparent identify earlier stages. Newtwo-refCAS/tagpolicies needfreshpubliccontracts andexactfrozen-tree review; reviewer didnot run tests.",
+    "Rerun samepublishedidentity using retainedartifacts; fullrerun mayproduce differentMacarchive and mustfailclosed, notoverwrite acceptedbytes."
+  ],
+  "sourceHashes": [
+    {
+      "path": "tools/distribution/promote.mjs",
+      "sha256": "68d50c867f031cd6cff758c197f3fd91f2fe5c6458aecf462c5c9a29c925e54d"
+    },
+    {
+      "path": "tools/distribution/release.mjs",
+      "sha256": "91918963148c904d58275e9f4a42cbc785764c6d50af8d6fbd021c814948f6fc"
+    },
+    {
+      "path": "tools/distribution/prod-push-guard.mjs",
+      "sha256": "379336075720146f647812921a6c7cb72873e1d8bf0bcc6ccb6a1172a1ff60f5"
+    },
+    {
+      "path": "tools/distribution/precommit.mjs",
+      "sha256": "b5c926c50ea0db2cf3015353f36d16b845eef34f712ddd8d348f06411e4aafcb"
+    },
+    {
+      "path": "tools/distribution/build.mjs",
+      "sha256": "c48727f20e920c5f10fbad56654dfa6d10dec6c26162220905824274fa60a175"
+    },
+    {
+      "path": "tools/distribution/archive-mac.mjs",
+      "sha256": "31ee3f288f068259ed57f8e3510add1c01a524429ed0dcc8f7be3a50723e59bf"
+    },
+    {
+      "path": ".github/workflows/distribution.yml",
+      "sha256": "e35858123fd08bca94266f4c32c41111c56215276a9d1a87175eaea6465c8311"
+    },
+    {
+      "path": ".githooks/pre-push",
+      "sha256": "7432eaf34914f6008a8218ab1f9f149dc052253742663765dc4407a99f28b95e"
+    }
+  ],
+  "nextAction": "Apply/readback failclosed tag rulesets now withoutmoving refs. Complete tinyreadback diagnostic, freshpubliccontroller/releasecontracts andfinalexacttree review before normalgate. No furtherarchitecture or newproviderlaunch needed.",
+  "state": "Review complete; quiescent."
+}

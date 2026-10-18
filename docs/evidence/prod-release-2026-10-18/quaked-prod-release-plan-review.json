@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-18T15:27:02.773999+00:00",
+  "verdict": "PLAN PASS with explicit history/identity/publication prerequisites",
+  "authority": "Owner wants future chosen Dev commit fast-forwarded to Prod and that identical commit to generate both release and Pages. No release commit is chosen. This review grants no current Prod movement, tag creation, data upload or publication.",
+  "scope": "Read-only source-grounded planning; no mutation, tests/builds, providers/network or other-chat messages.",
+  "current": {
+    "Dev": "22bfbebcc110ea4fd8dd7b85c8d4e96d0a2a04e5",
+    "Prod": "3f2084c043eec0108bc70f12fd47f4d5060a53ff",
+    "ProdAncestorDev": false,
+    "mergeBase": "b536c9359a4ac37c4541a9debce76991fcd20ef1",
+    "ProdUniqueCommits": "2",
+    "portedFeatures": [
+      "55b8aa433d046881c45f062b242d86df1fa4ba69",
+      "9fef6cfe8c36fb28f3204385021ba85656517774"
+    ],
+    "packageVersion": "0.132.3",
+    "localVersionTagAlreadyExists": "160c9229464af4dff07d9906301be114a309eaad",
+    "workflow": "Dev pushes publish Pages; version-tag pushes publish app releases; either push configures AppleSilicon downloadable data upload before final qualification. Thus Pages and releases may differ in commit/version.",
+    "provenanceReuse": "build inventory already records source/sourceKind/version/source-input digests; archive validates package version against CFBundle and inventory and records inventorySource/archive/executable hashes. Embedded web manifest currently lacks explicit version/source identity.",
+    "nativeVersionReuse": "Tauri version refers to ../package.json; no second native version authority needed."
+  },
+  "historyReconciliation": {
+    "required": true,
+    "action": "Separate explicit two-parent content-preserving merge of current Prod into Dev, only after confirming current face-overlay and RendTheVeil ports cover both Prod contributions. Existing source-disposition audit and ancestry of55b8/9fef identify those ports.",
+    "smallestSoundMechanism": "An intentional history-only ours-strategy merge is appropriate if the mapped ports are confirmed: resulting tree must equal premerge Dev exactly; parents are currentDev and currentProd. Record why Prod content is already represented, retain source evidence, independently verify both parents and exact tree. Do not silently reapply old file versions, reset/force Prod or pretend ancestry alone proves feature acceptance.",
+    "qualification": "Use maintained commit/gate policy. Require Prod ancestor of reconciled Dev and every future selected release SHA; a candidate predating reconciliation must be rejected. Publish workflow/promotion implementation into Dev before selecting a release commit.",
+    "ProdMovesNow": false
+  },
+  "recommendedArchitecture": {
+    "principle": "Keep existing one Distribution workflow, current builders/tests/artifact handoff. Change selection and publication predicates; add one small explicit promotion CLI, bounded identity checks and provenance fields. No parallel release pipeline.",
+    "solePublicationEvent": "push to refs/heads/Prod. Dev/PR/manual/version-tag events may retain qualification runs but never Pages/release/data mutation by default. Existing v-tag release event must stop being a publication bypass.",
+    "commonIdentity": "At workflow start pin event github.sha to a single immutable commit S, read version from package.json at S, derive tag v<version>, verify S is reachable from fetched origin/Dev and Prod FF lineage. All web/mac/publish checkouts use S explicitly, never moving Dev/Prod names. A single policy output gates every writing step.",
+    "builds": "Keep complete distribution suite, web build, verify-site, HTTP/file/tamper browser trials, Rust tests, LAN bridge/engine suite, bothmacOS runners, universal build, codesign/lipo/unzip archive verification and all evidence uploads. Qualifying Dev/PR runs build bundled data profile without remote writes. Prod AppleSilicon leg retains current data-release download profile and Intel leg bundled profile.",
+    "publicationOrder": "After BOTHweb+allmac jobs succeed, create/verify version tag at S, publish release from the already verified AppleSilicon archive and provenance, then deploy the already tested web artifact. Pages needs release success as well as web/mac, preventing Pages ahead of a failed release. Never rebuild artifacts in publishing jobs.",
+    "versionTag": "Create/check tag explicitly against S. Do not rely on gh release create default target branch or tag-triggering another workflow. Existing tag pointing elsewhere is a hard refusal; an existing matching tag is allowed only as exact-S retry. Require version/package/native/web identity agreement. Current0.132.3 tag already exists locally, so any future choice needs an unused version or a proven same-commit retry.",
+    "dataParts": "Reuse upload-packs.mjs unchanged: content-named append-only data parts, size/digest verification, no replace/delete of completed assets; incomplete cancelled upload cleanup only. Gate actual uploader to Prod publication policy, not any Dev push. Move upload after available local tests where possible but preserve archive requirement. App parts may be staged append-only before final matrix success; disclose that a failed promotion may leave unused immutable parts, not a published app/Pages version. No cleanup of old parts.",
+    "identityEvidence": "Extend existing build manifest/inventory/archive metadata minimally with truthful sourceCommit/version for release CI. Include these in tested HTML and shared release-provenance.json with S,version,tag,webHTMLSHA,appZIP/executable/inventorySHA and workflowrun identity. Verify every profile source is exactS, inventory sourceKind/working cleanliness correctly labelled; local staged-tree qualification must remain tree identity rather than falsely labelled commit. Publish same small provenance record with release and Pages. Native app version stays package.json authority.",
+    "permissions": "Only publication/data-upload steps receive write token; PR/manual/nonProd qualification remains nonwriting. Keep persist-credentials:false in jobs running build scripts; Pages environment/OIDC and existing protections retained.",
+    "concurrency": "Serialize Prod publication with cancel-in-progress:false; keep Dev qualification cancellation separate. CLI refuses a second promotion while prior Prod publication is incomplete. Reject stale/currentProd!=S just before starting writes, and use immutable artifacts throughout.",
+    "partialFailure": "Release and Pages cannot be atomically transacted. If release succeeds and Pages fails, report partial status; rerun same S/version/artifact identity idempotently, without moving Prod backward or replacing an existing different release asset. Never label promotion complete until both public endpoints read back S/version and expected digests."
+  },
+  "promotionCLI": {
+    "proposedPath": "tools/distribution/promote.mjs",
+    "interface": "Explicit --sha <full40hex> required. Read-only plan/dry-run default; explicit --apply executes authorized promotion after printed/provenance-bound plan. No default latestDev and no implicit release selection.",
+    "checks": [
+      "Read fresh remoteDev/Prod and immutable candidate object; S must be a commit reachable from originDev, not merely a local branch, and current originProd must be ancestor of S.",
+      "Resolve package/version/required workflow from S, not current checkout. Refuse ambiguous/short SHA, old policy commit, reused tag or existing release at other commit, backwards/divergent/repeated ambiguous promotion, or pending earlier publication.",
+      "Show S/tree/version/tag, expectedOldProd/Dev pins, exact public effects and tests/artifact expectations. Existing owner release selection/--apply is required; planning itself does not select.",
+      "Push exact S:refs/heads/Prod as normal fast-forward. If enforcing compare-and-swap lease in addition, prove expectedOldProd ancestorS and use exact expected lease; never unconditional --force or rewritten history. Refuse changed refs and require fresh readback.",
+      "Await Distribution run bound to Prod push/eventSHA=S and record runID, release/tag/Pages provenance, final status and partial-failure next action. No auto success from push acknowledgement.",
+      "A retry uses sameS andversion, verifies existing artifacts rather than clobbering them, and does not replay a Prod push hoping to retrigger. Use rerun of the recorded publication run or a narrowly guarded retry of that same Prod identity."
+    ],
+    "scope": "CLI is release-control wiring, not a second builder/scheduler/data store."
+  },
+  "minimalPaths": [
+    ".github/workflows/distribution.yml",
+    "tools/distribution/promote.mjs (small CLI and exported pure policy validation)",
+    "tools/distribution/build.mjs (reuse source/version computation for embedded identity)",
+    "tools/distribution/archive-mac.mjs (validate expected release commit using existing inventorySource)",
+    "tests/promotion_contract_test.mjs or equivalent maintained public contract suite",
+    "docs/distribution.md plus one bounded release-promotion procedure/provenance record"
+  ],
+  "meaningfulVerification": [
+    "Public CLI against disposable bare Git remotes: dry-run zero mutations; explicit validFF promotion; reject nonDevSHA, nonancestorProd, short/malformed SHA, changed expectedProd, reusedversion/tag mismatch and pendingpromotion. No real Prod remote used by tests.",
+    "Workflow policy tests enumerate PR/Dev/tag/manual/Prod: only Prod can publish/upload. Both web/mac matrix gates and all HTTP/file/tamper/native tests remain. An unsupported ref must fail closed, not skip validations.",
+    "Independent web/native inventory/embedded metadata/provenance/tag checks all equal immutableS/version; corrupt one source/version/HTML/app/provenance digest and reject before publication.",
+    "History merge verification: two intended parents, exact premergeDev tree, current qualified feature contracts retained; fail if oldProd reintroduces any source/trial differences.",
+    "Retry/partial-failure fixtures: existing matching tag/release exact artifacts reused, changed asset refused, releasefail preventsPages, Pagesfail retainedpartial state then retries exactS, no nonFFrollback.",
+    "First authorized real release requires actual GitHub release+Pages readback and receipt. Local plan/tests cannot claim published equality or app acceptance."
+  ],
+  "risks": [
+    "History reconciling via ours can silently discard unported Prod work unless explicit two-feature port proofs remain; do not treat it as a generic merge habit.",
+    "Version tags or manual workflows left as publishing triggers would bypass chosen Prod authority.",
+    "Moving ref at checkout/publication can mix sourceSHA; pin S at every job and verify artifact metadata before write.",
+    "Canceling or overlapping publication can leave mismatched Pages/release; serialize and require exact-S idempotence, truthful partial status.",
+    "GitHub token-created tag pushes may not initiate another workflow; plan intentionally does not depend on them.",
+    "Remote Pages/environment/branch protection settings and token capabilities must be inspected when implementation is authorized; do not guess a protection bypass.",
+    "Prior appdata content must remain immutable and available for installed older versions."
+  ],
+  "inputHashes": [
+    {
+      "path": ".github/workflows/distribution.yml",
+      "sha256": "dbcc7fa62a82fe757416d2ed42d5230ee3bff9864a04963241a72be1a668298c"
+    },
+    {
+      "path": "tools/distribution/build.mjs",
+      "sha256": "da27dfcc0f9ca44480375a1acacf4d15b645fc0c6852905771b4d9e05939e364"
+    },
+    {
+      "path": "tools/distribution/archive-mac.mjs",
+      "sha256": "77443d4b0cd436169bb2a0d72c0ea197e2009d991082319828db58dc1e441524"
+    },
+    {
+      "path": "tools/distribution/upload-packs.mjs",
+      "sha256": "3812f44c4c1bc012b649aa4b4f9ac6fb12f628d1fe9a03ac8e906e769a2bb139"
+    },
+    {
+      "path": "tools/distribution/precommit.mjs",
+      "sha256": "bdcdbb5814a2379c28b46a6f20285b73b8f8319f6786250274785621d9b1c56f"
+    },
+    {
+      "path": "package.json",
+      "sha256": "5bf0bca7dc4729031060f0b40d3915d66dcfcca8e9a4f57ee8c124229dadbde6"
+    },
+    {
+      "path": "src-tauri/tauri.conf.json",
+      "sha256": "ed1a527d656cd4a6778ed52b3000aaeacb6495bf07f8d6fe70e81376f92e0645"
+    },
+    {
+      "path": "docs/evidence/consolidation-2026-10-18/quaked-global-branch-sync-audit.json",
+      "sha256": "6af8a7e5d51f2ca01ca456dcd474f74cbf89ff947f7dfd19545c93d8a4807f4f"
+    }
+  ],
+  "blockersToPublishingNow": [
+    "No chosen immutable release commit/version.",
+    "Prod history is not yet an ancestor of Dev.",
+    "Current workflow still has splitDevPages/tagRelease policy; implementation/verification/publication not performed."
+  ],
+  "state": "Planning review complete; quiescent."
+}

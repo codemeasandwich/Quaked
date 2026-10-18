@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-18T16:03:04.851079+00:00",
+  "endedAt": "2026-10-18T16:03:25.012650+00:00",
+  "command": [
+    "/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--test",
+    "tests/authoring_images_contract_test.mjs",
+    "tests/distribution_contract_test.mjs",
+    "tests/embedded_asset_contract_test.mjs",
+    "tests/lan_channel_contract_test.mjs",
+    "tests/native_library_contract_test.mjs",
+    "tests/official_texture_retirement_contract_test.mjs",
+    "tests/pack_upload_contract_test.mjs",
+    "tests/packs_contract_test.mjs",
+    "tests/prod_promotion_contract_test.mjs",
+    "tests/prod_release_contract_test.mjs",
+    "tests/resource_layout_contract_test.mjs",
+    "tests/staged_contract_test.mjs",
+    "tests/standard_4x_records_contract_test.mjs",
+    "tests/web_data_contract_test.mjs",
+    "tests/web_images_contract_test.mjs"
+  ],
+  "exit": 0,
+  "sourceFixtureInputScope": "All src JS/JSON; tests JS/MJS/JSON/Python/HTML/fixtures; distribution helpers; hooks/protection/workflows; selected package/native/resource/catalogue records; exactsharp/esbuild package metadata. Asset content identities are independently asserted by the invoked maintained contract suites; this snapshot is the source/test/fixture stability proof, not a separate rehash of all artwork.",
+  "inputCount": 953,
+  "inputsStableBeforeAfter": true,
+  "changedInputs": [],
+  "before": {
+    "path": "/private/tmp/quaked-prod-full-contract-inputs-before.json",
+    "sha256": "21f23cb5c7fb7d185a88a4784c27d32955fd7251d8ea09fa9511a8c7fadc9af0"
+  },
+  "after": {
+    "path": "/private/tmp/quaked-prod-full-contract-inputs-after.json",
+    "sha256": "21f23cb5c7fb7d185a88a4784c27d32955fd7251d8ea09fa9511a8c7fadc9af0"
+  },
+  "log": {
+    "path": "/private/tmp/quaked-prod-independent-full-contracts-lockdeps.log",
+    "sha256": "273031ce002b181c930f3a83a84ae9002b2c97a25c700be39c6d5e6b3d7e9707"
+  },
+  "node": "v24.19.0",
+  "sharpVersion": "0.35.5",
+  "scope": "Read-only full contract execution with temporary fixtures. No builds/installs/source edits/staging/commit/real API mutation by reviewer."
+}
