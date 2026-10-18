@@ -1,0 +1,165 @@
+{
+  "passed": true,
+  "decoded": [
+    {
+      "clip": "2",
+      "duration": 1.8546875,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "clip": "3",
+      "duration": 1.8546875,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "clip": "4",
+      "duration": 1.8546875,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "clip": "5",
+      "duration": 1.8546875,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "clip": "6",
+      "duration": 1.8546875,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "clip": "8",
+      "duration": 1.8546875,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "clip": "9",
+      "duration": 2.2203958333333333,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "clip": "10",
+      "duration": 2.40325,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "clip": "12",
+      "duration": 2.037541666666667,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "clip": "14",
+      "duration": 2.40325,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "clip": "20",
+      "duration": 2.40325,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "clip": "28",
+      "duration": 3.631,
+      "channels": 2,
+      "sampleRate": 48000
+    }
+  ],
+  "right": {
+    "active": true,
+    "reason": "",
+    "firing": false,
+    "dropped": 0,
+    "pending": 0,
+    "limit": 24,
+    "voices": [
+      {
+        "id": 1,
+        "role": "charge",
+        "clip": 3,
+        "entity": 2,
+        "anchor": "source",
+        "position": [
+          0,
+          120,
+          0
+        ],
+        "pan": 1,
+        "gain": 0.29552941176470593,
+        "playing": true,
+        "blocked": false
+      }
+    ]
+  },
+  "left": {
+    "active": true,
+    "reason": "",
+    "firing": false,
+    "dropped": 0,
+    "pending": 0,
+    "limit": 24,
+    "voices": [
+      {
+        "id": 1,
+        "role": "charge",
+        "clip": 3,
+        "entity": 2,
+        "anchor": "source",
+        "position": [
+          0,
+          120,
+          0
+        ],
+        "pan": -1,
+        "gain": 0.29552941176470593,
+        "playing": true,
+        "blocked": false
+      }
+    ]
+  },
+  "far": {
+    "active": true,
+    "reason": "",
+    "firing": false,
+    "dropped": 0,
+    "pending": 0,
+    "limit": 24,
+    "voices": [
+      {
+        "id": 1,
+        "role": "charge",
+        "clip": 3,
+        "entity": 2,
+        "anchor": "source",
+        "position": [
+          0,
+          120,
+          0
+        ],
+        "pan": -0.11702127659574468,
+        "gain": 0.1179607843137255,
+        "playing": true,
+        "blocked": false
+      }
+    ]
+  },
+  "energyRight": [
+    2.9283374800540555e-18,
+    0.04782338028281649
+  ],
+  "energyLeft": [
+    0.04782338028281649,
+    0
+  ],
+  "scope": "Real Chrome decoding of all 12 full original recordings; real streamed charge playback through production adapter and SFX spatializer; complete-file OfflineAudioContext stereo energy verifies native mono-point panning. Controlled client metadata here; separate native QC tests prove event provenance. No claim of owner listening or a played game session.",
+  "errors": []
+}

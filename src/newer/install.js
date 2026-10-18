@@ -25,6 +25,7 @@ import { PowerVisionMode } from './gameplay/powervision_state.js';
 import { Respawn_ParseDrop, Respawn_ParsePlayer, Respawn_ParseRemains } from './gameplay/respawn_record.js';
 import { SV_AxeEntitySuppressed, SV_AxeFunctionEnter, SV_AxeFunctionLeave, SV_AxeGibSeen, SV_AxeReset } from './gameplay/sv_axecut.js';
 import { SV_CheatsFrame, SV_CheatsInit } from './gameplay/sv_cheats.js';
+import { SV_ElectricFunctionEnter, SV_ElectricFunctionLeave, SV_ElectricTrace, SV_ElectricReset } from './gameplay/sv_electricsounds.js';
 import { SV_FaceFunctionEnter, SV_FaceFunctionLeave, SV_FaceReset, SV_FaceShotTrace } from './gameplay/sv_faceevents.js';
 import { SV_GoreOnSetModel } from './gameplay/sv_gore.js';
 import { SV_MeleeSprayEnter } from './gameplay/sv_meleespray.js';
@@ -107,6 +108,7 @@ import { V_ShamblerStepShake, v_shamblersteps } from './render/v_shamblersteps.j
 import { S_UpdateAmbientMusic } from './sound/s_ambientgame.js';
 import { S_AmbientMusicNotifyCombat, S_AmbientMusicShutdown, S_AmbientMusicStop, S_AmbientMusicUnlock } from './sound/s_ambientmusic.js';
 import { S_ExitMachineFalloff } from './sound/s_exitmachine.js';
+import { S_UpdateElectricSounds, S_ElectricSoundsReset, S_ElectricSoundsShutdown } from './sound/s_electricsounds.js';
 import { S_UpdateEnvironmentSounds, S_ObserveEnvironmentSounds, S_EnvironmentSoundsReset, S_EnvironmentSoundsShutdown } from './sound/s_environmentsounds.js';
 import { S_PlayerInventory, S_PlayerHealthChanged, S_PlayerFinale, S_PlayerEventsReset, S_UpdatePlayerEvents, S_PlayerEventsShutdown } from './sound/s_playerevents.js';
 import { S_UpdatePlayerWater, S_PlayerWaterShutdown } from './sound/s_playerwater.js';
@@ -133,6 +135,7 @@ if ( ! Hooks_Installed() ) Hooks_Install( {
 	Respawn_ParseDrop, Respawn_ParsePlayer, Respawn_ParseRemains,
 	SV_AxeEntitySuppressed, SV_AxeFunctionEnter, SV_AxeFunctionLeave, SV_AxeGibSeen, SV_AxeReset,
 	SV_CheatsFrame, SV_CheatsInit,
+	SV_ElectricFunctionEnter, SV_ElectricFunctionLeave, SV_ElectricTrace, SV_ElectricReset,
 	SV_FaceFunctionEnter, SV_FaceFunctionLeave, SV_FaceReset, SV_FaceShotTrace,
 	SV_GoreOnSetModel,
 	SV_MeleeSprayEnter,
@@ -203,6 +206,7 @@ if ( ! Hooks_Installed() ) Hooks_Install( {
 	S_UpdateAmbientMusic,
 	S_AmbientMusicNotifyCombat, S_AmbientMusicShutdown, S_AmbientMusicStop, S_AmbientMusicUnlock,
 	S_ExitMachineFalloff,
+	S_UpdateElectricSounds, S_ElectricSoundsReset, S_ElectricSoundsShutdown,
 	S_UpdateEnvironmentSounds, S_ObserveEnvironmentSounds, S_EnvironmentSoundsReset, S_EnvironmentSoundsShutdown,
 	S_PlayerInventory, S_PlayerHealthChanged, S_PlayerFinale, S_PlayerEventsReset, S_UpdatePlayerEvents, S_PlayerEventsShutdown,
 	S_UpdatePlayerWater, S_PlayerWaterShutdown,

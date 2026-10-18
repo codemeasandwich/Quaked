@@ -55,6 +55,7 @@ import { R_FlashlightSkillSelected } from '../common/hooks.js'; // installed by 
 import { SV_GoreOnSetModel } from '../common/hooks.js'; // installed by newer/gameplay/sv_gore.js
 import { SV_AxeGibSeen } from '../common/hooks.js'; // installed by newer/gameplay/sv_axecut.js
 import { Cbuf_AddText } from '../common/cmd.js';
+import { SV_ElectricTrace } from '../common/hooks.js'; // installed by newer/gameplay/sv_electricsounds.js
 import { SV_FaceShotTrace } from '../common/hooks.js'; // installed by newer/gameplay/sv_faceevents.js
 import { Cvar_VariableValue, Cvar_Set } from '../common/cvar.js';
 import { FL_ONGROUND, FL_FLY, FL_SWIM, svs, ss_loading, ss_active, teamplay } from './server.js';
@@ -588,6 +589,7 @@ function PF_traceline() {
 		pr_global_struct.trace_ent = EDICT_TO_PROG( sv.edicts[ 0 ] );
 	pr_global_struct.trace_inopen = trace.inopen ? 1 : 0;
 	pr_global_struct.trace_inwater = trace.inwater ? 1 : 0;
+	SV_ElectricTrace( v1, v2, trace );
 	SV_FaceShotTrace( v1, v2, trace ); // (reports the trace, changing nothing: the shotgun's rays, for the pellets and their damage schedule)
 
 }

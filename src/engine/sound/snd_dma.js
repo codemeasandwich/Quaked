@@ -34,6 +34,7 @@ import { cl } from '../client/client.js';
 import { Mod_PointInLeaf } from '../render/gl_model.js';
 import { S_AmbientMusicUnlock, S_AmbientMusicStop, S_AmbientMusicShutdown, S_AmbientMusicNotifyCombat } from '../common/hooks.js'; // installed by newer/sound/s_ambientmusic.js
 import { S_ExitMachineFalloff } from '../common/hooks.js'; // installed by newer/sound/s_exitmachine.js
+import { S_ElectricSoundsShutdown } from '../common/hooks.js'; // installed by newer/sound/s_electricsounds.js
 import { S_EnvironmentSoundsShutdown } from '../common/hooks.js'; // installed by newer/sound/s_environmentsounds.js
 import { S_PlayerEventsShutdown } from '../common/hooks.js'; // installed by newer/sound/s_playerevents.js
 import { S_PlayerWaterShutdown } from '../common/hooks.js'; // installed by newer/sound/s_playerwater.js
@@ -206,6 +207,7 @@ export function S_Shutdown() {
 	S_PlayerWaterShutdown();
 	S_PlayerEventsShutdown();
 	S_EnvironmentSoundsShutdown();
+	S_ElectricSoundsShutdown();
 
 	if ( ! sound_started )
 		return;
@@ -758,6 +760,7 @@ export function S_StopAllSounds( clear ) {
 	S_PlayerWaterShutdown();
 	S_PlayerEventsShutdown();
 	S_EnvironmentSoundsShutdown();
+	S_ElectricSoundsShutdown();
 
 	if ( ! sound_started )
 		return;

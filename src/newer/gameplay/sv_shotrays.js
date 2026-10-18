@@ -75,15 +75,16 @@ export function rayWaterOf( ray ) { return ray.water ?? ( ray.water = rayWater( 
  *
  * @param {Array<number>} start ray start (world space, Quake units)
  * @param {Array<number>} end ray end (world space, Quake units)
+ * @param {function(Array<number>): boolean} [isWet] optional contents predicate; default water or slime
  * @returns {Array<Array<number>>} `[[from, to], ...]` in Quake units from `start`, in order; empty for a dry or
  *   zero-length ray. A span still wet at `end` closes at the ray's length.
  */
-export function rayWater( start, end ) {
+export function rayWater( start, end, isWet = wet ) {
 
 	const length = Math.hypot( end[ 0 ] - start[ 0 ], end[ 1 ] - start[ 1 ], end[ 2 ] - start[ 2 ] ), reach = length; // (the whole ray: a pellet flies all the way to where it stopped)
 	const point = [ 0, 0, 0 ], spans = [];
 	if ( ! ( length > 0 ) ) return spans;
-	const at = d => wet( lerp3( start, end, d / length, point ) );
+	const at = d => isWet( lerp3( start, end, d / length, point ) );
 	let previous = at( 0 ), from = previous ? 0 : - 1;
 	for ( let d = STEP; d < reach + STEP; d += STEP ) {
 

@@ -32,6 +32,8 @@ test('web closure retains every Episode 1/hub normal and eligible custom enemy s
   assert(included.has('music/ambient.mp3'));
   assert(included.has('assets/sounds/quake1newereGame_firstLevelEasyMidHard.mp3'));
   assert(included.has('assets/sounds/lowHealt.mp3'));
+  for (const clip of [2,3,4,5,6,8,9,10,12,14,20,28])
+    assert(included.has('assets/sounds/electric/electric-spell-' + String(clip).padStart(2,'0') + '.mp3'), 'packaged electric clip: ' + clip);
   for (const name of ['fire-Environmental', 'firstSee_Shub'])
     assert(included.has('assets/sounds/' + name + '.mp3'), 'packaged environment cue: ' + name);
   for (const name of ['end_of_quake1', 'newerGame_die_reset', 'on-quad-pickup', 'on-ring-pickup', 'on-pentagram-pickup', 'two-active-powerups', 'third-powerup-pickup'])
@@ -80,6 +82,8 @@ test('desktop inventory includes all prepared map transports and no bundled orig
   const assets = await collectAssets({ profile: 'desktop', root }), included = new Set(assets);
   assert.deepEqual(assets, [...included].sort());
   assert(!assets.some(path => /^(games|resources)\//.test(path)));
+  for (const clip of [2,3,4,5,6,8,9,10,12,14,20,28])
+    assert(included.has('assets/sounds/electric/electric-spell-' + String(clip).padStart(2,'0') + '.mp3'), 'packaged electric clip: ' + clip);
   for (const name of ['fire-Environmental', 'firstSee_Shub'])
     assert(included.has('assets/sounds/' + name + '.mp3'), 'packaged environment cue: ' + name);
   for (const name of ['end_of_quake1', 'newerGame_die_reset', 'on-quad-pickup', 'on-ring-pickup', 'on-pentagram-pickup', 'two-active-powerups', 'third-powerup-pickup'])

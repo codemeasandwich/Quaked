@@ -1,0 +1,39 @@
+{
+  "roles": {
+    "charge": [
+      3,
+      9
+    ],
+    "shamblerStop": [
+      8
+    ],
+    "firing": [
+      20
+    ],
+    "playerStop": [
+      10,
+      5
+    ],
+    "hit": [
+      6,
+      14
+    ],
+    "miss": [
+      2,
+      12
+    ],
+    "water": [
+      4,
+      10
+    ],
+    "eel": [
+      28
+    ]
+  },
+  "authority": "Owner approved integration with spatial source/stream/contact positions after audition round3",
+  "constraints": [
+    "Full original clips; no trimming or early ordinary-transition cutoff",
+    "Independent source/stream/contact spatial stereo",
+    "Natural full-clip tails may overlap stop cues; lifecycle cancellation remains immediate"
+  ]
+}

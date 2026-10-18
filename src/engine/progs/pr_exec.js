@@ -53,6 +53,7 @@ import { ss_active } from '../server/server.js';
 import { SV_CloakAnimationEnter, SV_CloakAnimationLeave } from '../server/sv_cloak.js';
 import { SV_RespawnFunctionEnter, SV_RespawnFunctionLeave } from '../common/hooks.js'; // installed by newer/gameplay/sv_respawn.js
 import { SV_AxeFunctionEnter, SV_AxeFunctionLeave, SV_AxeReset } from '../common/hooks.js'; // installed by newer/gameplay/sv_axecut.js
+import { SV_ElectricFunctionEnter, SV_ElectricFunctionLeave, SV_ElectricReset } from '../common/hooks.js'; // installed by newer/gameplay/sv_electricsounds.js
 import { SV_FaceFunctionEnter, SV_FaceFunctionLeave, SV_FaceReset } from '../common/hooks.js'; // installed by newer/gameplay/sv_faceevents.js
 import { SV_UnseenFunctionEnter, SV_UnseenFunctionLeave } from '../common/hooks.js'; // installed by newer/gameplay/sv_unseen.js
 import { SV_MeleeSprayEnter } from '../common/hooks.js'; // installed by newer/gameplay/sv_meleespray.js
@@ -132,6 +133,7 @@ export function PR_HostError( error ) {
 	PR_ResetStack(); // the QuakeC that was running is abandoned: its frames and locals with it
 	SV_AxeReset();
 	SV_FaceReset();
+	SV_ElectricReset();
 	if ( Host_Error === null )
 		Sys_Error( 'PR_HostError: Host_Error callback not set (' + error + ')' ); // the cause kept for the reader
 
@@ -335,6 +337,7 @@ export function PR_RunError( error, ...args ) {
 	for ( const frame of pr_stack ) frame.cloak = null; // the abandoned calls' cloak animation state
 	SV_AxeReset();
 	SV_FaceReset();
+	SV_ElectricReset();
 
 	PR_HostError( 'Program error' );
 
@@ -369,6 +372,7 @@ PR_EnterFunction
  */
 export function PR_EnterFunction( f ) {
 	pr_stack[ pr_depth ].cloak = SV_CloakAnimationEnter( f );
+	pr_stack[ pr_depth ].electric = SV_ElectricFunctionEnter( f, pr_xfunction );
 	pr_stack[ pr_depth ].face = SV_FaceFunctionEnter( f, pr_xfunction );
 	pr_stack[ pr_depth ].axe = SV_AxeFunctionEnter( f, pr_xfunction );
 	pr_stack[ pr_depth ].respawn = SV_RespawnFunctionEnter( f, pr_xfunction );
@@ -445,6 +449,8 @@ export function PR_LeaveFunction() {
 	pr_depth --;
 	SV_CloakAnimationLeave( pr_stack[ pr_depth ].cloak );
 	pr_stack[ pr_depth ].cloak = null;
+	SV_ElectricFunctionLeave( pr_stack[ pr_depth ].electric );
+	pr_stack[ pr_depth ].electric = null;
 	SV_FaceFunctionLeave( pr_stack[ pr_depth ].face );
 	pr_stack[ pr_depth ].face = null;
 	SV_RespawnFunctionLeave( pr_stack[ pr_depth ].respawn );

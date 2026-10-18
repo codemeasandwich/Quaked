@@ -62,6 +62,12 @@ export let SV_AxeReset = Hooks_Missing( 'SV_AxeReset' );
 export let SV_CheatsFrame = Hooks_Missing( 'SV_CheatsFrame' );
 export let SV_CheatsInit = Hooks_Missing( 'SV_CheatsInit' );
 
+// newer/gameplay/sv_electricsounds.js
+export let SV_ElectricFunctionEnter = Hooks_Missing( 'SV_ElectricFunctionEnter' );
+export let SV_ElectricFunctionLeave = Hooks_Missing( 'SV_ElectricFunctionLeave' );
+export let SV_ElectricTrace = Hooks_Missing( 'SV_ElectricTrace' );
+export let SV_ElectricReset = Hooks_Missing( 'SV_ElectricReset' );
+
 // newer/gameplay/sv_faceevents.js
 export let SV_FaceFunctionEnter = Hooks_Missing( 'SV_FaceFunctionEnter' );
 export let SV_FaceFunctionLeave = Hooks_Missing( 'SV_FaceFunctionLeave' );
@@ -621,6 +627,11 @@ export let S_AmbientMusicUnlock = Hooks_Missing( 'S_AmbientMusicUnlock' );
 // newer/sound/s_exitmachine.js
 export let S_ExitMachineFalloff = Hooks_Missing( 'S_ExitMachineFalloff' );
 
+// newer/sound/s_electricsounds.js
+export let S_UpdateElectricSounds = Hooks_Missing( 'S_UpdateElectricSounds' );
+export let S_ElectricSoundsReset = Hooks_Missing( 'S_ElectricSoundsReset' );
+export let S_ElectricSoundsShutdown = Hooks_Missing( 'S_ElectricSoundsShutdown' );
+
 // newer/sound/s_environmentsounds.js
 export let S_UpdateEnvironmentSounds = Hooks_Missing( 'S_UpdateEnvironmentSounds' );
 export let S_ObserveEnvironmentSounds = Hooks_Missing( 'S_ObserveEnvironmentSounds' );
@@ -738,6 +749,7 @@ const HOOK_NAMES = Object.freeze( [
 	'Respawn_ParseDrop', 'Respawn_ParsePlayer', 'Respawn_ParseRemains',
 	'SV_AxeEntitySuppressed', 'SV_AxeFunctionEnter', 'SV_AxeFunctionLeave', 'SV_AxeGibSeen', 'SV_AxeReset',
 	'SV_CheatsFrame', 'SV_CheatsInit',
+	'SV_ElectricFunctionEnter', 'SV_ElectricFunctionLeave', 'SV_ElectricTrace', 'SV_ElectricReset',
 	'SV_FaceFunctionEnter', 'SV_FaceFunctionLeave', 'SV_FaceReset', 'SV_FaceShotTrace',
 	'SV_GoreOnSetModel',
 	'SV_MeleeSprayEnter',
@@ -808,6 +820,7 @@ const HOOK_NAMES = Object.freeze( [
 	'S_UpdateAmbientMusic',
 	'S_AmbientMusicNotifyCombat', 'S_AmbientMusicShutdown', 'S_AmbientMusicStop', 'S_AmbientMusicUnlock',
 	'S_ExitMachineFalloff',
+	'S_UpdateElectricSounds', 'S_ElectricSoundsReset', 'S_ElectricSoundsShutdown',
 	'S_UpdateEnvironmentSounds', 'S_ObserveEnvironmentSounds', 'S_EnvironmentSoundsReset', 'S_EnvironmentSoundsShutdown',
 	'S_PlayerInventory', 'S_PlayerHealthChanged', 'S_PlayerFinale', 'S_PlayerEventsReset', 'S_UpdatePlayerEvents', 'S_PlayerEventsShutdown',
 	'S_UpdatePlayerWater', 'S_PlayerWaterShutdown',
@@ -857,6 +870,7 @@ export function Hooks_Install( table ) {
 	Respawn_ParseDrop = table.Respawn_ParseDrop; Respawn_ParsePlayer = table.Respawn_ParsePlayer; Respawn_ParseRemains = table.Respawn_ParseRemains;
 	SV_AxeEntitySuppressed = table.SV_AxeEntitySuppressed; SV_AxeFunctionEnter = table.SV_AxeFunctionEnter; SV_AxeFunctionLeave = table.SV_AxeFunctionLeave; SV_AxeGibSeen = table.SV_AxeGibSeen; SV_AxeReset = table.SV_AxeReset;
 	SV_CheatsFrame = table.SV_CheatsFrame; SV_CheatsInit = table.SV_CheatsInit;
+	SV_ElectricFunctionEnter = table.SV_ElectricFunctionEnter; SV_ElectricFunctionLeave = table.SV_ElectricFunctionLeave; SV_ElectricTrace = table.SV_ElectricTrace; SV_ElectricReset = table.SV_ElectricReset;
 	SV_FaceFunctionEnter = table.SV_FaceFunctionEnter; SV_FaceFunctionLeave = table.SV_FaceFunctionLeave; SV_FaceReset = table.SV_FaceReset; SV_FaceShotTrace = table.SV_FaceShotTrace;
 	SV_GoreOnSetModel = table.SV_GoreOnSetModel;
 	SV_MeleeSprayEnter = table.SV_MeleeSprayEnter;
@@ -927,6 +941,7 @@ export function Hooks_Install( table ) {
 	S_UpdateAmbientMusic = table.S_UpdateAmbientMusic;
 	S_AmbientMusicNotifyCombat = table.S_AmbientMusicNotifyCombat; S_AmbientMusicShutdown = table.S_AmbientMusicShutdown; S_AmbientMusicStop = table.S_AmbientMusicStop; S_AmbientMusicUnlock = table.S_AmbientMusicUnlock;
 	S_ExitMachineFalloff = table.S_ExitMachineFalloff;
+	S_UpdateElectricSounds = table.S_UpdateElectricSounds; S_ElectricSoundsReset = table.S_ElectricSoundsReset; S_ElectricSoundsShutdown = table.S_ElectricSoundsShutdown;
 	S_UpdateEnvironmentSounds = table.S_UpdateEnvironmentSounds; S_ObserveEnvironmentSounds = table.S_ObserveEnvironmentSounds; S_EnvironmentSoundsReset = table.S_EnvironmentSoundsReset; S_EnvironmentSoundsShutdown = table.S_EnvironmentSoundsShutdown;
 	S_PlayerInventory = table.S_PlayerInventory; S_PlayerHealthChanged = table.S_PlayerHealthChanged; S_PlayerFinale = table.S_PlayerFinale; S_PlayerEventsReset = table.S_PlayerEventsReset; S_UpdatePlayerEvents = table.S_UpdatePlayerEvents; S_PlayerEventsShutdown = table.S_PlayerEventsShutdown;
 	S_UpdatePlayerWater = table.S_UpdatePlayerWater; S_PlayerWaterShutdown = table.S_PlayerWaterShutdown;

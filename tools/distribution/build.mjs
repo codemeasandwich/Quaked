@@ -74,6 +74,7 @@ function priorityOf(path){
  if(/^assets\/sounds\/(player-bubbles|underwater|enter-underwater|walking-in-water)\.mp3$/.test(path))return PRIORITY_START;
  if(/^assets\/sounds\/(end_of_quake1|newerGame_die_reset|on-quad-pickup|on-ring-pickup|on-pentagram-pickup|two-active-powerups|third-powerup-pickup)\.mp3$/.test(path))return PRIORITY_START;
  if(/^assets\/sounds\/(fire-Environmental|firstSee_Shub)\.mp3$/.test(path))return PRIORITY_START;
+ if(/^assets\/sounds\/electric\/electric-spell-\d+\.mp3$/.test(path))return PRIORITY_START;
  if(/^src\//.test(path)||/^newer\/(ui|hud|textures|normals|displacement|rockfield)\//.test(path))return PRIORITY_START;
  if(/^newer\/(enemies|weapons|effects)\//.test(path))return PRIORITY_ACTORS;
  if(/^(assets\/sounds|music)\//.test(path)||/^newer\/bestiary\//.test(path)||/^assets\/(credits|boxes)\//.test(path))return PRIORITY_BACKGROUND;

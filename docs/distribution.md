@@ -410,3 +410,5 @@ death/reset, pickup and combination cues and their native/protocol evidence.
 
 The [environment sound contract](environment-sounds-2026-10-18.md) records
 placed-fire ambience and the once-per-map visible Shub cue.
+
+Spatial electrical sound selections, native event contracts, full-file playback and verification: [integration record](spatial-electric-sounds-2026-10-18.md).
