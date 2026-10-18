@@ -12,10 +12,11 @@
  */
 
 import { SV_LinkEdict, SV_Move, SV_PointContents, SV_DropToFloor } from '../server/world.js';
-import { SV_CheckBottom } from '../server/sv_move.js';
+import { SV_CheckBottom, SV_movestep } from '../server/sv_move.js';
 import { PR_RunError } from './pr_exec.js';
 import { EDICT_TO_PROG, G_EDICT, G_FLOAT, G_FLOAT_SET, G_VECTOR, PROG_TO_EDICT, pr_global_struct, sv } from './progs.js';
 import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3, OFS_RETURN } from './pr_comp.js';
+import { FL_ONGROUND, FL_FLY, FL_SWIM } from '../server/server.js';
 import { vec3_origin } from '../common/mathlib.js';
 import { Hexen2_RegisterBuiltins } from './hexen2_cmds.js';
 
@@ -80,6 +81,27 @@ function droptofloor() {
 
 }
 
+// #32 walkmove(yaw, dist): the native walking step for a grounded/flying/swimming entity
+function walkmove() {
+
+	const ent = PROG_TO_EDICT( pr_global_struct.self );
+	const yaw = G_FLOAT( OFS_PARM0 ), dist = G_FLOAT( OFS_PARM1 );
+	if ( ! ( ( ent.v.flags | 0 ) & ( FL_ONGROUND | FL_FLY | FL_SWIM ) ) ) { G_FLOAT_SET( OFS_RETURN, 0 ); return; }
+	const radians = yaw * Math.PI * 2 / 360;
+	const move = [ Math.cos( radians ) * dist, Math.sin( radians ) * dist, 0 ];
+	G_FLOAT_SET( OFS_RETURN, SV_movestep( ent, move, false ) ? 1 : 0 );
+
+}
+
+// #82 movestep(x, y, z, settrace): the native direct step on self
+function movestep() {
+
+	const ent = PROG_TO_EDICT( pr_global_struct.self );
+	const move = [ G_FLOAT( OFS_PARM0 ), G_FLOAT( OFS_PARM1 ), G_FLOAT( OFS_PARM2 ) ];
+	G_FLOAT_SET( OFS_RETURN, SV_movestep( ent, move, false ) ? 1 : 0 );
+
+}
+
 // #40 checkbottom(entity)
 function checkbottom() {
 
@@ -96,6 +118,6 @@ function pointcontents() {
 }
 
 /** The world builtins this module installs into the Hexen II dispatcher. */
-export const HEXEN2_WORLD_BUILTINS = Object.freeze( { 2: setorigin, 4: setsize, 16: traceline, 34: droptofloor, 40: checkbottom, 41: pointcontents } );
+export const HEXEN2_WORLD_BUILTINS = Object.freeze( { 2: setorigin, 4: setsize, 16: traceline, 32: walkmove, 34: droptofloor, 40: checkbottom, 41: pointcontents, 82: movestep } );
 
 Hexen2_RegisterBuiltins( HEXEN2_WORLD_BUILTINS );

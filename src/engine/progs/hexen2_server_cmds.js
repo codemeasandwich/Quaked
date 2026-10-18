@@ -11,7 +11,7 @@
  */
 
 import { ED_Alloc, ED_Free, ED_Print } from './pr_edict.js';
-import { sv, G_STRING, G_INT, G_INT_SET, G_FLOAT, G_EDICT, G_EDICTNUM, G_VECTOR, pr_argc, PR_GetString, RETURN_EDICT } from './progs.js';
+import { sv, G_STRING, G_INT, G_INT_SET, G_FLOAT, G_FLOAT_SET, G_EDICT, G_EDICTNUM, G_VECTOR, PROG_TO_EDICT, pr_global_struct, pr_argc, PR_GetString, RETURN_EDICT } from './progs.js';
 import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3, OFS_PARM4, OFS_RETURN } from './pr_comp.js';
 import { PR_RunError } from './pr_exec.js';
 import { Con_Printf } from '../common/console.js';
@@ -45,6 +45,55 @@ function find() {
 
 	}
 	RETURN_EDICT( sv.edicts[ 0 ] );
+
+}
+
+// #63 advanceframe(start, end): the native self.frame advance with its 0/1/2 result
+function advanceframe() {
+
+	const ent = PROG_TO_EDICT( pr_global_struct.self );
+	const start = G_FLOAT( OFS_PARM0 ), end = G_FLOAT( OFS_PARM1 );
+	let result;
+	if ( ent.v.frame < start || ent.v.frame > end ) { ent.v.frame = start; result = 0; }
+	else if ( ent.v.frame === end ) { ent.v.frame = start; result = 1; }
+	else { ent.v.frame ++; result = ent.v.frame === end ? 2 : 0; }
+	G_FLOAT_SET( OFS_RETURN, result );
+
+}
+
+// #65 rewindframe(start, end): the native reverse advance
+function rewindframe() {
+
+	const ent = PROG_TO_EDICT( pr_global_struct.self );
+	const start = G_FLOAT( OFS_PARM0 ), end = G_FLOAT( OFS_PARM1 );
+	let result;
+	if ( ent.v.frame > start || ent.v.frame < end ) { ent.v.frame = start; result = 0; }
+	else if ( ent.v.frame === end ) { ent.v.frame = start; result = 1; }
+	else { ent.v.frame --; result = ent.v.frame === end ? 2 : 0; }
+	G_FLOAT_SET( OFS_RETURN, result );
+
+}
+
+// #83 advanceweaponframe(start, end): the native weapon-frame cycle with its four states
+function advanceweaponframe() {
+
+	const ent = PROG_TO_EDICT( pr_global_struct.self );
+	const start = G_FLOAT( OFS_PARM0 ), end = G_FLOAT( OFS_PARM1 );
+	let state;
+	if ( ( end > start && ( ent.v.weaponframe > end || ent.v.weaponframe < start ) )
+		|| ( end < start && ( ent.v.weaponframe < end || ent.v.weaponframe > start ) ) ) {
+
+		ent.v.weaponframe = start; state = 1;
+
+	} else if ( ent.v.weaponframe === end ) { ent.v.weaponframe = start; state = 2; }
+	else {
+
+		if ( start > end ) ent.v.weaponframe = ent.v.weaponframe - 1;
+		else if ( start < end ) ent.v.weaponframe = ent.v.weaponframe + 1;
+		state = ent.v.weaponframe === end ? 3 : 0;
+
+	}
+	G_FLOAT_SET( OFS_RETURN, state );
 
 }
 
@@ -143,7 +192,7 @@ function breakBuiltin() { PR_RunError( 'break statement' ); }
 
 /** The server builtins this module installs into the Hexen II dispatcher. */
 export const HEXEN2_SERVER_BUILTINS = Object.freeze( {
-	6: breakBuiltin, 8: sound, 14: spawn, 15: remove, 18: find, 23: bprint, 31: eprint, 35: lightstyle, 69: makestatic, 74: ambientsound
+	6: breakBuiltin, 8: sound, 14: spawn, 15: remove, 18: find, 23: bprint, 31: eprint, 35: lightstyle, 63: advanceframe, 65: rewindframe, 69: makestatic, 74: ambientsound, 83: advanceweaponframe
 } );
 
 Hexen2_RegisterBuiltins( HEXEN2_SERVER_BUILTINS );
