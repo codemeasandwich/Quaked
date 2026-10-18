@@ -99,6 +99,8 @@ Quaked is a working, playable project under active development, and has had litt
 
 Source lives in `src/` (a JavaScript port of the Quake engine and its QuakeC virtual machine, with the Three.js renderer), tests in `tests/`, build and asset tools in `tools/`, and shared art and data in [`assets/`](assets/README.md). The docs are written so that a future contributor can continue the work: each says what a change is for, what it touches and what was checked. `python3 tests/docs_index_test.py` checks the links in this README, the index and the technical notes; `python3 tools/build_docs_index.py` rebuilds the index after you add a document. GitHub Actions builds the shareware web page and its data files from `Dev` and deploys only that generated site after its required checks pass.
 
+Planning and checkout records: [Hexen II design plan](docs/hexen2-support-plan.md) (design review only) · [18 October checkout consolidation](docs/checkout-consolidation-2026-10-18.md).
+
 ## License
 
 Code: GPL v2. Quake is a trademark of id Software; the shareware data included is theirs.

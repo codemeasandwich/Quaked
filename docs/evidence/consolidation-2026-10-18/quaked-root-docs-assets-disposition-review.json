@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-18T14:37:57.860520+00:00",
+  "scope": "Read-only remaining document/Hexen planning and known asset differences. No source edits, other-chat messages, tests or builds.",
+  "qualifiedCommit": "091818ccae833727b0c5c0d6bed80eb2ef6ea90d",
+  "classificationFile": "/Users/bri/build/quaked-consolidation-retained-20261018/primary-current-vs-qualified-dev.json",
+  "classificationSha256": "fe2cb9edf6a6369b1e72d7b627e361e3c61e5bbe5e715b7624c3cb246c183277",
+  "verdict": "Integrate the FOUR new Hexen II planning files as documentation only; all active source/runtime remains qualified091818cc. Other unique history retained in consolidation custody, with optional dated data-distribution header integration.",
+  "integrate": [
+    {
+      "path": "docs/hexen2-support-plan.md",
+      "sha256": "7040e450ed4d2f6993b91b8a19900b29b905d1a1251eeda352bed123280bb48a",
+      "bytes": 65271,
+      "disposition": "INTEGRATE as exact planning/provenance document; no engine or game-data activation."
+    },
+    {
+      "path": "docs/hexen2/plan-inputs.json",
+      "sha256": "6a3c0487c94f46118154b91a43881b199169b9646d55228147663707f38c13c0",
+      "bytes": 383592,
+      "disposition": "INTEGRATE as exact planning/provenance document; no engine or game-data activation."
+    },
+    {
+      "path": "docs/hexen2/plan-review.md",
+      "sha256": "2081ce24506520c3685f17f5838323e6d10170a2fdf5540f8689a9b22ed1b4a4",
+      "bytes": 17713,
+      "disposition": "INTEGRATE as exact planning/provenance document; no engine or game-data activation."
+    },
+    {
+      "path": "docs/hexen2/uqe-overlap-review.md",
+      "sha256": "95dacc4014916c2fd9f2f1643bfdeb1fa89f82dac0e0eea5342abf78eeb5bb62",
+      "bytes": 6590,
+      "disposition": "INTEGRATE as exact planning/provenance document; no engine or game-data activation."
+    }
+  ],
+  "hexenRationale": [
+    "These are the only four ROOT-only documents outside evidence/verification custody. They form one coherent owner-requested plan and two-round independent-review record, not duplicate engine code.",
+    "Exact main-plan/inventory/UQE hashes match the final second-review approval. Main plan explicitly says design completeness only, implementation has not begun, and no test/build/release execution is claimed.",
+    "Plan requires one existing JS engine, explicit native compatibility, full Quaked enhancement parity, RED/GREEN tests, independent oracle, hub-save recovery and native LAN/E2E gates. These are unfulfilled execution requirements, not runtime support to enable.",
+    "Input inventory deliberately pins an older shared checkout/Dev snapshot. Keep pins immutable as provenance; any future authorized implementation must reconcile current source/test inventory before executing.",
+    "All local Markdown links in main plan point into these four files. Add discoverability through maintained docs/index mechanism if present and run the maintained documentation check at parent integration; do not rewrite the reviewed plan merely to claim current inputs."
+  ],
+  "otherDocuments": [
+    {
+      "path": "README.md",
+      "disposition": "KEEP qualified Dev",
+      "reason": "ROOT restores single-file/offline web claims superseded by content-hashed data delivery, and restores links whose targets are absent current qualified tree. Useful descriptive phrases are already represented; do not wholesale copy.",
+      "rootLinkTargetsAbsentQualified": [
+        "docs/ambient-music-2026-10-01.md",
+        "docs/audio-volume-controls-2026-10-02.md",
+        "docs/bestiary-complete-2026-10-04.md",
+        "docs/burn-decals.md",
+        "docs/clockwise-respawn-2026-10-04.md",
+        "docs/continuous-rockfield-2026-10-02.md",
+        "docs/demon-displacement-2026-10-03.md",
+        "docs/emissive-lighting-2026-10-03.md",
+        "docs/end-level-2026-10-11.md",
+        "docs/enemy-face-overlays-2026-10-07.md",
+        "docs/enemy-heights-2026-10-01.md",
+        "docs/explosions-fireball-2026-10-08.md",
+        "docs/flashlight-run-policy.md",
+        "docs/gamepad-2026-10-10.md",
+        "docs/gloom-hood-face-2026-10-04.md",
+        "docs/index.md",
+        "docs/laser-stasis-bolt-2026-10-11.md",
+        "docs/lavaballs-2026-10-11.md",
+        "docs/level-texture-update-2026-10-02.md",
+        "docs/lightning-2026-10-09.md",
+        "docs/procedural-surface-enhancement.md",
+        "docs/rocket-grenade-smoke-2026-10-08.md",
+        "docs/shotgun-pellets-2026-10-08.md",
+        "docs/technical-notes.md",
+        "docs/torch-fire-2026-10-08.md",
+        "docs/water-optics-2026-10-02.md",
+        "docs/weapons-and-shells-2026-10-02.md"
+      ],
+      "rootSha256": "002276f62f91a91fa741f0414d4c9b2a7f6f8e210e55931ea85d9017f2dfe7d5",
+      "qualifiedSha256": "280c8c23e3eef3ce7b7457c01c51b2ed3bff5639dc7334b505486bb8c27ad4f6"
+    },
+    {
+      "path": "docs/distribution.md",
+      "disposition": "KEEP qualified Dev",
+      "reason": "ROOT is older: offline-one-HTML claim, removes first-game download/progress/offline-reuse contract, soe add-on, shell hook boundary, app input/quit fixes and current delivery/verification details. This is regression, not new documentation.",
+      "rootSha256": "481016b8e84d144197c776789519fe7f03712d0e6c7a5903e134d05dab0b334f",
+      "qualifiedSha256": "470a2e108e60d1ba33c95461a9bb8c4ea05f6dc7d966c7380c16ee47d221f56d"
+    },
+    {
+      "path": "docs/resource-layout.md",
+      "disposition": "KEEP qualified Dev",
+      "reason": "ROOT replaces completed initial/isolated Dev relocation counts and verification with in-progress placeholder. Qualified ledger records separate source identities and preserves newer sound/delivery code; do not erase it.",
+      "rootSha256": "1a90b8adb09509c9c8cfb8dd71700a6670479fc89c011b8b5e6bceb8b59d542b",
+      "qualifiedSha256": "f268a42c17b20646a5a3f0bf209a4d5ec108d0fe3dd82e3c00b0dfbc4d10b0bc"
+    },
+    {
+      "path": "docs/verification/resource-layout/check-artifacts.mjs",
+      "disposition": "KEEP qualified Dev",
+      "reason": "ROOT drops sourceSha256 fallback and compares canonical source to delivered derivative hash. Qualified version correctly distinguishes source/derived bytes.",
+      "rootSha256": "2543081f7436e18bf547eca7d7b8f8640e1a23213726240c463b5f71601ee28c",
+      "qualifiedSha256": "7614faedaff455624c6753ad234d06b597df3f523ad06ce2283de399d663a407"
+    },
+    {
+      "path": "docs/lavaman-authoring-assets-2026-10-18.md",
+      "disposition": "RETAIN new appendix as historical custody, not current canonical authoring behavior",
+      "reason": "Only ROOT addition describes preserved pending older6x local variant and7 local identity checks. After ROOT aligns to qualified4x this must not remain present-tense active-tree documentation. Optional archive pointer in consolidation ledger is sufficient; do not imply6x guard accepted.",
+      "rootSha256": "a6a11b18190951cd0115b931557e3cfdbaaebd1450d413442e9dbc9aca0dce93",
+      "qualifiedSha256": "a1ce17ce19a9817080132079db5f0a3beee0432d75a4dd48d0825bfb2239e747"
+    },
+    {
+      "path": "docs/data-distribution-plan-2026-10-17.md",
+      "disposition": "PRESERVE unique implementation-history note; optional integrate HEADER ONLY with historical artifact scope",
+      "reason": "ROOT adds37-line18October v0.132.0 implementation note: content-named8MB parts, separate web/app data, embedded manifest and app resolution, plus one local build layout. This is genuine new descriptive material, but75/177 part counts and rebuild path are specific historical artifacts. Keep qualified proposal and current distribution docs; append/prepend this as an explicitly dated historical build record only if parent artifact/tag custody supports its release claim. No wholesale overwrite or current-count claim.",
+      "rootSha256": "6546dcfb50b1ff34efc4672ab47410b333cceebd65d9320cbdb8ab546cc2acda",
+      "qualifiedSha256": "5bff9400a3eb89a740de63311fd62afb9a8db6c07e1491c0bebb3954a18973f8"
+    }
+  ],
+  "assets": [
+    {
+      "path": "assets/game/enemies/grem/custom/SOURCE.json",
+      "disposition": "KEEP qualified active bytes; retain ROOT provenance separately",
+      "reason": "Superseded6x Gremlin source/provenance/maps; qualified4x pipeline and tests are explicit successor. Keep qualified active asset, preserve earlier bytes in archive.",
+      "rootGitBlob": "50d1bd26d00ca4f92bd8ff1efd2c9f76be742797",
+      "qualifiedGitBlob": "154c800ea387a41f78ff753b3c10507e637f73bd"
+    },
+    {
+      "path": "assets/game/enemies/grem/custom/diffuse.png",
+      "disposition": "KEEP qualified active bytes; retain ROOT provenance separately",
+      "reason": "Superseded6x Gremlin source/provenance/maps; qualified4x pipeline and tests are explicit successor. Keep qualified active asset, preserve earlier bytes in archive.",
+      "rootGitBlob": "d52bfaaee0a79aa3eeca24aca85d9e0586b3dae0",
+      "qualifiedGitBlob": "44df497c885649afc78db3aeb05c07d76eb90ed2"
+    },
+    {
+      "path": "assets/game/enemies/grem/custom/height.webp",
+      "disposition": "KEEP qualified active bytes; retain ROOT provenance separately",
+      "reason": "Superseded6x Gremlin source/provenance/maps; qualified4x pipeline and tests are explicit successor. Keep qualified active asset, preserve earlier bytes in archive.",
+      "rootGitBlob": "bb7f0019e1a66a9e461e6b2a9f5504d9735eb008",
+      "qualifiedGitBlob": "3dae9719095cbaf0a8e38ae37d5da1b8770a90d9"
+    },
+    {
+      "path": "assets/game/enemies/lavaman/sources/generated-2026-10-12/lavaman.json",
+      "disposition": "KEEP qualified active bytes; retain ROOT provenance separately",
+      "reason": "Older pending6x local recipe versus qualified4x with supersession guard; preserve historical variant, keep qualified canonical recipe.",
+      "rootGitBlob": "3f968934abae8e304dcb077a2626a0971a1b0ee1",
+      "qualifiedGitBlob": "c282c494020bf244a092a78c3211643ea97e0af0"
+    },
+    {
+      "path": "assets/game/normals/manifest.json",
+      "disposition": "KEEP qualified active bytes; retain ROOT provenance separately",
+      "reason": "Extra generated6x Gremlin bake contract is obsolete active input; keep qualified current4x manifest.",
+      "rootGitBlob": "64d9d54955e45294be311d476fd3d0884012a4b9",
+      "qualifiedGitBlob": "e5014dbd911e4e56323dbe5150513e91c47b00bc"
+    },
+    {
+      "path": "assets/game/textures/index.json",
+      "disposition": "KEEP qualified active bytes; retain ROOT provenance separately",
+      "reason": "Parent verified actual114bindings/555maps agree; two legacy alias mappings are older. Keep qualified exact catalogue; no active new material introduced here.",
+      "rootGitBlob": "6ac09e126a48d48269525bf324b0cd6e649cbf17",
+      "qualifiedGitBlob": "4968f8e277ec42ea05c0dd40ba733e660952e245"
+    },
+    {
+      "path": "assets/layout.json",
+      "disposition": "KEEP qualified active bytes; retain ROOT provenance separately",
+      "reason": "ROOT layout adds local authoring-image entries from128/129-image preserved set, not missing active runtime code. Keep qualified layout while parent source actor retains local variants/provenance separately; do not create duplicate canonical inputs.",
+      "rootGitBlob": "467234b9599ecc10a7d7e3747033ca5254ec3e94",
+      "qualifiedGitBlob": "f004e52b282d6ae947d87cfb5aeb98ecbf48db3d"
+    }
+  ],
+  "historicalEvidence": "ROOT-only docs/evidence and docs/verification build/relocation/preimage trees describe specific dirty working-copy custody and observations. Preserve full bytes in parent archive; they do not need to be installed as new normative product docs and must not overwrite newer qualified evidence.",
+  "limits": [
+    "Release/tag verification and full asset/image custody were not rerun. Parent owns those retained-artifact checks.",
+    "This confirms preservation/integration disposition, not approval to begin Hexen implementation or proof of Hexen support.",
+    "Prior active-source report remains applicable; no missing active feature was identified."
+  ],
+  "nextAction": "Parent includes four exact Hexen planning files in documentation-only consolidation increment, keeps qualified production/config/tests/assets, retains remaining preimages, then completes normal integration checks.",
+  "state": "Review complete; quiescent."
+}

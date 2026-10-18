@@ -1,0 +1,521 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-18T14:21:52.873728+00:00",
+  "verdict": "PASS: explicit exclusions mapped; neither prototype currently present in ROOT active source/tests",
+  "scope": "Read-only source provenance and exclusion map only. No mutations, builds, feature tests or other-chat messages. No history-ancestry delivery inference.",
+  "qualifiedBaseline": "e16f6cda214be9ccc36129fe4ec1f84c1ffe1c3b",
+  "rootHead": "616ee09ca4eae3121d5417b081623a144f498671",
+  "trialWorktree": "/Users/bri/worktrees/Quaked/Dev/ci-gpu",
+  "trialBranch": "main-reconcile",
+  "trialHead": "6785e4736d0d299536ef77014173d1fdcc69bb32",
+  "olderTrialRef": "refs/heads/codex/natural-surfaces-trial",
+  "olderTrialCommit": "51a547bd09006d18c71ed1a3304b9b34c288c0bb",
+  "rootFindings": {
+    "activeTrialMarkerMatches": [],
+    "allSevenRockEdgeSharedSourcesEqualQualifiedBaseline": true,
+    "newRockEdgeExclusiveFilesAbsent": true,
+    "oldNineModulesAbsent": true,
+    "qualifiedRockfieldMustRemain": [
+      "src/newer/assets/rockfield*.js",
+      "src/newer/render/r_rockfield.js",
+      "src/newer/render/r_rockshader.js",
+      "src/newer/render/r_rocksurfaces.js",
+      "tests/rockfield*.js",
+      "tests/rock_* excluding exact rock_mesh/rock_edges additions"
+    ],
+    "fpsRootEqualsQualifiedDev": true,
+    "warning": "Root has a large mixed staged/unstaged relocation/effects state. This receipt authorizes no whole-file reset, checkout or deletion. Preserve all unrelated HUD/VFX/sound/effects changes."
+  },
+  "newRockEdges": {
+    "exclusiveFiles": [
+      {
+        "path": "src/newer/render/r_rockedges.js",
+        "trialWorkingSha256": "5c137d2e98a34e5b994687adebb8338aa9bef49043868f61875ad624e1c05a84",
+        "rootPresent": false,
+        "role": "Exclude entire trial-only runtime/test file"
+      },
+      {
+        "path": "tests/rock_edges_test.js",
+        "trialWorkingSha256": "b4af8b1d9972e1fe18462d7985d5307608fb5a9177979d94b1d450ce28a7bac8",
+        "rootPresent": false,
+        "role": "Exclude entire trial-only runtime/test file"
+      },
+      {
+        "path": "docs/handover-2026-10-14.md",
+        "trialWorkingSha256": "069c4c50b87740f207a8f565c720b3afbfc4d7bfb0efdfb46bb7bb767b1ab982",
+        "rootPresent": false,
+        "role": "Stopped trial provenance only"
+      }
+    ],
+    "sharedHunks": [
+      {
+        "path": "src/engine/common/hooks.js",
+        "rootEqualsQualifiedDev": true,
+        "qualifiedRootSha256": "ed2f5f4dd5bf37dc2401fda883855418270d066d00405b7fcbc806aa212367b2",
+        "trialWorkingSha256": "ccc4ecf500cd69c521abfb98292590ba46d0c06e96c9d7aac4336fb4fcc651ea",
+        "trialDeltaSha256": "1e85d80256b6807f72d29d1bfc8b346601c338aa749e8de267127f13018a4e40",
+        "trialDeltaMarkers": [
+          "R_RockEdgesBuild",
+          "R_RockEdgeGeometry",
+          "r_rockedges"
+        ],
+        "action": "Keep qualified Dev source and unrelated incoming changes. Exclude only ci-gpu uncommitted delta, never replace whole shared file."
+      },
+      {
+        "path": "src/engine/render/gl_rmain.js",
+        "rootEqualsQualifiedDev": true,
+        "qualifiedRootSha256": "5ae30507e7d6f765c9159954afefa356b07f02611835e1fa6bc4bab1be87c920",
+        "trialWorkingSha256": "05162610339f4512bbef4ad0aa951113d1fd0668f7797e02301edbce5f2478f6",
+        "trialDeltaSha256": "93310d18d5d7e94165a0e331a0db43ea6dd48ee6fbfc4c261152315787fdce58",
+        "trialDeltaMarkers": [
+          "r_rockedges"
+        ],
+        "action": "Keep qualified Dev source and unrelated incoming changes. Exclude only ci-gpu uncommitted delta, never replace whole shared file."
+      },
+      {
+        "path": "src/engine/render/gl_rsurf_batches.js",
+        "rootEqualsQualifiedDev": true,
+        "qualifiedRootSha256": "5e25961f7495fc70329ca7ff555ce78a605481a215e230b55c55d5c262e5fe30",
+        "trialWorkingSha256": "dee2cc098481b80170e5c3295ae2fa50ea49ee59e6e1a6040217968c3c12993a",
+        "trialDeltaSha256": "1e165a0696e0d9280e5d667982fc969144c89db055c38f2ef1b7df1fd9a7bb6e",
+        "trialDeltaMarkers": [
+          "R_RockEdgesBuild",
+          "R_RockEdgeGeometry",
+          "rockOffset",
+          "rockBend",
+          "rockUvShift",
+          "rockLmShift",
+          "group.totalIndices"
+        ],
+        "action": "Keep qualified Dev source and unrelated incoming changes. Exclude only ci-gpu uncommitted delta, never replace whole shared file."
+      },
+      {
+        "path": "src/newer/install.js",
+        "rootEqualsQualifiedDev": true,
+        "qualifiedRootSha256": "21536cc9065abc3543cb3c94efef59deb837157d8625592e013c84c8883cb776",
+        "trialWorkingSha256": "1c6305f5040dd019314b261baa64e98837747f3ab16fb1154b9389f55a66b5f4",
+        "trialDeltaSha256": "3ec739eb92151728f8d863a34fb33651b6f9bf4e8c551b028a757838b64b3c69",
+        "trialDeltaMarkers": [
+          "r_rockedges.js",
+          "R_RockEdgeGeometry",
+          "R_RockEdgesBuild"
+        ],
+        "action": "Keep qualified Dev source and unrelated incoming changes. Exclude only ci-gpu uncommitted delta, never replace whole shared file."
+      },
+      {
+        "path": "src/newer/render/r_post_gbuffer.js",
+        "rootEqualsQualifiedDev": true,
+        "qualifiedRootSha256": "b5e2087f138801c765a0455760fef601c7908b6a2cc88390cd4a43d8216d2d2c",
+        "trialWorkingSha256": "8fdfc8a43ee5e2b3e677da0e3e72d0e889abedfa7864ef996e5df91303667186",
+        "trialDeltaSha256": "53c3ae95555b3935d2a5694c75dc35c5a0548c67e4bb92a91f3661f0f33946df",
+        "trialDeltaMarkers": [
+          "qrRockGradients",
+          "hctx.normal=${rock"
+        ],
+        "action": "Keep qualified Dev source and unrelated incoming changes. Exclude only ci-gpu uncommitted delta, never replace whole shared file."
+      },
+      {
+        "path": "src/newer/render/r_post_shadows.js",
+        "rootEqualsQualifiedDev": true,
+        "qualifiedRootSha256": "eeec7fa270e5e5fd80bb271b4768e0b05b2181f05d2dfe4074b09ab3893dda33",
+        "trialWorkingSha256": "57f1a6a07828701c2d5de820cab2b740478a3b523ccf531709092c4ed2be320c",
+        "trialDeltaSha256": "b6e6818aabd27c334e48f150a36f5749ad2a8fbb549b6bd3e096e3da3c2dfa92",
+        "trialDeltaMarkers": [
+          "R_RockEdgeOccluder",
+          "const rockEdges ="
+        ],
+        "action": "Keep qualified Dev source and unrelated incoming changes. Exclude only ci-gpu uncommitted delta, never replace whole shared file."
+      },
+      {
+        "path": "src/newer/render/r_rockshader.js",
+        "rootEqualsQualifiedDev": true,
+        "qualifiedRootSha256": "bbda59403fdba2a35f8fbe7e36e7d79e2d35a3e24a453df60ed21fa69ea78fad",
+        "trialWorkingSha256": "381c1e1c40842f81adcb1fd1310ab1eba8415f90847b7ca4b89d01cd8a349c42",
+        "trialDeltaSha256": "aae052b4ba68115da94814b930cef20df996aabcf632f95448acc9fd197d1668",
+        "trialDeltaMarkers": [
+          "r_rockedges.js",
+          "rockEdgesOn",
+          "qrRockEdges",
+          "vRockGeo",
+          "vRockFaceN",
+          "qrRockGradients",
+          "rockOffset",
+          "rockBend",
+          "rockUvShift",
+          "rockLmShift"
+        ],
+        "action": "Keep qualified Dev source and unrelated incoming changes. Exclude only ci-gpu uncommitted delta, never replace whole shared file."
+      }
+    ],
+    "ownerStopWitness": {
+      "path": "/Users/bri/worktrees/Quaked/Dev/ci-gpu/docs/handover-2026-10-14.md",
+      "sha256": "069c4c50b87740f207a8f565c720b3afbfc4d7bfb0efdfb46bb7bb767b1ab982",
+      "state": "14 October stand-down; uncommitted prototype, unfinished independent review and performance. Do not resume or merge."
+    },
+    "unrelatedWIP": "Deleted tracked tools/texture_sheets/__pycache__/_match_orig.cpython-311.pyc is not rock-edge implementation; preserve actual status in custody, do not import it as trial feature."
+  },
+  "olderNaturalTrial": {
+    "commitChangedPaths": 83,
+    "addedPaths": [
+      "docs/connected-rock-geometry.md",
+      "docs/evidence/connected-rock-browser-2026-10-07/221920-866863.json",
+      "docs/evidence/connected-rock-browser-2026-10-07/221920-866863.png",
+      "docs/evidence/connected-rock-browser-2026-10-07/222323-452632.json",
+      "docs/evidence/connected-rock-browser-2026-10-07/222323-452632.png",
+      "docs/evidence/connected-rock-browser-2026-10-07/230530-492487.json",
+      "docs/evidence/connected-rock-browser-2026-10-07/230530-492487.png",
+      "docs/evidence/connected-rock-browser-2026-10-07/231014-128393.json",
+      "docs/evidence/connected-rock-browser-2026-10-07/231014-128393.png",
+      "docs/evidence/connected-rock-combined-tests-2026-10-07.log",
+      "docs/evidence/connected-rock-final-regressions-2026-10-07.log",
+      "docs/evidence/connected-rock-runtime-2026-10-07.json",
+      "docs/evidence/ground-antitile-browser-2026-10-07/final-natural-scope-observation.json",
+      "docs/evidence/ground-antitile-browser-2026-10-07/gpu-stage-1.json",
+      "docs/evidence/ground-antitile-browser-2026-10-07/gpu-stage-1.png",
+      "docs/evidence/ground-antitile-browser-2026-10-07/gpu-stage-2.json",
+      "docs/evidence/ground-antitile-browser-2026-10-07/gpu-stage-2.png",
+      "docs/evidence/ground-antitile-browser-2026-10-07/manifest.json",
+      "docs/evidence/ground-antitile-browser-2026-10-07/prepared-and-native-observation.json",
+      "docs/evidence/ground-antitile-fastpath-public-tests-2026-10-07.json",
+      "docs/evidence/ground-antitile-fastpath-public-tests-2026-10-07.log",
+      "docs/evidence/ground-antitile-final-public-tests-2026-10-07.json",
+      "docs/evidence/ground-antitile-final-public-tests-2026-10-07.log",
+      "docs/evidence/ground-antitile-macro-fixture-tests-2026-10-07.json",
+      "docs/evidence/ground-antitile-macro-regressions-2026-10-07.log",
+      "docs/evidence/ground-antitile-macro-regressions-current-2026-10-07.log",
+      "docs/evidence/ground-antitile-manager-tests-2026-10-07.json",
+      "docs/evidence/ground-antitile-manager-tests-2026-10-07.log",
+      "docs/evidence/ground-antitile-natural-seam-test-failure-2026-10-07.json",
+      "docs/evidence/ground-antitile-prepare-tests-2026-10-07.json",
+      "docs/evidence/ground-antitile-prepare-tests-2026-10-07.log",
+      "docs/evidence/ground-antitile-public-tests-2026-10-07.json",
+      "docs/evidence/ground-antitile-public-tests-2026-10-07.log",
+      "docs/evidence/ground-antitile-review-2026-10-07.md",
+      "docs/evidence/ground-cache-visibility-scan-tests-2026-10-08.json",
+      "docs/evidence/ground-cache-visibility-scan-tests-2026-10-08.log",
+      "docs/evidence/ground-noise-cache-unreleased-experiment.patch",
+      "docs/evidence/natural-artwork-dispatch-order-tests-2026-10-07.json",
+      "docs/evidence/natural-artwork-dispatch-order-tests-2026-10-07.log",
+      "docs/evidence/natural-composed-height-final-tests-2026-10-07.log",
+      "docs/evidence/natural-material-current-tests-2026-10-08.log",
+      "docs/evidence/natural-material-current-verification-2026-10-08.json",
+      "docs/evidence/natural-seam-cache-correction-2026-10-07.json",
+      "docs/evidence/natural-seam-correction-tests-2026-10-07.log",
+      "docs/evidence/natural-surface-native-facet-diagnostic-2026-10-07.json",
+      "docs/evidence/natural-treatment-dispatch-tests-2026-10-07.json",
+      "docs/evidence/natural-treatment-dispatch-tests-2026-10-07.log",
+      "docs/evidence/rock-mesh-composed-normal-tests-2026-10-07.json",
+      "docs/evidence/rock-mesh-composed-normal-tests-2026-10-07.log",
+      "docs/evidence/rock-mesh-fairing-fastpath-tests-2026-10-07.json",
+      "docs/evidence/rock-mesh-fairing-fastpath-tests-2026-10-07.log",
+      "docs/evidence/rock-mesh-intro-policy-tests-2026-10-07.json",
+      "docs/evidence/rock-mesh-intro-policy-tests-2026-10-07.log",
+      "docs/evidence/rock-mesh-near-receiver-tests-2026-10-07.json",
+      "docs/evidence/rock-mesh-near-receiver-tests-2026-10-07.log",
+      "docs/evidence/rock-mesh-orientation-receiver-tests-2026-10-07.json",
+      "docs/evidence/rock-mesh-orientation-receiver-tests-2026-10-07.log",
+      "docs/evidence/rock-mesh-public-tests-2026-10-07.json",
+      "docs/evidence/rock-mesh-public-tests-2026-10-07.log",
+      "docs/ground-antitile.md",
+      "docs/natural-material-treatments.md",
+      "src/ground_antitile_bake.js",
+      "src/ground_antitile_math.js",
+      "src/ground_antitile_worker.js",
+      "src/r_ground_antitile.js",
+      "src/r_ground_prepare.js",
+      "src/r_rockmesh.js",
+      "src/rock_mesh.js",
+      "src/rock_mesh_jobs.js",
+      "src/rock_mesh_worker.js",
+      "tests/ground_antitile_fastpath_test.js",
+      "tests/ground_antitile_gameplay_trial.html",
+      "tests/ground_antitile_gameplay_trial.js",
+      "tests/ground_antitile_gpu_trial.html",
+      "tests/ground_antitile_gpu_trial.js",
+      "tests/ground_antitile_prepare_test.js",
+      "tests/ground_antitile_test.js",
+      "tests/natural_surface_facet_diagnostic.js",
+      "tests/rock_mesh_test.js"
+    ],
+    "allChangedPaths": [
+      "docs/connected-rock-geometry.md",
+      "docs/evidence/connected-rock-browser-2026-10-07/221920-866863.json",
+      "docs/evidence/connected-rock-browser-2026-10-07/221920-866863.png",
+      "docs/evidence/connected-rock-browser-2026-10-07/222323-452632.json",
+      "docs/evidence/connected-rock-browser-2026-10-07/222323-452632.png",
+      "docs/evidence/connected-rock-browser-2026-10-07/230530-492487.json",
+      "docs/evidence/connected-rock-browser-2026-10-07/230530-492487.png",
+      "docs/evidence/connected-rock-browser-2026-10-07/231014-128393.json",
+      "docs/evidence/connected-rock-browser-2026-10-07/231014-128393.png",
+      "docs/evidence/connected-rock-combined-tests-2026-10-07.log",
+      "docs/evidence/connected-rock-final-regressions-2026-10-07.log",
+      "docs/evidence/connected-rock-runtime-2026-10-07.json",
+      "docs/evidence/ground-antitile-browser-2026-10-07/final-natural-scope-observation.json",
+      "docs/evidence/ground-antitile-browser-2026-10-07/gpu-stage-1.json",
+      "docs/evidence/ground-antitile-browser-2026-10-07/gpu-stage-1.png",
+      "docs/evidence/ground-antitile-browser-2026-10-07/gpu-stage-2.json",
+      "docs/evidence/ground-antitile-browser-2026-10-07/gpu-stage-2.png",
+      "docs/evidence/ground-antitile-browser-2026-10-07/manifest.json",
+      "docs/evidence/ground-antitile-browser-2026-10-07/prepared-and-native-observation.json",
+      "docs/evidence/ground-antitile-fastpath-public-tests-2026-10-07.json",
+      "docs/evidence/ground-antitile-fastpath-public-tests-2026-10-07.log",
+      "docs/evidence/ground-antitile-final-public-tests-2026-10-07.json",
+      "docs/evidence/ground-antitile-final-public-tests-2026-10-07.log",
+      "docs/evidence/ground-antitile-macro-fixture-tests-2026-10-07.json",
+      "docs/evidence/ground-antitile-macro-regressions-2026-10-07.log",
+      "docs/evidence/ground-antitile-macro-regressions-current-2026-10-07.log",
+      "docs/evidence/ground-antitile-manager-tests-2026-10-07.json",
+      "docs/evidence/ground-antitile-manager-tests-2026-10-07.log",
+      "docs/evidence/ground-antitile-natural-seam-test-failure-2026-10-07.json",
+      "docs/evidence/ground-antitile-prepare-tests-2026-10-07.json",
+      "docs/evidence/ground-antitile-prepare-tests-2026-10-07.log",
+      "docs/evidence/ground-antitile-public-tests-2026-10-07.json",
+      "docs/evidence/ground-antitile-public-tests-2026-10-07.log",
+      "docs/evidence/ground-antitile-review-2026-10-07.md",
+      "docs/evidence/ground-cache-visibility-scan-tests-2026-10-08.json",
+      "docs/evidence/ground-cache-visibility-scan-tests-2026-10-08.log",
+      "docs/evidence/ground-noise-cache-unreleased-experiment.patch",
+      "docs/evidence/natural-artwork-dispatch-order-tests-2026-10-07.json",
+      "docs/evidence/natural-artwork-dispatch-order-tests-2026-10-07.log",
+      "docs/evidence/natural-composed-height-final-tests-2026-10-07.log",
+      "docs/evidence/natural-material-current-tests-2026-10-08.log",
+      "docs/evidence/natural-material-current-verification-2026-10-08.json",
+      "docs/evidence/natural-seam-cache-correction-2026-10-07.json",
+      "docs/evidence/natural-seam-correction-tests-2026-10-07.log",
+      "docs/evidence/natural-surface-native-facet-diagnostic-2026-10-07.json",
+      "docs/evidence/natural-treatment-dispatch-tests-2026-10-07.json",
+      "docs/evidence/natural-treatment-dispatch-tests-2026-10-07.log",
+      "docs/evidence/rock-mesh-composed-normal-tests-2026-10-07.json",
+      "docs/evidence/rock-mesh-composed-normal-tests-2026-10-07.log",
+      "docs/evidence/rock-mesh-fairing-fastpath-tests-2026-10-07.json",
+      "docs/evidence/rock-mesh-fairing-fastpath-tests-2026-10-07.log",
+      "docs/evidence/rock-mesh-intro-policy-tests-2026-10-07.json",
+      "docs/evidence/rock-mesh-intro-policy-tests-2026-10-07.log",
+      "docs/evidence/rock-mesh-near-receiver-tests-2026-10-07.json",
+      "docs/evidence/rock-mesh-near-receiver-tests-2026-10-07.log",
+      "docs/evidence/rock-mesh-orientation-receiver-tests-2026-10-07.json",
+      "docs/evidence/rock-mesh-orientation-receiver-tests-2026-10-07.log",
+      "docs/evidence/rock-mesh-public-tests-2026-10-07.json",
+      "docs/evidence/rock-mesh-public-tests-2026-10-07.log",
+      "docs/ground-antitile.md",
+      "docs/natural-material-treatments.md",
+      "src/gl_post.js",
+      "src/gl_rmain.js",
+      "src/gl_rsurf.js",
+      "src/ground_antitile_bake.js",
+      "src/ground_antitile_math.js",
+      "src/ground_antitile_worker.js",
+      "src/r_ground_antitile.js",
+      "src/r_ground_prepare.js",
+      "src/r_rockmesh.js",
+      "src/rock_mesh.js",
+      "src/rock_mesh_jobs.js",
+      "src/rock_mesh_worker.js",
+      "tests/ground_antitile_fastpath_test.js",
+      "tests/ground_antitile_gameplay_trial.html",
+      "tests/ground_antitile_gameplay_trial.js",
+      "tests/ground_antitile_gpu_trial.html",
+      "tests/ground_antitile_gpu_trial.js",
+      "tests/ground_antitile_prepare_test.js",
+      "tests/ground_antitile_test.js",
+      "tests/natural_surface_facet_diagnostic.js",
+      "tests/rock_mesh_test.js",
+      "tests/rockfield_runtime_test.js"
+    ],
+    "modules": [
+      {
+        "oldPath": "src/ground_antitile_bake.js",
+        "rootCurrentPath": null,
+        "qualifiedDevPath": null,
+        "namespaceIfEverPortedButDoNotCreateNow": "src/newer/assets/ground_antitile_bake.js",
+        "sourceGitBlob": "f90570204d490883a6e44b44f035265bbd48f49e"
+      },
+      {
+        "oldPath": "src/ground_antitile_math.js",
+        "rootCurrentPath": null,
+        "qualifiedDevPath": null,
+        "namespaceIfEverPortedButDoNotCreateNow": "src/newer/assets/ground_antitile_math.js",
+        "sourceGitBlob": "22ec35e50249c97d3650562cac054e5d70580f16"
+      },
+      {
+        "oldPath": "src/ground_antitile_worker.js",
+        "rootCurrentPath": null,
+        "qualifiedDevPath": null,
+        "namespaceIfEverPortedButDoNotCreateNow": "src/newer/assets/ground_antitile_worker.js",
+        "sourceGitBlob": "b2143da147aa5401dda88135ed10477235cd347f"
+      },
+      {
+        "oldPath": "src/r_ground_antitile.js",
+        "rootCurrentPath": null,
+        "qualifiedDevPath": null,
+        "namespaceIfEverPortedButDoNotCreateNow": "src/newer/render/r_ground_antitile.js",
+        "sourceGitBlob": "02f19911d4a45ee3e05c9b36bb93abaad1e892ad"
+      },
+      {
+        "oldPath": "src/r_ground_prepare.js",
+        "rootCurrentPath": null,
+        "qualifiedDevPath": null,
+        "namespaceIfEverPortedButDoNotCreateNow": "src/newer/render/r_ground_prepare.js",
+        "sourceGitBlob": "1ae66ca4f1f8a3eac1732673369d3adf547f2320"
+      },
+      {
+        "oldPath": "src/r_rockmesh.js",
+        "rootCurrentPath": null,
+        "qualifiedDevPath": null,
+        "namespaceIfEverPortedButDoNotCreateNow": "src/newer/render/r_rockmesh.js",
+        "sourceGitBlob": "0868307cbe2ea37d317b406813b8627daff3d2b8"
+      },
+      {
+        "oldPath": "src/rock_mesh.js",
+        "rootCurrentPath": null,
+        "qualifiedDevPath": null,
+        "namespaceIfEverPortedButDoNotCreateNow": "src/newer/assets/rock_mesh.js",
+        "sourceGitBlob": "c837a76e26e22fb7374964b0521d32a20e28e5c0"
+      },
+      {
+        "oldPath": "src/rock_mesh_jobs.js",
+        "rootCurrentPath": null,
+        "qualifiedDevPath": null,
+        "namespaceIfEverPortedButDoNotCreateNow": "src/newer/assets/rock_mesh_jobs.js",
+        "sourceGitBlob": "6c0ce4ead64717ca9fdff45cec65ef6175d5c000"
+      },
+      {
+        "oldPath": "src/rock_mesh_worker.js",
+        "rootCurrentPath": null,
+        "qualifiedDevPath": null,
+        "namespaceIfEverPortedButDoNotCreateNow": "src/newer/assets/rock_mesh_worker.js",
+        "sourceGitBlob": "9f560e1bec4878956a20fd52bb35f94aebc99c4d"
+      }
+    ],
+    "sharedFunctionExclusionMap": [
+      {
+        "old": "src/gl_rmain.js",
+        "current": [
+          "src/engine/render/gl_rmain.js"
+        ],
+        "markers": [
+          "groundControls",
+          "r_ground_prepare",
+          "r_rockmesh",
+          "R_GroundPrepareFrame",
+          "R_GroundPrepareClear"
+        ],
+        "locations": "R_RenderView, R_Init, R_NewMap"
+      },
+      {
+        "old": "src/gl_rsurf.js",
+        "current": [
+          "src/engine/render/gl_rsurf_brush.js"
+        ],
+        "markers": [
+          "R_GroundAntiTilePrepareModel",
+          "groundMapping",
+          "groundAntiTile",
+          "R_GroundPrepareRegister",
+          "R_RockMeshBind",
+          "R_RockMeshReleaseParent"
+        ],
+        "locations": "R_DrawBrushModel and cached brush refresh"
+      },
+      {
+        "old": "src/gl_rsurf.js",
+        "current": [
+          "src/engine/render/gl_rsurf.js"
+        ],
+        "markers": [
+          "R_RockMeshFrame",
+          "R_RockMeshChanged",
+          "R_RockMeshClear"
+        ],
+        "locations": "R_DrawWorld and GL_BuildLightmaps; preserve unrelated loading gate calls"
+      },
+      {
+        "old": "src/gl_rsurf.js",
+        "current": [
+          "src/engine/render/gl_rsurf_batches.js"
+        ],
+        "markers": [
+          "R_GroundAntiTileGeometry",
+          "R_GroundAntiTilePrepareModel",
+          "groundAntiTile",
+          "R_RockMeshBind",
+          "R_RockMeshClassicScope"
+        ],
+        "locations": "R_BuildWorldMeshes, grouping/cache keys, instance visibility, R_ClassicArchVisibility"
+      },
+      {
+        "old": "src/gl_post.js",
+        "current": [
+          "src/newer/render/r_post_gbuffer.js"
+        ],
+        "markers": [
+          "GROUND_ANTITILE_GLSL",
+          "GROUND_PREPARED_GLSL",
+          "GROUND_ANTITILE_VERTEX",
+          "GROUND_ANTITILE_INIT",
+          "R_GroundPrepareUniforms",
+          "groundAntiTile",
+          "rockMesh",
+          "qrGround",
+          "connected-rock-mesh-v3-composed",
+          "ground-antitile-v7-height"
+        ],
+        "locations": "patchDetailShader/R_RegisterDetail; excludes macro-POM suppression and ground compositor only, retain standard rock shading"
+      },
+      {
+        "old": "src/gl_post.js",
+        "current": [
+          "src/newer/render/r_post_shadows.js"
+        ],
+        "markers": [
+          "R_RockMeshShadow",
+          "naturalMesh"
+        ],
+        "locations": "R_BuildSunOccluder"
+      },
+      {
+        "old": "src/gl_post.js",
+        "current": [
+          "src/newer/render/r_post_shaders.js"
+        ],
+        "markers": [
+          "naturalMeshReceiver",
+          "25.0/255.0"
+        ],
+        "locations": "receiver classification, receiverReliefNormalMix, normal choice and crease suppression; marker byte25 applies here only as exact trial context"
+      },
+      {
+        "old": "tests/rockfield_runtime_test.js",
+        "current": [
+          "tests/rockfield_runtime_test.js"
+        ],
+        "markers": [
+          "glassReceiver",
+          "glass receiver keeps full sun"
+        ],
+        "locations": "This commit also touched a generic glass/rock regression. Current qualified test has evolved equivalent controls; keep qualified version, do not classify entire file/test as trial."
+      }
+    ],
+    "preserveAllTrialHistoryEvidence": true,
+    "ownerOutcome": "Parked rejected trial; repeated construction lines and missing original macro relief remain unaccepted. Structural tests do not establish delivery.",
+    "runtimeRelationship": "Older anti-tiling/connected-mesh code is a separate prototype, not a runtime prerequisite imported by the newer rock-edge WIP. Preserve together as custody, do not combine renderer code."
+  },
+  "preservationPlan": [
+    "Retain ci-gpu worktree as the single trial checkout; parent may rename main-reconcile to the chosen codex trial branch and capture all seven deltas, module, test and handover without altering behavior. Record exact WIP bytes before branch cleanup.",
+    "Before deleting older branch, create and independently verify a Git bundle containing 51a547 and complete required history, with bundle SHA256, commit readback, and a custody manifest linking both older trial and newer WIP. Keep the bundle in protected trial custody. A prerequisite here means custody prerequisite, not renderer dependency.",
+    "Preserve 6785 FPS counter code and all qualified Rockfield behavior in Dev. Exclude exact trial modules/hunks only; no wildcard rock* deletion and no whole-file revert of shared hooks/render files.",
+    "Parent must verify final Dev source has no active trial imports/registration/call sites, final trial snapshot/bundle restores both prototypes, and current ROOT unrelated changes survive. No feature execution/build is necessary to preserve trial."
+  ],
+  "confidence": "High for exact source boundaries and current ROOT absence; namespace map is semantic split mapping, not a claim those old modules were migrated.",
+  "ambiguities": [
+    "Final selected trial branch name and bundle location are parent choices; no branch/bundle mutation performed.",
+    "Snapshot is current filesystem read only. Recheck these exact shared paths if consolidation mutates ROOT before exclusion is applied.",
+    "Historical trial evidence/docs may exist as inert copies under other evidence custody; active src/tests scan is authoritative for this exclusion map, and such evidence must not be deleted or mistaken for runtime inclusion."
+  ],
+  "sourceHashes": {
+    "oldTrialPatchSha256": "91a28492f9b668c5a5a79d8369d1c8a5177758be044bfb5c27326f3af4a4d448",
+    "newTrialWorkingDiffSha256": "af8655811f194dfcc8d1f3b1b70bdd85f2ae15cf39eef1dc7e1cf339f4c3b6dc",
+    "fpsQualifiedSha256": "25c54245c2d45c0684c604a0ff754b2d921f680d7625eac378573a6c9fa8f1f3"
+  },
+  "state": "Complete; quiescent pending bounded parent integration review."
+}

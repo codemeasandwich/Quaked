@@ -1,0 +1,577 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-18T14:31:25.998727+00:00",
+  "verdict": "No missing active source feature found; use qualified091818cc as Dev source baseline, with preservation prerequisites below.",
+  "root": "/Users/bri/SOURCE/Quaked",
+  "rootHead": "616ee09ca4eae3121d5417b081623a144f498671",
+  "qualifiedCommit": "091818ccae833727b0c5c0d6bed80eb2ef6ea90d",
+  "qualifiedTree": "0c62be43db1809f46705f45dd8c6010a42898599",
+  "instructions": {
+    "read": "/Users/bri/agent.md plus owner-provided AGENTS instructions",
+    "rootAGENTSFile": "No AGENTS.md/agent.md file present in repository root; canonical parent instruction read.",
+    "scope": "Read-only physical filesystem source/test/config review against immutable qualified candidate; no tests/builds/source writes/Git mutations/other-chat messages."
+  },
+  "method": {
+    "whyFilesystem": "ROOT Git index is old/mixed; git diff reports many untracked physically present qualified files as deletions. Compared actual bytes with Git blob identities, including untracked source, rather than treating status as intent.",
+    "inventory": "/private/tmp/quaked-root-code-comparison-inventory.json",
+    "inventorySha256": "2121ce234d35e55794167429fc37c523404db7e2f11651eac82ef0092c5c72f6",
+    "codeScopes": [
+      "src/",
+      "tests/",
+      "tools/ scripts and control files",
+      ".github/",
+      ".githooks/",
+      "src-tauri/ authored source/config (generated schemas separately classified)",
+      "top-level package/entry/config files"
+    ],
+    "excluded": "Runtime/source image/asset/evidence custody, alternate Git index and branch ancestry are parent/source-actor responsibilities. This is not a whole-repository reconciliation claim.",
+    "exactQualifiedFiles": 1083,
+    "changed": 23,
+    "rootOnly": 24,
+    "qualifiedFilesMissingFromRoot": 4,
+    "exactQualifiedByPrefix": {
+      "(top-level)": 8,
+      ".githooks": 1,
+      ".github": 1,
+      "src-tauri": 14,
+      "src": 303,
+      "tests": 581,
+      "tools": 175
+    }
+  },
+  "rationale": [
+    "Every inspected active renderer/client/server/gameplay/audio/UI implementation except a generated obsolete6x normal registry addition already matches qualified Dev. This includes HUD, newer VFX/sound/effects and canonical resource loader; ROOT is not a newer feature implementation to overlay.",
+    "ROOT changes in the material pipeline remove current optional layered-height behavior, central path resolution, six-tech format acceptance, final-official fixtures and oblique material diagnostics. These are older snapshots, not missing improvements.",
+    "Current Gremlin dimensions are explicitly4x under qualified c0bd4e6d; ROOT6x tests and derived bake registry are superseded, independently of file age.",
+    "Remaining ROOT-only runnable code is expressly local ignored normal-bundle/loading experiment and respawn donor reference. Preserving these locally meets custody; activating or labelling them delivered would invent missing runtime integration.",
+    "One useful unique change is only explanatory docstring wording in tools/build_newer_pak.py. It may be copied as a small documentation increment but is not a reason to overwrite qualified code or delay correct ROOT Dev alignment."
+  ],
+  "confirmedKeyConfigurationsByteExact": [
+    "package.json",
+    "package-lock.json",
+    "deno.json",
+    "deno.lock",
+    "index.html",
+    "main.js",
+    ".gitignore",
+    ".gitattributes",
+    "src-tauri/Cargo.toml",
+    "src-tauri/Cargo.lock",
+    "src-tauri/tauri.conf.json"
+  ],
+  "actionableActiveFeatureChangesToIntegrate": [],
+  "optionalDocumentationDelta": {
+    "path": "tools/build_newer_pak.py",
+    "lines": "Docstring near5-9 only",
+    "text": "Files keep logical identities newer/textures/index.json; assets/layout.json resolves loose files to canonical assets/ physical source.",
+    "behaviorChanged": false
+  },
+  "dispositions": [
+    {
+      "path": "src/newer/assets/normal_bakes.js",
+      "rootSha256": "08fee9bb5f60979c5e0128461c86b1e46ddd3b0023d6ad28385c4da5f019ff0b",
+      "rootGitBlob": "2fbf0c88be32540cffd622e3511ee4206915fb38",
+      "bytes": 806874,
+      "baseGitBlob": "c238df28a9abb89e1ab5a490afbe713a1997d090",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "Generated registry adds one normal bake key a5215026... with1848x1014 dimensions for superseded6x Gremlin. Preserve source provenance but do not add obsolete active registry entry to current4x delivery."
+    },
+    {
+      "path": "tests/generated_skin_fit_test.py",
+      "rootSha256": "992875253d8b064fbcf38f83c8105767564d984c3062ea7295a8284ef53d4448",
+      "rootGitBlob": "1c6b8f29e231aa126534356ca13d729d052c7ee6",
+      "bytes": 11786,
+      "baseGitBlob": "8919bd4ddb44dee0725f16134f502d1057fecd1f",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "ROOT expects Gremlin1848x1014 (6x); qualified commit c0bd4e6d changed to1232x676 (4x), explicit factor4 and scaled UV placement/footprint. ROOT overwrite would regress agreed standard."
+    },
+    {
+      "path": "tests/grem_skin_identity_test.js",
+      "rootSha256": "952207d0b95e6d6aaca70b6275a5d4d71fc630039de1e6723edb52e51615bd5a",
+      "rootGitBlob": "367a5707b892971588ddb5cd25cfe8fcb80e3e0c",
+      "bytes": 23458,
+      "baseGitBlob": "ef0dcba443ed57d2139aa026eec3eacd7dd62b2e",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "ROOT expects Gremlin1848x1014 (6x); qualified commit c0bd4e6d changed to1232x676 (4x), explicit factor4 and scaled UV placement/footprint. ROOT overwrite would regress agreed standard."
+    },
+    {
+      "path": "tests/official_texture_expansion_test.js",
+      "rootSha256": "ed5aa7054da7c7f94dd758a06eb7235a133b179b348e980aa5b1db3c8b5f83d1",
+      "rootGitBlob": "c0c663958e1febdb7937017272455270a8b94efb",
+      "bytes": 18320,
+      "baseGitBlob": "7dc5094828ba0418ef7087b109456f952b2540ec",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "Pre-retirement/pre-later-cohort texture test or UI. ROOT still dereferences candidate masters/index overrides or lacks current six-tech/canonical/layered/angle coverage; qualified version implements the owner-approved final-official comparison contract."
+    },
+    {
+      "path": "tests/official_texture_fidelity_test.py",
+      "rootSha256": "83d0baf1c78865a04d053c6467ef6e6a733b9b8ee8be13006aef6efbbf60b6ce",
+      "rootGitBlob": "83a05acfe01d8fccd40486854ed782db0f7ce471",
+      "bytes": 11847,
+      "baseGitBlob": "b355b875f3fdb25a0d7a3a89055c7544efb8eac4",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "Pre-retirement/pre-later-cohort texture test or UI. ROOT still dereferences candidate masters/index overrides or lacks current six-tech/canonical/layered/angle coverage; qualified version implements the owner-approved final-official comparison contract."
+    },
+    {
+      "path": "tests/official_texture_gameplay_trial.js",
+      "rootSha256": "c5a8e8d796efbd572515c43083e91356235d9bdb80e9283376f0b478268dec14",
+      "rootGitBlob": "01aaf3fb554a9e1f48f0beaedaa260cb1929b105",
+      "bytes": 21091,
+      "baseGitBlob": "cfa20e7c3d20ae96a614c203c53871f36e6b8c1b",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "Pre-retirement/pre-later-cohort texture test or UI. ROOT still dereferences candidate masters/index overrides or lacks current six-tech/canonical/layered/angle coverage; qualified version implements the owner-approved final-official comparison contract."
+    },
+    {
+      "path": "tests/official_texture_masonry_test.js",
+      "rootSha256": "30c42a233930a0cb240f00da84392c5db84dfb899625fd0498ee4d50a3849138",
+      "rootGitBlob": "025d466481f1db24e72c0d45a1ea79c47db1a9c7",
+      "bytes": 18203,
+      "baseGitBlob": "ce0e9d7b048b0817df4b42c5f013f51bb3adcbbf",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "Pre-retirement/pre-later-cohort texture test or UI. ROOT still dereferences candidate masters/index overrides or lacks current six-tech/canonical/layered/angle coverage; qualified version implements the owner-approved final-official comparison contract."
+    },
+    {
+      "path": "tests/official_texture_owner_q92_test.js",
+      "rootSha256": "a71e439517e789b8a6630a1b38a259c32172c54004c9bc223c36df58f5ad8a2a",
+      "rootGitBlob": "2046c6494aa1fc1d9e32a4057877a81a88ab089f",
+      "bytes": 15820,
+      "baseGitBlob": "fe011d086aee314513fee635f19a79f05aa49f54",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "Pre-retirement/pre-later-cohort texture test or UI. ROOT still dereferences candidate masters/index overrides or lacks current six-tech/canonical/layered/angle coverage; qualified version implements the owner-approved final-official comparison contract."
+    },
+    {
+      "path": "tests/official_texture_photographic_test.py",
+      "rootSha256": "7f14f07596cbbbd4eda347fb6d1e62f9d1a39e9ea0f0ae81d0645a41ffec72ba",
+      "rootGitBlob": "d0bae488356ebc06a737e58a9be8d5fb47002cfb",
+      "bytes": 20352,
+      "baseGitBlob": "819142714566631206e67029b05304e615de9113",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "Pre-retirement/pre-later-cohort texture test or UI. ROOT still dereferences candidate masters/index overrides or lacks current six-tech/canonical/layered/angle coverage; qualified version implements the owner-approved final-official comparison contract."
+    },
+    {
+      "path": "tests/official_texture_q92_test.js",
+      "rootSha256": "52e46139d1624e47256b59233ee16ab9184617146badbb8a05a3f5b8103f098e",
+      "rootGitBlob": "7171270efb8d2a7260c92629bcf79479120025cb",
+      "bytes": 27751,
+      "baseGitBlob": "f365a7370ad3e20537211c7b3219473cd1f4fa5b",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "Pre-retirement/pre-later-cohort texture test or UI. ROOT still dereferences candidate masters/index overrides or lacks current six-tech/canonical/layered/angle coverage; qualified version implements the owner-approved final-official comparison contract."
+    },
+    {
+      "path": "tests/official_texture_realism_preflight_test.js",
+      "rootSha256": "62e7aefdc380c802699517d78c72f3774d9aa668ccb45779ea1fd014ae0c7aee",
+      "rootGitBlob": "dbfcfbdeb408af448f130b01c9e7121ff329217b",
+      "bytes": 21081,
+      "baseGitBlob": "73a32de2e7e3d684fc43acd31089ab587b87b9d2",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "Pre-retirement/pre-later-cohort texture test or UI. ROOT still dereferences candidate masters/index overrides or lacks current six-tech/canonical/layered/angle coverage; qualified version implements the owner-approved final-official comparison contract."
+    },
+    {
+      "path": "tests/official_texture_registration_test.js",
+      "rootSha256": "26e7614b5436d009081fd82837f2f694f202719476bc6cb06b9ab66e4ec0d7c5",
+      "rootGitBlob": "947c5b43e95680f3f9c9dbec951ee28bd131873f",
+      "bytes": 23831,
+      "baseGitBlob": "e722273cc1422f0eebb1429a911835606d785895",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "Pre-retirement/pre-later-cohort texture test or UI. ROOT still dereferences candidate masters/index overrides or lacks current six-tech/canonical/layered/angle coverage; qualified version implements the owner-approved final-official comparison contract."
+    },
+    {
+      "path": "tests/official_texture_standard.js",
+      "rootSha256": "b316d6c6700838c0bcceca71534039e559e8af6d2f7b47e395f02fcd83bc49c6",
+      "rootGitBlob": "2c58a916449e871a66ef776f6d1f0af4a15078eb",
+      "bytes": 17808,
+      "baseGitBlob": "086c2ab41eb9fdf9f3a77eb901253463035abc5f",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "Pre-retirement/pre-later-cohort texture test or UI. ROOT still dereferences candidate masters/index overrides or lacks current six-tech/canonical/layered/angle coverage; qualified version implements the owner-approved final-official comparison contract."
+    },
+    {
+      "path": "tests/official_texture_trial.html",
+      "rootSha256": "aa2a3aec430e72172d252f4872240b36f6747afd7e471f83b520886185a5d429",
+      "rootGitBlob": "27e71f82e89c4f24775758edaccf64aaac61bf4b",
+      "bytes": 3012,
+      "baseGitBlob": "8fe42ae04b72c7890889580ed92b3519ebf610d4",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "Pre-retirement/pre-later-cohort texture test or UI. ROOT still dereferences candidate masters/index overrides or lacks current six-tech/canonical/layered/angle coverage; qualified version implements the owner-approved final-official comparison contract."
+    },
+    {
+      "path": "tests/official_texture_trial.js",
+      "rootSha256": "b6738025f58aa9706e84d29774ae256343c99a0c9501c220598baf1fb4081a85",
+      "rootGitBlob": "c41c0e1f513842c7f1e38ec76e186992de9bc49d",
+      "bytes": 9976,
+      "baseGitBlob": "2f941bedae56f38fc8cd0d040acf5d327ab4d9f6",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "Pre-retirement/pre-later-cohort texture test or UI. ROOT still dereferences candidate masters/index overrides or lacks current six-tech/canonical/layered/angle coverage; qualified version implements the owner-approved final-official comparison contract."
+    },
+    {
+      "path": "tests/owner_texture_q92_standard.js",
+      "rootSha256": "977c576fee788a0434b52e4769a90c8705ace597ad6b59032adaf4423f40ab53",
+      "rootGitBlob": "0e903eac8d163464fc13db7c8e9be743f5866593",
+      "bytes": 6738,
+      "baseGitBlob": "47998d42a775eaf88c8f860a974a582fdfbace04",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "Pre-retirement/pre-later-cohort texture test or UI. ROOT still dereferences candidate masters/index overrides or lacks current six-tech/canonical/layered/angle coverage; qualified version implements the owner-approved final-official comparison contract."
+    },
+    {
+      "path": "tests/rogue_skin_gpu_trial.js",
+      "rootSha256": "c56bf33c4c1d06f9ba395a6c1f360dd7492e050b4ebf9a92e1b195d2c7f41e6a",
+      "rootGitBlob": "b6de1d32b91787007baf854fda834e317f13d270",
+      "bytes": 24067,
+      "baseGitBlob": "a1365acafff4001701dd70f5a70bd55176e7e399",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "ROOT expects Gremlin1848x1014 (6x); qualified commit c0bd4e6d changed to1232x676 (4x), explicit factor4 and scaled UV placement/footprint. ROOT overwrite would regress agreed standard."
+    },
+    {
+      "path": "tools/build_newer_pak.py",
+      "rootSha256": "ba164a66cdf0ed7e3124084d97fb234c982da123ed89f878e3c11debf2367ac5",
+      "rootGitBlob": "d9dcbc2353c33afb8021f4227f6c1f75938df32f",
+      "bytes": 1949,
+      "baseGitBlob": "ba9c4de6a5ced84bb8d0ac30ac6b76a14519ce54",
+      "category": "optional-documentation",
+      "action": "Optional two-line docstring-only integration; no behavior required.",
+      "rationale": "ROOT explains logical newer IDs resolved by assets/layout.json into canonical assets/. Consistent with qualified implementation, no missing runtime capability."
+    },
+    {
+      "path": "tools/texture_sheets/encode_official_maps.py",
+      "rootSha256": "e8d825dcb3e79bb9f419af6558363e0ab00534389e7b21f5423177b2e1f9af9b",
+      "rootGitBlob": "f5e2f5a32816489f8c4feea6b41883700049fc68",
+      "bytes": 9581,
+      "baseGitBlob": "a19d3aadb1c442ea7d41c71f427733333a4bc477",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "ROOT predates source-bound --height-layering and central resource_path I/O. Qualified encoder retains unchanged default math and supports accepted ordered brick planes/canonical physical output."
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-17/compose_trim_fasteners.py",
+      "rootSha256": "88b0164493e4afc2f0a49f4fe6da1b20358c445f4cbdd2c577e239466cb2ad24",
+      "rootGitBlob": "9788c5d2c965f9b11ff7e7a029325e104a749bdb",
+      "bytes": 2209,
+      "baseGitBlob": "83844bd1c11b1ae5b5f87a72b5285758330f7115",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "ROOT omits corrective historical docstring marking initial44x52 failed compositor superseded by v2. Keep qualified provenance clarification."
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-17/install_stone_trims_eight.py",
+      "rootSha256": "a8311d2892084dd09c498ede8ff133c6a006da12fea5f39573ce6e05cfa13e8e",
+      "rootGitBlob": "bb72f23afb9c6d2849c464bd5b661a91a3f407a2",
+      "bytes": 8527,
+      "baseGitBlob": "dfa25ca76a54d1f48e5e498b9cd6bb6743885e89",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "Historical authoring producer/installer ROOT predates canonical resource_path I/O adaptations and logical receipt labels. Qualified code has hash-preserving verified producer/installer replays; do not restore obsolete newer physical paths."
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-17/prepare_horizontal_trims.py",
+      "rootSha256": "3b649b0f05e4037f91cbc0b60969682ef2feec4535e9a85a3f0b91f16925de50",
+      "rootGitBlob": "484ef4bd5107a072f234e1d2a27dc9698cee4f87",
+      "bytes": 3185,
+      "baseGitBlob": "766ea44078000367db176faf916c1b802a4ea8b7",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "Historical authoring producer/installer ROOT predates canonical resource_path I/O adaptations and logical receipt labels. Qualified code has hash-preserving verified producer/installer replays; do not restore obsolete newer physical paths."
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-17/prepare_stone_trim_bases.py",
+      "rootSha256": "9e4ed45df2b2282cb14a99be68337bd7334251f57ebb972058ae3a166b3b689e",
+      "rootGitBlob": "da8874a68c9964c7b07e2f8ce028b8ef224e2e33",
+      "bytes": 2294,
+      "baseGitBlob": "44f30381b21f5970ecc478f1bae6becab47b63c9",
+      "category": "superseded",
+      "action": "Keep qualified candidate; preserve ROOT version only in custody.",
+      "rationale": "Historical authoring producer/installer ROOT predates canonical resource_path I/O adaptations and logical receipt labels. Qualified code has hash-preserving verified producer/installer replays; do not restore obsolete newer physical paths."
+    },
+    {
+      "path": "src-tauri/gen/schemas/acl-manifests.json",
+      "rootSha256": "a3ad7c154de6efb52a058145b879b934c999f7ed85e2d42eb5f200b2eb3ee7e4",
+      "rootGitBlob": "b8e19ecc0fb14c07332629f23d7aada81ce5ee9b",
+      "bytes": 68996,
+      "baseGitBlob": null,
+      "category": "generated-build-schema",
+      "action": "No feature merge; preserve only if parent inventory policy requires.",
+      "rationale": "Tauri-generated ACL/capability/schema outputs, not independently authored source behavior; current source config/Cargo files match qualified candidate."
+    },
+    {
+      "path": "src-tauri/gen/schemas/capabilities.json",
+      "rootSha256": "38ecc4cd723634ceaa7598c22ec6a5619a25cb49a1ecd468aefb4a41c5152816",
+      "rootGitBlob": "963eac8037eb8fa0cd9dd17757a365a5c18570db",
+      "bytes": 222,
+      "baseGitBlob": null,
+      "category": "generated-build-schema",
+      "action": "No feature merge; preserve only if parent inventory policy requires.",
+      "rationale": "Tauri-generated ACL/capability/schema outputs, not independently authored source behavior; current source config/Cargo files match qualified candidate."
+    },
+    {
+      "path": "src-tauri/gen/schemas/desktop-schema.json",
+      "rootSha256": "4444ad5cda6787552fd55ea85b270b311998bf70e0bc31db0c32cfc4199b754e",
+      "rootGitBlob": "2471a5c9f90f1a8dc1ded80dc0578e17682620d0",
+      "bytes": 121297,
+      "baseGitBlob": null,
+      "category": "generated-build-schema",
+      "action": "No feature merge; preserve only if parent inventory policy requires.",
+      "rationale": "Tauri-generated ACL/capability/schema outputs, not independently authored source behavior; current source config/Cargo files match qualified candidate."
+    },
+    {
+      "path": "src-tauri/gen/schemas/macOS-schema.json",
+      "rootSha256": "4444ad5cda6787552fd55ea85b270b311998bf70e0bc31db0c32cfc4199b754e",
+      "rootGitBlob": "2471a5c9f90f1a8dc1ded80dc0578e17682620d0",
+      "bytes": 121297,
+      "baseGitBlob": null,
+      "category": "generated-build-schema",
+      "action": "No feature merge; preserve only if parent inventory policy requires.",
+      "rationale": "Tauri-generated ACL/capability/schema outputs, not independently authored source behavior; current source config/Cargo files match qualified candidate."
+    },
+    {
+      "path": "src/loading_trace.js",
+      "rootSha256": "27e53d3277d3c652733bdb2f86047c9c0d69f36bc5448cba412da8edf3be2105",
+      "rootGitBlob": "de544c5f3d5c9139a3adc22aa85e4b8542cd3e56",
+      "bytes": 377,
+      "baseGitBlob": null,
+      "category": "owner-explicit-local-experiment",
+      "action": "Preserve locally and in parent custody; do not commit or activate.",
+      "rationale": "Qualified .gitignore lines89-94 explicitly preserve these paths as local-only. No current production NormalTransport/prefetch imports the bundle API, registry or LoadingTrace. Its integration tests describe intended wiring not present current runtime, so preservation is not delivery."
+    },
+    {
+      "path": "src/normal_bundle.js",
+      "rootSha256": "6ee7316b4dd496b340cd63f89550a774aed7d26a9a51608226e35e16144a2897",
+      "rootGitBlob": "0648a293840a66f837c1d0c3c5987553c5881adf",
+      "bytes": 4672,
+      "baseGitBlob": null,
+      "category": "owner-explicit-local-experiment",
+      "action": "Preserve locally and in parent custody; do not commit or activate.",
+      "rationale": "Qualified .gitignore lines89-94 explicitly preserve these paths as local-only. No current production NormalTransport/prefetch imports the bundle API, registry or LoadingTrace. Its integration tests describe intended wiring not present current runtime, so preservation is not delivery."
+    },
+    {
+      "path": "src/normal_startup_packs.js",
+      "rootSha256": "f3451cfecf8417b22adfe45c207afb8ff24356087cd4bd6886f648681c2dc027",
+      "rootGitBlob": "29530bf9d441503c947392f19ae817a30e0c0a4b",
+      "bytes": 70304,
+      "baseGitBlob": null,
+      "category": "owner-explicit-local-experiment",
+      "action": "Preserve locally and in parent custody; do not commit or activate.",
+      "rationale": "Qualified .gitignore lines89-94 explicitly preserve these paths as local-only. No current production NormalTransport/prefetch imports the bundle API, registry or LoadingTrace. Its integration tests describe intended wiring not present current runtime, so preservation is not delivery."
+    },
+    {
+      "path": "tests/normal_bundle_test.js",
+      "rootSha256": "e2699938e0324ba5da389b179b242635568a5d197ef2833716149ee1ac266f5f",
+      "rootGitBlob": "acfdc8b9f1325052999b2078c3f0bd9318304a93",
+      "bytes": 18144,
+      "baseGitBlob": null,
+      "category": "owner-explicit-local-experiment",
+      "action": "Preserve locally and in parent custody; do not commit or activate.",
+      "rationale": "Qualified .gitignore lines89-94 explicitly preserve these paths as local-only. No current production NormalTransport/prefetch imports the bundle API, registry or LoadingTrace. Its integration tests describe intended wiring not present current runtime, so preservation is not delivery."
+    },
+    {
+      "path": "tests/normal_startup_packs_test.js",
+      "rootSha256": "b884d94dfcb57e89c752895b3aa2ee63a4ec211c0c76d4fa5a19d20d6b70eb77",
+      "rootGitBlob": "19f7f6873a4138eac307a3ce00f7863ba193c950",
+      "bytes": 3661,
+      "baseGitBlob": null,
+      "category": "owner-explicit-local-experiment",
+      "action": "Preserve locally and in parent custody; do not commit or activate.",
+      "rationale": "Qualified .gitignore lines89-94 explicitly preserve these paths as local-only. No current production NormalTransport/prefetch imports the bundle API, registry or LoadingTrace. Its integration tests describe intended wiring not present current runtime, so preservation is not delivery."
+    },
+    {
+      "path": "tests/official_texture_aged_authoring_check.py",
+      "rootSha256": "43b4293e05a27b69a7dd06dfc0adbc534b212c5e150ab4a927428ffdac06716f",
+      "rootGitBlob": "6e1331f0224b26c4bf5c574116d54263fbb01b34",
+      "bytes": 4073,
+      "baseGitBlob": null,
+      "category": "owner-retired-draft-check",
+      "action": "Keep deletion in qualified Dev; historical ROOT copy only custody.",
+      "rationale": "Six intentionally retired checks require dated generated drafts the owner ordered removed; current CLI/current-official/source checks replace their applicable contracts."
+    },
+    {
+      "path": "tests/official_texture_character_stone_check.py",
+      "rootSha256": "63c5c8670bb86f32a9dca848c84d6ba72e7461ea6794814fd47f37d3b0974463",
+      "rootGitBlob": "1b1dd9308bf3e4e42cae5e0a9f28ba41ccd5697d",
+      "bytes": 4040,
+      "baseGitBlob": null,
+      "category": "owner-retired-draft-check",
+      "action": "Keep deletion in qualified Dev; historical ROOT copy only custody.",
+      "rationale": "Six intentionally retired checks require dated generated drafts the owner ordered removed; current CLI/current-official/source checks replace their applicable contracts."
+    },
+    {
+      "path": "tests/official_texture_quiet_authoring_check.py",
+      "rootSha256": "88eee5b7058a709903000592a8b6546bcdc4da0b5f53e5fb51ee08923b109075",
+      "rootGitBlob": "6d966d8dfbed8314a622268308d18889c417af7c",
+      "bytes": 6630,
+      "baseGitBlob": null,
+      "category": "owner-retired-draft-check",
+      "action": "Keep deletion in qualified Dev; historical ROOT copy only custody.",
+      "rationale": "Six intentionally retired checks require dated generated drafts the owner ordered removed; current CLI/current-official/source checks replace their applicable contracts."
+    },
+    {
+      "path": "tests/official_texture_realism_edges_check.py",
+      "rootSha256": "6af98288be76b8bf8c9ad53d4faea4c8a6c9c1131a1ab9b8d5559e687125016d",
+      "rootGitBlob": "e80f43c8947eb4d46012ea019f3fae9e4ff83b15",
+      "bytes": 5233,
+      "baseGitBlob": null,
+      "category": "owner-retired-draft-check",
+      "action": "Keep deletion in qualified Dev; historical ROOT copy only custody.",
+      "rationale": "Six intentionally retired checks require dated generated drafts the owner ordered removed; current CLI/current-official/source checks replace their applicable contracts."
+    },
+    {
+      "path": "tests/official_texture_stone3_joint_check.py",
+      "rootSha256": "2d3e639dc55c539136abc4c3864e4af12e1867f1d79d7ed766f7186469da573b",
+      "rootGitBlob": "bbc14afbffe1f22d5dead05b4cbf71bf95933caf",
+      "bytes": 3328,
+      "baseGitBlob": null,
+      "category": "owner-retired-draft-check",
+      "action": "Keep deletion in qualified Dev; historical ROOT copy only custody.",
+      "rationale": "Six intentionally retired checks require dated generated drafts the owner ordered removed; current CLI/current-official/source checks replace their applicable contracts."
+    },
+    {
+      "path": "tests/official_texture_wall145_v3_check.py",
+      "rootSha256": "f3b2a55a9eb2a32c1ab51ebf8023f6e4354b89ee4bed807fdc27b5bbe4a44196",
+      "rootGitBlob": "f596c94f5683a16cce7ec92643ae8613062f514b",
+      "bytes": 3134,
+      "baseGitBlob": null,
+      "category": "owner-retired-draft-check",
+      "action": "Keep deletion in qualified Dev; historical ROOT copy only custody.",
+      "rationale": "Six intentionally retired checks require dated generated drafts the owner ordered removed; current CLI/current-official/source checks replace their applicable contracts."
+    },
+    {
+      "path": "tools/build_normal_startup_packs.mjs",
+      "rootSha256": "cb35292d54b65358858e9c0f5faafbf8bcffeab70ded0d396e73d5da645af798",
+      "rootGitBlob": "341922349c00ed1d86d30d461ed0341aab7bac25",
+      "bytes": 2414,
+      "baseGitBlob": null,
+      "category": "owner-explicit-local-experiment",
+      "action": "Preserve locally and in parent custody; do not commit or activate.",
+      "rationale": "Qualified .gitignore lines89-94 explicitly preserve these paths as local-only. No current production NormalTransport/prefetch imports the bundle API, registry or LoadingTrace. Its integration tests describe intended wiring not present current runtime, so preservation is not delivery."
+    },
+    {
+      "path": "tools/respawn_reference/clockwise-respawn-v1.1.0/app.js",
+      "rootSha256": "32cc28b08800d08f53a0434b9e28279de1e612c79eb9d6a837fbbb650c3b17b6",
+      "rootGitBlob": "f0d3e7f760f998493be1988d9351cc72046b404c",
+      "bytes": 54858,
+      "baseGitBlob": null,
+      "category": "owner-explicit-local-reference",
+      "action": "Preserve local reference; no runtime merge.",
+      "rationale": "Qualified .gitignore lines83-86 explicitly excludes local donor app/game/manifest. Reference manifest describes standalone offline respawn design; active qualified respawn code is already present and identical."
+    },
+    {
+      "path": "tools/respawn_reference/clockwise-respawn-v1.1.0/game.js",
+      "rootSha256": "ce03e97085863bd08257d057319c75c6b152334ac3ab8bdd37c5d16f4171735d",
+      "rootGitBlob": "3073fdf861d7d3f62537b9d99d13cec0a21585bc",
+      "bytes": 12968,
+      "baseGitBlob": null,
+      "category": "owner-explicit-local-reference",
+      "action": "Preserve local reference; no runtime merge.",
+      "rationale": "Qualified .gitignore lines83-86 explicitly excludes local donor app/game/manifest. Reference manifest describes standalone offline respawn design; active qualified respawn code is already present and identical."
+    },
+    {
+      "path": "tools/respawn_reference/clockwise-respawn-v1.1.0/manifest.json",
+      "rootSha256": "e0f5098f850aad3e27e6702e99c70592aa0919d1d59446be3f69178074163f0c",
+      "rootGitBlob": "3f6432a4c7ea9d5acf0a5a0b2f504f886f33131d",
+      "bytes": 6049,
+      "baseGitBlob": null,
+      "category": "owner-explicit-local-reference",
+      "action": "Preserve local reference; no runtime merge.",
+      "rationale": "Qualified .gitignore lines83-86 explicitly excludes local donor app/game/manifest. Reference manifest describes standalone offline respawn design; active qualified respawn code is already present and identical."
+    },
+    {
+      "path": "tools/texture_sheets/sources/fidelity-2026-10-12/evidence/grem/grem-final-pieces.py",
+      "rootSha256": "ec5cecc2d210376d415094631e949f0e426336f9fec7f39b226fa4dcb8f04e13",
+      "rootGitBlob": "585944f35460aea7a2aecb265746e67ad24cb08b",
+      "bytes": 2979,
+      "baseGitBlob": null,
+      "category": "authoring-evidence-helper",
+      "action": "Retain through source actor/custody, not active feature or automatic overwrite.",
+      "rationale": "One-off grem/texture evidence or CPU/contact/review helper under sources/.../evidence or verification. No production import/build entry. Parent source actor handles these authoring variants with source/evidence provenance."
+    },
+    {
+      "path": "tools/texture_sheets/sources/fidelity-2026-10-12/evidence/grem/grem-registration.py",
+      "rootSha256": "f358f7601b2a03caf77c90160b082b6a0bbf3df57b0c1484f15c4b50b84b1a30",
+      "rootGitBlob": "23024c74c8bcff039464a09cbeed06d5891be88c",
+      "bytes": 3181,
+      "baseGitBlob": null,
+      "category": "authoring-evidence-helper",
+      "action": "Retain through source actor/custody, not active feature or automatic overwrite.",
+      "rationale": "One-off grem/texture evidence or CPU/contact/review helper under sources/.../evidence or verification. No production import/build entry. Parent source actor handles these authoring variants with source/evidence provenance."
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-17/verification/prepare_stone_trims_gpu_review_contacts.py",
+      "rootSha256": "70f4912c8d0e94d7187a9c37529305624d86902976dbf52911bad7d526a2d4d9",
+      "rootGitBlob": "3afda683222bcb968e7e768c87b92eb54283ccff",
+      "bytes": 2559,
+      "baseGitBlob": null,
+      "category": "authoring-evidence-helper",
+      "action": "Retain through source actor/custody, not active feature or automatic overwrite.",
+      "rationale": "One-off grem/texture evidence or CPU/contact/review helper under sources/.../evidence or verification. No production import/build entry. Parent source actor handles these authoring variants with source/evidence provenance."
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-17/verification/render_owner_q92_cpu_comparison.mjs",
+      "rootSha256": "8141e372f826a71d678ae2c8a4f7b2569aa98d11612ccf693ea3cdce62871b12",
+      "rootGitBlob": "65592149cd6af506deefd2107bf1706487e6caa7",
+      "bytes": 8218,
+      "baseGitBlob": null,
+      "category": "authoring-evidence-helper",
+      "action": "Retain through source actor/custody, not active feature or automatic overwrite.",
+      "rationale": "One-off grem/texture evidence or CPU/contact/review helper under sources/.../evidence or verification. No production import/build entry. Parent source actor handles these authoring variants with source/evidence provenance."
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-17/verification/review_solid_brick_layered_v3.py",
+      "rootSha256": "8a52625ebdd840d5c4e740d134579649afe07a5d8d65fb25a754be081b768d31",
+      "rootGitBlob": "a6a43c54b956c9ad0aafe259781b55f9297d710a",
+      "bytes": 5006,
+      "baseGitBlob": null,
+      "category": "authoring-evidence-helper",
+      "action": "Retain through source actor/custody, not active feature or automatic overwrite.",
+      "rationale": "One-off grem/texture evidence or CPU/contact/review helper under sources/.../evidence or verification. No production import/build entry. Parent source actor handles these authoring variants with source/evidence provenance."
+    },
+    {
+      "path": "tests/fixtures/official-textures.json",
+      "category": "qualified-current-file-missing-from-root",
+      "action": "Populate from qualified candidate when ROOT advances to Dev. Do not represent ROOT absence as a requested deletion.",
+      "rationale": "Current final-official fixture/recipe or public layered/retirement test added by qualified owner-authorized tranche."
+    },
+    {
+      "path": "tests/fixtures/texture-finishing-recipes.json",
+      "category": "qualified-current-file-missing-from-root",
+      "action": "Populate from qualified candidate when ROOT advances to Dev. Do not represent ROOT absence as a requested deletion.",
+      "rationale": "Current final-official fixture/recipe or public layered/retirement test added by qualified owner-authorized tranche."
+    },
+    {
+      "path": "tests/official_texture_layered_height_test.py",
+      "category": "qualified-current-file-missing-from-root",
+      "action": "Populate from qualified candidate when ROOT advances to Dev. Do not represent ROOT absence as a requested deletion.",
+      "rationale": "Current final-official fixture/recipe or public layered/retirement test added by qualified owner-authorized tranche."
+    },
+    {
+      "path": "tests/official_texture_retirement_contract_test.mjs",
+      "category": "qualified-current-file-missing-from-root",
+      "action": "Populate from qualified candidate when ROOT advances to Dev. Do not represent ROOT absence as a requested deletion.",
+      "rationale": "Current final-official fixture/recipe or public layered/retirement test added by qualified owner-authorized tranche."
+    }
+  ],
+  "preservationPrerequisites": [
+    "Parent finishes complete nonignored ROOT archive and alternate index snapshot before changing ROOT checkout/index.",
+    "Keep explicit ignored local experiments/reference and source-actor129 local authoring images/Python variants in verified custody, without activating them.",
+    "Preserve both rock prototypes as separate retained trial custody per /private/tmp/quaked-global-trial-exclusions.json; neither is currently active in ROOT.",
+    "Only advance ROOT to qualified Dev after parent verifies actual runtime assets/index/games and worktree/branch union; this source review does not supersede those audits."
+  ],
+  "limitations": [
+    "No fresh feature tests or builds performed; source comparison does not claim runtime qualification of ignored experiments.",
+    "No branch ancestry/delivery conclusion; main branch helper handles that.",
+    "No claim all game textures complete or owner accepted every texture."
+  ],
+  "state": "Complete; quiescent."
+}
