@@ -69,6 +69,7 @@ export const MOVETYPE_FLYMISSILE = 9;
 export const MOVETYPE_BOUNCE = 10;
 export const MOVETYPE_BOUNCEMISSILE = 11; // QUAKE2
 export const MOVETYPE_FOLLOW = 12; // QUAKE2 - stuck to aiment entity
+export const MOVETYPE_PHASE = 13; // Hexen II phase projectile (native clips entities but passes world planes)
 
 //
 // Solid type constants
@@ -1931,6 +1932,9 @@ export function SV_Physics() {
 			SV_Physics_Noclip( ent );
 		else if ( ent.v.movetype === MOVETYPE_STEP )
 			SV_Physics_Step( ent );
+		else if ( ent.v.movetype === MOVETYPE_PHASE )
+			// native SV_Physics_Phase ignores the world's planes; pending a Hexen phase clip (recorded divergence)
+			SV_Physics_Toss( ent );
 		else if ( ent.v.movetype === MOVETYPE_TOSS
 			|| ent.v.movetype === MOVETYPE_BOUNCE
 			|| ent.v.movetype === MOVETYPE_BOUNCEMISSILE

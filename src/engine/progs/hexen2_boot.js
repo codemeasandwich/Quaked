@@ -43,6 +43,16 @@ export function Hexen2_SeedPrecache( sv, map, findModel, soundSlots = 512 ) {
 
 	}
 	sv.sound_precache = new Array( soundSlots ).fill( null );
+	// the per-frame message buffers the engine's SV_SpawnServer prepares (sounds and temporary entities write here)
+	for ( const [ buffer, bytes ] of [ [ 'datagram', 'datagram_buf' ], [ 'reliable_datagram', 'reliable_datagram_buf' ] ] )
+		if ( sv[ buffer ] && sv[ bytes ] ) {
+
+			sv[ buffer ].data = sv[ bytes ];
+			sv[ buffer ].maxsize = sv[ bytes ].length;
+			sv[ buffer ].cursize = 0;
+			sv[ buffer ].allowoverflow = true;
+
+		}
 
 }
 

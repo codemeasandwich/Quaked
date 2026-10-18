@@ -1,8 +1,6 @@
-// RED (retained): the booted Hexen level must run world physics frames without a gamecode error. Today the first
-// StartFrame reaches Hexen II's own door-linking check, which reports "cross connected doors" (in LinkDoors); that
-// blocks live gameplay (monsters, doors, platforms) even though entity spawn and player movement work. The cause is
-// under investigation: candidates are the find/nextent builtins, the feet-origin links, or a field the spawn path
-// leaves unconverted. This test must not be weakened; it turns green when the world runs its frames cleanly.
+// The booted Hexen level runs world physics frames without a gamecode error: StartFrame, LinkDoors' native forward
+// scan, monster thinks and the message buffers all work through the supplied gamecode. The test also checks that the
+// monsters actually think and move. plan section 5; live-world prerequisite for G1.
 import { existsSync, readFileSync } from 'node:fs';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
@@ -25,7 +23,7 @@ import '../src/engine/progs/hexen2_server_cmds.js';
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
 const HEXEN = '/Users/bri/quaked/Hexen 2/data1';
 
-Deno.test( 'RED: the booted level runs world physics frames without a gamecode error', () => {
+Deno.test( 'the booted level runs world physics frames and its monsters move', () => {
 
 	if ( ! existsSync( HEXEN + '/pak1.pak' ) ) { console.log( 'SKIP: the supplied Hexen II installation is not present' ); return; }
 	for ( const name of [ 'pak0.pak', 'pak1.pak' ] ) { const raw = readFileSync( HEXEN + '/' + name ); pak.COM_AddPack( pak.COM_LoadPackFile( 'h2-' + name, raw.buffer.slice( raw.byteOffset, raw.byteOffset + raw.length ) ) ); }
@@ -54,6 +52,7 @@ Deno.test( 'RED: the booted level runs world physics frames without a gamecode e
 	sv.active = true; sv.state = ss_active;
 	SV_SetFrametime( 0.1 );
 
+	const before = sv.edicts.map( ent => ent && ! ent.free ? [ ent.v.origin?.[ 0 ] ?? 0, ent.v.origin?.[ 1 ] ?? 0, ent.v.origin?.[ 2 ] ?? 0 ] : null );
 	let error = null, frames = 0;
 	try {
 
@@ -62,5 +61,17 @@ Deno.test( 'RED: the booted level runs world physics frames without a gamecode e
 	} catch ( e ) { error = e; }
 	check( error === null, `physics stopped in frame ${frames}: ` + ( error ? error.message + ' [' + PR_LastRunError() + ']' : '' ) );
 	check( frames === 10, 'ten frames ran: ' + frames );
+	let moved = 0;
+	for ( let i = 1; i < sv.num_edicts; i ++ ) {
+
+		const ent = sv.edicts[ i ];
+		if ( ! ent || ent.free || ! before[ i ] ) continue;
+		const delta = Math.abs( ( ent.v.origin?.[ 0 ] ?? 0 ) - before[ i ][ 0 ] )
+			+ Math.abs( ( ent.v.origin?.[ 1 ] ?? 0 ) - before[ i ][ 1 ] )
+			+ Math.abs( ( ent.v.origin?.[ 2 ] ?? 0 ) - before[ i ][ 2 ] );
+		if ( delta > 0.1 ) moved ++;
+
+	}
+	check( moved > 0, 'at least one world entity moved during the ten frames: ' + moved );
 
 } );

@@ -6,6 +6,8 @@ import { SV_SetCallbacks } from '../../src/engine/server/sv_phys.js';
 import { SV_Move_SetCallbacks } from '../../src/engine/server/sv_move.js';
 import { EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, G_FLOAT, G_FLOAT_SET } from '../../src/engine/progs/progs.js';
 import { GetEdictFieldValue } from '../../src/engine/progs/pr_edict.js';
+import { SV_StartSound } from '../../src/engine/server/sv_main.js';
+import { sv as serverSv } from '../../src/engine/server/server.js';
 
 export function installServerCallbacks( world ) {
 
@@ -15,8 +17,19 @@ export function installServerCallbacks( world ) {
 		SV_LinkEdict: world.SV_LinkEdict,
 		SV_PointContents: world.SV_PointContents,
 		PR_ExecuteProgram: world.PR_ExecuteProgram,
-		EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, GetEdictFieldValue
+		EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, GetEdictFieldValue, SV_StartSound
 	} );
 	SV_Move_SetCallbacks( { PF_changeyaw: () => {}, G_FLOAT, G_FLOAT_SET } );
+	// the engine's SV_SpawnServer initialises the per-frame message buffers; sounds and effects write to them, so an
+	// isolated world test that installs the real SV_StartSound must do the same.
+	for ( const [ buffer, bytes ] of [ [ 'datagram', 'datagram_buf' ], [ 'reliable_datagram', 'reliable_datagram_buf' ] ] )
+		if ( serverSv[ buffer ] && serverSv[ bytes ] && ! serverSv[ buffer ].data ) {
+
+			serverSv[ buffer ].data = serverSv[ bytes ];
+			serverSv[ buffer ].maxsize = serverSv[ bytes ].length;
+			serverSv[ buffer ].cursize = 0;
+			serverSv[ buffer ].allowoverflow = true;
+
+		}
 
 }

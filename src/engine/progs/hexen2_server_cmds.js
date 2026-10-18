@@ -19,6 +19,7 @@ import { MSG_WriteByte, MSG_WriteShort, MSG_WriteCoord, MSG_WriteAngle } from '.
 import { MAX_LIGHTSTYLES } from '../common/quakedef.js';
 import { anglemod } from '../common/mathlib.js';
 import { SV_MoveToGoal } from '../server/sv_move.js';
+import { PF_checkclient } from '../server/pr_cmds.js';
 import { SV_StartSound } from '../server/sv_phys.js';
 import { Hexen2_RegisterBuiltins } from './hexen2_cmds.js';
 
@@ -33,15 +34,14 @@ function varString( first ) {
 // G_INT without importing the helper name that is already used below
 function pr_global_int( o ) { return G_INT( o ); }
 
-// #18 find(entity start, .field, string match): the next edict whose field string matches, else the world
+// #18 find(entity start, .field, string match): the next edict after start whose field string matches; the native
+// loop runs forward from NEXT_EDICT(start) and stops at the world, so it never wraps back past the start.
 function find() {
 
 	const start = G_EDICTNUM( OFS_PARM0 ), fieldOfs = G_INT( OFS_PARM1 ), match = G_STRING( OFS_PARM2 );
 	if ( fieldOfs < 0 || fieldOfs >= sv.edicts[ 0 ]._entityfields ) PR_RunError( 'find: bad field offset %i', fieldOfs );
-	// native NEXT_EDICT iteration stops before returning to the start entity (and before the world)
-	for ( let step = 1; step < sv.num_edicts; step ++ ) {
+	for ( let index = start + 1; index < sv.num_edicts; index ++ ) {
 
-		const index = ( start + step ) % sv.num_edicts;
 		const ent = sv.edicts[ index ];
 		if ( ! ent || ent.free ) continue;
 		if ( PR_GetString( ent._fieldAccessor.getInt32( fieldOfs ) ) === match ) { RETURN_EDICT( ent ); return; }
@@ -229,7 +229,7 @@ function breakBuiltin() { PR_RunError( 'break statement' ); }
 
 /** The server builtins this module installs into the Hexen II dispatcher. */
 export const HEXEN2_SERVER_BUILTINS = Object.freeze( {
-	6: breakBuiltin, 8: sound, 10: errorBuiltin, 11: objerror, 14: spawn, 49: changeyaw, 67: SV_MoveToGoal, 15: remove, 18: find, 23: bprint, 31: eprint, 35: lightstyle, 63: advanceframe, 65: rewindframe, 69: makestatic, 74: ambientsound, 83: advanceweaponframe
+	6: breakBuiltin, 8: sound, 10: errorBuiltin, 11: objerror, 14: spawn, 17: PF_checkclient, 49: changeyaw, 67: SV_MoveToGoal, 15: remove, 18: find, 23: bprint, 31: eprint, 35: lightstyle, 63: advanceframe, 65: rewindframe, 69: makestatic, 74: ambientsound, 83: advanceweaponframe
 } );
 
 Hexen2_RegisterBuiltins( HEXEN2_SERVER_BUILTINS );

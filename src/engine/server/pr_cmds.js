@@ -673,7 +673,7 @@ function PF_newcheckclient( check ) {
 
 }
 
-function PF_checkclient() {
+export function PF_checkclient() {
 
 	// find a new check if on a new frame
 	if ( sv.time - sv.lastchecktime >= 0.1 ) {

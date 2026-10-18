@@ -208,6 +208,7 @@ export const MOVETYPE_PUSH = 7; // no clip to world, push and crush
 export const MOVETYPE_NOCLIP = 8;
 export const MOVETYPE_FLYMISSILE = 9; // extra size to monsters
 export const MOVETYPE_BOUNCE = 10;
+export const MOVETYPE_PHASE = 13; // Hexen II phase projectile (native clips entities but passes world planes)
 
 //============================================================================
 // edict->solid values
