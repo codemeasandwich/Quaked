@@ -109,9 +109,9 @@ class LevelTextureAssets(unittest.TestCase):
         self.assertEqual(RECIPE['nativeSize'], [64, 64])
         sources = {}
         for name, info in RECIPE['sources'].items():
-            data = (SOURCE / name).read_bytes()
+            data = resource_path(ROOT, SOURCE / name).read_bytes()
             self.assertEqual(hashlib.sha256(data).hexdigest(), info['sha256'])
-            sources[name] = Image.open(SOURCE / name).convert('RGB')
+            sources[name] = Image.open(resource_path(ROOT, SOURCE / name)).convert('RGB')
             self.assertEqual(list(sources[name].size), info['size'])
         for name, tile in RECIPE['tiles'].items():
             with self.subTest(texture=name):

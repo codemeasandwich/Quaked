@@ -95,7 +95,7 @@ class GeneratedSkinFitTests(unittest.TestCase):
         return output / recipe['key'] / recipe.get('outputVariant', 'custom')
 
     def test_actual_gremlin_complete_coverage_and_measured_landmarks(self):
-        source = ROOT / self.recipe['sourceFile']
+        source = resource_path(ROOT, ROOT / self.recipe['sourceFile'])
         self.assertEqual(digest(source.read_bytes()), SOURCE_SHA)
         self.assertEqual(digest(self.bytes), MODEL_SHA)
         actual = [tuple(p[k] for k in FIELDS) for p in self.recipe['piecePlacements']]
@@ -152,7 +152,7 @@ class GeneratedSkinFitTests(unittest.TestCase):
         print('MAPPED_SOURCE_ANCHORS', json.dumps(witnesses), flush=True)
 
     def test_detached_source_islands_cannot_colour_body_surfaces(self):
-        source = Image.open(ROOT / self.recipe['sourceFile']).convert('RGB')
+        source = Image.open(resource_path(ROOT, ROOT / self.recipe['sourceFile'])).convert('RGB')
         pixels = np.array(source)
         mask = ndimage.binary_fill_holes(ndimage.binary_closing(pixels.max(2) > 15, iterations=4))
         labels, _ = ndimage.label(mask)

@@ -14,6 +14,7 @@ import sys
 import argparse
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
+from resource_paths import resource_path
 
 
 class RangeHandler(http.server.SimpleHTTPRequestHandler):
@@ -26,7 +27,18 @@ class RangeHandler(http.server.SimpleHTTPRequestHandler):
             if candidate.is_relative_to(self.game_root):
                 return str(candidate)
             return str(self.game_root / '__refused_path__')
-        return super().translate_path(path)
+        original = Path(super().translate_path(path))
+        directory = Path(self.directory)
+        root = directory.resolve()
+        # The standard handler normalizes URL traversal first. Resolve only the
+        # resulting local file through the same layout used by authoring tools.
+        relative = original.relative_to(directory)
+        mapped = resource_path(root, relative)
+        if mapped == root / relative:
+            return str(original)
+        if mapped.resolve().is_relative_to(root):
+            return str(mapped)
+        return str(root / '__refused_path__')
 
     def send_head(self):
         match = re.fullmatch(r'bytes=(\d*)-(\d*)', self.headers.get('Range', '').strip())

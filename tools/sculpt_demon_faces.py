@@ -21,7 +21,7 @@ def main():
     manifest=json.loads((SOURCE/'manifest.json').read_text())
     recipe=manifest['runtimeImport']
     path=resource_path(ROOT, 'newer/textures/index.json');index=json.loads(path.read_text())
-    saved=(SOURCE/manifest['files']['displacement']['filename']).read_bytes()
+    saved=resource_path(ROOT, SOURCE/manifest['files']['displacement']['filename']).read_bytes()
     if hashlib.sha256(saved).hexdigest()!=manifest['files']['displacement']['sha256']:raise ValueError('Displacement checksum mismatch')
     image=Image.open(io.BytesIO(saved));values=np.asarray(image,dtype=np.uint16)
     if values.shape!=(4096,2048):raise ValueError('Expected saved2048x4096 displacement')

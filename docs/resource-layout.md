@@ -86,3 +86,11 @@ in `assets/game/enemies/lavaman/custom/`; the existing `sources/` exclusion keep
 authoring inputs out of both product profiles. See
 [relocation and verification](lavaman-authoring-assets-2026-10-18.md). Historical
 migration receipts retain their original path/hash observations.
+
+## Remaining authoring images
+
+The owner then requested the remaining images under tools to move into assets.
+The migration based on01291eb5 relocates1,525 byte-identical images to
+`assets/authoring/texture_sheets/sources/`, keeps scripts/records in tools, and
+uses the existing exact-file layout map for recorded logical image identities.
+See [implementation and verification](authoring-images-assets-2026-10-18.md).

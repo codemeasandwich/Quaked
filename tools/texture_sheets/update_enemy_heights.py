@@ -45,7 +45,7 @@ def native_skins(data, palette):
 
 def fit_shambler(original, model_data):
     recipe = json.loads((HERE/'sources/shambler-2026-10-01.json').read_text())
-    src = Image.open(HERE/'sources'/recipe['source']).convert('RGB')
+    src = Image.open(resource_path(ROOT, HERE/'sources'/recipe['source'])).convert('RGB')
     factor = recipe['factor']; canvas = np.asarray(original.resize((original.width*factor,original.height*factor),Image.Resampling.LANCZOS)).copy()
     painted = np.zeros(canvas.shape[:2],dtype=bool)
     for part in recipe['parts']:
@@ -130,7 +130,7 @@ def fit_shambler(original, model_data):
     (ROOT/'docs/evidence/shambler-uv-fit-2026-10-01.json').write_text(json.dumps(dict(surface_pixels=int(surface.sum()),source_fitted_pixels=int((surface&painted).sum()),edge_fill_pixels=int(missing.sum()),surface_coverage=1.0),indent=2)+'\n')
     target = resource_path(ROOT, 'newer/enemies/shambler/custom/diffuse.webp')
     Image.fromarray(canvas).save(target,'WEBP',lossless=True,method=6)
-    return hashlib.sha256((HERE/'sources'/recipe['source']).read_bytes()).hexdigest()
+    return hashlib.sha256(resource_path(ROOT, HERE/'sources'/recipe['source']).read_bytes()).hexdigest()
 
 
 def height_for(image, target, model):
@@ -142,7 +142,7 @@ def height_for(image, target, model):
 def main():
     pak = read_pak(ROOT/'games/shareware/pak0.pak'); palette = np.frombuffer(pak['gfx/palette.lmp'],dtype=np.uint8).reshape(256,3)
     native = {name[6:-4]:native_skins(data,palette) for name,data in pak.items() if name.startswith('progs/') and name.endswith('.mdl') and name[6:-4] in ENEMIES}
-    source_hash = hashlib.sha256((HERE/'sources/shambler-2026-10-01.png').read_bytes()).hexdigest()
+    source_hash = hashlib.sha256(resource_path(ROOT, HERE/'sources/shambler-2026-10-01.png').read_bytes()).hexdigest()
     if '--heights-only' not in sys.argv:source_hash = fit_shambler(native['shambler'][0][0],pak['progs/shambler.mdl'])
     index_path = resource_path(ROOT, 'newer/enemies/index.json');index = json.loads(index_path.read_text());custom_count = 0
     for model,variants in index['models'].items():

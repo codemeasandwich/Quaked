@@ -10,8 +10,8 @@ from resource_paths import resource_path
 
 SOURCE=ROOT/'tools/texture_sheets/sources/official-world-2026-10-12'
 CANDIDATES=resource_path(ROOT, 'newer/textures/candidates-2026-10-12')
-def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
-def rgb(p):return np.asarray(Image.open(p).convert('RGB'))
+def sha(p):return hashlib.sha256(resource_path(ROOT, p).read_bytes()).hexdigest()
+def rgb(p):return np.asarray(Image.open(resource_path(ROOT, p)).convert('RGB'))
 actual=CANDIDATES/'wall14_5-photographic-seam-v3-4x.png';record=json.loads(actual.with_suffix('.json').read_text());master=resource_path(ROOT, record['source'])
 assert sha(master)==record['sourceSha256'];assert sha(SOURCE/'restore_wall145_joint.py')==record['toolSha256']
 assert record['donorJointY']==128 and record['donorHorizontalPhase']==128

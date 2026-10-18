@@ -3,17 +3,25 @@
  */
 import layout from '../../assets/layout.json' with { type: 'json' };
 
+// The layout is immutable for this module instance. Authoring image identities
+// make the exact table large; build its inverse once rather than scan it for
+// every texture URL and inventory entry. Preserve first-entry precedence.
+const reverseFiles = new Map();
+for (const [from, to] of Object.entries(layout.files)) if (!reverseFiles.has(to)) reverseFiles.set(to, from);
+const forwardPrefixes = Object.entries(layout.prefixes).sort((a,b)=>b[0].length-a[0].length);
+const reversePrefixes = Object.entries(layout.prefixes).sort((a,b)=>b[1].length-a[1].length);
+
 export function ResourcePath(path) {
   if (layout.files[path]) return layout.files[path];
-  for (const [from, to] of Object.entries(layout.prefixes).sort((a,b)=>b[0].length-a[0].length)) {
+  for (const [from, to] of forwardPrefixes) {
     if (path === from.slice(0, -1)) return to.slice(0, -1);
     if (path.startsWith(from)) return to + path.slice(from.length);
   }
   return path;
 }
 export function ResourceLogicalPath(path) {
-  for (const [from, to] of Object.entries(layout.files)) if (path === to) return from;
-  for (const [from, to] of Object.entries(layout.prefixes).sort((a,b)=>b[1].length-a[1].length)) {
+  if (reverseFiles.has(path)) return reverseFiles.get(path);
+  for (const [from, to] of reversePrefixes) {
     if (path === to.slice(0, -1)) return from.slice(0, -1);
     if (path.startsWith(to)) return from + path.slice(to.length);
   }

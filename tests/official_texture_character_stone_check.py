@@ -10,8 +10,8 @@ from resource_paths import resource_path
 
 SOURCE=ROOT/'tools/texture_sheets/sources/official-world-2026-10-12'
 CANDIDATES=resource_path(ROOT, 'newer/textures/candidates-2026-10-12')
-def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
-def rgb(p):return np.asarray(Image.open(p).convert('RGB'))
+def sha(p):return hashlib.sha256(resource_path(ROOT, p).read_bytes()).hexdigest()
+def rgb(p):return np.asarray(Image.open(resource_path(ROOT, p)).convert('RGB'))
 actual=CANDIDATES/'wstone_03_JM-character-seam-v4-4x.png'
 record=json.loads(actual.with_suffix('.json').read_text())
 master=resource_path(ROOT, record['source']);repair=resource_path(ROOT, record['generatedRepair'])
@@ -42,7 +42,7 @@ with tempfile.TemporaryDirectory(prefix='quaked-character-stone-replay-') as tem
     assert changed.any() and not np.any(changed&~allowed)
     # Independently confirm full-strength boundary cores select the recorded
     # photographic repair under the stated half-width/half-height cyclic offset.
-    donor=np.asarray(Image.open(repair).convert('RGB').resize((w,h),Image.Resampling.LANCZOS))
+    donor=np.asarray(Image.open(resource_path(ROOT, repair)).convert('RGB').resize((w,h),Image.Resampling.LANCZOS))
     unshifted=np.roll(donor,(-h//2,-w//2),axis=(0,1))
     core=(dx<=w*12/512)|(dy<=h*12/512)
     assert np.array_equal(after[core],unshifted[core]),'boundary core donor phase is wrong'

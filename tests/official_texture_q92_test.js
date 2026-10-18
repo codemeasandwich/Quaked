@@ -1,10 +1,11 @@
+import {resourcePath} from './helpers/resource_path.mjs';
 import {ResourceURL} from '../src/platform/resource_paths.js';
 // Independent public-interface verification of the quality92 channel-normal world families.
 // Reads real PAK/BSP inputs, decodes real lossy WebPs and uses renderer endpoints.
 // Passing these checks is not visual acceptance or GPU gameplay verification.
 import { readFileSync, writeFileSync, mkdtempSync, rmSync, realpathSync, mkdirSync } from './helpers/resource_fs.mjs';
 import { execFileSync } from 'node:child_process';
-import { resolve, join } from 'node:path';
+import { resolve, join, relative } from 'node:path';
 import { tmpdir } from 'node:os';
 import { pathToFileURL } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
@@ -83,7 +84,19 @@ const bytesEqual = (actual,expected,message) => check(Buffer.from(actual).equals
 
 const resourceProducerSuccessors = [{"file":"tools/texture_sheets/update_level_sheets.py","beforeFile":"tools/texture_sheets/sources/official-world-2026-10-17/verification/update_level_sheets-before-resource-layout.py","beforeSha256":"739856ad35d8a2622aff9a8acb7f8493bd6fbfbc8b5f6ec6c30dd8bab3bd9e17","afterSha256":"ea36ecdc2fe7dcb92d3b66f2ab8d45959e269a11e0f2b4308a438a9a9fcfc123","proof":"Full current source equals retained source after only explicit central import/index-path/target-path transformations; every authored_height and brick_mask byte unchanged."},{"file":"tools/texture_sheets/sources/official-world-2026-10-17/prepare_horizontal_trims.py","beforeFile":"tools/texture_sheets/sources/official-world-2026-10-17/verification/prepare_horizontal_trims-before-resource-layout.py","beforeSha256":"3b649b0f05e4037f91cbc0b60969682ef2feec4535e9a85a3f0b91f16925de50","afterSha256":"c8d185417a9a4bc80d3b202efdb37065c1aa700c2ad348a1237327b199f99ab2","proof":"Parent-reviewed central donor read boundary only; logical receipt source label retained. Actual two-output PNG producer replay required in maintained public case."}];
 function recordedProducerSha(file, recorded, label) {
- const current=sha256(read(file));if(current===recorded)return current;
+ let qualified=read(file);
+ // Keep both earlier producer hashes intact. The image move changes exactly
+ // one filesystem lookup; reconstruct its full current source from the retained
+ // qualified bytes so no height/mask/encoding implementation can be waived.
+ if(file==='tools/texture_sheets/update_level_sheets.py'){
+  const before=read('docs/evidence/authoring-images-assets-2026-10-18/update_level_sheets-before-image-move.py.txt');
+  same(sha256(before),'ea36ecdc2fe7dcb92d3b66f2ab8d45959e269a11e0f2b4308a438a9a9fcfc123',label+' prior qualified source');
+  const from='path = manifest_path.parent / filename',to='path = resource_path(ROOT, manifest_path.parent / filename)';
+  same(before.toString().split(from).length,2,label+' exactly one file boundary');
+  same(qualified.toString(),before.toString().replace(from,to),label+' only image lookup changed');
+  qualified=before;
+ }
+ const current=sha256(qualified);if(current===recorded)return current;
  const successor=resourceProducerSuccessors.find(s=>s.file===file&&s.beforeSha256===recorded);check(successor,label+' explicit resource-boundary successor');
  same(sha256(read(successor.beforeFile)),recorded,label+' exact retained historical source');same(current,successor.afterSha256,label+' exact reviewed current source');return recorded;
 }
@@ -97,6 +110,7 @@ function webpLossy(bytes,label) {
 }
 const games = new Map(), maps = new Map();
 function packPath( id ) {
+	if(id==='shareware')return resourcePath(resolve(root,'games/shareware/pak0.pak'));
 	const game = GAME_CATALOGUE_GAMES.find( g => g.id === ( id === 'id1' ? 'quake' : id ) );
 	check( game, 'known game ' + id );
 	if ( process.env.QUAKED_GAME_ROOT ) return resolve( sourceRoot, game.folders.find( f => f.startsWith( 'games/' ) ).slice( 6 ), 'pak0.pak' );
@@ -192,7 +206,7 @@ Deno.test('114 q92 channel bindings pin exact original identities and real lossy
   const spec=stoneTrial[e.name];same(spec.nativeKey,e.key,e.name+' diagnostic source guard');equal([spec.width,spec.heightPixels],native.map(n=>n*4),e.name+' diagnostic4x dimensions');for(const[role,file]of[['diffuse',spec.file],['height',spec.height],...axes.map(a=>['normal'+a.toUpperCase(),spec.normalChannels[a]])])same(sha256(read('newer/textures/'+file)),enc.outputs[role].sha256,e.name+' diagnostic/runtime '+role+' exact bytes');
  }
  const modulePath=stoneBase+'brick-solid-module-reuse-v1.json',moduleReceipt=JSON.parse(read(modulePath));for(const[file,digest]of[[moduleReceipt.producer,moduleReceipt.producerSha256],[moduleReceipt.photo,moduleReceipt.photoSha256],[moduleReceipt.wideNative,moduleReceipt.wideNativeSha256],[moduleReceipt.narrowNative,moduleReceipt.narrowNativeSha256],[moduleReceipt.quietEdgeTool,moduleReceipt.quietEdgeToolSha256]])same(sha256(read(file)),digest,'solid module custody '+file);equal(moduleReceipt.nativeCropColumns,[[0,32],[96,128]],'whole native module relationship');same(moduleReceipt.nativeDifferentRgbaPixels,0,'exact complete narrow native crop');equal(moduleReceipt.runtimeCropColumns,[[0,128],[384,512]],'same native scale at4x');same(moduleReceipt.compositionSpatialResampling,false,'no narrow aspect squeeze');same(moduleReceipt.protectedFirstAndLastColumns,96,'protected outer plain returns at composition stage');same(moduleReceipt.protectedPixelsByteExact,true,'outer96 composition pixels retained');
- const moduleTemp=mkdtempSync(join(tmpdir(),'quaked-solid-brick-modules-public-'));try{const wide=join(moduleTemp,'wide.png'),narrow=join(moduleTemp,'narrow.png'),receiptFile=join(moduleTemp,'module.json');execFileSync('/usr/bin/python3',[stoneBase+'compose_solid_brick_modules.py','--source-root',root,'--wide-native',moduleReceipt.wideNative,'--narrow-native',moduleReceipt.narrowNative,'--wide-photo',moduleReceipt.photo,'--wide-output',wide,'--narrow-output',narrow,'--receipt',receiptFile],{cwd:root,stdio:'pipe'});bytesEqual(readFileSync(wide),read(moduleReceipt.wideOutput),'actual wide single-normalization module bytes');bytesEqual(readFileSync(narrow),read(moduleReceipt.narrowOutput),'actual narrow protected-return composition bytes');}finally{rmSync(moduleTemp,{recursive:true,force:true});}
+ const moduleTemp=mkdtempSync(join(tmpdir(),'quaked-solid-brick-modules-public-'));try{const wide=join(moduleTemp,'wide.png'),narrow=join(moduleTemp,'narrow.png'),receiptFile=join(moduleTemp,'module.json');execFileSync('/usr/bin/python3',[stoneBase+'compose_solid_brick_modules.py','--source-root',root,'--wide-native',resourcePath(resolve(root,moduleReceipt.wideNative)),'--narrow-native',resourcePath(resolve(root,moduleReceipt.narrowNative)),'--wide-photo',resourcePath(resolve(root,moduleReceipt.photo)),'--wide-output',wide,'--narrow-output',narrow,'--receipt',receiptFile],{cwd:root,stdio:'pipe'});bytesEqual(readFileSync(wide),read(moduleReceipt.wideOutput),'actual wide single-normalization module bytes');bytesEqual(readFileSync(narrow),read(moduleReceipt.narrowOutput),'actual narrow protected-return composition bytes');}finally{rmSync(moduleTemp,{recursive:true,force:true});}
 
  const eightKeys={wmet4_4c:'128x128:74f63e8543362707',tech04_5:'128x16:7ef518b5473c8877',tech04_6:'128x16:bfef16117d029feb',metal5_96_JM:'128x128:85891f197f5d7a63',metal5_85_JM:'128x128:d2be32b11d4f815b',TF_Floor5_04:'128x128:ad3943d092d6c6c2',palmet3_2:'128x128:7bdc8195074b0fc7',TF_Stone_00:'128x128:42d2beee14cc60c4'};
  equal(nextEightReceipt.entries.map(e=>e.name).sort(),Object.keys(eightKeys).sort(),'exact eight reviewed native identities');
@@ -205,7 +219,7 @@ Deno.test('114 q92 channel bindings pin exact original identities and real lossy
   const spec=newEightTrial[e.name];same(spec.name??e.name,e.name,e.name+' diagnostic name');same(spec.nativeKey,e.key,e.name+' diagnostic native key');equal([spec.width,spec.heightPixels],native.map(n=>n*4),e.name+' diagnostic aspect');for(const[role,file]of[['diffuse',spec.file],['height',spec.height],...axes.map(a=>['normal'+a.toUpperCase(),spec.normalChannels[a]])])same(sha256(read('newer/textures/'+file)),enc.outputs[role].sha256,e.name+' diagnostic/runtime '+role+' bytes');
  }
  const trimReusePath=eightBase+'horizontal-trim-reuse-v1.json',trimReuse=JSON.parse(read(trimReusePath));same(recordedProducerSha(eightBase+'prepare_horizontal_trims.py',trimReuse.toolSha256,'horizontal trim producer'),trimReuse.toolSha256,'retained horizontal producer provenance plus current boundary successor');same(sha256(read(trimReuse.source)),trimReuse.sourceSha256,'approved plain rail donor');same(sha256(read(trimReuse.fastener)),trimReuse.fastenerSha256,'approved unrotated fastener donor');equal(trimReuse.dimensions,[512,64],'trim aspect');equal(trimReuse.markedCentresNative,Array.from({length:8},(_,k)=>[8.5+16*k,9.5]),'exact eight head count and native phase');equal(trimReuse.railRowsPreserved,[Array.from({length:8},(_,i)=>i),Array.from({length:12},(_,i)=>i+52)],'protected upper/lower rail rows');
- const trimTemp=mkdtempSync(join(tmpdir(),'quaked-horizontal-trim-public-'));try{mkdirSync(resolve(trimTemp,eightBase),{recursive:true});execFileSync('/usr/bin/python3',[eightBase+'prepare_horizontal_trims.py','--source-root',root,'--output-root',trimTemp],{cwd:root,stdio:'pipe'});const replay=JSON.parse(readFileSync(resolve(trimTemp,trimReusePath)));equal(replay.markedCentresNative,trimReuse.markedCentresNative,'actual producer head phase');for(const output of trimReuse.outputs)bytesEqual(readFileSync(resolve(trimTemp,output.file)),read(output.file),'actual trim producer output '+output.file);}finally{rmSync(trimTemp,{recursive:true,force:true});}
+ const trimTemp=mkdtempSync(join(tmpdir(),'quaked-horizontal-trim-public-'));try{mkdirSync(resolve(trimTemp,eightBase),{recursive:true});const canonicalSource=relative(root,resourcePath(resolve(root,trimReuse.source)));const inputs=execFileSync('/usr/bin/python3',['tests/helpers/authoring_replay.py',root,trimTemp,'assets/layout.json',canonicalSource,trimReuse.fastener],{cwd:root,encoding:'utf8'}).trim();execFileSync('/usr/bin/python3',[eightBase+'prepare_horizontal_trims.py','--source-root',inputs,'--output-root',trimTemp],{cwd:root,stdio:'pipe'});const replay=JSON.parse(readFileSync(resolve(trimTemp,trimReusePath)));equal(replay.markedCentresNative,trimReuse.markedCentresNative,'actual producer head phase');for(const output of trimReuse.outputs)bytesEqual(readFileSync(resolve(trimTemp,output.file)),read(output.file),'actual trim producer output '+output.file);}finally{rmSync(trimTemp,{recursive:true,force:true});}
  const crosspackKeys={rock3_8:'64x64:57663646989d1874',city8_2:'64x64:04e333ca877bde90',rock3_2:'64x64:296e96b9351c76fb',cop2_5:'64x64:e25a260daecd597f',church1:'128x128:8d401a31a05f9e4b',maya1_9:'128x128:694bfeae23b74c54'};
  equal(crosspackSixReceipt.entries.map(e=>e.name).sort(),Object.keys(crosspackKeys).sort(),'exact six crosspack interpretations');
  for(const e of crosspackSixReceipt.entries){same(e.key,crosspackKeys[e.name],e.name+' exact crosspack native key');const n=['church1','maya1_9'].includes(e.name)?128:64,enc=encodingReceipt(e);equal([e.source.width,e.source.height],[n,n],e.name+' native crosspack dimensions');for(const role of roles)equal(enc.outputs[role].dimensions,[n*4,n*4],e.name+' exact4x crosspack '+role);equal(enc.comparisonDimensions,[n/2,n/2],e.name+' half-native crosspack distance');equal(enc.secondaryComparisonDimensions,[n/4,n/4],e.name+' quarter-native crosspack distance');same(enc.profile.strength,e.name==='rock3_8'?.3:e.name==='cop2_5'?.06:.2,e.name+' independently reviewed relief strength');same(enc.profile.cap,.5,e.name+' independently reviewed cap');}

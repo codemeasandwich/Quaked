@@ -16,28 +16,38 @@ ROOT = Path(__file__).resolve().parents[1]
 import sys
 sys.path.insert(0, str(ROOT / 'tools'))
 from resource_paths import resource_path
+from helpers.authoring_replay import stage_authoring_inputs
 
 SOURCE = ROOT / 'tools/texture_sheets/sources/official-world-2026-10-12'
 CANDIDATES = resource_path(ROOT, 'newer/textures/candidates-2026-10-12')
 NAMES = ['TF_Wood01', 'TF_Wood01c', 'TF_Stone_01', 'TF_Stone3', 'TF_Cliff2', 'TF_Cliff2b']
 def sha(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(resource_path(ROOT, path).read_bytes()).hexdigest()
 def pixels(path):
-    return np.asarray(Image.open(path).convert('RGB'))
+    return np.asarray(Image.open(resource_path(ROOT, path)).convert('RGB'))
 
 with tempfile.TemporaryDirectory(prefix='quaked-realism-edge-replay-') as directory:
-    subprocess.run(['/usr/bin/python3', str(SOURCE / 'finish_realistic_edges.py'), '--output-dir', directory], check=True, capture_output=True)
+    producer='tools/texture_sheets/sources/official-world-2026-10-12/finish_realistic_edges.py'
+    replay=stage_authoring_inputs(ROOT,directory,[producer,*[
+        f'newer/textures/candidates-2026-10-12/{name}-realistic-4x.png' for name in NAMES],*[
+        f'tools/texture_sheets/sources/official-world-2026-10-12/{name}-offset-repair-v1.png' for name in NAMES]])
+    subprocess.run(['/usr/bin/python3', str(replay/producer), '--output-dir', directory], check=True, capture_output=True)
     rows = []
     replay = {}
     for name in NAMES:
         output = Path(directory) / f'{name}-realistic-seam-v2-4x.png'
         actual = CANDIDATES / output.name
         record = json.loads(actual.with_suffix('.json').read_text())
+        master_id=f'newer/textures/candidates-2026-10-12/{name}-realistic-4x.png'
+        repair_id=f'tools/texture_sheets/sources/official-world-2026-10-12/{name}-offset-repair-v1.png'
+        for field,identity in [('master',master_id),('generatedRepair',repair_id)]:
+            assert record[field]==identity or record[field].endswith('/'+identity), 'retained input identity differs'
+        master=resource_path(ROOT,master_id);repair=resource_path(ROOT,repair_id)
         assert sha(output) == sha(actual) == record['outputSha256'], name + ': replay differs'
         assert sha(SOURCE / 'finish_realistic_edges.py') == record['toolSha256']
-        assert sha(resource_path(ROOT, record['master'])) == record['masterSha256']
-        assert sha(resource_path(ROOT, record['generatedRepair'])) == record['generatedRepairSha256']
-        before, after = pixels(resource_path(ROOT, record['master'])), pixels(output)
+        assert sha(master) == record['masterSha256']
+        assert sha(repair) == record['generatedRepairSha256']
+        before, after = pixels(master), pixels(output)
         h, w = before.shape[:2]
         assert after.shape == before.shape
         y, x = np.mgrid[:h, :w]

@@ -36,7 +36,7 @@ def fresh_reference(name, retained_sha256):
     actual = hashlib.sha256(path.read_bytes()).hexdigest()
     if actual != retained_sha256 or actual != entry['sha256'] or retained_sha256 not in entry['retainedOriginalHashes']:
         raise AssertionError('Fresh reference differs from retained original bytes: ' + name)
-    metadata = json.loads(path.with_suffix('.json').read_text())
+    metadata = json.loads(resource_path(ROOT, Path(entry['freshReference']).with_suffix('.json')).read_text())
     with Image.open(path) as decoded:
         source = metadata['source']
         if source['name'] != name or decoded.size != (source['width'], source['height']):
@@ -70,7 +70,7 @@ class PhotographicFinishing(unittest.TestCase):
         cls.directory = Path(cls.temp.name)
         retained = json.loads((resource_path(ROOT, 'newer/textures/candidates-2026-10-12/ceil1_1-photographic-v2.json')).read_text())
         cls.original = fresh_reference('ceil1_1', retained['originalSha256'])
-        cls.donor = SOURCES / 'ceil1_1-artistic-v2.png'
+        cls.donor = resource_path(ROOT, SOURCES / 'ceil1_1-artistic-v2.png')
         cls.finished, cls.receipt = cls.run_cli('lamp', cls.original, cls.donor)
         cls.zero, cls.zero_receipt = cls.run_cli('lamp-zero', cls.original, cls.donor, ['--color-strength', '0'])
 
@@ -226,7 +226,7 @@ class PhotographicFinishing(unittest.TestCase):
     def test_retained_strict_candidate_is_reproducible(self):
         retained = resource_path(ROOT, 'newer/textures/candidates-2026-10-12/tech08_3-quarter.png')
         recipe = json.loads(retained.with_suffix('.json').read_text())
-        output, receipt = self.run_cli('strict-replay', fresh_reference('tech08_3', recipe['originalSha256']), ROOT / recipe['generated'],
+        output, receipt = self.run_cli('strict-replay', fresh_reference('tech08_3', recipe['originalSha256']), resource_path(ROOT, ROOT / recipe['generated']),
                                        ['--method', 'strict', '--factor', str(recipe['factor']),
                                         '--strength', str(recipe['detailStrength']),
                                         '--comparison-divisor', str(recipe['comparisonDivisor'])])
@@ -247,7 +247,7 @@ class PhotographicFinishing(unittest.TestCase):
                 options = ['--factor', str(recipe['factor']), '--color-strength', str(recipe['colorStrength']), '--field-sigma', str(recipe['fieldSigma'])]
                 if recipe.get('landmarkFile'):
                     options += ['--vertical-landmarks', str(ROOT / recipe['landmarkFile'])]
-                original, donor = fresh_reference(name, recipe['originalSha256']), ROOT / recipe['generated']
+                original, donor = fresh_reference(name, recipe['originalSha256']), resource_path(ROOT, ROOT / recipe['generated'])
                 unanchored, plain_receipt = self.run_cli(name+'-unanchored-replay', original, donor, options)
                 anchored, receipt = self.run_cli(name+'-edge-review', original, donor, options+['--edge-anchor'])
                 before, after, reference = rgb(unanchored), rgb(anchored), rgb(original)

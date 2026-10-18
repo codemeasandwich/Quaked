@@ -136,20 +136,21 @@ Deno.test( 'only three horned plaque materials get enhanced relief; native BSP p
 	for ( const name of targets ) { same( catalogue.normals[ name ].file, recipe.heightFile, 'all variants share preview' ); same( catalogue.normals[ name ].dataFile, recipe.dataFile, 'all variants share16-bit geometry data' ); same( catalogue.normals[ name ].sampling, 'clamp', 'explicit nonseamless package boundary contract' ); for ( const [ key, value ] of Object.entries( DISPLACEMENT ) ) near( catalogue.normals[ name ].displacement[ key ], value, 'scoped physical mesh ' + key ); near( catalogue.normals[ name ].displacement.depth, recipe.amplitudeFraction * native.get( name ).width * recipe.ownerDepthMultiplier, 'owner triples documented .05×native world width scale' ); }
 	if ( ! process.env.QUAKED_PYTHON ) throw new Error( 'Set QUAKED_PYTHON to the installed Python runtime with Pillow for exact source-resampling verification.' );
 	// Independent decoder and scalar arithmetic, never the supplied encoder.
-	const expected = execFileSync( process.env.QUAKED_PYTHON, [ '-c', "from PIL import Image; from pathlib import Path; import sys,json,numpy as np\np=Path(sys.argv[1]);m=json.loads((p/'manifest.json').read_text());q=np.asarray(Image.open(p/m['files']['displacement']['filename']),dtype=np.uint16)\ns=((q[3::8,3::8].astype(np.uint32)+q[3::8,4::8]+q[4::8,3::8]+q[4::8,4::8]+2)//4).astype('<u2');sys.stdout.buffer.write(s.tobytes())", new URL( '../' + sourceDirectory, import.meta.url ).pathname ] );
+	const expected = execFileSync( process.env.QUAKED_PYTHON, [ '-c', "from PIL import Image; from pathlib import Path; import sys,json,numpy as np\nroot=Path(sys.argv[2]);sys.path.insert(0,str(root/'tools'));from resource_paths import resource_path\np=Path(sys.argv[1]);m=json.loads((p/'manifest.json').read_text());q=np.asarray(Image.open(resource_path(root,p/m['files']['displacement']['filename'])),dtype=np.uint16)\ns=((q[3::8,3::8].astype(np.uint32)+q[3::8,4::8]+q[4::8,3::8]+q[4::8,4::8]+2)//4).astype('<u2');sys.stdout.buffer.write(s.tobytes())", new URL( '../' + sourceDirectory, import.meta.url ).pathname, new URL('../',import.meta.url).pathname ] );
 	same( scalarBytes.length, 256 * 512 * 2, 'exact little-endian16 byte count' ); check( scalarBytes.equals( expected ), 'every runtime16 sample equals saved canonical centre-bilinear resample' );
 	const proof = JSON.parse( execFileSync( process.env.QUAKED_PYTHON, [ '-c', `from PIL import Image
 from pathlib import Path
 import sys,numpy as np,hashlib,json
+root=Path(sys.argv[3]);sys.path.insert(0,str(root/'tools'));from resource_paths import resource_path
 p=Path(sys.argv[1]);m=json.loads((p/'manifest.json').read_text())
 for f in m['files'].values():
- b=(p/f['filename']).read_bytes();assert hashlib.sha256(b).hexdigest()==f['sha256']
-assert hashlib.sha256((p/m['source']['path']).read_bytes()).hexdigest()==m['source']['sha256']
+ b=resource_path(root,p/f['filename']).read_bytes();assert hashlib.sha256(b).hexdigest()==f['sha256']
+assert hashlib.sha256(resource_path(root,p/m['source']['path']).read_bytes()).hexdigest()==m['source']['sha256']
 assert m['source']['sha256']=='d348dbc26c75776abd38b72eb93fb9e5a83555be248423d193e062ca42429743'
-assert (p/m['original_reference']['filename']).read_bytes()==Path(sys.argv[2]).read_bytes()
-q=np.asarray(Image.open(p/m['files']['displacement']['filename']),dtype=np.uint16)
-g=np.asarray(Image.open(p/m['files']['normal_opengl']['filename']),dtype=np.uint8)
-d=np.asarray(Image.open(p/m['files']['normal_directx']['filename']),dtype=np.uint8)
+assert resource_path(root,p/m['original_reference']['filename']).read_bytes()==Path(sys.argv[2]).read_bytes()
+q=np.asarray(Image.open(resource_path(root,p/m['files']['displacement']['filename'])),dtype=np.uint16)
+g=np.asarray(Image.open(resource_path(root,p/m['files']['normal_opengl']['filename'])),dtype=np.uint8)
+d=np.asarray(Image.open(resource_path(root,p/m['files']['normal_directx']['filename'])),dtype=np.uint8)
 assert np.array_equal(g[:,:,0],d[:,:,0]) and np.array_equal(g[:,:,2],d[:,:,2]) and np.array_equal(255-g[:,:,1],d[:,:,1])
 points=set((x,y) for y in range(0,4096,61) for x in range(0,2048,37))
 points.update((x,y) for x in range(2048) for y in [0,4095]);points.update((x,y) for y in range(4096) for x in [0,2047])
@@ -161,7 +162,7 @@ for x,y in points:
  err=max(err,int(np.max(np.abs(encoded-g[y,x].astype(int)))))
 assert err==0
 print(json.dumps({'normalSamples':len(points),'maxChannelError':err,'greenFlipAllPixels':True,'sourceWidth':q.shape[1],'amplitude':m['normals']['amplitude_as_fraction_of_texture_world_width']}))
-`, new URL( '../' + sourceDirectory, import.meta.url ).pathname, assetPath( new URL( '../', import.meta.url ).pathname, 'newer/textures/' + catalogue.textures.dem4_4 ) ] ).toString() );
+`, new URL( '../' + sourceDirectory, import.meta.url ).pathname, assetPath( new URL( '../', import.meta.url ).pathname, 'newer/textures/' + catalogue.textures.dem4_4 ), new URL('../',import.meta.url).pathname ] ).toString() );
 	check( proof.normalSamples > 15000 && proof.greenFlipAllPixels, 'substantive actual savedheight/OGL pair and all-pixelDirectX check' ); same( proof.maxChannelError, 0, 'sampled actual normal bytes match saved16 slopes including one-sided boundaries' ); near( proof.amplitude, .05, 'source normal physical scale' );
 	const actual = await decode( 'newer/textures/' + recipe.heightFile );
 	let fine = 0; for ( let i = 0; i < expected.length / 2; i ++ ) { const q = expected.readUInt16LE( i * 2 ); if ( q % 257 ) fine ++; same( actual.data[ i * 4 ], Math.round( q / 65535 * 255 ), '8-bit preview derived from canonical16 data' ); }

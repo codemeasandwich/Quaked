@@ -81,7 +81,7 @@ def update(manifest_path, output=None, preview=None):
     if preview: preview.mkdir(parents=True, exist_ok=True)
     sources = {}
     for filename, spec in recipe['sources'].items():
-        path = manifest_path.parent / filename
+        path = resource_path(ROOT, manifest_path.parent / filename)
         if hashlib.sha256(path.read_bytes()).hexdigest() != spec['sha256']:
             raise ValueError('Source artwork changed; review crop recipe: ' + filename)
         image = Image.open(path).convert('RGB')

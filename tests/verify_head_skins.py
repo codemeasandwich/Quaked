@@ -16,7 +16,7 @@ from make_sheets import read_pak
 recipe=json.loads((ROOT/'tools/texture_sheets/sources/head-skins-2026-10-01.json').read_text());index=json.loads((resource_path(ROOT, 'newer/enemies/index.json')).read_text());pak=read_pak(ROOT/'games/shareware/pak0.pak');palette=np.frombuffer(pak['gfx/palette.lmp'],dtype=np.uint8).reshape(256,3)
 checks=0;reports=[]
 for model,spec in recipe['models'].items():
- source=ROOT/'tools/texture_sheets/sources'/spec['source'];assert hashlib.sha256(source.read_bytes()).hexdigest()==spec['source_sha256'];checks+=1
+ source=resource_path(ROOT, ROOT/'tools/texture_sheets/sources'/spec['source']);assert hashlib.sha256(source.read_bytes()).hexdigest()==spec['source_sha256'];checks+=1
  data=pak['progs/'+model+'.mdl'];original=native_skins(data,palette)[0][0];expected,coverage=fit(original,Image.open(source).convert('RGB'),spec,data,recipe['factor'],recipe['bleed_pixels'])
  variant=index['models'][model][0];assert variant['dir']==model+'/custom' and not variant['flipGreen'];checks+=1
  diffuse=Image.open(resource_path(ROOT, 'newer/enemies')/variant['dir']/variant['maps']['diffuse']).convert('RGB');height=Image.open(resource_path(ROOT, 'newer/enemies')/variant['dir']/variant['maps']['height'])

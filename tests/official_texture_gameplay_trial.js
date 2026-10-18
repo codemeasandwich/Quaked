@@ -2,6 +2,7 @@
 // Only test-local candidate selection, controls and evidence capture are added.
 import * as THREE from 'three';
 import '../src/newer/install.js';
+import {ResourceURL} from '../src/platform/resource_paths.js';
 import {R_GlassTextureKey,R_NewerTexturesRevert,R_NewerTexturesForModel} from '../src/newer/render/r_newertextures.js';
 import {Cvar_SetStorageWritable,Cvar_SetValue,Cvar_VariableValue} from '../src/engine/common/cvar.js';
 import {R_FlashlightToggle,R_FlashlightBeam} from '../src/newer/render/r_flashlight.js';
@@ -33,7 +34,7 @@ let restorePresentation=()=>{};
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 async function until(test,label,ms=180000){const deadline=performance.now()+ms;while(!test()){if(disposed)throw Error('Preview stopped');if(performance.now()>deadline)throw Error(label+' exceeded bounded setup deadline');await sleep(100);}}
 const sha=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),n=>n.toString(16).padStart(2,'0')).join('');
-async function fetchBytes(path){const response=await realFetch(path,{cache:'no-store'});if(!response.ok)throw Error(path+': HTTP '+response.status);return response.arrayBuffer();}
+async function fetchBytes(path){const response=await realFetch(ResourceURL(path),{cache:'no-store'});if(!response.ok)throw Error(path+': HTTP '+response.status);return response.arrayBuffer();}
 function download(url,name){const a=document.createElement('a');a.href=url;a.download=name;a.textContent='Download '+name;a.style.display='block';panel.append(a);}
 function saveReceipt(){const url=URL.createObjectURL(new Blob([JSON.stringify({...receipt,capturedAt:new Date().toISOString()},null,2)],{type:'application/json'}));objectURLs.push(url);download(url,`official-texture-${receipt.art}-${receipt.view}-${Date.now()}.json`);}
 function stop(){if(disposed)return;disposed=true;epoch++;renderer?.setAnimationLoop(null);if(renderer&&originalRender)renderer.render=originalRender;restorePresentation();globalThis.fetch=realFetch;receipt.state='stopped; reload page to resume';publish();}

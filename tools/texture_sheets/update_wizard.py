@@ -29,7 +29,7 @@ from align_frames import shifted
 
 def main():
     recipe = json.loads((HERE / 'sources/wizard-2026-10-01.json').read_text())
-    source = Image.open(HERE / 'sources' / recipe['source']).convert('RGB')
+    source = Image.open(resource_path(ROOT, HERE / 'sources' / recipe['source'])).convert('RGB')
     index = json.loads((resource_path(ROOT, 'newer/textures/index.json')).read_text())
     # Check the entire batch before overwriting any asset. Existing profile
     # metadata is retained, so a future profile change needs an explicit review.

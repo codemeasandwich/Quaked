@@ -41,7 +41,7 @@ def fresh_reference(name, retained_sha256):
     actual = hashlib.sha256(path.read_bytes()).hexdigest()
     if actual != retained_sha256 or actual != entry['sha256'] or retained_sha256 not in entry['retainedOriginalHashes']:
         raise AssertionError('Fresh reference differs from retained original bytes: ' + name)
-    metadata = json.loads(path.with_suffix('.json').read_text())
+    metadata = json.loads(resource_path(ROOT, Path(entry['freshReference']).with_suffix('.json')).read_text())
     with Image.open(path) as decoded:
         source = metadata['source']
         if source['name'] != name or decoded.size != (source['width'], source['height']):
@@ -50,7 +50,7 @@ def fresh_reference(name, retained_sha256):
             raise AssertionError('Fresh reference decoded RGBA differs: ' + name)
     if metadata['referenceSha256'] != actual:
         raise AssertionError('Fresh reference file receipt differs: ' + name)
-    return path
+    return path, metadata
 
 
 def pixels(image):
@@ -82,8 +82,8 @@ class OfficialTextureFidelity(unittest.TestCase):
         cls.samples = {}
         for name, version in [('tech08_3', 'v2'), ('tech08_4', 'v1')]:
             retained = json.loads((resource_path(ROOT, 'newer/textures/candidates-2026-10-12') / (name + '-quarter.json')).read_text())
-            original = fresh_reference(name, retained['originalSha256'])
-            donor = GENERATED / (name + '-generated-' + version + '.png')
+            original, original_metadata = fresh_reference(name, retained['originalSha256'])
+            donor = resource_path(ROOT, GENERATED / (name + '-generated-' + version + '.png'))
             candidate = Path(cls.directory.name) / (name + '.png')
             baseline = Path(cls.directory.name) / (name + '-no-detail.png')
             registration = GENERATED / (name + '-row-registration.json')
@@ -92,14 +92,14 @@ class OfficialTextureFidelity(unittest.TestCase):
                 result = subprocess.run([sys.executable, str(TOOL), '--original', str(original), '--generated', str(donor), '--output', str(destination), '--factor', '8', '--method', 'strict', '--comparison-divisor', str(retained['comparisonDivisor']), '--strength', strength] + options, capture_output=True, text=True)
                 if result.returncode:
                     raise AssertionError(result.stderr)
-            cls.samples[name] = dict(original=original, donor=donor, candidate=candidate, baseline=baseline, registration=registration if registration.exists() else None)
+            cls.samples[name] = dict(original=original, original_metadata=original_metadata, donor=donor, candidate=candidate, baseline=baseline, registration=registration if registration.exists() else None)
 
     def test_reference_identity_and_retained_provenance(self):
         for name, files in self.samples.items():
             with self.subTest(name=name):
                 original = Image.open(files['original']).convert('RGBA')
                 digest = hashlib.sha256(original.tobytes()).hexdigest()
-                source = json.loads(files['original'].with_suffix('.json').read_text())['source']
+                source = files['original_metadata']['source']
                 self.assertEqual(source['name'], name)
                 self.assertEqual(digest, source['pixelSha256'])
                 self.assertEqual(original.size, (source['width'], source['height']))

@@ -143,7 +143,7 @@ def fit_one(key, pack, source_root, output, recipe=None):
  # Generated, native-layout atlases share this same importer. An explicit recipe
  # supplies their source path and matte policy; the original Rogue recipes stay fixed.
  spec=recipe or RECIPES[key]; name=spec.get('sourceFile','Gemini_Generated_Image_'+spec.get('source','')+'.jpeg')
- source_path=source_root/name; raw=source_path.read_bytes()
+ source_path=resource_path(ROOT, source_root/name); raw=source_path.read_bytes()
  if sha(raw)!=spec['sourceSha']: raise ValueError('Supplied image changed: '+name)
  data=member(pack,'progs/'+key+'.mdl')
  if sha(data)!=spec['modelSha'] or list(struct.unpack_from('<6i',data,48))!=spec['layout'] or struct.unpack_from('<i',data,84)[0]!=0:

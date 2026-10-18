@@ -27,6 +27,7 @@ const root = resolve( import.meta.dirname, '..' );
 // are Quake, shareware, Scourge of Armagon, etc.), as in tools/serve.py.
 const sourceRoot = process.env.QUAKED_GAME_ROOT ? resolve( process.env.QUAKED_GAME_ROOT ) : root;
 function sourcePack( logical ) {
+	if(logical==='games/shareware/pak0.pak')return resourcePath(resolve(root,logical));
 	if ( ! process.env.QUAKED_GAME_ROOT ) return resolve( root, logical );
 	const game = GAME_CATALOGUE_GAMES.find( g => g.folders.some( folder => logical.startsWith( folder + '/' ) ) );
 	if ( ! game ) throw Error( 'Unknown catalogue pack location: ' + logical );

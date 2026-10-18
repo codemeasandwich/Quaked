@@ -18,8 +18,8 @@ from resource_paths import resource_path
 
 SOURCE=ROOT/'tools/texture_sheets/sources/official-world-2026-10-12'
 CANDIDATES=resource_path(ROOT, 'newer/textures/candidates-2026-10-12')
-def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
-def pixels(path): return np.asarray(Image.open(path).convert('RGB'))
+def sha(path): return hashlib.sha256(resource_path(ROOT, path).read_bytes()).hexdigest()
+def pixels(path): return np.asarray(Image.open(resource_path(ROOT, path)).convert('RGB'))
 actual=CANDIDATES/'TF_Stone3-realistic-seam-v3-4x.png'
 record=json.loads(actual.with_suffix('.json').read_text())
 master=resource_path(ROOT, record['master'])

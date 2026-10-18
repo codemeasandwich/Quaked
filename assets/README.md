@@ -13,7 +13,8 @@ explicit resource inventory, with their existing game-data/profile boundaries.
 | `audio/sounds/` | Standalone menu, welcome and low-health audio |
 | `game/textures/` | Registered diffuse, height, normal and scalar textures |
 | `game/enemies/`, `game/weapons/` | Models, skins and their material data |
-| `game/enemies/<model>/sources/` | Authoring images, fitting recipes and retained predecessors; excluded from runtime bundles |
+| `game/enemies/<model>/sources/` | Feature-specific authoring inputs, including Lava Man; excluded from runtime bundles |
+| `authoring/texture_sheets/sources/` | Canonical reference, draft and verification images formerly alongside texture tools; excluded from runtime bundles |
 | `game/hud/`, `game/ui/` | Game interface artwork and manifests |
 | `game/effects/`, `game/bestiary/` | Effects and journal artwork |
 | `game/maps/`, `game/maps.pak` | Authored game maps; loose community BSPs and attributions in `game/maps/community/` |
@@ -49,13 +50,20 @@ Set `QUAKED_DIST_DIR` to a separate output root for an isolated build trial.
 
 Owned Quake/expansion/add-on files remain in the user's external game library
 (`~/quaked` by default). The existing `resources/` owned-game exclusion and
-registered/shareware boundaries remain enforced. Authoring scripts belong in
-`tools/`; authoring images and recipes belong under the relevant `assets/`
-functional directory in a `sources/` subdirectory. Lava Man's current and
-superseded inputs are in `game/enemies/lavaman/sources/`. Existing authoring
-packages for other features remain in place until separately migrated; this
-scoped move does not alter their work. Sources are not competing runtime files
-and are excluded by the explicit product inventory.
+registered/shareware boundaries remain enforced. Authoring images live under
+`assets/`; scripts stay under `tools/`. Lava Man's already-moved images/recipes
+remain in `game/enemies/lavaman/sources/`. Other texture-authoring images mirror
+their original relative tree in `authoring/texture_sheets/sources/`.
+
+Existing recipes, prompts and historical receipts keep their locations and byte
+identities. Their recorded `tools/texture_sheets/sources/...` image names are
+stable logical IDs: exact entries in `layout.json` resolve them to the sole
+canonical file. Resolve the complete filename with the shared helper, not a
+logical directory followed by an unmapped child. Derive sibling JSON record
+names before resolving images, since the records have not moved. Source previews
+use the same URL boundary; `tools/serve.py` supports recorded image URLs and byte
+ranges through that same map. No old image copies or symlinks remain in tools.
+All authoring images stay outside the explicit runtime inventory.
 
 ## Adding or changing resources
 

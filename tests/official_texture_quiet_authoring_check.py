@@ -7,24 +7,31 @@ ROOT=Path(__file__).resolve().parents[1]
 import sys
 sys.path.insert(0, str(ROOT / 'tools'))
 from resource_paths import resource_path
+from helpers.authoring_replay import stage_authoring_inputs
 
 SOURCE=ROOT/'tools/texture_sheets/sources/official-world-2026-10-12'
 CANDIDATES=resource_path(ROOT, 'newer/textures/candidates-2026-10-12')
 CONFIG={'TF_Metal_02':'xy','metal1_2c':'x','TF_Metal4_6a':'x','cable1_1':'x'}
-def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
-def rgb(p):return np.asarray(Image.open(p).convert('RGB'))
+def sha(p):return hashlib.sha256(resource_path(ROOT, p).read_bytes()).hexdigest()
+def rgb(p):return np.asarray(Image.open(resource_path(ROOT, p)).convert('RGB'))
 def spatial_smooth(line,sigma):
     # Periodic Gaussian in spatial coordinates, independent of tool's FFT filter.
     radius=int(np.ceil(6*sigma)); offsets=np.arange(-radius,radius+1);weights=np.exp(-offsets**2/(2*sigma*sigma));weights/=weights.sum()
     return sum(weight*np.roll(line,int(offset),axis=0) for offset,weight in zip(offsets,weights))
 rows=[]
 with tempfile.TemporaryDirectory(prefix='quaked-quiet-edge-audit-') as temp:
-    subprocess.run(['/usr/bin/python3',str(SOURCE/'finish_quiet_edges.py'),'--output-dir',temp],check=True,capture_output=True)
+    producer='tools/texture_sheets/sources/official-world-2026-10-12/finish_quiet_edges.py'
+    replay=stage_authoring_inputs(ROOT,temp,[producer,*[
+        f'newer/textures/candidates-2026-10-12/{name}-quiet-4x.png' for name in CONFIG]])
+    subprocess.run(['/usr/bin/python3',str(replay/producer),'--output-dir',temp],check=True,capture_output=True)
     for name,axes in CONFIG.items():
-        actual=CANDIDATES/f'{name}-quiet-seam-v2-4x.png';record=json.loads(actual.with_suffix('.json').read_text());before=rgb(record['source']);after=rgb(actual);h,w=before.shape[:2]
+        actual=CANDIDATES/f'{name}-quiet-seam-v2-4x.png';record=json.loads(actual.with_suffix('.json').read_text())
+        logical=f'newer/textures/candidates-2026-10-12/{name}-quiet-4x.png'
+        assert record['source']==logical or record['source'].endswith('/'+logical), 'retained input identity differs'
+        source=resource_path(ROOT,logical);before=rgb(source);after=rgb(actual);h,w=before.shape[:2]
         assert record['axes']==axes and record['spatialResampling'] is False
         assert sha(actual)==sha(Path(temp)/actual.name)==record['outputSha256']
-        assert sha(record['source'])==record['sourceSha256'] and sha(SOURCE/'finish_quiet_edges.py')==record['toolSha256']
+        assert sha(source)==record['sourceSha256'] and sha(SOURCE/'finish_quiet_edges.py')==record['toolSha256']
         y,x=np.mgrid[:h,:w];allowed=(x<w//8)|(x>=w-w//8)
         if axes=='xy':allowed|=(y<h//8)|(y>=h-h//8)
         assert np.array_equal(before[~allowed],after[~allowed]),name+' interior changed'
@@ -40,7 +47,11 @@ with tempfile.TemporaryDirectory(prefix='quaked-quiet-edge-audit-') as temp:
 phase_path=SOURCE/'cable1_1-phase-v3.json';phase=json.loads(phase_path.read_text());donor=rgb(ROOT/phase['donor']);fitted=rgb(ROOT/phase['output']);native=rgb(SOURCE/'native-cable1_1.png');h,w=donor.shape[:2]
 with tempfile.TemporaryDirectory(prefix='quaked-cable-cli-replay-') as temp:
     replay=Path(temp)/'phase.png'
-    subprocess.run(['/usr/bin/python3',str(SOURCE/'replay_cable_phase.py'),'--output',str(replay)],check=True,capture_output=True)
+    producer='tools/texture_sheets/sources/official-world-2026-10-12/replay_cable_phase.py'
+    inputs=stage_authoring_inputs(ROOT,temp,[producer,
+        'tools/texture_sheets/sources/official-world-2026-10-12/cable1_1-phase-v3.json',
+        'tools/texture_sheets/sources/official-world-2026-10-12/cable1_1-generated-realistic-v1.png'])
+    subprocess.run(['/usr/bin/python3',str(inputs/producer),'--output',str(replay)],check=True,capture_output=True)
     assert sha(replay)==phase['outputSha256'],'production phase CLI replay differs'
 assert donor.shape==fitted.shape and h==w
 assert sha(ROOT/phase['donor'])==phase['donorSha256'] and sha(ROOT/phase['output'])==phase['outputSha256']

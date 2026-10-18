@@ -112,7 +112,7 @@ def main():
     recipe=json.loads((HERE/'sources/head-skins-2026-10-01.json').read_text());pak=read_pak(ROOT/'games/shareware/pak0.pak')
     palette=np.frombuffer(pak['gfx/palette.lmp'],dtype=np.uint8).reshape(256,3);prepared=[]
     for model,spec in recipe['models'].items():
-        file=HERE/'sources'/spec['source']
+        file=resource_path(ROOT, HERE/'sources'/spec['source'])
         if hashlib.sha256(file.read_bytes()).hexdigest()!=spec['source_sha256']:raise ValueError('Source changed: '+model)
         data=pak['progs/'+model+'.mdl'];original=native_skins(data,palette)[0][0]
         image,report=fit(original,Image.open(file).convert('RGB'),spec,data,recipe['factor'],recipe['bleed_pixels'])

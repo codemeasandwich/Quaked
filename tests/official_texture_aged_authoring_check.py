@@ -10,8 +10,8 @@ from resource_paths import resource_path
 
 SOURCE=ROOT/'tools/texture_sheets/sources/official-world-2026-10-12'
 CANDIDATES=resource_path(ROOT, 'newer/textures/candidates-2026-10-12')
-def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
-def rgb(p):return np.asarray(Image.open(p).convert('RGB'))
+def sha(p):return hashlib.sha256(resource_path(ROOT, p).read_bytes()).hexdigest()
+def rgb(p):return np.asarray(Image.open(resource_path(ROOT, p)).convert('RGB'))
 def smooth_spatial(line,sigma):
     offsets=np.arange(-int(np.ceil(6*sigma)),int(np.ceil(6*sigma))+1);weights=np.exp(-offsets**2/(2*sigma*sigma));weights/=weights.sum()
     return sum(weight*np.roll(line,int(offset),axis=0) for offset,weight in zip(offsets,weights))
@@ -32,7 +32,7 @@ with tempfile.TemporaryDirectory(prefix='quaked-aged-authoring-') as temp:
         assert np.array_equal(before[~allowed],after[~allowed]),name+' protected interior changed'
         changed=np.any(after!=before,axis=2);assert changed.any() and not np.any(changed&~allowed)
         if name=='wall14_5':
-            donor=np.asarray(Image.open(repair).convert('RGB').resize((w,h),Image.Resampling.LANCZOS));unshifted=np.roll(donor,(-h//2,-w//2),axis=(0,1));core=(dx<=w*12/512)|(dy<=h*12/512)
+            donor=np.asarray(Image.open(resource_path(ROOT, repair)).convert('RGB').resize((w,h),Image.Resampling.LANCZOS));unshifted=np.roll(donor,(-h//2,-w//2),axis=(0,1));core=(dx<=w*12/512)|(dy<=h*12/512)
             assert np.array_equal(after[core],unshifted[core]),'wall photographic boundary core phase changed'
             operation='Recorded photographic repair confined to XY boundary bands'
         else:
