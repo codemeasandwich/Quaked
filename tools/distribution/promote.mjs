@@ -11,6 +11,26 @@ import {fileURLToPath} from 'node:url';
 const SHA=/^[0-9a-f]{40}$/;
 const VERSION=/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/;
 const workflow='.github/workflows/distribution.yml';
+export async function PolicyClient(config){
+ // GitHub hides bypass_actors unless the caller may edit the ruleset. Keep that
+ // authority on the existing operator login; never grant it to the release App.
+ const ids=['updateRulesetId','prodHistoryRulesetId','devHistoryRulesetId','tagCreateRulesetId','tagHistoryRulesetId'];
+ if(!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(config.repository??'')||ids.some(key=>!Number.isSafeInteger(config[key])||config[key]<1))throw Error('Invalid operator policy scope');
+ if(!isAbsolute(config.ghPath??''))throw Error('Configure an absolute trusted GitHub CLI path for policy inspection');
+ const binary=await realpath(config.ghPath),info=await stat(binary);
+ if(!info.isFile()||!(info.mode&0o111)||(info.mode&0o022)||(process.getuid&&![0,process.getuid()].includes(info.uid)))throw Error('GitHub CLI must be a trusted installed executable');
+ const allowed=new Set(ids.map(key=>'/repos/'+config.repository+'/rulesets/'+config[key]));
+ const env=Object.fromEntries(Object.entries(process.env).filter(([key])=>!['GH_TOKEN','GITHUB_TOKEN','GH_ENTERPRISE_TOKEN','GITHUB_ENTERPRISE_TOKEN','GH_DEBUG'].includes(key)));
+ Object.assign(env,{GH_PROMPT_DISABLED:'1',GH_PAGER:'cat',PAGER:'cat'});
+ return async path=>{
+  if(!allowed.has(path))throw Error('Operator policy reader only permits the five configured ruleset GETs');
+  const result=spawnSync(binary,['api','--hostname','github.com','--method','GET',path],{env,encoding:'utf8',timeout:30000,maxBuffer:1048576,stdio:['ignore','pipe','ignore']});
+  if(result.error||result.status!==0)throw Error('Operator GitHub CLI policy read failed; verify the operator login can inspect ruleset bypass lists');
+  let value;try{value=JSON.parse(result.stdout);}catch{throw Error('Operator GitHub CLI returned invalid policy JSON');}
+  if(!value||typeof value!=='object'||Array.isArray(value))throw Error('Operator GitHub CLI returned invalid policy JSON');
+  return value;
+ };
+}
 export function Client(token){
  return async(path,{method='GET',body,missing=false}={})=>{
   const response=await fetch('https://api.github.com'+path,{method,redirect:'error',signal:AbortSignal.timeout(30000),headers:{Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2026-03-10',...(token?{Authorization:'Bearer '+token}:{}),...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined});
@@ -68,6 +88,7 @@ export async function Apply(plan,configPath){
  const config=JSON.parse(await PrivateFile(configPath));
  if(config.repository!==plan.repository||config.repositoryId!==plan.repositoryId||config.controllerSha256!==createHash('sha256').update(await readFile(self)).digest('hex'))throw Error('Private configuration does not identify this audited controller/repository');
  for(const key of ['appId','installationId','updateRulesetId','prodHistoryRulesetId','devHistoryRulesetId','tagCreateRulesetId','tagHistoryRulesetId'])if(!Number.isSafeInteger(config[key])||config[key]<1)throw Error('Missing dedicated App configuration');
+ const policy=await PolicyClient(config);
  const now=Math.floor(Date.now()/1000),encode=value=>Buffer.from(JSON.stringify(value)).toString('base64url');
  const unsigned=encode({alg:'RS256',typ:'JWT'})+'.'+encode({iat:now-60,exp:now+540,iss:String(config.appId)});
  const jwt=unsigned+'.'+sign('RSA-SHA256',Buffer.from(unsigned),await PrivateFile(config.privateKeyFile)).toString('base64url');
@@ -78,14 +99,14 @@ export async function Apply(plan,configPath){
  try{
  const permissions=issued.permissions??{};if(permissions.contents!=='write'||permissions.workflows!=='write'||permissions.actions!=='read'||Object.keys(permissions).some(key=>!['contents','workflows','actions','metadata'].includes(key)))throw Error('App token permissions differ from the repository-scoped promotion contract');
 
-  const rule=await api('/repos/'+plan.repository+'/rulesets/'+config.updateRulesetId);
+  const rule=await policy('/repos/'+plan.repository+'/rulesets/'+config.updateRulesetId);
   if(rule.target!=='branch'||rule.enforcement!=='active'||rule.conditions?.ref_name?.include?.length!==1||rule.conditions.ref_name.include[0]!=='refs/heads/Prod'||rule.conditions.ref_name.exclude?.length!==0||rule.rules?.length!==1||rule.rules[0].type!=='update'||rule.bypass_actors?.length!==1||rule.bypass_actors[0].actor_type!=='Integration'||rule.bypass_actors[0].actor_id!==config.appId||rule.bypass_actors[0].bypass_mode!=='always')throw Error('Prod update gate does not exclusively identify the dedicated App');
   for(const [id,branch,required] of [[config.prodHistoryRulesetId,'Prod',['deletion','creation','non_fast_forward']],[config.devHistoryRulesetId,'Dev',['deletion','non_fast_forward']]]){
-   const history=await api('/repos/'+plan.repository+'/rulesets/'+id),refs=history.conditions?.ref_name;
+   const history=await policy('/repos/'+plan.repository+'/rulesets/'+id),refs=history.conditions?.ref_name;
    if(history.target!=='branch'||history.enforcement!=='active'||history.bypass_actors?.length!==0||refs?.include?.length!==1||refs.include[0]!=='refs/heads/'+branch||refs.exclude?.length!==0||!required.every(type=>history.rules?.some(rule=>rule.type===type)))throw Error('Missing no-bypass '+branch+' history protection');
   }
   for(const [id,required,bypass] of [[config.tagCreateRulesetId,['creation'],true],[config.tagHistoryRulesetId,['update','deletion'],false]]){
-   const tags=await api('/repos/'+plan.repository+'/rulesets/'+id),refs=tags.conditions?.ref_name,actors=tags.bypass_actors;
+   const tags=await policy('/repos/'+plan.repository+'/rulesets/'+id),refs=tags.conditions?.ref_name,actors=tags.bypass_actors;
    if(tags.target!=='tag'||tags.enforcement!=='active'||refs?.include?.length!==1||refs.include[0]!=='refs/tags/v*'||refs.exclude?.length!==0||!required.every(type=>tags.rules?.some(rule=>rule.type===type)))throw Error('Missing protected version-tag policy');
    if(bypass?(actors?.length!==1||actors[0].actor_type!=='Integration'||actors[0].actor_id!==config.appId||actors[0].bypass_mode!=='always'):actors?.length!==0)throw Error('Version-tag bypass must identify only the dedicated App for creation, nobody for mutation');
   }

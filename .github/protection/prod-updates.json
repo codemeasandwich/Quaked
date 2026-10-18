@@ -2,7 +2,13 @@
   "name": "Quaked prod-updates",
   "target": "branch",
   "enforcement": "active",
-  "bypass_actors": [],
+  "bypass_actors": [
+    {
+      "actor_id": 5370616,
+      "actor_type": "Integration",
+      "bypass_mode": "always"
+    }
+  ],
   "conditions": {
     "ref_name": {
       "include": [

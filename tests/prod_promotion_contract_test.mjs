@@ -8,13 +8,14 @@ import {join,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
 import {createHash,generateKeyPairSync} from 'node:crypto';
-import {Plan,CompareAndSwap} from '../tools/distribution/promote.mjs';
+import {Plan,CompareAndSwap,PolicyClient} from '../tools/distribution/promote.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
 const source=join(root,'tools/distribution/promote.mjs');
 const A='a'.repeat(40), B='b'.repeat(40), D='d'.repeat(40), TREE='e'.repeat(40);
 const repository='owner/project';
-const cleanEnv=Object.fromEntries(Object.entries(process.env).filter(([k])=>!k.startsWith('GIT_')&&!['GITHUB_ACTIONS','NODE_OPTIONS'].includes(k)));
+const authEnvironment=['GH_TOKEN','GITHUB_TOKEN','GH_ENTERPRISE_TOKEN','GITHUB_ENTERPRISE_TOKEN','GH_DEBUG'];
+const cleanEnv=Object.fromEntries(Object.entries(process.env).filter(([k])=>!k.startsWith('GIT_')&&!['GITHUB_ACTIONS','NODE_OPTIONS',...authEnvironment].includes(k)));
 const digest=x=>createHash('sha256').update(x).digest('hex');
 
 // The same synthetic server drives exported policy calls and actual CLI subprocesses.
@@ -72,6 +73,7 @@ globalThis.fetch=async(url,options={})=>{
  }
  const body=options.body?JSON.parse(options.body):undefined;
  appendFileSync(settings.log,JSON.stringify({path,method,body,jwt,installationAuth:auth==='Bearer fixture-installation-token'})+'\\n');
+ if(path.includes('/rulesets/'))throw Error('App metadata response cannot prove ruleset bypass actors');
  const current={...settings};if(current.stale&&auth==='Bearer fixture-installation-token')current.freshProd='c'.repeat(40);
  const data=response(path,{readback:updated},current);
  if(path==='/graphql'&&!current.casErrors&&!current.casNoAck)updated=true;
@@ -84,12 +86,33 @@ async function cliSetup(path,settings={}){
  const run=(args=[],extra={})=>spawnSync(process.execPath,['--import',mock,extra.controller??controller,'--repository',repository,'--sha',A,...args],{cwd:extra.cwd??path,env:{...cleanEnv,QUAKED_PROMOTION_FIXTURE:JSON.stringify({...settings,log,...extra.settings}),...extra.env},encoding:'utf8',timeout:20000});
  return {mock,controller,log,run,calls:async()=> (await readFile(log,'utf8')).trim().split('\n').filter(Boolean).map(x=>JSON.parse(x))};
 }
+async function ghSetup(path,settings={}){
+ const ghPath=join(path,'fake-gh.mjs'),ghLog=join(path,'gh-requests.jsonl');await writeFile(ghLog,'');
+ const program=`#!${process.execPath}
+import {appendFileSync,writeFileSync} from 'node:fs';
+const response=${response.toString()};
+const settings=${JSON.stringify(settings)},log=${JSON.stringify(ghLog)},args=process.argv.slice(2);
+const authKeys=${JSON.stringify(authEnvironment)};
+appendFileSync(log,JSON.stringify({args,authEnvironmentPresent:authKeys.filter(key=>Object.hasOwn(process.env,key)),prompt:process.env.GH_PROMPT_DISABLED,pager:process.env.GH_PAGER,systemPager:process.env.PAGER})+'\\n');
+if(args.length!==6||JSON.stringify(args.slice(0,5))!==JSON.stringify(['api','--hostname','github.com','--method','GET'])||!/^\\/repos\\/owner\\/project\\/rulesets\\/(789|790|791|792|793)$/.test(args[5]))throw Error('Unexpected operator policy command');
+if(settings.ghExit){console.error('FAKE_GH_STDERR_MUST_NOT_LEAK');process.exit(settings.ghExit);}
+if(settings.ghJson==='malformed'){console.log('not JSON');process.exit(0);}
+if(settings.ghJson==='null'){console.log('null');process.exit(0);}
+if(settings.ghJson==='array'){console.log('[]');process.exit(0);}
+if(settings.ghJson==='oversize'){writeFileSync(1,'x'.repeat(1048577));process.exit(0);}
+const value=response(args[5],{},settings);
+if(args[5].endsWith('/'+settings.hiddenActorsId)){if(settings.hiddenActorsNull)value.bypass_actors=null;else delete value.bypass_actors;}
+console.log(JSON.stringify(value));
+`;
+ await writeFile(ghPath,program,{mode:0o755});await chmod(ghPath,0o755);
+ return {ghPath,ghLog,policyCalls:async()=> (await readFile(ghLog,'utf8')).trim().split('\n').filter(Boolean).map(x=>JSON.parse(x))};
+}
 async function appSetup(path,settings={}){
  const keys=generateKeyPairSync('rsa',{modulusLength:2048,publicKeyEncoding:{type:'spki',format:'pem'},privateKeyEncoding:{type:'pkcs8',format:'pem'}});
  const publicKey=join(path,'fake-public.pem'),privateKeyFile=join(path,'fake-private.pem'),config=join(path,'private-config.json');
  await writeFile(publicKey,keys.publicKey);await writeFile(privateKeyFile,keys.privateKey,{mode:0o600});
- const f=await cliSetup(path,{...settings,publicKey});const value={repository,repositoryId:42,controllerSha256:digest(await readFile(f.controller)),appId:123,installationId:456,updateRulesetId:789,prodHistoryRulesetId:790,devHistoryRulesetId:791,tagCreateRulesetId:792,tagHistoryRulesetId:793,privateKeyFile};
- await writeFile(config,JSON.stringify(value),{mode:0o600});return {...f,config,value,privateKeyFile,publicKey};
+ const f=await cliSetup(path,{...settings,publicKey}),gh=await ghSetup(path,settings);const value={repository,repositoryId:42,controllerSha256:digest(await readFile(f.controller)),appId:123,installationId:456,updateRulesetId:789,prodHistoryRulesetId:790,devHistoryRulesetId:791,tagCreateRulesetId:792,tagHistoryRulesetId:793,privateKeyFile,ghPath:gh.ghPath};
+ await writeFile(config,JSON.stringify(value),{mode:0o600});return {...f,...gh,config,value,privateKeyFile,publicKey};
 }
 
  test('promotion plan selects an explicit qualified Dev ancestor without mutating anything',async()=>{
@@ -132,7 +155,7 @@ async function appSetup(path,settings={}){
  p=f.run(['--apply']);assert.notEqual(p.status,0);assert.match(p.stderr,/requires the local/);
  }));
  test('standalone App CLI verifies fake RSA JWT, exact gate, fresh plan and CAS then revokes token',async()=>temp(async path=>{
- const f=await appSetup(path);const p=f.run(['--apply','--config',f.config]);assert.equal(p.status,0,p.stderr);const calls=await f.calls();assert.deepEqual(calls.filter(c=>c.jwt).map(c=>[c.path,c.jwt.verified]),[['/app',true],['/app/installations/456/access_tokens',true]]);assert.deepEqual(calls.find(c=>c.path.endsWith('/access_tokens')).body,{repository_ids:[42],permissions:{contents:'write',workflows:'write',actions:'read'}});assert.equal(calls.filter(c=>c.path==='/graphql').length,1);assert.deepEqual(calls.at(-1),{path:'/installation/token',method:'DELETE',jwt:null,installationAuth:true});assert.match(p.stdout,/publication still pending/);
+ const f=await appSetup(path);const p=f.run(['--apply','--config',f.config],{env:Object.fromEntries(authEnvironment.map(key=>[key,'fake-ambient-'+key]))});assert.equal(p.status,0,p.stderr);const calls=await f.calls();const policies=await f.policyCalls();assert.deepEqual(policies.map(c=>c.args),[789,790,791,792,793].map(id=>['api','--hostname','github.com','--method','GET','/repos/'+repository+'/rulesets/'+id]));assert.ok(policies.every(c=>c.authEnvironmentPresent.length===0&&c.prompt==='1'&&c.pager==='cat'&&c.systemPager==='cat'));assert.ok(!calls.some(c=>c.path.includes('/rulesets/')),'Actor visibility is never borrowed from the App metadata response');assert.doesNotMatch(await readFile(f.ghLog,'utf8'),/fixture-installation-token|fake-ambient-/);assert.deepEqual(calls.filter(c=>c.jwt).map(c=>[c.path,c.jwt.verified]),[['/app',true],['/app/installations/456/access_tokens',true]]);assert.deepEqual(calls.find(c=>c.path.endsWith('/access_tokens')).body,{repository_ids:[42],permissions:{contents:'write',workflows:'write',actions:'read'}});assert.equal(calls.filter(c=>c.path==='/graphql').length,1);assert.deepEqual(calls.at(-1),{path:'/installation/token',method:'DELETE',jwt:null,installationAuth:true});assert.match(p.stdout,/publication still pending/);
  }));
  test('App apply rejects Actions, insecure/in-repository private files, symlink bypass and wrong controller identity',async()=>temp(async path=>{
  const f=await appSetup(path);let p=f.run(['--apply','--config',f.config],{env:{GITHUB_ACTIONS:'true'}});assert.notEqual(p.status,0);assert.match(p.stderr,/never run App promotion in Actions/);
@@ -196,3 +219,27 @@ test('App requires creation by only its dedicated identity and immutable no-bypa
   const calls=await f.calls();assert.ok(!calls.some(c=>c.path==='/graphql'),'Invalid tag gate cannot reach any ref mutation');assert.equal(calls.at(-1).path,'/installation/token');assert.equal(calls.at(-1).method,'DELETE');
  });
 });
+
+test('operator policy reader rejects unconfigured paths before launch and requires a trusted executable before App auth',async()=>temp(async path=>{
+ const f=await appSetup(path),policy=await PolicyClient(f.value);
+ for(const route of ['/graphql','/repos/owner/other/rulesets/789','/repos/'+repository+'/rulesets/999','/repos/'+repository+'/rulesets/789?includes_parents=true','/repos/'+repository+'/rulesets/789\n'])await assert.rejects(policy(route),/five configured ruleset GETs/);
+ assert.deepEqual(await f.policyCalls(),[],'No process launches for a rejected route');
+ assert.equal((await policy('/repos/'+repository+'/rulesets/789')).target,'branch');assert.equal((await f.policyCalls()).length,1);
+ const checks=[{ghPath:'gh'},{ghPath:join(path,'missing-gh')}];
+ for(const delta of checks){await writeFile(f.config,JSON.stringify({...f.value,...delta}));const p=f.run(['--apply','--config',f.config]);assert.notEqual(p.status,0);assert.match(p.stderr,/absolute trusted|ENOENT/);}
+ for(const mode of [0o644,0o777]){await chmod(f.ghPath,mode);await writeFile(f.config,JSON.stringify(f.value));const p=f.run(['--apply','--config',f.config]);assert.notEqual(p.status,0);assert.match(p.stderr,/trusted installed executable/);}
+ assert.ok(!(await f.calls()).some(c=>c.path==='/app'||c.path==='/graphql'),'CLI trust is checked before fake JWT authentication/token issuance');
+}));
+
+test('hidden actor lists and failed or invalid operator reads block CAS and revoke issued App credentials',async()=>{
+ const settings=[...[789,790,791,792,793].flatMap(id=>[{hiddenActorsId:id},{hiddenActorsId:id,hiddenActorsNull:true}]),{ghExit:17},...['malformed','null','array','oversize'].map(ghJson=>({ghJson}))];
+ for(const value of settings)await temp(async path=>{
+  const f=await appSetup(path,value),p=f.run(['--apply','--config',f.config]);assert.notEqual(p.status,0);assert.match(p.stderr,/exclusively identify|history protection|Version-tag bypass|policy read failed|invalid policy JSON/);if(value.ghJson==='oversize')assert.match(p.stderr,/policy read failed/,'The1MiB bound must reject oversized output before JSON interpretation');assert.doesNotMatch(p.stderr,/FAKE_GH_STDERR_MUST_NOT_LEAK|fixture-installation-token/);
+  const calls=await f.calls();assert.ok(!calls.some(c=>c.path==='/graphql'));assert.equal(calls.at(-1).path,'/installation/token');assert.equal(calls.at(-1).method,'DELETE');assert.ok(!calls.some(c=>c.path.includes('/rulesets/')));
+ });
+});
+
+test('policy inspection never justifies granting Administration permission to the promotion App',async()=>temp(async path=>{
+ const f=await appSetup(path,{permissions:{contents:'write',workflows:'write',actions:'read',metadata:'read',administration:'write'}}),p=f.run(['--apply','--config',f.config]);assert.notEqual(p.status,0);assert.match(p.stderr,/token permissions differ/);
+ const calls=await f.calls();assert.deepEqual(calls.find(c=>c.path.endsWith('/access_tokens')).body.permissions,{contents:'write',workflows:'write',actions:'read'});assert.ok(!calls.some(c=>c.path==='/graphql'));assert.equal(calls.at(-1).path,'/installation/token');assert.deepEqual(await f.policyCalls(),[]);
+}));

@@ -2,7 +2,7 @@
 
 Owner requirements, 18 October 2026: Prod accepts no direct commits. It may only fast-forward to an explicitly selected commit already on Dev. That exact commit/version produces the downloadable release and GitHub Pages site.
 
-Status: server safeguards are active; the controller/workflow are implemented and undergoing final qualification. Prod remains at `3f2084c043eec0108bc70f12fd47f4d5060a53ff`; no release commit or new version has been selected. The five server rulesets are active. Prod updates currently have **no bypass actor**, so every update is blocked until a dedicated promotion App is installed. This is a fail-closed setup, not a claim that promotion is already operational.
+Status: server safeguards and the controller/workflow are implemented. The owner registered and installed the dedicated App on Quaked; its local key and restricted token have been verified. The two activation payloads below allow only that App to update Prod and create a version tag. All history rules retain no bypass. Prod remains at `3f2084c043eec0108bc70f12fd47f4d5060a53ff`; no release commit or new version has been selected. First real promotion, release and Pages publication remain unqualified until performed at an owner-selected commit.
 
 ## Enforcement boundary
 
@@ -28,7 +28,9 @@ The historical Prod commits `907d5cde` and `3f2084c0` were ported into Dev throu
 
 ## Pending owner setup and verification
 
-The current CLI token cannot list installed GitHub Apps (`user/installations` requires a GitHub App user token; the request returned403). The owner-created App `5370616` is now identified through its signed-in settings, but its key and repository installation remain pending. Keep its private key outside the repository/Actions; after verifying its key and installation, grant its Integration ID bypass only on `prod-updates` and `version-tag-create`. Do not add any bypass on either history ruleset or Dev history.
+The owner-created App `5370616` has installation `172763747`, limited to Quaked. Its key fingerprint matches GitHub, App JWT authentication verifies its identity, and a temporary installation token was checked for exactly Quaked with Contents/Workflows write and Actions read, then revoked. Keep its private key outside the repository/Actions. Grant its Integration ID bypass only on `prod-updates` and `version-tag-create`; do not add any bypass on either history ruleset or Dev history.
+
+Live verification also showed that GitHub omits `bypass_actors` from App ruleset responses: [that field requires write access to the ruleset](https://docs.github.com/en/rest/repos/rules#get-a-repository-ruleset). Giving the promotion App Administration write would let it weaken its own protections. Instead, the same standalone controller uses the operator's existing authenticated GitHub CLI only for five fixed ruleset GETs. The private config binds an absolute trusted `ghPath`; the reader resolves and checks that executable, fixes the host/method/endpoints, strips ambient tokens/debugging, disables prompts and limits execution to 30 seconds and 1 MiB. Missing actor lists or unreadable policies still reject promotion. The App retains only its original permissions and performs the fresh source/CI checks and atomic ref update. The operator credential remains privileged within the existing trusted local account boundary, although this reader issues no writes.
 
 The existing package version `0.132.3` is already released, so the future selected release commit needs a new version (or a proven same-commit retry). No current commit is being selected for release by this configuration task.
 
@@ -38,10 +40,10 @@ Bluey `agent_whoami` still reports the session retired; same-session reactivatio
 
 | Ruleset | ID | Rule | Bypass |
 | --- | --- | --- | --- |
-| `prod-updates` | 25348047 | All Prod updates restricted | None until dedicated App activation |
+| `prod-updates` | 25348047 | All Prod updates restricted | Only Integration `5370616` |
 | `prod-history` | 25348048 | Prod non-FF/deletion/recreation forbidden | None, including the App |
 | `dev-history` | 25348049 | Dev non-FF/deletion forbidden | None |
-| `version-tag-create` | 25348916 | New `v*` tags restricted | None until dedicated App activation |
+| `version-tag-create` | 25348916 | New `v*` tags restricted | Only Integration `5370616` |
 | `version-tag-history` | 25348918 | Existing `v*` tags cannot update/delete | None, including the App |
 
 The Pages environment allows only the `Prod` branch. The deployed site has not
@@ -58,8 +60,9 @@ rulesets, but they have no ordinary push bypass while these rules are active.
 
 The owner registered [Quaked Cut Release](https://github.com/settings/apps/quaked-cut-release),
 App ID `5370616`, owned by `codemeasandwich`. Its signed-in settings and permissions
-were checked on 18 October 2026. Key creation, repository installation and private
-controller setup remain pending; registration alone does not activate promotion.
+were checked on 18 October 2026. The owner generated its key and approved installation
+only on Quaked. Installation identity and restricted authentication were verified;
+registration alone is not proof of a working production release.
 The [reviewable App manifest](release-app-manifest.json) requires repository
 Contents write (update existing refs), Workflows write (promotion can include
 workflow changes already committed on Dev), and Actions read (verify qualification
@@ -91,6 +94,9 @@ The controller validates these live policies and revokes each repository-scoped
 installation token on every subsequent success/rejection path. API calls have
 30-second limits. Revocation failure reports whether Prod was acknowledged;
 unknown or mismatched ref readback requires inspection before retrying.
+Set `ghPath` to the installed GitHub CLI and authenticate the operator normally with
+`gh auth login`. That login must be able to inspect ruleset bypass lists. No operator
+token is extracted or passed to the App, and no App token/key is passed to the CLI.
 
 ### Select and promote a release
 
@@ -162,7 +168,9 @@ proxy isolation, range and traversal assertions remain. Production `tools/serve.
 and the 5-second request / 15-second parent deadlines are unchanged. A fresh Dev
 CI run is still required to verify this correction on the hosted runners.
 
-App activation and the first real selected release remain pending owner key and
-installation setup. No installation-token mint, Prod movement, version tag creation
-or real release publication has been performed by this configuration work.
-Source/build verification must not be described as that live acceptance.
+App authentication and installation scope are verified separately from policy
+activation and source qualification. The first real selected release remains
+pending an unused version and explicit owner-selected Dev commit with successful
+CI. No Prod movement, version tag creation or real release publication has been
+performed by this configuration work. Source/build and read-only authentication
+verification must not be described as that live publication acceptance.
