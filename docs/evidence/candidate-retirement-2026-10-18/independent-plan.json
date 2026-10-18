@@ -1,0 +1,141 @@
+{
+  "status": "Bounded independent PLAN only; no file deletion/edits/test/build by planner. Owner explicitly authorizes dated-candidate retirement and original-versus-official comparisons.",
+  "base": "01291eb5bb6411f0bc8fbeb1c552f6be3d525b1f",
+  "verdict": "Sound with explicit contract replacements below; final review required before deletion/landing qualification.",
+  "scope": "Only dated assets/game/textures/candidates-* directories and their active test/diagnostic dependencies. Official map payloads/index/sourceguards, originalPAKs/verifiednativePNGs, existing sourceproofs and unrelated authoring assets stay intact. Do not opportunistically delete oldunboundQ95 or raw tools/source artwork.",
+  "minimalApproach": [
+    "Keep111selected encoderJSON as small metadata only in existing assets/authoring/texture_sheets/official-metadata plus parent current114identity/122alias fixture; copy no images or oldpreview tree. Currentfile dereferences come only from accepted official bindings/roleSHA and verifiedoriginals. Old authoringDiffuse/candidate/partner-master strings, if retained in encoderJSON, are historical labels and never read by current tests/UI.",
+    "Derive current resolution from real index binding+nativekey, not namealone. Both rock3_8identities and exactsource aliases remain separate; no production allowlist/selector broadening. Metadata stays source/testingauthoring data, not new runtime architecture.",
+    "Keep original receipts/proofs byte-exact as historical. Add one explicit retirement ledger with deletedpaths/hashes, survivingofficial roleSHA/identities, old sourcecommit and retired-contract\u2192current-contract mapping. Do not rewrite oldproofs or claim they remain runnable after intentional draft removal.",
+    "Change tests first, run them with candidate dirs absent in disposable/isolated testtree, then delete only authorizedcandidate directories and verify official/source/index byteconservation. No blanketskip, missingfile fallback, reduced normalgate or unrelatedrenderer changes."
+  ],
+  "eightDraftOnlyRetirements": {
+    "files": [
+      "tests/official_texture_character_stone_check.py",
+      "tests/official_texture_realism_edges_check.py",
+      "tests/official_texture_quiet_authoring_check.py",
+      "tests/official_texture_wall145_v3_check.py",
+      "tests/official_texture_aged_authoring_check.py",
+      "tests/official_texture_stone3_joint_check.py",
+      "tests/official_texture_fidelity_test.py",
+      "tests/official_texture_photographic_test.py"
+    ],
+    "reason": "They exercise historical sourceprojection/photographicfinishing/repair/protected-draft pixels, rather than current shippedsource/native/runtime behavior. Their runtime/data provenance remains historical after ownerpolicy cutover.",
+    "method": "Remove from active tests or retain verbatim outside active test discovery as historical snapshot; simplest Git01291+fileSHA ledger gives recovery without copies. Never replace them with passing no-op/skip stubs.",
+    "gateTrace": "package.json normalhook runs *_contract_test.mjs plus tools/distribution/engine-tests.mjs explicitengine suite list; none of these8Pythonfiles is directly invoked. Narrow reference search found only historical source/evidence references, not package/precommit/engine callers. Still run unchanged fullmaintainedgate and existingstandard4x26checks to catch data-driven dependencies;16literal refs is not a proof that all indirect records are independent."
+  },
+  "eightActiveAdapters": {
+    "tests/official_texture_q92_test.js": "Keep actual111/nativePAK/UV/heightR/XYZ/alpha/cache/Classic/case/unknown/pairedsteel/bothrock and pergamecontracts. Firstcase uses currentofficial fixture and metadata; remove only draftmaster/previouspreview/producerreplay custody portions. Replace draftencoder reconstruction with independent decodedofficialheight\u2192Q92XYZ math for all111.",
+    "tests/official_texture_standard.js": "Use currentofficial metadata/identity fixture to resolve historicalcohort entries to current selectedbindings; retain native/hash/profile/sourceguards and useful immutable ledger metadata. Stop requiring historicalcandidate/preview imagebytes.",
+    "tests/official_texture_masonry_test.js": "Retain realPAK/public six-cohort checks and native/Classic/unknown behavior. Remove candidate trialfetch and candidate-pixel comparisons; check currentofficial image/height/XYZ and current bindinghashes.",
+    "tests/official_texture_expansion_test.js": "Same treatment: preserve current6expansion native/public identity/source/UV/Classic checks, replace candidateauthority with currentofficial fixture.",
+    "tests/official_texture_realism_preflight_test.js": "Retain actual6source/public checks as an installed-runtime suite; stop candidateindexclone/override and draftmasterreplay. Do not delete the whole suite merely because preflight is in its name. If retiring trulyduplicate assertions, document exact coverage in maintained q92; safer minimal route is adapt.",
+    "tests/official_texture_layered_height_test.py": "Use realoriginalnative+currentofficialdiffuse, build temporary recipe with authoringDiffuseSha updated only in that disposablefixture. Preserve all11invalid/conflictingpreflight refusals, exacthalf-open planeorder, changedstrength D/Hconservation and disposablelogical/callerrelative/externaloutput mapping. Compare deterministic temporaryoutputs across cases; do not compare re-encoded lossy diffuse to approvedofficial bytes.",
+    "tests/official_texture_trial.js": "Load realcurrentindex/official maps and verifiedoriginalPNG; no candidateindexoverride/batchmanifest path. Currentfixture may filtercohorts but is not an alternate textureauthority. Preserve Front/\u00b155/relieftoggles/repeats and originalvsfinalhalfquarter panels.",
+    "tests/official_texture_gameplay_trial.js": "Use actualcurrentindex upgrades and originalPAK/nativeIDs; no injectedcandidatecatalogue. Preserve realmap joins/UV/source probes, original-vs-official/Classic checks. Spatialvariable candidates meaning possiblefacejoins need not be mechanically renamed."
+  },
+  "independentNormalContract": {
+    "input": "Actual decodedfinalofficialheightR and accepted strengths/caps/currentdimensions. For foursteel transitions use realpartnerofficialheight in directedYhalo; no candidate neighbourmaster.",
+    "oracle": "Independent explicit periodicweightedderivative/area scaling/softcap/quantization and independentQ92grayscale encoding; do not call production craft/normals_from_height to generate expecteddata. Compare actualthreeofficialXYZchannelbytes. Existingdirectsteel independentmath is reusable shape; extend to all111 without claiming equality to JSdouble-smoothed derivednormal route.",
+    "keep": "Actual publicloader R\u2192normalalpha, authoredchannel reconstruction and NormalInputs/cache/sourceguard behavior remain authoritative. Runtime ordinarybranches unchanged."
+  },
+  "criticalConcerns": [
+    "Lossy Q92diffuse re-encoding is not idempotent. RealCLItests may deterministically create temporary outputs from finalofficial input, but must not claim to reconstruct approveddiffuse/master or overwrite oldsource-bound recipe hashes. Currentofficial maps remain byte-exact and visual comparisons onlyoriginalvsfinal.",
+    "Metadata111artworks versus114identities/122aliases must retain allidentity/profile/partnerheight context. SelectednormalRecipe and profile data must not be lost when removing bulky candidateJSON.",
+    "Officialheight+XYZ math checks replace a specific retired authoring-reproduction contract, not source-to-photoreal art acceptance. Document the test-policy cutover honestly. Prior art acceptance stays tied to unchangedofficial SHA.",
+    "Do not delete masonry/expansion/realism publicruntime controls wholesale or drop the two realrock variants, pairedsteel halo, layerplane alpha/cache/source tests.",
+    "Remove datedcandidate references from active tests/helpers/browser/CLI fixturepaths; historical logs may retain them as history. Run standard4xcontract26 and maintainedgates withoutmissingasset skips to reveal indirect datarecord dependencies."
+  ],
+  "minimalPaths": "8active adapters above;8draftonly active-test retirements; all authorized datedcandidate directories;111smallselectedmetadata/currentfixture plus one retirementledger and shortdocs. No loader/renderer/normalmath/packaging/hook architecture change expected.",
+  "requiredVerification": [
+    "Currentofficialrole/index/source SHA unchanged; everyselected identity still resolves to official; no livecandidatebinding/lookup.",
+    "ActualPAK public111+owner/tech/historical/native/Classic/UV/normal/cache/unknown/case/rock/steelcontrols pass; independentall111height\u2192Q92XYZ exactmath passes.",
+    "LayeredCLI4methods retain11negativecases and realoriginal+official temporaryfixture tests, including canonicaloutput isolation; no approved-lossy-idempotence claim.",
+    "Browser originalvscurrentofficial source/half/quarter/repeats and Front/\u00b155POM work withoutoverrides; gameplaycurrentcatalogue/nativejoin checks remain.",
+    "Existingpack/standard4x and unchangednormalgate pass withallcandidates absent. Candidate deletion cannot change shippedmaps/selected571closure; actualcollector limits/readback retained.",
+    "Independent finalreview exactdeletion/code/metadata scope and actualcurrentevidence beforecommit/push; ownership/primarydirtywork preserved."
+  ],
+  "inputs": [
+    {
+      "file": "tests/official_texture_character_stone_check.py",
+      "sha256": "9500443218b4ac7b3ccdcb47de4d8e4f29f81ccdbecb5c7769d3f57b71bb2e70",
+      "action": "retire draft-only active check"
+    },
+    {
+      "file": "tests/official_texture_realism_edges_check.py",
+      "sha256": "55c0149aa647526adc5f1b02ae06cb8484b0429750a33bd494680f645c7efe0a",
+      "action": "retire draft-only active check"
+    },
+    {
+      "file": "tests/official_texture_quiet_authoring_check.py",
+      "sha256": "e6fb4d608788dc371310ba8e3ddd4a768e7ffd666a9fcfe8902389e1cb91a42f",
+      "action": "retire draft-only active check"
+    },
+    {
+      "file": "tests/official_texture_wall145_v3_check.py",
+      "sha256": "d32ea073c4e51c8266bdc7798f4e4e42dba925a44b050403e88d4dd8eeb4996f",
+      "action": "retire draft-only active check"
+    },
+    {
+      "file": "tests/official_texture_aged_authoring_check.py",
+      "sha256": "e1fa23a990cd032512ea30a5cf3fc1e89f47503e15d228f3023a314515e70d82",
+      "action": "retire draft-only active check"
+    },
+    {
+      "file": "tests/official_texture_stone3_joint_check.py",
+      "sha256": "545027b4a80efa5e2231da6bec53cf77c8c0af89bc7b506c5bde3a2f5762f035",
+      "action": "retire draft-only active check"
+    },
+    {
+      "file": "tests/official_texture_fidelity_test.py",
+      "sha256": "896a48a8c4f402933018f0d78b6e602f851166eb52acc58db0b494c175f108ac",
+      "action": "retire draft-only active check"
+    },
+    {
+      "file": "tests/official_texture_photographic_test.py",
+      "sha256": "cb23f4ac88b25f1663ef9f82dc81eccc0cec1bb529e2e3d7b245c093375ae8e9",
+      "action": "retire draft-only active check"
+    },
+    {
+      "file": "tests/official_texture_q92_test.js",
+      "sha256": "d73dd269178c251ab2a6b398e09e1830d7ad84bc70b12bfa68adf9afbd1c4b4d",
+      "action": "adapt current official/runtime contract"
+    },
+    {
+      "file": "tests/official_texture_standard.js",
+      "sha256": "e663e839f1911536c092f53df3abaec14a7537cb13aa00beadfa9a6a8436a67c",
+      "action": "adapt current official/runtime contract"
+    },
+    {
+      "file": "tests/official_texture_masonry_test.js",
+      "sha256": "30c42a233930a0cb240f00da84392c5db84dfb899625fd0498ee4d50a3849138",
+      "action": "adapt current official/runtime contract"
+    },
+    {
+      "file": "tests/official_texture_expansion_test.js",
+      "sha256": "ed5aa7054da7c7f94dd758a06eb7235a133b179b348e980aa5b1db3c8b5f83d1",
+      "action": "adapt current official/runtime contract"
+    },
+    {
+      "file": "tests/official_texture_realism_preflight_test.js",
+      "sha256": "62e7aefdc380c802699517d78c72f3774d9aa668ccb45779ea1fd014ae0c7aee",
+      "action": "adapt current official/runtime contract"
+    },
+    {
+      "file": "tests/official_texture_layered_height_test.py",
+      "sha256": "6ce53744e7c7bb52e4c5830ff11541c582a6bd37db0e0b48c8de3135c16f1df7",
+      "action": "adapt current official/runtime contract"
+    },
+    {
+      "file": "tests/official_texture_trial.js",
+      "sha256": "47dd4acf0f29393eb63319a6ab0ae85d4bdb3ffe7e8b75189c3c9ada95ffcb5b",
+      "action": "adapt current official/runtime contract"
+    },
+    {
+      "file": "tests/official_texture_gameplay_trial.js",
+      "sha256": "8761210dfea279c2053ecef4c0dad3779f81082225d1cbb675afa1508604d728",
+      "action": "adapt current official/runtime contract"
+    }
+  ],
+  "nextOwner": "Parent implements in official-candidate-retirement WT after serialized incomingDev integration; publicagent owns currentofficial metadata/q92/standard/math. Reviewer awaits exactfinalcandidate; no newcleanup/campaign audit."
+}

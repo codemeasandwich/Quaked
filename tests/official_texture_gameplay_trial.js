@@ -1,8 +1,8 @@
+import {AssetFetch} from '../src/platform/distribution.js';
 // Public native E2M1 trial: actual loader, map, server, player and world materials.
-// Only test-local candidate selection, controls and evidence capture are added.
+// Only diagnostic controls and evidence capture are added; official selection is unchanged.
 import * as THREE from 'three';
 import '../src/newer/install.js';
-import {ResourceURL} from '../src/platform/resource_paths.js';
 import {R_GlassTextureKey,R_NewerTexturesRevert,R_NewerTexturesForModel} from '../src/newer/render/r_newertextures.js';
 import {Cvar_SetStorageWritable,Cvar_SetValue,Cvar_VariableValue} from '../src/engine/common/cvar.js';
 import {R_FlashlightToggle,R_FlashlightBeam} from '../src/newer/render/r_flashlight.js';
@@ -22,31 +22,31 @@ const mapPath='maps/'+fixture.map+'.bsp';
 document.querySelector('strong').textContent='Actual '+fixture.map.toUpperCase()+': photographic texture joins';
 document.title='Quaked — actual '+fixture.map.toUpperCase()+' texture join';
 document.querySelector('#restart').textContent='Restart '+fixture.map.toUpperCase();
-const receipt={schema:1,state:'preparing',priorFailedSetup:'E1M1 was rejected: the bundled runtime map lacks tech08_3. Registered-pack E1M1 faces1115/1125 were not the active game map. This fixture now uses actual E2M1 and discovers its own join.',qualification:'Candidate-only actual-level trial; visual acceptance and other-map coverage remain separate.',art:'hd',relief:false,view:'near',sceneFrames:0,errors:[],checks:[],materials:[]};
+const receipt={schema:1,state:'preparing',priorFailedSetup:'E1M1 was rejected: the bundled runtime map lacks tech08_3. Registered-pack E1M1 faces1115/1125 were not the active game map. This fixture now uses actual E2M1 and discovers its own join.',qualification:'Current accepted official materials versus original game textures in the actual level; other-map coverage remains separate.',art:'hd',relief:false,view:'near',sceneFrames:0,errors:[],checks:[],materials:[]};
 const publish=()=>{statusNode.textContent=`${receipt.state} · ${receipt.art} · ${receipt.view} · relief ${receipt.relief?'on':'off'} · ${receipt.sceneFrames} native frames${receipt.errors.length?' · '+receipt.errors.at(-1):''}`;receiptNode.textContent=JSON.stringify(receipt,null,2);};
 const check=(ok,label)=>{receipt.checks.push({passed:!!ok,label});if(!ok)throw Error(label);};
 const fail=error=>{receipt.errors.push(String(error.stack||error));receipt.state='failed';publish();};
 window.addEventListener('error',e=>fail(e.error||e.message));window.addEventListener('unhandledrejection',e=>fail(e.reason));
 for(const type of ['click','mousedown','mouseup','keydown','keyup','pointerdown','pointerup','touchstart','touchend'])panel.addEventListener(type,e=>e.stopPropagation());
-const realFetch=globalThis.fetch.bind(globalThis),objectURLs=[];
+const objectURLs=[];
 let disposed=false,renderer=null,originalRender=null,epoch=0,lastPublish=0,frameRequested=false,receiptRequested=false;
 let restorePresentation=()=>{};
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 async function until(test,label,ms=180000){const deadline=performance.now()+ms;while(!test()){if(disposed)throw Error('Preview stopped');if(performance.now()>deadline)throw Error(label+' exceeded bounded setup deadline');await sleep(100);}}
 const sha=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),n=>n.toString(16).padStart(2,'0')).join('');
-async function fetchBytes(path){const response=await realFetch(ResourceURL(path),{cache:'no-store'});if(!response.ok)throw Error(path+': HTTP '+response.status);return response.arrayBuffer();}
+async function fetchBytes(path){const response=await AssetFetch(path,{cache:'no-store'});if(!response.ok)throw Error(path+': HTTP '+response.status);return response.arrayBuffer();}
 function download(url,name){const a=document.createElement('a');a.href=url;a.download=name;a.textContent='Download '+name;a.style.display='block';panel.append(a);}
 function saveReceipt(){const url=URL.createObjectURL(new Blob([JSON.stringify({...receipt,capturedAt:new Date().toISOString()},null,2)],{type:'application/json'}));objectURLs.push(url);download(url,`official-texture-${receipt.art}-${receipt.view}-${Date.now()}.json`);}
-function stop(){if(disposed)return;disposed=true;epoch++;renderer?.setAnimationLoop(null);if(renderer&&originalRender)renderer.render=originalRender;restorePresentation();globalThis.fetch=realFetch;receipt.state='stopped; reload page to resume';publish();}
+function stop(){if(disposed)return;disposed=true;epoch++;renderer?.setAnimationLoop(null);if(renderer&&originalRender)renderer.render=originalRender;restorePresentation();receipt.state='stopped; reload page to resume';publish();}
 document.querySelector('#stop').onclick=stop;window.addEventListener('pagehide',()=>{stop();objectURLs.forEach(url=>URL.revokeObjectURL(url));},{once:true});
 window.officialTextureGameplayTrial={receipt,stop};publish();
 try{
  // Avoid a saved mission-pack selection or saving this page's cvar experiments.
  const url=new URL(location.href);url.searchParams.set('game',fixture.game);history.replaceState(null,'',url);Cvar_SetStorageWritable(false);
- const specs=JSON.parse(new TextDecoder().decode(await fetchBytes('newer/textures/candidates-2026-10-12/trial.json')));
+ const specs=JSON.parse(new TextDecoder().decode(await fetchBytes('tests/fixtures/official-textures.json'))).trials;
  const index=JSON.parse(new TextDecoder().decode(await fetchBytes('newer/textures/index.json'))),names=fixture.aliases.map(alias=>specs[alias].name||alias);
  receipt.fixture=fixture;
- receipt.candidates={};
+ receipt.officialMaterials={};
  for(const alias of fixture.aliases){
   const spec=specs[alias],name=spec.name||alias;check(!!spec,name+': trial specification present');
   const diffuse=await fetchBytes('newer/textures/'+spec.file),height=await fetchBytes('newer/textures/'+spec.height);
@@ -54,20 +54,12 @@ try{
   const originalBytes=await fetchBytes(spec.original);check(await sha(originalBytes)===spec.originalSha256,name+': original reference file SHA256 matches');
   const bitmap=await createImageBitmap(new Blob([originalBytes],{type:'image/png'}));const canvas=document.createElement('canvas');canvas.width=bitmap.width;canvas.height=bitmap.height;const ctx=canvas.getContext('2d');ctx.drawImage(bitmap,0,0);bitmap.close();
   const native=new THREE.DataTexture(new Uint8Array(ctx.getImageData(0,0,canvas.width,canvas.height).data),canvas.width,canvas.height,THREE.RGBAFormat);const identity=R_GlassTextureKey(native);native.dispose();
-  index.ordinaryVariants??={};index.ordinaryVariants[name]??={};index.ordinaryVariants[name][identity]={file:spec.file,normal:{file:spec.height,normalChannels:spec.normalChannels,strength:spec.strength,cap:spec.cap}};
-  receipt.candidates[name]={...spec,expectedNativeIdentity:identity};
+  const binding=index.ordinaryVariants?.[name]?.[identity]||{file:index.textures?.[name],normal:index.normals?.[name]};
+  check(binding.file===spec.file&&binding.normal?.file===spec.height,name+': current accepted official binding');
+  check(!spec.nativeKey||identity===spec.nativeKey,name+': actual original identity matches');
+  receipt.officialMaterials[name]={...spec,expectedNativeIdentity:identity};
  }
- index.version=String(index.version)+'-official-gameplay-trial';
- // COM_NewerJSON prefers packed JSON over fetch. Use the supported loose-file
- // fallback in this page so an optional stale newer.pak cannot bypass this
- // exact candidate catalogue. Native game packs remain untouched.
- globalThis.fetch=(input,init)=>{
-  const address=new URL(typeof input==='string'||input instanceof URL?input:input.url,document.baseURI);
-  if(address.pathname.endsWith('/newer.pak'))return Promise.resolve(new Response(null,{status:404}));
-  if(address.pathname.endsWith('/newer/textures/index.json'))return Promise.resolve(new Response(JSON.stringify(index),{headers:{'Content-Type':'application/json'}}));
-  return realFetch(input,init);
- };
- receipt.assetRouting='Page-local loose Newer assets; native PAK routing unchanged';
+ receipt.assetRouting='Current accepted official index; original native game PAK routing unchanged';
  // A Bestiary first-sighting may borrow the camera and cover the measured join.
  // Isolate that presentation only in this diagnostic page. Keep the real world,
  // player, material, texture and normal paths; restore the hooks on stop/unload.
@@ -183,7 +175,7 @@ try{
   split.R_DemoSplitRelease(true);for(const[name,value]of Object.entries({r_hdr:1,r_dynres:0,viewsize:120,crosshair:0,r_drawviewmodel:0}))Cvar_SetValue(name,value);
   const native=COM_FindFile(mapPath);receipt.map={name:cl.worldmodel.name,sha256:await sha(native.data),faces:cl.worldmodel.surfaces.length};
   if(fixture.map==='e2m1')receipt.independentSourceProbe={map:'maps/e2m1.bsp',sha256:'de2f7b284ee64b24cdfe545ea4b09abdf9cce657f7ba6b1aab7ef06fecf2c26a',faces:5976,tech08_3Faces:275,tech08_4Faces:7,joinFaces:[4819,4821],joinEdge:[[856,-320,256],[856,-96,256]],qualification:'Native model/hull probe; the live fixture still discovers and checks actual runtime geometry.'};
-  for(const name of names){const t=cl.worldmodel.textures.find(t=>t?.name===name);check(!!t,name+': present in '+mapPath);check(R_GlassTextureKey(t.gl_texture)===receipt.candidates[name].expectedNativeIdentity,name+': actual native identity matches candidate authority');}
+  for(const name of names){const t=cl.worldmodel.textures.find(t=>t?.name===name);check(!!t,name+': present in '+mapPath);check(R_GlassTextureKey(t.gl_texture)===receipt.officialMaterials[name].expectedNativeIdentity,name+': actual native identity matches candidate authority');}
   const inspection=fixture.inspectionFaces?.[new URL(location.href).searchParams.get('inspect')==='floor'?'floor':'panel'];
   anchor=inspection!==undefined?inspectSurface(inspection):findJoin();receipt.join=anchor;
   if(inspection!==undefined){document.querySelector('strong').textContent='Actual '+fixture.map.toUpperCase()+': photographic surface';receipt.qualification='Actual static-world single-surface trial; no cross-material join claim.';}

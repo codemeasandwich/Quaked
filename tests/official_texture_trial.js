@@ -7,27 +7,20 @@ import {R_NormalMapFor} from '../src/newer/render/gl_normals.js';
 import * as mode from '../src/newer/mode.js';
 import * as post from '../src/newer/render/gl_post.js';
 import * as vars from '../src/engine/common/cvar.js';
-const candidate='newer/textures/candidates-2026-10-12/';
-// Explicit review manifests can retain candidate paths after source integration.
-// Only this diagnostic page receives these bindings; it never writes the index.
+const manifest='tests/fixtures/official-textures.json';
+const accepted=await fetch(manifest).then(r=>r.json());
 const batch=new URL(location.href).searchParams.get('batch');
-// Keep new-material GPU review bounded; the separate public suite checks the full catalogue.
-const manifest=({realism:'realism-trial.json',character:'character-trial.json',aged:'aged-trial.json',industrial:'../candidates-2026-10-17/industrial-trial.json',owner:'../candidates-2026-10-17/owner-q92-trial.json',legacytech:'../candidates-2026-10-17/legacy-tech-q92-trial.json',nexteight:'../candidates-2026-10-17/next-eight-trial.json',stonetrims:'../candidates-2026-10-17/stone-trims-trial.json',building:'../candidates-2026-10-17/building-trial.json',crosspack:'../candidates-2026-10-17/crosspack-trial.json'})[batch]||'trial.json';
-const specs=await AssetFetch(candidate+manifest).then(r=>r.json()),index=await fetch('assets/game/textures/index.json').then(r=>r.json());
+const batchKey=({stonetrims:'stone-trims',nexteight:'next-eight',legacytech:'legacy-tech-q92',owner:'owner-q92'})[batch]||batch;
+const names=accepted.batches[batchKey];
+const specs=names?Object.fromEntries(names.map(name=>[name,accepted.trials[name]])):accepted.trials;
+const index=await AssetFetch('newer/textures/index.json').then(r=>r.json());
 document.querySelector('#asset-count').textContent=String(Object.keys(specs).length);
 document.querySelector('#asset').replaceChildren(...Object.keys(specs).map(name=>{const option=document.createElement('option');option.value=option.textContent=name;return option;}));
 const originals={},finished={},textures={},checks=[];
 const check=(ok,label)=>{checks.push({passed:!!ok,label});if(!ok)throw Error(label);};
 async function image(src,sha){const r=await AssetFetch(src);check(r.ok,'Image available: '+src);const bytes=await r.arrayBuffer();const digest=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('');check(digest===sha,'Image SHA matches trial: '+src);const url=URL.createObjectURL(new Blob([bytes]));try{return await new Promise((resolve,reject)=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=()=>reject(Error('Image unavailable: '+src));i.src=url;});}finally{URL.revokeObjectURL(url);}}
 function pixels(image){const c=document.createElement('canvas');c.width=image.width;c.height=image.height;const ctx=c.getContext('2d',{willReadFrequently:true});ctx.drawImage(image,0,0);return new Uint8Array(ctx.getImageData(0,0,c.width,c.height).data);}
-const receipt={qualification:'Candidate-only material/source trial. No gameplay catalogue edit or owner appearance acceptance.',manifest,checks,assets:{}};
-const realFetch=globalThis.fetch.bind(globalThis);
-// Only this page sees these candidate bindings, keyed by the actual native identity.
-globalThis.fetch=(input,init)=>{
- const url=new URL(typeof input==='string'?input:input.url,location.href);
- if(url.pathname.endsWith('/assets/game/textures/index.json'))return Promise.resolve(new Response(JSON.stringify(index),{headers:{'Content-Type':'application/json'}}));
- return realFetch(input,init);
-};
+const receipt={qualification:'Original game texture versus the current accepted official material; no catalogue overrides or generated draft comparisons.',manifest,checks,assets:{}};
 for(const c of [post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,mode.r_newer_lighting,mode.r_newer_normals,mode.r_newer_water,mode.r_newer_textures])if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);
 vars.Cvar_SetValue('r_hdr',1);post.r_dynres.value=0;post.r_bloom.value=0;post.r_volumetric.value=0;post.r_bounce.value=0;
 mode.r_newer_water.value=0;mode.r_newer_textures.value=1;mode.r_newer_normals.value=1;
@@ -45,11 +38,10 @@ try{
   t.colorSpace=THREE.SRGBColorSpace;t.wrapS=t.wrapT=THREE.RepeatWrapping;t.generateMipmaps=true;t.minFilter=THREE.LinearMipmapLinearFilter;t.magFilter=THREE.LinearFilter;t.needsUpdate=true;
   const key=R_GlassTextureKey(t),actualName=specs[name].name||name;
   if(specs[name].nativeKey)check(key===specs[name].nativeKey,name+': actual native identity matches');
-  index.ordinaryVariants??={};index.ordinaryVariants[actualName]??={};
-  index.ordinaryVariants[actualName][key]={file:specs[name].file,normal:{file:specs[name].height,normalChannels:specs[name].normalChannels,strength:specs[name].strength,cap:specs[name].cap}};
+  const binding=index.ordinaryVariants?.[actualName]?.[key]||{file:index.textures?.[actualName],normal:index.normals?.[actualName]};
+  check(binding.file===specs[name].file&&binding.normal?.file===specs[name].height,name+': selected accepted official binding');
   textures[name]=t;
  }
- index.version=String(index.version)+'-source-locked-trial';
  for(const[name,t]of Object.entries(textures)){
   const old=t.image;R_NewerTextureUpgrade(specs[name].name||name,t);const deadline=performance.now()+60000;
   while(t.userData.newerPending&&performance.now()<deadline)await new Promise(r=>setTimeout(r,30));
@@ -97,5 +89,5 @@ try{
  }
  for(const id of ['asset','size','repeat','relief','angle'])document.querySelector('#'+id).onchange=draw;
  document.querySelector('#render').onclick=draw;draw();
- window.addEventListener('pagehide',()=>{updates.forEach(f=>f());material?.dispose();geo.dispose();lightmap.dispose();Object.values(textures).forEach(t=>t.dispose());post.R_PostShutdown();renderer.dispose();globalThis.fetch=realFetch;},{once:true});
+ window.addEventListener('pagehide',()=>{updates.forEach(f=>f());material?.dispose();geo.dispose();lightmap.dispose();Object.values(textures).forEach(t=>t.dispose());post.R_PostShutdown();renderer.dispose();},{once:true});
 }catch(error){receipt.error=String(error.stack||error);document.querySelector('#receipt').textContent=JSON.stringify(receipt,null,2);window.officialTextureTrial=receipt;throw error;}

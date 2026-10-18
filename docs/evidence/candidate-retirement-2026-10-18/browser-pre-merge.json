@@ -1,0 +1,48 @@
+{
+  "qualification": "Pre-authoring-image-merge finite browser smoke; must reload current code after integration",
+  "url": "http://127.0.0.1:54348/tests/official_texture_trial.html?batch=stonetrims",
+  "browserTab": "20",
+  "preparedMaterials": 8,
+  "checks": 184,
+  "failedChecks": 0,
+  "shaderErrors": [],
+  "consoleErrors": [],
+  "drawsObserved": [
+    {
+      "name": "br_trim1_1",
+      "view": "half",
+      "comparisonDimensions": [
+        64,
+        32
+      ],
+      "repeat": 1,
+      "angleDegrees": 0,
+      "relief": false
+    },
+    {
+      "name": "br_trim1_1",
+      "view": "quarter",
+      "comparisonDimensions": [
+        32,
+        16
+      ],
+      "repeat": 3,
+      "angleDegrees": 55,
+      "relief": true
+    },
+    {
+      "name": "br_trim1_2",
+      "view": "half",
+      "comparisonDimensions": [
+        32,
+        32
+      ],
+      "repeat": 3,
+      "angleDegrees": -55,
+      "relief": true
+    }
+  ],
+  "gpuProjection": "Fixed480x480; reductions are the equal-resolution original/official2Dpanels, not camera distances",
+  "indexOverrides": false,
+  "candidateDirectoriesAbsent": true
+}

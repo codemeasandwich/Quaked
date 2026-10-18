@@ -2,10 +2,8 @@ import {ResourceURL} from '../src/platform/resource_paths.js';
 // Independent public-interface verification of the quality92 channel-normal world families.
 // Reads real PAK/BSP inputs, decodes real lossy WebPs and uses renderer endpoints.
 // Passing these checks is not visual acceptance or GPU gameplay verification.
-import { existsSync, readFileSync, writeFileSync, mkdtempSync, rmSync } from './helpers/resource_fs.mjs';
-import { execFileSync } from 'node:child_process';
-import { resolve, join } from 'node:path';
-import { tmpdir } from 'node:os';
+import { readFileSync, writeFileSync } from './helpers/resource_fs.mjs';
+import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 import * as THREE from 'three';
@@ -21,31 +19,20 @@ import { memberSearch, readMember, sha256 } from '../tools/pak_members.mjs';
 const root = resolve(import.meta.dirname, '..');
 const sourceRoot = process.env.QUAKED_GAME_ROOT ? resolve(process.env.QUAKED_GAME_ROOT) : root;
 const read = path => readFileSync(resolve(root,path));
-const trialPath='newer/textures/candidates-2026-10-12/realism-trial.json';
-const trial=JSON.parse(read(trialPath));
-const liveIndexBytes=read('newer/textures/index.json'), index=JSON.parse(liveIndexBytes);
+const trialPath='tests/fixtures/official-textures.json';
+const accepted=JSON.parse(read(trialPath));
 const names=['TF_Wood01','TF_Wood01c','TF_Stone_01','TF_Stone3','TF_Cliff2','TF_Cliff2b'];
-const receipt={entries:Object.entries(trial).map(([name,spec])=>({name,key:spec.nativeKey,binding:{file:spec.file,normal:{file:spec.height,normalChannels:spec.normalChannels,strength:spec.strength,cap:spec.cap}},source:JSON.parse(read(spec.original.replace(/\.png$/,'.json'))).source,sourceFile:spec.original,sourceFileSha256:spec.originalSha256,diffuseSha256:spec.diffuseSha256,heightSha256:spec.heightSha256,normalChannelSha256:spec.normalChannelSha256,encodingReceipt:'newer/textures/'+spec.file.replace(/-diffuse\.webp$/,'.json'),spec}))};
-// Keep candidate-path preflight after installation: verify every installed
-// binding against its immutable registration receipt and exact candidate bytes,
-// then exercise retained candidate paths in an isolated catalogue clone.
-// Before registration, the receipt must be absent and all six names unbound.
+const trial=Object.fromEntries(names.map(name=>[name,accepted.trials[name]]));
+const liveIndexBytes=read('newer/textures/index.json'), index=JSON.parse(liveIndexBytes);
 const installedReceiptPath='tools/texture_sheets/sources/official-world-2026-10-12/realism-registration.json';
-const installedReceipt=existsSync(resolve(root,installedReceiptPath))?JSON.parse(read(installedReceiptPath)):null;
-if(installedReceipt&&(!Array.isArray(installedReceipt.entries)||installedReceipt.entries.length!==names.length))throw Error('Incomplete realism registration');
+const installedReceipt=JSON.parse(read(installedReceiptPath));
+const receipt={entries:names.map(name=>{const entry=accepted.entries.find(e=>e.name===name);if(!entry)throw Error('Missing accepted realism material '+name);return {...entry,spec:trial[name]};})};
 for(const e of receipt.entries){
  if(index.textures?.[e.name]||index.glass?.[e.name])throw Error('Unexpected base/glass shadow: '+e.name);
  const live=index.ordinaryVariants?.[e.name]?.[e.key];
- if(installedReceipt){
-  const recorded=installedReceipt.entries.find(r=>r.name===e.name&&r.key===e.key);
-  if(!recorded||!isDeepStrictEqual(live,recorded.binding))throw Error('Live realism binding differs from registered receipt: '+e.name);
-  for(const field of ['sourceFile','sourceFileSha256','diffuseSha256','heightSha256','normalChannelSha256'])if(!isDeepStrictEqual(recorded[field],e[field]))throw Error('Registered realism differs from candidate '+field+': '+e.name);
-  if(!isDeepStrictEqual(recorded.source,e.source))throw Error('Registered realism native source differs: '+e.name);
-  if(live.normal.strength!==e.binding.normal.strength||live.normal.cap!==e.binding.normal.cap)throw Error('Registered realism relief differs: '+e.name);
-  const pairs=[[live.file,e.binding.file],[live.normal.file,e.binding.normal.file],...['x','y','z'].map(axis=>[live.normal.normalChannels?.[axis],e.binding.normal.normalChannels[axis]])];
-  for(const [registered,candidate]of pairs)if(!registered||!read('newer/textures/'+registered).equals(read('newer/textures/'+candidate)))throw Error('Installed realism map differs from preflight candidate: '+e.name);
- } else if(live)throw Error('Unreceipted realism installation: '+e.name);
- (index.ordinaryVariants??={})[e.name]={[e.key]:e.binding};
+ const recorded=installedReceipt.entries.find(r=>r.name===e.name&&r.key===e.key);
+ if(!recorded||!isDeepStrictEqual(live,recorded.binding))throw Error('Current realism differs from accepted registration: '+e.name);
+ for(const field of ['source','sourceFile','sourceFileSha256','diffuseSha256','heightSha256','normalChannelSha256'])if(!isDeepStrictEqual(recorded[field],e[field]))throw Error('Accepted realism metadata differs: '+e.name+' '+field);
 }
 const axes = ['x','y','z'];
 const roles = ['diffuse','height','normalX','normalY','normalZ'];
@@ -54,7 +41,7 @@ const check = (value,message) => { if(!value) throw Error(message); };
 const same = (actual,expected,message) => check(actual===expected, `${message}: ${actual} != ${expected}`);
 const equal = (actual,expected,message) => check(isDeepStrictEqual(actual,expected),message);
 const bytesEqual = (actual,expected,message) => check(Buffer.from(actual).equals(Buffer.from(expected)),message);
-function encodingReceipt(e) { return JSON.parse(read(e.encodingReceipt)); }
+function encodingReceipt(e) { const bytes=read(e.metadataFile);same(sha256(bytes),e.metadataSha256,e.name+' accepted encoding metadata hash');return JSON.parse(bytes); }
 function webpLossy(bytes,label) {
  same(bytes.toString('ascii',0,4),'RIFF',label+' RIFF'); same(bytes.toString('ascii',8,12),'WEBP',label+' WebP');
  same(bytes.readUInt32LE(4)+8,bytes.length,label+' bounded RIFF length');
@@ -145,28 +132,31 @@ function diffuseMatches( texture, expected, label ) {
 }
 
 
-Deno.test('six realism candidates pin actual native source identities and all30Q92 files',async()=>{
- equal(receipt.entries.map(e=>e.name).sort(),[...names].sort(),'exact candidate family');const sources=[];
+Deno.test('six accepted realism materials pin actual native source identities and all30Q92 files',async()=>{
+ equal(receipt.entries.map(e=>e.name).sort(),[...names].sort(),'exact official family');const sources=[];
  for(const e of receipt.entries){
   const enc=encodingReceipt(e);same(enc.factor,4,e.name+'4x');same(enc.quality,92,e.name+'q92');same(enc.lossless,false,e.name+'lossy');same(enc.normalLayout,'channels',e.name+'XYZ');same(sha256(read(e.sourceFile)),e.sourceFileSha256,e.name+'native reference hash');same(enc.originalSha256,e.sourceFileSha256,e.name+'encoder original');
-  same(sha256(read(enc.authoringDiffuse)),enc.authoringDiffuseSha256,e.name+'seam master provenance');same(e.binding.normal.strength,enc.profile.strength,e.name+'strength');same(e.binding.normal.cap,enc.profile.cap,e.name+'cap');
+  same(e.binding.normal.strength,enc.profile.strength,e.name+'strength');same(e.binding.normal.cap,enc.profile.cap,e.name+'cap');
   for(const [role,file,digest]of mapBindings(e)){const bytes=read('newer/textures/'+file);same(sha256(bytes),digest,e.name+'trial hash '+role);same(digest,enc.outputs[role].sha256,e.name+'encoding hash '+role);same(enc.outputs[role].quality,92,e.name+'quality '+role);same(enc.outputs[role].lossless,false,e.name+'lossy '+role);equal(enc.outputs[role].dimensions,[e.source.width*4,e.source.height*4],e.name+'4x '+role);webpLossy(bytes,e.name+role);}
   for(const use of e.source.uses){const actual=await nativeSource(e,use);try{same(actual.key,e.key,e.name+'actual key');same(sha256(actual.rgba),e.source.pixelSha256,e.name+'PAK colours');sources.push({name:e.name,key:actual.key,pixelSha256:sha256(actual.rgba),...actual.source});}finally{dispose(actual.texture);}}
  }
  bytesEqual(read('newer/textures/index.json'),liveIndexBytes,'live catalogue unchanged');
- const proof={qualification:installedReceipt?'Candidate-path preflight with exact live registration verified; no visual or release acceptance':'UNREGISTERED candidates exercised through in-memory catalogue; no installed/runtime acceptance',installedReceiptSha256:installedReceipt?sha256(read(installedReceiptPath)):null,liveIndexSha256:sha256(liveIndexBytes),trialSha256:sha256(read(trialPath)),occurrences:sources.length,candidates:receipt.entries.length,sources};
- if(process.env.QUAKED_REALISM_PREFLIGHT_RECEIPT)writeFileSync(process.env.QUAKED_REALISM_PREFLIGHT_RECEIPT,JSON.stringify(proof,null,2)+'\n');console.log('REALISM_PREFLIGHT '+JSON.stringify({candidates:proof.candidates,occurrences:proof.occurrences,liveIndexSha256:proof.liveIndexSha256}));
+ const proof={qualification:'Current official originals/materials verified; no draft assets or index overrides',installedReceiptSha256:installedReceipt?sha256(read(installedReceiptPath)):null,liveIndexSha256:sha256(liveIndexBytes),trialSha256:sha256(read(trialPath)),occurrences:sources.length,materials:receipt.entries.length,sources};
+ if(process.env.QUAKED_REALISM_PREFLIGHT_RECEIPT)writeFileSync(process.env.QUAKED_REALISM_PREFLIGHT_RECEIPT,JSON.stringify(proof,null,2)+'\n');console.log('REALISM_PREFLIGHT '+JSON.stringify({materials:proof.materials,occurrences:proof.occurrences,liveIndexSha256:proof.liveIndexSha256}));
 });
-Deno.test('actual current encoder reproduces each q92 diffuse, decoded-height-derived relief and authored normal byte-for-byte', () => {
- const temp=mkdtempSync(join(tmpdir(),'quaked-q92-independent-'));
- try { const visited=new Set();for(const e of receipt.entries) {
-  if(visited.has(e.encodingReceipt))continue;visited.add(e.encodingReceipt);const enc=encodingReceipt(e), stem=join(temp,e.name);
-  execFileSync('/usr/bin/python3',['tools/texture_sheets/encode_official_maps.py','--original',enc.original,'--diffuse',enc.authoringDiffuse,'--name',enc.name,'--output-stem',stem,'--strength',String(enc.profile.strength),'--cap',String(enc.profile.cap),'--normal-layout','channels'],{cwd:root,stdio:'pipe'});
-  const repeated=JSON.parse(readFileSync(stem+'.json'));
-  same(repeated.comparisonDivisor,2,e.name+' half-original primary comparison'); equal(repeated.comparisonDimensions,[e.source.width/2,e.source.height/2],e.name+' half-native distance view'); equal(repeated.secondaryComparisonDimensions,[e.source.width/4,e.source.height/4],e.name+' quarter-native secondary view');
-  for(const role of roles) bytesEqual(readFileSync(repeated.outputs[role].file),read(enc.outputs[role].file),e.name+' actual quality92 '+role+' encoder reproduction');
- }} finally { rmSync(temp,{recursive:true,force:true}); }
-});
+Deno.test('original and official materials share half- and quarter-native comparison dimensions', () => imagesFixture(async f => {
+ const {createCanvas}=await import(pathToFileURL(process.env.QUAKED_CANVAS_MODULE).href);const comparisons=[];
+ for(const e of receipt.entries){
+  const original=await f.decode(e.sourceFile,true),official=await f.decode(e.binding.file);
+  equal([official.width,official.height],[original.width*4,original.height*4],e.name+' actual4x');
+  for(const divisor of [2,4]){
+   const width=Math.max(1,Math.round(original.width/divisor)),height=Math.max(1,Math.round(original.height/divisor));
+   const reductions=[original,official].map(image=>{const src=createCanvas(image.width,image.height),sc=src.getContext('2d'),data=sc.createImageData(image.width,image.height);data.data.set(image.data);sc.putImageData(data,0,0);const out=createCanvas(width,height),ctx=out.getContext('2d');ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.drawImage(src,0,0,width,height);return ctx.getImageData(0,0,width,height).data;});
+   same(reductions[0].length,reductions[1].length,e.name+' equal distance dimensions');let error=0;for(let p=0;p<reductions[0].length;p+=4)for(let c=0;c<3;c++)error+=Math.abs(reductions[0][p+c]-reductions[1][p+c]);const mae=error/(width*height*3);check(Number.isFinite(mae),e.name+' actual reduced colour comparison');comparisons.push({name:e.name,divisor,width,height,mae});
+  }
+ }
+ console.log('OFFICIAL_DISTANCE_COMPARISONS '+JSON.stringify({qualification:'Measured original-versus-official reduced views; no invented numerical art-acceptance threshold',comparisons}));
+}));
 
 Deno.test('real q92 images install with original UVs and decoded grayscale XYZ plus decoded height R reaches R_NormalMapFor', () => imagesFixture(async f => {
  const installed=[],originals=new Map();
@@ -204,4 +194,4 @@ Deno.test('unknown registered native pixels are rejected and Classic requests no
 
 
 
-Deno.test('live index remains byte-for-byte unchanged after candidate preflight',()=>bytesEqual(read('newer/textures/index.json'),liveIndexBytes,'live catalogue unchanged'));
+Deno.test('live index remains byte-for-byte unchanged after official comparison',()=>bytesEqual(read('newer/textures/index.json'),liveIndexBytes,'live catalogue unchanged'));

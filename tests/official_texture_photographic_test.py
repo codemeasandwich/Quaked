@@ -68,7 +68,7 @@ class PhotographicFinishing(unittest.TestCase):
         cls.temp = tempfile.TemporaryDirectory(prefix='quaked-photographic-')
         cls.addClassCleanup(cls.temp.cleanup)
         cls.directory = Path(cls.temp.name)
-        retained = json.loads((resource_path(ROOT, 'newer/textures/candidates-2026-10-12/ceil1_1-photographic-v2.json')).read_text())
+        retained = json.loads((ROOT / 'tests/fixtures/texture-finishing-recipes.json').read_text())['recipes']['ceil1_1-photographic-v2']
         cls.original = fresh_reference('ceil1_1', retained['originalSha256'])
         cls.donor = resource_path(ROOT, SOURCES / 'ceil1_1-artistic-v2.png')
         cls.finished, cls.receipt = cls.run_cli('lamp', cls.original, cls.donor)
@@ -223,14 +223,15 @@ class PhotographicFinishing(unittest.TestCase):
                 self.assertEqual(float(difference.mean()), pair['quarterMAE'])
                 self.assertGreater(pair['quarterMax'], 1, 'positive examples refute the obsolete strict threshold')
 
-    def test_retained_strict_candidate_is_reproducible(self):
-        retained = resource_path(ROOT, 'newer/textures/candidates-2026-10-12/tech08_3-quarter.png')
-        recipe = json.loads(retained.with_suffix('.json').read_text())
+    def test_strict_cli_is_deterministic_from_original_reference(self):
+        recipe = json.loads((ROOT / 'tests/fixtures/texture-finishing-recipes.json').read_text())['recipes']['tech08_3-quarter']
         output, receipt = self.run_cli('strict-replay', fresh_reference('tech08_3', recipe['originalSha256']), resource_path(ROOT, ROOT / recipe['generated']),
                                        ['--method', 'strict', '--factor', str(recipe['factor']),
                                         '--strength', str(recipe['detailStrength']),
                                         '--comparison-divisor', str(recipe['comparisonDivisor'])])
-        self.assertTrue(np.array_equal(rgb(output), rgb(retained)))
+        repeated, _ = self.run_cli('strict-repeat', fresh_reference('tech08_3', recipe['originalSha256']), resource_path(ROOT, ROOT / recipe['generated']),
+                                   ['--method', 'strict', '--factor', str(recipe['factor']), '--strength', str(recipe['detailStrength']), '--comparison-divisor', str(recipe['comparisonDivisor'])])
+        self.assertTrue(np.array_equal(rgb(output), rgb(repeated)))
         self.assertEqual(receipt['method'], 'strict')
         # This is the historical method's reproducibility assertion, not an
         # artistic gate imposed on new photographic candidates.
@@ -242,8 +243,7 @@ class PhotographicFinishing(unittest.TestCase):
 
         for name in ['tech08_3', 'tech08_4']:
             with self.subTest(texture=name):
-                retained = resource_path(ROOT, 'newer/textures/candidates-2026-10-12') / (name + '-photographic.png')
-                recipe = json.loads(retained.with_suffix('.json').read_text())
+                recipe = json.loads((ROOT / 'tests/fixtures/texture-finishing-recipes.json').read_text())['recipes'][name + '-photographic']
                 options = ['--factor', str(recipe['factor']), '--color-strength', str(recipe['colorStrength']), '--field-sigma', str(recipe['fieldSigma'])]
                 if recipe.get('landmarkFile'):
                     options += ['--vertical-landmarks', str(ROOT / recipe['landmarkFile'])]
@@ -251,7 +251,8 @@ class PhotographicFinishing(unittest.TestCase):
                 unanchored, plain_receipt = self.run_cli(name+'-unanchored-replay', original, donor, options)
                 anchored, receipt = self.run_cli(name+'-edge-review', original, donor, options+['--edge-anchor'])
                 before, after, reference = rgb(unanchored), rgb(anchored), rgb(original)
-                self.assertTrue(np.array_equal(before, rgb(retained)), 'absent option must preserve prior photographic output exactly')
+                repeated, _ = self.run_cli(name+'-plain-repeat', original, donor, options)
+                self.assertTrue(np.array_equal(before, rgb(repeated)), 'CLI without edge anchoring is deterministic')
                 self.assertFalse(plain_receipt['edgeAnchor'])
                 self.assertTrue(receipt['edgeAnchor'])
                 band = recipe['factor']

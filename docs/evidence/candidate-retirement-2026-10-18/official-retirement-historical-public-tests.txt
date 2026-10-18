@@ -1,0 +1,14 @@
+file:///Users/bri/.codex/worktrees/official-candidate-retirement/Quaked/tests/official_texture_standard.js:15
+const check=(value,message)=>{if(!value)throw Error(message);};
+                                              ^
+
+Error: city4_8 actual texture name
+    at check (file:///Users/bri/.codex/worktrees/official-candidate-retirement/Quaked/tests/official_texture_standard.js:15:47)
+    at equal (file:///Users/bri/.codex/worktrees/official-candidate-retirement/Quaked/tests/official_texture_standard.js:16:40)
+    at currentTrial (file:///Users/bri/.codex/worktrees/official-candidate-retirement/Quaked/tests/official_texture_standard.js:55:137)
+    at file:///Users/bri/.codex/worktrees/official-candidate-retirement/Quaked/tests/official_texture_standard.js:70:94
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async file:///Users/bri/.codex/worktrees/official-candidate-retirement/Quaked/tools/run_tests.mjs:82:8
+
+Node.js v24.19.0

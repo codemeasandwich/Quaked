@@ -1,0 +1,17 @@
+test_colour_correction_is_smooth_and_retains_donor_structure (__main__.PhotographicFinishing) ... ok
+test_lamp_intent_and_measured_registration_are_separate_from_colour (__main__.PhotographicFinishing) ... ok
+test_native_pixel_rearrangement_cannot_return_as_a_grid (__main__.PhotographicFinishing) ... ok
+test_optional_edge_anchor_changes_only_reviewed_band_and_matches_means (__main__.PhotographicFinishing) ... {"texture": "tech08_3", "edgeMeanMaxErrors": [0.07421875, 0.08203125, 0.05078125, 0.1123046875], "unchangedInterior": true, "qualification": "Specific reviewed edge treatment; not a universal tiling or visual acceptance claim"}
+{"texture": "tech08_4", "edgeMeanMaxErrors": [0.083984375, 0.037109375, 0.046875, 0.0283203125], "unchangedInterior": true, "qualification": "Specific reviewed edge treatment; not a universal tiling or visual acceptance claim"}
+ok
+test_owner_examples_remain_calibration_positives_with_nonzero_error (__main__.PhotographicFinishing) ... ok
+test_provenance_and_non_destructive_cli_contract (__main__.PhotographicFinishing) ... ok
+test_public_defaults_are_four_times_art_half_native_comparison_and_photographic_diagnostics (__main__.PhotographicFinishing) ... ok
+test_strict_cli_is_deterministic_from_original_reference (__main__.PhotographicFinishing) ... ok
+test_zero_correction_preserves_full_photographic_donor (__main__.PhotographicFinishing) ... {"lampQuarterMAE": 6.380228678385417, "lampQuarterMax": 33.255859375, "qualification": "Diagnostics only; no automatic appearance acceptance"}
+ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 31.354s
+
+OK

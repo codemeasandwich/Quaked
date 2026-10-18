@@ -22,7 +22,7 @@ const root = resolve( import.meta.dirname, '..' ), sourceRoot = process.env.QUAK
 const read = path => readFileSync( resolve( root, path ) );
 const historicalReceipt = JSON.parse( read( 'tools/texture_sheets/sources/official-world-2026-10-12/expansion-registration.json' ) );
 const receipt = { ...historicalReceipt, entries: registrationsAtFourTimes( historicalReceipt.entries ) };
-const trial = JSON.parse( read( 'newer/textures/candidates-2026-10-12/trial.json' ) );
+const trial = JSON.parse( read( 'tests/fixtures/official-textures.json' ) ).trials;
 const indexBytes = read( 'newer/textures/index.json' ), index = JSON.parse( indexBytes );
 const baseline = JSON.parse( execFileSync( 'git', [ 'show', 'a28d939647d93f7c1ea96160ebb79751388d2fcb:newer/textures/index.json' ], { cwd: root } ) );
 const aliases = [ 'hipnotic-metal5_6', 'mg1-comp1_2', 'mg1-comp1_3', 'mg1-metal1_1', 'mg1-metal1_3', 'mg1-metal1_4' ];

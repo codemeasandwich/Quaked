@@ -1,0 +1,12 @@
+test_cli_refuses_overwrite_and_unsupported_enlargement (__main__.OfficialTextureFidelity) ... ok
+test_generated_detail_is_retained_without_new_boundary_band (__main__.OfficialTextureFidelity) ... ok
+test_grille_has_all_eight_original_rail_positions (__main__.OfficialTextureFidelity) ... ok
+test_historical_strict_quarter_projection_and_farther_mips (__main__.OfficialTextureFidelity) ... {"texture": "tech08_3", "nativeDiagnosticMaxError": 10.0, "distanceOracleDivisor": 4, "quarterMaxError": 1.0}
+{"texture": "tech08_4", "nativeDiagnosticMaxError": 29.0, "distanceOracleDivisor": 4, "quarterMaxError": 1.0}
+ok
+test_reference_identity_and_retained_provenance (__main__.OfficialTextureFidelity) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 51.787s
+
+OK

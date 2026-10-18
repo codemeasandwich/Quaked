@@ -1,6 +1,8 @@
 """Public CLI proof for the two source-bound solid-facing / inset-brick recipes.
 
-Uses retained real native/master/map witnesses, not a substitute image generator.
+Uses original native references plus the accepted official diffuse as real CLI input.
+The lossy diffuse is not claimed byte-idempotent under re-encoding; independent
+temporary runs verify determinism, plane order, hash guards and output routing.
 The material mask is checked with independent integer native-period inequalities.
 Visual realism, diffuse edge bleed, POM, cache and actual GPU checks are separate.
 """
@@ -58,12 +60,25 @@ class LayeredOfficialHeight(unittest.TestCase):
         cls.fixtures = {}
         cls.custody = {}
         for name, (key, native_size, receipt_name) in WITNESSES.items():
-            receipt_path = ROOT / 'newer/textures/candidates-2026-10-17' / receipt_name
-            receipt = load_json(receipt_path)  # Missing real witnesses fail; never skip.
-            original = ROOT / receipt['original']
-            master = ROOT / receipt['authoringDiffuse']
-            recipe_path = ROOT / SOURCE / (name + '-layered-height-v1.json')
-            recipe = load_json(recipe_path)
+            accepted = load_json(ROOT / 'tests/fixtures/official-textures.json')
+            entry = next(e for e in accepted['entries'] if e['name'] == name and e['key'] == key)
+            receipt_path = ROOT / entry['metadataFile']
+            receipt = load_json(receipt_path)
+            original = ROOT / entry['sourceFile']
+            master = ROOT / 'assets/game/textures' / entry['binding']['file']
+            original_recipe = ROOT / SOURCE / (name + '-layered-height-v1.json')
+            recipe = load_json(original_recipe)
+            recipe['authoringDiffuseSha256'] = digest(master)
+            recipe_path = cls.temp / (name + '-official-input-recipe.json')
+            recipe_path.write_text(json.dumps(recipe, indent=2) + '\n')
+            receipt = deepcopy(receipt)
+            receipt['original'] = entry['sourceFile']
+            receipt['authoringDiffuse'] = 'newer/textures/' + entry['binding']['file']
+            receipt['authoringDiffuseSha256'] = digest(master)
+            for role in ROLES:
+                binding = entry['binding']
+                selected = binding['file'] if role == 'diffuse' else binding['normal']['file'] if role == 'height' else binding['normal']['normalChannels'][role[-1].lower()]
+                receipt['outputs'][role]['file'] = 'newer/textures/' + selected
             native = load_json(ROOT / SOURCE / ('native-' + name + '.json'))
             assert native['key'] == key
             assert (native['width'], native['height']) == native_size
@@ -79,7 +94,7 @@ class LayeredOfficialHeight(unittest.TestCase):
             fixture = dict(name=name, native_size=native_size, witness=receipt,
                            original=original, master=master, recipe_path=recipe_path,
                            recipe=recipe)
-            paths = [receipt_path, original, master, recipe_path,
+            paths = [receipt_path, original, master, recipe_path, original_recipe,
                      ROOT / SOURCE / ('native-' + name + '.json')]
             paths.extend(ROOT / record['file'] for record in receipt['outputs'].values())
             for path in paths:
@@ -87,6 +102,7 @@ class LayeredOfficialHeight(unittest.TestCase):
             cls.fixtures[name] = fixture
             fixture['actual'] = cls.encode(fixture, cls.temp / name / 'normal', strength=.2)
             fixture['quiet'] = cls.encode(fixture, cls.temp / name / 'quiet', strength=.06)
+            fixture['repeated'] = cls.encode(fixture, cls.temp / name / 'repeated', strength=.2)
 
     @classmethod
     def tearDownClass(cls):
@@ -158,8 +174,8 @@ class LayeredOfficialHeight(unittest.TestCase):
                     path = Path(record['file'])
                     data = path.read_bytes()
                     self.assertEqual(digest(path), record['sha256'])
-                    self.assertEqual(data, physical(ROOT / witness['outputs'][role]['file']).read_bytes(),
-                                     name + '/' + role + ' independently replays exact retained payload')
+                    self.assertEqual(data, Path(fixture['repeated']['outputs'][role]['file']).read_bytes(),
+                                     name + '/' + role + ' temporary CLI output is deterministic')
                     self.assertEqual(record['dimensions'], [n * 4 for n in fixture['native_size']])
                     self.assertEqual((record['quality'], record['lossless']), (92, False))
                     self.assertIn(b'VP8 ', data[:64])
@@ -243,10 +259,10 @@ class LayeredOfficialHeight(unittest.TestCase):
         self.assertEqual(layout['prefixes']['newer/'], 'assets/game/')
         original_label = fixture['witness']['original']
         master_label = fixture['witness']['authoringDiffuse']
-        recipe_label = str(fixture['recipe_path'].relative_to(ROOT))
+        recipe_label = 'tests/fixtures/' + fixture['recipe_path'].name
         self.assertTrue(master_label.startswith('newer/'))
         master_destination = project / 'assets/game' / Path(master_label).relative_to('newer')
-        for source, destination in ((physical(fixture['original']), project / original_label),
+        for source, destination in ((physical(fixture['original']), resource_path(project, original_label)),
                                     (physical(fixture['master']), master_destination),
                                     (fixture['recipe_path'], project / recipe_label)):
             destination.parent.mkdir(parents=True, exist_ok=True)
@@ -275,7 +291,7 @@ class LayeredOfficialHeight(unittest.TestCase):
                 path = expected_stem.with_name(expected_stem.name + '-' + role + '.webp')
                 files.append(path)
                 payload = path.read_bytes()
-                expected = physical(ROOT / fixture['witness']['outputs'][role]['file']).read_bytes()
+                expected = Path(fixture['actual']['outputs'][role]['file']).read_bytes()
                 self.assertEqual(payload, expected, 'real canonical CLI payload ' + role)
                 self.assertEqual(hashlib.sha256(payload).hexdigest(), record['sha256'])
                 self.assertEqual((record['quality'], record['lossless']), (92, False))
@@ -286,12 +302,12 @@ class LayeredOfficialHeight(unittest.TestCase):
             self.assertFalse((caller / 'newer').exists(), 'no accidental caller asset tree')
             return command, files
 
-        logical_stem = 'newer/textures/candidates-layered-output-test/logical'
-        canonical_directory = project / 'assets/game/textures/candidates-layered-output-test'
+        logical_stem = 'newer/textures/cli-output-test/logical'
+        canonical_directory = project / 'assets/game/textures/cli-output-test'
         first_command, first_files = invoke(project, original_label, master_label, recipe_label,
                                             logical_stem, canonical_directory / 'logical')
         invoke(caller, '../' + original_label, '../' + master_label, '../' + recipe_label,
-               '../newer/textures/candidates-layered-output-test/caller',
+               '../newer/textures/cli-output-test/caller',
                canonical_directory / 'caller')
         canonical_files = sorted(path for path in canonical_directory.iterdir() if path.is_file())
         self.assertEqual(len(canonical_files), 12, 'two canonical five-map sets and two receipts')

@@ -1,0 +1,9 @@
+REALISM_PREFLIGHT {"materials":6,"occurrences":59,"liveIndexSha256":"4bdc95a3a622fbb0ba71afb6aacde1d0504bfe3c4282b91e8dc2be872eb85faa"}
+PASS six accepted realism materials pin actual native source identities and all30Q92 files
+OFFICIAL_DISTANCE_COMPARISONS {"qualification":"Measured original-versus-official reduced views; no invented numerical art-acceptance threshold","comparisons":[{"name":"TF_Wood01","divisor":2,"width":64,"height":64,"mae":18.879720052083332},{"name":"TF_Wood01","divisor":4,"width":32,"height":32,"mae":15.9287109375},{"name":"TF_Wood01c","divisor":2,"width":64,"height":64,"mae":15.053304036458334},{"name":"TF_Wood01c","divisor":4,"width":32,"height":32,"mae":12.445963541666666},{"name":"TF_Stone_01","divisor":2,"width":64,"height":64,"mae":18.256917317708332},{"name":"TF_Stone_01","divisor":4,"width":32,"height":32,"mae":18.222005208333332},{"name":"TF_Stone3","divisor":2,"width":64,"height":64,"mae":11.589111328125},{"name":"TF_Stone3","divisor":4,"width":32,"height":32,"mae":10.212890625},{"name":"TF_Cliff2","divisor":2,"width":128,"height":128,"mae":22.331746419270832},{"name":"TF_Cliff2","divisor":4,"width":64,"height":64,"mae":22.406575520833332},{"name":"TF_Cliff2b","divisor":2,"width":128,"height":128,"mae":16.266377766927082},{"name":"TF_Cliff2b","divisor":4,"width":64,"height":64,"mae":16.327555338541668}]}
+PASS original and official materials share half- and quarter-native comparison dimensions
+PASS real q92 images install with original UVs and decoded grayscale XYZ plus decoded height R reaches R_NormalMapFor
+PASS unknown registered native pixels are rejected and Classic requests no replacements
+PASS live index remains byte-for-byte unchanged after official comparison
+RESULT 5/5 passed (tests/official_texture_realism_preflight_test.js)
+TOTAL 5/5 passed

@@ -1,6 +1,5 @@
-// Tests-only adapter for the owner's 13 October 4x format migration. Historical
-// registration inputs stay immutable; each new expectation must link back to its
-// exact earlier binding and hashes through the separate migration ledger.
+// Current-original/current-official checks for the owner's 4x/Q92 standard.
+// Immutable migration records describe history; retired rasters are not inputs.
 import { readFileSync } from './helpers/resource_fs.mjs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -12,182 +11,85 @@ import { R_NormalMapFor } from '../src/newer/render/gl_normals.js';
 import { ownerQ92Registration } from './owner_texture_q92_standard.js';
 import { NormalInputs, NormalGenerate } from '../src/newer/assets/normal_prepare.js';
 
-const root = resolve( import.meta.dirname, '..' );
-const read = file => readFileSync( resolve( root, file ) );
-const textureBytes = file => read( 'newer/textures/' + file );
-const check = ( value, message ) => { if ( ! value ) throw Error( message ); };
-const equal = ( actual, expected, message ) => check( isDeepStrictEqual( actual, expected ), message );
-export const fourTimesStandard = JSON.parse( read( 'tools/texture_sheets/sources/official-world-2026-10-12/four-times-standard.json' ) );
-check( fourTimesStandard.schemaVersion === 1 && fourTimesStandard.factor === 4, 'explicit 4x migration schema' );
-check( fourTimesStandard.bindings.length === 14 && fourTimesStandard.trials.length === 16, '14 identities and 16 trial outputs accounted for' );
-check( fourTimesStandard.historicalInputs.length === 3, 'three immutable historical registration inputs retained' );
-for ( const input of fourTimesStandard.historicalInputs ) equal( sha256( read( input.file ) ), input.sha256, 'historical registration input unchanged: ' + input.file );
-const bindings = new Map();
-for ( const migration of fourTimesStandard.bindings ) {
-	const identity = migration.name + '|' + migration.nativeKey;
-	check( ! bindings.has( identity ), 'unique migrated identity: ' + identity ); bindings.set( identity, migration );
+const root=resolve(import.meta.dirname,'..'),read=file=>readFileSync(resolve(root,file)),textureBytes=file=>read('newer/textures/'+file);
+const check=(value,message)=>{if(!value)throw Error(message);};
+const equal=(actual,expected,message)=>check(isDeepStrictEqual(actual,expected),message);
+const fixture=JSON.parse(read('tests/fixtures/official-textures.json'));
+equal(fixture.schemaVersion,1,'current official fixture schema');
+export const fourTimesStandard=JSON.parse(read('tools/texture_sheets/sources/official-world-2026-10-12/four-times-standard.json'));
+equal([fourTimesStandard.schemaVersion,fourTimesStandard.factor],[1,4],'explicit4x migration contract');
+equal([fourTimesStandard.bindings.length,fourTimesStandard.trials.length],[14,16],'all14native identities and16historical aliases accounted for');
+equal(fourTimesStandard.historicalInputs.length,3,'three immutable registration inputs');
+for(const input of fourTimesStandard.historicalInputs)equal(sha256(read(input.file)),input.sha256,'historical registration unchanged '+input.file);
+const bindings=new Map(fourTimesStandard.bindings.map(e=>[e.name+'|'+e.nativeKey,e]));
+equal(bindings.size,14,'unique migrated identities');
+equal(new Set(fourTimesStandard.bindings.map(b=>b.current.binding.file)).size,12,'twelve prior artworks across aliases');
+const sourceDirectory='tools/texture_sheets/sources/official-world-2026-10-12/';
+const channelRegistration=JSON.parse(read(sourceDirectory+'q92-channel-registration.json'));
+const priorQ92=JSON.parse(read(sourceDirectory+'q92-prior-generation-migration.json'));
+const cityRegistration=JSON.parse(read(sourceDirectory+'city2-registration.json'));
+const index=JSON.parse(read('newer/textures/index.json')),q92Bindings=new Map(),q92Trials=new Map();
+function lossyWebP(bytes,label){
+ check(bytes.subarray(0,4).toString()==='RIFF'&&bytes.subarray(8,12).toString()==='WEBP',label+' actual WebP');
+ const chunks=[];let at=12;while(at<bytes.length){check(at+8<=bytes.length,label+' complete chunk');const n=bytes.readUInt32LE(at+4);check(at+8+n<=bytes.length,label+' bounded chunk');chunks.push(bytes.subarray(at,at+4).toString());at+=8+n+(n&1);}
+ check(chunks.includes('VP8 ')&&!chunks.includes('VP8L'),label+' lossyVP8');
 }
-check( new Set( fourTimesStandard.bindings.map( b => b.current.binding.file ) ).size === 12, '12 distinct registered artworks retained across aliases' );
+function validateQ92Entry(entry){
+ const current=fixture.entries.find(e=>e.name===entry.name&&e.key===entry.key);check(current,entry.name+' accepted official identity');
+ for(const field of ['binding','source','sourceFile','sourceFileSha256','diffuseSha256','heightSha256','normalChannelSha256','encodingReceipt'])equal(current[field],entry[field],entry.name+' immutable registered '+field);
+ equal([entry.factor,entry.quality,entry.lossless],[4,92,false],entry.name+' registered4x/lossy92');
+ equal(entry.source.key,entry.key,entry.name+' source key');equal(entry.source.name,entry.name,entry.name+' source name');
+ const file=fixture.encodingReceipts[entry.encodingReceipt];equal(current.metadataFile,file,entry.name+' retained metadata locator');check(file?.startsWith('assets/authoring/texture_sheets/official-encodings/'),entry.name+' metadata outside retired candidates');
+ const digest=fixture.metadataSha256?.[entry.encodingReceipt]??current.metadataSha256;check(typeof digest==='string',entry.name+' metadata byte witness');equal(current.metadataSha256,fixture.metadataSha256[entry.encodingReceipt],entry.name+' consistent metadata witnesses');equal(sha256(read(file)),digest,entry.name+' immutable selected metadata');
+ const encoded=JSON.parse(read(file));equal([encoded.factor,encoded.quality,encoded.lossless,encoded.normalLayout],[4,92,false,'channels'],entry.name+' selected encoder contract');
+ equal(encoded.original,entry.sourceFile,entry.name+' original path');equal(encoded.originalSha256,entry.sourceFileSha256,entry.name+' original digest');equal(sha256(read(entry.sourceFile)),entry.sourceFileSha256,entry.name+' actual native PNG');
+ equal([encoded.profile.strength,encoded.profile.cap],[entry.binding.normal.strength,entry.binding.normal.cap],entry.name+' reviewed lighting profile');
+ const live=index.ordinaryVariants?.[entry.name]?.[entry.key]??(index.sources?.[entry.name]?.includes(entry.key)?{file:index.textures[entry.name],normal:index.normals[entry.name]}:undefined);equal(live,entry.binding,entry.name+' current source-guarded runtime binding');
+ const dims=[entry.source.width*4,entry.source.height*4];equal(encoded.comparisonDivisor,2,entry.name+' primary half-native comparison');equal(encoded.comparisonDimensions,[entry.source.width/2,entry.source.height/2],entry.name+' half-native size');equal(encoded.secondaryComparisonDimensions,[entry.source.width/4,entry.source.height/4],entry.name+' quarter-native size');
+ for(const[role,path,hash]of[['diffuse',entry.binding.file,entry.diffuseSha256],['height',entry.binding.normal.file,entry.heightSha256],...['x','y','z'].map(a=>['normal'+a.toUpperCase(),entry.binding.normal.normalChannels[a],entry.normalChannelSha256[a]])]){
+  check(path.startsWith('official/'),entry.name+' current official '+role);const output=encoded.outputs[role];equal([output.quality,output.lossless],[92,false],entry.name+' lossy92 '+role);equal(output.dimensions,dims,entry.name+' 4x '+role);equal(output.sha256,hash,entry.name+' selected metadata SHA '+role);const bytes=textureBytes(path);equal(sha256(bytes),hash,entry.name+' actual official SHA '+role);lossyWebP(bytes,entry.name+' '+role);
+ }
+ return current;
+}
+function currentTrial(alias,entry){
+ const t=fixture.trials[alias];check(t,alias+' accepted original/official comparison');equal(t.nativeKey,entry.key,alias+' native key');if((t.name??alias)!==entry.name){const donor=fixture.entries.find(e=>e.name===(t.name??alias)&&e.key===entry.key);check(donor,alias+' explicit same-native named donor');for(const field of ['binding','sourceFile','sourceFileSha256','diffuseSha256','heightSha256','normalChannelSha256'])equal(donor[field],entry[field],alias+' exact original/official alias '+field);equal(donor.source.pixelSha256,entry.source.pixelSha256,alias+' same actual native RGBA witness');}
+ for(const[field,value]of Object.entries({file:entry.binding.file,height:entry.binding.normal.file,normalChannels:entry.binding.normal.normalChannels,width:entry.source.width*4,heightPixels:entry.source.height*4,diffuseSha256:entry.diffuseSha256,heightSha256:entry.heightSha256,normalChannelSha256:entry.normalChannelSha256,original:entry.sourceFile,originalSha256:entry.sourceFileSha256}))equal(t[field],value,alias+' official comparison '+field);
+ return t;
+}
+equal(channelRegistration.entries.map(e=>e.name).sort(),['city2_3','city2_5','city2_6','tech10_2','tech04_4','door02_1','ceil1_1'].sort(),'seven explicit channel identities');
+for(const entry of channelRegistration.entries){
+ const earlierCity=cityRegistration.entries.find(e=>e.name===entry.name&&e.key===entry.key),earlierTrial=fourTimesStandard.trials.find(t=>t.alias===entry.name&&t.nativeKey===entry.key);check(earlierCity||earlierTrial,entry.name+' explicit historical registration');
+ if(earlierCity){equal(entry.previousBinding,earlierCity.binding,entry.name+' exact previous metadata');equal(entry.source,earlierCity.source,entry.name+' unchanged native witness');}else equal(entry.previousBinding,null,entry.name+' former trial metadata');
+ const current=validateQ92Entry(entry);if(earlierTrial)q92Trials.set(earlierTrial.alias,currentTrial(earlierTrial.alias,current));
+}
+equal([priorQ92.schemaVersion,priorQ92.factor,priorQ92.quality,priorQ92.lossless],[1,4,92,false],'prior-generation contract');equal(sha256(read(priorQ92.historicalInput.file)),priorQ92.historicalInput.sha256,'immutable prior-generation ledger');equal([priorQ92.entries.length,priorQ92.trials.length],[14,12],'all previous registered identities/artworks');
+for(const entry of priorQ92.entries){
+ const id=entry.name+'|'+entry.key,old=bindings.get(id);check(old&&!q92Bindings.has(id),'unique current successor '+id);equal(entry.previous,old.current,id+' exact previous metadata');
+ const trial=fourTimesStandard.trials.find(t=>t.nativeKey===entry.key&&t.current.file===entry.previous.candidate);check(trial,id+' original alias accounted for');
+ const transition=priorQ92.trials.find(t=>t.alias===trial.alias);check(transition,id+' exact historical alias transition');equal(transition.encodingReceipt,entry.encodingReceipt,id+' selected metadata identity');
+ const current=validateQ92Entry(entry);q92Bindings.set(id,current);q92Trials.set(trial.alias,currentTrial(trial.alias,current));
+}
+equal(q92Trials.size,16,'all16historical aliases resolve to current official originals/maps');
 
-const sourceDirectory = 'tools/texture_sheets/sources/official-world-2026-10-12/';
-const channelRegistration = JSON.parse( read( sourceDirectory + 'q92-channel-registration.json' ) );
-const priorQ92 = JSON.parse( read( sourceDirectory + 'q92-prior-generation-migration.json' ) );
-const cityRegistration = JSON.parse( read( sourceDirectory + 'city2-registration.json' ) );
-const q92Bindings = new Map(), q92Trials = new Map();
-const trialFields = [ 'file', 'height', 'width', 'heightPixels', 'diffuseSha256', 'heightSha256' ];
-const textureRelative = file => {
-	check( file.startsWith( 'newer/textures/' ), 'encoded candidate uses the texture root' ); return file.slice( 'newer/textures/'.length );
-};
-function lossyWebP( bytes, label ) {
-	check( bytes.subarray( 0, 4 ).toString() === 'RIFF' && bytes.subarray( 8, 12 ).toString() === 'WEBP', label + ' is WebP' );
-	const chunks = []; let at = 12;
-	while ( at + 8 <= bytes.length ) { const size = bytes.readUInt32LE( at + 4 ); check( at + 8 + size <= bytes.length, label + ' bounded WebP chunk' ); chunks.push( bytes.subarray( at, at + 4 ).toString() ); at += 8 + size + ( size & 1 ); }
-	check( chunks.includes( 'VP8 ' ) && ! chunks.includes( 'VP8L' ), label + ' uses lossy VP8, not a lossless image' );
-}
-function validateQ92Entry( entry, expectedAuthoring, expectedOriginal, expectedOriginalSha ) {
-	equal( [ entry.factor, entry.quality, entry.lossless ], [ 4, 92, false ], entry.name + ' explicit Q92/4x registration contract' );
-	equal( entry.source.key, entry.key, entry.name + ' native source identity retained' );
-	equal( entry.source.name, entry.name, entry.name + ' source name retained' );
-	const encoded = JSON.parse( read( entry.encodingReceipt ) );
-	equal( [ encoded.factor, encoded.quality, encoded.lossless, encoded.normalLayout ], [ 4, 92, false, 'channels' ], entry.name + ' encoder contract' );
-	equal( encoded.authoringDiffuse, 'newer/textures/' + expectedAuthoring.file, entry.name + ' exact predecessor candidate path' );
-	equal( encoded.authoringDiffuseSha256, expectedAuthoring.sha256, entry.name + ' exact predecessor candidate hash' );
-	equal( sha256( read( encoded.authoringDiffuse ) ), expectedAuthoring.sha256, entry.name + ' predecessor candidate bytes retained' );
-	equal( encoded.original, expectedOriginal, entry.name + ' original source path retained' );
-	equal( encoded.originalSha256, expectedOriginalSha, entry.name + ' original source hash retained' );
-	equal( entry.sourceFile, expectedOriginal, entry.name + ' registration source path' );
-	equal( entry.sourceFileSha256, expectedOriginalSha, entry.name + ' registration source hash' );
-	equal( sha256( read( expectedOriginal ) ), expectedOriginalSha, entry.name + ' immutable original source bytes' );
-	const dimensions = [ entry.source.width * 4, entry.source.height * 4 ];
-	equal( encoded.comparisonDivisor, 2, entry.name + ' half-native primary diagnostic' );
-	equal( encoded.comparisonDimensions, [ entry.source.width / 2, entry.source.height / 2 ], entry.name + ' half-native comparison size' );
-	equal( encoded.secondaryComparisonDimensions, [ entry.source.width / 4, entry.source.height / 4 ], entry.name + ' quarter-native secondary size' );
-	for ( const [ role, file, digest ] of [
-		[ 'diffuse', entry.binding.file, entry.diffuseSha256 ], [ 'height', entry.binding.normal.file, entry.heightSha256 ],
-		...[ 'x', 'y', 'z' ].map( axis => [ 'normal' + axis.toUpperCase(), entry.binding.normal.normalChannels[ axis ], entry.normalChannelSha256[ axis ] ] )
-	] ) {
-		const output = encoded.outputs[ role ];
-		equal( [ output.quality, output.lossless ], [ 92, false ], entry.name + ' lossy92 role ' + role ); equal( output.dimensions, dimensions, entry.name + ' 4x encoded dimensions ' + role );
-		equal( output.sha256, digest, entry.name + ' registered encoded digest ' + role );
-		const encodedBytes = read( output.file ), runtimeBytes = textureBytes( file );
-		equal( sha256( encodedBytes ), digest, entry.name + ' encoded file bytes ' + role ); equal( sha256( runtimeBytes ), digest, entry.name + ' runtime file bytes ' + role );
-		lossyWebP( encodedBytes, entry.name + ' ' + role );
-	}
-	equal( entry.candidate, textureRelative( encoded.outputs.diffuse.file ), entry.name + ' registered encoded candidate path' );
-	equal( entry.candidateSha256, encoded.outputs.diffuse.sha256, entry.name + ' encoded candidate digest' );
-	return encoded;
-}
-function trialFromQ92( entry, encoded ) {
-	return { file: textureRelative( encoded.outputs.diffuse.file ), height: textureRelative( encoded.outputs.height.file ),
-		width: encoded.outputs.diffuse.dimensions[ 0 ], heightPixels: encoded.outputs.diffuse.dimensions[ 1 ],
-		diffuseSha256: entry.diffuseSha256, heightSha256: entry.heightSha256,
-		normalChannels: Object.fromEntries( [ 'x', 'y', 'z' ].map( axis => [ axis, textureRelative( encoded.outputs[ 'normal' + axis.toUpperCase() ].file ) ] ) ),
-		normalChannelSha256: entry.normalChannelSha256, original: entry.sourceFile, originalSha256: entry.sourceFileSha256,
-		nativeKey: entry.key, factor: 4, quality: 92, lossless: false };
-}
-equal( channelRegistration.entries.map( e => e.name ).sort(), [ 'city2_3', 'city2_5', 'city2_6', 'tech10_2', 'tech04_4', 'door02_1', 'ceil1_1' ].sort(), 'exact seven separately registered Q92 identities' );
-for ( const entry of channelRegistration.entries ) {
-	const earlierCity = cityRegistration.entries.find( e => e.name === entry.name && e.key === entry.key );
-	const earlierTrial = fourTimesStandard.trials.find( t => t.alias === entry.name && t.nativeKey === entry.key );
-	check( earlierCity || earlierTrial, entry.name + ' has a recorded predecessor' );
-	let authoring, original, originalSha;
-	if ( earlierCity ) {
-		equal( entry.previousBinding, earlierCity.binding, entry.name + ' exact prior RGB-normal registration' );
-		equal( entry.source, earlierCity.source, entry.name + ' existing native source witness unchanged' );
-		const earlierEncoding = JSON.parse( read( earlierCity.encodingReceipt ) );
-		equal( sha256( textureBytes( earlierCity.candidate ) ), earlierCity.candidateSha256, entry.name + ' former Q92 candidate retained' );
-		equal( sha256( textureBytes( earlierCity.binding.normal.normalFile ) ), earlierCity.normalSha256, entry.name + ' former RGB normal retained' );
-		authoring = { file: textureRelative( earlierEncoding.authoringDiffuse ), sha256: earlierEncoding.authoringDiffuseSha256 }; original = earlierCity.sourceFile; originalSha = earlierCity.sourceFileSha256;
-	} else {
-		equal( entry.previousBinding, null, entry.name + ' was a prepared trial, not a prior runtime binding' );
-		authoring = { file: earlierTrial.current.file, sha256: earlierTrial.current.diffuseSha256 }; original = earlierTrial.original; originalSha = earlierTrial.originalSha256;
-	}
-	const encoded = validateQ92Entry( entry, authoring, original, originalSha );
-	if ( earlierTrial ) q92Trials.set( earlierTrial.alias, trialFromQ92( entry, encoded ) );
-}
-equal( [ priorQ92.schemaVersion, priorQ92.factor, priorQ92.quality, priorQ92.lossless ], [ 1, 4, 92, false ], 'explicit registered prior-generation migration' );
-equal( sha256( read( priorQ92.historicalInput.file ) ), priorQ92.historicalInput.sha256, 'immutable 4x predecessor ledger hash' );
-equal( priorQ92.entries.length, 14, 'exact fourteen earlier registered identities migrated' ); equal( priorQ92.trials.length, 12, 'exact twelve earlier artworks migrated' );
-for ( const entry of priorQ92.entries ) {
-	const identity = entry.name + '|' + entry.key, predecessor = bindings.get( identity );
-	check( predecessor && ! q92Bindings.has( identity ), 'one recorded Q92 successor per registered 4x identity' );
-	equal( entry.previous, predecessor.current, identity + ' complete previous binding/candidate/hashes match immutable 4x ledger' );
-	const oldTrial = fourTimesStandard.trials.find( t => t.nativeKey === entry.key && t.current.file === entry.previous.candidate );
-	check( oldTrial, identity + ' has its exact historical source trial' );
-	const encoded = validateQ92Entry( entry, { file: entry.previous.candidate, sha256: entry.previous.candidateSha256 }, oldTrial.original, oldTrial.originalSha256 );
-	q92Bindings.set( identity, entry );
-	const transition = priorQ92.trials.find( t => t.alias === oldTrial.alias ); check( transition, identity + ' recorded trial transition' );
-	for ( const field of trialFields ) equal( transition.previous[ field ], oldTrial.current[ field ], identity + ' former trial field ' + field );
-	equal( transition.previous.original, oldTrial.original, identity + ' former original path' ); equal( transition.previous.originalSha256, oldTrial.originalSha256, identity + ' former original hash' );
-	equal( transition.encodingReceipt, entry.encodingReceipt, identity + ' matching encoding receipt' );
-	equal( sha256( read( transition.encodingReceipt ) ), transition.encodingReceiptSha256, identity + ' immutable encoding receipt hash' );
-	const currentTrial = trialFromQ92( entry, encoded );
-	for ( const [ field, value ] of Object.entries( currentTrial ) ) equal( transition.current[ field ], value, identity + ' new trial field ' + field );
-	q92Trials.set( oldTrial.alias, currentTrial );
-}
-equal( q92Trials.size, 16, 'all sixteen original trial expectations have explicit registered Q92 transitions' );
-
-export function registrationsAtFourTimes( historicalEntries ) {
-	return historicalEntries.map( original => {
-		const migration = bindings.get( original.name + '|' + original.key );
-		if ( ! migration ) {
-			check( original.kind === 'exact-original-reuse', 'generated binding must have an explicit migration: ' + original.name );
-			return ownerQ92Registration( original );
-		}
-		const previous = original.binding || { file: original.file, normal: original.normal };
-		equal( migration.previous.binding, previous, original.name + ' migration starts from exact historical binding' );
-		equal( migration.previous.diffuseSha256, original.diffuseSha256, original.name + ' prior diffuse hash retained' );
-		equal( migration.previous.heightSha256, original.heightSha256, original.name + ' prior height hash retained' );
-		for ( const state of [ migration.previous, migration.current ] ) {
-			equal( sha256( textureBytes( state.binding.file ) ), state.diffuseSha256, original.name + ' preserved/current diffuse bytes' );
-			equal( sha256( textureBytes( state.binding.normal.file ) ), state.heightSha256, original.name + ' preserved/current height bytes' );
-		}
-		if ( original.candidate && original.candidateSha256 ) equal( sha256( textureBytes( original.candidate ) ), original.candidateSha256, original.name + ' historical reviewed candidate remains unchanged' );
-		const fourTimes = migration.current;
-		equal( sha256( textureBytes( fourTimes.candidate ) ), fourTimes.candidateSha256, original.name + ' retained 4x candidate bytes' );
-		const trial = fourTimesStandard.trials.find( t => t.current.file === fourTimes.candidate && t.nativeKey === original.key );
-		check( trial, original.name + ' current binding has its native-identity trial counterpart' );
-		equal( trial.current.heightSha256, fourTimes.heightSha256, original.name + ' 4x predecessor height remains exact' );
-		const current = q92Bindings.get( original.name + '|' + original.key ); check( current, original.name + ' has an installed Q92 successor' );
-		return { ...original, ...( original.binding ? { binding: current.binding } : { file: current.binding.file, normal: current.binding.normal } ),
-			diffuseSha256: current.diffuseSha256, heightSha256: current.heightSha256,
-			candidate: current.candidate, candidateSha256: current.candidateSha256, normalChannelSha256: current.normalChannelSha256 };
-	} );
+export function registrationsAtFourTimes(historicalEntries){
+ return historicalEntries.map(original=>{
+  const migration=bindings.get(original.name+'|'+original.key);
+  if(!migration){check(original.kind==='exact-original-reuse','generated identity has explicit migration '+original.name);return ownerQ92Registration(original);}
+  equal(migration.previous.binding,original.binding??{file:original.file,normal:original.normal},original.name+' exact historical binding metadata');equal(migration.previous.diffuseSha256,original.diffuseSha256,original.name+' historical diffuse witness');equal(migration.previous.heightSha256,original.heightSha256,original.name+' historical height witness');
+  const current=q92Bindings.get(original.name+'|'+original.key);check(current,original.name+' accepted official successor');
+  return{...original,...(original.binding?{binding:current.binding}:{file:current.binding.file,normal:current.binding.normal}),diffuseSha256:current.diffuseSha256,heightSha256:current.heightSha256,candidate:current.binding.file,candidateSha256:current.diffuseSha256,normalChannelSha256:current.normalChannelSha256};
+ });
 }
 
-// Called once by the first public registration suite. Decode all sixteen
-// original trial pictures/heights, now installed through explicit Q92 records,
-// against reference image dimensions and public native identity rather than
-// trusting only the ledger's declared dimensions.
-export async function verifyFourTimesTrialDimensions() {
-	if ( ! process.env.QUAKED_CANVAS_MODULE ) throw Error( 'Set QUAKED_CANVAS_MODULE to installed @napi-rs/canvas/index.js.' );
-	const { createCanvas, Image } = await import( pathToFileURL( process.env.QUAKED_CANVAS_MODULE ).href );
-	const liveTrial = JSON.parse( textureBytes( 'candidates-2026-10-12/trial.json' ) );
-	const decode = async bytes => {
-		const image = new Image(), done = new Promise( ( resolve, reject ) => { image.onload = resolve; image.onerror = reject; } ); image.src = bytes; await done;
-		const ctx = createCanvas( image.width, image.height ).getContext( '2d' ); ctx.drawImage( image, 0, 0 );
-		return { width: image.width, height: image.height, data: ctx.getImageData( 0, 0, image.width, image.height ).data };
-	};
-	for ( const trial of fourTimesStandard.trials ) {
-		for ( const state of [ trial.previous, trial.current ] ) {
-			equal( sha256( textureBytes( state.file ) ), state.diffuseSha256, trial.alias + ' old/current candidate bytes' );
-			equal( sha256( textureBytes( state.height ) ), state.heightSha256, trial.alias + ' old/current height bytes' );
-		}
-		const current = q92Trials.get( trial.alias ); check( current, trial.alias + ' has an explicit Q92 trial transition' );
-		for ( const [ field, value ] of Object.entries( current ) ) equal( liveTrial[ trial.alias ][ field ], value, trial.alias + ' current registered Q92 trial field ' + field );
-		equal( sha256( read( trial.original ) ), trial.originalSha256, trial.alias + ' original reference preserved' );
-		const original = await decode( read( trial.original ) ), native = new THREE.DataTexture( original.data, original.width, original.height );
-		try { equal( R_GlassTextureKey( native ), trial.nativeKey, trial.alias + ' actual original reference identity' ); } finally { native.dispose(); }
-		const dimensions = [ original.width * 4, original.height * 4 ];
-		equal( trial.targetDimensions, dimensions, trial.alias + ' 4x target derives from actual native dimensions' );
-		const picture = await decode( textureBytes( current.file ) ), height = await decode( textureBytes( current.height ) );
-		equal( [ picture.width, picture.height ], dimensions, trial.alias + ' decoded trial is exactly 4x native' );
-		equal( [ height.width, height.height ], dimensions, trial.alias + ' decoded authored height is exactly 4x native' );
-		for ( const axis of [ 'x', 'y', 'z' ] ) {
-			const channel = await decode( textureBytes( current.normalChannels[ axis ] ) );
-			equal( [ channel.width, channel.height ], dimensions, trial.alias + ' decoded Q92 normal ' + axis + ' is exactly 4x native' );
-		}
-	}
+export async function verifyFourTimesTrialDimensions(){
+ if(!process.env.QUAKED_CANVAS_MODULE)throw Error('Set QUAKED_CANVAS_MODULE to actual canvas module.');const{createCanvas,Image}=await import(pathToFileURL(process.env.QUAKED_CANVAS_MODULE).href);
+ const decode=async bytes=>{const image=new Image(),done=new Promise((ok,bad)=>{image.onload=ok;image.onerror=bad;});image.src=bytes;await done;const ctx=createCanvas(image.width,image.height).getContext('2d');ctx.drawImage(image,0,0);return{width:image.width,height:image.height,data:ctx.getImageData(0,0,image.width,image.height).data};};
+ for(const old of fourTimesStandard.trials){
+  const current=q92Trials.get(old.alias);check(current,old.alias+' current official comparison');equal(current.nativeKey,old.nativeKey,old.alias+' original identity retained');equal(sha256(read(current.original)),current.originalSha256,old.alias+' actual original PNG hash');
+  const original=await decode(read(current.original)),native=new THREE.DataTexture(original.data,original.width,original.height);try{equal(R_GlassTextureKey(native),old.nativeKey,old.alias+' actual native pixel identity');}finally{native.dispose();}
+  const dims=[original.width*4,original.height*4];equal(old.targetDimensions,dims,old.alias+'4x native target');
+  for(const file of[current.file,current.height,...Object.values(current.normalChannels)]){check(file.startsWith('official/'),old.alias+' official-only picture/data');const image=await decode(textureBytes(file));equal([image.width,image.height],dims,old.alias+' actual decoded4x map '+file);}
+ }
 }
 
 export async function verifyRegisteredNormalChannels( texture, recipe, decode ) {

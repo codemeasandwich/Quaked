@@ -81,7 +81,7 @@ class OfficialTextureFidelity(unittest.TestCase):
         cls.addClassCleanup(cls.directory.cleanup)
         cls.samples = {}
         for name, version in [('tech08_3', 'v2'), ('tech08_4', 'v1')]:
-            retained = json.loads((resource_path(ROOT, 'newer/textures/candidates-2026-10-12') / (name + '-quarter.json')).read_text())
+            retained = json.loads((ROOT / 'tests/fixtures/texture-finishing-recipes.json').read_text())['recipes'][name + '-quarter']
             original, original_metadata = fresh_reference(name, retained['originalSha256'])
             donor = resource_path(ROOT, GENERATED / (name + '-generated-' + version + '.png'))
             candidate = Path(cls.directory.name) / (name + '.png')
