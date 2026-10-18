@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "TF_Grass1",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Grass1.png",
+  "originalSha256": "3c307b446b92c6a6d0adbd34759e3d70b1f1642143ec9fd367af2426d35a4241",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-17/TF_Grass1-photographic-seam-v2-4x.png",
+  "authoringDiffuseSha256": "151cdae168e264f1e190577f044389004c6510ad9b99e7aef7d1644d02b398b3",
+  "toolSha256": "e8d825dcb3e79bb9f419af6558363e0ab00534389e7b21f5423177b2e1f9af9b",
+  "heightToolSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.2,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Grass1-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "f86c0d04dcfca140b5ea21abfc798069e9dec635ec2f456b8babf0a5c644e68d",
+      "bytes": 619104,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Grass1-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "7a1a7f53d8a293c6d2e1ccd016a598916f1ec67216e862b875360fdf863ed2e2",
+      "bytes": 395454,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Grass1-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "f705883ddafda1b9429708bfca4def989d35d8bbbf8d4d258c2c82f9198ae61d",
+      "bytes": 456986,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Grass1-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "00d9a7045e37d708371d24b5e89d31833e87d1d7f717b510aa9f523d0710e5e1",
+      "bytes": 451128,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Grass1-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "e7be2455266fe19c7391f7663602c3719a4612e8984d27e55ece30f8539abc3a",
+      "bytes": 104942,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    128,
+    128
+  ],
+  "distanceMAE": 7.587849934895833,
+  "distanceMaximum": 61.0,
+  "secondaryComparisonDimensions": [
+    64,
+    64
+  ],
+  "secondaryDistanceMAE": 5.485188802083333,
+  "secondaryDistanceMaximum": 35.0,
+  "colourCompressionMAE": 3.4772253036499023,
+  "heightCompressionMAE": 1.4240036010742188,
+  "heightCompressionMaximum": 10.0,
+  "normalAngularMean": 0.9817079849244523,
+  "normalAngularP99": 2.474781498477921,
+  "normalAngularMaximum": 4.72621382015818,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

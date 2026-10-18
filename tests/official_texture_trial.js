@@ -10,7 +10,8 @@ const candidate='newer/textures/candidates-2026-10-12/';
 // Explicit review manifests can retain candidate paths after source integration.
 // Only this diagnostic page receives these bindings; it never writes the index.
 const batch=new URL(location.href).searchParams.get('batch');
-const manifest=({realism:'realism-trial.json',character:'character-trial.json',aged:'aged-trial.json'})[batch]||'trial.json';
+// Keep new-material GPU review bounded; the separate public suite checks the full catalogue.
+const manifest=({realism:'realism-trial.json',character:'character-trial.json',aged:'aged-trial.json',industrial:'../candidates-2026-10-17/industrial-trial.json'})[batch]||'trial.json';
 const specs=await fetch(candidate+manifest).then(r=>r.json()),index=await fetch('newer/textures/index.json').then(r=>r.json());
 document.querySelector('#asset-count').textContent=String(Object.keys(specs).length);
 document.querySelector('#asset').replaceChildren(...Object.keys(specs).map(name=>{const option=document.createElement('option');option.value=option.textContent=name;return option;}));

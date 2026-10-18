@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "TF_Cliff1",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Cliff1.png",
+  "originalSha256": "1b4e78d78fddc0aad8331572295b9263bcc4a45ab42168e5261d30b8fc3e94ce",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-17/TF_Cliff1-photographic-seam-v2-4x.png",
+  "authoringDiffuseSha256": "4cfde933c91a7e92b23142d8f983a8370d366111dcec8b5103c48d190efbba16",
+  "toolSha256": "e8d825dcb3e79bb9f419af6558363e0ab00534389e7b21f5423177b2e1f9af9b",
+  "heightToolSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.2,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Cliff1-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "fa617b9921460e54f316ebe733695421367425e7365fb28b6493fbe33ada7349",
+      "bytes": 416454,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Cliff1-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "f4d46d360ff39e0392267c5b869416c1b477596a6965c5f24dc6f189a526dad9",
+      "bytes": 339842,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Cliff1-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "6b404f8214b66dcf2350281fed2c20cf9b1a0222a8c272a24d5d90f11948fcd6",
+      "bytes": 414092,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Cliff1-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "92ef04f5d5b1cb98341f6163f3e3e2ed511d77ef6a9d6d170ab3946c6f9c018e",
+      "bytes": 391396,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Cliff1-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "4d706f2e2f5265219e04435b11afd155f7dd5df94ed3529bb71f6dc50aec6a89",
+      "bytes": 97030,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    128,
+    128
+  ],
+  "distanceMAE": 5.193705240885417,
+  "distanceMaximum": 42.0,
+  "secondaryComparisonDimensions": [
+    64,
+    64
+  ],
+  "secondaryDistanceMAE": 3.1236165364583335,
+  "secondaryDistanceMaximum": 29.0,
+  "colourCompressionMAE": 2.1070683797200522,
+  "heightCompressionMAE": 1.2452831268310547,
+  "heightCompressionMaximum": 9.0,
+  "normalAngularMean": 0.9939626896206313,
+  "normalAngularP99": 2.6224342684485844,
+  "normalAngularMaximum": 5.184848675562746,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

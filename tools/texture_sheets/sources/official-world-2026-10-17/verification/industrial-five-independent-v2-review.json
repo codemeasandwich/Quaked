@@ -1,0 +1,436 @@
+{
+  "reviewer": "Independent oct17_plan_review agent",
+  "verdict": "threePASS,twoHOLDpendingboundedrepairs",
+  "qualification": "Independentdecodedcolour/height/XYZandCPUtwo-light/repeat artreview, notGPU/runtime/sourceencoderqualification.",
+  "entries": [
+    {
+      "name": "metal5_90_JM",
+      "dimensions": [
+        512,
+        64
+      ],
+      "diffuseSha256": "b3d9478ba019701c81f04b9ff785ad0fa93076e17269babe0389c8c96ed45e15",
+      "metrics": {
+        "2": {
+          "dimensions": [
+            64,
+            8
+          ],
+          "rmseDiagnosticOnly": 4.679646198343061,
+          "nativeMeanRGB": [
+            38.212890625,
+            30.3671875,
+            16.755859375
+          ],
+          "newMeanRGB": [
+            38.072265625,
+            30.419921875,
+            17.572265625
+          ]
+        },
+        "4": {
+          "dimensions": [
+            32,
+            4
+          ],
+          "rmseDiagnosticOnly": 2.421690181120065,
+          "nativeMeanRGB": [
+            38.0546875,
+            30.28125,
+            16.8203125
+          ],
+          "newMeanRGB": [
+            38.0,
+            30.4140625,
+            17.5234375
+          ]
+        }
+      },
+      "contact": "metal5_90_JM-independent-v2-art.png",
+      "verdict": "pass"
+    },
+    {
+      "name": "wmet4_25_JM",
+      "dimensions": [
+        512,
+        128
+      ],
+      "diffuseSha256": "5ec50448b51d046df164eca90e21a3409c7035855478ff27309757171e3f893f",
+      "metrics": {
+        "2": {
+          "dimensions": [
+            64,
+            16
+          ],
+          "rmseDiagnosticOnly": 5.565893159832181,
+          "nativeMeanRGB": [
+            31.4462890625,
+            26.2734375,
+            18.84375
+          ],
+          "newMeanRGB": [
+            31.6376953125,
+            26.5703125,
+            18.97265625
+          ]
+        },
+        "4": {
+          "dimensions": [
+            32,
+            8
+          ],
+          "rmseDiagnosticOnly": 1.9005207619667475,
+          "nativeMeanRGB": [
+            31.62109375,
+            26.36328125,
+            18.7578125
+          ],
+          "newMeanRGB": [
+            31.86328125,
+            26.75390625,
+            19.0
+          ]
+        }
+      },
+      "contact": "wmet4_25_JM-independent-v2-art.png",
+      "verdict": "pass"
+    },
+    {
+      "name": "wmet4_27_JM",
+      "dimensions": [
+        512,
+        64
+      ],
+      "diffuseSha256": "358e05a610491b979bf784bf3d305a9eedc9d108180a5655257ed111af46cec3",
+      "metrics": {
+        "2": {
+          "dimensions": [
+            64,
+            8
+          ],
+          "rmseDiagnosticOnly": 3.435226520915324,
+          "nativeMeanRGB": [
+            29.115234375,
+            24.41015625,
+            19.447265625
+          ],
+          "newMeanRGB": [
+            30.1484375,
+            25.548828125,
+            20.306640625
+          ]
+        },
+        "4": {
+          "dimensions": [
+            32,
+            4
+          ],
+          "rmseDiagnosticOnly": 1.5819621255474692,
+          "nativeMeanRGB": [
+            29.515625,
+            24.6875,
+            19.3359375
+          ],
+          "newMeanRGB": [
+            30.3671875,
+            25.671875,
+            20.0859375
+          ]
+        }
+      },
+      "contact": "wmet4_27_JM-independent-v2-art.png",
+      "verdict": "pass"
+    },
+    {
+      "name": "TF_Metal4_6d",
+      "dimensions": [
+        512,
+        512
+      ],
+      "diffuseSha256": "8a16b24de37c64758c73f51a9f88a5836c90719cfe7fc363707529e78f8214d6",
+      "metrics": {
+        "2": {
+          "dimensions": [
+            64,
+            64
+          ],
+          "rmseDiagnosticOnly": 5.0060672823501555,
+          "nativeMeanRGB": [
+            36.955078125,
+            28.593994140625,
+            24.27978515625
+          ],
+          "newMeanRGB": [
+            36.86328125,
+            28.708251953125,
+            24.36328125
+          ]
+        },
+        "4": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "rmseDiagnosticOnly": 2.1906227710402355,
+          "nativeMeanRGB": [
+            36.9423828125,
+            28.5986328125,
+            24.27734375
+          ],
+          "newMeanRGB": [
+            36.85546875,
+            28.734375,
+            24.373046875
+          ]
+        }
+      },
+      "contact": "TF_Metal4_6d-independent-v2-art.png",
+      "verdict": "hold"
+    },
+    {
+      "name": "TF_MetWall2_02",
+      "dimensions": [
+        512,
+        512
+      ],
+      "diffuseSha256": "f414545289a6186a66dd913e5985e909312cc854ee5ec6bff28bd2c18955631f",
+      "metrics": {
+        "2": {
+          "dimensions": [
+            64,
+            64
+          ],
+          "rmseDiagnosticOnly": 5.468206818262424,
+          "nativeMeanRGB": [
+            39.880126953125,
+            50.39111328125,
+            55.80615234375
+          ],
+          "newMeanRGB": [
+            39.666259765625,
+            50.570068359375,
+            55.7119140625
+          ]
+        },
+        "4": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "rmseDiagnosticOnly": 5.010763155032707,
+          "nativeMeanRGB": [
+            39.9072265625,
+            50.4912109375,
+            55.8720703125
+          ],
+          "newMeanRGB": [
+            39.6943359375,
+            50.6220703125,
+            55.78515625
+          ]
+        }
+      },
+      "contact": "TF_MetWall2_02-independent-v2-art.png",
+      "verdict": "hold"
+    }
+  ],
+  "reliefData": [
+    {
+      "name": "metal5_90_JM",
+      "dimensions": [
+        512,
+        64
+      ],
+      "mapHashes": {
+        "diffuse": "b3d9478ba019701c81f04b9ff785ad0fa93076e17269babe0389c8c96ed45e15",
+        "height": "b1a574aaeb1997914527626332b37eeafbb1f1d0b5851c8f643e589da4d5cb80",
+        "normalX": "86ff06e3394e97b903f3dfda263bfcaeb1623e9e220cd37c0ab71b539ceeeda2",
+        "normalY": "77597ac7c74240a3afd49199bd49e13fa9063b1edf88dbaf8bdf014d4b1f3db0",
+        "normalZ": "9d5d5910c8924c24ba3b047e007ee98a4b13337fe6fe226b95020c6d510736e6"
+      },
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "contact": "metal5_90_JM-independent-v2-relief.png"
+    },
+    {
+      "name": "wmet4_25_JM",
+      "dimensions": [
+        512,
+        128
+      ],
+      "mapHashes": {
+        "diffuse": "5ec50448b51d046df164eca90e21a3409c7035855478ff27309757171e3f893f",
+        "height": "fa4040f707029171c2d1adac67ab28568414271e68970d358bf1fc8242cd7bc5",
+        "normalX": "d979a1c66ffd6386d2a6e7f9c8228e1671fdd5ef3d366192cbe0762d9e30d1f1",
+        "normalY": "36cece6f3cebc17da7be1303e33951fb4630f35637b9e1b44fee85e9849c0049",
+        "normalZ": "82d43cb6ae1808a35f0cb1e77cf9e7c4c12663f2548c9ad6c505e2a36d869bc8"
+      },
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "contact": "wmet4_25_JM-independent-v2-relief.png"
+    },
+    {
+      "name": "wmet4_27_JM",
+      "dimensions": [
+        512,
+        64
+      ],
+      "mapHashes": {
+        "diffuse": "358e05a610491b979bf784bf3d305a9eedc9d108180a5655257ed111af46cec3",
+        "height": "989d091d601ea6d4997018d3b3da081dc90197fd5e398a0f964e9788bb8b7d01",
+        "normalX": "4acc5a67a51f0058e2eeaa7d92568dcbfafb66e5aae2986a08ad8a67a5745a25",
+        "normalY": "069e2f6866624c2ed6791e6a19d673d41edf528856581ad24efae4dbcfb933dc",
+        "normalZ": "df47405f170adba3365fa79f26546d1dbf0e3241a1a97ac3fcfd6dfce081926b"
+      },
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "contact": "wmet4_27_JM-independent-v2-relief.png"
+    },
+    {
+      "name": "TF_Metal4_6d",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mapHashes": {
+        "diffuse": "8a16b24de37c64758c73f51a9f88a5836c90719cfe7fc363707529e78f8214d6",
+        "height": "9dc3fd505b173069d7bba513020d0a3013598f3e6533ec578bcd552ade70776a",
+        "normalX": "611072d3434c74227ab84a2fe3172aee954c6898e9c8e3caa3c1f250caf32501",
+        "normalY": "20377a089f9278a887499f6f3bb17936468d5514eb834be12827635c308ca404",
+        "normalZ": "1323edc40ffd5fd749f5023d44b034dced99cef15cddafbcb43904f4b522886a"
+      },
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "contact": "TF_Metal4_6d-independent-v2-relief.png"
+    },
+    {
+      "name": "TF_MetWall2_02",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mapHashes": {
+        "diffuse": "f414545289a6186a66dd913e5985e909312cc854ee5ec6bff28bd2c18955631f",
+        "height": "e9e01230e3a1735ef50f9ae90acb9f35bb2d282d6ea433d9ce8532722a7cd33e",
+        "normalX": "6b3afb9b7bc27249d8c8e4d5b8e6bae9c2b1d32e3fbe313c0abb3f1b74590717",
+        "normalY": "a4b7bd69de8ea14183a245c19440938863f1cbaa4b84787e8704beadc77234ff",
+        "normalZ": "fe2522acf8d901e22f7b8fb0b4e45ac841f51c315e8f386aaf338aee18c85c8b"
+      },
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "contact": "TF_MetWall2_02-independent-v2-relief.png"
+    }
+  ],
+  "passing": [
+    "Threeproperaspectstripsretaintwohorizontalcourses,lip/shadowphaseanddarkwarm/bronze/oliveordarkbrown-greycolourvocabulary. No newverticalrib/studgrid orouterframe.",
+    "Bothhalf/quarter and3x3XYrepeat/cyclicphase reviewpasses3strips; internalcoursejoinsarelegitimatesourcegeometry.",
+    "TF_MetWall2_02diffuse retains twobroadbluegreyplates,smallsource-positionedrustflecks,coarsewearcolourandseamphase.",
+    "TF_Metal4_6d hascorrect16x16alignedgrid/8nativepitch andphotographicdomedheadread ratherthanblackdots."
+  ],
+  "holds": [
+    {
+      "name": "TF_Metal4_6d",
+      "reason": "Head/neckfootprint visiblysmallerthanoriginalnativecell;source~6nativepixelneck/headregionvsnew~4native(14..16runtime), leavingtoo muchemptybackground. FeaturecountaloneanddistanceMAEcannotqualifyfeature-scale drift.",
+      "evidence": "stud-grid-average-cell-v2.png",
+      "suggestedRepair": "Enlargeexistingrawphotographicstudcropabout1.3..1.4within32runtimecell,retaincentre/pitch/quietbackground,thenQ92andreviewagain."
+    },
+    {
+      "name": "TF_MetWall2_02",
+      "reason": "Diffusequietpaintedsteel becomesalloverpebbly/orange-peelunderdecodednormalCPUlighting; strongerthanthephotographicmaterialintentionandsparsewearcriterion.",
+      "evidence": "TF_MetWall2_02-independent-v2-relief.png",
+      "suggestedRepair": "Trylowerauthorednormalstrengtharound.05..08withunchangeddiffuse/height/profile/cap. RecompareCPUlightanglesandactualGPU;no newGPTorenginepathneeded."
+    }
+  ],
+  "cropCLIReplays": [
+    {
+      "name": "metal5_90_JM",
+      "bounds": [
+        0,
+        480,
+        1254,
+        638
+      ],
+      "cropCLIByteExact": true
+    },
+    {
+      "name": "wmet4_25_JM",
+      "bounds": [
+        0,
+        474,
+        1254,
+        788
+      ],
+      "cropCLIByteExact": true
+    },
+    {
+      "name": "wmet4_27_JM",
+      "bounds": [
+        0,
+        468,
+        1254,
+        625
+      ],
+      "cropCLIByteExact": true
+    }
+  ],
+  "priorInputsRetained": true,
+  "limits": [
+    "CPUdebugLambert doesnotqualifyactualengineglossresponse.",
+    "Nonewregistration/index/WTeditsperformedbyreviewer."
+  ]
+}

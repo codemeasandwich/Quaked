@@ -1,5 +1,5 @@
 {
-  "version": 2026101803,
+  "version": 2026101805,
   "textures": {
     "afloor3_1": "afloor3_1.webp",
     "ceiling1_3": "ceiling1_3.webp",
@@ -5584,6 +5584,156 @@
             "z": "official/TF_Stone_02-86c043f3e458ee39-4x-q92-normalZ.webp"
           },
           "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Grass1": {
+      "256x256:c4e7d38a1a7fa8f0": {
+        "file": "official/TF_Grass1-c4e7d38a1a7fa8f0-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Grass1-c4e7d38a1a7fa8f0-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Grass1-c4e7d38a1a7fa8f0-4x-q92-normalX.webp",
+            "y": "official/TF_Grass1-c4e7d38a1a7fa8f0-4x-q92-normalY.webp",
+            "z": "official/TF_Grass1-c4e7d38a1a7fa8f0-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Grass2": {
+      "256x256:46d2108d9b9ab827": {
+        "file": "official/TF_Grass2-46d2108d9b9ab827-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Grass2-46d2108d9b9ab827-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Grass2-46d2108d9b9ab827-4x-q92-normalX.webp",
+            "y": "official/TF_Grass2-46d2108d9b9ab827-4x-q92-normalY.webp",
+            "z": "official/TF_Grass2-46d2108d9b9ab827-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Ground1": {
+      "128x128:f6080a942cfd3f26": {
+        "file": "official/TF_Ground1-f6080a942cfd3f26-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Ground1-f6080a942cfd3f26-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Ground1-f6080a942cfd3f26-4x-q92-normalX.webp",
+            "y": "official/TF_Ground1-f6080a942cfd3f26-4x-q92-normalY.webp",
+            "z": "official/TF_Ground1-f6080a942cfd3f26-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Cliff1": {
+      "256x256:22663d7406672c66": {
+        "file": "official/TF_Cliff1-22663d7406672c66-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Cliff1-22663d7406672c66-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Cliff1-22663d7406672c66-4x-q92-normalX.webp",
+            "y": "official/TF_Cliff1-22663d7406672c66-4x-q92-normalY.webp",
+            "z": "official/TF_Cliff1-22663d7406672c66-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Cliff1b": {
+      "256x256:04f05e02a311fc78": {
+        "file": "official/TF_Cliff1b-04f05e02a311fc78-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Cliff1b-04f05e02a311fc78-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Cliff1b-04f05e02a311fc78-4x-q92-normalX.webp",
+            "y": "official/TF_Cliff1b-04f05e02a311fc78-4x-q92-normalY.webp",
+            "z": "official/TF_Cliff1b-04f05e02a311fc78-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "metal5_90_JM": {
+      "128x16:7ddac95d8d0ab837": {
+        "file": "official/metal5_90_JM-7ddac95d8d0ab837-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/metal5_90_JM-7ddac95d8d0ab837-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/metal5_90_JM-7ddac95d8d0ab837-4x-q92-normalX.webp",
+            "y": "official/metal5_90_JM-7ddac95d8d0ab837-4x-q92-normalY.webp",
+            "z": "official/metal5_90_JM-7ddac95d8d0ab837-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "wmet4_25_JM": {
+      "128x32:af172edc2383f56e": {
+        "file": "official/wmet4_25_JM-af172edc2383f56e-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/wmet4_25_JM-af172edc2383f56e-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/wmet4_25_JM-af172edc2383f56e-4x-q92-normalX.webp",
+            "y": "official/wmet4_25_JM-af172edc2383f56e-4x-q92-normalY.webp",
+            "z": "official/wmet4_25_JM-af172edc2383f56e-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "wmet4_27_JM": {
+      "128x16:aeefd7d3bc435719": {
+        "file": "official/wmet4_27_JM-aeefd7d3bc435719-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/wmet4_27_JM-aeefd7d3bc435719-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/wmet4_27_JM-aeefd7d3bc435719-4x-q92-normalX.webp",
+            "y": "official/wmet4_27_JM-aeefd7d3bc435719-4x-q92-normalY.webp",
+            "z": "official/wmet4_27_JM-aeefd7d3bc435719-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Metal4_6d": {
+      "128x128:8ee4f5f9b8cd8c43": {
+        "file": "official/TF_Metal4_6d-8ee4f5f9b8cd8c43-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Metal4_6d-8ee4f5f9b8cd8c43-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Metal4_6d-8ee4f5f9b8cd8c43-4x-q92-normalX.webp",
+            "y": "official/TF_Metal4_6d-8ee4f5f9b8cd8c43-4x-q92-normalY.webp",
+            "z": "official/TF_Metal4_6d-8ee4f5f9b8cd8c43-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_MetWall2_02": {
+      "128x128:dda0a237f8680b45": {
+        "file": "official/TF_MetWall2_02-dda0a237f8680b45-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_MetWall2_02-dda0a237f8680b45-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_MetWall2_02-dda0a237f8680b45-4x-q92-normalX.webp",
+            "y": "official/TF_MetWall2_02-dda0a237f8680b45-4x-q92-normalY.webp",
+            "z": "official/TF_MetWall2_02-dda0a237f8680b45-4x-q92-normalZ.webp"
+          },
+          "strength": 0.06,
           "cap": 0.5
         }
       }

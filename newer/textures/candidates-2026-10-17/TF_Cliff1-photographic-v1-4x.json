@@ -1,0 +1,55 @@
+{
+  "method": "photographic",
+  "factor": 4,
+  "verticalLandmarks": null,
+  "colorStrength": 1.0,
+  "fieldSigma": 2.0,
+  "edgeAnchor": false,
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    128,
+    128
+  ],
+  "distanceMeanMaxError": 33.328125,
+  "distanceMeanMAE": 5.009955406188965,
+  "donorDistanceMAE": 9.71813710530599,
+  "newClippedChannelFraction": 0.004977862040201823,
+  "donorContourCorrelation": 0.9994805331910894,
+  "sourceMean": [
+    69.06405639648438,
+    57.24720764160156,
+    45.621307373046875
+  ],
+  "outputMean": [
+    69.07924747467041,
+    57.26246929168701,
+    45.63429927825928
+  ],
+  "donorBoundaries": {
+    "wrap_x_mean": 20.814453125,
+    "wrap_y_mean": 29.4765625,
+    "interior_x_mean": 7.823107587976536,
+    "interior_y_mean": 8.949865336836103
+  },
+  "boundaries": {
+    "wrap_x_mean": 20.67578125,
+    "wrap_y_mean": 29.395182291666664,
+    "interior_x_mean": 7.814218928193221,
+    "interior_y_mean": 8.9345381740795
+  },
+  "passedDistanceCheck": null,
+  "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Cliff1.png",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Cliff1-generated-v1.png",
+  "output": "newer/textures/candidates-2026-10-17/TF_Cliff1-photographic-v1-4x.png",
+  "originalSha256": "1b4e78d78fddc0aad8331572295b9263bcc4a45ab42168e5261d30b8fc3e94ce",
+  "generatedSha256": "d9bfcbf9ebdb7f0aa6356407d5036b2f604203da7c43971bfc8b22fa2e7339a2",
+  "outputSha256": "e6fcb9f37cc2e891bd265a2215576921649c58562125adbddbd5ff60af1cc1ee",
+  "outputDimensions": [
+    1024,
+    1024
+  ],
+  "toolSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+  "landmarkFile": null,
+  "landmarkSha256": null
+}

@@ -1,0 +1,55 @@
+{
+  "method": "photographic",
+  "factor": 4,
+  "verticalLandmarks": null,
+  "colorStrength": 1.0,
+  "fieldSigma": 0.75,
+  "edgeAnchor": false,
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    4,
+    4
+  ],
+  "distanceMeanMaxError": 8.109375,
+  "distanceMeanMAE": 2.9319661458333335,
+  "donorDistanceMAE": 17.453776041666668,
+  "newClippedChannelFraction": 0.005533854166666667,
+  "donorContourCorrelation": 0.9961198744445976,
+  "sourceMean": [
+    35.25,
+    27.9375,
+    23.34375
+  ],
+  "outputMean": [
+    35.2333984375,
+    27.9267578125,
+    23.3662109375
+  ],
+  "donorBoundaries": {
+    "wrap_x_mean": 4.458333333333334,
+    "wrap_y_mean": 3.1458333333333335,
+    "interior_x_mean": 3.793010752688172,
+    "interior_y_mean": 4.024193548387096
+  },
+  "boundaries": {
+    "wrap_x_mean": 4.5,
+    "wrap_y_mean": 3.15625,
+    "interior_x_mean": 3.779569892473118,
+    "interior_y_mean": 4.009072580645161
+  },
+  "passedDistanceCheck": null,
+  "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Metal4_6d-native-stud-reference.png",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Metal4_6d-generated-v1.png",
+  "output": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Metal4_6d-stud-fitted-v1.png",
+  "originalSha256": "0c1a2d1e4bf41885364faa02144715fc6ee40bb692f859593cf59f29d48e84e7",
+  "generatedSha256": "4558ea54e539d56c001219200051932a70a50d3d66d7d56dc04c83f0c6961fe9",
+  "outputSha256": "56a1da592878c44a91f0e27d95024d98f4fe144056c9e8010aa93b03b5884c27",
+  "outputDimensions": [
+    32,
+    32
+  ],
+  "toolSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+  "landmarkFile": null,
+  "landmarkSha256": null
+}

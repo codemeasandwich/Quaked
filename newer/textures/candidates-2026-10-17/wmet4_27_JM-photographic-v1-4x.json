@@ -1,0 +1,55 @@
+{
+  "method": "photographic",
+  "factor": 4,
+  "verticalLandmarks": null,
+  "colorStrength": 1.0,
+  "fieldSigma": 0.75,
+  "edgeAnchor": false,
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    8
+  ],
+  "distanceMeanMaxError": 24.375,
+  "distanceMeanMAE": 2.8824869791666665,
+  "donorDistanceMAE": 12.562327067057291,
+  "newClippedChannelFraction": 0.09930419921875,
+  "donorContourCorrelation": 0.9894031938602095,
+  "sourceMean": [
+    28.8349609375,
+    24.13525390625,
+    19.17822265625
+  ],
+  "outputMean": [
+    29.468475341796875,
+    24.87451171875,
+    19.656524658203125
+  ],
+  "donorBoundaries": {
+    "wrap_x_mean": 8.317708333333334,
+    "wrap_y_mean": 2.279296875,
+    "interior_x_mean": 3.2770405251141557,
+    "interior_y_mean": 6.244553984788359
+  },
+  "boundaries": {
+    "wrap_x_mean": 8.052083333333334,
+    "wrap_y_mean": 1.025390625,
+    "interior_x_mean": 3.160061969993477,
+    "interior_y_mean": 5.825241815476192
+  },
+  "passedDistanceCheck": null,
+  "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-wmet4_27_JM.png",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-17/wmet4_27_JM-strip-crop-v1.png",
+  "output": "newer/textures/candidates-2026-10-17/wmet4_27_JM-photographic-v1-4x.png",
+  "originalSha256": "0537347a8790ea3ce1b1212f6c093cc90c96b31851c5477ddcae37115498e1f2",
+  "generatedSha256": "622fab212bbb720eda25a14b2b69479151831d79dc09d59d359f6a851c2559a4",
+  "outputSha256": "6399ceac1647da327dfd9d0ce545a21170eafe2e30041d0f3af09760683e33e4",
+  "outputDimensions": [
+    512,
+    64
+  ],
+  "toolSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+  "landmarkFile": null,
+  "landmarkSha256": null
+}

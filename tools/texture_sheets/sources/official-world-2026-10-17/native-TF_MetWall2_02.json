@@ -1,0 +1,40 @@
+{
+  "source": {
+    "id": "TF_MetWall2_02|128x128:dda0a237f8680b45",
+    "name": "TF_MetWall2_02",
+    "key": "128x128:dda0a237f8680b45",
+    "width": 128,
+    "height": 128,
+    "pixelSha256": "541e55fa5e3bf3856ba8ee423cdc7839fb48747c03e0c5797a9be8a761ce5ff8",
+    "original": "originals/128x128-dda0a237f8680b45.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "mg1",
+        "map": "maps/mge1m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+        "slot": 75,
+        "faces": 921,
+        "visibleCandidateFaces": 921,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge1m2.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+        "slot": 37,
+        "faces": 3080,
+        "visibleCandidateFaces": 3080,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "referenceSha256": "bc41057f7a86e5ca22f471b2bbd1de66ca31c0903e3eb1f195d94517affbf448"
+}

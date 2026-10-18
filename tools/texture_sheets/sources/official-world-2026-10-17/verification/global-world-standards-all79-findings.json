@@ -1,0 +1,254 @@
+{
+  "qualification": "Read-only current counterpart qualification findings and required next actions. No artwork, format conversion, binding/test changes, build, merge or additional task claim.",
+  "auditFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/global-world-standards-all79-audit.json",
+  "auditSha256": "ceea7d42780ab26434d177f9df77d3368eddf05c2b82412d5be44c9d2d5dfc54",
+  "indexSha256": "0d36d6df6fca5e587009c2094e8bcf47cf4cb2145f5c8ee68ee4eda655269742",
+  "summary": {
+    "allSelected": {
+      "bindings": 579,
+      "runtimeImages": 1539,
+      "byRoute": {
+        "ordinary": 369,
+        "ordinary-variant": 80,
+        "glass": 130
+      },
+      "bindingsWithDimensionMismatch": 0,
+      "bindingsWithAllQ92HashProven": 82,
+      "bindingsWithQ92UnprovenOrDifferentCodec": 497,
+      "runtimePayloads": {
+        "PNG": 520,
+        "WebP-lossy-VP8": 964,
+        "WebP-lossless-VP8L": 55
+      },
+      "runtimeQ92HashProvenFiles": 395
+    },
+    "actualObserved": {
+      "bindings": 452,
+      "runtimeImages": 1073,
+      "byRoute": {
+        "ordinary": 355,
+        "ordinary-variant": 80,
+        "glass": 17
+      },
+      "bindingsWithDimensionMismatch": 0,
+      "bindingsWithAllQ92HashProven": 82,
+      "bindingsWithQ92UnprovenOrDifferentCodec": 370,
+      "runtimePayloads": {
+        "WebP-lossy-VP8": 950,
+        "PNG": 68,
+        "WebP-lossless-VP8L": 55
+      },
+      "runtimeQ92HashProvenFiles": 395
+    },
+    "declaredOrDynamicOnly": {
+      "bindings": 127,
+      "runtimeImages": 466,
+      "byRoute": {
+        "glass": 113,
+        "ordinary": 14
+      },
+      "bindingsWithDimensionMismatch": 0,
+      "bindingsWithAllQ92HashProven": 0,
+      "bindingsWithQ92UnprovenOrDifferentCodec": 127,
+      "runtimePayloads": {
+        "PNG": 452,
+        "WebP-lossy-VP8": 14
+      },
+      "runtimeQ92HashProvenFiles": 0
+    },
+    "sourceIdentitiesInRetainedInventory": 1531,
+    "currentlyUnboundByRetainedStatus": {
+      "missing": 1045,
+      "special-liquid": 26,
+      "special-sky": 8
+    },
+    "nativeReferenceFiles": 131,
+    "binaryScalarFiles": 1,
+    "ownerReuseBindings": 43,
+    "q92EncoderReceiptCount": 80
+  },
+  "roleCounts": {
+    "diffuse": {
+      "uniqueFiles": 522,
+      "payloads": {
+        "WebP-lossy-VP8": 365,
+        "PNG": 130,
+        "WebP-lossless-VP8L": 27
+      },
+      "q92HashProven": 79
+    },
+    "height": {
+      "uniqueFiles": 520,
+      "payloads": {
+        "PNG": 130,
+        "WebP-lossy-VP8": 362,
+        "WebP-lossless-VP8L": 28
+      },
+      "q92HashProven": 79
+    },
+    "normal-x": {
+      "uniqueFiles": 79,
+      "payloads": {
+        "WebP-lossy-VP8": 79
+      },
+      "q92HashProven": 79
+    },
+    "normal-y": {
+      "uniqueFiles": 79,
+      "payloads": {
+        "WebP-lossy-VP8": 79
+      },
+      "q92HashProven": 79
+    },
+    "normal-z": {
+      "uniqueFiles": 79,
+      "payloads": {
+        "WebP-lossy-VP8": 79
+      },
+      "q92HashProven": 79
+    },
+    "normal-RGB": {
+      "uniqueFiles": 130,
+      "payloads": {
+        "PNG": 130
+      },
+      "q92HashProven": 0
+    },
+    "gloss": {
+      "uniqueFiles": 130,
+      "payloads": {
+        "PNG": 130
+      },
+      "q92HashProven": 0
+    }
+  },
+  "strictCodecFailures": {
+    "PNG": 520,
+    "WebP_lossless": 55,
+    "totalUniqueRuntimeImages": 575,
+    "meaning": "These current map payloads definitely are not lossy WebP quality92."
+  },
+  "qualitySettingUnproven": {
+    "lossyWebPVP8": 569,
+    "meaning": "Codec is lossy but reviewed per-file Q92 provenance was not found. This does not establish a wrong quality setting; recover encoding evidence or reproduce retained source outputs before choosing a conversion."
+  },
+  "ownerReuses": {
+    "bindings": 43,
+    "allDimensions4x": true,
+    "mapReferences": 86,
+    "losslessReferenceExceptions": [
+      {
+        "name": "metflor2_1",
+        "nativeKey": "64x64:837ce7b57349da7f",
+        "donor": "city5_3",
+        "file": "newer/textures/city5_3.webp",
+        "role": "diffuse"
+      },
+      {
+        "name": "metflor2_1",
+        "nativeKey": "64x64:837ce7b57349da7f",
+        "donor": "city5_3",
+        "file": "newer/textures/normals/city5_3.webp",
+        "role": "height"
+      },
+      {
+        "name": "mmetal1_3",
+        "nativeKey": "64x64:006f4d1505d7fbd7",
+        "donor": "wizmet1_3",
+        "file": "newer/textures/wizmet1_3.webp",
+        "role": "diffuse"
+      },
+      {
+        "name": "mmetal1_3",
+        "nativeKey": "64x64:006f4d1505d7fbd7",
+        "donor": "wizmet1_3",
+        "file": "newer/textures/normals/wizmet1_3.webp",
+        "role": "height"
+      }
+    ],
+    "nextOwner": "Campaign owner coordinating existing artwork ownership",
+    "nextAction": "Preserve every donor and selector. Derive new Q92 files only where required and validate source similarity/relief before repointing all sharing aliases together."
+  },
+  "glass": {
+    "bindings": 130,
+    "actualObservedBindings": 17,
+    "declaredUnobservedBindings": 113,
+    "PNGMaps": 520,
+    "nativeReferenceImages": 130,
+    "nextOwner": "Campaign owner with existing glass material owner",
+    "nextAction": "Migrate each reviewed diffuse/height/authored normal/gloss as new Q92 derivatives using channel-safe normal encoding and decoded semantic aperture reconstruction. Revalidate original reviewed ROI, dark lead, exterior canonical relief, source guards and actual lighting. Keep native-reference PNGs unchanged."
+  },
+  "rawHeightOverride": {
+    "file": "normals/demon-face.r16",
+    "bytes": 262144,
+    "sha256": "471edf6290158d4956e85aadbff1a302f3e20473be446d45570c7fc78e34af4e",
+    "kind": "binary-scalar-not-image-Q92",
+    "bindings": [
+      {
+        "name": "dem4_1",
+        "nativeKey": "64x128:9c7ee2ff2c0478bd",
+        "expectedR16BytesAt4x": 262144
+      },
+      {
+        "name": "dem4_4",
+        "nativeKey": "64x128:4e6c4ecafebcce48",
+        "expectedR16BytesAt4x": 262144
+      },
+      {
+        "name": "dem5_3",
+        "nativeKey": "64x128:c6341ef4c4674fae",
+        "expectedR16BytesAt4x": 262144
+      }
+    ],
+    "actualRuntimeContract": "r_newertextures.js decodes this R16 data and overrides the image-derived height; displacement is gated on this scalar being ready. It is an authored runtime height map, not merely a prepared normal cache. Its byte count is correct for each current4x256x512 binding.",
+    "sourceLines": [
+      "src/newer/render/r_newertextures.js:263",
+      "src/newer/render/r_newertextures.js:318"
+    ],
+    "nextOwner": "Campaign owner coordinating existing demon-face/displacement artwork and renderer ownership",
+    "nextAction": "Account for this non-Q92 height path when enforcing all-map policy. Preserve geometry/relief and displacement readiness in an independently verified new Q92-derived replacement path; do not silently retain it as a cache exception or delete it."
+  },
+  "missingRequiredCounterparts": [
+    {
+      "name": "ceil1_1",
+      "key": "16x16:2f31a0a5651af9e7",
+      "target": [
+        64,
+        64
+      ],
+      "nextAction": "Create separate source-specific counterpart and validation; the existing differently coloured native key has no reuse authority."
+    },
+    {
+      "name": "rock3_8",
+      "key": "64x64:57663646989d1874",
+      "target": [
+        256,
+        256
+      ],
+      "nextAction": "Create this separate counterpart. Existing held-source negative guards remain correct until it is registered, then replace that hold expectation with positive source-specific coverage while retaining other mismatch controls."
+    }
+  ],
+  "exactOwnerReuseCandidatesNeedingContext": [
+    {
+      "name": "+2dem5",
+      "key": "64x128:c6341ef4c4674fae",
+      "donor": "dem5_3",
+      "directFaces": 0,
+      "nextAction": "Verify animation family visibility/frame progression and donor custom height/displacement semantics before considering any alias. Zero direct faces is not proof it is unused."
+    },
+    {
+      "name": "wizwin1_2",
+      "key": "64x64:12a0933767a92b95",
+      "donor": "window1_2",
+      "diffuse": "newer/textures/glass/2a952e65d554f458-4x-diffuse.png",
+      "nextAction": "Verify exact-source glass route, aperture and companion semantics; any reuse must carry the full validated glass binding rather than an ordinary alias."
+    }
+  ],
+  "scopeLimitations": [
+    "Current selection recomputed against index79, using retained1531-identity inventory native inputs with zero recorded inventory errors; this was not a new PAK scan.",
+    "The inventory includes installed base extras, brush assets and unused miptexes; ordinary missing1045 is an installed-directory count, not a claim of1045 visible stock campaign surfaces.",
+    "Special liquid26 and sky8 identities remain separate renderer semantics; they are not counted as new ordinary photographic counterparts. Enemy skins are outside this world-only audit.",
+    "Zero dimension mismatches does not establish photorealism, distance similarity, tiling, or current Q92 qualification for legacy owner art."
+  ],
+  "draftCorrection": "An initial audit provenance-path enumerator omitted the first q92-channel-registration.json. Corrected by including that maintained source and recomputing; the initial draft is retained as global-world-standards-all79-audit-provenance-index-draft.json and is not the final count authority."
+}

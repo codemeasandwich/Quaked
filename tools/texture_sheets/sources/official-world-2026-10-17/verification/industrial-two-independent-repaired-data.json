@@ -1,0 +1,92 @@
+[
+  {
+    "name": "TF_Metal4_6d",
+    "dimensions": [
+      512,
+      512
+    ],
+    "diffuseSha256": "40c19b969bf854aaed9828428faf8d654f880fc038175f162e0e8031bd694bba",
+    "metrics": {
+      "2": {
+        "dimensions": [
+          64,
+          64
+        ],
+        "rmseDiagnosticOnly": 5.609157377394131,
+        "nativeMeanRGB": [
+          36.955078125,
+          28.593994140625,
+          24.27978515625
+        ],
+        "newMeanRGB": [
+          36.893310546875,
+          28.693359375,
+          24.382568359375
+        ]
+      },
+      "4": {
+        "dimensions": [
+          32,
+          32
+        ],
+        "rmseDiagnosticOnly": 2.5243604800688297,
+        "nativeMeanRGB": [
+          36.9423828125,
+          28.5986328125,
+          24.27734375
+        ],
+        "newMeanRGB": [
+          36.9033203125,
+          28.71875,
+          24.3779296875
+        ]
+      }
+    },
+    "contact": "TF_Metal4_6d-independent-repaired-art.png"
+  },
+  {
+    "name": "TF_MetWall2_02",
+    "dimensions": [
+      512,
+      512
+    ],
+    "diffuseSha256": "f414545289a6186a66dd913e5985e909312cc854ee5ec6bff28bd2c18955631f",
+    "metrics": {
+      "2": {
+        "dimensions": [
+          64,
+          64
+        ],
+        "rmseDiagnosticOnly": 5.468206818262424,
+        "nativeMeanRGB": [
+          39.880126953125,
+          50.39111328125,
+          55.80615234375
+        ],
+        "newMeanRGB": [
+          39.666259765625,
+          50.570068359375,
+          55.7119140625
+        ]
+      },
+      "4": {
+        "dimensions": [
+          32,
+          32
+        ],
+        "rmseDiagnosticOnly": 5.010763155032707,
+        "nativeMeanRGB": [
+          39.9072265625,
+          50.4912109375,
+          55.8720703125
+        ],
+        "newMeanRGB": [
+          39.6943359375,
+          50.6220703125,
+          55.78515625
+        ]
+      }
+    },
+    "contact": "TF_MetWall2_02-independent-repaired-art.png"
+  }
+]

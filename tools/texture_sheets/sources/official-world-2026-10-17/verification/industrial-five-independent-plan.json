@@ -1,0 +1,261 @@
+{
+  "qualification": "Independent source-art planning only; no generated art, acceptance, runtime registration, index/test changes or heavy gate by this helper.",
+  "inspection": "Native aspect preserved in diagnostic; original stretched contact was not used to infer vertical ribs.",
+  "globalCriteria": [
+    "Photographic smooth physical surfaces with sparse purposeful wear, not native pixel noise or random grain.",
+    "Exactly4x native width/height. All runtime maps lossyWebPquality92. Half-native primary and quarter-native secondary similarity.",
+    "Retain source course counts, lip/seam phase and material colour at distance; no extra perimeter bevel/vignette/shadow.",
+    "Wide supporting square guide repeats one original strip inY, never stretches it; crop only one reviewed original-ratio strip from generated consistent material. Verify the cropped strip independently.",
+    "Inspect X-repeat and Y-repeat at actual proportions, both decoded diffuse and matching relief; internal rail shadows are real geometry, whole-image framing is not."
+  ],
+  "assets": [
+    {
+      "name": "metal5_90_JM",
+      "key": "128x16:7ddac95d8d0ab837",
+      "native": [
+        128,
+        16
+      ],
+      "target": [
+        512,
+        64
+      ],
+      "halfComparison": [
+        64,
+        8
+      ],
+      "quarterComparison": [
+        32,
+        4
+      ],
+      "occurrences": 16,
+      "metadataSha256": "73bcbead9f056d1d9739e75eca9947880db975b6ce9971b2cf63948ce5273dd6",
+      "originalSha256": "d73cf44b77d13f359a135dea758290242a3aad12a1fae4cfbfe3cac8d63cbdf3",
+      "grid": "Two horizontal courses, each8nativepixels tall; no countable vertical rib grid.",
+      "phase": {
+        "courseStarts": [
+          0,
+          8
+        ],
+        "brightLipRows": [
+          0,
+          8
+        ],
+        "lowerShadowRows": [
+          7,
+          15
+        ]
+      },
+      "palette": "Very dark warm brown/bronze metal with subdued olive-green oxidation. Preserve broad warm/green irregular patches; replace pixel noise with smooth physical material.",
+      "squareGuide": {
+        "repeatOriginalStripY": 8,
+        "resultingCourses": 16,
+        "cropOneOriginalStripFraction": 0.125
+      },
+      "notes": "Top lip is the brighter row itself, unlike the other two trims. Do not copy their one-row-down phase."
+    },
+    {
+      "name": "wmet4_25_JM",
+      "key": "128x32:af172edc2383f56e",
+      "native": [
+        128,
+        32
+      ],
+      "target": [
+        512,
+        128
+      ],
+      "halfComparison": [
+        64,
+        16
+      ],
+      "quarterComparison": [
+        32,
+        8
+      ],
+      "occurrences": 10,
+      "metadataSha256": "2c76674d33f9c0f4d35c407e34f6930e93c8af0d5003650f078f0d1508e24c2e",
+      "originalSha256": "ec809da2117fc74244a0fd3b8820678e2fa09db65d3215a2129b6f5c524538af",
+      "grid": "Two horizontal courses, each16nativepixels tall. Body has irregular pitting, not a reliable vertical rib/rivet lattice.",
+      "phase": {
+        "courseStarts": [
+          0,
+          16
+        ],
+        "brightLipRows": [
+          1,
+          17
+        ],
+        "darkApproachRows": [
+          14,
+          30
+        ],
+        "darkSeamRows": [
+          15,
+          31
+        ]
+      },
+      "palette": "Dark neutral-brown/bronze weathered metal, muted olive remnants and restrained cool silver raised lip.",
+      "squareGuide": {
+        "repeatOriginalStripY": 4,
+        "resultingCourses": 8,
+        "cropOneOriginalStripFraction": 0.25
+      },
+      "notes": "Do not stretch the32px original height into a square. Two courses must remain visible in the final512x128 strip."
+    },
+    {
+      "name": "wmet4_27_JM",
+      "key": "128x16:aeefd7d3bc435719",
+      "native": [
+        128,
+        16
+      ],
+      "target": [
+        512,
+        64
+      ],
+      "halfComparison": [
+        64,
+        8
+      ],
+      "quarterComparison": [
+        32,
+        4
+      ],
+      "occurrences": 14,
+      "metadataSha256": "21af6fad95f8da427ce31bc775d4ea17cc073303b674895502d31d631245aa54",
+      "originalSha256": "0537347a8790ea3ce1b1212f6c093cc90c96b31851c5477ddcae37115498e1f2",
+      "grid": "Two horizontal courses, each8nativepixels tall. Related material to wmet4_25_JM but narrower course bodies and different native pixels.",
+      "phase": {
+        "courseStarts": [
+          0,
+          8
+        ],
+        "brightLipRows": [
+          1,
+          9
+        ],
+        "darkApproachRows": [
+          6,
+          14
+        ],
+        "darkSeamRows": [
+          7,
+          15
+        ]
+      },
+      "palette": "Dark brown-grey aged metal, subdued bronze/olive traces and restrained cool silver lip.",
+      "squareGuide": {
+        "repeatOriginalStripY": 8,
+        "resultingCourses": 16,
+        "cropOneOriginalStripFraction": 0.125
+      },
+      "notes": "Share photographic material vocabulary with25, but preserve its own8px phase/body width and independent source colour fit. Never make a source alias."
+    },
+    {
+      "name": "TF_Metal4_6d",
+      "key": "128x128:8ee4f5f9b8cd8c43",
+      "native": [
+        128,
+        128
+      ],
+      "target": [
+        512,
+        512
+      ],
+      "halfComparison": [
+        64,
+        64
+      ],
+      "quarterComparison": [
+        32,
+        32
+      ],
+      "occurrences": 6,
+      "metadataSha256": "a2a3ec34d513e89e26847831e47d84428112637a0a01cc91dacd93ffdf60c60b",
+      "originalSha256": "bd5e9600f31ec3737b07c1214dee127a3438b3516f4b67b82edf740bc4426f9c",
+      "grid": "16x16 aligned rounded studs/rivet heads,8nativepixel pitch in both axes;256heads. Not staggered.",
+      "phase": {
+        "cellPitchNative": [
+          8,
+          8
+        ],
+        "approximateHeadCentreWithinCell": [
+          3.5,
+          3.5
+        ],
+        "headFootprintNativeApprox": [
+          6,
+          6
+        ],
+        "brightestAverageHeadPixel": [
+          3,
+          3
+        ]
+      },
+      "palette": "Dark reddish brown oxidized steel; rounded muted metal highlights, dark necks/recesses. Keep the faces comparatively smooth and sparse in fine pitting.",
+      "reuse": "TF_Metal4_6a is eight horizontal plain strips and has incompatible geometry. It may supply background material character only, never its strip topology.",
+      "notes": "At512square the pitch is32px and approximate centres14+32k. Verify16heads in each axis. No extra whole-image edge bevel or heavy grit."
+    },
+    {
+      "name": "TF_MetWall2_02",
+      "key": "128x128:dda0a237f8680b45",
+      "native": [
+        128,
+        128
+      ],
+      "target": [
+        512,
+        512
+      ],
+      "halfComparison": [
+        64,
+        64
+      ],
+      "quarterComparison": [
+        32,
+        32
+      ],
+      "occurrences": 2,
+      "metadataSha256": "900162821ce6cc1bacd1c3665fcaba09ae9a1939439fe58565e277a269c5ceda",
+      "originalSha256": "bc41057f7a86e5ca22f471b2bbd1de66ca31c0903e3eb1f195d94517affbf448",
+      "grid": "Two horizontal broad plates/courses,64nativepixel pitch; seam at63/64 and cyclic endpoint seam near126/127/0/1. No central vertical joint.",
+      "phase": {
+        "courseHeightNative": 64,
+        "centralSeamRows": [
+          63,
+          64
+        ],
+        "endpointSeamRows": [
+          126,
+          127,
+          0,
+          1
+        ]
+      },
+      "palette": "Cold dark blue-grey painted steel, cyan-grey broad wear and darker exposed patches; restrained orange pinpoints only if supported by source.",
+      "reuse": "Approved TF_MetWall4_02 geometry matches: same two-course horizontal seam layout and many corresponding wear masses. Native luma correlation after2px Gaussian lowpass is0.8692. Reuse its photographic master as a geometry/material donor with a separate blue-grey source colour fit; preferably GPT-edit for cleaner low-grain finish. Original pixels/key are different, so never exact-source alias.",
+      "notes": "Keep the existing narrow horizontal joint. Do not invent a2x2 panel grid. The checker pattern in the original is dithering, not checkerboard metal."
+    }
+  ],
+  "diagnostics": [
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/industrial-five-aspect-4x-reference.png",
+      "sha256": "651f1ae4d90b92cf79546f998a48deabe1b897698e35499ef949f31fece7a506"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/industrial-five-donor-native-comparison.png",
+      "sha256": "2a9967c6e5c32bc73327441bbcc4151d624eb3ad5d42fb07765630be81510c62"
+    }
+  ],
+  "donorInputs": [
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4_6a.png",
+      "sha256": "e5b6e7427abaa18a78136b0f442b92fa50063454fb8eb3cd35aff04b35e1da65"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/native-TF_MetWall4_02.png",
+      "sha256": "f2540409cd5b6bbfce49b7adfaaec7314bc144c966edd55f163e8c2b2f64b5c9"
+    }
+  ]
+}

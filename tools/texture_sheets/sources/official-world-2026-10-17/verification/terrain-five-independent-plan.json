@@ -1,0 +1,158 @@
+{
+  "reviewer": "Independent oct17_plan_review agent",
+  "scope": "Sourceappearance andboundedactualPAK/BSPstaticworldUV/adjacencyplanning; no generatedterrainapproval",
+  "entries": [
+    {
+      "name": "TF_Cliff1",
+      "key": "256x256:22663d7406672c66",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "runtimeDimensions": [
+        1024,
+        1024
+      ],
+      "meanRGB": [
+        69.06405639648438,
+        57.24720764160156,
+        45.621307373046875
+      ],
+      "sourceFaces": 4626,
+      "games": [
+        "mg1"
+      ]
+    },
+    {
+      "name": "TF_Cliff1b",
+      "key": "256x256:04f05e02a311fc78",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "runtimeDimensions": [
+        1024,
+        1024
+      ],
+      "meanRGB": [
+        82.23043823242188,
+        64.64511108398438,
+        50.29295349121094
+      ],
+      "sourceFaces": 2851,
+      "games": [
+        "mg1"
+      ]
+    },
+    {
+      "name": "TF_Grass1",
+      "key": "256x256:c4e7d38a1a7fa8f0",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "runtimeDimensions": [
+        1024,
+        1024
+      ],
+      "meanRGB": [
+        65.38504028320312,
+        59.534393310546875,
+        6.7122039794921875
+      ],
+      "sourceFaces": 3564,
+      "games": [
+        "mg1"
+      ]
+    },
+    {
+      "name": "TF_Grass2",
+      "key": "256x256:46d2108d9b9ab827",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "runtimeDimensions": [
+        1024,
+        1024
+      ],
+      "meanRGB": [
+        41.7578125,
+        38.11212158203125,
+        24.44158935546875
+      ],
+      "sourceFaces": 4483,
+      "games": [
+        "mg1"
+      ]
+    },
+    {
+      "name": "TF_Ground1",
+      "key": "128x128:f6080a942cfd3f26",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "runtimeDimensions": [
+        512,
+        512
+      ],
+      "meanRGB": [
+        41.82501220703125,
+        38.20562744140625,
+        24.48028564453125
+      ],
+      "sourceFaces": 3798,
+      "games": [
+        "mg1"
+      ]
+    }
+  ],
+  "intent": [
+    "TF_Cliff1has darkoliveearth/moss cap inupper~32nativepixels, transitionto fracturedbrown/greyrock by~64, samecentralrockformation as1b, darkweatheredbase towards192..256. Notuniformrocktop/bottom.",
+    "TF_Cliff1bhas fullrockformation throughout, noearthcap. Individualtop/bottomrockedges shouldbe reviewed asitsownUVrepeat, not forced intoa twoimageclosedcycle.",
+    "Grass1is dense lowyellowolivevegetation/moss, not talluprightgrass orhugeisolatedleaves/flowers. Grass2 ismuted darkolivebrown vegetation/soil. Ground1 similar darkolivebrownsoil/moss at128native, independentlysource-guarded."
+  ],
+  "relatedGroundPattern": {
+    "Grass1Grass2LumaCorrelation": 0.8743168800865343,
+    "Grass2Downsample128Ground1LanczosCorrelation": 0.8749267508404653,
+    "Grass2Downsample128Ground1MeanAbsoluteRGB": 6.040629069010417,
+    "assessment": "CommonGPTphotographicsoil/mossfine-material donor suitable with source-specificcolour/layoutfitsanddifferent4xtargetsizes. Notexactnativealiases; no samefilebindingclaim."
+  },
+  "cliffSharedBody": {
+    "nativeCliff1vs1bMAE_y64to128": 1.7828165690104167,
+    "nativeCliff1vs1bExactRGBPixelFraction_y64to192": 0.660430908203125,
+    "recipe": "Generate/referenceonecoherentfullrockbodyfrom1bsource; derivecapvariantwithsource-positionedearth/rocktransitionanddarkerbase, retainingcompatiblebodyfracturephase. ReuseGrass2materialasrelatedcapreference, notexactpixelcutout: capnativepattern doesnotcorrelatewithGrass2sameUVpixels."
+  },
+  "actualUVFindings": {
+    "data": "terrain-five-native-uv-data.json",
+    "aggregateStaticWorldStats": {
+      "TF_Cliff1": {
+        "worldFaces": 4626,
+        "facesVSpanOver256": 0,
+        "facesCrossNativeVRepeatBoundary": 100
+      },
+      "TF_Cliff1b": {
+        "worldFaces": 2832,
+        "facesVSpanOver256": 0,
+        "facesCrossNativeVRepeatBoundary": 735
+      }
+    },
+    "maps": 8,
+    "assessment": "100Cliff1and735Cliff1bstaticfaces crossnative256Vrepeatboundary. No examinedfaceVspan>256, butsourceVselfwrapactuallyoccurs. Cannotgloballyassume nonperiodicY basedoncapappearance.19Cliff1bfacesareinlinesubmodelsoutside thisboundedworldsample.",
+    "counterexamplesToClosedPair": [
+      "mge1m2faces261/265 shareCliff1/1bedgeatsameV=-1408(mod128), notoppositeYendpoints.",
+      "mge3m1faces12487/12488 sharematchingmid-rockUVV~-186..-192(mod70..64).",
+      "mge2m1faces1595/1597 shareCliff1V=-288(mod224),Cliff1bV=-256(mod0), notclosedtwoimagecycle."
+    ],
+    "adjacencyLimit": "SharedBSPedgeexamplesareactualworldgeometry, notPVS/gameplayorcompleteTjunctionproof. Co-occurrence/adjacencydoesnotestablish closedtexturecycle."
+  },
+  "normalAndSeamPlan": [
+    "Do notuse directed-vertical-pair encoder forthesiblings: actualUVexamples disprovesimpleclosedpairedendpointassumption.",
+    "PreserveCliff1intentionalcap/base withXonlydiffuseedgefinish first. Cliff1bfullrockandgroundsurfacescanXYfinish asappropriate afterdirectartreview.",
+    "Generate/reviewactualheight/XYZatendpoints andactualUVphasesbeforeaddingnewcontextmath. ExistingperiodicrecipeisbaselinebecauseactualselfVwrapoccurs.",
+    "Ifnewcapheightshowsa syntheticrim, documentactualoutputevidence beforeintroducingboundedclamp/reflection authoringcontext; no globalnonperiodicassumption orenginepathchange isjustified bycurrentnativeplan alone.",
+    "CheckprimaryCliff1/1blateralsharedbodyphase atnativeV64..128, notonlytop/bottompairs; retaincolour/distanceintentandoriginalUVs."
+  ],
+  "acceptance": "4xQ92allmaps;fullphotographicmaterial,half/quarterdistance(128/64for256native,64/32forGround128),groundXYrepeat,cliffXrepeat+sourceintentionalY/realUVcontext andreliefreview. No globalframe/bevel or nativegrainreconstruction."
+}

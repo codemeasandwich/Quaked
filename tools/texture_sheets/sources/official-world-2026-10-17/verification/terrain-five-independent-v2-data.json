@@ -1,0 +1,187 @@
+[
+  {
+    "name": "TF_Grass1",
+    "diffuseSha256": "f86c0d04dcfca140b5ea21abfc798069e9dec635ec2f456b8babf0a5c644e68d",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "distanceMetrics": {
+      "128": {
+        "nativeMean": [
+          65.38238525390625,
+          59.52716064453125,
+          6.75164794921875
+        ],
+        "newMean": [
+          65.50970458984375,
+          59.6514892578125,
+          11.84228515625
+        ],
+        "rmseDiagnosticOnly": 9.758489059478334
+      },
+      "64": {
+        "nativeMean": [
+          65.386474609375,
+          59.52490234375,
+          6.7197265625
+        ],
+        "newMean": [
+          65.50048828125,
+          59.64306640625,
+          11.83349609375
+        ],
+        "rmseDiagnosticOnly": 7.034808127491822
+      }
+    },
+    "contact": "TF_Grass1-independent-seam-v2-review.png"
+  },
+  {
+    "name": "TF_Grass2",
+    "diffuseSha256": "c7c1b13fac70cb937ed6fbf434a81bf888295a6bddfcec39f7400e657fcb32e3",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "distanceMetrics": {
+      "128": {
+        "nativeMean": [
+          41.749267578125,
+          38.11126708984375,
+          24.44293212890625
+        ],
+        "newMean": [
+          41.7686767578125,
+          38.1546630859375,
+          24.58062744140625
+        ],
+        "rmseDiagnosticOnly": 5.168004672809138
+      },
+      "64": {
+        "nativeMean": [
+          41.7431640625,
+          38.113037109375,
+          24.443115234375
+        ],
+        "newMean": [
+          41.77197265625,
+          38.1513671875,
+          24.57421875
+        ],
+        "rmseDiagnosticOnly": 3.49534660894548
+      }
+    },
+    "contact": "TF_Grass2-independent-seam-v2-review.png"
+  },
+  {
+    "name": "TF_Ground1",
+    "diffuseSha256": "b848aef132084b1eef863575d5faabe4d7b0301a97aad506a4fd5d06c21f0266",
+    "dimensions": [
+      512,
+      512
+    ],
+    "distanceMetrics": {
+      "64": {
+        "nativeMean": [
+          41.804931640625,
+          38.205078125,
+          24.486328125
+        ],
+        "newMean": [
+          41.78369140625,
+          38.24951171875,
+          24.536376953125
+        ],
+        "rmseDiagnosticOnly": 4.594352284780377
+      },
+      "32": {
+        "nativeMean": [
+          41.8271484375,
+          38.197265625,
+          24.46875
+        ],
+        "newMean": [
+          41.78125,
+          38.240234375,
+          24.5390625
+        ],
+        "rmseDiagnosticOnly": 2.8322799818932687
+      }
+    },
+    "contact": "TF_Ground1-independent-seam-v2-review.png"
+  },
+  {
+    "name": "TF_Cliff1",
+    "diffuseSha256": "fa617b9921460e54f316ebe733695421367425e7365fb28b6493fbe33ada7349",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "distanceMetrics": {
+      "128": {
+        "nativeMean": [
+          69.06591796875,
+          57.25006103515625,
+          45.62054443359375
+        ],
+        "newMean": [
+          69.15960693359375,
+          57.32965087890625,
+          45.69073486328125
+        ],
+        "rmseDiagnosticOnly": 5.727969216716885
+      },
+      "64": {
+        "nativeMean": [
+          69.051025390625,
+          57.240478515625,
+          45.61474609375
+        ],
+        "newMean": [
+          69.149169921875,
+          57.3193359375,
+          45.671875
+        ],
+        "rmseDiagnosticOnly": 4.121220253785077
+      }
+    },
+    "contact": "TF_Cliff1-independent-seam-v2-review.png"
+  },
+  {
+    "name": "TF_Cliff1b",
+    "diffuseSha256": "ae80a7d92c294f5f80f906a2f11d1dc9999cd98e18f3f06f3a963a9bb824b00c",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "distanceMetrics": {
+      "128": {
+        "nativeMean": [
+          82.232666015625,
+          64.64208984375,
+          50.292724609375
+        ],
+        "newMean": [
+          82.2982177734375,
+          64.7335205078125,
+          50.2762451171875
+        ],
+        "rmseDiagnosticOnly": 7.251063477137624
+      },
+      "64": {
+        "nativeMean": [
+          82.25390625,
+          64.667236328125,
+          50.311279296875
+        ],
+        "newMean": [
+          82.3349609375,
+          64.761474609375,
+          50.284423828125
+        ],
+        "rmseDiagnosticOnly": 4.970256585009805
+      }
+    },
+    "contact": "TF_Cliff1b-independent-seam-v2-review.png"
+  }
+]

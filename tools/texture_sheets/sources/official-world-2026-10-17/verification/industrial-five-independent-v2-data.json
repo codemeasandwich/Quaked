@@ -1,0 +1,227 @@
+[
+  {
+    "name": "metal5_90_JM",
+    "dimensions": [
+      512,
+      64
+    ],
+    "diffuseSha256": "b3d9478ba019701c81f04b9ff785ad0fa93076e17269babe0389c8c96ed45e15",
+    "metrics": {
+      "2": {
+        "dimensions": [
+          64,
+          8
+        ],
+        "rmseDiagnosticOnly": 4.679646198343061,
+        "nativeMeanRGB": [
+          38.212890625,
+          30.3671875,
+          16.755859375
+        ],
+        "newMeanRGB": [
+          38.072265625,
+          30.419921875,
+          17.572265625
+        ]
+      },
+      "4": {
+        "dimensions": [
+          32,
+          4
+        ],
+        "rmseDiagnosticOnly": 2.421690181120065,
+        "nativeMeanRGB": [
+          38.0546875,
+          30.28125,
+          16.8203125
+        ],
+        "newMeanRGB": [
+          38.0,
+          30.4140625,
+          17.5234375
+        ]
+      }
+    },
+    "contact": "metal5_90_JM-independent-v2-art.png"
+  },
+  {
+    "name": "wmet4_25_JM",
+    "dimensions": [
+      512,
+      128
+    ],
+    "diffuseSha256": "5ec50448b51d046df164eca90e21a3409c7035855478ff27309757171e3f893f",
+    "metrics": {
+      "2": {
+        "dimensions": [
+          64,
+          16
+        ],
+        "rmseDiagnosticOnly": 5.565893159832181,
+        "nativeMeanRGB": [
+          31.4462890625,
+          26.2734375,
+          18.84375
+        ],
+        "newMeanRGB": [
+          31.6376953125,
+          26.5703125,
+          18.97265625
+        ]
+      },
+      "4": {
+        "dimensions": [
+          32,
+          8
+        ],
+        "rmseDiagnosticOnly": 1.9005207619667475,
+        "nativeMeanRGB": [
+          31.62109375,
+          26.36328125,
+          18.7578125
+        ],
+        "newMeanRGB": [
+          31.86328125,
+          26.75390625,
+          19.0
+        ]
+      }
+    },
+    "contact": "wmet4_25_JM-independent-v2-art.png"
+  },
+  {
+    "name": "wmet4_27_JM",
+    "dimensions": [
+      512,
+      64
+    ],
+    "diffuseSha256": "358e05a610491b979bf784bf3d305a9eedc9d108180a5655257ed111af46cec3",
+    "metrics": {
+      "2": {
+        "dimensions": [
+          64,
+          8
+        ],
+        "rmseDiagnosticOnly": 3.435226520915324,
+        "nativeMeanRGB": [
+          29.115234375,
+          24.41015625,
+          19.447265625
+        ],
+        "newMeanRGB": [
+          30.1484375,
+          25.548828125,
+          20.306640625
+        ]
+      },
+      "4": {
+        "dimensions": [
+          32,
+          4
+        ],
+        "rmseDiagnosticOnly": 1.5819621255474692,
+        "nativeMeanRGB": [
+          29.515625,
+          24.6875,
+          19.3359375
+        ],
+        "newMeanRGB": [
+          30.3671875,
+          25.671875,
+          20.0859375
+        ]
+      }
+    },
+    "contact": "wmet4_27_JM-independent-v2-art.png"
+  },
+  {
+    "name": "TF_Metal4_6d",
+    "dimensions": [
+      512,
+      512
+    ],
+    "diffuseSha256": "8a16b24de37c64758c73f51a9f88a5836c90719cfe7fc363707529e78f8214d6",
+    "metrics": {
+      "2": {
+        "dimensions": [
+          64,
+          64
+        ],
+        "rmseDiagnosticOnly": 5.0060672823501555,
+        "nativeMeanRGB": [
+          36.955078125,
+          28.593994140625,
+          24.27978515625
+        ],
+        "newMeanRGB": [
+          36.86328125,
+          28.708251953125,
+          24.36328125
+        ]
+      },
+      "4": {
+        "dimensions": [
+          32,
+          32
+        ],
+        "rmseDiagnosticOnly": 2.1906227710402355,
+        "nativeMeanRGB": [
+          36.9423828125,
+          28.5986328125,
+          24.27734375
+        ],
+        "newMeanRGB": [
+          36.85546875,
+          28.734375,
+          24.373046875
+        ]
+      }
+    },
+    "contact": "TF_Metal4_6d-independent-v2-art.png"
+  },
+  {
+    "name": "TF_MetWall2_02",
+    "dimensions": [
+      512,
+      512
+    ],
+    "diffuseSha256": "f414545289a6186a66dd913e5985e909312cc854ee5ec6bff28bd2c18955631f",
+    "metrics": {
+      "2": {
+        "dimensions": [
+          64,
+          64
+        ],
+        "rmseDiagnosticOnly": 5.468206818262424,
+        "nativeMeanRGB": [
+          39.880126953125,
+          50.39111328125,
+          55.80615234375
+        ],
+        "newMeanRGB": [
+          39.666259765625,
+          50.570068359375,
+          55.7119140625
+        ]
+      },
+      "4": {
+        "dimensions": [
+          32,
+          32
+        ],
+        "rmseDiagnosticOnly": 5.010763155032707,
+        "nativeMeanRGB": [
+          39.9072265625,
+          50.4912109375,
+          55.8720703125
+        ],
+        "newMeanRGB": [
+          39.6943359375,
+          50.6220703125,
+          55.78515625
+        ]
+      }
+    },
+    "contact": "TF_MetWall2_02-independent-v2-art.png"
+  }
+]

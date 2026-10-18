@@ -1,0 +1,51 @@
+{
+  "source": {
+    "id": "TF_Grass1|256x256:c4e7d38a1a7fa8f0",
+    "name": "TF_Grass1",
+    "key": "256x256:c4e7d38a1a7fa8f0",
+    "width": 256,
+    "height": 256,
+    "pixelSha256": "660b3064b1ee4b0e1ce762016e352bfef304ffb35a27f36af2eade0900df8c4f",
+    "original": "originals/256x256-c4e7d38a1a7fa8f0.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "mg1",
+        "map": "maps/mge4m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+        "slot": 17,
+        "faces": 1254,
+        "visibleCandidateFaces": 1254,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge4m2.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+        "slot": 52,
+        "faces": 1155,
+        "visibleCandidateFaces": 1155,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge4m2b.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+        "slot": 52,
+        "faces": 1155,
+        "visibleCandidateFaces": 1155,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "referenceSha256": "3c307b446b92c6a6d0adbd34759e3d70b1f1642143ec9fd367af2426d35a4241"
+}

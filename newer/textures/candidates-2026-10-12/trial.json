@@ -2012,5 +2012,275 @@
     "quality": 92,
     "lossless": false,
     "method": "photographic-source-matched"
+  },
+  "TF_Grass1": {
+    "file": "candidates-2026-10-17/TF_Grass1-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+    "height": "candidates-2026-10-17/TF_Grass1-photographic-seam-v2-4x-q92-xyz-height.webp",
+    "normalChannels": {
+      "x": "candidates-2026-10-17/TF_Grass1-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "y": "candidates-2026-10-17/TF_Grass1-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "z": "candidates-2026-10-17/TF_Grass1-photographic-seam-v2-4x-q92-xyz-normalZ.webp"
+    },
+    "normalChannelSha256": {
+      "x": "f705883ddafda1b9429708bfca4def989d35d8bbbf8d4d258c2c82f9198ae61d",
+      "y": "00d9a7045e37d708371d24b5e89d31833e87d1d7f717b510aa9f523d0710e5e1",
+      "z": "e7be2455266fe19c7391f7663602c3719a4612e8984d27e55ece30f8539abc3a"
+    },
+    "width": 1024,
+    "heightPixels": 1024,
+    "strength": 0.2,
+    "cap": 0.5,
+    "diffuseSha256": "f86c0d04dcfca140b5ea21abfc798069e9dec635ec2f456b8babf0a5c644e68d",
+    "heightSha256": "7a1a7f53d8a293c6d2e1ccd016a598916f1ec67216e862b875360fdf863ed2e2",
+    "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Grass1.png",
+    "originalSha256": "3c307b446b92c6a6d0adbd34759e3d70b1f1642143ec9fd367af2426d35a4241",
+    "nativeKey": "256x256:c4e7d38a1a7fa8f0",
+    "factor": 4,
+    "quality": 92,
+    "lossless": false,
+    "method": "photographic-source-matched"
+  },
+  "TF_Grass2": {
+    "file": "candidates-2026-10-17/TF_Grass2-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+    "height": "candidates-2026-10-17/TF_Grass2-photographic-seam-v2-4x-q92-xyz-height.webp",
+    "normalChannels": {
+      "x": "candidates-2026-10-17/TF_Grass2-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "y": "candidates-2026-10-17/TF_Grass2-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "z": "candidates-2026-10-17/TF_Grass2-photographic-seam-v2-4x-q92-xyz-normalZ.webp"
+    },
+    "normalChannelSha256": {
+      "x": "9aadc2c7c1bcdac76a9e2b2a8efa5c719eac937b730755d48616b7776b9b3113",
+      "y": "6735749bb82521914a8c55a19a758493d6ca1fb904f1566d13ef590d771b7761",
+      "z": "bff52768797dac83dba6b06f382f81b906c2949797c12cf69a5b61c7e153ab9d"
+    },
+    "width": 1024,
+    "heightPixels": 1024,
+    "strength": 0.2,
+    "cap": 0.5,
+    "diffuseSha256": "c7c1b13fac70cb937ed6fbf434a81bf888295a6bddfcec39f7400e657fcb32e3",
+    "heightSha256": "b8ef166a980735da115fec72495586b5193eaeda8370b9381fae415b1766736a",
+    "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Grass2.png",
+    "originalSha256": "36d5000c905453334f7a6276e829058c8ad29a79ac1293c073c5bf56f0e9a524",
+    "nativeKey": "256x256:46d2108d9b9ab827",
+    "factor": 4,
+    "quality": 92,
+    "lossless": false,
+    "method": "photographic-source-matched"
+  },
+  "TF_Ground1": {
+    "file": "candidates-2026-10-17/TF_Ground1-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+    "height": "candidates-2026-10-17/TF_Ground1-photographic-seam-v2-4x-q92-xyz-height.webp",
+    "normalChannels": {
+      "x": "candidates-2026-10-17/TF_Ground1-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "y": "candidates-2026-10-17/TF_Ground1-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "z": "candidates-2026-10-17/TF_Ground1-photographic-seam-v2-4x-q92-xyz-normalZ.webp"
+    },
+    "normalChannelSha256": {
+      "x": "aa620a406950f2958625e8c1ce3e79b9e1a2b56025bedade990235d930cf43b1",
+      "y": "59086af04552d953e8bdadbbf73fe31f675c5d7acbfd0e935b6837633699f8af",
+      "z": "6c58395b365b6047e780f99a46b4cbec2eb6d55b3735433d9025687934057aba"
+    },
+    "width": 512,
+    "heightPixels": 512,
+    "strength": 0.2,
+    "cap": 0.5,
+    "diffuseSha256": "b848aef132084b1eef863575d5faabe4d7b0301a97aad506a4fd5d06c21f0266",
+    "heightSha256": "375e2aa903f1cb467c549d247584d3a4712052c1d9aab0870f499b5cecea6c08",
+    "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Ground1.png",
+    "originalSha256": "db3a55aabc407169b1e8c578142045cb07b1a19d21cf9274f538e10af86659f9",
+    "nativeKey": "128x128:f6080a942cfd3f26",
+    "factor": 4,
+    "quality": 92,
+    "lossless": false,
+    "method": "photographic-source-matched"
+  },
+  "TF_Cliff1": {
+    "file": "candidates-2026-10-17/TF_Cliff1-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+    "height": "candidates-2026-10-17/TF_Cliff1-photographic-seam-v2-4x-q92-xyz-height.webp",
+    "normalChannels": {
+      "x": "candidates-2026-10-17/TF_Cliff1-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "y": "candidates-2026-10-17/TF_Cliff1-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "z": "candidates-2026-10-17/TF_Cliff1-photographic-seam-v2-4x-q92-xyz-normalZ.webp"
+    },
+    "normalChannelSha256": {
+      "x": "6b404f8214b66dcf2350281fed2c20cf9b1a0222a8c272a24d5d90f11948fcd6",
+      "y": "92ef04f5d5b1cb98341f6163f3e3e2ed511d77ef6a9d6d170ab3946c6f9c018e",
+      "z": "4d706f2e2f5265219e04435b11afd155f7dd5df94ed3529bb71f6dc50aec6a89"
+    },
+    "width": 1024,
+    "heightPixels": 1024,
+    "strength": 0.2,
+    "cap": 0.5,
+    "diffuseSha256": "fa617b9921460e54f316ebe733695421367425e7365fb28b6493fbe33ada7349",
+    "heightSha256": "f4d46d360ff39e0392267c5b869416c1b477596a6965c5f24dc6f189a526dad9",
+    "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Cliff1.png",
+    "originalSha256": "1b4e78d78fddc0aad8331572295b9263bcc4a45ab42168e5261d30b8fc3e94ce",
+    "nativeKey": "256x256:22663d7406672c66",
+    "factor": 4,
+    "quality": 92,
+    "lossless": false,
+    "method": "photographic-source-matched"
+  },
+  "TF_Cliff1b": {
+    "file": "candidates-2026-10-17/TF_Cliff1b-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+    "height": "candidates-2026-10-17/TF_Cliff1b-photographic-seam-v2-4x-q92-xyz-height.webp",
+    "normalChannels": {
+      "x": "candidates-2026-10-17/TF_Cliff1b-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "y": "candidates-2026-10-17/TF_Cliff1b-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "z": "candidates-2026-10-17/TF_Cliff1b-photographic-seam-v2-4x-q92-xyz-normalZ.webp"
+    },
+    "normalChannelSha256": {
+      "x": "13fb4b2612b641985647bd50a75b1df280c7de4b1afdcd3d3228869d7f245d19",
+      "y": "1aadf5f1347f512d8ec36ad49c073f63830285137dd47778143ee921b49c9f95",
+      "z": "08d29983db3ab85d5eef6adf63cad0c14eb30d209afa1d58e5f13f64923e088d"
+    },
+    "width": 1024,
+    "heightPixels": 1024,
+    "strength": 0.2,
+    "cap": 0.5,
+    "diffuseSha256": "ae80a7d92c294f5f80f906a2f11d1dc9999cd98e18f3f06f3a963a9bb824b00c",
+    "heightSha256": "04a9caf3c97dce6cca91f361c53edeee973d3fc70bc6a9fce7db55177e1a6fff",
+    "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Cliff1b.png",
+    "originalSha256": "2da741ab98bcfb7cbead4945b27f8c39d21e0d6754dd5deb54015911e04a8470",
+    "nativeKey": "256x256:04f05e02a311fc78",
+    "factor": 4,
+    "quality": 92,
+    "lossless": false,
+    "method": "photographic-source-matched"
+  },
+  "metal5_90_JM": {
+    "file": "candidates-2026-10-17/metal5_90_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+    "height": "candidates-2026-10-17/metal5_90_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+    "normalChannels": {
+      "x": "candidates-2026-10-17/metal5_90_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "y": "candidates-2026-10-17/metal5_90_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "z": "candidates-2026-10-17/metal5_90_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp"
+    },
+    "normalChannelSha256": {
+      "x": "86ff06e3394e97b903f3dfda263bfcaeb1623e9e220cd37c0ab71b539ceeeda2",
+      "y": "77597ac7c74240a3afd49199bd49e13fa9063b1edf88dbaf8bdf014d4b1f3db0",
+      "z": "9d5d5910c8924c24ba3b047e007ee98a4b13337fe6fe226b95020c6d510736e6"
+    },
+    "width": 512,
+    "heightPixels": 64,
+    "strength": 0.2,
+    "cap": 0.5,
+    "diffuseSha256": "b3d9478ba019701c81f04b9ff785ad0fa93076e17269babe0389c8c96ed45e15",
+    "heightSha256": "b1a574aaeb1997914527626332b37eeafbb1f1d0b5851c8f643e589da4d5cb80",
+    "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-metal5_90_JM.png",
+    "originalSha256": "d73cf44b77d13f359a135dea758290242a3aad12a1fae4cfbfe3cac8d63cbdf3",
+    "nativeKey": "128x16:7ddac95d8d0ab837",
+    "factor": 4,
+    "quality": 92,
+    "lossless": false,
+    "method": "photographic-source-matched"
+  },
+  "wmet4_25_JM": {
+    "file": "candidates-2026-10-17/wmet4_25_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+    "height": "candidates-2026-10-17/wmet4_25_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+    "normalChannels": {
+      "x": "candidates-2026-10-17/wmet4_25_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "y": "candidates-2026-10-17/wmet4_25_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "z": "candidates-2026-10-17/wmet4_25_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp"
+    },
+    "normalChannelSha256": {
+      "x": "d979a1c66ffd6386d2a6e7f9c8228e1671fdd5ef3d366192cbe0762d9e30d1f1",
+      "y": "36cece6f3cebc17da7be1303e33951fb4630f35637b9e1b44fee85e9849c0049",
+      "z": "82d43cb6ae1808a35f0cb1e77cf9e7c4c12663f2548c9ad6c505e2a36d869bc8"
+    },
+    "width": 512,
+    "heightPixels": 128,
+    "strength": 0.2,
+    "cap": 0.5,
+    "diffuseSha256": "5ec50448b51d046df164eca90e21a3409c7035855478ff27309757171e3f893f",
+    "heightSha256": "fa4040f707029171c2d1adac67ab28568414271e68970d358bf1fc8242cd7bc5",
+    "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-wmet4_25_JM.png",
+    "originalSha256": "ec809da2117fc74244a0fd3b8820678e2fa09db65d3215a2129b6f5c524538af",
+    "nativeKey": "128x32:af172edc2383f56e",
+    "factor": 4,
+    "quality": 92,
+    "lossless": false,
+    "method": "photographic-source-matched"
+  },
+  "wmet4_27_JM": {
+    "file": "candidates-2026-10-17/wmet4_27_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+    "height": "candidates-2026-10-17/wmet4_27_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+    "normalChannels": {
+      "x": "candidates-2026-10-17/wmet4_27_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "y": "candidates-2026-10-17/wmet4_27_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "z": "candidates-2026-10-17/wmet4_27_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp"
+    },
+    "normalChannelSha256": {
+      "x": "4acc5a67a51f0058e2eeaa7d92568dcbfafb66e5aae2986a08ad8a67a5745a25",
+      "y": "069e2f6866624c2ed6791e6a19d673d41edf528856581ad24efae4dbcfb933dc",
+      "z": "df47405f170adba3365fa79f26546d1dbf0e3241a1a97ac3fcfd6dfce081926b"
+    },
+    "width": 512,
+    "heightPixels": 64,
+    "strength": 0.2,
+    "cap": 0.5,
+    "diffuseSha256": "358e05a610491b979bf784bf3d305a9eedc9d108180a5655257ed111af46cec3",
+    "heightSha256": "989d091d601ea6d4997018d3b3da081dc90197fd5e398a0f964e9788bb8b7d01",
+    "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-wmet4_27_JM.png",
+    "originalSha256": "0537347a8790ea3ce1b1212f6c093cc90c96b31851c5477ddcae37115498e1f2",
+    "nativeKey": "128x16:aeefd7d3bc435719",
+    "factor": 4,
+    "quality": 92,
+    "lossless": false,
+    "method": "photographic-source-matched"
+  },
+  "TF_Metal4_6d": {
+    "file": "candidates-2026-10-17/TF_Metal4_6d-photographic-seam-v4-4x-q92-xyz-diffuse.webp",
+    "height": "candidates-2026-10-17/TF_Metal4_6d-photographic-seam-v4-4x-q92-xyz-height.webp",
+    "normalChannels": {
+      "x": "candidates-2026-10-17/TF_Metal4_6d-photographic-seam-v4-4x-q92-xyz-normalX.webp",
+      "y": "candidates-2026-10-17/TF_Metal4_6d-photographic-seam-v4-4x-q92-xyz-normalY.webp",
+      "z": "candidates-2026-10-17/TF_Metal4_6d-photographic-seam-v4-4x-q92-xyz-normalZ.webp"
+    },
+    "normalChannelSha256": {
+      "x": "370b3e04e720f40c91f212b69d1e99111510d83223bb5a0182768a6afef9f11a",
+      "y": "8b69065e69dc7c7462b32c9e8990cd105fa1b4013fe4a654d28d2d5e6a89a95e",
+      "z": "0349f5a55c93f27c78239217b919fb7825dcaa7d44f44d791846fa24f641e8bd"
+    },
+    "width": 512,
+    "heightPixels": 512,
+    "strength": 0.2,
+    "cap": 0.5,
+    "diffuseSha256": "40c19b969bf854aaed9828428faf8d654f880fc038175f162e0e8031bd694bba",
+    "heightSha256": "61933912c18e63de8f7bac52aa29888e25381d67ddbb06259843a67f8721d1ae",
+    "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Metal4_6d.png",
+    "originalSha256": "bd5e9600f31ec3737b07c1214dee127a3438b3516f4b67b82edf740bc4426f9c",
+    "nativeKey": "128x128:8ee4f5f9b8cd8c43",
+    "factor": 4,
+    "quality": 92,
+    "lossless": false,
+    "method": "photographic-source-matched"
+  },
+  "TF_MetWall2_02": {
+    "file": "candidates-2026-10-17/TF_MetWall2_02-photographic-relief-v3-4x-q92-xyz-diffuse.webp",
+    "height": "candidates-2026-10-17/TF_MetWall2_02-photographic-relief-v3-4x-q92-xyz-height.webp",
+    "normalChannels": {
+      "x": "candidates-2026-10-17/TF_MetWall2_02-photographic-relief-v3-4x-q92-xyz-normalX.webp",
+      "y": "candidates-2026-10-17/TF_MetWall2_02-photographic-relief-v3-4x-q92-xyz-normalY.webp",
+      "z": "candidates-2026-10-17/TF_MetWall2_02-photographic-relief-v3-4x-q92-xyz-normalZ.webp"
+    },
+    "normalChannelSha256": {
+      "x": "bada8c40f8730d7ef64140fb110cdf77c1a9b3f01a8e609a0c00f85f01ab333a",
+      "y": "46c5a3dfe3c6213cc998debe0f91bcd1b344eb4e649127d4c316a33a6f81a9a9",
+      "z": "ebc58272e3ee729a5ef1698caed02cc6cb66528096a4aee18d3d4b2acba1d85f"
+    },
+    "width": 512,
+    "heightPixels": 512,
+    "strength": 0.06,
+    "cap": 0.5,
+    "diffuseSha256": "f414545289a6186a66dd913e5985e909312cc854ee5ec6bff28bd2c18955631f",
+    "heightSha256": "e9e01230e3a1735ef50f9ae90acb9f35bb2d282d6ea433d9ce8532722a7cd33e",
+    "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_MetWall2_02.png",
+    "originalSha256": "bc41057f7a86e5ca22f471b2bbd1de66ca31c0903e3eb1f195d94517affbf448",
+    "nativeKey": "128x128:dda0a237f8680b45",
+    "factor": 4,
+    "quality": 92,
+    "lossless": false,
+    "method": "photographic-source-matched"
   }
 }
