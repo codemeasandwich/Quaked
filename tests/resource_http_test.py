@@ -6,6 +6,7 @@ if __name__=='__main__':
 import functools
 import http.server
 import json
+import socketserver
 from pathlib import Path
 import sys
 import tempfile
@@ -17,6 +18,14 @@ from unittest.mock import patch
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 from serve import RangeHandler
+
+
+class LoopbackHTTPServer(http.server.ThreadingHTTPServer):
+    def server_bind(self):
+        # HTTPServer resolves a display hostname here. This numeric-only fixture
+        # needs no reverse DNS, which can hang on hosted macOS runners.
+        socketserver.TCPServer.server_bind(self)
+        self.server_name,self.server_port=self.server_address[:2]
 
 
 class ResourceHttpTests(unittest.TestCase):
@@ -42,10 +51,13 @@ class ResourceHttpTests(unittest.TestCase):
             game_root=self.games.resolve()
             def log_message(self,*args):
                 pass
-        self.server=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Handler,directory=str(self.root)))
+        with patch('socket.getfqdn',side_effect=AssertionError('loopback fixture attempted DNS')), patch('socket.gethostbyaddr',side_effect=AssertionError('loopback fixture attempted reverse DNS')):
+            self.server=LoopbackHTTPServer(('127.0.0.1',0),functools.partial(Handler,directory=str(self.root)))
         self.thread=threading.Thread(target=self.server.serve_forever,daemon=True)
         self.thread.start()
         self.addCleanup(self.close_server)
+        self.assertEqual(self.server.server_name,'127.0.0.1')
+        self.assertEqual(self.server.server_port,self.server.socket.getsockname()[1])
         self.base='http://127.0.0.1:'+str(self.server.server_port)
         # A loopback fixture must not consult macOS/system/environment proxies.
         self.opener=build_opener(ProxyHandler({}))

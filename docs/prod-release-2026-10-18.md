@@ -28,7 +28,7 @@ The historical Prod commits `907d5cde` and `3f2084c0` were ported into Dev throu
 
 ## Pending owner setup and verification
 
-The current CLI token cannot list installed GitHub Apps (`user/installations` requires a GitHub App user token; the request returned403). An existing suitable App has not been identified. Prepare a repository-scoped dedicated App and keep its private key outside the repository/Actions; then grant its verified Integration ID bypass only on `prod-updates` and `version-tag-create`. Do not add any bypass on either history ruleset or Dev history.
+The current CLI token cannot list installed GitHub Apps (`user/installations` requires a GitHub App user token; the request returned403). The owner-created App `5370616` is now identified through its signed-in settings, but its key and repository installation remain pending. Keep its private key outside the repository/Actions; after verifying its key and installation, grant its Integration ID bypass only on `prod-updates` and `version-tag-create`. Do not add any bypass on either history ruleset or Dev history.
 
 The existing package version `0.132.3` is already released, so the future selected release commit needs a new version (or a proven same-commit retry). No current commit is being selected for release by this configuration task.
 
@@ -56,7 +56,10 @@ rulesets, but they have no ordinary push bypass while these rules are active.
 
 ### One-time owner action
 
-[Review the prefilled private App registration](https://github.com/settings/apps/new?name=Quaked%20Release%20Promotion%20-%20codemeasandwich&description=Promote%20one%20explicit%20tested%20Dev%20commit%20to%20Prod&url=https%3A%2F%2Fgithub.com%2Fcodemeasandwich%2FQuaked&public=false&webhook_active=false&contents=write&workflows=write&actions=read).
+The owner registered [Quaked Cut Release](https://github.com/settings/apps/quaked-cut-release),
+App ID `5370616`, owned by `codemeasandwich`. Its signed-in settings and permissions
+were checked on 18 October 2026. Key creation, repository installation and private
+controller setup remain pending; registration alone does not activate promotion.
 The [reviewable App manifest](release-app-manifest.json) requires repository
 Contents write (update existing refs), Workflows write (promotion can include
 workflow changes already committed on Dev), and Actions read (verify qualification
@@ -150,7 +153,16 @@ Isolated Python startup and10s traceback diagnostics were added. This proves the
 fixture isolation fix; the original CI timeout's sole root cause is not asserted
 without a fresh CI run. See the retained before/after probe and CI triage.
 
-Current App activation and the first real selected release remain pending owner
-account setup. No App registration, installation-token mint, Prod movement, version
-tag creation or real release publication has been performed by this configuration
-work. Source/build verification must not be described as that live acceptance.
+Fresh Dev CI `39146154576` then failed the same deadline on both macOS jobs. Its
+10-second traceback identifies `socket.getfqdn` in `HTTPServer.server_bind` during
+fixture construction on Python 3.14.7. The test-only server now performs the actual
+TCP bind directly and assigns its numeric loopback name and bound port. Constructor
+regressions refuse both reverse-DNS entry points; all existing real HTTP requests,
+proxy isolation, range and traversal assertions remain. Production `tools/serve.py`
+and the 5-second request / 15-second parent deadlines are unchanged. A fresh Dev
+CI run is still required to verify this correction on the hosted runners.
+
+App activation and the first real selected release remain pending owner key and
+installation setup. No installation-token mint, Prod movement, version tag creation
+or real release publication has been performed by this configuration work.
+Source/build verification must not be described as that live acceptance.
