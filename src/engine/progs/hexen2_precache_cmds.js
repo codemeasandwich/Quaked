@@ -1,0 +1,117 @@
+/**
+ * @module engine/progs/hexen2_precache_cmds
+ *
+ * The Hexen II precache and model builtins: `precache_sound`, `precache_model`, their versioned qcc aliases
+ * (model2/3/4, sound2/3/4), the no-op `precache_file`, and `setmodel`. They reuse the server's existing
+ * `sv.model_precache`/`sv.sound_precache` lists and the port's model loader, so a Hexen spawn function populates the
+ * same structures the Quake gamecode does. Numbers are the pinned 114-entry contract; the module registers itself when
+ * the server loads it.
+ *
+ * Types: plain values and functions; no exported classes.
+ * State: none here; the server holds the precache lists.
+ * Errors: the native program errors for an empty name, an out-of-spawn precache, an overflow or an unprecached model.
+ */
+
+import { sv, G_STRING, G_INT, G_INT_SET, G_EDICT } from './progs.js';
+import { OFS_PARM0, OFS_PARM1, OFS_RETURN } from './pr_comp.js';
+import { PR_RunError } from './pr_exec.js';
+import { ss_loading } from '../server/server.js';
+import { SV_LinkEdict } from '../server/world.js';
+import { Mod_ForName } from '../render/gl_model.js';
+import { Hexen2_RegisterBuiltins } from './hexen2_cmds.js';
+
+function checkSpawn() {
+
+	if ( sv.state !== ss_loading ) PR_RunError( 'PF_Precache_*: Precache can only be done in spawn functions' );
+	if ( ! sv.model_precache ) return false;
+	return true;
+
+}
+
+// #19 precache_sound(name): the existing sound list, limited to the list the server allocated
+function precacheSound() {
+
+	const name = G_STRING( OFS_PARM0 );
+	G_INT_SET( OFS_RETURN, G_INT( OFS_PARM0 ) );
+	if ( name === '' ) PR_RunError( 'PF_precache_sound: empty string' );
+	if ( ! checkSpawn() || ! sv.sound_precache ) return;
+	for ( let i = 0; i < sv.sound_precache.length; i ++ ) {
+
+		if ( sv.sound_precache[ i ] === name ) return;
+		if ( sv.sound_precache[ i ] == null ) { sv.sound_precache[ i ] = name; return; }
+
+	}
+	PR_RunError( 'PF_precache_sound: overflow' );
+
+}
+
+// #20 precache_model(name) and its qcc variants
+function precacheModel() {
+
+	const name = G_STRING( OFS_PARM0 );
+	G_INT_SET( OFS_RETURN, G_INT( OFS_PARM0 ) );
+	if ( name === '' ) PR_RunError( 'PF_precache_model: empty string' );
+	if ( ! checkSpawn() ) return;
+	for ( let i = 0; i < sv.model_precache.length; i ++ ) {
+
+		if ( sv.model_precache[ i ] === name ) return;
+		if ( sv.model_precache[ i ] == null ) {
+
+			sv.model_precache[ i ] = name;
+			sv.models[ i ] = Mod_ForName( name, true );
+			return;
+
+		}
+
+	}
+	PR_RunError( 'PF_precache_model: overflow' );
+
+}
+
+// #68/77/98/103 precache_file(name): native keeps no separate file table
+function precacheFile() { G_INT_SET( OFS_RETURN, G_INT( OFS_PARM0 ) ); }
+
+// #3 setmodel(entity, model): the native precache lookup, model index/bounds and relink
+function setmodel() {
+
+	const ent = G_EDICT( OFS_PARM0 ), name = G_STRING( OFS_PARM1 );
+	if ( name === '' ) PR_RunError( 'PF_setmodel: empty string' );
+	let index = - 1;
+	if ( sv.model_precache ) {
+
+		for ( let i = 0; i < sv.model_precache.length; i ++ ) {
+
+			if ( sv.model_precache[ i ] === name ) { index = i; break; }
+
+		}
+
+	}
+	if ( index < 0 ) PR_RunError( 'no precache: %s', name );
+	ent.v.model = G_INT( OFS_PARM1 );
+	ent.v.modelindex = index;
+	const model = sv.models ? sv.models[ index ] : null;
+	if ( model ) {
+
+		ent.v.mins = [ model.mins[ 0 ], model.mins[ 1 ], model.mins[ 2 ] ];
+		ent.v.maxs = [ model.maxs[ 0 ], model.maxs[ 1 ], model.maxs[ 2 ] ];
+		ent.v.size = [ model.maxs[ 0 ] - model.mins[ 0 ], model.maxs[ 1 ] - model.mins[ 1 ], model.maxs[ 2 ] - model.mins[ 2 ] ];
+
+	} else {
+
+		ent.v.mins = [ 0, 0, 0 ]; ent.v.maxs = [ 0, 0, 0 ]; ent.v.size = [ 0, 0, 0 ];
+
+	}
+	SV_LinkEdict( ent, false );
+
+}
+
+/** The precache builtins this module installs into the Hexen II dispatcher. */
+export const HEXEN2_PRECACHE_BUILTINS = Object.freeze( {
+	3: setmodel,
+	19: precacheSound,
+	20: precacheModel,
+	75: precacheModel, 76: precacheSound, 96: precacheSound, 97: precacheModel, 101: precacheSound, 102: precacheModel,
+	68: precacheFile, 77: precacheFile, 98: precacheFile, 103: precacheFile
+} );
+
+Hexen2_RegisterBuiltins( HEXEN2_PRECACHE_BUILTINS );
