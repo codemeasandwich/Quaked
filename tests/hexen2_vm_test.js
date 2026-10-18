@@ -29,6 +29,7 @@ function buildProgram( plan ) {
 	addString( '' );
 	for ( const [ name ] of HEXEN2_GLOBALS_V111 ) addString( name );
 	for ( const [ name ] of HEXEN2_ENTVARS ) addString( name );
+	for ( const name of plan.strings ?? [] ) addString( name );
 	const statements = plan.statements, functions = plan.functions, globals = plan.globals ?? 900;
 	const stBytes = statements.length * 8, gdBytes = HEXEN2_GLOBALS_V111.length * 8, fdBytes = HEXEN2_ENTVARS.length * 8;
 	const fnBytes = functions.length * 36, stringsLen = stringLen;
@@ -74,7 +75,7 @@ function buildProgram( plan ) {
 	} );
 	let at = ofsStr;
 	for ( const text of chunks ) { for ( let i = 0; i < text.length; i ++ ) view.setUint8( at ++, text.charCodeAt( i ) ); view.setUint8( at ++, 0 ); }
-	return bytes;
+	return { bytes, strings: stringAt };
 
 }
 
@@ -84,7 +85,7 @@ async function fixture( plan ) {
 	const { PR_LoadProgs } = await import( '../src/engine/progs/pr_edict.js' );
 	const progs = await import( '../src/engine/progs/progs.js' );
 	const { PR_ExecuteProgram, PR_SetRandomSource } = await import( '../src/engine/progs/pr_exec.js' );
-	const bytes = buildProgram( plan );
+	const built = buildProgram( plan ), bytes = built.bytes;
 	PR_LoadProgs( bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.byteLength ) );
 	same( progs.PR_ProgramProfile(), 'hexen2-base', 'the fixture loads as the supplied base layout' );
 	return {
@@ -110,7 +111,8 @@ async function fixture( plan ) {
 			} return null;
 
 		},
-		setRandom( source ) { PR_SetRandomSource( source ); }
+		setRandom( source ) { PR_SetRandomSource( source ); },
+		string( name ) { return built.strings.get( name ) ?? null; }
 
 	};
 
@@ -327,5 +329,51 @@ Deno.test( 'the implemented Hexen builtins compute their native results through 
 	[ 4, 5, 6 ].forEach( ( value, i ) => program.setF( 923 + i, value ) );
 	program.run( 2 );
 	same( [ program.getF( OFS_RETURN ), program.getF( OFS_RETURN + 1 ), program.getF( OFS_RETURN + 2 ) ].join( ',' ), '-2,1,3', 'v_factorrange at its minimum' );
+
+} );
+
+Deno.test( 'the string and console builtins produce native text and read and write cvars', async () => {
+
+	const builtin = number => ( { builtin: number } );
+	const program = await fixture( {
+		globals: 1000,
+		functions: [ empty, { first: 0 }, { first: 2 },
+			builtin( 25 ), builtin( 26 ), builtin( 27 ), builtin( 45 ), builtin( 72 ) ],
+		strings: [ 'hexen2_vm_test', '2.5' ],
+		statements: [
+			{ op: OP_CALL1, a: 900, b: 910, c: 0 }, done( 1 ),
+			{ op: OP_CALL2, a: 901, b: 920, c: 923 }, done( 1 )
+		]
+	} );
+	const { PR_GetString } = program.progs;
+	const fn = number => program.progs.pr_functions.indexOf( program.progs.pr_functions.find( f => f.first_statement === - number ) );
+	const textResult = ( number, argument ) => {
+
+		program.setI( 900, fn( number ) );
+		if ( typeof argument === 'number' ) program.setF( 910, argument );
+		else [ 0, 1, 2 ].forEach( ( i ) => program.setF( 910 + i, argument[ i ] ) );
+		program.run( 1 );
+		return PR_GetString( program.progs.pr_globals.getInt32( OFS_RETURN ) );
+
+	};
+	same( textResult( 26, 3 ), '3', 'ftos of an exact integer' );
+	same( textResult( 26, 2.5 ), '2.5', 'ftos of a fractional value' );
+	same( textResult( 27, [ 1, 2.5, - 3 ] ), "'1.0 2.5 -3.0'", 'vtos of a vector' );
+	// cvar(name) and cvar_set(name, value) use the real cvar registry
+	const { cvar_t, Cvar_RegisterVariable } = await import( '../src/engine/common/cvar.js' );
+	Cvar_RegisterVariable( new cvar_t( 'hexen2_vm_test', '7' ) );
+	program.setI( 900, fn( 45 ) );
+	program.progs.pr_globals.setInt32( 910, program.string( 'hexen2_vm_test' ) );
+	program.run( 1 );
+	same( program.getF( OFS_RETURN ), 7, 'cvar read' );
+	program.setI( 901, fn( 72 ) );
+	program.progs.pr_globals.setInt32( 920, program.string( 'hexen2_vm_test' ) );
+	program.progs.pr_globals.setInt32( 923, program.string( '2.5' ) );
+	program.run( 2 );
+	same( ( await import( '../src/engine/common/cvar.js' ) ).Cvar_VariableValue( 'hexen2_vm_test' ), 2.5, 'cvar_set wrote the value' );
+	// dprint must not throw on a null/empty string argument
+	program.setI( 900, fn( 25 ) );
+	program.progs.pr_globals.setInt32( 910, 0 );
+	program.run( 1 );
 
 } );

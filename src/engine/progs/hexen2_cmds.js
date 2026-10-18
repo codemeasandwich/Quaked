@@ -11,9 +11,10 @@
  * Errors: none raised here; a caller-provided random source is used for `random`.
  */
 
-import { G_FLOAT, G_FLOAT_SET, G_VECTOR } from './progs.js';
-import { pr_global_struct } from './progs.js';
+import { G_FLOAT, G_FLOAT_SET, G_INT, G_INT_SET, G_STRING, G_VECTOR, PR_SetTempString, pr_argc, pr_global_struct } from './progs.js';
 import { OFS_PARM0, OFS_PARM1, OFS_RETURN } from './pr_comp.js';
+import { Cvar_VariableValue, Cvar_Set } from '../common/cvar.js';
+import { Con_DPrintf } from '../common/console.js';
 
 const DEG2RAD = Math.PI / 180;
 
@@ -126,10 +127,47 @@ function v_factorrange( context ) {
 
 }
 
+// The native variadic string: the string arguments from `first` to pr_argc-1, concatenated.
+function varString( first ) {
+
+	let out = '';
+	for ( let i = first; i < pr_argc; i ++ ) out += G_STRING( OFS_PARM0 + i * 3 );
+	return out;
+
+}
+
+// #26 ftos(float): the integer form when exact, else one decimal place (as the native PF_ftos prints)
+function ftos() {
+
+	const v = G_FLOAT( OFS_PARM0 );
+	const text = v === ( v | 0 ) ? String( v | 0 ) : v.toFixed( 1 );
+	G_INT_SET( OFS_RETURN, PR_SetTempString( text ) );
+
+}
+
+// #27 vtos(vector): the quoted, space-separated form the native PF_vtos prints
+function vtos() {
+
+	const v = G_VECTOR( OFS_PARM0 );
+	const text = '\'' + v[ 0 ].toFixed( 1 ) + ' ' + v[ 1 ].toFixed( 1 ) + ' ' + v[ 2 ].toFixed( 1 ) + '\'';
+	G_INT_SET( OFS_RETURN, PR_SetTempString( text ) );
+
+}
+
+// #25 dprint(text...): development print
+function dprint() { Con_DPrintf( '%s', varString( 0 ) ); }
+
+// #45 cvar(name): a cvar's value as a float
+function cvarValue() { G_FLOAT_SET( OFS_RETURN, Cvar_VariableValue( G_STRING( OFS_PARM0 ) ) ); }
+
+// #72 cvar_set(name, value)
+function cvarSet() { Cvar_Set( G_STRING( OFS_PARM0 ), G_STRING( OFS_PARM1 ) ); }
+
 /** The implemented builtins, by their pinned contract number. */
 export const HEXEN2_IMPLEMENTED_BUILTINS = Object.freeze( {
-	7: random, 9: normalize, 12: vlen, 13: vectoyaw, 36: rint, 37: floorValue, 38: ceilValue, 43: fabs,
-	50: vhlen, 51: vectoangles, 61: cosValue, 62: sinValue, 84: sqrtValue, 91: concatv, 94: v_factor, 95: v_factorrange
+	7: random, 9: normalize, 12: vlen, 13: vectoyaw, 25: dprint, 26: ftos, 27: vtos, 36: rint, 37: floorValue,
+	38: ceilValue, 43: fabs, 45: cvarValue, 50: vhlen, 51: vectoangles, 61: cosValue, 62: sinValue, 72: cvarSet,
+	84: sqrtValue, 91: concatv, 94: v_factor, 95: v_factorrange
 } );
 
 /**
