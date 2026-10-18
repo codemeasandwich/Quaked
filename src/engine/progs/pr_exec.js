@@ -59,6 +59,7 @@ import {
 	OP_CSTATE, OP_CWSTATE, OP_THINKTIME,
 } from './pr_comp.js';
 import { ED_Print, PR_GlobalString, PR_GlobalStringNoContents } from './pr_edict.js';
+import { Hexen2_BuiltinName } from './hexen2_builtins.js';
 import { ss_active } from '../server/server.js';
 import { SV_CloakAnimationEnter, SV_CloakAnimationLeave } from '../server/sv_cloak.js';
 import { SV_RespawnFunctionEnter, SV_RespawnFunctionLeave } from '../common/hooks.js'; // installed by newer/gameplay/sv_respawn.js
@@ -829,7 +830,7 @@ export function PR_ExecuteProgram( fnum ) {
 					if ( i >= pr_numbuiltins )
 						PR_RunError( 'Bad builtin call number' );
 					if ( hexen )
-						PR_RunError( 'Hexen II builtin %i is not implemented yet', i );
+						PR_RunError( 'Hexen II builtin %i (%s) is not implemented yet', i, Hexen2_BuiltinName( i ) ?? 'unknown' );
 					pr_builtins[ i ]();
 					break;
 
