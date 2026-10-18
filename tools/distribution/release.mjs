@@ -58,8 +58,10 @@ export async function Artifacts(webDir,macDir,expected){
 function gh(args,input){return execFileSync('gh',args,{input,encoding:'utf8',timeout:15*60*1000,maxBuffer:2*1024*1024});}
 function api(path,{method='GET',body,missing=false}={}){
  const result=spawnSync('gh',['api','--method',method,path,...(body?['--input','-']:[])],{input:body?JSON.stringify(body):undefined,encoding:'utf8',timeout:30000,maxBuffer:2*1024*1024});
- if(result.status!==0){if(missing&&String(result.stderr??'').includes('HTTP 404'))return null;throw Error('GitHub '+method+' '+path+' failed: '+String(result.stderr||result.error?.message||'no response').trim());}
- return result.stdout?JSON.parse(result.stdout):null;
+ if(result.status!==0){if(missing&&result.status===1&&!result.error&&!result.signal&&/\bHTTP 404\b/.test(String(result.stderr??'')))return null;throw Error('GitHub '+method+' '+path+' failed: '+String(result.stderr||result.error?.message||'no response').trim());}
+ const value=result.stdout?JSON.parse(result.stdout):null;
+ if(!value||typeof value!=='object')throw Error('Invalid GitHub response for '+method+' '+path);
+ return value;
 }
 function taggedCommit(repository,tag,request=api){
  let ref=request('repos/'+repository+'/git/ref/tags/'+tag,{missing:true});if(!ref)return null;
@@ -77,6 +79,27 @@ export function VerifyExisting(record,bytes,release,expected,web){
  asset(release,'release.json',hash(bytes),bytes.length);asset(release,record.mac.archive,record.mac.sha256,record.mac.bytes);asset(release,'mac-archive.json',record.mac.receiptSha256);
  return record;
 }
+function releaseIdentity(release,expected,id=release?.id,draft=true){
+ if(!Number.isSafeInteger(id)||id<=0||release?.id!==id||release.tag_name!==expected.tag||release.target_commitish!==expected.commit||release.draft!==draft||release.prerelease!==false||!Array.isArray(release.assets))throw Error('Release identity mismatch for selected commit');
+ const names=new Set(['release.json','mac-archive.json','SHA256SUMS.txt','Quaked_'+expected.version+'_universal.zip']),seen=new Set();
+ for(const row of release.assets){if(!row||!names.has(row.name)||seen.has(row.name))throw Error('Release contains unexpected or duplicate assets');seen.add(row.name);}
+ return release;
+}
+function findDraft(base,expected){
+ // By-tag GET only finds published releases. Exhaust the authenticated inventory
+ // before creating anything: an unseen later page may contain this draft or a conflict.
+ let found=null;
+ for(let page=1;page<=10;page++){
+  const rows=api(base+'/releases?per_page=100&page='+page);
+  if(!Array.isArray(rows)||rows.length>100)throw Error('Invalid release inventory');
+  for(const row of rows){
+   if(!row||!Number.isSafeInteger(row.id)||row.id<=0||typeof row.tag_name!=='string'||!row.tag_name)throw Error('Invalid release inventory row');
+   if(row.tag_name===expected.tag){if(found)throw Error('Ambiguous release drafts for selected tag');found=releaseIdentity(row,expected);}
+  }
+  if(rows.length<100)return found;
+ }
+ throw Error('Release inventory pagination limit reached; refusing incomplete draft lookup');
+}
 export async function Publish(web,mac,expected,repository){
  const context=Context();if(!context.publish||context.commit!==expected.commit||context.version!==expected.version)throw Error('Publication is permitted only for the selected Prod push');
  const base='repos/'+repository,record=await Artifacts(web,mac,expected);let bytes=Buffer.from(JSON.stringify(record,null,2)+'\n');
@@ -88,18 +111,26 @@ export async function Publish(web,mac,expected,repository){
   bytes=Buffer.from(gh(['release','download',expected.tag,'--repo',repository,'--pattern','release.json','--output','-']));
   VerifyExisting(JSON.parse(bytes),bytes,release,expected,web);
  }else{
-  if(!release){gh(['release','create',expected.tag,'--repo',repository,'--verify-tag','--target',expected.commit,'--draft','--generate-notes','--title','Quaked '+expected.tag]);release=api(base+'/releases/tags/'+expected.tag);}
+  release=findDraft(base,expected);
+  if(!release)release=releaseIdentity(api(base+'/releases',{method:'POST',body:{tag_name:expected.tag,target_commitish:expected.commit,draft:true,generate_release_notes:true,name:'Quaked '+expected.tag}}),expected);
+  const id=release.id,path=base+'/releases/'+id;
+  release=releaseIdentity(api(path),expected,id);
   if(release.assets.some(row=>row.name==='release.json')){
+   asset(release,'release.json',hash(bytes),bytes.length);
    const prior=gh(['release','download',expected.tag,'--repo',repository,'--pattern','release.json','--output','-']);if(prior!==bytes.toString())throw Error('Draft contains another artifact build; retry with the same retained artifacts');
   }else if(release.assets.length)throw Error('Draft has assets without identity; inspect it without overwriting');
   writeFileSync(join(mac,'release.json'),bytes);
   const sums=record.mac.sha256+'  '+record.mac.archive+'\n'+hash(bytes)+'  release.json\n'+record.mac.receiptSha256+'  mac-archive.json\n';writeFileSync(join(mac,'SHA256SUMS.txt'),sums);
+  const files=[];
   for(const name of ['release.json','mac-archive.json','SHA256SUMS.txt',record.mac.archive]){
-   const local=await fileDigest(join(mac,name)),existing=release.assets.find(row=>row.name===name);
-   if(existing)asset(release,name,local.sha256,local.bytes);else gh(['release','upload',expected.tag,join(mac,name),'--repo',repository]);
+   const local=await fileDigest(join(mac,name));files.push({name,...local});
+   if(release.assets.some(row=>row.name===name))asset(release,name,local.sha256,local.bytes);
   }
-  release=api(base+'/releases/tags/'+expected.tag);VerifyExisting(record,bytes,release,expected,web);asset(release,'SHA256SUMS.txt',hash(Buffer.from(sums)));
-  gh(['release','edit',expected.tag,'--repo',repository,'--draft=false','--latest']);
+  for(const {name} of files)if(!release.assets.some(row=>row.name===name))gh(['release','upload',expected.tag,join(mac,name),'--repo',repository]);
+  release=releaseIdentity(api(path),expected,id);VerifyExisting(record,bytes,release,expected,web);
+  for(const file of files)asset(release,file.name,file.sha256,file.bytes);
+  release=releaseIdentity(api(path,{method:'PATCH',body:{draft:false,make_latest:'true'}}),expected,id,false);
+  VerifyExisting(record,bytes,release,expected,web);for(const file of files)asset(release,file.name,file.sha256,file.bytes);
  }
  mkdirSync('dist/release-identity',{recursive:true});writeFileSync('dist/release-identity/release.json',bytes);output('identity_sha256',hash(bytes));return {commit:expected.commit,version:expected.version,identitySha256:hash(bytes)};
 }
