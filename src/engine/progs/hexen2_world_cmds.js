@@ -14,7 +14,7 @@
 import { SV_LinkEdict, SV_Move, SV_PointContents, SV_DropToFloor } from '../server/world.js';
 import { SV_CheckBottom, SV_movestep } from '../server/sv_move.js';
 import { PR_RunError } from './pr_exec.js';
-import { EDICT_TO_PROG, G_EDICT, G_FLOAT, G_FLOAT_SET, G_VECTOR, PROG_TO_EDICT, pr_global_struct, sv } from './progs.js';
+import { EDICT_TO_PROG, G_EDICT, G_FLOAT, G_FLOAT_SET, G_VECTOR, PROG_TO_EDICT, PR_GetString, pr_global_struct, sv } from './progs.js';
 import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3, OFS_RETURN } from './pr_comp.js';
 import { FL_ONGROUND, FL_FLY, FL_SWIM } from '../server/server.js';
 import { vec3_origin } from '../common/mathlib.js';

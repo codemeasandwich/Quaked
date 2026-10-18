@@ -1,8 +1,7 @@
-// RED (retained): the box the gamecode derives for the Paladin from the supplied RAPO model must be the native
-// player hull, because setmodel applies the model's bounds and the engine's centre-origin hull offset assumes
-// mins == hull.clip_mins (z -24). Today the supplied paladin.mdl yields mins z 0 / maxs z 56, which shifts every
-// player trace by 24 units and is why the walking test must set the native box itself. This test is expected to
-// fail until the RAPO frame/scale/origin handling is corrected; it must not be weakened or deleted.
+// The supplied gamecode gives the Paladin the native Hexen II feet-origin box: SetModelAndThinks calls
+// setsize(self, '-16 -16 0', '16 16 56'), and the engine's hull offset (clip_mins - mins) turns that into the
+// centre-based class hull for tracing. This pins that contract; the earlier suspicion that RAPO frame bounds were
+// wrong was incorrect, and the walking test now settles the player instead of overriding its box.
 import { existsSync, readFileSync } from 'node:fs';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
@@ -23,7 +22,7 @@ import '../src/engine/progs/hexen2_server_cmds.js';
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const HEXEN = '/Users/bri/quaked/Hexen 2/data1';
 
-Deno.test( 'RED: the Paladin model yields the native player hull box', () => {
+Deno.test( 'the Paladin carries the native feet-origin box the class hull expects', () => {
 
 	if ( ! existsSync( HEXEN + '/pak1.pak' ) ) { console.log( 'SKIP: the supplied Hexen II installation is not present' ); return; }
 	for ( const name of [ 'pak0.pak', 'pak1.pak' ] ) { const raw = readFileSync( HEXEN + '/' + name ); pak.COM_AddPack( pak.COM_LoadPackFile( 'h2-' + name, raw.buffer.slice( raw.byteOffset, raw.byteOffset + raw.length ) ) ); }
@@ -62,8 +61,9 @@ Deno.test( 'RED: the Paladin model yields the native player hull box', () => {
 	if ( pr_global_struct.ClientConnect ) PR_ExecuteProgram( pr_global_struct.ClientConnect );
 	PR_ExecuteProgram( pr_global_struct.PutClientInServer );
 
-	// the native player hull (hull 1): mins -16,-16,-24 and maxs 16,16,32
-	same( player.v.mins.join( ',' ), '-16,-16,-24', 'the Paladin mins are the native player hull mins' );
-	same( player.v.maxs.join( ',' ), '16,16,32', 'the Paladin maxs are the native player hull maxs' );
+	// native feet-origin box; the engine hull offset shifts the feet origin onto hull 1's centre-based tree
+	same( player.v.mins.join( ',' ), '-16,-16,0', 'the Paladin mins' );
+	same( player.v.maxs.join( ',' ), '16,16,56', 'the Paladin maxs' );
+	same( player.v.size.join( ',' ), '32,32,56', 'the Paladin size' );
 
 } );

@@ -84,11 +84,13 @@ Deno.test( 'a Paladin is placed in the supplied level by the supplied gamecode',
 	same( player.v.size.join( ',' ), '32,32,56', 'the player hull size' );
 	check( Math.abs( player.v.origin[ 0 ] ) > 1 || Math.abs( player.v.origin[ 1 ] ) > 1, 'the player stands at the map spawn: ' + player.v.origin );
 
-	// the Paladin can walk: with the native player hull (hull 1's box) one step of 32 units moves it in +x and it
-	// stays on the floor. The box the gamecode derives from the RAPO model's frame bounds is feet-origin
-	// (mins z 0, maxs z 56); reconciling that with the engine's centre-origin hull offset is an open item (recorded).
+	// Settle the native feet-origin box on the floor with the gamecode's own droptofloor (self-based), then walk:
+	// the hull offset converts the feet origin onto hull 1's centre-based tree, one 32-unit step in +x, on the floor.
+	pr_global_struct.self = 1;
+	check( Hexen2_CallBuiltin( 34, { random: () => 0.5 } ) === true, 'droptofloor is implemented' );
+	same( pr_globals.getFloat( OFS_RETURN ), 1, 'the player dropped to the floor' );
+	check( Math.abs( player.v.origin[ 2 ] ) < 1, 'the feet are on the floor: ' + player.v.origin[ 2 ] );
 	const before = [ player.v.origin[ 0 ], player.v.origin[ 1 ], player.v.origin[ 2 ] ];
-	player.v.mins = [ - 16, - 16, - 24 ]; player.v.maxs = [ 16, 16, 32 ]; player.v.size = [ 32, 32, 56 ];
 	player.v.flags = ( player.v.flags | 0 ) | FL_ONGROUND;
 	pr_global_struct.self = 1;
 	pr_global_struct.time = sv.time;
@@ -98,6 +100,6 @@ Deno.test( 'a Paladin is placed in the supplied level by the supplied gamecode',
 	same( pr_globals.getFloat( OFS_RETURN ), 1, 'the step succeeded' );
 	check( Math.abs( player.v.origin[ 0 ] - ( before[ 0 ] + 32 ) ) < 0.1, 'the player advanced 32 units in +x: ' + player.v.origin );
 	same( player.v.origin[ 1 ], before[ 1 ], 'the player did not slide sideways' );
-	check( Math.abs( player.v.origin[ 2 ] - before[ 2 ] ) < 2, 'the player stayed on the floor: ' + player.v.origin[ 2 ] );
+	check( Math.abs( player.v.origin[ 2 ] - before[ 2 ] ) < 1, 'the player stayed on the floor: ' + player.v.origin[ 2 ] );
 
 } );
