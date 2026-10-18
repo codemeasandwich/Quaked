@@ -3,6 +3,7 @@
 // not-yet-implemented builtins. Fixtures are small programs with the pinned v1.11 globals and entvars definitions, so
 // PR_LoadProgs accepts them through the same validation the supplied programs pass.
 import { HEXEN2_GLOBALS_V111, HEXEN2_ENTVARS, HEXEN2_PROG_CRCS, HEXEN2_ENTITY_FIELDS } from '../src/engine/progs/hexen2_progdefs.js';
+import { PR_LastRunError } from '../src/engine/progs/pr_exec.js';
 import {
 	OP_DONE, OP_ADD_F, OP_LT, OP_IF, OP_GOTO, OP_CALL0, OP_CALL1, OP_CALL2, OP_MULSTORE_F, OP_ADDSTORE_F, OP_SUBSTORE_F,
 	OP_FETCH_GBL_F, OP_BITSET, OP_BITCLR, OP_RAND0, OP_RAND2, OP_SWITCH_F, OP_CASE, OP_CSTATE, OP_CWSTATE, OP_STATE, OP_THINKTIME,
@@ -258,5 +259,73 @@ Deno.test( 'the entity opcodes schedule thinks at 20 fps and cycle frames and we
 	program.progs.pr_globals.setInt32( 804, 1 ); program.setF( 805, 2.5 );
 	program.run( 4 );
 	check( Math.abs( ed.v.nextthink - 12.5 ) < 1e-5, `THINKTIME scheduled the delay: ${ed.v.nextthink}` );
+
+} );
+
+Deno.test( 'the implemented Hexen builtins compute their native results through the dispatch table', async () => {
+
+	// One caller for scalar/vector builtins (CALL1 into PARM0) and one for two-vector builtins (CALL2).
+	const builtin = number => ( { builtin: number } );
+	const program = await fixture( {
+		globals: 1000,
+		functions: [ empty, { first: 0 }, { first: 2 },
+			builtin( 7 ), builtin( 9 ), builtin( 12 ), builtin( 13 ), builtin( 36 ), builtin( 37 ), builtin( 38 ),
+			builtin( 43 ), builtin( 50 ), builtin( 51 ), builtin( 61 ), builtin( 62 ), builtin( 84 ),
+			builtin( 91 ), builtin( 94 ), builtin( 95 ) ],
+		statements: [
+			{ op: OP_CALL1, a: 900, b: 910, c: 0 }, done( 1 ),
+			{ op: OP_CALL2, a: 901, b: 920, c: 923 }, done( 1 )
+		]
+	} );
+	const fn = number => program.progs.pr_functions.indexOf( program.progs.pr_functions.find( f => f.first_statement === - number ) );
+	const call = ( number, vector ) => {
+
+		program.setI( 900, fn( number ) );
+		vector.forEach( ( value, i ) => program.setF( 910 + i, value ) );
+		try { program.run( 1 ); } catch ( error ) {
+
+			const at = program.progs.pr_xstatement;
+			error.message += ` [builtin ${number}, function ${fn( number )}, statement ${at} op ${program.progs.pr_statements[ at ]?.op}, run error: ${PR_LastRunError()}]`;
+			throw error;
+
+		}
+		return [ 0, 1, 2 ].map( i => program.getF( OFS_RETURN + i ) );
+
+	};
+	const near = ( value, expected, label ) => check( Math.abs( value - expected ) < 1e-5, `${label}: ${value} != ${expected}` );
+	let out = call( 9, [ 3, 4, 0 ] );
+	near( out[ 0 ], 0.6, 'normalize x' ); near( out[ 1 ], 0.8, 'normalize y' ); near( out[ 2 ], 0, 'normalize z' );
+	same( call( 12, [ 3, 4, 0 ] )[ 0 ], 5, 'vlen' );
+	same( call( 50, [ 3, 4, 9 ] )[ 0 ], 5, 'vhlen' );
+	same( call( 13, [ 0, 1, 0 ] )[ 0 ], 90, 'vectoyaw' );
+	out = call( 51, [ 0, 0, 1 ] );
+	same( out[ 0 ], 90, 'vectoangles pitch' ); same( out[ 1 ], 0, 'vectoangles yaw' ); same( out[ 2 ], 0, 'vectoangles roll' );
+	same( call( 36, [ 2.6, 0, 0 ] )[ 0 ], 3, 'rint' );
+	same( call( 37, [ - 1.2, 0, 0 ] )[ 0 ], - 2, 'floor' );
+	same( call( 38, [ 1.2, 0, 0 ] )[ 0 ], 2, 'ceil' );
+	same( call( 43, [ - 3, 0, 0 ] )[ 0 ], 3, 'fabs' );
+	near( call( 61, [ 180, 0, 0 ] )[ 0 ], - 1, 'cos degrees' );
+	near( call( 62, [ 90, 0, 0 ] )[ 0 ], 1, 'sin degrees' );
+	same( call( 84, [ 9, 0, 0 ] )[ 0 ], 3, 'sqrt' );
+	program.setRandom( () => 0.25 );
+	same( call( 7, [ 0, 0, 0 ] )[ 0 ], 0.25, 'random from the installed source' );
+	// #91 concatv: clamp a vector into a range
+	program.setI( 901, fn( 91 ) );
+	[ 5, - 6, 2 ].forEach( ( value, i ) => program.setF( 920 + i, value ) );
+	[ 4, 5, 3 ].forEach( ( value, i ) => program.setF( 923 + i, value ) );
+	program.run( 2 );
+	same( [ program.getF( OFS_RETURN ), program.getF( OFS_RETURN + 1 ), program.getF( OFS_RETURN + 2 ) ].join( ',' ), '4,-5,2', 'concatv' );
+	// #94 v_factor: the camera basis combination
+	program.progs.pr_global_struct.v_right = [ 0, 1, 0 ];
+	program.progs.pr_global_struct.v_forward = [ - 1, 0, 0 ];
+	program.progs.pr_global_struct.v_up = [ 0, 0, 1 ];
+	out = call( 94, [ 2, 3, 4 ] );
+	same( out.join( ',' ), '-3,2,4', 'v_factor: right=' + program.progs.pr_global_struct.v_right + ' forward=' + program.progs.pr_global_struct.v_forward + ' up=' + program.progs.pr_global_struct.v_up );
+	// #95 v_factorrange: with a zero random source the factor is the minimum vector
+	program.setI( 901, fn( 95 ) ); program.setRandom( () => 0 );
+	[ 1, 2, 3 ].forEach( ( value, i ) => program.setF( 920 + i, value ) );
+	[ 4, 5, 6 ].forEach( ( value, i ) => program.setF( 923 + i, value ) );
+	program.run( 2 );
+	same( [ program.getF( OFS_RETURN ), program.getF( OFS_RETURN + 1 ), program.getF( OFS_RETURN + 2 ) ].join( ',' ), '-2,1,3', 'v_factorrange at its minimum' );
 
 } );

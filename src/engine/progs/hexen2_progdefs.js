@@ -230,7 +230,12 @@ export function Hexen2_GlobalsProxy( accessor, globals ) {
 	const proxy = {};
 	for ( const [ name, type, ofs ] of globals ) {
 
-		Object.defineProperty( proxy, name, {
+		if ( type === ev_vector ) Object.defineProperty( proxy, name, {
+			enumerable: true,
+			get() { return accessor.getVector( ofs ); },
+			set( value ) { accessor.setVector( ofs, value ); }
+		} );
+		else Object.defineProperty( proxy, name, {
 			enumerable: true,
 			get() { return type === ev_float ? accessor.getFloat( ofs ) : accessor.getInt32( ofs ); },
 			set( value ) { if ( type === ev_float ) accessor.setFloat( ofs, value ); else accessor.setInt32( ofs, value ); }

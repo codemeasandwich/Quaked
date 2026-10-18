@@ -59,7 +59,8 @@ import {
 	OP_CSTATE, OP_CWSTATE, OP_THINKTIME,
 } from './pr_comp.js';
 import { ED_Print, PR_GlobalString, PR_GlobalStringNoContents } from './pr_edict.js';
-import { Hexen2_BuiltinName } from './hexen2_builtins.js';
+import { Hexen2_BuiltinName, HEXEN2_BUILTIN_COUNT } from './hexen2_builtins.js';
+import { Hexen2_CallBuiltin } from './hexen2_cmds.js';
 import { ss_active } from '../server/server.js';
 import { SV_CloakAnimationEnter, SV_CloakAnimationLeave } from '../server/sv_cloak.js';
 import { SV_RespawnFunctionEnter, SV_RespawnFunctionLeave } from '../common/hooks.js'; // installed by newer/gameplay/sv_respawn.js
@@ -88,6 +89,13 @@ const localstack = new Int32Array( LOCALSTACK_SIZE );
 let localstack_used = 0;
 
 let Host_Error = null;
+let lastRunError = '';
+/**
+ * The last `PR_RunError` message, kept for diagnostics and tests (the host error's own text stays 'Program error').
+ *
+ * @returns {string} the last program error message
+ */
+export function PR_LastRunError() { return lastRunError; }
 
 /**
  * Empties the QuakeC call stack and its locals stack. A program error abandons the functions that were running
@@ -342,6 +350,7 @@ export function PR_RunError( error, ...args ) {
 
 	}
 
+	lastRunError = message;
 	PR_PrintStatement( pr_statements[ pr_xstatement ] );
 	PR_StackTrace();
 	Con_Printf( '%s\n', message );
@@ -825,12 +834,19 @@ export function PR_ExecuteProgram( fnum ) {
 
 				if ( newf.first_statement < 0 ) {
 
-					// negative statements are built in functions
+					// negative statements are built in functions. A Hexen program uses the Hexen II contract's
+					// numbering and never the Quake builtin table.
 					const i = - newf.first_statement;
+					if ( hexen ) {
+
+						if ( i >= HEXEN2_BUILTIN_COUNT )
+							PR_RunError( 'Bad Hexen II builtin call number %i', i );
+						if ( Hexen2_CallBuiltin( i, { random: hexenRandomSource } ) ) break;
+						PR_RunError( 'Hexen II builtin %i (%s) is not implemented yet', i, Hexen2_BuiltinName( i ) ?? 'unknown' );
+
+					}
 					if ( i >= pr_numbuiltins )
 						PR_RunError( 'Bad builtin call number' );
-					if ( hexen )
-						PR_RunError( 'Hexen II builtin %i (%s) is not implemented yet', i, Hexen2_BuiltinName( i ) ?? 'unknown' );
 					pr_builtins[ i ]();
 					break;
 
