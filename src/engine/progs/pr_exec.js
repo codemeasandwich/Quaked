@@ -986,10 +986,10 @@ export function PR_ExecuteProgram( fnum ) {
 			case OP_FETCH_GBL_E:
 			case OP_FETCH_GBL_FNC: {
 
-				// the array's length sits in the word before its base; the index is a float global. The bound is
-				// checked strictly (Raven tested only index > length, an off-by-one that could read past the array).
+				// the array's length sits in the word before its base; the index is a float global. The native bound
+				// is `index > length` (the supplied gamecode relies on the inclusive end), so it is kept.
 				const index = Math.trunc( gf[ stB ] ), length = gi[ stA - 1 ];
-				if ( ! Number.isFinite( index ) || index < 0 || index >= length )
+				if ( ! Number.isFinite( index ) || index < 0 || index > length )
 					PR_RunError( 'array index out of bounds: %i', index );
 				gi[ stC ] = gi[ stA + index ];
 				break;
@@ -998,7 +998,7 @@ export function PR_ExecuteProgram( fnum ) {
 			case OP_FETCH_GBL_V: {
 
 				const index = Math.trunc( gf[ stB ] ), length = gi[ stA - 1 ];
-				if ( ! Number.isFinite( index ) || index < 0 || index >= length )
+				if ( ! Number.isFinite( index ) || index < 0 || index > length )
 					PR_RunError( 'array index out of bounds: %i', index );
 				for ( let j = 0; j < 3; j ++ ) gf[ stC + j ] = gf[ stA + index * 3 + j ];
 				break;

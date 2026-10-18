@@ -13,6 +13,7 @@
 
 import { G_FLOAT, G_FLOAT_SET, G_INT, G_INT_SET, G_STRING, G_VECTOR, PR_SetTempString, pr_argc, pr_global_struct } from './progs.js';
 import { OFS_PARM0, OFS_PARM1, OFS_RETURN } from './pr_comp.js';
+import { AngleVectors } from '../common/mathlib.js';
 import { Cvar_VariableValue, Cvar_Set } from '../common/cvar.js';
 import { HEXEN2_BUILTIN_COUNT } from './hexen2_builtins.js';
 import { Con_DPrintf } from '../common/console.js';
@@ -26,6 +27,18 @@ function writeVector( x, y, z ) {
 }
 
 function vectorLength( x, y, z ) { return Math.hypot( x, y, z ); }
+
+// #1 makevectors(angles): write v_forward/v_right/v_up for the current angles
+function makevectors() {
+
+	const angles = G_VECTOR( OFS_PARM0 );
+	const forward = new Float32Array( 3 ), right = new Float32Array( 3 ), up = new Float32Array( 3 );
+	AngleVectors( angles, forward, right, up );
+	pr_global_struct.v_forward = forward;
+	pr_global_struct.v_right = right;
+	pr_global_struct.v_up = up;
+
+}
 
 // #7 random(): rand() * (1 / RAND_MAX), the native body
 function random( context ) { G_FLOAT_SET( OFS_RETURN, context.random() ); }
@@ -192,7 +205,7 @@ export function Hexen2_RegisterBuiltins( table ) {
 
 /** The implemented builtins, by their pinned contract number. */
 export const HEXEN2_IMPLEMENTED_BUILTINS = Object.freeze( {
-	7: random, 9: normalize, 12: vlen, 13: vectoyaw, 25: dprint, 26: ftos, 27: vtos, 36: rint, 37: floorValue,
+	1: makevectors, 7: random, 9: normalize, 12: vlen, 13: vectoyaw, 25: dprint, 26: ftos, 27: vtos, 36: rint, 37: floorValue,
 	38: ceilValue, 43: fabs, 45: cvarValue, 50: vhlen, 51: vectoangles, 61: cosValue, 62: sinValue, 72: cvarSet,
 	84: sqrtValue, 91: concatv, 94: v_factor, 95: v_factorrange
 } );

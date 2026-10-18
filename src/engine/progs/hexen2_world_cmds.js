@@ -14,7 +14,7 @@
 import { SV_LinkEdict, SV_Move, SV_PointContents, SV_DropToFloor } from '../server/world.js';
 import { SV_CheckBottom } from '../server/sv_move.js';
 import { PR_RunError } from './pr_exec.js';
-import { EDICT_TO_PROG, G_EDICT, G_FLOAT, G_FLOAT_SET, G_VECTOR, pr_global_struct, sv } from './progs.js';
+import { EDICT_TO_PROG, G_EDICT, G_FLOAT, G_FLOAT_SET, G_VECTOR, PROG_TO_EDICT, pr_global_struct, sv } from './progs.js';
 import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3, OFS_RETURN } from './pr_comp.js';
 import { vec3_origin } from '../common/mathlib.js';
 import { Hexen2_RegisterBuiltins } from './hexen2_cmds.js';
@@ -72,10 +72,10 @@ function traceline() {
 
 }
 
-// #34 droptofloor(entity)
+// #34 droptofloor(): the native builtin takes no arguments and drops self
 function droptofloor() {
 
-	const ent = G_EDICT( OFS_PARM0 );
+	const ent = PROG_TO_EDICT( pr_global_struct.self );
 	G_FLOAT_SET( OFS_RETURN, SV_DropToFloor( ent ) ? 1 : 0 );
 
 }

@@ -204,12 +204,12 @@ Deno.test( 'the extended store, fetch, bit and random opcodes behave as the pinn
 Deno.test( 'an unimplemented Hexen builtin is refused by number, not run as a Quake builtin', async () => {
 
 	const program = await fixture( {
-		functions: [ empty, { first: 0 }, { builtin: 1 } ],
+		functions: [ empty, { first: 0 }, { builtin: 10 } ],
 		statements: [ { op: OP_CALL0, a: 770, b: 0, c: 0 }, done( 0 ) ]
 	} );
 	// A spy in the Quake builtin table proves the Hexen program cannot reach it; the call fails instead.
 	let quakeBuiltinRan = false;
-	program.progs.PR_SetBuiltins( [ () => {}, () => { quakeBuiltinRan = true; } ], 2 );
+	program.progs.PR_SetBuiltins( Array.from( { length: 11 }, ( _, i ) => i === 10 ? () => { quakeBuiltinRan = true; } : () => {} ), 11 );
 	program.setI( 770, 2 );
 	const error = program.fail( 1 );
 	check( error !== null, 'the call throws' );
@@ -375,5 +375,21 @@ Deno.test( 'the string and console builtins produce native text and read and wri
 	program.setI( 900, fn( 25 ) );
 	program.progs.pr_globals.setInt32( 910, 0 );
 	program.run( 1 );
+
+} );
+
+Deno.test( 'makevectors writes the native camera basis into the globals', async () => {
+
+	const program = await fixture( {
+		globals: 1000,
+		functions: [ empty, { first: 0 }, { builtin: 1 } ],
+		statements: [ { op: OP_CALL1, a: 900, b: 910, c: 0 }, done( 0 ) ]
+	} );
+	program.setI( 900, 2 );
+	[ 0, 0, 0 ].forEach( ( value, i ) => program.setF( 910 + i, value ) );
+	program.run( 1 );
+	same( Array.from( program.progs.pr_global_struct.v_forward ).join( ',' ), '1,0,0', 'forward at zero angles' );
+	same( Array.from( program.progs.pr_global_struct.v_right ).join( ',' ), '0,-1,0', 'right at zero angles' );
+	same( Array.from( program.progs.pr_global_struct.v_up ).join( ',' ), '0,0,1', 'up at zero angles' );
 
 } );

@@ -1396,7 +1396,9 @@ export function PR_LoadProgs( fileData ) {
 	PR_SetProgs( header );
 
 	// Parse strings - allocate with extra 128 bytes for pr_string_temp
-	const PR_STRING_TEMP_SIZE = 128;
+	// Hexen II's sixteen rotating 1024-byte temp buffers (the native pr_string_temp); Quake's single 128-byte
+	// slot simply uses the first buffer.
+	const PR_STRING_TEMP_SIZE = 16 * 1024;
 	const stringsDataWithTemp = new Uint8Array( header.numstrings + PR_STRING_TEMP_SIZE );
 	stringsDataWithTemp.set( new Uint8Array( fileData, header.ofs_strings, header.numstrings ) );
 	// Zero-fill the temp area (already done by Uint8Array constructor)
