@@ -201,7 +201,7 @@ export class edict_t {
 		this._fieldAccessor = new EdictFieldAccessor( this._fieldBuffer, 0, entityfields );
 
 		// C exported fields from progs (entvars_t)
-		this.v = new entvars_t( this._fieldAccessor );
+		this.v = edictVFactory( this._fieldAccessor );
 
 		// Store entityfields count for clearing
 		this._entityfields = entityfields;
@@ -360,6 +360,31 @@ export const STOCK_PROGS_CRCS = Object.freeze( [ 24778, 59507 ] );
  */
 export function PR_StockProgs() { return stockProgs; }
 let stockProgs = false; // (kept by PR_SetCRC: the hooks ask on every QuakeC call)
+
+/**
+ * The factory that gives each edict its `v`: Quake's `entvars_t` by default, or the validated Hexen layout's proxy
+ * (`Hexen2_EntvarsProxy`) while a Hexen program is loaded. Set by `PR_LoadProgs`, so a Quake load restores Quake's.
+ *
+ * @param {?function(object): object} factory the factory, or null/undefined for Quake's `entvars_t`
+ */
+export function PR_SetEdictVFactory( factory ) { edictVFactory = typeof factory === 'function' ? factory : fields => new entvars_t( fields ); }
+let edictVFactory = fields => new entvars_t( fields );
+
+/**
+ * The loaded program's engine profile: `quake` for QuakeC (the existing fast path) or a validated Hexen II layout
+ * (`hexen2-base`, `hexen2-portals`) for the supplied Hexen programs. A Hexen program must never be run with Quake's
+ * operand, call or builtin semantics, so `PR_ExecuteProgram` refuses until that work exists (pr_exec.js).
+ *
+ * @param {string} profile `quake` or a validated Hexen II layout
+ */
+export function PR_SetProgramProfile( profile ) { programProfile = profile; }
+/**
+ * The loaded program's engine profile (see `PR_SetProgramProfile`).
+ *
+ * @returns {string} `quake` or a validated Hexen II layout
+ */
+export function PR_ProgramProfile() { return programProfile; }
+let programProfile = 'quake';
 /**
  * Stores where the 128-byte temp string area (C `pr_string_temp`) starts in `pr_strings_data`. Called by
  * `PR_LoadProgs` with the end of the progs strings.

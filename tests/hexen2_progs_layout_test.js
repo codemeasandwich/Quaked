@@ -1,6 +1,7 @@
-// RED (pre-code, retained): the supplied Hexen II programs must load through the one existing interpreter with their
-// own layouts (base header CRC 38488, Portal 26905) and definitions validated, not through Quake's 5927-only check.
-// plan section 4 and T03. This test is expected to fail until that work lands; it must not be weakened or deleted.
+// The supplied Hexen II programs must load through the one existing interpreter with their own layouts (base header
+// CRC 38488, Portal 26905) and definitions validated, not through Quake's 5927-only check. plan section 4 and T03.
+// Written before the work as the RED gate: it failed with "progdefs.h is out of date" for both programs and is kept
+// unchanged as the GREEN gate; it must not be weakened or deleted.
 import { existsSync, readFileSync } from './helpers/resource_fs.mjs';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );

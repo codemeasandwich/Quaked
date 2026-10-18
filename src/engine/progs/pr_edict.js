@@ -33,6 +33,7 @@ import {
 	OFS_RETURN, OFS_PARM0,
 } from './pr_comp.js';
 import { PROGHEADER_CRC } from './progdefs.js';
+import { HEXEN2_PROG_CRCS, Hexen2_ValidateProgramDefinitions, Hexen2_GlobalsProxy, Hexen2_EntvarsProxy } from './hexen2_progdefs.js';
 import { globalvars_t, entvars_t } from './progdefs.js';
 import {
 	progs, pr_functions, pr_strings, pr_strings_data,
@@ -42,7 +43,7 @@ import {
 	PR_SetProgs, PR_SetFunctions, PR_SetStrings, PR_SetStringsData,
 	PR_SetGlobalDefs, PR_SetFieldDefs, PR_SetStatements,
 	PR_SetGlobalStruct, PR_SetGlobals, PR_SetGlobalsFloat, PR_SetGlobalsInt,
-	PR_SetEdictSize, PR_SetCRC, PR_SetStringTempOfs,
+	PR_SetEdictSize, PR_SetCRC, PR_SetStringTempOfs, PR_SetProgramProfile, PR_SetEdictVFactory,
 	EdictFieldAccessor, edict_t,
 	PR_GetString, G_FLOAT, G_INT, G_STRING, G_EDICT, G_EDICTNUM,
 	EDICT_NUM, NUM_FOR_EDICT, EDICT_TO_PROG, PROG_TO_EDICT,
@@ -1384,7 +1385,12 @@ export function PR_LoadProgs( fileData ) {
 
 	if ( header.version !== PROG_VERSION )
 		Sys_Error( 'progs.dat has wrong version number (%i should be %i)', header.version, PROG_VERSION );
-	if ( header.crc !== PROGHEADER_CRC )
+	// QuakeC's CRC is 5927; the supplied Hexen II layouts (1.11 base and Portal 1.12) are accepted only after their
+	// definitions prove them below. v1.03 is recognised so it is refused with its own reason rather than as a Quake
+	// header mismatch (plan section 4).
+	const recognizedHexenCrc = header.crc === HEXEN2_PROG_CRCS.v111 || header.crc === HEXEN2_PROG_CRCS.v112
+		|| header.crc === HEXEN2_PROG_CRCS.v103;
+	if ( header.crc !== PROGHEADER_CRC && ! recognizedHexenCrc )
 		Sys_Error( 'progs.dat system vars have been modified, progdefs.h is out of date' );
 
 	PR_SetProgs( header );
@@ -1406,9 +1412,11 @@ export function PR_LoadProgs( fileData ) {
 
 		const st = new dstatement_t();
 		st.op = dataView.getUint16( offset, true ); offset += 2;
-		st.a = dataView.getInt16( offset, true ); offset += 2;
-		st.b = dataView.getInt16( offset, true ); offset += 2;
-		st.c = dataView.getInt16( offset, true ); offset += 2;
+		// operands are word offsets: unsigned (Hexen II's high data offsets exceed 32767). A branch displacement is
+		// sign-extended where it is used (pr_exec.js), so Quake's negative jumps keep their meaning too.
+		st.a = dataView.getUint16( offset, true ); offset += 2;
+		st.b = dataView.getUint16( offset, true ); offset += 2;
+		st.c = dataView.getUint16( offset, true ); offset += 2;
 		statements.push( st );
 
 	}
@@ -1473,6 +1481,23 @@ export function PR_LoadProgs( fileData ) {
 
 	PR_SetFieldDefs( fielddefs );
 
+	// A Hexen II header must prove its layout: every required global and entity field present with the pinned type and
+	// offset, and the pinned entity field count (plan section 4: the CRC alone never establishes compatibility).
+	let programProfile = null;
+	if ( header.crc !== PROGHEADER_CRC ) {
+
+		const validated = Hexen2_ValidateProgramDefinitions( {
+			crc: header.crc,
+			entityFields: header.entityfields,
+			globalDefs: globaldefs,
+			fieldDefs: fielddefs,
+			stringAt: offset => PR_GetString( offset )
+		} );
+		if ( ! validated.ok ) Sys_Error( 'PR_LoadProgs: ' + validated.reason );
+		programProfile = validated.profile;
+
+	}
+
 	// Parse globals
 	// Globals are stored as raw 32-bit values (can be read as int or float)
 	const globalsBuffer = new ArrayBuffer( header.numglobals * 4 );
@@ -1488,8 +1513,11 @@ export function PR_LoadProgs( fileData ) {
 	PR_SetGlobalsInt( globalsInt );
 	PR_SetGlobals( globalsAccessor );
 
-	// Set up pr_global_struct as a globalvars_t proxy over the globals
-	PR_SetGlobalStruct( new globalvars_t( globalsAccessor ) );
+	// Set up pr_global_struct: Quake's globalvars_t for QuakeC, or the validated Hexen layout's named globals at the
+	// proven offsets. Quake keeps its existing fast path; Hexen execution is refused until its VM work lands.
+	PR_SetGlobalStruct( programProfile ? Hexen2_GlobalsProxy( globalsAccessor, programProfile.globals ) : new globalvars_t( globalsAccessor ) );
+	PR_SetEdictVFactory( programProfile ? fields => Hexen2_EntvarsProxy( fields ) : null );
+	PR_SetProgramProfile( programProfile ? programProfile.layout : 'quake' );
 
 	// Calculate edict size
 	// In C: pr_edict_size = progs->entityfields * 4 + sizeof(edict_t) - sizeof(entvars_t);

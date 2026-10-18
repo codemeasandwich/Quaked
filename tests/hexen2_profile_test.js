@@ -4,7 +4,7 @@
 // only, presentation and content root never enter the simulation digest). Plan sections 3 and 7 (R12/R23).
 import {
 	HEXEN2_FAMILY, HEXEN2_PROTOCOL, HEXEN2_PROFILES, HEXEN2_LAYOUT_CRCS, HEXEN2_SIMULATION_FEATURES,
-	Hexen2_Profile, Hexen2_IsGameId, Hexen2_ClassesFor, Hexen2_ClassesForEdition,
+	Hexen2_Profile, Hexen2_IsGameId, Hexen2_ClassesFor, Hexen2_ClassesForEdition, HEXEN2_CLASS_NUMBERS, Hexen2_ClassNumber, Hexen2_ClassFromNumber,
 	Hexen2_CreateSession, Hexen2_ValidateSession, Hexen2_SimulationDigest, Hexen2_EnhancedRules
 } from '../src/engine/common/hexen2_profile.js';
 
@@ -121,5 +121,19 @@ Deno.test( 'the legal descriptor accepts a lowered hex digest and refuses a malf
 	check( ! short.ok, 'a short digest is refused' );
 	const nonHex = Hexen2_CreateSession( { ...legal, gamecodeDigest: 'zzzzzzzzzzzzzzzz' } );
 	check( ! nonHex.ok, 'a non-hexadecimal digest is refused' );
+
+} );
+
+Deno.test( 'class ids map to the pinned native playerclass numbers', () => {
+
+	same( Hexen2_ClassNumber( 'paladin' ), 1, 'Paladin 1' );
+	same( Hexen2_ClassNumber( 'crusader' ), 2, 'Crusader 2' );
+	same( Hexen2_ClassNumber( 'necromancer' ), 3, 'Necromancer 3' );
+	same( Hexen2_ClassNumber( 'assassin' ), 4, 'Assassin 4' );
+	same( Hexen2_ClassNumber( 'succubus' ), 5, 'Succubus 5' );
+	same( Hexen2_ClassNumber( 'invented' ), null, 'an unknown class has no number' );
+	same( Hexen2_ClassFromNumber( 5 ).id, 'succubus', 'number to class' );
+	same( Hexen2_ClassFromNumber( 9 ), null, 'an unknown number has no class' );
+	for ( const [ id, number ] of Object.entries( HEXEN2_CLASS_NUMBERS ) ) same( Hexen2_ClassesForEdition( 'portals' ).find( c => c.id === id ).number, number, id + ' profile number' );
 
 } );

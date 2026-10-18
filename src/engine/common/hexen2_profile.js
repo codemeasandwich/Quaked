@@ -29,12 +29,16 @@ export const HEXEN2_PROTOCOL = Object.freeze( {
 
 export const HEXEN2_CLASS_IDS = Object.freeze( [ 'paladin', 'crusader', 'necromancer', 'assassin', 'succubus' ] );
 
+// The native class numbers (`playerclass`), from uhexen2 engine/hexen2/quakedef.h: CLASS_PALADIN 1, CLASS_CRUSADER 2,
+// CLASS_NECROMANCER 3, CLASS_ASSASSIN 4, CLASS_SUCCUBUS 5. They are game state, never a UI-only label.
+export const HEXEN2_CLASS_NUMBERS = Object.freeze( { paladin: 1, crusader: 2, necromancer: 3, assassin: 4, succubus: 5 } );
+
 export const HEXEN2_CLASSES = Object.freeze( {
-	paladin: Object.freeze( { id: 'paladin', name: 'Paladin', expansionOnly: false } ),
-	crusader: Object.freeze( { id: 'crusader', name: 'Crusader', expansionOnly: false } ),
-	necromancer: Object.freeze( { id: 'necromancer', name: 'Necromancer', expansionOnly: false } ),
-	assassin: Object.freeze( { id: 'assassin', name: 'Assassin', expansionOnly: false } ),
-	succubus: Object.freeze( { id: 'succubus', name: 'Succubus', expansionOnly: true } )
+	paladin: Object.freeze( { id: 'paladin', name: 'Paladin', number: 1, expansionOnly: false } ),
+	crusader: Object.freeze( { id: 'crusader', name: 'Crusader', number: 2, expansionOnly: false } ),
+	necromancer: Object.freeze( { id: 'necromancer', name: 'Necromancer', number: 3, expansionOnly: false } ),
+	assassin: Object.freeze( { id: 'assassin', name: 'Assassin', number: 4, expansionOnly: false } ),
+	succubus: Object.freeze( { id: 'succubus', name: 'Succubus', number: 5, expansionOnly: true } )
 } );
 
 export const HEXEN2_BASE_CLASS_IDS = Object.freeze( [ 'paladin', 'crusader', 'necromancer', 'assassin' ] );
@@ -143,6 +147,22 @@ export function Hexen2_ClassesForEdition( edition ) {
 	return profile ? Hexen2_ClassesFor( profile.id ) : Object.freeze( [] );
 
 }
+
+/**
+ * A native class's number, or null for an unknown id.
+ *
+ * @param {string} classId a class id
+ * @returns {?number} the `playerclass` number
+ */
+export function Hexen2_ClassNumber( classId ) { return Object.hasOwn( HEXEN2_CLASS_NUMBERS, classId ) ? HEXEN2_CLASS_NUMBERS[ classId ] : null; }
+
+/**
+ * The class with a native `playerclass` number.
+ *
+ * @param {number} number the player class number (1..5)
+ * @returns {?object} the class, or null
+ */
+export function Hexen2_ClassFromNumber( number ) { return Object.values( HEXEN2_CLASSES ).find( entry => entry.number === number ) ?? null; }
 
 /**
  * The digest of a descriptor's simulation fields alone: edition, gamecode mode and digest, rules preset, private
