@@ -1,0 +1,73 @@
+{
+  "source": {
+    "id": "TF_Stone_02|128x128:86c043f3e458ee39",
+    "name": "TF_Stone_02",
+    "key": "128x128:86c043f3e458ee39",
+    "width": 128,
+    "height": 128,
+    "pixelSha256": "0ca10cf7d789d993accb86478aaae9a65aaf6184499d6f1532e9387f4f86aa3f",
+    "original": "originals/128x128-86c043f3e458ee39.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "mg1",
+        "map": "maps/mgdm3.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+        "slot": 134,
+        "faces": 134,
+        "visibleCandidateFaces": 134,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge2m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+        "slot": 15,
+        "faces": 1282,
+        "visibleCandidateFaces": 1282,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge3m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+        "slot": 9,
+        "faces": 1030,
+        "visibleCandidateFaces": 1030,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge3m2.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+        "slot": 56,
+        "faces": 349,
+        "visibleCandidateFaces": 349,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge5m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+        "slot": 32,
+        "faces": 935,
+        "visibleCandidateFaces": 935,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "referenceSha256": "b0e12f5e6ef44bb9f41043a18b19423739a80f9dfd6824b9dd20db2aec355677"
+}

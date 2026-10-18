@@ -1,0 +1,138 @@
+{
+  "reviewer": "Independent oct17_plan_review agent",
+  "scope": "Native source planning and approved-donor suitability only, no generated candidates accepted by this record.",
+  "entries": [
+    {
+      "name": "metal8_1",
+      "key": "64x64:aa81d3ba0cba5300",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "runtimeDimensions": [
+        256,
+        256
+      ],
+      "meanRGB": [
+        28.1025390625,
+        23.3251953125,
+        20.851318359375
+      ],
+      "sourceGames": [
+        "dopa",
+        "rogue"
+      ],
+      "sourceFaces": 3367,
+      "interpretation": "Very dark oxidized/pitted blue-brown metal. Soft mottles, sparse corrosion, no panel grid.",
+      "seams": "XYrepeat; physical trim edge folds/stone mortar are legitimate structure, no new global border."
+    },
+    {
+      "name": "wwall1_1",
+      "key": "64x64:56ef93d64be10dd4",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "runtimeDimensions": [
+        256,
+        256
+      ],
+      "meanRGB": [
+        62.6123046875,
+        54.30859375,
+        48.605224609375
+      ],
+      "sourceGames": [
+        "hipnotic",
+        "id1",
+        "mg1",
+        "rogue"
+      ],
+      "sourceFaces": 2971,
+      "interpretation": "Two courses of32nativepixel quarry blocks. Top joints x0/32/64; lower course offset16 with joints16/48. Horizontal course joint near32. Natural worn stone edges and recessed mortar; no outer frame.",
+      "seams": "XYrepeat; physical trim edge folds/stone mortar are legitimate structure, no new global border."
+    },
+    {
+      "name": "metal9_4",
+      "key": "64x64:0ad528e1164b691b",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "runtimeDimensions": [
+        256,
+        256
+      ],
+      "meanRGB": [
+        43.1572265625,
+        29.5947265625,
+        15.1044921875
+      ],
+      "sourceGames": [
+        "rogue"
+      ],
+      "sourceFaces": 2404,
+      "interpretation": "Brown ochre heavily oxidized metal with soft vertical weathering/drip streaks. No literal wood planks despite native grain resemblance.",
+      "seams": "XYrepeat; physical trim edge folds/stone mortar are legitimate structure, no new global border."
+    },
+    {
+      "name": "tech04_8",
+      "key": "16x128:cb6ec2d5e8f2bc4f",
+      "nativeDimensions": [
+        16,
+        128
+      ],
+      "runtimeDimensions": [
+        64,
+        512
+      ],
+      "meanRGB": [
+        64.35546875,
+        47.662109375,
+        25.982421875
+      ],
+      "sourceGames": [
+        "dopa",
+        "hipnotic",
+        "id1",
+        "mg1"
+      ],
+      "sourceFaces": 3223,
+      "interpretation": "Narrow brown metal trim, two raised/folded edge rails brightest native x2/13 and darker x0/15; plain central channel. No fasteners.",
+      "seams": "XYrepeat; physical trim edge folds/stone mortar are legitimate structure, no new global border."
+    },
+    {
+      "name": "tech04_7",
+      "key": "16x128:691b632dc1e91317",
+      "nativeDimensions": [
+        16,
+        128
+      ],
+      "runtimeDimensions": [
+        64,
+        512
+      ],
+      "meanRGB": [
+        62.125,
+        46.013671875,
+        25.521484375
+      ],
+      "sourceGames": [
+        "dopa",
+        "hipnotic",
+        "id1",
+        "mg1"
+      ],
+      "sourceFaces": 2740,
+      "interpretation": "Same narrowtrim geometry as_8 plus EIGHT small round/recessed fastener-like marks centered x8,y9+16k. Footprintx6..10,y6..12+16k. Widecontactstretch makes them appear slits; preserve actual1:8aspect.",
+      "seams": "XYrepeat; physical trim edge folds/stone mortar are legitimate structure, no new global border."
+    }
+  ],
+  "trimReuse": {
+    "donor": "newer/textures/candidates-2026-10-12/tech04_4-4x-q92-xyz-diffuse.webp",
+    "sha256": "e8071c5b17d2b4f450224909085ac94d22105b820634592c1a3ef9905e427e97",
+    "assessment": "Correct64x512aspect and near-target quietbrownsteel colour. Donor has no edgefolds: separate sourcecolour/layoutfit must retain_8nativecross-section, noexactalias.",
+    "minimalRecipe": "Sourcefit_8 usingapprovedphoto material, inspect narrowrailshape at8x64half/4x32quarter. Derive_7from_8withGPTphotographicfastenerdetailin8boundedsource-positionedpatches; preservebaseoutside patches. No top/bottom caps."
+  },
+  "acceptance": "4xQ92allmaps; sourceidentityguards; fullphotographic material, half/quarterdistance similarity, x/yrepeat/cyclic, correctphysicalfeaturecount/phase. Independentrelief/public/rendererreview separate."
+}

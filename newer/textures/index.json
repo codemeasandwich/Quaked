@@ -1,5 +1,5 @@
 {
-  "version": 2026101802,
+  "version": 2026101803,
   "textures": {
     "afloor3_1": "afloor3_1.webp",
     "ceiling1_3": "ceiling1_3.webp",
@@ -5447,6 +5447,141 @@
             "x": "official/TF_Metal4_03-0909f386fef81a54-4x-q92-normalX.webp",
             "y": "official/TF_Metal4_03-0909f386fef81a54-4x-q92-normalY.webp",
             "z": "official/TF_Metal4_03-0909f386fef81a54-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "metal8_1": {
+      "64x64:aa81d3ba0cba5300": {
+        "file": "official/metal8_1-aa81d3ba0cba5300-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/metal8_1-aa81d3ba0cba5300-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/metal8_1-aa81d3ba0cba5300-4x-q92-normalX.webp",
+            "y": "official/metal8_1-aa81d3ba0cba5300-4x-q92-normalY.webp",
+            "z": "official/metal8_1-aa81d3ba0cba5300-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "metal9_4": {
+      "64x64:0ad528e1164b691b": {
+        "file": "official/metal9_4-0ad528e1164b691b-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/metal9_4-0ad528e1164b691b-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/metal9_4-0ad528e1164b691b-4x-q92-normalX.webp",
+            "y": "official/metal9_4-0ad528e1164b691b-4x-q92-normalY.webp",
+            "z": "official/metal9_4-0ad528e1164b691b-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "wwall1_1": {
+      "64x64:56ef93d64be10dd4": {
+        "file": "official/wwall1_1-56ef93d64be10dd4-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/wwall1_1-56ef93d64be10dd4-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/wwall1_1-56ef93d64be10dd4-4x-q92-normalX.webp",
+            "y": "official/wwall1_1-56ef93d64be10dd4-4x-q92-normalY.webp",
+            "z": "official/wwall1_1-56ef93d64be10dd4-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "tech04_8": {
+      "16x128:cb6ec2d5e8f2bc4f": {
+        "file": "official/tech04_8-cb6ec2d5e8f2bc4f-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/tech04_8-cb6ec2d5e8f2bc4f-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/tech04_8-cb6ec2d5e8f2bc4f-4x-q92-normalX.webp",
+            "y": "official/tech04_8-cb6ec2d5e8f2bc4f-4x-q92-normalY.webp",
+            "z": "official/tech04_8-cb6ec2d5e8f2bc4f-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "tech04_7": {
+      "16x128:691b632dc1e91317": {
+        "file": "official/tech04_7-691b632dc1e91317-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/tech04_7-691b632dc1e91317-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/tech04_7-691b632dc1e91317-4x-q92-normalX.webp",
+            "y": "official/tech04_7-691b632dc1e91317-4x-q92-normalY.webp",
+            "z": "official/tech04_7-691b632dc1e91317-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Brick1_01": {
+      "128x128:43c7d96f0f8c49cd": {
+        "file": "official/TF_Brick1_01-43c7d96f0f8c49cd-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Brick1_01-43c7d96f0f8c49cd-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Brick1_01-43c7d96f0f8c49cd-4x-q92-normalX.webp",
+            "y": "official/TF_Brick1_01-43c7d96f0f8c49cd-4x-q92-normalY.webp",
+            "z": "official/TF_Brick1_01-43c7d96f0f8c49cd-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Brick3_01": {
+      "128x128:e1479696d52dfa14": {
+        "file": "official/TF_Brick3_01-e1479696d52dfa14-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Brick3_01-e1479696d52dfa14-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Brick3_01-e1479696d52dfa14-4x-q92-normalX.webp",
+            "y": "official/TF_Brick3_01-e1479696d52dfa14-4x-q92-normalY.webp",
+            "z": "official/TF_Brick3_01-e1479696d52dfa14-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Stone4": {
+      "256x256:0039688b76f12881": {
+        "file": "official/TF_Stone4-0039688b76f12881-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Stone4-0039688b76f12881-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Stone4-0039688b76f12881-4x-q92-normalX.webp",
+            "y": "official/TF_Stone4-0039688b76f12881-4x-q92-normalY.webp",
+            "z": "official/TF_Stone4-0039688b76f12881-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Stone_02": {
+      "128x128:86c043f3e458ee39": {
+        "file": "official/TF_Stone_02-86c043f3e458ee39-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Stone_02-86c043f3e458ee39-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Stone_02-86c043f3e458ee39-4x-q92-normalX.webp",
+            "y": "official/TF_Stone_02-86c043f3e458ee39-4x-q92-normalY.webp",
+            "z": "official/TF_Stone_02-86c043f3e458ee39-4x-q92-normalZ.webp"
           },
           "strength": 0.2,
           "cap": 0.5

@@ -1,0 +1,211 @@
+{
+  "reviewer": "Independent oct17_plan_review agent",
+  "verdict": "pass both repairedtrimcandidates",
+  "entries": [
+    {
+      "name": "tech04_8",
+      "verdict": "pass",
+      "diffuseSha256": "ee6a45fce311f1934bf1c0db219c8cbc05d44a290857bdf8f580acca94bd154d",
+      "dimensions": [
+        64,
+        512
+      ],
+      "nativeColumnMeans": [
+        34.864583333333314,
+        46.43750000000003,
+        55.666666666666565,
+        48.60416666666671,
+        45.03124999999997,
+        45.87499999999998,
+        46.28124999999999,
+        45.510416666666636,
+        45.57291666666664,
+        45.395833333333314,
+        45.270833333333336,
+        46.47916666666663,
+        48.53125000000003,
+        54.94791666666659,
+        45.83333333333328,
+        35.69791666666666
+      ],
+      "newColumnMeansAtNativeResolution": [
+        36.12760416666666,
+        46.04166666666669,
+        54.364583333333336,
+        48.932291666666714,
+        46.33333333333332,
+        45.80468749999997,
+        46.5859375,
+        45.23437499999998,
+        45.77083333333336,
+        45.94531250000001,
+        45.30729166666668,
+        46.742187500000014,
+        49.95833333333334,
+        53.283854166666664,
+        46.29427083333336,
+        37.77083333333333
+      ],
+      "distanceMetrics": {
+        "(8, 64)": {
+          "meanAbsDiagnosticOnly": 1.9140625,
+          "meanNativeRGB": [
+            64.7578125,
+            47.953125,
+            26.09375
+          ],
+          "meanNewRGB": [
+            64.986328125,
+            47.923828125,
+            25.9453125
+          ]
+        },
+        "(4, 32)": {
+          "meanAbsDiagnosticOnly": 1.0494791666666667,
+          "meanNativeRGB": [
+            65.296875,
+            48.2890625,
+            26.2421875
+          ],
+          "meanNewRGB": [
+            65.5234375,
+            48.3046875,
+            26.1015625
+          ]
+        }
+      },
+      "contact": "tech04_8-independent-v3-review.png"
+    },
+    {
+      "name": "tech04_7",
+      "verdict": "pass",
+      "diffuseSha256": "bfeb177a83cd12281816fe7cdf64e6fdd8f0957d76ee3188cb4d12bda88845bd",
+      "dimensions": [
+        64,
+        512
+      ],
+      "nativeColumnMeans": [
+        34.864583333333314,
+        46.43750000000003,
+        55.666666666666565,
+        48.60416666666671,
+        45.03124999999997,
+        45.87499999999998,
+        41.37499999999998,
+        40.08333333333335,
+        42.61458333333334,
+        39.833333333333336,
+        40.97916666666668,
+        46.47916666666663,
+        48.53125000000003,
+        54.94791666666659,
+        45.83333333333328,
+        35.69791666666666
+      ],
+      "newColumnMeansAtNativeResolution": [
+        36.21093750000001,
+        46.02343750000001,
+        54.42708333333334,
+        48.79687499999999,
+        46.30729166666665,
+        47.39583333333334,
+        41.92187499999999,
+        39.291666666666664,
+        44.15885416666665,
+        44.36197916666667,
+        39.88281250000001,
+        44.22135416666668,
+        49.75520833333332,
+        53.210937500000014,
+        46.24999999999997,
+        37.82031250000003
+      ],
+      "distanceMetrics": {
+        "(8, 64)": {
+          "meanAbsDiagnosticOnly": 2.9817708333333335,
+          "meanNativeRGB": [
+            62.544921875,
+            46.328125,
+            25.599609375
+          ],
+          "meanNewRGB": [
+            62.716796875,
+            46.4921875,
+            25.810546875
+          ]
+        },
+        "(4, 32)": {
+          "meanAbsDiagnosticOnly": 1.5442708333333333,
+          "meanNativeRGB": [
+            63.15625,
+            46.6640625,
+            25.75
+          ],
+          "meanNewRGB": [
+            63.3125,
+            46.9140625,
+            25.9609375
+          ]
+        }
+      },
+      "contact": "tech04_7-independent-v3-review.png"
+    }
+  ],
+  "passing": [
+    "Native1:8aspect retained; targets64x512.",
+    "Eightphotographicfasteners havecorrectcount/regular16native spacing andsourcecentres8.5/9.5+16k.",
+    "CompositorCLIreplaybyteexact; eightdisjointchangedrowgroupsandprotectedouteredgecolumns confirmed.",
+    "Half8x64andquarter4x32colour/style similar; no extraYendcaps.",
+    "Restored native railpeaks x2/13 now~54/53 vsnative56/55, outeredges36/38vsnative35/36 atnative-columnaverages. Fullsize foldread anddarkedges retained; half/quarter clear similarity.",
+    "Quietphotographicgrain preserved withoutnativeYpixelpattern; no inventedendcaps. XYrepeats have nointrusiveseam.",
+    "Decodedheight/XYZ andCPUdebuglit64x512 inspected; rail/fastenerrelief consistent, no artificialoutercap or directedpairissue. This isnot actualGPUqualification.",
+    "RailwrapperCLIreplays byteexact;xyquietedgefunction output pixel-exact.",
+    "MarkedcompositorCLIreplays byteexact againstrepairedplainbase;8disjointchangedgroups andprotectedoutercolumns retained."
+  ],
+  "blocking": [],
+  "qualification": "Independentart/authoringreliefreviewPASS. Encoderallmaps/public/runtime/Devqualification remainsseparate. NoWT/indexmutations.",
+  "compositorReplay": {
+    "byteExact": true,
+    "changedRowGroups": [
+      [
+        20,
+        54
+      ],
+      [
+        85,
+        118
+      ],
+      [
+        149,
+        182
+      ],
+      [
+        213,
+        246
+      ],
+      [
+        277,
+        310
+      ],
+      [
+        341,
+        374
+      ],
+      [
+        404,
+        438
+      ],
+      [
+        469,
+        502
+      ]
+    ]
+  },
+  "authoringRecipeReplay": {
+    "railCLIByteExact": true,
+    "quietXYFunctionPixelExact": true,
+    "fastenerCLIByteExact": true
+  },
+  "repairMethod": "Single1Dnative-columnmean colourfield preservesphysicalcrosssection andquietGPTmaterial; no nativeYgrain copied.",
+  "previousHoldRetained": "trim-two-independent-v2-review.json"
+}

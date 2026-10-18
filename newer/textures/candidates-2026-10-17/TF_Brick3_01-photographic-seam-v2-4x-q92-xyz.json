@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "TF_Brick3_01",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Brick3_01.png",
+  "originalSha256": "c693ef3dd7e550bdb6a752ef0e9d6955ff17e810382d843007e51e0d987696c2",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-17/TF_Brick3_01-photographic-seam-v2-4x.png",
+  "authoringDiffuseSha256": "f090b5e32dbefe641a7dfca9184c62542dc8b0c69d2021afafb25259d1f59026",
+  "toolSha256": "e8d825dcb3e79bb9f419af6558363e0ab00534389e7b21f5423177b2e1f9af9b",
+  "heightToolSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.2,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Brick3_01-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "763c06e64a62076cb8e7a83b7c9e3260638e699b0a212ff3c8919ab7701bca0f",
+      "bytes": 111202,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Brick3_01-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "1c173e1aa7ca4df92b7257f23556181d057e3798e126779077288dd1ac1d2ae6",
+      "bytes": 116790,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Brick3_01-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "b9b5e77f4452fcf159c095de10f3c8be81d4a37194c304fd65dabfea903d2d6f",
+      "bytes": 106174,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Brick3_01-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "0463a639f69ad3b3589dd997201f50c4c127f2b875f3245e90002a79ec0ad5cc",
+      "bytes": 100866,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Brick3_01-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "2e31834d09b8ef043551f6a4c7deb5f0d944352b8a89c169a711063e6bbae9e5",
+      "bytes": 25318,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    64
+  ],
+  "distanceMAE": 5.463704427083333,
+  "distanceMaximum": 49.0,
+  "secondaryComparisonDimensions": [
+    32,
+    32
+  ],
+  "secondaryDistanceMAE": 4.106119791666667,
+  "secondaryDistanceMaximum": 26.0,
+  "colourCompressionMAE": 2.204085032145182,
+  "heightCompressionMAE": 1.2878341674804688,
+  "heightCompressionMaximum": 9.0,
+  "normalAngularMean": 1.0002632668002371,
+  "normalAngularP99": 2.5184664444630767,
+  "normalAngularMaximum": 4.741307403789335,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

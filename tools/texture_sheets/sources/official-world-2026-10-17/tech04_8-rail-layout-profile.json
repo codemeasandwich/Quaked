@@ -1,0 +1,90 @@
+{
+  "source": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech04_8.png",
+  "sourceSha256": "9ff30f9aa58af4de266b644902baf761b44ad55c2c16d27ed22a31e4af17cf7a",
+  "output": "tools/texture_sheets/sources/official-world-2026-10-17/tech04_8-rail-layout-profile.png",
+  "outputSha256": "a2cb6f4f2f66d85d6905f59007bc019101e182c250232a5dd87722f3af3439ab",
+  "procedure": "Mean each RGB column over all128rows; round to uint8; repeat the16column profile through128rows. Source fold profile only, no nativeYgrain.",
+  "nativeColumnRGB": [
+    [
+      48,
+      36,
+      20
+    ],
+    [
+      65,
+      48,
+      26
+    ],
+    [
+      81,
+      58,
+      28
+    ],
+    [
+      69,
+      50,
+      26
+    ],
+    [
+      62,
+      47,
+      26
+    ],
+    [
+      63,
+      47,
+      27
+    ],
+    [
+      64,
+      48,
+      27
+    ],
+    [
+      63,
+      47,
+      27
+    ],
+    [
+      63,
+      47,
+      27
+    ],
+    [
+      62,
+      47,
+      27
+    ],
+    [
+      62,
+      47,
+      27
+    ],
+    [
+      64,
+      48,
+      27
+    ],
+    [
+      69,
+      50,
+      27
+    ],
+    [
+      80,
+      57,
+      27
+    ],
+    [
+      65,
+      48,
+      24
+    ],
+    [
+      49,
+      37,
+      21
+    ]
+  ],
+  "qualification": "Supporting layout reference only; actual source identity and half/quarter acceptance use unchanged originalPNG."
+}

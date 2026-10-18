@@ -1,0 +1,139 @@
+{
+  "source": {
+    "id": "tech04_8|16x128:cb6ec2d5e8f2bc4f",
+    "name": "tech04_8",
+    "key": "16x128:cb6ec2d5e8f2bc4f",
+    "width": 16,
+    "height": 128,
+    "pixelSha256": "82eea80c56af39005c6cd69f041174f7d95370de7218e0a014372f984c8a02d5",
+    "original": "originals/16x128-cb6ec2d5e8f2bc4f.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "id1",
+        "map": "maps/base32b.bsp",
+        "scope": "installed-extra-review",
+        "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+        "slot": 55,
+        "faces": 23,
+        "visibleCandidateFaces": 23,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/dm3.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+        "slot": 12,
+        "faces": 7,
+        "visibleCandidateFaces": 7,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/e2m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+        "slot": 32,
+        "faces": 5,
+        "visibleCandidateFaces": 5,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "hipnotic",
+        "map": "maps/hip1m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+        "slot": 91,
+        "faces": 4,
+        "visibleCandidateFaces": 4,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "hipnotic",
+        "map": "maps/hip1m5.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+        "slot": 49,
+        "faces": 22,
+        "visibleCandidateFaces": 22,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "dopa",
+        "map": "maps/start.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+        "slot": 37,
+        "faces": 151,
+        "visibleCandidateFaces": 151,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "dopa",
+        "map": "maps/e5m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+        "slot": 2,
+        "faces": 754,
+        "visibleCandidateFaces": 754,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "dopa",
+        "map": "maps/e5m2.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+        "slot": 12,
+        "faces": 547,
+        "visibleCandidateFaces": 547,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "dopa",
+        "map": "maps/e5start.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+        "slot": 37,
+        "faces": 151,
+        "visibleCandidateFaces": 151,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge5m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+        "slot": 51,
+        "faces": 1256,
+        "visibleCandidateFaces": 1256,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge5m2.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+        "slot": 73,
+        "faces": 303,
+        "visibleCandidateFaces": 303,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "referenceSha256": "9ff30f9aa58af4de266b644902baf761b44ad55c2c16d27ed22a31e4af17cf7a"
+}

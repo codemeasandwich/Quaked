@@ -1,0 +1,121 @@
+{
+  "qualification": "Independent installed public interfaces and collector/pack contracts. No heavy normal hook, packaged build, owner visual acceptance, commit, landing or release performed by this helper.",
+  "date": "2026-10-18T00:48:05.884Z",
+  "node": "v24.19.0",
+  "head": "a496c7cd6d0de4c554398932ebfa15111754a22d",
+  "bindings": 77,
+  "artworks": 74,
+  "uniqueRuntimeQ92Maps": 370,
+  "sourceOccurrences": 513,
+  "publicTests": {
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0
+  },
+  "packTests": {
+    "passed": 5,
+    "failed": 0,
+    "skipped": 0
+  },
+  "indexSha256": "4fbd0d57c554e929c4ece39764027424e62b137ca3086e34cbbe5ed162799f89",
+  "gameIndexDiff": "Relative to last merged65-artwork HEAD, exactly nine new texture user lists and textureNames source digest; no BSP/model/library changes. Established1spaceindent and logical~/quaked preserved.",
+  "newCoverage": "Nine exact native keys; 16x128 trim originals retain aspect at64x512, with half-native8x64 and quarter-native4x32 checks. TF masonry case negatives added; all74 artwork Q92 encoders replay byte-exact. Existing4 directed-pair normal mathematical byte checks preserved.",
+  "inputs": [
+    {
+      "file": "tests/official_texture_q92_test.js",
+      "sha256": "a74316c9bdfe9f28f1c2aebc3458ec4df2eb3d68925135909fea861b50ae420a"
+    },
+    {
+      "file": "tools/texture_sheets/encode_official_maps.py",
+      "sha256": "e8d825dcb3e79bb9f419af6558363e0ab00534389e7b21f5423177b2e1f9af9b"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5"
+    },
+    {
+      "file": "newer/textures/index.json",
+      "sha256": "4fbd0d57c554e929c4ece39764027424e62b137ca3086e34cbbe5ed162799f89"
+    },
+    {
+      "file": "newer/packs/games.json",
+      "sha256": "70f4ad6c5349d33f450dee1474b99bb8d27249639f6b789800c933936bc286e4"
+    },
+    {
+      "file": "tools/distribution/precommit.mjs",
+      "sha256": "bdcdbb5814a2379c28b46a6f20285b73b8f8319f6786250274785621d9b1c56f"
+    },
+    {
+      "file": "tools/distribution/packs.mjs",
+      "sha256": "b99254a6ebd51600930c6e7340444900c0a1ec1139dfea30bc080db0cca77ea3"
+    },
+    {
+      "file": "tools/distribution/manifest.mjs",
+      "sha256": "b3607639a3cb865c483ac6aeb4219a9010bdf9d14827f1639a22723d680489ff"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/base-masonry-trims-registration.json",
+      "sha256": "5c79dfcab7ca9fc0f84c4be6f039faa59aff4ccaace9d459758e5b5f6580c694"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/all74-public-tests.txt",
+      "sha256": "1aa50f263e64cf917318a87e7d6f252f30177952c80a76b5b22e7b71f2eca658"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/all74-public-source-proof.json",
+      "sha256": "8f87cc137d9e664808b167b0be72899ce531d2921f75e51d2b4728a7de46111b"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/all74-directed-normal-math.json",
+      "sha256": "2d33552b5a7d0875abf0a9492e715c72222dc880b07aabbbeaa350f43051bf38"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/all74-pack-contract-tests.txt",
+      "sha256": "7fed70045fe071db49f0f22712631a1fff48c9d4ae72dfeae2268a98a1c56369"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/all74-delivery-closure.json",
+      "sha256": "6cbc4620bc771d64f4ce4031912e9257169cc6b075e001d23c0747420a4f3df4"
+    }
+  ],
+  "packs": [
+    {
+      "path": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+      "actualPath": "/Users/bri/quaked/Quake/pak0.pak",
+      "bytes": 179618935,
+      "sha256": "9de6f83944011ae4647beef1966ca4fbf490b35baf1f333097a0d363116ebea0"
+    },
+    {
+      "path": "/private/tmp/quaked-official-library-20261017/shareware/pak0.pak",
+      "actualPath": "/Users/bri/quaked/Quake shareware/pak0.pak",
+      "bytes": 18689235,
+      "sha256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af"
+    },
+    {
+      "path": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+      "actualPath": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+      "bytes": 760105822,
+      "sha256": "6da314d85d07eb2ebdd08502239c93efab1060fbbe2be78fcf18e7ec0a2851aa"
+    },
+    {
+      "path": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+      "actualPath": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+      "bytes": 79912030,
+      "sha256": "e6c268cf86081b2926e5745cff718600672fcdac7c94998fbb2555d74cad6ed1"
+    },
+    {
+      "path": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+      "actualPath": "/Users/bri/quaked/Dimension of the Past/pak0.pak",
+      "bytes": 40557898,
+      "sha256": "3ec75633670e6178ed0508ba114fe7bd77344861fbe2191ed55e379716814e55"
+    },
+    {
+      "path": "/private/tmp/quaked-official-library-20261017/Dissolution of Eternity/pak0.pak",
+      "actualPath": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+      "bytes": 44484697,
+      "sha256": "6ff24b3857303f3c38aa091461cac9fe8c740554c6e693ef8a37a91ad930182f"
+    }
+  ],
+  "launchCorrections": [],
+  "normalHook": "Heavy staged-tree normal gate remains root responsibility; no bypass or heavy gate launched by this helper."
+}

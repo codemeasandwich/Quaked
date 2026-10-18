@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "tech04_8",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech04_8.png",
+  "originalSha256": "9ff30f9aa58af4de266b644902baf761b44ad55c2c16d27ed22a31e4af17cf7a",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-17/tech04_8-photographic-rails-seam-v4-4x.png",
+  "authoringDiffuseSha256": "9e63846927c67cabc156bb5d7ee7a1fe22a186d6ebc24c5296524e76229a8f95",
+  "toolSha256": "e8d825dcb3e79bb9f419af6558363e0ab00534389e7b21f5423177b2e1f9af9b",
+  "heightToolSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+  "profile": {
+    "bands": [
+      0.5,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.8,
+    "bump": 0.8,
+    "glow": 0.1,
+    "strength": 0.2,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-17/tech04_8-photographic-rails-seam-v4-4x-q92-xyz-diffuse.webp",
+      "sha256": "ee6a45fce311f1934bf1c0db219c8cbc05d44a290857bdf8f580acca94bd154d",
+      "bytes": 5870,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        64,
+        512
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-17/tech04_8-photographic-rails-seam-v4-4x-q92-xyz-height.webp",
+      "sha256": "7b3d254f6749f5f778774401ccd32835f57e96975746111ddaa3e7b23495c4dc",
+      "bytes": 18880,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        64,
+        512
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-17/tech04_8-photographic-rails-seam-v4-4x-q92-xyz-normalX.webp",
+      "sha256": "a3aadb21db93dcb8fbbdf708635a4ad34955467f8b1b1e624a146315a76ddbbf",
+      "bytes": 14660,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        64,
+        512
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-17/tech04_8-photographic-rails-seam-v4-4x-q92-xyz-normalY.webp",
+      "sha256": "1f798d910b61322461566c6dee79dfbb69dc09570ca8cf44767c5cfdb9e8883f",
+      "bytes": 13330,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        64,
+        512
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-17/tech04_8-photographic-rails-seam-v4-4x-q92-xyz-normalZ.webp",
+      "sha256": "add9a5878d3d95784533c1c31a4eae0181f58f62e8209bc4d178dbfb540ede92",
+      "bytes": 3646,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        64,
+        512
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    8,
+    64
+  ],
+  "distanceMAE": 2.0494791666666665,
+  "distanceMaximum": 11.0,
+  "secondaryComparisonDimensions": [
+    4,
+    32
+  ],
+  "secondaryDistanceMAE": 1.0651041666666667,
+  "secondaryDistanceMaximum": 5.0,
+  "colourCompressionMAE": 1.05242919921875,
+  "heightCompressionMAE": 1.490478515625,
+  "heightCompressionMaximum": 9.0,
+  "normalAngularMean": 1.0563233523090592,
+  "normalAngularP99": 2.650408060856604,
+  "normalAngularMaximum": 4.245547342200794,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

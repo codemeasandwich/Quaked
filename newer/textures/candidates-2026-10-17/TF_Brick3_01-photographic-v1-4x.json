@@ -1,0 +1,55 @@
+{
+  "method": "photographic",
+  "factor": 4,
+  "verticalLandmarks": null,
+  "colorStrength": 1.0,
+  "fieldSigma": 2.0,
+  "edgeAnchor": false,
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    64
+  ],
+  "distanceMeanMaxError": 49.15625,
+  "distanceMeanMAE": 4.628934224446614,
+  "donorDistanceMAE": 7.455921173095703,
+  "newClippedChannelFraction": 0.00012969970703125,
+  "donorContourCorrelation": 0.9997335805911657,
+  "sourceMean": [
+    58.79638671875,
+    54.4248046875,
+    40.11175537109375
+  ],
+  "outputMean": [
+    58.79805374145508,
+    54.42382049560547,
+    40.10801315307617
+  ],
+  "donorBoundaries": {
+    "wrap_x_mean": 13.044921875,
+    "wrap_y_mean": 23.951171875,
+    "interior_x_mean": 8.98553056710698,
+    "interior_y_mean": 9.827005106409006
+  },
+  "boundaries": {
+    "wrap_x_mean": 13.046875,
+    "wrap_y_mean": 23.977864583333336,
+    "interior_x_mean": 8.984441250815395,
+    "interior_y_mean": 9.82502140410959
+  },
+  "passedDistanceCheck": null,
+  "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Brick3_01.png",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Brick3_01-generated-v1.png",
+  "output": "newer/textures/candidates-2026-10-17/TF_Brick3_01-photographic-v1-4x.png",
+  "originalSha256": "c693ef3dd7e550bdb6a752ef0e9d6955ff17e810382d843007e51e0d987696c2",
+  "generatedSha256": "23717bb09aee8e1a337efcc567d89857cdc2ab3d0af834e99096e2c03a84d039",
+  "outputSha256": "b0cd74cb322c05aee84a2d84e4116c130279ab27c30f8a403afdea78d32c6b53",
+  "outputDimensions": [
+    512,
+    512
+  ],
+  "toolSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+  "landmarkFile": null,
+  "landmarkSha256": null
+}

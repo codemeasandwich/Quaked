@@ -1,0 +1,62 @@
+{
+  "source": {
+    "id": "TF_Brick3_01|128x128:e1479696d52dfa14",
+    "name": "TF_Brick3_01",
+    "key": "128x128:e1479696d52dfa14",
+    "width": 128,
+    "height": 128,
+    "pixelSha256": "eb7dcd28cea9cd88b52acd801070677377c6ade0840bbfcd4e3c66fbf97bbfc5",
+    "original": "originals/128x128-e1479696d52dfa14.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "mg1",
+        "map": "maps/mgdm3.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+        "slot": 35,
+        "faces": 29,
+        "visibleCandidateFaces": 29,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge1m2.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+        "slot": 28,
+        "faces": 2191,
+        "visibleCandidateFaces": 2191,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge3m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+        "slot": 45,
+        "faces": 264,
+        "visibleCandidateFaces": 264,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge3m2.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+        "slot": 19,
+        "faces": 3930,
+        "visibleCandidateFaces": 3930,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "referenceSha256": "c693ef3dd7e550bdb6a752ef0e9d6955ff17e810382d843007e51e0d987696c2"
+}

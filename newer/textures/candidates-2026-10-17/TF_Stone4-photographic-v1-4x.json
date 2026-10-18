@@ -1,0 +1,55 @@
+{
+  "method": "photographic",
+  "factor": 4,
+  "verticalLandmarks": null,
+  "colorStrength": 1.0,
+  "fieldSigma": 2.0,
+  "edgeAnchor": false,
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    128,
+    128
+  ],
+  "distanceMeanMaxError": 43.28125,
+  "distanceMeanMAE": 5.377939542134603,
+  "donorDistanceMAE": 19.650604883829754,
+  "newClippedChannelFraction": 0.019454320271809895,
+  "donorContourCorrelation": 0.9986707924908296,
+  "sourceMean": [
+    63.25993347167969,
+    56.66487121582031,
+    49.2921142578125
+  ],
+  "outputMean": [
+    63.362704277038574,
+    56.746389389038086,
+    49.34783935546875
+  ],
+  "donorBoundaries": {
+    "wrap_x_mean": 20.101236979166664,
+    "wrap_y_mean": 19.557291666666668,
+    "interior_x_mean": 8.748150927113882,
+    "interior_y_mean": 11.058221453445748
+  },
+  "boundaries": {
+    "wrap_x_mean": 19.957356770833336,
+    "wrap_y_mean": 18.773111979166668,
+    "interior_x_mean": 8.703395153653469,
+    "interior_y_mean": 10.964686876323723
+  },
+  "passedDistanceCheck": null,
+  "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Stone4.png",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Stone4-generated-v1.png",
+  "output": "newer/textures/candidates-2026-10-17/TF_Stone4-photographic-v1-4x.png",
+  "originalSha256": "5d37c0b6929c322a4f9b6e595b9696fbb5631fc23d6fadb86ac6df12b83a3a3c",
+  "generatedSha256": "ce00bae4ac48933289c5aa617fc4d3fed8bbd7aa800974acd8e394257772f49e",
+  "outputSha256": "6dcc9b0381fd93643d53e0a1848fbce9ce726895c8eda963649b1213673bb9e7",
+  "outputDimensions": [
+    1024,
+    1024
+  ],
+  "toolSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+  "landmarkFile": null,
+  "landmarkSha256": null
+}

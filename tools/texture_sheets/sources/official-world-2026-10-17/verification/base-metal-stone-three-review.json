@@ -1,0 +1,129 @@
+{
+  "reviewer": "Independent oct17_plan_review agent",
+  "verdict": "pass allthree photographic-seam-v2 diffuse candidates",
+  "scope": "Actualdecoded256diffuse, both32half, both16quarter,XY3x3repetitionand128x128cyclicoffset visualreview. Relief/encoder/public/runtime/Dev checks separate.",
+  "entries": [
+    {
+      "name": "metal8_1",
+      "diffuseSha256": "fbeecba9a6dcf33ed7730877aec97b7e144faf168b8bfb06bda13006e5a7555e",
+      "dimensions": [
+        256,
+        256
+      ],
+      "comparisonMetrics": {
+        "32": {
+          "nativeRGBMean": [
+            28.1171875,
+            23.3291015625,
+            20.8310546875
+          ],
+          "replacementRGBMean": [
+            27.9677734375,
+            23.43359375,
+            20.8564453125
+          ],
+          "rmseDiagnosticOnly": 3.1448328983164324
+        },
+        "16": {
+          "nativeRGBMean": [
+            28.09375,
+            23.3046875,
+            20.8515625
+          ],
+          "replacementRGBMean": [
+            27.94140625,
+            23.4609375,
+            20.81640625
+          ],
+          "rmseDiagnosticOnly": 1.8645542362720373
+        }
+      },
+      "contact": "metal8_1-independent-seam-v2-review.png",
+      "verdict": "pass"
+    },
+    {
+      "name": "metal9_4",
+      "diffuseSha256": "5b21e34ff8a305ce6726c6ece77093a11233ad934428e1e612faa6e85552b591",
+      "dimensions": [
+        256,
+        256
+      ],
+      "comparisonMetrics": {
+        "32": {
+          "nativeRGBMean": [
+            43.1279296875,
+            29.6123046875,
+            15.1025390625
+          ],
+          "replacementRGBMean": [
+            43.1669921875,
+            29.623046875,
+            15.162109375
+          ],
+          "rmseDiagnosticOnly": 3.9000367252544343
+        },
+        "16": {
+          "nativeRGBMean": [
+            43.203125,
+            29.62109375,
+            15.109375
+          ],
+          "replacementRGBMean": [
+            43.265625,
+            29.71484375,
+            15.1796875
+          ],
+          "rmseDiagnosticOnly": 2.6920987785245423
+        }
+      },
+      "contact": "metal9_4-independent-seam-v2-review.png",
+      "verdict": "pass"
+    },
+    {
+      "name": "wwall1_1",
+      "diffuseSha256": "e96b9bbf260c5eabb8b81d5fc4a4794b45acce567c0bd374724b4a042624ea61",
+      "dimensions": [
+        256,
+        256
+      ],
+      "comparisonMetrics": {
+        "32": {
+          "nativeRGBMean": [
+            62.7666015625,
+            54.46484375,
+            48.7509765625
+          ],
+          "replacementRGBMean": [
+            62.8369140625,
+            54.54296875,
+            48.6953125
+          ],
+          "rmseDiagnosticOnly": 7.378552287147301
+        },
+        "16": {
+          "nativeRGBMean": [
+            63.0625,
+            54.69921875,
+            48.95703125
+          ],
+          "replacementRGBMean": [
+            63.14453125,
+            54.796875,
+            48.8828125
+          ],
+          "rmseDiagnosticOnly": 4.193714294433198
+        }
+      },
+      "contact": "wwall1_1-independent-seam-v2-review.png",
+      "verdict": "pass"
+    }
+  ],
+  "findings": [
+    "metal8_1 retains verydark blue-brown oxidizedsteel with naturalpitting andsoftmottles; no highcontrast inventedgrid. Nativefinegrain is replacedwith photographicmaterialvariation.",
+    "metal9_4 retains brown/ochrerust andverticalweathering streakscale; no literalwoodplanks, fasteninggrid or newframe.",
+    "wwall1_1 retains exacttwo-coursebond: topverticaljoints0/32/64native, lower16/48, horizontalcoursejointnear32; no extra rows/columns. Newphysicalchipped/roundedstoneedges replacepixelsteps.",
+    "Half/quarter views retain clearcolour,feature scale andstyle similarity for allthree. MeanRGB differences are small; metrics diagnosticratherthan exactequalitygates.",
+    "No visibleXYtile seam, artificialedgecolourband or imagewidevignette. Legitimatestonejointscontinueacrosswrap.",
+    "Finepits/mineralvariation readasphysicaldetail without an intrusiveuniformgrainoverlay. All3x3repeats remain ordinaryrepeating textures, not claims ofuniquegeometry."
+  ]
+}

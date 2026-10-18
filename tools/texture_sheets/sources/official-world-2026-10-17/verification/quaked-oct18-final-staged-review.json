@@ -1,0 +1,99 @@
+{
+  "tree": "e691b57beaa356ab5acfc27105790fd967298d4c",
+  "base": "628f9424476b4cbbb2f7855931d51defcbeb2a72",
+  "indexSha256": "dd0c1c4be7c7c16eae7ed3c2d035cfd003831f0dce98dafd07464ab4fa28f98e",
+  "checks": {
+    "fullStageZeroIndexEqualsPinnedTree": true,
+    "all281ManifestPathsMatch": true,
+    "priorCatalogueAndGalleryEntriesUnchanged": true,
+    "sevenOnlyNewBindings": true,
+    "35RuntimeMapsExact4xLossyAndHashesMatch": true,
+    "onlySevenPackKeysAndSourceDigestChanged": true,
+    "allSevenDiffuseBytesMatchIndependentArtReview": true,
+    "selectedEncoderSourcesOutputHashesAndReciprocalPartnersMatch": true,
+    "allPublicReceiptInputsMatchStagedBlobs": true,
+    "all65GPU1430ChecksPassNoShaderErrors": true,
+    "68Bindings450SourceOccurrences325ImagesEvidenceMatchesIndex": true,
+    "cachedDiffWhitespaceCheck": true
+  },
+  "mapFiles": [
+    "official/city3_2-4b56f248a42f19ba-4x-q92-diffuse.webp",
+    "official/city3_2-4b56f248a42f19ba-4x-q92-height.webp",
+    "official/city3_2-4b56f248a42f19ba-4x-q92-normalX.webp",
+    "official/city3_2-4b56f248a42f19ba-4x-q92-normalY.webp",
+    "official/city3_2-4b56f248a42f19ba-4x-q92-normalZ.webp",
+    "official/city3_4-c42b16880720ca92-4x-q92-diffuse.webp",
+    "official/city3_4-c42b16880720ca92-4x-q92-height.webp",
+    "official/city3_4-c42b16880720ca92-4x-q92-normalX.webp",
+    "official/city3_4-c42b16880720ca92-4x-q92-normalY.webp",
+    "official/city3_4-c42b16880720ca92-4x-q92-normalZ.webp",
+    "official/wstone1_2-743c67dccf54b85e-4x-q92-diffuse.webp",
+    "official/wstone1_2-743c67dccf54b85e-4x-q92-height.webp",
+    "official/wstone1_2-743c67dccf54b85e-4x-q92-normalX.webp",
+    "official/wstone1_2-743c67dccf54b85e-4x-q92-normalY.webp",
+    "official/wstone1_2-743c67dccf54b85e-4x-q92-normalZ.webp",
+    "candidates-2026-10-17/TF_Metal3_02-photographic-pair-v4-4x-q92-xyz-diffuse.webp",
+    "candidates-2026-10-17/TF_Metal3_02-photographic-pair-v4-4x-q92-xyz-height.webp",
+    "candidates-2026-10-17/TF_Metal3_02-photographic-pair-v4-4x-q92-xyz-normalX.webp",
+    "candidates-2026-10-17/TF_Metal3_02-photographic-pair-v4-4x-q92-xyz-normalY.webp",
+    "candidates-2026-10-17/TF_Metal3_02-photographic-pair-v4-4x-q92-xyz-normalZ.webp",
+    "candidates-2026-10-17/TF_Metal4_02-photographic-pair-v4-4x-q92-xyz-diffuse.webp",
+    "candidates-2026-10-17/TF_Metal4_02-photographic-pair-v4-4x-q92-xyz-height.webp",
+    "candidates-2026-10-17/TF_Metal4_02-photographic-pair-v4-4x-q92-xyz-normalX.webp",
+    "candidates-2026-10-17/TF_Metal4_02-photographic-pair-v4-4x-q92-xyz-normalY.webp",
+    "candidates-2026-10-17/TF_Metal4_02-photographic-pair-v4-4x-q92-xyz-normalZ.webp",
+    "candidates-2026-10-17/TF_Metal3_03-photographic-pair-v4-4x-q92-xyz-diffuse.webp",
+    "candidates-2026-10-17/TF_Metal3_03-photographic-pair-v4-4x-q92-xyz-height.webp",
+    "candidates-2026-10-17/TF_Metal3_03-photographic-pair-v4-4x-q92-xyz-normalX.webp",
+    "candidates-2026-10-17/TF_Metal3_03-photographic-pair-v4-4x-q92-xyz-normalY.webp",
+    "candidates-2026-10-17/TF_Metal3_03-photographic-pair-v4-4x-q92-xyz-normalZ.webp",
+    "candidates-2026-10-17/TF_Metal4_03-photographic-pair-v4-4x-q92-xyz-diffuse.webp",
+    "candidates-2026-10-17/TF_Metal4_03-photographic-pair-v4-4x-q92-xyz-height.webp",
+    "candidates-2026-10-17/TF_Metal4_03-photographic-pair-v4-4x-q92-xyz-normalX.webp",
+    "candidates-2026-10-17/TF_Metal4_03-photographic-pair-v4-4x-q92-xyz-normalY.webp",
+    "candidates-2026-10-17/TF_Metal4_03-photographic-pair-v4-4x-q92-xyz-normalZ.webp"
+  ],
+  "reviewer": "Independent oct17_plan_review agent",
+  "verdict": "pass; no blocking defect found in frozen seven-texture candidate",
+  "findings": [],
+  "implementationReview": [
+    "Only offlineauthoring tools change;runtime engine/loader/UV contracts unchanged. craft optionaldetail_scale retains default numerical expression and validation rejects nonpositive/nonfinite overrides.",
+    "Pairencoder uses decodedQ92colourfor both tiles, one periodicheightcycle atper-tilefeature scale, individuallyencodedQ92heights, reciprocal decodedheightcontext fornormals, andsqrt2slopecompensation. Directedphase ispreserved instead ofindividualYwrapping.",
+    "No-overwrite input/output protections and originalhashrechecks retained. Pairnames/profiles/shape guarded; receiptsbind selectedpartner master/profile/diffuse/heightbytes.",
+    "All61earlierartworks replay byte-exact inindependentpublicreceipt; selecteddefaultmathwasalsoindependentlycomparedwith priorcraft onactualwood/stone/narrowtrim fixtures."
+  ],
+  "testReview": [
+    "Existing6publictests preserved/extended with7specificnativekeys; Classic, unknownsource rejection,caseguard andheldrock coverage retained.",
+    "Additionaldirect-coordinate stencil test derives halo rows from actualpartnerdecodedheight; it independently verifies512tile slope and detects the priorwrongselfwrap. EncodedXYZbytesreproduceactualpublishedmaps.",
+    "Packchanges7names+textureNamesdigestonly; owninggames/ancestors reachallcompanions. Broaderaddons in sourceindexusers are inheritedreachability metadata, notnewgameartscope."
+  ],
+  "artAndProvenance": [
+    "Stone3full/half/quarter/XYrepeat reviewPASS;exactdistinctsourcecolours retained despite shareddonor geometry.",
+    "Steel4v2/v3HOLD diagnostics preserved;selectedv4art/pairedreliefPASS andselectedruntime diffusematchesreviewedhashes.",
+    "Currentbatch65artworks/68bindings/325runtimeimages is qualified asincrement only;1013ordinarygenerationactions remain. Next3base-materialdrafts andtrimdonor areexcluded fromruntime/indexcandidate."
+  ],
+  "evidenceReview": {
+    "publicTests": {
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0
+    },
+    "packTests": {
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0
+    },
+    "materialGPUChecks": 1430,
+    "shaderErrors": 0,
+    "sources": 450,
+    "qualification": "Reviewed retained receipts and matched actualstagedinputhashes; noheavytest rerunbyreviewer. MaterialGPU isseparatefromactuallevel/ownerappearanceacceptance."
+  },
+  "remainingBeforeDevMerge": [
+    "Maintainedfullcommitgate stillrequired;no newgateorDevmergeclaimedhere.",
+    "Respect40GiBdiskadmissionfloor andserializedheavybuildslot. Thedocumented~30GiBspaceconstraint remainsreal; thisreviewdoesnotwaiveit.",
+    "RecheckcurrentDev/reconcileanyincomingdelta beforepublication."
+  ],
+  "bluey": "CAMPAIGN.md preservesretiredidentity/storage_error,existingtaskid,responsibleownerandnextreconciliationaction;no unacknowledgedassignmentclaimed.",
+  "sourceOrIndexMutations": "none byreviewer;receiptexternaltofrozentree",
+  "reviewReceipt": "/private/tmp/quaked-oct18-final-staged-review.json"
+}

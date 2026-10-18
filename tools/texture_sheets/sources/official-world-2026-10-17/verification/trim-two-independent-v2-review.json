@@ -1,0 +1,202 @@
+{
+  "reviewer": "Independent oct17_plan_review agent",
+  "verdict": "hold bothv2trimcandidates for lostphysicaledgefoldprofile",
+  "entries": [
+    {
+      "name": "tech04_8",
+      "verdict": "hold: physicaledgefoldsflattened/misphased",
+      "diffuseSha256": "2046de7f17d816ac37168874f42e9259db18e5978ab0a7c594da3877eef0a14d",
+      "dimensions": [
+        64,
+        512
+      ],
+      "nativeColumnMeans": [
+        34.864583333333314,
+        46.43750000000003,
+        55.666666666666565,
+        48.60416666666671,
+        45.03124999999997,
+        45.87499999999998,
+        46.28124999999999,
+        45.510416666666636,
+        45.57291666666664,
+        45.395833333333314,
+        45.270833333333336,
+        46.47916666666663,
+        48.53125000000003,
+        54.94791666666659,
+        45.83333333333328,
+        35.69791666666666
+      ],
+      "newColumnMeansAtNativeResolution": [
+        42.87500000000001,
+        43.66927083333335,
+        47.31510416666667,
+        47.41145833333336,
+        49.17708333333333,
+        47.263020833333336,
+        46.1953125,
+        44.234374999999986,
+        45.5416666666667,
+        47.09895833333334,
+        46.18229166666667,
+        48.2109375,
+        49.11979166666667,
+        46.726562500000014,
+        44.50520833333333,
+        44.26041666666665
+      ],
+      "distanceMetrics": {
+        "(8, 64)": {
+          "meanAbsDiagnosticOnly": 2.841796875,
+          "meanNativeRGB": [
+            64.7578125,
+            47.953125,
+            26.09375
+          ],
+          "meanNewRGB": [
+            64.48046875,
+            47.7109375,
+            25.810546875
+          ]
+        },
+        "(4, 32)": {
+          "meanAbsDiagnosticOnly": 0.8020833333333334,
+          "meanNativeRGB": [
+            65.296875,
+            48.2890625,
+            26.2421875
+          ],
+          "meanNewRGB": [
+            64.8125,
+            47.984375,
+            25.90625
+          ]
+        }
+      },
+      "contact": "tech04_8-independent-v2-review.png"
+    },
+    {
+      "name": "tech04_7",
+      "verdict": "hold: physicaledgefoldsflattened/misphased",
+      "diffuseSha256": "9fe6e0817ac38a78587ab227fcea042b24b31b8d503d76caac370335b83cbb2b",
+      "dimensions": [
+        64,
+        512
+      ],
+      "nativeColumnMeans": [
+        34.864583333333314,
+        46.43750000000003,
+        55.666666666666565,
+        48.60416666666671,
+        45.03124999999997,
+        45.87499999999998,
+        41.37499999999998,
+        40.08333333333335,
+        42.61458333333334,
+        39.833333333333336,
+        40.97916666666668,
+        46.47916666666663,
+        48.53125000000003,
+        54.94791666666659,
+        45.83333333333328,
+        35.69791666666666
+      ],
+      "newColumnMeansAtNativeResolution": [
+        42.83593750000002,
+        43.687500000000014,
+        47.32291666666668,
+        47.38802083333335,
+        49.11197916666665,
+        48.875000000000014,
+        41.90625,
+        38.94791666666667,
+        44.07031250000003,
+        44.906250000000014,
+        40.559895833333314,
+        45.39583333333332,
+        49.09895833333333,
+        46.76562500000001,
+        44.481770833333336,
+        44.31510416666667
+      ],
+      "distanceMetrics": {
+        "(8, 64)": {
+          "meanAbsDiagnosticOnly": 3.90625,
+          "meanNativeRGB": [
+            62.544921875,
+            46.328125,
+            25.599609375
+          ],
+          "meanNewRGB": [
+            62.203125,
+            46.2265625,
+            25.75390625
+          ]
+        },
+        "(4, 32)": {
+          "meanAbsDiagnosticOnly": 1.5364583333333333,
+          "meanNativeRGB": [
+            63.15625,
+            46.6640625,
+            25.75
+          ],
+          "meanNewRGB": [
+            62.5390625,
+            46.46875,
+            25.875
+          ]
+        }
+      },
+      "contact": "tech04_7-independent-v2-review.png"
+    }
+  ],
+  "passing": [
+    "Native1:8aspect retained; targets64x512.",
+    "Eightphotographicfasteners havecorrectcount/regular16native spacing andsourcecentres8.5/9.5+16k.",
+    "CompositorCLIreplaybyteexact; eightdisjointchangedrowgroupsandprotectedouteredgecolumns confirmed.",
+    "Half8x64andquarter4x32colour/style similar; no extraYendcaps."
+  ],
+  "blocking": [
+    "Distinctivenativetworailprofile x2/x13withdarkerouteredges0/15 isflattenedandshifted. Fullimage readsplainsteelmaterialratherthan foldedtrim.",
+    "Restorephysicalrailcross-section inplainbase andrerunboundedfastenercomposite; preservequietphotographicmaterialand1:8aspect. Do notaddtop/bottomcaporglobalvignette."
+  ],
+  "qualification": "Noindex/WTmutations. Relief/public/runtimecheckseparate; passingdistance colourmetricscannotoverridevisiblelayoutloss.",
+  "compositorReplay": {
+    "byteExact": true,
+    "changedRowGroups": [
+      [
+        20,
+        54
+      ],
+      [
+        85,
+        118
+      ],
+      [
+        149,
+        182
+      ],
+      [
+        213,
+        246
+      ],
+      [
+        277,
+        310
+      ],
+      [
+        341,
+        374
+      ],
+      [
+        404,
+        438
+      ],
+      [
+        469,
+        502
+      ]
+    ]
+  }
+}

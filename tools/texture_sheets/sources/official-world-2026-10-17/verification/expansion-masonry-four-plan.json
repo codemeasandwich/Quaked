@@ -1,0 +1,107 @@
+{
+  "reviewer": "Independent oct17_plan_review agent",
+  "scope": "Nativeplanningonly,nogeneratedassetapproval",
+  "entries": [
+    {
+      "name": "TF_Brick3_01",
+      "key": "128x128:e1479696d52dfa14",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "meanRGB": [
+        58.79638671875,
+        54.4248046875,
+        40.11175537109375
+      ],
+      "sourceFaces": 6414,
+      "games": [
+        "mg1"
+      ],
+      "structure": "Sixteen finebrickcourses ~8nativepixelheight. Variablebrickwidth~20..30native, staggered/brokenends ratherthan exactuniformbond. Darkweatheredgreen/sootmortar andmutedochre/grey/terracotta bricks.",
+      "wrap": "XYrepeat; preserve mortar/ledgephase. Wholeimageframing/bevel prohibited; localwornstonejointshading appropriate."
+    },
+    {
+      "name": "TF_Brick1_01",
+      "key": "128x128:43c7d96f0f8c49cd",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "meanRGB": [
+        79.30413818359375,
+        67.58795166015625,
+        53.705810546875
+      ],
+      "sourceFaces": 5908,
+      "games": [
+        "mg1"
+      ],
+      "structure": "Same sixteen-course brickgrammar asBrick3, warmer/lighter terracottaochre andgreyindividualbricks/darkgreenmortar. Preserve irregularbrickends andsourcecolourmap ratherthan simpleglobaltint.",
+      "wrap": "XYrepeat; preserve mortar/ledgephase. Wholeimageframing/bevel prohibited; localwornstonejointshading appropriate."
+    },
+    {
+      "name": "TF_Stone4",
+      "key": "256x256:0039688b76f12881",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "targetDimensions": [
+        1024,
+        1024
+      ],
+      "meanRGB": [
+        63.25993347167969,
+        56.66487121582031,
+        49.2921142578125
+      ],
+      "sourceFaces": 5271,
+      "games": [
+        "mg1"
+      ],
+      "structure": "Complexmixedashlar/networkofmanyrectangularblocks, bothhorizontal andverticalelongatedpieces atmultipleheights. No reliableuniformrow/blockcount: preserve originaljointnetworkwith explicitstructuralguide;do notreduce toregulargrid.",
+      "wrap": "XYrepeat; preserve mortar/ledgephase. Wholeimageframing/bevel prohibited; localwornstonejointshading appropriate."
+    },
+    {
+      "name": "TF_Stone_02",
+      "key": "128x128:86c043f3e458ee39",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "meanRGB": [
+        70.912109375,
+        54.57574462890625,
+        39.96051025390625
+      ],
+      "sourceFaces": 3730,
+      "games": [
+        "mg1"
+      ],
+      "structure": "Fourroughhorizontalrockledges/strata (~32nativehigh). Eachlayer darkupper/shadowedpart towardlighterroughlowerface. No authoritativeverticalmasonryjointgrid; retain4layerphase andsparsefractures.",
+      "wrap": "XYrepeat; preserve mortar/ledgephase. Wholeimageframing/bevel prohibited; localwornstonejointshading appropriate."
+    }
+  ],
+  "brickLayoutReuse": {
+    "nativeLumaCorrelation": 0.8677476261650934,
+    "assessment": "CommonGPTgeometrydonor suitableforpairedbrickinterpretations, each separatelysourcefit. Avoidnewpixelnoise, fluorescenttealmortar or generic8coursewall. Smallwear/chips/mineralflecks addscharacterwithoutextracourses."
+  },
+  "existingMaterialReuse": [
+    "Stone_02 may use approvedTF_Cliff2 oranothernaturalrockmaterial asGPTreference only. Itsfourledgegeometrydoesnotmatchearlierbrickmortarwall.",
+    "Stone4 needs uniquelayoutart/structuralguide; reuseapprovedstonefine-materialfinishonly, notregularcoursegeometry."
+  ],
+  "acceptance": "Fullphotographicmaterial, exact4x/Q92allmaps,half/quarterdistance,XYrepeat/cyclicjointphase, sourceguardedidentities; complexjointlayoutandfourledgecountneedindependentreviewbeforebinding."
+}

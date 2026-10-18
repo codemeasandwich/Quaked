@@ -1,0 +1,150 @@
+[
+  {
+    "name": "TF_Brick1_01",
+    "diffuseSha256": "c041800f40702f37c05b3e2487dc305324c9fee4bdaacd166efdb6a3900170f5",
+    "dimensions": [
+      512,
+      512
+    ],
+    "distanceMetrics": {
+      "64": {
+        "nativeMean": [
+          79.357421875,
+          67.5703125,
+          53.69384765625
+        ],
+        "newMean": [
+          79.4150390625,
+          67.70703125,
+          53.674560546875
+        ],
+        "rmseDiagnosticOnly": 7.5146504045847005
+      },
+      "32": {
+        "nativeMean": [
+          79.60546875,
+          67.6826171875,
+          53.7470703125
+        ],
+        "newMean": [
+          79.71484375,
+          67.8203125,
+          53.7392578125
+        ],
+        "rmseDiagnosticOnly": 6.421577193013671
+      }
+    },
+    "contact": "TF_Brick1_01-independent-seam-v2-review.png"
+  },
+  {
+    "name": "TF_Brick3_01",
+    "diffuseSha256": "763c06e64a62076cb8e7a83b7c9e3260638e699b0a212ff3c8919ab7701bca0f",
+    "dimensions": [
+      512,
+      512
+    ],
+    "distanceMetrics": {
+      "64": {
+        "nativeMean": [
+          58.808837890625,
+          54.431884765625,
+          40.093017578125
+        ],
+        "newMean": [
+          58.872314453125,
+          54.49658203125,
+          40.05859375
+        ],
+        "rmseDiagnosticOnly": 7.4878156235647255
+      },
+      "32": {
+        "nativeMean": [
+          58.9296875,
+          54.4931640625,
+          40.1396484375
+        ],
+        "newMean": [
+          59.0244140625,
+          54.564453125,
+          40.0849609375
+        ],
+        "rmseDiagnosticOnly": 6.136946258115676
+      }
+    },
+    "contact": "TF_Brick3_01-independent-seam-v2-review.png"
+  },
+  {
+    "name": "TF_Stone4",
+    "diffuseSha256": "b524c1431b47181e4fb3cbe1eb3a8994c14cbc03f13da71a266c9f11302fa6c6",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "distanceMetrics": {
+      "128": {
+        "nativeMean": [
+          63.261474609375,
+          56.67236328125,
+          49.3028564453125
+        ],
+        "newMean": [
+          63.42388916015625,
+          56.85235595703125,
+          49.36761474609375
+        ],
+        "rmseDiagnosticOnly": 6.443746653228197
+      },
+      "64": {
+        "nativeMean": [
+          63.265869140625,
+          56.67724609375,
+          49.31591796875
+        ],
+        "newMean": [
+          63.445556640625,
+          56.86328125,
+          49.375
+        ],
+        "rmseDiagnosticOnly": 4.590294193322472
+      }
+    },
+    "contact": "TF_Stone4-independent-seam-v2-review.png"
+  },
+  {
+    "name": "TF_Stone_02",
+    "diffuseSha256": "3dde30b8fe7ab020a75e30bec7e733bcfe10ad873fcf6d761f72fe19cfe455ae",
+    "dimensions": [
+      512,
+      512
+    ],
+    "distanceMetrics": {
+      "64": {
+        "nativeMean": [
+          70.9013671875,
+          54.569580078125,
+          39.951171875
+        ],
+        "newMean": [
+          70.999267578125,
+          54.699951171875,
+          40.2255859375
+        ],
+        "rmseDiagnosticOnly": 9.953018706915422
+      },
+      "32": {
+        "nativeMean": [
+          70.85546875,
+          54.560546875,
+          39.9287109375
+        ],
+        "newMean": [
+          70.94921875,
+          54.67578125,
+          40.2060546875
+        ],
+        "rmseDiagnosticOnly": 7.853475875899368
+      }
+    },
+    "contact": "TF_Stone_02-independent-seam-v2-review.png"
+  }
+]
