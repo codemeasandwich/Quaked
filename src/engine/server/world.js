@@ -246,7 +246,7 @@ SV_HullForEntity
  * @returns {hull_t} a hull of the entity's brush model, or the shared box hull (valid until the next box request)
  * @throws {Error} through `Sys_Error` for SOLID_BSP without MOVETYPE_PUSH, or MOVETYPE_PUSH with a non bsp model
  */
-export function SV_HullForEntity( ent, mins, maxs, offset ) {
+export function SV_HullForEntity( ent, mins, maxs, offset, moveEnt = null ) {
 
 	let hull;
 
@@ -260,11 +260,22 @@ export function SV_HullForEntity( ent, mins, maxs, offset ) {
 		const model = sv.models[ ent.v.modelindex | 0 ];
 
 		if ( ! model || model.type !== 0 ) // mod_brush = 0
-			Sys_Error( 'MOVETYPE_PUSH with a non bsp model' );
+			Sys_Error( 'MOVETYPE_PUSH with a non bsp model (' + ( model ? model.name + ', type ' + model.type : 'none' ) + ')' );
 
 		const size = new Float32Array( 3 );
 		VectorSubtract( maxs, mins, size );
-		if ( size[ 0 ] < 3 )
+		if ( ( model.hullCount | 0 ) >= 8 ) {
+
+			// Hexen II: an entity may name its hull, otherwise the native size rules choose among hulls 0, 4, 3, 1 and 5
+			const named = moveEnt === null || moveEnt === undefined ? 0 : ( moveEnt.v.hull | 0 );
+			if ( named > 0 && named <= 8 && model.hulls[ named - 1 ] ) hull = model.hulls[ named - 1 ];
+			else if ( size[ 0 ] < 3 ) hull = model.hulls[ 0 ];
+			else if ( size[ 0 ] <= 8 && ( ( sv.edicts[ 0 ].v.spawnflags | 0 ) & 1 ) ) hull = model.hulls[ 4 ];
+			else if ( size[ 0 ] <= 32 && size[ 2 ] <= 28 ) hull = model.hulls[ 3 ];
+			else if ( size[ 0 ] <= 32 ) hull = model.hulls[ 1 ];
+			else hull = model.hulls[ 5 ];
+
+		} else if ( size[ 0 ] < 3 )
 			hull = model.hulls[ 0 ];
 		else if ( size[ 0 ] <= 32 )
 			hull = model.hulls[ 1 ];
@@ -1125,7 +1136,7 @@ SV_ClipMoveToEntity
  *   started in solid, otherwise null
  * @throws {Error} through `Sys_Error` for a bad SOLID_BSP entity or a corrupt hull
  */
-export function SV_ClipMoveToEntity( ent, start, mins, maxs, end ) {
+export function SV_ClipMoveToEntity( ent, start, mins, maxs, end, moveEnt = null ) {
 
 	const trace = new trace_t();
 
@@ -1136,7 +1147,7 @@ export function SV_ClipMoveToEntity( ent, start, mins, maxs, end ) {
 
 	// get the clipping hull
 	const offset = new Float32Array( 3 );
-	const hull = SV_HullForEntity( ent, mins, maxs, offset );
+	const hull = SV_HullForEntity( ent, mins, maxs, offset, moveEnt );
 
 	const start_l = new Float32Array( 3 );
 	const end_l = new Float32Array( 3 );
@@ -1253,9 +1264,9 @@ function SV_ClipToLinks( node, clip ) {
 
 		let trace;
 		if ( ( touch.v.flags | 0 ) & FL_MONSTER )
-			trace = SV_ClipMoveToEntity( touch, clip.start, clip.mins2, clip.maxs2, clip.end );
+			trace = SV_ClipMoveToEntity( touch, clip.start, clip.mins2, clip.maxs2, clip.end, touch );
 		else
-			trace = SV_ClipMoveToEntity( touch, clip.start, clip.mins, clip.maxs, clip.end );
+			trace = SV_ClipMoveToEntity( touch, clip.start, clip.mins, clip.maxs, clip.end, touch );
 
 		if ( trace.allsolid || trace.startsolid || trace.fraction < clip.trace.fraction ) {
 
@@ -1345,7 +1356,7 @@ export function SV_Move( start, mins, maxs, end, type, passedict ) {
 	const clip = new moveclip_t();
 
 	// clip to world
-	clip.trace = SV_ClipMoveToEntity( sv.edicts[ 0 ], start, mins, maxs, end );
+	clip.trace = SV_ClipMoveToEntity( sv.edicts[ 0 ], start, mins, maxs, end, passedict );
 
 	clip.start = start;
 	clip.end = end;

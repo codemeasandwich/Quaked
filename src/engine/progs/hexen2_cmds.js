@@ -14,6 +14,7 @@
 import { G_FLOAT, G_FLOAT_SET, G_INT, G_INT_SET, G_STRING, G_VECTOR, PR_SetTempString, pr_argc, pr_global_struct } from './progs.js';
 import { OFS_PARM0, OFS_PARM1, OFS_RETURN } from './pr_comp.js';
 import { Cvar_VariableValue, Cvar_Set } from '../common/cvar.js';
+import { HEXEN2_BUILTIN_COUNT } from './hexen2_builtins.js';
 import { Con_DPrintf } from '../common/console.js';
 
 const DEG2RAD = Math.PI / 180;
@@ -163,6 +164,32 @@ function cvarValue() { G_FLOAT_SET( OFS_RETURN, Cvar_VariableValue( G_STRING( OF
 // #72 cvar_set(name, value)
 function cvarSet() { Cvar_Set( G_STRING( OFS_PARM0 ), G_STRING( OFS_PARM1 ) ); }
 
+// Implementations that need engine/server state are installed by their own module (hexen2_world_cmds.js) so this
+// module keeps no dependency on the server; an installed builtin is resolved after the self-contained table.
+const registeredBuiltins = new Map();
+
+/**
+ * Installs engine-backed Hexen II builtins (the world, model and movement layer). A number must be inside the pinned
+ * 114-entry contract; an installed number overrides nothing in the self-contained table (those are checked first).
+ *
+ * @param {object} table builtin number -> implementation
+ * @throws {RangeError} for a number outside the contract
+ * @throws {TypeError} for a non-function implementation
+ */
+export function Hexen2_RegisterBuiltins( table ) {
+
+	for ( const [ key, implementation ] of Object.entries( table ?? {} ) ) {
+
+		const number = Number( key );
+		if ( ! Number.isInteger( number ) || number < 0 || number >= HEXEN2_BUILTIN_COUNT )
+			throw new RangeError( `Hexen II builtin number ${key} is outside the contract` );
+		if ( typeof implementation !== 'function' ) throw new TypeError( `Hexen II builtin ${key} is not a function` );
+		registeredBuiltins.set( number, implementation );
+
+	}
+
+}
+
 /** The implemented builtins, by their pinned contract number. */
 export const HEXEN2_IMPLEMENTED_BUILTINS = Object.freeze( {
 	7: random, 9: normalize, 12: vlen, 13: vectoyaw, 25: dprint, 26: ftos, 27: vtos, 36: rint, 37: floorValue,
@@ -179,7 +206,7 @@ export const HEXEN2_IMPLEMENTED_BUILTINS = Object.freeze( {
  */
 export function Hexen2_CallBuiltin( number, context ) {
 
-	const implementation = HEXEN2_IMPLEMENTED_BUILTINS[ number ];
+	const implementation = HEXEN2_IMPLEMENTED_BUILTINS[ number ] ?? registeredBuiltins.get( number );
 	if ( implementation === undefined ) return false;
 	implementation( context );
 	return true;
