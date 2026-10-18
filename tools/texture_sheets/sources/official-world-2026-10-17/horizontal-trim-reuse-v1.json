@@ -1,0 +1,118 @@
+{
+  "source": "newer/textures/candidates-2026-10-17/tech04_8-photographic-rails-seam-v4-4x.png",
+  "sourceSha256": "9e63846927c67cabc156bb5d7ee7a1fe22a186d6ebc24c5296524e76229a8f95",
+  "fastener": "tools/texture_sheets/sources/official-world-2026-10-17/trim-fastener-photographic-fitted-v2.png",
+  "fastenerSha256": "f77dc10477cf71acb7a5e74130e348aeb7227740bc52fb4964f35c3c29cec4ed",
+  "toolSha256": "3b649b0f05e4037f91cbc0b60969682ef2feec4535e9a85a3f0b91f16925de50",
+  "dimensions": [
+    512,
+    64
+  ],
+  "plainTransform": "transpose only; no fastener transformation",
+  "markedCentresNative": [
+    [
+      8.5,
+      9.5
+    ],
+    [
+      24.5,
+      9.5
+    ],
+    [
+      40.5,
+      9.5
+    ],
+    [
+      56.5,
+      9.5
+    ],
+    [
+      72.5,
+      9.5
+    ],
+    [
+      88.5,
+      9.5
+    ],
+    [
+      104.5,
+      9.5
+    ],
+    [
+      120.5,
+      9.5
+    ]
+  ],
+  "markedPatchTopLefts": [
+    [
+      12,
+      8
+    ],
+    [
+      76,
+      8
+    ],
+    [
+      140,
+      8
+    ],
+    [
+      204,
+      8
+    ],
+    [
+      268,
+      8
+    ],
+    [
+      332,
+      8
+    ],
+    [
+      396,
+      8
+    ],
+    [
+      460,
+      8
+    ]
+  ],
+  "railRowsPreserved": [
+    [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    [
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63
+    ]
+  ],
+  "unchangedOutsidePatches": true,
+  "outputs": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/tech04_6-reviewed-photo-base-v1.png",
+      "sha256": "41795b8ad0e43acfc9804fed6745686ee8010046b5a608764c9e4f1dd3aafda4"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/tech04_5-reviewed-photo-base-v1.png",
+      "sha256": "231800f76572ca8d1f7d8a41c809d4d52f5f3b28c8e4cf84653361a8eef6bb22"
+    }
+  ],
+  "qualification": "Photographic material reuse, not pixel alias or runtime registration; source fitting/art/edge/relief review required"
+}

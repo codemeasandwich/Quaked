@@ -1,0 +1,387 @@
+{
+  "qualification": "Bounded Dev-successor qualification only. Preserveda8ea103encoder/106binding/729source and50check qualification reused because all their actual protected inputs are byte-exact; no encoder/native/public-art rerun claimed. Currentpack5 and collector closure are fresh at5c. No oldreceipt/test/assets/source edits, staging/build/commit/push. ParentcurrentGPU/normalgate/finalreview remain separate.",
+  "head": "5c590342a2316ff729d29709197cc5a0e278db81",
+  "previousHead": "a8ea38c718991c3f8a551e8b41c79038657d6864",
+  "indexSha256": "0541eece8abaa369339ff2209387025b2c2045e03960294f720859511822268a",
+  "predecessorReceipt": {
+    "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next8-installed-combined-public-input-hashes.json",
+    "sha256": "d6a9a9a04a9fd4581e675e8bf134162103f9a20cbaafea05e43c0dc78f5a5bcb",
+    "unchanged": true
+  },
+  "previousInputsCompared": 1648,
+  "exactlyUnchangedInputs": 1639,
+  "onlyExactIncomingDevSuccessors": [
+    {
+      "file": "docs/distribution.md",
+      "previousSha256": "fc45993e1c1d860a917cc388c58e44cd68e42fd2542fd09ea3baca6404cf82e2",
+      "currentSha256": "1c1656f447aabcc4d60b93c055f10b7022243820b624f404cf8169fd72cb7a19",
+      "scope": "Exact owner-accepted incoming Dev blob; no path or version waiver"
+    },
+    {
+      "file": "src/engine/client/cl_main.js",
+      "previousSha256": "a3f7a55fac1e90c36952fd895fd09a30924bf5755472e67f291d68feec3221f8",
+      "currentSha256": "33fb372e02d5a92627958e6bcea6118e8fc170a18cc2fc9349ed025d9ddcc9e4",
+      "scope": "Exact owner-accepted incoming Dev blob; no path or version waiver"
+    },
+    {
+      "file": "src/engine/common/hooks.js",
+      "previousSha256": "91c4224cbcc19f8ad7f91161560ac2df419e7e6b264f7cf27c93d97d0b4b74c5",
+      "currentSha256": "dd98a9df70370e9f6e296a0c115817336139edf4d017f3ad4a0f5f20ec8401c6",
+      "scope": "Exact owner-accepted incoming Dev blob; no path or version waiver"
+    },
+    {
+      "file": "src/engine/server/host.js",
+      "previousSha256": "00c9a3b81fcd41b7418a320904214338e5ad802ef1706952f385c084c8257e72",
+      "currentSha256": "8d6dc7434b88c05e8a7afe8c1151263e726725f62efd9682f1904a89bbefe15a",
+      "scope": "Exact owner-accepted incoming Dev blob; no path or version waiver"
+    },
+    {
+      "file": "src/engine/sound/snd_dma.js",
+      "previousSha256": "a9505230e84ad0345e11ff1cfc7e0b0b3fef89739425695f9c73c2bf60b05fcc",
+      "currentSha256": "a079be8907b769769c9fab95cf58b27ba0a4d01bc62b1040dc764226ed66d474",
+      "scope": "Exact owner-accepted incoming Dev blob; no path or version waiver"
+    },
+    {
+      "file": "src/newer/install.js",
+      "previousSha256": "8d35ae314ad67e8a41d75f5e06eaab19f37b9771c066998d19d021f8f361d4bb",
+      "currentSha256": "0aa14c804c44218c551ee71b11257d1a99cef2edc593e9e707a5bf67a36e33e1",
+      "scope": "Exact owner-accepted incoming Dev blob; no path or version waiver"
+    },
+    {
+      "file": "tests/distribution_contract_test.mjs",
+      "previousSha256": "9e774fe7b118f2d5966783527cf6b62db0cab14555b5a599c50ad002c0ee67bc",
+      "currentSha256": "bdeab37ffadb2db28fb05bd5566911105963af33fa90217bad8139855e1e80e4",
+      "scope": "Exact owner-accepted incoming Dev blob; no path or version waiver"
+    },
+    {
+      "file": "tools/distribution/build.mjs",
+      "previousSha256": "676fe066e3b7bfc8a09547a0a4fbc566e667b3cb9bb40bc05942da7bc2484806",
+      "currentSha256": "42bbc6a5cc5c64a0f3c2f9ad24921584dd9fd1efd3826883e615bf3ae88651f1",
+      "scope": "Exact owner-accepted incoming Dev blob; no path or version waiver"
+    },
+    {
+      "file": "tools/distribution/manifest.mjs",
+      "previousSha256": "ff133ab1030ded61c15f75f817057807952f697e04f533515fa10599ce0ddc31",
+      "currentSha256": "dfefabee550278fae1cf4924614c0a26d9531c8e8fd37c643657fc44b17b5e07",
+      "scope": "Exact owner-accepted incoming Dev blob; no path or version waiver"
+    }
+  ],
+  "incomingPaths": 27,
+  "exactGitBlobTransitions": [
+    {
+      "file": "assets/sounds/fire-Environmental.mp3",
+      "previousDevSha256": null,
+      "currentDevSha256": "001ecbc81045b0084a09004a6be66b069a585bce7b2c541947b6180cc6e12a09",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "assets/sounds/firstSee_Shub.mp3",
+      "previousDevSha256": null,
+      "currentDevSha256": "3f656409661468f99791a1a578d685f5705dd7ab3d3914dc63b66de7ef0cfad6",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "docs/distribution.md",
+      "previousDevSha256": "fc45993e1c1d860a917cc388c58e44cd68e42fd2542fd09ea3baca6404cf82e2",
+      "currentDevSha256": "1c1656f447aabcc4d60b93c055f10b7022243820b624f404cf8169fd72cb7a19",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "docs/environment-sounds-2026-10-18.md",
+      "previousDevSha256": null,
+      "currentDevSha256": "2188ab733ea2e9aa1531659e85eba5df057f54c4c01467e49ed051493721e86c",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "docs/evidence/environment-sounds-2026-10-18/assets.json",
+      "previousDevSha256": null,
+      "currentDevSha256": "de9ae717a7abdc624f391e23461e4ed29c67eefb857110bbeb6affd902c1252d",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "docs/evidence/environment-sounds-2026-10-18/browser.json",
+      "previousDevSha256": null,
+      "currentDevSha256": "1d3986914548e28e2cb175e6424175bc7ea78afc0e4b1c50cfce3bf9a224ba75",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "docs/evidence/environment-sounds-2026-10-18/logs.json",
+      "previousDevSha256": null,
+      "currentDevSha256": "16771039bdbde6cbe3f083e01b59f5ba0eec9385cdb600612e5500f92dea8183",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "docs/evidence/environment-sounds-2026-10-18/quaked-environment-distribution.log.gz",
+      "previousDevSha256": null,
+      "currentDevSha256": "d6963509fc9e22f348ac63804307217e2c4cda35c4c0fb0bff7b1764214a8e27",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "docs/evidence/environment-sounds-2026-10-18/quaked-environment-independent-corrected.log.gz",
+      "previousDevSha256": null,
+      "currentDevSha256": "74a6c7131943b854ae1d3ee92d8c64af8c0581a583d34edfdf65ba752514a5d4",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "docs/evidence/environment-sounds-2026-10-18/quaked-environment-independent-final.log.gz",
+      "previousDevSha256": null,
+      "currentDevSha256": "74a6c7131943b854ae1d3ee92d8c64af8c0581a583d34edfdf65ba752514a5d4",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "docs/evidence/environment-sounds-2026-10-18/quaked-environment-independent.log.gz",
+      "previousDevSha256": null,
+      "currentDevSha256": "b57e9aa9f37acac1cab9871180a1258bff6346db8f48defedb2ad1c1212a30ee",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "docs/evidence/environment-sounds-2026-10-18/quaked-environment-initial.log.gz",
+      "previousDevSha256": null,
+      "currentDevSha256": "b66de2719d0983d302f2d6859eb7c04a046412867f26fd57c0696f1b58516bad",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "docs/evidence/environment-sounds-2026-10-18/review.md",
+      "previousDevSha256": null,
+      "currentDevSha256": "6c69bbd55ef1baf8c3b0064a57e13b0c0cf100267bb22262d8aaae759c57ec5b",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "src/engine/client/cl_main.js",
+      "previousDevSha256": "a3f7a55fac1e90c36952fd895fd09a30924bf5755472e67f291d68feec3221f8",
+      "currentDevSha256": "33fb372e02d5a92627958e6bcea6118e8fc170a18cc2fc9349ed025d9ddcc9e4",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "src/engine/common/hooks.js",
+      "previousDevSha256": "91c4224cbcc19f8ad7f91161560ac2df419e7e6b264f7cf27c93d97d0b4b74c5",
+      "currentDevSha256": "dd98a9df70370e9f6e296a0c115817336139edf4d017f3ad4a0f5f20ec8401c6",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "src/engine/render/gl_rmain.js",
+      "previousDevSha256": "123e5230b25faf065df338095da7d8b6380fa88cb5164d79fb6e110adef8d81e",
+      "currentDevSha256": "5ae30507e7d6f765c9159954afefa356b07f02611835e1fa6bc4bab1be87c920",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "src/engine/server/host.js",
+      "previousDevSha256": "00c9a3b81fcd41b7418a320904214338e5ad802ef1706952f385c084c8257e72",
+      "currentDevSha256": "8d6dc7434b88c05e8a7afe8c1151263e726725f62efd9682f1904a89bbefe15a",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "src/engine/sound/snd_dma.js",
+      "previousDevSha256": "a9505230e84ad0345e11ff1cfc7e0b0b3fef89739425695f9c73c2bf60b05fcc",
+      "currentDevSha256": "a079be8907b769769c9fab95cf58b27ba0a4d01bc62b1040dc764226ed66d474",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "src/newer/install.js",
+      "previousDevSha256": "8d35ae314ad67e8a41d75f5e06eaab19f37b9771c066998d19d021f8f361d4bb",
+      "currentDevSha256": "0aa14c804c44218c551ee71b11257d1a99cef2edc593e9e707a5bf67a36e33e1",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "src/newer/render/r_aliasvisibility.js",
+      "previousDevSha256": null,
+      "currentDevSha256": "c8f8e4d27cc97015b017d4f98fced051c8d79c1b82b0c7d24c63609d1986ae83",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "src/newer/sound/s_environmentsounds.js",
+      "previousDevSha256": null,
+      "currentDevSha256": "8946efe859d85f8218d85c68c896a1ad39820dd61481d4bb1d4fcf2bc45579e6",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "src/newer/ui/r_bestiary.js",
+      "previousDevSha256": "0aeba69f34bffd25d22f4fd67afc23f5dcee25d039fd224ccffe162d03092493",
+      "currentDevSha256": "8371a871364ebd5918b82dacd9210f1084e3cdf338eff09f8067223d95d0fc07",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "tests/distribution_contract_test.mjs",
+      "previousDevSha256": "9e774fe7b118f2d5966783527cf6b62db0cab14555b5a599c50ad002c0ee67bc",
+      "currentDevSha256": "bdeab37ffadb2db28fb05bd5566911105963af33fa90217bad8139855e1e80e4",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "tests/environment_sounds_test.js",
+      "previousDevSha256": null,
+      "currentDevSha256": "2ca215478643c8a0d93f509da1dcebf4ff803371235bfb6bafab8168f037bea9",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "tests/shub_sound_visibility_test.js",
+      "previousDevSha256": null,
+      "currentDevSha256": "a6db62a31be43aaae083feb4263b8a4169cbc94687ce82349857bc95e9d98fd9",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "tools/distribution/build.mjs",
+      "previousDevSha256": "676fe066e3b7bfc8a09547a0a4fbc566e667b3cb9bb40bc05942da7bc2484806",
+      "currentDevSha256": "42bbc6a5cc5c64a0f3c2f9ad24921584dd9fd1efd3826883e615bf3ae88651f1",
+      "workingBytesMatchCurrentDev": true
+    },
+    {
+      "file": "tools/distribution/manifest.mjs",
+      "previousDevSha256": "ff133ab1030ded61c15f75f817057807952f697e04f533515fa10599ce0ddc31",
+      "currentDevSha256": "dfefabee550278fae1cf4924614c0a26d9531c8e8fd37c643657fc44b17b5e07",
+      "workingBytesMatchCurrentDev": true
+    }
+  ],
+  "protectedTextureMaterialTestSourcesUnchanged": [
+    "tests/level_texture_assets_test.py",
+    "tests/official_texture_owner_q92_test.js",
+    "tests/official_texture_q92_test.js",
+    "tests/official_texture_registration_test.js",
+    "tests/official_texture_standard.js",
+    "tests/owner_texture_q92_standard.js",
+    "tests/packs_contract_test.mjs",
+    "tests/standard_4x_records_contract_test.mjs"
+  ],
+  "protectedLoaderNormalEncoderSourcesUnchanged": [
+    "src/newer/assets/normal_prepare.js",
+    "src/newer/render/gl_normals.js",
+    "src/newer/render/normal_math.js",
+    "src/newer/render/r_newertextures.js",
+    "tools/craft_normals.py",
+    "tools/texture_sheets/encode_official_maps.py",
+    "tools/texture_sheets/finish_official_texture.py",
+    "tools/texture_sheets/finish_runtime_skin.py"
+  ],
+  "generalDistributionContractNote": "tests/distribution_contract_test.mjs was introduced into the predecessorinput set through earlierDev integration. Its new bytes are an exact incoming5cblob; it is not one of the retained50texture/material qualification testfiles and no texture-test waiver is used.",
+  "currentPackTests": {
+    "passed": 5,
+    "failed": 0,
+    "skipped": 0
+  },
+  "collector": {
+    "web": {
+      "assetCount": 3538,
+      "generatedRequired": 515,
+      "ownerRequired": 4,
+      "techRequired": 12,
+      "combinedRequired": 531,
+      "combinedPresent": 531,
+      "missing": [],
+      "retainedUnbound95Present": 12
+    },
+    "desktop": {
+      "assetCount": 5179,
+      "generatedRequired": 515,
+      "ownerRequired": 4,
+      "techRequired": 12,
+      "combinedRequired": 531,
+      "combinedPresent": 531,
+      "missing": [],
+      "retainedUnbound95Present": 12
+    }
+  },
+  "selectedCompanionMaps": 531,
+  "generatedCompanionMaps": 515,
+  "formatCompanionMaps": 16,
+  "retainedHistoricalQ95": {
+    "activeIndexReferences": 0,
+    "files": [
+      {
+        "file": "newer/textures/tech04_3.webp",
+        "sha256": "65b463d19c2de7397242f1a77bf130abbf9802a57a94f9db115503b043fac3cc",
+        "bytes": 8302,
+        "pack": "core"
+      },
+      {
+        "file": "newer/textures/normals/tech04_3.webp",
+        "sha256": "8f8bc60e3ca359c90fbaa5df481006a8b0d3827503c05d18be699cbc46649e20",
+        "bytes": 16684,
+        "pack": "core"
+      },
+      {
+        "file": "newer/textures/tech07_2.webp",
+        "sha256": "d0ad3b6262891ad41028c87de42105e912df9dd12dda64c5d89b3c70aa43d270",
+        "bytes": 78392,
+        "pack": "core"
+      },
+      {
+        "file": "newer/textures/normals/tech07_2.webp",
+        "sha256": "4486dcfbbb0bf955eb7b014e8bf528b0b0a6e6770abc83edc702caa254118f05",
+        "bytes": 104310,
+        "pack": "core"
+      },
+      {
+        "file": "newer/textures/tech08_1.webp",
+        "sha256": "ead6026af77d57c09b970bd1f8a52a4f4b7ceb3636c16a56b70d75ca1c098b0b",
+        "bytes": 71642,
+        "pack": "core"
+      },
+      {
+        "file": "newer/textures/normals/tech08_1.webp",
+        "sha256": "a3aa6e8ec1a8b9c5e109dd8b05dea5629870b24e0b90760ad42caba97722ce7a",
+        "bytes": 88886,
+        "pack": "core"
+      },
+      {
+        "file": "newer/textures/tech09_3.webp",
+        "sha256": "7362b48b6edb7ad3e95d61e4518391da75080b909d8b20d11899958f3cd4cb62",
+        "bytes": 62150,
+        "pack": "core"
+      },
+      {
+        "file": "newer/textures/normals/tech09_3.webp",
+        "sha256": "6cc0a3a4c8fb4566dde5c2a4c7acea755421a649eaba4667cec6a550ab1122b4",
+        "bytes": 77820,
+        "pack": "core"
+      },
+      {
+        "file": "newer/textures/tech10_3.webp",
+        "sha256": "e69082ad4e8a59cd9b387357e95bf06470ea0538ce84e8598124b3cb19b8e56c",
+        "bytes": 17612,
+        "pack": "core"
+      },
+      {
+        "file": "newer/textures/normals/tech10_3.webp",
+        "sha256": "70a36a6cc59000a32a1669bc1926f144903ed0c2b398117baa4a6eb78b9f134d",
+        "bytes": 29812,
+        "pack": "core"
+      },
+      {
+        "file": "newer/textures/tech11_2.webp",
+        "sha256": "f2ff087807812be7c23cfe0f32d2952ca2ec034afc0089004e1f21b2aae669a2",
+        "bytes": 67190,
+        "pack": "core"
+      },
+      {
+        "file": "newer/textures/normals/tech11_2.webp",
+        "sha256": "e0853b1182a88c35e69b4452514892aa0517d897a28fad393f1e09d31738ea97",
+        "bytes": 74524,
+        "pack": "core"
+      }
+    ],
+    "totalBytes": 697324,
+    "nextAction": "Separate retained-payload/collector policy work is required to remove the all-shipped-maps92 gap; no original deletion or move is authorized/performed here."
+  },
+  "currentEvidence": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next8-5c-pack-contract-tests.txt",
+      "sha256": "893e5f2b3700647071b7674d9456a1785896afec184eddb1472c6144c5b5829e"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next8-5c-combined-delivery-closure.json",
+      "sha256": "29087a1dc24c1ff2ef6503193be379be692d82fd1986dc69ebe8e900a4e35893"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next8-5c-all103-delivery-closure.json",
+      "sha256": "b2335ed67035e4790978353a9cae063ff3b84727dc8b207d3bab5fb889f89af1"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/verify-next-eight-5c-generated-pack-closure.mjs",
+      "sha256": "eb2f7adcb41c0e1c65735417dae5a069506d99b9a9865c90e0274ab638a6e516"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/verify-next-eight-5c-combined-pack-closure.mjs",
+      "sha256": "2a37e5d2ee0f786b06b6a5ac6df06295a43bcc4a488963666178e25a96274716"
+    }
+  ],
+  "productionLaneChanges": "No existing protected texture/normal/encoder source differs; incoming hooks/visibility/audio/bootstrap are pinned to exact newDev and separately refreshed by parentGPU preparation."
+}

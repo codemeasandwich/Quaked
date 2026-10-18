@@ -46,11 +46,48 @@ for(const entry of ownerQ92Receipt.bindings){
  byName.set(entry.name,entry);
 }
 for(const[a,b]of[['city5_3','metflor2_1'],['wizmet1_3','mmetal1_3']])equal(byName.get(a).current,byName.get(b).current,'owner and exact-native alias share a complete pair');
+// Six further format successors share this adapter, while the original owner4
+// exports and lossless-master registration witness remain exactly four maps.
+export const techQ92ReceiptPath=base+'legacy-tech-twelve-q92-v1.json';
+export const techQ92Receipt=JSON.parse(read(techQ92ReceiptPath));
+export const techQ92PlanPath=base+'verification/legacy-tech-twelve-q92-plan.json';
+export const techQ92Plan=JSON.parse(read(techQ92PlanPath));
+export const techQ92BeforePath=base+'legacy-tech-twelve-index-before.json';
+export const techQ92BeforeBytes=read(techQ92BeforePath),techQ92Before=JSON.parse(techQ92BeforeBytes);
+export const techQ92Maps=techQ92Receipt.maps,techQ92Bindings=techQ92Receipt.bindings;
+const techKeys={tech04_3:'16x128:a479c5cd7f65b1bf',tech07_2:'128x128:5d03decdcf531707',tech08_1:'128x128:ba7e0769a9a0ce1b',tech09_3:'128x128:8ff008acef40a86e',tech10_3:'32x128:31e072256a779b27',tech11_2:'128x128:f56a5604372ecc96'},techByName=new Map(),techByRole=new Map();
+equal(sha256(read(techQ92PlanPath)),techQ92Receipt.planSha256,'tech Q92 immutable source plan');
+equal(sha256(techQ92BeforeBytes),techQ92Receipt.indexBeforeSha256,'tech Q92 exact predecessor catalogue');
+equal(techQ92Receipt.indexBeforeSha256,techQ92Plan.indexSha256,'tech source plan starts at predecessor catalogue');
+equal([techQ92Receipt.schemaVersion,techQ92Receipt.factor,techQ92Receipt.quality,techQ92Receipt.lossless,techQ92Receipt.method],[1,4,92,false,6],'tech Q92 format contract');
+equal(techQ92Bindings.map(e=>e.name).sort(),Object.keys(techKeys).sort(),'only six original tech materials');
+equal(techQ92Maps.length,12,'only twelve tech format maps');
+equal(new Set(techQ92Maps.map(m=>m.file)).size,12,'all twelve tech outputs remain distinct');
+equal(sha256(read('tools/texture_sheets/finish_runtime_skin.py')),techQ92Receipt.encoderSha256,'tech pure encoder unchanged');
+equal(sha256(read(base+'prepare_legacy_tech_q92.py')),techQ92Receipt.authoringToolSha256,'tech authoring tool bound to receipt');
+for(const map of techQ92Maps){
+ check(Object.hasOwn(techKeys,map.name)&&['diffuse','height'].includes(map.role),'explicit tech map role');const identity=map.name+'|'+map.role;check(!techByRole.has(identity),'one tech output per material role');techByRole.set(identity,map);
+ const planned=techQ92Plan.maps.find(p=>p.name===map.name&&p.role===map.role);check(planned,'exact planned tech source');
+ for(const [field,plannedField]of[['retainedPre4xFile','retainedPre4xFile'],['retainedPre4xSha256','retainedPre4xSha256'],['predecessor','predecessorFile'],['predecessorSha256','predecessorSha256'],['master','proposedMaster'],['masterDecodedRgbSha256','proposedMasterDecodedRgbSha256'],['file','proposedRuntimeFile'],['dimensions','proposedMasterDimensions']])equal(map[field],planned[plannedField],'tech map retains exact '+field);
+ equal(sha256(read(map.retainedPre4xFile)),map.retainedPre4xSha256,'retained pre4x tech source bytes');equal(sha256(read(map.predecessor)),map.predecessorSha256,'retained historical Q95 output bytes');
+ const master=read(map.master);equal(sha256(master),map.masterSha256,'tech lossless PNG master bytes');equal(master.subarray(0,8).toString('hex'),'89504e470d0a1a0a','tech master is PNG');equal(master.subarray(12,16).toString(),'IHDR','tech PNG dimension header');equal([master.readUInt32BE(16),master.readUInt32BE(20)],map.dimensions,'tech PNG4x dimensions');
+ const output=read(map.file);equal(sha256(output),map.sha256,'tech Q92 output bytes');equal(output.length,map.bytes,'tech Q92 encoded length');equal(ownerQ92ImageSize(output,map.file),map.dimensions,'tech actual lossy4x payload dimensions');
+}
+for(const entry of techQ92Bindings){
+ const planned=techQ92Plan.bindings.find(p=>p.name===entry.name);check(planned,'planned tech material');equal(entry.nativeKey,techKeys[entry.name],'exact native tech key');
+ for(const field of['nativeDimensions','sourcePixelSha256','target','sourceAllowlist','previous'])equal(entry[field],planned[field],'tech complete planned '+field);equal(entry.current,planned.proposedCurrent,'exact proposed tech successor');equal(entry.sourceAllowlist,[entry.nativeKey],'tech exact single native source');
+ equal(entry.previous,{file:techQ92Before.textures[entry.name],normal:techQ92Before.normals[entry.name]},'tech predecessor complete binding');equal(techQ92Before.sources[entry.name],entry.sourceAllowlist,'tech predecessor guard');check(!techQ92Before.ordinaryVariants?.[entry.name]&&!techQ92Before.glass?.[entry.name],'tech height-only base route remains unshadowed');
+ equal(entry.target,entry.nativeDimensions.map(n=>n*4),'tech target is exactly4x per axis');equal({...entry.current.normal,file:entry.previous.normal.file},entry.previous.normal,'only tech height filename changes');equal(Object.keys(entry.current.normal).sort(),(entry.name==='tech08_1'?['cap','file','strength']:['file','strength']).sort(),'tech preserves explicit/absent cap fields');equal(entry.current.normal.strength,1.15,'tech authored strength unchanged');equal(entry.current.normal.cap??1.1,1.1,'tech effective default cap');
+ for(const [role,file,previous]of[['diffuse',entry.current.file,entry.previous.file],['height',entry.current.normal.file,entry.previous.normal.file]]){const map=techByRole.get(entry.name+'|'+role);check(map,'both tech roles present');equal(map.file,'newer/textures/'+file,'tech selected role');equal(map.predecessor,'newer/textures/'+previous,'tech retained role');equal(map.dimensions,entry.target,'tech role dimensions');}
+ techByName.set(entry.name,entry);
+}
+const formatEntry=name=>byName.get(name)??techByName.get(name);
+
 export const ownerQ92Bindings=[...byName.values()];
-export function ownerQ92Binding(name){return byName.get(name)?.current??null;}
-export function ownerQ92Previous(name,fallback){return byName.get(name)?.previous??fallback;}
+export function ownerQ92Binding(name){return formatEntry(name)?.current??null;}
+export function ownerQ92Previous(name,fallback){return formatEntry(name)?.previous??fallback;}
 export function ownerQ92Baseline(field,name,previous){
- const entry=byName.get(name);if(!entry||!['textures','normals'].includes(field))return previous;
+ const entry=formatEntry(name);if(!entry||!['textures','normals'].includes(field))return previous;
  equal(previous,field==='textures'?entry.previous.file:entry.previous.normal,'owner successor starts from fixed baseline field');return field==='textures'?entry.current.file:entry.current.normal;
 }
 export function ownerQ92Registration(original){

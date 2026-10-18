@@ -1,0 +1,42 @@
+{
+  "qualification": "Prepared ROOT-only narrow patch. No WT/test/index mutations and no installed public tests executed. Syntax checks only. Apply only after selected12maps/masters/receipt/plan/authoringtool and exact before-index snapshot are installed.",
+  "patch": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-twelve-test-successors.patch",
+  "patchSha256": "9e8fc4a2a96159d5a6ac3666908342948cb1444a991535bafb24a67e37a61bca",
+  "files": [
+    {
+      "file": "tests/owner_texture_q92_standard.js",
+      "beforeSha256": "4ebe5b3a65a1fce1eda12426e28fca38e4747d30e954f2577a895f1f39ade158",
+      "proposedSha256": "69e63598f796948165e539e38d26c767a2421723a329a6fe4e590482a58fc24d",
+      "scratch": "/private/tmp/quaked-tech12-test-successors/owner_texture_q92_standard.js"
+    },
+    {
+      "file": "tests/official_texture_owner_q92_test.js",
+      "beforeSha256": "22d2102cea22953a241425e2c6ff92e68977e37b89f1650336510e471687e571",
+      "proposedSha256": "2cc022fe6f4c550b96dc747ed713e9862d51aff9a5e985c58298857be25f2a8e",
+      "scratch": "/private/tmp/quaked-tech12-test-successors/official_texture_owner_q92_test.js"
+    },
+    {
+      "file": "tests/level_texture_assets_test.py",
+      "beforeSha256": "74148f55a599987f13d5de3aa57ed314b4504cb19b017b9f4e692f361ebaf4b1",
+      "proposedSha256": "f6d6285934328d82869968ebe00fd470d9a92ca208e2f501c31200dd4fe448a1",
+      "scratch": "/private/tmp/quaked-tech12-test-successors/level_texture_assets_test.py"
+    }
+  ],
+  "unchangedFiles": [
+    "tests/official_texture_registration_test.js (existing baseline adapter call composes six exact successors)",
+    "tests/official_texture_q92_test.js (95artworks/98bindings remains unchanged)",
+    "tests/standard_4x_records_contract_test.mjs (original12Q95paths retained)"
+  ],
+  "expectedSuite": "Original4owner cases preserved, one bounded fifth tech12public case. Existing imagefixture/nativePAKparser/math/cache reused; no separate framework/API.",
+  "newRequiredBeforeSnapshot": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-twelve-index-before.json",
+  "beforeSnapshotSha256": "f8da85a8730aadfc34b2199b1d91fdf21ab54bcf774e1c21b73753871633ad9c",
+  "patchMechanics": {
+    "appliedOnlyInIsolatedCopies": "/private/tmp/quaked-tech12-patch-check",
+    "gitApplyCheck": true,
+    "patchedBytesMatchAllThreeProposedHashes": true,
+    "javascriptSyntaxCheck": "BundledNode24 --check passed for both modified modules, no imports or public suite execution",
+    "pythonSyntaxCheck": "ast.parse passed without bytecode/test execution",
+    "installedPublicTestsExecuted": false,
+    "WTFilesUntouched": true
+  }
+}

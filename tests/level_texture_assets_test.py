@@ -63,6 +63,40 @@ def owner_current_file(name, baseline):
     assert previous == baseline, name + ' retained historical filename'
     return INDEX['textures'][name]
 
+# Six separately reviewed direct-source tech successors only affect the old
+# nonselected-normal conservation loop. None belongs to the26 atlas materials.
+_TECH_BYTES = (_OWNER_BASE / 'legacy-tech-twelve-q92-v1.json').read_bytes()
+_TECH_Q92 = json.loads(_TECH_BYTES)
+_TECH_PLAN_BYTES = (_OWNER_BASE / 'verification/legacy-tech-twelve-q92-plan.json').read_bytes()
+_TECH_PLAN = json.loads(_TECH_PLAN_BYTES)
+_TECH_BEFORE_BYTES = (_OWNER_BASE / 'legacy-tech-twelve-index-before.json').read_bytes()
+_TECH_BEFORE = json.loads(_TECH_BEFORE_BYTES)
+assert hashlib.sha256(_TECH_PLAN_BYTES).hexdigest() == _TECH_Q92['planSha256']
+assert hashlib.sha256(_TECH_BEFORE_BYTES).hexdigest() == _TECH_Q92['indexBeforeSha256']
+assert [_TECH_Q92[k] for k in ('factor', 'quality', 'lossless', 'method')] == [4, 92, False, 6]
+_TECH_KEYS = {'tech04_3': '16x128:a479c5cd7f65b1bf', 'tech07_2': '128x128:5d03decdcf531707', 'tech08_1': '128x128:ba7e0769a9a0ce1b', 'tech09_3': '128x128:8ff008acef40a86e', 'tech10_3': '32x128:31e072256a779b27', 'tech11_2': '128x128:f56a5604372ecc96'}
+assert {e['name'] for e in _TECH_Q92['bindings']} == set(_TECH_KEYS) and len(_TECH_Q92['maps']) == 12
+
+def tech_current_normal(name, previous):
+    if name not in _TECH_KEYS:
+        return previous
+    entry = next(e for e in _TECH_Q92['bindings'] if e['name'] == name)
+    planned = next(e for e in _TECH_PLAN['bindings'] if e['name'] == name)
+    assert entry['nativeKey'] == _TECH_KEYS[name] and entry['previous'] == planned['previous']
+    assert entry['previous'] == {'file': _TECH_BEFORE['textures'][name], 'normal': _TECH_BEFORE['normals'][name]}
+    assert entry['previous']['normal'] == previous
+    assert entry['current'] == planned['proposedCurrent']
+    assert {**entry['current']['normal'], 'file': previous['file']} == previous
+    assert INDEX['textures'][name] == entry['current']['file']
+    assert INDEX['sources'][name] == entry['sourceAllowlist'] == _TECH_BEFORE['sources'][name] == [entry['nativeKey']]
+    assert not INDEX.get('ordinaryVariants', {}).get(name) and not INDEX.get('glass', {}).get(name)
+    for role, current, predecessor in [('diffuse', entry['current']['file'], entry['previous']['file']), ('height', entry['current']['normal']['file'], previous['file'])]:
+        record = next(m for m in _TECH_Q92['maps'] if m['name'] == name and m['role'] == role)
+        assert record['file'] == 'newer/textures/' + current and record['predecessor'] == 'newer/textures/' + predecessor
+        for field, digest in [('predecessor', 'predecessorSha256'), ('retainedPre4xFile', 'retainedPre4xSha256'), ('master', 'masterSha256'), ('file', 'sha256')]:
+            assert hashlib.sha256((ROOT / record[field]).read_bytes()).hexdigest() == record[digest]
+    return entry['current']['normal']
+
 
 class LevelTextureAssets(unittest.TestCase):
     def test_exact_source_crop_phase_and_lossless_diffuse(self):
@@ -185,7 +219,7 @@ class LevelTextureAssets(unittest.TestCase):
         # increment changed by design: the demon plaques' crafted relief (2b1593b7)
         LATER = {'dem4_1': '2b1593b7', 'dem4_4': '2b1593b7', 'dem5_3': '2b1593b7'}
         for name in set(baseline['normals']) - NAMES - set(LATER):
-            self.assertEqual(INDEX['normals'][name], baseline['normals'][name], name)
+            self.assertEqual(INDEX['normals'][name], tech_current_normal(name, baseline['normals'][name]), name)
         allowed = {'newer/textures/index.json'} | {'newer/textures/' + owner_legacy_file(name, 'diffuse') for name in NAMES} | {'newer/textures/' + owner_legacy_file(name, 'height') for name in NAMES}
         # The boundary of that update itself (9a71a46); later increments, such as the seam
         # repairs, change other textures by design.

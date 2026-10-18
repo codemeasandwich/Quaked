@@ -1,0 +1,460 @@
+[
+  {
+    "name": "tech04_3",
+    "nativeKey": "16x128:a479c5cd7f65b1bf",
+    "target": [
+      64,
+      512
+    ],
+    "nativeRGBAHashVerified": true,
+    "normalPrevious": {
+      "file": "normals/tech04_3.webp",
+      "strength": 1.15
+    },
+    "normalCurrent": {
+      "file": "official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-height.webp",
+      "strength": 1.15
+    },
+    "diffuseMeanAbs95to92": 1.5326639811197917,
+    "heightRMeanAbs95to92": 1.653228759765625,
+    "distanceMetrics": {
+      "2": {
+        "dimensions": [
+          8,
+          64
+        ],
+        "old95vsNew92MeanAbs": 0.4641927083333333
+      },
+      "4": {
+        "dimensions": [
+          4,
+          32
+        ],
+        "old95vsNew92MeanAbs": 0.20572916666666666
+      }
+    },
+    "maps": [
+      {
+        "name": "tech04_3",
+        "role": "diffuse",
+        "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech04_3.webp",
+        "retainedPre4xSha256": "43ba54d680bca36ecc8e47436a9dd470be8d9b62cfe625978547dabe20ac0988",
+        "predecessor": "newer/textures/tech04_3.webp",
+        "predecessorSha256": "65b463d19c2de7397242f1a77bf130abbf9802a57a94f9db115503b043fac3cc",
+        "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech04_3-4x-diffuse.png",
+        "masterDecodedRgbSha256": "9785befd284e231579d3457e3aefb1b0e6d31709c65aa7d75023de6dc6d2f0a7",
+        "file": "newer/textures/official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-diffuse.webp",
+        "dimensions": [
+          64,
+          512
+        ],
+        "masterSha256": "edda6c77d7b6294d2a0157b38a70cdff012362bcbbcd7e2ff05624ac81058581",
+        "sha256": "5277531ebcefde22227852e3c186b9fae5a7884c6624d7ec4f8b4f15ab532ee5",
+        "pillowDecodedRgbaSha256": "9ac7cf170d4ab730f41371aa4043fceb7a8c970c08607e5907c652b49fa8cd62",
+        "bytes": 6442
+      },
+      {
+        "name": "tech04_3",
+        "role": "height",
+        "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech04_3.webp",
+        "retainedPre4xSha256": "31577af5a6fcca735941313cc5cf5c7d312456c95183bb7afde36764c5bd5c1c",
+        "predecessor": "newer/textures/normals/tech04_3.webp",
+        "predecessorSha256": "8f8bc60e3ca359c90fbaa5df481006a8b0d3827503c05d18be699cbc46649e20",
+        "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech04_3-4x-height.png",
+        "masterDecodedRgbSha256": "dc790b9a592749b79e8b58773de52154689055da308ca7c14638beb56f4ed093",
+        "file": "newer/textures/official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-height.webp",
+        "dimensions": [
+          64,
+          512
+        ],
+        "masterSha256": "3a3f66625c20e31ee19fd93264ec2a05eea8246d92e949666a0d0c37d73c2739",
+        "sha256": "a969527350c04c8908fc0682dc68dcf43690e1b6e70da6abc652d81d3f9a8159",
+        "pillowDecodedRgbaSha256": "c077aad6c1417c857a097e7806010a05be2bf1ad10fea5800061404d4db02382",
+        "bytes": 14782
+      }
+    ],
+    "contact": "tech04_3-native95to92-art.png"
+  },
+  {
+    "name": "tech07_2",
+    "nativeKey": "128x128:5d03decdcf531707",
+    "target": [
+      512,
+      512
+    ],
+    "nativeRGBAHashVerified": true,
+    "normalPrevious": {
+      "file": "normals/tech07_2.webp",
+      "strength": 1.15
+    },
+    "normalCurrent": {
+      "file": "official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-height.webp",
+      "strength": 1.15
+    },
+    "diffuseMeanAbs95to92": 1.5382105509440105,
+    "heightRMeanAbs95to92": 1.4425506591796875,
+    "distanceMetrics": {
+      "2": {
+        "dimensions": [
+          64,
+          64
+        ],
+        "old95vsNew92MeanAbs": 0.443115234375
+      },
+      "4": {
+        "dimensions": [
+          32,
+          32
+        ],
+        "old95vsNew92MeanAbs": 0.22102864583333334
+      }
+    },
+    "maps": [
+      {
+        "name": "tech07_2",
+        "role": "diffuse",
+        "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech07_2.webp",
+        "retainedPre4xSha256": "bc85af99ae792dfdf50e7a955d984c4f99c00dd0c0c2e07bc8f7004a5c48d2b2",
+        "predecessor": "newer/textures/tech07_2.webp",
+        "predecessorSha256": "d0ad3b6262891ad41028c87de42105e912df9dd12dda64c5d89b3c70aa43d270",
+        "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech07_2-4x-diffuse.png",
+        "masterDecodedRgbSha256": "494f3bac172ce5a3b49957bf3ab19e995fdf1e4583ae76f9676775e84ea4d983",
+        "file": "newer/textures/official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-diffuse.webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "masterSha256": "2f9bdd2f834893434dc5c0554d2a3016ce6d77badb3dcbf8524c27aff98ff021",
+        "sha256": "07cfce1768ac7afd6aad979b32b7c356ddc9245c185c17b3a2a78fa0fc6b19b5",
+        "pillowDecodedRgbaSha256": "0578ea5b2b7e0a17e1646dbe9ea40af1955db586f17ebb5259b05cb2b0c1db8e",
+        "bytes": 61598
+      },
+      {
+        "name": "tech07_2",
+        "role": "height",
+        "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech07_2.webp",
+        "retainedPre4xSha256": "93ea9d4f8dd74921120194d1184709f1253654e6f4f82c7ccb4182d28f99fb04",
+        "predecessor": "newer/textures/normals/tech07_2.webp",
+        "predecessorSha256": "4486dcfbbb0bf955eb7b014e8bf528b0b0a6e6770abc83edc702caa254118f05",
+        "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech07_2-4x-height.png",
+        "masterDecodedRgbSha256": "9daac2c8f208d9d09d9fd47a6ff18d7f7f5e8578352c09633a49cce277a49be7",
+        "file": "newer/textures/official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-height.webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "masterSha256": "818c8d45958a0960787492d88c7eef10d2e43c21d4e504255e1066f9b28df83c",
+        "sha256": "87e2e4fdf8eff8c96603ddaa8f009d5d24a1b4418929bf1ca058afcaa789ad84",
+        "pillowDecodedRgbaSha256": "9a0b764aa558898cdfa6c63232efd75dedecab04444a9e0cbe0d10b75d37e472",
+        "bytes": 90264
+      }
+    ],
+    "contact": "tech07_2-native95to92-art.png"
+  },
+  {
+    "name": "tech08_1",
+    "nativeKey": "128x128:ba7e0769a9a0ce1b",
+    "target": [
+      512,
+      512
+    ],
+    "nativeRGBAHashVerified": true,
+    "normalPrevious": {
+      "file": "normals/tech08_1.webp",
+      "strength": 1.15,
+      "cap": 1.1
+    },
+    "normalCurrent": {
+      "file": "official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-height.webp",
+      "strength": 1.15,
+      "cap": 1.1
+    },
+    "diffuseMeanAbs95to92": 1.5723050435384114,
+    "heightRMeanAbs95to92": 1.364501953125,
+    "distanceMetrics": {
+      "2": {
+        "dimensions": [
+          64,
+          64
+        ],
+        "old95vsNew92MeanAbs": 0.4825846354166667
+      },
+      "4": {
+        "dimensions": [
+          32,
+          32
+        ],
+        "old95vsNew92MeanAbs": 0.23014322916666666
+      }
+    },
+    "maps": [
+      {
+        "name": "tech08_1",
+        "role": "diffuse",
+        "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech08_1.webp",
+        "retainedPre4xSha256": "ca44d13c7342edf163f40ddf65b657170e7354240ce311f9f59bebc4305c7792",
+        "predecessor": "newer/textures/tech08_1.webp",
+        "predecessorSha256": "ead6026af77d57c09b970bd1f8a52a4f4b7ceb3636c16a56b70d75ca1c098b0b",
+        "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech08_1-4x-diffuse.png",
+        "masterDecodedRgbSha256": "5e477a534f439965d02ddebba576565f4c17af2c4d14bbd6c4f5d9c0bc9eaff5",
+        "file": "newer/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-diffuse.webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "masterSha256": "696a677dfab3b5bdfed1806bde624ff8a86a06363a7900833fb4939328c89fdc",
+        "sha256": "57e96b1311e8b7192dc6cd6ec2d0235544335e5ce5167e75f0ae33d9fac7595b",
+        "pillowDecodedRgbaSha256": "75bdac9ab2607ac638a47c8a52004b35bb9b66c8a9cbe572e76b27e0944210f6",
+        "bytes": 55944
+      },
+      {
+        "name": "tech08_1",
+        "role": "height",
+        "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech08_1.webp",
+        "retainedPre4xSha256": "caf9ce0d34eeaf6c1f324ae6df3f272617f30131fb74d995c38b7befb85f3880",
+        "predecessor": "newer/textures/normals/tech08_1.webp",
+        "predecessorSha256": "a3aa6e8ec1a8b9c5e109dd8b05dea5629870b24e0b90760ad42caba97722ce7a",
+        "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech08_1-4x-height.png",
+        "masterDecodedRgbSha256": "4080e35550055f0b5998df5b50f622bcdd59fec9a23e0251eb5fd99ee13b1bf1",
+        "file": "newer/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-height.webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "masterSha256": "bb05569b8ff2e4b0039beef253bc6cd0b1b0df7d220474b243efbeea94610d3b",
+        "sha256": "bf00c93c581cce7a194699d9551830c6556e5a871e3668c2861790e4e7f73672",
+        "pillowDecodedRgbaSha256": "21a3e0ecf4ccbe6ba1e6fe604aebd531b6e80eb63b7a9eec313659447676ade9",
+        "bytes": 76198
+      }
+    ],
+    "contact": "tech08_1-native95to92-art.png"
+  },
+  {
+    "name": "tech09_3",
+    "nativeKey": "128x128:8ff008acef40a86e",
+    "target": [
+      512,
+      512
+    ],
+    "nativeRGBAHashVerified": true,
+    "normalPrevious": {
+      "file": "normals/tech09_3.webp",
+      "strength": 1.15
+    },
+    "normalCurrent": {
+      "file": "official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-height.webp",
+      "strength": 1.15
+    },
+    "diffuseMeanAbs95to92": 1.4472198486328125,
+    "heightRMeanAbs95to92": 1.3243484497070312,
+    "distanceMetrics": {
+      "2": {
+        "dimensions": [
+          64,
+          64
+        ],
+        "old95vsNew92MeanAbs": 0.4500325520833333
+      },
+      "4": {
+        "dimensions": [
+          32,
+          32
+        ],
+        "old95vsNew92MeanAbs": 0.23893229166666666
+      }
+    },
+    "maps": [
+      {
+        "name": "tech09_3",
+        "role": "diffuse",
+        "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech09_3.webp",
+        "retainedPre4xSha256": "5c76cb9850c2e99576dcbfdd438ddb72aa973d644cc2bc22ba499634623cecf2",
+        "predecessor": "newer/textures/tech09_3.webp",
+        "predecessorSha256": "7362b48b6edb7ad3e95d61e4518391da75080b909d8b20d11899958f3cd4cb62",
+        "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech09_3-4x-diffuse.png",
+        "masterDecodedRgbSha256": "753d3745feaaaf73602e5ab7540003e8c3275082d38640c3affa52018e86d541",
+        "file": "newer/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-diffuse.webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "masterSha256": "e0732b888f072d0dbe19717b1a0ffb8d4daa9e103b66fe0a12b7ff26056aafbe",
+        "sha256": "6e09150d3ecf0bbf52dad75225b910a3417d2ef42fd93ac9c4808a1361c147f8",
+        "pillowDecodedRgbaSha256": "a6bed0c32475619cd7e41fbf5570c9141c8891f13990f23384445e7c8cbf8a61",
+        "bytes": 48814
+      },
+      {
+        "name": "tech09_3",
+        "role": "height",
+        "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech09_3.webp",
+        "retainedPre4xSha256": "39d5af74127f92c605eb16787bd173b529b919f9055a4ffe8ad5fd6f3b5ba5d3",
+        "predecessor": "newer/textures/normals/tech09_3.webp",
+        "predecessorSha256": "6cc0a3a4c8fb4566dde5c2a4c7acea755421a649eaba4667cec6a550ab1122b4",
+        "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech09_3-4x-height.png",
+        "masterDecodedRgbSha256": "20c01c3a2cbb888b4524f8fca72f58d44b148a2cb6184c65a10415d51c30ad9d",
+        "file": "newer/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-height.webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "masterSha256": "927c1dfa9addf038c8374e5273efab8f835c8985c80b0851832e5a0860b76ca0",
+        "sha256": "f5d65e5e9e95bc9d0bb44e6775b29a26d0967795f01200a631897fb392d83918",
+        "pillowDecodedRgbaSha256": "90042aab8244617a0907203a2732d5ae333dd4a4514ad66497b8111f5ebcf681",
+        "bytes": 66074
+      }
+    ],
+    "contact": "tech09_3-native95to92-art.png"
+  },
+  {
+    "name": "tech10_3",
+    "nativeKey": "32x128:31e072256a779b27",
+    "target": [
+      128,
+      512
+    ],
+    "nativeRGBAHashVerified": true,
+    "normalPrevious": {
+      "file": "normals/tech10_3.webp",
+      "strength": 1.15
+    },
+    "normalCurrent": {
+      "file": "official/owner-tech10_3-31e072256a779b27-v1-4x-q92-height.webp",
+      "strength": 1.15
+    },
+    "diffuseMeanAbs95to92": 1.4919637044270833,
+    "heightRMeanAbs95to92": 1.534210205078125,
+    "distanceMetrics": {
+      "2": {
+        "dimensions": [
+          16,
+          64
+        ],
+        "old95vsNew92MeanAbs": 0.4348958333333333
+      },
+      "4": {
+        "dimensions": [
+          8,
+          32
+        ],
+        "old95vsNew92MeanAbs": 0.19270833333333334
+      }
+    },
+    "maps": [
+      {
+        "name": "tech10_3",
+        "role": "diffuse",
+        "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech10_3.webp",
+        "retainedPre4xSha256": "70ea434c6d416714256889da379ad33b784dc9c6e7d2ff04c633019d194efcb8",
+        "predecessor": "newer/textures/tech10_3.webp",
+        "predecessorSha256": "e69082ad4e8a59cd9b387357e95bf06470ea0538ce84e8598124b3cb19b8e56c",
+        "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech10_3-4x-diffuse.png",
+        "masterDecodedRgbSha256": "d13c9738fad4db9298febe6460a38557f427a4bc312c4e6930a0614612fefc71",
+        "file": "newer/textures/official/owner-tech10_3-31e072256a779b27-v1-4x-q92-diffuse.webp",
+        "dimensions": [
+          128,
+          512
+        ],
+        "masterSha256": "eb9a1420398fb50e5fef4760f53452195391c2ac1b6f8495e7f94f35a32fd7cc",
+        "sha256": "876cf3820a00c5d62155bb392352f5ba2e5979e756a5ab1e7a4267804da1f707",
+        "pillowDecodedRgbaSha256": "dc97438034bedc9d17f8295b11a1496ed839a17f9d2e72b4922d40c45e311491",
+        "bytes": 13540
+      },
+      {
+        "name": "tech10_3",
+        "role": "height",
+        "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech10_3.webp",
+        "retainedPre4xSha256": "59d557070192505c9125eaaa9a1ca049c0b950b0278f24f5d9f4be717e1f0590",
+        "predecessor": "newer/textures/normals/tech10_3.webp",
+        "predecessorSha256": "70a36a6cc59000a32a1669bc1926f144903ed0c2b398117baa4a6eb78b9f134d",
+        "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech10_3-4x-height.png",
+        "masterDecodedRgbSha256": "764c8f06430bd11f04b9ef49c27bb3789bf51d0823c0f1ed8f01850dbdf8d776",
+        "file": "newer/textures/official/owner-tech10_3-31e072256a779b27-v1-4x-q92-height.webp",
+        "dimensions": [
+          128,
+          512
+        ],
+        "masterSha256": "daf1986798411c98d5568e124f759b11be108e35bd69dfa30ee67bb9e51eede8",
+        "sha256": "b1d0c7db3e1eb311569d28a5ddd2b8670cb7685065fb3994cdd5feac754a9370",
+        "pillowDecodedRgbaSha256": "8ea51fb28c0c2bbb50631b7688b0deeb46dbd82cbcfac071258fe214ab51b38d",
+        "bytes": 25670
+      }
+    ],
+    "contact": "tech10_3-native95to92-art.png"
+  },
+  {
+    "name": "tech11_2",
+    "nativeKey": "128x128:f56a5604372ecc96",
+    "target": [
+      512,
+      512
+    ],
+    "nativeRGBAHashVerified": true,
+    "normalPrevious": {
+      "file": "normals/tech11_2.webp",
+      "strength": 1.15
+    },
+    "normalCurrent": {
+      "file": "official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-height.webp",
+      "strength": 1.15
+    },
+    "diffuseMeanAbs95to92": 1.5292091369628906,
+    "heightRMeanAbs95to92": 1.3438186645507812,
+    "distanceMetrics": {
+      "2": {
+        "dimensions": [
+          64,
+          64
+        ],
+        "old95vsNew92MeanAbs": 0.462890625
+      },
+      "4": {
+        "dimensions": [
+          32,
+          32
+        ],
+        "old95vsNew92MeanAbs": 0.21126302083333334
+      }
+    },
+    "maps": [
+      {
+        "name": "tech11_2",
+        "role": "diffuse",
+        "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech11_2.webp",
+        "retainedPre4xSha256": "b35e3223a4fe6f97598d96f68b97b80c0a8993f57154b80910d96954a3525e3b",
+        "predecessor": "newer/textures/tech11_2.webp",
+        "predecessorSha256": "f2ff087807812be7c23cfe0f32d2952ca2ec034afc0089004e1f21b2aae669a2",
+        "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech11_2-4x-diffuse.png",
+        "masterDecodedRgbSha256": "e5d9989a65ce1a05391b1a50dcaaed7ea202e5615dabee1109896bd301a43db3",
+        "file": "newer/textures/official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-diffuse.webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "masterSha256": "d9bb10644d81a84452264c25e40b895548be1484ba2100bc8baccd5b8cb33dbb",
+        "sha256": "b31a831f2c6cc932b791f6f0816303f05541f51d1d72095d43ead1a81c833470",
+        "pillowDecodedRgbaSha256": "78690663b22b43c31336821fc2f51d8e9a98ae4e784736f97b5016f31d040f5a",
+        "bytes": 50476
+      },
+      {
+        "name": "tech11_2",
+        "role": "height",
+        "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech11_2.webp",
+        "retainedPre4xSha256": "b06069c8ec174571e20638ae89891bbdc8f489eaf9d266146789474389481cfd",
+        "predecessor": "newer/textures/normals/tech11_2.webp",
+        "predecessorSha256": "e0853b1182a88c35e69b4452514892aa0517d897a28fad393f1e09d31738ea97",
+        "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech11_2-4x-height.png",
+        "masterDecodedRgbSha256": "4a8a84f2fc9412bae13312aa744b37fcd99d657e1333148b76a54f50fffc7e2c",
+        "file": "newer/textures/official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-height.webp",
+        "dimensions": [
+          512,
+          512
+        ],
+        "masterSha256": "4593d2df096a46b7abc40fbe23f8c01bf3c87498db954981bfc40abe23a7ed61",
+        "sha256": "f2d6cd19b5b7476f60992c0164198ab55a292e935a0193a245eeaeea87038b6c",
+        "pillowDecodedRgbaSha256": "b1d5593c1806ca5665a1f4924e6ee69a486a42a514f824a09b3f3c64eff7d608",
+        "bytes": 62108
+      }
+    ],
+    "contact": "tech11_2-native95to92-art.png"
+  }
+]

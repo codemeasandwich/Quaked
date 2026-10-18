@@ -1,0 +1,54 @@
+{
+  "previousInputCount": 1648,
+  "previousHead": "a8ea38c718991c3f8a551e8b41c79038657d6864",
+  "currentHead": "5c590342a2316ff729d29709197cc5a0e278db81",
+  "changed": [
+    {
+      "file": "docs/distribution.md",
+      "beforeSha256": "fc45993e1c1d860a917cc388c58e44cd68e42fd2542fd09ea3baca6404cf82e2",
+      "currentSha256": "1c1656f447aabcc4d60b93c055f10b7022243820b624f404cf8169fd72cb7a19"
+    },
+    {
+      "file": "src/engine/client/cl_main.js",
+      "beforeSha256": "a3f7a55fac1e90c36952fd895fd09a30924bf5755472e67f291d68feec3221f8",
+      "currentSha256": "33fb372e02d5a92627958e6bcea6118e8fc170a18cc2fc9349ed025d9ddcc9e4"
+    },
+    {
+      "file": "src/engine/common/hooks.js",
+      "beforeSha256": "91c4224cbcc19f8ad7f91161560ac2df419e7e6b264f7cf27c93d97d0b4b74c5",
+      "currentSha256": "dd98a9df70370e9f6e296a0c115817336139edf4d017f3ad4a0f5f20ec8401c6"
+    },
+    {
+      "file": "src/engine/server/host.js",
+      "beforeSha256": "00c9a3b81fcd41b7418a320904214338e5ad802ef1706952f385c084c8257e72",
+      "currentSha256": "8d6dc7434b88c05e8a7afe8c1151263e726725f62efd9682f1904a89bbefe15a"
+    },
+    {
+      "file": "src/engine/sound/snd_dma.js",
+      "beforeSha256": "a9505230e84ad0345e11ff1cfc7e0b0b3fef89739425695f9c73c2bf60b05fcc",
+      "currentSha256": "a079be8907b769769c9fab95cf58b27ba0a4d01bc62b1040dc764226ed66d474"
+    },
+    {
+      "file": "src/newer/install.js",
+      "beforeSha256": "8d35ae314ad67e8a41d75f5e06eaab19f37b9771c066998d19d021f8f361d4bb",
+      "currentSha256": "0aa14c804c44218c551ee71b11257d1a99cef2edc593e9e707a5bf67a36e33e1"
+    },
+    {
+      "file": "tests/distribution_contract_test.mjs",
+      "beforeSha256": "9e774fe7b118f2d5966783527cf6b62db0cab14555b5a599c50ad002c0ee67bc",
+      "currentSha256": "bdeab37ffadb2db28fb05bd5566911105963af33fa90217bad8139855e1e80e4"
+    },
+    {
+      "file": "tools/distribution/build.mjs",
+      "beforeSha256": "676fe066e3b7bfc8a09547a0a4fbc566e667b3cb9bb40bc05942da7bc2484806",
+      "currentSha256": "42bbc6a5cc5c64a0f3c2f9ad24921584dd9fd1efd3826883e615bf3ae88651f1"
+    },
+    {
+      "file": "tools/distribution/manifest.mjs",
+      "beforeSha256": "ff133ab1030ded61c15f75f817057807952f697e04f533515fa10599ce0ddc31",
+      "currentSha256": "dfefabee550278fae1cf4924614c0a26d9531c8e8fd37c643657fc44b17b5e07"
+    }
+  ],
+  "allNineChangesExactlyOldAndNewDevBlobs": true,
+  "unchangedInputs": 1639
+}

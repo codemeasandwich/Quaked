@@ -1,0 +1,351 @@
+{
+  "at": "2026-10-18T05:48:25.459347+00:00",
+  "checks": 176,
+  "failures": 0,
+  "shaderErrors": 0,
+  "consoleWarningsErrors": [],
+  "closeViews": 8,
+  "halfQuarterRepeatedViews": 16,
+  "reliefToggle": [
+    "palmet3_2 off/on",
+    "wmet4_4c off/on"
+  ],
+  "scope": "Bounded eight-material actual engine loader and GPU trial; not all-level gameplay acceptance",
+  "inputs": [
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "d89e9cfa7c8fa69ed0196dbb3f6fa66c479ba95908b5cf93a931c3d4356da119"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "2ce26c083d06ddde9d408bceec69853de6c5dceab1e2f1394dd3d36879784aff"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "b815c6d81e3df2ff1239d4463e78a093b8e6f768c6f735a35ebce2c723cd69e5"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "86ceadea3c18f5d66354206ec20a0230b13f87b859817376d38f2128e2f51281"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "d4df172b1ea278ca18acf0750983d7bd25344b50de701e156b12b6c93038a87d"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "fff60a312820e425f8aa3b5595ad793ead1bc9117e66dc61f73b5c71a4d0ba4e"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "ffbc530c48d3d2191eec21a3841d6282144bf4649e65e36be8d75bc72cd53361"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "1b4d7f9390e553a2795f69f861c968ee478a16474dc8b85f1fdeeca87584b0ab"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "0d3f19dad3d3acb7e88f9bf6fce33a31167c0d71072b21e73d55c544a93c7d88"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "a22a36e5bd3512d3e497234b3ab86942e5b9673afa54fa9e81ad76380c1674da"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "4b2a0d44f9e19669be083f812dff8913db749e6777090479154c838944c6c657"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "f274053525e4de2f0c23b5ad9d8c4f337110148608eaef76198ec31e899be8e6"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "9170d960b3eb639faef2c22572311a055e33ddb450cfe2a161c1e3b78679121e"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "c0d6f24516e78427c75474ca699cc67dcef7e736ca7ad79ff7f0423039b84948"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "c0940f0f49a3de11cf0196089e525e3368d6f9ea19662193f3b24d01405ac140"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "cbb5b49b79da9b237f83b60bacadfb1858dbd91d51cb825d266bee4de26641bb"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "8ff29fc8eb5ee32373cf1b0f31a917d706956746afec393939532fe2203a3729"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "2136660e8f7aa82e7001f17aa50bb45f9cb6316f7dadbbd3349e19771d01619a"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "55861317bc903aa9b70b4917f389f4ed3565bdbd2c3dd419580d554baa326d6a"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "49cd5ddda7ac51b5134f461a2cdfde5fdcea3df72d124bfaceffae7497d72096"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/next-eight-trial.json",
+      "sha256": "5827e24a55e774097eb20bdb8041b0b1c2996978d83eca43e3f15c5a9c2b9d48"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "bbbd1917dafee7297af2e9d239f1f17e790ef613a516c68b666338df5a111d4a"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "802721efec2af403792a9db8389f7627adb01513378a0eaf1097f3cbb1577d8b"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "41748e69b171eeb6645eb289fdf34c2c2744d474beb0bf8ca9857ae577a11327"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "78080917f8c64d7e43ffec086958d06e87e39a95e8020a9ffce0386cc76d4090"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "307b2c655f5986891c38fd4ce7a36bd7e22c67bb7be909dc0e4b246330ff40fb"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "704a353e191040876303673b612129cf6453c3a3d0aa7855dc10df4f195c63ee"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "92e81bd11e92874e8b54e6bed47ed86174129d0f2cb08bf70ed9e3ca9150ce66"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "923cd54d8c03b97285fb4f30c3ebd1f48b7c83634eb79b2220e91aba494c8d48"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "82cf8f335e6840122a32fabcba65c9126d80c3913774efc567f0e7a230d75916"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "915cabbdd2b2b32bdda21d109ac6f5645144c74b6f7d1753cdb302d214f859cc"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "2b7e32cceb8c8f73d8134154e08cd268e724812a1ff4fb95080b10bd12f2f74b"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "475609e68c1ddd80606bbff399f005f6abdc8c1cf34c542661e6801e65316bf0"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "1b10cf44b2c0ba57a9e7f34407d76ab02a67374c2e7402ef74f32aca677d0b4c"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "f1e2d6bb25c1b06c292d6ba30f92197a168ca039aca5add746f5d252212a9828"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "0b45b66f94856d1b032c96ed2367dee1b59a87327de1b09cd52d81e9a793925f"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "f7e83917c636190624f3fea0c4fadc875360e9f7b28a3023ed480e8192d72ca1"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "c24de058c8156b7eeb81c87fbdbf7c6575e0993a57839adc0a56c11a8c07ebf9"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "b2afc12139e2229a7461fd0259bca9d5bd4c0138ae121fab28194b0e19408a6f"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "2d7ab9b20801a67d1fec87142280b11fd07384bbc10c5ad6bae35cfd8bed88a0"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "af5ab486d87f2aa2e8ff3e1fe77c006acd95997461226b46cf888817e92bf7b6"
+    },
+    {
+      "file": "newer/textures/index.json",
+      "sha256": "0541eece8abaa369339ff2209387025b2c2045e03960294f720859511822268a"
+    },
+    {
+      "file": "tests/official_texture_trial.html",
+      "sha256": "aa2a3aec430e72172d252f4872240b36f6747afd7e471f83b520886185a5d429"
+    },
+    {
+      "file": "tests/official_texture_trial.js",
+      "sha256": "127f606fc22e4acb7cb07ab1b4c9f9524c3c0e00761dae164bdecff63f00d7cf"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Floor5_04.png",
+      "sha256": "5d29efe4197dd8f825c025b12c22c744c72d009795a98a32c5e58490a0bf9be5"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Stone_00.png",
+      "sha256": "a9ec496d1ff976cd24f44e68d89fee08f62bfb80362edc0957d39ae11ec83856"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-metal5_85_JM.png",
+      "sha256": "f55f7460abcf952dd9c7f94f6e175e73844f023f91dba9cf9fee423754724171"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-metal5_96_JM.png",
+      "sha256": "a1f7ae89ae04dfee506d5af80324a013f910778297771af3d4f53a6d1bee9dd8"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-palmet3_2.png",
+      "sha256": "fc3ce9ee3d7d8dfb07ff89e914725cced461b4b48755a2a0865dba3999a719f9"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech04_5.png",
+      "sha256": "06a2b4c6eef453502bad7def234e1ad8dadbe7e972a61c9d9eb71e942125ab2e"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech04_6.png",
+      "sha256": "7b7e47b3b53db6cacd2e15951f897374e85c6acd19c4a7f5f0b60a9de16f796c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-wmet4_4c.png",
+      "sha256": "51357a29b097438e3754ff79d9c5076a54e85d6795b626493616db128cdf3a16"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-TF_Floor5_04-512-gpu.png",
+      "sha256": "d36d62a871c85daed3eac8eae830b3ad5dcd8ea7626fef4bd2d6447c24d41d75"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-TF_Floor5_04-half-gpu.png",
+      "sha256": "db4aaa81a5d931f1e4bfe8da49159f844e0be15c97413557b17f54f34f9c8bfd"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-TF_Floor5_04-quarter-gpu.png",
+      "sha256": "2ab91de74d8c3a006ddb36375745c4cf7a6cee9782df88973ff28561f3002306"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-TF_Stone_00-512-gpu.png",
+      "sha256": "b6c874ba3746f58c2c85c6b995c3cd856ab6a8d9f265f94ea58dd45c5dd41902"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-TF_Stone_00-half-gpu.png",
+      "sha256": "cb7f68d33e3ed3fd3f632b23a016ff193d9c28617a94fadc9347c71eb9db9f4e"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-TF_Stone_00-quarter-gpu.png",
+      "sha256": "92e1abbb5e63777f7d051d19be564eec9d3057787ecf587ca80a7413a26c1d91"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-metal5_85_JM-512-gpu.png",
+      "sha256": "d9ead95a8f1549e9c3fd09138dc8f07558f29fda03980c18e01bec153cb31785"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-metal5_85_JM-half-gpu.png",
+      "sha256": "9481a3bbe3eb2b601a87901aef7167f57d7fba59831f375191f8f559cbe004cc"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-metal5_85_JM-quarter-gpu.png",
+      "sha256": "b544e09ec50521a88eeac3d22626fa06c0ccd6374513c29bccd1399756e0a063"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-metal5_96_JM-512-gpu.png",
+      "sha256": "e89b32ad120f7e27990660faf7c0866d24e7f87e94a1fd7b0c9d768b17f08dc1"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-metal5_96_JM-half-gpu.png",
+      "sha256": "8178a97913f5044a636d4c8e5651135470d174ee15a51f352a6ff4389dd55fa7"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-metal5_96_JM-quarter-gpu.png",
+      "sha256": "7d72aedc12165f65f0dd92e6cb86aabfb504ad077e400e54a32144c5ec7b21a9"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-palmet3_2-512-gpu.png",
+      "sha256": "cb8d2aaf1c7b79eaa9536066135b13f12195e2dd7fabec95d100868334abf069"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-palmet3_2-half-gpu.png",
+      "sha256": "fb7443ebec7d882d9801177b64d7700270231b3a18f45d2c2ab775720051884b"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-palmet3_2-quarter-gpu.png",
+      "sha256": "8a93a8bb732600b049448ad89d256dd23ba78bd767fd72aad162f93c1749d544"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-tech04_5-512-gpu.png",
+      "sha256": "241378bebb43f6ee03b8d7906bf4ac0e4d028047a4ee8759c43313fec9b5db22"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-tech04_5-half-gpu.png",
+      "sha256": "222f360c655aba3c8e829f13e5984349f4a421deaefbf71d85f077effe474860"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-tech04_5-quarter-gpu.png",
+      "sha256": "8c06aebcfad5989f15804db490816529f4043f375efb24c552b2ccd1980b5110"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-tech04_6-512-gpu.png",
+      "sha256": "1986ac0ac916104873ea4ef9ba0be56cf805bbde03b27723043413f6df6272d1"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-tech04_6-half-gpu.png",
+      "sha256": "da9892325f3a98b2b4cf69b65c4115deddb1dac16613287f9ad7d1977e40988e"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-tech04_6-quarter-gpu.png",
+      "sha256": "0d25246fde23d19710bdff9c487e702816e2864b98972934ccb524f2e567ede6"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-wmet4_4c-512-gpu.png",
+      "sha256": "bd037ba9c3e0fe2cd3a54e1d38937ca76c0151856843c7bb21e8bef7911eb47d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-wmet4_4c-half-gpu.png",
+      "sha256": "de52cff4e5cc188f71f7e20daf7fee3b7023683e9785109e63e6b28692ebe143"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-wmet4_4c-quarter-gpu.png",
+      "sha256": "72be42f6126bebb18046dacb564d35025fe381d2e9afb72dca45b18f958cbf56"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-wmet4_4c-relief-on.png",
+      "sha256": "92811965b9786c6a5eb3267e9f023858795ba23d39d0c1611e05b46b7f4258a9"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-wmet4_4c-relief-off.png",
+      "sha256": "8319245ad05f0193540606819042c7d292eeb8c3f288493007f08580829ade00"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-palmet3_2-relief-off.png",
+      "sha256": "f1adfd1e1167e861ce1fd460d028ebcad7e04d709a1307d38a5c83ce47a55393"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-palmet3_2-relief-on.png",
+      "sha256": "1996ee4b5758f9feafd1c9a64a11c0f64457b1fea6d81e6a186f028e8c595bdd"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-gpu.json",
+      "sha256": "506c3828707e9a016eb4b51ed94efae05d71549fc817a9d29804e62b12ff5b8b"
+    }
+  ],
+  "cleanup": {
+    "pid": 11041,
+    "command": "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python -u -m http.server 8017 --bind 127.0.0.1 --directory /Users/bri/.codex/worktrees/official-textures-next/Quaked",
+    "tab": "11 closed",
+    "port": 8017,
+    "signal": "SIGTERM own recorded server",
+    "exitCode": 143,
+    "portReleased": true
+  }
+}

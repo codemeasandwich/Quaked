@@ -1,0 +1,2174 @@
+{
+  "qualification": "Independent bounded read-only plan. No quality92 encoding, PNG/master/runtime image write, recraft, binding/source/test/index/staging edit, build/gate or merge. Only this ROOT verification JSON is written; in-memory Lanczos pixel hashes describe planned lossless PNG masters. Parent-provided frozen combined11 build remains separate.",
+  "root": "/Users/bri/.codex/worktrees/official-textures-next/Quaked",
+  "headAtPlanning": "4bef35dae25f758d0774fe94766117bf43a0b7ad",
+  "parentProvidedFrozenTreePrefix": "36eaed27",
+  "indexSha256": "f8da85a8730aadfc34b2199b1d91fdf21ab54bcf774e1c21b73753871633ad9c",
+  "runtimeForPixelInspection": {
+    "pillow": "10.1.0",
+    "webp": "1.3.2",
+    "numpy": "1.26.2"
+  },
+  "scope": {
+    "canonicalMaterials": 6,
+    "maps": 12,
+    "nativeBindings": 6,
+    "allIndexFileReferences": 12,
+    "additionalAliases": 0,
+    "recordedPAKOccurrences": 61,
+    "generatedArtworksAdded": 0,
+    "generated95QualificationChanged": false,
+    "ownerFourQualificationChanged": false,
+    "nativeKeyAliasAudit": "Each of the six native keys occurs only in its own sources[name] array; no ordinary/glass keyed alias under another name and no shared file reference."
+  },
+  "provenance": {
+    "parentReplay": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-twelve-tech-q95-replay.json",
+    "parentReplaySha256": "f2f4bc76d3e491c4de25dd45d59517c7f2d30b3ce8b15490f6c21c80603ea8c6",
+    "freshParentQuality95Replays": 12,
+    "exactParentMatches": 12,
+    "historicalProducerCommit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+    "historicalAndCurrentProducerSha256": "323573f16a29f14b0adad629774723a2c4ada06ee3ea0cf4c978e2a1f9d79776",
+    "custodyIndependentlyRechecked": "Every current95 byte hash and retainedpre4x source hash equals parent replay, immutable upstream ledger and standard4x before/after record. No95 or92 replay executed during this plan.",
+    "priorPlan": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-owner-q92-first-tranche-plan.json",
+    "priorPlanSha256": "a6fdf364d5f9ff92d297ebab20132b068701a0134ac555accbf624814136cf48",
+    "inventory": "/private/tmp/quaked-oct18-all95-audit/inventory.json",
+    "inventorySha256": "6ed0c269c83453427f714f5992588f0fc731e7f304b922e34c6727cf33c1185a"
+  },
+  "allIndexReferences": [
+    {
+      "pointer": "/textures/tech04_3",
+      "file": "newer/textures/tech04_3.webp"
+    },
+    {
+      "pointer": "/textures/tech07_2",
+      "file": "newer/textures/tech07_2.webp"
+    },
+    {
+      "pointer": "/textures/tech08_1",
+      "file": "newer/textures/tech08_1.webp"
+    },
+    {
+      "pointer": "/textures/tech09_3",
+      "file": "newer/textures/tech09_3.webp"
+    },
+    {
+      "pointer": "/textures/tech10_3",
+      "file": "newer/textures/tech10_3.webp"
+    },
+    {
+      "pointer": "/textures/tech11_2",
+      "file": "newer/textures/tech11_2.webp"
+    },
+    {
+      "pointer": "/normals/tech04_3/file",
+      "file": "newer/textures/normals/tech04_3.webp"
+    },
+    {
+      "pointer": "/normals/tech07_2/file",
+      "file": "newer/textures/normals/tech07_2.webp"
+    },
+    {
+      "pointer": "/normals/tech08_1/file",
+      "file": "newer/textures/normals/tech08_1.webp"
+    },
+    {
+      "pointer": "/normals/tech09_3/file",
+      "file": "newer/textures/normals/tech09_3.webp"
+    },
+    {
+      "pointer": "/normals/tech10_3/file",
+      "file": "newer/textures/normals/tech10_3.webp"
+    },
+    {
+      "pointer": "/normals/tech11_2/file",
+      "file": "newer/textures/normals/tech11_2.webp"
+    }
+  ],
+  "bindings": [
+    {
+      "name": "tech04_3",
+      "nativeKey": "16x128:a479c5cd7f65b1bf",
+      "nativeDimensions": [
+        16,
+        128
+      ],
+      "sourcePixelSha256": "7e2fbfb4aee270a5788c2df23b45d048f6cb62162bc45f4bc113a1b6704d2508",
+      "retainedNativeRgba": "/private/tmp/quaked-oct18-all95-audit/originals/16x128-a479c5cd7f65b1bf.rgba",
+      "target": [
+        64,
+        512
+      ],
+      "halfNativeComparison": [
+        8,
+        64
+      ],
+      "quarterNativeComparison": [
+        4,
+        32
+      ],
+      "previous": {
+        "file": "tech04_3.webp",
+        "normal": {
+          "file": "normals/tech04_3.webp",
+          "strength": 1.15
+        }
+      },
+      "proposedCurrent": {
+        "file": "official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-height.webp",
+          "strength": 1.15
+        }
+      },
+      "sourceAllowlist": [
+        "16x128:a479c5cd7f65b1bf"
+      ],
+      "exactIndexReferences": [
+        {
+          "pointer": "/textures/tech04_3",
+          "file": "newer/textures/tech04_3.webp"
+        },
+        {
+          "pointer": "/normals/tech04_3/file",
+          "file": "newer/textures/normals/tech04_3.webp"
+        }
+      ],
+      "aliasesSharingEitherFile": [],
+      "officialObservedUses": [
+        {
+          "game": "id1",
+          "map": "maps/base32b.bsp",
+          "scope": "installed-extra-review",
+          "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+          "slot": 11,
+          "faces": 2511,
+          "visibleCandidateFaces": 2511,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/dm3.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+          "slot": 7,
+          "faces": 365,
+          "visibleCandidateFaces": 365,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/e1m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/shareware/pak0.pak",
+          "slot": 6,
+          "faces": 873,
+          "visibleCandidateFaces": 873,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/e2m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+          "slot": 1,
+          "faces": 776,
+          "visibleCandidateFaces": 776,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/e3m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+          "slot": 4,
+          "faces": 1459,
+          "visibleCandidateFaces": 1459,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/e4m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+          "slot": 4,
+          "faces": 441,
+          "visibleCandidateFaces": 441,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/start.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/shareware/pak0.pak",
+          "slot": 19,
+          "faces": 47,
+          "visibleCandidateFaces": 47,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/start.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 0,
+          "faces": 2397,
+          "visibleCandidateFaces": 2397,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip1m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 16,
+          "faces": 867,
+          "visibleCandidateFaces": 867,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip1m3.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 37,
+          "faces": 155,
+          "visibleCandidateFaces": 155,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip1m4.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 70,
+          "faces": 6,
+          "visibleCandidateFaces": 6,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip1m5.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 7,
+          "faces": 1392,
+          "visibleCandidateFaces": 1392,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hipend.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 0,
+          "faces": 232,
+          "visibleCandidateFaces": 232,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "dopa",
+          "map": "maps/e5m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+          "slot": 68,
+          "faces": 10,
+          "visibleCandidateFaces": 10,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "dopa",
+          "map": "maps/e5m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+          "slot": 1,
+          "faces": 250,
+          "visibleCandidateFaces": 250,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge5m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+          "slot": 70,
+          "faces": 389,
+          "visibleCandidateFaces": 389,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        }
+      ],
+      "recordedUseCount": 16,
+      "indexedUserGames": [
+        "ad",
+        "aopfm_v2",
+        "dopa",
+        "hipnotic",
+        "mg1",
+        "quake",
+        "quoth",
+        "shareware"
+      ],
+      "currentAndExpectedNewPack": "shareware",
+      "effectiveRuntimeStrength": 1.15,
+      "effectiveRuntimeCap": 1.1,
+      "preserveMissingCapField": true,
+      "allNativeKeyReferences": {
+        "sources": [
+          "tech04_3"
+        ],
+        "ordinaryVariants": [],
+        "glass": []
+      }
+    },
+    {
+      "name": "tech07_2",
+      "nativeKey": "128x128:5d03decdcf531707",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "sourcePixelSha256": "4d18e67867ff42e592e013a5d7b2f06df6d0226b5d15118c371579db1faf3ea9",
+      "retainedNativeRgba": "/private/tmp/quaked-oct18-all95-audit/originals/128x128-5d03decdcf531707.rgba",
+      "target": [
+        512,
+        512
+      ],
+      "halfNativeComparison": [
+        64,
+        64
+      ],
+      "quarterNativeComparison": [
+        32,
+        32
+      ],
+      "previous": {
+        "file": "tech07_2.webp",
+        "normal": {
+          "file": "normals/tech07_2.webp",
+          "strength": 1.15
+        }
+      },
+      "proposedCurrent": {
+        "file": "official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-height.webp",
+          "strength": 1.15
+        }
+      },
+      "sourceAllowlist": [
+        "128x128:5d03decdcf531707"
+      ],
+      "exactIndexReferences": [
+        {
+          "pointer": "/textures/tech07_2",
+          "file": "newer/textures/tech07_2.webp"
+        },
+        {
+          "pointer": "/normals/tech07_2/file",
+          "file": "newer/textures/normals/tech07_2.webp"
+        }
+      ],
+      "aliasesSharingEitherFile": [],
+      "officialObservedUses": [
+        {
+          "game": "id1",
+          "map": "maps/base32b.bsp",
+          "scope": "installed-extra-review",
+          "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+          "slot": 90,
+          "faces": 6,
+          "visibleCandidateFaces": 6,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/dm3.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+          "slot": 5,
+          "faces": 47,
+          "visibleCandidateFaces": 47,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/e1m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/shareware/pak0.pak",
+          "slot": 22,
+          "faces": 86,
+          "visibleCandidateFaces": 86,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/e2m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+          "slot": 70,
+          "faces": 4,
+          "visibleCandidateFaces": 4,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip1m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 32,
+          "faces": 112,
+          "visibleCandidateFaces": 112,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip1m5.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 42,
+          "faces": 222,
+          "visibleCandidateFaces": 222,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "dopa",
+          "map": "maps/start.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+          "slot": 54,
+          "faces": 3,
+          "visibleCandidateFaces": 3,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "dopa",
+          "map": "maps/e5m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+          "slot": 4,
+          "faces": 495,
+          "visibleCandidateFaces": 495,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "dopa",
+          "map": "maps/e5m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+          "slot": 17,
+          "faces": 391,
+          "visibleCandidateFaces": 391,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "dopa",
+          "map": "maps/e5start.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+          "slot": 54,
+          "faces": 3,
+          "visibleCandidateFaces": 3,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        }
+      ],
+      "recordedUseCount": 10,
+      "indexedUserGames": [
+        "ad",
+        "aopfm_v2",
+        "dopa",
+        "hipnotic",
+        "quake",
+        "quoth",
+        "shareware"
+      ],
+      "currentAndExpectedNewPack": "shareware",
+      "effectiveRuntimeStrength": 1.15,
+      "effectiveRuntimeCap": 1.1,
+      "preserveMissingCapField": true,
+      "allNativeKeyReferences": {
+        "sources": [
+          "tech07_2"
+        ],
+        "ordinaryVariants": [],
+        "glass": []
+      }
+    },
+    {
+      "name": "tech08_1",
+      "nativeKey": "128x128:ba7e0769a9a0ce1b",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "sourcePixelSha256": "d4e3fd411036b324fcb1633ced87ffe6a7fdac25c348f5b8266c9d99e75710a5",
+      "retainedNativeRgba": "/private/tmp/quaked-oct18-all95-audit/originals/128x128-ba7e0769a9a0ce1b.rgba",
+      "target": [
+        512,
+        512
+      ],
+      "halfNativeComparison": [
+        64,
+        64
+      ],
+      "quarterNativeComparison": [
+        32,
+        32
+      ],
+      "previous": {
+        "file": "tech08_1.webp",
+        "normal": {
+          "file": "normals/tech08_1.webp",
+          "strength": 1.15,
+          "cap": 1.1
+        }
+      },
+      "proposedCurrent": {
+        "file": "official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-height.webp",
+          "strength": 1.15,
+          "cap": 1.1
+        }
+      },
+      "sourceAllowlist": [
+        "128x128:ba7e0769a9a0ce1b"
+      ],
+      "exactIndexReferences": [
+        {
+          "pointer": "/textures/tech08_1",
+          "file": "newer/textures/tech08_1.webp"
+        },
+        {
+          "pointer": "/normals/tech08_1/file",
+          "file": "newer/textures/normals/tech08_1.webp"
+        }
+      ],
+      "aliasesSharingEitherFile": [],
+      "officialObservedUses": [
+        {
+          "game": "id1",
+          "map": "maps/base32b.bsp",
+          "scope": "installed-extra-review",
+          "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+          "slot": 17,
+          "faces": 254,
+          "visibleCandidateFaces": 254,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/e1m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/shareware/pak0.pak",
+          "slot": 5,
+          "faces": 476,
+          "visibleCandidateFaces": 476,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/e3m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+          "slot": 31,
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/start.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/shareware/pak0.pak",
+          "slot": 20,
+          "faces": 36,
+          "visibleCandidateFaces": 36,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip1m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 25,
+          "faces": 115,
+          "visibleCandidateFaces": 115,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip1m3.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 63,
+          "faces": 10,
+          "visibleCandidateFaces": 10,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip1m4.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 19,
+          "faces": 69,
+          "visibleCandidateFaces": 69,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge5m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+          "slot": 101,
+          "faces": 21,
+          "visibleCandidateFaces": 21,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        }
+      ],
+      "recordedUseCount": 8,
+      "indexedUserGames": [
+        "ad",
+        "aopfm_v2",
+        "hipnotic",
+        "mg1",
+        "quake",
+        "quoth",
+        "shareware"
+      ],
+      "currentAndExpectedNewPack": "shareware",
+      "effectiveRuntimeStrength": 1.15,
+      "effectiveRuntimeCap": 1.1,
+      "preserveMissingCapField": false,
+      "allNativeKeyReferences": {
+        "sources": [
+          "tech08_1"
+        ],
+        "ordinaryVariants": [],
+        "glass": []
+      }
+    },
+    {
+      "name": "tech09_3",
+      "nativeKey": "128x128:8ff008acef40a86e",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "sourcePixelSha256": "743a768469b7f5a33dab25b22a8a19e8d8b7edcfabf5913d4f48a60a6ac6c03d",
+      "retainedNativeRgba": "/private/tmp/quaked-oct18-all95-audit/originals/128x128-8ff008acef40a86e.rgba",
+      "target": [
+        512,
+        512
+      ],
+      "halfNativeComparison": [
+        64,
+        64
+      ],
+      "quarterNativeComparison": [
+        32,
+        32
+      ],
+      "previous": {
+        "file": "tech09_3.webp",
+        "normal": {
+          "file": "normals/tech09_3.webp",
+          "strength": 1.15
+        }
+      },
+      "proposedCurrent": {
+        "file": "official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-height.webp",
+          "strength": 1.15
+        }
+      },
+      "sourceAllowlist": [
+        "128x128:8ff008acef40a86e"
+      ],
+      "exactIndexReferences": [
+        {
+          "pointer": "/textures/tech09_3",
+          "file": "newer/textures/tech09_3.webp"
+        },
+        {
+          "pointer": "/normals/tech09_3/file",
+          "file": "newer/textures/normals/tech09_3.webp"
+        }
+      ],
+      "aliasesSharingEitherFile": [],
+      "officialObservedUses": [
+        {
+          "game": "id1",
+          "map": "maps/base32b.bsp",
+          "scope": "installed-extra-review",
+          "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+          "slot": 79,
+          "faces": 9,
+          "visibleCandidateFaces": 9,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/e1m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/shareware/pak0.pak",
+          "slot": 10,
+          "faces": 12,
+          "visibleCandidateFaces": 12,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/start.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/shareware/pak0.pak",
+          "slot": 36,
+          "faces": 1,
+          "visibleCandidateFaces": 1,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip1m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 81,
+          "faces": 2,
+          "visibleCandidateFaces": 2,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip1m3.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 35,
+          "faces": 7,
+          "visibleCandidateFaces": 7,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip1m4.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 23,
+          "faces": 58,
+          "visibleCandidateFaces": 58,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "dopa",
+          "map": "maps/e5m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+          "slot": 25,
+          "faces": 46,
+          "visibleCandidateFaces": 46,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "dopa",
+          "map": "maps/e5m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+          "slot": 36,
+          "faces": 11,
+          "visibleCandidateFaces": 11,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge5m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+          "slot": 80,
+          "faces": 20,
+          "visibleCandidateFaces": 20,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        }
+      ],
+      "recordedUseCount": 9,
+      "indexedUserGames": [
+        "ad",
+        "aopfm_v2",
+        "dopa",
+        "hipnotic",
+        "mg1",
+        "quake",
+        "quoth",
+        "shareware"
+      ],
+      "currentAndExpectedNewPack": "shareware",
+      "effectiveRuntimeStrength": 1.15,
+      "effectiveRuntimeCap": 1.1,
+      "preserveMissingCapField": true,
+      "allNativeKeyReferences": {
+        "sources": [
+          "tech09_3"
+        ],
+        "ordinaryVariants": [],
+        "glass": []
+      }
+    },
+    {
+      "name": "tech10_3",
+      "nativeKey": "32x128:31e072256a779b27",
+      "nativeDimensions": [
+        32,
+        128
+      ],
+      "sourcePixelSha256": "6951466dddd621bcbc17affa9bee6d11db0695c4ef56577ee89288d6b8c5fafa",
+      "retainedNativeRgba": "/private/tmp/quaked-oct18-all95-audit/originals/32x128-31e072256a779b27.rgba",
+      "target": [
+        128,
+        512
+      ],
+      "halfNativeComparison": [
+        16,
+        64
+      ],
+      "quarterNativeComparison": [
+        8,
+        32
+      ],
+      "previous": {
+        "file": "tech10_3.webp",
+        "normal": {
+          "file": "normals/tech10_3.webp",
+          "strength": 1.15
+        }
+      },
+      "proposedCurrent": {
+        "file": "official/owner-tech10_3-31e072256a779b27-v1-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/owner-tech10_3-31e072256a779b27-v1-4x-q92-height.webp",
+          "strength": 1.15
+        }
+      },
+      "sourceAllowlist": [
+        "32x128:31e072256a779b27"
+      ],
+      "exactIndexReferences": [
+        {
+          "pointer": "/textures/tech10_3",
+          "file": "newer/textures/tech10_3.webp"
+        },
+        {
+          "pointer": "/normals/tech10_3/file",
+          "file": "newer/textures/normals/tech10_3.webp"
+        }
+      ],
+      "aliasesSharingEitherFile": [],
+      "officialObservedUses": [
+        {
+          "game": "id1",
+          "map": "maps/base32b.bsp",
+          "scope": "installed-extra-review",
+          "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+          "slot": 86,
+          "faces": 4,
+          "visibleCandidateFaces": 4,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/e1m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/shareware/pak0.pak",
+          "slot": 18,
+          "faces": 11,
+          "visibleCandidateFaces": 11,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip1m3.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 50,
+          "faces": 7,
+          "visibleCandidateFaces": 7,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip1m4.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 37,
+          "faces": 4,
+          "visibleCandidateFaces": 4,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "dopa",
+          "map": "maps/start.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+          "slot": 53,
+          "faces": 3,
+          "visibleCandidateFaces": 3,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "dopa",
+          "map": "maps/e5m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+          "slot": 24,
+          "faces": 56,
+          "visibleCandidateFaces": 56,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "dopa",
+          "map": "maps/e5m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+          "slot": 15,
+          "faces": 54,
+          "visibleCandidateFaces": 54,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "dopa",
+          "map": "maps/e5start.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+          "slot": 53,
+          "faces": 3,
+          "visibleCandidateFaces": 3,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge5m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+          "slot": 64,
+          "faces": 98,
+          "visibleCandidateFaces": 98,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        }
+      ],
+      "recordedUseCount": 9,
+      "indexedUserGames": [
+        "ad",
+        "aopfm_v2",
+        "dopa",
+        "hipnotic",
+        "mg1",
+        "quake",
+        "quoth",
+        "shareware"
+      ],
+      "currentAndExpectedNewPack": "shareware",
+      "effectiveRuntimeStrength": 1.15,
+      "effectiveRuntimeCap": 1.1,
+      "preserveMissingCapField": true,
+      "allNativeKeyReferences": {
+        "sources": [
+          "tech10_3"
+        ],
+        "ordinaryVariants": [],
+        "glass": []
+      }
+    },
+    {
+      "name": "tech11_2",
+      "nativeKey": "128x128:f56a5604372ecc96",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "sourcePixelSha256": "392cc3507e7f61f265a8ed473e72e2153d91d3b5005bd4660e53ed2d6d6966f3",
+      "retainedNativeRgba": "/private/tmp/quaked-oct18-all95-audit/originals/128x128-f56a5604372ecc96.rgba",
+      "target": [
+        512,
+        512
+      ],
+      "halfNativeComparison": [
+        64,
+        64
+      ],
+      "quarterNativeComparison": [
+        32,
+        32
+      ],
+      "previous": {
+        "file": "tech11_2.webp",
+        "normal": {
+          "file": "normals/tech11_2.webp",
+          "strength": 1.15
+        }
+      },
+      "proposedCurrent": {
+        "file": "official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-height.webp",
+          "strength": 1.15
+        }
+      },
+      "sourceAllowlist": [
+        "128x128:f56a5604372ecc96"
+      ],
+      "exactIndexReferences": [
+        {
+          "pointer": "/textures/tech11_2",
+          "file": "newer/textures/tech11_2.webp"
+        },
+        {
+          "pointer": "/normals/tech11_2/file",
+          "file": "newer/textures/normals/tech11_2.webp"
+        }
+      ],
+      "aliasesSharingEitherFile": [],
+      "officialObservedUses": [
+        {
+          "game": "id1",
+          "map": "maps/base32b.bsp",
+          "scope": "installed-extra-review",
+          "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+          "slot": 65,
+          "faces": 24,
+          "visibleCandidateFaces": 24,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/e1m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/shareware/pak0.pak",
+          "slot": 40,
+          "faces": 17,
+          "visibleCandidateFaces": 17,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/e3m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+          "slot": 49,
+          "faces": 15,
+          "visibleCandidateFaces": 15,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/start.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/shareware/pak0.pak",
+          "slot": 35,
+          "faces": 1,
+          "visibleCandidateFaces": 1,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip1m3.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 51,
+          "faces": 11,
+          "visibleCandidateFaces": 11,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip1m4.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 21,
+          "faces": 64,
+          "visibleCandidateFaces": 64,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "dopa",
+          "map": "maps/e5m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+          "slot": 6,
+          "faces": 46,
+          "visibleCandidateFaces": 46,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "dopa",
+          "map": "maps/e5m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+          "slot": 31,
+          "faces": 23,
+          "visibleCandidateFaces": 23,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge5m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+          "slot": 81,
+          "faces": 33,
+          "visibleCandidateFaces": 33,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        }
+      ],
+      "recordedUseCount": 9,
+      "indexedUserGames": [
+        "ad",
+        "aopfm_v2",
+        "dopa",
+        "hipnotic",
+        "mg1",
+        "quake",
+        "quoth",
+        "shareware"
+      ],
+      "currentAndExpectedNewPack": "shareware",
+      "effectiveRuntimeStrength": 1.15,
+      "effectiveRuntimeCap": 1.1,
+      "preserveMissingCapField": true,
+      "allNativeKeyReferences": {
+        "sources": [
+          "tech11_2"
+        ],
+        "ordinaryVariants": [],
+        "glass": []
+      }
+    }
+  ],
+  "maps": [
+    {
+      "name": "tech04_3",
+      "role": "diffuse",
+      "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech04_3.webp",
+      "retainedPre4xSha256": "43ba54d680bca36ecc8e47436a9dd470be8d9b62cfe625978547dabe20ac0988",
+      "retainedPre4xDimensions": [
+        96,
+        768
+      ],
+      "retainedPre4xMode": "RGB",
+      "predecessorFile": "newer/textures/tech04_3.webp",
+      "predecessorSha256": "65b463d19c2de7397242f1a77bf130abbf9802a57a94f9db115503b043fac3cc",
+      "predecessorBytes": 8302,
+      "predecessorDimensions": [
+        64,
+        512
+      ],
+      "predecessorProvenQuality": 95,
+      "predecessorMethod": 6,
+      "historicalRecord": "tools/texture_sheets/sources/standard-4x/batch1-shareware.json",
+      "historicalSourceCommit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+      "proposedMaster": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech04_3-4x-diffuse.png",
+      "proposedMasterDimensions": [
+        64,
+        512
+      ],
+      "proposedMasterMode": "RGB",
+      "proposedMasterDecodedRgbSha256": "9785befd284e231579d3457e3aefb1b0e6d31709c65aa7d75023de6dc6d2f0a7",
+      "proposedRuntimeFile": "newer/textures/official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-diffuse.webp",
+      "proposedQuality": 92,
+      "proposedLossless": false,
+      "proposedMethod": 6,
+      "masterProduced": false,
+      "quality92Encoded": false,
+      "inputAndPredecessorPreservationRequired": true
+    },
+    {
+      "name": "tech04_3",
+      "role": "height",
+      "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech04_3.webp",
+      "retainedPre4xSha256": "31577af5a6fcca735941313cc5cf5c7d312456c95183bb7afde36764c5bd5c1c",
+      "retainedPre4xDimensions": [
+        96,
+        768
+      ],
+      "retainedPre4xMode": "RGB",
+      "predecessorFile": "newer/textures/normals/tech04_3.webp",
+      "predecessorSha256": "8f8bc60e3ca359c90fbaa5df481006a8b0d3827503c05d18be699cbc46649e20",
+      "predecessorBytes": 16684,
+      "predecessorDimensions": [
+        64,
+        512
+      ],
+      "predecessorProvenQuality": 95,
+      "predecessorMethod": 6,
+      "historicalRecord": "tools/texture_sheets/sources/standard-4x/batch1-shareware.json",
+      "historicalSourceCommit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+      "proposedMaster": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech04_3-4x-height.png",
+      "proposedMasterDimensions": [
+        64,
+        512
+      ],
+      "proposedMasterMode": "RGB",
+      "proposedMasterDecodedRgbSha256": "dc790b9a592749b79e8b58773de52154689055da308ca7c14638beb56f4ed093",
+      "proposedRuntimeFile": "newer/textures/official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-height.webp",
+      "proposedQuality": 92,
+      "proposedLossless": false,
+      "proposedMethod": 6,
+      "masterProduced": false,
+      "quality92Encoded": false,
+      "inputAndPredecessorPreservationRequired": true,
+      "heightChannelWitness": {
+        "retainedPre4x": {
+          "maxDifferenceFromR": 1,
+          "texelsWithNonidenticalRGB": 1021,
+          "texels": 73728
+        },
+        "plannedPrecompression4xPixels": {
+          "maxDifferenceFromR": 2,
+          "texelsWithNonidenticalRGB": 791,
+          "texels": 32768
+        },
+        "currentQuality95": {
+          "maxDifferenceFromR": 1,
+          "texelsWithNonidenticalRGB": 488,
+          "texels": 32768
+        }
+      }
+    },
+    {
+      "name": "tech07_2",
+      "role": "diffuse",
+      "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech07_2.webp",
+      "retainedPre4xSha256": "bc85af99ae792dfdf50e7a955d984c4f99c00dd0c0c2e07bc8f7004a5c48d2b2",
+      "retainedPre4xDimensions": [
+        768,
+        768
+      ],
+      "retainedPre4xMode": "RGB",
+      "predecessorFile": "newer/textures/tech07_2.webp",
+      "predecessorSha256": "d0ad3b6262891ad41028c87de42105e912df9dd12dda64c5d89b3c70aa43d270",
+      "predecessorBytes": 78392,
+      "predecessorDimensions": [
+        512,
+        512
+      ],
+      "predecessorProvenQuality": 95,
+      "predecessorMethod": 6,
+      "historicalRecord": "tools/texture_sheets/sources/standard-4x/batch1-shareware.json",
+      "historicalSourceCommit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+      "proposedMaster": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech07_2-4x-diffuse.png",
+      "proposedMasterDimensions": [
+        512,
+        512
+      ],
+      "proposedMasterMode": "RGB",
+      "proposedMasterDecodedRgbSha256": "494f3bac172ce5a3b49957bf3ab19e995fdf1e4583ae76f9676775e84ea4d983",
+      "proposedRuntimeFile": "newer/textures/official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-diffuse.webp",
+      "proposedQuality": 92,
+      "proposedLossless": false,
+      "proposedMethod": 6,
+      "masterProduced": false,
+      "quality92Encoded": false,
+      "inputAndPredecessorPreservationRequired": true
+    },
+    {
+      "name": "tech07_2",
+      "role": "height",
+      "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech07_2.webp",
+      "retainedPre4xSha256": "93ea9d4f8dd74921120194d1184709f1253654e6f4f82c7ccb4182d28f99fb04",
+      "retainedPre4xDimensions": [
+        768,
+        768
+      ],
+      "retainedPre4xMode": "RGB",
+      "predecessorFile": "newer/textures/normals/tech07_2.webp",
+      "predecessorSha256": "4486dcfbbb0bf955eb7b014e8bf528b0b0a6e6770abc83edc702caa254118f05",
+      "predecessorBytes": 104310,
+      "predecessorDimensions": [
+        512,
+        512
+      ],
+      "predecessorProvenQuality": 95,
+      "predecessorMethod": 6,
+      "historicalRecord": "tools/texture_sheets/sources/standard-4x/batch1-shareware.json",
+      "historicalSourceCommit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+      "proposedMaster": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech07_2-4x-height.png",
+      "proposedMasterDimensions": [
+        512,
+        512
+      ],
+      "proposedMasterMode": "RGB",
+      "proposedMasterDecodedRgbSha256": "9daac2c8f208d9d09d9fd47a6ff18d7f7f5e8578352c09633a49cce277a49be7",
+      "proposedRuntimeFile": "newer/textures/official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-height.webp",
+      "proposedQuality": 92,
+      "proposedLossless": false,
+      "proposedMethod": 6,
+      "masterProduced": false,
+      "quality92Encoded": false,
+      "inputAndPredecessorPreservationRequired": true,
+      "heightChannelWitness": {
+        "retainedPre4x": {
+          "maxDifferenceFromR": 1,
+          "texelsWithNonidenticalRGB": 7311,
+          "texels": 589824
+        },
+        "plannedPrecompression4xPixels": {
+          "maxDifferenceFromR": 2,
+          "texelsWithNonidenticalRGB": 5779,
+          "texels": 262144
+        },
+        "currentQuality95": {
+          "maxDifferenceFromR": 1,
+          "texelsWithNonidenticalRGB": 3285,
+          "texels": 262144
+        }
+      }
+    },
+    {
+      "name": "tech08_1",
+      "role": "diffuse",
+      "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech08_1.webp",
+      "retainedPre4xSha256": "ca44d13c7342edf163f40ddf65b657170e7354240ce311f9f59bebc4305c7792",
+      "retainedPre4xDimensions": [
+        768,
+        768
+      ],
+      "retainedPre4xMode": "RGB",
+      "predecessorFile": "newer/textures/tech08_1.webp",
+      "predecessorSha256": "ead6026af77d57c09b970bd1f8a52a4f4b7ceb3636c16a56b70d75ca1c098b0b",
+      "predecessorBytes": 71642,
+      "predecessorDimensions": [
+        512,
+        512
+      ],
+      "predecessorProvenQuality": 95,
+      "predecessorMethod": 6,
+      "historicalRecord": "tools/texture_sheets/sources/standard-4x/batch1-shareware.json",
+      "historicalSourceCommit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+      "proposedMaster": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech08_1-4x-diffuse.png",
+      "proposedMasterDimensions": [
+        512,
+        512
+      ],
+      "proposedMasterMode": "RGB",
+      "proposedMasterDecodedRgbSha256": "5e477a534f439965d02ddebba576565f4c17af2c4d14bbd6c4f5d9c0bc9eaff5",
+      "proposedRuntimeFile": "newer/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-diffuse.webp",
+      "proposedQuality": 92,
+      "proposedLossless": false,
+      "proposedMethod": 6,
+      "masterProduced": false,
+      "quality92Encoded": false,
+      "inputAndPredecessorPreservationRequired": true
+    },
+    {
+      "name": "tech08_1",
+      "role": "height",
+      "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech08_1.webp",
+      "retainedPre4xSha256": "caf9ce0d34eeaf6c1f324ae6df3f272617f30131fb74d995c38b7befb85f3880",
+      "retainedPre4xDimensions": [
+        768,
+        768
+      ],
+      "retainedPre4xMode": "RGB",
+      "predecessorFile": "newer/textures/normals/tech08_1.webp",
+      "predecessorSha256": "a3aa6e8ec1a8b9c5e109dd8b05dea5629870b24e0b90760ad42caba97722ce7a",
+      "predecessorBytes": 88886,
+      "predecessorDimensions": [
+        512,
+        512
+      ],
+      "predecessorProvenQuality": 95,
+      "predecessorMethod": 6,
+      "historicalRecord": "tools/texture_sheets/sources/standard-4x/batch1-shareware.json",
+      "historicalSourceCommit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+      "proposedMaster": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech08_1-4x-height.png",
+      "proposedMasterDimensions": [
+        512,
+        512
+      ],
+      "proposedMasterMode": "RGB",
+      "proposedMasterDecodedRgbSha256": "4080e35550055f0b5998df5b50f622bcdd59fec9a23e0251eb5fd99ee13b1bf1",
+      "proposedRuntimeFile": "newer/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-height.webp",
+      "proposedQuality": 92,
+      "proposedLossless": false,
+      "proposedMethod": 6,
+      "masterProduced": false,
+      "quality92Encoded": false,
+      "inputAndPredecessorPreservationRequired": true,
+      "heightChannelWitness": {
+        "retainedPre4x": {
+          "maxDifferenceFromR": 1,
+          "texelsWithNonidenticalRGB": 6018,
+          "texels": 589824
+        },
+        "plannedPrecompression4xPixels": {
+          "maxDifferenceFromR": 2,
+          "texelsWithNonidenticalRGB": 4793,
+          "texels": 262144
+        },
+        "currentQuality95": {
+          "maxDifferenceFromR": 1,
+          "texelsWithNonidenticalRGB": 2819,
+          "texels": 262144
+        }
+      }
+    },
+    {
+      "name": "tech09_3",
+      "role": "diffuse",
+      "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech09_3.webp",
+      "retainedPre4xSha256": "5c76cb9850c2e99576dcbfdd438ddb72aa973d644cc2bc22ba499634623cecf2",
+      "retainedPre4xDimensions": [
+        768,
+        768
+      ],
+      "retainedPre4xMode": "RGB",
+      "predecessorFile": "newer/textures/tech09_3.webp",
+      "predecessorSha256": "7362b48b6edb7ad3e95d61e4518391da75080b909d8b20d11899958f3cd4cb62",
+      "predecessorBytes": 62150,
+      "predecessorDimensions": [
+        512,
+        512
+      ],
+      "predecessorProvenQuality": 95,
+      "predecessorMethod": 6,
+      "historicalRecord": "tools/texture_sheets/sources/standard-4x/batch1-shareware.json",
+      "historicalSourceCommit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+      "proposedMaster": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech09_3-4x-diffuse.png",
+      "proposedMasterDimensions": [
+        512,
+        512
+      ],
+      "proposedMasterMode": "RGB",
+      "proposedMasterDecodedRgbSha256": "753d3745feaaaf73602e5ab7540003e8c3275082d38640c3affa52018e86d541",
+      "proposedRuntimeFile": "newer/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-diffuse.webp",
+      "proposedQuality": 92,
+      "proposedLossless": false,
+      "proposedMethod": 6,
+      "masterProduced": false,
+      "quality92Encoded": false,
+      "inputAndPredecessorPreservationRequired": true
+    },
+    {
+      "name": "tech09_3",
+      "role": "height",
+      "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech09_3.webp",
+      "retainedPre4xSha256": "39d5af74127f92c605eb16787bd173b529b919f9055a4ffe8ad5fd6f3b5ba5d3",
+      "retainedPre4xDimensions": [
+        768,
+        768
+      ],
+      "retainedPre4xMode": "RGB",
+      "predecessorFile": "newer/textures/normals/tech09_3.webp",
+      "predecessorSha256": "6cc0a3a4c8fb4566dde5c2a4c7acea755421a649eaba4667cec6a550ab1122b4",
+      "predecessorBytes": 77820,
+      "predecessorDimensions": [
+        512,
+        512
+      ],
+      "predecessorProvenQuality": 95,
+      "predecessorMethod": 6,
+      "historicalRecord": "tools/texture_sheets/sources/standard-4x/batch1-shareware.json",
+      "historicalSourceCommit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+      "proposedMaster": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech09_3-4x-height.png",
+      "proposedMasterDimensions": [
+        512,
+        512
+      ],
+      "proposedMasterMode": "RGB",
+      "proposedMasterDecodedRgbSha256": "20c01c3a2cbb888b4524f8fca72f58d44b148a2cb6184c65a10415d51c30ad9d",
+      "proposedRuntimeFile": "newer/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-height.webp",
+      "proposedQuality": 92,
+      "proposedLossless": false,
+      "proposedMethod": 6,
+      "masterProduced": false,
+      "quality92Encoded": false,
+      "inputAndPredecessorPreservationRequired": true,
+      "heightChannelWitness": {
+        "retainedPre4x": {
+          "maxDifferenceFromR": 1,
+          "texelsWithNonidenticalRGB": 6282,
+          "texels": 589824
+        },
+        "plannedPrecompression4xPixels": {
+          "maxDifferenceFromR": 2,
+          "texelsWithNonidenticalRGB": 4607,
+          "texels": 262144
+        },
+        "currentQuality95": {
+          "maxDifferenceFromR": 1,
+          "texelsWithNonidenticalRGB": 2854,
+          "texels": 262144
+        }
+      }
+    },
+    {
+      "name": "tech10_3",
+      "role": "diffuse",
+      "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech10_3.webp",
+      "retainedPre4xSha256": "70ea434c6d416714256889da379ad33b784dc9c6e7d2ff04c633019d194efcb8",
+      "retainedPre4xDimensions": [
+        192,
+        768
+      ],
+      "retainedPre4xMode": "RGB",
+      "predecessorFile": "newer/textures/tech10_3.webp",
+      "predecessorSha256": "e69082ad4e8a59cd9b387357e95bf06470ea0538ce84e8598124b3cb19b8e56c",
+      "predecessorBytes": 17612,
+      "predecessorDimensions": [
+        128,
+        512
+      ],
+      "predecessorProvenQuality": 95,
+      "predecessorMethod": 6,
+      "historicalRecord": "tools/texture_sheets/sources/standard-4x/batch1-shareware.json",
+      "historicalSourceCommit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+      "proposedMaster": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech10_3-4x-diffuse.png",
+      "proposedMasterDimensions": [
+        128,
+        512
+      ],
+      "proposedMasterMode": "RGB",
+      "proposedMasterDecodedRgbSha256": "d13c9738fad4db9298febe6460a38557f427a4bc312c4e6930a0614612fefc71",
+      "proposedRuntimeFile": "newer/textures/official/owner-tech10_3-31e072256a779b27-v1-4x-q92-diffuse.webp",
+      "proposedQuality": 92,
+      "proposedLossless": false,
+      "proposedMethod": 6,
+      "masterProduced": false,
+      "quality92Encoded": false,
+      "inputAndPredecessorPreservationRequired": true
+    },
+    {
+      "name": "tech10_3",
+      "role": "height",
+      "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech10_3.webp",
+      "retainedPre4xSha256": "59d557070192505c9125eaaa9a1ca049c0b950b0278f24f5d9f4be717e1f0590",
+      "retainedPre4xDimensions": [
+        192,
+        768
+      ],
+      "retainedPre4xMode": "RGB",
+      "predecessorFile": "newer/textures/normals/tech10_3.webp",
+      "predecessorSha256": "70a36a6cc59000a32a1669bc1926f144903ed0c2b398117baa4a6eb78b9f134d",
+      "predecessorBytes": 29812,
+      "predecessorDimensions": [
+        128,
+        512
+      ],
+      "predecessorProvenQuality": 95,
+      "predecessorMethod": 6,
+      "historicalRecord": "tools/texture_sheets/sources/standard-4x/batch1-shareware.json",
+      "historicalSourceCommit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+      "proposedMaster": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech10_3-4x-height.png",
+      "proposedMasterDimensions": [
+        128,
+        512
+      ],
+      "proposedMasterMode": "RGB",
+      "proposedMasterDecodedRgbSha256": "764c8f06430bd11f04b9ef49c27bb3789bf51d0823c0f1ed8f01850dbdf8d776",
+      "proposedRuntimeFile": "newer/textures/official/owner-tech10_3-31e072256a779b27-v1-4x-q92-height.webp",
+      "proposedQuality": 92,
+      "proposedLossless": false,
+      "proposedMethod": 6,
+      "masterProduced": false,
+      "quality92Encoded": false,
+      "inputAndPredecessorPreservationRequired": true,
+      "heightChannelWitness": {
+        "retainedPre4x": {
+          "maxDifferenceFromR": 1,
+          "texelsWithNonidenticalRGB": 1601,
+          "texels": 147456
+        },
+        "plannedPrecompression4xPixels": {
+          "maxDifferenceFromR": 1,
+          "texelsWithNonidenticalRGB": 1173,
+          "texels": 65536
+        },
+        "currentQuality95": {
+          "maxDifferenceFromR": 1,
+          "texelsWithNonidenticalRGB": 771,
+          "texels": 65536
+        }
+      }
+    },
+    {
+      "name": "tech11_2",
+      "role": "diffuse",
+      "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech11_2.webp",
+      "retainedPre4xSha256": "b35e3223a4fe6f97598d96f68b97b80c0a8993f57154b80910d96954a3525e3b",
+      "retainedPre4xDimensions": [
+        768,
+        768
+      ],
+      "retainedPre4xMode": "RGB",
+      "predecessorFile": "newer/textures/tech11_2.webp",
+      "predecessorSha256": "f2ff087807812be7c23cfe0f32d2952ca2ec034afc0089004e1f21b2aae669a2",
+      "predecessorBytes": 67190,
+      "predecessorDimensions": [
+        512,
+        512
+      ],
+      "predecessorProvenQuality": 95,
+      "predecessorMethod": 6,
+      "historicalRecord": "tools/texture_sheets/sources/standard-4x/batch1-shareware.json",
+      "historicalSourceCommit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+      "proposedMaster": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech11_2-4x-diffuse.png",
+      "proposedMasterDimensions": [
+        512,
+        512
+      ],
+      "proposedMasterMode": "RGB",
+      "proposedMasterDecodedRgbSha256": "e5d9989a65ce1a05391b1a50dcaaed7ea202e5615dabee1109896bd301a43db3",
+      "proposedRuntimeFile": "newer/textures/official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-diffuse.webp",
+      "proposedQuality": 92,
+      "proposedLossless": false,
+      "proposedMethod": 6,
+      "masterProduced": false,
+      "quality92Encoded": false,
+      "inputAndPredecessorPreservationRequired": true
+    },
+    {
+      "name": "tech11_2",
+      "role": "height",
+      "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech11_2.webp",
+      "retainedPre4xSha256": "b06069c8ec174571e20638ae89891bbdc8f489eaf9d266146789474389481cfd",
+      "retainedPre4xDimensions": [
+        768,
+        768
+      ],
+      "retainedPre4xMode": "RGB",
+      "predecessorFile": "newer/textures/normals/tech11_2.webp",
+      "predecessorSha256": "e0853b1182a88c35e69b4452514892aa0517d897a28fad393f1e09d31738ea97",
+      "predecessorBytes": 74524,
+      "predecessorDimensions": [
+        512,
+        512
+      ],
+      "predecessorProvenQuality": 95,
+      "predecessorMethod": 6,
+      "historicalRecord": "tools/texture_sheets/sources/standard-4x/batch1-shareware.json",
+      "historicalSourceCommit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+      "proposedMaster": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech11_2-4x-height.png",
+      "proposedMasterDimensions": [
+        512,
+        512
+      ],
+      "proposedMasterMode": "RGB",
+      "proposedMasterDecodedRgbSha256": "4a8a84f2fc9412bae13312aa744b37fcd99d657e1333148b76a54f50fffc7e2c",
+      "proposedRuntimeFile": "newer/textures/official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-height.webp",
+      "proposedQuality": 92,
+      "proposedLossless": false,
+      "proposedMethod": 6,
+      "masterProduced": false,
+      "quality92Encoded": false,
+      "inputAndPredecessorPreservationRequired": true,
+      "heightChannelWitness": {
+        "retainedPre4x": {
+          "maxDifferenceFromR": 1,
+          "texelsWithNonidenticalRGB": 5742,
+          "texels": 589824
+        },
+        "plannedPrecompression4xPixels": {
+          "maxDifferenceFromR": 2,
+          "texelsWithNonidenticalRGB": 4464,
+          "texels": 262144
+        },
+        "currentQuality95": {
+          "maxDifferenceFromR": 1,
+          "texelsWithNonidenticalRGB": 2604,
+          "texels": 262144
+        }
+      }
+    }
+  ],
+  "productionRecipe": {
+    "sequence": [
+      "Read exact hash-bound retainedpre4x source WebP for each role; never use current95 derivative as encoder input.",
+      "Decode to RGB and Lanczos-resize once to exact native W/H\u00d74, using the same mode/filter/target as standardise_4x.py before its historical95 encode.",
+      "Save new lossless RGB PNG master under source catalogue; pin PNG bytes plus independently reproduced decoded RGB hash. No new artwork, source fitting, seam editing or height crafting.",
+      "Call existing finish_runtime_skin.py::encoded(PNGmaster,target) unchanged: RGB, WebP quality92, losslessFalse, method6. Preserve all originals, historical95 bytes and immutable ledgers.",
+      "Record sourcepre4x hash, exact old95 predecessor hash, masterPNG hash/decoded pixels, output hash/decodedRGBA/bytes, native source/allowlist/uses, before-index snapshot/hash and old/new complete descriptors separately.",
+      "Independently review full/half/quarter native similarity, actualXY repeats and two CPU lights using actual decodedR\u2192R_NormalsFromCraftedHeight; parent GPU review follows. Install only reviewed12versioned files and change6texture filenames+6normal.file fields+version."
+    ],
+    "pureEncoder": "tools/texture_sheets/finish_runtime_skin.py::encoded",
+    "authoringReuse": "Use normalize_owner_pair.py preflight/fresh-output-root/never-overwrite/pending-write pattern and the same pure encoder. A small source-specific authoring recipe may create the12PNGmasters; no parallel runtime API or engine change. Do not invoke finish_runtime_skin() installer or craft_normals() for this format-only tranche.",
+    "proposedReceipt": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-twelve-q92-v1.json",
+    "beforeSnapshot": "Capture exact current index immediately before authorized installation; plan currently pins f8.",
+    "newMapCount": 12,
+    "plannedMasterByteHashes": "Unavailable until authorized master production; only expected decodedRGB hashes computed now.",
+    "sourceQualityLimit": "Retainedpre4x sources are already-compressed WebPs of unspecified earlier quality, not newly claimed lossless originals. Lossless PNG intermediates preserve their decoded resampled pixels and avoid an unnecessary current95 transcode."
+  },
+  "heightSemantics": {
+    "runtimeContract": "r_newertextures.js selects ordinary normals[name], reads decoded height R into Float32Array when no normalFile=datafile; binds strength unchanged and cap=descriptor.cap||1.1. R_NormalMapFor and NormalGenerate call actual R_NormalsFromCraftedHeight using same W/H/strength/cap.",
+    "unchangedDescriptors": "All6remain height-only. Preserve missing cap on5descriptors; tech08_1 keeps explicit1.1. No normalFile, normalChannels, dataFile, derive, edgeSource, gloss, displacement or glass override added.",
+    "scalarPolicy": "FullRGB source/master pixels retained; runtime decodedR is scalar authority. All retainedheight sources already have max1RGB differences. Do not force R=G=B, grayscale-convert, recraft height or retune strength/cap to pass tests.",
+    "testsMustNotBlindlyReuse": "Owner4 public retained-master strictgray witness applies only to2losslessgrayscale donors. Tech6 need exact decodedRGB master provenance instead; unusedG/B are never runtime height authority. No blanketchannel tolerance introduced.",
+    "normalVerification": "Use actual renderer R_NormalsFromCraftedHeight with decodedR float32 scalar and unchanged effectivecap1.1. Compare foreground+prepared-generator bytes, samplerUVs, source dimensions and content cache key; compare old95/new92 angular changes visually under two lights rather than assuming invisible."
+  },
+  "minimalTestSuccessors": [
+    {
+      "file": "tests/owner_texture_q92_standard.js",
+      "locations": [
+        "fixed ownerQ92Receipt/ownerQ92Maps/ownerQ92Bindings remain four-map/four-binding",
+        "ownerQ92Baseline",
+        "ownerQ92Previous",
+        "ownerQ92Binding"
+      ],
+      "change": "Add separately hash-validated tech12 receipt within this existing bounded adapter. Keep fixed owner4 exports/validation unchanged; baseline/previous/binding lookups may compose the six explicittech successors. Validate old95 predecessor hashes separately from new PNGmaster hashes; masterSha256 must never be mislabeled as old95 digest. Do not route unrelated historical registrations through a blanket override.",
+      "guards": "Only six fixed names+keys; exact old/current full descriptor/source allowlist; only filenames change; exact12outputs+4x/Q92/role; no new runtime loader."
+    },
+    {
+      "file": "tests/official_texture_owner_q92_test.js",
+      "locations": [
+        "native(entry,use)",
+        "preserveExistingOwnerState/current expected snapshot",
+        "existingfixture and four public cases"
+      ],
+      "change": "Reuse current public fixture/PAK/parser/normal/cache controls; native dimensions from explicit entry.nativeDimensions with existing64x64owner requirement preserved. Add four boundedtech cases in this same suite (not generated95 art aggregation): source/bytecodec/entirebefore-after delta; all61PAKuses; sixheight-only normal routes with rectangular dimensions; unknown/case/Classic. Compose tech overlay into owner4 retained-before preservation so old6recipes are validated as explicit successors rather than skipped. Retain existingfour owner tests and negative mutation probes unchanged in purpose.",
+      "heightGuard": "For tech, assert exact source\u2192LanczosRGB\u2192PNG master and byteencoder92 replay, decodedR scalar and effectivecap; do not require retainedtech RGBgrayscale. Keep owner4 strict retainedgray checks."
+    },
+    {
+      "file": "tests/official_texture_registration_test.js",
+      "locations": [
+        "fixedbaseline preservation loop calling ownerQ92Baseline",
+        "donor previous/current comparison"
+      ],
+      "change": "Existing first45baseline sees allsix as pre-existing names. Compose the six exact hash-bound successor expectations through the same adapter; keep immutable a28d939 ordinary baseline and36997f2 glass snapshot/1003files unchanged. None of the45entries or43donors uses these six materials, so no new alias bypass/registration countchange is justified."
+    },
+    {
+      "file": "tests/level_texture_assets_test.py",
+      "locations": [
+        "test_native_period_registration_and_unchanged_unselected_entries loop over baseline normals outside NAMES"
+      ],
+      "change": "This old8e4fefc baseline contains all6tech normal descriptors, so filename successors would fail. Apply a narrow receipt/hash-bound expected normal-file overlay for ONLY6validatedtech names in that loop. Keep26NAMES, allatlas/phase/semantic/grayscale checks, historical8e4fefc\u21929a71a46 exactchangedpath set and twoowner lossless witnesses unchanged."
+    },
+    {
+      "file": "tests/standard_4x_records_contract_test.mjs",
+      "locations": [
+        "validateResult historicalafter hash path"
+      ],
+      "change": "No source change needed: retain original12runtime95files exactly at their historical paths, so batch1 before/after file gates continue to verify actual originals. Do not mutate ledgerafter hashes, relabel95intent as92, or add a native-skin refit bypass for worldtextures."
+    },
+    {
+      "file": "tests/texture_seams_test.py",
+      "locations": [
+        "test_no_clear_line_at_any_mended_texture_edge",
+        "test_repairs_change_only_the_rows_they_record",
+        "historicalBASE=d780a96 catalogue/changedpath assertions"
+      ],
+      "change": "Read-only constraint noted: tech04_3/07_2/08_1/10_3 have historical repairs; new selectedfiles need actualedge review. Preserve original95paths and seam receipts. Its old globalcatalogue/version-only assertions predate many already-landedcampaigns; do not claim a current pass or silently widen those assertions in this tranche. If executed as required gate, prove baseline failures separately and implement only explicitly validated historical-successor adaptation, not a broadchangedfile exemption."
+    }
+  ],
+  "requiredQualification": [
+    "Independent direct-source producer replay for all12maps and separatePNGmaster decodedRGB replay; quality92 intent+actualVP8+4xsize+output hashes. Full retainedold95/pre4x/canonicalproducer/standardrecords custody.",
+    "Exact six nativekeys and every61actualPAK occurrence including installedextra/unused slots (label scope), palette/key/RGBA/map hashes, 2trim dimensions and half/quarter widths.",
+    "All12new maps reach loader and all6derived normal/cache/UV/Classic routes; no authorednormal/scalar override; unknownmutant and uppercase fail withoutrequests.",
+    "Retain previous owner4/historical45/Python3/generated7all95+steelmath tests, all standard4x contract cases and pack5. No weakening oldglass/owner/unknown controls.",
+    "Existingcollector/per-game helper adds12selectedformat maps (not newphotographicartworks), checks all491selectedcompanionfiles under current snapshot and everyindexeduserPackChain. All6should claim shareware. Rebuild gameindex ifneeded and require no logicalnewmaterial-name/model/BSP/library changes.",
+    "ActualGPU/combinedreview/fullnormalhook/Devmerge and owneracceptance remain later parentsteps; uninstalledauthoring does not qualify the runtime."
+  ],
+  "historicalBaselineDescriptors": {
+    "8e4fefc": {
+      "tech04_3": {
+        "file": "tech04_3.webp",
+        "normal": {
+          "file": "normals/tech04_3.webp",
+          "strength": 1.15
+        },
+        "sources": null
+      },
+      "tech07_2": {
+        "file": "tech07_2.webp",
+        "normal": {
+          "file": "normals/tech07_2.webp",
+          "strength": 1.15
+        },
+        "sources": null
+      },
+      "tech08_1": {
+        "file": "tech08_1.webp",
+        "normal": {
+          "file": "normals/tech08_1.webp",
+          "strength": 1.15,
+          "cap": 1.1
+        },
+        "sources": null
+      },
+      "tech09_3": {
+        "file": "tech09_3.webp",
+        "normal": {
+          "file": "normals/tech09_3.webp",
+          "strength": 1.15
+        },
+        "sources": null
+      },
+      "tech10_3": {
+        "file": "tech10_3.webp",
+        "normal": {
+          "file": "normals/tech10_3.webp",
+          "strength": 1.15
+        },
+        "sources": null
+      },
+      "tech11_2": {
+        "file": "tech11_2.webp",
+        "normal": {
+          "file": "normals/tech11_2.webp",
+          "strength": 1.15
+        },
+        "sources": null
+      }
+    },
+    "a28d939": {
+      "tech04_3": {
+        "file": "tech04_3.webp",
+        "normal": {
+          "file": "normals/tech04_3.webp",
+          "strength": 1.15
+        },
+        "sources": [
+          "16x128:a479c5cd7f65b1bf"
+        ]
+      },
+      "tech07_2": {
+        "file": "tech07_2.webp",
+        "normal": {
+          "file": "normals/tech07_2.webp",
+          "strength": 1.15
+        },
+        "sources": [
+          "128x128:5d03decdcf531707"
+        ]
+      },
+      "tech08_1": {
+        "file": "tech08_1.webp",
+        "normal": {
+          "file": "normals/tech08_1.webp",
+          "strength": 1.15,
+          "cap": 1.1
+        },
+        "sources": [
+          "128x128:ba7e0769a9a0ce1b"
+        ]
+      },
+      "tech09_3": {
+        "file": "tech09_3.webp",
+        "normal": {
+          "file": "normals/tech09_3.webp",
+          "strength": 1.15
+        },
+        "sources": [
+          "128x128:8ff008acef40a86e"
+        ]
+      },
+      "tech10_3": {
+        "file": "tech10_3.webp",
+        "normal": {
+          "file": "normals/tech10_3.webp",
+          "strength": 1.15
+        },
+        "sources": [
+          "32x128:31e072256a779b27"
+        ]
+      },
+      "tech11_2": {
+        "file": "tech11_2.webp",
+        "normal": {
+          "file": "normals/tech11_2.webp",
+          "strength": 1.15
+        },
+        "sources": [
+          "128x128:f56a5604372ecc96"
+        ]
+      }
+    }
+  },
+  "retainedUnboundPayload": {
+    "predecessorQuality95Files": [
+      "newer/textures/normals/tech04_3.webp",
+      "newer/textures/normals/tech07_2.webp",
+      "newer/textures/normals/tech08_1.webp",
+      "newer/textures/normals/tech09_3.webp",
+      "newer/textures/normals/tech10_3.webp",
+      "newer/textures/normals/tech11_2.webp",
+      "newer/textures/tech04_3.webp",
+      "newer/textures/tech07_2.webp",
+      "newer/textures/tech08_1.webp",
+      "newer/textures/tech09_3.webp",
+      "newer/textures/tech10_3.webp",
+      "newer/textures/tech11_2.webp"
+    ],
+    "retainedBytes": 697324,
+    "shippingRule": "collectAssets recursively walks newer/textures, excluding sources/candidates but not these12old paths. Rebinding alone leaves all12quality95files shipped in web/desktop. PackClassifier would treat unclaimed retainedpaths as core fallback, while newly bound12files belong toshareware.",
+    "selectedQualificationOnly": "Current475generated+4owner=479selectedQ92maps becomes491after successfultechqualification; generatedart95/nativebindings98 stayunchanged, formatbindings become10andformatmaps16. A frozen-only counterfactual would add12collectedfiles: web3485/desktop5126, subject to actualcollectorcheck.",
+    "separateNextAction": "Keep oldpayload shipping visible as an unclosed all-shipped-maps92 obligation. A later explicitly reviewed retention/collector policy may exclude or relocate immutablehistorical outputs while preserving originalpaths/contracts via validated successor design. No deletion/move/blanketunbound exclusion is proposed or authorized here."
+  },
+  "inputs": [
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-owner-q92-first-tranche-plan.json",
+      "sha256": "a6fdf364d5f9ff92d297ebab20132b068701a0134ac555accbf624814136cf48"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-twelve-tech-q95-replay.json",
+      "sha256": "f2f4bc76d3e491c4de25dd45d59517c7f2d30b3ce8b15490f6c21c80603ea8c6"
+    },
+    {
+      "file": "/private/tmp/quaked-oct18-all95-audit/inventory.json",
+      "sha256": "6ed0c269c83453427f714f5992588f0fc731e7f304b922e34c6727cf33c1185a"
+    },
+    {
+      "file": "/private/tmp/quaked-oct18-all95-audit/originals/128x128-5d03decdcf531707.rgba",
+      "sha256": "4d18e67867ff42e592e013a5d7b2f06df6d0226b5d15118c371579db1faf3ea9"
+    },
+    {
+      "file": "/private/tmp/quaked-oct18-all95-audit/originals/128x128-8ff008acef40a86e.rgba",
+      "sha256": "743a768469b7f5a33dab25b22a8a19e8d8b7edcfabf5913d4f48a60a6ac6c03d"
+    },
+    {
+      "file": "/private/tmp/quaked-oct18-all95-audit/originals/128x128-ba7e0769a9a0ce1b.rgba",
+      "sha256": "d4e3fd411036b324fcb1633ced87ffe6a7fdac25c348f5b8266c9d99e75710a5"
+    },
+    {
+      "file": "/private/tmp/quaked-oct18-all95-audit/originals/128x128-f56a5604372ecc96.rgba",
+      "sha256": "392cc3507e7f61f265a8ed473e72e2153d91d3b5005bd4660e53ed2d6d6966f3"
+    },
+    {
+      "file": "/private/tmp/quaked-oct18-all95-audit/originals/16x128-a479c5cd7f65b1bf.rgba",
+      "sha256": "7e2fbfb4aee270a5788c2df23b45d048f6cb62162bc45f4bc113a1b6704d2508"
+    },
+    {
+      "file": "/private/tmp/quaked-oct18-all95-audit/originals/32x128-31e072256a779b27.rgba",
+      "sha256": "6951466dddd621bcbc17affa9bee6d11db0695c4ef56577ee89288d6b8c5fafa"
+    },
+    {
+      "file": "newer/packs/games.json",
+      "sha256": "4a79876d345fb5668eb20918495d39bdf9af24681d4064c859e71a353a86a8c1"
+    },
+    {
+      "file": "newer/textures/index.json",
+      "sha256": "f8da85a8730aadfc34b2199b1d91fdf21ab54bcf774e1c21b73753871633ad9c"
+    },
+    {
+      "file": "newer/textures/normals/tech04_3.webp",
+      "sha256": "8f8bc60e3ca359c90fbaa5df481006a8b0d3827503c05d18be699cbc46649e20"
+    },
+    {
+      "file": "newer/textures/normals/tech07_2.webp",
+      "sha256": "4486dcfbbb0bf955eb7b014e8bf528b0b0a6e6770abc83edc702caa254118f05"
+    },
+    {
+      "file": "newer/textures/normals/tech08_1.webp",
+      "sha256": "a3aa6e8ec1a8b9c5e109dd8b05dea5629870b24e0b90760ad42caba97722ce7a"
+    },
+    {
+      "file": "newer/textures/normals/tech09_3.webp",
+      "sha256": "6cc0a3a4c8fb4566dde5c2a4c7acea755421a649eaba4667cec6a550ab1122b4"
+    },
+    {
+      "file": "newer/textures/normals/tech10_3.webp",
+      "sha256": "70a36a6cc59000a32a1669bc1926f144903ed0c2b398117baa4a6eb78b9f134d"
+    },
+    {
+      "file": "newer/textures/normals/tech11_2.webp",
+      "sha256": "e0853b1182a88c35e69b4452514892aa0517d897a28fad393f1e09d31738ea97"
+    },
+    {
+      "file": "newer/textures/tech04_3.webp",
+      "sha256": "65b463d19c2de7397242f1a77bf130abbf9802a57a94f9db115503b043fac3cc"
+    },
+    {
+      "file": "newer/textures/tech07_2.webp",
+      "sha256": "d0ad3b6262891ad41028c87de42105e912df9dd12dda64c5d89b3c70aa43d270"
+    },
+    {
+      "file": "newer/textures/tech08_1.webp",
+      "sha256": "ead6026af77d57c09b970bd1f8a52a4f4b7ceb3636c16a56b70d75ca1c098b0b"
+    },
+    {
+      "file": "newer/textures/tech09_3.webp",
+      "sha256": "7362b48b6edb7ad3e95d61e4518391da75080b909d8b20d11899958f3cd4cb62"
+    },
+    {
+      "file": "newer/textures/tech10_3.webp",
+      "sha256": "e69082ad4e8a59cd9b387357e95bf06470ea0538ce84e8598124b3cb19b8e56c"
+    },
+    {
+      "file": "newer/textures/tech11_2.webp",
+      "sha256": "f2ff087807812be7c23cfe0f32d2952ca2ec034afc0089004e1f21b2aae669a2"
+    },
+    {
+      "file": "src/newer/assets/normal_prepare.js",
+      "sha256": "e543d48b5d4e9c27e5c4d28984197a7286237f9d84f3ef2050f3edcab75590f9"
+    },
+    {
+      "file": "src/newer/render/gl_normals.js",
+      "sha256": "f7a7d66763b95e76a299ccea6e57884793b0db45f7ca10a7d397ca788d88d109"
+    },
+    {
+      "file": "src/newer/render/normal_math.js",
+      "sha256": "303390e4216a26d6aaa2ceb47b841484a9b5f6b6dd88118922f70dc1682a7125"
+    },
+    {
+      "file": "src/newer/render/r_newertextures.js",
+      "sha256": "5aabea2d4c5e713ae1c81cf4e606ef3b387ce98bcca0b6e293719a7cded32246"
+    },
+    {
+      "file": "tests/level_texture_assets_test.py",
+      "sha256": "74148f55a599987f13d5de3aa57ed314b4504cb19b017b9f4e692f361ebaf4b1"
+    },
+    {
+      "file": "tests/official_texture_owner_q92_test.js",
+      "sha256": "22d2102cea22953a241425e2c6ff92e68977e37b89f1650336510e471687e571"
+    },
+    {
+      "file": "tests/official_texture_registration_test.js",
+      "sha256": "ec5d497952cb7365c546b7008588c06e3b4afe0ccc244ae4808a63981aec7fd5"
+    },
+    {
+      "file": "tests/official_texture_standard.js",
+      "sha256": "3bdd111ee1987c310bf6221e9763242b16f104243a1059cd8b143fe95db8db26"
+    },
+    {
+      "file": "tests/owner_texture_q92_standard.js",
+      "sha256": "4ebe5b3a65a1fce1eda12426e28fca38e4747d30e954f2577a895f1f39ade158"
+    },
+    {
+      "file": "tests/standard_4x_records_contract_test.mjs",
+      "sha256": "f00ff0277866209b7b483d48d728b06282f063ec02b3e8f3679c69c21d23cc8e"
+    },
+    {
+      "file": "tests/texture_seams_test.py",
+      "sha256": "dae6b8f7465135167474f92b32baa7493b8a214458e9570ed4a27c958d3a522c"
+    },
+    {
+      "file": "tools/distribution/manifest.mjs",
+      "sha256": "b3607639a3cb865c483ac6aeb4219a9010bdf9d14827f1639a22723d680489ff"
+    },
+    {
+      "file": "tools/distribution/packs.mjs",
+      "sha256": "b99254a6ebd51600930c6e7340444900c0a1ec1139dfea30bc080db0cca77ea3"
+    },
+    {
+      "file": "tools/texture_sheets/finish_runtime_skin.py",
+      "sha256": "9f5f0fccd3207c4cac58b4c3db12d949b64ad381838cdfacf88c0f30106c0c34"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech04_3.webp",
+      "sha256": "43ba54d680bca36ecc8e47436a9dd470be8d9b62cfe625978547dabe20ac0988"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech07_2.webp",
+      "sha256": "bc85af99ae792dfdf50e7a955d984c4f99c00dd0c0c2e07bc8f7004a5c48d2b2"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech08_1.webp",
+      "sha256": "ca44d13c7342edf163f40ddf65b657170e7354240ce311f9f59bebc4305c7792"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech09_3.webp",
+      "sha256": "5c76cb9850c2e99576dcbfdd438ddb72aa973d644cc2bc22ba499634623cecf2"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech10_3.webp",
+      "sha256": "70ea434c6d416714256889da379ad33b784dc9c6e7d2ff04c633019d194efcb8"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech11_2.webp",
+      "sha256": "b35e3223a4fe6f97598d96f68b97b80c0a8993f57154b80910d96954a3525e3b"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech04_3.webp",
+      "sha256": "31577af5a6fcca735941313cc5cf5c7d312456c95183bb7afde36764c5bd5c1c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech07_2.webp",
+      "sha256": "93ea9d4f8dd74921120194d1184709f1253654e6f4f82c7ccb4182d28f99fb04"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech08_1.webp",
+      "sha256": "caf9ce0d34eeaf6c1f324ae6df3f272617f30131fb74d995c38b7befb85f3880"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech09_3.webp",
+      "sha256": "39d5af74127f92c605eb16787bd173b529b919f9055a4ffe8ad5fd6f3b5ba5d3"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech10_3.webp",
+      "sha256": "59d557070192505c9125eaaa9a1ca049c0b950b0278f24f5d9f4be717e1f0590"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech11_2.webp",
+      "sha256": "b06069c8ec174571e20638ae89891bbdc8f489eaf9d266146789474389481cfd"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/upstream-legacy-tech-4x.json",
+      "sha256": "38d0758c936f40d2aaf03f3a0c9db53f993bff9c2669269cd3f2c6dd571372b1"
+    },
+    {
+      "file": "tools/texture_sheets/sources/standard-4x/batch1-shareware.json",
+      "sha256": "e5800d70944bf22fe2f6acea270b394547a16602ce68777fa1e31ab3a2a77e3b"
+    },
+    {
+      "file": "tools/texture_sheets/standardise_4x.py",
+      "sha256": "323573f16a29f14b0adad629774723a2c4ada06ee3ea0cf4c978e2a1f9d79776"
+    }
+  ],
+  "preservation": "All read index/source/master/old95/producer bytes verified unchanged again before writing this plan; no92outputs orPNGmasters exist from this helper.",
+  "nextOwner": "Parent completes frozen combined11 gate/review/Devpublication, then may authorize bounded source-based12map authoring/review. Public helper prepares precise maintained-test successors only when instructed."
+}

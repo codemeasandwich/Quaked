@@ -1,0 +1,55 @@
+{
+  "method": "photographic",
+  "factor": 4,
+  "verticalLandmarks": null,
+  "colorStrength": 1.0,
+  "fieldSigma": 2.0,
+  "edgeAnchor": false,
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    64
+  ],
+  "distanceMeanMaxError": 52.5,
+  "distanceMeanMAE": 7.049161275227864,
+  "donorDistanceMAE": 8.731990814208984,
+  "newClippedChannelFraction": 0.0014139811197916667,
+  "donorContourCorrelation": 0.9996448945388894,
+  "sourceMean": [
+    43.23681640625,
+    33.439208984375,
+    25.49359130859375
+  ],
+  "outputMean": [
+    43.24273681640625,
+    33.44001007080078,
+    25.499412536621094
+  ],
+  "donorBoundaries": {
+    "wrap_x_mean": 12.106119791666668,
+    "wrap_y_mean": 12.553385416666666,
+    "interior_x_mean": 8.117899696265491,
+    "interior_y_mean": 9.737208496412263
+  },
+  "boundaries": {
+    "wrap_x_mean": 12.095703125,
+    "wrap_y_mean": 12.549479166666666,
+    "interior_x_mean": 8.116166982632093,
+    "interior_y_mean": 9.73224223336595
+  },
+  "passedDistanceCheck": null,
+  "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Stone_00.png",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Stone_00-generated-v1.png",
+  "output": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-v1-4x.png",
+  "originalSha256": "a9ec496d1ff976cd24f44e68d89fee08f62bfb80362edc0957d39ae11ec83856",
+  "generatedSha256": "a0642793a8414b0afadc434e00c742343419e34519fcc23c03e3da7220f4b443",
+  "outputSha256": "9b04b33ab4369deac2e5e762da55e207db214d7eab9bbceb5c42ccb58ef4b0bd",
+  "outputDimensions": [
+    512,
+    512
+  ],
+  "toolSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+  "landmarkFile": null,
+  "landmarkSha256": null
+}

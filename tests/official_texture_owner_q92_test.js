@@ -16,7 +16,7 @@ import {R_NormalMapFor,R_NormalsFromCraftedHeight} from '../src/newer/render/gl_
 import {NormalInputs,NormalInputKey,NormalGenerate} from '../src/newer/assets/normal_prepare.js';
 import {GAME_CATALOGUE_GAMES} from '../src/engine/common/game_catalogue.js';
 import {memberSearch,readMember,sha256} from '../tools/pak_members.mjs';
-import {ownerQ92Receipt,ownerQ92ReceiptPath,ownerQ92Before,ownerQ92Bindings,ownerQ92Maps,ownerQ92ImageSize} from './owner_texture_q92_standard.js';
+import {ownerQ92Receipt,ownerQ92ReceiptPath,ownerQ92Before,ownerQ92Bindings,ownerQ92Maps,ownerQ92ImageSize,ownerQ92Baseline,techQ92ReceiptPath,techQ92Plan,techQ92Before,techQ92Bindings,techQ92Maps} from './owner_texture_q92_standard.js';
 const root=resolve(import.meta.dirname,'..'),read=p=>readFileSync(resolve(root,p));
 const planPath='tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-owner-q92-first-tranche-plan.json';
 const plan=JSON.parse(read(planPath)).firstTranche,indexBytes=read('newer/textures/index.json'),index=JSON.parse(indexBytes);
@@ -30,7 +30,7 @@ async function native(entry,use){
  if(!maps.has(key))maps.set(key,readMember(map));const bsp=await maps.get(key);check(bsp.length>=124&&[29,0x32505342,0x42535032].includes(bsp.readInt32LE(0)),'supported BSP');
  const start=bsp.readInt32LE(20),length=bsp.readInt32LE(24);check(start>=124&&length>=4&&start+length<=bsp.length,'bounded texture lump');const count=bsp.readInt32LE(start);check(count>0&&count<=4096&&4+count*4<=length&&use.slot>=0&&use.slot<count,'bounded slot');
  const offset=bsp.readInt32LE(start+4+use.slot*4);check(offset>=4+count*4&&offset+40<=length,'bounded miptex');const at=start+offset,name=bsp.subarray(at,at+16).toString('latin1').split('\0')[0],w=bsp.readUInt32LE(at+16),h=bsp.readUInt32LE(at+20),mip=bsp.readUInt32LE(at+24);
- same(name,entry.name,'actual native name');equal([w,h],[64,64],'actual native owner dimensions');check(mip>=40&&offset+mip+w*h<=length,'bounded native pixels');const pixels=bsp.subarray(at+mip,at+mip+w*h);
+ same(name,entry.name,'actual native name');equal([w,h],entry.nativeDimensions??[64,64],'actual explicit native dimensions');check(mip>=40&&offset+mip+w*h<=length,'bounded native pixels');const pixels=bsp.subarray(at+mip,at+mip+w*h);
  VID_SetPalette(game.palette);vid.fullbright=224;const texture=GL_LoadTexture(name,w,h,pixels,true,false,true),rgba=texture.image.data.slice(),fb=texture._fullbright?.image.data;if(fb)for(let p=0;p<rgba.length;p+=4)if(fb[p+3])rgba.set(fb.subarray(p,p+3),p);
  const expected=new Uint8Array(w*h*4);for(let i=0;i<pixels.length;i++)expected.set([...game.palette.subarray(pixels[i]*3,pixels[i]*3+3),255],i*4);bytes(rgba,expected,'actual GL palette/fullbright reconstruction');same(R_GlassTextureKey(texture),entry.nativeKey,'actual owner source key');same(sha256(rgba),entry.sourcePixelSha256,'actual owner source pixels');
  return{texture,rgba,source:{name,game:use.game,map:use.map,slot:use.slot,pack:map.path,mapSha256:sha256(bsp),palettePack:game.palettePack,paletteSha256:sha256(game.palette),nativeKey:entry.nativeKey,nativePixelSha256:sha256(rgba)}};
@@ -55,6 +55,7 @@ function preserveExistingOwnerState(current,expected){
 }
 Deno.test('four owner Q92 successors preserve complete predecessor metadata and byte-reproduce from retained masters',()=>{
  const expected=structuredClone(ownerQ92Before);check(Number.isSafeInteger(index.version)&&index.version>expected.version,'version advances');expected.version=index.version;
+ for(const field of['textures','normals'])for(const[name,previous]of Object.entries(expected[field]))expected[field][name]=ownerQ92Baseline(field,name,previous);
  for(const e of ownerQ92Bindings){expected.textures[e.name]=e.current.file;expected.normals[e.name]=e.current.normal;equal(index.sources[e.name],e.sourceAllowlist,'source guard unchanged');check(!index.ordinaryVariants?.[e.name]?.[e.nativeKey]&&!index.glass?.[e.name],'no route shadow for this native source');}
  if(index.version===ownerQ92Before.version+1)equal(index,expected,'first install changes only four diffuse/four normal-file references and version');
  else preserveExistingOwnerState(index,expected);
@@ -94,3 +95,39 @@ Deno.test('unknown owner pixels and wrong-case names fall back while Classic req
  }
  same(f.requests.length,0,'no derivative loads for unknown/case/Classic controls');
 }));
+
+
+// One bounded additional case uses the existing fixture/parser/renderer; the
+// original four owner cases and their lossless-gray witness remain unchanged.
+Deno.test('six legacy tech Q92 successors preserve direct-source RGB masters, all61 PAK uses and height-only public behavior',async()=>{
+ const expected=structuredClone(techQ92Before);check(Number.isSafeInteger(index.version)&&index.version>expected.version,'tech successor advances version');expected.version=index.version;
+ for(const e of techQ92Bindings){expected.textures[e.name]=e.current.file;expected.normals[e.name]=e.current.normal;equal(index.sources[e.name],e.sourceAllowlist,'tech exact source guard unchanged');check(!index.ordinaryVariants?.[e.name]&&!index.glass?.[e.name],'tech no route shadow');}
+ if(index.version===techQ92Before.version+1)equal(index,expected,'tech first install changes only six diffuse and six height filenames plus version');else preserveExistingOwnerState(index,expected);
+ const resampleEncode="from PIL import Image; import sys,io,hashlib\ns=Image.open(sys.argv[1]);assert s.mode=='RGB';p=Image.open(sys.argv[2]);assert p.format=='PNG' and p.mode=='RGB';expected=s.resize((int(sys.argv[3]),int(sys.argv[4])),Image.Resampling.LANCZOS);assert p.size==expected.size and p.tobytes()==expected.tobytes();assert hashlib.sha256(p.tobytes()).hexdigest()==sys.argv[5];b=io.BytesIO();p.convert('RGB').save(b,'WEBP',quality=92,lossless=False,method=6);sys.stdout.buffer.write(b.getvalue())";
+ for(const m of techQ92Maps)bytes(execFileSync('/usr/bin/python3',['-c',resampleEncode,resolve(root,m.retainedPre4xFile),resolve(root,m.master),...m.dimensions.map(String),m.masterDecodedRgbSha256]),read(m.file),'independent direct-source PNG pixels and Q92 bytes '+m.name+'/'+m.role);
+ const sources=[];for(const e of techQ92Bindings){const p=techQ92Plan.bindings.find(p=>p.name===e.name);check(p,'planned real tech uses');for(const use of p.officialObservedUses){const actual=await native(e,use);try{sources.push(actual.source);}finally{dispose(actual.texture);}}}same(sources.length,61,'all61 recorded tech source occurrences');
+ await fixture(async f=>{
+  const installed=[];try{await f.api.R_NewerTexturesPrefetch([]);for(const e of techQ92Bindings){
+   const p=techQ92Plan.bindings.find(p=>p.name===e.name),actual=await native(e,p.officialObservedUses[0]),t=actual.texture,original=t.image,[w,h]=e.target;installed.push([t,original]);t.offset.set(.25,.5);t.repeat.set(2,3);
+   f.api.R_NewerTextureUpgrade(e.name,t);await settled(f.api,e.name,t);same(t.userData.newerPicture,true,'tech public upgrade');
+   const diffuse=await f.decode('newer/textures/'+e.current.file),height=await f.decode('newer/textures/'+e.current.normal.file),old=await f.decode('newer/textures/'+e.previous.normal.file),field=t.userData.newerHeight;
+   equal([diffuse.width,diffuse.height,height.width,height.height],[w,h,w,h],'tech exact rectangular or square4x dimensions');same(field.file,e.current.normal.file,'tech own height file');same(field.strength,e.previous.normal.strength,'tech strength preserved');same(field.cap,e.previous.normal.cap||1.1,'tech effective cap preserved');same(field.authoredNormal,undefined,'tech derives normals');same(field.dataFile,undefined,'tech no scalar override');same(field.edgeSource,undefined,'tech no edge override');same(field.derive,undefined,'tech no alternate height recipe');
+   const glow=t._fullbright?.image.data;for(let i=0;i<diffuse.data.length;i+=4)for(let c=0;c<3;c++)same(t.image.data[i+c]+(glow?.[i+c]||0),diffuse.data[i+c],'tech decoded diffuse/fullbright conservation');
+   for(let i=0;i<field.data.length;i++)same(field.data[i],Math.fround(height.data[i*4]/255),'tech decoded R is scalar authority');
+   const lighting=R_NormalMapFor(t),input=NormalInputs(t),generated=NormalGenerate(input);same(input.authored,null,'tech no authored normal');bytes(lighting.image.data,R_NormalsFromCraftedHeight(field.data,w,h,field.strength,field.cap),'tech foreground actual normal math');bytes(lighting.image.data,generated.pixels,'tech prepared generator agrees');equal(lighting.offset.toArray(),t.offset.toArray(),'tech normal offset aligned');
+   const oldScalar=Float32Array.from({length:w*h},(_,i)=>old.data[i*4]/255);if(!Buffer.from(oldScalar.buffer).equals(Buffer.from(input.scalar.buffer)))check(await NormalInputKey({...input,scalar:oldScalar})!==await NormalInputKey(input),'tech changed scalar changes content cache key');
+   equal(t.offset.toArray(),[.25,.5],'tech UV offset');equal(t.repeat.toArray(),[2,3],'tech native period');same(t.wrapS,THREE.RepeatWrapping,'tech repeatS');same(t.wrapT,THREE.RepeatWrapping,'tech repeatT');bytes(f.api.R_ClassicTexture(t).image.data,original.data,'tech native Classic pixels');
+   for(const file of[e.current.file,e.current.normal.file])check(f.requests.includes('newer/textures/'+file+'?v='+index.version),'tech versioned image request');
+  }same(f.requests.length,12,'exactly twelve tech image requests');f.api.R_NewerTexturesRevert();for(const[t,original]of installed){same(t.image,original,'tech revert native image');same(t.userData.newerHeight,undefined,'tech revert relief');}
+  }finally{for(const[t]of installed)dispose(t);}
+ });
+ await fixture(async f=>{
+  for(const e of techQ92Bindings){const p=techQ92Plan.bindings.find(p=>p.name===e.name),actual=await native(e,p.officialObservedUses[0]),pixels=actual.rgba.slice();pixels[0]^=1;const unknown=new THREE.DataTexture(pixels,...e.nativeDimensions),original=unknown.image;
+   try{check(R_GlassTextureKey(unknown)!==e.nativeKey,'tech unknown key differs');f.api.R_NewerTextureUpgrade(e.name,unknown);await settled(f.api,e.name,unknown);same(unknown.userData.newerFallback,true,'tech unknown native rejected');same(unknown.image,original,'tech unknown stays native');same(unknown.userData.newerHeight,undefined,'tech unknown no relief');
+    const wrong=e.name.toUpperCase();for(const section of['textures','normals','sources','ordinaryVariants','glass'])same(index[section]?.[wrong],undefined,'tech wrongcase has no selector');const nativeImage=actual.texture.image;f.api.R_NewerTextureUpgrade(wrong,actual.texture);await settled(f.api,wrong,actual.texture);same(actual.texture.userData.newerFallback,true,'tech wrongcase rejected');same(actual.texture.image,nativeImage,'tech wrongcase native pixels');same(actual.texture.userData.newerHeight,undefined,'tech wrongcase no relief');
+    mode.R_AnimSetClassicPass(true);const classic=await native(e,p.officialObservedUses[0]),classicImage=classic.texture.image;try{f.api.R_NewerTextureUpgrade(e.name,classic.texture);await Promise.resolve();same(classic.texture.image,classicImage,'tech Classic retains original image');same(classic.texture.userData.newerPicture,undefined,'tech Classic no photograph');same(classic.texture.userData.newerHeight,undefined,'tech Classic no relief');}finally{dispose(classic.texture);mode.R_AnimSetClassicPass(false);}
+   }finally{dispose(unknown);dispose(actual.texture);}
+  }same(f.requests.length,0,'tech unknown/case/Classic request no maps');
+ });
+ if(process.env.QUAKED_TECH_Q92_SOURCE_RECEIPT)writeFileSync(process.env.QUAKED_TECH_Q92_SOURCE_RECEIPT,JSON.stringify({qualification:'Installed direct-source format successors, actual PAK/public derived-normal checks; GPU/art/landing acceptance separate',indexSha256:sha256(indexBytes),registrationSha256:sha256(read(techQ92ReceiptPath)),bindings:6,uniqueImages:12,occurrences:sources.length,sources},null,2)+'\n');
+});

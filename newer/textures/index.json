@@ -1,5 +1,5 @@
 {
-  "version": 2026101808,
+  "version": 2026101810,
   "textures": {
     "afloor3_1": "afloor3_1.webp",
     "ceiling1_3": "ceiling1_3.webp",
@@ -50,12 +50,12 @@
     "comp1_4": "comp1_4.webp",
     "comp1_5": "comp1_5.webp",
     "comp1_6": "comp1_6.webp",
-    "tech04_3": "tech04_3.webp",
-    "tech07_2": "tech07_2.webp",
-    "tech08_1": "tech08_1.webp",
-    "tech09_3": "tech09_3.webp",
-    "tech10_3": "tech10_3.webp",
-    "tech11_2": "tech11_2.webp",
+    "tech04_3": "official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-diffuse.webp",
+    "tech07_2": "official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-diffuse.webp",
+    "tech08_1": "official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-diffuse.webp",
+    "tech09_3": "official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-diffuse.webp",
+    "tech10_3": "official/owner-tech10_3-31e072256a779b27-v1-4x-q92-diffuse.webp",
+    "tech11_2": "official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-diffuse.webp",
     "+abutnn": "p_abutnn.webp",
     "+0butn": "p_0butn.webp",
     "+2button": "p_2button.webp",
@@ -1094,20 +1094,20 @@
       "strength": 1.15
     },
     "tech04_3": {
-      "file": "normals/tech04_3.webp",
+      "file": "official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-height.webp",
       "strength": 1.15
     },
     "tech07_2": {
-      "file": "normals/tech07_2.webp",
+      "file": "official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-height.webp",
       "strength": 1.15
     },
     "tech08_1": {
-      "file": "normals/tech08_1.webp",
+      "file": "official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-height.webp",
       "strength": 1.15,
       "cap": 1.1
     },
     "tech09_3": {
-      "file": "normals/tech09_3.webp",
+      "file": "official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-height.webp",
       "strength": 1.15
     },
     "tech10_1": {
@@ -1115,11 +1115,11 @@
       "strength": 1.2
     },
     "tech10_3": {
-      "file": "normals/tech10_3.webp",
+      "file": "official/owner-tech10_3-31e072256a779b27-v1-4x-q92-height.webp",
       "strength": 1.15
     },
     "tech11_2": {
-      "file": "normals/tech11_2.webp",
+      "file": "official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-height.webp",
       "strength": 1.15
     },
     "tlight01": {
@@ -5895,6 +5895,126 @@
             "x": "official/maya1_9-694bfeae23b74c54-4x-q92-normalX.webp",
             "y": "official/maya1_9-694bfeae23b74c54-4x-q92-normalY.webp",
             "z": "official/maya1_9-694bfeae23b74c54-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "wmet4_4c": {
+      "128x128:74f63e8543362707": {
+        "file": "official/wmet4_4c-74f63e8543362707-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/wmet4_4c-74f63e8543362707-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/wmet4_4c-74f63e8543362707-4x-q92-normalX.webp",
+            "y": "official/wmet4_4c-74f63e8543362707-4x-q92-normalY.webp",
+            "z": "official/wmet4_4c-74f63e8543362707-4x-q92-normalZ.webp"
+          },
+          "strength": 0.06,
+          "cap": 0.5
+        }
+      }
+    },
+    "tech04_5": {
+      "128x16:7ef518b5473c8877": {
+        "file": "official/tech04_5-7ef518b5473c8877-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/tech04_5-7ef518b5473c8877-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/tech04_5-7ef518b5473c8877-4x-q92-normalX.webp",
+            "y": "official/tech04_5-7ef518b5473c8877-4x-q92-normalY.webp",
+            "z": "official/tech04_5-7ef518b5473c8877-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "tech04_6": {
+      "128x16:bfef16117d029feb": {
+        "file": "official/tech04_6-bfef16117d029feb-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/tech04_6-bfef16117d029feb-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/tech04_6-bfef16117d029feb-4x-q92-normalX.webp",
+            "y": "official/tech04_6-bfef16117d029feb-4x-q92-normalY.webp",
+            "z": "official/tech04_6-bfef16117d029feb-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "metal5_96_JM": {
+      "128x128:85891f197f5d7a63": {
+        "file": "official/metal5_96_JM-85891f197f5d7a63-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/metal5_96_JM-85891f197f5d7a63-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/metal5_96_JM-85891f197f5d7a63-4x-q92-normalX.webp",
+            "y": "official/metal5_96_JM-85891f197f5d7a63-4x-q92-normalY.webp",
+            "z": "official/metal5_96_JM-85891f197f5d7a63-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "metal5_85_JM": {
+      "128x128:d2be32b11d4f815b": {
+        "file": "official/metal5_85_JM-d2be32b11d4f815b-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/metal5_85_JM-d2be32b11d4f815b-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/metal5_85_JM-d2be32b11d4f815b-4x-q92-normalX.webp",
+            "y": "official/metal5_85_JM-d2be32b11d4f815b-4x-q92-normalY.webp",
+            "z": "official/metal5_85_JM-d2be32b11d4f815b-4x-q92-normalZ.webp"
+          },
+          "strength": 0.06,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Floor5_04": {
+      "128x128:ad3943d092d6c6c2": {
+        "file": "official/TF_Floor5_04-ad3943d092d6c6c2-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Floor5_04-ad3943d092d6c6c2-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Floor5_04-ad3943d092d6c6c2-4x-q92-normalX.webp",
+            "y": "official/TF_Floor5_04-ad3943d092d6c6c2-4x-q92-normalY.webp",
+            "z": "official/TF_Floor5_04-ad3943d092d6c6c2-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "palmet3_2": {
+      "128x128:7bdc8195074b0fc7": {
+        "file": "official/palmet3_2-7bdc8195074b0fc7-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/palmet3_2-7bdc8195074b0fc7-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/palmet3_2-7bdc8195074b0fc7-4x-q92-normalX.webp",
+            "y": "official/palmet3_2-7bdc8195074b0fc7-4x-q92-normalY.webp",
+            "z": "official/palmet3_2-7bdc8195074b0fc7-4x-q92-normalZ.webp"
+          },
+          "strength": 0.06,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Stone_00": {
+      "128x128:42d2beee14cc60c4": {
+        "file": "official/TF_Stone_00-42d2beee14cc60c4-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Stone_00-42d2beee14cc60c4-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Stone_00-42d2beee14cc60c4-4x-q92-normalX.webp",
+            "y": "official/TF_Stone_00-42d2beee14cc60c4-4x-q92-normalY.webp",
+            "z": "official/TF_Stone_00-42d2beee14cc60c4-4x-q92-normalZ.webp"
           },
           "strength": 0.2,
           "cap": 0.5

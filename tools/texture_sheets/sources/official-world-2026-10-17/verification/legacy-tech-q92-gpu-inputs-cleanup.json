@@ -1,0 +1,196 @@
+{
+  "at": "2026-10-18T05:16:52.860306+00:00",
+  "checks": 78,
+  "failures": 0,
+  "shaderErrors": 0,
+  "consoleWarningsErrors": [],
+  "closeViews": 6,
+  "halfQuarterRepeatedViews": 12,
+  "reliefToggle": "tech08_1 off/on",
+  "scope": "Bounded six-material actual engine loader and GPU trial, not all-level gameplay acceptance",
+  "inputs": [
+    {
+      "file": "newer/textures/candidates-2026-10-17/legacy-tech-q92-trial.json",
+      "sha256": "efabab4d1878b0c05fffc02f5c6836f5e4c7b1f6e2bbfceb4484823fe814e332"
+    },
+    {
+      "file": "newer/textures/index.json",
+      "sha256": "7ad27d2e6ba3fc58be9ca32ab2b279f641ad6b767eb7085540d1371e162c3ce4"
+    },
+    {
+      "file": "newer/textures/official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-diffuse.webp",
+      "sha256": "5277531ebcefde22227852e3c186b9fae5a7884c6624d7ec4f8b4f15ab532ee5"
+    },
+    {
+      "file": "newer/textures/official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-height.webp",
+      "sha256": "a969527350c04c8908fc0682dc68dcf43690e1b6e70da6abc652d81d3f9a8159"
+    },
+    {
+      "file": "newer/textures/official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-diffuse.webp",
+      "sha256": "07cfce1768ac7afd6aad979b32b7c356ddc9245c185c17b3a2a78fa0fc6b19b5"
+    },
+    {
+      "file": "newer/textures/official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-height.webp",
+      "sha256": "87e2e4fdf8eff8c96603ddaa8f009d5d24a1b4418929bf1ca058afcaa789ad84"
+    },
+    {
+      "file": "newer/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-diffuse.webp",
+      "sha256": "57e96b1311e8b7192dc6cd6ec2d0235544335e5ce5167e75f0ae33d9fac7595b"
+    },
+    {
+      "file": "newer/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-height.webp",
+      "sha256": "bf00c93c581cce7a194699d9551830c6556e5a871e3668c2861790e4e7f73672"
+    },
+    {
+      "file": "newer/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-diffuse.webp",
+      "sha256": "6e09150d3ecf0bbf52dad75225b910a3417d2ef42fd93ac9c4808a1361c147f8"
+    },
+    {
+      "file": "newer/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-height.webp",
+      "sha256": "f5d65e5e9e95bc9d0bb44e6775b29a26d0967795f01200a631897fb392d83918"
+    },
+    {
+      "file": "newer/textures/official/owner-tech10_3-31e072256a779b27-v1-4x-q92-diffuse.webp",
+      "sha256": "876cf3820a00c5d62155bb392352f5ba2e5979e756a5ab1e7a4267804da1f707"
+    },
+    {
+      "file": "newer/textures/official/owner-tech10_3-31e072256a779b27-v1-4x-q92-height.webp",
+      "sha256": "b1d0c7db3e1eb311569d28a5ddd2b8670cb7685065fb3994cdd5feac754a9370"
+    },
+    {
+      "file": "newer/textures/official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-diffuse.webp",
+      "sha256": "b31a831f2c6cc932b791f6f0816303f05541f51d1d72095d43ead1a81c833470"
+    },
+    {
+      "file": "newer/textures/official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-height.webp",
+      "sha256": "f2d6cd19b5b7476f60992c0164198ab55a292e935a0193a245eeaeea87038b6c"
+    },
+    {
+      "file": "tests/official_texture_trial.html",
+      "sha256": "aa2a3aec430e72172d252f4872240b36f6747afd7e471f83b520886185a5d429"
+    },
+    {
+      "file": "tests/official_texture_trial.js",
+      "sha256": "91eeeaa8348105d741428944f67dc21843f3e6516be0140e96999ef11d61875d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech04_3.png",
+      "sha256": "b80951843977f762c9d331d9de897980008d6ee13d5b57a03661da5ef375103d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech07_2.png",
+      "sha256": "be6ee33c32da6720643875741d99d7cf37a37da5e575634ddd4e47422a14bf0f"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech08_1.png",
+      "sha256": "ec6e5213fb6df03856fcb2f3b1f1d22f143b6a49a016e035599fa301ce84cbbc"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech09_3.png",
+      "sha256": "1f82b18d9cec8ef8338a227c5be67fe0a3e06ffbabcc7af922c3bfb5063169fc"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech10_3.png",
+      "sha256": "177d76dddb40c72909f26d3e7c9af4a5009f3048ef4a5af5347879228b4766f5"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech11_2.png",
+      "sha256": "e13685968ded47c58af964a535aaef2af7a95d485617aa4c53d6831d83fc0392"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech04_3-close-gpu.png",
+      "sha256": "c18e219d27b0fb934e8f2794d0c0db8884adedb46f1377a6de57261dd94ea3ec"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech04_3-half-gpu.png",
+      "sha256": "c64fa9a00c133dbe0b17b15982d07db9ef521bef3c4b2d4dad9455cc07206745"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech04_3-quarter-gpu.png",
+      "sha256": "2363d1bd311e49d3853b1048e91f047e8a61b6b801e598825002e04ad654daf3"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech07_2-close-gpu.png",
+      "sha256": "84eab7ab9dd5c88f25bd2cd4c338a518237d7316c227c9df2bbe0aeaeb2458a4"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech07_2-half-gpu.png",
+      "sha256": "da2542ecbee93d74c534bb1246720b8df53267a94aaa63fdfde114553bad3825"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech07_2-quarter-gpu.png",
+      "sha256": "ebeb1aae9e384b095f6d36bb83ec12d8b15bb8c80e7e6f9c1dc173b7e6f8c14c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech08_1-close-gpu.png",
+      "sha256": "4422bd6d7d16f09cb69d904b17f4417f017f0da41e56f7bb43f2e6d9a0658b55"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech08_1-half-gpu.png",
+      "sha256": "bcd002010d7d1dccbd62025a8305d742fa91d5c13a3b348a744f1ebf15d5f902"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech08_1-quarter-gpu.png",
+      "sha256": "cfaf7e31122093e0e734a8e69f383022a2b9e9bfad9774f742267daeab2bc4a3"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech09_3-close-gpu.png",
+      "sha256": "fc3c65e2deeca96517c6325a1b03a192188a3bd332c014e8fe8d440e7d88ac47"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech09_3-half-gpu.png",
+      "sha256": "3c0abce80300a1dd1269dc088ef2863e30a117ff808b504249ed39a351136af4"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech09_3-quarter-gpu.png",
+      "sha256": "99f50c51e10ac2b9b5c255a17b8d888031d53334c73bd31972151a5dc02b6a4b"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech10_3-close-gpu.png",
+      "sha256": "e777d01cd0f9ef27d57c79378db6ba0ea9979c57343c4b162e2cff8d6ac3ded8"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech10_3-half-gpu.png",
+      "sha256": "a761312ba9919bbfbc5ebdc13a78dec7a8b06db55cd1ae8ea004362c2cc9895e"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech10_3-quarter-gpu.png",
+      "sha256": "362d2d37f9154e730f798abae01e10dc7705ddb58d22a852e7c35f8f03e299fb"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech11_2-close-gpu.png",
+      "sha256": "437df7baaec944a3bd2d4203b658c6565de36cb103e2485154e14ebb88e709c6"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech11_2-half-gpu.png",
+      "sha256": "6020176bc5e1d03cea126db13a20f694930e107d5edd1e0eed073cc57f6d984f"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech11_2-quarter-gpu.png",
+      "sha256": "0e9cf6292ae076f3d29f4ccc2ebf0a4b0953db103d3221a05970955fe3be0e60"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech08_1-relief-off.png",
+      "sha256": "5a2e7c38f0a039a34a567867e8dc8a841d0e650011288e9277b53e592e4d1a2d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-tech08_1-relief-on.png",
+      "sha256": "c89f59f1cfff44d9a5bec3f8f59adadd777eefc1cf45e4a8508122378676cccc"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-q92-gpu.json",
+      "sha256": "b5793fa00b43e6fbb98f36417f4159fc491e80d5ae279f460c6b35e39763c05c"
+    }
+  ],
+  "cleanup": {
+    "pid": 87237,
+    "command": "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python -u -m http.server 8017 --bind 127.0.0.1 --directory /Users/bri/.codex/worktrees/official-textures-next/Quaked",
+    "tab": "10 closed",
+    "port": 8017,
+    "signal": "SIGTERM own recorded server",
+    "exitCode": 143,
+    "portReleased": true
+  }
+}

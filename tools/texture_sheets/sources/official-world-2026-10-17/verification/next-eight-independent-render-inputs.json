@@ -1,0 +1,958 @@
+{
+  "qualification": "Finite ROOT-only independent review renders of unregistered8drafts. Actual canvas-decodedQ92R→productionR_NormalsFromCraftedHeight, with exact planned strength/cap. PublishedQ92XYZ compared separately. Fixed linearLambertCPU lights are not actual GPU/PBR/specular acceptance. No assets, index, tests or WT files written.",
+  "rendererSha256": "09f3ce94bffb49ed3f02d65dc6ae50465dc5cf0bdd126fa7fa0b351060c2bc2c",
+  "productionMathSha256": "303390e4216a26d6aaa2ceb47b841484a9b5f6b6dd88118922f70dc1682a7125",
+  "lighting": {
+    "ambient": 0.22,
+    "key": 0.78,
+    "lights": [
+      {
+        "name": "upper-left",
+        "direction": [
+          -0.6476082659683139,
+          -0.3487121432137074,
+          0.6774978782437745
+        ]
+      },
+      {
+        "name": "lower-right",
+        "direction": [
+          0.6476082659683139,
+          0.3487121432137074,
+          0.6774978782437745
+        ]
+      }
+    ]
+  },
+  "runtimeInputsUnchanged": true,
+  "inputs": [
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/next-eight-first-drafts.json",
+      "sha256": "340276ba293afcda39bfa2eef224a256cb3b06bd136051432828144251e8d6ec"
+    },
+    {
+      "file": "/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js",
+      "sha256": "bbdad32cab670261983ea56d4625fc7d07b1382f8bb7d6d31232bb2834861597"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/src/newer/render/normal_math.js",
+      "sha256": "303390e4216a26d6aaa2ceb47b841484a9b5f6b6dd88118922f70dc1682a7125"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "b860649fec3a17555321843e8c987cd44d80c9f8531c2926c6a5dbed55979742"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-wmet4_4c.json",
+      "sha256": "57693685c37455d0b2ca33f7c3bfb0799cb3025c17efed399ab09c21abef95f3"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-wmet4_4c.png",
+      "sha256": "51357a29b097438e3754ff79d9c5076a54e85d6795b626493616db128cdf3a16"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "f7e83917c636190624f3fea0c4fadc875360e9f7b28a3023ed480e8192d72ca1"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "c24de058c8156b7eeb81c87fbdbf7c6575e0993a57839adc0a56c11a8c07ebf9"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "af5ab486d87f2aa2e8ff3e1fe77c006acd95997461226b46cf888817e92bf7b6"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "b2afc12139e2229a7461fd0259bca9d5bd4c0138ae121fab28194b0e19408a6f"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "2d7ab9b20801a67d1fec87142280b11fd07384bbc10c5ad6bae35cfd8bed88a0"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x.png",
+      "sha256": "d4eb23609a061395a29ec1794e40a233a058a07c40d7857899f31dfe404f7f15"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "f87c75a957d698cb52e86bc45bde1c0dc627cf91b394bd364c1ebb76dff4e207"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-tech04_5.json",
+      "sha256": "78045643b71644538cf9c9fa27cea7815267641e0541df4e635236e72a2b602d"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-tech04_5.png",
+      "sha256": "06a2b4c6eef453502bad7def234e1ad8dadbe7e972a61c9d9eb71e942125ab2e"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "704a353e191040876303673b612129cf6453c3a3d0aa7855dc10df4f195c63ee"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "92e81bd11e92874e8b54e6bed47ed86174129d0f2cb08bf70ed9e3ca9150ce66"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "82cf8f335e6840122a32fabcba65c9126d80c3913774efc567f0e7a230d75916"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "923cd54d8c03b97285fb4f30c3ebd1f48b7c83634eb79b2220e91aba494c8d48"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "915cabbdd2b2b32bdda21d109ac6f5645144c74b6f7d1753cdb302d214f859cc"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x.png",
+      "sha256": "9e3fc1dfbe22699fbdaff1c2ef7aed645b2f4993df19394a9ca8ff2476a9727d"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "80dcf09a18bede6d12372ed7d1b4ab022f2321ec8278ca632ab4e3322c17afac"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-tech04_6.json",
+      "sha256": "aaab28854af18bc5f3acc69f16f00e696656768d673ec0273b1acf5388de9218"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-tech04_6.png",
+      "sha256": "7b7e47b3b53db6cacd2e15951f897374e85c6acd19c4a7f5f0b60a9de16f796c"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "2b7e32cceb8c8f73d8134154e08cd268e724812a1ff4fb95080b10bd12f2f74b"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "475609e68c1ddd80606bbff399f005f6abdc8c1cf34c542661e6801e65316bf0"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "1b10cf44b2c0ba57a9e7f34407d76ab02a67374c2e7402ef74f32aca677d0b4c"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "f1e2d6bb25c1b06c292d6ba30f92197a168ca039aca5add746f5d252212a9828"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "0b45b66f94856d1b032c96ed2367dee1b59a87327de1b09cd52d81e9a793925f"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x.png",
+      "sha256": "3e5f24c2319389799d83c0c3be3c41be98746c37feffea62819a1847df21ca5d"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "b8f43bb226c38a13ecd6263f7065456db5ea60456aa552ab1891d270893bae31"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-metal5_96_JM.json",
+      "sha256": "ca6026ac974cee2aafb155c83b22d0e5ddb16573e261d26a66c3cd8a794e48c2"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-metal5_96_JM.png",
+      "sha256": "a1f7ae89ae04dfee506d5af80324a013f910778297771af3d4f53a6d1bee9dd8"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "cbb5b49b79da9b237f83b60bacadfb1858dbd91d51cb825d266bee4de26641bb"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "8ff29fc8eb5ee32373cf1b0f31a917d706956746afec393939532fe2203a3729"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "55861317bc903aa9b70b4917f389f4ed3565bdbd2c3dd419580d554baa326d6a"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "2136660e8f7aa82e7001f17aa50bb45f9cb6316f7dadbbd3349e19771d01619a"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "49cd5ddda7ac51b5134f461a2cdfde5fdcea3df72d124bfaceffae7497d72096"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x.png",
+      "sha256": "61c04f24c88d08d9e99cc50e2b066faf45ef00b92aae1e27bac2a74e71a6c78d"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "22cd652534eee05be9bc0901c5693d623c6610d4b70eb58db86af06caccb1b4c"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-metal5_85_JM.json",
+      "sha256": "379e1f8a1df6e8ce5df0bbbfae3b4559443af7533a4eb92033f932d48c49037f"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-metal5_85_JM.png",
+      "sha256": "f55f7460abcf952dd9c7f94f6e175e73844f023f91dba9cf9fee423754724171"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "4b2a0d44f9e19669be083f812dff8913db749e6777090479154c838944c6c657"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "f274053525e4de2f0c23b5ad9d8c4f337110148608eaef76198ec31e899be8e6"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "c0940f0f49a3de11cf0196089e525e3368d6f9ea19662193f3b24d01405ac140"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "c0d6f24516e78427c75474ca699cc67dcef7e736ca7ad79ff7f0423039b84948"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "9170d960b3eb639faef2c22572311a055e33ddb450cfe2a161c1e3b78679121e"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x.png",
+      "sha256": "ef04afc4e39e62ac0d2a9344aa65b8c0a9adcedf99d3267257b5424f3dbc6c73"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "1a4a5d0e1304506a60b42fdd3eaec5c8c7c1238421bb24f2e05a7cefafc06af7"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Floor5_04.json",
+      "sha256": "571e4bf9f7fb075b54ec406a65f55be29a9e7367b97f89c29ee637fcae29a89c"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Floor5_04.png",
+      "sha256": "5d29efe4197dd8f825c025b12c22c744c72d009795a98a32c5e58490a0bf9be5"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "d89e9cfa7c8fa69ed0196dbb3f6fa66c479ba95908b5cf93a931c3d4356da119"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "2ce26c083d06ddde9d408bceec69853de6c5dceab1e2f1394dd3d36879784aff"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "d4df172b1ea278ca18acf0750983d7bd25344b50de701e156b12b6c93038a87d"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "b815c6d81e3df2ff1239d4463e78a093b8e6f768c6f735a35ebce2c723cd69e5"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "86ceadea3c18f5d66354206ec20a0230b13f87b859817376d38f2128e2f51281"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x.png",
+      "sha256": "d8a4e094991ce9f7c93a541e5d15eef3b6417fc3cd1bf5806025c4a2b522de2f"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "93f054f3698b30d6af65a8356df1cd798bff5a450775f88b0d9661781ee74d65"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-palmet3_2.json",
+      "sha256": "df96fe69352078c77c43c62d94cc0ba3b429c06afd28f82c8093e040c5804b3a"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-palmet3_2.png",
+      "sha256": "fc3ce9ee3d7d8dfb07ff89e914725cced461b4b48755a2a0865dba3999a719f9"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "bbbd1917dafee7297af2e9d239f1f17e790ef613a516c68b666338df5a111d4a"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "802721efec2af403792a9db8389f7627adb01513378a0eaf1097f3cbb1577d8b"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "78080917f8c64d7e43ffec086958d06e87e39a95e8020a9ffce0386cc76d4090"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "307b2c655f5986891c38fd4ce7a36bd7e22c67bb7be909dc0e4b246330ff40fb"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "41748e69b171eeb6645eb289fdf34c2c2744d474beb0bf8ca9857ae577a11327"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x.png",
+      "sha256": "c5647282bfc7f21d646bb03fcc5bfa666d61ebdf85748edc4f5f66077f860f67"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "d7b1318104cd1c4fc880c4ce7a800996a83c0a939fcc9db9c07df56f7ebe3cf3"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Stone_00.json",
+      "sha256": "9aea2c2c82bfaa3385f205bbfb2f64d85bb900fbefc5e7baffc754feb4974023"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Stone_00.png",
+      "sha256": "a9ec496d1ff976cd24f44e68d89fee08f62bfb80362edc0957d39ae11ec83856"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "fff60a312820e425f8aa3b5595ad793ead1bc9117e66dc61f73b5c71a4d0ba4e"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "ffbc530c48d3d2191eec21a3841d6282144bf4649e65e36be8d75bc72cd53361"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "1b4d7f9390e553a2795f69f861c968ee478a16474dc8b85f1fdeeca87584b0ab"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "a22a36e5bd3512d3e497234b3ab86942e5b9673afa54fa9e81ad76380c1674da"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "0d3f19dad3d3acb7e88f9bf6fce33a31167c0d71072b21e73d55c544a93c7d88"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x.png",
+      "sha256": "6353437aeb670d8314540b17dc05ea10a3a10db4f815ded2e2aee36c534c811b"
+    }
+  ],
+  "results": [
+    {
+      "name": "wmet4_4c",
+      "nativeKey": "128x128:74f63e8543362707",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "profile": {
+        "bands": [
+          1,
+          0.9,
+          0.3,
+          0.1
+        ],
+        "groove": 0.2,
+        "bump": 0.6,
+        "glow": 0,
+        "strength": 0.06,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "f7e83917c636190624f3fea0c4fadc875360e9f7b28a3023ed480e8192d72ca1",
+        "height": "c24de058c8156b7eeb81c87fbdbf7c6575e0993a57839adc0a56c11a8c07ebf9",
+        "normalX": "b2afc12139e2229a7461fd0259bca9d5bd4c0138ae121fab28194b0e19408a6f",
+        "normalY": "2d7ab9b20801a67d1fec87142280b11fd07384bbc10c5ad6bae35cfd8bed88a0",
+        "normalZ": "af5ab486d87f2aa2e8ff3e1fe77c006acd95997461226b46cf888817e92bf7b6"
+      },
+      "originalSha256": "51357a29b097438e3754ff79d9c5076a54e85d6795b626493616db128cdf3a16",
+      "authoringDiffuseSha256": "d4eb23609a061395a29ec1794e40a233a058a07c40d7857899f31dfe404f7f15",
+      "decodedHeightRFloat32LeSha256": "3fc5b646cb0478c5a11fcacd2e491d7ef09342687c67f9288cd7d947aee667ac",
+      "productionNormalRgbaSha256": "e9b97c1f8b8d2591301b087b1062ac2f75d1169f05bd24f1bf421edc3e833cb4",
+      "productionMathFile": "/Users/bri/SOURCE/Quaked/src/newer/render/normal_math.js",
+      "productionVersusPublishedQ92AngularDiagnostic": {
+        "mean": 4.278751254219824,
+        "p99": 14.709573416689933,
+        "maximum": 32.27492242832187
+      },
+      "distanceViews": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            64,
+            64
+          ],
+          "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            32,
+            32
+          ],
+          "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+        }
+      ],
+      "reliefFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/wmet4_4c-next8-independent-relief.png",
+      "compareFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/wmet4_4c-next8-independent-authored-vs-derived.png",
+      "repeatFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/wmet4_4c-next8-independent-repeat.png"
+    },
+    {
+      "name": "tech04_5",
+      "nativeKey": "128x16:7ef518b5473c8877",
+      "nativeDimensions": [
+        128,
+        16
+      ],
+      "dimensions": [
+        512,
+        64
+      ],
+      "profile": {
+        "bands": [
+          0.5,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.8,
+        "bump": 0.8,
+        "glow": 0.1,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "704a353e191040876303673b612129cf6453c3a3d0aa7855dc10df4f195c63ee",
+        "height": "92e81bd11e92874e8b54e6bed47ed86174129d0f2cb08bf70ed9e3ca9150ce66",
+        "normalX": "923cd54d8c03b97285fb4f30c3ebd1f48b7c83634eb79b2220e91aba494c8d48",
+        "normalY": "82cf8f335e6840122a32fabcba65c9126d80c3913774efc567f0e7a230d75916",
+        "normalZ": "915cabbdd2b2b32bdda21d109ac6f5645144c74b6f7d1753cdb302d214f859cc"
+      },
+      "originalSha256": "06a2b4c6eef453502bad7def234e1ad8dadbe7e972a61c9d9eb71e942125ab2e",
+      "authoringDiffuseSha256": "9e3fc1dfbe22699fbdaff1c2ef7aed645b2f4993df19394a9ca8ff2476a9727d",
+      "decodedHeightRFloat32LeSha256": "113421157be5baab8650a2e0efd8560f829517d415818731c53ad2f6c10ff6c5",
+      "productionNormalRgbaSha256": "61e04f6ccdae9604464bb8a7d2a50205e9d75700d0270e528b8c0828442887d3",
+      "productionMathFile": "/Users/bri/SOURCE/Quaked/src/newer/render/normal_math.js",
+      "productionVersusPublishedQ92AngularDiagnostic": {
+        "mean": 8.563216974587618,
+        "p99": 20.781163929254163,
+        "maximum": 30.780836173538887
+      },
+      "distanceViews": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            64,
+            8
+          ],
+          "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            32,
+            4
+          ],
+          "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+        }
+      ],
+      "reliefFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_5-next8-independent-relief.png",
+      "compareFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_5-next8-independent-authored-vs-derived.png",
+      "repeatFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_5-next8-independent-repeat.png"
+    },
+    {
+      "name": "tech04_6",
+      "nativeKey": "128x16:bfef16117d029feb",
+      "nativeDimensions": [
+        128,
+        16
+      ],
+      "dimensions": [
+        512,
+        64
+      ],
+      "profile": {
+        "bands": [
+          0.5,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.8,
+        "bump": 0.8,
+        "glow": 0.1,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "2b7e32cceb8c8f73d8134154e08cd268e724812a1ff4fb95080b10bd12f2f74b",
+        "height": "475609e68c1ddd80606bbff399f005f6abdc8c1cf34c542661e6801e65316bf0",
+        "normalX": "1b10cf44b2c0ba57a9e7f34407d76ab02a67374c2e7402ef74f32aca677d0b4c",
+        "normalY": "f1e2d6bb25c1b06c292d6ba30f92197a168ca039aca5add746f5d252212a9828",
+        "normalZ": "0b45b66f94856d1b032c96ed2367dee1b59a87327de1b09cd52d81e9a793925f"
+      },
+      "originalSha256": "7b7e47b3b53db6cacd2e15951f897374e85c6acd19c4a7f5f0b60a9de16f796c",
+      "authoringDiffuseSha256": "3e5f24c2319389799d83c0c3be3c41be98746c37feffea62819a1847df21ca5d",
+      "decodedHeightRFloat32LeSha256": "e6318e47de7895752759c6de7502467dd41f95f27302ed3ef1deb892095448be",
+      "productionNormalRgbaSha256": "7f91db72308674a99c7d8ef7a3dfd315b5fe2cd0a735f15f18da13cdb8479f0c",
+      "productionMathFile": "/Users/bri/SOURCE/Quaked/src/newer/render/normal_math.js",
+      "productionVersusPublishedQ92AngularDiagnostic": {
+        "mean": 10.71514228637792,
+        "p99": 24.491957352146112,
+        "maximum": 32.566372728935015
+      },
+      "distanceViews": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            64,
+            8
+          ],
+          "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            32,
+            4
+          ],
+          "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+        }
+      ],
+      "reliefFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_6-next8-independent-relief.png",
+      "compareFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_6-next8-independent-authored-vs-derived.png",
+      "repeatFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_6-next8-independent-repeat.png"
+    },
+    {
+      "name": "metal5_96_JM",
+      "nativeKey": "128x128:85891f197f5d7a63",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "cbb5b49b79da9b237f83b60bacadfb1858dbd91d51cb825d266bee4de26641bb",
+        "height": "8ff29fc8eb5ee32373cf1b0f31a917d706956746afec393939532fe2203a3729",
+        "normalX": "2136660e8f7aa82e7001f17aa50bb45f9cb6316f7dadbbd3349e19771d01619a",
+        "normalY": "55861317bc903aa9b70b4917f389f4ed3565bdbd2c3dd419580d554baa326d6a",
+        "normalZ": "49cd5ddda7ac51b5134f461a2cdfde5fdcea3df72d124bfaceffae7497d72096"
+      },
+      "originalSha256": "a1f7ae89ae04dfee506d5af80324a013f910778297771af3d4f53a6d1bee9dd8",
+      "authoringDiffuseSha256": "61c04f24c88d08d9e99cc50e2b066faf45ef00b92aae1e27bac2a74e71a6c78d",
+      "decodedHeightRFloat32LeSha256": "17b7e30e5b503ed7dbe0c422c20baeb657353665a53b9639fa7dd5100e241d9b",
+      "productionNormalRgbaSha256": "4a11d65e2aa8ebe98564b88d092f6b788b564d4e58fc1057f81660db02de0b60",
+      "productionMathFile": "/Users/bri/SOURCE/Quaked/src/newer/render/normal_math.js",
+      "productionVersusPublishedQ92AngularDiagnostic": {
+        "mean": 6.491494044502014,
+        "p99": 23.23419404930938,
+        "maximum": 43.429152124083906
+      },
+      "distanceViews": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            64,
+            64
+          ],
+          "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            32,
+            32
+          ],
+          "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+        }
+      ],
+      "reliefFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_96_JM-next8-independent-relief.png",
+      "compareFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_96_JM-next8-independent-authored-vs-derived.png",
+      "repeatFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_96_JM-next8-independent-repeat.png"
+    },
+    {
+      "name": "metal5_85_JM",
+      "nativeKey": "128x128:d2be32b11d4f815b",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.06,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "4b2a0d44f9e19669be083f812dff8913db749e6777090479154c838944c6c657",
+        "height": "f274053525e4de2f0c23b5ad9d8c4f337110148608eaef76198ec31e899be8e6",
+        "normalX": "9170d960b3eb639faef2c22572311a055e33ddb450cfe2a161c1e3b78679121e",
+        "normalY": "c0d6f24516e78427c75474ca699cc67dcef7e736ca7ad79ff7f0423039b84948",
+        "normalZ": "c0940f0f49a3de11cf0196089e525e3368d6f9ea19662193f3b24d01405ac140"
+      },
+      "originalSha256": "f55f7460abcf952dd9c7f94f6e175e73844f023f91dba9cf9fee423754724171",
+      "authoringDiffuseSha256": "ef04afc4e39e62ac0d2a9344aa65b8c0a9adcedf99d3267257b5424f3dbc6c73",
+      "decodedHeightRFloat32LeSha256": "3553472c7cf61026ee68dcb85ee2c2e4f689cdbe34086b7d142cd2c7631047db",
+      "productionNormalRgbaSha256": "2ba53956cb87dd4e5788acc2fa2306e7d0d0a075d38aa417d6c7c12c557b9f54",
+      "productionMathFile": "/Users/bri/SOURCE/Quaked/src/newer/render/normal_math.js",
+      "productionVersusPublishedQ92AngularDiagnostic": {
+        "mean": 3.846456682358032,
+        "p99": 11.124791218680201,
+        "maximum": 21.376996945575012
+      },
+      "distanceViews": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            64,
+            64
+          ],
+          "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            32,
+            32
+          ],
+          "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+        }
+      ],
+      "reliefFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_85_JM-next8-independent-relief.png",
+      "compareFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_85_JM-next8-independent-authored-vs-derived.png",
+      "repeatFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_85_JM-next8-independent-repeat.png"
+    },
+    {
+      "name": "TF_Floor5_04",
+      "nativeKey": "128x128:ad3943d092d6c6c2",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "d89e9cfa7c8fa69ed0196dbb3f6fa66c479ba95908b5cf93a931c3d4356da119",
+        "height": "2ce26c083d06ddde9d408bceec69853de6c5dceab1e2f1394dd3d36879784aff",
+        "normalX": "b815c6d81e3df2ff1239d4463e78a093b8e6f768c6f735a35ebce2c723cd69e5",
+        "normalY": "86ceadea3c18f5d66354206ec20a0230b13f87b859817376d38f2128e2f51281",
+        "normalZ": "d4df172b1ea278ca18acf0750983d7bd25344b50de701e156b12b6c93038a87d"
+      },
+      "originalSha256": "5d29efe4197dd8f825c025b12c22c744c72d009795a98a32c5e58490a0bf9be5",
+      "authoringDiffuseSha256": "d8a4e094991ce9f7c93a541e5d15eef3b6417fc3cd1bf5806025c4a2b522de2f",
+      "decodedHeightRFloat32LeSha256": "67aca71ab3588335997a288bb1666dd0d83aa305870846a6e6131817f7ab0afc",
+      "productionNormalRgbaSha256": "d95605a76103a159855354d846723b6d276ed29519f36e8d6224c5832536e344",
+      "productionMathFile": "/Users/bri/SOURCE/Quaked/src/newer/render/normal_math.js",
+      "productionVersusPublishedQ92AngularDiagnostic": {
+        "mean": 7.325266086427054,
+        "p99": 22.547723490880003,
+        "maximum": 44.95970131785979
+      },
+      "distanceViews": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            64,
+            64
+          ],
+          "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            32,
+            32
+          ],
+          "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+        }
+      ],
+      "reliefFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Floor5_04-next8-independent-relief.png",
+      "compareFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Floor5_04-next8-independent-authored-vs-derived.png",
+      "repeatFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Floor5_04-next8-independent-repeat.png"
+    },
+    {
+      "name": "palmet3_2",
+      "nativeKey": "128x128:7bdc8195074b0fc7",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.06,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "bbbd1917dafee7297af2e9d239f1f17e790ef613a516c68b666338df5a111d4a",
+        "height": "802721efec2af403792a9db8389f7627adb01513378a0eaf1097f3cbb1577d8b",
+        "normalX": "41748e69b171eeb6645eb289fdf34c2c2744d474beb0bf8ca9857ae577a11327",
+        "normalY": "78080917f8c64d7e43ffec086958d06e87e39a95e8020a9ffce0386cc76d4090",
+        "normalZ": "307b2c655f5986891c38fd4ce7a36bd7e22c67bb7be909dc0e4b246330ff40fb"
+      },
+      "originalSha256": "fc3ce9ee3d7d8dfb07ff89e914725cced461b4b48755a2a0865dba3999a719f9",
+      "authoringDiffuseSha256": "c5647282bfc7f21d646bb03fcc5bfa666d61ebdf85748edc4f5f66077f860f67",
+      "decodedHeightRFloat32LeSha256": "d923374a942e58ab7e6ddaf4fabfde41f5572dbc25400f4eec347b723a038b49",
+      "productionNormalRgbaSha256": "a0db5bd2446b47c3173c058b6014e0c3041b01c7f40fbe1210d06cbf1d5208ab",
+      "productionMathFile": "/Users/bri/SOURCE/Quaked/src/newer/render/normal_math.js",
+      "productionVersusPublishedQ92AngularDiagnostic": {
+        "mean": 4.079417587388314,
+        "p99": 11.386651598410946,
+        "maximum": 26.707036104355993
+      },
+      "distanceViews": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            64,
+            64
+          ],
+          "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            32,
+            32
+          ],
+          "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+        }
+      ],
+      "reliefFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/palmet3_2-next8-independent-relief.png",
+      "compareFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/palmet3_2-next8-independent-authored-vs-derived.png",
+      "repeatFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/palmet3_2-next8-independent-repeat.png"
+    },
+    {
+      "name": "TF_Stone_00",
+      "nativeKey": "128x128:42d2beee14cc60c4",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "fff60a312820e425f8aa3b5595ad793ead1bc9117e66dc61f73b5c71a4d0ba4e",
+        "height": "ffbc530c48d3d2191eec21a3841d6282144bf4649e65e36be8d75bc72cd53361",
+        "normalX": "1b4d7f9390e553a2795f69f861c968ee478a16474dc8b85f1fdeeca87584b0ab",
+        "normalY": "0d3f19dad3d3acb7e88f9bf6fce33a31167c0d71072b21e73d55c544a93c7d88",
+        "normalZ": "a22a36e5bd3512d3e497234b3ab86942e5b9673afa54fa9e81ad76380c1674da"
+      },
+      "originalSha256": "a9ec496d1ff976cd24f44e68d89fee08f62bfb80362edc0957d39ae11ec83856",
+      "authoringDiffuseSha256": "6353437aeb670d8314540b17dc05ea10a3a10db4f815ded2e2aee36c534c811b",
+      "decodedHeightRFloat32LeSha256": "91f15017b1ec2c854dd59c289a4c19addd52603b2b596b23d3199eeaad296675",
+      "productionNormalRgbaSha256": "5c325a9208e00353896fbf3ec7af2347b2b5c43b6732de9d9e719996741e36fa",
+      "productionMathFile": "/Users/bri/SOURCE/Quaked/src/newer/render/normal_math.js",
+      "productionVersusPublishedQ92AngularDiagnostic": {
+        "mean": 7.6645196787016845,
+        "p99": 23.516607369672997,
+        "maximum": 44.509908794851754
+      },
+      "distanceViews": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            64,
+            64
+          ],
+          "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            32,
+            32
+          ],
+          "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+        }
+      ],
+      "reliefFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Stone_00-next8-independent-relief.png",
+      "compareFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Stone_00-next8-independent-authored-vs-derived.png",
+      "repeatFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Stone_00-next8-independent-repeat.png"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/wmet4_4c-next8-independent-relief.png",
+      "sha256": "6d73f50d8a99e0eb673e63aaa02fa8e0f5d1f74dc3a210bfde170839e0c98995",
+      "kind": "production decoded-R normal and two-light CPU contact"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/wmet4_4c-next8-independent-authored-vs-derived.png",
+      "sha256": "c77f1e1625193245561439372efa82933b6d4e6c3d2f4c080d942836b38c5290",
+      "kind": "two-light authored XYZ versus production derived normal comparison"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/wmet4_4c-next8-independent-repeat.png",
+      "sha256": "a564c9b5a100e335db40bf2634185ef1ea5f54af315dbda03588c1c27c8f4b84",
+      "kind": "unlit actual-scale 2x2 XY repeat"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_5-next8-independent-relief.png",
+      "sha256": "aaa7bb85fdda99b3389105bb0d307eb20877f7b170473e51654cf09d91e09f31",
+      "kind": "production decoded-R normal and two-light CPU contact"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_5-next8-independent-authored-vs-derived.png",
+      "sha256": "bd3cdf477d6af722913728ab29fdf61f5108d62f2183e4b783a3abbf8ddb6042",
+      "kind": "two-light authored XYZ versus production derived normal comparison"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_5-next8-independent-repeat.png",
+      "sha256": "da032f3a83095361520215b8d4ca8e584055d9cd6c0bf52bab80e5c2f4d181ff",
+      "kind": "unlit actual-scale 2x2 XY repeat"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_6-next8-independent-relief.png",
+      "sha256": "4279a3500d49bcb16a6400521a6836eef29862c8bed30144ace908446371080f",
+      "kind": "production decoded-R normal and two-light CPU contact"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_6-next8-independent-authored-vs-derived.png",
+      "sha256": "cea7d2e415f9e8a5060729f004126e570c1b144045c7443cb96b14b17b112273",
+      "kind": "two-light authored XYZ versus production derived normal comparison"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_6-next8-independent-repeat.png",
+      "sha256": "fd5eafdc27ac2d3bbd31ebb9c8742635888d697908908972d4b351221b88bc4b",
+      "kind": "unlit actual-scale 2x2 XY repeat"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_96_JM-next8-independent-relief.png",
+      "sha256": "9a275e6377dc0420190609c60c8645ca6b55c350b908d308842418d395406a2e",
+      "kind": "production decoded-R normal and two-light CPU contact"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_96_JM-next8-independent-authored-vs-derived.png",
+      "sha256": "44e5f4ef541eb766cea1e1e96725dceaf8c3c378a386c817f8354492c0b6608b",
+      "kind": "two-light authored XYZ versus production derived normal comparison"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_96_JM-next8-independent-repeat.png",
+      "sha256": "2a3283132526df1f47b3846c6c293fe39bb8d28a4d40d52aaa8e8721cdbd4b4d",
+      "kind": "unlit actual-scale 2x2 XY repeat"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_85_JM-next8-independent-relief.png",
+      "sha256": "5ea4a1f846839cdfedb43a6aad821b0513af391341ed4106722e7e120be62461",
+      "kind": "production decoded-R normal and two-light CPU contact"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_85_JM-next8-independent-authored-vs-derived.png",
+      "sha256": "940cb487faf11a21ab8513803b4c6ad50af41d41a97037f30b00631063879c4f",
+      "kind": "two-light authored XYZ versus production derived normal comparison"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_85_JM-next8-independent-repeat.png",
+      "sha256": "38add1a99fd081b8b24505668ce29357fdfed006a8048c2f5b591fa9c36f5c3b",
+      "kind": "unlit actual-scale 2x2 XY repeat"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Floor5_04-next8-independent-relief.png",
+      "sha256": "a9856043750c596e6a392d072c908e320eb5ddd5d39ccf629bdd747d0379a20b",
+      "kind": "production decoded-R normal and two-light CPU contact"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Floor5_04-next8-independent-authored-vs-derived.png",
+      "sha256": "b942e490ff7369d3bf7568be942b72c5231127de036cd1730142b06d8a117368",
+      "kind": "two-light authored XYZ versus production derived normal comparison"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Floor5_04-next8-independent-repeat.png",
+      "sha256": "2cd5d75bfa4bab84a8c62a1ca7db23297a08b756a54e0ecb23b05188d754eb9c",
+      "kind": "unlit actual-scale 2x2 XY repeat"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/palmet3_2-next8-independent-relief.png",
+      "sha256": "700a18664c056e0474eb18f22086449a27b984a953ee5d5ea9bab8907ee8025d",
+      "kind": "production decoded-R normal and two-light CPU contact"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/palmet3_2-next8-independent-authored-vs-derived.png",
+      "sha256": "c06d8fddd5d85c52b5b434b100786858d1298e05115f61891f69fbb427e19c84",
+      "kind": "two-light authored XYZ versus production derived normal comparison"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/palmet3_2-next8-independent-repeat.png",
+      "sha256": "634501ae9aa6d4bcadbb07128d31fffc104e7c8ac54fc0d053cf28dadfb02cb3",
+      "kind": "unlit actual-scale 2x2 XY repeat"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Stone_00-next8-independent-relief.png",
+      "sha256": "acf02931dd99661d1bfbdfa28babe85cda26c8c858df617ba34780177276c739",
+      "kind": "production decoded-R normal and two-light CPU contact"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Stone_00-next8-independent-authored-vs-derived.png",
+      "sha256": "b9bbbae4da3f11c105027490bdf418da9196e44a2cb4aa93f7a0a87d199ba344",
+      "kind": "two-light authored XYZ versus production derived normal comparison"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Stone_00-next8-independent-repeat.png",
+      "sha256": "5097c9ab37378cc2312544c9a382d5c2b8f6c06be1f6e4d9c946f2dc8652e787",
+      "kind": "unlit actual-scale 2x2 XY repeat"
+    }
+  ]
+}

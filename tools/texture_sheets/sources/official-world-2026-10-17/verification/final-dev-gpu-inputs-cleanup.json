@@ -1,0 +1,575 @@
+{
+  "head": "5c590342a2316ff729d29709197cc5a0e278db81",
+  "indexSha256": "0541eece8abaa369339ff2209387025b2c2045e03960294f720859511822268a",
+  "qualification": "FinalDev actualpreparation254checks and14confirmed quarter-native3x3GPUdraws. One initialtech08draw captured before asyncnormal refresh, retained; explicitDrawmaterial successor confirmsrelief. Priorall14close/halfquarter/toggles/art remainbyte-bound andmaterialmath unchanged. Not all-level gameplay/release.",
+  "checks": 254,
+  "failedChecks": 0,
+  "shaderErrors": 0,
+  "consoleWarningsErrors": [],
+  "initialDraws": 14,
+  "initialReliefNotBound": [
+    "tech08_1"
+  ],
+  "explicitConfirmedSuccessor": "final-dev-tech08-confirmed-gpu.json",
+  "effectiveConfirmedDraws": [
+    {
+      "name": "wmet4_4c",
+      "view": "quarter",
+      "comparisonDimensions": [
+        32,
+        32
+      ],
+      "repeat": 3,
+      "relief": true,
+      "material": "MeshLambertMaterial",
+      "drawCalls": 1
+    },
+    {
+      "name": "tech04_5",
+      "view": "quarter",
+      "comparisonDimensions": [
+        32,
+        4
+      ],
+      "repeat": 3,
+      "relief": true,
+      "material": "MeshLambertMaterial",
+      "drawCalls": 1
+    },
+    {
+      "name": "tech04_6",
+      "view": "quarter",
+      "comparisonDimensions": [
+        32,
+        4
+      ],
+      "repeat": 3,
+      "relief": true,
+      "material": "MeshLambertMaterial",
+      "drawCalls": 1
+    },
+    {
+      "name": "metal5_96_JM",
+      "view": "quarter",
+      "comparisonDimensions": [
+        32,
+        32
+      ],
+      "repeat": 3,
+      "relief": true,
+      "material": "MeshLambertMaterial",
+      "drawCalls": 1
+    },
+    {
+      "name": "metal5_85_JM",
+      "view": "quarter",
+      "comparisonDimensions": [
+        32,
+        32
+      ],
+      "repeat": 3,
+      "relief": true,
+      "material": "MeshLambertMaterial",
+      "drawCalls": 1
+    },
+    {
+      "name": "TF_Floor5_04",
+      "view": "quarter",
+      "comparisonDimensions": [
+        32,
+        32
+      ],
+      "repeat": 3,
+      "relief": true,
+      "material": "MeshLambertMaterial",
+      "drawCalls": 1
+    },
+    {
+      "name": "palmet3_2",
+      "view": "quarter",
+      "comparisonDimensions": [
+        32,
+        32
+      ],
+      "repeat": 3,
+      "relief": true,
+      "material": "MeshLambertMaterial",
+      "drawCalls": 1
+    },
+    {
+      "name": "TF_Stone_00",
+      "view": "quarter",
+      "comparisonDimensions": [
+        32,
+        32
+      ],
+      "repeat": 3,
+      "relief": true,
+      "material": "MeshLambertMaterial",
+      "drawCalls": 1
+    },
+    {
+      "name": "tech04_3",
+      "view": "quarter",
+      "comparisonDimensions": [
+        4,
+        32
+      ],
+      "repeat": 3,
+      "relief": true,
+      "material": "MeshLambertMaterial",
+      "drawCalls": 1
+    },
+    {
+      "name": "tech07_2",
+      "view": "quarter",
+      "comparisonDimensions": [
+        32,
+        32
+      ],
+      "repeat": 3,
+      "relief": true,
+      "material": "MeshLambertMaterial",
+      "drawCalls": 1
+    },
+    {
+      "name": "tech08_1",
+      "view": "quarter",
+      "comparisonDimensions": [
+        32,
+        32
+      ],
+      "repeat": 3,
+      "relief": true,
+      "material": "MeshLambertMaterial",
+      "drawCalls": 1
+    },
+    {
+      "name": "tech09_3",
+      "view": "quarter",
+      "comparisonDimensions": [
+        32,
+        32
+      ],
+      "repeat": 3,
+      "relief": true,
+      "material": "MeshLambertMaterial",
+      "drawCalls": 1
+    },
+    {
+      "name": "tech10_3",
+      "view": "quarter",
+      "comparisonDimensions": [
+        8,
+        32
+      ],
+      "repeat": 3,
+      "relief": true,
+      "material": "MeshLambertMaterial",
+      "drawCalls": 1
+    },
+    {
+      "name": "tech11_2",
+      "view": "quarter",
+      "comparisonDimensions": [
+        32,
+        32
+      ],
+      "repeat": 3,
+      "relief": true,
+      "material": "MeshLambertMaterial",
+      "drawCalls": 1
+    }
+  ],
+  "inputs": [
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "d89e9cfa7c8fa69ed0196dbb3f6fa66c479ba95908b5cf93a931c3d4356da119"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "2ce26c083d06ddde9d408bceec69853de6c5dceab1e2f1394dd3d36879784aff"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "b815c6d81e3df2ff1239d4463e78a093b8e6f768c6f735a35ebce2c723cd69e5"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "86ceadea3c18f5d66354206ec20a0230b13f87b859817376d38f2128e2f51281"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "d4df172b1ea278ca18acf0750983d7bd25344b50de701e156b12b6c93038a87d"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "fff60a312820e425f8aa3b5595ad793ead1bc9117e66dc61f73b5c71a4d0ba4e"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "ffbc530c48d3d2191eec21a3841d6282144bf4649e65e36be8d75bc72cd53361"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "1b4d7f9390e553a2795f69f861c968ee478a16474dc8b85f1fdeeca87584b0ab"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "0d3f19dad3d3acb7e88f9bf6fce33a31167c0d71072b21e73d55c544a93c7d88"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "a22a36e5bd3512d3e497234b3ab86942e5b9673afa54fa9e81ad76380c1674da"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/legacy-tech-q92-trial.json",
+      "sha256": "efabab4d1878b0c05fffc02f5c6836f5e4c7b1f6e2bbfceb4484823fe814e332"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "4b2a0d44f9e19669be083f812dff8913db749e6777090479154c838944c6c657"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "f274053525e4de2f0c23b5ad9d8c4f337110148608eaef76198ec31e899be8e6"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "9170d960b3eb639faef2c22572311a055e33ddb450cfe2a161c1e3b78679121e"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "c0d6f24516e78427c75474ca699cc67dcef7e736ca7ad79ff7f0423039b84948"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "c0940f0f49a3de11cf0196089e525e3368d6f9ea19662193f3b24d01405ac140"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "cbb5b49b79da9b237f83b60bacadfb1858dbd91d51cb825d266bee4de26641bb"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "8ff29fc8eb5ee32373cf1b0f31a917d706956746afec393939532fe2203a3729"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "2136660e8f7aa82e7001f17aa50bb45f9cb6316f7dadbbd3349e19771d01619a"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "55861317bc903aa9b70b4917f389f4ed3565bdbd2c3dd419580d554baa326d6a"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "49cd5ddda7ac51b5134f461a2cdfde5fdcea3df72d124bfaceffae7497d72096"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/next-eight-trial.json",
+      "sha256": "5827e24a55e774097eb20bdb8041b0b1c2996978d83eca43e3f15c5a9c2b9d48"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "bbbd1917dafee7297af2e9d239f1f17e790ef613a516c68b666338df5a111d4a"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "802721efec2af403792a9db8389f7627adb01513378a0eaf1097f3cbb1577d8b"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "41748e69b171eeb6645eb289fdf34c2c2744d474beb0bf8ca9857ae577a11327"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "78080917f8c64d7e43ffec086958d06e87e39a95e8020a9ffce0386cc76d4090"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "307b2c655f5986891c38fd4ce7a36bd7e22c67bb7be909dc0e4b246330ff40fb"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "704a353e191040876303673b612129cf6453c3a3d0aa7855dc10df4f195c63ee"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "92e81bd11e92874e8b54e6bed47ed86174129d0f2cb08bf70ed9e3ca9150ce66"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "923cd54d8c03b97285fb4f30c3ebd1f48b7c83634eb79b2220e91aba494c8d48"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "82cf8f335e6840122a32fabcba65c9126d80c3913774efc567f0e7a230d75916"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "915cabbdd2b2b32bdda21d109ac6f5645144c74b6f7d1753cdb302d214f859cc"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "2b7e32cceb8c8f73d8134154e08cd268e724812a1ff4fb95080b10bd12f2f74b"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "475609e68c1ddd80606bbff399f005f6abdc8c1cf34c542661e6801e65316bf0"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "1b10cf44b2c0ba57a9e7f34407d76ab02a67374c2e7402ef74f32aca677d0b4c"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "f1e2d6bb25c1b06c292d6ba30f92197a168ca039aca5add746f5d252212a9828"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "0b45b66f94856d1b032c96ed2367dee1b59a87327de1b09cd52d81e9a793925f"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "f7e83917c636190624f3fea0c4fadc875360e9f7b28a3023ed480e8192d72ca1"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "c24de058c8156b7eeb81c87fbdbf7c6575e0993a57839adc0a56c11a8c07ebf9"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "b2afc12139e2229a7461fd0259bca9d5bd4c0138ae121fab28194b0e19408a6f"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "2d7ab9b20801a67d1fec87142280b11fd07384bbc10c5ad6bae35cfd8bed88a0"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "af5ab486d87f2aa2e8ff3e1fe77c006acd95997461226b46cf888817e92bf7b6"
+    },
+    {
+      "file": "newer/textures/index.json",
+      "sha256": "0541eece8abaa369339ff2209387025b2c2045e03960294f720859511822268a"
+    },
+    {
+      "file": "newer/textures/official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-diffuse.webp",
+      "sha256": "5277531ebcefde22227852e3c186b9fae5a7884c6624d7ec4f8b4f15ab532ee5"
+    },
+    {
+      "file": "newer/textures/official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-height.webp",
+      "sha256": "a969527350c04c8908fc0682dc68dcf43690e1b6e70da6abc652d81d3f9a8159"
+    },
+    {
+      "file": "newer/textures/official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-diffuse.webp",
+      "sha256": "07cfce1768ac7afd6aad979b32b7c356ddc9245c185c17b3a2a78fa0fc6b19b5"
+    },
+    {
+      "file": "newer/textures/official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-height.webp",
+      "sha256": "87e2e4fdf8eff8c96603ddaa8f009d5d24a1b4418929bf1ca058afcaa789ad84"
+    },
+    {
+      "file": "newer/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-diffuse.webp",
+      "sha256": "57e96b1311e8b7192dc6cd6ec2d0235544335e5ce5167e75f0ae33d9fac7595b"
+    },
+    {
+      "file": "newer/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-height.webp",
+      "sha256": "bf00c93c581cce7a194699d9551830c6556e5a871e3668c2861790e4e7f73672"
+    },
+    {
+      "file": "newer/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-diffuse.webp",
+      "sha256": "6e09150d3ecf0bbf52dad75225b910a3417d2ef42fd93ac9c4808a1361c147f8"
+    },
+    {
+      "file": "newer/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-height.webp",
+      "sha256": "f5d65e5e9e95bc9d0bb44e6775b29a26d0967795f01200a631897fb392d83918"
+    },
+    {
+      "file": "newer/textures/official/owner-tech10_3-31e072256a779b27-v1-4x-q92-diffuse.webp",
+      "sha256": "876cf3820a00c5d62155bb392352f5ba2e5979e756a5ab1e7a4267804da1f707"
+    },
+    {
+      "file": "newer/textures/official/owner-tech10_3-31e072256a779b27-v1-4x-q92-height.webp",
+      "sha256": "b1d0c7db3e1eb311569d28a5ddd2b8670cb7685065fb3994cdd5feac754a9370"
+    },
+    {
+      "file": "newer/textures/official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-diffuse.webp",
+      "sha256": "b31a831f2c6cc932b791f6f0816303f05541f51d1d72095d43ead1a81c833470"
+    },
+    {
+      "file": "newer/textures/official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-height.webp",
+      "sha256": "f2d6cd19b5b7476f60992c0164198ab55a292e935a0193a245eeaeea87038b6c"
+    },
+    {
+      "file": "src/engine/common/hooks.js",
+      "sha256": "dd98a9df70370e9f6e296a0c115817336139edf4d017f3ad4a0f5f20ec8401c6"
+    },
+    {
+      "file": "src/engine/render/gl_rmain.js",
+      "sha256": "5ae30507e7d6f765c9159954afefa356b07f02611835e1fa6bc4bab1be87c920"
+    },
+    {
+      "file": "src/engine/render/gl_rsurf_materials.js",
+      "sha256": "31d439f9e0240e8ca1a3f99ff9b91ce5540a28890af262ac44c4b4f0e2f26ac2"
+    },
+    {
+      "file": "src/newer/assets/normal_prepare.js",
+      "sha256": "e543d48b5d4e9c27e5c4d28984197a7286237f9d84f3ef2050f3edcab75590f9"
+    },
+    {
+      "file": "src/newer/install.js",
+      "sha256": "0aa14c804c44218c551ee71b11257d1a99cef2edc593e9e707a5bf67a36e33e1"
+    },
+    {
+      "file": "src/newer/render/gl_normals.js",
+      "sha256": "f7a7d66763b95e76a299ccea6e57884793b0db45f7ca10a7d397ca788d88d109"
+    },
+    {
+      "file": "src/newer/render/gl_post.js",
+      "sha256": "bec6cfe15f78db2a5e9ca7376063ec6964be9b59118c41520359396e51e67656"
+    },
+    {
+      "file": "src/newer/render/normal_math.js",
+      "sha256": "303390e4216a26d6aaa2ceb47b841484a9b5f6b6dd88118922f70dc1682a7125"
+    },
+    {
+      "file": "src/newer/render/r_aliasvisibility.js",
+      "sha256": "c8f8e4d27cc97015b017d4f98fced051c8d79c1b82b0c7d24c63609d1986ae83"
+    },
+    {
+      "file": "src/newer/render/r_newertextures.js",
+      "sha256": "5aabea2d4c5e713ae1c81cf4e606ef3b387ce98bcca0b6e293719a7cded32246"
+    },
+    {
+      "file": "src/newer/sound/s_effectdeck.js",
+      "sha256": "8d685138ba3c056760b0fa2610e6aeeb32d2e6ab4f92f74af557f47ffa398b70"
+    },
+    {
+      "file": "src/newer/sound/s_environmentsounds.js",
+      "sha256": "8946efe859d85f8218d85c68c896a1ad39820dd61481d4bb1d4fcf2bc45579e6"
+    },
+    {
+      "file": "src/newer/sound/s_playerevents.js",
+      "sha256": "81d8bf2f1b59e4bf1e7636f3e5f6e4ff779cf1cfd3b6bf1eaad4d16fbb2327f0"
+    },
+    {
+      "file": "src/newer/sound/s_playerwater.js",
+      "sha256": "0350860b4f1bce3656857a7a37d571bc689cb8ca224c883b88db5f75db483651"
+    },
+    {
+      "file": "tests/official_texture_trial.html",
+      "sha256": "aa2a3aec430e72172d252f4872240b36f6747afd7e471f83b520886185a5d429"
+    },
+    {
+      "file": "tests/official_texture_trial.js",
+      "sha256": "127f606fc22e4acb7cb07ab1b4c9f9524c3c0e00761dae164bdecff63f00d7cf"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Floor5_04.png",
+      "sha256": "5d29efe4197dd8f825c025b12c22c744c72d009795a98a32c5e58490a0bf9be5"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Stone_00.png",
+      "sha256": "a9ec496d1ff976cd24f44e68d89fee08f62bfb80362edc0957d39ae11ec83856"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-metal5_85_JM.png",
+      "sha256": "f55f7460abcf952dd9c7f94f6e175e73844f023f91dba9cf9fee423754724171"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-metal5_96_JM.png",
+      "sha256": "a1f7ae89ae04dfee506d5af80324a013f910778297771af3d4f53a6d1bee9dd8"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-palmet3_2.png",
+      "sha256": "fc3ce9ee3d7d8dfb07ff89e914725cced461b4b48755a2a0865dba3999a719f9"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech04_3.png",
+      "sha256": "b80951843977f762c9d331d9de897980008d6ee13d5b57a03661da5ef375103d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech04_5.png",
+      "sha256": "06a2b4c6eef453502bad7def234e1ad8dadbe7e972a61c9d9eb71e942125ab2e"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech04_6.png",
+      "sha256": "7b7e47b3b53db6cacd2e15951f897374e85c6acd19c4a7f5f0b60a9de16f796c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech07_2.png",
+      "sha256": "be6ee33c32da6720643875741d99d7cf37a37da5e575634ddd4e47422a14bf0f"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech08_1.png",
+      "sha256": "ec6e5213fb6df03856fcb2f3b1f1d22f143b6a49a016e035599fa301ce84cbbc"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech09_3.png",
+      "sha256": "1f82b18d9cec8ef8338a227c5be67fe0a3e06ffbabcc7af922c3bfb5063169fc"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech10_3.png",
+      "sha256": "177d76dddb40c72909f26d3e7c9af4a5009f3048ef4a5af5347879228b4766f5"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech11_2.png",
+      "sha256": "e13685968ded47c58af964a535aaef2af7a95d485617aa4c53d6831d83fc0392"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-wmet4_4c.png",
+      "sha256": "51357a29b097438e3754ff79d9c5076a54e85d6795b626493616db128cdf3a16"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/final-dev-next8-gpu.json",
+      "sha256": "315b933d257109f81bcb2274a549c38b996f1e8e74ebaa2840ecb18237d30312"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/final-dev-next8-gpu.png",
+      "sha256": "840bcff6b71f6f3f47dfae093a2ec9077490adfbe1aab3cfea97845ef5fb7c6e"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/final-dev-tech08-confirmed-gpu.json",
+      "sha256": "49923d125217c19bb69961a56dc901dafcad4bc982afa99e5cecd1c3891a535e"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/final-dev-tech08-confirmed-gpu.png",
+      "sha256": "1b5c8752d5dd57be658b43b0948d62d45f69a78d2310df1400e0062b5565629a"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/final-dev-tech6-gpu.json",
+      "sha256": "39cde46b9340bcfa54db63ba62bf353633086f3524365c015249c6d7f103a8ff"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/final-dev-tech6-gpu.png",
+      "sha256": "fad718f8916d3749b771d8cec91c86c55af712debdef0a1314e392cd0b8595b9"
+    }
+  ],
+  "cleanup": {
+    "servers": [
+      {
+        "pid": 35233,
+        "exitCode": 143,
+        "tabs": [
+          "14 closed",
+          "15 closed"
+        ]
+      },
+      {
+        "pid": 36731,
+        "signal": "SIGTERM ownrecordedserver",
+        "command": "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python -u -m http.server 8017 --bind 127.0.0.1 --directory /Users/bri/.codex/worktrees/official-textures-next/Quaked",
+        "tabs": [
+          "16 closed"
+        ],
+        "exitCode": 143
+      }
+    ],
+    "port": 8017,
+    "portReleased": true
+  }
+}

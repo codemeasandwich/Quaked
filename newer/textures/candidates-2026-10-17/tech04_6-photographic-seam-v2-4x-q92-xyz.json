@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "tech04_6",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech04_6.png",
+  "originalSha256": "7b7e47b3b53db6cacd2e15951f897374e85c6acd19c4a7f5f0b60a9de16f796c",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x.png",
+  "authoringDiffuseSha256": "3e5f24c2319389799d83c0c3be3c41be98746c37feffea62819a1847df21ca5d",
+  "toolSha256": "e8d825dcb3e79bb9f419af6558363e0ab00534389e7b21f5423177b2e1f9af9b",
+  "heightToolSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+  "profile": {
+    "bands": [
+      0.5,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.8,
+    "bump": 0.8,
+    "glow": 0.1,
+    "strength": 0.2,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "2b7e32cceb8c8f73d8134154e08cd268e724812a1ff4fb95080b10bd12f2f74b",
+      "bytes": 5868,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        64
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "475609e68c1ddd80606bbff399f005f6abdc8c1cf34c542661e6801e65316bf0",
+      "bytes": 18976,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        64
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "1b10cf44b2c0ba57a9e7f34407d76ab02a67374c2e7402ef74f32aca677d0b4c",
+      "bytes": 13920,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        64
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "f1e2d6bb25c1b06c292d6ba30f92197a168ca039aca5add746f5d252212a9828",
+      "bytes": 14440,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        64
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "0b45b66f94856d1b032c96ed2367dee1b59a87327de1b09cd52d81e9a793925f",
+      "bytes": 3692,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        64
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    8
+  ],
+  "distanceMAE": 3.3177083333333335,
+  "distanceMaximum": 15.0,
+  "secondaryComparisonDimensions": [
+    32,
+    4
+  ],
+  "secondaryDistanceMAE": 2.5651041666666665,
+  "secondaryDistanceMaximum": 10.0,
+  "colourCompressionMAE": 1.1040852864583333,
+  "heightCompressionMAE": 1.462158203125,
+  "heightCompressionMaximum": 8.0,
+  "normalAngularMean": 1.0134949338233268,
+  "normalAngularP99": 2.5553709778744196,
+  "normalAngularMaximum": 3.976818844837099,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

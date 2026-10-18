@@ -1,0 +1,1617 @@
+{
+  "qualification": "Finite independent source/art/distance/XYrepeat/CPUrelief review PASS for current8unregistered ROOTdrafts only. The40runtimecandidate hashes bind this result. No candidate/threshold/source/index/test/WT edit, install, stage, commit, nativebuild or providerlaunch performed by reviewer. Parentinstallation/public/GPU/normalgate/owneracceptance remain separate.",
+  "overallResult": "PASS",
+  "holds": [],
+  "reviewedDraftManifestSha256": "340276ba293afcda39bfa2eef224a256cb3b06bd136051432828144251e8d6ec",
+  "finishManifestSha256": "175201669d5bf9762e4f7d5b8ffd4df3b8bcb910b22ef07482f3f81e46de5e6d",
+  "materials": 8,
+  "mapHashes": 40,
+  "manualVisualEvidenceViewed": "All8parent fullnative/decodedphotograph and half/quartercontacts, all8productionnormal/twolight/3x3contacts, all8publishedXYZ-vs-production twolightcontacts, all8actual2x2XYrepeats; correctaspect independenthalfquarteroverviews viewed separately.",
+  "acceptancePolicy": "Similarity at same halfnative/quarter native size, material realism, original featurecount/phase and edgeintent assessed visually. NumericMAE/angles are diagnostics only; no metric equality or inventedthreshold used as acceptance.",
+  "trimProof": {
+    "plainSourceTransform": "Exacttranspose of approved plain64x512photo; no fastener rotation",
+    "markedFasteners": 8,
+    "nativeCentres": [
+      [
+        8.5,
+        9.5
+      ],
+      [
+        24.5,
+        9.5
+      ],
+      [
+        40.5,
+        9.5
+      ],
+      [
+        56.5,
+        9.5
+      ],
+      [
+        72.5,
+        9.5
+      ],
+      [
+        88.5,
+        9.5
+      ],
+      [
+        104.5,
+        9.5
+      ],
+      [
+        120.5,
+        9.5
+      ]
+    ],
+    "unrotatedCompositeReproducedExactPixels": true,
+    "markedUnchangedOutsidePatchMask": true,
+    "markedRows0Through7And52Through63Unchanged": true,
+    "nativeAspect": "128x16\u2192512x64 maintained for bothstrips"
+  },
+  "normalReferenceLimit": {
+    "productionMath": "src/newer/render/normal_math.js::R_NormalsFromCraftedHeight (actualROOT bytes equal WT production)",
+    "productionMathSha256": "303390e4216a26d6aaa2ceb47b841484a9b5f6b6dd88118922f70dc1682a7125",
+    "authoredRecipe": "tools/craft_normals.py::normals_from_height",
+    "finding": "CurrentJS productionderived routine smooths height twice before differentiation; Python authorednormalrecipe differentiates decodedR without those smoothingpasses. They are distinct routes; no bit/angle equivalence is claimed. Both routes were rendered and visuallyreviewed at the exactprofiles. PublishedXYZ is somewhat sharper, remains acceptable under these matteCPUlights.",
+    "ownerAndNextAction": "Parent retains this explicit producer/runtime consistency limitation in campaign records and decides whether later narrow comment/recipe review is needed; noengine/producer/acceptance change authorized here. ActualGPU/PBR review remains separate."
+  },
+  "results": [
+    {
+      "name": "wmet4_4c",
+      "result": "PASS",
+      "nativeKey": "128x128:74f63e8543362707",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "profile": {
+        "bands": [
+          1,
+          0.9,
+          0.3,
+          0.1
+        ],
+        "groove": 0.2,
+        "bump": 0.6,
+        "glow": 0,
+        "strength": 0.06,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "f7e83917c636190624f3fea0c4fadc875360e9f7b28a3023ed480e8192d72ca1",
+        "height": "c24de058c8156b7eeb81c87fbdbf7c6575e0993a57839adc0a56c11a8c07ebf9",
+        "normalX": "b2afc12139e2229a7461fd0259bca9d5bd4c0138ae121fab28194b0e19408a6f",
+        "normalY": "2d7ab9b20801a67d1fec87142280b11fd07384bbc10c5ad6bae35cfd8bed88a0",
+        "normalZ": "af5ab486d87f2aa2e8ff3e1fe77c006acd95997461226b46cf888817e92bf7b6"
+      },
+      "sourceChain": {
+        "fittingReceipt": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-v1-4x.json",
+        "sourcePhoto": "tools/texture_sheets/sources/official-world-2026-10-17/wmet4_4c-reviewed-photo-base-v1.png",
+        "sourcePhotoSha256": "07d909f8612db0e44fcbf2124815affd8c1f90bf7d68fc076b7060e3c28e80dc",
+        "seamReceipt": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x.json",
+        "onlyDocumentedSeamBandsChanged": true
+      },
+      "distanceViews": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            64,
+            64
+          ],
+          "diagnosticMeanAbsoluteRGB": 6.121500651041667,
+          "diagnosticMaximumRGB": 37.0,
+          "visualJudgement": "PASS representative palette/style/feature-scale; no equality acceptance"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            32,
+            32
+          ],
+          "diagnosticMeanAbsoluteRGB": 3.7005208333333335,
+          "diagnosticMaximumRGB": 18.0,
+          "visualJudgement": "PASS representative palette/style/feature-scale; no equality acceptance"
+        }
+      ],
+      "distanceContact": "tools/texture_sheets/sources/official-world-2026-10-17/verification/wmet4_4c-next8-independent-distance.png",
+      "visualAssessment": {
+        "geometry": "Four horizontal oxidized-metal bands, native seam phases retained; source-specific colorfit of approved wmet4_4_JM photo.",
+        "material": "Dark olive/brown aged metal, sparse orange corrosion and fine pits; quiet0.06 relief leaves pigment broadlyflat.",
+        "edges": "XYrepeat continuous without an added vertical perimeter line; horizontal joints belong to native four-band pattern."
+      },
+      "reliefAssessment": "PASS both productiondecoded-R two-light reference and actualdecodedpublishedXYZ two-light contact; no visible codecgrain failure, falsehighlightframe or pigment-as-deeppanels. Authoredroute sharperthan productionderived reference is recorded separately.",
+      "renderEvidence": {
+        "name": "wmet4_4c",
+        "nativeKey": "128x128:74f63e8543362707",
+        "nativeDimensions": [
+          128,
+          128
+        ],
+        "dimensions": [
+          512,
+          512
+        ],
+        "profile": {
+          "bands": [
+            1,
+            0.9,
+            0.3,
+            0.1
+          ],
+          "groove": 0.2,
+          "bump": 0.6,
+          "glow": 0,
+          "strength": 0.06,
+          "cap": 0.5
+        },
+        "mapHashes": {
+          "diffuse": "f7e83917c636190624f3fea0c4fadc875360e9f7b28a3023ed480e8192d72ca1",
+          "height": "c24de058c8156b7eeb81c87fbdbf7c6575e0993a57839adc0a56c11a8c07ebf9",
+          "normalX": "b2afc12139e2229a7461fd0259bca9d5bd4c0138ae121fab28194b0e19408a6f",
+          "normalY": "2d7ab9b20801a67d1fec87142280b11fd07384bbc10c5ad6bae35cfd8bed88a0",
+          "normalZ": "af5ab486d87f2aa2e8ff3e1fe77c006acd95997461226b46cf888817e92bf7b6"
+        },
+        "originalSha256": "51357a29b097438e3754ff79d9c5076a54e85d6795b626493616db128cdf3a16",
+        "authoringDiffuseSha256": "d4eb23609a061395a29ec1794e40a233a058a07c40d7857899f31dfe404f7f15",
+        "decodedHeightRFloat32LeSha256": "3fc5b646cb0478c5a11fcacd2e491d7ef09342687c67f9288cd7d947aee667ac",
+        "productionNormalRgbaSha256": "e9b97c1f8b8d2591301b087b1062ac2f75d1169f05bd24f1bf421edc3e833cb4",
+        "productionMathFile": "/Users/bri/SOURCE/Quaked/src/newer/render/normal_math.js",
+        "productionVersusPublishedQ92AngularDiagnostic": {
+          "mean": 4.278751254219824,
+          "p99": 14.709573416689933,
+          "maximum": 32.27492242832187
+        },
+        "distanceViews": [
+          {
+            "divisor": 2,
+            "dimensions": [
+              64,
+              64
+            ],
+            "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+          },
+          {
+            "divisor": 4,
+            "dimensions": [
+              32,
+              32
+            ],
+            "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+          }
+        ],
+        "reliefFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/wmet4_4c-next8-independent-relief.png",
+        "compareFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/wmet4_4c-next8-independent-authored-vs-derived.png",
+        "repeatFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/wmet4_4c-next8-independent-repeat.png"
+      }
+    },
+    {
+      "name": "tech04_5",
+      "result": "PASS",
+      "nativeKey": "128x16:7ef518b5473c8877",
+      "nativeDimensions": [
+        128,
+        16
+      ],
+      "targetDimensions": [
+        512,
+        64
+      ],
+      "profile": {
+        "bands": [
+          0.5,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.8,
+        "bump": 0.8,
+        "glow": 0.1,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "704a353e191040876303673b612129cf6453c3a3d0aa7855dc10df4f195c63ee",
+        "height": "92e81bd11e92874e8b54e6bed47ed86174129d0f2cb08bf70ed9e3ca9150ce66",
+        "normalX": "923cd54d8c03b97285fb4f30c3ebd1f48b7c83634eb79b2220e91aba494c8d48",
+        "normalY": "82cf8f335e6840122a32fabcba65c9126d80c3913774efc567f0e7a230d75916",
+        "normalZ": "915cabbdd2b2b32bdda21d109ac6f5645144c74b6f7d1753cdb302d214f859cc"
+      },
+      "sourceChain": {
+        "fittingReceipt": "newer/textures/candidates-2026-10-17/tech04_5-photographic-v1-4x.json",
+        "sourcePhoto": "tools/texture_sheets/sources/official-world-2026-10-17/tech04_5-reviewed-photo-base-v1.png",
+        "sourcePhotoSha256": "231800f76572ca8d1f7d8a41c809d4d52f5f3b28c8e4cf84653361a8eef6bb22",
+        "seamReceipt": "newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x.json",
+        "onlyDocumentedSeamBandsChanged": true
+      },
+      "distanceViews": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            64,
+            8
+          ],
+          "diagnosticMeanAbsoluteRGB": 3.734375,
+          "diagnosticMaximumRGB": 24.0,
+          "visualJudgement": "PASS representative palette/style/feature-scale; no equality acceptance"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            32,
+            4
+          ],
+          "diagnosticMeanAbsoluteRGB": 2.4401041666666665,
+          "diagnosticMaximumRGB": 9.0,
+          "visualJudgement": "PASS representative palette/style/feature-scale; no equality acceptance"
+        }
+      ],
+      "distanceContact": "tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_5-next8-independent-distance.png",
+      "visualAssessment": {
+        "geometry": "Exactly8 portrait fastenerheads at native centers(8.5+16k,9.5),k0..7 on horizontal128x16strip; no rotated fasteners or count substitution.",
+        "material": "Smooth brown/bronze rail with upright rounded dark fasteners, restrained physical fine pitting.",
+        "edges": "Xrepeat keeps16native-pixel headspacing; Yrepeat retains intentional native upper/lower rail transition; no whole-strip bevel."
+      },
+      "reliefAssessment": "PASS both productiondecoded-R two-light reference and actualdecodedpublishedXYZ two-light contact; no visible codecgrain failure, falsehighlightframe or pigment-as-deeppanels. Authoredroute sharperthan productionderived reference is recorded separately.",
+      "renderEvidence": {
+        "name": "tech04_5",
+        "nativeKey": "128x16:7ef518b5473c8877",
+        "nativeDimensions": [
+          128,
+          16
+        ],
+        "dimensions": [
+          512,
+          64
+        ],
+        "profile": {
+          "bands": [
+            0.5,
+            1,
+            0.8,
+            0.5
+          ],
+          "groove": 0.8,
+          "bump": 0.8,
+          "glow": 0.1,
+          "strength": 0.2,
+          "cap": 0.5
+        },
+        "mapHashes": {
+          "diffuse": "704a353e191040876303673b612129cf6453c3a3d0aa7855dc10df4f195c63ee",
+          "height": "92e81bd11e92874e8b54e6bed47ed86174129d0f2cb08bf70ed9e3ca9150ce66",
+          "normalX": "923cd54d8c03b97285fb4f30c3ebd1f48b7c83634eb79b2220e91aba494c8d48",
+          "normalY": "82cf8f335e6840122a32fabcba65c9126d80c3913774efc567f0e7a230d75916",
+          "normalZ": "915cabbdd2b2b32bdda21d109ac6f5645144c74b6f7d1753cdb302d214f859cc"
+        },
+        "originalSha256": "06a2b4c6eef453502bad7def234e1ad8dadbe7e972a61c9d9eb71e942125ab2e",
+        "authoringDiffuseSha256": "9e3fc1dfbe22699fbdaff1c2ef7aed645b2f4993df19394a9ca8ff2476a9727d",
+        "decodedHeightRFloat32LeSha256": "113421157be5baab8650a2e0efd8560f829517d415818731c53ad2f6c10ff6c5",
+        "productionNormalRgbaSha256": "61e04f6ccdae9604464bb8a7d2a50205e9d75700d0270e528b8c0828442887d3",
+        "productionMathFile": "/Users/bri/SOURCE/Quaked/src/newer/render/normal_math.js",
+        "productionVersusPublishedQ92AngularDiagnostic": {
+          "mean": 8.563216974587618,
+          "p99": 20.781163929254163,
+          "maximum": 30.780836173538887
+        },
+        "distanceViews": [
+          {
+            "divisor": 2,
+            "dimensions": [
+              64,
+              8
+            ],
+            "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+          },
+          {
+            "divisor": 4,
+            "dimensions": [
+              32,
+              4
+            ],
+            "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+          }
+        ],
+        "reliefFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_5-next8-independent-relief.png",
+        "compareFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_5-next8-independent-authored-vs-derived.png",
+        "repeatFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_5-next8-independent-repeat.png"
+      }
+    },
+    {
+      "name": "tech04_6",
+      "result": "PASS",
+      "nativeKey": "128x16:bfef16117d029feb",
+      "nativeDimensions": [
+        128,
+        16
+      ],
+      "targetDimensions": [
+        512,
+        64
+      ],
+      "profile": {
+        "bands": [
+          0.5,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.8,
+        "bump": 0.8,
+        "glow": 0.1,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "2b7e32cceb8c8f73d8134154e08cd268e724812a1ff4fb95080b10bd12f2f74b",
+        "height": "475609e68c1ddd80606bbff399f005f6abdc8c1cf34c542661e6801e65316bf0",
+        "normalX": "1b10cf44b2c0ba57a9e7f34407d76ab02a67374c2e7402ef74f32aca677d0b4c",
+        "normalY": "f1e2d6bb25c1b06c292d6ba30f92197a168ca039aca5add746f5d252212a9828",
+        "normalZ": "0b45b66f94856d1b032c96ed2367dee1b59a87327de1b09cd52d81e9a793925f"
+      },
+      "sourceChain": {
+        "fittingReceipt": "newer/textures/candidates-2026-10-17/tech04_6-photographic-v1-4x.json",
+        "sourcePhoto": "tools/texture_sheets/sources/official-world-2026-10-17/tech04_6-reviewed-photo-base-v1.png",
+        "sourcePhotoSha256": "41795b8ad0e43acfc9804fed6745686ee8010046b5a608764c9e4f1dd3aafda4",
+        "seamReceipt": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x.json",
+        "onlyDocumentedSeamBandsChanged": true
+      },
+      "distanceViews": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            64,
+            8
+          ],
+          "diagnosticMeanAbsoluteRGB": 3.2220052083333335,
+          "diagnosticMaximumRGB": 16.0,
+          "visualJudgement": "PASS representative palette/style/feature-scale; no equality acceptance"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            32,
+            4
+          ],
+          "diagnosticMeanAbsoluteRGB": 2.3619791666666665,
+          "diagnosticMaximumRGB": 9.0,
+          "visualJudgement": "PASS representative palette/style/feature-scale; no equality acceptance"
+        }
+      ],
+      "distanceContact": "tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_6-next8-independent-distance.png",
+      "visualAssessment": {
+        "geometry": "Plain companion horizontal128x16rail, no fastenerheads, correct upper/lower rail phases.",
+        "material": "Plain oxidized brown-metal rail, no invented panel or studdetail; authoredXYZ is a little sharper than smoothed productionderived reference but reads as metal grain.",
+        "edges": "Xjoin visuallycontinuous; preserved top/bottom rail rows produce intentional parallel railrepeat."
+      },
+      "reliefAssessment": "PASS both productiondecoded-R two-light reference and actualdecodedpublishedXYZ two-light contact; no visible codecgrain failure, falsehighlightframe or pigment-as-deeppanels. Authoredroute sharperthan productionderived reference is recorded separately.",
+      "renderEvidence": {
+        "name": "tech04_6",
+        "nativeKey": "128x16:bfef16117d029feb",
+        "nativeDimensions": [
+          128,
+          16
+        ],
+        "dimensions": [
+          512,
+          64
+        ],
+        "profile": {
+          "bands": [
+            0.5,
+            1,
+            0.8,
+            0.5
+          ],
+          "groove": 0.8,
+          "bump": 0.8,
+          "glow": 0.1,
+          "strength": 0.2,
+          "cap": 0.5
+        },
+        "mapHashes": {
+          "diffuse": "2b7e32cceb8c8f73d8134154e08cd268e724812a1ff4fb95080b10bd12f2f74b",
+          "height": "475609e68c1ddd80606bbff399f005f6abdc8c1cf34c542661e6801e65316bf0",
+          "normalX": "1b10cf44b2c0ba57a9e7f34407d76ab02a67374c2e7402ef74f32aca677d0b4c",
+          "normalY": "f1e2d6bb25c1b06c292d6ba30f92197a168ca039aca5add746f5d252212a9828",
+          "normalZ": "0b45b66f94856d1b032c96ed2367dee1b59a87327de1b09cd52d81e9a793925f"
+        },
+        "originalSha256": "7b7e47b3b53db6cacd2e15951f897374e85c6acd19c4a7f5f0b60a9de16f796c",
+        "authoringDiffuseSha256": "3e5f24c2319389799d83c0c3be3c41be98746c37feffea62819a1847df21ca5d",
+        "decodedHeightRFloat32LeSha256": "e6318e47de7895752759c6de7502467dd41f95f27302ed3ef1deb892095448be",
+        "productionNormalRgbaSha256": "7f91db72308674a99c7d8ef7a3dfd315b5fe2cd0a735f15f18da13cdb8479f0c",
+        "productionMathFile": "/Users/bri/SOURCE/Quaked/src/newer/render/normal_math.js",
+        "productionVersusPublishedQ92AngularDiagnostic": {
+          "mean": 10.71514228637792,
+          "p99": 24.491957352146112,
+          "maximum": 32.566372728935015
+        },
+        "distanceViews": [
+          {
+            "divisor": 2,
+            "dimensions": [
+              64,
+              8
+            ],
+            "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+          },
+          {
+            "divisor": 4,
+            "dimensions": [
+              32,
+              4
+            ],
+            "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+          }
+        ],
+        "reliefFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_6-next8-independent-relief.png",
+        "compareFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_6-next8-independent-authored-vs-derived.png",
+        "repeatFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_6-next8-independent-repeat.png"
+      }
+    },
+    {
+      "name": "metal5_96_JM",
+      "result": "PASS",
+      "nativeKey": "128x128:85891f197f5d7a63",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "cbb5b49b79da9b237f83b60bacadfb1858dbd91d51cb825d266bee4de26641bb",
+        "height": "8ff29fc8eb5ee32373cf1b0f31a917d706956746afec393939532fe2203a3729",
+        "normalX": "2136660e8f7aa82e7001f17aa50bb45f9cb6316f7dadbbd3349e19771d01619a",
+        "normalY": "55861317bc903aa9b70b4917f389f4ed3565bdbd2c3dd419580d554baa326d6a",
+        "normalZ": "49cd5ddda7ac51b5134f461a2cdfde5fdcea3df72d124bfaceffae7497d72096"
+      },
+      "sourceChain": {
+        "fittingReceipt": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-v1-4x.json",
+        "sourcePhoto": "tools/texture_sheets/sources/official-world-2026-10-17/metal5_96_JM-generated-v1.png",
+        "sourcePhotoSha256": "82de45a31aa6e08609a8ea4cb83a56850a66f7ff70cd8c8aabda6600f4cd9791",
+        "seamReceipt": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x.json",
+        "onlyDocumentedSeamBandsChanged": true
+      },
+      "distanceViews": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            64,
+            64
+          ],
+          "diagnosticMeanAbsoluteRGB": 2.9734700520833335,
+          "diagnosticMaximumRGB": 20.0,
+          "visualJudgement": "PASS representative palette/style/feature-scale; no equality acceptance"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            32,
+            32
+          ],
+          "diagnosticMeanAbsoluteRGB": 1.8697916666666667,
+          "diagnosticMaximumRGB": 12.0,
+          "visualJudgement": "PASS representative palette/style/feature-scale; no equality acceptance"
+        }
+      ],
+      "distanceContact": "tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_96_JM-next8-independent-distance.png",
+      "visualAssessment": {
+        "geometry": "Interlocking native pinwheel/stepped-rectangle joint network retained, including alternating vertical and horizontal runs; not relabeled as a simple repeatedbasket grid.",
+        "material": "Weathered copper/brown faces with teal-green oxidation; dark joint recesses remain structural, not a newwhole-image frame.",
+        "edges": "Joint network closes across bothaxes with consistent thickness and phase."
+      },
+      "reliefAssessment": "PASS both productiondecoded-R two-light reference and actualdecodedpublishedXYZ two-light contact; no visible codecgrain failure, falsehighlightframe or pigment-as-deeppanels. Authoredroute sharperthan productionderived reference is recorded separately.",
+      "renderEvidence": {
+        "name": "metal5_96_JM",
+        "nativeKey": "128x128:85891f197f5d7a63",
+        "nativeDimensions": [
+          128,
+          128
+        ],
+        "dimensions": [
+          512,
+          512
+        ],
+        "profile": {
+          "bands": [
+            0.6,
+            1,
+            0.8,
+            0.5
+          ],
+          "groove": 0.5,
+          "bump": 0.5,
+          "glow": 0.2,
+          "strength": 0.2,
+          "cap": 0.5
+        },
+        "mapHashes": {
+          "diffuse": "cbb5b49b79da9b237f83b60bacadfb1858dbd91d51cb825d266bee4de26641bb",
+          "height": "8ff29fc8eb5ee32373cf1b0f31a917d706956746afec393939532fe2203a3729",
+          "normalX": "2136660e8f7aa82e7001f17aa50bb45f9cb6316f7dadbbd3349e19771d01619a",
+          "normalY": "55861317bc903aa9b70b4917f389f4ed3565bdbd2c3dd419580d554baa326d6a",
+          "normalZ": "49cd5ddda7ac51b5134f461a2cdfde5fdcea3df72d124bfaceffae7497d72096"
+        },
+        "originalSha256": "a1f7ae89ae04dfee506d5af80324a013f910778297771af3d4f53a6d1bee9dd8",
+        "authoringDiffuseSha256": "61c04f24c88d08d9e99cc50e2b066faf45ef00b92aae1e27bac2a74e71a6c78d",
+        "decodedHeightRFloat32LeSha256": "17b7e30e5b503ed7dbe0c422c20baeb657353665a53b9639fa7dd5100e241d9b",
+        "productionNormalRgbaSha256": "4a11d65e2aa8ebe98564b88d092f6b788b564d4e58fc1057f81660db02de0b60",
+        "productionMathFile": "/Users/bri/SOURCE/Quaked/src/newer/render/normal_math.js",
+        "productionVersusPublishedQ92AngularDiagnostic": {
+          "mean": 6.491494044502014,
+          "p99": 23.23419404930938,
+          "maximum": 43.429152124083906
+        },
+        "distanceViews": [
+          {
+            "divisor": 2,
+            "dimensions": [
+              64,
+              64
+            ],
+            "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+          },
+          {
+            "divisor": 4,
+            "dimensions": [
+              32,
+              32
+            ],
+            "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+          }
+        ],
+        "reliefFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_96_JM-next8-independent-relief.png",
+        "compareFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_96_JM-next8-independent-authored-vs-derived.png",
+        "repeatFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_96_JM-next8-independent-repeat.png"
+      }
+    },
+    {
+      "name": "metal5_85_JM",
+      "result": "PASS",
+      "nativeKey": "128x128:d2be32b11d4f815b",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.06,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "4b2a0d44f9e19669be083f812dff8913db749e6777090479154c838944c6c657",
+        "height": "f274053525e4de2f0c23b5ad9d8c4f337110148608eaef76198ec31e899be8e6",
+        "normalX": "9170d960b3eb639faef2c22572311a055e33ddb450cfe2a161c1e3b78679121e",
+        "normalY": "c0d6f24516e78427c75474ca699cc67dcef7e736ca7ad79ff7f0423039b84948",
+        "normalZ": "c0940f0f49a3de11cf0196089e525e3368d6f9ea19662193f3b24d01405ac140"
+      },
+      "sourceChain": {
+        "fittingReceipt": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-v1-4x.json",
+        "sourcePhoto": "tools/texture_sheets/sources/official-world-2026-10-17/metal5_85_JM-reviewed-photo-base-v1.png",
+        "sourcePhotoSha256": "8a6af9361d8750dfb10ee75e7cac77efe9e154bba24ce4af5b1277ac740d667c",
+        "seamReceipt": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x.json",
+        "onlyDocumentedSeamBandsChanged": true
+      },
+      "distanceViews": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            64,
+            64
+          ],
+          "diagnosticMeanAbsoluteRGB": 6.836751302083333,
+          "diagnosticMaximumRGB": 43.0,
+          "visualJudgement": "PASS representative palette/style/feature-scale; no equality acceptance"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            32,
+            32
+          ],
+          "diagnosticMeanAbsoluteRGB": 4.9365234375,
+          "diagnosticMaximumRGB": 30.0,
+          "visualJudgement": "PASS representative palette/style/feature-scale; no equality acceptance"
+        }
+      ],
+      "distanceContact": "tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_85_JM-next8-independent-distance.png",
+      "visualAssessment": {
+        "geometry": "Unstructured mottled corrosion, no forced plategrid or extra knobs.",
+        "material": "Copper/rust and verdigris fields reuse approved photographiccop2_5source with source-specific palette; fine surfacegrain is physical and quiet0.06relief.",
+        "edges": "XYrepeat avoids blackframes or hard bandchanges; identical-tile pattern recurrence remains normaltiling."
+      },
+      "reliefAssessment": "PASS both productiondecoded-R two-light reference and actualdecodedpublishedXYZ two-light contact; no visible codecgrain failure, falsehighlightframe or pigment-as-deeppanels. Authoredroute sharperthan productionderived reference is recorded separately.",
+      "renderEvidence": {
+        "name": "metal5_85_JM",
+        "nativeKey": "128x128:d2be32b11d4f815b",
+        "nativeDimensions": [
+          128,
+          128
+        ],
+        "dimensions": [
+          512,
+          512
+        ],
+        "profile": {
+          "bands": [
+            0.6,
+            1,
+            0.8,
+            0.5
+          ],
+          "groove": 0.5,
+          "bump": 0.5,
+          "glow": 0.2,
+          "strength": 0.06,
+          "cap": 0.5
+        },
+        "mapHashes": {
+          "diffuse": "4b2a0d44f9e19669be083f812dff8913db749e6777090479154c838944c6c657",
+          "height": "f274053525e4de2f0c23b5ad9d8c4f337110148608eaef76198ec31e899be8e6",
+          "normalX": "9170d960b3eb639faef2c22572311a055e33ddb450cfe2a161c1e3b78679121e",
+          "normalY": "c0d6f24516e78427c75474ca699cc67dcef7e736ca7ad79ff7f0423039b84948",
+          "normalZ": "c0940f0f49a3de11cf0196089e525e3368d6f9ea19662193f3b24d01405ac140"
+        },
+        "originalSha256": "f55f7460abcf952dd9c7f94f6e175e73844f023f91dba9cf9fee423754724171",
+        "authoringDiffuseSha256": "ef04afc4e39e62ac0d2a9344aa65b8c0a9adcedf99d3267257b5424f3dbc6c73",
+        "decodedHeightRFloat32LeSha256": "3553472c7cf61026ee68dcb85ee2c2e4f689cdbe34086b7d142cd2c7631047db",
+        "productionNormalRgbaSha256": "2ba53956cb87dd4e5788acc2fa2306e7d0d0a075d38aa417d6c7c12c557b9f54",
+        "productionMathFile": "/Users/bri/SOURCE/Quaked/src/newer/render/normal_math.js",
+        "productionVersusPublishedQ92AngularDiagnostic": {
+          "mean": 3.846456682358032,
+          "p99": 11.124791218680201,
+          "maximum": 21.376996945575012
+        },
+        "distanceViews": [
+          {
+            "divisor": 2,
+            "dimensions": [
+              64,
+              64
+            ],
+            "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+          },
+          {
+            "divisor": 4,
+            "dimensions": [
+              32,
+              32
+            ],
+            "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+          }
+        ],
+        "reliefFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_85_JM-next8-independent-relief.png",
+        "compareFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_85_JM-next8-independent-authored-vs-derived.png",
+        "repeatFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_85_JM-next8-independent-repeat.png"
+      }
+    },
+    {
+      "name": "TF_Floor5_04",
+      "result": "PASS",
+      "nativeKey": "128x128:ad3943d092d6c6c2",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "d89e9cfa7c8fa69ed0196dbb3f6fa66c479ba95908b5cf93a931c3d4356da119",
+        "height": "2ce26c083d06ddde9d408bceec69853de6c5dceab1e2f1394dd3d36879784aff",
+        "normalX": "b815c6d81e3df2ff1239d4463e78a093b8e6f768c6f735a35ebce2c723cd69e5",
+        "normalY": "86ceadea3c18f5d66354206ec20a0230b13f87b859817376d38f2128e2f51281",
+        "normalZ": "d4df172b1ea278ca18acf0750983d7bd25344b50de701e156b12b6c93038a87d"
+      },
+      "sourceChain": {
+        "fittingReceipt": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-v1-4x.json",
+        "sourcePhoto": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Floor5_04-generated-v1.png",
+        "sourcePhotoSha256": "b4ccef00e0700bca1a70c22fa55147b95b02dddc68b57d1a149512cb299ceb0d",
+        "seamReceipt": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x.json",
+        "onlyDocumentedSeamBandsChanged": true
+      },
+      "distanceViews": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            64,
+            64
+          ],
+          "diagnosticMeanAbsoluteRGB": 4.139404296875,
+          "diagnosticMaximumRGB": 32.0,
+          "visualJudgement": "PASS representative palette/style/feature-scale; no equality acceptance"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            32,
+            32
+          ],
+          "diagnosticMeanAbsoluteRGB": 2.7913411458333335,
+          "diagnosticMaximumRGB": 21.0,
+          "visualJudgement": "PASS representative palette/style/feature-scale; no equality acceptance"
+        }
+      ],
+      "distanceContact": "tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Floor5_04-next8-independent-distance.png",
+      "visualAssessment": {
+        "geometry": "4x4 sixteen wornfloor slabs, same row/columnpitch and broad darkchips/pits.",
+        "material": "Brown/grey worn stone or mineral flooring with chippededges, diagonalwear and smallholes; photo detail does not become pixel blocks.",
+        "edges": "Bothaxes continue the floorgroutgrid with matched phase, no extra enclosingrim."
+      },
+      "reliefAssessment": "PASS both productiondecoded-R two-light reference and actualdecodedpublishedXYZ two-light contact; no visible codecgrain failure, falsehighlightframe or pigment-as-deeppanels. Authoredroute sharperthan productionderived reference is recorded separately.",
+      "renderEvidence": {
+        "name": "TF_Floor5_04",
+        "nativeKey": "128x128:ad3943d092d6c6c2",
+        "nativeDimensions": [
+          128,
+          128
+        ],
+        "dimensions": [
+          512,
+          512
+        ],
+        "profile": {
+          "bands": [
+            0.6,
+            1,
+            0.8,
+            0.5
+          ],
+          "groove": 0.5,
+          "bump": 0.5,
+          "glow": 0.2,
+          "strength": 0.2,
+          "cap": 0.5
+        },
+        "mapHashes": {
+          "diffuse": "d89e9cfa7c8fa69ed0196dbb3f6fa66c479ba95908b5cf93a931c3d4356da119",
+          "height": "2ce26c083d06ddde9d408bceec69853de6c5dceab1e2f1394dd3d36879784aff",
+          "normalX": "b815c6d81e3df2ff1239d4463e78a093b8e6f768c6f735a35ebce2c723cd69e5",
+          "normalY": "86ceadea3c18f5d66354206ec20a0230b13f87b859817376d38f2128e2f51281",
+          "normalZ": "d4df172b1ea278ca18acf0750983d7bd25344b50de701e156b12b6c93038a87d"
+        },
+        "originalSha256": "5d29efe4197dd8f825c025b12c22c744c72d009795a98a32c5e58490a0bf9be5",
+        "authoringDiffuseSha256": "d8a4e094991ce9f7c93a541e5d15eef3b6417fc3cd1bf5806025c4a2b522de2f",
+        "decodedHeightRFloat32LeSha256": "67aca71ab3588335997a288bb1666dd0d83aa305870846a6e6131817f7ab0afc",
+        "productionNormalRgbaSha256": "d95605a76103a159855354d846723b6d276ed29519f36e8d6224c5832536e344",
+        "productionMathFile": "/Users/bri/SOURCE/Quaked/src/newer/render/normal_math.js",
+        "productionVersusPublishedQ92AngularDiagnostic": {
+          "mean": 7.325266086427054,
+          "p99": 22.547723490880003,
+          "maximum": 44.95970131785979
+        },
+        "distanceViews": [
+          {
+            "divisor": 2,
+            "dimensions": [
+              64,
+              64
+            ],
+            "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+          },
+          {
+            "divisor": 4,
+            "dimensions": [
+              32,
+              32
+            ],
+            "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+          }
+        ],
+        "reliefFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Floor5_04-next8-independent-relief.png",
+        "compareFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Floor5_04-next8-independent-authored-vs-derived.png",
+        "repeatFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Floor5_04-next8-independent-repeat.png"
+      }
+    },
+    {
+      "name": "palmet3_2",
+      "result": "PASS",
+      "nativeKey": "128x128:7bdc8195074b0fc7",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.06,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "bbbd1917dafee7297af2e9d239f1f17e790ef613a516c68b666338df5a111d4a",
+        "height": "802721efec2af403792a9db8389f7627adb01513378a0eaf1097f3cbb1577d8b",
+        "normalX": "41748e69b171eeb6645eb289fdf34c2c2744d474beb0bf8ca9857ae577a11327",
+        "normalY": "78080917f8c64d7e43ffec086958d06e87e39a95e8020a9ffce0386cc76d4090",
+        "normalZ": "307b2c655f5986891c38fd4ce7a36bd7e22c67bb7be909dc0e4b246330ff40fb"
+      },
+      "sourceChain": {
+        "fittingReceipt": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-v1-4x.json",
+        "sourcePhoto": "tools/texture_sheets/sources/official-world-2026-10-17/palmet3_2-generated-v1.png",
+        "sourcePhotoSha256": "70b2e257555f40931ffac99b7059f0ef8289bcdb5a9e50fe2f0218462616fb2c",
+        "seamReceipt": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x.json",
+        "onlyDocumentedSeamBandsChanged": true
+      },
+      "distanceViews": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            64,
+            64
+          ],
+          "diagnosticMeanAbsoluteRGB": 4.879069010416667,
+          "diagnosticMaximumRGB": 37.0,
+          "visualJudgement": "PASS representative palette/style/feature-scale; no equality acceptance"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            32,
+            32
+          ],
+          "diagnosticMeanAbsoluteRGB": 2.8294270833333335,
+          "diagnosticMaximumRGB": 22.0,
+          "visualJudgement": "PASS representative palette/style/feature-scale; no equality acceptance"
+        }
+      ],
+      "distanceContact": "tools/texture_sheets/sources/official-world-2026-10-17/verification/palmet3_2-next8-independent-distance.png",
+      "visualAssessment": {
+        "geometry": "One broad oxidizedmetal panel with sparsebluegrey wear; native thin perimeterline preserved.",
+        "material": "Brown ochre-metal face with photographed weathering, quiet0.06normals keep stainsfrom becoming pronouncedmounds.",
+        "edges": "Native panelboundary repeats naturally; no newlyaddedbeveled border or edgevignette."
+      },
+      "reliefAssessment": "PASS both productiondecoded-R two-light reference and actualdecodedpublishedXYZ two-light contact; no visible codecgrain failure, falsehighlightframe or pigment-as-deeppanels. Authoredroute sharperthan productionderived reference is recorded separately.",
+      "renderEvidence": {
+        "name": "palmet3_2",
+        "nativeKey": "128x128:7bdc8195074b0fc7",
+        "nativeDimensions": [
+          128,
+          128
+        ],
+        "dimensions": [
+          512,
+          512
+        ],
+        "profile": {
+          "bands": [
+            0.6,
+            1,
+            0.8,
+            0.5
+          ],
+          "groove": 0.5,
+          "bump": 0.5,
+          "glow": 0.2,
+          "strength": 0.06,
+          "cap": 0.5
+        },
+        "mapHashes": {
+          "diffuse": "bbbd1917dafee7297af2e9d239f1f17e790ef613a516c68b666338df5a111d4a",
+          "height": "802721efec2af403792a9db8389f7627adb01513378a0eaf1097f3cbb1577d8b",
+          "normalX": "41748e69b171eeb6645eb289fdf34c2c2744d474beb0bf8ca9857ae577a11327",
+          "normalY": "78080917f8c64d7e43ffec086958d06e87e39a95e8020a9ffce0386cc76d4090",
+          "normalZ": "307b2c655f5986891c38fd4ce7a36bd7e22c67bb7be909dc0e4b246330ff40fb"
+        },
+        "originalSha256": "fc3ce9ee3d7d8dfb07ff89e914725cced461b4b48755a2a0865dba3999a719f9",
+        "authoringDiffuseSha256": "c5647282bfc7f21d646bb03fcc5bfa666d61ebdf85748edc4f5f66077f860f67",
+        "decodedHeightRFloat32LeSha256": "d923374a942e58ab7e6ddaf4fabfde41f5572dbc25400f4eec347b723a038b49",
+        "productionNormalRgbaSha256": "a0db5bd2446b47c3173c058b6014e0c3041b01c7f40fbe1210d06cbf1d5208ab",
+        "productionMathFile": "/Users/bri/SOURCE/Quaked/src/newer/render/normal_math.js",
+        "productionVersusPublishedQ92AngularDiagnostic": {
+          "mean": 4.079417587388314,
+          "p99": 11.386651598410946,
+          "maximum": 26.707036104355993
+        },
+        "distanceViews": [
+          {
+            "divisor": 2,
+            "dimensions": [
+              64,
+              64
+            ],
+            "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+          },
+          {
+            "divisor": 4,
+            "dimensions": [
+              32,
+              32
+            ],
+            "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+          }
+        ],
+        "reliefFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/palmet3_2-next8-independent-relief.png",
+        "compareFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/palmet3_2-next8-independent-authored-vs-derived.png",
+        "repeatFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/palmet3_2-next8-independent-repeat.png"
+      }
+    },
+    {
+      "name": "TF_Stone_00",
+      "result": "PASS",
+      "nativeKey": "128x128:42d2beee14cc60c4",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "fff60a312820e425f8aa3b5595ad793ead1bc9117e66dc61f73b5c71a4d0ba4e",
+        "height": "ffbc530c48d3d2191eec21a3841d6282144bf4649e65e36be8d75bc72cd53361",
+        "normalX": "1b4d7f9390e553a2795f69f861c968ee478a16474dc8b85f1fdeeca87584b0ab",
+        "normalY": "0d3f19dad3d3acb7e88f9bf6fce33a31167c0d71072b21e73d55c544a93c7d88",
+        "normalZ": "a22a36e5bd3512d3e497234b3ab86942e5b9673afa54fa9e81ad76380c1674da"
+      },
+      "sourceChain": {
+        "fittingReceipt": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-v1-4x.json",
+        "sourcePhoto": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Stone_00-generated-v1.png",
+        "sourcePhotoSha256": "a0642793a8414b0afadc434e00c742343419e34519fcc23c03e3da7220f4b443",
+        "seamReceipt": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x.json",
+        "onlyDocumentedSeamBandsChanged": true
+      },
+      "distanceViews": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            64,
+            64
+          ],
+          "diagnosticMeanAbsoluteRGB": 7.465006510416667,
+          "diagnosticMaximumRGB": 53.0,
+          "visualJudgement": "PASS representative palette/style/feature-scale; no equality acceptance"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            32,
+            32
+          ],
+          "diagnosticMeanAbsoluteRGB": 4.320963541666667,
+          "diagnosticMaximumRGB": 28.0,
+          "visualJudgement": "PASS representative palette/style/feature-scale; no equality acceptance"
+        }
+      ],
+      "distanceContact": "tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Stone_00-next8-independent-distance.png",
+      "visualAssessment": {
+        "geometry": "Four broad horizontal masonrycourses and staggered verticaljoint phases retained; no extra rows or smallbricks.",
+        "material": "Dark rough cutstone with warmmortar and restrainedchips/cracks, appropriately coarserthan quietmetal.",
+        "edges": "Courselines and staggered jointsclose in XYrepeat without an extraimagebox."
+      },
+      "reliefAssessment": "PASS both productiondecoded-R two-light reference and actualdecodedpublishedXYZ two-light contact; no visible codecgrain failure, falsehighlightframe or pigment-as-deeppanels. Authoredroute sharperthan productionderived reference is recorded separately.",
+      "renderEvidence": {
+        "name": "TF_Stone_00",
+        "nativeKey": "128x128:42d2beee14cc60c4",
+        "nativeDimensions": [
+          128,
+          128
+        ],
+        "dimensions": [
+          512,
+          512
+        ],
+        "profile": {
+          "bands": [
+            0.6,
+            1,
+            0.8,
+            0.5
+          ],
+          "groove": 0.5,
+          "bump": 0.5,
+          "glow": 0.2,
+          "strength": 0.2,
+          "cap": 0.5
+        },
+        "mapHashes": {
+          "diffuse": "fff60a312820e425f8aa3b5595ad793ead1bc9117e66dc61f73b5c71a4d0ba4e",
+          "height": "ffbc530c48d3d2191eec21a3841d6282144bf4649e65e36be8d75bc72cd53361",
+          "normalX": "1b4d7f9390e553a2795f69f861c968ee478a16474dc8b85f1fdeeca87584b0ab",
+          "normalY": "0d3f19dad3d3acb7e88f9bf6fce33a31167c0d71072b21e73d55c544a93c7d88",
+          "normalZ": "a22a36e5bd3512d3e497234b3ab86942e5b9673afa54fa9e81ad76380c1674da"
+        },
+        "originalSha256": "a9ec496d1ff976cd24f44e68d89fee08f62bfb80362edc0957d39ae11ec83856",
+        "authoringDiffuseSha256": "6353437aeb670d8314540b17dc05ea10a3a10db4f815ded2e2aee36c534c811b",
+        "decodedHeightRFloat32LeSha256": "91f15017b1ec2c854dd59c289a4c19addd52603b2b596b23d3199eeaad296675",
+        "productionNormalRgbaSha256": "5c325a9208e00353896fbf3ec7af2347b2b5c43b6732de9d9e719996741e36fa",
+        "productionMathFile": "/Users/bri/SOURCE/Quaked/src/newer/render/normal_math.js",
+        "productionVersusPublishedQ92AngularDiagnostic": {
+          "mean": 7.6645196787016845,
+          "p99": 23.516607369672997,
+          "maximum": 44.509908794851754
+        },
+        "distanceViews": [
+          {
+            "divisor": 2,
+            "dimensions": [
+              64,
+              64
+            ],
+            "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+          },
+          {
+            "divisor": 4,
+            "dimensions": [
+              32,
+              32
+            ],
+            "qualification": "Viewed equal-resolution source/replacement comparison in parent contact, plus independent Pillow diagnostics; not pixel equality acceptance"
+          }
+        ],
+        "reliefFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Stone_00-next8-independent-relief.png",
+        "compareFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Stone_00-next8-independent-authored-vs-derived.png",
+        "repeatFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Stone_00-next8-independent-repeat.png"
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "d89e9cfa7c8fa69ed0196dbb3f6fa66c479ba95908b5cf93a931c3d4356da119"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "2ce26c083d06ddde9d408bceec69853de6c5dceab1e2f1394dd3d36879784aff"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "b815c6d81e3df2ff1239d4463e78a093b8e6f768c6f735a35ebce2c723cd69e5"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "86ceadea3c18f5d66354206ec20a0230b13f87b859817376d38f2128e2f51281"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "d4df172b1ea278ca18acf0750983d7bd25344b50de701e156b12b6c93038a87d"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "1a4a5d0e1304506a60b42fdd3eaec5c8c7c1238421bb24f2e05a7cefafc06af7"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x.json",
+      "sha256": "193795983dfa99f42e6c10371f4823d93c634d945db52381ce4642c8595102b1"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-seam-v2-4x.png",
+      "sha256": "d8a4e094991ce9f7c93a541e5d15eef3b6417fc3cd1bf5806025c4a2b522de2f"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-v1-4x.json",
+      "sha256": "097dad27c774066467d05d3a3ec80badac9906665562dc78ac7d63e175586702"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Floor5_04-photographic-v1-4x.png",
+      "sha256": "2ed72faaec161ece1f95e8f113763bf661e57accc5f101e3933c19e775a70554"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "fff60a312820e425f8aa3b5595ad793ead1bc9117e66dc61f73b5c71a4d0ba4e"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "ffbc530c48d3d2191eec21a3841d6282144bf4649e65e36be8d75bc72cd53361"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "1b4d7f9390e553a2795f69f861c968ee478a16474dc8b85f1fdeeca87584b0ab"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "0d3f19dad3d3acb7e88f9bf6fce33a31167c0d71072b21e73d55c544a93c7d88"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "a22a36e5bd3512d3e497234b3ab86942e5b9673afa54fa9e81ad76380c1674da"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "d7b1318104cd1c4fc880c4ce7a800996a83c0a939fcc9db9c07df56f7ebe3cf3"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x.json",
+      "sha256": "a58b3e7ee587984970477b9115fb3cff7231dfb4ff2072f22ddf15ca716c515a"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x.png",
+      "sha256": "6353437aeb670d8314540b17dc05ea10a3a10db4f815ded2e2aee36c534c811b"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-v1-4x.json",
+      "sha256": "ba90cba98ab9b65796ea4e2ed28cb31d326d4ba3619d46bd3fc58c9d21e240c8"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-v1-4x.png",
+      "sha256": "9b04b33ab4369deac2e5e762da55e207db214d7eab9bbceb5c42ccb58ef4b0bd"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "4b2a0d44f9e19669be083f812dff8913db749e6777090479154c838944c6c657"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "f274053525e4de2f0c23b5ad9d8c4f337110148608eaef76198ec31e899be8e6"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "9170d960b3eb639faef2c22572311a055e33ddb450cfe2a161c1e3b78679121e"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "c0d6f24516e78427c75474ca699cc67dcef7e736ca7ad79ff7f0423039b84948"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "c0940f0f49a3de11cf0196089e525e3368d6f9ea19662193f3b24d01405ac140"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "22cd652534eee05be9bc0901c5693d623c6610d4b70eb58db86af06caccb1b4c"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x.json",
+      "sha256": "88e4b77500767443994a2c394793c604ac4b5809c4303a75d703853c72f20126"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x.png",
+      "sha256": "ef04afc4e39e62ac0d2a9344aa65b8c0a9adcedf99d3267257b5424f3dbc6c73"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-v1-4x.json",
+      "sha256": "24c323217dd99fed2c91870a2288feba21460e691edb8463149546713d4d30da"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-v1-4x.png",
+      "sha256": "8b44500d9bc3c7248f6a375aeef495ff24ee492b72ba0405447852f2a1b63002"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "cbb5b49b79da9b237f83b60bacadfb1858dbd91d51cb825d266bee4de26641bb"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "8ff29fc8eb5ee32373cf1b0f31a917d706956746afec393939532fe2203a3729"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "2136660e8f7aa82e7001f17aa50bb45f9cb6316f7dadbbd3349e19771d01619a"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "55861317bc903aa9b70b4917f389f4ed3565bdbd2c3dd419580d554baa326d6a"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "49cd5ddda7ac51b5134f461a2cdfde5fdcea3df72d124bfaceffae7497d72096"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "b8f43bb226c38a13ecd6263f7065456db5ea60456aa552ab1891d270893bae31"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x.json",
+      "sha256": "e31636c9e17f6c3bf206f3536d569e6607be09d95c77166f7935cdfd6e455cac"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x.png",
+      "sha256": "61c04f24c88d08d9e99cc50e2b066faf45ef00b92aae1e27bac2a74e71a6c78d"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-v1-4x.json",
+      "sha256": "6ee4d47605809c2ba9371bd41273a238bc67eee38e088bea57bf6f3ed8290652"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-v1-4x.png",
+      "sha256": "e56e52a7a1be98296e98fd4aaa3ba3a2444dc24a7bd86ba1e35a1bf7bd628d23"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "bbbd1917dafee7297af2e9d239f1f17e790ef613a516c68b666338df5a111d4a"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "802721efec2af403792a9db8389f7627adb01513378a0eaf1097f3cbb1577d8b"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "41748e69b171eeb6645eb289fdf34c2c2744d474beb0bf8ca9857ae577a11327"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "78080917f8c64d7e43ffec086958d06e87e39a95e8020a9ffce0386cc76d4090"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "307b2c655f5986891c38fd4ce7a36bd7e22c67bb7be909dc0e4b246330ff40fb"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "93f054f3698b30d6af65a8356df1cd798bff5a450775f88b0d9661781ee74d65"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x.json",
+      "sha256": "dab79138f7c680d4c943d2782c10322fec204e82592dd10e882740df52a77616"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-seam-v2-4x.png",
+      "sha256": "c5647282bfc7f21d646bb03fcc5bfa666d61ebdf85748edc4f5f66077f860f67"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-v1-4x.json",
+      "sha256": "e7386114ff4a337604717f37cbfa81097daae5962f694967db4037fc286b5434"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/palmet3_2-photographic-v1-4x.png",
+      "sha256": "36c9b4797ee37af16cd23cda74cf4f8de36d023d4ba4a6c18ecbcffa76293064"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "704a353e191040876303673b612129cf6453c3a3d0aa7855dc10df4f195c63ee"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "92e81bd11e92874e8b54e6bed47ed86174129d0f2cb08bf70ed9e3ca9150ce66"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "923cd54d8c03b97285fb4f30c3ebd1f48b7c83634eb79b2220e91aba494c8d48"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "82cf8f335e6840122a32fabcba65c9126d80c3913774efc567f0e7a230d75916"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "915cabbdd2b2b32bdda21d109ac6f5645144c74b6f7d1753cdb302d214f859cc"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "f87c75a957d698cb52e86bc45bde1c0dc627cf91b394bd364c1ebb76dff4e207"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x.json",
+      "sha256": "aa362b3b0dffc2859a848b1b0628cd246c75d7b9484305fb87d805f0ae04a716"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-seam-v2-4x.png",
+      "sha256": "9e3fc1dfbe22699fbdaff1c2ef7aed645b2f4993df19394a9ca8ff2476a9727d"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-v1-4x.json",
+      "sha256": "a5c06f6ca3f83163b304a1e4f70492aad6fa0f42e32c6674def717215137833e"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_5-photographic-v1-4x.png",
+      "sha256": "4235615ca55e31fa077569f2ebe58f6afaa94c45ebafe0e33783e9a1de965556"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "2b7e32cceb8c8f73d8134154e08cd268e724812a1ff4fb95080b10bd12f2f74b"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "475609e68c1ddd80606bbff399f005f6abdc8c1cf34c542661e6801e65316bf0"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "1b10cf44b2c0ba57a9e7f34407d76ab02a67374c2e7402ef74f32aca677d0b4c"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "f1e2d6bb25c1b06c292d6ba30f92197a168ca039aca5add746f5d252212a9828"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "0b45b66f94856d1b032c96ed2367dee1b59a87327de1b09cd52d81e9a793925f"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "80dcf09a18bede6d12372ed7d1b4ab022f2321ec8278ca632ab4e3322c17afac"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x.json",
+      "sha256": "ce93f7c6d1a9c384586b9d93b9f5ea8108cd45ba9e93f7f2d12fdd40824b2dd6"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-seam-v2-4x.png",
+      "sha256": "3e5f24c2319389799d83c0c3be3c41be98746c37feffea62819a1847df21ca5d"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-v1-4x.json",
+      "sha256": "0941b5fc456368d45fe10227f200f1128a4111ce52e61f6a62bdea586a5829c4"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_6-photographic-v1-4x.png",
+      "sha256": "bcc1596bf135553990a09d59ea6477a0fcbf9a105ab10bca91e1e888010f1e03"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/tech04_8-photographic-rails-seam-v4-4x.png",
+      "sha256": "9e63846927c67cabc156bb5d7ee7a1fe22a186d6ebc24c5296524e76229a8f95"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4_JM-photographic-seam-v2-4x.png",
+      "sha256": "07d909f8612db0e44fcbf2124815affd8c1f90bf7d68fc076b7060e3c28e80dc"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "f7e83917c636190624f3fea0c4fadc875360e9f7b28a3023ed480e8192d72ca1"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "c24de058c8156b7eeb81c87fbdbf7c6575e0993a57839adc0a56c11a8c07ebf9"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "b2afc12139e2229a7461fd0259bca9d5bd4c0138ae121fab28194b0e19408a6f"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "2d7ab9b20801a67d1fec87142280b11fd07384bbc10c5ad6bae35cfd8bed88a0"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "af5ab486d87f2aa2e8ff3e1fe77c006acd95997461226b46cf888817e92bf7b6"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "b860649fec3a17555321843e8c987cd44d80c9f8531c2926c6a5dbed55979742"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x.json",
+      "sha256": "487046f32b1f4887515bc50a1732ed3ec14245c0dd50854fecff4d9e51d12ec0"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-seam-v2-4x.png",
+      "sha256": "d4eb23609a061395a29ec1794e40a233a058a07c40d7857899f31dfe404f7f15"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-v1-4x.json",
+      "sha256": "b0fde220ed20111f70907e680e66051aab76e8a2fe46b6e4ea8c5306d79603aa"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wmet4_4c-photographic-v1-4x.png",
+      "sha256": "75bcafc110322d6bc51da149703ef9b1f1a2b80e05520495f182403602bfb8c6"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Floor5_04-generated-v1.png",
+      "sha256": "b4ccef00e0700bca1a70c22fa55147b95b02dddc68b57d1a149512cb299ceb0d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Stone_00-generated-v1.png",
+      "sha256": "a0642793a8414b0afadc434e00c742343419e34519fcc23c03e3da7220f4b443"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/cop2_5-generated-v1.png",
+      "sha256": "8a6af9361d8750dfb10ee75e7cac77efe9e154bba24ce4af5b1277ac740d667c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/horizontal-trim-reuse-v1.json",
+      "sha256": "f29f34440b0dae7a01d681e7961a18b461a5449c9f2aa6662e17853e9cfb63bc"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/metal5_85_JM-reviewed-photo-base-v1.json",
+      "sha256": "35156c8536111f41a64bb4048150035305524c888b428561b7a2ecb8825a23c3"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/metal5_85_JM-reviewed-photo-base-v1.png",
+      "sha256": "8a6af9361d8750dfb10ee75e7cac77efe9e154bba24ce4af5b1277ac740d667c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/metal5_96_JM-generated-v1.png",
+      "sha256": "82de45a31aa6e08609a8ea4cb83a56850a66f7ff70cd8c8aabda6600f4cd9791"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Floor5_04.json",
+      "sha256": "571e4bf9f7fb075b54ec406a65f55be29a9e7367b97f89c29ee637fcae29a89c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Floor5_04.png",
+      "sha256": "5d29efe4197dd8f825c025b12c22c744c72d009795a98a32c5e58490a0bf9be5"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Stone_00.json",
+      "sha256": "9aea2c2c82bfaa3385f205bbfb2f64d85bb900fbefc5e7baffc754feb4974023"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Stone_00.png",
+      "sha256": "a9ec496d1ff976cd24f44e68d89fee08f62bfb80362edc0957d39ae11ec83856"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-metal5_85_JM.json",
+      "sha256": "379e1f8a1df6e8ce5df0bbbfae3b4559443af7533a4eb92033f932d48c49037f"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-metal5_85_JM.png",
+      "sha256": "f55f7460abcf952dd9c7f94f6e175e73844f023f91dba9cf9fee423754724171"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-metal5_96_JM.json",
+      "sha256": "ca6026ac974cee2aafb155c83b22d0e5ddb16573e261d26a66c3cd8a794e48c2"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-metal5_96_JM.png",
+      "sha256": "a1f7ae89ae04dfee506d5af80324a013f910778297771af3d4f53a6d1bee9dd8"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-palmet3_2.json",
+      "sha256": "df96fe69352078c77c43c62d94cc0ba3b429c06afd28f82c8093e040c5804b3a"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-palmet3_2.png",
+      "sha256": "fc3ce9ee3d7d8dfb07ff89e914725cced461b4b48755a2a0865dba3999a719f9"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech04_5.json",
+      "sha256": "78045643b71644538cf9c9fa27cea7815267641e0541df4e635236e72a2b602d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech04_5.png",
+      "sha256": "06a2b4c6eef453502bad7def234e1ad8dadbe7e972a61c9d9eb71e942125ab2e"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech04_6.json",
+      "sha256": "aaab28854af18bc5f3acc69f16f00e696656768d673ec0273b1acf5388de9218"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-tech04_6.png",
+      "sha256": "7b7e47b3b53db6cacd2e15951f897374e85c6acd19c4a7f5f0b60a9de16f796c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-wmet4_4c.json",
+      "sha256": "57693685c37455d0b2ca33f7c3bfb0799cb3025c17efed399ab09c21abef95f3"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-wmet4_4c.png",
+      "sha256": "51357a29b097438e3754ff79d9c5076a54e85d6795b626493616db128cdf3a16"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/next-eight-finish-v1.json",
+      "sha256": "175201669d5bf9762e4f7d5b8ffd4df3b8bcb910b22ef07482f3f81e46de5e6d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/next-eight-first-drafts.json",
+      "sha256": "340276ba293afcda39bfa2eef224a256cb3b06bd136051432828144251e8d6ec"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/palmet3_2-generated-v1.png",
+      "sha256": "70b2e257555f40931ffac99b7059f0ef8289bcdb5a9e50fe2f0218462616fb2c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/prepare_horizontal_trims.py",
+      "sha256": "3b649b0f05e4037f91cbc0b60969682ef2feec4535e9a85a3f0b91f16925de50"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/tech04_5-reviewed-photo-base-v1.png",
+      "sha256": "231800f76572ca8d1f7d8a41c809d4d52f5f3b28c8e4cf84653361a8eef6bb22"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/tech04_6-reviewed-photo-base-v1.png",
+      "sha256": "41795b8ad0e43acfc9804fed6745686ee8010046b5a608764c9e4f1dd3aafda4"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/trim-fastener-photographic-fitted-v2.png",
+      "sha256": "f77dc10477cf71acb7a5e74130e348aeb7227740bc52fb4964f35c3c29cec4ed"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Floor5_04-next8-independent-distance.png",
+      "sha256": "84fc4eed604bd6cf0695a1f45aa7eba0eb33c0a8dbd20be85000e14eda4187e7"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Stone_00-next8-independent-distance.png",
+      "sha256": "46ac70cf892de603a139a000d3dac543f91da6917e8f7e982179d252bb8825f6"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_85_JM-next8-independent-distance.png",
+      "sha256": "3600b0452176addeed39a93832590c24e188aa76328efcf4ee26e45b3ed58030"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/metal5_96_JM-next8-independent-distance.png",
+      "sha256": "a4b028d81629f121218fcdda741f90c6a9d5bd0f1cb6f8b6a160e7b70fcdfec5"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-independent-render-inputs.json",
+      "sha256": "01cfceb13cbfc3d6dc66e048e68c23c4a3eff77a2237141bb699409b666dcdab"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/palmet3_2-next8-independent-distance.png",
+      "sha256": "7a3d958770c8a4855b403ac11e2d436d2e62ee01de1e868f0d1600052b1979f0"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/render_next_eight_independent_review.mjs",
+      "sha256": "09f3ce94bffb49ed3f02d65dc6ae50465dc5cf0bdd126fa7fa0b351060c2bc2c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_5-next8-independent-distance.png",
+      "sha256": "79c9c0bda932dbcd354eac2561fc919f856408d11fc284e7c1ff1ac8be738122"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/tech04_6-next8-independent-distance.png",
+      "sha256": "27fccd5cc0c1208fd082a34ada69debf45f10bb224e5f2288dc7f8b89b55a4d2"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/wmet4_4c-next8-independent-distance.png",
+      "sha256": "d85f3c1ce6076ad72aff0d7ba8f16236c10391fe147a726ff6c73ddc1bfd8faf"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/wmet4_4c-reviewed-photo-base-v1.json",
+      "sha256": "eac1eb744b1c88e4f1eb0fa095b443d602c8dda472b2676465103f7f5b31123a"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/wmet4_4c-reviewed-photo-base-v1.png",
+      "sha256": "07d909f8612db0e44fcbf2124815affd8c1f90bf7d68fc076b7060e3c28e80dc"
+    }
+  ],
+  "allReviewedInputsUnchanged": true
+}

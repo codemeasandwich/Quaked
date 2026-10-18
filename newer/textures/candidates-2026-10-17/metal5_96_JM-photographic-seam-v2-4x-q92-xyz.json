@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "metal5_96_JM",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-metal5_96_JM.png",
+  "originalSha256": "a1f7ae89ae04dfee506d5af80324a013f910778297771af3d4f53a6d1bee9dd8",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x.png",
+  "authoringDiffuseSha256": "61c04f24c88d08d9e99cc50e2b066faf45ef00b92aae1e27bac2a74e71a6c78d",
+  "toolSha256": "e8d825dcb3e79bb9f419af6558363e0ab00534389e7b21f5423177b2e1f9af9b",
+  "heightToolSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.2,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "cbb5b49b79da9b237f83b60bacadfb1858dbd91d51cb825d266bee4de26641bb",
+      "bytes": 96870,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "8ff29fc8eb5ee32373cf1b0f31a917d706956746afec393939532fe2203a3729",
+      "bytes": 102708,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "2136660e8f7aa82e7001f17aa50bb45f9cb6316f7dadbbd3349e19771d01619a",
+      "bytes": 96698,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "55861317bc903aa9b70b4917f389f4ed3565bdbd2c3dd419580d554baa326d6a",
+      "bytes": 95664,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-17/metal5_96_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "49cd5ddda7ac51b5134f461a2cdfde5fdcea3df72d124bfaceffae7497d72096",
+      "bytes": 24552,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    64
+  ],
+  "distanceMAE": 2.8382975260416665,
+  "distanceMaximum": 20.0,
+  "secondaryComparisonDimensions": [
+    32,
+    32
+  ],
+  "secondaryDistanceMAE": 1.8577473958333333,
+  "secondaryDistanceMaximum": 13.0,
+  "colourCompressionMAE": 2.5904693603515625,
+  "heightCompressionMAE": 1.3072662353515625,
+  "heightCompressionMaximum": 8.0,
+  "normalAngularMean": 0.9759118470689696,
+  "normalAngularP99": 2.4996093547530926,
+  "normalAngularMaximum": 4.633451491762186,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

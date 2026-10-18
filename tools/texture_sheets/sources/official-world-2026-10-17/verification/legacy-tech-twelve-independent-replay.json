@@ -1,0 +1,651 @@
+{
+  "qualification": "Independent uninstalled artifact/source/codec qualification only: all12PNG decodedRGBs equal direct retainedpre4x Lanczos targets and all12Q92 outputs replay byte-exact inBytesIO. No producer execution, image output/write, source/index/test/WT/staging mutation. Visual/lit/GPU/public installed qualification remains separate.",
+  "indexBeforeSha256": "f8da85a8730aadfc34b2199b1d91fdf21ab54bcf774e1c21b73753871633ad9c",
+  "receipt": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-twelve-q92-v1.json",
+  "receiptSha256": "369f777b7bccf0a6547509ea787e353487e41619ec364e4b3a42aa9809ee1e33",
+  "planSha256": "ddbfb0b3cefa9c9847d6e613a9664abf6c66a04b1c9b4037fdd60fe99daba970",
+  "producerSha256": "dc22011add92bd615949ff0e8be0bc803381a84e19741fffa5d82c86d85b2b17",
+  "encoderSha256": "9f5f0fccd3207c4cac58b4c3db12d949b64ad381838cdfacf88c0f30106c0c34",
+  "runtime": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "pillow": "10.1.0",
+    "webp": "1.3.2",
+    "numpy": "1.26.2"
+  },
+  "plannedWitnesses": 52,
+  "unchangedInputHashes": [
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/packs/games.json",
+      "sha256": "4a79876d345fb5668eb20918495d39bdf9af24681d4064c859e71a353a86a8c1"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/index.json",
+      "sha256": "f8da85a8730aadfc34b2199b1d91fdf21ab54bcf774e1c21b73753871633ad9c"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/normals/tech04_3.webp",
+      "sha256": "8f8bc60e3ca359c90fbaa5df481006a8b0d3827503c05d18be699cbc46649e20"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/normals/tech07_2.webp",
+      "sha256": "4486dcfbbb0bf955eb7b014e8bf528b0b0a6e6770abc83edc702caa254118f05"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/normals/tech08_1.webp",
+      "sha256": "a3aa6e8ec1a8b9c5e109dd8b05dea5629870b24e0b90760ad42caba97722ce7a"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/normals/tech09_3.webp",
+      "sha256": "6cc0a3a4c8fb4566dde5c2a4c7acea755421a649eaba4667cec6a550ab1122b4"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/normals/tech10_3.webp",
+      "sha256": "70a36a6cc59000a32a1669bc1926f144903ed0c2b398117baa4a6eb78b9f134d"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/normals/tech11_2.webp",
+      "sha256": "e0853b1182a88c35e69b4452514892aa0517d897a28fad393f1e09d31738ea97"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/tech04_3.webp",
+      "sha256": "65b463d19c2de7397242f1a77bf130abbf9802a57a94f9db115503b043fac3cc"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/tech07_2.webp",
+      "sha256": "d0ad3b6262891ad41028c87de42105e912df9dd12dda64c5d89b3c70aa43d270"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/tech08_1.webp",
+      "sha256": "ead6026af77d57c09b970bd1f8a52a4f4b7ceb3636c16a56b70d75ca1c098b0b"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/tech09_3.webp",
+      "sha256": "7362b48b6edb7ad3e95d61e4518391da75080b909d8b20d11899958f3cd4cb62"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/tech10_3.webp",
+      "sha256": "e69082ad4e8a59cd9b387357e95bf06470ea0538ce84e8598124b3cb19b8e56c"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/tech11_2.webp",
+      "sha256": "f2ff087807812be7c23cfe0f32d2952ca2ec034afc0089004e1f21b2aae669a2"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/src/newer/assets/normal_prepare.js",
+      "sha256": "e543d48b5d4e9c27e5c4d28984197a7286237f9d84f3ef2050f3edcab75590f9"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/src/newer/render/gl_normals.js",
+      "sha256": "f7a7d66763b95e76a299ccea6e57884793b0db45f7ca10a7d397ca788d88d109"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/src/newer/render/normal_math.js",
+      "sha256": "303390e4216a26d6aaa2ceb47b841484a9b5f6b6dd88118922f70dc1682a7125"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/src/newer/render/r_newertextures.js",
+      "sha256": "5aabea2d4c5e713ae1c81cf4e606ef3b387ce98bcca0b6e293719a7cded32246"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/level_texture_assets_test.py",
+      "sha256": "74148f55a599987f13d5de3aa57ed314b4504cb19b017b9f4e692f361ebaf4b1"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_owner_q92_test.js",
+      "sha256": "22d2102cea22953a241425e2c6ff92e68977e37b89f1650336510e471687e571"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_registration_test.js",
+      "sha256": "ec5d497952cb7365c546b7008588c06e3b4afe0ccc244ae4808a63981aec7fd5"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_standard.js",
+      "sha256": "3bdd111ee1987c310bf6221e9763242b16f104243a1059cd8b143fe95db8db26"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/owner_texture_q92_standard.js",
+      "sha256": "4ebe5b3a65a1fce1eda12426e28fca38e4747d30e954f2577a895f1f39ade158"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/standard_4x_records_contract_test.mjs",
+      "sha256": "f00ff0277866209b7b483d48d728b06282f063ec02b3e8f3679c69c21d23cc8e"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/texture_seams_test.py",
+      "sha256": "dae6b8f7465135167474f92b32baa7493b8a214458e9570ed4a27c958d3a522c"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/distribution/manifest.mjs",
+      "sha256": "b3607639a3cb865c483ac6aeb4219a9010bdf9d14827f1639a22723d680489ff"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/distribution/packs.mjs",
+      "sha256": "b99254a6ebd51600930c6e7340444900c0a1ec1139dfea30bc080db0cca77ea3"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/finish_runtime_skin.py",
+      "sha256": "9f5f0fccd3207c4cac58b4c3db12d949b64ad381838cdfacf88c0f30106c0c34"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech04_3.webp",
+      "sha256": "43ba54d680bca36ecc8e47436a9dd470be8d9b62cfe625978547dabe20ac0988"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech07_2.webp",
+      "sha256": "bc85af99ae792dfdf50e7a955d984c4f99c00dd0c0c2e07bc8f7004a5c48d2b2"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech08_1.webp",
+      "sha256": "ca44d13c7342edf163f40ddf65b657170e7354240ce311f9f59bebc4305c7792"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech09_3.webp",
+      "sha256": "5c76cb9850c2e99576dcbfdd438ddb72aa973d644cc2bc22ba499634623cecf2"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech10_3.webp",
+      "sha256": "70ea434c6d416714256889da379ad33b784dc9c6e7d2ff04c633019d194efcb8"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech11_2.webp",
+      "sha256": "b35e3223a4fe6f97598d96f68b97b80c0a8993f57154b80910d96954a3525e3b"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech04_3.webp",
+      "sha256": "31577af5a6fcca735941313cc5cf5c7d312456c95183bb7afde36764c5bd5c1c"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech07_2.webp",
+      "sha256": "93ea9d4f8dd74921120194d1184709f1253654e6f4f82c7ccb4182d28f99fb04"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech08_1.webp",
+      "sha256": "caf9ce0d34eeaf6c1f324ae6df3f272617f30131fb74d995c38b7befb85f3880"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech09_3.webp",
+      "sha256": "39d5af74127f92c605eb16787bd173b529b919f9055a4ffe8ad5fd6f3b5ba5d3"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech10_3.webp",
+      "sha256": "59d557070192505c9125eaaa9a1ca049c0b950b0278f24f5d9f4be717e1f0590"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech11_2.webp",
+      "sha256": "b06069c8ec174571e20638ae89891bbdc8f489eaf9d266146789474389481cfd"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/upstream-legacy-tech-4x.json",
+      "sha256": "38d0758c936f40d2aaf03f3a0c9db53f993bff9c2669269cd3f2c6dd571372b1"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/sources/standard-4x/batch1-shareware.json",
+      "sha256": "e5800d70944bf22fe2f6acea270b394547a16602ce68777fa1e31ab3a2a77e3b"
+    },
+    {
+      "path": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/standardise_4x.py",
+      "sha256": "323573f16a29f14b0adad629774723a2c4ada06ee3ea0cf4c978e2a1f9d79776"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/newer/textures/official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-diffuse.webp",
+      "sha256": "5277531ebcefde22227852e3c186b9fae5a7884c6624d7ec4f8b4f15ab532ee5"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/newer/textures/official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-height.webp",
+      "sha256": "a969527350c04c8908fc0682dc68dcf43690e1b6e70da6abc652d81d3f9a8159"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/newer/textures/official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-diffuse.webp",
+      "sha256": "07cfce1768ac7afd6aad979b32b7c356ddc9245c185c17b3a2a78fa0fc6b19b5"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/newer/textures/official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-height.webp",
+      "sha256": "87e2e4fdf8eff8c96603ddaa8f009d5d24a1b4418929bf1ca058afcaa789ad84"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/newer/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-diffuse.webp",
+      "sha256": "57e96b1311e8b7192dc6cd6ec2d0235544335e5ce5167e75f0ae33d9fac7595b"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/newer/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-height.webp",
+      "sha256": "bf00c93c581cce7a194699d9551830c6556e5a871e3668c2861790e4e7f73672"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/newer/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-diffuse.webp",
+      "sha256": "6e09150d3ecf0bbf52dad75225b910a3417d2ef42fd93ac9c4808a1361c147f8"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/newer/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-height.webp",
+      "sha256": "f5d65e5e9e95bc9d0bb44e6775b29a26d0967795f01200a631897fb392d83918"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/newer/textures/official/owner-tech10_3-31e072256a779b27-v1-4x-q92-diffuse.webp",
+      "sha256": "876cf3820a00c5d62155bb392352f5ba2e5979e756a5ab1e7a4267804da1f707"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/newer/textures/official/owner-tech10_3-31e072256a779b27-v1-4x-q92-height.webp",
+      "sha256": "b1d0c7db3e1eb311569d28a5ddd2b8670cb7685065fb3994cdd5feac754a9370"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/newer/textures/official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-diffuse.webp",
+      "sha256": "b31a831f2c6cc932b791f6f0816303f05541f51d1d72095d43ead1a81c833470"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/newer/textures/official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-height.webp",
+      "sha256": "f2d6cd19b5b7476f60992c0164198ab55a292e935a0193a245eeaeea87038b6c"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech04_3-4x-diffuse.png",
+      "sha256": "edda6c77d7b6294d2a0157b38a70cdff012362bcbbcd7e2ff05624ac81058581"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech04_3-4x-height.png",
+      "sha256": "3a3f66625c20e31ee19fd93264ec2a05eea8246d92e949666a0d0c37d73c2739"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech07_2-4x-diffuse.png",
+      "sha256": "2f9bdd2f834893434dc5c0554d2a3016ce6d77badb3dcbf8524c27aff98ff021"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech07_2-4x-height.png",
+      "sha256": "818c8d45958a0960787492d88c7eef10d2e43c21d4e504255e1066f9b28df83c"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech08_1-4x-diffuse.png",
+      "sha256": "696a677dfab3b5bdfed1806bde624ff8a86a06363a7900833fb4939328c89fdc"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech08_1-4x-height.png",
+      "sha256": "bb05569b8ff2e4b0039beef253bc6cd0b1b0df7d220474b243efbeea94610d3b"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech09_3-4x-diffuse.png",
+      "sha256": "e0732b888f072d0dbe19717b1a0ffb8d4daa9e103b66fe0a12b7ff26056aafbe"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech09_3-4x-height.png",
+      "sha256": "927c1dfa9addf038c8374e5273efab8f835c8985c80b0851832e5a0860b76ca0"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech10_3-4x-diffuse.png",
+      "sha256": "eb9a1420398fb50e5fef4760f53452195391c2ac1b6f8495e7f94f35a32fd7cc"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech10_3-4x-height.png",
+      "sha256": "daf1986798411c98d5568e124f759b11be108e35bd69dfa30ee67bb9e51eede8"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech11_2-4x-diffuse.png",
+      "sha256": "d9bb10644d81a84452264c25e40b895548be1484ba2100bc8baccd5b8cb33dbb"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech11_2-4x-height.png",
+      "sha256": "4593d2df096a46b7abc40fbe23f8c01bf3c87498db954981bfc40abe23a7ed61"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-twelve-q92-v1.json",
+      "sha256": "369f777b7bccf0a6547509ea787e353487e41619ec364e4b3a42aa9809ee1e33"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/prepare_legacy_tech_q92.py",
+      "sha256": "dc22011add92bd615949ff0e8be0bc803381a84e19741fffa5d82c86d85b2b17"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-owner-q92-first-tranche-plan.json",
+      "sha256": "a6fdf364d5f9ff92d297ebab20132b068701a0134ac555accbf624814136cf48"
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-twelve-tech-q95-replay.json",
+      "sha256": "f2f4bc76d3e491c4de25dd45d59517c7f2d30b3ce8b15490f6c21c80603ea8c6"
+    },
+    {
+      "path": "/private/tmp/quaked-oct18-all95-audit/inventory.json",
+      "sha256": "6ed0c269c83453427f714f5992588f0fc731e7f304b922e34c6727cf33c1185a"
+    },
+    {
+      "path": "/private/tmp/quaked-oct18-all95-audit/originals/128x128-5d03decdcf531707.rgba",
+      "sha256": "4d18e67867ff42e592e013a5d7b2f06df6d0226b5d15118c371579db1faf3ea9"
+    },
+    {
+      "path": "/private/tmp/quaked-oct18-all95-audit/originals/128x128-8ff008acef40a86e.rgba",
+      "sha256": "743a768469b7f5a33dab25b22a8a19e8d8b7edcfabf5913d4f48a60a6ac6c03d"
+    },
+    {
+      "path": "/private/tmp/quaked-oct18-all95-audit/originals/128x128-ba7e0769a9a0ce1b.rgba",
+      "sha256": "d4e3fd411036b324fcb1633ced87ffe6a7fdac25c348f5b8266c9d99e75710a5"
+    },
+    {
+      "path": "/private/tmp/quaked-oct18-all95-audit/originals/128x128-f56a5604372ecc96.rgba",
+      "sha256": "392cc3507e7f61f265a8ed473e72e2153d91d3b5005bd4660e53ed2d6d6966f3"
+    },
+    {
+      "path": "/private/tmp/quaked-oct18-all95-audit/originals/16x128-a479c5cd7f65b1bf.rgba",
+      "sha256": "7e2fbfb4aee270a5788c2df23b45d048f6cb62162bc45f4bc113a1b6704d2508"
+    },
+    {
+      "path": "/private/tmp/quaked-oct18-all95-audit/originals/32x128-31e072256a779b27.rgba",
+      "sha256": "6951466dddd621bcbc17affa9bee6d11db0695c4ef56577ee89288d6b8c5fafa"
+    }
+  ],
+  "pngPixelMatches": 12,
+  "quality92ByteMatches": 12,
+  "capAbsentExactlyFive": true,
+  "heightRgbPreserved": true,
+  "results": [
+    {
+      "name": "tech04_3",
+      "role": "diffuse",
+      "dimensions": [
+        64,
+        512
+      ],
+      "sourceSha256": "43ba54d680bca36ecc8e47436a9dd470be8d9b62cfe625978547dabe20ac0988",
+      "retainedOld95Sha256": "65b463d19c2de7397242f1a77bf130abbf9802a57a94f9db115503b043fac3cc",
+      "masterPngSha256": "edda6c77d7b6294d2a0157b38a70cdff012362bcbbcd7e2ff05624ac81058581",
+      "masterDecodedRgbSha256": "9785befd284e231579d3457e3aefb1b0e6d31709c65aa7d75023de6dc6d2f0a7",
+      "masterPixelsExactSourceLanczosMatch": true,
+      "quality92ReplayBytesExact": true,
+      "encodingAttempts": 1,
+      "outputSha256": "5277531ebcefde22227852e3c186b9fae5a7884c6624d7ec4f8b4f15ab532ee5",
+      "outputBytes": 6442,
+      "payload": [
+        "VP8 "
+      ],
+      "heightRgbWitness": {}
+    },
+    {
+      "name": "tech04_3",
+      "role": "height",
+      "dimensions": [
+        64,
+        512
+      ],
+      "sourceSha256": "31577af5a6fcca735941313cc5cf5c7d312456c95183bb7afde36764c5bd5c1c",
+      "retainedOld95Sha256": "8f8bc60e3ca359c90fbaa5df481006a8b0d3827503c05d18be699cbc46649e20",
+      "masterPngSha256": "3a3f66625c20e31ee19fd93264ec2a05eea8246d92e949666a0d0c37d73c2739",
+      "masterDecodedRgbSha256": "dc790b9a592749b79e8b58773de52154689055da308ca7c14638beb56f4ed093",
+      "masterPixelsExactSourceLanczosMatch": true,
+      "quality92ReplayBytesExact": true,
+      "encodingAttempts": 1,
+      "outputSha256": "a969527350c04c8908fc0682dc68dcf43690e1b6e70da6abc652d81d3f9a8159",
+      "outputBytes": 14782,
+      "payload": [
+        "VP8 "
+      ],
+      "heightRgbWitness": {
+        "master": {
+          "rgbTexelsWithUnusedChannelDifference": 791,
+          "maxUnusedChannelDifferenceFromR": 2
+        },
+        "encoded92": {
+          "rgbTexelsWithUnusedChannelDifference": 455,
+          "maxUnusedChannelDifferenceFromR": 1
+        }
+      }
+    },
+    {
+      "name": "tech07_2",
+      "role": "diffuse",
+      "dimensions": [
+        512,
+        512
+      ],
+      "sourceSha256": "bc85af99ae792dfdf50e7a955d984c4f99c00dd0c0c2e07bc8f7004a5c48d2b2",
+      "retainedOld95Sha256": "d0ad3b6262891ad41028c87de42105e912df9dd12dda64c5d89b3c70aa43d270",
+      "masterPngSha256": "2f9bdd2f834893434dc5c0554d2a3016ce6d77badb3dcbf8524c27aff98ff021",
+      "masterDecodedRgbSha256": "494f3bac172ce5a3b49957bf3ab19e995fdf1e4583ae76f9676775e84ea4d983",
+      "masterPixelsExactSourceLanczosMatch": true,
+      "quality92ReplayBytesExact": true,
+      "encodingAttempts": 1,
+      "outputSha256": "07cfce1768ac7afd6aad979b32b7c356ddc9245c185c17b3a2a78fa0fc6b19b5",
+      "outputBytes": 61598,
+      "payload": [
+        "VP8 "
+      ],
+      "heightRgbWitness": {}
+    },
+    {
+      "name": "tech07_2",
+      "role": "height",
+      "dimensions": [
+        512,
+        512
+      ],
+      "sourceSha256": "93ea9d4f8dd74921120194d1184709f1253654e6f4f82c7ccb4182d28f99fb04",
+      "retainedOld95Sha256": "4486dcfbbb0bf955eb7b014e8bf528b0b0a6e6770abc83edc702caa254118f05",
+      "masterPngSha256": "818c8d45958a0960787492d88c7eef10d2e43c21d4e504255e1066f9b28df83c",
+      "masterDecodedRgbSha256": "9daac2c8f208d9d09d9fd47a6ff18d7f7f5e8578352c09633a49cce277a49be7",
+      "masterPixelsExactSourceLanczosMatch": true,
+      "quality92ReplayBytesExact": true,
+      "encodingAttempts": 1,
+      "outputSha256": "87e2e4fdf8eff8c96603ddaa8f009d5d24a1b4418929bf1ca058afcaa789ad84",
+      "outputBytes": 90264,
+      "payload": [
+        "VP8 "
+      ],
+      "heightRgbWitness": {
+        "master": {
+          "rgbTexelsWithUnusedChannelDifference": 5779,
+          "maxUnusedChannelDifferenceFromR": 2
+        },
+        "encoded92": {
+          "rgbTexelsWithUnusedChannelDifference": 3213,
+          "maxUnusedChannelDifferenceFromR": 1
+        }
+      }
+    },
+    {
+      "name": "tech08_1",
+      "role": "diffuse",
+      "dimensions": [
+        512,
+        512
+      ],
+      "sourceSha256": "ca44d13c7342edf163f40ddf65b657170e7354240ce311f9f59bebc4305c7792",
+      "retainedOld95Sha256": "ead6026af77d57c09b970bd1f8a52a4f4b7ceb3636c16a56b70d75ca1c098b0b",
+      "masterPngSha256": "696a677dfab3b5bdfed1806bde624ff8a86a06363a7900833fb4939328c89fdc",
+      "masterDecodedRgbSha256": "5e477a534f439965d02ddebba576565f4c17af2c4d14bbd6c4f5d9c0bc9eaff5",
+      "masterPixelsExactSourceLanczosMatch": true,
+      "quality92ReplayBytesExact": true,
+      "encodingAttempts": 1,
+      "outputSha256": "57e96b1311e8b7192dc6cd6ec2d0235544335e5ce5167e75f0ae33d9fac7595b",
+      "outputBytes": 55944,
+      "payload": [
+        "VP8 "
+      ],
+      "heightRgbWitness": {}
+    },
+    {
+      "name": "tech08_1",
+      "role": "height",
+      "dimensions": [
+        512,
+        512
+      ],
+      "sourceSha256": "caf9ce0d34eeaf6c1f324ae6df3f272617f30131fb74d995c38b7befb85f3880",
+      "retainedOld95Sha256": "a3aa6e8ec1a8b9c5e109dd8b05dea5629870b24e0b90760ad42caba97722ce7a",
+      "masterPngSha256": "bb05569b8ff2e4b0039beef253bc6cd0b1b0df7d220474b243efbeea94610d3b",
+      "masterDecodedRgbSha256": "4080e35550055f0b5998df5b50f622bcdd59fec9a23e0251eb5fd99ee13b1bf1",
+      "masterPixelsExactSourceLanczosMatch": true,
+      "quality92ReplayBytesExact": true,
+      "encodingAttempts": 1,
+      "outputSha256": "bf00c93c581cce7a194699d9551830c6556e5a871e3668c2861790e4e7f73672",
+      "outputBytes": 76198,
+      "payload": [
+        "VP8 "
+      ],
+      "heightRgbWitness": {
+        "master": {
+          "rgbTexelsWithUnusedChannelDifference": 4793,
+          "maxUnusedChannelDifferenceFromR": 2
+        },
+        "encoded92": {
+          "rgbTexelsWithUnusedChannelDifference": 2663,
+          "maxUnusedChannelDifferenceFromR": 1
+        }
+      }
+    },
+    {
+      "name": "tech09_3",
+      "role": "diffuse",
+      "dimensions": [
+        512,
+        512
+      ],
+      "sourceSha256": "5c76cb9850c2e99576dcbfdd438ddb72aa973d644cc2bc22ba499634623cecf2",
+      "retainedOld95Sha256": "7362b48b6edb7ad3e95d61e4518391da75080b909d8b20d11899958f3cd4cb62",
+      "masterPngSha256": "e0732b888f072d0dbe19717b1a0ffb8d4daa9e103b66fe0a12b7ff26056aafbe",
+      "masterDecodedRgbSha256": "753d3745feaaaf73602e5ab7540003e8c3275082d38640c3affa52018e86d541",
+      "masterPixelsExactSourceLanczosMatch": true,
+      "quality92ReplayBytesExact": true,
+      "encodingAttempts": 1,
+      "outputSha256": "6e09150d3ecf0bbf52dad75225b910a3417d2ef42fd93ac9c4808a1361c147f8",
+      "outputBytes": 48814,
+      "payload": [
+        "VP8 "
+      ],
+      "heightRgbWitness": {}
+    },
+    {
+      "name": "tech09_3",
+      "role": "height",
+      "dimensions": [
+        512,
+        512
+      ],
+      "sourceSha256": "39d5af74127f92c605eb16787bd173b529b919f9055a4ffe8ad5fd6f3b5ba5d3",
+      "retainedOld95Sha256": "6cc0a3a4c8fb4566dde5c2a4c7acea755421a649eaba4667cec6a550ab1122b4",
+      "masterPngSha256": "927c1dfa9addf038c8374e5273efab8f835c8985c80b0851832e5a0860b76ca0",
+      "masterDecodedRgbSha256": "20c01c3a2cbb888b4524f8fca72f58d44b148a2cb6184c65a10415d51c30ad9d",
+      "masterPixelsExactSourceLanczosMatch": true,
+      "quality92ReplayBytesExact": true,
+      "encodingAttempts": 1,
+      "outputSha256": "f5d65e5e9e95bc9d0bb44e6775b29a26d0967795f01200a631897fb392d83918",
+      "outputBytes": 66074,
+      "payload": [
+        "VP8 "
+      ],
+      "heightRgbWitness": {
+        "master": {
+          "rgbTexelsWithUnusedChannelDifference": 4607,
+          "maxUnusedChannelDifferenceFromR": 2
+        },
+        "encoded92": {
+          "rgbTexelsWithUnusedChannelDifference": 2722,
+          "maxUnusedChannelDifferenceFromR": 1
+        }
+      }
+    },
+    {
+      "name": "tech10_3",
+      "role": "diffuse",
+      "dimensions": [
+        128,
+        512
+      ],
+      "sourceSha256": "70ea434c6d416714256889da379ad33b784dc9c6e7d2ff04c633019d194efcb8",
+      "retainedOld95Sha256": "e69082ad4e8a59cd9b387357e95bf06470ea0538ce84e8598124b3cb19b8e56c",
+      "masterPngSha256": "eb9a1420398fb50e5fef4760f53452195391c2ac1b6f8495e7f94f35a32fd7cc",
+      "masterDecodedRgbSha256": "d13c9738fad4db9298febe6460a38557f427a4bc312c4e6930a0614612fefc71",
+      "masterPixelsExactSourceLanczosMatch": true,
+      "quality92ReplayBytesExact": true,
+      "encodingAttempts": 1,
+      "outputSha256": "876cf3820a00c5d62155bb392352f5ba2e5979e756a5ab1e7a4267804da1f707",
+      "outputBytes": 13540,
+      "payload": [
+        "VP8 "
+      ],
+      "heightRgbWitness": {}
+    },
+    {
+      "name": "tech10_3",
+      "role": "height",
+      "dimensions": [
+        128,
+        512
+      ],
+      "sourceSha256": "59d557070192505c9125eaaa9a1ca049c0b950b0278f24f5d9f4be717e1f0590",
+      "retainedOld95Sha256": "70a36a6cc59000a32a1669bc1926f144903ed0c2b398117baa4a6eb78b9f134d",
+      "masterPngSha256": "daf1986798411c98d5568e124f759b11be108e35bd69dfa30ee67bb9e51eede8",
+      "masterDecodedRgbSha256": "764c8f06430bd11f04b9ef49c27bb3789bf51d0823c0f1ed8f01850dbdf8d776",
+      "masterPixelsExactSourceLanczosMatch": true,
+      "quality92ReplayBytesExact": true,
+      "encodingAttempts": 1,
+      "outputSha256": "b1d0c7db3e1eb311569d28a5ddd2b8670cb7685065fb3994cdd5feac754a9370",
+      "outputBytes": 25670,
+      "payload": [
+        "VP8 "
+      ],
+      "heightRgbWitness": {
+        "master": {
+          "rgbTexelsWithUnusedChannelDifference": 1173,
+          "maxUnusedChannelDifferenceFromR": 1
+        },
+        "encoded92": {
+          "rgbTexelsWithUnusedChannelDifference": 728,
+          "maxUnusedChannelDifferenceFromR": 1
+        }
+      }
+    },
+    {
+      "name": "tech11_2",
+      "role": "diffuse",
+      "dimensions": [
+        512,
+        512
+      ],
+      "sourceSha256": "b35e3223a4fe6f97598d96f68b97b80c0a8993f57154b80910d96954a3525e3b",
+      "retainedOld95Sha256": "f2ff087807812be7c23cfe0f32d2952ca2ec034afc0089004e1f21b2aae669a2",
+      "masterPngSha256": "d9bb10644d81a84452264c25e40b895548be1484ba2100bc8baccd5b8cb33dbb",
+      "masterDecodedRgbSha256": "e5d9989a65ce1a05391b1a50dcaaed7ea202e5615dabee1109896bd301a43db3",
+      "masterPixelsExactSourceLanczosMatch": true,
+      "quality92ReplayBytesExact": true,
+      "encodingAttempts": 1,
+      "outputSha256": "b31a831f2c6cc932b791f6f0816303f05541f51d1d72095d43ead1a81c833470",
+      "outputBytes": 50476,
+      "payload": [
+        "VP8 "
+      ],
+      "heightRgbWitness": {}
+    },
+    {
+      "name": "tech11_2",
+      "role": "height",
+      "dimensions": [
+        512,
+        512
+      ],
+      "sourceSha256": "b06069c8ec174571e20638ae89891bbdc8f489eaf9d266146789474389481cfd",
+      "retainedOld95Sha256": "e0853b1182a88c35e69b4452514892aa0517d897a28fad393f1e09d31738ea97",
+      "masterPngSha256": "4593d2df096a46b7abc40fbe23f8c01bf3c87498db954981bfc40abe23a7ed61",
+      "masterDecodedRgbSha256": "4a8a84f2fc9412bae13312aa744b37fcd99d657e1333148b76a54f50fffc7e2c",
+      "masterPixelsExactSourceLanczosMatch": true,
+      "quality92ReplayBytesExact": true,
+      "encodingAttempts": 1,
+      "outputSha256": "f2d6cd19b5b7476f60992c0164198ab55a292e935a0193a245eeaeea87038b6c",
+      "outputBytes": 62108,
+      "payload": [
+        "VP8 "
+      ],
+      "heightRgbWitness": {
+        "master": {
+          "rgbTexelsWithUnusedChannelDifference": 4464,
+          "maxUnusedChannelDifferenceFromR": 2
+        },
+        "encoded92": {
+          "rgbTexelsWithUnusedChannelDifference": 2502,
+          "maxUnusedChannelDifferenceFromR": 1
+        }
+      }
+    }
+  ],
+  "codeReview": {
+    "result": "PASS for this hash-bound plan and authoring output",
+    "scope": "Reviewed preflight for all target paths and all24source/old95 custody inputs before first image write; exact sourcecatalogue and descriptors/allowlists; sourceRGB Lanczos pixels pinned; unchanged pure encoder; never-overwrite x writes; finalsourcechecks; partialI/O outputs retained and receipt written last.",
+    "limitations": [
+      "This is source/output review, not an executed failure-injection test of the authoring script.",
+      "All52planwitnesses separately rechecked by this independent replay; authoringtool itself explicitly checks its actual source/index/descriptor/encoder inputs rather than every test/audit witness.",
+      "No index binding installed; default cap and actual decodedR normal behavior need installed public checks."
+    ]
+  }
+}

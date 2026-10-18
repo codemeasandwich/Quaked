@@ -1,0 +1,174 @@
+--- a/tests/owner_texture_q92_standard.js
++++ b/tests/owner_texture_q92_standard.js
+@@ -46,11 +46,48 @@
+  byName.set(entry.name,entry);
+ }
+ for(const[a,b]of[['city5_3','metflor2_1'],['wizmet1_3','mmetal1_3']])equal(byName.get(a).current,byName.get(b).current,'owner and exact-native alias share a complete pair');
++// Six further format successors share this adapter, while the original owner4
++// exports and lossless-master registration witness remain exactly four maps.
++export const techQ92ReceiptPath=base+'legacy-tech-twelve-q92-v1.json';
++export const techQ92Receipt=JSON.parse(read(techQ92ReceiptPath));
++export const techQ92PlanPath=base+'verification/legacy-tech-twelve-q92-plan.json';
++export const techQ92Plan=JSON.parse(read(techQ92PlanPath));
++export const techQ92BeforePath=base+'legacy-tech-twelve-index-before.json';
++export const techQ92BeforeBytes=read(techQ92BeforePath),techQ92Before=JSON.parse(techQ92BeforeBytes);
++export const techQ92Maps=techQ92Receipt.maps,techQ92Bindings=techQ92Receipt.bindings;
++const techKeys={tech04_3:'16x128:a479c5cd7f65b1bf',tech07_2:'128x128:5d03decdcf531707',tech08_1:'128x128:ba7e0769a9a0ce1b',tech09_3:'128x128:8ff008acef40a86e',tech10_3:'32x128:31e072256a779b27',tech11_2:'128x128:f56a5604372ecc96'},techByName=new Map(),techByRole=new Map();
++equal(sha256(read(techQ92PlanPath)),techQ92Receipt.planSha256,'tech Q92 immutable source plan');
++equal(sha256(techQ92BeforeBytes),techQ92Receipt.indexBeforeSha256,'tech Q92 exact predecessor catalogue');
++equal(techQ92Receipt.indexBeforeSha256,techQ92Plan.indexSha256,'tech source plan starts at predecessor catalogue');
++equal([techQ92Receipt.schemaVersion,techQ92Receipt.factor,techQ92Receipt.quality,techQ92Receipt.lossless,techQ92Receipt.method],[1,4,92,false,6],'tech Q92 format contract');
++equal(techQ92Bindings.map(e=>e.name).sort(),Object.keys(techKeys).sort(),'only six original tech materials');
++equal(techQ92Maps.length,12,'only twelve tech format maps');
++equal(new Set(techQ92Maps.map(m=>m.file)).size,12,'all twelve tech outputs remain distinct');
++equal(sha256(read('tools/texture_sheets/finish_runtime_skin.py')),techQ92Receipt.encoderSha256,'tech pure encoder unchanged');
++equal(sha256(read(base+'prepare_legacy_tech_q92.py')),techQ92Receipt.authoringToolSha256,'tech authoring tool bound to receipt');
++for(const map of techQ92Maps){
++ check(Object.hasOwn(techKeys,map.name)&&['diffuse','height'].includes(map.role),'explicit tech map role');const identity=map.name+'|'+map.role;check(!techByRole.has(identity),'one tech output per material role');techByRole.set(identity,map);
++ const planned=techQ92Plan.maps.find(p=>p.name===map.name&&p.role===map.role);check(planned,'exact planned tech source');
++ for(const [field,plannedField]of[['retainedPre4xFile','retainedPre4xFile'],['retainedPre4xSha256','retainedPre4xSha256'],['predecessor','predecessorFile'],['predecessorSha256','predecessorSha256'],['master','proposedMaster'],['masterDecodedRgbSha256','proposedMasterDecodedRgbSha256'],['file','proposedRuntimeFile'],['dimensions','proposedMasterDimensions']])equal(map[field],planned[plannedField],'tech map retains exact '+field);
++ equal(sha256(read(map.retainedPre4xFile)),map.retainedPre4xSha256,'retained pre4x tech source bytes');equal(sha256(read(map.predecessor)),map.predecessorSha256,'retained historical Q95 output bytes');
++ const master=read(map.master);equal(sha256(master),map.masterSha256,'tech lossless PNG master bytes');equal(master.subarray(0,8).toString('hex'),'89504e470d0a1a0a','tech master is PNG');equal(master.subarray(12,16).toString(),'IHDR','tech PNG dimension header');equal([master.readUInt32BE(16),master.readUInt32BE(20)],map.dimensions,'tech PNG4x dimensions');
++ const output=read(map.file);equal(sha256(output),map.sha256,'tech Q92 output bytes');equal(output.length,map.bytes,'tech Q92 encoded length');equal(ownerQ92ImageSize(output,map.file),map.dimensions,'tech actual lossy4x payload dimensions');
++}
++for(const entry of techQ92Bindings){
++ const planned=techQ92Plan.bindings.find(p=>p.name===entry.name);check(planned,'planned tech material');equal(entry.nativeKey,techKeys[entry.name],'exact native tech key');
++ for(const field of['nativeDimensions','sourcePixelSha256','target','sourceAllowlist','previous'])equal(entry[field],planned[field],'tech complete planned '+field);equal(entry.current,planned.proposedCurrent,'exact proposed tech successor');equal(entry.sourceAllowlist,[entry.nativeKey],'tech exact single native source');
++ equal(entry.previous,{file:techQ92Before.textures[entry.name],normal:techQ92Before.normals[entry.name]},'tech predecessor complete binding');equal(techQ92Before.sources[entry.name],entry.sourceAllowlist,'tech predecessor guard');check(!techQ92Before.ordinaryVariants?.[entry.name]&&!techQ92Before.glass?.[entry.name],'tech height-only base route remains unshadowed');
++ equal(entry.target,entry.nativeDimensions.map(n=>n*4),'tech target is exactly4x per axis');equal({...entry.current.normal,file:entry.previous.normal.file},entry.previous.normal,'only tech height filename changes');equal(Object.keys(entry.current.normal).sort(),(entry.name==='tech08_1'?['cap','file','strength']:['file','strength']).sort(),'tech preserves explicit/absent cap fields');equal(entry.current.normal.strength,1.15,'tech authored strength unchanged');equal(entry.current.normal.cap??1.1,1.1,'tech effective default cap');
++ for(const [role,file,previous]of[['diffuse',entry.current.file,entry.previous.file],['height',entry.current.normal.file,entry.previous.normal.file]]){const map=techByRole.get(entry.name+'|'+role);check(map,'both tech roles present');equal(map.file,'newer/textures/'+file,'tech selected role');equal(map.predecessor,'newer/textures/'+previous,'tech retained role');equal(map.dimensions,entry.target,'tech role dimensions');}
++ techByName.set(entry.name,entry);
++}
++const formatEntry=name=>byName.get(name)??techByName.get(name);
++
+ export const ownerQ92Bindings=[...byName.values()];
+-export function ownerQ92Binding(name){return byName.get(name)?.current??null;}
+-export function ownerQ92Previous(name,fallback){return byName.get(name)?.previous??fallback;}
++export function ownerQ92Binding(name){return formatEntry(name)?.current??null;}
++export function ownerQ92Previous(name,fallback){return formatEntry(name)?.previous??fallback;}
+ export function ownerQ92Baseline(field,name,previous){
+- const entry=byName.get(name);if(!entry||!['textures','normals'].includes(field))return previous;
++ const entry=formatEntry(name);if(!entry||!['textures','normals'].includes(field))return previous;
+  equal(previous,field==='textures'?entry.previous.file:entry.previous.normal,'owner successor starts from fixed baseline field');return field==='textures'?entry.current.file:entry.current.normal;
+ }
+ export function ownerQ92Registration(original){
+--- a/tests/official_texture_owner_q92_test.js
++++ b/tests/official_texture_owner_q92_test.js
+@@ -16,7 +16,7 @@
+ import {NormalInputs,NormalInputKey,NormalGenerate} from '../src/newer/assets/normal_prepare.js';
+ import {GAME_CATALOGUE_GAMES} from '../src/engine/common/game_catalogue.js';
+ import {memberSearch,readMember,sha256} from '../tools/pak_members.mjs';
+-import {ownerQ92Receipt,ownerQ92ReceiptPath,ownerQ92Before,ownerQ92Bindings,ownerQ92Maps,ownerQ92ImageSize} from './owner_texture_q92_standard.js';
++import {ownerQ92Receipt,ownerQ92ReceiptPath,ownerQ92Before,ownerQ92Bindings,ownerQ92Maps,ownerQ92ImageSize,ownerQ92Baseline,techQ92ReceiptPath,techQ92Plan,techQ92Before,techQ92Bindings,techQ92Maps} from './owner_texture_q92_standard.js';
+ const root=resolve(import.meta.dirname,'..'),read=p=>readFileSync(resolve(root,p));
+ const planPath='tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-owner-q92-first-tranche-plan.json';
+ const plan=JSON.parse(read(planPath)).firstTranche,indexBytes=read('newer/textures/index.json'),index=JSON.parse(indexBytes);
+@@ -30,7 +30,7 @@
+  if(!maps.has(key))maps.set(key,readMember(map));const bsp=await maps.get(key);check(bsp.length>=124&&[29,0x32505342,0x42535032].includes(bsp.readInt32LE(0)),'supported BSP');
+  const start=bsp.readInt32LE(20),length=bsp.readInt32LE(24);check(start>=124&&length>=4&&start+length<=bsp.length,'bounded texture lump');const count=bsp.readInt32LE(start);check(count>0&&count<=4096&&4+count*4<=length&&use.slot>=0&&use.slot<count,'bounded slot');
+  const offset=bsp.readInt32LE(start+4+use.slot*4);check(offset>=4+count*4&&offset+40<=length,'bounded miptex');const at=start+offset,name=bsp.subarray(at,at+16).toString('latin1').split('\0')[0],w=bsp.readUInt32LE(at+16),h=bsp.readUInt32LE(at+20),mip=bsp.readUInt32LE(at+24);
+- same(name,entry.name,'actual native name');equal([w,h],[64,64],'actual native owner dimensions');check(mip>=40&&offset+mip+w*h<=length,'bounded native pixels');const pixels=bsp.subarray(at+mip,at+mip+w*h);
++ same(name,entry.name,'actual native name');equal([w,h],entry.nativeDimensions??[64,64],'actual explicit native dimensions');check(mip>=40&&offset+mip+w*h<=length,'bounded native pixels');const pixels=bsp.subarray(at+mip,at+mip+w*h);
+  VID_SetPalette(game.palette);vid.fullbright=224;const texture=GL_LoadTexture(name,w,h,pixels,true,false,true),rgba=texture.image.data.slice(),fb=texture._fullbright?.image.data;if(fb)for(let p=0;p<rgba.length;p+=4)if(fb[p+3])rgba.set(fb.subarray(p,p+3),p);
+  const expected=new Uint8Array(w*h*4);for(let i=0;i<pixels.length;i++)expected.set([...game.palette.subarray(pixels[i]*3,pixels[i]*3+3),255],i*4);bytes(rgba,expected,'actual GL palette/fullbright reconstruction');same(R_GlassTextureKey(texture),entry.nativeKey,'actual owner source key');same(sha256(rgba),entry.sourcePixelSha256,'actual owner source pixels');
+  return{texture,rgba,source:{name,game:use.game,map:use.map,slot:use.slot,pack:map.path,mapSha256:sha256(bsp),palettePack:game.palettePack,paletteSha256:sha256(game.palette),nativeKey:entry.nativeKey,nativePixelSha256:sha256(rgba)}};
+@@ -55,6 +55,7 @@
+ }
+ Deno.test('four owner Q92 successors preserve complete predecessor metadata and byte-reproduce from retained masters',()=>{
+  const expected=structuredClone(ownerQ92Before);check(Number.isSafeInteger(index.version)&&index.version>expected.version,'version advances');expected.version=index.version;
++ for(const field of['textures','normals'])for(const[name,previous]of Object.entries(expected[field]))expected[field][name]=ownerQ92Baseline(field,name,previous);
+  for(const e of ownerQ92Bindings){expected.textures[e.name]=e.current.file;expected.normals[e.name]=e.current.normal;equal(index.sources[e.name],e.sourceAllowlist,'source guard unchanged');check(!index.ordinaryVariants?.[e.name]?.[e.nativeKey]&&!index.glass?.[e.name],'no route shadow for this native source');}
+  if(index.version===ownerQ92Before.version+1)equal(index,expected,'first install changes only four diffuse/four normal-file references and version');
+  else preserveExistingOwnerState(index,expected);
+@@ -94,3 +95,39 @@
+  }
+  same(f.requests.length,0,'no derivative loads for unknown/case/Classic controls');
+ }));
++
++
++// One bounded additional case uses the existing fixture/parser/renderer; the
++// original four owner cases and their lossless-gray witness remain unchanged.
++Deno.test('six legacy tech Q92 successors preserve direct-source RGB masters, all61 PAK uses and height-only public behavior',async()=>{
++ const expected=structuredClone(techQ92Before);check(Number.isSafeInteger(index.version)&&index.version>expected.version,'tech successor advances version');expected.version=index.version;
++ for(const e of techQ92Bindings){expected.textures[e.name]=e.current.file;expected.normals[e.name]=e.current.normal;equal(index.sources[e.name],e.sourceAllowlist,'tech exact source guard unchanged');check(!index.ordinaryVariants?.[e.name]&&!index.glass?.[e.name],'tech no route shadow');}
++ if(index.version===techQ92Before.version+1)equal(index,expected,'tech first install changes only six diffuse and six height filenames plus version');else preserveExistingOwnerState(index,expected);
++ const resampleEncode="from PIL import Image; import sys,io,hashlib\ns=Image.open(sys.argv[1]);assert s.mode=='RGB';p=Image.open(sys.argv[2]);assert p.format=='PNG' and p.mode=='RGB';expected=s.resize((int(sys.argv[3]),int(sys.argv[4])),Image.Resampling.LANCZOS);assert p.size==expected.size and p.tobytes()==expected.tobytes();assert hashlib.sha256(p.tobytes()).hexdigest()==sys.argv[5];b=io.BytesIO();p.convert('RGB').save(b,'WEBP',quality=92,lossless=False,method=6);sys.stdout.buffer.write(b.getvalue())";
++ for(const m of techQ92Maps)bytes(execFileSync('/usr/bin/python3',['-c',resampleEncode,resolve(root,m.retainedPre4xFile),resolve(root,m.master),...m.dimensions.map(String),m.masterDecodedRgbSha256]),read(m.file),'independent direct-source PNG pixels and Q92 bytes '+m.name+'/'+m.role);
++ const sources=[];for(const e of techQ92Bindings){const p=techQ92Plan.bindings.find(p=>p.name===e.name);check(p,'planned real tech uses');for(const use of p.officialObservedUses){const actual=await native(e,use);try{sources.push(actual.source);}finally{dispose(actual.texture);}}}same(sources.length,61,'all61 recorded tech source occurrences');
++ await fixture(async f=>{
++  const installed=[];try{await f.api.R_NewerTexturesPrefetch([]);for(const e of techQ92Bindings){
++   const p=techQ92Plan.bindings.find(p=>p.name===e.name),actual=await native(e,p.officialObservedUses[0]),t=actual.texture,original=t.image,[w,h]=e.target;installed.push([t,original]);t.offset.set(.25,.5);t.repeat.set(2,3);
++   f.api.R_NewerTextureUpgrade(e.name,t);await settled(f.api,e.name,t);same(t.userData.newerPicture,true,'tech public upgrade');
++   const diffuse=await f.decode('newer/textures/'+e.current.file),height=await f.decode('newer/textures/'+e.current.normal.file),old=await f.decode('newer/textures/'+e.previous.normal.file),field=t.userData.newerHeight;
++   equal([diffuse.width,diffuse.height,height.width,height.height],[w,h,w,h],'tech exact rectangular or square4x dimensions');same(field.file,e.current.normal.file,'tech own height file');same(field.strength,e.previous.normal.strength,'tech strength preserved');same(field.cap,e.previous.normal.cap||1.1,'tech effective cap preserved');same(field.authoredNormal,undefined,'tech derives normals');same(field.dataFile,undefined,'tech no scalar override');same(field.edgeSource,undefined,'tech no edge override');same(field.derive,undefined,'tech no alternate height recipe');
++   const glow=t._fullbright?.image.data;for(let i=0;i<diffuse.data.length;i+=4)for(let c=0;c<3;c++)same(t.image.data[i+c]+(glow?.[i+c]||0),diffuse.data[i+c],'tech decoded diffuse/fullbright conservation');
++   for(let i=0;i<field.data.length;i++)same(field.data[i],Math.fround(height.data[i*4]/255),'tech decoded R is scalar authority');
++   const lighting=R_NormalMapFor(t),input=NormalInputs(t),generated=NormalGenerate(input);same(input.authored,null,'tech no authored normal');bytes(lighting.image.data,R_NormalsFromCraftedHeight(field.data,w,h,field.strength,field.cap),'tech foreground actual normal math');bytes(lighting.image.data,generated.pixels,'tech prepared generator agrees');equal(lighting.offset.toArray(),t.offset.toArray(),'tech normal offset aligned');
++   const oldScalar=Float32Array.from({length:w*h},(_,i)=>old.data[i*4]/255);if(!Buffer.from(oldScalar.buffer).equals(Buffer.from(input.scalar.buffer)))check(await NormalInputKey({...input,scalar:oldScalar})!==await NormalInputKey(input),'tech changed scalar changes content cache key');
++   equal(t.offset.toArray(),[.25,.5],'tech UV offset');equal(t.repeat.toArray(),[2,3],'tech native period');same(t.wrapS,THREE.RepeatWrapping,'tech repeatS');same(t.wrapT,THREE.RepeatWrapping,'tech repeatT');bytes(f.api.R_ClassicTexture(t).image.data,original.data,'tech native Classic pixels');
++   for(const file of[e.current.file,e.current.normal.file])check(f.requests.includes('newer/textures/'+file+'?v='+index.version),'tech versioned image request');
++  }same(f.requests.length,12,'exactly twelve tech image requests');f.api.R_NewerTexturesRevert();for(const[t,original]of installed){same(t.image,original,'tech revert native image');same(t.userData.newerHeight,undefined,'tech revert relief');}
++  }finally{for(const[t]of installed)dispose(t);}
++ });
++ await fixture(async f=>{
++  for(const e of techQ92Bindings){const p=techQ92Plan.bindings.find(p=>p.name===e.name),actual=await native(e,p.officialObservedUses[0]),pixels=actual.rgba.slice();pixels[0]^=1;const unknown=new THREE.DataTexture(pixels,...e.nativeDimensions),original=unknown.image;
++   try{check(R_GlassTextureKey(unknown)!==e.nativeKey,'tech unknown key differs');f.api.R_NewerTextureUpgrade(e.name,unknown);await settled(f.api,e.name,unknown);same(unknown.userData.newerFallback,true,'tech unknown native rejected');same(unknown.image,original,'tech unknown stays native');same(unknown.userData.newerHeight,undefined,'tech unknown no relief');
++    const wrong=e.name.toUpperCase();for(const section of['textures','normals','sources','ordinaryVariants','glass'])same(index[section]?.[wrong],undefined,'tech wrongcase has no selector');const nativeImage=actual.texture.image;f.api.R_NewerTextureUpgrade(wrong,actual.texture);await settled(f.api,wrong,actual.texture);same(actual.texture.userData.newerFallback,true,'tech wrongcase rejected');same(actual.texture.image,nativeImage,'tech wrongcase native pixels');same(actual.texture.userData.newerHeight,undefined,'tech wrongcase no relief');
++    mode.R_AnimSetClassicPass(true);const classic=await native(e,p.officialObservedUses[0]),classicImage=classic.texture.image;try{f.api.R_NewerTextureUpgrade(e.name,classic.texture);await Promise.resolve();same(classic.texture.image,classicImage,'tech Classic retains original image');same(classic.texture.userData.newerPicture,undefined,'tech Classic no photograph');same(classic.texture.userData.newerHeight,undefined,'tech Classic no relief');}finally{dispose(classic.texture);mode.R_AnimSetClassicPass(false);}
++   }finally{dispose(unknown);dispose(actual.texture);}
++  }same(f.requests.length,0,'tech unknown/case/Classic request no maps');
++ });
++ if(process.env.QUAKED_TECH_Q92_SOURCE_RECEIPT)writeFileSync(process.env.QUAKED_TECH_Q92_SOURCE_RECEIPT,JSON.stringify({qualification:'Installed direct-source format successors, actual PAK/public derived-normal checks; GPU/art/landing acceptance separate',indexSha256:sha256(indexBytes),registrationSha256:sha256(read(techQ92ReceiptPath)),bindings:6,uniqueImages:12,occurrences:sources.length,sources},null,2)+'\n');
++});
+--- a/tests/level_texture_assets_test.py
++++ b/tests/level_texture_assets_test.py
+@@ -62,6 +62,40 @@
+     previous = owner_legacy_file(name, 'diffuse')
+     assert previous == baseline, name + ' retained historical filename'
+     return INDEX['textures'][name]
++
++# Six separately reviewed direct-source tech successors only affect the old
++# nonselected-normal conservation loop. None belongs to the26 atlas materials.
++_TECH_BYTES = (_OWNER_BASE / 'legacy-tech-twelve-q92-v1.json').read_bytes()
++_TECH_Q92 = json.loads(_TECH_BYTES)
++_TECH_PLAN_BYTES = (_OWNER_BASE / 'verification/legacy-tech-twelve-q92-plan.json').read_bytes()
++_TECH_PLAN = json.loads(_TECH_PLAN_BYTES)
++_TECH_BEFORE_BYTES = (_OWNER_BASE / 'legacy-tech-twelve-index-before.json').read_bytes()
++_TECH_BEFORE = json.loads(_TECH_BEFORE_BYTES)
++assert hashlib.sha256(_TECH_PLAN_BYTES).hexdigest() == _TECH_Q92['planSha256']
++assert hashlib.sha256(_TECH_BEFORE_BYTES).hexdigest() == _TECH_Q92['indexBeforeSha256']
++assert [_TECH_Q92[k] for k in ('factor', 'quality', 'lossless', 'method')] == [4, 92, False, 6]
++_TECH_KEYS = {'tech04_3': '16x128:a479c5cd7f65b1bf', 'tech07_2': '128x128:5d03decdcf531707', 'tech08_1': '128x128:ba7e0769a9a0ce1b', 'tech09_3': '128x128:8ff008acef40a86e', 'tech10_3': '32x128:31e072256a779b27', 'tech11_2': '128x128:f56a5604372ecc96'}
++assert {e['name'] for e in _TECH_Q92['bindings']} == set(_TECH_KEYS) and len(_TECH_Q92['maps']) == 12
++
++def tech_current_normal(name, previous):
++    if name not in _TECH_KEYS:
++        return previous
++    entry = next(e for e in _TECH_Q92['bindings'] if e['name'] == name)
++    planned = next(e for e in _TECH_PLAN['bindings'] if e['name'] == name)
++    assert entry['nativeKey'] == _TECH_KEYS[name] and entry['previous'] == planned['previous']
++    assert entry['previous'] == {'file': _TECH_BEFORE['textures'][name], 'normal': _TECH_BEFORE['normals'][name]}
++    assert entry['previous']['normal'] == previous
++    assert entry['current'] == planned['proposedCurrent']
++    assert {**entry['current']['normal'], 'file': previous['file']} == previous
++    assert INDEX['textures'][name] == entry['current']['file']
++    assert INDEX['sources'][name] == entry['sourceAllowlist'] == _TECH_BEFORE['sources'][name] == [entry['nativeKey']]
++    assert not INDEX.get('ordinaryVariants', {}).get(name) and not INDEX.get('glass', {}).get(name)
++    for role, current, predecessor in [('diffuse', entry['current']['file'], entry['previous']['file']), ('height', entry['current']['normal']['file'], previous['file'])]:
++        record = next(m for m in _TECH_Q92['maps'] if m['name'] == name and m['role'] == role)
++        assert record['file'] == 'newer/textures/' + current and record['predecessor'] == 'newer/textures/' + predecessor
++        for field, digest in [('predecessor', 'predecessorSha256'), ('retainedPre4xFile', 'retainedPre4xSha256'), ('master', 'masterSha256'), ('file', 'sha256')]:
++            assert hashlib.sha256((ROOT / record[field]).read_bytes()).hexdigest() == record[digest]
++    return entry['current']['normal']
+ 
+ 
+ class LevelTextureAssets(unittest.TestCase):
+@@ -185,7 +219,7 @@
+         # increment changed by design: the demon plaques' crafted relief (2b1593b7)
+         LATER = {'dem4_1': '2b1593b7', 'dem4_4': '2b1593b7', 'dem5_3': '2b1593b7'}
+         for name in set(baseline['normals']) - NAMES - set(LATER):
+-            self.assertEqual(INDEX['normals'][name], baseline['normals'][name], name)
++            self.assertEqual(INDEX['normals'][name], tech_current_normal(name, baseline['normals'][name]), name)
+         allowed = {'newer/textures/index.json'} | {'newer/textures/' + owner_legacy_file(name, 'diffuse') for name in NAMES} | {'newer/textures/' + owner_legacy_file(name, 'height') for name in NAMES}
+         # The boundary of that update itself (9a71a46); later increments, such as the seam
+         # repairs, change other textures by design.
