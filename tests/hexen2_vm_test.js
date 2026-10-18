@@ -4,6 +4,8 @@
 // PR_LoadProgs accepts them through the same validation the supplied programs pass.
 import { HEXEN2_GLOBALS_V111, HEXEN2_ENTVARS, HEXEN2_PROG_CRCS, HEXEN2_ENTITY_FIELDS } from '../src/engine/progs/hexen2_progdefs.js';
 import { PR_LastRunError } from '../src/engine/progs/pr_exec.js';
+import '../src/engine/progs/hexen2_server_cmds.js';
+import { Hexen2_CallBuiltin } from '../src/engine/progs/hexen2_cmds.js';
 import {
 	OP_DONE, OP_ADD_F, OP_LT, OP_IF, OP_GOTO, OP_CALL0, OP_CALL1, OP_CALL2, OP_MULSTORE_F, OP_ADDSTORE_F, OP_SUBSTORE_F,
 	OP_FETCH_GBL_F, OP_BITSET, OP_BITCLR, OP_RAND0, OP_RAND2, OP_SWITCH_F, OP_CASE, OP_CSTATE, OP_CWSTATE, OP_STATE, OP_THINKTIME,
@@ -391,5 +393,23 @@ Deno.test( 'makevectors writes the native camera basis into the globals', async 
 	same( Array.from( program.progs.pr_global_struct.v_forward ).join( ',' ), '1,0,0', 'forward at zero angles' );
 	same( Array.from( program.progs.pr_global_struct.v_right ).join( ',' ), '0,-1,0', 'right at zero angles' );
 	same( Array.from( program.progs.pr_global_struct.v_up ).join( ',' ), '0,0,1', 'up at zero angles' );
+
+} );
+
+Deno.test( 'changeyaw turns self toward ideal_yaw by at most 20 degrees and wraps', async () => {
+
+	const program = await fixture( { globals: 1000, functions: [ empty, { first: 0 } ], statements: [ done( 0 ) ] } );
+	const server = await import( '../src/engine/progs/progs.js' );
+	const { PR_AllocEdicts } = await import( '../src/engine/progs/pr_edict.js' );
+	const state = { edicts: [], max_edicts: 4 };
+	server.PR_SetSV( state ); state.edicts = PR_AllocEdicts( 4, 392 );
+	const ed = server.sv.edicts[ 1 ];
+	server.pr_global_struct.self = 1;
+	ed.v.angles = [ 0, 100, 0 ]; ed.v.ideal_yaw = 250;
+	check( Hexen2_CallBuiltin( 49, { random: () => 0.5 } ) === true, 'changeyaw is implemented' );
+	check( Math.abs( ed.v.angles[ 1 ] - 120 ) < 0.02, 'turned 20 degrees toward the ideal: ' + ed.v.angles[ 1 ] );
+	ed.v.angles = [ 0, 10, 0 ]; ed.v.ideal_yaw = 350;
+	Hexen2_CallBuiltin( 49, { random: () => 0.5 } );
+	check( Math.abs( ed.v.angles[ 1 ] - 350 ) < 0.02, 'the short way around wraps through 0: ' + ed.v.angles[ 1 ] );
 
 } );

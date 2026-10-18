@@ -11,12 +11,14 @@
  */
 
 import { ED_Alloc, ED_Free, ED_Print } from './pr_edict.js';
-import { sv, G_STRING, G_INT, G_INT_SET, G_FLOAT, G_FLOAT_SET, G_EDICT, G_EDICTNUM, G_VECTOR, PROG_TO_EDICT, pr_global_struct, pr_argc, PR_GetString, RETURN_EDICT } from './progs.js';
+import { sv, G_STRING, G_INT, G_INT_SET, G_FLOAT, G_FLOAT_SET, G_EDICT, G_EDICTNUM, G_VECTOR, PROG_TO_EDICT, pr_global_struct, pr_argc, pr_xfunction, PR_GetString, RETURN_EDICT } from './progs.js';
 import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3, OFS_PARM4, OFS_RETURN } from './pr_comp.js';
-import { PR_RunError } from './pr_exec.js';
+import { PR_RunError, PR_HostError } from './pr_exec.js';
 import { Con_Printf } from '../common/console.js';
 import { MSG_WriteByte, MSG_WriteShort, MSG_WriteCoord, MSG_WriteAngle } from '../common/common.js';
 import { MAX_LIGHTSTYLES } from '../common/quakedef.js';
+import { anglemod } from '../common/mathlib.js';
+import { SV_MoveToGoal } from '../server/sv_move.js';
 import { SV_StartSound } from '../server/sv_phys.js';
 import { Hexen2_RegisterBuiltins } from './hexen2_cmds.js';
 
@@ -36,7 +38,8 @@ function find() {
 
 	const start = G_EDICTNUM( OFS_PARM0 ), fieldOfs = G_INT( OFS_PARM1 ), match = G_STRING( OFS_PARM2 );
 	if ( fieldOfs < 0 || fieldOfs >= sv.edicts[ 0 ]._entityfields ) PR_RunError( 'find: bad field offset %i', fieldOfs );
-	for ( let step = 1; step <= sv.num_edicts; step ++ ) {
+	// native NEXT_EDICT iteration stops before returning to the start entity (and before the world)
+	for ( let step = 1; step < sv.num_edicts; step ++ ) {
 
 		const index = ( start + step ) % sv.num_edicts;
 		const ent = sv.edicts[ index ];
@@ -45,6 +48,21 @@ function find() {
 
 	}
 	RETURN_EDICT( sv.edicts[ 0 ] );
+
+}
+
+// #49 changeyaw(): turn self.angles[YAW] toward ideal_yaw at up to 20 degrees a frame, the native body
+function changeyaw() {
+
+	const ent = PROG_TO_EDICT( pr_global_struct.self );
+	const current = anglemod( ent.v.angles[ 1 ] ), ideal = ent.v.ideal_yaw;
+	if ( current === ideal ) return;
+	let move = ideal - current;
+	if ( ideal > current ) { if ( move >= 180 ) move -= 360; }
+	else if ( move <= - 180 ) move += 360;
+	if ( move > 20 ) move = 20;
+	else if ( move < - 20 ) move = - 20;
+	ent.v.angles = [ ent.v.angles[ 0 ], anglemod( current + move ), ent.v.angles[ 2 ] ];
 
 }
 
@@ -172,6 +190,25 @@ function bprint() {
 
 }
 
+// #10 error(text...) and #11 objerror(text...): the native terminal object errors (self is dumped)
+function errorBuiltin() {
+
+	const message = varString( 0 );
+	Con_Printf( '======SERVER ERROR in %s:\n%s\n', pr_xfunction ? PR_GetString( pr_xfunction.s_name ) : '?', message );
+	PR_HostError( 'Program error: ' + message + ' (in ' + ( pr_xfunction ? PR_GetString( pr_xfunction.s_name ) : '?' ) + ')' );
+
+}
+
+function objerror() {
+
+	const message = varString( 0 ), ent = PROG_TO_EDICT( pr_global_struct.self );
+	Con_Printf( '======OBJECT ERROR in %s:\n%s\n', pr_xfunction ? PR_GetString( pr_xfunction.s_name ) : '?', message );
+	ED_Print( ent );
+	ED_Free( ent );
+	PR_HostError( 'Program error: ' + message + ' (in ' + ( pr_xfunction ? PR_GetString( pr_xfunction.s_name ) : '?' ) + ')' );
+
+}
+
 // #14 spawn(): allocate an edict and return it
 function spawn() { RETURN_EDICT( ED_Alloc() ); }
 
@@ -192,7 +229,7 @@ function breakBuiltin() { PR_RunError( 'break statement' ); }
 
 /** The server builtins this module installs into the Hexen II dispatcher. */
 export const HEXEN2_SERVER_BUILTINS = Object.freeze( {
-	6: breakBuiltin, 8: sound, 14: spawn, 15: remove, 18: find, 23: bprint, 31: eprint, 35: lightstyle, 63: advanceframe, 65: rewindframe, 69: makestatic, 74: ambientsound, 83: advanceweaponframe
+	6: breakBuiltin, 8: sound, 10: errorBuiltin, 11: objerror, 14: spawn, 49: changeyaw, 67: SV_MoveToGoal, 15: remove, 18: find, 23: bprint, 31: eprint, 35: lightstyle, 63: advanceframe, 65: rewindframe, 69: makestatic, 74: ambientsound, 83: advanceweaponframe
 } );
 
 Hexen2_RegisterBuiltins( HEXEN2_SERVER_BUILTINS );
