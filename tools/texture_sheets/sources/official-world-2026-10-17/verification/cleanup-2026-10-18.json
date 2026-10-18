@@ -1,0 +1,47 @@
+{
+  "at": "2026-10-18T07:03:40.028067+00:00",
+  "ownerRequest": "Clean old unneeded build artifacts, scratchpads and worktrees belonging to this session",
+  "deletedAuditDirectories": [
+    "/private/tmp/quaked-oct17-all58-audit",
+    "/private/tmp/quaked-oct18-all61-audit",
+    "/private/tmp/quaked-oct18-all65-audit",
+    "/private/tmp/quaked-oct18-all79-audit",
+    "/private/tmp/quaked-oct18-all84-audit"
+  ],
+  "auditAllocatedBytesRemoved": 289275904,
+  "recoveryAllocatedBytes": 19738624,
+  "netAuditAllocatedBytesReclaimed": 269537280,
+  "recoveryDirectory": "/Users/bri/build/quaked-retained-snapshots/2026-10-18-texture-scratch",
+  "restoreVerification": {
+    "fullFolderEntries": 1416,
+    "sampleFiles": 15,
+    "allUniqueBlobs": 1418,
+    "bytesMetadataAndStructureVerified": true
+  },
+  "duplicateReplayRemoved": "/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-horizontal-trims-replay-f3cklcmt",
+  "smallFinishedCleanupDriversArchivedAndRemoved": 3,
+  "completedBuildSnapshot": "quaked-staged-5wz6OY removed automatically by successful normal gate;5.5GiB inventory before completion",
+  "kept": {
+    "activeWorktree": "/Users/bri/.codex/worktrees/official-textures-next/Quaked",
+    "latestStagedBuild": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/dist/staged",
+    "latestApp": "/Users/bri/build/quaked-distribution/universal-apple-darwin/release/bundle/macos/Quaked.app",
+    "referencedAudits": [
+      "/private/tmp/quaked-oct18-all74-audit",
+      "/private/tmp/quaked-oct18-all95-audit",
+      "/private/tmp/quaked-oct18-all103-audit"
+    ],
+    "gameLibraryView": "/private/tmp/quaked-official-library-20261017"
+  },
+  "otherTaskResourcesUntouched": [
+    "Other worktrees/sharedcompiler outputs",
+    "ROOTdist/builds/20261018T003500Z release0.132.0 c5d6e8b2, ownershipnotthislane",
+    "Oldofficial-textures-q92 attachment archive refused: ownedbyanothertask; checkout alreadyabsent"
+  ],
+  "freeBytesAfter": 13150048256,
+  "texturePublication": {
+    "Dev": "1ee2fb767638955614b391f5296d578be3563584",
+    "tree": "0882fd81e80ffb5f47da99b72cccc21cf434c00e",
+    "verified": true
+  },
+  "remainingObligation": "Continue missingtexturecampaign:975ordinary pluslegacy/special/enemycoordination; preserveunboundold95shipping limitation."
+}

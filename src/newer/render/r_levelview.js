@@ -21,6 +21,8 @@ import { R_LavaManSeen, R_LavaManRelease, R_LavaManNeedsFrame } from './r_lavama
 // lightmap atlas, and only ever drawn.  No monsters, doors or lights move in it,
 // and water and sky are flat.
 
+import { R_MilkyWaySkyGLSL, R_MilkyWaySkyUniforms, R_MilkyWaySkyUpdate, MILKYWAY_CLOUD_OPACITY } from './r_milkywaysky.js';
+import { R_SkyBoxMapName } from '../../engine/render/r_skybox.js';
 import * as THREE from 'three';
 import { Mod_PointInLeaf, Mod_LeafPVS, Mod_LoadForPreview } from '../../engine/render/gl_model.js';
 import { R_BuildLightMap, createQuakeLightmapMaterial } from '../../engine/render/gl_rsurf.js';
@@ -294,8 +296,10 @@ function skyMaterial( model ) {
 
 	}
 
-	return new THREE.ShaderMaterial( {
+ const night = R_MilkyWaySkyUniforms( R_SkyBoxMapName( model.entities ) ? null : solid, alpha );
+ const material = new THREE.ShaderMaterial( {
 		uniforms: {
+   tMilkyWay: night.tMilkyWay, uMilkyWay: night.uMilkyWay,
 			tSolid: { value: solid },
 			tAlpha: { value: alpha != null ? alpha : solid },
 			uSolid: { value: 0 },
@@ -304,9 +308,15 @@ function skyMaterial( model ) {
 			uGlow: { value: 1 }
 		},
 		vertexShader: SKY_VERTEX,
-		fragmentShader: SKY_FRAGMENT,
+  fragmentShader: R_MilkyWaySkyGLSL() + '\nuniform float uMilkyWay;\n' + SKY_FRAGMENT
+   .replace('vec3 c = texture2D( tSolid, ( uSolid + d.xy * k ) / 128.0 ).rgb;',
+    'vec3 c = uMilkyWay > 0.5 ? quakedMilkyWay(vWorld - cameraPosition) : texture2D(tSolid, (uSolid + d.xy * k) / 128.0).rgb;')
+   .replace('c = mix( c, a.rgb, a.a );',
+    `c = mix(c, uMilkyWay > 0.5 ? quakedFaintCloud(a.rgb) : a.rgb, a.a * (uMilkyWay > 0.5 ? ${MILKYWAY_CLOUD_OPACITY} : 1.0));`),
 		side: THREE.DoubleSide
 	} );
+ material.userData.milkyWay = night;
+ return material;
 
 }
 
@@ -315,6 +325,7 @@ function skyMaterial( model ) {
 function updateSky( material ) {
 
 	if ( material.uniforms === undefined ) return;
+ if ( material.userData.milkyWay ) R_MilkyWaySkyUpdate( material.userData.milkyWay );
 
 	const t = performance.now() / 1000;
 	material.uniforms.uSolid.value = ( t * 8 ) % 128;

@@ -1,0 +1,31 @@
+{
+  "profile": "web",
+  "source": "ab430e348a1b16c4e93df3c518cebcdb8ad2a1cc",
+  "sourceKind": "working-tree-based-on-commit",
+  "workingSourceInputsVerified": {
+    "src/newer/render/r_milkywaysky.js": "70074ea8ea3957ebd0f56866b306008b893386b5ecda264e86917527f6d6aef0",
+    "src/newer/render/r_levelview.js": "cd1ea5d7499a6b9e3ff79c413ab98875bda4e93322b3d8650e657526d139de9a",
+    "src/engine/render/gl_rsurf_liquids.js": "27e61b94dc1a55aa33e6d6179a3e0963a0e52a48632c41a7c52282495d058a49",
+    "src/engine/render/r_skybox.js": "2b33714991c269e2a9a1af91dcb9fb798ae88c032cd881cfe97aa6238b98ca93"
+  },
+  "assets": [
+    {
+      "path": "newer/textures/skies/milkyway.jpeg",
+      "bytes": 4376252,
+      "sha256": "a77472cc4237fb0b5655cd344cf0768a547102ab0cebe67ab053e66749e92755",
+      "pack": "core",
+      "priority": 0,
+      "topic": "textures"
+    },
+    {
+      "path": "newer/textures/skies/MILKYWAY-LICENSE.txt",
+      "bytes": 772,
+      "sha256": "d8206b4d8a5808a9771e09bb56b270d782f2c9aeaec5e1f95daad10871cf4820",
+      "pack": "core",
+      "priority": 0,
+      "topic": "textures"
+    }
+  ],
+  "inventorySha256": "09b5cd186b591b568a9d0fcef80168995f503f414ee53336fc51f1519c7d231f",
+  "verifiedAt": "2026-10-18T08:32:28.674991+00:00"
+}

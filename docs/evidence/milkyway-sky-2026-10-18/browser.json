@@ -1,0 +1,121 @@
+{
+  "scope": "Actual shareware BSP geometry and production R_BuildLevelView shader GPU trial; no played game or owner visual acceptance claimed",
+  "frames": [
+    {
+      "map": "start",
+      "original": false,
+      "position": [
+        544,
+        520,
+        48
+      ],
+      "sky": {
+        "state": "ready",
+        "error": null
+      },
+      "matching": true
+    }
+  ],
+  "errors": [],
+  "current": {
+    "original": false,
+    "enabled": 1
+  },
+  "width": 1200,
+  "height": 670,
+  "mean": 4.207412935323383,
+  "peak": 217,
+  "browserErrors": [],
+  "original": {
+    "scope": "Actual shareware BSP geometry and production R_BuildLevelView shader GPU trial; no played game or owner visual acceptance claimed",
+    "frames": [
+      {
+        "map": "start",
+        "original": false,
+        "position": [
+          544,
+          520,
+          48
+        ],
+        "sky": {
+          "state": "ready",
+          "error": null
+        },
+        "matching": true
+      }
+    ],
+    "errors": [],
+    "current": {
+      "original": true,
+      "enabled": 0
+    },
+    "width": 1200,
+    "height": 670,
+    "mean": 3.673523217247098,
+    "peak": 188
+  },
+  "mainSky": {
+    "passed": true,
+    "results": [
+      {
+        "hdr": false,
+        "attachments": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            11,
+            9,
+            11,
+            255
+          ],
+          [
+            255,
+            255,
+            255,
+            255
+          ]
+        ],
+        "nativeSkyFaces": 72,
+        "litPixels": 388656,
+        "peak": 240,
+        "depthWrite": true,
+        "cloudOpacity": 0.012,
+        "programs": 13
+      },
+      {
+        "hdr": true,
+        "attachments": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "nativeSkyFaces": 72,
+        "litPixels": 436646,
+        "peak": 255,
+        "depthWrite": false,
+        "cloudOpacity": 0.012,
+        "programs": 14
+      }
+    ],
+    "scope": "Actual native hub faces through production R_DrawSkyChain and real Chrome WebGL programs, controlled HDR target flag; not a complete postprocessed gameplay session"
+  }
+}

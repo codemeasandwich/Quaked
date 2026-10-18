@@ -8,7 +8,7 @@ const root=process.cwd(),fixture=await mkdtemp(join(tmpdir(),'quaked-engine-cont
 try{
  await mkdir(join(fixture,'shareware'));await copyFile(assetPath(root,'games/shareware/pak0.pak'),join(fixture,'shareware/pak0.pak'));
  const env={...process.env,QUAKED_THREE_MODULE:resolve('node_modules/three/build/three.module.js'),QUAKED_GAME_ROOT:fixture,QUAKED_SHAREWARE_PAK:join(fixture,'shareware/pak0.pak')};
- const suites=['game_catalogue','game_selection','game_shelf','local_play','net_window','window_play_native','serve_py','fog','skybox','options_order','blast_shake','newer_menu_scroll','addon_effects_guard','shambler_steps','hooks','drips','electric_native','electric_spatial'];
+ const suites=['game_catalogue','game_selection','game_shelf','local_play','net_window','window_play_native','serve_py','fog','skybox','options_order','blast_shake','newer_menu_scroll','addon_effects_guard','shambler_steps','hooks','drips','electric_native','electric_spatial','milkyway_sky','texture_q92_channels'];
  if(env.QUAKED_LAN_TEST_BRIDGE)suites.push('lan_gameplay');
  const result=spawnSync(process.execPath,['tools/run_tests.mjs',...suites.map(s=>'tests/'+s+'_test.js')],{env,encoding:'utf8',maxBuffer:16*1024*1024});
  await mkdir('dist/verification',{recursive:true});

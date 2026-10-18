@@ -1,0 +1,96 @@
+{
+  "verdict": "PASS",
+  "scope": "Independent final combined review of eight new photographic materials (40maps) and six retained tech artworks (12 direct-source format maps).",
+  "base": "5c590342a2316ff729d29709197cc5a0e278db81",
+  "tree": "0882fd81e80ffb5f47da99b72cccc21cf434c00e",
+  "indexSha256": "0541eece8abaa369339ff2209387025b2c2045e03960294f720859511822268a",
+  "changedPaths": 441,
+  "findings": [],
+  "implementationReview": "Small authoring/catalogue increment using existing photographic fitting, seam finishing, Q92 encoder and runtime ordinaryVariants or height-only routes. No engine, texture-loader, normal-math or core encoder changes. Horizontal trim helper preserves native aspect, eight unrotated fastener centers and protected rails. Legacy helper directly resamples retained RGB pre4x masters and encodes new Q92 files while preserving originals and normal descriptors.",
+  "testReview": "Existing public tests are extended with eight exact identities, approved art/map hashes, photo/fitter/seam custody, full preview preservation, source-aspect/distance/relief checks and actual trim-producer byte replay. Six retained-tech successors are handled through explicit hash-bound baseline adapters; all prior strict grayscale witnesses and Classic/unknown/case/paired-steel/both-rock controls remain. Five previous generated test bodies are exact; existing case body only adds eight materials and first-case core remains exact.",
+  "verification": {
+    "base": "5c590342a2316ff729d29709197cc5a0e278db81",
+    "tree": "0882fd81e80ffb5f47da99b72cccc21cf434c00e",
+    "indexSha256": "0541eece8abaa369339ff2209387025b2c2045e03960294f720859511822268a",
+    "changedPaths": 441,
+    "selectedNewRuntimeMaps": 52,
+    "exactDirectSourcePNGAndQ92Replays": 12,
+    "independentNext8ArtInputHashes": 124,
+    "publicInputHashes": 1648,
+    "actualSourcePakHashes": 6,
+    "postDevGPUInputHashes": 85,
+    "postDevGPUArtifactHashes": 6,
+    "ordinaryMissingCSVRows": 975,
+    "checks": {
+      "stageMatchesPinnedTree": true,
+      "only8VariantKeysPlus6Diffuse6HeightReferencesAndVersion": true,
+      "everyPriorIndexDescriptorSourceGuardOwnerAndPreviewPreserved": true,
+      "all52SelectedMapsMatchReviewedArtHashesAndRecipes4xLossy": true,
+      "allOldArtMastersOld95AndNormalMathBlobExact": true,
+      "incoming57DevFilesBlobExact": true,
+      "only8PackNamesAndDigestChange": true,
+      "GPU8x176and6x78AllTrueNoShaderErrorsCleanup": true,
+      "currentDev14ConfirmedReliefDrawsIncludingExplicitTech08Successor": true,
+      "strict1648HistoricalInputs1639ExactAnd9ExactIncomingDevBlobs": true,
+      "currentCollector3538Web5179Desktop531Maps": true,
+      "106Bindings729SourceUses531SelectedClosureEvidence": true,
+      "975CSVAndInventoryHash": true
+    }
+  },
+  "qualificationLineage": "A8ea50-check receipt remains immutable. At current5c,1639/1648 inputs are exact; only9 incomingDev successors match both old/new commit bytes. All27 incoming5c files and preceding57 acceptedDev files are preserved in the pinned tree. Protected loader/math/material/test/encoder inputs are exact. Fresh current pack5 and collector531 maps pass; web3538/desktop5179. Six actual PAKs freshly rehashed by this reviewer.",
+  "appearance": "Eight photographs rely on separate independent full/native/half-quarter/repeat/two-light PASS97b9860a. Six direct-source Q92 artworks independently inspected by this reviewer at full/native/half/quarter and two opposite production-normal CPU lights; PASS0837fa62. All52 selected runtime maps match these reviewed hashes;12 direct-source PNG pixels and Q92 bytes replay exactly. Existing artwork, source masters and unbound Q95 outputs are conserved.",
+  "runtimeEvidence": "CurrentDev254 preparation checks are all true with no shader/console errors. All14 quarter-native3x3 draws have confirmed relief. Initialtech08 async-normal capture is retained; explicit Draw successor independently checked in JSON and PNG. Earlier unchanged close/half/quarter/toggle evidence remains historical and separate. Current85 inputs/6 artifacts verified; two owned servers exit143 and tabs14\u201316 closed/port released.",
+  "documentation": "Campaign accurately distinguishes review, selected-map qualification, normal gate, publication and open campaign/old95/legacy/special/enemy obligations. Bluey retirement/storage failure and responsible parent fallback remain visible; no assignment or durable-worker success is fabricated.",
+  "whitespace": "Pinned source diff passes git diff --check with only standard CRLF inventory CSV and exact hash-bound unified patch excluded. Patch9e8fc4a2 has required blank context prefix lines163/164; preserved artifact format is not a source/test waiver.",
+  "conditions": [
+    "Maintained normal hook must complete successfully on this exact tree before periodic Dev publication. If Dev advances, preserve and qualify the exact incoming delta before publication.",
+    "This review is not owner appearance acceptance, a release, all-level gameplay proof, full campaign completion or all-shipped-payloads92 qualification. The twelve preserved unbound Q95 files still ship and remain an explicit separate obligation."
+  ],
+  "evidence": [
+    {
+      "file": "/private/tmp/quaked-oct18-next8-tech12-staged-candidate.json",
+      "sha256": "3683deb6ee636f9e07b5632fec91d51aa02841812259a4e264f645970ce31a8c"
+    },
+    {
+      "file": "/private/tmp/quaked-oct18-combined14-review-check-data.json",
+      "sha256": "d10a7acf9af11470a62762eb053d10fa0f68c67026539a27b2f4f2c16fd4db8b"
+    },
+    {
+      "file": "/private/tmp/combined14-review-check.py",
+      "sha256": "a270482cc12930965892d11d64c630d56936715bd12cc4f357224cc049aa866a"
+    },
+    {
+      "file": "/private/tmp/quaked-oct18-combined14-incoming-dev-review.json",
+      "sha256": "60af74c45ed416c81f3d5b314c8ede12a86b5b1a8f00e11bfabfcbed856f6fc6"
+    },
+    {
+      "file": "/private/tmp/quaked-oct18-combined14-post5c-input-delta.json",
+      "sha256": "63548b2ee516593a279bd5fcbdc813d67da5073e06aa92a92e413e85a9a45d6f"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next8-installed-combined-public-input-hashes.json",
+      "sha256": "d6a9a9a04a9fd4581e675e8bf134162103f9a20cbaafea05e43c0dc78f5a5bcb"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next8-5c-dev-successor-qualification.json",
+      "sha256": "2320ae9d70421ee00a9d3748580d79924dea40edc57372a34c89cbc271e5514d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-independent-art-review.json",
+      "sha256": "97b9860a8c1aae3af8cd44fbda73fe827d2788667a600f7848e095f29dc126c2"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/legacy-tech-twelve-independent-art-relief-review.json",
+      "sha256": "0837fa62bc72018646e32ceb4bf91fbd4947798f37994439d32c6392cc062417"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/final-dev-gpu-inputs-cleanup.json",
+      "sha256": "30efc648dbe77d526a4274f4da095ab1f2cc96a62afb82e6ed58ec1d0d42b685"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/final-dev-tech08-confirmed-gpu.json",
+      "sha256": "49923d125217c19bb69961a56dc901dafcad4bc982afa99e5cecd1c3891a535e"
+    }
+  ],
+  "reviewerMutations": "Only ROOT verification art evidence from prior bounded six-tech task and /private/tmp review files. No managed worktree/index/assets/tests/staging/build/commit/push mutation."
+}

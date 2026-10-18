@@ -1,0 +1,15 @@
+✔ artifact inventories enforce the original-game data boundary (0.6745ms)
+✔ web closure retains every Episode 1/hub normal and eligible custom enemy sample (114.95825ms)
+✔ desktop inventory includes all prepared map transports and no bundled original game (97.420625ms)
+✔ only Bestiary pictures are re-encoded; data maps and other assets keep their bytes (11.235209ms)
+✔ a Bestiary page becomes WebP at its own size, under the limit, at the highest quality that fits, and is cached (264.690125ms)
+✔ the web and desktop builds both derive Bestiary pages from the same PNG masters (0.583125ms)
+✔ a page that cannot fit without resizing stops the build for an owner decision (7037.835208ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7389.700625

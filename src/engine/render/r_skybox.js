@@ -219,13 +219,14 @@ export function R_SkyBoxSet( name ) {
 }
 
 /**
- * Starts a map's skybox from its entities, as Quakespasm's Sky_NewMap: worldspawn `sky` or `skyname` (a leading `_` on
+ * Reads a map's skybox name without changing global state, as Quakespasm's Sky_NewMap: worldspawn `sky` or `skyname` (a leading `_` on
  * the key allowed: Dimension of the Machine uses `_sky`), or `qlsky` (the name with `_` added), else none. Called by the
- * renderer's R_NewMap.
+ * renderer's R_NewMap and neighbor-view sky qualification.
  *
  * @param {?string} entities the map's entity text (model.entities)
+ * @returns {string} the named sky, or '' for a scrolling native sky
  */
-export function R_SkyBoxNewMap( entities ) {
+export function R_SkyBoxMapName( entities ) {
 
 	const world = /\{([^}]*)\}/.exec( entities ?? '' )?.[ 1 ] ?? '';
 	let name = '';
@@ -236,7 +237,14 @@ export function R_SkyBoxNewMap( entities ) {
 		else if ( key === 'qlsky' ) name = value + '_';
 
 	}
-	R_SkyBoxSet( name );
+	return name;
+
+}
+
+/** Starts the map sky without changing how named add-on skies are selected. */
+export function R_SkyBoxNewMap( entities ) {
+
+	R_SkyBoxSet( R_SkyBoxMapName( entities ) );
 
 }
 

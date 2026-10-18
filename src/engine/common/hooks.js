@@ -627,6 +627,10 @@ export let S_AmbientMusicUnlock = Hooks_Missing( 'S_AmbientMusicUnlock' );
 // newer/sound/s_exitmachine.js
 export let S_ExitMachineFalloff = Hooks_Missing( 'S_ExitMachineFalloff' );
 
+// newer/render/r_milkywaysky.js
+export let R_MilkyWaySkyLayers = Hooks_Missing( 'R_MilkyWaySkyLayers' );
+export let R_MilkyWaySkyClear = Hooks_Missing( 'R_MilkyWaySkyClear' );
+
 // newer/sound/s_electricsounds.js
 export let S_UpdateElectricSounds = Hooks_Missing( 'S_UpdateElectricSounds' );
 export let S_ElectricSoundsReset = Hooks_Missing( 'S_ElectricSoundsReset' );
@@ -820,6 +824,7 @@ const HOOK_NAMES = Object.freeze( [
 	'S_UpdateAmbientMusic',
 	'S_AmbientMusicNotifyCombat', 'S_AmbientMusicShutdown', 'S_AmbientMusicStop', 'S_AmbientMusicUnlock',
 	'S_ExitMachineFalloff',
+	'R_MilkyWaySkyLayers', 'R_MilkyWaySkyClear',
 	'S_UpdateElectricSounds', 'S_ElectricSoundsReset', 'S_ElectricSoundsShutdown',
 	'S_UpdateEnvironmentSounds', 'S_ObserveEnvironmentSounds', 'S_EnvironmentSoundsReset', 'S_EnvironmentSoundsShutdown',
 	'S_PlayerInventory', 'S_PlayerHealthChanged', 'S_PlayerFinale', 'S_PlayerEventsReset', 'S_UpdatePlayerEvents', 'S_PlayerEventsShutdown',
@@ -941,6 +946,7 @@ export function Hooks_Install( table ) {
 	S_UpdateAmbientMusic = table.S_UpdateAmbientMusic;
 	S_AmbientMusicNotifyCombat = table.S_AmbientMusicNotifyCombat; S_AmbientMusicShutdown = table.S_AmbientMusicShutdown; S_AmbientMusicStop = table.S_AmbientMusicStop; S_AmbientMusicUnlock = table.S_AmbientMusicUnlock;
 	S_ExitMachineFalloff = table.S_ExitMachineFalloff;
+	R_MilkyWaySkyLayers = table.R_MilkyWaySkyLayers; R_MilkyWaySkyClear = table.R_MilkyWaySkyClear;
 	S_UpdateElectricSounds = table.S_UpdateElectricSounds; S_ElectricSoundsReset = table.S_ElectricSoundsReset; S_ElectricSoundsShutdown = table.S_ElectricSoundsShutdown;
 	S_UpdateEnvironmentSounds = table.S_UpdateEnvironmentSounds; S_ObserveEnvironmentSounds = table.S_ObserveEnvironmentSounds; S_EnvironmentSoundsReset = table.S_EnvironmentSoundsReset; S_EnvironmentSoundsShutdown = table.S_EnvironmentSoundsShutdown;
 	S_PlayerInventory = table.S_PlayerInventory; S_PlayerHealthChanged = table.S_PlayerHealthChanged; S_PlayerFinale = table.S_PlayerFinale; S_PlayerEventsReset = table.S_PlayerEventsReset; S_UpdatePlayerEvents = table.S_UpdatePlayerEvents; S_PlayerEventsShutdown = table.S_PlayerEventsShutdown;

@@ -1,0 +1,29 @@
+{
+  "state": "working implementation ready for owner visual review",
+  "basedOnCommit": "ab430e348a1b16c4e93df3c518cebcdb8ad2a1cc",
+  "sourceSha256": {
+    "src/newer/render/r_milkywaysky.js": "70074ea8ea3957ebd0f56866b306008b893386b5ecda264e86917527f6d6aef0",
+    "src/newer/render/r_levelview.js": "cd1ea5d7499a6b9e3ff79c413ab98875bda4e93322b3d8650e657526d139de9a",
+    "src/engine/render/gl_rsurf_liquids.js": "27e61b94dc1a55aa33e6d6179a3e0963a0e52a48632c41a7c52282495d058a49",
+    "src/engine/render/r_skybox.js": "2b33714991c269e2a9a1af91dcb9fb798ae88c032cd881cfe97aa6238b98ca93",
+    "src/engine/common/hooks.js": "ed2f5f4dd5bf37dc2401fda883855418270d066d00405b7fcbc806aa212367b2",
+    "src/newer/install.js": "21536cc9065abc3543cb3c94efef59deb837157d8625592e013c84c8883cb776",
+    "tests/milkyway_sky_test.js": "e964893038f88d3f33a662b3741eb854dcaaa06408617a2cdf2c5c9387251328",
+    "tests/milkyway_sky_trial.js": "8206fdfad4f671739b4f929e57b72c3edd1b62941ef6b674bfae33b635bbd84a",
+    "tests/milkyway_sky_trial.html": "d3c998595cef40383d1d45b128145de6bf0678154b83fd60d2e91e6feb45952b",
+    "tools/distribution/engine-tests.mjs": "45100320a4e8fc8dcf921481c1869b12d78eae945c5e5d7b9995bd9dcde39dca"
+  },
+  "checks": {
+    "combinedPublicAndRegression": "21/21",
+    "distribution": "58/58",
+    "ChromeMainSky": "72 actual hub sky faces, HDR off/on, actual MRT packets verified",
+    "ChromeNeighborView": "actual hub BSP, native and replacement capture states verified; no page errors",
+    "webBuild": "passed; actual renderer source hashes and original panorama/license inventory hashes verified"
+  },
+  "preview": "http://127.0.0.1:52187/tests/milkyway_sky_trial.html",
+  "commitPush": "Not part of this new sky request; changes retained in existing isolated working tree",
+  "ownerNextAction": "Confirm sky and faint cloud strength",
+  "license": "CC-BY-NC-SA-4.0; source credit and full license retained",
+  "Bluey": "Storage error documented; no board mutation claimed; reconcile existing sky card when service available",
+  "verifiedAt": "2026-10-18T08:32:28.674991+00:00"
+}

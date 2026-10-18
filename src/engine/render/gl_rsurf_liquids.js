@@ -19,6 +19,7 @@
  */
 import * as THREE from 'three';
 import { R_FogSkyMaterial } from './r_fog.js';
+import { R_MilkyWaySkyLayers, R_MilkyWaySkyClear } from '../common/hooks.js';
 import { R_SkyBoxMaterial } from './r_skybox.js';
 import { R_NewerLightingActive } from '../common/hooks.js'; // installed by newer/mode.js
 import { cl } from '../client/client.js';
@@ -771,7 +772,14 @@ export function R_DrawSkyChain( s ) {
 	const skyBoxMaterial = R_SkyBoxMaterial(), skyBox = skyBoxMaterial !== null;
 	if ( skyBox && skyBoxMaterial.depthWrite !== skyDepthWrite ) skyBoxMaterial.depthWrite = skyDepthWrite;
 	if ( skyBox && skyBoxMaterial.userData.glowBoost === undefined ) R_RegisterGlow( skyBoxMaterial, 1.9 );
-	const solidLayerMaterial = skyBox ? skyBoxMaterial : solidSkyMaterial;
+	const night = skyBox ? null : R_MilkyWaySkyLayers( solidskytexture, alphaskytexture );
+ if ( night ) {
+  if ( night.solid.depthWrite !== skyDepthWrite ) { night.solid.depthWrite = skyDepthWrite; night.solid.needsUpdate = true; }
+  if ( night.solid.userData.glowBoost === undefined ) R_RegisterGlow( night.solid, 1.9 );
+  if ( night.alpha.userData.glowBoost === undefined ) R_RegisterGlow( night.alpha, 1.9 );
+ }
+ const solidLayerMaterial = skyBox ? skyBoxMaterial : night ? night.solid : solidSkyMaterial;
+ const cloudLayerMaterial = night ? night.alpha : alphaSkyMaterial;
 
 	// Solid sky layer (background, speed = realtime*8)
 	let solidSpeed = realtime * 8;
@@ -814,7 +822,7 @@ export function R_DrawSkyChain( s ) {
 	}
 
 	// Alpha sky layer (overlay, speed = realtime*16); none over a skybox
-	if ( alphaSkyMaterial && ! skyBox ) {
+	if ( cloudLayerMaterial && ! skyBox ) {
 
 		let alphaSpeed = realtime * 16;
 		alphaSpeed -= ( alphaSpeed | 0 ) & ~127;
@@ -829,14 +837,14 @@ export function R_DrawSkyChain( s ) {
 				let mesh = fa._skyMesh2;
 				if ( ! mesh ) {
 
-					mesh = new THREE.Mesh( geometry, alphaSkyMaterial );
+					mesh = new THREE.Mesh( geometry, cloudLayerMaterial );
 					mesh.userData.quakeSky = true;
 					fa._skyMesh2 = mesh;
 
 				} else {
 
 					if ( mesh.geometry !== geometry ) mesh.geometry = geometry;
-					mesh.material = alphaSkyMaterial;
+					mesh.material = cloudLayerMaterial;
 
 				}
 
@@ -862,6 +870,8 @@ export function R_DrawSkyChain( s ) {
  * Disposes the two sky materials so the next map's sky textures are picked up (part of `GL_BuildLightmaps`).
  */
 export function R_SkyClear() {
+
+ R_MilkyWaySkyClear();
 
 	// Reset sky materials so they pick up new sky textures
 	if ( solidSkyMaterial ) { solidSkyMaterial.dispose(); solidSkyMaterial = null; }

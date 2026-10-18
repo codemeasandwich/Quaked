@@ -112,28 +112,29 @@ try {
   // Named but not shipped on the web, so the page treats it as unavailable (its classic look) rather than a packaging error.
   if(profile==='web'&&!WEB_PACKS.has(pack)){files[path]={pack,unshipped:true};continue;}
   const source=generated.get(path)??await readFile(assetPath(root,path));
-  // Web-only optimisation (web_images.mjs); the desktop app ships the source bytes.
-  const optimised=profile==='web'&&!generated.has(path)?await WebOptimise(path,source,process.env.QUAKED_WEB_IMAGE_CACHE??resolve(root,'.distribution-cache/web-images')):null;
+  // Shared Bestiary delivery optimisation (web_images.mjs) for every profile. The source PNGs are
+  // the single master; the derived WebP is stored with its own extension so the app can serve it.
+  const optimised=!generated.has(path)?await WebOptimise(path,source,process.env.QUAKED_BESTIARY_IMAGE_CACHE??process.env.QUAKED_WEB_IMAGE_CACHE??resolve(root,'.distribution-cache/web-images')):null;
   const bytes=optimised?.bytes??source;
-  const hash=sha(bytes),priority=priorityOf(path),topic=topicOf(path),type=optimised?.mime??mime(path);
+  const hash=sha(bytes),priority=priorityOf(path),topic=topicOf(path),type=optimised?.mime??mime(path),ext=optimised?'.webp':extname(path);
   // Kept in the HTML: generated engine files, images the page shows before the engine
   // runs, and the licence (so the HTML carries its own terms).
   if(profile==='web'&&(generated.has(path)||pageRefs.has(path)||path==='LICENSE')) {
-   const gz=gzipSync(bytes,{level:9}),packed=gz.length<bytes.length*.95?gz:bytes,id='q'+i+++extname(path),entry={id,mime:type};
+   const gz=gzipSync(bytes,{level:9}),packed=gz.length<bytes.length*.95?gz:bytes,id='q'+i+++ext,entry={id,mime:type};
    entry.gzip=packed===gz;entry.bytes=packed.length;
    await output.write(`<script type="application/octet-stream" id="${id}">${encode85(packed)}</script>\n`);
    total+=packed.length;files[path]=entry;
   } else if(profile==='web') {
-   addRecord(pack,{path,bytes,hash,priority,topic,ext:extname(path),mime:type,sourceBytes:source.length,optimised});
+   addRecord(pack,{path,bytes,hash,priority,topic,ext,mime:type,sourceBytes:source.length,optimised});
    files[path]={pack,mime:type};
   } else if(pack!=='core'&&PACK_BASE) {
    // A downloadable pack: the app unpacks each asset to a file named by its SHA-256.
    // The app's extension rule (ext_ok, src-tauri/src/packs.rs) refuses the whole pack otherwise.
-   if(!/^\.[A-Za-z0-9]{1,15}$/.test(extname(path)))throw Error('A downloadable asset needs an extension of 1 to 15 letters or digits: '+path);
-   addRecord(pack,{path,bytes,hash,priority,topic,ext:extname(path),mime:type});
-   files[path]={pack,sha256:hash,ext:extname(path),mime:type};
+   if(!/^\.[A-Za-z0-9]{1,15}$/.test(ext))throw Error('A downloadable asset needs an extension of 1 to 15 letters or digits: '+path);
+   addRecord(pack,{path,bytes,hash,priority,topic,ext,mime:type});
+   files[path]={pack,sha256:hash,ext,mime:type};
   } else {
-   const id='q'+i+++extname(path),external=!generated.has(path);
+   const id='q'+i+++ext,external=!generated.has(path);
    await writeFile(resolve(external?resolve(root,'dist/desktop-assets'):resolve(out,'assets'),id),bytes);
    total+=bytes.length;files[path]={id,mime:type,external};
   }

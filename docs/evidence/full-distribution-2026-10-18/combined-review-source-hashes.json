@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-18",
+  "reviewer": "independent distribution_review agent",
+  "base": "ab430e348a1b16c4e93df3c518cebcdb8ad2a1cc",
+  "mergeParents": [
+    "46aed73748e9c5a3bb6a9a2d6ec57ff60087fa47",
+    "f60eee3de4377f83e167adbd53d404f601c262a3"
+  ],
+  "status": "Uncommitted combined candidate; exact-index build and landing still required",
+  "files": [
+    {
+      "path": "tools/distribution/build.mjs",
+      "bytes": 15642,
+      "sha256": "a6501512a164dff1ed5c6b0b25a76cb39ea559f52a8615801beebf6c6a6b85c0"
+    },
+    {
+      "path": "tools/distribution/web_images.mjs",
+      "bytes": 3732,
+      "sha256": "d34f9aa38d9a64cd98aa584c55e1e49539abf7327f31a8ebba762c8176502ebb"
+    },
+    {
+      "path": "tools/distribution/manifest.mjs",
+      "bytes": 6534,
+      "sha256": "fb92fac85c83ff7da8cec8bc33c6451b30612e0252507c4fe6ef8f3935dbb678"
+    },
+    {
+      "path": "src/newer/assets/startup_pack.js",
+      "bytes": 587,
+      "sha256": "2d8df1747c6d5c8003178143b8a71c372fa044553d526899c09c7c09b3cb5936"
+    },
+    {
+      "path": "src/newer/ui/r_newerhud.js",
+      "bytes": 7808,
+      "sha256": "cb3a9aed29d6785b89217512bc0abead06dc382b2f187744ecc3ad6bd99f3024"
+    },
+    {
+      "path": "src/newer/render/r_milkywaysky.js",
+      "bytes": 6362,
+      "sha256": "70074ea8ea3957ebd0f56866b306008b893386b5ecda264e86917527f6d6aef0"
+    },
+    {
+      "path": "src/newer/render/r_levelview.js",
+      "bytes": 38713,
+      "sha256": "cd1ea5d7499a6b9e3ff79c413ab98875bda4e93322b3d8650e657526d139de9a"
+    },
+    {
+      "path": "src/engine/render/r_skybox.js",
+      "bytes": 12470,
+      "sha256": "2b33714991c269e2a9a1af91dcb9fb798ae88c032cd881cfe97aa6238b98ca93"
+    },
+    {
+      "path": "src/engine/render/gl_rsurf_liquids.js",
+      "bytes": 30771,
+      "sha256": "27e61b94dc1a55aa33e6d6179a3e0963a0e52a48632c41a7c52282495d058a49"
+    },
+    {
+      "path": "src/engine/common/hooks.js",
+      "bytes": 71095,
+      "sha256": "ed2f5f4dd5bf37dc2401fda883855418270d066d00405b7fcbc806aa212367b2"
+    },
+    {
+      "path": "src/newer/install.js",
+      "bytes": 24503,
+      "sha256": "21536cc9065abc3543cb3c94efef59deb837157d8625592e013c84c8883cb776"
+    },
+    {
+      "path": "newer/hud/index.json",
+      "bytes": 41,
+      "sha256": "1ac4c16fb40f3ffd608b9dbd7e2dcec1a41a525af1c1485c5b3740584fbcd55b"
+    },
+    {
+      "path": "newer/startup.pak",
+      "bytes": 5075016,
+      "sha256": "5ad161f124b2b7524619c0876a17a2dc3b8e6afa3f5fc4200056fe97cb4dca64"
+    },
+    {
+      "path": "newer/startup-pack-provenance.json",
+      "bytes": 51643,
+      "sha256": "83d83f170a33ba93b4f734ed3155302188d04e5363888218d8fe4942b53b0c4f"
+    },
+    {
+      "path": "newer/textures/skies/milkyway.jpeg",
+      "bytes": 4376252,
+      "sha256": "a77472cc4237fb0b5655cd344cf0768a547102ab0cebe67ab053e66749e92755"
+    },
+    {
+      "path": "newer/textures/skies/MILKYWAY-LICENSE.txt",
+      "bytes": 772,
+      "sha256": "d8206b4d8a5808a9771e09bb56b270d782f2c9aeaec5e1f95daad10871cf4820"
+    }
+  ]
+}
