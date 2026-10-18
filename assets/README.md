@@ -13,6 +13,7 @@ explicit resource inventory, with their existing game-data/profile boundaries.
 | `audio/sounds/` | Standalone menu, welcome and low-health audio |
 | `game/textures/` | Registered diffuse, height, normal and scalar textures |
 | `game/enemies/`, `game/weapons/` | Models, skins and their material data |
+| `game/enemies/<model>/sources/` | Authoring images, fitting recipes and retained predecessors; excluded from runtime bundles |
 | `game/hud/`, `game/ui/` | Game interface artwork and manifests |
 | `game/effects/`, `game/bestiary/` | Effects and journal artwork |
 | `game/maps/`, `game/maps.pak` | Authored game maps; loose community BSPs and attributions in `game/maps/community/` |
@@ -48,10 +49,13 @@ Set `QUAKED_DIST_DIR` to a separate output root for an isolated build trial.
 
 Owned Quake/expansion/add-on files remain in the user's external game library
 (`~/quaked` by default). The existing `resources/` owned-game exclusion and
-registered/shareware boundaries remain enforced. Authoring programs and their
-supplied source/evidence packages remain under `tools/`, with no second copy of
-runtime files. For example, the unpacked demon package is an authoring input;
-its registered runtime scalar and preview remain here.
+registered/shareware boundaries remain enforced. Authoring scripts belong in
+`tools/`; authoring images and recipes belong under the relevant `assets/`
+functional directory in a `sources/` subdirectory. Lava Man's current and
+superseded inputs are in `game/enemies/lavaman/sources/`. Existing authoring
+packages for other features remain in place until separately migrated; this
+scoped move does not alter their work. Sources are not competing runtime files
+and are excluded by the explicit product inventory.
 
 ## Adding or changing resources
 

@@ -17,7 +17,7 @@ import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init, Mod_ForName, Mod_LoadModel, model_t } from '../src/engine/render/gl_model.js';
 import * as mode from '../src/newer/mode.js';
 const EXPECTED = 'b81bb7f5cebb2889cfd2f431f743200f672d0195b05fe3faa98b50163fed7fb1';
-const SOURCE = 'tools/texture_sheets/sources/fidelity-2026-10-13/lavaman-eldritch-registered.png';
+const SOURCE = 'assets/game/enemies/lavaman/sources/fidelity-2026-10-13/lavaman-eldritch-registered.png';
 const SOURCE_SHA = '1ea682fc68686340405b6b12bfd30f318c9348fb8a1f7db35b46faf9f3ff1ffc';
 const NAME = 'progs/lavaman.mdl', BASE = 'newer/enemies/lavaman/custom/';
 const check = ( value, message ) => { if ( !value ) throw Error( message ); };
@@ -68,7 +68,7 @@ Deno.test( 'owned Lava Man public loader preserves every native UV triangle and 
 Deno.test( 'actual Lava Man assets retain generated source, matching dimensions and other enemy entries', async () => {
  const provenance = JSON.parse( read( BASE + 'SOURCE.json' ) ); same( provenance.nativeModelSha256, EXPECTED, 'fit targets exact native model' ); same( provenance.model, NAME, 'fit model' );
  same( JSON.stringify( provenance.dimensions ), '[1200,776]', 'fourfold native atlas dimensions (the 4x standard)' );
- const recipe=JSON.parse(read('tools/texture_sheets/sources/fidelity-2026-10-13/lavaman-eldritch.json'));
+ const recipe=JSON.parse(read('assets/game/enemies/lavaman/sources/fidelity-2026-10-13/lavaman-eldritch.json'));
  same(recipe.sourceFile,SOURCE,'selected recipe uses exact prospective source');same(recipe.sourceSha,SOURCE_SHA,'recipe source identity');same(recipe.modelSha,EXPECTED,'recipe exact native model');same(JSON.stringify(recipe.layout),'[1,300,194,325,555,90]','recipe actual native topology');same(JSON.stringify(recipe.size),'[1558,1009]','recipe source size');same(recipe.factor,4,'recipe uses existing fourfold standard');same(JSON.stringify(recipe.runtimeEncoding),'{"format":"webp","quality":92}','explicit WebP92 recipe');
  same(provenance.factor,4,'actual fitted scale');same(JSON.stringify(provenance.atlasBox),'[0,0,1200,776]','whole native atlas registered without rotation');same(provenance.nativeTexturePixelsUsed,0,'new material comes from generated source, not copied native pigment');same(provenance.surfacePixels,492698,'complete body/head/horn/claw native UV area');same(provenance.edgePixels,5686,'recorded bounded extension for selected source');same(provenance.islands.length,48,'every native body/head/horn/claw UV component fitted');for(const island of provenance.islands)same(island.directPixels+island.edgePixels,island.surfacePixels,'each half has accounted coverage');
  same(approved.heightFlat,undefined,'solid molten body has no Armagon flash-height reconstruction');same(index.nativeHeights.lavaman,undefined,'native fallback still derives from its original skin');
