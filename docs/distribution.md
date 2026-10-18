@@ -404,3 +404,6 @@ leaves the previous site in place. The `github-pages` environment allows the
 
 The [player water and demo-face contract](player-water-2026-10-18.md) records the
 four supplied water sounds, their SFX routing and the demo-only visual air estimate.
+
+The [player event sound contract](player-event-sounds-2026-10-18.md) covers ending,
+death/reset, pickup and combination cues and their native/protocol evidence.

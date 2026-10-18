@@ -59,6 +59,7 @@ import { SCR_Init, SCR_UpdateScreen, SCR_SetExternals, SCR_EndLoadingPlaque, SCR
 import { S_Init, S_Update, S_Shutdown, S_StopAllSounds, S_SetCallbacks } from '../sound/snd_dma.js';
 import { CDAudio_Init, CDAudio_Update, CDAudio_Shutdown } from '../sound/cd_audio.js';
 import { S_UpdateAmbientMusic } from '../common/hooks.js'; // installed by newer/sound/s_ambientgame.js
+import { S_UpdatePlayerEvents } from '../common/hooks.js'; // installed by newer/sound/s_playerevents.js
 import { S_UpdatePlayerWater } from '../common/hooks.js'; // installed by newer/sound/s_playerwater.js
 import { S_UpdateLowHealth } from '../common/hooks.js'; // installed by newer/sound/s_lowhealth.js
 import { S_UpdateWelcomeJingle } from '../common/hooks.js'; // installed by newer/sound/s_welcomejingle.js
@@ -709,6 +710,7 @@ function _Host_Frame_Internal( time ) {
 	S_UpdateAmbientMusic();
 	S_UpdateLowHealth();
 	S_UpdatePlayerWater();
+	S_UpdatePlayerEvents();
 	S_UpdateWelcomeJingle();
 
 	set_host_framecount( host_framecount + 1 );

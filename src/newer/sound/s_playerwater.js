@@ -11,6 +11,7 @@ import { volume } from '../../engine/sound/sound.js';
 import { S_GetAudioContext, S_GetMasterGain } from '../../engine/sound/snd_dma.js';
 import { R_NewerGame } from '../mode.js';
 import { CL_PlayerWater } from '../gameplay/cl_water.js';
+import { createEffectDeck, startEffect as start, stopEffect as stop, releaseEffect } from './s_effectdeck.js';
 
 // Keep literal new URL calls: the distribution bundler rewrites these assets.
 export const WATER_TRACK_URLS = Object.freeze( {
@@ -25,39 +26,9 @@ let status = { active: false, reason: 'not started', submerged: false };
 
 function deckFor( key, context ) {
 	if ( decks[ key ] ) return decks[ key ];
-	const media = new Audio(), gain = context.createGain();
-	const deck = { media, gain, source: null, playing: false, blocked: false, level: 0, generation: 0 };
-	decks[ key ] = deck;
-	media.preload = 'auto'; media.loop = key !== 'enter'; media.volume = 1; media.src = WATER_TRACK_URLS[ key ];
-	gain.gain.value = 0;
-	try {
-		deck.source = context.createMediaElementSource( media );
-		deck.source.connect( gain ); gain.connect( S_GetMasterGain() );
-	} catch ( error ) {
-		deck.blocked = true; deck.error = String( error?.message ?? error );
-	}
-	media.onended = () => { deck.playing = false; };
-	return deck;
+	return decks[ key ] = createEffectDeck( context, WATER_TRACK_URLS[ key ], key !== 'enter', S_GetMasterGain() );
 }
-function stop( deck ) {
-	deck.generation ++; deck.media.pause(); deck.playing = false; deck.level = 0; deck.gain.gain.value = 0; deck.blocked = false;
-}
-function start( deck, restart = false ) {
-	if ( deck.playing || deck.blocked || ! deck.source ) return;
-	if ( restart ) deck.media.currentTime = 0;
-	const generation = ++ deck.generation;
-	deck.playing = true; // also covers an outstanding play promise: never queue one per frame
-	let promise;
-	try { promise = deck.media.play(); } catch ( error ) { promise = Promise.reject( error ); }
-	Promise.resolve( promise ).then( () => {
-		// A late successful play after stop/shutdown must stay silent. A newer
-		// start owns the element if it is playing again by then.
-		if ( generation !== deck.generation && ! deck.playing ) deck.media.pause();
-	}, error => {
-		if ( generation !== deck.generation ) return;
-		deck.playing = false; deck.blocked = true; deck.error = String( error?.message ?? error );
-	} );
-}
+
 function loop( key, wanted, context, dt, fadeIn = 0, fadeOut = 0 ) {
 	const deck = wanted ? deckFor( key, context ) : decks[ key ];
 	if ( ! deck ) return;
@@ -116,8 +87,7 @@ export function S_UpdatePlayerWater() {
 /** Release nodes/elements before S_Shutdown closes their owning context. */
 export function S_PlayerWaterShutdown() {
 	for ( const deck of Object.values( decks ) ) {
-		stop( deck ); deck.media.removeAttribute( 'src' ); deck.media.load();
-		deck.source?.disconnect(); deck.gain.disconnect();
+		releaseEffect( deck );
 	}
 	decks = {}; epoch = undefined; wasSubmerged = false; lastTime = null;
 	status = { active: false, reason: 'not started', submerged: false };

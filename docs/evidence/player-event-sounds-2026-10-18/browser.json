@@ -1,0 +1,181 @@
+{
+  "passed": true,
+  "decoded": [
+    {
+      "cue": "end",
+      "duration": 61.231,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "cue": "death",
+      "duration": 7.888979166666667,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "cue": "quad",
+      "duration": 36.024,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "cue": "ring",
+      "duration": 24.912,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "cue": "pentagram",
+      "duration": 16.032,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "cue": "pair",
+      "duration": 121.997625,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "cue": "triple",
+      "duration": 9.216,
+      "channels": 2,
+      "sampleRate": 48000
+    }
+  ],
+  "snapshots": [
+    {
+      "event": "quad pickup",
+      "active": true,
+      "reason": "",
+      "powerMask": 4194304,
+      "powerCount": 1,
+      "pending": 0,
+      "tracks": {
+        "quad": {
+          "playing": true,
+          "gain": 1,
+          "blocked": false
+        }
+      }
+    },
+    {
+      "event": "second distinct pickup",
+      "active": true,
+      "reason": "",
+      "powerMask": 4718592,
+      "powerCount": 2,
+      "pending": 0,
+      "tracks": {
+        "quad": {
+          "playing": true,
+          "gain": 1,
+          "blocked": false
+        },
+        "ring": {
+          "playing": true,
+          "gain": 1,
+          "blocked": false
+        },
+        "pair": {
+          "playing": true,
+          "gain": 1,
+          "blocked": false
+        }
+      }
+    },
+    {
+      "event": "third distinct pickup",
+      "active": true,
+      "reason": "",
+      "powerMask": 5767168,
+      "powerCount": 3,
+      "pending": 0,
+      "tracks": {
+        "quad": {
+          "playing": true,
+          "gain": 1,
+          "blocked": false
+        },
+        "ring": {
+          "playing": true,
+          "gain": 1,
+          "blocked": false
+        },
+        "pair": {
+          "playing": true,
+          "gain": 1,
+          "blocked": false
+        },
+        "pentagram": {
+          "playing": true,
+          "gain": 1,
+          "blocked": false
+        },
+        "triple": {
+          "playing": true,
+          "gain": 1,
+          "blocked": false
+        }
+      }
+    },
+    {
+      "event": "death",
+      "active": true,
+      "reason": "",
+      "powerMask": 0,
+      "powerCount": 0,
+      "pending": 0,
+      "tracks": {
+        "quad": {
+          "playing": false,
+          "gain": 0,
+          "blocked": false
+        },
+        "ring": {
+          "playing": false,
+          "gain": 0,
+          "blocked": false
+        },
+        "pair": {
+          "playing": false,
+          "gain": 0,
+          "blocked": false
+        },
+        "pentagram": {
+          "playing": false,
+          "gain": 0,
+          "blocked": false
+        },
+        "triple": {
+          "playing": false,
+          "gain": 0,
+          "blocked": false
+        },
+        "death": {
+          "playing": true,
+          "gain": 1,
+          "blocked": false
+        }
+      }
+    },
+    {
+      "event": "Quake final victory",
+      "active": true,
+      "reason": "",
+      "powerMask": 0,
+      "powerCount": 0,
+      "pending": 0,
+      "tracks": {
+        "end": {
+          "playing": true,
+          "gain": 1,
+          "blocked": false
+        }
+      }
+    }
+  ],
+  "scope": "Actual Chrome MP3 decoder and media elements driven by real public clientdata/finale parsing, using remote/custom fallback. Stock local QC and exact timers are independently tested in Node. No subjective owner listening acceptance.",
+  "errors": []
+}

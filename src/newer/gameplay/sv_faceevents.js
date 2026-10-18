@@ -25,7 +25,9 @@ import { OFS_PARM0, OFS_PARM1 } from '../../engine/progs/pr_comp.js';
 import { GetEdictFieldValue, ED_FindFunction } from '../../engine/progs/pr_edict.js';
 import { shotRaysNew, shotRayRecord, shotRayEvent, shotBlastId } from './sv_shotrays.js';
 import { shotDelayCapture } from './sv_shotdelay.js';
-import { IT_AXE, IT_SHOTGUN, IT_SUPER_SHOTGUN, IT_NAILGUN, IT_SUPER_NAILGUN, IT_GRENADE_LAUNCHER, IT_ROCKET_LAUNCHER, IT_LIGHTNING } from '../../engine/common/quakedef.js';
+import { SV_CheatPowerOn } from './sv_cheats.js';
+import { Con_DPrintf } from '../../engine/common/console.js';
+import { IT_QUAD, IT_INVISIBILITY, IT_INVULNERABILITY, IT_AXE, IT_SHOTGUN, IT_SUPER_SHOTGUN, IT_NAILGUN, IT_SUPER_NAILGUN, IT_GRENADE_LAUNCHER, IT_ROCKET_LAUNCHER, IT_LIGHTNING } from '../../engine/common/quakedef.js';
 
 const LIMIT = 256, queues = { damage: [], shot: [], reward: [], rays: [], alert: [] }, names = new WeakMap();
 const POWERS = new Map( [
@@ -35,6 +37,23 @@ const POWERS = new Map( [
  [ 'item_artifact_envirosuit', [ 'suit', 'radsuit_finished' ] ]
 ] );
 function timer( player, field ) { const value = GetEdictFieldValue( player, field ); return value ? value.accessor.getFloat( value.ofs ) : 0; }
+// Fan out confirmed pickups independently of the HUD's destructive reward drain.
+const powerupObservers = new Set();
+/** Subscribe once at module load; returns a disposer for public tests/tools. */
+export function SV_AddPowerupObserver( fn ) { powerupObservers.add( fn ); return () => powerupObservers.delete( fn ); }
+const POWER_FIELDS = [ [ 'quad', IT_QUAD, 'super_damage_finished' ], [ 'ring', IT_INVISIBILITY, 'invisible_finished' ],
+ [ 'pentagram', IT_INVULNERABILITY, 'invincible_finished' ] ];
+function activePowers( player ) {
+ let mask = 0;
+ for ( const [ name, bit, field ] of POWER_FIELDS )
+  if ( ( player.v.items & bit ) && timer( player, field ) > sv.time && ! SV_CheatPowerOn( name, player ) ) mask |= bit;
+ return mask;
+}
+/** Current distinct, timed, genuinely held powers of the paired local player.
+ * Cheat switches are omitted even though they also refresh native timers. */
+export function SV_PlayerPowerMask() {
+ return SV_FaceLocalActive() && sv.edicts[ 1 ].v.health > 0 ? activePowers( sv.edicts[ 1 ] ) : 0;
+}
 const FIRE_AMMO = new Map( [
  [ 'W_FireShotgun', 'ammo_shells' ], [ 'W_FireSuperShotgun', 'ammo_shells' ],
  [ 'W_FireSpikes', 'ammo_nails' ], [ 'W_FireSuperSpikes', 'ammo_nails' ],
@@ -128,7 +147,7 @@ export function SV_FaceFunctionEnter( fn, caller ) {
   if ( PROG_TO_EDICT( pr_global_struct.other ) !== player ) return null;
   const pickup = PROG_TO_EDICT( pr_global_struct.self ), power = pickup && POWERS.get( PR_GetString( pickup.v.classname ) );
   if ( !power || pickup.free || pickup.v.solid !== 1 ) return null; // native SOLID_TRIGGER
-  return { kind:'reward', epoch, player, pickup, power:power[0], field:power[1], before:timer(player,power[1]), items:player.v.items, time:sv.time, map:sv.name };
+  return { kind:'reward', epoch, player, pickup, power:power[0], field:power[1], before:timer(player,power[1]), beforePowers:activePowers(player), items:player.v.items, time:sv.time, map:sv.name };
  }
  if ( functionName === 'T_Damage' ) {
   if ( PROG_TO_EDICT( pr_globals_int[OFS_PARM0] ) !== player ) return null;
@@ -203,8 +222,13 @@ export function SV_FaceFunctionLeave( token ) {
  }
  syncEpoch(); if ( token.epoch !== epoch || !SV_FaceLocalActive() ) return;
  if ( token.kind === 'reward' ) {
-  if ( timer(token.player,token.field) !== token.before || token.player.v.items !== token.items || token.pickup.v.solid !== 1 )
+  if ( timer(token.player,token.field) !== token.before || token.player.v.items !== token.items || token.pickup.v.solid !== 1 ) {
    emit( { kind:'reward', time:token.time, map:token.map, power:token.power, entity:token.pickup.index } );
+   const event = { power:token.power, time:token.time, beforePowers:token.beforePowers, afterPowers:activePowers(token.player) };
+   for ( const observer of powerupObservers ) {
+    try { observer( { ...event } ); } catch ( error ) { Con_DPrintf( 'Power-up observer failed: %s\n', error?.message ?? error ); }
+   }
+  }
   return;
  }
  if ( token.kind === 'damage' ) {

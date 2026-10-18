@@ -621,6 +621,14 @@ export let S_AmbientMusicUnlock = Hooks_Missing( 'S_AmbientMusicUnlock' );
 // newer/sound/s_exitmachine.js
 export let S_ExitMachineFalloff = Hooks_Missing( 'S_ExitMachineFalloff' );
 
+// newer/sound/s_playerevents.js
+export let S_PlayerInventory = Hooks_Missing( 'S_PlayerInventory' );
+export let S_PlayerHealthChanged = Hooks_Missing( 'S_PlayerHealthChanged' );
+export let S_PlayerFinale = Hooks_Missing( 'S_PlayerFinale' );
+export let S_PlayerEventsReset = Hooks_Missing( 'S_PlayerEventsReset' );
+export let S_UpdatePlayerEvents = Hooks_Missing( 'S_UpdatePlayerEvents' );
+export let S_PlayerEventsShutdown = Hooks_Missing( 'S_PlayerEventsShutdown' );
+
 // newer/sound/s_playerwater.js
 export let S_UpdatePlayerWater = Hooks_Missing( 'S_UpdatePlayerWater' );
 export let S_PlayerWaterShutdown = Hooks_Missing( 'S_PlayerWaterShutdown' );
@@ -794,6 +802,7 @@ const HOOK_NAMES = Object.freeze( [
 	'S_UpdateAmbientMusic',
 	'S_AmbientMusicNotifyCombat', 'S_AmbientMusicShutdown', 'S_AmbientMusicStop', 'S_AmbientMusicUnlock',
 	'S_ExitMachineFalloff',
+	'S_PlayerInventory', 'S_PlayerHealthChanged', 'S_PlayerFinale', 'S_PlayerEventsReset', 'S_UpdatePlayerEvents', 'S_PlayerEventsShutdown',
 	'S_UpdatePlayerWater', 'S_PlayerWaterShutdown',
 	'S_UpdateLowHealth', 'S_LowHealthShutdown',
 	'S_UpdateWelcomeJingle', 'S_WelcomeJingle', 'S_WelcomeJingleShutdown',
@@ -911,6 +920,7 @@ export function Hooks_Install( table ) {
 	S_UpdateAmbientMusic = table.S_UpdateAmbientMusic;
 	S_AmbientMusicNotifyCombat = table.S_AmbientMusicNotifyCombat; S_AmbientMusicShutdown = table.S_AmbientMusicShutdown; S_AmbientMusicStop = table.S_AmbientMusicStop; S_AmbientMusicUnlock = table.S_AmbientMusicUnlock;
 	S_ExitMachineFalloff = table.S_ExitMachineFalloff;
+	S_PlayerInventory = table.S_PlayerInventory; S_PlayerHealthChanged = table.S_PlayerHealthChanged; S_PlayerFinale = table.S_PlayerFinale; S_PlayerEventsReset = table.S_PlayerEventsReset; S_UpdatePlayerEvents = table.S_UpdatePlayerEvents; S_PlayerEventsShutdown = table.S_PlayerEventsShutdown;
 	S_UpdatePlayerWater = table.S_UpdatePlayerWater; S_PlayerWaterShutdown = table.S_PlayerWaterShutdown;
 	S_UpdateLowHealth = table.S_UpdateLowHealth; S_LowHealthShutdown = table.S_LowHealthShutdown;
 	S_UpdateWelcomeJingle = table.S_UpdateWelcomeJingle; S_WelcomeJingle = table.S_WelcomeJingle; S_WelcomeJingleShutdown = table.S_WelcomeJingleShutdown;

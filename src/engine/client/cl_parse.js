@@ -36,6 +36,7 @@ import { sv, svs } from '../server/server.js';
 import { Cbuf_AddText } from '../common/cmd.js';
 import { Cmd_ExecuteString } from '../common/cmd.js';
 import { src_command } from '../common/cmd.js';
+import { S_PlayerInventory, S_PlayerHealthChanged, S_PlayerFinale } from '../common/hooks.js'; // installed by newer/sound/s_playerevents.js
 import { R_FaceInventory, R_FaceSecret, R_FaceHealthChanged } from '../common/hooks.js'; // installed by newer/ui/r_facegame.js
 import {
 	PROTOCOL_VERSION, PROTOCOL_LARGE,
@@ -1089,6 +1090,7 @@ export function CL_ParseClientdata( bits ) {
 		for ( let j = 0; j < 32; j ++ )
 			if ( ( i & ( 1 << j ) ) && ! ( cl.items & ( 1 << j ) ) )
 				cl.item_gettime[ j ] = cl.time;
+		S_PlayerInventory( cl.items, i );
 		R_FaceInventory( cl.items, i );
 		cl.items = i;
 
@@ -1127,6 +1129,7 @@ export function CL_ParseClientdata( bits ) {
 	i = MSG_ReadShort();
 	if ( cl.stats[ STAT_HEALTH ] !== i ) {
 
+		S_PlayerHealthChanged( i );
 		R_FaceHealthChanged( i );
 		cl.stats[ STAT_HEALTH ] = i;
 		// Sbar_Changed();
@@ -1635,6 +1638,7 @@ export function CL_ParseServerMessage() {
 				break;
 
 			case svc_finale:
+				S_PlayerFinale();
 				cl.intermission = 2;
 				cl.completed_time = cl.time;
 				// vid.recalc_refdef = true; // go to full screen

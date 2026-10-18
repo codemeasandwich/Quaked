@@ -1,4 +1,5 @@
 import { S_GibRestObserve, S_GibRestPackets } from '../common/hooks.js'; // installed by newer/sound/s_gibs.js
+import { S_PlayerEventsReset } from '../common/hooks.js'; // installed by newer/sound/s_playerevents.js
 import { R_ItemTurn } from '../common/hooks.js'; // installed by newer/render/r_itemturn.js
 /**
  * @module engine/client/cl_main
@@ -104,6 +105,7 @@ CL_ClearState
  * `cl.free_efrags` free list. `cl_static_entities` is left as is.
  */
 export function CL_ClearState() {
+	S_PlayerEventsReset();
 	R_CloakReset();
 	R_PowerVisionReset();
 	R_QuadVisionReset();
