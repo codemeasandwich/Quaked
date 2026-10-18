@@ -23,7 +23,7 @@ import {Bestiary_ComposeFrontispiece,Bestiary_FrontispieceMask} from './bestiary
 import {key_dest,key_game} from '../../engine/client/keys.js';
 import { R_NewerGame } from '../mode.js';
 import {R_IntroLoadingHolding} from './r_demoloading.js';
-import {R_ShellTrace} from '../render/r_shelltrace.js';
+import {R_VisibleAliasBounds} from '../render/r_aliasvisibility.js';
 import {isXRActive} from '../../platform/webxr.js';
 import {COM_NewerURL} from '../../engine/common/pak.js';
 import { R_FolioPrepare } from './r_folio.js';
@@ -292,13 +292,9 @@ export function R_BestiaryObserve(scene,camera,entities){
   const native=sv.edicts?.[index];if(!native||native.free||native.v.health<=0||native.v.deadflag!==0)continue;
   const entry=nativeEntry(native);if(!entry||journal.has(entry.id))continue;
   if(!nativeDiscoverable(native,entry)||!Bestiary_FacesPlayer(native.v.angles,native.v.origin,sv.edicts[1].v.origin))continue;
-  const mesh=entity._aliasMesh;if(!mesh||mesh.parent!==scene||!mesh.visible)continue;let visible=true;for(let p=mesh.parent;p;p=p.parent)if(!p.visible)visible=false;if(!visible)continue;
-  // Alias animation mutates positions; event-time bounds must use this pose.
-  mesh.traverse(o=>{if(o.geometry){o.geometry.computeBoundingBox();o.geometry.computeBoundingSphere();}});mesh.updateWorldMatrix(true,true);bounds.setFromObject(mesh);
-  if(bounds.isEmpty()||!frustum.intersectsBox(bounds))continue;bounds.getCenter(centre);bounds.getSize(size);
-  const ndc=centre.clone().project(camera);if(ndc.z< -1||ndc.z>1||Math.abs(ndc.x)>1||Math.abs(ndc.y)>1)continue;
-  const distance=centre.distanceTo(camera.position);if(distance<camera.near||distance>camera.far)continue;
-  const trace=R_ShellTrace(cl.worldmodel,camera.position.toArray(),centre.toArray(),0,cl_entities);if(trace.startsolid||trace.allsolid||trace.fraction<.999)continue;
+  const mesh=entity._aliasMesh;
+  if(!R_VisibleAliasBounds(scene,camera,entity,bounds,frustum))continue;
+  bounds.getCenter(centre);bounds.getSize(size);
   if(!journal.unlock(entry.id))continue;
   R_FolioPrepare(entry.id); // (its pencil replay starts loading now, before the page is drawn)
   target={native,mesh,centre:centre.clone(),size:size.clone()};base=null;encounter.start(entry,clock);CL_SuspendGameButtons();R_BestiaryPage(entry.id);return true;

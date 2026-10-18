@@ -107,6 +107,7 @@ import { V_ShamblerStepShake, v_shamblersteps } from './render/v_shamblersteps.j
 import { S_UpdateAmbientMusic } from './sound/s_ambientgame.js';
 import { S_AmbientMusicNotifyCombat, S_AmbientMusicShutdown, S_AmbientMusicStop, S_AmbientMusicUnlock } from './sound/s_ambientmusic.js';
 import { S_ExitMachineFalloff } from './sound/s_exitmachine.js';
+import { S_UpdateEnvironmentSounds, S_ObserveEnvironmentSounds, S_EnvironmentSoundsReset, S_EnvironmentSoundsShutdown } from './sound/s_environmentsounds.js';
 import { S_PlayerInventory, S_PlayerHealthChanged, S_PlayerFinale, S_PlayerEventsReset, S_UpdatePlayerEvents, S_PlayerEventsShutdown } from './sound/s_playerevents.js';
 import { S_UpdatePlayerWater, S_PlayerWaterShutdown } from './sound/s_playerwater.js';
 import { S_UpdateLowHealth, S_LowHealthShutdown } from './sound/s_lowhealth.js';
@@ -202,6 +203,7 @@ if ( ! Hooks_Installed() ) Hooks_Install( {
 	S_UpdateAmbientMusic,
 	S_AmbientMusicNotifyCombat, S_AmbientMusicShutdown, S_AmbientMusicStop, S_AmbientMusicUnlock,
 	S_ExitMachineFalloff,
+	S_UpdateEnvironmentSounds, S_ObserveEnvironmentSounds, S_EnvironmentSoundsReset, S_EnvironmentSoundsShutdown,
 	S_PlayerInventory, S_PlayerHealthChanged, S_PlayerFinale, S_PlayerEventsReset, S_UpdatePlayerEvents, S_PlayerEventsShutdown,
 	S_UpdatePlayerWater, S_PlayerWaterShutdown,
 	S_UpdateLowHealth, S_LowHealthShutdown,

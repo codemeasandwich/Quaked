@@ -1,4 +1,5 @@
 import { S_GibRestObserve, S_GibRestPackets } from '../common/hooks.js'; // installed by newer/sound/s_gibs.js
+import { S_EnvironmentSoundsReset } from '../common/hooks.js'; // installed by newer/sound/s_environmentsounds.js
 import { S_PlayerEventsReset } from '../common/hooks.js'; // installed by newer/sound/s_playerevents.js
 import { R_ItemTurn } from '../common/hooks.js'; // installed by newer/render/r_itemturn.js
 /**
@@ -106,6 +107,7 @@ CL_ClearState
  */
 export function CL_ClearState() {
 	S_PlayerEventsReset();
+	S_EnvironmentSoundsReset();
 	R_CloakReset();
 	R_PowerVisionReset();
 	R_QuadVisionReset();

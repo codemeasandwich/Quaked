@@ -621,6 +621,12 @@ export let S_AmbientMusicUnlock = Hooks_Missing( 'S_AmbientMusicUnlock' );
 // newer/sound/s_exitmachine.js
 export let S_ExitMachineFalloff = Hooks_Missing( 'S_ExitMachineFalloff' );
 
+// newer/sound/s_environmentsounds.js
+export let S_UpdateEnvironmentSounds = Hooks_Missing( 'S_UpdateEnvironmentSounds' );
+export let S_ObserveEnvironmentSounds = Hooks_Missing( 'S_ObserveEnvironmentSounds' );
+export let S_EnvironmentSoundsReset = Hooks_Missing( 'S_EnvironmentSoundsReset' );
+export let S_EnvironmentSoundsShutdown = Hooks_Missing( 'S_EnvironmentSoundsShutdown' );
+
 // newer/sound/s_playerevents.js
 export let S_PlayerInventory = Hooks_Missing( 'S_PlayerInventory' );
 export let S_PlayerHealthChanged = Hooks_Missing( 'S_PlayerHealthChanged' );
@@ -802,6 +808,7 @@ const HOOK_NAMES = Object.freeze( [
 	'S_UpdateAmbientMusic',
 	'S_AmbientMusicNotifyCombat', 'S_AmbientMusicShutdown', 'S_AmbientMusicStop', 'S_AmbientMusicUnlock',
 	'S_ExitMachineFalloff',
+	'S_UpdateEnvironmentSounds', 'S_ObserveEnvironmentSounds', 'S_EnvironmentSoundsReset', 'S_EnvironmentSoundsShutdown',
 	'S_PlayerInventory', 'S_PlayerHealthChanged', 'S_PlayerFinale', 'S_PlayerEventsReset', 'S_UpdatePlayerEvents', 'S_PlayerEventsShutdown',
 	'S_UpdatePlayerWater', 'S_PlayerWaterShutdown',
 	'S_UpdateLowHealth', 'S_LowHealthShutdown',
@@ -920,6 +927,7 @@ export function Hooks_Install( table ) {
 	S_UpdateAmbientMusic = table.S_UpdateAmbientMusic;
 	S_AmbientMusicNotifyCombat = table.S_AmbientMusicNotifyCombat; S_AmbientMusicShutdown = table.S_AmbientMusicShutdown; S_AmbientMusicStop = table.S_AmbientMusicStop; S_AmbientMusicUnlock = table.S_AmbientMusicUnlock;
 	S_ExitMachineFalloff = table.S_ExitMachineFalloff;
+	S_UpdateEnvironmentSounds = table.S_UpdateEnvironmentSounds; S_ObserveEnvironmentSounds = table.S_ObserveEnvironmentSounds; S_EnvironmentSoundsReset = table.S_EnvironmentSoundsReset; S_EnvironmentSoundsShutdown = table.S_EnvironmentSoundsShutdown;
 	S_PlayerInventory = table.S_PlayerInventory; S_PlayerHealthChanged = table.S_PlayerHealthChanged; S_PlayerFinale = table.S_PlayerFinale; S_PlayerEventsReset = table.S_PlayerEventsReset; S_UpdatePlayerEvents = table.S_UpdatePlayerEvents; S_PlayerEventsShutdown = table.S_PlayerEventsShutdown;
 	S_UpdatePlayerWater = table.S_UpdatePlayerWater; S_PlayerWaterShutdown = table.S_PlayerWaterShutdown;
 	S_UpdateLowHealth = table.S_UpdateLowHealth; S_LowHealthShutdown = table.S_LowHealthShutdown;

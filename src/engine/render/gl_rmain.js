@@ -75,6 +75,7 @@ import { r_decals, R_DecalsSetup, R_DecalsFrame, R_DecalsClear, R_DecalGibTrack 
 import { r_newer_weapons } from '../common/hooks.js'; // installed by newer/render/r_weapons.js
 import { R_ShellsSetup, R_ShellsNewMap, R_ShellsFrame } from '../common/hooks.js'; // installed by newer/render/r_shells.js
 import { R_ShellTrace } from '../common/hooks.js'; // installed by newer/render/r_shelltrace.js
+import { S_ObserveEnvironmentSounds } from '../common/hooks.js'; // installed by newer/sound/s_environmentsounds.js
 import { R_BestiaryApplyCamera, R_BestiaryObserve, R_BestiaryInputLocked, R_BestiaryPortraitLight } from '../common/hooks.js'; // installed by newer/ui/r_bestiary.js
 import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate, R_FlashlightBeam } from '../common/hooks.js'; // installed by newer/render/r_flashlight.js
 import { R_MuzzleSetView, R_MuzzleSetProbe } from '../common/hooks.js'; // installed by newer/render/r_muzzle.js
@@ -1846,7 +1847,9 @@ export function R_RenderScene() {
 	R_RendVeilEnd(scene);
 	R_EelChargeEnd(scene);
 	R_LavaManEnd(scene);
-	R_BestiaryObserve( scene, camera, cl_visedicts.slice( 0, cl_numvisedicts ) );
+	const visibleEntities = cl_visedicts.slice( 0, cl_numvisedicts );
+	if ( ! envmap ) S_ObserveEnvironmentSounds( scene, camera, visibleEntities );
+	R_BestiaryObserve( scene, camera, visibleEntities );
 
 	// Remove entity meshes that were in the scene last frame but not this frame
 	for ( const mesh of _entityMeshesInScene ) {

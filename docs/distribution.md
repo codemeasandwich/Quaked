@@ -407,3 +407,6 @@ four supplied water sounds, their SFX routing and the demo-only visual air estim
 
 The [player event sound contract](player-event-sounds-2026-10-18.md) covers ending,
 death/reset, pickup and combination cues and their native/protocol evidence.
+
+The [environment sound contract](environment-sounds-2026-10-18.md) records
+placed-fire ambience and the once-per-map visible Shub cue.

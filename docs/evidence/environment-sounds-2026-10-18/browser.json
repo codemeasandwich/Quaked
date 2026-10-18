@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "decoded": [
+    {
+      "cue": "fire",
+      "duration": 44.04,
+      "channels": 2,
+      "sampleRate": 48000
+    },
+    {
+      "cue": "shub",
+      "duration": 17.528145833333333,
+      "channels": 2,
+      "sampleRate": 48000
+    }
+  ],
+  "near": {
+    "active": true,
+    "reason": "",
+    "fireSources": 1,
+    "fireGain": 0.30000001192092896,
+    "firePan": 1,
+    "shubSeen": false,
+    "tracks": {
+      "fire": {
+        "playing": true,
+        "gain": 0.30000001192092896,
+        "blocked": false
+      }
+    }
+  },
+  "far": {
+    "active": true,
+    "reason": "",
+    "fireSources": 1,
+    "fireGain": 0,
+    "firePan": 0,
+    "shubSeen": false,
+    "tracks": {
+      "fire": {
+        "playing": false,
+        "gain": 0,
+        "blocked": false
+      }
+    }
+  },
+  "scope": "Actual Chrome MP3 decoder for both files; real media fire loop via public static-sound parsing and existing Quake spatializer. Shub visibility/event behavior is independently tested through real Three geometry and controlled native metadata, not a played end.bsp session. No owner listening acceptance.",
+  "errors": []
+}
