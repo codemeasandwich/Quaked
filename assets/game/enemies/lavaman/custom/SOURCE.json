@@ -2,7 +2,7 @@
   "schema": 1,
   "model": "progs/lavaman.mdl",
   "nativeModelSha256": "b81bb7f5cebb2889cfd2f431f743200f672d0195b05fe3faa98b50163fed7fb1",
-  "source": "tools/texture_sheets/sources/fidelity-2026-10-13/lavaman-eldritch-registered.png",
+  "source": "assets/game/enemies/lavaman/sources/fidelity-2026-10-13/lavaman-eldritch-registered.png",
   "sourceSha256": "1ea682fc68686340405b6b12bfd30f318c9348fb8a1f7db35b46faf9f3ff1ffc",
   "sourceDimensions": [
     1558,
@@ -351,11 +351,11 @@
     ],
     "rejectedPatternedSourceSha256": "d287d73b7194b031e2a393f71691416308d24efc2fa7446f1920b0b3d3037801",
     "designReference": {
-      "file": "tools/texture_sheets/sources/fidelity-2026-10-13/lavaman-eldritch.png",
+      "file": "assets/game/enemies/lavaman/sources/fidelity-2026-10-13/lavaman-eldritch.png",
       "sha256": "7ee8314e62f961da81f96d2e6a37d9ae3d94dd01f9742bc4075dc4019d27b24c"
     },
     "layoutEditTarget": {
-      "file": "tools/texture_sheets/sources/generated-2026-10-12/lavaman.png",
+      "file": "assets/game/enemies/lavaman/sources/generated-2026-10-12/lavaman.png",
       "sha256": "18003a01584ad9d717c08c9518eaab9d0141f471100659a7c953d213bd7dfa1b"
     },
     "registrationPrompt": "PRECISE ATLAS REGISTRATION EDIT. Image1 is the EDIT TARGET and exact working UV layout. Image2 is the new eldritch creature DESIGN to transfer. The character design in Image2 is wanted, but its small pieces and vertical spacing drifted and fail the model fit.\n\nKeep Image1's COMPLETE1559x1009 framing and ALL original part outlines, sizes, positions and black gaps EXACTLY. Do not rescale the canvas or add bottom padding. Especially retain every small grey finger/claw triangle and all curved horn pieces from Image1 IN PLACE and UNCHANGED. Do not copy the shifted horn/claw arrangement from Image2. These protected small pieces must not be regenerated, omitted, merged, recoloured or moved.\n\nReplace ONLY the surface artwork INSIDE the two large torso/arm silhouettes and the two separate head silhouettes in Image1 with Image2's unsettling scorched-flesh design. Transfer its thick asymmetric molten folds, twisted tissue cords, deep irregular heat wounds, sagging abdomen and warm burnt-red/orange/amber palette, fitted to Image1's existing body region boundaries. The LEFT head receives Image2's asymmetric melted face with one recessed molten eye and a dark vertical mouth. The RIGHT head receives only its folded rear-head tissue, never a face. Fit the whole face into the exact Image1 head region.\n\nThe old repeating orange lava-cell pattern in Image1 must be completely replaced on body and heads; it is NOT the desired style. Use Image2's photorealistic grotesque flesh and character. Preserve its large readable anatomical masses and selective molten recesses, no patterned wallpaper, image noise or cartoon expression.\n\nNo new anatomy outside silhouettes, no invented parts, no change to protected charcoal horn/claw pieces, no external glow, cast shadows, smoke, text, labels or watermark. One complete production atlas with the exact proven layout of Image1 and the new biological horror design of Image2.\n"

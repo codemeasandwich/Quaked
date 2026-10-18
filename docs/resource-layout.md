@@ -76,3 +76,13 @@ pack mutation rejection, resource/sound suites and a separate unpacked-demon
 regression. The required staged pre-commit hook remains unchanged and must
 pass before commit/push. Source publication is separate from a tagged release
 or owner acceptance.
+
+## Lava Man authoring inputs
+
+The owner subsequently requested authoring images under `assets/`, keeping
+scripts under `tools/`. Lava Man's five current/superseded source images and
+recipes now live in `assets/game/enemies/lavaman/sources/`. Runtime skins remain
+in `assets/game/enemies/lavaman/custom/`; the existing `sources/` exclusion keeps
+authoring inputs out of both product profiles. See
+[relocation and verification](lavaman-authoring-assets-2026-10-18.md). Historical
+migration receipts retain their original path/hash observations.

@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/Users/bri/SOURCE/Quaked/.worktrees/faces-cleanup/tools/texture_sheets/fit_generated_skin.py", line 16, in <module>
+    from fit_rogue_skins import ROOT, fit_one, flatten_height, member
+  File "/Users/bri/SOURCE/Quaked/.worktrees/faces-cleanup/tools/texture_sheets/fit_rogue_skins.py", line 22, in <module>
+    from scipy import ndimage
+ModuleNotFoundError: No module named 'scipy'
