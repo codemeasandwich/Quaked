@@ -1,0 +1,187 @@
+[
+  {
+    "name": "city1_4e",
+    "diffuseSha256": "93e5aa664f62959614566a745a3c5d881cc14aa1a6b2ae53355797c835f4fe54",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "distanceMetrics": {
+      "128": {
+        "nativeMean": [
+          56.9915771484375,
+          42.443359375,
+          22.05657958984375
+        ],
+        "newMean": [
+          57.30535888671875,
+          42.7733154296875,
+          22.52685546875
+        ],
+        "rmseDiagnosticOnly": 8.916265841117523
+      },
+      "64": {
+        "nativeMean": [
+          57.02001953125,
+          42.4755859375,
+          22.062744140625
+        ],
+        "newMean": [
+          57.349853515625,
+          42.812744140625,
+          22.538330078125
+        ],
+        "rmseDiagnosticOnly": 5.343917516867502
+      }
+    },
+    "contact": "city1_4e-independent-seam-v2-review.png"
+  },
+  {
+    "name": "wmet4_4_JM",
+    "diffuseSha256": "0758fe544d99b04f48d2d03fef810c5bd96cfccb6ff37ed9d44915f806417310",
+    "dimensions": [
+      512,
+      512
+    ],
+    "distanceMetrics": {
+      "64": {
+        "nativeMean": [
+          38.61083984375,
+          33.009765625,
+          23.650146484375
+        ],
+        "newMean": [
+          38.494873046875,
+          33.125732421875,
+          23.80322265625
+        ],
+        "rmseDiagnosticOnly": 8.094720220162543
+      },
+      "32": {
+        "nativeMean": [
+          38.6318359375,
+          33.0263671875,
+          23.6806640625
+        ],
+        "newMean": [
+          38.5400390625,
+          33.1669921875,
+          23.8544921875
+        ],
+        "rmseDiagnosticOnly": 5.181974969385064
+      }
+    },
+    "contact": "wmet4_4_JM-independent-seam-v2-review.png"
+  },
+  {
+    "name": "TF_Wood03_3",
+    "diffuseSha256": "9acfdfd28ca2096c764fea451477e720f8200f730e511a0ba2810e1d2a9505b4",
+    "dimensions": [
+      512,
+      512
+    ],
+    "distanceMetrics": {
+      "64": {
+        "nativeMean": [
+          49.269287109375,
+          36.95263671875,
+          29.090576171875
+        ],
+        "newMean": [
+          49.49609375,
+          37.148193359375,
+          29.2783203125
+        ],
+        "rmseDiagnosticOnly": 8.89522801170427
+      },
+      "32": {
+        "nativeMean": [
+          49.3818359375,
+          37.0478515625,
+          29.1982421875
+        ],
+        "newMean": [
+          49.6689453125,
+          37.26953125,
+          29.3642578125
+        ],
+        "rmseDiagnosticOnly": 7.567168841173912
+      }
+    },
+    "contact": "TF_Wood03_3-independent-seam-v2-review.png"
+  },
+  {
+    "name": "TF_Wood01b",
+    "diffuseSha256": "8b7f9480379b781fc26eb772e64ac6b436e771e1d5efae7db9138e3ffb302755",
+    "dimensions": [
+      512,
+      512
+    ],
+    "distanceMetrics": {
+      "64": {
+        "nativeMean": [
+          56.193603515625,
+          47.65576171875,
+          35.551513671875
+        ],
+        "newMean": [
+          56.705810546875,
+          48.093505859375,
+          35.9853515625
+        ],
+        "rmseDiagnosticOnly": 6.236874237983051
+      },
+      "32": {
+        "nativeMean": [
+          56.2744140625,
+          47.7353515625,
+          35.5712890625
+        ],
+        "newMean": [
+          56.8779296875,
+          48.234375,
+          36.087890625
+        ],
+        "rmseDiagnosticOnly": 4.298967293626071
+      }
+    },
+    "contact": "TF_Wood01b-independent-seam-v2-review.png"
+  },
+  {
+    "name": "TF_Conc_07",
+    "diffuseSha256": "ae3eda16e0737b26a421f3770b505b3fa8f5e9db933a879ef7bf570bae7eb998",
+    "dimensions": [
+      512,
+      512
+    ],
+    "distanceMetrics": {
+      "64": {
+        "nativeMean": [
+          90.10498046875,
+          74.440673828125,
+          59.439453125
+        ],
+        "newMean": [
+          90.161376953125,
+          74.53173828125,
+          59.326171875
+        ],
+        "rmseDiagnosticOnly": 12.190237406253964
+      },
+      "32": {
+        "nativeMean": [
+          90.1982421875,
+          74.5478515625,
+          59.5322265625
+        ],
+        "newMean": [
+          90.1875,
+          74.552734375,
+          59.3466796875
+        ],
+        "rmseDiagnosticOnly": 7.37349914106819
+      }
+    },
+    "contact": "TF_Conc_07-independent-seam-v2-review.png"
+  }
+]

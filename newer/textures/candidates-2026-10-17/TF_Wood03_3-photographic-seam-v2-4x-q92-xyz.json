@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "TF_Wood03_3",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Wood03_3.png",
+  "originalSha256": "ac1ab5c5fa243da524579daef9d709c9b3a91fe234310f338e4fc65c29c4ae68",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-17/TF_Wood03_3-photographic-seam-v2-4x.png",
+  "authoringDiffuseSha256": "652f2f7e9c7d83a664987c50b1e4974768d50c6b771e2a2d662f09c6521f0ee6",
+  "toolSha256": "e8d825dcb3e79bb9f419af6558363e0ab00534389e7b21f5423177b2e1f9af9b",
+  "heightToolSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.2,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Wood03_3-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "9acfdfd28ca2096c764fea451477e720f8200f730e511a0ba2810e1d2a9505b4",
+      "bytes": 109720,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Wood03_3-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "e6a5ddaf09d273cec9f00edd68822a1efdd7912eeb23b2f17f7b9dbdd79bce67",
+      "bytes": 103200,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Wood03_3-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "02cb9b3a77d087fb746284b216960abca57ded7d8e315c8c48cb2ec7a7f2c772",
+      "bytes": 91868,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Wood03_3-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "330d5b4ed1b4ba3b33d752a02c13e978e569206b18a6bbe0c46585e3ad906971",
+      "bytes": 93676,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Wood03_3-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "14ee683cf7d6043f38984b958e9e77f94e298d874a3426f30ffc8a7b4eb4f586",
+      "bytes": 21176,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    64
+  ],
+  "distanceMAE": 6.877522786458333,
+  "distanceMaximum": 51.0,
+  "secondaryComparisonDimensions": [
+    32,
+    32
+  ],
+  "secondaryDistanceMAE": 5.110677083333333,
+  "secondaryDistanceMaximum": 37.0,
+  "colourCompressionMAE": 2.286596934000651,
+  "heightCompressionMAE": 1.3188362121582031,
+  "heightCompressionMaximum": 10.0,
+  "normalAngularMean": 1.0134979729308078,
+  "normalAngularP99": 2.5832666629572256,
+  "normalAngularMaximum": 4.927790630461124,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

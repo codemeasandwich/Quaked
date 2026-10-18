@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "church1",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-church1.png",
+  "originalSha256": "63483f24a22750d76cc066359c522f47471dcbbb1a9af13c1a49391e82dc97e3",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-17/church1-photographic-seam-v2-4x.png",
+  "authoringDiffuseSha256": "ef74bc3da906a9fd835798b5f671b9edbf984ce08cf30e1d8bf1552fbcf9eae9",
+  "toolSha256": "e8d825dcb3e79bb9f419af6558363e0ab00534389e7b21f5423177b2e1f9af9b",
+  "heightToolSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+  "profile": {
+    "bands": [
+      0.35,
+      1,
+      1.4,
+      1
+    ],
+    "groove": 1.4,
+    "bump": 0.7,
+    "glow": 0,
+    "strength": 0.2,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-17/church1-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "36adddb19403f5223be7a69c717e9e1eb7fdf6c1e92438ec79417729ca763d4c",
+      "bytes": 124594,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-17/church1-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "ef6d4cb61de3c887876625349b7f9b7b01a32e821562033c689db93d5564195b",
+      "bytes": 80710,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-17/church1-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "7ad1eab830ce6359512f96ccb4b23cd05b312b89dbe6e3f4c562ac54ef5df954",
+      "bytes": 77142,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-17/church1-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "e967dcaad046d5ad5bdc72e3abd3044405610014fbb6eb43653d6a2a536318f8",
+      "bytes": 77800,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-17/church1-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "9292b2e44cb0edd610abff65eb79b67d2077dee4644345fa2b4d1c18380f1584",
+      "bytes": 20282,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    64
+  ],
+  "distanceMAE": 9.247639973958334,
+  "distanceMaximum": 75.0,
+  "secondaryComparisonDimensions": [
+    32,
+    32
+  ],
+  "secondaryDistanceMAE": 6.423828125,
+  "secondaryDistanceMaximum": 56.0,
+  "colourCompressionMAE": 1.821729024251302,
+  "heightCompressionMAE": 1.4207649230957031,
+  "heightCompressionMaximum": 10.0,
+  "normalAngularMean": 0.9606748879796198,
+  "normalAngularP99": 2.4539188662610307,
+  "normalAngularMaximum": 4.063971278601252,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

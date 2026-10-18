@@ -1,0 +1,339 @@
+{
+  "qualification": "Independent read-only source planning only. No image generation/edit, code/test/index change, asset binding or build/gate. Existing diagnostic/native/half-guide images inspected, numeric source analysis performed in memory.",
+  "assets": [
+    {
+      "name": "rock3_8",
+      "nativeKey": "64x64:57663646989d1874",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "targetDimensions": [
+        256,
+        256
+      ],
+      "halfComparison": [
+        32,
+        32
+      ],
+      "quarterComparison": [
+        16,
+        16
+      ],
+      "sourceOccurrences": 5,
+      "sourceGames": [
+        "dopa",
+        "id1",
+        "mg1"
+      ],
+      "nativeRgbaSha256": "e25803a36d970125eb74daf15cf5c06266d452b5372374a0bd6c7874e1673793",
+      "nativePngSha256": "e416144f843fb34b3261262c57811396b4e255354114b533ac7f738c1de7356f",
+      "metadataSha256": "91f5ded90d21fcc385e5efef30bab7354dda1fc056f0c5140a7d033074463fa6",
+      "halfGuide": "tools/texture_sheets/sources/official-world-2026-10-17/rock3_8-half-native-colour-guide.png",
+      "halfGuideSha256": "2d79deb916e1237dfc1b912605552d656d229d0deafe501ffc71f84ae7d4a70a",
+      "meanNativeRGB": [
+        55.966796875,
+        39.90625,
+        23.664794921875
+      ],
+      "material": "Warm dark brown weathered columnar/fractured rock, elongated vertical faces and deep irregular fissures. Preserve the mixed face lengths rather than a regular grid or wood planks.",
+      "layout": "Use the already approved5b26-key photographic master as a geometry/material donor after independent held-source colour/layout fitting. Native strong vertical fractures and fragment scale remain the reference.",
+      "reuse": "Direct approved photographic donor available: newer/textures/candidates-2026-10-12/rock3_8-base-photographic-4x.png. This is a source-specific derivative, not allowlist widening or an automatic same-name alias. Keep prior5b26 source/binding/maps byte-identical.",
+      "detail": "Natural mineral flakes and sparse chipped fracture edges; avoid added pebbly noise or widened black slots. Fit localized original colour/brightness changes; a global tint is insufficient.",
+      "relief": "Keep the photographed rock-face geometry and crack alignment. Validate matching decoded height/XYZ; do not blindly reuse the old height just because most native pixels match."
+    },
+    {
+      "name": "city8_2",
+      "nativeKey": "64x64:04e333ca877bde90",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "targetDimensions": [
+        256,
+        256
+      ],
+      "halfComparison": [
+        32,
+        32
+      ],
+      "quarterComparison": [
+        16,
+        16
+      ],
+      "sourceOccurrences": 5,
+      "sourceGames": [
+        "dopa",
+        "id1",
+        "mg1"
+      ],
+      "nativeRgbaSha256": "37627ee026ae5ce3799b4379e34e0c4680e414c1e4e8e416137e7d0584d46da8",
+      "nativePngSha256": "0cc1e59f920acb6e3ddef02c087cd0b6e14d1c6c030a2cdd02de60a6eef4022f",
+      "metadataSha256": "e32ce5e0db3b7296c155fd3b00ac070b86d979e6e4330e08fa3f87215a5aaf76",
+      "halfGuide": "tools/texture_sheets/sources/official-world-2026-10-17/city8_2-half-native-colour-guide.png",
+      "halfGuideSha256": "924cdf7f19dfce5fadffea09fa2418795593382a2beae7eb0e3cfcabd90202a8",
+      "meanNativeRGB": [
+        44.4912109375,
+        37.6572265625,
+        12.951904296875
+      ],
+      "material": "Dark olive/moss-coated irregular rubble masonry, earthy ochre-brown stone faces, near-black joints. Green is subdued moss/lichen, not luminous neon.",
+      "layout": "About8 short uneven horizontal courses rather than a uniform brick grid; trace the native/half-guide joint network. Approximate joint bands are y0/9/18/23/31/38/45/52/64; several lines undulate or break and are not straight rails.",
+      "countConfidence": "Approximate course segmentation; source mortar topology and half/quarter view are authoritative. Do not enforce a fabricated uniform count or consistent block width.",
+      "reuse": "Approved rough stone/masonry photos may supply fine material character only. No demonstrated exact layout donor; earlier16course TF_Brick families and4ledge TF_Stone_02 do not match this topology.",
+      "detail": "Softened limestone edges, a few worn mineral flecks and naturally clustered moss matching broad source masses. Fine grain must be physical and restrained.",
+      "relief": "Masonry joints recess; moss colour variation must not create arbitrary high ridges. Preserve clean XY wrap."
+    },
+    {
+      "name": "rock3_2",
+      "nativeKey": "64x64:296e96b9351c76fb",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "targetDimensions": [
+        256,
+        256
+      ],
+      "halfComparison": [
+        32,
+        32
+      ],
+      "quarterComparison": [
+        16,
+        16
+      ],
+      "sourceOccurrences": 3,
+      "sourceGames": [
+        "hipnotic",
+        "id1",
+        "mg1"
+      ],
+      "nativeRgbaSha256": "e4df16b123d67e6c7cf6c6795ee333d0da7fc3a4078a7164aab953c76e54b6cd",
+      "nativePngSha256": "2983c75b4694114d49fc863251be32a30242801255eb5496da6397e063865cf0",
+      "metadataSha256": "d791ce8169331adda2baea8bd0f219758ba3ecd3b5a4655cac68b3c3e5821e0a",
+      "halfGuide": "tools/texture_sheets/sources/official-world-2026-10-17/rock3_2-half-native-colour-guide.png",
+      "halfGuideSha256": "256ec5c10bef0858c587ff8830d00ed34a876c66e1fd422623b83175a3342d39",
+      "meanNativeRGB": [
+        79.140625,
+        61.59375,
+        48.0478515625
+      ],
+      "material": "Medium warm grey-brown rough sedimentary stone/rock wall with horizontal broken ledges.",
+      "layout": "Approximately7 major uneven horizontal strata. Broad shadow/joint bands around y0/8-9/17/26-27/35-37/43-44/52-54/62-63; preserve ragged local splits and horizontal emphasis instead of making square bricks.",
+      "countConfidence": "Seven broad light ledges separated by these source bands; exact fracture edges can be naturally softened.",
+      "reuse": "Approved natural rock photos such as bare TF_Cliff families are material references only; four-ledge TF_Stone_02 cannot be substituted as full geometry without changing the seven-ledged scale.",
+      "detail": "A few fine cracks, sediment grains and small chipped ledge edges; no image-frame shading or new large stones.",
+      "relief": "Relief follows actual ledges/fissures, with conservative small detail rather than making every light/dark pigment patch a bump."
+    },
+    {
+      "name": "cop2_5",
+      "nativeKey": "64x64:e25a260daecd597f",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "targetDimensions": [
+        256,
+        256
+      ],
+      "halfComparison": [
+        32,
+        32
+      ],
+      "quarterComparison": [
+        16,
+        16
+      ],
+      "sourceOccurrences": 8,
+      "sourceGames": [
+        "dopa",
+        "id1",
+        "mg1",
+        "rogue"
+      ],
+      "nativeRgbaSha256": "68180d1ebc49bd44249f964bab25b733e8168b6c1f040d5f534b0d39dc5e9c75",
+      "nativePngSha256": "9d1ed504bbdb4147fbda54dfc188da995d86bd4ce2201df1ef840e20bbd8034f",
+      "metadataSha256": "c254fea1f1162a616cbfc74d670ff39625ab8a087c2357858ae3dcfe092585aa",
+      "halfGuide": "tools/texture_sheets/sources/official-world-2026-10-17/cop2_5-half-native-colour-guide.png",
+      "halfGuideSha256": "92b36cb30b23d776f680e59036415ec9cf2eebc23447af81a1bef0279cb9ddb3",
+      "meanNativeRGB": [
+        47.234375,
+        38.931640625,
+        25.79736328125
+      ],
+      "material": "Dark aged copper/bronze with irregular cool green-blue patina and warm oxidized brown areas. Flat continuous metal surface, not masonry.",
+      "layout": "No authoritative rivet/panel/stripe grid. Preserve broad cloudy oxidation masses and both-axis repeat. Native fine checker/dither is not a woven mesh and must not be reconstructed.",
+      "reuse": "Use approved smooth flat-metal surface character, e.g.TF_Metal_02, as material reference. Two-course MetWall donors or riveted/studded metal sheets are not compatible geometry. Existing cop2_3/4/6 names do not by themselves authorize reuse.",
+      "detail": "Subtle oxidation islands, shallow pits and restrained wear swirls; no extra bolts, seams, logos, shiny bevel or dense uniform speckle.",
+      "relief": "Use the established shallow flat-metal approach; inspect height/normal under lighting so patina pigment does not become exaggerated sculpted rock."
+    },
+    {
+      "name": "church1",
+      "nativeKey": "128x128:8d401a31a05f9e4b",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "halfComparison": [
+        64,
+        64
+      ],
+      "quarterComparison": [
+        32,
+        32
+      ],
+      "sourceOccurrences": 2,
+      "sourceGames": [
+        "hipnotic"
+      ],
+      "nativeRgbaSha256": "09db1b79cc672c233133694ef734e6829e7e3eb089d37d4cd725a8d2298e2bc5",
+      "nativePngSha256": "63483f24a22750d76cc066359c522f47471dcbbb1a9af13c1a49391e82dc97e3",
+      "metadataSha256": "918ee0e326739a1fd8185dbb3ef59fafb93a139213d37ce00f936c643a4806dd",
+      "halfGuide": "tools/texture_sheets/sources/official-world-2026-10-17/church1-half-native-colour-guide.png",
+      "halfGuideSha256": "5c85c99f8d5e55259e07cfafaa01d4556333d93a769c7940e233dbabb78bca8f",
+      "meanNativeRGB": [
+        129.7333984375,
+        106.133544921875,
+        91.853515625
+      ],
+      "material": "Light warm buff/pink-grey rough limestone ashlar, broad quiet faces with sparse natural surface wear.",
+      "layout": "Exactly2 horizontal courses,64nativepx high. One strong vertical joint in each128px-wide row: upper jointx63-65, lower jointx28-32. Horizontal course joint y62-65; cyclic y127/0 is also a course boundary. Xedges continue the stones rather than introducing an extra vertical seam.",
+      "jointPhase": "Do not invent a2x2panel grid, a lowerx64joint, or a full perimeter frame. One nominal wide stone per row can cross the image boundary, appearing as fragments at the edges.",
+      "reuse": "Approved pale stone photos may provide material detail only; existing owner church1_2 is dark rounded clinker-like rock and has incompatible geometry/palette. No direct full-layout reuse is established.",
+      "detail": "Gentle mineral variation, a few shallow chips at true mortar joints, smooth physical chalky stone texture. Preserve the bright broad colour field.",
+      "relief": "Mortar recesses and small local joint-edge relief only; no new outline around every texture edge."
+    },
+    {
+      "name": "maya1_9",
+      "nativeKey": "128x128:694bfeae23b74c54",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "halfComparison": [
+        64,
+        64
+      ],
+      "quarterComparison": [
+        32,
+        32
+      ],
+      "sourceOccurrences": 1,
+      "sourceGames": [
+        "rogue"
+      ],
+      "nativeRgbaSha256": "9018c8a14a5f9a04a30f1a2ddb6773e35f0d65f1674ef8e33c866e049c88c393",
+      "nativePngSha256": "7c48e540e2b01e7e52293143642c06cbf7d77cfe4b76ec5058fe8487c437ef89",
+      "metadataSha256": "36e46e3745ed4cfb9d05ed78dca774fa6f590fc479c1da5b6f67331a4e872f4a",
+      "halfGuide": "tools/texture_sheets/sources/official-world-2026-10-17/maya1_9-half-native-colour-guide.png",
+      "halfGuideSha256": "946f6df462853d84d8ebdb440cc2a27d40b993f5b7c15c775685e006ac15492d",
+      "meanNativeRGB": [
+        65.21533203125,
+        46.792236328125,
+        24.78961181640625
+      ],
+      "material": "Dark muted ochre-brown weathered temple/sandstone blocks with slight olive ageing, narrow dark joints and restrained fine pores.",
+      "layout": "Exactly4courses of32nativepx and4blocks per row of32nativepx. Running bond alternates Xphase0 and16: row0/2 jointsx0,32,64,96; row1/3 jointsx16,48,80,112. Horizontal joints y0,32,64,96;512target pitch128px and alternatephase64px.",
+      "reuse": "No exact approved geometry donor demonstrated. TF_Brick1/3 have16finecourses, TF_Stone_02 has4roughledges without this blockgrid; borrow only photographic stone finish, not their joints.",
+      "detail": "Sparse small chipped corners and mild mineral variation; avoid carving new symbols or turning source dither into a dense pixel/noise pattern.",
+      "relief": "Shallow block/mortar geometry matching the4x4running bond, without extra face bevels or baked whole-image shading."
+    }
+  ],
+  "rockSibling": {
+    "acceptedKey": "64x64:5b26cfca296c1fa8",
+    "newRequiredKey": "64x64:57663646989d1874",
+    "nativeChangedPixels": 378,
+    "changedFraction": 0.09228515625,
+    "changeBoundingBoxInclusive": [
+      14,
+      0,
+      63,
+      63
+    ],
+    "sourceDistanceDifference": [
+      {
+        "divisor": 2,
+        "dimensions": [
+          32,
+          32
+        ],
+        "meanAbsoluteDelta": 1.84375,
+        "maximumDelta": 75.0
+      },
+      {
+        "divisor": 4,
+        "dimensions": [
+          16,
+          16
+        ],
+        "meanAbsoluteDelta": 1.72265625,
+        "maximumDelta": 54.0
+      }
+    ],
+    "meaning": "Geometry donor is strongly related, but localized colour/brightness differences have high amplitude (halfmax75/quartermax54) despite small mean. Do not dismiss changed pixels as noise or silently bind the old artwork.",
+    "donorPhoto": "newer/textures/candidates-2026-10-12/rock3_8-base-photographic-4x.png",
+    "donorPhotoSha256": "3eff58818ac227846e8e77cca53c4a79192f2286676ae641e75a4b199196255c"
+  },
+  "requiredMaintainedTestSuccessor": {
+    "whenToChange": "Only after the held sibling has approved art/relief and a reviewed source-specific registration. Do not edit/remove the held test while unregistered.",
+    "historicalPreservation": "Keep tools/.../official-world-2026-10-12/native-rock3_8.json/PNG and prior negative-test receipts immutable as evidence of the old unregistered state. Keep accepted5b26 binding and all map hashes unchanged.",
+    "requiredSuccessor": [
+      "Register the new5766 key under ordinaryVariants.rock3_8 independently, with source17native original/PNG hashes and its own newsource-specific artwork/height/XYZ receipts. No broad sources allowlist, case fold, fallback or name-only alias.",
+      "Extend current generated-art expected identities by(name,key), recognizing that two entries legitimately share rock3_8 name. A unique-name assertion must not drop one source or substitute one key for the other.",
+      "Replace the final real-held-source negative expectation with a positive two-known-source test: reconstruct both originals from every recorded real PAK occurrence, independently validate sourceRGBA/key and source-specific diffuse/relief binding, verify both are actual ready upgrades. Preserve the378changed-native-pixel witness.",
+      "Keep genuine unknown-source negatives: alter a pixel, assert the resulting key differs from BOTH knownkeys, retain native fallback and zero incorrect image requests. Existing generic unknown controls must still run for every accepted identity.",
+      "Keep explicit meaningful wrong-case ROCK3_8 negative and Classic-no-request/exact-original restoration checks for both originals. Preserve UVrepeat/offset and new decodedheight/XYZ cache-input controls.",
+      "Verify that adding the newsource does not change the accepted5b26 artwork/height/cap/strength, other owners, metadata or existing source guards. Owner-format later-addition gate must compare existing ordinaryVariants native-key entries exactly while permitting this new key."
+    ],
+    "sourceUseScope": "The new sibling has5 recorded uses across id1,dopa,mg1, including one installed-test map; verify all actual occurrences and retain scope labels rather than claiming every use is stock campaign.",
+    "diagnosticAliasPreservation": {
+      "existingManifest": "newer/textures/candidates-2026-10-12/trial.json",
+      "existingManifestSha256": "2b25a49146c743b55ca3aa59d7f5a05efb007f16d832b3c03c049fd12739a312",
+      "oldAlias": "rock3_8-base",
+      "oldActualName": "rock3_8",
+      "oldNativeKey": "64x64:5b26cfca296c1fa8",
+      "oldSpecCanonicalJsonSha256": "c9646f7ec6f08f0d0fc8d822ad9a29cd6efa4be6a200419ccd6a5d79751604e8",
+      "oldSpecRawJsonSha256": "5da8a00d7e035631f5c64177c9f777f137e156c9bb3fa7a1962265e739748091",
+      "newDiagnosticAlias": "rock3_8_5766",
+      "newSpecName": "rock3_8",
+      "newNativeKey": "64x64:57663646989d1874",
+      "requirements": [
+        "Do not replace the existing rock3_8-base entry or copy a stale whole ROOT trial object over the current WT manifest. Read current manifest fresh and append only approved newentries.",
+        "Keep every previous diagnostic spec and its original/native/encoded references unchanged; retain raw oldspec bytes where preserving current formatting, and always verify semantic/value identity.",
+        "Both existing material and gameplay viewers already use spec.name, so no new viewer/API change is required for this alias.",
+        "Runtime publication adds only ordinaryVariants.rock3_8[5766]; the diagnostic alias is never a base/native binding name and source guard is not widened.",
+        "Keep both native source keys and oldsource file hashes visible in diagnostics and current public tests. The real held negative remains intact until reviewed registration occurs.",
+        "Actual gameplay review must select a BSP face whose native key is5766. A rock3_8-named face with key5b26 only proves the existing variant; verify the actual renderer identity against the chosen diagnostic alias."
+      ]
+    }
+  },
+  "globalAcceptance": [
+    "Exactly4x native width/height, lossyWebPquality92 for every runtime image map, matching relief. Four64square originals become256square; church1/maya1_9 128square become512square.",
+    "Half-native primary and quarter-native secondary similarity compare original and new to the same target size. The original is layout/colour intent, not a pixel texture/noise template.",
+    "Photographic physical material at full size, restrained distinctive small details, no new coarse grain, full-image bevel/vignette or invented panel grid.",
+    "Inspect decoded diffuse and relief under light, XYrepeat and genuine joint/edge phase. Preserve actual material seams; do not add a frame to satisfy edge constraints.",
+    "Borrow approved photographic material where geometry agrees; family name or similar source colour is not exact-source alias authority."
+  ],
+  "relatedApprovedMaterialInputs": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/expansion-masonry-four-plan.json",
+      "sha256": "d03d036777c38113c7045c087a1e6bfb19898f7ee68b1878f82024edd930f261"
+    },
+    {
+      "file": "newer/textures/church1_2.webp",
+      "root": "/Users/bri/.codex/worktrees/official-textures-next/Quaked",
+      "sha256": "1373e75754541df36e16a52aa242ad48892bc5c385da5907855e51f2ff95b74d",
+      "decision": "Not a compatible church1 layout/palette donor."
+    }
+  ],
+  "nextOwner": "Campaign parent coordinates generation/finish and independent art/public/GPU review; current owner4 staged gate remains separate."
+}

@@ -1,0 +1,123 @@
+{
+  "qualification": "Current collector and per-game active-map reachability only; no packaged build, GPU, landing or release claim. Retained original maps are still preserved and broadly collected.",
+  "node": "v24.19.0",
+  "indexSha256": "f8da85a8730aadfc34b2199b1d91fdf21ab54bcf774e1c21b73753871633ad9c",
+  "gamesSha256": "4a79876d345fb5668eb20918495d39bdf9af24681d4064c859e71a353a86a8c1",
+  "receiptSha256": "a355ea23df535603ce59c70e9254414faeb97bf65c0fb8b9cd32bd0ec4f962ed",
+  "ownerBindings": 4,
+  "ownerQ92Maps": 4,
+  "generatedQ92Maps": 475,
+  "combinedSelectedQ92Maps": 479,
+  "profiles": {
+    "web": {
+      "assetCount": 3473,
+      "ownerRequired": 4,
+      "ownerPresent": 4,
+      "combinedRequired": 479,
+      "combinedPresent": 479,
+      "missing": []
+    },
+    "desktop": {
+      "assetCount": 5114,
+      "ownerRequired": 4,
+      "ownerPresent": 4,
+      "combinedRequired": 479,
+      "combinedPresent": 479,
+      "missing": []
+    }
+  },
+  "ownership": [
+    {
+      "name": "city5_3",
+      "key": "64x64:837ce7b57349da7f",
+      "users": [
+        "ad",
+        "dopa",
+        "mg1",
+        "quake",
+        "rogue",
+        "shareware",
+        "soe"
+      ],
+      "individualOwner": "shareware",
+      "maps": [
+        {
+          "file": "newer/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-diffuse.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-height.webp",
+          "pack": "shareware"
+        }
+      ]
+    },
+    {
+      "name": "metflor2_1",
+      "key": "64x64:837ce7b57349da7f",
+      "users": [
+        "mg1",
+        "quake",
+        "soe"
+      ],
+      "individualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-diffuse.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-height.webp",
+          "pack": "shareware"
+        }
+      ]
+    },
+    {
+      "name": "wizmet1_3",
+      "key": "64x64:006f4d1505d7fbd7",
+      "users": [
+        "ad",
+        "aopfm_v2",
+        "hipnotic",
+        "quake",
+        "quoth",
+        "shareware",
+        "soe"
+      ],
+      "individualOwner": "shareware",
+      "maps": [
+        {
+          "file": "newer/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-diffuse.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-height.webp",
+          "pack": "shareware"
+        }
+      ]
+    },
+    {
+      "name": "mmetal1_3",
+      "key": "64x64:006f4d1505d7fbd7",
+      "users": [
+        "ad",
+        "aopfm_v2",
+        "dopa",
+        "hipnotic",
+        "quake",
+        "rogue",
+        "soe"
+      ],
+      "individualOwner": "quake",
+      "maps": [
+        {
+          "file": "newer/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-diffuse.webp",
+          "pack": "shareware"
+        },
+        {
+          "file": "newer/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-height.webp",
+          "pack": "shareware"
+        }
+      ]
+    }
+  ]
+}

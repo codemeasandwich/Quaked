@@ -1,0 +1,73 @@
+{
+  "qualification": "ROOT-only maintained-test patch preparation. No public test execution, WT source/index/staging mutation, runtime registration or build gate. Building art/profiles remain subject to review.",
+  "basePublicTestFileSha256": "73d1f29caaedb3629082b43d6433d0f1feb31b7b1fc83362f5f5848f8c0e4aba",
+  "patchFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/building-five-public-aggregation.patch",
+  "patchSha256": "29df23857c2d9a94f8d727e6784f138da7e5a38fec85a63cf0603be4dd1a45ce",
+  "sourceFinishReceipt": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/building-five-finish-v1.json",
+  "sourceFinishReceiptSha256": "ee9b470c49e708d90aebea43659764eea53c0f19a680d73e156e152f4e05f8b4",
+  "targetRegistrationReceipt": "tools/texture_sheets/sources/official-world-2026-10-17/building-five-registration.json",
+  "preparedCounts": {
+    "generatedArtworks": 89,
+    "nativeBindings": 92
+  },
+  "exactSources": [
+    {
+      "name": "city1_4e",
+      "nativeKey": "256x256:57188b08b2980962",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "metadataSha256": "68678475c36af0a27c02e9102d630f2992bb50dc6e61ce3b6b04c89c100a315b"
+    },
+    {
+      "name": "wmet4_4_JM",
+      "nativeKey": "128x128:b211687988132743",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "metadataSha256": "dd2f077d37c385ca86858f9ea2e8fd818c27a95659eedbc7981e36c2754ce7a1"
+    },
+    {
+      "name": "TF_Wood03_3",
+      "nativeKey": "128x128:da74d457857200cd",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "metadataSha256": "5ac6730569175f298e3bad84c11a1106c4a67f54fe7234c00c22dbe429f6703f"
+    },
+    {
+      "name": "TF_Wood01b",
+      "nativeKey": "128x128:dfc0821abc1ecd28",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "metadataSha256": "f837d9a9b55bcceef955ba52be5fb35bf64713a3dec7163fa46db0519df75822"
+    },
+    {
+      "name": "TF_Conc_07",
+      "nativeKey": "128x128:b56ae95101cd2b63",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "metadataSha256": "37e59aab4e6dd2b91c2daf093b8d44874b0867655b8a1fcdb7510a010dca4897"
+    }
+  ],
+  "coverage": [
+    "Existing seven public tests aggregate the five new reviewed entries without a separate framework.",
+    "Exact4x dimensions, half/quarter targets, source PAks/encoder output/decoded XYZ-height/UV/Classic/unknown paths retained.",
+    "Only quiet wmet4_4_JM relief is pinned now at strength0.06/cap0.5; other profiles bind to final reviewed encoder receipts rather than provisional0.2 values.",
+    "Existing case-negative path includes all five names; lowercase city1_4e uses meaningful uppercase negative, mixed TF/JM names use lowercase.",
+    "Existing real-held rock3_8 test body remains byte-identical until crosspack6 review/registration."
+  ],
+  "heldRockTestBodySha256": "7a0ebf44edce31b44d0c72108451d1cdbf73c106eacc1cd8d323d0fd5f5743fd",
+  "readiness": [
+    "Preview syntax node--check passes.",
+    "git apply--check passes against current WT without applying patch."
+  ],
+  "noWTWrites": true
+}

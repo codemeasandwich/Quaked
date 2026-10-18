@@ -1,0 +1,103 @@
+{
+  "id": "cop2_5|64x64:e25a260daecd597f",
+  "name": "cop2_5",
+  "key": "64x64:e25a260daecd597f",
+  "width": 64,
+  "height": 64,
+  "pixelSha256": "68180d1ebc49bd44249f964bab25b733e8168b6c1f040d5f534b0d39dc5e9c75",
+  "original": "originals/64x64-e25a260daecd597f.rgba",
+  "status": "missing",
+  "file": null,
+  "reason": "No replacement entry",
+  "uses": [
+    {
+      "game": "id1",
+      "map": "maps/dm1.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+      "slot": 10,
+      "faces": 13,
+      "visibleCandidateFaces": 13,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "id1",
+      "map": "maps/dm7.bsp",
+      "scope": "installed-extra-review",
+      "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+      "slot": 43,
+      "faces": 169,
+      "visibleCandidateFaces": 169,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "id1",
+      "map": "maps/e2m7.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+      "slot": 42,
+      "faces": 13,
+      "visibleCandidateFaces": 13,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "rogue",
+      "map": "maps/ctf1.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Dissolution of Eternity/pak0.pak",
+      "slot": 13,
+      "faces": 244,
+      "visibleCandidateFaces": 244,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "rogue",
+      "map": "maps/r1m2.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Dissolution of Eternity/pak0.pak",
+      "slot": 14,
+      "faces": 324,
+      "visibleCandidateFaces": 324,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "dopa",
+      "map": "maps/e5m7.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+      "slot": 66,
+      "faces": 104,
+      "visibleCandidateFaces": 104,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "mg1",
+      "map": "maps/mgdm3.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+      "slot": 107,
+      "faces": 1199,
+      "visibleCandidateFaces": 1199,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "mg1",
+      "map": "maps/mgend.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+      "slot": 92,
+      "faces": 101,
+      "visibleCandidateFaces": 101,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    }
+  ],
+  "action": "generate"
+}

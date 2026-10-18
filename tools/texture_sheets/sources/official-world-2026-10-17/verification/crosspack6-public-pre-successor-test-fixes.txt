@@ -1,0 +1,31 @@
+PASS real q92 images install with original UVs and decoded grayscale XYZ plus decoded height R reaches R_NormalMapFor
+PASS unknown registered native pixels are rejected and Classic requests no replacements
+PASS registered material names preserve exact case and reject same pixels under a differently cased name
+PASS directed steel relief uses the real partner height at both vertical boundaries and retains per-tile slopes
+RESULT 4/7 passed (tests/official_texture_q92_test.js)
+FAIL 98 q92 channel bindings pin exact original identities and real lossy colour/height/normal companions Error: diagnostic alias selects own diffuse: candidates-2026-10-17/rock3_8-sibling5766-photographic-seam-v2-4x-q92-xyz-diffuse.webp != official/rock3_8-57663646989d1874-4x-q92-diffuse.webp
+    at check (file:///Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_q92_test.js:74:53)
+    at same (file:///Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_q92_test.js:75:43)
+    at file:///Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_q92_test.js:177:279
+    at file:///Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/run_tests.mjs:94:15
+FAIL actual current encoder reproduces each q92 diffuse, decoded-height-derived relief and authored normal byte-for-byte Error: Command failed: /usr/bin/python3 tools/texture_sheets/encode_official_maps.py --original tools/texture_sheets/sources/official-world-2026-10-17/native-rock3_8.png --diffuse newer/textures/candidates-2026-10-17/rock3_8-sibling5766-photographic-seam-v2-4x.png --name rock3_8 --output-stem /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-q92-independent-uwPowx/rock3_8 --strength 0.3 --cap 0.5 --normal-layout channels
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/encode_official_maps.py", line 145, in <module>
+    main()
+  File "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/encode_official_maps.py", line 50, in main
+    assert all(not path.exists() for path in [*paths.values(), receipt_path]), 'Never overwrite prior assets'
+AssertionError: Never overwrite prior assets
+
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at checkExecSyncError (node:child_process:942:11)
+    at execFileSync (node:child_process:978:15)
+    at file:///Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_q92_test.js:247:3
+    at file:///Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/run_tests.mjs:94:15
+FAIL both explicitly qualified real rock3_8 identities use their own maps across all PAK occurrences while unknown, case and Classic controls remain native Error: successor preserves exact retained real-source record
+    at check (file:///Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_q92_test.js:74:53)
+    at equal (file:///Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_q92_test.js:76:44)
+    at file:///Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_q92_test.js:351:2
+    at imagesFixture (file:///Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_q92_test.js:155:112)
+    at async file:///Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/run_tests.mjs:94:9
+TOTAL 4/7 passed

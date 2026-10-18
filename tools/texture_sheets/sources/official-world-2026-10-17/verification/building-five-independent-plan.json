@@ -1,0 +1,168 @@
+{
+  "reviewer": "Independent oct17_plan_review agent",
+  "scope": "Independentnative/promptplanningonly;nogeneratedbuildingcandidateapproval",
+  "entries": [
+    {
+      "name": "city1_4e",
+      "key": "256x256:57188b08b2980962",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "runtimeDimensions": [
+        1024,
+        1024
+      ],
+      "meanRGB": [
+        56.97108459472656,
+        42.43211364746094,
+        22.049911499023438
+      ],
+      "sourceFaces": 5326,
+      "games": [
+        "mg1"
+      ],
+      "nativeRGBAHashMatchesExactAudit": true,
+      "constraints": "32shallow horizontalcourses ~8nativehigh, nominal~32wideblocks withhalfwidthstagger16andirregularcutends. Ochre/olivebrownstone, darkerpatchescorrectphase, recessedmortar. Not16largebrickcourses.",
+      "seams": "XYrepeat, preservephysicalmortar/board/courseedgephase; noouterframe/endcap or globalvignette."
+    },
+    {
+      "name": "wmet4_4_JM",
+      "key": "128x128:b211687988132743",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "runtimeDimensions": [
+        512,
+        512
+      ],
+      "meanRGB": [
+        38.560791015625,
+        32.965576171875,
+        23.609130859375
+      ],
+      "sourceFaces": 5132,
+      "games": [
+        "mg1"
+      ],
+      "nativeRGBAHashMatchesExactAudit": true,
+      "constraints": "Fourfullwidthdarkmetal courses, lowerjoints31/63/95/127; noverticaldivider/studs/rivets. Darkbrown/bluegreycoatingwithrestrainedoxidation, no brightorangeblanket.",
+      "seams": "XYrepeat, preservephysicalmortar/board/courseedgephase; noouterframe/endcap or globalvignette."
+    },
+    {
+      "name": "TF_Wood03_3",
+      "key": "128x128:da74d457857200cd",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "runtimeDimensions": [
+        512,
+        512
+      ],
+      "meanRGB": [
+        49.22021484375,
+        36.92498779296875,
+        29.06829833984375
+      ],
+      "sourceFaces": 3747,
+      "games": [
+        "mg1"
+      ],
+      "nativeRGBAHashMatchesExactAudit": true,
+      "constraints": "Eight16nativehighcycles:darktimberfield0..7(shoulder7), lightweatheredtimber9..13, darkgap14..15(deepest15). Preservebothdark/lightwoodfaces, not8isolatedfloatingslats or16equalwideboards. Noverticaljoin/hardware.",
+      "seams": "XYrepeat, preservephysicalmortar/board/courseedgephase; noouterframe/endcap or globalvignette."
+    },
+    {
+      "name": "TF_Wood01b",
+      "key": "128x128:dfc0821abc1ecd28",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "runtimeDimensions": [
+        512,
+        512
+      ],
+      "meanRGB": [
+        56.02154541015625,
+        47.5272216796875,
+        35.41357421875
+      ],
+      "sourceFaces": 3566,
+      "games": [
+        "mg1"
+      ],
+      "nativeRGBAHashMatchesExactAudit": true,
+      "constraints": "Eightverticalboards, mainseams0/16/32/48/64/~80/96/112. Mutedbrown-greyfaces,centraldarkregions, finefibres/smallknots, nohorizontalbraces/hardware.",
+      "seams": "XYrepeat, preservephysicalmortar/board/courseedgephase; noouterframe/endcap or globalvignette."
+    },
+    {
+      "name": "TF_Conc_07",
+      "key": "128x128:b56ae95101cd2b63",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "runtimeDimensions": [
+        512,
+        512
+      ],
+      "meanRGB": [
+        90.052734375,
+        74.3876953125,
+        59.391357421875
+      ],
+      "sourceFaces": 3189,
+      "games": [
+        "mg1"
+      ],
+      "nativeRGBAHashMatchesExactAudit": true,
+      "constraints": "Fourconcretemasonrycourses lowerjoints31/63/95/127, existingstaggeredverticaljoints. Fadedcyan/bluegreymineralfinish andochrebrownwaterstains, pores/sparsechips; notmetalplategrid.",
+      "seams": "XYrepeat, preservephysicalmortar/board/courseedgephase; noouterframe/endcap or globalvignette."
+    }
+  ],
+  "familyReuse": [
+    {
+      "target": "TF_Wood01b",
+      "approvedSourceFamily": [
+        "TF_Wood01",
+        "TF_Wood01c"
+      ],
+      "coarse32LumaCorrelation": [
+        0.9715767241557961,
+        0.973105326921941
+      ],
+      "assessment": "Strongshared8boardlayout/colourmassrelationship. Reuseapprovedphotographicasmaterial/geometryreference orsource-specificcolourfit retainingfinephotodetail;noexactsourcealias."
+    },
+    {
+      "target": "TF_Conc_07",
+      "approvedSourceFamily": [
+        "TF_Conc_07b"
+      ],
+      "coarse32LumaCorrelation": 0.9985114444341506,
+      "assessment": "Extremelyclosesharedcourse/jointlayout;approvedphoto reuse/reference minimises geometrydrift. Preserveownnativepalette/key, do notcallpixelidentical."
+    }
+  ],
+  "Wood03CycleMeanLuma16": [
+    45.2,
+    30.1,
+    31.9,
+    30.6,
+    30.8,
+    32.2,
+    32.1,
+    18.4,
+    25,
+    51,
+    62.2,
+    63.4,
+    66.3,
+    63.4,
+    28.9,
+    3.1
+  ],
+  "draftPromptAssessment": "Existingfiveunexecutedprompts havesoundcounts/phase/colourconstraints; clarifyWood03darktimberisnotemptyvoid. Materialrefinements mayreuseapprovedfamilies withoutglobalarchitecturechanges.",
+  "acceptance": "Exact4x/Q92allmaps; fullphotographicmaterial andfeaturecount/scale/phase; half/quarterdistance;XYrepeat/cyclic;CPUreliefactualsurfaceintent(particularlyquietmetal/concretevsartificialorangepeel). Sourceidentity/public/actualGPU+normalgate/Devqualificationremainseparate."
+}

@@ -1,0 +1,37 @@
+{
+  "id": "church1|128x128:8d401a31a05f9e4b",
+  "name": "church1",
+  "key": "128x128:8d401a31a05f9e4b",
+  "width": 128,
+  "height": 128,
+  "pixelSha256": "09db1b79cc672c233133694ef734e6829e7e3eb089d37d4cd725a8d2298e2bc5",
+  "original": "originals/128x128-8d401a31a05f9e4b.rgba",
+  "status": "missing",
+  "file": null,
+  "reason": "No replacement entry",
+  "uses": [
+    {
+      "game": "hipnotic",
+      "map": "maps/hip2m2.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+      "slot": 2,
+      "faces": 1445,
+      "visibleCandidateFaces": 1445,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "hipnotic",
+      "map": "maps/hip3m1.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+      "slot": 3,
+      "faces": 781,
+      "visibleCandidateFaces": 781,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    }
+  ],
+  "action": "generate"
+}

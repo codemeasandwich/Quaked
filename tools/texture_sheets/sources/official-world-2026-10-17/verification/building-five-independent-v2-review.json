@@ -1,0 +1,421 @@
+{
+  "reviewer": "Independent oct17_plan_review agent",
+  "verdict": "pass five source-fittedbuildingv2candidates forart/authoringreliefreview",
+  "qualification": "Actualdecodedcolour/height/XYZ/CPUtwo-light/repeat andsourcephase review;actualGPU/publicencoder/registration/Devpublicationseparate.",
+  "entries": [
+    {
+      "name": "city1_4e",
+      "diffuseSha256": "93e5aa664f62959614566a745a3c5d881cc14aa1a6b2ae53355797c835f4fe54",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "distanceMetrics": {
+        "128": {
+          "nativeMean": [
+            56.9915771484375,
+            42.443359375,
+            22.05657958984375
+          ],
+          "newMean": [
+            57.30535888671875,
+            42.7733154296875,
+            22.52685546875
+          ],
+          "rmseDiagnosticOnly": 8.916265841117523
+        },
+        "64": {
+          "nativeMean": [
+            57.02001953125,
+            42.4755859375,
+            22.062744140625
+          ],
+          "newMean": [
+            57.349853515625,
+            42.812744140625,
+            22.538330078125
+          ],
+          "rmseDiagnosticOnly": 5.343917516867502
+        }
+      },
+      "contact": "city1_4e-independent-seam-v2-review.png",
+      "verdict": "pass"
+    },
+    {
+      "name": "wmet4_4_JM",
+      "diffuseSha256": "0758fe544d99b04f48d2d03fef810c5bd96cfccb6ff37ed9d44915f806417310",
+      "dimensions": [
+        512,
+        512
+      ],
+      "distanceMetrics": {
+        "64": {
+          "nativeMean": [
+            38.61083984375,
+            33.009765625,
+            23.650146484375
+          ],
+          "newMean": [
+            38.494873046875,
+            33.125732421875,
+            23.80322265625
+          ],
+          "rmseDiagnosticOnly": 8.094720220162543
+        },
+        "32": {
+          "nativeMean": [
+            38.6318359375,
+            33.0263671875,
+            23.6806640625
+          ],
+          "newMean": [
+            38.5400390625,
+            33.1669921875,
+            23.8544921875
+          ],
+          "rmseDiagnosticOnly": 5.181974969385064
+        }
+      },
+      "contact": "wmet4_4_JM-independent-seam-v2-review.png",
+      "verdict": "pass"
+    },
+    {
+      "name": "TF_Wood03_3",
+      "diffuseSha256": "9acfdfd28ca2096c764fea451477e720f8200f730e511a0ba2810e1d2a9505b4",
+      "dimensions": [
+        512,
+        512
+      ],
+      "distanceMetrics": {
+        "64": {
+          "nativeMean": [
+            49.269287109375,
+            36.95263671875,
+            29.090576171875
+          ],
+          "newMean": [
+            49.49609375,
+            37.148193359375,
+            29.2783203125
+          ],
+          "rmseDiagnosticOnly": 8.89522801170427
+        },
+        "32": {
+          "nativeMean": [
+            49.3818359375,
+            37.0478515625,
+            29.1982421875
+          ],
+          "newMean": [
+            49.6689453125,
+            37.26953125,
+            29.3642578125
+          ],
+          "rmseDiagnosticOnly": 7.567168841173912
+        }
+      },
+      "contact": "TF_Wood03_3-independent-seam-v2-review.png",
+      "verdict": "pass"
+    },
+    {
+      "name": "TF_Wood01b",
+      "diffuseSha256": "8b7f9480379b781fc26eb772e64ac6b436e771e1d5efae7db9138e3ffb302755",
+      "dimensions": [
+        512,
+        512
+      ],
+      "distanceMetrics": {
+        "64": {
+          "nativeMean": [
+            56.193603515625,
+            47.65576171875,
+            35.551513671875
+          ],
+          "newMean": [
+            56.705810546875,
+            48.093505859375,
+            35.9853515625
+          ],
+          "rmseDiagnosticOnly": 6.236874237983051
+        },
+        "32": {
+          "nativeMean": [
+            56.2744140625,
+            47.7353515625,
+            35.5712890625
+          ],
+          "newMean": [
+            56.8779296875,
+            48.234375,
+            36.087890625
+          ],
+          "rmseDiagnosticOnly": 4.298967293626071
+        }
+      },
+      "contact": "TF_Wood01b-independent-seam-v2-review.png",
+      "verdict": "pass"
+    },
+    {
+      "name": "TF_Conc_07",
+      "diffuseSha256": "ae3eda16e0737b26a421f3770b505b3fa8f5e9db933a879ef7bf570bae7eb998",
+      "dimensions": [
+        512,
+        512
+      ],
+      "distanceMetrics": {
+        "64": {
+          "nativeMean": [
+            90.10498046875,
+            74.440673828125,
+            59.439453125
+          ],
+          "newMean": [
+            90.161376953125,
+            74.53173828125,
+            59.326171875
+          ],
+          "rmseDiagnosticOnly": 12.190237406253964
+        },
+        "32": {
+          "nativeMean": [
+            90.1982421875,
+            74.5478515625,
+            59.5322265625
+          ],
+          "newMean": [
+            90.1875,
+            74.552734375,
+            59.3466796875
+          ],
+          "rmseDiagnosticOnly": 7.37349914106819
+        }
+      },
+      "contact": "TF_Conc_07-independent-seam-v2-review.png",
+      "verdict": "pass"
+    }
+  ],
+  "reliefData": [
+    {
+      "name": "city1_4e",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "profile": {
+        "bands": [
+          0.35,
+          1,
+          1.4,
+          1
+        ],
+        "groove": 1.4,
+        "bump": 0.7,
+        "glow": 0,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "93e5aa664f62959614566a745a3c5d881cc14aa1a6b2ae53355797c835f4fe54",
+        "height": "a15f6a7c40f34b171dabc3675af397f718c5c7d3bd8e173eb8e8dfd1628f908f",
+        "normalX": "3838c9f2f6138485937344aacdbaafa8df11861825d3b0611335c7af57ef7b01",
+        "normalY": "3a112f2a6cc1d2859dac609c4836a2b0fe0e65de81b79db7b4e721731d217f8b",
+        "normalZ": "93d9c8455e98548ce2940042b52ec68e6d04106144211860b26d7cd271ef5689"
+      },
+      "contact": "city1_4e-independent-relief-review.png",
+      "normalXYEdgeMean": [
+        0.01277113074002984,
+        0.04078717253300019
+      ],
+      "normalXYInteriorMean": [
+        -0.00046841623021428517,
+        0.0027608118547164046
+      ],
+      "normalSlopeMagnitudeEdgeMean": 0.30876969869868026,
+      "normalSlopeMagnitudeInteriorMean": 0.29662010355907514
+    },
+    {
+      "name": "wmet4_4_JM",
+      "dimensions": [
+        512,
+        512
+      ],
+      "profile": {
+        "bands": [
+          1,
+          0.9,
+          0.3,
+          0.1
+        ],
+        "groove": 0.2,
+        "bump": 0.6,
+        "glow": 0,
+        "strength": 0.06,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "0758fe544d99b04f48d2d03fef810c5bd96cfccb6ff37ed9d44915f806417310",
+        "height": "6babcdef1ff40c927d0264238bf42a25c8e5f986365dcdbf8445414750476cf5",
+        "normalX": "6f527d375cb354ceb5ae52fe7db5e326d29c49ca88c5949ebbb7198cf8ad35d7",
+        "normalY": "4e49cb22c291b668ea71135be8134f4511026d8f4ab66ddee2f8c30803b85edf",
+        "normalZ": "c116403d0ea5365ee6e60f95bd0fbc1a4a5c4c0a447d36cae05d6045080f16c7"
+      },
+      "contact": "wmet4_4_JM-independent-relief-review.png",
+      "normalXYEdgeMean": [
+        0.005407081981734573,
+        0.04578440565402561
+      ],
+      "normalXYInteriorMean": [
+        0.0007921051360551003,
+        -0.0020481136454972345
+      ],
+      "normalSlopeMagnitudeEdgeMean": 0.19564191258598268,
+      "normalSlopeMagnitudeInteriorMean": 0.1358632069734952
+    },
+    {
+      "name": "TF_Wood03_3",
+      "dimensions": [
+        512,
+        512
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "9acfdfd28ca2096c764fea451477e720f8200f730e511a0ba2810e1d2a9505b4",
+        "height": "e6a5ddaf09d273cec9f00edd68822a1efdd7912eeb23b2f17f7b9dbdd79bce67",
+        "normalX": "02cb9b3a77d087fb746284b216960abca57ded7d8e315c8c48cb2ec7a7f2c772",
+        "normalY": "330d5b4ed1b4ba3b33d752a02c13e978e569206b18a6bbe0c46585e3ad906971",
+        "normalZ": "14ee683cf7d6043f38984b958e9e77f94e298d874a3426f30ffc8a7b4eb4f586"
+      },
+      "contact": "TF_Wood03_3-independent-relief-review.png",
+      "normalXYEdgeMean": [
+        0.003982819893797834,
+        -0.0017450985201982047
+      ],
+      "normalXYInteriorMean": [
+        0.0008583453621466375,
+        0.0018687025505278135
+      ],
+      "normalSlopeMagnitudeEdgeMean": 0.22735719661176024,
+      "normalSlopeMagnitudeInteriorMean": 0.2510003971556896
+    },
+    {
+      "name": "TF_Wood01b",
+      "dimensions": [
+        512,
+        512
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "8b7f9480379b781fc26eb772e64ac6b436e771e1d5efae7db9138e3ffb302755",
+        "height": "e19d03ca75aa9f147cfd91eb44458ad59895686ea0ea225e78fb2e024fe9a019",
+        "normalX": "4e00e97bd73e8f68d900b3a21a608d0f388696ba22b02b8e11f0a319e93dedf8",
+        "normalY": "604887cf0cd1987dcb1e6977939420ff8b8cd10d829ab0f1afe376bb5489d133",
+        "normalZ": "059f82909ad1385675a130eac9533b5ecdbdca75ae88663717432d0e868307ef"
+      },
+      "contact": "TF_Wood01b-independent-relief-review.png",
+      "normalXYEdgeMean": [
+        0.063427437017085,
+        0.010803431051935646
+      ],
+      "normalXYInteriorMean": [
+        0.00042100053728306677,
+        0.0002675716494476613
+      ],
+      "normalSlopeMagnitudeEdgeMean": 0.22915275271810293,
+      "normalSlopeMagnitudeInteriorMean": 0.2697940219083445
+    },
+    {
+      "name": "TF_Conc_07",
+      "dimensions": [
+        512,
+        512
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "ae3eda16e0737b26a421f3770b505b3fa8f5e9db933a879ef7bf570bae7eb998",
+        "height": "ceeb758b99c4095735f14222ce22740715d1d927c7f4d287217dd3839bb36e45",
+        "normalX": "b0a0bf0fa4fb5101e6016c28fbe1cbfaffde3de292dd551d3a6e1f24ba4bbb52",
+        "normalY": "14bce9bd7b7ebdd58b63e20347b2f413aeaf3d7d96794ee5ff69f83ec683a48f",
+        "normalZ": "a158f35e20326c29d642ab32595d62c5e1e9ecc209d7c126a629732708f8a194"
+      },
+      "contact": "TF_Conc_07-independent-relief-review.png",
+      "normalXYEdgeMean": [
+        -0.02958931247087172,
+        0.04488177709527166
+      ],
+      "normalXYInteriorMean": [
+        0.00334196662848533,
+        -0.0006063351905948625
+      ],
+      "normalSlopeMagnitudeEdgeMean": 0.24954279989478295,
+      "normalSlopeMagnitudeInteriorMean": 0.28176592790498967
+    }
+  ],
+  "actualFullSizeViewed": [
+    "city1_4e1024square",
+    "otherfour512square"
+  ],
+  "findings": [
+    "city1_4e retains32finecourses, staggeredsmallstonegrammar/ochrebrownpalette. Nativepixelstepsreplacedbycoherentroughquarrystone/chips, no invented16coursewall. Half128/quarter64andrepeats clearlysimilar.",
+    "wmet4_4_JMquietapprovedmaterialreuseretainsfourfullwidthcourses/noverticalgrid andsubduedwarmdarkcolour. Strength.06keepsshallowpaintedmetalrelief;no previousgrittyblanket/orangepeel.",
+    "Wood03_3retainseight16nativehighdark/lighttimbercycles, notblackvoids. Nativey9..13lightface/new~9..13readcoherent;smalledgephase/softwidthchangeswithinhalfquartertolerance,notexactpixelrowclaim. No extra hardware/verticaldividers.",
+    "Wood01b retains8verticalplanks,narrowmainseamsandcentraldarkface-masses withnatural lengthwisefibres/splits. Full/half64quarter32/repeats remainclearlysimilar.",
+    "Conc07approvedfamilyreuse retainssourcefourcourses/staggeredjointsandcyan-grey/ochrerunoff. Concretepores/relief lookmaterialconsistent;no fabricatedmetalgrid.",
+    "AllfiveCPUtwo-angleheight/XYZrepeats retainlegitimaterecessedjoins/woodfibresandquietmetal/concretematerial. No artificialwholeimagebevel,endcap,framingvignetteorintrusiveXYwrapline."
+  ],
+  "approvedBaseReuseRecomputation": [
+    {
+      "name": "TF_Conc_07",
+      "source": "newer/textures/candidates-2026-10-13/TF_Conc_07b-photographic-seam-v2-4x.png",
+      "sha256": "61c801ddc59c8c34c04959d607e4cf0ec3960726d4624efb13a45ee7b0e29090",
+      "authoringOutputRecomputedByteExact": true
+    },
+    {
+      "name": "wmet4_4_JM",
+      "source": "newer/textures/candidates-2026-10-17/TF_MetWall2_02-photographic-seam-v2-4x.png",
+      "sha256": "de895a408ac43b6a8803b2285d4aa8ceecbad24528184b527591c4c7dbf0f2c8",
+      "authoringOutputRecomputedByteExact": true
+    }
+  ],
+  "inputHashScope": "All25selectedQ92maphashesboundinreliefData;diffusehashesboundentries. Priorheldgrittydonorsremainunselected.",
+  "limits": [
+    "CPUreferenceLambertcannotqualifyactualenginegloss/TBN/postprocess.",
+    "Exactpixelrecoveryandalllevelowneracceptancearenotclaimed.",
+    "NoWT/index/testmutationsperformedbyreviewer."
+  ]
+}

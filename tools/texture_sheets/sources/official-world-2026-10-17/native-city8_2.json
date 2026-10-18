@@ -1,0 +1,70 @@
+{
+  "id": "city8_2|64x64:04e333ca877bde90",
+  "name": "city8_2",
+  "key": "64x64:04e333ca877bde90",
+  "width": 64,
+  "height": 64,
+  "pixelSha256": "37627ee026ae5ce3799b4379e34e0c4680e414c1e4e8e416137e7d0584d46da8",
+  "original": "originals/64x64-04e333ca877bde90.rgba",
+  "status": "missing",
+  "file": null,
+  "reason": "No replacement entry",
+  "uses": [
+    {
+      "game": "id1",
+      "map": "maps/e2m7.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+      "slot": 9,
+      "faces": 242,
+      "visibleCandidateFaces": 242,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "dopa",
+      "map": "maps/e5sm1.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+      "slot": 1,
+      "faces": 2060,
+      "visibleCandidateFaces": 2060,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "mg1",
+      "map": "maps/mge4m1.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+      "slot": 104,
+      "faces": 24,
+      "visibleCandidateFaces": 24,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "mg1",
+      "map": "maps/mge4m2.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+      "slot": 122,
+      "faces": 29,
+      "visibleCandidateFaces": 29,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "mg1",
+      "map": "maps/mge4m2b.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+      "slot": 122,
+      "faces": 29,
+      "visibleCandidateFaces": 29,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    }
+  ],
+  "action": "generate"
+}

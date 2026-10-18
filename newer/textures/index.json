@@ -1,5 +1,5 @@
 {
-  "version": 2026101806,
+  "version": 2026101808,
   "textures": {
     "afloor3_1": "afloor3_1.webp",
     "ceiling1_3": "ceiling1_3.webp",
@@ -4836,6 +4836,19 @@
           "strength": 0.3,
           "cap": 0.5
         }
+      },
+      "64x64:57663646989d1874": {
+        "file": "official/rock3_8-57663646989d1874-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/rock3_8-57663646989d1874-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/rock3_8-57663646989d1874-4x-q92-normalX.webp",
+            "y": "official/rock3_8-57663646989d1874-4x-q92-normalY.webp",
+            "z": "official/rock3_8-57663646989d1874-4x-q92-normalZ.webp"
+          },
+          "strength": 0.3,
+          "cap": 0.5
+        }
       }
     },
     "TF_Metal_02": {
@@ -5734,6 +5747,156 @@
             "z": "official/TF_MetWall2_02-dda0a237f8680b45-4x-q92-normalZ.webp"
           },
           "strength": 0.06,
+          "cap": 0.5
+        }
+      }
+    },
+    "city1_4e": {
+      "256x256:57188b08b2980962": {
+        "file": "official/city1_4e-57188b08b2980962-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/city1_4e-57188b08b2980962-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/city1_4e-57188b08b2980962-4x-q92-normalX.webp",
+            "y": "official/city1_4e-57188b08b2980962-4x-q92-normalY.webp",
+            "z": "official/city1_4e-57188b08b2980962-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "wmet4_4_JM": {
+      "128x128:b211687988132743": {
+        "file": "official/wmet4_4_JM-b211687988132743-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/wmet4_4_JM-b211687988132743-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/wmet4_4_JM-b211687988132743-4x-q92-normalX.webp",
+            "y": "official/wmet4_4_JM-b211687988132743-4x-q92-normalY.webp",
+            "z": "official/wmet4_4_JM-b211687988132743-4x-q92-normalZ.webp"
+          },
+          "strength": 0.06,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Wood03_3": {
+      "128x128:da74d457857200cd": {
+        "file": "official/TF_Wood03_3-da74d457857200cd-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Wood03_3-da74d457857200cd-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Wood03_3-da74d457857200cd-4x-q92-normalX.webp",
+            "y": "official/TF_Wood03_3-da74d457857200cd-4x-q92-normalY.webp",
+            "z": "official/TF_Wood03_3-da74d457857200cd-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Wood01b": {
+      "128x128:dfc0821abc1ecd28": {
+        "file": "official/TF_Wood01b-dfc0821abc1ecd28-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Wood01b-dfc0821abc1ecd28-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Wood01b-dfc0821abc1ecd28-4x-q92-normalX.webp",
+            "y": "official/TF_Wood01b-dfc0821abc1ecd28-4x-q92-normalY.webp",
+            "z": "official/TF_Wood01b-dfc0821abc1ecd28-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Conc_07": {
+      "128x128:b56ae95101cd2b63": {
+        "file": "official/TF_Conc_07-b56ae95101cd2b63-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Conc_07-b56ae95101cd2b63-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Conc_07-b56ae95101cd2b63-4x-q92-normalX.webp",
+            "y": "official/TF_Conc_07-b56ae95101cd2b63-4x-q92-normalY.webp",
+            "z": "official/TF_Conc_07-b56ae95101cd2b63-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "city8_2": {
+      "64x64:04e333ca877bde90": {
+        "file": "official/city8_2-04e333ca877bde90-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/city8_2-04e333ca877bde90-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/city8_2-04e333ca877bde90-4x-q92-normalX.webp",
+            "y": "official/city8_2-04e333ca877bde90-4x-q92-normalY.webp",
+            "z": "official/city8_2-04e333ca877bde90-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "rock3_2": {
+      "64x64:296e96b9351c76fb": {
+        "file": "official/rock3_2-296e96b9351c76fb-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/rock3_2-296e96b9351c76fb-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/rock3_2-296e96b9351c76fb-4x-q92-normalX.webp",
+            "y": "official/rock3_2-296e96b9351c76fb-4x-q92-normalY.webp",
+            "z": "official/rock3_2-296e96b9351c76fb-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "cop2_5": {
+      "64x64:e25a260daecd597f": {
+        "file": "official/cop2_5-e25a260daecd597f-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/cop2_5-e25a260daecd597f-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/cop2_5-e25a260daecd597f-4x-q92-normalX.webp",
+            "y": "official/cop2_5-e25a260daecd597f-4x-q92-normalY.webp",
+            "z": "official/cop2_5-e25a260daecd597f-4x-q92-normalZ.webp"
+          },
+          "strength": 0.06,
+          "cap": 0.5
+        }
+      }
+    },
+    "church1": {
+      "128x128:8d401a31a05f9e4b": {
+        "file": "official/church1-8d401a31a05f9e4b-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/church1-8d401a31a05f9e4b-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/church1-8d401a31a05f9e4b-4x-q92-normalX.webp",
+            "y": "official/church1-8d401a31a05f9e4b-4x-q92-normalY.webp",
+            "z": "official/church1-8d401a31a05f9e4b-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "maya1_9": {
+      "128x128:694bfeae23b74c54": {
+        "file": "official/maya1_9-694bfeae23b74c54-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/maya1_9-694bfeae23b74c54-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/maya1_9-694bfeae23b74c54-4x-q92-normalX.webp",
+            "y": "official/maya1_9-694bfeae23b74c54-4x-q92-normalY.webp",
+            "z": "official/maya1_9-694bfeae23b74c54-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
           "cap": 0.5
         }
       }

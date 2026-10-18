@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "rock3_8",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-rock3_8.png",
+  "originalSha256": "e416144f843fb34b3261262c57811396b4e255354114b533ac7f738c1de7356f",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-17/rock3_8-sibling5766-photographic-seam-v2-4x.png",
+  "authoringDiffuseSha256": "d68a769b1f19a0aee9e4e2aaf73184f2c6e3a19678b8c879a0067d6df46bdad6",
+  "toolSha256": "e8d825dcb3e79bb9f419af6558363e0ab00534389e7b21f5423177b2e1f9af9b",
+  "heightToolSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+  "profile": {
+    "bands": [
+      0.3,
+      1,
+      1.6,
+      1.3
+    ],
+    "groove": 1.6,
+    "bump": 0.9,
+    "glow": 0,
+    "strength": 0.3,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-17/rock3_8-sibling5766-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "1bf139eb88fc1a2e8e7b8ed94d26e927fdcec48ece468f0664dd1be29d348f57",
+      "bytes": 27080,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-17/rock3_8-sibling5766-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "c31ebce312eba0186fa89e7c2842ecaf8b2ce7ad3bc100d115cd5d4dffd1559a",
+      "bytes": 26356,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-17/rock3_8-sibling5766-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "65954dee9e62b64ee818dd1f83e6808d341c3b0224681ac25014504618e8661a",
+      "bytes": 23954,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-17/rock3_8-sibling5766-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "bd6cd5b576d2098989d1a262f6d822f699e2ae28838ca3be13518dacfd0f0094",
+      "bytes": 22982,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-17/rock3_8-sibling5766-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "cded51837f239a8cbca6dea8c4da9350195fa808e34dddb138cf3e4281df2d9c",
+      "bytes": 7298,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    32,
+    32
+  ],
+  "distanceMAE": 5.477213541666667,
+  "distanceMaximum": 65.0,
+  "secondaryComparisonDimensions": [
+    16,
+    16
+  ],
+  "secondaryDistanceMAE": 3.0533854166666665,
+  "secondaryDistanceMaximum": 40.0,
+  "colourCompressionMAE": 2.6703084309895835,
+  "heightCompressionMAE": 1.3485260009765625,
+  "heightCompressionMaximum": 9.0,
+  "normalAngularMean": 1.0005284430182169,
+  "normalAngularP99": 2.529993777503134,
+  "normalAngularMaximum": 4.673733772797796,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

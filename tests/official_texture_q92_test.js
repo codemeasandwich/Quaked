@@ -1,7 +1,7 @@
 // Independent public-interface verification of the quality92 channel-normal world families.
 // Reads real PAK/BSP inputs, decodes real lossy WebPs and uses renderer endpoints.
 // Passing these checks is not visual acceptance or GPU gameplay verification.
-import { readFileSync, writeFileSync, mkdtempSync, rmSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdtempSync, rmSync, realpathSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { resolve, join } from 'node:path';
 import { tmpdir } from 'node:os';
@@ -59,10 +59,14 @@ const terrainFiveReceiptPath='tools/texture_sheets/sources/official-world-2026-1
 const terrainFiveReceipt=JSON.parse(read(terrainFiveReceiptPath));
 const industrialFiveReceiptPath='tools/texture_sheets/sources/official-world-2026-10-17/industrial-five-registration.json';
 const industrialFiveReceipt=JSON.parse(read(industrialFiveReceiptPath));
-const baselineEntries=[...firstReceipt.entries,...migration.entries,...tfReceipt.entries,...rockReceipt.entries,...quietReceipt.entries,...realismReceipt.entries,...characterReceipt.entries,...agedReceipt.entries,...floorStoneStudReceipt.entries,...crosspackStoneReceipt.entries,...concreteFourReceipt.entries,...baseFiveAliasReceipt.entries,...bracedWoodReceipt.entries,...mottledStoneReceipt.entries,...corrodedSteelReceipt.entries,...baseMasonryTrimsReceipt.entries,...terrainFiveReceipt.entries,...industrialFiveReceipt.entries];
+const buildingFiveReceiptPath='tools/texture_sheets/sources/official-world-2026-10-17/building-five-registration.json';
+const buildingFiveReceipt=JSON.parse(read(buildingFiveReceiptPath));
+const crosspackSixReceiptPath='tools/texture_sheets/sources/official-world-2026-10-17/crosspack-six-registration.json';
+const crosspackSixReceipt=JSON.parse(read(crosspackSixReceiptPath));
+const baselineEntries=[...firstReceipt.entries,...migration.entries,...tfReceipt.entries,...rockReceipt.entries,...quietReceipt.entries,...realismReceipt.entries,...characterReceipt.entries,...agedReceipt.entries,...floorStoneStudReceipt.entries,...crosspackStoneReceipt.entries,...concreteFourReceipt.entries,...baseFiveAliasReceipt.entries,...bracedWoodReceipt.entries,...mottledStoneReceipt.entries,...corrodedSteelReceipt.entries,...baseMasonryTrimsReceipt.entries,...terrainFiveReceipt.entries,...industrialFiveReceipt.entries,...buildingFiveReceipt.entries,...crosspackSixReceipt.entries];
 const receipt={entries:baselineEntries.map(e=>{const correction=agedCorrection.entries.find(c=>c.name===e.name&&c.key===e.key);return correction?{...correction,_correction:true}:e;})};
 const indexBytes = read('newer/textures/index.json'), index = JSON.parse(indexBytes);
-const names = ['city2_3','city2_5','city2_6','tech10_2','tech04_4','door02_1','ceil1_1','tech08_3','tech08_4','metal5_6','comp1_2','comp1_3','metal1_1','metal1_3','metal1_4','city6_8','city4_2','city4_8','metflor1_3','bricka2_4','brick2_4','TF_Metal4','TF_Metal4b','TF_MetWall4_02','TF_Metal4_04','rock5_2','rock3_8','TF_Metal_02','metal1_2c','TF_Metal4_6a','cable1_1','TF_Wood01','TF_Wood01c','TF_Stone_01','TF_Stone3','TF_Cliff2','TF_Cliff2b','wstone_03_JM','wall14_5','metal7_1','TF_Floor7_01','TF_Floor7_02','wstone_07_JM','met5_1','city6_7','cliff2','stone5_0','TF_Conc_06','TF_Conc4','TF_Conc_08','TF_Conc_07b','wall11_2','city4_5','dung01_3','azfloor1_1','stone1_7','q2_metal1_4','TF_Wood01_2','TF_Wood01c_2','TF_Wood01_4','TF_Wood01c_4','city3_2','city3_4','wstone1_2','TF_Metal3_02','TF_Metal3_03','TF_Metal4_02','TF_Metal4_03','metal8_1','metal9_4','wwall1_1','tech04_8','tech04_7','TF_Brick1_01','TF_Brick3_01','TF_Stone4','TF_Stone_02','TF_Grass1','TF_Grass2','TF_Ground1','TF_Cliff1','TF_Cliff1b','metal5_90_JM','wmet4_25_JM','wmet4_27_JM','TF_Metal4_6d','TF_MetWall2_02'].sort();
+const names = ['city2_3','city2_5','city2_6','tech10_2','tech04_4','door02_1','ceil1_1','tech08_3','tech08_4','metal5_6','comp1_2','comp1_3','metal1_1','metal1_3','metal1_4','city6_8','city4_2','city4_8','metflor1_3','bricka2_4','brick2_4','TF_Metal4','TF_Metal4b','TF_MetWall4_02','TF_Metal4_04','rock5_2','rock3_8','TF_Metal_02','metal1_2c','TF_Metal4_6a','cable1_1','TF_Wood01','TF_Wood01c','TF_Stone_01','TF_Stone3','TF_Cliff2','TF_Cliff2b','wstone_03_JM','wall14_5','metal7_1','TF_Floor7_01','TF_Floor7_02','wstone_07_JM','met5_1','city6_7','cliff2','stone5_0','TF_Conc_06','TF_Conc4','TF_Conc_08','TF_Conc_07b','wall11_2','city4_5','dung01_3','azfloor1_1','stone1_7','q2_metal1_4','TF_Wood01_2','TF_Wood01c_2','TF_Wood01_4','TF_Wood01c_4','city3_2','city3_4','wstone1_2','TF_Metal3_02','TF_Metal3_03','TF_Metal4_02','TF_Metal4_03','metal8_1','metal9_4','wwall1_1','tech04_8','tech04_7','TF_Brick1_01','TF_Brick3_01','TF_Stone4','TF_Stone_02','TF_Grass1','TF_Grass2','TF_Ground1','TF_Cliff1','TF_Cliff1b','metal5_90_JM','wmet4_25_JM','wmet4_27_JM','TF_Metal4_6d','TF_MetWall2_02','city1_4e','wmet4_4_JM','TF_Wood03_3','TF_Wood01b','TF_Conc_07','rock3_8','city8_2','rock3_2','cop2_5','church1','maya1_9'].sort();
 const historicalCity = JSON.parse(read('tools/texture_sheets/sources/official-world-2026-10-12/city2-registration.json'));
 const axes = ['x','y','z'];
 const roles = ['diffuse','height','normalX','normalY','normalZ'];
@@ -162,7 +166,18 @@ function diffuseMatches( texture, expected, label ) {
 }
 
 
-Deno.test('87 q92 channel bindings pin exact original identities and real lossy colour/height/normal companions', async () => {
+Deno.test('98 q92 channel bindings pin exact original identities and real lossy colour/height/normal companions', async () => {
+ const crosspackKeys={rock3_8:'64x64:57663646989d1874',city8_2:'64x64:04e333ca877bde90',rock3_2:'64x64:296e96b9351c76fb',cop2_5:'64x64:e25a260daecd597f',church1:'128x128:8d401a31a05f9e4b',maya1_9:'128x128:694bfeae23b74c54'};
+ equal(crosspackSixReceipt.entries.map(e=>e.name).sort(),Object.keys(crosspackKeys).sort(),'exact six crosspack interpretations');
+ for(const e of crosspackSixReceipt.entries){same(e.key,crosspackKeys[e.name],e.name+' exact crosspack native key');const n=['church1','maya1_9'].includes(e.name)?128:64,enc=encodingReceipt(e);equal([e.source.width,e.source.height],[n,n],e.name+' native crosspack dimensions');for(const role of roles)equal(enc.outputs[role].dimensions,[n*4,n*4],e.name+' exact4x crosspack '+role);equal(enc.comparisonDimensions,[n/2,n/2],e.name+' half-native crosspack distance');equal(enc.secondaryComparisonDimensions,[n/4,n/4],e.name+' quarter-native crosspack distance');same(enc.profile.strength,e.name==='rock3_8'?.3:e.name==='cop2_5'?.06:.2,e.name+' independently reviewed relief strength');same(enc.profile.cap,.5,e.name+' independently reviewed cap');}
+ const beforeTrial=JSON.parse(read(crosspackSixReceipt.beforeTrialFile)),trial=JSON.parse(read('newer/textures/candidates-2026-10-12/trial.json'));
+ same(sha256(read(crosspackSixReceipt.beforeTrialFile)),crosspackSixReceipt.beforeTrialSha256,'immutable full preview predecessor');
+ for(const [name,spec]of Object.entries(beforeTrial))equal(trial[name],spec,'retained complete preview entry '+name);
+ const newPreviewNames=['rock3_8_5766','city8_2','rock3_2','cop2_5','church1','maya1_9'].sort(),addedPreviewNames=Object.keys(trial).filter(n=>!Object.hasOwn(beforeTrial,n)).sort();if(index.version===2026101808)equal(addedPreviewNames,newPreviewNames,'only six new diagnostic previews at installed successor version');else for(const name of newPreviewNames)check(addedPreviewNames.includes(name),'retained qualified diagnostic preview '+name);
+ const rockPreview=trial.rock3_8_5766,rockSuccessor=crosspackSixReceipt.entries.find(e=>e.name==='rock3_8');same(rockPreview.name,'rock3_8','diagnostic alias resolves actual native name');same(rockPreview.nativeKey,rockSuccessor.key,'diagnostic alias selects only sibling key');same(sha256(read('newer/textures/'+rockPreview.file)),rockSuccessor.diffuseSha256,'diagnostic candidate and runtime sibling diffuse bytes agree');same(sha256(read('newer/textures/'+rockPreview.height)),rockSuccessor.heightSha256,'diagnostic candidate and runtime sibling height bytes agree');for(const axis of axes)same(sha256(read('newer/textures/'+rockPreview.normalChannels[axis])),rockSuccessor.normalChannelSha256[axis],'diagnostic candidate and runtime sibling '+axis+' bytes agree');same(trial['rock3_8-base'].nativeKey,'64x64:5b26cfca296c1fa8','old rock diagnostic preview retained');
+ const buildingKeys={city1_4e:'256x256:57188b08b2980962',wmet4_4_JM:'128x128:b211687988132743',TF_Wood03_3:'128x128:da74d457857200cd',TF_Wood01b:'128x128:dfc0821abc1ecd28',TF_Conc_07:'128x128:b56ae95101cd2b63'};
+ equal(buildingFiveReceipt.entries.map(e=>e.name).sort(),Object.keys(buildingKeys).sort(),'exact five source-specific building interpretations');
+ for(const e of buildingFiveReceipt.entries){same(e.key,buildingKeys[e.name],e.name+' audited building identity');const n=e.name==='city1_4e'?256:128,enc=encodingReceipt(e);equal([e.source.width,e.source.height],[n,n],e.name+' native building dimensions');for(const role of roles)equal(enc.outputs[role].dimensions,[n*4,n*4],e.name+' exact4x building '+role);equal(enc.comparisonDimensions,[n/2,n/2],e.name+' half-native building distance');equal(enc.secondaryComparisonDimensions,[n/4,n/4],e.name+' quarter-native building distance');if(e.name==='wmet4_4_JM'){same(enc.profile.strength,.06,e.name+' reviewed shallow metal strength');same(enc.profile.cap,.5,e.name+' reviewed shallow metal cap');}}
  const industrialKeys={metal5_90_JM:'128x16:7ddac95d8d0ab837',wmet4_25_JM:'128x32:af172edc2383f56e',wmet4_27_JM:'128x16:aeefd7d3bc435719',TF_Metal4_6d:'128x128:8ee4f5f9b8cd8c43',TF_MetWall2_02:'128x128:dda0a237f8680b45'};
  equal(industrialFiveReceipt.entries.map(e=>e.name).sort(),Object.keys(industrialKeys).sort(),'exact five source-specific industrial interpretations');
  for(const e of industrialFiveReceipt.entries){same(e.key,industrialKeys[e.name],e.name+' audited industrial identity');const enc=encodingReceipt(e);same(enc.profile.strength,e.name==='TF_MetWall2_02'?.06:.2,e.name+' reviewed relief strength');same(enc.profile.cap,.5,e.name+' reviewed relief cap');if(e.name.endsWith('_JM')){const h=e.name==='wmet4_25_JM'?32:16;equal([e.source.width,e.source.height],[128,h],e.name+' original horizontal-strip aspect');for(const role of roles)equal(enc.outputs[role].dimensions,[512,h*4],e.name+' exact4x horizontal strip '+role);equal(enc.comparisonDimensions,[64,h/2],e.name+' half-native horizontal strip distance');equal(enc.secondaryComparisonDimensions,[32,h/4],e.name+' quarter-native horizontal strip distance');}else equal([e.source.width,e.source.height],[128,128],e.name+' native square dimensions');}
@@ -219,7 +234,7 @@ Deno.test('87 q92 channel bindings pin exact original identities and real lossy 
    finally { dispose(actual.texture); }
   }
  }
- const result={qualification:'Actual PAK and public renderer current-state verification; visual acceptance separate',indexSha256:sha256(indexBytes),registrationSha256:sha256(read(receiptPath)),migrationSha256:sha256(read(migrationPath)),tfRegistrationSha256:sha256(read(tfReceiptPath)),rockRegistrationSha256:sha256(read(rockReceiptPath)),quietRegistrationSha256:sha256(read(quietReceiptPath)),realismRegistrationSha256:sha256(read(realismReceiptPath)),characterRegistrationSha256:sha256(read(characterReceiptPath)),agedRegistrationSha256:sha256(read(agedReceiptPath)),agedCorrectionSha256:sha256(read(agedCorrectionPath)),floorStoneStudRegistrationSha256:sha256(read(floorStoneStudReceiptPath)),crosspackStoneRegistrationSha256:sha256(read(crosspackStoneReceiptPath)),concreteFourRegistrationSha256:sha256(read(concreteFourReceiptPath)),baseFiveAliasRegistrationSha256:sha256(read(baseFiveAliasReceiptPath)),bracedWoodRegistrationSha256:sha256(read(bracedWoodReceiptPath)),mottledStoneRegistrationSha256:sha256(read(mottledStoneReceiptPath)),corrodedSteelRegistrationSha256:sha256(read(corrodedSteelReceiptPath)),baseMasonryTrimsRegistrationSha256:sha256(read(baseMasonryTrimsReceiptPath)),terrainFiveRegistrationSha256:sha256(read(terrainFiveReceiptPath)),industrialFiveRegistrationSha256:sha256(read(industrialFiveReceiptPath)),bindings:receipt.entries.length,occurrences:sources.length,sources};
+ const result={qualification:'Actual PAK and public renderer current-state verification; visual acceptance separate',indexSha256:sha256(indexBytes),registrationSha256:sha256(read(receiptPath)),migrationSha256:sha256(read(migrationPath)),tfRegistrationSha256:sha256(read(tfReceiptPath)),rockRegistrationSha256:sha256(read(rockReceiptPath)),quietRegistrationSha256:sha256(read(quietReceiptPath)),realismRegistrationSha256:sha256(read(realismReceiptPath)),characterRegistrationSha256:sha256(read(characterReceiptPath)),agedRegistrationSha256:sha256(read(agedReceiptPath)),agedCorrectionSha256:sha256(read(agedCorrectionPath)),floorStoneStudRegistrationSha256:sha256(read(floorStoneStudReceiptPath)),crosspackStoneRegistrationSha256:sha256(read(crosspackStoneReceiptPath)),concreteFourRegistrationSha256:sha256(read(concreteFourReceiptPath)),baseFiveAliasRegistrationSha256:sha256(read(baseFiveAliasReceiptPath)),bracedWoodRegistrationSha256:sha256(read(bracedWoodReceiptPath)),mottledStoneRegistrationSha256:sha256(read(mottledStoneReceiptPath)),corrodedSteelRegistrationSha256:sha256(read(corrodedSteelReceiptPath)),baseMasonryTrimsRegistrationSha256:sha256(read(baseMasonryTrimsReceiptPath)),terrainFiveRegistrationSha256:sha256(read(terrainFiveReceiptPath)),industrialFiveRegistrationSha256:sha256(read(industrialFiveReceiptPath)),buildingFiveRegistrationSha256:sha256(read(buildingFiveReceiptPath)),crosspackSixRegistrationSha256:sha256(read(crosspackSixReceiptPath)),bindings:receipt.entries.length,occurrences:sources.length,sources};
  if(process.env.QUAKED_Q92_TEXTURE_RECEIPT) writeFileSync(process.env.QUAKED_Q92_TEXTURE_RECEIPT,JSON.stringify(result,null,2)+'\n');
  console.log('Q92_NATIVE_SOURCES '+JSON.stringify({bindings:result.bindings,occurrences:result.occurrences,indexSha256:result.indexSha256}));
 });
@@ -227,7 +242,7 @@ Deno.test('87 q92 channel bindings pin exact original identities and real lossy 
 Deno.test('actual current encoder reproduces each q92 diffuse, decoded-height-derived relief and authored normal byte-for-byte', () => {
  const temp=mkdtempSync(join(tmpdir(),'quaked-q92-independent-'));
  try { const visited=new Set();for(const e of receipt.entries) {
-  if(visited.has(e.encodingReceipt))continue;visited.add(e.encodingReceipt);const enc=encodingReceipt(e), stem=join(temp,e.name);
+  if(visited.has(e.encodingReceipt))continue;visited.add(e.encodingReceipt);const enc=encodingReceipt(e), stem=join(temp,e.name+'-'+e.key.replace(/[^A-Za-z0-9]/g,'_'));
   const pairArgs=enc.normalRecipe==='directed-vertical-pair'?['--vertical-neighbour',enc.verticalNeighbour.authoringDiffuse,'--neighbour-name',enc.verticalNeighbour.name]:[];
   execFileSync('/usr/bin/python3',['tools/texture_sheets/encode_official_maps.py','--original',enc.original,'--diffuse',enc.authoringDiffuse,'--name',enc.name,'--output-stem',stem,'--strength',String(enc.profile.strength),'--cap',String(enc.profile.cap),'--normal-layout','channels',...pairArgs],{cwd:root,stdio:'pipe'});
   const repeated=JSON.parse(readFileSync(stem+'.json'));
@@ -271,12 +286,12 @@ Deno.test('unknown registered native pixels are rejected and Classic requests no
 }));
 
 
-Deno.test('TF material names preserve exact case and reject same pixels under a differently cased name', () => imagesFixture(async f => {
+Deno.test('registered material names preserve exact case and reject same pixels under a differently cased name', () => imagesFixture(async f => {
  equal(tfReceipt.entries.map(e=>e.name).sort(),['TF_Metal4','TF_Metal4b','TF_MetWall4_02','TF_Metal4_04'].sort(),'exact installed TF family');
- for(const e of [...tfReceipt.entries,...quietReceipt.entries.filter(e=>e.name!==e.name.toLowerCase()),...realismReceipt.entries,...characterReceipt.entries,...floorStoneStudReceipt.entries.filter(e=>e.name!==e.name.toLowerCase()),...concreteFourReceipt.entries,...bracedWoodReceipt.entries,...corrodedSteelReceipt.entries,...baseMasonryTrimsReceipt.entries.filter(e=>e.name!==e.name.toLowerCase()),...terrainFiveReceipt.entries,...industrialFiveReceipt.entries]) {
+ for(const e of [...tfReceipt.entries,...quietReceipt.entries.filter(e=>e.name!==e.name.toLowerCase()),...realismReceipt.entries,...characterReceipt.entries,...floorStoneStudReceipt.entries.filter(e=>e.name!==e.name.toLowerCase()),...concreteFourReceipt.entries,...bracedWoodReceipt.entries,...corrodedSteelReceipt.entries,...baseMasonryTrimsReceipt.entries.filter(e=>e.name!==e.name.toLowerCase()),...terrainFiveReceipt.entries,...industrialFiveReceipt.entries,...buildingFiveReceipt.entries,...crosspackSixReceipt.entries]) {
   const actual=await nativeSource(e), original=actual.texture.image;
   try {
-   const wrong=e.name.toLowerCase();check(wrong!==e.name,e.name+' meaningful casing negative');
+   const lower=e.name.toLowerCase(),wrong=e.name===lower?e.name.toUpperCase():lower;check(wrong!==e.name,e.name+' meaningful casing negative');
    for(const field of ['textures','normals','sources','ordinaryVariants','glass'])same(index[field]?.[wrong],undefined,wrong+' no accidental lowercase binding');
    f.api.R_NewerTextureUpgrade(wrong,actual.texture);await terminal(f.api,wrong,actual.texture);
    same(actual.texture.userData.newerFallback,true,e.name+' mismatched case falls back');same(actual.texture.image,original,e.name+' native image retained for wrong case');same(actual.texture.userData.newerHeight,undefined,e.name+' no mismatched case relief');same(f.requests.length,0,e.name+' no artwork request for wrong case');
@@ -326,23 +341,43 @@ Deno.test('directed steel relief uses the real partner height at both vertical b
 }));
 
 
-Deno.test('real held rock3_8 sibling remains native across all recorded PAK occurrences', () => imagesFixture(async f => {
- const metadataPath='tools/texture_sheets/sources/official-world-2026-10-12/native-rock3_8.json';
- const held=JSON.parse(read(metadataPath)), source=held.source, entry={name:source.name,source};
- same(source.key,'64x64:57663646989d1874','explicit held sibling');
- const accepted=rockReceipt.entries.find(e=>e.name==='rock3_8');check(accepted,'registered rock3_8 source');same(accepted.key,'64x64:5b26cfca296c1fa8','explicit accepted base sibling');
- check(!index.ordinaryVariants?.rock3_8?.[source.key],'held sibling has no ordinary variant');check(!index.sources?.rock3_8?.includes(source.key),'held sibling has no base guard permission');check(!index.glass?.rock3_8?.[source.key],'held sibling has no glass override');
- const nativePNG='tools/texture_sheets/sources/official-world-2026-10-12/native-rock3_8.png';same(sha256(read(nativePNG)),held.referenceSha256,'held original PNG digest');const decoded=await f.decode(nativePNG,true);
- const base=await nativeSource(accepted);
- try { for(const use of source.uses) {
-  const actual=await nativeSource(entry,use), original=actual.texture.image;
-  try {
-   same(actual.key,source.key,'actual held source identity '+use.game+'/'+use.map);same(sha256(actual.rgba),source.pixelSha256,'actual held source pixels');bytesEqual(decoded.data,actual.rgba,'held PNG depicts actual PAK texture');
-   same(actual.width,base.width,'held width');same(actual.height,base.height,'held height');let changed=0;for(let i=0;i<actual.rgba.length;i+=4)if(actual.rgba[i]!==base.rgba[i]||actual.rgba[i+1]!==base.rgba[i+1]||actual.rgba[i+2]!==base.rgba[i+2])changed++;
-   same(changed,378,'real sibling differs in378 native pixels, not a fabricated single-byte mutation');
-   f.api.R_NewerTextureUpgrade(source.name,actual.texture);await terminal(f.api,source.name,actual.texture);
-   same(actual.texture.userData.newerFallback,true,'real sibling uses native fallback');same(actual.texture.image,original,'real sibling original image preserved');same(actual.texture.userData.newerHeight,undefined,'real sibling gets no mismatched relief');same(f.requests.length,0,'real sibling requests no replacement art');
-  } finally {dispose(actual.texture);}
- }} finally {dispose(base.texture);}
- same(source.uses.length,5,'all five recorded held-source uses checked');
+Deno.test('both explicitly qualified real rock3_8 identities use their own maps across all PAK occurrences while unknown, case and Classic controls remain native', () => imagesFixture(async f => {
+ const history=JSON.parse(read('tools/texture_sheets/sources/official-world-2026-10-17/verification/crosspack6-held-rock-successor-history.json'));
+ same(sha256(read(history.historicalBodyFile)),history.historicalBodySha256,'retained historical held-rock negative body');
+ same(history.historicalBodySha256,'7a0ebf44edce31b44d0c72108451d1cdbf73c106eacc1cd8d323d0fd5f5743fd','immutable historical negative witness');
+ const held=JSON.parse(read('tools/texture_sheets/sources/official-world-2026-10-12/native-rock3_8.json'));
+ const accepted=rockReceipt.entries.find(e=>e.name==='rock3_8'),successor=crosspackSixReceipt.entries.find(e=>e.name==='rock3_8');
+ same(accepted.key,'64x64:5b26cfca296c1fa8','original approved rock identity');same(successor.key,'64x64:57663646989d1874','explicitly qualified sibling identity');
+ const sourceWithoutUses=({uses,...metadata})=>metadata;equal(sourceWithoutUses(successor.source),sourceWithoutUses(held.source),'successor preserves exact retained real-source metadata');same(successor.source.uses.length,held.source.uses.length,'retained source occurrence count');for(let i=0;i<held.source.uses.length;i++){const {pack:oldPack,...oldUse}=held.source.uses[i],{pack:currentPack,...currentUse}=successor.source.uses[i];equal(currentUse,oldUse,'every non-path recorded occurrence field retained');same(realpathSync(currentPack),realpathSync(oldPack),'specific existing historical and canonical-view PAK aliases resolve identically');}
+ for(const field of ['textures','sources','normals'])same(index[field]?.rock3_8,undefined,'no base-route guard widening '+field);
+ same(index.glass?.rock3_8,undefined,'no glass-route widening');
+ for(const e of [accepted,successor])equal(index.ordinaryVariants.rock3_8[e.key],e.binding,'own key retains own exact maps');
+ check(accepted.binding.file!==successor.binding.file,'distinct original colours have distinct photographic outputs');
+ const nativePNG='tools/texture_sheets/sources/official-world-2026-10-12/native-rock3_8.png';same(sha256(read(nativePNG)),held.referenceSha256,'retained sibling PNG digest');
+ const heldPNG=await f.decode(nativePNG,true),base=await nativeSource(accepted),sibling=await nativeSource(successor);
+ try {bytesEqual(heldPNG.data,sibling.rgba,'retained PNG depicts actual sibling PAK pixels');let changed=0;for(let i=0;i<sibling.rgba.length;i+=4)if([0,1,2].some(c=>sibling.rgba[i+c]!==base.rgba[i+c]))changed++;same(changed,378,'retained real 378-pixel sibling distinction');}finally{dispose(base.texture);dispose(sibling.texture);}
+ let occurrences=0;
+ for(const e of [accepted,successor])for(const use of e.source.uses){
+  const actual=await nativeSource(e,use),texture=actual.texture,original=texture.image;
+  try {same(actual.key,e.key,'real PAK identity '+use.game+'/'+use.map);same(sha256(actual.rgba),e.source.pixelSha256,'real PAK pixel digest');
+   texture.offset.set(.375,.625);texture.repeat.set(3,2);f.api.R_NewerTextureUpgrade(e.name,texture);await terminal(f.api,e.name,texture);
+   same(texture.userData.newerPicture,true,'each known sibling installs its own photograph');const diffuse=await f.decode(e.binding.file),height=await f.decode(e.binding.normal.file);
+   diffuseMatches(texture,diffuse.data,'own decoded sibling diffuse');const bound=texture.userData.newerHeight;same(bound.file,e.binding.normal.file,'own sibling height file');
+   same(bound.authoredNormal.file,'channels:'+axes.map(a=>e.binding.normal.normalChannels[a]).join('|'),'own sibling authored XYZ files');
+   for(let i=0;i<height.width*height.height;i++)same(bound.data[i],Math.fround(height.data[i*4]/255),'own decoded height R');
+   check(R_NormalMapFor(texture),'public lighting normal exists');equal(texture.offset.toArray(),[.375,.625],'original rock offset');equal(texture.repeat.toArray(),[3,2],'original rock UV period');
+   bytesEqual(f.api.R_ClassicTexture(texture).image.data,original.data,'native Classic pixels preserved');occurrences++;
+   f.api.R_NewerTexturesRevert();same(texture.image,original,'revert restores own native sibling');same(texture.userData.newerHeight,undefined,'revert removes relief');
+  }finally{dispose(texture);}
+ }
+ same(accepted.source.uses.length,8,'all original approved uses');same(successor.source.uses.length,5,'all newly qualified sibling uses');same(occurrences,13,'both identities all recorded PAK occurrences');
+ for(const e of [accepted,successor]){
+  const actual=await nativeSource(e),pixels=actual.rgba.slice();pixels[0]^=1;const mutant=new THREE.DataTexture(pixels,actual.width,actual.height),mutantImage=mutant.image,original=actual.texture.image,beforeRequests=f.requests.length;
+  try {check(![accepted.key,successor.key].includes(R_GlassTextureKey(mutant)),'unknown differs from both known keys');
+   f.api.R_NewerTextureUpgrade('rock3_8',mutant);await terminal(f.api,'rock3_8',mutant);same(mutant.userData.newerFallback,true,'unknown rock rejected');same(mutant.image,mutantImage,'unknown native image preserved');same(mutant.userData.newerHeight,undefined,'unknown gets no relief');
+   f.api.R_NewerTextureUpgrade('ROCK3_8',actual.texture);await terminal(f.api,'ROCK3_8',actual.texture);same(actual.texture.userData.newerFallback,true,'wrong case rejects both known identities');same(actual.texture.image,original,'wrong case remains native');same(actual.texture.userData.newerHeight,undefined,'wrong case gets no relief');same(f.requests.length,beforeRequests,'unknown and wrong case request no art');
+  }finally{dispose(mutant);dispose(actual.texture);}
+  const classic=await nativeSource(e),classicImage=classic.texture.image,beforeClassic=f.requests.length;
+  try{mode.R_AnimSetClassicPass(true);f.api.R_NewerTextureUpgrade(e.name,classic.texture);await Promise.resolve();same(classic.texture.image,classicImage,'Classic remains native for both keys');same(classic.texture.userData.newerPicture,undefined,'Classic does not install replacement');same(classic.texture.userData.newerHeight,undefined,'Classic no relief');same(f.requests.length,beforeClassic,'Classic requests no rock art');}finally{mode.R_AnimSetClassicPass(false);dispose(classic.texture);}
+ }
 }));

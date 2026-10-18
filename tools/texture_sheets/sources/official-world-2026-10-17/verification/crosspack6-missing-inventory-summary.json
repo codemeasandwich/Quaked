@@ -1,0 +1,22 @@
+{
+  "qualification": "Installed official-game BSP inventory, includes extras/unused miptexes; catalogue presence is not Q92 provenance or visual acceptance. Original scratch inventory is read-only and excluded from runtime assets.",
+  "path": "/private/tmp/quaked-oct18-all95-audit/inventory.json",
+  "sha256": "6ed0c269c83453427f714f5992588f0fc731e7f304b922e34c6727cf33c1185a",
+  "indexSha256": "f8da85a8730aadfc34b2199b1d91fdf21ab54bcf774e1c21b73753871633ad9c",
+  "counts": {
+    "missing": 1029,
+    "special-liquid": 26,
+    "catalogued": 468,
+    "special-sky": 8
+  },
+  "actions": {
+    "generate": 983,
+    "unused-or-extra-review": 36,
+    "special-liquid": 24,
+    "check-hd-dimensions": 467,
+    "preserve-flat-black": 2,
+    "compiler-utility": 11,
+    "special-sky": 8
+  },
+  "errors": []
+}

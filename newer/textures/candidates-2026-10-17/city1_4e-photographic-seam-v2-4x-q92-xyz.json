@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "city1_4e",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-city1_4e.png",
+  "originalSha256": "47ec55983859debf1f6c4bd25b8ae08752475643c408a94f60ca69f5dbeed1d9",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-17/city1_4e-photographic-seam-v2-4x.png",
+  "authoringDiffuseSha256": "8feec58dcd00ed927f5b95d5f101f0f8de9bced74873d8c62702d9822327b3b3",
+  "toolSha256": "e8d825dcb3e79bb9f419af6558363e0ab00534389e7b21f5423177b2e1f9af9b",
+  "heightToolSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+  "profile": {
+    "bands": [
+      0.35,
+      1,
+      1.4,
+      1
+    ],
+    "groove": 1.4,
+    "bump": 0.7,
+    "glow": 0,
+    "strength": 0.2,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-17/city1_4e-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "93e5aa664f62959614566a745a3c5d881cc14aa1a6b2ae53355797c835f4fe54",
+      "bytes": 456816,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-17/city1_4e-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "a15f6a7c40f34b171dabc3675af397f718c5c7d3bd8e173eb8e8dfd1628f908f",
+      "bytes": 227576,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-17/city1_4e-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "3838c9f2f6138485937344aacdbaafa8df11861825d3b0611335c7af57ef7b01",
+      "bytes": 291968,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-17/city1_4e-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "3a112f2a6cc1d2859dac609c4836a2b0fe0e65de81b79db7b4e721731d217f8b",
+      "bytes": 281072,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-17/city1_4e-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "93d9c8455e98548ce2940042b52ec68e6d04106144211860b26d7cd271ef5689",
+      "bytes": 68302,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    128,
+    128
+  ],
+  "distanceMAE": 6.832926432291667,
+  "distanceMaximum": 45.0,
+  "secondaryComparisonDimensions": [
+    64,
+    64
+  ],
+  "secondaryDistanceMAE": 4.155029296875,
+  "secondaryDistanceMaximum": 33.0,
+  "colourCompressionMAE": 2.4959754943847656,
+  "heightCompressionMAE": 1.2987432479858398,
+  "heightCompressionMaximum": 9.0,
+  "normalAngularMean": 0.934934485665618,
+  "normalAngularP99": 2.4276108530186433,
+  "normalAngularMaximum": 5.071598196242514,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

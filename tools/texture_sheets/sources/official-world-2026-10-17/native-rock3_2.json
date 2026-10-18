@@ -1,0 +1,48 @@
+{
+  "id": "rock3_2|64x64:296e96b9351c76fb",
+  "name": "rock3_2",
+  "key": "64x64:296e96b9351c76fb",
+  "width": 64,
+  "height": 64,
+  "pixelSha256": "e4df16b123d67e6c7cf6c6795ee333d0da7fc3a4078a7164aab953c76e54b6cd",
+  "original": "originals/64x64-296e96b9351c76fb.rgba",
+  "status": "missing",
+  "file": null,
+  "reason": "No replacement entry",
+  "uses": [
+    {
+      "game": "id1",
+      "map": "maps/e2m7.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+      "slot": 37,
+      "faces": 45,
+      "visibleCandidateFaces": 45,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "hipnotic",
+      "map": "maps/hip2m6.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+      "slot": 11,
+      "faces": 0,
+      "visibleCandidateFaces": 0,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "mg1",
+      "map": "maps/mge5m2.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+      "slot": 41,
+      "faces": 2207,
+      "visibleCandidateFaces": 2207,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    }
+  ],
+  "action": "generate"
+}

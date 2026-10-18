@@ -11,7 +11,7 @@ const candidate='newer/textures/candidates-2026-10-12/';
 // Only this diagnostic page receives these bindings; it never writes the index.
 const batch=new URL(location.href).searchParams.get('batch');
 // Keep new-material GPU review bounded; the separate public suite checks the full catalogue.
-const manifest=({realism:'realism-trial.json',character:'character-trial.json',aged:'aged-trial.json',industrial:'../candidates-2026-10-17/industrial-trial.json',owner:'../candidates-2026-10-17/owner-q92-trial.json'})[batch]||'trial.json';
+const manifest=({realism:'realism-trial.json',character:'character-trial.json',aged:'aged-trial.json',industrial:'../candidates-2026-10-17/industrial-trial.json',owner:'../candidates-2026-10-17/owner-q92-trial.json',building:'../candidates-2026-10-17/building-trial.json',crosspack:'../candidates-2026-10-17/crosspack-trial.json'})[batch]||'trial.json';
 const specs=await fetch(candidate+manifest).then(r=>r.json()),index=await fetch('newer/textures/index.json').then(r=>r.json());
 document.querySelector('#asset-count').textContent=String(Object.keys(specs).length);
 document.querySelector('#asset').replaceChildren(...Object.keys(specs).map(name=>{const option=document.createElement('option');option.value=option.textContent=name;return option;}));
