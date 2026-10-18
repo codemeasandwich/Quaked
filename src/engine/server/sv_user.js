@@ -516,6 +516,37 @@ SV_ClientThink
  * `fixangle` is 0), then runs the water jump, `SV_WaterMove` or `SV_AirMove`. Points the module's `origin`,
  * `velocity`, `angles` and `cmd` at this player's data for the helpers it calls.
  */
+/**
+ * Fills the module's command with a move, for a local loopback client and for focused trials. Native code fills the
+ * same fields from the client's `clc_move` message (SV_ReadClientMove); this entry point exists so a single-machine
+ * session and tests can drive the identical movement code without a network message.
+ *
+ * @param {{ forwardmove?: number, sidemove?: number, upmove?: number, viewangles?: ArrayLike<number> }} move
+ */
+export function SV_User_SetCommand( move ) {
+
+	cmd.forwardmove = move.forwardmove ?? 0;
+	cmd.sidemove = move.sidemove ?? 0;
+	cmd.upmove = move.upmove ?? 0;
+	if ( move.viewangles ) {
+
+		if ( ! cmd.viewangles ) cmd.viewangles = [ 0, 0, 0 ];
+		for ( let i = 0; i < 3; i ++ ) cmd.viewangles[ i ] = move.viewangles[ i ];
+
+	}
+	// SV_ClientThink reads the command from the client it is running (as native does), so mirror it when present.
+	if ( host_client && host_client.cmd ) {
+
+		host_client.cmd.forwardmove = cmd.forwardmove;
+		host_client.cmd.sidemove = cmd.sidemove;
+		host_client.cmd.upmove = cmd.upmove;
+		if ( ! host_client.cmd.viewangles ) host_client.cmd.viewangles = [ 0, 0, 0 ];
+		for ( let i = 0; i < 3; i ++ ) host_client.cmd.viewangles[ i ] = cmd.viewangles ? cmd.viewangles[ i ] : 0;
+
+	}
+
+}
+
 export function SV_ClientThink() {
 
 	// Use cached buffer instead of allocating per-call
