@@ -1,5 +1,5 @@
 {
-  "version": 2026101701,
+  "version": 2026101802,
   "textures": {
     "afloor3_1": "afloor3_1.webp",
     "ceiling1_3": "ceiling1_3.webp",
@@ -5342,6 +5342,111 @@
             "x": "official/TF_Wood01c_4-a6b5b0c42885fb86-4x-q92-normalX.webp",
             "y": "official/TF_Wood01c_4-a6b5b0c42885fb86-4x-q92-normalY.webp",
             "z": "official/TF_Wood01c_4-a6b5b0c42885fb86-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "city3_2": {
+      "64x64:4b56f248a42f19ba": {
+        "file": "official/city3_2-4b56f248a42f19ba-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/city3_2-4b56f248a42f19ba-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/city3_2-4b56f248a42f19ba-4x-q92-normalX.webp",
+            "y": "official/city3_2-4b56f248a42f19ba-4x-q92-normalY.webp",
+            "z": "official/city3_2-4b56f248a42f19ba-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "city3_4": {
+      "64x64:c42b16880720ca92": {
+        "file": "official/city3_4-c42b16880720ca92-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/city3_4-c42b16880720ca92-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/city3_4-c42b16880720ca92-4x-q92-normalX.webp",
+            "y": "official/city3_4-c42b16880720ca92-4x-q92-normalY.webp",
+            "z": "official/city3_4-c42b16880720ca92-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "wstone1_2": {
+      "64x64:743c67dccf54b85e": {
+        "file": "official/wstone1_2-743c67dccf54b85e-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/wstone1_2-743c67dccf54b85e-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/wstone1_2-743c67dccf54b85e-4x-q92-normalX.webp",
+            "y": "official/wstone1_2-743c67dccf54b85e-4x-q92-normalY.webp",
+            "z": "official/wstone1_2-743c67dccf54b85e-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Metal3_02": {
+      "128x128:f8230466d48d694c": {
+        "file": "official/TF_Metal3_02-f8230466d48d694c-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Metal3_02-f8230466d48d694c-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Metal3_02-f8230466d48d694c-4x-q92-normalX.webp",
+            "y": "official/TF_Metal3_02-f8230466d48d694c-4x-q92-normalY.webp",
+            "z": "official/TF_Metal3_02-f8230466d48d694c-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Metal4_02": {
+      "128x128:1a35d6dcc7683ff6": {
+        "file": "official/TF_Metal4_02-1a35d6dcc7683ff6-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Metal4_02-1a35d6dcc7683ff6-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Metal4_02-1a35d6dcc7683ff6-4x-q92-normalX.webp",
+            "y": "official/TF_Metal4_02-1a35d6dcc7683ff6-4x-q92-normalY.webp",
+            "z": "official/TF_Metal4_02-1a35d6dcc7683ff6-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Metal3_03": {
+      "128x128:91329e812dec8483": {
+        "file": "official/TF_Metal3_03-91329e812dec8483-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Metal3_03-91329e812dec8483-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Metal3_03-91329e812dec8483-4x-q92-normalX.webp",
+            "y": "official/TF_Metal3_03-91329e812dec8483-4x-q92-normalY.webp",
+            "z": "official/TF_Metal3_03-91329e812dec8483-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Metal4_03": {
+      "128x128:0909f386fef81a54": {
+        "file": "official/TF_Metal4_03-0909f386fef81a54-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Metal4_03-0909f386fef81a54-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Metal4_03-0909f386fef81a54-4x-q92-normalX.webp",
+            "y": "official/TF_Metal4_03-0909f386fef81a54-4x-q92-normalY.webp",
+            "z": "official/TF_Metal4_03-0909f386fef81a54-4x-q92-normalZ.webp"
           },
           "strength": 0.2,
           "cap": 0.5

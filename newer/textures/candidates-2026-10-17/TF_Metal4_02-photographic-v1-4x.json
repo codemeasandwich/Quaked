@@ -1,0 +1,55 @@
+{
+  "method": "photographic",
+  "factor": 4,
+  "verticalLandmarks": null,
+  "colorStrength": 1.0,
+  "fieldSigma": 2.0,
+  "edgeAnchor": false,
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    64
+  ],
+  "distanceMeanMaxError": 29.421875,
+  "distanceMeanMAE": 4.970274607340495,
+  "donorDistanceMAE": 8.141297658284506,
+  "newClippedChannelFraction": 5.086263020833333e-06,
+  "donorContourCorrelation": 0.9996090804338966,
+  "sourceMean": [
+    47.89111328125,
+    42.98748779296875,
+    43.54736328125
+  ],
+  "outputMean": [
+    47.89248275756836,
+    42.99010467529297,
+    43.54132843017578
+  ],
+  "donorBoundaries": {
+    "wrap_x_mean": 10.990885416666668,
+    "wrap_y_mean": 22.66796875,
+    "interior_x_mean": 6.357433341487281,
+    "interior_y_mean": 6.111245311480756
+  },
+  "boundaries": {
+    "wrap_x_mean": 10.970052083333332,
+    "wrap_y_mean": 22.630208333333336,
+    "interior_x_mean": 6.35768815231572,
+    "interior_y_mean": 6.113212451076322
+  },
+  "passedDistanceCheck": null,
+  "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Metal4_02.png",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Metal4_02-generated-v1.png",
+  "output": "newer/textures/candidates-2026-10-17/TF_Metal4_02-photographic-v1-4x.png",
+  "originalSha256": "2c23d3e5ace769fe6a0038f2c3a1d159e983cd1ef808ffb127eab50457af1bb8",
+  "generatedSha256": "f1829753e923eeeccb04ac4e4bf216bbd2038ed9fe5d2069391114dced8acf36",
+  "outputSha256": "d0cac53689aeba265b2bfbf2b8e8f76db599095eaca643c3e4923df9a164a7f6",
+  "outputDimensions": [
+    512,
+    512
+  ],
+  "toolSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+  "landmarkFile": null,
+  "landmarkSha256": null
+}

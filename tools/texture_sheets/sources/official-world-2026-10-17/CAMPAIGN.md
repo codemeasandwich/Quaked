@@ -35,3 +35,33 @@ The owned preview tab was closed and serverPID66461/session63732 exited143; port
 ## Dev reconciliation before gate
 
 Before our fullgate, origin/Dev advanced to abb027ab with a READMEbanner, startup preload fix and version0.132.2. The texturebranch fast-forwarded to that Dev commit without overwriting staged work: all117batch paths remain staged, and the incoming seven files do not overlap them. A separate Bestiary optimisation gate is using the shared compiler resources (observed PID73733); our gate waits. No other process is stopped or altered. Source-only next-family preparation outside this worktree can continue while waiting.
+
+## First periodic Dev merge completed
+
+The braced-wood batch committed as f944eafb86c77d68aa5a49f4c5652b80ba9c3d3d after the maintained gate passed58distributionchecks,10Rusttests,91enginechecks,web/desktopbuilds and universalMacbuild. Receipt tree a4a0e37bd15799033e7376a3d702d285bb75767e matches the reviewed committedtree. Non-forced HEAD:Dev push succeeded and ls-remote/localDevref confirmed f944eafb atpublication. Subsequent Dev628f9424 also retains thecommit; thisbranch fast-forwarded tothathead preserving next-batch test edits. No release/tag requested or performed. A later overlapping gate means the shared Mac bundle is not qualified as a releaseartifact; independently scoped source/public/GPU evidence and our normalhook result are retained.
+
+The next separately source-colour-fitted stone candidates(city3_2,city3_4,wstone1_2) passed independent art/distance/edge review and now proceed toregistration/publictests. Sharedphotographicgeometry is reused but each receives its own nativeidentity and colour-output; these are not exact-pixel aliases.
+
+## Stone batch qualification and next integration
+
+The three stone replacements pass independent decoded full256/half32/quarter16/repeat artreview,6/6publictests,5/5packtests and1342browsermaterialchecks with zero shadererrors. Currentindex24d7a4f7 binds64sourceidentities to61generatedartworks/305runtimeQ92maps;437actualsourceoccurrences verified. Freshinventory:1017ordinarygenerationactions remaining, noauditerrors. Allsource/donor/output/evidence preserved. The four corroded-steel transition variants are next; x-only edgecorrection preserves their intentional top/bottom differences.
+
+Bluey same-session reactivation again fails storage_error(correlation11b4c67324034a90b131aae206879201);whoami readback remainsretired. No assignment/mutation claimed. Existingtask remainsT-79f157df;responsibleowner thisCodexsession,nextaction reconcile samecardwhenwriterecoveryallows. Devstill628f9424withpriorf944eafb batchretained. Fullgate notstarted:availablediskabout30GiB isbelow40GiBadmissionfloor;owneraskedtofree10–15GiB. Otheragentsoutputs preserved. Sourcegeneration/art/publicchecks continuewithoutheavybuild.
+
+## Directed metal pair review and relief repair
+
+Fournewsteelvariants(TF_Metal3_02,TF_Metal4_02,TF_Metal3_03,TF_Metal4_03)weregeneratedwithbuilt-inGPTfromexactsourcecolour/layoutreferences. Version2passedindividualrealism/distance/xrepeatbutfailedfourdirectedverticaljoins. Version3reusestheexistingpairedcolourfinisheracrossthetwo-imagecycle;allfourdiffusejoinsnowpass. IndependentreviewthenfoundfalsenormalYedge slopesfromindividualselfwrappedheightfilters. Theseheldversionsremainunregisteredandpreserved.
+
+TheoptionalpairedencoderpathusesdecodedQ92diffusesinacommonperiodiccyclewithper-tiledetailscale,encodeseachheightseparatelyatQ92,andderivesXYZfromtheconcatenateddecodedheightswiththeoriginalper-tile slopescaling. Genericdefaultmathisunchanged. Version4outputsbindreciprocalpartnerhashesandawaitindependentrelief/artreviewandpublicmathematicalreplay. Runtimeengine/loader/UVhandlingunchanged. Currentregisteredindexstill24d7a4f7untilthosecheckspass.
+
+## Seven-texture increment ready for the full gate
+
+The three stone and four directed-steel replacements are registered at index `dd0c1c4be7c7c16eae7ed3c2d035cfd003831f0dce98dafd07464ab4fa28f98e` (version2026101802): 65 generated artworks, 68 exact native bindings and 325 quality92 runtime maps. Independent art and paired-relief review passed. All seven public tests and five pack tests passed without skips, covering450 actual source occurrences. Independent direct-coordinate mathematics reproduces the paired XYZ maps; all61 earlier artworks still replay byte-for-byte under the optional tool extension. The actual engine-material preview passed1430 checks with no shader errors. Four steel close views and half64/quarter32 comparisons are retained. Fresh inventory has1013 ordinary generation actions remaining and no errors.
+
+The next five source identities are independently planned; three new base-material drafts and a single photographic fastener donor are preserved only in the shared root authoring area. They are not registered or part of this frozen increment. The two narrow trims will reuse the approved metal donor with original edge rails and eight native fastener positions. They retain the original1:8 aspect.
+
+The next Dev publication still requires exact staged review and the maintained full gate. Disk remains about30GiB free, below the40GiB admission floor; no heavy gate started and no new Dev publication is claimed. Owner was asked to free10–15GiB. Prior braced-wood commitf944eafb is verified on current Dev628f9424. Bluey writes still fail; this ledger retains the obligation, responsible Codex session and next action. No release is requested or performed.
+
+## Disk-admission correction before the maintained gate
+
+The carried-over40GiB hold was a planning assumption, not a Quaked instruction or an implemented gate. A targeted current read of `/Users/bri/agent.md`, `.githooks/pre-commit`, `tools/distribution/precommit.mjs` and the distribution documentation finds no such threshold. No required check or safeguard is changed. Current free space is35,214,188KiB (about33.6GiB); the prior scoped staged output is2.3GiB and the existing shared compiler cache12GiB is already allocated. The heavy-build slot is currently free. Proceed with the normal maintained hook while monitoring actual free space and preserving all other actors' data/processes. The earlier request for owner disk cleanup is no longer needed for this increment. This correction supersedes only the local planning hold above; full tests/builds/review/Dev evidence remain mandatory.

@@ -133,10 +133,13 @@ def remove_print( rgb, L, k ):
     w = np.clip( gblur( mark.astype( np.float32 ), 1.0 * k ), 0, 1 ) ** 0.8
     return L * ( 1 - w ) + fill * w
 
-def craft( rgb, prof ):
+def craft( rgb, prof, detail_scale=None ):
     """rgb: float array h x w x 3 in 0..1 (sRGB). Returns (height 0..1, normals h x w x 3 in -1..1)."""
     h, w, _ = rgb.shape
-    k = np.sqrt( h * w ) / 256.0           # detail sizes are for a 256 texture
+    # A directed texture pair can be authored as one periodic cycle while
+    # retaining each tile's material-feature scale. Default callers are unchanged.
+    k = np.sqrt( h * w ) / 256.0 if detail_scale is None else float( detail_scale )
+    if not np.isfinite( k ) or k <= 0: raise ValueError( 'Positive detail scale required' )
     L = rgb @ np.array( [ 0.299, 0.587, 0.114 ] )
     mx = rgb.max( axis=2 ); mn = rgb.min( axis=2 )
     sat = ( mx - mn ) / np.maximum( mx, 1e-4 )

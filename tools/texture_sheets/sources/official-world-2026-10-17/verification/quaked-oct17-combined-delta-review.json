@@ -1,0 +1,25 @@
+{
+  "verdict": "pass",
+  "priorReviewedTextureTree": "f9958321538d79242d42f7de671438143ed6377c",
+  "priorBase": "5aa50def5104c35d4ae7a6e62126b1265f5cdca9",
+  "currentBase": "abb027ab615afc80b28cba8b8d168b5c36c2decb",
+  "incomingPaths": [
+    "docs/images/quaked-banner.png",
+    "package-lock.json",
+    "package.json",
+    "src-tauri/Cargo.lock",
+    "src-tauri/Cargo.toml",
+    "tools/distribution/browser-trial.mjs",
+    "tools/distribution/build.mjs"
+  ],
+  "overlapWith117TexturePaths": [],
+  "all117StagedTextureBlobsByteUnchanged": true,
+  "incomingReview": [
+    "Version-only package/Cargo root version updates; dependency resolutions unchanged.",
+    "Project banner restored as separate docs image.",
+    "Startup preload priority promotes hub audio and effect actors; mixed chunk priority now uses minimum urgency across all touched assets rather than only first.",
+    "Browser-trial adds explicit resident check for hub audio/fireball smoke/noise; no texture catalogue, pixel, normal or asset collector membership changes."
+  ],
+  "scope": "Source delta and no-overlap review only. No heavy build or packaged runtime check performed; refreshed full maintained hook required for combined base.",
+  "next": "Parent to supply final staged tree after ledger update; retain prior texture/art approval for unchanged blob identities."
+}

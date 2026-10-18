@@ -1,0 +1,112 @@
+{
+  "qualification": "Independent installed public interfaces and collector/pack contracts. No heavy normal hook, packaged build, owner visual acceptance, commit, landing or release performed by this helper.",
+  "date": "2026-10-17T23:38:52.677Z",
+  "node": "v24.19.0",
+  "head": "628f9424476b4cbbb2f7855931d51defcbeb2a72",
+  "bindings": 64,
+  "artworks": 61,
+  "uniqueRuntimeQ92Maps": 305,
+  "sourceOccurrences": 437,
+  "publicTests": {
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0
+  },
+  "packTests": {
+    "passed": 5,
+    "failed": 0,
+    "skipped": 0
+  },
+  "indexSha256": "24d7a4f777a7749014c2727f807ce9302b1c98cb0617d65caf32373d5f1f431a",
+  "gameIndexDiff": "Only city3_2/city3_4/wstone1_2 texture user lists and textureNames source digest; no BSP/model/library changes.",
+  "inputs": [
+    {
+      "file": "tests/official_texture_q92_test.js",
+      "sha256": "c78ea4e06ab3652c9353d8d3b581080a06339ceeab30a30df990fefeaba506c2"
+    },
+    {
+      "file": "tools/texture_sheets/encode_official_maps.py",
+      "sha256": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9"
+    },
+    {
+      "file": "newer/textures/index.json",
+      "sha256": "24d7a4f777a7749014c2727f807ce9302b1c98cb0617d65caf32373d5f1f431a"
+    },
+    {
+      "file": "newer/packs/games.json",
+      "sha256": "93c73a5c2afb96e9f6d1f1d8d6e19b63348e4de52a4500720241f5a63031087f"
+    },
+    {
+      "file": "tools/distribution/precommit.mjs",
+      "sha256": "bdcdbb5814a2379c28b46a6f20285b73b8f8319f6786250274785621d9b1c56f"
+    },
+    {
+      "file": "tools/distribution/packs.mjs",
+      "sha256": "b99254a6ebd51600930c6e7340444900c0a1ec1139dfea30bc080db0cca77ea3"
+    },
+    {
+      "file": "tools/distribution/manifest.mjs",
+      "sha256": "b3607639a3cb865c483ac6aeb4219a9010bdf9d14827f1639a22723d680489ff"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/mottled-stone-registration.json",
+      "sha256": "e5cbb7fd120e8589a235d8743c85dcc2b0fd366f47735e3336b9405fc533e6bb"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/all61-public-tests.txt",
+      "sha256": "f66a0f4126dbfcd98e9fab252ad4ed8802003e7194425a5d6b2ebb774786e9ea"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/all61-public-source-proof.json",
+      "sha256": "c7a0e2a195d359cf19591bf0df362bc3e2e93976aa6bb5d7dad9e9e25dae2a21"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/all61-pack-contract-tests.txt",
+      "sha256": "e312d0a5fe5a31bdc3e0888774e96ea4a1b0d22fcd019367de08d479e7517885"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/all61-delivery-closure.json",
+      "sha256": "d2ce762b52280cc80bac41157ba25e8d95faac00b20a3107ea6cab2a5e5febc5"
+    }
+  ],
+  "packs": [
+    {
+      "path": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+      "actualPath": "/Users/bri/quaked/Quake/pak0.pak",
+      "bytes": 179618935,
+      "sha256": "9de6f83944011ae4647beef1966ca4fbf490b35baf1f333097a0d363116ebea0"
+    },
+    {
+      "path": "/private/tmp/quaked-official-library-20261017/shareware/pak0.pak",
+      "actualPath": "/Users/bri/quaked/Quake shareware/pak0.pak",
+      "bytes": 18689235,
+      "sha256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af"
+    },
+    {
+      "path": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+      "actualPath": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+      "bytes": 760105822,
+      "sha256": "6da314d85d07eb2ebdd08502239c93efab1060fbbe2be78fcf18e7ec0a2851aa"
+    },
+    {
+      "path": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+      "actualPath": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+      "bytes": 79912030,
+      "sha256": "e6c268cf86081b2926e5745cff718600672fcdac7c94998fbb2555d74cad6ed1"
+    },
+    {
+      "path": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+      "actualPath": "/Users/bri/quaked/Dimension of the Past/pak0.pak",
+      "bytes": 40557898,
+      "sha256": "3ec75633670e6178ed0508ba114fe7bd77344861fbe2191ed55e379716814e55"
+    },
+    {
+      "path": "/private/tmp/quaked-official-library-20261017/Dissolution of Eternity/pak0.pak",
+      "actualPath": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+      "bytes": 44484697,
+      "sha256": "6ff24b3857303f3c38aa091461cac9fe8c740554c6e693ef8a37a91ad930182f"
+    }
+  ],
+  "launchCorrections": [],
+  "normalHook": "Heavy staged-tree normal gate remains root responsibility; no bypass or heavy gate launched by this helper."
+}

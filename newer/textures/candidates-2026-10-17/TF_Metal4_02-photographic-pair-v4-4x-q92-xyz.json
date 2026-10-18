@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "name": "TF_Metal4_02",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Metal4_02.png",
+  "originalSha256": "2c23d3e5ace769fe6a0038f2c3a1d159e983cd1ef808ffb127eab50457af1bb8",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-17/TF_Metal4_02-photographic-pair-v3-4x.png",
+  "authoringDiffuseSha256": "b9fd763972f2844f8090efd5f8934ac5f88d489dd98ef6a1258bfa6e68b98826",
+  "toolSha256": "e8d825dcb3e79bb9f419af6558363e0ab00534389e7b21f5423177b2e1f9af9b",
+  "heightToolSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.2,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal4_02-photographic-pair-v4-4x-q92-xyz-diffuse.webp",
+      "sha256": "7767cf5f9a39c5087de6feeb8c5a8121ac6c405f84058aeacf72089e40023cb8",
+      "bytes": 87350,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal4_02-photographic-pair-v4-4x-q92-xyz-height.webp",
+      "sha256": "44f9b5b871f91c9ab255716b857934ab4b036007ca6179a39814d86ffda3e184",
+      "bytes": 121946,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal4_02-photographic-pair-v4-4x-q92-xyz-normalX.webp",
+      "sha256": "3e30d7c14ecdc47b6a9f2682a3256a30678a3b02ff2c82832789c4e38ac1db9e",
+      "bytes": 112724,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal4_02-photographic-pair-v4-4x-q92-xyz-normalY.webp",
+      "sha256": "b1a7b36ee6551d8a24622db6b73a7a44601cadb6032c574f054b9ac34665e8c9",
+      "bytes": 112220,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal4_02-photographic-pair-v4-4x-q92-xyz-normalZ.webp",
+      "sha256": "26fccd1d6b16bd6cecb4fc0f2f29a18eb2d4b86e89ec9e3e45a703edc5debdb4",
+      "bytes": 27164,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    64
+  ],
+  "distanceMAE": 5.2314453125,
+  "distanceMaximum": 30.0,
+  "secondaryComparisonDimensions": [
+    32,
+    32
+  ],
+  "secondaryDistanceMAE": 2.6142578125,
+  "secondaryDistanceMaximum": 18.0,
+  "colourCompressionMAE": 2.1178983052571616,
+  "heightCompressionMAE": 1.3260269165039062,
+  "heightCompressionMaximum": 9.0,
+  "normalAngularMean": 0.9708603352799584,
+  "normalAngularP99": 2.4359344492168495,
+  "normalAngularMaximum": 4.237630536196735,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required",
+  "normalRecipe": "directed-vertical-pair",
+  "verticalNeighbour": {
+    "name": "TF_Metal4_03",
+    "authoringDiffuse": "newer/textures/candidates-2026-10-17/TF_Metal4_03-photographic-pair-v3-4x.png",
+    "authoringDiffuseSha256": "4bed20b2699a887aae44ba4b42c7a806dff52c94ee660ed474ecc05088e36abf",
+    "diffuseSha256": "59f79ac1bd6f303dd9917107fabc7731083d81725342df58180feeac34a90986",
+    "heightSha256": "1501700c538640c4165f9642bc500f5dc635a474d7f24b2e831382a89d6958e2",
+    "profile": {
+      "bands": [
+        0.6,
+        1,
+        0.8,
+        0.5
+      ],
+      "groove": 0.5,
+      "bump": 0.5,
+      "glow": 0.2,
+      "strength": 0.2,
+      "cap": 0.5
+    },
+    "tileDetailScale": 2.0,
+    "normalSlopeScale": 12.8
+  }
+}

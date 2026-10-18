@@ -1,0 +1,342 @@
+{
+  "qualification": "Four separately source-fitted GPT photographs; directed colour and relief pair review passed. Runtime/public/build/Dev qualification remain separate. Generic prior artwork preserved.",
+  "beforeIndexSha256": "24d7a4f777a7749014c2727f807ce9302b1c98cb0617d65caf32373d5f1f431a",
+  "afterIndexSha256": "dd0c1c4be7c7c16eae7ed3c2d035cfd003831f0dce98dafd07464ab4fa28f98e",
+  "entries": [
+    {
+      "name": "TF_Metal3_02",
+      "key": "128x128:f8230466d48d694c",
+      "source": {
+        "id": "TF_Metal3_02|128x128:f8230466d48d694c",
+        "name": "TF_Metal3_02",
+        "key": "128x128:f8230466d48d694c",
+        "width": 128,
+        "height": 128,
+        "pixelSha256": "de1b6694e6a6b0f9f53d7dc3c7c4e2ffcc020ed4725e8a23d1cd9cd319826668",
+        "original": "originals/128x128-f8230466d48d694c.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "No replacement entry",
+        "uses": [
+          {
+            "game": "mg1",
+            "map": "maps/mge1m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+            "slot": 77,
+            "faces": 96,
+            "visibleCandidateFaces": 96,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge2m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+            "slot": 87,
+            "faces": 8,
+            "visibleCandidateFaces": 8,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "previousBinding": null,
+      "binding": {
+        "file": "official/TF_Metal3_02-f8230466d48d694c-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Metal3_02-f8230466d48d694c-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Metal3_02-f8230466d48d694c-4x-q92-normalX.webp",
+            "y": "official/TF_Metal3_02-f8230466d48d694c-4x-q92-normalY.webp",
+            "z": "official/TF_Metal3_02-f8230466d48d694c-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Metal3_02.png",
+      "sourceFileSha256": "08d7eaed7f27091956c46f09d5c11aafd92e8cd45798573fe250e4db8c1411eb",
+      "diffuseSha256": "90690513a67433b0c99e84e851d89b8f309ba1d9c9d6125cd9e6226059aa76ff",
+      "heightSha256": "5bd975610310fd8554e88bf9c312c6cb04384dab32558e9def147693299b36c5",
+      "normalChannelSha256": {
+        "x": "91547cbbcee83924273060783decda5e80b8a1a797b1295e91df364a74a3d678",
+        "y": "ea23373241bc7c418e3df6411516a347eac5a88b3a6e30730df9f0b099e75fe5",
+        "z": "2d41d08327137f402a07a27f6f72a1a84e09527141ab874e69eb56aac4287248"
+      },
+      "encodingReceipt": "newer/textures/candidates-2026-10-17/TF_Metal3_02-photographic-pair-v4-4x-q92-xyz.json",
+      "candidate": "candidates-2026-10-17/TF_Metal3_02-photographic-pair-v4-4x-q92-xyz-diffuse.webp",
+      "candidateSha256": "90690513a67433b0c99e84e851d89b8f309ba1d9c9d6125cd9e6226059aa76ff",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false
+    },
+    {
+      "name": "TF_Metal4_02",
+      "key": "128x128:1a35d6dcc7683ff6",
+      "source": {
+        "id": "TF_Metal4_02|128x128:1a35d6dcc7683ff6",
+        "name": "TF_Metal4_02",
+        "key": "128x128:1a35d6dcc7683ff6",
+        "width": 128,
+        "height": 128,
+        "pixelSha256": "596661029c4cbb79647b28f07d9e3e6951c1a7f569f1cd1ac8adc8200bcaf497",
+        "original": "originals/128x128-1a35d6dcc7683ff6.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "No replacement entry",
+        "uses": [
+          {
+            "game": "mg1",
+            "map": "maps/mge1m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+            "slot": 32,
+            "faces": 370,
+            "visibleCandidateFaces": 370,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge1m2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+            "slot": 88,
+            "faces": 158,
+            "visibleCandidateFaces": 158,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "previousBinding": null,
+      "binding": {
+        "file": "official/TF_Metal4_02-1a35d6dcc7683ff6-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Metal4_02-1a35d6dcc7683ff6-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Metal4_02-1a35d6dcc7683ff6-4x-q92-normalX.webp",
+            "y": "official/TF_Metal4_02-1a35d6dcc7683ff6-4x-q92-normalY.webp",
+            "z": "official/TF_Metal4_02-1a35d6dcc7683ff6-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Metal4_02.png",
+      "sourceFileSha256": "2c23d3e5ace769fe6a0038f2c3a1d159e983cd1ef808ffb127eab50457af1bb8",
+      "diffuseSha256": "7767cf5f9a39c5087de6feeb8c5a8121ac6c405f84058aeacf72089e40023cb8",
+      "heightSha256": "44f9b5b871f91c9ab255716b857934ab4b036007ca6179a39814d86ffda3e184",
+      "normalChannelSha256": {
+        "x": "3e30d7c14ecdc47b6a9f2682a3256a30678a3b02ff2c82832789c4e38ac1db9e",
+        "y": "b1a7b36ee6551d8a24622db6b73a7a44601cadb6032c574f054b9ac34665e8c9",
+        "z": "26fccd1d6b16bd6cecb4fc0f2f29a18eb2d4b86e89ec9e3e45a703edc5debdb4"
+      },
+      "encodingReceipt": "newer/textures/candidates-2026-10-17/TF_Metal4_02-photographic-pair-v4-4x-q92-xyz.json",
+      "candidate": "candidates-2026-10-17/TF_Metal4_02-photographic-pair-v4-4x-q92-xyz-diffuse.webp",
+      "candidateSha256": "7767cf5f9a39c5087de6feeb8c5a8121ac6c405f84058aeacf72089e40023cb8",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false
+    },
+    {
+      "name": "TF_Metal3_03",
+      "key": "128x128:91329e812dec8483",
+      "source": {
+        "id": "TF_Metal3_03|128x128:91329e812dec8483",
+        "name": "TF_Metal3_03",
+        "key": "128x128:91329e812dec8483",
+        "width": 128,
+        "height": 128,
+        "pixelSha256": "40de2aca1b3fd42e6fb599a327013b02201b73e8d09ae7b0fc818425dc7e5b4d",
+        "original": "originals/128x128-91329e812dec8483.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "No replacement entry",
+        "uses": [
+          {
+            "game": "mg1",
+            "map": "maps/start.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+            "slot": 45,
+            "faces": 160,
+            "visibleCandidateFaces": 160,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/hub.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+            "slot": 16,
+            "faces": 205,
+            "visibleCandidateFaces": 205,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge1m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+            "slot": 104,
+            "faces": 693,
+            "visibleCandidateFaces": 693,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge1m2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+            "slot": 47,
+            "faces": 186,
+            "visibleCandidateFaces": 186,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "previousBinding": null,
+      "binding": {
+        "file": "official/TF_Metal3_03-91329e812dec8483-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Metal3_03-91329e812dec8483-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Metal3_03-91329e812dec8483-4x-q92-normalX.webp",
+            "y": "official/TF_Metal3_03-91329e812dec8483-4x-q92-normalY.webp",
+            "z": "official/TF_Metal3_03-91329e812dec8483-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Metal3_03.png",
+      "sourceFileSha256": "f43a0dfd41850ee3ebf89da6ead776f0a1d3e07335f5a0961bf0a8b3495ed499",
+      "diffuseSha256": "2d184217ee0d164e2d3dc92647579b60c47d60135b93a7556e585f2df6f99175",
+      "heightSha256": "641dcb0fa9d11bed2a02a149177201cdb7112ecb9763b4bef6a499beb1049f23",
+      "normalChannelSha256": {
+        "x": "12e9fe85e05d9c4a61aa56e2d5596ad8ac6b82a2210b0ee63db19f198d778044",
+        "y": "61381b723022ea773ff37e591390d08803fe1112782b36d6778303f265288192",
+        "z": "954105bfea8e5b117ed643b9371c0cfca5985657015d92d02a1dcaa71874d4f3"
+      },
+      "encodingReceipt": "newer/textures/candidates-2026-10-17/TF_Metal3_03-photographic-pair-v4-4x-q92-xyz.json",
+      "candidate": "candidates-2026-10-17/TF_Metal3_03-photographic-pair-v4-4x-q92-xyz-diffuse.webp",
+      "candidateSha256": "2d184217ee0d164e2d3dc92647579b60c47d60135b93a7556e585f2df6f99175",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false
+    },
+    {
+      "name": "TF_Metal4_03",
+      "key": "128x128:0909f386fef81a54",
+      "source": {
+        "id": "TF_Metal4_03|128x128:0909f386fef81a54",
+        "name": "TF_Metal4_03",
+        "key": "128x128:0909f386fef81a54",
+        "width": 128,
+        "height": 128,
+        "pixelSha256": "3414cafbf819da4b139cba19f6abad8c36638267afa715d7205951fff93a933a",
+        "original": "originals/128x128-0909f386fef81a54.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "No replacement entry",
+        "uses": [
+          {
+            "game": "mg1",
+            "map": "maps/mgdm3.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+            "slot": 123,
+            "faces": 148,
+            "visibleCandidateFaces": 148,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge1m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+            "slot": 73,
+            "faces": 327,
+            "visibleCandidateFaces": 327,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge1m2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+            "slot": 63,
+            "faces": 399,
+            "visibleCandidateFaces": 399,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge2m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+            "slot": 44,
+            "faces": 241,
+            "visibleCandidateFaces": 241,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mge5m2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+            "slot": 115,
+            "faces": 460,
+            "visibleCandidateFaces": 460,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "previousBinding": null,
+      "binding": {
+        "file": "official/TF_Metal4_03-0909f386fef81a54-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Metal4_03-0909f386fef81a54-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Metal4_03-0909f386fef81a54-4x-q92-normalX.webp",
+            "y": "official/TF_Metal4_03-0909f386fef81a54-4x-q92-normalY.webp",
+            "z": "official/TF_Metal4_03-0909f386fef81a54-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Metal4_03.png",
+      "sourceFileSha256": "2361b88415ee5f6f59ccadcc8bb7f5f267777cc8cf947aca445a16ff67a74dfc",
+      "diffuseSha256": "59f79ac1bd6f303dd9917107fabc7731083d81725342df58180feeac34a90986",
+      "heightSha256": "1501700c538640c4165f9642bc500f5dc635a474d7f24b2e831382a89d6958e2",
+      "normalChannelSha256": {
+        "x": "213b938c67097fe2be3ef4b22c2beab3a828c343ed0cf57fb97b396a33d5861a",
+        "y": "aeab492ca2bdd38d9e95e298c550119d3ce4f94c14296e88f324e214411d29ff",
+        "z": "e751d59717201261d2f44ebf175dd57861354a13e7ac7fbebd3e9d573c5e6f03"
+      },
+      "encodingReceipt": "newer/textures/candidates-2026-10-17/TF_Metal4_03-photographic-pair-v4-4x-q92-xyz.json",
+      "candidate": "candidates-2026-10-17/TF_Metal4_03-photographic-pair-v4-4x-q92-xyz-diffuse.webp",
+      "candidateSha256": "59f79ac1bd6f303dd9917107fabc7731083d81725342df58180feeac34a90986",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false
+    }
+  ]
+}

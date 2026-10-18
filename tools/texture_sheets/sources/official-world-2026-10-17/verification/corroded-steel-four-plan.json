@@ -1,0 +1,120 @@
+{
+  "reviewer": "Independent oct17_plan_review agent",
+  "status": "planning and native-source review only",
+  "entries": [
+    {
+      "name": "TF_Metal3_02",
+      "key": "128x128:f8230466d48d694c",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "nativePngSha256": "08d7eaed7f27091956c46f09d5c11aafd92e8cd45798573fe250e4db8c1411eb",
+      "meanRGB": [
+        71.0712890625,
+        64.363525390625,
+        62.32318115234375
+      ],
+      "sourceUsers": [
+        "mg1"
+      ],
+      "sourceFaces": 104,
+      "direction": "steel at top, corrosion towards bottom",
+      "intendedAxes": "x repeat; y directional transition, not self-repeat requirement"
+    },
+    {
+      "name": "TF_Metal4_02",
+      "key": "128x128:1a35d6dcc7683ff6",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "nativePngSha256": "2c23d3e5ace769fe6a0038f2c3a1d159e983cd1ef808ffb127eab50457af1bb8",
+      "meanRGB": [
+        47.89111328125,
+        42.98748779296875,
+        43.54736328125
+      ],
+      "sourceUsers": [
+        "mg1"
+      ],
+      "sourceFaces": 528,
+      "direction": "steel at top, corrosion towards bottom",
+      "intendedAxes": "x repeat; y directional transition, not self-repeat requirement"
+    },
+    {
+      "name": "TF_Metal3_03",
+      "key": "128x128:91329e812dec8483",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "nativePngSha256": "f43a0dfd41850ee3ebf89da6ead776f0a1d3e07335f5a0961bf0a8b3495ed499",
+      "meanRGB": [
+        70.997802734375,
+        64.4443359375,
+        62.3131103515625
+      ],
+      "sourceUsers": [
+        "mg1"
+      ],
+      "sourceFaces": 1244,
+      "direction": "corrosion at top, steel towards bottom",
+      "intendedAxes": "x repeat; y directional transition, not self-repeat requirement"
+    },
+    {
+      "name": "TF_Metal4_03",
+      "key": "128x128:0909f386fef81a54",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "targetDimensions": [
+        512,
+        512
+      ],
+      "nativePngSha256": "2361b88415ee5f6f59ccadcc8bb7f5f267777cc8cf947aca445a16ff67a74dfc",
+      "meanRGB": [
+        47.890625,
+        43.055908203125,
+        43.57147216796875
+      ],
+      "sourceUsers": [
+        "mg1"
+      ],
+      "sourceFaces": 1575,
+      "direction": "corrosion at top, steel towards bottom",
+      "intendedAxes": "x repeat; y directional transition, not self-repeat requirement"
+    }
+  ],
+  "geometry": [
+    "Continuous matte weathered metal with broad soft steel/rust mottles and narrow vertical weathering streaks.",
+    "No source authority for added panel grids, rivets, trim, symbols or large fractures. Strong native128pixel grain is not geometry to reproduce.",
+    "TF_Metal3 is lighter;TF_Metal4 is darker. Within each palette,_02 transitions from blue-grey steel at top to brown corrosion at bottom;_03 reverses that directional composition without being a literal pixel flip."
+  ],
+  "seamPolicy": [
+    "Preserve horizontal repeat. Existing smooth x-only colour boundary correction is suitable after photographic fitting.",
+    "Do not equalise top and bottom of individual textures or run xy correction: this would erase intended directional transition.",
+    "Review _02 bottom against corresponding _03 top (rust), and_03 bottom against_02 top(steel); native pair boundaries are closer than their selfYboundaries.",
+    "Preserve family-relative darker/lighter tones and inspect transition joins separately from isolated selftileviews."
+  ],
+  "minimalRecipe": [
+    "Reuse a coherent GPT matte-steel material donor if useful, with restrained rustpitting and sparse verticaldrips; use broad original layoutcolour reference only.",
+    "Fit each source independently at4x512 with smooth colour/layout fields. Keep native name/pixel identity guards, even if donor art is shared.",
+    "Encode every runtime image Q92 through current grayscaleXYZ+decodedheight pipeline; matching relief remains shallow and consistent with matte metal.",
+    "Inspect decoded512, both64half, both32quarter, xrepeat/cyclicx, and both directed pairYjoins. Avoid wholeimagebevel/vignette, polishedspecularfeatures or a uniformgrainoverlay."
+  ],
+  "qualification": "This plan does not establish generated art acceptance, encoder correctness, actual renderer or Dev publication."
+}

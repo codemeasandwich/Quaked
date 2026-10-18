@@ -1,0 +1,73 @@
+{
+  "source": {
+    "id": "city3_2|64x64:4b56f248a42f19ba",
+    "name": "city3_2",
+    "key": "64x64:4b56f248a42f19ba",
+    "width": 64,
+    "height": 64,
+    "pixelSha256": "8c53f99905e41b4b2c4c7e4d58e3064885456195e9a3a69a91e18979a0730197",
+    "original": "originals/64x64-4b56f248a42f19ba.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "id1",
+        "map": "maps/e4m3.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+        "slot": 5,
+        "faces": 205,
+        "visibleCandidateFaces": 205,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/e4m7.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+        "slot": 9,
+        "faces": 14,
+        "visibleCandidateFaces": 14,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "hipnotic",
+        "map": "maps/hip2m5.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+        "slot": 3,
+        "faces": 39,
+        "visibleCandidateFaces": 39,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "dopa",
+        "map": "maps/e5dm.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+        "slot": 0,
+        "faces": 117,
+        "visibleCandidateFaces": 117,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "dopa",
+        "map": "maps/e5sm2.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+        "slot": 0,
+        "faces": 196,
+        "visibleCandidateFaces": 196,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "referenceSha256": "51453473aeb9fef7b2bdfe26b4565864ad82e1ced8e6af589dac697517c13cf3"
+}

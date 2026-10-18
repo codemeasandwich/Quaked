@@ -1,0 +1,20 @@
+{
+  "source": "newer/textures/candidates-2026-10-17/TF_Metal4_03-photographic-seam-v2-4x.png",
+  "sourceSha256": "8e4764e590637dc7e532a302f01080a5582018fc3bd9cc87e792584028445bc3",
+  "pairedSource": "newer/textures/candidates-2026-10-17/TF_Metal4_02-photographic-seam-v2-4x.png",
+  "pairedSourceSha256": "7d424ae110d8896bc774df79800a32af929790480572f8ddeaa1d975e2be94d2",
+  "output": "newer/textures/candidates-2026-10-17/TF_Metal4_03-photographic-pair-v3-4x.png",
+  "outputSha256": "4bed20b2699a887aae44ba4b42c7a806dff52c94ee660ed474ecc05088e36abf",
+  "toolSha256": "e01adc6556bd2710ab2371cac9f3b341f45314ae2053187f1bf0ee12ee6770f2",
+  "implementation": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/finish_quiet_edges.py",
+  "implementationSha256": "b4d0ffed5d127c976ca73d0fb203636cb33a0c1ba43bb04361407e3eb83642a1",
+  "cycleOrder": [
+    "newer/textures/candidates-2026-10-17/TF_Metal4_02-photographic-seam-v2-4x.png",
+    "newer/textures/candidates-2026-10-17/TF_Metal4_03-photographic-seam-v2-4x.png"
+  ],
+  "axes": "paired-y-only",
+  "endpointBandPixels": 128,
+  "unchangedMiddleHalf": true,
+  "spatialResampling": false,
+  "qualification": "Two directed joins use the existing smooth paired colour correction. Not individual vertical self-tiling; art/Q92/relief/public checks remain required."
+}

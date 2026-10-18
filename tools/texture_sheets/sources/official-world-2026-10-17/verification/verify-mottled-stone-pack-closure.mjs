@@ -1,0 +1,18 @@
+import {readFile,writeFile,realpath} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {resolve} from 'node:path';
+import {collectAssets} from '../../../../distribution/manifest.mjs';
+import {PackClassifier,PackChain,CommonAncestor} from '../../../../distribution/packs.mjs';
+const root=process.cwd(),base='tools/texture_sheets/sources/official-world-2026-10-17/verification/';
+const read=p=>readFile(resolve(root,p)),json=async p=>JSON.parse(await read(p));
+const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
+const paths=['tools/texture_sheets/sources/official-world-2026-10-12/q92-channel-registration.json','tools/texture_sheets/sources/official-world-2026-10-12/q92-prior-generation-migration.json','tools/texture_sheets/sources/official-world-2026-10-12/tf-metal-registration.json','tools/texture_sheets/sources/official-world-2026-10-12/rock-pair-registration.json','tools/texture_sheets/sources/official-world-2026-10-12/quiet-metal-registration.json','tools/texture_sheets/sources/official-world-2026-10-12/realism-registration.json','tools/texture_sheets/sources/official-world-2026-10-12/character-stone-registration.json','tools/texture_sheets/sources/official-world-2026-10-12/aged-wall-metal-registration.json','tools/texture_sheets/sources/official-world-2026-10-13-continuation/floor-stone-stud-registration.json','tools/texture_sheets/sources/official-world-2026-10-13-continuation/crosspack-stone-registration.json','tools/texture_sheets/sources/official-world-2026-10-13-continuation/concrete-four-registration.json','tools/texture_sheets/sources/official-world-2026-10-13-continuation/base-five-and-alias-registration.json','tools/texture_sheets/sources/official-world-2026-10-17/braced-wood-registration.json','tools/texture_sheets/sources/official-world-2026-10-17/mottled-stone-registration.json'];
+const entries=(await Promise.all(paths.map(json))).flatMap(r=>r.entries),correction=await json('tools/texture_sheets/sources/official-world-2026-10-12/aged-wall-metal-v3-correction.json');
+const current=entries.map(e=>correction.entries.find(c=>c.name===e.name&&c.key===e.key)??e),games=await json('newer/packs/games.json'),classify=await PackClassifier(root);
+const files=e=>[e.binding.file,e.binding.normal.file,...Object.values(e.binding.normal.normalChannels)].map(f=>'newer/textures/'+f);
+const required=[...new Set(current.flatMap(files))],profiles={};
+for(const profile of ['web','desktop']){const assets=new Set(await collectAssets({root,profile})),missing=required.filter(f=>!assets.has(f));if(missing.length)throw Error('Missing '+missing);profiles[profile]={assetCount:assets.size,requiredQ92Files:required.length,present:required.length-missing.length,missing};}
+const ownership=current.map(e=>{const users=games.textures[e.name.toLowerCase()];if(!users?.length)throw Error('No indexed users '+e.name);const maps=files(e).map(file=>({file,pack:classify(file)}));for(const game of users)for(const row of maps)if(!PackChain(game).includes(row.pack))throw Error(game+' cannot reach '+row.file);return{name:e.name,key:e.key,users,expectedIndividualOwner:CommonAncestor(users),maps};});
+const result={qualification:'Asset collector closure and per-game accessibility only; not a packaged build, runtime visual acceptance, landing or release.',node:process.version,indexSha256:hash(await read('newer/textures/index.json')),gamesSha256:hash(await read('newer/packs/games.json')),bindings:current.length,uniqueQ92Files:required.length,profiles,ownership};
+await writeFile(base+'all61-delivery-closure.json',JSON.stringify(result,null,2)+'\n');
+console.log(JSON.stringify({bindings:result.bindings,uniqueQ92Files:result.uniqueQ92Files,profiles}));

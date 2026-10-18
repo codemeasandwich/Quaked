@@ -1,0 +1,113 @@
+[
+  {
+    "name": "city3_2",
+    "diffuseSha256": "32807076f9fceadcc1d60ab179fefbe2515bcdd5dc1858d69717836e4da91569",
+    "dimensions": [
+      256,
+      256
+    ],
+    "comparisonMetrics": {
+      "32": {
+        "nativeRGBMean": [
+          56.1943359375,
+          28.2734375,
+          13.810546875
+        ],
+        "replacementRGBMean": [
+          56.3359375,
+          28.443359375,
+          15.0625
+        ],
+        "rmseDiagnosticOnly": 8.016239214608888
+      },
+      "16": {
+        "nativeRGBMean": [
+          56.1796875,
+          28.25390625,
+          13.82421875
+        ],
+        "replacementRGBMean": [
+          56.2578125,
+          28.4140625,
+          15.00390625
+        ],
+        "rmseDiagnosticOnly": 4.751233392499257
+      }
+    },
+    "contact": "city3_2-independent-seam-v2-review.png"
+  },
+  {
+    "name": "city3_4",
+    "diffuseSha256": "30ed9b326bbd991d587510b7f08d4ec318b82a8f2d78af0cb19ee499d1620762",
+    "dimensions": [
+      256,
+      256
+    ],
+    "comparisonMetrics": {
+      "32": {
+        "nativeRGBMean": [
+          57.72265625,
+          42.8505859375,
+          21.4833984375
+        ],
+        "replacementRGBMean": [
+          57.7724609375,
+          42.9638671875,
+          21.7587890625
+        ],
+        "rmseDiagnosticOnly": 8.996472833144109
+      },
+      "16": {
+        "nativeRGBMean": [
+          57.6875,
+          42.796875,
+          21.5
+        ],
+        "replacementRGBMean": [
+          57.7109375,
+          42.90625,
+          21.6875
+        ],
+        "rmseDiagnosticOnly": 5.234102915814068
+      }
+    },
+    "contact": "city3_4-independent-seam-v2-review.png"
+  },
+  {
+    "name": "wstone1_2",
+    "diffuseSha256": "423342348e95513b93f79de93289de664e88b2555fc88d2385c693b88694972d",
+    "dimensions": [
+      256,
+      256
+    ],
+    "comparisonMetrics": {
+      "32": {
+        "nativeRGBMean": [
+          57.75390625,
+          57.75390625,
+          57.75390625
+        ],
+        "replacementRGBMean": [
+          57.751953125,
+          57.8740234375,
+          57.681640625
+        ],
+        "rmseDiagnosticOnly": 10.883781775153647
+      },
+      "16": {
+        "nativeRGBMean": [
+          57.7109375,
+          57.7109375,
+          57.7109375
+        ],
+        "replacementRGBMean": [
+          57.65625,
+          57.8046875,
+          57.61328125
+        ],
+        "rmseDiagnosticOnly": 6.264462433707568
+      }
+    },
+    "contact": "wstone1_2-independent-seam-v2-review.png"
+  }
+]

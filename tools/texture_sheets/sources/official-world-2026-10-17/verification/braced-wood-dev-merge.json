@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-10-17T23:31:47.698816+00:00",
+  "commit": "f944eafb86c77d68aa5a49f4c5652b80ba9c3d3d",
+  "remoteAtPublication": "f944eafb86c77d68aa5a49f4c5652b80ba9c3d3d",
+  "currentRemoteDev": "628f9424476b4cbbb2f7855931d51defcbeb2a72",
+  "includedInCurrentDev": true,
+  "stagedTree": "a4a0e37bd15799033e7376a3d702d285bb75767e",
+  "gate": {
+    "exitCode": 0,
+    "distributionTests": "58/58",
+    "rustTests": "10/10",
+    "engineTests": "91/91",
+    "web": true,
+    "desktop": true,
+    "universalMacBuild": true
+  },
+  "artifactQualification": "Other gate began during later build stages; shared-target Mac bundle is not a release artifact. Independent source/web/desktop stage and normal hook passed.",
+  "publicChecks": "6/6+pack5/5;290Q92maps426sourceoccurrences",
+  "gpu": "1276checks0shadererrors",
+  "publication": "Non-forced HEAD:Dev push verified by ls-remote at f944eafb; later remoteDev fast-forward retains thatcommit.",
+  "normalGateLog": "/private/tmp/quaked-oct17-commit-gate.log",
+  "campaignRemainingOrdinary": 1020
+}

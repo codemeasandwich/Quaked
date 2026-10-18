@@ -1,0 +1,161 @@
+{
+  "base": "5aa50def5104c35d4ae7a6e62126b1265f5cdca9",
+  "stagedTree": "f9958321538d79242d42f7de671438143ed6377c",
+  "checks": {
+    "exactTreeMatchesAllStageZeroIndexEntries": true,
+    "117PathManifestMatchesStagedChanges": true,
+    "onlyFourNewBindingsAndVersionChange": true,
+    "allPriorIndexEntriesPreserved": true,
+    "onlyFourNewGalleryEntries": true,
+    "onlyFourMg1PackKeysAndDigestChanged": true,
+    "20StagedRuntimeMapsMatchReviewedHashesAnd512LossyWebpFormat": true,
+    "generationProvenanceHashesMatchStagedBlobs": true,
+    "independentArtReviewMatchesInstalledDiffuseHashes": true
+  },
+  "maps": [
+    {
+      "path": "newer/textures/official/TF_Wood01_2-49942e3d4cebf857-4x-q92-diffuse.webp",
+      "sha256": "793a6556a783b70c157f9ee719ed15b15e51d3396cfc63d618157ec0b18424d6",
+      "role": "diffuse"
+    },
+    {
+      "path": "newer/textures/official/TF_Wood01_2-49942e3d4cebf857-4x-q92-height.webp",
+      "sha256": "49d594028d6914e47f537834a202f2d1cac6858b35e63b5cc8644ef7209f1c4e",
+      "role": "height"
+    },
+    {
+      "path": "newer/textures/official/TF_Wood01_2-49942e3d4cebf857-4x-q92-normalX.webp",
+      "sha256": "c9e9d511aac45537e8c3aa08c3f0ef0d92c7446ab4a9a9a2c6eac75bc349f9a3",
+      "role": "x"
+    },
+    {
+      "path": "newer/textures/official/TF_Wood01_2-49942e3d4cebf857-4x-q92-normalY.webp",
+      "sha256": "009eee014e45500703a2da9b046b07059f232df2578fa4f4dba4e9b58a206369",
+      "role": "y"
+    },
+    {
+      "path": "newer/textures/official/TF_Wood01_2-49942e3d4cebf857-4x-q92-normalZ.webp",
+      "sha256": "3ac1947b7163da0de06d3eda07ec1a6cf14531e9f369358254d01cb324b5b34c",
+      "role": "z"
+    },
+    {
+      "path": "newer/textures/official/TF_Wood01c_2-2e48c9446404330e-4x-q92-diffuse.webp",
+      "sha256": "bd10388afdbe43668c7981458bb2132a20c8eaf21c35f49fd0d6f872761b9609",
+      "role": "diffuse"
+    },
+    {
+      "path": "newer/textures/official/TF_Wood01c_2-2e48c9446404330e-4x-q92-height.webp",
+      "sha256": "8ceb475649e6bebfb93aabda3b1251c85cb66cbab1b910d676f4f685c99befc4",
+      "role": "height"
+    },
+    {
+      "path": "newer/textures/official/TF_Wood01c_2-2e48c9446404330e-4x-q92-normalX.webp",
+      "sha256": "7ab442100cf06ddf458a41c53652bbaa46c435f9e83d3c51a586110c8cefa89b",
+      "role": "x"
+    },
+    {
+      "path": "newer/textures/official/TF_Wood01c_2-2e48c9446404330e-4x-q92-normalY.webp",
+      "sha256": "4886708727a4247f5920e84da6fdc998214031ed98ca3932ae26be25940249b1",
+      "role": "y"
+    },
+    {
+      "path": "newer/textures/official/TF_Wood01c_2-2e48c9446404330e-4x-q92-normalZ.webp",
+      "sha256": "e1f82437ad2d5d0de49946267e7059b5ffa208ffb881f206751609c7afb3f6ee",
+      "role": "z"
+    },
+    {
+      "path": "newer/textures/official/TF_Wood01_4-4496e6bf62f38b05-4x-q92-diffuse.webp",
+      "sha256": "06ac81f5b02fa36f553a3ca0af35287590e8eedf5402d40f5f1a82e6c18c15ef",
+      "role": "diffuse"
+    },
+    {
+      "path": "newer/textures/official/TF_Wood01_4-4496e6bf62f38b05-4x-q92-height.webp",
+      "sha256": "12f26e841d787ff61c6200cb21a584388bb366910130e80d055fc8633f904993",
+      "role": "height"
+    },
+    {
+      "path": "newer/textures/official/TF_Wood01_4-4496e6bf62f38b05-4x-q92-normalX.webp",
+      "sha256": "a545a054846b1f3091ac05df8ef1c54b9923edad6f04b970715caa10aec912c2",
+      "role": "x"
+    },
+    {
+      "path": "newer/textures/official/TF_Wood01_4-4496e6bf62f38b05-4x-q92-normalY.webp",
+      "sha256": "d1960663ed89a4cadea3b9355cd09f1cb311f0932de8efb93dec639a7e198b1e",
+      "role": "y"
+    },
+    {
+      "path": "newer/textures/official/TF_Wood01_4-4496e6bf62f38b05-4x-q92-normalZ.webp",
+      "sha256": "c6118848155e5036fcf8e4819002f96c0a0e4162d60c050079bac68cd526e8ec",
+      "role": "z"
+    },
+    {
+      "path": "newer/textures/official/TF_Wood01c_4-a6b5b0c42885fb86-4x-q92-diffuse.webp",
+      "sha256": "3190ec05f681862b88eb11685c71982a66e359e1aefbb11cae9ed93d0eaaa1ff",
+      "role": "diffuse"
+    },
+    {
+      "path": "newer/textures/official/TF_Wood01c_4-a6b5b0c42885fb86-4x-q92-height.webp",
+      "sha256": "00f9691a970bd177804108f9406f9423161cd8d717054c20cd6f451fea76c66b",
+      "role": "height"
+    },
+    {
+      "path": "newer/textures/official/TF_Wood01c_4-a6b5b0c42885fb86-4x-q92-normalX.webp",
+      "sha256": "8eaa91ca3624f417d33113780dbd0e0d34c2e8b10dbc6233c97c41b2133bb978",
+      "role": "x"
+    },
+    {
+      "path": "newer/textures/official/TF_Wood01c_4-a6b5b0c42885fb86-4x-q92-normalY.webp",
+      "sha256": "7ec9aac5b5971ea54941bf9760a1ec1050a1e7a0fe1cdef04f174fbdfa67f134",
+      "role": "y"
+    },
+    {
+      "path": "newer/textures/official/TF_Wood01c_4-a6b5b0c42885fb86-4x-q92-normalZ.webp",
+      "sha256": "39c3482991bac23ce731422e491f1045f7231bba3855c560bd5f38c3d99fcdfb",
+      "role": "z"
+    }
+  ],
+  "reviewedKeyHashes": {
+    "newer/textures/index.json": "094db2d0a15b14a210374b93ba0425215c6a46a7d077deb4bd15da02e5d0a659",
+    "newer/packs/games.json": "1befd405257999d919bb9518e14c8481f22eb84fb2bff4de3438c0eda33c0fca",
+    "newer/textures/candidates-2026-10-12/trial.json": "70a3ffd7812b08271f414ace826ac3003527dedcd7a7f51e427e3ed941099a9b",
+    "tools/texture_sheets/sources/official-world-2026-10-17/compose_braces.py": "2158c0d4b8767291f58581df26dff1c3e79b59e51fdfa5bcc54ccf580505073d",
+    "tests/official_texture_q92_test.js": "7e12b0d1834b3d6f3a56bb99af33294946966930b19679381822bc123022cf29",
+    "tools/texture_sheets/sources/official-world-2026-10-17/CAMPAIGN.md": "1b05738bd00c3ef64d85b307ea9c95883b9a68e20da34327121c338d6ab3d108"
+  },
+  "verdict": "pass; no blocking defect found for this bounded four-material increment",
+  "reviewer": "Independent oct17_plan_review agent",
+  "reviewType": "Actual staged blob and full stage-zero tree review",
+  "findings": [],
+  "publicReceiptInputsMatchStagedBytes": true,
+  "gpuEvidence": {
+    "passed": 1276,
+    "failed": 0,
+    "shaderErrors": 0,
+    "qualification": "Material/source gallery preview only; no actual-level qualification claimed."
+  },
+  "testEvidence": {
+    "public": {
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0
+    },
+    "packs": {
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0
+    },
+    "qualification": "Receipts inspected and inputs hash-matched; this review did not rerun the tests."
+  },
+  "scopeNotes": [
+    "Current staged index entries exactly equal recursive tree f9958321538d79242d42f7de671438143ed6377c; verified read-only without git write-tree lock mutation.",
+    "All prior owner catalogue, pack and gallery entries are semantically unchanged. Source-specific names and native keys reject cross-source reuse.",
+    "Compositor matches independently replayed/reviewed v3 tool. Only approved band contribution and narrow feather alter the approved wood base.",
+    "Selected runtime diffuse bytes exactly match the independent art review. All20runtimefiles are512square lossyWebP and match gallery hashes. Actualquality92 andencoderreplay qualification comes from hash-matched independentpublic test receipts.",
+    "Test edits add four registrations/names and provenance field without reducing prior coverage.",
+    "Docs accurately separate appearance acceptance, complete campaign, normal hook, Dev landing and release. Bluey write outage and current owner obligation remain explicit.",
+    "Maintained full commit hook and current-Dev reconciliation are still required before publication; this receipt does not claim those completed."
+  ],
+  "normalGate": "not performed by reviewer",
+  "devLanding": "not performed or claimed",
+  "release": "not performed or authorized by this review"
+}

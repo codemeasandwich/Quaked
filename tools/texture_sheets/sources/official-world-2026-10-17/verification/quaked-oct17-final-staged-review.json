@@ -1,0 +1,19 @@
+{
+  "verdict": "pass; no blocking defect found",
+  "base": "abb027ab615afc80b28cba8b8d168b5c36c2decb",
+  "stagedTree": "a4a0e37bd15799033e7376a3d702d285bb75767e",
+  "pathCount": 117,
+  "fullStageZeroIndexMatchesPinnedTree": true,
+  "previousReviewedTextureTree": "f9958321538d79242d42f7de671438143ed6377c",
+  "onlyChangedPriorReviewedPath": [
+    "tools/texture_sheets/sources/official-world-2026-10-17/CAMPAIGN.md"
+  ],
+  "change": "CAMPAIGN.md appends accurate Dev fast-forward and shared gate wait facts; prior content retained.",
+  "allArtworkBindingsRuntimeMapsScriptsTestsAndEvidenceUnchanged": true,
+  "priorReviews": [
+    "/private/tmp/quaked-oct17-combined-review.json",
+    "/private/tmp/quaked-oct17-combined-delta-review.json"
+  ],
+  "scope": "Final staged tree and documentation delta approval, retaining previous independent art/source review. No heavy gate, Dev publication or release claimed.",
+  "next": "Proceed through maintained full commit gate only after shared heavy slot is free; recheck current Dev before publication."
+}

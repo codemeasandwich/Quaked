@@ -1,0 +1,73 @@
+{
+  "source": {
+    "id": "city3_4|64x64:c42b16880720ca92",
+    "name": "city3_4",
+    "key": "64x64:c42b16880720ca92",
+    "width": 64,
+    "height": 64,
+    "pixelSha256": "39b9ea98487f141ca70048a12e4be2b4b1057e691ec5b7ee37c79ed2ce9c5c56",
+    "original": "originals/64x64-c42b16880720ca92.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "id1",
+        "map": "maps/dm5.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+        "slot": 4,
+        "faces": 130,
+        "visibleCandidateFaces": 130,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/e2m3.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+        "slot": 34,
+        "faces": 17,
+        "visibleCandidateFaces": 17,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/e4m3.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+        "slot": 16,
+        "faces": 110,
+        "visibleCandidateFaces": 110,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "dopa",
+        "map": "maps/e5dm.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+        "slot": 4,
+        "faces": 171,
+        "visibleCandidateFaces": 171,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "dopa",
+        "map": "maps/e5sm2.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+        "slot": 4,
+        "faces": 197,
+        "visibleCandidateFaces": 197,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "referenceSha256": "9103cc46650381732f97bbcbf225b3afcbe6b8dee895fe77e95e42d5223d9bac"
+}

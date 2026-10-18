@@ -1,0 +1,40 @@
+{
+  "source": {
+    "id": "TF_Metal3_02|128x128:f8230466d48d694c",
+    "name": "TF_Metal3_02",
+    "key": "128x128:f8230466d48d694c",
+    "width": 128,
+    "height": 128,
+    "pixelSha256": "de1b6694e6a6b0f9f53d7dc3c7c4e2ffcc020ed4725e8a23d1cd9cd319826668",
+    "original": "originals/128x128-f8230466d48d694c.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "mg1",
+        "map": "maps/mge1m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+        "slot": 77,
+        "faces": 96,
+        "visibleCandidateFaces": 96,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge2m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+        "slot": 87,
+        "faces": 8,
+        "visibleCandidateFaces": 8,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "referenceSha256": "08d7eaed7f27091956c46f09d5c11aafd92e8cd45798573fe250e4db8c1411eb"
+}

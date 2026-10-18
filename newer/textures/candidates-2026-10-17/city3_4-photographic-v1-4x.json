@@ -1,0 +1,55 @@
+{
+  "method": "photographic",
+  "factor": 4,
+  "verticalLandmarks": null,
+  "colorStrength": 1.0,
+  "fieldSigma": 2.0,
+  "edgeAnchor": false,
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    32,
+    32
+  ],
+  "distanceMeanMaxError": 36.6875,
+  "distanceMeanMAE": 6.689626057942708,
+  "donorDistanceMAE": 27.663314819335938,
+  "newClippedChannelFraction": 0.016489664713541668,
+  "donorContourCorrelation": 0.9947552003886363,
+  "sourceMean": [
+    57.712158203125,
+    42.838134765625,
+    21.491455078125
+  ],
+  "outputMean": [
+    57.71180725097656,
+    42.84619140625,
+    21.815628051757812
+  ],
+  "donorBoundaries": {
+    "wrap_x_mean": 9.092447916666666,
+    "wrap_y_mean": 10.555989583333332,
+    "interior_x_mean": 8.71890829248366,
+    "interior_y_mean": 9.227915645424837
+  },
+  "boundaries": {
+    "wrap_x_mean": 9.033854166666668,
+    "wrap_y_mean": 10.453125,
+    "interior_x_mean": 8.583057598039217,
+    "interior_y_mean": 9.084252450980392
+  },
+  "passedDistanceCheck": null,
+  "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-city3_4.png",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-17/mottled-stone-generated-v1.png",
+  "output": "newer/textures/candidates-2026-10-17/city3_4-photographic-v1-4x.png",
+  "originalSha256": "9103cc46650381732f97bbcbf225b3afcbe6b8dee895fe77e95e42d5223d9bac",
+  "generatedSha256": "eca562b8467985d822d20a8cf1721e59cdd8177c716f4cade449814d9268661a",
+  "outputSha256": "a96841e25b0f9906f41e59479f89a9cc3178e4a88d1a3a7415ce92be09498e42",
+  "outputDimensions": [
+    256,
+    256
+  ],
+  "toolSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+  "landmarkFile": null,
+  "landmarkSha256": null
+}
