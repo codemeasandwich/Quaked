@@ -1,0 +1,44 @@
+{
+  "qualification": "Narrow filesystem/test-source successors only; no old recipe/provenance rewrite and no numeric assertions changed. Actual public/source/producer/encoder reruns remain required.",
+  "migrationCommit": "738f92d96e56517eed3fcc255a885b4fc9528b9a",
+  "changes": [
+    {
+      "file": "tests/official_texture_registration_test.js",
+      "beforeFile": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-layout-historical-test-before.js",
+      "beforeSha256": "4d01224c7f09709e46d2a9ccfd567c4cf977aed012075ea3e5f7b662227ae143",
+      "afterSha256": "296b95702b652ab1791837bda907f6370e6c3cfa8f4d2e4320388d44c02375ce"
+    },
+    {
+      "file": "tests/level_texture_assets_test.py",
+      "beforeFile": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-layout-level-test-before.py",
+      "beforeSha256": "697f9d820ef6ee4ef3e7e0362e8d34c4036f0fe9936130faefff9e0875a34ec1",
+      "afterSha256": "5242fc8d96fed6e978700eaa19a3bb2bf71117f2890f00fbe50f287058b64913"
+    },
+    {
+      "file": "tests/official_texture_q92_test.js",
+      "beforeFile": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-layout-q92-test-before.js",
+      "beforeSha256": "0c4ce21aeee8071d6f0218e7e7729d62d5769a11b3c3252a85f861b1d7d84f91",
+      "afterSha256": "d73dd269178c251ab2a6b398e09e1830d7ad84bc70b12bfa68adf9afbd1c4b4d"
+    }
+  ],
+  "sourceSuccessors": [
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "beforeFile": "tools/texture_sheets/sources/official-world-2026-10-17/verification/update_level_sheets-before-resource-layout.py",
+      "beforeSha256": "739856ad35d8a2622aff9a8acb7f8493bd6fbfbc8b5f6ec6c30dd8bab3bd9e17",
+      "afterSha256": "ea36ecdc2fe7dcb92d3b66f2ab8d45959e269a11e0f2b4308a438a9a9fcfc123",
+      "proof": "Full current source equals retained source after only explicit central import/index-path/target-path transformations; every authored_height and brick_mask byte unchanged."
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/prepare_horizontal_trims.py",
+      "beforeFile": "tools/texture_sheets/sources/official-world-2026-10-17/verification/prepare_horizontal_trims-before-resource-layout.py",
+      "beforeSha256": "3b649b0f05e4037f91cbc0b60969682ef2feec4535e9a85a3f0b91f16925de50",
+      "afterSha256": "c8d185417a9a4bc80d3b202efdb37065c1aa700c2ad348a1237327b199f99ab2",
+      "proof": "Parent-reviewed central donor read boundary only; logical receipt source label retained. Actual two-output PNG producer replay required in maintained public case."
+    }
+  ],
+  "retainedFailureLogs": [
+    "stone-trims-layout-owner-historical-tests.txt",
+    "stone-trims-layout-level-assets-tests.txt"
+  ]
+}

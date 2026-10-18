@@ -1,0 +1,202 @@
+{
+  "verdict": "PASS independent publicCLI",
+  "scope": "Only added tests/official_texture_layered_height_test.py to managedWT. No encoder/source/master/index/other-test edits or builds by this helper. ROOTlogs/receipt are separate verification evidence.",
+  "head": "28765ac38a3da144a7c73986de7d953a76e8d1f1",
+  "testFile": "tests/official_texture_layered_height_test.py",
+  "testSha256": "e49e9688031a378e454190c2430baf97eafe7197752677800748e51b21e6c535",
+  "encoderFile": "tools/texture_sheets/encode_official_maps.py",
+  "encoderSha256": "6e8a6306bb935a84a93477ee2091065763f7a6d4a8428e5e33a2da6eb148c520",
+  "command": "/usr/bin/python3 tests/official_texture_layered_height_test.py -v",
+  "results": {
+    "testMethods": 3,
+    "successfulRealCLIInvocations": 4,
+    "negativeCLIInvocations": 11,
+    "failures": 0,
+    "skips": 0,
+    "currentResourceWarnings": 0,
+    "currentElapsedSeconds": 5.178
+  },
+  "coverage": [
+    "Real wide/narrow nativePNG/sourceRGBA identity and master hashes; exact5Q92payload replay per source, source-bound layeredrecipe/helper receipt, exact4x/lossy92payloads.",
+    "Independent integer half-open native8course/side8or16 layout over every decodedheightpixel, strict facingmin>centreinsetmax and exactdecoder margin record. No authoring mask function imported by test.",
+    "Strength.2\u2192.06 produces changednormals with diffuse/height byte-exact and materialplane ordering preserved.",
+    "Wrongnative/name/masterSHA, reversedfloor, insufficientmicrogap, nonfinitelevel, out-of-boundsregion, wrongreferenceSize andemptyregions rejected before outputdirectory/mapwrites. Bothpartnerflag combinations withlayering rejected.",
+    "Retained real source/master/recipe/witness/map custody rechecked after CLI executions."
+  ],
+  "sourceSpecificResults": [
+    {
+      "name": "br_trim1_1",
+      "encodedWitness": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz.json",
+      "encodedWitnessSha256": "caa0032e2e2ece7b46bf4e0662e341369b4c338e75c4ce5ae57dc18a8c382cee",
+      "recipe": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_1-layered-height-v1.json",
+        "sha256": "d78878edee9d4c9b0832660f3fa826f0f5da4f9e070ab1a42ea00e1101f6b271",
+        "policy": "layered-veneer",
+        "authoringTool": "tools/texture_sheets/update_level_sheets.py",
+        "authoringToolSha256": "739856ad35d8a2622aff9a8acb7f8493bd6fbfbc8b5f6ec6c30dd8bab3bd9e17",
+        "decodedPlaneOrdering": {
+          "facingMinimum": 158,
+          "insetMaximum": 107,
+          "decodedMinimumGap": 51,
+          "units": "decoded red channel 0..255"
+        }
+      },
+      "independentDecodedFacingMinimum": 158,
+      "independentDecodedInsetMaximum": 107,
+      "independentDecodedPlaneGap": 51,
+      "nativeHalfOpenLayoutConfirmedByCLITest": true,
+      "maps": {
+        "diffuse": {
+          "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-diffuse.webp",
+          "sha256": "b6d49572e815697c77b11644f82f496f075b907d27d81841be5b92ffc712a73e",
+          "bytes": 56298,
+          "quality": 92,
+          "lossless": false,
+          "dimensions": [
+            512,
+            256
+          ]
+        },
+        "height": {
+          "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-height.webp",
+          "sha256": "409fe19aeb4add038baa2dbdb03950f0a5aa9d3ec4cf8134074a7944b479cbe3",
+          "bytes": 7162,
+          "quality": 92,
+          "lossless": false,
+          "dimensions": [
+            512,
+            256
+          ]
+        },
+        "normalX": {
+          "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-normalX.webp",
+          "sha256": "3a8286e9370d5f0fab78f5df5dba1874dbfda5e983ba3dc4a7bc0df2cc08b2da",
+          "bytes": 7250,
+          "quality": 92,
+          "lossless": false,
+          "dimensions": [
+            512,
+            256
+          ]
+        },
+        "normalY": {
+          "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-normalY.webp",
+          "sha256": "6ecbc8c46d199fc517cb130aab6425f9bb52c888c8f578cd3adbeb7949470fee",
+          "bytes": 8544,
+          "quality": 92,
+          "lossless": false,
+          "dimensions": [
+            512,
+            256
+          ]
+        },
+        "normalZ": {
+          "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-normalZ.webp",
+          "sha256": "0b7b0b88cc12092dba70014ffabac563c7f9fab26206ffa4f922b3b2947d6e10",
+          "bytes": 706,
+          "quality": 92,
+          "lossless": false,
+          "dimensions": [
+            512,
+            256
+          ]
+        }
+      }
+    },
+    {
+      "name": "br_trim1_2",
+      "encodedWitness": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz.json",
+      "encodedWitnessSha256": "a6160569a7d7f9864baf036e3fe421d520ab9777c9e7888d837e54f38692b464",
+      "recipe": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_2-layered-height-v1.json",
+        "sha256": "b63d2e17cde0eaccf76d91555632f0fd60bec044eeae1307637445507f40091d",
+        "policy": "layered-veneer",
+        "authoringTool": "tools/texture_sheets/update_level_sheets.py",
+        "authoringToolSha256": "739856ad35d8a2622aff9a8acb7f8493bd6fbfbc8b5f6ec6c30dd8bab3bd9e17",
+        "decodedPlaneOrdering": {
+          "facingMinimum": 162,
+          "insetMaximum": 107,
+          "decodedMinimumGap": 55,
+          "units": "decoded red channel 0..255"
+        }
+      },
+      "independentDecodedFacingMinimum": 162,
+      "independentDecodedInsetMaximum": 107,
+      "independentDecodedPlaneGap": 55,
+      "nativeHalfOpenLayoutConfirmedByCLITest": true,
+      "maps": {
+        "diffuse": {
+          "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-diffuse.webp",
+          "sha256": "783f491f1c3f1d7efdaaf8512b493e7a2cdfcf62deba3a9a0521bad80e1b2d1d",
+          "bytes": 28724,
+          "quality": 92,
+          "lossless": false,
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "height": {
+          "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-height.webp",
+          "sha256": "88cbe16eaa140215ed621a91db1be7ddaf8367d04069be139da28691a5811444",
+          "bytes": 4992,
+          "quality": 92,
+          "lossless": false,
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "normalX": {
+          "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-normalX.webp",
+          "sha256": "6743c958e1f516595b1c4047e5b8437b500f1b6e896c6ee6f539441f5b068895",
+          "bytes": 3878,
+          "quality": 92,
+          "lossless": false,
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "normalY": {
+          "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-normalY.webp",
+          "sha256": "ff2151ce5c368c764c5ded0465634446a42ccf51e53b8d8ced8ba0121a1c4e4c",
+          "bytes": 4642,
+          "quality": 92,
+          "lossless": false,
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "normalZ": {
+          "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-normalZ.webp",
+          "sha256": "7b9b7f719824c9d062ef7f81c9a66ccd91bc74e0dbadbbd882f5eeb80926ef26",
+          "bytes": 500,
+          "quality": 92,
+          "lossless": false,
+          "dimensions": [
+            256,
+            256
+          ]
+        }
+      }
+    }
+  ],
+  "logs": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/layered-height-cli-initial-resource-warnings.txt",
+      "sha256": "490a4cc5a821e2b8d8b7f5c4e4ed9062debfadd0e71879947633b13b152dce7d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/layered-height-cli-tests.txt",
+      "sha256": "9504120c0c5f0943f0460cc9d2f79554724e32088e90023ccecc1d3d5af33c55"
+    }
+  ],
+  "initialWarningResolution": "Initial3test PASS exposed unclosed master image .size handle warnings in the new test fixture. Original log retained. Added context manager only in newtest and reran that test alone, clean3PASS; no encoder changes needed.",
+  "limits": "No visual realism/edge-bleed acceptance, actualGPU/POM or JSalpha/cache test is inferred from these Python checks. Publichelper owns existing111/fullsource/normal/public/pack suite and actualJSheightR\u2192normalalpha/cache proof. Parent owns angledGPU/photoacceptance and exactstage/normalgate/Dev.",
+  "relatedReview": {
+    "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/brick-layered-encoder-diagnostic-code-review.json",
+    "sha256": "08cabb51641484052625c2dc732d97881d383f1cd95bb18741c3b6af131dcdd7"
+  }
+}

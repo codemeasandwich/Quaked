@@ -1,3 +1,4 @@
+import {resourcePath} from './helpers/resource_path.mjs';
 import {ResourceURL} from '../src/platform/resource_paths.js';
 // Independent installed public checks for two owner-authored height-only pairs.
 // Run only after the reviewed four-file/four-binding successor is installed.
@@ -67,7 +68,7 @@ Deno.test('four owner Q92 successors preserve complete predecessor metadata and 
  for(const mutate of[c=>{c.ordinaryVariants[firstName][firstKey].file+='-wrong';},c=>{delete c.normals.city5_3;},c=>{c.normals.wizmet1_3.normalFile='unreviewed.webp';}]){const bad=structuredClone(later);mutate(bad);let rejected=false;try{preserveExistingOwnerState(bad,expected);}catch{rejected=true;}check(rejected,'later version never bypasses preserved old recipe checks');}
 
  const reproduce="from PIL import Image; import sys,io\np=Image.open(sys.argv[1]);p=p.convert('RGBA' if 'A' in p.getbands() else 'RGB');b=io.BytesIO();p.save(b,'WEBP',quality=92,lossless=False,method=6);sys.stdout.buffer.write(b.getvalue())";
- for(const m of ownerQ92Maps){same(sha256(read(m.predecessor)),m.masterSha256,'retained source hash');const current=read(m.file);equal(ownerQ92ImageSize(current,m.file),[256,256],'actual4x map');same(sha256(current),m.sha256,'runtime digest');bytes(execFileSync('/usr/bin/python3',['-c',reproduce,resolve(root,m.predecessor)]),current,'independent Q92 codec reproduction');}
+ for(const m of ownerQ92Maps){same(sha256(read(m.predecessor)),m.masterSha256,'retained source hash');const current=read(m.file);equal(ownerQ92ImageSize(current,m.file),[256,256],'actual4x map');same(sha256(current),m.sha256,'runtime digest');bytes(execFileSync('/usr/bin/python3',['-c',reproduce,resourcePath(resolve(root,m.predecessor))]),current,'independent Q92 codec reproduction');}
 });
 Deno.test('all24 owner source occurrences match actual PAK pixels and share exact native identities with their donors',async()=>{
  const sources=[];for(const e of ownerQ92Bindings){const p=plan.bindings.find(p=>p.name===e.name);check(p,'planned real owner uses');for(const use of p.officialObservedUses){const actual=await native(e,use);try{sources.push(actual.source);}finally{dispose(actual.texture);}}}

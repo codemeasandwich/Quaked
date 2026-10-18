@@ -1,0 +1,238 @@
+{
+  "qualification": "Independent bounded rawgeometry/material and plannedmodulecomposition review only. No authoringasset edit, composition/finisher execution, normalgeneration, installation, WT/index/test/build/gate mutation. One croppedrawview saved solely asROOTverificationevidence. Sourcephotographs are not yet qualified runtime replacements.",
+  "ownerCorrectionAuthoritative": "Originalsideextensions are solidplainmasonry, slightlyproud ofdark patterned infill. Darknativepixels do not authorize missing squarebrick holes. PreviousnarrowPASSreceipts remain historicaland are superseded bythisHOLD disposition; otherthree reviewedmaterials unaffected.",
+  "wideV5": {
+    "source": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_1-generated-v5.png",
+    "sha256": "cc6d69e5178a60565d98bb9d37ff59c3d204d454c93525a23abaf649beabf501",
+    "size": [
+      1774,
+      887
+    ],
+    "verdict": "PASS rawgeometry/material for boundedsourcefinishing only",
+    "appearance": "Clean, symmetric solidplainjambs/alternatingreturns now separate from7/6patternedinfill modules. Sharpphotographicglazedbrick/coarsemasonrymaterial; no falsecavities. More regularcomplete modules/interfaces thanv4.",
+    "courseEvidence": {
+      "diagnosticJointRows": [
+        104,
+        217,
+        328,
+        440,
+        550,
+        662,
+        772,
+        880
+      ],
+      "interJointGaps": [
+        113,
+        111,
+        112,
+        110,
+        112,
+        110,
+        108
+      ],
+      "topSpan": 104,
+      "bottomSpan": 7,
+      "method": "Central15..85percent rowmean luminance,5rowmean, low8percent localmin candidates separated0.55nominalcourse; coordinates support visualcount only, not acceptance thresholds."
+    },
+    "phaseLimit": "Retain exactnative Yregistration as a separate fitted-half/quarter check; rawcount does not blindly approve any inherited+4operation/units.",
+    "depthLimit": "Albedo visuallysupports plainreturns infront; actualencodedheight/XYZ planeordering remainsHOLD until semanticbaseheight andtwolight review."
+  },
+  "narrowV2": {
+    "source": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_2-generated-v2.png",
+    "verdict": "HOLD",
+    "reason": "Sevenfullcourses plus78px tail at~167pxpitch \u22487.47courses. No cyclicshift/resizing caninvent the missinghalfrow.",
+    "courseEvidence": {
+      "diagnosticJointRows": [
+        165,
+        335,
+        510,
+        668,
+        835,
+        1002,
+        1176
+      ],
+      "interJointGaps": [
+        170,
+        175,
+        158,
+        167,
+        167,
+        174
+      ],
+      "topSpan": 165,
+      "bottomSpan": 78,
+      "method": "Central15..85percent rowmean luminance,5rowmean, low8percent localmin candidates separated0.55nominalcourse; coordinates support visualcount only, not acceptance thresholds."
+    }
+  },
+  "narrowV3": {
+    "source": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_2-generated-v3.png",
+    "sha256": "554dc608aed8622cc26db13150cdf85cab8e105acee73f16cc6813e27958b18c",
+    "size": [
+      1254,
+      1254
+    ],
+    "verdict": "HOLD rightinterface despite corrected8coursecount",
+    "courseEvidence": {
+      "diagnosticJointRows": [
+        157,
+        311,
+        468,
+        622,
+        783,
+        940,
+        1095
+      ],
+      "interJointGaps": [
+        154,
+        157,
+        154,
+        161,
+        157,
+        155
+      ],
+      "topSpan": 157,
+      "bottomSpan": 159,
+      "method": "Central15..85percent rowmean luminance,5rowmean, low8percent localmin candidates separated0.55nominalcourse; coordinates support visualcount only, not acceptance thresholds."
+    },
+    "countAssessment": "Seveninteriorjointrows plus full157top/159bottom spans at154..161pitch gives8completecourses. Thispartfixesv2.",
+    "remainingDefect": "On fullrows, patternedglaze/blueflecks continue into rightouterplainband without a cleanmaterialboundary; on insetrows the rightplainreturn is much narrower thanleft. Rightcrop evidence shows bleeding/mixedtransition rather than consistent solidplainproudreturn.",
+    "fixConstraint": "Plainrightmasonry mustexist acrossALL8courses andextend inward onalternatecourses symmetrically withsourceleft, withcleanphysicalmaterial/plane separation. Fillingcavities alone isinsufficient.",
+    "rightEvidence": "tools/texture_sheets/sources/official-world-2026-10-17/verification/br_trim1_2-v3-right-interface-raw-review.png"
+  },
+  "proposedModulePlan": {
+    "verdict": "APPROVE boundedplan, not yet finalnarrowtexture acceptance",
+    "why": "Whole native narrowRGBA equals exactconcatenation ofnativewideleft32/right32columns, zero differingpixels. This is a source-derived geometric identity andstronger basis than repeateduncertain narrowAIedits.",
+    "nativeProof": {
+      "wideDimensions": [
+        128,
+        64
+      ],
+      "narrowDimensions": [
+        64,
+        64
+      ],
+      "sourceColumns": [
+        [
+          0,
+          32
+        ],
+        [
+          96,
+          128
+        ]
+      ],
+      "wholeRgbaDifferentPixels": 0,
+      "computedRgbaSha256": "e3244128886263e4486ae15cd10f08b80a0b0827a62a27361e7bc07705d6640c",
+      "narrowRgbaSha256": "e3244128886263e4486ae15cd10f08b80a0b0827a62a27361e7bc07705d6640c"
+    },
+    "steps": [
+      "Uniformlynormalize goodwidev5 1774x887(2:1) once to512x256, preservingphotographic materialscale.",
+      "Concatenate wide4x columns[0:128] and[384:512] to256x256. Remove4whole64pxmodules; no secondresize/Xshrink, no touchingoriginalimages. Preservewide8courseYgeometry.",
+      "If needed, rollnew256image128pxX, applyexistingquiet_edges.finish axesx, unroll. Its32pxendpointbands map solelyto originalcentercolumns96..159. Require first96/last96columns byte-exact before/afterfinishing, includingallplainjambs/returns.",
+      "Recordcrop/sourcehashes, mask/no-spatialresampling andclipping diagnostic. Visuallycheck centerjoin insidefull-rowmiddlebrick and insideinset-rowmortar: no newverticalseam, no erasedbrickedge/widenedgrout orplasticblur.",
+      "Recheckfittednative rowparity/phase, equalhalf/quarter, actualXYrepeat andsharpness; sourcefit staysdistinctnarrowkey, notruntimealias.",
+      "Do notcrop heldwideXYZoracceptoldrelief. Create/review semanticheight withplainmasonry aboveeveryinfillface independentlyofpaint/highlights, regenerateQ92height/XYZ atnew256width, thenactualdecodedmaptwolightreview."
+    ],
+    "protectedPixelPrediction": {
+      "imageWidth": 256,
+      "rolledAxis": "x",
+      "rollPixels": 128,
+      "quietBandPixels": 32,
+      "onlyPotentiallyChangedOriginalX": [
+        96,
+        160
+      ],
+      "first96ColumnsUnchangedRequired": true,
+      "last96ColumnsUnchangedRequired": true
+    },
+    "concerns": [
+      "Colour-onlyfinishing correctstone, not featurealignment; ifdifferentfacegrain/crackle cuts make a visiblecenter seam, hold/reviewa narrowface-local repair rather than broadrepaint.",
+      "Do not allow mortar smoothing/contrastchange to misrepresentphysicaldepth.",
+      "Raw/photo geometryapproval does notrelease both owner-held height/normalsets."
+    ]
+  },
+  "wideV4EarlierReference": {
+    "source": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_1-generated-v4.png",
+    "courseEvidence": {
+      "diagnosticJointRows": [
+        93,
+        203,
+        313,
+        423,
+        534,
+        645,
+        757,
+        868
+      ],
+      "interJointGaps": [
+        110,
+        110,
+        110,
+        111,
+        111,
+        112,
+        111
+      ],
+      "topSpan": 93,
+      "bottomSpan": 19,
+      "method": "Central15..85percent rowmean luminance,5rowmean, low8percent localmin candidates separated0.55nominalcourse; coordinates support visualcount only, not acceptance thresholds."
+    },
+    "note": "8cycliccourseperiods:93top+19bottom\u2248one111pxperiod. Currentv5has cleanerinterfaces/modules andsupersedes thisprovisionalrawreference."
+  },
+  "fittedWideV10ObservedButNotFullyApproved": {
+    "receipt": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x-q92-xyz.json",
+    "diffuse": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x-q92-xyz-diffuse.webp",
+    "diffuseSha256": "e3e60b0492d4ddf25153945bbef8b985cd0ea6f402f4e2ddc8119566ccc17f06",
+    "dimensions": [
+      512,
+      256
+    ],
+    "scope": "Read-onlyappearance reference; no half/quarter/CPU/fulltexturequalification claimed here. Height/XYZ explicitlyheld."
+  },
+  "inputs": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_1-generated-v4.png",
+      "sha256": "aa691e85763a653e52e0d2e1c446cd85c57d349940c808a0b5aa6e24020838b4"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_1-generated-v5.png",
+      "sha256": "cc6d69e5178a60565d98bb9d37ff59c3d204d454c93525a23abaf649beabf501"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_2-generated-v2.png",
+      "sha256": "e0ccd70b370ea30f391968ec87abe54e817e63854c0e8c39561051a961b244c1"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_2-generated-v3.png",
+      "sha256": "554dc608aed8622cc26db13150cdf85cab8e105acee73f16cc6813e27958b18c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_1.png",
+      "sha256": "67eeeb98acf7292d963e79e8298984b64aad6368ef1d8bcd3671e5f279571515"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_2.png",
+      "sha256": "2f5fe0c3e00a0bfe74da5fe8f084eccf0d5f81712f26dc0ba455ed3f44829f0c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/brick-solid-edge-generation-v1.json",
+      "sha256": "871705dfd2e534112a52c7e4a28d3d4e26ae69bad167e24cda7e744fa0842ed1"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/br_trim1_2-v3-right-interface-raw-review.png",
+      "sha256": "ccb21ed2662245ccb34d116e735c0526277b09b8e512cedaeb77a441e1c600d1"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x-q92-xyz.json",
+      "sha256": "e078d83d4e7033206b85f1d4473db8c93a0c3955f71b91399c774f5671a5033a"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x-q92-xyz-diffuse.webp",
+      "sha256": "e3e60b0492d4ddf25153945bbef8b985cd0ea6f402f4e2ddc8119566ccc17f06"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/finish_quiet_edges.py",
+      "sha256": "b4d0ffed5d127c976ca73d0fb203636cb33a0c1ba43bb04361407e3eb83642a1"
+    }
+  ]
+}

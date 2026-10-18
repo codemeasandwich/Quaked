@@ -1,0 +1,36 @@
+{
+  "material": "wstone_17_JM",
+  "stage": "Preliminary sharper v2 donor and decoded seam-v4 diffuse; relief not reviewed",
+  "materialAndSharpness": "PASS preliminary",
+  "overallResult": "HOLD for phase",
+  "assessment": "Substantially clearer than v1. Distinct mineral fragments, sparse pits and thin veins remain readable in raw and decoded1024 Q92. Rounded ridges retain intended natural curvature; no uniform sharpening or source pixel-noise copy needed.",
+  "phase": "Eight columns exist but intermediate ridge positions drift up to about20runtime pixels. Currentv4 must not register before measured phase correction.",
+  "proposedReuseReview": "Sound bounded reuse of existing finish() vertical-landmark interpolation by transposing native original and fresh donor, calling unchanged finisher, then transposing back. This is explicit photographic coordinate registration, not aliasing or a runtime engine change.",
+  "conditions": [
+    "Record original/donor input hashes, transpose directions, actual native-unit landmark pairs and implementation hash.1024-space X positions must be divided by4 for the256-native finisher.",
+    "Pairs must be finite, strictly increasing in both coordinates from exact[0,0] to[256,256]. Treat wrap peak separately from endpoint; do not insert bothx0\u21921023 andx1024 endpoints as contradictory interior anchors.",
+    "Use all eight measured physical ridge periods, preserve count/feature scale and inspect partial boundary ridge plus all intermediate widths. Monotone interpolation prevents folding; it does not by itself prove photographic quality.",
+    "Version new outputs; retain heldv4 and no sharpening/noise synthesis. Re-evaluate actual1024 decoded Q92 sharpness after interpolation, half/quarter similarity, actual XY wrap and relief.",
+    "Receipt must explicitly identify spatial registration. Later seam stage spatialResampling:false only describes that later colour-edge stage, not the complete pipeline."
+  ],
+  "brickV3Status": "Full-wall generated-v3 PNG was not yet present at source path at this review. No brick-v3 approval or rejection claimed.",
+  "inputs": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/wstone_17_JM-generated-v2.png",
+      "sha256": "db10169ac9702d55085a527eb4c4921fe6f1a60d8bcd517a2eb4f09f4ec41e53"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v4-4x-q92-xyz-diffuse.webp",
+      "sha256": "c113cbd16e760f5c51938fe6b86b4792804406707b5af1ed4b440e80e46859cf"
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_17_JM.png",
+      "sha256": "c4be3494526414bb204ea249375c90c54189ad0ccba8792e1194efb3a8a93bfb"
+    }
+  ],
+  "mutations": "ROOT verification receipt only; no candidate/WT/index/test/implementation edits."
+}

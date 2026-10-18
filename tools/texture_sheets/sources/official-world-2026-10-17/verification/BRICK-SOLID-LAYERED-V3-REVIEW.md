@@ -1,0 +1,9 @@
+# Corrected brick successors: independent art PASS
+
+The wide v13 and narrow v7 photographic layered candidates pass this finite ROOT-only review. Eight courses, 7/6 and 3/2 face counts, solid alternating returns, both side interfaces and the narrow central module join were checked at actual 4× dimensions. The source-proven whole narrow native equals the outer wide modules; the photographic composition preserves their scale instead of squeezing a wide texture.
+
+Equal half- and quarter-native contacts show representative brown/olive palette and source rhythm. Full and repeated views retain distinct sharp glazed brick and coarse plain masonry without copying pixel grain. Both opposite CPU lights show the plain facing above the darker inset brickwork with restrained detail. Actual published XYZ was inspected separately from the production height-derived route, whose smoothing differs. Decoded red-channel safe interiors independently remain separated (wide facing169 > inset107; narrow171 >107); this is an eroded interior witness, not a replacement for the parent’s full-mask158/162 witness.
+
+The protected96-column claim applies at the composition base stage only. The later pinned colour fit and quiet-edge correction can alter RGB there; no final-image byte-identity claim is made. Physical interface slopes do not authorize an extra image border bevel. Older incorrect edge-gap photos and colour-derived brick relief remain held, and their sealed reports remain historical.
+
+The JSON review binds exact ten new map hashes and source/recipe/view evidence. The current-eight aggregation binds all forty maps: these two, my three unchanged prior materials, and the other reviewer’s scoped quiet-three receipt. I did not visually re-review that quiet-three group. Actual GPU/oblique displacement, installed public and encoder tests, pack closure, final tree/build gate, Dev publication and owner acceptance remain separate.

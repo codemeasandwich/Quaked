@@ -1,0 +1,55 @@
+{
+  "method": "photographic",
+  "factor": 4,
+  "verticalLandmarks": null,
+  "colorStrength": 1.0,
+  "fieldSigma": 2.0,
+  "edgeAnchor": false,
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    128,
+    128
+  ],
+  "distanceMeanMaxError": 88.90625,
+  "distanceMeanMAE": 11.938460350036621,
+  "donorDistanceMAE": 17.52819887797038,
+  "newClippedChannelFraction": 0.0,
+  "donorContourCorrelation": 0.9996245606566461,
+  "sourceMean": [
+    177.25164794921875,
+    161.97454833984375,
+    155.789306640625
+  ],
+  "outputMean": [
+    177.25152111053467,
+    161.9755392074585,
+    155.78992366790771
+  ],
+  "donorBoundaries": {
+    "wrap_x_mean": 10.776692708333334,
+    "wrap_y_mean": 14.313151041666668,
+    "interior_x_mean": 8.722889173998047,
+    "interior_y_mean": 7.929853601539592
+  },
+  "boundaries": {
+    "wrap_x_mean": 10.7666015625,
+    "wrap_y_mean": 14.301432291666666,
+    "interior_x_mean": 8.687027469758066,
+    "interior_y_mean": 7.931830273501137
+  },
+  "passedDistanceCheck": null,
+  "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_17_JM.png",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-17/wstone_17_JM-generated-v2.png",
+  "output": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-v3-4x.png",
+  "originalSha256": "c4be3494526414bb204ea249375c90c54189ad0ccba8792e1194efb3a8a93bfb",
+  "generatedSha256": "db10169ac9702d55085a527eb4c4921fe6f1a60d8bcd517a2eb4f09f4ec41e53",
+  "outputSha256": "4625059da4d1255c01bf681f73ab44f44aed314db63ff0fc1d80e231241029ec",
+  "outputDimensions": [
+    1024,
+    1024
+  ],
+  "toolSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+  "landmarkFile": null,
+  "landmarkSha256": null
+}

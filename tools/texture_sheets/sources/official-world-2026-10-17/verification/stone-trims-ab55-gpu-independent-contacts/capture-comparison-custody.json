@@ -1,0 +1,606 @@
+{
+  "qualification": "Lossless crop/contact comparison for finite visual review only; no new draws or runtime edits. Diagnostics do not define visual acceptance.",
+  "drawReportSha256": "e48b2c78d08e6a9d2944b195e4e67832cfdefe40d6741023ed8bd6a0673221fa",
+  "captures": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_1-512.png",
+      "sha256": "4287c0fe9410d5f5bd40ee7a1668ae5359e763c45b84e28d03f90b67616cd3cd",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/br_trim1_1-512-canvas.png",
+      "cropSha256": "eaacd55eab6859112c032ee6f735d418b7e485dc9c8cc7b8787c17f7645844ab",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/br_trim1_1-close-canvas.png",
+      "priorCropSha256": "eaacd55eab6859112c032ee6f735d418b7e485dc9c8cc7b8787c17f7645844ab",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_1-512.png",
+        "name": "br_trim1_1",
+        "view": "512",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          512,
+          256
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_1-quarter.png",
+      "sha256": "40b7785d6727499357845967c1e3b2ce8689e8c736a68189db24b25297e60827",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/br_trim1_1-quarter-canvas.png",
+      "cropSha256": "bd8f5197bddb290017a8bd52c01da23caada999b58383b26fa06eb382477f52c",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/br_trim1_1-quarter-3x3-canvas.png",
+      "priorCropSha256": "bd8f5197bddb290017a8bd52c01da23caada999b58383b26fa06eb382477f52c",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_1-quarter.png",
+        "name": "br_trim1_1",
+        "view": "quarter",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          32,
+          16
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_2-512.png",
+      "sha256": "c46f3f300b566ce24a0418228a739c89f47910e54844ee7b1d834c826b009eeb",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/br_trim1_2-512-canvas.png",
+      "cropSha256": "8f2a0942a249586c4a6a504d165300ee933e420d95813803244ee4e64426d9f6",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/br_trim1_2-close-canvas.png",
+      "priorCropSha256": "8f2a0942a249586c4a6a504d165300ee933e420d95813803244ee4e64426d9f6",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_2-512.png",
+        "name": "br_trim1_2",
+        "view": "512",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          512,
+          512
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_2-quarter.png",
+      "sha256": "8af03f8c37aa24f32059db49d402903ffff9cd1635fd1bbaec4bdb2fb45b2c0d",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/br_trim1_2-quarter-canvas.png",
+      "cropSha256": "e756216779a596ba31d04f482c209280537c9abb2cf34b815117125e4129fdfc",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/br_trim1_2-quarter-3x3-canvas.png",
+      "priorCropSha256": "e756216779a596ba31d04f482c209280537c9abb2cf34b815117125e4129fdfc",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_2-quarter.png",
+        "name": "br_trim1_2",
+        "view": "quarter",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          16,
+          16
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/wstone_17_JM-512.png",
+      "sha256": "e534df2650791821378d46d872bcb51fca071e91f5e571356c0f849abebb6965",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/wstone_17_JM-512-canvas.png",
+      "cropSha256": "c378dbba6a895e990f321f7697e95dc39414fa546d7b504e79366e686ed7eb64",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/wstone_17_JM-close-canvas.png",
+      "priorCropSha256": "c378dbba6a895e990f321f7697e95dc39414fa546d7b504e79366e686ed7eb64",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/wstone_17_JM-512.png",
+        "name": "wstone_17_JM",
+        "view": "512",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          512,
+          512
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/wstone_17_JM-quarter.png",
+      "sha256": "f3420216954447bfd310e3e2f7ea9c3e7a352c73084b291db428e481ecf40fc2",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/wstone_17_JM-quarter-canvas.png",
+      "cropSha256": "6478435051a65cf6fc421acde06f67d9f65c74655caf1afa8f93bc5fc7f77255",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/wstone_17_JM-quarter-3x3-canvas.png",
+      "priorCropSha256": "6478435051a65cf6fc421acde06f67d9f65c74655caf1afa8f93bc5fc7f77255",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/wstone_17_JM-quarter.png",
+        "name": "wstone_17_JM",
+        "view": "quarter",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          64,
+          64
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/wstone_11_JM-512.png",
+      "sha256": "89bb3199513be3fa68f7cddd920c517aacdfdd236397dd5779fec1e262ea2daf",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/wstone_11_JM-512-canvas.png",
+      "cropSha256": "fc36fac5b986bb89680d302e6e156e5b90f00cd3b11f7504a59b123e3b7d646a",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/wstone_11_JM-close-canvas.png",
+      "priorCropSha256": "fc36fac5b986bb89680d302e6e156e5b90f00cd3b11f7504a59b123e3b7d646a",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/wstone_11_JM-512.png",
+        "name": "wstone_11_JM",
+        "view": "512",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          512,
+          512
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/wstone_11_JM-quarter.png",
+      "sha256": "e361eb02b040395fe39f3527e5a5e47784019bc8178f3261671786bb31cd6436",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/wstone_11_JM-quarter-canvas.png",
+      "cropSha256": "362bf1974aae0944b986ceabbd73ba695c45f5b547f35bbb68d1efe18c836b2a",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/wstone_11_JM-quarter-3x3-canvas.png",
+      "priorCropSha256": "362bf1974aae0944b986ceabbd73ba695c45f5b547f35bbb68d1efe18c836b2a",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/wstone_11_JM-quarter.png",
+        "name": "wstone_11_JM",
+        "view": "quarter",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          64,
+          64
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/wstone_13_JM-512.png",
+      "sha256": "570c7fc9830fe1b58ecb15d82cd3da639d2d46a9ff39909eb44449e199ad76c3",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/wstone_13_JM-512-canvas.png",
+      "cropSha256": "61c84182e708720b203716d7e9d1514a2fe4b0b5dc7d10c0cd715965988925f7",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/wstone_13_JM-close-canvas.png",
+      "priorCropSha256": "61c84182e708720b203716d7e9d1514a2fe4b0b5dc7d10c0cd715965988925f7",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/wstone_13_JM-512.png",
+        "name": "wstone_13_JM",
+        "view": "512",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          512,
+          256
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/wstone_13_JM-quarter.png",
+      "sha256": "eda0404864dc784bae8e41c1bb6c2fc37148316e8bd7091bf797cf60a395552f",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/wstone_13_JM-quarter-canvas.png",
+      "cropSha256": "ae2a0b90cc9f0c7b17891d80bf92ab9de09c9c4294e5682f4a15513077b5ba51",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/wstone_13_JM-quarter-3x3-canvas.png",
+      "priorCropSha256": "ae2a0b90cc9f0c7b17891d80bf92ab9de09c9c4294e5682f4a15513077b5ba51",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/wstone_13_JM-quarter.png",
+        "name": "wstone_13_JM",
+        "view": "quarter",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          64,
+          32
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/TF_Metal3_04-512.png",
+      "sha256": "e8016efbacdfe1ff4be852ea6dfae60eb2370fda38f8d1be92f6ab1e3bdb8bbc",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/TF_Metal3_04-512-canvas.png",
+      "cropSha256": "39b9ea0b08570aaf631780022ff8caf9d908b859df21535e7a3928b1970861d3",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/TF_Metal3_04-close-canvas.png",
+      "priorCropSha256": "39b9ea0b08570aaf631780022ff8caf9d908b859df21535e7a3928b1970861d3",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/TF_Metal3_04-512.png",
+        "name": "TF_Metal3_04",
+        "view": "512",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          512,
+          512
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/TF_Metal3_04-quarter.png",
+      "sha256": "7425a68f1a645e1f68afbd6b3ab48779cf7deccbae9ccc7512785e62b95a8926",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/TF_Metal3_04-quarter-canvas.png",
+      "cropSha256": "6f25303f34e39acb159a4824ac83332dedbc390795ad8fd5c6ba29e57bb390e2",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/TF_Metal3_04-quarter-3x3-canvas.png",
+      "priorCropSha256": "6f25303f34e39acb159a4824ac83332dedbc390795ad8fd5c6ba29e57bb390e2",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/TF_Metal3_04-quarter.png",
+        "name": "TF_Metal3_04",
+        "view": "quarter",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          32,
+          32
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/TF_Stone_03-512.png",
+      "sha256": "d137ea450ae89ed212114eddb3785d252782536336828f488f231037aa690dae",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/TF_Stone_03-512-canvas.png",
+      "cropSha256": "580374ee85cd7a0c0c3e2e7cdaa0db130e65b0f585a8e32d3afa81d6d5e0a1c3",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/TF_Stone_03-close-canvas.png",
+      "priorCropSha256": "580374ee85cd7a0c0c3e2e7cdaa0db130e65b0f585a8e32d3afa81d6d5e0a1c3",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/TF_Stone_03-512.png",
+        "name": "TF_Stone_03",
+        "view": "512",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          512,
+          512
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/TF_Stone_03-quarter.png",
+      "sha256": "d4f03207d3a4856b501eb197762c4f5b0195adcfd48349ce41b9897c5a199ffc",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/TF_Stone_03-quarter-canvas.png",
+      "cropSha256": "3c3bc70943d6f9d5f2ec6ec3acd5a22c513e910130cba2be486ca0855722685c",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/TF_Stone_03-quarter-3x3-canvas.png",
+      "priorCropSha256": "3c3bc70943d6f9d5f2ec6ec3acd5a22c513e910130cba2be486ca0855722685c",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/TF_Stone_03-quarter.png",
+        "name": "TF_Stone_03",
+        "view": "quarter",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          32,
+          32
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/metal5_83_JM-512.png",
+      "sha256": "6eb0ff21327894838689b54104c2de836d3e185773f4900b2fdce8e2fc37ad64",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/metal5_83_JM-512-canvas.png",
+      "cropSha256": "9d97ef0e5edbddcbbf064f697ab5a9e8ca2c22ba0c4ab83dfca2a8a93be94e68",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/metal5_83_JM-close-canvas.png",
+      "priorCropSha256": "9d97ef0e5edbddcbbf064f697ab5a9e8ca2c22ba0c4ab83dfca2a8a93be94e68",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/metal5_83_JM-512.png",
+        "name": "metal5_83_JM",
+        "view": "512",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          512,
+          64
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/metal5_83_JM-quarter.png",
+      "sha256": "601e6a3f245d67b14b4466c9af22013e4243e4f5dd1d7df1e407cd4f8ed9ee2b",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/metal5_83_JM-quarter-canvas.png",
+      "cropSha256": "46c03cdd61a02b6f4877582dc026157d6ecb9f4f5c5bb2cad676ebc7e438d3c6",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/metal5_83_JM-quarter-3x3-canvas.png",
+      "priorCropSha256": "46c03cdd61a02b6f4877582dc026157d6ecb9f4f5c5bb2cad676ebc7e438d3c6",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/metal5_83_JM-quarter.png",
+        "name": "metal5_83_JM",
+        "view": "quarter",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          32,
+          4
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_1-angle-55-flat.png",
+      "sha256": "c5fead5c6c60f5aec55a74c66479bdaedefe316ad04a26d0fa753c6f95e04e33",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/br_trim1_1-angle-55-flat-canvas.png",
+      "cropSha256": "937268b903a10833670ccef45821bae6fe7006dc4c581e42281848e0a0d10220",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/br_trim1_1-angle-55-flat-canvas.png",
+      "priorCropSha256": "937268b903a10833670ccef45821bae6fe7006dc4c581e42281848e0a0d10220",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_1-angle-55-flat.png",
+        "name": "br_trim1_1",
+        "view": "512",
+        "angleDegrees": -55,
+        "comparisonDimensions": [
+          512,
+          256
+        ],
+        "repeat": 1,
+        "relief": false,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_1-angle-55-relief.png",
+      "sha256": "6757140ccb8778efb093ab47ba371b28668386f473697fdc523b42ceac4d019d",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/br_trim1_1-angle-55-relief-canvas.png",
+      "cropSha256": "8651b4792c0273ad44f230c93e05081334f0a7bd0c3f17280f5c99bd39fa97ce",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/br_trim1_1-angle-55-relief-canvas.png",
+      "priorCropSha256": "8651b4792c0273ad44f230c93e05081334f0a7bd0c3f17280f5c99bd39fa97ce",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_1-angle-55-relief.png",
+        "name": "br_trim1_1",
+        "view": "512",
+        "angleDegrees": -55,
+        "comparisonDimensions": [
+          512,
+          256
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_1-angle55-flat.png",
+      "sha256": "533950f93e5cb7721a64c1c791b6b16b9542241d569799d465f64c4522cf9fe7",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/br_trim1_1-angle55-flat-canvas.png",
+      "cropSha256": "1b5470836160cdf1c175133fbd76f196e24059fbefdf3a749fc1a368e9fae68b",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/br_trim1_1-angle55-flat-canvas.png",
+      "priorCropSha256": "1b5470836160cdf1c175133fbd76f196e24059fbefdf3a749fc1a368e9fae68b",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_1-angle55-flat.png",
+        "name": "br_trim1_1",
+        "view": "512",
+        "angleDegrees": 55,
+        "comparisonDimensions": [
+          512,
+          256
+        ],
+        "repeat": 1,
+        "relief": false,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_1-angle55-relief.png",
+      "sha256": "a89e61e9e4ce0d3b40d3371dbd248beffb6fc4aff00aef25c3eb5c5d2c126885",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/br_trim1_1-angle55-relief-canvas.png",
+      "cropSha256": "2e2246f16e86ead01c32853f08efa70c76e67919b6489ed551172823aed729a8",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/br_trim1_1-angle55-relief-canvas.png",
+      "priorCropSha256": "2e2246f16e86ead01c32853f08efa70c76e67919b6489ed551172823aed729a8",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_1-angle55-relief.png",
+        "name": "br_trim1_1",
+        "view": "512",
+        "angleDegrees": 55,
+        "comparisonDimensions": [
+          512,
+          256
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_2-angle-55-flat.png",
+      "sha256": "d3dfd65a5b58f155072ab56397dfc1df7865ecef17b4f8972a485b03bc2a1c53",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/br_trim1_2-angle-55-flat-canvas.png",
+      "cropSha256": "9dd4cfdd512280a67fa609d69c97584107b996b1379d853351ab6e0e43ea53cc",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/br_trim1_2-angle-55-flat-canvas.png",
+      "priorCropSha256": "9dd4cfdd512280a67fa609d69c97584107b996b1379d853351ab6e0e43ea53cc",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_2-angle-55-flat.png",
+        "name": "br_trim1_2",
+        "view": "512",
+        "angleDegrees": -55,
+        "comparisonDimensions": [
+          512,
+          512
+        ],
+        "repeat": 1,
+        "relief": false,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_2-angle-55-relief.png",
+      "sha256": "67e2fc3f8742644788abfbf512351bc3595130130df4e5c58c26bd5fa92b3e5b",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/br_trim1_2-angle-55-relief-canvas.png",
+      "cropSha256": "32a9ae947ca9b736962808b96df915ae2d0bfba8509f3335c8a6d4d566529f73",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/br_trim1_2-angle-55-relief-canvas.png",
+      "priorCropSha256": "32a9ae947ca9b736962808b96df915ae2d0bfba8509f3335c8a6d4d566529f73",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_2-angle-55-relief.png",
+        "name": "br_trim1_2",
+        "view": "512",
+        "angleDegrees": -55,
+        "comparisonDimensions": [
+          512,
+          512
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_2-angle55-flat.png",
+      "sha256": "c2005f5e65e70b31f0deb9cc8f0b50b1f5fdd23b0952462217f411308e754fa9",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/br_trim1_2-angle55-flat-canvas.png",
+      "cropSha256": "c85da826a55c4ea3a7454e331576f1bba2cedaf3ddd7e0d70ed17180becf8d89",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/br_trim1_2-angle55-flat-canvas.png",
+      "priorCropSha256": "c85da826a55c4ea3a7454e331576f1bba2cedaf3ddd7e0d70ed17180becf8d89",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_2-angle55-flat.png",
+        "name": "br_trim1_2",
+        "view": "512",
+        "angleDegrees": 55,
+        "comparisonDimensions": [
+          512,
+          512
+        ],
+        "repeat": 1,
+        "relief": false,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_2-angle55-relief.png",
+      "sha256": "a04dcf43d4ffc24d47a20af149890b66d10a82f6662e32502c4db2463f5b9ae7",
+      "crop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-ab55-gpu-independent-contacts/br_trim1_2-angle55-relief-canvas.png",
+      "cropSha256": "67236cd97ae98fb6c08e8711ef7a3d5b5baaaa0404cb1487f5e3d88059eb9fb5",
+      "priorCrop": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-contacts-v2/br_trim1_2-angle55-relief-canvas.png",
+      "priorCropSha256": "67236cd97ae98fb6c08e8711ef7a3d5b5baaaa0404cb1487f5e3d88059eb9fb5",
+      "GPUChangedPixelsDiagnostic": 0,
+      "meanChannelDeltaDiagnostic": 0.0,
+      "maximumChannelDeltaDiagnostic": 0,
+      "draw": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-ab55/br_trim1_2-angle55-relief.png",
+        "name": "br_trim1_2",
+        "view": "512",
+        "angleDegrees": 55,
+        "comparisonDimensions": [
+          512,
+          512
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      }
+    }
+  ]
+}

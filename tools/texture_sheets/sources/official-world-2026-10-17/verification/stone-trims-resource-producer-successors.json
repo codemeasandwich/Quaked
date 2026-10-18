@@ -1,0 +1,23 @@
+{
+  "qualification": "Explicit producer filesystem successors after resource move; historical recipes and tool SHA values remain unchanged. Actual byte reproduction is required separately.",
+  "migrationCommit": "738f92d96e56517eed3fcc255a885b4fc9528b9a",
+  "changes": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/prepare_horizontal_trims.py",
+      "historicalWitness": "tools/texture_sheets/sources/official-world-2026-10-17/verification/prepare_horizontal_trims-before-resource-layout.py",
+      "beforeSha256": "3b649b0f05e4037f91cbc0b60969682ef2feec4535e9a85a3f0b91f16925de50",
+      "afterSha256": "c8d185417a9a4bc80d3b202efdb37065c1aa700c2ad348a1237327b199f99ab2",
+      "change": "Only central resource_path donor read boundary; keep logical source labels and material/composition operations."
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/prepare_stone_trim_bases.py",
+      "historicalWitness": "tools/texture_sheets/sources/official-world-2026-10-17/verification/prepare_stone_trim_bases-before-resource-layout.py",
+      "beforeSha256": "9e4ed45df2b2282cb14a99be68337bd7334251f57ebb972058ae3a166b3b689e",
+      "afterSha256": "d935f27479576e1a65c7423e460acad8cb48634034d6c2ed9bde0a04fcb0d377",
+      "change": "Only central resource_path donor read boundary; keep logical source labels and material/composition operations."
+    }
+  ],
+  "encoderHistoricalWitness": "tools/texture_sheets/sources/official-world-2026-10-17/verification/encode_official_maps-before-resource-layout.py",
+  "encoderHistoricalSha256": "6e8a6306bb935a84a93477ee2091065763f7a6d4a8428e5e33a2da6eb148c520",
+  "encoderCurrentSha256": "14f23a560c17afb72aa8a9aa9d1fda2dbed94bf1230048f3c3b9e814664f0287"
+}

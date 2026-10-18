@@ -1,0 +1,48 @@
+{
+  "id": "br_trim1_2|64x64:b40e75921ad5cfe8",
+  "name": "br_trim1_2",
+  "key": "64x64:b40e75921ad5cfe8",
+  "width": 64,
+  "height": 64,
+  "pixelSha256": "e3244128886263e4486ae15cd10f08b80a0b0827a62a27361e7bc07705d6640c",
+  "original": "originals/64x64-b40e75921ad5cfe8.rgba",
+  "status": "missing",
+  "file": null,
+  "reason": "No replacement entry",
+  "uses": [
+    {
+      "game": "mg1",
+      "map": "maps/start.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+      "slot": 25,
+      "faces": 418,
+      "visibleCandidateFaces": 418,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "mg1",
+      "map": "maps/hub.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+      "slot": 28,
+      "faces": 1593,
+      "visibleCandidateFaces": 1593,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    },
+    {
+      "game": "mg1",
+      "map": "maps/mge2m2.bsp",
+      "scope": "campaign-or-multiplayer",
+      "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+      "slot": 56,
+      "faces": 322,
+      "visibleCandidateFaces": 322,
+      "hiddenTriggerFaces": 0,
+      "animationVisibleCandidateFaces": 0
+    }
+  ],
+  "action": "generate"
+}

@@ -1,0 +1,95 @@
+{
+  "name": "br_trim1_1",
+  "verdict": "PASS preliminary donor",
+  "stage": "Rawv3 and exact512x256 Lanczos resize only; final fitted decodedQ92/relief not accepted by this receipt.",
+  "rawDimensions": [
+    1774,
+    887
+  ],
+  "targetDimensions": [
+    512,
+    256
+  ],
+  "manualVisualAssessment": "Seven brick slots in full rows and six in recessed rows restored, across eight courses. Glazed surfaces have readable smooth/worn patches, discrete chips and muted bluegrey flecks; brick/jamb edges remain sharply defined at512. Material is more distinct than the rough four-brick v1. No pixel-source-noise reconstruction, blanket sharpening or new outside frame was used. Physical stepped stone jambs belong to source.",
+  "phaseDiagnostics": {
+    "mortarRowMinimaAtTarget": [
+      26,
+      58,
+      90,
+      122,
+      154,
+      186,
+      218,
+      250
+    ],
+    "nativeMortarRows": [
+      7,
+      15,
+      23,
+      31,
+      39,
+      47,
+      55,
+      63
+    ],
+    "expected4xNativePixelBands": [
+      [
+        28,
+        31
+      ],
+      [
+        60,
+        63
+      ],
+      [
+        92,
+        95
+      ],
+      [
+        124,
+        127
+      ],
+      [
+        156,
+        159
+      ],
+      [
+        188,
+        191
+      ],
+      [
+        220,
+        223
+      ],
+      [
+        252,
+        255
+      ]
+    ],
+    "judgement": "Mortar phase now close to native bands. Minima are diagnostics, not equality acceptance.",
+    "boundedRefinement": "Measured minima26+32k are2px above the start of native4x mortar bands28..31+32k. A documented cyclic+4runtime-row shift of the512x256 donor would place every minimum at30+32k within those bands, without rescaling or changing brick count. This is a proposed source-phase refinement; no shifted asset was created by reviewer."
+  },
+  "finalReviewWatch": "Full-row outer jambs appear about40runtimepx wide rather than nominal32px. Seven/six modules are present and relative scale broadly fits; do not claim pixel-exact geometry. Check physical jamb widths and source native\u2192half/quarter similarity after fitting. Repair only if final shape/period evidence shows the difference materially changes the source intent.",
+  "nextAction": "Parent can source-colour-fit, finish intended edges, encode4xQ92 and matching relief; separate actual decoded full/half/quarter/repeats/two-light review before registration. Preserve heldv1/v2 and this donor provenance.",
+  "inputs": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_1-generated-v3.png",
+      "sha256": "b5d3265c0592f775a14e3758d8ad0577baac12f6339ea7f368da1d03f4310e41"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_1.png",
+      "sha256": "67eeeb98acf7292d963e79e8298984b64aad6368ef1d8bcd3671e5f279571515"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_1-imagegen-prompt-v3.txt",
+      "sha256": "219219b42ae90a9cd4adcb28936f3bd0d7aecbe54d65f39fc9eabe7c3920356f"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-first-three-preliminary/br_trim1_1-v3-target4x.png",
+      "sha256": "b4a78ce7cbd18c70b4088c49ca414b95b9a1567b2784072e9b0628afdcde5fd3"
+    }
+  ],
+  "mutations": "OnlyROOTverificationresize andreceipt; no candidate/source-image/WT/index/test/recipe changes."
+}

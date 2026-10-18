@@ -98,7 +98,7 @@ def tech_current_normal(name, previous):
         record = next(m for m in _TECH_Q92['maps'] if m['name'] == name and m['role'] == role)
         assert record['file'] == 'newer/textures/' + current and record['predecessor'] == 'newer/textures/' + predecessor
         for field, digest in [('predecessor', 'predecessorSha256'), ('retainedPre4xFile', 'retainedPre4xSha256'), ('master', 'masterSha256'), ('file', 'sha256')]:
-            assert hashlib.sha256((ROOT / record[field]).read_bytes()).hexdigest() == record[digest]
+            assert hashlib.sha256(resource_path(ROOT, record[field]).read_bytes()).hexdigest() == record[digest]
     return entry['current']['normal']
 
 

@@ -1,0 +1,21 @@
+.E.
+======================================================================
+ERROR: test_native_period_registration_and_unchanged_unselected_entries (__main__.LevelTextureAssets)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/level_texture_assets_test.py", line 226, in test_native_period_registration_and_unchanged_unselected_entries
+    self.assertEqual(INDEX['normals'][name], tech_current_normal(name, baseline['normals'][name]), name)
+  File "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/level_texture_assets_test.py", line 101, in tech_current_normal
+    assert hashlib.sha256((ROOT / record[field]).read_bytes()).hexdigest() == record[digest]
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/pathlib.py", line 1249, in read_bytes
+    with self.open(mode='rb') as f:
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/pathlib.py", line 1242, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/pathlib.py", line 1110, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/tech07_2.webp'
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.797s
+
+FAILED (errors=1)

@@ -1,0 +1,8 @@
+{
+  "file": "tests/official_texture_owner_q92_test.js",
+  "beforeFile": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-layout-owner-test-before-child-boundary.js",
+  "beforeSha256": "184d15f4fb58256999eb1606099dada89bf2f93d62be8dd86c144691f944a800",
+  "afterSha256": "5a2fa87bcdc13dc92c7ea55b22b28ca9ea8b66ee0677f092adbc87ff8cf74caf",
+  "change": "Use existing resourcePath solely on actual Python Image.open predecessor argv; all logical provenance metadata, payload dimensions/digests, source guards and acceptance assertions retained.",
+  "initialFailureLog": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-layout-owner-historical-tests.txt"
+}

@@ -9,6 +9,7 @@
 <label>Repeat <select id="repeat"><option value="1">Once</option><option value="3">3 × 3 tiles</option></select></label>
 <div class="pair"><figure><figcaption>Original game texture</figcaption><canvas id="native"></canvas></figure><figure><figcaption>New photographic replacement</figcaption><canvas id="finished"></canvas></figure></div>
 <h2>Engine material</h2><p class="note">Finite draws through the real texture-upgrade hook and world-material constructor. Native UV repetition is unchanged. Toggle relief to inspect whether it introduces unwanted edge shading. This is a material trial, not an all-map gameplay qualification.</p>
+<label>Material angle <select id="angle"><option value="0">Front</option><option value="-55">From left 55°</option><option value="55">From right 55°</option></select></label>
 <label><input id="relief" type="checkbox"> Height-derived relief</label><button id="render">Draw material</button><div id="gpu"></div>
 <details><summary>Loader, source and measurement receipt</summary><pre id="receipt">Loading…</pre></details>
 <p><a href="tools/texture_sheets/sources/official-world-2026-10-12/README.md">Current inventory scope and authoring record</a> · <a href="tools/texture_sheets/sources/official-world-2026-10-12/expansion-generation-record.json">Expansion source and generation records</a></p>

@@ -1,3 +1,4 @@
+import {resourcePath} from './helpers/resource_path.mjs';
 import {ResourceURL} from '../src/platform/resource_paths.js';
 // Current-state verification of 45 official-level texture bindings: actual
 // PAK/BSP pixels -> GL_LoadTexture -> public identity and upgrade APIs, with
@@ -113,7 +114,7 @@ function unchangedIntegrationGlass() {
 	}
 	const paths = [ ...required ].sort(); check( paths.length > 0, 'Dev glass assets exist' );
 	for ( const path of paths ) check( tracked.has( path ), 'Dev glass reference is tracked: ' + path );
-	const hashes = execFileSync( 'git', [ 'hash-object', '--stdin-paths' ], { cwd: root, input: paths.join( '\n' ) + '\n', encoding: 'utf8', maxBuffer: 8 * 1024 * 1024 } ).trim().split( '\n' );
+	const hashes = execFileSync( 'git', [ 'hash-object', '--stdin-paths' ], { cwd: root, input: paths.map(path=>resourcePath(resolve(root,path))).join( '\n' ) + '\n', encoding: 'utf8', maxBuffer: 8 * 1024 * 1024 } ).trim().split( '\n' );
 	same( hashes.length, paths.length, 'every glass asset hashed' );
 	paths.forEach( ( path, i ) => same( hashes[ i ], tracked.get( path ), 'unchanged Dev glass bytes: ' + path ) );
 	console.log( 'UNCHANGED_DEV_GLASS ' + JSON.stringify( { baseline: integrationBase, names: Object.keys( baseline.glass ).length, materials: Object.values( baseline.glass ).reduce( ( count, variants ) => count + Object.keys( variants ).length, 0 ), files: paths.length } ) );

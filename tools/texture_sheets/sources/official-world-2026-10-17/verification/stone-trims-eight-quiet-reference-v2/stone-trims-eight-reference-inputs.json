@@ -1,0 +1,388 @@
+{
+  "qualification": "Parent-prepared ROOT-only reference renders of three changed moulded-stone quietnormal trials; otherfiveassets remain in prior8snapshot. Actual canvas-decodedQ92R→productionR_NormalsFromCraftedHeight, with exact planned strength/cap. PublishedQ92XYZ compared separately. Fixed linearLambertCPU lights are not actual GPU/PBR/specular acceptance. No assets, index, tests or WT files written.",
+  "rendererSha256": "20a7a8181e6f2f2fc48eb1d28f4433c6a3ac50013b33a60c9d35e266b229abeb",
+  "productionMathSha256": "303390e4216a26d6aaa2ceb47b841484a9b5f6b6dd88118922f70dc1682a7125",
+  "lighting": {
+    "ambient": 0.22,
+    "key": 0.78,
+    "lights": [
+      {
+        "name": "upper-left",
+        "direction": [
+          -0.6476082659683139,
+          -0.3487121432137074,
+          0.6774978782437745
+        ]
+      },
+      {
+        "name": "lower-right",
+        "direction": [
+          0.6476082659683139,
+          0.3487121432137074,
+          0.6774978782437745
+        ]
+      }
+    ]
+  },
+  "runtimeInputsUnchanged": true,
+  "inputs": [
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/stone-trims-eight-finish-v2.json",
+      "sha256": "adb31dae4322268b649fa2d778fc831f596c7bb728f94268d9e4570c8603fa3a"
+    },
+    {
+      "file": "/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js",
+      "sha256": "bbdad32cab670261983ea56d4625fc7d07b1382f8bb7d6d31232bb2834861597"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/src/newer/render/normal_math.js",
+      "sha256": "303390e4216a26d6aaa2ceb47b841484a9b5f6b6dd88118922f70dc1682a7125"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz.json",
+      "sha256": "ebb1c3a396ff427f2eeac5dfcade3b10b0d84362d3de0c8676dd679588430497"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_17_JM.json",
+      "sha256": "165d919523f5c7a96d5da4f8f652b004f3f73e323567284e2c019447f8fb6c1e"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_17_JM.png",
+      "sha256": "c4be3494526414bb204ea249375c90c54189ad0ccba8792e1194efb3a8a93bfb"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-diffuse.webp",
+      "sha256": "b2f474e35d5060c76d3f7bb66082c013981f7450463072703450c8df7431fabb"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-height.webp",
+      "sha256": "5b619ff5a524d28ce4ca34d8f4d54f9a32ccea9b7a867a2caaf2d6a86f6a6dc7"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-normalZ.webp",
+      "sha256": "304677bd82ac37e61b377a1ef64affe0cdc44fb34aa5256269c6e560c366d94c"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-normalX.webp",
+      "sha256": "4f0cb6d73244ad28a1c1b2de3c245c334700f64defa2467117a5aaeac820608c"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-normalY.webp",
+      "sha256": "5a9340efa5e7abeea3daac6d2d4d1818fc64cac5b01c22c7c8c5a408ed73b84f"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x.png",
+      "sha256": "d06587c93ca1502103ad8415276a99981292aa5f3df91496e0abf3f9ee20b1a3"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz.json",
+      "sha256": "80fc00f97fe5cb679304a619c4e6b8f21fa4b45db00b32de0f5ca3aaf3a570d2"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_11_JM.json",
+      "sha256": "0e782fe16646913f95c537a9737077beb73eae79a1f955e0c1af35459859b1fd"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_11_JM.png",
+      "sha256": "fe4895d4826e898a137a5d08c3e169e5c801d500479e4e74cd66a66485530e16"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-diffuse.webp",
+      "sha256": "64382e000136fcee6c77df9577b1da3eb619e6f5e0ebe4dfe5bbbe8e65c601f9"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-height.webp",
+      "sha256": "9fdbf60b02558a8dcb26726ea304839bc50dbf06f0f5b4c72b1353b3cd9b9a54"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-normalX.webp",
+      "sha256": "bd6be5f1d6066973609b49fab0cac7131f82d79c5eaa25bea6accb7d60402e3a"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-normalY.webp",
+      "sha256": "7cdcb7e7c828665f05b18c56bb146216ac600357ad58fdfd97856fd20b254b64"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-normalZ.webp",
+      "sha256": "4cd9aea539faee7c1ff9f7572c98d8c32d7c15c566bd52450cfa9adab9686188"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x.png",
+      "sha256": "f190c5c20ce414c8ff3d1403e383d02a6fcd1868cc4d34319837c2b3c67fcee8"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz.json",
+      "sha256": "2aa210e2b9d9cb24a492cc48ddcac39b0d63a317743f41a4dc9cd462b05df552"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_13_JM.json",
+      "sha256": "23cda0bb924be42ed4487b57f34141b47640544b069035a009b6e5d25ba65750"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_13_JM.png",
+      "sha256": "2d4e8a0dc918321be933f1a8cb507ad29e6f1340df31fe044fc077328d30e806"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-diffuse.webp",
+      "sha256": "d4adbdd1957b5a7c093e69aabdaf4e57c6617263eff87783a35d02236199efd6"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-height.webp",
+      "sha256": "68396e973843d9afe275b9708c80a615a15cd75736ac7e6eed17f6a0d8923986"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalX.webp",
+      "sha256": "81066d29a15a7062847520aade0bdd3af9e3f6184db39b7729e356ed94ff4b8f"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalY.webp",
+      "sha256": "330d2ca28b3cdec2dcb170261c845f5cd739543ab070d0257842707f7219cf30"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalZ.webp",
+      "sha256": "068c8a17f3956b704413c9ae13b1f1bfdaa9632638703fc8499382aba19001d8"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x.png",
+      "sha256": "be838e97af2a4d06d8561588662ee6dc3b6f05210907275a5ee02f7da2858e7b"
+    }
+  ],
+  "results": [
+    {
+      "name": "wstone_17_JM",
+      "nativeKey": "256x256:5384584dfbd2bc47",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.06,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "b2f474e35d5060c76d3f7bb66082c013981f7450463072703450c8df7431fabb",
+        "height": "5b619ff5a524d28ce4ca34d8f4d54f9a32ccea9b7a867a2caaf2d6a86f6a6dc7",
+        "normalX": "4f0cb6d73244ad28a1c1b2de3c245c334700f64defa2467117a5aaeac820608c",
+        "normalY": "5a9340efa5e7abeea3daac6d2d4d1818fc64cac5b01c22c7c8c5a408ed73b84f",
+        "normalZ": "304677bd82ac37e61b377a1ef64affe0cdc44fb34aa5256269c6e560c366d94c"
+      },
+      "originalSha256": "c4be3494526414bb204ea249375c90c54189ad0ccba8792e1194efb3a8a93bfb",
+      "authoringDiffuseSha256": "d06587c93ca1502103ad8415276a99981292aa5f3df91496e0abf3f9ee20b1a3",
+      "decodedHeightRFloat32LeSha256": "66bb51e9dab5abfee3ba51e59d282abe94338753ca4bd84edc51a4fdb1191bfb",
+      "productionNormalRgbaSha256": "6ee71a9bdb8a87e2a2f6bc8d9eaee2a243c16251acd9d54af4a062c462eeea66",
+      "productionMathFile": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/src/newer/render/normal_math.js",
+      "productionVersusPublishedQ92AngularDiagnostic": {
+        "mean": 5.49503662792382,
+        "p99": 17.079836046263612,
+        "maximum": 34.139935005210475
+      },
+      "distanceViews": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            128,
+            128
+          ],
+          "qualification": "Reference dimensions only; parent/independent visual contacts are assessed separately. No pixel equality acceptance."
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            64,
+            64
+          ],
+          "qualification": "Reference dimensions only; parent/independent visual contacts are assessed separately. No pixel equality acceptance."
+        }
+      ],
+      "reliefFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-quiet-reference-v2/wstone_17_JM-stone-trims-reference-relief.png",
+      "compareFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-quiet-reference-v2/wstone_17_JM-stone-trims-reference-authored-vs-derived.png",
+      "repeatFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-quiet-reference-v2/wstone_17_JM-stone-trims-reference-repeat.png"
+    },
+    {
+      "name": "wstone_11_JM",
+      "nativeKey": "256x256:45ba5d43baf6a749",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.06,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "64382e000136fcee6c77df9577b1da3eb619e6f5e0ebe4dfe5bbbe8e65c601f9",
+        "height": "9fdbf60b02558a8dcb26726ea304839bc50dbf06f0f5b4c72b1353b3cd9b9a54",
+        "normalX": "bd6be5f1d6066973609b49fab0cac7131f82d79c5eaa25bea6accb7d60402e3a",
+        "normalY": "7cdcb7e7c828665f05b18c56bb146216ac600357ad58fdfd97856fd20b254b64",
+        "normalZ": "4cd9aea539faee7c1ff9f7572c98d8c32d7c15c566bd52450cfa9adab9686188"
+      },
+      "originalSha256": "fe4895d4826e898a137a5d08c3e169e5c801d500479e4e74cd66a66485530e16",
+      "authoringDiffuseSha256": "f190c5c20ce414c8ff3d1403e383d02a6fcd1868cc4d34319837c2b3c67fcee8",
+      "decodedHeightRFloat32LeSha256": "fce406709a91997068914ad5b998f4fa59ae3c37392ae18b6943ebc90e538d09",
+      "productionNormalRgbaSha256": "ab4d2a9f6ef8f2c5900e4ec841c0fed92be3ac000d84f8300feb0d3647760449",
+      "productionMathFile": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/src/newer/render/normal_math.js",
+      "productionVersusPublishedQ92AngularDiagnostic": {
+        "mean": 4.497445357075609,
+        "p99": 13.650657044332974,
+        "maximum": 32.04391649341956
+      },
+      "distanceViews": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            128,
+            128
+          ],
+          "qualification": "Reference dimensions only; parent/independent visual contacts are assessed separately. No pixel equality acceptance."
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            64,
+            64
+          ],
+          "qualification": "Reference dimensions only; parent/independent visual contacts are assessed separately. No pixel equality acceptance."
+        }
+      ],
+      "reliefFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-quiet-reference-v2/wstone_11_JM-stone-trims-reference-relief.png",
+      "compareFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-quiet-reference-v2/wstone_11_JM-stone-trims-reference-authored-vs-derived.png",
+      "repeatFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-quiet-reference-v2/wstone_11_JM-stone-trims-reference-repeat.png"
+    },
+    {
+      "name": "wstone_13_JM",
+      "nativeKey": "256x128:4cdd9804c3e2fe86",
+      "nativeDimensions": [
+        256,
+        128
+      ],
+      "dimensions": [
+        1024,
+        512
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.06,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "d4adbdd1957b5a7c093e69aabdaf4e57c6617263eff87783a35d02236199efd6",
+        "height": "68396e973843d9afe275b9708c80a615a15cd75736ac7e6eed17f6a0d8923986",
+        "normalX": "81066d29a15a7062847520aade0bdd3af9e3f6184db39b7729e356ed94ff4b8f",
+        "normalY": "330d2ca28b3cdec2dcb170261c845f5cd739543ab070d0257842707f7219cf30",
+        "normalZ": "068c8a17f3956b704413c9ae13b1f1bfdaa9632638703fc8499382aba19001d8"
+      },
+      "originalSha256": "2d4e8a0dc918321be933f1a8cb507ad29e6f1340df31fe044fc077328d30e806",
+      "authoringDiffuseSha256": "be838e97af2a4d06d8561588662ee6dc3b6f05210907275a5ee02f7da2858e7b",
+      "decodedHeightRFloat32LeSha256": "ff6c3290208742336d2392cfbacd93125b74096cf2fc75a3852285f00dcdbb06",
+      "productionNormalRgbaSha256": "36c4e8c38bc8b1fc27a90cc1293d8eb337b433f657c144806b541de58d4b31fa",
+      "productionMathFile": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/src/newer/render/normal_math.js",
+      "productionVersusPublishedQ92AngularDiagnostic": {
+        "mean": 4.0128119473970125,
+        "p99": 12.919560831544919,
+        "maximum": 27.822648237730267
+      },
+      "distanceViews": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            128,
+            64
+          ],
+          "qualification": "Reference dimensions only; parent/independent visual contacts are assessed separately. No pixel equality acceptance."
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            64,
+            32
+          ],
+          "qualification": "Reference dimensions only; parent/independent visual contacts are assessed separately. No pixel equality acceptance."
+        }
+      ],
+      "reliefFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-quiet-reference-v2/wstone_13_JM-stone-trims-reference-relief.png",
+      "compareFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-quiet-reference-v2/wstone_13_JM-stone-trims-reference-authored-vs-derived.png",
+      "repeatFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-quiet-reference-v2/wstone_13_JM-stone-trims-reference-repeat.png"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-quiet-reference-v2/wstone_17_JM-stone-trims-reference-relief.png",
+      "sha256": "2158a6338e850d56809f7b03000016fcb731b9407203611946b2555c2c344ca2",
+      "kind": "production decoded-R normal and two-light CPU contact"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-quiet-reference-v2/wstone_17_JM-stone-trims-reference-authored-vs-derived.png",
+      "sha256": "3f47ac74820c58ad33098514c0932f039462e3f3891bc021dba1ccc14ef67c7a",
+      "kind": "two-light authored XYZ versus production derived normal comparison"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-quiet-reference-v2/wstone_17_JM-stone-trims-reference-repeat.png",
+      "sha256": "9f1433e586cddac88e21c11e02b61316cb7377ddaa2600d51ceac5857178fec6",
+      "kind": "unlit actual-scale 2x2 XY repeat"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-quiet-reference-v2/wstone_11_JM-stone-trims-reference-relief.png",
+      "sha256": "030b5f776c932ed06092040d8bd94d37afb5516b2c8eca3b824f1610a395a0fb",
+      "kind": "production decoded-R normal and two-light CPU contact"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-quiet-reference-v2/wstone_11_JM-stone-trims-reference-authored-vs-derived.png",
+      "sha256": "b428c7fdaf4d447f830a81c157f8ee8d55b7e0b308938493b4350091820704c1",
+      "kind": "two-light authored XYZ versus production derived normal comparison"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-quiet-reference-v2/wstone_11_JM-stone-trims-reference-repeat.png",
+      "sha256": "48c416c4aeeb9de87c1f2eb33b3c2d1199d1283b41650c96442800d136b965a9",
+      "kind": "unlit actual-scale 2x2 XY repeat"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-quiet-reference-v2/wstone_13_JM-stone-trims-reference-relief.png",
+      "sha256": "d98f99bfb5b94a4ff23faaec090a97f186b8c99b3a8fb3f6295ab9e4964846e5",
+      "kind": "production decoded-R normal and two-light CPU contact"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-quiet-reference-v2/wstone_13_JM-stone-trims-reference-authored-vs-derived.png",
+      "sha256": "1c1f230bd691faa54768a188fcc2e965eea89d851059cffcad99842b0b6cc618",
+      "kind": "two-light authored XYZ versus production derived normal comparison"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-quiet-reference-v2/wstone_13_JM-stone-trims-reference-repeat.png",
+      "sha256": "632c19d3857acbe6ce260250ae7f4020f6452fa9df61fce84611e710e1be22d3",
+      "kind": "unlit actual-scale 2x2 XY repeat"
+    }
+  ]
+}

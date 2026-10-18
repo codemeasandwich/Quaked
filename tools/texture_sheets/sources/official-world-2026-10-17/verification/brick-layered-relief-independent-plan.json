@@ -1,0 +1,153 @@
+{
+  "qualification": "Independent bounded source/runtime implementation plan for two corrected brick materials only. No code/assets/index/tests changed or builds run by planner. Parent has implementation responsibility.",
+  "scope": [
+    "br_trim1_1",
+    "br_trim1_2"
+  ],
+  "ownerIntent": "Sharp solid side-block masonry sits slightly above continuous recessed centre patterned bricks. No missing-square edge holes; correct diffuse right-side material bleed separately.",
+  "recommendation": "Add an optional height-layering JSON argument to existing encode_official_maps.py, importing and calling existing update_level_sheets.authored_height(decodedDiffuseRGB,name,layered-veneer,layering). Keep no-argument and directed-pair branches byte-identical. Keep existing decoded-Q92-height\u2192normalchannels pipeline and ordinary source-key binding. No global craft profile or runtime change.",
+  "reuseContract": {
+    "helper": "tools/texture_sheets/update_level_sheets.py::authored_height / brick_mask",
+    "meaning": "Material identity selects ordered planes rather than brightness. Centre mask receives brickHeight with bounded microdetail; outside solid facing receives facingHeight, with its interface bevel bounded below by chipFloor. floor>lower+2micro ensures darkest facing remains above brightest substrate before storage.",
+    "callDetail": "Ignore helper returned default profile; preserve explicit encoder CLI strength/cap. Both helpers share existing craft_normals code; do not modify their old behavior.",
+    "metadata": "Preflight name, exact nativePNG and authoringDiffuseSHA, native reference dimensions, eight reviewed region rectangles/polygons and finite/range/order limits. Reject conflicting vertical-neighbour and invalid layering before creating/writing any map. Version outputs/receipt. Bind layering JSON, old/new encoder identity, helperSHA, selected master/native inputs and resulting decoded map hashes."
+  },
+  "sourceGeometry": {
+    "wideNative": [
+      128,
+      64
+    ],
+    "wide4x": [
+      512,
+      256
+    ],
+    "narrowNative": [
+      64,
+      64
+    ],
+    "narrow4x": [
+      256,
+      256
+    ],
+    "courses": 8,
+    "coursePitchNative": 8,
+    "centreInsetNative": {
+      "fullRows": 8,
+      "alternateRows": 16
+    },
+    "construction": "For nativeW, low centre region rows k=0..7 spans x[inset,W-inset),y[8k,8(k+1)); high solid side material is the complement. No per-pigment threshold or inferred missing brick cells.",
+    "inclusiveRasterConvention": "Existing ImageDraw polygon max endpoints are inclusive. At fixed4x, encode x1=W-inset-.25,y1=8*(k+1)-.25 so exacttarget low pixels stop at last texel before the high facing. Independent test must use integer inequalities rather than import brick_mask.",
+    "bevelScale": "Existing helper sigma=bevelPixels*sqrt(runtimeWidth*runtimeHeight)/256. Use source-specific parameters for the same small runtime interface sigma; parent proposes1.5/sqrt2 wide and1.5 narrow, giving1.5runtimepixels both. This is a physical material-interface bevel, with no new outer-image bevel."
+  },
+  "heightTrial": {
+    "parentStartingLevels": {
+      "facingHeight": 0.78,
+      "brickHeight": 0.38,
+      "chipFloor": 0.66,
+      "microAmplitude": 0.025
+    },
+    "normalStrength": 0.2,
+    "normalCap": 0.5,
+    "status": "Sound bounded initial trial, not approved final visual constants. Strength/profile may need quiet trial; cap/strength affectRGB normals rather than the actual authoredR\u2192POM plane separation. DecodeQ92and prove full declared material-plane order remains positive with an actual measured margin."
+  },
+  "runtimeTrace": [
+    "createQuakeLightmapMaterial registers ordinary world material with R_RegisterDetail.",
+    "R_NewerTextureUpgrade exact native-key ordinary binding decodes heightR/255; decoded grayscaleXYZ becomes authored RGB, and decoded heightR is explicitly copied to its alpha.",
+    "NormalInputs/NormalGenerate and R_NormalMapFor preserve authoredRGBA; cache keys include scalar/authored bytes. Normal texture has NoColorSpace, native offset/repeat and heightSource:true.",
+    "Existing r_post_gbuffer POM marches depth=1-normalAlpha. Higher side alpha therefore remains nearer and lower centre recedes. Default depth=.02UVtiles/layers10; view distance and Classic/detail toggles fade/disable effect. Height-derived shadow masks use same alpha.",
+    "Real vertex displacement is gated to DEMON_TEXTURES(dem4_1,dem4_4,dem5_3). Adding ordinary-brick displacement metadata does not create a mesh. Do not broaden that allowlist or add a parallel renderer."
+  ],
+  "runtimeLimits": [
+    "This achieves existing bump/height/POM apparent recess, not silhouette displacement, geometry/collision changes or a fixed world-unit step.",
+    "POM is view/UV/distance dependent; it has reduced strength very close and fades260..820units, and needs enabled detail/normalMap.",
+    "Plain fixedLambert CPU contacts cannot verify POM parallax. Actual oblique engine draws required.",
+    "Height mask cannot fix diffuse right-side material bleed or missing-volume interpretation; new solid-edge photographs remain held until independently reviewed."
+  ],
+  "usefulVerification": [
+    "Current encoder without new flag must reproduce all103published artworks and directedsteel companions byte-for-byte; prior source/catalogue/owner/Classic/unknown guards retained. Do not rewrite old receipts to currenttoolhash.",
+    "Invalid recipe name/hash/dimensions/finitelevels/order/maskbounds or simultaneous pair flag must fail before output images/receipt creation.",
+    "For each new4xQ92height, independently form eight-course low mask with integer x/y intervals. Check nonempty regions, exact step width/phase, whole decoded-facing min > whole decoded-centre max, plus deep interior landmarks. Checkbothboundary wraps and no phantom right-edge low strip.",
+    "Verify all5runtime maps perbrick use4x dimensions/lossy92. XYZ derived from decodedheight; public R_NormalMapFor RGB matches decodedchannels and alpha equals heightR exactly; NormalGenerate agrees; changedheight changes inputcachekey.",
+    "Extend diagnostic-only Material angle Front/Left55/Right55 control with defaultFront identity; keep source/distance2Dcomparison canvases and nativeUVs untouched. Record angle, alpha/higher-side/lower-centre evidence and actual material state in receipt.",
+    "Actual engine Front/Left55/Right55, reliefon/off at samecamera: the patterned centre shifts consistently behind solid left/right blocks, reverses view offset correctly, retains sharp photograph, has no material bleed/voids/shadow rim and repeats3x3. Retain an actuallevel view for intendeduse; do not claim all-level gameplay.",
+    "Independent full/distance/edge/two-light art review and public/pack tests before registration/publication; normal maintainedgate unchanged."
+  ],
+  "sourceIdentity": {
+    "managedWTHead": "1ee2fb767638955614b391f5296d578be3563584",
+    "originalEncoderInspectedFile": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/encode_official_maps.py",
+    "originalEncoderSha256": "e8d825dcb3e79bb9f419af6558363e0ab00534389e7b21f5423177b2e1f9af9b",
+    "runtimeSources": [
+      {
+        "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/update_level_sheets.py",
+        "sha256": "739856ad35d8a2622aff9a8acb7f8493bd6fbfbc8b5f6ec6c30dd8bab3bd9e17"
+      },
+      {
+        "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/craft_normals.py",
+        "sha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5"
+      },
+      {
+        "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/src/newer/render/r_newertextures.js",
+        "sha256": "5aabea2d4c5e713ae1c81cf4e606ef3b387ce98bcca0b6e293719a7cded32246"
+      },
+      {
+        "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/src/newer/render/gl_normals.js",
+        "sha256": "f7a7d66763b95e76a299ccea6e57884793b0db45f7ca10a7d397ca788d88d109"
+      },
+      {
+        "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/src/newer/render/normal_math.js",
+        "sha256": "303390e4216a26d6aaa2ceb47b841484a9b5f6b6dd88118922f70dc1682a7125"
+      },
+      {
+        "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/src/newer/render/r_post_gbuffer.js",
+        "sha256": "b5e2087f138801c765a0455760fef601c7908b6a2cc88390cd4a43d8216d2d2c"
+      },
+      {
+        "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/src/newer/render/r_demonrelief.js",
+        "sha256": "d6fe7b6b88b968408a7398007e41adebd499af33cbf4e248c13b80c9f48ff598"
+      },
+      {
+        "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/src/newer/assets/normal_prepare.js",
+        "sha256": "e543d48b5d4e9c27e5c4d28984197a7286237f9d84f3ef2050f3edcab75590f9"
+      },
+      {
+        "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/src/engine/render/gl_rsurf_materials.js",
+        "sha256": "31d439f9e0240e8ca1a3f99ff9b91ce5540a28890af262ac44c4b4f0e2f26ac2"
+      },
+      {
+        "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_q92_test.js",
+        "sha256": "eb6bdd23c792783e82c88923ead674f90405faec720383dc34b5a6933020e864"
+      },
+      {
+        "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/level_texture_assets_test.py",
+        "sha256": "f6d6285934328d82869968ebe00fd470d9a92ca208e2f501c31200dd4fe448a1"
+      },
+      {
+        "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_trial.js",
+        "sha256": "127f606fc22e4acb7cb07ab1b4c9f9524c3c0e00761dae164bdecff63f00d7cf"
+      },
+      {
+        "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_trial.html",
+        "sha256": "aa2a3aec430e72172d252f4872240b36f6747afd7e471f83b520886185a5d429"
+      }
+    ],
+    "nativeReferences": [
+      {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_1.png",
+        "sha256": "67eeeb98acf7292d963e79e8298984b64aad6368ef1d8bcd3671e5f279571515"
+      },
+      {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_1.json",
+        "sha256": "bb9fbe5e388f5bcb74a4efee63fa107883c28ea3f414f65e6ba36277746c983d"
+      },
+      {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_2.png",
+        "sha256": "2f5fe0c3e00a0bfe74da5fe8f084eccf0d5f81712f26dc0ba455ed3f44829f0c"
+      },
+      {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_2.json",
+        "sha256": "f6cc24264ea2eb08dc562a41454dde7221d12a5a020c1f5b944414a72b0b4084"
+      }
+    ]
+  },
+  "responsibleNextOwner": "Parent owns optional implementation/trials and current diffuse repair; independent planner reviews bounded code delta and final art next. No owner acceptance or release implied."
+}

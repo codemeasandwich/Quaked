@@ -1,0 +1,272 @@
+{
+  "qualification": "Independent preliminary raw GPT and actual-target-resize geometry/material/sharpness review only. Final fitted/Q92/relief/source/runtime/registration acceptance remains separate.",
+  "ownerQualitySteering": "Sharp, distinct photographic realism is a full usable4x visual requirement. Distant similarity and numeric error cannot substitute for it. No native noise copying or uniform sharpening accepted.",
+  "materials": 3,
+  "results": [
+    {
+      "name": "br_trim1_1",
+      "verdict": "HOLD",
+      "dimensions": [
+        512,
+        256
+      ],
+      "geometry": "Eight horizontal course periods exist, but the usable field contains roughly four broad brick widths across instead of seven full-row/six inset-row native16px modules. Brick/jamb-return positions cannot be corrected by a small vertical roll.",
+      "phaseDiagnostic": {
+        "nativeMortarRowMinima": [
+          7,
+          15,
+          23,
+          31,
+          39,
+          47,
+          55,
+          63
+        ],
+        "targetExpectedNativePixelBands": [
+          [
+            28,
+            31
+          ],
+          [
+            60,
+            63
+          ],
+          [
+            92,
+            95
+          ],
+          [
+            124,
+            127
+          ],
+          [
+            156,
+            159
+          ],
+          [
+            188,
+            191
+          ],
+          [
+            220,
+            223
+          ],
+          [
+            252,
+            255
+          ]
+        ],
+        "rawAt4xMortarRowMinima": [
+          21,
+          52,
+          84,
+          114,
+          147,
+          179,
+          212,
+          245
+        ],
+        "interpretation": "Current mortar minima are about7\u201310runtime pixels too high. New geometry must preserve native phase; approximate roll is not proof."
+      },
+      "material": "Crisp physical brick edges and recessed jambs are useful. The faces are quite rough/gritty for glazed brick; new donor should have distinct fired/glazed faces with sparse chips and restrained bluegrey mineral wear rather than uniform brown grit.",
+      "nextAction": "Regenerate exact true2:1 eight-course donor or compose actual photographed16x8-native brick modules with exact32runtime jambs; retain full7/inset6 counts and stagger. Recheck actual512x256 after source fit/edge/Q92. Do not shrink whole image in X or accept distance similarity alone."
+    },
+    {
+      "name": "wstone_17_JM",
+      "verdict": "HOLD",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "geometry": "Eight vertical128runtime-pixel periods and continuous vertical faces are broadly correct; no invented horizontal courses. Bright ridge straddles wrap.",
+      "material": "At usable1024 the broad white rib highlights and uniformly cloudy/stippled faces read as softly embossed material. Sparse pits/veins are present but do not provide the sharply focused, distinct photographic stone reading now requested. Soft curvature shading itself is legitimate; the surrounding material and shoulder definition must be clearer.",
+      "nextAction": "Generate a new deep-focus carved-stone photograph with eight real rounded flute/ridge periods, narrow defined ridge shoulders and sparse sharply resolved pores/chips/hairline mineral veins on quieter broad faces. Preserve original pale warmgrey/cream/salmon distribution and moulding scale. Avoid glowing white airbrushed stripes, uniform stipple, global sharpening or reconstruction of native pixel noise."
+    },
+    {
+      "name": "wstone_11_JM",
+      "verdict": "PASS preliminary photographic donor",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "geometry": "Four horizontal256runtime periods, a narrow raised lip around48runtime tall, groove below and broad body. No invented vertical joints. Ordered lip/groove/face resembles the native intent.",
+      "material": "At usable1024 rail boundaries, small chips, scattered pores and hairline veins remain distinct. Broad mineral patches are restrained and read as stone rather than a pixel-grid/noise reconstruction. Genuine source rail shading is retained without a new image-wide frame.",
+      "nextAction": "Continue source-specific colour/edge finishing and Q92/height/XYZ encoding. Final approval must inspect actual decoded selected diffuse and relief, distance views and repeated joints; this preliminary raw-donor result is not registration approval."
+    }
+  ],
+  "manualEvidenceViewed": "All3 original raw GPT files; all3 native reference enlargements; all3 exact4x Lanczos target resizes; brightened diagnostic side-by-side for brick joints only. Brightened image is verification evidence, never an authored asset.",
+  "inputs": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-next-eight-independent-plan.json",
+      "sha256": "dfd7f5fe0e34606a113585ecdfed6d8df22b67c277eec13536e4644eb98905fb"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-12/TF_Metal4_04-photographic-4x.png",
+      "sha256": "b103a6961ea133bf27386bf13b13e148f524287fb2193c25c522ea8bb0e52975"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v4-4x.png",
+      "sha256": "d47068c3c69b514ce87b4176b8ecbee29b9042f664c6142a7b8422cde77a3f08"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-13/wstone_07_JM-photographic-seam-v2-4x.png",
+      "sha256": "62fdee9936e4e84095ac1085ee4d229d3d1126e6c79f24c0735310c5be6f28fb"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x.png",
+      "sha256": "6353437aeb670d8314540b17dc05ea10a3a10db4f815ded2e2aee36c534c811b"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x.png",
+      "sha256": "ef04afc4e39e62ac0d2a9344aa65b8c0a9adcedf99d3267257b5424f3dbc6c73"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Metal3_04-half-native-colour-guide.png",
+      "sha256": "35f0c758b78f07f9b000fceb31a52554cb263879db22ce1017d6e670d26c3adc"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Stone_03-half-native-colour-guide.png",
+      "sha256": "08592fd9f8fe7fcafdc02a37748175d5bed8145e509ccb74f0d64f9c3248161b"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_1-half-native-colour-guide.png",
+      "sha256": "73e84c4814fcc4ab8e2e096f7ec4df6fc59ad42f1b8a898e555dc0da1ca87df0"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_2-half-native-colour-guide.png",
+      "sha256": "3d726938e64512cd98015a352a2053c3a89460e7884e022a4cadb396f99b8c9d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/metal5_83_JM-half-native-colour-guide.png",
+      "sha256": "7377e18eb8f99471cb65732e05b99610b6ff9049c7e8ff9def3a9d4e114ba0be"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Metal3_04.json",
+      "sha256": "dc10ccc5bf6b4f0b8e3f5104bda1c0ed1ffe5616bffb4acdf870ab4fb3ee3811"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Metal3_04.png",
+      "sha256": "aa6d04b754ba5b9ccc6ba26c9dd1c635377270e1f4c1baa8f4440e4a0a83e389"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Stone_03.json",
+      "sha256": "ade4a405058b82cec979131a7c3a705d81ddf75f42126d99bc15d7ccf47b4408"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Stone_03.png",
+      "sha256": "f668998d3f0d54e60c0d84a1f06a422e81e5cab4f4e90ebf7f88e9b0485f2a86"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_1.json",
+      "sha256": "bb9fbe5e388f5bcb74a4efee63fa107883c28ea3f414f65e6ba36277746c983d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_1.png",
+      "sha256": "67eeeb98acf7292d963e79e8298984b64aad6368ef1d8bcd3671e5f279571515"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_2.json",
+      "sha256": "f6cc24264ea2eb08dc562a41454dde7221d12a5a020c1f5b944414a72b0b4084"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_2.png",
+      "sha256": "2f5fe0c3e00a0bfe74da5fe8f084eccf0d5f81712f26dc0ba455ed3f44829f0c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-metal5_83_JM.json",
+      "sha256": "3f89d3f1d071c91a07c1f53acecab465e80a4645fee90106a969c84358619487"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-metal5_83_JM.png",
+      "sha256": "5afd4634497519a04bb21cc569d0d8eb70e7e392e651ae6bab21bab373088af3"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_11_JM.json",
+      "sha256": "0e782fe16646913f95c537a9737077beb73eae79a1f955e0c1af35459859b1fd"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_11_JM.png",
+      "sha256": "fe4895d4826e898a137a5d08c3e169e5c801d500479e4e74cd66a66485530e16"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_13_JM.json",
+      "sha256": "23cda0bb924be42ed4487b57f34141b47640544b069035a009b6e5d25ba65750"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_13_JM.png",
+      "sha256": "2d4e8a0dc918321be933f1a8cb507ad29e6f1340df31fe044fc077328d30e806"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_17_JM.json",
+      "sha256": "165d919523f5c7a96d5da4f8f652b004f3f73e323567284e2c019447f8fb6c1e"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_17_JM.png",
+      "sha256": "c4be3494526414bb204ea249375c90c54189ad0ccba8792e1194efb3a8a93bfb"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/next-eight-stone-trims-native-preparation.json",
+      "sha256": "a653c7e21385f909c871583f0b1829926518a207b731e044e5bde4a21ee67155"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/next-eight-stone-trims-native.png",
+      "sha256": "867de3736d8f087bd8809e787c1af8d9b4770d16f8ce949e914937b8c0226402"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/wstone_11_JM-half-native-colour-guide.png",
+      "sha256": "8cef56cbeafa4742c79943c950e2a2d1b1e3ebf4f9a2e5e171fb27002ff4a3a8"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/wstone_13_JM-half-native-colour-guide.png",
+      "sha256": "8a093802b58fce4cf115e9ea04c2bfa4f4ffdea5fa8d79cdf4ed0b87e6b2376a"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/wstone_17_JM-half-native-colour-guide.png",
+      "sha256": "abea4b498b4898647f8328a50b025e6cde38d22d31c5785481eeb20c7da47537"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_1-generated-v1.png",
+      "sha256": "7b90fec2c1c8e6f958b51faf7d8d98837fc9a0d2f71f71f0be0ed6013ae27297"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/wstone_17_JM-generated-v1.png",
+      "sha256": "7366e591514f165f3c742e1c87f6e107a05ff45e9af7996d8acec3f13dc6f4ae"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/wstone_11_JM-generated-v1.png",
+      "sha256": "d0e1e85c6605ea9f55583176cfcbefed1b5a8607897b213b50227e364f8a9809"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-first-three-preliminary/br_trim1_1-joint-inspection-brightened-only.png",
+      "sha256": "ee9afbbb8c53178d384dc58534bdae0f4b10ebd37f7cb2b71448a753c53b3fb7"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-first-three-preliminary/br_trim1_1-native-target-contact.png",
+      "sha256": "d8286b68c09b208bd5d25c3492e0a02b74dd152fe9afa80362237c16e276b939"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-first-three-preliminary/br_trim1_1-target4x-resize.png",
+      "sha256": "2b03ff7b5b3a266df55376bb31b0d24d643a82b46364f4bc533eea4cce3142c1"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-first-three-preliminary/wstone_11_JM-native-target-contact.png",
+      "sha256": "e61d02dfd1ba266f963fa9fed162a8f1d5f8626ba30ea9c233ea8338bb9c45ce"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-first-three-preliminary/wstone_11_JM-target4x-resize.png",
+      "sha256": "a23d1b780c035f0efa8367a1386e0ce30de879fa4fec3f5efc5c5a40af2b006e"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-first-three-preliminary/wstone_17_JM-native-target-contact.png",
+      "sha256": "f15d624660be6a3768e53b0ad1068d9252682e570485b5d9003ffa9647df5e72"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-first-three-preliminary/wstone_17_JM-target4x-resize.png",
+      "sha256": "19da3dd79ff5d0dcaa79c5eceeed16021f5a61a3ca75c6f400f8c625673d51fa"
+    }
+  ],
+  "mutations": "ROOT verification-only target resizes/contacts/receipt. No donor/candidate/WT/index/test/stage/gate changes.",
+  "nextOwner": "Parent repairs the two held donors or proposes bounded physical-module composition; continues stone11 finishing; independent actual decoded final review required before any registration."
+}

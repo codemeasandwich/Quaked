@@ -1,0 +1,1480 @@
+{
+  "status": "Sealed finite READONLY adaptation plan. Wait for cleanup owner commit/Dev publication, then parent adapts only its WT. Reviewer quiesces. No ROOT/WT/cleanup edits, staging, build, commit, provider run or cross-chat message by reviewer.",
+  "preservedBatch": {
+    "manifest": "/private/tmp/quaked-oct18-stone-trims-pre-layout-candidate.json",
+    "sha256": "eb273a6062332a92161d0f7e11fa93c7a503445cfebf2bb705704eda1b75b796",
+    "base": "ab554cf61a2650c7ae84ed5dc96dcc45c4cb1010",
+    "tree": "0809db6970bb0f830b0d3251595c42ff4bd08a4a",
+    "indexSha256": "4bdc95a3a622fbb0ba71afb6aacde1d0504bfe3c4282b91e8dc2be872eb85faa",
+    "version": 2026101811,
+    "paths": 587,
+    "canonicalResourceMoves": 222,
+    "breakdown": {
+      "candidateFiles": 180,
+      "officialRuntimeImages": 40,
+      "indexAndGames": 2,
+      "unchangedSourceEvidencePaths": 360,
+      "codeAndTestPaths": 5
+    },
+    "qualification": "Preservation snapshot, not post-layout final approval. Parent retained binarypatch371MB/SHA b26ba959\u2026 separately; not reread by reviewer."
+  },
+  "authority": "Owner requests commit/push only our inflight work and verify it lands in the reorganized project. Parent latest instruction is adapt parent-owned WT after migration lands, with no ROOT overwrite or cleanup-WT mutation.",
+  "centralContract": {
+    "singleMap": "assets/layout.json; newer/ maps physically to assets/game/. Keep newer/... logical IDs and relative official/candidate filenames unchanged in indices, recipes, PAKs and proofs. src/newer is code and never renamed by this resource rule.",
+    "boundaries": [
+      "AssetFetch/AssetURL/COM_NewerURL for runtime URLs",
+      "assetPath(root,logical) and ResourceLogicalPath for Node packaging/filesystem inventory",
+      "tools/resource_paths.py::resource_path for Python file boundaries",
+      "tests/helpers/resource_fs.mjs and resourcePath for tests/subprocess arguments",
+      "resourceGitPath only for old/new Git-object filenames"
+    ],
+    "prohibited": "No duplicate newer tree, aliases, symlinks, copy fallback, bulk JSON path rewriting, legacy-proof reserialization, global recipe change or new cohort."
+  },
+  "finiteSequence": [
+    "Wait for cleanup normal gate, commit and Dev publication. Re-pin final mapping/API hashes and current Dev; current unfinished cleanup snapshot is not acceptance. Do not message/modify its chat or checkout.",
+    "Parent preserves pre-layout tree/manifest/patch/prompts/owner-correction evidence, integrates the landed migration into its own WT and keeps unrelated accepted Dev and ROOT work intact.",
+    "Move the222 scoped resource files to mapped canonical destinations byte-exact. Keep360tools authoring/evidence files at their existing locations. Retain every held candidate and old receipt. Do not replay additions into obsolete newer paths or recreate that directory.",
+    "Apply only our8ordinaryVariants entries/version onto canonical assets/game/textures/index.json; every earlier descriptor/guard/owner/glass entry stays intact. Merge8fulltrial entries, preserve every oldpreview, leave logical file labels unchanged. Rebuild games via canonical build_game_index/assetPath; preserve library/model/BSP metadata and allow only8newnames/fingerprint.",
+    "Compose our optional layered encoder +111public aggregation +angle diagnostic with migration boundary changes; never overwrite cleanup-current files with whole pre-layout copies. Adapt filesystem boundaries as below.",
+    "Run only required current cohort/public/collector/GPU/regression checks, retain successor evidence, then obtain exact frozen review and normal maintained hook before our scoped commit/push. Verify remote Dev and canonical project readback. No release/allcampaign claim."
+  ],
+  "boundedCodeMerges": {
+    "directOverlaps": [
+      "tests/official_texture_q92_test.js",
+      "tests/official_texture_trial.js"
+    ],
+    "public111": "Retain migration ResourceURL/resource_fs adapters AND our111art/114binding aggregation, source-specific8checks, optionallayered/pair CLI replay arguments and oldcontrols. Keep comparisons logical via ResourceURL(...,true); filesystem reads resolve centrally.",
+    "diagnostic": "Retain AssetFetch/mapped-index interception, stonetrims boundedmanifest selector, Frontdefault/Left55/Right55 controls and angleDegreesreceipt. Preserve 2Ddistance canvases/nativeUVs. Use existing central URL boundary, not a new local map.",
+    "encoder": "Cleanup snapshot encoder is not resource-aware. Keep optionalheight-layering change; import existing resource_path. Preserve raw logical CLI labels for provenance while separately resolving original/diffuse/vertical-neighbour/layering inputs and output-stem filesystem locations. Map root-contained absolute legacy paths centrally; trueexternal absolute/temp inputs stay external. Preserve caller-relative CLI behavior by resolving paths before mapping when appropriate. Write physical files under assets/game, retain requested logical output labels in receipts. Do not alter craft/layered/XYZ/normal math.",
+    "subprocesses": "JS resource_fs does not rewrite Python subprocess argv or Image.open. Resolve actual file arguments through assetPath/resourcePath or Pythonresource_path at the boundary. Encoder must accept historical logical enc.authoringDiffuse/partner strings. Adapt active source-producer callers similarly; do not modify frozen producer snapshots or old recipe text.",
+    "newCLI3": "Use resource_path for real witness receipts/master/runtime-map filesystem reads. Tools nativePNG/recipe locations remain unchanged. Exercise logical CLI input labels so the test proves the adapted encoder. Retain actual fixtures, independent integer half-open mask, all11preflight refusals, strength-only D/H conservation and no-skips."
+  },
+  "evidencePreservation": {
+    "historicalBytes": "Every prompt/recipe/proof/map stays exact. Logical newer/... fields remain valid through the central map; do not rewrite them to assets/game or change old tool SHA claims.",
+    "toolHashSuccessors": "Migration changes helper source hashes through resource imports/path boundaries even when maths is unchanged. Preserve recorded old source witnesses/receipts and add explicit old\u2192new implementation/hash successor proof plus byte-exact payload replay. New runtime/adaptation receipts carry current hashes separately.",
+    "externalAbsolutePaths": "Central helpers preserve absolute paths outside their current root. Check only our active replay consumers after landing; use an existing explicit hash-bound portability mapping for any historical external workspace prefix that still requires resolution. Never add guessed-root/global fallback.",
+    "whitespace": {
+      "productionAndAllOtherFiles": "Strict default categories plus CSV cr-at-eol PASS",
+      "literalHistoricalPromptExceptions": [
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_1-imagegen-prompt-v4.txt",
+          "sha256": "093a0cad3560011c573bcd883345bef50d24400eda5323c342a1ae357295d694",
+          "reason": "Verbatim historical GPT prompt retains exactly one trailing space on first line; sealed input provenance retained."
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_2-imagegen-prompt-v2.txt",
+          "sha256": "f0fad47b4201950013a94f375f3118d52e9ea4d206dd346e894e279ac7043fef",
+          "reason": "Verbatim historical GPT prompt retains exactly one trailing space on first line; sealed input provenance retained."
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_2-imagegen-prompt-v3.txt",
+          "sha256": "8573ed896584d45a8774b352a2b8030368bbb17498d9dc717e7bc18b6570dd1b",
+          "reason": "Verbatim historical GPT prompt retains exactly one trailing space on first line; sealed input provenance retained."
+        }
+      ],
+      "initialFullPreflightLog": "/private/tmp/quaked-oct18-stone-trims-whitespace.txt"
+    },
+    "whitespaceRule": "Keep the exact3verbatim prompt trailing-space hashes and explicit artifact proof; do not trim prompts or weaken gate/config. Production files already passed strict preflight."
+  },
+  "requiredCurrentVerification": [
+    "All222mapped files exist once at canonical paths with preserved SHA; no obsolete newer files/symlinks/aliases. All40selected and allheld candidate/source payload bytes remain exact.",
+    "Only8ordinarykeys/version +8previews +8game-names/fingerprint after migratedbase; prior owner/guard/Classic/glass/variant/preview data conserved. Layeredbrick plane and acceptedquietstone identities unchanged.",
+    "Current111encoder replays plus newCLI3/11refusals; old103/pair outputs exact; existing owner/legacy/historical/source/unknown/case/Classic/standard4x/bothrock tests and pack contracts preserved. Use current actual logical\u2194physical inputs, not a historical receipt as rerun proof.",
+    "Current collector/game reachability: expected571selectedQ92images (555generated+4owner+12tech), actual count output authoritative. Candidates/sources excluded and ownedPAK boundaries unchanged; no new alias tree.",
+    "Actual mapped-source diagnostic loads and8close/halfquarter/repeatviews; bothbricks Front/\u00b155 reliefon/offPOM; decodedheightR\u2192normalalpha/cache/source/UV controls; no shader/console errors and ownedserver/tab cleanup.",
+    "Fresh source/recipe/map/PAK/GPU/hash successor receipts, exact finalstage review and unchanged normal hook before only-our commit/push; remote/readback confirms canonical project. No additional cohort/build work by planner."
+  ],
+  "remainingUncertaintyChecks": [
+    "Re-read only landed final mapping/APIs and cleanup fourfixture fixes; no broad cleanup inventory required.",
+    "Audit our encoder/subprocess/replay consumers for remaining direct old filesystem accesses.",
+    "Reconcile helper sourcehash transitions and root-external absolute historical paths without rewriting proofs.",
+    "Re-pin exact livebase/inputs/frozen tree if Dev advances again; no stale pre-layout PASS."
+  ],
+  "snapshotSourceHashes": [
+    {
+      "file": "/Users/bri/.codex/worktrees/unified-assets/Quaked/assets/layout.json",
+      "sha256": "6d962d9c00462dce9982dd2a1b06c390abb6ba4e42daeaa31a01a4e803a760f2",
+      "qualification": "Unfinished cleanup snapshot; re-pin landed commit"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/unified-assets/Quaked/src/platform/resource_paths.js",
+      "sha256": "99d7ecf78b1a25f303b29553b6754799247229d0adc30392a7841ca1f5332b78",
+      "qualification": "Unfinished cleanup snapshot; re-pin landed commit"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/unified-assets/Quaked/tools/resource_paths.py",
+      "sha256": "7a5c2c5b4fa36d57ece723b454b3ea27310a6ba370d6436362cc3c506e98bf6e",
+      "qualification": "Unfinished cleanup snapshot; re-pin landed commit"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/unified-assets/Quaked/tests/helpers/resource_path.mjs",
+      "sha256": "b9f640ae17db235031566a21cccd57aa5db8448d1abe353adcaf332b507fc549",
+      "qualification": "Unfinished cleanup snapshot; re-pin landed commit"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/unified-assets/Quaked/tests/helpers/resource_fs.mjs",
+      "sha256": "2e07c04503734d38172101ff16fcb6c1902dfb36cec645c0ca83b8401bcd4079",
+      "qualification": "Unfinished cleanup snapshot; re-pin landed commit"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/unified-assets/Quaked/tools/distribution/manifest.mjs",
+      "sha256": "3b14951f4723f37010cb71fe4545af57f7426ab65285aad5bf11d777ab41a09f",
+      "qualification": "Unfinished cleanup snapshot; re-pin landed commit"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/encode_official_maps.py",
+      "sha256": "6e8a6306bb935a84a93477ee2091065763f7a6d4a8428e5e33a2da6eb148c520"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_q92_test.js",
+      "sha256": "f1fec07d6dc4e70c4cd1a1624b7daa9d07a6eb4c61f7066d67820e479604be06"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_trial.js",
+      "sha256": "bb881058279387b7670c0b722ade2431e2ff908813f70d27483e914e402bbb28"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_trial.html",
+      "sha256": "43e064150b8157845887bae32300200e120330148f7a14e112945863d6cbfc0f"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_layered_height_test.py",
+      "sha256": "e49e9688031a378e454190c2430baf97eafe7197752677800748e51b21e6c535"
+    }
+  ],
+  "mappedResourceInventory": [
+    {
+      "file": "newer/packs/games.json",
+      "sha256": "c64420ef6a2c89bd08901bd483e652dc66a8bf99498696b2902ac5bee83541b5",
+      "bytes": 94560,
+      "canonicalPhysicalFile": "assets/game/packs/games.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-12/trial.json",
+      "sha256": "68ce598d784206dd6f0d3d24ac45fee5495930fc653fd3b9d11c362b65debba0",
+      "bytes": 146985,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-12/trial.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "4dff0f8a3c6cb511a280fd04b9299cfae4175743b465a7a3947befb5bcca2398",
+      "bytes": 99902,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "8a853e2de9ee8de7543ad3f6bb085fbde02841ac8f7f3477754fae18fcd2ef0d",
+      "bytes": 113318,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-height.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "5832516bb992d0c05f1afbda903fb390a9f3d22e293e8f33bc4be74f5f19e49d",
+      "bytes": 106130,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "5d24620d170be23b793925a1db6d85e894b781b15bb3fd93cabef7721c1b1956",
+      "bytes": 104394,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "fae5c7ab623a6bcdd9be887080cca2cae97cdf5bea0043b6d1b297942f1f1e8b",
+      "bytes": 26324,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "3784117f742008cb7f1138997fb36832645b25a44404fb5dccebc1e2d2808464",
+      "bytes": 3227,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x.json",
+      "sha256": "a17c83d616178b61db0206d2d6db39e4b3922ab70faafc3db83e43461a85d69c",
+      "bytes": 1008,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x.png",
+      "sha256": "79c881958ab976c420937a0abc4a01cd21baf272966576d673db58ba2b10b31a",
+      "bytes": 520358,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-v1-4x.json",
+      "sha256": "2ac5b3b74601990854669e5fbebbd047d2201e01e0f86897771c388d52a1eff4",
+      "bytes": 2006,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Metal3_04-photographic-v1-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-v1-4x.png",
+      "sha256": "ea1c79da3c2923db3d3fd908d026fb150ee8d40bbaddbee703e47b105d888018",
+      "bytes": 520100,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Metal3_04-photographic-v1-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "9a34d65751a142780abf90efc4f617700b37b6d86c8eac17a493d387ac03f5bb",
+      "bytes": 151196,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "84c7e956503bee44e182011762d32286c2968b8c82acaadac99961a9a5c10449",
+      "bytes": 123006,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-height.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "16b2c9c0827afae72ebdd17143f0dc4091db0b26a181907aafe1d85a0a966609",
+      "bytes": 108226,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "009da666425485cf050ac6db72f2df876fb93357403208fb683eb817d1df16ae",
+      "bytes": 106030,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "65113240d0206f62bcb4b7744ac55cebc20a181c0f6dc1a5afb2a311ee8789b0",
+      "bytes": 28174,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "d3b0e8957536c488576c3e451012ce117b9faeb423c4cac3bf8596df4a939b5c",
+      "bytes": 3220,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x.json",
+      "sha256": "3f4e13c125afb97941ace87cb2467bc444de0d532bf1ca6a9dfec40f632ad396",
+      "bytes": 1002,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x.png",
+      "sha256": "0879bbbef3d6ee2fd146f9a128d1733f001bb3a56a36c31f394ae5af7c2ae0b1",
+      "bytes": 640180,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-diffuse.webp",
+      "sha256": "d2cbb3cc27f5c067860b01b4b5ab5fbfc85ee93d283981492752d8cd7b76dd04",
+      "bytes": 126504,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-height.webp",
+      "sha256": "6425026a4d6e862e5821955c7d21a994d01691b29312f492ac62cc47f7630983",
+      "bytes": 118504,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-height.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-normalX.webp",
+      "sha256": "342805804bbefd5409bc839cb2ffb082aa9315f2b5a6388ffc9f1bab365a8a77",
+      "bytes": 105584,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-normalY.webp",
+      "sha256": "76cc105af7139f783113defb4d7115323f09aaced17d8705b4af74c0993683ff",
+      "bytes": 105734,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-normalZ.webp",
+      "sha256": "f6c05806cc1f29e6b013369e48739fe7a972d64b1f797965ddb978002fe8ff88",
+      "bytes": 26156,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz.json",
+      "sha256": "fc789cc7ad9546b2afc475d6b3d4c018ae9af1658abddb5bb8c755012c7b01c6",
+      "bytes": 3222,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x.json",
+      "sha256": "356624944e792ec1746e5dec004ade7adc6756aea1b60ee1935d5ac6b6a1602b",
+      "bytes": 1006,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x.png",
+      "sha256": "3966219155fc20d775edd374a8cabdd7bbdb719d52c11af7c2caeba9bdf5c78f",
+      "bytes": 574676,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-v1-4x.json",
+      "sha256": "238badc38b5f233e00916809f9cb289bb5761e7c5148ddb9650d1ac9388a12e3",
+      "bytes": 1992,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-v1-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-v1-4x.png",
+      "sha256": "06ad7d10e927aac6825070b881e9b253db9807c240f42384c7bd2629e3643667",
+      "bytes": 640552,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-v1-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-v3-4x.json",
+      "sha256": "a6c975976c77bd7b1357769a706edde58b1f4e6e39c5ce2ab0548600fa7d3997",
+      "bytes": 1993,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-v3-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-v3-4x.png",
+      "sha256": "618d992dc5d191dceb63ed4bbba93206212e439ec08cdaf2398571b18c2e49dc",
+      "bytes": 574677,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-v3-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-diffuse.webp",
+      "sha256": "b6d49572e815697c77b11644f82f496f075b907d27d81841be5b92ffc712a73e",
+      "bytes": 56298,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-height.webp",
+      "sha256": "409fe19aeb4add038baa2dbdb03950f0a5aa9d3ec4cf8134074a7944b479cbe3",
+      "bytes": 7162,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-height.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-normalX.webp",
+      "sha256": "3a8286e9370d5f0fab78f5df5dba1874dbfda5e983ba3dc4a7bc0df2cc08b2da",
+      "bytes": 7250,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-normalY.webp",
+      "sha256": "6ecbc8c46d199fc517cb130aab6425f9bb52c888c8f578cd3adbeb7949470fee",
+      "bytes": 8544,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-normalZ.webp",
+      "sha256": "0b7b0b88cc12092dba70014ffabac563c7f9fab26206ffa4f922b3b2947d6e10",
+      "bytes": 706,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz.json",
+      "sha256": "caa0032e2e2ece7b46bf4e0662e341369b4c338e75c4ce5ae57dc18a8c382cee",
+      "bytes": 3835,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x-q92-xyz-diffuse.webp",
+      "sha256": "4b3c538fdaeb7598f38f18b844558de9a59c2354286e788206427c751488e64f",
+      "bytes": 57590,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x-q92-xyz-height.webp",
+      "sha256": "b558d5a91e637ee935f39a78e8a347a7caeff838fecfe74941af9597b655312d",
+      "bytes": 62600,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x-q92-xyz-height.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x-q92-xyz-normalX.webp",
+      "sha256": "9a099d20d95df08f057a1a9be5bed66124f9fc1fb60053b0a2bcce6909a3f5e6",
+      "bytes": 48950,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x-q92-xyz-normalY.webp",
+      "sha256": "0c711242e438e238d0e1881bf611e911ce6854c9501d5e65b5ad4465c285c953",
+      "bytes": 49058,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x-q92-xyz-normalZ.webp",
+      "sha256": "12bc0cfce924ccced1afda774cd6205572b4b6901ba6f1327969a25fdc32866e",
+      "bytes": 13838,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x-q92-xyz.json",
+      "sha256": "e7359ce0e4ab3130e4f5e9dd44abfa7844dec2feca73577218cc568cb9a98ce4",
+      "bytes": 3234,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x-q92-xyz.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x.json",
+      "sha256": "63d32d1a026d5f3d904bdd24e292e14df9efb74caf54ec16de656924a4293903",
+      "bytes": 1016,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x.png",
+      "sha256": "0aab90a84278a7d43be373f1926e977f3bffd3471452ff8fa32bc0a8dff02f6c",
+      "bytes": 266748,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-v7-4x.json",
+      "sha256": "d8528a161b55084d126c59be84a2fe535d25c22592d26c2ff19b2a8343460199",
+      "bytes": 2002,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-v7-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-v7-4x.png",
+      "sha256": "ae9a6e437ff52ce9c9be8a15658f3f7b1788a28616357f249c10dedee6886f46",
+      "bytes": 266683,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-v7-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "782808f41688be812a2669486774147873865c1df686cb8a448ff76e659535b3",
+      "bytes": 54404,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v2-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "20f49c872a3b4715e6a88ce77372a49c960ec1888dce5257b8ca20f16016b4a7",
+      "bytes": 61966,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v2-4x-q92-xyz-height.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "84b9cd1daf482bd481a62797bd2a9a416405c8e5ffbe9b80445722dfcc0ad0f4",
+      "bytes": 49440,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v2-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "1894baf9d429347de6a545198948a631b31ea1f926c10d55008907c919e0b504",
+      "bytes": 49834,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v2-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "75c24c70a7d8f71518130606a9c2ed46a712d6e12f6724bd41f4e8b41884d1d1",
+      "bytes": 14150,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v2-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "f319b1f2e22362337c602755d4b9af31aae446b887a5933c19338aa259b297cb",
+      "bytes": 3202,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v2-4x-q92-xyz.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v2-4x.json",
+      "sha256": "80b9011277e7020c19308947f5e77beaee27da4e7543a598bef8f57043b22d42",
+      "bytes": 1003,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v2-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v2-4x.png",
+      "sha256": "08a2331747757fc03f8b81e7828ca0ee60e46dd77daf4c1d42a4741bf584ab80",
+      "bytes": 256982,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v2-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v6-4x-q92-xyz-diffuse.webp",
+      "sha256": "eaa3ea8ebedd25c53eb2d78d1f9af0c0072976943e17c0f8293ff68a787e1902",
+      "bytes": 57164,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v6-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v6-4x-q92-xyz-height.webp",
+      "sha256": "e95adae410049ddb1963ccfbab01f5f17e26d4456a2c13bb8934e6720212373e",
+      "bytes": 62096,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v6-4x-q92-xyz-height.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v6-4x-q92-xyz-normalX.webp",
+      "sha256": "6b71dd2c614cf4306b9734c0acded295f852895daf13fd9427b3d5b02b67624a",
+      "bytes": 50004,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v6-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v6-4x-q92-xyz-normalY.webp",
+      "sha256": "63aa790f8b69b989350a6cd7bfadb3d758c174929fe3f20988392df152e2f3cd",
+      "bytes": 48758,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v6-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v6-4x-q92-xyz-normalZ.webp",
+      "sha256": "8d566ea84f5a72889f69a1e977e650fb3e94c8afd83a234c293da58ce1284465",
+      "bytes": 13992,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v6-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v6-4x-q92-xyz.json",
+      "sha256": "682f0ddcbdc9fbfb18b99938ee43ee4d1627c9ef1230e9c3511591a29c91bc69",
+      "bytes": 3205,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v6-4x-q92-xyz.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v6-4x.json",
+      "sha256": "52c1b1d9cbbda2286769c950171387c61fca1027abf265f7570dd3af7eaec491",
+      "bytes": 1001,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v6-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v6-4x.png",
+      "sha256": "4d8735d2ba42dea8c30d8b497bc7abfbf11d4dc4a1c0645416b0ad6a077c60c4",
+      "bytes": 266811,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-seam-v6-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-phase-v9-4x.json",
+      "sha256": "0c057531a5b8838fe410d47fd588edc520b633bdb9de5bb483fffaef684881ab",
+      "bytes": 2024,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-phase-v9-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-phase-v9-4x.png",
+      "sha256": "c60d270b30c211fa6aaf371e3a2a31ed65ba3caaa639c20b2b436e7a7818deff",
+      "bytes": 274519,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-phase-v9-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x-q92-xyz-diffuse.webp",
+      "sha256": "e3e60b0492d4ddf25153945bbef8b985cd0ea6f402f4e2ddc8119566ccc17f06",
+      "bytes": 62906,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x-q92-xyz-height.webp",
+      "sha256": "9fbe2857a55fe0978079e942ec355454f3c5c4d4a6818fbbb8504a63cd3ddefc",
+      "bytes": 61328,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x-q92-xyz-height.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x-q92-xyz-normalX.webp",
+      "sha256": "e6f0d5ee26515f40c5393da8d7d430a583285443c4155970019f9d0363767af4",
+      "bytes": 49438,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x-q92-xyz-normalY.webp",
+      "sha256": "24f6d93e61926fe48faefb88dfe12bcc49584e0506e7eea69c39c3dfe679d7fd",
+      "bytes": 49712,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x-q92-xyz-normalZ.webp",
+      "sha256": "2de49fab92d30565f37da8f82213e00496901202ffb60861db759cc495c6ca9c",
+      "bytes": 13068,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x-q92-xyz.json",
+      "sha256": "e078d83d4e7033206b85f1d4473db8c93a0c3955f71b91399c774f5671a5033a",
+      "bytes": 3251,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x-q92-xyz.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x.json",
+      "sha256": "b2eb6fbab8d6e63dc05aaaaf82346b13cb6ba5af05c7c1394770ccb501b65a8a",
+      "bytes": 1020,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x.png",
+      "sha256": "82de8ac46371bd4b0ce3114302fb019084bbe17abcba7894df9e66ef4654e33d",
+      "bytes": 274579,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v10-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v12-4x.json",
+      "sha256": "27a141aef63955f47bb4bb3b811fe436f3fcae814894aeafb2a83d8bdcd2b467",
+      "bytes": 1013,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v12-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v12-4x.png",
+      "sha256": "00e5eddb5ee9c0f452f6b5f14974fba417b5cd5b179deacaf5b4b6c5e292bd15",
+      "bytes": 262429,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v12-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-v11-4x.json",
+      "sha256": "de3bdc09a3a7fbe9f77a562eea91b5034c1bff22747e9c5ff9acc9c5f33ee4c4",
+      "bytes": 2012,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-v11-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-v11-4x.png",
+      "sha256": "9a61a25113596f9564c0dfa54e78ae1d6c4fc31bd15f35e9c8647ef7ac3ecdc0",
+      "bytes": 262523,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-v11-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-v1-4x.json",
+      "sha256": "144164e8b933927e14ac1727925360874d562474993f96fce8f387c7529b856d",
+      "bytes": 1993,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-v1-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-v1-4x.png",
+      "sha256": "ae63c9594746db4fe7be3e0cc8e4c0ddfdbccf498ced899020532b655ee77c53",
+      "bytes": 256818,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-v1-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-v5-4x.json",
+      "sha256": "9fc852e7c4a6ccb584192c87f4f997e979da3394bbda07196fd810dfcdb87f68",
+      "bytes": 1972,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-v5-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-v5-4x.png",
+      "sha256": "ad031bb9e3150302bf1bf1eac8d27d9c9de26d1407a4a9f05463785e79e0c79b",
+      "bytes": 266860,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-v5-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-diffuse.webp",
+      "sha256": "783f491f1c3f1d7efdaaf8512b493e7a2cdfcf62deba3a9a0521bad80e1b2d1d",
+      "bytes": 28724,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-height.webp",
+      "sha256": "88cbe16eaa140215ed621a91db1be7ddaf8367d04069be139da28691a5811444",
+      "bytes": 4992,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-height.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-normalX.webp",
+      "sha256": "6743c958e1f516595b1c4047e5b8437b500f1b6e896c6ee6f539441f5b068895",
+      "bytes": 3878,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-normalY.webp",
+      "sha256": "ff2151ce5c368c764c5ded0465634446a42ccf51e53b8d8ced8ba0121a1c4e4c",
+      "bytes": 4642,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-normalZ.webp",
+      "sha256": "7b9b7f719824c9d062ef7f81c9a66ccd91bc74e0dbadbbd882f5eeb80926ef26",
+      "bytes": 500,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz.json",
+      "sha256": "a6160569a7d7f9864baf036e3fe421d520ab9777c9e7888d837e54f38692b464",
+      "bytes": 3836,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "65447b09ac028ed2dd9131f0325cda0c245d50fc00cc309c5f6f1faca5309130",
+      "bytes": 30600,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "d26667b525f0410d32f99c28bee9ab2b5a7bee29680d21fba206d19a6701990a",
+      "bytes": 33748,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x-q92-xyz-height.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "b9b8702c062392c93d78e6463b32eafa71ec2a618e942a4813b9d54480a3f0e7",
+      "bytes": 25390,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "d26c922a8069673bd20df58735e1e8f08f4c86b12dafe0d94f768c267a206740",
+      "bytes": 25368,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "fba6cc81caee9eaefa595fe9156ed9e68ba5f8ecfbe86f18711859bd247ed6c5",
+      "bytes": 6836,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "5872283cedf90a40ab1a0b5a9c8a731f1ffa31b7866974dc0f58d442fbe97d54",
+      "bytes": 3196,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x-q92-xyz.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x.json",
+      "sha256": "c16bf7538769c6b13bf914e11d6da86aa1e2ee65587da6013571b559796f91ff",
+      "bytes": 1003,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x.png",
+      "sha256": "e83b68cf26d17c1d6818efe2662039cc720a08da7b7756980690012533d8e8f2",
+      "bytes": 138682,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-solid-seam-v6-4x.json",
+      "sha256": "ab78313a4d7c2b766945cf488d046cf3b16dda096c41c20afc2d0a0e902b9c46",
+      "bytes": 1015,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-solid-seam-v6-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-solid-seam-v6-4x.png",
+      "sha256": "b35a93af254c8cb877557fc5089cbaa91e1403acc504c2867b34d5504be14c38",
+      "bytes": 134496,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-solid-seam-v6-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-solid-v5-4x.json",
+      "sha256": "e65e82a1a3e345b793707a6076ebe6a4d52c6292f791ef48ee713dbc863b2d69",
+      "bytes": 2003,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-solid-v5-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-solid-v5-4x.png",
+      "sha256": "75b8fab8e7004bdd28b3baff4e13ec073b6fa3591caf60f0a3f036e766196e15",
+      "bytes": 134631,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-solid-v5-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-v1-4x.json",
+      "sha256": "8d876515278777561a0be6b8592884bc1f3352a4ccead0617f6335476ea7f0c1",
+      "bytes": 1982,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-v1-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-v1-4x.png",
+      "sha256": "3b6dabeddc1c3508d0a0a0f0c329ea31a5978539b46d459834eee1b70f5b297f",
+      "bytes": 138806,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-v1-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "fbe5015bc57b614857945ae2aa3827968a0a836625efa05f0ae948c3cc2701a0",
+      "bytes": 9374,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "58634e51214f59275046ffb5cece44ea59eb9f59978916084972604a00c4c9a4",
+      "bytes": 20230,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-height.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "3fd2cd463377c36112e8d4c5b9a7319b7c6b6f51b42485a782e0c191a29393ea",
+      "bytes": 9570,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "491afd6a242dca8baf2b2c1aac2da25e425e2cbaea43e24c4b85930e7853b8a8",
+      "bytes": 9424,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "78beaebb1fab2780605e71f93e9753cd32b081e4b3510046de8a4cec229110f1",
+      "bytes": 428,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "3d95d4b332604cc756f00be82845c044458368c0e51a1d15184dea4fc5cf7cec",
+      "bytes": 3212,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x.json",
+      "sha256": "aea7bb22401e0fb6ff489a5a75cde62d42b334cc984d7ae878ea4dbfcbeca9f5",
+      "bytes": 999,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x.png",
+      "sha256": "d4e75d32fc129a9bdc990d033219878eb0d0e126d0f346a9e3390de07006228a",
+      "bytes": 56294,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-v1-4x.json",
+      "sha256": "04cf1aed9afdfc38dbf11a71e0588fb5a5f0261427e45a8aa0da87a8c2661032",
+      "bytes": 1986,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/metal5_83_JM-photographic-v1-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-v1-4x.png",
+      "sha256": "b7bb7cad95bd2af0b0892d38a205af56e19811006f8423a3c4a95edbf5473f72",
+      "bytes": 56244,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/metal5_83_JM-photographic-v1-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/stone-trims-trial.json",
+      "sha256": "c7342b61558ac1004cf0e6305b39e3ef4fb115c43c258b1ab05e79c886442276",
+      "bytes": 11218,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/stone-trims-trial.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-diffuse.webp",
+      "sha256": "64382e000136fcee6c77df9577b1da3eb619e6f5e0ebe4dfe5bbbe8e65c601f9",
+      "bytes": 313308,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-height.webp",
+      "sha256": "9fdbf60b02558a8dcb26726ea304839bc50dbf06f0f5b4c72b1353b3cd9b9a54",
+      "bytes": 313764,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-height.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-normalX.webp",
+      "sha256": "bd6be5f1d6066973609b49fab0cac7131f82d79c5eaa25bea6accb7d60402e3a",
+      "bytes": 298340,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-normalY.webp",
+      "sha256": "7cdcb7e7c828665f05b18c56bb146216ac600357ad58fdfd97856fd20b254b64",
+      "bytes": 292758,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-normalZ.webp",
+      "sha256": "4cd9aea539faee7c1ff9f7572c98d8c32d7c15c566bd52450cfa9adab9686188",
+      "bytes": 23324,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz.json",
+      "sha256": "80fc00f97fe5cb679304a619c4e6b8f21fa4b45db00b32de0f5ca3aaf3a570d2",
+      "bytes": 3247,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "64382e000136fcee6c77df9577b1da3eb619e6f5e0ebe4dfe5bbbe8e65c601f9",
+      "bytes": 313308,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "9fdbf60b02558a8dcb26726ea304839bc50dbf06f0f5b4c72b1353b3cd9b9a54",
+      "bytes": 313764,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x-q92-xyz-height.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "6364ccfad3865434416db9ac2df91221eac2a90a7e1660b9adc0521deb428d20",
+      "bytes": 443986,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "801ee0bb71f277acc80ab31003022f2ea39c54df97396a1a3805117390efc2ef",
+      "bytes": 436140,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "f953ec06ea939fccfa0248a50b51d6a601da97aa89d6eaa4ed6124675cf756e4",
+      "bytes": 109668,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "a806d5575f7cbd4072f584ed838d2b2ff3d4bd8327f33a87e1ad33adb33c7fa6",
+      "bytes": 3240,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x-q92-xyz.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x.json",
+      "sha256": "58da0bc475314808ceaa6f9524cbea31d2748c9c7a099eef929f2af9dbe37290",
+      "bytes": 1009,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x.png",
+      "sha256": "f190c5c20ce414c8ff3d1403e383d02a6fcd1868cc4d34319837c2b3c67fcee8",
+      "bytes": 1858835,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-v1-4x.json",
+      "sha256": "01814e254dff048e93c6a867d1d2d5cc6649343d72ce0b642858d6196c310e10",
+      "bytes": 2019,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-v1-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-v1-4x.png",
+      "sha256": "685fd1e2cdc828703cb4d0fddd88fcdc4f5cd68a4be86ebe1e8fa2a06e8cea02",
+      "bytes": 1858005,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-v1-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-diffuse.webp",
+      "sha256": "d4adbdd1957b5a7c093e69aabdaf4e57c6617263eff87783a35d02236199efd6",
+      "bytes": 214104,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-height.webp",
+      "sha256": "68396e973843d9afe275b9708c80a615a15cd75736ac7e6eed17f6a0d8923986",
+      "bytes": 199098,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-height.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalX.webp",
+      "sha256": "81066d29a15a7062847520aade0bdd3af9e3f6184db39b7729e356ed94ff4b8f",
+      "bytes": 147548,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalY.webp",
+      "sha256": "330d2ca28b3cdec2dcb170261c845f5cd739543ab070d0257842707f7219cf30",
+      "bytes": 143086,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalZ.webp",
+      "sha256": "068c8a17f3956b704413c9ae13b1f1bfdaa9632638703fc8499382aba19001d8",
+      "bytes": 11670,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz.json",
+      "sha256": "2aa210e2b9d9cb24a492cc48ddcac39b0d63a317743f41a4dc9cd462b05df552",
+      "bytes": 3235,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "d4adbdd1957b5a7c093e69aabdaf4e57c6617263eff87783a35d02236199efd6",
+      "bytes": 214104,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "68396e973843d9afe275b9708c80a615a15cd75736ac7e6eed17f6a0d8923986",
+      "bytes": 199098,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x-q92-xyz-height.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "63e8c05b6611512ba82b0599fe525f434c730180bb1d3ee5b1c980f494db40f0",
+      "bytes": 218068,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "b5c65501ccce87d79bd2d09a8757694842355625801954b3122855b3d1a32ed4",
+      "bytes": 213222,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "457437c537052f0663edab9012d29f2bb31ed74010e59f5eec660aa103babe41",
+      "bytes": 50414,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "d6d6b9c93b22cf68cdcbbd1706bfd28d6ae1cc430326168c9eec5af5859d1649",
+      "bytes": 3229,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x-q92-xyz.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x.json",
+      "sha256": "5caf574f8a45482452937f97e1f0cfc214984222e2d278f91fe59d030f0b76a7",
+      "bytes": 1009,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x.png",
+      "sha256": "be838e97af2a4d06d8561588662ee6dc3b6f05210907275a5ee02f7da2858e7b",
+      "bytes": 1086110,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-v1-4x.json",
+      "sha256": "b41308802050c8d9962d19ae0561dbad8098cb4d50168942edf5ebcc033e8b5a",
+      "bytes": 2008,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-v1-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-v1-4x.png",
+      "sha256": "5a2e8b66c94371b3ac455057ea045d11c04f3bf4c9cc411909b6a1291cf9cfd6",
+      "bytes": 1085915,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-v1-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "60913f2ad7a1bde309e742e108e931b265bddfd91acb39e6523879d79313e48b",
+      "bytes": 213538,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "7e7ba9ec5a994a439c4a8a427e463338d64913c05e49948edad9c187395ed73a",
+      "bytes": 288342,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v2-4x-q92-xyz-height.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "fb87e6922c8e7ccb6982de6c5957c3c53357bbbde6dbd0af87748a6c078f27c8",
+      "bytes": 439708,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "bcc021cf0e52276fc7a79097e1608bd9d7d3403921b8598e40d0c813683c18fe",
+      "bytes": 445622,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "8f1cb8c0eafbe5fbfe98200652b28c57209ababcd70da01f48c8bbeaa610e29b",
+      "bytes": 114080,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "cbcd36f7a970b755bf3df7cfb73b754f2f387baaa020fce018159c4952950b00",
+      "bytes": 3243,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v2-4x-q92-xyz.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v2-4x.json",
+      "sha256": "9560ca69afd7f412e37a4a477562aa0a86900510d61307028ebfe1476752e728",
+      "bytes": 990,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v2-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v2-4x.png",
+      "sha256": "1b080047439ae2adc4a9c0f0da1dbb1beaa36cbcf7080110a631268f19e5dff1",
+      "bytes": 1591023,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v2-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v4-4x-q92-xyz-diffuse.webp",
+      "sha256": "c113cbd16e760f5c51938fe6b86b4792804406707b5af1ed4b440e80e46859cf",
+      "bytes": 421266,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v4-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v4-4x-q92-xyz-height.webp",
+      "sha256": "11a725bbea368a64b0af312a8fe99fcf10b7a710d25356830ddf59b1fc8e7d43",
+      "bytes": 404300,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v4-4x-q92-xyz-height.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v4-4x-q92-xyz-normalX.webp",
+      "sha256": "755ed50f55ea270d52103c3ae5e13a76710582de0d7e70335bad4331b9b72b7c",
+      "bytes": 467402,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v4-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v4-4x-q92-xyz-normalY.webp",
+      "sha256": "ed1e5fb9e1629f32e6c9ad9e009a5be3d01a204b4f49778b5a7f56a7977222e4",
+      "bytes": 476888,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v4-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v4-4x-q92-xyz-normalZ.webp",
+      "sha256": "f58d372f6614a42f98408be10b93ebfbdd07b828a659cf1bfe82765a119f0f73",
+      "bytes": 115732,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v4-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v4-4x-q92-xyz.json",
+      "sha256": "b1591f412b8939d0ca8fe3d57c026004d883206ed2f36a61b8578df3f2959cd4",
+      "bytes": 3242,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v4-4x-q92-xyz.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v4-4x.json",
+      "sha256": "fe07edebb66fe2d2102720c7c49003075c19d24c408a0d63391e681aaa68d3e7",
+      "bytes": 990,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v4-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v4-4x.png",
+      "sha256": "1e532a2403cc12b349adf2d03fd8968a4092cf0222edab6ddf6997e744eb61d8",
+      "bytes": 2118907,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-seam-v4-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-v1-4x.json",
+      "sha256": "fd47e53ed92fbb7617a9ce4f973063ee48b5143a74b4bbdd3f60065334120d51",
+      "bytes": 1984,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-v1-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-v1-4x.png",
+      "sha256": "c835c8c479dd16f7674754c521b6e746f5e57cdb22033139bdf2128731a40317",
+      "bytes": 1590028,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-v1-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-v3-4x.json",
+      "sha256": "b227813f44d7b2797e1554255a98931925d5e3cf60653d8172469c27f7627a4a",
+      "bytes": 1995,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-v3-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-v3-4x.png",
+      "sha256": "4625059da4d1255c01bf681f73ab44f44aed314db63ff0fc1d80e231241029ec",
+      "bytes": 2118770,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-v3-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-diffuse.webp",
+      "sha256": "b2f474e35d5060c76d3f7bb66082c013981f7450463072703450c8df7431fabb",
+      "bytes": 357180,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-height.webp",
+      "sha256": "5b619ff5a524d28ce4ca34d8f4d54f9a32ccea9b7a867a2caaf2d6a86f6a6dc7",
+      "bytes": 367712,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-height.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-normalX.webp",
+      "sha256": "4f0cb6d73244ad28a1c1b2de3c245c334700f64defa2467117a5aaeac820608c",
+      "bytes": 333002,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-normalY.webp",
+      "sha256": "5a9340efa5e7abeea3daac6d2d4d1818fc64cac5b01c22c7c8c5a408ed73b84f",
+      "bytes": 327036,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-normalZ.webp",
+      "sha256": "304677bd82ac37e61b377a1ef64affe0cdc44fb34aa5256269c6e560c366d94c",
+      "bytes": 46704,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz.json",
+      "sha256": "ebb1c3a396ff427f2eeac5dfcade3b10b0d84362d3de0c8676dd679588430497",
+      "bytes": 3318,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x-q92-xyz-diffuse.webp",
+      "sha256": "b2f474e35d5060c76d3f7bb66082c013981f7450463072703450c8df7431fabb",
+      "bytes": 357180,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x-q92-xyz-height.webp",
+      "sha256": "5b619ff5a524d28ce4ca34d8f4d54f9a32ccea9b7a867a2caaf2d6a86f6a6dc7",
+      "bytes": 367712,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x-q92-xyz-height.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x-q92-xyz-normalX.webp",
+      "sha256": "cd8af68e1715fc2f12e85d089bf1bf0f602f88cf88d0df6166e1d7358c6d5bf2",
+      "bytes": 454688,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x-q92-xyz-normalY.webp",
+      "sha256": "c0d0eb84558e91a9a817f8ce8ceba8bfac8ec53460344dffc13354fe8f4bbc42",
+      "bytes": 463526,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x-q92-xyz-normalZ.webp",
+      "sha256": "d957dd1d5e52ab270647e65f79e40c79ad26a9ccd9f006b7cdab4a06a3932a1d",
+      "bytes": 116218,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x-q92-xyz.json",
+      "sha256": "50ea4b8cfad1ad47d1cfbd29405da74dc0eb87ec3af8b971e3a5629c6a1211ae",
+      "bytes": 3311,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x-q92-xyz.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x.json",
+      "sha256": "68e29cc59b9c4b4cb6e0b60dd0c6b91ef7444d3e6c81c9b493606f294b47e0b6",
+      "bytes": 1014,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x.png",
+      "sha256": "d06587c93ca1502103ad8415276a99981292aa5f3df91496e0abf3f9ee20b1a3",
+      "bytes": 1997579,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x.png"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-v5-4x.json",
+      "sha256": "411b2d6bb6d2673af1ebdc1dab732733f47bd906274092de7f3265f828792f40",
+      "bytes": 3142,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-v5-4x.json"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-v5-4x.png",
+      "sha256": "89af575608911b7d4ced07e0184cf22aad970dda143742e995cab5ab24800080",
+      "bytes": 1997351,
+      "canonicalPhysicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-v5-4x.png"
+    },
+    {
+      "file": "newer/textures/index.json",
+      "sha256": "4bdc95a3a622fbb0ba71afb6aacde1d0504bfe3c4282b91e8dc2be872eb85faa",
+      "bytes": 196419,
+      "canonicalPhysicalFile": "assets/game/textures/index.json"
+    },
+    {
+      "file": "newer/textures/official/TF_Metal3_04-7745ef3b2a3a7001-4x-q92-diffuse.webp",
+      "sha256": "4dff0f8a3c6cb511a280fd04b9299cfae4175743b465a7a3947befb5bcca2398",
+      "bytes": 99902,
+      "canonicalPhysicalFile": "assets/game/textures/official/TF_Metal3_04-7745ef3b2a3a7001-4x-q92-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/official/TF_Metal3_04-7745ef3b2a3a7001-4x-q92-height.webp",
+      "sha256": "8a853e2de9ee8de7543ad3f6bb085fbde02841ac8f7f3477754fae18fcd2ef0d",
+      "bytes": 113318,
+      "canonicalPhysicalFile": "assets/game/textures/official/TF_Metal3_04-7745ef3b2a3a7001-4x-q92-height.webp"
+    },
+    {
+      "file": "newer/textures/official/TF_Metal3_04-7745ef3b2a3a7001-4x-q92-normalX.webp",
+      "sha256": "5832516bb992d0c05f1afbda903fb390a9f3d22e293e8f33bc4be74f5f19e49d",
+      "bytes": 106130,
+      "canonicalPhysicalFile": "assets/game/textures/official/TF_Metal3_04-7745ef3b2a3a7001-4x-q92-normalX.webp"
+    },
+    {
+      "file": "newer/textures/official/TF_Metal3_04-7745ef3b2a3a7001-4x-q92-normalY.webp",
+      "sha256": "5d24620d170be23b793925a1db6d85e894b781b15bb3fd93cabef7721c1b1956",
+      "bytes": 104394,
+      "canonicalPhysicalFile": "assets/game/textures/official/TF_Metal3_04-7745ef3b2a3a7001-4x-q92-normalY.webp"
+    },
+    {
+      "file": "newer/textures/official/TF_Metal3_04-7745ef3b2a3a7001-4x-q92-normalZ.webp",
+      "sha256": "fae5c7ab623a6bcdd9be887080cca2cae97cdf5bea0043b6d1b297942f1f1e8b",
+      "bytes": 26324,
+      "canonicalPhysicalFile": "assets/game/textures/official/TF_Metal3_04-7745ef3b2a3a7001-4x-q92-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/official/TF_Stone_03-a9a3b5bd1a5d387f-4x-q92-diffuse.webp",
+      "sha256": "d2cbb3cc27f5c067860b01b4b5ab5fbfc85ee93d283981492752d8cd7b76dd04",
+      "bytes": 126504,
+      "canonicalPhysicalFile": "assets/game/textures/official/TF_Stone_03-a9a3b5bd1a5d387f-4x-q92-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/official/TF_Stone_03-a9a3b5bd1a5d387f-4x-q92-height.webp",
+      "sha256": "6425026a4d6e862e5821955c7d21a994d01691b29312f492ac62cc47f7630983",
+      "bytes": 118504,
+      "canonicalPhysicalFile": "assets/game/textures/official/TF_Stone_03-a9a3b5bd1a5d387f-4x-q92-height.webp"
+    },
+    {
+      "file": "newer/textures/official/TF_Stone_03-a9a3b5bd1a5d387f-4x-q92-normalX.webp",
+      "sha256": "342805804bbefd5409bc839cb2ffb082aa9315f2b5a6388ffc9f1bab365a8a77",
+      "bytes": 105584,
+      "canonicalPhysicalFile": "assets/game/textures/official/TF_Stone_03-a9a3b5bd1a5d387f-4x-q92-normalX.webp"
+    },
+    {
+      "file": "newer/textures/official/TF_Stone_03-a9a3b5bd1a5d387f-4x-q92-normalY.webp",
+      "sha256": "76cc105af7139f783113defb4d7115323f09aaced17d8705b4af74c0993683ff",
+      "bytes": 105734,
+      "canonicalPhysicalFile": "assets/game/textures/official/TF_Stone_03-a9a3b5bd1a5d387f-4x-q92-normalY.webp"
+    },
+    {
+      "file": "newer/textures/official/TF_Stone_03-a9a3b5bd1a5d387f-4x-q92-normalZ.webp",
+      "sha256": "f6c05806cc1f29e6b013369e48739fe7a972d64b1f797965ddb978002fe8ff88",
+      "bytes": 26156,
+      "canonicalPhysicalFile": "assets/game/textures/official/TF_Stone_03-a9a3b5bd1a5d387f-4x-q92-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/official/br_trim1_1-77662dd16046c093-4x-q92-diffuse.webp",
+      "sha256": "b6d49572e815697c77b11644f82f496f075b907d27d81841be5b92ffc712a73e",
+      "bytes": 56298,
+      "canonicalPhysicalFile": "assets/game/textures/official/br_trim1_1-77662dd16046c093-4x-q92-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/official/br_trim1_1-77662dd16046c093-4x-q92-height.webp",
+      "sha256": "409fe19aeb4add038baa2dbdb03950f0a5aa9d3ec4cf8134074a7944b479cbe3",
+      "bytes": 7162,
+      "canonicalPhysicalFile": "assets/game/textures/official/br_trim1_1-77662dd16046c093-4x-q92-height.webp"
+    },
+    {
+      "file": "newer/textures/official/br_trim1_1-77662dd16046c093-4x-q92-normalX.webp",
+      "sha256": "3a8286e9370d5f0fab78f5df5dba1874dbfda5e983ba3dc4a7bc0df2cc08b2da",
+      "bytes": 7250,
+      "canonicalPhysicalFile": "assets/game/textures/official/br_trim1_1-77662dd16046c093-4x-q92-normalX.webp"
+    },
+    {
+      "file": "newer/textures/official/br_trim1_1-77662dd16046c093-4x-q92-normalY.webp",
+      "sha256": "6ecbc8c46d199fc517cb130aab6425f9bb52c888c8f578cd3adbeb7949470fee",
+      "bytes": 8544,
+      "canonicalPhysicalFile": "assets/game/textures/official/br_trim1_1-77662dd16046c093-4x-q92-normalY.webp"
+    },
+    {
+      "file": "newer/textures/official/br_trim1_1-77662dd16046c093-4x-q92-normalZ.webp",
+      "sha256": "0b7b0b88cc12092dba70014ffabac563c7f9fab26206ffa4f922b3b2947d6e10",
+      "bytes": 706,
+      "canonicalPhysicalFile": "assets/game/textures/official/br_trim1_1-77662dd16046c093-4x-q92-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/official/br_trim1_2-b40e75921ad5cfe8-4x-q92-diffuse.webp",
+      "sha256": "783f491f1c3f1d7efdaaf8512b493e7a2cdfcf62deba3a9a0521bad80e1b2d1d",
+      "bytes": 28724,
+      "canonicalPhysicalFile": "assets/game/textures/official/br_trim1_2-b40e75921ad5cfe8-4x-q92-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/official/br_trim1_2-b40e75921ad5cfe8-4x-q92-height.webp",
+      "sha256": "88cbe16eaa140215ed621a91db1be7ddaf8367d04069be139da28691a5811444",
+      "bytes": 4992,
+      "canonicalPhysicalFile": "assets/game/textures/official/br_trim1_2-b40e75921ad5cfe8-4x-q92-height.webp"
+    },
+    {
+      "file": "newer/textures/official/br_trim1_2-b40e75921ad5cfe8-4x-q92-normalX.webp",
+      "sha256": "6743c958e1f516595b1c4047e5b8437b500f1b6e896c6ee6f539441f5b068895",
+      "bytes": 3878,
+      "canonicalPhysicalFile": "assets/game/textures/official/br_trim1_2-b40e75921ad5cfe8-4x-q92-normalX.webp"
+    },
+    {
+      "file": "newer/textures/official/br_trim1_2-b40e75921ad5cfe8-4x-q92-normalY.webp",
+      "sha256": "ff2151ce5c368c764c5ded0465634446a42ccf51e53b8d8ced8ba0121a1c4e4c",
+      "bytes": 4642,
+      "canonicalPhysicalFile": "assets/game/textures/official/br_trim1_2-b40e75921ad5cfe8-4x-q92-normalY.webp"
+    },
+    {
+      "file": "newer/textures/official/br_trim1_2-b40e75921ad5cfe8-4x-q92-normalZ.webp",
+      "sha256": "7b9b7f719824c9d062ef7f81c9a66ccd91bc74e0dbadbbd882f5eeb80926ef26",
+      "bytes": 500,
+      "canonicalPhysicalFile": "assets/game/textures/official/br_trim1_2-b40e75921ad5cfe8-4x-q92-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/official/metal5_83_JM-d2af961640b986e4-4x-q92-diffuse.webp",
+      "sha256": "fbe5015bc57b614857945ae2aa3827968a0a836625efa05f0ae948c3cc2701a0",
+      "bytes": 9374,
+      "canonicalPhysicalFile": "assets/game/textures/official/metal5_83_JM-d2af961640b986e4-4x-q92-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/official/metal5_83_JM-d2af961640b986e4-4x-q92-height.webp",
+      "sha256": "58634e51214f59275046ffb5cece44ea59eb9f59978916084972604a00c4c9a4",
+      "bytes": 20230,
+      "canonicalPhysicalFile": "assets/game/textures/official/metal5_83_JM-d2af961640b986e4-4x-q92-height.webp"
+    },
+    {
+      "file": "newer/textures/official/metal5_83_JM-d2af961640b986e4-4x-q92-normalX.webp",
+      "sha256": "3fd2cd463377c36112e8d4c5b9a7319b7c6b6f51b42485a782e0c191a29393ea",
+      "bytes": 9570,
+      "canonicalPhysicalFile": "assets/game/textures/official/metal5_83_JM-d2af961640b986e4-4x-q92-normalX.webp"
+    },
+    {
+      "file": "newer/textures/official/metal5_83_JM-d2af961640b986e4-4x-q92-normalY.webp",
+      "sha256": "491afd6a242dca8baf2b2c1aac2da25e425e2cbaea43e24c4b85930e7853b8a8",
+      "bytes": 9424,
+      "canonicalPhysicalFile": "assets/game/textures/official/metal5_83_JM-d2af961640b986e4-4x-q92-normalY.webp"
+    },
+    {
+      "file": "newer/textures/official/metal5_83_JM-d2af961640b986e4-4x-q92-normalZ.webp",
+      "sha256": "78beaebb1fab2780605e71f93e9753cd32b081e4b3510046de8a4cec229110f1",
+      "bytes": 428,
+      "canonicalPhysicalFile": "assets/game/textures/official/metal5_83_JM-d2af961640b986e4-4x-q92-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/official/wstone_11_JM-45ba5d43baf6a749-4x-q92-diffuse.webp",
+      "sha256": "64382e000136fcee6c77df9577b1da3eb619e6f5e0ebe4dfe5bbbe8e65c601f9",
+      "bytes": 313308,
+      "canonicalPhysicalFile": "assets/game/textures/official/wstone_11_JM-45ba5d43baf6a749-4x-q92-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/official/wstone_11_JM-45ba5d43baf6a749-4x-q92-height.webp",
+      "sha256": "9fdbf60b02558a8dcb26726ea304839bc50dbf06f0f5b4c72b1353b3cd9b9a54",
+      "bytes": 313764,
+      "canonicalPhysicalFile": "assets/game/textures/official/wstone_11_JM-45ba5d43baf6a749-4x-q92-height.webp"
+    },
+    {
+      "file": "newer/textures/official/wstone_11_JM-45ba5d43baf6a749-4x-q92-normalX.webp",
+      "sha256": "bd6be5f1d6066973609b49fab0cac7131f82d79c5eaa25bea6accb7d60402e3a",
+      "bytes": 298340,
+      "canonicalPhysicalFile": "assets/game/textures/official/wstone_11_JM-45ba5d43baf6a749-4x-q92-normalX.webp"
+    },
+    {
+      "file": "newer/textures/official/wstone_11_JM-45ba5d43baf6a749-4x-q92-normalY.webp",
+      "sha256": "7cdcb7e7c828665f05b18c56bb146216ac600357ad58fdfd97856fd20b254b64",
+      "bytes": 292758,
+      "canonicalPhysicalFile": "assets/game/textures/official/wstone_11_JM-45ba5d43baf6a749-4x-q92-normalY.webp"
+    },
+    {
+      "file": "newer/textures/official/wstone_11_JM-45ba5d43baf6a749-4x-q92-normalZ.webp",
+      "sha256": "4cd9aea539faee7c1ff9f7572c98d8c32d7c15c566bd52450cfa9adab9686188",
+      "bytes": 23324,
+      "canonicalPhysicalFile": "assets/game/textures/official/wstone_11_JM-45ba5d43baf6a749-4x-q92-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/official/wstone_13_JM-4cdd9804c3e2fe86-4x-q92-diffuse.webp",
+      "sha256": "d4adbdd1957b5a7c093e69aabdaf4e57c6617263eff87783a35d02236199efd6",
+      "bytes": 214104,
+      "canonicalPhysicalFile": "assets/game/textures/official/wstone_13_JM-4cdd9804c3e2fe86-4x-q92-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/official/wstone_13_JM-4cdd9804c3e2fe86-4x-q92-height.webp",
+      "sha256": "68396e973843d9afe275b9708c80a615a15cd75736ac7e6eed17f6a0d8923986",
+      "bytes": 199098,
+      "canonicalPhysicalFile": "assets/game/textures/official/wstone_13_JM-4cdd9804c3e2fe86-4x-q92-height.webp"
+    },
+    {
+      "file": "newer/textures/official/wstone_13_JM-4cdd9804c3e2fe86-4x-q92-normalX.webp",
+      "sha256": "81066d29a15a7062847520aade0bdd3af9e3f6184db39b7729e356ed94ff4b8f",
+      "bytes": 147548,
+      "canonicalPhysicalFile": "assets/game/textures/official/wstone_13_JM-4cdd9804c3e2fe86-4x-q92-normalX.webp"
+    },
+    {
+      "file": "newer/textures/official/wstone_13_JM-4cdd9804c3e2fe86-4x-q92-normalY.webp",
+      "sha256": "330d2ca28b3cdec2dcb170261c845f5cd739543ab070d0257842707f7219cf30",
+      "bytes": 143086,
+      "canonicalPhysicalFile": "assets/game/textures/official/wstone_13_JM-4cdd9804c3e2fe86-4x-q92-normalY.webp"
+    },
+    {
+      "file": "newer/textures/official/wstone_13_JM-4cdd9804c3e2fe86-4x-q92-normalZ.webp",
+      "sha256": "068c8a17f3956b704413c9ae13b1f1bfdaa9632638703fc8499382aba19001d8",
+      "bytes": 11670,
+      "canonicalPhysicalFile": "assets/game/textures/official/wstone_13_JM-4cdd9804c3e2fe86-4x-q92-normalZ.webp"
+    },
+    {
+      "file": "newer/textures/official/wstone_17_JM-5384584dfbd2bc47-4x-q92-diffuse.webp",
+      "sha256": "b2f474e35d5060c76d3f7bb66082c013981f7450463072703450c8df7431fabb",
+      "bytes": 357180,
+      "canonicalPhysicalFile": "assets/game/textures/official/wstone_17_JM-5384584dfbd2bc47-4x-q92-diffuse.webp"
+    },
+    {
+      "file": "newer/textures/official/wstone_17_JM-5384584dfbd2bc47-4x-q92-height.webp",
+      "sha256": "5b619ff5a524d28ce4ca34d8f4d54f9a32ccea9b7a867a2caaf2d6a86f6a6dc7",
+      "bytes": 367712,
+      "canonicalPhysicalFile": "assets/game/textures/official/wstone_17_JM-5384584dfbd2bc47-4x-q92-height.webp"
+    },
+    {
+      "file": "newer/textures/official/wstone_17_JM-5384584dfbd2bc47-4x-q92-normalX.webp",
+      "sha256": "4f0cb6d73244ad28a1c1b2de3c245c334700f64defa2467117a5aaeac820608c",
+      "bytes": 333002,
+      "canonicalPhysicalFile": "assets/game/textures/official/wstone_17_JM-5384584dfbd2bc47-4x-q92-normalX.webp"
+    },
+    {
+      "file": "newer/textures/official/wstone_17_JM-5384584dfbd2bc47-4x-q92-normalY.webp",
+      "sha256": "5a9340efa5e7abeea3daac6d2d4d1818fc64cac5b01c22c7c8c5a408ed73b84f",
+      "bytes": 327036,
+      "canonicalPhysicalFile": "assets/game/textures/official/wstone_17_JM-5384584dfbd2bc47-4x-q92-normalY.webp"
+    },
+    {
+      "file": "newer/textures/official/wstone_17_JM-5384584dfbd2bc47-4x-q92-normalZ.webp",
+      "sha256": "304677bd82ac37e61b377a1ef64affe0cdc44fb34aa5256269c6e560c366d94c",
+      "bytes": 46704,
+      "canonicalPhysicalFile": "assets/game/textures/official/wstone_17_JM-5384584dfbd2bc47-4x-q92-normalZ.webp"
+    }
+  ],
+  "nextOwner": "Parent waits for qualified cleanup Dev commit, applies only own adaptation in ownWT, performs scoped checks/publication and seeks independent final frozen review. Reviewer now quiescent."
+}

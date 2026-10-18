@@ -1,0 +1,41 @@
+PASS all24 owner source occurrences match actual PAK pixels and share exact native identities with their donors
+PASS height-only owner maps reach public derived normals/cache keys without changing UVs or Classic originals
+PASS unknown owner pixels and wrong-case names fall back while Classic requests no derivatives
+PASS six legacy tech Q92 successors preserve direct-source RGB masters, all61 PAK uses and height-only public behavior
+RESULT 4/5 passed (tests/official_texture_owner_q92_test.js)
+Traceback (most recent call last):
+  File "<string>", line 2, in <module>
+  File "/Users/bri/Library/Python/3.9/lib/python/site-packages/PIL/Image.py", line 3243, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/city5_3.webp'
+FAIL four owner Q92 successors preserve complete predecessor metadata and byte-reproduce from retained masters Error: Command failed: /usr/bin/python3 -c from PIL import Image; import sys,io
+p=Image.open(sys.argv[1]);p=p.convert('RGBA' if 'A' in p.getbands() else 'RGB');b=io.BytesIO();p.save(b,'WEBP',quality=92,lossless=False,method=6);sys.stdout.buffer.write(b.getvalue()) /Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/city5_3.webp
+Traceback (most recent call last):
+  File "<string>", line 2, in <module>
+  File "/Users/bri/Library/Python/3.9/lib/python/site-packages/PIL/Image.py", line 3243, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/city5_3.webp'
+
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at checkExecSyncError (node:child_process:942:11)
+    at execFileSync (node:child_process:978:15)
+    at file:///Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_owner_q92_test.js:70:250
+    at file:///Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/run_tests.mjs:95:15
+OFFICIAL_NATIVE_SOURCES {"qualification":"NEW current-state source verification; not recovered historical evidence","inputPath":"tools/texture_sheets/sources/official-world-2026-10-12/current-registration-inputs.json","inputSha256":"046f66338fd884b1a4887a9ccb00b15fb1364f2c80e3f8280fcb7ff1482f5a34","baselineCommit":"a28d939647d93f7c1ea96160ebb79751388d2fcb","source_root":"/private/tmp/quaked-official-library-20261017","externalGameRoot":true,"indexSha256":"4bdc95a3a622fbb0ba71afb6aacde1d0504bfe3c4282b91e8dc2be872eb85faa","entries":45,"occurrences":162,"donors":43,"fullbright":16,"actualPacks":["/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak","/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak","/private/tmp/quaked-official-library-20261017/Dissolution of Eternity/pak0.pak","/private/tmp/quaked-official-library-20261017/Quake/pak0.pak","/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak"],"sourceContentSha256":"f17534883436209bff2e670c44dcddb23bea299e3123a5ffec23cd4fce5ebf98"}
+PASS all 162 current source occurrences and 43 donor bindings match actual BSP palette pixels
+PASS all 45 actual native textures load their registered real images and height maps through the public interface
+PASS all 45 new source guards reject unrelated same-name original pixels without requesting HD artwork
+RESULT 3/4 passed (tests/official_texture_registration_test.js)
+fatal: could not open 'newer/textures/glass/00f6709df719eaf8-4x-diffuse.png' for reading: No such file or directory
+FAIL current catalogue contains the 45 source-bound additions and preserves every entry of the fixed Git baseline Error: Command failed: git hash-object --stdin-paths
+fatal: could not open 'newer/textures/glass/00f6709df719eaf8-4x-diffuse.png' for reading: No such file or directory
+
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at checkExecSyncError (node:child_process:942:11)
+    at execFileSync (node:child_process:978:15)
+    at unchangedIntegrationGlass (file:///Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_registration_test.js:116:17)
+    at file:///Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_registration_test.js:130:24
+    at file:///Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/run_tests.mjs:95:15
+TOTAL 7/9 passed

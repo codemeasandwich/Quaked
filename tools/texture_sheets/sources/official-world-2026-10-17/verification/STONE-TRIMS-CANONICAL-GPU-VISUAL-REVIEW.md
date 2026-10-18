@@ -1,0 +1,7 @@
+# Canonical-resource GPU successor: PASS
+
+All eight current materials pass this bounded review of32 actual canonical-layout captures on738f92d9, unchanged index4bdc95a3. All32GPU480×480 regions are pixel-identical to their matched approved close, half/quarter-repeat and oblique predecessors, and I visually inspected the current views. Solid plain brick returns, clean right interfaces, darker inset centres, original feature counts and quiet photographic relief remain intact. Stone rails/columns, thin rough-stone joints,48steel heads and the plain copper strip show no introduced tile stripe, missing edge cavity or blanket embossed grain.
+
+The review independently verifies11core input hashes, all40current map hashes,32PNG plus drawJSON/HTTPlog hashes, and canonical `/assets/game/` requests with no legacy `/newer/` source requests. The capture report records176 preparation checks and zero shader/console issues. No code, artwork, tests, index, launch or GPU draw was changed or started by this reviewer.
+
+Half/quarter controls resize the equal-resolution2Dcomparison panels; they do not create newGPUcamera distances. Oblique relief is normal/parallax/POM response on an unchanged plane, not mesh or collision displacement. The one-shot installer is not exercised by these captures. The supplied sealed input receipt still records cleanup as pending; a later parent cleanup report remains separate from this visual acceptance. Gameplay across every level, temporal behavior, owner acceptance, final build/review and publication remain separate.

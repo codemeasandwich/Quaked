@@ -7,6 +7,9 @@ Height and XYZ maps must be regenerated from each completed horizontal diffuse.
 """
 import argparse,hashlib,json
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
+from resource_paths import resource_path
 import numpy as np
 from PIL import Image
 
@@ -15,7 +18,8 @@ def main():
     p.add_argument('--source-root',type=Path,required=True)
     p.add_argument('--output-root',type=Path,required=True)
     a=p.parse_args();s=Path('tools/texture_sheets/sources/official-world-2026-10-17')
-    source=a.source_root/'newer/textures/candidates-2026-10-17/tech04_8-photographic-rails-seam-v4-4x.png'
+    source_name='newer/textures/candidates-2026-10-17/tech04_8-photographic-rails-seam-v4-4x.png'
+    source=resource_path(a.source_root,source_name)
     fastener=a.source_root/s/'trim-fastener-photographic-fitted-v2.png'
     targets=[a.output_root/s/(n+'-reviewed-photo-base-v1.png') for n in ['tech04_6','tech04_5']]
     receipt=a.output_root/s/'horizontal-trim-reuse-v1.json'
@@ -40,7 +44,7 @@ def main():
     assert np.array_equal(marked[:8],plain[:8])
     for target,array in zip(targets,[plain,marked]):Image.fromarray(array).save(target)
     sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
-    record={'source':str(source.relative_to(a.source_root)),'sourceSha256':sha(source),'fastener':str(fastener.relative_to(a.source_root)),'fastenerSha256':sha(fastener),'toolSha256':sha(Path(__file__)),'dimensions':[512,64],'plainTransform':'transpose only; no fastener transformation','markedCentresNative':[[8.5+16*k,9.5] for k in range(8)],'markedPatchTopLefts':[[12+64*k,8] for k in range(8)],'railRowsPreserved':[list(range(8)),list(range(52,64))],'unchangedOutsidePatches':True,'outputs':[{'file':str(p.relative_to(a.output_root)),'sha256':sha(p)} for p in targets],'qualification':'Photographic material reuse, not pixel alias or runtime registration; source fitting/art/edge/relief review required'}
+    record={'source':source_name,'sourceSha256':sha(source),'fastener':str(fastener.relative_to(a.source_root)),'fastenerSha256':sha(fastener),'toolSha256':sha(Path(__file__)),'dimensions':[512,64],'plainTransform':'transpose only; no fastener transformation','markedCentresNative':[[8.5+16*k,9.5] for k in range(8)],'markedPatchTopLefts':[[12+64*k,8] for k in range(8)],'railRowsPreserved':[list(range(8)),list(range(52,64))],'unchangedOutsidePatches':True,'outputs':[{'file':str(p.relative_to(a.output_root)),'sha256':sha(p)} for p in targets],'qualification':'Photographic material reuse, not pixel alias or runtime registration; source fitting/art/edge/relief review required'}
     receipt.write_text(json.dumps(record,indent=2)+'\n')
     print(json.dumps({'receipt':str(receipt),'centres':record['markedCentresNative']}))
 if __name__=='__main__':main()

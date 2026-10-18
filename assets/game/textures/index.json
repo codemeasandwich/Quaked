@@ -1,5 +1,5 @@
 {
-  "version": 2026101810,
+  "version": 2026101811,
   "textures": {
     "afloor3_1": "afloor3_1.webp",
     "ceiling1_3": "ceiling1_3.webp",
@@ -6017,6 +6017,126 @@
             "z": "official/TF_Stone_00-42d2beee14cc60c4-4x-q92-normalZ.webp"
           },
           "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "br_trim1_1": {
+      "128x64:77662dd16046c093": {
+        "file": "official/br_trim1_1-77662dd16046c093-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/br_trim1_1-77662dd16046c093-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/br_trim1_1-77662dd16046c093-4x-q92-normalX.webp",
+            "y": "official/br_trim1_1-77662dd16046c093-4x-q92-normalY.webp",
+            "z": "official/br_trim1_1-77662dd16046c093-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "br_trim1_2": {
+      "64x64:b40e75921ad5cfe8": {
+        "file": "official/br_trim1_2-b40e75921ad5cfe8-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/br_trim1_2-b40e75921ad5cfe8-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/br_trim1_2-b40e75921ad5cfe8-4x-q92-normalX.webp",
+            "y": "official/br_trim1_2-b40e75921ad5cfe8-4x-q92-normalY.webp",
+            "z": "official/br_trim1_2-b40e75921ad5cfe8-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "wstone_17_JM": {
+      "256x256:5384584dfbd2bc47": {
+        "file": "official/wstone_17_JM-5384584dfbd2bc47-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/wstone_17_JM-5384584dfbd2bc47-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/wstone_17_JM-5384584dfbd2bc47-4x-q92-normalX.webp",
+            "y": "official/wstone_17_JM-5384584dfbd2bc47-4x-q92-normalY.webp",
+            "z": "official/wstone_17_JM-5384584dfbd2bc47-4x-q92-normalZ.webp"
+          },
+          "strength": 0.06,
+          "cap": 0.5
+        }
+      }
+    },
+    "wstone_11_JM": {
+      "256x256:45ba5d43baf6a749": {
+        "file": "official/wstone_11_JM-45ba5d43baf6a749-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/wstone_11_JM-45ba5d43baf6a749-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/wstone_11_JM-45ba5d43baf6a749-4x-q92-normalX.webp",
+            "y": "official/wstone_11_JM-45ba5d43baf6a749-4x-q92-normalY.webp",
+            "z": "official/wstone_11_JM-45ba5d43baf6a749-4x-q92-normalZ.webp"
+          },
+          "strength": 0.06,
+          "cap": 0.5
+        }
+      }
+    },
+    "wstone_13_JM": {
+      "256x128:4cdd9804c3e2fe86": {
+        "file": "official/wstone_13_JM-4cdd9804c3e2fe86-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/wstone_13_JM-4cdd9804c3e2fe86-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/wstone_13_JM-4cdd9804c3e2fe86-4x-q92-normalX.webp",
+            "y": "official/wstone_13_JM-4cdd9804c3e2fe86-4x-q92-normalY.webp",
+            "z": "official/wstone_13_JM-4cdd9804c3e2fe86-4x-q92-normalZ.webp"
+          },
+          "strength": 0.06,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Metal3_04": {
+      "128x128:7745ef3b2a3a7001": {
+        "file": "official/TF_Metal3_04-7745ef3b2a3a7001-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Metal3_04-7745ef3b2a3a7001-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Metal3_04-7745ef3b2a3a7001-4x-q92-normalX.webp",
+            "y": "official/TF_Metal3_04-7745ef3b2a3a7001-4x-q92-normalY.webp",
+            "z": "official/TF_Metal3_04-7745ef3b2a3a7001-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "TF_Stone_03": {
+      "128x128:a9a3b5bd1a5d387f": {
+        "file": "official/TF_Stone_03-a9a3b5bd1a5d387f-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/TF_Stone_03-a9a3b5bd1a5d387f-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/TF_Stone_03-a9a3b5bd1a5d387f-4x-q92-normalX.webp",
+            "y": "official/TF_Stone_03-a9a3b5bd1a5d387f-4x-q92-normalY.webp",
+            "z": "official/TF_Stone_03-a9a3b5bd1a5d387f-4x-q92-normalZ.webp"
+          },
+          "strength": 0.2,
+          "cap": 0.5
+        }
+      }
+    },
+    "metal5_83_JM": {
+      "128x16:d2af961640b986e4": {
+        "file": "official/metal5_83_JM-d2af961640b986e4-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/metal5_83_JM-d2af961640b986e4-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/metal5_83_JM-d2af961640b986e4-4x-q92-normalX.webp",
+            "y": "official/metal5_83_JM-d2af961640b986e4-4x-q92-normalY.webp",
+            "z": "official/metal5_83_JM-d2af961640b986e4-4x-q92-normalZ.webp"
+          },
+          "strength": 0.06,
           "cap": 0.5
         }
       }

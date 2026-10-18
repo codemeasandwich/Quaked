@@ -1,0 +1,1566 @@
+{
+  "qualification": "Independent final finite canonical-resource GPU visual successor. Only new verification evidence written; no code/assets/tests/index changes, launch, draw, build, staging or publication.",
+  "head": "738f92d96e56517eed3fcc255a885b4fc9528b9a",
+  "indexSha256": "4bdc95a3a622fbb0ba71afb6aacde1d0504bfe3c4282b91e8dc2be872eb85faa",
+  "result": "PASS within current32-capture material scope",
+  "materials": 8,
+  "captureCount": 32,
+  "captureBreakdown": {
+    "close": 8,
+    "halfQuarter2DReferenceAndGPU3x3": 16,
+    "twoBrickOppositeAngleFlatRelief": 8
+  },
+  "parentCaptureReceipt": {
+    "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-canonical-gpu-inputs.json",
+    "sha256": "eee7979b8741e2414af6295da453d40a4e5402b77184d640ea81ca9b306389ea"
+  },
+  "currentCoreInputs": [
+    {
+      "file": "assets/layout.json",
+      "sha256": "6d962d9c00462dce9982dd2a1b06c390abb6ba4e42daeaa31a01a4e803a760f2"
+    },
+    {
+      "file": "src/platform/resource_paths.js",
+      "sha256": "99d7ecf78b1a25f303b29553b6754799247229d0adc30392a7841ca1f5332b78"
+    },
+    {
+      "file": "src/platform/distribution.js",
+      "sha256": "e3d9062604e4c3ec7a8d4113f160467abe0838788d7f576c566e60b47f0fded0"
+    },
+    {
+      "file": "tests/official_texture_trial.js",
+      "sha256": "47dd4acf0f29393eb63319a6ab0ae85d4bdb3ffe7e8b75189c3c9ada95ffcb5b"
+    },
+    {
+      "file": "tests/official_texture_trial.html",
+      "sha256": "43e064150b8157845887bae32300200e120330148f7a14e112945863d6cbfc0f"
+    },
+    {
+      "file": "assets/game/textures/candidates-2026-10-17/stone-trims-trial.json",
+      "sha256": "c7342b61558ac1004cf0e6305b39e3ef4fb115c43c258b1ab05e79c886442276"
+    },
+    {
+      "file": "assets/game/textures/index.json",
+      "sha256": "4bdc95a3a622fbb0ba71afb6aacde1d0504bfe3c4282b91e8dc2be872eb85faa"
+    },
+    {
+      "file": "src/newer/render/gl_normals.js",
+      "sha256": "f7a7d66763b95e76a299ccea6e57884793b0db45f7ca10a7d397ca788d88d109"
+    },
+    {
+      "file": "src/newer/render/normal_math.js",
+      "sha256": "303390e4216a26d6aaa2ceb47b841484a9b5f6b6dd88118922f70dc1682a7125"
+    },
+    {
+      "file": "src/newer/render/r_newertextures.js",
+      "sha256": "5aabea2d4c5e713ae1c81cf4e606ef3b387ce98bcca0b6e293719a7cded32246"
+    },
+    {
+      "file": "src/newer/render/r_post_gbuffer.js",
+      "sha256": "b5e2087f138801c765a0455760fef601c7908b6a2cc88390cd4a43d8216d2d2c"
+    }
+  ],
+  "reportedPreparationChecks": 176,
+  "reportedShaderErrors": 0,
+  "reportedConsoleWarningsOrErrors": 0,
+  "canonicalSelectedMaps": [
+    {
+      "name": "br_trim1_1",
+      "role": "diffuse",
+      "logicalFile": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-diffuse.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-diffuse.webp",
+      "sha256": "b6d49572e815697c77b11644f82f496f075b907d27d81841be5b92ffc712a73e"
+    },
+    {
+      "name": "br_trim1_1",
+      "role": "height",
+      "logicalFile": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-height.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-height.webp",
+      "sha256": "409fe19aeb4add038baa2dbdb03950f0a5aa9d3ec4cf8134074a7944b479cbe3"
+    },
+    {
+      "name": "br_trim1_1",
+      "role": "x",
+      "logicalFile": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-normalX.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-normalX.webp",
+      "sha256": "3a8286e9370d5f0fab78f5df5dba1874dbfda5e983ba3dc4a7bc0df2cc08b2da"
+    },
+    {
+      "name": "br_trim1_1",
+      "role": "y",
+      "logicalFile": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-normalY.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-normalY.webp",
+      "sha256": "6ecbc8c46d199fc517cb130aab6425f9bb52c888c8f578cd3adbeb7949470fee"
+    },
+    {
+      "name": "br_trim1_1",
+      "role": "z",
+      "logicalFile": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-normalZ.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-normalZ.webp",
+      "sha256": "0b7b0b88cc12092dba70014ffabac563c7f9fab26206ffa4f922b3b2947d6e10"
+    },
+    {
+      "name": "br_trim1_2",
+      "role": "diffuse",
+      "logicalFile": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-diffuse.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-diffuse.webp",
+      "sha256": "783f491f1c3f1d7efdaaf8512b493e7a2cdfcf62deba3a9a0521bad80e1b2d1d"
+    },
+    {
+      "name": "br_trim1_2",
+      "role": "height",
+      "logicalFile": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-height.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-height.webp",
+      "sha256": "88cbe16eaa140215ed621a91db1be7ddaf8367d04069be139da28691a5811444"
+    },
+    {
+      "name": "br_trim1_2",
+      "role": "x",
+      "logicalFile": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-normalX.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-normalX.webp",
+      "sha256": "6743c958e1f516595b1c4047e5b8437b500f1b6e896c6ee6f539441f5b068895"
+    },
+    {
+      "name": "br_trim1_2",
+      "role": "y",
+      "logicalFile": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-normalY.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-normalY.webp",
+      "sha256": "ff2151ce5c368c764c5ded0465634446a42ccf51e53b8d8ced8ba0121a1c4e4c"
+    },
+    {
+      "name": "br_trim1_2",
+      "role": "z",
+      "logicalFile": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-normalZ.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/br_trim1_2-photographic-layered-v7-4x-q92-xyz-normalZ.webp",
+      "sha256": "7b9b7f719824c9d062ef7f81c9a66ccd91bc74e0dbadbbd882f5eeb80926ef26"
+    },
+    {
+      "name": "wstone_17_JM",
+      "role": "diffuse",
+      "logicalFile": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-diffuse.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-diffuse.webp",
+      "sha256": "b2f474e35d5060c76d3f7bb66082c013981f7450463072703450c8df7431fabb"
+    },
+    {
+      "name": "wstone_17_JM",
+      "role": "height",
+      "logicalFile": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-height.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-height.webp",
+      "sha256": "5b619ff5a524d28ce4ca34d8f4d54f9a32ccea9b7a867a2caaf2d6a86f6a6dc7"
+    },
+    {
+      "name": "wstone_17_JM",
+      "role": "x",
+      "logicalFile": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-normalX.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-normalX.webp",
+      "sha256": "4f0cb6d73244ad28a1c1b2de3c245c334700f64defa2467117a5aaeac820608c"
+    },
+    {
+      "name": "wstone_17_JM",
+      "role": "y",
+      "logicalFile": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-normalY.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-normalY.webp",
+      "sha256": "5a9340efa5e7abeea3daac6d2d4d1818fc64cac5b01c22c7c8c5a408ed73b84f"
+    },
+    {
+      "name": "wstone_17_JM",
+      "role": "z",
+      "logicalFile": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-normalZ.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-normalZ.webp",
+      "sha256": "304677bd82ac37e61b377a1ef64affe0cdc44fb34aa5256269c6e560c366d94c"
+    },
+    {
+      "name": "wstone_11_JM",
+      "role": "diffuse",
+      "logicalFile": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-diffuse.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-diffuse.webp",
+      "sha256": "64382e000136fcee6c77df9577b1da3eb619e6f5e0ebe4dfe5bbbe8e65c601f9"
+    },
+    {
+      "name": "wstone_11_JM",
+      "role": "height",
+      "logicalFile": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-height.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-height.webp",
+      "sha256": "9fdbf60b02558a8dcb26726ea304839bc50dbf06f0f5b4c72b1353b3cd9b9a54"
+    },
+    {
+      "name": "wstone_11_JM",
+      "role": "x",
+      "logicalFile": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-normalX.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-normalX.webp",
+      "sha256": "bd6be5f1d6066973609b49fab0cac7131f82d79c5eaa25bea6accb7d60402e3a"
+    },
+    {
+      "name": "wstone_11_JM",
+      "role": "y",
+      "logicalFile": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-normalY.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-normalY.webp",
+      "sha256": "7cdcb7e7c828665f05b18c56bb146216ac600357ad58fdfd97856fd20b254b64"
+    },
+    {
+      "name": "wstone_11_JM",
+      "role": "z",
+      "logicalFile": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-normalZ.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-normalZ.webp",
+      "sha256": "4cd9aea539faee7c1ff9f7572c98d8c32d7c15c566bd52450cfa9adab9686188"
+    },
+    {
+      "name": "wstone_13_JM",
+      "role": "diffuse",
+      "logicalFile": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-diffuse.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-diffuse.webp",
+      "sha256": "d4adbdd1957b5a7c093e69aabdaf4e57c6617263eff87783a35d02236199efd6"
+    },
+    {
+      "name": "wstone_13_JM",
+      "role": "height",
+      "logicalFile": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-height.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-height.webp",
+      "sha256": "68396e973843d9afe275b9708c80a615a15cd75736ac7e6eed17f6a0d8923986"
+    },
+    {
+      "name": "wstone_13_JM",
+      "role": "x",
+      "logicalFile": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalX.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalX.webp",
+      "sha256": "81066d29a15a7062847520aade0bdd3af9e3f6184db39b7729e356ed94ff4b8f"
+    },
+    {
+      "name": "wstone_13_JM",
+      "role": "y",
+      "logicalFile": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalY.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalY.webp",
+      "sha256": "330d2ca28b3cdec2dcb170261c845f5cd739543ab070d0257842707f7219cf30"
+    },
+    {
+      "name": "wstone_13_JM",
+      "role": "z",
+      "logicalFile": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalZ.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalZ.webp",
+      "sha256": "068c8a17f3956b704413c9ae13b1f1bfdaa9632638703fc8499382aba19001d8"
+    },
+    {
+      "name": "TF_Metal3_04",
+      "role": "diffuse",
+      "logicalFile": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "4dff0f8a3c6cb511a280fd04b9299cfae4175743b465a7a3947befb5bcca2398"
+    },
+    {
+      "name": "TF_Metal3_04",
+      "role": "height",
+      "logicalFile": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "8a853e2de9ee8de7543ad3f6bb085fbde02841ac8f7f3477754fae18fcd2ef0d"
+    },
+    {
+      "name": "TF_Metal3_04",
+      "role": "x",
+      "logicalFile": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "5832516bb992d0c05f1afbda903fb390a9f3d22e293e8f33bc4be74f5f19e49d"
+    },
+    {
+      "name": "TF_Metal3_04",
+      "role": "y",
+      "logicalFile": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "5d24620d170be23b793925a1db6d85e894b781b15bb3fd93cabef7721c1b1956"
+    },
+    {
+      "name": "TF_Metal3_04",
+      "role": "z",
+      "logicalFile": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "fae5c7ab623a6bcdd9be887080cca2cae97cdf5bea0043b6d1b297942f1f1e8b"
+    },
+    {
+      "name": "TF_Stone_03",
+      "role": "diffuse",
+      "logicalFile": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-diffuse.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-diffuse.webp",
+      "sha256": "d2cbb3cc27f5c067860b01b4b5ab5fbfc85ee93d283981492752d8cd7b76dd04"
+    },
+    {
+      "name": "TF_Stone_03",
+      "role": "height",
+      "logicalFile": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-height.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-height.webp",
+      "sha256": "6425026a4d6e862e5821955c7d21a994d01691b29312f492ac62cc47f7630983"
+    },
+    {
+      "name": "TF_Stone_03",
+      "role": "x",
+      "logicalFile": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-normalX.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-normalX.webp",
+      "sha256": "342805804bbefd5409bc839cb2ffb082aa9315f2b5a6388ffc9f1bab365a8a77"
+    },
+    {
+      "name": "TF_Stone_03",
+      "role": "y",
+      "logicalFile": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-normalY.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-normalY.webp",
+      "sha256": "76cc105af7139f783113defb4d7115323f09aaced17d8705b4af74c0993683ff"
+    },
+    {
+      "name": "TF_Stone_03",
+      "role": "z",
+      "logicalFile": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-normalZ.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-normalZ.webp",
+      "sha256": "f6c05806cc1f29e6b013369e48739fe7a972d64b1f797965ddb978002fe8ff88"
+    },
+    {
+      "name": "metal5_83_JM",
+      "role": "diffuse",
+      "logicalFile": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "fbe5015bc57b614857945ae2aa3827968a0a836625efa05f0ae948c3cc2701a0"
+    },
+    {
+      "name": "metal5_83_JM",
+      "role": "height",
+      "logicalFile": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "58634e51214f59275046ffb5cece44ea59eb9f59978916084972604a00c4c9a4"
+    },
+    {
+      "name": "metal5_83_JM",
+      "role": "x",
+      "logicalFile": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "3fd2cd463377c36112e8d4c5b9a7319b7c6b6f51b42485a782e0c191a29393ea"
+    },
+    {
+      "name": "metal5_83_JM",
+      "role": "y",
+      "logicalFile": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "491afd6a242dca8baf2b2c1aac2da25e425e2cbaea43e24c4b85930e7853b8a8"
+    },
+    {
+      "name": "metal5_83_JM",
+      "role": "z",
+      "logicalFile": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "physicalFile": "assets/game/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "78beaebb1fab2780605e71f93e9753cd32b081e4b3510046de8a4cec229110f1"
+    }
+  ],
+  "all34CaptureAndLogHashesIndependentlyVerified": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/TF_Metal3_04-512.png",
+      "sha256": "e8016efbacdfe1ff4be852ea6dfae60eb2370fda38f8d1be92f6ab1e3bdb8bbc"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/TF_Metal3_04-half.png",
+      "sha256": "cd488de5b6a3d09d6f30480694c5d2ba0a5910d28aee382810a45d6a33f1839a"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/TF_Metal3_04-quarter.png",
+      "sha256": "7425a68f1a645e1f68afbd6b3ab48779cf7deccbae9ccc7512785e62b95a8926"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/TF_Stone_03-512.png",
+      "sha256": "d137ea450ae89ed212114eddb3785d252782536336828f488f231037aa690dae"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/TF_Stone_03-half.png",
+      "sha256": "e18a89b3c9f14ae2767af6d14d9755f92e91244b699537e64730f103b656eda8"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/TF_Stone_03-quarter.png",
+      "sha256": "d4f03207d3a4856b501eb197762c4f5b0195adcfd48349ce41b9897c5a199ffc"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-512.png",
+      "sha256": "4287c0fe9410d5f5bd40ee7a1668ae5359e763c45b84e28d03f90b67616cd3cd"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-angle-55-flat.png",
+      "sha256": "c5fead5c6c60f5aec55a74c66479bdaedefe316ad04a26d0fa753c6f95e04e33"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-angle-55-relief.png",
+      "sha256": "6757140ccb8778efb093ab47ba371b28668386f473697fdc523b42ceac4d019d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-angle55-flat.png",
+      "sha256": "533950f93e5cb7721a64c1c791b6b16b9542241d569799d465f64c4522cf9fe7"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-angle55-relief.png",
+      "sha256": "a89e61e9e4ce0d3b40d3371dbd248beffb6fc4aff00aef25c3eb5c5d2c126885"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-half.png",
+      "sha256": "67a9aeafcac9fe1055fdfe6126fc5d61f1a89d9c0678dae270acb62a7f37810c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-quarter.png",
+      "sha256": "40b7785d6727499357845967c1e3b2ce8689e8c736a68189db24b25297e60827"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-512.png",
+      "sha256": "c46f3f300b566ce24a0418228a739c89f47910e54844ee7b1d834c826b009eeb"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-angle-55-flat.png",
+      "sha256": "d3dfd65a5b58f155072ab56397dfc1df7865ecef17b4f8972a485b03bc2a1c53"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-angle-55-relief.png",
+      "sha256": "67e2fc3f8742644788abfbf512351bc3595130130df4e5c58c26bd5fa92b3e5b"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-angle55-flat.png",
+      "sha256": "c2005f5e65e70b31f0deb9cc8f0b50b1f5fdd23b0952462217f411308e754fa9"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-angle55-relief.png",
+      "sha256": "a04dcf43d4ffc24d47a20af149890b66d10a82f6662e32502c4db2463f5b9ae7"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-half.png",
+      "sha256": "298c8f23ef296c985508da7d0dafef857880f85376a020e4658825b3ad6511a3"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-quarter.png",
+      "sha256": "8af03f8c37aa24f32059db49d402903ffff9cd1635fd1bbaec4bdb2fb45b2c0d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/http-source-requests.log",
+      "sha256": "184f530e0c7ec21d3e0413c654354b613af7269dd6f045f9f6783e3dcc4e69be"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/metal5_83_JM-512.png",
+      "sha256": "6eb0ff21327894838689b54104c2de836d3e185773f4900b2fdce8e2fc37ad64"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/metal5_83_JM-half.png",
+      "sha256": "c65e4868308eef6f62822467e9306289150dec4b7f0495de7548facdf4e46f06"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/metal5_83_JM-quarter.png",
+      "sha256": "601e6a3f245d67b14b4466c9af22013e4243e4f5dd1d7df1e407cd4f8ed9ee2b"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/stone-trims-canonical-draws.json",
+      "sha256": "e504078d997ff21d2a91509bd4379e0b254a9deba90b0cc6401e24353dcb7fac"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_11_JM-512.png",
+      "sha256": "89bb3199513be3fa68f7cddd920c517aacdfdd236397dd5779fec1e262ea2daf"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_11_JM-half.png",
+      "sha256": "ff357ffb2419f76c93ec4738d37d38b1d3e6e64efc607b4f1e0d87c4cf8c5bac"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_11_JM-quarter.png",
+      "sha256": "e361eb02b040395fe39f3527e5a5e47784019bc8178f3261671786bb31cd6436"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_13_JM-512.png",
+      "sha256": "570c7fc9830fe1b58ecb15d82cd3da639d2d46a9ff39909eb44449e199ad76c3"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_13_JM-half.png",
+      "sha256": "671fb3d9ec0ca404218e12c07cbcbd8ffcf7aef651be4e1430b850ee066958c3"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_13_JM-quarter.png",
+      "sha256": "eda0404864dc784bae8e41c1bb6c2fc37148316e8bd7091bf797cf60a395552f"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_17_JM-512.png",
+      "sha256": "e534df2650791821378d46d872bcb51fca071e91f5e571356c0f849abebb6965"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_17_JM-half.png",
+      "sha256": "a1fd6a4c3dd7f0335f835a70d1a19feb7015bb48b006f14edb3fc1f97c6d798b"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_17_JM-quarter.png",
+      "sha256": "f3420216954447bfd310e3e2f7ea9c3e7a352c73084b291db428e481ecf40fc2"
+    }
+  ],
+  "sourceMirrorScope": "All34artifacts verified in WT;32PNG+drawJSON ROOT mirrors also checked. The exactHTTPlog exists only at its WT path; no broad missing-source claim.",
+  "HTTPsourceScope": {
+    "file": {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/http-source-requests.log",
+      "sha256": "184f530e0c7ec21d3e0413c654354b613af7269dd6f045f9f6783e3dcc4e69be"
+    },
+    "canonicalGameRequestLines": 83,
+    "legacyNewerSourceRequestLines": 0
+  },
+  "priorApprovedVisualReceipt": {
+    "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-independent-visual-review.json",
+    "sha256": "11e4c48715cd5a5a2b7228783d7cfef5395b297595b32553c182930c93cd3b05"
+  },
+  "comparison": {
+    "GPU480RegionsExactlyEqualToApprovedPrior": 32,
+    "wholeScreenshotsEqualDiagnostic": 20,
+    "acceptance": "Exact pixel conservation supplements direct visual assessment of these fixed captures; it is not a general acceptance threshold."
+  },
+  "results": [
+    {
+      "name": "br_trim1_1",
+      "nativeKey": "128x64:77662dd16046c093",
+      "result": "PASS finite canonical-layout material successor",
+      "visualFinding": "Solid alternating plain masonry returns flank seven/six regular glazed brick faces across eight courses. Both interfaces remain intact; the right edge has no invented square cavities or glaze bleed. Slight depth/shading at the boundary supports the raised-facing/inset-centre interpretation; no extra outside bevel or tear appears in repeat.",
+      "comparisonFinding": "Currentclose/halfquarterrepeat and relevantobliqueGPUviews visually inspected; exact480pixel-region conservation supports unchanged sourcecount/material/interface/edge/relief appearance. No newgrain, inflated relief, boundary seam or missing side-block cavity observed.",
+      "captures": [
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-512.png",
+          "sha256": "4287c0fe9410d5f5bd40ee7a1668ae5359e763c45b84e28d03f90b67616cd3cd"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-half.png",
+          "sha256": "67a9aeafcac9fe1055fdfe6126fc5d61f1a89d9c0678dae270acb62a7f37810c"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-quarter.png",
+          "sha256": "40b7785d6727499357845967c1e3b2ce8689e8c736a68189db24b25297e60827"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-angle-55-flat.png",
+          "sha256": "c5fead5c6c60f5aec55a74c66479bdaedefe316ad04a26d0fa753c6f95e04e33"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-angle-55-relief.png",
+          "sha256": "6757140ccb8778efb093ab47ba371b28668386f473697fdc523b42ceac4d019d"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-angle55-flat.png",
+          "sha256": "533950f93e5cb7721a64c1c791b6b16b9542241d569799d465f64c4522cf9fe7"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-angle55-relief.png",
+          "sha256": "a89e61e9e4ce0d3b40d3371dbd248beffb6fc4aff00aef25c3eb5c5d2c126885"
+        }
+      ]
+    },
+    {
+      "name": "br_trim1_2",
+      "nativeKey": "64x64:b40e75921ad5cfe8",
+      "result": "PASS finite canonical-layout material successor",
+      "visualFinding": "Three/two brick faces retain native module scale; eight courses and the source-proven central composition remain clean. Alternating side returns are solid and slightly proud in material shading; neither side reads as a missing brick. Both oblique directions preserve the right interface with no visible centre-splice stripe.",
+      "comparisonFinding": "Currentclose/halfquarterrepeat and relevantobliqueGPUviews visually inspected; exact480pixel-region conservation supports unchanged sourcecount/material/interface/edge/relief appearance. No newgrain, inflated relief, boundary seam or missing side-block cavity observed.",
+      "captures": [
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-512.png",
+          "sha256": "c46f3f300b566ce24a0418228a739c89f47910e54844ee7b1d834c826b009eeb"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-half.png",
+          "sha256": "298c8f23ef296c985508da7d0dafef857880f85376a020e4658825b3ad6511a3"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-quarter.png",
+          "sha256": "8af03f8c37aa24f32059db49d402903ffff9cd1635fd1bbaec4bdb2fb45b2c0d"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-angle-55-flat.png",
+          "sha256": "d3dfd65a5b58f155072ab56397dfc1df7865ecef17b4f8972a485b03bc2a1c53"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-angle-55-relief.png",
+          "sha256": "67e2fc3f8742644788abfbf512351bc3595130130df4e5c58c26bd5fa92b3e5b"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-angle55-flat.png",
+          "sha256": "c2005f5e65e70b31f0deb9cc8f0b50b1f5fdd23b0952462217f411308e754fa9"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-angle55-relief.png",
+          "sha256": "a04dcf43d4ffc24d47a20af149890b66d10a82f6662e32502c4db2463f5b9ae7"
+        }
+      ]
+    },
+    {
+      "name": "wstone_17_JM",
+      "nativeKey": "256x256:5384584dfbd2bc47",
+      "result": "PASS finite canonical-layout material successor",
+      "visualFinding": "Eight shallow vertical columns repeat at even source spacing; mineral variation and narrow mouldings remain photographic without inflated orange-peel relief. Column phase continues across repeats.",
+      "comparisonFinding": "Currentclose/halfquarterrepeat and relevantobliqueGPUviews visually inspected; exact480pixel-region conservation supports unchanged sourcecount/material/interface/edge/relief appearance. No newgrain, inflated relief, boundary seam or missing side-block cavity observed.",
+      "captures": [
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_17_JM-512.png",
+          "sha256": "e534df2650791821378d46d872bcb51fca071e91f5e571356c0f849abebb6965"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_17_JM-half.png",
+          "sha256": "a1fd6a4c3dd7f0335f835a70d1a19feb7015bb48b006f14edb3fc1f97c6d798b"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_17_JM-quarter.png",
+          "sha256": "f3420216954447bfd310e3e2f7ea9c3e7a352c73084b291db428e481ecf40fc2"
+        }
+      ]
+    },
+    {
+      "name": "wstone_11_JM",
+      "nativeKey": "256x256:45ba5d43baf6a749",
+      "result": "PASS finite canonical-layout material successor",
+      "visualFinding": "Broad four-course pale stone with narrow paired mouldings. Light/dark mineral veining remains surface character; rails read shallow and continuous rather than an added image perimeter.",
+      "comparisonFinding": "Currentclose/halfquarterrepeat and relevantobliqueGPUviews visually inspected; exact480pixel-region conservation supports unchanged sourcecount/material/interface/edge/relief appearance. No newgrain, inflated relief, boundary seam or missing side-block cavity observed.",
+      "captures": [
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_11_JM-512.png",
+          "sha256": "89bb3199513be3fa68f7cddd920c517aacdfdd236397dd5779fec1e262ea2daf"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_11_JM-half.png",
+          "sha256": "ff357ffb2419f76c93ec4738d37d38b1d3e6e64efc607b4f1e0d87c4cf8c5bac"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_11_JM-quarter.png",
+          "sha256": "e361eb02b040395fe39f3527e5a5e47784019bc8178f3261671786bb31cd6436"
+        }
+      ]
+    },
+    {
+      "name": "wstone_13_JM",
+      "nativeKey": "256x128:4cdd9804c3e2fe86",
+      "result": "PASS finite canonical-layout material successor",
+      "visualFinding": "Four narrower courses retain the wide horizontal aspect and rail scale. Quiet relief avoids broad inflated faces; repeated rails continue without an extra tile-width stripe.",
+      "comparisonFinding": "Currentclose/halfquarterrepeat and relevantobliqueGPUviews visually inspected; exact480pixel-region conservation supports unchanged sourcecount/material/interface/edge/relief appearance. No newgrain, inflated relief, boundary seam or missing side-block cavity observed.",
+      "captures": [
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_13_JM-512.png",
+          "sha256": "570c7fc9830fe1b58ecb15d82cd3da639d2d46a9ff39909eb44449e199ad76c3"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_13_JM-half.png",
+          "sha256": "671fb3d9ec0ca404218e12c07cbcbd8ffcf7aef651be4e1430b850ee066958c3"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_13_JM-quarter.png",
+          "sha256": "eda0404864dc784bae8e41c1bb6c2fc37148316e8bd7091bf797cf60a395552f"
+        }
+      ]
+    },
+    {
+      "name": "TF_Metal3_04",
+      "nativeKey": "128x128:7745ef3b2a3a7001",
+      "result": "PASS finite canonical-layout material successor",
+      "visualFinding": "Cool dark steel preserves the 48 physical fastener heads and source panel layout; shallow pits remain metal texture, with no blanket embossed grain or accidental extra edge frame.",
+      "comparisonFinding": "Currentclose/halfquarterrepeat and relevantobliqueGPUviews visually inspected; exact480pixel-region conservation supports unchanged sourcecount/material/interface/edge/relief appearance. No newgrain, inflated relief, boundary seam or missing side-block cavity observed.",
+      "captures": [
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/TF_Metal3_04-512.png",
+          "sha256": "e8016efbacdfe1ff4be852ea6dfae60eb2370fda38f8d1be92f6ab1e3bdb8bbc"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/TF_Metal3_04-half.png",
+          "sha256": "cd488de5b6a3d09d6f30480694c5d2ba0a5910d28aee382810a45d6a33f1839a"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/TF_Metal3_04-quarter.png",
+          "sha256": "7425a68f1a645e1f68afbd6b3ab48779cf7deccbae9ccc7512785e62b95a8926"
+        }
+      ]
+    },
+    {
+      "name": "TF_Stone_03",
+      "nativeKey": "128x128:a9a3b5bd1a5d387f",
+      "result": "PASS finite canonical-layout material successor",
+      "visualFinding": "Four cohesive rough dark-stone courses retain thin pale irregular mortar, crisp broken faces and restrained highlights. No piled gravel, large loose mortar bed, repeated border seam or excessive normal inflation is visible at the captured scale.",
+      "comparisonFinding": "Currentclose/halfquarterrepeat and relevantobliqueGPUviews visually inspected; exact480pixel-region conservation supports unchanged sourcecount/material/interface/edge/relief appearance. No newgrain, inflated relief, boundary seam or missing side-block cavity observed.",
+      "captures": [
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/TF_Stone_03-512.png",
+          "sha256": "d137ea450ae89ed212114eddb3785d252782536336828f488f231037aa690dae"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/TF_Stone_03-half.png",
+          "sha256": "e18a89b3c9f14ae2767af6d14d9755f92e91244b699537e64730f103b656eda8"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/TF_Stone_03-quarter.png",
+          "sha256": "d4f03207d3a4856b501eb197762c4f5b0195adcfd48349ce41b9897c5a199ffc"
+        }
+      ]
+    },
+    {
+      "name": "metal5_83_JM",
+      "nativeKey": "128x16:d2af961640b986e4",
+      "result": "PASS finite canonical-layout material successor",
+      "visualFinding": "Plain dark copper/rust strip retains brown/green patina and horizontal aspect. No invented rivets, panels or bright image-border bevel; subdued relief and both repeats remain quiet.",
+      "comparisonFinding": "Currentclose/halfquarterrepeat and relevantobliqueGPUviews visually inspected; exact480pixel-region conservation supports unchanged sourcecount/material/interface/edge/relief appearance. No newgrain, inflated relief, boundary seam or missing side-block cavity observed.",
+      "captures": [
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/metal5_83_JM-512.png",
+          "sha256": "6eb0ff21327894838689b54104c2de836d3e185773f4900b2fdce8e2fc37ad64"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/metal5_83_JM-half.png",
+          "sha256": "c65e4868308eef6f62822467e9306289150dec4b7f0495de7548facdf4e46f06"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/metal5_83_JM-quarter.png",
+          "sha256": "601e6a3f245d67b14b4466c9af22013e4243e4f5dd1d7df1e407cd4f8ed9ee2b"
+        }
+      ]
+    }
+  ],
+  "captureComparisons": [
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-512.png",
+        "sha256": "4287c0fe9410d5f5bd40ee7a1668ae5359e763c45b84e28d03f90b67616cd3cd"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/br_trim1_1-close.png",
+        "sha256": "4287c0fe9410d5f5bd40ee7a1668ae5359e763c45b84e28d03f90b67616cd3cd"
+      },
+      "draw": {
+        "name": "br_trim1_1",
+        "view": "512",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          512,
+          256
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-half.png",
+        "sha256": "67a9aeafcac9fe1055fdfe6126fc5d61f1a89d9c0678dae270acb62a7f37810c"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/br_trim1_1-half-3x3.png",
+        "sha256": "67a9aeafcac9fe1055fdfe6126fc5d61f1a89d9c0678dae270acb62a7f37810c"
+      },
+      "draw": {
+        "name": "br_trim1_1",
+        "view": "half",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          64,
+          32
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-quarter.png",
+        "sha256": "40b7785d6727499357845967c1e3b2ce8689e8c736a68189db24b25297e60827"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/br_trim1_1-quarter-3x3.png",
+        "sha256": "40b7785d6727499357845967c1e3b2ce8689e8c736a68189db24b25297e60827"
+      },
+      "draw": {
+        "name": "br_trim1_1",
+        "view": "quarter",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          32,
+          16
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-512.png",
+        "sha256": "c46f3f300b566ce24a0418228a739c89f47910e54844ee7b1d834c826b009eeb"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/br_trim1_2-close.png",
+        "sha256": "c46f3f300b566ce24a0418228a739c89f47910e54844ee7b1d834c826b009eeb"
+      },
+      "draw": {
+        "name": "br_trim1_2",
+        "view": "512",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          512,
+          512
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-half.png",
+        "sha256": "298c8f23ef296c985508da7d0dafef857880f85376a020e4658825b3ad6511a3"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/br_trim1_2-half-3x3.png",
+        "sha256": "e77fb03c43118a8e48c640cfc0b29084b86b4a0ff7d1a51655c05398798dbfd3"
+      },
+      "draw": {
+        "name": "br_trim1_2",
+        "view": "half",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          32,
+          32
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": false
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-quarter.png",
+        "sha256": "8af03f8c37aa24f32059db49d402903ffff9cd1635fd1bbaec4bdb2fb45b2c0d"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/br_trim1_2-quarter-3x3.png",
+        "sha256": "8fc998653c1d68c6bab6e85b0945e0ff622dd848e8985494b24655536e7fcd22"
+      },
+      "draw": {
+        "name": "br_trim1_2",
+        "view": "quarter",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          16,
+          16
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": false
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_17_JM-512.png",
+        "sha256": "e534df2650791821378d46d872bcb51fca071e91f5e571356c0f849abebb6965"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/wstone_17_JM-close.png",
+        "sha256": "e534df2650791821378d46d872bcb51fca071e91f5e571356c0f849abebb6965"
+      },
+      "draw": {
+        "name": "wstone_17_JM",
+        "view": "512",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          512,
+          512
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_17_JM-half.png",
+        "sha256": "a1fd6a4c3dd7f0335f835a70d1a19feb7015bb48b006f14edb3fc1f97c6d798b"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/wstone_17_JM-half-3x3.png",
+        "sha256": "b1128665801161c256aac63ff22445609e3daf69f6785fe1ddd42255e6b26a99"
+      },
+      "draw": {
+        "name": "wstone_17_JM",
+        "view": "half",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          128,
+          128
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": false
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_17_JM-quarter.png",
+        "sha256": "f3420216954447bfd310e3e2f7ea9c3e7a352c73084b291db428e481ecf40fc2"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/wstone_17_JM-quarter-3x3.png",
+        "sha256": "badb06a9da73ec0f99378034fca75970ec6698318bf1f6f199db6ae9dc2f1305"
+      },
+      "draw": {
+        "name": "wstone_17_JM",
+        "view": "quarter",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          64,
+          64
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": false
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_11_JM-512.png",
+        "sha256": "89bb3199513be3fa68f7cddd920c517aacdfdd236397dd5779fec1e262ea2daf"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/wstone_11_JM-close.png",
+        "sha256": "89bb3199513be3fa68f7cddd920c517aacdfdd236397dd5779fec1e262ea2daf"
+      },
+      "draw": {
+        "name": "wstone_11_JM",
+        "view": "512",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          512,
+          512
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_11_JM-half.png",
+        "sha256": "ff357ffb2419f76c93ec4738d37d38b1d3e6e64efc607b4f1e0d87c4cf8c5bac"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/wstone_11_JM-half-3x3.png",
+        "sha256": "5871e90662b2fcada88e24ab3f416c0c8139223a70cfe7b46dba5af1c25b4fb2"
+      },
+      "draw": {
+        "name": "wstone_11_JM",
+        "view": "half",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          128,
+          128
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": false
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_11_JM-quarter.png",
+        "sha256": "e361eb02b040395fe39f3527e5a5e47784019bc8178f3261671786bb31cd6436"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/wstone_11_JM-quarter-3x3.png",
+        "sha256": "d04d6dd034dc027316ff5f64c655a8872081e1eb3b35501e2f10d49f7c9dd3c2"
+      },
+      "draw": {
+        "name": "wstone_11_JM",
+        "view": "quarter",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          64,
+          64
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": false
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_13_JM-512.png",
+        "sha256": "570c7fc9830fe1b58ecb15d82cd3da639d2d46a9ff39909eb44449e199ad76c3"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/wstone_13_JM-close.png",
+        "sha256": "570c7fc9830fe1b58ecb15d82cd3da639d2d46a9ff39909eb44449e199ad76c3"
+      },
+      "draw": {
+        "name": "wstone_13_JM",
+        "view": "512",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          512,
+          256
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_13_JM-half.png",
+        "sha256": "671fb3d9ec0ca404218e12c07cbcbd8ffcf7aef651be4e1430b850ee066958c3"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/wstone_13_JM-half-3x3.png",
+        "sha256": "bfe1a58142d613ea7f0e1e5c2a42cb144e8d15a413af74f9d824f7dcb5a9201d"
+      },
+      "draw": {
+        "name": "wstone_13_JM",
+        "view": "half",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          128,
+          64
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": false
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/wstone_13_JM-quarter.png",
+        "sha256": "eda0404864dc784bae8e41c1bb6c2fc37148316e8bd7091bf797cf60a395552f"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/wstone_13_JM-quarter-3x3.png",
+        "sha256": "4b4176ab82e0aefa35f792b74bbf9fd6d8929147fcbaada83c51fbd27402cd09"
+      },
+      "draw": {
+        "name": "wstone_13_JM",
+        "view": "quarter",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          64,
+          32
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": false
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/TF_Metal3_04-512.png",
+        "sha256": "e8016efbacdfe1ff4be852ea6dfae60eb2370fda38f8d1be92f6ab1e3bdb8bbc"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/TF_Metal3_04-close.png",
+        "sha256": "e8016efbacdfe1ff4be852ea6dfae60eb2370fda38f8d1be92f6ab1e3bdb8bbc"
+      },
+      "draw": {
+        "name": "TF_Metal3_04",
+        "view": "512",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          512,
+          512
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/TF_Metal3_04-half.png",
+        "sha256": "cd488de5b6a3d09d6f30480694c5d2ba0a5910d28aee382810a45d6a33f1839a"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/TF_Metal3_04-half-3x3.png",
+        "sha256": "7bc05f098a83800ece1cb311c11bf18c629bf4b8d5c91896381cbc0101f136b9"
+      },
+      "draw": {
+        "name": "TF_Metal3_04",
+        "view": "half",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          64,
+          64
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": false
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/TF_Metal3_04-quarter.png",
+        "sha256": "7425a68f1a645e1f68afbd6b3ab48779cf7deccbae9ccc7512785e62b95a8926"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/TF_Metal3_04-quarter-3x3.png",
+        "sha256": "298311f87a057a186df5d958d243ae4571f6ee42b3db59a9195631f221821303"
+      },
+      "draw": {
+        "name": "TF_Metal3_04",
+        "view": "quarter",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          32,
+          32
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": false
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/TF_Stone_03-512.png",
+        "sha256": "d137ea450ae89ed212114eddb3785d252782536336828f488f231037aa690dae"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/TF_Stone_03-close.png",
+        "sha256": "d137ea450ae89ed212114eddb3785d252782536336828f488f231037aa690dae"
+      },
+      "draw": {
+        "name": "TF_Stone_03",
+        "view": "512",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          512,
+          512
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/TF_Stone_03-half.png",
+        "sha256": "e18a89b3c9f14ae2767af6d14d9755f92e91244b699537e64730f103b656eda8"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/TF_Stone_03-half-3x3.png",
+        "sha256": "404ae3855c1928e8e43c6b2cf14bf897f4544e43423efdfe8457f5b52d35fd20"
+      },
+      "draw": {
+        "name": "TF_Stone_03",
+        "view": "half",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          64,
+          64
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": false
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/TF_Stone_03-quarter.png",
+        "sha256": "d4f03207d3a4856b501eb197762c4f5b0195adcfd48349ce41b9897c5a199ffc"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/TF_Stone_03-quarter-3x3.png",
+        "sha256": "088551f5fd0700d8361ab43d2eb54cf2965803d9e2026bb280f511c98ad3fe10"
+      },
+      "draw": {
+        "name": "TF_Stone_03",
+        "view": "quarter",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          32,
+          32
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": false
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/metal5_83_JM-512.png",
+        "sha256": "6eb0ff21327894838689b54104c2de836d3e185773f4900b2fdce8e2fc37ad64"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/metal5_83_JM-close.png",
+        "sha256": "6eb0ff21327894838689b54104c2de836d3e185773f4900b2fdce8e2fc37ad64"
+      },
+      "draw": {
+        "name": "metal5_83_JM",
+        "view": "512",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          512,
+          64
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/metal5_83_JM-half.png",
+        "sha256": "c65e4868308eef6f62822467e9306289150dec4b7f0495de7548facdf4e46f06"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/metal5_83_JM-half-3x3.png",
+        "sha256": "c65e4868308eef6f62822467e9306289150dec4b7f0495de7548facdf4e46f06"
+      },
+      "draw": {
+        "name": "metal5_83_JM",
+        "view": "half",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          64,
+          8
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/metal5_83_JM-quarter.png",
+        "sha256": "601e6a3f245d67b14b4466c9af22013e4243e4f5dd1d7df1e407cd4f8ed9ee2b"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/metal5_83_JM-quarter-3x3.png",
+        "sha256": "601e6a3f245d67b14b4466c9af22013e4243e4f5dd1d7df1e407cd4f8ed9ee2b"
+      },
+      "draw": {
+        "name": "metal5_83_JM",
+        "view": "quarter",
+        "angleDegrees": 0,
+        "comparisonDimensions": [
+          32,
+          4
+        ],
+        "repeat": 3,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-angle-55-flat.png",
+        "sha256": "c5fead5c6c60f5aec55a74c66479bdaedefe316ad04a26d0fa753c6f95e04e33"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/br_trim1_1-angle-55-flat.png",
+        "sha256": "c5fead5c6c60f5aec55a74c66479bdaedefe316ad04a26d0fa753c6f95e04e33"
+      },
+      "draw": {
+        "name": "br_trim1_1",
+        "view": "512",
+        "angleDegrees": -55,
+        "comparisonDimensions": [
+          512,
+          256
+        ],
+        "repeat": 1,
+        "relief": false,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-angle-55-relief.png",
+        "sha256": "6757140ccb8778efb093ab47ba371b28668386f473697fdc523b42ceac4d019d"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/br_trim1_1-angle-55-relief.png",
+        "sha256": "6757140ccb8778efb093ab47ba371b28668386f473697fdc523b42ceac4d019d"
+      },
+      "draw": {
+        "name": "br_trim1_1",
+        "view": "512",
+        "angleDegrees": -55,
+        "comparisonDimensions": [
+          512,
+          256
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-angle55-flat.png",
+        "sha256": "533950f93e5cb7721a64c1c791b6b16b9542241d569799d465f64c4522cf9fe7"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/br_trim1_1-angle55-flat.png",
+        "sha256": "533950f93e5cb7721a64c1c791b6b16b9542241d569799d465f64c4522cf9fe7"
+      },
+      "draw": {
+        "name": "br_trim1_1",
+        "view": "512",
+        "angleDegrees": 55,
+        "comparisonDimensions": [
+          512,
+          256
+        ],
+        "repeat": 1,
+        "relief": false,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_1-angle55-relief.png",
+        "sha256": "a89e61e9e4ce0d3b40d3371dbd248beffb6fc4aff00aef25c3eb5c5d2c126885"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/br_trim1_1-angle55-relief.png",
+        "sha256": "a89e61e9e4ce0d3b40d3371dbd248beffb6fc4aff00aef25c3eb5c5d2c126885"
+      },
+      "draw": {
+        "name": "br_trim1_1",
+        "view": "512",
+        "angleDegrees": 55,
+        "comparisonDimensions": [
+          512,
+          256
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-angle-55-flat.png",
+        "sha256": "d3dfd65a5b58f155072ab56397dfc1df7865ecef17b4f8972a485b03bc2a1c53"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/br_trim1_2-angle-55-flat.png",
+        "sha256": "d3dfd65a5b58f155072ab56397dfc1df7865ecef17b4f8972a485b03bc2a1c53"
+      },
+      "draw": {
+        "name": "br_trim1_2",
+        "view": "512",
+        "angleDegrees": -55,
+        "comparisonDimensions": [
+          512,
+          512
+        ],
+        "repeat": 1,
+        "relief": false,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-angle-55-relief.png",
+        "sha256": "67e2fc3f8742644788abfbf512351bc3595130130df4e5c58c26bd5fa92b3e5b"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/br_trim1_2-angle-55-relief.png",
+        "sha256": "67e2fc3f8742644788abfbf512351bc3595130130df4e5c58c26bd5fa92b3e5b"
+      },
+      "draw": {
+        "name": "br_trim1_2",
+        "view": "512",
+        "angleDegrees": -55,
+        "comparisonDimensions": [
+          512,
+          512
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-angle55-flat.png",
+        "sha256": "c2005f5e65e70b31f0deb9cc8f0b50b1f5fdd23b0952462217f411308e754fa9"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/br_trim1_2-angle55-flat.png",
+        "sha256": "c2005f5e65e70b31f0deb9cc8f0b50b1f5fdd23b0952462217f411308e754fa9"
+      },
+      "draw": {
+        "name": "br_trim1_2",
+        "view": "512",
+        "angleDegrees": 55,
+        "comparisonDimensions": [
+          512,
+          512
+        ],
+        "repeat": 1,
+        "relief": false,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    },
+    {
+      "capture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu-canonical/br_trim1_2-angle55-relief.png",
+        "sha256": "a04dcf43d4ffc24d47a20af149890b66d10a82f6662e32502c4db2463f5b9ae7"
+      },
+      "priorCapture": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-gpu/br_trim1_2-angle55-relief.png",
+        "sha256": "a04dcf43d4ffc24d47a20af149890b66d10a82f6662e32502c4db2463f5b9ae7"
+      },
+      "draw": {
+        "name": "br_trim1_2",
+        "view": "512",
+        "angleDegrees": 55,
+        "comparisonDimensions": [
+          512,
+          512
+        ],
+        "repeat": 1,
+        "relief": true,
+        "material": "MeshLambertMaterial",
+        "drawCalls": 1
+      },
+      "GPU480RegionPixelEqual": true,
+      "entireScreenshotPixelEqualDiagnostic": true
+    }
+  ],
+  "reviewContacts": {
+    "custody": {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-canonical-gpu-independent-contacts/capture-comparison-custody.json",
+      "sha256": "2577d42ea0ea84e5173a68385dd6f6e60158d1e495bb4f546b83ab494a762885"
+    },
+    "sheets": [
+      {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-canonical-gpu-independent-contacts/512-0.png",
+        "sha256": "42b4c9d739351570542f6082a501583e64b6039986a4e1dfb5690ddb9e983872"
+      },
+      {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-canonical-gpu-independent-contacts/512-4.png",
+        "sha256": "ac4385ce2ac682b1992d3a10f2bbb455cfa87856091c471b8e710fbfc879a78a"
+      },
+      {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-canonical-gpu-independent-contacts/half-0.png",
+        "sha256": "fca95f3022945acb12912a5218e7d257fc258a2e272c19b2c6325419bb6fd3cf"
+      },
+      {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-canonical-gpu-independent-contacts/half-4.png",
+        "sha256": "eb74c688dd6c2658cf5ea55a8d2922af83c22a8c2b164c3ea90c5e2f5ad47d4f"
+      },
+      {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-canonical-gpu-independent-contacts/quarter-0.png",
+        "sha256": "5c6bd4bc1989909a45417f788648822c157cbc8c8983421110da99b5a7369e2c"
+      },
+      {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-canonical-gpu-independent-contacts/quarter-4.png",
+        "sha256": "c128c0337e505ffc623ffe87b404a33a967c8f96afed8e54716b2ab9592a8a21"
+      },
+      {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-canonical-gpu-independent-contacts/br_trim1_1-angle-pairs.png",
+        "sha256": "138f241e85e30bf478d0500a292ee3d4940c6ac3b8f278ecf243ec1848fc9fa8"
+      },
+      {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-canonical-gpu-independent-contacts/br_trim1_2-angle-pairs.png",
+        "sha256": "640accf8345a14c73185074df07e2dcc94825e08e1f28214e4c1a0bfc4f828ab"
+      }
+    ]
+  },
+  "distanceScope": "Half/quarter controls resize the2Dsource/replacement panels at equal resolutions. GPUcamera/plane/480target remain fixed for the same repeat count; these are 2Ddistance-reference views plus GPUrepeat draws, not16distinctGPUcamera distances.",
+  "depthScope": "Both\u00b155flat/relief comparisons retain subtle normal/parallax/POM response on an unchanged plane. No realmesh displacement, changed silhouette or collision offset is claimed. Plain-facing>infill scalar order remains separately proved.",
+  "installerScope": "One-shot installer I/O adaptation is outside renderer/public execution in these captures; this review does not invoke or qualify a new installation run.",
+  "cleanupScope": {
+    "sealedReceiptState": {
+      "ownedPid": 46011,
+      "signal": "SIGTERM",
+      "closedTab": "19",
+      "exitCodePending": true
+    },
+    "qualification": "Supplied receipt still marks exitCodePending:true. Parent later reported server exit143/port release in coordination; no independent cleanup observation or upgrade of that sealed pending field is claimed by this visual review."
+  },
+  "holds": [],
+  "limits": [
+    "Finite recorded light/angle views only; no temporal shimmer, arbitrarymip/distance or alllevelgameplay claim",
+    "Earlier33 and24view reports remain historical in their exact original heads",
+    "No owner approval, normalgate, finaltree, Dev push or release claim"
+  ]
+}

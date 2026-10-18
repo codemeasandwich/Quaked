@@ -1,0 +1,184 @@
+{
+  "qualification": "Finite independent first-draft DIFFUSE review only, at actual512Q92; HOLD before any CPUlit/public/runtime qualification. Read-only source/art inspection; only ROOTverification contact images and this report written. No WT/assets/index/test/gate changes.",
+  "result": "HOLD",
+  "name": "TF_Stone_03",
+  "nativeKey": "128x128:a9a3b5bd1a5d387f",
+  "nativeRgbaSha256": "f4204035568c76a61f1166d95f29ba22a3c27b53acdc5510d3fbe10019045eb8",
+  "nativeDimensions": [
+    128,
+    128
+  ],
+  "nativeFullyOpaque": true,
+  "runtimeDimensions": [
+    512,
+    512
+  ],
+  "rawGeneratedDimensions": [
+    1254,
+    1254
+  ],
+  "mapRolesPinnedButHeightAndNormalsNotReviewed": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "9a34d65751a142780abf90efc4f617700b37b6d86c8eac17a493d387ac03f5bb",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "84c7e956503bee44e182011762d32286c2968b8c82acaadac99961a9a5c10449",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "16b2c9c0827afae72ebdd17143f0dc4091db0b26a181907aafe1d85a0a966609",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "009da666425485cf050ac6db72f2df876fb93357403208fb683eb817d1df16ae",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "65113240d0206f62bcb4b7744ac55cebc20a181c0f6dc1a5afb2a311ee8789b0",
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  },
+  "sharpness": "PASS for focus: the512Q92 image has distinct crisp edges/details, without blur. The hold is material/geometry/detail hierarchy, not insufficient resolution.",
+  "paletteAndDistance": "Darkbrown/rust/grey intention and roughlyfour coarsecourses are representative at64/32px. Similar coarse appearance cannot excuse the512px rubble/grit interpretation.",
+  "defects": [
+    {
+      "area": "Joint material and width",
+      "finding": "Pale loose angulargravel/chips form thick raised-looking ribbons and piles along several course joins and vertical intersections. The native calls for mostlythin jagged embedded pale mortar/highlight paths.",
+      "visualLocation": "Top-left/intersection area and repeated horizontalcourse joins, visible atactual512 and amplified in2x2repeat."
+    },
+    {
+      "area": "Stone-face cohesion",
+      "finding": "Several wide black diagonal fissures subdivide broadstone faces into broken pieces. Original irregular stone boundaries/veins do not justify uniformlydeep face-splitting crevices.",
+      "visualLocation": "Middle/right thirdcourse andlowercourse faces."
+    },
+    {
+      "area": "Detail hierarchy",
+      "finding": "Dense bright white/orange particles and pinprick contrasts cover nearly everyface. It is sharplyfocused, but the area reads as coarsegrit/rubble and competes with the intended stoneface silhouettes.",
+      "visualLocation": "Whole512diffuse, especially pale mineral/debris accumulations."
+    }
+  ],
+  "edgeAssessment": "Actual2x2unlit repeat has no obvious addedouterframe or hard isolated joinline. A seamlessrepeat alone is not acceptance; it repeats the same overlybusy material. No separate tilingfailure asserted.",
+  "fixConstraints": [
+    "Revise/regenerate the photographicSOURCE to show cohesive roughdarkbrown stones with crisp distinct edges and larger readablefacets, while retaining roughlyfourcourses and the native irregularvertical joint positions.",
+    "Use thin embedded jagged pale mortar following the native jointnetwork. Remove continuous coarse loosegravel shelves/piles; allow sparse localchips rather than gravel on everyedge.",
+    "Reduce the number/width of major black face-splitting fissures. Keep restrained physicalcracks/mineral veins, not extra blockboundaries across mostfaces.",
+    "Make fine mineral/pores subordinate to broadstone planes; vary roughness naturally with quietareas. Maintain sharp materialdetail rather than imposing dense equal-strength highfrequencyspeckles everywhere.",
+    "Do not fix through overallblur, strongerpixel reconstruction, numericalMAE matching or alteredacceptance thresholds. Sharpening alone would intensify thecurrentproblem.",
+    "Retain4x512x512 andquality92; preserve sourcepalette/style and correctXYjointphase. Newmaterial interpretation requires fresh full/half/quarter/repeat review beforelighting/publicqualification."
+  ],
+  "distanceDiagnostics": [
+    {
+      "divisor": 2,
+      "dimensions": [
+        64,
+        64
+      ],
+      "filter": "Pillow Lanczos, both images reduced independently to same dimensions",
+      "meanAbsoluteRGBDiagnosticOnly": 11.2041015625,
+      "interpretation": "Broad course/palette similarity is visible; this does not pass the full-resolution material/geometry requirement."
+    },
+    {
+      "divisor": 4,
+      "dimensions": [
+        32,
+        32
+      ],
+      "filter": "Pillow Lanczos, both images reduced independently to same dimensions",
+      "meanAbsoluteRGBDiagnosticOnly": 6.0810546875,
+      "interpretation": "Broad course/palette similarity is visible; this does not pass the full-resolution material/geometry requirement."
+    }
+  ],
+  "encoderDistanceDiagnosticsOnly": {
+    "halfMAE": 11.011311848958334,
+    "quarterMAE": 6.177408854166667,
+    "note": "Encoderfilter diagnostics and independentLanczos diagnostics need not be identical; no numericpass threshold is applied."
+  },
+  "reviewedEvidence": [
+    "Actual512decodedQ92diffuse",
+    "Rawgenerated sourcephoto",
+    "Native128RGBA shown nearest at512",
+    "Both original/replacement at64x64 and32x32 withproperaspect",
+    "Actual512pixel tiles in2x2XYrepeat"
+  ],
+  "evidence": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Stone_03.png",
+      "sha256": "f668998d3f0d54e60c0d84a1f06a422e81e5cab4f4e90ebf7f88e9b0485f2a86"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Stone_03.json",
+      "sha256": "ade4a405058b82cec979131a7c3a705d81ddf75f42126d99bc15d7ccf47b4408"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Stone_03-generated-v1.png",
+      "sha256": "41800bb2b7da2e7e420b88167f01b6ddb80fb9ba3244f1ac0b410180648e4967"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x.png",
+      "sha256": "0879bbbef3d6ee2fd146f9a128d1733f001bb3a56a36c31f394ae5af7c2ae0b1"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz.json",
+      "sha256": "d3b0e8957536c488576c3e451012ce117b9faeb423c4cac3bf8596df4a939b5c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-next-eight-independent-plan.json",
+      "sha256": "dfd7f5fe0e34606a113585ecdfed6d8df22b67c277eec13536e4644eb98905fb"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Stone_03-independent-first-full-distance.png",
+      "sha256": "b13669aac1b93c4cd0b66be3fbab599e76171282041caf3593688a871ef4cc49"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/TF_Stone_03-independent-first-repeat.png",
+      "sha256": "9fd36ec5fa287ff50dc9ef07486bccd30149682ebab2183777f8484a05515fb8"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "9a34d65751a142780abf90efc4f617700b37b6d86c8eac17a493d387ac03f5bb"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "84c7e956503bee44e182011762d32286c2968b8c82acaadac99961a9a5c10449"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "16b2c9c0827afae72ebdd17143f0dc4091db0b26a181907aafe1d85a0a966609"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "009da666425485cf050ac6db72f2df876fb93357403208fb683eb817d1df16ae"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "65113240d0206f62bcb4b7744ac55cebc20a181c0f6dc1a5afb2a311ee8789b0"
+    }
+  ],
+  "notPerformed": [
+    "CPUlighting/normalvisualacceptance",
+    "NewAIgeneration/editing",
+    "Runtimeindexbinding",
+    "PublicPAK/encoderreplay/gate/build"
+  ]
+}

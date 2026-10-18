@@ -1,0 +1,33 @@
+{
+  "qualification": "Reviewed8coursephoto phase refinement, not acceptance; oldwrap corrected tonally before becoming an interior row after rigid shift",
+  "input": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_1-generated-v4.png",
+  "inputSha256": "aa691e85763a653e52e0d2e1c446cd85c57d349940c808a0b5aa6e24020838b4",
+  "inputDimensions": [
+    1774,
+    887
+  ],
+  "dimensions": [
+    512,
+    256
+  ],
+  "nativeDimensions": [
+    128,
+    64
+  ],
+  "factor": 4,
+  "normalizationResampling": "Lanczos to exact4x before phase operation",
+  "preRollQuietEdgeAxes": "y",
+  "quietEdgeTool": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/finish_quiet_edges.py",
+  "quietEdgeToolSha256": "b4d0ffed5d127c976ca73d0fb203636cb33a0c1ba43bb04361407e3eb83642a1",
+  "quietEdgeClippingFraction": 0.0022455851236979165,
+  "quietEdgeSpatialResampling": false,
+  "cyclicRowShiftRuntime": 4,
+  "cyclicRowShiftNative": 1,
+  "sourceMortarBands": "28..31+32*k at runtime",
+  "photographicMortarMinimaBefore": "26+32*k",
+  "photographicMortarMinimaAfter": "30+32*k",
+  "phaseStepResampling": false,
+  "output": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_1-photo-solid-phase-base-v5.png",
+  "outputSha256": "eb90032231c1de33e5244261d7943f4eee891bf4b8b28d1a09562b21eb144e63",
+  "wrapperSha256": "8a3f2035bc25617ce94871f4d0024d29613b9dcc13ad31ad0eb8d52e1ed123d1"
+}

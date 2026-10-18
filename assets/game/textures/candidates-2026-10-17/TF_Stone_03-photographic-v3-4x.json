@@ -1,0 +1,55 @@
+{
+  "method": "photographic",
+  "factor": 4,
+  "verticalLandmarks": null,
+  "colorStrength": 1.0,
+  "fieldSigma": 2.0,
+  "edgeAnchor": false,
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    64
+  ],
+  "distanceMeanMaxError": 104.4375,
+  "distanceMeanMAE": 9.100824991861979,
+  "donorDistanceMAE": 10.858444213867188,
+  "newClippedChannelFraction": 0.0011431376139322917,
+  "donorContourCorrelation": 0.99980640062455,
+  "sourceMean": [
+    62.0966796875,
+    44.0428466796875,
+    28.1004638671875
+  ],
+  "outputMean": [
+    62.09780502319336,
+    44.045772552490234,
+    28.10790252685547
+  ],
+  "donorBoundaries": {
+    "wrap_x_mean": 24.662760416666664,
+    "wrap_y_mean": 29.072265625,
+    "interior_x_mean": 10.506538445857796,
+    "interior_y_mean": 12.170319379892367
+  },
+  "boundaries": {
+    "wrap_x_mean": 24.591796875,
+    "wrap_y_mean": 29.053385416666664,
+    "interior_x_mean": 10.504442626793871,
+    "interior_y_mean": 12.166926573711677
+  },
+  "passedDistanceCheck": null,
+  "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Stone_03.png",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Stone_03-generated-v2.png",
+  "output": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-v3-4x.png",
+  "originalSha256": "f668998d3f0d54e60c0d84a1f06a422e81e5cab4f4e90ebf7f88e9b0485f2a86",
+  "generatedSha256": "182be7c774f746ac92ed2fce42d68ebeea3049d68dc932daa095b2b285efb003",
+  "outputSha256": "618d992dc5d191dceb63ed4bbba93206212e439ec08cdaf2398571b18c2e49dc",
+  "outputDimensions": [
+    512,
+    512
+  ],
+  "toolSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+  "landmarkFile": null,
+  "landmarkSha256": null
+}

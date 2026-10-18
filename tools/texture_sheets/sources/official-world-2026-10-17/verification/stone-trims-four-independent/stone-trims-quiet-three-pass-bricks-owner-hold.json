@@ -1,0 +1,386 @@
+{
+  "currentDecision": "Quiet three-stone PASS; both brick interpretations OWNER HOLD. No current four-material PASS.",
+  "approvedMaterials": 3,
+  "approvedMapHashes": 15,
+  "approvedResults": [
+    {
+      "name": "wstone_17_JM",
+      "nativeKey": "256x256:5384584dfbd2bc47",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "targetDimensions": [
+        1024,
+        1024
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.06,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "b2f474e35d5060c76d3f7bb66082c013981f7450463072703450c8df7431fabb",
+        "height": "5b619ff5a524d28ce4ca34d8f4d54f9a32ccea9b7a867a2caaf2d6a86f6a6dc7",
+        "normalX": "4f0cb6d73244ad28a1c1b2de3c245c334700f64defa2467117a5aaeac820608c",
+        "normalY": "5a9340efa5e7abeea3daac6d2d4d1818fc64cac5b01c22c7c8c5a408ed73b84f",
+        "normalZ": "304677bd82ac37e61b377a1ef64affe0cdc44fb34aa5256269c6e560c366d94c"
+      },
+      "mapCustody": {
+        "diffuse": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-diffuse.webp",
+          "sha256": "b2f474e35d5060c76d3f7bb66082c013981f7450463072703450c8df7431fabb",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "14e212d48f7f862b24c1f95e529c634d16a5e6dcef57c5f2195bc8fe2d02ae26"
+        },
+        "height": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-height.webp",
+          "sha256": "5b619ff5a524d28ce4ca34d8f4d54f9a32ccea9b7a867a2caaf2d6a86f6a6dc7",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "952ef56607dfaa4ddee1a51224bdbbebbd9d114fc57b94d3856a186b549a6e8c"
+        },
+        "normalX": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-normalX.webp",
+          "sha256": "4f0cb6d73244ad28a1c1b2de3c245c334700f64defa2467117a5aaeac820608c",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "5cf6a822abb48365f9e76b987798c4d2022ceac16c62047ca4dea073fe46a3ee"
+        },
+        "normalY": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-normalY.webp",
+          "sha256": "5a9340efa5e7abeea3daac6d2d4d1818fc64cac5b01c22c7c8c5a408ed73b84f",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "ffe66397f574851ea258edda6ec4744332a24db871acb52db656213550588b6c"
+        },
+        "normalZ": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz-normalZ.webp",
+          "sha256": "304677bd82ac37e61b377a1ef64affe0cdc44fb34aa5256269c6e560c366d94c",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "b065bcc7fde6ea07801acd9d43d7e97291820684813183a24abfb8847eb569e1"
+        }
+      },
+      "diffuseFullSharpness": "PASS",
+      "distanceHalfQuarter": "PASS similar palette/style/scale at shared dimensions; no equality threshold",
+      "repeatAndCyclicDiffuse": "PASS intended physical borders/rails preserved; no new outside frame or introduced boundary stripe observed",
+      "overallResult": "PASS",
+      "reliefFinding": "PASS at0.06: both opposite production-normal and decoded actualXYZ CPU lights now read as shallow moulded stone. Fine photographic veins/chips/pores remain distinct; broad mineral patches no longer read as inflated lumps, and the blanket pebbled/orange-peel response is subdued. Rail/flute structural definition remains; no new image-wide rim or seam was observed.",
+      "nextAction": "Separate actual PAK/public/GPU/pack qualification and final exact-tree review before publication; no owner or release acceptance claimed.",
+      "normalRouteDiagnostic": {
+        "mean": 5.49503662792382,
+        "p99": 17.079836046263612,
+        "maximum": 34.139935005210475
+      },
+      "layoutFinding": "Eight columns restored at128runtime pitch. Independent decoded-column maxima near[0,129,258,385,513,641,769,897]; native-ridge alignment recovered without count change.",
+      "selectedEncodingReceipt": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-quiet-v7-4x-q92-xyz.json",
+      "selectedEncodingReceiptSha256": "ebb1c3a396ff427f2eeac5dfcade3b10b0d84362d3de0c8676dd679588430497",
+      "diffuseHeightCustody": "Exact encoded diffuse and height bytes match held0.2 baseline. Thus its full/distance/phase/repeat/cyclic diffuse assessments remain valid, without a new diffuse transformation or noise/sharpening step."
+    },
+    {
+      "name": "wstone_11_JM",
+      "nativeKey": "256x256:45ba5d43baf6a749",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "targetDimensions": [
+        1024,
+        1024
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.06,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "64382e000136fcee6c77df9577b1da3eb619e6f5e0ebe4dfe5bbbe8e65c601f9",
+        "height": "9fdbf60b02558a8dcb26726ea304839bc50dbf06f0f5b4c72b1353b3cd9b9a54",
+        "normalX": "bd6be5f1d6066973609b49fab0cac7131f82d79c5eaa25bea6accb7d60402e3a",
+        "normalY": "7cdcb7e7c828665f05b18c56bb146216ac600357ad58fdfd97856fd20b254b64",
+        "normalZ": "4cd9aea539faee7c1ff9f7572c98d8c32d7c15c566bd52450cfa9adab9686188"
+      },
+      "mapCustody": {
+        "diffuse": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-diffuse.webp",
+          "sha256": "64382e000136fcee6c77df9577b1da3eb619e6f5e0ebe4dfe5bbbe8e65c601f9",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "88caf3391d7f90e5eb9887fe2452d8ea6f68bea4a867c6a4fa951a6a3c15368d"
+        },
+        "height": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-height.webp",
+          "sha256": "9fdbf60b02558a8dcb26726ea304839bc50dbf06f0f5b4c72b1353b3cd9b9a54",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "c1390ea3f2f644bc9be9c951792ceaa0919bc597ce7b92af08dd8c2f253ce037"
+        },
+        "normalX": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-normalX.webp",
+          "sha256": "bd6be5f1d6066973609b49fab0cac7131f82d79c5eaa25bea6accb7d60402e3a",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "690a1752d3717dc3aef1904cc649db90d4b58245bd6b281cd405d886ea533c4f"
+        },
+        "normalY": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-normalY.webp",
+          "sha256": "7cdcb7e7c828665f05b18c56bb146216ac600357ad58fdfd97856fd20b254b64",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "398bc78322f99518b0fdd5aefd43537872ddf01d2cace4ab6ed53a4543fcf720"
+        },
+        "normalZ": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz-normalZ.webp",
+          "sha256": "4cd9aea539faee7c1ff9f7572c98d8c32d7c15c566bd52450cfa9adab9686188",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "8f4371226369031641f4ecca24720161f5954ce735dbb3bbce9c0ee8fe740512"
+        }
+      },
+      "diffuseFullSharpness": "PASS",
+      "distanceHalfQuarter": "PASS similar palette/style/scale at shared dimensions; no equality threshold",
+      "repeatAndCyclicDiffuse": "PASS intended physical borders/rails preserved; no new outside frame or introduced boundary stripe observed",
+      "overallResult": "PASS",
+      "reliefFinding": "PASS at0.06: both opposite production-normal and decoded actualXYZ CPU lights now read as shallow moulded stone. Fine photographic veins/chips/pores remain distinct; broad mineral patches no longer read as inflated lumps, and the blanket pebbled/orange-peel response is subdued. Rail/flute structural definition remains; no new image-wide rim or seam was observed.",
+      "nextAction": "Separate actual PAK/public/GPU/pack qualification and final exact-tree review before publication; no owner or release acceptance claimed.",
+      "normalRouteDiagnostic": {
+        "mean": 4.497445357075609,
+        "p99": 13.650657044332974,
+        "maximum": 32.04391649341956
+      },
+      "layoutFinding": "Four256runtime horizontal courses with roughly48runtime raised lip, groove and broad body; no vertical joints.",
+      "selectedEncodingReceipt": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-quiet-v3-4x-q92-xyz.json",
+      "selectedEncodingReceiptSha256": "80fc00f97fe5cb679304a619c4e6b8f21fa4b45db00b32de0f5ca3aaf3a570d2",
+      "diffuseHeightCustody": "Exact encoded diffuse and height bytes match held0.2 baseline. Thus its full/distance/phase/repeat/cyclic diffuse assessments remain valid, without a new diffuse transformation or noise/sharpening step."
+    },
+    {
+      "name": "wstone_13_JM",
+      "nativeKey": "256x128:4cdd9804c3e2fe86",
+      "nativeDimensions": [
+        256,
+        128
+      ],
+      "targetDimensions": [
+        1024,
+        512
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.06,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "d4adbdd1957b5a7c093e69aabdaf4e57c6617263eff87783a35d02236199efd6",
+        "height": "68396e973843d9afe275b9708c80a615a15cd75736ac7e6eed17f6a0d8923986",
+        "normalX": "81066d29a15a7062847520aade0bdd3af9e3f6184db39b7729e356ed94ff4b8f",
+        "normalY": "330d2ca28b3cdec2dcb170261c845f5cd739543ab070d0257842707f7219cf30",
+        "normalZ": "068c8a17f3956b704413c9ae13b1f1bfdaa9632638703fc8499382aba19001d8"
+      },
+      "mapCustody": {
+        "diffuse": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-diffuse.webp",
+          "sha256": "d4adbdd1957b5a7c093e69aabdaf4e57c6617263eff87783a35d02236199efd6",
+          "dimensions": [
+            1024,
+            512
+          ],
+          "decodedRgbaSha256": "9a77063f4ec39aed52a1ccad99d9d02e85a62c646e8cc2030da7270e8a2f8284"
+        },
+        "height": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-height.webp",
+          "sha256": "68396e973843d9afe275b9708c80a615a15cd75736ac7e6eed17f6a0d8923986",
+          "dimensions": [
+            1024,
+            512
+          ],
+          "decodedRgbaSha256": "937ce0f0b153286fbecd0a9e10af8b3a0dc31bbcd530c0b802f8d45ab0feda77"
+        },
+        "normalX": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalX.webp",
+          "sha256": "81066d29a15a7062847520aade0bdd3af9e3f6184db39b7729e356ed94ff4b8f",
+          "dimensions": [
+            1024,
+            512
+          ],
+          "decodedRgbaSha256": "ab258b7ce7f7d1c58c81aac0a925f44fe96eddfddf78f9da052fe80075f4eaf6"
+        },
+        "normalY": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalY.webp",
+          "sha256": "330d2ca28b3cdec2dcb170261c845f5cd739543ab070d0257842707f7219cf30",
+          "dimensions": [
+            1024,
+            512
+          ],
+          "decodedRgbaSha256": "31970b1bcc4d2e8b42122e1f895350d0144bf05b3f7f0f728752a367e50828ae"
+        },
+        "normalZ": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalZ.webp",
+          "sha256": "068c8a17f3956b704413c9ae13b1f1bfdaa9632638703fc8499382aba19001d8",
+          "dimensions": [
+            1024,
+            512
+          ],
+          "decodedRgbaSha256": "9c05224f77375ed040b4a1a530754e203a7e48e2e82c7a6f9aaa9e45bc34fbeb"
+        }
+      },
+      "diffuseFullSharpness": "PASS",
+      "distanceHalfQuarter": "PASS similar palette/style/scale at shared dimensions; no equality threshold",
+      "repeatAndCyclicDiffuse": "PASS intended physical borders/rails preserved; no new outside frame or introduced boundary stripe observed",
+      "overallResult": "PASS",
+      "reliefFinding": "PASS at0.06: both opposite production-normal and decoded actualXYZ CPU lights now read as shallow moulded stone. Fine photographic veins/chips/pores remain distinct; broad mineral patches no longer read as inflated lumps, and the blanket pebbled/orange-peel response is subdued. Rail/flute structural definition remains; no new image-wide rim or seam was observed.",
+      "nextAction": "Separate actual PAK/public/GPU/pack qualification and final exact-tree review before publication; no owner or release acceptance claimed.",
+      "normalRouteDiagnostic": {
+        "mean": 4.0128119473970125,
+        "p99": 12.919560831544919,
+        "maximum": 27.822648237730267
+      },
+      "layoutFinding": "Own truewide1024x512 photo retains four128runtime courses and roughly48runtime rail; body shortened relative to11, not whole-image half-height scaling.",
+      "selectedEncodingReceipt": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz.json",
+      "selectedEncodingReceiptSha256": "2aa210e2b9d9cb24a492cc48ddcac39b0d63a317743f41a4dc9cd462b05df552",
+      "diffuseHeightCustody": "Exact encoded diffuse and height bytes match held0.2 baseline. Thus its full/distance/phase/repeat/cyclic diffuse assessments remain valid, without a new diffuse transformation or noise/sharpening step."
+    }
+  ],
+  "heldMaterials": [
+    {
+      "name": "br_trim1_1",
+      "result": "HOLD OWNER CORRECTION",
+      "nativeKey": "128x64:77662dd16046c093",
+      "reason": "Owner rejects the invented alternating small dark missing-square-brick gaps. Native dark side areas depict solid masonry/material, not missing bricks or open cavities. Earlier independent brickPASS is superseded for all current interpretations until repaired.",
+      "currentMapHashes": {
+        "diffuse": "4b3c538fdaeb7598f38f18b844558de9a59c2354286e788206427c751488e64f",
+        "height": "b558d5a91e637ee935f39a78e8a347a7caeff838fecfe74941af9597b655312d",
+        "normalX": "9a099d20d95df08f057a1a9be5bed66124f9fc1fb60053b0a2bcce6909a3f5e6",
+        "normalY": "0c711242e438e238d0e1881bf611e911ce6854c9501d5e65b5ad4465c285c953",
+        "normalZ": "12bc0cfce924ccced1afda774cd6205572b4b6901ba6f1327969a25fdc32866e"
+      },
+      "qualification": "Current maps held; no installation approval. Narrowbrick prior review belonged to separate reviewer; this hold is the explicit owner correction, not a new full narrow-art assessment."
+    },
+    {
+      "name": "br_trim1_2",
+      "result": "HOLD OWNER CORRECTION",
+      "nativeKey": "64x64:b40e75921ad5cfe8",
+      "reason": "Owner rejects the invented alternating small dark missing-square-brick gaps. Native dark side areas depict solid masonry/material, not missing bricks or open cavities. Earlier independent brickPASS is superseded for all current interpretations until repaired.",
+      "currentMapHashes": {
+        "diffuse": "65447b09ac028ed2dd9131f0325cda0c245d50fc00cc309c5f6f1faca5309130",
+        "height": "d26667b525f0410d32f99c28bee9ab2b5a7bee29680d21fba206d19a6701990a",
+        "normalX": "b9b8702c062392c93d78e6463b32eafa71ec2a618e942a4813b9d54480a3f0e7",
+        "normalY": "d26c922a8069673bd20df58735e1e8f08f4c86b12dafe0d94f768c267a206740",
+        "normalZ": "fba6cc81caee9eaefa595fe9156ed9e68ba5f8ecfbe86f18711859bd247ed6c5"
+      },
+      "qualification": "Current maps held; no installation approval. Narrowbrick prior review belonged to separate reviewer; this hold is the explicit owner correction, not a new full narrow-art assessment."
+    }
+  ],
+  "ownerCorrection": "Dark edge areas are NOT missing bricks. Restore solid edge masonry source-faithfully before either brick interpretation can be installed.",
+  "supersession": {
+    "previousFourPassFile": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-four-independent/stone-trims-four-quiet-successor-review.json",
+    "previousFourPassSha256": "8dffe0a21e4bca9ec16002ee1191df8991c91f983d90d949a2da891036aa10e3",
+    "status": "Historical result preserved. Its brickwidePASS, prior baselinebrickPASS and earlier brick donor approvals are overridden by owner correction. Its quiet3stonePASS and their exact15map hashes remain supported. This receipt is current.",
+    "baselineReceipt": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-four-independent/stone-trims-four-baseline-review.json"
+  },
+  "nativeEdgeInspection": {
+    "allPixelsFullyOpaque": true,
+    "blackRgbPixelsBoth": 0,
+    "left16NativeColours": [
+      46,
+      46
+    ],
+    "right16NativeColours": [
+      45,
+      45
+    ],
+    "wideNarrowLeft16PixelDifference": 0,
+    "wideNarrowRight16PixelDifference": 0,
+    "visualInterpretation": "Nearest-neighbour native side-strip views at3x exposure reveal brown/olive/bluegrey material variation inside dark alternating cells. Do not interpret dark coarse pixels as evidence of a missing volume. Alpha/colour counts support custody and material presence; the explicit owner correction establishes the intended solid construction.",
+    "repairConstraint": "Keep source dark/light edge rhythm and true joint/brick scale, but fill every alternating side cell with continuous photographed solid masonry/brick surface. Remove black missing-square cutouts, deep cavity caps and undercut hole shadows. Use sharp physical material; do not copy/enlarge source pixel noise or globally brighten away the intended dark tone. Wide/narrow native outer16px strips are pixel-identical, so an approved same-scale photographic edge component may be reused for both, with distinct complete-source bindings."
+  },
+  "quietStoneSuccessorEvidence": {
+    "referenceReport": {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-quiet-reference-v2/stone-trims-eight-reference-inputs.json",
+      "sha256": "90a8d8a6249de1922698dc442c2603c02e2d0a3c0b4bcc43c4613505813c4a38"
+    },
+    "quietReferenceInputsVerified": 30,
+    "allDiffuseHeightByteExact": true,
+    "visualResult": "PASS both opposite CPUlights/actualXYZ and production routes. Fine detail retained with shallow stone relief; prior orange-peel/inflated-patch issue corrected atstrength.06/cap.5.",
+    "baselineAndCurrentMapCustody": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-four-independent/stone-trims-four-quiet-successor-review.json"
+  },
+  "inputs": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_1.png",
+      "sha256": "67eeeb98acf7292d963e79e8298984b64aad6368ef1d8bcd3671e5f279571515"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_1.json",
+      "sha256": "bb9fbe5e388f5bcb74a4efee63fa107883c28ea3f414f65e6ba36277746c983d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_2.png",
+      "sha256": "2f5fe0c3e00a0bfe74da5fe8f084eccf0d5f81712f26dc0ba455ed3f44829f0c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_2.json",
+      "sha256": "f6cc24264ea2eb08dc562a41454dde7221d12a5a020c1f5b944414a72b0b4084"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/stone-trims-eight-finish-v2.json",
+      "sha256": "adb31dae4322268b649fa2d778fc831f596c7bb728f94268d9e4570c8603fa3a"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-four-independent/br_trim1_1-native-solid-edge-inspection.png",
+      "sha256": "8e3a45678ac947ed1803dc17fae6f66956e3619092d05b538f308e174adb325c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-four-independent/br_trim1_2-native-solid-edge-inspection.png",
+      "sha256": "e9801c34dc929000fc5b0fbee731b976740b445891ebbfdd2eb8c0c2058cfcda"
+    }
+  ],
+  "limits": "Quietstone art/CPU qualification is ROOT-only. ActualPAK/public/GPU/pack/finalstage/normalgate/owner-release qualification remain separate. No source/candidate/WT/index/test changes, generation or installation performed.",
+  "nextOwner": "Parent repairs both brick edges using solid photo material while continuing separate qualification of accepted quietthree. New brick diffuse/height/XYZ require independent source/full/distance/repeat/relief review."
+}

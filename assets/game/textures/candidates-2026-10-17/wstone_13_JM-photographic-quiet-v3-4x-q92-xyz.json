@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "wstone_13_JM",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_13_JM.png",
+  "originalSha256": "2d4e8a0dc918321be933f1a8cb507ad29e6f1340df31fe044fc077328d30e806",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x.png",
+  "authoringDiffuseSha256": "be838e97af2a4d06d8561588662ee6dc3b6f05210907275a5ee02f7da2858e7b",
+  "toolSha256": "e8d825dcb3e79bb9f419af6558363e0ab00534389e7b21f5423177b2e1f9af9b",
+  "heightToolSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.06,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-diffuse.webp",
+      "sha256": "d4adbdd1957b5a7c093e69aabdaf4e57c6617263eff87783a35d02236199efd6",
+      "bytes": 214104,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        512
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-height.webp",
+      "sha256": "68396e973843d9afe275b9708c80a615a15cd75736ac7e6eed17f6a0d8923986",
+      "bytes": 199098,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        512
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalX.webp",
+      "sha256": "81066d29a15a7062847520aade0bdd3af9e3f6184db39b7729e356ed94ff4b8f",
+      "bytes": 147548,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        512
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalY.webp",
+      "sha256": "330d2ca28b3cdec2dcb170261c845f5cd739543ab070d0257842707f7219cf30",
+      "bytes": 143086,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        512
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-quiet-v3-4x-q92-xyz-normalZ.webp",
+      "sha256": "068c8a17f3956b704413c9ae13b1f1bfdaa9632638703fc8499382aba19001d8",
+      "bytes": 11670,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        1024,
+        512
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    128,
+    64
+  ],
+  "distanceMAE": 10.955281575520834,
+  "distanceMaximum": 94.0,
+  "secondaryComparisonDimensions": [
+    64,
+    32
+  ],
+  "secondaryDistanceMAE": 7.91748046875,
+  "secondaryDistanceMaximum": 57.0,
+  "colourCompressionMAE": 1.908725102742513,
+  "heightCompressionMAE": 1.2675914764404297,
+  "heightCompressionMaximum": 8.0,
+  "normalAngularMean": 0.952748662349303,
+  "normalAngularP99": 2.548097428309342,
+  "normalAngularMaximum": 4.409944084398808,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

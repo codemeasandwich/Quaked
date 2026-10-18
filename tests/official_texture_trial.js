@@ -12,7 +12,7 @@ const candidate='newer/textures/candidates-2026-10-12/';
 // Only this diagnostic page receives these bindings; it never writes the index.
 const batch=new URL(location.href).searchParams.get('batch');
 // Keep new-material GPU review bounded; the separate public suite checks the full catalogue.
-const manifest=({realism:'realism-trial.json',character:'character-trial.json',aged:'aged-trial.json',industrial:'../candidates-2026-10-17/industrial-trial.json',owner:'../candidates-2026-10-17/owner-q92-trial.json',legacytech:'../candidates-2026-10-17/legacy-tech-q92-trial.json',nexteight:'../candidates-2026-10-17/next-eight-trial.json',building:'../candidates-2026-10-17/building-trial.json',crosspack:'../candidates-2026-10-17/crosspack-trial.json'})[batch]||'trial.json';
+const manifest=({realism:'realism-trial.json',character:'character-trial.json',aged:'aged-trial.json',industrial:'../candidates-2026-10-17/industrial-trial.json',owner:'../candidates-2026-10-17/owner-q92-trial.json',legacytech:'../candidates-2026-10-17/legacy-tech-q92-trial.json',nexteight:'../candidates-2026-10-17/next-eight-trial.json',stonetrims:'../candidates-2026-10-17/stone-trims-trial.json',building:'../candidates-2026-10-17/building-trial.json',crosspack:'../candidates-2026-10-17/crosspack-trial.json'})[batch]||'trial.json';
 const specs=await AssetFetch(candidate+manifest).then(r=>r.json()),index=await fetch('assets/game/textures/index.json').then(r=>r.json());
 document.querySelector('#asset-count').textContent=String(Object.keys(specs).length);
 document.querySelector('#asset').replaceChildren(...Object.keys(specs).map(name=>{const option=document.createElement('option');option.value=option.textContent=name;return option;}));
@@ -69,6 +69,8 @@ try{
  const mesh=new THREE.Mesh(geo);scene.add(mesh);
  function draw(){
   const name=document.querySelector('#asset').value,view=document.querySelector('#size').value,repeat=+document.querySelector('#repeat').value;
+  const angleDegrees=+document.querySelector('#angle').value,angle=angleDegrees*Math.PI/180;
+  camera.position.set(Math.sin(angle)*3.1,0,Math.cos(angle)*3.1);camera.lookAt(0,0,0);
   const source=originals[name],factor=view==='half'?.5:view==='quarter'?.25:view==='eighth'?.125:view==='native'?1:512/Math.max(source.width,source.height);
   const width=Math.max(1,Math.round(source.width*factor)),height=Math.max(1,Math.round(source.height*factor));
   for(const[id,img]of [['native',originals[name]],['finished',finished[name]]]){
@@ -83,7 +85,7 @@ try{
   material?.dispose();material=createQuakeLightmapMaterial(textures[name],lightmap);
   mesh.material=material;mesh.scale.set(source.width/Math.max(source.width,source.height),source.height/Math.max(source.width,source.height),1);camera.updateMatrixWorld();post.R_PostBind(renderer);renderer.clear();renderer.render(scene,camera);
   post.R_PostFinish(renderer,scene,camera,{lx:0,ly:0,lw:480,lh:480},0,[],[],0,1,false);
-  receipt.lastDraw={name,view,comparisonDimensions:[width,height],repeat,relief:!!material.normalMap,material:material.type,drawCalls:renderer.info.render.calls};
+  receipt.lastDraw={name,view,angleDegrees,comparisonDimensions:[width,height],repeat,relief:!!material.normalMap,material:material.type,drawCalls:renderer.info.render.calls};
   document.querySelector('#receipt').textContent=JSON.stringify(receipt,null,2);window.officialTextureTrial=receipt;
  }
  // A GPU upload can trigger refreshed preparation. Redraw only for that
@@ -93,7 +95,7 @@ try{
   const update=()=>{if(document.querySelector('#asset').value===name&&document.querySelector('#relief').checked&&!material?.normalMap)requestAnimationFrame(draw);};
   t.addEventListener('newertextureupdated',update);updates.push(()=>t.removeEventListener('newertextureupdated',update));
  }
- for(const id of ['asset','size','repeat','relief'])document.querySelector('#'+id).onchange=draw;
+ for(const id of ['asset','size','repeat','relief','angle'])document.querySelector('#'+id).onchange=draw;
  document.querySelector('#render').onclick=draw;draw();
  window.addEventListener('pagehide',()=>{updates.forEach(f=>f());material?.dispose();geo.dispose();lightmap.dispose();Object.values(textures).forEach(t=>t.dispose());post.R_PostShutdown();renderer.dispose();globalThis.fetch=realFetch;},{once:true});
 }catch(error){receipt.error=String(error.stack||error);document.querySelector('#receipt').textContent=JSON.stringify(receipt,null,2);window.officialTextureTrial=receipt;throw error;}

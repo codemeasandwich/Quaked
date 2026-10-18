@@ -1,0 +1,12 @@
+{
+  "initialHelperFile": "tools/texture_sheets/sources/official-world-2026-10-17/verification/qualify-stone-trims-ab55-successor-initial.py",
+  "initialHelperSha256": "42d735fb8ef63eb0410050ee510098da38a7f0f5a7f67a6cc65c20bc075c9bf0",
+  "exception": "StopIteration at explicit protected-path lookup, initial helper line35",
+  "missingPriorEntries": [
+    "tests/official_texture_trial.html",
+    "tests/official_texture_trial.js",
+    "tools/texture_sheets/finish_official_texture.py"
+  ],
+  "meaning": "Helper input-membership assumption failed; no asset, public test or source producer failed. All2173 actual prior inputs had already compared successfully with only two exact incoming Dev successors.",
+  "correction": "Use immutable historical28765 GPU review source witnesses for the diagnostic HTML/JS and exact old/current/working Git bytes for the maintained finisher. Keep every existing2173 comparison strict."
+}

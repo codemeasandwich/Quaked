@@ -1,0 +1,33 @@
+{
+  "provider": "Builtin GPT image generation",
+  "qualification": "Versioned authoring provenance; selected native module composition uses widev5; all rejected narrow photographs preserved.",
+  "outputs": [
+    {
+      "name": "br_trim1_1",
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_1-generated-v5.png",
+      "sha256": "cc6d69e5178a60565d98bb9d37ff59c3d204d454c93525a23abaf649beabf501",
+      "prompt": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_1-imagegen-prompt-v5.txt",
+      "promptSha256": "4d55ac99cceddd7f6f625a667403bb69a1a22d4b7b38db1ddd6d30a6fc535c9a",
+      "builtinDefault": "/Users/bri/.codex/generated_images/01a13733-0ad0-70d0-a472-44d591b36c12/exec-c5486738-014a-47b1-8393-a5d0afc970aa.png",
+      "decision": "Selected donor for source-proven wide/narrow composition; independent artwork review completed, GPU pending."
+    },
+    {
+      "name": "br_trim1_2",
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_2-generated-v3.png",
+      "sha256": "554dc608aed8622cc26db13150cdf85cab8e105acee73f16cc6813e27958b18c",
+      "prompt": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_2-imagegen-prompt-v3.txt",
+      "promptSha256": "8573ed896584d45a8774b352a2b8030368bbb17498d9dc717e7bc18b6570dd1b",
+      "builtinDefault": "/Users/bri/.codex/generated_images/01a13733-0ad0-70d0-a472-44d591b36c12/exec-1a3b81c3-3499-46c3-99da-162a78070823.png",
+      "decision": "HOLD right material bleed"
+    },
+    {
+      "name": "br_trim1_2",
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_2-generated-v4.png",
+      "sha256": "3588bd44e753fbac5863fec5fe4c7efdbc7351417ec0a5478d997552f9c0a371",
+      "prompt": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_2-imagegen-prompt-v4.txt",
+      "promptSha256": "e87738b5559ee4df02674e2d882747992dc8cacf6981ed73fe55f99ea1e1fbb7",
+      "builtinDefault": "/Users/bri/.codex/generated_images/01a13733-0ad0-70d0-a472-44d591b36c12/exec-c6b79783-db2c-4b73-8da9-b50066240321.png",
+      "decision": "HOLD wrong/asymmetric narrow geometry; replaced by same-scale module composition"
+    }
+  ]
+}

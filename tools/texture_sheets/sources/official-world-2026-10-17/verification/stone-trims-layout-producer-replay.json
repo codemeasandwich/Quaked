@@ -1,0 +1,42 @@
+{
+  "qualification": "Current canonical-layout actual producer replay and exact historical numerical-function preservation. Tempoutputs removed; no artwork/recipe/height change.",
+  "head": "738f92d96e56517eed3fcc255a885b4fc9528b9a",
+  "producerResults": [
+    {
+      "producer": "tools/texture_sheets/sources/official-world-2026-10-17/prepare_stone_trim_bases.py",
+      "outputs": [
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Metal3_04-reviewed-photo-base-v1.png",
+          "sha256": "b103a6961ea133bf27386bf13b13e148f524287fb2193c25c522ea8bb0e52975"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/metal5_83_JM-reviewed-photo-base-v1.png",
+          "sha256": "bd937827ad1f10fa901167b8c64345a584a5838fbdc2c3165692050f771aa2fb"
+        }
+      ],
+      "byteExact": true
+    },
+    {
+      "producer": "tools/texture_sheets/sources/official-world-2026-10-17/prepare_horizontal_trims.py",
+      "outputs": [
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/tech04_6-reviewed-photo-base-v1.png",
+          "sha256": "41795b8ad0e43acfc9804fed6745686ee8010046b5a608764c9e4f1dd3aafda4"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/tech04_5-reviewed-photo-base-v1.png",
+          "sha256": "231800f76572ca8d1f7d8a41c809d4d52f5f3b28c8e4cf84653361a8eef6bb22"
+        }
+      ],
+      "byteExact": true
+    }
+  ],
+  "unchangedNumericalFunctions": {
+    "tools/texture_sheets/update_level_sheets.py::brick_mask": "e2d135b432803aa5e84b66d0cec440468eeee0a7b0ca82ed38cfd0a19c179a77",
+    "tools/texture_sheets/update_level_sheets.py::authored_height": "66463d65861fe37f208bf58d88c7120bf00ea083c99a66dea1db57825aa0393b",
+    "tools/craft_normals.py::profile_for": "4e5fa18c371d12784019b0512c7c84ac94b91157b0be6467c5c59ec485801870",
+    "tools/craft_normals.py::gblur": "f7120106d3614f24bcd5d6fe0e7461450f28e34b43da09f04dba4353e6a6cbdb",
+    "tools/craft_normals.py::craft": "0e9d0c2570e60cefc7722335b3a65bd2d31e3db10a25d19b2e9e2a5dcb90ab84",
+    "tools/craft_normals.py::normals_from_height": "e07edfbfb04d1eace9317a7852aa2a7e2f9cc230f6a7e17c9fb6b4d0e34b399e"
+  }
+}

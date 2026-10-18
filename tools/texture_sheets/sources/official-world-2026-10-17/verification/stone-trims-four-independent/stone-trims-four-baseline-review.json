@@ -1,0 +1,501 @@
+{
+  "qualification": "Independent four-material ROOT-only decoded art/distance/XYrepeat/cyclic/two-light CPU relief baseline review. Current3smoothstones held atstrength0.2; no registration approval for them.",
+  "overallResult": "HOLD",
+  "materials": 4,
+  "runtimeMapHashes": 20,
+  "results": [
+    {
+      "name": "br_trim1_1",
+      "nativeKey": "128x64:77662dd16046c093",
+      "nativeDimensions": [
+        128,
+        64
+      ],
+      "targetDimensions": [
+        512,
+        256
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "4b3c538fdaeb7598f38f18b844558de9a59c2354286e788206427c751488e64f",
+        "height": "b558d5a91e637ee935f39a78e8a347a7caeff838fecfe74941af9597b655312d",
+        "normalX": "9a099d20d95df08f057a1a9be5bed66124f9fc1fb60053b0a2bcce6909a3f5e6",
+        "normalY": "0c711242e438e238d0e1881bf611e911ce6854c9501d5e65b5ad4465c285c953",
+        "normalZ": "12bc0cfce924ccced1afda774cd6205572b4b6901ba6f1327969a25fdc32866e"
+      },
+      "mapCustody": {
+        "diffuse": {
+          "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x-q92-xyz-diffuse.webp",
+          "sha256": "4b3c538fdaeb7598f38f18b844558de9a59c2354286e788206427c751488e64f",
+          "dimensions": [
+            512,
+            256
+          ],
+          "decodedRgbaSha256": "1f183ee82e125b9a8fa7d59f5e5a05cee2706854ddd925aaa2eb72f7f52250b5"
+        },
+        "height": {
+          "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x-q92-xyz-height.webp",
+          "sha256": "b558d5a91e637ee935f39a78e8a347a7caeff838fecfe74941af9597b655312d",
+          "dimensions": [
+            512,
+            256
+          ],
+          "decodedRgbaSha256": "79333a6e4836c0bf16ff042bbc745745f36a0f19bbb53d735c21902d115659ab"
+        },
+        "normalX": {
+          "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x-q92-xyz-normalX.webp",
+          "sha256": "9a099d20d95df08f057a1a9be5bed66124f9fc1fb60053b0a2bcce6909a3f5e6",
+          "dimensions": [
+            512,
+            256
+          ],
+          "decodedRgbaSha256": "9edb9a5823ca586f9674d94a33d8526de123e60fd3f689b23be3c4b00a947c49"
+        },
+        "normalY": {
+          "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x-q92-xyz-normalY.webp",
+          "sha256": "0c711242e438e238d0e1881bf611e911ce6854c9501d5e65b5ad4465c285c953",
+          "dimensions": [
+            512,
+            256
+          ],
+          "decodedRgbaSha256": "055f986ecb45299362f9408e5cd0d958aba36b3ca83d88bc85e718e2d4a9157e"
+        },
+        "normalZ": {
+          "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-phase-seam-v8-4x-q92-xyz-normalZ.webp",
+          "sha256": "12bc0cfce924ccced1afda774cd6205572b4b6901ba6f1327969a25fdc32866e",
+          "dimensions": [
+            512,
+            256
+          ],
+          "decodedRgbaSha256": "a93993b01a1b5a33d5415d2a5b4602a04397223951608d89c838cd75246ec47e"
+        }
+      },
+      "diffuseFullSharpness": "PASS",
+      "distanceHalfQuarter": "PASS similar palette/style/scale at shared dimensions; no equality threshold",
+      "repeatAndCyclicDiffuse": "PASS intended physical borders/rails preserved; no new outside frame or introduced boundary stripe observed",
+      "overallResult": "PASS",
+      "reliefFinding": "Chipped brick/glaze and real recessed mortar/jamb relief remain plausible under both opposite lights; no new global rim.",
+      "nextAction": "May proceed to separate public/GPU/source qualification with exact reviewed hashes.",
+      "normalRouteDiagnostic": {
+        "mean": 7.508876030749816,
+        "p99": 21.507760001804513,
+        "maximum": 37.79505884746008
+      },
+      "layoutFinding": "Eight courses, seven full/six inset brick slots, stepped physical jambs; corrected mortar phase closes Y repeat. Source jamb width is approximate but distant intention remains clear."
+    },
+    {
+      "name": "wstone_17_JM",
+      "nativeKey": "256x256:5384584dfbd2bc47",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "targetDimensions": [
+        1024,
+        1024
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "b2f474e35d5060c76d3f7bb66082c013981f7450463072703450c8df7431fabb",
+        "height": "5b619ff5a524d28ce4ca34d8f4d54f9a32ccea9b7a867a2caaf2d6a86f6a6dc7",
+        "normalX": "cd8af68e1715fc2f12e85d089bf1bf0f602f88cf88d0df6166e1d7358c6d5bf2",
+        "normalY": "c0d0eb84558e91a9a817f8ce8ceba8bfac8ec53460344dffc13354fe8f4bbc42",
+        "normalZ": "d957dd1d5e52ab270647e65f79e40c79ad26a9ccd9f006b7cdab4a06a3932a1d"
+      },
+      "mapCustody": {
+        "diffuse": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x-q92-xyz-diffuse.webp",
+          "sha256": "b2f474e35d5060c76d3f7bb66082c013981f7450463072703450c8df7431fabb",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "14e212d48f7f862b24c1f95e529c634d16a5e6dcef57c5f2195bc8fe2d02ae26"
+        },
+        "height": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x-q92-xyz-height.webp",
+          "sha256": "5b619ff5a524d28ce4ca34d8f4d54f9a32ccea9b7a867a2caaf2d6a86f6a6dc7",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "952ef56607dfaa4ddee1a51224bdbbebbd9d114fc57b94d3856a186b549a6e8c"
+        },
+        "normalX": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x-q92-xyz-normalX.webp",
+          "sha256": "cd8af68e1715fc2f12e85d089bf1bf0f602f88cf88d0df6166e1d7358c6d5bf2",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "c8ad8205ce7b65c23df00b3fde14b71ae70970c95591c6cebb119d8c09dd5865"
+        },
+        "normalY": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x-q92-xyz-normalY.webp",
+          "sha256": "c0d0eb84558e91a9a817f8ce8ceba8bfac8ec53460344dffc13354fe8f4bbc42",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "70f4bc2ac04e488c3d357a0f6d48a8721d150282fc7ee511630e46c1d71daa12"
+        },
+        "normalZ": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-seam-v6-4x-q92-xyz-normalZ.webp",
+          "sha256": "d957dd1d5e52ab270647e65f79e40c79ad26a9ccd9f006b7cdab4a06a3932a1d",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "abb4a95a0a5a0b4f9a950b68fea20247b2ad00acaa54fab347b51c680b01da35"
+        }
+      },
+      "diffuseFullSharpness": "PASS",
+      "distanceHalfQuarter": "PASS similar palette/style/scale at shared dimensions; no equality threshold",
+      "repeatAndCyclicDiffuse": "PASS intended physical borders/rails preserved; no new outside frame or introduced boundary stripe observed",
+      "overallResult": "HOLD relief",
+      "reliefFinding": "Strength0.2 converts colour/mineral variation into broad lumpy raised regions in production route, with a pebbled/orange-peel field in authoredXYZ. Too much relief for the smooth moulded-stone intention. Distinct photographic diffuse remains usable.",
+      "nextAction": "Try versioned quieter existing strength/profile, retain diffuse/height custody and inspect both lighting routes. Do not sharpen/destroy diffuse detail, invent a normal algorithm, or accept by numerical distance/angle alone.",
+      "normalRouteDiagnostic": {
+        "mean": 10.074221793635571,
+        "p99": 32.1287343013446,
+        "maximum": 49.178352478003895
+      },
+      "layoutFinding": "Eight columns restored at128runtime pitch. Independent decoded-column maxima near[0,129,258,385,513,641,769,897]; native-ridge alignment recovered without count change."
+    },
+    {
+      "name": "wstone_11_JM",
+      "nativeKey": "256x256:45ba5d43baf6a749",
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "targetDimensions": [
+        1024,
+        1024
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "64382e000136fcee6c77df9577b1da3eb619e6f5e0ebe4dfe5bbbe8e65c601f9",
+        "height": "9fdbf60b02558a8dcb26726ea304839bc50dbf06f0f5b4c72b1353b3cd9b9a54",
+        "normalX": "6364ccfad3865434416db9ac2df91221eac2a90a7e1660b9adc0521deb428d20",
+        "normalY": "801ee0bb71f277acc80ab31003022f2ea39c54df97396a1a3805117390efc2ef",
+        "normalZ": "f953ec06ea939fccfa0248a50b51d6a601da97aa89d6eaa4ed6124675cf756e4"
+      },
+      "mapCustody": {
+        "diffuse": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "64382e000136fcee6c77df9577b1da3eb619e6f5e0ebe4dfe5bbbe8e65c601f9",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "88caf3391d7f90e5eb9887fe2452d8ea6f68bea4a867c6a4fa951a6a3c15368d"
+        },
+        "height": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "9fdbf60b02558a8dcb26726ea304839bc50dbf06f0f5b4c72b1353b3cd9b9a54",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "c1390ea3f2f644bc9be9c951792ceaa0919bc597ce7b92af08dd8c2f253ce037"
+        },
+        "normalX": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "6364ccfad3865434416db9ac2df91221eac2a90a7e1660b9adc0521deb428d20",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "d5fa275039c3e7df08f26bc03ec3033a46ddcdf09eba08885b708da8a0937806"
+        },
+        "normalY": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "801ee0bb71f277acc80ab31003022f2ea39c54df97396a1a3805117390efc2ef",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "26f73352c3275c18a1b76bc0b8fef483a646526dba479b614178f37430bbb0b5"
+        },
+        "normalZ": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_11_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "f953ec06ea939fccfa0248a50b51d6a601da97aa89d6eaa4ed6124675cf756e4",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "decodedRgbaSha256": "714e0d02169a32743267f30cbf66479f11c7f366c507c8189ea4b360266ba1e0"
+        }
+      },
+      "diffuseFullSharpness": "PASS",
+      "distanceHalfQuarter": "PASS similar palette/style/scale at shared dimensions; no equality threshold",
+      "repeatAndCyclicDiffuse": "PASS intended physical borders/rails preserved; no new outside frame or introduced boundary stripe observed",
+      "overallResult": "HOLD relief",
+      "reliefFinding": "Strength0.2 converts colour/mineral variation into broad lumpy raised regions in production route, with a pebbled/orange-peel field in authoredXYZ. Too much relief for the smooth moulded-stone intention. Distinct photographic diffuse remains usable.",
+      "nextAction": "Try versioned quieter existing strength/profile, retain diffuse/height custody and inspect both lighting routes. Do not sharpen/destroy diffuse detail, invent a normal algorithm, or accept by numerical distance/angle alone.",
+      "normalRouteDiagnostic": {
+        "mean": 9.5041343839955,
+        "p99": 27.357014410795617,
+        "maximum": 48.68468240038458
+      },
+      "layoutFinding": "Four256runtime horizontal courses with roughly48runtime raised lip, groove and broad body; no vertical joints."
+    },
+    {
+      "name": "wstone_13_JM",
+      "nativeKey": "256x128:4cdd9804c3e2fe86",
+      "nativeDimensions": [
+        256,
+        128
+      ],
+      "targetDimensions": [
+        1024,
+        512
+      ],
+      "profile": {
+        "bands": [
+          0.6,
+          1,
+          0.8,
+          0.5
+        ],
+        "groove": 0.5,
+        "bump": 0.5,
+        "glow": 0.2,
+        "strength": 0.2,
+        "cap": 0.5
+      },
+      "mapHashes": {
+        "diffuse": "d4adbdd1957b5a7c093e69aabdaf4e57c6617263eff87783a35d02236199efd6",
+        "height": "68396e973843d9afe275b9708c80a615a15cd75736ac7e6eed17f6a0d8923986",
+        "normalX": "63e8c05b6611512ba82b0599fe525f434c730180bb1d3ee5b1c980f494db40f0",
+        "normalY": "b5c65501ccce87d79bd2d09a8757694842355625801954b3122855b3d1a32ed4",
+        "normalZ": "457437c537052f0663edab9012d29f2bb31ed74010e59f5eec660aa103babe41"
+      },
+      "mapCustody": {
+        "diffuse": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+          "sha256": "d4adbdd1957b5a7c093e69aabdaf4e57c6617263eff87783a35d02236199efd6",
+          "dimensions": [
+            1024,
+            512
+          ],
+          "decodedRgbaSha256": "9a77063f4ec39aed52a1ccad99d9d02e85a62c646e8cc2030da7270e8a2f8284"
+        },
+        "height": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+          "sha256": "68396e973843d9afe275b9708c80a615a15cd75736ac7e6eed17f6a0d8923986",
+          "dimensions": [
+            1024,
+            512
+          ],
+          "decodedRgbaSha256": "937ce0f0b153286fbecd0a9e10af8b3a0dc31bbcd530c0b802f8d45ab0feda77"
+        },
+        "normalX": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+          "sha256": "63e8c05b6611512ba82b0599fe525f434c730180bb1d3ee5b1c980f494db40f0",
+          "dimensions": [
+            1024,
+            512
+          ],
+          "decodedRgbaSha256": "098b4c72802a6c161ed77573a438eb2bcce53bf563b112fd819d79f5cb31bc02"
+        },
+        "normalY": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+          "sha256": "b5c65501ccce87d79bd2d09a8757694842355625801954b3122855b3d1a32ed4",
+          "dimensions": [
+            1024,
+            512
+          ],
+          "decodedRgbaSha256": "d69407ef0922f5af74048bfe48f9671aacf665e32129006b9c90d33c1d0ce396"
+        },
+        "normalZ": {
+          "file": "newer/textures/candidates-2026-10-17/wstone_13_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+          "sha256": "457437c537052f0663edab9012d29f2bb31ed74010e59f5eec660aa103babe41",
+          "dimensions": [
+            1024,
+            512
+          ],
+          "decodedRgbaSha256": "912fed9bd2109930ea3acdf90daa018581fe6e8d3077cfe1454b18757e552c68"
+        }
+      },
+      "diffuseFullSharpness": "PASS",
+      "distanceHalfQuarter": "PASS similar palette/style/scale at shared dimensions; no equality threshold",
+      "repeatAndCyclicDiffuse": "PASS intended physical borders/rails preserved; no new outside frame or introduced boundary stripe observed",
+      "overallResult": "HOLD relief",
+      "reliefFinding": "Strength0.2 converts colour/mineral variation into broad lumpy raised regions in production route, with a pebbled/orange-peel field in authoredXYZ. Too much relief for the smooth moulded-stone intention. Distinct photographic diffuse remains usable.",
+      "nextAction": "Try versioned quieter existing strength/profile, retain diffuse/height custody and inspect both lighting routes. Do not sharpen/destroy diffuse detail, invent a normal algorithm, or accept by numerical distance/angle alone.",
+      "normalRouteDiagnostic": {
+        "mean": 8.540304476767355,
+        "p99": 25.844622859449462,
+        "maximum": 45.807050988457796
+      },
+      "layoutFinding": "Own truewide1024x512 photo retains four128runtime courses and roughly48runtime rail; body shortened relative to11, not whole-image half-height scaling."
+    }
+  ],
+  "holds": [
+    "wstone_17_JM",
+    "wstone_11_JM",
+    "wstone_13_JM"
+  ],
+  "manualVisualEvidence": "Viewed all4decoded full-size diffuses; all4independent exact half/quarter source comparisons; all4actual2x2repeats and cyclicoffsets; all4decodedheight/productionnormal/two-light/3x3contacts; all4derived-versus-actual-publishedXYZ two-light contacts.",
+  "mechanismReview": "Registeredcolumns wrapper imports unchanged finish(), transposes before/after, recordsX/native-unit/monotone landmarks and spatialResampling:true; actualdecoded phase recovered. Brickphase helper reuses quietYcolour correction before rigid+4runtime-row shift, with no source-noise copy or geometry rescale. Later edge receipts describe colour-only stage truthfully.",
+  "normalReferenceLimit": "Parent prepared fixed linearLambert CPU references using exact decodedR and unchanged WTproduction math. Both JSdouble-smoothed and actual decoded authoredXYZ routes were visually assessed separately; no byte/angle identity or GPU/PBR/specular acceptance asserted.",
+  "referenceInputsVerified": 75,
+  "inputs": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/stone-trims-eight-finish-v1.json",
+      "sha256": "aec316c792581ec0b19eb06d764d98bd8b9b7bcfdf609c29e74f7cb3c1bddccc"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-reference/stone-trims-eight-reference-inputs.json",
+      "sha256": "07f6d2538c88c7f68e985d391f8c13eaf949ece208896790eb4a26eb7d47aff7"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/finish_registered_columns.py",
+      "sha256": "424aa285b1ecc10e78b433c0cf9bd10700301a93f4fcc818eb8c614dd908e818"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/prepare_brick_phase.py",
+      "sha256": "8a3f2035bc25617ce94871f4d0024d29613b9dcc13ad31ad0eb8d52e1ed123d1"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/wstone_17_JM-x-landmarks-v1.json",
+      "sha256": "f802195281d8bda77768948daaa4e8507e1f0db605dd92629d22cefabfa37c0d"
+    }
+  ],
+  "referenceArtifactsVerified": [
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-reference/br_trim1_1-stone-trims-reference-relief.png",
+      "sha256": "1314ca90182781e8c3a9e0423eee320e33724a8a9043f3c1031dda058470fea2",
+      "kind": "production decoded-R normal and two-light CPU contact"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-reference/br_trim1_1-stone-trims-reference-authored-vs-derived.png",
+      "sha256": "ef4e01379b8225e7cae44ae09404262ebda7724bc07be7b8dce8f2fb69c28f30",
+      "kind": "two-light authored XYZ versus production derived normal comparison"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-reference/br_trim1_1-stone-trims-reference-repeat.png",
+      "sha256": "df9abe5fe85957f3229c5ec7a4e65a4aff0dfb6031d89d42f332cce9d79751db",
+      "kind": "unlit actual-scale 2x2 XY repeat"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-reference/wstone_17_JM-stone-trims-reference-relief.png",
+      "sha256": "9c6ae005ce4d972b2f57b41d3e62a3867bf1f4a352366076d9bee4ef337b8c0f",
+      "kind": "production decoded-R normal and two-light CPU contact"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-reference/wstone_17_JM-stone-trims-reference-authored-vs-derived.png",
+      "sha256": "404d7c5a7b0f205d216a3653bdceb77069330983339dc1327b0a02409fc9b9ee",
+      "kind": "two-light authored XYZ versus production derived normal comparison"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-reference/wstone_17_JM-stone-trims-reference-repeat.png",
+      "sha256": "9f1433e586cddac88e21c11e02b61316cb7377ddaa2600d51ceac5857178fec6",
+      "kind": "unlit actual-scale 2x2 XY repeat"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-reference/wstone_11_JM-stone-trims-reference-relief.png",
+      "sha256": "dda44929045a29a24e4975151327fce7dde80bf3e3789b41bf82d989a6c6fed7",
+      "kind": "production decoded-R normal and two-light CPU contact"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-reference/wstone_11_JM-stone-trims-reference-authored-vs-derived.png",
+      "sha256": "c2de9124f7e28e284256b5c303338d04ecaeb67680a751994d0a1772d909465c",
+      "kind": "two-light authored XYZ versus production derived normal comparison"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-reference/wstone_11_JM-stone-trims-reference-repeat.png",
+      "sha256": "48c416c4aeeb9de87c1f2eb33b3c2d1199d1283b41650c96442800d136b965a9",
+      "kind": "unlit actual-scale 2x2 XY repeat"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-reference/wstone_13_JM-stone-trims-reference-relief.png",
+      "sha256": "b7af42b936ab3ca7f8803899ab77b18d052bf940cd3308471e6d11e211738bf5",
+      "kind": "production decoded-R normal and two-light CPU contact"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-reference/wstone_13_JM-stone-trims-reference-authored-vs-derived.png",
+      "sha256": "e730aa10494057ae0329e397d9c5c00df4ee2b222922d207d3009ab634952c89",
+      "kind": "two-light authored XYZ versus production derived normal comparison"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-eight-reference/wstone_13_JM-stone-trims-reference-repeat.png",
+      "sha256": "632c19d3857acbe6ce260250ae7f4020f6452fa9df61fce84611e710e1be22d3",
+      "kind": "unlit actual-scale 2x2 XY repeat"
+    }
+  ],
+  "independentArtifacts": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-four-independent/br_trim1_1-cyclic-offset.png",
+      "sha256": "56d32f2fc57eeb2c3e431045e81a6c717009313c8eef5251cafa1df778381bca"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-four-independent/br_trim1_1-distance.png",
+      "sha256": "d2205126e71416c0e978c73d0ff4fbe81db670dbc198a2b144455e17efc18563"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-four-independent/wstone_11_JM-cyclic-offset.png",
+      "sha256": "fbdc43a17180ac238bcb8db62df0eb6382186edfff6076c6c26d71bcbc5a2497"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-four-independent/wstone_11_JM-distance.png",
+      "sha256": "15f95adac32ad613a2ae372dbd9bbf0700372ed225b3f7f5a9987234174bf645"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-four-independent/wstone_13_JM-cyclic-offset.png",
+      "sha256": "57dc61a319e47e9ad70333fe69052dfca89f255d40f737a529e53230c03a287c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-four-independent/wstone_13_JM-distance.png",
+      "sha256": "2542a5c083c4ed703464610a49dedf074ca8ccfa80017f42269a879a3910c3d4"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-four-independent/wstone_17_JM-cyclic-offset.png",
+      "sha256": "0958ad60059c1d54a373049c06b4b1a21b1b86a1d1d968d306cda6f34e0b85d1"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-four-independent/wstone_17_JM-distance.png",
+      "sha256": "02a27cc311fcdd7c944ba931a0c71ac8a9c16a51b11be8a307b77a9e8e13ca23"
+    }
+  ],
+  "mutations": "ROOT verification contacts/cyclicviews/receipt only; no source/candidate/WT/index/test/algorithm changes.",
+  "nextOwner": "Parent quietrelief trials then independent successor review; preserve allheld versions. Public/GPU/pack and exact final review precede future registration/publication."
+}

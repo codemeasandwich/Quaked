@@ -1,0 +1,57 @@
+{
+  "qualification": "Source-proven photographic module reuse; art, distance, edge and layered-relief acceptance remain separate.",
+  "producer": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/compose_solid_brick_modules.py",
+  "producerSha256": "9946fd53887afa738881ce3b81906ea73af544b65bf518ff9f813c552ba2e0d3",
+  "wideNative": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_1.png",
+  "wideNativeSha256": "67eeeb98acf7292d963e79e8298984b64aad6368ef1d8bcd3671e5f279571515",
+  "narrowNative": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_2.png",
+  "narrowNativeSha256": "2f5fe0c3e00a0bfe74da5fe8f084eccf0d5f81712f26dc0ba455ed3f44829f0c",
+  "nativeCropColumns": [
+    [
+      0,
+      32
+    ],
+    [
+      96,
+      128
+    ]
+  ],
+  "nativeDifferentRgbaPixels": 0,
+  "photo": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_1-generated-v5.png",
+  "photoSha256": "cc6d69e5178a60565d98bb9d37ff59c3d204d454c93525a23abaf649beabf501",
+  "photoDimensions": [
+    1774,
+    887
+  ],
+  "normalization": "One uniform Lanczos resize to 512x256",
+  "runtimeCropColumns": [
+    [
+      0,
+      128
+    ],
+    [
+      384,
+      512
+    ]
+  ],
+  "compositionSpatialResampling": false,
+  "brickModuleRuntime": [
+    64,
+    32
+  ],
+  "internalJoinRuntimeX": 128,
+  "internalQuietEdgeAxes": "x",
+  "quietEdgeTool": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/finish_quiet_edges.py",
+  "quietEdgeToolSha256": "b4d0ffed5d127c976ca73d0fb203636cb33a0c1ba43bb04361407e3eb83642a1",
+  "internalColourCorrectionColumns": [
+    96,
+    160
+  ],
+  "clippingFraction": 3.0517578125e-05,
+  "protectedFirstAndLastColumns": 96,
+  "protectedPixelsByteExact": true,
+  "wideOutput": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_1-solid-module-base-v7.png",
+  "wideOutputSha256": "572c9ed40e679fa50a6c97fa5213af47ad9df6f64ebea0b664769bb826c9f066",
+  "narrowOutput": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_2-solid-module-base-v5.png",
+  "narrowOutputSha256": "19e711ba5cd3c8d0eb7538087e734725830b2508dc86d1b56f0f8efc5a4792ca"
+}

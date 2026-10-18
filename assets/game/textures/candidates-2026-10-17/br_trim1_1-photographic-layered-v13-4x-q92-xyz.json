@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "name": "br_trim1_1",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_1.png",
+  "originalSha256": "67eeeb98acf7292d963e79e8298984b64aad6368ef1d8bcd3671e5f279571515",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v12-4x.png",
+  "authoringDiffuseSha256": "00e5eddb5ee9c0f452f6b5f14974fba417b5cd5b179deacaf5b4b6c5e292bd15",
+  "toolSha256": "6e8a6306bb935a84a93477ee2091065763f7a6d4a8428e5e33a2da6eb148c520",
+  "heightToolSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.2,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-diffuse.webp",
+      "sha256": "b6d49572e815697c77b11644f82f496f075b907d27d81841be5b92ffc712a73e",
+      "bytes": 56298,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        256
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-height.webp",
+      "sha256": "409fe19aeb4add038baa2dbdb03950f0a5aa9d3ec4cf8134074a7944b479cbe3",
+      "bytes": 7162,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        256
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-normalX.webp",
+      "sha256": "3a8286e9370d5f0fab78f5df5dba1874dbfda5e983ba3dc4a7bc0df2cc08b2da",
+      "bytes": 7250,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        256
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-normalY.webp",
+      "sha256": "6ecbc8c46d199fc517cb130aab6425f9bb52c888c8f578cd3adbeb7949470fee",
+      "bytes": 8544,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        256
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-normalZ.webp",
+      "sha256": "0b7b0b88cc12092dba70014ffabac563c7f9fab26206ffa4f922b3b2947d6e10",
+      "bytes": 706,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        256
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    32
+  ],
+  "distanceMAE": 10.7119140625,
+  "distanceMaximum": 70.0,
+  "secondaryComparisonDimensions": [
+    32,
+    16
+  ],
+  "secondaryDistanceMAE": 8.722005208333334,
+  "secondaryDistanceMaximum": 56.0,
+  "colourCompressionMAE": 2.6554463704427085,
+  "heightCompressionMAE": 0.8080825805664062,
+  "heightCompressionMaximum": 6.0,
+  "normalAngularMean": 0.607233415616859,
+  "normalAngularP99": 1.752011288945038,
+  "normalAngularMaximum": 4.131867448907262,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required",
+  "normalRecipe": "layered-veneer",
+  "heightLayering": {
+    "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_1-layered-height-v1.json",
+    "sha256": "d78878edee9d4c9b0832660f3fa826f0f5da4f9e070ab1a42ea00e1101f6b271",
+    "policy": "layered-veneer",
+    "authoringTool": "tools/texture_sheets/update_level_sheets.py",
+    "authoringToolSha256": "739856ad35d8a2622aff9a8acb7f8493bd6fbfbc8b5f6ec6c30dd8bab3bd9e17",
+    "decodedPlaneOrdering": {
+      "facingMinimum": 158,
+      "insetMaximum": 107,
+      "decodedMinimumGap": 51,
+      "units": "decoded red channel 0..255"
+    }
+  }
+}

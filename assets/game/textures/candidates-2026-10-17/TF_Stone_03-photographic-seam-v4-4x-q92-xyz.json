@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "TF_Stone_03",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Stone_03.png",
+  "originalSha256": "f668998d3f0d54e60c0d84a1f06a422e81e5cab4f4e90ebf7f88e9b0485f2a86",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x.png",
+  "authoringDiffuseSha256": "3966219155fc20d775edd374a8cabdd7bbdb719d52c11af7c2caeba9bdf5c78f",
+  "toolSha256": "e8d825dcb3e79bb9f419af6558363e0ab00534389e7b21f5423177b2e1f9af9b",
+  "heightToolSha256": "892c2a24f586e5bff7ddeda6a875eb6b769174b80ea6358e72224b30cfcffef5",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.2,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-diffuse.webp",
+      "sha256": "d2cbb3cc27f5c067860b01b4b5ab5fbfc85ee93d283981492752d8cd7b76dd04",
+      "bytes": 126504,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-height.webp",
+      "sha256": "6425026a4d6e862e5821955c7d21a994d01691b29312f492ac62cc47f7630983",
+      "bytes": 118504,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-normalX.webp",
+      "sha256": "342805804bbefd5409bc839cb2ffb082aa9315f2b5a6388ffc9f1bab365a8a77",
+      "bytes": 105584,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-normalY.webp",
+      "sha256": "76cc105af7139f783113defb4d7115323f09aaced17d8705b4af74c0993683ff",
+      "bytes": 105734,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-normalZ.webp",
+      "sha256": "f6c05806cc1f29e6b013369e48739fe7a972d64b1f797965ddb978002fe8ff88",
+      "bytes": 26156,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    64
+  ],
+  "distanceMAE": 9.846110026041666,
+  "distanceMaximum": 104.0,
+  "secondaryComparisonDimensions": [
+    32,
+    32
+  ],
+  "secondaryDistanceMAE": 5.784830729166667,
+  "secondaryDistanceMaximum": 46.0,
+  "colourCompressionMAE": 2.5312957763671875,
+  "heightCompressionMAE": 1.3272209167480469,
+  "heightCompressionMaximum": 8.0,
+  "normalAngularMean": 1.0078285937047486,
+  "normalAngularP99": 2.5487538196035366,
+  "normalAngularMaximum": 4.783882164563286,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

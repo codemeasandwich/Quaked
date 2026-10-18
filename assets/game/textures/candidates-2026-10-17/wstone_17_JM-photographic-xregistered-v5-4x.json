@@ -1,0 +1,98 @@
+{
+  "qualification": "X-only photographic landmark registration via unchanged finisher transposition; independent full/distance/edge/relief acceptance remains required",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_17_JM.png",
+  "originalSha256": "c4be3494526414bb204ea249375c90c54189ad0ccba8792e1194efb3a8a93bfb",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-17/wstone_17_JM-generated-v2.png",
+  "generatedSha256": "db10169ac9702d55085a527eb4c4921fe6f1a60d8bcd517a2eb4f09f4ec41e53",
+  "landmarks": "tools/texture_sheets/sources/official-world-2026-10-17/wstone_17_JM-x-landmarks-v1.json",
+  "landmarksSha256": "f802195281d8bda77768948daaa4e8507e1f0db605dd92629d22cefabfa37c0d",
+  "registrationAxis": "x",
+  "coordinateUnits": "native texels",
+  "spatialResampling": true,
+  "transposeBeforeAndAfter": true,
+  "factor": 4,
+  "output": "newer/textures/candidates-2026-10-17/wstone_17_JM-photographic-xregistered-v5-4x.png",
+  "outputSha256": "89af575608911b7d4ced07e0184cf22aad970dda143742e995cab5ab24800080",
+  "finisher": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/finish_official_texture.py",
+  "finisherSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+  "wrapperSha256": "424aa285b1ecc10e78b433c0cf9bd10700301a93f4fcc818eb8c614dd908e818",
+  "transposedFinisherRecipe": {
+    "method": "photographic",
+    "factor": 4,
+    "verticalLandmarks": [
+      [
+        0,
+        0
+      ],
+      [
+        31.75,
+        26.75
+      ],
+      [
+        64,
+        59.5
+      ],
+      [
+        96,
+        92.5
+      ],
+      [
+        128,
+        128.5
+      ],
+      [
+        159.75,
+        161.75
+      ],
+      [
+        191.75,
+        194.5
+      ],
+      [
+        223.75,
+        227.5
+      ],
+      [
+        256,
+        256
+      ]
+    ],
+    "colorStrength": 1,
+    "fieldSigma": 2,
+    "edgeAnchor": false,
+    "comparisonDivisor": 2,
+    "comparisonDimensions": [
+      128,
+      128
+    ],
+    "distanceMeanMaxError": 71.640625,
+    "distanceMeanMAE": 7.127106348673503,
+    "donorDistanceMAE": 12.858072116244664,
+    "newClippedChannelFraction": 0.0,
+    "donorContourCorrelation": 0.9987208173970099,
+    "sourceMean": [
+      177.25164794921875,
+      161.97454833984375,
+      155.789306640625
+    ],
+    "outputMean": [
+      177.2521162033081,
+      161.974515914917,
+      155.7896203994751
+    ],
+    "donorBoundaries": {
+      "wrap_x_mean": 13.789852761002754,
+      "wrap_y_mean": 9.303268107565911,
+      "interior_x_mean": 7.0276926120251355,
+      "interior_y_mean": 7.183757768545791
+    },
+    "boundaries": {
+      "wrap_x_mean": 13.774088541666666,
+      "wrap_y_mean": 9.280924479166668,
+      "interior_x_mean": 7.026489058936136,
+      "interior_y_mean": 7.151150810015482
+    },
+    "passedDistanceCheck": null,
+    "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review."
+  }
+}

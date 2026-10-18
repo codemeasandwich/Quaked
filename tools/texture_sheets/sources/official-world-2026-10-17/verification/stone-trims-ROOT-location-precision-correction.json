@@ -1,0 +1,39 @@
+{
+  "correction": "Earlier message ROOT drafts absent was overbroad. Exact failed read concerned the runtime diffuse path below; source photograph and finish manifest are present. No removal or broad absence inferred.",
+  "locations": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_1-generated-v5.png",
+      "ROOT": {
+        "exists": true,
+        "sha256": "cc6d69e5178a60565d98bb9d37ff59c3d204d454c93525a23abaf649beabf501"
+      },
+      "WT": {
+        "exists": true,
+        "sha256": "cc6d69e5178a60565d98bb9d37ff59c3d204d454c93525a23abaf649beabf501"
+      }
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/stone-trims-eight-finish-v3.json",
+      "ROOT": {
+        "exists": true,
+        "sha256": "dfce130797c2e4eaf8b3da4a050eb9c2c62433c273b8809a1bbd25da2fcba44b"
+      },
+      "WT": {
+        "exists": true,
+        "sha256": "dfce130797c2e4eaf8b3da4a050eb9c2c62433c273b8809a1bbd25da2fcba44b"
+      }
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_1-photographic-layered-v13-4x-q92-xyz-diffuse.webp",
+      "ROOT": {
+        "exists": false,
+        "sha256": null
+      },
+      "WT": {
+        "exists": true,
+        "sha256": "b6d49572e815697c77b11644f82f496f075b907d27d81841be5b92ffc712a73e"
+      }
+    }
+  ],
+  "effects": "Read-only inspection; no source moves/removals."
+}

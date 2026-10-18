@@ -1,0 +1,106 @@
+{
+  "verdict": "PASS bounded code and publicCLI review",
+  "head": "738f92d96e56517eed3fcc255a885b4fc9528b9a",
+  "scope": "This session resource-I/O adapters, merged material diagnostic and one new isolated output-mapping test only; not a final frozen-tree or artwork review.",
+  "findings": [],
+  "codeReview": [
+    "Encoder resolves every native/diffuse/layering/partner/output existence/read/write operation via existing centralresource_path(Path.resolve()). Raw caller labels remain in provenance and outputrecords; no per-tool alias map/fallback. Callerrelative and externalabsolute semantics are preserved. No normal/height equation changes.",
+    "Actual authoredheight/mask, profile/gblur/craft/normalfunctions and globalPROFILES/DEFAULT are AST-identical to preserved prelayouttree0809. Helper sourcehash changes remain explicit I/O successors; old recipes/proofs are not relabeled.",
+    "Merged111public suite retains logical ResourceURL checks, resource_fs reads, explicit old/new helperhash successors, source identity controls and both directedpair/layered CLIargs. No blanket path/version waiver observed.",
+    "Diagnostic preserves migration AssetFetch and canonical index interception plus our boundedstonetrims manifest, Frontdefault and \u00b155camera control. NativeUV/source/distance views unchanged; no engine change.",
+    "Horizontaltrim and stonebase producers resolve donor input paths centrally and retain logical receiptlabels; photographic operations remain exact. Parent4PNGproducer replay evidence is retained separately; no producer rerun claimed by this reviewer."
+  ],
+  "testMutation": "Only tests/official_texture_layered_height_test.py edited. Added shutil import and one method. Prior three test-method source bodies retained exactly, including eleven invalid/conflictingpreflight cases. No asset/index/encoder/othercode edits, staging, commit or heavybuild by reviewer.",
+  "testResults": {
+    "command": "/usr/bin/python3 tests/official_texture_layered_height_test.py -v",
+    "methods": 4,
+    "passed": 4,
+    "failures": 0,
+    "skips": 0,
+    "resourceWarnings": 0,
+    "elapsedSeconds": 16.272,
+    "existingSuccessfulCLIInvocations": 4,
+    "newSuccessfulIsolatedCLIInvocations": 3,
+    "existingPreflightRefusals": 11,
+    "newCanonicalOverwriteRefusal": 1
+  },
+  "newMethodProof": [
+    "Copies actualencoder, fourrequired source modules/layout and realnative/master/layering inputs into disposableproject with no physicalnewer directory. Executes clonedCLI, not importedmock implementation.",
+    "Logicalnewer input/output stem and callerrelative../newer paths write only canonicalassets/game files. FiveactualQ92payloads percase byte-equal retained witnesses; receiptoriginal/master/layer/output labels remain requested callerstrings. Exactly two five-mapsets+twoJSONreceipts exist in canonicaloutputdirectory.",
+    "Absolute externalnative/master/recipe/output remain external even from nestedcaller cwd; no extra canonical resources appear.",
+    "A repeated logicaloutput request is refused because canonicalfiles already exist; their hashes remain exact and no obsoletenewer or caller/newer directory is created."
+  ],
+  "unchangedMathAST": {
+    "tools/texture_sheets/update_level_sheets.py::brick_mask": "7322b57ef08f84267f30a7d3f675bb709c1c72df2488d3caf5e4cb5c9c0a7f4d",
+    "tools/texture_sheets/update_level_sheets.py::authored_height": "b13a38a9b5b401ad054612aff404601f7dee9dd791a9f1f983528a5598976769",
+    "tools/craft_normals.py::profile_for": "124d055ef14d22c20daf9217a67f3d8897f1b9302c7f93507bc07dca848eba1a",
+    "tools/craft_normals.py::gblur": "02ddd36d74f4e83750942581230b3e3a3d4c5902640331258a8993e0aa53cdf2",
+    "tools/craft_normals.py::craft": "2db74133f93aa11fa849e0c20c5ca75cb3f369816d953920f5fda91b39e812b7",
+    "tools/craft_normals.py::normals_from_height": "2d5879217f8395da7587f4416356bfcaeedab84c666cb7f40a29d43db6da847c"
+  },
+  "unchangedProfileAssignments": {
+    "PROFILES": true,
+    "DEFAULT": true
+  },
+  "inputs": [
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/assets/layout.json",
+      "sha256": "6d962d9c00462dce9982dd2a1b06c390abb6ba4e42daeaa31a01a4e803a760f2"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/resource_paths.py",
+      "sha256": "7a5c2c5b4fa36d57ece723b454b3ea27310a6ba370d6436362cc3c506e98bf6e"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/src/platform/resource_paths.js",
+      "sha256": "99d7ecf78b1a25f303b29553b6754799247229d0adc30392a7841ca1f5332b78"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/encode_official_maps.py",
+      "sha256": "14f23a560c17afb72aa8a9aa9d1fda2dbed94bf1230048f3c3b9e814664f0287"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/update_level_sheets.py",
+      "sha256": "ea36ecdc2fe7dcb92d3b66f2ab8d45959e269a11e0f2b4308a438a9a9fcfc123"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/craft_normals.py",
+      "sha256": "eccc86b369d2eacaef0bfd9afbe065d26ab3feb5f711984c6bd376ea06202185"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_q92_test.js",
+      "sha256": "d73dd269178c251ab2a6b398e09e1830d7ad84bc70b12bfa68adf9afbd1c4b4d"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_trial.js",
+      "sha256": "47dd4acf0f29393eb63319a6ab0ae85d4bdb3ffe7e8b75189c3c9ada95ffcb5b"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_trial.html",
+      "sha256": "43e064150b8157845887bae32300200e120330148f7a14e112945863d6cbfc0f"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_layered_height_test.py",
+      "sha256": "6ce53744e7c7bb52e4c5830ff11541c582a6bd37db0e0b48c8de3135c16f1df7"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/prepare_horizontal_trims.py",
+      "sha256": "c8d185417a9a4bc80d3b202efdb37065c1aa700c2ad348a1237327b199f99ab2"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/prepare_stone_trim_bases.py",
+      "sha256": "d935f27479576e1a65c7423e460acad8cb48634034d6c2ed9bde0a04fcb0d377"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/official-textures-next/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-layout-producer-replay.json",
+      "sha256": "7ac28d0927221c638e4fac1b81c46f8037bbed11baf3ae8de7b0956d2e565deb"
+    }
+  ],
+  "testFileSha256": "6ce53744e7c7bb52e4c5830ff11541c582a6bd37db0e0b48c8de3135c16f1df7",
+  "log": {
+    "file": "/private/tmp/quaked-layered-height-layout-tests.log",
+    "sha256": "5eea62fb50d11fda57cf5d86af11c5db88ef3be4a728772547b0f1db3ed1c4bf"
+  },
+  "limits": "Existing111/public/PAK/pack/actualGPU/sourceimage qualification is parent/publichelper evidence. This review adds no artwork approval or claim of release/allcampaign completion. Fresh finalfrozen input receipt/review and maintainednormalgate remain required.",
+  "nextOwner": "Parent includes current testhash/log/review in finalverification receipt, finishes GPU/docs/cleanup and submits exact postlayoutfrozen tree for independent finalreview."
+}

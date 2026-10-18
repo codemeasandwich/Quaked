@@ -1,0 +1,14 @@
+/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_layered_height_test.py:70: ResourceWarning: unclosed file <_io.BufferedReader name='/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/candidates-2026-10-17/br_trim1_1-photographic-solid-seam-v12-4x.png'>
+  assert Image.open(master).size == tuple(n * 4 for n in native_size)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/bri/.codex/worktrees/official-textures-next/Quaked/tests/official_texture_layered_height_test.py:70: ResourceWarning: unclosed file <_io.BufferedReader name='/Users/bri/.codex/worktrees/official-textures-next/Quaked/newer/textures/candidates-2026-10-17/br_trim1_2-photographic-solid-seam-v6-4x.png'>
+  assert Image.open(master).size == tuple(n * 4 for n in native_size)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+test_actual_source_bound_q92_payloads_and_decoded_material_planes (__main__.LayeredOfficialHeight) ... ok
+test_changed_normal_strength_preserves_diffuse_height_and_plane_order (__main__.LayeredOfficialHeight) ... ok
+test_invalid_or_conflicting_recipes_fail_before_any_output_write (__main__.LayeredOfficialHeight) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 7.519s
+
+OK

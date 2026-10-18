@@ -1,0 +1,258 @@
+{
+  "qualification": "Currentfinish-v2exact20map equivalence for sealed independentfour-materialPASS. No new review scope, install/art/index/test/WT mutation; all actualview/source/light conclusions and82inputproofs remain in the immutable linkedreview.",
+  "overallResult": "PASS",
+  "independentReview": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-four-independent-review.json",
+  "independentReviewSha256": "f52be6507a45a92eb7d0acccbd9cab47de46a84e32e04ad9daa6c18c9ad86e69",
+  "currentManifest": "tools/texture_sheets/sources/official-world-2026-10-17/stone-trims-eight-finish-v2.json",
+  "currentManifestSha256": "adb31dae4322268b649fa2d778fc831f596c7bb728f94268d9e4570c8603fa3a",
+  "reviewedFourUnchangedFromV1": true,
+  "cases": [
+    {
+      "name": "br_trim1_2",
+      "result": "PASS",
+      "appearanceVerdict": {
+        "geometry": "PASS:8courses, alternating3full/2inset brickslots and intact physicalsidejambs. Moduleproportions remain narrow-source proportions, not a50%Xshrink of widephoto. Recessed darkendreturns stay opaque.",
+        "material": "PASS: crisp darkolive/brown glazedbrick faces, mineralflecks andcoarse physicaljambs, clearjointedges andplane separation without broadblur/noise reconstruction.",
+        "distance": "PASS representativebrown/olive palette andsame8course/frame/slotlayout at32\u00b2 and16\u00b2.",
+        "edges": "PASS actual2x2repeat: eight-course Ycycle/alternatingrows and physicaljamb Xrepeat continue; no added wholeimagebeveledframe.",
+        "relief": "PASS bothCPUlight directions with publishedXYZ: joints/returns read structurally; facepits remain physicaldetail, no unacceptable grain/popcornembossing."
+      }
+    },
+    {
+      "name": "TF_Stone_03",
+      "result": "PASS",
+      "appearanceVerdict": {
+        "geometry": "PASS currentv2source\u2192seamv4:4rough broadcourses, native-specific irregularvertical joints andthin embeddedpale mortar. Cohesive broadfaces replace prior rubblepiles; cracks/flaking remain partstone character without broadblack face-splittingvoids.",
+        "material": "PASS: sharpdistinct stonefacets/edges with naturalfine mineralroughness andquieterface areas. Priorwhite/orange debrisblanket and chunky mortarledges substantiallyremoved. It retains darkwarmstone intention rather than becoming smoothplastic.",
+        "distance": "PASS representativecourse/palette/style at64\u00b2 and32\u00b2; similarity is visual, not numeric equality.",
+        "edges": "PASS actual2x2XYrepeat and three-tileCPUreference repeat: course/jointnetwork closes without newimageframe orisolatedseamline. Repeatedpattern visible as expected for one tile, not a separate defect.",
+        "relief": "PASS actualpublishedXYZ under bothCPUlights: roughfaces remain cohesive, thinjoints identifiable, no unacceptable reintroduction of v1grit/oversculpting. Explicit smoothingdifference remains allowed."
+      }
+    },
+    {
+      "name": "TF_Metal3_04",
+      "result": "PASS",
+      "appearanceVerdict": {
+        "geometry": "PASS: exactapprovedsamegeometryphoto preserves48roundfasteners(16+16+8+8), upper8nativeXpitch/lower16nativepitch, rowphases andrails. Distinctnew nativekey/colorfit, not a sourcealias.",
+        "material": "PASS: clearlyphotographic coolgrey weatheredsteel, restrainedrust, roundmetalhead highlights andfinepitting, sharpfocusededge/head detail.",
+        "distance": "PASS grey/bluebrown palette andsamehead/rail frequency at64\u00b2 and32\u00b2.",
+        "edges": "PASS XYrepeat: headpitch continues acrossX andpanelrail pattern acrossY; no newouterbevel.",
+        "relief": "PASS actualXYZ bothlights: somewhat sharperpitting thansmoothedderivedreference, but physicallyreadable/acceptable steel, no broadpigment-as-mounds or runawayheaddepth."
+      }
+    },
+    {
+      "name": "metal5_83_JM",
+      "result": "PASS",
+      "appearanceVerdict": {
+        "geometry": "PASS: plain512x64horizontal rust/verdigrisstrip from exactphysicalcrop; no addedstuds/panelgrid/bronzerail andno wholesquareheightcompression.",
+        "material": "PASS: photographed oxidizedcopper with sharpfine pits/scratches andbroadnatural patina fields. Broadcolorvariation is not mistaken forblur; detail is not copiednativepixel noise.",
+        "distance": "PASS darkbrown/teal intention andnativebandshape at64x8 and32x4.",
+        "edges": "PASS2x2/three-striprepeat: Xjoin coherent; intentionaltop/bottom nativecolourband treatedasstripgeometry, no inventedrail/frame.",
+        "relief": "PASS actualXYZ bothCPUlights atstrength0.06/cap0.5: patina stayssubtle/nearflat, no overembossed pigment or granularheightfailure."
+      }
+    }
+  ],
+  "exactCurrentMapHashes": [
+    {
+      "name": "br_trim1_2",
+      "role": "diffuse",
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "65447b09ac028ed2dd9131f0325cda0c245d50fc00cc309c5f6f1faca5309130",
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    {
+      "name": "br_trim1_2",
+      "role": "height",
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "d26667b525f0410d32f99c28bee9ab2b5a7bee29680d21fba206d19a6701990a",
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    {
+      "name": "br_trim1_2",
+      "role": "normalX",
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "b9b8702c062392c93d78e6463b32eafa71ec2a618e942a4813b9d54480a3f0e7",
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    {
+      "name": "br_trim1_2",
+      "role": "normalY",
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "d26c922a8069673bd20df58735e1e8f08f4c86b12dafe0d94f768c267a206740",
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    {
+      "name": "br_trim1_2",
+      "role": "normalZ",
+      "file": "newer/textures/candidates-2026-10-17/br_trim1_2-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "fba6cc81caee9eaefa595fe9156ed9e68ba5f8ecfbe86f18711859bd247ed6c5",
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    {
+      "name": "TF_Stone_03",
+      "role": "diffuse",
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-diffuse.webp",
+      "sha256": "d2cbb3cc27f5c067860b01b4b5ab5fbfc85ee93d283981492752d8cd7b76dd04",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "TF_Stone_03",
+      "role": "height",
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-height.webp",
+      "sha256": "6425026a4d6e862e5821955c7d21a994d01691b29312f492ac62cc47f7630983",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "TF_Stone_03",
+      "role": "normalX",
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-normalX.webp",
+      "sha256": "342805804bbefd5409bc839cb2ffb082aa9315f2b5a6388ffc9f1bab365a8a77",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "TF_Stone_03",
+      "role": "normalY",
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-normalY.webp",
+      "sha256": "76cc105af7139f783113defb4d7115323f09aaced17d8705b4af74c0993683ff",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "TF_Stone_03",
+      "role": "normalZ",
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_03-photographic-seam-v4-4x-q92-xyz-normalZ.webp",
+      "sha256": "f6c05806cc1f29e6b013369e48739fe7a972d64b1f797965ddb978002fe8ff88",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "TF_Metal3_04",
+      "role": "diffuse",
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "4dff0f8a3c6cb511a280fd04b9299cfae4175743b465a7a3947befb5bcca2398",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "TF_Metal3_04",
+      "role": "height",
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "8a853e2de9ee8de7543ad3f6bb085fbde02841ac8f7f3477754fae18fcd2ef0d",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "TF_Metal3_04",
+      "role": "normalX",
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "5832516bb992d0c05f1afbda903fb390a9f3d22e293e8f33bc4be74f5f19e49d",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "TF_Metal3_04",
+      "role": "normalY",
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "5d24620d170be23b793925a1db6d85e894b781b15bb3fd93cabef7721c1b1956",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "TF_Metal3_04",
+      "role": "normalZ",
+      "file": "newer/textures/candidates-2026-10-17/TF_Metal3_04-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "fae5c7ab623a6bcdd9be887080cca2cae97cdf5bea0043b6d1b297942f1f1e8b",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "metal5_83_JM",
+      "role": "diffuse",
+      "file": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "fbe5015bc57b614857945ae2aa3827968a0a836625efa05f0ae948c3cc2701a0",
+      "dimensions": [
+        512,
+        64
+      ]
+    },
+    {
+      "name": "metal5_83_JM",
+      "role": "height",
+      "file": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "58634e51214f59275046ffb5cece44ea59eb9f59978916084972604a00c4c9a4",
+      "dimensions": [
+        512,
+        64
+      ]
+    },
+    {
+      "name": "metal5_83_JM",
+      "role": "normalX",
+      "file": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "3fd2cd463377c36112e8d4c5b9a7319b7c6b6f51b42485a782e0c191a29393ea",
+      "dimensions": [
+        512,
+        64
+      ]
+    },
+    {
+      "name": "metal5_83_JM",
+      "role": "normalY",
+      "file": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "491afd6a242dca8baf2b2c1aac2da25e425e2cbaea43e24c4b85930e7853b8a8",
+      "dimensions": [
+        512,
+        64
+      ]
+    },
+    {
+      "name": "metal5_83_JM",
+      "role": "normalZ",
+      "file": "newer/textures/candidates-2026-10-17/metal5_83_JM-photographic-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "78beaebb1fab2780605e71f93e9753cd32b081e4b3510046de8a4cec229110f1",
+      "dimensions": [
+        512,
+        64
+      ]
+    }
+  ],
+  "holds": []
+}

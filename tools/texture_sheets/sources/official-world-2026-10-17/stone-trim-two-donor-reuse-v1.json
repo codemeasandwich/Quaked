@@ -1,0 +1,51 @@
+{
+  "qualification": "Unregistered photographic donor geometry/material reuse, not exact-native alias or acceptance",
+  "planSha256": "dfd7f5fe0e34606a113585ecdfed6d8df22b67c277eec13536e4644eb98905fb",
+  "toolSha256": "9e4ed45df2b2282cb14a99be68337bd7334251f57ebb972058ae3a166b3b689e",
+  "entries": [
+    {
+      "name": "TF_Metal3_04",
+      "source": "newer/textures/candidates-2026-10-12/TF_Metal4_04-photographic-4x.png",
+      "sourceSha256": "b103a6961ea133bf27386bf13b13e148f524287fb2193c25c522ea8bb0e52975",
+      "output": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Metal3_04-reviewed-photo-base-v1.png",
+      "outputSha256": "b103a6961ea133bf27386bf13b13e148f524287fb2193c25c522ea8bb0e52975",
+      "operation": {
+        "method": "exact-copy",
+        "headCount": 48,
+        "upperRows": [
+          16,
+          16
+        ],
+        "lowerRows": [
+          8,
+          8
+        ],
+        "alias": false
+      }
+    },
+    {
+      "name": "metal5_83_JM",
+      "source": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x.png",
+      "sourceSha256": "ef04afc4e39e62ac0d2a9344aa65b8c0a9adcedf99d3267257b5424f3dbc6c73",
+      "output": "tools/texture_sheets/sources/official-world-2026-10-17/metal5_83_JM-reviewed-photo-base-v1.png",
+      "outputSha256": "bd937827ad1f10fa901167b8c64345a584a5838fbdc2c3165692050f771aa2fb",
+      "operation": {
+        "method": "crop-without-resampling",
+        "box": [
+          0,
+          224,
+          512,
+          288
+        ],
+        "wholePhotoDimensions": [
+          512,
+          512
+        ],
+        "outputDimensions": [
+          512,
+          64
+        ]
+      }
+    }
+  ]
+}

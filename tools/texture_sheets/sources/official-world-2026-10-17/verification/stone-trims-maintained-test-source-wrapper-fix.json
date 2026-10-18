@@ -1,0 +1,9 @@
+{
+  "file": "tests/official_texture_q92_test.js",
+  "beforeSha256": "f7c600a7dd6d159df1c187ead8a9c2e19ad29d43b255b9a58135c30b103116fd",
+  "afterSha256": "f1fec07d6dc4e70c4cd1a1624b7daa9d07a6eb4c61f7066d67820e479604be06",
+  "preservedBeforeFile": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-before-wrapper-fix-official_texture_q92_test.js",
+  "failureLog": "tools/texture_sheets/sources/official-world-2026-10-17/verification/stone-trims-all111-public-tests.txt",
+  "failure": "New source-chain assertion wrongly assumed top-level photographic method for approved wstone17 X-landmark wrapper. Six other public cases, including111encoder replays, passed.",
+  "fix": "Only wstone17 exact reviewed wrapper/axis/transpose/landmark pairs/current code hashes accepted. All7other new materials retain plain fit requirement; no asset or source changes."
+}

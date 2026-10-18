@@ -1,0 +1,17 @@
+{
+  "qualification": "Locally integrated qualified immutable cleanup commit while its owner push is pending. No ROOT or cleanup-WT edits. Our publication remains conditional on remote cleanup confirmation and adapted checks.",
+  "base": "ab554cf61a2650c7ae84ed5dc96dcc45c4cb1010",
+  "migrationCommit": "738f92d96e56517eed3fcc255a885b4fc9528b9a",
+  "retainedRecovery": "/private/tmp/quaked-stone-trims-before-layout-738f",
+  "exactResourceMoves": 222,
+  "newResourceFiles": 219,
+  "modifiedRelocatedMetadata": 3,
+  "resourcePayloadsPreserved": true,
+  "mergeConflicts": [
+    {
+      "file": "tests/official_texture_trial.js",
+      "savedMerge": "/private/tmp/quaked-stone-trims-before-layout-738f/conflicts/tests/official_texture_trial.js"
+    }
+  ],
+  "remainingLegacyFiles": []
+}

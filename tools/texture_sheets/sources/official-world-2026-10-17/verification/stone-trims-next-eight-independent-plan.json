@@ -1,0 +1,499 @@
+{
+  "qualification": "Bounded independent native-only plan for next8ROOTreferences. No AIcalls, artwork/candidate/map generation, WT/index/test/stage/gate/build/push changes. Nativeenlargements/crop are verificationevidenceonly. All8nativeRGBAsha andfullyopaque/aspect properties verified fromsuppliedmetadata/PNGs. ActualPAKpublicqualification waits forfutureacceptedcounterparts.",
+  "materials": 8,
+  "recordedSourceUses": 39,
+  "scope": "Allsuppliedusesmg1, source-specificnewcounterparts; currentfrozencandidate0882fd81 andnormalgateleftuntouched.",
+  "priorityAuthoringSubset": "Parentcanstart4corephysicalphotos: wide8courseglazedbrick+physicaljambs,8verticalstonecolumns,4broadhorizontalmouldedstonecourses, irregularTFStone03. Narrowbrick/shortcourse13mayreuseexplicitphysicalmodulecomposition afterbaseapproval, elseownaspectphoto. TFMetal3_04 andmetal83haveapprovedphotodonors already.",
+  "donors": {
+    "smoothStone": {
+      "file": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v4-4x.png",
+      "sha256": "d47068c3c69b514ce87b4176b8ecbee29b9042f664c6142a7b8422cde77a3f08"
+    },
+    "crackedStone": {
+      "file": "newer/textures/candidates-2026-10-13/wstone_07_JM-photographic-seam-v2-4x.png",
+      "sha256": "62fdee9936e4e84095ac1085ee4d229d3d1126e6c79f24c0735310c5be6f28fb"
+    },
+    "darkCutStone": {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x.png",
+      "sha256": "6353437aeb670d8314540b17dc05ea10a3a10db4f815ded2e2aee36c534c811b"
+    },
+    "quietCopper": {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x.png",
+      "sha256": "ef04afc4e39e62ac0d2a9344aa65b8c0a9adcedf99d3267257b5424f3dbc6c73"
+    },
+    "sameFastenerGeometry": {
+      "file": "newer/textures/candidates-2026-10-12/TF_Metal4_04-photographic-4x.png",
+      "sha256": "b103a6961ea133bf27386bf13b13e148f524287fb2193c25c522ea8bb0e52975"
+    }
+  },
+  "fastenerDonorNativeDistinction": {
+    "newKey": "128x128:7745ef3b2a3a7001",
+    "approvedDonorKey": "128x128:7edcc2d8aae39a1a",
+    "differentNativePixels": 16276,
+    "nativePixelCount": 16384,
+    "directAliasAllowed": false,
+    "geometryReuse": "Photographicgeometryonly, withdistinctsourcecolourfit andbinding"
+  },
+  "records": [
+    {
+      "name": "br_trim1_1",
+      "nativeKey": "128x64:77662dd16046c093",
+      "nativeRgbaSha256": "1d70121534f111ea67a481881a121e0f4e305909d3fbf301847cfe76708eb8e4",
+      "fullyOpaque": true,
+      "nativeDimensions": [
+        128,
+        64
+      ],
+      "target4x": [
+        512,
+        256
+      ],
+      "halfNative": [
+        64,
+        32
+      ],
+      "quarterNative": [
+        32,
+        16
+      ],
+      "providedGuideDimensions": [
+        1024,
+        512
+      ],
+      "guideRepeatedY": 1,
+      "recordedSourceUses": 3,
+      "sourceGames": [
+        "mg1"
+      ],
+      "plan": {
+        "material": "Very dark olive/brown glazed bricks with mutedbluegrey flecks, coarse brown masonry edgejambs.",
+        "features": "8 horizontalcourses at8native-pixel pitch. Brick module16wide\u00d78high. Sidejambs nominal8nativepixels each; fullfield rows have7nominalbrickslots betweenx8..120; alternatingrecessed rows have6slots betweenx16..112. Preserve staggered/stepped side returns and realdark edge recesses.",
+        "edgeIntent": "Physicalsideframes belong to native texture; preserve their width and stepped brickjamb junctions. No additional wholeimagebevel/vignette. Yrepeat period is8courses; inspect Xframe-to-frame join against original intent.",
+        "donorDecision": "New photographicgeometry recommended; existingplain stonephotos are material references, not a complete glazedbrick/jambdonor. Generateone truewide eight-course framed wall photograph.",
+        "newPhotoNeeded": true,
+        "aspectMethod": "128x64\u2192512x256. Generate/crop true2:1 tile; ifsquare supportneeded repeat WHOLEtile2timesY andcrop onecomplete8coursehalf, nevercompress a square4coursewall."
+      }
+    },
+    {
+      "name": "br_trim1_2",
+      "nativeKey": "64x64:b40e75921ad5cfe8",
+      "nativeRgbaSha256": "e3244128886263e4486ae15cd10f08b80a0b0827a62a27361e7bc07705d6640c",
+      "fullyOpaque": true,
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "target4x": [
+        256,
+        256
+      ],
+      "halfNative": [
+        32,
+        32
+      ],
+      "quarterNative": [
+        16,
+        16
+      ],
+      "providedGuideDimensions": [
+        1024,
+        1024
+      ],
+      "guideRepeatedY": 1,
+      "recordedSourceUses": 3,
+      "sourceGames": [
+        "mg1"
+      ],
+      "plan": {
+        "material": "Same glazedbrick/masonryframefamily, separately match thissource brown/olive distribution.",
+        "features": "8courses at8nativepitch andsame16\u00d78brickmodule, same~8native-pixel sidejambwidth. Narrow64pxwidth leaves3fullrowslots betweenx8..56, alternating2slots betweenx16..48.",
+        "edgeIntent": "Same physicalsteppedreturns, neither transparentholes nor an overlaymask. Preserve full8coursecount in squaretexture.",
+        "donorDecision": "Reuse newly approvedwidebrick photograph ONLYby explicitly recomposing/croppingbrickmodules while retaining nativebrick/jambsizes. Do not50%Xresize wideimage; that wouldhalvebrick/jambwidths. SeparateGPTsquarephoto is fallback ifcompositionbreaksjoints.",
+        "newPhotoNeeded": "Conditional; distinctnewgeometry ifno reviewedmodulecomposition",
+        "aspectMethod": "64x64\u2192256x256. Maintainmodule2:1width:height with8courses; outputcannotsharewidebinding/encoderidentity."
+      }
+    },
+    {
+      "name": "wstone_17_JM",
+      "nativeKey": "256x256:5384584dfbd2bc47",
+      "nativeRgbaSha256": "473f40d2b79caf49da35d38bebb5213a6aca68bd1452b895b6906dba0805904c",
+      "fullyOpaque": true,
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "target4x": [
+        1024,
+        1024
+      ],
+      "halfNative": [
+        128,
+        128
+      ],
+      "quarterNative": [
+        64,
+        64
+      ],
+      "providedGuideDimensions": [
+        1024,
+        1024
+      ],
+      "guideRepeatedY": 1,
+      "recordedSourceUses": 3,
+      "sourceGames": [
+        "mg1"
+      ],
+      "plan": {
+        "material": "Pale warmgrey/cream mouldedstone with subdued salmon/beige veining, gentlepolished grain.",
+        "features": "8verticalcolumn/flute intervals across256nativewidth, pitch32native\u2192128runtime. Brightnarrow ridge straddles x31/0 perperiod, broadface roughlyx3..26; no horizontalcourses.",
+        "edgeIntent": "Verticalcolumnphase repeatsXat0/32/64/...224; ridge mustclose atwrap. Yshowscontinuousstonefaces, not a stackofrectangularbricks.",
+        "donorDecision": "Approvedsmooth wstone03photo goodmaterialreference; wstone07cracks onlysparse optionalcharacter. Neitherhasphysicalflutes. New photographwith8real shallowstonecolumns/flutes required, or independently reviewedphysicalmouldingcomposition; do notemboss pixelguide.",
+        "newPhotoNeeded": true,
+        "donors": [
+          "smoothStone",
+          "crackedStone"
+        ],
+        "aspectMethod": "256x256\u21921024x1024. Eightcolumns only; do notinfer16 from32px noisycheckering."
+      }
+    },
+    {
+      "name": "wstone_11_JM",
+      "nativeKey": "256x256:45ba5d43baf6a749",
+      "nativeRgbaSha256": "11f69439464c6a389a41cbd520aef7da8d9a78daaf152ac7aebea7b8bbf316fa",
+      "fullyOpaque": true,
+      "nativeDimensions": [
+        256,
+        256
+      ],
+      "target4x": [
+        1024,
+        1024
+      ],
+      "halfNative": [
+        128,
+        128
+      ],
+      "quarterNative": [
+        64,
+        64
+      ],
+      "providedGuideDimensions": [
+        1024,
+        1024
+      ],
+      "guideRepeatedY": 1,
+      "recordedSourceUses": 4,
+      "sourceGames": [
+        "mg1"
+      ],
+      "plan": {
+        "material": "Same palewarmgrey/cream mouldedstone family, smallveins andmineral variation.",
+        "features": "4horizontalcourseperiods atnativey0/64/128/192. Eachperiod: raisedbright rail~y2..10, deepgroove near12, recoverythrough~20, broadflatface21..62, closingline63/0. Railwidth~12native\u219248runtime.",
+        "edgeIntent": "Keep onephysicalrail per64nativeperiod; no verticaljoints/panelgrid. Preserve orderedbrightlip/darkgroove/face, not a symmetric frameeachpanel.",
+        "donorDecision": "Use wstone03 smoothphoto for material; new physical4course moulded-stone photo recommended. Existingplainstone sourcesdonot containrails; no painted highfrequencywhitepixelstreaks.",
+        "newPhotoNeeded": true,
+        "donors": [
+          "smoothStone"
+        ],
+        "aspectMethod": "256x256\u21921024x1024. Fourperiods256runtimehigh, each~48pxrail andnative broadbody."
+      }
+    },
+    {
+      "name": "wstone_13_JM",
+      "nativeKey": "256x128:4cdd9804c3e2fe86",
+      "nativeRgbaSha256": "30fe89e90519573ca31eda91d1964aa0590764c7b4fac7ef53f07f8cf82c3804",
+      "fullyOpaque": true,
+      "nativeDimensions": [
+        256,
+        128
+      ],
+      "target4x": [
+        1024,
+        512
+      ],
+      "halfNative": [
+        128,
+        64
+      ],
+      "quarterNative": [
+        64,
+        32
+      ],
+      "providedGuideDimensions": [
+        1024,
+        512
+      ],
+      "guideRepeatedY": 1,
+      "recordedSourceUses": 4,
+      "sourceGames": [
+        "mg1"
+      ],
+      "plan": {
+        "material": "Samefamily but separatelyfit its slightly brighter/warmer nativepalette.",
+        "features": "4horizontalcourseperiods atnativey0/32/64/96 in256x128texture. Crucial: same~12native-pixel rail andgroovey12 as11, recoverythrough~20, shorterflatface21..30. It is NOT a halfheightscale of11.",
+        "edgeIntent": "Maintainrealrail profile/orderedshading and32nativepitch, no extraeightcourses or changedrailthickness.",
+        "donorDecision": "After11physicalphotoisapproved, reuseactualrail/stoneband byexplicitly shortening onlyflatfacebody percourse, preservingrailpixels/detail scale andclosingjoint; independentlyreview join. Otherwise generateown truewide4coursephoto. Never50%Yresize entire11image.",
+        "newPhotoNeeded": "Conditional; newwidephoto fallback",
+        "donors": [
+          "smoothStone"
+        ],
+        "aspectMethod": "256x128\u21921024x512. Whole-tileYrepeat2\u2192squareguide permitted; croponecompletefour-coursehalf atnativeaspect ratherthanresizing."
+      }
+    },
+    {
+      "name": "TF_Metal3_04",
+      "nativeKey": "128x128:7745ef3b2a3a7001",
+      "nativeRgbaSha256": "08d3b3a9525b9f9205f1042acf25f57a59dc94dfe1098cbdd4edf3f4364583f0",
+      "fullyOpaque": true,
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "target4x": [
+        512,
+        512
+      ],
+      "halfNative": [
+        64,
+        64
+      ],
+      "quarterNative": [
+        32,
+        32
+      ],
+      "providedGuideDimensions": [
+        1024,
+        1024
+      ],
+      "guideRepeatedY": 1,
+      "recordedSourceUses": 4,
+      "sourceGames": [
+        "mg1"
+      ],
+      "plan": {
+        "material": "Coolbluegrey/charcoal corrodedsteel with restrainedwarmrust, roundmetallicrivets andthin horizontalrails.",
+        "features": "48fasteners: first2rows16heads each at8nativeXpitch; lower2rows8heads each at16nativeXpitch. Rows occupy nativecells32..39,40..47,48..55,56..63 (headcentres~35.5/43.5/51.5/59.5); upperx~4.5+8k, lowerx~8.5+16k. Preserveheadroundshape,48total andallhorizontalrails.",
+        "edgeIntent": "ExistingapprovedTFMetal4_04photo matchesheadnetwork andrailphase; protectwholegeometry throughsourcefit. No portraitfastenerrotation/substitution or fillinglowerrowsto16.",
+        "donorDecision": "DirectapprovedsameFastenerGeometry photographicdonor suitable. Applysource-specificcolourfit, distinctencoder/nativekey, notalias. No newGPTneeded.",
+        "newPhotoNeeded": false,
+        "donors": [
+          "sameFastenerGeometry"
+        ],
+        "aspectMethod": "128x128\u2192512x512; upperheadpitch32runtime, lower64runtime. Source4_04 and3_04are different nativeRGBA, so neverbroadenoneallowlist."
+      }
+    },
+    {
+      "name": "TF_Stone_03",
+      "nativeKey": "128x128:a9a3b5bd1a5d387f",
+      "nativeRgbaSha256": "f4204035568c76a61f1166d95f29ba22a3c27b53acdc5510d3fbe10019045eb8",
+      "fullyOpaque": true,
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "target4x": [
+        512,
+        512
+      ],
+      "halfNative": [
+        64,
+        64
+      ],
+      "quarterNative": [
+        32,
+        32
+      ],
+      "providedGuideDimensions": [
+        1024,
+        1024
+      ],
+      "guideRepeatedY": 1,
+      "recordedSourceUses": 5,
+      "sourceGames": [
+        "mg1"
+      ],
+      "plan": {
+        "material": "Darkbrown/rust-tinged irregularroughstone with conspicuouspale jaggedmortar/highlight joints andoccasionalorange mineralcolour.",
+        "features": "Roughly4coarse horizontalstonecourses at~32nativepitch, with wandering/stepped edges anddifferentverticaljointlocations fromTFStone00. Actualnativeimageis irregularstone/rubblejointgeometry, not a regularsmallbrickgrid.",
+        "edgeIntent": "Tracebrightjaggedjointcontinuations atbothaxes directly fromsource; do notreplace with TFStone00straightmortarphase oraddwideblackgrout.",
+        "donorDecision": "ApprovedTFStone00 gooddarkstone MATERIALreference only. Wholephoto reuse wouldimpose wrongstraightjointlayout. Newsource-guided irregularstonephoto recommended; donorstone-face composition onlyifexactnativejointnetworkindependentlyreviewed.",
+        "newPhotoNeeded": true,
+        "donors": [
+          "darkCutStone"
+        ],
+        "aspectMethod": "128x128\u2192512x512. Preserve4broadcourseintention andirregular joints; avoidinvented8/16smallbricks."
+      }
+    },
+    {
+      "name": "metal5_83_JM",
+      "nativeKey": "128x16:d2af961640b986e4",
+      "nativeRgbaSha256": "d04fd111fe382e906eb5fd6a925acf61a8f68705beed76078f8da1e8199a2aa5",
+      "fullyOpaque": true,
+      "nativeDimensions": [
+        128,
+        16
+      ],
+      "target4x": [
+        512,
+        64
+      ],
+      "halfNative": [
+        64,
+        8
+      ],
+      "quarterNative": [
+        32,
+        4
+      ],
+      "providedGuideDimensions": [
+        1024,
+        1024
+      ],
+      "guideRepeatedY": 8,
+      "recordedSourceUses": 13,
+      "sourceGames": [
+        "mg1"
+      ],
+      "plan": {
+        "material": "Plain darkcopper/rust with greenblue oxidation, faintoliveupperedge. No bolts orregularpanelgrid.",
+        "features": "128x16 horizontalstrip; broadmottledpatina only. Preservefaintnativeedgecolourbands, do notreuse thebronzetech rail moulding/headlayout.",
+        "edgeIntent": "Prioritize Xcontinuity and actualnativeupper/lower bandintent; do notaddbevelor force a newYpanelcycle fromsquareguide.",
+        "donorDecision": "ApprovedquietCopper photo suitable as physicalmaterialcrop, followedbythisnative-specificfit. Existingphoto512square canbe cropped/recomposedinto512x64 withgrain/detailedgespreserved; do notsquashwhole512square. No newGPTnormallyneeded.",
+        "newPhotoNeeded": false,
+        "donors": [
+          "quietCopper"
+        ],
+        "aspectMethod": "128x16\u2192512x64; half64x8,quarter32x4. Providedsquareguide repeatsonewholehorizontalstrip8Y; it is not8differentmaterials/courses."
+      }
+    }
+  ],
+  "acceptance": "Everyfuturecandidate mustbe4xwidthandheight, allmapslossy92, originalandcandidatebothdownsized tosamehalf/quarter dimensions. Inspectfull/material/featurecounts/phase/actualX/Yrepeats anddecodedheight/actualnormalstwoCPUlights; metricsarediagnosticsnotacceptance. No pixelnoise/hardpixelgrid reconstruction, no extraimagebevel/shadowframe. Genuine nativephysicaljambs/railsremain.",
+  "relief": "Keeptruebrickjoints/rails/flutes/studs structural; stoneveins/patina do notbecome deepbumps. Reuseexistingprofile pipeline, startquiet forplainmetal andreview. No normalrecipe orenginechangeproposed.",
+  "nextOwner": "ParentauthoringROOTonly aftertheseconstraints; independentart/relief/sourceproof thenpublic/packqualification beforeanyfutureinstallation/publication.",
+  "inputs": [
+    {
+      "file": "newer/textures/candidates-2026-10-12/TF_Metal4_04-photographic-4x.png",
+      "sha256": "b103a6961ea133bf27386bf13b13e148f524287fb2193c25c522ea8bb0e52975"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v4-4x.png",
+      "sha256": "d47068c3c69b514ce87b4176b8ecbee29b9042f664c6142a7b8422cde77a3f08"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-13/wstone_07_JM-photographic-seam-v2-4x.png",
+      "sha256": "62fdee9936e4e84095ac1085ee4d229d3d1126e6c79f24c0735310c5be6f28fb"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/TF_Stone_00-photographic-seam-v2-4x.png",
+      "sha256": "6353437aeb670d8314540b17dc05ea10a3a10db4f815ded2e2aee36c534c811b"
+    },
+    {
+      "file": "newer/textures/candidates-2026-10-17/metal5_85_JM-photographic-seam-v2-4x.png",
+      "sha256": "ef04afc4e39e62ac0d2a9344aa65b8c0a9adcedf99d3267257b5424f3dbc6c73"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Metal3_04-half-native-colour-guide.png",
+      "sha256": "35f0c758b78f07f9b000fceb31a52554cb263879db22ce1017d6e670d26c3adc"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Stone_03-half-native-colour-guide.png",
+      "sha256": "08592fd9f8fe7fcafdc02a37748175d5bed8145e509ccb74f0d64f9c3248161b"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_1-half-native-colour-guide.png",
+      "sha256": "73e84c4814fcc4ab8e2e096f7ec4df6fc59ad42f1b8a898e555dc0da1ca87df0"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/br_trim1_2-half-native-colour-guide.png",
+      "sha256": "3d726938e64512cd98015a352a2053c3a89460e7884e022a4cadb396f99b8c9d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/metal5_83_JM-half-native-colour-guide.png",
+      "sha256": "7377e18eb8f99471cb65732e05b99610b6ff9049c7e8ff9def3a9d4e114ba0be"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Metal3_04.json",
+      "sha256": "dc10ccc5bf6b4f0b8e3f5104bda1c0ed1ffe5616bffb4acdf870ab4fb3ee3811"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Metal3_04.png",
+      "sha256": "aa6d04b754ba5b9ccc6ba26c9dd1c635377270e1f4c1baa8f4440e4a0a83e389"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Stone_03.json",
+      "sha256": "ade4a405058b82cec979131a7c3a705d81ddf75f42126d99bc15d7ccf47b4408"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-TF_Stone_03.png",
+      "sha256": "f668998d3f0d54e60c0d84a1f06a422e81e5cab4f4e90ebf7f88e9b0485f2a86"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_1.json",
+      "sha256": "bb9fbe5e388f5bcb74a4efee63fa107883c28ea3f414f65e6ba36277746c983d"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_1.png",
+      "sha256": "67eeeb98acf7292d963e79e8298984b64aad6368ef1d8bcd3671e5f279571515"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_2.json",
+      "sha256": "f6cc24264ea2eb08dc562a41454dde7221d12a5a020c1f5b944414a72b0b4084"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-br_trim1_2.png",
+      "sha256": "2f5fe0c3e00a0bfe74da5fe8f084eccf0d5f81712f26dc0ba455ed3f44829f0c"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-metal5_83_JM.json",
+      "sha256": "3f89d3f1d071c91a07c1f53acecab465e80a4645fee90106a969c84358619487"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-metal5_83_JM.png",
+      "sha256": "5afd4634497519a04bb21cc569d0d8eb70e7e392e651ae6bab21bab373088af3"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_11_JM.json",
+      "sha256": "0e782fe16646913f95c537a9737077beb73eae79a1f955e0c1af35459859b1fd"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_11_JM.png",
+      "sha256": "fe4895d4826e898a137a5d08c3e169e5c801d500479e4e74cd66a66485530e16"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_13_JM.json",
+      "sha256": "23cda0bb924be42ed4487b57f34141b47640544b069035a009b6e5d25ba65750"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_13_JM.png",
+      "sha256": "2d4e8a0dc918321be933f1a8cb507ad29e6f1340df31fe044fc077328d30e806"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_17_JM.json",
+      "sha256": "165d919523f5c7a96d5da4f8f652b004f3f73e323567284e2c019447f8fb6c1e"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/native-wstone_17_JM.png",
+      "sha256": "c4be3494526414bb204ea249375c90c54189ad0ccba8792e1194efb3a8a93bfb"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/next-eight-stone-trims-native-preparation.json",
+      "sha256": "a653c7e21385f909c871583f0b1829926518a207b731e044e5bde4a21ee67155"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/next-eight-stone-trims-native.png",
+      "sha256": "867de3736d8f087bd8809e787c1af8d9b4770d16f8ce949e914937b8c0226402"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/wstone_11_JM-half-native-colour-guide.png",
+      "sha256": "8cef56cbeafa4742c79943c950e2a2d1b1e3ebf4f9a2e5e171fb27002ff4a3a8"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/wstone_13_JM-half-native-colour-guide.png",
+      "sha256": "8a093802b58fce4cf115e9ea04c2bfa4f4ffdea5fa8d79cdf4ed0b87e6b2376a"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/wstone_17_JM-half-native-colour-guide.png",
+      "sha256": "abea4b498b4898647f8328a50b025e6cde38d22d31c5785481eeb20c7da47537"
+    }
+  ]
+}
