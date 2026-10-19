@@ -85,15 +85,24 @@ because the underlying data paths are verified.
 - Keep this record updated with each executed run; do not describe it as an owner trial or acceptance.
 
 
-## Handover at round 50
+## Handover at round 91
 
-- Branch/worktree: `h2` at `/Users/bri/worktrees/Quaked/Dev/h2`; the tree is clean after the final commit.
-- Evidence: this ledger plus 40 Hexen suites run with
+- Branch/worktree: `h2` at `/Users/bri/worktrees/Quaked/Dev/h2`; the tree is clean after the latest commit.
+- Hexen suites: **110/110 assertions across 59 suites**, run with
   `QUAKED_THREE_MODULE="/Users/bri/SOURCE/Quaked/node_modules/three/build/three.module.js" node tools/run_tests.mjs <files>`
-  from the worktree.
-- Product entry points: `hexen2_mount.js` (plan + mount), `hexen2_boot.js` (level/player steps), the renderer/HUD data modules,
-  the private session preamble/datagram/peer modules, and the native body codecs (clientdata, effects, sounds, entity updates).
-- Still blocking G1: the packaged shelf click/native smoke and four real peers; the browser canvas, input and Web Audio are
-  now exercised in the developer harness, but no physical audio device has been heard. The presentation modules were
-  written code-first, so their RED controls remain a separate obligation (recorded above).
+  from the worktree. Shared-engine unchanged-GREEN sample: **82/82 across 24 non-Hexen suites**.
+- Developer browser harness (not the packaged shelf):
+  `node tools/hexen2-browser/trial.mjs` (headless installed Chrome; `QUAKED_CLASS=necromancer` for the second class). It
+  clicks the trial shelf, runs the live loop, draws the native bar, plays a supplied WAV through Web Audio, walks and turns
+  with real input, damages a pinned monster under the recorded health setup, soaks three seconds of held input, and writes
+  `docs/evidence/hexen2-browser-trial.json` plus the screenshots.
+- Packaging: `tools/distribution/build.mjs web` and `desktop` both build from this tree (temporary dependency link); the
+  web artifact's distribution trial passed in headless Chrome. Neither artifact contains Hexen data, and the desktop
+  Tauri app, native Hexen-library discovery and the packaged Hexen shelf are not built or exercised.
+- Product entry points: `hexen2_session.js` (one-call local session), `hexen2_mount.js`, `hexen2_boot.js`,
+  `hexen2_join.js`, the private session preamble/datagram/peer/input modules, and the native body codecs (clientdata,
+  effects, sounds, entity updates). Four TCP loopback peers and four loopback clients are covered; physical peers are not.
+- Still blocking G1: the **packaged Hexen shelf/native smoke** (needs native-library Hexen discovery and owner-data
+  import), a **physical audio device** trial, and **four physical peers**. Browser attack damage is measured only under
+  the recorded controlled setup (monster pinned, Paladin health raised), not in a natural fight.
 - Nothing here is an owner trial, qualification, merge or release.
