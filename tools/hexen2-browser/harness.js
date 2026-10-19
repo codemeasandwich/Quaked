@@ -212,15 +212,12 @@ function updateNearbyEntities( player, state ) {
 	for ( const ent of serverSv.edicts ) {
 
 		if ( !ent || ent.free || ent.index === player.index || !ent.v.model ) continue;
-		// non-monster static models (items/statues) currently render at pathological extents in this harness; keep the
-		// proved subset (monsters) visible and record the static-model issue instead of showing a broken frame
-		if ( !PR_GetString( ent.v.classname ).startsWith( 'monster_' ) ) continue;
 		const modelName = PR_GetString( ent.v.model );
 		const modelIndex = indexOf.get( modelName );
 		if ( modelIndex === undefined ) continue;
 		const dx = ent.v.origin[ 0 ] - player.v.origin[ 0 ], dy = ent.v.origin[ 1 ] - player.v.origin[ 1 ];
 		const distance = Math.hypot( dx, dy );
-		if ( distance > 1700 || distance < 48 ) continue;
+		if ( distance > 1700 || distance < 96 ) continue;
 		candidates.push( { ent, modelIndex, distance } );
 
 	}

@@ -1,14 +1,14 @@
 {
   "trial": "hexen2-browser",
-  "at": "2026-10-19T07:12:02.680Z",
-  "base": "http://127.0.0.1:62637",
+  "at": "2026-10-19T07:15:11.992Z",
+  "base": "http://127.0.0.1:62872",
   "result": {
     "ok": true,
     "errors": [],
     "session": {
       "level": "demo1",
       "viewEntity": 1,
-      "health": 83,
+      "health": 81,
       "models": 342,
       "baselines": 247
     },
@@ -43,54 +43,54 @@
       "drawn": 10,
       "skipped": 0
     },
-    "frames": 55,
-    "entitiesVisible": 17,
+    "frames": 56,
+    "entitiesVisible": 24,
     "nearest": [
       {
-        "name": "monster_spider_yellow_small",
-        "model": "models/spider.mdl",
-        "d": 459
+        "name": "art_HealthBoost",
+        "model": "models/a_hboost.mdl",
+        "d": 239
+      },
+      {
+        "name": "obj_statue_angel",
+        "model": "models/anglstat.mdl",
+        "d": 299
+      },
+      {
+        "name": "art_HealthBoost",
+        "model": "models/a_hboost.mdl",
+        "d": 361
       },
       {
         "name": "monster_spider_yellow_small",
         "model": "models/spider.mdl",
-        "d": 556
+        "d": 421
       },
       {
-        "name": "monster_spider_yellow_small",
-        "model": "models/spider.mdl",
-        "d": 573
+        "name": "obj_tree2",
+        "model": "models/tree2.mdl",
+        "d": 439
       },
       {
-        "name": "monster_spider_yellow_small",
-        "model": "models/spider.mdl",
-        "d": 603
-      },
-      {
-        "name": "monster_spider_yellow_small",
-        "model": "models/spider.mdl",
-        "d": 677
-      },
-      {
-        "name": "monster_spider_yellow_small",
-        "model": "models/spider.mdl",
-        "d": 715
+        "name": "obj_tombstone2",
+        "model": "models/tombstn2.mdl",
+        "d": 496
       }
     ],
     "position": [
-      -486.9960632324219,
+      -448.86846923828125,
       -1640.03125,
-      106.85929870605469
+      126.34672546386719
     ],
-    "health": 83,
-    "hudHealth": 83,
+    "health": 81,
+    "hudHealth": 81,
     "pixel": [
-      1,
-      1,
-      0,
+      72,
+      52,
+      24,
       255
     ],
-    "moved": 583.9313054510034,
+    "moved": 612.6138825813499,
     "movedFrom": [
       -918,
       -2034,
