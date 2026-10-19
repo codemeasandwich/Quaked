@@ -25,16 +25,15 @@ Run from `/Users/bri/worktrees/Quaked/Dev/h2` with
 | Native Paladin on demo1 | `hexen2_spawn_test.js` (1), `hexen2_player_test.js` (1), `hexen2_player_bounds_test.js` (1), `hexen2_boot_test.js` (1) | Paladin placed by supplied gamecode (`models/paladin.mdl`, class 1, health 100, feet-origin box, settles on the floor). |
 | Movement | `hexen2_input_test.js` (1), `hexen2_physics_test.js` (1) | Synthetic usercmd advances the Paladin ~96 units over three frames; ten world frames run with moving monsters. Public input path and camera are not wired to a client. |
 | Combat | `hexen2_combat_test.js` | **Verified.** A held attack on a live level monster reduces its health and leaves the Paladin unhurt. `aim` (44), `findradius` (22), `particle` (48) and `particle4` (86) were added to the Hexen table; `particle4` emits the standard particle burst at the origin and ignores the native radius/effect fields (presentation-only divergence, recorded). |
-| Items | — | **Not verified.** No pickup/use/inventory-change test exists. HUD data reads inventory/artifacts, but the pickup path is untested. |
+| Items | `hexen2_items_test.js` (health), `hexen2_mana_stats_test.js` (RED) | **Partly verified.** The level's `item_health` is picked up through the gamecode's touch handling (50 → 60, HUD follows). Mana items are blocked: the spawned Paladin's `max_mana` is 0 although the supplied `mana_table` holds 84/94 for class 1, so `mana_touch` refuses and `max_playermana` clamps to 0. Retained RED; cause under investigation (class-stat write path or the random stats computation). |
 | Native HUD | `hexen2_hud_view_test.js` (1), `hexen2_status_test.js` (1) | HUD data, all 38 supplied bar pictures and the value bindings are verified. **No drawing**: no bar layout and no WebGL draw of it. |
 | Native audio | `hexen2_audio_test.js` (1) | Gamecode sound/ambient calls become events and reach the existing `S_StartSound` bridge with native conversions; the named sample is a real supplied WAV. **No audible output** is verified (Web Audio activation/user gesture untested). |
 | Presentation plumbing | `hexen2_render_test.js` (1), `hexen2_client_view_test.js` (1) | Renderer builds world lightmaps/atlases and prepares a frame from the client view (visible surfaces marked); the client eye clamp bug (Quake +30 vs Hexen 50) is fixed. **No WebGL draw call.** |
 | End-to-end trace | `hexen2_acceptance_test.js` (1) | Detection → Installed Paladin session → boot → physics → client view → world frame → audio bridge → HUD/status, in one process. Still not a drawn or networked session. |
 | Public native smoke | — | **Missing.** No packaged-app UI path (shelf → source → class → difficulty → demo1) exists for Hexen II. |
 
-Latest full runs after the combat test turned green: **71/71** Hexen assertions across 25 suites; the regression
-sets used in this round remain green (30/30 movement, aim, server and interpreter checks; 50/50 in the previous full
-run including loader, material and enemy suites).
+Latest runs after the item and mana work: the health-item test, combat, the acceptance trace and all earlier suites
+are green; the mana maximum is the single retained RED. Full totals are reported with the commit that follows.
 
 ## RED → GREEN discipline
 
@@ -48,7 +47,8 @@ against the pre-change baseline when the candidate is qualified. This is a proce
 ## Remaining G1 blockers
 
 1. ~~Combat~~ — verified this round: the attack damages a level monster and the Paladin stays unhurt.
-2. **Items**: verify pickup, inventory/artifact use and HUD state change on demo1 (still missing).
+2. **Items**: health pickup is verified; the class maximum-mana defect (`max_mana` stays 0) blocks mana items and
+   must be fixed before items are complete.
 3. **HUD drawing**: lay out and draw the native bar (data and art are ready). `particle4`'s native radius/effect
    cloud is also a recorded presentation divergence.
 4. **Audio activation**: verify Web Audio unlock and audible playback in the packaged app.

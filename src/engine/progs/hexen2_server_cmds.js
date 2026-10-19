@@ -11,12 +11,13 @@
  */
 
 import { ED_Alloc, ED_Free, ED_Print } from './pr_edict.js';
-import { sv, G_STRING, G_INT, G_INT_SET, G_FLOAT, G_FLOAT_SET, G_EDICT, G_EDICTNUM, G_VECTOR, PROG_TO_EDICT, pr_global_struct, pr_argc, pr_xfunction, PR_GetString, RETURN_EDICT } from './progs.js';
+import { sv, G_STRING, G_INT, G_INT_SET, G_FLOAT, G_FLOAT_SET, G_EDICT, G_EDICTNUM, G_VECTOR, PROG_TO_EDICT, pr_global_struct, pr_argc, pr_xfunction, svs, PR_GetString, RETURN_EDICT } from './progs.js';
 import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3, OFS_PARM4, OFS_RETURN } from './pr_comp.js';
 import { PR_RunError, PR_HostError } from './pr_exec.js';
 import { Con_Printf } from '../common/console.js';
-import { MSG_WriteByte, MSG_WriteShort, MSG_WriteCoord, MSG_WriteAngle } from '../common/common.js';
+import { MSG_WriteByte, MSG_WriteString, MSG_WriteShort, MSG_WriteCoord, MSG_WriteAngle } from '../common/common.js';
 import { MAX_LIGHTSTYLES } from '../common/quakedef.js';
+import { svc_print, svc_stufftext } from '../common/protocol.js';
 import { anglemod } from '../common/mathlib.js';
 import { SV_MoveToGoal } from '../server/sv_move.js';
 import { PF_checkclient, PF_aim, PF_findradius } from '../server/pr_cmds.js';
@@ -232,6 +233,30 @@ function sound() {
 }
 
 // #23 bprint(text...): broadcast print; with no clients it reaches the server console (the native broadcast too)
+// #21 stuffcmd(entity, text...): a client command (native PF_stuffcmd writes svc_stufftext to that client)
+function stuffcmd() {
+
+	const index = G_EDICTNUM( OFS_PARM0 );
+	if ( index < 1 || index > svs.maxclients ) { Con_Printf( 'stuffcmd: not a client\n' ); return; }
+	const client = svs.clients[ index - 1 ];
+	if ( ! client || ! client.message ) return;
+	MSG_WriteByte( client.message, svc_stufftext );
+	MSG_WriteString( client.message, varString( 1 ) );
+
+}
+
+// #24 sprint(entity, text...): a message to one client's console, as the native PF_sprint writes it
+function sprint() {
+
+	const index = G_EDICTNUM( OFS_PARM0 );
+	if ( index < 1 || index > svs.maxclients ) { Con_Printf( 'tried to sprint to a non-client\n' ); return; }
+	const client = svs.clients[ index - 1 ];
+	if ( ! client || ! client.message ) return;
+	MSG_WriteByte( client.message, svc_print );
+	MSG_WriteString( client.message, varString( 1 ) );
+
+}
+
 function bprint() {
 
 	Con_Printf( '%s', varString( 0 ) );
@@ -277,7 +302,7 @@ function breakBuiltin() { PR_RunError( 'break statement' ); }
 
 /** The server builtins this module installs into the Hexen II dispatcher. */
 export const HEXEN2_SERVER_BUILTINS = Object.freeze( {
-	6: breakBuiltin, 8: sound, 10: errorBuiltin, 11: objerror, 14: spawn, 17: PF_checkclient, 22: PF_findradius, 44: PF_aim, 48: particle, 49: changeyaw, 67: SV_MoveToGoal, 86: particle4, 15: remove, 18: find, 23: bprint, 31: eprint, 35: lightstyle, 63: advanceframe, 65: rewindframe, 69: makestatic, 74: ambientsound, 83: advanceweaponframe
+	6: breakBuiltin, 8: sound, 10: errorBuiltin, 11: objerror, 14: spawn, 15: remove, 17: PF_checkclient, 18: find, 21: stuffcmd, 22: PF_findradius, 23: bprint, 24: sprint, 31: eprint, 35: lightstyle, 44: PF_aim, 48: particle, 49: changeyaw, 63: advanceframe, 65: rewindframe, 67: SV_MoveToGoal, 69: makestatic, 74: ambientsound, 83: advanceweaponframe, 86: particle4
 } );
 
 Hexen2_RegisterBuiltins( HEXEN2_SERVER_BUILTINS );
