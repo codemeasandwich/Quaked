@@ -1,4 +1,4 @@
-// Live-world soak: the mounted level runs 120 physics frames while the Paladin walks and attacks, monsters think, and
+// Live-world soak: the mounted level runs 300 physics frames while the Paladin walks and attacks, monsters think, and
 // nothing raises a script error or produces a non-finite origin. This catches missing builtins and state corruption
 // that short frame counts miss; it is not a campaign or visual trial.
 import { existsSync, readFileSync } from 'node:fs';
@@ -23,7 +23,7 @@ import '../src/engine/progs/hexen2_server_cmds.js';
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
 const HEXEN = '/Users/bri/quaked/Hexen 2/data1';
 
-Deno.test( 'the world runs 120 frames with a walking, attacking Paladin', () => {
+Deno.test( 'the world runs 300 frames with a walking, attacking Paladin', () => {
 
 	if ( ! existsSync( HEXEN + '/pak1.pak' ) ) { console.log( 'SKIP: the supplied Hexen II installation is not present' ); return; }
 	for ( const name of [ 'pak0.pak', 'pak1.pak' ] ) { const raw = readFileSync( HEXEN + '/' + name ); pak.COM_AddPack( pak.COM_LoadPackFile( 'h2-' + name, raw.buffer.slice( raw.byteOffset, raw.byteOffset + raw.length ) ) ); }
@@ -54,7 +54,7 @@ Deno.test( 'the world runs 120 frames with a walking, attacking Paladin', () => 
 	let error = null, frames = 0;
 	try {
 
-		for ( ; frames < 120; frames ++ ) {
+		for ( ; frames < 300; frames ++ ) {
 
 			SV_User_SetCommand( { forwardmove: 200, viewangles: [ 0, 0, 0 ] } );
 			player.v.button0 = frames % 20 < 10 ? 1 : 0; // attack half the time
@@ -65,7 +65,7 @@ Deno.test( 'the world runs 120 frames with a walking, attacking Paladin', () => 
 
 	} catch ( e ) { error = e; }
 	check( error === null, `frame ${frames}: ` + ( error ? error.message + ' [' + PR_LastRunError() + ']' : '' ) );
-	check( frames === 120, 'all frames ran: ' + frames );
+	check( frames === 300, 'all frames ran: ' + frames );
 	check( Number.isFinite( player.v.origin[ 0 ] ) && Number.isFinite( player.v.origin[ 2 ] ), 'the player origin stays finite' );
 	check( Math.abs( player.v.origin[ 0 ] - before[ 0 ] ) + Math.abs( player.v.origin[ 1 ] - before[ 1 ] ) > 5, 'the player walked' );
 	let movedMonsters = 0, damagedMonsters = 0;
