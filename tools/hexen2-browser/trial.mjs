@@ -50,7 +50,17 @@ try {
 		await page.waitForTimeout( 300 );
 		await page.screenshot( { path: resolve( import.meta.dirname, '../../docs/evidence/hexen2-browser-trial-combat.png' ) } ).catch( () => {} );
 	}
+	const combatState = await page.evaluate( () => window.__HEXEN2_TRIAL__ );
+	// sustained play: hold forward and attack for three seconds and require the loop to keep running cleanly
+	const soakStart = await page.evaluate( () => window.__HEXEN2_TRIAL__.frames | 0 );
+	await page.keyboard.down( 'ArrowUp' );
+	await page.mouse.down();
+	await page.waitForTimeout( 3000 );
+	await page.mouse.up();
+	await page.keyboard.up( 'ArrowUp' );
+	await page.waitForTimeout( 300 );
 	result = await page.evaluate( () => window.__HEXEN2_TRIAL__ );
+	result.soakFrames = ( result.frames | 0 ) - soakStart;
 	result.combat = combatSetup ? { before: result.combatBefore, after: result.combatAfter, playerHealth: result.combatPlayerHealth, setup: combatSetup } : null;
 	result.moved = before && afterWalk ? Math.hypot( afterWalk[ 0 ] - before[ 0 ], afterWalk[ 1 ] - before[ 1 ] ) : null;
 	result.movedFrom = before;
