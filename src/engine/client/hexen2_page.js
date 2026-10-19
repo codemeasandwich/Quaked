@@ -40,6 +40,7 @@ import { Hexen2_BindClientState } from './hexen2_bind.js';
 import { Hexen2_HudFromClientState } from './hexen2_clienthud.js';
 import { Hexen2_StatusBarOps } from './hexen2_statusbar.js';
 import { Hexen2_DrawStatusBar } from './hexen2_sbar_draw.js';
+import { Hexen2_HudTransform, Hexen2_NumberLayout } from './hexen2_hud_layout.js';
 import { Hexen2_EncodeClientdata, Hexen2_EncodeUpdateInv, Hexen2_AllStatMask } from '../common/hexen2_clientdata.js';
 import { Hexen2_WriteEntityUpdate } from '../common/hexen2_entitywire.js';
 import { HEXEN2_SERVER_MESSAGES } from '../common/hexen2_protocol.js';
@@ -141,10 +142,10 @@ export async function Hexen2_PageStart( options ) {
 		const sbMinus = Draw_PicFromWad( 'num_minus' );
 		const drawNum = ( value, digits, x, y ) => {
 
-			const text = String( value | 0 );
-			let at = Math.max( 0, text.length - digits );
-			if ( text.length < digits ) x += Math.floor( ( digits - text.length ) * 13 / 2 );
-			for ( ; at < text.length; at ++ ) {
+			const layout = Hexen2_NumberLayout( value, digits );
+			const text = layout.text;
+			x += layout.xOffset;
+			for ( let at = 0; at < text.length; at ++ ) {
 
 				const ch = text[ at ];
 				const pic = ch === '-' ? sbMinus : sbNums[ ch.charCodeAt( 0 ) - 48 ];
@@ -243,7 +244,7 @@ export async function Hexen2_PageStart( options ) {
 				updateNearbyEntities( session );
 				V_CalcRefdef();
 				R_RenderView();
-				Draw_BeginFrame( 'height' );
+				Draw_BeginFrame( 'height', Hexen2_HudTransform( renderer.domElement.width, renderer.domElement.height ) );
 				const hud = Hexen2_HudFromClientState( session.state );
 				Hexen2_DrawStatusBar( Hexen2_StatusBarOps( hud ), {
 					pic: ( name, x, y ) => { const pic = Draw_CachePic( name ); if ( !pic ) return false; Draw_Pic( x, y, pic ); return true; },
