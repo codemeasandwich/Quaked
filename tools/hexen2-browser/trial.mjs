@@ -20,9 +20,18 @@ try {
 
 	await page.goto( base + '/tools/hexen2-browser/harness.html', { waitUntil: 'load' } );
 	await page.waitForFunction( () => window.__HEXEN2_TRIAL__ !== undefined && ( window.__HEXEN2_TRIAL__.ok || window.__HEXEN2_TRIAL__.errors.length > 0 ), null, { timeout: 120000 } );
+	const before = await page.evaluate( () => window.__HEXEN2_TRIAL__.position ?? null );
+	await page.evaluate( () => { window.__HEXEN2_INPUT__ = { forwardmove: 320, sidemove: 0, yaw: 0 }; } );
+	await page.waitForTimeout( 1200 );
+	await page.evaluate( () => { window.__HEXEN2_INPUT__ = { forwardmove: 320, sidemove: 0, yaw: 90 }; } );
+	await page.waitForTimeout( 1200 );
 	result = await page.evaluate( () => window.__HEXEN2_TRIAL__ );
+	result.moved = before && result.position
+		? Math.hypot( result.position[ 0 ] - before[ 0 ], result.position[ 1 ] - before[ 1 ] ) : null;
+	result.movedFrom = before;
 	await mkdir( resolve( import.meta.dirname, '../../docs/evidence' ), { recursive: true } );
 	await page.screenshot( { path: resolve( import.meta.dirname, '../../docs/evidence/hexen2-browser-trial.png' ) } );
+	if ( result.ok && ( result.moved === null || result.moved < 5 || result.frames < 20 ) ) result.ok = false;
 
 } catch ( error ) {
 

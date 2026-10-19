@@ -26,9 +26,19 @@ import { Hexen2_DrawStatusBar } from '../../src/engine/client/hexen2_sbar_draw.j
 import { SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_PointContents } from '../../src/engine/server/world.js';
 import { PR_ExecuteProgram } from '../../src/engine/progs/pr_exec.js';
 import { installServerCallbacks } from '../../tests/helpers/hexen2_server_setup.mjs';
+import { SV_User_SetCommand, SV_User_SetCallbacks, SV_ClientThink } from '../../src/engine/server/sv_user.js';
+import { SV_Physics, SV_SetFrametime, SV_SetPlayer } from '../../src/engine/server/sv_phys.js';
+import { Hexen2_HudFromClientState } from '../../src/engine/client/hexen2_clienthud.js';
+import { Hexen2_StatusBarOps } from '../../src/engine/client/hexen2_statusbar.js';
+import { Hexen2_EncodeClientdata, Hexen2_EncodeUpdateInv, Hexen2_AllStatMask } from '../../src/engine/common/hexen2_clientdata.js';
+import { Hexen2_WriteEntityUpdate } from '../../src/engine/common/hexen2_entitywire.js';
+import { HEXEN2_SERVER_MESSAGES } from '../../src/engine/common/hexen2_protocol.js';
+import { Hexen2_ApplyClientMessage } from '../../src/engine/client/hexen2_clientstate.js';
+import { PR_GetString } from '../../src/engine/progs/progs.js';
 
 await import( '../../src/newer/install.js' ); // engine hooks (axe reset etc.) must install before the gamecode loads
 
+let session = null;
 const result = { ok: false, errors: [] };
 window.__HEXEN2_TRIAL__ = result;
 
@@ -62,7 +72,7 @@ try {
 	const svs = { maxclients: 1, clients: [ client ], active: true };
 	PR_SetSV( sv ); PR_SetSVS( svs );
 	const entry = { id: 'hexen2', kind: 'hexen2', name: 'Hexen II', folder: 'games/Hexen 2/data1', playable: true };
-	const session = Hexen2_OpenLocalSession( {
+	session = Hexen2_OpenLocalSession( {
 		entry, classId: 'paladin', client, sv, svs,
 		readFile: name => name === 'progs.dat' ? new Uint8Array( progsData ) : null,
 		loadMap: name => { const map = new model_t(); map.name = name; set_loadmodel( map ); const found = COM_FindFile( name );
@@ -114,17 +124,51 @@ try {
 		small: ( text, x, y ) => Draw_String( x, y, text )
 	} );
 	result.hud = drew;
-	// keep presenting the frame while the trial takes its screenshot
-	const drawFrame = () => { try {
+	// a live loop: server physics from the trial's input, the player's native messages applied to the client
+	// state, the refresh view rebuilt from it, one renderer frame and the native status bar each tick
+	SV_SetPlayer( playerFromSession() );
+	SV_User_SetCallbacks( { host_client: client, get_key_dest: () => 0, V_CalcRoll: () => 0 } );
+	SV_SetFrametime( 0.05 );
+	sv.active = true;
+	result.frames = 0;
+	let last = performance.now();
+	const drawFrame = now => {
 
-		V_CalcRefdef();
-		R_RenderView();
-		const gl = renderer.getContext(), canvas = renderer.domElement, px = new Uint8Array( 4 );
-		gl.readPixels( Math.floor( canvas.width / 2 ), Math.floor( canvas.height / 2 ), 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px );
-		result.pixel = Array.from( px );
-		result.canvases = Array.from( document.querySelectorAll( 'canvas' ) ).map( c => ( { w: c.width, h: c.height, display: getComputedStyle( c ).display } ) );
+		try {
 
-	} catch ( error ) { result.errors.push( String( error ) ); } requestAnimationFrame( drawFrame ); };
+			const dt = Math.min( 0.1, Math.max( 0.01, ( now - last ) / 1000 ) );
+			last = now;
+			SV_SetFrametime( dt );
+			const input = window.__HEXEN2_INPUT__ ?? { forwardmove: 0, sidemove: 0, yaw: 90 };
+			SV_User_SetCommand( { forwardmove: input.forwardmove ?? 0, sidemove: input.sidemove ?? 0,
+				upmove: input.upmove ?? 0, viewangles: [ 0, input.yaw ?? 0, 0 ] } );
+			SV_ClientThink();
+			SV_Physics();
+			const player = playerFromSession();
+			applyPlayerMessages( player );
+			cl.viewangles = [ 0, input.yaw ?? 0, 0 ];
+			cl_entities[ 1 ].origin = [ player.v.origin[ 0 ], player.v.origin[ 1 ], player.v.origin[ 2 ] ];
+			V_CalcRefdef();
+			R_RenderView();
+			Draw_BeginFrame();
+			const hud = Hexen2_HudFromClientState( session.state );
+			Hexen2_DrawStatusBar( Hexen2_StatusBarOps( hud ), {
+				pic: ( name, x, y ) => { const pic = Draw_CachePic( name ); if ( !pic ) return false; Draw_Pic( x, y, pic ); return true; },
+				num: ( value, digits, x, y ) => Draw_String( x, y, String( value ).padStart( digits, '0' ) ),
+				small: ( text, x, y ) => Draw_String( x, y, text )
+			} );
+			result.frames ++;
+			result.position = [ player.v.origin[ 0 ], player.v.origin[ 1 ], player.v.origin[ 2 ] ];
+			result.health = player.v.health;
+			result.hudHealth = hud.health;
+			const gl = renderer.getContext(), canvas = renderer.domElement, px = new Uint8Array( 4 );
+			gl.readPixels( Math.floor( canvas.width / 2 ), Math.floor( canvas.height / 2 ), 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px );
+			result.pixel = Array.from( px );
+
+		} catch ( error ) { result.errors.push( String( error ) ); }
+		requestAnimationFrame( drawFrame );
+
+	};
 	requestAnimationFrame( drawFrame );
 	result.ok = true;
 
@@ -138,5 +182,21 @@ function r_refdefEye() {
 
 	// the renderer's eye, for the receipt
 	return [ 0, 0, 0 ];
+
+}
+
+
+function playerFromSession() { return session.player; }
+
+function applyPlayerMessages( player ) {
+
+	const cd = Uint8Array.from( [ HEXEN2_SERVER_MESSAGES.clientdata, ...Hexen2_EncodeClientdata( player ) ] );
+	Hexen2_ApplyClientMessage( session.state, cd );
+	const stats = Uint8Array.from( [ HEXEN2_SERVER_MESSAGES.update_inv,
+		...Hexen2_EncodeUpdateInv( player, Hexen2_AllStatMask(), offset => PR_GetString( offset ) ) ] );
+	Hexen2_ApplyClientMessage( session.state, stats );
+	const origin = player.v.origin, angles = player.v.angles;
+	const update = Hexen2_WriteEntityUpdate( { entity: player.index, origin, angles } );
+	if ( update.ok ) Hexen2_ApplyClientMessage( session.state, update.bytes );
 
 }
