@@ -1,0 +1,65 @@
+{
+  "trial": "hexen2-browser",
+  "at": "2026-10-19T07:04:48.865Z",
+  "base": "http://127.0.0.1:61778",
+  "result": {
+    "ok": true,
+    "errors": [],
+    "session": {
+      "level": "demo1",
+      "viewEntity": 1,
+      "health": 75,
+      "models": 342,
+      "baselines": 247
+    },
+    "rendered": {
+      "eye": [
+        0,
+        0,
+        0
+      ],
+      "vieworg": [
+        -917.96875,
+        -2033.96875,
+        50
+      ],
+      "angles": [
+        0,
+        90,
+        0
+      ],
+      "lightmaps": 16,
+      "lightmapMax": 255,
+      "batches": 220,
+      "drawCalls": 25,
+      "norefresh": 0,
+      "sceneChildren": 1,
+      "hasCamera": true,
+      "worldModel": true,
+      "triangles": 173,
+      "worldEntity": true
+    },
+    "hud": {
+      "drawn": 10,
+      "skipped": 0
+    },
+    "pixel": [
+      21,
+      17,
+      14,
+      255
+    ],
+    "canvases": [
+      {
+        "w": 960,
+        "h": 720,
+        "display": "block"
+      },
+      {
+        "w": 640,
+        "h": 480,
+        "display": "block"
+      }
+    ]
+  }
+}
