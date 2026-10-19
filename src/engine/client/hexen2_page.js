@@ -25,7 +25,7 @@ import { set_loadmodel } from '../render/gl_model_common.js';
 import { Mod_LoadBrushModel } from '../render/gl_model_bsp.js';
 import { R_Init, R_NewMap, R_RenderView, set_r_worldentity } from '../render/gl_rmain.js';
 import { entity_t, r_refdef } from '../render/render.js';
-import { Draw_Init, Draw_BeginFrame, Draw_CachePic, Draw_Pic, Draw_PicFromWad, Draw_String, Draw_SmallString, Draw_SetExternals, Draw_GetOverlayCanvas } from '../render/gl_draw.js';
+import { Draw_Init, Draw_BeginFrame, Draw_CachePic, Draw_Pic, Draw_PicFromWad, Draw_String, Draw_SmallString, Draw_SmallCharsetReady, Draw_SetExternals, Draw_GetOverlayCanvas } from '../render/gl_draw.js';
 import { sv, SIGNON_SIZE } from '../server/server.js';
 import { SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_PointContents } from '../server/world.js';
 import { SV_SetCallbacks as SV_SetPhysCallbacks, SV_Physics, SV_SetFrametime, SV_SetPlayer } from '../server/sv_phys.js';
@@ -253,7 +253,9 @@ export async function Hexen2_PageStart( options ) {
 				R_RenderView();
 				Draw_BeginFrame( 'height' );
 				const hud = Hexen2_HudFromClientState( session.state );
-				Hexen2_DrawStatusBar( Hexen2_StatusBarOps( hud ), {
+				const hudOps = Hexen2_StatusBarOps( hud );
+				if ( frameCount === 1 ) log( 'hud ops=' + hudOps.length + ' small=' + hudOps.filter( op => op.kind === 'small' ).length + ' nums=' + hudOps.filter( op => op.kind === 'num' ).length + ' tinyfont=' + Draw_SmallCharsetReady() );
+				Hexen2_DrawStatusBar( hudOps, {
 					pic: ( name, x, y ) => { const pic = Draw_CachePic( name ); if ( !pic ) return false; Draw_Pic( x, y, pic ); return true; },
 					num: drawNum,
 					small: ( text, x, y ) => Draw_SmallString( x, y, text )

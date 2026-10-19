@@ -69,8 +69,10 @@ Deno.test( 'the native status bar draws through the real picture overlay path', 
 		same( result.skipped, 0, 'every picture and text operation was drawn' );
 		check( fake.calls.length > 0, 'the overlay received drawImage calls: ' + fake.calls.length );
 		// the top-bar picture is the first draw, at the bar's native position
-		same( fake.calls[ 0 ].x, 0, 'topbar1 x' );
-		same( fake.calls[ 0 ].y, 200 - 46, 'topbar1 y' );
+		same( fake.calls[ 0 ].x, 0, 'the upper-left bump x' );
+		same( fake.calls[ 0 ].y, 200 - 46 - 23, 'the upper-left bump y' );
+		const topbar = fake.calls.find( call => call.x === 0 && call.y === 200 - 46 );
+		check( topbar !== undefined, 'the top bar is drawn at y=154' );
 		const expectedManaY = 200 - 46 + 26 - Math.round( 42 * 18 / hud.maxMana );
 		check( fake.calls.some( call => call.x === 190 && call.y === expectedManaY ), 'the blue mana fill sits at its native height' );
 		check( small.some( text => /^\d{3}$/.test( text.text ) ), 'the three-digit mana text was drawn' );

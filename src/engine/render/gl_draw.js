@@ -748,12 +748,14 @@ function _loadSmallCharset() {
 	const lump = W_GetLumpName( 'tinyfont' );
 	if ( ! pal || ! lump ) return;
 	const raw = lump.data instanceof Uint8Array ? lump.data.subarray( lump.offset, lump.offset + lump.size ) : new Uint8Array( lump.data, lump.offset, lump.size );
-	if ( raw.length < 128 * 128 ) return;
+	// Hexen's tinyfont is a 128x32 sheet (16 columns x 4 rows, 4096 bytes); accept a taller sheet too
+	if ( raw.length < 128 * 32 ) return;
+	const rows = Math.floor( raw.length / 128 );
 	const cs = document.createElement( 'canvas' );
-	cs.width = 128; cs.height = 128;
+	cs.width = 128; cs.height = rows;
 	const ctx = cs.getContext( '2d' );
-	const image = ctx.createImageData( 128, 128 );
-	for ( let i = 0; i < 128 * 128; i ++ ) {
+	const image = ctx.createImageData( 128, rows );
+	for ( let i = 0; i < 128 * rows; i ++ ) {
 
 		const idx = raw[ i ];
 		if ( idx === 0 ) continue;
@@ -854,9 +856,11 @@ export function Draw_SmallCharacter( x, y, num ) {
  * @param {number} y top edge in virtual pixels
  * @param {string} str the text
  */
+export function Draw_SmallCharsetReady() { return small_char_canvas !== null; }
+
 export function Draw_SmallString( x, y, str ) {
 
-	for ( let i = 0; i < str.length; i ++ ) Draw_SmallCharacter( x + i * 8, y, str.charCodeAt( i ) );
+	for ( let i = 0; i < str.length; i ++ ) Draw_SmallCharacter( x + i * 6, y, str.charCodeAt( i ) ); // native advance
 
 }
 

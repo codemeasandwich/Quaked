@@ -80,7 +80,8 @@ Deno.test( 'the HUD built from synced client state matches the server HUD', () =
 	const clientOps = Hexen2_StatusBarOps( clientHud );
 	const serverOps = Hexen2_StatusBarOps( serverHud );
 	same( clientOps.length, serverOps.length, 'the status bar has the same operation count' );
-	same( clientOps[ 0 ].name, 'gfx/topbar1.lmp', 'the top bar still leads' );
+	same( clientOps[ 0 ].name, 'gfx/topbumpl.lmp', 'the native upper-left bump leads' );
+	check( clientOps.some( op => op.name === 'gfx/topbar1.lmp' ), 'the top bar follows the bumps' );
 	const clientHp = clientOps.find( op => op.kind === 'num' && op.digits === 3 );
 	const serverHp = serverOps.find( op => op.kind === 'num' && op.digits === 3 );
 	same( clientHp.value, serverHp.value, 'the HP number' );

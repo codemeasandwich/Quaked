@@ -59,7 +59,8 @@ Deno.test( 'one call starts a local Paladin session with a matching client state
 	same( session.hud.playerClass, serverHud.playerClass, 'the HUD class matches' );
 	same( session.hud.armour.armor_amulet, serverHud.armour.armor_amulet, 'the armour matches' );
 	check( session.statusBarOps.length > 5, 'the native status bar is emitted' );
-	same( session.statusBarOps[ 0 ].name, 'gfx/topbar1.lmp', 'the status bar leads with the top bar' );
+	same( session.statusBarOps[ 0 ].name, 'gfx/topbumpl.lmp', 'the status bar leads with the native upper-left bump' );
+	check( session.statusBarOps.some( op => op.name === 'gfx/topbar1.lmp' ), 'the status bar includes the top bar' );
 
 	// the returned state binds to the client view without another conversion
 	cl.worldmodel = session.map; cl.model_precache = []; cl.time = 0; cl.velocity = [ 0, 0, 0 ];

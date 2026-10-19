@@ -61,6 +61,9 @@ export function Hexen2_StatusBarOps( hud, view = {} ) {
 	const transpic = ( name, x, y ) => ops.push( Object.freeze( { kind: 'transpic', name, x: x + offX, y: y + baseY } ) );
 	const small = ( text, x, y ) => ops.push( Object.freeze( { kind: 'small', text, x: x + offX, y: y + baseY } ) );
 
+	transpic( 'gfx/topbumpl.lmp', 0, - 23 );
+	transpic( 'gfx/topbumpm.lmp', 138, - 8 );
+	transpic( 'gfx/topbumpr.lmp', 269, - 23 );
 	pic( 'gfx/topbar1.lmp', 0, 0 );
 	pic( 'gfx/topbar2.lmp', 160, 0 );
 
