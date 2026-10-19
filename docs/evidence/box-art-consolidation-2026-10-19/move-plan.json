@@ -1,0 +1,734 @@
+{
+  "createdAt": "2026-10-19T08:04:11.406773+00:00",
+  "baseline": "d6d33b6a1be36bfe638c6b23f0c9d9946d0e36d7",
+  "scope": "Top-level image files in immediate game folders; nested game assets and unrelated root images excluded",
+  "files": [
+    {
+      "path": "/Users/bri/quaked/Dimension of the Machine/back.png",
+      "bytes": 2299830,
+      "sha256": "fdea1c72d809c5ebd6407553e6f005d6cec8af4ee56484e8daeccc4ce0ad091f",
+      "size": [
+        1027,
+        1531
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [],
+      "destination": "assets/boxes/mg1/back.png",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Dimension of the Machine/front.png",
+      "bytes": 2288166,
+      "sha256": "dd5dc40420b93912a79d03898d903dae0dcb5098d86b4762fc12b8483082b93e",
+      "size": [
+        1027,
+        1531
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [],
+      "destination": "assets/boxes/mg1/front.png",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Dimension of the Machine/side.png",
+      "bytes": 1821257,
+      "sha256": "b93a28e9ff25427b79267d5f4c005b63dd6513e46f4ed24aae9e3b6248ee090d",
+      "size": [
+        1024,
+        1536
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [],
+      "destination": "assets/boxes/mg1/spine.png",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Dissolution of Eternity/side.png",
+      "bytes": 1605957,
+      "sha256": "687a74a07ba7df5d375cf9503c9425be6b8148194c115af9e32c688781d2fb23",
+      "size": [
+        1024,
+        1536
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/rogue/spine.png"
+      ],
+      "destination": "assets/boxes/rogue/spine.png",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Dissolution of Eternity/spine.png",
+      "bytes": 1605957,
+      "sha256": "687a74a07ba7df5d375cf9503c9425be6b8148194c115af9e32c688781d2fb23",
+      "size": [
+        1024,
+        1536
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/rogue/spine.png"
+      ],
+      "destination": "assets/boxes/rogue/spine.png",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2/Hexen2_1.webp",
+      "bytes": 702528,
+      "sha256": "10727f729d09c9c955e290d9f99a5f3ff43a5e54c5dea86a9036b4cf8c997aab",
+      "size": [
+        2048,
+        2599
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/mod_hexen_2/front.webp"
+      ],
+      "destination": "assets/boxes/mod_hexen_2/front.webp",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2/Hexen2_2.webp",
+      "bytes": 134222,
+      "sha256": "568a25d73f9c4941a66f69f580e99e95579266c64f37eb1126190896c0641e7d",
+      "size": [
+        512,
+        2599
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/mod_hexen_2/spine.webp"
+      ],
+      "destination": "assets/boxes/mod_hexen_2/spine.webp",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2/Hexen2_3.webp",
+      "bytes": 260248,
+      "sha256": "41cecb932aeda89c1d1ceb71355662ab9baed443f7d7b85c78ed22881b4bdafc",
+      "size": [
+        2153,
+        512
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [],
+      "destination": "assets/authoring/box_art/hexen-2/Hexen2_3.webp",
+      "destinationRole": "source-only",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2/front.webp",
+      "bytes": 702528,
+      "sha256": "10727f729d09c9c955e290d9f99a5f3ff43a5e54c5dea86a9036b4cf8c997aab",
+      "size": [
+        2048,
+        2599
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/mod_hexen_2/front.webp"
+      ],
+      "destination": "assets/boxes/mod_hexen_2/front.webp",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2/spine.webp",
+      "bytes": 134222,
+      "sha256": "568a25d73f9c4941a66f69f580e99e95579266c64f37eb1126190896c0641e7d",
+      "size": [
+        512,
+        2599
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/mod_hexen_2/spine.webp"
+      ],
+      "destination": "assets/boxes/mod_hexen_2/spine.webp",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2/title1.jpg",
+      "bytes": 89005,
+      "sha256": "f58e2080a83d3e2e352b8124f1f7a682a2e687d9871e7c5b4212a8fe398ef2b9",
+      "size": [
+        833,
+        959
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [],
+      "destination": "assets/authoring/box_art/hexen-2/title1.jpg",
+      "destinationRole": "source-only",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Hexen2PortalOfPraevus.webp",
+      "bytes": 1860074,
+      "sha256": "fa7016df1316fc20d3270bfdb64b062e6bdeae8efd5412df1890cc34bc49c42d",
+      "size": [
+        2048,
+        2623
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/mod_hexen_2_portal_of_praevus/back.webp"
+      ],
+      "destination": "assets/boxes/mod_hexen_2_portal_of_praevus/back.webp",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Hexen2PortalOfPraevus0.webp",
+      "bytes": 354092,
+      "sha256": "5b87685f181c48b9f8de3417d7c13a9eeb6820cf0dc07f2dab04fe493578b2e1",
+      "size": [
+        2184,
+        512
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [],
+      "destination": "assets/authoring/box_art/hexen-2-portal-of-praevus/Hexen2PortalOfPraevus0.webp",
+      "destinationRole": "source-only",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Hexen2PortalOfPraevus1.webp",
+      "bytes": 1807088,
+      "sha256": "4fc0f41100fc882de6af6da7ff76523f3b3dd615ce32b04dcb464ccf047e2343",
+      "size": [
+        2048,
+        2612
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/mod_hexen_2_portal_of_praevus/front.webp"
+      ],
+      "destination": "assets/boxes/mod_hexen_2_portal_of_praevus/front.webp",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Hexen2PortalOfPraevus2.webp",
+      "bytes": 520340,
+      "sha256": "741de6069aacb0cf66d132d0c50db54b06179ab427c08b64b97f041d40df41a1",
+      "size": [
+        512,
+        2829
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp"
+      ],
+      "destination": "assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Hexen2_Portal_of_Praevus0.jpg",
+      "bytes": 327050,
+      "sha256": "189e7a97c7f350bdfb5b1305d860bf63eda194459c3a96263af13caa60ea6543",
+      "size": [
+        2048,
+        1673
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [],
+      "destination": "assets/authoring/box_art/hexen-2-portal-of-praevus/Hexen2_Portal_of_Praevus0.jpg",
+      "destinationRole": "source-only",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Hexen2_Portal_of_Praevus1.jpg",
+      "bytes": 415924,
+      "sha256": "23d0e512b90213a0c7ce9c37bafbb19f07d14f3524005a404e8659ae31ed1fd9",
+      "size": [
+        2048,
+        1659
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [],
+      "destination": "assets/authoring/box_art/hexen-2-portal-of-praevus/Hexen2_Portal_of_Praevus1.jpg",
+      "destinationRole": "source-only",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Hexen2_Portal_of_Praevus2.jpg",
+      "bytes": 288044,
+      "sha256": "9e2c8bd0e2f423701c501173e80fce3f635bdfbd30d2efeedf6ee438a5a8e1a6",
+      "size": [
+        2000,
+        954
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [],
+      "destination": "assets/authoring/box_art/hexen-2-portal-of-praevus/Hexen2_Portal_of_Praevus2.jpg",
+      "destinationRole": "source-only",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Hexen2_Portal_of_Praevus3.jpg",
+      "bytes": 698819,
+      "sha256": "6e4a642dd8a94ba2cba5137283e1581df86c9830b6e5adb79e94eb6f4ad9cc3b",
+      "size": [
+        2048,
+        1889
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [],
+      "destination": "assets/authoring/box_art/hexen-2-portal-of-praevus/Hexen2_Portal_of_Praevus3.jpg",
+      "destinationRole": "source-only",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2 Portal of Praevus/back.webp",
+      "bytes": 1860074,
+      "sha256": "fa7016df1316fc20d3270bfdb64b062e6bdeae8efd5412df1890cc34bc49c42d",
+      "size": [
+        2048,
+        2623
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/mod_hexen_2_portal_of_praevus/back.webp"
+      ],
+      "destination": "assets/boxes/mod_hexen_2_portal_of_praevus/back.webp",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2 Portal of Praevus/front.webp",
+      "bytes": 1807088,
+      "sha256": "4fc0f41100fc882de6af6da7ff76523f3b3dd615ce32b04dcb464ccf047e2343",
+      "size": [
+        2048,
+        2612
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/mod_hexen_2_portal_of_praevus/front.webp"
+      ],
+      "destination": "assets/boxes/mod_hexen_2_portal_of_praevus/front.webp",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2 Portal of Praevus/spine.webp",
+      "bytes": 520340,
+      "sha256": "741de6069aacb0cf66d132d0c50db54b06179ab427c08b64b97f041d40df41a1",
+      "size": [
+        512,
+        2829
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp"
+      ],
+      "destination": "assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2 Portal of Praevus/title2.jpg",
+      "bytes": 366713,
+      "sha256": "ba98480e9dd8721e99c115ad41dc9bcb45623df73161ca8fde8f629840968842",
+      "size": [
+        800,
+        940
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [],
+      "destination": "assets/authoring/box_art/hexen-2-portal-of-praevus/title2.jpg",
+      "destinationRole": "source-only",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Quake shareware/back.png",
+      "bytes": 2832890,
+      "sha256": "3c50c11c6d7564aa210659e207207b13a0e2b06d22b7d80723a706fab1b7b6fe",
+      "size": [
+        1109,
+        1419
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/shareware/back.png"
+      ],
+      "destination": "assets/boxes/shareware/back.png",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Quake shareware/cover.png",
+      "bytes": 3188588,
+      "sha256": "eda0697bdba1770afaa36913911be8761b70f69fbaba7c633f40bbb1fe7c900a",
+      "size": [
+        1122,
+        1402
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/shareware/front.png"
+      ],
+      "destination": "assets/boxes/shareware/front.png",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Quake shareware/en-quake-dawn-of-the-machine-a-f-23dbe9eb-image-23dbe9cb.jpg.webp",
+      "bytes": 36570,
+      "sha256": "af14d481bce3e4afbf99b4f926a507e43744ff6cf7106287300818b28f4372d3",
+      "size": [
+        800,
+        450
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [],
+      "destination": "assets/authoring/box_art/dawn/poster.webp",
+      "destinationRole": "source-only",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Quake shareware/front.png",
+      "bytes": 3188588,
+      "sha256": "eda0697bdba1770afaa36913911be8761b70f69fbaba7c633f40bbb1fe7c900a",
+      "size": [
+        1122,
+        1402
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/shareware/front.png"
+      ],
+      "destination": "assets/boxes/shareware/front.png",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Quake shareware/side.png",
+      "bytes": 2045128,
+      "sha256": "b38b34d4ac4e4dcbb5dee99ae1a4d7413f0e7a2ad50df41150dff7884b9ff629",
+      "size": [
+        887,
+        1774
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/shareware/spine.png"
+      ],
+      "destination": "assets/boxes/shareware/spine.png",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Quake shareware/spine.png",
+      "bytes": 2045128,
+      "sha256": "b38b34d4ac4e4dcbb5dee99ae1a4d7413f0e7a2ad50df41150dff7884b9ff629",
+      "size": [
+        887,
+        1774
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/shareware/spine.png"
+      ],
+      "destination": "assets/boxes/shareware/spine.png",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Quaked/back-side.png",
+      "bytes": 2803216,
+      "sha256": "0b1851df89bdc456cab3fe5aac26a52bce155b7d8b8bee62ac2e2f9808bfefa0",
+      "size": [
+        1122,
+        1402
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [],
+      "destination": "assets/authoring/box_art/quaked/back-side.png",
+      "destinationRole": "source-only",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Quaked/front.png",
+      "bytes": 2696131,
+      "sha256": "06d4152b4cc18a791bc2aa0cad8290e5073c1fa5401babc0c9c7272cef55f998",
+      "size": [
+        1049,
+        1500
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/mod_quaked/front.png"
+      ],
+      "destination": "assets/boxes/mod_quaked/front.png",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Quaked/frount.png",
+      "bytes": 2696131,
+      "sha256": "06d4152b4cc18a791bc2aa0cad8290e5073c1fa5401babc0c9c7272cef55f998",
+      "size": [
+        1049,
+        1500
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/mod_quaked/front.png"
+      ],
+      "destination": "assets/boxes/mod_quaked/front.png",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Quaked/poster.png",
+      "bytes": 2694596,
+      "sha256": "d99c15c6031f441532909114dcf121a50b7a22fd1414d2ff52ffa035e177a4b2",
+      "size": [
+        1049,
+        1499
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [],
+      "destination": "assets/authoring/box_art/quaked/poster.png",
+      "destinationRole": "source-only",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Quoth/back.png",
+      "bytes": 3091748,
+      "sha256": "588ba7f569cd7b5882441bd961d1b099d02d002521b065b671622012e39e468b",
+      "size": [
+        1122,
+        1402
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/quoth/back.png"
+      ],
+      "destination": "assets/boxes/quoth/back.png",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Quoth/front.png",
+      "bytes": 3331011,
+      "sha256": "e2a33f0eca75fce9505df1534807e74c554579ac477fcfc9ca0b8ccc642d76c1",
+      "size": [
+        1122,
+        1402
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [],
+      "destination": "assets/boxes/quoth/front.png",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Quoth/side.png",
+      "bytes": 2572500,
+      "sha256": "56765f4988c52a24e5135817805a39ca5feddea66d131988b1900071348f642a",
+      "size": [
+        793,
+        1983
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/quoth/spine.png"
+      ],
+      "destination": "assets/boxes/quoth/spine.png",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Quoth/spine.png",
+      "bytes": 2572500,
+      "sha256": "56765f4988c52a24e5135817805a39ca5feddea66d131988b1900071348f642a",
+      "size": [
+        793,
+        1983
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/quoth/spine.png"
+      ],
+      "destination": "assets/boxes/quoth/spine.png",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Scourge of Armagon/side.png",
+      "bytes": 1609984,
+      "sha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "size": [
+        1024,
+        1536
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/hipnotic/spine.png"
+      ],
+      "destination": "assets/boxes/hipnotic/spine.png",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/Scourge of Armagon/spine.png",
+      "bytes": 1609984,
+      "sha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "size": [
+        1024,
+        1536
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/hipnotic/spine.png"
+      ],
+      "destination": "assets/boxes/hipnotic/spine.png",
+      "destinationRole": "runtime",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/dawn of the machine/poster.webp",
+      "bytes": 36570,
+      "sha256": "af14d481bce3e4afbf99b4f926a507e43744ff6cf7106287300818b28f4372d3",
+      "size": [
+        800,
+        450
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [],
+      "destination": "assets/authoring/box_art/dawn/poster.webp",
+      "destinationRole": "source-only",
+      "action": "remove local copy only after pushed destination is verified"
+    },
+    {
+      "path": "/Users/bri/quaked/q30a1024/screenshots.png",
+      "bytes": 3205595,
+      "sha256": "c2689921d7e87524dac65729dbdc0e80349eab71cde916504c5c54aea47bb8b0",
+      "size": [
+        1920,
+        1080
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [
+        "assets/boxes/mod_q30a1024/front.png"
+      ],
+      "destination": "assets/authoring/box_art/q30a1024/screenshots.png",
+      "destinationRole": "source-only",
+      "action": "remove local copy only after pushed destination is verified"
+    }
+  ],
+  "held": [
+    {
+      "path": "/Users/bri/quaked/Quake/poster.jpg",
+      "bytes": 174821,
+      "sha256": "9fdf29e62fc829c8c48fe764bc8d19739506849b17b8b99eb9218ad262df48f1",
+      "size": [
+        768,
+        1066
+      ],
+      "activeTextReferences": [],
+      "existingProjectCopies": [],
+      "reason": "Owner explicitly holds Quake launch poster; leave untouched"
+    }
+  ],
+  "projectRelocations": [
+    {
+      "source": "assets/boxes/mg1/front.jpg",
+      "destination": "assets/authoring/box_art/mg1/front-previous.jpg",
+      "sha256": "55e0245bc9d18584dc8fcc3a62370c92ac6075545d5cd99b5013cd80f0a782b1",
+      "bytes": 124547
+    },
+    {
+      "source": "assets/boxes/mod_q30a1024/front.png",
+      "destination": "assets/authoring/box_art/q30a1024/screenshots.png",
+      "sha256": "c2689921d7e87524dac65729dbdc0e80349eab71cde916504c5c54aea47bb8b0",
+      "bytes": 3205595
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/Hexen2_3.webp",
+      "destination": "assets/authoring/box_art/hexen-2/Hexen2_3.webp",
+      "sha256": "41cecb932aeda89c1d1ceb71355662ab9baed443f7d7b85c78ed22881b4bdafc",
+      "bytes": 260248
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/title1.jpg",
+      "destination": "assets/authoring/box_art/hexen-2/title1.jpg",
+      "sha256": "f58e2080a83d3e2e352b8124f1f7a682a2e687d9871e7c5b4212a8fe398ef2b9",
+      "bytes": 89005
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Hexen2PortalOfPraevus0.webp",
+      "destination": "assets/authoring/box_art/hexen-2-portal-of-praevus/Hexen2PortalOfPraevus0.webp",
+      "sha256": "5b87685f181c48b9f8de3417d7c13a9eeb6820cf0dc07f2dab04fe493578b2e1",
+      "bytes": 354092
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Hexen2_Portal_of_Praevus0.jpg",
+      "destination": "assets/authoring/box_art/hexen-2-portal-of-praevus/Hexen2_Portal_of_Praevus0.jpg",
+      "sha256": "189e7a97c7f350bdfb5b1305d860bf63eda194459c3a96263af13caa60ea6543",
+      "bytes": 327050
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Hexen2_Portal_of_Praevus1.jpg",
+      "destination": "assets/authoring/box_art/hexen-2-portal-of-praevus/Hexen2_Portal_of_Praevus1.jpg",
+      "sha256": "23d0e512b90213a0c7ce9c37bafbb19f07d14f3524005a404e8659ae31ed1fd9",
+      "bytes": 415924
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Hexen2_Portal_of_Praevus2.jpg",
+      "destination": "assets/authoring/box_art/hexen-2-portal-of-praevus/Hexen2_Portal_of_Praevus2.jpg",
+      "sha256": "9e2c8bd0e2f423701c501173e80fce3f635bdfbd30d2efeedf6ee438a5a8e1a6",
+      "bytes": 288044
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Hexen2_Portal_of_Praevus3.jpg",
+      "destination": "assets/authoring/box_art/hexen-2-portal-of-praevus/Hexen2_Portal_of_Praevus3.jpg",
+      "sha256": "6e4a642dd8a94ba2cba5137283e1581df86c9830b6e5adb79e94eb6f4ad9cc3b",
+      "bytes": 698819
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/title2.jpg",
+      "destination": "assets/authoring/box_art/hexen-2-portal-of-praevus/title2.jpg",
+      "sha256": "ba98480e9dd8721e99c115ad41dc9bcb45623df73161ca8fde8f629840968842",
+      "bytes": 366713
+    },
+    {
+      "source": "/Users/bri/quaked/Quake shareware/en-quake-dawn-of-the-machine-a-f-23dbe9eb-image-23dbe9cb.jpg.webp",
+      "destination": "assets/authoring/box_art/dawn/poster.webp",
+      "sha256": "af14d481bce3e4afbf99b4f926a507e43744ff6cf7106287300818b28f4372d3",
+      "bytes": 36570
+    },
+    {
+      "source": "/Users/bri/quaked/Quaked/back-side.png",
+      "destination": "assets/authoring/box_art/quaked/back-side.png",
+      "sha256": "0b1851df89bdc456cab3fe5aac26a52bce155b7d8b8bee62ac2e2f9808bfefa0",
+      "bytes": 2803216
+    },
+    {
+      "source": "/Users/bri/quaked/Quaked/poster.png",
+      "destination": "assets/authoring/box_art/quaked/poster.png",
+      "sha256": "d99c15c6031f441532909114dcf121a50b7a22fd1414d2ff52ffa035e177a4b2",
+      "bytes": 2694596
+    }
+  ],
+  "counts": {
+    "sourceFiles": 42,
+    "movePaths": 41,
+    "uniqueMovedImages": 29,
+    "redundantLocalCopies": 12,
+    "runtimeFaces": 29,
+    "sourceOnlyUnique": 13
+  },
+  "cleanupFence": "Do not unlink source until canonical destination is hash-verified, committed and pushed; recheck every source hash immediately before unlink; preserve changed/unplanned files and all directories"
+}

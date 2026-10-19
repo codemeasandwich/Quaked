@@ -1,0 +1,1356 @@
+{
+  "status": "PASS",
+  "checkCount": 29,
+  "phases": [
+    {
+      "scenario": "defaults",
+      "checks": {
+        "completeFixturesReallyValidated": true,
+        "artOnlyDefaultsDoNotAuthorizeGameFiles": true,
+        "noLocalArtRequired": true,
+        "allSharewareFacesShipped": true,
+        "existingQuakeDefaultsRetained": true,
+        "missionSpinesShipped": true,
+        "currentQuothAndMachineOriginalPNGs": true,
+        "retiredCollageStaysUnboxed": true,
+        "artOnlyTitlesHaveShippedFaces": true,
+        "nativeURLCodecBoundary": true,
+        "allImagesDecodedAndPrintedFacesOpaque": true,
+        "turnOverAndReturn": true,
+        "artOnlyPlayControlsDisabled": true,
+        "artOnlyNeutralGameLabel": true
+      },
+      "snapshot": {
+        "games": [
+          {
+            "id": "shareware",
+            "present": true,
+            "validated": true,
+            "playable": true,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/shareware/front.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/shareware/front.png\")",
+                "placeholder": false,
+                "text": "Shareware"
+              },
+              "back": {
+                "background": "url(\"assets/boxes/shareware/back.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/shareware/back.png\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/shareware/spine.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/shareware/spine.png\")",
+                "placeholder": false,
+                "text": ""
+              }
+            }
+          },
+          {
+            "id": "quake",
+            "present": true,
+            "validated": true,
+            "playable": true,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/quake/front.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/quake/front.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "url(\"assets/boxes/quake/back.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/quake/back.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/quake/spine.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/quake/spine.jpg\")",
+                "placeholder": false,
+                "text": ""
+              }
+            }
+          },
+          {
+            "id": "hipnotic",
+            "present": true,
+            "validated": true,
+            "playable": true,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/hipnotic/front.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/hipnotic/front.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "url(\"assets/boxes/hipnotic/back.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/hipnotic/back.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/hipnotic/spine.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/hipnotic/spine.png\")",
+                "placeholder": false,
+                "text": ""
+              }
+            }
+          },
+          {
+            "id": "rogue",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/rogue/front.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/rogue/front.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "url(\"assets/boxes/rogue/back.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/rogue/back.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/rogue/spine.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/rogue/spine.png\")",
+                "placeholder": false,
+                "text": ""
+              }
+            }
+          },
+          {
+            "id": "dopa",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Dimension of the PastA Quake episode"
+              },
+              "back": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Dimension of the PastA Quake episode. Not playable yet: not installed"
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "Dimension of the Past"
+              }
+            }
+          },
+          {
+            "id": "mg1",
+            "present": true,
+            "validated": true,
+            "playable": true,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mg1/front.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/mg1/front.png\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mg1/back.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/mg1/back.png\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mg1/spine.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/mg1/spine.png\")",
+                "placeholder": false,
+                "text": ""
+              }
+            }
+          },
+          {
+            "id": "dawn",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Dawn of the MachineA Quake episode"
+              },
+              "back": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Dawn of the MachineA Quake episode. Not playable yet: a placeholder: no copy is installed"
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "Dawn of the Machine"
+              }
+            }
+          },
+          {
+            "id": "ad",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Arcane DimensionsA Quake add-on"
+              },
+              "back": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Arcane DimensionsA Quake add-on. Not playable yet: not installed"
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "Arcane Dimensions"
+              }
+            }
+          },
+          {
+            "id": "quoth",
+            "present": true,
+            "validated": true,
+            "playable": true,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/quoth/front.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/quoth/front.png\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "url(\"assets/boxes/quoth/back.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/quoth/back.png\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/quoth/spine.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/quoth/spine.png\")",
+                "placeholder": false,
+                "text": ""
+              }
+            }
+          },
+          {
+            "id": "malice",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/malice/front.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/malice/front.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "url(\"assets/boxes/malice/back.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/malice/back.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "Malice"
+              }
+            }
+          },
+          {
+            "id": "xmen",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/xmen/front.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/xmen/front.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "url(\"assets/boxes/xmen/back.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/xmen/back.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "X-Men"
+              }
+            }
+          },
+          {
+            "id": "aopfm_v2",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/aopfm_v2/front.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/aopfm_v2/front.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Abyss of PandemoniumA Quake add-on. Not playable yet: not installed"
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "Abyss of Pandemonium"
+              }
+            }
+          },
+          {
+            "id": "soe",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Soul of EvilA Quake add-on"
+              },
+              "back": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Soul of EvilA Quake add-on. Not playable yet: not installed"
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "Soul of Evil"
+              }
+            }
+          },
+          {
+            "id": "mod_q30a1024",
+            "present": true,
+            "validated": true,
+            "playable": true,
+            "faces": {
+              "front": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "q30a1024A Quake add-on"
+              },
+              "back": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "q30a1024A Quake add-on"
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "q30a1024"
+              }
+            }
+          },
+          {
+            "id": "mod_corrupt_art",
+            "present": true,
+            "validated": true,
+            "playable": true,
+            "faces": {
+              "front": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Corrupt art fixtureA Quake add-on"
+              },
+              "back": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Corrupt art fixtureA Quake add-on"
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "Corrupt art fixture"
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2/front.webp\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/mod_hexen_2/front.webp\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Hexen 2Game. Not playable yet: No supported game files found"
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2/spine.webp\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/mod_hexen_2/spine.webp\")",
+                "placeholder": false,
+                "text": ""
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2_portal_of_praevus",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/front.webp\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/mod_hexen_2_portal_of_praevus/front.webp\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/back.webp\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/mod_hexen_2_portal_of_praevus/back.webp\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp\")",
+                "placeholder": false,
+                "text": ""
+              }
+            }
+          },
+          {
+            "id": "mod_quaked",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_quaked/front.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/mod_quaked/front.png\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "QuakedGame. Not playable yet: No supported game files found"
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "Quaked"
+              }
+            }
+          }
+        ],
+        "converted": [],
+        "macAssetURLs": [
+          "asset://localhost/%2FUsers%2Fbri%2FSOURCE%2FQuaked%2Fassets%2Fboxes%2Fshareware%2Fback.png",
+          "asset://localhost/%2Fprivate%2Ftmp%2Fquaked-shelf-corrupt-art-20261019.png"
+        ],
+        "calls": [
+          {
+            "cmd": "library_scan",
+            "args": {}
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "shareware/pak0.pak",
+              "offset": 0,
+              "length": 12
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "quake/pak0.pak",
+              "offset": 0,
+              "length": 12
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "hipnotic/pak0.pak",
+              "offset": 0,
+              "length": 12
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "mg1/pak0.pak",
+              "offset": 0,
+              "length": 12
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "quoth/pak0.pak",
+              "offset": 0,
+              "length": 12
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "mod_q30a1024/pak0.pak",
+              "offset": 0,
+              "length": 12
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "mod_corrupt_art/pak0.pak",
+              "offset": 0,
+              "length": 12
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "shareware/pak0.pak",
+              "offset": 15,
+              "length": 192
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "quake/pak0.pak",
+              "offset": 18,
+              "length": 384
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "hipnotic/pak0.pak",
+              "offset": 15,
+              "length": 192
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "mg1/pak0.pak",
+              "offset": 15,
+              "length": 192
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "quoth/pak0.pak",
+              "offset": 14,
+              "length": 128
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "mod_q30a1024/pak0.pak",
+              "offset": 14,
+              "length": 128
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "mod_corrupt_art/pak0.pak",
+              "offset": 14,
+              "length": 128
+            }
+          }
+        ]
+      },
+      "selections": [
+        {
+          "id": "mg1",
+          "title": "Dimension of the Machine",
+          "playDisabled": false,
+          "label": "A Quake episode — Enter or click to play"
+        },
+        {
+          "id": "quoth",
+          "title": "Quoth",
+          "playDisabled": false,
+          "label": "A Quake add-on — Enter or click to play"
+        },
+        {
+          "id": "mod_q30a1024",
+          "title": "q30a1024",
+          "playDisabled": false,
+          "label": "A Quake add-on — Enter or click to play"
+        },
+        {
+          "id": "mod_hexen_2",
+          "title": "Hexen 2",
+          "playDisabled": true,
+          "label": "Game — not playable yet"
+        },
+        {
+          "id": "mod_hexen_2_portal_of_praevus",
+          "title": "Hexen 2 Portal of Praevus",
+          "playDisabled": true,
+          "label": "Game — not playable yet"
+        },
+        {
+          "id": "mod_quaked",
+          "title": "Quaked",
+          "playDisabled": true,
+          "label": "Game — not playable yet"
+        }
+      ]
+    },
+    {
+      "scenario": "overrides",
+      "checks": {
+        "completeFixturesReallyValidated": true,
+        "artOnlyDefaultsDoNotAuthorizeGameFiles": true,
+        "singleLocalOverrideKeepsOtherDefaults": true,
+        "corruptLocalAndBundledBecomePrinted": true,
+        "existingQuakeDefaultsRetained": true,
+        "missionSpinesShipped": true,
+        "currentQuothAndMachineOriginalPNGs": true,
+        "retiredCollageStaysUnboxed": true,
+        "artOnlyTitlesHaveShippedFaces": true,
+        "nativeURLCodecBoundary": true,
+        "allImagesDecodedAndPrintedFacesOpaque": true,
+        "turnOverAndReturn": true,
+        "artOnlyPlayControlsDisabled": true,
+        "artOnlyNeutralGameLabel": true
+      },
+      "snapshot": {
+        "games": [
+          {
+            "id": "shareware",
+            "present": true,
+            "validated": true,
+            "playable": true,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/shareware/front.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/shareware/front.png\")",
+                "placeholder": false,
+                "text": "Shareware"
+              },
+              "back": {
+                "background": "url(\"http://127.0.0.1:63815/local-art/%2FUsers%2Fbri%2FSOURCE%2FQuaked%2Fassets%2Fboxes%2Fshareware%2Fback.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/local-art/%2FUsers%2Fbri%2FSOURCE%2FQuaked%2Fassets%2Fboxes%2Fshareware%2Fback.png\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/shareware/spine.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/shareware/spine.png\")",
+                "placeholder": false,
+                "text": ""
+              }
+            }
+          },
+          {
+            "id": "quake",
+            "present": true,
+            "validated": true,
+            "playable": true,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/quake/front.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/quake/front.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "url(\"assets/boxes/quake/back.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/quake/back.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/quake/spine.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/quake/spine.jpg\")",
+                "placeholder": false,
+                "text": ""
+              }
+            }
+          },
+          {
+            "id": "hipnotic",
+            "present": true,
+            "validated": true,
+            "playable": true,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/hipnotic/front.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/hipnotic/front.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Scourge of ArmagonA Quake mission pack"
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/hipnotic/spine.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/hipnotic/spine.png\")",
+                "placeholder": false,
+                "text": ""
+              }
+            }
+          },
+          {
+            "id": "rogue",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/rogue/front.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/rogue/front.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "url(\"assets/boxes/rogue/back.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/rogue/back.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/rogue/spine.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/rogue/spine.png\")",
+                "placeholder": false,
+                "text": ""
+              }
+            }
+          },
+          {
+            "id": "dopa",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Dimension of the PastA Quake episode"
+              },
+              "back": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Dimension of the PastA Quake episode. Not playable yet: not installed"
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "Dimension of the Past"
+              }
+            }
+          },
+          {
+            "id": "mg1",
+            "present": true,
+            "validated": true,
+            "playable": true,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mg1/front.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/mg1/front.png\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mg1/back.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/mg1/back.png\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mg1/spine.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/mg1/spine.png\")",
+                "placeholder": false,
+                "text": ""
+              }
+            }
+          },
+          {
+            "id": "dawn",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Dawn of the MachineA Quake episode"
+              },
+              "back": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Dawn of the MachineA Quake episode. Not playable yet: a placeholder: no copy is installed"
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "Dawn of the Machine"
+              }
+            }
+          },
+          {
+            "id": "ad",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Arcane DimensionsA Quake add-on"
+              },
+              "back": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Arcane DimensionsA Quake add-on. Not playable yet: not installed"
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "Arcane Dimensions"
+              }
+            }
+          },
+          {
+            "id": "quoth",
+            "present": true,
+            "validated": true,
+            "playable": true,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/quoth/front.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/quoth/front.png\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "url(\"assets/boxes/quoth/back.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/quoth/back.png\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/quoth/spine.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/quoth/spine.png\")",
+                "placeholder": false,
+                "text": ""
+              }
+            }
+          },
+          {
+            "id": "malice",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/malice/front.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/malice/front.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "url(\"assets/boxes/malice/back.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/malice/back.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "Malice"
+              }
+            }
+          },
+          {
+            "id": "xmen",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/xmen/front.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/xmen/front.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "url(\"assets/boxes/xmen/back.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/xmen/back.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "X-Men"
+              }
+            }
+          },
+          {
+            "id": "aopfm_v2",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/aopfm_v2/front.jpg\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/aopfm_v2/front.jpg\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Abyss of PandemoniumA Quake add-on. Not playable yet: not installed"
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "Abyss of Pandemonium"
+              }
+            }
+          },
+          {
+            "id": "soe",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Soul of EvilA Quake add-on"
+              },
+              "back": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Soul of EvilA Quake add-on. Not playable yet: not installed"
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "Soul of Evil"
+              }
+            }
+          },
+          {
+            "id": "mod_q30a1024",
+            "present": true,
+            "validated": true,
+            "playable": true,
+            "faces": {
+              "front": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "q30a1024A Quake add-on"
+              },
+              "back": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "q30a1024A Quake add-on"
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "q30a1024"
+              }
+            }
+          },
+          {
+            "id": "mod_corrupt_art",
+            "present": true,
+            "validated": true,
+            "playable": true,
+            "faces": {
+              "front": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Corrupt art fixtureA Quake add-on"
+              },
+              "back": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Corrupt art fixtureA Quake add-on"
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "Corrupt art fixture"
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2/front.webp\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/mod_hexen_2/front.webp\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "Hexen 2Game. Not playable yet: No supported game files found"
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2/spine.webp\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/mod_hexen_2/spine.webp\")",
+                "placeholder": false,
+                "text": ""
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2_portal_of_praevus",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/front.webp\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/mod_hexen_2_portal_of_praevus/front.webp\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/back.webp\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/mod_hexen_2_portal_of_praevus/back.webp\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp\")",
+                "placeholder": false,
+                "text": ""
+              }
+            }
+          },
+          {
+            "id": "mod_quaked",
+            "present": false,
+            "validated": false,
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_quaked/front.png\")",
+                "computedBackground": "url(\"http://127.0.0.1:63815/assets/boxes/mod_quaked/front.png\")",
+                "placeholder": false,
+                "text": ""
+              },
+              "back": {
+                "background": "",
+                "computedBackground": "linear-gradient(160deg, rgb(58, 44, 28), rgb(18, 13, 8))",
+                "placeholder": true,
+                "text": "QuakedGame. Not playable yet: No supported game files found"
+              },
+              "spine": {
+                "background": "",
+                "computedBackground": "linear-gradient(90deg, rgb(28, 21, 14), rgb(58, 44, 28) 50%, rgb(28, 21, 14))",
+                "placeholder": true,
+                "text": "Quaked"
+              }
+            }
+          }
+        ],
+        "converted": [
+          "/Users/bri/SOURCE/Quaked/assets/boxes/shareware/back.png",
+          "/private/tmp/quaked-shelf-corrupt-art-20261019.png",
+          "/private/tmp/quaked-shelf-corrupt-art-20261019.png"
+        ],
+        "macAssetURLs": [
+          "asset://localhost/%2FUsers%2Fbri%2FSOURCE%2FQuaked%2Fassets%2Fboxes%2Fshareware%2Fback.png",
+          "asset://localhost/%2Fprivate%2Ftmp%2Fquaked-shelf-corrupt-art-20261019.png"
+        ],
+        "calls": [
+          {
+            "cmd": "library_scan",
+            "args": {}
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "shareware/pak0.pak",
+              "offset": 0,
+              "length": 12
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "quake/pak0.pak",
+              "offset": 0,
+              "length": 12
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "hipnotic/pak0.pak",
+              "offset": 0,
+              "length": 12
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "mg1/pak0.pak",
+              "offset": 0,
+              "length": 12
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "quoth/pak0.pak",
+              "offset": 0,
+              "length": 12
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "mod_q30a1024/pak0.pak",
+              "offset": 0,
+              "length": 12
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "mod_corrupt_art/pak0.pak",
+              "offset": 0,
+              "length": 12
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "shareware/pak0.pak",
+              "offset": 15,
+              "length": 192
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "quake/pak0.pak",
+              "offset": 18,
+              "length": 384
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "hipnotic/pak0.pak",
+              "offset": 15,
+              "length": 192
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "mg1/pak0.pak",
+              "offset": 15,
+              "length": 192
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "quoth/pak0.pak",
+              "offset": 14,
+              "length": 128
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "mod_q30a1024/pak0.pak",
+              "offset": 14,
+              "length": 128
+            }
+          },
+          {
+            "cmd": "library_read",
+            "args": {
+              "token": "mod_corrupt_art/pak0.pak",
+              "offset": 14,
+              "length": 128
+            }
+          }
+        ]
+      },
+      "selections": [
+        {
+          "id": "mg1",
+          "title": "Dimension of the Machine",
+          "playDisabled": false,
+          "label": "A Quake episode — Enter or click to play"
+        },
+        {
+          "id": "quoth",
+          "title": "Quoth",
+          "playDisabled": false,
+          "label": "A Quake add-on — Enter or click to play"
+        },
+        {
+          "id": "mod_q30a1024",
+          "title": "q30a1024",
+          "playDisabled": false,
+          "label": "A Quake add-on — Enter or click to play"
+        },
+        {
+          "id": "mod_hexen_2",
+          "title": "Hexen 2",
+          "playDisabled": true,
+          "label": "Game — not playable yet"
+        },
+        {
+          "id": "mod_hexen_2_portal_of_praevus",
+          "title": "Hexen 2 Portal of Praevus",
+          "playDisabled": true,
+          "label": "Game — not playable yet"
+        },
+        {
+          "id": "mod_quaked",
+          "title": "Quaked",
+          "playDisabled": true,
+          "label": "Game — not playable yet"
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "zeroErrors": true
+  },
+  "intentionalCorruptFallback": [
+    "/assets/boxes/hipnotic/back.jpg",
+    "/assets/boxes/hipnotic/back.jpg",
+    "/assets/boxes/hipnotic/back.jpg"
+  ],
+  "sourceHashes": {
+    "src-tauri/src/main.rs": "dfc4996696545d39a586b048f377043df791112eeb47425734f4536ca6cfc403",
+    "src-tauri/src/library.rs": "6838b98c5c8fd4f978405c8cd2276ab3f18e4e39ed42830f9e49939464eca4ec",
+    "src/platform/desktop.js": "75de063e794545350665cf915e98da17530fe65fd80b144566ae6d4f969a141d",
+    "src/newer/ui/game_shelf.js": "a09369396721c85fe0646839469799d363ac117cd1696fe836115603a77e5804",
+    "tests/game_shelf_test.js": "b30f493df48e17618b6b4e65196b86811d0f029be79c5058ca32c995a922d12c",
+    "tests/box_art_contract_test.mjs": "60ee8cafdcdc6673341802b35149a89b6e2cbcbc60fca0c8eff9f4e8d4717b5a",
+    "assets/boxes/manifest.json": "20d4297d8deb33a44f91b404a9d697b5ccb3af0d755cfb5e2eb6c53d42b621ff",
+    "docs/evidence/box-art-consolidation-2026-10-19/move-plan.json": "999c66cf2c5945c15a6b1e7c0c97cebadb9f20fb249789a91347f2f63444600f"
+  },
+  "served": [
+    "/Users/bri/SOURCE/Quaked/assets/boxes/shareware/back.png",
+    "/private/tmp/quaked-shelf-corrupt-art-20261019.png"
+  ],
+  "errors": [],
+  "consoleErrors": [],
+  "failedResponses": [],
+  "art": [
+    {
+      "path": "/Users/bri/SOURCE/Quaked/assets/boxes/shareware/back.png",
+      "sha256": "3c50c11c6d7564aa210659e207207b13a0e2b06d22b7d80723a706fab1b7b6fe"
+    },
+    {
+      "path": "/private/tmp/quaked-shelf-corrupt-art-20261019.png",
+      "sha256": "8bf6db3c11dc04c434dc01f8ae767176cdf109c05861e0a4538a7fcc1ec0eb05"
+    }
+  ],
+  "limits": [
+    "Native IPC/converter endpoints are doubled, using real binary ArrayBuffer responses and the actual desktop adapter/catalogue/shelf.",
+    "Synthetic PAK directories prove admission wiring, not game startup or Hexen compatibility.",
+    "No-local-art phase has an empty native artwork map; all29 current defaults load through actual source URLs. The override uses an original project PNG; the harness reads no game-folder artwork.",
+    "One deliberate temporary invalid PNG and exact HTTP200 invalid bundled-JPG response exercise failure fallback.",
+    "Actual installed Tauri asset transport, Rust scope enforcement, qualified build and owner acceptance remain separately owned native checks."
+  ]
+}

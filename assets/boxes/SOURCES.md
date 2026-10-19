@@ -23,29 +23,40 @@ on 10 October 2026 from the LaunchBox Games Database (`gamesdb.launchbox-app.com
 
 ## Owner-supplied bundled defaults — 19 October 2026
 
-The owner asked to merge artwork from `~/quaked` into the project so all native
+The owner asked to move artwork from `~/quaked` into the project so all native
 downloads receive the defaults, with user-folder images overriding individual
 faces. These additions are byte-identical copies; no resizing, re-encoding or
 pixel edits were applied. [Import identities](../../docs/evidence/native-box-art-2026-10-19/bundled-import.json)
-record source paths, destination paths, byte counts and SHA-256 values.
+record the first import's source paths, destination paths, byte counts and hashes.
+The current live inventory is [manifest.json](manifest.json): 29 default faces.
+The later [consolidation record](../../docs/box-art-consolidation-2026-10-19.md)
+supersedes the first import where a face has since been replaced or archived.
 
 | Default ID | Faces imported | Supplied game folder |
 |---|---|---|
 | shareware | front, back, spine | Quake shareware |
 | hipnotic | spine | Scourge of Armagon |
 | rogue | spine | Dissolution of Eternity |
-| quoth | back, spine | Quoth |
-| mod_q30a1024 | front | q30a1024 |
+| quoth | front, back, spine | Quoth |
+| mg1 | front, back, spine | Dimension of the Machine |
 | mod_quaked | front | Quaked |
 | mod_hexen_2 | front, spine | Hexen 2 |
 | mod_hexen_2_portal_of_praevus | front, back, spine | Hexen 2 Portal of Praevus |
 
 The `mod_` IDs use the existing discovered-folder slug rule; they do not add
 game-engine compatibility. The Hexen II and Quaked folders may display unavailable
-boxes without mountable game data. The owner will supply a replacement Quoth
-front: the former local front was accidentally replaced with the Quaked cover.
+boxes without mountable game data. The correct Quoth front has now been supplied;
+the former accidentally substituted Quaked cover is not used for Quoth.
 Quake's unrelated launch-promotion poster is intentionally untouched and unbundled;
 posters are outside this change.
+
+Distinct alternate covers, posters, screenshots, bottom flaps and the intact
+Quaked back/spine composite are preserved under `assets/authoring/box_art`.
+They are source material, excluded from distribution. The q30 screenshot collage
+and previous Machine JPEG are retained there rather than shipped as live covers.
+Every canonical image keeps its original pixels and encoding; no faces were
+generated, cropped or extracted. Duplicate local copies are removed only after
+the matching canonical project file is hash-verified and retained in pushed Git.
 
 Local overrides: put `front.png`, `back.png`, `spine.png` in the game's own folder.
 JPG/JPEG/WebP/GIF/AVIF and case variants work too. `cover` aliases `front`; `side`
@@ -57,8 +68,8 @@ and nested folders do not override faces. See [the full contract](../../docs/nat
 
 These faces are drawn as placeholders with the box's text printed on them, as the owner asked:
 
-- every face of Dimension of the Past and Arcane Dimensions, and Quoth's front;
-- the missing back of Dimension of the Machine and Abyss of Pandemonium;
+- every face of Dimension of the Past, Arcane Dimensions and q30a1024;
+- the missing back of Abyss of Pandemonium;
 - other spines not listed above, Hexen II's back and Quaked's back/spine.
 
 A game added from a folder uses those same naming conventions. Missing faces

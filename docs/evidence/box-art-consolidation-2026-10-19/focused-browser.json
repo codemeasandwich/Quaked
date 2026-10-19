@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "checks": {
+    "fresh_real_adapter_without_local_art": true,
+    "actual_Quoth_front_project_PNG": true,
+    "actual_Machine_front_back_spine_project_PNGs": true,
+    "q30_collage_not_a_runtime_face": true,
+    "positive_one_face_override_keeps_other_defaults": true,
+    "zero_browser_errors": true
+  },
+  "parentReceipt": "/private/tmp/quaked-box-consolidation-browser-20261019.json",
+  "parentReceiptSHA256": "3d4044639999ad97bb2d0770568199c859006237d18b17839ffb90e6e10483ef",
+  "sourceHashes": {
+    "src-tauri/src/main.rs": "dfc4996696545d39a586b048f377043df791112eeb47425734f4536ca6cfc403",
+    "src-tauri/src/library.rs": "6838b98c5c8fd4f978405c8cd2276ab3f18e4e39ed42830f9e49939464eca4ec",
+    "src/platform/desktop.js": "75de063e794545350665cf915e98da17530fe65fd80b144566ae6d4f969a141d",
+    "src/newer/ui/game_shelf.js": "a09369396721c85fe0646839469799d363ac117cd1696fe836115603a77e5804",
+    "tests/game_shelf_test.js": "b30f493df48e17618b6b4e65196b86811d0f029be79c5058ca32c995a922d12c",
+    "tests/box_art_contract_test.mjs": "60ee8cafdcdc6673341802b35149a89b6e2cbcbc60fca0c8eff9f4e8d4717b5a",
+    "assets/boxes/manifest.json": "20d4297d8deb33a44f91b404a9d697b5ccb3af0d755cfb5e2eb6c53d42b621ff",
+    "docs/evidence/box-art-consolidation-2026-10-19/move-plan.json": "999c66cf2c5945c15a6b1e7c0c97cebadb9f20fb249789a91347f2f63444600f"
+  },
+  "visualInspection": [
+    "Machine front/back after TURN OVER",
+    "Machine spine visible beside selected Quoth",
+    "new genuine Quoth front",
+    "q30 printed front placeholder"
+  ],
+  "scope": "Focused mapping-change receipt extracted from the completed reused harness; prior unchanged failure handling controls were not new acceptance requirements. Native transport/build/cleanup remain coordinator-owned."
+}

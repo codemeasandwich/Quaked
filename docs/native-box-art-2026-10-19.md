@@ -1,5 +1,9 @@
 # Local native box art — 19 October 2026
 
+This records the first delivery. The later [artwork consolidation](box-art-consolidation-2026-10-19.md)
+adopts the new Quoth/Machine faces and moves local originals into canonical
+runtime or authoring locations; use `assets/boxes/manifest.json` for current faces.
+
 Owner scope: recheck the six gameplay requirements and correctly name, detect and
 display the new game/expansion box art under `~/quaked` in the Tauri game shelf.
 The owner's clarification requires importing usable art as shipped defaults for
