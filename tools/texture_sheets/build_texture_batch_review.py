@@ -22,14 +22,27 @@ def build(item, root, output):
         tag = name + '-' + tier.lower()
         maps = {role: Image.open(root / path).convert('RGB') for role, path in row['files'].items()}
         diffuse = maps['diffuse']
-        sheet = Image.new('RGB', (1400, 1100), (28, 30, 33))
+        # Comparison panels depend on native dimensions, not the512px overview.
+        comparison_y = [570]
+        first_height = (original.height // 2) * 3
+        comparison_y.append(comparison_y[0] + max(235, 25 + first_height + 18))
+        last_bottom = comparison_y[1] + 25 + (original.height // 4) * 3
+        canvas_height = max(1100, last_bottom + 20)
+        comparison_width = max((original.width // divisor) * 3 for divisor in (2, 4))
+        canvas_width = max(1400, 550 + 2 * comparison_width + 20)
+        if canvas_width * canvas_height > 16_777_216:
+            raise ValueError('Review canvas exceeds diagnostic pixel budget')
+        sheet = Image.new('RGB', (canvas_width, canvas_height), (28, 30, 33))
         draw = ImageDraw.Draw(sheet)
         draw.text((12, 8), f'{name} {tier}: unchanged native (left), actual Q92 (middle), 1:1 detail (right)', fill='white')
-        size = (round(512 * original.width / original.height), 512)
+        overview_scale = min(512 / original.width, 512 / original.height)
+        size = (round(original.width * overview_scale), round(original.height * overview_scale))
         sheet.paste(original.resize(size, Image.Resampling.NEAREST), (12, 32))
         sheet.paste(diffuse.resize(size, Image.Resampling.LANCZOS), (540, 32))
         cx, cy = diffuse.width // 2, diffuse.height // 2
-        sheet.paste(diffuse.crop((cx-128, cy-128, cx+128, cy+128)), (1068, 32))
+        detail_w, detail_h = min(256, diffuse.width), min(256, diffuse.height)
+        sheet.paste(diffuse.crop((cx-detail_w//2, cy-detail_h//2,
+                                  cx-detail_w//2+detail_w, cy-detail_h//2+detail_h)), (1068, 32))
         # Fixed physical tile aspect, unlike a square stretch of a portrait2x2.
         tile_width = round(256 * original.width / original.height)
         tile = diffuse.resize((tile_width, 256), Image.Resampling.LANCZOS)
@@ -42,10 +55,10 @@ def build(item, root, output):
             dims = (original.width // divisor, original.height // divisor)
             a = original.resize(dims, Image.Resampling.BOX)
             b = diffuse.resize(dims, Image.Resampling.BOX)
-            draw.text((540, 570+i*235), f'Both at native/{divisor} {dims}: original / {tier}', fill='white')
+            draw.text((540, comparison_y[i]), f'Both at native/{divisor} {dims}: original / {tier}', fill='white')
             a = a.resize((dims[0]*3, dims[1]*3), Image.Resampling.NEAREST)
             b = b.resize(a.size, Image.Resampling.NEAREST)
-            sheet.paste(a, (540, 595+i*235)); sheet.paste(b, (550+a.width, 595+i*235))
+            sheet.paste(a, (540, comparison_y[i]+25)); sheet.paste(b, (550+a.width, comparison_y[i]+25))
         review_file = output / (tag + '-review.jpg')
         sheet.save(review_file, quality=92)
         vector = np.stack([np.asarray(maps['normal'+c], dtype=float)[:, :, 0] for c in 'XYZ'], 2) / 127.5 - 1

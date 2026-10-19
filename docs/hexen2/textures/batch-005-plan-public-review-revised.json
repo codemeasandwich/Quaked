@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-10-19T03:20:57.737888+00:00",
+  "verdict": "PASS revised rtex073 pre-generation plan; allfivefreshpromptplans now pass",
+  "scope": "Successor review of revised073subject only; priorfourPASS/nativeimages unchanged",
+  "priorHold": {
+    "file": "docs/hexen2/textures/batch-005-plan-public-review.json",
+    "sha256": "b9b77fdc0e5cdc9881b534788bf77c0689cabbb54e2f8ae863333a9df63bc8cf",
+    "bytes": 7917
+  },
+  "preservedUnissuedPrompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/prompts/rtex073-pre-plan-hold.txt",
+    "sha256": "9bd4b28716cdcd9f1582886209a9f7bb9682b4e32110f232eb45d8fdd4cd8364",
+    "bytes": 1861
+  },
+  "reviewedPrompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/prompts/rtex073.txt",
+    "sha256": "04ccf103ff177c8d05367b8206829395d152fc1b6a2c7b67b4aaa76f94fee481",
+    "bytes": 2032
+  },
+  "nativeOriginal": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/originals/06-rtex073-a52527f26087.png",
+    "sha256": "9621e3aafc1d8fb444a2d6bce4a82c2f9b047404e1c92ef9e606225b3626720e",
+    "bytes": 3192
+  },
+  "nativeId": "a52527f26087638a84ab164ecfe016723a578cd2c7a8b5c34243bf920cf7d6bd",
+  "changesVerified": [
+    "Cool slate/iron-grey broadfields and narrow rustyumber divisions replace unsupported warmtimber/wood-fibre commitment",
+    "Nativegreyfieldcoverage, verticalspacing, shortcrosswiseforms andedgecuts explicitlyretained",
+    "Nonewseams/rivets/braces/bolts/ornament/grain/specularrim",
+    "One>=512x512source forboth4x/8x, once-authoredrelief andhalf32x32/quarter16x16similarity retained"
+  ],
+  "selectedProfile": "stone",
+  "profileAssessment": "Provisional stone is a height-filter choice, not a historicalmaterial assertion; actualrelief/tiling review stillrequired.",
+  "generationCountAtReview": 0,
+  "generationStateAtReview": "not issued",
+  "limits": [
+    "Planning is not finalgenerated-art, owneracceptance, runtimeintegration or fullcampaign completion.",
+    "Aliasrtex030 targetttex019 artwork/binding acceptance remainsseparate.",
+    "Reviewer changedno prompts/assets/tools/Git andissuedno generatorcalls."
+  ]
+}

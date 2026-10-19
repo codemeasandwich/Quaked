@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-10-19T03:20:00.631505+00:00",
+  "verdict": "HOLD rtex073 subject/material commitment; four other prompt/native plans PASS",
+  "scope": "Independent pre-generation review of five fresh batch005 prompts/native forms; aliases are separate source candidates",
+  "sourceContact": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/originals/native-contact.png",
+    "sha256": "d4cf7a5fcc09f41d6b6d30e31f59b75d4e80121757527d30c985e0347ec33331",
+    "bytes": 77481
+  },
+  "nativeSelection": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/native-selection.json",
+    "sha256": "337b18f765f85bc12ac957c0744620d95fbabbf6a4623df82f9c9da55fabfbc7",
+    "bytes": 6958
+  },
+  "items": [
+    {
+      "name": "rtex043",
+      "nativeId": "19c7a7b50e828d7e0cdfe0eb4522b6a723498367c9db8812752b3eab2ef7c209",
+      "verdict": "PASS",
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/originals/04-rtex043-19c7a7b50e82.png",
+        "sha256": "1661ac4d9002f002fff2d14964d027f368c6a64d844c045df7a79c0bef8d0769",
+        "bytes": 6319
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/prompts/rtex043.txt",
+        "sha256": "6ed1c629be1d1c34fa3da5ac5eef36f836bcfd1a6fc06c7f9cea424781670680",
+        "bytes": 1821
+      },
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "intendedMasterMinimum": [
+        512,
+        1024
+      ],
+      "selectedReliefProfile": "wood",
+      "finding": "Native narrow warm-brown/umber/olive vertical fibrous strands support aged timber. Continuous grain and fissure spacing are preserved; no new cross joints/hardware."
+    },
+    {
+      "name": "rtex003",
+      "nativeId": "8869389c11ddf89d56dcf5a72b499c13fa8e79f45233b3ade4878c4140d90a92",
+      "verdict": "PASS",
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/originals/05-rtex003-8869389c11dd.png",
+        "sha256": "b509a857a0bea4c324f94e748b719d34f0c0480c50b731910c7eee76b8410960",
+        "bytes": 2518
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/prompts/rtex003.txt",
+        "sha256": "1c4d0604583cdcbf46907e3231ccc23b215e385934c703a92df8b95e921f5f57",
+        "bytes": 1882
+      },
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "intendedMasterMinimum": [
+        512,
+        512
+      ],
+      "selectedReliefProfile": "stone",
+      "finding": "Native two courses of broad rounded charcoal-brown stones and deep winding dark gaps match the stated large-stone interpretation. Preserve count, offset and cropped edge shapes; do not sharpen into square small bricks."
+    },
+    {
+      "name": "rtex073",
+      "nativeId": "a52527f26087638a84ab164ecfe016723a578cd2c7a8b5c34243bf920cf7d6bd",
+      "verdict": "HOLD",
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/originals/06-rtex073-a52527f26087.png",
+        "sha256": "9621e3aafc1d8fb444a2d6bce4a82c2f9b047404e1c92ef9e606225b3626720e",
+        "bytes": 3192
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/prompts/rtex073.txt",
+        "sha256": "04ccf103ff177c8d05367b8206829395d152fc1b6a2c7b67b4aaa76f94fee481",
+        "bytes": 2032
+      },
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "intendedMasterMinimum": [
+        512,
+        512
+      ],
+      "selectedReliefProfile": "stone",
+      "finding": "Broad native fields appear cool iron/slate-grey between narrow rusty umber vertical divisions, with short transverse grey links/marks. Forced dark-red-brown timber/wood fibres risks palette and material/form drift. Historical material is unknown; weathered matte oxidized-panel interpretation is a visual inference."
+    },
+    {
+      "name": "ttex048",
+      "nativeId": "7523fcf30754382f5adbc474cb29fb6565cac040f5a0e1cf8ef9fd6f1c33d0b9",
+      "verdict": "PASS",
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/originals/07-ttex048-7523fcf30754.png",
+        "sha256": "bbc6ef9301b7f1c2dba1701fe6a7231c3d67b1a533c13c9771214c6cc28bcef1",
+        "bytes": 2222
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/prompts/ttex048.txt",
+        "sha256": "ddc041052cc9abb538d0aa4456aef7d0f02eb5b5d34dd64699fae88990654cd0",
+        "bytes": 1883
+      },
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "intendedMasterMinimum": [
+        512,
+        512
+      ],
+      "selectedReliefProfile": "stone",
+      "finding": "Native subdued cool charcoal mineral/crag forms and diagonal crevices support restrained continuous worn stone. Keep low contrast and native blue-grey masses; crystalline detail must remain fine and non-grainy."
+    },
+    {
+      "name": "ttex051",
+      "nativeId": "52ff20a2a8a14fdd3b3fd3591becd6e5581b28e6b510e2644da8eb3b3cf73b7d",
+      "verdict": "PASS",
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/originals/08-ttex051-52ff20a2a8a1.png",
+        "sha256": "f7178e7d048477f0852a6c1deba3161f5c634184607439cc568556f99c6098b7",
+        "bytes": 4797
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/prompts/ttex051.txt",
+        "sha256": "5fbecc203bdd7597dd9003bf17679812fa84c4f5356cd1604f3062a2046c4d80",
+        "bytes": 1887
+      },
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "intendedMasterMinimum": [
+        512,
+        1024
+      ],
+      "selectedReliefProfile": "wood",
+      "finding": "Native dark reddish-umber vertical fibres, fissures and left diagonal splits match aged timber. Preserve broad dark bands, edge phase and the existing split positions without new joints/knots."
+    }
+  ],
+  "requiredRevision": {
+    "name": "rtex073",
+    "reviewedPromptSha256": "9bd4b28716cdcd9f1582886209a9f7bb9682b4e32110f232eb45d8fdd4cd8364",
+    "action": "Replace forced warm timber/wood-fibre subject with source-led cool grey panel fields and narrow rusty/umber divisions. Preserve existing short transverse marks without inventing or erasing hardware. Do not add wood grain, bolts/braces, extra seams, broad bright rust or glossy metallic lighting.",
+    "suggestedSubject": "Dark cool iron-grey weathered vertical panel/slat faces separated by the original narrow rusty umber/red-brown divisions. Retain the native short transverse grey marks/links at their original positions, width and coverage. Matte weathered oxidized surface, restrained fine wear and broad quiet grey fields; no added rails, rivets, bolts, braces, seams, wood fibres or specular gleam.",
+    "materialCertainty": "Visual inference only; no native historical material label.",
+    "profileGuidance": "Use an existing flat/scratched material-aware relief profile; avoid a new algorithm. Current wood and existing metal1_3 parameters are the same profile, so subject fidelity matters more than a gratuitous math change."
+  },
+  "sharedStandard": "PASS one retained >=8x master; default4x/8x both fromsame source; relief authored once; Q92m6 pipeline; no perimeter bevel/grain; half/quarter/repeat/relief reviews remain required",
+  "limits": [
+    "Planning is not generated-art acceptance, runtime or owner acceptance.",
+    "Aliases must preserve source-proof76fd3643... and stay pending until original/aliased output review; target019 art was pending in supplied context.",
+    "No prompt/source/asset/tool/Git mutation and no generation performed by this reviewer."
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent pre-code review of BATCH-006-REPAIRS; no asset/core/runtime/Git mutation",
+  "verdict": "PASS narrow architecture with required implementation guards; no final material qualification",
+  "plan": {
+    "file": "docs/hexen2/textures/BATCH-006-REPAIRS.md",
+    "sha256": "72c30a56265d1c5d254eca0740173d6007c90d609261c4698c3d435ce454beda"
+  },
+  "math": {
+    "file": "docs/hexen2/textures/batch-006-repair-plan-public-math.json",
+    "sha256": "0577a49885e96f746905ad26c57b2ea7c99c155e538b000a9bfd029d8aae2aad"
+  },
+  "recommendation": [
+    "Use one small fixed-material authoring CLI --recipe/--output; no framework, runtime API, encoder changes or model call.",
+    "Reuse update_level_sheets.brick_mask and craft_normals.gblur. Do not call authored_height unchanged because it invokes quantized craft. Replay finish, call craft once with quantize_height=False, compose established planes and bounded detail in full precision, then cast final height once to float32.",
+    "Retain unchanged canonical RGB bytes and one final scalar package; derive Mid/High using unchanged shared tier CLI. Do not consume prior height, decoded tier height or normal maps.",
+    "Retain complete layered recipe and its source/code hashes in final metadata. Prior master JSON, native/raw/prompt and source-bound replay suffice; retiring superseded color/height/map binaries must not break reconstruction.",
+    "Preserve old cores and policy source bytes; adapter records their exact canonical paths/hashes and its own hash/current environment."
+  ],
+  "mandatoryGuards": [
+    "Before mkdir, bound JSON/input byte and canonical pixel budgets; require exact schema/policy/nativeIdentity/name/edition/nativeDimensions, source master SHA, original and unchanged authoring RGB hashes.",
+    "Validate original/generated/prompt/optional-landmarks and exactly known canonical core tool roles/paths/hashes; replay the original finish and compare exact RGB. Reject periodic/layered/revised source packages to prevent applying structural planes twice.",
+    "Require native >=8/divisible by4, canonical8x dimensions, raw8x adequacy and same aspect, RGB PNG, finite strict scalar/profile values and known full-precision unregistered source contract.",
+    "Layer parameters must be finite non-Boolean numbers: ordered lower<floor<=upper, floor>lower+2micro, micro>=0 bounded, lower>=micro and upper+micro<=1. Avoid silent clipping of otherwise valid-looking malformed planes.",
+    "Explicitly preserve bevelPixels old256-reference semantics: sigma=bevelPixels*sqrt(masterWidth*masterHeight)/256. Current1.5 means6 master pixels; do not reinterpret as native pixels.",
+    "Bound polygon/region counts, finite2D coordinates in native bounds, >=3 distinct vertices, nonzero area, reject malformed/unknown region shapes; require both substrate and facing pixels. No automatic brightness-driven identity mask.",
+    "Refuse existing output paths and symlinks; create only new package files exclusively. Validate and replay all inputs before output creation; recheck recipe/source/tool stability before writing final manifest. Record actual environment and full recipe provenance."
+  ],
+  "publicChecksRequiredBeforeAcceptance": [
+    "Valid actual copy: independent finish/plane composition replay, unchanged RGB, one finite float32 scalar, source/recipe/tool hashes and both-tier independent direct-master byte/math replay.",
+    "Public CLI refusal before output for source/tool/recipe mismatch, wrong material/dimensions, malformed/nonfinite/degenerate geometry, invalid planes, already-layered/revised input, wrong payload/too-small raw, and existing output. Preserve initial failures rather than relabeling them.",
+    "Independent artist must review mask coverage/alignment at both tiers, missed bricks/bleed, intact facing and chip placement, tile edges/corners, normals and opposed-light views. Measure selected mortar-vs-face and facing-vs-substrate samples in decoded height/normal views."
+  ],
+  "limits": [
+    "Two-plane algebra guarantees face/substrate depth ordering, not mortar/brick ordering within one substrate mask; existing craft detail is not a semantic mortar guarantee.",
+    "Draft NPY is diagnostic only and exactly uses float32 detail staging; proposed full-precision composition differs by tiny final rounding. Explicit final conversion order must be tested.",
+    "Wrapped Gaussian respects periodic topology, but does not prove original RGB joins seamless or semantic mask correctness. New material remains on art HOLD until independent review.",
+    "Portal439 can use qualified unchanged Y registration;095 can use unchanged prepare with same raw .90/.35. Neither needs new code, another generated image or a new authoring architecture.",
+    "No implementation/public CLI/actual final maps or game execution were qualified by this plan review."
+  ]
+}

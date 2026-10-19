@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-10-19T03:46:46.809853+00:00",
+  "verdict": "PASS ten publicCLI groups; archived5cfe RED/current3a96 GREEN",
+  "inputsBefore": [
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tests/register_texture_boundary_test.py",
+      "sha256": "09163822693220eaab8e109e146db197d5a2d30d0fe2b597f0be4c80c95256fd",
+      "bytes": 13760
+    },
+    {
+      "file": "/private/tmp/register_texture_boundary-before-public-fixes.py",
+      "sha256": "5cfe288f4f35a65118eff832cf19fde8755300c133c4bab8023324eaec80f81b",
+      "bytes": 9585
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee",
+      "bytes": 10541
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "bytes": 7692
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "bytes": 13322
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    }
+  ],
+  "inputsAfter": [
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tests/register_texture_boundary_test.py",
+      "sha256": "09163822693220eaab8e109e146db197d5a2d30d0fe2b597f0be4c80c95256fd",
+      "bytes": 13760
+    },
+    {
+      "file": "/private/tmp/register_texture_boundary-before-public-fixes.py",
+      "sha256": "5cfe288f4f35a65118eff832cf19fde8755300c133c4bab8023324eaec80f81b",
+      "bytes": 9585
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee",
+      "bytes": 10541
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "bytes": 7692
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "bytes": 13322
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    }
+  ],
+  "inputsStable": true,
+  "runs": [
+    {
+      "phase": "RED",
+      "tool": {
+        "file": "/private/tmp/register_texture_boundary-before-public-fixes.py",
+        "sha256": "5cfe288f4f35a65118eff832cf19fde8755300c133c4bab8023324eaec80f81b",
+        "bytes": 9585
+      },
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "/Users/bri/SOURCE/Quaked/tests/register_texture_boundary_test.py"
+      ],
+      "environmentOverride": {
+        "QUAKED_BOUNDARY_CLI": "/private/tmp/register_texture_boundary-before-public-fixes.py",
+        "PYTHONPATH": "/Users/bri/SOURCE/Quaked/tools/texture_sheets"
+      },
+      "exitCode": 1,
+      "log": {
+        "file": "/Users/bri/SOURCE/Quaked/docs/hexen2/textures/batch-005-boundary-public-red-v1.log",
+        "sha256": "8f48780e9ac2bbc34d2238dd226e88ee53d93ba3ecce2a4eb74e1c5c95344e4e",
+        "bytes": 4800
+      }
+    },
+    {
+      "phase": "GREEN",
+      "tool": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/register_texture_boundary.py",
+        "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee",
+        "bytes": 10541
+      },
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "/Users/bri/SOURCE/Quaked/tests/register_texture_boundary_test.py"
+      ],
+      "environmentOverride": {
+        "QUAKED_BOUNDARY_CLI": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/register_texture_boundary.py",
+        "PYTHONPATH": "/Users/bri/SOURCE/Quaked/tools/texture_sheets"
+      },
+      "exitCode": 0,
+      "log": {
+        "file": "/Users/bri/SOURCE/Quaked/docs/hexen2/textures/batch-005-boundary-public-green-v1.log",
+        "sha256": "b7f38a656e4cecd1fe329a4a4dc912daf57f39ee642a871ae43cbcb99b218cd5",
+        "bytes": 1085
+      }
+    }
+  ],
+  "limits": [
+    "Actualcopy outputs existonlyinowned temporarytestdirectories and are removed; acceptedsource/master/tierfiles remain unchanged.",
+    "No finalcorrected20-map/WebP/artacceptance, runtime, generation orGit claim."
+  ]
+}

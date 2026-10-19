@@ -1,0 +1,89 @@
+{
+  "verdict": "Independent diagnostic replay, not final-map/art acceptance",
+  "items": [
+    {
+      "name": "rtex043",
+      "periodicYFormulaByteExact": true,
+      "maximumPoissonResidual": 2.842170943040401e-14,
+      "meanCorrectionByChannel": [
+        -1.1384122811097797e-18,
+        -5.014435047745458e-19,
+        1.2468324983583301e-18
+      ],
+      "meanAfterRoundingClippingDelta": [
+        0.0,
+        7.2479248046875e-05,
+        0.0016956329345703125
+      ],
+      "meanAbsSmooth": 0.5459805930198204,
+      "maxAbsSmooth": 46.65449118699369,
+      "clippedFraction": 0.001461029052734375,
+      "beforeEdges": {
+        "wrapX": 11.534830729166666,
+        "wrapY": 17.862630208333332,
+        "interiorMedianY": 4.211588541666667
+      },
+      "afterEdges": {
+        "wrapX": 11.532877604166666,
+        "wrapY": 5.659505208333333,
+        "interiorMedianY": 4.211588541666667
+      },
+      "distancePNGDiagnostics": [
+        {
+          "divisor": 2,
+          "beforeNativeMAE": 5.974772135416667,
+          "afterNativeMAE": 5.967610677083333,
+          "correctionAtDistanceMAE": 0.4811197916666667
+        },
+        {
+          "divisor": 4,
+          "beforeNativeMAE": 2.5084635416666665,
+          "afterNativeMAE": 2.5305989583333335,
+          "correctionAtDistanceMAE": 0.45703125
+        }
+      ]
+    },
+    {
+      "name": "ttex051",
+      "periodicYFormulaByteExact": true,
+      "maximumPoissonResidual": 2.842170943040401e-14,
+      "meanCorrectionByChannel": [
+        -8.673617379884035e-19,
+        -1.0842021724855044e-18,
+        7.453889935837843e-20
+      ],
+      "meanAfterRoundingClippingDelta": [
+        0.002475738525390625,
+        0.00115203857421875,
+        0.0012969970703125
+      ],
+      "meanAbsSmooth": 0.7448871698583258,
+      "maxAbsSmooth": 35.93719105698787,
+      "clippedFraction": 0.0048783620198567705,
+      "beforeEdges": {
+        "wrapX": 14.6474609375,
+        "wrapY": 12.119791666666666,
+        "interiorMedianY": 4.393880208333333
+      },
+      "afterEdges": {
+        "wrapX": 14.626302083333334,
+        "wrapY": 4.845052083333333,
+        "interiorMedianY": 4.39453125
+      },
+      "distancePNGDiagnostics": [
+        {
+          "divisor": 2,
+          "beforeNativeMAE": 4.9677734375,
+          "afterNativeMAE": 5.010579427083333,
+          "correctionAtDistanceMAE": 0.69580078125
+        },
+        {
+          "divisor": 4,
+          "beforeNativeMAE": 2.5013020833333335,
+          "afterNativeMAE": 2.5559895833333335,
+          "correctionAtDistanceMAE": 0.703125
+        }
+      ]
+    }
+  ]
+}

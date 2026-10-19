@@ -1,0 +1,37 @@
+test_existing_portrait128_keeps_original_layout (__main__.TextureBatchReviewCLI) ... ok
+test_tall176_half_and_quarter_comparisons_remain_complete_and_separate (__main__.TextureBatchReviewCLI) ... FAIL
+test_taller_native_grows_canvas_instead_of_clipping_comparisons (__main__.TextureBatchReviewCLI) ... FAIL
+test_wide_overviews_fit_columns_without_spilling_below_or_between (__main__.TextureBatchReviewCLI) ... FAIL
+
+======================================================================
+FAIL: test_tall176_half_and_quarter_comparisons_remain_complete_and_separate (__main__.TextureBatchReviewCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/SOURCE/Quaked/tests/texture_batch_review_test.py", line 68, in test_tall176_half_and_quarter_comparisons_remain_complete_and_separate
+    self.source_is(pixels, (540, 595, 636, 859), 0, 'Full half-native original RED')
+  File "/Users/bri/SOURCE/Quaked/tests/texture_batch_review_test.py", line 64, in source_is
+    self.assertTrue(matches.all(), f'{label}: {int((~matches).sum())} pixels overwritten by another source')
+AssertionError: False is not true : Full half-native original RED: 1102 pixels overwritten by another source
+
+======================================================================
+FAIL: test_taller_native_grows_canvas_instead_of_clipping_comparisons (__main__.TextureBatchReviewCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/SOURCE/Quaked/tests/texture_batch_review_test.py", line 75, in test_taller_native_grows_canvas_instead_of_clipping_comparisons
+    self.assertGreaterEqual(pixels.shape[0], 1790, 'Tall source comparisons clipped by fixed1100canvas')
+AssertionError: 1100 not greater than or equal to 1790 : Tall source comparisons clipped by fixed1100canvas
+
+======================================================================
+FAIL: test_wide_overviews_fit_columns_without_spilling_below_or_between (__main__.TextureBatchReviewCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/SOURCE/Quaked/tests/texture_batch_review_test.py", line 87, in test_wide_overviews_fit_columns_without_spilling_below_or_between
+    self.source_is(pixels, (528, 64, 532, 256), 2, 'Neutral central gap between overview columns')
+  File "/Users/bri/SOURCE/Quaked/tests/texture_batch_review_test.py", line 64, in source_is
+    self.assertTrue(matches.all(), f'{label}: {int((~matches).sum())} pixels overwritten by another source')
+AssertionError: False is not true : Neutral central gap between overview columns: 768 pixels overwritten by another source
+
+----------------------------------------------------------------------
+Ran 4 tests in 2.437s
+
+FAILED (failures=3)

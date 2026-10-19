@@ -1,0 +1,29 @@
+{
+  "purpose": "Diagnostic only. No active assets changed; not a canonical package, tier or accepted generation.",
+  "axes": [
+    "y"
+  ],
+  "algorithm": "Moisan-style periodic-plus-smooth boundary decomposition; zero-mean Poisson field",
+  "materials": [
+    {
+      "name": "rtex043",
+      "inputSha256": "2efcbd842eac7d9d50f8636ab691c02b50a5ecb1aa071af47ab6da4fe1d76790",
+      "trial": "/private/tmp/quaked-batch005-seam-trial/rtex043.png",
+      "uncompressedYWrap": 5.659505208333333,
+      "interiorMedian": 4.211588541666667,
+      "maxSmoothCorrection": 46.654491186993695,
+      "meanAbsoluteCorrection": 0.5459805930198219,
+      "clippedChannelFraction": 0.001461029052734375
+    },
+    {
+      "name": "ttex051",
+      "inputSha256": "5f12a6715d2731ef4f411b78f44f0dfd04a59c7fadb1a26eb4b1031144cce408",
+      "trial": "/private/tmp/quaked-batch005-seam-trial/ttex051.png",
+      "uncompressedYWrap": 4.845052083333333,
+      "interiorMedian": 4.39453125,
+      "maxSmoothCorrection": 35.93719105698787,
+      "meanAbsoluteCorrection": 0.7448871698583256,
+      "clippedChannelFraction": 0.0048783620198567705
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "verdict": "PASS post-cleanup portabledefault9groups; historicalactualfixtureSKIP bydesign",
+  "completedAt": "2026-10-19T04:09:14.962307+00:00",
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "/Users/bri/SOURCE/Quaked/tests/texture_boundary_registration_test.py"
+  ],
+  "exitCode": 0,
+  "inputsBefore": [
+    {
+      "file": "tests/texture_boundary_registration_test.py",
+      "sha256": "f40432e8d5636131a5af2c693ea736fe07dc246eadec5c7078dbaa6a2a3ae605",
+      "bytes": 14101
+    },
+    {
+      "file": "tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee",
+      "bytes": 10541
+    }
+  ],
+  "inputsAfter": [
+    {
+      "file": "tests/texture_boundary_registration_test.py",
+      "sha256": "f40432e8d5636131a5af2c693ea736fe07dc246eadec5c7078dbaa6a2a3ae605",
+      "bytes": 14101
+    },
+    {
+      "file": "tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee",
+      "bytes": 10541
+    }
+  ],
+  "log": {
+    "file": "docs/hexen2/textures/batch-005-boundary-public-portable-post-cleanup.log",
+    "sha256": "31a155f128a0e1025ed847b52b4253cf362e9059a51386fb8e8a533d0305bfae",
+    "bytes": 1180
+  },
+  "removedActualFixturePathAbsent": true,
+  "scope": "Nine self-contained regression groups only. No archivedactualfixture/game/private source required; no code/assets/Git edits."
+}

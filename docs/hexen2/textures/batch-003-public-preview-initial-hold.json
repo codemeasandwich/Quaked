@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-10-19T02:11:00.676833+00:00",
+  "verdict": "HOLD initial tall preview: quarter panels/label overlap half-native comparison",
+  "sourceTool": {
+    "file": "tools/texture_sheets/build_texture_batch_review.py",
+    "sha256": "0bb1bc2db00921078bb41d4d3cd37d4c92c0efda35b129d3d3b07424c53edc6a"
+  },
+  "nativeDimensions": [
+    64,
+    176
+  ],
+  "halfDisplayDimensions": [
+    96,
+    264
+  ],
+  "quarterDisplayDimensions": [
+    48,
+    132
+  ],
+  "halfNativeRectangle": [
+    540,
+    595,
+    636,
+    859
+  ],
+  "quarterLabelBaseline": [
+    540,
+    805
+  ],
+  "quarterNativeRectangle": [
+    540,
+    830,
+    588,
+    962
+  ],
+  "quarterEnhancedRectangle": [
+    598,
+    830,
+    646,
+    962
+  ],
+  "halfQuarterNativeOverlapRectangle": [
+    540,
+    830,
+    588,
+    859
+  ],
+  "previewInputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/review/index.html",
+      "sha256": "f86a4edf19328dd05feab757a5ca9e57de223f62e6086a8689de19b36cbf0784"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/review/rtex022-high-relief.jpg",
+      "sha256": "13997735f36c10786b2adee2fe9f478566cfa798f36f24a012bf8d2996018022"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/review/rtex022-high-review.jpg",
+      "sha256": "0c82b9448f5e4dd2f93d8dd92175fd30de72c80e5c627dac5f5539f56da6ad63"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/review/rtex022-mid-relief.jpg",
+      "sha256": "5e31bfaf124bc3f19abd9f19893a27ece943a1142ce0c02cc8a040ff7cb61cbe"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/review/rtex022-mid-review.jpg",
+      "sha256": "c4a9c0fedf78fbc37d0d59e669ca65c54aacef432577a2ca94a3dd58b4496001"
+    }
+  ],
+  "limits": [
+    "Geometric public-preview layout failure only; actual10map/source/codec/math proof remainsPASS. No source/master/map/preview changed by verifier."
+  ]
+}

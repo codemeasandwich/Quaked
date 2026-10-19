@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS portable public CLI regressions and explicit current actual integration",
+  "adapter": {
+    "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+    "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d",
+    "bytes": 13904
+  },
+  "test": {
+    "file": "tests/texture_layered_master_test.py",
+    "sha256": "2bad57e1177be179d300a7493bc7b4afd4fe685061a1727aaf72991cedae2c7d",
+    "bytes": 14469
+  },
+  "unchangedCoreSources": [
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "bytes": 13322
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "bytes": 7692
+    },
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5",
+      "bytes": 7863
+    }
+  ],
+  "actualRecipe": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/relief/rtex001-layered.json",
+    "sha256": "dff405bbdedefddd925d1a0e3769999342f53f0a09d40087645e29575db8d1c8",
+    "bytes": 8451
+  },
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "Pillow": "10.1.0",
+    "NumPy": "1.26.2",
+    "WebP": "1.3.2"
+  },
+  "runs": [
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/texture_layered_master_test.py"
+      ],
+      "exitCode": 0,
+      "testsRun": 9,
+      "passed": 8,
+      "skipped": 1,
+      "skipReason": "Actual game fixture requires explicit opt-in",
+      "log": {
+        "file": "docs/hexen2/textures/batch-006-layered-public-portable-v1.txt",
+        "sha256": "ca2188d2d83b78ab91a226528860a47b21c0e92753545b9772742902509cbd54",
+        "bytes": 1000
+      }
+    },
+    {
+      "command": [
+        "QUAKED_LAYERED_ACTUAL=1",
+        "/usr/bin/python3",
+        "tests/texture_layered_master_test.py",
+        "LayeredMasterCLI.test_actual_recipe_replays_unchanged_rgb_and_full_precision_layer"
+      ],
+      "exitCode": 0,
+      "testsRun": 1,
+      "passed": 1,
+      "skipped": 0,
+      "log": {
+        "file": "docs/hexen2/textures/batch-006-layered-public-actual-v1.txt",
+        "sha256": "78a6fbf068597cc5a2ec52e597a46d2da708442ad48fc778ed12a5fd1932d487",
+        "bytes": 198
+      }
+    }
+  ],
+  "evidence": [
+    "Synthetic fixture reconstructs exact PNG and independently composed fullprecision height after old color.png and height.npy are deleted.",
+    "Full-complex FFT and independently rasterized polygon oracle match final float32 height exactly. Fixture distinguishes early detail float32 from final-only cast.",
+    "Actual current rtex001 recipe reproduces unchanged RGB SHA and independent fullprecision plane oracle exactly in owned temporary output; sigma6 master pixels. Actual source files unchanged.",
+    "Guard tests reject source/proof identity and hash mismatch, canonical tool role/path/hash mismatch, extra source roles, raw undersize/aspect/RGBA, invalid profile, repeated authoring/prior periodic registration, nonBoolean/finite/order/clipping-invalid planes, malformed/degenerate/empty/full/unknown geometry, and existing/symlink output.",
+    "Every invalid case exits nonzero without creating output; input fixture bytes remain unchanged. Temporary outputs are cleaned."
+  ],
+  "limits": [
+    "No final actual package/tier files installed or accepted by these tests. Current actual recipe tested in temporary output only.",
+    "No new WebP encoder, runtime, Git, broad CI workflow or game execution changes. Artistic mask/mortar/relief acceptance remains separate."
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-19T02:00:09.190872+00:00",
+  "reviewer": "/root/hexen_campaign_review",
+  "verdict": "PLAN PASS for exactlyone builtin generation attempt perselected nativeidentity; noactualmaster/tierqualificationyet",
+  "requiredFindings": [],
+  "selection": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/selection.json",
+    "sha256": "056c907c84d31f3f10de97105931b0a123d53cdc8945b72aef39eaf7affd7242"
+  },
+  "materials": [
+    {
+      "name": "rtex022",
+      "edition": "base",
+      "nativeIdentity": "f76620aba40204e5329235a87365ce979cd58c28523ab15231906c3c25d1c625",
+      "nativeDimensions": [
+        64,
+        176
+      ],
+      "minimumMasterDimensions": [
+        512,
+        1408
+      ],
+      "requestedCanvas": "1024x2816",
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/06-rtex022-f76620aba402.png",
+        "sha256": "62a01e1dcd0a30a7d4be8410064a5976179a50da752c2fa7aa0ad056c4d9d24f"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/prompts/rtex022.txt",
+        "sha256": "f95864bf4ba4895fda2eed7528fa2af2b830a95aecefa5dd507552781d89b570"
+      },
+      "sourceScope": "base",
+      "maps": [
+        "maps/castle4.bsp",
+        "maps/cath.bsp",
+        "maps/demo1.bsp",
+        "maps/demo2.bsp",
+        "maps/demo3.bsp",
+        "maps/tower.bsp",
+        "maps/village1.bsp",
+        "maps/village2.bsp",
+        "maps/village3.bsp",
+        "maps/village4.bsp",
+        "maps/village5.bsp"
+      ],
+      "verdict": "Brief PASS; one builtin call permitted, actual rawpixeladequacy stillunproven"
+    },
+    {
+      "name": "ttex098",
+      "edition": "portals",
+      "nativeIdentity": "f527d81ccb18fcb2bd44d70237b50f98fcce68ad1ba7265680115eccd3d52e13",
+      "nativeDimensions": [
+        256,
+        128
+      ],
+      "minimumMasterDimensions": [
+        2048,
+        1024
+      ],
+      "requestedCanvas": "4096x2048",
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/09-ttex098-f527d81ccb18.png",
+        "sha256": "a294cbd90ed429ef5f7617e5edf25c814148f3bacca71eedf7653675dc6bf025"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/prompts/ttex098.txt",
+        "sha256": "8540ad69535546c7db1966c2f3a3c49766b2887f7516a397812ad8de9cdde471"
+      },
+      "sourceScope": "expansion-own",
+      "maps": [
+        "maps/tibet1.bsp",
+        "maps/tibet2.bsp",
+        "maps/tibet3.bsp",
+        "maps/tibet4.bsp",
+        "maps/tibet6.bsp",
+        "maps/tibet7.bsp"
+      ],
+      "verdict": "Brief PASS; one builtin call permitted, actual rawpixeladequacy stillunproven"
+    }
+  ],
+  "briefReview": [
+    "VIEWEDbothactualnativePNGsatnativepixelsandreadbothfullprompts. rtex022talltilehasfourmajorcourses, distinctbroadblockshapes/staggeredjoints/croppedcontinuations; briefrequiresallnativecourses, noadditionaledgebricks/frame.",
+    "ttex098nativeisopaqueordinaryworldfrozenrocktexturewithsweepingwhitefrost/shorticiclesoverdarkbrown/charcoalrock. Promptpreserveswhitecoverage/crestplacement/flowandrockscale, notnewclouds/paint/foampattern. Authorinterpretedreliefmustpreservethoseformswithoutclaimingmeasuredicegeometry.",
+    "Darkmortar/nativewhitecrestsareintentionalmaterialstructure, notlicenseforaddedimageperimeterbevels/directionalcastshadows. Naturalphotographicfinecontoursallowed; nohardnativepixelprojection/uniformgrain."
+  ],
+  "capacityAudit": {
+    "canonicalPixels": {
+      "rtex022": 720896,
+      "ttex098": 2097152
+    },
+    "requestedPixels": {
+      "rtex022": 2883584,
+      "ttex098": 8388608
+    },
+    "pipelineMaxPixels": 16777216,
+    "pipelineBudgetResult": "Allrequested/canonicalimagepixelcountsfitexisting16Mofflineimagebudget. Deriver/preparerrequireadequatebothaxesandexactnativeaspect; tallnative176isdivisible4.",
+    "builtinCapacityResult": "Availablebuiltintoolschemaacceptsprompt/reference/transparencybutprovidesnoexplicitdimensionsargumentoradvertisedmaximum. Promptcanvasrequestsarenotproofthatbuiltinwillproduceadequatepixels. Genuineone-callcapacitytrialandactualPNGheader/decodecheckrequired. CLI-onlysizeconstraintsarenotassertedasbuiltinlimits.",
+    "fallbackPolicy": "NoCLI/API/modelsubstitutionorsecondgenerationauthorizedbythisreview. Ifactualrawundersized,retainraw/prompt/journalandexactblocker,donotupscaleorcallHighqualified. Anyaspectroundingmismatchmustbediagnosedbeforeeditingvalidation."
+  },
+  "acceptanceRequirements": [
+    "ExactlyoneGPToutputretainedperselectednativeIDwithgenerationcountjournal/actualtoolreceipt. Master\u2265512x1408or2048x1024respectively, matchingaspectandactualnativeLowunchanged.",
+    "OnecanonicalRGB/floatheightpackagepertexture; allmasterregistration/colourfitonce, craft(False)once. IndependentMid4/High8derivefromsamepackage, all5maproleseachlossyWebP92method6,nocompressedtierchaining.",
+    "Native022half32x88quarter16x44; native098half128x64quarter64x32. EachenhancedtiercomparedagainstsameBOXdownsizedoriginalatbothdistances. Reviewactualdecodedphotoforms/feature-scale, repeatedtile/edgephase andopposedrelief,notmetricsalone.",
+    "Large/tallsourcefailuredoesnotshrinkcampaignscope. Ordinaryworldqueueplusotherfamiliesremainactive; currentnormalcommitgatefrozen12materialsnapshotexcludesuntrackedbatch003. NoGit/source/tool/ref/providerconfigurationmutationsbyreviewer."
+  ],
+  "reviewerEffects": "Onlythisrequestedbatch-003plan-reviewJSONwritten. Source/tool/prompt/raw/master/tierfilesunchanged; nogeneration/test/build/process/refoperations."
+}

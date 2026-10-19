@@ -1,0 +1,283 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-19T02:54:19.978335+00:00",
+  "reviewer": "/root/hexen_campaign_review",
+  "verdict": "PLAN PASS: sevenone-callnewmasters plusoneverifiednative-contentalias; eightnativebindings",
+  "requiredFindings": [],
+  "selection": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/selection.json",
+    "sha256": "6f698caf4ffac6ab9eef0da80148bb354a6d1ee83e200df43fdc61559f05a601"
+  },
+  "materials": [
+    {
+      "name": "rtex439",
+      "edition": "base",
+      "nativeID": "c081ae00828e2da9724ca8d772e934ebdc170fc6ffae63ff0280d6f55eac2f96",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "masterDimensions": [
+        512,
+        512
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/originals/01-rtex439-c081ae00828e.png",
+        "sha256": "ea590d20f78f8c7eedf822a93357668e010eee66c3f0157c19e91849a8d09a90"
+      },
+      "sourceScope": "base",
+      "briefVerdict": "PASS",
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/prompts/rtex439.txt",
+        "sha256": "3bb3a2525b40e39151d825786683120c9462adb986c6f4bedbc5fb6448fb07eb"
+      }
+    },
+    {
+      "name": "rtex008",
+      "edition": "base",
+      "nativeID": "9e8ccce3d8037c703e0cbc472135571bc4fd4d931cd4c61513bacabc9a63a2fb",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "masterDimensions": [
+        512,
+        512
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/originals/02-rtex008-9e8ccce3d803.png",
+        "sha256": "ffedeabeb261d14eec954d3226c6adfa0763f4d34713ec2993fd0d0333ac7898"
+      },
+      "sourceScope": "base",
+      "briefVerdict": "PASS",
+      "verifiedContentAliasOf": {
+        "id": "1e9b3f6a9b333e3e62a9ee57def585bfed779db08b2dfe116d0504b8d208b2d1",
+        "name": "ttex013",
+        "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/16-ttex013-1e9b3f6a9b33.png",
+        "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/ttex013/master.json",
+        "masterPackageSha256": "e34a2788be6f88bb7a6c73d61f89d805a5068e2d81782bbc3a165159e047bc9e",
+        "tierReceipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/manifest.json",
+        "tierReceiptSha256": "335ef0e217290b8c63a2d57f7fca027d6f165846c8eef646eaf2a6f1d858d70b"
+      },
+      "newGenerations": 0
+    },
+    {
+      "name": "rtex038",
+      "edition": "base",
+      "nativeID": "eaff9a5a12755700671e69bf1ca9bb0b6295be3b5a71ecb37d6e779b1eb7b2b0",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "masterDimensions": [
+        512,
+        1024
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/originals/03-rtex038-eaff9a5a1275.png",
+        "sha256": "f29c46c311aa575bece217b4c0b7ff9790a2d8c6ba96220614ce6c87e9f7d74d"
+      },
+      "sourceScope": "base",
+      "briefVerdict": "PASS",
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/prompts/rtex038.txt",
+        "sha256": "61477ef292fb801506a56b365413da99f6adbb8de5c70357f1e8efd5639b558c"
+      }
+    },
+    {
+      "name": "rtex113",
+      "edition": "base",
+      "nativeID": "92cdf766527cf74554c4eaaa9e9eba41fce4339929066964152ec089acee52e9",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "masterDimensions": [
+        512,
+        512
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/originals/04-rtex113-92cdf766527c.png",
+        "sha256": "2ae9a7dfd3cedbc9df71abd2841e92faf138f27f5fc46a0ee2d3117c2c1ddc61"
+      },
+      "sourceScope": "base",
+      "briefVerdict": "PASS",
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/prompts/rtex113.txt",
+        "sha256": "38b29faccc04a2ea2fb8f4863c640edfc9d6e2d04a54fbc69551df96836abc62"
+      }
+    },
+    {
+      "name": "ttex019",
+      "edition": "portals",
+      "nativeID": "d410cc7d9f11c8e500a8c4077b8de699db28568b4f3beabc526205d54490ba63",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "masterDimensions": [
+        512,
+        1024
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/originals/05-ttex019-d410cc7d9f11.png",
+        "sha256": "6d68229b3297759d58d4037d6cdf06bdcfa6d0d75c1ed52c06824aff4e883595"
+      },
+      "sourceScope": "expansion-own",
+      "briefVerdict": "PASS",
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/prompts/ttex019.txt",
+        "sha256": "66dc8b4b30b842e41eb7a6768e008042f2ca2efea64646bc31b1c47b0d0b12b8"
+      }
+    },
+    {
+      "name": "ttex003",
+      "edition": "portals",
+      "nativeID": "7c65957dea6987f9201289ce2252b797d2057d1077a5627d64eb04526c47359d",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "masterDimensions": [
+        512,
+        512
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/originals/06-ttex003-7c65957dea69.png",
+        "sha256": "df949f76013d2418939d727786b188aaf496d64a02909b2c33b2493935a64ee6"
+      },
+      "sourceScope": "expansion-own",
+      "briefVerdict": "PASS",
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/prompts/ttex003.txt",
+        "sha256": "a8eb1168133fc0965c077b968b90db3727fecb51db6082f1c78b06672d0e93bf"
+      }
+    },
+    {
+      "name": "ttex053",
+      "edition": "portals",
+      "nativeID": "2dfe8ef4fab123ef57f1d246484f3f09ac42f83b2123bbf6791b0164838f9700",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "masterDimensions": [
+        512,
+        512
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/originals/07-ttex053-2dfe8ef4fab1.png",
+        "sha256": "022d8ac3b9e5fbab49a330e46659b1303ccfc10c6ff3a9348044be58d3e89330"
+      },
+      "sourceScope": "expansion-own",
+      "briefVerdict": "PASS",
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/prompts/ttex053.txt",
+        "sha256": "bffe69c3b9e36dc35e2ca127c5384384e50de9396e8807c972dcb1551641a542"
+      }
+    },
+    {
+      "name": "ttex089",
+      "edition": "portals",
+      "nativeID": "125625cb685ba9d63e4be463442b88c410e3e3a78c8b335a54a1d9d789466289",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "masterDimensions": [
+        512,
+        512
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/originals/08-ttex089-125625cb685b.png",
+        "sha256": "91eb4748f9722c3944bd27bdbcb194a9b999af31cb9da7bda3b84463fb69e81d"
+      },
+      "sourceScope": "expansion-own",
+      "briefVerdict": "PASS",
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/prompts/ttex089.txt",
+        "sha256": "2297a985b7d053fb119835818e8f46a494cb306c37743596b3b9128bedf3793d"
+      }
+    }
+  ],
+  "materialAssessment": [
+    "VIEWEDall8actualoriginalPNGs andnativecontact,readall7exactpromptsandexplicit008aliasmetadata. VerifiedexactIDs/dimensions/ordinarycategory/sourceownedbaseorPortaloccurrencesagainstsavedinventory.",
+    "439cohesivewarmgreystonewithbrown-ochrepatches;113longverticaldarkred/brownwoodfibres;019lightwarmgreycontinuousmineralwithsandyinclusions;053darkcoolbluegreymottledmineral;089darkwarmbrowncohesivemineral. Noaddedjointnetworkforcontinuoussurfaces.",
+    "038intentionalnativearchitecturalstonepanelhasupper/lowerrailgroups, centralverticaldivisionandinsetfaces/plusexistingcrack. Briefpreservestheseforms/spacing,distinguishesphysicalmouldingfrominventedimageperimeterbevelornewframe.",
+    "003nativebroadred/brownrectangularfieldsandfadedgrey-green/beigebandsremainliteral. Restrainedpigment/plaster/mineralinterpretationacceptablewithoutimposingnewregularsmallbrickorplanklayout. Actualdeliveredform/distantcolourreviewstillrequired."
+  ],
+  "exactNativeAliasProof": {
+    "verdict": "PASS all4mips acrossallsourceboundnativeoccurrences",
+    "sourceEvidence": {
+      "file": "/private/tmp/h2-batch004-alias-mips.json",
+      "sha256": "8053bae1d622356643c16ac3d58e9d04d985c90ab4e75c3d04f0f3e144aa09ad",
+      "script": "/private/tmp/h2-batch004-alias-mips.py",
+      "scriptSha256": "9011af0a186f90157192299dc03938fae8789e05a6543c2f7dda3f1be8df732b"
+    },
+    "rawOriginalPNGBytesEqual": true,
+    "PNGSharedSha256": "ffedeabeb261d14eec954d3226c6adfa0763f4d34713ec2993fd0d0333ac7898",
+    "dimensionsEqual": [
+      64,
+      64
+    ],
+    "paletteEqual": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+    "indexedMipLevelsEqual": [
+      {
+        "level": 0,
+        "dimensions": [
+          64,
+          64
+        ],
+        "indexedSha256": "572ca8a29aed580d97ac61eb904901fa7816bbfe6221cac35d151e57e39adc27"
+      },
+      {
+        "level": 1,
+        "dimensions": [
+          32,
+          32
+        ],
+        "indexedSha256": "9f477672723180b946a03e9f7da2e14fa392301efe386317f2b454ac33100e64"
+      },
+      {
+        "level": 2,
+        "dimensions": [
+          16,
+          16
+        ],
+        "indexedSha256": "0002289b8ca8b12dd032b32fcf3f72d2fd2d8d40f535f2a4fbc1eb4dce3e63c7"
+      },
+      {
+        "level": 3,
+        "dimensions": [
+          8,
+          8
+        ],
+        "indexedSha256": "80c2e7bc3bec848870c1bec71c857b578e79bedf9a233fd85c05ca634e1f3d2f"
+      }
+    ],
+    "RGBAEqual": "00be163ed6f311c7eeaa4060c9a2c168f6bb430ab07dc919a31281f5f096d3b4",
+    "nativeSemanticReview": "Bothordinaryopaqueworldmiptexnamesrtex008/ttex013; no sky/animated(+)/liquid(* or!)/utilityprefix. Matchingpixelsarecohesiveground,notmaterialspecialcase.",
+    "allSavedSourceOccurrencesChecked": {
+      "rtex008": 42,
+      "ttex013": 18
+    },
+    "boundSourceReads": {
+      "distinctBSPmembers": 60,
+      "bytes": 105069480,
+      "method": "ReadactualPAKdirectory,matchedmemberoffset,wholeBSPsha,andexactname/slot/nativebounds; checkedall4indexedmipsacrossallsavedunique(source,map,slot)occurrences. Duplicateprofilementionsdeduplicatedonlywhenexactsamesource/member/slot."
+    },
+    "policy": "Reuseexistingttex013canonicalRGB/floatheightandMid/Highoutputsunchangedincludinggroundprofileandnormalmath. Preservebase008Low/nativeidentityseparately; no008generationornewmasterpackage. Publichelperindependentaliasreceiptstillrequired."
+  },
+  "acceptanceRequirements": [
+    "ExactlyoneGPTgenerationforeachof7newidentities; retainrawandprompt. ActualRGBsource>=8xwidthandheightandexactaspect,onecanonicalRGB+floatheightpackage,allfit/registrationoncebeforetiers. Noextra008generationandnoseparatetierauthoring.",
+    "Useunchangedreviewedprepare/derivepath, craft(False)atmasteronce, directMid4defaultHigh8bothfromsameuncompressedmasters. Allenhancedcolour/height/XYZmapslossyWebP92method6.",
+    "Bothactualtiersreviewunchangednative-vsreplacementBOXsamehalfandquartersize,physicalrepeats/edgephaseandopposeddecodedrelief. Metricsdiagnosticonly,photographicclarity/forms/style/feature-scalerequireactualinspection.",
+    "008aliaspublicproofmustbindbothdistinctnativeIDs/all4mipsandseparateLowtoexistingreviewedmaster+all10tiers, nofalseclaim8newmasters/80newmaps. Sevennewmasters70newmapsplusreuse10maps/eightnativebindings."
+  ],
+  "limits": [
+    "FullHexenII+Portalordinaryworldandotherfamiliesremainactive; noalltexturecompletion. Largerfrozen098stillheldundersized,APIchoicependingnotapproved.",
+    "NoHexenengine/runtimepackbinding/owneracceptance/releaseprooffromofflineassets. Currentstaged/committedforeignworkandpriorreceiptsremainpreserved.",
+    "Planapprovaldoesnotproveactualgenerationcount,art,codec/mathorownerapproval; new7actualoutputspluscontentaliasneedpublic/artqualification."
+  ],
+  "reviewerEffects": "OnlyrequestedplanreviewJSONandtemporaryread-onlyaliasauditdiagnosticswritten. Nooriginal/prompt/tool/master/tier/Git/provider/processmutations."
+}

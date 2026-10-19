@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-10-19T03:52:57.624765+00:00",
+  "verdict": "PASS narrowboundaryCLI independentcodereview andpublicchecks; no unresolvedrequiredcodefindings",
+  "source": {
+    "file": "tools/texture_sheets/register_texture_boundary.py",
+    "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee",
+    "bytes": 10541
+  },
+  "portableRegression": {
+    "file": "tests/texture_boundary_registration_test.py",
+    "sha256": "f40432e8d5636131a5af2c693ea736fe07dc246eadec5c7078dbaa6a2a3ae605",
+    "bytes": 14101
+  },
+  "explicitActualAndRedGreenProof": {
+    "file": "docs/hexen2/textures/batch-005-boundary-public-tests-v2.json",
+    "sha256": "f04d34d4758f2a10a36f7e2fe6d8efa3b0792daac636917e928e66937959f334",
+    "bytes": 5571
+  },
+  "selfContainedDefaultProof": {
+    "file": "docs/hexen2/textures/batch-005-boundary-public-portable-tests.json",
+    "sha256": "fd1db9e6f2db91b7c74eddcc8f3bd05653f05a445437f6622861cefbc9b72234",
+    "bytes": 2444
+  },
+  "reviewedBehavior": [
+    "Y-only boundaryforcing withperiodic2DdiscreteLaplacian andzeroMeanFloat64field; dimensions/indexcoordinates unchanged; integer rint/clip atfinalRGB only",
+    "Modernunregistered8x sourcepackage restrictedto original/generated/prompt/optionallandmarks; native8minimum/div4; canonicalRGBPNG andfloat32height withstrictNPYpayload viaexistingreader",
+    "Exactall4canonical coretoolroles/paths+hashes, input/masterhashes andfinishreplay; registrationaxis/landmarkpoints matchsource; no edgeAnchor/duplicateperiodicstage",
+    "Source checks completebeforeoutputmkdir; outputexisting/file/danglingsymlink refused; watchedinputscheckedagainbeforeandafterwriter",
+    "Exactlyonecraftcall occursafterYcorrection; previousheight is validation/provenanceonly, notanauthoringinput; nocompressedtier orprovidercall",
+    "Newenvironment metadata records actualPython/Pillow/Numpy/WebP; single sourcegenerationcount remains1 andmasterRevisionbindsoldrecipe/RGB/height hashes"
+  ],
+  "resolvedFindings": [
+    {
+      "issue": "Missing/redirectedcoretoolwitness accepted",
+      "status": "Fixedin3a96; verifiedpublicnegativecases andsourceinspection"
+    },
+    {
+      "issue": "Noncanonicaloutputfilenames inherited",
+      "status": "Fixedin3a96; verifiedpublicnegativecases andsourceinspection"
+    },
+    {
+      "issue": "Emptyperiodicmarker couldbypassrepeatguard",
+      "status": "Fixedin3a96; verifiedpublicnegativecases andsourceinspection"
+    },
+    {
+      "issue": "TrailingNPYbytes silentlyignored",
+      "status": "Fixedin3a96; verifiedpublicnegativecases andsourceinspection"
+    },
+    {
+      "issue": "Landmarkmetadata contradictedsourceinputs",
+      "status": "Fixedin3a96; verifiedpublicnegativecases andsourceinspection"
+    }
+  ],
+  "staticCraftCallCount": 1,
+  "remainingRequiredFindings": [],
+  "corePreservation": [
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "bytes": 7692
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "bytes": 13322
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    }
+  ],
+  "limits": [
+    "Code/publicCLI pass doesnotclear final20correctedWebPmaps orartisticseam/relief acceptance.",
+    "Defaultregression uses onlyownedsyntheticfixtures; explicitactualcase is opt-in and dependsontemporarypre-cleanupreviewfixtures. Its all10run issealedseparately.",
+    "No tool/core/asset/Git edit performedbyreviewer; onlypermittedtest andverificationdocs changed."
+  ]
+}

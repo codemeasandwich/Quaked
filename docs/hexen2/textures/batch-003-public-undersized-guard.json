@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-10-19T02:10:35.150028+00:00",
+  "verdict": "PASS actual undersized-source guard; ttex098 remains unqualified and excluded",
+  "nativeDimensions": [
+    256,
+    128
+  ],
+  "rawDimensions": [
+    1774,
+    887
+  ],
+  "requiredMinimum": [
+    2048,
+    1024
+  ],
+  "exactAspect": true,
+  "generationCountDeclared": 1,
+  "sourceInputs": {
+    "original": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/09-ttex098-f527d81ccb18.png",
+      "sha256": "a294cbd90ed429ef5f7617e5edf25c814148f3bacca71eedf7653675dc6bf025"
+    },
+    "generated": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/generated/ttex098.png",
+      "sha256": "fad6a3ff2d7dc03d6d8ce29f3a583a32a35865801a809e3840a9fa7b9b1aa7bf"
+    },
+    "prompt": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/prompts/ttex098.txt",
+      "sha256": "8540ad69535546c7db1966c2f3a3c49766b2887f7516a397812ad8de9cdde471"
+    }
+  },
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_texture_master.py",
+    "--original",
+    "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/09-ttex098-f527d81ccb18.png",
+    "--generated",
+    "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/generated/ttex098.png",
+    "--prompt",
+    "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/prompts/ttex098.txt",
+    "--name",
+    "ttex098",
+    "--edition",
+    "portals",
+    "--profile",
+    "ground",
+    "--output",
+    "/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/hexen003-undersized-guard-hc9hx25a/must-not-be-authored"
+  ],
+  "exitCode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_texture_master.py\", line 127, in <module>\n    main()\n  File \"/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_texture_master.py\", line 70, in main\n    require(generated.width >= dimensions[0] and generated.height >= dimensions[1],\n  File \"/Users/bri/SOURCE/Quaked/tools/texture_sheets/derive_texture_tiers.py\", line 30, in require\n    raise ValueError(message)\nValueError: Generator output is too small for8x; never upscale it\n",
+  "noOutputDirectoryCreated": true,
+  "noAcceptedMasterOrTiers": true,
+  "sourcesStable": true,
+  "limits": [
+    "No generation, API/provider action, upscale, art acceptance or runtime change; owner API choice remains outside this check."
+  ]
+}

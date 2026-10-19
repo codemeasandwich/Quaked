@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-19T05:56:57.637641+00:00",
+  "owner": "/root/hexen_campaign_review",
+  "purpose": "Preserve exact final inspection and selected initial failure witnesses without changing sealed art receipts or authoring assets.",
+  "sealedReceiptAnchors": [
+    {
+      "file": "docs/hexen2/textures/batch-006-art-review.json",
+      "sha256": "a39cc79a4066d0f0f62e8b86330db2fd75bb91ba0bd178346967e18384e73b0d"
+    },
+    {
+      "file": "docs/hexen2/textures/batch-006-art-review-v2.json",
+      "sha256": "959886c98c2c1acbd07209c0e7895f89d0dd75fa1e1be12b511b5d4863dd09ad"
+    }
+  ],
+  "copies": [
+    {
+      "role": "initial exact source-bound inspection snapshot",
+      "source": {
+        "file": "/private/tmp/h2-batch006-review-actual/inspection.json",
+        "sha256": "2d9724c01faf623aa5e0f15bdcf5f87bbb26361a37fc6fffaf99969c52038e55",
+        "bytes": 64208
+      },
+      "durable": {
+        "file": "docs/hexen2/textures/batch-006-art-evidence/initial/inspection.json",
+        "sha256": "2d9724c01faf623aa5e0f15bdcf5f87bbb26361a37fc6fffaf99969c52038e55",
+        "bytes": 64208
+      },
+      "byteIdentical": true
+    },
+    {
+      "role": "initial exact inspection producer",
+      "source": {
+        "file": "/private/tmp/h2-batch006-art-inspect.py",
+        "sha256": "3216bf32f5c0eda468d907ca919699ce7dac153686e0facd65159d86f44603d0",
+        "bytes": 4221
+      },
+      "durable": {
+        "file": "docs/hexen2/textures/batch-006-art-evidence/initial/inspection.py",
+        "sha256": "3216bf32f5c0eda468d907ca919699ce7dac153686e0facd65159d86f44603d0",
+        "bytes": 4221
+      },
+      "byteIdentical": true
+    },
+    {
+      "role": "final exact source-bound inspection snapshot",
+      "source": {
+        "file": "/private/tmp/h2-batch006-review-final-actual/inspection.json",
+        "sha256": "54756f4430df15d0b91d02bd72ef58d455f3f3b5f6eec26d0bbb8a31bbfacff9",
+        "bytes": 64460
+      },
+      "durable": {
+        "file": "docs/hexen2/textures/batch-006-art-evidence/final/inspection.json",
+        "sha256": "54756f4430df15d0b91d02bd72ef58d455f3f3b5f6eec26d0bbb8a31bbfacff9",
+        "bytes": 64460
+      },
+      "byteIdentical": true
+    },
+    {
+      "role": "final exact inspection producer",
+      "source": {
+        "file": "/private/tmp/h2-batch006-art-inspect-final.py",
+        "sha256": "fd430984f5989c9a441229611df152393a7342b5fe882d71dc7e9299c29e097d",
+        "bytes": 4239
+      },
+      "durable": {
+        "file": "docs/hexen2/textures/batch-006-art-evidence/final/inspection.py",
+        "sha256": "fd430984f5989c9a441229611df152393a7342b5fe882d71dc7e9299c29e097d",
+        "bytes": 4239
+      },
+      "byteIdentical": true
+    },
+    {
+      "role": "Actual final both-tier X/Y/XY corner diffuse, height, XYZ and opposed-light witness",
+      "source": {
+        "file": "/private/tmp/h2-batch006-review-final-actual/rtex001-actual-seams-corners.png",
+        "sha256": "da1e7712908990e825da986817692d41d7f825239863597da1c3bf9f13f4d1e7",
+        "bytes": 764989
+      },
+      "durable": {
+        "file": "docs/hexen2/textures/batch-006-art-evidence/final/rtex001-actual-seams-corners.png",
+        "sha256": "da1e7712908990e825da986817692d41d7f825239863597da1c3bf9f13f4d1e7",
+        "bytes": 764989
+      },
+      "byteIdentical": true
+    },
+    {
+      "role": "Actual final both-tier X/Y/XY corner diffuse, height, XYZ and opposed-light witness",
+      "source": {
+        "file": "/private/tmp/h2-batch006-review-final-actual/rtex095-actual-seams-corners.png",
+        "sha256": "34e8512559873c2af244c9620c4c0d02552ea5b03bd3216f1ae962badd141ed8",
+        "bytes": 1181950
+      },
+      "durable": {
+        "file": "docs/hexen2/textures/batch-006-art-evidence/final/rtex095-actual-seams-corners.png",
+        "sha256": "34e8512559873c2af244c9620c4c0d02552ea5b03bd3216f1ae962badd141ed8",
+        "bytes": 1181950
+      },
+      "byteIdentical": true
+    },
+    {
+      "role": "Actual final both-tier X/Y/XY corner diffuse, height, XYZ and opposed-light witness",
+      "source": {
+        "file": "/private/tmp/h2-batch006-review-final-actual/rtex439-actual-seams-corners.png",
+        "sha256": "e6fd134f5bab86ed6bf528b901db1eb9f2a672c6ed59128c1ce841c32c908051",
+        "bytes": 873798
+      },
+      "durable": {
+        "file": "docs/hexen2/textures/batch-006-art-evidence/final/rtex439-actual-seams-corners.png",
+        "sha256": "e6fd134f5bab86ed6bf528b901db1eb9f2a672c6ed59128c1ce841c32c908051",
+        "bytes": 873798
+      },
+      "byteIdentical": true
+    },
+    {
+      "role": "Final semantic layer-mask alignment witness",
+      "source": {
+        "file": "/private/tmp/h2-batch006-final-layer-mask.png",
+        "sha256": "6edf6951fb609b4ae67ab3b230367644a498566c70431446053340e725e3f9bc",
+        "bytes": 2239328
+      },
+      "durable": {
+        "file": "docs/hexen2/textures/batch-006-art-evidence/final/rtex001-layer-mask.png",
+        "sha256": "6edf6951fb609b4ae67ab3b230367644a498566c70431446053340e725e3f9bc",
+        "bytes": 2239328
+      },
+      "byteIdentical": true
+    },
+    {
+      "role": "Initial failed layer-order semantic ROI witness",
+      "source": {
+        "file": "/private/tmp/h2-batch006-rtex001-height-rois.png",
+        "sha256": "251447c6cb2ae869e383128fc91f715c77810b4d16ea75a20798335a9f16ec55",
+        "bytes": 2296865
+      },
+      "durable": {
+        "file": "docs/hexen2/textures/batch-006-art-evidence/initial/rtex001-height-rois.png",
+        "sha256": "251447c6cb2ae869e383128fc91f715c77810b4d16ea75a20798335a9f16ec55",
+        "bytes": 2296865
+      },
+      "byteIdentical": true
+    },
+    {
+      "role": "Initial failed layer-order semantic ROI witness",
+      "source": {
+        "file": "/private/tmp/h2-batch006-rtex001-height-rois.json",
+        "sha256": "5e93afa21835e214cde6aa2b30ae67ed153ba3b4545bff4ac193912f4a326bf2",
+        "bytes": 1103
+      },
+      "durable": {
+        "file": "docs/hexen2/textures/batch-006-art-evidence/initial/rtex001-height-rois.json",
+        "sha256": "5e93afa21835e214cde6aa2b30ae67ed153ba3b4545bff4ac193912f4a326bf2",
+        "bytes": 1103
+      },
+      "byteIdentical": true
+    },
+    {
+      "role": "Selected initial failure: incorrect facing/substrate relief",
+      "source": {
+        "file": "/private/tmp/h2-batch006-review-actual/rtex001-relief.png",
+        "sha256": "4cd06eedae2c4591774e06fbe685d9d749784e65d6b579f5855d96f718dee7bb",
+        "bytes": 1907148
+      },
+      "durable": {
+        "file": "docs/hexen2/textures/batch-006-art-evidence/initial/rtex001-relief.png",
+        "sha256": "4cd06eedae2c4591774e06fbe685d9d749784e65d6b579f5855d96f718dee7bb",
+        "bytes": 1907148
+      },
+      "byteIdentical": true
+    },
+    {
+      "role": "Selected initial failure: half/quarter fine-pattern fidelity",
+      "source": {
+        "file": "/private/tmp/h2-batch006-review-actual/rtex095-art.png",
+        "sha256": "82bc6004ff6af76284da8f0d6e2e87d1c270bdc39ba602fee1f8b84532aa22dd",
+        "bytes": 1615186
+      },
+      "durable": {
+        "file": "docs/hexen2/textures/batch-006-art-evidence/initial/rtex095-art.png",
+        "sha256": "82bc6004ff6af76284da8f0d6e2e87d1c270bdc39ba602fee1f8b84532aa22dd",
+        "bytes": 1615186
+      },
+      "byteIdentical": true
+    },
+    {
+      "role": "Selected initial failure: introduced horizontal repeat seam",
+      "source": {
+        "file": "/private/tmp/h2-batch006-review-actual/rtex439-art.png",
+        "sha256": "029252e3f5811fc9e5e8891c667725610aea3d08eb9afab965391c1fd4d62f40",
+        "bytes": 869916
+      },
+      "durable": {
+        "file": "docs/hexen2/textures/batch-006-art-evidence/initial/rtex439-art.png",
+        "sha256": "029252e3f5811fc9e5e8891c667725610aea3d08eb9afab965391c1fd4d62f40",
+        "bytes": 869916
+      },
+      "byteIdentical": true
+    }
+  ],
+  "copiedFileCount": 13,
+  "copiedEvidenceBytes": 11887411,
+  "allCopiesByteIdentical": true,
+  "allSourcesRecheckedUnchanged": true,
+  "temporarySourcesDeleted": false,
+  "selectionPolicy": "Retained exact final script/JSON, all three final seam/corner PNGs, final mask overlay, initial script/JSON, initial semantic height ROI PNG/JSON and one decisive initial witness per held material. Other large generic intermediate art/relief grids were not copied; they remain temporary and are reproducible from retained source-bound scripts/JSON and authored asset snapshots. No claim that every indirect thumbnail path in inspection JSON was copied.",
+  "effects": "Only this new evidence directory and exclusive byte-identical copies written. Sealed receipts, art assets, tools and Git state were not mutated; no deletion performed."
+}

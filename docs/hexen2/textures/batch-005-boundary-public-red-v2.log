@@ -1,0 +1,63 @@
+test_actual_two_source_copies_match_reviewed_trials_and_float_height (__main__.RegisterBoundaryCLI) ... ok
+test_exact_independent_y_solution_final_height_and_environment (__main__.RegisterBoundaryCLI) ... ok
+test_existing_destinations_and_bad_prompt_profile_preserved (__main__.RegisterBoundaryCLI) ... ok
+test_flat_y_noop_and_real_measured_registration_input (__main__.RegisterBoundaryCLI) ... ok
+test_missing_redirected_or_changed_core_tool_witness_rejects (__main__.RegisterBoundaryCLI) ... test_noncanonical_filenames_and_inconsistent_landmark_metadata_reject (__main__.RegisterBoundaryCLI) ... FAIL
+test_repeat_correction_presence_even_empty_is_rejected (__main__.RegisterBoundaryCLI) ... FAIL
+test_source_master_and_finish_mismatches_reject_before_write (__main__.RegisterBoundaryCLI) ... ok
+test_trailing_or_wrong_dtype_height_rejects_before_write (__main__.RegisterBoundaryCLI) ... test_undersized_wrong_format_and_legacy_sources_reject (__main__.RegisterBoundaryCLI) ... ok
+
+======================================================================
+FAIL: test_missing_redirected_or_changed_core_tool_witness_rejects (__main__.RegisterBoundaryCLI) (case='missing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/SOURCE/Quaked/tests/register_texture_boundary_test.py", line 178, in test_missing_redirected_or_changed_core_tool_witness_rejects
+    with self.subTest(case=case):self.reject()
+  File "/Users/bri/SOURCE/Quaked/tests/register_texture_boundary_test.py", line 101, in reject
+    self.assertGreater(run.returncode, 0, 'Invalid package accepted')
+AssertionError: 0 not greater than 0 : Invalid package accepted
+
+======================================================================
+FAIL: test_missing_redirected_or_changed_core_tool_witness_rejects (__main__.RegisterBoundaryCLI) (case='redirected')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/SOURCE/Quaked/tests/register_texture_boundary_test.py", line 178, in test_missing_redirected_or_changed_core_tool_witness_rejects
+    with self.subTest(case=case):self.reject()
+  File "/Users/bri/SOURCE/Quaked/tests/register_texture_boundary_test.py", line 101, in reject
+    self.assertGreater(run.returncode, 0, 'Invalid package accepted')
+AssertionError: 0 not greater than 0 : Invalid package accepted
+
+======================================================================
+FAIL: test_noncanonical_filenames_and_inconsistent_landmark_metadata_reject (__main__.RegisterBoundaryCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/SOURCE/Quaked/tests/register_texture_boundary_test.py", line 183, in test_noncanonical_filenames_and_inconsistent_landmark_metadata_reject
+    recipe=copy.deepcopy(self.baseline);recipe['color']['file']=alias.name;self.write_recipe(recipe);self.reject()
+  File "/Users/bri/SOURCE/Quaked/tests/register_texture_boundary_test.py", line 101, in reject
+    self.assertGreater(run.returncode, 0, 'Invalid package accepted')
+AssertionError: 0 not greater than 0 : Invalid package accepted
+
+======================================================================
+FAIL: test_repeat_correction_presence_even_empty_is_rejected (__main__.RegisterBoundaryCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/SOURCE/Quaked/tests/register_texture_boundary_test.py", line 211, in test_repeat_correction_presence_even_empty_is_rejected
+    recipe=copy.deepcopy(self.baseline);recipe['registration']['periodicBoundary']={};self.write_recipe(recipe);self.reject()
+  File "/Users/bri/SOURCE/Quaked/tests/register_texture_boundary_test.py", line 101, in reject
+    self.assertGreater(run.returncode, 0, 'Invalid package accepted')
+AssertionError: 0 not greater than 0 : Invalid package accepted
+
+======================================================================
+FAIL: test_trailing_or_wrong_dtype_height_rejects_before_write (__main__.RegisterBoundaryCLI) (case='trailing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/SOURCE/Quaked/tests/register_texture_boundary_test.py", line 195, in test_trailing_or_wrong_dtype_height_rejects_before_write
+    with self.subTest(case=case):self.reject()
+  File "/Users/bri/SOURCE/Quaked/tests/register_texture_boundary_test.py", line 101, in reject
+    self.assertGreater(run.returncode, 0, 'Invalid package accepted')
+AssertionError: 0 not greater than 0 : Invalid package accepted
+
+----------------------------------------------------------------------
+Ran 10 tests in 17.897s
+
+FAILED (failures=5)

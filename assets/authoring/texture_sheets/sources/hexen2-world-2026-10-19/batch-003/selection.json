@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "batch": "003",
+  "items": [
+    {
+      "name": "rtex022",
+      "edition": "base",
+      "id": "f76620aba40204e5329235a87365ce979cd58c28523ab15231906c3c25d1c625",
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/06-rtex022-f76620aba402.png",
+      "nativeDimensions": [
+        64,
+        176
+      ],
+      "masterDimensions": [
+        512,
+        1408
+      ],
+      "profile": "stone",
+      "brief": "Dark warm-grey/brown weathered masonry in the exact native tall tile layout, including every horizontal course, staggered vertical joint, broad block proportion and cropped edge continuation. Preserve dark recessed mortar and the source's muted mineral wear; natural sharp stone faces, no additional tiny edge stones or a new perimeter frame.",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/prompts/rtex022.txt",
+      "requestedCanvas": "1024x2816",
+      "generationState": "generated-retained",
+      "generationCount": 1,
+      "issuedAt": "2026-10-19T02:01:49.068629+00:00",
+      "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/generated/rtex022.png",
+      "generatedSha256": "f86d4ecfa0e78d8524c19f590a4752277b9917bb053d61f4773e69cf21e4a83a",
+      "generatorOutput": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-316509c6-b552-4b71-b351-8d3e46576d5b.png",
+      "actualGeneratedDimensions": [
+        756,
+        2079
+      ],
+      "sufficientPixels": true,
+      "exactAspect": true,
+      "qualification": "Master and both enhanced tiers independently reviewed; active catalog entry registered",
+      "canonicalPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/masters/rtex022/master.json"
+    },
+    {
+      "name": "ttex098",
+      "edition": "portals",
+      "id": "f527d81ccb18fcb2bd44d70237b50f98fcce68ad1ba7265680115eccd3d52e13",
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/09-ttex098-f527d81ccb18.png",
+      "nativeDimensions": [
+        256,
+        128
+      ],
+      "masterDimensions": [
+        2048,
+        1024
+      ],
+      "profile": "ground",
+      "brief": "Rugged dark brown mineral rock ledges with the exact original sweeping white frost/ice bands and short icicles. Preserve the dark exposed rock areas, placement/width/flow of each major white icy crest and the coarse rocky form scale. Sharp photographic frozen mineral rock with plausible thin milky ice, not clouds, drawn ribbons, white paint, foam or invented new boulders. Keep white coverage and brown/charcoal palette faithful at a distance.",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/prompts/ttex098.txt",
+      "requestedCanvas": "4096x2048",
+      "generationState": "held-undersized",
+      "generationCount": 1,
+      "issuedAt": "2026-10-19T02:01:49.069010+00:00",
+      "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/generated/ttex098.png",
+      "generatedSha256": "fad6a3ff2d7dc03d6d8ce29f3a583a32a35865801a809e3840a9fa7b9b1aa7bf",
+      "generatorOutput": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-075715be-7693-4a46-a71e-f84a55a355c8.png",
+      "actualGeneratedDimensions": [
+        1774,
+        887
+      ],
+      "sufficientPixels": false,
+      "exactAspect": true,
+      "qualification": "No canonical master or enhanced tier accepted; explicit sized-generation choice/local API key pending"
+    }
+  ],
+  "scope": "Advance tall and larger native sources; actualrawpixeladequacyisrequired, neverreplaceHighwithupscale"
+}

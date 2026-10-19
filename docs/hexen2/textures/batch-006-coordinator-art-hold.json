@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-19T04:49:35.573012+00:00",
+  "reviewer": "initiating coordinator visual inspection",
+  "verdict": "ART HOLD initial Portal rtex439: introduced horizontal stitch in vertical timber at repeated join",
+  "nativeIdentity": "2880c270e3b99a91010e650e191d5280fb056cb400ef8f6be9d287ee50d8cef6",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/masters/rtex439/master.json",
+    "sha256": "5f036135f9e448ee54c0a0a1d27b52882277b4866e401a4699334b7d5d8262b2"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers/rtex439/manifest.json",
+    "sha256": "5b3d11806148c6747a23dc110585e57cdfb9686e50b469884d247fad4e56a301"
+  },
+  "reviewImages": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/review/rtex439-mid-review.jpg",
+      "sha256": "d1e250d06c25cbbdbc7fe2f475914deb64538ff5e277b52a50266d1ed4eec6fc"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/review/rtex439-high-review.jpg",
+      "sha256": "18caa1ceb8f1d6817b7e0e009634a6361d6df56ab3eee08de06734fe45921e41"
+    }
+  ],
+  "nativeWrapYMean": 4.4375,
+  "nativeInteriorYMean": 3.472933070866142,
+  "proposedSameSourceCorrection": {
+    "algorithm": "periodic-plus-smooth discrete Poisson, zero-mean, v1",
+    "axes": [
+      "y"
+    ],
+    "featureRelocation": false,
+    "perimeterBand": false,
+    "meanAbsoluteCorrection": 0.4309835888444414,
+    "maxAbsoluteCorrection": 40.04381394631839,
+    "clippedChannelFraction": 0.04749933878580729,
+    "before": {
+      "wrap_x_mean": 18.0185546875,
+      "wrap_y_mean": 17.483072916666668,
+      "interior_x_mean": 9.521366524991844,
+      "interior_y_mean": 3.6852853128054743
+    },
+    "after": {
+      "wrap_x_mean": 17.973307291666668,
+      "wrap_y_mean": 5.567708333333333,
+      "interior_x_mean": 9.501768387149381,
+      "interior_y_mean": 3.6818601845063545
+    },
+    "meanRGBChange": [
+      0.011297225952148438,
+      0.0020847320556640625,
+      0.0296783447265625
+    ],
+    "distanceChecks": {
+      "2": {
+        "dimensions": [
+          32,
+          64
+        ],
+        "RGBMeanAbsoluteError": 6.403068542480469
+      },
+      "4": {
+        "dimensions": [
+          16,
+          32
+        ],
+        "RGBMeanAbsoluteError": 4.0007476806640625
+      }
+    }
+  },
+  "qualification": "A corrected RGB candidate and lower edge metric do not establish final both-tier visual/relief acceptance. Original package/maps remain immutable until successor review."
+}

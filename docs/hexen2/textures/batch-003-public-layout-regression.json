@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-10-19T02:15:24.676419+00:00",
+  "verdict": "HOLD",
+  "inputs": [
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tests/texture_batch_review_test.py",
+      "sha256": "b72cbe01d8f96b0e9cf7013a192f07ae03637fa3662941acfec08e793f8e51b2",
+      "bytes": 5515
+    },
+    {
+      "file": "/private/tmp/texture-review-before-tall-fix.py",
+      "sha256": "0bb1bc2db00921078bb41d4d3cd37d4c92c0efda35b129d3d3b07424c53edc6a",
+      "bytes": 6218
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/build_texture_batch_review.py",
+      "sha256": "b79a4fcfdcfa45df7f911f3f345d3e993acdecbcc0d5f8a29a95ec4fa3d35e3c",
+      "bytes": 7004
+    }
+  ],
+  "inputsStable": true,
+  "runs": [
+    {
+      "phase": "RED",
+      "producer": {
+        "file": "/private/tmp/texture-review-before-tall-fix.py",
+        "sha256": "0bb1bc2db00921078bb41d4d3cd37d4c92c0efda35b129d3d3b07424c53edc6a",
+        "bytes": 6218
+      },
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "/Users/bri/SOURCE/Quaked/tests/texture_batch_review_test.py"
+      ],
+      "environmentOverride": {
+        "QUAKED_REVIEW_BUILDER": "/private/tmp/texture-review-before-tall-fix.py"
+      },
+      "exitCode": 1,
+      "log": {
+        "file": "/Users/bri/SOURCE/Quaked/docs/hexen2/textures/batch-003-public-layout-red.log",
+        "sha256": "52289a902af562a0e1b9ece5d7ba926b1bd32de20763ba76f311654a981dd781",
+        "bytes": 2845
+      }
+    },
+    {
+      "phase": "GREEN",
+      "producer": {
+        "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/build_texture_batch_review.py",
+        "sha256": "b79a4fcfdcfa45df7f911f3f345d3e993acdecbcc0d5f8a29a95ec4fa3d35e3c",
+        "bytes": 7004
+      },
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "/Users/bri/SOURCE/Quaked/tests/texture_batch_review_test.py"
+      ],
+      "environmentOverride": {
+        "QUAKED_REVIEW_BUILDER": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/build_texture_batch_review.py"
+      },
+      "exitCode": 1,
+      "log": {
+        "file": "/Users/bri/SOURCE/Quaked/docs/hexen2/textures/batch-003-public-layout-green.log",
+        "sha256": "a78a163d5c7c2b6f75de300de7f3a83d917bf5ff80b08855556b91203d581f8e",
+        "bytes": 1364
+      }
+    }
+  ],
+  "limits": [
+    "Syntheticprimary-colour layout checks; no realtexture/mapgeneration, artacceptance or runtimeclaim.",
+    "Each ROIrequiresstrictsyntheticcolour-order identity, not anaesthetic RGBerror threshold."
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-10-19T03:50:25.507141+00:00",
+  "verdict": "PASS portable default9syntheticgroups/1explicitactualfixtureSKIP plus sealedv2all10actual-enabledPASS",
+  "defaultCommand": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "/Users/bri/SOURCE/Quaked/tests/texture_boundary_registration_test.py"
+  ],
+  "defaultExitCode": 0,
+  "defaultLog": {
+    "file": "docs/hexen2/textures/batch-005-boundary-public-portable-tests.log",
+    "sha256": "a3d795f08ad7087b18e2aaa65de58e8f5b939c95be02e69395bb96e800278fa6",
+    "bytes": 1180
+  },
+  "inputsBefore": [
+    {
+      "file": "tests/texture_boundary_registration_test.py",
+      "sha256": "f40432e8d5636131a5af2c693ea736fe07dc246eadec5c7078dbaa6a2a3ae605",
+      "bytes": 14101
+    },
+    {
+      "file": "tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee",
+      "bytes": 10541
+    }
+  ],
+  "inputsAfter": [
+    {
+      "file": "tests/texture_boundary_registration_test.py",
+      "sha256": "f40432e8d5636131a5af2c693ea736fe07dc246eadec5c7078dbaa6a2a3ae605",
+      "bytes": 14101
+    },
+    {
+      "file": "tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee",
+      "bytes": 10541
+    }
+  ],
+  "inputsStable": true,
+  "explicitActualCopyEvidence": {
+    "file": "docs/hexen2/textures/batch-005-boundary-public-tests-v2.json",
+    "sha256": "f04d34d4758f2a10a36f7e2fe6d8efa3b0792daac636917e928e66937959f334",
+    "bytes": 5571
+  },
+  "sameTestBytesAsSealedV2": true,
+  "retainedV2Source": {
+    "file": "docs/hexen2/textures/batch-005-boundary-public-tests-v2-source.py",
+    "sha256": "f40432e8d5636131a5af2c693ea736fe07dc246eadec5c7078dbaa6a2a3ae605",
+    "bytes": 14101
+  },
+  "retainedPreGuardTool": {
+    "file": "docs/hexen2/textures/batch-005-boundary-before-guards-source.py",
+    "sha256": "5cfe288f4f35a65118eff832cf19fde8755300c133c4bab8023324eaec80f81b",
+    "bytes": 9585
+  },
+  "testPathMove": "Onlyfilename changed; contents identical tosealedv2test. Futuredefaultneedsno gameassets orprivateactualtrialpaths.",
+  "limits": [
+    "No wideCIworkflow edit, source/tool/assets/Git edit; portabletestfile is the permitted targetedregression change.",
+    "Actualcopiesevidence is the alreadysealedv2run, notrepeatedidenticalGPU/game/codecqualification."
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "name": "ttex051",
+  "edition": "portals",
+  "generationCount": 1,
+  "generatorPolicy": "One retained generator output; this CLI never calls a generator",
+  "inputs": {
+    "original": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/originals/08-ttex051-52ff20a2a8a1.png",
+      "sha256": "f7178e7d048477f0852a6c1deba3161f5c634184607439cc568556f99c6098b7"
+    },
+    "generated": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/generated/ttex051.png",
+      "sha256": "dc772e732e6e2ac4076e3d098286f84a75d08cf5b2911b71584f4a35286a3222"
+    },
+    "prompt": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/prompts/ttex051.txt",
+      "sha256": "5fbecc203bdd7597dd9003bf17679812fa84c4f5356cd1604f3062a2046c4d80"
+    }
+  },
+  "nativeDimensions": [
+    64,
+    128
+  ],
+  "generatedDimensions": [
+    887,
+    1774
+  ],
+  "masterDimensions": [
+    512,
+    1024
+  ],
+  "canonicalMasterFactor": 8,
+  "color": {
+    "file": "color.png",
+    "sha256": "d0ce4636c78b23da5b45511f7a1972417f01a250f500086def436cb447d7d27d"
+  },
+  "height": {
+    "file": "height.npy",
+    "sha256": "9bd69610d48b369d7a74207d6acd5b8602902262a71f7b3a67843f02fc179189",
+    "dtype": "float32",
+    "authoredOnce": true,
+    "quantizedTo8Bit": false,
+    "profile": {
+      "bands": [
+        0.8,
+        1,
+        0.5,
+        0.2
+      ],
+      "groove": 0.8,
+      "bump": 0.2,
+      "glow": 0,
+      "strength": 0.3,
+      "cap": 0.5
+    },
+    "uniqueSamples": 519382
+  },
+  "registration": {
+    "method": "photographic",
+    "factor": 8,
+    "verticalLandmarks": null,
+    "colorStrength": 0.65,
+    "fieldSigma": 0.75,
+    "edgeAnchor": false,
+    "comparisonDivisor": 2,
+    "comparisonDimensions": [
+      32,
+      64
+    ],
+    "distanceMeanMaxError": 38.8359375,
+    "distanceMeanMAE": 4.9741872151692705,
+    "donorDistanceMAE": 6.809289296468099,
+    "newClippedChannelFraction": 0.0016295115152994792,
+    "donorContourCorrelation": 0.9993219552275616,
+    "sourceMean": [
+      50.62744140625,
+      27.86181640625,
+      12.24951171875
+    ],
+    "outputMean": [
+      51.933319091796875,
+      28.09433937072754,
+      12.444952011108398
+    ],
+    "donorBoundaries": {
+      "wrap_x_mean": 14.725911458333334,
+      "wrap_y_mean": 12.162760416666666,
+      "interior_x_mean": 8.44113232835943,
+      "interior_y_mean": 4.408453231915933
+    },
+    "boundaries": {
+      "wrap_x_mean": 14.647460937499998,
+      "wrap_y_mean": 12.119791666666668,
+      "interior_x_mean": 8.43643680181833,
+      "interior_y_mean": 4.408388318670577
+    },
+    "passedDistanceCheck": null,
+    "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+    "axis": null,
+    "periodicBoundary": {
+      "algorithm": "periodic-plus-smooth discrete Poisson, zero-mean, v1",
+      "axes": [
+        "y"
+      ],
+      "featureRelocation": false,
+      "perimeterBand": false,
+      "meanAbsoluteCorrection": 0.7448871698583256,
+      "maxAbsoluteCorrection": 35.93719105698787,
+      "clippedChannelFraction": 0.0048783620198567705,
+      "before": {
+        "wrap_x_mean": 14.647460937499998,
+        "wrap_y_mean": 12.119791666666668,
+        "interior_x_mean": 8.43643680181833,
+        "interior_y_mean": 4.408388318670577
+      },
+      "after": {
+        "wrap_x_mean": 14.626302083333332,
+        "wrap_y_mean": 4.845052083333334,
+        "interior_x_mean": 8.430542390329421,
+        "interior_y_mean": 4.408525782013684
+      },
+      "meanRGBChange": [
+        0.002475738525390625,
+        0.00115203857421875,
+        0.0012969970703125
+      ],
+      "distanceChecks": {
+        "2": {
+          "dimensions": [
+            32,
+            64
+          ],
+          "RGBMeanAbsoluteError": 5.017031351725261
+        },
+        "4": {
+          "dimensions": [
+            16,
+            32
+          ],
+          "RGBMeanAbsoluteError": 2.5420150756835938
+        }
+      }
+    }
+  },
+  "tools": {
+    "prepare": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    "finish": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    "derive": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    "craft": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    "boundaryRegistration": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee"
+    }
+  },
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "libwebp": "1.3.2"
+  },
+  "qualification": "Revised sole master; both-tier decoded visual/public checks remain required",
+  "masterRevision": {
+    "replacesUnqualifiedPackageSha256": "c9bf178c06e785c35a0dd29bea4fcd978407b58b446a6a7a7742026030e0c0e9",
+    "previousColorSha256": "5f12a6715d2731ef4f411b78f44f0dfd04a59c7fadb1a26eb4b1031144cce408",
+    "previousHeightSha256": "1fbfd2786818137c39f7985793bdfcf7eb72e129b70995041256cd11550124b0",
+    "generatorOutputUnchanged": true,
+    "notAnotherGeneration": true
+  }
+}

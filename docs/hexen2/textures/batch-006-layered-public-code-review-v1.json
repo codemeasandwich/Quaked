@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS independent code review; no unresolved required finding",
+  "source": {
+    "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+    "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d"
+  },
+  "publicTests": {
+    "file": "docs/hexen2/textures/batch-006-layered-public-tests-v1.json",
+    "sha256": "1aad67c7234f342633db2508b16bc28bb7ad987c8856d416e552d09a9a6e8722"
+  },
+  "planReview": {
+    "file": "docs/hexen2/textures/batch-006-repair-plan-public-review.json",
+    "sha256": "52a75b05d83e7ef7dc6f9e94b6a34f73261e79a55f6c4951be4e248a66ea124c"
+  },
+  "reviewedContracts": [
+    "Fixed recipe/output authoring surface, source verification material/nativeID/name/edition/package hash/path binding and canonical four tool role paths/hashes.",
+    "Raw/native/prompt/optional measured-landmark input hashes, dimensions/aspect/8x adequacy, original finish replay exactPNG; prior RGB and NPY are not read.",
+    "Single craft quantize_height=False computes float64 detail; baseline float32 SHA is compared only to predecessor recipe. Plane composition uses unquantized detail and one final float32 cast.",
+    "Existing brick_mask, periodic gblur and plane formula reused. Old256-reference bevel scaling retained. NonBoolean finite bounded parameters, strict ordered/clipping-safe planes, bounded polygons/nonzero area and both material mask regions required.",
+    "Unrevised single-source canonical prepare input only; authoringPolicy/masterRevision/periodicBoundary and extra tool/source roles rejected. New output refuses existing path/symlink and uses exclusive file creation.",
+    "Input source/recipe/proof/tool stability checked before creation and before final manifest. Output includes complete source-bound recipe, code hashes, current environment, unchangedRGB/reusedgeneration history and semantic-mortar qualification limit.",
+    "No generation, per-tier authoring, old decoded encoder, runtime API, resource binding or core-source mutation introduced."
+  ],
+  "limitations": [
+    "This is source/public CLI qualification of the adapter, not a final actual two-tier asset or artistic acceptance.",
+    "Manual masks and two-plane order do not prove internal mortar ordering; artist and actual decoded-tier semantic samples remain required.",
+    "Polygon guards establish bounded/nondegenerate raster inputs, not a general computational geometry validator; the fixed reviewed material recipe is the intended surface."
+  ]
+}

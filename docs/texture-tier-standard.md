@@ -1,18 +1,18 @@
 # Shared Quake and Hexen texture standard
 
-Owner instruction,19 October2026: this standard applies to Quake, its official expansions, Hexen II and Portal of Praevus going forward.
+Owner instruction, 19 October 2026: this standard applies to Quake, its official expansions, Hexen II and Portal of Praevus going forward.
 
 | Tier | Dimensions relative to native | Source |
 |---|---|---|
-| Low | 1×width and height | Unchanged original game texture |
-| Mid (default) | 4×width and height | Direct reduction of the one retained master |
-| High | 8×width and height | Direct reduction of the same retained master |
+| Low | 1× width and height | Unchanged original game texture |
+| Mid (default) | 4× width and height | Direct reduction of the one retained master |
+| High | 8× width and height | Direct reduction of the same retained master |
 
-Generate exactly one photographic source per native texture identity, at least8× native width and height. Retain it and its exact prompt. Complete colour/layout/edge registration once at master resolution and retain one active RGB/relief master package. Never generate or author Mid and High independently. Do not infer a native alias from a matching texture name alone.
+Generate exactly one photographic source per distinct native texture content, at least 8× native width and height. Retain it and its exact prompt. Complete colour/layout/edge registration once at master resolution and retain one active RGB/relief master package. Never generate or author Mid and High independently. Do not infer a native alias from a matching texture name alone. Exact-content aliases may reference the same retained master package and tier files only after checking native dimensions, palette, indexed pixels, every original mip level, provenance and material semantics. Preserve each native identity and Low binding, record the proof, and distinguish physical file counts from native map bindings; never generate a redundant master for verified identical content.
 
-Author scalar relief once at master resolution, with full-precision height values. Derive each tier's height directly from that scalar master and correctly scaled normals from that uncompressed reduced height. Height amplitude is shared; normal slopes account for texel density. Do not derive a tier or its normals from an already compressed tier map. The masters are retained lossless authoring data; every enhanced-tier colour, height and normal XYZ map is lossy WebP quality92, compression method6.
+Author scalar relief once at master resolution, with full-precision height values. Derive each tier's height directly from that scalar master and correctly scaled normals from that uncompressed reduced height. Height amplitude is shared; normal slopes account for texel density. Do not derive a tier or its normals from an already compressed tier map. The masters are retained lossless authoring data; every enhanced-tier colour, height and normal XYZ map is lossy WebP quality 92, compression method 6.
 
-Use a Python3 environment with Pillow and NumPy installed (the current verified authoring environment is `/usr/bin/python3`). The shared offline CLI is `tools/texture_sheets/derive_texture_tiers.py`:
+Use a Python 3 environment with Pillow and NumPy installed (the current verified authoring environment is `/usr/bin/python3`). The shared offline CLI is `tools/texture_sheets/derive_texture_tiers.py`:
 
 ```sh
 /usr/bin/python3 tools/texture_sheets/derive_texture_tiers.py \
@@ -20,10 +20,14 @@ Use a Python3 environment with Pillow and NumPy installed (the current verified 
   --height-master master-height.npy --output NEW_OUTPUT_DIRECTORY
 ```
 
-It requires unchanged native input, lossless RGB PNG master of matching aspect and at least8× dimensions, and a matching finite float32/float64 height array in[0,1]. It refuses existing destinations, too-small masters, malformed scalar sources and invalid strengths. It does not generate art, author height, register resources, change runtime settings or alter Low. Output manifests declare Mid as default for future integration; existing game settings are not silently rewritten by an authoring tool.
+It requires unchanged native input, lossless RGB PNG master of matching aspect and at least 8× dimensions, and a matching finite float32/float64 height array in [0,1]. It refuses existing destinations, too-small masters, malformed scalar sources and invalid strengths. It does not generate art, author height, register resources, change runtime settings or alter Low. Output manifests declare Mid as default for future integration; existing game settings are not silently rewritten by an authoring tool.
 
 Both enhanced tiers require comparisons against the original at half and quarter original dimensions, using the same BOX reduction on both inputs. Record decoded measurements but review actual colour/style/intention, forms and feature scale visually. Check repeated tiles and relief under opposed lights at both resolutions. Preserve source edge alignment and intended material joints; reject new perimeter bevels/shading, missing little bricks, pixel contours and artificial grain. Record decoded height/normal compression divergence rather than assuming exact equality.
 
-The first application is the Hexen authoring increment in `docs/hexen2/textures/TWO-TIER.md`. Existing Quake deliveries and historical receipts are preserved; new Quake assets use this common standard. Retrofitting older assets requires their retained adequate-resolution source, never upscaling or transcoding the compressed4× counterpart. Runtime/pack binding and owner acceptance remain independently verified steps.
+A visually confirmed top/bottom discontinuity in an unqualified opaque material can be corrected before final relief authoring with `tools/texture_sheets/register_texture_boundary.py`. This opt-in command validates and replays the retained original/source/prompt package, subtracts a zero-mean periodic Poisson boundary field from the lossless registered RGB, and authors the final scalar height once. It never moves features or consumes tier maps. Its new package keeps the same single generated source; pass that package's RGB and float height directly to the existing tier CLI. This is not automatic tiling acceptance: review both axes, corners, local clipping, distance similarity and decoded relief for both tiers. Retain prior failed receipts and registration recipes when retiring superseded unqualified binaries.
 
-The current derivation CLI covers opaque RGB surfaces with scalar relief and separate XYZ normals. Alpha/glass masks, emission, liquid, sky and animation families require their own reviewed source semantics; this tool does not qualify them by merely resizing them. Their future enhanced tiers must still obey the same common-master4×/8× and Q92/method6 standard.
+For a facing above exposed substrate, use `tools/texture_sheets/prepare_layered_texture_master.py --recipe SOURCE_BOUND_JSON --output NEW_DIRECTORY`. It reuses the established layered-veneer masks, wrapped blur and ordered material planes, keeping RGB unchanged. Full-precision photographic detail is composed into the explicit planes at master resolution, with one final float32 cast. The recipe pins native identity, the verified original master, native/RGB hashes, structural regions and clipping-safe plane values. `bevelPixels` retains its old 256-reference meaning: a value of 1.5 at a 1024px square master gives a six-master-pixel interface. This affects intended material interfaces, never the image perimeter. Derive both tiers with the shared tier CLI. Plane bounds establish facing above substrate; actual mortar-versus-brick samples and both-tier lighting still require separate review. The portable interface regression is `tests/texture_layered_master_test.py`.
+
+The first application is the Hexen authoring increment in `docs/hexen2/textures/TWO-TIER.md`. Existing Quake deliveries and historical receipts are preserved; new Quake assets use this common standard. Retrofitting older assets requires their retained adequate-resolution source, never upscaling or transcoding the compressed 4× counterpart. Runtime/pack binding and owner acceptance remain independently verified steps.
+
+The current derivation CLI covers opaque RGB surfaces with scalar relief and separate XYZ normals. Alpha/glass masks, emission, liquid, sky and animation families require their own reviewed source semantics; this tool does not qualify them by merely resizing them. Their future enhanced tiers must still obey the same common master 4×/8× and Q92/method 6 standard.

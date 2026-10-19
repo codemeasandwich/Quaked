@@ -1,0 +1,40 @@
+{
+  "state": "complete",
+  "completedAt": "2026-10-19T04:07:43.528858+00:00",
+  "authority": "Owner-authorized cleanup of coordinator-owned obsolete scratch after final asset qualification. Every removed file has a byte-identical retained source, final master or diagnostic copy.",
+  "files": [
+    {
+      "removed": "/private/tmp/quaked-batch005-seam-trial/trial.json",
+      "retainedEquivalent": "docs/hexen2/textures/batch-005-seam-diagnostic/trial.json",
+      "sha256": "fec5b37595403b6e6abeaeaed3bd80f8876746e19fea52650c31969f50e1b5ba",
+      "bytes": 1135
+    },
+    {
+      "removed": "/private/tmp/quaked-batch005-seam-trial/rtex043.png",
+      "retainedEquivalent": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/masters-registered-v2/rtex043/color.png",
+      "sha256": "5256412f02b044279e4e4a569d241ba8c7c323c60ee67a879d5915ba49552661",
+      "bytes": 887977
+    },
+    {
+      "removed": "/private/tmp/quaked-batch005-seam-trial/rtex043-repeat-trial.jpg",
+      "retainedEquivalent": "docs/hexen2/textures/batch-005-seam-diagnostic/rtex043-repeat-trial.jpg",
+      "sha256": "41b4a418bae6a38df0bbd50e2d4be3539282063e7ed0ddf0375795d8d8d2124b",
+      "bytes": 398358
+    },
+    {
+      "removed": "/private/tmp/quaked-batch005-seam-trial/ttex051.png",
+      "retainedEquivalent": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/masters-registered-v2/ttex051/color.png",
+      "sha256": "d0ce4636c78b23da5b45511f7a1972417f01a250f500086def436cb447d7d27d",
+      "bytes": 905393
+    },
+    {
+      "removed": "/private/tmp/quaked-batch005-seam-trial/ttex051-repeat-trial.jpg",
+      "retainedEquivalent": "docs/hexen2/textures/batch-005-seam-diagnostic/ttex051-repeat-trial.jpg",
+      "sha256": "9097f3d3d41fa245d9f1623bed83542d9951e377fefd80a5182bf2e9ff0b5691",
+      "bytes": 357308
+    }
+  ],
+  "logicalBytes": 2550171,
+  "noGeneratedSourceRemoved": true,
+  "finalMasterAndDiagnosticCopiesUnchanged": true
+}

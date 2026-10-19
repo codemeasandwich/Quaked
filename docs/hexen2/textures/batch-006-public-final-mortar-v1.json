@@ -1,0 +1,782 @@
+{
+  "schemaVersion": 1,
+  "scope": "Reviewer-classified five substrate face/joint witnesses and decoded facing/substrate bands for final rtex001 only",
+  "classification": {
+    "reviewer": "/root/hexen_campaign_review",
+    "source": "Direct team message confirming actual1024 canonical RGB and labelled annotation",
+    "statement": "All five proposed face\u2192mortar pairs are exposed substrate brick faces and adjacent dark internal mortar gaps. Native128 coordinates \u00d78 on sole master. They exclude facing/interface bevel.",
+    "annotation": {
+      "file": "docs/hexen2/textures/batch-006-final-mortar-witnesses.png",
+      "sha256": "6b354fd560a920362eafa29141202ecfc034f62a225d6105a1d70ae324b5acf3",
+      "bytes": 2294952
+    }
+  },
+  "nativeIdentity": "4263e76d40edfcaee3b9e877f8148f25bb26bda7685298e3f6934065a94dc1c4",
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/masters-layered/rtex001/master.json",
+    "sha256": "886374224c85a1ef7aea89323777f6801b65965946dfd6f02a6a21503e54975f",
+    "bytes": 16304
+  },
+  "canonicalRGB": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/masters-layered/rtex001/color.png",
+    "sha256": "d39b08775c46b28c43446fcfab79bdb49d921082f8436e9bd0cd2051125f5bfc",
+    "bytes": 2289921
+  },
+  "floatHeight": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/masters-layered/rtex001/height.npy",
+    "sha256": "d01c53cf66dca128945c0ba1426816649867fe3505974605feb4a1cbf4258ad7",
+    "bytes": 4194432
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/manifest.json",
+    "sha256": "29564d0ff4b75ff47bce2f69c1007616426a50aaae81a231831405fa8eebbc28",
+    "bytes": 9628
+  },
+  "actualDerivationProof": {
+    "file": "docs/hexen2/textures/batch-006-public-final-actual-v1.json",
+    "sha256": "2b77f5b27156a81e212fc301282022955c2a12caed2e73c2fb02691347680c12",
+    "bytes": 118466
+  },
+  "coordinateConvention": "Origin upper-left, x right/y down, coordinate units native128. Output sample pixel=(nativeX*factor,nativeY*factor), matching annotation point at master\u00d78. No resampling or extra half-pixel offset.",
+  "measurement": "Pillow decode WebP RGB; scalar=red channel/255, same scalar convention as verified tier oracle. Report central pixel and unweighted3x3 mean/min/max at integer sample pixel. Patch radius1 output pixel for both tiers; footprints differ in native units and are recorded. No image resizing/filtering during measurement.",
+  "tiers": [
+    {
+      "tier": "Mid",
+      "factor": 4,
+      "dimensions": [
+        512,
+        512
+      ],
+      "decodedHeightMap": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/mid-height.webp",
+        "sha256": "5238dbf886a9b2cd3edb97f22a1ce351ee1d5ba940e9b7aedf4123ec4e6b8aed",
+        "bytes": 12748
+      },
+      "allFiveMaps": [
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/mid-diffuse.webp",
+          "sha256": "120ddae19a9df3f31ee41aa2231c2183ff1f14ddbec9fb8bd31dedbd6b691a01",
+          "bytes": 121992
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/mid-height.webp",
+          "sha256": "5238dbf886a9b2cd3edb97f22a1ce351ee1d5ba940e9b7aedf4123ec4e6b8aed",
+          "bytes": 12748
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/mid-normalX.webp",
+          "sha256": "0ab4944e493d1da589c5d73cf5e98649ef943a34f3a4f772befc23fe409019e5",
+          "bytes": 17956
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/mid-normalY.webp",
+          "sha256": "a0df596a290d1f724e6a040cb913f33900d64edf8941273bebbebe85370ffc9b",
+          "bytes": 19682
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/mid-normalZ.webp",
+          "sha256": "73f6043b857321ca3917bd743c5f809399cb5f7aa0fc84ff91dfa4dd40fa9a85",
+          "bytes": 1964
+        }
+      ],
+      "patchFootprintNativeWidthAndHeight": 0.75,
+      "samples": [
+        {
+          "label": "Lupper",
+          "endpoints": [
+            {
+              "role": "brickFace",
+              "nativeXY": [
+                42,
+                51
+              ],
+              "outputPixel": [
+                168,
+                204
+              ],
+              "halfOpenROI": [
+                167,
+                203,
+                170,
+                206
+              ],
+              "pixelHeight": 0.396078431372549,
+              "meanHeight": 0.3934640522875817,
+              "minimumHeight": 0.38823529411764707,
+              "maximumHeight": 0.396078431372549
+            },
+            {
+              "role": "mortarJoint",
+              "nativeXY": [
+                42,
+                54
+              ],
+              "outputPixel": [
+                168,
+                216
+              ],
+              "halfOpenROI": [
+                167,
+                215,
+                170,
+                218
+              ],
+              "pixelHeight": 0.3568627450980392,
+              "meanHeight": 0.3568627450980392,
+              "minimumHeight": 0.3568627450980392,
+              "maximumHeight": 0.3568627450980392
+            }
+          ],
+          "faceMinusMortarPixel": 0.039215686274509776,
+          "faceMinusMortarPatchMean": 0.036601307189542465,
+          "ordered": true
+        },
+        {
+          "label": "Lmid",
+          "endpoints": [
+            {
+              "role": "brickFace",
+              "nativeXY": [
+                42,
+                59
+              ],
+              "outputPixel": [
+                168,
+                236
+              ],
+              "halfOpenROI": [
+                167,
+                235,
+                170,
+                238
+              ],
+              "pixelHeight": 0.3843137254901961,
+              "meanHeight": 0.3803921568627451,
+              "minimumHeight": 0.3686274509803922,
+              "maximumHeight": 0.38823529411764707
+            },
+            {
+              "role": "mortarJoint",
+              "nativeXY": [
+                42,
+                63
+              ],
+              "outputPixel": [
+                168,
+                252
+              ],
+              "halfOpenROI": [
+                167,
+                251,
+                170,
+                254
+              ],
+              "pixelHeight": 0.3568627450980392,
+              "meanHeight": 0.35642701525054465,
+              "minimumHeight": 0.35294117647058826,
+              "maximumHeight": 0.3607843137254902
+            }
+          ],
+          "faceMinusMortarPixel": 0.027450980392156876,
+          "faceMinusMortarPatchMean": 0.023965141612200425,
+          "ordered": true
+        },
+        {
+          "label": "Llow",
+          "endpoints": [
+            {
+              "role": "brickFace",
+              "nativeXY": [
+                40,
+                68
+              ],
+              "outputPixel": [
+                160,
+                272
+              ],
+              "halfOpenROI": [
+                159,
+                271,
+                162,
+                274
+              ],
+              "pixelHeight": 0.37254901960784315,
+              "meanHeight": 0.37254901960784315,
+              "minimumHeight": 0.3568627450980392,
+              "maximumHeight": 0.3843137254901961
+            },
+            {
+              "role": "mortarJoint",
+              "nativeXY": [
+                40,
+                72
+              ],
+              "outputPixel": [
+                160,
+                288
+              ],
+              "halfOpenROI": [
+                159,
+                287,
+                162,
+                290
+              ],
+              "pixelHeight": 0.3568627450980392,
+              "meanHeight": 0.3577342047930283,
+              "minimumHeight": 0.35294117647058826,
+              "maximumHeight": 0.3607843137254902
+            }
+          ],
+          "faceMinusMortarPixel": 0.01568627450980392,
+          "faceMinusMortarPatchMean": 0.014814814814814836,
+          "ordered": true
+        },
+        {
+          "label": "Rupper",
+          "endpoints": [
+            {
+              "role": "brickFace",
+              "nativeXY": [
+                85,
+                45
+              ],
+              "outputPixel": [
+                340,
+                180
+              ],
+              "halfOpenROI": [
+                339,
+                179,
+                342,
+                182
+              ],
+              "pixelHeight": 0.3843137254901961,
+              "meanHeight": 0.3821350762527233,
+              "minimumHeight": 0.3803921568627451,
+              "maximumHeight": 0.3843137254901961
+            },
+            {
+              "role": "mortarJoint",
+              "nativeXY": [
+                85,
+                50
+              ],
+              "outputPixel": [
+                340,
+                200
+              ],
+              "halfOpenROI": [
+                339,
+                199,
+                342,
+                202
+              ],
+              "pixelHeight": 0.3568627450980392,
+              "meanHeight": 0.3577342047930283,
+              "minimumHeight": 0.3568627450980392,
+              "maximumHeight": 0.3607843137254902
+            }
+          ],
+          "faceMinusMortarPixel": 0.027450980392156876,
+          "faceMinusMortarPatchMean": 0.024400871459694995,
+          "ordered": true
+        },
+        {
+          "label": "Rmid",
+          "endpoints": [
+            {
+              "role": "brickFace",
+              "nativeXY": [
+                84,
+                56
+              ],
+              "outputPixel": [
+                336,
+                224
+              ],
+              "halfOpenROI": [
+                335,
+                223,
+                338,
+                226
+              ],
+              "pixelHeight": 0.396078431372549,
+              "meanHeight": 0.396078431372549,
+              "minimumHeight": 0.396078431372549,
+              "maximumHeight": 0.396078431372549
+            },
+            {
+              "role": "mortarJoint",
+              "nativeXY": [
+                84,
+                63
+              ],
+              "outputPixel": [
+                336,
+                252
+              ],
+              "halfOpenROI": [
+                335,
+                251,
+                338,
+                254
+              ],
+              "pixelHeight": 0.3568627450980392,
+              "meanHeight": 0.35642701525054465,
+              "minimumHeight": 0.35294117647058826,
+              "maximumHeight": 0.3568627450980392
+            }
+          ],
+          "faceMinusMortarPixel": 0.039215686274509776,
+          "faceMinusMortarPatchMean": 0.039651416122004346,
+          "ordered": true
+        }
+      ],
+      "maskClassification": "Mid block2x2/master and High block1x1/master. Only blocks entirely substrate or entirely facing counted; mixed transition blocks excluded.",
+      "classifiedCounts": {
+        "substrate": 61598,
+        "facing": 199428,
+        "mixed": 1118
+      },
+      "decodedBands": {
+        "substrate": [
+          0.32941176470588235,
+          0.4235294117647059
+        ],
+        "facing": [
+          0.6078431372549019,
+          0.8117647058823529
+        ]
+      },
+      "minimumFacingMinusMaximumSubstrate": 0.18431372549019603,
+      "facingAboveSubstrate": true
+    },
+    {
+      "tier": "High",
+      "factor": 8,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "decodedHeightMap": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/high-height.webp",
+        "sha256": "26a1fd32cfe752ef8d5dcf5ca6dbe55b03ec26b358c7ab607f93a1d029f0ea61",
+        "bytes": 28922
+      },
+      "allFiveMaps": [
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/high-diffuse.webp",
+          "sha256": "c60025f94eac88b4028f3a7350ab5118cfeccffc8dae93e3d6642deee96de4db",
+          "bytes": 467392
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/high-height.webp",
+          "sha256": "26a1fd32cfe752ef8d5dcf5ca6dbe55b03ec26b358c7ab607f93a1d029f0ea61",
+          "bytes": 28922
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/high-normalX.webp",
+          "sha256": "f0bc838a95df51fc23e87a345f422227a09998e2c4092ef4b72329bddf9ff750",
+          "bytes": 71026
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/high-normalY.webp",
+          "sha256": "f83fec3b0d03ce4ac0191ce12c29e3c8f92578f2720c72c2ac79e8b71a448b55",
+          "bytes": 83694
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/high-normalZ.webp",
+          "sha256": "e4d45ea31adb577402d748b34c041367f94ddac80217be0ba90535b8289b9f8a",
+          "bytes": 6558
+        }
+      ],
+      "patchFootprintNativeWidthAndHeight": 0.375,
+      "samples": [
+        {
+          "label": "Lupper",
+          "endpoints": [
+            {
+              "role": "brickFace",
+              "nativeXY": [
+                42,
+                51
+              ],
+              "outputPixel": [
+                336,
+                408
+              ],
+              "halfOpenROI": [
+                335,
+                407,
+                338,
+                410
+              ],
+              "pixelHeight": 0.39215686274509803,
+              "meanHeight": 0.3930283224400871,
+              "minimumHeight": 0.39215686274509803,
+              "maximumHeight": 0.396078431372549
+            },
+            {
+              "role": "mortarJoint",
+              "nativeXY": [
+                42,
+                54
+              ],
+              "outputPixel": [
+                336,
+                432
+              ],
+              "halfOpenROI": [
+                335,
+                431,
+                338,
+                434
+              ],
+              "pixelHeight": 0.3568627450980392,
+              "meanHeight": 0.3568627450980392,
+              "minimumHeight": 0.3568627450980392,
+              "maximumHeight": 0.3568627450980392
+            }
+          ],
+          "faceMinusMortarPixel": 0.03529411764705881,
+          "faceMinusMortarPatchMean": 0.036165577342047894,
+          "ordered": true
+        },
+        {
+          "label": "Lmid",
+          "endpoints": [
+            {
+              "role": "brickFace",
+              "nativeXY": [
+                42,
+                59
+              ],
+              "outputPixel": [
+                336,
+                472
+              ],
+              "halfOpenROI": [
+                335,
+                471,
+                338,
+                474
+              ],
+              "pixelHeight": 0.3803921568627451,
+              "meanHeight": 0.3747276688453159,
+              "minimumHeight": 0.3686274509803922,
+              "maximumHeight": 0.3803921568627451
+            },
+            {
+              "role": "mortarJoint",
+              "nativeXY": [
+                42,
+                63
+              ],
+              "outputPixel": [
+                336,
+                504
+              ],
+              "halfOpenROI": [
+                335,
+                503,
+                338,
+                506
+              ],
+              "pixelHeight": 0.3568627450980392,
+              "meanHeight": 0.3581699346405229,
+              "minimumHeight": 0.3568627450980392,
+              "maximumHeight": 0.3607843137254902
+            }
+          ],
+          "faceMinusMortarPixel": 0.023529411764705854,
+          "faceMinusMortarPatchMean": 0.016557734204793007,
+          "ordered": true
+        },
+        {
+          "label": "Llow",
+          "endpoints": [
+            {
+              "role": "brickFace",
+              "nativeXY": [
+                40,
+                68
+              ],
+              "outputPixel": [
+                320,
+                544
+              ],
+              "halfOpenROI": [
+                319,
+                543,
+                322,
+                546
+              ],
+              "pixelHeight": 0.36470588235294116,
+              "meanHeight": 0.36601307189542487,
+              "minimumHeight": 0.3607843137254902,
+              "maximumHeight": 0.37254901960784315
+            },
+            {
+              "role": "mortarJoint",
+              "nativeXY": [
+                40,
+                72
+              ],
+              "outputPixel": [
+                320,
+                576
+              ],
+              "halfOpenROI": [
+                319,
+                575,
+                322,
+                578
+              ],
+              "pixelHeight": 0.35294117647058826,
+              "meanHeight": 0.35642701525054465,
+              "minimumHeight": 0.35294117647058826,
+              "maximumHeight": 0.3607843137254902
+            }
+          ],
+          "faceMinusMortarPixel": 0.0117647058823529,
+          "faceMinusMortarPatchMean": 0.009586056644880214,
+          "ordered": true
+        },
+        {
+          "label": "Rupper",
+          "endpoints": [
+            {
+              "role": "brickFace",
+              "nativeXY": [
+                85,
+                45
+              ],
+              "outputPixel": [
+                680,
+                360
+              ],
+              "halfOpenROI": [
+                679,
+                359,
+                682,
+                362
+              ],
+              "pixelHeight": 0.3843137254901961,
+              "meanHeight": 0.38344226579520696,
+              "minimumHeight": 0.3803921568627451,
+              "maximumHeight": 0.3843137254901961
+            },
+            {
+              "role": "mortarJoint",
+              "nativeXY": [
+                85,
+                50
+              ],
+              "outputPixel": [
+                680,
+                400
+              ],
+              "halfOpenROI": [
+                679,
+                399,
+                682,
+                402
+              ],
+              "pixelHeight": 0.3568627450980392,
+              "meanHeight": 0.3568627450980392,
+              "minimumHeight": 0.3568627450980392,
+              "maximumHeight": 0.3568627450980392
+            }
+          ],
+          "faceMinusMortarPixel": 0.027450980392156876,
+          "faceMinusMortarPatchMean": 0.026579520697167736,
+          "ordered": true
+        },
+        {
+          "label": "Rmid",
+          "endpoints": [
+            {
+              "role": "brickFace",
+              "nativeXY": [
+                84,
+                56
+              ],
+              "outputPixel": [
+                672,
+                448
+              ],
+              "halfOpenROI": [
+                671,
+                447,
+                674,
+                450
+              ],
+              "pixelHeight": 0.396078431372549,
+              "meanHeight": 0.396078431372549,
+              "minimumHeight": 0.396078431372549,
+              "maximumHeight": 0.396078431372549
+            },
+            {
+              "role": "mortarJoint",
+              "nativeXY": [
+                84,
+                63
+              ],
+              "outputPixel": [
+                672,
+                504
+              ],
+              "halfOpenROI": [
+                671,
+                503,
+                674,
+                506
+              ],
+              "pixelHeight": 0.3568627450980392,
+              "meanHeight": 0.3577342047930283,
+              "minimumHeight": 0.3568627450980392,
+              "maximumHeight": 0.3607843137254902
+            }
+          ],
+          "faceMinusMortarPixel": 0.039215686274509776,
+          "faceMinusMortarPatchMean": 0.03834422657952069,
+          "ordered": true
+        }
+      ],
+      "maskClassification": "Mid block2x2/master and High block1x1/master. Only blocks entirely substrate or entirely facing counted; mixed transition blocks excluded.",
+      "classifiedCounts": {
+        "substrate": 248629,
+        "facing": 799947,
+        "mixed": 0
+      },
+      "decodedBands": {
+        "substrate": [
+          0.3254901960784314,
+          0.42745098039215684
+        ],
+        "facing": [
+          0.6078431372549019,
+          0.807843137254902
+        ]
+      },
+      "minimumFacingMinusMaximumSubstrate": 0.18039215686274507,
+      "facingAboveSubstrate": true
+    }
+  ],
+  "limits": [
+    "Five explicitly classified pairs support only these local mortar-versus-face witnesses; no all-pixel semantic mortar guarantee.",
+    "Full decoded bands are measured against the reviewed recipe mask, whose semantic completeness/alignment remains part of separate final art review.",
+    "Both endpoint values/patches remain within substrate; no facing bevel or brighter-pixel heuristic selects these sample classes.",
+    "Normals have already passed independent direct-scalar derivation and decoded angular checks in the bound actual proof. Normal vectors alone do not establish mortar height ordering.",
+    "No asset edits, encoder changes, runtime/GPU/game, owner or release acceptance."
+  ],
+  "inputsStable": true,
+  "inputs": [
+    {
+      "file": "docs/hexen2/textures/batch-006-public-verify-mortar.py",
+      "sha256": "e66dbf56495f927f8e16838638a6f41faccedfeea83c574e19b0f6a9622e126a",
+      "bytes": 7181
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/masters-layered/rtex001/master.json",
+      "sha256": "886374224c85a1ef7aea89323777f6801b65965946dfd6f02a6a21503e54975f",
+      "bytes": 16304
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/manifest.json",
+      "sha256": "29564d0ff4b75ff47bce2f69c1007616426a50aaae81a231831405fa8eebbc28",
+      "bytes": 9628
+    },
+    {
+      "file": "docs/hexen2/textures/batch-006-public-final-actual-v1.json",
+      "sha256": "2b77f5b27156a81e212fc301282022955c2a12caed2e73c2fb02691347680c12",
+      "bytes": 118466
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/masters-layered/rtex001/color.png",
+      "sha256": "d39b08775c46b28c43446fcfab79bdb49d921082f8436e9bd0cd2051125f5bfc",
+      "bytes": 2289921
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/masters-layered/rtex001/height.npy",
+      "sha256": "d01c53cf66dca128945c0ba1426816649867fe3505974605feb4a1cbf4258ad7",
+      "bytes": 4194432
+    },
+    {
+      "file": "docs/hexen2/textures/batch-006-final-mortar-witnesses.png",
+      "sha256": "6b354fd560a920362eafa29141202ecfc034f62a225d6105a1d70ae324b5acf3",
+      "bytes": 2294952
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/originals/01-rtex001-4263e76d40ed.png",
+      "sha256": "706d7808fb9640bf7461f79c16bf07a012901ab5590a943c63ae4b9e0294bd6f",
+      "bytes": 11950
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/generated/rtex001.png",
+      "sha256": "3a85643bf11e866af6bf3f4e9c2a41219517b5c51236cf4b0e02c555cf8475ac",
+      "bytes": 3817962
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/prompts/rtex001.txt",
+      "sha256": "1f5a2889b65e957b73bc88ec6c958c4abdf279c5111916e113d4d60bbf030d0f",
+      "bytes": 1964
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/relief/rtex001-layered.json",
+      "sha256": "dff405bbdedefddd925d1a0e3769999342f53f0a09d40087645e29575db8d1c8",
+      "bytes": 8451
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/mid-diffuse.webp",
+      "sha256": "120ddae19a9df3f31ee41aa2231c2183ff1f14ddbec9fb8bd31dedbd6b691a01",
+      "bytes": 121992
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/mid-height.webp",
+      "sha256": "5238dbf886a9b2cd3edb97f22a1ce351ee1d5ba940e9b7aedf4123ec4e6b8aed",
+      "bytes": 12748
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/mid-normalX.webp",
+      "sha256": "0ab4944e493d1da589c5d73cf5e98649ef943a34f3a4f772befc23fe409019e5",
+      "bytes": 17956
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/mid-normalY.webp",
+      "sha256": "a0df596a290d1f724e6a040cb913f33900d64edf8941273bebbebe85370ffc9b",
+      "bytes": 19682
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/mid-normalZ.webp",
+      "sha256": "73f6043b857321ca3917bd743c5f809399cb5f7aa0fc84ff91dfa4dd40fa9a85",
+      "bytes": 1964
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/high-diffuse.webp",
+      "sha256": "c60025f94eac88b4028f3a7350ab5118cfeccffc8dae93e3d6642deee96de4db",
+      "bytes": 467392
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/high-height.webp",
+      "sha256": "26a1fd32cfe752ef8d5dcf5ca6dbe55b03ec26b358c7ab607f93a1d029f0ea61",
+      "bytes": 28922
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/high-normalX.webp",
+      "sha256": "f0bc838a95df51fc23e87a345f422227a09998e2c4092ef4b72329bddf9ff750",
+      "bytes": 71026
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/high-normalY.webp",
+      "sha256": "f83fec3b0d03ce4ac0191ce12c29e3c8f92578f2720c72c2ac79e8b71a448b55",
+      "bytes": 83694
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-layered/rtex001/high-normalZ.webp",
+      "sha256": "e4d45ea31adb577402d748b34c041367f94ddac80217be0ba90535b8289b9f8a",
+      "bytes": 6558
+    }
+  ],
+  "verdict": "PASS five reviewer-classified decoded face/mortar pairs and measured facing/substrate hierarchy in both tiers; final art acceptance separate"
+}

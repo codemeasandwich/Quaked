@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-10-19T03:37:58.876101+00:00",
+  "verdict": "PASS narrow same-source Y-periodic master registration plan; implementation and finaldecoded-map/art review remain required",
+  "scope": "Independent algebra/trial repeat review only; no implementation/assets edited",
+  "inputs": [
+    {
+      "file": "/private/tmp/quaked-batch005-seam-trial/trial.json",
+      "sha256": "fec5b37595403b6e6abeaeaed3bd80f8876746e19fea52650c31969f50e1b5ba",
+      "bytes": 1135
+    },
+    {
+      "file": "docs/hexen2/textures/batch-005-seam-plan-public-math.json",
+      "sha256": "6853e9add120321b78b7397de427f6bdfaaff85a159cc39211e0dfc6059b0a2f",
+      "bytes": 2596
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/masters/rtex043/color.png",
+      "sha256": "2efcbd842eac7d9d50f8636ab691c02b50a5ecb1aa071af47ab6da4fe1d76790",
+      "bytes": 887885
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/masters/rtex043/master.json",
+      "sha256": "14f19e8ac6a154fa8fec68487bc0861b623821574c650a77956f8a64785838da",
+      "bytes": 4214
+    },
+    {
+      "file": "/private/tmp/quaked-batch005-seam-trial/rtex043.png",
+      "sha256": "5256412f02b044279e4e4a569d241ba8c7c323c60ee67a879d5915ba49552661",
+      "bytes": 887977
+    },
+    {
+      "file": "/private/tmp/quaked-batch005-seam-trial/rtex043-repeat-trial.jpg",
+      "sha256": "41b4a418bae6a38df0bbd50e2d4be3539282063e7ed0ddf0375795d8d8d2124b",
+      "bytes": 398358
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/masters/ttex051/color.png",
+      "sha256": "5f12a6715d2731ef4f411b78f44f0dfd04a59c7fadb1a26eb4b1031144cce408",
+      "bytes": 905410
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/masters/ttex051/master.json",
+      "sha256": "c9bf178c06e785c35a0dd29bea4fcd978407b58b446a6a7a7742026030e0c0e9",
+      "bytes": 4222
+    },
+    {
+      "file": "/private/tmp/quaked-batch005-seam-trial/ttex051.png",
+      "sha256": "d0ce4636c78b23da5b45511f7a1972417f01a250f500086def436cb447d7d27d",
+      "bytes": 905393
+    },
+    {
+      "file": "/private/tmp/quaked-batch005-seam-trial/ttex051-repeat-trial.jpg",
+      "sha256": "9097f3d3d41fa245d9f1623bed83542d9951e377fefd80a5182bf2e9ff0b5691",
+      "bytes": 357308
+    }
+  ],
+  "independentMathReplay": {
+    "file": "docs/hexen2/textures/batch-005-seam-plan-public-math.json",
+    "sha256": "6853e9add120321b78b7397de427f6bdfaaff85a159cc39211e0dfc6059b0a2f",
+    "bytes": 2596
+  },
+  "algebra": {
+    "forcing": "v[0,x,c]=u[-1,x,c]-u[0,x,c]; v[-1,x,c]=-v[0,x,c]; all other v zero",
+    "operator": "Periodic discrete Laplacian rollY+rollMinusY+rollX+rollMinusX-4s",
+    "eigenvalue": "2*cos(2*pi*ky/H)+2*cos(2*pi*kx/W)-4",
+    "solution": "S_hat=FFT(v)/eigenvalue at nonzero frequencies; DC explicitly zero; s=real(IFFT(S_hat)); p=u-s",
+    "outputPolicy": "rint(clip(p,0,255)) toRGBuint8, matching both providedtrialPNGs byteexact",
+    "maximumResidualObserved": 2.842170943040401e-14,
+    "zeroMean": "Smoothfield mean is ~1e-18 perchannel before rounding/clipping. Finalencodedmean is not mathematicallyzero; measuredpostclipdrift<=.0025channel."
+  },
+  "visualReview": [
+    "Viewed both before/after repeatedJPGs; horizontalcut line is largelyremoved while dominant verticalgrain andttex051diagonalcracks remain inplace.",
+    "No obvious perimeterframe, duplicatedcloneband or largearea newform appears inthese trialviews. These PNG/JPGdiagnostics are not finalWebP acceptance."
+  ],
+  "risks": [
+    "Y-only names boundaryforcing axis; the2D smoothfield can alsochange Xedgevalues. Requirebothaxes/corner checks, not a claim X is unchanged. Observed Xwrap slightlyimproves.",
+    "Meanabsolutechange .546/.745 hides localmax46.65/35.94 andclipping .146%/.488%; inspect darkcrack/edge detail and derivedrelief forflattening orhalo.",
+    "No pixelrelocation doesnotguarantee everyperceivedcontour unchanged: colourcorrection canchangecontrast. Retainhalf/quarter originals alongsideclose-up/repeats.",
+    "Do notforce first/lastrow equal: theyare adjacenttexelcentres, not duplicateboundarysamples. Boundarystep/gradient and finaldecodedvisualcontinuity are criteria."
+  ],
+  "smallestSoundImplementation": [
+    "Keep existingprepare/finish/craft/derive sourcesunchanged; small opt-in registrationCLI forconfirmedunqualifiedmasters only. No globaltilingframework or automaticapplication toalreadygoodtextures.",
+    "Validate original/raw/prompt hashes and exact finish replay first; registeredRGB mustequalrecordedprecorrectionSHA. Apply fixed Ydecomposition once, then craft finalfloat32height once. Ignore oldcompressedtiers and oldheight as authoringsources.",
+    "Reuse existingpackage schema, writer/inputlimits and normalderiver. Record newCLIhash, exactaxes/formula/DC/roundclip policy, registrationparameters, before/after masterSHA, clipping anddistance diagnostics. Retain one activecanonicalpackage pertexture."
+  ],
+  "requiredPublicQualification": [
+    "Constant/equalY-boundary fixtures no-op; knownboundary-jumpfixture confirms sign/DC/Poisson residual and no dimension/index relocation. Validate all inputs before output creation and refuseoverwrite.",
+    "Actual same-original/raw/prompt custody; independent finish\u2192Ycorrection\u2192craft replay, then all20 correctedMid/High Q92method6 mapbytes directlyfrom correctedRGB/floatheight.",
+    "Both original and delivereddecodedtiers downsampleto native/2 andnative/4; inspect all fourcomparisons, closeupgrain/cracks,2x2repeats,X/Ycorners andlossyheight/XYZ/opposedlights. No scalarwrapratio alone grantsartacceptance.",
+    "Source/corefiles and other6nativebindings unchanged. Do notcount correctedversions as extraacceptedmasters ornewimagegenerations.",
+    "Retain failed master/tier hashes,JPGs and tinyoldmanifest/registrationrecipe plus raw/original/prompt. Cleanup mayremove unqualifiedbinarytrials afternewproof/review; labeloldproof historical/superseded rather than claiming removedinputs still live."
+  ],
+  "simplerAlternative": {
+    "method": "Zero-mean per-column linear ramp matching opposingrowvalues",
+    "assessment": "Feweroperations, but would change broadinteriors more andcan introducecolumn-wise colourstreaks. Not preferred over thealready small, independentlyreplayed Poisson field. No crossfade/mirroring/cloning is needed.",
+    "measuredCounterfactual": [
+      {
+        "name": "rtex043",
+        "simplePerColumnRampMeanAbsoluteCorrection": 4.4700228087324865,
+        "proposedPoissonMeanAbsoluteCorrection": 0.5459805930198204
+      },
+      {
+        "name": "ttex051",
+        "simplePerColumnRampMeanAbsoluteCorrection": 3.0329097425871625,
+        "proposedPoissonMeanAbsoluteCorrection": 0.7448871698583258
+      }
+    ]
+  },
+  "limits": [
+    "No finalmaster/height/tierasset, source/tool orGit edit performed.",
+    "No new generation, runtime/gameplay or meshdisplacement test.",
+    "PlanPASS is not finalasset orowneracceptance; root/artreviewer mustapprove deliveredlossyresults."
+  ]
+}

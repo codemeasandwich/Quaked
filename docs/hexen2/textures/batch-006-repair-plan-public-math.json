@@ -1,0 +1,100 @@
+{
+  "scope": "Independent plan composition/FFT check; no authoring, codec or art acceptance",
+  "inputs": [
+    {
+      "file": "docs/hexen2/textures/BATCH-006-REPAIRS.md",
+      "sha256": "72c30a56265d1c5d254eca0740173d6007c90d609261c4698c3d435ce454beda",
+      "bytes": 3705
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/relief/rtex001-layered-draft.json",
+      "sha256": "431e29fd709801827a90df6bc82704725e63cfbbc9b209734d57c92f370f53cf",
+      "bytes": 7996
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/relief/rtex001-layered-draft-height.npy",
+      "sha256": "bd5012cd33dec7fa7cea28cf29d6ffc02eb00f488f5b5cdc2d1a36622c5bb41d",
+      "bytes": 4194432
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/relief/rtex001-layered-draft-overlay.png",
+      "sha256": "cc56470691693ccde9fb30b830718cbddbcb12362531fda27fb82625c35f551d",
+      "bytes": 2240698
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/masters/rtex001/master.json",
+      "sha256": "d2e907e0546f36ea7937ceadaecb27ee65ad49c2032b7d8cdb876e406875affd",
+      "bytes": 4207
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/masters/rtex001/color.png",
+      "sha256": "d39b08775c46b28c43446fcfab79bdb49d921082f8436e9bd0cd2051125f5bfc",
+      "bytes": 2289921
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    },
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5",
+      "bytes": 7863
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "bytes": 7692
+    },
+    {
+      "file": "tools/texture_sheets/encode_official_maps.py",
+      "sha256": "14f23a560c17afb72aa8a9aa9d1fda2dbed94bf1230048f3c3b9e814664f0287",
+      "bytes": 13818
+    },
+    {
+      "file": "docs/hexen2/textures/batch-006-repair-plan-public-math.py",
+      "sha256": "6b9c57fcc487db47746c72500ad9ceb4f39ac55569b1b79264a8f2bcee9034cf",
+      "bytes": 4194
+    }
+  ],
+  "inputsStable": true,
+  "canonicalDimensions": [
+    1024,
+    1024
+  ],
+  "maskPixels": 243122,
+  "maskFraction": 0.2318592071533203,
+  "sigmaMasterPixels": 6.0,
+  "fullComplexVsExistingBlurMax": 8.881784197001252e-16,
+  "theoreticalBands": {
+    "substrate": [
+      0.355,
+      0.405
+    ],
+    "facing": [
+      0.635,
+      0.805
+    ]
+  },
+  "observedBands": {
+    "substrate": [
+      0.355,
+      0.40499997496525286
+    ],
+    "facing": [
+      0.6351053617141994,
+      0.8049261461185471
+    ]
+  },
+  "observedGap": 0.23010538674894654,
+  "clippedSamples": 0,
+  "draftFloat32DetailReplayExact": true,
+  "draftVsFullPrecisionBeforeFinalCastMax": 3.167685236338258e-08,
+  "recommendation": "Final authoring: craft quantize_height=False, plane composition in full precision, one final float32 cast. Diagnostic draft used float32 detail staging; do not require final bytes to match draft.",
+  "limits": [
+    "Mask rasterization reuses brick_mask; semantic polygon/image alignment is separate independent art review.",
+    "Two planes guarantee facing/substrate separation, not brick/mortar separation inside the substrate.",
+    "No Mid/High or compressed maps authored; post-code public CLI and actual tier proofs still required."
+  ],
+  "verdict": "PASS plan algebra and existing-policy reuse; implementation and artistic qualification pending"
+}

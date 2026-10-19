@@ -1,0 +1,13 @@
+# Batch 004: seven new masters and one exact-content reuse
+
+This increment covers eight native WORLD bindings: base rtex439, rtex008, rtex038 and rtex113; Portal ttex019, ttex003, ttex053 and ttex089. The batch manifest, retained generated sources, exact prompts, masters, tier maps and review sheets live under `assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/`.
+
+Seven new built-in image generations were retained. Each supplies one registered RGB master and one full-precision scalar height master. The same pair independently produces default Mid at 4× native dimensions and High at 8×; all 70 new tier maps are lossy WebP quality 92, method 6. No compressed tier is an authoring source. The faded-red ttex003 uses a single master-level colour registration strength of 0.85 to preserve its subdued native red/grey-green balance; the other new materials use 0.65. No additional generation or independent tier authoring was used.
+
+Base rtex008 reuses the previously reviewed Portal ttex013 package and its ten existing maps. Independent source proof checks dimensions, palette, exact indexed pixels and all four mip levels across 60 distinct archive/BSP occurrences, ordinary texture flags and byte-identical native PNGs. Both native identities remain distinct bindings. There is no new rtex008 generated image, master or tier directory. Matching names alone never establish reuse.
+
+Public source/codec/math checks passed for all 80 map references: exact replay from retained sources and masters, direct tier derivations, decoded half- and quarter-native comparisons, edge measurements and three normal reconstruction paths. Preview verification passed all 272 material and label panels, disjoint comparison rectangles and exact HTML. Only documented empty JPEG corner padding differs on this host; actual map bytes and material panels have no such exception.
+
+Final independent artwork review passed with no required repairs. All eight bindings are registered in the active authoring catalog: 21 native identities, 20 unique master packages, 200 physical enhanced map files and 210 map bindings across the campaign so far. The ordinary WORLD queue has 866 variants remaining. Runtime/pack registration, in-game lighting acceptance, owner acceptance and release remain separate from offline artwork qualification. Full campaign remains active.
+
+Evidence: `batch-004-art-review.json`, `batch-004-plan-review.json`, `batch-004-public-alias.json`, `batch-004-public-actual-v1.json` and `batch-004-public-preview-v1.json` in this directory. The actual source and tier hashes are bound in those receipts and the batch manifest.

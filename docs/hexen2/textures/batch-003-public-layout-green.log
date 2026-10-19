@@ -1,0 +1,19 @@
+test_existing_portrait128_keeps_original_layout (__main__.TextureBatchReviewCLI) ... ok
+test_tall176_half_and_quarter_comparisons_remain_complete_and_separate (__main__.TextureBatchReviewCLI) ... ok
+test_taller_native_grows_canvas_instead_of_clipping_comparisons (__main__.TextureBatchReviewCLI) ... ok
+test_wide_overviews_fit_columns_without_spilling_below_or_between (__main__.TextureBatchReviewCLI) ... FAIL
+
+======================================================================
+FAIL: test_wide_overviews_fit_columns_without_spilling_below_or_between (__main__.TextureBatchReviewCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/SOURCE/Quaked/tests/texture_batch_review_test.py", line 85, in test_wide_overviews_fit_columns_without_spilling_below_or_between
+    self.source_is(pixels, (528, 64, 536, 256), 2, 'Neutral gap between overview columns')
+  File "/Users/bri/SOURCE/Quaked/tests/texture_batch_review_test.py", line 64, in source_is
+    self.assertTrue(matches.all(), f'{label}: {int((~matches).sum())} pixels overwritten by another source')
+AssertionError: False is not true : Neutral gap between overview columns: 192 pixels overwritten by another source
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.514s
+
+FAILED (failures=1)

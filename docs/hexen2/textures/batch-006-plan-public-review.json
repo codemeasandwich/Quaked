@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-10-19T03:58:14.662509+00:00",
+  "verdict": "PASS sevenfresh006prompt/nativeplans; peerexact-contentalias sourceproof/binding remainsseparate",
+  "scope": "Independentbefore-generation review, sourceimageauthoritative",
+  "nativeSelection": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/native-selection.json",
+    "sha256": "d2278d5349b8d6f0fc2f1caf32570cca158adf589e6ee60a4c25d75c568e7444",
+    "bytes": 6959
+  },
+  "contact": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/originals/native-contact.png",
+    "sha256": "2caea809855d69ea2ff587e4969a3d972d6a3a242052827f130d3403a5ea06f6",
+    "bytes": 104803
+  },
+  "items": [
+    {
+      "name": "rtex001",
+      "id": "4263e76d40edfcaee3b9e877f8148f25bb26bda7685298e3f6934065a94dc1c4",
+      "edition": "base",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/originals/01-rtex001-4263e76d40ed.png",
+        "sha256": "706d7808fb9640bf7461f79c16bf07a012901ab5590a943c63ae4b9e0294bd6f",
+        "bytes": 11950
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/prompts/rtex001.txt",
+        "sha256": "1f5a2889b65e957b73bc88ec6c958c4abdf279c5111916e113d4d60bbf030d0f",
+        "bytes": 1964
+      },
+      "verdict": "PASS prompt/nativeplan only",
+      "finding": "Source128square darkcrackedfacing withspecificexposedbrickislands. Promptretains islandfootprints/count/scale andavoidsnewpatches/cornerinfill. Confirmcoarseplasterfields remainreadable; no generalbrickwall replacement."
+    },
+    {
+      "name": "rtex040",
+      "id": "11df38f9250e4925e156b621a38cab9019dfa2b3d0202cb78d9fd35181eefc40",
+      "edition": "base",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/originals/02-rtex040-11df38f9250e.png",
+        "sha256": "b4c27d7126a52ee93a08c3aebfee57e69b8750bd2fdd1589e94aec1b459432f5",
+        "bytes": 4972
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/prompts/rtex040.txt",
+        "sha256": "fe8a81c3ac082ea7e13e1cc608dc8ea02e99f98b6a28468182b89348d9cc7ab9",
+        "bytes": 1921
+      },
+      "verdict": "PASS prompt/nativeplan only",
+      "finding": "Largegrey-brown flagstones andnativefracture/jointlayoutmatchprompt. Preserve rowheights/partialedgeblocks andochreflecks; no newmasonry subdivisions."
+    },
+    {
+      "name": "rtex029",
+      "id": "8ae609bd5aefc88b4cbeb0ae79338f31f80745c3f09706429bee9da0be256b58",
+      "edition": "base",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/originals/03-rtex029-8ae609bd5aef.png",
+        "sha256": "85dbf3e66f5e7aae73e858a0fc232ec9c8031de0846fdbdbf64877acc276f818",
+        "bytes": 5548
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/prompts/rtex029.txt",
+        "sha256": "7d226cc925ece0326715e5acaae4158625ecd56f2e4090851bc2ddc3f8b551a9",
+        "bytes": 1931
+      },
+      "verdict": "PASS prompt/nativeplan only",
+      "finding": "Mottled grey/ochre continuousmineralpatternmatchesprompt. Nativeisvisuallyidentical topeer021; onephysicalgeneratedsource isappropriateONLYafterfullsourceproof."
+    },
+    {
+      "name": "rtex095",
+      "id": "717f2ccb70c8650ab247c081f3322d9cdcd05ce0a69f86b59029e77e9fffc466",
+      "edition": "base",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/originals/04-rtex095-717f2ccb70c8.png",
+        "sha256": "ed726e77c1c7a4e87a0a0497d6dc501c70c2d71ab4444e10c9cba454bce9d44a",
+        "bytes": 4470
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/prompts/rtex095.txt",
+        "sha256": "d77fc6c9f2d2c88f752f2b0316de129d4eaccd07f3aedc7e8caa2a70a350ad7c",
+        "bytes": 2096
+      },
+      "verdict": "PASS prompt/nativeplan only",
+      "finding": "Fineinterlaceddiagonal repeat inblue-charcoal/umber. Neutralmateriallanguageproperlyavoidsunsupportedhistoricalclaims. Preservefineperiod/darkcoverage; do notinflateintolargeweave, brick/plankforms orrandomnoise."
+    },
+    {
+      "name": "rtex439",
+      "id": "2880c270e3b99a91010e650e191d5280fb056cb400ef8f6be9d287ee50d8cef6",
+      "edition": "portals",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/originals/05-rtex439-2880c270e3b9.png",
+        "sha256": "262fe1ee17f9f3cd734e4041131cba5bf427953735903bd8abe09d5300997f51",
+        "bytes": 2593
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/prompts/rtex439.txt",
+        "sha256": "6cf5d323435094598c2482b947f9d5e0aaea3c40cf1266d8b8429bf21f5a0e37",
+        "bytes": 2031
+      },
+      "verdict": "PASS prompt/nativeplan only",
+      "finding": "CorrectPortal64x128 ID2880c270... darktimber-likefibres. Differentdimension/pixelidentity frombase00464square439; thisprompt explicitlypreventsname-onlyreuse."
+    },
+    {
+      "name": "rtex488",
+      "id": "a09d7df6eefcc41e37931e985db39d7cfc408313108caf40585da932fe3ce73a",
+      "edition": "portals",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/originals/06-rtex488-a09d7df6eefc.png",
+        "sha256": "2519fa7b4d8182507a420f440ae65e080a2542ae6dd82772bdebe941b0c28a8c",
+        "bytes": 12816
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/prompts/rtex488.txt",
+        "sha256": "b77d76686e1675b03b075d7eabe1c65394287fb50475ffc6632cf2e9bf112bc0",
+        "bytes": 1964
+      },
+      "verdict": "PASS prompt/nativeplan only",
+      "finding": "128square palegreywornstoneblocks/deepbrownmortar matchsource. Preserve broadfaces/stagger/partialedgecuts andsourcegrain scale; no addedinfill/bevel."
+    },
+    {
+      "name": "ttex018",
+      "id": "2db73383343bfc6b212d264e514cc4c8358d1c2fdcd4ff762b40504ed0228f01",
+      "edition": "portals",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/originals/08-ttex018-2db73383343b.png",
+        "sha256": "ce64230db484ffea41bff23d3923eca402aa49c19f7ecf277306ca0670bcc691",
+        "bytes": 5474
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/prompts/ttex018.txt",
+        "sha256": "e87f6d78f0361f463f27d3f5b590dad58f146d6996419d407fd46c96ba978186",
+        "bytes": 1972
+      },
+      "verdict": "PASS prompt/nativeplan only",
+      "finding": "Continuousgrey/ochremottledmineralstone andexistinglongdiagonalfractures matchsource. Keepnativewarm/coolpatches, nosculptedborder/regularbrickgrid."
+    }
+  ],
+  "peerAliasPlan": {
+    "pair": [
+      "rtex029",
+      "ttex021"
+    ],
+    "currentPromptOwner": "rtex029",
+    "peerWithoutPrompt": "ttex021",
+    "state": "Full4mip/provenance/source-semantic proof pending atplanreview; no master/art/binding qualification.",
+    "requiredCount": "Seven new physical generatedsources total, one sharedsource forpeerpair; never issueanextra021 generation."
+  },
+  "sharedStandard": "Oneactual>=8xmaster; Lowunchanged/Mid4default/High8; singlefullprecisionheight anddirectmasterQ92method6 allmaps; bothaxes/corners/tile/relief andhalf-quarterdecodedreviews required.",
+  "limits": [
+    "Planningdoesnotprovegeneratedoutputcapacity, finalart, owneracceptance orruntime support.",
+    "Materialdescriptionsarevisualinterpretations; rtex095historicalmaterialunknown.",
+    "Reviewermadeno prompt/source/asset/tool/Git edits orgenerationcalls."
+  ]
+}

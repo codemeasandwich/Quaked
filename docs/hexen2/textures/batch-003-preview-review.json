@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-19T02:30:07.425626+00:00",
+  "reviewer": "/root/hexen_campaign_review",
+  "verdict": "PREVIEW REVIEW PASS: closes tallcomparison overlap and queuedwidecomparison clipping; originalartreceiptretained",
+  "requiredFindings": [],
+  "priorArtReview": {
+    "file": "docs/hexen2/textures/batch-003-art-review.json",
+    "sha256": "9523176e10a3ce0a165aad195820e0c66b233177a297fc089bca753384c079ff",
+    "originalReceiptUnmodified": true
+  },
+  "reviewProducer": {
+    "file": "tools/texture_sheets/build_texture_batch_review.py",
+    "sha256": "7b14678ba508b15c283d2793488098f01d5993e16db662c10c3ef084d4270a2f"
+  },
+  "fixedFindings": [
+    {
+      "id": "003-tall-half-quarter-overlap",
+      "status": "CLOSED",
+      "evidence": "VIEWEDall4review-v2sheets; completehalf32x88at y595..859, quarterlabel877/image902..1034. ClearseparationandfullpanelsvisibleforMidandHigh."
+    },
+    {
+      "id": "queued-ordinary-wide-half-quarter-clipping",
+      "status": "CLOSED",
+      "evidence": "Sourceaddswidthneededforbothsameresolutionpanels. IndependentpublicCLI512x256fixturecheckscompletehalfpanelsx540..1308and1318..2086, completequarterpairandactualcanvasbounds. Nativeordinaryrtex349/rtex350512x256andrtex015320x256thereforecoveredbythefixedlayoutclass,notclaimedartaccepted."
+    }
+  ],
+  "sourceAssessment": [
+    "Verticalpositionsderivefromnativehalfheightandpadlabels; canvasheightgrowsforfullquarterpanel. Widthderivesfrommaxnativecomparisonwidthandbothpanelmargins; combinedcanvaspixelbudget16Mcheckedbeforeallocation. Noimage/mapauthoringwritesadded.",
+    "Overviewsnowfit512x512columnforbothportraitandlandscape, preservingaspectwithoutoverflow. 1:1detailcropusesactualavailablepixels,min256eachaxis,avoidingblackcrop-paddingforsmalltierimages.",
+    "Actual00364x176review-v2filesremainsameafterdynamicwidthadditionbecausecanvasstill1400. Viewedall4correctedsheetsandcheckedpublicactualcontentrebindtonowfinalproducerhash. Relief/sourceartunchanged."
+  ],
+  "publicRegression": {
+    "file": "docs/hexen2/textures/batch-003-public-layout-regression-v3.json",
+    "sha256": "acff27560adae58d4c9c85b97f4aa6bc61c452e8a695fb6933128fb401baa60b",
+    "groups": 5,
+    "archivedOldExitCode": 1,
+    "archivedOldFailureGroups": 4,
+    "currentExitCode": 0,
+    "currentGroupsPass": 5,
+    "testFileSha256": "7e083975001c2a4a5009b26ae4a54d40c2df828bfa9aa6b056ec7318df0c830a"
+  },
+  "actualPreviewProof": {
+    "file": "docs/hexen2/textures/batch-003-public-preview-v3.json",
+    "sha256": "544296c67587ae1515bc77a7210415f9f6f3c0d3a6b252b8b3bc47766c239345",
+    "decodedContentAndLabelsExact": true,
+    "panelRectanglesDisjoint": true,
+    "HTMLBytesExact": true,
+    "JPEGByteEqualityClaimed": false,
+    "varianceLimit": "AnydecodedJPEGdifferenceconfinedtoknownemptybottomrightpadding,outsideallactualcontent/labels; receiptretainsboundingrectanglesandfailedstrongerhistoricalbytechecks."
+  },
+  "actualSheetsViewed": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/review-v2/rtex022-high-relief.jpg",
+      "sha256": "3f8c930b9b767e33a3c9f82984bc773680e614d6260886cf1bd7ee7984e61fed"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/review-v2/rtex022-high-review.jpg",
+      "sha256": "6e7557d5d9e92fde7ef13e40efa3031f5cbbd981ff9bc5c4b9fd550839cd7784"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/review-v2/rtex022-mid-relief.jpg",
+      "sha256": "7a5586e1457857185668d25516b0622433418144fdcdbf56be37ad8c5bf57e7b"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/review-v2/rtex022-mid-review.jpg",
+      "sha256": "2e80bcc7e10eed267e2f39d70d4594d7055711b7ad00cd7fb6e16f07374e3d27"
+    }
+  ],
+  "assetPreservation": {
+    "all10MapHashesEqualPriorArtReceipt": true,
+    "masterPackageSha256": "2a1345aa7dcb655217ba51948e930f136a946674c804f6f6e83ace5fc021e63b",
+    "tierReceiptSha256": "e4fc18c77a542895b8046ff55d2545e8da1be071cd4b89c67d1e84f2eb8d6e6f",
+    "rtex022ArtPassRetained": true
+  },
+  "limits": [
+    "Staticpreview/art/source/publicCLIproof,notbrowserruntimeGPU/gameplay/Hexenpackbindingorowneracceptance.",
+    "ttex098undersized1774x887stillNOTqualified,notupscaled; APIchoicependingwithnoapprovalassumed. Noadditionalprovider/generationreviewed.",
+    "13materialsqualifiedofflineonlyafterrootreconcilesactualmap/public/previewreceipts. Fullcampaigngoalactive; noalltexturescompletionorreleaseclaim."
+  ],
+  "reviewerEffects": "Onlythisnewpreview-reviewJSONwritten; nooriginalartreceipt/source/master/maps/tools/tests/Git/provider/processmutations."
+}
