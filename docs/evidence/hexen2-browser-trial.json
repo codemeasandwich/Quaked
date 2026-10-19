@@ -1,14 +1,14 @@
 {
   "trial": "hexen2-browser",
-  "at": "2026-10-19T07:45:50.974Z",
-  "base": "http://127.0.0.1:50076",
+  "at": "2026-10-19T07:55:26.527Z",
+  "base": "http://127.0.0.1:55547",
   "result": {
     "ok": true,
     "errors": [],
     "session": {
       "level": "demo1",
       "viewEntity": 1,
-      "health": 79,
+      "health": 78,
       "models": 342,
       "baselines": 247
     },
@@ -50,39 +50,39 @@
       "drawn": 10,
       "skipped": 0
     },
-    "frames": 42,
-    "attackFrames": 4,
+    "frames": 28,
+    "attackFrames": 2,
     "entitiesVisible": 24,
     "nearest": [
       {
         "name": "obj_statue_angel",
         "model": "models/anglstat.mdl",
-        "d": 97
-      },
-      {
-        "name": "obj_tombstone2",
-        "model": "models/tombstn2.mdl",
-        "d": 253
-      },
-      {
-        "name": "obj_tree2",
-        "model": "models/tree2.mdl",
-        "d": 271
+        "d": 131
       },
       {
         "name": "obj_tombstone1",
         "model": "models/tombstn1.mdl",
+        "d": 219
+      },
+      {
+        "name": "art_HealthBoost",
+        "model": "models/a_hboost.mdl",
+        "d": 252
+      },
+      {
+        "name": "obj_tombstone2",
+        "model": "models/tombstn2.mdl",
         "d": 285
       },
       {
         "name": "art_HealthBoost",
         "model": "models/a_hboost.mdl",
-        "d": 312
+        "d": 286
       },
       {
-        "name": "art_HealthBoost",
-        "model": "models/a_hboost.mdl",
-        "d": 314
+        "name": "obj_tree2",
+        "model": "models/tree2.mdl",
+        "d": 319
       }
     ],
     "keyEvents": 1,
@@ -92,27 +92,27 @@
       "side": 0
     },
     "position": [
-      -760.03125,
-      -1838.3861083984375,
+      -784.2152709960938,
+      -1900.2158203125,
       0.03125
     ],
-    "health": 79,
-    "hudHealth": 79,
+    "health": 78,
+    "hudHealth": 78,
     "pixel": [
-      41,
-      34,
-      31,
+      30,
+      24,
+      20,
       255
     ],
+    "mouseYaw": -60,
     "audioDeferred": true,
     "audioDeferredResult": {
       "sources": 1,
-      "time": 4.074666666666666,
+      "time": 4.96,
       "state": "running"
     },
-    "mouseYaw": -60,
     "mouseAttack": true,
-    "moved": 251.43372996491607,
+    "moved": 189.19978977077622,
     "movedFrom": [
       -918,
       -2034,
