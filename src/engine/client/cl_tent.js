@@ -22,7 +22,9 @@ import {
 	TE_SPIKE, TE_SUPERSPIKE, TE_GUNSHOT, TE_EXPLOSION,
 	TE_TAREXPLOSION, TE_LIGHTNING1, TE_LIGHTNING2, TE_LIGHTNING3,
 	TE_LAVASPLASH, TE_TELEPORT, TE_GORE, TE_EXPLOSION2, TE_WIZSPIKE,
-	TE_KNIGHTSPIKE, TE_BEAM
+	TE_KNIGHTSPIKE, TE_BEAM,
+	TE_STREAM_LIGHTNING_SMALL, TE_STREAM_CHAIN, TE_STREAM_SUNSTAFF1, TE_STREAM_SUNSTAFF2,
+	TE_STREAM_LIGHTNING, TE_STREAM_COLORBEAM, TE_STREAM_ICECHUNKS, TE_STREAM_GAZE, TE_STREAM_FAMINE
 } from '../common/protocol.js';
 import {
 	MAX_TEMP_ENTITIES, MAX_BEAMS, MAX_VISEDICTS,
@@ -41,11 +43,21 @@ import { VectorCopy, VectorSubtract, VectorNormalize, vec3_origin, M_PI } from '
 import { S_PrecacheSound, S_StartSound } from '../sound/snd_dma.js';
 import { R_RunParticleEffect, R_ParticleExplosion, R_BlobExplosion,
 	R_ParticleExplosion2, R_LavaSplash, R_WizardSpikeImpact, R_KnightSpikeImpact } from '../render/render.js';
+import { R_SunStaffTrail } from '../render/r_part.js';
 import { Mod_ForName } from '../render/gl_model.js';
+import { Hexen2_UpdateEffects, Hexen2_LiveStreams, HEXEN2_STREAM_MODELS } from './cl_hexen2_effects.js';
 import { R_NailHit, R_DecalShot, R_DecalScorch, R_DecalBloodPool } from '../common/hooks.js'; // installed by newer/render/r_decals.js
 import { V_BlastShakeEvent, BLAST_ROCKET, BLAST_SPAWN, BLAST_ERUPTION } from '../common/hooks.js'; // installed by newer/render/v_blastshake.js
 
 let num_temp_entities = 0;
+
+// Hexen II's stream temp entities (uhexen2 cl_tent.c MAX_STREAM_ENTITIES 128) have their own pool: a single sunstaff
+// beam can lay more segments than the Quake temp-entity pool holds.
+const MAX_STREAM_ENTITIES = 128;
+const stream_entities = [];
+const stream_models = new Map();
+let num_stream_entities = 0;
+for ( let i = 0; i < MAX_STREAM_ENTITIES; i ++ ) stream_entities.push( new entity_t() );
 // the player's beam lookup lives with the beams in client.js, so the renderer need not import this module ([44g], D1a)
 export { CL_PlayerLightning } from './client.js';
 
@@ -385,6 +397,254 @@ function CL_NewTempEntity() {
 
 /*
 =================
+CL_Hexen2StreamModels
+
+uhexen2 cl_tent.c:316-356: each TE_STREAM_* type maps to one to four native models. Loaded once per type and kept for
+the session; a missing model leaves the stream undrawn rather than aborting a partial installation.
+=================
+*/
+function CL_Hexen2StreamModels( type ) {
+
+	if ( stream_models.has( type ) ) return stream_models.get( type );
+	const names = HEXEN2_STREAM_MODELS[ type ] ?? [];
+	const models = names.map( name => name ? Mod_ForName( name, false ) : null );
+	stream_models.set( type, models );
+	return models;
+
+}
+
+function CL_NewStreamEntity() {
+
+	if ( cl_numvisedicts === MAX_VISEDICTS ) return null;
+	if ( num_stream_entities === MAX_STREAM_ENTITIES ) return null;
+	const ent = stream_entities[ num_stream_entities ++ ];
+	ent.forcelink = false;
+	ent.model = null;
+	ent.frame = 0;
+	ent.colormap = null;
+	ent.skinnum = 0;
+	ent.effects = 0;
+	ent.scale = 1.0;
+	ent.drawflags = 0;
+	ent.abslight = 0;
+	ent.origin.fill( 0 );
+	ent.angles.fill( 0 );
+	cl_visedicts[ cl_numvisedicts ] = ent;
+	set_cl_numvisedicts( cl_numvisedicts + 1 );
+	return ent;
+
+}
+
+/*
+=================
+CL_Hexen2UpdateStreams
+
+uhexen2 cl_tent.c CL_UpdateTEnts: lays a stream model every 30 Quake units from source to dest, with the native yaw,
+pitch and per-type roll/frame/skin/abslight, and the sunstaff's two destination orbs plus its particle trail.
+=================
+*/
+export function CL_Hexen2UpdateStreams() {
+
+	num_stream_entities = 0;
+	const serverTime = cl.mtime[ 0 ];
+
+	for ( const stream of Hexen2_LiveStreams() ) {
+
+		const models = CL_Hexen2StreamModels( stream.type );
+		if ( ! models[ 0 ] ) continue;
+		if ( stream.endTime < serverTime ) {
+
+			if ( stream.type !== TE_STREAM_LIGHTNING && stream.type !== TE_STREAM_LIGHTNING_SMALL ) continue;
+			if ( stream.endTime + 0.25 < serverTime ) continue;
+
+		}
+
+		const source = [ stream.source[ 0 ], stream.source[ 1 ], stream.source[ 2 ] ];
+		if ( ( stream.flags & 16 ) && cl_entities[ stream.entity ] ) {
+
+			const owner = cl_entities[ stream.entity ].origin;
+			source[ 0 ] = owner[ 0 ] + stream.offset[ 0 ];
+			source[ 1 ] = owner[ 1 ] + stream.offset[ 1 ];
+			source[ 2 ] = owner[ 2 ] + stream.offset[ 2 ];
+
+		}
+
+		const dest = stream.dest;
+		const dist = new Float32Array( 3 );
+		VectorSubtract( dest, source, dist );
+
+		let yaw, pitch;
+		if ( dist[ 1 ] === 0 && dist[ 0 ] === 0 ) {
+
+			yaw = 0;
+			pitch = dist[ 2 ] > 0 ? 90 : 270;
+
+		} else {
+
+			yaw = Math.atan2( dist[ 1 ], dist[ 0 ] ) * 180 / M_PI;
+			if ( yaw < 0 ) yaw += 360;
+			const forward = Math.sqrt( dist[ 0 ] * dist[ 0 ] + dist[ 1 ] * dist[ 1 ] );
+			pitch = Math.atan2( dist[ 2 ], forward ) * 180 / M_PI;
+			if ( pitch < 0 ) pitch += 360;
+
+		}
+
+		const org = new Float32Array( [ source[ 0 ], source[ 1 ], source[ 2 ] ] );
+		let distance = VectorNormalize( dist );
+
+		if ( stream.type === TE_STREAM_ICECHUNKS ) {
+
+			const offset = ( Math.trunc( cl.time * 40 ) % 30 );
+			for ( let j = 0; j < 3; j ++ ) org[ j ] += dist[ j ] * offset;
+
+		}
+
+		while ( distance > 0 ) {
+
+			const ent = CL_NewStreamEntity();
+			if ( ! ent ) return;
+			VectorCopy( org, ent.origin );
+			ent.model = models[ 0 ];
+			ent.angles[ 0 ] = pitch;
+			ent.angles[ 1 ] = yaw;
+
+			switch ( stream.type ) {
+
+				case TE_STREAM_CHAIN:
+					ent.angles[ 2 ] = 0;
+					ent.drawflags = 7; // MLS_ABSLIGHT
+					ent.abslight = 128;
+					break;
+
+				case TE_STREAM_SUNSTAFF1: {
+
+					ent.angles[ 2 ] = Math.trunc( cl.time * 10 ) % 360;
+					ent.drawflags = 7;
+					ent.abslight = 128;
+
+					const second = CL_NewStreamEntity();
+					if ( ! second ) return;
+					VectorCopy( org, second.origin );
+					second.model = models[ 1 ];
+					second.angles[ 0 ] = pitch;
+					second.angles[ 1 ] = yaw;
+					second.angles[ 2 ] = Math.trunc( cl.time * 50 ) % 360;
+					second.drawflags = 7 | 128;
+					second.abslight = 128;
+					break;
+
+				}
+
+				case TE_STREAM_SUNSTAFF2:
+					ent.angles[ 2 ] = Math.trunc( cl.time * 10 ) % 360;
+					ent.drawflags = 7;
+					ent.abslight = 128;
+					ent.frame = Math.trunc( cl.time * 10 ) % 8;
+					break;
+
+				case TE_STREAM_LIGHTNING:
+					if ( stream.endTime < serverTime ) {
+
+						ent.drawflags = 7 | 128;
+						ent.abslight = 128 + ( stream.endTime - serverTime ) * 192;
+
+					} else {
+
+						ent.angles[ 2 ] = Math.random() * 360 | 0;
+						ent.drawflags = 7;
+						ent.abslight = 128;
+						ent.frame = Math.random() * 6 | 0;
+
+					}
+					break;
+
+				case TE_STREAM_LIGHTNING_SMALL:
+					if ( stream.endTime < serverTime ) {
+
+						ent.drawflags = 7 | 128;
+						ent.abslight = 128 + ( stream.endTime - serverTime ) * 192;
+
+					} else {
+
+						ent.angles[ 2 ] = Math.random() * 360 | 0;
+						ent.frame = Math.random() * 6 | 0;
+						ent.drawflags = 7;
+						ent.abslight = 128;
+
+					}
+					break;
+
+				case TE_STREAM_FAMINE:
+					ent.angles[ 2 ] = Math.random() * 360 | 0;
+					ent.drawflags = 7;
+					ent.abslight = 128;
+					ent.frame = 0;
+					break;
+
+				case TE_STREAM_COLORBEAM:
+					ent.angles[ 2 ] = 0;
+					ent.drawflags = 7;
+					ent.abslight = 128;
+					ent.skinnum = stream.skin;
+					break;
+
+				case TE_STREAM_GAZE:
+					ent.angles[ 2 ] = 0;
+					ent.drawflags = 7;
+					ent.abslight = 128;
+					ent.frame = Math.trunc( cl.time * 40 ) % 36;
+					break;
+
+				case TE_STREAM_ICECHUNKS:
+					ent.angles[ 2 ] = Math.random() * 360 | 0;
+					ent.drawflags = 7;
+					ent.abslight = 128;
+					ent.frame = Math.random() * 5 | 0;
+					break;
+
+				default:
+					ent.angles[ 2 ] = 0;
+
+			}
+
+			for ( let j = 0; j < 3; j ++ ) org[ j ] += dist[ j ] * 30;
+			distance -= 30;
+
+		}
+
+		if ( stream.type === TE_STREAM_SUNSTAFF1 || stream.type === TE_STREAM_SUNSTAFF2 ) {
+
+			if ( stream.lastTrailTime + 0.2 < cl.time ) {
+
+				stream.lastTrailTime = cl.time;
+				R_SunStaffTrail( source, dest );
+
+			}
+
+			const orb = CL_NewStreamEntity();
+			if ( ! orb ) return;
+			VectorCopy( dest, orb.origin );
+			orb.model = models[ 2 ];
+			orb.drawflags = 7;
+			orb.abslight = 128;
+			orb.scale = ( 80 + ( Math.random() * 16 | 0 ) ) / 100;
+
+			const glow = CL_NewStreamEntity();
+			if ( ! glow ) return;
+			VectorCopy( dest, glow.origin );
+			glow.model = models[ 3 ];
+			glow.drawflags = 7 | 128;
+			glow.abslight = 128;
+			glow.scale = ( 150 + ( Math.random() * 16 | 0 ) ) / 100;
+
+		}
+
+	}
+
+}
+
+/*
+=================
 CL_UpdateTEnts
 =================
 */
@@ -400,6 +660,11 @@ CL_UpdateTEnts
 export function CL_UpdateTEnts() {
 
 	num_temp_entities = 0;
+
+	// Hexen II client effects and stream segments join the same per-frame visedict list (uhexen2 CL_UpdateEffects and
+	// CL_UpdateTEnts); a Quake session simply has no slots to advance.
+	Hexen2_UpdateEffects();
+	CL_Hexen2UpdateStreams();
 
 	// Use server time (cl.mtime[0]) for beam expiration to match CL_ParseBeam
 	// which also uses server time. This avoids mismatch with client-side prediction.

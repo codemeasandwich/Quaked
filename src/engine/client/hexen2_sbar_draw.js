@@ -13,7 +13,8 @@
 /**
  * @param {ReadonlyArray<object>} ops operations from `Hexen2_StatusBarOps` or `Hexen2_InventoryOps`
  * @param {{ pic: function(string, number, number, string): boolean, num?: function(number, number, number, number): void,
- *   small?: function(string, number, number): void }} draw the drawing layer; `pic` returns false for a missing picture
+ *   small?: function(string, number, number): void, white?: function(string, number, number): void }} draw the drawing
+ *   layer; `pic` returns false for a missing picture
  * @returns {{ drawn: number, skipped: number }} what was drawn and what the layer skipped
  */
 export function Hexen2_DrawStatusBar( ops, draw ) {
@@ -34,6 +35,11 @@ export function Hexen2_DrawStatusBar( ops, draw ) {
 		} else if ( op.kind === 'small' ) {
 
 			if ( typeof draw.small === 'function' ) { draw.small( op.text, op.x, op.y ); drawn ++; }
+			else skipped ++;
+
+		} else if ( op.kind === 'white' ) {
+
+			if ( typeof draw.white === 'function' ) { draw.white( op.text, op.x, op.y ); drawn ++; }
 			else skipped ++;
 
 		} else skipped ++;

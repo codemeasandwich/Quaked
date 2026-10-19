@@ -30,6 +30,8 @@ import { V_StartPitchDrift, V_StopPitchDrift } from './view.js';
 import { lookspring, CL_Disconnect } from './cl_main.js';
 import { NET_SendUnreliableMessage } from '../net/net_main.js';
 import { CL_StoreCommand, CL_GetValidSequence, CL_GetServerSequence } from './cl_pred.js';
+import { Hexen2_InvLeft, Hexen2_InvRight, Hexen2_InvUse, Hexen2_InvDrop, Hexen2_InvOff, Hexen2_InventorySetSender } from './hexen2_inventory_state.js';
+import { key_dest, key_game } from './keys.js';
 import { isXRActive, XR_GetAimAngles } from '../../platform/webxr.js';
 
 // Pre-allocated array for XR aim angles (Golden Rule #4)
@@ -93,6 +95,7 @@ export const in_speed = new kbutton_t();
 export const in_use = new kbutton_t();
 export const in_jump = new kbutton_t();
 export const in_crouch = new kbutton_t(); // Hexen II's native crouch key
+export const in_infoplaque = new kbutton_t(); // Hexen II's objectives plaque key
 export const in_attack = new kbutton_t();
 export const in_up = new kbutton_t();
 export const in_down = new kbutton_t();
@@ -216,6 +219,91 @@ function IN_JumpDown() { KeyDown( in_jump ); }
 function IN_JumpUp() { KeyUp( in_jump ); }
 function IN_CrouchDown() { KeyDown( in_crouch ); }
 function IN_CrouchUp() { KeyUp( in_crouch ); }
+
+// Hexen II's objectives plaque (native IN_infoPlaqueDown/Up): only a press in the game raises it.
+function IN_InfoPlaqueDown() {
+
+	if ( key_dest !== key_game ) return;
+	KeyDown( in_infoplaque );
+	if ( cl.h2 ) cl.h2.infoUp = true;
+
+}
+
+function IN_InfoPlaqueUp() {
+
+	KeyUp( in_infoplaque );
+	if ( cl.h2 ) cl.h2.infoUp = false;
+
+}
+
+/*
+===============
+CL_InfoPlaqueActive
+
+Whether +infoplaque is held (native info_up), read by the screen's objectives plaque.
+===============
+*/
+/**
+ * @returns {boolean} true while the objectives plaque key is held in a Hexen II game
+ */
+export function CL_InfoPlaqueActive() { return ( in_infoplaque.state & 1 ) !== 0; }
+
+/*
+===============
+The Hexen II inventory commands (native sbar.c InvLeft_f ... InvOff_f)
+
+They act on the shared client's inventory, queue the selection on the native clc_inv_select and raise the native
+impulses (23 use, 44 drop) through the normal impulse path.
+===============
+*/
+function IN_InvLeft() {
+
+	if ( ! GameProfile_IsHexen2() ) return;
+	Hexen2_InvLeft( cl );
+
+}
+
+function IN_InvRight() {
+
+	if ( ! GameProfile_IsHexen2() ) return;
+	Hexen2_InvRight( cl );
+
+}
+
+function IN_InvUse() {
+
+	if ( ! GameProfile_IsHexen2() ) return;
+	const selection = Hexen2_InvUse( cl );
+	if ( selection === null ) return;
+	CL_SendInvSelect( selection );
+	in_impulse = 23;
+
+}
+
+function IN_InvDrop() {
+
+	if ( ! GameProfile_IsHexen2() ) return;
+	const selection = Hexen2_InvDrop( cl );
+	if ( selection === null ) return;
+	CL_SendInvSelect( selection );
+	in_impulse = 44;
+
+}
+
+function IN_InvOff() {
+
+	if ( ! GameProfile_IsHexen2() ) return;
+	Hexen2_InvOff( cl );
+
+}
+
+/**
+ * The impulse waiting for the next `clc_move`, as the native `in_impulse`; a test seam and the inventory commands'
+ * observable effect. `CL_SendMove` consumes it.
+ *
+ * @returns {number} the pending impulse, 0 when none
+ */
+export function CL_PendingImpulse() { return in_impulse; }
 
 function IN_Impulse() { in_impulse = Q_atoi( Cmd_Argv( 1 ) ); }
 
@@ -554,6 +642,9 @@ export function CL_SendInvSelect( selection ) {
 
 }
 
+// The inventory state closes its four-second row on its own; let it use the same reliable message as the commands.
+Hexen2_InventorySetSender( CL_SendInvSelect );
+
 /*
 ============
 CL_InitInput
@@ -598,6 +689,13 @@ export function CL_InitInput() {
 	Cmd_AddCommand( '-jump', IN_JumpUp );
 	Cmd_AddCommand( '+crouch', IN_CrouchDown );
 	Cmd_AddCommand( '-crouch', IN_CrouchUp );
+	Cmd_AddCommand( '+infoplaque', IN_InfoPlaqueDown );
+	Cmd_AddCommand( '-infoplaque', IN_InfoPlaqueUp );
+	Cmd_AddCommand( 'invleft', IN_InvLeft );
+	Cmd_AddCommand( 'invright', IN_InvRight );
+	Cmd_AddCommand( 'invuse', IN_InvUse );
+	Cmd_AddCommand( 'invdrop', IN_InvDrop );
+	Cmd_AddCommand( 'invoff', IN_InvOff );
 	Cmd_AddCommand( 'impulse', IN_Impulse );
 	Cmd_AddCommand( '+klook', IN_KLookDown );
 	Cmd_AddCommand( '-klook', IN_KLookUp );

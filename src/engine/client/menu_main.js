@@ -21,6 +21,7 @@ import { Cbuf_AddText } from '../common/cmd.js';
 import { K_ESCAPE, K_ENTER, K_UPARROW, K_DOWNARROW, K_LEFTARROW, K_RIGHTARROW, key_game, key_menu, key_console } from './keys.js';
 import { SAVEGAME_COMMENT_LENGTH } from '../common/quakedef.js';
 import { GameSelection_SavePrefix } from '../common/game_selection.js';
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
 import { m_none, m_main, m_singleplayer, m_load, m_save, m_quit, m_credits, m_bestiary, m_state, m_save_demonum, set_m_state, set_m_entersound, set_m_save_demonum, menuOpeners, _Touch_ExitFullscreen, _cls, _sv, _svs, _cl, _host_time_get, _realtime_get, _Draw_CachePic, _weaponModelsCredit, _S_LocalSound, _SCR_BeginLoadingPlaque, _IN_RequestPointerLock, _CL_NextDemo, getKeyDest, setKeyDest, M_DrawCharacter, M_Print, M_PrintWhite, M_DrawTransPic, M_DrawSubPic, M_DrawPic, M_DrawTextBox, M_InGame, newerDefaults } from './menu_common.js';
 
 /*
@@ -40,6 +41,9 @@ const MAIN_ITEMS = 6; // Single Player, Multiplayer, Bestiarium, Options, Credit
  * it to -1, which holds the demo loop until Escape leaves the main menu and restores it.
  */
 export function M_Menu_Main_f() {
+
+	// Hexen II keeps its own native main and single-player pages; the rest of the stack is shared.
+	if ( GameProfile_IsHexen2() ) { menuOpeners.hexenMain(); return; }
 
 	if ( getKeyDest() !== key_menu ) {
 
@@ -230,6 +234,8 @@ const SINGLEPLAYER_ITEMS = 5; // Newer Game, New Game, Load, Save, Level Select
  * Load, Save and Level Select): key_dest `key_menu`, `m_state` `m_singleplayer`, enter sound.
  */
 export function M_Menu_SinglePlayer_f() {
+
+	if ( GameProfile_IsHexen2() ) { menuOpeners.hexenSingle(); return; }
 
 	setKeyDest( key_menu );
 	set_m_state( m_singleplayer );

@@ -48,6 +48,7 @@ import { SIGNONS, MAX_DLIGHTS, MAX_EFRAGS, MAX_BEAMS, MAX_TEMP_ENTITIES,
 	NUM_CSHIFTS } from './client.js';
 import { anglemod, VectorCopy, VectorMA, AngleVectors } from '../common/mathlib.js';
 import { R_RocketTrail, R_RemoveEfrags, R_EntityParticles } from '../render/render.js';
+import { RT } from '../render/r_part.js';
 import { R_ImpactMissile } from '../common/hooks.js'; // installed by newer/render/r_impactripples.js
 import { R_FlashlightRunEnd } from '../common/hooks.js'; // installed by newer/render/r_flashlightrun.js
 import { R_DemoSplitEnd } from '../common/hooks.js'; // installed by newer/render/r_demosplit.js
@@ -712,11 +713,18 @@ let hexen2TrailHooks = Object.freeze( {
  */
 export function CL_Hexen2SetTrailHooks( next ) { hexen2TrailHooks = Object.freeze( { ...hexen2TrailHooks, ...next } ); }
 
+// The native Hexen II trail each model flag draws (uhexen2 particle.h rt_type_t, implemented in r_part.js); `fallback`
+// is the nearest Quake trail, used only for a name without a native type
+const HEXEN2_TRAIL_TYPES = Object.freeze( {
+	fireball: RT.FIREBALL, ice: RT.ICE, spit: RT.SPIT, spell: RT.SPELL, vorpMissile: RT.VORPAL, setStaff: RT.SETSTAFF,
+	magicMissile: RT.MAGICMISSILE, boneshard: RT.BONESHARD, scarab: RT.SCARAB, acidball: RT.ACIDBALL, bloodshot: RT.BLOODSHOT
+} );
+
 function CL_Hexen2Trail( name, fallback, start, end, number, model ) {
 
 	const hook = hexen2TrailHooks[ name ];
 	if ( typeof hook === 'function' ) hook( start, end, number, model );
-	else R_RocketTrail( start, end, fallback, number, model );
+	else R_RocketTrail( start, end, HEXEN2_TRAIL_TYPES[ name ] ?? fallback, number, model );
 
 }
 

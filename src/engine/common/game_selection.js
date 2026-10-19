@@ -383,8 +383,12 @@ export function GameSelection_SavePrefix() {
  */
 export function GameSelection_ConfigKey() {
 
+	// Hexen II has its own default.cfg and bindings; sharing Quake's saved keys would overwrite them on the first run.
+	// It is also a desktop start without a saved Quake choice, so the running id is checked as well as the kept one.
+	const runningGame = GameSelection_Running();
+	if ( HEXEN_CHOICES.has( runningGame ) ) return `quake_config_${runningGame}`;
 	const game = savedGame();
-	return MISSION_PACKS[ game ] || isAddon( game ) ? `quake_config_${game}` : 'quake_config';
+	return MISSION_PACKS[ game ] || isAddon( game ) || HEXEN_CHOICES.has( game ) ? `quake_config_${game}` : 'quake_config';
 
 }
 

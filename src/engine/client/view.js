@@ -25,6 +25,7 @@ import { PITCH, YAW, ROLL,
 import { MSG_ReadByte, MSG_ReadCoord } from '../common/common.js';
 import { Cmd_AddCommand, Cmd_Argv } from '../common/cmd.js';
 import { cvar_t, Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from '../common/cvar.js';
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
 import { VectorCopy, VectorAdd, VectorSubtract, VectorNormalize,
 	DotProduct, AngleVectors, anglemod, M_PI } from '../common/mathlib.js';
 import { host_frametime, noclip_anglehack } from '../common/host_state.js';
@@ -97,6 +98,30 @@ const gl_cshiftpercent = new cvar_t( 'gl_cshiftpercent', '100', false );
 let v_dmg_time = 0;
 let v_dmg_roll = 0;
 let v_dmg_pitch = 0;
+
+// Hexen II's CE_QUAKE adds a short camera shake at the effect origin (cl_effect.c:1099); native shows the particle
+// ring, and the shake keeps the "quake" name literal without touching Quake's own effects.
+let _hexenQuakeTime = 0;
+let _hexenQuakeAmount = 0;
+
+/**
+ * Starts a short camera shake from a Hexen II CE_QUAKE effect, scaled by how close the view is to its radius.
+ *
+ * @param {ArrayLike<number>} origin the effect centre, Quake units
+ * @param {number} radius the effect radius, Quake units
+ */
+export function V_HexenQuakeShake( origin, radius ) {
+
+	if ( ! origin || ! ( radius > 0 ) ) return;
+	const dx = r_refdef.vieworg[ 0 ] - origin[ 0 ], dy = r_refdef.vieworg[ 1 ] - origin[ 1 ], dz = r_refdef.vieworg[ 2 ] - origin[ 2 ];
+	const distance = Math.sqrt( dx * dx + dy * dy + dz * dz );
+	if ( distance >= radius ) return;
+	const strength = 6 * ( 1 - distance / radius );
+	if ( strength <= _hexenQuakeAmount && _hexenQuakeTime > 0 ) return;
+	_hexenQuakeAmount = strength;
+	_hexenQuakeTime = 0.5;
+
+}
 
 // r_refdef is imported from render.js (the canonical source)
 // Re-export for backwards compat with modules that import from view.js
@@ -498,6 +523,34 @@ function V_BonusFlash_f() {
 }
 
 /*
+==================
+V_DarkFlash_f / V_WhiteFlash_f
+
+Hexen II's `df` and `wf` console commands (uhexen2 view.c:417-433): the same bonus shift, black or white. The gamecode
+uses them for scripted fades and the white flash on a powered weapon hit.
+==================
+*/
+/** Fades the screen to black through the bonus colour shift (Hexen II `df`). */
+export function V_DarkFlash_f() {
+
+	cl.cshifts[ CSHIFT_BONUS ].destcolor[ 0 ] = 0;
+	cl.cshifts[ CSHIFT_BONUS ].destcolor[ 1 ] = 0;
+	cl.cshifts[ CSHIFT_BONUS ].destcolor[ 2 ] = 0;
+	cl.cshifts[ CSHIFT_BONUS ].percent = 255;
+
+}
+
+/** Fades the screen to white through the bonus colour shift (Hexen II `wf`). */
+export function V_WhiteFlash_f() {
+
+	cl.cshifts[ CSHIFT_BONUS ].destcolor[ 0 ] = 255;
+	cl.cshifts[ CSHIFT_BONUS ].destcolor[ 1 ] = 255;
+	cl.cshifts[ CSHIFT_BONUS ].destcolor[ 2 ] = 255;
+	cl.cshifts[ CSHIFT_BONUS ].percent = 255;
+
+}
+
+/*
 =============
 V_SetContentsColor
 =============
@@ -551,10 +604,71 @@ export function V_SetContentsColor( contents ) {
 
 /*
 =============
+V_CalcHexenPowerupCshift
+
+uhexen2 view.c:461-508: Hexen II reads the player's artifact_active bits instead of Quake's IT_* items. FROZEN gives
+the blue ice tint, STONED the grayscale marker (percent > 10000, which V_CalcBlend turns into 80), DIVINE the white
+bonus flash, and invisibility/invincibility their own power-up colours.
+=============
+*/
+const ART_INVINCIBILITY = 2;
+const ART_INVISIBILITY = 8;
+const ARTFLAG_FROZEN = 128;
+const ARTFLAG_STONED = 256;
+const ARTFLAG_DIVINE_INTERVENTION = 512;
+
+function V_CalcHexenPowerupCshift() {
+
+	const active = Number( cl.h2?.stats?.artifact_active ) || 0;
+	if ( active & ARTFLAG_DIVINE_INTERVENTION ) {
+
+		cl.cshifts[ CSHIFT_BONUS ].destcolor[ 0 ] = 255;
+		cl.cshifts[ CSHIFT_BONUS ].destcolor[ 1 ] = 255;
+		cl.cshifts[ CSHIFT_BONUS ].destcolor[ 2 ] = 255;
+		cl.cshifts[ CSHIFT_BONUS ].percent = 256;
+
+	}
+
+	if ( active & ARTFLAG_FROZEN ) {
+
+		cl.cshifts[ CSHIFT_POWERUP ].destcolor[ 0 ] = 20;
+		cl.cshifts[ CSHIFT_POWERUP ].destcolor[ 1 ] = 70;
+		cl.cshifts[ CSHIFT_POWERUP ].destcolor[ 2 ] = 255;
+		cl.cshifts[ CSHIFT_POWERUP ].percent = 65;
+
+	} else if ( active & ARTFLAG_STONED ) {
+
+		cl.cshifts[ CSHIFT_POWERUP ].destcolor[ 0 ] = 205;
+		cl.cshifts[ CSHIFT_POWERUP ].destcolor[ 1 ] = 205;
+		cl.cshifts[ CSHIFT_POWERUP ].destcolor[ 2 ] = 205;
+		cl.cshifts[ CSHIFT_POWERUP ].percent = 11000; // V_CalcBlend's grayscale marker
+
+	} else if ( active & ART_INVISIBILITY ) {
+
+		cl.cshifts[ CSHIFT_POWERUP ].destcolor[ 0 ] = 100;
+		cl.cshifts[ CSHIFT_POWERUP ].destcolor[ 1 ] = 100;
+		cl.cshifts[ CSHIFT_POWERUP ].destcolor[ 2 ] = 100;
+		cl.cshifts[ CSHIFT_POWERUP ].percent = 100;
+
+	} else if ( active & ART_INVINCIBILITY ) {
+
+		cl.cshifts[ CSHIFT_POWERUP ].destcolor[ 0 ] = 255;
+		cl.cshifts[ CSHIFT_POWERUP ].destcolor[ 1 ] = 255;
+		cl.cshifts[ CSHIFT_POWERUP ].destcolor[ 2 ] = 0;
+		cl.cshifts[ CSHIFT_POWERUP ].percent = 30;
+
+	} else cl.cshifts[ CSHIFT_POWERUP ].percent = 0;
+
+}
+
+/*
+=============
 V_CalcPowerupCshift
 =============
 */
-function V_CalcPowerupCshift() {
+export function V_CalcPowerupCshift() {
+
+	if ( GameProfile_IsHexen2() ) { V_CalcHexenPowerupCshift(); return; }
 	if (R_PostActive() && R_QuadVisionActive()) {
 		cl.cshifts[CSHIFT_POWERUP].percent=0;
 		return;
@@ -628,6 +742,9 @@ export function V_CalcBlend( contentsScale = 1, output = v_blend ) {
 
 		if ( gl_cshiftpercent.value === 0 )
 			continue;
+
+		// uhexen2 view.c:526: a percent above 10000 marks the stoned grayscale tint, drawn at 80.
+		if ( cl.cshifts[ j ].percent > 10000 ) cl.cshifts[ j ].percent = 80;
 
 		let a2 = ( ( cl.cshifts[ j ].percent * ( j === CSHIFT_CONTENTS ? contentsScale : 1 ) * gl_cshiftpercent.value ) / 100.0 ) / 255.0;
 
@@ -1014,6 +1131,17 @@ export function V_CalcRefdef() {
 	// set up the refresh position
 	VectorAdd( r_refdef.viewangles, cl.punchangle, r_refdef.viewangles );
 
+	// Hexen II CE_QUAKE shake: a decaying offset, applied to the eye and roll only.
+	if ( _hexenQuakeTime > 0 ) {
+
+		const amount = _hexenQuakeAmount * Math.max( 0, _hexenQuakeTime / 0.5 );
+		r_refdef.vieworg[ 0 ] += Math.sin( cl.time * 63 ) * amount;
+		r_refdef.vieworg[ 1 ] += Math.cos( cl.time * 57 ) * amount;
+		r_refdef.viewangles[ ROLL ] += Math.sin( cl.time * 47 ) * amount * 0.5;
+		_hexenQuakeTime -= host_frametime;
+
+	}
+
 	// smooth out stair step ups
 	// QuakeWorld uses predicted onground state
 	const onGround = usePrediction ? ( cl_simonground !== -1 ) : cl.onground;
@@ -1129,6 +1257,8 @@ export function V_Init() {
 
 	Cmd_AddCommand( 'v_cshift', V_cshift_f );
 	Cmd_AddCommand( 'bf', V_BonusFlash_f );
+	Cmd_AddCommand( 'df', V_DarkFlash_f );
+	Cmd_AddCommand( 'wf', V_WhiteFlash_f );
 	Cmd_AddCommand( 'centerview', V_StartPitchDrift );
 
 	Cvar_RegisterVariable( lcd_x );

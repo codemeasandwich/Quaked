@@ -54,7 +54,7 @@ import { sv, svs, client_t,
 import { R_Init, D_FlushCaches } from '../render/gl_rmisc.js';
 import { R_SetExternals } from '../render/gl_rmain.js';
 import { VID_Init, VID_Shutdown } from '../render/vid.js';
-import { Draw_GetOverlayCanvas, Draw_WithAlpha, Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_Init, Draw_Character, Draw_String, Draw_ConsoleBackground, Draw_SetExternals, Draw_PicFromWad, Draw_CachePic, Draw_Pic, Draw_SubPic, Draw_TransPic, Draw_TransPicTranslate, Draw_Fill, Draw_FadeScreen } from '../render/gl_draw.js';
+import { Draw_GetOverlayCanvas, Draw_WithAlpha, Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_Init, Draw_Character, Draw_String, Draw_ConsoleBackground, Draw_SetExternals, Draw_PicFromWad, Draw_CachePic, Draw_Pic, Draw_SubPic, Draw_TransPic, Draw_TransPicTranslate, Draw_Fill, Draw_FadeScreen, Draw_SmallString } from '../render/gl_draw.js';
 import { SCR_Init, SCR_UpdateScreen, SCR_SetExternals, SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from '../render/gl_screen.js';
 import { S_Init, S_Update, S_Shutdown, S_StopAllSounds, S_SetCallbacks } from '../sound/snd_dma.js';
 import { CDAudio_Init, CDAudio_Update, CDAudio_Shutdown } from '../sound/cd_audio.js';
@@ -150,6 +150,7 @@ import { fraglimit, timelimit, teamplay, skill, deathmatch, coop } from './serve
 import { GameCatalogue_Init } from '../common/game_catalogue.js';
 import { GameSelection_Init, GameSelection_ConfigKey } from '../common/game_selection.js';
 import { GameProfile_Get, GameProfile_IsHexen2 } from '../common/game_profile.js';
+import { Hexen2_LoadPuzzleStrings, Hexen2_LoadInfoStrings } from '../common/hexen2_text_resources.js';
 export { fraglimit, timelimit, teamplay, skill, deathmatch, coop } from './server.js';
 
 /*
@@ -385,7 +386,15 @@ export async function Host_Init( parms ) {
 		d_8to24table: d_8to24table
 	} );
 
-	Draw_Init();
+	// Hexen II ships its character set as the raw 256x128 gfx/menu/conchars.lmp (32 columns), not a WAD lump.
+	let charset = null;
+	if ( GameProfile_Get().family === 'hexen2' ) {
+
+		const file = COM_FindFile( 'gfx/menu/conchars.lmp' );
+		if ( file ) charset = new Uint8Array( file.data.buffer, file.data.byteOffset, file.size );
+
+	}
+	Draw_Init( null, charset );
 
 	M_SetExternals( {
 		Draw_WithAlpha: Draw_WithAlpha,
@@ -432,6 +441,7 @@ export async function Host_Init( parms ) {
 		Draw_TransPic: Draw_TransPic,
 		Draw_Character: Draw_Character,
 		Draw_String: Draw_String,
+		Draw_SmallString: Draw_SmallString,
 		Draw_Fill: Draw_Fill,
 		Draw_PicFromWad: Draw_PicFromWad,
 		Draw_CachePic: Draw_CachePic,
@@ -484,21 +494,30 @@ export async function Host_Init( parms ) {
 	// A game whose PAKs have no default.cfg (the 2021 re-release's Quake and Dissolution of Eternity) gets the classic
 	// default keys, so the arrow keys, Ctrl, the number keys, the console key and the rest work as in the original.
 	Host_SetDefaultCfgFallback();
+	// Hexen II's puzzle-piece and objective names, read once from the mounted packs before the status bar or a plaque
+	// can ask for them (the native host loads them with the level; this host reads them as soon as the data is mounted).
+	if ( GameProfile_IsHexen2() ) { Hexen2_LoadPuzzleStrings(); Hexen2_LoadInfoStrings(); }
 	// each game's own startup script: Quake's starts the attract demos, Hexen II's (hexen.rc) opens the main menu
 	Cbuf_InsertText( 'exec ' + GameProfile_Get().startupScript + '\n' );
 
-	// Default WASD bindings for the web port (after the startup script so user config can override)
-	Cbuf_AddText( 'bind w +forward\n' );
-	Cbuf_AddText( 'bind s +back\n' );
-	Cbuf_AddText( 'bind a +moveleft\n' );
-	Cbuf_AddText( 'bind d +moveright\n' );
-	Cbuf_AddText( 'bind SPACE +jump\n' );
-	Cbuf_AddText( 'bind f flashlight\n' ); // Newer Game's shoulder flashlight
-	Cbuf_AddText( 'bind MOUSE1 +attack\n' );
+	// Default WASD bindings for the web port (after the startup script so user config can override). Hexen II's own
+	// default.cfg is the authority for its keys: a=+lookup, d=+moveup and SPACE=+crouch there, so the port must not
+	// overwrite them.
+	if ( ! GameProfile_IsHexen2() ) {
 
-	// Always run by default for the web port
-	Cbuf_AddText( 'cl_forwardspeed 400\n' );
-	Cbuf_AddText( 'cl_backspeed 400\n' );
+		Cbuf_AddText( 'bind w +forward\n' );
+		Cbuf_AddText( 'bind s +back\n' );
+		Cbuf_AddText( 'bind a +moveleft\n' );
+		Cbuf_AddText( 'bind d +moveright\n' );
+		Cbuf_AddText( 'bind SPACE +jump\n' );
+		Cbuf_AddText( 'bind f flashlight\n' ); // Newer Game's shoulder flashlight
+		Cbuf_AddText( 'bind MOUSE1 +attack\n' );
+
+		// Always run by default for the web port
+		Cbuf_AddText( 'cl_forwardspeed 400\n' );
+		Cbuf_AddText( 'cl_backspeed 400\n' );
+
+	}
 
 	// Load saved config from localStorage (overrides defaults above)
 	try {
@@ -506,8 +525,9 @@ export async function Host_Init( parms ) {
 		const key = GameSelection_ConfigKey(); // each mission pack its own (card [34c])
 		let savedConfig = localStorage.getItem( key );
 		// A mission pack's first run: the player's Quake settings and keys, then the pack's own default.cfg binds over
-		// them (Scourge's 9 and 0 stay the Laser Cannon and Mjolnir), as WinQuake falls back to id1's config.cfg there
-		if ( savedConfig === null && key !== 'quake_config' ) {
+		// them (Scourge's 9 and 0 stay the Laser Cannon and Mjolnir), as WinQuake falls back to id1's config.cfg there.
+		// Hexen II is not a Quake mission: its first run is exactly hexen.rc, or its default.cfg keys would be replaced.
+		if ( savedConfig === null && key !== 'quake_config' && ! GameProfile_IsHexen2() ) {
 
 			const quake = localStorage.getItem( 'quake_config' );
 			if ( quake !== null ) savedConfig = Cvar_DropChangedDefaults( quake ) + '\n' + Host_DefaultBinds();
@@ -1003,6 +1023,9 @@ export function Host_DefaultBinds() {
 	const file = COM_FindFile( 'default.cfg' );
 	if ( ! file ) return '';
 	const text = Array.from( file.data, c => String.fromCharCode( c ) ).join( '' );
+	// Hexen II's own default.cfg is the game's complete key set (Space crouches, a/z look), not a set of overrides to
+	// merge over Quake's, so none of its lines are dropped.
+	if ( GameProfile_IsHexen2() ) return text.split( /\r?\n/ ).filter( line => /^\s*bind\s/i.test( line ) ).join( '\n' ) + '\n';
 	return text.split( /\r?\n/ ).filter( line => { const m = /^\s*bind\s+"?([^"\s]+)/i.exec( line ); return m && ! HOST_PORT_KEYS.has( m[ 1 ].toLowerCase() ); } ).join( '\n' ) + '\n';
 
 }

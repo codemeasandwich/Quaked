@@ -1016,6 +1016,32 @@ export function Draw_SubPic( x, y, pic, srcY, srcH ) {
 
 /*
 =============
+Draw_TransPicRegion
+=============
+*/
+/**
+ * Draws a rectangular region of a picture at its native size, for the Hexen II bigfont's 20x19 glyph cells. As
+ * `Draw_SubPic`, it does not check for the overlay, so it must not run before `Draw_Init`.
+ *
+ * @param {number} x left edge in virtual pixels; below 0 draws nothing
+ * @param {number} y top edge in virtual pixels; below 0 draws nothing
+ * @param {?qpic_t} pic the picture
+ * @param {number} srcX first column of the region, in picture pixels
+ * @param {number} srcY first row of the region, in picture pixels
+ * @param {number} srcW width of the region, in picture pixels
+ * @param {number} srcH height of the region, in picture pixels
+ */
+export function Draw_TransPicRegion( x, y, pic, srcX, srcY, srcW, srcH ) {
+
+	if ( x < 0 || y < 0 || pic == null || ! overlayCtx ) return;
+	if ( ! pic.canvas ) return;
+	overlayCtx.imageSmoothingEnabled = false;
+	overlayCtx.drawImage( pic.canvas, srcX, srcY, srcW, srcH, x, y, srcW, srcH );
+
+}
+
+/*
+=============
 Draw_TransPicTranslate
 =============
 */

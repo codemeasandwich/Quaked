@@ -1,7 +1,8 @@
 /**
  * @module engine/client/sbar
  *
- * The status bar (WinQuake sbar.c): ammunition, armour, health, items, the face and the scoreboard.
+ * The status bar (WinQuake sbar.c): ammunition, armour, health, items, the face and the scoreboard, plus the Hexen II
+ * native bar branch (mana, armour class, the character/armour lower bar, artifacts and the deathmatch rosters).
  *
  * Types: plain values and functions; no exported classes.
  *
@@ -18,11 +19,17 @@ import { R_PlayerFaceFrame } from '../common/hooks.js'; // installed by newer/ui
 import { R_PlayerFacePreload, R_PlayerFaceCompose } from '../common/hooks.js'; // installed by newer/ui/r_playerface.js
 // Ported from: WinQuake/sbar.c, WinQuake/sbar.h -- status bar / HUD code
 
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
 import { Cmd_AddCommand } from '../common/cmd.js';
-import { realtime } from '../common/host_state.js';
+import { realtime, host_frametime } from '../common/host_state.js';
 import { Con_Printf } from '../common/console.js';
-import { Cvar_VariableValue } from '../common/cvar.js';
+import { Cvar_VariableValue, Cvar_SetValue, Cvar_FindVar, Cvar_RegisterVariable, cvar_t } from '../common/cvar.js';
 import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from '../render/gl_draw.js';
+import { Hexen2_HudFromClient } from './hexen2_clienthud.js';
+import { Hexen2_StatusBarOps, Hexen2_PuzzleOverlayOps } from './hexen2_statusbar.js';
+import { Hexen2_DrawStatusBar } from './hexen2_sbar_draw.js';
+import { Hexen2_NumberLayout } from './hexen2_hud_layout.js';
+import { Hexen2_InventoryState, Hexen2_InventoryExpire, Hexen2_InventorySync } from './hexen2_inventory_state.js';
 import {
 	IT_SHOTGUN, IT_SUPER_SHOTGUN, IT_NAILGUN, IT_SUPER_NAILGUN,
 	IT_GRENADE_LAUNCHER, IT_ROCKET_LAUNCHER, IT_LIGHTNING, IT_SUPER_LIGHTNING,
@@ -168,6 +175,7 @@ let _Draw_Pic = null;
 let _Draw_TransPic = null;
 let _Draw_Character = null;
 let _Draw_String = null;
+let _Draw_SmallString = null;
 let _Draw_Fill = null;
 let _Draw_PicFromWad = null;
 let _Draw_CachePic = null;
@@ -199,6 +207,7 @@ export function Sbar_SetExternals( externals ) {
 	if ( externals.Draw_TransPic ) _Draw_TransPic = externals.Draw_TransPic;
 	if ( externals.Draw_Character ) _Draw_Character = externals.Draw_Character;
 	if ( externals.Draw_String ) _Draw_String = externals.Draw_String;
+	if ( externals.Draw_SmallString ) _Draw_SmallString = externals.Draw_SmallString;
 	if ( externals.Draw_Fill ) _Draw_Fill = externals.Draw_Fill;
 	if ( externals.Draw_PicFromWad ) _Draw_PicFromWad = externals.Draw_PicFromWad;
 	if ( externals.Draw_CachePic ) _Draw_CachePic = externals.Draw_CachePic;
@@ -255,10 +264,236 @@ export function Sbar_Changed() {
 }
 
 /*
-===============
-Sbar_Init
-===============
+=============================================================================
+
+			HEXEN II STATUS BAR
+
+The native 46/144-pixel bar (uhexen2 engine/hexen2/sbar.c): the top row's mana, health, armour class and chain, the
+lower bar's class statistics, portrait, armour and rings, the artifact inventory and the +showinfo, +showdm and
+toggle_dm commands. The operation list and its layout live in hexen2_statusbar.js; this branch only drives it from the
+shared client and executes it through the drawing hooks.
+
+=============================================================================
 */
+
+const HEXEN2_BAR_TOP = 46, HEXEN2_BAR_TOTAL = 144, HEXEN2_BAR_BUMP = - 23;
+let hexen2BarHeight = HEXEN2_BAR_TOP;
+let hexen2BarTarget = HEXEN2_BAR_TOP;
+let hexen2ShowInfo = false;
+let hexen2ShowDM = false;
+let hexen2Numbers = null;
+
+function Hexen2_EnsureCvar( name, value, archive = false ) {
+
+	if ( Cvar_FindVar( name ) === null ) Cvar_RegisterVariable( new cvar_t( name, value, archive ) );
+
+}
+
+/**
+ * The `+showinfo` command (native ShowInfoDown_f): raise the lower character/armour bar.
+ */
+export function Sbar_Hexen2ShowInfoDown() {
+
+	if ( hexen2ShowInfo || _cl.intermission ) return;
+	hexen2BarTarget = HEXEN2_BAR_TOTAL;
+	hexen2ShowInfo = true;
+
+}
+
+/**
+ * The `-showinfo` command (native ShowInfoUp_f): lower the bar, or hide it below the screen at a reduced view size.
+ */
+export function Sbar_Hexen2ShowInfoUp() {
+
+	hexen2BarTarget = _cl.intermission || Cvar_VariableValue( 'viewsize' ) > 110 ? HEXEN2_BAR_BUMP : HEXEN2_BAR_TOP;
+	hexen2ShowInfo = false;
+
+}
+
+function Sbar_Hexen2ShowDMDown() { hexen2ShowDM = true; }
+function Sbar_Hexen2ShowDMUp() { hexen2ShowDM = false; }
+
+/**
+ * The `toggle_dm` command (native ToggleDM_f): cycle the small deathmatch overlay 1 -> 2 -> 0.
+ */
+export function Sbar_Hexen2ToggleDM() {
+
+	const mode = ( Cvar_VariableValue( 'dm_mode' ) | 0 );
+	Cvar_SetValue( 'dm_mode', mode >= 2 ? 0 : mode + 1 );
+
+}
+
+// The native number pictures are WAD lumps; decode them once per page and reuse them every frame.
+function Hexen2_NumPic( character ) {
+
+	if ( hexen2Numbers === null ) hexen2Numbers = new Array( 11 ).fill( null );
+	const frame = character === '-' ? 10 : character.charCodeAt( 0 ) - 48;
+	if ( frame < 0 || frame > 10 ) return null;
+	if ( hexen2Numbers[ frame ] === null && _Draw_PicFromWad ) hexen2Numbers[ frame ] = _Draw_PicFromWad( frame === 10 ? 'num_minus' : 'num_' + frame );
+	return hexen2Numbers[ frame ];
+
+}
+
+function Sbar_Hexen2DrawNum( value, digits, x, y ) {
+
+	const layout = Hexen2_NumberLayout( value, digits );
+	let px = x + layout.xOffset;
+	for ( const character of layout.text ) {
+
+		const pic = Hexen2_NumPic( character );
+		if ( pic && _Draw_TransPic ) _Draw_TransPic( px, y, pic );
+		px += 13;
+
+	}
+
+}
+
+function Sbar_Hexen2DrawLayer() {
+
+	return {
+		pic: ( name, x, y, kind ) => {
+
+			if ( ! _Draw_CachePic ) return false;
+			const pic = _Draw_CachePic( name );
+			if ( ! pic ) return false;
+			if ( kind === 'transpic' && _Draw_TransPic ) _Draw_TransPic( x, y, pic );
+			else if ( _Draw_Pic ) _Draw_Pic( x, y, pic );
+			else return false;
+			return true;
+
+		},
+		num: ( value, digits, x, y ) => Sbar_Hexen2DrawNum( value, digits, x, y ),
+		small: ( text, x, y ) => {
+
+			if ( _Draw_SmallString ) _Draw_SmallString( x, y, text );
+			else if ( _Draw_String ) _Draw_String( x, y, text );
+
+		},
+		white: ( text, x, y ) => { if ( _Draw_String ) _Draw_String( x, y, text ); }
+	};
+
+}
+
+// The full and small deathmatch rosters (sbar.c Sbar_DeathmatchOverlay, Sbar_SmallDeathmatchOverlay).
+function Sbar_Hexen2FragSort() {
+
+	const scores = _cl.scores ?? [];
+	const order = [];
+	for ( let i = 0; i < Math.min( scores.length, _cl.maxclients || scores.length ); i ++ ) if ( scores[ i ]?.name ) order.push( i );
+	order.sort( ( a, b ) => ( scores[ b ].frags | 0 ) - ( scores[ a ].frags | 0 ) );
+	return order;
+
+}
+
+function Sbar_Hexen2FragColours( score ) {
+
+	const colours = score?.colors | 0;
+	return { top: ( ( colours >> 4 ) & 15 ) * 16, bottom: ( colours & 15 ) * 16 };
+
+}
+
+function Sbar_Hexen2Deathmatch() {
+
+	const scores = _cl.scores ?? [];
+	const pic = _Draw_CachePic ? _Draw_CachePic( 'gfx/menu/title8.lmp' ) : null;
+	if ( pic && _Draw_TransPic ) _Draw_TransPic( ( _vid.width - pic.width ) >> 1, 0, pic );
+	const order = Sbar_Hexen2FragSort();
+	const x = 80 + ( ( _vid.width - 320 ) >> 1 );
+	let y = 62;
+	for ( const slot of order ) {
+
+		const score = scores[ slot ];
+		if ( y + 10 >= _vid.height ) break;
+		const colours = Sbar_Hexen2FragColours( score );
+		if ( _Draw_Fill ) {
+
+			_Draw_Fill( x, y, 40, 4, colours.top );
+			_Draw_Fill( x, y + 4, 40, 4, colours.bottom );
+
+		}
+		const frags = String( score.frags | 0 ).padStart( 3, ' ' );
+		for ( let i = 0; i < 3; i ++ ) if ( _Draw_Character ) _Draw_Character( x + 8 + i * 8, y - 1, frags.charCodeAt( i ) );
+		if ( _Draw_String ) _Draw_String( x + 64, y, String( score.name ) );
+		y += 10;
+
+	}
+
+}
+
+function Sbar_Hexen2SmallDeathmatch() {
+
+	const mode = Cvar_VariableValue( 'dm_mode' ) | 0;
+	if ( mode <= 0 ) return;
+	const limited = Math.min( mode, 2 );
+	if ( limited === 2 && Math.abs( hexen2BarHeight - HEXEN2_BAR_TOP ) > 0.5 ) return;
+	const order = Sbar_Hexen2FragSort();
+	const count = Math.min( order.length, limited === 1 ? 8 : 4 );
+	const y0 = limited === 1 ? 46 : _vid.height - HEXEN2_BAR_TOP;
+	const x = 10;
+	const scores = _cl.scores ?? [];
+	for ( let row = 0; row < count; row ++ ) {
+
+		const score = scores[ order[ row ] ], y = y0 + row * 10;
+		const colours = Sbar_Hexen2FragColours( score );
+		if ( _Draw_Fill ) {
+
+			_Draw_Fill( x, y, 28, 4, colours.top );
+			_Draw_Fill( x, y + 4, 28, 4, colours.bottom );
+
+		}
+		const frags = String( score.frags | 0 ).padStart( 3, ' ' );
+		if ( _Draw_Character ) for ( let i = 0; i < 3; i ++ ) _Draw_Character( x + 2 + i * 8, y - 1, frags.charCodeAt( i ) );
+
+	}
+
+}
+
+function Sbar_Hexen2Draw() {
+
+	if ( ! _cl.h2 ) return;
+	Hexen2_InventorySync( _cl );
+	Hexen2_InventoryExpire( _cl );
+	const target = hexen2BarTarget;
+	if ( hexen2BarHeight !== target ) {
+
+		const difference = target - hexen2BarHeight;
+		let delta = Math.abs( difference ) * 5 * host_frametime;
+		if ( delta < 0.5 ) delta = 0.5;
+		if ( delta > Math.abs( difference ) ) delta = Math.abs( difference );
+		hexen2BarHeight += Math.sign( difference ) * delta;
+
+	}
+
+	const hud = Hexen2_HudFromClient( _cl );
+	const inventory = Hexen2_InventoryState( _cl );
+	const ops = Hexen2_StatusBarOps( hud, { width: _vid.width, height: _vid.height, barHeight: hexen2BarHeight,
+		time: _cl.time, inventory } );
+	Hexen2_DrawStatusBar( ops, Sbar_Hexen2DrawLayer() );
+
+	if ( hexen2ShowDM ) {
+
+		if ( _cl.gametype === 1 ) Sbar_Hexen2Deathmatch();
+		else Hexen2_DrawStatusBar( Hexen2_PuzzleOverlayOps( hud, { width: _vid.width, height: _vid.height } ),
+			Sbar_Hexen2DrawLayer() );
+
+	} else if ( _cl.gametype === 1 ) Sbar_Hexen2SmallDeathmatch();
+
+}
+
+function Sbar_Hexen2Init() {
+
+	Cmd_AddCommand( '+showinfo', Sbar_Hexen2ShowInfoDown );
+	Cmd_AddCommand( '-showinfo', Sbar_Hexen2ShowInfoUp );
+	Cmd_AddCommand( '+showdm', Sbar_Hexen2ShowDMDown );
+	Cmd_AddCommand( '-showdm', Sbar_Hexen2ShowDMUp );
+	Cmd_AddCommand( 'toggle_dm', Sbar_Hexen2ToggleDM );
+	Hexen2_EnsureCvar( 'dm_mode', '1', true );
+	Hexen2_EnsureCvar( 'sbtrans', '0', true );
+	Hexen2_EnsureCvar( 'dmtrans', '0', true );
+	hexen2BarHeight = hexen2BarTarget = HEXEN2_BAR_TOP;
+
+}
+
 /**
  * Loads the status bar's pictures from gfx.wad (big digits in two colours, colon and slash, weapons with their pickup
  * flashes, ammo, armour, keys, power-ups, sigils, the five health faces with their pain frames, the power-up faces, and
@@ -269,6 +504,9 @@ Sbar_Init
  * `Draw_PicFromWad`: the lookup goes through `Sys_Error`, which replaces the page in a browser).
  */
 export function Sbar_Init() {
+
+	// Hexen II has its own pictures and commands; the Quake lumps and `+showscores` do not apply.
+	if ( GameProfile_IsHexen2() ) { Sbar_Hexen2Init(); return; }
 
 	if ( ! _Draw_PicFromWad ) {
 
@@ -1055,6 +1293,9 @@ Sbar_Draw
  * client state wired by `Sbar_SetExternals`; draws nothing for an unloaded picture or unwired hook.
  */
 export function Sbar_Draw() {
+	// Hexen II's native bar is a different layout, drawn by its own family of modules on the same client state.
+	if ( GameProfile_IsHexen2() ) { Sbar_Hexen2Draw(); return; }
+
 	// Gaze/death timers continue even while the scoreboard hides the portrait.
 	layeredFaceState = R_NewerGame() && r_newer_hud.value !== 0 ? R_PlayerFaceFrame( _cl ) : null;
 

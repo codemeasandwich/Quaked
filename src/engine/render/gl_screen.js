@@ -24,9 +24,11 @@ import { Sbar_Draw, Sbar_Changed, Sbar_IntermissionOverlay, Sbar_FinaleOverlay, 
 import { R_BestiaryInputLocked } from '../common/hooks.js'; // installed by newer/ui/r_bestiary.js
 import { R_BestiaryEncounterDraw } from '../common/hooks.js'; // installed by newer/ui/r_bestiary_book.js
 import { R_WeaponWheelDraw, R_ControllerPromptsDraw } from '../common/hooks.js'; // installed by newer/ui/r_controller.js
-import { Draw_Character, Draw_String, Draw_CachePic, Draw_Pic, Draw_FadeScreen, Draw_BeginFrame,
+import { Draw_Character, Draw_String, Draw_CachePic, Draw_Pic, Draw_TransPic, Draw_FadeScreen, Draw_BeginFrame,
 	GL_Set2D, Draw_TileClear, Draw_PicFromWad, Draw_GetUIScale,
 	Draw_GetVirtualWidth, Draw_GetVirtualHeight } from './gl_draw.js';
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
+import { Hexen2_GetHostString, Hexen2_GetInfoString, Hexen2_InfoStringCount } from '../common/hexen2_text_resources.js';
 import { Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from '../common/cvar.js';
 import { Respawn_NoticeAt } from '../common/hooks.js'; // installed by newer/ui/respawn_notice.js
 import { Cmd_AddCommand } from '../common/cmd.js';
@@ -259,6 +261,147 @@ export function SCR_CenterPrint( str ) {
 
 		if ( scr_centerstring[ i ] === '\n' )
 			scr_center_lines ++;
+
+	}
+
+}
+
+/*
+==============
+SCR_Hexen2TextLines
+
+The native plaque wrapper (h2shared/gl_screen.c FindTextBreaks): words to `width` characters a line, with a newline
+or the native '@@' break starting a new line. The objectives list uses the same wrapper at a wider line.
+==============
+*/
+/**
+ * Wraps a Hexen II plaque or objectives message.
+ *
+ * @param {string} message the text (newlines or '@@' separate paragraphs)
+ * @param {number} [width=26] characters a line (PLAQUE_WIDTH; the objectives use 30)
+ * @returns {string[]} the lines, without empty trailing lines
+ */
+export function SCR_Hexen2TextLines( message, width = 26 ) {
+
+	const lines = [];
+	const limit = Math.max( 1, width | 0 );
+	for ( const paragraph of String( message ?? '' ).replace( /\r/g, '' ).split( /\n|@@/ ) ) {
+
+		const words = paragraph.trim().split( /\s+/ ).filter( Boolean );
+		let line = '';
+		for ( const word of words ) {
+
+			if ( line === '' ) line = word;
+			else if ( line.length + 1 + word.length <= limit ) line += ' ' + word;
+			else { lines.push( line ); line = word; }
+			while ( line.length > limit ) { lines.push( line.slice( 0, limit ) ); line = line.slice( limit ); }
+
+		}
+		if ( line !== '' ) lines.push( line );
+
+	}
+	return lines;
+
+}
+
+/**
+ * The text of the current `svc_plaque` index from strings.txt.
+ *
+ * @returns {string} the plaque text, '' when none or the index is unknown
+ */
+export function SCR_Hexen2PlaqueText() {
+
+	const index = _cl.h2?.plaqueIndex | 0;
+	if ( index <= 0 ) return '';
+	return Hexen2_GetHostString( index ) ?? '';
+
+}
+
+/**
+ * The Portal objectives message from the client's info mask, as native UpdateInfoMessage builds it.
+ *
+ * @param {number} infoMask the first 32 objective bits
+ * @param {number} infoMask2 the second 32
+ * @returns {string} 'Objectives:' followed by '@@' and each completed objective, or '' when infolist.txt is absent
+ */
+export function SCR_Hexen2ObjectivesText( infoMask, infoMask2 ) {
+
+	if ( Hexen2_InfoStringCount() <= 0 ) return '';
+	let message = 'Objectives:';
+	for ( let i = 0; i < 64; i ++ ) {
+
+		const bit = i < 32 ? ( ( infoMask | 0 ) >>> i ) & 1 : ( ( infoMask2 | 0 ) >>> ( i - 32 ) ) & 1;
+		if ( bit === 0 ) continue;
+		const objective = Hexen2_GetInfoString( i );
+		if ( objective ) message += '@@' + objective;
+
+	}
+	return message;
+
+}
+
+// The native M_DrawTextBox border, in 320x200 menu coordinates centred on the virtual screen.
+function SCR_DrawHexen2TextBox( x, y, width, lines ) {
+
+	const offX = ( _vid.width - 320 ) >> 1, offY = ( _vid.height - 200 ) >> 1;
+	const pic = name => Draw_CachePic ? Draw_CachePic( name ) : null;
+	const draw = ( name, dx, dy ) => { const p = pic( name ); if ( p ) Draw_TransPic( x + dx + offX, y + dy + offY, p ); };
+	draw( 'gfx/box_tl.lmp', 0, 0 );
+	draw( 'gfx/box_tr.lmp', width * 8, 0 );
+	for ( let i = 0; i < lines; i ++ ) {
+
+		draw( 'gfx/box_ml.lmp', 0, 8 + i * 8 );
+		draw( 'gfx/box_mr.lmp', width * 8, 8 + i * 8 );
+
+	}
+	draw( 'gfx/box_bl.lmp', 0, 8 + lines * 8 );
+	draw( 'gfx/box_br.lmp', width * 8, 8 + lines * 8 );
+	for ( let cx = 8; cx < width * 8; cx += 8 ) {
+
+		draw( 'gfx/box_tm.lmp', cx, 0 );
+		draw( 'gfx/box_bm.lmp', cx, 8 + lines * 8 );
+		for ( let i = 0; i < lines; i ++ ) draw( i === 1 ? 'gfx/box_mm2.lmp' : 'gfx/box_mm.lmp', cx, 8 + i * 8 );
+
+	}
+
+}
+
+function SCR_DrawHexen2PlaqueMessage( message, width, boxX, boxWidth ) {
+
+	const lines = SCR_Hexen2TextLines( message, width );
+	if ( lines.length === 0 ) return;
+	const offY = ( _vid.height - 200 ) >> 1;
+	const by = ( 25 - lines.length ) * 8 / 2 + offY;
+	SCR_DrawHexen2TextBox( boxX, by - 16, boxWidth, lines.length + 2 );
+	for ( let i = 0; i < lines.length; i ++ ) {
+
+		const text = lines[ i ];
+		const bx = ( 40 - text.length ) * 8 / 2;
+		for ( let j = 0; j < text.length; j ++ ) Draw_Character( bx + j * 8, by + i * 8, text.charCodeAt( j ) + 128 );
+
+	}
+
+}
+
+/*
+==============
+SCR_DrawHexen2Plaques
+
+The native plaque layer: the strings.txt message from `svc_plaque` every frame while it is set, and the Portal
+objectives while +infoplaque is held (h2shared/gl_screen.c Plaque_Draw, Info_Plaque_Draw). Called after the status bar
+and before the console, and skipped while the console fills the screen.
+==============
+*/
+export function SCR_DrawHexen2Plaques() {
+
+	if ( ! GameProfile_IsHexen2() || ! _cl.h2 ) return;
+	if ( scr_con_current === _vid.height ) return;
+	const plaque = SCR_Hexen2PlaqueText();
+	if ( plaque !== '' ) SCR_DrawHexen2PlaqueMessage( plaque, 26, 32, 30 );
+	if ( _cl.h2.infoUp === true ) {
+
+		const objectives = SCR_Hexen2ObjectivesText( _cl.h2.infoMask | 0, _cl.h2.infoMask2 | 0 );
+		if ( objectives !== '' ) SCR_DrawHexen2PlaqueMessage( objectives, 30, 15, 34 );
 
 	}
 
@@ -1187,6 +1330,7 @@ export function SCR_UpdateScreen() {
 		SCR_DrawPause();
 		SCR_CheckDrawCenterString();
 		SCR_DrawStatusBar();
+		SCR_DrawHexen2Plaques();
 		R_WeaponWheelDraw(); // (Newer Game: the controller's weapon wheel while held open)
 		SCR_DrawConsole();
 		_M_Draw();

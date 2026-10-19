@@ -56,6 +56,11 @@ export const m_bestiary = 22;
 export const m_cheats = 23;
 export const m_mpchoice = 24; // Multiplayer: local split screen or online (card [MP1])
 export const m_splitscreen = 25; // Local play: players' windows (cards [37a]-[37c])
+// Hexen II's native pages: its own main and single-player menus, class choice and per-class difficulty.
+export const m_hexen2_main = 26;
+export const m_hexen2_single = 27;
+export const m_hexen2_class = 28;
+export const m_hexen2_skill = 29;
 
 export let m_state = m_none;
 export let m_entersound = false;
@@ -117,7 +122,8 @@ export function set_m_save_demonum( value ) { m_save_demonum = value; }
 // Until then each says what is missing (a test or tool that loads a family without menu.js).
 const unfilled = name => () => { throw new Error( 'menuOpeners.' + name + ': load menu.js first, which fills the openers' ); };
 export const menuOpeners = {
-	levelSelect: unfilled( 'levelSelect' ), multiplayerChoice: unfilled( 'multiplayerChoice' ), options: unfilled( 'options' )
+	levelSelect: unfilled( 'levelSelect' ), multiplayerChoice: unfilled( 'multiplayerChoice' ), options: unfilled( 'options' ),
+	credits: unfilled( 'credits' ), quit: unfilled( 'quit' ), hexenMain: unfilled( 'hexenMain' ), hexenSingle: unfilled( 'hexenSingle' )
 };
 
 // WT_QueryRooms and WT_CreateRoom will be injected via M_SetExternals

@@ -11,6 +11,9 @@
  * Errors: none raised.
  */
 
+import { Hexen2_InventoryOps } from './hexen2_inventory.js';
+import { Hexen2_FindPuzzleString } from '../common/hexen2_text_resources.js';
+
 /** Native armour AC by class: Paladin, Crusader, Necromancer, Assassin, Succubus (sbar.c). */
 const AMULET_AC = Object.freeze( [ 8, 4, 2, 6, 6 ] );
 const BRACER_AC = Object.freeze( [ 6, 8, 4, 2, 2 ] );
@@ -51,18 +54,78 @@ export function Hexen2_CalcAC( hud, classNumber = hud.playerClass ) {
 
 }
 
+// The native full-screen bar (DrawFullScreenInfo): mana vials, health and the selected artifact when sizes below 120
+// push the bar off the bottom. Coordinates are relative to `BarHeight` (negative), as sbar.c.
+function Hexen2_FullScreenInfoOps( hud, view ) {
+
+	const width = view.width ?? 320, height = view.height ?? 200;
+	// Sbar_DrawPic would add height - BarHeight; DrawFullScreenInfo's own y is BarHeight - 37, so the two cancel and
+	// the native full-screen row always sits 37 pixels above the bottom edge.
+	const offX = ( width - 320 ) >> 1, baseY = height;
+	const ops = [];
+	const pic = ( name, x, y ) => ops.push( Object.freeze( { kind: 'pic', name, x: x + offX, y: y + baseY } ) );
+	const small = ( text, x, y ) => ops.push( Object.freeze( { kind: 'small', text, x: x + offX, y: y + baseY } ) );
+	const y = - 37;
+	pic( 'gfx/bmmana.lmp', 3, y );
+	pic( 'gfx/gmmana.lmp', 3, y + 18 );
+	const maxMana = Math.max( 0, hud.maxMana | 0 );
+	small( String( Math.max( 0, Math.min( maxMana, hud.manaBlue | 0 ) ) ).padStart( 3, '0' ), 10, y + 6 );
+	small( String( Math.max( 0, Math.min( maxMana, hud.manaGreen | 0 ) ) ).padStart( 3, '0' ), 10, y + 24 );
+	ops.push( Object.freeze( { kind: 'num', value: Math.max( - 99, hud.health | 0 ), digits: 3, x: 38 + offX, y: y + 18 + baseY } ) );
+	const inventory = view.inventory;
+	if ( inventory && inventory.count > 0 && inventory.selected >= 0 ) {
+
+		const artifact = inventory.order[ inventory.selected ];
+		pic( `gfx/arti${String( artifact ).padStart( 2, '0' )}.lmp`, 288, y + 7 );
+
+	}
+	return Object.freeze( ops );
+
+}
+
+// The native top-right timed-effect icons (DrawActiveRings, DrawActiveArtifacts): one 16-frame animation per active
+// ring or artifact, 50 pixels apart from the right edge.
+function Hexen2_ActiveEffectOps( hud, view, ops ) {
+
+	const time = view.time;
+	if ( typeof time !== 'number' || ! Number.isFinite( time ) ) return;
+	const width = view.width ?? 320;
+	const frame = 1 + ( Math.floor( time * 16 ) & 15 );
+	const push = ( name, x, y ) => ops.push( Object.freeze( { kind: 'transpic', name, x, y } ) );
+	let ringRow = 1;
+	for ( const [ flag, name ] of [ [ 8, 'gfx/rngtrn' ], [ 2, 'gfx/rngwtr' ], [ 1, 'gfx/rngfly' ] ] ) {
+
+		if ( ( ( hud.ringsActive | 0 ) & flag ) === 0 ) continue;
+		push( name + frame + '.lmp', width - 50, ringRow );
+		ringRow += 33;
+
+	}
+	let artCol = 50;
+	if ( ringRow !== 1 ) artCol += 50;
+	for ( const [ flag, name ] of [ [ 4, 'gfx/pwrbook' ], [ 1, 'gfx/durhst' ], [ 2, 'gfx/durshd' ] ] ) {
+
+		if ( ( ( hud.artifactActive | 0 ) & flag ) === 0 ) continue;
+		push( name + frame + '.lmp', width - artCol, 1 );
+		artCol += 50;
+
+	}
+
+}
+
 /**
  * Builds the native top-row status bar.
  *
  * @param {object} hud a HUD from `Hexen2_ReadHud`
- * @param {{ width?: number, height?: number, barHeight?: number }} [view] the screen; the bar is 320 wide and
- *   bottom-anchored (default 320x200 with the native 46-pixel top row)
+ * @param {{ width?: number, height?: number, barHeight?: number, time?: number,
+ *   inventory?: object }} [view] the screen, the game time for the timed-effect animations and the client's artifact
+ *   inventory; the bar is 320 wide and bottom-anchored (default 320x200 with the native 46-pixel top row)
  * @returns {ReadonlyArray<{ kind: 'pic'|'transpic'|'small', name?: string, text?: string, x: number, y: number }>}
  *   drawing operations in native paint order, absolute screen coordinates
  */
 export function Hexen2_StatusBarOps( hud, view = {} ) {
 
 	const width = view.width ?? 320, height = view.height ?? 200, barHeight = view.barHeight ?? BAR_TOP_HEIGHT;
+	if ( barHeight < 0 ) return Hexen2_FullScreenInfoOps( hud, view );
 	const offX = ( width - 320 ) >> 1, baseY = height - barHeight;
 	const ops = [];
 	const pic = ( name, x, y ) => ops.push( Object.freeze( { kind: 'pic', name, x: x + offX, y: y + baseY } ) );
@@ -157,6 +220,55 @@ export function Hexen2_StatusBarOps( hud, view = {} ) {
 
 	}
 
+	Hexen2_ActiveEffectOps( hud, view, ops );
+
+	// the selected artifact on the bar and, while the native four-second timer runs, the six-icon inventory row
+	if ( view.inventory ) ops.push( ...Hexen2_InventoryOps( view.inventory, { width, height, barHeight,
+		open: view.inventory.open === true } ) );
+
+	return Object.freeze( ops );
+
+}
+
+/*
+===============
+Hexen2_PuzzleOverlayOps
+
+The `+showdm` puzzle-piece roster outside deathmatch (sbar.c Sbar_PuzzlePieceOverlay): each carried piece's picture and
+its full name from puzzles.txt, four down the left and four down the right.
+===============
+*/
+/**
+ * Builds the puzzle-piece overlay.
+ *
+ * @param {object} hud a HUD from `Hexen2_HudFromClient`
+ * @param {{ width?: number, height?: number }} [view] the screen; the native 320-wide layout is centred
+ * @returns {ReadonlyArray<object>} drawing operations in paint order
+ */
+export function Hexen2_PuzzleOverlayOps( hud, view = {} ) {
+
+	const width = view.width ?? 320, offX = ( width - 320 ) >> 1;
+	const ops = [];
+	let piece = 0, y = 40;
+	for ( const name of hud.puzzle ) {
+
+		if ( ! name ) continue;
+		const full = Hexen2_FindPuzzleString( name ) ?? 'Unknown';
+		if ( piece < 4 ) {
+
+			ops.push( Object.freeze( { kind: 'pic', name: `gfx/puzzle/${name}.lmp`, x: 10 + offX, y } ) );
+			ops.push( Object.freeze( { kind: 'white', text: full, x: 45 + offX, y } ) );
+
+		} else {
+
+			ops.push( Object.freeze( { kind: 'pic', name: `gfx/puzzle/${name}.lmp`, x: 310 - 32 + offX, y } ) );
+			ops.push( Object.freeze( { kind: 'white', text: full, x: 310 - 32 - 3 - full.length * 8 + offX, y: 18 + y } ) );
+
+		}
+		y += 32;
+		piece ++;
+
+	}
 	return Object.freeze( ops );
 
 }

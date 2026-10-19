@@ -16,13 +16,15 @@ import {Distribution_Profile} from '../../platform/distribution.js';
  */
 import { MainMenu_Skinned, MainMenu_Slider } from '../common/hooks.js'; // installed by newer/ui/menu_webgl.js
 import { R_FlashlightToggle } from '../common/hooks.js'; // installed by newer/render/r_flashlight.js
+import { Newer_ApplyGameDefaults } from '../common/hooks.js'; // installed by newer/ui/newer_defaults.js
+import { GameProfile_Get, GameProfile_IsHexen2 } from '../common/game_profile.js';
 import { Cbuf_AddText } from '../common/cmd.js';
 import { Con_ToggleConsole_f } from '../common/console.js';
 import { K_ESCAPE, K_ENTER, K_UPARROW, K_DOWNARROW, K_LEFTARROW, K_RIGHTARROW, K_BACKSPACE, K_DEL, key_game, key_menu, keybindings, Key_SetBinding, Key_KeynumToString } from './keys.js';
 import { cl_forwardspeed } from './cl_input.js';
 import { sensitivity, m_pitch, lookspring, lookstrafe } from './cl_main.js';
 import { volume, bgmvolume } from '../sound/sound.js';
-import { Cvar_SetValue, Cvar_VariableValue } from '../common/cvar.js';
+import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue, Cvar_VariableString, Cvar_VariableValue, cvar_t } from '../common/cvar.js';
 import { R_FogSkyShare, R_FogSkySet } from '../render/r_fog.js';
 import { scr_viewsize } from '../render/gl_screen.js';
 import { v_gamma } from './view.js';
@@ -217,7 +219,15 @@ function M_AdjustSliders( dir ) {
 
 	if ( _S_LocalSound ) _S_LocalSound( 'misc/menu3.wav' );
 
-	switch ( OPTIONS_ORDER[ m_options_cursor ] ) {
+	switch ( optionsOrder()[ m_options_cursor ] ) {
+
+		case HEXEN2_ENHANCED_ROW:
+			toggleEnhancedMode();
+			break;
+
+		case HEXEN2_TIER_ROW:
+			setTextureTier( textureTierIndex() + dir );
+			break;
 
 		case 3: // texture filtering
 			Cvar_SetValue( 'gl_texturemode', ! gl_texturemode.value ? 1 : 0 );
@@ -312,10 +322,46 @@ function M_AdjustSliders( dir ) {
 
 // Cursor/touch indices remain visible rows; action IDs retain their established
 // meaning across drawing, Enter and slider/toggle dispatch.
-const OPTIONS_ORDER = [ 13, 0, 15, 1, 2, 14, 3, 4, 5, 6, 7, 16, 8, 9, 10, 11, 12, 17, 19 ];
-if(Distribution_Profile()==='desktop')OPTIONS_ORDER.unshift(18);
-const OPTIONS_ITEMS = OPTIONS_ORDER.length;
-function optionsY( action ) { return 32 + OPTIONS_ORDER.indexOf( action ) * 8; }
+// The classic options, then Hexen II's two profile rows (enhanced mode and texture detail). The rows are added at
+// runtime, not at module load, because the game profile is chosen before the host starts but after this module loads.
+const BASE_OPTIONS_ORDER = [ 13, 0, 15, 1, 2, 14, 3, 4, 5, 6, 7, 16, 8, 9, 10, 11, 12, 17, 19 ];
+const HEXEN2_ENHANCED_ROW = 20, HEXEN2_TIER_ROW = 21;
+function optionsOrder() {
+
+	const order = BASE_OPTIONS_ORDER.slice();
+	if ( Distribution_Profile() === 'desktop' ) order.unshift( 18 );
+	if ( GameProfile_IsHexen2() ) order.push( HEXEN2_ENHANCED_ROW, HEXEN2_TIER_ROW );
+	return order;
+
+}
+function optionsItems() { return optionsOrder().length; }
+function optionsY( action ) { return 32 + optionsOrder().indexOf( action ) * 8; }
+
+const TEXTURE_TIERS = [ 'low', 'mid', 'high' ];
+function textureTierIndex() {
+
+	if ( Cvar_FindVar( 'r_texture_tier' ) === null ) return 1;
+	const text = Cvar_VariableString( 'r_texture_tier' ).trim().toLowerCase();
+	const index = TEXTURE_TIERS.indexOf( text );
+	if ( index >= 0 ) return index;
+	if ( text === '0' ) return 0;
+	if ( text === '2' ) return 2;
+	return 1;
+
+}
+function setTextureTier( index ) {
+
+	if ( Cvar_FindVar( 'r_texture_tier' ) === null ) Cvar_RegisterVariable( new cvar_t( 'r_texture_tier', '1', true ) );
+	Cvar_SetValue( 'r_texture_tier', ( ( index % 3 ) + 3 ) % 3 );
+
+}
+function toggleEnhancedMode() {
+
+	if ( Cvar_FindVar( 'r_hdr' ) === null ) Cvar_RegisterVariable( new cvar_t( 'r_hdr', '0' ) );
+	const enabled = Cvar_VariableValue( 'r_hdr' ) === 0;
+	Cbuf_AddText( Newer_ApplyGameDefaults( GameProfile_Get(), enabled ) );
+
+}
 let m_options_cursor = 0;
 
 /**
@@ -395,6 +441,14 @@ export function M_Options_Draw() {
 	M_Print( 16, optionsY( 19 ), '               Sky fog' );
 	M_DrawSlider( 220, optionsY( 19 ), R_FogSkyShare() );
 	if(Distribution_Profile()==='desktop')M_Print(16,optionsY(18),' Select Game Locations');
+	if ( GameProfile_IsHexen2() ) {
+
+		M_Print( 16, optionsY( HEXEN2_ENHANCED_ROW ), '  Enhanced (Newer) mode' );
+		M_DrawCheckbox( 220, optionsY( HEXEN2_ENHANCED_ROW ), Cvar_VariableValue( 'r_hdr' ) !== 0 );
+		M_Print( 16, optionsY( HEXEN2_TIER_ROW ), '         Texture detail' );
+		M_Print( 220, optionsY( HEXEN2_TIER_ROW ), TEXTURE_TIERS[ textureTierIndex() ] );
+
+	}
 
 	// cursor
 	M_DrawCharacter( 200, 32 + m_options_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
@@ -419,7 +473,7 @@ export function M_Options_Key( key ) {
 			break;
 		case K_ENTER:
 			set_m_entersound( true );
-			switch ( OPTIONS_ORDER[ m_options_cursor ] ) {
+			switch ( optionsOrder()[ m_options_cursor ] ) {
 
 				case 0:
 					M_Menu_Keys_f();
@@ -430,16 +484,21 @@ export function M_Options_Key( key ) {
 					break;
 				case 2:
 					Cbuf_AddText( 'exec default.cfg\n' );
-					// Re-apply WASD bindings for the web port
-					Cbuf_AddText( 'bind w +forward\n' );
-					Cbuf_AddText( 'bind s +back\n' );
-					Cbuf_AddText( 'bind a +moveleft\n' );
-					Cbuf_AddText( 'bind d +moveright\n' );
-					Cbuf_AddText( 'bind SPACE +jump\n' );
-					Cbuf_AddText( 'bind MOUSE1 +attack\n' );
-					Cbuf_AddText( 'bind f flashlight\n' ); // Newer Game's shoulder flashlight, as Host_Init binds it
-					Cbuf_AddText( 'cl_forwardspeed 400\n' );
-					Cbuf_AddText( 'cl_backspeed 400\n' );
+					// Hexen II's own default.cfg owns its keys (crouch on Space, look on a/z); the web port's WASD
+					// overrides are for Quake only.
+					if ( ! GameProfile_IsHexen2() ) {
+
+						Cbuf_AddText( 'bind w +forward\n' );
+						Cbuf_AddText( 'bind s +back\n' );
+						Cbuf_AddText( 'bind a +moveleft\n' );
+						Cbuf_AddText( 'bind d +moveright\n' );
+						Cbuf_AddText( 'bind SPACE +jump\n' );
+						Cbuf_AddText( 'bind MOUSE1 +attack\n' );
+						Cbuf_AddText( 'bind f flashlight\n' ); // Newer Game's shoulder flashlight, as Host_Init binds it
+						Cbuf_AddText( 'cl_forwardspeed 400\n' );
+						Cbuf_AddText( 'cl_backspeed 400\n' );
+
+					}
 					Cbuf_AddText( `gamma ${Cvar_VariableValue( 'r_hdr' ) !== 0 ? NEWER_DEFAULT_GAMMA : 1}\n` );
 					Cbuf_AddText( 'volume 0.4\n' );
 					Cbuf_AddText( 'bgmvolume 1\n' );
@@ -451,6 +510,12 @@ export function M_Options_Key( key ) {
 					break;
 				case 17:
 					M_Menu_Cheats_f();
+					break;
+				case HEXEN2_ENHANCED_ROW:
+					toggleEnhancedMode();
+					break;
+				case HEXEN2_TIER_ROW:
+					setTextureTier( textureTierIndex() + 1 );
 					break;
 				case 15:
 					// leave the menu and run the demos flat out
@@ -469,12 +534,12 @@ export function M_Options_Key( key ) {
 			if ( _S_LocalSound ) _S_LocalSound( 'misc/menu1.wav' );
 			m_options_cursor --;
 			if ( m_options_cursor < 0 )
-				m_options_cursor = OPTIONS_ITEMS - 1;
+				m_options_cursor = optionsItems() - 1;
 			break;
 		case K_DOWNARROW:
 			if ( _S_LocalSound ) _S_LocalSound( 'misc/menu1.wav' );
 			m_options_cursor ++;
-			if ( m_options_cursor >= OPTIONS_ITEMS )
+			if ( m_options_cursor >= optionsItems() )
 				m_options_cursor = 0;
 			break;
 		case K_LEFTARROW:
@@ -986,10 +1051,10 @@ export function M_Video_Key( key ) {
  */
 export function M_Options_Touch( vx, vy ) {
 
-	if ( vy >= 32 && vy < 32 + OPTIONS_ITEMS * 8 ) {
+	if ( vy >= 32 && vy < 32 + optionsItems() * 8 ) {
 
 		const item = Math.floor( ( vy - 32 ) / 8 );
-		if ( item >= 0 && item < OPTIONS_ITEMS ) {
+		if ( item >= 0 && item < optionsItems() ) {
 
 			m_options_cursor = item;
 			M_Options_Key( K_ENTER );
