@@ -208,6 +208,15 @@ export function Hexen2_DecodeUpdateInv( bytes, options = {} ) {
 
 }
 
+/** Every native stat bit, for a full local/loopback snapshot. */
+export function Hexen2_AllStatMask() {
+
+	let mask = 0n;
+	for ( const [ bit ] of STAT_FIELDS ) mask |= BigInt( bit );
+	return mask;
+
+}
+
 /** The native SC1/SC2 masks, for callers building a delta. */
 export const HEXEN2_SC_MASKS = Object.freeze( {
 	SC1_STAT_BAR: 0x01ffffffn, SC2_STAT_BAR: 0x1en,
