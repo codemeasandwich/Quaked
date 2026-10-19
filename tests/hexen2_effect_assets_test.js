@@ -5,6 +5,7 @@ import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
 import { mod_sprite } from '../src/engine/render/gl_model_types.js';
+import { Hexen2_EffectFrame } from '../src/engine/client/hexen2_effect_anim.js';
 import { EFFECT_SPRITES, Hexen2_EffectSpriteName, Hexen2_LoadEffectSprites } from '../src/engine/client/hexen2_effects_assets.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
@@ -30,5 +31,26 @@ Deno.test( 'every mapped native effect sprite loads with frames', () => {
 	same( Hexen2_EffectSpriteName( 10 ), 'models/gryspt.spr', 'the grey flash sprite' );
 	same( Hexen2_EffectSpriteName( 18 ), null, 'rider death has no borrowed sprite' );
 	same( Hexen2_EffectSpriteName( 55 ), null, 'chunks have no borrowed sprite' );
+
+	// frame timing: every sprite yields a real image at t=0 and a later time; a multi-frame sprite advances
+	let multi = null;
+	for ( const entry of assets.loaded ) {
+
+		const sprite = entry.model.cache.data;
+		const first = Hexen2_EffectFrame( sprite, 0 );
+		check( first !== null && first.image.width > 0, `type ${entry.type} has a first image` );
+		const later = Hexen2_EffectFrame( sprite, 0.25 );
+		check( later !== null && later.image.width > 0, `type ${entry.type} has a later image` );
+		if ( sprite.numframes > 1 && multi === null ) multi = entry;
+
+	}
+	check( multi !== null, 'a multi-frame effect sprite is present' );
+	const atZero = Hexen2_EffectFrame( multi.model.cache.data, 0 );
+	const atOne = Hexen2_EffectFrame( multi.model.cache.data, 0.15 );
+	check( atZero.frameIndex !== atOne.frameIndex, 'the sprite advances to its second frame: ' + atZero.frameIndex + ' vs ' + atOne.frameIndex );
+	const wrapped = Hexen2_EffectFrame( multi.model.cache.data, 1000, { loop: true } );
+	check( wrapped !== null && wrapped.image.width > 0, 'a looping sprite wraps to an image' );
+	const held = Hexen2_EffectFrame( multi.model.cache.data, 1000, { loop: false } );
+	check( held !== null && held.image.width > 0, 'a one-shot sprite holds its last image' );
 
 } );
