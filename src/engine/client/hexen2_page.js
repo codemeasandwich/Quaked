@@ -317,7 +317,8 @@ export async function Hexen2_PageStart( options ) {
 
 			const dispatch = ( type, init ) => document.dispatchEvent( new ( type === 'mousemove' || type === 'mousedown' || type === 'mouseup' ? MouseEvent : KeyboardEvent )( type, { bubbles: true, ...init } ) );
 			let combat = null;
-			for ( let i = 2; i <= 240; i ++ ) {
+			let item = null;
+			for ( let i = 2; i <= 280; i ++ ) {
 
 				if ( i === 20 ) { for ( let n = 0; n < 12; n ++ ) dispatch( 'mousemove', { clientX: 200 + n * 20, clientY: 300 } ); log( 'autoplay mouse yaw=' + Math.round( cl.viewangles[ 1 ] ) ); }
 				if ( i === 30 ) dispatch( 'keydown', { code: 'ArrowLeft' } );
@@ -351,6 +352,24 @@ export async function Hexen2_PageStart( options ) {
 				if ( i === 200 ) dispatch( 'mouseup', { button: 0 } );
 				if ( i === 160 && combat ) log( 'autoplay combat draw calls=' + ( renderer.info.render.calls | 0 ) + ' tris=' + ( renderer.info.render.triangles | 0 ) + ' vis=' + cl_numvisedicts + ' model=' + ( cl_entities[ combat.ent.index ]?.model ? 'yes' : 'no' ) );
 				if ( i === 230 && combat ) log( 'autoplay combat after=' + combat.ent.v.health + ' damaged=' + ( combat.ent.v.health < combat.before ) + ' calls=' + ( renderer.info.render.calls | 0 ) + ' tris=' + ( renderer.info.render.triangles | 0 ) );
+				if ( i === 245 ) {
+
+					let best = null, bestDistance = 1e9;
+					for ( const ent of sv.edicts ) {
+
+						if ( !ent || ent.free || !ent.v.model ) continue;
+						const name = PR_GetString( ent.v.classname );
+						if ( name !== 'item_health' && name !== 'item_artifact' && name !== 'item_mana' ) continue;
+						const distance = Math.hypot( ent.v.origin[ 0 ] - session.player.v.origin[ 0 ], ent.v.origin[ 1 ] - session.player.v.origin[ 1 ] );
+						if ( distance < bestDistance ) { bestDistance = distance; best = ent; }
+
+					}
+					item = best ? { ent: best, before: session.player.v.health } : null;
+					if ( item ) { session.player.v.origin = [ item.ent.v.origin[ 0 ], item.ent.v.origin[ 1 ], item.ent.v.origin[ 2 ] ]; session.player.v.velocity = [ 0, 0, 0 ]; log( 'autoplay item before health=' + item.before + ' class=' + PR_GetString( item.ent.v.classname ) ); }
+					else log( 'autoplay item none' );
+
+				}
+				if ( i === 275 && item ) log( 'autoplay item after health=' + session.player.v.health + ' picked=' + ( session.player.v.health > item.before || item.ent.free ) );
 				tick( 0.05 );
 
 			}
@@ -399,12 +418,13 @@ function updateNearbyEntities( session ) {
 		const modelIndex = indexOf.get( modelName );
 		if ( modelIndex === undefined ) continue;
 		const distance = Math.hypot( ent.v.origin[ 0 ] - player.v.origin[ 0 ], ent.v.origin[ 1 ] - player.v.origin[ 1 ] );
-		if ( distance > 1700 ) continue;
 		candidates.push( { ent, modelIndex, distance } );
 
 	}
+	// Keep every model entity that exists in the level, not a 24-nearest bubble: statues and pickups must not pop out of
+	// view when the player backs away (the owner saw a corridor statue vanish with distance). MAX_VISEDICTS is the only cap.
 	candidates.sort( ( a, b ) => a.distance - b.distance );
-	const chosen = candidates.slice( 0, 24 );
+	const chosen = candidates.slice( 0, MAX_VISEDICTS );
 	for ( const { ent, modelIndex } of chosen ) {
 
 		const update = Hexen2_WriteEntityUpdate( { entity: ent.index, modelIndex, frame: ent.v.frame | 0,
