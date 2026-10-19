@@ -67,6 +67,8 @@ import { CL_InitPrediction, CL_ResetPrediction, CL_PredictMove,
 	cl_simorg, cl_simvel, cl_simangles, cl_nopred, set_cl_simonground } from './cl_pred.js';
 // the dynamic-light allocator lives with the lights in client.js, so the renderer need not import this module ([44g], D1a)
 import { CL_AllocDlight, CL_ENTITIES_FIRST } from './client.js';
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
+import { CL_Hexen2Scale } from './cl_hexen2.js';
 export { CL_AllocDlight } from './client.js';
 
 // Re-export prediction state for view.js to use
@@ -678,6 +680,129 @@ export function CL_LerpPoint() {
 
 }
 
+// Hexen II's entity effects and model trail flags (uhexen2 engine/h2shared/gl_model.h). The low EF_* bits are Quake's
+// and already handled below; these are the bits Quake never sets.
+const H2_EF_DARKLIGHT = 0x10;
+const H2_EF_DARKFIELD = 0x20;
+const H2_EF_LIGHT = 0x40;
+const H2_EF_NODRAW = 0x80;
+const H2_EF_FIREBALL = 0x100;
+const H2_EF_ICE = 0x200;
+const H2_EF_SPIT = 0x800;
+const H2_EF_SPELL = 0x2000;
+const H2_EF_VORP_MISSILE = 0x20000;
+const H2_EF_SET_STAFF = 0x40000;
+const H2_EF_MAGICMISSILE = 0x80000;
+const H2_EF_BONESHARD = 0x100000;
+const H2_EF_SCARAB = 0x200000;
+const H2_EF_ACIDBALL = 0x400000;
+const H2_EF_BLOODSHOT = 0x800000;
+
+// The new trail renderers live in U8. Each receives (oldOrigin, origin, entityNumber, model); an uninstalled hook falls
+// back to the nearest native Quake trail, so Hexen II demos stay visible before U8 merges.
+let hexen2TrailHooks = Object.freeze( {
+	fireball: null, ice: null, spit: null, spell: null, vorpMissile: null, setStaff: null,
+	magicMissile: null, boneshard: null, scarab: null, acidball: null, bloodshot: null, darkField: null
+} );
+
+/**
+ * Installs the Hexen II trail/dark-field renderers (U8). Members left out keep the current function.
+ *
+ * @param {object} next the hook functions, each called with the entity data and its two frame origins
+ */
+export function CL_Hexen2SetTrailHooks( next ) { hexen2TrailHooks = Object.freeze( { ...hexen2TrailHooks, ...next } ); }
+
+function CL_Hexen2Trail( name, fallback, start, end, number, model ) {
+
+	const hook = hexen2TrailHooks[ name ];
+	if ( typeof hook === 'function' ) hook( start, end, number, model );
+	else R_RocketTrail( start, end, fallback, number, model );
+
+}
+
+function CL_Hexen2Light( ent, number, radius, die, dark ) {
+
+	const dl = CL_AllocDlight( number );
+	VectorCopy( ent.origin, dl.origin );
+	dl.radius = radius;
+	dl.die = cl.time + die;
+	dl.dark = dark === true;
+	return dl;
+
+}
+
+/*
+===============
+CL_Hexen2EntityEffects
+
+The Hexen II half of CL_RelinkEntities: dark/negative dynamic lights, the dark field and the model-flag trails.
+Called for every relinked entity under a Hexen II profile; Quake profiles never enter it.
+===============
+*/
+function CL_Hexen2EntityEffects( ent, oldorg, number, model ) {
+
+	const effects = ent.effects | 0;
+
+	if ( effects & H2_EF_DARKFIELD ) {
+
+		const hook = hexen2TrailHooks.darkField;
+		if ( typeof hook === 'function' ) hook( ent );
+		else R_EntityParticles( ent );
+
+	}
+
+	if ( effects & H2_EF_LIGHT )
+		CL_Hexen2Light( ent, number, 200, 0.001, false );
+
+	if ( effects & H2_EF_DARKLIGHT )
+		CL_Hexen2Light( ent, number, 200 + ( Math.random() * 32 | 0 ), 0.001, true );
+
+	if ( model == null ) return;
+
+	const flags = model.flags | 0;
+	if ( flags & H2_EF_FIREBALL ) {
+
+		CL_Hexen2Trail( 'fireball', 0, oldorg, ent.origin, number, model );
+		CL_Hexen2Light( ent, number, 120 - ( Math.random() * 20 | 0 ), 0.01, false );
+
+	} else if ( flags & H2_EF_ICE )
+		CL_Hexen2Trail( 'ice', 6, oldorg, ent.origin, number, model );
+	else if ( flags & H2_EF_SPIT ) {
+
+		CL_Hexen2Trail( 'spit', 4, oldorg, ent.origin, number, model );
+		CL_Hexen2Light( ent, number, - 120 - ( Math.random() * 20 | 0 ), 0.05, true );
+
+	} else if ( flags & H2_EF_SPELL )
+		CL_Hexen2Trail( 'spell', 6, oldorg, ent.origin, number, model );
+	else if ( flags & H2_EF_VORP_MISSILE ) {
+
+		CL_Hexen2Trail( 'vorpMissile', 6, oldorg, ent.origin, number, model );
+		CL_Hexen2Light( ent, number, 240 - ( Math.random() * 20 | 0 ), 0.01, false );
+
+	} else if ( flags & H2_EF_SET_STAFF )
+		CL_Hexen2Trail( 'setStaff', 6, oldorg, ent.origin, number, model );
+	else if ( flags & H2_EF_MAGICMISSILE ) {
+
+		if ( ( Math.random() * 4 | 0 ) < 1 ) CL_Hexen2Trail( 'magicMissile', 6, oldorg, ent.origin, number, model );
+		CL_Hexen2Light( ent, number, 240 - ( Math.random() * 20 | 0 ), 0.01, false );
+
+	} else if ( flags & H2_EF_BONESHARD )
+		CL_Hexen2Trail( 'boneshard', 4, oldorg, ent.origin, number, model );
+	else if ( flags & H2_EF_SCARAB ) {
+
+		CL_Hexen2Trail( 'scarab', 6, oldorg, ent.origin, number, model );
+		CL_Hexen2Light( ent, number, 240 - ( Math.random() * 20 | 0 ), 0.01, false );
+
+	} else if ( flags & H2_EF_ACIDBALL ) {
+
+		CL_Hexen2Trail( 'acidball', 4, oldorg, ent.origin, number, model );
+		CL_Hexen2Light( ent, number, 120 - ( Math.random() * 20 | 0 ), 0.01, false );
+
+	} else if ( flags & H2_EF_BLOODSHOT )
+		CL_Hexen2Trail( 'bloodshot', 2, oldorg, ent.origin, number, model );
+
+}
+
 /*
 ===============
 CL_LinkPacketEntities
@@ -739,6 +864,7 @@ function CL_LinkPacketEntities( frac ) {
 			dl.origin[ 2 ] = s1.origin[ 2 ] + 16;
 			dl.radius = 400 + ( Math.random() * 32 | 0 );
 			dl.die = cl.time + 0.001;
+			if ( GameProfile_IsHexen2() ) dl.dark = false;
 
 		}
 
@@ -750,6 +876,7 @@ function CL_LinkPacketEntities( frac ) {
 			dl.origin[ 2 ] = s1.origin[ 2 ];
 			dl.radius = 200 + ( Math.random() * 32 | 0 );
 			dl.die = cl.time + 0.001;
+			if ( GameProfile_IsHexen2() ) dl.dark = false;
 
 		}
 
@@ -764,6 +891,7 @@ function CL_LinkPacketEntities( frac ) {
 			dl.radius = 200 + ( Math.random() * 32 | 0 );
 			dl.minlight = 32;
 			dl.die = cl.time + 0.1;
+			if ( GameProfile_IsHexen2() ) dl.dark = false;
 
 		}
 
@@ -799,6 +927,13 @@ function CL_LinkPacketEntities( frac ) {
 		ent.frame = s1.frame;
 		ent.skinnum = s1.skin;
 		ent.effects = s1.effects;
+		if ( GameProfile_IsHexen2() ) {
+
+			ent.scale = CL_Hexen2Scale( s1.scale );
+			ent.drawflags = s1.drawflags | 0;
+			ent.abslight = s1.abslight | 0;
+
+		}
 
 		// set colormap
 		if ( s1.colormap === 0 ) {
@@ -921,6 +1056,7 @@ function CL_LinkPacketEntities( frac ) {
 					VectorCopy( ent.origin, dl.origin );
 					dl.radius = 200;
 					dl.die = cl.time + 0.01;
+					if ( GameProfile_IsHexen2() ) dl.dark = false;
 
 				} else if ( model.flags & 0x02 ) { // EF_GRENADE
 
@@ -952,7 +1088,14 @@ function CL_LinkPacketEntities( frac ) {
 
 		}
 
+		if ( GameProfile_IsHexen2() ) CL_Hexen2EntityEffects( ent, _peOldorg, s1.number, model );
+
 		ent.forcelink = false;
+
+		if ( cls.demoplayback && s1.number === cl.viewentity && Cvar_VariableValue( 'chase_active' ) === 0 )
+			continue; // Hexen II demo packets carry the view player too
+		if ( GameProfile_IsHexen2() && ( ent.effects & H2_EF_NODRAW ) )
+			continue;
 
 		cl_visedicts[ cl_numvisedicts ] = ent;
 		set_cl_numvisedicts( cl_numvisedicts + 1 );
@@ -986,6 +1129,7 @@ function CL_LinkPlayers() {
 			dl.origin[ 2 ] = pplayer.origin[ 2 ] + 16;
 			dl.radius = 400 + ( Math.random() * 32 | 0 );
 			dl.die = cl.time + 0.001;
+			if ( GameProfile_IsHexen2() ) dl.dark = false;
 
 		}
 
@@ -997,6 +1141,7 @@ function CL_LinkPlayers() {
 			dl.origin[ 2 ] = pplayer.origin[ 2 ];
 			dl.radius = 200 + ( Math.random() * 32 | 0 );
 			dl.die = cl.time + 0.001;
+			if ( GameProfile_IsHexen2() ) dl.dark = false;
 
 		}
 
@@ -1028,6 +1173,7 @@ function CL_LinkPlayers() {
 			dl.radius = 200 + ( Math.random() * 32 | 0 );
 			dl.minlight = 32;
 			dl.die = cl.time + 0.1;
+			if ( GameProfile_IsHexen2() ) dl.dark = false;
 			if ( mine && R_NewerGame() ) {
 
 				// dimmer in a lit room (see R_MuzzleFlashScale)
@@ -1070,6 +1216,14 @@ function CL_LinkPlayers() {
 			ent.angles[ 0 ] = - pplayer.cmd.angles[ 0 ] / 3;
 			ent.angles[ 1 ] = pplayer.cmd.angles[ 1 ];
 			ent.angles[ 2 ] = 0;
+
+		}
+
+		if ( GameProfile_IsHexen2() ) {
+
+			CL_Hexen2EntityEffects( ent, ent.origin, j + 1, ent.model );
+			if ( ent.effects & H2_EF_NODRAW )
+				continue;
 
 		}
 
@@ -1172,10 +1326,13 @@ export function CL_RelinkEntities() {
 	// When using QW-style delta compression, players are handled by
 	// CL_LinkPlayers and non-players by CL_LinkPacketEntities.
 	// During demo playback or when no valid packet entity data exists,
-	// relink ALL entities using the NQ-style path.
-	const usePacketEntities = CL_GetValidSequence() !== 0 && cls.demoplayback === false;
+	// relink ALL entities using the NQ-style path. A native Hexen II demo is the exception: its translator writes a
+	// full packet per recorded frame, so the whole frame is linked through CL_LinkPacketEntities, including the player.
+	const packetData = CL_GetValidSequence() !== 0;
+	const hexenDemoPacket = cls.demoplayback && GameProfile_IsHexen2() && packetData;
+	const usePacketEntities = ( packetData && cls.demoplayback === false ) || hexenDemoPacket;
 
-	if ( usePacketEntities ) {
+	if ( usePacketEntities && ! hexenDemoPacket ) {
 
 		// QW path: predict player positions and add them to visedicts
 		CL_SetUpPlayerPrediction( true );
@@ -1185,16 +1342,16 @@ export function CL_RelinkEntities() {
 
 	// For QW path, skip player entity slots (they're handled above).
 	// For NQ path, process all entities including players.
-	const firstRelinkEntity = usePacketEntities ? cl.maxclients + 1 : 1;
+	const firstRelinkEntity = usePacketEntities && ! hexenDemoPacket ? cl.maxclients + 1 : 1;
 	// ...and the entities in this frame's packet: CL_LinkPacketEntities links them (card [44q]). It stamps them with
 	// this message's time, so on a frame without a new packet this loop took them as current and listed them too:
 	// drawn twice, their brightfield particles made twice (their trail segment was then empty, their light the same
 	// keyed slot). (Before, on a frame with a new packet, this loop cleared their model as stale and the packet path set
 	// it again, re-rolling `syncbase`, which only an ST_RAND sprite's group frames read.)
-	if ( usePacketEntities ) CL_MarkPacketEntities();
+	if ( usePacketEntities && ! hexenDemoPacket ) CL_MarkPacketEntities();
 	for ( let i = firstRelinkEntity; i < cl.num_entities; i ++ ) {
 
-		if ( usePacketEntities && _packetMarks[ i ] === _packetStamp ) continue; // linked from the packet
+		if ( usePacketEntities && ( hexenDemoPacket || _packetMarks[ i ] === _packetStamp ) ) continue; // linked from the packet
 
 		const ent = cl_entities[ i ];
 		if ( ent.model == null ) {
@@ -1256,8 +1413,18 @@ export function CL_RelinkEntities() {
 		}
 
 		// rotate binary objects locally
-		if ( ent.model != null && ( ent.model.flags & 0x0008 ) ) // EF_ROTATE
-			ent.angles[ 1 ] = bobjrotate;
+		if ( ent.model != null && ( ent.model.flags & 0x0008 ) ) { // EF_ROTATE
+
+			if ( GameProfile_IsHexen2() ) {
+
+				// Hexen II bonus items turn on yaw only; the renderer adds the floating bob (uhexen2 gl_rmain.c)
+				ent.angles[ 0 ] = 0;
+				ent.angles[ 1 ] = bobjrotate;
+				ent.angles[ 2 ] = 0;
+
+			} else ent.angles[ 1 ] = bobjrotate;
+
+		}
 		R_ItemTurn( ent ); // (Newer Game: a pickup box's drawn picture turned a little, card T-3faa98e3)
 
 		if ( ent.effects & 0x0001 ) // EF_BRIGHTFIELD
@@ -1322,6 +1489,7 @@ export function CL_RelinkEntities() {
 				VectorCopy( ent.origin, dl.origin );
 				dl.radius = 200;
 				dl.die = cl.time + 0.01;
+				if ( GameProfile_IsHexen2() ) dl.dark = false;
 
 			} else if ( ent.model.flags & 0x02 ) // EF_GRENADE
 				R_RocketTrail( _relinkOldorg, ent.origin, 1, i );
@@ -1330,9 +1498,13 @@ export function CL_RelinkEntities() {
 
 		}
 
+		if ( GameProfile_IsHexen2() ) CL_Hexen2EntityEffects( ent, _relinkOldorg, i, ent.model );
+
 		ent.forcelink = false;
 
 		if ( i === cl.viewentity && Cvar_VariableValue( 'chase_active' ) === 0 )
+			continue;
+		if ( GameProfile_IsHexen2() && ( ent.effects & H2_EF_NODRAW ) )
 			continue;
 
 		if ( cl_numvisedicts < MAX_VISEDICTS ) {

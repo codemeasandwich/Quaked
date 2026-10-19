@@ -29,6 +29,8 @@ import { CL_Disconnect } from './cl_main.js';
 import { host_framecount, realtime } from '../common/host_state.js';
 import { NET_GetMessage } from '../net/net_main.js';
 import { COM_FindFile } from '../common/pak.js';
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
+import { CL_Hexen2Demo_Start, CL_Hexen2Demo_Stop, CL_Hexen2Demo_Active, CL_Hexen2Demo_Translate } from './cl_hexen2_demo.js';
 
 /*
 ==============================================================================
@@ -61,6 +63,7 @@ export function CL_StopPlayback() {
 		return;
 
 	cls.demoplayback = false;
+	CL_Hexen2Demo_Stop();
 	R_DemoLoadingCancel();
 	R_DemoSplitEnd();
 	cls.demofile = null;
@@ -269,6 +272,26 @@ export function CL_GetMessage() {
 		for ( let i = 0; i < net_message.cursize; i ++ )
 			net_message.data[ i ] = cls.demodata[ cls.demopos + i ];
 		cls.demopos += net_message.cursize;
+
+		// A native Hexen II demo is translated into the unified protocol before the shared parser sees it.
+		if ( CL_Hexen2Demo_Active() ) {
+
+			const translated = CL_Hexen2Demo_Translate( net_message.data.subarray( 0, net_message.cursize ) );
+			if ( ! translated.ok ) {
+
+				Con_Printf( 'Demo translation failed: %s\n', translated.reason );
+				CL_StopPlayback();
+				return 0;
+
+			}
+			if ( translated.bytes.length > MAX_MSGLEN )
+				Sys_Error( 'Translated demo message > MAX_MSGLEN' );
+			if ( ! net_message.data || net_message.data.length < translated.bytes.length )
+				net_message.data = new Uint8Array( MAX_MSGLEN );
+			net_message.data.set( translated.bytes );
+			net_message.cursize = translated.bytes.length;
+
+		}
 
 		return 1;
 
@@ -534,6 +557,16 @@ export function CL_PlayDemoFromData( data, attract = false ) {
 
 	if ( neg )
 		cls.forcetrack = - cls.forcetrack;
+
+	// A Hexen II profile may still open a Quake-format demo: the native translator only takes over when the first
+	// record carries a protocol 18/19 serverinfo.
+	if ( GameProfile_IsHexen2() ) {
+
+		const native = CL_Hexen2Demo_Start( cls.demodata, cls.demopos );
+		if ( native.ok )
+			Con_DPrintf( 'Playing native Hexen II demo (protocol %i)\n', native.protocol );
+
+	}
 
 	Con_Printf( 'Playing demo (forcetrack %i)\n', cls.forcetrack );
 

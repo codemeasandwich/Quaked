@@ -32,7 +32,8 @@ const STAT_FIELDS = Object.freeze( [
 	[ 1 << 22, 'cnt_flight', 'byte' ], [ 1 << 23, 'cnt_cubeofforce', 'byte' ], [ 1 << 24, 'cnt_invincibility', 'byte' ],
 	[ 1 << 25, 'artifact_active', 'float' ], [ 1 << 26, 'artifact_low', 'float' ],
 	[ 1 << 27, 'movetype', 'byte' ], [ 1 << 28, 'cameramode', 'byte' ], [ 1 << 29, 'hasted', 'float' ],
-	[ 1 << 30, 'inventory', 'byte' ], [ 1 << 31, 'rings_active', 'float' ],
+	// (0x80000000, not 1 << 31: the latter is negative, and BigInt(bit) would then match every high bit)
+	[ 1 << 30, 'inventory', 'byte' ], [ 0x80000000, 'rings_active', 'float' ],
 	[ 0x100000000, 'rings_low', 'float' ], [ 0x200000000, 'armor_amulet', 'byte' ], [ 0x400000000, 'armor_bracer', 'byte' ],
 	[ 0x800000000, 'armor_breastplate', 'byte' ], [ 0x1000000000, 'armor_helmet', 'byte' ],
 	[ 0x2000000000, 'ring_flight', 'byte' ], [ 0x4000000000, 'ring_water', 'byte' ], [ 0x8000000000, 'ring_turning', 'byte' ],
