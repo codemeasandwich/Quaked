@@ -103,9 +103,11 @@ export function Hexen2_EncodeClientdata( player, options = {} ) {
  * Decodes an `svc_clientdata` body.
  *
  * @param {ArrayLike<number>} bytes the body
- * @returns {{ ok: true, clientdata: object } | { ok: false, reason: string }} the fields present, or why it is refused
+ * @param {{ allowTrailing?: boolean }} [options] keep decoding at the first following message instead of refusing it
+ * @returns {{ ok: true, clientdata: object, consumed: number } | { ok: false, reason: string }} the fields present and
+ *   the body length, or why it is refused
  */
-export function Hexen2_DecodeClientdata( bytes ) {
+export function Hexen2_DecodeClientdata( bytes, options = {} ) {
 
 	try {
 
@@ -125,8 +127,8 @@ export function Hexen2_DecodeClientdata( bytes ) {
 		if ( bits & SU.WEAPON ) out.weaponModelIndex = r.short();
 		out.onGround = ( bits & SU.ONGROUND ) !== 0;
 		out.inWater = ( bits & SU.INWATER ) !== 0;
-		if ( r.at !== bytes.length ) return { ok: false, reason: 'trailing bytes after clientdata' };
-		return { ok: true, clientdata: out };
+		if ( ! options.allowTrailing && r.at !== bytes.length ) return { ok: false, reason: 'trailing bytes after clientdata' };
+		return { ok: true, clientdata: out, consumed: r.at };
 
 	} catch ( error ) { return { ok: false, reason: error.message }; }
 
