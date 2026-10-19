@@ -15,7 +15,7 @@ import { sv, G_STRING, G_INT, G_INT_SET, G_FLOAT, G_FLOAT_SET, G_EDICT, G_EDICTN
 import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3, OFS_PARM4, OFS_RETURN } from './pr_comp.js';
 import { PR_RunError, PR_HostError } from './pr_exec.js';
 import { Con_Printf } from '../common/console.js';
-import { MSG_WriteByte, MSG_WriteString, MSG_WriteShort, MSG_WriteCoord, MSG_WriteAngle } from '../common/common.js';
+import { MSG_WriteByte, MSG_WriteString, MSG_WriteShort, MSG_WriteCoord, MSG_WriteAngle, MSG_WriteLong, MSG_WriteChar } from '../common/common.js';
 import { MAX_LIGHTSTYLES } from '../common/quakedef.js';
 import { svc_print, svc_stufftext } from '../common/protocol.js';
 import { anglemod } from '../common/mathlib.js';
@@ -230,6 +230,67 @@ function particle4() {
 
 }
 
+// #52-59 writebyte/char/short/long/angle/coord/string/entity(destination, value): the native message writers.
+// Destinations are MSG_BROADCAST (datagram), MSG_ONE (that client's message), MSG_ALL (reliable datagram) and
+// MSG_INIT (signon); an invalid destination is a script error.
+const MSG_BROADCAST = 0, MSG_ONE = 1, MSG_ALL = 2, MSG_INIT = 3;
+function writeDestination() {
+
+	const destination = G_FLOAT( OFS_PARM0 ) | 0;
+	if ( destination === MSG_BROADCAST ) return sv.datagram;
+	if ( destination === MSG_ALL ) return sv.reliable_datagram;
+	if ( destination === MSG_INIT ) return sv.signon;
+	if ( destination === MSG_ONE ) {
+
+		const ent = PROG_TO_EDICT( pr_global_struct.msg_entity ), index = G_EDICTNUM( pr_global_struct.msg_entity );
+		if ( index < 1 || index > svs.maxclients ) PR_RunError( 'write: not a client\n' );
+		const client = svs.clients[ index - 1 ];
+		return client?.message ?? null;
+
+	}
+	PR_RunError( 'write: bad destination %i', destination );
+
+}
+
+const writeByte = () => { const d = writeDestination(); if ( d ) MSG_WriteByte( d, G_FLOAT( OFS_PARM1 ) | 0 ); };
+const writeChar = () => { const d = writeDestination(); if ( d ) MSG_WriteChar( d, G_FLOAT( OFS_PARM1 ) | 0 ); };
+const writeShort = () => { const d = writeDestination(); if ( d ) MSG_WriteShort( d, G_FLOAT( OFS_PARM1 ) | 0 ); };
+const writeLong = () => { const d = writeDestination(); if ( d ) MSG_WriteLong( d, G_FLOAT( OFS_PARM1 ) | 0 ); };
+const writeAngle = () => { const d = writeDestination(); if ( d ) MSG_WriteAngle( d, G_FLOAT( OFS_PARM1 ) ); };
+const writeCoord = () => { const d = writeDestination(); if ( d ) MSG_WriteCoord( d, G_FLOAT( OFS_PARM1 ) ); };
+const writeString = () => { const d = writeDestination(); if ( d ) MSG_WriteString( d, G_STRING( OFS_PARM1 ) ); };
+const writeEntity = () => { const d = writeDestination(); if ( d ) MSG_WriteShort( d, G_EDICTNUM( OFS_PARM1 ) ); };
+
+// #88 starteffect(type, ...): allocate a bounded server effect slot and return its index. The port has no effect
+// transmission/render codec yet (recorded divergence: the gamecode's effect lifetime works, clients see nothing), so
+// the slot records the native type and time for a later SV_SendEffect-style message.
+function starteffect() {
+
+	const type = G_FLOAT( OFS_PARM0 ) | 0;
+	if ( type <= 0 ) PR_RunError( 'starteffect: bad type %i', type );
+	sv.hexenEffects = sv.hexenEffects ?? new Array( 256 ).fill( null );
+	let index = - 1;
+	for ( let i = 0; i < sv.hexenEffects.length; i ++ ) {
+
+		const effect = sv.hexenEffects[ i ];
+		if ( effect === null || ( effect.expire > 0 && effect.expire <= sv.time ) ) { index = i; break; }
+
+	}
+	if ( index < 0 ) PR_RunError( 'MAX_EFFECTS reached' );
+	sv.hexenEffects[ index ] = { type, time: sv.time, expire: 0 };
+	G_FLOAT_SET( OFS_RETURN, index );
+
+}
+
+// #89 endeffect(type, index): drop the effect slot the gamecode names
+function endeffect() {
+
+	const index = G_FLOAT( OFS_PARM1 ) | 0;
+	if ( index < 0 || index >= 256 ) PR_RunError( 'endeffect: bad index %i', index );
+	if ( sv.hexenEffects && sv.hexenEffects[ index ] ) sv.hexenEffects[ index ] = null;
+
+}
+
 // #93 spawntemp(): a temporary edict for effects. The port has no per-frame temp pool yet, so this allocates a normal
 // edict (recorded divergence: cleanup is left to the gamecode's own remove/think rather than a frame-end sweep).
 function spawntemp() {
@@ -330,7 +391,7 @@ function breakBuiltin() { PR_RunError( 'break statement' ); }
 
 /** The server builtins this module installs into the Hexen II dispatcher. */
 export const HEXEN2_SERVER_BUILTINS = Object.freeze( {
-	6: breakBuiltin, 8: sound, 10: errorBuiltin, 11: objerror, 14: spawn, 15: remove, 17: PF_checkclient, 18: find, 21: stuffcmd, 93: spawntemp, 22: PF_findradius, 23: bprint, 24: sprint, 31: eprint, 35: lightstyle, 44: PF_aim, 48: particle, 49: changeyaw, 63: advanceframe, 65: rewindframe, 66: setclass, 67: SV_MoveToGoal, 69: makestatic, 74: ambientsound, 83: advanceweaponframe, 86: particle4
+	6: breakBuiltin, 8: sound, 10: errorBuiltin, 11: objerror, 14: spawn, 15: remove, 17: PF_checkclient, 18: find, 21: stuffcmd, 52: writeByte, 53: writeChar, 54: writeShort, 55: writeLong, 56: writeAngle, 57: writeCoord, 58: writeString, 59: writeEntity, 88: starteffect, 89: endeffect, 93: spawntemp, 22: PF_findradius, 23: bprint, 24: sprint, 31: eprint, 35: lightstyle, 44: PF_aim, 48: particle, 49: changeyaw, 63: advanceframe, 65: rewindframe, 66: setclass, 67: SV_MoveToGoal, 69: makestatic, 74: ambientsound, 83: advanceweaponframe, 86: particle4
 } );
 
 Hexen2_RegisterBuiltins( HEXEN2_SERVER_BUILTINS );
