@@ -1,7 +1,7 @@
 {
   "trial": "hexen2-browser",
-  "at": "2026-10-19T08:17:22.848Z",
-  "base": "http://127.0.0.1:49229",
+  "at": "2026-10-19T08:22:19.210Z",
+  "base": "http://127.0.0.1:51350",
   "result": {
     "ok": true,
     "errors": [],
@@ -15,7 +15,7 @@
     "session": {
       "level": "demo1",
       "viewEntity": 1,
-      "health": 75,
+      "health": 82,
       "models": 342,
       "baselines": 247
     },
@@ -57,8 +57,8 @@
       "drawn": 10,
       "skipped": 0
     },
-    "frames": 89,
-    "attackFrames": 33,
+    "frames": 117,
+    "attackFrames": 46,
     "entitiesVisible": 24,
     "nearest": [
       {
@@ -77,6 +77,11 @@
         "d": 212
       },
       {
+        "name": "monster_spider_yellow_small",
+        "model": "models/spider.mdl",
+        "d": 219
+      },
+      {
         "name": "art_HealthBoost",
         "model": "models/a_hboost.mdl",
         "d": 295
@@ -85,11 +90,6 @@
         "name": "obj_statue_angel",
         "model": "models/anglstat.mdl",
         "d": 315
-      },
-      {
-        "name": "obj_tombstone1",
-        "model": "models/tombstn1.mdl",
-        "d": 330
       }
     ],
     "keyEvents": 1,
@@ -103,8 +103,8 @@
       -2034,
       0.03125
     ],
-    "health": 1000,
-    "hudHealth": 1000,
+    "health": 996.9049072265625,
+    "hudHealth": 996,
     "pixel": [
       34,
       27,
@@ -115,25 +115,25 @@
     "audioDeferred": true,
     "audioDeferredResult": {
       "sources": 1,
-      "time": 2.8853333333333335,
+      "time": 1.7706666666666666,
       "state": "running"
     },
     "mouseAttack": true,
-    "combatTarget": 195,
+    "combatTarget": 194,
     "combatBefore": 100,
-    "combatAfter": 23.99771499633789,
-    "combatPlayerHealth": 1000,
+    "combatAfter": 55.22618865966797,
+    "combatPlayerHealth": 996.9049072265625,
     "combat": {
       "before": 100,
-      "after": 23.99771499633789,
-      "playerHealth": 1000,
+      "after": 55.22618865966797,
+      "playerHealth": 996.9049072265625,
       "setup": {
-        "index": 195,
+        "index": 194,
         "health": 100,
         "name": "monster_spider_yellow_small"
       }
     },
-    "moved": 258.84029219495716,
+    "moved": 253.77299128070024,
     "movedFrom": [
       -918,
       -2034,

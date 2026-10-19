@@ -1,0 +1,627 @@
+{
+  "target": "http://127.0.0.1:51229/index.html",
+  "mode": "http",
+  "targetSha256": "78b71bbbfa2c6827cbbca5a4085eddbf5defa0037709b70d78325f1c1e1b0381",
+  "elapsedMs": 59920,
+  "title": "Quaked",
+  "canvas": true,
+  "metrics": {
+    "decodedBytes": 7433717,
+    "blobBytes": 356129103,
+    "dataBytes": 636164691,
+    "missing": [],
+    "unavailable": [
+      "newer/textures/glass/00f6709df719eaf8-4x-diffuse.png"
+    ],
+    "startedAt": 91.5,
+    "dataReadyMs": 2314.699999988079,
+    "backgroundComplete": true
+  },
+  "memory": {
+    "used": 1680508233,
+    "total": 1790894665
+  },
+  "body": "",
+  "scenarios": [
+    {
+      "map": "maps/e1m1.bsp",
+      "signon": 4,
+      "active": true,
+      "entities": 165,
+      "startTime": 3.0165998935699463,
+      "time": 8.016300201416016
+    },
+    {
+      "map": "maps/e1m1.bsp",
+      "signon": 4,
+      "active": true,
+      "entities": 165,
+      "startTime": 3.016900062561035,
+      "time": 8.03339958190918
+    },
+    {
+      "map": "maps/e1m2.bsp",
+      "signon": 4,
+      "active": true,
+      "entities": 226,
+      "startTime": 3.033099889755249,
+      "time": 8.049599647521973
+    }
+  ],
+  "bestiary": {
+    "checked": 196,
+    "decoded": 196,
+    "failed": []
+  },
+  "unshipped": {
+    "count": 1114,
+    "checked": 1,
+    "failed": [],
+    "urls": [
+      "blob:http://127.0.0.1:51229/1f9d6605-1ded-4b05-b2e7-5e4aa0e3987e"
+    ],
+    "unavailable": 1,
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_FILE_NOT_FOUND @ blob:http://127.0.0.1:51229/1f9d6605-1ded-4b05-b2e7-5e4aa0e3987e",
+      "Failed to load resource: net::ERR_FILE_NOT_FOUND @ blob:http://127.0.0.1:51229/1f9d6605-1ded-4b05-b2e7-5e4aa0e3987e"
+    ]
+  },
+  "ok": true,
+  "webglRenderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+  "softwareWebGL": false,
+  "browserMemory": {
+    "peakRssBytes": 1608564736,
+    "final": {
+      "processes": 8,
+      "rssBytes": 1225605120
+    }
+  },
+  "environment": {
+    "platform": "darwin",
+    "channel": "chrome",
+    "backend": "default",
+    "args": [
+      "--enable-precise-memory-info"
+    ],
+    "browserVersion": "154.0.8037.98"
+  },
+  "phases": [
+    {
+      "phase": "launch",
+      "startedMs": 11,
+      "completedMs": 1802
+    },
+    {
+      "phase": "navigation",
+      "startedMs": 2349,
+      "completedMs": 2520
+    },
+    {
+      "phase": "engine-initialization",
+      "startedMs": 2520,
+      "completedMs": 7829
+    },
+    {
+      "phase": "initial-demo",
+      "startedMs": 7829,
+      "completedMs": 12981
+    },
+    {
+      "phase": "classic-e1m1",
+      "startedMs": 14181,
+      "completedMs": 21988
+    },
+    {
+      "phase": "newer-e1m1",
+      "startedMs": 21988,
+      "completedMs": 32321
+    },
+    {
+      "phase": "newer-e1m2",
+      "startedMs": 32325,
+      "completedMs": 42977
+    },
+    {
+      "phase": "startup-assets",
+      "startedMs": 42977,
+      "completedMs": 42996
+    },
+    {
+      "phase": "background-data",
+      "startedMs": 42996,
+      "completedMs": 43034
+    },
+    {
+      "phase": "bestiary-images",
+      "startedMs": 43034,
+      "completedMs": 54553
+    },
+    {
+      "phase": "unshipped-assets",
+      "startedMs": 54553,
+      "completedMs": 54614
+    },
+    {
+      "phase": "bestiary-open",
+      "startedMs": 55116,
+      "completedMs": 59515
+    }
+  ],
+  "samples": [
+    {
+      "elapsedMs": 14181,
+      "phase": "initial-demo",
+      "browserRss": {
+        "processes": 8,
+        "rssBytes": 1608564736
+      },
+      "url": "http://127.0.0.1:51229/index.html",
+      "title": "Quaked",
+      "readyState": "complete",
+      "visibility": "visible",
+      "engine": {
+        "commandReady": true,
+        "signon": 4,
+        "demo": true,
+        "clientState": 2,
+        "map": "maps/e1m3.bsp",
+        "clientTime": 1.475305938720703,
+        "serverActive": false,
+        "serverTime": 0
+      },
+      "loading": null,
+      "canvas": {
+        "width": 1280,
+        "height": 800
+      },
+      "renderer": {
+        "info": {
+          "frame": 666,
+          "calls": 1,
+          "triangles": 2,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 177,
+          "textures": 377
+        },
+        "programs": 89,
+        "failedPrograms": []
+      },
+      "webgl": {
+        "contextLost": false,
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "WebKit",
+        "renderer": "WebKit WebGL",
+        "unmaskedVendor": "Google Inc. (Apple)",
+        "unmaskedRenderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "parallelShaderCompile": true,
+        "maxTextureSize": 16384
+      },
+      "metrics": {
+        "decodedBytes": 7433717,
+        "blobBytes": 190188330,
+        "dataBytes": 636164691,
+        "missing": [],
+        "unavailable": [],
+        "startedAt": 91.5,
+        "dataReadyMs": 2314.699999988079
+      },
+      "memory": {
+        "used": 1409369857,
+        "total": 1465090449,
+        "limit": 4395630592
+      },
+      "images": {
+        "total": 0,
+        "incomplete": 0
+      },
+      "body": ""
+    },
+    {
+      "elapsedMs": 22575,
+      "phase": "newer-e1m1",
+      "browserRss": {
+        "processes": 8,
+        "rssBytes": 1371815936
+      },
+      "url": "http://127.0.0.1:51229/index.html",
+      "title": "Quaked",
+      "readyState": "complete",
+      "visibility": "visible",
+      "engine": {
+        "commandReady": true,
+        "signon": 0,
+        "demo": false,
+        "clientState": 2,
+        "map": "maps/e1m1.bsp",
+        "clientTime": 0,
+        "serverActive": true,
+        "serverTime": 1.0335999999999999
+      },
+      "loading": null,
+      "canvas": {
+        "width": 1280,
+        "height": 800
+      },
+      "renderer": {
+        "info": {
+          "frame": 1177,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 160,
+          "textures": 372
+        },
+        "programs": 99,
+        "failedPrograms": []
+      },
+      "webgl": {
+        "contextLost": false,
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "WebKit",
+        "renderer": "WebKit WebGL",
+        "unmaskedVendor": "Google Inc. (Apple)",
+        "unmaskedRenderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "parallelShaderCompile": true,
+        "maxTextureSize": 16384
+      },
+      "metrics": {
+        "decodedBytes": 7433717,
+        "blobBytes": 234215897,
+        "dataBytes": 636164691,
+        "missing": [],
+        "unavailable": [],
+        "startedAt": 91.5,
+        "dataReadyMs": 2314.699999988079,
+        "backgroundComplete": true
+      },
+      "memory": {
+        "used": 1589654854,
+        "total": 1659092290,
+        "limit": 4395630592
+      },
+      "images": {
+        "total": 0,
+        "incomplete": 0
+      },
+      "body": ""
+    },
+    {
+      "elapsedMs": 42708,
+      "phase": "newer-e1m2",
+      "browserRss": {
+        "processes": 8,
+        "rssBytes": 1219198976
+      },
+      "url": "http://127.0.0.1:51229/index.html",
+      "title": "Quaked",
+      "readyState": "complete",
+      "visibility": "visible",
+      "engine": {
+        "commandReady": true,
+        "signon": 4,
+        "demo": false,
+        "clientState": 2,
+        "map": "maps/e1m2.bsp",
+        "clientTime": 7.766200065612793,
+        "serverActive": true,
+        "serverTime": 7.766200000000001
+      },
+      "loading": null,
+      "canvas": {
+        "width": 1280,
+        "height": 800
+      },
+      "renderer": {
+        "info": {
+          "frame": 58311,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 846,
+          "textures": 800
+        },
+        "programs": 108,
+        "failedPrograms": []
+      },
+      "webgl": {
+        "contextLost": false,
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "WebKit",
+        "renderer": "WebKit WebGL",
+        "unmaskedVendor": "Google Inc. (Apple)",
+        "unmaskedRenderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "parallelShaderCompile": true,
+        "maxTextureSize": 16384
+      },
+      "metrics": {
+        "decodedBytes": 7433717,
+        "blobBytes": 287667360,
+        "dataBytes": 636164691,
+        "missing": [],
+        "unavailable": [],
+        "startedAt": 91.5,
+        "dataReadyMs": 2314.699999988079,
+        "backgroundComplete": true
+      },
+      "memory": {
+        "used": 2003055915,
+        "total": 2066958039,
+        "limit": 4395630592
+      },
+      "images": {
+        "total": 0,
+        "incomplete": 0
+      },
+      "body": ""
+    }
+  ],
+  "diagnostic": {
+    "elapsedMs": 59595,
+    "phase": "bestiary-open",
+    "browserRss": {
+      "processes": 8,
+      "rssBytes": 1225605120
+    },
+    "url": "http://127.0.0.1:51229/index.html",
+    "title": "Quaked",
+    "readyState": "complete",
+    "visibility": "visible",
+    "engine": {
+      "commandReady": true,
+      "signon": 4,
+      "demo": false,
+      "clientState": 2,
+      "map": "maps/e1m2.bsp",
+      "clientTime": 20.182300567626953,
+      "serverActive": true,
+      "serverTime": 20.1823
+    },
+    "loading": null,
+    "canvas": {
+      "width": 1280,
+      "height": 800
+    },
+    "renderer": {
+      "info": {
+        "frame": 119879,
+        "calls": 1,
+        "triangles": 1,
+        "points": 0,
+        "lines": 0
+      },
+      "memory": {
+        "geometries": 846,
+        "textures": 800
+      },
+      "programs": 108,
+      "failedPrograms": []
+    },
+    "webgl": {
+      "contextLost": false,
+      "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "vendor": "WebKit",
+      "renderer": "WebKit WebGL",
+      "unmaskedVendor": "Google Inc. (Apple)",
+      "unmaskedRenderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "parallelShaderCompile": true,
+      "maxTextureSize": 16384
+    },
+    "metrics": {
+      "decodedBytes": 7433717,
+      "blobBytes": 356129103,
+      "dataBytes": 636164691,
+      "missing": [],
+      "unavailable": [
+        "newer/textures/glass/00f6709df719eaf8-4x-diffuse.png"
+      ],
+      "startedAt": 91.5,
+      "dataReadyMs": 2314.699999988079,
+      "backgroundComplete": true
+    },
+    "memory": {
+      "used": 1687381946,
+      "total": 1790894802,
+      "limit": 4395630592
+    },
+    "images": {
+      "total": 0,
+      "incomplete": 0
+    },
+    "body": ""
+  },
+  "gpu": {
+    "devices": [
+      {
+        "vendorId": 4203,
+        "deviceId": 0,
+        "vendorString": "Google Inc. (Apple)",
+        "deviceString": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Version 26.4 (Build 25E246))",
+        "driverVendor": "Apple",
+        "driverVersion": "26.4"
+      }
+    ],
+    "auxAttributes": {
+      "amdSwitchable": false,
+      "canSupportThreadedTextureMailbox": false,
+      "directRenderingVersion": "",
+      "displayType": "ANGLE_METAL",
+      "glExtensions": "GL_AMD_performance_monitor GL_ANGLE_base_vertex_base_instance_shader_builtin GL_ANGLE_blob_cache GL_ANGLE_client_arrays GL_ANGLE_clip_cull_distance GL_ANGLE_compressed_texture_etc GL_ANGLE_depth_texture GL_ANGLE_framebuffer_blit GL_ANGLE_framebuffer_multisample GL_ANGLE_get_serialized_context_string GL_ANGLE_get_tex_level_parameter GL_ANGLE_instanced_arrays GL_ANGLE_memory_size GL_ANGLE_pack_reverse_row_order GL_ANGLE_polygon_mode GL_ANGLE_program_binary_readiness_query GL_ANGLE_program_cache_control GL_ANGLE_provoking_vertex GL_ANGLE_renderability_validation GL_ANGLE_request_extension GL_ANGLE_rgbx_internal_format GL_ANGLE_robust_client_memory GL_ANGLE_shader_pixel_local_storage GL_ANGLE_shader_pixel_local_storage_coherent GL_ANGLE_stencil_texturing GL_ANGLE_texture_compression_dxt3 GL_ANGLE_texture_compression_dxt5 GL_ANGLE_texture_multisample GL_ANGLE_translated_shader_source GL_APPLE_clip_distance GL_ARM_rgba8 GL_CHROMIUM_bind_generates_resource GL_CHROMIUM_bind_uniform_location GL_CHROMIUM_copy_texture GL_CHROMIUM_lose_context GL_EXT_base_instance GL_EXT_blend_func_extended GL_EXT_blend_minmax GL_EXT_clip_control GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_compressed_ETC1_RGB8_sub_texture GL_EXT_conservative_depth GL_EXT_debug_label GL_EXT_debug_marker GL_EXT_depth_clamp GL_EXT_discard_framebuffer GL_EXT_disjoint_timer_query GL_EXT_draw_buffers GL_EXT_draw_buffers_indexed GL_EXT_draw_elements_base_vertex GL_EXT_float_blend GL_EXT_frag_depth GL_EXT_instanced_arrays GL_EXT_map_buffer_range GL_EXT_multisampled_render_to_texture GL_EXT_occlusion_query_boolean GL_EXT_polygon_offset_clamp GL_EXT_pvrtc_sRGB GL_EXT_read_format_bgra GL_EXT_render_snorm GL_EXT_robustness GL_EXT_sRGB GL_EXT_shader_texture_lod GL_EXT_texture_compression_bptc GL_EXT_texture_compression_dxt1 GL_EXT_texture_compression_rgtc GL_EXT_texture_compression_s3tc_srgb GL_EXT_texture_filter_anisotropic GL_EXT_texture_format_BGRA8888 GL_EXT_texture_mirror_clamp_to_edge GL_EXT_texture_norm16 GL_EXT_texture_rg GL_EXT_texture_sRGB_R8 GL_EXT_texture_sRGB_RG8 GL_EXT_texture_shadow_lod GL_EXT_texture_storage GL_IMG_texture_compression_pvrtc GL_KHR_debug GL_KHR_parallel_shader_compile GL_KHR_robustness GL_KHR_texture_compression_astc_hdr GL_KHR_texture_compression_astc_ldr GL_KHR_texture_compression_astc_sliced_3d GL_MESA_framebuffer_flip_y GL_NV_fence GL_NV_framebuffer_blit GL_NV_pixel_buffer_object GL_NV_shader_noperspective_interpolation GL_OES_EGL_image GL_OES_EGL_sync GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth24 GL_OES_depth32 GL_OES_depth_texture GL_OES_draw_buffers_indexed GL_OES_draw_elements_base_vertex GL_OES_element_index_uint GL_OES_fbo_render_mipmap GL_OES_get_program_binary GL_OES_mapbuffer GL_OES_packed_depth_stencil GL_OES_required_internalformat GL_OES_rgb8_rgba8 GL_OES_sample_variables GL_OES_shader_multisample_interpolation GL_OES_standard_derivatives GL_OES_surfaceless_context GL_OES_texture_3D GL_OES_texture_float GL_OES_texture_float_linear GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_texture_npot GL_OES_texture_stencil8 GL_OES_vertex_array_object GL_QCOM_render_shared_exponent ",
+      "glImplementationParts": "(gl=egl-angle,angle=metal)",
+      "glRenderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Version 26.4 (Build 25E246))",
+      "glResetNotificationStrategy": 33362,
+      "glVendor": "Google Inc. (Apple)",
+      "glVersion": "OpenGL ES 3.0 (ANGLE 2.1.28734 git hash: e12217f3e133)",
+      "glWsExtensions": "",
+      "glWsVendor": "",
+      "glWsVersion": "",
+      "inProcessGpu": false,
+      "initializationTime": 0.111912,
+      "isAsan": false,
+      "isClangCoverage": false,
+      "jpegDecodeAcceleratorSupported": false,
+      "maxMsaaSamples": "4",
+      "optimus": false,
+      "passthroughCmdDecoder": true,
+      "pixelShaderVersion": "3.00",
+      "processCrashCount": 0,
+      "sandboxed": false,
+      "skiaBackendType": "GraphiteDawnMetal",
+      "subpixelFontRendering": true,
+      "targetCpuBits": 64,
+      "vertexShaderVersion": "3.00",
+      "visibilityCallbackCallCount": 0
+    },
+    "featureStatus": {
+      "2d_canvas": "enabled",
+      "direct_rendering_display_compositor": "disabled_off_ok",
+      "gpu_compositing": "enabled",
+      "multiple_raster_threads": "enabled_on",
+      "opengl": "enabled_on",
+      "rasterization": "enabled",
+      "raw_draw": "disabled_off_ok",
+      "skia_graphite": "enabled_on",
+      "trees_in_viz": "disabled_off",
+      "video_decode": "enabled",
+      "video_encode": "enabled",
+      "webgl": "enabled",
+      "webgpu": "enabled",
+      "webnn": "disabled_off"
+    },
+    "driverBugWorkarounds": [
+      "disable_2d_canvas_auto_flush",
+      "enable_webgl_timer_query_extensions",
+      "disabled_extension_GL_KHR_blend_equation_advanced",
+      "disabled_extension_GL_KHR_blend_equation_advanced_coherent"
+    ],
+    "videoDecoding": [],
+    "videoEncoding": []
+  },
+  "screenshot": "dist/browser-trial.png",
+  "screenshotError": null,
+  "errors": [],
+  "requests": [],
+  "consoleErrors": [],
+  "consoleTail": [
+    {
+      "elapsedMs": 5622,
+      "type": "log",
+      "text": "Three-Quake initializing..."
+    },
+    {
+      "elapsedMs": 5622,
+      "type": "log",
+      "text": "Loading pak0.pak...\n"
+    },
+    {
+      "elapsedMs": 5622,
+      "type": "log",
+      "text": "Fetching games/shareware/pak0.pak...\n"
+    },
+    {
+      "elapsedMs": 5725,
+      "type": "log",
+      "text": "Added packfile newer/startup.pak (273 files)\n"
+    },
+    {
+      "elapsedMs": 5793,
+      "type": "log",
+      "text": "Loaded games/shareware/pak0.pak (18689235 bytes)\n"
+    },
+    {
+      "elapsedMs": 5794,
+      "type": "log",
+      "text": "Added packfile pak0.pak (339 files)\n"
+    },
+    {
+      "elapsedMs": 5802,
+      "type": "log",
+      "text": "pak0.pak loaded successfully\n"
+    },
+    {
+      "elapsedMs": 6948,
+      "type": "log",
+      "text": "Added packfile newer/maps.pak (1 files)\n"
+    },
+    {
+      "elapsedMs": 6948,
+      "type": "log",
+      "text": "Memory initialized (JavaScript GC mode)\n"
+    },
+    {
+      "elapsedMs": 6985,
+      "type": "log",
+      "text": "Three-Quake Version 1.09\n"
+    },
+    {
+      "elapsedMs": 6985,
+      "type": "log",
+      "text": "Exe: three-quake (JavaScript/Three.js)\n"
+    },
+    {
+      "elapsedMs": 6986,
+      "type": "log",
+      "text": "Loaded gfx.wad\n"
+    },
+    {
+      "elapsedMs": 6994,
+      "type": "log",
+      "text": "VID_Init"
+    },
+    {
+      "elapsedMs": 7592,
+      "type": "log",
+      "text": "Host_Init complete\n"
+    },
+    {
+      "elapsedMs": 11416,
+      "type": "log",
+      "text": "Loaded console wallpaper\n"
+    },
+    {
+      "elapsedMs": 11473,
+      "type": "log",
+      "text": "Loaded custom menu images\n"
+    },
+    {
+      "elapsedMs": 15143,
+      "type": "log",
+      "text": "player entered the game\n"
+    },
+    {
+      "elapsedMs": 22727,
+      "type": "log",
+      "text": "player entered the game\n"
+    },
+    {
+      "elapsedMs": 54597,
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FILE_NOT_FOUND @ blob:http://127.0.0.1:51229/1f9d6605-1ded-4b05-b2e7-5e4aa0e3987e"
+    },
+    {
+      "elapsedMs": 54613,
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FILE_NOT_FOUND @ blob:http://127.0.0.1:51229/1f9d6605-1ded-4b05-b2e7-5e4aa0e3987e"
+    }
+  ],
+  "requestFailures": [
+    {
+      "elapsedMs": 54597,
+      "url": "blob:http://127.0.0.1:51229/1f9d6605-1ded-4b05-b2e7-5e4aa0e3987e",
+      "error": "net::ERR_FILE_NOT_FOUND"
+    },
+    {
+      "elapsedMs": 54613,
+      "url": "blob:http://127.0.0.1:51229/1f9d6605-1ded-4b05-b2e7-5e4aa0e3987e",
+      "error": "net::ERR_FILE_NOT_FOUND"
+    }
+  ]
+}
