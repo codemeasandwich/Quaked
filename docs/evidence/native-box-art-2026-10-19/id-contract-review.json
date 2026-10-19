@@ -1,0 +1,51 @@
+{
+  "sourcePath": "/Users/bri/SOURCE/Quaked/src-tauri/src/library.rs",
+  "suitePath": "/Users/bri/SOURCE/Quaked/tests/game_selection_test.js",
+  "sourceSha256": "6838b98c5c8fd4f978405c8cd2276ab3f18e4e39ed42830f9e49939464eca4ec",
+  "suiteSha256": "9b004e877e1f009586f4e9c245e29f959a377d1c092c9f44724b5887b87bb1f5",
+  "method": "Unmodified maintained public callback; only Deno.readTextFile supplied temporary Rust source mutations. No repository writes.",
+  "results": [
+    {
+      "name": "baseline",
+      "expectedPass": true,
+      "passed": true,
+      "correct": true,
+      "error": null
+    },
+    {
+      "name": "unrelated-face-tuple",
+      "expectedPass": true,
+      "passed": true,
+      "correct": true,
+      "error": null
+    },
+    {
+      "name": "insert-game-id",
+      "expectedPass": false,
+      "passed": false,
+      "correct": true,
+      "error": "library.rs GAMES: ad,aopfm_v2,dopa,hipnotic,malice,mg1,quake,quoth,review_unexpected,rogue,shareware,soe,xmen"
+    },
+    {
+      "name": "remove-game-id",
+      "expectedPass": false,
+      "passed": false,
+      "correct": true,
+      "error": "library.rs GAMES: ad,aopfm_v2,dopa,hipnotic,malice,mg1,quoth,rogue,shareware,soe,xmen"
+    },
+    {
+      "name": "duplicate-game-id",
+      "expectedPass": false,
+      "passed": false,
+      "correct": true,
+      "error": "library.rs GAMES: ad,aopfm_v2,dopa,hipnotic,malice,mg1,quake,quake,quoth,rogue,shareware,soe,xmen"
+    },
+    {
+      "name": "remove-games-table",
+      "expectedPass": false,
+      "passed": false,
+      "correct": true,
+      "error": "library.rs declares the native GAMES table"
+    }
+  ]
+}

@@ -72,7 +72,14 @@ async function ensurePacks(definition){
 export async function Desktop_ShowShelf(reason=''){
  const {library,catalogue}=await snapshot();
  document.getElementById('loading')?.remove();
- const games=catalogue.games.map(g=>({...g,playable:GameSelection_Startable(g,{strict:true}).ok}));
+ // Only paths validated by the native scan and admitted to its exact-file scope
+ // are exposed. The shelf overlays these faces onto its bundled fallbacks.
+ const games=catalogue.games.map(g=>{
+  const images=Object.fromEntries(Object.entries(library.artwork?.[g.id]??{}).map(([face,path])=>[face,convertFileSrc(path)]));
+  const artOnly=!g.present&&(library.discovered??[]).some(d=>d.id===g.id);
+  return {...g,kind:artOnly?'unavailable':g.kind,playable:GameSelection_Startable(g,{strict:true}).ok,images,
+   reason:artOnly?'No supported game files found':g.reason};
+ });
  if(reason||library.error){const note=document.createElement('div');note.role='alert';note.style='position:fixed;z-index:201;top:10vh;left:5vw;right:5vw;color:#efd9ad;text-align:center';note.textContent=reason||library.error;document.body.append(note);}
  await GameShelf_Show(games,{native:true,current:GameSelection_Kept(),remember:GameSelection_Remember,selectLocation:Desktop_SelectLocation});
 }

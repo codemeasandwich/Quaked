@@ -1,0 +1,99 @@
+{
+  "createdAt": "2026-10-19T06:37:44.157658+00:00",
+  "method": "byte-identical canonical copies; originals preserved; no image transformation",
+  "files": [
+    {
+      "source": "/Users/bri/quaked/Quake shareware/cover.png",
+      "canonical": "/Users/bri/quaked/Quake shareware/front.png",
+      "sha256": "eda0697bdba1770afaa36913911be8761b70f69fbaba7c633f40bbb1fe7c900a",
+      "alreadyExisted": false,
+      "originalPreserved": true
+    },
+    {
+      "source": "/Users/bri/quaked/Quake shareware/side.png",
+      "canonical": "/Users/bri/quaked/Quake shareware/spine.png",
+      "sha256": "b38b34d4ac4e4dcbb5dee99ae1a4d7413f0e7a2ad50df41150dff7884b9ff629",
+      "alreadyExisted": false,
+      "originalPreserved": true
+    },
+    {
+      "source": "/Users/bri/quaked/Quoth/side.png",
+      "canonical": "/Users/bri/quaked/Quoth/spine.png",
+      "sha256": "56765f4988c52a24e5135817805a39ca5feddea66d131988b1900071348f642a",
+      "alreadyExisted": false,
+      "originalPreserved": true
+    },
+    {
+      "source": "/Users/bri/quaked/q30a1024/cover.png",
+      "canonical": "/Users/bri/quaked/q30a1024/front.png",
+      "sha256": "c2689921d7e87524dac65729dbdc0e80349eab71cde916504c5c54aea47bb8b0",
+      "alreadyExisted": false,
+      "originalPreserved": true
+    },
+    {
+      "source": "/Users/bri/quaked/Quaked/frount.png",
+      "canonical": "/Users/bri/quaked/Quaked/front.png",
+      "sha256": "06d4152b4cc18a791bc2aa0cad8290e5073c1fa5401babc0c9c7272cef55f998",
+      "alreadyExisted": false,
+      "originalPreserved": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/Hexen2_1.webp",
+      "canonical": "/Users/bri/quaked/Hexen 2/front.webp",
+      "sha256": "10727f729d09c9c955e290d9f99a5f3ff43a5e54c5dea86a9036b4cf8c997aab",
+      "alreadyExisted": false,
+      "originalPreserved": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/Hexen2_2.webp",
+      "canonical": "/Users/bri/quaked/Hexen 2/spine.webp",
+      "sha256": "568a25d73f9c4941a66f69f580e99e95579266c64f37eb1126190896c0641e7d",
+      "alreadyExisted": false,
+      "originalPreserved": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Hexen2PortalOfPraevus1.webp",
+      "canonical": "/Users/bri/quaked/Hexen 2 Portal of Praevus/front.webp",
+      "sha256": "4fc0f41100fc882de6af6da7ff76523f3b3dd615ce32b04dcb464ccf047e2343",
+      "alreadyExisted": false,
+      "originalPreserved": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Hexen2PortalOfPraevus.webp",
+      "canonical": "/Users/bri/quaked/Hexen 2 Portal of Praevus/back.webp",
+      "sha256": "fa7016df1316fc20d3270bfdb64b062e6bdeae8efd5412df1890cc34bc49c42d",
+      "alreadyExisted": false,
+      "originalPreserved": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Hexen2PortalOfPraevus2.webp",
+      "canonical": "/Users/bri/quaked/Hexen 2 Portal of Praevus/spine.webp",
+      "sha256": "741de6069aacb0cf66d132d0c50db54b06179ab427c08b64b97f041d40df41a1",
+      "alreadyExisted": false,
+      "originalPreserved": true
+    },
+    {
+      "source": "/Users/bri/quaked/Scourge of Armagon/side.png",
+      "canonical": "/Users/bri/quaked/Scourge of Armagon/spine.png",
+      "sha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "alreadyExisted": false,
+      "originalPreserved": true
+    },
+    {
+      "source": "/Users/bri/quaked/Dissolution of Eternity/side.png",
+      "canonical": "/Users/bri/quaked/Dissolution of Eternity/spine.png",
+      "sha256": "687a74a07ba7df5d375cf9503c9425be6b8148194c115af9e32c688781d2fb23",
+      "alreadyExisted": false,
+      "originalPreserved": true
+    }
+  ],
+  "corrections": [
+    {
+      "source": "/Users/bri/quaked/Quoth/front.png",
+      "destination": "/Users/bri/quaked/Quoth/unassigned-quaked-front.png",
+      "sha256": "06d4152b4cc18a791bc2aa0cad8290e5073c1fa5401babc0c9c7272cef55f998",
+      "reason": "Byte-identical Quaked Cry of the Abyss cover was misfiled as Quoth front; retained under unassigned name instead of displaying wrong game.",
+      "reversible": true
+    }
+  ]
+}

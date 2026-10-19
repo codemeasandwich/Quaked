@@ -240,7 +240,9 @@ Deno.test( 'the app library gives loose files to exactly the catalogue\'s add-on
 	const rust = await Deno.readTextFile( new URL( '../src-tauri/src/library.rs', import.meta.url ) );
 	const listed = /pub const ADDONS: &\[&str\] = &\[([^\]]*)\]/.exec( rust )[ 1 ].match( /"([^"]+)"/g ).map( s => s.slice( 1, -1 ) ).sort().join();
 	check( listed === GAME_CATALOGUE_GAMES.filter( g => g.kind === 'addon' ).map( g => g.id ).sort().join(), 'library.rs ADDONS: ' + listed );
-	const games = [ ...rust.matchAll( /\("([a-z0-9_]+)", &\[/g ) ].map( m => m[ 1 ] ).sort().join();
+	const gameTable = /pub const GAMES:[^=]+?=\s*&\[([\s\S]*?)\n\];/.exec( rust );
+	check( gameTable, 'library.rs declares the native GAMES table' );
+	const games = [ ...gameTable[ 1 ].matchAll( /\("([a-z0-9_]+)", &\[/g ) ].map( m => m[ 1 ] ).sort().join();
 	check( games === GAME_CATALOGUE_GAMES.filter( g => ! g.placeholder ).map( g => g.id ).sort().join(), 'library.rs GAMES: ' + games );
 
 } );

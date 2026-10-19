@@ -179,7 +179,7 @@ fn refresh(app: &tauri::AppHandle) -> Result<Library, String> {
     let root = if settings.exists() {
         match fs::read(settings).map_err(|e|e.to_string()).and_then(|bytes|serde_json::from_slice::<Settings>(&bytes).map_err(|e|e.to_string())){
    Ok(settings)=>settings.root,
-   Err(error)=>return Ok(Library{root:PathBuf::new(),packs:vec![],discovered:vec![],error:Some(format!("Saved game location could not be read: {error}. Select Game Locations to recover."))})
+   Err(error)=>return Ok(Library{root:PathBuf::new(),packs:vec![],discovered:vec![],artwork:Default::default(),error:Some(format!("Saved game location could not be read: {error}. Select Game Locations to recover."))})
   }
     } else {
         let root = app
@@ -194,29 +194,31 @@ fn refresh(app: &tauri::AppHandle) -> Result<Library, String> {
         root,
         packs: vec![],
         discovered: vec![],
+        artwork: Default::default(),
         error: Some(error),
     });
     let state = app.state::<State>();
     let mut current = state.library.lock().map_err(|e| e.to_string())?;
     // Scope is populated only with exact discovered paths. Location changes restart
     // the host below, clearing the old process's permissions before the next scan.
-    for pack in &current.packs {
-        if !next.packs.iter().any(|p| p.path == pack.path) {
+    let current_paths = current.packs.iter().map(|p| &p.path)
+        .chain(current.artwork.values().flat_map(|faces| faces.values()));
+    let next_paths: Vec<_> = next.packs.iter().map(|p| &p.path)
+        .chain(next.artwork.values().flat_map(|faces| faces.values())).collect();
+    for path in current_paths {
+        if !next_paths.contains(&path) {
             app.asset_protocol_scope()
-                .forbid_file(&pack.path)
+                .forbid_file(path)
                 .map_err(|e| e.to_string())?;
         }
     }
-    if next
-        .packs
-        .iter()
-        .any(|p| app.asset_protocol_scope().is_forbidden(&p.path))
+    if next_paths.iter().any(|path| app.asset_protocol_scope().is_forbidden(path))
     {
         app.restart();
     }
-    for pack in &next.packs {
+    for path in next_paths {
         app.asset_protocol_scope()
-            .allow_file(&pack.path)
+            .allow_file(path)
             .map_err(|e| e.to_string())?;
     }
     *current = next.clone();

@@ -1,0 +1,178 @@
+{
+  "head": "c00ca59a465ce267fbff56607b095be09e7120b1",
+  "checks": {
+    "quaked-oct19-independent-gameplay-reverify.log": {
+      "sha256": "f812dc7d23ed2ff4630e484214a2684b3849125c603acb6dd88c4d8ed3938dab",
+      "results": [
+        {
+          "suite": "tests/footsteps_test.js",
+          "passed": 7,
+          "total": 7
+        },
+        {
+          "suite": "tests/dof_test.js",
+          "passed": 7,
+          "total": 7
+        },
+        {
+          "suite": "tests/milkyway_sky_test.js",
+          "passed": 13,
+          "total": 13
+        },
+        {
+          "suite": "tests/water_audio_test.js",
+          "passed": 6,
+          "total": 6
+        },
+        {
+          "suite": "tests/native_sound_replacement_test.js",
+          "passed": 21,
+          "total": 21
+        },
+        {
+          "suite": "tests/material_impacts_test.js",
+          "passed": 8,
+          "total": 8
+        },
+        {
+          "suite": "tests/player_events_audio_test.js",
+          "passed": 7,
+          "total": 7
+        },
+        {
+          "suite": "tests/environment_sounds_test.js",
+          "passed": 4,
+          "total": 4
+        },
+        {
+          "suite": "tests/electric_native_test.js",
+          "passed": 7,
+          "total": 7
+        },
+        {
+          "suite": "tests/electric_spatial_test.js",
+          "passed": 17,
+          "total": 17
+        }
+      ],
+      "total": [
+        "TOTAL 97/97 passed"
+      ],
+      "failedOrSkipped": false
+    },
+    "quaked-oct19-independent-gameplay-supplement.log": {
+      "sha256": "092cb0f9f944531febb8e7968d4b63d5795f39502cb3b88984a24868f104e1e2",
+      "results": [
+        {
+          "suite": "tests/electric_rogue_native_test.js",
+          "passed": 3,
+          "total": 3
+        },
+        {
+          "suite": "tests/face_demo_water_test.js",
+          "passed": 4,
+          "total": 4
+        }
+      ],
+      "total": [
+        "TOTAL 7/7 passed"
+      ],
+      "failedOrSkipped": false
+    }
+  },
+  "evidenceComparisons": {
+    "quaked-oct19-dof-sky-final.json": [
+      {
+        "path": "src/engine/common/cvar.js",
+        "expected": "edd608c07e63d1d76580eacc887fab08daca4a6f6260ba89695f2d8cfb4e3365",
+        "actual": "edd608c07e63d1d76580eacc887fab08daca4a6f6260ba89695f2d8cfb4e3365",
+        "matches": true
+      },
+      {
+        "path": "src/newer/render/r_dof.js",
+        "expected": "72b6e73909f705aeb8de9c7427d2bef53251de6e133ee0fd9d0e392c249c18eb",
+        "actual": "72b6e73909f705aeb8de9c7427d2bef53251de6e133ee0fd9d0e392c249c18eb",
+        "matches": true
+      },
+      {
+        "path": "src/newer/render/r_milkywaysky.js",
+        "expected": "c3f5d35da501c3229b979cc431099b30ec9342d8c9078537cac5d8f9ae68f0c5",
+        "actual": "c3f5d35da501c3229b979cc431099b30ec9342d8c9078537cac5d8f9ae68f0c5",
+        "matches": true
+      },
+      {
+        "path": "src/newer/render/r_post_shaders.js",
+        "expected": "99686c997834ffcb782c17e28eaad29a6ad9555b796c05dc722d38cd4adb5374",
+        "actual": "99686c997834ffcb782c17e28eaad29a6ad9555b796c05dc722d38cd4adb5374",
+        "matches": true
+      }
+    ],
+    "quaked-water-real-browser.json": [
+      {
+        "path": "assets/audio/sounds/player-bubbles.mp3",
+        "expected": "ae286287601a96f86ba421a759d58e74278b327002c9c9c3900eb61204d17fce",
+        "actual": "ae286287601a96f86ba421a759d58e74278b327002c9c9c3900eb61204d17fce",
+        "matches": true
+      },
+      {
+        "path": "assets/audio/sounds/underwater.mp3",
+        "expected": "4c07f3f11fd3eed836e58be5f2d3ac95790e22dbc8155590d3f17002201c38ed",
+        "actual": "4c07f3f11fd3eed836e58be5f2d3ac95790e22dbc8155590d3f17002201c38ed",
+        "matches": true
+      },
+      {
+        "path": "assets/audio/sounds/enter-underwater.mp3",
+        "expected": "dcb93fc01c5dbe856d696674d6c1797b62feec97887b864252c9fa028648fbf0",
+        "actual": "dcb93fc01c5dbe856d696674d6c1797b62feec97887b864252c9fa028648fbf0",
+        "matches": true
+      },
+      {
+        "path": "assets/audio/sounds/walking-in-water.mp3",
+        "expected": "4b7e52677988cbda74e2756da3e9ef6c59c9e41e401c1a08ba14ca4f52116b9b",
+        "actual": "4b7e52677988cbda74e2756da3e9ef6c59c9e41e401c1a08ba14ca4f52116b9b",
+        "matches": true
+      },
+      {
+        "path": "src/newer/sound/s_playerwater.js",
+        "expected": "4f0148828d2b719649fcfa6036d43935fe0f732e9f469dc409ef104b7a2f69a7",
+        "actual": "4f0148828d2b719649fcfa6036d43935fe0f732e9f469dc409ef104b7a2f69a7",
+        "matches": true
+      },
+      {
+        "path": "src/newer/sound/s_effectdeck.js",
+        "expected": "6d6f80e8aba1d3279805f7ea445ee33cfa261d8e8c8ed054ed7ca05ec9313aeb",
+        "actual": "6d6f80e8aba1d3279805f7ea445ee33cfa261d8e8c8ed054ed7ca05ec9313aeb",
+        "matches": true
+      },
+      {
+        "path": "src/engine/sound/snd_dma.js",
+        "expected": "66b2ab82e45ea006ad61582f1b237bd0301cee29555fe6670afd9fdf81f6598c",
+        "actual": "66b2ab82e45ea006ad61582f1b237bd0301cee29555fe6670afd9fdf81f6598c",
+        "matches": true
+      },
+      {
+        "path": "src/newer/gameplay/cl_water.js",
+        "expected": "b78ea2faa8f36cde3cf7710995efe30e17dab371982a95bbd86ac8b50f0f22b1",
+        "actual": "b78ea2faa8f36cde3cf7710995efe30e17dab371982a95bbd86ac8b50f0f22b1",
+        "matches": true
+      },
+      {
+        "path": "tests/water_audio_browser_trial.html",
+        "expected": "c9bc04e97808eb706f9f63d67c32e45a3c465271e755f3cb93e99827c0855464",
+        "actual": "c9bc04e97808eb706f9f63d67c32e45a3c465271e755f3cb93e99827c0855464",
+        "matches": true
+      },
+      {
+        "path": "tests/water_audio_browser_trial.js",
+        "expected": "8e1e11a85e1d1005fb147560e6fb2bd3cc5ea43fbd07058baa0e20e0fb4b78b1",
+        "actual": "8e1e11a85e1d1005fb147560e6fb2bd3cc5ea43fbd07058baa0e20e0fb4b78b1",
+        "matches": true
+      }
+    ]
+  },
+  "limitations": [
+    "No fresh GPU/browser/app run in this task; existing receipts compared by recorded source hashes.",
+    "Hell Knight fire has no custom attack/impact producer; native remains, rather than substituting long environmental fire.",
+    "New box art and owner-profile mouse behavior are outside these targeted suites."
+  ]
+}

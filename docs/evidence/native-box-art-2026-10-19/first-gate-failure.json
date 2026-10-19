@@ -1,0 +1,14 @@
+{
+  "tree": "3371ebe0e1d9f185d03cc264b0f97a89cc753c82",
+  "snapshot": "/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-r7z7nT",
+  "checks": {
+    "distribution": 109,
+    "rust": 44,
+    "engine": {
+      "passed": 242,
+      "total": 243
+    }
+  },
+  "failure": "Old game_selection source invariant parsed all Rust tuple literals, mistaking front/back/spine for game ids. Scope is now the actual GAMES table; membership and ADDONS equality checks remain.",
+  "productionSourceChangedForRepair": false
+}

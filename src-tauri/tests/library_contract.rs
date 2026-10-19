@@ -272,3 +272,128 @@ fn a_folder_with_no_ascii_name_gets_a_usable_id_and_a_placeholder_folder_is_not_
     // one `_` per character, as the source build's GameCatalogue_DiscoveredId (its test has the same cases)
     assert_eq!(ids, ["mod_addon", "mod_mod_x"], "no empty id; the placeholder's folder is left to its placeholder");
 }
+
+#[test]
+fn box_faces_are_case_insensitive_deterministic_and_never_mounted_as_game_files() {
+    let f = Fixture::new();
+    f.write("Quoth/pak0.pak", b"game");
+    // Create aliases first: canonical face names win without relying on enumeration order.
+    f.write("Quoth/cover.png", b"cover alias");
+    f.write("Quoth/side.png", b"side alias");
+    let front = f.write("Quoth/FRONT.JpG", b"front");
+    f.write("Quoth/front.webp", b"another supported type");
+    let spine = f.write("Quoth/SPINE.AvIf", b"spine");
+    let back = f.write("Quoth/Back.JPEG", b"back");
+    f.write("Quoth/images/back.png", b"nested art is not a box face");
+    let found = library::scan(&f.0).unwrap();
+    let faces = &found.artwork["quoth"];
+    assert_eq!(faces.len(), 3);
+    assert_eq!(faces["front"], front.canonicalize().unwrap());
+    assert_eq!(faces["spine"], spine.canonicalize().unwrap());
+    assert_eq!(faces["back"], back.canonicalize().unwrap());
+    assert_eq!(tokens(&found), ["quoth/pak0.pak"]);
+    assert!(library::read_range(&found, "quoth/front.jpg", 0, 1).is_err(), "art is not a game archive token");
+    assert_eq!(library::read_range(&found, "quoth/pak0.pak", 0, 4).unwrap(), b"game");
+}
+
+#[test]
+fn box_art_uses_only_the_directory_selected_for_the_game_not_another_alias_or_nested_folder() {
+    let f = Fixture::new();
+    f.write("id1/pak0.pak", b"selected");
+    let selected = f.write("id1/front.png", b"selected front");
+    f.write("id1/gfx/back.png", b"nested back");
+    f.write("Quake/pak0.pak", b"unselected alias");
+    f.write("Quake/front.png", b"wrong front");
+    f.write("Quake/back.png", b"wrong back");
+    let found = library::scan(&f.0).unwrap();
+    assert_eq!(found.artwork["quake"].len(), 1);
+    assert_eq!(found.artwork["quake"]["front"], selected.canonicalize().unwrap());
+    assert_eq!(library::read_range(&found, "quake/pak0.pak", 0, 8).unwrap(), b"selected");
+    let direct = library::scan(&f.path("id1")).unwrap();
+    assert_eq!(direct.artwork["quake"], found.artwork["quake"], "a directly selected game folder has the same art");
+}
+
+#[test]
+fn shareware_and_addons_get_art_while_art_only_folders_get_titles_without_mountable_content() {
+    let f = Fixture::new();
+    f.write("Quake shareware/pak0.pak", b"shareware");
+    let cover = f.write("Quake shareware/cover.png", b"cover");
+    let side = f.write("Quake shareware/side.gif", b"side");
+    f.write("My Mod/progs.dat", b"loose game");
+    let addon_front = f.write("My Mod/front.webp", b"addon front");
+    let quaked_front = f.write("Quaked/front.png", b"art alone");
+    let hexen_front = f.write("Hexen 2/front.png", b"box with nested data");
+    f.write("Hexen 2/data1/pak0.pak", b"not a supported immediate archive");
+    f.write("notes/readme.txt", b"ordinary folder without art or game content");
+    f.write("Poster Only/poster.png", b"not a canonical box face");
+    f.write(".hidden/front.png", b"hidden art alone");
+    f.write("Dawn of the Machine/front.png", b"placeholder art alone");
+    let found = library::scan(&f.0).unwrap();
+    assert_eq!(tokens(&found), ["shareware/pak0.pak", "mod_my_mod/progs.dat"]);
+    assert_eq!(found.artwork["shareware"]["front"], cover.canonicalize().unwrap());
+    assert_eq!(found.artwork["shareware"]["spine"], side.canonicalize().unwrap());
+    assert_eq!(found.artwork["mod_my_mod"]["front"], addon_front.canonicalize().unwrap());
+    let titles: Vec<(&str, &str)> = found.discovered.iter().map(|d| (d.id.as_str(), d.name.as_str())).collect();
+    assert_eq!(titles, [("mod_hexen_2", "Hexen 2"), ("mod_my_mod", "My Mod"), ("mod_quaked", "Quaked")]);
+    assert_eq!(found.artwork["mod_quaked"]["front"], quaked_front.canonicalize().unwrap());
+    assert_eq!(found.artwork["mod_hexen_2"]["front"], hexen_front.canonicalize().unwrap());
+    assert!(!found.packs.iter().any(|p| p.game == "mod_quaked" || p.game == "mod_hexen_2"),
+        "neither artwork nor nested foreign archives grant mountable content");
+    assert!(library::read_range(&found, "mod_quaked/pak0.pak", 0, 1).is_err());
+    assert!(library::read_range(&found, "mod_hexen_2/pak0.pak", 0, 1).is_err());
+    assert!(!found.artwork.contains_key("dawn"));
+}
+
+#[test]
+fn existing_folders_with_default_boxes_get_metadata_without_local_art_or_nested_game_admission() {
+    let f = Fixture::new();
+    f.write("hExEn 2/data1/pak0.pak", b"nested foreign game data");
+    f.write("Hexen 2 Portal of Praevus/portals/pak3.pak", b"nested foreign expansion data");
+    fs::create_dir(f.path("Quaked")).unwrap();
+    f.write("Another Game/data1/pak0.pak", b"a nested-only folder without default art stays absent");
+    let found = library::scan(&f.0).unwrap();
+    let titles: Vec<(&str, &str)> = found.discovered.iter().map(|d| (d.id.as_str(), d.name.as_str())).collect();
+    assert_eq!(titles, [
+        ("mod_hexen_2", "hExEn 2"),
+        ("mod_hexen_2_portal_of_praevus", "Hexen 2 Portal of Praevus"),
+        ("mod_quaked", "Quaked"),
+    ], "only existing display-only folders with shipped boxes are added");
+    assert!(found.packs.is_empty(), "default box art grants no pack or loose-file tokens");
+    assert!(found.artwork.is_empty(), "no local art is invented; the shelf uses its bundled defaults");
+    for title in &found.discovered {
+        assert!(library::read_range(&found, &format!("{}/pak0.pak", title.id), 0, 1).is_err());
+    }
+    fs::remove_dir(f.path("Quaked")).unwrap();
+    let refreshed = library::scan(&f.0).unwrap();
+    assert!(!refreshed.discovered.iter().any(|d| d.id == "mod_quaked"), "a default box does not fabricate a missing folder");
+}
+
+#[cfg(unix)]
+#[test]
+fn invalid_optional_box_images_are_skipped_without_hiding_the_game_or_safe_face_fallback() {
+    let f = Fixture::new();
+    let outside = Fixture::new();
+    f.write("Quoth/pak0.pak", b"game");
+    let external = outside.write("front.png", b"outside library");
+    symlink(&external, &f.path("Quoth/front.png"));
+    let cover = f.write("Quoth/cover.jpg", b"safe cover fallback");
+    symlink(&f.path("missing"), &f.path("Quoth/spine.png"));
+    let side = f.write("Quoth/side.webp", b"safe side fallback");
+    fs::create_dir(f.path("Quoth/back.png")).unwrap();
+    f.write("Quoth/back.jpg", b"");
+    let big = fs::File::create(f.path("Quoth/back.webp")).unwrap();
+    big.set_len((16 << 20) + 1).unwrap();
+    f.write("Quoth/back.svg", b"not a supported image type");
+    f.write("Quoth/nested/back.gif", b"not top level");
+    let found = library::scan(&f.0).expect("optional image errors must not prevent game discovery");
+    assert_eq!(tokens(&found), ["quoth/pak0.pak"]);
+    assert_eq!(found.artwork["quoth"].len(), 2);
+    assert_eq!(found.artwork["quoth"]["front"], cover.canonicalize().unwrap());
+    assert_eq!(found.artwork["quoth"]["spine"], side.canonicalize().unwrap());
+    assert!(!found.artwork["quoth"].contains_key("back"));
+    // Discovery checks file metadata, leaving actual image decoding to the shelf. The bound is inclusive.
+    let boundary = fs::File::create(f.path("Quoth/back.avif")).unwrap();
+    boundary.set_len(16 << 20).unwrap();
+    let refreshed = library::scan(&f.0).unwrap();
+    assert_eq!(refreshed.artwork["quoth"]["back"], f.path("Quoth/back.avif").canonicalize().unwrap());
+}

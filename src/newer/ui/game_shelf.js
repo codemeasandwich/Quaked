@@ -18,17 +18,22 @@ import {AssetURL} from '../../platform/distribution.js';
 
 /** Each installed game's box art (paths relative to the page); a face not listed is a placeholder. */
 export const GAME_BOXES = Object.freeze( {
-	shareware: { front: 'assets/boxes/quake/front.jpg', back: 'assets/boxes/quake/back.jpg', spine: 'assets/boxes/quake/spine.jpg', sticker: 'Shareware' },
+	shareware: { front: 'assets/boxes/shareware/front.png', back: 'assets/boxes/shareware/back.png', spine: 'assets/boxes/shareware/spine.png', sticker: 'Shareware' },
 	quake: { front: 'assets/boxes/quake/front.jpg', back: 'assets/boxes/quake/back.jpg', spine: 'assets/boxes/quake/spine.jpg' },
-	hipnotic: { front: 'assets/boxes/hipnotic/front.jpg', back: 'assets/boxes/hipnotic/back.jpg' },
-	rogue: { front: 'assets/boxes/rogue/front.jpg', back: 'assets/boxes/rogue/back.jpg' },
+	hipnotic: { front: 'assets/boxes/hipnotic/front.jpg', back: 'assets/boxes/hipnotic/back.jpg', spine: 'assets/boxes/hipnotic/spine.png' },
+	rogue: { front: 'assets/boxes/rogue/front.jpg', back: 'assets/boxes/rogue/back.jpg', spine: 'assets/boxes/rogue/spine.png' },
 	mg1: { front: 'assets/boxes/mg1/front.jpg' },
 	malice: { front: 'assets/boxes/malice/front.jpg', back: 'assets/boxes/malice/back.jpg' },
 	xmen: { front: 'assets/boxes/xmen/front.jpg', back: 'assets/boxes/xmen/back.jpg' },
-	aopfm_v2: { front: 'assets/boxes/aopfm_v2/front.jpg' }
+	aopfm_v2: { front: 'assets/boxes/aopfm_v2/front.jpg' },
+	quoth: { back: 'assets/boxes/quoth/back.png', spine: 'assets/boxes/quoth/spine.png' },
+	mod_q30a1024: { front: 'assets/boxes/mod_q30a1024/front.png' },
+	mod_quaked: { front: 'assets/boxes/mod_quaked/front.png' },
+	mod_hexen_2: { front: 'assets/boxes/mod_hexen_2/front.webp', spine: 'assets/boxes/mod_hexen_2/spine.webp' },
+	mod_hexen_2_portal_of_praevus: { front: 'assets/boxes/mod_hexen_2_portal_of_praevus/front.webp', back: 'assets/boxes/mod_hexen_2_portal_of_praevus/back.webp', spine: 'assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp' }
 } );
 
-const KIND_TEXT = Object.freeze( { shareware: 'The first episode of Quake', base: 'The full game', mission: 'A Quake mission pack', episode: 'A Quake episode', addon: 'A Quake add-on', folder: 'Added from a folder' } );
+const KIND_TEXT = Object.freeze( { shareware: 'The first episode of Quake', base: 'The full game', mission: 'A Quake mission pack', episode: 'A Quake episode', addon: 'A Quake add-on', folder: 'Added from a folder', unavailable: 'Game' } );
 const IMAGE = /\.(png|jpe?g|webp|gif|avif)$/i;
 const DB_NAME = 'quaked.shelf.v1';
 const STORE_WAIT_MS = 1500; // the longest the shelf waits for the games added from folders
@@ -39,15 +44,19 @@ let shelf = null;
  *
  * @param {{ id: string, name: string, kind?: string, playable?: boolean, reason?: string }} game a catalogue entry
  *   (game_catalogue.js) or a game added from a folder
- * @param {{ front?: string, back?: string, spine?: string }} [images] its own images, for a folder game
+ * @param {{ front?: string, cover?: string, back?: string, spine?: string, side?: string }} [images]
+ *   local faces (defaults to game.images); each missing face retains its bundled fallback
  * @returns {{ id: string, name: string, kind: string, playable: boolean, reason: string, front: ?string, back: ?string,
  *   spine: ?string, sticker: ?string, text: string }} each face's image (null: a placeholder) and the box's text
  */
-export function GameShelf_Box( game, images = GAME_BOXES[ game.id ] ?? {} ) {
+export function GameShelf_Box( game, images = game.images ?? {} ) {
 
 	const kind = game.kind ?? 'addon';
+	const bundled = GAME_BOXES[ game.id ] ?? {};
 	return { id: game.id, name: game.name, kind, playable: game.playable === true, reason: game.reason ?? '',
-		front: images.front ?? null, back: images.back ?? null, spine: images.spine ?? images.side ?? null, sticker: images.sticker ?? null,
+		front: images.front ?? images.cover ?? bundled.front ?? null,
+		back: images.back ?? bundled.back ?? null,
+		spine: images.spine ?? images.side ?? bundled.spine ?? null, sticker: images.sticker ?? bundled.sticker ?? null,
 		text: KIND_TEXT[ kind ] ?? KIND_TEXT.addon };
 
 }
@@ -66,7 +75,10 @@ export function GameShelf_ReadFolder( files, folderName = '' ) {
 
 	const found = {}, paks = [];
 	let name = folderName;
-	for ( const file of files ) {
+	// Canonical names win over their aliases regardless of directory enumeration order.
+	const extensions = [ 'png', 'jpg', 'jpeg', 'webp', 'gif', 'avif' ];
+	const rank = file => ( /^(cover|side)\./i.test( file.name ) ? 10 : 0 ) + extensions.indexOf( file.name.split( '.' ).pop().toLowerCase() );
+	for ( const file of [ ...files ].sort( ( a, b ) => rank( a ) - rank( b ) || a.name.localeCompare( b.name, 'en' ) ) ) {
 
 		const path = ( file.webkitRelativePath || file.name ).split( '/' );
 		if ( ! name && path.length > 1 ) name = path[ 0 ];
@@ -74,7 +86,7 @@ export function GameShelf_ReadFolder( files, folderName = '' ) {
 		const base = path[ path.length - 1 ], stem = base.replace( /\.[^.]+$/, '' ).toLowerCase();
 		if ( /\.(pak|pk3)$/i.test( base ) ) paks.push( base );
 		if ( ! IMAGE.test( base ) ) continue;
-		const face = stem === 'spine' ? 'side' : stem;
+		const face = stem === 'spine' ? 'side' : stem === 'cover' ? 'front' : stem;
 		if ( ( face === 'front' || face === 'side' || face === 'back' ) && ! found[ face ] ) found[ face ] = file;
 
 	}
@@ -175,15 +187,35 @@ function face( box, side, cls, w, h ) {
 	const f = el( 'div', 'face ' + cls );
 	f.style.width = w + 'px'; f.style.height = h + 'px';
 	const url = box[ side ] ? AssetURL(box[side]) : null;
-	if ( url ) f.style.backgroundImage = `url("${url}")`;
-	else {
+	const placeholder = () => {
 
+		if ( f.classList.contains( 'ph' ) ) return;
+		f.style.backgroundImage = '';
 		f.classList.add( 'ph' );
 		if ( box.kind === 'add' ) { el( 'div', 'plus', f ).textContent = '+'; el( 'div', 't', f ).textContent = 'Add a game'; el( 'div', 's', f ).textContent = side === 'back' ? 'Pick the folder of your add-on or plug-in. Its front, side and back images make its box.' : 'From a folder'; }
-		else if ( side === 'spine' ) el( 'div', 't', f ).textContent = box.name;
+		else if ( side === 'spine' ) {
+			const title = el( 'div', 't', f ); title.textContent = box.name;
+			title.style.fontSize = Math.min( w * 0.42, h * 0.86 / ( box.name.length * 0.78 ) ) + 'px';
+		}
 		else { el( 'div', 't', f ).textContent = box.name; el( 'div', 's', f ).textContent = side === 'back' ? box.text + ( box.playable ? '' : '. Not playable yet' + ( box.reason ? ': ' + box.reason : '' ) ) : box.text; }
 
-	}
+	};
+	if ( url ) {
+
+		f.style.backgroundImage = `url("${url}")`;
+		// Optional local art may disappear or fail decoding after discovery. Reuse
+		// the bundled face, then the printed placeholder; neither failure hides a game.
+		const probe = new Image(), bundled = GAME_BOXES[ box.id ]?.[ side ];
+		const fallback = bundled ? AssetURL( bundled ) : null;
+		probe.onerror = () => {
+			if ( fallback && fallback !== url ) {
+				f.style.backgroundImage = `url("${fallback}")`;
+				probe.onerror = placeholder; probe.src = fallback;
+			} else placeholder();
+		};
+		probe.src = url;
+
+	} else placeholder();
 	if ( side === 'front' && box.sticker ) el( 'div', 'sticker', f ).textContent = box.sticker;
 	return f;
 
@@ -199,9 +231,6 @@ function build( box, H ) {
 	at( face( box, 'front', 'front', W, H ), `translateZ(${D / 2}px)` );
 	at( face( box, 'back', 'back', W, H ), `rotateY(180deg) translateZ(${D / 2}px)` );
 	const spine = face( box, 'spine', 'spine', D, H ); spine.style.left = ( W - D ) / 2 + 'px';
-	// a printed spine's name fits its length (about 0.75 of a letter's size per letter, with its spacing)
-	const title = spine.querySelector( '.t' );
-	if ( title ) title.style.fontSize = Math.min( D * 0.42, H * 0.86 / ( box.name.length * 0.78 ) ) + 'px';
 	at( spine, `rotateY(-90deg) translateZ(${W / 2}px)` );
 	const right = el( 'div', 'face end' ); right.style.width = D + 'px'; right.style.height = H + 'px'; right.style.left = ( W - D ) / 2 + 'px';
 	at( right, `rotateY(90deg) translateZ(${W / 2}px)` );

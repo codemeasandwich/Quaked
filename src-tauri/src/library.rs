@@ -21,7 +21,8 @@ pub struct Pack {
     /// the game's own packs, as Quake searches a game folder after its packs.
     pub loose: bool,
 }
-/// A game folder found in the library that no known game names (`mod_<folder>`), played as an add-on over Quake.
+/// A folder found in the library that no known game names (`mod_<folder>`). Its contents are validated as an add-on
+/// over Quake by the frontend; a folder found only by its box art has no packs and cannot become playable from art.
 #[derive(Clone, Serialize, Debug, PartialEq)]
 pub struct Discovered {
     pub id: String,
@@ -31,7 +32,10 @@ pub struct Discovered {
 pub struct Library {
     pub root: PathBuf,
     pub packs: Vec<Pack>,
-    /// Add-ons found by their contents, not by a known name (their packs are in `packs` under their ids).
+    /// Optional box faces from the same selected game directory as its packs. These exact canonical paths are
+    /// exposed only for shelf images; they are never archives, loose game files, or evidence that a game can start.
+    pub artwork: BTreeMap<String, BTreeMap<String, PathBuf>>,
+    /// Folders found by game contents or box art, not by a known name (any game files are in `packs` under their ids).
     pub discovered: Vec<Discovered>,
     pub error: Option<String>,
 }
@@ -41,7 +45,7 @@ pub struct Settings {
 }
 pub const GAMES: &[(&str, &[&str])] = &[
     ("quake", &["id1", "Quake"]),
-    ("shareware", &["shareware"]),
+    ("shareware", &["shareware", "Quake shareware"]),
     ("hipnotic", &["hipnotic", "Scourge of Armagon"]),
     ("rogue", &["rogue", "Dissolution of Eternity"]),
     ("dopa", &["dopa", "Dimension of the Past"]),
@@ -63,8 +67,15 @@ pub const ADDONS: &[&str] = &["ad", "quoth", "malice", "xmen", "aopfm_v2", "soe"
 /// Names of games the catalogue lists but cannot play yet (game_catalogue.js `placeholder`): a folder so named is not
 /// discovered as an add-on, so it cannot start around the placeholder.
 pub const PLACEHOLDERS: &[&str] = &["Dawn of the Machine", "dawn"];
+/// Existing folders whose boxes have shipped defaults (GAME_BOXES in newer/ui/game_shelf.js), even when the user
+/// has no local faces. This is shelf metadata only: these names do not add game files or engine compatibility.
+pub const BOXED_FOLDERS: &[&str] = &["Hexen 2", "Hexen 2 Portal of Praevus", "Quaked"];
 /// At most this many bytes for a loose file.
 const LOOSE_LIMIT: u64 = 64 << 20;
+const BOX_IMAGE_LIMIT: u64 = 16 << 20;
+// Match GameShelf_ReadFolder's supported image types. Extension order breaks ties within one stem; canonical
+// face names always win over their aliases, independently of the filesystem's directory enumeration order.
+const BOX_IMAGE_EXTENSIONS: &[&str] = &["png", "jpg", "jpeg", "webp", "gif", "avif"];
 fn children(path: &Path) -> Result<BTreeMap<String, PathBuf>, String> {
     let mut out = BTreeMap::new();
     for entry in fs::read_dir(path).map_err(|e| e.to_string())? {
@@ -75,6 +86,32 @@ fn children(path: &Path) -> Result<BTreeMap<String, PathBuf>, String> {
         }
     }
     Ok(out)
+}
+
+fn list_artwork(dir: &Path, root: &Path) -> BTreeMap<String, PathBuf> {
+    let mut artwork = BTreeMap::new();
+    let Ok(entries) = children(dir) else {
+        return artwork;
+    };
+    'faces: for (face, stems) in [
+        ("front", &["front", "cover"][..]),
+        ("back", &["back"][..]),
+        ("spine", &["spine", "side"][..]),
+    ] {
+        for stem in stems {
+            for extension in BOX_IMAGE_EXTENSIONS {
+                let Some(path) = entries.get(&format!("{stem}.{extension}")) else { continue };
+                let Ok(path) = path.canonicalize() else { continue };
+                let Ok(meta) = fs::metadata(&path) else { continue };
+                if !path.starts_with(root) || !meta.is_file() || meta.len() == 0 || meta.len() > BOX_IMAGE_LIMIT {
+                    continue;
+                }
+                artwork.insert(face.to_string(), path);
+                continue 'faces;
+            }
+        }
+    }
+    artwork
 }
 /// Lists one game folder's packs (pak0.. up to the first gap; pak5 only to detect the engine's bounded-set overflow)
 /// and, for an add-on, its loose game files. Returns None when the folder is not a game: no pak0.pak, and (for an
@@ -162,6 +199,7 @@ pub fn scan(root: &Path) -> Result<Library, String> {
         .map_err(|e| format!("Game location unavailable: {e}"))?;
     let top = children(&root)?;
     let mut packs = Vec::new();
+    let mut artwork = BTreeMap::new();
     for (game, aliases) in GAMES {
         let mut candidates = Vec::new();
         if aliases.iter().any(|a| {
@@ -182,13 +220,20 @@ pub fn scan(root: &Path) -> Result<Library, String> {
             }
             if let Some(found) = list_game(&dir, game, &root, ADDONS.contains(game))? {
                 packs.extend(found);
+                let faces = list_artwork(&dir, &root);
+                if !faces.is_empty() {
+                    artwork.insert(game.to_string(), faces);
+                }
                 break;
             }
         }
     }
     // Any other folder holding a pak0.pak or a progs.dat is an add-on too (docs/add-ons-2026-10-13.md: the engine
-    // loads what a player adds without its own entry), named from its folder. A folder that cannot be read, or
-    // resolves outside the library, is skipped: one odd folder never hides the others.
+    // loads what a player adds without its own entry), named from its folder. A folder with only recognized box art
+    // or an existing folder with a shipped default box (BOXED_FOLDERS), is shown too, but has no pack tokens: the
+    // frontend's existing content validation keeps it unplayable. This does not recurse into nested game data or
+    // imply support for another engine. A folder that cannot be read,
+    // or resolves outside the library, is skipped: one odd folder never hides the others.
     let known: Vec<String> = GAMES
         .iter()
         .flat_map(|(_, aliases)| aliases.iter())
@@ -209,14 +254,25 @@ pub fn scan(root: &Path) -> Result<Library, String> {
         let folder = path.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_default();
         let taken: Vec<String> = discovered.iter().map(|d| d.id.clone()).collect();
         let id = discovered_id(&folder, &taken);
-        if let Ok(Some(found)) = list_game(&dir, &id, &root, true) {
-            packs.extend(found);
-            discovered.push(Discovered { id, name: folder });
+        let Ok(found) = list_game(&dir, &id, &root, true) else {
+            continue;
+        };
+        let faces = list_artwork(&dir, &root);
+        if found.is_none() && faces.is_empty() && !BOXED_FOLDERS.iter().any(|name| name.eq_ignore_ascii_case(lower)) {
+            continue;
         }
+        if let Some(found) = found {
+            packs.extend(found);
+        }
+        if !faces.is_empty() {
+            artwork.insert(id.clone(), faces);
+        }
+        discovered.push(Discovered { id, name: folder });
     }
     Ok(Library {
         root,
         packs,
+        artwork,
         discovered,
         error: None,
     })

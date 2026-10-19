@@ -9,9 +9,9 @@ import { GAME_CATALOGUE_GAMES } from '../src/engine/common/game_catalogue.js';
 import * as selection from '../src/engine/common/game_selection.js';
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 
-Deno.test( 'every box image named is in the repository, and each names a known game', () => {
+Deno.test( 'every box image exists and belongs to a catalogue game or an explicitly approved discovered title', () => {
 	for ( const [ id, faces ] of Object.entries( GAME_BOXES ) ) {
-		check( GAME_CATALOGUE_GAMES.some( g => g.id === id ), 'a known game: ' + id );
+		check( GAME_CATALOGUE_GAMES.some( g => g.id === id ) || [ 'mod_q30a1024', 'mod_hexen_2', 'mod_hexen_2_portal_of_praevus', 'mod_quaked' ].includes( id ), 'a known game or explicitly approved discovered title: ' + id );
 		for ( const face of [ 'front', 'back', 'spine' ] ) if ( faces[ face ] ) check( existsSync( new URL( '../' + faces[ face ], import.meta.url ) ), `${id} ${face}: ${faces[ face ]}` );
 	}
 	check( existsSync( new URL( '../assets/boxes/SOURCES.md', import.meta.url ) ), 'the art\'s sources are recorded' );
@@ -22,7 +22,7 @@ Deno.test( 'a game\'s box: its own art, placeholders where it has none, and whet
 	check( quake.front && quake.back && quake.spine && quake.playable, 'Quake: front, back, spine, playable' );
 	same( GameShelf_Box( { id: 'shareware', name: 'Quake (shareware)', kind: 'shareware', playable: true } ).sticker, 'Shareware', 'the shareware wears a sticker on Quake\'s box' );
 	const scourge = GameShelf_Box( { id: 'hipnotic', name: 'Scourge of Armagon', kind: 'mission', playable: false, reason: 'not yet' } );
-	check( scourge.front && scourge.back && scourge.spine === null, 'Scourge: front and back, a printed spine' );
+	check( scourge.front && scourge.back, 'Scourge retains its front and back' ); same( scourge.spine, 'assets/boxes/hipnotic/spine.png', 'Scourge now ships its imported spine' );
 	same( scourge.playable, false, 'not playable yet' ); same( scourge.text, 'A Quake mission pack', 'its printed text' );
 	const ad = GameShelf_Box( { id: 'ad', name: 'Arcane Dimensions', kind: 'addon' } );
 	check( ad.front === null && ad.back === null && ad.spine === null, 'Arcane Dimensions: every face a placeholder (it was never boxed)' );
@@ -94,4 +94,75 @@ Deno.test( 'a local-play player window opens on its host\'s game', async () => {
 	} finally {
 		if ( saved ) Object.defineProperty( globalThis, 'location', saved ); else delete globalThis.location;
 	}
+} );
+
+Deno.test( 'native local artwork overlays only supplied faces and preserves bundled art and selection authority', () => {
+ const images = Object.freeze( { front: 'asset://localhost/%2Fchosen%2FQuake%20shareware%2Fcover.png', spine: 'asset://localhost/%2Fchosen%2FQuake%20shareware%2Fside.png' } );
+ const game = Object.freeze( { id: 'shareware', name: 'Quake (shareware)', kind: 'shareware', playable: false, reason: 'missing archive', images } );
+ const box = GameShelf_Box( game );
+ same( box.front, images.front, 'native local front is used without rewriting its asset URL' ); same( box.spine, images.spine, 'native side is exposed as the spine' );
+ same( box.back, GAME_BOXES.shareware.back, 'a missing local back preserves the bundled back independently' ); same( box.sticker, 'Shareware', 'bundled shareware identity survives local art' );
+ same( box.playable, false, 'artwork cannot authorize a missing or damaged game' ); same( box.reason, 'missing archive', 'validation reason survives' ); same( game.images, images, 'borrowed metadata is not mutated' );
+ const explicit = GameShelf_Box( game, { back: 'blob:explicit-back' } );
+ same( explicit.front, GAME_BOXES.shareware.front, 'the existing explicit image argument remains authoritative' ); same( explicit.back, 'blob:explicit-back', 'explicit local back supplied' );
+ same( explicit.spine, GAME_BOXES.shareware.spine, 'explicit partial overrides still retain bundled faces' );
+} );
+
+Deno.test( 'front and spine canonical image names beat cover and side aliases while unboxed games retain printed missing faces', () => {
+ const box = GameShelf_Box( { id: 'mod_local', name: 'Local add-on', kind: 'addon', playable: true, images: { front: 'local-front', cover: 'local-cover', spine: 'local-spine', side: 'local-side' } } );
+ same( box.front, 'local-front', 'canonical front wins' ); same( box.spine, 'local-spine', 'canonical spine wins' ); same( box.back, null, 'an unboxed game still prints its missing back' );
+ const aliases = GameShelf_Box( { id: 'quake', name: 'Quake', kind: 'base', playable: true, images: { cover: 'local-cover', side: 'local-side' } } );
+ same( aliases.front, 'local-cover', 'cover is a local front before bundled art' ); same( aliases.spine, 'local-side', 'side is a local spine before bundled art' ); same( aliases.back, GAME_BOXES.quake.back, 'unprovided back is bundled' );
+ const unrelated = GameShelf_Box( { id: 'quake', name: 'Quake', playable: true, images: { preview: 'ignored', front: null } } );
+ same( unrelated.front, GAME_BOXES.quake.front, 'null local faces retain fallback' ); same( unrelated.back, GAME_BOXES.quake.back, 'unrecognized image keys cannot replace a face' );
+} );
+
+Deno.test( 'folder face selection is independent of enumeration order and never promotes nested or unsupported images', () => {
+ const paths = [ 'Picked/cover.png', 'Picked/side.png', 'Picked/Front.WEBP', 'Picked/SPINE.AVIF', 'Picked/back.GIF', 'Picked/maps/front.jpg', 'Picked/nested/spine.png', 'Picked/front.svg', 'Picked/back.js', 'Picked/maps/pak1.pak', 'Picked/pak0.pak' ];
+ const files = paths.map( path => ( { name: path.split( '/' ).pop(), webkitRelativePath: path } ) );
+ const original = files.map( file => file.webkitRelativePath ).join();
+ for ( const order of [ files, [ ...files ].reverse(), [ ...files.slice( 4 ), ...files.slice( 0, 4 ) ] ] ) {
+  const read = GameShelf_ReadFolder( order );
+  same( read.files.front.webkitRelativePath, 'Picked/Front.WEBP', 'canonical front wins even after cover' ); same( read.files.side.webkitRelativePath, 'Picked/SPINE.AVIF', 'canonical spine wins even after side' ); same( read.files.back.webkitRelativePath, 'Picked/back.GIF', 'supported top-level back' ); same( read.paks.join(), 'pak0.pak', 'nested packs are not collected' );
+ }
+ same( files.map( file => file.webkitRelativePath ).join(), original, 'input enumeration remains untouched' );
+ const cover = GameShelf_ReadFolder( [ { name: 'Cover.JPEG' }, { name: 'side.webp' } ], 'Selected' );
+ same( cover.files.front.name, 'Cover.JPEG', 'cover-only local libraries get a front' ); same( cover.files.side.name, 'side.webp', 'side-only libraries get a spine' ); check( ! cover.files.back, 'missing back stays absent for the normal fallback' );
+} );
+
+Deno.test( 'folder image type ties use native scan priority without allowing an alias to beat a canonical face', () => {
+ const files = [ 'cover.png', 'front.avif', 'front.gif', 'front.webp', 'front.jpeg', 'front.jpg', 'Front.PNG', 'side.png', 'spine.avif', 'spine.jpg', 'Spine.PNG', 'back.avif', 'back.jpeg', 'back.png' ].map( name => ( { name } ) );
+ for ( const order of [ files, [ ...files ].reverse() ] ) {
+  const read = GameShelf_ReadFolder( order, 'Typed art' );
+  same( read.files.front.name, 'Front.PNG', 'PNG is first among canonical front types' ); same( read.files.side.name, 'Spine.PNG', 'PNG is first among canonical spine types' ); same( read.files.back.name, 'back.png', 'back has the same extension order' );
+ }
+ const aliases = GameShelf_ReadFolder( [ { name: 'cover.png' }, { name: 'front.avif' }, { name: 'side.png' }, { name: 'spine.avif' } ] );
+ same( aliases.files.front.name, 'front.avif', 'canonical front outranks preferred alias image type' ); same( aliases.files.side.name, 'spine.avif', 'canonical spine outranks preferred alias image type' );
+} );
+
+
+Deno.test( 'imported defaults work without local files and never authorize an unsupported title', () => {
+ const expected = {
+  shareware: { front: 'assets/boxes/shareware/front.png', back: 'assets/boxes/shareware/back.png', spine: 'assets/boxes/shareware/spine.png' },
+  hipnotic: { spine: 'assets/boxes/hipnotic/spine.png' }, rogue: { spine: 'assets/boxes/rogue/spine.png' },
+  quoth: { front: null, back: 'assets/boxes/quoth/back.png', spine: 'assets/boxes/quoth/spine.png' },
+  mod_q30a1024: { front: 'assets/boxes/mod_q30a1024/front.png', back: null, spine: null },
+  mod_quaked: { front: 'assets/boxes/mod_quaked/front.png' },
+  mod_hexen_2: { front: 'assets/boxes/mod_hexen_2/front.webp', back: null, spine: 'assets/boxes/mod_hexen_2/spine.webp' },
+  mod_hexen_2_portal_of_praevus: { front: 'assets/boxes/mod_hexen_2_portal_of_praevus/front.webp', back: 'assets/boxes/mod_hexen_2_portal_of_praevus/back.webp', spine: 'assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp' }
+ };
+ for ( const [ id, faces ] of Object.entries( expected ) ) {
+  const box = GameShelf_Box( { id, name: id, playable: false, images: {}, reason: 'No supported game files found' } );
+  for ( const [ face, path ] of Object.entries( faces ) ) same( box[ face ], path, id + ' shipped ' + face + ' without local artwork' );
+  same( box.playable, false, id + ' artwork does not grant startability' );
+ }
+ const override = GameShelf_Box( { id: 'mod_hexen_2_portal_of_praevus', name: 'Portal of Praevus', playable: false, images: { back: 'asset://localhost/local-back.webp' } } );
+ same( override.back, 'asset://localhost/local-back.webp', 'one local face overrides the shipped default' ); same( override.front, expected.mod_hexen_2_portal_of_praevus.front, 'front remains shipped' ); same( override.spine, expected.mod_hexen_2_portal_of_praevus.spine, 'spine remains shipped' ); same( override.playable, false, 'local overrides do not add Hexen II compatibility' );
+} );
+
+Deno.test( 'artwork-only discovered titles use a neutral game label without implying Quake compatibility', () => {
+ for ( const id of [ 'mod_hexen_2', 'mod_hexen_2_portal_of_praevus', 'mod_quaked' ] ) {
+  const box = GameShelf_Box( { id, name: id, kind: 'unavailable', playable: false, images: {}, reason: 'No supported game files found' } );
+  same( box.text, 'Game', id + ' has a neutral display-only label' ); same( box.playable, false, id + ' cannot start through artwork' ); same( box.reason, 'No supported game files found', id + ' preserves its missing-files explanation' ); check( !! box.front, id + ' still displays shipped artwork' );
+ }
 } );
