@@ -12,7 +12,7 @@
  */
 
 import { HEXEN2_SERVER_MESSAGES } from '../common/hexen2_protocol.js';
-import { Hexen2_ReadServerinfo, Hexen2_ReadSignonNum, Hexen2_ReadSetView } from '../common/hexen2_signon.js';
+import { Hexen2_ReadServerinfo, Hexen2_ReadSignonNum, Hexen2_ReadSetView, Hexen2_ReadUpdateClass } from '../common/hexen2_signon.js';
 import { Hexen2_ReadBaseline, Hexen2_ReadEntityUpdate, U } from '../common/hexen2_entitywire.js';
 import { Hexen2_DecodeClientdata, Hexen2_DecodeUpdateInv } from '../common/hexen2_clientdata.js';
 
@@ -25,7 +25,7 @@ import { Hexen2_DecodeClientdata, Hexen2_DecodeUpdateInv } from '../common/hexen
 export function Hexen2_ClientState() {
 
 	return { protocol: 0, maxClients: 0, gameType: 0, levelName: '', models: [], sounds: [], baselines: new Map(),
-		entities: new Map(), viewEntity: 0, signonStage: 0, stats: {}, clientdata: null };
+		entities: new Map(), viewEntity: 0, signonStage: 0, playerClass: 0, stats: {}, clientdata: null };
 
 }
 
@@ -80,6 +80,13 @@ export function Hexen2_ApplyClientMessage( state, bytes, options = {} ) {
 		const read = Hexen2_ReadSetView( bytes );
 		if ( ! read.ok ) return read;
 		state.viewEntity = read.entity;
+
+	}
+	else if ( opcode === HEXEN2_SERVER_MESSAGES.updateclass ) {
+
+		const read = Hexen2_ReadUpdateClass( bytes );
+		if ( ! read.ok ) return read;
+		state.playerClass = read.update.playerClass;
 
 	}
 	else if ( opcode === HEXEN2_SERVER_MESSAGES.clientdata ) {

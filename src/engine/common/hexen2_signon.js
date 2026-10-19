@@ -151,3 +151,35 @@ export function Hexen2_ReadSetView( bytes ) {
 	return { ok: true, entity: bytes[ 1 ] | ( bytes[ 2 ] << 8 ), consumed: 3 };
 
 }
+
+
+/**
+ * Writes `svc_updateclass` (a client's player class).
+ *
+ * @param {{ client: number, playerClass: number }} update the client slot (0-based) and native class (1..5)
+ * @returns {{ ok: true, bytes: Uint8Array } | { ok: false, reason: string }} the message
+ */
+export function Hexen2_WriteUpdateClass( update ) {
+
+	if ( !Number.isInteger( update.client ) || update.client < 0 || update.client > MAX_CLIENTS )
+		return { ok: false, reason: 'invalid client slot' };
+	if ( !Number.isInteger( update.playerClass ) || update.playerClass < 1 || update.playerClass > 5 )
+		return { ok: false, reason: 'invalid player class' };
+	return { ok: true, bytes: Uint8Array.from( [ HEXEN2_SERVER_MESSAGES.updateclass, update.client, update.playerClass ] ) };
+
+}
+
+/**
+ * Reads `svc_updateclass`.
+ *
+ * @param {ArrayLike<number>} bytes the message, opcode first
+ * @returns {{ ok: true, update: object, consumed: number } | { ok: false, reason: string }} the class update
+ */
+export function Hexen2_ReadUpdateClass( bytes ) {
+
+	if ( !bytes || bytes.length !== 3 ) return { ok: false, reason: 'malformed updateclass' };
+	if ( bytes[ 0 ] !== HEXEN2_SERVER_MESSAGES.updateclass ) return { ok: false, reason: 'not an updateclass message' };
+	if ( bytes[ 2 ] < 1 || bytes[ 2 ] > 5 ) return { ok: false, reason: 'invalid player class' };
+	return { ok: true, update: { client: bytes[ 1 ], playerClass: bytes[ 2 ] }, consumed: 3 };
+
+}
