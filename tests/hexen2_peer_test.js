@@ -8,7 +8,10 @@ import { Hexen2_EncodeSessionHello, Hexen2_DecodeSessionHello, Hexen2_CompareSes
 import { Hexen2_WritePrivateDatagram, Hexen2_ParsePrivateDatagram } from '../src/engine/common/hexen2_stream.js';
 import { Hexen2_WriteEntityUpdate, Hexen2_ReadEntityUpdate } from '../src/engine/common/hexen2_entitywire.js';
 import { Hexen2_WriteServerinfo, Hexen2_ReadServerinfo, Hexen2_WriteSignonNum, Hexen2_ReadSignonNum, Hexen2_WriteSetView, Hexen2_ReadSetView } from '../src/engine/common/hexen2_signon.js';
+import { Hexen2_ReadStartEffect } from '../src/engine/common/hexen2_effectwire.js';
 import { Hexen2_Frame, Hexen2_Unframe, HEXEN2_FRAME_MAX } from '../src/engine/common/hexen2_peer.js';
+import { Hexen2_ClientState, Hexen2_ApplyClientMessage } from '../src/engine/client/hexen2_clientstate.js';
+import { Hexen2_WriteStartEffect, CE } from '../src/engine/common/hexen2_effectwire.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 
@@ -29,6 +32,8 @@ Deno.test( 'two peers admit each other, sign on and transfer player and entity u
 	const datagram = Hexen2_WritePrivateDatagram( player, { time: 3.5, weaponModelIndex: 1, statsMask: 0x81n } );
 	check( datagram.ok, datagram.reason );
 	const update = Hexen2_WriteEntityUpdate( { entity: 42, modelIndex: 3, origin: [ 100, 200, 300 ], angles: [ 0, 90, 0 ] } );
+	const effect = Hexen2_WriteStartEffect( { index: 2, type: CE.QUAKE, params: { origin: [ 1, 2, 3 ], radius: 400 } } );
+	check( effect.ok, effect.reason );
 	check( update.ok, update.reason );
 
 	const received = { hello: null, datagram: null, update: null, serverinfo: null, signon: null, setview: null };
@@ -52,6 +57,7 @@ Deno.test( 'two peers admit each other, sign on and transfer player and entity u
 					socket.write( Hexen2_Frame( serverinfo.bytes ).bytes );
 					socket.write( Hexen2_Frame( signon.bytes ).bytes );
 					socket.write( Hexen2_Frame( setview.bytes ).bytes );
+					socket.write( Hexen2_Frame( effect.bytes ).bytes );
 					stage = 1;
 
 				} else if ( stage === 1 ) {
@@ -94,6 +100,7 @@ Deno.test( 'two peers admit each other, sign on and transfer player and entity u
 			} else if ( stage === 1 ) { received.serverinfo = Hexen2_ReadServerinfo( frame ); stage = 2; }
 			else if ( stage === 2 ) { received.signon = Hexen2_ReadSignonNum( frame ); stage = 3; }
 			else if ( stage === 3 ) { received.setview = Hexen2_ReadSetView( frame ); stage = 4; }
+			else if ( stage === 4 ) { received.effect = Hexen2_ReadStartEffect( frame ); stage = 5; }
 
 		}
 
@@ -117,6 +124,9 @@ Deno.test( 'two peers admit each other, sign on and transfer player and entity u
 	same( received.serverinfo.info.models[ 0 ], 'maps/demo1.bsp', 'the first precached model' );
 	same( received.signon?.number, 3, 'the signon stage' );
 	same( received.setview?.entity, 1, 'the view entity' );
+	check( received.effect?.ok, 'the client parsed the effect: ' + received.effect?.reason );
+	same( received.effect.type, CE.QUAKE, 'the effect type over the peer' );
+	same( received.effect.params.radius, 400, 'the effect radius over the peer' );
 
 	// framing bounds
 	check( Hexen2_Frame( new Uint8Array( 0 ) ).ok === false, 'empty frame refused' );

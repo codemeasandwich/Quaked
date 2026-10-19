@@ -15,6 +15,7 @@ import { HEXEN2_SERVER_MESSAGES } from '../common/hexen2_protocol.js';
 import { Hexen2_ReadServerinfo, Hexen2_ReadSignonNum, Hexen2_ReadSetView, Hexen2_ReadUpdateClass } from '../common/hexen2_signon.js';
 import { Hexen2_ReadBaseline, Hexen2_ReadEntityUpdate, U } from '../common/hexen2_entitywire.js';
 import { Hexen2_DecodeClientdata, Hexen2_DecodeUpdateInv } from '../common/hexen2_clientdata.js';
+import { Hexen2_ReadStartEffect, Hexen2_ReadEndEffect } from '../common/hexen2_effectwire.js';
 
 /**
  * A fresh client state.
@@ -25,7 +26,7 @@ import { Hexen2_DecodeClientdata, Hexen2_DecodeUpdateInv } from '../common/hexen
 export function Hexen2_ClientState() {
 
 	return { protocol: 0, maxClients: 0, gameType: 0, levelName: '', models: [], sounds: [], baselines: new Map(),
-		entities: new Map(), viewEntity: 0, signonStage: 0, playerClass: 0, stats: {}, clientdata: null };
+		entities: new Map(), effects: new Map(), viewEntity: 0, signonStage: 0, playerClass: 0, stats: {}, clientdata: null };
 
 }
 
@@ -103,6 +104,20 @@ export function Hexen2_ApplyClientMessage( state, bytes, options = {} ) {
 		const read = Hexen2_DecodeUpdateInv( bytes.subarray( 1 ), { allowTrailing: true } );
 		if ( ! read.ok ) return read;
 		Object.assign( state.stats, read.stats );
+
+	}
+	else if ( opcode === HEXEN2_SERVER_MESSAGES.start_effect ) {
+
+		const read = Hexen2_ReadStartEffect( bytes, { allowTrailing: true } );
+		if ( ! read.ok ) return read;
+		state.effects.set( read.index, { type: read.type, params: read.params } );
+
+	}
+	else if ( opcode === HEXEN2_SERVER_MESSAGES.end_effect ) {
+
+		const read = Hexen2_ReadEndEffect( bytes );
+		if ( ! read.ok ) return read;
+		state.effects.delete( read.index );
 
 	}
 	else return { ok: false, reason: `unknown client message opcode ${opcode}` };

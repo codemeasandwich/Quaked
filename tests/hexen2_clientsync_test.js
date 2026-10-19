@@ -17,6 +17,7 @@ import { Hexen2_ClientState, Hexen2_ApplyClientMessage } from '../src/engine/cli
 import { Hexen2_WriteSignonNum } from '../src/engine/common/hexen2_signon.js';
 import { Hexen2_EncodeClientdata, Hexen2_EncodeUpdateInv } from '../src/engine/common/hexen2_clientdata.js';
 import { Hexen2_WriteEntityUpdate } from '../src/engine/common/hexen2_entitywire.js';
+import { Hexen2_WriteStartEffect, Hexen2_WriteEndEffect, CE } from '../src/engine/common/hexen2_effectwire.js';
 import { HEXEN2_SERVER_MESSAGES } from '../src/engine/common/hexen2_protocol.js';
 import { installServerCallbacks } from './helpers/hexen2_server_setup.mjs';
 import '../src/engine/progs/hexen2_world_cmds.js';
@@ -94,6 +95,15 @@ Deno.test( 'a client builds its signon world and applies live state', () => {
 	check( Hexen2_ApplyClientMessage( state, update.bytes ).ok, 'entity update applied' );
 	same( state.entities.get( 42 ).modelIndex, 3, 'the live entity model' );
 	same( Math.round( state.entities.get( 42 ).origin[ 0 ] ), 100, 'the live entity origin' );
+
+	// the server's long-lived effects arrive as start/end messages and live in the client effect table
+	const effect = Hexen2_WriteStartEffect( { index: 5, type: CE.QUAKE, params: { origin: [ 1, 2, 3 ], radius: 400 } } );
+	check( effect.ok, effect.reason );
+	check( Hexen2_ApplyClientMessage( state, effect.bytes ).ok, 'start effect applied' );
+	same( state.effects.get( 5 ).type, CE.QUAKE, 'the client effect type' );
+	same( state.effects.get( 5 ).params.radius, 400, 'the client effect radius' );
+	check( Hexen2_ApplyClientMessage( state, Hexen2_WriteEndEffect( 5 ).bytes ).ok, 'end effect applied' );
+	check( state.effects.get( 5 ) === undefined, 'the ended effect is gone' );
 
 	check( Hexen2_ApplyClientMessage( state, Uint8Array.from( [ 200 ] ) ).ok === false, 'an unknown client message is refused' );
 	check( Hexen2_ApplyClientMessage( state, info.bytes.subarray( 0, info.bytes.length - 3 ) ).ok === false, 'a truncated serverinfo is refused' );
