@@ -33,7 +33,7 @@ Run from `/Users/bri/worktrees/Quaked/Dev/h2` with
 | End-to-end trace | `hexen2_acceptance_test.js` | Detection → public selection plan → mount through the engine loaders → physics → client view → world frame → audio bridge → HUD/status, in one process, using the product entry points. Still not a drawn or networked session. |
 | Public native smoke | — | **Missing.** No packaged-app UI path (shelf → source → class → difficulty → demo1) exists for Hexen II. |
 
-Latest runs after the two-client co-op foundation: **94/94** Hexen assertions across 43 suites; the existing catalogue
+Latest runs after the two-peer loopback work: **95/95** Hexen assertions across 44 suites; the existing catalogue
 suite (8/8) and the other regression sets remain green. The spawn hands `newclass` to the gamecode (resolved from the loaded
 program: offset 212 base, 214 Portal) and `setclass` (#66) records the class, so `stats_NewClass` applies the native
 tables instead of returning through its class guard; sprint (#24) and stuffcmd (#21) carry the pickup/class text.
