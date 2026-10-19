@@ -62,14 +62,10 @@ Deno.test( 'two client slots become distinct native players on one server', () =
 	check( playerA.v.health >= 70 && playerA.v.health <= 95, 'the Paladin has native health' );
 	check( playerB.v.health >= 65 && playerB.v.health <= 95, 'the Crusader has native health: ' + playerB.v.health );
 	check( playerA.v.max_mana > 0 && playerB.v.max_mana > 0, 'both classes have a native maximum mana' );
-	// the supplied map returns its single start for both clients in this harness, so the fixture relocates the second
-	// player to a nearby clear spot to prove separate player state and floor settling; native co-op spawn
-	// distribution is a recorded open item (see the ledger)
-	playerB.v.origin = [ start.v.origin[ 0 ] + 64, start.v.origin[ 1 ], start.v.origin[ 2 ] ];
-	SV_LinkEdict( playerB, true );
-	SV_DropToFloor( playerB );
+	// the co-op flag lets the gamecode pick a free start for the second client; both settle on the floor
 	check( Math.abs( playerA.v.origin[ 2 ] ) < 1 && Math.abs( playerB.v.origin[ 2 ] ) < 1, 'both feet are on the floor' );
-	check( Math.abs( playerA.v.origin[ 0 ] - playerB.v.origin[ 0 ] ) >= 1, 'the players are at different points' );
+	check( Math.abs( playerA.v.origin[ 0 ] - playerB.v.origin[ 0 ] ) >= 1 || Math.abs( playerA.v.origin[ 1 ] - playerB.v.origin[ 1 ] ) >= 1,
+		'the players are at different spawn points: ' + playerA.v.origin + ' vs ' + playerB.v.origin );
 	const message = clientB.message;
 	check( typeof message === 'object' && message.data !== undefined, 'the second client has a signon message buffer' );
 	const hudB = Hexen2_ReadHud( playerB );

@@ -111,7 +111,10 @@ export function Hexen2_SpawnPlayer( options ) {
 	const index = player.index;
 	pr_global_struct.self = index;
 	pr_global_struct.time = sv.time;
+	// a multi-client session is co-op for spawn selection; set it on both sides of ClientConnect, which may reset it
+	if ( ( svs?.maxclients ?? 1 ) > 1 ) pr_global_struct.coop = 1;
 	if ( pr_global_struct.ClientConnect ) PR_ExecuteProgram( pr_global_struct.ClientConnect );
+	if ( ( svs?.maxclients ?? 1 ) > 1 ) pr_global_struct.coop = 1;
 	PR_ExecuteProgram( pr_global_struct.PutClientInServer );
 	pr_global_struct.self = index;
 	SV_DropToFloor( player );
