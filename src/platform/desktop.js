@@ -9,6 +9,11 @@ import {COM_LoadPackFile,COM_BuildPack} from '../engine/common/pak.js';
 import {GameShelf_Show} from '../engine/common/hooks.js'; // filled by src/newer/install.js, which main.js loads first
 import {LoadingScreen_SetProgress} from '../engine/common/hooks.js';
 let listening=false;
+export async function Desktop_Log(text){
+ try{localStorage.setItem('hexen2_stage',String(text).slice(0,2500));}catch{}
+ try{await invoke('hexen_log',{text:String(text)});}catch{}
+
+}
 export async function Desktop_SelectLocation(){
   document.exitPointerLock?.();
   try {if(await invoke('library_choose'))location.assign(location.pathname);}
@@ -70,6 +75,7 @@ async function ensurePacks(definition){
  finally{stop();status.remove();}
 }
 export async function Desktop_ShowShelf(reason=''){
+ void Desktop_Log('show shelf '+reason);
  const {library,catalogue}=await snapshot();
  document.getElementById('loading')?.remove();
  // Only paths validated by the native scan and admitted to its exact-file scope
@@ -84,6 +90,7 @@ export async function Desktop_ShowShelf(reason=''){
  await GameShelf_Show(games,{native:true,current:GameSelection_Kept(),remember:GameSelection_Remember,selectLocation:Desktop_SelectLocation});
 }
 export async function Desktop_Prepare(){
+ void Desktop_Log('desktop prepare start');
  GameCatalogue_SetProvider(async()=>{
   const library=await invoke('library_scan');
   GameCatalogue_SetDiscovered((library.discovered??[]).map(d=>({...d,folder:`library/${d.id}`})));
@@ -91,10 +98,16 @@ export async function Desktop_Prepare(){
  });
  if(!listening){await listen('select-game-location',Desktop_SelectLocation);await listen('lan-menu',()=>globalThis.__QUAKED_LAN_MENU__?globalThis.__QUAKED_LAN_MENU__():alert('Select a game and wait for it to load first.'));listening=true;}
  globalThis.__QUAKED_SELECT_LOCATION__=Desktop_SelectLocation;
- const id=new URLSearchParams(location.search).get('game');
+ let id=new URLSearchParams(location.search).get('game');
+ let trial=null;
+ try{trial=await invoke('trial_game');}catch{}
+ // Trial launches may override a remembered ?game= URL so the packaged smoke can select Portal/demo explicitly.
+ if(trial)id=trial;
+ void Desktop_Log('desktop prepare id='+id+(trial?' (trial)':''));
  if(!id){await Desktop_ShowShelf();return null;}
  try{
   const {library,catalogue}=await snapshot();
+  void Desktop_Log('catalogue '+catalogue.games.map(g=>g.id+':'+(g.present?1:0)+(g.validated?1:0)+(g.playable?1:0)).join(','));
   const selected=catalogue.games.find(g=>g.id===id);
   if(!selected||!GameSelection_Startable(selected,{strict:true}).ok)throw Error(selected?.reason??'Unknown game');
   const definition=GameCatalogue_AllGames().find(g=>g.id===id);
@@ -108,7 +121,8 @@ export async function Desktop_Prepare(){
   };
   // the add-on's loose game files (X-Men's progs.dat; library.rs LOOSE_FILES) as one pack under its own packs, as
   // Quake searches a game folder after its packs (GameSelection_LibraryOrder; docs/add-ons-2026-10-13.md)
-  for(const step of GameSelection_LibraryOrder(library.packs,ids,definition.kind==='addon'?id:null)){
+  const looseId=definition.kind==='addon'||String(id).startsWith('hexen2')?id:null; // Hexen's loose progs.dat/strings/hexen.rc sit above its PAKs
+  for(const step of GameSelection_LibraryOrder(library.packs,ids,looseId)){
    if(step.loose){const files=[];for(const entry of step.loose)files.push({name:entry.name,data:new Uint8Array(await read(entry))});const pack=COM_LoadPackFile(id+'/loose',COM_BuildPack(files));if(!pack)throw Error('Invalid loose files: '+id);packs.push(pack);continue;}
    const pack=COM_LoadPackFile(step.pack.token,await read(step.pack));if(!pack)throw Error('Invalid archive: '+step.pack.name);packs.push(pack);
   }
@@ -117,6 +131,8 @@ export async function Desktop_Prepare(){
   const maps=[...new Set(packs.flatMap(p=>p.files.filter(f=>/^maps\/[a-z0-9_]+\.bsp$/.test(f.name)).map(f=>f.name.slice(5,-4))))].sort();
   let identity;
   await (await import('./lan.js')).LAN_Init({maps,identity:()=>identity??=(async()=>{const hashes=[];for(const p of packs)hashes.push(Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',p.data)),b=>b.toString(16).padStart(2,'0')).join(''));return 'quaked-lan-v1|'+globalThis.__QUAKED_DISTRIBUTION__.engineHash+'|'+id+'|'+hashes.join('|');})()});
-  return {id,packs,mission:!!definition.base};
+  let autoPlay=false, autoClass='paladin';
+  if(trial===id){try{autoPlay=await invoke('trial_autoplay');const chosen=await invoke('trial_class');if(typeof chosen==='string'&&chosen)autoClass=chosen;saveTrial=await invoke('trial_save');}catch{}}
+  return {id,packs,mission:!!definition.base,autoStart:trial===id,autoPlay,autoClass,saveTrial,source:String(library.root)};
  }catch(error){history.replaceState(null,'',location.pathname);await Desktop_ShowShelf(String(error?.message??error));return null;}
 }

@@ -86,7 +86,18 @@ const SIZEOF_DLEAF = 28;			// int contents, int visofs, short mins[3], short max
 const SIZEOF_DCLIPNODE = 8;		// int planenum, short children[2]
 const SIZEOF_TEXINFO = 40;			// float vecs[2][4], int miptex, int flags
 const SIZEOF_DPLANE = 20;			// float normal[3], float dist, int type
-const SIZEOF_DMODEL = 64;			// float mins[3], maxs[3], origin[3], int headnode[4], int visleafs, int firstface, int numfaces
+const SIZEOF_DMODEL = 64;			// Quake: float mins[3], maxs[3], origin[3], int headnode[4], visleafs, firstface, numfaces
+const HEXEN_SIZEOF_DMODEL = 80;		// Hexen II: the same nine floats, int headnode[8], visleafs, firstface, numfaces
+let hexenHullLayout = false;		// selected per level family by the session; Quake stays the default
+/**
+ * Selects the eight-hull Hexen II submodel record layout for subsequent brush loads. The level family is known from
+ * the session, so the loader never guesses from the file; a Quake map keeps its 64-byte four-hull records.
+ *
+ * @param {boolean} on whether the next loads are Hexen II levels
+ */
+export function Mod_SetHexenHullLayout( on ) { hexenHullLayout = on === true; }
+/** Whether brush loads currently expect Hexen II's eight-hull records. @returns {boolean} */
+export function Mod_HexenHullLayout() { return hexenHullLayout; }
 
 // ============================================================================
 // Mod_LoadTextures
@@ -1019,31 +1030,7 @@ function Mod_LoadClipnodes( fileofs, filelen ) {
 	loadmodel.clipnodes = out;
 	loadmodel.numclipnodes = count;
 
-	// hull 1 - player standing
-	const hull1 = loadmodel.hulls[ 1 ];
-	hull1.clipnodes = out;
-	hull1.firstclipnode = 0;
-	hull1.lastclipnode = count - 1;
-	hull1.planes = loadmodel.planes;
-	hull1.clip_mins[ 0 ] = - 16;
-	hull1.clip_mins[ 1 ] = - 16;
-	hull1.clip_mins[ 2 ] = - 24;
-	hull1.clip_maxs[ 0 ] = 16;
-	hull1.clip_maxs[ 1 ] = 16;
-	hull1.clip_maxs[ 2 ] = 32;
-
-	// hull 2 - shambler
-	const hull2 = loadmodel.hulls[ 2 ];
-	hull2.clipnodes = out;
-	hull2.firstclipnode = 0;
-	hull2.lastclipnode = count - 1;
-	hull2.planes = loadmodel.planes;
-	hull2.clip_mins[ 0 ] = - 32;
-	hull2.clip_mins[ 1 ] = - 32;
-	hull2.clip_mins[ 2 ] = - 24;
-	hull2.clip_maxs[ 0 ] = 32;
-	hull2.clip_maxs[ 1 ] = 32;
-	hull2.clip_maxs[ 2 ] = 64;
+	Mod_MakeHulls( count );
 
 	for ( let i = 0; i < count; i ++ ) {
 
@@ -1056,6 +1043,49 @@ function Mod_LoadClipnodes( fileofs, filelen ) {
 
 		if(cn.planenum<0||cn.planenum>=loadmodel.numplanes||cn.children.some(child=>child>=count))Sys_Error('Invalid BSP collision references');
 		out[ i ] = cn;
+
+	}
+
+}
+
+// ============================================================================
+// Mod_MakeHulls
+// ============================================================================
+
+// The box hull sizes, from the pinned Hexen II gl_model.c Mod_MakeHulls (hulls 1-5; 6-7 are declared but unused)
+// and WinQuake's player, shambler and crouch hulls for a Quake level.
+const HEXEN_HULL_SIZES = Object.freeze( [
+	null, // 0 is the point hull, built by Mod_MakeHull0
+	[ [ - 16, - 16, - 24 ], [ 16, 16, 32 ] ], // player
+	[ [ - 24, - 24, - 20 ], [ 24, 24, 20 ] ], // scorpion
+	[ [ - 16, - 16, - 12 ], [ 16, 16, 16 ] ], // crouch
+	[ [ - 8, - 8, - 8 ], [ 8, 8, 8 ] ], // pentacle/small
+	[ [ - 48, - 48, - 50 ], [ 48, 48, 50 ] ] // golem
+] );
+const QUAKE_HULL_SIZES = Object.freeze( [
+	null,
+	[ [ - 16, - 16, - 24 ], [ 16, 16, 32 ] ], // player
+	[ [ - 32, - 32, - 24 ], [ 32, 32, 64 ] ], // shambler
+	[ [ - 16, - 16, - 12 ], [ 16, 16, 16 ] ] // crouch (declared, as in WinQuake)
+] );
+
+function Mod_MakeHulls( count ) {
+
+	const sizes = hexenHullLayout ? HEXEN_HULL_SIZES : QUAKE_HULL_SIZES;
+	for ( let i = 1; i < sizes.length; i ++ ) {
+
+		const hull = loadmodel.hulls[ i ], size = sizes[ i ];
+		if ( ! hull || ! size ) continue;
+		hull.clipnodes = loadmodel.clipnodes;
+		hull.firstclipnode = 0;
+		hull.lastclipnode = count - 1;
+		hull.planes = loadmodel.planes;
+		for ( let j = 0; j < 3; j ++ ) {
+
+			hull.clip_mins[ j ] = size[ 0 ][ j ];
+			hull.clip_maxs[ j ] = size[ 1 ][ j ];
+
+		}
 
 	}
 
@@ -1139,20 +1169,23 @@ function Mod_LoadMarksurfaces( fileofs, filelen ) {
 
 function Mod_LoadSubmodels( fileofs, filelen ) {
 
-	if ( filelen % SIZEOF_DMODEL )
+	const recordBytes = hexenHullLayout ? HEXEN_SIZEOF_DMODEL : SIZEOF_DMODEL;
+	const hulls = hexenHullLayout ? MAX_MAP_HULLS : 4;
+	if ( filelen % recordBytes )
 		Sys_Error( 'MOD_LoadBmodel: funny lump size in ' + loadmodel.name );
 
-	const count = filelen / SIZEOF_DMODEL;
+	const count = filelen / recordBytes;
 	const view = new DataView( mod_base.buffer, mod_base.byteOffset + fileofs, filelen );
 	const out = new Array( count );
 
 	loadmodel.submodels = out;
 	loadmodel.numsubmodels = count;
+	loadmodel.hullCount = hulls;
 
 	for ( let i = 0; i < count; i ++ ) {
 
 		const sm = new dmodel_t();
-		const base = i * SIZEOF_DMODEL;
+		const base = i * recordBytes;
 
 		for ( let j = 0; j < 3; j ++ ) {
 
@@ -1163,12 +1196,12 @@ function Mod_LoadSubmodels( fileofs, filelen ) {
 
 		}
 
-		for ( let j = 0; j < MAX_MAP_HULLS; j ++ )
+		for ( let j = 0; j < hulls; j ++ )
 			sm.headnode[ j ] = view.getInt32( base + 36 + j * 4, true );
 
-		sm.visleafs = view.getInt32( base + 52, true );
-		sm.firstface = view.getInt32( base + 56, true );
-		sm.numfaces = view.getInt32( base + 60, true );
+		sm.visleafs = view.getInt32( base + 36 + hulls * 4, true );
+		sm.firstface = view.getInt32( base + 40 + hulls * 4, true );
+		sm.numfaces = view.getInt32( base + 44 + hulls * 4, true );
 
 		out[ i ] = sm;
 
@@ -1207,6 +1240,7 @@ export function Mod_LoadBrushModel( mod, buffer ) {
 	mod.bspVersion=version;
 	mod_base = bytes;
 	mod.bspSourceBytes = bytes; // immutable loaded-source identity, including preview/reload
+	mod.hullCount = hexenHullLayout ? MAX_MAP_HULLS : 4;
 
 	// Read lump directory: version (4 bytes) + HEADER_LUMPS * 2 ints (fileofs, filelen)
 	const lumps = [];
@@ -1249,7 +1283,7 @@ export function Mod_LoadBrushModel( mod, buffer ) {
 		const bm = mod.submodels[ i ];
 
 		mod.hulls[ 0 ].firstclipnode = bm.headnode[ 0 ];
-		for ( let j = 1; j < MAX_MAP_HULLS; j ++ ) {
+		for ( let j = 1; j < mod.hullCount; j ++ ) {
 
 			mod.hulls[ j ].firstclipnode = bm.headnode[ j ];
 			mod.hulls[ j ].lastclipnode = mod.numclipnodes - 1;

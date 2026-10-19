@@ -29,9 +29,10 @@ import {
 	pr_argc, PR_SetArgc,
 	pr_trace, pr_xfunction, pr_xstatement,
 	PR_SetTrace, PR_SetXFunction, PR_SetXStatement,
+	PR_ProgramProfile,
 } from './progs.js';
 import {
-	OFS_NULL, OFS_RETURN, OFS_PARM0,
+	OFS_NULL, OFS_RETURN, OFS_PARM0, OFS_PARM1,
 	OP_DONE, OP_MUL_F, OP_MUL_V, OP_MUL_FV, OP_MUL_VF,
 	OP_DIV_F, OP_ADD_F, OP_ADD_V, OP_SUB_F, OP_SUB_V,
 	OP_EQ_F, OP_EQ_V, OP_EQ_S, OP_EQ_E, OP_EQ_FNC,
@@ -47,8 +48,19 @@ import {
 	OP_CALL5, OP_CALL6, OP_CALL7, OP_CALL8,
 	OP_STATE, OP_GOTO, OP_AND, OP_OR,
 	OP_BITAND, OP_BITOR,
+	OP_MULSTORE_F, OP_MULSTORE_V, OP_MULSTOREP_F, OP_MULSTOREP_V,
+	OP_DIVSTORE_F, OP_DIVSTOREP_F,
+	OP_ADDSTORE_F, OP_ADDSTORE_V, OP_ADDSTOREP_F, OP_ADDSTOREP_V,
+	OP_SUBSTORE_F, OP_SUBSTORE_V, OP_SUBSTOREP_F, OP_SUBSTOREP_V,
+	OP_FETCH_GBL_F, OP_FETCH_GBL_V, OP_FETCH_GBL_S, OP_FETCH_GBL_E, OP_FETCH_GBL_FNC,
+	OP_BITSET, OP_BITSETP, OP_BITCLR, OP_BITCLRP,
+	OP_RAND0, OP_RAND1, OP_RAND2, OP_RANDV0, OP_RANDV1, OP_RANDV2,
+	OP_SWITCH_F, OP_SWITCH_V, OP_SWITCH_S, OP_SWITCH_E, OP_SWITCH_FNC, OP_CASE, OP_CASERANGE,
+	OP_CSTATE, OP_CWSTATE, OP_THINKTIME,
 } from './pr_comp.js';
 import { ED_Print, PR_GlobalString, PR_GlobalStringNoContents } from './pr_edict.js';
+import { Hexen2_BuiltinName, HEXEN2_BUILTIN_COUNT } from './hexen2_builtins.js';
+import { Hexen2_CallBuiltin } from './hexen2_cmds.js';
 import { ss_active } from '../server/server.js';
 import { SV_CloakAnimationEnter, SV_CloakAnimationLeave } from '../server/sv_cloak.js';
 import { SV_RespawnFunctionEnter, SV_RespawnFunctionLeave } from '../common/hooks.js'; // installed by newer/gameplay/sv_respawn.js
@@ -64,6 +76,8 @@ import { SV_ProneZombieEnter, SV_ProneZombieLeave } from '../common/hooks.js'; /
 
 const MAX_STACK_DEPTH = 32;
 const LOCALSTACK_SIZE = 2048;
+// Hexen II schedules its think callbacks 0.05 s ahead (20 fps), where QuakeC uses 0.1 (uhexen2 quakedef.h HX_FRAME_TIME).
+const HX_FRAME_TIME = 0.05;
 
 const pr_stack = new Array( MAX_STACK_DEPTH );
 for ( let i = 0; i < MAX_STACK_DEPTH; i ++ )
@@ -75,6 +89,13 @@ const localstack = new Int32Array( LOCALSTACK_SIZE );
 let localstack_used = 0;
 
 let Host_Error = null;
+let lastRunError = '';
+/**
+ * The last `PR_RunError` message, kept for diagnostics and tests (the host error's own text stays 'Program error').
+ *
+ * @returns {string} the last program error message
+ */
+export function PR_LastRunError() { return lastRunError; }
 
 /**
  * Empties the QuakeC call stack and its locals stack. A program error abandons the functions that were running
@@ -195,11 +216,11 @@ export function PR_PrintStatement( s ) {
 
 	if ( s.op === OP_IF || s.op === OP_IFNOT ) {
 
-		line += PR_GlobalString( s.a ) + 'branch ' + s.b;
+		line += PR_GlobalString( s.a ) + 'branch ' + ( ( s.b << 16 ) >> 16 );
 
 	} else if ( s.op === OP_GOTO ) {
 
-		line += 'branch ' + s.a;
+		line += 'branch ' + ( ( s.a << 16 ) >> 16 );
 
 	} else if ( s.op >= OP_STORE_F && s.op <= OP_STORE_FNC ) {
 
@@ -329,6 +350,7 @@ export function PR_RunError( error, ...args ) {
 
 	}
 
+	lastRunError = message;
 	PR_PrintStatement( pr_statements[ pr_xstatement ] );
 	PR_StackTrace();
 	Con_Printf( '%s\n', message );
@@ -466,6 +488,23 @@ export function PR_LeaveFunction() {
 
 }
 
+// A deterministic random source may be installed by a test or a recorded playback (the plan's supplied RNG stream);
+// the native RAND opcodes read it as rand() * (1 / RAND_MAX), a value in [0, 1).
+let hexenRandomSource = () => Math.random();
+/**
+ * Installs the random source the Hexen RAND opcodes read (a value in [0, 1), as rand()/RAND_MAX).
+ *
+ * @param {?function(): number} source the source, or null to restore Math.random
+ */
+export function PR_SetRandomSource( source ) { hexenRandomSource = typeof source === 'function' ? source : () => Math.random(); }
+
+// The port encodes a field address as (edict index << 16) | field offset; split it for the pointer store opcodes.
+function fieldAt( address ) {
+
+	return { ed: sv.edicts[ ( address >>> 16 ) & 0xffff ], ofs: address & 0xffff };
+
+}
+
 /*
 ====================
 PR_ExecuteProgram
@@ -499,7 +538,10 @@ export function PR_ExecuteProgram( fnum ) {
 
 	}
 
+
 	const f = pr_functions[ fnum ];
+	if ( f.first_statement < 0 )
+		PR_HostError( 'PR_ExecuteProgram: builtin function cannot be executed directly' );
 
 	runaway = 100000;
 	PR_SetTrace( false );
@@ -512,6 +554,10 @@ export function PR_ExecuteProgram( fnum ) {
 	// Cached references to typed views for performance
 	const gf = pr_globals_float;
 	const gi = pr_globals_int;
+	// Hexen II's v6 ABI: CALL copies argument operands into the parameter slots, and SWITCH/CASE carry their own state.
+	const hexen = PR_ProgramProfile() !== 'quake';
+	let hexenCase = false;
+	let hexenSwitchValue = 0;
 
 	while ( true ) {
 
@@ -740,16 +786,16 @@ export function PR_ExecuteProgram( fnum ) {
 
 			case OP_IFNOT:
 				if ( gi[ stA ] === 0 )
-					s += stB - 1; // offset the s++
+					s += ( ( stB << 16 ) >> 16 ) - 1; // branch displacement is signed, data offsets are not
 				break;
 
 			case OP_IF:
 				if ( gi[ stA ] !== 0 )
-					s += stB - 1; // offset the s++
+					s += ( ( stB << 16 ) >> 16 ) - 1;
 				break;
 
 			case OP_GOTO:
-				s += stA - 1; // offset the s++
+				s += ( ( stA << 16 ) >> 16 ) - 1;
 				break;
 
 			case OP_CALL0:
@@ -762,6 +808,23 @@ export function PR_ExecuteProgram( fnum ) {
 			case OP_CALL7:
 			case OP_CALL8: {
 
+				// Hexen II's compiler passes arguments as statement operands: CALL1 copies b into OFS_PARM0, and
+				// CALL2..8 additionally copy c into OFS_PARM1, before any dispatch (Raven pr_exec.c; plan section 4).
+				if ( hexen && st.op !== OP_CALL0 ) {
+
+					gi[ OFS_PARM0 ] = gi[ stB ];
+					gi[ OFS_PARM0 + 1 ] = gi[ stB + 1 ];
+					gi[ OFS_PARM0 + 2 ] = gi[ stB + 2 ];
+					if ( st.op >= OP_CALL2 ) {
+
+						gi[ OFS_PARM1 ] = gi[ stC ];
+						gi[ OFS_PARM1 + 1 ] = gi[ stC + 1 ];
+						gi[ OFS_PARM1 + 2 ] = gi[ stC + 2 ];
+
+					}
+
+				}
+
 				PR_SetArgc( st.op - OP_CALL0 );
 
 				if ( ! gi[ stA ] )
@@ -771,8 +834,17 @@ export function PR_ExecuteProgram( fnum ) {
 
 				if ( newf.first_statement < 0 ) {
 
-					// negative statements are built in functions
+					// negative statements are built in functions. A Hexen program uses the Hexen II contract's
+					// numbering and never the Quake builtin table.
 					const i = - newf.first_statement;
+					if ( hexen ) {
+
+						if ( i >= HEXEN2_BUILTIN_COUNT )
+							PR_RunError( 'Bad Hexen II builtin call number %i', i );
+						if ( Hexen2_CallBuiltin( i, { random: hexenRandomSource } ) ) break;
+						PR_RunError( 'Hexen II builtin %i (%s) is not implemented yet', i, Hexen2_BuiltinName( i ) ?? 'unknown' );
+
+					}
 					if ( i >= pr_numbuiltins )
 						PR_RunError( 'Bad builtin call number' );
 					pr_builtins[ i ]();
@@ -799,7 +871,7 @@ export function PR_ExecuteProgram( fnum ) {
 			case OP_STATE: {
 
 				const ed = PROG_TO_EDICT( pr_global_struct.self );
-				ed.v.nextthink = pr_global_struct.time + 0.1;
+				ed.v.nextthink = pr_global_struct.time + ( hexen ? HX_FRAME_TIME : 0.1 );
 				if ( gf[ stA ] !== ed.v.frame ) {
 
 					ed.v.frame = gf[ stA ];
@@ -807,6 +879,268 @@ export function PR_ExecuteProgram( fnum ) {
 				}
 
 				ed.v.think = gi[ stB ];
+				break;
+
+			}
+
+			case OP_MULSTORE_F:
+				gf[ stB ] = gf[ stB ] * gf[ stA ];
+				break;
+			case OP_MULSTORE_V:
+				gf[ stB ] = gf[ stB ] * gf[ stA ];
+				gf[ stB + 1 ] = gf[ stB + 1 ] * gf[ stA ];
+				gf[ stB + 2 ] = gf[ stB + 2 ] * gf[ stA ];
+				break;
+			case OP_MULSTOREP_F: {
+
+				const field = fieldAt( gi[ stB ] );
+				gf[ stC ] = field.ed._fieldAccessor.getFloat( field.ofs ) * gf[ stA ];
+				field.ed._fieldAccessor.setFloat( field.ofs, gf[ stC ] );
+				break;
+
+			}
+			case OP_MULSTOREP_V: {
+
+				const field = fieldAt( gi[ stB ] ), factor = gf[ stA ];
+				for ( let j = 0; j < 3; j ++ ) {
+
+					const value = field.ed._fieldAccessor.getFloat( field.ofs + j ) * factor;
+					field.ed._fieldAccessor.setFloat( field.ofs + j, value );
+					gf[ stC + j ] = value;
+
+				}
+				break;
+
+			}
+			case OP_DIVSTORE_F:
+				gf[ stB ] = gf[ stB ] / gf[ stA ];
+				break;
+			case OP_DIVSTOREP_F: {
+
+				const field = fieldAt( gi[ stB ] );
+				gf[ stC ] = field.ed._fieldAccessor.getFloat( field.ofs ) / gf[ stA ];
+				field.ed._fieldAccessor.setFloat( field.ofs, gf[ stC ] );
+				break;
+
+			}
+			case OP_ADDSTORE_F:
+				gf[ stB ] = gf[ stB ] + gf[ stA ];
+				break;
+			case OP_ADDSTORE_V:
+				gf[ stB ] = gf[ stB ] + gf[ stA ];
+				gf[ stB + 1 ] = gf[ stB + 1 ] + gf[ stA + 1 ];
+				gf[ stB + 2 ] = gf[ stB + 2 ] + gf[ stA + 2 ];
+				break;
+			case OP_ADDSTOREP_F: {
+
+				const field = fieldAt( gi[ stB ] );
+				gf[ stC ] = field.ed._fieldAccessor.getFloat( field.ofs ) + gf[ stA ];
+				field.ed._fieldAccessor.setFloat( field.ofs, gf[ stC ] );
+				break;
+
+			}
+			case OP_ADDSTOREP_V: {
+
+				const field = fieldAt( gi[ stB ] );
+				for ( let j = 0; j < 3; j ++ ) {
+
+					const value = field.ed._fieldAccessor.getFloat( field.ofs + j ) + gf[ stA + j ];
+					field.ed._fieldAccessor.setFloat( field.ofs + j, value );
+					gf[ stC + j ] = value;
+
+				}
+				break;
+
+			}
+			case OP_SUBSTORE_F:
+				gf[ stB ] = gf[ stB ] - gf[ stA ];
+				break;
+			case OP_SUBSTORE_V:
+				gf[ stB ] = gf[ stB ] - gf[ stA ];
+				gf[ stB + 1 ] = gf[ stB + 1 ] - gf[ stA + 1 ];
+				gf[ stB + 2 ] = gf[ stB + 2 ] - gf[ stA + 2 ];
+				break;
+			case OP_SUBSTOREP_F: {
+
+				const field = fieldAt( gi[ stB ] );
+				gf[ stC ] = field.ed._fieldAccessor.getFloat( field.ofs ) - gf[ stA ];
+				field.ed._fieldAccessor.setFloat( field.ofs, gf[ stC ] );
+				break;
+
+			}
+			case OP_SUBSTOREP_V: {
+
+				const field = fieldAt( gi[ stB ] );
+				for ( let j = 0; j < 3; j ++ ) {
+
+					const value = field.ed._fieldAccessor.getFloat( field.ofs + j ) - gf[ stA + j ];
+					field.ed._fieldAccessor.setFloat( field.ofs + j, value );
+					gf[ stC + j ] = value;
+
+				}
+				break;
+
+			}
+			case OP_FETCH_GBL_F:
+			case OP_FETCH_GBL_S:
+			case OP_FETCH_GBL_E:
+			case OP_FETCH_GBL_FNC: {
+
+				// the array's length sits in the word before its base; the index is a float global. The native bound
+				// is `index > length` (the supplied gamecode relies on the inclusive end), so it is kept.
+				const index = Math.trunc( gf[ stB ] ), length = gi[ stA - 1 ];
+				if ( ! Number.isFinite( index ) || index < 0 || index > length )
+					PR_RunError( 'array index out of bounds: %i', index );
+				gi[ stC ] = gi[ stA + index ];
+				break;
+
+			}
+			case OP_FETCH_GBL_V: {
+
+				const index = Math.trunc( gf[ stB ] ), length = gi[ stA - 1 ];
+				if ( ! Number.isFinite( index ) || index < 0 || index > length )
+					PR_RunError( 'array index out of bounds: %i', index );
+				for ( let j = 0; j < 3; j ++ ) gf[ stC + j ] = gf[ stA + index * 3 + j ];
+				break;
+
+			}
+			case OP_BITSET:
+				gf[ stB ] = ( gf[ stB ] | 0 ) | ( gf[ stA ] | 0 );
+				break;
+			case OP_BITSETP: {
+
+				const field = fieldAt( gi[ stB ] );
+				field.ed._fieldAccessor.setFloat( field.ofs, ( field.ed._fieldAccessor.getFloat( field.ofs ) | 0 ) | ( gf[ stA ] | 0 ) );
+				break;
+
+			}
+			case OP_BITCLR:
+				gf[ stB ] = ( gf[ stB ] | 0 ) & ~ ( gf[ stA ] | 0 );
+				break;
+			case OP_BITCLRP: {
+
+				const field = fieldAt( gi[ stB ] );
+				field.ed._fieldAccessor.setFloat( field.ofs, ( field.ed._fieldAccessor.getFloat( field.ofs ) | 0 ) & ~ ( gf[ stA ] | 0 ) );
+				break;
+
+			}
+			case OP_RAND0:
+				gf[ OFS_RETURN ] = hexenRandomSource();
+				break;
+			case OP_RAND1:
+				gf[ OFS_RETURN ] = hexenRandomSource() * gf[ stA ];
+				break;
+			case OP_RAND2: {
+
+				const a = gf[ stA ], b = gf[ stB ], low = Math.min( a, b ), high = Math.max( a, b );
+				gf[ OFS_RETURN ] = low + hexenRandomSource() * ( high - low );
+				break;
+
+			}
+			case OP_RANDV0:
+				for ( let j = 0; j < 3; j ++ ) gf[ OFS_RETURN + j ] = hexenRandomSource();
+				break;
+			case OP_RANDV1:
+				for ( let j = 0; j < 3; j ++ ) gf[ OFS_RETURN + j ] = hexenRandomSource() * gf[ stA + j ];
+				break;
+			case OP_RANDV2:
+				for ( let j = 0; j < 3; j ++ ) {
+
+					const a = gf[ stA + j ], b = gf[ stB + j ], low = Math.min( a, b ), high = Math.max( a, b );
+					gf[ OFS_RETURN + j ] = low + hexenRandomSource() * ( high - low );
+
+				}
+				break;
+			case OP_SWITCH_F:
+				hexenCase = true;
+				hexenSwitchValue = gf[ stA ];
+				s += ( ( stB << 16 ) >> 16 ) - 1;
+				break;
+			case OP_SWITCH_V:
+			case OP_SWITCH_S:
+			case OP_SWITCH_E:
+			case OP_SWITCH_FNC:
+				PR_RunError( 'switch on %s not implemented', pr_opnames[ st.op ] );
+				break;
+			case OP_CASE:
+				if ( ! hexenCase ) PR_RunError( 'CASE outside a switch' );
+				if ( hexenSwitchValue === gf[ stA ] ) s += ( ( stB << 16 ) >> 16 ) - 1;
+				break;
+			case OP_CASERANGE:
+				if ( ! hexenCase ) PR_RunError( 'CASERANGE outside a switch' );
+				if ( hexenSwitchValue >= gf[ stA ] && hexenSwitchValue <= gf[ stB ] ) s += ( ( stC << 16 ) >> 16 ) - 1;
+				break;
+
+			case OP_CSTATE: {
+
+				// cycle a frame from a to b, wrapping at b (Raven pr_exec.c), and queue this function again
+				const ed = PROG_TO_EDICT( pr_global_struct.self );
+				ed.v.nextthink = pr_global_struct.time + HX_FRAME_TIME;
+				ed.v.think = pr_functions.indexOf( pr_xfunction );
+				pr_global_struct.cycle_wrapped = 0;
+				const startFrame = Math.trunc( gf[ stA ] ), endFrame = Math.trunc( gf[ stB ] );
+				if ( startFrame <= endFrame ) {
+
+					if ( ed.v.frame < startFrame || ed.v.frame > endFrame ) ed.v.frame = startFrame;
+					else {
+
+						ed.v.frame ++;
+						if ( ed.v.frame > endFrame ) { pr_global_struct.cycle_wrapped = 1; ed.v.frame = startFrame; }
+
+					}
+
+				} else {
+
+					if ( ed.v.frame > startFrame || ed.v.frame < endFrame ) ed.v.frame = startFrame;
+					else {
+
+						ed.v.frame --;
+						if ( ed.v.frame < endFrame ) { pr_global_struct.cycle_wrapped = 1; ed.v.frame = startFrame; }
+
+					}
+
+				}
+				break;
+
+			}
+			case OP_CWSTATE: {
+
+				// as CSTATE, on the weapon frame
+				const ed = PROG_TO_EDICT( pr_global_struct.self );
+				ed.v.nextthink = pr_global_struct.time + HX_FRAME_TIME;
+				ed.v.think = pr_functions.indexOf( pr_xfunction );
+				pr_global_struct.cycle_wrapped = 0;
+				const startFrame = Math.trunc( gf[ stA ] ), endFrame = Math.trunc( gf[ stB ] );
+				if ( startFrame <= endFrame ) {
+
+					if ( ed.v.weaponframe < startFrame || ed.v.weaponframe > endFrame ) ed.v.weaponframe = startFrame;
+					else {
+
+						ed.v.weaponframe ++;
+						if ( ed.v.weaponframe > endFrame ) { pr_global_struct.cycle_wrapped = 1; ed.v.weaponframe = startFrame; }
+
+					}
+
+				} else {
+
+					if ( ed.v.weaponframe > startFrame || ed.v.weaponframe < endFrame ) ed.v.weaponframe = startFrame;
+					else {
+
+						ed.v.weaponframe --;
+						if ( ed.v.weaponframe < endFrame ) { pr_global_struct.cycle_wrapped = 1; ed.v.weaponframe = startFrame; }
+
+					}
+
+				}
+				break;
+
+			}
+			case OP_THINKTIME: {
+
+				const ed = PROG_TO_EDICT( gi[ stA ] );
+				if ( ed === sv.edicts[ 0 ] && sv.state === ss_active )
+					PR_RunError( 'assignment to world entity' );
+				ed.v.nextthink = pr_global_struct.time + gf[ stB ];
 				break;
 
 			}

@@ -114,14 +114,56 @@ export const OP_OR = 63;
 export const OP_BITAND = 64;
 export const OP_BITOR = 65;
 
+// Hexen II's extended opcodes continue the same numbering (common/pr_comp.h, Raven Software). Their operands are
+// unsigned word offsets; only a branch displacement is signed (see pr_exec.js).
+export const OP_MULSTORE_F = 66;
+export const OP_MULSTORE_V = 67;
+export const OP_MULSTOREP_F = 68;
+export const OP_MULSTOREP_V = 69;
+export const OP_DIVSTORE_F = 70;
+export const OP_DIVSTOREP_F = 71;
+export const OP_ADDSTORE_F = 72;
+export const OP_ADDSTORE_V = 73;
+export const OP_ADDSTOREP_F = 74;
+export const OP_ADDSTOREP_V = 75;
+export const OP_SUBSTORE_F = 76;
+export const OP_SUBSTORE_V = 77;
+export const OP_SUBSTOREP_F = 78;
+export const OP_SUBSTOREP_V = 79;
+export const OP_FETCH_GBL_F = 80;
+export const OP_FETCH_GBL_V = 81;
+export const OP_FETCH_GBL_S = 82;
+export const OP_FETCH_GBL_E = 83;
+export const OP_FETCH_GBL_FNC = 84;
+export const OP_CSTATE = 85;
+export const OP_CWSTATE = 86;
+export const OP_THINKTIME = 87;
+export const OP_BITSET = 88;
+export const OP_BITSETP = 89;
+export const OP_BITCLR = 90;
+export const OP_BITCLRP = 91;
+export const OP_RAND0 = 92;
+export const OP_RAND1 = 93;
+export const OP_RAND2 = 94;
+export const OP_RANDV0 = 95;
+export const OP_RANDV1 = 96;
+export const OP_RANDV2 = 97;
+export const OP_SWITCH_F = 98;
+export const OP_SWITCH_V = 99;
+export const OP_SWITCH_S = 100;
+export const OP_SWITCH_E = 101;
+export const OP_SWITCH_FNC = 102;
+export const OP_CASE = 103;
+export const OP_CASERANGE = 104;
+
 // dstatement_t - bytecode statement
 export class dstatement_t {
 
 	/**
 	 * Creates a zeroed bytecode statement (WinQuake pr_comp.h). `PR_LoadProgs` (pr_edict.js) fills one per 8-byte
-	 * record of progs.dat: `op` is an `OP_*` opcode (uint16) and `a`, `b`, `c` are int16 operands, normally offsets into
-	 * the globals array (word units) or, for jumps, relative statement counts. The statements live until the next
-	 * progs load.
+	 * record of progs.dat: `op` is an `OP_*` opcode (uint16) and `a`, `b`, `c` are uint16 operands, normally offsets
+	 * into the globals array (word units) or, for jumps, relative statement counts read as signed 16-bit values at the
+	 * branch site (Hexen II's operands are unsigned except branches). The statements live until the next progs load.
 	 */
 	constructor() {
 

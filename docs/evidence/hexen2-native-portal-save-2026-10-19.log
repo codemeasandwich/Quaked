@@ -1,0 +1,42 @@
+SystemTime { tv_sec: 1792437801, tv_nsec: 123317000 } desktop prepare start
+SystemTime { tv_sec: 1792437801, tv_nsec: 133435000 } desktop prepare id=hexen2-portals (trial)
+SystemTime { tv_sec: 1792437801, tv_nsec: 195038000 } catalogue shareware:000,quake:111,hipnotic:111,rogue:111,dopa:111,mg1:111,dawn:000,ad:111,quoth:111,malice:111,xmen:111,aopfm_v2:111,soe:111,hexen2:111,hexen2-portals:111,hexen2-demo:111,mod_q30a1024:111,mod_quake_shareware:111,mod_quake_rooftop_jam_v2:111,mod_tremor:111
+SystemTime { tv_sec: 1792437801, tv_nsec: 378128000 } hexen2 branch id=hexen2-portals packs=4
+SystemTime { tv_sec: 1792437801, tv_nsec: 378735000 } trial autostart
+SystemTime { tv_sec: 1792437801, tv_nsec: 380269000 } host start, packs 4
+SystemTime { tv_sec: 1792437801, tv_nsec: 380553000 } progs 1144652 bytes, palette 768
+SystemTime { tv_sec: 1792437801, tv_nsec: 639333000 } session ok, class 5, skill 1, map entities 347
+SystemTime { tv_sec: 1792437801, tv_nsec: 640128000 } sounds precached=0/182
+SystemTime { tv_sec: 1792437801, tv_nsec: 864517000 } renderer and client bound
+SystemTime { tv_sec: 1792437801, tv_nsec: 980141000 } viewmodel state {"draw":1,"health":72,"items":0,"chase":0,"envmap":false,"bestiary":false,"model":true,"mesh":false,"frame":60}
+SystemTime { tv_sec: 1792437802, tv_nsec: 99024000 } bestiary=idle weapon model=models/sucwp1.mdl frame=60 viewent=2:80:60:1400,1256,149 cvar=0 stats0=72 vieworg=1400,1256,139
+SystemTime { tv_sec: 1792437802, tv_nsec: 99513000 } first frame rendered calls=6 tris=391 canvas=1280x768 css=1280x768 style=100vwx100vh vrect=1280x768 vid=1280x768 overlay=2560x1536 audio=suspended
+SystemTime { tv_sec: 1792437802, tv_nsec: 125938000 } hud ops=13 small=2 nums=2 tinyfont=true
+SystemTime { tv_sec: 1792437802, tv_nsec: 151502000 } sound demon/dland2.wav
+SystemTime { tv_sec: 1792437802, tv_nsec: 160191000 } sound demon/dland2.wav
+SystemTime { tv_sec: 1792437802, tv_nsec: 227801000 } sound spider/step1.wav
+SystemTime { tv_sec: 1792437802, tv_nsec: 335596000 } sound spider/step3.wav
+SystemTime { tv_sec: 1792437802, tv_nsec: 370428000 } sound spider/step3.wav
+SystemTime { tv_sec: 1792437802, tv_nsec: 442577000 } sound weapons/weappkup.wav
+SystemTime { tv_sec: 1792437802, tv_nsec: 447557000 } sound spider/step3.wav
+SystemTime { tv_sec: 1792437802, tv_nsec: 485251000 } sound spider/step1.wav
+SystemTime { tv_sec: 1792437802, tv_nsec: 561625000 } autoplay mouse yaw=305
+SystemTime { tv_sec: 1792437804, tv_nsec: 112656000 } autoplay arrow yaw=65
+SystemTime { tv_sec: 1792437806, tv_nsec: 257633000 } autoplay menu open=true
+SystemTime { tv_sec: 1792437806, tv_nsec: 671199000 } autoplay menu save
+SystemTime { tv_sec: 1792437806, tv_nsec: 676565000 } autoplay menu load
+SystemTime { tv_sec: 1792437806, tv_nsec: 680845000 } autoplay menu closed=true
+SystemTime { tv_sec: 1792437806, tv_nsec: 681631000 } autoplay pos=1544,1606,-212 yaw=65 vangle=65 angles=65 fix=0 audio=suspended
+SystemTime { tv_sec: 1792437806, tv_nsec: 964767000 } autoplay combat before=100
+SystemTime { tv_sec: 1792437806, tv_nsec: 981972000 } state frames=120 vis=249 pos=1520,1624,-220 yaw=0 audio=suspended lock=0
+SystemTime { tv_sec: 1792437807, tv_nsec: 193997000 } autoplay combat draw calls=7 tris=629 vis=249 model=yes
+SystemTime { tv_sec: 1792437809, tv_nsec: 18100000 } autoplay combat after=9.840616226196289 damaged=true calls=7 tris=629
+SystemTime { tv_sec: 1792437809, tv_nsec: 343677000 } autoplay item before health=72 class=item_health model=models/i_hboost.mdl frame=0 effects=0
+SystemTime { tv_sec: 1792437809, tv_nsec: 884382000 } state frames=240 vis=249 pos=1520,1626,-220 yaw=0 audio=suspended lock=0
+SystemTime { tv_sec: 1792437809, tv_nsec: 985834000 } autoplay item after health=72 frame=0 picked=false
+SystemTime { tv_sec: 1792437810, tv_nsec: 101682000 } autoplay done frames=250 pos=1520,1626,-220 yaw=0
+SystemTime { tv_sec: 1792437810, tv_nsec: 103675000 } loop scheduled
+SystemTime { tv_sec: 1792437810, tv_nsec: 104557000 } host result ok=true reason=
+SystemTime { tv_sec: 1792437811, tv_nsec: 527694000 } save quicksave (indexeddb, 1 levels)
+SystemTime { tv_sec: 1792437811, tv_nsec: 857545000 } load quicksave (indexeddb, 1 levels)
+SystemTime { tv_sec: 1792437811, tv_nsec: 863972000 } rAF watchdog frames=250 visibility=hidden

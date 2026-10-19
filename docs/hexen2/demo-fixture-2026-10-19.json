@@ -1,0 +1,60 @@
+{
+  "purpose": "Verified local identity of the owner-supplied Hexen II v1.11 demo. Metadata only; no purchased media is stored in the repository.",
+  "date": "2026-10-19",
+  "status": "verified-local-input; not bundled, not redistributed",
+  "location": "/Users/bri/quaked/Hexen 2 Shareware/hexen2-demo",
+  "source": {
+    "file": "h2demo.exe",
+    "bytes": 15334912,
+    "sha256": "b349824ba09ddf0e95ca8a0f1783640d745c560b67da20a9cc31d1e816e63ab8",
+    "build": "Hexen II v1.11 shareware demo, 1997-11-07"
+  },
+  "pak0": {
+    "path": "data1/pak0.pak",
+    "bytes": 27750257,
+    "entries": 797,
+    "directoryCrc": 22780,
+    "directoryCrcAlgorithm": "CRC-16/CCITT polynomial 0x1021, init 0xffff, non-reflected (uhexen2 common/crc.c)",
+    "diroffset": 27699249,
+    "directoryBytes": 51008,
+    "md5": "8e598d82bf53436ed7a0e133aa4b9f09",
+    "sha256": "0d4aa01a9909771dfa8e5be27db5d6628dc92f1406998c1a89c27d4748aaf151"
+  },
+  "progs": {
+    "path": "data1/progs.dat",
+    "bytes": 952888,
+    "version": 6,
+    "layoutCrc": 38488,
+    "layout": "hexen2-base",
+    "sha256": "5d1b658ef8828a4e9437164b19341e1a5ae111618126b9c45258998231395c8d"
+  },
+  "licence": {
+    "path": "docs/HEXEN-II-SUBLICENSE.txt",
+    "additional": "docs/HEXEN II SUBLICENSE.doc",
+    "constraints": "Activision sublicense: personal use; copying, distribution, network use and derivative works are restricted. Keep this fixture local and out of published artifacts."
+  },
+  "pinnedReference": {
+    "repository": "sezero/uhexen2",
+    "commit": "475c048b1c8b0806b8585f5cd2715f3ad60bf393",
+    "file": "engine/h2shared/quakefs.c",
+    "demoSignature": {
+      "entries": 797,
+      "directoryCrc": 22780,
+      "bytes": 27750257,
+      "md5": "8e598d82bf53436ed7a0e133aa4b9f09"
+    }
+  },
+  "effect": "Satisfies the plan's genuine-demo acquisition prerequisite for demo implementation and qualification in G2. It does not make the demo playable by itself and does not alter the approved plan/inventory hashes.",
+  "verification": {
+    "computedAt": "2026-10-19T15:40:00+01:00",
+    "checks": [
+      "PAK magic PACK and directory within bounds",
+      "797 x 64-byte directory entries",
+      "CCITT directory CRC 22780",
+      "size 27750257",
+      "MD5 equals uhexen2's pinned demo comment",
+      "progs.dat version 6 and layout CRC 38488"
+    ],
+    "notCommitted": true
+  }
+}

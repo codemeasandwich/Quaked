@@ -5,6 +5,7 @@ import {Distribution_Profile} from './src/platform/distribution.js';
 import { Sys_Init, Sys_Printf, Sys_Error } from './src/engine/common/sys.js';
 import { COM_InitArgv } from './src/engine/common/common.js';
 import { Host_Init, Host_Frame, Host_Shutdown } from './src/engine/server/host.js';
+import { S_Init, S_UnlockAudio, S_GetAudioContext } from './src/engine/sound/snd_dma.js';
 import { COM_FetchPak, COM_FetchOptionalPak, COM_AddPack, COM_SetNewerPack, COM_SetNewerStartupPack, COM_SetNewerMapsPack, COM_NewerFile, COM_LoadPackFile, COM_BuildPack } from './src/engine/common/pak.js';
 import { Cbuf_AddText, Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './src/engine/common/cmd.js';
 import { Con_Printf } from './src/engine/common/common.js';
@@ -51,8 +52,39 @@ async function main() {
 
 		COM_InitArgv( parms.argv );
 		const urlParams = new URLSearchParams( window.location.search );
+		const startClass = urlParams.get( 'class' ), startMap = urlParams.get( 'map' ), startSkillParam = urlParams.get( 'skill' ), startSkill = startSkillParam === null ? null : Number( startSkillParam ), autoStart = urlParams.get( 'autostart' ) === '1';
 		const desktop = Distribution_Profile()==='desktop' ? await (await import('./src/platform/desktop.js')).Desktop_Prepare() : null;
 		if(Distribution_Profile()==='desktop' && !desktop)return;
+		// Hexen II in the native app: its own mount, protocols and eight-hull BSP cannot ride the Quake host below
+		if(desktop&&String(desktop.id).startsWith('hexen2')){
+			const desktopApi=await import('./src/platform/desktop.js');
+			const log=text=>{void desktopApi.Desktop_Log?.(text);};
+			addEventListener('error',event=>log('window error: '+(event.error?.stack??event.message)));
+			addEventListener('unhandledrejection',event=>log('unhandled rejection: '+(event.reason?.stack??event.reason)));
+			log('hexen2 branch id='+desktop.id+' packs='+(desktop.packs?.length??0));
+			document.getElementById('loading')?.remove();
+			const profileModule=await import('./src/engine/common/hexen2_profile.js');
+			const offered=profileModule.Hexen2_ClassesFor(desktop.id);
+			const choices=(offered.length?offered:[profileModule.HEXEN2_CLASSES.paladin,profileModule.HEXEN2_CLASSES.crusader,profileModule.HEXEN2_CLASSES.necromancer,profileModule.HEXEN2_CLASSES.assassin]).map(entry=>[entry.id,entry.name]);
+			let chosenSkill=Number.isInteger( startSkill ) && startSkill >= 0 && startSkill <= 3 ? startSkill : 1;
+			let chosenClass=typeof startClass==='string'&&choices.some(([id])=>id===startClass)?startClass:(typeof desktop.autoClass==='string'?desktop.autoClass:choices[0][0]);
+			if(!desktop.autoStart&&!autoStart){
+				const {Hexen2_CreatePixelGate}=await import('./src/engine/client/hexen2_pixel_gate.js');
+				await new Promise(resolve=>{
+					Hexen2_CreatePixelGate({
+						classes:choices.map(([id,name])=>({id,name})),
+						skills:[['EASY','0'],['NORMAL','1'],['HARD','2'],['NIGHTMARE','3']],
+						initialClass:chosenClass,initialSkill:chosenSkill,source:String(desktop.source??'native library'),
+						onAudioUnlock:()=>{try{if(!S_GetAudioContext())S_Init();S_UnlockAudio();}catch(error){log('audio unlock: '+error);}},
+						onChoose:(classId,skill)=>{chosenClass=classId;chosenSkill=skill;log('start gate clicked, class '+chosenClass+' skill '+chosenSkill);resolve();}
+					});
+				});
+			}else log('trial autostart');
+			const started=await(await import('./src/engine/client/hexen2_page.js')).Hexen2_PageStart({packs:desktop.packs,id:desktop.id,classId:chosenClass,skill:chosenSkill,level:startMap??undefined,spot:urlParams.get('spot')??undefined,log,autoplay:desktop.autoPlay===true,saveTrial:desktop.saveTrial===true,onFrame:()=>{}});
+			log('host result ok='+started.ok+' reason='+(started.reason??''));
+			if(!started.ok){Sys_Printf('Hexen II could not start: '+started.reason+'\n');const note=document.createElement('div');note.role='alert';note.style='position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;background:#07070a;color:#f0c9a0;font:16px/1.6 system-ui,sans-serif;text-align:center;padding:8vw;white-space:pre-wrap';note.textContent='Hexen II could not start:\n'+started.reason;document.body.append(note);}
+			return;
+		}
 		// A player's window in local play (card [37a]): it joins player 1's page, and saves no settings of its own
 		const playerWindow = LocalPlay_PlayerWindow( window.location.search );
 		if ( playerWindow ) { Cvar_SetStorageWritable( false ); document.title = 'Quaked: Player ' + playerWindow.player; }

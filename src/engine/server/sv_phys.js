@@ -69,6 +69,7 @@ export const MOVETYPE_FLYMISSILE = 9;
 export const MOVETYPE_BOUNCE = 10;
 export const MOVETYPE_BOUNCEMISSILE = 11; // QUAKE2
 export const MOVETYPE_FOLLOW = 12; // QUAKE2 - stuck to aiment entity
+export const MOVETYPE_PHASE = 13; // Hexen II phase projectile (native clips entities but passes world planes)
 
 //
 // Solid type constants
@@ -261,6 +262,8 @@ export let SV_TestEntityPosition = null;
 export let SV_LinkEdict = null;
 export let SV_PointContents = null;
 export let SV_StartSound = null;
+export let SV_StopSound = null; // SV_StopSound(entity, channel), wired by the host's local mixer
+export let SV_StartParticle = null; // SV_StartParticle(origin, direction, color, count), wired by sv_main
 export let PR_ExecuteProgram = null;
 export let EDICT_TO_PROG = null;
 export let PROG_TO_EDICT = null;
@@ -291,6 +294,7 @@ export function SV_SetCallbacks( callbacks ) {
 	if ( callbacks.SV_LinkEdict !== undefined ) SV_LinkEdict = callbacks.SV_LinkEdict;
 	if ( callbacks.SV_PointContents !== undefined ) SV_PointContents = callbacks.SV_PointContents;
 	if ( callbacks.SV_StartSound ) SV_StartSound = callbacks.SV_StartSound;
+	if ( callbacks.SV_StopSound !== undefined ) SV_StopSound = callbacks.SV_StopSound;
 	if ( callbacks.PR_ExecuteProgram !== undefined ) PR_ExecuteProgram = callbacks.PR_ExecuteProgram;
 	if ( callbacks.EDICT_TO_PROG !== undefined ) EDICT_TO_PROG = callbacks.EDICT_TO_PROG;
 	if ( callbacks.PROG_TO_EDICT ) PROG_TO_EDICT = callbacks.PROG_TO_EDICT;
@@ -1931,6 +1935,9 @@ export function SV_Physics() {
 			SV_Physics_Noclip( ent );
 		else if ( ent.v.movetype === MOVETYPE_STEP )
 			SV_Physics_Step( ent );
+		else if ( ent.v.movetype === MOVETYPE_PHASE )
+			// native SV_Physics_Phase ignores the world's planes; pending a Hexen phase clip (recorded divergence)
+			SV_Physics_Toss( ent );
 		else if ( ent.v.movetype === MOVETYPE_TOSS
 			|| ent.v.movetype === MOVETYPE_BOUNCE
 			|| ent.v.movetype === MOVETYPE_BOUNCEMISSILE

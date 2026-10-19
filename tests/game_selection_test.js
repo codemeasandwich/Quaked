@@ -242,7 +242,7 @@ Deno.test( 'the app library gives loose files to exactly the catalogue\'s add-on
 	check( listed === GAME_CATALOGUE_GAMES.filter( g => g.kind === 'addon' ).map( g => g.id ).sort().join(), 'library.rs ADDONS: ' + listed );
 	const gameTable = /pub const GAMES:[^=]+?=\s*&\[([\s\S]*?)\n\];/.exec( rust );
 	check( gameTable, 'library.rs declares the native GAMES table' );
-	const games = [ ...gameTable[ 1 ].matchAll( /\("([a-z0-9_]+)", &\[/g ) ].map( m => m[ 1 ] ).sort().join();
+	const games = [ ...gameTable[ 1 ].matchAll( /\(\s*"([a-z0-9_-]+)",\s*&\[/g ) ].map( m => m[ 1 ] ).sort().join();
 	check( games === GAME_CATALOGUE_GAMES.filter( g => ! g.placeholder ).map( g => g.id ).sort().join(), 'library.rs GAMES: ' + games );
 
 } );

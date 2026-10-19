@@ -23,7 +23,9 @@ export async function pakDirectory(path){
   const entries=new Map();
   for(let at=0;at<length;at+=64){const text=bytes.subarray(at,at+56),end=text.indexOf(0),name=text.subarray(0,end<0?56:end).toString('ascii').toLowerCase();
    const offset=bytes.readUInt32LE(at+56),size=bytes.readUInt32LE(at+60);
-   if(offset+size>archiveBytes||entries.has(name))throw Error('Invalid PAK member '+name);
+   if(offset+size>archiveBytes)throw Error('Invalid PAK member '+name);
+   // Raven shipped Hexen II pak0 with a repeated member (models/mumshot.mdl); the engine's search takes the first.
+   if(entries.has(name))continue;
    entries.set(name,{path,name,offset,size});
   }
   return entries;

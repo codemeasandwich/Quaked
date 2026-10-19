@@ -1,0 +1,621 @@
+{
+  "purpose": "Recoverable manifest of the working-tree changes for the 19 October Hexen II delta and playability increment; tracked changes and text untracked files are in the patch, binaries and the packaged trace are identified by hash only.",
+  "at": "2026-10-19T19:40:31.227854+00:00",
+  "head": "7f5c01b0baa13f9e95337d0e1c33c01df7d49517",
+  "branch": "h2",
+  "files": [
+    {
+      "status": "M",
+      "path": "docs/evidence/hexen2-product-host.json",
+      "bytes": 24325,
+      "sha256": "2d4089cf4b6a0528801e755a37d8a3afdd89e5ad51e9c51d7f98b7ab6b527b35"
+    },
+    {
+      "status": "M",
+      "path": "docs/hexen2/g1-acceptance-2026-10-19.md",
+      "bytes": 37661,
+      "sha256": "adb6838d407d5f2e6626234c79cfe2ae927353dbaa22a26a894eb59281a96de8"
+    },
+    {
+      "status": "M",
+      "path": "docs/hexen2/red-controls-2026-10-19.md",
+      "bytes": 4379,
+      "sha256": "0800d4d95567e9881c4e16dea5a54111a4f9d2fe22a9e0a201a3175cc716e765"
+    },
+    {
+      "status": "M",
+      "path": "main.js",
+      "bytes": 22043,
+      "sha256": "d8d7e7f6393b8653109284141d66a423e65552e3a8f7ee154f3c6a623552725c"
+    },
+    {
+      "status": "M",
+      "path": "src-tauri/src/library.rs",
+      "bytes": 14080,
+      "sha256": "0d0323a26a38eb3f671aee97fee0ef244fc13bf88beb6d76da1ffc943991b535"
+    },
+    {
+      "status": "M",
+      "path": "src-tauri/src/main.rs",
+      "bytes": 13807,
+      "sha256": "c45b588ae0aaf179161d85fb2610b22551e7afe9f08101f136662b03ebc02ecb"
+    },
+    {
+      "status": "M",
+      "path": "src-tauri/src/packs.rs",
+      "bytes": 26945,
+      "sha256": "d4b56e31816330af43ac970df1eee5aa289f9a606ff220a559165f632f016755"
+    },
+    {
+      "status": "M",
+      "path": "src-tauri/src/pointer_lock.rs",
+      "bytes": 3348,
+      "sha256": "ee1a4753b2f428384295040c62ac9cc71a98f78143d0de7cd9ee3948d8b1fd31"
+    },
+    {
+      "status": "M",
+      "path": "src-tauri/tests/library_contract.rs",
+      "bytes": 15577,
+      "sha256": "a68904a1ac95f4454be0a82d4202b1b0a1873c7c6f87440c3b2fdff599472949"
+    },
+    {
+      "status": "M",
+      "path": "src-tauri/tests/packs_release_trial.rs",
+      "bytes": 1997,
+      "sha256": "9646799de9c46a21847d1cfdaba62893492769b6fd3231cba727de701809aaae"
+    },
+    {
+      "status": "M",
+      "path": "src/engine/client/hexen2_clienthud.js",
+      "bytes": 2522,
+      "sha256": "5b30146f0a0dfc93b60286069286eaa09826e470bafb4b8b7ad21fa96c219426"
+    },
+    {
+      "status": "M",
+      "path": "src/engine/client/hexen2_hud.js",
+      "bytes": 3394,
+      "sha256": "5a967c39b2dc00316785ce37434b958b76baaa1277a85aaa86c3c09e46c4efb8"
+    },
+    {
+      "status": "M",
+      "path": "src/engine/client/hexen2_native_ui.js",
+      "bytes": 8019,
+      "sha256": "556cb04d49d24266b0443381d1217bd8881225b3b7f29b942f5d0200506c6eaa"
+    },
+    {
+      "status": "M",
+      "path": "src/engine/client/hexen2_page.js",
+      "bytes": 39150,
+      "sha256": "f099b26f50a2b7ff15d9625521391fd9c4258784f9916048f621db344fb5ece3"
+    },
+    {
+      "status": "M",
+      "path": "src/engine/client/hexen2_statusbar.js",
+      "bytes": 7149,
+      "sha256": "1a098b4fac2ad225fdb61ddfec051a2d661fcdd9e864571d566f80926c13ba0e"
+    },
+    {
+      "status": "M",
+      "path": "src/engine/common/game_catalogue.js",
+      "bytes": 32119,
+      "sha256": "3ea0a1719435d7ed755b484ce76838898414a3e44499c9bd3087d900e08dc975"
+    },
+    {
+      "status": "M",
+      "path": "src/engine/common/hexen2_filesystem.js",
+      "bytes": 19853,
+      "sha256": "413464d21ad6c9970aab71fb2f8f085352ebb67927a1b2271797bd926bcc28fd"
+    },
+    {
+      "status": "M",
+      "path": "src/engine/common/hexen2_profile.js",
+      "bytes": 14283,
+      "sha256": "0f17fead4f8ef4fda1b8b2d54ac886a88500d4c34792e02a729d1f2b47a04ee5"
+    },
+    {
+      "status": "M",
+      "path": "src/engine/progs/hexen2_mount.js",
+      "bytes": 7496,
+      "sha256": "3cf1d3fea3a68e6c23b4ad9f345c03dbba8cbff0c95d9385ebbb1495b169dfaa"
+    },
+    {
+      "status": "M",
+      "path": "src/engine/progs/hexen2_server_cmds.js",
+      "bytes": 22343,
+      "sha256": "0128cb27e77dc98da79e9c78db51a0e382971b9044303b85a83c03ec7b87b994"
+    },
+    {
+      "status": "M",
+      "path": "src/engine/render/gl_mesh.js",
+      "bytes": 45574,
+      "sha256": "b992a30ce29db454fdb17845545eccc9ae3e5f764845f90ac3e0912da7ced09b"
+    },
+    {
+      "status": "M",
+      "path": "src/engine/render/gl_model.js",
+      "bytes": 17637,
+      "sha256": "6795aed44d0e2e61473cd64d06a987e8416ea723b55949744157c65c74f062d3"
+    },
+    {
+      "status": "M",
+      "path": "src/engine/render/gl_model_alias.js",
+      "bytes": 17166,
+      "sha256": "a173d2c5532c6f445eb2b88874df29f9a1b4d64a5f592e9534a81adf827b22c5"
+    },
+    {
+      "status": "M",
+      "path": "src/engine/render/gl_model_types.js",
+      "bytes": 21537,
+      "sha256": "d211d55819e26c47fd8bb27b30cef27191c73c2f924ff7910a664d74a0847c55"
+    },
+    {
+      "status": "M",
+      "path": "src/engine/server/pr_cmds.js",
+      "bytes": 36528,
+      "sha256": "c7f734ff4684c8ac1e83789b2823de78ac81bc97281de6de42965656be89ad6c"
+    },
+    {
+      "status": "M",
+      "path": "src/engine/server/sv_phys.js",
+      "bytes": 61150,
+      "sha256": "f0623bd8a20f336e5d585221fe5adc5c4e916f20e31b4751054411f736856868"
+    },
+    {
+      "status": "M",
+      "path": "src/platform/desktop.js",
+      "bytes": 9966,
+      "sha256": "fd317a7312fe1338d32717fea272d00914f6ac4d2710fbb530823a7ff4c0602a"
+    },
+    {
+      "status": "M",
+      "path": "tests/hexen2_catalogue_test.js",
+      "bytes": 10181,
+      "sha256": "21de457a375420e94573d26ca06e15a5cf7a66e2f7aded0ad1912ddb92a6971f"
+    },
+    {
+      "status": "M",
+      "path": "tests/hexen2_filesystem_test.js",
+      "bytes": 16114,
+      "sha256": "01edbf651b546b4dda8a02ffc0762646da856e5f5e4ab05c10221056b3e531b8"
+    },
+    {
+      "status": "M",
+      "path": "tests/hexen2_native_ui_test.js",
+      "bytes": 6797,
+      "sha256": "3572808cc10d79d3e859d6dce82b62446346007d01502e335f188b5930d92b07"
+    },
+    {
+      "status": "M",
+      "path": "tests/hexen2_profile_test.js",
+      "bytes": 8791,
+      "sha256": "5be82347abc6d421ccee7cfaad299ac94bd031714533082cb40ab9854530537e"
+    },
+    {
+      "status": "M",
+      "path": "tests/hexen2_render_test.js",
+      "bytes": 5597,
+      "sha256": "6dc40b6608734b46f5aea867960d0e4b70d266761990baf4c2265cec799dc7d2"
+    },
+    {
+      "status": "M",
+      "path": "tests/hexen2_statusbar_test.js",
+      "bytes": 8686,
+      "sha256": "c8169f081077084c25d3fc92cc8c9f03616b39031e93cfb9a4d6c55f6e939f57"
+    },
+    {
+      "status": "M",
+      "path": "tools/hexen2-browser/product-trial.mjs",
+      "bytes": 9484,
+      "sha256": "bf2508078e867c9f2f9af72054ced63a84e4d7c5eafa7be104aa7e9233fcaf8f"
+    },
+    {
+      "status": "M",
+      "path": "tools/hexen2-browser/product.js",
+      "bytes": 3765,
+      "sha256": "60cd63b0c1d157c4c9343d70827c71f0d464d37826401f59c2a0fe294b5c45d9"
+    },
+    {
+      "status": "M",
+      "path": "tools/hexen2-browser/serve.mjs",
+      "bytes": 1990,
+      "sha256": "3cefc787e64a87e34caada38e8aca62834721ce02901b334214eae1cd5057bc5"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-native-assassin-2026-10-19.log",
+      "bytes": 3782,
+      "sha256": "7bfbabbec3cb3ec291a161a202eaac12b85e45df11c350018b668212c26b29e7"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-native-autoplay-2026-10-19.log",
+      "bytes": 3780,
+      "sha256": "27e8c99fbed0c4d9beb62dfd98c569d626cfb381c84a3f19690ca4180e3a8fba"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-native-classes-2026-10-19.json",
+      "bytes": 3599,
+      "sha256": "78855a7a05b88e6b154ca2baab2ed678b43792874e9e4afce3ba3b52a98dc849"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-native-crusader-2026-10-19.log",
+      "bytes": 5028,
+      "sha256": "6f02146f22757d81ce68a64c7be64d2fa6d0ca6a73b1ac6558274804fdd15b55"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-native-demo-2026-10-19.log",
+      "bytes": 3707,
+      "sha256": "bb6ad763082ebd048fc970e67530169d12085eeada59c0a3b426e84710342985"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-native-menu-2026-10-19.json",
+      "bytes": 789,
+      "sha256": "411cbdbeaef07de6103c83105eb083614d6fc6b2b19345ab989dd15004dc2a43"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-native-menu-2026-10-19.log",
+      "bytes": 3938,
+      "sha256": "67ab030d8131fb4ee46aa8596a353e2729422b9d5ca2cefbcb177e25cbf16b56"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-native-necromancer-2026-10-19.log",
+      "bytes": 3770,
+      "sha256": "3c3f31c1d9770adb6d04cd068cc830aa767a0f1926a08ffbe97fbac1000692c6"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-native-paladin-2026-10-19.log",
+      "bytes": 4148,
+      "sha256": "cb5f3f6d27e8f8a1d2c00503fb2544c3720e161e16f464d7352bcb4f071d8ef2"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-native-portal-2026-10-19.json",
+      "bytes": 735,
+      "sha256": "75a9ae65abbd44230646c8aca20f02730eac1c4e399a109324bf62f9c110ec1d"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-native-portal-2026-10-19.log",
+      "bytes": 4987,
+      "sha256": "1993ad74cd31118dcb2ada34600addf56f8a1dffe9e920a3a584eda052024c9a"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-native-portal-audio-2026-10-19.json",
+      "bytes": 615,
+      "sha256": "42821cb9af1c25141eb53d4526cc7ddfc96219358d47c7613f6461aa1563d92b"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-native-portal-audio-2026-10-19.log",
+      "bytes": 5369,
+      "sha256": "c8d379a85118293f80776d80b55b1b87bd9c4335db473307d45c98f0486c3284"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-native-portal-save-2026-10-19.json",
+      "bytes": 576,
+      "sha256": "34ce4ec7aa295d9e1c586faba5cfb362a35fd948b8ecaec84ab1fe12f0b7b739"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-native-portal-save-2026-10-19.log",
+      "bytes": 4294,
+      "sha256": "75c0597cf47ac40f1e389be06e02e199c88baf25f66e2eb609fcc524455cd995"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-native-portal-screen-2026-10-19.json",
+      "bytes": 529,
+      "sha256": "ea63fcaa663986a201465ba503408c9de14499162f683caee98d29409957c09c"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-native-portal-screen-2026-10-19.log",
+      "bytes": 6491,
+      "sha256": "5be423f7ed40936b904a973670e6e8f7a8ef2034cdde4958c86787db8b277ea8"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-native-portal-screen-2026-10-19.png",
+      "bytes": 1746031,
+      "sha256": "91c53adc1f92a40ea3db698c50ec1eb1b55941a1d856e67ac25a2e00a3daf788"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-physical-audio-2026-10-19.json",
+      "bytes": 913,
+      "sha256": "38c933e0351a5624e332a55544ed2fd6a789f1916600470f8f66ff50011d44c2"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-product-assassin-menu.png",
+      "bytes": 263447,
+      "sha256": "f80be67270ee49d69622bcc7e09dab0151b40f0d44348b2f8732c5b92750f90d"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-product-assassin-stats.png",
+      "bytes": 573072,
+      "sha256": "743e339ed0b8e6ba6b4b912b01ded6c7ebfc0478623aa7db816b3fe057fb29b8"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-product-assassin.png",
+      "bytes": 1200707,
+      "sha256": "72fabf0931acf438b4cf853a5d4f1701a71eaa3873d1bd2aadc2cbffcc5f8ccf"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-product-crusader-menu.png",
+      "bytes": 288493,
+      "sha256": "430632dbb092ed40ac5b66199ae8c437559635572b39d2bcf986b3f8cde90744"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-product-crusader-stats.png",
+      "bytes": 578689,
+      "sha256": "378aa6ff102e3da33877ee3aeee3e79606db2fa4e42047d6707949f254d97016"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-product-crusader.png",
+      "bytes": 1277705,
+      "sha256": "5d3c7ccca756ec049dc908b40399f86cd11aa5ac1403591ce311343ad2929682"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-product-necromancer-menu.png",
+      "bytes": 256832,
+      "sha256": "82fdb43445477287478c91286661980c5013c4ac0664f24b4666c45fd233769e"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-product-necromancer-stats.png",
+      "bytes": 579211,
+      "sha256": "c758b30728d669c7befd83da02290352f1d07be7f82c94650ea8915a65b26213"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-product-necromancer.png",
+      "bytes": 1211923,
+      "sha256": "928d5483ddcae3a9e2cc6163b891357af86c772a22c99cd25900cfec1123fc80"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-product-paladin-menu.png",
+      "bytes": 384792,
+      "sha256": "f34617c3e0ff58fb29baef1495418d43b2c9b400b35677ee727e51d7e8a6a6b6"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-product-paladin-stats.png",
+      "bytes": 561133,
+      "sha256": "68b3160fdf2bd4640d6a3fce7342f7b4da06b58349be62bf9c98dd747db0c644"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-product-paladin.png",
+      "bytes": 1415918,
+      "sha256": "fc013c05fd9858285fa03f7066d38ef8d79021c74f2eedf758995d9efd9bfdcf"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-product-portal-menu.png",
+      "bytes": 335107,
+      "sha256": "5b3215b0c255bd6885d4880b24b193edf70d10c5d3ee03147b2f198dfdd5e9e4"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-product-portal-stats.png",
+      "bytes": 533693,
+      "sha256": "4e52aaf837c3dc467b7253dc6d6fc23a8595c323eaace8aa7bfb1a16e5b25e7e"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-product-portal.png",
+      "bytes": 1373143,
+      "sha256": "837b45d84c03be7284371063b490aed17be3980ca8fc3bb46c1945d9b38ac3b4"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-reference-audit-2026-10-19.json",
+      "bytes": 3548,
+      "sha256": "170cd072af15f5ff85b073bd6ba2d62133bd393057840d65435a5e21e6e9d134"
+    },
+    {
+      "status": "??",
+      "path": "docs/evidence/hexen2-suites-2026-10-19.json",
+      "bytes": 19671,
+      "sha256": "8a4acdf4dee8296e59446c564426ed4bd9450ed1672348973930bec25d71b358"
+    },
+    {
+      "status": "??",
+      "path": "docs/hexen2/demo-fixture-2026-10-19.json",
+      "bytes": 2359,
+      "sha256": "bf8cf525f76a9d713d5a4c061b8417d50611642a3ad293fa4d984ac7fa4abc77"
+    },
+    {
+      "status": "??",
+      "path": "docs/hexen2/plan-delta-2026-10-19.md",
+      "bytes": 15789,
+      "sha256": "f71e3f90bb1ecea782b7c97eb82eedbc594d09cccaf31401afec23b88b70461e"
+    },
+    {
+      "status": "??",
+      "path": "docs/hexen2/playability-2026-10-19.md",
+      "bytes": 13409,
+      "sha256": "a2f24f094e042d343ea9f43e74429a48bc2f2800e744154c549878d07711b8e0"
+    },
+    {
+      "status": "??",
+      "path": "src/engine/client/hexen2_autoplay.js",
+      "bytes": 6509,
+      "sha256": "5c77b0524ccde4d5f2ceab49650252304e1a044a3b1af37d7100aa3dbfad1ea3"
+    },
+    {
+      "status": "??",
+      "path": "src/engine/client/hexen2_effects_bridge.js",
+      "bytes": 3931,
+      "sha256": "42709cc19eb8c2b85afb2e198822908244d478e22e65eec32e292bcdf769dfd6"
+    },
+    {
+      "status": "??",
+      "path": "src/engine/client/hexen2_intermission.js",
+      "bytes": 1098,
+      "sha256": "fc0b60146e2fa0c80c92a8b1f2b490e8abbc15d3f84cab3319c154ff338e6918"
+    },
+    {
+      "status": "??",
+      "path": "src/engine/client/hexen2_menu.js",
+      "bytes": 10322,
+      "sha256": "ea95550a7e1273d19ffa4638e65ddb09240413be544934fc4a1fba3fd2f7a03c"
+    },
+    {
+      "status": "??",
+      "path": "src/engine/client/hexen2_pixel_gate.js",
+      "bytes": 9166,
+      "sha256": "cb3f6416c31c2e1bf14fe386aea5939f1106449429f6123b231dd0d226647394"
+    },
+    {
+      "status": "??",
+      "path": "src/engine/client/hexen2_pixel_menu.js",
+      "bytes": 2594,
+      "sha256": "21e9b5bd923228651c91abca59cbb803d43c32afa65fac774892264ea2821804"
+    },
+    {
+      "status": "??",
+      "path": "src/engine/common/hexen2_hub.js",
+      "bytes": 4399,
+      "sha256": "85a4450c115130ba3462f53a9a7df0d56b6bab810e17d9edc80391a805b60d63"
+    },
+    {
+      "status": "??",
+      "path": "src/engine/common/hexen2_save.js",
+      "bytes": 14389,
+      "sha256": "3be0f912106aa2cd40f5934571777a79bdbd98eeba0ce5bb036cb8cbd5d54115"
+    },
+    {
+      "status": "??",
+      "path": "tests/hexen2_animation_test.js",
+      "bytes": 8313,
+      "sha256": "9eb2d8e5080f8ee141def9153692c1a74c8314e17d08b302473aa9affbc96ed8"
+    },
+    {
+      "status": "??",
+      "path": "tests/hexen2_base_maps_test.js",
+      "bytes": 3420,
+      "sha256": "473056f204c03fddcfcd20d3b62b046767ef9535f673995d2b98485726a883e8"
+    },
+    {
+      "status": "??",
+      "path": "tests/hexen2_campaign_test.js",
+      "bytes": 7254,
+      "sha256": "978a2a4cefd72c85081e485ed0f93219eec1656f841aa48b6aba4c497b4e3301"
+    },
+    {
+      "status": "??",
+      "path": "tests/hexen2_changelevel_test.js",
+      "bytes": 2361,
+      "sha256": "5a23df8636ca3a39b237bbe9c79f08e703d6a80041e44b786a371d850c968718"
+    },
+    {
+      "status": "??",
+      "path": "tests/hexen2_effects_bridge_test.js",
+      "bytes": 3109,
+      "sha256": "6c8ef146a3177fd7635f73ec0f12c29ab8ff7eb791ab627b08c98c53a25644f8"
+    },
+    {
+      "status": "??",
+      "path": "tests/hexen2_endgame_test.js",
+      "bytes": 3577,
+      "sha256": "ca884053307934a9bc04ccc2a6ffceec1d02389d47a2ca0c94acbc1bdad08bec"
+    },
+    {
+      "status": "??",
+      "path": "tests/hexen2_finale_test.js",
+      "bytes": 4475,
+      "sha256": "583bb03b31a03b7fee2b90a8eaa6fde740d2917327fea78825305484566a7d12"
+    },
+    {
+      "status": "??",
+      "path": "tests/hexen2_hub_test.js",
+      "bytes": 4945,
+      "sha256": "cc85ff6b6c75078b6fb88f99a2a7d03b758b11324a80be42c3ea1b9687188715"
+    },
+    {
+      "status": "??",
+      "path": "tests/hexen2_intermission_test.js",
+      "bytes": 1364,
+      "sha256": "4d67035eecd97a02b95d661388eb39072956f0214b9940d29622a5801429231e"
+    },
+    {
+      "status": "??",
+      "path": "tests/hexen2_menu_test.js",
+      "bytes": 3902,
+      "sha256": "b0a66665b71cfb5e0c15a42c3ef9427c5871a978706220feada3d0a7e68f46d0"
+    },
+    {
+      "status": "??",
+      "path": "tests/hexen2_pixel_gate_test.js",
+      "bytes": 2352,
+      "sha256": "aa07dd73cf96973a6e41bb4b5c3ae0daff9636d98a6234a039f264e424d0e9d8"
+    },
+    {
+      "status": "??",
+      "path": "tests/hexen2_portal_campaign_test.js",
+      "bytes": 4861,
+      "sha256": "8d5e26ddafd1bee9e7134471c09c12e3cdfb48e24744ca9bbf7dd626cbce4332"
+    },
+    {
+      "status": "??",
+      "path": "tests/hexen2_portal_maps_test.js",
+      "bytes": 3862,
+      "sha256": "0443570225cf4b73790a695a9822434e42256c8adb9dbe858f07cd9fc931d18b"
+    },
+    {
+      "status": "??",
+      "path": "tests/hexen2_portal_test.js",
+      "bytes": 6061,
+      "sha256": "775506f743b4125059903f70207e304e52f1c5478aa1f42903607f10b36aa250"
+    },
+    {
+      "status": "??",
+      "path": "tests/hexen2_rpg_test.js",
+      "bytes": 7459,
+      "sha256": "0fa5611ac14a2471ba73124b25c8669b3f284c7db427c7d3bcf9fa9ea4974831"
+    },
+    {
+      "status": "??",
+      "path": "tests/hexen2_save_test.js",
+      "bytes": 7309,
+      "sha256": "7a54ad8e60c7b4c3d8c7f73ed5145cd3eb808d870ee8897099e9b0133d8789c9"
+    },
+    {
+      "status": "??",
+      "path": "tests/hexen2_startspot_test.js",
+      "bytes": 3283,
+      "sha256": "4c468ff5059044e958223d93737f9410b6e8850ada79ca51c0cdd82b24751201"
+    },
+    {
+      "status": "generated",
+      "path": "docs/evidence/hexen2-worktree-2026-10-19.patch",
+      "bytes": 461174,
+      "sha256": "c97a7e24f148b6a231cb31806184feeb74d1ae0e1375c6f057016136ad176ee5"
+    }
+  ],
+  "patch": {
+    "path": "docs/evidence/hexen2-worktree-2026-10-19.patch",
+    "bytes": 461174,
+    "sha256": "c97a7e24f148b6a231cb31806184feeb74d1ae0e1375c6f057016136ad176ee5"
+  },
+  "excluded": "No purchased Hexen data, no build outputs (src-tauri/target-test removed, node_modules symlink removed), no /tmp reference clones. Evidence images/logs are included by hash but not patch text.",
+  "limits": "Recovery aid, not a commit or review; the tracked diff is exact against HEAD, untracked text diffs are against /dev/null. The manifest itself is not inside the patch."
+}

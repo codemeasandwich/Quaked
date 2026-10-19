@@ -809,8 +809,10 @@ function V_BoundOffsets( playerorg ) {
 		r_refdef.vieworg[ 1 ] = playerorg[ 1 ] + 14;
 	if ( r_refdef.vieworg[ 2 ] < playerorg[ 2 ] - 22 )
 		r_refdef.vieworg[ 2 ] = playerorg[ 2 ] - 22;
-	else if ( r_refdef.vieworg[ 2 ] > playerorg[ 2 ] + 30 )
-		r_refdef.vieworg[ 2 ] = playerorg[ 2 ] + 30;
+	// The Quake bound (+30) would clamp a Hexen II eye: its gamecode sets view_ofs to 50. The bound therefore covers
+	// at least the client's eye height; Quake (22) keeps its original +30.
+	else if ( r_refdef.vieworg[ 2 ] > playerorg[ 2 ] + Math.max( 30, cl.viewheight ) )
+		r_refdef.vieworg[ 2 ] = playerorg[ 2 ] + Math.max( 30, cl.viewheight );
 
 }
 

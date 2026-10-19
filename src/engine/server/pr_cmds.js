@@ -673,7 +673,7 @@ function PF_newcheckclient( check ) {
 
 }
 
-function PF_checkclient() {
+export function PF_checkclient() {
 
 	// find a new check if on a new frame
 	if ( sv.time - sv.lastchecktime >= 0.1 ) {
@@ -830,7 +830,7 @@ Returns a chain of entities that have origins within a spherical area
 findradius (origin, radius)
 =================
 */
-function PF_findradius() {
+export function PF_findradius() {
 
 	let chain = sv.edicts[ 0 ];
 
@@ -1204,7 +1204,7 @@ PF_nextent
 entity nextent(entity)
 =============
 */
-function PF_nextent() {
+export function PF_nextent() {
 
 	let i = G_EDICTNUM( OFS_PARM0 );
 
@@ -1240,7 +1240,7 @@ vector aim(entity, missilespeed)
 */
 const DAMAGE_AIM = 2;
 
-function PF_aim() {
+export function PF_aim() {
 
 	const ent = G_EDICT( OFS_PARM0 );
 	const teamplayValue = teamplay.value;

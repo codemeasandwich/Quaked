@@ -15,7 +15,13 @@
  * D10) that ran as the module loaded.
  */
 import { SV_LargeProtocolNeeded } from './sv_large_protocol.js';
-import { SV_RespawnPrecache, SV_SetRespawnLandedHook, SV_SetRespawnEntryHook, SV_RespawnReserveGuards, SV_RespawnWorldStart, SV_RespawnCaptureTravel, SV_RespawnClearTravel, sv_respawnguard } from '../common/hooks.js'; // installed by newer/gameplay/sv_respawn.js
+
+// registers the Hexen II world builtins (setorigin, setsize, traceline, pointcontents, checkbottom, droptofloor)
+import '../progs/hexen2_world_cmds.js';
+// registers the Hexen II precache and model builtins
+import '../progs/hexen2_precache_cmds.js';
+// registers the Hexen II entity, light-style, sound and print builtins
+import '../progs/hexen2_server_cmds.js';import { SV_RespawnPrecache, SV_SetRespawnLandedHook, SV_SetRespawnEntryHook, SV_RespawnReserveGuards, SV_RespawnWorldStart, SV_RespawnCaptureTravel, SV_RespawnClearTravel, sv_respawnguard } from '../common/hooks.js'; // installed by newer/gameplay/sv_respawn.js
 // Ported from: WinQuake/sv_main.c -- server main program
 
 import { Sys_Error } from '../common/sys.js';
@@ -2008,6 +2014,7 @@ function spawnServer( server ) {
 		SV_LinkEdict,
 		SV_PointContents,
 		SV_StartSound,
+		SV_StartParticle,
 		PR_ExecuteProgram,
 		EDICT_TO_PROG,
 		PROG_TO_EDICT,

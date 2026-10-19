@@ -25,6 +25,7 @@
  */
 
 import { COM_PackHeader, COM_PackEntries } from './pak.js';
+import { Hexen2_PakDirectorySignature, Hexen2_DemoSignatureProblems, Hexen2_ReadProgHeaderSummary } from './hexen2_filesystem.js';
 import {Distribution_Profile,AssetFetch} from '../../platform/distribution.js';
 import { Cmd_AddCommand } from './cmd.js';
 import { Con_Printf } from './console.js';
@@ -44,7 +45,12 @@ export const GAME_CATALOGUE_GAMES = Object.freeze( [
 	{ id: 'malice', name: 'Malice', kind: 'addon', base: 'quake', folders: [ 'games/Malice', 'resources/malice' ], quake: 'malice' },
 	{ id: 'xmen', name: 'X-Men', kind: 'addon', base: 'quake', folders: [ 'games/X-Men', 'resources/xmen' ], quake: 'xmen' },
 	{ id: 'aopfm_v2', name: 'Abyss of Pandemonium', kind: 'addon', base: 'quake', folders: [ 'games/Abyss of Pandemonium', 'resources/aopfm_v2' ], quake: 'aopfm_v2' },
-	{ id: 'soe', name: 'Soul of Evil', kind: 'addon', base: 'quake', folders: [ 'games/Soul of Evil', 'resources/soe' ], quake: 'soe' }
+	{ id: 'soe', name: 'Soul of Evil', kind: 'addon', base: 'quake', folders: [ 'games/Soul of Evil', 'resources/soe' ], quake: 'soe' },
+	// Hexen II (plan section 3): the selected data1 directory, its portals sibling and the separate Portal layout. Its
+	// gamecode, strings and config are loose files beside the packs, and pak0..pak9 are probed independently of gaps.
+	{ id: 'hexen2', name: 'Hexen II', kind: 'hexen2', folders: [ 'games/Hexen 2/data1', 'resources/Hexen 2/data1', 'resources/hexen2/data1' ], quake: 'data1', maxPacks: 10 },
+	{ id: 'hexen2-portals', name: 'Hexen II: Portal of Praevus', kind: 'hexen2-portals', base: 'hexen2', folders: [ 'games/Hexen 2/portals', 'resources/Hexen 2/portals', 'resources/hexen2/portals' ], quake: 'portals', maxPacks: 10 },
+	{ id: 'hexen2-demo', name: 'Hexen II (demo)', kind: 'hexen2-demo', folders: [ 'games/Hexen 2 Demo', 'games/Hexen 2 Shareware/hexen2-demo/data1', 'resources/hexen2-demo' ], quake: 'data1', maxPacks: 10 }
 ] );
 
 // Bounds: packs pak0..pak4 (Quake reads them in that numeric order and stops at a gap); a directory of at most
@@ -189,7 +195,20 @@ export async function GameCatalogue_ProbePack( url, options = {} ) {
 		else {
 
 			const entries = COM_PackEntries( dir.bytes, header.count, size );
-			result = entries.ok ? { state: 'valid', size, files: entries.files.map( f => f.name ) } : { state: 'invalid', reason: entries.reason, size };
+			if ( entries.ok ) {
+
+				try {
+
+					const signature = Hexen2_PakDirectorySignature( dir.bytes, header.count, size );
+					result = { state: 'valid', size, files: entries.files.map( f => f.name ), signature };
+
+				} catch ( error ) {
+
+					result = { state: 'invalid', reason: 'directory signature: ' + String( error?.message ?? error ), size };
+
+				}
+
+			} else result = { state: 'invalid', reason: entries.reason, size };
 
 		}
 
@@ -207,7 +226,7 @@ const MISSION_PACKS = new Set( [ 'hipnotic', 'rogue' ] );
 const EPISODES = new Set( [ 'dopa', 'mg1' ] ); // mg1 on the large-map protocol (card [34f])
 
 // What a found game's files show it to be, and whether that is evidence enough to call it playable.
-function assess( game, files, byId ) {
+function assess( game, files, byId, entry ) {
 
 	const has = name => files.has( name );
 	if ( game.kind === 'shareware' ) {
@@ -222,6 +241,28 @@ function assess( game, files, byId ) {
 		if ( ! has( 'progs.dat' ) ) return { playable: false, reason: 'no QuakeC (progs.dat) in its pak0.pak' };
 		if ( ! episodes ) return { playable: false, reason: 'Episodes 2 to 4 are not in its pak0.pak (an original release keeps them in pak1.pak, which the game does not read yet)' };
 		return { playable: true, reason: 'Episodes 1 to 4 and their QuakeC' };
+
+	}
+	// Hexen II: the supplied Installed gamecode (loose progs.dat), its palette and demo1 are the Paladin slice; the
+	// Portal expansion needs its own gamecode and a Keep map on top of a playable base.
+	if ( game.kind === 'hexen2' ) {
+
+		const missing = [ 'progs.dat', 'gfx/palette.lmp', 'maps/demo1.bsp' ].filter( name => ! has( name ) );
+		if ( missing.length > 0 ) return { playable: false, reason: `its ${missing.join( ', ' )} ${missing.length === 1 ? 'is' : 'are'} missing` };
+		return { playable: true, reason: 'Hexen II: its Installed gamecode, palette and demo1' };
+
+	}
+	// The genuine Nov 1997 demo is a single pak0.pak with the pinned entry count, CCITT directory CRC and size, plus a
+	// loose version-6 program on the base layout. A folder that merely looks like a demo is refused with the mismatch.
+	if ( game.kind === 'hexen2-demo' ) {
+
+		if ( ! has( 'progs.dat' ) || ! has( 'maps/demo1.bsp' ) ) return { playable: false, reason: 'its gamecode or demo map is missing' };
+		const problems = Hexen2_DemoSignatureProblems( entry.packs[ 0 ]?.signature );
+		if ( problems.length > 0 ) return { playable: false, reason: `archive signature mismatch: ${problems.join( ', ' )}` };
+		if ( ! entry.progsHeader ) return { playable: false, reason: 'the demo archive has no readable version-6 gamecode header' };
+		if ( entry.progsHeader.version !== 6 || entry.progsHeader.layout !== 'hexen2-base' )
+			return { playable: false, reason: `unsupported demo gamecode (version ${entry.progsHeader.version}, layout ${entry.progsHeader.layout})` };
+		return { playable: true, reason: 'the genuine Nov 1997 demo archive and its version-6 base-layout gamecode' };
 
 	}
 	const base = byId.get( game.base );
@@ -247,6 +288,13 @@ function assess( game, files, byId ) {
 	}
 	// any add-on, known or found by its folder (docs/add-ons-2026-10-13.md): it plays over Quake when it brings maps,
 	// with its own QuakeC when it has one (otherwise Quake's); what it needs beyond that the engine adapts to
+	if ( game.kind === 'hexen2-portals' ) {
+
+		const missing = [ 'progs.dat', 'maps/keep1.bsp' ].filter( name => ! has( name ) );
+		if ( missing.length > 0 ) return { playable: false, reason: `its ${missing.join( ', ' )} ${missing.length === 1 ? 'is' : 'are'} missing` };
+		return { playable: true, reason: 'Portal of Praevus: its gamecode and Keep, on Hexen II' };
+
+	}
 	if ( game.kind === 'addon' ) {
 
 		const maps = [ ...files ].some( name => /^maps\/[^/]+\.bsp$/.test( name ) );
@@ -352,7 +400,7 @@ export function GameCatalogue_Refresh( options ) {
 // The loose files Quake reads from a game folder that add-ons ship outside their packs (X-Men's progs.dat, Malice's
 // autoexec.cfg, Arcane Dimensions' quake.rc; docs/add-ons-2026-10-13.md); the Mac app's library lists the same
 // (src-tauri/src/library.rs LOOSE_FILES). config.cfg is not read: the port keeps its own settings.
-export const GAME_CATALOGUE_LOOSE_FILES = Object.freeze( [ 'progs.dat', 'autoexec.cfg', 'quake.rc' ] );
+export const GAME_CATALOGUE_LOOSE_FILES = Object.freeze( [ 'progs.dat', 'autoexec.cfg', 'quake.rc', 'strings.txt', 'hexen.rc' ] );
 
 // one game's folders: the first holding a pak0.pak is the game's; its packs pak0.. in order, stopping at a gap
 // (and, for an add-on, its loose game files: one byte each)
@@ -371,6 +419,16 @@ async function probeLoose( folder, base, options ) {
 
 }
 
+// The first 60 bytes of a game folder's loose progs.dat, checked as a Hexen II program identity (version/layout). Only
+// an exact range counts: a server that ignores ranges, or answers a missing path with a page, yields no header.
+async function probeProgHeader( folder, base, options ) {
+
+	const got = await rangedGet( options.fetch ?? globalThis.fetch, new URL( folder.split( '/' ).map( encodeURIComponent ).join( '/' ) + '/progs.dat', base ).href, 0, 60, options.timeoutMs ?? GAME_CATALOGUE_LIMITS.timeoutMs );
+	if ( got.response?.status !== 206 || ! got.exact || got.bytes.length !== 60 ) return null;
+	try { return Hexen2_ReadProgHeaderSummary( got.bytes ); } catch { return null; }
+
+}
+
 async function probeGame( game, base, options ) {
 
 	const entry = { id: game.id, name: game.name, kind: game.kind, folder: null, packs: [], present: false, validated: false, playable: false, reason: '', fileCount: 0 };
@@ -379,30 +437,36 @@ async function probeGame( game, base, options ) {
 	for ( const folder of game.folders ) {
 
 		const packs = [];
-		for ( let n = 0; n < GAME_CATALOGUE_LIMITS.packs; n ++ ) {
+		const maxPacks = game.maxPacks ?? GAME_CATALOGUE_LIMITS.packs;
+		// Portal of Praevus ships only its add-on pak3 beside a loose program: pak0/1 come from its base game, so a
+		// missing pak0 must not stop the probe before pak3.
+		const portal = game.kind === 'hexen2-portals';
+		for ( let n = 0; n < maxPacks; n ++ ) {
 
 			const url = new URL( folder.split( '/' ).map( encodeURIComponent ).join( '/' ) + `/pak${n}.pak`, base ).href;
 			const probe = await GameCatalogue_ProbePack( url, options );
-			if ( probe.state === 'absent' ) break;
+			if ( probe.state === 'absent' ) { if ( portal ) continue; break; }
 			packs.push( { name: `pak${n}.pak`, ...probe } );
 			if ( probe.state === 'error' ) break;
 
 		}
 		// an add-on's loose game files count as its files (one byte read to see each is there); an add-on of loose files
 		// alone (a progs.dat and no packs) is found too
-		const loose = game.kind === 'addon' ? await probeLoose( folder, base, options ) : [];
+		const looseFiles = game.kind === 'addon' || game.kind === 'hexen2' || game.kind === 'hexen2-portals' || game.kind === 'hexen2-demo';
+		const loose = looseFiles ? await probeLoose( folder, base, options ) : [];
 		if ( packs.length === 0 && ! loose.includes( 'progs.dat' ) ) continue;
 		// at the bound: one more header says whether packs were left unread
-		if ( packs.length === GAME_CATALOGUE_LIMITS.packs && packs[ packs.length - 1 ].state !== 'error' ) {
+		if ( packs.length === maxPacks && packs[ packs.length - 1 ].state !== 'error' ) {
 
-			const next = await GameCatalogue_ProbePack( new URL( folder.split( '/' ).map( encodeURIComponent ).join( '/' ) + `/pak${GAME_CATALOGUE_LIMITS.packs}.pak`, base ).href, { ...options, headerOnly: true } );
+			const next = await GameCatalogue_ProbePack( new URL( folder.split( '/' ).map( encodeURIComponent ).join( '/' ) + `/pak${maxPacks}.pak`, base ).href, { ...options, headerOnly: true } );
 			entry.beyondLimit = next.state !== 'absent';
 
 		}
 		entry.folder = folder; entry.packs = packs; entry.present = true;
 		entry.validated = packs.every( p => p.state === 'valid' );
 		for ( const p of packs ) for ( const f of p.files ?? [] ) files.add( f );
-		if ( game.kind === 'addon' ) { entry.loose = loose; for ( const name of loose ) files.add( name ); }
+		if ( looseFiles ) { entry.loose = loose; for ( const name of loose ) files.add( name ); }
+		if ( game.kind === 'hexen2-demo' && loose.includes( 'progs.dat' ) ) entry.progsHeader = await probeProgHeader( folder, base, options );
 		entry.fileCount = files.size;
 		break;
 
@@ -429,7 +493,7 @@ async function refresh( options ) {
 		if ( entry.present && ! entry.validated ) entry.reason = 'found, not validated: ' + ( entry.packs.find( p => p.state !== 'valid' )?.reason ?? '' );
 		// the base game is judged on its pak0.pak alone: the pack the start mounts (an original release's pak1.pak,
 		// with Episodes 2 to 4, is not read yet: card [34c])
-		else if ( entry.validated ) Object.assign( entry, assess( game, game.kind === 'base' && !options.allPacks ? new Set( entry.packs[ 0 ]?.files ?? [] ) : files, byId ) );
+		else if ( entry.validated ) Object.assign( entry, assess( game, game.kind === 'base' && !options.allPacks ? new Set( entry.packs[ 0 ]?.files ?? [] ) : files, byId, entry ) );
 		else if ( ! game.placeholder ) entry.reason = 'not installed';
 		if ( entry.beyondLimit ) { entry.playable = false; entry.reason += ` (it has more than ${GAME_CATALOGUE_LIMITS.packs} packs; pak${GAME_CATALOGUE_LIMITS.packs}.pak and later were not read)`; }
 		games.push( entry ); byId.set( game.id, entry );

@@ -63,7 +63,11 @@ function addonEntry( id ) {
 const missionEntry = id => MISSION_PACKS[ id ] ?? ( isAddon( id ) ? addonEntry( id ) : null );
 const ownedPacks = id => OWNED_PACKS[ id ] ?? ( isAddon( id ) ? QUAKE_PACKS : null );
 const gameName = id => NAMES[ id ] ?? addonDefinition( id )?.name ?? id;
-const choosable = id => Object.hasOwn( OWNED_PACKS, id ) || isAddon( id );
+const choosable = id => Object.hasOwn( OWNED_PACKS, id ) || isAddon( id ) ||
+	( Distribution_Profile() === 'desktop' && HEXEN_CHOICES.has( id ) );
+
+/** The native desktop app's Hexen II catalogue ids (the web product keeps its Quake shareware product). */
+const HEXEN_CHOICES = new Set( [ 'hexen2', 'hexen2-portals', 'hexen2-demo' ] );
 /** The games that can be chosen by name: the official ones and every known add-on (a found add-on, `mod_...`, too). */
 export const GAME_SELECTION_CHOICES = Object.freeze( [ ...Object.keys( OWNED_PACKS ), ...KNOWN_ADDONS.filter( id => ! Object.hasOwn( OWNED_PACKS, id ) ) ] );
 
@@ -400,6 +404,14 @@ export function GameSelection_ConfigKey() {
 export function GameSelection_Startable( game, options = {} ) {
 	if(options.strict && !(game.present && game.validated && game.playable))return {ok:false,unchecked:false,refusal:"is not playable",why:game.reason || "required game files are unavailable"};
 
+	if ( HEXEN_CHOICES.has( game.id ) ) {
+
+		// Hexen II is offered by the native desktop app only; the catalogue has already proved the installation
+		if ( Distribution_Profile() !== 'desktop' )
+			return { ok: false, unchecked: false, refusal: 'needs the native desktop app', why: 'Hexen II is not part of the web product' };
+		return { ok: true, unchecked: false, refusal: '', why: game.reason ?? '' };
+
+	}
 	if ( game.id === 'shareware' ) return { ok: true, unchecked: false, refusal: '', why: game.reason ?? '' };
 	if ( ! choosable( game.id ) ) return { ok: false, unchecked: false, refusal: 'cannot be chosen yet', why: game.reason || 'its support is not built' };
 	// found but not checked (a server that ignores byte ranges): allowed, as the start reads the whole pack and refuses

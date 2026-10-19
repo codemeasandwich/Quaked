@@ -215,13 +215,30 @@ fn lists_an_add_ons_loose_game_files_after_its_packs_and_nothing_else_loose() {
     f.write("X-Men/autoexec.cfg", b"bind i prevtoy");
     f.write("X-Men/config.cfg", b"unbindall");
     f.write("X-Men/readme.txt", b"not a game file");
-    f.write("Quoth/progs.dat", b"an add-on of loose files only is a game too");
-    f.write("Scourge of Armagon/progs.dat", b"a mission pack without its pak0 is not");
+    f.write(
+        "Quoth/progs.dat",
+        b"an add-on of loose files only is a game too",
+    );
+    f.write(
+        "Scourge of Armagon/progs.dat",
+        b"a mission pack without its pak0 is not",
+    );
     let found = library::scan(&f.0).unwrap();
-    assert_eq!(tokens(&found), ["quoth/progs.dat", "xmen/pak0.pak", "xmen/progs.dat", "xmen/autoexec.cfg"]);
+    assert_eq!(
+        tokens(&found),
+        [
+            "quoth/progs.dat",
+            "xmen/pak0.pak",
+            "xmen/progs.dat",
+            "xmen/autoexec.cfg"
+        ]
+    );
     let loose: Vec<bool> = found.packs.iter().map(|p| p.loose).collect();
     assert_eq!(loose, [true, false, true, true]);
-    assert_eq!(library::read_range(&found, "xmen/progs.dat", 0, 5).unwrap(), b"loose");
+    assert_eq!(
+        library::read_range(&found, "xmen/progs.dat", 0, 5).unwrap(),
+        b"loose"
+    );
 }
 
 #[cfg(unix)]
@@ -237,8 +254,13 @@ fn a_base_game_gets_no_loose_files_and_a_bad_loose_file_is_left_out_without_fail
     std::os::unix::fs::symlink(f.path("missing"), f.path("X-Men/autoexec.cfg")).unwrap();
     let big = fs::File::create(f.path("X-Men/quake.rc")).unwrap();
     big.set_len((64 << 20) + 1).unwrap();
-    let found = library::scan(&f.0).expect("an unreadable, escaping or oversized loose file does not fail the scan");
-    assert_eq!(tokens(&found), ["quake/pak0.pak", "xmen/pak0.pak"], "no loose file for Quake; none of the bad ones");
+    let found = library::scan(&f.0)
+        .expect("an unreadable, escaping or oversized loose file does not fail the scan");
+    assert_eq!(
+        tokens(&found),
+        ["quake/pak0.pak", "xmen/pak0.pak"],
+        "no loose file for Quake; none of the bad ones"
+    );
 }
 
 #[test]
@@ -253,10 +275,23 @@ fn any_folder_with_a_pak0_or_progs_dat_is_discovered_as_an_add_on_named_from_its
     let found = library::scan(&f.0).unwrap();
     assert_eq!(
         tokens(&found),
-        ["quake/pak0.pak", "mod_my_mod/pak0.pak", "mod_my_mod/autoexec.cfg", "mod_my_mod_2/progs.dat"]
+        [
+            "quake/pak0.pak",
+            "mod_my_mod/pak0.pak",
+            "mod_my_mod/autoexec.cfg",
+            "mod_my_mod_2/progs.dat"
+        ]
     );
-    let names: Vec<(&str, &str)> = found.discovered.iter().map(|d| (d.id.as_str(), d.name.as_str())).collect();
-    assert_eq!(names, [("mod_my_mod", "My Mod!"), ("mod_my_mod_2", "my-mod")], "named from the folder; a clash gets _2");
+    let names: Vec<(&str, &str)> = found
+        .discovered
+        .iter()
+        .map(|d| (d.id.as_str(), d.name.as_str()))
+        .collect();
+    assert_eq!(
+        names,
+        [("mod_my_mod", "My Mod!"), ("mod_my_mod_2", "my-mod")],
+        "named from the folder; a clash gets _2"
+    );
 }
 
 #[test]
@@ -270,7 +305,160 @@ fn a_folder_with_no_ascii_name_gets_a_usable_id_and_a_placeholder_folder_is_not_
     let mut ids: Vec<&str> = found.discovered.iter().map(|d| d.id.as_str()).collect();
     ids.sort();
     // one `_` per character, as the source build's GameCatalogue_DiscoveredId (its test has the same cases)
-    assert_eq!(ids, ["mod_addon", "mod_mod_x"], "no empty id; the placeholder's folder is left to its placeholder");
+    assert_eq!(
+        ids,
+        ["mod_addon", "mod_mod_x"],
+        "no empty id; the placeholder's folder is left to its placeholder"
+    );
+}
+
+#[test]
+fn finds_hexen2_under_data1_with_gapped_paks_and_loose_files() {
+    let f = Fixture::new();
+    f.write("Hexen 2/data1/pak0.pak", b"base");
+    f.write("Hexen 2/data1/PAK1.PAK", b"base one");
+    f.write("Hexen 2/data1/pak3.pak", b"base three, after a gap");
+    f.write("Hexen 2/data1/progs.dat", b"loose program");
+    f.write("Hexen 2/data1/strings.txt", b"loose strings");
+    f.write("Hexen 2/data1/hexen.rc", b"loose startup");
+    f.write("Hexen 2/data1/readme.txt", b"not engine content");
+    let found = library::scan(&f.0).unwrap();
+    assert_eq!(
+        tokens(&found),
+        [
+            "hexen2/pak0.pak",
+            "hexen2/pak1.pak",
+            "hexen2/pak3.pak",
+            "hexen2/progs.dat",
+            "hexen2/strings.txt",
+            "hexen2/hexen.rc",
+        ],
+        "the installation's data1 packs are probed through gaps and its loose files are exposed"
+    );
+    let loose: Vec<&str> = found
+        .packs
+        .iter()
+        .filter(|p| p.loose)
+        .map(|p| p.name.as_str())
+        .collect();
+    assert_eq!(loose, ["progs.dat", "strings.txt", "hexen.rc"]);
+    for pack in &found.packs {
+        assert!(pack.path.starts_with(&found.root));
+        assert_eq!(pack.bytes, fs::metadata(&pack.path).unwrap().len());
+    }
+    // selecting the installation folder itself also resolves data1
+    let direct = library::scan(&f.path("Hexen 2")).unwrap();
+    assert_eq!(
+        tokens(&direct).len(),
+        6,
+        "the installation root resolves its data1 and does not rediscover it as an add-on"
+    );
+}
+
+#[test]
+fn finds_the_supplied_demo_wrapper_its_data1_program_and_its_loose_files() {
+    let f = Fixture::new();
+    f.write("Hexen 2 Shareware/hexen2-demo/data1/pak0.pak", b"demo");
+    f.write(
+        "Hexen 2 Shareware/hexen2-demo/data1/progs.dat",
+        b"demo program",
+    );
+    f.write(
+        "Hexen 2 Shareware/hexen2-demo/data1/strings.txt",
+        b"demo strings",
+    );
+    f.write(
+        "Hexen 2 Shareware/hexen2-demo/data1/hexen.rc",
+        b"demo startup",
+    );
+    f.write(
+        "Hexen 2 Shareware/hexen2-demo/data1/readme.txt",
+        b"not engine content",
+    );
+    let expected = [
+        "hexen2-demo/pak0.pak",
+        "hexen2-demo/progs.dat",
+        "hexen2-demo/strings.txt",
+        "hexen2-demo/hexen.rc",
+    ];
+    let found = library::scan(&f.0).unwrap();
+    assert_eq!(
+        tokens(&found),
+        expected,
+        "the wrapper's nested data1 is found"
+    );
+    assert!(
+        found.discovered.is_empty(),
+        "the wrapper is a known demo installation, not an add-on"
+    );
+    assert_eq!(
+        tokens(&library::scan(&f.path("Hexen 2 Shareware")).unwrap()),
+        expected,
+        "the wrapper root works"
+    );
+    assert_eq!(
+        tokens(&library::scan(&f.path("Hexen 2 Shareware/hexen2-demo")).unwrap()),
+        expected,
+        "the demo's own root works"
+    );
+    assert_eq!(
+        library::read_range(&found, "hexen2-demo/progs.dat", 0, 5).unwrap(),
+        b"demo ",
+        "the demo's loose program is readable through its token"
+    );
+}
+
+#[test]
+fn finds_the_owner_demo_fixture_when_it_is_present() {
+    let wrapper = Path::new("/Users/bri/quaked/Hexen 2 Shareware");
+    if !wrapper.exists() {
+        return;
+    }
+    let found = library::scan(wrapper).expect("the demo wrapper scans");
+    assert!(
+        tokens(&found)
+            .iter()
+            .any(|token| *token == "hexen2-demo/pak0.pak"),
+        "the verified demo pak0 is discovered: {:?}",
+        tokens(&found)
+    );
+    assert!(
+        tokens(&found)
+            .iter()
+            .any(|token| *token == "hexen2-demo/progs.dat"),
+        "the demo's loose program is discovered"
+    );
+    let header = library::read_range(&found, "hexen2-demo/pak0.pak", 0, 4).unwrap();
+    assert_eq!(header, b"PACK", "the discovered archive is the real PAK");
+}
+
+#[test]
+fn discovers_portal_of_praevus_by_its_loose_program_and_add_on_pak() {
+    let f = Fixture::new();
+    f.write("Hexen 2/data1/pak0.pak", b"base");
+    f.write("Hexen 2/data1/pak1.pak", b"base one");
+    f.write("Hexen 2/portals/pak3.pak", b"portal add-on");
+    f.write("Hexen 2/portals/progs.dat", b"portal program");
+    f.write("Hexen 2/portals/strings.txt", b"portal strings");
+    f.write("Hexen 2/portals/hexen.rc", b"portal startup");
+    let found = library::scan(&f.0).unwrap();
+    assert!(
+        tokens(&found).contains(&"hexen2-portals/pak3.pak"),
+        "Portal's add-on pak is discovered without a pak0: {:?}",
+        tokens(&found)
+    );
+    assert!(
+        tokens(&found).contains(&"hexen2-portals/progs.dat"),
+        "Portal's loose program is discovered: {:?}",
+        tokens(&found)
+    );
+    let portal_loose: Vec<&str> = found
+        .packs
+        .iter()
+        .filter(|p| p.game == "hexen2-portals" && p.loose)
+        .map(|p| p.name.as_str())
+        .collect();
+    assert_eq!(portal_loose, ["progs.dat", "strings.txt", "hexen.rc"]);
 }
 
 #[test]
@@ -323,42 +511,37 @@ fn shareware_and_addons_get_art_while_art_only_folders_get_titles_without_mounta
     let addon_front = f.write("My Mod/front.webp", b"addon front");
     let quaked_front = f.write("Quaked/front.png", b"art alone");
     let hexen_front = f.write("Hexen 2/front.png", b"box with nested data");
-    f.write("Hexen 2/data1/pak0.pak", b"not a supported immediate archive");
+    // Hexen II is a recognised game: its data1 packs mount and its box art belongs to it, not to an add-on title.
+    f.write("Hexen 2/data1/pak0.pak", b"hexen base pack");
     f.write("notes/readme.txt", b"ordinary folder without art or game content");
     f.write("Poster Only/poster.png", b"not a canonical box face");
     f.write(".hidden/front.png", b"hidden art alone");
     f.write("Dawn of the Machine/front.png", b"placeholder art alone");
     let found = library::scan(&f.0).unwrap();
-    assert_eq!(tokens(&found), ["shareware/pak0.pak", "mod_my_mod/progs.dat"]);
+    assert_eq!(tokens(&found), ["hexen2/pak0.pak", "shareware/pak0.pak", "mod_my_mod/progs.dat"]);
     assert_eq!(found.artwork["shareware"]["front"], cover.canonicalize().unwrap());
     assert_eq!(found.artwork["shareware"]["spine"], side.canonicalize().unwrap());
     assert_eq!(found.artwork["mod_my_mod"]["front"], addon_front.canonicalize().unwrap());
     let titles: Vec<(&str, &str)> = found.discovered.iter().map(|d| (d.id.as_str(), d.name.as_str())).collect();
-    assert_eq!(titles, [("mod_hexen_2", "Hexen 2"), ("mod_my_mod", "My Mod"), ("mod_quaked", "Quaked")]);
+    assert_eq!(titles, [("mod_my_mod", "My Mod"), ("mod_quaked", "Quaked")]);
     assert_eq!(found.artwork["mod_quaked"]["front"], quaked_front.canonicalize().unwrap());
-    assert_eq!(found.artwork["mod_hexen_2"]["front"], hexen_front.canonicalize().unwrap());
-    assert!(!found.packs.iter().any(|p| p.game == "mod_quaked" || p.game == "mod_hexen_2"),
-        "neither artwork nor nested foreign archives grant mountable content");
+    assert_eq!(found.artwork["hexen2"]["front"], hexen_front.canonicalize().unwrap());
+    assert!(!found.packs.iter().any(|p| p.game == "mod_quaked"), "artwork alone grants no mountable content");
     assert!(library::read_range(&found, "mod_quaked/pak0.pak", 0, 1).is_err());
-    assert!(library::read_range(&found, "mod_hexen_2/pak0.pak", 0, 1).is_err());
     assert!(!found.artwork.contains_key("dawn"));
 }
 
 #[test]
 fn existing_folders_with_default_boxes_get_metadata_without_local_art_or_nested_game_admission() {
     let f = Fixture::new();
-    f.write("hExEn 2/data1/pak0.pak", b"nested foreign game data");
-    f.write("Hexen 2 Portal of Praevus/portals/pak3.pak", b"nested foreign expansion data");
+    // Recognised Hexen II folders are games, never display-only titles (their own contract is hexen-specific).
+    f.write("hExEn 2/data1/pak0.pak", b"hexen base pack");
     fs::create_dir(f.path("Quaked")).unwrap();
     f.write("Another Game/data1/pak0.pak", b"a nested-only folder without default art stays absent");
     let found = library::scan(&f.0).unwrap();
     let titles: Vec<(&str, &str)> = found.discovered.iter().map(|d| (d.id.as_str(), d.name.as_str())).collect();
-    assert_eq!(titles, [
-        ("mod_hexen_2", "hExEn 2"),
-        ("mod_hexen_2_portal_of_praevus", "Hexen 2 Portal of Praevus"),
-        ("mod_quaked", "Quaked"),
-    ], "only existing display-only folders with shipped boxes are added");
-    assert!(found.packs.is_empty(), "default box art grants no pack or loose-file tokens");
+    assert_eq!(titles, [("mod_quaked", "Quaked")], "only existing display-only folders with shipped boxes are added");
+    assert!(found.packs.iter().all(|p| p.game == "hexen2"), "default box art grants no pack or loose-file tokens");
     assert!(found.artwork.is_empty(), "no local art is invented; the shelf uses its bundled defaults");
     for title in &found.discovered {
         assert!(library::read_range(&found, &format!("{}/pak0.pak", title.id), 0, 1).is_err());

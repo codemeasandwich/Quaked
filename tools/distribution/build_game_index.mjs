@@ -39,13 +39,15 @@ function bspTextures(bytes){
  for(let i=0;i<count;i++){const at=view.getInt32(offset+4+i*4,true);if(at<0)continue;const raw=bytes.subarray(offset+at,offset+at+16),end=raw.indexOf(0);names.add(new TextDecoder().decode(raw.subarray(0,end<0?16:end)).toLowerCase());}
  return names;
 }
-// A game's PAKs in Quake's order (pak0, pak1, ...; stopping at the first gap); later PAKs override.
+// A game's PAKs in its engine's order; later PAKs override. Quake stops at the first gap (pak0, pak1, ...);
+// a game with maxPacks (Hexen II) probes 0..maxPacks-1 across gaps, so Portal of Praevus's lone pak3 is found.
 async function gamePaks(game){
  const paks=[];
  for(const folder of (game.folders??[]).filter(f=>f.startsWith('games/'))){
   const dir=join(library,folder.slice(6));let names=[];try{names=await readdir(dir);}catch{continue;}
   const byIndex=new Map(names.map(n=>[/^pak(\d+)\.pak$/i.exec(n)?.[1],n]).filter(([i])=>i!==undefined).map(([i,n])=>[Number(i),n]));
-  for(let i=0;byIndex.has(i);i++)paks.push(join(dir,byIndex.get(i)));
+  if(game.maxPacks)for(let i=0;i<game.maxPacks;i++){if(byIndex.has(i))paks.push(join(dir,byIndex.get(i)));}
+  else for(let i=0;byIndex.has(i);i++)paks.push(join(dir,byIndex.get(i)));
   if(paks.length)break;
  }
  return paks;

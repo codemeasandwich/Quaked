@@ -1,0 +1,671 @@
+{
+  "trial": "hexen2-suites",
+  "at": "2026-10-19T19:40:23.901402+00:00",
+  "head": "7f5c01b0baa13f9e95337d0e1c33c01df7d49517",
+  "dirtyFilesAtRun": 102,
+  "command": "per-suite harness: python3 /tmp/h2-run-suites.py -> node tools/run_tests.mjs <file> for each tests/hexen2_*_test.js; QUAKED_THREE_MODULE=/Users/bri/SOURCE/Quaked/node_modules/three/build/three.module.js; 60 s per suite",
+  "suiteCount": 79,
+  "assertionsPassed": 142,
+  "assertionsTotal": 142,
+  "failures": [],
+  "hangs": [],
+  "results": [
+    {
+      "file": "tests/hexen2_acceptance_test.js",
+      "exit": 0,
+      "seconds": 0.4,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_acceptance_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_animation_test.js",
+      "exit": 0,
+      "seconds": 1.5,
+      "passed": 3,
+      "total": 3,
+      "result": "RESULT 3/3 passed (tests/hexen2_animation_test.js) | TOTAL 3/3 passed"
+    },
+    {
+      "file": "tests/hexen2_audio_playback_test.js",
+      "exit": 0,
+      "seconds": 1.0,
+      "passed": 2,
+      "total": 2,
+      "result": "RESULT 2/2 passed (tests/hexen2_audio_playback_test.js) | TOTAL 2/2 passed"
+    },
+    {
+      "file": "tests/hexen2_audio_test.js",
+      "exit": 0,
+      "seconds": 0.7,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_audio_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_base_maps_test.js",
+      "exit": 0,
+      "seconds": 2.9,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_base_maps_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_boot_test.js",
+      "exit": 0,
+      "seconds": 0.6,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_boot_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_bsp_test.js",
+      "exit": 0,
+      "seconds": 0.3,
+      "passed": 4,
+      "total": 4,
+      "result": "RESULT 4/4 passed (tests/hexen2_bsp_test.js) | TOTAL 4/4 passed"
+    },
+    {
+      "file": "tests/hexen2_builtins_test.js",
+      "exit": 0,
+      "seconds": 0.3,
+      "passed": 2,
+      "total": 2,
+      "result": "RESULT 2/2 passed (tests/hexen2_builtins_test.js) | TOTAL 2/2 passed"
+    },
+    {
+      "file": "tests/hexen2_campaign_test.js",
+      "exit": 0,
+      "seconds": 1.1,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_campaign_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_catalogue_test.js",
+      "exit": 0,
+      "seconds": 0.4,
+      "passed": 4,
+      "total": 4,
+      "result": "RESULT 4/4 passed (tests/hexen2_catalogue_test.js) | TOTAL 4/4 passed"
+    },
+    {
+      "file": "tests/hexen2_changelevel_test.js",
+      "exit": 0,
+      "seconds": 0.3,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_changelevel_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_class_stats_test.js",
+      "exit": 0,
+      "seconds": 0.8,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_class_stats_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_client_view_test.js",
+      "exit": 0,
+      "seconds": 0.8,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_client_view_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_clientbind_test.js",
+      "exit": 0,
+      "seconds": 0.8,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_clientbind_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_clientdata_test.js",
+      "exit": 0,
+      "seconds": 0.3,
+      "passed": 2,
+      "total": 2,
+      "result": "RESULT 2/2 passed (tests/hexen2_clientdata_test.js) | TOTAL 2/2 passed"
+    },
+    {
+      "file": "tests/hexen2_clienthud_test.js",
+      "exit": 0,
+      "seconds": 0.7,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_clienthud_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_clientsync_test.js",
+      "exit": 0,
+      "seconds": 0.7,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_clientsync_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_combat_clientthink_test.js",
+      "exit": 0,
+      "seconds": 0.8,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_combat_clientthink_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_combat_test.js",
+      "exit": 0,
+      "seconds": 0.7,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_combat_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_coop_four_test.js",
+      "exit": 0,
+      "seconds": 0.7,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_coop_four_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_coop_leave_test.js",
+      "exit": 0,
+      "seconds": 0.7,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_coop_leave_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_coop_move_test.js",
+      "exit": 0,
+      "seconds": 0.7,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_coop_move_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_coop_spawn_test.js",
+      "exit": 0,
+      "seconds": 0.6,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_coop_spawn_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_demo_test.js",
+      "exit": 0,
+      "seconds": 0.3,
+      "passed": 3,
+      "total": 3,
+      "result": "RESULT 3/3 passed (tests/hexen2_demo_test.js) | TOTAL 3/3 passed"
+    },
+    {
+      "file": "tests/hexen2_effect_assets_test.js",
+      "exit": 0,
+      "seconds": 0.3,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_effect_assets_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_effect_render_test.js",
+      "exit": 0,
+      "seconds": 0.4,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_effect_render_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_effects_bridge_test.js",
+      "exit": 0,
+      "seconds": 0.3,
+      "passed": 2,
+      "total": 2,
+      "result": "RESULT 2/2 passed (tests/hexen2_effects_bridge_test.js) | TOTAL 2/2 passed"
+    },
+    {
+      "file": "tests/hexen2_effects_test.js",
+      "exit": 0,
+      "seconds": 0.3,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_effects_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_effectwire_test.js",
+      "exit": 0,
+      "seconds": 0.3,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_effectwire_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_endgame_test.js",
+      "exit": 0,
+      "seconds": 0.6,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_endgame_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_entitywire_test.js",
+      "exit": 0,
+      "seconds": 0.3,
+      "passed": 3,
+      "total": 3,
+      "result": "RESULT 3/3 passed (tests/hexen2_entitywire_test.js) | TOTAL 3/3 passed"
+    },
+    {
+      "file": "tests/hexen2_filesystem_test.js",
+      "exit": 0,
+      "seconds": 0.4,
+      "passed": 10,
+      "total": 10,
+      "result": "RESULT 10/10 passed (tests/hexen2_filesystem_test.js) | TOTAL 10/10 passed"
+    },
+    {
+      "file": "tests/hexen2_finale_test.js",
+      "exit": 0,
+      "seconds": 0.8,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_finale_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_four_peer_test.js",
+      "exit": 0,
+      "seconds": 5.3,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_four_peer_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_hub_test.js",
+      "exit": 0,
+      "seconds": 0.8,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_hub_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_hud_canvas_test.js",
+      "exit": 0,
+      "seconds": 0.8,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_hud_canvas_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_hud_layout_test.js",
+      "exit": 0,
+      "seconds": 0.4,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_hud_layout_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_hud_view_test.js",
+      "exit": 0,
+      "seconds": 0.6,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_hud_view_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_input_peer_test.js",
+      "exit": 0,
+      "seconds": 5.7,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_input_peer_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_input_test.js",
+      "exit": 0,
+      "seconds": 1.1,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_input_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_intermission_test.js",
+      "exit": 0,
+      "seconds": 0.6,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_intermission_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_inventory_hud_test.js",
+      "exit": 0,
+      "seconds": 0.6,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_inventory_hud_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_items_test.js",
+      "exit": 0,
+      "seconds": 1.1,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_items_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_join_test.js",
+      "exit": 0,
+      "seconds": 1.1,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_join_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_menu_test.js",
+      "exit": 0,
+      "seconds": 0.6,
+      "passed": 3,
+      "total": 3,
+      "result": "RESULT 3/3 passed (tests/hexen2_menu_test.js) | TOTAL 3/3 passed"
+    },
+    {
+      "file": "tests/hexen2_model_test.js",
+      "exit": 0,
+      "seconds": 0.8,
+      "passed": 2,
+      "total": 2,
+      "result": "RESULT 2/2 passed (tests/hexen2_model_test.js) | TOTAL 2/2 passed"
+    },
+    {
+      "file": "tests/hexen2_mount_test.js",
+      "exit": 0,
+      "seconds": 1.2,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_mount_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_msgone_test.js",
+      "exit": 0,
+      "seconds": 0.6,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_msgone_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_native_ui_test.js",
+      "exit": 0,
+      "seconds": 0.7,
+      "passed": 2,
+      "total": 2,
+      "result": "RESULT 2/2 passed (tests/hexen2_native_ui_test.js) | TOTAL 2/2 passed"
+    },
+    {
+      "file": "tests/hexen2_peer_test.js",
+      "exit": 0,
+      "seconds": 5.7,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_peer_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_physics_test.js",
+      "exit": 0,
+      "seconds": 2.4,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_physics_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_pixel_gate_test.js",
+      "exit": 0,
+      "seconds": 1.4,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_pixel_gate_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_player_bounds_test.js",
+      "exit": 0,
+      "seconds": 1.3,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_player_bounds_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_player_test.js",
+      "exit": 0,
+      "seconds": 1.1,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_player_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_portal_campaign_test.js",
+      "exit": 0,
+      "seconds": 1.8,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_portal_campaign_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_portal_maps_test.js",
+      "exit": 0,
+      "seconds": 3.1,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_portal_maps_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_portal_test.js",
+      "exit": 0,
+      "seconds": 1.4,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_portal_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_precache_test.js",
+      "exit": 0,
+      "seconds": 0.4,
+      "passed": 3,
+      "total": 3,
+      "result": "RESULT 3/3 passed (tests/hexen2_precache_test.js) | TOTAL 3/3 passed"
+    },
+    {
+      "file": "tests/hexen2_profile_test.js",
+      "exit": 0,
+      "seconds": 0.3,
+      "passed": 9,
+      "total": 9,
+      "result": "RESULT 9/9 passed (tests/hexen2_profile_test.js) | TOTAL 9/9 passed"
+    },
+    {
+      "file": "tests/hexen2_progdefs_test.js",
+      "exit": 0,
+      "seconds": 0.4,
+      "passed": 7,
+      "total": 7,
+      "result": "RESULT 7/7 passed (tests/hexen2_progdefs_test.js) | TOTAL 7/7 passed"
+    },
+    {
+      "file": "tests/hexen2_progs_layout_test.js",
+      "exit": 0,
+      "seconds": 0.3,
+      "passed": 2,
+      "total": 2,
+      "result": "RESULT 2/2 passed (tests/hexen2_progs_layout_test.js) | TOTAL 2/2 passed"
+    },
+    {
+      "file": "tests/hexen2_protocol_test.js",
+      "exit": 0,
+      "seconds": 0.3,
+      "passed": 6,
+      "total": 6,
+      "result": "RESULT 6/6 passed (tests/hexen2_protocol_test.js) | TOTAL 6/6 passed"
+    },
+    {
+      "file": "tests/hexen2_render_test.js",
+      "exit": 0,
+      "seconds": 0.7,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_render_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_rpg_test.js",
+      "exit": 0,
+      "seconds": 1.6,
+      "passed": 2,
+      "total": 2,
+      "result": "RESULT 2/2 passed (tests/hexen2_rpg_test.js) | TOTAL 2/2 passed"
+    },
+    {
+      "file": "tests/hexen2_save_test.js",
+      "exit": 0,
+      "seconds": 1.1,
+      "passed": 3,
+      "total": 3,
+      "result": "RESULT 3/3 passed (tests/hexen2_save_test.js) | TOTAL 3/3 passed"
+    },
+    {
+      "file": "tests/hexen2_selection_desktop_test.js",
+      "exit": 0,
+      "seconds": 0.6,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_selection_desktop_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_session_test.js",
+      "exit": 0,
+      "seconds": 1.3,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_session_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_signon_test.js",
+      "exit": 0,
+      "seconds": 0.6,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_signon_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_soak_test.js",
+      "exit": 0,
+      "seconds": 1.4,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_soak_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_soundwire_test.js",
+      "exit": 0,
+      "seconds": 0.7,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_soundwire_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_spawn_test.js",
+      "exit": 0,
+      "seconds": 1.1,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_spawn_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_startspot_test.js",
+      "exit": 0,
+      "seconds": 1.1,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_startspot_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_status_test.js",
+      "exit": 0,
+      "seconds": 1.1,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_status_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_statusbar_test.js",
+      "exit": 0,
+      "seconds": 1.1,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_statusbar_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_stream_test.js",
+      "exit": 0,
+      "seconds": 0.8,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_stream_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_two_peer_test.js",
+      "exit": 0,
+      "seconds": 5.7,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_two_peer_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_vm_test.js",
+      "exit": 0,
+      "seconds": 0.6,
+      "passed": 9,
+      "total": 9,
+      "result": "RESULT 9/9 passed (tests/hexen2_vm_test.js) | TOTAL 9/9 passed"
+    },
+    {
+      "file": "tests/hexen2_wire_test.js",
+      "exit": 0,
+      "seconds": 0.7,
+      "passed": 1,
+      "total": 1,
+      "result": "RESULT 1/1 passed (tests/hexen2_wire_test.js) | TOTAL 1/1 passed"
+    },
+    {
+      "file": "tests/hexen2_world_test.js",
+      "exit": 0,
+      "seconds": 0.8,
+      "passed": 2,
+      "total": 2,
+      "result": "RESULT 2/2 passed (tests/hexen2_world_test.js) | TOTAL 2/2 passed"
+    }
+  ],
+  "nativeLibrary": "14/14 via cargo test --locked --manifest-path src-tauri/Cargo.toml --test library_contract (isolated CARGO_TARGET_DIR); includes Portal add-on/loose-program discovery",
+  "nonHexenSample": "82/82 across 24 suites recorded in the G1 acceptance record; not rerun in this receipt",
+  "additions": [
+    "hexen2_menu_test.js 3",
+    "hexen2_animation_test.js 3 (weapon/enemy/player+enemy projectile)",
+    "hexen2_rpg_test.js 2",
+    "hexen2_save_test.js 3 (client view included)",
+    "hexen2_effects_bridge_test.js 2 (fire/acid/flame/smoke + generic origin fallback)",
+    "hexen2_changelevel_test.js 1",
+    "hexen2_startspot_test.js 1",
+    "hexen2_hub_test.js 1 (world + door sound origin)",
+    "hexen2_portal_test.js 1 (Keep1..Keep5 + RAPO per-corner ST)",
+    "hexen2_portal_campaign_test.js 1 (Tibet1..Tibet10)",
+    "hexen2_portal_maps_test.js 1 (all Portal maps)",
+    "hexen2_campaign_test.js 1 (demo1 -> demo2 -> village1 -> village2 -> demo1)",
+    "hexen2_intermission_test.js 1",
+    "hexen2_finale_test.js 1 (GotoNextMap hand-off)",
+    "hexen2_endgame_test.js 1 (Eidolon mount)",
+    "hexen2_base_maps_test.js 1 (all 38 base maps)",
+    "hexen2_pixel_gate_test.js 1",
+    "hexen2_statusbar_test.js (+showinfo abilities)",
+    "hexen2_catalogue_test.js 4 (incl. pak3-only Portal)"
+  ],
+  "packagedPortal": "docs/evidence/hexen2-native-portal-save-2026-10-19.json + audio/screenshot receipts",
+  "limits": "Assertions only; boss death/credits remain unexercised."
+}

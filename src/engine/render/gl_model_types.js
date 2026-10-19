@@ -498,6 +498,8 @@ export class mtriangle_t {
 
 		this.facesfront = 0;
 		this.vertindex = new Int32Array( 3 );
+		// RAPO's per-corner texture index; MDL triangles use the same index as vertindex.
+		this.stindex = new Int32Array( 3 );
 
 	}
 
@@ -637,6 +639,7 @@ export class model_t {
 		this.nummodelsurfaces = 0;
 
 		this.numsubmodels = 0;
+		this.hullCount = 4;		// hulls this level defines: 4 for Quake, 8 for Hexen II
 		this.submodels = null;		// array of dmodel_t
 
 		this.numplanes = 0;

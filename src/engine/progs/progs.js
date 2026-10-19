@@ -201,7 +201,7 @@ export class edict_t {
 		this._fieldAccessor = new EdictFieldAccessor( this._fieldBuffer, 0, entityfields );
 
 		// C exported fields from progs (entvars_t)
-		this.v = new entvars_t( this._fieldAccessor );
+		this.v = edictVFactory( this._fieldAccessor );
 
 		// Store entityfields count for clearing
 		this._entityfields = entityfields;
@@ -246,9 +246,13 @@ export let pr_edict_size = 0; // in bytes (C: sizeof edict_t fields portion)
 
 export let pr_crc = 0;
 
-// Temp string buffer for PF_ftos/PF_vtos (mirrors C's pr_string_temp[128])
-// This is a fixed 128-byte region at the end of pr_strings_data that gets reused.
+// Temp string buffers for the string-returning builtins: the native Hexen II pr_cmds uses sixteen rotating 1024-byte
+// buffers (STRINGTEMP_BUFFERS/STRINGTEMP_LENGTH), because gamecode may build one string and then another before using
+// the first. They live after the progs strings, so their offsets are valid QuakeC strings.
+export const PR_STRING_TEMP_BUFFERS = 16;
+export const PR_STRING_TEMP_LENGTH = 1024;
 export let pr_string_temp_ofs = - 1;
+let pr_string_temp_index = 0;
 
 // type_size[etype] - number of int/float slots per type
 export const type_size = [ 1, 1, 1, 3, 1, 1, 1, 1 ];
@@ -360,34 +364,56 @@ export const STOCK_PROGS_CRCS = Object.freeze( [ 24778, 59507 ] );
  */
 export function PR_StockProgs() { return stockProgs; }
 let stockProgs = false; // (kept by PR_SetCRC: the hooks ask on every QuakeC call)
+
 /**
- * Stores where the 128-byte temp string area (C `pr_string_temp`) starts in `pr_strings_data`. Called by
+ * The factory that gives each edict its `v`: Quake's `entvars_t` by default, or the validated Hexen layout's proxy
+ * (`Hexen2_EntvarsProxy`) while a Hexen program is loaded. Set by `PR_LoadProgs`, so a Quake load restores Quake's.
+ *
+ * @param {?function(object): object} factory the factory, or null/undefined for Quake's `entvars_t`
+ */
+export function PR_SetEdictVFactory( factory ) { edictVFactory = typeof factory === 'function' ? factory : fields => new entvars_t( fields ); }
+let edictVFactory = fields => new entvars_t( fields );
+
+/**
+ * The loaded program's engine profile: `quake` for QuakeC (the existing fast path) or a validated Hexen II layout
+ * (`hexen2-base`, `hexen2-portals`) for the supplied Hexen programs. A Hexen program must never be run with Quake's
+ * operand, call or builtin semantics, so `PR_ExecuteProgram` refuses until that work exists (pr_exec.js).
+ *
+ * @param {string} profile `quake` or a validated Hexen II layout
+ */
+export function PR_SetProgramProfile( profile ) { programProfile = profile; }
+/**
+ * The loaded program's engine profile (see `PR_SetProgramProfile`).
+ *
+ * @returns {string} `quake` or a validated Hexen II layout
+ */
+export function PR_ProgramProfile() { return programProfile; }
+let programProfile = 'quake';
+/**
+ * Stores where the rotating temp string arena (C `pr_string_temp`) starts in `pr_strings_data`. Called by
  * `PR_LoadProgs` with the end of the progs strings.
  *
  * @param {number} o byte offset into `pr_strings_data`; -1 until progs load
  */
-export function PR_SetStringTempOfs( o ) { pr_string_temp_ofs = o; }
+export function PR_SetStringTempOfs( o ) { pr_string_temp_ofs = o; pr_string_temp_index = 0; }
 
 /**
- * Writes a string into the fixed pr_string_temp area (128 bytes max) at the end of `pr_strings_data`, for
- * `PF_ftos`/`PF_vtos`. Mirrors C's pr_string_temp usage: the area is shared and reused, so the string stays valid
- * only until the next call. Only the first 127 characters are kept (room for the NUL); each is stored as one byte.
+ * Writes a string into the next rotating temp buffer at the end of `pr_strings_data`, for the string-returning
+ * builtins (`ftos`, `vtos`, precache names). The sixteen buffers match the native Hexen II `pr_string_temp`: a value
+ * stays readable until its buffer is reused sixteen calls later. Only the first 1023 characters are kept (plus NUL).
  *
  * @param {string} str text to store
- * @returns {number} the offset into pr_strings_data (`pr_string_temp_ofs`), usable as a QuakeC string value
+ * @returns {number} the offset into pr_strings_data, usable as a QuakeC string value
  */
 export function PR_SetTempString( str ) {
 
-	const maxLen = 127; // leave room for null terminator
+	const slot = pr_string_temp_index ++ % PR_STRING_TEMP_BUFFERS;
+	const base = pr_string_temp_ofs + slot * PR_STRING_TEMP_LENGTH;
+	const maxLen = PR_STRING_TEMP_LENGTH - 1;
 	const len = Math.min( str.length, maxLen );
-	for ( let i = 0; i < len; i ++ ) {
-
-		pr_strings_data[ pr_string_temp_ofs + i ] = str.charCodeAt( i );
-
-	}
-
-	pr_strings_data[ pr_string_temp_ofs + len ] = 0; // null terminator
-	return pr_string_temp_ofs;
+	for ( let i = 0; i < len; i ++ ) pr_strings_data[ base + i ] = str.charCodeAt( i );
+	pr_strings_data[ base + len ] = 0;
+	return base;
 
 }
 

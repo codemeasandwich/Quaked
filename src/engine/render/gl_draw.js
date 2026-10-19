@@ -19,6 +19,7 @@ import {AssetURL} from '../../platform/distribution.js';
 // In browser port: uses a canvas 2D overlay context for HUD/menu/console drawing
 
 import { Con_Printf } from '../common/console.js';
+import { Hexen2_CharsetColumns, Hexen2_SmallFontIndex } from '../common/hexen2_charset.js';
 import { W_GetLumpName, W_FindLumpinfo } from '../common/wad.js';
 import { d_8to24table as vid_d_8to24table } from './vid.js';
 import { COM_FindFile } from '../common/pak.js';
@@ -181,6 +182,8 @@ export function Draw_WithVirtualSize( width, height, draw, scale = 1 ) {
 
 // Charset
 let char_canvas = null;
+let _charsetCols = 16; // 16 for Quake's 128x128 sheet, 32 for Hexen's 256x128 sheet
+let small_char_canvas = null;
 let conback = null;
 let draw_disc = null;
 let draw_backtile = null;
@@ -487,27 +490,39 @@ Loads the "conchars" lump from gfx.wad and creates a canvas with the charset.
 conchars is 128x128 pixels, 8-bit indexed (16x16 grid of 8x8 characters).
 ===============
 */
-function _loadCharset() {
+function _loadCharset( override ) {
 
 	const pal = d_8to24table || vid_d_8to24table;
 	if ( ! pal ) return;
 
-	const lump = W_GetLumpName( 'conchars' );
-	if ( ! lump ) return;
+	let data, cols = 16;
+	if ( override ) {
 
-	let data;
-	if ( lump.data instanceof Uint8Array ) {
-
-		data = lump.data.subarray( lump.offset, lump.offset + lump.size );
+		// a game's own charset: Hexen II ships a 256x128 gfx/menu/conchars.lmp (32 columns), Quake a 128x128 sheet
+		data = override instanceof Uint8Array ? override : new Uint8Array( override );
+		const detected = Hexen2_CharsetColumns( data.length );
+		if ( detected === 0 ) return;
+		cols = detected;
 
 	} else {
 
-		data = new Uint8Array( lump.data, lump.offset, lump.size );
+		const lump = W_GetLumpName( 'conchars' );
+		if ( ! lump ) return;
+		if ( lump.data instanceof Uint8Array ) {
+
+			data = lump.data.subarray( lump.offset, lump.offset + lump.size );
+
+		} else {
+
+			data = new Uint8Array( lump.data, lump.offset, lump.size );
+
+		}
 
 	}
 
-	const charWidth = 128;
+	const charWidth = cols * 8;
 	const charHeight = 128;
+	_charsetCols = cols;
 	const cs = document.createElement( 'canvas' );
 	cs.width = charWidth;
 	cs.height = charHeight;
@@ -599,7 +614,7 @@ Draw_Init
  * @param {HTMLCanvasElement} [canvas] an existing canvas to draw on; when omitted a new overlay canvas is created
  * @throws {Error} via `Sys_Error` (from `W_GetLumpName`) when the loaded gfx.wad has no `conchars` lump
  */
-export function Draw_Init( canvas ) {
+export function Draw_Init( canvas, charset = null ) {
 
 	if ( canvas ) {
 
@@ -637,7 +652,8 @@ export function Draw_Init( canvas ) {
 	Draw_InitCommands();
 
 	// Load charset from WAD for character drawing
-	_loadCharset();
+	_loadCharset( charset );
+	_loadSmallCharset();
 
 	// Load conback from PAK (gfx/conback.lmp)
 	_loadConback();
@@ -677,7 +693,7 @@ Draw_BeginFrame
  * drawing happens in virtual coordinates, with image smoothing off for crisp pixels. Called by `SCR_UpdateScreen`
  * (gl_screen.js) once per drawn frame, after `GL_BeginRendering`. Does nothing before `Draw_Init`.
  */
-export function Draw_BeginFrame() {
+export function Draw_BeginFrame( mode = 'default', transform = null ) {
 
 	if ( overlayCtx ) {
 
@@ -688,7 +704,13 @@ export function Draw_BeginFrame() {
 		// Apply UI scale transform
 		// This maps virtual coordinates to canvas pixels
 		_calculateUIScale();
-		overlayCtx.setTransform( _uiScale, 0, 0, _uiScale, 0, 0 );
+		if ( mode === 'height' ) {
+
+			// a native 320x200 HUD scaled by width and anchored at the bottom (Hexen's bar art)
+			const t = transform ?? { scale: overlayCanvas.width / 320, offsetX: 0, offsetY: overlayCanvas.height - 200 * ( overlayCanvas.width / 320 ) };
+			overlayCtx.setTransform( t.scale, 0, 0, t.scale, t.offsetX, t.offsetY );
+
+		} else overlayCtx.setTransform( _uiScale, 0, 0, _uiScale, 0, 0 );
 
 		// Disable image smoothing for crisp pixels
 		overlayCtx.imageSmoothingEnabled = false;
@@ -716,6 +738,34 @@ export function Draw_WithAlpha( alpha, draw ) {
 	const previous = overlayCtx.globalAlpha;
 	overlayCtx.globalAlpha = previous * alpha;
 	try { draw(); } finally { overlayCtx.globalAlpha = previous; }
+
+}
+
+function _loadSmallCharset() {
+
+	const pal = d_8to24table || vid_d_8to24table;
+	if ( W_FindLumpinfo( 'tinyfont' ) === null ) return; // a WAD without it (shareware) falls back to the charset
+	const lump = W_GetLumpName( 'tinyfont' );
+	if ( ! pal || ! lump ) return;
+	const raw = lump.data instanceof Uint8Array ? lump.data.subarray( lump.offset, lump.offset + lump.size ) : new Uint8Array( lump.data, lump.offset, lump.size );
+	// Hexen's tinyfont is a 128x32 sheet (16 columns x 4 rows, 4096 bytes); accept a taller sheet too
+	if ( raw.length < 128 * 32 ) return;
+	const rows = Math.floor( raw.length / 128 );
+	const cs = document.createElement( 'canvas' );
+	cs.width = 128; cs.height = rows;
+	const ctx = cs.getContext( '2d' );
+	const image = ctx.createImageData( 128, rows );
+	for ( let i = 0; i < 128 * rows; i ++ ) {
+
+		const idx = raw[ i ];
+		if ( idx === 0 ) continue;
+		const rgba = pal[ idx ];
+		image.data[ i * 4 ] = rgba & 0xff; image.data[ i * 4 + 1 ] = ( rgba >> 8 ) & 0xff;
+		image.data[ i * 4 + 2 ] = ( rgba >> 16 ) & 0xff; image.data[ i * 4 + 3 ] = 255;
+
+	}
+	ctx.putImageData( image, 0, 0 );
+	small_char_canvas = cs;
 
 }
 
@@ -753,8 +803,8 @@ export function Draw_Character( x, y, num ) {
 	if ( char_canvas ) {
 
 		// Character sheet is 16x16 grid of 8x8 chars
-		const row = Math.floor( num / 16 );
-		const col = num % 16;
+		const row = Math.floor( num / _charsetCols );
+		const col = num % _charsetCols;
 
 		overlayCtx.drawImage(
 			char_canvas,
@@ -778,6 +828,39 @@ export function Draw_Character( x, y, num ) {
 		}
 
 	}
+
+}
+
+/**
+ * Draws one native small character (WAD `tinyfont`, 5 pixel rows, 16 columns) for the status bar.
+ *
+ * @param {number} x left edge in virtual pixels
+ * @param {number} y top edge in virtual pixels
+ * @param {number} num character code
+ */
+export function Draw_SmallCharacter( x, y, num ) {
+
+	if ( ! overlayCtx ) return;
+	if ( ! small_char_canvas ) { Draw_Character( x, y, num ); return; }
+	num = Hexen2_SmallFontIndex( num );
+	if ( num === 0 ) return;
+	const row = num >> 4, col = num & 15;
+	overlayCtx.drawImage( small_char_canvas, col * 8, row * 8, 8, 5, x, y, 8, 5 );
+
+}
+
+/**
+ * Draws a native small string.
+ *
+ * @param {number} x left edge in virtual pixels
+ * @param {number} y top edge in virtual pixels
+ * @param {string} str the text
+ */
+export function Draw_SmallCharsetReady() { return small_char_canvas !== null; }
+
+export function Draw_SmallString( x, y, str ) {
+
+	for ( let i = 0; i < str.length; i ++ ) Draw_SmallCharacter( x + i * 6, y, str.charCodeAt( i ) ); // native advance
 
 }
 
