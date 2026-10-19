@@ -75,8 +75,8 @@ Deno.test( 'the native status-bar pictures load and the HUD binds to the bar val
 	player.v.artifacts = 0b101; player.v.weaponframe = 3;
 	const bindings = Hexen2_StatusBindings( Hexen2_ReadHud( player ) );
 	same( bindings.classNumber, 1, 'class' );
-	same( bindings.health, 100, 'health' );
-	same( bindings.maxHealth, 100, 'max health' );
+	same( bindings.health, player.v.health, 'the bar shows the native starting health' );
+	same( bindings.maxHealth, player.v.max_health, 'the bar shows the native maximum health' );
 	same( bindings.weaponFrame, 3, 'weapon frame' );
 	same( bindings.artifactIcons.join( ',' ), '0,2', 'the artifact icon bits' );
 	same( bindings.armour.armor_amulet, 0, 'an empty armour piece' );

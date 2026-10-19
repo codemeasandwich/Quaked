@@ -67,6 +67,24 @@ function changeyaw() {
 
 }
 
+// #66 setclass(entity, class): native PF_setclass. Sends the client the `playerclass` command and records the class
+// on the edict and the client record at once, so the gamecode's class-stat pass sees the chosen class.
+function setclass() {
+
+	const index = G_EDICTNUM( OFS_PARM0 ), ent = G_EDICT( OFS_PARM0 ), newclass = G_FLOAT( OFS_PARM1 ) | 0;
+	if ( index < 1 || index > svs.maxclients ) { Con_Printf( 'tried to change class of a non-client\n' ); return; }
+	const client = svs.clients[ index - 1 ];
+	if ( client && client.message ) {
+
+		MSG_WriteByte( client.message, svc_stufftext );
+		MSG_WriteString( client.message, 'playerclass ' + newclass + '\n' );
+
+	}
+	ent.v.playerclass = newclass;
+	if ( client ) client.playerclass = newclass;
+
+}
+
 // #63 advanceframe(start, end): the native self.frame advance with its 0/1/2 result
 function advanceframe() {
 
@@ -302,7 +320,7 @@ function breakBuiltin() { PR_RunError( 'break statement' ); }
 
 /** The server builtins this module installs into the Hexen II dispatcher. */
 export const HEXEN2_SERVER_BUILTINS = Object.freeze( {
-	6: breakBuiltin, 8: sound, 10: errorBuiltin, 11: objerror, 14: spawn, 15: remove, 17: PF_checkclient, 18: find, 21: stuffcmd, 22: PF_findradius, 23: bprint, 24: sprint, 31: eprint, 35: lightstyle, 44: PF_aim, 48: particle, 49: changeyaw, 63: advanceframe, 65: rewindframe, 67: SV_MoveToGoal, 69: makestatic, 74: ambientsound, 83: advanceweaponframe, 86: particle4
+	6: breakBuiltin, 8: sound, 10: errorBuiltin, 11: objerror, 14: spawn, 15: remove, 17: PF_checkclient, 18: find, 21: stuffcmd, 22: PF_findradius, 23: bprint, 24: sprint, 31: eprint, 35: lightstyle, 44: PF_aim, 48: particle, 49: changeyaw, 63: advanceframe, 65: rewindframe, 66: setclass, 67: SV_MoveToGoal, 69: makestatic, 74: ambientsound, 83: advanceweaponframe, 86: particle4
 } );
 
 Hexen2_RegisterBuiltins( HEXEN2_SERVER_BUILTINS );

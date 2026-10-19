@@ -1,6 +1,6 @@
-// G1 items: a Paladin on demo1 picks up the level's own health item through the supplied gamecode's touch handling,
-// the health amount is the native one and the HUD shows the new value. Mana items are blocked by the class
-// maximum-mana defect recorded in tests/hexen2_mana_stats_test.js. Other G1 gaps (drawn HUD, audible
+// G1 items: a Paladin on demo1 picks up the level's own health and mana items through the supplied gamecode's touch
+// handling; the amounts are native and the HUD follows. The class maximum mana that the mana pickup needs is applied
+// at spawn (tests/hexen2_class_stats_test.js). Other G1 gaps (drawn HUD, audible
 // playback, public smoke) are recorded in docs/hexen2/g1-acceptance-2026-10-19.md.
 import { existsSync, readFileSync } from 'node:fs';
 import * as pak from '../src/engine/common/pak.js';
@@ -25,7 +25,7 @@ import '../src/engine/progs/hexen2_server_cmds.js';
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const HEXEN = '/Users/bri/quaked/Hexen 2/data1';
 
-Deno.test( 'the Paladin picks up a native health item on demo1', () => {
+Deno.test( 'the Paladin picks up native health and mana items on demo1', () => {
 
 	if ( ! existsSync( HEXEN + '/pak1.pak' ) ) { console.log( 'SKIP: the supplied Hexen II installation is not present' ); return; }
 	for ( const name of [ 'pak0.pak', 'pak1.pak' ] ) { const raw = readFileSync( HEXEN + '/' + name ); pak.COM_AddPack( pak.COM_LoadPackFile( 'h2-' + name, raw.buffer.slice( raw.byteOffset, raw.byteOffset + raw.length ) ) ); }
@@ -75,5 +75,14 @@ Deno.test( 'the Paladin picks up a native health item on demo1', () => {
 	check( error === null, 'the health pickup ran: ' + ( error ? error.message + ' [' + PR_LastRunError() + ']' : '' ) );
 	same( player.v.health, 60, 'the native health amount (50 -> 60)' );
 	same( Hexen2_ReadHud( player ).health, 60, 'the HUD shows the picked-up health' );
+
+	// native mana pickup: the class maximum mana is now applied at spawn, so the blue potion is accepted
+	const blueBefore = player.v.bluemana | 0;
+	pickup( 'item_mana_blue' );
+	error = null;
+	try { frames( 5 ); } catch ( e ) { error = e; }
+	check( error === null, 'the mana pickup ran: ' + ( error ? error.message + ' [' + PR_LastRunError() + ']' : '' ) );
+	check( ( player.v.bluemana | 0 ) > blueBefore, `blue mana rose: ${blueBefore} -> ${player.v.bluemana | 0}` );
+	same( Hexen2_ReadHud( player ).manaBlue, player.v.bluemana | 0, 'the HUD shows the picked-up mana' );
 
 } );

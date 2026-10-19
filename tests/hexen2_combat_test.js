@@ -63,6 +63,7 @@ Deno.test( 'a Paladin attack damages a level monster on demo1', () => {
 	monster.v.ideal_yaw = 0;
 	SV_LinkEdict( monster, true );
 	const healthBefore = monster.v.health;
+	const playerBefore = player.v.health;
 
 	// select the first weapon (native number-key impulse), settle one frame, then hold attack
 	sv.active = true; sv.state = ss_active; SV_SetFrametime( 0.1 );
@@ -74,6 +75,6 @@ Deno.test( 'a Paladin attack damages a level monster on demo1', () => {
 	check( error === null, 'the attack frames ran without a script error: ' + ( error ? error.message + ' [' + PR_LastRunError() + ']' : '' ) );
 	check( monster.v.health < healthBefore, `the monster took damage: ${monster.v.health} of ${healthBefore} (weapon ${player.v.current_weapon | 0}, frame ${player.v.weaponframe | 0})` );
 	check( monster.v.health >= 0, 'the damage is bounded: ' + monster.v.health );
-	check( player.v.health === 100, 'the attacking Paladin is unhurt: ' + player.v.health );
+	check( player.v.health === playerBefore, 'the attacking Paladin is unhurt: ' + player.v.health + ' of ' + playerBefore );
 
 } );

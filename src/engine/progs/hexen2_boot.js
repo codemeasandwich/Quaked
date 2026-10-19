@@ -12,7 +12,7 @@
  * Errors: whatever the gamecode raises; a class the edition does not offer is refused before any spawn.
  */
 
-import { ED_LoadFromFile } from './pr_edict.js';
+import { ED_LoadFromFile, GetEdictFieldValue } from './pr_edict.js';
 import { sv as progsSv, svs, pr_global_struct } from './progs.js';
 import { PR_ExecuteProgram } from './pr_exec.js';
 import { SV_DropToFloor } from '../server/world.js';
@@ -103,6 +103,10 @@ export function Hexen2_SpawnPlayer( options ) {
 	player.v.health = 100;
 	player.v.max_health = 100;
 	player.v.playerclass = selection.number;
+	// the native menu's choice: PutClientInServer copies `newclass` into playerclass and the class-stat pass uses it.
+	// The field's offset differs between the base (212) and Portal (214) layouts, so resolve it from the loaded program.
+	const newclass = GetEdictFieldValue( player, 'newclass' );
+	if ( newclass ) newclass.accessor.setFloat( newclass.ofs, selection.number );
 	player.v.flags = 512 | 8; // FL_CLIENT | FL_ONGROUND
 	const index = player.index;
 	pr_global_struct.self = index;

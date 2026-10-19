@@ -59,8 +59,9 @@ Deno.test( 'the spawned Paladin yields native HUD data and a first-person view',
 	let hud = Hexen2_ReadHud( player );
 	check( hud !== null, 'HUD data exists for a player' );
 	same( hud.playerClass, 1, 'Paladin class' );
-	same( hud.health, 100, 'starting health' );
-	same( hud.maxHealth, 100, 'maximum health' );
+	same( hud.health, player.v.health, 'the HUD shows the native starting health' );
+	same( hud.maxHealth, player.v.max_health, 'the HUD shows the native maximum health' );
+	check( hud.health >= 70 && hud.health <= 95, 'native Paladin starting health: ' + hud.health );
 	same( hud.dead, false, 'alive' );
 	same( Hexen2_ArmourTotal( hud ), 0, 'no armour at spawn' );
 	same( hud.manaBlue, 0, 'no mana at spawn' );

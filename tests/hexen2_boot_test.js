@@ -70,7 +70,9 @@ Deno.test( 'an Installed session boots the level and places a Paladin who then w
 	same( PR_GetString( player.v.classname ), 'player', 'the client became a player' );
 	same( PR_GetString( player.v.model ), 'models/paladin.mdl', 'the Paladin model' );
 	same( player.v.playerclass, 1, 'the native class number' );
-	same( player.v.health, 100, 'starting health' );
+	check( player.v.health >= 70 && player.v.health <= 95, 'native Paladin starting health: ' + player.v.health );
+	same( player.v.max_health, player.v.health, 'max health matches the starting health' );
+	check( player.v.max_mana > 0, 'native Paladin maximum mana: ' + player.v.max_mana );
 	check( Math.abs( player.v.origin[ 2 ] ) < 1, 'the feet settled on the floor: ' + player.v.origin[ 2 ] );
 
 	SV_User_SetCallbacks( { host_client: client, get_key_dest: () => 0, V_CalcRoll: () => 0 } );

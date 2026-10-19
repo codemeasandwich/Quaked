@@ -1,8 +1,8 @@
-// RED (retained): the spawned Paladin's class maximum mana must be positive. Hexen II's supplied gamecode computes it
-// from mana_table (class 1 has 84/94 low/high) in stats_NewClass/stats_NewPlayer, but the spawned player reads
-// max_mana 0, so mana pickups and maximum-mana checks refuse (mana_touch returns when mana >= max_mana). This blocks
-// G1's items requirement for mana; the cause is under investigation (class-stat ordering or the stats computation).
-// Do not weaken it. Health items already work (tests/hexen2_items_test.js).
+// G1 class stats: the spawned Paladin receives the supplied gamecode's native class statistics. The spawn must hand
+// the chosen class to the gamecode the way the native menu does (`newclass`), which PutClientInServer copies into
+// playerclass and uses for stats_NewClass: health/max_health from hitpoint_table (class 1 is 70..85) and max_mana from
+// mana_table (class 1 is 84..95). Without it the class check rejects the player, max_mana stays 0 and mana pickups are
+// refused. This test pins the native ranges and that the values land on the player edict.
 import { existsSync, readFileSync } from 'node:fs';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
@@ -25,7 +25,7 @@ import '../src/engine/progs/hexen2_server_cmds.js';
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
 const HEXEN = '/Users/bri/quaked/Hexen 2/data1';
 
-Deno.test( 'RED: the spawned Paladin has a positive class maximum mana', () => {
+Deno.test( 'the spawned Paladin receives the native class statistics', () => {
 
 	if ( ! existsSync( HEXEN + '/pak1.pak' ) ) { console.log( 'SKIP: the supplied Hexen II installation is not present' ); return; }
 	for ( const name of [ 'pak0.pak', 'pak1.pak' ] ) { const raw = readFileSync( HEXEN + '/' + name ); pak.COM_AddPack( pak.COM_LoadPackFile( 'h2-' + name, raw.buffer.slice( raw.byteOffset, raw.byteOffset + raw.length ) ) ); }
@@ -54,7 +54,11 @@ Deno.test( 'RED: the spawned Paladin has a positive class maximum mana', () => {
 	svs.clients[ 0 ] = client;
 	check( Hexen2_SpawnPlayer( { sv, client, player, gameId: 'hexen2', classId: 'paladin', origin: start.v.origin } ).ok, 'the Paladin spawned' );
 	check( ( player.v.playerclass | 0 ) === 1, 'the spawned class is the Paladin: ' + ( player.v.playerclass | 0 ) );
-	check( player.v.health === 100, 'the starting health is the native 100: ' + player.v.health );
-	check( ( player.v.max_mana | 0 ) > 0, 'the class maximum mana is positive: ' + ( player.v.max_mana | 0 ) );
+	check( player.v.health >= 70 && player.v.health <= 95, 'native Paladin starting health (70..85): ' + player.v.health );
+	check( player.v.max_health === player.v.health, 'max_health matches the starting health: ' + player.v.max_health );
+	check( player.v.max_mana >= 84 && player.v.max_mana <= 95, 'native Paladin maximum mana (84..95): ' + player.v.max_mana );
+	check( player.v.strength > 0 && player.v.intelligence > 0 && player.v.wisdom > 0 && player.v.dexterity > 0,
+		'the class attributes were applied: ' + [ player.v.strength, player.v.intelligence, player.v.wisdom, player.v.dexterity ] );
+	check( ( sv.edicts[ 0 ].v.max_mana | 0 ) === 0, 'the world did not receive the player stats' );
 
 } );
