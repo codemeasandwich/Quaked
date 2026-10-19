@@ -25,7 +25,7 @@ function number( value ) { return typeof value === 'number' && Number.isFinite( 
  * @param {function(number): string} [stringAt] the program string reader, to read the puzzle-key names
  * @returns {?object} the HUD data, or null without a player
  */
-export function Hexen2_ReadHud( player ) {
+export function Hexen2_ReadHud( player, stringAt ) {
 
 	if ( ! player || ! player.v ) return null;
 	const v = player.v;
@@ -50,6 +50,12 @@ export function Hexen2_ReadHud( player ) {
 		armour: Object.freeze( armour ),
 		level: number( v.level ),
 		experience: number( v.experience ),
+		intelligence: number( v.intelligence ),
+		wisdom: number( v.wisdom ),
+		dexterity: number( v.dexterity ),
+		strength: number( v.strength ),
+		rings: Object.freeze( { ring_flight: number( v.ring_flight ), ring_water: number( v.ring_water ),
+			ring_turning: number( v.ring_turning ), ring_regeneration: number( v.ring_regeneration ) } ),
 		items: number( v.items ),
 		artifactFlags: number( v.artifacts ),
 		artifactActive: number( v.artifact_active ),

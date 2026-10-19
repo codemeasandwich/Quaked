@@ -11,7 +11,7 @@ import { Mod_LoadBrushModel, Mod_SetHexenHullLayout } from '../src/engine/render
 import { SV_ClearWorld, SV_LinkEdict, SV_PointContents, SV_TestEntityPosition, SV_Move } from '../src/engine/server/world.js';
 import { SV_SetState } from '../src/engine/server/sv_phys.js';
 import { PR_LoadProgs, PR_AllocEdicts } from '../src/engine/progs/pr_edict.js';
-import { PR_SetSV, PR_SetSVS, PR_GetString, pr_global_struct, svs } from '../src/engine/progs/progs.js';
+import { PR_SetSV, PR_SetSVS, PR_GetString, PR_SetTempString, pr_global_struct, svs } from '../src/engine/progs/progs.js';
 import { sv as serverSv, ss_loading, SIGNON_SIZE } from '../src/engine/server/server.js';
 import { PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
 import { Hexen2_SeedPrecache, Hexen2_SpawnEntities, Hexen2_SpawnPlayer } from '../src/engine/progs/hexen2_boot.js';
@@ -86,5 +86,30 @@ Deno.test( 'the native status-bar top row is emitted for the spawned Paladin', (
 	same( ac.value, 13, 'the AC number' );
 	same( armedOps.find( op => op.name === 'gfx/topbar1.lmp' ).x, 160, 'the 320-wide bar is centred' );
 	same( armedOps.find( op => op.name === 'gfx/topbar1.lmp' ).y, 480 - 46, 'bottom anchored' );
+
+	// the expanded lower bar (+showinfo): native BarHeight 144, bottom bar art, class stats, portrait, armour, rings,
+	// puzzle pieces. Coordinates are relative to the bar top, as sbar.c draws them.
+	player.v.armor_breastplate = 12; player.v.ring_flight = 50;
+	player.v.puzzle_inv1 = PR_SetTempString( 'key1' );
+	const expandedHud = Hexen2_ReadHud( player, ofs => PR_GetString( ofs ) );
+	const lowered = Hexen2_StatusBarOps( expandedHud, { width: 320, height: 200, barHeight: 144 } );
+	const at = ( name ) => lowered.find( op => op.name === name );
+	same( at( 'gfx/btmbar1.lmp' ).y, 56 + 46, 'bottom bar art sits below the top row' );
+	same( at( 'gfx/btmbar1.lmp' ).x, 0, 'bottom bar art x' );
+	same( at( 'gfx/btmbar2.lmp' ).x, 160, 'bottom bar right half' );
+	same( at( 'gfx/cport1.lmp' ).x, 134, 'the Paladin portrait x' );
+	same( at( 'gfx/cport1.lmp' ).y, 56 + 50, 'the Paladin portrait y' );
+	check( lowered.some( op => op.kind === 'small' && op.text === 'Paladin' ), 'the class name is drawn' );
+	check( lowered.some( op => op.kind === 'small' && op.text === 'int' && op.x === 11 && op.y === 56 + 58 ), 'the intelligence label' );
+	check( lowered.some( op => op.kind === 'small' && op.text === String( expandedHud.intelligence | 0 ).padStart( 2, '0' ) && op.x === 33 ), 'the intelligence value' );
+	same( at( 'gfx/armor3.lmp' ).x, 246, 'breastplate armour icon' );
+	same( at( 'gfx/armor3.lmp' ).y, 56 + 115, 'breastplate armour icon y' );
+	check( lowered.some( op => op.kind === 'small' && op.text === '+12' && op.x === 250 ), 'the breastplate bonus' );
+	same( at( 'gfx/ring_f.lmp' ).x, 6, 'the flight ring icon' );
+	same( at( 'gfx/ring_f.lmp' ).y, 56 + 119, 'the flight ring icon y' );
+	same( at( 'gfx/ringhlth.lmp' ).x, 6 + 29 - Math.round( 26 * 50 / 100 ), 'the ring health bar' );
+	same( at( 'gfx/rhlthcvr.lmp' ).x, 6 + 29, 'the ring health cover' );
+	same( at( 'gfx/puzzle/key1.lmp' ).x, 194, 'the first puzzle piece' );
+	same( at( 'gfx/puzzle/key1.lmp' ).y, 56 + 51, 'the first puzzle piece y' );
 
 } );

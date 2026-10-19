@@ -18,6 +18,7 @@ const BREASTPLATE_AC = Object.freeze( [ 2, 6, 8, 4, 4 ] );
 const HELMET_AC = Object.freeze( [ 4, 2, 6, 8, 8 ] );
 
 const BAR_TOP_HEIGHT = 46;
+const CLASS_NAMES = Object.freeze( [ 'Paladin', 'Crusader', 'Necromancer', 'Assassin', 'Succubus' ] );
 
 /**
  * The native armour class for a player, from sbar.c's CalcAC: each worn piece adds its class AC plus one per 5 points.
@@ -90,6 +91,55 @@ export function Hexen2_StatusBarOps( hud, view = {} ) {
 
 	// armour class
 	ops.push( Object.freeze( { kind: 'num', value: Hexen2_CalcAC( hud ), digits: 2, x: 105 + offX, y: 14 + baseY } ) );
+
+	// the expanded lower bar (+showinfo): native BarHeight 144 (BAR_TOP_HEIGHT + BAR_BOTTOM_HEIGHT)
+	if ( barHeight > BAR_TOP_HEIGHT ) {
+
+		pic( 'gfx/btmbar1.lmp', 0, 46 );
+		pic( 'gfx/btmbar2.lmp', 160, 46 );
+		small( CLASS_NAMES[ Math.max( 0, Math.min( CLASS_NAMES.length - 1, ( hud.playerClass | 0 ) - 1 ) ) ], 11, 48 );
+		for ( const [ label, value, x, y ] of [
+			[ 'int', hud.intelligence, 33, 58 ], [ 'wis', hud.wisdom, 33, 64 ], [ 'dex', hud.dexterity, 33, 70 ],
+			[ 'str', hud.strength, 80, 58 ], [ 'lvl', hud.level, 80, 64 ], [ 'exp', hud.experience, 80, 70 ] ] ) {
+
+			small( label, x - 22, y );
+			small( String( Math.max( 0, value | 0 ) ).padStart( label === 'exp' ? 6 : 2, '0' ), x, y );
+
+		}
+		const classNumber = Math.max( 1, Math.min( 5, hud.playerClass | 0 ) );
+		pic( `gfx/cport${classNumber}.lmp`, 134, 50 );
+		for ( const [ field, picture, x ] of [ [ 'armor_helmet', 'gfx/armor1.lmp', 164 ], [ 'armor_amulet', 'gfx/armor2.lmp', 205 ],
+			[ 'armor_breastplate', 'gfx/armor3.lmp', 246 ], [ 'armor_bracer', 'gfx/armor4.lmp', 285 ] ] ) {
+
+			const value = hud.armour[ field ] ?? 0;
+			if ( value <= 0 ) continue;
+			pic( picture, x, 115 );
+			small( `+${value | 0}`, x + 4, 136 );
+
+		}
+		for ( const [ field, icon, healthBar, healthCover, x ] of [
+			[ 'ring_flight', 'gfx/ring_f.lmp', 'gfx/ringhlth.lmp', 'gfx/rhlthcvr.lmp', 6 ],
+			[ 'ring_water', 'gfx/ring_w.lmp', 'gfx/ringhlth.lmp', 'gfx/rhlthcvr.lmp', 44 ],
+			[ 'ring_turning', 'gfx/ring_t.lmp', 'gfx/ringhlth.lmp', 'gfx/rhlthcvr.lmp', 81 ],
+			[ 'ring_regeneration', 'gfx/ring_r.lmp', 'gfx/ringhlth.lmp', 'gfx/rhlthcv2.lmp', 119 ] ] ) {
+
+			const value = Math.min( 100, hud.rings[ field ] ?? 0 );
+			if ( value <= 0 ) continue;
+			transpic( icon, x, 119 );
+			pic( healthBar, x + 29 - Math.round( 26 * value / 100 ), 142 );
+			pic( healthCover, x + 29, 142 );
+
+		}
+		let piece = 0;
+		for ( const name of hud.puzzle ) {
+
+			if ( ! name ) continue;
+			pic( `gfx/puzzle/${name}.lmp`, 194 + ( piece % 4 ) * 31, piece < 4 ? 51 : 82 );
+			piece ++;
+
+		}
+
+	}
 
 	return Object.freeze( ops );
 
