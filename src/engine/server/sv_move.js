@@ -16,8 +16,9 @@
 import { vec3_origin, DotProduct, VectorCopy, VectorAdd, VectorSubtract,
 	VectorNormalize, M_PI, anglemod } from '../common/mathlib.js';
 import { YAW } from '../common/quakedef.js';
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
 import { MOVETYPE_FLY, MOVETYPE_WALK, FL_FLY, FL_SWIM, FL_ONGROUND,
-	FL_PARTIALGROUND, CONTENTS_EMPTY, CONTENTS_SOLID,
+	FL_PARTIALGROUND, FL_HUNTFACE, FL_NOZ, FL_SET_TRACE, CONTENTS_EMPTY, CONTENTS_SOLID,
 	sv, svs, pr_global_struct, sv_player,
 	SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_PointContents,
 	PR_ExecuteProgram, EDICT_TO_PROG, PROG_TO_EDICT } from './sv_phys.js';
@@ -91,6 +92,18 @@ export function SV_CheckBottom( ent ) {
 	const maxs = _checkbottom_maxs;
 	const start = _checkbottom_start;
 	const stop = _checkbottom_stop;
+	const hexen = GameProfile_IsHexen2();
+	// Native H2 saves the named hull and traces CHECKBOTTOM with hull 0 (uhexen2 sv_move.c:125): a monster hull would
+	// otherwise offset the point trace by the monster's own bounds.
+	const traceDown = () => {
+
+		const savedHull = ent.v.hull;
+		if ( hexen ) ent.v.hull = 0;
+		const result = SV_Move( start, vec3_origin, vec3_origin, stop, true, ent );
+		if ( hexen ) ent.v.hull = savedHull;
+		return result;
+
+	};
 
 	VectorAdd( ent.v.origin, ent.v.mins, mins );
 	VectorAdd( ent.v.origin, ent.v.maxs, maxs );
@@ -136,7 +149,7 @@ export function SV_CheckBottom( ent ) {
 	start[ 0 ] = stop[ 0 ] = ( mins[ 0 ] + maxs[ 0 ] ) * 0.5;
 	start[ 1 ] = stop[ 1 ] = ( mins[ 1 ] + maxs[ 1 ] ) * 0.5;
 	stop[ 2 ] = start[ 2 ] - 2 * STEPSIZE;
-	let trace = SV_Move( start, vec3_origin, vec3_origin, stop, true, ent );
+	let trace = traceDown();
 
 	if ( trace.fraction === 1.0 )
 		return false;
@@ -151,7 +164,7 @@ export function SV_CheckBottom( ent ) {
 			start[ 0 ] = stop[ 0 ] = x ? maxs[ 0 ] : mins[ 0 ];
 			start[ 1 ] = stop[ 1 ] = y ? maxs[ 1 ] : mins[ 1 ];
 
-			trace = SV_Move( start, vec3_origin, vec3_origin, stop, true, ent );
+			trace = traceDown();
 
 			if ( trace.fraction !== 1.0 && trace.endpos[ 2 ] > bottom )
 				bottom = trace.endpos[ 2 ];
@@ -187,42 +200,84 @@ SV_movestep
  * @param {edict_t} ent the moving entity; mutates `v.origin`, `v.flags` and `v.groundentity`
  * @param {ArrayLike<number>} move wished displacement (Quake units, world space)
  * @param {boolean} relink true to relink the entity into the world (and fire triggers) after a successful move
+ * @param {boolean} [noenemy=false] Hexen II: ignore the enemy's height when correcting a flyer's Z move
+ * @param {boolean} [set_trace=false] Hexen II: publish each attempted move to the QuakeC trace globals
  * @returns {boolean} true when the entity moved (or, with FL_PARTIALGROUND, is allowed to stay where the step left
  *   it); false when blocked, when it would walk off an edge, or when a swimmer would leave the water
  */
-export function SV_movestep( ent, move, relink ) {
+export function SV_movestep( ent, move, relink, noenemy = false, set_trace = false ) {
 
 	const oldorg = _movestep_oldorg;
 	const neworg = _movestep_neworg;
 	const end = _movestep_end;
+	const hexen = GameProfile_IsHexen2();
+
+	const setMoveTrace = trace => {
+
+		if ( ! set_trace ) return;
+		pr_global_struct.trace_allsolid = trace.allsolid ? 1 : 0;
+		pr_global_struct.trace_startsolid = trace.startsolid ? 1 : 0;
+		pr_global_struct.trace_fraction = trace.fraction;
+		pr_global_struct.trace_inwater = trace.inwater ? 1 : 0;
+		pr_global_struct.trace_inopen = trace.inopen ? 1 : 0;
+		pr_global_struct.trace_endpos = [ trace.endpos[ 0 ], trace.endpos[ 1 ], trace.endpos[ 2 ] ];
+		pr_global_struct.trace_plane_normal = [ trace.plane.normal[ 0 ], trace.plane.normal[ 1 ], trace.plane.normal[ 2 ] ];
+		pr_global_struct.trace_plane_dist = trace.plane.dist;
+		pr_global_struct.trace_ent = EDICT_TO_PROG( trace.ent ?? sv.edicts[ 0 ] );
+
+	};
 
 	// try the move
 	VectorCopy( ent.v.origin, oldorg );
 	VectorAdd( ent.v.origin, move, neworg );
 
-	// flying monsters don't step up
-	if ( ( ent.v.flags | 0 ) & ( FL_SWIM | FL_FLY ) ) {
+	// flying monsters don't step up, unless no_z or hunt_face is on (uhexen2 sv_move.c:243)
+	if ( ( ( ent.v.flags | 0 ) & ( FL_SWIM | FL_FLY ) )
+		&& ! ( ( ent.v.flags | 0 ) & FL_HUNTFACE )
+		&& ! ( ( ent.v.flags | 0 ) & FL_NOZ ) ) {
 
 		// try one move with vertical motion, then one without
 		for ( let i = 0; i < 2; i ++ ) {
 
 			VectorAdd( ent.v.origin, move, neworg );
-			const enemy = PROG_TO_EDICT( ent.v.enemy );
-			if ( i === 0 && enemy !== sv.edicts[ 0 ] ) {
+			let enemy = sv.edicts[ 0 ];
+			if ( ! noenemy ) {
 
-				const dz = ent.v.origin[ 2 ] - PROG_TO_EDICT( ent.v.enemy ).v.origin[ 2 ];
-				if ( dz > 40 )
-					neworg[ 2 ] -= 8;
-				if ( dz < 30 )
-					neworg[ 2 ] += 8;
+				enemy = PROG_TO_EDICT( ent.v.enemy );
+				if ( i === 0 && enemy !== sv.edicts[ 0 ] ) {
+
+					let dz = ent.v.origin[ 2 ] - enemy.v.origin[ 2 ];
+					if ( ( ent.v.flags | 0 ) & FL_HUNTFACE ) // go for the face (dead in native, kept for completeness)
+						dz += enemy.v.view_ofs[ 2 ];
+					if ( dz > 40 )
+						neworg[ 2 ] -= 8;
+					else if ( dz < 30 )
+						neworg[ 2 ] += 8;
+
+				}
 
 			}
 
-			const trace = SV_Move( ent.v.origin, ent.v.mins, ent.v.maxs, neworg, false, ent );
+			let trace;
+			if ( hexen && ( ( ent.v.flags | 0 ) & FL_SWIM ) && SV_PointContents( neworg ) === CONTENTS_EMPTY ) {
+
+				// Hexen II: would end up out of water, don't do the Z move
+				neworg[ 2 ] = ent.v.origin[ 2 ];
+				trace = SV_Move( ent.v.origin, ent.v.mins, ent.v.maxs, neworg, false, ent );
+				setMoveTrace( trace );
+				if ( trace.fraction < 1 || SV_PointContents( trace.endpos ) === CONTENTS_EMPTY )
+					return false; // swim monster left water
+
+			} else {
+
+				trace = SV_Move( ent.v.origin, ent.v.mins, ent.v.maxs, neworg, false, ent );
+				setMoveTrace( trace );
+
+			}
 
 			if ( trace.fraction === 1 ) {
 
-				if ( ( ( ent.v.flags | 0 ) & FL_SWIM ) && SV_PointContents( trace.endpos ) === CONTENTS_EMPTY )
+				if ( ! hexen && ( ( ent.v.flags | 0 ) & FL_SWIM ) && SV_PointContents( trace.endpos ) === CONTENTS_EMPTY )
 					return false; // swim monster left water
 
 				VectorCopy( trace.endpos, ent.v.origin );
@@ -232,7 +287,7 @@ export function SV_movestep( ent, move, relink ) {
 
 			}
 
-			if ( enemy === sv.edicts[ 0 ] )
+			if ( noenemy || enemy === sv.edicts[ 0 ] )
 				break;
 
 		}
@@ -247,6 +302,7 @@ export function SV_movestep( ent, move, relink ) {
 	end[ 2 ] -= STEPSIZE * 2;
 
 	let trace = SV_Move( neworg, ent.v.mins, ent.v.maxs, end, false, ent );
+	setMoveTrace( trace );
 
 	if ( trace.allsolid )
 		return false;
@@ -255,6 +311,7 @@ export function SV_movestep( ent, move, relink ) {
 
 		neworg[ 2 ] -= STEPSIZE;
 		trace = SV_Move( neworg, ent.v.mins, ent.v.maxs, end, false, ent );
+		setMoveTrace( trace );
 		if ( trace.allsolid || trace.startsolid )
 			return false;
 
@@ -297,11 +354,8 @@ export function SV_movestep( ent, move, relink ) {
 
 	}
 
-	if ( ( ent.v.flags | 0 ) & FL_PARTIALGROUND ) {
-
+	if ( ( ent.v.flags | 0 ) & FL_PARTIALGROUND )
 		ent.v.flags = ( ent.v.flags | 0 ) & ~FL_PARTIALGROUND;
-
-	}
 
 	ent.v.groundentity = EDICT_TO_PROG( trace.ent );
 
@@ -345,7 +399,7 @@ export function SV_StepDirection( ent, yaw, dist ) {
 	move[ 2 ] = 0;
 
 	VectorCopy( ent.v.origin, oldorigin );
-	if ( SV_movestep( ent, move, false ) ) {
+	if ( SV_movestep( ent, move, false, false, ( ( ent.v.flags | 0 ) & FL_SET_TRACE ) !== 0 ) ) {
 
 		const delta = ent.v.angles[ YAW ] - ent.v.ideal_yaw;
 		if ( delta > 45 && delta < 315 ) {
@@ -409,6 +463,11 @@ export function SV_NewChaseDir( actor, enemy, dist ) {
 
 	const deltax = enemy.v.origin[ 0 ] - actor.v.origin[ 0 ];
 	const deltay = enemy.v.origin[ 1 ] - actor.v.origin[ 1 ];
+	// Native Hexen II looks at the height difference too, aiming flyers at the enemy's view offset (sv_move.c:458);
+	// the vertical direction table stayed disabled in Raven's code, so this only preserves the native calculation.
+	const deltaz = ( ( actor.v.flags | 0 ) & FL_FLY )
+		? enemy.v.origin[ 2 ] + enemy.v.view_ofs[ 2 ] - actor.v.origin[ 2 ]
+		: enemy.v.origin[ 2 ] - actor.v.origin[ 2 ];
 	if ( deltax > 10 )
 		d[ 1 ] = 0;
 	else if ( deltax < - 10 )

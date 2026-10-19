@@ -26,8 +26,9 @@ import { Con_Printf, Con_DPrintf, MSG_ReadFloat, MSG_ReadAngle, MSG_ReadShort,
 import { vec3_origin, DotProduct, VectorCopy, VectorAdd, VectorSubtract,
 	VectorMA, VectorScale, VectorNormalize, Length, AngleVectors, M_PI } from '../common/mathlib.js';
 import { ON_EPSILON, PITCH, YAW, ROLL } from '../common/quakedef.js';
-import { MOVETYPE_NONE, MOVETYPE_WALK, MOVETYPE_NOCLIP, FL_ONGROUND,
-	FL_WATERJUMP, sv, svs, sv_player, pr_global_struct, host_frametime,
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
+import { MOVETYPE_NONE, MOVETYPE_WALK, MOVETYPE_FLY, MOVETYPE_NOCLIP, FL_ONGROUND,
+	FL_WATERJUMP, FL2_CROUCHED, sv, svs, sv_player, pr_global_struct, host_frametime,
 	sv_friction, sv_edgefriction, sv_stopspeed, sv_maxspeed, sv_accelerate,
 	sv_idealpitchscale, SV_SetPlayer,
 	SV_Move, SV_LinkEdict, PR_ExecuteProgram, EDICT_TO_PROG } from './sv_phys.js';
@@ -49,6 +50,7 @@ const _idealpitch_z = new Float32Array( MAX_FORWARD );
 const _idealpitch_top = new Float32Array( 3 );
 const _idealpitch_bottom = new Float32Array( 3 );
 const _watermove_wishvel = new Float32Array( 3 );
+const _flightmove_wishvel = new Float32Array( 3 );
 const _airmove_wishvel = new Float32Array( 3 );
 const _clientthink_v_angle = new Float32Array( 3 );
 const _readclientmove_angle = new Float32Array( 3 );
@@ -154,6 +156,10 @@ export function SV_SetIdealPitch() {
 	if ( ! ( ( sv_player.v.flags | 0 ) & FL_ONGROUND ) )
 		return;
 
+	// native H2 leaves a flyer's ideal pitch alone (uhexen2 sv_user.c:74)
+	if ( GameProfile_IsHexen2() && sv_player.v.movetype === MOVETYPE_FLY )
+		return;
+
 	const angleval = sv_player.v.angles[ YAW ] * M_PI * 2 / 360;
 	const sinval = Math.sin( angleval );
 	const cosval = Math.cos( angleval );
@@ -168,7 +174,11 @@ export function SV_SetIdealPitch() {
 		bottom[ 1 ] = top[ 1 ];
 		bottom[ 2 ] = top[ 2 ] - 160;
 
+		// native H2 saves the named hull and uses the point hull for the slope probes (sv_user.c:81)
+		const savedHull = sv_player.v.hull;
+		if ( GameProfile_IsHexen2() ) sv_player.v.hull = 0;
 		const tr = SV_Move( top, vec3_origin, vec3_origin, bottom, 1, sv_player );
+		if ( GameProfile_IsHexen2() ) sv_player.v.hull = savedHull;
 		if ( tr.allsolid )
 			return; // looking at a wall, leave ideal the way is was
 
@@ -236,13 +246,31 @@ export function SV_UserFriction() {
 	start[ 2 ] = origin[ 2 ] + sv_player.v.mins[ 2 ];
 	stop[ 2 ] = start[ 2 ] - 34;
 
+	// native H2 traces the leading edge with the point hull (uhexen2 sv_user.c:161)
+	const savedHull = sv_player.v.hull;
+	if ( GameProfile_IsHexen2() ) sv_player.v.hull = 0;
 	const trace = SV_Move( start, vec3_origin, vec3_origin, stop, true, sv_player );
+	if ( GameProfile_IsHexen2() ) sv_player.v.hull = savedHull;
 
 	let friction;
 	if ( trace.fraction === 1.0 )
 		friction = sv_friction.value * sv_edgefriction.value;
 	else
 		friction = sv_friction.value;
+
+	if ( GameProfile_IsHexen2() ) {
+
+		// v1.11 gamecode never initialises ent.friction; a trigger may lower it deliberately (sv_user.c:166)
+		let entFriction = sv_player.v.friction;
+		if ( ! ( entFriction > 0 ) ) {
+
+			entFriction = 1;
+			sv_player.v.friction = 1;
+
+		}
+		friction *= entFriction;
+
+	}
 
 	// apply friction
 	const control = speed < sv_stopspeed.value ? sv_stopspeed.value : speed;
@@ -339,6 +367,76 @@ function DropPunchAngle() {
 
 /*
 ===================
+SV_FlightMove
+
+Hexen II's flying-player movement (uhexen2 sv_user.c:308): the same shape as SV_WaterMove, but the wish velocity
+includes the view's up axis so pitch flies the player, and vertical friction uses the full 3-D speed.
+===================
+*/
+/**
+ * Moves a MOVETYPE_FLY player for one frame. Called by `SV_ClientThink` for a Hexen II client. Builds the wished
+ * velocity from the client's move command along all three view axes, caps it at `sv_maxspeed` (scaled by the Newer
+ * Game `SV_QuadMovementScale` hook), then applies 3-D friction (`sv_friction`) and `sv_accelerate`. Mutates
+ * `sv_player.v.velocity`.
+ */
+export function SV_FlightMove() {
+
+	const quadScale = SV_QuadMovementScale( sv_player ), maxspeed = sv_maxspeed.value * quadScale;
+	const wishvel = _flightmove_wishvel;
+
+	AngleVectors( sv_player.v.v_angle, forward, right, up );
+
+	for ( let i = 0; i < 3; i ++ )
+		wishvel[ i ] = ( forward[ i ] * cmd.forwardmove + right[ i ] * cmd.sidemove + up[ i ] * cmd.upmove ) * quadScale;
+
+	let flightSpeed = Length( wishvel );
+	if ( flightSpeed > maxspeed ) {
+
+		VectorScale( wishvel, maxspeed / flightSpeed, wishvel );
+		flightSpeed = maxspeed;
+
+	}
+
+	//
+	// water-like friction
+	//
+	const speed = Length( velocity );
+	let newspeed;
+	if ( speed ) {
+
+		newspeed = speed - host_frametime * speed * sv_friction.value;
+		if ( newspeed < 0 )
+			newspeed = 0;
+		VectorScale( velocity, newspeed / speed, velocity );
+
+	} else {
+
+		newspeed = 0;
+
+	}
+
+	//
+	// acceleration
+	//
+	if ( ! flightSpeed )
+		return;
+
+	const addspeed = flightSpeed - newspeed;
+	if ( addspeed <= 0 )
+		return;
+
+	VectorNormalize( wishvel );
+	let accelspeed = sv_accelerate.value * flightSpeed * host_frametime;
+	if ( accelspeed > addspeed )
+		accelspeed = addspeed;
+
+	for ( let i = 0; i < 3; i ++ )
+		velocity[ i ] += accelspeed * wishvel[ i ];
+
+}
+
+/*
+===================
 SV_WaterMove
 ===================
 */
@@ -376,7 +474,28 @@ export function SV_WaterMove() {
 
 	}
 
-	_wishspeed *= 0.7;
+	if ( GameProfile_IsHexen2() ) {
+
+		// uhexen2 sv_user.c:400: class/level water speed. The Demon (5) is unrestricted, the Paladin (1) improves
+		// with level, and every other class keeps 70%.
+		const playerclass = sv_player.v.playerclass | 0;
+		const level = sv_player.v.level | 0;
+		if ( playerclass === 5 )
+			_wishspeed *= 0.5;
+		else if ( playerclass !== 1 )
+			_wishspeed *= 0.7;
+		else if ( level === 1 )
+			_wishspeed *= 0.75;
+		else if ( level === 2 )
+			_wishspeed *= 0.80;
+		else if ( level === 3 || level === 4 )
+			_wishspeed *= 0.85;
+		else if ( level === 5 || level === 6 )
+			_wishspeed *= 0.90;
+		else if ( level === 7 || level === 8 )
+			_wishspeed *= 0.95;
+
+	} else _wishspeed *= 0.7;
 
 	//
 	// water friction
@@ -605,6 +724,13 @@ export function SV_ClientThink() {
 
 	}
 
+	if ( GameProfile_IsHexen2() && sv_player.v.movetype === MOVETYPE_FLY ) {
+
+		SV_FlightMove();
+		return;
+
+	}
+
 	SV_AirMove();
 
 }
@@ -649,6 +775,16 @@ export function SV_ReadClientMove( move ) {
 	const bits = MSG_ReadByte();
 	host_client.edict.v.button0 = bits & 1;
 	host_client.edict.v.button2 = ( bits & 2 ) >> 1;
+
+	// native H2 button bit 4 crouches (uhexen2 sv_user.c:669)
+	if ( GameProfile_IsHexen2() ) {
+
+		if ( bits & 4 )
+			host_client.edict.v.flags2 = ( ( host_client.edict.v.flags2 | 0 ) | FL2_CROUCHED );
+		else
+			host_client.edict.v.flags2 = ( ( host_client.edict.v.flags2 | 0 ) & ~FL2_CROUCHED );
+
+	}
 
 	const impulse = MSG_ReadByte();
 	if ( impulse )

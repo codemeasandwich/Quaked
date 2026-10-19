@@ -24,6 +24,7 @@ import {
 	DotProduct, Length, AngleVectors, vec3_origin, anglemod, M_PI,
 } from '../common/mathlib.js';
 import { MAX_MODELS, MAX_SOUNDS } from '../common/quakedef.js';
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
 import {
 	OFS_RETURN, OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3,
 	OFS_PARM4, OFS_PARM5, OFS_PARM6, OFS_PARM7,
@@ -58,7 +59,7 @@ import { Cbuf_AddText } from '../common/cmd.js';
 import { SV_ElectricTrace } from '../common/hooks.js'; // installed by newer/gameplay/sv_electricsounds.js
 import { SV_FaceShotTrace } from '../common/hooks.js'; // installed by newer/gameplay/sv_faceevents.js
 import { Cvar_VariableValue, Cvar_Set } from '../common/cvar.js';
-import { FL_ONGROUND, FL_FLY, FL_SWIM, svs, ss_loading, ss_active, teamplay } from './server.js';
+import { FL_ONGROUND, FL_FLY, FL_SWIM, DAMAGE_YES, svs, ss_loading, ss_active, teamplay } from './server.js';
 import { Mod_ForName, Mod_PointInLeaf, Mod_LeafPVS } from '../render/gl_model.js';
 import {
 	svc_sound, svc_print, svc_centerprint, svc_stufftext, svc_lightstyle,
@@ -575,7 +576,11 @@ function PF_traceline() {
 	const nomonsters = G_FLOAT( OFS_PARM2 ) | 0;
 	const ent = G_EDICT( OFS_PARM3 );
 
+	// native H2 traceline uses the point hull whatever ent.hull names (h2shared pr_cmds.c:1106)
+	const savedHull = ent.v.hull;
+	if ( GameProfile_IsHexen2() ) ent.v.hull = 0;
 	const trace = SV_Move( v1, vec3_origin, vec3_origin, v2, nomonsters, ent );
+	if ( GameProfile_IsHexen2() ) ent.v.hull = savedHull;
 
 	pr_global_struct.trace_allsolid = trace.allsolid ? 1 : 0;
 	pr_global_struct.trace_startsolid = trace.startsolid ? 1 : 0;
@@ -1240,7 +1245,93 @@ vector aim(entity, missilespeed)
 */
 const DAMAGE_AIM = 2;
 
+function PF_aimHexen() {
+
+	const ent = G_EDICT( OFS_PARM0 );
+	const shot = G_VECTOR( OFS_PARM1 );
+	const start = new Float32Array( [ shot[ 0 ], shot[ 1 ], shot[ 2 ] + 20 ] );
+	const dir = new Float32Array( 3 );
+	const end = new Float32Array( 3 );
+	const bestdir = new Float32Array( 3 );
+	const forward = pr_global_struct.v_forward;
+	const tracePoint = ( from, to ) => {
+
+		const savedHull = ent.v.hull;
+		ent.v.hull = 0;
+		const result = SV_Move( from, vec3_origin, vec3_origin, to, false, ent );
+		ent.v.hull = savedHull;
+		return result;
+
+	};
+
+	// try sending a trace straight
+	VectorCopy( forward, dir );
+	VectorMA( start, 2048, dir, end );
+	let tr = tracePoint( start, end );
+	if ( tr.ent && tr.ent.v.takedamage === DAMAGE_YES
+		&& ( teamplay.value === 0 || ent.v.team <= 0 || ent.v.team !== tr.ent.v.team ) ) {
+
+		VectorCopy( forward, G_VECTOR( OFS_RETURN ) );
+		return;
+
+	}
+
+	// try all possible entities
+	VectorCopy( dir, bestdir );
+	let bestdist = sv_aim.value;
+	let bestent = null;
+
+	for ( let i = 1; i < sv.num_edicts; i ++ ) {
+
+		const checkEnt = EDICT_NUM( i );
+		if ( checkEnt.v.takedamage !== DAMAGE_YES )
+			continue;
+		if ( checkEnt === ent )
+			continue;
+		if ( teamplay.value !== 0 && ent.v.team > 0 && ent.v.team === checkEnt.v.team )
+			continue; // don't aim at teammate
+
+		for ( let j = 0; j < 3; j ++ )
+			end[ j ] = checkEnt.v.origin[ j ] + 0.5 * ( checkEnt.v.mins[ j ] + checkEnt.v.maxs[ j ] );
+		VectorSubtract( end, start, dir );
+		VectorNormalize( dir );
+		const dist = DotProduct( dir, forward );
+		if ( dist < bestdist )
+			continue; // too far to turn
+		tr = tracePoint( start, end );
+		if ( tr.ent === checkEnt ) {
+
+			bestdist = dist;
+			bestent = checkEnt;
+
+		}
+
+	}
+
+	const ret = G_VECTOR( OFS_RETURN );
+	if ( bestent != null ) {
+
+		// Hexen II origins are at the feet: aim at half the victim's maxs height from the shot origin (pr_cmds.c:2497)
+		const hold_org = [ bestent.v.origin[ 0 ], bestent.v.origin[ 1 ], bestent.v.origin[ 2 ] + 0.5 * bestent.v.maxs[ 2 ] ];
+		VectorSubtract( hold_org, shot, dir );
+		const dist = DotProduct( dir, forward );
+		VectorScale( forward, dist, end );
+		end[ 2 ] = dir[ 2 ];
+		VectorNormalize( end );
+		VectorCopy( end, ret );
+
+	} else VectorCopy( bestdir, ret );
+
+}
+
 export function PF_aim() {
+
+	if ( GameProfile_IsHexen2() ) {
+
+		PF_aimHexen();
+		return;
+
+	}
 
 	const ent = G_EDICT( OFS_PARM0 );
 	const teamplayValue = teamplay.value;

@@ -24,7 +24,8 @@ line of sight checks trace->crosscontent, but bullets don't
 
 import { Sys_Error } from '../common/sys.js';
 import { Con_DPrintf, link_t, ClearLink, RemoveLink, InsertLinkBefore } from '../common/common.js';
-import { VectorCopy, VectorAdd, VectorSubtract, DotProduct, vec3_origin, BoxOnPlaneSide } from '../common/mathlib.js';
+import { VectorCopy, VectorAdd, VectorSubtract, DotProduct, vec3_origin, BoxOnPlaneSide, AngleVectors } from '../common/mathlib.js';
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
 import {
 	sv, svs,
 	SOLID_NOT, SOLID_TRIGGER, SOLID_BBOX, SOLID_SLIDEBOX, SOLID_BSP,
@@ -94,6 +95,8 @@ export class trace_t {
 export const MOVE_NORMAL = 0;
 export const MOVE_NOMONSTERS = 1;
 export const MOVE_MISSILE = 2;
+export const MOVE_WATER = 3; // Hexen II: a swimmer may not leave the water
+export const MOVE_PHASE = 4; // Hexen II: only world/BSP planes clip a phased entity
 
 //============================================================================
 // moveclip_t - internal structure for SV_Move
@@ -233,8 +236,9 @@ SV_HullForEntity
 /**
  * Returns a hull that can be used for testing or clipping an object of mins/maxs size (WinQuake world.c). For a
  * SOLID_BSP entity it picks the brush model's precomputed hull by the object's width: hull 0 (point) under 3 units,
- * hull 1 (player size) up to 32, else hull 2 (large). Any other entity gets a temporary box hull of its own box
- * expanded by the object's size (`SV_HullForBox`).
+ * hull 1 (player size) up to 32, else hull 2 (large). A Hexen II 8-hull model instead honours an explicit
+ * `moveEnt.v.hull` and otherwise chooses the native 0/4/3/1/5 sizes. Any other entity gets a temporary box hull of
+ * its own box expanded by the object's size (`SV_HullForBox`).
  *
  * @param {edict_t} ent the entity being clipped against; `solid`, `movetype`, `modelindex`, `origin`, `mins` and
  *   `maxs` are read
@@ -284,6 +288,15 @@ export function SV_HullForEntity( ent, mins, maxs, offset, moveEnt = null ) {
 
 		// calculate an offset value to center the origin
 		VectorSubtract( hull.clip_mins, mins, offset );
+		// Hexen II zeroes a monster's horizontal hull offset (uhexen2 world.c:181): a named monster hull is already
+		// centred, and the offset made CHECKBOTTOM's point traces start outside the monster.
+		if ( ( model.hullCount | 0 ) >= 8 && moveEnt != null && ( ( moveEnt.v.flags | 0 ) & FL_MONSTER )
+			&& ( offset[ 0 ] !== 0 || offset[ 1 ] !== 0 ) ) {
+
+			offset[ 0 ] = 0;
+			offset[ 1 ] = 0;
+
+		}
 		VectorAdd( offset, ent.v.origin, offset );
 
 	} else {
@@ -1132,11 +1145,13 @@ SV_ClipMoveToEntity
  * @param {Float32Array|Array<number>} mins moving box mins (Quake units, relative to its origin)
  * @param {Float32Array|Array<number>} maxs moving box maxs (Quake units, relative to its origin)
  * @param {Float32Array|Array<number>} end move end, world space (Quake units)
+ * @param {?edict_t} moveEnt the moving entity (its `hull` and `flags` choose a Hexen hull), or null
+ * @param {number} moveType MOVE_*; MOVE_WATER checks the water surface and MOVE_PHASE clips only BSP
  * @returns {trace_t} a new trace with `endpos` in world space; `ent` is set to `ent` when the move was clipped or
  *   started in solid, otherwise null
  * @throws {Error} through `Sys_Error` for a bad SOLID_BSP entity or a corrupt hull
  */
-export function SV_ClipMoveToEntity( ent, start, mins, maxs, end, moveEnt = null ) {
+export function SV_ClipMoveToEntity( ent, start, mins, maxs, end, moveEnt = null, moveType = MOVE_NORMAL ) {
 
 	const trace = new trace_t();
 
@@ -1154,8 +1169,50 @@ export function SV_ClipMoveToEntity( ent, start, mins, maxs, end, moveEnt = null
 	VectorSubtract( start, offset, start_l );
 	VectorSubtract( end, offset, end_l );
 
+	// rotate start and end into the model's frame of reference (native Hexen II rotating brushes, world.c:837)
+	const angles = ent.v.angles;
+	const rotated = GameProfile_IsHexen2() && ent.v.solid === SOLID_BSP
+		&& ( Math.abs( angles[ 0 ] ) > 1 || Math.abs( angles[ 1 ] ) > 1 || Math.abs( angles[ 2 ] ) > 1 );
+	const forward = new Float32Array( 3 ), right = new Float32Array( 3 ), up = new Float32Array( 3 );
+	if ( rotated ) {
+
+		AngleVectors( angles, forward, right, up );
+		const temp = Float32Array.from( start_l );
+		start_l[ 0 ] = DotProduct( temp, forward );
+		start_l[ 1 ] = - DotProduct( temp, right );
+		start_l[ 2 ] = DotProduct( temp, up );
+		temp.set( end_l );
+		end_l[ 0 ] = DotProduct( temp, forward );
+		end_l[ 1 ] = - DotProduct( temp, right );
+		end_l[ 2 ] = DotProduct( temp, up );
+
+	}
+
 	// trace a line through the apropriate clipping hull
 	SV_RecursiveHullCheck( hull, hull.firstclipnode, 0, 1, start_l, end_l, trace );
+
+	// Hexen II MOVE_WATER: a swimmer that would end outside water stops where it started (world.c:860)
+	if ( moveType === MOVE_WATER && SV_PointContents( trace.endpos ) !== CONTENTS_WATER ) {
+
+		VectorCopy( start_l, trace.endpos );
+		trace.fraction = 0;
+
+	}
+
+	// rotate endpos and plane back into the world (world.c:869)
+	if ( rotated && trace.fraction !== 1 ) {
+
+		AngleVectors( [ - angles[ 0 ], - angles[ 1 ], - angles[ 2 ] ], forward, right, up );
+		const temp = Float32Array.from( trace.endpos );
+		trace.endpos[ 0 ] = DotProduct( temp, forward );
+		trace.endpos[ 1 ] = - DotProduct( temp, right );
+		trace.endpos[ 2 ] = DotProduct( temp, up );
+		temp.set( trace.plane.normal );
+		trace.plane.normal[ 0 ] = DotProduct( temp, forward );
+		trace.plane.normal[ 1 ] = - DotProduct( temp, right );
+		trace.plane.normal[ 2 ] = DotProduct( temp, up );
+
+	}
 
 	// fix trace up by the offset
 	if ( trace.fraction !== 1 )
@@ -1208,7 +1265,7 @@ function SV_ClipToLinks( node, clip ) {
 		if ( touch.v.solid === SOLID_TRIGGER )
 			Sys_Error( 'Trigger in clipping list' );
 
-		if ( clip.type === MOVE_NOMONSTERS && touch.v.solid !== SOLID_BSP ) {
+		if ( ( clip.type === MOVE_NOMONSTERS || clip.type === MOVE_PHASE ) && touch.v.solid !== SOLID_BSP ) {
 
 			l = next;
 			continue;
@@ -1264,9 +1321,9 @@ function SV_ClipToLinks( node, clip ) {
 
 		let trace;
 		if ( ( touch.v.flags | 0 ) & FL_MONSTER )
-			trace = SV_ClipMoveToEntity( touch, clip.start, clip.mins2, clip.maxs2, clip.end, touch );
+			trace = SV_ClipMoveToEntity( touch, clip.start, clip.mins2, clip.maxs2, clip.end, touch, clip.type );
 		else
-			trace = SV_ClipMoveToEntity( touch, clip.start, clip.mins, clip.maxs, clip.end, touch );
+			trace = SV_ClipMoveToEntity( touch, clip.start, clip.mins, clip.maxs, clip.end, touch, clip.type );
 
 		if ( trace.allsolid || trace.startsolid || trace.fraction < clip.trace.fraction ) {
 
@@ -1344,7 +1401,7 @@ SV_Move
  * @param {Float32Array|Array<number>} mins moving box mins (Quake units, relative to its origin; all 0 for a line)
  * @param {Float32Array|Array<number>} maxs moving box maxs (Quake units, relative to its origin)
  * @param {Float32Array|Array<number>} end move end, world space (Quake units)
- * @param {number} type MOVE_NORMAL (0), MOVE_NOMONSTERS (1) or MOVE_MISSILE (2)
+ * @param {number} type MOVE_NORMAL (0), MOVE_NOMONSTERS (1), MOVE_MISSILE (2), MOVE_WATER (3) or MOVE_PHASE (4)
  * @param {?edict_t} passedict the entity doing the move (skipped, with its owner and its missiles), or null
  * @returns {trace_t} a new trace of the nearest impact (the caller may keep it): `ent` is the entity hit (the world
  *   edict for map geometry), or null when nothing was hit
@@ -1356,7 +1413,7 @@ export function SV_Move( start, mins, maxs, end, type, passedict ) {
 	const clip = new moveclip_t();
 
 	// clip to world
-	clip.trace = SV_ClipMoveToEntity( sv.edicts[ 0 ], start, mins, maxs, end, passedict );
+	clip.trace = SV_ClipMoveToEntity( sv.edicts[ 0 ], start, mins, maxs, end, passedict, type );
 
 	clip.start = start;
 	clip.end = end;
@@ -1365,7 +1422,7 @@ export function SV_Move( start, mins, maxs, end, type, passedict ) {
 	clip.type = type;
 	clip.passedict = passedict;
 
-	if ( type === MOVE_MISSILE ) {
+	if ( type === MOVE_MISSILE || type === MOVE_PHASE ) {
 
 		for ( let i = 0; i < 3; i ++ ) {
 

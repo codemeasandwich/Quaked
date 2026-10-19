@@ -208,7 +208,10 @@ export const MOVETYPE_PUSH = 7; // no clip to world, push and crush
 export const MOVETYPE_NOCLIP = 8;
 export const MOVETYPE_FLYMISSILE = 9; // extra size to monsters
 export const MOVETYPE_BOUNCE = 10;
-export const MOVETYPE_PHASE = 13; // Hexen II phase projectile (native clips entities but passes world planes)
+export const MOVETYPE_BOUNCEMISSILE = 11; // bounce w/o gravity
+export const MOVETYPE_FOLLOW = 12; // track movement of aiment
+export const MOVETYPE_PUSHPULL = 13; // pushable/pullable object
+export const MOVETYPE_SWIM = 14; // should keep the object in water
 
 //============================================================================
 // edict->solid values
@@ -219,6 +222,7 @@ export const SOLID_TRIGGER = 1; // touch on edge, but not blocking
 export const SOLID_BBOX = 2; // touch on edge, block
 export const SOLID_SLIDEBOX = 3; // touch on edge, but not an onground
 export const SOLID_BSP = 4; // bsp clip, touch on edge, block
+export const SOLID_PHASE = 5; // won't slow down when hitting FL_MONSTER entities
 
 //============================================================================
 // edict->deadflag values
@@ -249,6 +253,12 @@ export const FL_ONGROUND = 512;
 export const FL_PARTIALGROUND = 1024; // not all corners are valid
 export const FL_WATERJUMP = 2048; // player jumping out of water
 export const FL_JUMPRELEASED = 4096; // for jump debouncing
+export const FL_MOVECHAIN_ANGLE = 32768; // a move-chain follower also takes the angle delta
+export const FL_HUNTFACE = 65536; // a flyer aims its Z move at the enemy's view offset
+export const FL_NOZ = 131072; // a flyer or swimmer keeps its Z movement to the stepping rules
+export const FL_SET_TRACE = 262144; // a monster's move always publishes the trace globals
+
+export const FL2_CROUCHED = 4096;
 
 //============================================================================
 // entity effects

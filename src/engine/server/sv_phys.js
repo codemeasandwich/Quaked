@@ -28,6 +28,7 @@ import { vec3_origin, DotProduct, VectorCopy, VectorAdd, VectorSubtract, VectorM
 	M_PI, anglemod } from '../common/mathlib.js';
 import { MAX_EDICTS, YAW } from '../common/quakedef.js';
 import { PR_GetString } from '../progs/progs.js';
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
 import { trace_t } from './world.js';
 import { SV_ShotDelayRun } from '../common/hooks.js'; // installed by newer/gameplay/sv_shotdelay.js
 import { SV_FireQuench, SV_FireQuenchStep } from '../common/hooks.js'; // installed by newer/gameplay/sv_firequench.js
@@ -69,7 +70,8 @@ export const MOVETYPE_FLYMISSILE = 9;
 export const MOVETYPE_BOUNCE = 10;
 export const MOVETYPE_BOUNCEMISSILE = 11; // QUAKE2
 export const MOVETYPE_FOLLOW = 12; // QUAKE2 - stuck to aiment entity
-export const MOVETYPE_PHASE = 13; // Hexen II phase projectile (native clips entities but passes world planes)
+export const MOVETYPE_PUSHPULL = 13; // Hexen II pushable/pullable object, runs step physics
+export const MOVETYPE_SWIM = 14; // Hexen II swimmer, toss physics with MOVE_WATER traces
 
 //
 // Solid type constants
@@ -79,6 +81,7 @@ export const SOLID_TRIGGER = 1;
 export const SOLID_BBOX = 2;
 export const SOLID_SLIDEBOX = 3;
 export const SOLID_BSP = 4;
+export const SOLID_PHASE = 5; // Hexen II: passes through monsters and players
 
 //
 // Entity flags
@@ -96,6 +99,12 @@ export const FL_ONGROUND = 512;
 export const FL_PARTIALGROUND = 1024;
 export const FL_WATERJUMP = 2048;
 export const FL_JUMPRELEASED = 4096;
+export const FL_MOVECHAIN_ANGLE = 32768; // a move-chain follower also takes the angle delta
+export const FL_HUNTFACE = 65536; // a flyer aims its Z move at the enemy's view offset
+export const FL_NOZ = 131072; // a flyer or swimmer keeps its Z movement to the stepping rules
+export const FL_SET_TRACE = 262144; // a monster's move always publishes the trace globals
+
+export const FL2_CROUCHED = 4096;
 
 //
 // Move type for SV_Move
@@ -103,6 +112,8 @@ export const FL_JUMPRELEASED = 4096;
 export const MOVE_NORMAL = 0;
 export const MOVE_NOMONSTERS = 1;
 export const MOVE_MISSILE = 2;
+export const MOVE_WATER = 3; // Hexen II: a swimmer may not leave the water
+export const MOVE_PHASE = 4; // Hexen II: only world/BSP planes clip a phased entity
 
 //
 // Contents
@@ -175,10 +186,18 @@ const _walkmove_nostepvel = new Float32Array( 3 );
 // Cached buffer for SV_Physics_Toss (Golden Rule #4)
 const _toss_move = new Float32Array( 3 );
 
+// Cached buffers for the native Hexen II move chain in SV_Physics
+const _chain_oldorigin = new Float32Array( 3 );
+const _chain_oldangle = new Float32Array( 3 );
+const _chain_move = new Float32Array( 3 );
+const _chain_angle = new Float32Array( 3 );
+
 // Cached buffers for SV_PushRotate (Golden Rule #4)
 const _pushrotate_amove = new Float32Array( 3 );
 const _pushrotate_a = new Float32Array( 3 );
+const _pushrotate_linearmove = new Float32Array( 3 );
 const _pushrotate_pushorig = new Float32Array( 3 );
+const _pushrotate_pushorigorg = new Float32Array( 3 );
 const _pushrotate_entorig = new Float32Array( 3 );
 const _pushrotate_move = new Float32Array( 3 );
 const _pushrotate_org = new Float32Array( 3 );
@@ -215,6 +234,37 @@ export let host_frametime = 0;
 export let pr_strings = '';
 
 /**
+ * The physics cvars whose native default differs by game. Hexen II's `sv_maxspeed` is 640 (uhexen2 sv_user.c:218);
+ * Quake's is 320. The Quake value is remembered when a Hexen map is installed and put back when a Quake map is, so
+ * neither game leaks its default into the other.
+ */
+let quakeMaxspeed = null;
+
+/**
+ * Applies the active game's physics cvar defaults. Called by `SV_SetState` at each map load. Only a value still at
+ * the other game's default is replaced, so a player's own `sv_maxspeed` is never overwritten.
+ */
+export function SV_ApplyGameProfile() {
+
+	if ( GameProfile_IsHexen2() ) {
+
+		if ( quakeMaxspeed === null ) {
+
+			quakeMaxspeed = sv_maxspeed.value;
+			if ( sv_maxspeed.value === 320 ) sv_maxspeed.value = 640;
+
+		}
+
+	} else if ( quakeMaxspeed !== null ) {
+
+		if ( sv_maxspeed.value === 640 ) sv_maxspeed.value = quakeMaxspeed;
+		quakeMaxspeed = null;
+
+	}
+
+}
+
+/**
  * Points the physics module at the current server state and QuakeC globals. Called by sv_main.js's `SV_SpawnServer`
  * at each map load, after `PR_LoadProgs` so `pr_global_struct` is valid; the references are kept until the next call.
  *
@@ -228,6 +278,7 @@ export function SV_SetState( _sv, _svs, _pr_global_struct ) {
 	sv = _sv;
 	svs = _svs;
 	pr_global_struct = _pr_global_struct;
+	SV_ApplyGameProfile();
 
 }
 
@@ -675,6 +726,53 @@ export function SV_FlyMove( ent, time, steptrace ) {
 
 /*
 ============
+SV_FlyExtras
+
+Hexen II flight hover and vertical friction (uhexen2 sv_phys.c:396): a flyer always keeps FL_ONGROUND, and while its
+vertical speed is within 6 units/s of rest it bobs by `hoverz` (+/-0.4), flipping the bob when it reaches 6. Faster
+vertical progress loses a tenth of it per frame once the key is released.
+============
+*/
+/**
+ * @param {edict_t} ent a MOVETYPE_FLY or MOVETYPE_SWIM player; `hoverz` and `velocity[2]` are mutated
+ * @param {number} _time frame time (seconds), unused by the native hover
+ * @param {?Object} _steptrace unused
+ */
+export function SV_FlyExtras( ent, _time, _steptrace ) {
+
+	const hoverinc = 0.4;
+
+	// Jumping makes you lose this flag so reset it
+	ent.v.flags = ( ent.v.flags | 0 ) | FL_ONGROUND;
+
+	if ( ent.v.velocity[ 2 ] <= 6 && ent.v.velocity[ 2 ] >= - 6 ) {
+
+		ent.v.velocity[ 2 ] += ent.v.hoverz ?? 0;
+
+		if ( ent.v.velocity[ 2 ] >= 6 ) {
+
+			ent.v.hoverz = - hoverinc;
+			ent.v.velocity[ 2 ] += ent.v.hoverz;
+
+		} else if ( ent.v.velocity[ 2 ] <= - 6 ) {
+
+			ent.v.hoverz = hoverinc;
+			ent.v.velocity[ 2 ] += ent.v.hoverz;
+
+		}
+
+	} else {
+
+		// friction for upward or downward progress once key is released (native uses sv_player, its own client)
+		const playerVelocity = sv_player != null ? sv_player.v.velocity[ 2 ] : ent.v.velocity[ 2 ];
+		ent.v.velocity[ 2 ] -= playerVelocity * 0.1;
+
+	}
+
+}
+
+/*
+============
 SV_AddGravity
 ============
 */
@@ -734,15 +832,40 @@ export function SV_PushEntity( ent, push ) {
 	VectorAdd( ent.v.origin, push, end );
 
 	let trace;
-	if ( ent.v.movetype === MOVETYPE_FLYMISSILE )
+	if ( ent.v.movetype === MOVETYPE_FLYMISSILE || ent.v.movetype === MOVETYPE_BOUNCEMISSILE )
 		trace = SV_Move( ent.v.origin, ent.v.mins, ent.v.maxs, end, MOVE_MISSILE, ent );
 	else if ( ent.v.solid === SOLID_TRIGGER || ent.v.solid === SOLID_NOT )
 		// only clip against bmodels
 		trace = SV_Move( ent.v.origin, ent.v.mins, ent.v.maxs, end, MOVE_NOMONSTERS, ent );
+	else if ( ent.v.movetype === MOVETYPE_SWIM )
+		trace = SV_Move( ent.v.origin, ent.v.mins, ent.v.maxs, end, MOVE_WATER, ent );
 	else
 		trace = SV_Move( ent.v.origin, ent.v.mins, ent.v.maxs, end, MOVE_NORMAL, ent );
 
-	VectorCopy( trace.endpos, ent.v.origin );
+	if ( ent.v.solid !== SOLID_PHASE ) {
+
+		if ( ent.v.movetype !== MOVETYPE_BOUNCE || ( ! trace.allsolid && ! trace.startsolid ) )
+			VectorCopy( trace.endpos, ent.v.origin );
+		else {
+
+			trace.fraction = 0;
+			return trace;
+
+		}
+
+	} else if ( trace.ent != null
+		&& ( ( ( trace.ent.v.flags | 0 ) & FL_MONSTER ) || trace.ent.v.movetype === MOVETYPE_WALK ) ) {
+
+		// Phased entity: bounce off the monster or player it touched, but pass through them
+		const impact = Float32Array.from( trace.endpos );
+		const impactEnt = trace.ent;
+		trace = SV_Move( ent.v.origin, ent.v.mins, ent.v.maxs, end, MOVE_PHASE, ent );
+		VectorCopy( impact, ent.v.origin );
+		SV_Impact( ent, impactEnt );
+		VectorCopy( trace.endpos, ent.v.origin );
+
+	} else VectorCopy( trace.endpos, ent.v.origin );
+
 	SV_LinkEdict( ent, true );
 
 	if ( trace.ent )
@@ -773,7 +896,9 @@ export function SV_PushRotate( pusher, movetime ) {
 	// Use cached buffers instead of allocating per-call
 	const amove = _pushrotate_amove;
 	const a = _pushrotate_a;
+	const linearmove = _pushrotate_linearmove;
 	const pushorig = _pushrotate_pushorig;
+	const pushorigorg = _pushrotate_pushorigorg;
 	const entorig = _pushrotate_entorig;
 	const move = _pushrotate_move;
 	const org = _pushrotate_org;
@@ -793,17 +918,23 @@ export function SV_PushRotate( pusher, movetime ) {
 
 	}
 
-	// Calculate angular movement
-	for ( let i = 0; i < 3; i ++ )
+	// Calculate angular and linear movement
+	for ( let i = 0; i < 3; i ++ ) {
+
 		amove[ i ] = pusher.v.avelocity[ i ] * movetime;
+		linearmove[ i ] = pusher.v.velocity[ i ] * movetime;
+
+	}
 
 	// Build rotation matrix (negate for proper coordinate transform)
 	VectorSubtract( vec3_origin, amove, a );
 	AngleVectors( a, forward, right, up );
 
 	VectorCopy( pusher.v.angles, pushorig );
+	VectorCopy( pusher.v.origin, pushorigorg );
 
 	// Move the pusher to its final position
+	VectorAdd( pusher.v.origin, linearmove, pusher.v.origin );
 	VectorAdd( pusher.v.angles, amove, pusher.v.angles );
 	pusher.v.ltime += movetime;
 	SV_LinkEdict( pusher, false );
@@ -854,6 +985,7 @@ export function SV_PushRotate( pusher, movetime ) {
 		org2[ 1 ] = - DotProduct( org, right );
 		org2[ 2 ] = DotProduct( org, up );
 		VectorSubtract( org2, org, move );
+		VectorAdd( move, linearmove, move );
 
 		// Try moving the contacted entity
 		pusher.v.solid = SOLID_NOT;
@@ -879,6 +1011,7 @@ export function SV_PushRotate( pusher, movetime ) {
 			VectorCopy( entorig, check.v.origin );
 			SV_LinkEdict( check, true );
 
+			VectorCopy( pushorigorg, pusher.v.origin );
 			VectorCopy( pushorig, pusher.v.angles );
 			SV_LinkEdict( pusher, false );
 			pusher.v.ltime -= movetime;
@@ -1096,7 +1229,13 @@ export function SV_Physics_Pusher( ent ) {
 		// nothing), so in Classic only a brush pusher turns in place; in Newer Game the ball spins, flying or waiting.
 		const moving = ent.v.velocity[ 0 ] !== 0 || ent.v.velocity[ 1 ] !== 0 || ent.v.velocity[ 2 ] !== 0;
 		const turning = ent.v.avelocity[ 0 ] !== 0 || ent.v.avelocity[ 1 ] !== 0 || ent.v.avelocity[ 2 ] !== 0;
-		if ( turning && ! moving && ( R_NewerGame() || PR_GetString( ent.v.model ).charAt( 0 ) === '*' ) )
+		if ( GameProfile_IsHexen2() ) {
+
+			// native H2: any angular velocity uses the rotating pusher (uhexen2 sv_phys.c:1296)
+			if ( turning ) SV_PushRotate( ent, movetime );
+			else SV_PushMove( ent, movetime );
+
+		} else if ( turning && ! moving && ( R_NewerGame() || PR_GetString( ent.v.model ).charAt( 0 ) === '*' ) )
 			SV_PushRotate( ent, movetime );
 		else {
 
@@ -1579,7 +1718,21 @@ export function SV_Physics_Client( ent, num ) {
 			case MOVETYPE_FLY:
 				if ( ! SV_RunThink( ent ) )
 					return;
+				if ( GameProfile_IsHexen2() ) {
+
+					SV_CheckWater( ent );
+					SV_FlyMove( ent, host_frametime, null );
+					SV_FlyExtras( ent, host_frametime, null );
+
+				} else SV_FlyMove( ent, host_frametime, null );
+				break;
+
+			case MOVETYPE_SWIM:
+				if ( ! SV_RunThink( ent ) )
+					return;
+				SV_CheckWater( ent );
 				SV_FlyMove( ent, host_frametime, null );
+				SV_FlyExtras( ent, host_frametime, null );
 				break;
 
 			case MOVETYPE_NOCLIP:
@@ -1773,9 +1926,11 @@ export function SV_Physics_Toss( ent ) {
 
 	SV_CheckVelocity( ent );
 
-	// add gravity
+	// add gravity (native H2 excludes FLY, BOUNCEMISSILE, FLYMISSILE and SWIM)
 	if ( ent.v.movetype !== MOVETYPE_FLY
-		&& ent.v.movetype !== MOVETYPE_FLYMISSILE )
+		&& ent.v.movetype !== MOVETYPE_FLYMISSILE
+		&& ent.v.movetype !== MOVETYPE_BOUNCEMISSILE
+		&& ent.v.movetype !== MOVETYPE_SWIM )
 		SV_AddGravity( ent );
 
 	// move angles
@@ -1797,13 +1952,21 @@ export function SV_Physics_Toss( ent ) {
 	let backoff;
 	if ( ent.v.movetype === MOVETYPE_BOUNCE )
 		backoff = 1.5;
-	else
+	else if ( ent.v.movetype === MOVETYPE_BOUNCEMISSILE ) {
+
+		// native H2: a phased missile passes through monsters and players instead of bouncing off them
+		if ( ent.v.solid === SOLID_PHASE && trace.ent != null
+			&& ( ( ( trace.ent.v.flags | 0 ) & FL_MONSTER ) || trace.ent.v.movetype === MOVETYPE_WALK ) )
+			return;
+		backoff = 2.0;
+
+	} else
 		backoff = 1;
 
 	ClipVelocity( ent.v.velocity, trace.plane.normal, ent.v.velocity, backoff );
 
-	// stop if on ground
-	if ( trace.plane.normal[ 2 ] > 0.7 ) {
+	// stop if on ground (a bounce missile never grounds)
+	if ( trace.plane.normal[ 2 ] > 0.7 && ent.v.movetype !== MOVETYPE_BOUNCEMISSILE ) {
 
 		if ( ent.v.velocity[ 2 ] < 60 || ent.v.movetype !== MOVETYPE_BOUNCE ) {
 
@@ -1862,9 +2025,17 @@ export function SV_Physics_Step( ent ) {
 
 		if ( ( ent.v.flags | 0 ) & FL_ONGROUND ) {
 
-			// just hit ground
-			if ( hitsound )
-				SV_StartSound( ent, 0, 'demon/dland2.wav', 255, 1 );
+			// just hit ground; Hexen II uses its own landing sound and is silent for monsters (uhexen2 sv_phys.c:2117)
+			if ( hitsound ) {
+
+				if ( GameProfile_IsHexen2() ) {
+
+					if ( ! ( ( ent.v.flags | 0 ) & FL_MONSTER ) )
+						SV_StartSound( ent, 0, 'fx/thngland.wav', 255, 1 );
+
+				} else SV_StartSound( ent, 0, 'demon/dland2.wav', 255, 1 );
+
+			}
 
 		}
 
@@ -1913,6 +2084,17 @@ export function SV_Physics() {
 		if ( ent.free )
 			continue;
 
+		// native H2: a move-chain leader carries up to ten followers after its own physics
+		const chainNum = GameProfile_IsHexen2() ? ( ent.v.movechain | 0 ) : 0;
+		let chain = chainNum !== 0 ? PROG_TO_EDICT( chainNum ) : null;
+		if ( chain === sv.edicts[ 0 ] || chain == null || chain === undefined ) chain = null;
+		else {
+
+			VectorCopy( ent.v.origin, _chain_oldorigin );
+			VectorCopy( ent.v.angles, _chain_oldangle );
+
+		}
+
 		if ( pr_global_struct.force_retouch ) {
 
 			SV_LinkEdict( ent, true ); // force retouch even for stationary
@@ -1933,19 +2115,52 @@ export function SV_Physics() {
 			SV_Physics_Follow( ent );
 		else if ( ent.v.movetype === MOVETYPE_NOCLIP )
 			SV_Physics_Noclip( ent );
-		else if ( ent.v.movetype === MOVETYPE_STEP )
+		else if ( ent.v.movetype === MOVETYPE_STEP || ent.v.movetype === MOVETYPE_PUSHPULL )
 			SV_Physics_Step( ent );
-		else if ( ent.v.movetype === MOVETYPE_PHASE )
-			// native SV_Physics_Phase ignores the world's planes; pending a Hexen phase clip (recorded divergence)
-			SV_Physics_Toss( ent );
 		else if ( ent.v.movetype === MOVETYPE_TOSS
 			|| ent.v.movetype === MOVETYPE_BOUNCE
 			|| ent.v.movetype === MOVETYPE_BOUNCEMISSILE
 			|| ent.v.movetype === MOVETYPE_FLY
-			|| ent.v.movetype === MOVETYPE_FLYMISSILE )
+			|| ent.v.movetype === MOVETYPE_FLYMISSILE
+			|| ent.v.movetype === MOVETYPE_SWIM )
 			SV_Physics_Toss( ent );
 		else
 			Sys_Error( 'SV_Physics: bad movetype ' + ( ent.v.movetype | 0 ) );
+
+		if ( chain !== null ) {
+
+			const originMoved = ! VectorCompare( ent.v.origin, _chain_oldorigin );
+			if ( originMoved || ! VectorCompare( ent.v.angles, _chain_oldangle ) ) {
+
+				VectorSubtract( ent.v.origin, _chain_oldorigin, _chain_move );
+				VectorSubtract( ent.v.angles, _chain_oldangle, _chain_angle );
+
+				for ( let c = 0; c < 10; c ++ ) { // chain a max of 10 objects
+
+					if ( chain == null || chain === undefined || chain.free )
+						break;
+
+					VectorAdd( _chain_move, chain.v.origin, chain.v.origin );
+					if ( ( chain.v.flags | 0 ) & FL_MOVECHAIN_ANGLE )
+						VectorAdd( _chain_angle, chain.v.angles, chain.v.angles );
+
+					if ( originMoved && chain.v.chainmoved ) { // callback function
+
+						pr_global_struct.self = EDICT_TO_PROG( chain );
+						pr_global_struct.other = EDICT_TO_PROG( ent );
+						PR_ExecuteProgram( chain.v.chainmoved );
+
+					}
+
+					const next = chain.v.movechain | 0;
+					chain = next !== 0 ? PROG_TO_EDICT( next ) : null;
+					if ( chain === sv.edicts[ 0 ] ) chain = null;
+
+				}
+
+			}
+
+		}
 
 	}
 
