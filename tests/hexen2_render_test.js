@@ -7,7 +7,7 @@ import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init, Mod_PointInLeaf, Mod_LeafPVS } from '../src/engine/render/gl_model.js';
 import { model_t } from '../src/engine/render/gl_model_types.js';
 import { set_loadmodel } from '../src/engine/render/gl_model_common.js';
-import { Mod_LoadBrushModel, Mod_SetHexenHullLayout } from '../src/engine/render/gl_model_bsp.js';
+import { Mod_LoadBrushModel } from '../src/engine/render/gl_model_bsp.js';
 import { GL_BuildLightmaps, lightmapTextures, R_DrawWorld } from '../src/engine/render/gl_rsurf.js';
 import { R_NewMap } from '../src/engine/render/gl_rmisc.js';
 import { R_MarkLeaves } from '../src/engine/render/gl_rsurf_batches.js';
@@ -17,6 +17,9 @@ import { V_CalcRefdef } from '../src/engine/client/view.js';
 import { Hexen2_ApplyPlayerView } from '../src/engine/client/hexen2_client.js';
 import { worldState } from '../src/engine/render/gl_rsurf_state.js';
 import { cl } from '../src/engine/client/client.js';
+import { GameProfile_Set } from '../src/engine/common/game_profile.js';
+// the selected catalogue game is the session's profile before any progs or map load
+GameProfile_Set( 'hexen2' );
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const HEXEN = '/Users/bri/quaked/Hexen 2/data1';
@@ -28,11 +31,9 @@ Deno.test( 'the renderer builds the Hexen II world: lightmaps, atlases, batches 
 	const palette = pak.COM_FindFile( 'gfx/palette.lmp' ).data;
 	VID_SetPalette( palette.buffer.slice( palette.byteOffset, palette.byteOffset + palette.byteLength ) );
 	Mod_Init();
-	Mod_SetHexenHullLayout( true );
 	const map = new model_t(); map.name = 'maps/demo1.bsp'; set_loadmodel( map );
 	const bsp = pak.COM_FindFile( 'maps/demo1.bsp' ).data;
 	Mod_LoadBrushModel( map, bsp.buffer.slice( bsp.byteOffset, bsp.byteOffset + bsp.byteLength ) );
-	Mod_SetHexenHullLayout( false );
 
 	cl.worldmodel = map;
 	cl.model_precache = [ map, map ];

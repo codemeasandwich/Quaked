@@ -59,8 +59,6 @@ import {
 	OP_CSTATE, OP_CWSTATE, OP_THINKTIME,
 } from './pr_comp.js';
 import { ED_Print, PR_GlobalString, PR_GlobalStringNoContents } from './pr_edict.js';
-import { Hexen2_BuiltinName, HEXEN2_BUILTIN_COUNT } from './hexen2_builtins.js';
-import { Hexen2_CallBuiltin } from './hexen2_cmds.js';
 import { ss_active } from '../server/server.js';
 import { SV_CloakAnimationEnter, SV_CloakAnimationLeave } from '../server/sv_cloak.js';
 import { SV_RespawnFunctionEnter, SV_RespawnFunctionLeave } from '../common/hooks.js'; // installed by newer/gameplay/sv_respawn.js
@@ -834,20 +832,13 @@ export function PR_ExecuteProgram( fnum ) {
 
 				if ( newf.first_statement < 0 ) {
 
-					// negative statements are built in functions. A Hexen program uses the Hexen II contract's
-					// numbering and never the Quake builtin table.
+					// negative statements are built in functions. The installed table is the profile's (PR_LoadProgs
+					// installs Quake's unchanged, or its copy with the Hexen II layers), so both games dispatch here;
+					// the context is the Hexen layer's random source, which a Quake builtin ignores.
 					const i = - newf.first_statement;
-					if ( hexen ) {
-
-						if ( i >= HEXEN2_BUILTIN_COUNT )
-							PR_RunError( 'Bad Hexen II builtin call number %i', i );
-						if ( Hexen2_CallBuiltin( i, { random: hexenRandomSource } ) ) break;
-						PR_RunError( 'Hexen II builtin %i (%s) is not implemented yet', i, Hexen2_BuiltinName( i ) ?? 'unknown' );
-
-					}
 					if ( i >= pr_numbuiltins )
 						PR_RunError( 'Bad builtin call number' );
-					pr_builtins[ i ]();
+					pr_builtins[ i ]( { random: hexenRandomSource } );
 					break;
 
 				}

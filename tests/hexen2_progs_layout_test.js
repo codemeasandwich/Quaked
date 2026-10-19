@@ -3,6 +3,7 @@
 // Written before the work as the RED gate: it failed with "progdefs.h is out of date" for both programs and is kept
 // unchanged as the GREEN gate; it must not be weakened or deleted.
 import { existsSync, readFileSync } from './helpers/resource_fs.mjs';
+import { GameProfile_Set } from '../src/engine/common/game_profile.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const BASE = '/Users/bri/quaked/Hexen 2';
@@ -11,6 +12,8 @@ async function load( path ) {
 
 	const bytes = readFileSync( path );
 	const { PR_LoadProgs } = await import( '../src/engine/progs/pr_edict.js' );
+	// the catalogue id is chosen before the program loads: Portal's gamecode runs under the Portal profile
+	GameProfile_Set( path.includes( '/portals/' ) ? 'hexen2-portals' : 'hexen2' );
 	PR_LoadProgs( bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.byteLength ) );
 	return ( await import( '../src/engine/progs/progs.js' ) ).progs;
 

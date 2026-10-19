@@ -3,6 +3,7 @@
 // entvars structure, the 392 entity fields, version 1.03 refused by name, and tampered definitions refused rather than
 // loaded. plan section 4; T03 prerequisites.
 import { existsSync, readFileSync } from './helpers/resource_fs.mjs';
+import { GameProfile_Set } from '../src/engine/common/game_profile.js';
 import { pakDirectory, readMember } from '../tools/pak_members.mjs';
 import {
 	HEXEN2_PROG_CRCS, HEXEN2_ENTITY_FIELDS, HEXEN2_ENTVARS, HEXEN2_GLOBALS_V111, HEXEN2_GLOBALS_V112,
@@ -123,6 +124,7 @@ Deno.test( 'the one interpreter loads the supplied programs and execution has a 
 	const { PR_LoadProgs } = await import( '../src/engine/progs/pr_edict.js' );
 	const progs = await import( '../src/engine/progs/progs.js' );
 	const bytes = readFileSync( BASE + '/data1/progs.dat' );
+	GameProfile_Set( 'hexen2' );
 	PR_LoadProgs( bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.byteLength ) );
 	same( progs.PR_ProgramProfile(), 'hexen2-base', 'the loaded base profile' );
 	same( progs.progs.entityfields, 392, 'entity fields' );
@@ -144,6 +146,7 @@ Deno.test( 'the one interpreter loads the supplied programs and execution has a 
 	if ( existsSync( '/Users/bri/quaked/Quake/id1/progs.dat' ) ) {
 
 		const quakeBytes = readFileSync( '/Users/bri/quaked/Quake/id1/progs.dat' );
+		GameProfile_Set( 'quake' );
 		PR_LoadProgs( quakeBytes.buffer.slice( quakeBytes.byteOffset, quakeBytes.byteOffset + quakeBytes.byteLength ) );
 		same( progs.PR_ProgramProfile(), 'quake', 'the Quake profile is restored by a Quake program' );
 
@@ -157,6 +160,7 @@ Deno.test( 'RED: a Hexen edict exposes the Hexen field offsets, not Quake\'s', a
 	const { PR_LoadProgs } = await import( '../src/engine/progs/pr_edict.js' );
 	const { edict_t } = await import( '../src/engine/progs/progs.js' );
 	const bytes = readFileSync( BASE + '/data1/progs.dat' );
+	GameProfile_Set( 'hexen2' );
 	PR_LoadProgs( bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.byteLength ) );
 	const ed = new edict_t( 0, 392 );
 	ed.v.origin = [ 1, 2, 3 ];
@@ -180,6 +184,7 @@ Deno.test( 'a Quake program loaded after a Hexen one restores Quake\'s field lay
 	const { PR_LoadProgs } = await import( '../src/engine/progs/pr_edict.js' );
 	const { edict_t } = await import( '../src/engine/progs/progs.js' );
 	const hexenBytes = readFileSync( BASE + '/data1/progs.dat' );
+	GameProfile_Set( 'hexen2' );
 	PR_LoadProgs( hexenBytes.buffer.slice( hexenBytes.byteOffset, hexenBytes.byteOffset + hexenBytes.byteLength ) );
 	const hexenEdict = new edict_t( 0, 392 );
 	hexenEdict.v.health = 33;
@@ -188,6 +193,7 @@ Deno.test( 'a Quake program loaded after a Hexen one restores Quake\'s field lay
 	const entry = ( await pakDirectory( quakePak ) ).get( 'progs.dat' );
 	check( entry !== undefined, 'the Quake pack carries progs.dat' );
 	const quakeBytes = await readMember( entry );
+	GameProfile_Set( 'quake' );
 	PR_LoadProgs( quakeBytes.buffer.slice( quakeBytes.byteOffset, quakeBytes.byteOffset + quakeBytes.byteLength ) );
 	const quakeEdict = new edict_t( 0, 105 );
 	quakeEdict.v.health = 44;

@@ -778,9 +778,10 @@ export let pr_numbuiltins = 0;
 
 /**
  * Installs the builtin function table that QuakeC calls through negative function `first_statement` values. Called by
- * pr_cmds.js with its `pr_builtin` table; kept for the session.
+ * pr_cmds.js with its `pr_builtin` table at host start, and by `PR_LoadProgs` (through `pr_builtin_table.js`) with the
+ * selected profile's table: Quake's unchanged, or its copy with the Hexen II layers.
  *
- * @param {Array<function(): void>} b builtins, indexed by builtin number
+ * @param {Array<function(object): void>} b builtins, indexed by builtin number
  * @param {number} n number of builtins; a call to a higher number is a run-time error in `PR_ExecuteProgram`
  */
 export function PR_SetBuiltins( b, n ) {

@@ -6,6 +6,7 @@ import { HEXEN2_GLOBALS_V111, HEXEN2_ENTVARS, HEXEN2_PROG_CRCS, HEXEN2_ENTITY_FI
 import { PR_LastRunError } from '../src/engine/progs/pr_exec.js';
 import '../src/engine/progs/hexen2_server_cmds.js';
 import { Hexen2_CallBuiltin } from '../src/engine/progs/hexen2_cmds.js';
+import { GameProfile_Set } from '../src/engine/common/game_profile.js';
 import {
 	OP_DONE, OP_ADD_F, OP_LT, OP_IF, OP_GOTO, OP_CALL0, OP_CALL1, OP_CALL2, OP_MULSTORE_F, OP_ADDSTORE_F, OP_SUBSTORE_F,
 	OP_FETCH_GBL_F, OP_BITSET, OP_BITCLR, OP_RAND0, OP_RAND2, OP_SWITCH_F, OP_CASE, OP_CSTATE, OP_CWSTATE, OP_STATE, OP_THINKTIME,
@@ -13,6 +14,8 @@ import {
 } from '../src/engine/progs/pr_comp.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
+// the supplied fixtures are Hexen II gamecode, so the session profile is Hexen II before they load
+GameProfile_Set( 'hexen2' );
 const MAX_PARMS = 8;
 
 // Builds a valid v1.11 Hexen program: the pinned globals and entity fields, plus the supplied statements and functions.
@@ -203,20 +206,17 @@ Deno.test( 'the extended store, fetch, bit and random opcodes behave as the pinn
 
 } );
 
-Deno.test( 'an unimplemented Hexen builtin is refused by number, not run as a Quake builtin', async () => {
+Deno.test( 'a Hexen builtin with no implementation is refused by number and native name', async () => {
 
 	const program = await fixture( {
-		functions: [ empty, { first: 0 }, { builtin: 10 } ],
+		functions: [ empty, { first: 0 }, { builtin: 85 } ], // particle3
 		statements: [ { op: OP_CALL0, a: 770, b: 0, c: 0 }, done( 0 ) ]
 	} );
-	// A spy in the Quake builtin table proves the Hexen program cannot reach it; the call fails instead.
-	let quakeBuiltinRan = false;
-	program.progs.PR_SetBuiltins( Array.from( { length: 11 }, ( _, i ) => i === 10 ? () => { quakeBuiltinRan = true; } : () => {} ), 11 );
 	program.setI( 770, 2 );
 	const error = program.fail( 1 );
 	check( error !== null, 'the call throws' );
-	check( ! quakeBuiltinRan, 'no Quake builtin ran for the Hexen program' );
 	check( /Program error/.test( String( error.message ) ), String( error?.message ) );
+	check( /particle3/.test( PR_LastRunError() ), 'the refusal names the native builtin: ' + PR_LastRunError() );
 
 } );
 

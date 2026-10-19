@@ -5,7 +5,6 @@ import {Distribution_Profile} from './src/platform/distribution.js';
 import { Sys_Init, Sys_Printf, Sys_Error } from './src/engine/common/sys.js';
 import { COM_InitArgv } from './src/engine/common/common.js';
 import { Host_Init, Host_Frame, Host_Shutdown } from './src/engine/server/host.js';
-import { S_Init, S_UnlockAudio, S_GetAudioContext } from './src/engine/sound/snd_dma.js';
 import { COM_FetchPak, COM_FetchOptionalPak, COM_AddPack, COM_SetNewerPack, COM_SetNewerStartupPack, COM_SetNewerMapsPack, COM_NewerFile, COM_LoadPackFile, COM_BuildPack } from './src/engine/common/pak.js';
 import { Cbuf_AddText, Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './src/engine/common/cmd.js';
 import { Con_Printf } from './src/engine/common/common.js';
@@ -41,6 +40,8 @@ const parms = {
 };
 import { GameCatalogue_Refresh, GameCatalogue_Get } from './src/engine/common/game_catalogue.js';
 import { GameSelection_OwnedPacks, GameSelection_StartSwitch, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember, GameSelection_MissionPack, GameSelection_FetchMission, GameSelection_FetchLoose, GameSelection_NeedsDiscovery, GameSelection_SetRunning, GameSelection_Current, GameSelection_Startable } from './src/engine/common/game_selection.js';
+import { GameProfile_Set } from './src/engine/common/game_profile.js';
+import { Hexen2_SelectClass } from './src/engine/common/hexen2_profile.js';
 import { LevelSelect_SetGamePacks, LevelSelect_OwnPacks } from './src/engine/client/level_select_auto.js';
 import { GameShelf_Show } from './src/newer/ui/game_shelf.js';
 
@@ -55,36 +56,12 @@ async function main() {
 		const startClass = urlParams.get( 'class' ), startMap = urlParams.get( 'map' ), startSkillParam = urlParams.get( 'skill' ), startSkill = startSkillParam === null ? null : Number( startSkillParam ), autoStart = urlParams.get( 'autostart' ) === '1';
 		const desktop = Distribution_Profile()==='desktop' ? await (await import('./src/platform/desktop.js')).Desktop_Prepare() : null;
 		if(Distribution_Profile()==='desktop' && !desktop)return;
-		// Hexen II in the native app: its own mount, protocols and eight-hull BSP cannot ride the Quake host below
-		if(desktop&&String(desktop.id).startsWith('hexen2')){
-			const desktopApi=await import('./src/platform/desktop.js');
-			const log=text=>{void desktopApi.Desktop_Log?.(text);};
-			addEventListener('error',event=>log('window error: '+(event.error?.stack??event.message)));
-			addEventListener('unhandledrejection',event=>log('unhandled rejection: '+(event.reason?.stack??event.reason)));
-			log('hexen2 branch id='+desktop.id+' packs='+(desktop.packs?.length??0));
-			document.getElementById('loading')?.remove();
-			const profileModule=await import('./src/engine/common/hexen2_profile.js');
-			const offered=profileModule.Hexen2_ClassesFor(desktop.id);
-			const choices=(offered.length?offered:[profileModule.HEXEN2_CLASSES.paladin,profileModule.HEXEN2_CLASSES.crusader,profileModule.HEXEN2_CLASSES.necromancer,profileModule.HEXEN2_CLASSES.assassin]).map(entry=>[entry.id,entry.name]);
-			let chosenSkill=Number.isInteger( startSkill ) && startSkill >= 0 && startSkill <= 3 ? startSkill : 1;
-			let chosenClass=typeof startClass==='string'&&choices.some(([id])=>id===startClass)?startClass:(typeof desktop.autoClass==='string'?desktop.autoClass:choices[0][0]);
-			if(!desktop.autoStart&&!autoStart){
-				const {Hexen2_CreatePixelGate}=await import('./src/engine/client/hexen2_pixel_gate.js');
-				await new Promise(resolve=>{
-					Hexen2_CreatePixelGate({
-						classes:choices.map(([id,name])=>({id,name})),
-						skills:[['EASY','0'],['NORMAL','1'],['HARD','2'],['NIGHTMARE','3']],
-						initialClass:chosenClass,initialSkill:chosenSkill,source:String(desktop.source??'native library'),
-						onAudioUnlock:()=>{try{if(!S_GetAudioContext())S_Init();S_UnlockAudio();}catch(error){log('audio unlock: '+error);}},
-						onChoose:(classId,skill)=>{chosenClass=classId;chosenSkill=skill;log('start gate clicked, class '+chosenClass+' skill '+chosenSkill);resolve();}
-					});
-				});
-			}else log('trial autostart');
-			const started=await(await import('./src/engine/client/hexen2_page.js')).Hexen2_PageStart({packs:desktop.packs,id:desktop.id,classId:chosenClass,skill:chosenSkill,level:startMap??undefined,spot:urlParams.get('spot')??undefined,log,autoplay:desktop.autoPlay===true,saveTrial:desktop.saveTrial===true,onFrame:()=>{}});
-			log('host result ok='+started.ok+' reason='+(started.reason??''));
-			if(!started.ok){Sys_Printf('Hexen II could not start: '+started.reason+'\n');const note=document.createElement('div');note.role='alert';note.style='position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;background:#07070a;color:#f0c9a0;font:16px/1.6 system-ui,sans-serif;text-align:center;padding:8vw;white-space:pre-wrap';note.textContent='Hexen II could not start:\n'+started.reason;document.body.append(note);}
-			return;
-		}
+		// One host for every game: the selected catalogue entry (the desktop app's id, or ?game=/the kept choice)
+		// chooses the game profile before any pack is mounted, so the same Host_Init, server, client and renderer run
+		// Quake, its mission packs and Hexen II alike.
+		const selectedGame = desktop ? desktop.id : ( GameSelection_Current() ?? 'quake' );
+		const gameProfile = GameProfile_Set( selectedGame );
+		const hexen = gameProfile.family === 'hexen2';
 		// A player's window in local play (card [37a]): it joins player 1's page, and saves no settings of its own
 		const playerWindow = LocalPlay_PlayerWindow( window.location.search );
 		if ( playerWindow ) { Cvar_SetStorageWritable( false ); document.title = 'Quaked: Player ' + playerWindow.player; }
@@ -135,8 +112,9 @@ async function main() {
 		const missionLoad = mission && !desktop ? GameSelection_FetchMission( mission, url => COM_FetchOptionalPak( url, url ), url => GameSelection_FetchLoose( url ), ( name, files ) => COM_LoadPackFile( name, COM_BuildPack( files ) ) ) : Promise.resolve( null );
 		const [ sharewarePak, newerPak, hudPak, fullGamePak, missionPak ] = await Promise.all( [ nativePack, optionalPack, startupPack, ownedPack, missionLoad ] );
 		// it runs only over Quake: without Quake's pack, the shareware alone starts (and says so). Both packs are fetched
-		// together, so a missing Quake costs the mission pack's download (up to 80 MB), traded for a start not delayed
-		const missionMounted = desktop ? desktop.mission : missionPak !== null && fullGamePak !== null;
+		// together, so a missing Quake costs the mission pack's download (up to 80 MB), traded for a start not delayed.
+		// Hexen II's Portal entry has a base game, but it is mounted through the same pack list, not as a Quake mission.
+		const missionMounted = hexen ? false : desktop ? desktop.mission : missionPak !== null && fullGamePak !== null;
 		const pak0 = desktop?.packs[0] ?? sharewarePak ?? await COM_FetchPak( 'pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
 		if(hudPak){
 		 const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',hudPak.data)),n=>n.toString(16).padStart(2,'0')).join('');
@@ -153,7 +131,9 @@ async function main() {
 			// and its switch (-hipnotic or -rogue) sets the engine's mission-pack behaviour before Host_Init
 			// the game that really starts, which saves and settings follow (card [34c]): set from what was mounted
 			GameSelection_SetRunning( desktop ? desktop.id : missionMounted ? GameSelection_Current() : fullGamePak !== null ? 'quake' : 'shareware' );
-			if ( missionMounted ) { if(!desktop)for ( const pack of [ missionPak ].flat() ) COM_AddPack( pack ); LevelSelect_SetGamePacks( desktop ? LevelSelect_OwnPacks( desktop.packs, desktop.id ) : [ missionPak ].flat() ); /* its own maps, for a Level Select built from them */ const missionSwitch = GameSelection_StartSwitch( mission ); /* its own, or as its gfx.wad's status-bar pictures ask (Quoth's are Scourge of Armagon's) */ if ( missionSwitch ) COM_InitArgv( [ parms.argv[ 0 ] ?? 'quaked', ...parms.argv.slice( 1 ), missionSwitch ] ); /* argv[0] is the program name */ Sys_Printf( mission.name + ' loaded' + ( missionSwitch && ! mission.switch ? ' (' + missionSwitch + ': its status bar is a mission pack\'s)' : '' ) + '\n' ); }
+			// the game's own packs feed Level Select, including Hexen II's (its maps are not in a mission pack)
+			if ( desktop ) LevelSelect_SetGamePacks( LevelSelect_OwnPacks( desktop.packs, desktop.id ) );
+			if ( missionMounted ) { if(!desktop)for ( const pack of [ missionPak ].flat() ) COM_AddPack( pack ); LevelSelect_SetGamePacks( [ missionPak ].flat() ); /* its own maps, for a Level Select built from them */ const missionSwitch = GameSelection_StartSwitch( mission ); /* its own, or as its gfx.wad's status-bar pictures ask (Quoth's are Scourge of Armagon's) */ if ( missionSwitch ) COM_InitArgv( [ parms.argv[ 0 ] ?? 'quaked', ...parms.argv.slice( 1 ), missionSwitch ] ); /* argv[0] is the program name */ Sys_Printf( mission.name + ' loaded' + ( missionSwitch && ! mission.switch ? ' (' + missionSwitch + ': its status bar is a mission pack\'s)' : '' ) + '\n' ); }
 
 		} else {
 
@@ -184,6 +164,27 @@ async function main() {
 			 if(hub){const bytes=new Uint8Array(newerMaps.data,hub.filepos,hub.filelen);R_RockBakePrefetch('maps/start.bsp',undefined,undefined,bytes);hubNormalBytes=bytes;R_DemonBakePrefetch('maps/start.bsp',bytes);R_NewerTexturesPrefetch(R_BspTextureNames(bytes));R_NewerSkinsPrefetchBsp(bytes);}}
 		}
 		await Host_Init( parms );
+		// Hexen II starts through the same host: hexen.rc has opened the main menu; a trial or an explicit ?map= then
+		// starts the edition's first map (demo1, or keep1 for Portal). The class and skill are native cvars the menu
+		// pages and gamecode read, never an engine mode.
+		if ( hexen ) {
+			// an explicit choice (the URL, or the packaged trial's class) wins; otherwise the archived cvar the menu
+			// pages set is kept
+			const requestedClass = typeof startClass === 'string' && startClass !== '' ? startClass
+				: ( desktop?.autoStart && typeof desktop.autoClass === 'string' ? desktop.autoClass : null );
+			if ( requestedClass !== null ) {
+				const chosenClass = Hexen2_SelectClass( gameProfile.id, requestedClass );
+				if ( chosenClass.ok ) Cvar_SetValue( '_cl_playerclass', chosenClass.number );
+				else Sys_Printf( 'Hexen II: %s\n', chosenClass.reason );
+			}
+			if ( Number.isInteger( startSkill ) && startSkill >= 0 && startSkill <= 3 ) Cvar_SetValue( 'skill', startSkill );
+			else if ( autoStart || desktop?.autoStart ) Cvar_SetValue( 'skill', 1 );
+			const wantedMap = startMap ?? ( autoStart || desktop?.autoStart ? gameProfile.startMap : null );
+			if ( wantedMap !== null && /^[A-Za-z0-9_./-]+$/.test( String( wantedMap ) ) ) {
+				Sys_Printf( 'Starting %s\n', String( wantedMap ) );
+				Cbuf_AddText( 'map ' + String( wantedMap ) + '\n' );
+			} else if ( wantedMap !== null ) Sys_Printf( 'Hexen II: refusing the map name %s\n', String( wantedMap ) );
+		}
 		// a game whose larger levels need the large-map protocol asks for it before any map loads (card [34f])
 		if ( missionMounted && mission.protocol ) Cvar_SetValue( 'sv_protocol', mission.protocol );
 		GameSelection_ReportStart( desktop ? desktop.id !== 'shareware' : fullGamePak !== null, mission === null || missionMounted ); // a chosen game whose pack has gone is said so (card [34c])

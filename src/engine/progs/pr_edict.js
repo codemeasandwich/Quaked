@@ -23,7 +23,8 @@ import { Respawn_ParseDrop, Respawn_ParsePlayer, Respawn_ParseRemains } from '..
 import { Sys_Error } from '../common/sys.js';
 import { Con_Printf, Con_DPrintf, COM_Parse, com_token } from '../common/common.js';
 import { Cmd_AddCommand, Cmd_Argv } from '../common/cmd.js';
-import { cvar_t, Cvar_RegisterVariable } from '../common/cvar.js';
+import { cvar_t, Cvar_RegisterVariable, Cvar_FindVar } from '../common/cvar.js';
+import { GameProfile_ConfirmProgs, GameProfile_IsHexen2 } from '../common/game_profile.js';
 import { CRC_Init, CRC_ProcessByte, CRC_Value } from '../common/crc.js';
 import {
 	dprograms_t, dfunction_t, ddef_t, dstatement_t,
@@ -52,6 +53,7 @@ import {
 	RETURN_EDICT,
 } from './progs.js';
 import { PR_ExecuteProgram, PR_HostError } from './pr_exec.js';
+import { PR_InstallProfileBuiltins } from './pr_builtin_table.js';
 import { SV_LargeProtocolNeeded } from '../server/sv_large_protocol.js';
 import { SV_PinnedZombieSpawned } from '../common/hooks.js'; // installed by newer/gameplay/sv_pinnedzombies.js
 import { Axe_ParseRecord, Axe_ValidOwnerKey } from '../common/hooks.js'; // installed by newer/gameplay/axe_record.js
@@ -1328,14 +1330,17 @@ PR_LoadProgs
  * before the edicts are allocated.
  *
  * Resets the axe-cut state and the `GetEdictFieldValue` cache, computes `pr_crc` over the whole file, parses the
- * header, statements, functions, global and field definitions, copies the string table (with 128 extra bytes for
- * `pr_string_temp`) and the globals into fresh buffers, and installs them with the progs.js setters, including
- * `pr_global_struct` as a `globalvars_t` over the globals. Strings added by an earlier `ED_NewString` are dropped.
+ * header, statements, functions, global and field definitions, copies the string table (with Hexen II's temp buffers,
+ * or Quake's original 128 bytes) and the globals into fresh buffers, and installs them with the progs.js setters,
+ * including `pr_global_struct` as a `globalvars_t` over the globals. The header CRC must belong to the selected game
+ * profile (`GameProfile_ConfirmProgs`); the profile's builtin table is installed last, and a Hexen program receives the
+ * archived `_cl_playerclass` in its `cl_playerclass` global. Strings added by an earlier `ED_NewString` are dropped.
  * `pr_edict_size` is set to `entityfields` (a slot count, not C's byte size).
  *
  * @param {?ArrayBuffer} fileData the whole progs.dat; read, not kept
- * @throws {Error} via `Sys_Error` when `fileData` is missing, the version is not `PROG_VERSION`, the header CRC is
- *   not `PROGHEADER_CRC` ("progdefs.h is out of date"), or a field def has the `DEF_SAVEGLOBAL` bit
+ * @throws {Error} via `PR_HostError` when the header CRC is not the selected game's gamecode; via `Sys_Error` when
+ *   `fileData` is missing, the version is not `PROG_VERSION`, the header CRC is neither Quake's nor a recognised
+ *   Hexen II layout ("progdefs.h is out of date"), or a field def has the `DEF_SAVEGLOBAL` bit
  */
 export function PR_LoadProgs( fileData ) {
 	SV_AxeReset();
@@ -1385,6 +1390,10 @@ export function PR_LoadProgs( fileData ) {
 
 	if ( header.version !== PROG_VERSION )
 		Sys_Error( 'progs.dat has wrong version number (%i should be %i)', header.version, PROG_VERSION );
+	// The selected game and the program must agree (docs/hexen2/unified-host.md §2): a mismatch is a host error
+	// naming the reason, never the other game's gamecode running in this one.
+	const mismatch = GameProfile_ConfirmProgs( header.crc );
+	if ( mismatch !== null ) PR_HostError( mismatch );
 	// QuakeC's CRC is 5927; the supplied Hexen II layouts (1.11 base and Portal 1.12) are accepted only after their
 	// definitions prove them below. v1.03 is recognised so it is refused with its own reason rather than as a Quake
 	// header mismatch (plan section 4).
@@ -1395,10 +1404,10 @@ export function PR_LoadProgs( fileData ) {
 
 	PR_SetProgs( header );
 
-	// Parse strings - allocate with extra 128 bytes for pr_string_temp
-	// Hexen II's sixteen rotating 1024-byte temp buffers (the native pr_string_temp); Quake's single 128-byte
-	// slot simply uses the first buffer.
-	const PR_STRING_TEMP_SIZE = 16 * 1024;
+	// Parse strings - allocate with extra room for pr_string_temp
+	// Hexen II's sixteen rotating 1024-byte temp buffers (the native pr_string_temp); Quake's single 128-byte slot
+	// simply uses the first buffer, so a Quake game keeps its original allocation.
+	const PR_STRING_TEMP_SIZE = GameProfile_IsHexen2() ? 16 * 1024 : 128;
 	const stringsDataWithTemp = new Uint8Array( header.numstrings + PR_STRING_TEMP_SIZE );
 	stringsDataWithTemp.set( new Uint8Array( fileData, header.ofs_strings, header.numstrings ) );
 	// Zero-fill the temp area (already done by Uint8Array constructor)
@@ -1520,6 +1529,16 @@ export function PR_LoadProgs( fileData ) {
 	PR_SetGlobalStruct( programProfile ? Hexen2_GlobalsProxy( globalsAccessor, programProfile.globals ) : new globalvars_t( globalsAccessor ) );
 	PR_SetEdictVFactory( programProfile ? fields => Hexen2_EntvarsProxy( fields ) : null );
 	PR_SetProgramProfile( programProfile ? programProfile.layout : 'quake' );
+	// the native PR_LoadProgs copies the selected class into the game global the menus and worldspawn read (uhexen2
+	// h2shared/pr_edict.c: the cvar's value after sv_globals is made)
+	if ( programProfile && GameProfile_IsHexen2() ) {
+
+		const playerclass = Cvar_FindVar( '_cl_playerclass' );
+		pr_global_struct.cl_playerclass = playerclass === null ? 1 : playerclass.value; // the native cvar's default is 1
+
+	}
+	// the profile's one table: Quake's unchanged, or the copy with the Hexen II layers applied
+	PR_InstallProfileBuiltins();
 
 	// Calculate edict size
 	// In C: pr_edict_size = progs->entityfields * 4 + sizeof(edict_t) - sizeof(entvars_t);
@@ -1583,8 +1602,8 @@ PR_Init
 /**
  * Registers the progs console commands (`edict`, `edicts`, `edictcount`, `profile`) and the progs cvars (`nomonsters`,
  * `gamecfg`, `scratch1`..`4`, and the archived `savedgamecfg`, `saved1`..`4`) (WinQuake pr_edict.c). Called once by
- * `Host_Init` and by the room server (server/game_server.js). The built-ins (server/pr_cmds.js) are installed by
- * PR_Init's callers, the host and the room server, so the VM does not import the server (card [44g], D1a).
+ * `Host_Init` and by the room server (server/game_server.js). The builtins are installed from the active profile's one
+ * table when a program loads (`pr_builtin_table.js`), so the VM and the host share exactly one table.
  */
 export function PR_Init() {
 
@@ -1605,8 +1624,7 @@ export function PR_Init() {
 	Cvar_RegisterVariable( saved3 );
 	Cvar_RegisterVariable( saved4 );
 
-	// the built-ins (server/pr_cmds.js) are installed by PR_Init's callers, the host and the room server, so the VM
-	// does not import the server (card [44g], D1a)
+	// the builtins are installed from the profile's one table at each PR_LoadProgs (pr_builtin_table.js)
 
 }
 

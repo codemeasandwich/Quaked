@@ -7,7 +7,7 @@ import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init } from '../src/engine/render/gl_model.js';
 import { model_t } from '../src/engine/render/gl_model_types.js';
 import { set_loadmodel, Mod_FindName } from '../src/engine/render/gl_model_common.js';
-import { Mod_LoadBrushModel, Mod_SetHexenHullLayout } from '../src/engine/render/gl_model_bsp.js';
+import { Mod_LoadBrushModel } from '../src/engine/render/gl_model_bsp.js';
 import { SV_ClearWorld, SV_LinkEdict, SV_PointContents, SV_TestEntityPosition, SV_Move } from '../src/engine/server/world.js';
 import { SV_SetState, SV_SetFrametime, SV_Physics, SV_SetPlayer } from '../src/engine/server/sv_phys.js';
 import { SV_ClientThink, SV_User_SetCommand, SV_User_SetCallbacks } from '../src/engine/server/sv_user.js';
@@ -20,6 +20,9 @@ import { installServerCallbacks } from './helpers/hexen2_server_setup.mjs';
 import '../src/engine/progs/hexen2_world_cmds.js';
 import '../src/engine/progs/hexen2_precache_cmds.js';
 import '../src/engine/progs/hexen2_server_cmds.js';
+import { GameProfile_Set } from '../src/engine/common/game_profile.js';
+// the selected catalogue game is the session's profile before any progs or map load
+GameProfile_Set( 'hexen2' );
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
 const HEXEN = '/Users/bri/quaked/Hexen 2/data1';
@@ -33,11 +36,9 @@ Deno.test( 'an attack through SV_User_SetCommand and SV_ClientThink damages a mo
 	Mod_Init();
 	const progsBytes = readFileSync( HEXEN + '/progs.dat' );
 	PR_LoadProgs( progsBytes.buffer.slice( progsBytes.byteOffset, progsBytes.byteOffset + progsBytes.byteLength ) );
-	Mod_SetHexenHullLayout( true );
 	const map = new model_t(); map.name = 'maps/demo1.bsp'; set_loadmodel( map );
 	const bsp = pak.COM_FindFile( 'maps/demo1.bsp' ).data;
 	Mod_LoadBrushModel( map, bsp.buffer.slice( bsp.byteOffset, bsp.byteOffset + bsp.byteLength ) );
-	Mod_SetHexenHullLayout( false );
 
 	const sv = serverSv;
 	PR_SetSV( sv ); PR_SetSVS( { maxclients: 1, clients: [], active: true } );

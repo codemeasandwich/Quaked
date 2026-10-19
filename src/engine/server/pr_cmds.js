@@ -1550,7 +1550,7 @@ function PF_Fixme() {
 // This matches the C pr_builtin[] array exactly
 //============================================================================
 
-const pr_builtin = [
+export const pr_builtin = [
 	PF_Fixme,			// #0
 	PF_makevectors,		// void(entity e) makevectors = #1;
 	PF_setorigin,		// void(entity e, vector o) setorigin = #2;
@@ -1650,10 +1650,12 @@ PR_InitBuiltins
 ===============
 */
 /**
- * Registers the builtin function table: hands the `pr_builtin` array (QuakeC builtin numbers #0..#78, unused numbers
- * mapped to PF_Fixme) to the progs interpreter through `PR_SetBuiltins`, and injects `PF_changeyaw`, `G_FLOAT` and
- * `G_FLOAT_SET` into sv_move.js. The original comment says it is called during PR_Init; in this port Host_Init calls
- * it once at startup, right after PR_Init and before any progs are loaded. The table lives for the session.
+ * Registers the Quake builtin function table: hands the `pr_builtin` array (QuakeC builtin numbers #0..#78, unused
+ * numbers mapped to PF_Fixme) to the progs interpreter through `PR_SetBuiltins`, and injects `PF_changeyaw`, `G_FLOAT`
+ * and `G_FLOAT_SET` into sv_move.js. The original comment says it is called during PR_Init; in this port Host_Init calls
+ * it once at startup, right after PR_Init and before any progs are loaded. `PR_LoadProgs` then installs the selected
+ * profile's table (pr_builtin unchanged for Quake, or its copy with the Hexen II layers), so a Hexen II program never
+ * runs this array's numbers.
  */
 export function PR_InitBuiltins() {
 

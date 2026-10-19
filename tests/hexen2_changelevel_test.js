@@ -8,8 +8,10 @@ import { sv as serverSv } from '../src/engine/server/server.js';
 import { OFS_PARM0, OFS_PARM1 } from '../src/engine/progs/pr_comp.js';
 import { Hexen2_CallBuiltin } from '../src/engine/progs/hexen2_cmds.js';
 import '../src/engine/progs/hexen2_server_cmds.js';
+import { GameProfile_Set } from '../src/engine/common/game_profile.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
+GameProfile_Set( 'hexen2' ); // the selected game before its gamecode loads
 
 Deno.test( 'changelevel records a normalised map and start spot once per level', () => {
 

@@ -8,7 +8,7 @@ import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init } from '../src/engine/render/gl_model.js';
 import { model_t } from '../src/engine/render/gl_model_types.js';
 import { set_loadmodel, Mod_FindName } from '../src/engine/render/gl_model_common.js';
-import { Mod_LoadBrushModel, Mod_SetHexenHullLayout } from '../src/engine/render/gl_model_bsp.js';
+import { Mod_LoadBrushModel } from '../src/engine/render/gl_model_bsp.js';
 import { SV_ClearWorld, SV_LinkEdict, SV_PointContents, SV_TestEntityPosition, SV_Move } from '../src/engine/server/world.js';
 import { PR_LoadProgs, PR_AllocEdicts, ED_LoadFromFile } from '../src/engine/progs/pr_edict.js';
 import { PR_SetSV, PR_SetSVS, PR_GetString, pr_global_struct, svs } from '../src/engine/progs/progs.js';
@@ -18,6 +18,9 @@ import { installServerCallbacks } from './helpers/hexen2_server_setup.mjs';
 import '../src/engine/progs/hexen2_world_cmds.js';
 import '../src/engine/progs/hexen2_precache_cmds.js';
 import '../src/engine/progs/hexen2_server_cmds.js';
+import { GameProfile_Set } from '../src/engine/common/game_profile.js';
+// the selected catalogue game is the session's profile before any progs or map load
+GameProfile_Set( 'hexen2' );
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const HEXEN = '/Users/bri/quaked/Hexen 2/data1';
@@ -31,11 +34,9 @@ Deno.test( 'the Paladin carries the native feet-origin box the class hull expect
 	Mod_Init();
 	const progsBytes = readFileSync( HEXEN + '/progs.dat' );
 	PR_LoadProgs( progsBytes.buffer.slice( progsBytes.byteOffset, progsBytes.byteOffset + progsBytes.byteLength ) );
-	Mod_SetHexenHullLayout( true );
 	const map = new model_t(); map.name = 'maps/demo1.bsp'; set_loadmodel( map );
 	const bsp = pak.COM_FindFile( 'maps/demo1.bsp' ).data;
 	Mod_LoadBrushModel( map, bsp.buffer.slice( bsp.byteOffset, bsp.byteOffset + bsp.byteLength ) );
-	Mod_SetHexenHullLayout( false );
 
 	const sv = serverSv;
 	PR_SetSV( sv ); PR_SetSVS( { maxclients: 1, clients: [], active: true } );

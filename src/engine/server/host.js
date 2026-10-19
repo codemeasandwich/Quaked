@@ -134,6 +134,10 @@ const sv_cheats = new cvar_t( 'sv_cheats', '0' );
 // the re-release's quake.rc (a mission pack's runs) sets its own font; this engine keeps Quake's, so it is only kept
 const scr_usekfont = new cvar_t( 'scr_usekfont', '0' );
 
+// Hexen II's selected class, 1..5 (uhexen2 engine/hexen2/cl_main.c: CVAR_ARCHIVE); the gamecode, menus and status bar
+// read it through the profile's session, so a Quake game never registers it.
+const cl_playerclass = new cvar_t( '_cl_playerclass', '1', true );
+
 // set_host_client is imported and re-exported from server.js
 export { set_host_client } from './server.js';
 // sv is the server state, re-exported for client-side prediction
@@ -145,6 +149,7 @@ export { realtime, host_frametime, host_framecount, set_host_frametime } from '.
 import { fraglimit, timelimit, teamplay, skill, deathmatch, coop } from './server.js';
 import { GameCatalogue_Init } from '../common/game_catalogue.js';
 import { GameSelection_Init, GameSelection_ConfigKey } from '../common/game_selection.js';
+import { GameProfile_Get, GameProfile_IsHexen2 } from '../common/game_profile.js';
 export { fraglimit, timelimit, teamplay, skill, deathmatch, coop } from './server.js';
 
 /*
@@ -237,6 +242,8 @@ function Host_InitLocal() {
 	Cvar_RegisterVariable( campaign );
 	Cvar_RegisterVariable( sv_cheats );
 	Cvar_RegisterVariable( scr_usekfont );
+	// the selected class is Hexen II's; its menu pages and gamecode set and read it
+	if ( GameProfile_IsHexen2() && ! Cvar_FindVar( cl_playerclass.name ) ) Cvar_RegisterVariable( cl_playerclass );
 
 	Host_FindMaxClients();
 
@@ -278,7 +285,8 @@ Host_Init
  * commands, the view and chase camera, the host's cvars and client slots, gfx.wad, keys, console, menu, QuakeC,
  * models, networking, server, textures, palette and colormap, video, drawing, screen, renderer, sound, CD audio,
  * status bar, client and input, wiring the externals that need the video and client state as it goes. Then queues
- * `exec quake.rc`, the web port's default WASD and flashlight bindings and always-run speeds, and the configuration
+ * the active profile's startup script (`exec quake.rc` for Quake, `exec hexen.rc` for Hexen II), the web port's default
+ * WASD and flashlight bindings and always-run speeds, and the configuration
  * saved in localStorage under `quake_config` (a mission pack's own key, `GameSelection_ConfigKey`) (its changed defaults dropped; a missing or unavailable store is
  * ignored), registers a `beforeunload` listener that saves the configuration, and sets `host_initialized`.
  *
@@ -476,9 +484,10 @@ export async function Host_Init( parms ) {
 	// A game whose PAKs have no default.cfg (the 2021 re-release's Quake and Dissolution of Eternity) gets the classic
 	// default keys, so the arrow keys, Ctrl, the number keys, the console key and the rest work as in the original.
 	Host_SetDefaultCfgFallback();
-	Cbuf_InsertText( 'exec quake.rc\n' );
+	// each game's own startup script: Quake's starts the attract demos, Hexen II's (hexen.rc) opens the main menu
+	Cbuf_InsertText( 'exec ' + GameProfile_Get().startupScript + '\n' );
 
-	// Default WASD bindings for the web port (after quake.rc so user config can override)
+	// Default WASD bindings for the web port (after the startup script so user config can override)
 	Cbuf_AddText( 'bind w +forward\n' );
 	Cbuf_AddText( 'bind s +back\n' );
 	Cbuf_AddText( 'bind a +moveleft\n' );

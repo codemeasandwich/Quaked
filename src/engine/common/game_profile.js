@@ -36,6 +36,8 @@ const QUAKE = Object.freeze( {
 	hulls: null, // the BSP loader's existing Quake hull sizes
 	frameTime: 0.1, // OP_STATE think delay
 	modelDir: 'progs/',
+	startMap: null, // Quake's quake.rc starts the attract demos; the menu owns New Game
+	startupScript: 'quake.rc', // Host_Init execs it before the saved configuration
 	maxEdicts: null, // the server's existing protocol-dependent limit
 	maxPacks: null // Quake stops at the first missing pakN.pak
 } );
@@ -56,6 +58,10 @@ function hexen2( id, { portals = false, demo = false } = {} ) {
 		hulls: Object.freeze( hulls ),
 		frameTime: 0.05, // HX_FRAME_TIME
 		modelDir: 'models/',
+		// the first maps of each edition (uhexen2: demo1 opens the base campaign, keep1 Portal); hexen.rc opens the
+		// menu, as native Hexen II does, so a host that would start Quake's attract demos starts these only on request
+		startMap: portals ? 'keep1' : 'demo1',
+		startupScript: 'hexen.rc',
 		maxEdicts: 600,
 		maxPacks: 10 // probe pak0..pak9 across gaps (Portal ships only pak3)
 	} );

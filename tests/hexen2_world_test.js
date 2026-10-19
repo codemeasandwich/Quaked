@@ -7,7 +7,7 @@ import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init } from '../src/engine/render/gl_model.js';
 import { model_t } from '../src/engine/render/gl_model_types.js';
 import { set_loadmodel } from '../src/engine/render/gl_model_common.js';
-import { Mod_LoadBrushModel, Mod_SetHexenHullLayout } from '../src/engine/render/gl_model_bsp.js';
+import { Mod_LoadBrushModel } from '../src/engine/render/gl_model_bsp.js';
 import { SV_ClearWorld, SV_HullForEntity, SV_LinkEdict, SV_PointContents } from '../src/engine/server/world.js';
 import { SV_Move, SV_TestEntityPosition } from '../src/engine/server/world.js';
 import { PR_LoadProgs, PR_AllocEdicts } from '../src/engine/progs/pr_edict.js';
@@ -19,6 +19,9 @@ import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3, OFS_RETURN } from '../src/e
 import { SOLID_BSP, MOVETYPE_PUSH } from '../src/engine/server/server.js';
 import { installServerCallbacks } from './helpers/hexen2_server_setup.mjs';
 import { PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
+import { GameProfile_Set } from '../src/engine/common/game_profile.js';
+// the selected catalogue game is the session's profile before any progs or map load
+GameProfile_Set( 'hexen2' );
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const HEXEN = '/Users/bri/quaked/Hexen 2/data1';
@@ -38,11 +41,9 @@ function setup() {
 	const progsBytes = readFileSync( HEXEN + '/progs.dat' );
 	PR_LoadProgs( progsBytes.buffer.slice( progsBytes.byteOffset, progsBytes.byteOffset + progsBytes.byteLength ) );
 
-	Mod_SetHexenHullLayout( true );
 	const m = new model_t(); m.name = 'maps/demo1.bsp'; set_loadmodel( m );
 	const bsp = pak.COM_FindFile( 'maps/demo1.bsp' ).data;
 	Mod_LoadBrushModel( m, bsp.buffer.slice( bsp.byteOffset, bsp.byteOffset + bsp.byteLength ) );
-	Mod_SetHexenHullLayout( false );
 
 	// a minimal server world: the loaded map, the world edict and one box entity. The engine shares the single
 	// server_t instance between server.js and the program interpreter (SV_SpawnServer calls PR_SetSV(sv)).
@@ -88,7 +89,7 @@ Deno.test( 'Hexen hull selection uses a named hull and the native size rules; Qu
 	same( hullFor( [ 32, 32, 56 ] ).clip_mins.join( ',' ), '-16,-16,-24', 'a full player uses hull 1' );
 	same( hullFor( [ 32, 32, 24 ] ).clip_mins.join( ',' ), '-16,-16,-12', 'a half player uses hull 3' );
 	same( hullFor( [ 64, 64, 64 ] ).clip_mins.join( ',' ), '-48,-48,-50', 'a golem uses hull 5' );
-	same( hullFor( [ 0, 0, 0 ], 5 ).clip_mins.join( ',' ), '-8,-8,-8', 'a named hull 5 (pentacle) is honoured' );
+	same( hullFor( [ 0, 0, 0 ], 5 ).clip_mins.join( ',' ), '-40,-40,-42', 'a named hull 5 (the base profile\'s hull 4) is honoured' );
 	same( hullFor( [ 0, 0, 0 ], 6 ).clip_mins.join( ',' ), '-48,-48,-50', 'a named hull 6 (golem) is honoured' );
 	same( hullFor( [ 0, 0, 0 ], 4 ).clip_mins.join( ',' ), '-16,-16,-12', 'a named hull 4 (crouch) is honoured' );
 

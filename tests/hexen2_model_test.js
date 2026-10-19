@@ -1,7 +1,7 @@
-// Hexen II's eight-hull brush levels through the existing loader (src/engine/render/gl_model_bsp.js): the explicit
-// Hexen layout reads 80-byte submodel records and builds hulls 1-5 with the pinned sizes, while a Quake level keeps
-// its 64-byte four-hull records and WinQuake hulls. The supplied demo1.bsp and the repository shareware map are real
-// fixtures; the Hexen layout is selected by the caller (the session), never guessed from the file. plan section 5.
+// Hexen II's eight-hull brush levels through the existing loader (src/engine/render/gl_model_bsp.js): the models
+// lump's record size says which game the level is (80-byte records carry eight headnodes, 64-byte four), so the
+// supplied demo1.bsp and the repository shareware map load without a caller-set mode, and the active profile supplies
+// the hull sizes (Portal changes hull 4). plan section 5.
 import { readFileSync } from 'node:fs';
 import { existsSync } from 'node:fs';
 import * as pak from '../src/engine/common/pak.js';
@@ -9,7 +9,8 @@ import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init } from '../src/engine/render/gl_model.js';
 import { model_t } from '../src/engine/render/gl_model_types.js';
 import { set_loadmodel } from '../src/engine/render/gl_model_common.js';
-import { Mod_LoadBrushModel, Mod_SetHexenHullLayout, Mod_HexenHullLayout } from '../src/engine/render/gl_model_bsp.js';
+import { Mod_LoadBrushModel } from '../src/engine/render/gl_model_bsp.js';
+import { GameProfile_Get, GameProfile_Set } from '../src/engine/common/game_profile.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const near = ( a, b, m ) => check( Math.abs( a - b ) < 1e-3, `${m}: ${a} != ${b}` );
@@ -34,9 +35,10 @@ const fresh = name => { const m = new model_t(); m.name = name; set_loadmodel( m
 
 Deno.test( 'a Quake level keeps four 64-byte hull records and WinQuake hull sizes', () => {
 
+	GameProfile_Set( 'quake' );
 	mount( new URL( '../games/shareware/pak0.pak', import.meta.url ).pathname, 'pak0.pak' );
 	VID_SetPalette( file( 'gfx/palette.lmp' ) ); Mod_Init();
-	check( Mod_HexenHullLayout() === false, 'the Hexen layout is off by default' );
+	same( GameProfile_Get().hullCount, 4, 'the default Quake profile reads four-hull records' );
 	const m = fresh( 'maps/e1m1.bsp' );
 	Mod_LoadBrushModel( m, file( 'maps/e1m1.bsp' ) );
 	same( m.hullCount, 4, 'a Quake level defines four hulls' );
@@ -53,7 +55,7 @@ Deno.test( 'the supplied Hexen demo1.bsp loads 100 eight-hull submodels with nat
 	if ( ! existsSync( HEXEN_PAK ) ) { console.log( 'SKIP: the supplied Hexen II pack is not present at ' + HEXEN_PAK ); return; }
 	mount( HEXEN_PAK, 'hexen-pak0.pak' );
 	VID_SetPalette( file( 'gfx/palette.lmp' ) ); Mod_Init();
-	Mod_SetHexenHullLayout( true );
+	GameProfile_Set( 'hexen2' );
 	try {
 
 		const m = fresh( 'maps/demo1.bsp' );
@@ -67,8 +69,8 @@ Deno.test( 'the supplied Hexen demo1.bsp loads 100 eight-hull submodels with nat
 		same( m.hulls[ 1 ].clip_mins.join( ',' ), '-16,-16,-24', 'player hull' );
 		same( m.hulls[ 2 ].clip_mins.join( ',' ), '-24,-24,-20', 'scorpion hull' );
 		same( m.hulls[ 3 ].clip_mins.join( ',' ), '-16,-16,-12', 'crouch hull' );
-		same( m.hulls[ 4 ].clip_mins.join( ',' ), '-8,-8,-8', 'pentacle/small hull' );
-		same( m.hulls[ 4 ].clip_maxs.join( ',' ), '8,8,8', 'pentacle/small hull maxs' );
+		same( m.hulls[ 4 ].clip_mins.join( ',' ), '-40,-40,-42', 'hydra hull (the base profile\'s hull 4)' );
+		same( m.hulls[ 4 ].clip_maxs.join( ',' ), '40,40,42', 'hydra hull maxs' );
 		same( m.hulls[ 5 ].clip_mins.join( ',' ), '-48,-48,-50', 'golem hull' );
 		same( m.hulls[ 5 ].clip_maxs.join( ',' ), '48,48,50', 'golem hull maxs' );
 		for ( const hull of [ 1, 2, 3, 4, 5 ] ) {
@@ -81,6 +83,6 @@ Deno.test( 'the supplied Hexen demo1.bsp loads 100 eight-hull submodels with nat
 		near( m.mins[ 0 ], - 3370, 'world mins x' );
 		check( m.maxs[ 2 ] > 878 && m.maxs[ 2 ] < 882, 'world maxs z: ' + m.maxs[ 2 ] );
 
-	} finally { Mod_SetHexenHullLayout( false ); }
+	} finally { GameProfile_Set( 'quake' ); }
 
 } );

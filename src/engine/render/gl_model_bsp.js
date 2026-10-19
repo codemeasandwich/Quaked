@@ -15,6 +15,7 @@
  * `Mod_LoadBrushModel` is called by `Mod_LoadModel` (gl_model.js) for a map's bytes.
  */
 import { Sys_Error } from '../common/sys.js';
+import { GameProfile_Get } from '../common/game_profile.js';
 import { d_8to24table } from './vid.js';
 import { COM_FindFile } from '../common/pak.js';
 import { Lit_Parse, Ent_Parse } from './lit.js';
@@ -88,16 +89,6 @@ const SIZEOF_TEXINFO = 40;			// float vecs[2][4], int miptex, int flags
 const SIZEOF_DPLANE = 20;			// float normal[3], float dist, int type
 const SIZEOF_DMODEL = 64;			// Quake: float mins[3], maxs[3], origin[3], int headnode[4], visleafs, firstface, numfaces
 const HEXEN_SIZEOF_DMODEL = 80;		// Hexen II: the same nine floats, int headnode[8], visleafs, firstface, numfaces
-let hexenHullLayout = false;		// selected per level family by the session; Quake stays the default
-/**
- * Selects the eight-hull Hexen II submodel record layout for subsequent brush loads. The level family is known from
- * the session, so the loader never guesses from the file; a Quake map keeps its 64-byte four-hull records.
- *
- * @param {boolean} on whether the next loads are Hexen II levels
- */
-export function Mod_SetHexenHullLayout( on ) { hexenHullLayout = on === true; }
-/** Whether brush loads currently expect Hexen II's eight-hull records. @returns {boolean} */
-export function Mod_HexenHullLayout() { return hexenHullLayout; }
 
 // ============================================================================
 // Mod_LoadTextures
@@ -1053,7 +1044,8 @@ function Mod_LoadClipnodes( fileofs, filelen ) {
 // ============================================================================
 
 // The box hull sizes, from the pinned Hexen II gl_model.c Mod_MakeHulls (hulls 1-5; 6-7 are declared but unused)
-// and WinQuake's player, shambler and crouch hulls for a Quake level.
+// and WinQuake's player, shambler and crouch hulls for a Quake level. The Hexen II numbers come from the active
+// profile, whose Portal edition changes hull 4 (pentacle), so this table is the loader's fallback only.
 const HEXEN_HULL_SIZES = Object.freeze( [
 	null, // 0 is the point hull, built by Mod_MakeHull0
 	[ [ - 16, - 16, - 24 ], [ 16, 16, 32 ] ], // player
@@ -1069,9 +1061,18 @@ const QUAKE_HULL_SIZES = Object.freeze( [
 	[ [ - 16, - 16, - 12 ], [ 16, 16, 16 ] ] // crouch (declared, as in WinQuake)
 ] );
 
+function Mod_HullSizes() {
+
+	if ( loadmodel.hullCount !== MAX_MAP_HULLS ) return QUAKE_HULL_SIZES;
+	const hulls = GameProfile_Get().hulls;
+	if ( hulls === null ) return HEXEN_HULL_SIZES; // a foreign BSP under a Quake profile; parse, then let its game refuse it
+	return hulls.map( hull => hull ? [ hull.mins, hull.maxs ] : null );
+
+}
+
 function Mod_MakeHulls( count ) {
 
-	const sizes = hexenHullLayout ? HEXEN_HULL_SIZES : QUAKE_HULL_SIZES;
+	const sizes = Mod_HullSizes();
 	for ( let i = 1; i < sizes.length; i ++ ) {
 
 		const hull = loadmodel.hulls[ i ], size = sizes[ i ];
@@ -1167,10 +1168,24 @@ function Mod_LoadMarksurfaces( fileofs, filelen ) {
 // Mod_LoadSubmodels
 // ============================================================================
 
+// The number of headnodes in a submodel record, from the models lump: Hexen II's dmodel_t is 80 bytes (8 headnodes),
+// Quake's 64 (4). When a length divides by both (320 bytes is 4 Hexen or 5 Quake records) only the selected game
+// profile can say which game the level belongs to.
+function Mod_RecordHulls( filelen ) {
+
+	const hexen = filelen % HEXEN_SIZEOF_DMODEL === 0;
+	const quake = filelen % SIZEOF_DMODEL === 0;
+	if ( hexen && ! quake ) return MAX_MAP_HULLS;
+	if ( quake && ! hexen ) return 4;
+	return GameProfile_Get().hullCount === MAX_MAP_HULLS ? MAX_MAP_HULLS : 4;
+
+}
+
 function Mod_LoadSubmodels( fileofs, filelen ) {
 
-	const recordBytes = hexenHullLayout ? HEXEN_SIZEOF_DMODEL : SIZEOF_DMODEL;
-	const hulls = hexenHullLayout ? MAX_MAP_HULLS : 4;
+	// The record layout comes from the file itself (see Mod_LoadBrushModel): 80 bytes carry eight headnodes, 64 four.
+	const hulls = Mod_RecordHulls( filelen );
+	const recordBytes = hulls === MAX_MAP_HULLS ? HEXEN_SIZEOF_DMODEL : SIZEOF_DMODEL;
 	if ( filelen % recordBytes )
 		Sys_Error( 'MOD_LoadBmodel: funny lump size in ' + loadmodel.name );
 
@@ -1217,8 +1232,10 @@ function Mod_LoadSubmodels( fileofs, filelen ) {
  * Loads a BSP map into `mod` (WinQuake gl_model.c; called by `Mod_LoadModel` for a map's bytes): version 29, or BSP2
  * and 2PSB with their wider indices and float bounds; the lumps in WinQuake's order (vertexes, edges, surfedges,
  * textures, lighting, planes, texinfo, faces, marksurfaces, visibility, leafs, nodes, clipnodes, entities, submodels).
- * Then each submodel gets its hulls and bounds, and the inline models `*1`, `*2`, ... are made from them as the
- * following entries of the model table, except for a level loaded only to be looked at.
+ * The models lump's record size decides the game's hull layout (Quake's 64-byte four-headnode records, Hexen II's
+ * 80-byte eight-headnode ones; an ambiguous length follows the active game profile), whose hull sizes the profile also
+ * supplies. Then each submodel gets its hulls and bounds, and the inline models `*1`, `*2`, ... are made from them as
+ * the following entries of the model table, except for a level loaded only to be looked at.
  *
  * @param {model_t} mod the model to fill (`loadmodel`)
  * @param {ArrayBuffer} buffer the whole .bsp file
@@ -1240,7 +1257,8 @@ export function Mod_LoadBrushModel( mod, buffer ) {
 	mod.bspVersion=version;
 	mod_base = bytes;
 	mod.bspSourceBytes = bytes; // immutable loaded-source identity, including preview/reload
-	mod.hullCount = hexenHullLayout ? MAX_MAP_HULLS : 4;
+	// read the models lump's record size (and so the hull count) before the hulls are built at the clipnodes load
+	mod.hullCount = Mod_RecordHulls( view.getInt32( 4 + LUMP_MODELS * 8 + 4, true ) );
 
 	// Read lump directory: version (4 bytes) + HEADER_LUMPS * 2 ints (fileofs, filelen)
 	const lumps = [];
@@ -1325,6 +1343,7 @@ export function Mod_LoadBrushModel( mod, buffer ) {
 			nextmodel.nummodelsurfaces = mod.nummodelsurfaces;
 			nextmodel.numsubmodels = mod.numsubmodels;
 			nextmodel.submodels = mod.submodels;
+			nextmodel.hullCount = mod.hullCount;
 			nextmodel.numplanes = mod.numplanes;
 			nextmodel.planes = mod.planes;
 			nextmodel.numleafs = mod.numleafs;

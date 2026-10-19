@@ -885,7 +885,6 @@ const _xrWeaponAlignQuat = new THREE.Quaternion().setFromRotationMatrix(
  * `currententity` to the view entity and records the frame the gun was placed in (for the shotgun's muzzle).
  */
 export function R_DrawViewModel() {
-	globalThis.__HEXEN2_VM_STATE__?.( { draw: r_drawviewmodel.value, health: cl?.stats ? cl.stats[ 0 ] : null, items: cl?.items, chase: chase_active.value, envmap: !! envmap, bestiary: R_BestiaryInputLocked(), model: !! cl?.viewent?.model, mesh: !! cl?.viewent?._aliasMesh, frame: cl?.viewent?.frame } );
 	if ( R_BestiaryInputLocked() ) { const mesh=cl?.viewent?._aliasMesh;if(mesh?.parent===scene)scene.remove(mesh);return; }
 
 	if ( r_drawviewmodel.value === 0 )

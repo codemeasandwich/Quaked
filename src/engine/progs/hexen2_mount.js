@@ -14,7 +14,7 @@
 
 import { COM_FindFile } from '../common/pak.js';
 import { VID_SetPalette } from '../render/vid.js';
-import { Mod_SetHexenHullLayout } from '../render/gl_model_bsp.js';
+import { GameProfile_Set } from '../common/game_profile.js';
 import { Mod_FindName } from '../render/gl_model_common.js';
 import { PR_LoadProgs, PR_AllocEdicts } from './pr_edict.js';
 import { PR_SetSV, PR_SetSVS, PR_GetString, PR_SetTempString, pr_global_struct, svs as progsSvs } from './progs.js';
@@ -76,6 +76,8 @@ export function Hexen2_MountLevel( options ) {
 
 	const plan = Hexen2_PlanStart( options.entry, options );
 	if ( ! plan.ok ) return plan;
+	// the selected catalogue entry is the session's profile before its gamecode loads, as main.js does for the host
+	GameProfile_Set( plan.session.gameId );
 	// loose files (Hexen's gamecode) come through the platform reader when the host supplies one; pack members come
 	// through the engine's mounted paks
 	const readNamed = name => {
@@ -96,10 +98,8 @@ export function Hexen2_MountLevel( options ) {
 	// native difficulty: gamecode reads skill while spawning the level's entities
 	if ( Number.isInteger( options.skill ) ) pr_global_struct.skill = options.skill;
 	VID_SetPalette( paletteBytes );
-	Mod_SetHexenHullLayout( true );
 	let map;
-	try { map = options.loadMap( plan.startMap ); } catch ( error ) { Mod_SetHexenHullLayout( false ); return { ok: false, reason: 'the map would not load: ' + error.message }; }
-	Mod_SetHexenHullLayout( false );
+	try { map = options.loadMap( plan.startMap ); } catch ( error ) { return { ok: false, reason: 'the map would not load: ' + error.message }; }
 	if ( ! map ) return { ok: false, reason: `the map ${plan.startMap} is missing` };
 
 	const sv = options.sv ?? serverSv, svs = options.svs ?? progsSvs;
