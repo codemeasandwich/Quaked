@@ -46,6 +46,14 @@ await import( '../../src/newer/install.js' ); // engine hooks (axe reset etc.) m
 
 let session = null;
 const result = { ok: false, errors: [] };
+
+// wait for the trial shelf's play button: the start is a real click, not an automatic load
+result.shelfShown = true;
+const playButton = document.querySelector( '#play' );
+if ( playButton ) await new Promise( resolve => playButton.addEventListener( 'click', resolve, { once: true } ) );
+result.shelfClicked = true;
+const shelf = document.querySelector( '#shelf' );
+if ( shelf ) shelf.remove();
 window.__HEXEN2_TRIAL__ = result;
 
 async function bytes( url ) {

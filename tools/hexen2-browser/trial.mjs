@@ -19,6 +19,9 @@ let result = null;
 try {
 
 	await page.goto( base + '/tools/hexen2-browser/harness.html', { waitUntil: 'load' } );
+	await page.waitForTimeout( 300 );
+	await page.screenshot( { path: resolve( import.meta.dirname, '../../docs/evidence/hexen2-browser-shelf.png' ) } ).catch( () => {} );
+	await page.click( '#play' ); // the trial shelf's start
 	await page.waitForFunction( () => window.__HEXEN2_TRIAL__ !== undefined && ( window.__HEXEN2_TRIAL__.ok || window.__HEXEN2_TRIAL__.errors.length > 0 ), null, { timeout: 120000 } );
 	// the receipt image is the clean first frame; movement is measured after it
 	await mkdir( resolve( import.meta.dirname, '../../docs/evidence' ), { recursive: true } );
