@@ -11,7 +11,7 @@
  */
 
 import { ED_Alloc, ED_Free, ED_Print } from './pr_edict.js';
-import { sv, G_STRING, G_INT, G_INT_SET, G_FLOAT, G_FLOAT_SET, G_EDICT, G_EDICTNUM, G_VECTOR, PROG_TO_EDICT, pr_global_struct, pr_argc, pr_xfunction, svs, PR_GetString, RETURN_EDICT } from './progs.js';
+import { sv, G_STRING, G_INT, G_INT_SET, G_FLOAT, G_FLOAT_SET, G_EDICT, G_EDICTNUM, NUM_FOR_EDICT, G_VECTOR, PROG_TO_EDICT, pr_global_struct, pr_argc, pr_xfunction, svs, PR_GetString, RETURN_EDICT } from './progs.js';
 import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3, OFS_PARM4, OFS_RETURN } from './pr_comp.js';
 import { PR_RunError, PR_HostError } from './pr_exec.js';
 import { Con_Printf } from '../common/console.js';
@@ -243,8 +243,10 @@ function writeDestination() {
 	if ( destination === MSG_INIT ) return sv.signon;
 	if ( destination === MSG_ONE ) {
 
-		const ent = PROG_TO_EDICT( pr_global_struct.msg_entity ), index = G_EDICTNUM( pr_global_struct.msg_entity );
-		if ( index < 1 || index > svs.maxclients ) PR_RunError( 'write: not a client\n' );
+		const pointer = pr_global_struct.msg_entity | 0;
+		const ent = pointer ? PROG_TO_EDICT( pointer ) : null;
+		const index = ent ? NUM_FOR_EDICT( ent ) : 0;
+		if ( index < 1 || index > svs.maxclients ) PR_RunError( 'write: not a client (msg_entity %i, index %i)', pointer, index );
 		const client = svs.clients[ index - 1 ];
 		return client?.message ?? null;
 
