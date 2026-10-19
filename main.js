@@ -64,22 +64,31 @@ async function main() {
 			document.getElementById('loading')?.remove();
 			const gate=document.createElement('div');
 			gate.style='position:fixed;inset:0;z-index:400;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#07070a;color:#efe2c4;font:16px/1.6 Georgia,serif;text-align:center;cursor:pointer';
-			gate.innerHTML='<div style="letter-spacing:.2em;font-size:1.6em">HEXEN II</div><div style="margin-top:.6em;color:#b7ab90">Choose a class</div>';
+			gate.innerHTML='<div style="letter-spacing:.2em;font-size:1.6em">HEXEN II</div>'
+				+'<div style="margin-top:.5em;color:#8d8471;font-size:.85em">Source: '+String(desktop.source??'native library')+'</div>'
+				+'<div style="margin-top:1em;color:#b7ab90">Difficulty</div>';
+			const skills=[['0','Easy'],['1','Normal'],['2','Hard'],['3','Nightmare']];
+			const skillRow=document.createElement('div');skillRow.style='display:flex;gap:.6em;margin-top:.5em';
+			let chosenSkill=1;
+			const skillStyle=button=>button.style='padding:.45em 1em;background:#2a2419;color:#e8dcc0;border:1px solid #7a6a4a;font:inherit;cursor:pointer;opacity:'+(button.dataset.skill===String(chosenSkill)?'1':'.6');
+			for(const [value,name] of skills){const button=document.createElement('button');button.dataset.skill=value;button.textContent=name;skillStyle(button);button.addEventListener('click',()=>{chosenSkill=Number(value);for(const other of skillRow.querySelectorAll('button'))skillStyle(other);try{if(!S_GetAudioContext())S_Init();S_UnlockAudio();}catch(error){log('audio unlock: '+error);}});skillRow.append(button);}
+			gate.append(skillRow);
+			const classTitle=document.createElement('div');classTitle.style='margin-top:1.2em;color:#b7ab90';classTitle.textContent='Class';gate.append(classTitle);
 			const choices=[['paladin','Paladin'],['crusader','Crusader'],['necromancer','Necromancer'],['assassin','Assassin']];
-			const row=document.createElement('div');row.style='display:flex;gap:.8em;margin-top:1.4em';
-			for(const [id,name] of choices){const button=document.createElement('button');button.dataset.class=id;button.textContent=name;button.style='padding:.7em 1.4em;background:#2a2419;color:#e8dcc0;border:1px solid #7a6a4a;font:inherit;letter-spacing:.08em;cursor:pointer';button.addEventListener('click',()=>{try{if(!S_GetAudioContext())S_Init();S_UnlockAudio();}catch(error){log('audio unlock: '+error);}},{once:true});row.append(button);}
+			const row=document.createElement('div');row.style='display:flex;gap:.8em;margin-top:.5em';
+			for(const [id,name] of choices){const button=document.createElement('button');button.dataset.class=id;button.textContent=name;button.style='padding:.7em 1.4em;background:#2a2419;color:#e8dcc0;border:1px solid #7a6a4a;font:inherit;letter-spacing:.08em;cursor:pointer';row.append(button);}
 			gate.append(row);
 			document.body.append(gate);
 			let chosenClass='paladin';
 			if(!desktop.autoStart){
-				chosenClass=await new Promise(resolve=>{for(const button of row.querySelectorAll('button'))button.addEventListener('click',()=>resolve(button.dataset.class),{once:true});});
+				chosenClass=await new Promise(resolve=>{for(const button of row.querySelectorAll('button'))button.addEventListener('click',()=>{try{if(!S_GetAudioContext())S_Init();S_UnlockAudio();}catch(error){log('audio unlock: '+error);}});for(const button of row.querySelectorAll('button'))button.addEventListener('click',()=>resolve(button.dataset.class),{once:true});});
 				gate.remove();
-				log('start gate clicked, class '+chosenClass);
+				log('start gate clicked, class '+chosenClass+' skill '+chosenSkill);
 			}else{
 				gate.remove();
 				log('trial autostart');
 			}
-			const started=await(await import('./src/engine/client/hexen2_page.js')).Hexen2_PageStart({packs:desktop.packs,id:desktop.id,classId:chosenClass,log,onFrame:()=>{}});
+			const started=await(await import('./src/engine/client/hexen2_page.js')).Hexen2_PageStart({packs:desktop.packs,id:desktop.id,classId:chosenClass,skill:chosenSkill,log,autoplay:desktop.autoPlay===true,onFrame:()=>{}});
 			log('host result ok='+started.ok+' reason='+(started.reason??''));
 			if(!started.ok){Sys_Printf('Hexen II could not start: '+started.reason+'\n');const note=document.createElement('div');note.role='alert';note.style='position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;background:#07070a;color:#f0c9a0;font:16px/1.6 system-ui,sans-serif;text-align:center;padding:8vw;white-space:pre-wrap';note.textContent='Hexen II could not start:\n'+started.reason;document.body.append(note);}
 			return;

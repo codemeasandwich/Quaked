@@ -123,6 +123,8 @@ export async function Desktop_Prepare(){
   const maps=[...new Set(packs.flatMap(p=>p.files.filter(f=>/^maps\/[a-z0-9_]+\.bsp$/.test(f.name)).map(f=>f.name.slice(5,-4))))].sort();
   let identity;
   await (await import('./lan.js')).LAN_Init({maps,identity:()=>identity??=(async()=>{const hashes=[];for(const p of packs)hashes.push(Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',p.data)),b=>b.toString(16).padStart(2,'0')).join(''));return 'quaked-lan-v1|'+globalThis.__QUAKED_DISTRIBUTION__.engineHash+'|'+id+'|'+hashes.join('|');})()});
-  return {id,packs,mission:!!definition.base,autoStart:trial===id};
+  let autoPlay=false;
+  if(trial===id){try{autoPlay=await invoke('trial_autoplay');}catch{}}
+  return {id,packs,mission:!!definition.base,autoStart:trial===id,autoPlay,source:String(library.root)};
  }catch(error){history.replaceState(null,'',location.pathname);await Desktop_ShowShelf(String(error?.message??error));return null;}
 }

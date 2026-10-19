@@ -93,6 +93,8 @@ export function Hexen2_MountLevel( options ) {
 	if ( ! paletteBytes ) return { ok: false, reason: 'gfx/palette.lmp is not in the mounted game' };
 	try { PR_LoadProgs( progs.buffer.slice( progs.byteOffset, progs.byteOffset + progs.byteLength ) ); }
 	catch ( error ) { return { ok: false, reason: 'the gamecode would not load: ' + error.message }; }
+	// native difficulty: gamecode reads skill while spawning the level's entities
+	if ( Number.isInteger( options.skill ) ) pr_global_struct.skill = options.skill;
 	VID_SetPalette( paletteBytes );
 	Mod_SetHexenHullLayout( true );
 	let map;

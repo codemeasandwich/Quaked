@@ -13,6 +13,7 @@
 
 import { COM_AddPack, COM_FindFile } from '../common/pak.js';
 import { Cmd_Init, Cmd_ExecuteString, Cbuf_Execute, Cbuf_Init } from '../common/cmd.js';
+import { Cvar_SetValue } from '../common/cvar.js';
 import { renderer } from '../render/vid.js';
 import { set_host_frametime } from '../common/host_state.js';
 import { Sys_Printf } from '../common/sys.js';
@@ -29,8 +30,8 @@ import { SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_PointContents } from '
 import { SV_SetCallbacks as SV_SetPhysCallbacks, SV_Physics, SV_SetFrametime, SV_SetPlayer } from '../server/sv_phys.js';
 import { SV_Move_SetCallbacks } from '../server/sv_move.js';
 import { SV_ClientThink, SV_User_SetCommand, SV_User_SetCallbacks } from '../server/sv_user.js';
-import { SV_StartSound, SV_StartParticle } from '../server/sv_main.js';
-import { PR_SetSV, PR_SetSVS, EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, G_FLOAT, G_FLOAT_SET, PR_GetString } from '../progs/progs.js';
+import { SV_StartSound as SV_StartSoundWire, SV_StartParticle } from '../server/sv_main.js';
+import { PR_SetSV, PR_SetSVS, EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, G_FLOAT, G_FLOAT_SET, PR_GetString, pr_global_struct } from '../progs/progs.js';
 import { PR_ExecuteProgram } from '../progs/pr_exec.js';
 import { GetEdictFieldValue } from '../progs/pr_edict.js';
 import { Hexen2_OpenLocalSession } from '../progs/hexen2_session.js';
@@ -46,7 +47,7 @@ import { cl, cls, cl_entities, cl_visedicts, set_cl_numvisedicts, MAX_VISEDICTS,
 import { CL_BaseMove, CL_InitInput, in_attack, in_forward } from './cl_input.js';
 import { Key_SetBinding, K_UPARROW, K_DOWNARROW, K_LEFTARROW, K_RIGHTARROW, set_key_dest, key_game, key_dest } from './keys.js';
 import { V_CalcRefdef } from './view.js';
-import { S_Init, S_UnlockAudio, S_PrecacheSound, S_Update, S_GetAudioContext } from '../sound/snd_dma.js';
+import { S_Init, S_UnlockAudio, S_PrecacheSound, S_StartSound, S_Update, S_GetAudioContext } from '../sound/snd_dma.js';
 import { IN_Init, IN_Move } from '../../platform/in_web.js';
 import { R_BestiaryInputLocked } from '../../newer/ui/r_bestiary.js';
 
@@ -62,6 +63,7 @@ let _running = false;
 export async function Hexen2_PageStart( options ) {
 
 	const log = text => options.log?.( text );
+	globalThis.__HEXEN2_LOG__ = log;
 	if ( _running ) return { ok: false, reason: 'a Hexen II session is already running' };
 	_running = true;
 	try {
@@ -87,6 +89,7 @@ export async function Hexen2_PageStart( options ) {
 		PR_SetSV( sv ); PR_SetSVS( svs );
 		sv.max_edicts = 600;
 		sv.time = 0.1;
+
 		const id = options.id ?? 'hexen2';
 		const entry = { id, kind: id, name: 'Hexen II', folder: options.folder ?? 'library/' + id, playable: true };
 		const readNamed = name => {
@@ -96,7 +99,7 @@ export async function Hexen2_PageStart( options ) {
 
 		};
 		const session = Hexen2_OpenLocalSession( {
-			entry, classId: options.classId ?? 'paladin', client, sv, svs, readFile: readNamed,
+			entry, classId: options.classId ?? 'paladin', skill: options.skill, client, sv, svs, readFile: readNamed,
 			loadMap: name => {
 
 				const file = COM_FindFile( name );
@@ -109,7 +112,7 @@ export async function Hexen2_PageStart( options ) {
 			installCallbacks: () => {
 
 				SV_SetPhysCallbacks( { SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_PointContents, PR_ExecuteProgram,
-					EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, GetEdictFieldValue, SV_StartSound, SV_StartParticle } );
+					EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, GetEdictFieldValue, SV_StartSound: playLocalSound, SV_StartParticle } );
 				SV_Move_SetCallbacks( { PF_changeyaw: () => {}, G_FLOAT, G_FLOAT_SET } );
 				for ( const [ buffer, bytes ] of [ [ 'datagram', 'datagram_buf' ], [ 'reliable_datagram', 'reliable_datagram_buf' ] ] )
 					if ( sv[ buffer ] && sv[ bytes ] && ! sv[ buffer ].data ) {
@@ -122,7 +125,7 @@ export async function Hexen2_PageStart( options ) {
 			}
 		} );
 		if ( !session.ok ) throw new Error( session.reason );
-		log( 'session ok, class ' + session.plan.classNumber + ', map entities ' + sv.num_edicts );
+		log( 'session ok, class ' + session.plan.classNumber + ', skill ' + ( pr_global_struct.skill | 0 ) + ', map entities ' + sv.num_edicts );
 		Sys_Printf( 'Hexen II: class %i\n', session.plan.classNumber );
 		cl.worldmodel = session.map; cl.model_precache = [ null, session.map ]; cl.state = 2; cl.time = 0; cl.velocity = [ 0, 0, 0 ];
 		cl.paused = false; cl.intermission = false;
@@ -194,21 +197,20 @@ export async function Hexen2_PageStart( options ) {
 		let attacking = false;
 		let frameCount = 0;
 		let lastWidth = 0, lastHeight = 0;
-		const frame = now => {
+		const tick = dt => {
 
 			try {
 
 				if ( window.innerWidth !== lastWidth || window.innerHeight !== lastHeight ) { lastWidth = window.innerWidth; lastHeight = window.innerHeight; resize(); }
-				const dt = Math.min( 0.1, Math.max( 0.01, ( now - last ) / 1000 ) );
-				last = now;
 				if ( turnLeft ) cl.viewangles[ 1 ] = ( cl.viewangles[ 1 ] + 120 * dt + 360 ) % 360;
 				if ( turnRight ) cl.viewangles[ 1 ] = ( cl.viewangles[ 1 ] - 120 * dt + 720 ) % 360;
 				set_host_frametime( dt );
 				SV_SetFrametime( dt );
 				Cbuf_Execute();
-				const command = { forwardmove: 0, sidemove: 0, upmove: 0, viewangles: cl.viewangles };
+				const command = { forwardmove: 0, sidemove: 0, upmove: 0, viewangles: [ 0, 0, 0 ] };
 				CL_BaseMove( command );
 				IN_Move( command );
+				command.viewangles = [ cl.viewangles[ 0 ], cl.viewangles[ 1 ], cl.viewangles[ 2 ] ];
 				SV_User_SetCommand( { forwardmove: command.forwardmove, sidemove: command.sidemove,
 					upmove: command.upmove, viewangles: command.viewangles } );
 				SV_ClientThink();
@@ -236,14 +238,39 @@ export async function Hexen2_PageStart( options ) {
 
 			} catch ( error ) {
 
-				log( 'frame error: ' + String( error?.stack ?? error ) );
+				log( 'frame error: ' + ( error?.name ? error.name + ': ' : '' ) + String( error?.message ?? error ) + '\n' + String( error?.stack ?? '' ) );
 
 			}
-			requestAnimationFrame( frame );
+
+		};
+		const frame = now => {
+
+			const dt = Math.min( 0.1, Math.max( 0.01, ( now - last ) / 1000 ) );
+			last = now;
+			tick( dt );
+			if ( ! options.autoplay ) requestAnimationFrame( frame );
 
 		};
 		requestAnimationFrame( frame );
 		frame( performance.now() ); // draw now: a backgrounded WebView may not deliver rAF
+		if ( options.autoplay ) {
+
+			const dispatch = ( type, init ) => document.dispatchEvent( new ( type === 'mousemove' || type === 'mousedown' || type === 'mouseup' ? MouseEvent : KeyboardEvent )( type, { bubbles: true, ...init } ) );
+			for ( let i = 2; i <= 180; i ++ ) {
+
+				if ( i === 20 ) { for ( let n = 0; n < 12; n ++ ) dispatch( 'mousemove', { clientX: 200 + n * 20, clientY: 300 } ); log( 'autoplay mouse yaw=' + Math.round( cl.viewangles[ 1 ] ) ); }
+				if ( i === 30 ) dispatch( 'keydown', { code: 'ArrowLeft' } );
+				if ( i === 50 ) { dispatch( 'keyup', { code: 'ArrowLeft' } ); log( 'autoplay arrow yaw=' + Math.round( cl.viewangles[ 1 ] ) ); }
+				if ( i === 70 ) dispatch( 'keydown', { code: 'ArrowUp' } );
+				if ( i === 80 ) dispatch( 'mousedown', { button: 0 } );
+				if ( i === 100 ) dispatch( 'mouseup', { button: 0 } );
+				if ( i === 140 ) { dispatch( 'keyup', { code: 'ArrowUp' } ); log( 'autoplay pos=' + session.player.v.origin.map( v => Math.round( v ) ).join( ',' ) + ' yaw=' + Math.round( cl.viewangles[ 1 ] ) + ' audio=' + ( S_GetAudioContext()?.state ?? 'none' ) ); }
+				tick( 0.05 );
+
+			}
+			log( 'autoplay done frames=' + frameCount + ' pos=' + session.player.v.origin.map( v => Math.round( v ) ).join( ',' ) + ' yaw=' + Math.round( cl.viewangles[ 1 ] ) );
+
+		}
 		window.addEventListener( 'focus', () => frame( performance.now() ) );
 		log( 'loop scheduled' );
 		setTimeout( () => log( 'rAF watchdog frames=' + frameCount + ' visibility=' + document.visibilityState ), 1500 );
@@ -300,14 +327,38 @@ function updateNearbyEntities( session ) {
 
 	}
 	let count = 0;
-	for ( const { ent } of chosen ) {
+	for ( const { ent, modelIndex } of chosen ) {
 
 		const clientEnt = cl_entities[ ent.index ];
-		if ( !clientEnt || !clientEnt.model || count >= MAX_VISEDICTS ) continue;
+		if ( !clientEnt || count >= MAX_VISEDICTS ) continue;
+		if ( !clientEnt.model ) clientEnt.model = cl.model_precache[ modelIndex ] ?? Mod_ForName( PR_GetString( ent.v.model ), true );
+		if ( !clientEnt.model ) continue;
 		clientEnt.colormap = vid.colormap; clientEnt.scale = 1; clientEnt.frame = ent.v.frame | 0;
 		cl_visedicts[ count ++ ] = clientEnt;
 
 	}
 	set_cl_numvisedicts( count );
+
+}
+
+
+const _localSfx = new Map();
+let _soundLogs = 0;
+// The gamecode's sounds are written as network messages by SV_StartSound; a local session has no client parser for them,
+// so the same call also feeds the mixer directly at the entity's origin.
+function playLocalSound( entity, channel, sample, volume, attenuation ) {
+
+	try { SV_StartSoundWire( entity, channel, sample, volume, attenuation ); } catch ( error ) { globalThis.__HEXEN2_LOG__?.( 'server sound failed: ' + String( error?.message ?? error ) ); }
+	try {
+
+		let sfx = _localSfx.get( sample );
+		if ( sfx === undefined ) { sfx = S_PrecacheSound( sample ); _localSfx.set( sample, sfx ?? null ); }
+		if ( !sfx ) return;
+		const origin = entity?.v?.origin ?? [ 0, 0, 0 ];
+		const entnum = entity?.v ? entity.index : 0;
+		S_StartSound( entnum, channel, sfx, origin, volume / 255, attenuation );
+		if ( _soundLogs < 8 ) { _soundLogs ++; globalThis.__HEXEN2_LOG__?.( 'sound ' + sample ); }
+
+	} catch ( error ) { /* a missing WAV must not stop the game */ }
 
 }

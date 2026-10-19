@@ -228,6 +228,10 @@ fn refresh(app: &tauri::AppHandle) -> Result<Library, String> {
 #[tauri::command]
 fn trial_game() -> Option<String> { std::env::var( "HEXEN2_TRIAL_GAME" ).ok() }
 
+/// Trial only: scripted look/move/attack input for a packaged run (`HEXEN2_TRIAL_AUTOPLAY=1`).
+#[tauri::command]
+fn trial_autoplay() -> bool { std::env::var( "HEXEN2_TRIAL_AUTOPLAY" ).as_deref() == Ok( "1" ) }
+
 #[tauri::command]
 fn hexen_log(app: tauri::AppHandle, text: String) {
     let dir = app.path().app_data_dir().ok();
@@ -295,6 +299,7 @@ fn main() {
         .plugin(tauri_plugin_dialog::init())
         .invoke_handler(tauri::generate_handler![
             trial_game,
+            trial_autoplay,
             hexen_log,
             library_scan,
             library_read,

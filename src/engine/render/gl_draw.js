@@ -181,6 +181,7 @@ export function Draw_WithVirtualSize( width, height, draw, scale = 1 ) {
 
 // Charset
 let char_canvas = null;
+let _charsetCols = 16; // 16 for Quake's 128x128 sheet, 32 for Hexen's 256x128 sheet
 let conback = null;
 let draw_disc = null;
 let draw_backtile = null;
@@ -492,12 +493,13 @@ function _loadCharset( override ) {
 	const pal = d_8to24table || vid_d_8to24table;
 	if ( ! pal ) return;
 
-	let data;
+	let data, cols = 16;
 	if ( override ) {
 
-		// a game's own 128x128 charset (Hexen II ships gfx/menu/conchars.lmp): the native font, not Quake's WAD lump
+		// a game's own charset: Hexen II ships a 256x128 gfx/menu/conchars.lmp (32 columns), Quake a 128x128 sheet
 		data = override instanceof Uint8Array ? override : new Uint8Array( override );
-		if ( data.length < 128 * 128 ) return;
+		if ( data.length >= 256 * 128 ) cols = 32;
+		else if ( data.length < 128 * 128 ) return;
 
 	} else {
 
@@ -515,8 +517,9 @@ function _loadCharset( override ) {
 
 	}
 
-	const charWidth = 128;
+	const charWidth = cols * 8;
 	const charHeight = 128;
+	_charsetCols = cols;
 	const cs = document.createElement( 'canvas' );
 	cs.width = charWidth;
 	cs.height = charHeight;
@@ -700,8 +703,8 @@ export function Draw_BeginFrame( mode = 'default' ) {
 		if ( mode === 'height' ) {
 
 			// a native 320x200 HUD scaled to the window height, centred horizontally (Hexen's bar art)
-			const scale = overlayCanvas.height / 200;
-			overlayCtx.setTransform( scale, 0, 0, scale, ( overlayCanvas.width - 320 * scale ) / 2, 0 );
+			const scale = Math.max( 1, Math.floor( overlayCanvas.height / 200 ) );
+			overlayCtx.setTransform( scale, 0, 0, scale, ( overlayCanvas.width - 320 * scale ) / 2, overlayCanvas.height - 200 * scale );
 
 		} else overlayCtx.setTransform( _uiScale, 0, 0, _uiScale, 0, 0 );
 
@@ -768,8 +771,8 @@ export function Draw_Character( x, y, num ) {
 	if ( char_canvas ) {
 
 		// Character sheet is 16x16 grid of 8x8 chars
-		const row = Math.floor( num / 16 );
-		const col = num % 16;
+		const row = Math.floor( num / _charsetCols );
+		const col = num % _charsetCols;
 
 		overlayCtx.drawImage(
 			char_canvas,
