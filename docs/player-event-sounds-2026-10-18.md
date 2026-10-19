@@ -1,5 +1,10 @@
 # Ending, death/reset and power-up sounds
 
+Current owner update, 19 October 2026: see [gameplay feedback](gameplay-feedback-2026-10-19.md)
+for native-cue replacement admission, instant water ambience, capture fixes and
+revised sky/DoF policy. Historical verification receipts below retain their
+original tested source; they are not relabeled as proof of this successor.
+
 Owner request, 18 October 2026: copy seven supplied MP3s into the project, wire
 them to the matching game events, then commit and push to Dev. This increment
 has no production release, gameplay-rule or asset re-encoding authority.

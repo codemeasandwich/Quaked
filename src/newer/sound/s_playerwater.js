@@ -8,7 +8,7 @@ import { key_dest, key_game } from '../../engine/client/keys.js';
 import { STAT_HEALTH } from '../../engine/common/quakedef.js';
 import { Cvar_VariableValue } from '../../engine/common/cvar.js';
 import { volume } from '../../engine/sound/sound.js';
-import { S_GetAudioContext, S_GetMasterGain } from '../../engine/sound/snd_dma.js';
+import { S_GetAudioContext, S_GetMasterGain, S_AddSoundReplacement } from '../../engine/sound/snd_dma.js';
 import { R_NewerGame } from '../mode.js';
 import { CL_PlayerWater } from '../gameplay/cl_water.js';
 import { createEffectDeck, startEffect as start, stopEffect as stop, releaseEffect } from './s_effectdeck.js';
@@ -26,20 +26,24 @@ let status = { active: false, reason: 'not started', submerged: false };
 
 function deckFor( key, context ) {
 	if ( decks[ key ] ) return decks[ key ];
-	return decks[ key ] = createEffectDeck( context, WATER_TRACK_URLS[ key ], key !== 'enter', S_GetMasterGain() );
+	const deck = decks[ key ] = createEffectDeck( context, WATER_TRACK_URLS[ key ], key !== 'enter', S_GetMasterGain() );
+	// Fetch and prepare the stream while dry, not on the first dive.
+	deck.media.load();
+	return deck;
 }
 
-function loop( key, wanted, context, dt, fadeIn = 0, fadeOut = 0 ) {
-	const deck = wanted ? deckFor( key, context ) : decks[ key ];
+function loop( key, wanted, context, dt, fadeIn = 0, fadeOut = 0, keepWarm = false ) {
+	const deck = wanted || keepWarm ? deckFor( key, context ) : decks[ key ];
 	if ( ! deck ) return;
 	if ( wanted ) {
 		deck.level = fadeIn ? Math.min( 1, deck.level + dt / fadeIn ) : 1;
 		start( deck );
 	} else {
 		deck.level = fadeOut ? Math.max( 0, deck.level - dt / fadeOut ) : 0;
-		if ( deck.level <= 0 ) stop( deck );
+		if ( deck.level <= 0 && ! keepWarm ) stop( deck );
 	}
 	deck.gain.gain.value = deck.level;
+	if ( keepWarm ) start( deck );
 }
 
 /** Called every host frame beside the existing ambient and low-health updates.
@@ -49,6 +53,9 @@ function loop( key, wanted, context, dt, fadeIn = 0, fadeOut = 0 ) {
  */
 export function S_UpdatePlayerWater() {
 	const water = CL_PlayerWater(), context = S_GetAudioContext();
+	if ( R_NewerGame() && context && context.state !== 'closed' && S_GetMasterGain() && typeof Audio === 'function' ) {
+		for ( const key of Object.keys( WATER_TRACK_URLS ) ) deckFor( key, context );
+	}
 	let reason = '';
 	if ( ! R_NewerGame() ) reason = 'classic game';
 	else if ( cls.state !== ca_connected || cls.signon !== SIGNONS || ! cl.worldmodel ) reason = 'no game';
@@ -77,9 +84,13 @@ export function S_UpdatePlayerWater() {
 		return;
 	}
 	if ( entered ) {
+		// A rejected silent prime may retry on a real dive, never every frame.
+		if ( decks.underwater?.blocked ) stop( decks.underwater );
 		const deck = deckFor( 'enter', context ); stop( deck ); deck.level = deck.gain.gain.value = 1; start( deck, true );
 	} else if ( ! submerged && decks.enter ) stop( decks.enter );
-	loop( 'underwater', submerged, context, dt );
+	// Like native ambience, keep this loop running silently above water.
+	// Diving changes gain only: no cold decoder, play request or quiet lead-in.
+	loop( 'underwater', submerged, context, dt, 0, 0, true );
 	loop( 'bubbles', submerged && water.filling, context, dt );
 	loop( 'walking', water.wading, context, dt, WATER_WALK_FADE_IN, water.water && ! submerged ? WATER_WALK_FADE_OUT : 0 );
 }
@@ -98,3 +109,13 @@ export function S_GetPlayerWaterStatus() {
 	return { ...status, tracks: Object.fromEntries( Object.entries( decks ).map( ( [ key, deck ] ) =>
 		[ key, { playing: deck.playing, gain: deck.gain.gain.value, blocked: deck.blocked, error: deck.error } ] ) ) };
 }
+
+// Replace the native water bed only while the supplied underwater bed is
+// actually admitted and audible. Surface streams and unsupported cues stay native.
+S_AddSoundReplacement( ( sfx, origin, volume, attenuation, entity ) => {
+	const cue = { 'ambience/water1.wav': 'underwater', 'player/inh2o.wav': 'enter', 'misc/water1.wav': 'walking', 'misc/water2.wav': 'walking' }[ sfx?.name ];
+	if ( ! cue || ( cue !== 'underwater' && entity !== cl.viewentity ) ) return false;
+	S_UpdatePlayerWater();
+	const deck = decks[ cue ];
+	return status.active && ( cue !== 'enter' || status.submerged ) && !! deck?.playing && ! deck.blocked && deck.gain.gain.value > 0;
+} );

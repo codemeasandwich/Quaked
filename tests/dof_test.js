@@ -75,7 +75,7 @@ Deno.test( 'inside a wall the focus holds; along the ray the sky focuses far and
 } );
 
 Deno.test( 'the real E1M1 hull: a ray at the sky stops on its face, and knowing the sky faces makes it focus far', async () => {
-	const { readFileSync } = await import( 'node:fs' ), pak = await import( '../src/engine/common/pak.js' ), { VID_SetPalette } = await import( '../src/engine/render/vid.js' ), M = await import( '../src/engine/render/gl_model.js' );
+	const { readFileSync } = await import( './helpers/resource_fs.mjs' ), pak = await import( '../src/engine/common/pak.js' ), { VID_SetPalette } = await import( '../src/engine/render/vid.js' ), M = await import( '../src/engine/render/gl_model.js' );
 	const data = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ); pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', data.buffer.slice( data.byteOffset, data.byteOffset + data.length ) ) );
 	VID_SetPalette( pak.COM_FindFile( 'gfx/palette.lmp' ).data ); M.Mod_Init();
 	const e1m1 = M.Mod_ForName( 'maps/e1m1.bsp', true ), at = p => M.Mod_PointInLeaf( p, e1m1 ).contents;
@@ -94,9 +94,9 @@ Deno.test( 'the real E1M1 hull: a ray at the sky stops on its face, and knowing 
 	setup();
 } );
 
-Deno.test( 'on by default at three slider steps (0.15); a configuration saved before keeps its 0 only if the player chose it', () => {
+Deno.test( 'on by default at the lowest nonzero slider step (0.05); explicit player choices remain saved', () => {
 
-	check( DEFAULT_STRENGTH === '0.15' && D.r_dof.archive, 'on by default at 0.15 (three steps of .05), saved' );
+	check( DEFAULT_STRENGTH === '0.05' && D.r_dof.archive, 'on by default at one .05 slider step, saved' );
 	const store = () => { const m = new Map(); return { getItem: k => m.has( k ) ? m.get( k ) : null, setItem: ( k, v ) => m.set( k, String( v ) ), m }; };
 	const saved = 'bind MOUSE1 "+attack"\nr_dof "0"\nr_dofx "1"\nvolume "0.7"\n';
 	// never chosen: the old default's line is dropped once, so the new default applies
@@ -109,4 +109,19 @@ Deno.test( 'on by default at three slider steps (0.15); a configuration saved be
 	// no storage: unchanged
 	check( vars.Cvar_DropChangedDefaults( saved, null ) === saved, 'no storage: unchanged' );
 
+} );
+
+Deno.test( 'the 19 October default migration handles an already migrated 0.15 configuration once and preserves explicit strength choices', () => {
+	const values = new Map( [ [ 'quaked_default_r_dof_2026-10-10', '1' ] ] );
+	const storage = { getItem: key => values.has( key ) ? values.get( key ) : null, setItem: ( key, value ) => values.set( key, String( value ) ) };
+	const migration = vars.CVAR_DEFAULT_CHANGES.find( change => change.name === 'r_dof' );
+	check( migration?.marker === 'quaked_default_r_dof_2026-10-19', 'new default has a fresh migration marker' );
+	const saved = 'r_dof "0.15"\nvolume "0.7"\n';
+	const first = vars.Cvar_DropChangedDefaults( saved, storage );
+	check( ! /^r_dof /m.test( first ) && /volume "0.7"/.test( first ), 'old automatic strength drops while unrelated settings remain' );
+	check( vars.Cvar_DropChangedDefaults( saved, storage ) === saved, 'new migration runs once' );
+	for ( const explicit of [ '0', '0.15', '0.45' ] ) {
+		values.delete( migration.marker ); values.set( 'quake_cvar_r_dof', explicit );
+		check( vars.Cvar_DropChangedDefaults( saved, storage ) === saved, 'explicit player strength is retained: ' + explicit );
+	}
 } );

@@ -29,7 +29,9 @@ export function startEffect( deck, restart = false ) {
 	const generation = ++ deck.generation;
 	deck.playing = true;
 	let promise;
-	try { promise = deck.media.play(); } catch ( error ) { promise = Promise.reject( error ); }
+	try { promise = deck.media.play(); } catch ( error ) {
+		deck.playing = false; deck.blocked = true; deck.error = String( error?.message ?? error ); return;
+	}
 	Promise.resolve( promise ).then( () => {
 		if ( generation !== deck.generation && ! deck.playing ) deck.media.pause();
 	}, error => {

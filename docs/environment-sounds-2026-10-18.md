@@ -21,8 +21,11 @@ One streamed fire deck follows the loudest source. Its existing Quake
 attenuation and stereo direction, using a proxy rather than acquiring or
 altering a native channel. The range is 800 Quake units and the added gain is
 capped at 0.3. An optional stereo panner routes through the existing SFX master
-bus. Fire is a conservative extra layer; native fire and other map sounds keep
-their existing playback and settings. No new fire occlusion rule is introduced.
+bus. Owner update, 19 October 2026: an admitted fire deck replaces native
+`ambience/fire1.wav` through the shared pre-play admission boundary; Classic,
+unsupported/blocked replacements and unrelated sounds keep native playback.
+No new fire occlusion rule is introduced. See
+[gameplay feedback](gameplay-feedback-2026-10-19.md).
 
 Emitter scans occur at most ten times per game second, invalidated when the
 existing registry version or static count changes. The existing registry bounds

@@ -70,6 +70,16 @@ async function fixture( run, { canonical = false } = {} ) {
 const layersFor = ( api, native ) => api.R_MilkyWaySkyLayers( native.solidTexture, native.alphaTexture );
 const compile = material => { const shader = { uniforms: {}, vertexShader: THREE.ShaderLib.basic.vertexShader, fragmentShader: THREE.ShaderLib.basic.fragmentShader }; material.onBeforeCompile( shader, null ); return shader; };
 
+Deno.test( 'the shared Milky Way profile dims and increases background contrast while making native clouds more visible', () => fixture( async ( { api, sky, load } ) => {
+ assert.equal( api.MILKYWAY_EXPOSURE, .72 ); assert.equal( api.MILKYWAY_CONTRAST, 1.2 );
+ assert.equal( api.MILKYWAY_CLOUD_OPACITY, .035 );
+ const native = sky( 'start', 'sky1' ); layersFor( api, native ); await load();
+ const layers = layersFor( api, native );
+ assert.equal( layers.alpha.opacity, api.MILKYWAY_CLOUD_OPACITY );
+ assert.equal( layers.alpha.map, native.alphaTexture, 'visibility adjustment borrows the unchanged native cloud mask' );
+ assert.ok( compile( layers.solid ).fragmentShader.includes( api.R_MilkyWaySkyGLSL() ), 'main sky uses the shared background grading helper' );
+} ) );
+
 Deno.test( 'native sky1 and matching sky4 pixels qualify, while the unrelated same-name E1M1 sky remains native', () => fixture( async ( { api, requests, sky, load } ) => {
  const welcome = sky( 'start', 'sky1' ), sameArt = sky( 'e1m5', 'sky4' ), otherSky4 = sky( 'e1m1', 'sky4' );
  for ( const native of [ welcome, sameArt ] ) { assert.equal( R_GlassTextureKey( native.solidTexture ), api.MILKYWAY_SKY_KEYS.solid ); assert.equal( R_GlassTextureKey( native.alphaTexture ), api.MILKYWAY_SKY_KEYS.alpha ); }
@@ -119,7 +129,7 @@ Deno.test( 'panorama uses world direction and shared fog; faint clouds preserve 
   const uv = actualUV( direction, Math.atan2, Math.asin, ( value, min, max ) => Math.max( min, Math.min( max, value ) ) ); uv[ 0 ] = ( uv[ 0 ] % 1 + 1 ) % 1; uv.forEach( ( value, i ) => assert.ok( Math.abs( value - expected[ i ] ) < 1e-9, 'actual GLSL projection follows the chosen native Z-up direction anchors' ) );
  }
  assert.ok( background.uniforms.uQuakedSkyFog && cloud.uniforms.uQuakedSkyFog ); assert.equal( background.uniforms.uQuakedSkyFog, cloud.uniforms.uQuakedSkyFog ); R_FogNewMap( '{ "classname" "worldspawn" "skyfog" "0.23" }' ); assert.equal( background.uniforms.uQuakedSkyFog.value, .23, 'existing compiled layers observe live map sky fog' ); assert.match( background.fragmentShader, /mix\( gl_FragColor\.rgb, fogColor, uQuakedSkyFog \)/ );
- assert.equal( layers.alpha.map, native.alphaTexture ); assert.equal( layers.alpha.transparent, true ); assert.equal( layers.alpha.opacity, .012 ); assert.equal( layers.alpha.alphaTest, 0 ); assert.equal( layers.alpha.depthWrite, false );
+ assert.equal( layers.alpha.map, native.alphaTexture ); assert.equal( layers.alpha.transparent, true ); assert.equal( layers.alpha.opacity, api.MILKYWAY_CLOUD_OPACITY ); assert.equal( layers.alpha.alphaTest, 0 ); assert.equal( layers.alpha.depthWrite, false );
  assert.ok( cloud.fragmentShader.includes( '#include <map_fragment>' ) && cloud.fragmentShader.includes( 'quakedFaintCloud(diffuseColor.rgb)' ), 'native texture alpha remains in normal map sampling while only cloud RGB is lightened' );
  assert.equal( native.solidTexture.image, solidImage ); assert.equal( native.alphaTexture.image, alphaImage ); assert.equal( hash( solidImage.data ), solidBytes ); assert.equal( hash( alphaImage.data ), alphaBytes );
  assert.equal( requests[ 0 ].texture.colorSpace, THREE.SRGBColorSpace ); assert.equal( requests[ 0 ].texture.wrapS, THREE.RepeatWrapping ); assert.equal( requests[ 0 ].texture.wrapT, THREE.ClampToEdgeWrapping );
@@ -145,7 +155,7 @@ Deno.test( 'public sky-chain draws the lazy panorama on existing meshes, keeps n
  try {
   R_SkyClear(); R_LiquidsClear(); worldState.group = new THREE.Group(); worldState.renderGroup = worldState.group; set_solidskytexture( native.solidTexture ); set_alphaskytexture( native.alphaTexture ); r_origin.fill( 0 ); set_realtime( 1 ); R_SkyBoxSet( '' );
   const face = surface(); R_LiquidsBeginFrame(); R_DrawSkyChain( face ); assert.equal( requests.length, 1 ); assert.equal( face._skyMesh.material.map, native.solidTexture, 'loading uses existing native sky material' ); const mesh = face._skyMesh, cloudMesh = face._skyMesh2, geometry = mesh.geometry; const positions = Array.from( geometry.attributes.position.array );
-  await load(); R_LiquidsBeginFrame(); R_DrawSkyChain( face ); assert.equal( face._skyMesh, mesh ); assert.equal( mesh.geometry, geometry ); assert.equal( mesh.material, layersFor( api, native ).solid ); assert.equal( cloudMesh.material.opacity, .012 ); assert.equal( cloudMesh.material.map, native.alphaTexture ); assert.deepEqual( Array.from( geometry.attributes.position.array ), positions );
+  await load(); R_LiquidsBeginFrame(); R_DrawSkyChain( face ); assert.equal( face._skyMesh, mesh ); assert.equal( mesh.geometry, geometry ); assert.equal( mesh.material, layersFor( api, native ).solid ); assert.equal( cloudMesh.material.opacity, api.MILKYWAY_CLOUD_OPACITY ); assert.equal( cloudMesh.material.map, native.alphaTexture ); assert.deepEqual( Array.from( geometry.attributes.position.array ), positions );
   const background = compile( mesh.material ), cloudsBefore = Array.from( cloudMesh.geometry.attributes.uv.array ); set_realtime( 5 ); r_origin.set( [ 20, 30, 10 ] ); R_LiquidsBeginFrame(); R_DrawSkyChain( face ); assert.equal( mesh.material, layersFor( api, native ).solid ); assert.match( background.fragmentShader, /vMilkyWayWorld\s*-\s*cameraPosition/ ); assert.notDeepEqual( Array.from( cloudMesh.geometry.attributes.uv.array ), cloudsBefore, 'native cloud UV motion continues independently' );
   mode.R_AnimSetClassicPass( true ); R_LiquidsBeginFrame(); R_DrawSkyChain( face ); assert.equal( mesh.material.map, native.solidTexture ); assert.equal( cloudMesh.material.opacity, 1 ); mode.R_AnimSetClassicPass( false );
   const files = [ 'rt', 'bk', 'lf', 'ft', 'up', 'dn' ].map( suffix => ( { name: 'gfx/env/milky-independent-' + suffix + '.tga', data: cubeTGA() } ) ); COM_AddPack( COM_LoadPackFile( 'milky-independent-cube.pak', COM_BuildPack( files ) ) ); assert.equal( R_SkyBoxSet( 'milky-independent-' ), true );
@@ -157,7 +167,7 @@ Deno.test( 'public sky-chain draws the lazy panorama on existing meshes, keeps n
   const preview = R_BuildLevelView( previewModel, [ 0, 0, 8 ] ); assert.ok( preview && preview.group.children.length === 1 );
   try {
    const previewMesh = preview.group.children[ 0 ], material = previewMesh.material; previewMesh.onBeforeRender(); assert.equal( material.uniforms.uMilkyWay.value, 1 ); assert.equal( material.uniforms.tMilkyWay.value, requests[ 0 ].texture ); assert.equal( material.uniforms.tAlpha.value, native.alphaTexture );
-   assert.match( material.fragmentShader, /quakedMilkyWay\(vWorld - cameraPosition\)/, 'preview panorama uses unflattened world direction' ); assert.match( material.fragmentShader, /a\.a \* \(uMilkyWay > 0\.5 \? 0\.012 : 1\.0\)/, 'preview clouds retain the same subtle native mask' );
+   assert.match( material.fragmentShader, /quakedMilkyWay\(vWorld - cameraPosition\)/, 'preview panorama uses unflattened world direction' ); assert.ok( material.fragmentShader.includes( `a.a * (uMilkyWay > 0.5 ? ${api.MILKYWAY_CLOUD_OPACITY} : 1.0)` ), 'preview clouds retain the native mask at the shared strength' );
    for ( const [ index, name ] of [ [ 1, 'gNormal' ], [ 2, 'gAlbedo' ], [ 3, 'gHeightMask' ] ] ) { assert.match( material.fragmentShader, new RegExp( 'layout\\(location\\s*=\\s*' + index + '\\)\\s+out\\s+highp\\s+vec4\\s+' + name ) ); assert.match( material.fragmentShader, new RegExp( name + '\\s*=' ) ); }
    assert.match( material.fragmentShader, /gNormal\s*=\s*vec4\(\s*0\.0\s*\)/ ); assert.match( material.fragmentShader, /gHeightMask\s*=\s*vec4\(1\.0\)/ );
    mode.R_AnimSetClassicPass( true ); previewMesh.onBeforeRender(); assert.equal( material.uniforms.uMilkyWay.value, 0 ); mode.R_AnimSetClassicPass( false );

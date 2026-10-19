@@ -95,7 +95,12 @@ let _xrPrevRightTrigger = false;
 
 function requestPointerLock() {
 
-	if ( pointerLocked || isQuest || targetElement == null ) return;
+	if ( isQuest || targetElement == null ) return;
+	// Capture belongs to the DOM, not the previous game session. Unlock can
+	// arrive after IN_Shutdown has removed its listener.
+	pointerLocked = document.pointerLockElement === targetElement;
+	mouseactive = pointerLocked;
+	if ( pointerLocked ) return;
 
 	// A refusal (the page has lost focus, for one: a player's window in local play just opened) leaves the mouse free
 	// until the next click; current browsers report it through a promise, older ones by throwing
@@ -658,6 +663,9 @@ export function IN_Init( element ) {
 
 	if ( in_initialized ) return; // once: a second call would add every listener again (card [44m])
 	targetElement = element || document.body;
+	pointerLocked = document.pointerLockElement === targetElement;
+	mouseactive = pointerLocked;
+	mx_accum = my_accum = old_mouse_x = old_mouse_y = mouse_x = mouse_y = 0;
 
 	// Build key mapping (deferred from module scope to avoid circular dep in Deno)
 	codeToQuakeKey = {
@@ -776,7 +784,10 @@ export function IN_Shutdown() {
 	document.removeEventListener( 'pointerlockchange', handlePointerLockChange );
 	document.removeEventListener( 'visibilitychange', handleVisibilityChange );
 
-	if ( pointerLocked && document.exitPointerLock ) {
+	const heldCapture = document.pointerLockElement === targetElement;
+	pointerLocked = false;
+	mx_accum = my_accum = old_mouse_x = old_mouse_y = mouse_x = mouse_y = 0;
+	if ( heldCapture && document.exitPointerLock ) {
 
 		document.exitPointerLock();
 

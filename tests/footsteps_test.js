@@ -1,7 +1,7 @@
-// Footsteps (src/newer/sound/s_footsteps.js; card T-3faa98e3 item 1, docs/material-sounds-2026-10-14.md): the player
-// steps at a walker's cadence on the floor's own material; monsters step by their size; nothing in the air, standing
-// still or swimming steps; a game's own footsteps win; New Game, demos and the switch off are silent. Through the
-// public frame function and the real sound system, with e1m1's real floors and the shareware pack's real models.
+// Owner-restricted enemy footsteps: only the five named humanoid enemy families.
+// Public frame -> actual floor tracing -> ordinary sound cache/mixer; browser
+// audio output is doubled. Missing shareware models use explicit named-alias
+// boundary fixtures, without claiming full native Enforcer/Death Knight AI proof.
 import { readFileSync } from './helpers/resource_fs.mjs';
 await import( '../src/newer/install.js' );
 const dma = await import( '../src/engine/sound/snd_dma.js' ), sound = await import( '../src/engine/sound/sound.js' ), pak = await import( '../src/engine/common/pak.js' );
@@ -29,6 +29,9 @@ const e1m1 = Mod_ForName( 'maps/e1m1.bsp', true );
 const m = /"classname" "info_player_start"[^}]*"origin" "([^"]+)"|"origin" "([^"]+)"[^}]*"classname" "info_player_start"/.exec( e1m1.entities );
 const spawn = ( m[ 1 ] ?? m[ 2 ] ).split( ' ' ).map( Number );
 const soldier = Mod_ForName( 'progs/soldier.mdl', true ), dog = Mod_ForName( 'progs/dog.mdl', true ), shambler = Mod_ForName( 'progs/shambler.mdl', true ), wizard = Mod_ForName( 'progs/wizard.mdl', true ), gib = Mod_ForName( 'progs/gib1.mdl', true );
+const ogre = Mod_ForName( 'progs/ogre.mdl', true ), knight = Mod_ForName( 'progs/knight.mdl', true ), demon = Mod_ForName( 'progs/demon.mdl', true ), zombie = Mod_ForName( 'progs/zombie.mdl', true );
+const named = name => ( { ...soldier, name: 'progs/' + name + '.mdl' } );
+const enforcer = named( 'enforcer' ), hknight = named( 'hknight' ), army = named( 'army' ), ogre2 = { ...ogre, name: 'progs/ogre2.mdl' };
 // a model's first frame whose name says how it moves (soldier: run1; wizard: hover1; a gib its only frame)
 const frameOf = ( model, re ) => Math.max( 0, model.cache.data.frames.findIndex( f => re.test( f.name ) ) );
 // a tiny sound file under a name, in its own pack: what a game with its own footsteps ships
@@ -47,9 +50,9 @@ function withSound( body ) {
 	try {
 
 		dma.S_Init(); dma.S_StopAllSounds( true ); for ( const c of sound.channels ) c.sfx = null;
-		cl.worldmodel = e1m1; cls.demoplayback = false; cl.paused = false; cvar.Cvar_Set( 'r_hdr', '1' ); cvar.Cvar_Set( 's_footsteps', '1' );
+		cl.worldmodel = { ...e1m1 }; cls.demoplayback = false; cl.paused = false; cvar.Cvar_Set( 'r_hdr', '1' ); cvar.Cvar_Set( 's_footsteps', '1' );
 		cl.sound_precache.fill( null ); cl.viewentity = 1; cl.num_entities = 2; cl.stats[ 0 ] = 100; cl.intermission = 0;
-		cl.worldmodel = null; S_FootstepsFrame( clock ); cl.worldmodel = e1m1; // (a new map: whose steps the game plays is forgotten)
+		S_FootstepsFrame( clock ); // a fresh world identity resets native ownership history
 		cl_entities[ 1 ] = { origin: Float32Array.from( spawn ), angles: new Float32Array( 3 ), model: Mod_ForName( 'progs/player.mdl', true ) };
 		clock += 50; S_FootstepsFrame( clock );
 		body();
@@ -66,59 +69,64 @@ function withSound( body ) {
 function run( seconds, move = () => {} ) { const steps = []; for ( let i = 0; i < seconds * 60; i ++ ) { clock = Math.round( ( clock + 1 / 60 ) * 10000 ) / 10000; cl.time = clock; move( i / 60 ); steps.push( ...S_FootstepsFrame( clock ) ); for ( const c of sound.channels ) c.sfx = null; } return steps; }
 const walkPlayer = speed => t => { const me = cl_entities[ 1 ]; cl.onground = true; cl.velocity.set( [ speed, 0, 0 ] ); me.origin[ 0 ] = spawn[ 0 ] + Math.sin( t ) * 20; };
 
-Deno.test( 'the player steps at a walker\'s cadence, on the floor\'s own material; standing or in the air, never', () => withSound( () => {
-
-	const floor = S_MaterialAt( e1m1, [ spawn[ 0 ], spawn[ 1 ], spawn[ 2 ] - 23 ], 24, S_FLOOR );
-	const running = run( 4, walkPlayer( 320 ) ), walking = run( 4, walkPlayer( 160 ) );
-	check( running.length >= 10 && running.length <= 14, 'running: about 3 steps a second: ' + running.length );
-	check( walking.length >= 8 && walking.length <= 11 && walking.length < running.length, 'walking: about 2.4 a second: ' + walking.length );
-	check( running.every( s => s.startsWith( `quaked/step_${floor}` ) ), `on e1m1's ${floor} floor: ` + running.slice( 0, 3 ) );
-	same( run( 2, () => { cl.onground = true; cl.velocity.fill( 0 ); } ).length, 0, 'standing still: none' );
-	same( run( 2, () => { cl.onground = false; cl.velocity.set( [ 320, 0, 0 ] ); } ).length, 0, 'in the air: none' );
-	cl.stats[ 0 ] = 0; same( run( 2, walkPlayer( 320 ) ).length, 0, 'dead: none' ); cl.stats[ 0 ] = 100;
-
+function walker( model, speed = 120, height = 24, pose = /^(run|walk|prowl)/, seconds = 4 ) {
+ const floorZ = FX_Stop( cl.worldmodel, Float32Array.from( spawn ), - 64 );
+ check( floorZ !== null, 'actual BSP supplies the source floor' );
+ cl.num_entities = 3; const e = cl_entities[ 2 ] = { model, frame: frameOf( model, pose ), origin: Float32Array.from( [ spawn[ 0 ], spawn[ 1 ], floorZ + height ] ), angles: new Float32Array( 3 ) };
+ return run( seconds, t => { e.origin[ 1 ] = spawn[ 1 ] + ( t * speed ) % 60 - 30; } );
+}
+Deno.test( 'player movement never produces these enemy-only footsteps', () => withSound( () => {
+ same( run( 4, walkPlayer( 320 ) ).length, 0, 'running player is excluded' );
+ same( run( 4, walkPlayer( 160 ) ).length, 0, 'walking player is excluded' );
+ cl.onground = false; same( run( 2, walkPlayer( 0 ) ).length, 0, 'stationary player is excluded too' );
 } ) );
-
-Deno.test( 'monsters step by their size: a dog lightly and often, a Shambler heavily; a hovering Scrag and a still one never', () => withSound( () => {
-
-	cl.onground = false; cl.velocity.fill( 0 );
-	const floorZ = FX_Stop( e1m1, Float32Array.from( spawn ), - 64 );
-	const walker = ( model, speed, height = 24, pose = /^(run|walk|prowl)/ ) => { cl.num_entities = 3; const e = cl_entities[ 2 ] = { model, frame: frameOf( model, pose ), origin: Float32Array.from( [ spawn[ 0 ], spawn[ 1 ], floorZ + height ] ), angles: new Float32Array( 3 ) }; return run( 4, t => { e.origin[ 1 ] = spawn[ 1 ] + ( t * speed ) % 60 - 30; } ); };
-	const d = walker( dog, 200 ), s = walker( soldier, 120 ), sh = walker( shambler, 120 );
-	check( d.length > s.length && d.every( n => /^quaked\/step_/.test( n ) ), 'a dog: light steps, more of them: ' + d.length + ' vs ' + s.length );
-	check( sh.length > 0 && sh.every( n => /^quaked\/steph_/.test( n ) ), 'a Shambler: heavy steps: ' + sh.length );
-	same( walker( wizard, 120, 80, /^hover/ ).length, 0, 'a Scrag 80 units up: none' );
-	same( walker( wizard, 120, 28, /^hover/ ).length, 0, 'a Scrag hovering low: no walking pose, none' );
-	same( walker( gib, 200, 4, /./ ).length, 0, 'a gib sliding along the floor: none' );
-	same( walker( soldier, 120, 24, /^death/ ).length, 0, 'a soldier\'s corpse sliding: none' );
-	same( walker( soldier, 0 ).length, 0, 'standing still: none' );
-
+Deno.test( 'all five approved enemy families step on the real floor and retain weight and movement cadence', () => withSound( () => {
+ cl.velocity.fill( 0 ); cl.onground = false;
+ const floor = S_MaterialAt( cl.worldmodel, [ spawn[ 0 ], spawn[ 1 ], spawn[ 2 ] - 23 ], 24, S_FLOOR );
+ for ( const [ label, model ] of [ [ 'grunt', soldier ], [ 'enforcer named-alias fixture', enforcer ], [ 'ogre', ogre ], [ 'knight', knight ], [ 'death knight named-alias fixture', hknight ], [ 'army alias', army ], [ 'ogre2 alias', ogre2 ] ] ) {
+  const steps = walker( model ); check( steps.length > 0, label + ' steps while moving in a native walking pose' );
+  check( steps.every( name => new RegExp( '^quaked/steph?_' + floor + '[1-4]\\.wav$' ).test( name ) ), label + ' uses the floor material' );
+ }
+ const slow = walker( soldier, 90 ), fast = walker( soldier, 240 ); check( fast.length > slow.length, 'movement still controls stride cadence' );
+ const heavy = walker( ogre ); check( heavy.every( name => name.startsWith( 'quaked/steph_' ) ), 'actual Ogre retains its heavy tread' );
 } ) );
-
-Deno.test( 'a game with its own footsteps keeps its own; a creature with its own keeps its own', () => withSound( () => {
-
-	shipSound( 'steps/stone1.wav' ); shipSound( 'soldier/step1.wav' ); shipSound( 'misc/step1.wav' );
-	cl.sound_precache[ 1 ] = dma.S_PrecacheSound( 'misc/step1.wav' );
-	check( run( 2, walkPlayer( 320 ) ).length > 0, 'a footstep sound only loaded (Malice\'s misc/step1.wav, a trap): ours go on' );
-	dma.S_StartSound( 1, 4, dma.S_PrecacheSound( 'steps/stone1.wav' ), cl_entities[ 1 ].origin, 1, 1 );
-	same( run( 2, walkPlayer( 320 ) ).length, 0, 'once the game plays its own steps/… for the player: none of ours for the player' );
-	cl.onground = false; cl.velocity.fill( 0 );
-	const floorZ = FX_Stop( e1m1, Float32Array.from( spawn ), - 64 );
-	cl.num_entities = 3; const e = cl_entities[ 2 ] = { model: soldier, frame: frameOf( soldier, /^run/ ), origin: Float32Array.from( [ spawn[ 0 ], spawn[ 1 ], floorZ + 24 ] ), angles: new Float32Array( 3 ) };
-	const walk = () => run( 3, t => { e.origin[ 1 ] = spawn[ 1 ] + ( t * 120 ) % 60 - 30; } ).length;
-	check( walk() > 0, 'the soldier steps' );
-	dma.S_StartSound( 2, 4, dma.S_PrecacheSound( 'soldier/step1.wav' ), e.origin, 1, 1 );
-	same( walk(), 0, 'once the game plays soldier/step1.wav for a soldier: none of ours for soldiers' );
-
+Deno.test( 'dogs Shamblers fiends zombies players and unknown walkers never gain human enemy footsteps', () => withSound( () => {
+ for ( const [ label, model ] of [ [ 'dog', dog ], [ 'Shambler', shambler ], [ 'fiend', demon ], [ 'zombie', zombie ], [ 'other player', cl_entities[ 1 ].model ], [ 'unknown walking alias', named( 'unknown_walker' ) ] ] ) same( walker( model, 120 ).length, 0, label + ' excluded despite actual walking pose and nearby floor' );
+ same( walker( wizard, 120, 80, /^hover/ ).length, 0, 'high hovering Scrag excluded' );
+ same( walker( wizard, 120, 28, /^hover/ ).length, 0, 'low hovering Scrag excluded' );
+ same( walker( gib, 200, 4, /./ ).length, 0, 'sliding gib excluded' );
 } ) );
-
-Deno.test( 'New Game, a demo, a pause and the switch off: no steps', () => withSound( () => {
-
-	for ( const [ name, set, undo ] of [ [ 'New Game', () => cvar.Cvar_Set( 'r_hdr', '0' ), () => cvar.Cvar_Set( 'r_hdr', '1' ) ], [ 'a demo', () => { cls.demoplayback = true; }, () => { cls.demoplayback = false; } ], [ 'paused', () => { cl.paused = true; }, () => { cl.paused = false; } ], [ 's_footsteps 0', () => cvar.Cvar_Set( 's_footsteps', '0' ), () => cvar.Cvar_Set( 's_footsteps', '1' ) ] ] ) {
-
-		set(); const n = run( 2, walkPlayer( 320 ) ).length; undo(); same( n, 0, name );
-
-	}
-	check( STEPS.perFrame === 4, 'at most four a frame' );
-
+Deno.test( 'approved enemies still need movement a walking pose and a nearby floor', () => withSound( () => {
+ same( walker( soldier, 0 ).length, 0, 'standing still' );
+ same( walker( soldier, 120, 24, /^death/ ).length, 0, 'sliding corpse' );
+ same( walker( soldier, 120, 80 ).length, 0, 'walker too far above the floor' );
+ same( walker( soldier, 2000 ).length, 0, 'teleport-sized movement cannot synthesize steps' );
+ const floor = FX_Stop( cl.worldmodel, Float32Array.from( spawn ), -64 ); cl.num_entities = 3;
+ const e = cl_entities[ 2 ] = { model: soldier, frame: frameOf( soldier, /^run/ ), origin: Float32Array.from( [ ...spawn.slice( 0, 2 ), floor + 24 ] ) };
+ same( run( .1, () => { e.origin[ 2 ] += 4; e.origin[ 1 ] += 1; } ).length, 0, 'rising enemy has no ground stride' );
+} ) );
+Deno.test( 'native enemy footsteps take ownership only after playback, never merely because a sound is precached', () => withSound( () => {
+ shipSound( 'soldier/step1.wav' ); cl.sound_precache[ 1 ] = dma.S_PrecacheSound( 'soldier/step1.wav' );
+ check( walker( soldier ).length > 0, 'precached native footstep does not disable custom cadence' );
+ dma.S_StartSound( 2, 4, cl.sound_precache[ 1 ], cl_entities[ 2 ].origin, 1, 1 );
+ same( walker( soldier ).length, 0, 'a played native step owns this model family' );
+ check( walker( knight ).length > 0, 'ownership of soldier steps cannot silence a different eligible model' );
+} ) );
+Deno.test( 'Classic demos pause and the switch silence an otherwise eligible moving enemy', () => withSound( () => {
+ check( walker( soldier ).length > 0, 'positive eligible enemy control' );
+ for ( const [ name, set, undo ] of [ [ 'Classic', () => cvar.Cvar_Set( 'r_hdr', '0' ), () => cvar.Cvar_Set( 'r_hdr', '1' ) ], [ 'demo', () => { cls.demoplayback = true; }, () => { cls.demoplayback = false; } ], [ 'pause', () => { cl.paused = true; }, () => { cl.paused = false; } ], [ 's_footsteps 0', () => cvar.Cvar_Set( 's_footsteps', '0' ), () => cvar.Cvar_Set( 's_footsteps', '1' ) ] ] ) { set(); const count = walker( soldier ).length; undo(); same( count, 0, name ); }
+} ) );
+Deno.test( 'enemy footsteps keep the four-per-frame bound and cannot steal full native sound channels', () => withSound( () => {
+ const floor = FX_Stop( cl.worldmodel, Float32Array.from( spawn ), -64 ); cl.num_entities = 14;
+ for ( let i = 2; i < 14; i++ ) cl_entities[ i ] = { model: soldier, frame: frameOf( soldier, /^run/ ), origin: Float32Array.from( [ spawn[ 0 ], spawn[ 1 ], floor + 24 ] ) };
+ run( 1 / 60 );
+ const step = () => { clock += 1 / 60; cl.time = clock; for ( let i = 2; i < 14; i++ ) cl_entities[ i ].origin[ 1 ] += 3; return S_FootstepsFrame( clock ); };
+ same( STEPS.perFrame, 4, 'explicit global budget' ); const started = step(); same( started.length, 4, 'many eligible enemies admit at most four steps in one frame' );
+ const sfx = dma.S_PrecacheSound( 'misc/talk.wav' );
+ for ( let i = 0; i < sound.MAX_DYNAMIC_CHANNELS; i++ ) dma.S_StartSound( 200 + i, 1, sfx, sound.listener_origin, 1, 0 );
+ const context = dma.S_GetAudioContext(), before = context.sources.length, occupied = sound.channels.map( channel => channel.entnum );
+ // Let stride debt expire without releasing native channels.
+ clock += .4; cl.time = clock; for ( let i = 2; i < 14; i++ ) cl_entities[ i ].origin[ 1 ] += 30; S_FootstepsFrame( clock );
+ same( context.sources.length, before, 'full native channels prevent new optional source starts' );
+ check( sound.channels.every( ( channel, i ) => channel.entnum === occupied[ i ] ), 'all native channel owners preserved' );
 } ) );

@@ -13,7 +13,8 @@ export const MILKYWAY_SKY_KEYS = Object.freeze( {
  solid: '128x128:5ad746b445c2c41e', alpha: '128x128:b7a1ae6d577f3ae7'
 } );
 export const MILKYWAY_SKY_URL = new URL( '../../../newer/textures/skies/milkyway.jpeg', import.meta.url ).href;
-export const MILKYWAY_CLOUD_OPACITY = .012;
+export const MILKYWAY_CLOUD_OPACITY = .035;
+export const MILKYWAY_EXPOSURE = .72, MILKYWAY_CONTRAST = 1.2;
 const matches = new WeakMap();
 let panorama = null, state = 'idle', error = null, promise = null, layers = null, sourceSolid, sourceAlpha;
 const enabled = () => R_NewerGame() && r_newer_textures.value !== 0;
@@ -59,7 +60,7 @@ vec3 quakedMilkyWay(vec3 direction) {
  vec3 d = normalize(direction);
  vec2 uv = vec2(atan(-d.y, d.x) / 6.283185307179586 + 1.0,
                 asin(clamp(d.z, -1.0, 1.0)) / 3.141592653589793 + 0.5);
- return texture2D(tMilkyWay, uv).rgb;
+ return pow(max(texture2D(tMilkyWay, uv).rgb, vec3(0.0)), vec3(${MILKYWAY_CONTRAST.toFixed(2)})) * ${MILKYWAY_EXPOSURE.toFixed(2)};
 }
 vec3 quakedFaintCloud(vec3 nativeColor) {
  return mix(nativeColor, vec3(0.35, 0.42, 0.55), 0.75);
@@ -96,7 +97,7 @@ export function R_MilkyWaySkyLayers( solid, alpha ) {
  };
  // The shared G-buffer patch specializes on depthWrite at compile time.
  // Keep both variants distinct when the same sky crosses HDR target modes.
- background.customProgramCacheKey = () => 'quaked-milkyway-v1-depth-' + Number( background.depthWrite );
+ background.customProgramCacheKey = () => 'quaked-milkyway-v2-depth-' + Number( background.depthWrite );
  const clouds = new THREE.MeshBasicMaterial( { map: alpha, side: THREE.DoubleSide, transparent: true,
   opacity: MILKYWAY_CLOUD_OPACITY, alphaTest: 0, depthWrite: false } );
  const cloudBefore = clouds.onBeforeCompile;
@@ -105,7 +106,7 @@ export function R_MilkyWaySkyLayers( solid, alpha ) {
   shader.fragmentShader = R_MilkyWaySkyGLSL() + '\n' + shader.fragmentShader.replace( '#include <map_fragment>',
    '#include <map_fragment>\ndiffuseColor.rgb = quakedFaintCloud(diffuseColor.rgb);' );
  };
- clouds.customProgramCacheKey = () => 'quaked-milkyway-cloud-v1';
+ clouds.customProgramCacheKey = () => 'quaked-milkyway-cloud-v2';
  layers = { solid: R_FogSkyMaterial( background ), alpha: R_FogSkyMaterial( clouds ) };
  return layers;
 }

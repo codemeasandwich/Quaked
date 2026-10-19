@@ -4,9 +4,9 @@
  * Impacts that sound like what they strike, item 2 of the add-on effects for every game (card T-3faa98e3,
  * docs/material-sounds-2026-10-14.md), as Arcane Dimensions, Quoth and Abyss have them: when a game plays a nail's
  * ricochet (`weapons/tink1.wav`, `weapons/ric1..3.wav`), the axe striking a wall (`player/axhit2.wav`) or a player
- * landing (`player/land.wav`, `player/land2.wav`), a quiet second sound of the surface goes with it: stone chips, metal
+ * landing (`player/land.wav`, `player/land2.wav`), the surface supplies its replacement sound: stone chips, metal
  * pings, wood knocks, ground thuds, glass tinks, water splashes (s_material.js says which; s_surfacesounds.js makes
- * them). The game's own sound is never changed, replaced or delayed; this one plays beside it, on a free channel only.
+ * them). Only an admitted surface sound replaces the original; a full channel budget or unknown material keeps native audio.
  * The shotgun and the lightning gun make none of these sounds, so they are untouched.
  *
  * Types: plain values and functions; no exported classes.
@@ -17,7 +17,7 @@
  */
 import { cvar_t } from '../../engine/common/cvar.js';
 import { cl, cls, cl_entities } from '../../engine/client/client.js';
-import { S_PrecacheSound, S_StartSoundIfFree, S_AddSoundStarted } from '../../engine/sound/snd_dma.js';
+import { S_PrecacheSound, S_StartSoundIfFree, S_AddSoundReplacement } from '../../engine/sound/snd_dma.js';
 import { SV_RecursiveHullCheck, trace_t } from '../../engine/server/world.js';
 import { R_NewerGame } from '../mode.js';
 import { S_MaterialAt, S_FLOOR } from './s_material.js';
@@ -61,7 +61,7 @@ function axePoint( entnum ) {
 
 /**
  * Notes a sound as it starts; one that strikes a surface brings that surface's sound. Called by the sound system for
- * every sound it starts (S_AddSoundStarted, snd_dma.js).
+ * every sound it starts (S_AddSoundReplacement, snd_dma.js).
  *
  * @param {?object} sfx the sound
  * @param {?ArrayLike<number>} origin where it is
@@ -82,9 +82,8 @@ export function S_ImpactSound( sfx, origin, volume, attenuation, entnum ) {
 	// which of the three: from where it happened, so the same strike sounds the same and nothing is carried over
 	const turn = Math.abs( Math.round( at[ 0 ] ) * 7 + Math.round( at[ 1 ] ) * 13 + Math.round( at[ 2 ] ) * 17 ) % 3;
 	const name = `quaked/hit_${material}${turn + 1}.wav`;
-	S_StartSoundIfFree( - 1, S_PrecacheSound( name ), at, cue.volume * Math.min( 1, volume ), attenuation || 1 );
-	return name;
+	return S_StartSoundIfFree( - 1, S_PrecacheSound( name ), at, cue.volume * Math.min( 1, volume ), attenuation || 1 ) ? name : null;
 
 }
 
-S_AddSoundStarted( S_ImpactSound );
+S_AddSoundReplacement( ( ...args ) => S_ImpactSound( ...args ) !== null );

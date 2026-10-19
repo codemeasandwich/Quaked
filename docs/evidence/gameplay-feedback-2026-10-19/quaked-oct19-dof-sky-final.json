@@ -1,0 +1,235 @@
+{
+  "url": "http://127.0.0.1:18761/tests/dof_sky_gpu_trial.html",
+  "errors": [],
+  "consoleErrors": [],
+  "sourceHashes": {
+    "/src/engine/common/cvar.js": "edd608c07e63d1d76580eacc887fab08daca4a6f6260ba89695f2d8cfb4e3365",
+    "/src/newer/render/r_dof.js": "72b6e73909f705aeb8de9c7427d2bef53251de6e133ee0fd9d0e392c249c18eb",
+    "/src/newer/render/r_milkywaysky.js": "c3f5d35da501c3229b979cc431099b30ec9342d8c9078537cac5d8f9ae68f0c5",
+    "/src/newer/render/r_post_shaders.js": "99686c997834ffcb782c17e28eaad29a6ad9555b796c05dc722d38cd4adb5374"
+  },
+  "gpu": {
+    "vendor": "WebKit",
+    "renderer": "WebKit WebGL",
+    "unmaskedRenderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)"
+  },
+  "result": {
+    "status": "PASS",
+    "scope": "Actual native welcome-hub sky faces and production named/MilkyWay materials into production DoF stage; near-focus and checker geometry are controlled fixtures, not played gameplay",
+    "input": {
+      "map": "maps/start.bsp",
+      "nativeSkyFaces": 72,
+      "focus": 64,
+      "strength": 1,
+      "width": 640,
+      "height": 400
+    },
+    "shaders": {
+      "dof": "\nuniform sampler2D tComposite;\nuniform sampler2D tDepth;\nuniform sampler2D tNormal;\nuniform mat4 uProjInv;\nuniform vec3 uDof;\nuniform vec2 uDofTexel;\nuniform float uDofFar;\nvarying vec2 vUv;\nfloat dofDepth( vec2 uv ) {\n\tfloat d = texture2D( tDepth, uv ).x;\n\tif ( d >= 0.99999 ) return uDofFar; // the sky: the far focus\n\tvec4 v = uProjInv * vec4( uv * 2.0 - 1.0, d * 2.0 - 1.0, 1.0 );\n\treturn max( - v.z / v.w, 1.0 );\n}\nbool dofHeld( vec2 uv ) { return texture2D( tNormal, uv ).a < - 2.0; }\nbool dofSky( vec2 uv ) { return texture2D( tDepth, uv ).x >= 0.99999; }\nfloat dofCircle( float z ) { return min( uDof.z, uDof.y * abs( 1.0 - uDof.x / z ) ); }\nvoid main() {\n\tvec3 base = texture2D( tComposite, vUv ).rgb;\n\tgl_FragColor = vec4( base, 1.0 );\n\tif ( dofHeld( vUv ) || dofSky( vUv ) ) return;\n\tfloat z = dofDepth( vUv ), c = dofCircle( z );\n\tif ( c < 0.5 ) return;\n\tfloat turn = 6.2831853 * fract( 52.9829189 * fract( dot( gl_FragCoord.xy, vec2( 0.06711056, 0.00583715 ) ) ) );\n\tvec3 sum = base; float total = 1.0;\n\tfor ( int i = 0; i < 16; i ++ ) {\n\t\tfloat r = sqrt( ( float( i ) + 0.5 ) / 16.0 ), a = float( i ) * 2.39996 + turn;\n\t\tvec2 at = vUv + vec2( cos( a ), sin( a ) ) * r * c * uDofTexel;\n\t\tif ( dofHeld( at ) || dofSky( at ) ) continue;\n\t\tfloat sz = dofDepth( at );\n\t\t// a nearer sample counts only as far as its own circle reaches here (a sharp thing in front keeps its edge)\n\t\tfloat w = sz < z ? clamp( dofCircle( sz ) / max( r * c, 1e-3 ), 0.0, 1.0 ) : 1.0;\n\t\tsum += texture2D( tComposite, at ).rgb * w; total += w;\n\t}\n\tgl_FragColor = vec4( sum / total, 1.0 );\n}",
+      "milkyWay": "uniform sampler2D tMilkyWay;\nvec3 quakedMilkyWay(vec3 direction) {\n vec3 d = normalize(direction);\n vec2 uv = vec2(atan(-d.y, d.x) / 6.283185307179586 + 1.0,\n                asin(clamp(d.z, -1.0, 1.0)) / 3.141592653589793 + 0.5);\n return pow(max(texture2D(tMilkyWay, uv).rgb, vec3(0.0)), vec3(1.20)) * 0.72;\n}\nvec3 quakedFaintCloud(vec3 nativeColor) {\n return mix(nativeColor, vec3(0.35, 0.42, 0.55), 0.75);\n}"
+    },
+    "checks": [
+      {
+        "passed": true,
+        "name": "public autofocus admits the intended near focus",
+        "focus": 64,
+        "strength": 1
+      },
+      {
+        "passed": true,
+        "name": "actual supplied panorama is ready and selected on native hub faces"
+      },
+      {
+        "passed": true,
+        "name": "actual native Milky Way sky pixels remain identical through strong near-focus DoF",
+        "pixels": 206504,
+        "changed": 0,
+        "max": 0,
+        "total": 0
+      },
+      {
+        "passed": true,
+        "name": "world checker is visibly blurred in the same production DoF pass",
+        "pixels": 49284,
+        "changed": 49284,
+        "max": 0.6898193359375,
+        "total": 60267.54364013672
+      },
+      {
+        "passed": true,
+        "name": "production native Milky Way sky and DoF shaders are GL-clean"
+      },
+      {
+        "passed": true,
+        "name": "native clouds make a measured visible contribution over the supplied panorama",
+        "pixels": 206716,
+        "changed": 146662,
+        "max": 0.014984369277954102,
+        "total": 4745.718467593193
+      },
+      {
+        "passed": true,
+        "name": "main sky retains native moving clouds at the shared visible strength",
+        "opacity": 0.035
+      },
+      {
+        "passed": true,
+        "name": "named skybox uses the production loader"
+      },
+      {
+        "passed": true,
+        "name": "actual named cube sky pixels remain identical through strong near-focus DoF",
+        "pixels": 206504,
+        "changed": 0,
+        "max": 0,
+        "total": 0
+      },
+      {
+        "passed": true,
+        "name": "world checker is visibly blurred in the same production DoF pass",
+        "pixels": 49284,
+        "changed": 49284,
+        "max": 0.6898193359375,
+        "total": 60267.54364013672
+      },
+      {
+        "passed": true,
+        "name": "production named cube sky and DoF shaders are GL-clean"
+      },
+      {
+        "passed": true,
+        "name": "sky-only color change is a positive gather control",
+        "pixels": 206716,
+        "changed": 206504,
+        "max": 0.827545166015625,
+        "total": 167594.32229614258
+      },
+      {
+        "passed": true,
+        "name": "sky samples cannot leak into blurred world gather taps",
+        "sourceWorld": {
+          "pixels": 49284,
+          "changed": 0,
+          "max": 0,
+          "total": 0
+        },
+        "outputWorld": {
+          "pixels": 49284,
+          "changed": 0,
+          "max": 0,
+          "total": 0
+        }
+      },
+      {
+        "passed": true,
+        "name": "actual GPU panorama grading follows exported exposure/contrast",
+        "raw": 0.18823529411764706,
+        "expected": 0.09704513416060981,
+        "measured": 0.09698486328125
+      },
+      {
+        "passed": true,
+        "name": "actual GPU panorama grading follows exported exposure/contrast",
+        "raw": 0.7529411764705882,
+        "expected": 0.5122072889077659,
+        "measured": 0.51220703125
+      },
+      {
+        "passed": true,
+        "name": "background is dimmer with a higher bright/dark ratio",
+        "results": [
+          {
+            "raw": 0.18823529411764706,
+            "measured": 0.09698486328125
+          },
+          {
+            "raw": 0.7529411764705882,
+            "measured": 0.51220703125
+          }
+        ],
+        "rawRatio": 4,
+        "gradedRatio": 5.281308999370673,
+        "exposure": 0.72,
+        "contrast": 1.2
+      },
+      {
+        "passed": true,
+        "name": "no page or shader errors",
+        "errors": []
+      }
+    ],
+    "native": {
+      "skyDelta": {
+        "pixels": 206504,
+        "changed": 0,
+        "max": 0,
+        "total": 0
+      },
+      "worldDelta": {
+        "pixels": 49284,
+        "changed": 49284,
+        "max": 0.6898193359375,
+        "total": 60267.54364013672
+      }
+    },
+    "cloud": {
+      "pixels": 206716,
+      "changed": 146662,
+      "max": 0.014984369277954102,
+      "total": 4745.718467593193
+    },
+    "named": {
+      "skyDelta": {
+        "pixels": 206504,
+        "changed": 0,
+        "max": 0,
+        "total": 0
+      },
+      "worldDelta": {
+        "pixels": 49284,
+        "changed": 49284,
+        "max": 0.6898193359375,
+        "total": 60267.54364013672
+      }
+    },
+    "tap": {
+      "sourceWorld": {
+        "pixels": 49284,
+        "changed": 0,
+        "max": 0,
+        "total": 0
+      },
+      "outputWorld": {
+        "pixels": 49284,
+        "changed": 0,
+        "max": 0,
+        "total": 0
+      },
+      "sourceSky": {
+        "pixels": 206716,
+        "changed": 206504,
+        "max": 0.827545166015625,
+        "total": 167594.32229614258
+      }
+    },
+    "grade": {
+      "results": [
+        {
+          "raw": 0.18823529411764706,
+          "measured": 0.09698486328125
+        },
+        {
+          "raw": 0.7529411764705882,
+          "measured": 0.51220703125
+        }
+      ],
+      "rawRatio": 4,
+      "gradedRatio": 5.281308999370673
+    },
+    "errors": []
+  },
+  "screenshots": [
+    "/private/tmp/quaked-oct19-dof-sky-final-view-0.png",
+    "/private/tmp/quaked-oct19-dof-sky-final-view-1.png"
+  ]
+}

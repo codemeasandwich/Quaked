@@ -92,9 +92,42 @@ const _soundStarted = [];
  * its attenuation and the entity that made it, once the sound is playing on its channel (a sound that is not heard, or
  * cannot be loaded, is not told). It cannot change or stop the sound; a listener that fails is reported and skipped.
  *
+ * Replaced cues still notify once, under their native event identity.
  * @param {function(sfx_t, ArrayLike<number>, number, number, number): void} fn
  */
 export function S_AddSoundStarted( fn ) { _soundStarted.push( fn ); }
+
+// A post-start observer cannot prevent two sounds playing together. This one
+// admission boundary lets existing Newer cue owners replace their native cue;
+// only an exact true after admitting a replacement suppresses native playback.
+const _soundReplacements = new Set();
+/** Register a synchronous Newer playback owner. Exact true admits its actual
+ * replacement; false/throw/unmapped keeps native audio. Promises cannot delay
+ * or claim a native cue. Returns an unsubscribe function. */
+export function S_AddSoundReplacement( fn ) {
+	_soundReplacements.add( fn ); return () => _soundReplacements.delete( fn );
+}
+function replacementAdmitted( sfx, origin, fvol, attenuation, entnum, entchannel ) {
+	if ( ! R_NewerGame() || sfx?.name?.startsWith( 'quaked/' ) ) return false;
+	for ( const fn of _soundReplacements ) {
+		try { if ( fn( sfx, origin, fvol, attenuation, entnum, entchannel ) === true ) return true; }
+		catch ( error ) { Con_DPrintf( 'Sound replacement unavailable: %s\n', error?.message ?? error ); }
+	}
+	return false;
+}
+function notifySoundStarted( sfx, origin, fvol, attenuation, entnum ) {
+	for ( const fn of _soundStarted ) {
+		try { fn( sfx, origin, fvol, attenuation, entnum ); }
+		catch ( error ) { Con_DPrintf( 'a sound listener failed: %s\n', error?.message ?? error ); }
+	}
+}
+function stopChannelAudio( channel ) {
+	const owned = [ channel._audioSource, channel._gainNode, channel._panNode ];
+	try { owned[ 0 ]?.stop(); } catch { /* already ended or could not start */ }
+	for ( const node of owned ) try { node?.disconnect?.(); } catch { /* already disconnected */ }
+	channel._audioSource = channel._gainNode = channel._panNode = null;
+}
+
 
 // nosound cvar
 const nosound = { name: 'nosound', string: '0', value: 0 };
@@ -596,7 +629,7 @@ export const SOUND_RESERVE = 4;
  * Optional enhancement sound using only an empty or finished existing dynamic channel, and only while more than
  * SOUND_RESERVE are free. The normal
  * mixer/cache/spatialization still owns playback; accepted live sounds are never evicted by this call.
- * @returns {boolean} whether an existing spare channel allowed the attempt (not proof of audibility)
+ * @returns {boolean} whether spare-channel admission actually started native or replacement playback
  */
 export function S_StartSoundIfFree(entnum,sfx,origin,volume,attenuation){
  if(!sound_started||nosound.value||!sfx)return false;
@@ -605,7 +638,7 @@ export function S_StartSoundIfFree(entnum,sfx,origin,volume,attenuation){
  let free=0;
  for(let i=NUM_AMBIENTS;i<NUM_AMBIENTS+MAX_DYNAMIC_CHANNELS;i++)if(!channels[i].sfx||!channels[i]._audioSource)free++;
  if(free<=SOUND_RESERVE)return false;
- S_StartSound(entnum,0,sfx,origin,volume,attenuation);return true;
+ return S_StartSound(entnum,0,sfx,origin,volume,attenuation) === true;
 }
 
 /*
@@ -629,16 +662,28 @@ S_StartSound
  * @param {number} fvol volume 0..1
  * @param {number} attenuation distance falloff: 0 none (heard everywhere), 1 normal, larger is shorter range; the
  *   channel's `dist_mult` is attenuation / 1000
+ * @returns {boolean} true only when playback (native or replacement) is admitted
  */
 export function S_StartSound( entnum, entchannel, sfx, origin, fvol, attenuation ) {
 
 	if ( entnum === cl.viewentity && /^weapons\//.test( sfx?.name || '' ) && ! /pickup|pkup|rattle/.test( sfx.name ) ) S_AmbientMusicNotifyCombat();
 
 	if ( ! sound_started || ! sfx )
-		return;
+		return false;
 
 	if ( nosound.value )
-		return;
+		return false;
+
+	if ( replacementAdmitted( sfx, origin, fvol, attenuation, entnum, entchannel ) ) {
+		// Retire a former fallback on this native source/channel, never a
+		// different actor or unrelated cue that happens to share its channel.
+		for ( const channel of channels ) if ( entchannel !== 0 && channel.sfx === sfx && channel.entnum === entnum &&
+			( entchannel === -1 || channel.entchannel === entchannel ) ) {
+			stopChannelAudio( channel ); channel.sfx = null; channel.end = 0;
+		}
+		notifySoundStarted( sfx, origin, fvol, attenuation, entnum );
+		return true;
+	}
 
 	S_AdvancePaintedtime(); // a channel's end is in the same sample clock
 
@@ -647,7 +692,7 @@ export function S_StartSound( entnum, entchannel, sfx, origin, fvol, attenuation
 	// pick a channel to play on
 	const target_chan = SND_PickChannel( entnum, entchannel );
 	if ( ! target_chan )
-		return;
+		return false;
 
 	// spatialize
 	target_chan.origin[ 0 ] = origin[ 0 ];
@@ -661,14 +706,14 @@ export function S_StartSound( entnum, entchannel, sfx, origin, fvol, attenuation
 	SND_Spatialize( target_chan );
 
 	if ( target_chan.leftvol === 0 && target_chan.rightvol === 0 )
-		return; // not audible at all
+		return false; // not audible at all
 
 	// new channel
 	const sc = S_LoadSound( sfx );
 	if ( sc == null ) {
 
 		target_chan.sfx = null;
-		return; // couldn't load the sound's data
+		return false; // couldn't load the sound's data
 
 	}
 
@@ -676,7 +721,7 @@ export function S_StartSound( entnum, entchannel, sfx, origin, fvol, attenuation
 	if ( sc.data == null || sc.length === 0 ) {
 
 		target_chan.sfx = null;
-		return;
+		return false;
 
 	}
 
@@ -685,14 +730,10 @@ export function S_StartSound( entnum, entchannel, sfx, origin, fvol, attenuation
 	target_chan.end = paintedtime + sc.length;
 
 	// Play using Web Audio API
-	_playWebAudio( sc, target_chan );
+	if ( ! _playWebAudio( sc, target_chan ) ) { target_chan.sfx = null; target_chan.end = 0; return false; }
 
-	// (only now, with the game's sound on its channel, so nothing told of it can take that channel first)
-	for ( const fn of _soundStarted ) {
-
-		try { fn( sfx, origin, fvol, attenuation, entnum ); } catch ( e ) { Con_DPrintf( 'a sound listener failed: %s\n', e?.message ?? e ); }
-
-	}
+	notifySoundStarted( sfx, origin, fvol, attenuation, entnum );
+	return true;
 
 }
 
@@ -895,6 +936,10 @@ function S_UpdateAmbientSounds() {
 
 		}
 
+		if ( replacementAdmitted( chan.sfx, listener_origin, vol / 255, 0, -1, 0 ) ) {
+			stopChannelAudio( chan ); continue;
+		}
+
 		// Ambient sounds are omnidirectional - same volume in both ears
 		chan.leftvol = chan.master_vol;
 		chan.rightvol = chan.master_vol;
@@ -995,6 +1040,11 @@ export function S_Update( origin, forward, right, up ) {
 
 		const isStatic = i >= NUM_AMBIENTS + MAX_DYNAMIC_CHANNELS;
 		const isAudible = ch.leftvol > 0 || ch.rightvol > 0;
+
+		if ( isStatic && replacementAdmitted( ch.sfx, ch.origin, ch.master_vol / 255,
+			ch.dist_mult * sound_nominal_clip_dist, ch.entnum, ch.entchannel ) ) {
+			stopChannelAudio( ch ); continue;
+		}
 
 		if ( isStatic ) {
 
@@ -1302,11 +1352,11 @@ function S_SoundInfo_f() {
 function _playWebAudio( sc, chan ) {
 
 	if ( ! audioContext || ! sc || ! sc.data )
-		return;
+		return false;
 
 	// Don't play sounds until AudioContext is running (unlocked by user interaction)
 	if ( audioContext.state !== 'running' )
-		return;
+		return false;
 
 	try {
 
@@ -1412,10 +1462,13 @@ function _playWebAudio( sc, chan ) {
 		}
 
 		source.start();
+		return true;
 
 	} catch ( e ) {
 
+		stopChannelAudio( chan );
 		Con_DPrintf( 'Web Audio playback error: %s\n', e.message );
+		return false;
 
 	}
 

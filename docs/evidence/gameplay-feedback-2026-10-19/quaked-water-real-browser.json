@@ -1,0 +1,2456 @@
+{
+  "url": "http://127.0.0.1:18761/tests/water_audio_browser_trial.html",
+  "browser": "154.0.8037.98",
+  "errors": [],
+  "consoleErrors": [],
+  "failedResponses": [],
+  "result": {
+    "started": "2026-10-18T23:56:44.975Z",
+    "trustedClick": true,
+    "scope": "Isolated Chrome source-module fixture, synthetic BSP water plane, actual MP3 media/AudioContext and PCM. Master and underwater-specific passive analyzer branches have no audible output. No played map, app rebuild, speaker latency or owner listening acceptance.",
+    "context": {
+      "state": "running",
+      "sampleRate": 48000,
+      "baseLatency": 0.005333333333333333,
+      "outputLatency": 0,
+      "constructor": "AudioContext",
+      "masterGain": 1
+    },
+    "prepared": [
+      {
+        "url": "http://127.0.0.1:18761/assets/audio/sounds/player-bubbles.mp3",
+        "nativeElement": true,
+        "readyState": 4,
+        "duration": 34.377125,
+        "networkState": 1,
+        "currentTime": 0,
+        "paused": true,
+        "plays": 0
+      },
+      {
+        "url": "http://127.0.0.1:18761/assets/audio/sounds/underwater.mp3",
+        "nativeElement": true,
+        "readyState": 4,
+        "duration": 22.073469,
+        "networkState": 1,
+        "currentTime": 0.455692,
+        "paused": false,
+        "plays": 1
+      },
+      {
+        "url": "http://127.0.0.1:18761/assets/audio/sounds/enter-underwater.mp3",
+        "nativeElement": true,
+        "readyState": 4,
+        "duration": 3.312,
+        "networkState": 1,
+        "currentTime": 0,
+        "paused": true,
+        "plays": 0
+      },
+      {
+        "url": "http://127.0.0.1:18761/assets/audio/sounds/walking-in-water.mp3",
+        "nativeElement": true,
+        "readyState": 4,
+        "duration": 20.035906,
+        "networkState": 1,
+        "currentTime": 0,
+        "paused": true,
+        "plays": 0
+      }
+    ],
+    "drySamples": [
+      {
+        "ms": 0,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 4.799999982118607,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 9.199999988079071,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 13.799999982118607,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 18.400000005960464,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 23,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 27.5,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 32,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 36.5,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 41.79999998211861,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 46.400000005960464,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 50.900000005960464,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 55.19999998807907,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 59.79999998211861,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 64.2999999821186,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 68.7999999821186,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 73,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 77.5,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 82.09999999403954,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 86.69999998807907,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 90.90000000596046,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 95.5,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 99.69999998807907,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      }
+    ],
+    "dry": {
+      "time": 0.562376,
+      "plays": 1,
+      "seeking": 0,
+      "paused": false,
+      "count": 4,
+      "contextTime": 0.56,
+      "status": {
+        "active": true,
+        "reason": "",
+        "submerged": false,
+        "tracks": {
+          "bubbles": {
+            "playing": false,
+            "gain": 0,
+            "blocked": false
+          },
+          "underwater": {
+            "playing": true,
+            "gain": 0,
+            "blocked": false
+          },
+          "enter": {
+            "playing": false,
+            "gain": 0,
+            "blocked": false
+          },
+          "walking": {
+            "playing": false,
+            "gain": 0,
+            "blocked": false
+          }
+        }
+      }
+    },
+    "dive": {
+      "before": {
+        "time": 0.562376,
+        "plays": 1,
+        "seeking": 0,
+        "paused": false,
+        "count": 4,
+        "contextTime": 0.56,
+        "status": {
+          "active": true,
+          "reason": "",
+          "submerged": false,
+          "tracks": {
+            "bubbles": {
+              "playing": false,
+              "gain": 0,
+              "blocked": false
+            },
+            "underwater": {
+              "playing": true,
+              "gain": 0,
+              "blocked": false
+            },
+            "enter": {
+              "playing": false,
+              "gain": 0,
+              "blocked": false
+            },
+            "walking": {
+              "playing": false,
+              "gain": 0,
+              "blocked": false
+            }
+          }
+        }
+      },
+      "immediate": {
+        "time": 0.562376,
+        "plays": 1,
+        "seeking": 0,
+        "paused": false,
+        "count": 4,
+        "contextTime": 0.56,
+        "status": {
+          "active": true,
+          "reason": "",
+          "submerged": true,
+          "tracks": {
+            "bubbles": {
+              "playing": true,
+              "gain": 1,
+              "blocked": false
+            },
+            "underwater": {
+              "playing": true,
+              "gain": 1,
+              "blocked": false
+            },
+            "enter": {
+              "playing": true,
+              "gain": 1,
+              "blocked": false
+            },
+            "walking": {
+              "playing": false,
+              "gain": 0,
+              "blocked": false
+            }
+          }
+        }
+      },
+      "synchronousMs": 0.30000001192092896
+    },
+    "diveSamples": [
+      {
+        "ms": 0.30000001192092896,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 5.5,
+        "master": {
+          "rms": 0.07855375637169143,
+          "peak": 0.11805613338947296
+        },
+        "underwater": {
+          "rms": 0.07853013163276029,
+          "peak": 0.11805616319179535
+        }
+      },
+      {
+        "ms": 9.699999988079071,
+        "master": {
+          "rms": 0.08670159584063745,
+          "peak": 0.2512602210044861
+        },
+        "underwater": {
+          "rms": 0.08649675681203388,
+          "peak": 0.24785473942756653
+        }
+      },
+      {
+        "ms": 14.099999994039536,
+        "master": {
+          "rms": 0.1687480426652893,
+          "peak": 0.2989862561225891
+        },
+        "underwater": {
+          "rms": 0.17020073012691947,
+          "peak": 0.2920842170715332
+        }
+      },
+      {
+        "ms": 19,
+        "master": {
+          "rms": 0.17027617256688016,
+          "peak": 0.3598032593727112
+        },
+        "underwater": {
+          "rms": 0.17056631935575442,
+          "peak": 0.35357430577278137
+        }
+      },
+      {
+        "ms": 23.19999998807907,
+        "master": {
+          "rms": 0.17027617256688016,
+          "peak": 0.3598032593727112
+        },
+        "underwater": {
+          "rms": 0.17056631935575442,
+          "peak": 0.35357430577278137
+        }
+      },
+      {
+        "ms": 27.69999998807907,
+        "master": {
+          "rms": 0.5173835974662364,
+          "peak": 0.8997954726219177
+        },
+        "underwater": {
+          "rms": 0.155899520748239,
+          "peak": 0.33723610639572144
+        }
+      },
+      {
+        "ms": 31.80000001192093,
+        "master": {
+          "rms": 0.3341964424508906,
+          "peak": 0.5112045407295227
+        },
+        "underwater": {
+          "rms": 0.13468212190796594,
+          "peak": 0.2685398459434509
+        }
+      },
+      {
+        "ms": 36.5,
+        "master": {
+          "rms": 0.19037592579804435,
+          "peak": 0.4533993601799011
+        },
+        "underwater": {
+          "rms": 0.08104887860233219,
+          "peak": 0.11967960745096207
+        }
+      },
+      {
+        "ms": 40.599999994039536,
+        "master": {
+          "rms": 0.37434649529552,
+          "peak": 0.48723065853118896
+        },
+        "underwater": {
+          "rms": 0.057239865695990204,
+          "peak": 0.09738236665725708
+        }
+      },
+      {
+        "ms": 45.19999998807907,
+        "master": {
+          "rms": 0.37434649529552,
+          "peak": 0.48723065853118896
+        },
+        "underwater": {
+          "rms": 0.057239865695990204,
+          "peak": 0.09738236665725708
+        }
+      },
+      {
+        "ms": 49.69999998807907,
+        "master": {
+          "rms": 0.10033060353850015,
+          "peak": 0.20718231797218323
+        },
+        "underwater": {
+          "rms": 0.09175786835766685,
+          "peak": 0.16832783818244934
+        }
+      },
+      {
+        "ms": 54.5,
+        "master": {
+          "rms": 0.44938318216125706,
+          "peak": 0.6355035305023193
+        },
+        "underwater": {
+          "rms": 0.1570936858437273,
+          "peak": 0.24344418942928314
+        }
+      },
+      {
+        "ms": 59.099999994039536,
+        "master": {
+          "rms": 0.4292013391590594,
+          "peak": 0.7303948998451233
+        },
+        "underwater": {
+          "rms": 0.11013507317394025,
+          "peak": 0.21079933643341064
+        }
+      },
+      {
+        "ms": 63.099999994039536,
+        "master": {
+          "rms": 0.5647502564518434,
+          "peak": 0.9023679494857788
+        },
+        "underwater": {
+          "rms": 0.06533370983153756,
+          "peak": 0.11730334907770157
+        }
+      },
+      {
+        "ms": 67.19999998807907,
+        "master": {
+          "rms": 0.47782294474813036,
+          "peak": 0.7798699140548706
+        },
+        "underwater": {
+          "rms": 0.10286095860731127,
+          "peak": 0.1817455142736435
+        }
+      },
+      {
+        "ms": 71.80000001192093,
+        "master": {
+          "rms": 0.47782294474813036,
+          "peak": 0.7798699140548706
+        },
+        "underwater": {
+          "rms": 0.10286095860731127,
+          "peak": 0.1817455142736435
+        }
+      },
+      {
+        "ms": 75.90000000596046,
+        "master": {
+          "rms": 0.5111539161061168,
+          "peak": 0.7549659013748169
+        },
+        "underwater": {
+          "rms": 0.06560706618107855,
+          "peak": 0.09303564578294754
+        }
+      },
+      {
+        "ms": 80.40000000596046,
+        "master": {
+          "rms": 0.4320917901790877,
+          "peak": 0.6842775344848633
+        },
+        "underwater": {
+          "rms": 0.07722839471961253,
+          "peak": 0.1657867431640625
+        }
+      },
+      {
+        "ms": 85.5,
+        "master": {
+          "rms": 0.43694905577103754,
+          "peak": 0.8607236742973328
+        },
+        "underwater": {
+          "rms": 0.10036130245761023,
+          "peak": 0.18943363428115845
+        }
+      },
+      {
+        "ms": 90.09999999403954,
+        "master": {
+          "rms": 0.45598327195977023,
+          "peak": 0.9264815449714661
+        },
+        "underwater": {
+          "rms": 0.13228900599322707,
+          "peak": 0.2261132448911667
+        }
+      },
+      {
+        "ms": 94.59999999403954,
+        "master": {
+          "rms": 0.9031202711835442,
+          "peak": 1.264216423034668
+        },
+        "underwater": {
+          "rms": 0.16052571196241597,
+          "peak": 0.30098438262939453
+        }
+      },
+      {
+        "ms": 99.19999998807907,
+        "master": {
+          "rms": 0.496466544952192,
+          "peak": 0.885827898979187
+        },
+        "underwater": {
+          "rms": 0.10205818252652452,
+          "peak": 0.2022770196199417
+        }
+      },
+      {
+        "ms": 103.90000000596046,
+        "master": {
+          "rms": 0.496466544952192,
+          "peak": 0.885827898979187
+        },
+        "underwater": {
+          "rms": 0.10205818252652452,
+          "peak": 0.2022770196199417
+        }
+      },
+      {
+        "ms": 108.5,
+        "master": {
+          "rms": 0.39422688393567584,
+          "peak": 0.610742449760437
+        },
+        "underwater": {
+          "rms": 0.07921022139984561,
+          "peak": 0.18389645218849182
+        }
+      },
+      {
+        "ms": 113,
+        "master": {
+          "rms": 0.48787035363276526,
+          "peak": 0.818337619304657
+        },
+        "underwater": {
+          "rms": 0.14032125145131466,
+          "peak": 0.25118011236190796
+        }
+      },
+      {
+        "ms": 117.09999999403954,
+        "master": {
+          "rms": 0.39425757846598647,
+          "peak": 0.497646689414978
+        },
+        "underwater": {
+          "rms": 0.15965466601671652,
+          "peak": 0.2663123607635498
+        }
+      },
+      {
+        "ms": 121.69999998807907,
+        "master": {
+          "rms": 0.6128015940198159,
+          "peak": 0.8622986078262329
+        },
+        "underwater": {
+          "rms": 0.053167796397734536,
+          "peak": 0.10098656266927719
+        }
+      },
+      {
+        "ms": 126.30000001192093,
+        "master": {
+          "rms": 0.30264237987660497,
+          "peak": 0.5939934253692627
+        },
+        "underwater": {
+          "rms": 0.09229660075072794,
+          "peak": 0.15267468988895416
+        }
+      },
+      {
+        "ms": 130.90000000596046,
+        "master": {
+          "rms": 0.30264237987660497,
+          "peak": 0.5939934253692627
+        },
+        "underwater": {
+          "rms": 0.09229660075072794,
+          "peak": 0.15267468988895416
+        }
+      },
+      {
+        "ms": 135.5,
+        "master": {
+          "rms": 0.5901037335926804,
+          "peak": 0.769437313079834
+        },
+        "underwater": {
+          "rms": 0.09759457029676372,
+          "peak": 0.15390819311141968
+        }
+      },
+      {
+        "ms": 140,
+        "master": {
+          "rms": 0.5371927225753977,
+          "peak": 0.9216078519821167
+        },
+        "underwater": {
+          "rms": 0.11371559994819988,
+          "peak": 0.20306089520454407
+        }
+      },
+      {
+        "ms": 144.59999999403954,
+        "master": {
+          "rms": 0.26257113776717306,
+          "peak": 0.6460247039794922
+        },
+        "underwater": {
+          "rms": 0.12458415754191929,
+          "peak": 0.23509296774864197
+        }
+      },
+      {
+        "ms": 149,
+        "master": {
+          "rms": 0.2257748556504884,
+          "peak": 0.4113839268684387
+        },
+        "underwater": {
+          "rms": 0.08499398940720086,
+          "peak": 0.15707530081272125
+        }
+      },
+      {
+        "ms": 153.30000001192093,
+        "master": {
+          "rms": 0.5517858857811582,
+          "peak": 0.8210628032684326
+        },
+        "underwater": {
+          "rms": 0.07342391139611493,
+          "peak": 0.13536255061626434
+        }
+      },
+      {
+        "ms": 157.90000000596046,
+        "master": {
+          "rms": 0.46998615733562005,
+          "peak": 0.8510990142822266
+        },
+        "underwater": {
+          "rms": 0.10475524357386648,
+          "peak": 0.17854857444763184
+        }
+      },
+      {
+        "ms": 162,
+        "master": {
+          "rms": 0.46998615733562005,
+          "peak": 0.8510990142822266
+        },
+        "underwater": {
+          "rms": 0.10475524357386648,
+          "peak": 0.17854857444763184
+        }
+      },
+      {
+        "ms": 166.5,
+        "master": {
+          "rms": 0.4287551009197478,
+          "peak": 0.9053794145584106
+        },
+        "underwater": {
+          "rms": 0.10059093955791856,
+          "peak": 0.17986541986465454
+        }
+      },
+      {
+        "ms": 170.90000000596046,
+        "master": {
+          "rms": 0.7327100994041507,
+          "peak": 0.9547280073165894
+        },
+        "underwater": {
+          "rms": 0.09813364117866319,
+          "peak": 0.1673058122396469
+        }
+      },
+      {
+        "ms": 175.5,
+        "master": {
+          "rms": 0.36540589511503246,
+          "peak": 0.6851619482040405
+        },
+        "underwater": {
+          "rms": 0.07173959603108752,
+          "peak": 0.1314249485731125
+        }
+      },
+      {
+        "ms": 179.69999998807907,
+        "master": {
+          "rms": 0.4315049019440383,
+          "peak": 0.654266357421875
+        },
+        "underwater": {
+          "rms": 0.08155602020399869,
+          "peak": 0.17690742015838623
+        }
+      }
+    ],
+    "onset": {
+      "underwaterMs": 5.5,
+      "masterMs": 5.5,
+      "thresholdRMS": 0.000001,
+      "analyserFrames": 256
+    },
+    "surface": {
+      "immediate": {
+        "time": 0.74634,
+        "plays": 1,
+        "seeking": 0,
+        "paused": false,
+        "count": 4,
+        "contextTime": 0.7466666666666667,
+        "status": {
+          "active": true,
+          "reason": "",
+          "submerged": false,
+          "tracks": {
+            "bubbles": {
+              "playing": false,
+              "gain": 0,
+              "blocked": false
+            },
+            "underwater": {
+              "playing": true,
+              "gain": 0,
+              "blocked": false
+            },
+            "enter": {
+              "playing": false,
+              "gain": 0,
+              "blocked": false
+            },
+            "walking": {
+              "playing": false,
+              "gain": 0,
+              "blocked": false
+            }
+          }
+        }
+      },
+      "underwaterGain": 0,
+      "silenceByMs": 9.699999988079071,
+      "after": {
+        "time": 0.928158,
+        "plays": 1,
+        "seeking": 0,
+        "paused": false,
+        "count": 4,
+        "contextTime": 0.928,
+        "status": {
+          "active": true,
+          "reason": "",
+          "submerged": false,
+          "tracks": {
+            "bubbles": {
+              "playing": false,
+              "gain": 0,
+              "blocked": false
+            },
+            "underwater": {
+              "playing": true,
+              "gain": 0,
+              "blocked": false
+            },
+            "enter": {
+              "playing": false,
+              "gain": 0,
+              "blocked": false
+            },
+            "walking": {
+              "playing": false,
+              "gain": 0,
+              "blocked": false
+            }
+          }
+        }
+      }
+    },
+    "surfaceSamples": [
+      {
+        "ms": 0.4000000059604645,
+        "master": {
+          "rms": 0.29482099911751874,
+          "peak": 0.5074704885482788
+        },
+        "underwater": {
+          "rms": 0.10822102405958949,
+          "peak": 0.1916494220495224
+        }
+      },
+      {
+        "ms": 5,
+        "master": {
+          "rms": 0.29482099911751874,
+          "peak": 0.5074704885482788
+        },
+        "underwater": {
+          "rms": 0.10822102405958949,
+          "peak": 0.1916494220495224
+        }
+      },
+      {
+        "ms": 9.699999988079071,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 14.299999982118607,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 19.599999994039536,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 24.19999998807907,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 28.799999982118607,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 33.29999998211861,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 37.900000005960464,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 42,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 46.69999998807907,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 51.099999994039536,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 55.69999998807907,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 60.29999998211861,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 64.90000000596046,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 70.09999999403954,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 74.59999999403954,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 79.19999998807907,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 83.2999999821186,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 87.90000000596046,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 92.40000000596046,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 97,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 102.19999998807907,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 106.69999998807907,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 110.7999999821186,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 115.40000000596046,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 120,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 124.59999999403954,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 129,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 133.40000000596046,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 138,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 142.5,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 146.59999999403954,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 151.7999999821186,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 156.2999999821186,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 160.7999999821186,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 165.40000000596046,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 170.09999999403954,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 174.69999998807907,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 179.19999998807907,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      }
+    ],
+    "pause": {
+      "time": 0.928269,
+      "plays": 1,
+      "seeking": 0,
+      "paused": true,
+      "count": 4,
+      "contextTime": 0.928,
+      "status": {
+        "active": false,
+        "reason": "paused",
+        "submerged": false,
+        "tracks": {
+          "bubbles": {
+            "playing": false,
+            "gain": 0,
+            "blocked": false
+          },
+          "underwater": {
+            "playing": false,
+            "gain": 0,
+            "blocked": false
+          },
+          "enter": {
+            "playing": false,
+            "gain": 0,
+            "blocked": false
+          },
+          "walking": {
+            "playing": false,
+            "gain": 0,
+            "blocked": false
+          }
+        }
+      }
+    },
+    "pauseSamples": [
+      {
+        "ms": 0,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 4.699999988079071,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 9,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 13.599999994039536,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 18.69999998807907,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 23.19999998807907,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 27.69999998807907,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 32.099999994039536,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 36.69999998807907,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 41.19999998807907,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 45.5,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 49.69999998807907,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 54.30000001192093,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 58.80000001192093,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 63.30000001192093,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 67.5,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 71.90000000596046,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 76.5,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 81.09999999403954,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 86.40000000596046,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 91,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      },
+      {
+        "ms": 95.5,
+        "master": {
+          "rms": 0,
+          "peak": 0
+        },
+        "underwater": {
+          "rms": 0,
+          "peak": 0
+        }
+      }
+    ],
+    "sourceHashes": {
+      "bubbles": {
+        "url": "http://127.0.0.1:18761/assets/audio/sounds/player-bubbles.mp3",
+        "bytes": 1100068,
+        "sha256": "ae286287601a96f86ba421a759d58e74278b327002c9c9c3900eb61204d17fce"
+      },
+      "underwater": {
+        "url": "http://127.0.0.1:18761/assets/audio/sounds/underwater.mp3",
+        "bytes": 706351,
+        "sha256": "4c07f3f11fd3eed836e58be5f2d3ac95790e22dbc8155590d3f17002201c38ed"
+      },
+      "enter": {
+        "url": "http://127.0.0.1:18761/assets/audio/sounds/enter-underwater.mp3",
+        "bytes": 105984,
+        "sha256": "dcb93fc01c5dbe856d696674d6c1797b62feec97887b864252c9fa028648fbf0"
+      },
+      "walking": {
+        "url": "http://127.0.0.1:18761/assets/audio/sounds/walking-in-water.mp3",
+        "bytes": 641149,
+        "sha256": "4b7e52677988cbda74e2756da3e9ef6c59c9e41e401c1a08ba14ca4f52116b9b"
+      },
+      "waterSource": {
+        "url": "http://127.0.0.1:18761/src/newer/sound/s_playerwater.js",
+        "bytes": 6511,
+        "sha256": "4f0148828d2b719649fcfa6036d43935fe0f732e9f469dc409ef104b7a2f69a7"
+      },
+      "deckSource": {
+        "url": "http://127.0.0.1:18761/src/newer/sound/s_effectdeck.js",
+        "bytes": 2242,
+        "sha256": "6d6f80e8aba1d3279805f7ea445ee33cfa261d8e8c8ed054ed7ca05ec9313aeb"
+      },
+      "soundSource": {
+        "url": "http://127.0.0.1:18761/src/engine/sound/snd_dma.js",
+        "bytes": 43402,
+        "sha256": "66b2ab82e45ea006ad61582f1b237bd0301cee29555fe6670afd9fdf81f6598c"
+      },
+      "observationSource": {
+        "url": "http://127.0.0.1:18761/src/newer/gameplay/cl_water.js",
+        "bytes": 4112,
+        "sha256": "b78ea2faa8f36cde3cf7710995efe30e17dab371982a95bbd86ac8b50f0f22b1"
+      },
+      "trialHTML": {
+        "url": "http://127.0.0.1:18761/tests/water_audio_browser_trial.html",
+        "bytes": 856,
+        "sha256": "c9bc04e97808eb706f9f63d67c32e45a3c465271e755f3cb93e99827c0855464"
+      },
+      "trial": {
+        "url": "http://127.0.0.1:18761/tests/water_audio_browser_trial.js",
+        "bytes": 12290,
+        "sha256": "8e1e11a85e1d1005fb147560e6fb2bd3cc5ea43fbd07058baa0e20e0fb4b78b1"
+      }
+    },
+    "status": "PASS",
+    "checks": [
+      {
+        "name": "all four real streams ready; only silent underwater bed playing",
+        "passed": true,
+        "detail": [
+          {
+            "url": "http://127.0.0.1:18761/assets/audio/sounds/player-bubbles.mp3",
+            "nativeElement": true,
+            "readyState": 4,
+            "duration": 34.377125,
+            "networkState": 1,
+            "currentTime": 0,
+            "paused": true,
+            "plays": 0
+          },
+          {
+            "url": "http://127.0.0.1:18761/assets/audio/sounds/underwater.mp3",
+            "nativeElement": true,
+            "readyState": 4,
+            "duration": 22.073469,
+            "networkState": 1,
+            "currentTime": 0.455692,
+            "paused": false,
+            "plays": 1
+          },
+          {
+            "url": "http://127.0.0.1:18761/assets/audio/sounds/enter-underwater.mp3",
+            "nativeElement": true,
+            "readyState": 4,
+            "duration": 3.312,
+            "networkState": 1,
+            "currentTime": 0,
+            "paused": true,
+            "plays": 0
+          },
+          {
+            "url": "http://127.0.0.1:18761/assets/audio/sounds/walking-in-water.mp3",
+            "nativeElement": true,
+            "readyState": 4,
+            "duration": 20.035906,
+            "networkState": 1,
+            "currentTime": 0,
+            "paused": true,
+            "plays": 0
+          }
+        ]
+      },
+      {
+        "name": "dry actual master and underwater PCM exactly zero",
+        "passed": true,
+        "detail": [
+          {
+            "ms": 0,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 4.799999982118607,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 9.199999988079071,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 13.799999982118607,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 18.400000005960464,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 23,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 27.5,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 32,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 36.5,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 41.79999998211861,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 46.400000005960464,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 50.900000005960464,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 55.19999998807907,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 59.79999998211861,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 64.2999999821186,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 68.7999999821186,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 73,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 77.5,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 82.09999999403954,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 86.69999998807907,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 90.90000000596046,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 95.5,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          },
+          {
+            "ms": 99.69999998807907,
+            "master": {
+              "rms": 0,
+              "peak": 0
+            },
+            "underwater": {
+              "rms": 0,
+              "peak": 0
+            }
+          }
+        ]
+      },
+      {
+        "name": "dive opens real underwater gain synchronously",
+        "passed": true,
+        "detail": {
+          "before": {
+            "time": 0.562376,
+            "plays": 1,
+            "seeking": 0,
+            "paused": false,
+            "count": 4,
+            "contextTime": 0.56,
+            "status": {
+              "active": true,
+              "reason": "",
+              "submerged": false,
+              "tracks": {
+                "bubbles": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                },
+                "underwater": {
+                  "playing": true,
+                  "gain": 0,
+                  "blocked": false
+                },
+                "enter": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                },
+                "walking": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                }
+              }
+            }
+          },
+          "immediate": {
+            "time": 0.562376,
+            "plays": 1,
+            "seeking": 0,
+            "paused": false,
+            "count": 4,
+            "contextTime": 0.56,
+            "status": {
+              "active": true,
+              "reason": "",
+              "submerged": true,
+              "tracks": {
+                "bubbles": {
+                  "playing": true,
+                  "gain": 1,
+                  "blocked": false
+                },
+                "underwater": {
+                  "playing": true,
+                  "gain": 1,
+                  "blocked": false
+                },
+                "enter": {
+                  "playing": true,
+                  "gain": 1,
+                  "blocked": false
+                },
+                "walking": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                }
+              }
+            }
+          },
+          "synchronousMs": 0.30000001192092896
+        }
+      },
+      {
+        "name": "dive reuses running full recording without new media/play/seek",
+        "passed": true,
+        "detail": {
+          "before": {
+            "time": 0.562376,
+            "plays": 1,
+            "seeking": 0,
+            "paused": false,
+            "count": 4,
+            "contextTime": 0.56,
+            "status": {
+              "active": true,
+              "reason": "",
+              "submerged": false,
+              "tracks": {
+                "bubbles": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                },
+                "underwater": {
+                  "playing": true,
+                  "gain": 0,
+                  "blocked": false
+                },
+                "enter": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                },
+                "walking": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                }
+              }
+            }
+          },
+          "immediate": {
+            "time": 0.562376,
+            "plays": 1,
+            "seeking": 0,
+            "paused": false,
+            "count": 4,
+            "contextTime": 0.56,
+            "status": {
+              "active": true,
+              "reason": "",
+              "submerged": true,
+              "tracks": {
+                "bubbles": {
+                  "playing": true,
+                  "gain": 1,
+                  "blocked": false
+                },
+                "underwater": {
+                  "playing": true,
+                  "gain": 1,
+                  "blocked": false
+                },
+                "enter": {
+                  "playing": true,
+                  "gain": 1,
+                  "blocked": false
+                },
+                "walking": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                }
+              }
+            }
+          },
+          "synchronousMs": 0.30000001192092896
+        }
+      },
+      {
+        "name": "actual underwater PCM arrives within 50ms",
+        "passed": true,
+        "detail": {
+          "underwaterMs": 5.5,
+          "masterMs": 5.5,
+          "thresholdRMS": 0.000001,
+          "analyserFrames": 256
+        }
+      },
+      {
+        "name": "actual master PCM confirms audible-bus output",
+        "passed": true,
+        "detail": {
+          "underwaterMs": 5.5,
+          "masterMs": 5.5,
+          "thresholdRMS": 0.000001,
+          "analyserFrames": 256
+        }
+      },
+      {
+        "name": "surface closes underwater gain synchronously without stopping warm loop",
+        "passed": true,
+        "detail": {
+          "immediate": {
+            "time": 0.74634,
+            "plays": 1,
+            "seeking": 0,
+            "paused": false,
+            "count": 4,
+            "contextTime": 0.7466666666666667,
+            "status": {
+              "active": true,
+              "reason": "",
+              "submerged": false,
+              "tracks": {
+                "bubbles": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                },
+                "underwater": {
+                  "playing": true,
+                  "gain": 0,
+                  "blocked": false
+                },
+                "enter": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                },
+                "walking": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                }
+              }
+            }
+          },
+          "underwaterGain": 0,
+          "silenceByMs": 9.699999988079071,
+          "after": {
+            "time": 0.928158,
+            "plays": 1,
+            "seeking": 0,
+            "paused": false,
+            "count": 4,
+            "contextTime": 0.928,
+            "status": {
+              "active": true,
+              "reason": "",
+              "submerged": false,
+              "tracks": {
+                "bubbles": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                },
+                "underwater": {
+                  "playing": true,
+                  "gain": 0,
+                  "blocked": false
+                },
+                "enter": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                },
+                "walking": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "surface actual PCM is silent after render/analyzer window",
+        "passed": true,
+        "detail": {
+          "master": 0,
+          "underwater": 0
+        }
+      },
+      {
+        "name": "surface warm recording keeps advancing without replay or seek",
+        "passed": true,
+        "detail": {
+          "immediate": {
+            "time": 0.74634,
+            "plays": 1,
+            "seeking": 0,
+            "paused": false,
+            "count": 4,
+            "contextTime": 0.7466666666666667,
+            "status": {
+              "active": true,
+              "reason": "",
+              "submerged": false,
+              "tracks": {
+                "bubbles": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                },
+                "underwater": {
+                  "playing": true,
+                  "gain": 0,
+                  "blocked": false
+                },
+                "enter": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                },
+                "walking": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                }
+              }
+            }
+          },
+          "underwaterGain": 0,
+          "silenceByMs": 9.699999988079071,
+          "after": {
+            "time": 0.928158,
+            "plays": 1,
+            "seeking": 0,
+            "paused": false,
+            "count": 4,
+            "contextTime": 0.928,
+            "status": {
+              "active": true,
+              "reason": "",
+              "submerged": false,
+              "tracks": {
+                "bubbles": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                },
+                "underwater": {
+                  "playing": true,
+                  "gain": 0,
+                  "blocked": false
+                },
+                "enter": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                },
+                "walking": {
+                  "playing": false,
+                  "gain": 0,
+                  "blocked": false
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "pause immediately stops all actual media",
+        "passed": true,
+        "detail": {
+          "time": 0.928269,
+          "plays": 1,
+          "seeking": 0,
+          "paused": true,
+          "count": 4,
+          "contextTime": 0.928,
+          "status": {
+            "active": false,
+            "reason": "paused",
+            "submerged": false,
+            "tracks": {
+              "bubbles": {
+                "playing": false,
+                "gain": 0,
+                "blocked": false
+              },
+              "underwater": {
+                "playing": false,
+                "gain": 0,
+                "blocked": false
+              },
+              "enter": {
+                "playing": false,
+                "gain": 0,
+                "blocked": false
+              },
+              "walking": {
+                "playing": false,
+                "gain": 0,
+                "blocked": false
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "pause remains actually silent",
+        "passed": true,
+        "detail": {
+          "time": 0.928269,
+          "plays": 1,
+          "seeking": 0,
+          "paused": true,
+          "count": 4,
+          "contextTime": 0.928,
+          "status": {
+            "active": false,
+            "reason": "paused",
+            "submerged": false,
+            "tracks": {
+              "bubbles": {
+                "playing": false,
+                "gain": 0,
+                "blocked": false
+              },
+              "underwater": {
+                "playing": false,
+                "gain": 0,
+                "blocked": false
+              },
+              "enter": {
+                "playing": false,
+                "gain": 0,
+                "blocked": false
+              },
+              "walking": {
+                "playing": false,
+                "gain": 0,
+                "blocked": false
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "screenshot": "/private/tmp/quaked-water-real-browser.png"
+}

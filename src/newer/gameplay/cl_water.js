@@ -23,7 +23,7 @@ export function CL_WaterReset() {
 
 /**
  * Returns water classification, motion and air consumption without mutating the
- * client, server or QC. Unknown remote air stays unknown. Repeated reads at one
+ * client, server or QC. Geometry may classify remote/custom-program water, while remote air stays unknown. Repeated reads at one
  * game time do not consume air; new worlds/files, rewind, death and surfacing
  * reset the demo estimate. Native air is never estimated.
  */
@@ -46,7 +46,7 @@ export function CL_PlayerWater( client = cl ) {
 		const air = field?.accessor.getFloat( field.ofs );
 		airKnown = Number.isFinite( air );
 		if ( submerged && airKnown ) waterPercent = clamp( ( 12 - ( air - sv.time ) ) / 12 * 100 );
-	} else if ( client === cl && cls.demoplayback && client.worldmodel?.nodes?.length && client.stats[ STAT_HEALTH ] > 0 ) {
+	} else if ( ! local && client === cl && client.worldmodel?.nodes?.length && client.stats[ STAT_HEALTH ] > 0 ) {
 		const origin = cl_entities[ client.viewentity ]?.origin;
 		if ( origin && client.viewentity > 0 ) {
 			known = true;
@@ -55,7 +55,7 @@ export function CL_PlayerWater( client = cl ) {
 			level = liquid( feet ) ? ( liquid( waist ) ? ( liquid( eye ) ? 3 : 2 ) : 1 ) : 0;
 			submerged = level === 3; water = level > 0 && feet === CONTENTS_WATER;
 			if ( ! submerged || ( client.items & IT_SUIT ) !== 0 ) entered = null;
-			if ( submerged ) {
+			if ( submerged && cls.demoplayback ) {
 				entered ??= client.time;
 				waterPercent = clamp( ( client.time - entered ) / 12 * 100 );
 			}

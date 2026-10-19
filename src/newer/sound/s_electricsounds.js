@@ -11,7 +11,7 @@ import { key_dest, key_game } from '../../engine/client/keys.js';
 import { IT_LIGHTNING, STAT_HEALTH, STAT_WEAPON, STAT_CELLS } from '../../engine/common/quakedef.js';
 import { Cvar_VariableValue } from '../../engine/common/cvar.js';
 import { volume, listener_origin } from '../../engine/sound/sound.js';
-import { S_GetAudioContext, S_GetMasterGain, SND_Spatialize } from '../../engine/sound/snd_dma.js';
+import { S_GetAudioContext, S_GetMasterGain, SND_Spatialize, S_AddSoundReplacement } from '../../engine/sound/snd_dma.js';
 import { R_NewerGame } from '../mode.js';
 import { SV_AddElectricObserver, SV_ElectricSnapshot, ELECTRIC_ROGUE_CRC } from '../gameplay/sv_electricsounds.js';
 import { createEffectDeck, startEffect, stopEffect, releaseEffect } from './s_effectdeck.js';
@@ -226,3 +226,18 @@ export function S_GetElectricSoundsStatus() {
    anchor: voice.anchor, position: voice.position.slice(), pan: voice.pan, gain: voice.gain,
    playing: voice.deck.playing, blocked: voice.deck.blocked, error: voice.deck.error } ) ) };
 }
+
+// Native QC and its packets remain intact. Match only cues whose existing
+// native event receipts admitted this actor's custom voice, before PCM starts.
+S_AddSoundReplacement( ( sfx, origin, volume, attenuation, entity ) => {
+ const roles = {
+  'weapons/lstart.wav': [ 'firing' ], 'weapons/lhit.wav': [ 'firing', 'hit', 'miss', 'water' ],
+  'shambler/sattck1.wav': [ 'charge' ], 'shambler/sboom.wav': [ 'hit', 'miss', 'water', 'shamblerStop' ]
+ }[ sfx?.name ];
+ if ( ! roles || why( S_GetAudioContext() ) ) return false;
+ S_UpdateElectricSounds();
+ return pool.some( voice => voice.entity === entity && roles.includes( voice.role ) &&
+  voice.active && ! voice.state.retired && voice.state.ref === actorRef( entity ) &&
+  voice.life === actorRef( entity )?.freetime && voice.state.life === actorRef( entity )?.freetime &&
+  voice.deck.playing && ! voice.deck.blocked );
+} );

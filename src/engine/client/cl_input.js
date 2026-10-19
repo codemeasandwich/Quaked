@@ -575,6 +575,9 @@ export function CL_InitInput() {
 
 	// Enable mouse look by default for the web port
 	// (original Quake required manually binding +mlook)
+	// Use the same continuous hold as console +mlook: releasing a physical
+	// +mlook key must not erase the default. Explicit -mlook still clears it.
+	in_mlook.down[ 0 ] = -1; in_mlook.down[ 1 ] = 0;
 	in_mlook.state = 1;
 
 }

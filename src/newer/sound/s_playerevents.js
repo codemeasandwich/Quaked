@@ -10,7 +10,7 @@ import { standard_quake } from '../../engine/common/common.js';
 import { GameSelection_Running } from '../../engine/common/game_selection.js';
 import { Cvar_VariableValue } from '../../engine/common/cvar.js';
 import { volume } from '../../engine/sound/sound.js';
-import { S_GetAudioContext, S_GetMasterGain } from '../../engine/sound/snd_dma.js';
+import { S_GetAudioContext, S_GetMasterGain, S_AddSoundReplacement } from '../../engine/sound/snd_dma.js';
 import { R_NewerGame } from '../mode.js';
 import { SV_CheatPowerOn } from '../gameplay/sv_cheats.js';
 import { SV_AddPowerupObserver, SV_FaceLocalActive, SV_PlayerPowerMask } from '../gameplay/sv_faceevents.js';
@@ -170,3 +170,12 @@ export function S_GetPlayerEventsStatus() {
 	return { ...status, pending: pending.length, tracks: Object.fromEntries( Object.entries( decks ).map( ( [ key, deck ] ) =>
 		[ key, { playing: deck.playing, gain: deck.gain.gain.value, blocked: deck.blocked, error: deck.error } ] ) ) };
 }
+
+S_AddSoundReplacement( ( sfx, origin, volume, attenuation, entity ) => {
+	if ( entity !== cl.viewentity ) return false;
+	const cue = { 'items/damage.wav': 'quad', 'items/inv1.wav': 'ring', 'items/protect.wav': 'pentagram' }[ sfx?.name ] ??
+		( /^player\/(?:u?death[1-5]?|h2odeath)\.wav$/.test( sfx?.name ?? '' ) ? 'death' : null );
+	if ( ! cue ) return false;
+	S_UpdatePlayerEvents();
+	return status.active && !! decks[ cue ]?.playing && ! decks[ cue ].blocked;
+} );

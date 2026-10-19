@@ -8,7 +8,7 @@ import { key_dest, key_game } from '../../engine/client/keys.js';
 import { STAT_HEALTH } from '../../engine/common/quakedef.js';
 import { Cvar_VariableValue } from '../../engine/common/cvar.js';
 import { volume } from '../../engine/sound/sound.js';
-import { S_GetAudioContext, S_GetMasterGain, SND_Spatialize } from '../../engine/sound/snd_dma.js';
+import { S_GetAudioContext, S_GetMasterGain, SND_Spatialize, S_AddSoundReplacement } from '../../engine/sound/snd_dma.js';
 import { R_NewerGame } from '../mode.js';
 import { R_AmbientPlaces, R_AmbientPlacesVersion } from '../render/r_ambientplaces.js';
 import { R_VisibleAliasBounds } from '../render/r_aliasvisibility.js';
@@ -96,7 +96,7 @@ function scanFire() {
 	}
 }
 /** Host-frame loop update, independent of HUD/torch rendering. One conservative
- * fire layer follows the loudest placed source; native audio remains unchanged. */
+ * fire replacement follows the loudest placed source; its native counterpart is gated by admission. */
 export function S_UpdateEnvironmentSounds() {
 	syncWorld();
 	const context = S_GetAudioContext();
@@ -135,3 +135,9 @@ export function S_GetEnvironmentSoundsStatus() {
 		tracks: Object.fromEntries( Object.entries( decks ).map( ( [ key, deck ] ) =>
 			[ key, { playing: deck.playing, gain: deck.gain.gain.value, blocked: deck.blocked, error: deck.error } ] ) ) };
 }
+
+S_AddSoundReplacement( ( sfx ) => {
+	if ( sfx?.name !== 'ambience/fire1.wav' || reason() ) return false;
+	S_UpdateEnvironmentSounds();
+	return status.active && fireTarget > 0 && !! decks.fire?.playing && ! decks.fire.blocked;
+} );

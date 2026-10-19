@@ -61,7 +61,7 @@ Deno.test( 'recorded player submersion starts entry once, loops underwater, and 
  await step( 3 ); assert.equal( deck( 'bubbles' ).paused, false, 'consuming visual reserve bubbles' );
  for ( let i = 0; i < 12; i++ ) await step( .1 ); assert.equal( deck( 'enter' ).plays, 1, 'holding submerged does not restart entry' );
  await step( 9 ); assert.equal( deck( 'bubbles' ).paused, true, 'full face has finished filling' ); assert.equal( deck( 'underwater' ).paused, false );
- origin[ 2 ] = 40; await step(); assert.equal( deck( 'underwater' ).paused, true ); assert.equal( deck( 'bubbles' ).paused, true );
+ origin[ 2 ] = 40; const dry = await step(); assert.equal( dry.tracks.underwater.gain, 0, 'surface keeps the prepared ambience inaudible' ); assert.equal( deck( 'underwater' ).paused, false, 'silent ambience stays running to avoid a new decoder/onset delay' ); assert.equal( deck( 'bubbles' ).paused, true );
  origin[ 2 ] = -40; await step(); assert.equal( deck( 'enter' ).plays, 2, 'another genuine dive plays entry again' );
  cl.items |= IT_SUIT; await step( .1 ); assert.equal( deck( 'bubbles' ).paused, true, 'suit indicator is not a filling face' );
  assert.equal( deck( 'underwater' ).paused, false, 'suit does not remove underwater ambience' );
@@ -99,12 +99,44 @@ Deno.test( 'water sounds use Sound Volume bus and stop on pause, hide, death, Cl
  }
 } ) );
 
-Deno.test( 'shutdown releases media and a late play promise cannot restart an exited water sound', () => game( async ( { origin, step, deck, media } ) => {
+Deno.test( 'shutdown releases media and a late play promise cannot restart a disconnected water loop', () => game( async ( { origin, step, deck, media } ) => {
  origin[ 2 ] = -40; await step(); const underwater = deck( 'underwater' );
- origin[ 2 ] = 40; await step(); let resolve;
- underwater.pending = new Promise( r => { resolve = r; } ); origin[ 2 ] = -40; await step();
- origin[ 2 ] = 40; await step(); resolve(); await flush();
+ cl.paused = true; await step(); let resolve; underwater.pending = new Promise( r => { resolve = r; } ); cl.paused = false; await step();
+ cls.signon = 0; await step(); resolve(); await flush();
  assert.equal( underwater.paused, true ); assert.equal( S_GetPlayerWaterStatus().tracks.underwater.playing, false );
  S_PlayerWaterShutdown(); assert.ok( media.every( m => m.paused && m.loaded && m.src === '' ), 'shutdown unloads all media' );
- origin[ 2 ] = -40; await step(); assert.notEqual( deck( 'underwater' ), underwater, 'fresh deck after shutdown' );
+ cls.signon = SIGNONS; origin[ 2 ] = -40; await step(); assert.notEqual( deck( 'underwater' ), underwater, 'fresh deck after shutdown' );
+} ) );
+
+Deno.test( 'dry game preparation warms existing water media before the first dive, whose public update starts full gain synchronously', () => game( async ( { origin, step, deck, media } ) => {
+ origin[ 2 ] = 40; await step();
+ for ( const key of [ 'underwater', 'enter', 'bubbles', 'walking' ] ) {
+  assert.ok( deck( key ), key + ' is prepared while the player is still dry' ); assert.equal( deck( key ).preload, 'auto' );
+  if ( key === 'underwater' ) { assert.equal( deck( key ).paused, false, 'only the muted ambience loop remains warm' ); assert.equal( S_GetPlayerWaterStatus().tracks.underwater.gain, 0, 'dry ambience has exactly zero output gain' ); }
+  else { assert.equal( deck( key ).plays, 0, key + ' preparation is silent' ); assert.equal( deck( key ).paused, true ); }
+ }
+ const prepared = new Set( media ), underwater = deck( 'underwater' ), context = dma.S_GetAudioContext(), before = context.currentTime, plays = underwater.plays; underwater.currentTime = 4;
+ origin[ 2 ] = -40; S_UpdatePlayerWater();
+ assert.equal( context.currentTime, before, 'first dive requires no timer advance or fade' );
+ assert.equal( underwater.plays, plays, 'first dive unmutes the already-running loop without another play/decode request' ); assert.equal( underwater.currentTime, 4, 'entry never seeks, trims or restarts the complete ambient clip' );
+ assert.equal( underwater.paused, false ); assert.equal( S_GetPlayerWaterStatus().tracks.underwater.gain, 1 );
+ assert.ok( media.every( item => prepared.has( item ) ), 'no new media/network request is created at the dive boundary' );
+ await flush(); assert.equal( deck( 'underwater' ), underwater ); assert.equal( underwater.plays, plays );
+} ) );
+
+
+Deno.test( 'a denied silent dry warm-up stays bounded and retries exactly once on the next genuine dive', () => game( async ( { origin, step, deck } ) => {
+ const play = Media.prototype.play; let denied = true;
+ try {
+  Media.prototype.play = function () {
+   if ( this.src === WATER_TRACK_URLS.underwater && denied ) { this.plays++; return Promise.reject( Error( 'independent initial autoplay denial' ) ); }
+   return play.call( this );
+  };
+  await step(); const bed = deck( 'underwater' ); assert.equal( bed.plays, 1 ); assert.equal( S_GetPlayerWaterStatus().tracks.underwater.blocked, true );
+  for ( let i = 0; i < 10; i++ ) await step( .1 );
+  assert.equal( bed.plays, 1, 'dry host updates never spam rejected media play requests' ); assert.equal( S_GetPlayerWaterStatus().tracks.underwater.gain, 0 );
+  denied = false; origin[ 2 ] = -40; const dive = await step( .1 );
+  assert.equal( bed.plays, 2, 'one genuine submersion re-arms the failed warm deck exactly once' ); assert.equal( bed.paused, false ); assert.equal( dive.tracks.underwater.playing, true ); assert.equal( dive.tracks.underwater.blocked, false ); assert.equal( dive.tracks.underwater.gain, 1 );
+  await step( .1 ); assert.equal( bed.plays, 2, 'holding submerged cannot restart the full recording again' );
+ } finally { Media.prototype.play = play; }
 } ) );

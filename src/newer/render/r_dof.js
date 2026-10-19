@@ -29,7 +29,7 @@ import { cvar_t } from '../../engine/common/cvar.js';
 import { R_NewerGame } from '../mode.js';
 import { R_TracePoint } from '../../engine/render/r_trace.js';
 
-export const r_dof = new cvar_t( 'r_dof', '0.15', true ); // strength 0..1 (0 off; the options slider, a step .05: the owner's default is three steps)
+export const r_dof = new cvar_t( 'r_dof', '0.05', true ); // strength 0..1 (0 off; the options slider, a step .05: the owner's default is the lowest nonzero step)
 
 export const DOF = {
 	far: 4096,          // Quake units: a ray that meets nothing focuses here (the sky, a long hall)

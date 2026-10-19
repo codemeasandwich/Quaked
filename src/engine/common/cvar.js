@@ -105,7 +105,7 @@ function Cvar_SaveToStorage( _var ) {
 Cvar_DropChangedDefaults
 ============
 */
-export const CVAR_DEFAULT_CHANGES = [ { name: 'r_dof', marker: 'quaked_default_r_dof_2026-10-10' } ];
+export const CVAR_DEFAULT_CHANGES = [ { name: 'r_dof', marker: 'quaked_default_r_dof_2026-10-19' } ];
 /**
  * Filters a saved configuration before `Host_Init` executes it, so a changed cvar default takes effect.
  *

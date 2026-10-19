@@ -1514,7 +1514,7 @@ void main() {
 // after upscaling, so brightness/contrast keep their display-space meaning.
 // Depth of field (card [38], r_dof.js): its own pass at the composite's resolution (dynamic resolution reduces it), after
 // the vision modes and before the present pass. uDof.x = focus distance, y = strength in composite pixels, z = the largest
-// circle; uDofFar = the depth the sky counts as (the far focus: a far focus leaves the sky sharp); uDofTexel = a pixel.
+// circle; uDofFar = the focus-depth fallback; uDofTexel = a pixel. Sky pixels never enter this blur.
 // The held gun (G-buffer packet a < -2) is never blurred nor blurred into. The 16 taps turn per pixel (interleaved
 // gradient noise), so a small bright light behind a blur spreads as a disc rather than sixteen copies.
 export const DOF_FRAGMENT = `
@@ -1533,11 +1533,12 @@ float dofDepth( vec2 uv ) {
 	return max( - v.z / v.w, 1.0 );
 }
 bool dofHeld( vec2 uv ) { return texture2D( tNormal, uv ).a < - 2.0; }
+bool dofSky( vec2 uv ) { return texture2D( tDepth, uv ).x >= 0.99999; }
 float dofCircle( float z ) { return min( uDof.z, uDof.y * abs( 1.0 - uDof.x / z ) ); }
 void main() {
 	vec3 base = texture2D( tComposite, vUv ).rgb;
 	gl_FragColor = vec4( base, 1.0 );
-	if ( dofHeld( vUv ) ) return;
+	if ( dofHeld( vUv ) || dofSky( vUv ) ) return;
 	float z = dofDepth( vUv ), c = dofCircle( z );
 	if ( c < 0.5 ) return;
 	float turn = 6.2831853 * fract( 52.9829189 * fract( dot( gl_FragCoord.xy, vec2( 0.06711056, 0.00583715 ) ) ) );
@@ -1545,7 +1546,7 @@ void main() {
 	for ( int i = 0; i < 16; i ++ ) {
 		float r = sqrt( ( float( i ) + 0.5 ) / 16.0 ), a = float( i ) * 2.39996 + turn;
 		vec2 at = vUv + vec2( cos( a ), sin( a ) ) * r * c * uDofTexel;
-		if ( dofHeld( at ) ) continue;
+		if ( dofHeld( at ) || dofSky( at ) ) continue;
 		float sz = dofDepth( at );
 		// a nearer sample counts only as far as its own circle reaches here (a sharp thing in front keeps its edge)
 		float w = sz < z ? clamp( dofCircle( sz ) / max( r * c, 1e-3 ), 0.0, 1.0 ) : 1.0;

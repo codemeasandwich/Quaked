@@ -1,6 +1,6 @@
 // Impacts that sound like what they strike (src/newer/sound/s_impacts.js, s_material.js, s_surfacesounds.js; card
 // T-3faa98e3 item 2, docs/material-sounds-2026-10-14.md): a nail's ricochet, the axe on a wall and a player landing
-// bring a quiet second sound of the surface, beside the game's own sound and never instead of it; the shotgun and
+// use the admitted surface sound instead of the native counterpart; unavailable replacements keep native audio. The shotgun and
 // lightning gun bring none; New Game, demos and the switch off bring none. Through the public sound system, the
 // client's real nail parser (CL_ParseTEnt) and e1m1's real surfaces.
 import { readFileSync } from './helpers/resource_fs.mjs';
@@ -99,7 +99,7 @@ Deno.test( 'every surface sound is a short, clean, distinct sound', () => {
 
 } );
 
-Deno.test( 'a nail on a wall: the game\'s own ricochet as before, and the wall\'s own sound beside it', () => withSound( () => {
+Deno.test( 'a nail on a wall admits its material sound instead of the original while preserving native random decisions', () => withSound( () => {
 
 	const hits = walls(); check( hits.length >= 4, 'walls round the start: ' + hits.length );
 	for ( const w of hits.slice( 0, 6 ) ) {
@@ -108,10 +108,10 @@ Deno.test( 'a nail on a wall: the game\'s own ricochet as before, and the wall\'
 		// the game's random draws for the nail are the same with or without the surface's sound
 		const draws = on => { cvar.Cvar_Set( 's_impacts', on ? '1' : '0' ); clear(); let n = 0; const real = Math.random; Math.random = () => { n ++; return 0.5; }; try { tempEntity( 1, w.at ); } finally { Math.random = real; } return [ n, playing().filter( s => ! s.startsWith( 'quaked/' ) ).join() ]; };
 		const off = draws( false ), on = draws( true );
-		same( on.join( '|' ), off.join( '|' ), 'the game\'s draws and its own sound are the same' );
+		same( on[ 0 ], off[ 0 ], 'native random decisions are unchanged by replacement admission' ); check( off[ 1 ].length > 0, 'disabled replacement positive control plays native ricochet' ); same( on[ 1 ], '', 'admitted surface impact suppresses its native counterpart' );
 		const surface = R_DecalSurface( e1m1, w.at, 8, Mod_PointInLeaf ), material = S_MaterialAt( e1m1, w.at, 8 );
 		if ( surface ) same( material, S_MaterialOfTexture( surface.surf.texinfo.texture.name ), 'the material is the wall texture\'s (' + surface.surf.texinfo.texture.name + ')' );
-		check( playing().some( s => s.startsWith( `quaked/hit_${material}` ) ), `the ${material} wall's sound: ` + playing() );
+		same( playing().filter( s => s.startsWith( `quaked/hit_${material}` ) ).length, 1, `exactly one ${material} wall sound` );
 
 	}
 	// every wall round the start is found, even where the point's own leaf does not list it (two of them on e1m1)
@@ -126,11 +126,11 @@ Deno.test( 'landing on the floor and the axe on a wall bring the surface\'s soun
 	const me = cl.viewentity = 1, self = cl_entities[ me ] = cl_entities[ me ] ?? {}; self.origin = Float32Array.from( [ spawn[ 0 ], spawn[ 1 ], spawn[ 2 ] ] ); self.angles = new Float32Array( 3 );
 	clear(); dma.S_StartSound( me, 4, dma.S_PrecacheSound( 'player/land2.wav' ), self.origin, 1, 1 );
 	const floor = S_MaterialAt( e1m1, [ spawn[ 0 ], spawn[ 1 ], spawn[ 2 ] - 23 ], 24, ( s, sign ) => s.plane.normal[ 2 ] * sign > 0.7 );
-	check( playing().includes( 'player/land2.wav' ) && playing().some( s => s.startsWith( `quaked/hit_${floor}` ) ), 'landing: its own and the floor\'s: ' + playing() );
+	check( ! playing().includes( 'player/land2.wav' ) && playing().some( s => s.startsWith( `quaked/hit_${floor}` ) ), 'admitted landing surface replaces the original: ' + playing() );
 	const w = walls().find( w => w.dist < 60 ) ?? walls()[ 0 ];
 	self.origin.set( [ w.at[ 0 ] - Math.cos( w.yaw * Math.PI / 180 ) * 30, w.at[ 1 ] - Math.sin( w.yaw * Math.PI / 180 ) * 30, w.at[ 2 ] - 16 ] ); cl.viewangles.set( [ 0, w.yaw, 0 ] );
 	clear(); dma.S_StartSound( me, 1, dma.S_PrecacheSound( 'player/axhit2.wav' ), self.origin, 1, 1 );
-	check( playing().some( s => s.startsWith( 'quaked/hit_' ) ), 'the axe on the wall: ' + playing() );
+	check( ! playing().includes( 'player/axhit2.wav' ) && playing().some( s => s.startsWith( 'quaked/hit_' ) ), 'admitted axe surface replaces its native counterpart: ' + playing() );
 	clear(); tempEntity( 2, w.at ); check( ! playing().some( s => s.startsWith( 'quaked/' ) ), 'TE_GUNSHOT (shotgun, axe\'s own puff, laser): none from it' );
 	clear(); dma.S_StartSound( me, 1, dma.S_PrecacheSound( 'weapons/lstart.wav' ), self.origin, 1, 1 ); check( ! playing().some( s => s.startsWith( 'quaked/' ) ), 'the lightning gun: none' );
 
@@ -158,4 +158,19 @@ Deno.test( 'no game sound is ever cut off: with nearly every channel busy the su
 	same( busy(), before, 'every game sound still playing' );
 	check( ! playing().some( s => s.startsWith( 'quaked/' ) ), 'the surface sounds waited (fewer than the reserve free)' );
 
+} ) );
+
+Deno.test( 'an admitted surface sound starts one PCM source and preserves logical observer notifications once', () => withSound( () => {
+ const w = walls()[ 0 ], context = dma.S_GetAudioContext(), before = context.sources.length, heard = [];
+ dma.S_AddSoundStarted( sfx => heard.push( sfx.name ) );
+ dma.S_StartSound( -1, 0, dma.S_PrecacheSound( 'weapons/tink1.wav' ), w.at, 1, 1 );
+ same( context.sources.length - before, 1, 'only the surface PCM source starts' );
+ same( heard.filter( name => name === 'weapons/tink1.wav' ).length, 1, 'existing observers receive the native logical event once' );
+ same( heard.filter( name => name.startsWith( 'quaked/hit_' ) ).length, 1, 'the admitted replacement source is not duplicated' );
+} ) );
+Deno.test( 'an inaudible surface candidate cannot swallow an otherwise audible native impact', () => withSound( () => {
+ clear(); const context = dma.S_GetAudioContext(), before = context.sources.length;
+ dma.S_StartSound( -1, 0, dma.S_PrecacheSound( 'weapons/tink1.wav' ), [ 50000, 50000, 50000 ], 1, 0 );
+ same( context.sources.length - before, 1, 'actual replacement admission requires an audible source, not only a spare channel' );
+ check( playing().includes( 'weapons/tink1.wav' ) && ! playing().some( name => name.startsWith( 'quaked/hit_' ) ), 'inaudible replacement leaves audible original audio unchanged' );
 } ) );
