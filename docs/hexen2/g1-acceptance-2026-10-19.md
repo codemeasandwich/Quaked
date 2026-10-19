@@ -21,7 +21,7 @@ Run from `/Users/bri/worktrees/Quaked/Dev/h2` with
 | Session / edition validation | `hexen2_profile_test.js` (9), `hexen2_filesystem_test.js` (9) | Foundations only: modules tested; no public catalogue/native-boundary integration, no shelf/source display. |
 | VM (Hexen layouts, opcodes, builtins) | `hexen2_progs_layout_test.js` (2), `hexen2_progdefs_test.js` (7), `hexen2_vm_test.js` (9) | Supplied base and Portal layouts validated; core ABI exercised. Unimplemented builtins still refuse by name (attack frames stop at `particle4`). |
 | Model / collision | `hexen2_bsp_test.js` (4), `hexen2_model_test.js` (2), `hexen2_world_test.js` (2) | Eight-hull submodels, RAPO bounds, native hull selection and traces verified. |
-| Codec | `hexen2_protocol_test.js` (6), `hexen2_demo_test.js` (3) | Foundations only: id collision table, private `1019 quaked-hexen2-v1`, framing helpers. No live encode/decode round trip or network peer. |
+| Codec | `hexen2_protocol_test.js`, `hexen2_demo_test.js`, `hexen2_wire_test.js` | Id collision table, native demo framing, and the private `1019 quaked-hexen2-v1` session preamble now round-trips (edition, gamecode mode, rules, class, gamecode CRC, simulation digest) with truncation/foreign-version/unknown-field/mismatch refusal. Entity message bodies and a real peer are still pending. |
 | Native Paladin on demo1 | `hexen2_spawn_test.js`, `hexen2_player_test.js`, `hexen2_player_bounds_test.js`, `hexen2_boot_test.js`, `hexen2_class_stats_test.js` | Paladin placed by supplied gamecode (`models/paladin.mdl`, class 1, feet-origin box, settles on the floor) and receives the native class statistics: health 70..85, max_mana 84..95, strength/intelligence/wisdom/dexterity. |
 | Movement | `hexen2_input_test.js` (1), `hexen2_physics_test.js` (1) | Synthetic usercmd advances the Paladin ~96 units over three frames; ten world frames run with moving monsters. Public input path and camera are not wired to a client. |
 | Combat | `hexen2_combat_test.js` | **Verified.** A held attack on a live level monster reduces its health and leaves the Paladin unhurt. `aim` (44), `findradius` (22), `particle` (48) and `particle4` (86) were added to the Hexen table; `particle4` emits the standard particle burst at the origin and ignores the native radius/effect fields (presentation-only divergence, recorded). |
@@ -32,8 +32,8 @@ Run from `/Users/bri/worktrees/Quaked/Dev/h2` with
 | End-to-end trace | `hexen2_acceptance_test.js` (1) | Detection → Installed Paladin session → boot → physics → client view → world frame → audio bridge → HUD/status, in one process. Still not a drawn or networked session. |
 | Public native smoke | — | **Missing.** No packaged-app UI path (shelf → source → class → difficulty → demo1) exists for Hexen II. |
 
-Latest runs after the expanded lower-bar work: **75/75** Hexen assertions across 29 suites and the regression sets
-remain green. The spawn hands `newclass` to the gamecode (resolved from the loaded
+Latest runs after the private session preamble work: **76/76** Hexen assertions across 30 suites and the regression
+sets remain green. The spawn hands `newclass` to the gamecode (resolved from the loaded
 program: offset 212 base, 214 Portal) and `setclass` (#66) records the class, so `stats_NewClass` applies the native
 tables instead of returning through its class guard; sprint (#24) and stuffcmd (#21) carry the pickup/class text.
 
@@ -56,7 +56,8 @@ against the pre-change baseline when the candidate is qualified. This is a proce
    recorded presentation divergence.
 4. **Audio activation**: mixer scheduling is verified; the packaged app's Web Audio unlock/user-gesture path is not.
 5. **Public smoke**: shelf → source → Paladin → demo1 through the public UI, not test-only boot.
-6. **Codec**: a live private-protocol round trip between real client/server state (foundations exist).
+6. **Codec**: the private session preamble round-trips and rejects mismatches; native entity message bodies and a real
+   client/server peer remain.
 7. **Public/filesystem integration**: catalogue selection and native-boundary discovery for the supplied installation.
 
 No owner deadline was supplied; none is invented here. Presentation and combat work must not be declared complete
