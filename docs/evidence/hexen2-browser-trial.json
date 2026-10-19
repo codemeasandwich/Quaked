@@ -1,14 +1,14 @@
 {
   "trial": "hexen2-browser",
-  "at": "2026-10-19T07:34:15.666Z",
-  "base": "http://127.0.0.1:65093",
+  "at": "2026-10-19T07:38:24.913Z",
+  "base": "http://127.0.0.1:49213",
   "result": {
     "ok": true,
     "errors": [],
     "session": {
       "level": "demo1",
       "viewEntity": 1,
-      "health": 83,
+      "health": 81,
       "models": 342,
       "baselines": 247
     },
@@ -50,39 +50,39 @@
       "drawn": 10,
       "skipped": 0
     },
-    "frames": 67,
-    "attackFrames": 8,
+    "frames": 52,
+    "attackFrames": 6,
     "entitiesVisible": 24,
     "nearest": [
       {
         "name": "obj_statue_angel",
         "model": "models/anglstat.mdl",
-        "d": 97
+        "d": 96
       },
       {
         "name": "obj_tombstone2",
         "model": "models/tombstn2.mdl",
-        "d": 250
-      },
-      {
-        "name": "obj_tree2",
-        "model": "models/tree2.mdl",
-        "d": 267
+        "d": 263
       },
       {
         "name": "obj_tombstone1",
         "model": "models/tombstn1.mdl",
-        "d": 290
+        "d": 272
+      },
+      {
+        "name": "obj_tree2",
+        "model": "models/tree2.mdl",
+        "d": 284
       },
       {
         "name": "art_HealthBoost",
         "model": "models/a_hboost.mdl",
-        "d": 307
+        "d": 300
       },
       {
         "name": "art_HealthBoost",
         "model": "models/a_hboost.mdl",
-        "d": 319
+        "d": 320
       }
     ],
     "keyEvents": 1,
@@ -93,26 +93,26 @@
     },
     "position": [
       -760.03125,
-      -1833.2340087890625,
+      -1852.507080078125,
       0.03125
     ],
-    "health": 83,
-    "hudHealth": 83,
+    "health": 81,
+    "hudHealth": 81,
     "pixel": [
-      41,
-      34,
       31,
+      24,
+      21,
       255
     ],
     "audioDeferred": true,
     "audioDeferredResult": {
       "sources": 1,
-      "time": 2.1386666666666665,
+      "time": 2.8853333333333335,
       "state": "running"
     },
     "mouseYaw": -60,
     "mouseAttack": true,
-    "moved": 255.46253972642003,
+    "moved": 240.61131718672468,
     "movedFrom": [
       -918,
       -2034,
