@@ -147,6 +147,7 @@ function ambientsound() {
 
 	}
 	if ( index < 0 ) { Con_Printf( 'no precache: %s\n', sample ); return; }
+	recordSound( 'ambient', 0, 0, sample, volume, attenuation, position );
 	MSG_WriteByte( sv.signon, 29 );
 	for ( let i = 0; i < 3; i ++ ) MSG_WriteCoord( sv.signon, position[ i ] );
 	MSG_WriteShort( sv.signon, index ); // the mission-pack/private session ambient index is a word
@@ -164,6 +165,33 @@ function lightstyle() {
 
 }
 
+// Sound events for the local client bridge (a listen server plays its own game's sounds without a network round
+// trip). Bounded: if no client drains them, the oldest are dropped rather than growing without limit.
+const pendingSounds = [];
+const PENDING_SOUND_LIMIT = 64;
+
+/**
+ * Drains the sound events the gamecode produced, oldest first. The audio bridge (engine/client/hexen2_audio.js)
+ * consumes them for a local session; a networked client still receives the same sounds through SV_StartSound.
+ *
+ * @returns {Array<{ kind: string, entity: number, channel: number, sample: string, volume: number,
+ *   attenuation: number, origin: ReadonlyArray<number> }>} the events, then empties the queue
+ */
+export function Hexen2_DrainSoundEvents() {
+
+	const events = pendingSounds.slice();
+	pendingSounds.length = 0;
+	return events;
+
+}
+
+function recordSound( kind, entity, channel, sample, volume, attenuation, origin ) {
+
+	if ( pendingSounds.length >= PENDING_SOUND_LIMIT ) pendingSounds.shift();
+	pendingSounds.push( Object.freeze( { kind, entity, channel, sample, volume, attenuation, origin: Object.freeze( [ origin[ 0 ], origin[ 1 ], origin[ 2 ] ] ) } ) );
+
+}
+
 // #8 sound(entity, channel, sample, volume, attenuation): the existing SV_StartSound path
 function sound() {
 
@@ -178,6 +206,7 @@ function sound() {
 
 	}
 	if ( ! precached ) { Con_Printf( 'no precache: %s\n', sample ); return; }
+	recordSound( 'sound', ent.index, channel, sample, volume, attenuation, ent.v.origin );
 	if ( typeof SV_StartSound === 'function' )
 		SV_StartSound( ent, channel, sample, ( volume * 255 ) | 0, attenuation );
 
