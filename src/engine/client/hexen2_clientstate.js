@@ -110,7 +110,7 @@ export function Hexen2_ApplyClientMessage( state, bytes, options = {} ) {
 
 		const read = Hexen2_ReadStartEffect( bytes, { allowTrailing: true } );
 		if ( ! read.ok ) return read;
-		state.effects.set( read.index, { type: read.type, params: read.params } );
+		state.effects.set( read.index, { type: read.type, params: read.params, startedAt: options.now } );
 
 	}
 	else if ( opcode === HEXEN2_SERVER_MESSAGES.end_effect ) {
