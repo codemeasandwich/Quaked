@@ -41,6 +41,7 @@ import { Hexen2_HudFromClientState } from './hexen2_clienthud.js';
 import { Hexen2_StatusBarOps } from './hexen2_statusbar.js';
 import { Hexen2_DrawStatusBar } from './hexen2_sbar_draw.js';
 import { Hexen2_HudTransform, Hexen2_NumberLayout } from './hexen2_hud_layout.js';
+import { Hexen2_StartChoice, Hexen2_PlayLocalSound } from './hexen2_native_ui.js';
 import { Hexen2_EncodeClientdata, Hexen2_EncodeUpdateInv, Hexen2_AllStatMask } from '../common/hexen2_clientdata.js';
 import { Hexen2_WriteEntityUpdate } from '../common/hexen2_entitywire.js';
 import { HEXEN2_SERVER_MESSAGES } from '../common/hexen2_protocol.js';
@@ -66,6 +67,7 @@ export async function Hexen2_PageStart( options ) {
 
 	const log = text => options.log?.( text );
 	globalThis.__HEXEN2_LOG__ = log;
+	const choice = Hexen2_StartChoice( { classId: options.classId, skill: options.skill } );
 	if ( _running ) return { ok: false, reason: 'a Hexen II session is already running' };
 	_running = true;
 	try {
@@ -101,7 +103,7 @@ export async function Hexen2_PageStart( options ) {
 
 		};
 		const session = Hexen2_OpenLocalSession( {
-			entry, classId: options.classId ?? 'paladin', skill: options.skill, client, sv, svs, readFile: readNamed,
+			entry, classId: choice.classId, skill: choice.skill, client, sv, svs, readFile: readNamed,
 			loadMap: name => {
 
 				const file = COM_FindFile( name );
@@ -370,17 +372,13 @@ let _soundLogs = 0;
 // so the same call also feeds the mixer directly at the entity's origin.
 function playLocalSound( entity, channel, sample, volume, attenuation ) {
 
-	try { SV_StartSoundWire( entity, channel, sample, volume, attenuation ); } catch ( error ) { globalThis.__HEXEN2_LOG__?.( 'server sound failed: ' + String( error?.message ?? error ) ); }
-	try {
-
-		let sfx = _localSfx.get( sample );
-		if ( sfx === undefined ) { sfx = S_PrecacheSound( sample ); _localSfx.set( sample, sfx ?? null ); }
-		if ( !sfx ) return;
-		const origin = entity?.v?.origin ?? [ 0, 0, 0 ];
-		const entnum = entity?.v ? entity.index : 0;
-		S_StartSound( entnum, channel, sfx, origin, volume / 255, attenuation );
-		if ( _soundLogs < 8 ) { _soundLogs ++; globalThis.__HEXEN2_LOG__?.( 'sound ' + sample ); }
-
-	} catch ( error ) { /* a missing WAV must not stop the game */ }
+	const result = Hexen2_PlayLocalSound( entity, channel, sample, volume, attenuation, {
+		wire: SV_StartSoundWire,
+		precache: name => S_PrecacheSound( name ),
+		start: ( entnum, entchannel, sfx, origin, fvol, att ) => S_StartSound( entnum, entchannel, sfx, origin, fvol, att ),
+		cache: _localSfx
+	} );
+	if ( result.ok && _soundLogs < 8 ) { _soundLogs ++; globalThis.__HEXEN2_LOG__?.( 'sound ' + sample ); }
+	return result;
 
 }

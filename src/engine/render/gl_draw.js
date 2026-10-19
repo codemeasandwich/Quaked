@@ -19,6 +19,7 @@ import {AssetURL} from '../../platform/distribution.js';
 // In browser port: uses a canvas 2D overlay context for HUD/menu/console drawing
 
 import { Con_Printf } from '../common/console.js';
+import { Hexen2_CharsetColumns } from '../common/hexen2_charset.js';
 import { W_GetLumpName, W_FindLumpinfo } from '../common/wad.js';
 import { d_8to24table as vid_d_8to24table } from './vid.js';
 import { COM_FindFile } from '../common/pak.js';
@@ -498,8 +499,9 @@ function _loadCharset( override ) {
 
 		// a game's own charset: Hexen II ships a 256x128 gfx/menu/conchars.lmp (32 columns), Quake a 128x128 sheet
 		data = override instanceof Uint8Array ? override : new Uint8Array( override );
-		if ( data.length >= 256 * 128 ) cols = 32;
-		else if ( data.length < 128 * 128 ) return;
+		const detected = Hexen2_CharsetColumns( data.length );
+		if ( detected === 0 ) return;
+		cols = detected;
 
 	} else {
 
