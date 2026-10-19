@@ -202,7 +202,7 @@ export async function Hexen2_PageStart( options ) {
 				const context = S_GetAudioContext();
 				if ( context && context.state === 'running' ) S_Update( session.player.v.origin, [ 1, 0, 0 ], [ 0, 1, 0 ], [ 0, 0, 1 ] );
 				frameCount ++;
-				if ( frameCount === 1 ) log( 'first frame rendered' );
+				if ( frameCount === 1 ) log( 'first frame rendered calls=' + ( renderer.info.render.calls | 0 ) + ' tris=' + ( renderer.info.render.triangles | 0 ) );
 				options.onFrame?.( session, { frames: frameCount, position: [ session.player.v.origin[ 0 ], session.player.v.origin[ 1 ], session.player.v.origin[ 2 ] ], health: session.player.v.health } );
 
 			} catch ( error ) {
