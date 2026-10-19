@@ -14,7 +14,7 @@
 import { COM_AddPack, COM_FindFile, COM_LoadFile } from '../common/pak.js';
 import { W_LoadWadFile } from '../common/wad.js';
 import { Cmd_Init, Cmd_ExecuteString, Cbuf_Execute, Cbuf_Init } from '../common/cmd.js';
-import { Cvar_SetValue } from '../common/cvar.js';
+import { Cvar_SetValue, Cvar_VariableValue } from '../common/cvar.js';
 import { renderer } from '../render/vid.js';
 import { set_host_frametime } from '../common/host_state.js';
 import { Sys_Printf } from '../common/sys.js';
@@ -23,7 +23,7 @@ import { Mod_Init, Mod_ForName } from '../render/gl_model.js';
 import { model_t } from '../render/gl_model_types.js';
 import { set_loadmodel } from '../render/gl_model_common.js';
 import { Mod_LoadBrushModel } from '../render/gl_model_bsp.js';
-import { R_Init, R_NewMap, R_RenderView, set_r_worldentity } from '../render/gl_rmain.js';
+import { R_Init, R_NewMap, R_RenderView, set_r_worldentity, r_drawviewmodel, r_drawentities } from '../render/gl_rmain.js';
 import { entity_t, r_refdef } from '../render/render.js';
 import { Draw_Init, Draw_BeginFrame, Draw_CachePic, Draw_Pic, Draw_PicFromWad, Draw_String, Draw_SmallString, Draw_SmallCharsetReady, Draw_SetExternals, Draw_GetOverlayCanvas } from '../render/gl_draw.js';
 import { sv, SIGNON_SIZE } from '../server/server.js';
@@ -52,7 +52,7 @@ import { Key_SetBinding, K_UPARROW, K_DOWNARROW, K_LEFTARROW, K_RIGHTARROW, set_
 import { V_CalcRefdef } from './view.js';
 import { S_Init, S_UnlockAudio, S_PrecacheSound, S_StartSound, S_Update, S_GetAudioContext } from '../sound/snd_dma.js';
 import { IN_Init, IN_Move } from '../../platform/in_web.js';
-import { R_BestiaryInputLocked } from '../../newer/ui/r_bestiary.js';
+import { R_BestiaryInputLocked, R_BestiaryCancel } from '../../newer/ui/r_bestiary.js';
 
 let _running = false;
 
@@ -67,6 +67,7 @@ export async function Hexen2_PageStart( options ) {
 
 	const log = text => options.log?.( text );
 	globalThis.__HEXEN2_LOG__ = log;
+	globalThis.__HEXEN2_VM_STATE__ = state => { if ( ! globalThis.__HEXEN2_VM_SEEN__ ) { globalThis.__HEXEN2_VM_SEEN__ = true; log( 'viewmodel state ' + JSON.stringify( state ) ); } };
 	const choice = Hexen2_StartChoice( { classId: options.classId, skill: options.skill } );
 	if ( _running ) return { ok: false, reason: 'a Hexen II session is already running' };
 	_running = true;
@@ -134,6 +135,8 @@ export async function Hexen2_PageStart( options ) {
 		cl.worldmodel = session.map; cl.model_precache = [ null, session.map ]; cl.state = 2; cl.time = 0; cl.velocity = [ 0, 0, 0 ];
 		cl.paused = false; cl.intermission = false;
 		R_Init();
+		r_drawviewmodel.value = 1; r_drawviewmodel.string = '1';
+		r_drawentities.value = 1; r_drawentities.string = '1';
 		const worldEntity = new entity_t(); worldEntity.model = session.map; worldEntity.frame = 0; set_r_worldentity( worldEntity );
 		R_NewMap();
 		Draw_SetExternals( { vid, d_8to24table } );
@@ -224,6 +227,10 @@ export async function Hexen2_PageStart( options ) {
 		let attacking = false;
 		let frameCount = 0;
 		let weaponSelectFrames = 0;
+		let jumpHeld = false;
+		cl.viewent = cl.viewent ?? new entity_t();
+		addEventListener( 'keydown', event => { if ( event.code === 'Space' ) jumpHeld = true; } );
+		addEventListener( 'keyup', event => { if ( event.code === 'Space' ) jumpHeld = false; } );
 		let lastWidth = 0, lastHeight = 0;
 		const tick = dt => {
 
@@ -232,24 +239,46 @@ export async function Hexen2_PageStart( options ) {
 				if ( window.innerWidth !== lastWidth || window.innerHeight !== lastHeight ) { lastWidth = window.innerWidth; lastHeight = window.innerHeight; resize(); }
 				if ( turnLeft ) cl.viewangles[ 1 ] = ( cl.viewangles[ 1 ] + 120 * dt + 360 ) % 360;
 				if ( turnRight ) cl.viewangles[ 1 ] = ( cl.viewangles[ 1 ] - 120 * dt + 720 ) % 360;
-				if ( weaponSelectFrames < 3 ) { session.player.v.impulse = 1; weaponSelectFrames ++; } // native number-key: first weapon
 				set_host_frametime( dt );
 				SV_SetFrametime( dt );
 				Cbuf_Execute();
+				// a forced view angle (spawn/teleport) is applied once; otherwise SV_ClientThink only updates angles when fixangle is 0
+				if ( session.player.v.fixangle ) { cl.viewangles = [ session.player.v.v_angle[ 0 ], session.player.v.v_angle[ 1 ], session.player.v.v_angle[ 2 ] ]; session.player.v.fixangle = 0; }
 				const command = { forwardmove: 0, sidemove: 0, upmove: 0, viewangles: [ 0, 0, 0 ] };
 				CL_BaseMove( command );
 				IN_Move( command );
 				command.viewangles = [ cl.viewangles[ 0 ], cl.viewangles[ 1 ], cl.viewangles[ 2 ] ];
 				SV_User_SetCommand( { forwardmove: command.forwardmove, sidemove: command.sidemove,
 					upmove: command.upmove, viewangles: command.viewangles } );
+				session.player.v.v_angle = [ cl.viewangles[ 0 ], cl.viewangles[ 1 ], cl.viewangles[ 2 ] ];
 				SV_ClientThink();
+				// the selection impulse must be set after the usercmd copy and before PlayerPreThink (SV_Physics)
+				if ( weaponSelectFrames < 3 ) { session.player.v.impulse = 1; weaponSelectFrames ++; }
 				attacking = ( in_attack.state & 1 ) !== 0;
 				session.player.v.button0 = attacking ? 1 : 0;
+				session.player.v.button2 = jumpHeld ? 1 : 0;
 				SV_Physics();
 				applyPlayerMessages( session );
 				cl_entities[ session.player.index ].origin = [ session.player.v.origin[ 0 ], session.player.v.origin[ 1 ], session.player.v.origin[ 2 ] ];
 				updateNearbyEntities( session );
 				V_CalcRefdef();
+				const weaponName = PR_GetString( session.player.v.weaponmodel );
+				if ( weaponName ) {
+
+					const weapon = Mod_ForName( weaponName, true );
+					if ( weapon ) {
+
+						const vm = cl.viewent;
+						vm.model = weapon; vm.frame = session.player.v.weaponframe | 0; vm.skin = session.player.v.skin | 0;
+						vm.effects = 0; vm.colormap = vid.colormap; vm.scale = 1;
+						vm.origin = [ session.player.v.origin[ 0 ], session.player.v.origin[ 1 ], session.player.v.origin[ 2 ] + ( session.player.v.view_ofs?.[ 2 ] ?? 50 ) ];
+						// alias pitch is opposite the camera's positive-down pitch; without the negation the weapon swings the wrong way
+						vm.angles = [ - cl.viewangles[ 0 ], cl.viewangles[ 1 ], cl.viewangles[ 2 ] ];
+
+					}
+
+				}
+				if ( R_BestiaryInputLocked() ) R_BestiaryCancel(); // the Quake journal must not hide Hexen's weapon or lock input
 				R_RenderView();
 				Draw_BeginFrame( 'height' );
 				const hud = Hexen2_HudFromClientState( session.state );
@@ -264,8 +293,9 @@ export async function Hexen2_PageStart( options ) {
 				if ( context && context.state === 'running' ) S_Update( session.player.v.origin, [ 1, 0, 0 ], [ 0, 1, 0 ], [ 0, 0, 1 ] );
 				frameCount ++;
 				if ( frameCount % 120 === 0 ) log( 'state frames=' + frameCount + ' vis=' + cl_numvisedicts + ' pos=' + session.player.v.origin.map( v => Math.round( v ) ).join( ',' ) + ' yaw=' + Math.round( cl.viewangles[ 1 ] ) + ' audio=' + ( S_GetAudioContext()?.state ?? 'none' ) + ' lock=' + ( document.pointerLockElement ? 1 : 0 ) );
+				if ( frameCount === 1 ) log( 'bestiary=' + ( R_BestiaryInputLocked() ? 'locked' : 'idle' ) + ' weapon model=' + PR_GetString( session.player.v.weaponmodel ) + ' frame=' + ( session.player.v.weaponframe | 0 ) + ' viewent=' + ( cl.viewent.model ? ( cl.viewent.model.type + ':' + cl.viewent.model.numframes + ':' + cl.viewent.frame + ':' + cl.viewent.origin.map( v => Math.round( v ) ).join( ',' ) ) : 'no' ) + ' cvar=' + Cvar_VariableValue( 'r_drawviewmodel' ) + ' stats0=' + ( cl.stats[ 0 ] | 0 ) + ' vieworg=' + r_refdef.vieworg.map( v => Math.round( v ) ).join( ',' ) );
 				if ( frameCount === 1 ) log( 'first frame rendered calls=' + ( renderer.info.render.calls | 0 ) + ' tris=' + ( renderer.info.render.triangles | 0 ) + ' canvas=' + renderer.domElement.width + 'x' + renderer.domElement.height + ' css=' + renderer.domElement.clientWidth + 'x' + renderer.domElement.clientHeight + ' style=' + renderer.domElement.style.width + 'x' + renderer.domElement.style.height + ' vrect=' + r_refdef.vrect.width + 'x' + r_refdef.vrect.height + ' vid=' + vid.width + 'x' + vid.height + ' overlay=' + ( Draw_GetOverlayCanvas()?.width ?? 0 ) + 'x' + ( Draw_GetOverlayCanvas()?.height ?? 0 ) + ' audio=' + ( S_GetAudioContext()?.state ?? 'none' ) );
-				options.onFrame?.( session, { frames: frameCount, position: [ session.player.v.origin[ 0 ], session.player.v.origin[ 1 ], session.player.v.origin[ 2 ] ], health: session.player.v.health, canvas: [ renderer.domElement.width, renderer.domElement.height ], css: [ renderer.domElement.clientWidth, renderer.domElement.clientHeight ], video: [ vid.width, vid.height ], yaw: cl.viewangles[ 1 ] } );
+				options.onFrame?.( session, { frames: frameCount, position: [ session.player.v.origin[ 0 ], session.player.v.origin[ 1 ], session.player.v.origin[ 2 ] ], health: session.player.v.health, canvas: [ renderer.domElement.width, renderer.domElement.height ], css: [ renderer.domElement.clientWidth, renderer.domElement.clientHeight ], video: [ vid.width, vid.height ], yaw: cl.viewangles[ 1 ], weapon: PR_GetString( session.player.v.weaponmodel ), viewent: cl.viewent.model ? 1 : 0, currentWeapon: session.player.v.current_weapon | 0, drawViewmodel: r_drawviewmodel.value | 0, drawEntities: r_drawentities.value | 0 } );
 
 			} catch ( error ) {
 
@@ -296,7 +326,7 @@ export async function Hexen2_PageStart( options ) {
 				if ( i === 70 ) dispatch( 'keydown', { code: 'ArrowUp' } );
 				if ( i === 80 ) dispatch( 'mousedown', { button: 0 } );
 				if ( i === 100 ) dispatch( 'mouseup', { button: 0 } );
-				if ( i === 140 ) { dispatch( 'keyup', { code: 'ArrowUp' } ); log( 'autoplay pos=' + session.player.v.origin.map( v => Math.round( v ) ).join( ',' ) + ' yaw=' + Math.round( cl.viewangles[ 1 ] ) + ' audio=' + ( S_GetAudioContext()?.state ?? 'none' ) ); }
+				if ( i === 140 ) { dispatch( 'keyup', { code: 'ArrowUp' } ); log( 'autoplay pos=' + session.player.v.origin.map( v => Math.round( v ) ).join( ',' ) + ' yaw=' + Math.round( cl.viewangles[ 1 ] ) + ' vangle=' + Math.round( session.player.v.v_angle[ 1 ] ) + ' angles=' + Math.round( session.player.v.angles[ 1 ] ) + ' fix=' + ( session.player.v.fixangle | 0 ) + ' audio=' + ( S_GetAudioContext()?.state ?? 'none' ) ); }
 				if ( i === 150 ) {
 
 					let best = null, bestDistance = 1e9;
@@ -320,7 +350,8 @@ export async function Hexen2_PageStart( options ) {
 				}
 				if ( i === 160 ) dispatch( 'mousedown', { button: 0 } );
 				if ( i === 200 ) dispatch( 'mouseup', { button: 0 } );
-				if ( i === 230 && combat ) log( 'autoplay combat after=' + combat.ent.v.health + ' damaged=' + ( combat.ent.v.health < combat.before ) );
+				if ( i === 160 && combat ) log( 'autoplay combat draw calls=' + ( renderer.info.render.calls | 0 ) + ' tris=' + ( renderer.info.render.triangles | 0 ) + ' vis=' + cl_numvisedicts + ' model=' + ( cl_entities[ combat.ent.index ]?.model ? 'yes' : 'no' ) );
+				if ( i === 230 && combat ) log( 'autoplay combat after=' + combat.ent.v.health + ' damaged=' + ( combat.ent.v.health < combat.before ) + ' calls=' + ( renderer.info.render.calls | 0 ) + ' tris=' + ( renderer.info.render.triangles | 0 ) );
 				tick( 0.05 );
 
 			}

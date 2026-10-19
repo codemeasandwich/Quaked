@@ -542,6 +542,10 @@ export function SV_User_SetCommand( move ) {
 		host_client.cmd.upmove = cmd.upmove;
 		if ( ! host_client.cmd.viewangles ) host_client.cmd.viewangles = [ 0, 0, 0 ];
 		for ( let i = 0; i < 3; i ++ ) host_client.cmd.viewangles[ i ] = cmd.viewangles ? cmd.viewangles[ i ] : 0;
+		// native SV_ReadClientMove copies the sent angles into the player's v_angle; SV_ClientThink uses v_angle for
+		// movement and traces, so a local usercmd must do the same or the player only ever moves along the spawn angle.
+		if ( sv_player?.v?.v_angle && cmd.viewangles ) for ( let i = 0; i < 3; i ++ ) sv_player.v.v_angle[ i ] = cmd.viewangles[ i ];
+		if ( host_client.edict?.v?.v_angle && cmd.viewangles ) for ( let i = 0; i < 3; i ++ ) host_client.edict.v.v_angle[ i ] = cmd.viewangles[ i ];
 
 	}
 

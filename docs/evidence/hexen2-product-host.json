@@ -1,17 +1,17 @@
 {
-  "at": "2026-10-19T10:50:38.407Z",
-  "base": "http://127.0.0.1:63027",
+  "at": "2026-10-19T11:15:37.362Z",
+  "base": "http://127.0.0.1:64476",
   "result": {
     "ok": true,
-    "frames": 47,
+    "frames": 43,
     "errors": [],
     "keyEvents": 1,
     "position": [
-      -797.4215698242188,
-      -1913.4219970703125,
+      -769.4944458007812,
+      -2034,
       0.03125
     ],
-    "health": 83,
+    "health": 85,
     "classNumber": 1,
     "canvas": [
       1280,
@@ -26,8 +26,13 @@
       768
     ],
     "yaw": 345.4815673828125,
+    "weapon": "models/gauntlet.mdl",
+    "viewent": 1,
+    "currentWeapon": 0,
+    "drawViewmodel": 1,
+    "drawEntities": 1,
     "started": true,
-    "moved": 170.5233491759046,
+    "moved": 148.50555419921875,
     "yawBefore": 0,
     "yawTurn": 345.4815673828125
   }

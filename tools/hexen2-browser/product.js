@@ -35,7 +35,7 @@ try {
 			receipt.forward = stats.forward;
 			receipt.keyDest = stats.keyDest;
 			receipt.forwardState = stats.forwardState;
-			receipt.yaw = stats.yaw;
+			receipt.yaw = stats.yaw; receipt.weapon = stats.weapon; receipt.viewent = stats.viewent; receipt.currentWeapon = stats.currentWeapon; receipt.drawViewmodel = stats.drawViewmodel; receipt.drawEntities = stats.drawEntities;
 
 		} } );
 	receipt.started = started.ok;

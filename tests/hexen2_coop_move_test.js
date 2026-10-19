@@ -63,7 +63,8 @@ Deno.test( 'two players walk independently through the engine movement path', ()
 
 	};
 	setup( playerA, clientA ); setup( playerB, clientB );
-	playerB.v.angles = [ 0, 90, 0 ]; playerB.v.v_angle = [ 0, 90, 0 ]; // B walks east, A walks north
+	playerA.v.fixangle = 0; playerB.v.fixangle = 0; // the client has consumed the spawn's forced view
+	// B's east heading must come from its usercmd (native SV_ReadClientMove copies it into v_angle); A walks north
 	const beforeA = [ playerA.v.origin[ 0 ], playerA.v.origin[ 1 ], playerA.v.origin[ 2 ] ];
 	const beforeB = [ playerB.v.origin[ 0 ], playerB.v.origin[ 1 ], playerB.v.origin[ 2 ] ];
 	let error = null;
@@ -77,6 +78,7 @@ Deno.test( 'two players walk independently through the engine movement path', ()
 			SV_Physics_Client( playerA, 1 );
 			SV_SetPlayer( playerB );
 			SV_User_SetCommand( { forwardmove: 320, viewangles: [ 0, 90, 0 ] } );
+			same( playerB.v.v_angle[ 1 ], 90, 'the usercmd yaw reaches the player v_angle' );
 			SV_ClientThink();
 			SV_Physics_Client( playerB, 2 );
 
