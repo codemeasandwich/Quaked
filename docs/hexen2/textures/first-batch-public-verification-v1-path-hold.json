@@ -1,0 +1,481 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-18T23:35:45.701418+00:00",
+  "scope": "First-two offline Hexen photographic map source/codec/math/public-preview verification",
+  "checks": [
+    {
+      "name": "Actual PAK/native palette/slot identities and all10 4xQ92 maps; five byte replays each and independent distance/normal equations",
+      "status": "PASS"
+    },
+    {
+      "name": "Static public preview href/src/CSS references resolve to exact authoring files; no runtime scripts",
+      "status": "PASS"
+    }
+  ],
+  "materials": [
+    {
+      "name": "rtex337",
+      "nativeIdentity": {
+        "id": "3bbe64a968dbc371d1048e52eb3ac7eda9c57773e7e4270c35e3a5b5550f015c",
+        "width": 64,
+        "height": 128,
+        "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+        "rgbaSha256": "63e7f04ffa1df13abbe63d85801574f611b351c9feaecc1f6f7418783c4e0faf",
+        "indexedPixelSha256": "f8d7dbe9b85e69ef70c836bcdbda5568ec0f9d944dbc5699d6457ccb40bce4ad"
+      },
+      "sourceOccurrencesVerified": 27,
+      "scope": "base",
+      "maps": [
+        {
+          "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v1-diffuse.webp",
+          "sha256": "f651a750d452d93efefaec220688efd1365919fdd9971b0919a748dbb61d4217",
+          "bytes": 66474,
+          "role": "diffuse",
+          "codecChunks": [
+            "VP8 "
+          ],
+          "dimensions": [
+            256,
+            512
+          ],
+          "quality92Proof": "exact encoded byte replay with quality92, losslessFalse, method6"
+        },
+        {
+          "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v1-height.webp",
+          "sha256": "d853a1bb284b4a44923e6b56d9dcea76eec0913cf3eca633546fa5d9aba38ef3",
+          "bytes": 55524,
+          "role": "height",
+          "codecChunks": [
+            "VP8 "
+          ],
+          "dimensions": [
+            256,
+            512
+          ],
+          "quality92Proof": "exact encoded byte replay with quality92, losslessFalse, method6"
+        },
+        {
+          "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v1-normalX.webp",
+          "sha256": "bf545a082a467ce43e7b0ed1474ecf58fce9009ad3d359726c2d8bd033918f53",
+          "bytes": 51580,
+          "role": "normalX",
+          "codecChunks": [
+            "VP8 "
+          ],
+          "dimensions": [
+            256,
+            512
+          ],
+          "quality92Proof": "exact encoded byte replay with quality92, losslessFalse, method6"
+        },
+        {
+          "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v1-normalY.webp",
+          "sha256": "9bbdba9d3870754f9d50d31360b2731450e38f1826f2245fcdc77143e0298d00",
+          "bytes": 52052,
+          "role": "normalY",
+          "codecChunks": [
+            "VP8 "
+          ],
+          "dimensions": [
+            256,
+            512
+          ],
+          "quality92Proof": "exact encoded byte replay with quality92, losslessFalse, method6"
+        },
+        {
+          "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v1-normalZ.webp",
+          "sha256": "4391eb46eba118ca0f9efd40e39e36b5cdb800f4930df773249d02fcbf3095fe",
+          "bytes": 14600,
+          "role": "normalZ",
+          "codecChunks": [
+            "VP8 "
+          ],
+          "dimensions": [
+            256,
+            512
+          ],
+          "quality92Proof": "exact encoded byte replay with quality92, losslessFalse, method6"
+        }
+      ],
+      "Q92ReplayAllFiveByteExact": true,
+      "distance": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            64
+          ],
+          "MAE": 10.99560546875,
+          "maximum": 62.0,
+          "nativeSeam": {
+            "wrapXMean": 24.463541666666668,
+            "wrapYMean": 36.0625,
+            "interiorXMean": 8.03040994623656,
+            "interiorYMean": 8.843915343915343,
+            "wrapToInteriorX": 3.0463627424315334,
+            "wrapToInteriorY": 4.07766227938977
+          },
+          "replacementSeam": {
+            "wrapXMean": 22.234375,
+            "wrapYMean": 30.114583333333332,
+            "interiorXMean": 8.261592741935484,
+            "interiorYMean": 8.932705026455027,
+            "wrapToInteriorX": 2.6912940028064183,
+            "wrapToInteriorY": 3.3712725590004626
+          }
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            32
+          ],
+          "MAE": 8.810546875,
+          "maximum": 49.0,
+          "nativeSeam": {
+            "wrapXMean": 16.78125,
+            "wrapYMean": 18.520833333333332,
+            "interiorXMean": 7.2131944444444445,
+            "interiorYMean": 7.543682795698925,
+            "wrapToInteriorX": 2.3264657745258495,
+            "wrapToInteriorY": 2.455144766146993
+          },
+          "replacementSeam": {
+            "wrapXMean": 13.479166666666666,
+            "wrapYMean": 16.916666666666668,
+            "interiorXMean": 7.0875,
+            "interiorYMean": 7.889784946236559,
+            "wrapToInteriorX": 1.9018224573780127,
+            "wrapToInteriorY": 2.1441226575809202
+          }
+        }
+      ],
+      "angularDegrees": {
+        "normalAngularMean": 0.9975882776102799,
+        "normalAngularP99": 2.5306588958381435,
+        "normalAngularMaximum": 4.29946568797498
+      },
+      "independentNormalEquation": {
+        "maximumFloatDelta": 2.220446049250313e-16,
+        "machinePrecisionBound": 8.881784197001252e-16,
+        "independentQuantizationTieDifferences": 37,
+        "exactByteReplay": "unchanged source-hash-pinned production helper; alternate independent derivative equation verified separately"
+      },
+      "decodedDiffuseSeamDiagnostics": {
+        "wrapXMean": 36.3046875,
+        "wrapYMean": 55.453125,
+        "interiorXMean": 13.066344975490196,
+        "interiorYMean": 14.696943289302022,
+        "wrapToInteriorX": 2.7784883659585144,
+        "wrapToInteriorY": 3.7731060063601527
+      },
+      "decodedHeightSeamDiagnostics": {
+        "wrapXMean": 51.850260416666664,
+        "wrapYMean": 65.13411458333333,
+        "interiorXMean": 16.94437806372549,
+        "interiorYMean": 19.024398136823223,
+        "wrapToInteriorX": 3.060027356664548,
+        "wrapToInteriorY": 3.423714858934807
+      },
+      "artVerdict": "not assigned by numerical verification"
+    },
+    {
+      "name": "rtex450",
+      "nativeIdentity": {
+        "id": "4f3556a977d8aa323fcff929f9e7bda21da6a294aebd54e1214f3e107ec2f12e",
+        "width": 128,
+        "height": 128,
+        "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+        "rgbaSha256": "d757da333b3ca701d5e96a5c94102c1349c97726329eaf73fbc0fcf94eebe84f",
+        "indexedPixelSha256": "cbf3fbd17dab6708c8857b7602900644d470ceafe520017aca86998b995d7abf"
+      },
+      "sourceOccurrencesVerified": 8,
+      "scope": "portals",
+      "maps": [
+        {
+          "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-diffuse.webp",
+          "sha256": "7bf667577d8663bd3bb17a87002faf3e1c778c00869f615f3e5bd8c0ace3f08c",
+          "bytes": 131052,
+          "role": "diffuse",
+          "codecChunks": [
+            "VP8 "
+          ],
+          "dimensions": [
+            512,
+            512
+          ],
+          "quality92Proof": "exact encoded byte replay with quality92, losslessFalse, method6"
+        },
+        {
+          "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-height.webp",
+          "sha256": "f1d213b53f118ba2bb7f161d330e9ad96e9e6de9ba513e317652f853c835cadf",
+          "bytes": 85124,
+          "role": "height",
+          "codecChunks": [
+            "VP8 "
+          ],
+          "dimensions": [
+            512,
+            512
+          ],
+          "quality92Proof": "exact encoded byte replay with quality92, losslessFalse, method6"
+        },
+        {
+          "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-normalX.webp",
+          "sha256": "9fa797f3721af28a3e6692cf61bf9b785ab2330b1b46792965173b30bd08ad33",
+          "bytes": 90012,
+          "role": "normalX",
+          "codecChunks": [
+            "VP8 "
+          ],
+          "dimensions": [
+            512,
+            512
+          ],
+          "quality92Proof": "exact encoded byte replay with quality92, losslessFalse, method6"
+        },
+        {
+          "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-normalY.webp",
+          "sha256": "89e9befcde20884bb9cd589d12771d57d7fbb44621e24bba53af58d4a5201cb2",
+          "bytes": 87642,
+          "role": "normalY",
+          "codecChunks": [
+            "VP8 "
+          ],
+          "dimensions": [
+            512,
+            512
+          ],
+          "quality92Proof": "exact encoded byte replay with quality92, losslessFalse, method6"
+        },
+        {
+          "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-normalZ.webp",
+          "sha256": "9d67b437b317568f15591b4fbe9d1feb219d295cf3f99b50920279f495f00b3e",
+          "bytes": 22882,
+          "role": "normalZ",
+          "codecChunks": [
+            "VP8 "
+          ],
+          "dimensions": [
+            512,
+            512
+          ],
+          "quality92Proof": "exact encoded byte replay with quality92, losslessFalse, method6"
+        }
+      ],
+      "Q92ReplayAllFiveByteExact": true,
+      "distance": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            64,
+            64
+          ],
+          "MAE": 5.687255859375,
+          "maximum": 31.0,
+          "nativeSeam": {
+            "wrapXMean": 16.0,
+            "wrapYMean": 17.348958333333332,
+            "interiorXMean": 9.318617724867725,
+            "interiorYMean": 12.136491402116402,
+            "wrapToInteriorX": 1.7169928494118065,
+            "wrapToInteriorY": 1.429487135821475
+          },
+          "replacementSeam": {
+            "wrapXMean": 12.479166666666666,
+            "wrapYMean": 14.692708333333334,
+            "interiorXMean": 10.795800264550264,
+            "interiorYMean": 14.553819444444445,
+            "wrapToInteriorX": 1.1559278942612532,
+            "wrapToInteriorY": 1.0095431229869976
+          }
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            32,
+            32
+          ],
+          "MAE": 3.2669270833333335,
+          "maximum": 16.0,
+          "nativeSeam": {
+            "wrapXMean": 12.59375,
+            "wrapYMean": 21.177083333333332,
+            "interiorXMean": 10.655577956989248,
+            "interiorYMean": 13.39885752688172,
+            "wrapToInteriorX": 1.1818927186149917,
+            "wrapToInteriorY": 1.5805141065830721
+          },
+          "replacementSeam": {
+            "wrapXMean": 10.447916666666666,
+            "wrapYMean": 21.583333333333332,
+            "interiorXMean": 11.388104838709678,
+            "interiorYMean": 14.398521505376344,
+            "wrapToInteriorX": 0.917441208580449,
+            "wrapToInteriorY": 1.4989964994165694
+          }
+        }
+      ],
+      "angularDegrees": {
+        "normalAngularMean": 0.9720156692479112,
+        "normalAngularP99": 2.555138601712847,
+        "normalAngularMaximum": 4.535985480855987
+      },
+      "independentNormalEquation": {
+        "maximumFloatDelta": 2.220446049250313e-16,
+        "machinePrecisionBound": 8.881784197001252e-16,
+        "independentQuantizationTieDifferences": 130,
+        "exactByteReplay": "unchanged source-hash-pinned production helper; alternate independent derivative equation verified separately"
+      },
+      "decodedDiffuseSeamDiagnostics": {
+        "wrapXMean": 16.266276041666668,
+        "wrapYMean": 17.661458333333332,
+        "interiorXMean": 13.855273819716242,
+        "interiorYMean": 15.166057668786692,
+        "wrapToInteriorX": 1.1740133218096014,
+        "wrapToInteriorY": 1.1645385187795
+      },
+      "decodedHeightSeamDiagnostics": {
+        "wrapXMean": 9.031901041666666,
+        "wrapYMean": 3.03515625,
+        "interiorXMean": 10.61191164179713,
+        "interiorYMean": 12.99440690231572,
+        "wrapToInteriorX": 0.8511097101574727,
+        "wrapToInteriorY": 0.23357405019070995
+      },
+      "artVerdict": "not assigned by numerical verification"
+    }
+  ],
+  "limits": [
+    "No visual-art acceptance from MAE or seam metrics; independent visual review remains required.",
+    "No Hexen runtime binding, gameplay, GPU lighting, app launch, or mesh-displacement acceptance.",
+    "XYZ recipe uses unsmoothed decoded height; current engine crafted-height helper additionally smooths. No false mathematical equality between those separate paths is asserted.",
+    "Generator provenance is retained raw image/prompt plus finishing hashes, not independent proof of the image-generation service invocation."
+  ],
+  "actualPAKs": [
+    {
+      "path": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+      "bytes": 22704056,
+      "sha256": "57936acc4cd9abed7acb480dd9c6d59c7c98e96e4eca4e2d04f390d2dfa5ffde",
+      "directoryEntries": 696,
+      "duplicates": []
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+      "bytes": 75601170,
+      "sha256": "6940cc03dc731f9c19f4e8a21259d7f191bd60a7487b50ceed3f8268e0d32a56",
+      "directoryEntries": 523,
+      "duplicates": [
+        {
+          "name": "models/mumshot.mdl",
+          "firstOffset": 10902172,
+          "duplicateOffset": 25184081,
+          "bytes": 11308,
+          "sha256": "eea20e14d61fa1572799a2844133c907b8c7b84c07beeb6a8d8a6df835371020",
+          "resolution": "identical bytes; first native directory entry retained"
+        },
+        {
+          "name": "sound/mummy/mislfire.wav",
+          "firstOffset": 1830694,
+          "duplicateOffset": 25214497,
+          "bytes": 40140,
+          "sha256": "e269c07608f322518e709925d5b13daded150460d19d3091f15152ce4c06c9bf",
+          "resolution": "identical bytes; first native directory entry retained"
+        },
+        {
+          "name": "sound/eidolon/flamend.wav",
+          "firstOffset": 955356,
+          "duplicateOffset": 25254637,
+          "bytes": 13964,
+          "sha256": "fbf1257269c77856bcad55dbded533f0279b7fc2dec68c2322bbca68e8c893fa",
+          "resolution": "identical bytes; first native directory entry retained"
+        }
+      ]
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+      "bytes": 49089114,
+      "sha256": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+      "directoryEntries": 245,
+      "duplicates": []
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+      "bytes": 49089114,
+      "sha256": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+      "directoryEntries": 245,
+      "duplicates": []
+    }
+  ],
+  "previewReferences": [
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v1-diffuse.webp",
+      "sha256": "f651a750d452d93efefaec220688efd1365919fdd9971b0919a748dbb61d4217",
+      "bytes": 66474
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v1.json",
+      "sha256": "6185cd26fcc4952a1ed222f662aad834b5c5568032f5a8cfabc631a0bb934efe",
+      "bytes": 3240
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/manifest.json",
+      "sha256": "7b154f75e5e89844ea68ae36ab7738ec86539b117afa96309c6ebbac1b2e9a49",
+      "bytes": 18680
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/01-rtex337-3bbe64a968db.png",
+      "sha256": "b2a1d03ce67e4115e3e5699c9d5b8a26152317a7955ad621cd259b7636eee6b4",
+      "bytes": 6831
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/13-rtex450-4f3556a977d8.png",
+      "sha256": "6d5c56597e037ec494c9b76ddc3c72b644fdcf2fc76562025ef8a79533611f44",
+      "bytes": 15988
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-diffuse.webp",
+      "sha256": "7bf667577d8663bd3bb17a87002faf3e1c778c00869f615f3e5bd8c0ace3f08c",
+      "bytes": 131052
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1.json",
+      "sha256": "424f6509586acd87a0bb83e57f5edfb2ee94773eeacb121305968a70a2eb515f",
+      "bytes": 3271
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex337-prompt-v1.txt",
+      "sha256": "cd803e1cda338ae72da0e8bb49aded81a166fc75fb4c6c6d7f87f2fa1a0d61f7",
+      "bytes": 2419
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex337-relief-v1.jpg",
+      "sha256": "d51b9018f582d30f474a9bf578b4fdc4ecb1b9bbe2a3bc820331c0f224e0db01",
+      "bytes": 286032
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex337-review-v1.jpg",
+      "sha256": "11f2b1624d93ff09bac79f5f131c4e582a34a297e242a2bdd8e7a1e2892a3b28",
+      "bytes": 269536
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex450-prompt-v1.txt",
+      "sha256": "b792ab58a1da45fa70ccc62faca2ac596aca6e6b9cf433d1813e20ce3425231b",
+      "bytes": 2508
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex450-relief-v1.jpg",
+      "sha256": "90e723f98a19510f51d7af3dea01442e29a8365345c884fec520660d666c0a0e",
+      "bytes": 486948
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex450-review-v1.jpg",
+      "sha256": "2155e2e78cbee9ef50e197ab6989e54c18c7f81a1464d5c45f6c9447abdd71b8",
+      "bytes": 383073
+    }
+  ],
+  "runtimeIsolation": [],
+  "verdict": "HOLD",
+  "error": "CalledProcessError(128, ['git', 'show', 'HEAD:assets/game/newer/textures/index.json'])",
+  "completedAt": "2026-10-18T23:35:48.566688+00:00"
+}

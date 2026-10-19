@@ -1,0 +1,77 @@
+{
+  "updatedAt": "2026-10-19T01:51:38.546335+00:00",
+  "owner": "initiating coordinator",
+  "scope": "Whole HexenII/Portal texture enhancement campaign; ordinaryWORLD underway, othernativefamilies require their own semantics and remain explicitly incomplete",
+  "state": "Active full campaign:12 reviewed WORLD identities/120maps acrosssingle-master4x/8x tiers. Batch0028materials/80maps art,code,sourceandpublicreplayPASS.875ordinaryworldvariantsplusotherfamiliesremain.",
+  "standard": {
+    "appliesTo": [
+      "Quake and officialexpansions",
+      "HexenII",
+      "PortalofPraevus"
+    ],
+    "Low": "unchanged original",
+    "Mid": {
+      "factor": 4,
+      "default": true
+    },
+    "High": {
+      "factor": 8
+    },
+    "singleMaster": true,
+    "format": "lossy WebP",
+    "quality": 92,
+    "method": 6,
+    "distanceDivisors": [
+      2,
+      4
+    ]
+  },
+  "nextAction": "Continue pending native identities, including larger master sizes and other texture families; both-tier exactsource/photographic/edge/relief/distance checks remain mandatory. Do not wait for another permission to continue already-authorized work.",
+  "Bluey": "Currentwhoami storage_error7850064e1a224b8a997ac43f7c11729c, mutationoutcomeunknown; no blindretry/register/cardclaim. Coordinatorledger retains obligation; serviceownerto repairstorage/identity thenreconcileexistingfeature.",
+  "inventory": {
+    "path": "docs/evidence/hexen2-textures-2026-10-19/current/inventory.json",
+    "nativeVariants": 980,
+    "base": 594,
+    "expansionOwn": 386,
+    "ordinary": 887,
+    "mapsBase": 42,
+    "mapsExpansionEffective": 59
+  },
+  "batchManifest": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/manifest.json",
+  "firstBatch": [
+    "rtex337 (base)256x512",
+    "rtex450 (Portal)512x512"
+  ],
+  "artReview": "docs/hexen2/textures/two-tier-art-review.json",
+  "publicVerification": "docs/hexen2/textures/first-batch-public-verification.json",
+  "sourceReview": "docs/hexen2/textures/source-review-v2.json",
+  "sourceAudit": "docs/evidence/hexen2-textures-2026-10-19/final-source-verification-v3.json",
+  "finalMetadata": "docs/hexen2/textures/first-batch-public-final-metadata.json",
+  "currentBatch": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/tiers/batch.json",
+  "publicCLIProof": "docs/hexen2/textures/two-tier-public-tests-v2.json",
+  "defaultPreservation": "docs/hexen2/textures/craft-default-preservation.json",
+  "currentAssets": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/catalog.json",
+  "defaultTier": "Mid",
+  "Low": "Unchangedoriginal",
+  "MidFactor": 4,
+  "HighFactor": 8,
+  "newGPTGenerations": 2,
+  "reusedPriorSingleGPTSources": 2,
+  "sourceMasterPackages": 4,
+  "maps": 40,
+  "codeReview": "docs/hexen2/textures/two-tier-code-review.json",
+  "actualVerification": "docs/hexen2/textures/two-tier-actual-public-verification.json",
+  "browserUI": "docs/hexen2/textures/two-tier-browser-ui.json",
+  "cleanup": "docs/hexen2/textures/two-tier-preview-cleanup.json",
+  "batch002": {
+    "selection": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/selection.json",
+    "masterPackages": 8,
+    "enhancedMaps": 80,
+    "artReview": "docs/hexen2/textures/batch-002-art-review.json",
+    "codeReview": "docs/hexen2/textures/batch-002-code-review.json",
+    "publicMapProof": "docs/hexen2/textures/batch-002-public-actual-v1.json",
+    "preview": "PubliccontentbindingPASS; all272material/labelpanels pixel-exact, JPEGblankcornerpaddinglimitation documented"
+  },
+  "additionalNativeScopeAudit": "docs/hexen2/textures/batch-002-public-scope.md",
+  "campaignStatus": "docs/hexen2/textures/campaign-status.json"
+}

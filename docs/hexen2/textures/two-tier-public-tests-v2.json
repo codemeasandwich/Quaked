@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS six independent public CLI test groups; synthetic fixtures only",
+  "startedAt": "2026-10-19T00:21:26.504948+00:00",
+  "completedAt": "2026-10-19T00:21:30.879065+00:00",
+  "command": [
+    "/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/Users/bri/SOURCE/Quaked/tests/hexen2_texture_tiers_test.py"
+  ],
+  "exitCode": 0,
+  "inputsBefore": [
+    {
+      "file": "tests/hexen2_texture_tiers_test.py",
+      "sha256": "ab93750f13369e4eee6335c7f90a43d2ea78276b5f9fe3300de3b546492ab766",
+      "bytes": 16713
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    }
+  ],
+  "inputsAfter": [
+    {
+      "file": "tests/hexen2_texture_tiers_test.py",
+      "sha256": "ab93750f13369e4eee6335c7f90a43d2ea78276b5f9fe3300de3b546492ab766",
+      "bytes": 16713
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    }
+  ],
+  "inputsStable": true,
+  "log": {
+    "file": "docs/hexen2/textures/two-tier-public-cli-tests-v2.log",
+    "sha256": "4cb1f31e65c8ca08c43b96c31726121bcb576ae5e5e36863b36695eee1feeac5",
+    "bytes": 1008
+  },
+  "versions": {
+    "Python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+    "Pillow": "12.3.0",
+    "Numpy": "2.3.5",
+    "WebP": "1.6.0"
+  },
+  "coverage": [
+    "Actual shared CLI, native16x8 nonsquare, 16x retained master, both independent direct-master tiers, all10 exact lossyVP8/WebP92method6 byte replays and dimensions/SHA/provenance/Low assertions",
+    "Half/quarter BOX decoded-distance and authored/decoded-height normal-angle diagnostics independently recomputed",
+    "Actual output negative comparisons reject Mid from compressed High, High from upscaled Mid, and XYZ from decoded compressed tier height",
+    "Linear ramp interior gradient invariance across4x/8x with separate lossy quantization allowance; cyclic seam stencil excluded only from constant-interior comparison",
+    "Too-small/wrong-aspect/missing masters; NaN/Inf/negative/above1/wrong-shape/integer/channel height; invalid strength/cap refuse before output",
+    "Exact8x master copy and float64 height accepted; existing populated outputs/sentinel bytes protected; native/masters remain unchanged",
+    "craft default equals explicit quantize_height=True; new False opt-in retains non8bit precision, finite range and shape",
+    "Third direct authored-normal versus decoded-height-derived-normal divergence mean/P99/maximum independently recomputed at each tier"
+  ],
+  "limits": [
+    "This proof tests shared derivation code with synthetic sources; actual four-material40-map batch and preview still require independent public verification.",
+    "No art acceptance, runtime integration, engine/gameplay, build, commit or release claim.",
+    "Current default-vs-explicitTrue check is not a standalone historical golden-source equivalence proof; coordinator owns retained old-source replay."
+  ],
+  "priorDevelopmentLogs": [
+    {
+      "file": "/private/tmp/texture-tiers-public-cli-first.log",
+      "status": "PASS initial six groups"
+    },
+    {
+      "file": "/private/tmp/texture-tiers-public-cli-final.log",
+      "status": "PASS additional receipt assertions"
+    }
+  ],
+  "priorImmutableProof": {
+    "file": "docs/hexen2/textures/two-tier-public-tests.json",
+    "sha256": "5c72577c7ebdf9163fa1900cf8be8069326ef1add95574d26e4a9afe7fd22aba",
+    "bytes": 3622
+  },
+  "retainedPriorTestSource": {
+    "file": "docs/hexen2/textures/two-tier-public-tests-v1-source.py",
+    "sha256": "e1625fd61b2442bbc671df6d42c2b158f5cf56d2585361d5538b69b6785769ce",
+    "bytes": 16527
+  },
+  "successorChange": "Add independent authoredNormalVsDecodedHeightDegrees mean/p99/maximum assertion, preserving both existing angular paths and all other six groups. Tool adds only this direct divergence field."
+}

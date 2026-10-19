@@ -1,0 +1,358 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-19T01:24:48.257773+00:00",
+  "reviewer": "/root/hexen_campaign_review",
+  "verdict": "PLAN PASS: eight exact native identities and one-master4x/8x photographic authoring path",
+  "selection": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/selection.json",
+    "sha256": "3b9b4addd8b71dcb3922616d7b66cc54b63e691b99f025c711cc769b1d0dbf8c"
+  },
+  "requiredFindings": [],
+  "materials": [
+    {
+      "name": "rtex028",
+      "edition": "base",
+      "nativeIdentity": "0e5d4ca5c88f4bfe6460817e8c36c12fa4bf101ba80cde735957d80e08c10888",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "masterDimensions": [
+        512,
+        1024
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/02-rtex028-0e5d4ca5c88f.png",
+        "sha256": "5483d7b5a7f9e4b9c3ee34cb39acee416b325b4aa5e41dd70ea9a3e3f25b9c59"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rtex028.txt",
+        "sha256": "e27846b328bd89bb3abdd54f58681d4dde60b22e7ea6b3202abb2ce78c8e16e9"
+      },
+      "profile": "stone",
+      "sourceScope": "base",
+      "mapUse": [
+        "maps/castle4.bsp",
+        "maps/cath.bsp",
+        "maps/demo1.bsp",
+        "maps/demo2.bsp",
+        "maps/demo3.bsp",
+        "maps/egypt1.bsp",
+        "maps/egypt2.bsp",
+        "maps/egypt3.bsp",
+        "maps/egypt4.bsp",
+        "maps/egypt5.bsp",
+        "maps/egypt6.bsp",
+        "maps/egypt7.bsp",
+        "maps/meso8.bsp",
+        "maps/ravdm1.bsp",
+        "maps/rider2c.bsp",
+        "maps/romeric1.bsp",
+        "maps/romeric2.bsp",
+        "maps/romeric3.bsp",
+        "maps/romeric4.bsp",
+        "maps/romeric5.bsp",
+        "maps/romeric6.bsp",
+        "maps/romeric7.bsp",
+        "maps/tower.bsp",
+        "maps/village1.bsp",
+        "maps/village2.bsp",
+        "maps/village3.bsp",
+        "maps/village4.bsp",
+        "maps/village5.bsp"
+      ],
+      "faces": 9739,
+      "briefVerdict": "PASS for single-generation trial; delivered art acceptance remains required"
+    },
+    {
+      "name": "rtex099",
+      "edition": "base",
+      "nativeIdentity": "6a3ca30bf0159f5e328576d098dd2cc03846c616de2b76693570ce63a601e910",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "masterDimensions": [
+        512,
+        512
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/03-rtex099-6a3ca30bf015.png",
+        "sha256": "ddd589bcdab1c6eb53faa62856edeaadc54cd93b3515ed7242fa13fe689a5248"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rtex099.txt",
+        "sha256": "5a619b6aa6096ea6a9f7cb987837da365439540d690046d65cbbd9bf36dfd42a"
+      },
+      "profile": "wood",
+      "sourceScope": "base",
+      "mapUse": [
+        "maps/castle4.bsp",
+        "maps/castle5.bsp",
+        "maps/demo1.bsp",
+        "maps/demo2.bsp",
+        "maps/demo3.bsp",
+        "maps/egypt2.bsp",
+        "maps/egypt5.bsp",
+        "maps/meso1.bsp",
+        "maps/meso3.bsp",
+        "maps/meso4.bsp",
+        "maps/meso6.bsp",
+        "maps/meso8.bsp",
+        "maps/romeric2.bsp",
+        "maps/tower.bsp",
+        "maps/village1.bsp",
+        "maps/village2.bsp",
+        "maps/village3.bsp",
+        "maps/village4.bsp",
+        "maps/village5.bsp"
+      ],
+      "faces": 9347,
+      "briefVerdict": "PASS for single-generation trial; delivered art acceptance remains required"
+    },
+    {
+      "name": "rtex103",
+      "edition": "base",
+      "nativeIdentity": "6eac34b9d3de56683bf4788c2d98ed2541db04b7e98b80c798d5a337af98465f",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "masterDimensions": [
+        512,
+        512
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/04-rtex103-6eac34b9d3de.png",
+        "sha256": "e45b000bbb4b5d5286cb8c608e2fc695f778f8073d8e750d45e67a3d33b7e4a6"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rtex103.txt",
+        "sha256": "937b1686f584f362d83a7b85bb63dd9da4ddcb6ad9cd5dd15a57e3222a96ed44"
+      },
+      "profile": "ground",
+      "sourceScope": "base",
+      "mapUse": [
+        "maps/castle5.bsp",
+        "maps/cath.bsp",
+        "maps/demo1.bsp",
+        "maps/demo3.bsp",
+        "maps/egypt5.bsp",
+        "maps/eidolon.bsp",
+        "maps/meso1.bsp",
+        "maps/meso2.bsp",
+        "maps/meso3.bsp",
+        "maps/meso5.bsp",
+        "maps/meso6.bsp",
+        "maps/meso8.bsp",
+        "maps/ravdm2.bsp",
+        "maps/ravdm3.bsp",
+        "maps/ravdm5.bsp",
+        "maps/romeric1.bsp",
+        "maps/romeric2.bsp",
+        "maps/romeric3.bsp",
+        "maps/romeric4.bsp",
+        "maps/romeric5.bsp",
+        "maps/romeric7.bsp",
+        "maps/village1.bsp",
+        "maps/village2.bsp",
+        "maps/village3.bsp"
+      ],
+      "faces": 7464,
+      "briefVerdict": "PASS for single-generation trial; delivered art acceptance remains required"
+    },
+    {
+      "name": "rtex422",
+      "edition": "base",
+      "nativeIdentity": "d8e1d80d5a0b6b3ee364dc5abd36c5f4e7e164e905525267dac7dce2a76f2383",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "masterDimensions": [
+        512,
+        512
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/08-rtex422-d8e1d80d5a0b.png",
+        "sha256": "637617397968000e140e7c51f79126fb6e59064131ba2a6ab93e5b95920d14a9"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rtex422.txt",
+        "sha256": "817cd5f34c2ca5eb3a6b175959b80052d55a69a706f1f53c8ac8a74f80fe0580"
+      },
+      "profile": "stone",
+      "sourceScope": "base",
+      "mapUse": [
+        "maps/ravdm1.bsp",
+        "maps/romeric1.bsp",
+        "maps/romeric2.bsp",
+        "maps/romeric3.bsp",
+        "maps/romeric4.bsp",
+        "maps/romeric5.bsp",
+        "maps/romeric6.bsp",
+        "maps/romeric7.bsp"
+      ],
+      "faces": 4762,
+      "briefVerdict": "PASS for single-generation trial; delivered art acceptance remains required"
+    },
+    {
+      "name": "ttex020",
+      "edition": "portals",
+      "nativeIdentity": "56bff92e6648f5a24cb6669956f0a3ab38e963c45619fd2b1a5e2656a99ea5f6",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "masterDimensions": [
+        512,
+        1024
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/10-ttex020-56bff92e6648.png",
+        "sha256": "96b38f8a9e50d7cf25ea7bb400a8b1f691557de7833c212e0a02f0028919b0a5"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/ttex020.txt",
+        "sha256": "5eb72e65510a238eaaad6c663f256002bf1c44439f471a5184e03a89625863a9"
+      },
+      "profile": "stone",
+      "sourceScope": "expansion-own",
+      "mapUse": [
+        "maps/tibet1.bsp",
+        "maps/tibet10.bsp",
+        "maps/tibet2.bsp",
+        "maps/tibet3.bsp",
+        "maps/tibet4.bsp",
+        "maps/tibet5.bsp",
+        "maps/tibet6.bsp",
+        "maps/tibet7.bsp",
+        "maps/tibet9.bsp"
+      ],
+      "faces": 2931,
+      "briefVerdict": "PASS for single-generation trial; delivered art acceptance remains required"
+    },
+    {
+      "name": "ttex126",
+      "edition": "portals",
+      "nativeIdentity": "9061b0e47ebccd0b9a08ba77f6f65378e7cd739d0813adc883637967af803d21",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "masterDimensions": [
+        512,
+        512
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/11-ttex126-9061b0e47ebc.png",
+        "sha256": "837fa207214ac32119de547aebacd4516ef7b886c4a4c3a5da1009ab4ab79c2b"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/ttex126.txt",
+        "sha256": "4c98163546642e9ed45b82b0f49c8717cd525eed1e1b8d6ab85ce0bca1cf4829"
+      },
+      "profile": "stone",
+      "sourceScope": "expansion-own",
+      "mapUse": [
+        "maps/tibet2.bsp",
+        "maps/tibet3.bsp",
+        "maps/tibet4.bsp",
+        "maps/tibet5.bsp",
+        "maps/tibet6.bsp",
+        "maps/tibet7.bsp"
+      ],
+      "faces": 2862,
+      "briefVerdict": "PASS for single-generation trial; delivered art acceptance remains required"
+    },
+    {
+      "name": "rpal308",
+      "edition": "portals",
+      "nativeIdentity": "74929cd446bec7b624926f016953de54acd2f9edf2e66f14f9092e87bb04712f",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "masterDimensions": [
+        512,
+        512
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/12-rpal308-74929cd446be.png",
+        "sha256": "e0c8ced0e040fcf8273cd267c24b0b4ac544667b8580dfd36ed4cf46a17d3ff2"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rpal308.txt",
+        "sha256": "e61094e3c3a0381abd54ff0b5a45356eb648ac34675768892db49f9c2adf2ea2"
+      },
+      "profile": "stone",
+      "sourceScope": "expansion-own",
+      "mapUse": [
+        "maps/tibet10.bsp",
+        "maps/tibet7.bsp",
+        "maps/tibet8.bsp",
+        "maps/tibet9.bsp"
+      ],
+      "faces": 2700,
+      "briefVerdict": "PASS for single-generation trial; delivered art acceptance remains required"
+    },
+    {
+      "name": "ttex013",
+      "edition": "portals",
+      "nativeIdentity": "1e9b3f6a9b333e3e62a9ee57def585bfed779db08b2dfe116d0504b8d208b2d1",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "masterDimensions": [
+        512,
+        512
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/16-ttex013-1e9b3f6a9b33.png",
+        "sha256": "ffedeabeb261d14eec954d3226c6adfa0763f4d34713ec2993fd0d0333ac7898"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/ttex013.txt",
+        "sha256": "ba97c3c54978e1512c08b4a71ee4473a3cf0cc53b7fde2b91df253001e059990"
+      },
+      "profile": "ground",
+      "sourceScope": "expansion-own",
+      "mapUse": [
+        "maps/tibet1.bsp",
+        "maps/tibet2.bsp",
+        "maps/tibet3.bsp",
+        "maps/tibet4.bsp",
+        "maps/tibet5.bsp",
+        "maps/tibet6.bsp",
+        "maps/tibet7.bsp",
+        "maps/tibet8.bsp",
+        "maps/tibet9.bsp"
+      ],
+      "faces": 1816,
+      "briefVerdict": "PASS for single-generation trial; delivered art acceptance remains required"
+    }
+  ],
+  "reviewMethod": [
+    "Read shared tier standard, TWO-TIER authoring contract and existing code/art/public receipts; verified eight selection IDs/dimensions/ordinary category and actual base/expansion-owned map occurrences against authoritative inventory.",
+    "Viewed source native16 contact and selected eight native-forms contact; diagnostic2x brightness on dark sources is interpretation aid only, never authoring or acceptance target. Read every exact generation prompt.",
+    "Approved restrained natural-material interpretation for uncertain dark099/103/013 without invented regular geometry. Native099 retains vertical organicstrands; native103/013 continuous mottled mineral/earth. Source image always outranks verbal material labels.",
+    "Reviewed preservation of grey028/020 continuousgrain,422 two-course masonry,126 mixed thin/broad masonry and308 variedlargeblocks. Allprompts requirecoarsecolour/scale/edgephase, no newbrickcut, grain/frame/bevel/shadow, \u22658xactualraw."
+  ],
+  "authoringRequirements": [
+    "Exactlyone GPT generation per nativeID; preserveoriginalraw andexactprompt. CanonicalRGBmaster\u22658x native ineachaxis; noHighupscalefromundersizedGPToutput. Rawretention isprovenance, notsecondtierauthoringsource.",
+    "Photographiccoarsecorrection/registration onceatmaster; profilecraft quantize_height=False onceformatchingfloat32height. SharedheightamplitudeandUVscalednormals. BothMid4andHigh8onlydirectfromsameRGB/heightmasters, Q92method6all10maps. Lowunchanged.",
+    "PublicCLInegativesprovebadrawsize/aspect/input/profile/outputoverwrite rejection. Independentactualmapbyte/math/provenanceproof plusbothtierfullresolution,distancehalfquarter,repeats/cyclicedges/opposedreliefreview required. Metricsalone cannot establishartacceptance."
+  ],
+  "identityCautions": [
+    "rtex422has multiple distinctnativevariants; thisselectionis64x64 d8e1d80d5a0b\u2026only. No name-basedalias.",
+    "rtex028/ttex020are visuallyalmostidentical but indexed/pixelidentity differs; no implicitcrosseditionalias. EachselectedIDretainsitsownsinglegeneration andpackage.",
+    "rtex02264x176 andttex098256x128remainqueued; omittedfromthisincrementonlybecausecurrentselectionusesstraightforward8x512square/512x1024support, notremovedfromcampaign."
+  ],
+  "campaignLimits": [
+    "Eight ordinaryworldmaterials areboundedprogress, notfullHexenII+Portalcompletion. Currentinventory980worldvariants/887ordinary; remaininganimated/sky/liquid/utilitysemantics plus555sourceboundmodelskins andsprite/WAD/gfxclassification stayexplicitqueues.",
+    "CurrentHexenassets remainauthoring-only,namespacedoutsideQuakerecursiveruntimepackaging. Noengine/gameplay/packbinding, owneracceptance,Gitstage/commit/releaseclaim.",
+    "Blueystorage/identityconstraintretainedbyrootledger; thisreviewdoesnotacknowledgeboardmutationorproviderexecution."
+  ],
+  "reviewerEffects": "Only thisplanreviewJSON written; noasset/master/source/ref/provider mutations. Code/public/art reviews await actualoutputs."
+}

@@ -1,0 +1,13 @@
+✔ actual CLI probes PAK gaps and resolves expansion loose above expansion PAK above base loose/PAK (100.256584ms)
+✔ CLI palette identity and inherited variants never match name alone; maps retain exact provenance (145.885541ms)
+✔ CLI retains identical duplicate evidence but rejects conflicting duplicates and malformed PAK/BSP/palette (443.512583ms)
+✔ CLI rejects invalid mip chain/face references and protects existing outputs (383.243875ms)
+✔ CLI original PNG preserves native palette-expanded RGBA, dimensions and source bytes (170.356167ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1486.36075

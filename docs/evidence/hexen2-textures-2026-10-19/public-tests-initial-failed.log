@@ -1,0 +1,35 @@
+✖ actual CLI probes PAK gaps and resolves expansion loose above expansion PAK above base loose/PAK (77.424458ms)
+✔ CLI palette identity and inherited variants never match name alone; maps retain exact provenance (122.876125ms)
+✔ CLI retains identical duplicate evidence but rejects conflicting duplicates and malformed PAK/BSP/palette (318.77475ms)
+✔ CLI rejects invalid mip chain/face references and protects existing outputs (318.938459ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 900.888666
+
+✖ failing tests:
+
+test at tests/hexen2_texture_inventory_test.mjs:13:1
+✖ actual CLI probes PAK gaps and resolves expansion loose above expansion PAK above base loose/PAK (77.424458ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(v.some(v=>v.provenance.some(p=>p.profile==='portals-1'&&p.source===join(f.expansion,'maps/base.bsp'))))
+  
+      at file:///Users/bri/SOURCE/Quaked/tests/hexen2_texture_inventory_test.mjs:13:817
+      at fixture (file:///Users/bri/SOURCE/Quaked/tests/hexen2_texture_inventory_test.mjs:11:281)
+      at TestContext.<anonymous> (file:///Users/bri/SOURCE/Quaked/tests/hexen2_texture_inventory_test.mjs:13:109)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

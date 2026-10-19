@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-18T23:26:33.078014+00:00",
+  "verdict": "PLAN PASS: smallest two-material Hexen II/Portal authoring trial, with source/visual/runtime gates below",
+  "reviewer": "/root/oct17_plan_review",
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "base": "fdeb5a259fb790ad58d9d7e307a7393d892e6e2b",
+  "plan": {
+    "path": "docs/hexen2/textures/CAMPAIGN.md",
+    "sha256": "9dd4c594cbf027e5130af5508b4926ec36cf2bb24578974260271e80dd814fe1"
+  },
+  "sourceSha256": {
+    "docs/hexen2/textures/CAMPAIGN.md": "9dd4c594cbf027e5130af5508b4926ec36cf2bb24578974260271e80dd814fe1",
+    "tools/texture_sheets/finish_official_texture.py": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+    "tools/texture_sheets/encode_official_maps.py": "14f23a560c17afb72aa8a9aa9d1fda2dbed94bf1230048f3c3b9e814664f0287",
+    "tools/craft_normals.py": "eccc86b369d2eacaef0bfd9afbe065d26ab3feb5f711984c6bd376ea06202185",
+    "tools/pak_members.mjs": "3073edb6b6574b2b70b993c941864e8683bb3f3e73f4671b1da979f02322513c",
+    "src/newer/render/r_newertextures.js": "5aabea2d4c5e713ae1c81cf4e606ef3b387ce98bcca0b6e293719a7cded32246",
+    "src/engine/render/gl_model_common.js": "a6c94bf28e07a45d52f699aaa77c316a1f2e6041df2ab36cb7e260563c8b147e",
+    "src/engine/render/vid.js": "a490d6bb2143286183a5961e59f849fce69291fc95f5415783df365bb160e795",
+    "src/engine/common/game_catalogue.js": "75de90cc67f5fc5f0f906eae08123bfb6e2e6f1759059c61ce1e4b49463f5a92",
+    "tools/distribution/manifest.mjs": "3b14951f4723f37010cb71fe4545af57f7426ab65285aad5bf11d777ab41a09f",
+    "tools/distribution/packs.mjs": "62157fc59dabe278652bb85130814c4d7e18d7834f7b222d95a3d1cfe9a5deec",
+    "src/platform/resource_paths.js": "2244c08f445cd471aca6b17ddf19d5919b1c1b35eb60b8e90b97492a5ab3d2f4",
+    "tools/resource_paths.py": "7a5c2c5b4fa36d57ece723b454b3ea27310a6ba370d6436362cc3c506e98bf6e"
+  },
+  "requiredFindings": [],
+  "resolvedPlanningFindings": [
+    {
+      "issue": "Namespacing alone does not prevent shipping unqualified Hexen files. Manifest recursively includes logical newer/textures; pack classifier unknown ownership defaults core.",
+      "resolution": "Amended plan keeps entire first trial under canonical assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19; no shared Quake index/pack/catalogue/runtime changes."
+    },
+    {
+      "issue": "Existing generic PAK directory helper rejects duplicates; owned base pak1 has native duplicate entries and must not be discarded or silently treated as invalid retail.",
+      "resolution": "Keep generic Quake guard unchanged; bounded Hexen inventory records duplicate identities/locations and proves native member resolution with its explicit adapter/public tests."
+    }
+  ],
+  "currentSourceFindings": [
+    "Current Dev game catalogue and pack namespace are Quake-only. Approved Hexen architecture documents are design evidence, not playable Hexen/Portal runtime acceptance. No engine implementation is required or authorized by this increment.",
+    "BSP29 embedded miptex headers and palette-indexed pictures can feed existing image tooling. Read-only sample of supplied PAK directories found4 BSPs in basepak0,38 in basepak1,17 in Portalpak3. Native sizes include rectangular and non-power-of-two; exact4x must preserve each width and height, not force squares.",
+    "Basepak0 supplies gfx/palette.lmp768bytes. Use that actual mounted palette and native rawindexed/RGBA hashes. Existing Quake audit hardcodes224fullbright, fiveQuakegames and64-byte BSPmodels; it cannot be reused unchanged for Hexen eight-hull submodels/visibility counts or emission interpretation.",
+    "Observed duplicate basepak1 names: sound/eidolon/flamend.wav, sound/mummy/mislfire.wav, models/mumshot.mdl. This reviewer did not establish winning native semantics or byteequality; public inventory proof remains prerequisite. Expansioncopy equality/sourceprecedence also remains to be proved, not inferred from equal archive sizes.",
+    "R_NewerTextureUpgrade currently matches raw BSPname plus exact nativeRGBA identity in ordinaryVariants; file namespace is separate from lookup identity. Do not invent prefixed BSPnames or use global unguarded index.textures entries. Preserve rawcase/dimensions/palette/source identity; future Hexen runtime boundary must explicitly own family/cache/pack selection.",
+    "finish_official_texture photographic mode preserves highresolution natural forms using only smooth reduced-colour correction and optional explicit measured landmarks. It is not a universal seam or wronggeometry repair. Reuse unchanged only when needed; reject/regenerate wrong forms rather than imprint native pixel/noise boundaries.",
+    "encode_official_maps enforces4x input, refuses overwrites, encodes diffuse/height/independentXYZ grayscale WebPs at lossy92, and builds normals from decoded92 scalarheight. This existing route is reusable unchanged. Relief strength must be chosen by material/visual inspection, not copied as a universal embossed surface."
+  ],
+  "minimalFirstBatch": {
+    "count": 2,
+    "selection": "One base-owned opaque ordinary stone/masonry surface plus one Portal-owned opaque ordinary surface with verified use in an expansion BSP; select final raw names after inventory/native reference inspection. Prefer simple repeating64/128-native material first; avoid first-pass decorative borders, masks, animation, glow, liquid, sky, utility faces or trim transitions. No exact names are approved before seeing their true native images.",
+    "sourceIdentity": "edition+sourcePAK SHA/member+BSP SHA/miptexslot+rawcase name+dimensions+paletteSHA+rawindicesSHA+nativeRGBA SHA; record shared variants/duplicates rather than assuming same-name aliases.",
+    "implementation": "Built-in GPT image edit with actualnative as reference, exactprompt/sourcepins, useful sharp photographic detail. Optional existing smooth colourfinish; exact4x master then fiveQ92maps. Edition-namespaced authoring/preview manifest only, no duplicate runtime copies."
+  },
+  "proofGates": [
+    "Public inventoryCLI: bounded invalid PAK/header/dir/member/BSP/texture extents; actual palette and mount order; independent pak0/pak1/pak3 probing; base-only and expansion-overlay controls; deliberate duplicate resolution evidence; wrong palette/source identities and malformed input refusal. Preserve generic Quake tests.",
+    "Original/native references beforegeneration: verify2selected surfaces nativepixel reconstruction, dimensions, palette and source ownership; inspect orientation/counts/joint widths/edge cuts. Actualnative source, not a reused Quake replacement, is the composition authority.",
+    "Inspect actualdecodedQ92 full4x at usable display size for sharp natural material detail; no pixelgrid, stipple/saltnoise, muddyblur, over-sharpened halos, unnecessary perimeterbevel/vignette/frame, invented missingbrick gaps or material bleed. Artistic interpretation allowed with original intention intact.",
+    "For both finaldiffuses, BOX-downsample original and replacement separately to originalW/2,H/2 and W/4,H/4. Compare colour/layout/style/feature scale; retain metrics and visualcontacts, no forced pixelidentity or numeric-only acceptance.",
+    "Check native-directed seam axes; for genuineXYtiles inspect3x3/2x2 and halfperiod offset view, not bordermeans alone. No invented neighborpair or unnecessary smoothing. Check actualdecodedheight+XYZ and both normal-light directions for seam/gloss/orangepeel/perimeter inflation; use material-appropriate quiet strength.",
+    "Public five-map contract: exact4x allroles, lossyVP8quality92 deterministic replay using originalnative and selected final recipe/input, matchingdimensions/hashes, normals derivedfromdecodedscalarheight, no stale/cache/wrong-source assignment. Preserve canonical resourcepath handling.",
+    "Inspectable local standalone preview: originalPAK-derived source versus selected deliveredmaps at full/half/quarter/repeat and two-lightrelief, with edition/rawname/nativekey/hash status. No Quakeindex override or pretense of gameplay. Independent artverdict PASS/HOLD then explicit owneracceptance.",
+    "Future separate runtime gate: actual Hexenfamily palette/fullbright/transparent semantics and level load, family-safe texturebinding/cache/Classic fallback, correct pergamepackownership. Do not mark this authoring trial as runtimequalified, landed or released without that later evidence."
+  ],
+  "accountability": "Initiating coordinator owns CAMPAIGN.md/progress.json ledger while parent-reported Bluey retired/storageunknown persists; no boardmutation/durablehandoff claimed. Followup obligation remains explicit, no worker launch by reviewer.",
+  "reviewerEffects": "Read-only current source/ownedPAK header and smallmiptex samples, historical design lookup; wrote only this requested reviewJSON. No art/source/test/index/engine/runtime/ref/release changes or builds.",
+  "state": "Independent first-plan review complete. Parent inventory/generation and public helper testing proceed; reviewer will separately assess actual selected image/map/distance outputs."
+}

@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "stone-portals-rtex450",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/13-rtex450-4f3556a977d8.png",
+  "originalSha256": "6d5c56597e037ec494c9b76ddc3c72b644fdcf2fc76562025ef8a79533611f44",
+  "authoringDiffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex450-photographic-v1.png",
+  "authoringDiffuseSha256": "799e54f320f89b50b503a4f1b5b121f771c262577d11ccc522327c6ba4983320",
+  "toolSha256": "14f23a560c17afb72aa8a9aa9d1fda2dbed94bf1230048f3c3b9e814664f0287",
+  "heightToolSha256": "eccc86b369d2eacaef0bfd9afbe065d26ab3feb5f711984c6bd376ea06202185",
+  "profile": {
+    "bands": [
+      0.35,
+      1,
+      1.4,
+      1
+    ],
+    "groove": 1.4,
+    "bump": 0.7,
+    "glow": 0,
+    "strength": 0.3,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-diffuse.webp",
+      "sha256": "7bf667577d8663bd3bb17a87002faf3e1c778c00869f615f3e5bd8c0ace3f08c",
+      "bytes": 131052,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "height": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-height.webp",
+      "sha256": "f1d213b53f118ba2bb7f161d330e9ad96e9e6de9ba513e317652f853c835cadf",
+      "bytes": 85124,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalX": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-normalX.webp",
+      "sha256": "9fa797f3721af28a3e6692cf61bf9b785ab2330b1b46792965173b30bd08ad33",
+      "bytes": 90012,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalY": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-normalY.webp",
+      "sha256": "89e9befcde20884bb9cd589d12771d57d7fbb44621e24bba53af58d4a5201cb2",
+      "bytes": 87642,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalZ": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-normalZ.webp",
+      "sha256": "9d67b437b317568f15591b4fbe9d1feb219d295cf3f99b50920279f495f00b3e",
+      "bytes": 22882,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    64
+  ],
+  "distanceMAE": 5.687255859375,
+  "distanceMaximum": 31.0,
+  "secondaryComparisonDimensions": [
+    32,
+    32
+  ],
+  "secondaryDistanceMAE": 3.2669270833333335,
+  "secondaryDistanceMaximum": 16.0,
+  "colourCompressionMAE": 2.2133102416992188,
+  "heightCompressionMAE": 1.3716316223144531,
+  "heightCompressionMaximum": 9.0,
+  "normalAngularMean": 0.9720156692479102,
+  "normalAngularP99": 2.555138601712847,
+  "normalAngularMaximum": 4.535985480856149,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

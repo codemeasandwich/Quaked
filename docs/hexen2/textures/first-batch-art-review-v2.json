@@ -1,0 +1,239 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-18T23:38:30.438833+00:00",
+  "verdict": "ART PASS: corrected rtex337 v2 and retained rtex450 v1 selected for first authoring trial",
+  "reviewer": "/root/oct17_plan_review",
+  "priorImmutableArtReview": {
+    "file": "docs/hexen2/textures/first-batch-art-review.json",
+    "sha256": "bd1498676ea63d9dac8975f0d9c356554fde4cbea80e41cc1301f60074eb7600",
+    "status": "Retained unchanged: v1rtex337 HOLD is historical, not retroactively relabeled."
+  },
+  "selected": [
+    {
+      "name": "rtex337",
+      "edition": "base",
+      "selectedVersion": "v2",
+      "verdict": "ART PASS",
+      "encoderReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v2.json",
+        "sha256": "3bc09e04afedbfdc25c241d8cae6811849707f89cd6020d1be12fa19d98575bc"
+      },
+      "maps": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v2-diffuse.webp",
+          "sha256": "4e1c1836c476f1e0cfe8bc0914e061168ef5b8e9727e30619e3f035ab0cc8000",
+          "bytes": 62736,
+          "dimensions": [
+            256,
+            512
+          ],
+          "qualityDeclaredByRecipe": 92,
+          "lossyVP8": true
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v2-height.webp",
+          "sha256": "4761a7d8f44400f5261f55d6dc23cc19202219319e6a05c84d5a3ecbc9f3502c",
+          "bytes": 53296,
+          "dimensions": [
+            256,
+            512
+          ],
+          "qualityDeclaredByRecipe": 92,
+          "lossyVP8": true
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v2-normalX.webp",
+          "sha256": "44a541fd82d1a548120573c4909236ae995b9ff065006cb9de53ae4bda3ca133",
+          "bytes": 51050,
+          "dimensions": [
+            256,
+            512
+          ],
+          "qualityDeclaredByRecipe": 92,
+          "lossyVP8": true
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v2-normalY.webp",
+          "sha256": "68e05f8a967591998a50bd411cefb0d46d24b9d068223a91d4f66429735ab98e",
+          "bytes": 51272,
+          "dimensions": [
+            256,
+            512
+          ],
+          "qualityDeclaredByRecipe": 92,
+          "lossyVP8": true
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v2-normalZ.webp",
+          "sha256": "50ec9cae2ef4873ee92ecd95562b8691a8c20538e08c7794f364473755b25b7b",
+          "bytes": 14640,
+          "dimensions": [
+            256,
+            512
+          ],
+          "qualityDeclaredByRecipe": 92,
+          "lossyVP8": true
+        }
+      },
+      "halfNative": [
+        32,
+        64
+      ],
+      "quarterNative": [
+        16,
+        32
+      ],
+      "distanceMAE": 10.44873046875,
+      "secondaryDistanceMAE": 8.500651041666666
+    },
+    {
+      "name": "rtex450",
+      "edition": "portals",
+      "selectedVersion": "v1",
+      "verdict": "ART PASS",
+      "encoderReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1.json",
+        "sha256": "424f6509586acd87a0bb83e57f5edfb2ee94773eeacb121305968a70a2eb515f"
+      },
+      "maps": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-diffuse.webp",
+          "sha256": "7bf667577d8663bd3bb17a87002faf3e1c778c00869f615f3e5bd8c0ace3f08c",
+          "bytes": 131052,
+          "dimensions": [
+            512,
+            512
+          ],
+          "qualityDeclaredByRecipe": 92,
+          "lossyVP8": true
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-height.webp",
+          "sha256": "f1d213b53f118ba2bb7f161d330e9ad96e9e6de9ba513e317652f853c835cadf",
+          "bytes": 85124,
+          "dimensions": [
+            512,
+            512
+          ],
+          "qualityDeclaredByRecipe": 92,
+          "lossyVP8": true
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-normalX.webp",
+          "sha256": "9fa797f3721af28a3e6692cf61bf9b785ab2330b1b46792965173b30bd08ad33",
+          "bytes": 90012,
+          "dimensions": [
+            512,
+            512
+          ],
+          "qualityDeclaredByRecipe": 92,
+          "lossyVP8": true
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-normalY.webp",
+          "sha256": "89e9befcde20884bb9cd589d12771d57d7fbb44621e24bba53af58d4a5201cb2",
+          "bytes": 87642,
+          "dimensions": [
+            512,
+            512
+          ],
+          "qualityDeclaredByRecipe": 92,
+          "lossyVP8": true
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-normalZ.webp",
+          "sha256": "9d67b437b317568f15591b4fbe9d1feb219d295cf3f99b50920279f495f00b3e",
+          "bytes": 22882,
+          "dimensions": [
+            512,
+            512
+          ],
+          "qualityDeclaredByRecipe": 92,
+          "lossyVP8": true
+        }
+      },
+      "halfNative": [
+        64,
+        64
+      ],
+      "quarterNative": [
+        32,
+        32
+      ],
+      "distanceMAE": 5.687255859375,
+      "secondaryDistanceMAE": 3.2669270833333335
+    }
+  ],
+  "rtex337SuccessorFindings": [
+    "Measured registration reuses unchanged photographic finish via transpose; original64x128/sourcepixels unchanged. Exact pixel-centre source30.5/rawdonor26.66065388951522 andfixed[0,0]/[64,64] endpoints are recorded; no inventedperfecthalfline32.",
+    "Decoded outputupperdarkjoint minimumcol121 in inspectedROI corresponds30.25native, aligned with originaldarkcolumn30/pixelcentre30.5. Previous donorplacement near26.5 is resolved.",
+    "Sharp warm ochre/russet photographic weatheredstone retained, with stable two-upper/one-lower block scale. No nativepixelgrid, mushyblur, uniformstipple or sharpeninghalos observed.",
+    "IndependentBOX32x64 and16x32 views preserve broadcolour/intention/featureplacement; smallremainingcolour/materialvariation is appropriate photographic interpretation. Diagnostics10.45/8.50 MAE are not used as acceptance thresholds.",
+    "Native-vs-new halfX/halfY offset and supplied repeats retain legitimate mortar/blockedgecuts. No inventedmissingcornerblocks, globalimageborder/bevel/vignette or materialbleed identified. Existingnativeedge discontinuities distinguish mortar from a syntheticframe.",
+    "Actualdecoded scalarheight and reconstructed independentXYZ under opposing staticlights retain plausible roughstone relief and mortar depression; no newly observed inflatedperimeter, glossyorangepeel or wrongmaterialphysics. Not measuredheight or in-levelPOM verification."
+  ],
+  "registrationReview": {
+    "script": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/register_rtex337.py",
+    "sha256": "365d86c17bb760e551aff9bc9a39173720ab2b5fe5043174c3928931d152d630",
+    "recipe": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex337-photographic-v2.json",
+    "recipeSha256": "bc22b39910261363695309caa9c7b4dbaf7b60fd85eb38a042e98bfa3ee34441",
+    "nativeMortarCentre": 30.5,
+    "generatedMortarCentre": 26.66065388951522,
+    "finisherSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+    "inputHashesPreserved": {
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/01-rtex337-3bbe64a968db.png": "b2a1d03ce67e4115e3e5699c9d5b8a26152317a7955ad621cd259b7636eee6b4",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex337-generated-v1.png": "ce4f009cd4153d68c0c0d87944a09ab29a6153de6463c5f2243b912a50eab6aa"
+    }
+  },
+  "rtex450Conservation": "All5selectedv1mapbytes match previously ART-PASS receipt; no repeatqualification or artworkchanges required.",
+  "diagnosticEvidence": [
+    {
+      "file": "/private/tmp/quaked-h2-first-art-review/rtex337-v2-distance-offset-fixed.png",
+      "sha256": "26c90117e8265fe47dc65131a3f56806059298df8c002b6e89da642065cd92f6"
+    },
+    {
+      "file": "/private/tmp/quaked-h2-first-art-review/rtex337-v2-actual-maps-two-light.png",
+      "sha256": "88158deabb233edf4a2ffd9e5871a4dbadf5012adca56a41f23cb1ea96e1ecfa"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex337-review-v2.jpg",
+      "sha256": "e26fe418254158ce89efb325c669e48584bd0692dac1405ca3ff5903ed0faf6a"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex337-relief-v2.jpg",
+      "sha256": "c4812894b4866743cada6f45646fddf346cb5e8d3dc4659496466055c44461c3"
+    }
+  ],
+  "diagnosticLimit": "Contacts derive actualdecodedWebPs; CPUlighting uses normalized decodedXYZ with twoLambertlights, not productionGPU. Initialtemporaryv2distancecontact had layoutoverlap; retained but superseded by explicitly-fixed contact listedhere. No artwork affected.",
+  "publicEvidenceObserved": {
+    "file": "docs/hexen2/textures/first-batch-public-verification.json",
+    "sha256": "efdc84417c8f92ac64c774951651b692f998fdab882e715bc77f8e8a09f2d6c7",
+    "status": "Separatehelper source/codec/math/publicpreviewPASS observed forselected337v2/450v1. This artreview does not replace testexecution."
+  },
+  "inventoryAdapterReview": {
+    "file": "tools/audit_hexen2_textures.mjs",
+    "sha256AtReview": "d596d318b55b117bad533cc7258ba9ace96223246097c515c5559bff49135863",
+    "status": "Bounded source review: nativeBSP/palette/mount/identicalduplicate adapter approach sound; two small source-preservation fixes requested before final combinedqualification. Genericpakguard unchanged.",
+    "requiredFindings": [
+      {
+        "priority": 2,
+        "location": "loose.walk before readdir",
+        "issue": "A top-level maps or gfx symlink is followed before checking childentry symlinks, bypassing intended source-root symlink refusal.",
+        "smallestFix": "lstat each walked directory first; reject symboliclink then readdir; retain absentdirectory behavior. Add publicCLI top-level maps/gfx symlink refusal."
+      },
+      {
+        "priority": 2,
+        "location": "main --originals native-contact.png write",
+        "issue": "Existingcontact can be overwritten when selectingdifferentnew original filenames into an existing originalsdir. IndividualPNG wx guards do not protect contact evidence.",
+        "smallestFix": "Preflight native-contact existence beforeanyoriginalwrites, then refuseoverwrite. Add publicCLI existingcontact preservation control."
+      }
+    ]
+  },
+  "remainingGates": [
+    "Parent fixes bounded inventoryadapter source-preservation findings and publichelper proves negatives; re-review exactdelta/updatedproof separately.",
+    "Owner visualacceptance remains separate. Firstbatch remains authoring-only with no Quakeindex/runtime/distribution changes or Hexengameplay/packqualification.",
+    "No completeHexen/Portal texturecoverage or release acceptance implied by firsttwo ART-PASS."
+  ],
+  "reviewerEffects": "Only newrequested reviewJSON and temporaryinspectionPNGs written. No artwork/adapter/corefinisher/encoder/index/engine/ref/release edits or builds; no test suite executed by reviewer.",
+  "state": "Firsttwo artreview complete; reviewer quiescent awaiting bounded adapter repair or next explicit review."
+}

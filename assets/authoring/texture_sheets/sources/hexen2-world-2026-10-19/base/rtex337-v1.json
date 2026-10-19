@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "stone-hexen2-rtex337",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/01-rtex337-3bbe64a968db.png",
+  "originalSha256": "b2a1d03ce67e4115e3e5699c9d5b8a26152317a7955ad621cd259b7636eee6b4",
+  "authoringDiffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex337-photographic-v1.png",
+  "authoringDiffuseSha256": "424b6c947325d201741d0e2cc3e05381cfb4a26ddca42cff070b1b125c54a112",
+  "toolSha256": "14f23a560c17afb72aa8a9aa9d1fda2dbed94bf1230048f3c3b9e814664f0287",
+  "heightToolSha256": "eccc86b369d2eacaef0bfd9afbe065d26ab3feb5f711984c6bd376ea06202185",
+  "profile": {
+    "bands": [
+      0.35,
+      1,
+      1.4,
+      1
+    ],
+    "groove": 1.4,
+    "bump": 0.7,
+    "glow": 0,
+    "strength": 0.3,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v1-diffuse.webp",
+      "sha256": "f651a750d452d93efefaec220688efd1365919fdd9971b0919a748dbb61d4217",
+      "bytes": 66474,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        512
+      ]
+    },
+    "height": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v1-height.webp",
+      "sha256": "d853a1bb284b4a44923e6b56d9dcea76eec0913cf3eca633546fa5d9aba38ef3",
+      "bytes": 55524,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        512
+      ]
+    },
+    "normalX": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v1-normalX.webp",
+      "sha256": "bf545a082a467ce43e7b0ed1474ecf58fce9009ad3d359726c2d8bd033918f53",
+      "bytes": 51580,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        512
+      ]
+    },
+    "normalY": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v1-normalY.webp",
+      "sha256": "9bbdba9d3870754f9d50d31360b2731450e38f1826f2245fcdc77143e0298d00",
+      "bytes": 52052,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        512
+      ]
+    },
+    "normalZ": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v1-normalZ.webp",
+      "sha256": "4391eb46eba118ca0f9efd40e39e36b5cdb800f4930df773249d02fcbf3095fe",
+      "bytes": 14600,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        512
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    32,
+    64
+  ],
+  "distanceMAE": 10.99560546875,
+  "distanceMaximum": 62.0,
+  "secondaryComparisonDimensions": [
+    16,
+    32
+  ],
+  "secondaryDistanceMAE": 8.810546875,
+  "secondaryDistanceMaximum": 49.0,
+  "colourCompressionMAE": 2.5843709309895835,
+  "heightCompressionMAE": 1.326171875,
+  "heightCompressionMaximum": 9.0,
+  "normalAngularMean": 0.9975882776102787,
+  "normalAngularP99": 2.5306588958381018,
+  "normalAngularMaximum": 4.29946568797498,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

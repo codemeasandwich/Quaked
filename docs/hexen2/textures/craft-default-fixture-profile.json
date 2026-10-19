@@ -1,0 +1,20 @@
+{
+  "purpose": "Clarify exact parameters used by retained prechange/postchange golden fixtures without rewriting those receipts",
+  "rgbFormula": "np.mgrid[:64,:128];stack((((x*7+y*11)%251)/255,((x*3+y*2)%233)/255,((x*13+y*5)%199)/255),axis=2)",
+  "profile": {
+    "bands": [
+      0.35,
+      1,
+      1.4,
+      1
+    ],
+    "groove": 1.4,
+    "bump": 0.7,
+    "glow": 0,
+    "strength": 0.3,
+    "cap": 0.5
+  },
+  "quantizeHeight": "default True",
+  "heightSHA256": "55cc70df9b8cbfe272ac2d8edf70255668db9ecd1947ca1da0595d3fdc8a44df",
+  "normalSHA256": "709e4d5948ef822b47dbc9822800467cb7f7f87479b3a6d92e1fda5dc39a8352"
+}

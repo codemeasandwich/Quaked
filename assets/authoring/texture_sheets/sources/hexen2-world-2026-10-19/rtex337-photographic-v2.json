@@ -1,0 +1,69 @@
+{
+  "method": "photographic",
+  "factor": 4,
+  "verticalLandmarks": [
+    [
+      0,
+      0
+    ],
+    [
+      30.5,
+      26.66065388951522
+    ],
+    [
+      64,
+      64
+    ]
+  ],
+  "colorStrength": 0.65,
+  "fieldSigma": 0.75,
+  "edgeAnchor": false,
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    32
+  ],
+  "distanceMeanMaxError": 56.53125,
+  "distanceMeanMAE": 10.345128377278646,
+  "donorDistanceMAE": 24.174288510829353,
+  "newClippedChannelFraction": 0.0018030802408854167,
+  "donorContourCorrelation": 0.9990966969809251,
+  "sourceMean": [
+    94.6943359375,
+    67.81494140625,
+    35.03076171875
+  ],
+  "outputMean": [
+    106.81956481933594,
+    76.08866882324219,
+    39.331817626953125
+  ],
+  "donorBoundaries": {
+    "wrap_x_mean": 55.95752186362152,
+    "wrap_y_mean": 33.63253981668194,
+    "interior_x_mean": 12.964157688783635,
+    "interior_y_mean": 10.228142770640495
+  },
+  "boundaries": {
+    "wrap_x_mean": 56.17187499999999,
+    "wrap_y_mean": 33.63411458333333,
+    "interior_x_mean": 12.94000224233529,
+    "interior_y_mean": 10.20546875
+  },
+  "passedDistanceCheck": null,
+  "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+  "recipe": "measured horizontal registration through existing transposed vertical-landmark route",
+  "landmarkAxis": "x",
+  "nativeMortarCentre": 30.5,
+  "generatedMortarCentre": 26.66065388951522,
+  "measurement": "darkest meanRGB column in native-normalised x20:36 and y8:54; use pixel centres",
+  "inputs": {
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/01-rtex337-3bbe64a968db.png": "b2a1d03ce67e4115e3e5699c9d5b8a26152317a7955ad621cd259b7636eee6b4",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex337-generated-v1.png": "ce4f009cd4153d68c0c0d87944a09ab29a6153de6463c5f2243b912a50eab6aa"
+  },
+  "output": "rtex337-photographic-v2.png",
+  "outputSha256": "42cc1f157d8a58c48a24cbbf57eea5106f2f360becaf91e2be00e9a99ed55470",
+  "registrationScriptSha256": "365d86c17bb760e551aff9bc9a39173720ab2b5fe5043174c3928931d152d630",
+  "finisherSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+  "metricAxes": "finisher measurements are in transposed coordinates; encoder receipt uses delivered orientation"
+}

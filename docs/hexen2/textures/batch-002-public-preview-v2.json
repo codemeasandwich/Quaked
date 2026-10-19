@@ -1,0 +1,872 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-19T01:43:21.168225+00:00",
+  "verifier": {
+    "file": "docs/hexen2/textures/batch-002-public-verify-preview.py",
+    "sha256": "afd18f7d152aadfb0bc425fb0323bae3e95f6bdd3b47a7bfc3e1e92dc1fddc1a",
+    "bytes": 8063
+  },
+  "replayEnvironment": {
+    "executable": "/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "Python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+    "Pillow": "12.3.0",
+    "NumPy": "2.3.5",
+    "JPEG": "6.2",
+    "WebP": "1.6.0"
+  },
+  "limits": [
+    "Public review CLI replay is deterministic preview-source binding, not independent artistic acceptance.",
+    "Static HTML/image files checked; no browser layout, GPU, engine or gameplay qualification.",
+    "Retained single generator source/declared count is not an independent provider-side invocation audit."
+  ],
+  "inputsBefore": [
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-170ac4e4-88b2-43a3-9be9-7390d9172d48.png",
+      "sha256": "eb403f8b3516dfaa69f3ee81f6b3c8bd89fa077d743cc8f4e3b2ae01368fb5de",
+      "bytes": 4277837
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-2d4c4bc4-c568-4ee1-a79f-30e9b8f43767.png",
+      "sha256": "fbf044da3f84ce3b25020028944d7893ff4d32b6d690c6039387e1bf875a7a97",
+      "bytes": 3823857
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-57676e58-001d-4e00-8eee-c0bd520f22d0.png",
+      "sha256": "c6137da8df7b456c6dbf390f6383c5572f2e3daf533a67c0c8ff3b281ae06316",
+      "bytes": 4172835
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-5b019965-2825-4529-a26d-ccf11eea6b81.png",
+      "sha256": "2bf1b58fa70e31dbe2aea6920606f23d98bd108908ba9f9d05417e7f3bb114c4",
+      "bytes": 3820281
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-68a026d0-7961-4d27-b475-99cb6b8e388f.png",
+      "sha256": "aae11addc9db1ec1191eda9575a0ad89d70841a190433289d6b11decb11f0e7c",
+      "bytes": 3685224
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-724c33d7-79ae-407a-8588-e82bc5af51c4.png",
+      "sha256": "8a5dd8ac1b1ba35e3f5021365d9d7854fd43d5bb72f6a245c196b4ad43470909",
+      "bytes": 3608601
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-b990ac6a-b30e-4ef2-8aa0-2685c1159afe.png",
+      "sha256": "2cfa3d3a849932b9be136ef48ecd4384e2fcbd098911182d9cfdbdaf31062262",
+      "bytes": 3544165
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-fd4877c0-529b-411e-916b-81e2e785d1ee.png",
+      "sha256": "713824e6b9f7c8c516233901f7a9c9f04a11052b1476f2863eda8ba3982b0369",
+      "bytes": 3608801
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/batch.json",
+      "sha256": "5d185dcaa69acbdc88dcc2fe7c9b38c2fcb2a7f4d94edc32fe7ac273147e29ac",
+      "bytes": 24972
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/rpal308.png",
+      "sha256": "eb403f8b3516dfaa69f3ee81f6b3c8bd89fa077d743cc8f4e3b2ae01368fb5de",
+      "bytes": 4277837
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/rtex028.png",
+      "sha256": "fbf044da3f84ce3b25020028944d7893ff4d32b6d690c6039387e1bf875a7a97",
+      "bytes": 3823857
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/rtex099.png",
+      "sha256": "2cfa3d3a849932b9be136ef48ecd4384e2fcbd098911182d9cfdbdaf31062262",
+      "bytes": 3544165
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/rtex103.png",
+      "sha256": "aae11addc9db1ec1191eda9575a0ad89d70841a190433289d6b11decb11f0e7c",
+      "bytes": 3685224
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/rtex422.png",
+      "sha256": "c6137da8df7b456c6dbf390f6383c5572f2e3daf533a67c0c8ff3b281ae06316",
+      "bytes": 4172835
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/ttex013.png",
+      "sha256": "713824e6b9f7c8c516233901f7a9c9f04a11052b1476f2863eda8ba3982b0369",
+      "bytes": 3608801
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/ttex020.png",
+      "sha256": "2bf1b58fa70e31dbe2aea6920606f23d98bd108908ba9f9d05417e7f3bb114c4",
+      "bytes": 3820281
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/ttex126.png",
+      "sha256": "8a5dd8ac1b1ba35e3f5021365d9d7854fd43d5bb72f6a245c196b4ad43470909",
+      "bytes": 3608601
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rpal308/master.json",
+      "sha256": "7440aecbc1e5fe2bdbb24c9213d698147b2b626b4b4fb7d198101dd96af3821e",
+      "bytes": 4204
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rtex028/master.json",
+      "sha256": "7042023c3267cc1fe7dba0691a13230f29e1992ba39122fafe41c2ddaa344138",
+      "bytes": 4194
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rtex099/master.json",
+      "sha256": "f31d294863258bf177ad1bd780083c21146c6f87ffd002297f38a7d2012fb1ee",
+      "bytes": 4192
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rtex103/master.json",
+      "sha256": "93be1b3a35386eec7e1dd0eca7f69208230639b9407c1c5e7136ecff21029300",
+      "bytes": 4198
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rtex422/master.json",
+      "sha256": "7134406ad0f6dbd9d8efc19615992575cc8f71b67c103af908f5a5a94bf4beb2",
+      "bytes": 4188
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/ttex013/master.json",
+      "sha256": "e34a2788be6f88bb7a6c73d61f89d805a5068e2d81782bbc3a165159e047bc9e",
+      "bytes": 4205
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/ttex020/master.json",
+      "sha256": "812b87d1b9e52d9dc1069aa27ff90290611e222e0d171cf2420c806f6a83d6b5",
+      "bytes": 4213
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/ttex126/master.json",
+      "sha256": "a7cb8c7d2d4e528e245533404efd28b09bac7438515e5af59e77f9816cc512b1",
+      "bytes": 4199
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rpal308.txt",
+      "sha256": "e61094e3c3a0381abd54ff0b5a45356eb648ac34675768892db49f9c2adf2ea2",
+      "bytes": 2063
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rtex028.txt",
+      "sha256": "e27846b328bd89bb3abdd54f58681d4dde60b22e7ea6b3202abb2ce78c8e16e9",
+      "bytes": 1962
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rtex099.txt",
+      "sha256": "5a619b6aa6096ea6a9f7cb987837da365439540d690046d65cbbd9bf36dfd42a",
+      "bytes": 2036
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rtex103.txt",
+      "sha256": "937b1686f584f362d83a7b85bb63dd9da4ddcb6ad9cd5dd15a57e3222a96ed44",
+      "bytes": 2005
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rtex422.txt",
+      "sha256": "817cd5f34c2ca5eb3a6b175959b80052d55a69a706f1f53c8ac8a74f80fe0580",
+      "bytes": 2055
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/ttex013.txt",
+      "sha256": "ba97c3c54978e1512c08b4a71ee4473a3cf0cc53b7fde2b91df253001e059990",
+      "bytes": 2024
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/ttex020.txt",
+      "sha256": "5eb72e65510a238eaaad6c663f256002bf1c44439f471a5184e03a89625863a9",
+      "bytes": 2034
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/ttex126.txt",
+      "sha256": "4c98163546642e9ed45b82b0f49c8717cd525eed1e1b8d6ab85ce0bca1cf4829",
+      "bytes": 2132
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/index.html",
+      "sha256": "b27c88c9c537ca301a1f07ef0f9ce2c1bc0433bc071d94c08670db1ec4391d7e",
+      "bytes": 5430
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rpal308-high-relief.jpg",
+      "sha256": "580d6a47cef688e1723ba7907377269d50c3602d82d9ad218fd64a1a951bc9ab",
+      "bytes": 529870
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rpal308-high-review.jpg",
+      "sha256": "0fb9cc6d1a311ef537f07be81741cec5f584e478e38b4826bed62a63aa05f046",
+      "bytes": 367719
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rpal308-mid-relief.jpg",
+      "sha256": "9a67f2fb8202b55e036d41bcff55005405a95f0acbd7d1a6fdd3b492c6c2de1c",
+      "bytes": 166990
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rpal308-mid-review.jpg",
+      "sha256": "6bf3ec5ba5d768f6092b561c717e013efbb516aa7ab4fa686260bfe3048ac054",
+      "bytes": 306090
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex028-high-relief.jpg",
+      "sha256": "ba8f39419bd1cb9f2525378a1ee9423c0a1205660b2862c701d750988ad36022",
+      "bytes": 272450
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex028-high-review.jpg",
+      "sha256": "21d9939c2b0911dbefff53b0054a81e1a45e75da540b3e1c6ac09876874b8c88",
+      "bytes": 266489
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex028-mid-relief.jpg",
+      "sha256": "12daad6d120cba4769c6eb79a0f9ace74938129daeea633f16cee5a93d6d34a6",
+      "bytes": 279045
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex028-mid-review.jpg",
+      "sha256": "03698579e3f51153a85a4063c6161581a5399d9d56077befe18943cd3e8d5a47",
+      "bytes": 265282
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex099-high-relief.jpg",
+      "sha256": "185e22220f5d3f54ca5f8b15a371f68ae88c50c11ddef6544feaa47927e68976",
+      "bytes": 538182
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex099-high-review.jpg",
+      "sha256": "e7b28c9c17019684631a48e47881accf5060743b1642c1f84a358f37698c9ca5",
+      "bytes": 311985
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex099-mid-relief.jpg",
+      "sha256": "13326c2379add47ba692351a25a04b2d23c55ac702866d99e23e8949c080f1fc",
+      "bytes": 157192
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex099-mid-review.jpg",
+      "sha256": "f9070f4eef6ba46f66e55c961cb1c73d060f62e120fafe3d8137663cfd7f11a8",
+      "bytes": 262064
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex103-high-relief.jpg",
+      "sha256": "67abedbf53fccfef66d187e568ee1e55b13f928052f2132fe3dcee199885b86a",
+      "bytes": 485893
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex103-high-review.jpg",
+      "sha256": "3f52ef7743c28f1591c7d32f98783d2e0c0663094ecfde94dbbd4e22d665ddc1",
+      "bytes": 334815
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex103-mid-relief.jpg",
+      "sha256": "d46111eb006650c3f7199e4afc56978fbb93d310a8610c16c4bd8b8fb0c88a06",
+      "bytes": 159523
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex103-mid-review.jpg",
+      "sha256": "5912107490a613ca343acb23d85ba46186a1c4b9fb0c07b4fd1390215ca97df7",
+      "bytes": 280919
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex422-high-relief.jpg",
+      "sha256": "46ffca9260e1a6015c30b044383f508048c9eb718cc8770611dc27f50e9c181a",
+      "bytes": 506781
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex422-high-review.jpg",
+      "sha256": "0106764c2615a62c4f03b0d8da5e55fa54ed87e8d613cd0f69d2579942315d15",
+      "bytes": 348780
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex422-mid-relief.jpg",
+      "sha256": "78227d7babcc0194239a0abc32edde20bac3108baaedf66107d631449e91316e",
+      "bytes": 159937
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex422-mid-review.jpg",
+      "sha256": "56cef6c0b576ddd6b003d33476fb6afb0584d2dcc268e80ce336ae3083562ea9",
+      "bytes": 290332
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex013-high-relief.jpg",
+      "sha256": "00bf8494b64635cf7eabf488855e8f465aab07559f92a6cf3919eec07c651dac",
+      "bytes": 471178
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex013-high-review.jpg",
+      "sha256": "869637dc9d3b567a466eedda549d7daaa5477aca45f5cb37d9e36960feb21ae5",
+      "bytes": 314935
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex013-mid-relief.jpg",
+      "sha256": "e86b74a8a5fb3d488c290be0b4cf76a61ade9b48f84224dee56942ea7f470219",
+      "bytes": 154746
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex013-mid-review.jpg",
+      "sha256": "84eb22c5109631097ccaad21a5cfb240c28d471179c14ec216edbad8025e0897",
+      "bytes": 261870
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex020-high-relief.jpg",
+      "sha256": "66710e39956ad47d74f863441e606567be23a3e6f60bc6d655e438fe4ba04009",
+      "bytes": 266318
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex020-high-review.jpg",
+      "sha256": "5d7d14728ff9fd45c129cf4b7879fe7ce35a38e01eba11b9b5a19b6c9ef29b84",
+      "bytes": 253842
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex020-mid-relief.jpg",
+      "sha256": "bc8d2164906223ba619bea883618cb2bf28f96073c4267c3594cd3d084c2a8e2",
+      "bytes": 272360
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex020-mid-review.jpg",
+      "sha256": "8db8c213d3981f3a0783db099395286c2dfb8e8bf46faf2bb8255166741ce259",
+      "bytes": 251015
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex126-high-relief.jpg",
+      "sha256": "7915aad586cf6170f645dbdbc445bd0fecba009570791f8222df240d4c55068a",
+      "bytes": 465747
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex126-high-review.jpg",
+      "sha256": "92acc3b44ffd015d7c4ef1099c52dd6357e5d75823f4fcd80574539eefa8b624",
+      "bytes": 354246
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex126-mid-relief.jpg",
+      "sha256": "eae06bf653ed4d659ac055acb8fcd07b8f22255fa511c4cd45366b3a46165282",
+      "bytes": 150707
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex126-mid-review.jpg",
+      "sha256": "873e5fa7f964722b09d7eeeab7f80ab332657ba3322d83b4b1aeebf3986e2116",
+      "bytes": 302569
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/selection.json",
+      "sha256": "d668b8a916734e3ec3a819281fab4eb4679a041990262c088e5d98739797a21a",
+      "bytes": 11169
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/high-diffuse.webp",
+      "sha256": "cdfc240f33553153d29cd958e7f379548e4f123f811aa3cc1cfdb8a4955d5781",
+      "bytes": 143790
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/high-height.webp",
+      "sha256": "aacadf5483ce2bbf51192aa684ee9b9c6840c539c4aa884c10ce08eb8cfde262",
+      "bytes": 95072
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/high-normalX.webp",
+      "sha256": "90bbdf94b9b116e464cf5688c5f23607409fac8572034c2ac988bc4c67f2c823",
+      "bytes": 93862
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/high-normalY.webp",
+      "sha256": "19977f49a8f5ec2060af5f8daae772ac7deec5cb641a83c1f9209316ffeca53b",
+      "bytes": 91724
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/high-normalZ.webp",
+      "sha256": "f6635c4733e25515cdc1cec085c8cba43dce8035866d7ea74f242e4ed29820d7",
+      "bytes": 25286
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/manifest.json",
+      "sha256": "577b4dc1f2fdb12113a178883a8a6561913f924325cc60d9b29f5faffa467c47",
+      "bytes": 9667
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/mid-diffuse.webp",
+      "sha256": "b759cc988a649277903f6c54f3eb8728dd1bc3cc3fff57ccd6a355cdba458291",
+      "bytes": 33470
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/mid-height.webp",
+      "sha256": "91f27853bd70e9cfe38ad88ae853acae0a7e33c4e180027ff1a659c91b418585",
+      "bytes": 33502
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/mid-normalX.webp",
+      "sha256": "9689613cfb5dafd677eb9f20bcef7b4691291b06eff96ce6635eed1e44ca1f34",
+      "bytes": 29322
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/mid-normalY.webp",
+      "sha256": "ac5bef92f65cfef597d0c3183bf307d8699836a4b626271e88daffd0166cedcc",
+      "bytes": 29064
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/mid-normalZ.webp",
+      "sha256": "617a51504371c53ad6810d59f243366a0097ee36b4046c2ac5b941337ea72a08",
+      "bytes": 8392
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/high-diffuse.webp",
+      "sha256": "2e4c5f69db6b9df470b333fddad8699f92c00e69b262826e6bd0dd820ef39b85",
+      "bytes": 243106
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/high-height.webp",
+      "sha256": "59cfd67d6ba908d500bb11d71fda11276cd27f92b336a1d064361c1123f0e944",
+      "bytes": 168042
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/high-normalX.webp",
+      "sha256": "2e088d699815d5c0005ecb9ab3f3ddbc6afff6cc4f0b465873b9fa2c846ecd14",
+      "bytes": 179150
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/high-normalY.webp",
+      "sha256": "2467e4be462cb9cc7591dd0f584ef2d18f10577e58784a589774903a45f4e533",
+      "bytes": 171110
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/high-normalZ.webp",
+      "sha256": "f58b0ac45a95fdaf4f3d5c56d37729e85bfb67dbba4fbd4b4272d03a5f9270f8",
+      "bytes": 42286
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/manifest.json",
+      "sha256": "b3482ac8061973856efa5efb3ed05356aabd0c223001c22887cb259ac59ee8cf",
+      "bytes": 9662
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/mid-diffuse.webp",
+      "sha256": "972812dac1b5bc580714c7370af7fdfb3bf2df20e53a4a92ca32147d7b1aad25",
+      "bytes": 62824
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/mid-height.webp",
+      "sha256": "981a9757dd225e37f3f1ecddf480bfd29c304aaa820ecdfcacf3995eee46e982",
+      "bytes": 60288
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/mid-normalX.webp",
+      "sha256": "2be95f0c95167421794252225867aeff3cd68e3eb792a850d0683e7e97b22f53",
+      "bytes": 55318
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/mid-normalY.webp",
+      "sha256": "2844045d2982b2e48a798048804791f3b85bcd1a75445a06dfa29532becabad5",
+      "bytes": 54342
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/mid-normalZ.webp",
+      "sha256": "cdc60fcc9652fd6e44e6675697880de8265cd39c72949f77c17d88b6d0185ce5",
+      "bytes": 15500
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/high-diffuse.webp",
+      "sha256": "56fc46f845bbb8e15f4bd96be002b015373b6254c920bd4d11ef4a20c344cae6",
+      "bytes": 119194
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/high-height.webp",
+      "sha256": "3516de84a9949624028b07deb4062aefa1e91c297517657b4e7af3f9e8a3d52f",
+      "bytes": 132244
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/high-normalX.webp",
+      "sha256": "d12e4b30e53d0fe4a8c75a2776ff689e06bfde99434b24ad553c7717b4d0a465",
+      "bytes": 121022
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/high-normalY.webp",
+      "sha256": "c1334a1932b9fd995cf29dcd0292fe895705ae11f1cbd2fb57c019f0a29863be",
+      "bytes": 117812
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/high-normalZ.webp",
+      "sha256": "ee6e3dcad3b571ded52ef499687e06d9e30f7087763ca5b4facab582d4b9fa9e",
+      "bytes": 29296
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/manifest.json",
+      "sha256": "315c160880a32c358153e8642049f98e7d46b8b7405e7ce40a6821d7c2cb8c62",
+      "bytes": 9672
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/mid-diffuse.webp",
+      "sha256": "434a7554f812e404d766ae8a84a2fc9795bc2d3e63c93518da85fa7ffe8dd3e1",
+      "bytes": 29562
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/mid-height.webp",
+      "sha256": "27c4deffd68b3639b62c1fa70c1028fd6dac6d7c574014b5a746d069a0bd3fa6",
+      "bytes": 37286
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/mid-normalX.webp",
+      "sha256": "9edff2d10427f37d6feea46310bb18a7ad8d2bb0cacc51cced9cdb269f992cbc",
+      "bytes": 30494
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/mid-normalY.webp",
+      "sha256": "4c595413ca49ca5574cc7d82dd928becfeb46d75fb82848e0ddbb67a03b1238a",
+      "bytes": 28442
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/mid-normalZ.webp",
+      "sha256": "84e07221487ac043696699a9179ead7b258b79ab00a45523c726ba9ede766a19",
+      "bytes": 8722
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/high-diffuse.webp",
+      "sha256": "a95d8916973255af28528773f95cf5fadbf2124460be1be508b3930200c6c840",
+      "bytes": 125776
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/high-height.webp",
+      "sha256": "c87537be6159b6912f644e6b07984b9e59d01fd4b813f4e885c04f78a2ac144f",
+      "bytes": 96046
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/high-normalX.webp",
+      "sha256": "d1eed03220cbda13aae6cc416bd80230404f4da571ff1b8bf1cdf4cce9c384aa",
+      "bytes": 89536
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/high-normalY.webp",
+      "sha256": "1cf9e320820065684045060649736913baf691b61c85f370ffe2bff3a19ec137",
+      "bytes": 90412
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/high-normalZ.webp",
+      "sha256": "22304a484825c8cd5750fbd88133e0e5495837b7970a3abb85a832bf997e2f9e",
+      "bytes": 24990
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/manifest.json",
+      "sha256": "f34a7cc1d5928e79d5352b68b0df0b4f2f187e291b786baeb80089c8409ce4eb",
+      "bytes": 9661
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/mid-diffuse.webp",
+      "sha256": "6f825443fc1bbfb715459fdfd87e07f551dc9b7cb4295de7475b4fc50a4dabf4",
+      "bytes": 30002
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/mid-height.webp",
+      "sha256": "20892e4964520c01a86a91d419bf58b37c69b8bcfbd4b1bc2b12afbd992e3860",
+      "bytes": 34580
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/mid-normalX.webp",
+      "sha256": "17d98ae2d7a08e55f83cc724a54c1b2c0a6bf10bf0ce0fd00f5ffbfc632a6b23",
+      "bytes": 30178
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/mid-normalY.webp",
+      "sha256": "f95511685b3d69a27e159027dd15c1c48bf6684e9d42b292115ecd4ff97aae45",
+      "bytes": 29740
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/mid-normalZ.webp",
+      "sha256": "ce7d460b3272d8bb4a6b80979fd0cbdeea40b3572e8d8b70aa54534f68d442f3",
+      "bytes": 8684
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/high-diffuse.webp",
+      "sha256": "ca4f5673bd75ac3ee669af22bbfa74f53aa301998fea385d6cb1746b19304063",
+      "bytes": 130676
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/high-height.webp",
+      "sha256": "a8812ca2f89ffbacb946a1c40c0cd6796135bfc2469da3e9b18fcba8182017f6",
+      "bytes": 95268
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/high-normalX.webp",
+      "sha256": "da167d269e93f7c7cb485cd0a955a591cb69fcbd91c295f7512580529792744f",
+      "bytes": 93368
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/high-normalY.webp",
+      "sha256": "7a477aca3a7ac991e8ed143ea7f6dd0f09028ebc0e2850b990c56573cc2aa36d",
+      "bytes": 90822
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/high-normalZ.webp",
+      "sha256": "e145a5beb31c2e8f13e35e59faca348ce8014ff705d01c35e1337e5ec2ff16fe",
+      "bytes": 24770
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/manifest.json",
+      "sha256": "7becb88848c4e5c381864ba5c233bca0da5f2e58f083c833c82b1576986af509",
+      "bytes": 9671
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/mid-diffuse.webp",
+      "sha256": "aaeb0b11c35cab386d4323747437e710348dea7c441c2f0a558ba382ab75bdb6",
+      "bytes": 31084
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/mid-height.webp",
+      "sha256": "2688d61a59af3106c8b4785cf4438e0436797e6eaea86351a75896557270eccf",
+      "bytes": 32834
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/mid-normalX.webp",
+      "sha256": "91c2e6037c24fdab37eb51e0cccc37b4fc4db10bef582a821d32ac0b50f39447",
+      "bytes": 28258
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/mid-normalY.webp",
+      "sha256": "83b416a2669b9b1925fe7d508709fccdcd01c089fdccd0830cf1b6dacd4184c6",
+      "bytes": 28198
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/mid-normalZ.webp",
+      "sha256": "66fdfff61e34bd75b019d2959e5da02bfeb04da2f30991d26f29a69ca7ddaa21",
+      "bytes": 8288
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/high-diffuse.webp",
+      "sha256": "7805885d26a0e1ee80bfa4f9e8528ea60be1d3d38924aed4fcce40e611244520",
+      "bytes": 118110
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/high-height.webp",
+      "sha256": "db750fb0a5c59c99c613a7025f3e1344ca0ced050327665d80480bf07542f8be",
+      "bytes": 91202
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/high-normalX.webp",
+      "sha256": "c752d7af4284b5bc19618c7ebb5bc998e9b60c15d539d1026c1b034e46684d45",
+      "bytes": 91136
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/high-normalY.webp",
+      "sha256": "69c581f2a17d31180788c093c0f8d8bde941c04cbb5bb3e4ad82c3acfbb10882",
+      "bytes": 88864
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/high-normalZ.webp",
+      "sha256": "f60d132e3c7d1583e51d5dc499d89777402d2cf86302de1b92036563e83ea810",
+      "bytes": 24824
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/manifest.json",
+      "sha256": "335ef0e217290b8c63a2d57f7fca027d6f165846c8eef646eaf2a6f1d858d70b",
+      "bytes": 9687
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/mid-diffuse.webp",
+      "sha256": "5a822a1a5bde288bd55df4dec4a55f5d9e26ae6d6509b03fff7f55ee4d501986",
+      "bytes": 26766
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/mid-height.webp",
+      "sha256": "9c122f6a3cc45c6a8fc571b307b2854648f24c0928be22a92f44d7aeb027a432",
+      "bytes": 34304
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/mid-normalX.webp",
+      "sha256": "92da3cf7d22c97d3fc1f8c2de5f0bd33c03ba28ad4d73b9c97244ac1db02929d",
+      "bytes": 29876
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/mid-normalY.webp",
+      "sha256": "ceecc851a2d671a4fe79efa08a7d9440d26e371e502e088d45e6e916ec3d7f90",
+      "bytes": 30178
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/mid-normalZ.webp",
+      "sha256": "54f7544333e6de01d95019345f501e0f59847b7161bb51d4b2945671ea82e3d3",
+      "bytes": 8478
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/high-diffuse.webp",
+      "sha256": "69d1ac18f0a42ee4bde628c6e2626c8c62b01feb92574d4e8e2f376c39044bfd",
+      "bytes": 247642
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/high-height.webp",
+      "sha256": "4df7b9ee4bc432c5c2d7117acd68a68c8efca52ec5707125192bb2c64e025f31",
+      "bytes": 172260
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/high-normalX.webp",
+      "sha256": "46f3d0c9ee654bf4f6f9964dad0c9c5f6e443914a5169442e9b7bf69d9f96bfe",
+      "bytes": 177012
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/high-normalY.webp",
+      "sha256": "fda82537a4d1045c4a30d6d933392089181dea113e422e5fa5e99df8690623d9",
+      "bytes": 178602
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/high-normalZ.webp",
+      "sha256": "c966491096841bf85c0894dc1663d7951b6f0b30a00ef9e4dc7eeeb2f02bf0fc",
+      "bytes": 41824
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/manifest.json",
+      "sha256": "d269e598f1af2230071555d245ae3c410e45035ce4de8e15d3810069c898faa0",
+      "bytes": 9648
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/mid-diffuse.webp",
+      "sha256": "b4380af0ee7ab01b8670f6d8fc3a37153bc86b0441a73f479c6d8d7a4f3c87d6",
+      "bytes": 59230
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/mid-height.webp",
+      "sha256": "87b46a12dd339bdd3110d4c3c0fa713ee1174eec2532cf2b8c5826e5993e3c54",
+      "bytes": 60036
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/mid-normalX.webp",
+      "sha256": "9ac7f99ed687cc2d85a46c796d9fea93b4766f5eccdd64038055a338d67240ad",
+      "bytes": 55596
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/mid-normalY.webp",
+      "sha256": "65e1694d62b02bc11b5e78dfd20a774e5abbe4ae25382d775d5741f40f93198d",
+      "bytes": 54316
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/mid-normalZ.webp",
+      "sha256": "538cdd66fc381567f039107a838c5a99d60c2872667fc3d50f4b45cee4cb6c17",
+      "bytes": 15544
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/high-diffuse.webp",
+      "sha256": "998f784dfbce8b52abdf211112ec08b01ff44741d574659423a3de6d2f41d44f",
+      "bytes": 130284
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/high-height.webp",
+      "sha256": "3054d45909109f299bebd48a2cfcee09f31029c6d2a8b6acb980b8ad5c714ef0",
+      "bytes": 82104
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/high-normalX.webp",
+      "sha256": "4b96ed504fb2575a268016597b9f89fc6515db91853d481dbca10f86d9a6a54a",
+      "bytes": 78676
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/high-normalY.webp",
+      "sha256": "c7c637db0e62319decd80d731108b9af4c506fc3a6f8031b7ac943e60a5f3231",
+      "bytes": 81588
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/high-normalZ.webp",
+      "sha256": "f04e5b6bbe8860e53c340b9692a69f791d974a8974b67240091e98c378e878bf",
+      "bytes": 21368
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/manifest.json",
+      "sha256": "f64c3feabd839954e95770388d7f99586a60eed8eb1b1c0b5e9057691b4f34bd",
+      "bytes": 9617
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/mid-diffuse.webp",
+      "sha256": "de3721eb1211af0eb66883fa54b44b905e81301f4fe5fdd943b49572c09fe896",
+      "bytes": 32120
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/mid-height.webp",
+      "sha256": "94ca0cae2eda6f1a2df98d045ceed7efc3ff64690e3f24d9723ceaec29a0fa31",
+      "bytes": 28894
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/mid-normalX.webp",
+      "sha256": "8bda9ab72821d693b1aec1f0c1b88d401465c9864ee0726c02c01e27ae6279ee",
+      "bytes": 23646
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/mid-normalY.webp",
+      "sha256": "127d56358787eb839f7a516119220cdad25880230575d5cd0ccd214c581a6635",
+      "bytes": 24750
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/mid-normalZ.webp",
+      "sha256": "2d96f7a98e272013d4123063816c659c44b6c7042a041738bfd69f1193ee0a1e",
+      "bytes": 7508
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/02-rtex028-0e5d4ca5c88f.png",
+      "sha256": "5483d7b5a7f9e4b9c3ee34cb39acee416b325b4aa5e41dd70ea9a3e3f25b9c59",
+      "bytes": 6175
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/03-rtex099-6a3ca30bf015.png",
+      "sha256": "ddd589bcdab1c6eb53faa62856edeaadc54cd93b3515ed7242fa13fe689a5248",
+      "bytes": 3684
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/04-rtex103-6eac34b9d3de.png",
+      "sha256": "e45b000bbb4b5d5286cb8c608e2fc695f778f8073d8e750d45e67a3d33b7e4a6",
+      "bytes": 2951
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/08-rtex422-d8e1d80d5a0b.png",
+      "sha256": "637617397968000e140e7c51f79126fb6e59064131ba2a6ab93e5b95920d14a9",
+      "bytes": 2669
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/10-ttex020-56bff92e6648.png",
+      "sha256": "96b38f8a9e50d7cf25ea7bb400a8b1f691557de7833c212e0a02f0028919b0a5",
+      "bytes": 6182
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/11-ttex126-9061b0e47ebc.png",
+      "sha256": "837fa207214ac32119de547aebacd4516ef7b886c4a4c3a5da1009ab4ab79c2b",
+      "bytes": 4178
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/12-rpal308-74929cd446be.png",
+      "sha256": "e0c8ced0e040fcf8273cd267c24b0b4ac544667b8580dfd36ed4cf46a17d3ff2",
+      "bytes": 3291
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/16-ttex013-1e9b3f6a9b33.png",
+      "sha256": "ffedeabeb261d14eec954d3226c6adfa0763f4d34713ec2993fd0d0333ac7898",
+      "bytes": 2369
+    },
+    {
+      "file": "docs/hexen2/textures/batch-002-public-actual-v1.json",
+      "sha256": "ce2c1fa778625122777ee6471f9c7d21e9dfa963dd612855a5c1c926be5d04f3",
+      "bytes": 101276
+    },
+    {
+      "file": "docs/hexen2/textures/batch-002-public-verify-preview.py",
+      "sha256": "afd18f7d152aadfb0bc425fb0323bae3e95f6bdd3b47a7bfc3e1e92dc1fddc1a",
+      "bytes": 8063
+    },
+    {
+      "file": "tools/texture_sheets/build_texture_batch_review.py",
+      "sha256": "0bb1bc2db00921078bb41d4d3cd37d4c92c0efda35b129d3d3b07424c53edc6a",
+      "bytes": 6218
+    }
+  ],
+  "reviewCLIProcess": {
+    "command": [
+      "/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "/Users/bri/SOURCE/Quaked/tools/texture_sheets/build_texture_batch_review.py",
+      "--batch",
+      "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/batch.json",
+      "--paths-root",
+      "/Users/bri/SOURCE/Quaked",
+      "--output",
+      "/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/hexen-public-preview-replay-gobyfn79/review"
+    ],
+    "exitCode": 0,
+    "stdout": "{\"review\": \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/hexen-public-preview-replay-gobyfn79/review/index.html\", \"materials\": 8, \"sheets\": 32}\n",
+    "stderr": ""
+  },
+  "verdict": "HOLD",
+  "error": "AssertionError('rtex028-mid-review.jpg')",
+  "completedAt": "2026-10-19T01:43:22.634264+00:00"
+}

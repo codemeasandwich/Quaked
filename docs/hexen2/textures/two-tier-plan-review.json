@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-19T00:13:18.319951+00:00",
+  "verdict": "PLAN PASS: sole-master Mid4x/High8x authoring design with precision issue resolved",
+  "reviewer": "/root/oct17_plan_review",
+  "plan": {
+    "file": "docs/hexen2/textures/TWO-TIER.md",
+    "sha256": "481d2d1087392d0f1b5f9279245db2216aafae6234814223af763351f81be79b"
+  },
+  "ownerStandardSupersedes": "Previous4x-only authoring acceptance remains historical evidence. Loworiginalunchanged, Mid4xdefault, High8x. No runtimequalityintegration implied.",
+  "resolvedRequiredFinding": {
+    "issue": "Existingcraft returns alreadyrounded8bit-height; float32storage alone does not retain an unquantizedmaster.",
+    "acceptedSmallestChange": "Keyword-only craft quantize_height=True default; False selects same authoredH01 before final rounding. Default/explicitTrue keep oldreturnexpression/outputbytes. NewHexentool optsFalse once for retainedfloat32master. ExistingQuakeencoder/runtime and legacy recipes unchanged.",
+    "proof": "Retainedprechange source/height/normal golden, with exactinput/profile/dtype; default==prechangebytes anddefault==explicitTrue, unquantizedmaster contains meaningfulsub8bit levels. Implementation/publictest review still required."
+  },
+  "architectureAssessment": [
+    "Onecanonical RGBmaster andone finite float32heightmaster pernativeidentity is sufficient; rawGPT/prompt remain provenance, old4xproofs historical, neither is a second active source. No newgeneration for337/450; onebuilt-inGPTcall each for041/016.",
+    "Allregistration/coarsecolourfit atmaster only. Exact8x masters:337/041/016512x1024,4501024x1024. Existingrawdonors337887x1774 and4501254square support these without upscaling from4xart. Verifyactual newdonor dimensions beforeselection.",
+    "Height authoredonce with existingmaterialprofile/cycliccraft semantics atmasterres, no tierrecrafting or per-tier normalization/amplituderescaling. RGB and scalarheight each deriveindependently from master to4x/8x; allfive tierroles encodeWebP92method6 directly fromlosslessderivedvalues.",
+    "Existingnormals_from_height weightedcentraldifferences/softcap and strength*sqrt(HW)/8 convention are appropriate reusedresolution scaling. Keep same materialstrength/cap atboth tiers; do notmultiplystrengthbyfactor again or resizeRGBnormalvectors asordinarycolours.",
+    "Newnormals intentionally derivefromuncompressedtierheight, not decodedheightWebP asoldQuakeencoder does. BothQ92 compressionnormalerror and decodedheight-vs-uncompressed-normal angular discrepancy need diagnostics/visualreview, not a falseclaim those paths areidentical.",
+    "Keep allfour packages/tiers/manifest/preview in canonicalauthoring storage. Middefault belongs tothisworkingpreview andplannedfuturecontract; no gameengine/menu/pack/index changes or release needed toshowowner usefultextures."
+  ],
+  "requiredPublicAndArtGates": [
+    "CLIvalidates nativeidentity/aspect, trueRGB master>=8x bothaxes, matchingfinite float32heightshape/range, canonicalmasterhashes and nopreexistingoutput overwrite. Reject compressedtier as declaredmasterinput; do notpretend PNGcontaineralone proves full sourcehistory.",
+    "Independentbyte replay40deliveredmaps across4materials2tiers, lossyVP8 Q92method6parameters, exacttier dimensions, directmaster RGB/height sampling. Mutating/deletingMidcompressedfiles mustnotchange orpreventHighderivation; neither tieroutput is an authoringsource.",
+    "Analyticperiodicnon-square scalarfixture: constantheightamplitude andclose UVslope atMid/High underexactexistingstencil/cap; detectsmissing/doubled resolutionfactor. Correctsampling positions/filter effects mean genericnormalpixelidentity is not an acceptancecriterion.",
+    "Bothtiers compare decodedcolour to nativeatnative/2 andnative/4 separatelyusingBOX. Inspect actualfull4x and8x images forphotographicsharpness, colour/style/intention, distinguishingfeature scale; prevent grain/blur/quantizedcontours or repeatedframe.",
+    "Bothtiers source-directedrepeats/cyclicoffsets, actualdecodedheight/XYZ andopposedlights: preserve mortarandwoodstructure, no importednativepixelboundaries/paint-asgeometry/inventededgebricks/bevel/bleed. Explicitmaterialprofile forwood041, not automaticstoneassumption.",
+    "Preserve defaultQuakecraft golden and existingencoder/tool sourcebehavior. Newprecision branch gets independent source/publicreview; no wholesale recipechanges.",
+    "Canonicalmanifest identifies exactly1activeRGBmaster+1heightmaster pertexture, tierroles/mastersourcehashes/normalbasis andselectedMiddefault. Retain rawGPTsourceidentity and prompt provenance; originalsLow byteunchanged. Historicalv1/v2artreviews mustnotbe relabeled asnew8xacceptance."
+  ],
+  "requiredFindings": [],
+  "inputsAtPlanReview": {
+    "tools/craft_normals.py": "eccc86b369d2eacaef0bfd9afbe065d26ab3feb5f711984c6bd376ea06202185",
+    "tools/texture_sheets/finish_official_texture.py": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+    "tools/texture_sheets/encode_official_maps.py": "14f23a560c17afb72aa8a9aa9d1fda2dbed94bf1230048f3c3b9e814664f0287",
+    "docs/hexen2/textures/craft-default-prechange.json": "020cb794be52f92a4a29fe3f3f2cc2e9d97f2550c21f554628bac050adea04c0"
+  },
+  "scopeAndEffects": "Reviewer changed only agreed planparagraphs and this requested plan-reviewJSON; no code/assets/tests/index/engine/ref/release changes or builds. Concurrentforeignstaged renderer/audio left untouched.",
+  "limits": [
+    "This isplanapproval, notimplementation/defaultcompatibility/test/artacceptance. The40newtiermaps, solemasters andnewwood/redstone identities stillrequire actualreview.",
+    "Height is interpretedlighting relief, not measuredphysicaldisplacement. No Hexenruntime/pack/gameplay/completecampaignqualification.",
+    "Parentledgers retain Blueyretired/unknownregistration outcome; no cardmutation/workerhandoff or newreleaseclaimed."
+  ],
+  "nextAction": "Parent authors canonicalmasters and minimalopt-inprecision/newHexentierCLI; publichelper tests actualinterface; reviewer inspects exactimplementation and deliveredtiers beforeowneracceptance.",
+  "state": "Independent amendedplan complete; quiescent pending actualimplementation/maps."
+}

@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-18T23:39:59.076390+00:00",
+  "verdict": "SOURCE REVIEW PASS: bounded Hexen texture inventory/authoring preservation adapter, with both required findings resolved",
+  "reviewer": "/root/oct17_plan_review",
+  "sourceAndTestHashes": {
+    "tools/audit_hexen2_textures.mjs": "d596d318b55b117bad533cc7258ba9ace96223246097c515c5559bff49135863",
+    "tests/hexen2_texture_inventory_test.mjs": "eb2f6739a9b1b458670eadcaf592e12989259595742f5c53eb9822e2f2063514",
+    "tools/pak_members.mjs": "3073edb6b6574b2b70b993c941864e8683bb3f3e73f4671b1da979f02322513c",
+    "docs/evidence/hexen2-textures-2026-10-19/public-tests-source-review-v2.log": "7da5b6ce8079bd4600e12f6456035c20c67f3a4e9d053cc160a0ec5cb0186767"
+  },
+  "resolvedFindings": [
+    {
+      "issue": "Top-level maps/gfx directory symlink followed before childentrychecks.",
+      "currentFix": "Every loose.walk lstat(dir) checks non-symlink directory before readdir; absent ENOENT remains optional. Both nested and initial maps/gfx directories use same guard.",
+      "publicControl": "RealCLI fixture separately symlinks maps and gfx to outside marker dirs, requires nonzero/Symlink and retainedmarker; log7/7PASS."
+    },
+    {
+      "issue": "Contact sheet overwritten on different extractionselection despite individualPNG exclusive guards.",
+      "currentFix": "Preflight originalsdirectory type, allselectedPNGdestinations and native-contact before anyimage write. Contact now buffer+writeFile flagwx rather than overwriting sharp.toFile; originalPNG wx retained.",
+      "publicControl": "RealCLI given existing native-contact sentinel refuses and leaves sentinel bytes and directorylisting exactly unchanged with nonewPNG; log7/7PASS."
+    }
+  ],
+  "boundedSourceReview": [
+    "PAKadapter retains fixed size/count/extent/safe-name bounds; exactidentical duplicate contents recorded and firstnativeentry retained, conflictingduplicates refused. No genericQuake pakDirectory guard relaxed.",
+    "Ascending independently probed pak0..9, explicitbase/expansion layers and sourcepalette/loose precedence preserved; sourceidentity combines rawname/dimensions/palette/nativeRGBA and sourceprovenance.",
+    "BSP29 lump/mip/texinfo bounds and opaque indexedpalette conversion retained; limits honestly state worldembeddedtextures only/allfacesnotvisibility, alpha/specialsemantics unqualified, separateexpansionprofiles notmergedinstalls.",
+    "No engine/catalogue/sharedtextureindex/resourceclassifier/gameplay changes. Firstmaps remain canonicalauthoring-only. CLI outputrejectsexistingindexdir, exactsourcePNGs/contact nopartialoverwrite of existingevidence.",
+    "ActualCLI seven focusedtestgroups retain firstfive source/mount/palette/malformed/input/output/nativePNG controls plus two new preservationcontrols. Spawn error/signal/integerstatus guards present; timeout cannot masquerade as expectedrefusal. Reviewer inspected source/log but did not execute tests."
+  ],
+  "testEvidence": {
+    "path": "docs/evidence/hexen2-textures-2026-10-19/public-tests-source-review-v2.log",
+    "sha256": "7da5b6ce8079bd4600e12f6456035c20c67f3a4e9d053cc160a0ec5cb0186767",
+    "cases": 7,
+    "pass": 7,
+    "fail": 0,
+    "skip": 0,
+    "claimedBy": "Parent supervised publicCLI run; independently read exactcurrenttests andlog."
+  },
+  "selectedArt": {
+    "path": "docs/hexen2/textures/first-batch-art-review-v2.json",
+    "sha256": "af919c1ac2027971a2270647c65c03ed4a14e64c5eba94f2c1bc5c5786aeb391",
+    "verdict": "ART PASS rtex337v2 + unchangedrtex450v1",
+    "reconciliation": "Artreceipt adaptersection recorded predecessor observations while sourcefix landed concurrently; its shaAtReview field captured the already-fixedcurrentbytes at seal. This explicitcurrent-source review supersedes that adaptersection and closes both findings. Artverdict/maphashes are unaffected; neither priorv1HOLD nor artv2 receipts rewritten."
+  },
+  "publicMapPreviewEvidence": {
+    "path": "docs/hexen2/textures/first-batch-public-verification.json",
+    "sha256": "efdc84417c8f92ac64c774951651b692f998fdab882e715bc77f8e8a09f2d6c7",
+    "verdict": "PASS public-file source/codec/math checks; visual and runtime acceptance separate",
+    "selected": "337v2+450v1 all10source-bound maps and liveHTTPpreview; exactmath/byte replay evidence separate from artwork acceptance"
+  },
+  "requiredFindings": [],
+  "remainingLimits": [
+    "Parent fresh read-only audit of actualownedroots with finaladapter hash and compare variantidentities/counts against retainedinventory; no sourcebyte reread/largeaudit by reviewer.",
+    "No arbitraryhostilesimultaneous filesystemwriter/symlinkswap resistance claimed beyond trustedlocalauthoring preflight and exclusivewrites.",
+    "Owneracceptance, scopedsource integration/maintained qualification and futureactualHexenruntime/pack integration remain distinct. Art/sourcecheckPASS is not gameplay/completecampaign/release acceptance."
+  ],
+  "reviewerEffects": "Read-only source/test/evidence review; writes only this requested reviewJSON. No tests/builds/source/art/index/ref/release mutation.",
+  "state": "Finite source/art successor reviews complete; quiescent pending requestedfinalcandidate review."
+}

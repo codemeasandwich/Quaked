@@ -135,7 +135,7 @@ def remove_print( rgb, L, k ):
     w = np.clip( gblur( mark.astype( np.float32 ), 1.0 * k ), 0, 1 ) ** 0.8
     return L * ( 1 - w ) + fill * w
 
-def craft( rgb, prof, detail_scale=None ):
+def craft( rgb, prof, detail_scale=None, *, quantize_height=True ):
     """rgb: float array h x w x 3 in 0..1 (sRGB). Returns (height 0..1, normals h x w x 3 in -1..1)."""
     h, w, _ = rgb.shape
     # A directed texture pair can be authored as one periodic cycle while
@@ -178,7 +178,12 @@ def craft( rgb, prof, detail_scale=None ):
         H = H * ( 1 - m ) + floor * m
 
     H01 = ( H - H.min() ) / ( H.max() - H.min() + 1e-6 )
-    return normals_from_height( np.round( H01 * 255 ) / 255, prof['strength'], prof.get( 'cap', 1.1 ) )
+    # Existing callers retain their exact 8-bit height/normal authoring path.
+    # One-master tier authoring opts in to unquantized scalar relief, once,
+    # before independent resolution reductions and final map compression.
+    if not isinstance( quantize_height, bool ): raise ValueError( 'Boolean quantize_height required' )
+    height_source = np.round( H01 * 255 ) / 255 if quantize_height else H01
+    return normals_from_height( height_source, prof['strength'], prof.get( 'cap', 1.1 ) )
 
 def normals_from_height( H01, strength, capk=1.1 ):
     """The normals of a height field in 0..1: the maths of R_NormalsFromCraftedHeight in src/newer/render/normal_math.js."""

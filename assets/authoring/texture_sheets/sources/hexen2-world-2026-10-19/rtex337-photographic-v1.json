@@ -1,0 +1,55 @@
+{
+  "method": "photographic",
+  "factor": 4,
+  "verticalLandmarks": null,
+  "colorStrength": 0.65,
+  "fieldSigma": 0.75,
+  "edgeAnchor": false,
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    32,
+    64
+  ],
+  "distanceMeanMaxError": 61.984375,
+  "distanceMeanMAE": 10.89264170328776,
+  "donorDistanceMAE": 24.72437795003255,
+  "newClippedChannelFraction": 0.0020726521809895835,
+  "donorContourCorrelation": 0.9994357913980337,
+  "sourceMean": [
+    94.6943359375,
+    67.81494140625,
+    35.03076171875
+  ],
+  "outputMean": [
+    106.82793426513672,
+    76.12726593017578,
+    39.32221221923828
+  ],
+  "donorBoundaries": {
+    "wrap_x_mean": 36.233723958333336,
+    "wrap_y_mean": 55.17578125,
+    "interior_x_mean": 12.818609579248367,
+    "interior_y_mean": 14.406634764350947
+  },
+  "boundaries": {
+    "wrap_x_mean": 36.235677083333336,
+    "wrap_y_mean": 55.243489583333336,
+    "interior_x_mean": 12.798611111111114,
+    "interior_y_mean": 14.384430548760601
+  },
+  "passedDistanceCheck": null,
+  "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+  "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/01-rtex337-3bbe64a968db.png",
+  "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex337-generated-v1.png",
+  "output": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex337-photographic-v1.png",
+  "originalSha256": "b2a1d03ce67e4115e3e5699c9d5b8a26152317a7955ad621cd259b7636eee6b4",
+  "generatedSha256": "ce4f009cd4153d68c0c0d87944a09ab29a6153de6463c5f2243b912a50eab6aa",
+  "outputSha256": "424b6c947325d201741d0e2cc3e05381cfb4a26ddca42cff070b1b125c54a112",
+  "outputDimensions": [
+    256,
+    512
+  ],
+  "toolSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+  "landmarkFile": null,
+  "landmarkSha256": null
+}

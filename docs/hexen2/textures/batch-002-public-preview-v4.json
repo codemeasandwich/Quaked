@@ -1,0 +1,5567 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-19T01:47:43.243230+00:00",
+  "verifier": {
+    "file": "docs/hexen2/textures/batch-002-public-verify-preview.py",
+    "sha256": "e6bff9caee0303cc2e341a925414163d01eaaca7611899897c548180e98e5fb9",
+    "bytes": 12189
+  },
+  "replayEnvironment": {
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "Python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "Pillow": "10.1.0",
+    "NumPy": "1.26.2",
+    "JPEG": "6.2",
+    "WebP": "1.3.2"
+  },
+  "limits": [
+    "Public review CLI replay binds decoded content panels, not independent artistic acceptance.",
+    "Static HTML/image files checked; no browser layout, GPU, engine or gameplay qualification.",
+    "Retained single generator source/declared count is not an independent provider-side invocation audit.",
+    "JPEG binary identity is not established: prior stronger byte assertions are retained as HOLD. Any decoded variance must be confined to known empty bottom-right padding, outside all panels and labels; full difference bounds are recorded."
+  ],
+  "inputsBefore": [
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-170ac4e4-88b2-43a3-9be9-7390d9172d48.png",
+      "sha256": "eb403f8b3516dfaa69f3ee81f6b3c8bd89fa077d743cc8f4e3b2ae01368fb5de",
+      "bytes": 4277837
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-2d4c4bc4-c568-4ee1-a79f-30e9b8f43767.png",
+      "sha256": "fbf044da3f84ce3b25020028944d7893ff4d32b6d690c6039387e1bf875a7a97",
+      "bytes": 3823857
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-57676e58-001d-4e00-8eee-c0bd520f22d0.png",
+      "sha256": "c6137da8df7b456c6dbf390f6383c5572f2e3daf533a67c0c8ff3b281ae06316",
+      "bytes": 4172835
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-5b019965-2825-4529-a26d-ccf11eea6b81.png",
+      "sha256": "2bf1b58fa70e31dbe2aea6920606f23d98bd108908ba9f9d05417e7f3bb114c4",
+      "bytes": 3820281
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-68a026d0-7961-4d27-b475-99cb6b8e388f.png",
+      "sha256": "aae11addc9db1ec1191eda9575a0ad89d70841a190433289d6b11decb11f0e7c",
+      "bytes": 3685224
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-724c33d7-79ae-407a-8588-e82bc5af51c4.png",
+      "sha256": "8a5dd8ac1b1ba35e3f5021365d9d7854fd43d5bb72f6a245c196b4ad43470909",
+      "bytes": 3608601
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-b990ac6a-b30e-4ef2-8aa0-2685c1159afe.png",
+      "sha256": "2cfa3d3a849932b9be136ef48ecd4384e2fcbd098911182d9cfdbdaf31062262",
+      "bytes": 3544165
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-fd4877c0-529b-411e-916b-81e2e785d1ee.png",
+      "sha256": "713824e6b9f7c8c516233901f7a9c9f04a11052b1476f2863eda8ba3982b0369",
+      "bytes": 3608801
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/batch.json",
+      "sha256": "5d185dcaa69acbdc88dcc2fe7c9b38c2fcb2a7f4d94edc32fe7ac273147e29ac",
+      "bytes": 24972
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/rpal308.png",
+      "sha256": "eb403f8b3516dfaa69f3ee81f6b3c8bd89fa077d743cc8f4e3b2ae01368fb5de",
+      "bytes": 4277837
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/rtex028.png",
+      "sha256": "fbf044da3f84ce3b25020028944d7893ff4d32b6d690c6039387e1bf875a7a97",
+      "bytes": 3823857
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/rtex099.png",
+      "sha256": "2cfa3d3a849932b9be136ef48ecd4384e2fcbd098911182d9cfdbdaf31062262",
+      "bytes": 3544165
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/rtex103.png",
+      "sha256": "aae11addc9db1ec1191eda9575a0ad89d70841a190433289d6b11decb11f0e7c",
+      "bytes": 3685224
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/rtex422.png",
+      "sha256": "c6137da8df7b456c6dbf390f6383c5572f2e3daf533a67c0c8ff3b281ae06316",
+      "bytes": 4172835
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/ttex013.png",
+      "sha256": "713824e6b9f7c8c516233901f7a9c9f04a11052b1476f2863eda8ba3982b0369",
+      "bytes": 3608801
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/ttex020.png",
+      "sha256": "2bf1b58fa70e31dbe2aea6920606f23d98bd108908ba9f9d05417e7f3bb114c4",
+      "bytes": 3820281
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/ttex126.png",
+      "sha256": "8a5dd8ac1b1ba35e3f5021365d9d7854fd43d5bb72f6a245c196b4ad43470909",
+      "bytes": 3608601
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rpal308/master.json",
+      "sha256": "7440aecbc1e5fe2bdbb24c9213d698147b2b626b4b4fb7d198101dd96af3821e",
+      "bytes": 4204
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rtex028/master.json",
+      "sha256": "7042023c3267cc1fe7dba0691a13230f29e1992ba39122fafe41c2ddaa344138",
+      "bytes": 4194
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rtex099/master.json",
+      "sha256": "f31d294863258bf177ad1bd780083c21146c6f87ffd002297f38a7d2012fb1ee",
+      "bytes": 4192
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rtex103/master.json",
+      "sha256": "93be1b3a35386eec7e1dd0eca7f69208230639b9407c1c5e7136ecff21029300",
+      "bytes": 4198
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rtex422/master.json",
+      "sha256": "7134406ad0f6dbd9d8efc19615992575cc8f71b67c103af908f5a5a94bf4beb2",
+      "bytes": 4188
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/ttex013/master.json",
+      "sha256": "e34a2788be6f88bb7a6c73d61f89d805a5068e2d81782bbc3a165159e047bc9e",
+      "bytes": 4205
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/ttex020/master.json",
+      "sha256": "812b87d1b9e52d9dc1069aa27ff90290611e222e0d171cf2420c806f6a83d6b5",
+      "bytes": 4213
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/ttex126/master.json",
+      "sha256": "a7cb8c7d2d4e528e245533404efd28b09bac7438515e5af59e77f9816cc512b1",
+      "bytes": 4199
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rpal308.txt",
+      "sha256": "e61094e3c3a0381abd54ff0b5a45356eb648ac34675768892db49f9c2adf2ea2",
+      "bytes": 2063
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rtex028.txt",
+      "sha256": "e27846b328bd89bb3abdd54f58681d4dde60b22e7ea6b3202abb2ce78c8e16e9",
+      "bytes": 1962
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rtex099.txt",
+      "sha256": "5a619b6aa6096ea6a9f7cb987837da365439540d690046d65cbbd9bf36dfd42a",
+      "bytes": 2036
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rtex103.txt",
+      "sha256": "937b1686f584f362d83a7b85bb63dd9da4ddcb6ad9cd5dd15a57e3222a96ed44",
+      "bytes": 2005
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rtex422.txt",
+      "sha256": "817cd5f34c2ca5eb3a6b175959b80052d55a69a706f1f53c8ac8a74f80fe0580",
+      "bytes": 2055
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/ttex013.txt",
+      "sha256": "ba97c3c54978e1512c08b4a71ee4473a3cf0cc53b7fde2b91df253001e059990",
+      "bytes": 2024
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/ttex020.txt",
+      "sha256": "5eb72e65510a238eaaad6c663f256002bf1c44439f471a5184e03a89625863a9",
+      "bytes": 2034
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/ttex126.txt",
+      "sha256": "4c98163546642e9ed45b82b0f49c8717cd525eed1e1b8d6ab85ce0bca1cf4829",
+      "bytes": 2132
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/index.html",
+      "sha256": "b27c88c9c537ca301a1f07ef0f9ce2c1bc0433bc071d94c08670db1ec4391d7e",
+      "bytes": 5430
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rpal308-high-relief.jpg",
+      "sha256": "580d6a47cef688e1723ba7907377269d50c3602d82d9ad218fd64a1a951bc9ab",
+      "bytes": 529870
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rpal308-high-review.jpg",
+      "sha256": "0fb9cc6d1a311ef537f07be81741cec5f584e478e38b4826bed62a63aa05f046",
+      "bytes": 367719
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rpal308-mid-relief.jpg",
+      "sha256": "9a67f2fb8202b55e036d41bcff55005405a95f0acbd7d1a6fdd3b492c6c2de1c",
+      "bytes": 166990
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rpal308-mid-review.jpg",
+      "sha256": "6bf3ec5ba5d768f6092b561c717e013efbb516aa7ab4fa686260bfe3048ac054",
+      "bytes": 306090
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex028-high-relief.jpg",
+      "sha256": "ba8f39419bd1cb9f2525378a1ee9423c0a1205660b2862c701d750988ad36022",
+      "bytes": 272450
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex028-high-review.jpg",
+      "sha256": "21d9939c2b0911dbefff53b0054a81e1a45e75da540b3e1c6ac09876874b8c88",
+      "bytes": 266489
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex028-mid-relief.jpg",
+      "sha256": "12daad6d120cba4769c6eb79a0f9ace74938129daeea633f16cee5a93d6d34a6",
+      "bytes": 279045
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex028-mid-review.jpg",
+      "sha256": "03698579e3f51153a85a4063c6161581a5399d9d56077befe18943cd3e8d5a47",
+      "bytes": 265282
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex099-high-relief.jpg",
+      "sha256": "185e22220f5d3f54ca5f8b15a371f68ae88c50c11ddef6544feaa47927e68976",
+      "bytes": 538182
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex099-high-review.jpg",
+      "sha256": "e7b28c9c17019684631a48e47881accf5060743b1642c1f84a358f37698c9ca5",
+      "bytes": 311985
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex099-mid-relief.jpg",
+      "sha256": "13326c2379add47ba692351a25a04b2d23c55ac702866d99e23e8949c080f1fc",
+      "bytes": 157192
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex099-mid-review.jpg",
+      "sha256": "f9070f4eef6ba46f66e55c961cb1c73d060f62e120fafe3d8137663cfd7f11a8",
+      "bytes": 262064
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex103-high-relief.jpg",
+      "sha256": "67abedbf53fccfef66d187e568ee1e55b13f928052f2132fe3dcee199885b86a",
+      "bytes": 485893
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex103-high-review.jpg",
+      "sha256": "3f52ef7743c28f1591c7d32f98783d2e0c0663094ecfde94dbbd4e22d665ddc1",
+      "bytes": 334815
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex103-mid-relief.jpg",
+      "sha256": "d46111eb006650c3f7199e4afc56978fbb93d310a8610c16c4bd8b8fb0c88a06",
+      "bytes": 159523
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex103-mid-review.jpg",
+      "sha256": "5912107490a613ca343acb23d85ba46186a1c4b9fb0c07b4fd1390215ca97df7",
+      "bytes": 280919
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex422-high-relief.jpg",
+      "sha256": "46ffca9260e1a6015c30b044383f508048c9eb718cc8770611dc27f50e9c181a",
+      "bytes": 506781
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex422-high-review.jpg",
+      "sha256": "0106764c2615a62c4f03b0d8da5e55fa54ed87e8d613cd0f69d2579942315d15",
+      "bytes": 348780
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex422-mid-relief.jpg",
+      "sha256": "78227d7babcc0194239a0abc32edde20bac3108baaedf66107d631449e91316e",
+      "bytes": 159937
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex422-mid-review.jpg",
+      "sha256": "56cef6c0b576ddd6b003d33476fb6afb0584d2dcc268e80ce336ae3083562ea9",
+      "bytes": 290332
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex013-high-relief.jpg",
+      "sha256": "00bf8494b64635cf7eabf488855e8f465aab07559f92a6cf3919eec07c651dac",
+      "bytes": 471178
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex013-high-review.jpg",
+      "sha256": "869637dc9d3b567a466eedda549d7daaa5477aca45f5cb37d9e36960feb21ae5",
+      "bytes": 314935
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex013-mid-relief.jpg",
+      "sha256": "e86b74a8a5fb3d488c290be0b4cf76a61ade9b48f84224dee56942ea7f470219",
+      "bytes": 154746
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex013-mid-review.jpg",
+      "sha256": "84eb22c5109631097ccaad21a5cfb240c28d471179c14ec216edbad8025e0897",
+      "bytes": 261870
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex020-high-relief.jpg",
+      "sha256": "66710e39956ad47d74f863441e606567be23a3e6f60bc6d655e438fe4ba04009",
+      "bytes": 266318
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex020-high-review.jpg",
+      "sha256": "5d7d14728ff9fd45c129cf4b7879fe7ce35a38e01eba11b9b5a19b6c9ef29b84",
+      "bytes": 253842
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex020-mid-relief.jpg",
+      "sha256": "bc8d2164906223ba619bea883618cb2bf28f96073c4267c3594cd3d084c2a8e2",
+      "bytes": 272360
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex020-mid-review.jpg",
+      "sha256": "8db8c213d3981f3a0783db099395286c2dfb8e8bf46faf2bb8255166741ce259",
+      "bytes": 251015
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex126-high-relief.jpg",
+      "sha256": "7915aad586cf6170f645dbdbc445bd0fecba009570791f8222df240d4c55068a",
+      "bytes": 465747
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex126-high-review.jpg",
+      "sha256": "92acc3b44ffd015d7c4ef1099c52dd6357e5d75823f4fcd80574539eefa8b624",
+      "bytes": 354246
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex126-mid-relief.jpg",
+      "sha256": "eae06bf653ed4d659ac055acb8fcd07b8f22255fa511c4cd45366b3a46165282",
+      "bytes": 150707
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex126-mid-review.jpg",
+      "sha256": "873e5fa7f964722b09d7eeeab7f80ab332657ba3322d83b4b1aeebf3986e2116",
+      "bytes": 302569
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/selection.json",
+      "sha256": "d668b8a916734e3ec3a819281fab4eb4679a041990262c088e5d98739797a21a",
+      "bytes": 11169
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/high-diffuse.webp",
+      "sha256": "cdfc240f33553153d29cd958e7f379548e4f123f811aa3cc1cfdb8a4955d5781",
+      "bytes": 143790
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/high-height.webp",
+      "sha256": "aacadf5483ce2bbf51192aa684ee9b9c6840c539c4aa884c10ce08eb8cfde262",
+      "bytes": 95072
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/high-normalX.webp",
+      "sha256": "90bbdf94b9b116e464cf5688c5f23607409fac8572034c2ac988bc4c67f2c823",
+      "bytes": 93862
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/high-normalY.webp",
+      "sha256": "19977f49a8f5ec2060af5f8daae772ac7deec5cb641a83c1f9209316ffeca53b",
+      "bytes": 91724
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/high-normalZ.webp",
+      "sha256": "f6635c4733e25515cdc1cec085c8cba43dce8035866d7ea74f242e4ed29820d7",
+      "bytes": 25286
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/manifest.json",
+      "sha256": "577b4dc1f2fdb12113a178883a8a6561913f924325cc60d9b29f5faffa467c47",
+      "bytes": 9667
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/mid-diffuse.webp",
+      "sha256": "b759cc988a649277903f6c54f3eb8728dd1bc3cc3fff57ccd6a355cdba458291",
+      "bytes": 33470
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/mid-height.webp",
+      "sha256": "91f27853bd70e9cfe38ad88ae853acae0a7e33c4e180027ff1a659c91b418585",
+      "bytes": 33502
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/mid-normalX.webp",
+      "sha256": "9689613cfb5dafd677eb9f20bcef7b4691291b06eff96ce6635eed1e44ca1f34",
+      "bytes": 29322
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/mid-normalY.webp",
+      "sha256": "ac5bef92f65cfef597d0c3183bf307d8699836a4b626271e88daffd0166cedcc",
+      "bytes": 29064
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/mid-normalZ.webp",
+      "sha256": "617a51504371c53ad6810d59f243366a0097ee36b4046c2ac5b941337ea72a08",
+      "bytes": 8392
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/high-diffuse.webp",
+      "sha256": "2e4c5f69db6b9df470b333fddad8699f92c00e69b262826e6bd0dd820ef39b85",
+      "bytes": 243106
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/high-height.webp",
+      "sha256": "59cfd67d6ba908d500bb11d71fda11276cd27f92b336a1d064361c1123f0e944",
+      "bytes": 168042
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/high-normalX.webp",
+      "sha256": "2e088d699815d5c0005ecb9ab3f3ddbc6afff6cc4f0b465873b9fa2c846ecd14",
+      "bytes": 179150
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/high-normalY.webp",
+      "sha256": "2467e4be462cb9cc7591dd0f584ef2d18f10577e58784a589774903a45f4e533",
+      "bytes": 171110
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/high-normalZ.webp",
+      "sha256": "f58b0ac45a95fdaf4f3d5c56d37729e85bfb67dbba4fbd4b4272d03a5f9270f8",
+      "bytes": 42286
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/manifest.json",
+      "sha256": "b3482ac8061973856efa5efb3ed05356aabd0c223001c22887cb259ac59ee8cf",
+      "bytes": 9662
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/mid-diffuse.webp",
+      "sha256": "972812dac1b5bc580714c7370af7fdfb3bf2df20e53a4a92ca32147d7b1aad25",
+      "bytes": 62824
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/mid-height.webp",
+      "sha256": "981a9757dd225e37f3f1ecddf480bfd29c304aaa820ecdfcacf3995eee46e982",
+      "bytes": 60288
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/mid-normalX.webp",
+      "sha256": "2be95f0c95167421794252225867aeff3cd68e3eb792a850d0683e7e97b22f53",
+      "bytes": 55318
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/mid-normalY.webp",
+      "sha256": "2844045d2982b2e48a798048804791f3b85bcd1a75445a06dfa29532becabad5",
+      "bytes": 54342
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/mid-normalZ.webp",
+      "sha256": "cdc60fcc9652fd6e44e6675697880de8265cd39c72949f77c17d88b6d0185ce5",
+      "bytes": 15500
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/high-diffuse.webp",
+      "sha256": "56fc46f845bbb8e15f4bd96be002b015373b6254c920bd4d11ef4a20c344cae6",
+      "bytes": 119194
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/high-height.webp",
+      "sha256": "3516de84a9949624028b07deb4062aefa1e91c297517657b4e7af3f9e8a3d52f",
+      "bytes": 132244
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/high-normalX.webp",
+      "sha256": "d12e4b30e53d0fe4a8c75a2776ff689e06bfde99434b24ad553c7717b4d0a465",
+      "bytes": 121022
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/high-normalY.webp",
+      "sha256": "c1334a1932b9fd995cf29dcd0292fe895705ae11f1cbd2fb57c019f0a29863be",
+      "bytes": 117812
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/high-normalZ.webp",
+      "sha256": "ee6e3dcad3b571ded52ef499687e06d9e30f7087763ca5b4facab582d4b9fa9e",
+      "bytes": 29296
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/manifest.json",
+      "sha256": "315c160880a32c358153e8642049f98e7d46b8b7405e7ce40a6821d7c2cb8c62",
+      "bytes": 9672
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/mid-diffuse.webp",
+      "sha256": "434a7554f812e404d766ae8a84a2fc9795bc2d3e63c93518da85fa7ffe8dd3e1",
+      "bytes": 29562
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/mid-height.webp",
+      "sha256": "27c4deffd68b3639b62c1fa70c1028fd6dac6d7c574014b5a746d069a0bd3fa6",
+      "bytes": 37286
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/mid-normalX.webp",
+      "sha256": "9edff2d10427f37d6feea46310bb18a7ad8d2bb0cacc51cced9cdb269f992cbc",
+      "bytes": 30494
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/mid-normalY.webp",
+      "sha256": "4c595413ca49ca5574cc7d82dd928becfeb46d75fb82848e0ddbb67a03b1238a",
+      "bytes": 28442
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/mid-normalZ.webp",
+      "sha256": "84e07221487ac043696699a9179ead7b258b79ab00a45523c726ba9ede766a19",
+      "bytes": 8722
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/high-diffuse.webp",
+      "sha256": "a95d8916973255af28528773f95cf5fadbf2124460be1be508b3930200c6c840",
+      "bytes": 125776
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/high-height.webp",
+      "sha256": "c87537be6159b6912f644e6b07984b9e59d01fd4b813f4e885c04f78a2ac144f",
+      "bytes": 96046
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/high-normalX.webp",
+      "sha256": "d1eed03220cbda13aae6cc416bd80230404f4da571ff1b8bf1cdf4cce9c384aa",
+      "bytes": 89536
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/high-normalY.webp",
+      "sha256": "1cf9e320820065684045060649736913baf691b61c85f370ffe2bff3a19ec137",
+      "bytes": 90412
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/high-normalZ.webp",
+      "sha256": "22304a484825c8cd5750fbd88133e0e5495837b7970a3abb85a832bf997e2f9e",
+      "bytes": 24990
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/manifest.json",
+      "sha256": "f34a7cc1d5928e79d5352b68b0df0b4f2f187e291b786baeb80089c8409ce4eb",
+      "bytes": 9661
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/mid-diffuse.webp",
+      "sha256": "6f825443fc1bbfb715459fdfd87e07f551dc9b7cb4295de7475b4fc50a4dabf4",
+      "bytes": 30002
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/mid-height.webp",
+      "sha256": "20892e4964520c01a86a91d419bf58b37c69b8bcfbd4b1bc2b12afbd992e3860",
+      "bytes": 34580
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/mid-normalX.webp",
+      "sha256": "17d98ae2d7a08e55f83cc724a54c1b2c0a6bf10bf0ce0fd00f5ffbfc632a6b23",
+      "bytes": 30178
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/mid-normalY.webp",
+      "sha256": "f95511685b3d69a27e159027dd15c1c48bf6684e9d42b292115ecd4ff97aae45",
+      "bytes": 29740
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/mid-normalZ.webp",
+      "sha256": "ce7d460b3272d8bb4a6b80979fd0cbdeea40b3572e8d8b70aa54534f68d442f3",
+      "bytes": 8684
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/high-diffuse.webp",
+      "sha256": "ca4f5673bd75ac3ee669af22bbfa74f53aa301998fea385d6cb1746b19304063",
+      "bytes": 130676
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/high-height.webp",
+      "sha256": "a8812ca2f89ffbacb946a1c40c0cd6796135bfc2469da3e9b18fcba8182017f6",
+      "bytes": 95268
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/high-normalX.webp",
+      "sha256": "da167d269e93f7c7cb485cd0a955a591cb69fcbd91c295f7512580529792744f",
+      "bytes": 93368
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/high-normalY.webp",
+      "sha256": "7a477aca3a7ac991e8ed143ea7f6dd0f09028ebc0e2850b990c56573cc2aa36d",
+      "bytes": 90822
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/high-normalZ.webp",
+      "sha256": "e145a5beb31c2e8f13e35e59faca348ce8014ff705d01c35e1337e5ec2ff16fe",
+      "bytes": 24770
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/manifest.json",
+      "sha256": "7becb88848c4e5c381864ba5c233bca0da5f2e58f083c833c82b1576986af509",
+      "bytes": 9671
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/mid-diffuse.webp",
+      "sha256": "aaeb0b11c35cab386d4323747437e710348dea7c441c2f0a558ba382ab75bdb6",
+      "bytes": 31084
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/mid-height.webp",
+      "sha256": "2688d61a59af3106c8b4785cf4438e0436797e6eaea86351a75896557270eccf",
+      "bytes": 32834
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/mid-normalX.webp",
+      "sha256": "91c2e6037c24fdab37eb51e0cccc37b4fc4db10bef582a821d32ac0b50f39447",
+      "bytes": 28258
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/mid-normalY.webp",
+      "sha256": "83b416a2669b9b1925fe7d508709fccdcd01c089fdccd0830cf1b6dacd4184c6",
+      "bytes": 28198
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/mid-normalZ.webp",
+      "sha256": "66fdfff61e34bd75b019d2959e5da02bfeb04da2f30991d26f29a69ca7ddaa21",
+      "bytes": 8288
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/high-diffuse.webp",
+      "sha256": "7805885d26a0e1ee80bfa4f9e8528ea60be1d3d38924aed4fcce40e611244520",
+      "bytes": 118110
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/high-height.webp",
+      "sha256": "db750fb0a5c59c99c613a7025f3e1344ca0ced050327665d80480bf07542f8be",
+      "bytes": 91202
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/high-normalX.webp",
+      "sha256": "c752d7af4284b5bc19618c7ebb5bc998e9b60c15d539d1026c1b034e46684d45",
+      "bytes": 91136
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/high-normalY.webp",
+      "sha256": "69c581f2a17d31180788c093c0f8d8bde941c04cbb5bb3e4ad82c3acfbb10882",
+      "bytes": 88864
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/high-normalZ.webp",
+      "sha256": "f60d132e3c7d1583e51d5dc499d89777402d2cf86302de1b92036563e83ea810",
+      "bytes": 24824
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/manifest.json",
+      "sha256": "335ef0e217290b8c63a2d57f7fca027d6f165846c8eef646eaf2a6f1d858d70b",
+      "bytes": 9687
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/mid-diffuse.webp",
+      "sha256": "5a822a1a5bde288bd55df4dec4a55f5d9e26ae6d6509b03fff7f55ee4d501986",
+      "bytes": 26766
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/mid-height.webp",
+      "sha256": "9c122f6a3cc45c6a8fc571b307b2854648f24c0928be22a92f44d7aeb027a432",
+      "bytes": 34304
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/mid-normalX.webp",
+      "sha256": "92da3cf7d22c97d3fc1f8c2de5f0bd33c03ba28ad4d73b9c97244ac1db02929d",
+      "bytes": 29876
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/mid-normalY.webp",
+      "sha256": "ceecc851a2d671a4fe79efa08a7d9440d26e371e502e088d45e6e916ec3d7f90",
+      "bytes": 30178
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/mid-normalZ.webp",
+      "sha256": "54f7544333e6de01d95019345f501e0f59847b7161bb51d4b2945671ea82e3d3",
+      "bytes": 8478
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/high-diffuse.webp",
+      "sha256": "69d1ac18f0a42ee4bde628c6e2626c8c62b01feb92574d4e8e2f376c39044bfd",
+      "bytes": 247642
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/high-height.webp",
+      "sha256": "4df7b9ee4bc432c5c2d7117acd68a68c8efca52ec5707125192bb2c64e025f31",
+      "bytes": 172260
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/high-normalX.webp",
+      "sha256": "46f3d0c9ee654bf4f6f9964dad0c9c5f6e443914a5169442e9b7bf69d9f96bfe",
+      "bytes": 177012
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/high-normalY.webp",
+      "sha256": "fda82537a4d1045c4a30d6d933392089181dea113e422e5fa5e99df8690623d9",
+      "bytes": 178602
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/high-normalZ.webp",
+      "sha256": "c966491096841bf85c0894dc1663d7951b6f0b30a00ef9e4dc7eeeb2f02bf0fc",
+      "bytes": 41824
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/manifest.json",
+      "sha256": "d269e598f1af2230071555d245ae3c410e45035ce4de8e15d3810069c898faa0",
+      "bytes": 9648
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/mid-diffuse.webp",
+      "sha256": "b4380af0ee7ab01b8670f6d8fc3a37153bc86b0441a73f479c6d8d7a4f3c87d6",
+      "bytes": 59230
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/mid-height.webp",
+      "sha256": "87b46a12dd339bdd3110d4c3c0fa713ee1174eec2532cf2b8c5826e5993e3c54",
+      "bytes": 60036
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/mid-normalX.webp",
+      "sha256": "9ac7f99ed687cc2d85a46c796d9fea93b4766f5eccdd64038055a338d67240ad",
+      "bytes": 55596
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/mid-normalY.webp",
+      "sha256": "65e1694d62b02bc11b5e78dfd20a774e5abbe4ae25382d775d5741f40f93198d",
+      "bytes": 54316
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/mid-normalZ.webp",
+      "sha256": "538cdd66fc381567f039107a838c5a99d60c2872667fc3d50f4b45cee4cb6c17",
+      "bytes": 15544
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/high-diffuse.webp",
+      "sha256": "998f784dfbce8b52abdf211112ec08b01ff44741d574659423a3de6d2f41d44f",
+      "bytes": 130284
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/high-height.webp",
+      "sha256": "3054d45909109f299bebd48a2cfcee09f31029c6d2a8b6acb980b8ad5c714ef0",
+      "bytes": 82104
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/high-normalX.webp",
+      "sha256": "4b96ed504fb2575a268016597b9f89fc6515db91853d481dbca10f86d9a6a54a",
+      "bytes": 78676
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/high-normalY.webp",
+      "sha256": "c7c637db0e62319decd80d731108b9af4c506fc3a6f8031b7ac943e60a5f3231",
+      "bytes": 81588
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/high-normalZ.webp",
+      "sha256": "f04e5b6bbe8860e53c340b9692a69f791d974a8974b67240091e98c378e878bf",
+      "bytes": 21368
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/manifest.json",
+      "sha256": "f64c3feabd839954e95770388d7f99586a60eed8eb1b1c0b5e9057691b4f34bd",
+      "bytes": 9617
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/mid-diffuse.webp",
+      "sha256": "de3721eb1211af0eb66883fa54b44b905e81301f4fe5fdd943b49572c09fe896",
+      "bytes": 32120
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/mid-height.webp",
+      "sha256": "94ca0cae2eda6f1a2df98d045ceed7efc3ff64690e3f24d9723ceaec29a0fa31",
+      "bytes": 28894
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/mid-normalX.webp",
+      "sha256": "8bda9ab72821d693b1aec1f0c1b88d401465c9864ee0726c02c01e27ae6279ee",
+      "bytes": 23646
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/mid-normalY.webp",
+      "sha256": "127d56358787eb839f7a516119220cdad25880230575d5cd0ccd214c581a6635",
+      "bytes": 24750
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/mid-normalZ.webp",
+      "sha256": "2d96f7a98e272013d4123063816c659c44b6c7042a041738bfd69f1193ee0a1e",
+      "bytes": 7508
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/02-rtex028-0e5d4ca5c88f.png",
+      "sha256": "5483d7b5a7f9e4b9c3ee34cb39acee416b325b4aa5e41dd70ea9a3e3f25b9c59",
+      "bytes": 6175
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/03-rtex099-6a3ca30bf015.png",
+      "sha256": "ddd589bcdab1c6eb53faa62856edeaadc54cd93b3515ed7242fa13fe689a5248",
+      "bytes": 3684
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/04-rtex103-6eac34b9d3de.png",
+      "sha256": "e45b000bbb4b5d5286cb8c608e2fc695f778f8073d8e750d45e67a3d33b7e4a6",
+      "bytes": 2951
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/08-rtex422-d8e1d80d5a0b.png",
+      "sha256": "637617397968000e140e7c51f79126fb6e59064131ba2a6ab93e5b95920d14a9",
+      "bytes": 2669
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/10-ttex020-56bff92e6648.png",
+      "sha256": "96b38f8a9e50d7cf25ea7bb400a8b1f691557de7833c212e0a02f0028919b0a5",
+      "bytes": 6182
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/11-ttex126-9061b0e47ebc.png",
+      "sha256": "837fa207214ac32119de547aebacd4516ef7b886c4a4c3a5da1009ab4ab79c2b",
+      "bytes": 4178
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/12-rpal308-74929cd446be.png",
+      "sha256": "e0c8ced0e040fcf8273cd267c24b0b4ac544667b8580dfd36ed4cf46a17d3ff2",
+      "bytes": 3291
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/16-ttex013-1e9b3f6a9b33.png",
+      "sha256": "ffedeabeb261d14eec954d3226c6adfa0763f4d34713ec2993fd0d0333ac7898",
+      "bytes": 2369
+    },
+    {
+      "file": "docs/hexen2/textures/batch-002-public-actual-v1.json",
+      "sha256": "ce2c1fa778625122777ee6471f9c7d21e9dfa963dd612855a5c1c926be5d04f3",
+      "bytes": 101276
+    },
+    {
+      "file": "docs/hexen2/textures/batch-002-public-verify-preview.py",
+      "sha256": "e6bff9caee0303cc2e341a925414163d01eaaca7611899897c548180e98e5fb9",
+      "bytes": 12189
+    },
+    {
+      "file": "tools/texture_sheets/build_texture_batch_review.py",
+      "sha256": "0bb1bc2db00921078bb41d4d3cd37d4c92c0efda35b129d3d3b07424c53edc6a",
+      "bytes": 6218
+    }
+  ],
+  "reviewCLIProcess": {
+    "command": [
+      "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+      "/Users/bri/SOURCE/Quaked/tools/texture_sheets/build_texture_batch_review.py",
+      "--batch",
+      "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/batch.json",
+      "--paths-root",
+      "/Users/bri/SOURCE/Quaked",
+      "--output",
+      "/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/hexen-public-preview-replay-sj05gfab/review"
+    ],
+    "exitCode": 0,
+    "stdout": "{\"review\": \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/hexen-public-preview-replay-sj05gfab/review/index.html\", \"materials\": 8, \"sheets\": 32}\n",
+    "stderr": ""
+  },
+  "verdict": "PASS source bindings and all32 decoded preview content/label panels; bounded empty JPEG-tail padding variance retained",
+  "sourceBindings": [
+    {
+      "name": "rtex028",
+      "retainedGeneratorOutputMatches": {
+        "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-2d4c4bc4-c568-4ee1-a79f-30e9b8f43767.png",
+        "sha256": "fbf044da3f84ce3b25020028944d7893ff4d32b6d690c6039387e1bf875a7a97",
+        "bytes": 3823857
+      },
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rtex028/master.json",
+        "sha256": "7042023c3267cc1fe7dba0691a13230f29e1992ba39122fafe41c2ddaa344138",
+        "bytes": 4194
+      },
+      "tierReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/manifest.json",
+        "sha256": "b3482ac8061973856efa5efb3ed05356aabd0c223001c22887cb259ac59ee8cf",
+        "bytes": 9662
+      }
+    },
+    {
+      "name": "rtex099",
+      "retainedGeneratorOutputMatches": {
+        "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-b990ac6a-b30e-4ef2-8aa0-2685c1159afe.png",
+        "sha256": "2cfa3d3a849932b9be136ef48ecd4384e2fcbd098911182d9cfdbdaf31062262",
+        "bytes": 3544165
+      },
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rtex099/master.json",
+        "sha256": "f31d294863258bf177ad1bd780083c21146c6f87ffd002297f38a7d2012fb1ee",
+        "bytes": 4192
+      },
+      "tierReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/manifest.json",
+        "sha256": "315c160880a32c358153e8642049f98e7d46b8b7405e7ce40a6821d7c2cb8c62",
+        "bytes": 9672
+      }
+    },
+    {
+      "name": "rtex103",
+      "retainedGeneratorOutputMatches": {
+        "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-68a026d0-7961-4d27-b475-99cb6b8e388f.png",
+        "sha256": "aae11addc9db1ec1191eda9575a0ad89d70841a190433289d6b11decb11f0e7c",
+        "bytes": 3685224
+      },
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rtex103/master.json",
+        "sha256": "93be1b3a35386eec7e1dd0eca7f69208230639b9407c1c5e7136ecff21029300",
+        "bytes": 4198
+      },
+      "tierReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/manifest.json",
+        "sha256": "f34a7cc1d5928e79d5352b68b0df0b4f2f187e291b786baeb80089c8409ce4eb",
+        "bytes": 9661
+      }
+    },
+    {
+      "name": "rtex422",
+      "retainedGeneratorOutputMatches": {
+        "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-57676e58-001d-4e00-8eee-c0bd520f22d0.png",
+        "sha256": "c6137da8df7b456c6dbf390f6383c5572f2e3daf533a67c0c8ff3b281ae06316",
+        "bytes": 4172835
+      },
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rtex422/master.json",
+        "sha256": "7134406ad0f6dbd9d8efc19615992575cc8f71b67c103af908f5a5a94bf4beb2",
+        "bytes": 4188
+      },
+      "tierReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/manifest.json",
+        "sha256": "7becb88848c4e5c381864ba5c233bca0da5f2e58f083c833c82b1576986af509",
+        "bytes": 9671
+      }
+    },
+    {
+      "name": "ttex020",
+      "retainedGeneratorOutputMatches": {
+        "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-5b019965-2825-4529-a26d-ccf11eea6b81.png",
+        "sha256": "2bf1b58fa70e31dbe2aea6920606f23d98bd108908ba9f9d05417e7f3bb114c4",
+        "bytes": 3820281
+      },
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/ttex020/master.json",
+        "sha256": "812b87d1b9e52d9dc1069aa27ff90290611e222e0d171cf2420c806f6a83d6b5",
+        "bytes": 4213
+      },
+      "tierReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/manifest.json",
+        "sha256": "d269e598f1af2230071555d245ae3c410e45035ce4de8e15d3810069c898faa0",
+        "bytes": 9648
+      }
+    },
+    {
+      "name": "ttex126",
+      "retainedGeneratorOutputMatches": {
+        "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-724c33d7-79ae-407a-8588-e82bc5af51c4.png",
+        "sha256": "8a5dd8ac1b1ba35e3f5021365d9d7854fd43d5bb72f6a245c196b4ad43470909",
+        "bytes": 3608601
+      },
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/ttex126/master.json",
+        "sha256": "a7cb8c7d2d4e528e245533404efd28b09bac7438515e5af59e77f9816cc512b1",
+        "bytes": 4199
+      },
+      "tierReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/manifest.json",
+        "sha256": "f64c3feabd839954e95770388d7f99586a60eed8eb1b1c0b5e9057691b4f34bd",
+        "bytes": 9617
+      }
+    },
+    {
+      "name": "rpal308",
+      "retainedGeneratorOutputMatches": {
+        "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-170ac4e4-88b2-43a3-9be9-7390d9172d48.png",
+        "sha256": "eb403f8b3516dfaa69f3ee81f6b3c8bd89fa077d743cc8f4e3b2ae01368fb5de",
+        "bytes": 4277837
+      },
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rpal308/master.json",
+        "sha256": "7440aecbc1e5fe2bdbb24c9213d698147b2b626b4b4fb7d198101dd96af3821e",
+        "bytes": 4204
+      },
+      "tierReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/manifest.json",
+        "sha256": "577b4dc1f2fdb12113a178883a8a6561913f924325cc60d9b29f5faffa467c47",
+        "bytes": 9667
+      }
+    },
+    {
+      "name": "ttex013",
+      "retainedGeneratorOutputMatches": {
+        "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-fd4877c0-529b-411e-916b-81e2e785d1ee.png",
+        "sha256": "713824e6b9f7c8c516233901f7a9c9f04a11052b1476f2863eda8ba3982b0369",
+        "bytes": 3608801
+      },
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/ttex013/master.json",
+        "sha256": "e34a2788be6f88bb7a6c73d61f89d805a5068e2d81782bbc3a165159e047bc9e",
+        "bytes": 4205
+      },
+      "tierReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/manifest.json",
+        "sha256": "335ef0e217290b8c63a2d57f7fca027d6f165846c8eef646eaf2a6f1d858d70b",
+        "bytes": 9687
+      }
+    }
+  ],
+  "actualMapProof": {
+    "file": "docs/hexen2/textures/batch-002-public-actual-v1.json",
+    "sha256": "ce2c1fa778625122777ee6471f9c7d21e9dfa963dd612855a5c1c926be5d04f3",
+    "bytes": 101276
+  },
+  "HTMLImageReferences": [
+    "rtex028-mid-review.jpg",
+    "rtex028-mid-relief.jpg",
+    "rtex028-high-review.jpg",
+    "rtex028-high-relief.jpg",
+    "rtex099-mid-review.jpg",
+    "rtex099-mid-relief.jpg",
+    "rtex099-high-review.jpg",
+    "rtex099-high-relief.jpg",
+    "rtex103-mid-review.jpg",
+    "rtex103-mid-relief.jpg",
+    "rtex103-high-review.jpg",
+    "rtex103-high-relief.jpg",
+    "rtex422-mid-review.jpg",
+    "rtex422-mid-relief.jpg",
+    "rtex422-high-review.jpg",
+    "rtex422-high-relief.jpg",
+    "ttex020-mid-review.jpg",
+    "ttex020-mid-relief.jpg",
+    "ttex020-high-review.jpg",
+    "ttex020-high-relief.jpg",
+    "ttex126-mid-review.jpg",
+    "ttex126-mid-relief.jpg",
+    "ttex126-high-review.jpg",
+    "ttex126-high-relief.jpg",
+    "rpal308-mid-review.jpg",
+    "rpal308-mid-relief.jpg",
+    "rpal308-high-review.jpg",
+    "rpal308-high-relief.jpg",
+    "ttex013-mid-review.jpg",
+    "ttex013-mid-relief.jpg",
+    "ttex013-high-review.jpg",
+    "ttex013-high-relief.jpg"
+  ],
+  "reviewCLIReplay": {
+    "command": [
+      "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+      "/Users/bri/SOURCE/Quaked/tools/texture_sheets/build_texture_batch_review.py",
+      "--batch",
+      "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/batch.json",
+      "--paths-root",
+      "/Users/bri/SOURCE/Quaked",
+      "--output",
+      "/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/hexen-public-preview-replay-sj05gfab/review"
+    ],
+    "exitCode": 0,
+    "stdout": "{\"review\": \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/hexen-public-preview-replay-sj05gfab/review/index.html\", \"materials\": 8, \"sheets\": 32}\n",
+    "stderr": "",
+    "all32DecodedContentAndLabelPanelsExact": true,
+    "indexHTMLBytesExact": true,
+    "files": [
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex028-mid-review.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "title",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              32
+            ],
+            "decodedRGBSHA256": "bfe807a4e6817735c156c958ef073315f3551f70a499677f5d0bca62dda906b3",
+            "exactReplay": true
+          },
+          {
+            "panel": "native",
+            "rectangle": [
+              12,
+              32,
+              268,
+              544
+            ],
+            "decodedRGBSHA256": "f330a1f1d778bff5846b54686ebed8a33d09f117ef8d3fb61197f67f645e1f8a",
+            "exactReplay": true
+          },
+          {
+            "panel": "diffuse",
+            "rectangle": [
+              540,
+              32,
+              796,
+              544
+            ],
+            "decodedRGBSHA256": "93c17224072212ce7c94f696f4b408d75d3302d6fdf3e73784da76073e91afc8",
+            "exactReplay": true
+          },
+          {
+            "panel": "oneToOneDetail",
+            "rectangle": [
+              1068,
+              32,
+              1324,
+              288
+            ],
+            "decodedRGBSHA256": "157ec829d35e460823a66a21efc99896143fc553ff0e1b345ca1718bc49b65dd",
+            "exactReplay": true
+          },
+          {
+            "panel": "repeatedTiles",
+            "rectangle": [
+              12,
+              570,
+              524,
+              1082
+            ],
+            "decodedRGBSHA256": "1d7972b763bd03de0563ea5ae45744b514bc6908205cb94d904982b6ad13b352",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Label",
+            "rectangle": [
+              540,
+              570,
+              1400,
+              595
+            ],
+            "decodedRGBSHA256": "f1452ef27af615927650653338e08dbee780342938630891ed5d101e44f3cd7e",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Native",
+            "rectangle": [
+              540,
+              595,
+              636,
+              787
+            ],
+            "decodedRGBSHA256": "d087800f17e675e116fe9ca06cdb24566190ca6ccafd864b88e472f88a214c31",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Enhanced",
+            "rectangle": [
+              646,
+              595,
+              742,
+              787
+            ],
+            "decodedRGBSHA256": "37139fed320b6f867f2dd1b4cd37d5eb5a45f93db412bc7aca6feda019ee98ca",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Label",
+            "rectangle": [
+              540,
+              805,
+              1400,
+              830
+            ],
+            "decodedRGBSHA256": "e418e6694e61aa50a75e81ad35b6270fea49b746ac3f00f6c87b662b8d184eba",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Native",
+            "rectangle": [
+              540,
+              830,
+              588,
+              926
+            ],
+            "decodedRGBSHA256": "4b844daa950e88321a465aa49df4f13b4a7d2298392af63946d6d2a843645086",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Enhanced",
+            "rectangle": [
+              598,
+              830,
+              646,
+              926
+            ],
+            "decodedRGBSHA256": "2096d4df3393ed745228f3400bebe8979bdb823affe2c6453ba3e74078145575",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 0,
+        "maximumChannelDifference": 0,
+        "changedRectangle": null,
+        "allowedEmptyPaddingRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex028-mid-relief.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              30
+            ],
+            "decodedRGBSHA256": "38364a5e43b6f79fe2b40e74dfa75d5efc009fc91896ae94da175a631ffda307",
+            "exactReplay": true
+          },
+          {
+            "panel": "bottomLabels",
+            "rectangle": [
+              0,
+              550,
+              1200,
+              580
+            ],
+            "decodedRGBSHA256": "f3b1be972d1d4c04435ef0c4f79dd30dc5deb4a0f9ae1fe2198ab4b9a3ecaa0c",
+            "exactReplay": true
+          },
+          {
+            "panel": "height",
+            "rectangle": [
+              10,
+              30,
+              266,
+              542
+            ],
+            "decodedRGBSHA256": "30ffcca79f0c371d92610a6e89a3ae69b72730fa950e88d3b9a09ae239ce51b9",
+            "exactReplay": true
+          },
+          {
+            "panel": "normals",
+            "rectangle": [
+              610,
+              30,
+              866,
+              542
+            ],
+            "decodedRGBSHA256": "f6c485e44999faf4db29d307d3651f4309e4bb8260b94ebf226e8dffd6b31281",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightA",
+            "rectangle": [
+              10,
+              580,
+              266,
+              1092
+            ],
+            "decodedRGBSHA256": "00c50181b0a102f20b09700b2c7c288a993d64259521530104b662c3a0171328",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightB",
+            "rectangle": [
+              610,
+              580,
+              866,
+              1092
+            ],
+            "decodedRGBSHA256": "766f176a8eb5e060c8becc0dea1793b4225bb26def8a67e0451392137fc5a078",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 57,
+        "maximumChannelDifference": 4,
+        "changedRectangle": [
+          1192,
+          1088,
+          1200,
+          1096
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex028-high-review.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "title",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              32
+            ],
+            "decodedRGBSHA256": "82072f46a99e5350b3ffa274b5c0b412787e7fc1185369b56363e6d13c494c10",
+            "exactReplay": true
+          },
+          {
+            "panel": "native",
+            "rectangle": [
+              12,
+              32,
+              268,
+              544
+            ],
+            "decodedRGBSHA256": "f330a1f1d778bff5846b54686ebed8a33d09f117ef8d3fb61197f67f645e1f8a",
+            "exactReplay": true
+          },
+          {
+            "panel": "diffuse",
+            "rectangle": [
+              540,
+              32,
+              796,
+              544
+            ],
+            "decodedRGBSHA256": "eaaf015e9cfed791055a7476418a42914a24d219d9ccb982175d14835c532d09",
+            "exactReplay": true
+          },
+          {
+            "panel": "oneToOneDetail",
+            "rectangle": [
+              1068,
+              32,
+              1324,
+              288
+            ],
+            "decodedRGBSHA256": "be39e4afd86212f90b71627b58569348cc537f02187a0886eef3f8e30bedb8af",
+            "exactReplay": true
+          },
+          {
+            "panel": "repeatedTiles",
+            "rectangle": [
+              12,
+              570,
+              524,
+              1082
+            ],
+            "decodedRGBSHA256": "c400155ced79fcfc4a0b20ab4f35d52c1f95b232594e4354a85cf738409acb0f",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Label",
+            "rectangle": [
+              540,
+              570,
+              1400,
+              595
+            ],
+            "decodedRGBSHA256": "7dd7fbad3fd6567473c9a9eec35822becead26a7e03553b666eba78e7d0413bf",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Native",
+            "rectangle": [
+              540,
+              595,
+              636,
+              787
+            ],
+            "decodedRGBSHA256": "d087800f17e675e116fe9ca06cdb24566190ca6ccafd864b88e472f88a214c31",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Enhanced",
+            "rectangle": [
+              646,
+              595,
+              742,
+              787
+            ],
+            "decodedRGBSHA256": "228b4b37c452da3ec244691c400d489075a49a3d7a99d497b9ae040887a5d572",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Label",
+            "rectangle": [
+              540,
+              805,
+              1400,
+              830
+            ],
+            "decodedRGBSHA256": "39d5f176665f50ea60e9b3a6f75e06109781252f7b42d04c952100e1dfffc96c",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Native",
+            "rectangle": [
+              540,
+              830,
+              588,
+              926
+            ],
+            "decodedRGBSHA256": "4b844daa950e88321a465aa49df4f13b4a7d2298392af63946d6d2a843645086",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Enhanced",
+            "rectangle": [
+              598,
+              830,
+              646,
+              926
+            ],
+            "decodedRGBSHA256": "760fbb8baa72ec04a64233212e310df0a2a0e3bdd11512abddccceef3f378496",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 162,
+        "maximumChannelDifference": 99,
+        "changedRectangle": [
+          1376,
+          1087,
+          1400,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex028-high-relief.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              30
+            ],
+            "decodedRGBSHA256": "4c94cfb9f975918bf3f5a2a80b86dade4d760a3cca2ae6387bf9419adce284d2",
+            "exactReplay": true
+          },
+          {
+            "panel": "bottomLabels",
+            "rectangle": [
+              0,
+              550,
+              1200,
+              580
+            ],
+            "decodedRGBSHA256": "1772f3c03e9677ca97748596f8ca8c3b74d73ba57074eacda8a716f4cb5bd7c5",
+            "exactReplay": true
+          },
+          {
+            "panel": "height",
+            "rectangle": [
+              10,
+              30,
+              266,
+              542
+            ],
+            "decodedRGBSHA256": "7d4fad1e3429e8e60079c405f457daa8c57253a23d589cad908fdea5b3807f7f",
+            "exactReplay": true
+          },
+          {
+            "panel": "normals",
+            "rectangle": [
+              610,
+              30,
+              866,
+              542
+            ],
+            "decodedRGBSHA256": "2b590441b505a1b352831e49cced9d6a2d64ba130708a4cb7803ad5459c37d38",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightA",
+            "rectangle": [
+              10,
+              580,
+              266,
+              1092
+            ],
+            "decodedRGBSHA256": "6d1eb0d5593769eec7338ff94d7be00683dfe4e11ea8e78e29f02ed11e9cd4e0",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightB",
+            "rectangle": [
+              610,
+              580,
+              866,
+              1092
+            ],
+            "decodedRGBSHA256": "8e59a571dff2b2146c85a6ce35d3879f8cbe7eab6add98cb69cfa6b9340ca861",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 310,
+        "maximumChannelDifference": 36,
+        "changedRectangle": [
+          1167,
+          1087,
+          1200,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex099-mid-review.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "title",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              32
+            ],
+            "decodedRGBSHA256": "abe03766d62261ef890cb5e923ac041d56c833dd51bd318147698610933299f5",
+            "exactReplay": true
+          },
+          {
+            "panel": "native",
+            "rectangle": [
+              12,
+              32,
+              524,
+              544
+            ],
+            "decodedRGBSHA256": "881599e6487c7da0ca2423f7f24773b4a95493b1711790f0fbc14039b006eb66",
+            "exactReplay": true
+          },
+          {
+            "panel": "diffuse",
+            "rectangle": [
+              540,
+              32,
+              1052,
+              544
+            ],
+            "decodedRGBSHA256": "cfb17de2946b06e0787c843ab169015c5e26542efe6e031ec539916b467afe3b",
+            "exactReplay": true
+          },
+          {
+            "panel": "oneToOneDetail",
+            "rectangle": [
+              1068,
+              32,
+              1324,
+              288
+            ],
+            "decodedRGBSHA256": "758af7daeb8aad1e25a10fab64db6d73a2f109cfbb9447dbaa19622c16278fef",
+            "exactReplay": true
+          },
+          {
+            "panel": "repeatedTiles",
+            "rectangle": [
+              12,
+              570,
+              524,
+              1082
+            ],
+            "decodedRGBSHA256": "517579aaf8699bdd410890e2abc6eac2d4e2cdf892f3834b339bc01b789566ba",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Label",
+            "rectangle": [
+              540,
+              570,
+              1400,
+              595
+            ],
+            "decodedRGBSHA256": "d76658252479177f762aea0724c3c6b299b2c586d90680dba0c91c1163250632",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Native",
+            "rectangle": [
+              540,
+              595,
+              636,
+              691
+            ],
+            "decodedRGBSHA256": "c33f136932381376f59fe2af024f5ec8dd0434fdd78b6582a09671ac4ab709ab",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Enhanced",
+            "rectangle": [
+              646,
+              595,
+              742,
+              691
+            ],
+            "decodedRGBSHA256": "ee51bd581202f15c8e46c45c85e3ce7108a6c240ba29fcd17ab77e365d90c89a",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Label",
+            "rectangle": [
+              540,
+              805,
+              1400,
+              830
+            ],
+            "decodedRGBSHA256": "429acf2372f683525ecaca4329a2f3a799921c3d55c2a993a03deac664b3add6",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Native",
+            "rectangle": [
+              540,
+              830,
+              588,
+              878
+            ],
+            "decodedRGBSHA256": "d6c381837f116ab1cf2edf88e99a1426dbd7697a4e13c3396e8b4cdc3f958e0c",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Enhanced",
+            "rectangle": [
+              598,
+              830,
+              646,
+              878
+            ],
+            "decodedRGBSHA256": "d8992d708be380009d65a748ba73f54aebe9afb80fe2b2c8d04c9d283f1da65a",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 26,
+        "maximumChannelDifference": 5,
+        "changedRectangle": [
+          1392,
+          1096,
+          1400,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex099-mid-relief.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              30
+            ],
+            "decodedRGBSHA256": "5e1f0da77aa589a347c600ea6e88397b2b952e14bf4011f5173ce9374b71f3ae",
+            "exactReplay": true
+          },
+          {
+            "panel": "bottomLabels",
+            "rectangle": [
+              0,
+              550,
+              1200,
+              580
+            ],
+            "decodedRGBSHA256": "acdb25700ed980012e71b24bdb4ce5ab22eaf65cb35631d28eb06f54a0247d83",
+            "exactReplay": true
+          },
+          {
+            "panel": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSHA256": "49190721a926a88e1ae8f4ca50e3bda48698766e7588ce8ea073d756575aa934",
+            "exactReplay": true
+          },
+          {
+            "panel": "normals",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSHA256": "dec419e62b1c7fa392e885f4f4e70946628b533dea5592dc23a3f7f86cac89fc",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSHA256": "5c23b3205294c7d1989aee9b5f0060a3ee0b705befd7958dab3654626c820f87",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSHA256": "34cd5fef1380be6bde88a8f53db22d515fe083be6d056c4894939e8ae3cdcbc1",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 57,
+        "maximumChannelDifference": 4,
+        "changedRectangle": [
+          1192,
+          1088,
+          1200,
+          1096
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex099-high-review.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "title",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              32
+            ],
+            "decodedRGBSHA256": "966a3d77f9b5dc28e2f179eab237a9dda358292c4c3673937e0967b41b07196e",
+            "exactReplay": true
+          },
+          {
+            "panel": "native",
+            "rectangle": [
+              12,
+              32,
+              524,
+              544
+            ],
+            "decodedRGBSHA256": "881599e6487c7da0ca2423f7f24773b4a95493b1711790f0fbc14039b006eb66",
+            "exactReplay": true
+          },
+          {
+            "panel": "diffuse",
+            "rectangle": [
+              540,
+              32,
+              1052,
+              544
+            ],
+            "decodedRGBSHA256": "8c793f02b65c05ff0e6979571fe82ae18ea5f9522a9a6f822a40c24208e15dec",
+            "exactReplay": true
+          },
+          {
+            "panel": "oneToOneDetail",
+            "rectangle": [
+              1068,
+              32,
+              1324,
+              288
+            ],
+            "decodedRGBSHA256": "377952b54debf40804eaa85311547a5430b4e5d96b914a48d66024348ad501b2",
+            "exactReplay": true
+          },
+          {
+            "panel": "repeatedTiles",
+            "rectangle": [
+              12,
+              570,
+              524,
+              1082
+            ],
+            "decodedRGBSHA256": "b19dbe9f8eeae1759c4db2b00522821801462f8947d3c73c72f9757590aab1c1",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Label",
+            "rectangle": [
+              540,
+              570,
+              1400,
+              595
+            ],
+            "decodedRGBSHA256": "1ca521dc9deae9ee9470867a309c4404ed6dc45d1904d67c6ea5a1e2e2b2998f",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Native",
+            "rectangle": [
+              540,
+              595,
+              636,
+              691
+            ],
+            "decodedRGBSHA256": "c33f136932381376f59fe2af024f5ec8dd0434fdd78b6582a09671ac4ab709ab",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Enhanced",
+            "rectangle": [
+              646,
+              595,
+              742,
+              691
+            ],
+            "decodedRGBSHA256": "11b66650a1b458cccee0abaff43de7405fea092b5b877fcc9f6b684fb65c739a",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Label",
+            "rectangle": [
+              540,
+              805,
+              1400,
+              830
+            ],
+            "decodedRGBSHA256": "de711756beb6aaafc432ddbd8006836127683dceaf8180d4668c571c6b86e07a",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Native",
+            "rectangle": [
+              540,
+              830,
+              588,
+              878
+            ],
+            "decodedRGBSHA256": "d6c381837f116ab1cf2edf88e99a1426dbd7697a4e13c3396e8b4cdc3f958e0c",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Enhanced",
+            "rectangle": [
+              598,
+              830,
+              646,
+              878
+            ],
+            "decodedRGBSHA256": "830ffb2e460458ac64914be24abced8c158559bf405e5cffea989a38dd582087",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 253,
+        "maximumChannelDifference": 99,
+        "changedRectangle": [
+          1376,
+          1087,
+          1400,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex099-high-relief.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              30
+            ],
+            "decodedRGBSHA256": "51db938100ae8f8d7413768251251ad1a0c36ff90816ee936667eab5a67d3959",
+            "exactReplay": true
+          },
+          {
+            "panel": "bottomLabels",
+            "rectangle": [
+              0,
+              550,
+              1200,
+              580
+            ],
+            "decodedRGBSHA256": "c17e82c723f1746c57b047b088431a16ce106f26134ce7093239d498582e9124",
+            "exactReplay": true
+          },
+          {
+            "panel": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSHA256": "5362514c7d04ab0cb145f706c72d119a9576021644c5f116b586d1030216ae43",
+            "exactReplay": true
+          },
+          {
+            "panel": "normals",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSHA256": "85a7176ec786d3e807b4571bb9048d24f43084301f0a297a0d88ea91f44b1610",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSHA256": "32d5dbcd0c3c6401f4ca1d4e2b44702dbe3bf65b5eec7506119906576d536285",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSHA256": "cc139780618d2fd14661ddd19872cb193cd7225262e244f63adcc6a86adfd19a",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 20,
+        "maximumChannelDifference": 1,
+        "changedRectangle": [
+          1192,
+          1088,
+          1200,
+          1094
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex103-mid-review.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "title",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              32
+            ],
+            "decodedRGBSHA256": "c36fbae256f2a36b12b284f6291354f177418fa1d68c37a16cb62ded5dd6fbb8",
+            "exactReplay": true
+          },
+          {
+            "panel": "native",
+            "rectangle": [
+              12,
+              32,
+              524,
+              544
+            ],
+            "decodedRGBSHA256": "dff4c29a7bd49bef9fde7b6a711904bc7fae313551ac01f974b32d75a284c1b5",
+            "exactReplay": true
+          },
+          {
+            "panel": "diffuse",
+            "rectangle": [
+              540,
+              32,
+              1052,
+              544
+            ],
+            "decodedRGBSHA256": "2b5430abcbaf9ea62d6c943ab9adbb55fe18578e58bdd50bf92df2b7f93e5c5e",
+            "exactReplay": true
+          },
+          {
+            "panel": "oneToOneDetail",
+            "rectangle": [
+              1068,
+              32,
+              1324,
+              288
+            ],
+            "decodedRGBSHA256": "c027815d6b7e1abd432784fd5e2fd39cd81e99ee6e8df402e30eb69eec463de8",
+            "exactReplay": true
+          },
+          {
+            "panel": "repeatedTiles",
+            "rectangle": [
+              12,
+              570,
+              524,
+              1082
+            ],
+            "decodedRGBSHA256": "09fe040ced1c0f57fca423972ac017d78721c229cc0edfec07379e80f34dbb8a",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Label",
+            "rectangle": [
+              540,
+              570,
+              1400,
+              595
+            ],
+            "decodedRGBSHA256": "173f90019044b81e057f717f38d81b7870adcec6e8dc2ed32cf14fe7bc7b2d92",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Native",
+            "rectangle": [
+              540,
+              595,
+              636,
+              691
+            ],
+            "decodedRGBSHA256": "0e2944837f8e4613181f069134cc38833e9da685deee94f07c2c156e6a73a243",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Enhanced",
+            "rectangle": [
+              646,
+              595,
+              742,
+              691
+            ],
+            "decodedRGBSHA256": "0205a23bd6e1261e1fc77d23dce5ef2fc0041bf6e64c8bf90662addc69da108f",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Label",
+            "rectangle": [
+              540,
+              805,
+              1400,
+              830
+            ],
+            "decodedRGBSHA256": "bf8507905cd11a3becbce51eb8044da618f6d29ddc3bd1251e97b11e47ec002f",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Native",
+            "rectangle": [
+              540,
+              830,
+              588,
+              878
+            ],
+            "decodedRGBSHA256": "64f9f3f1eba48e11fbfb3c56c627bb61680d8ae6467db37b8369bf51e3618fe2",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Enhanced",
+            "rectangle": [
+              598,
+              830,
+              646,
+              878
+            ],
+            "decodedRGBSHA256": "2cbf5aef15beb34bcae4f781c4d0f2db8bd46394ebfb90387018555b5ae2e816",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 0,
+        "maximumChannelDifference": 0,
+        "changedRectangle": null,
+        "allowedEmptyPaddingRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex103-mid-relief.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              30
+            ],
+            "decodedRGBSHA256": "ac5450a027329f20de0a410223f01ef48bb4242de71348a2f16b10c39b6c1304",
+            "exactReplay": true
+          },
+          {
+            "panel": "bottomLabels",
+            "rectangle": [
+              0,
+              550,
+              1200,
+              580
+            ],
+            "decodedRGBSHA256": "cbff6dee08066b58fd2358d94a97740d0980712c74cfb43d45140db7f0cb1e74",
+            "exactReplay": true
+          },
+          {
+            "panel": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSHA256": "0fb183f584d931604c1776aa18c8038ea8269d807e2e0cecc405ce7ab1093e1d",
+            "exactReplay": true
+          },
+          {
+            "panel": "normals",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSHA256": "761207fa95d053296c356d5d47bfbcf70356e2918b370526952b686f485bcae7",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSHA256": "388a791cad4ad22036ae0b35bf3dd4d8830512f9f454c9787b1693b03e170e8b",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSHA256": "f7d1d5ad59f007d8492d3aedd6e3cf12246bf073148d047f0fcd87595efe0dce",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 0,
+        "maximumChannelDifference": 0,
+        "changedRectangle": null,
+        "allowedEmptyPaddingRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex103-high-review.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "title",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              32
+            ],
+            "decodedRGBSHA256": "7b5e7d86eef5faceb5bb0f66b57cae218c2c3707fcd67926ec15e45cf7d1a0bc",
+            "exactReplay": true
+          },
+          {
+            "panel": "native",
+            "rectangle": [
+              12,
+              32,
+              524,
+              544
+            ],
+            "decodedRGBSHA256": "dff4c29a7bd49bef9fde7b6a711904bc7fae313551ac01f974b32d75a284c1b5",
+            "exactReplay": true
+          },
+          {
+            "panel": "diffuse",
+            "rectangle": [
+              540,
+              32,
+              1052,
+              544
+            ],
+            "decodedRGBSHA256": "f264e63b4e82ddc0ae629c6456f16b0f191bf45eecf55e6ca971e6634daf4eda",
+            "exactReplay": true
+          },
+          {
+            "panel": "oneToOneDetail",
+            "rectangle": [
+              1068,
+              32,
+              1324,
+              288
+            ],
+            "decodedRGBSHA256": "3e03f7df73e6e1d5bc77f6f7e604ac33c9989e2afa2667de5a56fe5d1c4a0f61",
+            "exactReplay": true
+          },
+          {
+            "panel": "repeatedTiles",
+            "rectangle": [
+              12,
+              570,
+              524,
+              1082
+            ],
+            "decodedRGBSHA256": "e954b53770971bfc7479d3300263cb547d606586b933307e2d89ce0c11938ffa",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Label",
+            "rectangle": [
+              540,
+              570,
+              1400,
+              595
+            ],
+            "decodedRGBSHA256": "8910d60149f1ba4e237d3fa67403d0de2c2b71bd47d8a1f09db77ce1e47a4dd4",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Native",
+            "rectangle": [
+              540,
+              595,
+              636,
+              691
+            ],
+            "decodedRGBSHA256": "0e2944837f8e4613181f069134cc38833e9da685deee94f07c2c156e6a73a243",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Enhanced",
+            "rectangle": [
+              646,
+              595,
+              742,
+              691
+            ],
+            "decodedRGBSHA256": "ca6122d7f115aaa75cef60d5159d11d2cb51e347df4688125e9707bedf4bd187",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Label",
+            "rectangle": [
+              540,
+              805,
+              1400,
+              830
+            ],
+            "decodedRGBSHA256": "7b8ad327ba8842577c1e2f3a56dcd4281ca63c6c92503942c1555d8c84587d45",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Native",
+            "rectangle": [
+              540,
+              830,
+              588,
+              878
+            ],
+            "decodedRGBSHA256": "64f9f3f1eba48e11fbfb3c56c627bb61680d8ae6467db37b8369bf51e3618fe2",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Enhanced",
+            "rectangle": [
+              598,
+              830,
+              646,
+              878
+            ],
+            "decodedRGBSHA256": "85501d1738339a39652a9ea16bf11ce586cb1b72fbc51f7f87bac16470ee1c30",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 9,
+        "maximumChannelDifference": 3,
+        "changedRectangle": [
+          1392,
+          1096,
+          1396,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex103-high-relief.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              30
+            ],
+            "decodedRGBSHA256": "e3de8f364c858fe59cb837442a0ce006112ea03f129fdf8ca8b3a7458a1c1e7b",
+            "exactReplay": true
+          },
+          {
+            "panel": "bottomLabels",
+            "rectangle": [
+              0,
+              550,
+              1200,
+              580
+            ],
+            "decodedRGBSHA256": "82cd72f4690c15cf1b256dc9408c737e3e95a605cf46384a4fb62d5046522e49",
+            "exactReplay": true
+          },
+          {
+            "panel": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSHA256": "52ee8cefd30acaa78b7b3fb0f4af0e4e59550266f4cada9ff8b71cc6483f124a",
+            "exactReplay": true
+          },
+          {
+            "panel": "normals",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSHA256": "fe8f3acaf9d324e532f360305040db220cfb041d07d2c8aadadb511b5023fabf",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSHA256": "656a415999abed46f14b55ee5bf17944b126e66761f1574728dfe53373279959",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSHA256": "4c58eb9e6a348f652d0c1f0875ced31280622a23cb82671c46d39e87ab2d02a1",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 152,
+        "maximumChannelDifference": 41,
+        "changedRectangle": [
+          1184,
+          1088,
+          1200,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex422-mid-review.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "title",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              32
+            ],
+            "decodedRGBSHA256": "d857992afcc0cf6396b18d17da0e49ba65d29031c46e2204e22b94d5d8bd0f50",
+            "exactReplay": true
+          },
+          {
+            "panel": "native",
+            "rectangle": [
+              12,
+              32,
+              524,
+              544
+            ],
+            "decodedRGBSHA256": "811e3c748f52c6373ba502ef62f2a4cf86fcdc608bd7b011b2e728ad10e11a9d",
+            "exactReplay": true
+          },
+          {
+            "panel": "diffuse",
+            "rectangle": [
+              540,
+              32,
+              1052,
+              544
+            ],
+            "decodedRGBSHA256": "3ed6426910c6bac6e633836e0b7c36b2a74b7684919e7847fb3b1419edf82d35",
+            "exactReplay": true
+          },
+          {
+            "panel": "oneToOneDetail",
+            "rectangle": [
+              1068,
+              32,
+              1324,
+              288
+            ],
+            "decodedRGBSHA256": "d92bc5763450e2375abe9837efbe095a5b0123f8208ebc9a9efee4501742db5d",
+            "exactReplay": true
+          },
+          {
+            "panel": "repeatedTiles",
+            "rectangle": [
+              12,
+              570,
+              524,
+              1082
+            ],
+            "decodedRGBSHA256": "7fb7da52a45aa93c6a24eaf42e97d1aff79bf1179576b3945e3833c642d04fc6",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Label",
+            "rectangle": [
+              540,
+              570,
+              1400,
+              595
+            ],
+            "decodedRGBSHA256": "ebcf001ef7d757578259975a4dc83f02bcd137c2c3796516c5b6c5a0ba5ca7c5",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Native",
+            "rectangle": [
+              540,
+              595,
+              636,
+              691
+            ],
+            "decodedRGBSHA256": "9619f4a7524cc90a9e7cb0dd8a7adf1546c1a3ddc45356993b61f7feeaabaeee",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Enhanced",
+            "rectangle": [
+              646,
+              595,
+              742,
+              691
+            ],
+            "decodedRGBSHA256": "c3d2ec110c1900e597b76fa8d77d608b9b4ba8ab8573e8383e7e8b570b7afd0d",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Label",
+            "rectangle": [
+              540,
+              805,
+              1400,
+              830
+            ],
+            "decodedRGBSHA256": "aba565f040a90cb99ad0cfc863834a2c9a5b0393fdfe5c332d58965b2ebfe35d",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Native",
+            "rectangle": [
+              540,
+              830,
+              588,
+              878
+            ],
+            "decodedRGBSHA256": "3d243dcdc42b4b48e02fb37709231665d45480e379df284da0b2a4372a0bb0c6",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Enhanced",
+            "rectangle": [
+              598,
+              830,
+              646,
+              878
+            ],
+            "decodedRGBSHA256": "b1b7c0665dfee1cfefc9b93f9b5062b1b4aa27c5817fdf30c33c74621d3234e6",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 76,
+        "maximumChannelDifference": 41,
+        "changedRectangle": [
+          1392,
+          1088,
+          1400,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex422-mid-relief.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              30
+            ],
+            "decodedRGBSHA256": "85c8a5dae29ea514484dfe32d45e080a887d35b3e246bce40cef88628ddf5d4c",
+            "exactReplay": true
+          },
+          {
+            "panel": "bottomLabels",
+            "rectangle": [
+              0,
+              550,
+              1200,
+              580
+            ],
+            "decodedRGBSHA256": "a12895629d7a5e597b5e4bd743f21727970243fa45bed861450e01dcef6a40ab",
+            "exactReplay": true
+          },
+          {
+            "panel": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSHA256": "87f47428c4b851a35f79c813cb2253b2b2f32609b454d01e9064fa12206c1835",
+            "exactReplay": true
+          },
+          {
+            "panel": "normals",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSHA256": "2f94479e7bd9b87c7dc7aec132c13ca951db87672a85e7601a75b48e2b85a757",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSHA256": "006c0b037130a19ded08fa05bb6bbc0ce2c239b059c45c7a664591d7c2334da5",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSHA256": "57fb5a79243e8a8bc7c7c2e98c0cfee6ede29a0fc91c4224b431f1b9c40bf63c",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 237,
+        "maximumChannelDifference": 99,
+        "changedRectangle": [
+          1176,
+          1087,
+          1200,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex422-high-review.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "title",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              32
+            ],
+            "decodedRGBSHA256": "c89411c094c579fcedcd79885b6a09b6ff029c8b3f7a459d1999d3238c55e04d",
+            "exactReplay": true
+          },
+          {
+            "panel": "native",
+            "rectangle": [
+              12,
+              32,
+              524,
+              544
+            ],
+            "decodedRGBSHA256": "811e3c748f52c6373ba502ef62f2a4cf86fcdc608bd7b011b2e728ad10e11a9d",
+            "exactReplay": true
+          },
+          {
+            "panel": "diffuse",
+            "rectangle": [
+              540,
+              32,
+              1052,
+              544
+            ],
+            "decodedRGBSHA256": "c9e8d77dd2e320860cf2d212015298735eb7b343698c5aaf39aaa661b0cecbab",
+            "exactReplay": true
+          },
+          {
+            "panel": "oneToOneDetail",
+            "rectangle": [
+              1068,
+              32,
+              1324,
+              288
+            ],
+            "decodedRGBSHA256": "779e7c36dd183650e1f764e8eb73da125cfbc2a72b90814645f7ce6f1e256ebc",
+            "exactReplay": true
+          },
+          {
+            "panel": "repeatedTiles",
+            "rectangle": [
+              12,
+              570,
+              524,
+              1082
+            ],
+            "decodedRGBSHA256": "033fde4ed85db24523ba2b1a3a7f2088d31fe8bc9f4c765d9ae19135c3a7e7ea",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Label",
+            "rectangle": [
+              540,
+              570,
+              1400,
+              595
+            ],
+            "decodedRGBSHA256": "3c59d9b3869a40a189eb01e67d9cd1ad80f56953fa307b874878df8470acc0ab",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Native",
+            "rectangle": [
+              540,
+              595,
+              636,
+              691
+            ],
+            "decodedRGBSHA256": "9619f4a7524cc90a9e7cb0dd8a7adf1546c1a3ddc45356993b61f7feeaabaeee",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Enhanced",
+            "rectangle": [
+              646,
+              595,
+              742,
+              691
+            ],
+            "decodedRGBSHA256": "e8dd567749737138444c2459f9d55d007f52ffd2e06a8b541ab3219bf88d617c",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Label",
+            "rectangle": [
+              540,
+              805,
+              1400,
+              830
+            ],
+            "decodedRGBSHA256": "2f84f65f9b96dc609be567e38930708704c5d99a3e785d964837680c03a9aded",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Native",
+            "rectangle": [
+              540,
+              830,
+              588,
+              878
+            ],
+            "decodedRGBSHA256": "3d243dcdc42b4b48e02fb37709231665d45480e379df284da0b2a4372a0bb0c6",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Enhanced",
+            "rectangle": [
+              598,
+              830,
+              646,
+              878
+            ],
+            "decodedRGBSHA256": "2c8b74f03f5c4141613c7f370d9abf43949b1bf88df2ae87192ef356e104ed3a",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 85,
+        "maximumChannelDifference": 34,
+        "changedRectangle": [
+          1392,
+          1088,
+          1400,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex422-high-relief.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              30
+            ],
+            "decodedRGBSHA256": "73b4727a70af78dada1ce888735aec8416b217e9351e2ed1ea0aa9a6c05a6561",
+            "exactReplay": true
+          },
+          {
+            "panel": "bottomLabels",
+            "rectangle": [
+              0,
+              550,
+              1200,
+              580
+            ],
+            "decodedRGBSHA256": "aa74f00fea0ae27e0331f1e55915a57c3614c7ef7626f4bed8d8ea4d37774368",
+            "exactReplay": true
+          },
+          {
+            "panel": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSHA256": "7685992e00cc49d5ea3f4d2de6a79d0f39d222e4bcd33df7374c8417a6e2a9ed",
+            "exactReplay": true
+          },
+          {
+            "panel": "normals",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSHA256": "dca9307ac0e6d366bd2c1c8256442dee5bc6e6256565a9354717ed25251368e2",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSHA256": "3faa93437deded2df09f74f595e99a0b67b554529b82402f7ac1d2040b435a69",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSHA256": "d1904a46b9e544e2497df17462c6bc942014385b21c160cf90dced651b5e7e31",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 303,
+        "maximumChannelDifference": 99,
+        "changedRectangle": [
+          1168,
+          1087,
+          1200,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex020-mid-review.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "title",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              32
+            ],
+            "decodedRGBSHA256": "9c472eab5bef61d3481c597e3ca5b32e9b22e26fcaf022561bf7dd9ecbca3105",
+            "exactReplay": true
+          },
+          {
+            "panel": "native",
+            "rectangle": [
+              12,
+              32,
+              268,
+              544
+            ],
+            "decodedRGBSHA256": "ab407602517facd31fe19f6d99a14b24f97eb353b7823f53595a36efbb76d188",
+            "exactReplay": true
+          },
+          {
+            "panel": "diffuse",
+            "rectangle": [
+              540,
+              32,
+              796,
+              544
+            ],
+            "decodedRGBSHA256": "4067fc581c5759fdae5ab98c04e62649757bed17d3da3f38dcc145f5523e4e1d",
+            "exactReplay": true
+          },
+          {
+            "panel": "oneToOneDetail",
+            "rectangle": [
+              1068,
+              32,
+              1324,
+              288
+            ],
+            "decodedRGBSHA256": "3dd008b3d8541056788398c151c5d7256e5380ad3de6092497e0036f1a6e860b",
+            "exactReplay": true
+          },
+          {
+            "panel": "repeatedTiles",
+            "rectangle": [
+              12,
+              570,
+              524,
+              1082
+            ],
+            "decodedRGBSHA256": "7f4983d7fb971532d1fe1437d6c07010958cac9abdf366182bb77802634116d5",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Label",
+            "rectangle": [
+              540,
+              570,
+              1400,
+              595
+            ],
+            "decodedRGBSHA256": "8df548a9a5aae67de9ebf99d1fce742262cb3b34ab5d3a2b8cacb303bd377394",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Native",
+            "rectangle": [
+              540,
+              595,
+              636,
+              787
+            ],
+            "decodedRGBSHA256": "3caab6e3ca794e7f9ad198269155fda5eb1b62b9582a7c50690d38609babf362",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Enhanced",
+            "rectangle": [
+              646,
+              595,
+              742,
+              787
+            ],
+            "decodedRGBSHA256": "efd4857929cb062fe27b9a3e159f7401bbbc387fa00bce87c98a15091ce398f3",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Label",
+            "rectangle": [
+              540,
+              805,
+              1400,
+              830
+            ],
+            "decodedRGBSHA256": "042d5c3d93199c62b1192209c757db1821c9f2e885a6f5d51169737e04bb26c8",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Native",
+            "rectangle": [
+              540,
+              830,
+              588,
+              926
+            ],
+            "decodedRGBSHA256": "81e9730c03dd33fac20f38ef96c8f5f5357ce12d355491c9326f3144ad5aaf62",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Enhanced",
+            "rectangle": [
+              598,
+              830,
+              646,
+              926
+            ],
+            "decodedRGBSHA256": "b34b811254871646c185e34f8be455c00cf93bcabd9515f37fd4ee3151d3233b",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 0,
+        "maximumChannelDifference": 0,
+        "changedRectangle": null,
+        "allowedEmptyPaddingRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex020-mid-relief.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              30
+            ],
+            "decodedRGBSHA256": "eab295404c03567a6b1b8b0bbe3dc71ea0733b43767bfb4f9613ff29dee37bf7",
+            "exactReplay": true
+          },
+          {
+            "panel": "bottomLabels",
+            "rectangle": [
+              0,
+              550,
+              1200,
+              580
+            ],
+            "decodedRGBSHA256": "1403295313d2608ec542bc4d6b9f2d6affdf59c383b5c7f1d16f5ff269036915",
+            "exactReplay": true
+          },
+          {
+            "panel": "height",
+            "rectangle": [
+              10,
+              30,
+              266,
+              542
+            ],
+            "decodedRGBSHA256": "f581f2509367410d52b328ce08a2ae334a890297a6a2e67c73a8e4bd001ebbc5",
+            "exactReplay": true
+          },
+          {
+            "panel": "normals",
+            "rectangle": [
+              610,
+              30,
+              866,
+              542
+            ],
+            "decodedRGBSHA256": "1a7afcb37306ed77cfdde9fb1148bc4276bbacb75fe781b6d2297b6ed7afc7fa",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightA",
+            "rectangle": [
+              10,
+              580,
+              266,
+              1092
+            ],
+            "decodedRGBSHA256": "f13f6a1be99a44168852b42e48846fe819a08e79fdc1d84a6da61e2c5ca3c505",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightB",
+            "rectangle": [
+              610,
+              580,
+              866,
+              1092
+            ],
+            "decodedRGBSHA256": "21edb618fcee036fdb923beb730a5c89b81bf0baf7014f506b20fe33d0b3c078",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 238,
+        "maximumChannelDifference": 99,
+        "changedRectangle": [
+          1176,
+          1087,
+          1200,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex020-high-review.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "title",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              32
+            ],
+            "decodedRGBSHA256": "92da43720ef1f8b821efceb24349e8982417bb3db69320312bcda8a51393a91a",
+            "exactReplay": true
+          },
+          {
+            "panel": "native",
+            "rectangle": [
+              12,
+              32,
+              268,
+              544
+            ],
+            "decodedRGBSHA256": "ab407602517facd31fe19f6d99a14b24f97eb353b7823f53595a36efbb76d188",
+            "exactReplay": true
+          },
+          {
+            "panel": "diffuse",
+            "rectangle": [
+              540,
+              32,
+              796,
+              544
+            ],
+            "decodedRGBSHA256": "626ef9f007606bf7324147cd23301d60ced045aa3b09d2bc3a29cfc79d439dda",
+            "exactReplay": true
+          },
+          {
+            "panel": "oneToOneDetail",
+            "rectangle": [
+              1068,
+              32,
+              1324,
+              288
+            ],
+            "decodedRGBSHA256": "2dcdb3d55703437701691ca06f565d828cda3887ce8ab90d86d2ef472e16d109",
+            "exactReplay": true
+          },
+          {
+            "panel": "repeatedTiles",
+            "rectangle": [
+              12,
+              570,
+              524,
+              1082
+            ],
+            "decodedRGBSHA256": "2755e3290958d8d093e47186438fa92e0b815fbd96c541eaebbb2b5d0b2669b4",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Label",
+            "rectangle": [
+              540,
+              570,
+              1400,
+              595
+            ],
+            "decodedRGBSHA256": "7230cf5ffb58daa2dfe67e2e0fc23cf14dd8819e6e727a86169a4a2da086438b",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Native",
+            "rectangle": [
+              540,
+              595,
+              636,
+              787
+            ],
+            "decodedRGBSHA256": "3caab6e3ca794e7f9ad198269155fda5eb1b62b9582a7c50690d38609babf362",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Enhanced",
+            "rectangle": [
+              646,
+              595,
+              742,
+              787
+            ],
+            "decodedRGBSHA256": "3a41f96cb06fe586fb554c1fad641aa90ef2faa3caef9521769b08bf8f0af49e",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Label",
+            "rectangle": [
+              540,
+              805,
+              1400,
+              830
+            ],
+            "decodedRGBSHA256": "abc051ba9c48e526eee9ec97fe019c242e2f39661b4daea3a1e3a1c828a0d96e",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Native",
+            "rectangle": [
+              540,
+              830,
+              588,
+              926
+            ],
+            "decodedRGBSHA256": "81e9730c03dd33fac20f38ef96c8f5f5357ce12d355491c9326f3144ad5aaf62",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Enhanced",
+            "rectangle": [
+              598,
+              830,
+              646,
+              926
+            ],
+            "decodedRGBSHA256": "d8580afd3bfb49dcf07d26dcde0903f3e0dc9cf6f89b958afdaee3e5156f8dff",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 271,
+        "maximumChannelDifference": 99,
+        "changedRectangle": [
+          1376,
+          1087,
+          1400,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex020-high-relief.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              30
+            ],
+            "decodedRGBSHA256": "85bc63ec633f94018ab88435dd485beb89cfc4952f13911295b293023f2b11c5",
+            "exactReplay": true
+          },
+          {
+            "panel": "bottomLabels",
+            "rectangle": [
+              0,
+              550,
+              1200,
+              580
+            ],
+            "decodedRGBSHA256": "d562ceb35a76fc332d3608accba4646d0087bfe20ea4e4a76a5cd6c148054aa3",
+            "exactReplay": true
+          },
+          {
+            "panel": "height",
+            "rectangle": [
+              10,
+              30,
+              266,
+              542
+            ],
+            "decodedRGBSHA256": "e407eb0428d3bb38720bf48067f039e2ee19dbd3312a5e4272eca6df41b43c91",
+            "exactReplay": true
+          },
+          {
+            "panel": "normals",
+            "rectangle": [
+              610,
+              30,
+              866,
+              542
+            ],
+            "decodedRGBSHA256": "2341fcf2c0cc3b266a9b355d66a7f2f7d216b284598a142e7801ec311cbb678f",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightA",
+            "rectangle": [
+              10,
+              580,
+              266,
+              1092
+            ],
+            "decodedRGBSHA256": "b83bbc8fdcab8bc8a64345159184fd2a47f0cbda7902f548f021144d8643227c",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightB",
+            "rectangle": [
+              610,
+              580,
+              866,
+              1092
+            ],
+            "decodedRGBSHA256": "c83e41730962296d2b9fd01d8c06e25f83de976727eb5de0ad63f0f7a5b13467",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 54,
+        "maximumChannelDifference": 42,
+        "changedRectangle": [
+          1184,
+          1096,
+          1200,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex126-mid-review.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "title",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              32
+            ],
+            "decodedRGBSHA256": "cbd6dee5476810fa78544ed9f6df0522f33c294a50cac512b6c74cda9518aab7",
+            "exactReplay": true
+          },
+          {
+            "panel": "native",
+            "rectangle": [
+              12,
+              32,
+              524,
+              544
+            ],
+            "decodedRGBSHA256": "e254afd5f3972ade00c06f49060d541d73e66ce82a165e463580898a2c6342c3",
+            "exactReplay": true
+          },
+          {
+            "panel": "diffuse",
+            "rectangle": [
+              540,
+              32,
+              1052,
+              544
+            ],
+            "decodedRGBSHA256": "ce604215c309c55fe4a20ba6a1869ed44d8bc6588ac61951abbc0fbb5eade165",
+            "exactReplay": true
+          },
+          {
+            "panel": "oneToOneDetail",
+            "rectangle": [
+              1068,
+              32,
+              1324,
+              288
+            ],
+            "decodedRGBSHA256": "b7636c2fa5c0356d1a7c6473c45ff333f39188635fce91056daad3a44d719ac1",
+            "exactReplay": true
+          },
+          {
+            "panel": "repeatedTiles",
+            "rectangle": [
+              12,
+              570,
+              524,
+              1082
+            ],
+            "decodedRGBSHA256": "61817cd85f4219d44bf08d9ae65ba522dd31f8e563f2a532e6c5ed7fd0b73126",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Label",
+            "rectangle": [
+              540,
+              570,
+              1400,
+              595
+            ],
+            "decodedRGBSHA256": "72dad239d95b16c8c872ce36fad9ffdfdf2db43a25f4b0fd78cb3cfc5fe1f076",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Native",
+            "rectangle": [
+              540,
+              595,
+              636,
+              691
+            ],
+            "decodedRGBSHA256": "f445bff7b2253adefe43ed6e4e5d799633856356c3c385f52bfcd7b8c0a863c4",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Enhanced",
+            "rectangle": [
+              646,
+              595,
+              742,
+              691
+            ],
+            "decodedRGBSHA256": "74a35ea0dbf050a663e162d365a35abf5958f629a1a8f0d06091f7f8f7793c78",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Label",
+            "rectangle": [
+              540,
+              805,
+              1400,
+              830
+            ],
+            "decodedRGBSHA256": "10e4bdf6e1875f6471f673bc1f6036c9137a547e6376613733c8ed773d34da8b",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Native",
+            "rectangle": [
+              540,
+              830,
+              588,
+              878
+            ],
+            "decodedRGBSHA256": "485654fd0bb7c631d48144ebb5e49da66c309b8a1f44cc9c2e4e75ed6e30040a",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Enhanced",
+            "rectangle": [
+              598,
+              830,
+              646,
+              878
+            ],
+            "decodedRGBSHA256": "45358691d4ba3f688515ba59ca701a65c5873e411e4318b93624f0410433eeb3",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 171,
+        "maximumChannelDifference": 99,
+        "changedRectangle": [
+          1376,
+          1087,
+          1400,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex126-mid-relief.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              30
+            ],
+            "decodedRGBSHA256": "cf8a833d55f6e9dd81ca5cac1c50decbcba573f323f9f9f15bb34bdee4fceaab",
+            "exactReplay": true
+          },
+          {
+            "panel": "bottomLabels",
+            "rectangle": [
+              0,
+              550,
+              1200,
+              580
+            ],
+            "decodedRGBSHA256": "2e9621e8aabdae8fbbd3e7a3d41b239ad7edba24b6140484df770148efc553d3",
+            "exactReplay": true
+          },
+          {
+            "panel": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSHA256": "6aff2b2911bc11f4aa9b2a4f9258ea23bdc828eb3eeec40edde2718a57d6c5f0",
+            "exactReplay": true
+          },
+          {
+            "panel": "normals",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSHA256": "f76c6dc0778ee9d73cc27b40f4e4cd9608add9a26d8c59f5ae4a5aa9dcf865b6",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSHA256": "a53aaca4256eb994acbd37cda822461df0f93787a757e1ea1396589a4bb8ea44",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSHA256": "449accd0836b858ea67ea6c2658cc32cd51fe231ac254184b3e2454268ca7eee",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 112,
+        "maximumChannelDifference": 41,
+        "changedRectangle": [
+          1184,
+          1088,
+          1200,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex126-high-review.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "title",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              32
+            ],
+            "decodedRGBSHA256": "33e84c00a3b4b74fb034da7e11b7a8fe482eb2206c5bacc5eefbf02484cb3d8f",
+            "exactReplay": true
+          },
+          {
+            "panel": "native",
+            "rectangle": [
+              12,
+              32,
+              524,
+              544
+            ],
+            "decodedRGBSHA256": "e254afd5f3972ade00c06f49060d541d73e66ce82a165e463580898a2c6342c3",
+            "exactReplay": true
+          },
+          {
+            "panel": "diffuse",
+            "rectangle": [
+              540,
+              32,
+              1052,
+              544
+            ],
+            "decodedRGBSHA256": "2cdc7591142223c50ffcc85f63d746472828668a57dded11e42b13ef360c39b1",
+            "exactReplay": true
+          },
+          {
+            "panel": "oneToOneDetail",
+            "rectangle": [
+              1068,
+              32,
+              1324,
+              288
+            ],
+            "decodedRGBSHA256": "72cb1af37a6b67e95efa9dcba9ccffbe88b9be0af1eddb62428c7d32df9d5f80",
+            "exactReplay": true
+          },
+          {
+            "panel": "repeatedTiles",
+            "rectangle": [
+              12,
+              570,
+              524,
+              1082
+            ],
+            "decodedRGBSHA256": "0c9f2a25d477af047c7a0c3ae3a76b3670a1a785ce83f55a0052b817689544d3",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Label",
+            "rectangle": [
+              540,
+              570,
+              1400,
+              595
+            ],
+            "decodedRGBSHA256": "4ac9ae8ac0855fee39e30a257ed0b1f8ce94744de4f394f3720af48b94885d97",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Native",
+            "rectangle": [
+              540,
+              595,
+              636,
+              691
+            ],
+            "decodedRGBSHA256": "f445bff7b2253adefe43ed6e4e5d799633856356c3c385f52bfcd7b8c0a863c4",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Enhanced",
+            "rectangle": [
+              646,
+              595,
+              742,
+              691
+            ],
+            "decodedRGBSHA256": "28aad1ddb8a85d6a8f746c5061dc0e3f7ca910475db9deb1c9c6d0b79425a61a",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Label",
+            "rectangle": [
+              540,
+              805,
+              1400,
+              830
+            ],
+            "decodedRGBSHA256": "8cc9eac2b68a745114592f5f345120619aeddf7a4335bd1e3e0a4226da99a39b",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Native",
+            "rectangle": [
+              540,
+              830,
+              588,
+              878
+            ],
+            "decodedRGBSHA256": "485654fd0bb7c631d48144ebb5e49da66c309b8a1f44cc9c2e4e75ed6e30040a",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Enhanced",
+            "rectangle": [
+              598,
+              830,
+              646,
+              878
+            ],
+            "decodedRGBSHA256": "b87670ddb40ea38d3b13d8ea4b97fce1b3ddc9fc84a27211a71721375a78f1c5",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 26,
+        "maximumChannelDifference": 38,
+        "changedRectangle": [
+          1392,
+          1096,
+          1400,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex126-high-relief.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              30
+            ],
+            "decodedRGBSHA256": "d2ed43f873b3af4796ff7e9a27813eb55106e1f28588de890f20df30d6085189",
+            "exactReplay": true
+          },
+          {
+            "panel": "bottomLabels",
+            "rectangle": [
+              0,
+              550,
+              1200,
+              580
+            ],
+            "decodedRGBSHA256": "1b41fa0d02ae15629514cf09086a529d4fe2363644e8ff2b40edbab0d2f8abf9",
+            "exactReplay": true
+          },
+          {
+            "panel": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSHA256": "2097d7e6766b96ee87541cfd20d31e14f4d9d89f0ceab797bad0202ebdaef829",
+            "exactReplay": true
+          },
+          {
+            "panel": "normals",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSHA256": "d4a9fefd2076fcea054ea57be3710c32566dfad70dcf6877ecf2d7463e546575",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSHA256": "a85332af3e044f4fe3a15802e7260c0292c1fa5b90474a36f3c3195bb99b3dd5",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSHA256": "f148280be8c14a41027281a0be3e3f2ae14006d093141f49724181f9bb572d73",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 107,
+        "maximumChannelDifference": 41,
+        "changedRectangle": [
+          1184,
+          1088,
+          1200,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rpal308-mid-review.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "title",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              32
+            ],
+            "decodedRGBSHA256": "307bf3383eca44a5bb7bee341f88ae67050a1d5f4925f30273713a0783281bd3",
+            "exactReplay": true
+          },
+          {
+            "panel": "native",
+            "rectangle": [
+              12,
+              32,
+              524,
+              544
+            ],
+            "decodedRGBSHA256": "f220b248fb527ca458ba1f331d02bca007425b040211180c53793c5446942870",
+            "exactReplay": true
+          },
+          {
+            "panel": "diffuse",
+            "rectangle": [
+              540,
+              32,
+              1052,
+              544
+            ],
+            "decodedRGBSHA256": "31285af5ecfdbf1b21f2ced289d5765f04f2b652f58a6fbc6b6a4a138f8049ea",
+            "exactReplay": true
+          },
+          {
+            "panel": "oneToOneDetail",
+            "rectangle": [
+              1068,
+              32,
+              1324,
+              288
+            ],
+            "decodedRGBSHA256": "42b22a4616387ca2724e54c9fb00bd41cce18f52b8c13d9b9d87dbad574d3669",
+            "exactReplay": true
+          },
+          {
+            "panel": "repeatedTiles",
+            "rectangle": [
+              12,
+              570,
+              524,
+              1082
+            ],
+            "decodedRGBSHA256": "02bda97e088e9dab8de2abcb545b1d5219058b1382a36dd39176151775266260",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Label",
+            "rectangle": [
+              540,
+              570,
+              1400,
+              595
+            ],
+            "decodedRGBSHA256": "94fe813e3250b469e6c6bb4a1bff485edef31b8bb2550975080107c16a181dbd",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Native",
+            "rectangle": [
+              540,
+              595,
+              636,
+              691
+            ],
+            "decodedRGBSHA256": "4e1e2a944fadc9aac31d58dfe7db22ea2c120de1743f811083db0dbfbdad6095",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Enhanced",
+            "rectangle": [
+              646,
+              595,
+              742,
+              691
+            ],
+            "decodedRGBSHA256": "ebf65030be7e4be652ec02990fe9103236bd7d191db33ee01a3205e599fe4ce3",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Label",
+            "rectangle": [
+              540,
+              805,
+              1400,
+              830
+            ],
+            "decodedRGBSHA256": "29d56d4b992298a4c11fbc7e29338e0408daf436663d1b264fb69d6ab568faea",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Native",
+            "rectangle": [
+              540,
+              830,
+              588,
+              878
+            ],
+            "decodedRGBSHA256": "9a11bfa457b9be9798ac6062c93e68a05d97c45d8fe897ceb09e84d878ab0ba7",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Enhanced",
+            "rectangle": [
+              598,
+              830,
+              646,
+              878
+            ],
+            "decodedRGBSHA256": "0c924d5aff65a2a4d79efaba7714857f42d33dce3e6bdfcbab0efec48876214b",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 286,
+        "maximumChannelDifference": 36,
+        "changedRectangle": [
+          1375,
+          1087,
+          1400,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rpal308-mid-relief.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              30
+            ],
+            "decodedRGBSHA256": "e4dabdd590dbb6281805a737bf1f8b98921800d6c70652e789e9468421727785",
+            "exactReplay": true
+          },
+          {
+            "panel": "bottomLabels",
+            "rectangle": [
+              0,
+              550,
+              1200,
+              580
+            ],
+            "decodedRGBSHA256": "9730bd1824f4060c44546689a573a21eed78852f6b76b65dcbed33bc4073a74a",
+            "exactReplay": true
+          },
+          {
+            "panel": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSHA256": "8636a7045857cef3d7f82bff656f358adc11792a22f7847b8e102fa030d1f259",
+            "exactReplay": true
+          },
+          {
+            "panel": "normals",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSHA256": "46c6cd0a39c64cd23c6722bdb5531e528146779c41eaa5cba386f3760671d18d",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSHA256": "485e2d7b75a526d44aad045eb1dfb5e82f1c4197c8bf939e19804c7a12defc64",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSHA256": "9b3d3c111d51cfa57058b9732b91aa019f15e13ae1e1f9903b06e1bf26c0e35d",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 114,
+        "maximumChannelDifference": 42,
+        "changedRectangle": [
+          1184,
+          1088,
+          1200,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rpal308-high-review.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "title",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              32
+            ],
+            "decodedRGBSHA256": "4534ac21d79d5bb0fa93ba701180d2e56b0bc82373add57cb0d171a5751619b0",
+            "exactReplay": true
+          },
+          {
+            "panel": "native",
+            "rectangle": [
+              12,
+              32,
+              524,
+              544
+            ],
+            "decodedRGBSHA256": "f220b248fb527ca458ba1f331d02bca007425b040211180c53793c5446942870",
+            "exactReplay": true
+          },
+          {
+            "panel": "diffuse",
+            "rectangle": [
+              540,
+              32,
+              1052,
+              544
+            ],
+            "decodedRGBSHA256": "d60ab2662d98ec0dc2a3d69a782f6b4b56c49fdd0e3932ee3b22bd4ea0307035",
+            "exactReplay": true
+          },
+          {
+            "panel": "oneToOneDetail",
+            "rectangle": [
+              1068,
+              32,
+              1324,
+              288
+            ],
+            "decodedRGBSHA256": "acd0e43cc6d7c4ca8f6d7e7d017d7e5e32d4fc0a453fd6261a55a9a71a4fccf8",
+            "exactReplay": true
+          },
+          {
+            "panel": "repeatedTiles",
+            "rectangle": [
+              12,
+              570,
+              524,
+              1082
+            ],
+            "decodedRGBSHA256": "ee9d7ce9c8f6191d0cfcdae12535aa2d1f540487d70005b93277b4a0315019d3",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Label",
+            "rectangle": [
+              540,
+              570,
+              1400,
+              595
+            ],
+            "decodedRGBSHA256": "21cc8aa748ded02075fdb54ab0189afe2ed32cd656c4688184814d9e76fbbfb8",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Native",
+            "rectangle": [
+              540,
+              595,
+              636,
+              691
+            ],
+            "decodedRGBSHA256": "4e1e2a944fadc9aac31d58dfe7db22ea2c120de1743f811083db0dbfbdad6095",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Enhanced",
+            "rectangle": [
+              646,
+              595,
+              742,
+              691
+            ],
+            "decodedRGBSHA256": "26906d2f1ca856fcd88c1ea3a8a0d6f8171258e5625cdea612f0b63000389e57",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Label",
+            "rectangle": [
+              540,
+              805,
+              1400,
+              830
+            ],
+            "decodedRGBSHA256": "88bd2f21853bd25aeec6d5904800ceba6c1241a450e8684344c28fcac26f9013",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Native",
+            "rectangle": [
+              540,
+              830,
+              588,
+              878
+            ],
+            "decodedRGBSHA256": "9a11bfa457b9be9798ac6062c93e68a05d97c45d8fe897ceb09e84d878ab0ba7",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Enhanced",
+            "rectangle": [
+              598,
+              830,
+              646,
+              878
+            ],
+            "decodedRGBSHA256": "67a0eff450f2ebc3d2c4cb7ddc40d317de0b668573c79a70e5169b7ae85b5775",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 0,
+        "maximumChannelDifference": 0,
+        "changedRectangle": null,
+        "allowedEmptyPaddingRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rpal308-high-relief.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              30
+            ],
+            "decodedRGBSHA256": "ec7f8d4029dacc584a6bd05a0938fd5561e3406fd917bfbf6349fe8460877aee",
+            "exactReplay": true
+          },
+          {
+            "panel": "bottomLabels",
+            "rectangle": [
+              0,
+              550,
+              1200,
+              580
+            ],
+            "decodedRGBSHA256": "28e804bae611d02b0159b3e881473b424b62a028d39efcf6afe834b4daf79220",
+            "exactReplay": true
+          },
+          {
+            "panel": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSHA256": "25c479124d62296b575647348b25c108a665e8fdbc4cefafbd856c2656d8734c",
+            "exactReplay": true
+          },
+          {
+            "panel": "normals",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSHA256": "2bf05f8ef7c0b818ee6c0656711661b29b49a75fd0247939857b15145aa407fb",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSHA256": "2b3b6509e9380a2ed04c232911e3264ff786fde8f78c64babd250880c63581f2",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSHA256": "b2fe204eeab74b3f894ff0c5cadc65d3eeabd3f573f85dcfc707a181c7bede36",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 402,
+        "maximumChannelDifference": 42,
+        "changedRectangle": [
+          1167,
+          1087,
+          1200,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex013-mid-review.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "title",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              32
+            ],
+            "decodedRGBSHA256": "f7160b58624ba36ed94cd931d03af82e26f5f170193bc6920349358fa9bc6600",
+            "exactReplay": true
+          },
+          {
+            "panel": "native",
+            "rectangle": [
+              12,
+              32,
+              524,
+              544
+            ],
+            "decodedRGBSHA256": "aabd8b003864c8af39e2f4fbefc74763e18769b6c03c2034ab6e20ecef769321",
+            "exactReplay": true
+          },
+          {
+            "panel": "diffuse",
+            "rectangle": [
+              540,
+              32,
+              1052,
+              544
+            ],
+            "decodedRGBSHA256": "8fa1de73d315c38c9661cf7f8d001340362296de923e5bc22c7e5cc98e040ec6",
+            "exactReplay": true
+          },
+          {
+            "panel": "oneToOneDetail",
+            "rectangle": [
+              1068,
+              32,
+              1324,
+              288
+            ],
+            "decodedRGBSHA256": "86984e0bf5fe809ee4832f32202a2746c94f8eea8bc905770f0f28c748e6eeda",
+            "exactReplay": true
+          },
+          {
+            "panel": "repeatedTiles",
+            "rectangle": [
+              12,
+              570,
+              524,
+              1082
+            ],
+            "decodedRGBSHA256": "bd5364ec839481423f8cc9b473a09611b5213755661ed5c762095bf8a549f442",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Label",
+            "rectangle": [
+              540,
+              570,
+              1400,
+              595
+            ],
+            "decodedRGBSHA256": "f61e451216cbc524a6ee45d276dfb828274c44dc4b7c01ccd6a52aaf471e72ed",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Native",
+            "rectangle": [
+              540,
+              595,
+              636,
+              691
+            ],
+            "decodedRGBSHA256": "834edf0571d91fc8edc0bc679aa37c93491835df6cca983f71931683b4f01734",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Enhanced",
+            "rectangle": [
+              646,
+              595,
+              742,
+              691
+            ],
+            "decodedRGBSHA256": "a13611f7318505da0d20020d6cdea682de34286ec61c2398dd6266b537bd667c",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Label",
+            "rectangle": [
+              540,
+              805,
+              1400,
+              830
+            ],
+            "decodedRGBSHA256": "e7d35510f1046f772828b2f85bc59a6858ee7e34fcb3647031ef76c44dcd65f5",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Native",
+            "rectangle": [
+              540,
+              830,
+              588,
+              878
+            ],
+            "decodedRGBSHA256": "71d153596ec7931b9855f180d67fb28045451b54fb67d8323653eb88f768d4ec",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Enhanced",
+            "rectangle": [
+              598,
+              830,
+              646,
+              878
+            ],
+            "decodedRGBSHA256": "5daa84173bcd01bb333c28c032d6c50deb993c033b63ed6f855264e6a082ef8c",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 96,
+        "maximumChannelDifference": 35,
+        "changedRectangle": [
+          1392,
+          1088,
+          1400,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex013-mid-relief.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              30
+            ],
+            "decodedRGBSHA256": "0c946960339cad098a506e8bcae6a0f0a9ad41232cbb10d6fc3240bd3df29e8a",
+            "exactReplay": true
+          },
+          {
+            "panel": "bottomLabels",
+            "rectangle": [
+              0,
+              550,
+              1200,
+              580
+            ],
+            "decodedRGBSHA256": "28c1f1370ed6288049d4bc3f149dd56e449cdf0ccf4db1bf9456df638a37def2",
+            "exactReplay": true
+          },
+          {
+            "panel": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSHA256": "b25535a3562e62e2b8826505f4f2b610f3454994950cffc8f287f3d93d91b5df",
+            "exactReplay": true
+          },
+          {
+            "panel": "normals",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSHA256": "4344eb8ed139e5ec20fc1e680be55f35fe7462b6651cae5080ee30e3c7a836a8",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSHA256": "2f329507b8acbecf4daf5192b6493ae74d332399ca5d014fc59d5f56256d4859",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSHA256": "87100af87fc3dad730f814588102424928d11b50c0e8710263337f96ea09f009",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 315,
+        "maximumChannelDifference": 99,
+        "changedRectangle": [
+          1168,
+          1087,
+          1200,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex013-high-review.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "title",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              32
+            ],
+            "decodedRGBSHA256": "34b9d0a26a94b01aea5477eed9933fab38ae85be573140e1b9bc6d695cc5ee82",
+            "exactReplay": true
+          },
+          {
+            "panel": "native",
+            "rectangle": [
+              12,
+              32,
+              524,
+              544
+            ],
+            "decodedRGBSHA256": "aabd8b003864c8af39e2f4fbefc74763e18769b6c03c2034ab6e20ecef769321",
+            "exactReplay": true
+          },
+          {
+            "panel": "diffuse",
+            "rectangle": [
+              540,
+              32,
+              1052,
+              544
+            ],
+            "decodedRGBSHA256": "a623882fbc4ef60b2a973fdb95d718e9090e38f6dad16de421360890c65dd943",
+            "exactReplay": true
+          },
+          {
+            "panel": "oneToOneDetail",
+            "rectangle": [
+              1068,
+              32,
+              1324,
+              288
+            ],
+            "decodedRGBSHA256": "0dc470c68280dfed97838195c509ce6af394f6143505b4d3e930ee98c3110b72",
+            "exactReplay": true
+          },
+          {
+            "panel": "repeatedTiles",
+            "rectangle": [
+              12,
+              570,
+              524,
+              1082
+            ],
+            "decodedRGBSHA256": "904a3bc4288732f10d9f9393f9af995bd12ba708404953d592a061c14800e412",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Label",
+            "rectangle": [
+              540,
+              570,
+              1400,
+              595
+            ],
+            "decodedRGBSHA256": "25eb744756a88c7cec5194126972841ef4d1cdf2ec58c2ec83942bb9e6be783c",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Native",
+            "rectangle": [
+              540,
+              595,
+              636,
+              691
+            ],
+            "decodedRGBSHA256": "834edf0571d91fc8edc0bc679aa37c93491835df6cca983f71931683b4f01734",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Enhanced",
+            "rectangle": [
+              646,
+              595,
+              742,
+              691
+            ],
+            "decodedRGBSHA256": "8d3e3c4049f34e7d59eca97853c46665ed730eeae641f050a8b8d9f028f71fb8",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Label",
+            "rectangle": [
+              540,
+              805,
+              1400,
+              830
+            ],
+            "decodedRGBSHA256": "df11f13c4c0b311b49dc5b462e9d452598c26f66c950c6ff956c8da3d09680aa",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Native",
+            "rectangle": [
+              540,
+              830,
+              588,
+              878
+            ],
+            "decodedRGBSHA256": "71d153596ec7931b9855f180d67fb28045451b54fb67d8323653eb88f768d4ec",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Enhanced",
+            "rectangle": [
+              598,
+              830,
+              646,
+              878
+            ],
+            "decodedRGBSHA256": "98ccf50e643e88f88011594c6b0b4a4cbe9c74aeca1d30b1de586f2b2fd379cc",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 283,
+        "maximumChannelDifference": 41,
+        "changedRectangle": [
+          1375,
+          1087,
+          1400,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex013-high-relief.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              30
+            ],
+            "decodedRGBSHA256": "a0f59f1896d74e711712ededb3b2762a2b856148124bf2a780b8149dc3763448",
+            "exactReplay": true
+          },
+          {
+            "panel": "bottomLabels",
+            "rectangle": [
+              0,
+              550,
+              1200,
+              580
+            ],
+            "decodedRGBSHA256": "a5f190c2a33d939f3ef398fa9689d04e9fbb8bbe22e4340f480531c09020d382",
+            "exactReplay": true
+          },
+          {
+            "panel": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSHA256": "8968a3bc01da7d1b1494e73512ccfe673507a167e5c92cbc3d81f8f358420ae9",
+            "exactReplay": true
+          },
+          {
+            "panel": "normals",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSHA256": "9e3a2e79f9f73bd9cfdbba3149590db5498138d915f789587d927d301b0d8337",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSHA256": "750a72eb082009255ba2a598ba6de0c870aaad4db93e12263f3119520fddd306",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSHA256": "faae6a668184bc72c77f8e83964a8eed1d4d2698a467ab6192bc82c1e8bab604",
+            "exactReplay": true
+          }
+        ],
+        "changedPixels": 20,
+        "maximumChannelDifference": 1,
+        "changedRectangle": [
+          1192,
+          1088,
+          1200,
+          1094
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      }
+    ]
+  },
+  "ownedTemporaryDuplicatesRemoved": true,
+  "runtimeBindingFilesEqualHEAD": [
+    {
+      "file": "assets/game/textures/index.json",
+      "sha256": "4bdc95a3a622fbb0ba71afb6aacde1d0504bfe3c4282b91e8dc2be872eb85faa",
+      "bytes": 196419
+    },
+    {
+      "file": "assets/layout.json",
+      "sha256": "dc032d9332273c492bd4cf9fc3f6eb278dd4829182a238f8d8b2def7404448bb",
+      "bytes": 333944
+    },
+    {
+      "file": "tools/distribution/manifest.mjs",
+      "sha256": "3b14951f4723f37010cb71fe4545af57f7426ab65285aad5bf11d777ab41a09f",
+      "bytes": 7064
+    }
+  ],
+  "foreignStagedDiffUnchanged": true,
+  "inputsStable": true,
+  "inputs": [
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-170ac4e4-88b2-43a3-9be9-7390d9172d48.png",
+      "sha256": "eb403f8b3516dfaa69f3ee81f6b3c8bd89fa077d743cc8f4e3b2ae01368fb5de",
+      "bytes": 4277837
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-2d4c4bc4-c568-4ee1-a79f-30e9b8f43767.png",
+      "sha256": "fbf044da3f84ce3b25020028944d7893ff4d32b6d690c6039387e1bf875a7a97",
+      "bytes": 3823857
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-57676e58-001d-4e00-8eee-c0bd520f22d0.png",
+      "sha256": "c6137da8df7b456c6dbf390f6383c5572f2e3daf533a67c0c8ff3b281ae06316",
+      "bytes": 4172835
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-5b019965-2825-4529-a26d-ccf11eea6b81.png",
+      "sha256": "2bf1b58fa70e31dbe2aea6920606f23d98bd108908ba9f9d05417e7f3bb114c4",
+      "bytes": 3820281
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-68a026d0-7961-4d27-b475-99cb6b8e388f.png",
+      "sha256": "aae11addc9db1ec1191eda9575a0ad89d70841a190433289d6b11decb11f0e7c",
+      "bytes": 3685224
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-724c33d7-79ae-407a-8588-e82bc5af51c4.png",
+      "sha256": "8a5dd8ac1b1ba35e3f5021365d9d7854fd43d5bb72f6a245c196b4ad43470909",
+      "bytes": 3608601
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-b990ac6a-b30e-4ef2-8aa0-2685c1159afe.png",
+      "sha256": "2cfa3d3a849932b9be136ef48ecd4384e2fcbd098911182d9cfdbdaf31062262",
+      "bytes": 3544165
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-fd4877c0-529b-411e-916b-81e2e785d1ee.png",
+      "sha256": "713824e6b9f7c8c516233901f7a9c9f04a11052b1476f2863eda8ba3982b0369",
+      "bytes": 3608801
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/batch.json",
+      "sha256": "5d185dcaa69acbdc88dcc2fe7c9b38c2fcb2a7f4d94edc32fe7ac273147e29ac",
+      "bytes": 24972
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/rpal308.png",
+      "sha256": "eb403f8b3516dfaa69f3ee81f6b3c8bd89fa077d743cc8f4e3b2ae01368fb5de",
+      "bytes": 4277837
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/rtex028.png",
+      "sha256": "fbf044da3f84ce3b25020028944d7893ff4d32b6d690c6039387e1bf875a7a97",
+      "bytes": 3823857
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/rtex099.png",
+      "sha256": "2cfa3d3a849932b9be136ef48ecd4384e2fcbd098911182d9cfdbdaf31062262",
+      "bytes": 3544165
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/rtex103.png",
+      "sha256": "aae11addc9db1ec1191eda9575a0ad89d70841a190433289d6b11decb11f0e7c",
+      "bytes": 3685224
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/rtex422.png",
+      "sha256": "c6137da8df7b456c6dbf390f6383c5572f2e3daf533a67c0c8ff3b281ae06316",
+      "bytes": 4172835
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/ttex013.png",
+      "sha256": "713824e6b9f7c8c516233901f7a9c9f04a11052b1476f2863eda8ba3982b0369",
+      "bytes": 3608801
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/ttex020.png",
+      "sha256": "2bf1b58fa70e31dbe2aea6920606f23d98bd108908ba9f9d05417e7f3bb114c4",
+      "bytes": 3820281
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/generated/ttex126.png",
+      "sha256": "8a5dd8ac1b1ba35e3f5021365d9d7854fd43d5bb72f6a245c196b4ad43470909",
+      "bytes": 3608601
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rpal308/master.json",
+      "sha256": "7440aecbc1e5fe2bdbb24c9213d698147b2b626b4b4fb7d198101dd96af3821e",
+      "bytes": 4204
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rtex028/master.json",
+      "sha256": "7042023c3267cc1fe7dba0691a13230f29e1992ba39122fafe41c2ddaa344138",
+      "bytes": 4194
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rtex099/master.json",
+      "sha256": "f31d294863258bf177ad1bd780083c21146c6f87ffd002297f38a7d2012fb1ee",
+      "bytes": 4192
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rtex103/master.json",
+      "sha256": "93be1b3a35386eec7e1dd0eca7f69208230639b9407c1c5e7136ecff21029300",
+      "bytes": 4198
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/rtex422/master.json",
+      "sha256": "7134406ad0f6dbd9d8efc19615992575cc8f71b67c103af908f5a5a94bf4beb2",
+      "bytes": 4188
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/ttex013/master.json",
+      "sha256": "e34a2788be6f88bb7a6c73d61f89d805a5068e2d81782bbc3a165159e047bc9e",
+      "bytes": 4205
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/ttex020/master.json",
+      "sha256": "812b87d1b9e52d9dc1069aa27ff90290611e222e0d171cf2420c806f6a83d6b5",
+      "bytes": 4213
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/masters/ttex126/master.json",
+      "sha256": "a7cb8c7d2d4e528e245533404efd28b09bac7438515e5af59e77f9816cc512b1",
+      "bytes": 4199
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rpal308.txt",
+      "sha256": "e61094e3c3a0381abd54ff0b5a45356eb648ac34675768892db49f9c2adf2ea2",
+      "bytes": 2063
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rtex028.txt",
+      "sha256": "e27846b328bd89bb3abdd54f58681d4dde60b22e7ea6b3202abb2ce78c8e16e9",
+      "bytes": 1962
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rtex099.txt",
+      "sha256": "5a619b6aa6096ea6a9f7cb987837da365439540d690046d65cbbd9bf36dfd42a",
+      "bytes": 2036
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rtex103.txt",
+      "sha256": "937b1686f584f362d83a7b85bb63dd9da4ddcb6ad9cd5dd15a57e3222a96ed44",
+      "bytes": 2005
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/rtex422.txt",
+      "sha256": "817cd5f34c2ca5eb3a6b175959b80052d55a69a706f1f53c8ac8a74f80fe0580",
+      "bytes": 2055
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/ttex013.txt",
+      "sha256": "ba97c3c54978e1512c08b4a71ee4473a3cf0cc53b7fde2b91df253001e059990",
+      "bytes": 2024
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/ttex020.txt",
+      "sha256": "5eb72e65510a238eaaad6c663f256002bf1c44439f471a5184e03a89625863a9",
+      "bytes": 2034
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/prompts/ttex126.txt",
+      "sha256": "4c98163546642e9ed45b82b0f49c8717cd525eed1e1b8d6ab85ce0bca1cf4829",
+      "bytes": 2132
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/index.html",
+      "sha256": "b27c88c9c537ca301a1f07ef0f9ce2c1bc0433bc071d94c08670db1ec4391d7e",
+      "bytes": 5430
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rpal308-high-relief.jpg",
+      "sha256": "580d6a47cef688e1723ba7907377269d50c3602d82d9ad218fd64a1a951bc9ab",
+      "bytes": 529870
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rpal308-high-review.jpg",
+      "sha256": "0fb9cc6d1a311ef537f07be81741cec5f584e478e38b4826bed62a63aa05f046",
+      "bytes": 367719
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rpal308-mid-relief.jpg",
+      "sha256": "9a67f2fb8202b55e036d41bcff55005405a95f0acbd7d1a6fdd3b492c6c2de1c",
+      "bytes": 166990
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rpal308-mid-review.jpg",
+      "sha256": "6bf3ec5ba5d768f6092b561c717e013efbb516aa7ab4fa686260bfe3048ac054",
+      "bytes": 306090
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex028-high-relief.jpg",
+      "sha256": "ba8f39419bd1cb9f2525378a1ee9423c0a1205660b2862c701d750988ad36022",
+      "bytes": 272450
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex028-high-review.jpg",
+      "sha256": "21d9939c2b0911dbefff53b0054a81e1a45e75da540b3e1c6ac09876874b8c88",
+      "bytes": 266489
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex028-mid-relief.jpg",
+      "sha256": "12daad6d120cba4769c6eb79a0f9ace74938129daeea633f16cee5a93d6d34a6",
+      "bytes": 279045
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex028-mid-review.jpg",
+      "sha256": "03698579e3f51153a85a4063c6161581a5399d9d56077befe18943cd3e8d5a47",
+      "bytes": 265282
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex099-high-relief.jpg",
+      "sha256": "185e22220f5d3f54ca5f8b15a371f68ae88c50c11ddef6544feaa47927e68976",
+      "bytes": 538182
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex099-high-review.jpg",
+      "sha256": "e7b28c9c17019684631a48e47881accf5060743b1642c1f84a358f37698c9ca5",
+      "bytes": 311985
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex099-mid-relief.jpg",
+      "sha256": "13326c2379add47ba692351a25a04b2d23c55ac702866d99e23e8949c080f1fc",
+      "bytes": 157192
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex099-mid-review.jpg",
+      "sha256": "f9070f4eef6ba46f66e55c961cb1c73d060f62e120fafe3d8137663cfd7f11a8",
+      "bytes": 262064
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex103-high-relief.jpg",
+      "sha256": "67abedbf53fccfef66d187e568ee1e55b13f928052f2132fe3dcee199885b86a",
+      "bytes": 485893
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex103-high-review.jpg",
+      "sha256": "3f52ef7743c28f1591c7d32f98783d2e0c0663094ecfde94dbbd4e22d665ddc1",
+      "bytes": 334815
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex103-mid-relief.jpg",
+      "sha256": "d46111eb006650c3f7199e4afc56978fbb93d310a8610c16c4bd8b8fb0c88a06",
+      "bytes": 159523
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex103-mid-review.jpg",
+      "sha256": "5912107490a613ca343acb23d85ba46186a1c4b9fb0c07b4fd1390215ca97df7",
+      "bytes": 280919
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex422-high-relief.jpg",
+      "sha256": "46ffca9260e1a6015c30b044383f508048c9eb718cc8770611dc27f50e9c181a",
+      "bytes": 506781
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex422-high-review.jpg",
+      "sha256": "0106764c2615a62c4f03b0d8da5e55fa54ed87e8d613cd0f69d2579942315d15",
+      "bytes": 348780
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex422-mid-relief.jpg",
+      "sha256": "78227d7babcc0194239a0abc32edde20bac3108baaedf66107d631449e91316e",
+      "bytes": 159937
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/rtex422-mid-review.jpg",
+      "sha256": "56cef6c0b576ddd6b003d33476fb6afb0584d2dcc268e80ce336ae3083562ea9",
+      "bytes": 290332
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex013-high-relief.jpg",
+      "sha256": "00bf8494b64635cf7eabf488855e8f465aab07559f92a6cf3919eec07c651dac",
+      "bytes": 471178
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex013-high-review.jpg",
+      "sha256": "869637dc9d3b567a466eedda549d7daaa5477aca45f5cb37d9e36960feb21ae5",
+      "bytes": 314935
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex013-mid-relief.jpg",
+      "sha256": "e86b74a8a5fb3d488c290be0b4cf76a61ade9b48f84224dee56942ea7f470219",
+      "bytes": 154746
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex013-mid-review.jpg",
+      "sha256": "84eb22c5109631097ccaad21a5cfb240c28d471179c14ec216edbad8025e0897",
+      "bytes": 261870
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex020-high-relief.jpg",
+      "sha256": "66710e39956ad47d74f863441e606567be23a3e6f60bc6d655e438fe4ba04009",
+      "bytes": 266318
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex020-high-review.jpg",
+      "sha256": "5d7d14728ff9fd45c129cf4b7879fe7ce35a38e01eba11b9b5a19b6c9ef29b84",
+      "bytes": 253842
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex020-mid-relief.jpg",
+      "sha256": "bc8d2164906223ba619bea883618cb2bf28f96073c4267c3594cd3d084c2a8e2",
+      "bytes": 272360
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex020-mid-review.jpg",
+      "sha256": "8db8c213d3981f3a0783db099395286c2dfb8e8bf46faf2bb8255166741ce259",
+      "bytes": 251015
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex126-high-relief.jpg",
+      "sha256": "7915aad586cf6170f645dbdbc445bd0fecba009570791f8222df240d4c55068a",
+      "bytes": 465747
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex126-high-review.jpg",
+      "sha256": "92acc3b44ffd015d7c4ef1099c52dd6357e5d75823f4fcd80574539eefa8b624",
+      "bytes": 354246
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex126-mid-relief.jpg",
+      "sha256": "eae06bf653ed4d659ac055acb8fcd07b8f22255fa511c4cd45366b3a46165282",
+      "bytes": 150707
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/review/ttex126-mid-review.jpg",
+      "sha256": "873e5fa7f964722b09d7eeeab7f80ab332657ba3322d83b4b1aeebf3986e2116",
+      "bytes": 302569
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/selection.json",
+      "sha256": "d668b8a916734e3ec3a819281fab4eb4679a041990262c088e5d98739797a21a",
+      "bytes": 11169
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/high-diffuse.webp",
+      "sha256": "cdfc240f33553153d29cd958e7f379548e4f123f811aa3cc1cfdb8a4955d5781",
+      "bytes": 143790
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/high-height.webp",
+      "sha256": "aacadf5483ce2bbf51192aa684ee9b9c6840c539c4aa884c10ce08eb8cfde262",
+      "bytes": 95072
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/high-normalX.webp",
+      "sha256": "90bbdf94b9b116e464cf5688c5f23607409fac8572034c2ac988bc4c67f2c823",
+      "bytes": 93862
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/high-normalY.webp",
+      "sha256": "19977f49a8f5ec2060af5f8daae772ac7deec5cb641a83c1f9209316ffeca53b",
+      "bytes": 91724
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/high-normalZ.webp",
+      "sha256": "f6635c4733e25515cdc1cec085c8cba43dce8035866d7ea74f242e4ed29820d7",
+      "bytes": 25286
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/manifest.json",
+      "sha256": "577b4dc1f2fdb12113a178883a8a6561913f924325cc60d9b29f5faffa467c47",
+      "bytes": 9667
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/mid-diffuse.webp",
+      "sha256": "b759cc988a649277903f6c54f3eb8728dd1bc3cc3fff57ccd6a355cdba458291",
+      "bytes": 33470
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/mid-height.webp",
+      "sha256": "91f27853bd70e9cfe38ad88ae853acae0a7e33c4e180027ff1a659c91b418585",
+      "bytes": 33502
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/mid-normalX.webp",
+      "sha256": "9689613cfb5dafd677eb9f20bcef7b4691291b06eff96ce6635eed1e44ca1f34",
+      "bytes": 29322
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/mid-normalY.webp",
+      "sha256": "ac5bef92f65cfef597d0c3183bf307d8699836a4b626271e88daffd0166cedcc",
+      "bytes": 29064
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rpal308/mid-normalZ.webp",
+      "sha256": "617a51504371c53ad6810d59f243366a0097ee36b4046c2ac5b941337ea72a08",
+      "bytes": 8392
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/high-diffuse.webp",
+      "sha256": "2e4c5f69db6b9df470b333fddad8699f92c00e69b262826e6bd0dd820ef39b85",
+      "bytes": 243106
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/high-height.webp",
+      "sha256": "59cfd67d6ba908d500bb11d71fda11276cd27f92b336a1d064361c1123f0e944",
+      "bytes": 168042
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/high-normalX.webp",
+      "sha256": "2e088d699815d5c0005ecb9ab3f3ddbc6afff6cc4f0b465873b9fa2c846ecd14",
+      "bytes": 179150
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/high-normalY.webp",
+      "sha256": "2467e4be462cb9cc7591dd0f584ef2d18f10577e58784a589774903a45f4e533",
+      "bytes": 171110
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/high-normalZ.webp",
+      "sha256": "f58b0ac45a95fdaf4f3d5c56d37729e85bfb67dbba4fbd4b4272d03a5f9270f8",
+      "bytes": 42286
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/manifest.json",
+      "sha256": "b3482ac8061973856efa5efb3ed05356aabd0c223001c22887cb259ac59ee8cf",
+      "bytes": 9662
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/mid-diffuse.webp",
+      "sha256": "972812dac1b5bc580714c7370af7fdfb3bf2df20e53a4a92ca32147d7b1aad25",
+      "bytes": 62824
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/mid-height.webp",
+      "sha256": "981a9757dd225e37f3f1ecddf480bfd29c304aaa820ecdfcacf3995eee46e982",
+      "bytes": 60288
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/mid-normalX.webp",
+      "sha256": "2be95f0c95167421794252225867aeff3cd68e3eb792a850d0683e7e97b22f53",
+      "bytes": 55318
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/mid-normalY.webp",
+      "sha256": "2844045d2982b2e48a798048804791f3b85bcd1a75445a06dfa29532becabad5",
+      "bytes": 54342
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex028/mid-normalZ.webp",
+      "sha256": "cdc60fcc9652fd6e44e6675697880de8265cd39c72949f77c17d88b6d0185ce5",
+      "bytes": 15500
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/high-diffuse.webp",
+      "sha256": "56fc46f845bbb8e15f4bd96be002b015373b6254c920bd4d11ef4a20c344cae6",
+      "bytes": 119194
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/high-height.webp",
+      "sha256": "3516de84a9949624028b07deb4062aefa1e91c297517657b4e7af3f9e8a3d52f",
+      "bytes": 132244
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/high-normalX.webp",
+      "sha256": "d12e4b30e53d0fe4a8c75a2776ff689e06bfde99434b24ad553c7717b4d0a465",
+      "bytes": 121022
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/high-normalY.webp",
+      "sha256": "c1334a1932b9fd995cf29dcd0292fe895705ae11f1cbd2fb57c019f0a29863be",
+      "bytes": 117812
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/high-normalZ.webp",
+      "sha256": "ee6e3dcad3b571ded52ef499687e06d9e30f7087763ca5b4facab582d4b9fa9e",
+      "bytes": 29296
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/manifest.json",
+      "sha256": "315c160880a32c358153e8642049f98e7d46b8b7405e7ce40a6821d7c2cb8c62",
+      "bytes": 9672
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/mid-diffuse.webp",
+      "sha256": "434a7554f812e404d766ae8a84a2fc9795bc2d3e63c93518da85fa7ffe8dd3e1",
+      "bytes": 29562
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/mid-height.webp",
+      "sha256": "27c4deffd68b3639b62c1fa70c1028fd6dac6d7c574014b5a746d069a0bd3fa6",
+      "bytes": 37286
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/mid-normalX.webp",
+      "sha256": "9edff2d10427f37d6feea46310bb18a7ad8d2bb0cacc51cced9cdb269f992cbc",
+      "bytes": 30494
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/mid-normalY.webp",
+      "sha256": "4c595413ca49ca5574cc7d82dd928becfeb46d75fb82848e0ddbb67a03b1238a",
+      "bytes": 28442
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex099/mid-normalZ.webp",
+      "sha256": "84e07221487ac043696699a9179ead7b258b79ab00a45523c726ba9ede766a19",
+      "bytes": 8722
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/high-diffuse.webp",
+      "sha256": "a95d8916973255af28528773f95cf5fadbf2124460be1be508b3930200c6c840",
+      "bytes": 125776
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/high-height.webp",
+      "sha256": "c87537be6159b6912f644e6b07984b9e59d01fd4b813f4e885c04f78a2ac144f",
+      "bytes": 96046
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/high-normalX.webp",
+      "sha256": "d1eed03220cbda13aae6cc416bd80230404f4da571ff1b8bf1cdf4cce9c384aa",
+      "bytes": 89536
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/high-normalY.webp",
+      "sha256": "1cf9e320820065684045060649736913baf691b61c85f370ffe2bff3a19ec137",
+      "bytes": 90412
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/high-normalZ.webp",
+      "sha256": "22304a484825c8cd5750fbd88133e0e5495837b7970a3abb85a832bf997e2f9e",
+      "bytes": 24990
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/manifest.json",
+      "sha256": "f34a7cc1d5928e79d5352b68b0df0b4f2f187e291b786baeb80089c8409ce4eb",
+      "bytes": 9661
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/mid-diffuse.webp",
+      "sha256": "6f825443fc1bbfb715459fdfd87e07f551dc9b7cb4295de7475b4fc50a4dabf4",
+      "bytes": 30002
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/mid-height.webp",
+      "sha256": "20892e4964520c01a86a91d419bf58b37c69b8bcfbd4b1bc2b12afbd992e3860",
+      "bytes": 34580
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/mid-normalX.webp",
+      "sha256": "17d98ae2d7a08e55f83cc724a54c1b2c0a6bf10bf0ce0fd00f5ffbfc632a6b23",
+      "bytes": 30178
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/mid-normalY.webp",
+      "sha256": "f95511685b3d69a27e159027dd15c1c48bf6684e9d42b292115ecd4ff97aae45",
+      "bytes": 29740
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex103/mid-normalZ.webp",
+      "sha256": "ce7d460b3272d8bb4a6b80979fd0cbdeea40b3572e8d8b70aa54534f68d442f3",
+      "bytes": 8684
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/high-diffuse.webp",
+      "sha256": "ca4f5673bd75ac3ee669af22bbfa74f53aa301998fea385d6cb1746b19304063",
+      "bytes": 130676
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/high-height.webp",
+      "sha256": "a8812ca2f89ffbacb946a1c40c0cd6796135bfc2469da3e9b18fcba8182017f6",
+      "bytes": 95268
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/high-normalX.webp",
+      "sha256": "da167d269e93f7c7cb485cd0a955a591cb69fcbd91c295f7512580529792744f",
+      "bytes": 93368
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/high-normalY.webp",
+      "sha256": "7a477aca3a7ac991e8ed143ea7f6dd0f09028ebc0e2850b990c56573cc2aa36d",
+      "bytes": 90822
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/high-normalZ.webp",
+      "sha256": "e145a5beb31c2e8f13e35e59faca348ce8014ff705d01c35e1337e5ec2ff16fe",
+      "bytes": 24770
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/manifest.json",
+      "sha256": "7becb88848c4e5c381864ba5c233bca0da5f2e58f083c833c82b1576986af509",
+      "bytes": 9671
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/mid-diffuse.webp",
+      "sha256": "aaeb0b11c35cab386d4323747437e710348dea7c441c2f0a558ba382ab75bdb6",
+      "bytes": 31084
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/mid-height.webp",
+      "sha256": "2688d61a59af3106c8b4785cf4438e0436797e6eaea86351a75896557270eccf",
+      "bytes": 32834
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/mid-normalX.webp",
+      "sha256": "91c2e6037c24fdab37eb51e0cccc37b4fc4db10bef582a821d32ac0b50f39447",
+      "bytes": 28258
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/mid-normalY.webp",
+      "sha256": "83b416a2669b9b1925fe7d508709fccdcd01c089fdccd0830cf1b6dacd4184c6",
+      "bytes": 28198
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/rtex422/mid-normalZ.webp",
+      "sha256": "66fdfff61e34bd75b019d2959e5da02bfeb04da2f30991d26f29a69ca7ddaa21",
+      "bytes": 8288
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/high-diffuse.webp",
+      "sha256": "7805885d26a0e1ee80bfa4f9e8528ea60be1d3d38924aed4fcce40e611244520",
+      "bytes": 118110
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/high-height.webp",
+      "sha256": "db750fb0a5c59c99c613a7025f3e1344ca0ced050327665d80480bf07542f8be",
+      "bytes": 91202
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/high-normalX.webp",
+      "sha256": "c752d7af4284b5bc19618c7ebb5bc998e9b60c15d539d1026c1b034e46684d45",
+      "bytes": 91136
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/high-normalY.webp",
+      "sha256": "69c581f2a17d31180788c093c0f8d8bde941c04cbb5bb3e4ad82c3acfbb10882",
+      "bytes": 88864
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/high-normalZ.webp",
+      "sha256": "f60d132e3c7d1583e51d5dc499d89777402d2cf86302de1b92036563e83ea810",
+      "bytes": 24824
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/manifest.json",
+      "sha256": "335ef0e217290b8c63a2d57f7fca027d6f165846c8eef646eaf2a6f1d858d70b",
+      "bytes": 9687
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/mid-diffuse.webp",
+      "sha256": "5a822a1a5bde288bd55df4dec4a55f5d9e26ae6d6509b03fff7f55ee4d501986",
+      "bytes": 26766
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/mid-height.webp",
+      "sha256": "9c122f6a3cc45c6a8fc571b307b2854648f24c0928be22a92f44d7aeb027a432",
+      "bytes": 34304
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/mid-normalX.webp",
+      "sha256": "92da3cf7d22c97d3fc1f8c2de5f0bd33c03ba28ad4d73b9c97244ac1db02929d",
+      "bytes": 29876
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/mid-normalY.webp",
+      "sha256": "ceecc851a2d671a4fe79efa08a7d9440d26e371e502e088d45e6e916ec3d7f90",
+      "bytes": 30178
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex013/mid-normalZ.webp",
+      "sha256": "54f7544333e6de01d95019345f501e0f59847b7161bb51d4b2945671ea82e3d3",
+      "bytes": 8478
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/high-diffuse.webp",
+      "sha256": "69d1ac18f0a42ee4bde628c6e2626c8c62b01feb92574d4e8e2f376c39044bfd",
+      "bytes": 247642
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/high-height.webp",
+      "sha256": "4df7b9ee4bc432c5c2d7117acd68a68c8efca52ec5707125192bb2c64e025f31",
+      "bytes": 172260
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/high-normalX.webp",
+      "sha256": "46f3d0c9ee654bf4f6f9964dad0c9c5f6e443914a5169442e9b7bf69d9f96bfe",
+      "bytes": 177012
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/high-normalY.webp",
+      "sha256": "fda82537a4d1045c4a30d6d933392089181dea113e422e5fa5e99df8690623d9",
+      "bytes": 178602
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/high-normalZ.webp",
+      "sha256": "c966491096841bf85c0894dc1663d7951b6f0b30a00ef9e4dc7eeeb2f02bf0fc",
+      "bytes": 41824
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/manifest.json",
+      "sha256": "d269e598f1af2230071555d245ae3c410e45035ce4de8e15d3810069c898faa0",
+      "bytes": 9648
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/mid-diffuse.webp",
+      "sha256": "b4380af0ee7ab01b8670f6d8fc3a37153bc86b0441a73f479c6d8d7a4f3c87d6",
+      "bytes": 59230
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/mid-height.webp",
+      "sha256": "87b46a12dd339bdd3110d4c3c0fa713ee1174eec2532cf2b8c5826e5993e3c54",
+      "bytes": 60036
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/mid-normalX.webp",
+      "sha256": "9ac7f99ed687cc2d85a46c796d9fea93b4766f5eccdd64038055a338d67240ad",
+      "bytes": 55596
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/mid-normalY.webp",
+      "sha256": "65e1694d62b02bc11b5e78dfd20a774e5abbe4ae25382d775d5741f40f93198d",
+      "bytes": 54316
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex020/mid-normalZ.webp",
+      "sha256": "538cdd66fc381567f039107a838c5a99d60c2872667fc3d50f4b45cee4cb6c17",
+      "bytes": 15544
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/high-diffuse.webp",
+      "sha256": "998f784dfbce8b52abdf211112ec08b01ff44741d574659423a3de6d2f41d44f",
+      "bytes": 130284
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/high-height.webp",
+      "sha256": "3054d45909109f299bebd48a2cfcee09f31029c6d2a8b6acb980b8ad5c714ef0",
+      "bytes": 82104
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/high-normalX.webp",
+      "sha256": "4b96ed504fb2575a268016597b9f89fc6515db91853d481dbca10f86d9a6a54a",
+      "bytes": 78676
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/high-normalY.webp",
+      "sha256": "c7c637db0e62319decd80d731108b9af4c506fc3a6f8031b7ac943e60a5f3231",
+      "bytes": 81588
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/high-normalZ.webp",
+      "sha256": "f04e5b6bbe8860e53c340b9692a69f791d974a8974b67240091e98c378e878bf",
+      "bytes": 21368
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/manifest.json",
+      "sha256": "f64c3feabd839954e95770388d7f99586a60eed8eb1b1c0b5e9057691b4f34bd",
+      "bytes": 9617
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/mid-diffuse.webp",
+      "sha256": "de3721eb1211af0eb66883fa54b44b905e81301f4fe5fdd943b49572c09fe896",
+      "bytes": 32120
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/mid-height.webp",
+      "sha256": "94ca0cae2eda6f1a2df98d045ceed7efc3ff64690e3f24d9723ceaec29a0fa31",
+      "bytes": 28894
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/mid-normalX.webp",
+      "sha256": "8bda9ab72821d693b1aec1f0c1b88d401465c9864ee0726c02c01e27ae6279ee",
+      "bytes": 23646
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/mid-normalY.webp",
+      "sha256": "127d56358787eb839f7a516119220cdad25880230575d5cd0ccd214c581a6635",
+      "bytes": 24750
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/tiers/ttex126/mid-normalZ.webp",
+      "sha256": "2d96f7a98e272013d4123063816c659c44b6c7042a041738bfd69f1193ee0a1e",
+      "bytes": 7508
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/02-rtex028-0e5d4ca5c88f.png",
+      "sha256": "5483d7b5a7f9e4b9c3ee34cb39acee416b325b4aa5e41dd70ea9a3e3f25b9c59",
+      "bytes": 6175
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/03-rtex099-6a3ca30bf015.png",
+      "sha256": "ddd589bcdab1c6eb53faa62856edeaadc54cd93b3515ed7242fa13fe689a5248",
+      "bytes": 3684
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/04-rtex103-6eac34b9d3de.png",
+      "sha256": "e45b000bbb4b5d5286cb8c608e2fc695f778f8073d8e750d45e67a3d33b7e4a6",
+      "bytes": 2951
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/08-rtex422-d8e1d80d5a0b.png",
+      "sha256": "637617397968000e140e7c51f79126fb6e59064131ba2a6ab93e5b95920d14a9",
+      "bytes": 2669
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/10-ttex020-56bff92e6648.png",
+      "sha256": "96b38f8a9e50d7cf25ea7bb400a8b1f691557de7833c212e0a02f0028919b0a5",
+      "bytes": 6182
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/11-ttex126-9061b0e47ebc.png",
+      "sha256": "837fa207214ac32119de547aebacd4516ef7b886c4a4c3a5da1009ab4ab79c2b",
+      "bytes": 4178
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/12-rpal308-74929cd446be.png",
+      "sha256": "e0c8ced0e040fcf8273cd267c24b0b4ac544667b8580dfd36ed4cf46a17d3ff2",
+      "bytes": 3291
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/16-ttex013-1e9b3f6a9b33.png",
+      "sha256": "ffedeabeb261d14eec954d3226c6adfa0763f4d34713ec2993fd0d0333ac7898",
+      "bytes": 2369
+    },
+    {
+      "file": "docs/hexen2/textures/batch-002-public-actual-v1.json",
+      "sha256": "ce2c1fa778625122777ee6471f9c7d21e9dfa963dd612855a5c1c926be5d04f3",
+      "bytes": 101276
+    },
+    {
+      "file": "docs/hexen2/textures/batch-002-public-verify-preview.py",
+      "sha256": "e6bff9caee0303cc2e341a925414163d01eaaca7611899897c548180e98e5fb9",
+      "bytes": 12189
+    },
+    {
+      "file": "tools/texture_sheets/build_texture_batch_review.py",
+      "sha256": "0bb1bc2db00921078bb41d4d3cd37d4c92c0efda35b129d3d3b07424c53edc6a",
+      "bytes": 6218
+    }
+  ],
+  "completedAt": "2026-10-19T01:47:46.676040+00:00"
+}

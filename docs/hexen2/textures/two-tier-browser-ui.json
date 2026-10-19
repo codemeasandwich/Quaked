@@ -1,0 +1,123 @@
+{
+  "observedAt": "2026-10-19T00:31:19.094800+00:00",
+  "interface": "Codex in-app browser, tab23; actual selectOption interactions and read-only DOM naturalWidth/naturalHeight",
+  "url": "http://127.0.0.1:53999/tiers/index.html",
+  "verdict": "PASS defaultMid thenLow thenHigh thenMid; actual four image dimensions and paths matched alltiers",
+  "observations": [
+    {
+      "tier": "Mid",
+      "materials": [
+        {
+          "name": "rtex337",
+          "dimensions": [
+            256,
+            512
+          ],
+          "observedSource": "rtex337/mid-diffuse.webp"
+        },
+        {
+          "name": "rtex450",
+          "dimensions": [
+            512,
+            512
+          ],
+          "observedSource": "rtex450/mid-diffuse.webp"
+        },
+        {
+          "name": "rtex041",
+          "dimensions": [
+            256,
+            512
+          ],
+          "observedSource": "rtex041/mid-diffuse.webp"
+        },
+        {
+          "name": "ttex016",
+          "dimensions": [
+            256,
+            512
+          ],
+          "observedSource": "ttex016/mid-diffuse.webp"
+        }
+      ]
+    },
+    {
+      "tier": "Low",
+      "materials": [
+        {
+          "name": "rtex337",
+          "dimensions": [
+            64,
+            128
+          ],
+          "observedSource": "../originals/01-rtex337-3bbe64a968db.png"
+        },
+        {
+          "name": "rtex450",
+          "dimensions": [
+            128,
+            128
+          ],
+          "observedSource": "../originals/13-rtex450-4f3556a977d8.png"
+        },
+        {
+          "name": "rtex041",
+          "dimensions": [
+            64,
+            128
+          ],
+          "observedSource": "../originals/07-rtex041-8defb77be8c0.png"
+        },
+        {
+          "name": "ttex016",
+          "dimensions": [
+            64,
+            128
+          ],
+          "observedSource": "../originals/14-ttex016-44b57bef065e.png"
+        }
+      ]
+    },
+    {
+      "tier": "High",
+      "materials": [
+        {
+          "name": "rtex337",
+          "dimensions": [
+            512,
+            1024
+          ],
+          "observedSource": "rtex337/high-diffuse.webp"
+        },
+        {
+          "name": "rtex450",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "observedSource": "rtex450/high-diffuse.webp"
+        },
+        {
+          "name": "rtex041",
+          "dimensions": [
+            512,
+            1024
+          ],
+          "observedSource": "rtex041/high-diffuse.webp"
+        },
+        {
+          "name": "ttex016",
+          "dimensions": [
+            512,
+            1024
+          ],
+          "observedSource": "ttex016/high-diffuse.webp"
+        }
+      ]
+    }
+  ],
+  "finalSelection": "Mid",
+  "htmlSHA256": "fe06cb41dac774d5e8f83644c21934482b03aa8b4286032308d29dcdd655b9a0",
+  "scope": "Local authoring preview only; no game quality setting or runtime integration changed",
+  "minorInspectionFailure": "A stale AX element scroll was refused; direct observed image locator then brought the real Mid image into view. No content mutation."
+}

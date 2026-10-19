@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-19T01:32:07.026766+00:00",
+  "reviewer": "/root/hexen_campaign_review",
+  "verdict": "CODE REVIEW PASS: one source-bound photographicRGB/floatheight master preparation; direct4x/8x derivation remains existing reviewed path",
+  "requiredFindings": [],
+  "reviewedSource": [
+    {
+      "file": "tests/prepare_texture_master_test.py",
+      "sha256": "d6016da9ac17af536b67cac218bfa71302c5e33495d0ad6919edfc93f79f55d1",
+      "bytes": 13156
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "bytes": 7692
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "bytes": 13322
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    }
+  ],
+  "publicTests": {
+    "file": "docs/hexen2/textures/batch-002-public-tests.json",
+    "sha256": "19027bf6bcd8417feab7dd1d5170e0b4e29f49b71d40a85b95aa239c0e619777",
+    "groups": 8,
+    "exitCode": 0,
+    "inputsStable": true,
+    "log": {
+      "file": "docs/hexen2/textures/batch-002-public-tests.log",
+      "sha256": "ff1e09970476d3fb63e762371bd570dda0fc75eb8e69a80d3addde2297b125cf",
+      "bytes": 930
+    }
+  },
+  "assessment": [
+    "NewprepareCLIreusesboundedsource/RGBdecoding+photographicfinisher+existingcraft. ActualRGBPNGgeneratoroutputmustbe\u22658xwidthandheightandexactnativeaspectbeforeexistingfinishercanresize; no4xto8xupscale. Nativegrid>=8/divisible4;16Mpixelbudget andfiniteboundedsettings.",
+    "Sourcepathsallresolved/distinct andbytesbound; promptUTF8/nonblank<=64KiB; landmarksstrictaxis/two-to256finiteincreasingpairsendpoints. Xregistrationtransposesbothsource/targetoncebeforemeasuredverticalfinisherandundoesonce; testchecksactualpixelsagainstexistingfinisher, notreceiptonly.",
+    "Onephotographiccoarsecolourcorrectionatcanonical8x; no strictnativepixelprojection. Onecraftquantize_height=False atmasterafterregistration yieldsfinitefloat32scalarheight. Strength/cap/profilefrozenforlaterderive. NoMid/Highselection,generationcall,compressedtierinputorruntimepackwrite.",
+    "Existingoutputdir/file/danglingsymlinkrejected; allvalidation/finishing/heightcomputationbeforesingleexclusiveoutputmkdir. Filesexclusive; sourcebytesrecheckedbeforewritingandbeforefinalmanifest. Laterwritefailuremayretainnewpartialpackagewithoutfinalmanifest, neveroverwritesexistingwork.",
+    "Masterreceiptbindsnative/raw/prompt/optionalregistrationhashes,color/height/tool/environmenthashes,dimension/profile/singleheightmetadata. generationCount1isdeclaredsourcepolicy, nottoolproofthatservicewascalledexactlyonce; actualgenerationjournal/toolreceiptsneeded.",
+    "Existingderive_toolunchangedac7f61\u2026 retainssoleRGB/height directMid4High8, Q92method6 anddistance/angular/edge diagnostics; separatepreviouscode/publicproof coversmathematics. NoQuakefinisher/craftbehaviourchangeintroducedbythisCLI."
+  ],
+  "limits": [
+    "Synthetic8groupsPASSdoesnotqualifyactual80mapsormaterialart. Independentactualsource/codec/mathreplayplusboth-tierdistance/repeat/opposedreliefreviewsremainrequired.",
+    "Profileargumentusestheexistingprofile_forfirstmatch/defaultsemantics; currentstone/wood/groundstringsmatchactualreviewedprofiles, notmeasuredphysicalmaterialclassification.",
+    "Trustedlocalauthoringfilesystemcontext; sourcestabilitychecksarenotadversarialconcurrentpathisolation. Noarbitrarymodelcodeexecution, runtimegameplay/packbinding, owneracceptance,Git/ref/releaseeffect."
+  ],
+  "reviewerEffects": "Read-onlysource/test/evidencereviewandthiscode-reviewJSONonly; noextratest/build/source/art/provider/refchanges."
+}

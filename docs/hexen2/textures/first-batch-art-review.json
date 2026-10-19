@@ -1,0 +1,253 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-18T23:34:49.842561+00:00",
+  "reviewer": "/root/oct17_plan_review",
+  "verdict": "PARTIAL ART ACCEPTANCE: rtex450 v1 PASS; rtex337 v1 HOLD pending measured horizontal joint-phase repair",
+  "scope": "First two Hexen II/Portal photographic world materials, authoring-only trial. This does not qualify gameengine/runtime/pack integration or release.",
+  "materials": [
+    {
+      "name": "rtex337",
+      "edition": "base",
+      "verdict": "HOLD: measured upper-joint horizontal phase repair required",
+      "sourceOriginal": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/01-rtex337-3bbe64a968db.png",
+        "sha256": "b2a1d03ce67e4115e3e5699c9d5b8a26152317a7955ad621cd259b7636eee6b4",
+        "dimensions": [
+          64,
+          128
+        ]
+      },
+      "encoderReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v1.json",
+        "sha256": "6185cd26fcc4952a1ed222f662aad834b5c5568032f5a8cfabc631a0bb934efe"
+      },
+      "outputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v1-diffuse.webp",
+          "sha256": "f651a750d452d93efefaec220688efd1365919fdd9971b0919a748dbb61d4217",
+          "bytes": 66474,
+          "dimensions": [
+            256,
+            512
+          ],
+          "lossyVP8": true,
+          "declaredQuality": 92
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v1-height.webp",
+          "sha256": "d853a1bb284b4a44923e6b56d9dcea76eec0913cf3eca633546fa5d9aba38ef3",
+          "bytes": 55524,
+          "dimensions": [
+            256,
+            512
+          ],
+          "lossyVP8": true,
+          "declaredQuality": 92
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v1-normalX.webp",
+          "sha256": "bf545a082a467ce43e7b0ed1474ecf58fce9009ad3d359726c2d8bd033918f53",
+          "bytes": 51580,
+          "dimensions": [
+            256,
+            512
+          ],
+          "lossyVP8": true,
+          "declaredQuality": 92
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v1-normalY.webp",
+          "sha256": "9bbdba9d3870754f9d50d31360b2731450e38f1826f2245fcdc77143e0298d00",
+          "bytes": 52052,
+          "dimensions": [
+            256,
+            512
+          ],
+          "lossyVP8": true,
+          "declaredQuality": 92
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/base/rtex337-v1-normalZ.webp",
+          "sha256": "4391eb46eba118ca0f9efd40e39e36b5cdb800f4930df773249d02fcbf3095fe",
+          "bytes": 14600,
+          "dimensions": [
+            256,
+            512
+          ],
+          "lossyVP8": true,
+          "declaredQuality": 92
+        }
+      },
+      "distanceViews": {
+        "halfNative": [
+          32,
+          64
+        ],
+        "quarterNative": [
+          16,
+          32
+        ],
+        "halfMAE": 10.99560546875,
+        "quarterMAE": 8.810546875,
+        "use": "Diagnosticcontext only; visual acceptance not thresholded."
+      },
+      "observations": [
+        "Sharp weathered golden/russet stone is a viable photographic interpretation, with plausible pores/strata and two-upper/one-lower stone layout; no native pixelgrid or synthetic stipple overlay.",
+        "Distance colour/style is recognizably related at32x64 and16x32. Upper mortar placement is visibly left of original; measured native darkmortar col30 versus decodedoutput col106 (~26.5native), source rows8..53/outputrows32..215. Source is slightly unequal, not exactlyhalf/half.",
+        "My earlier chat estimate source32/donor27.5\u201328 was visualrounding, superseded by these recorded measurements. Use actualgenerated/reference landmark centres and pixel-centre conventions, not idealizedsource32, for repair.",
+        "Cyclic/repeated edge cuts correspond to actualnative mortar. Large absolute RGBwrap is already present natively; do not diagnose imageframe solely from it. NativeX/YedgeMAE26.29/51.56 versus diffuse36.30/55.45. Recheck actualcorrected phase/wrap after repair.",
+        "Decodedheight mortar depression and actualdecodedXYZ two-light views read as weatheredstone relief, with no obvious newglobalperimeterbevel/gloss or orangepeel. Height/XYZ will need newhash/visualsuccessor verification after anydiffuse repair."
+      ]
+    },
+    {
+      "name": "rtex450",
+      "edition": "portals",
+      "verdict": "PASS: selected v1 artistic material/relief trial",
+      "sourceOriginal": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/13-rtex450-4f3556a977d8.png",
+        "sha256": "6d5c56597e037ec494c9b76ddc3c72b644fdcf2fc76562025ef8a79533611f44",
+        "dimensions": [
+          128,
+          128
+        ]
+      },
+      "encoderReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1.json",
+        "sha256": "424f6509586acd87a0bb83e57f5edfb2ee94773eeacb121305968a70a2eb515f"
+      },
+      "outputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-diffuse.webp",
+          "sha256": "7bf667577d8663bd3bb17a87002faf3e1c778c00869f615f3e5bd8c0ace3f08c",
+          "bytes": 131052,
+          "dimensions": [
+            512,
+            512
+          ],
+          "lossyVP8": true,
+          "declaredQuality": 92
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-height.webp",
+          "sha256": "f1d213b53f118ba2bb7f161d330e9ad96e9e6de9ba513e317652f853c835cadf",
+          "bytes": 85124,
+          "dimensions": [
+            512,
+            512
+          ],
+          "lossyVP8": true,
+          "declaredQuality": 92
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-normalX.webp",
+          "sha256": "9fa797f3721af28a3e6692cf61bf9b785ab2330b1b46792965173b30bd08ad33",
+          "bytes": 90012,
+          "dimensions": [
+            512,
+            512
+          ],
+          "lossyVP8": true,
+          "declaredQuality": 92
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-normalY.webp",
+          "sha256": "89e9befcde20884bb9cd589d12771d57d7fbb44621e24bba53af58d4a5201cb2",
+          "bytes": 87642,
+          "dimensions": [
+            512,
+            512
+          ],
+          "lossyVP8": true,
+          "declaredQuality": 92
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/portals/rtex450-v1-normalZ.webp",
+          "sha256": "9d67b437b317568f15591b4fbe9d1feb219d295cf3f99b50920279f495f00b3e",
+          "bytes": 22882,
+          "dimensions": [
+            512,
+            512
+          ],
+          "lossyVP8": true,
+          "declaredQuality": 92
+        }
+      },
+      "distanceViews": {
+        "halfNative": [
+          64,
+          64
+        ],
+        "quarterNative": [
+          32,
+          32
+        ],
+        "halfMAE": 5.687255859375,
+        "quarterMAE": 3.2669270833333335,
+        "use": "Diagnosticcontext only; visual acceptance not thresholded."
+      },
+      "observations": [
+        "PASS photographic material: sharp darkgrey weathered masonry with warmbrown mineral flecks; natural roughfaces/fractures, not blocky nativepixel enlargement or uniform artificialgrain.",
+        "Four courses and alternating staggeredjoints, stone scale and grey/brown colour masses remain similar in independentBOX64x64 and32x32 comparisons. Fine fractures vary artistically without changing broadmasonry intention.",
+        "Repeated/cyclic boundaries preserve nativecut-stone/joint intent. NativeX/YedgeMAE15.57/13.39 versus diffuse16.27/17.66; these numbers support, but do not replace, visualnative-vs-photooffset inspection. No extraouterframe/perimetervignette, missingedgebricks or unrelatedmaterialbleed observed.",
+        "Decodedheight maintains darkmortar belowstonefaces; decodedindependentXYZ lighting fromopposed directions shows plausible stone roughness rather than manufactured glossy/orangepeel surfaces. Scalarheight is derived, not measured or orderedphysicalgeometry.",
+        "Retain v1 as selected trial; no seam or newgeneration repair required from this artreview. Publicencoder/previewverification and owneracceptance remain separate."
+      ]
+    }
+  ],
+  "reviewMethod": [
+    "Viewed actualnative PNGs and actualdecoded delivered diffuseWebPs at4x, not merely JPEGcontacts. Independently reopened/hashchecked all10deliveredmaps and two originals, verified4xdimensions and lossyVP8payloads againstencoderreceipt. Q92 assertion is bound toencoderrecipe/publicreplay contract, not inferable solely fromWebPbitstream.",
+    "Compared independently BOX-downsampled source and newdiffuse at half/quarter-native, enlarged nearest only for inspection; generated two matched-size cyclic halfX/halfYoffset native-vs-new contacts and viewed supplied repeats. Noartwork files were modified.",
+    "Viewed actualdecoded height and independently combinedRchannels of decodednormalX/Y/Z. StaticLambert diagnostic uses normalized vector(2*XYZ/255-1), opposinglights[-.6,.3,1]/[.6,-.3,1], ambient.35/diffuse.65. This is diagnostic lighting, not a productionGPU/POM or in-levelHexen proof. Also viewed parent two-lightJPEGs."
+  ],
+  "evidence": [
+    {
+      "file": "/private/tmp/quaked-h2-first-art-review/rtex337-actual-maps-two-light.png",
+      "sha256": "8906e418790032ab72f52aba8c6bb2542f913d1a49951ace2d335ae25b3675f5"
+    },
+    {
+      "file": "/private/tmp/quaked-h2-first-art-review/rtex337-distance-offset.png",
+      "sha256": "20d025b85e4da7b2b8ddcd98927169547b99f02f42bbe908c491e1dfb69051da"
+    },
+    {
+      "file": "/private/tmp/quaked-h2-first-art-review/rtex337-native-and-new-offset.png",
+      "sha256": "e7631d181207eb37149a334f8c1f88dd7480fbfcca8badab0c7deb9efb24b72d"
+    },
+    {
+      "file": "/private/tmp/quaked-h2-first-art-review/rtex450-actual-maps-two-light.png",
+      "sha256": "954cec47f07f5dbfd0d51daf84abbf499c789d7fdb21d31ba1f9be4c882d8de3"
+    },
+    {
+      "file": "/private/tmp/quaked-h2-first-art-review/rtex450-distance-offset.png",
+      "sha256": "28cb610858875c1b45875246a6a02a3c46fd06a2d2a2832591e9e82f1bf24234"
+    },
+    {
+      "file": "/private/tmp/quaked-h2-first-art-review/rtex450-native-and-new-offset.png",
+      "sha256": "37030f69187bfba63239f6c8cd54ebd8853a459a9f6f7050cbfeaed3e671a571"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex337-review-v1.jpg",
+      "sha256": "11f2b1624d93ff09bac79f5f131c4e582a34a297e242a2bdd8e7a1e2892a3b28"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex450-review-v1.jpg",
+      "sha256": "2155e2e78cbee9ef50e197ab6989e54c18c7f81a1464d5c45f6c9447abdd71b8"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex337-relief-v1.jpg",
+      "sha256": "d51b9018f582d30f474a9bf578b4fdc4ecb1b9bbe2a3bc820331c0f224e0db01"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex450-relief-v1.jpg",
+      "sha256": "90e723f98a19510f51d7af3dea01442e29a8365345c884fec520660d666c0a0e"
+    }
+  ],
+  "smallestRequiredRepair": "Parent may reuse unchanged finisher landmarkregistration through explicittranspose for rtex337 only, with measured originaljoint~30\u201330.5 and donorjoint~26.5\u201327 in nativecoords verified against actualrawdonor. Endpointsfixed, no inventedcentre32 and no nativepixelpattern projection. Preserve materialdetail; versioned output/receipt, reencodeall5Q92roles and independently re-review.",
+  "remainingGates": [
+    "Resolve rtex337HOLD and review successor actualdecoded diffuse/distance/seams/relief/maphashes.",
+    "Public CLI/sourcepalette/mount/duplicate semantics and 4xQ92mapencoder/normalreplay/preview checks; artPASS is not those tests.",
+    "Owner visualacceptance of selectedfirstbatch, before claiming approvedassetdelivery; no currentHexengameplay/runtime or completecampaigncoverage.",
+    "Keep all firstbatchassets under authoringnamespace, no Quake registry/runtime/resourcepack changes or release."
+  ],
+  "reviewerEffects": "Only this requested reviewJSON plus temporaryinspectionPNGs written; no artwork/source/index/engine edits, sourcebuild/test suite execution, provider/Game/App/key/ref/release effects.",
+  "state": "450reviewcomplete;337held; reviewerquiescent awaiting measuredphase successor."
+}

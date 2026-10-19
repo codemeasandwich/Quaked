@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "name": "rtex337",
+  "edition": "base",
+  "generationCount": 1,
+  "generator": "built-in image_gen; one retained generation output, no per-tier generation",
+  "inputs": {
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/originals/01-rtex337-3bbe64a968db.png": "b2a1d03ce67e4115e3e5699c9d5b8a26152317a7955ad621cd259b7636eee6b4",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex337-generated-v1.png": "ce4f009cd4153d68c0c0d87944a09ab29a6153de6463c5f2243b912a50eab6aa",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/rtex337-prompt-v1.txt": "cd803e1cda338ae72da0e8bb49aded81a166fc75fb4c6c6d7f87f2fa1a0d61f7"
+  },
+  "masterDimensions": [
+    512,
+    1024
+  ],
+  "nativeDimensions": [
+    64,
+    128
+  ],
+  "generatedDimensions": [
+    887,
+    1774
+  ],
+  "canonicalMasterFactor": 8,
+  "sourcePolicy": "Retained generation is provenance; this single canonical RGB/height package is the only tier authoring source",
+  "color": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/masters/rtex337/color.png",
+    "sha256": "d2d21fecfe1f1da74b5635794a0b7c4ff80d0906212ce86a363d9844130ae9e7"
+  },
+  "height": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/masters/rtex337/height.npy",
+    "sha256": "24a5bf953be944c445ec351c77877f10396b3312fad53ca8e0005d2470ebca95",
+    "dtype": "float32",
+    "authoredOnce": true,
+    "quantizedTo8Bit": false,
+    "profile": {
+      "bands": [
+        0.35,
+        1,
+        1.4,
+        1
+      ],
+      "groove": 1.4,
+      "bump": 0.7,
+      "glow": 0,
+      "strength": 0.3,
+      "cap": 0.5
+    },
+    "uniqueSamples": 519982
+  },
+  "registration": {
+    "method": "photographic",
+    "factor": 8,
+    "verticalLandmarks": [
+      [
+        0,
+        0
+      ],
+      [
+        30.5,
+        26.66065388951522
+      ],
+      [
+        64,
+        64
+      ]
+    ],
+    "colorStrength": 0.65,
+    "fieldSigma": 0.75,
+    "edgeAnchor": false,
+    "comparisonDivisor": 2,
+    "comparisonDimensions": [
+      64,
+      32
+    ],
+    "distanceMeanMaxError": 56.32421875,
+    "distanceMeanMAE": 10.345209121704102,
+    "donorDistanceMAE": 24.174634345380117,
+    "newClippedChannelFraction": 0.002765655517578125,
+    "donorContourCorrelation": 0.9994587625169713,
+    "sourceMean": [
+      94.6943359375,
+      67.81494140625,
+      35.03076171875
+    ],
+    "outputMean": [
+      106.82032012939453,
+      76.09071922302246,
+      39.33903884887695
+    ],
+    "donorBoundaries": {
+      "wrap_x_mean": 58.45759065450566,
+      "wrap_y_mean": 35.77981868867568,
+      "interior_x_mean": 13.741317969991389,
+      "interior_y_mean": 10.974472860620155
+    },
+    "boundaries": {
+      "wrap_x_mean": 58.53450520833334,
+      "wrap_y_mean": 35.718098958333336,
+      "interior_x_mean": 13.72643585553112,
+      "interior_y_mean": 10.960919663242006
+    },
+    "passedDistanceCheck": null,
+    "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+    "landmarkAxis": "x; finisher receipt axes are transposed"
+  },
+  "tools": {
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/prepare_single_masters.py": "ce67e0bb9f2f274b84775c1916a15b892c24491213313c072a1b6c2ece3fcb20",
+    "tools/craft_normals.py": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+    "tools/texture_sheets/finish_official_texture.py": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+  },
+  "qualification": "Master preparation only; both tier art and decoded-map validation remain separate"
+}

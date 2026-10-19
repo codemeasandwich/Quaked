@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-19T01:29:34.510881+00:00",
+  "completedAt": "2026-10-19T01:29:57.229621+00:00",
+  "verdict": "PASS eight independent public CLI fixture groups; art/actual maps remain separate",
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "/Users/bri/SOURCE/Quaked/tests/prepare_texture_master_test.py"
+  ],
+  "exitCode": 0,
+  "inputsBefore": [
+    {
+      "file": "tests/prepare_texture_master_test.py",
+      "sha256": "d6016da9ac17af536b67cac218bfa71302c5e33495d0ad6919edfc93f79f55d1",
+      "bytes": 13156
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "bytes": 7692
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "bytes": 13322
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    }
+  ],
+  "inputsAfter": [
+    {
+      "file": "tests/prepare_texture_master_test.py",
+      "sha256": "d6016da9ac17af536b67cac218bfa71302c5e33495d0ad6919edfc93f79f55d1",
+      "bytes": 13156
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "bytes": 7692
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "bytes": 13322
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    }
+  ],
+  "inputsStable": true,
+  "log": {
+    "file": "docs/hexen2/textures/batch-002-public-tests.log",
+    "sha256": "ff1e09970476d3fb63e762371bd570dda0fc75eb8e69a80d3addde2297b125cf",
+    "bytes": 930
+  },
+  "environment": {
+    "Python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "Pillow": "10.1.0",
+    "NumPy": "1.26.2",
+    "WebP": "1.3.2"
+  },
+  "coverage": [
+    "Canonical8xRGBPNG and single non8bitfloat32height; exactsource/prompt/toolhashes and existingcraft replay",
+    "Larger raw downsampled once; unchangedLow/source/prompt bytes",
+    "Measuredx/ylandmark actualfinisher replay and axisbinding",
+    "Existingfullpackage/file/emptydir/danglingsymlink preserved",
+    "Small/wrongaspect/alpha/JPEGraw and nativegrid rejection beforeoutput",
+    "PromptUTF8/nonempty/64KiB cap; finiteboundedparameters",
+    "Malformed/missing/nonmonotonic/endpointrange landmarks reject beforeoutput",
+    "NoMid/High/factor/generation interface or authoredtierfiles"
+  ],
+  "limits": [
+    "Synthetic fixtures only; actual80maps, photoquality, tile/relief review and owneracceptance separate.",
+    "No independent imagegenerationservice count audit or runtime/gameplay integration."
+  ],
+  "initialDevelopmentLog": "/private/tmp/hexen-batch002-master-public-tests-initial.log"
+}

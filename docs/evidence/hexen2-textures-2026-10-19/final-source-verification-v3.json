@@ -1,0 +1,35 @@
+{
+  "observedAt": "2026-10-18T23:38:55.043835+00:00",
+  "verdict": "PASS final parser fresh owned-source audit identical to retained current inventory",
+  "sourceTool": {
+    "file": "tools/audit_hexen2_textures.mjs",
+    "sha256": "d596d318b55b117bad533cc7258ba9ace96223246097c515c5559bff49135863"
+  },
+  "testSource": {
+    "file": "tests/hexen2_texture_inventory_test.mjs",
+    "sha256": "eb2f6739a9b1b458670eadcaf592e12989259595742f5c53eb9822e2f2063514"
+  },
+  "tests": {
+    "groups": 7,
+    "passed": 7,
+    "log": "docs/evidence/hexen2-textures-2026-10-19/public-tests-source-review-v2.log",
+    "sha256": "7da5b6ce8079bd4600e12f6456035c20c67f3a4e9d053cc160a0ec5cb0186767"
+  },
+  "freshInventory": "/private/tmp/hexen2-final-source-audit-20261019-v3/inventory.json",
+  "retainedInventory": "docs/evidence/hexen2-textures-2026-10-19/current/inventory.json",
+  "bothInventorySHA256": "344ad22744fd5b6ad9d07ef89102be930ac2c3c88589456d46963c8b4c082d6a",
+  "byteIdentical": true,
+  "summary": {
+    "uniqueNativeVariants": 980,
+    "baseVariants": 594,
+    "expansionOwnVariants": 386,
+    "categories": {
+      "ordinary": 887,
+      "sky": 5,
+      "liquid": 12,
+      "animated": 72,
+      "utility": 4
+    }
+  },
+  "sourceOnlyChanges": "Reject top-level relevant loose directory symlinks; preflight originals/contact output and exclusive contact creation. No shared PAK or game runtime changes."
+}
