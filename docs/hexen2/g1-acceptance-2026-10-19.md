@@ -32,8 +32,8 @@ Run from `/Users/bri/worktrees/Quaked/Dev/h2` with
 | End-to-end trace | `hexen2_acceptance_test.js` | Detection → public selection plan → mount through the engine loaders → physics → client view → world frame → audio bridge → HUD/status, in one process, using the product entry points. Still not a drawn or networked session. |
 | Public native smoke | — | **Missing.** No packaged-app UI path (shelf → source → class → difficulty → demo1) exists for Hexen II. |
 
-Latest runs after the sound-message codec: **88/88** Hexen assertions across 39 suites; the existing catalogue suite
-(8/8) and the other regression sets remain green. The spawn hands `newclass` to the gamecode (resolved from the loaded
+Latest runs after composing effects and sounds into the datagram: **88/88** Hexen assertions across 39 suites; the
+existing catalogue suite (8/8) and the other regression sets remain green. The spawn hands `newclass` to the gamecode (resolved from the loaded
 program: offset 212 base, 214 Portal) and `setclass` (#66) records the class, so `stats_NewClass` applies the native
 tables instead of returning through its class guard; sprint (#24) and stuffcmd (#21) carry the pickup/class text.
 
@@ -57,7 +57,7 @@ against the pre-change baseline when the candidate is qualified. This is a proce
 4. **Audio activation**: mixer scheduling is verified; the packaged app's Web Audio unlock/user-gesture path is not.
 5. **Public smoke**: shelf → source → Paladin → demo1 through the public UI, not test-only boot.
 6. **Codec**: the private session preamble and the native player bodies (`svc_clientdata`, `svc_update_inv`) round-trip
-   with refusal cases; the player-channel datagram round-trips; native particle effect bodies and the sound/stop/position messages are verified; the entity stream, their composition into the live datagram, the packaged LAN UI and the four-peer trial remain (a framed TCP loopback peer passes).
+   with refusal cases; the player-channel datagram round-trips; native particle effect bodies, the sound/stop/position messages, and their composition into the private datagram (after player state, parsed in order) are verified; the entity stream, the packaged LAN UI and the four-peer trial remain (a framed TCP loopback peer passes).
 7. **Public/filesystem integration**: catalogue discovery/validation and engine-level selection/mounting are verified;
    the shelf click, native boundary and packaged smoke remain.
 

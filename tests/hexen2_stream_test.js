@@ -3,6 +3,8 @@
 // entity/effect stream are still out of scope. G1 codec foundation.
 import { Hexen2_WritePrivateDatagram, Hexen2_ParsePrivateDatagram } from '../src/engine/common/hexen2_stream.js';
 import { SU, Hexen2_SC2 } from '../src/engine/common/hexen2_clientdata.js';
+import { Hexen2_WriteParticle, Hexen2_WriteParticle4 } from '../src/engine/common/hexen2_effects.js';
+import { Hexen2_WriteSound, Hexen2_WriteStopSound } from '../src/engine/common/hexen2_soundwire.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 
@@ -33,6 +35,26 @@ Deno.test( 'a private player datagram round-trips and refuses malformed streams'
 	check( plainParsed.ok, plainParsed.reason );
 	same( plainParsed.clientdata.viewheight, 50, 'the minimal datagram view height' );
 	check( plainParsed.stats === undefined, 'no stats in the minimal datagram' );
+
+	// effects and sounds are appended as their native messages and parsed in order
+	const messages = [
+		Hexen2_WriteParticle( { origin: [ 1, 2, 3 ], direction: [ 1, 0, 0 ], color: 7, count: 4 } ),
+		Hexen2_WriteSound( { entity: 1, channel: 0, soundNum: 12, origin: [ 4, 5, 6 ], volume: 200, attenuation: 2 } ).bytes,
+		Hexen2_WriteParticle4( { origin: [ 7, 8, 9 ], radius: 16, color: 300, effect: 3, count: 6 } ),
+		Hexen2_WriteStopSound( { entity: 2, channel: 1 } ).bytes
+	];
+	const withEffects = Hexen2_WritePrivateDatagram( player, { time: 2, bits: SU.VIEWHEIGHT, messages } );
+	check( withEffects.ok, withEffects.reason );
+	const effectParsed = Hexen2_ParsePrivateDatagram( withEffects.bytes );
+	check( effectParsed.ok, effectParsed.reason );
+	same( effectParsed.effects.length, 4, 'four effect messages' );
+	same( effectParsed.effects.map( e => e.kind ).join( ',' ), 'particle,sound,particle4,stopsound', 'the native order' );
+	same( effectParsed.effects[ 1 ].data.soundNum, 12, 'the sound number' );
+	same( effectParsed.effects[ 2 ].data.radius, 16, 'the particle4 radius' );
+	same( effectParsed.effects[ 3 ].data.entity, 2, 'the stopped entity' );
+	check( Hexen2_WritePrivateDatagram( player, { time: 1, messages: [ Uint8Array.from( [ 200 ] ) ] } ).ok, 'an unknown message is appended and refused on parse' );
+	check( Hexen2_ParsePrivateDatagram( Hexen2_WritePrivateDatagram( player, { time: 1, messages: [ Uint8Array.from( [ 200 ] ) ] } ).bytes ).ok === false, 'unknown effect opcode refused' );
+	check( Hexen2_ParsePrivateDatagram( Uint8Array.from( [ ...withEffects.bytes, 200 ] ) ).ok === false, 'trailing unknown effect refused' );
 
 	// refusals: wrong first opcode, truncated clientdata/time, unknown opcode after the body, trailing garbage
 	const wrong = written.bytes.slice(); wrong[ 0 ] = 99;

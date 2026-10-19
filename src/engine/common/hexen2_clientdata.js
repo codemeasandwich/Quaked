@@ -177,9 +177,11 @@ export function Hexen2_EncodeUpdateInv( player, mask, stringAt ) {
  * Decodes an `svc_update_inv` body.
  *
  * @param {ArrayLike<number>} bytes the body
- * @returns {{ ok: true, mask: bigint, stats: object } | { ok: false, reason: string }} the stat delta, or why refused
+ * @param {{ allowTrailing?: boolean }} [options] stop at the first following message instead of refusing it
+ * @returns {{ ok: true, mask: bigint, stats: object, consumed: number } | { ok: false, reason: string }} the stat delta,
+ *   or why refused
  */
-export function Hexen2_DecodeUpdateInv( bytes ) {
+export function Hexen2_DecodeUpdateInv( bytes, options = {} ) {
 
 	try {
 
@@ -199,8 +201,8 @@ export function Hexen2_DecodeUpdateInv( bytes ) {
 			else if ( type === 'string' ) stats[ field ] = r.string();
 
 		}
-		if ( r.at !== bytes.length ) return { ok: false, reason: 'trailing bytes after update_inv' };
-		return { ok: true, mask, stats };
+		if ( ! options.allowTrailing && r.at !== bytes.length ) return { ok: false, reason: 'trailing bytes after update_inv' };
+		return { ok: true, mask, stats, consumed: r.at };
 
 	} catch ( error ) { return { ok: false, reason: error.message }; }
 

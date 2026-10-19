@@ -13,6 +13,8 @@
 
 import { HEXEN2_SERVER_MESSAGES } from './hexen2_protocol.js';
 import { Hexen2_EncodeClientdata, Hexen2_DecodeClientdata, Hexen2_EncodeUpdateInv, Hexen2_DecodeUpdateInv } from './hexen2_clientdata.js';
+import { Hexen2_ReadParticle } from './hexen2_effects.js';
+import { Hexen2_ReadSound } from './hexen2_soundwire.js';
 
 const MAX_DATAGRAM = 1400;
 
@@ -33,6 +35,12 @@ export function Hexen2_WritePrivateDatagram( player, options = {} ) {
 		HEXEN2_SERVER_MESSAGES.clientdata, ...Hexen2_EncodeClientdata( player, options ) ];
 	if ( options.statsMask !== undefined && options.statsMask !== 0n )
 		parts.push( HEXEN2_SERVER_MESSAGES.update_inv, ...Hexen2_EncodeUpdateInv( player, options.statsMask, options.stringAt ) );
+	for ( const message of options.messages ?? [] ) {
+
+		if ( !message || message.length === 0 ) return { ok: false, reason: 'an empty appended message' };
+		parts.push( ...message );
+
+	}
 	const bytes = Uint8Array.from( parts );
 	if ( bytes.length > MAX_DATAGRAM ) return { ok: false, reason: 'the datagram exceeds the private limit' };
 	return { ok: true, bytes };
@@ -63,14 +71,49 @@ export function Hexen2_ParsePrivateDatagram( bytes ) {
 	const client = Hexen2_DecodeClientdata( rest, { allowTrailing: true } );
 	if ( ! client.ok ) return { ok: false, reason: 'clientdata: ' + client.reason };
 	const bodyLength = client.consumed;
-	if ( bodyLength < rest.length ) {
+	let tailStart = bodyLength, stats = null, statsMask = 0n;
+	if ( rest.length > bodyLength && rest[ bodyLength ] === HEXEN2_SERVER_MESSAGES.update_inv ) {
 
-		if ( rest[ bodyLength ] !== HEXEN2_SERVER_MESSAGES.update_inv ) return { ok: false, reason: 'unknown opcode after clientdata' };
-		const stats = Hexen2_DecodeUpdateInv( rest.subarray( bodyLength + 1 ) );
+		stats = Hexen2_DecodeUpdateInv( rest.subarray( bodyLength + 1 ), { allowTrailing: true } );
 		if ( ! stats.ok ) return { ok: false, reason: 'update_inv: ' + stats.reason };
-		return { ok: true, time, clientdata: client.clientdata, stats: stats.stats, statsMask: stats.mask };
+		statsMask = stats.mask;
+		tailStart = bodyLength + 1 + stats.consumed;
 
 	}
-	return { ok: true, time, clientdata: client.clientdata };
+	const effects = readEffectMessages( rest.subarray( tailStart ) );
+	if ( ! effects.ok ) return effects;
+	return stats === null
+		? { ok: true, time, clientdata: client.clientdata, effects: effects.messages }
+		: { ok: true, time, clientdata: client.clientdata, stats: stats.stats, statsMask, effects: effects.messages };
+}
+
+const PARTICLE_OPCODES = Object.freeze( [ HEXEN2_SERVER_MESSAGES.particle, HEXEN2_SERVER_MESSAGES.particle2, HEXEN2_SERVER_MESSAGES.particle3, HEXEN2_SERVER_MESSAGES.particle4 ] );
+const SOUND_OPCODES = Object.freeze( [ HEXEN2_SERVER_MESSAGES.sound, HEXEN2_SERVER_MESSAGES.stopsound, HEXEN2_SERVER_MESSAGES.sound_update_pos ] );
+
+function readEffectMessages( bytes ) {
+
+	const messages = [];
+	let at = 0;
+	while ( at < bytes.length ) {
+
+		const sub = Uint8Array.from( Array.from( bytes.subarray( at ) ) ), opcode = sub[ 0 ];
+		if ( PARTICLE_OPCODES.includes( opcode ) ) {
+
+			const read = Hexen2_ReadParticle( sub, { allowTrailing: true } );
+			if ( ! read.ok ) return { ok: false, reason: 'effect: ' + read.reason };
+			messages.push( Object.freeze( { kind: read.kind, data: read.effect } ) );
+			at += read.consumed;
+
+		} else if ( SOUND_OPCODES.includes( opcode ) ) {
+
+			const read = Hexen2_ReadSound( sub, { allowTrailing: true } );
+			if ( ! read.ok ) return { ok: false, reason: 'sound: ' + read.reason };
+			messages.push( Object.freeze( { kind: read.kind, data: read.sound } ) );
+			at += read.consumed;
+
+		} else return { ok: false, reason: `unknown effect opcode ${opcode}` };
+
+	}
+	return { ok: true, messages };
 
 }

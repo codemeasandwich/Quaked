@@ -116,9 +116,11 @@ export function Hexen2_WriteSoundUpdatePos( sound ) {
  * Decodes one sound message by its opcode.
  *
  * @param {ArrayLike<number>} bytes the message, opcode first
- * @returns {{ ok: true, kind: string, sound: object } | { ok: false, reason: string }} the decoded sound
+ * @param {{ allowTrailing?: boolean }} [options] stop at the first following message instead of refusing it
+ * @returns {{ ok: true, kind: string, sound: object, consumed: number } | { ok: false, reason: string }} the decoded
+ *   sound and its message length
  */
-export function Hexen2_ReadSound( bytes ) {
+export function Hexen2_ReadSound( bytes, options = {} ) {
 
 	try {
 
@@ -126,15 +128,15 @@ export function Hexen2_ReadSound( bytes ) {
 		if ( opcode === HEXEN2_SERVER_MESSAGES.stopsound ) {
 
 			const packed = r.short();
-			if ( r.at !== bytes.length ) return { ok: false, reason: 'trailing stopsound bytes' };
-			return { ok: true, kind: 'stopsound', sound: { entity: packed >> 3, channel: packed & 7 } };
+			if ( !options.allowTrailing && r.at !== bytes.length ) return { ok: false, reason: 'trailing stopsound bytes' };
+			return { ok: true, kind: 'stopsound', sound: { entity: packed >> 3, channel: packed & 7 }, consumed: r.at };
 
 		}
 		if ( opcode === HEXEN2_SERVER_MESSAGES.sound_update_pos ) {
 
 			const packed = r.short(), origin = [ r.coord(), r.coord(), r.coord() ];
-			if ( r.at !== bytes.length ) return { ok: false, reason: 'trailing sound position bytes' };
-			return { ok: true, kind: 'sound_update_pos', sound: { entity: packed >> 3, channel: packed & 7, origin } };
+			if ( !options.allowTrailing && r.at !== bytes.length ) return { ok: false, reason: 'trailing sound position bytes' };
+			return { ok: true, kind: 'sound_update_pos', sound: { entity: packed >> 3, channel: packed & 7, origin }, consumed: r.at };
 
 		}
 		if ( opcode !== HEXEN2_SERVER_MESSAGES.sound ) return { ok: false, reason: `unknown sound opcode ${opcode}` };
@@ -148,8 +150,8 @@ export function Hexen2_ReadSound( bytes ) {
 		if ( fieldMask & SND_OVERFLOW ) soundNum += MAX_SOUNDS_OLD;
 		if ( fieldMask & SND_OVERFLOW2 ) soundNum += 512;
 		const origin = [ r.coord(), r.coord(), r.coord() ];
-		if ( r.at !== bytes.length ) return { ok: false, reason: 'trailing sound bytes' };
-		return { ok: true, kind: 'sound', sound: { entity: packed >> 3, channel: packed & 7, soundNum, volume, attenuation, origin } };
+		if ( !options.allowTrailing && r.at !== bytes.length ) return { ok: false, reason: 'trailing sound bytes' };
+		return { ok: true, kind: 'sound', sound: { entity: packed >> 3, channel: packed & 7, soundNum, volume, attenuation, origin }, consumed: r.at };
 
 	} catch ( error ) { return { ok: false, reason: error.message }; }
 

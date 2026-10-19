@@ -123,9 +123,11 @@ export function Hexen2_WriteParticle4( effect ) {
  * Decodes one particle message by its opcode.
  *
  * @param {ArrayLike<number>} bytes the message, opcode first
- * @returns {{ ok: true, kind: string, effect: object } | { ok: false, reason: string }} the decoded effect
+ * @param {{ allowTrailing?: boolean }} [options] stop at the first following message instead of refusing it
+ * @returns {{ ok: true, kind: string, effect: object, consumed: number } | { ok: false, reason: string }} the decoded
+ *   effect and its message length
  */
-export function Hexen2_ReadParticle( bytes ) {
+export function Hexen2_ReadParticle( bytes, options = {} ) {
 
 	try {
 
@@ -134,8 +136,8 @@ export function Hexen2_ReadParticle( bytes ) {
 
 			const direction = [ r.sbyte() / 16, r.sbyte() / 16, r.sbyte() / 16 ];
 			const effect = { origin, direction, count: r.byte(), color: r.byte() };
-			if ( r.at !== bytes.length ) return { ok: false, reason: 'trailing particle bytes' };
-			return { ok: true, kind: 'particle', effect };
+			if ( !options.allowTrailing && r.at !== bytes.length ) return { ok: false, reason: 'trailing particle bytes' };
+			return { ok: true, kind: 'particle', effect, consumed: r.at };
 
 		}
 		if ( opcode === HEXEN2_SERVER_MESSAGES.particle2 ) {
@@ -144,23 +146,23 @@ export function Hexen2_ReadParticle( bytes ) {
 			for ( let i = 0; i < 3; i ++ ) directionMin.push( r.float() );
 			for ( let i = 0; i < 3; i ++ ) directionMax.push( r.float() );
 			const effect = { origin, directionMin, directionMax, color: r.short(), count: r.byte(), effect: r.byte() };
-			if ( r.at !== bytes.length ) return { ok: false, reason: 'trailing particle2 bytes' };
-			return { ok: true, kind: 'particle2', effect };
+			if ( !options.allowTrailing && r.at !== bytes.length ) return { ok: false, reason: 'trailing particle2 bytes' };
+			return { ok: true, kind: 'particle2', effect, consumed: r.at };
 
 		}
 		if ( opcode === HEXEN2_SERVER_MESSAGES.particle3 ) {
 
 			const box = [ r.byte(), r.byte(), r.byte() ];
 			const effect = { origin, box, color: r.short(), count: r.byte(), effect: r.byte() };
-			if ( r.at !== bytes.length ) return { ok: false, reason: 'trailing particle3 bytes' };
-			return { ok: true, kind: 'particle3', effect };
+			if ( !options.allowTrailing && r.at !== bytes.length ) return { ok: false, reason: 'trailing particle3 bytes' };
+			return { ok: true, kind: 'particle3', effect, consumed: r.at };
 
 		}
 		if ( opcode === HEXEN2_SERVER_MESSAGES.particle4 ) {
 
 			const effect = { origin, radius: r.byte(), color: r.short(), count: r.byte(), effect: r.byte() };
-			if ( r.at !== bytes.length ) return { ok: false, reason: 'trailing particle4 bytes' };
-			return { ok: true, kind: 'particle4', effect };
+			if ( !options.allowTrailing && r.at !== bytes.length ) return { ok: false, reason: 'trailing particle4 bytes' };
+			return { ok: true, kind: 'particle4', effect, consumed: r.at };
 
 		}
 		return { ok: false, reason: `unknown particle opcode ${opcode}` };
