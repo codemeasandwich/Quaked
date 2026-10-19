@@ -18,7 +18,7 @@ import { Hexen2_SeedPrecache, Hexen2_SpawnEntities, Hexen2_SpawnPlayer } from '.
 import { Hexen2_CallBuiltin } from '../src/engine/progs/hexen2_cmds.js';
 import { Hexen2_DrainSoundEvents } from '../src/engine/progs/hexen2_server_cmds.js';
 import { Hexen2_PlayPendingSounds } from '../src/engine/client/hexen2_audio.js';
-import { S_Init, S_Shutdown, S_PrecacheSound, S_StartSound } from '../src/engine/sound/snd_dma.js';
+import { S_Init, S_Shutdown, S_PrecacheSound, S_StartSound, S_UnlockAudio } from '../src/engine/sound/snd_dma.js';
 import { channels } from '../src/engine/sound/sound.js';
 import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3, OFS_PARM4 } from '../src/engine/progs/pr_comp.js';
 import { installServerCallbacks } from './helpers/hexen2_server_setup.mjs';
@@ -108,6 +108,42 @@ Deno.test( 'a gamecode sound plays through the real mixer on the Paladin', () =>
 		same( channel.entchannel, 0, 'the mixer channel number' );
 		same( channel.master_vol, 255, 'full native volume' );
 		check( context.sources.some( source => source.started ), 'the Web Audio graph started a source (audible scheduling)' );
+
+	} finally {
+
+		S_Shutdown();
+		if ( saved ) Object.defineProperty( globalThis, 'window', saved ); else delete globalThis.window;
+
+	}
+
+} );
+
+// Autoplay/gesture recovery: a browser context can start suspended. Playback is held (no source starts) until the next
+// user gesture resumes the context through S_UnlockAudio; a subsequent sound then schedules normally.
+Deno.test( 'a suspended audio context holds playback until the next gesture unlocks it', async () => {
+
+	if ( ! existsSync( HEXEN + '/pak1.pak' ) ) { console.log( 'SKIP: the supplied Hexen II installation is not present' ); return; }
+	for ( const name of [ 'pak0.pak', 'pak1.pak' ] ) { const raw = readFileSync( HEXEN + '/' + name ); pak.COM_AddPack( pak.COM_LoadPackFile( 'h2-' + name, raw.buffer.slice( raw.byteOffset, raw.byteOffset + raw.length ) ) ); }
+	Mod_Init();
+	const context = fakeAudio();
+	context.state = 'suspended';
+	context.resume = function () { this.resumeCalls = ( this.resumeCalls ?? 0 ) + 1; this.state = 'running'; return Promise.resolve(); };
+	const saved = Object.getOwnPropertyDescriptor( globalThis, 'window' );
+	Object.defineProperty( globalThis, 'window', { configurable: true, value: { AudioContext: class { constructor() { return context; } } } } );
+	try {
+
+		S_Init();
+		same( context.state, 'suspended', 'the context starts suspended, as after an autoplay refusal' );
+		const sample = S_PrecacheSound( 'misc/bellring.wav' );
+		check( sample !== null, 'the supplied sample is known to the mixer' );
+		S_StartSound( 1, 0, sample, [ 10, 20, 30 ], 1, 1 );
+		check( ! context.sources.some( source => source.started ), 'no source starts while suspended' );
+		check( channels.some( channel => channel.sfx === sample ), 'the mixer still holds the request' );
+		S_UnlockAudio();
+		same( context.resumeCalls, 1, 'the gesture resumed the context once' );
+		same( context.state, 'running', 'the context is running after the gesture' );
+		S_StartSound( 1, 0, sample, [ 10, 20, 30 ], 1, 1 );
+		check( context.sources.some( source => source.started ), 'the retried sound schedules after the unlock' );
 
 	} finally {
 
