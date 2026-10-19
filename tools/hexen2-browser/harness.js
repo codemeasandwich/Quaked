@@ -95,6 +95,7 @@ try {
 		installCallbacks: callbacks => installServerCallbacks( { ...callbacks, SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_PointContents, PR_ExecuteProgram } )
 	} );
 	if ( !session.ok ) throw new Error( 'session: ' + session.reason );
+	result.spawnOrigin = [ session.player.v.origin[ 0 ], session.player.v.origin[ 1 ], session.player.v.origin[ 2 ] ];
 	result.session = { level: session.state.levelName, viewEntity: session.state.viewEntity, health: session.hud.health,
 		models: session.state.models.length, baselines: session.state.baselines.size };
 
@@ -253,6 +254,7 @@ try {
 				small: ( text, x, y ) => Draw_String( x, y, text )
 			} );
 			result.frames ++;
+			if ( combatTarget ) { result.combatAfter = combatTarget.v.health; result.combatPlayerHealth = playerFromSession().v.health; }
 			result.keyEvents = window.__KEY_EVENTS__;
 			result.forwardMax = Math.max( result.forwardMax ?? 0, command.forwardmove );
 			result.lastCommand = { forward: command.forwardmove, side: command.sidemove };
@@ -347,3 +349,45 @@ function updateNearbyEntities( player, state ) {
 
 let lastChosen = [];
 function nearestDiagnostic() { return lastChosen.slice( 0, 6 ).map( c => ( { name: PR_GetString( c.ent.v.classname ), model: PR_GetString( c.ent.v.model ), d: Math.round( c.distance ) } ) ); }
+
+
+let combatTarget = null;
+
+// trial setup: the Node combat placement (monster held 64 east, both relinked), with the Paladin's health raised so a
+// biting spider cannot kill him during the measurement; the selection impulse gets its own physics frame first.
+window.__HEXEN2_SETUP_COMBAT__ = () => {
+
+	const player = playerFromSession();
+	player.v.origin = [ result.spawnOrigin[ 0 ], result.spawnOrigin[ 1 ], result.spawnOrigin[ 2 ] ];
+	player.v.velocity = [ 0, 0, 0 ];
+	player.v.health = 1000;
+	player.v.max_health = 1000;
+	player.v.angles = [ 0, 0, 0 ];
+	player.v.v_angle = [ 0, 0, 0 ];
+	cl.viewangles = [ 0, 0, 0 ];
+	let best = null, bestDistance = 1e9;
+	for ( const ent of serverSv.edicts ) {
+
+		if ( !ent || ent.free || !ent.v.model || !PR_GetString( ent.v.classname ).startsWith( 'monster_' ) ) continue;
+		if ( ent.v.health <= 0 || ent.v.deadflag ) continue;
+		const distance = Math.hypot( ent.v.origin[ 0 ] - player.v.origin[ 0 ], ent.v.origin[ 1 ] - player.v.origin[ 1 ] );
+		if ( distance < bestDistance ) { bestDistance = distance; best = ent; }
+
+	}
+	if ( !best ) return null;
+	best.v.origin = [ player.v.origin[ 0 ] + 64, player.v.origin[ 1 ], player.v.origin[ 2 ] ];
+	best.v.movetype = 0;
+	best.v.health = 100;
+	best.v.ideal_yaw = 0;
+	best.v.enemy = null;
+	SV_LinkEdict( player, true );
+	SV_LinkEdict( best, true );
+	player.v.impulse = 1;
+	SV_Physics();
+	player.v.impulse = 0;
+	combatTarget = best;
+	result.combatTarget = best.index;
+	result.combatBefore = best.v.health;
+	return { index: best.index, health: best.v.health, name: PR_GetString( best.v.classname ) };
+
+};

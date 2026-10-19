@@ -40,13 +40,24 @@ try {
 	await page.waitForTimeout( 1600 );
 	await page.keyboard.up( 'ArrowUp' );
 	await page.waitForTimeout( 200 );
+	const afterWalk = await page.evaluate( () => window.__HEXEN2_TRIAL__.position ?? null );
+	const combatSetup = await page.evaluate( () => window.__HEXEN2_SETUP_COMBAT__ ? window.__HEXEN2_SETUP_COMBAT__() : null );
+	if ( combatSetup ) {
+		await page.waitForTimeout( 300 );
+		await page.mouse.down();
+		await page.waitForTimeout( 1600 );
+		await page.mouse.up();
+		await page.waitForTimeout( 300 );
+		await page.screenshot( { path: resolve( import.meta.dirname, '../../docs/evidence/hexen2-browser-trial-combat.png' ) } ).catch( () => {} );
+	}
 	result = await page.evaluate( () => window.__HEXEN2_TRIAL__ );
-	result.moved = before && result.position
-		? Math.hypot( result.position[ 0 ] - before[ 0 ], result.position[ 1 ] - before[ 1 ] ) : null;
+	result.combat = combatSetup ? { before: result.combatBefore, after: result.combatAfter, playerHealth: result.combatPlayerHealth, setup: combatSetup } : null;
+	result.moved = before && afterWalk ? Math.hypot( afterWalk[ 0 ] - before[ 0 ], afterWalk[ 1 ] - before[ 1 ] ) : null;
 	result.movedFrom = before;
 	if ( result.ok && ( result.moved === null || result.moved < 5 || result.frames < 20 ) ) result.ok = false;
 	if ( result.ok && ( ( result.keyEvents ?? 0 ) < 1 || ( result.forwardMax ?? 0 ) <= 0 ) ) result.ok = false;
 	if ( result.ok && ( Math.abs( result.mouseYaw ?? 0 ) < 1 || ( result.attackFrames ?? 0 ) < 1 ) ) result.ok = false;
+	if ( result.ok && ( !result.combat || typeof result.combat.after !== 'number' || result.combat.after >= result.combat.before ) ) result.ok = false;
 	await page.screenshot( { path: resolve( import.meta.dirname, '../../docs/evidence/hexen2-browser-trial-turn.png' ) } ).catch( () => {} );
 	if ( result.ok && ( !result.audioDeferredResult || result.audioDeferredResult.sources < 1 || result.audioDeferredResult.state !== 'running' ) ) result.ok = false;
 

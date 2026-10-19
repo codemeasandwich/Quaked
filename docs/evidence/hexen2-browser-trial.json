@@ -1,16 +1,21 @@
 {
   "trial": "hexen2-browser",
-  "at": "2026-10-19T08:04:36.294Z",
-  "base": "http://127.0.0.1:59248",
+  "at": "2026-10-19T08:17:22.848Z",
+  "base": "http://127.0.0.1:49229",
   "result": {
     "ok": true,
     "errors": [],
     "shelfShown": true,
     "shelfClicked": true,
+    "spawnOrigin": [
+      -918,
+      -2034,
+      0.03125
+    ],
     "session": {
       "level": "demo1",
       "viewEntity": 1,
-      "health": 71,
+      "health": 75,
       "models": 342,
       "baselines": 247
     },
@@ -52,39 +57,39 @@
       "drawn": 10,
       "skipped": 0
     },
-    "frames": 31,
-    "attackFrames": 3,
+    "frames": 89,
+    "attackFrames": 33,
     "entitiesVisible": 24,
     "nearest": [
       {
-        "name": "obj_statue_angel",
-        "model": "models/anglstat.mdl",
-        "d": 99
+        "name": "obj_tree2",
+        "model": "models/tree2.mdl",
+        "d": 178
+      },
+      {
+        "name": "art_HealthBoost",
+        "model": "models/a_hboost.mdl",
+        "d": 185
       },
       {
         "name": "obj_tombstone1",
         "model": "models/tombstn1.mdl",
-        "d": 253
-      },
-      {
-        "name": "obj_tombstone2",
-        "model": "models/tombstn2.mdl",
-        "d": 279
+        "d": 212
       },
       {
         "name": "art_HealthBoost",
         "model": "models/a_hboost.mdl",
-        "d": 279
+        "d": 295
       },
       {
-        "name": "art_HealthBoost",
-        "model": "models/a_hboost.mdl",
-        "d": 300
+        "name": "obj_statue_angel",
+        "model": "models/anglstat.mdl",
+        "d": 315
       },
       {
-        "name": "obj_tree2",
-        "model": "models/tree2.mdl",
-        "d": 303
+        "name": "obj_tombstone1",
+        "model": "models/tombstn1.mdl",
+        "d": 330
       }
     ],
     "keyEvents": 1,
@@ -94,27 +99,41 @@
       "side": 0
     },
     "position": [
-      -760.03125,
-      -1873.260986328125,
+      -918,
+      -2034,
       0.03125
     ],
-    "health": 71,
-    "hudHealth": 71,
+    "health": 1000,
+    "hudHealth": 1000,
     "pixel": [
-      31,
-      24,
-      21,
+      34,
+      27,
+      25,
       255
     ],
     "mouseYaw": -60,
     "audioDeferred": true,
     "audioDeferredResult": {
       "sources": 1,
-      "time": 4.144,
+      "time": 2.8853333333333335,
       "state": "running"
     },
     "mouseAttack": true,
-    "moved": 225.36893417853693,
+    "combatTarget": 195,
+    "combatBefore": 100,
+    "combatAfter": 23.99771499633789,
+    "combatPlayerHealth": 1000,
+    "combat": {
+      "before": 100,
+      "after": 23.99771499633789,
+      "playerHealth": 1000,
+      "setup": {
+        "index": 195,
+        "health": 100,
+        "name": "monster_spider_yellow_small"
+      }
+    },
+    "moved": 258.84029219495716,
     "movedFrom": [
       -918,
       -2034,
