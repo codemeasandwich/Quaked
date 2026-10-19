@@ -1,0 +1,146 @@
+{
+  "trial": "hexen2-browser",
+  "at": "2026-10-19T08:26:25.134Z",
+  "base": "http://127.0.0.1:52251",
+  "result": {
+    "ok": true,
+    "errors": [],
+    "shelfShown": true,
+    "requestedClass": "necromancer",
+    "shelfClicked": true,
+    "spawnOrigin": [
+      -918,
+      -2034,
+      0.03125
+    ],
+    "session": {
+      "level": "demo1",
+      "viewEntity": 1,
+      "classNumber": 3,
+      "health": 75,
+      "models": 342,
+      "baselines": 247
+    },
+    "audio": {
+      "context": "running",
+      "sampleRate": 48000,
+      "sfx": "ambience/water1.wav",
+      "sourcesStarted": 0,
+      "currentTime": 0
+    },
+    "rendered": {
+      "eye": [
+        0,
+        0,
+        0
+      ],
+      "vieworg": [
+        -917.96875,
+        -2033.96875,
+        50
+      ],
+      "angles": [
+        0,
+        90,
+        0
+      ],
+      "lightmaps": 16,
+      "lightmapMax": 255,
+      "batches": 220,
+      "drawCalls": 25,
+      "norefresh": 0,
+      "sceneChildren": 1,
+      "hasCamera": true,
+      "worldModel": true,
+      "triangles": 173,
+      "worldEntity": true
+    },
+    "hud": {
+      "drawn": 10,
+      "skipped": 0
+    },
+    "frames": 161,
+    "attackFrames": 88,
+    "entitiesVisible": 24,
+    "nearest": [
+      {
+        "name": "art_polymorph",
+        "model": "models/a_poly.mdl",
+        "d": 189
+      },
+      {
+        "name": "art_HealthBoost",
+        "model": "models/a_hboost.mdl",
+        "d": 291
+      },
+      {
+        "name": "obj_statue_angel",
+        "model": "models/anglstat.mdl",
+        "d": 338
+      },
+      {
+        "name": "monster_spider_yellow_small",
+        "model": "models/spider.mdl",
+        "d": 368
+      },
+      {
+        "name": "art_HealthBoost",
+        "model": "models/a_hboost.mdl",
+        "d": 411
+      },
+      {
+        "name": "monster_spider_yellow_small",
+        "model": "models/spider.mdl",
+        "d": 487
+      }
+    ],
+    "keyEvents": 2,
+    "forwardMax": 200,
+    "lastCommand": {
+      "forward": 0,
+      "side": 0
+    },
+    "position": [
+      -382.2701110839844,
+      -2034,
+      160.38587951660156
+    ],
+    "health": 1000,
+    "hudHealth": 1000,
+    "pixel": [
+      18,
+      13,
+      11,
+      255
+    ],
+    "mouseYaw": -60,
+    "audioDeferred": true,
+    "audioDeferredResult": {
+      "sources": 1,
+      "time": 2.3413333333333335,
+      "state": "running"
+    },
+    "mouseAttack": true,
+    "combatTarget": 194,
+    "combatBefore": 100,
+    "combatAfter": 53.46012496948242,
+    "combatPlayerHealth": 1000,
+    "soakFrames": 72,
+    "combat": {
+      "before": 100,
+      "after": 53.46012496948242,
+      "playerHealth": 1000,
+      "setup": {
+        "index": 194,
+        "health": 100,
+        "name": "monster_spider_yellow_small"
+      }
+    },
+    "moved": 245.93781643429676,
+    "movedFrom": [
+      -918,
+      -2034,
+      0.03125
+    ]
+  }
+}

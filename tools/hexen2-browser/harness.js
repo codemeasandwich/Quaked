@@ -49,8 +49,12 @@ const result = { ok: false, errors: [] };
 
 // wait for the trial shelf's play button: the start is a real click, not an automatic load
 result.shelfShown = true;
-const playButton = document.querySelector( '#play' );
-if ( playButton ) await new Promise( resolve => playButton.addEventListener( 'click', resolve, { once: true } ) );
+const playButton = document.querySelector( '.play-class' );
+if ( playButton ) await new Promise( resolve => {
+
+	for ( const button of document.querySelectorAll( '.play-class' ) ) button.addEventListener( 'click', () => resolve( button ), { once: true } );
+
+} ).then( button => { result.requestedClass = button.dataset.class; } );
 result.shelfClicked = true;
 const shelf = document.querySelector( '#shelf' );
 if ( shelf ) shelf.remove();
@@ -87,7 +91,7 @@ try {
 	PR_SetSV( sv ); PR_SetSVS( svs );
 	const entry = { id: 'hexen2', kind: 'hexen2', name: 'Hexen II', folder: 'games/Hexen 2/data1', playable: true };
 	session = Hexen2_OpenLocalSession( {
-		entry, classId: 'paladin', client, sv, svs,
+		entry, classId: result.requestedClass ?? 'paladin', client, sv, svs,
 		readFile: name => name === 'progs.dat' ? new Uint8Array( progsData ) : null,
 		loadMap: name => { const map = new model_t(); map.name = name; set_loadmodel( map ); const found = COM_FindFile( name );
 			if ( !found ) throw new Error( 'no map ' + name );
@@ -96,7 +100,7 @@ try {
 	} );
 	if ( !session.ok ) throw new Error( 'session: ' + session.reason );
 	result.spawnOrigin = [ session.player.v.origin[ 0 ], session.player.v.origin[ 1 ], session.player.v.origin[ 2 ] ];
-	result.session = { level: session.state.levelName, viewEntity: session.state.viewEntity, health: session.hud.health,
+	result.session = { level: session.state.levelName, viewEntity: session.state.viewEntity, classNumber: session.plan.classNumber, health: session.hud.health,
 		models: session.state.models.length, baselines: session.state.baselines.size };
 
 	// renderer: world, the Paladin's view and one frame

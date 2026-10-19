@@ -10,7 +10,12 @@
 <div id="shelf" style="position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#0b0b0d;color:#d8cfb8;font:16px/1.6 Georgia,serif;z-index:10">
 	<h1 style="font-weight:normal;letter-spacing:.18em;margin:0 0 .4em">HEXEN II</h1>
 	<p style="max-width:34em;text-align:center;color:#9b917c">Local trial shelf: the supplied installation, served by the harness.</p>
-	<button id="play" style="margin-top:1.4em;padding:.7em 2.2em;background:#2a2419;color:#e8dcc0;border:1px solid #7a6a4a;font:inherit;letter-spacing:.1em;cursor:pointer">PLAY — PALADIN</button>
+	<div style="display:flex;gap:.8em;margin-top:1.4em">
+		<button class="play-class" data-class="paladin" style="padding:.7em 1.4em;background:#2a2419;color:#e8dcc0;border:1px solid #7a6a4a;font:inherit;letter-spacing:.08em;cursor:pointer">PALADIN</button>
+		<button class="play-class" data-class="crusader" style="padding:.7em 1.4em;background:#2a2419;color:#e8dcc0;border:1px solid #7a6a4a;font:inherit;letter-spacing:.08em;cursor:pointer">CRUSADER</button>
+		<button class="play-class" data-class="necromancer" style="padding:.7em 1.4em;background:#2a2419;color:#e8dcc0;border:1px solid #7a6a4a;font:inherit;letter-spacing:.08em;cursor:pointer">NECROMANCER</button>
+		<button class="play-class" data-class="assassin" style="padding:.7em 1.4em;background:#2a2419;color:#e8dcc0;border:1px solid #7a6a4a;font:inherit;letter-spacing:.08em;cursor:pointer">ASSASSIN</button>
+	</div>
 </div>
 <script type="module" src="./harness.js"></script>
 </body>
