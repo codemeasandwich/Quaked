@@ -230,6 +230,16 @@ function particle4() {
 
 }
 
+// #93 spawntemp(): a temporary edict for effects. The port has no per-frame temp pool yet, so this allocates a normal
+// edict (recorded divergence: cleanup is left to the gamecode's own remove/think rather than a frame-end sweep).
+function spawntemp() {
+
+	const ed = ED_Alloc();
+	if ( !ed ) return;
+	RETURN_EDICT( ed );
+
+}
+
 // #8 sound(entity, channel, sample, volume, attenuation): the existing SV_StartSound path
 function sound() {
 
@@ -320,7 +330,7 @@ function breakBuiltin() { PR_RunError( 'break statement' ); }
 
 /** The server builtins this module installs into the Hexen II dispatcher. */
 export const HEXEN2_SERVER_BUILTINS = Object.freeze( {
-	6: breakBuiltin, 8: sound, 10: errorBuiltin, 11: objerror, 14: spawn, 15: remove, 17: PF_checkclient, 18: find, 21: stuffcmd, 22: PF_findradius, 23: bprint, 24: sprint, 31: eprint, 35: lightstyle, 44: PF_aim, 48: particle, 49: changeyaw, 63: advanceframe, 65: rewindframe, 66: setclass, 67: SV_MoveToGoal, 69: makestatic, 74: ambientsound, 83: advanceweaponframe, 86: particle4
+	6: breakBuiltin, 8: sound, 10: errorBuiltin, 11: objerror, 14: spawn, 15: remove, 17: PF_checkclient, 18: find, 21: stuffcmd, 93: spawntemp, 22: PF_findradius, 23: bprint, 24: sprint, 31: eprint, 35: lightstyle, 44: PF_aim, 48: particle, 49: changeyaw, 63: advanceframe, 65: rewindframe, 66: setclass, 67: SV_MoveToGoal, 69: makestatic, 74: ambientsound, 83: advanceweaponframe, 86: particle4
 } );
 
 Hexen2_RegisterBuiltins( HEXEN2_SERVER_BUILTINS );
