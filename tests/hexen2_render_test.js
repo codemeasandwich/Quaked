@@ -9,6 +9,7 @@ import { model_t } from '../src/engine/render/gl_model_types.js';
 import { set_loadmodel } from '../src/engine/render/gl_model_common.js';
 import { Mod_LoadBrushModel, Mod_SetHexenHullLayout } from '../src/engine/render/gl_model_bsp.js';
 import { GL_BuildLightmaps, lightmapTextures, R_DrawWorld } from '../src/engine/render/gl_rsurf.js';
+import { R_NewMap } from '../src/engine/render/gl_rmisc.js';
 import { R_MarkLeaves } from '../src/engine/render/gl_rsurf_batches.js';
 import { r_visframecount, set_r_viewleaf, set_r_oldviewleaf, set_r_worldentity } from '../src/engine/render/gl_rmain.js';
 import { r_refdef, entity_t } from '../src/engine/render/render.js';
@@ -36,6 +37,9 @@ Deno.test( 'the renderer builds the Hexen II world: lightmaps, atlases, batches 
 	cl.worldmodel = map;
 	cl.model_precache = [ map, map ];
 	cl.state = 2;
+	const mapInfo = R_NewMap( cl );
+	check( mapInfo.skytexturenum >= 0, 'the Hexen sky texture is selected: ' + mapInfo.skytexturenum );
+	check( /^sky/i.test( map.textures[ mapInfo.skytexturenum ].name ), 'the selected texture is the map\'s sky: ' + map.textures[ mapInfo.skytexturenum ].name );
 	let error = null;
 	try { GL_BuildLightmaps(); } catch ( e ) { error = e; }
 	check( error === null, 'the lightmap/mesh build ran: ' + ( error ? error.message : '' ) );

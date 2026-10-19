@@ -91,6 +91,7 @@ Deno.test( 'the native status-bar top row is emitted for the spawned Paladin', (
 	// puzzle pieces. Coordinates are relative to the bar top, as sbar.c draws them.
 	player.v.armor_breastplate = 12; player.v.ring_flight = 50;
 	player.v.puzzle_inv1 = PR_SetTempString( 'key1' );
+	player.v.flags = 4194304 | 8388608;
 	const expandedHud = Hexen2_ReadHud( player, ofs => PR_GetString( ofs ) );
 	const lowered = Hexen2_StatusBarOps( expandedHud, { width: 320, height: 200, barHeight: 144 } );
 	const at = ( name ) => lowered.find( op => op.name === name );
@@ -100,6 +101,9 @@ Deno.test( 'the native status-bar top row is emitted for the spawned Paladin', (
 	same( at( 'gfx/cport1.lmp' ).x, 134, 'the Paladin portrait x' );
 	same( at( 'gfx/cport1.lmp' ).y, 56 + 50, 'the Paladin portrait y' );
 	check( lowered.some( op => op.kind === 'small' && op.text === 'Paladin' ), 'the class name is drawn' );
+	check( lowered.some( op => op.kind === 'small' && op.text === 'abilities' && op.y === 56 + 79 ), 'the abilities header' );
+	check( lowered.some( op => op.kind === 'small' && op.text === 'Free Action' && op.y === 56 + 85 ), 'ability one' );
+	check( lowered.some( op => op.kind === 'small' && op.text === 'Divine Intervention' && op.y === 56 + 91 ), 'ability two' );
 	check( lowered.some( op => op.kind === 'small' && op.text === 'int' && op.x === 11 && op.y === 56 + 58 ), 'the intelligence label' );
 	check( lowered.some( op => op.kind === 'small' && op.text === String( expandedHud.intelligence | 0 ).padStart( 2, '0' ) && op.x === 33 ), 'the intelligence value' );
 	same( at( 'gfx/armor3.lmp' ).x, 246, 'breastplate armour icon' );

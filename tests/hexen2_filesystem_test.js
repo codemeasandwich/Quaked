@@ -5,7 +5,8 @@
 import { openSync, readSync, closeSync, existsSync, readFileSync } from './helpers/resource_fs.mjs';
 import {
 	Hexen2_OrderedPakNumbers, Hexen2_BuildLayers, Hexen2_ResolveFile, Hexen2_Manifest, Hexen2_ReadProgHeader,
-	Hexen2_DetectEdition, HEXEN2_PAK_LIMIT, HEXEN2_REQUIRED_BASE_FILES
+	Hexen2_ReadProgHeaderSummary, Hexen2_PakDirectorySignature, Hexen2_DemoSignatureProblems, Hexen2_DetectEdition,
+	HEXEN2_PAK_LIMIT, HEXEN2_REQUIRED_BASE_FILES, HEXEN2_DEMO_SIGNATURE
 } from '../src/engine/common/hexen2_filesystem.js';
 import { HEXEN2_LAYOUT_CRCS } from '../src/engine/common/hexen2_profile.js';
 
@@ -93,6 +94,11 @@ Deno.test( 'the program header check accepts both supplied layouts and rejects m
 	same( base.entityFields, 8, 'entity fields' );
 	same( Hexen2_ReadProgHeader( progBytes( HEXEN2_LAYOUT_CRCS.portals ) ).layout, 'hexen2-portals', 'portal layout' );
 	same( Hexen2_ReadProgHeader( progBytes( 5927 ) ).layout, 'unknown', 'an unrecognised CRC is reported, not guessed' );
+	const summary = Hexen2_ReadProgHeaderSummary( progBytes( HEXEN2_LAYOUT_CRCS.base ).subarray( 0, 60 ) );
+	same( summary.version, 6, 'the 60-byte summary still checks the version' );
+	same( summary.layout, 'hexen2-base', 'the 60-byte summary identifies the layout' );
+	throws( () => Hexen2_ReadProgHeader( progBytes( HEXEN2_LAYOUT_CRCS.base ).subarray( 0, 60 ) ), 'a header-only slice has no sections' );
+	throws( () => Hexen2_ReadProgHeaderSummary( new Uint8Array( 20 ) ), 'a truncated summary' );
 	throws( () => Hexen2_ReadProgHeader( new Uint8Array( 20 ) ), 'a truncated header' );
 	const badVersion = progBytes( HEXEN2_LAYOUT_CRCS.base ); new DataView( badVersion.buffer ).setInt32( 0, 5, true );
 	throws( () => Hexen2_ReadProgHeader( badVersion ), 'version 5' );
@@ -124,16 +130,50 @@ Deno.test( 'edition detection proves the program layout and refuses mixed editio
 
 } );
 
-Deno.test( 'the demo edition needs the pinned archive signature and a version 6 program', () => {
+Deno.test( 'the demo edition needs the pinned archive signature and a version 6 base-layout program', () => {
 
 	const signature = { entries: 797, directoryCrc: 22780, bytes: 27750257 };
-	const demo = Hexen2_DetectEdition( { demo: { ...signature, progsHeader: Hexen2_ReadProgHeader( progBytes( 0 ) ) } } );
+	const baseProgram = Hexen2_ReadProgHeaderSummary( progBytes( HEXEN2_LAYOUT_CRCS.base ) );
+	const demo = Hexen2_DetectEdition( { demo: { ...signature, progsHeader: baseProgram } } );
 	check( demo.ok, demo.reason );
 	same( demo.edition, 'demo', 'demo edition' );
+	same( demo.layout, 'hexen2-base', 'the verified demo program uses the base layout' );
 	same( demo.classes.length, 4, 'the demo keeps the native class restrictions' );
-	check( ! Hexen2_DetectEdition( { demo: { ...signature, entries: 798, progsHeader: Hexen2_ReadProgHeader( progBytes( 0 ) ) } } ).ok, 'a mismatched entry count is refused' );
-	check( ! Hexen2_DetectEdition( { demo: { ...signature, bytes: 1, progsHeader: Hexen2_ReadProgHeader( progBytes( 0 ) ) } } ).ok, 'a mismatched size is refused' );
+	check( ! Hexen2_DetectEdition( { demo: { ...signature, entries: 798, progsHeader: baseProgram } } ).ok, 'a mismatched entry count is refused' );
+	check( ! Hexen2_DetectEdition( { demo: { ...signature, bytes: 1, progsHeader: baseProgram } } ).ok, 'a mismatched size is refused' );
+	const portalProgram = Hexen2_ReadProgHeaderSummary( progBytes( HEXEN2_LAYOUT_CRCS.portals ) );
+	const mixed = Hexen2_DetectEdition( { demo: { ...signature, progsHeader: portalProgram } } );
+	check( ! mixed.ok && /unsupported demo layout CRC/.test( mixed.reason ), 'a portal program in the demo is refused: ' + mixed.reason );
 	check( ! Hexen2_DetectEdition( { demo: signature } ).ok, 'a demo without a validated program is refused' );
+
+} );
+
+Deno.test( 'the demo archive signature is the native CCITT directory CRC, and the supplied archive matches it', () => {
+
+	const directory = new Uint8Array( 128 );
+	const ascii = text => Uint8Array.from( text, ch => ch.charCodeAt( 0 ) );
+	directory.set( ascii( 'maps/demo1.bsp' ), 0 );
+	directory.set( ascii( 'progs.dat' ), 64 );
+	const computed = Hexen2_PakDirectorySignature( directory, 2, 12345 );
+	same( computed.entries, 2, 'entries' );
+	same( computed.directoryCrc, 38681, 'the non-reflected CCITT CRC of the two entries' );
+	same( computed.bytes, 12345, 'size' );
+	throws( () => Hexen2_PakDirectorySignature( directory, 3, 12345 ), 'a directory length that is not entries x 64' );
+	same( Hexen2_DemoSignatureProblems( HEXEN2_DEMO_SIGNATURE ).length, 0, 'the pinned signature agrees with itself' );
+	same( Hexen2_DemoSignatureProblems( { ...HEXEN2_DEMO_SIGNATURE, entries: 798 } ).join( ',' ), 'entry count', 'entry mismatch' );
+	same( Hexen2_DemoSignatureProblems( { ...HEXEN2_DEMO_SIGNATURE, directoryCrc: 1 } ).join( ',' ), 'directory CRC', 'CRC mismatch' );
+	same( Hexen2_DemoSignatureProblems( { ...HEXEN2_DEMO_SIGNATURE, bytes: 1 } ).join( ',' ), 'size', 'size mismatch' );
+	same( Hexen2_DemoSignatureProblems( null ).join( ',' ), 'no archive signature', 'missing signature' );
+
+	const PAK = '/Users/bri/quaked/Hexen 2 Shareware/hexen2-demo/data1/pak0.pak';
+	if ( ! existsSync( PAK ) ) { console.log( 'SKIP: the verified demo fixture is not present at ' + PAK ); return; }
+	const bytes = readFileSync( PAK ), view = new DataView( bytes.buffer, bytes.byteOffset, bytes.byteLength );
+	const dirofs = view.getUint32( 4, true ), dirlen = view.getUint32( 8, true );
+	const actual = Hexen2_PakDirectorySignature( bytes.subarray( dirofs, dirofs + dirlen ), dirlen / 64, bytes.byteLength );
+	same( actual.entries, 797, 'the supplied demo has 797 entries' );
+	same( actual.directoryCrc, 22780, 'the supplied demo directory CRC' );
+	same( actual.bytes, 27750257, 'the supplied demo archive size' );
+	same( Hexen2_DemoSignatureProblems( actual ).length, 0, 'the supplied demo matches the pinned signature' );
 
 } );
 

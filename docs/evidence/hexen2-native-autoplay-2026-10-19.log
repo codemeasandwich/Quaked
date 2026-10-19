@@ -1,0 +1,36 @@
+SystemTime { tv_sec: 1792421693, tv_nsec: 1385000 } desktop prepare start
+SystemTime { tv_sec: 1792421693, tv_nsec: 14785000 } desktop prepare id=hexen2 (trial)
+SystemTime { tv_sec: 1792421693, tv_nsec: 81999000 } catalogue shareware:000,quake:111,hipnotic:111,rogue:111,dopa:111,mg1:111,dawn:000,ad:111,quoth:111,malice:111,xmen:111,aopfm_v2:111,soe:111,hexen2:111,hexen2-portals:000,hexen2-demo:111,mod_q30a1024:111,mod_quake_shareware:111,mod_quake_rooftop_jam_v2:111,mod_tremor:111
+SystemTime { tv_sec: 1792421693, tv_nsec: 271182000 } hexen2 branch id=hexen2 packs=3
+SystemTime { tv_sec: 1792421693, tv_nsec: 274006000 } trial autostart
+SystemTime { tv_sec: 1792421693, tv_nsec: 275499000 } host start, packs 3
+SystemTime { tv_sec: 1792421693, tv_nsec: 275922000 } progs 886592 bytes, palette 768
+SystemTime { tv_sec: 1792421693, tv_nsec: 614578000 } session ok, class 1, skill 1, map entities 331
+SystemTime { tv_sec: 1792421693, tv_nsec: 615636000 } sounds precached=0/215
+SystemTime { tv_sec: 1792421693, tv_nsec: 790750000 } renderer and client bound
+SystemTime { tv_sec: 1792421693, tv_nsec: 944546000 } viewmodel state {"draw":1,"health":75,"items":0,"chase":0,"envmap":false,"bestiary":false,"model":true,"mesh":false,"frame":19}
+SystemTime { tv_sec: 1792421694, tv_nsec: 161371000 } bestiary=idle weapon model=models/gauntlet.mdl frame=19 viewent=2:69:19:-918,-2034,58 cvar=0 stats0=75 vieworg=-918,-2034,50
+SystemTime { tv_sec: 1792421694, tv_nsec: 178285000 } first frame rendered calls=116 tris=10988 canvas=1280x768 css=1280x768 style=100vwx100vh vrect=1280x768 vid=1280x768 overlay=2560x1536 audio=suspended
+SystemTime { tv_sec: 1792421694, tv_nsec: 498307000 } sound misc/h2ohit1.wav
+SystemTime { tv_sec: 1792421694, tv_nsec: 499204000 } sound misc/h2ohit1.wav
+SystemTime { tv_sec: 1792421694, tv_nsec: 876626000 } hud ops=13 small=2 nums=2 tinyfont=true
+SystemTime { tv_sec: 1792421695, tv_nsec: 197676000 } sound demon/dland2.wav
+SystemTime { tv_sec: 1792421695, tv_nsec: 199152000 } sound demon/dland2.wav
+SystemTime { tv_sec: 1792421695, tv_nsec: 200263000 } sound demon/dland2.wav
+SystemTime { tv_sec: 1792421695, tv_nsec: 203915000 } sound demon/dland2.wav
+SystemTime { tv_sec: 1792421695, tv_nsec: 205007000 } sound demon/dland2.wav
+SystemTime { tv_sec: 1792421696, tv_nsec: 190136000 } sound demon/dland2.wav
+SystemTime { tv_sec: 1792421697, tv_nsec: 966754000 } autoplay mouse yaw=305
+SystemTime { tv_sec: 1792421703, tv_nsec: 358921000 } autoplay arrow yaw=65
+SystemTime { tv_sec: 1792421707, tv_nsec: 818399000 } state frames=120 vis=245 pos=-719,-1640,0 yaw=65 audio=suspended lock=0
+SystemTime { tv_sec: 1792421708, tv_nsec: 546162000 } autoplay pos=-679,-1640,9 yaw=65 vangle=65 angles=65 fix=0 audio=suspended
+SystemTime { tv_sec: 1792421708, tv_nsec: 879547000 } autoplay combat before=100
+SystemTime { tv_sec: 1792421709, tv_nsec: 270292000 } autoplay combat draw calls=106 tris=10492 vis=247 model=yes
+SystemTime { tv_sec: 1792421712, tv_nsec: 111251000 } autoplay combat after=100 damaged=false calls=105 tris=10425
+SystemTime { tv_sec: 1792421712, tv_nsec: 481942000 } state frames=240 vis=245 pos=-696,-1640,0 yaw=0 audio=suspended lock=0
+SystemTime { tv_sec: 1792421712, tv_nsec: 594818000 } autoplay item before health=75 class=item_health model=models/i_hboost.mdl frame=0 effects=0
+SystemTime { tv_sec: 1792421713, tv_nsec: 414797000 } autoplay item after health=75 frame=0 picked=false
+SystemTime { tv_sec: 1792421713, tv_nsec: 522136000 } autoplay done frames=280 pos=-696,-1640,0 yaw=0
+SystemTime { tv_sec: 1792421713, tv_nsec: 523154000 } loop scheduled
+SystemTime { tv_sec: 1792421713, tv_nsec: 523772000 } host result ok=true reason=
+SystemTime { tv_sec: 1792421715, tv_nsec: 105462000 } rAF watchdog frames=280 visibility=hidden

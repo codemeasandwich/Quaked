@@ -45,7 +45,8 @@ export const HEXEN2_BASE_CLASS_IDS = Object.freeze( [ 'paladin', 'crusader', 'ne
 
 /**
  * The program header's own CRC field for each supplied layout (the `PROGHEADER_CRC` check): read from the owner's
- * installed base and Portal programs, which the plan pins. The demo layout is not yet verified, so it has none.
+ * installed base and Portal programs, which the plan pins. The verified Nov 1997 demo program uses the base layout
+ * (38488) with its own 952,888-byte body, so it shares the layout identity but not the archive identity.
  */
 export const HEXEN2_LAYOUT_CRCS = Object.freeze( { base: 38488, portals: 26905 } );
 
@@ -60,7 +61,7 @@ export const HEXEN2_PROFILES = Object.freeze( {
 	} ),
 	'hexen2-demo': Object.freeze( {
 		id: 'hexen2-demo', name: 'Hexen II (demo)', edition: 'demo', retailVersion: 'demo 1.11', demo: true,
-		classes: HEXEN2_BASE_CLASS_IDS, layoutCrc: null
+		classes: HEXEN2_BASE_CLASS_IDS, layoutCrc: HEXEN2_LAYOUT_CRCS.base
 	} )
 } );
 

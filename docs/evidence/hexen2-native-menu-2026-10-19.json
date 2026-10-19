@@ -1,0 +1,16 @@
+{
+  "trial": "hexen2-native-menu",
+  "at": "2026-10-19T15:38:50.233193+00:00",
+  "app": "debug Quaked.app built with npx tauri build --debug --bundles app",
+  "method": "HEXEN2_TRIAL_GAME=hexen2 HEXEN2_TRIAL_AUTOPLAY=1 HEXEN2_TRIAL_CLASS=paladin, isolated HOME; the trial dispatches Escape at frame 110 and closes it at 120",
+  "trace": "docs/evidence/hexen2-native-menu-2026-10-19.log",
+  "observed": {
+    "session": "session ok, class 1",
+    "hud": "hud ops=13",
+    "menuOpen": "autoplay menu open=true",
+    "menuClosed": "autoplay menu closed=true",
+    "hostResult": "host result ok=true"
+  },
+  "ok": true,
+  "limits": "Packaged WKWebView menu open/close probe only; no screenshots and no user gesture, so audio remains suspended. Not the shelf click path or owner acceptance."
+}

@@ -50,6 +50,7 @@ export function Hexen2_HudFromClientState( state ) {
 		weaponModel: number( cd.weaponModelIndex ),
 		weaponFrame: number( cd.weaponframe ),
 		viewHeight: number( cd.viewheight ),
+		flags: number( cd.flags ?? s.flags ),
 		dead: number( s.health ) <= 0,
 		onGround: cd.onGround === true
 	} );

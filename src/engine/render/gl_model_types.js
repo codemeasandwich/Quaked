@@ -498,6 +498,8 @@ export class mtriangle_t {
 
 		this.facesfront = 0;
 		this.vertindex = new Int32Array( 3 );
+		// RAPO's per-corner texture index; MDL triangles use the same index as vertindex.
+		this.stindex = new Int32Array( 3 );
 
 	}
 

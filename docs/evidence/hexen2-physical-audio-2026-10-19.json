@@ -1,0 +1,23 @@
+{
+  "trial": "hexen2-physical-audio",
+  "at": "2026-10-19T19:13:31.446404+00:00",
+  "platform": "macOS",
+  "devices": [
+    {
+      "_name": "MacBook Air Speakers",
+      "coreaudio_default_audio_system_device": "spaudio_yes",
+      "coreaudio_device_manufacturer": "Apple Inc.",
+      "coreaudio_device_output": 2,
+      "coreaudio_output_source": "MacBook Air Speakers"
+    },
+    {
+      "_name": "Microsoft Teams Audio",
+      "coreaudio_device_manufacturer": "Microsoft Corp.",
+      "coreaudio_device_output": 1,
+      "coreaudio_output_source": "Microsoft Teams Audio Device"
+    }
+  ],
+  "webAudioRunning": true,
+  "webAudioReceipt": "docs/evidence/hexen2-native-portal-audio-2026-10-19.json",
+  "notes": "The packaged Portal session reports audio=running after a real CGEvent click; the host exposes the built-in output device. This records the physical device/context path, not an audible recording."
+}

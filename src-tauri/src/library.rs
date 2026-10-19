@@ -41,6 +41,16 @@ pub struct Settings {
 }
 pub const GAMES: &[(&str, &[&str])] = &[
     ("hexen2", &["hexen2", "Hexen 2"]),
+    (
+        "hexen2-portals",
+        &["hexen2-portals", "Hexen 2 Portal of Praevus", "portals"],
+    ),
+    // The verified demo fixture may be selected by its own folder, its release name, or the extracted
+    // "Hexen 2 Shareware" wrapper; the latter keeps the real game under hexen2-demo/data1.
+    (
+        "hexen2-demo",
+        &["hexen2-demo", "Hexen 2 Demo", "Hexen 2 Shareware"],
+    ),
     ("quake", &["id1", "Quake"]),
     ("shareware", &["shareware"]),
     ("hipnotic", &["hipnotic", "Scourge of Armagon"]),
@@ -63,7 +73,7 @@ pub const LOOSE_FILES: &[&str] = &["progs.dat", "autoexec.cfg", "quake.rc"];
 /// files above PAKs, so these are exposed even though the game is not an add-on.
 pub const HEXEN_LOOSE_FILES: &[&str] = &["progs.dat", "strings.txt", "hexen.rc"];
 /// Games whose files live under the installation's `data1` directory and whose pak0..pak9 are probed independently.
-pub const HEXEN_GAMES: &[&str] = &["hexen2"];
+pub const HEXEN_GAMES: &[&str] = &["hexen2", "hexen2-portals", "hexen2-demo"];
 /// The add-ons among GAMES (game_catalogue.js kind 'addon'): only they get loose files.
 pub const ADDONS: &[&str] = &["ad", "quoth", "malice", "xmen", "aopfm_v2", "soe"];
 /// Names of games the catalogue lists but cannot play yet (game_catalogue.js `placeholder`): a folder so named is not
@@ -85,9 +95,21 @@ fn children(path: &Path) -> Result<BTreeMap<String, PathBuf>, String> {
 /// Lists one game folder's packs (pak0.. up to the first gap; pak5 only to detect the engine's bounded-set overflow)
 /// and, for an add-on, its loose game files. Returns None when the folder is not a game: no pak0.pak, and (for an
 /// add-on) no loose progs.dat either.
-fn list_game(dir: &Path, game: &str, root: &Path, addon: bool, hexen: bool) -> Result<Option<Vec<Pack>>, String> {
+fn list_game(
+    dir: &Path,
+    game: &str,
+    root: &Path,
+    addon: bool,
+    hexen: bool,
+) -> Result<Option<Vec<Pack>>, String> {
     let entries = children(dir)?;
-    if !entries.contains_key("pak0.pak") && !(addon && entries.contains_key("progs.dat")) {
+    // Portal of Praevus ships its add-on pak3 beside a loose progs.dat (base pak0/1 come from its base game), so it
+    // has no pak0 of its own and must not be rejected by the Quake/Hexen pak0 test.
+    let portal = game == "hexen2-portals";
+    if !entries.contains_key("pak0.pak")
+        && !(addon && entries.contains_key("progs.dat"))
+        && !(portal && entries.contains_key("progs.dat") && entries.contains_key("pak3.pak"))
+    {
         return Ok(None);
     }
     let mut packs = Vec::new();
@@ -120,7 +142,11 @@ fn list_game(dir: &Path, game: &str, root: &Path, addon: bool, hexen: bool) -> R
     }
     // optional: a loose file that cannot be read, resolves outside the library (as for packs) or is too large is
     // left out, never an error
-    let loose: &[&str] = if hexen { HEXEN_LOOSE_FILES } else { LOOSE_FILES };
+    let loose: &[&str] = if hexen {
+        HEXEN_LOOSE_FILES
+    } else {
+        LOOSE_FILES
+    };
     for name in loose.iter().filter(|_| addon || hexen) {
         let Some(path) = entries.get(*name) else {
             continue;
@@ -154,7 +180,11 @@ fn list_game(dir: &Path, game: &str, root: &Path, addon: bool, hexen: bool) -> R
 /// token, a URL and a storage key), `mod_addon` when nothing is left; a second folder with the same id gets `_2`, and
 /// so on. The same as the source build's (GameCatalogue_DiscoveredId, src/engine/common/game_catalogue.js).
 fn discovered_id(folder: &str, taken: &[String]) -> String {
-    let slug: String = folder.to_lowercase().chars().map(|c| if c.is_ascii_alphanumeric() { c } else { '_' }).collect();
+    let slug: String = folder
+        .to_lowercase()
+        .chars()
+        .map(|c| if c.is_ascii_alphanumeric() { c } else { '_' })
+        .collect();
     let slug = slug.trim_matches('_');
     // a name with no ASCII letter or digit (such as one in another script) still gets a usable id
     let base = format!("mod_{}", if slug.is_empty() { "addon" } else { slug });
@@ -188,6 +218,18 @@ pub fn scan(root: &Path) -> Result<Library, String> {
                 candidates.push(path.clone());
             }
         }
+        // Portal of Praevus is installed inside the base Hexen II folder (`Hexen 2/portals`), not beside it.
+        if *game == "hexen2-portals" {
+            for base in ["hexen 2", "hexen2"] {
+                if let Some(root) = top.get(base) {
+                    if let Ok(entries) = children(root) {
+                        if let Some(path) = entries.get("portals") {
+                            candidates.push(path.clone());
+                        }
+                    }
+                }
+            }
+        }
         for dir in candidates {
             let dir = dir.canonicalize().map_err(|e| e.to_string())?;
             if !dir.starts_with(&root) || !dir.is_dir() {
@@ -195,18 +237,35 @@ pub fn scan(root: &Path) -> Result<Library, String> {
             }
             let mut data = dir.clone();
             if HEXEN_GAMES.contains(game) {
-                // a Hexen installation keeps its packs under data1 (the selected folder may be the installation or data1)
+                // a Hexen installation keeps its packs under data1 (the selected folder may be the installation or
+                // data1). The extracted demo wrapper keeps them one level deeper, under hexen2-demo/data1.
+                let mut resolved = None;
                 if let Ok(entries) = children(&data) {
                     if let Some(child) = entries.get("data1") {
-                        if let Ok(canonical) = child.canonicalize() {
-                            if canonical.starts_with(&root) && canonical.is_dir() {
-                                data = canonical;
+                        resolved = Some(child.clone());
+                    } else if let Some(wrapper) = entries.get("hexen2-demo") {
+                        if let Ok(nested) = children(wrapper) {
+                            if let Some(child) = nested.get("data1") {
+                                resolved = Some(child.clone());
                             }
                         }
                     }
                 }
+                if let Some(candidate) = resolved {
+                    if let Ok(canonical) = candidate.canonicalize() {
+                        if canonical.starts_with(&root) && canonical.is_dir() {
+                            data = canonical;
+                        }
+                    }
+                }
             }
-            if let Some(found) = list_game(&data, game, &root, ADDONS.contains(game), HEXEN_GAMES.contains(game))? {
+            if let Some(found) = list_game(
+                &data,
+                game,
+                &root,
+                ADDONS.contains(game),
+                HEXEN_GAMES.contains(game),
+            )? {
                 packs.extend(found);
                 consumed.push(data.clone());
                 break;
@@ -233,7 +292,10 @@ pub fn scan(root: &Path) -> Result<Library, String> {
         if !dir.starts_with(&root) || !dir.is_dir() || consumed.contains(&dir) {
             continue;
         }
-        let folder = path.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_default();
+        let folder = path
+            .file_name()
+            .map(|n| n.to_string_lossy().to_string())
+            .unwrap_or_default();
         let taken: Vec<String> = discovered.iter().map(|d| d.id.clone()).collect();
         let id = discovered_id(&folder, &taken);
         if let Ok(Some(found)) = list_game(&dir, &id, &root, true, false) {

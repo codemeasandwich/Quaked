@@ -19,6 +19,14 @@ const HELMET_AC = Object.freeze( [ 4, 2, 6, 8, 8 ] );
 
 const BAR_TOP_HEIGHT = 46;
 const CLASS_NAMES = Object.freeze( [ 'Paladin', 'Crusader', 'Necromancer', 'Assassin', 'Succubus' ] );
+const CLASS_ABILITIES = Object.freeze( [
+	Object.freeze( [ 'Free Action', 'Divine Intervention' ] ),
+	Object.freeze( [ 'Revivification', 'Holy Strength' ] ),
+	Object.freeze( [ 'Soul Stealing', 'Vampiric Drain' ] ),
+	Object.freeze( [ 'Hide In Shadows', 'Backstab' ] ),
+	Object.freeze( [ 'Demon Glide', 'Masochistic Mana' ] )
+] );
+const FL_SPECIAL_ABILITY1 = 4194304, FL_SPECIAL_ABILITY2 = 8388608;
 
 /**
  * The native armour class for a player, from sbar.c's CalcAC: each worn piece adds its class AC plus one per 5 points.
@@ -110,6 +118,11 @@ export function Hexen2_StatusBarOps( hud, view = {} ) {
 
 		}
 		const classNumber = Math.max( 1, Math.min( 5, hud.playerClass | 0 ) );
+		const abilities = CLASS_ABILITIES[ classNumber - 1 ];
+		const flags = hud.flags | 0;
+		if ( flags & FL_SPECIAL_ABILITY1 ) small( abilities[ 0 ], 11, 85 );
+		if ( flags & FL_SPECIAL_ABILITY2 ) small( abilities[ 1 ], 11, 91 );
+		if ( flags & ( FL_SPECIAL_ABILITY1 | FL_SPECIAL_ABILITY2 ) ) small( 'abilities', 11, 79 );
 		pic( `gfx/cport${classNumber}.lmp`, 134, 50 );
 		for ( const [ field, picture, x ] of [ [ 'armor_helmet', 'gfx/armor1.lmp', 164 ], [ 'armor_amulet', 'gfx/armor2.lmp', 205 ],
 			[ 'armor_breastplate', 'gfx/armor3.lmp', 246 ], [ 'armor_bracer', 'gfx/armor4.lmp', 285 ] ] ) {

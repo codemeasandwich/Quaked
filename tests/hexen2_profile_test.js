@@ -19,6 +19,7 @@ Deno.test( 'the three public Hexen II editions carry their native classes and pi
 	for ( const id of [ 'hexen2', 'hexen2-portals', 'hexen2-demo' ] ) check( Hexen2_IsGameId( id ), id + ' is a Hexen II game' );
 	check( ! Hexen2_IsGameId( 'quake' ), 'Quake is not a Hexen II game' );
 	same( Hexen2_Profile( 'hexen2' ).layoutCrc, HEXEN2_LAYOUT_CRCS.base, 'base layout CRC' );
+	same( Hexen2_Profile( 'hexen2-demo' ).layoutCrc, HEXEN2_LAYOUT_CRCS.base, 'the verified demo uses the base layout' );
 	same( HEXEN2_LAYOUT_CRCS.base, 38488, 'the supplied base program header CRC' );
 	same( HEXEN2_LAYOUT_CRCS.portals, 26905, 'the supplied Portal program header CRC' );
 	const base = Hexen2_ClassesFor( 'hexen2' ), portals = Hexen2_ClassesFor( 'hexen2-portals' );

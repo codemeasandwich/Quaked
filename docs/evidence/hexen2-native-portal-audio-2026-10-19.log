@@ -1,0 +1,49 @@
+SystemTime { tv_sec: 1792437139, tv_nsec: 990686000 } desktop prepare start
+SystemTime { tv_sec: 1792437140, tv_nsec: 26494000 } desktop prepare id=hexen2-portals (trial)
+SystemTime { tv_sec: 1792437140, tv_nsec: 116297000 } catalogue shareware:000,quake:111,hipnotic:111,rogue:111,dopa:111,mg1:111,dawn:000,ad:111,quoth:111,malice:111,xmen:111,aopfm_v2:111,soe:111,hexen2:111,hexen2-portals:111,hexen2-demo:111,mod_q30a1024:111,mod_quake_shareware:111,mod_quake_rooftop_jam_v2:111,mod_tremor:111
+SystemTime { tv_sec: 1792437140, tv_nsec: 401476000 } hexen2 branch id=hexen2-portals packs=4
+SystemTime { tv_sec: 1792437140, tv_nsec: 402588000 } trial autostart
+SystemTime { tv_sec: 1792437140, tv_nsec: 404566000 } host start, packs 4
+SystemTime { tv_sec: 1792437140, tv_nsec: 407464000 } progs 1144652 bytes, palette 768
+SystemTime { tv_sec: 1792437140, tv_nsec: 833979000 } session ok, class 5, skill 1, map entities 347
+SystemTime { tv_sec: 1792437140, tv_nsec: 834538000 } sounds precached=0/182
+SystemTime { tv_sec: 1792437141, tv_nsec: 63729000 } renderer and client bound
+SystemTime { tv_sec: 1792437143, tv_nsec: 890476000 } viewmodel state {"draw":1,"health":67,"items":0,"chase":0,"envmap":false,"bestiary":false,"model":true,"mesh":false,"frame":60}
+SystemTime { tv_sec: 1792437144, tv_nsec: 409901000 } bestiary=idle weapon model=models/sucwp1.mdl frame=60 viewent=2:80:60:1400,1256,149 cvar=0 stats0=67 vieworg=1400,1256,139
+SystemTime { tv_sec: 1792437144, tv_nsec: 410436000 } first frame rendered calls=6 tris=391 canvas=1280x768 css=1280x768 style=100vwx100vh vrect=1280x768 vid=1280x768 overlay=2560x1536 audio=suspended
+SystemTime { tv_sec: 1792437144, tv_nsec: 410785000 } hud ops=13 small=2 nums=2 tinyfont=true
+SystemTime { tv_sec: 1792437144, tv_nsec: 411054000 } sound demon/dland2.wav
+SystemTime { tv_sec: 1792437144, tv_nsec: 412177000 } sound demon/dland2.wav
+SystemTime { tv_sec: 1792437144, tv_nsec: 412745000 } sound demon/dland2.wav
+SystemTime { tv_sec: 1792437144, tv_nsec: 457690000 } sound spider/step2.wav
+SystemTime { tv_sec: 1792437144, tv_nsec: 463396000 } sound spider/step1.wav
+SystemTime { tv_sec: 1792437144, tv_nsec: 499134000 } sound weapons/weappkup.wav
+SystemTime { tv_sec: 1792437144, tv_nsec: 534646000 } sound spider/step2.wav
+SystemTime { tv_sec: 1792437144, tv_nsec: 535711000 } sound spider/step2.wav
+SystemTime { tv_sec: 1792437144, tv_nsec: 576574000 } autoplay mouse yaw=305
+SystemTime { tv_sec: 1792437145, tv_nsec: 57308000 } autoplay arrow yaw=65
+SystemTime { tv_sec: 1792437145, tv_nsec: 571042000 } autoplay menu open=true
+SystemTime { tv_sec: 1792437145, tv_nsec: 576116000 } autoplay menu closed=true
+SystemTime { tv_sec: 1792437145, tv_nsec: 667473000 } state frames=120 vis=249 pos=1501,1639,-221 yaw=65 audio=suspended lock=0
+SystemTime { tv_sec: 1792437145, tv_nsec: 724882000 } autoplay pos=1489,1649,-220 yaw=65 vangle=65 angles=65 fix=0 audio=suspended
+SystemTime { tv_sec: 1792437145, tv_nsec: 798542000 } autoplay combat before=100
+SystemTime { tv_sec: 1792437145, tv_nsec: 867775000 } autoplay combat draw calls=7 tris=634 vis=249 model=yes
+SystemTime { tv_sec: 1792437146, tv_nsec: 378513000 } autoplay combat after=10.64940071105957 damaged=true calls=7 tris=634
+SystemTime { tv_sec: 1792437146, tv_nsec: 492331000 } autoplay item before health=67 class=item_health model=models/i_hboost.mdl frame=0 effects=0
+SystemTime { tv_sec: 1792437146, tv_nsec: 524825000 } state frames=240 vis=249 pos=1489,1649,-222 yaw=0 audio=suspended lock=0
+SystemTime { tv_sec: 1792437146, tv_nsec: 694839000 } autoplay item after health=67 frame=0 picked=false
+SystemTime { tv_sec: 1792437146, tv_nsec: 741590000 } autoplay done frames=270 pos=1489,1649,-222 yaw=0
+SystemTime { tv_sec: 1792437146, tv_nsec: 742084000 } loop scheduled
+SystemTime { tv_sec: 1792437146, tv_nsec: 742446000 } host result ok=true reason=
+SystemTime { tv_sec: 1792437148, tv_nsec: 265765000 } rAF watchdog frames=319 visibility=visible
+SystemTime { tv_sec: 1792437148, tv_nsec: 680743000 } state frames=360 vis=249 pos=1489,1649,-222 yaw=233 audio=running lock=0
+SystemTime { tv_sec: 1792437150, tv_nsec: 530481000 } state frames=480 vis=249 pos=1489,1649,-222 yaw=237 audio=running lock=0
+SystemTime { tv_sec: 1792437152, tv_nsec: 483924000 } state frames=600 vis=249 pos=1489,1649,-222 yaw=237 audio=running lock=0
+SystemTime { tv_sec: 1792437154, tv_nsec: 80847000 } state frames=720 vis=250 pos=1489,1649,-222 yaw=289 audio=running lock=0
+SystemTime { tv_sec: 1792437155, tv_nsec: 917994000 } state frames=840 vis=249 pos=1489,1649,-222 yaw=246 audio=running lock=0
+SystemTime { tv_sec: 1792437157, tv_nsec: 437095000 } state frames=960 vis=249 pos=1489,1649,-222 yaw=270 audio=running lock=0
+SystemTime { tv_sec: 1792437158, tv_nsec: 765531000 } state frames=1080 vis=249 pos=1489,1649,-222 yaw=235 audio=running lock=0
+SystemTime { tv_sec: 1792437160, tv_nsec: 152080000 } state frames=1200 vis=249 pos=1375,1533,-214 yaw=254 audio=running lock=0
+SystemTime { tv_sec: 1792437161, tv_nsec: 499529000 } state frames=1320 vis=248 pos=1370,1439,-208 yaw=267 audio=running lock=0
+SystemTime { tv_sec: 1792437162, tv_nsec: 717849000 } state frames=1440 vis=248 pos=1366,1373,-192 yaw=267 audio=running lock=0
+SystemTime { tv_sec: 1792437163, tv_nsec: 860675000 } state frames=1560 vis=248 pos=1366,1373,-192 yaw=267 audio=running lock=0

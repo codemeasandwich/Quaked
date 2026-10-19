@@ -10,7 +10,12 @@ use objc2::runtime::{AnyClass, AnyObject, Bool, Imp, Sel};
 use objc2::{msg_send, sel};
 use std::ffi::c_void;
 
-unsafe extern "C-unwind" fn did_request(_this: *mut AnyObject, _cmd: Sel, _webview: *mut AnyObject, handler: *mut Block<dyn Fn(Bool)>) {
+unsafe extern "C-unwind" fn did_request(
+    _this: *mut AnyObject,
+    _cmd: Sel,
+    _webview: *mut AnyObject,
+    handler: *mut Block<dyn Fn(Bool)>,
+) {
     if let Some(handler) = unsafe { handler.as_ref() } {
         handler.call((Bool::YES,));
     }
@@ -46,11 +51,27 @@ pub fn allow(webview: *mut c_void) -> bool {
         }
         let class = (*delegate).class() as *const AnyClass as *mut AnyClass;
         let selector = sel!(_webViewDidRequestPointerLock:completionHandler:);
-        let imp: Imp = std::mem::transmute::<unsafe extern "C-unwind" fn(*mut AnyObject, Sel, *mut AnyObject, *mut Block<dyn Fn(Bool)>), Imp>(did_request);
+        let imp: Imp = std::mem::transmute::<
+            unsafe extern "C-unwind" fn(
+                *mut AnyObject,
+                Sel,
+                *mut AnyObject,
+                *mut Block<dyn Fn(Bool)>,
+            ),
+            Imp,
+        >(did_request);
         // false when the class already has it (a second window): it is still allowed.
         let _ = objc2::ffi::class_addMethod(class, selector, imp, c"v@:@@?".as_ptr());
-        let older: Imp = std::mem::transmute::<unsafe extern "C-unwind" fn(*mut AnyObject, Sel, *mut AnyObject), Imp>(request);
-        let _ = objc2::ffi::class_addMethod(class, sel!(_webViewRequestPointerLock:), older, c"v@:@".as_ptr());
+        let older: Imp = std::mem::transmute::<
+            unsafe extern "C-unwind" fn(*mut AnyObject, Sel, *mut AnyObject),
+            Imp,
+        >(request);
+        let _ = objc2::ffi::class_addMethod(
+            class,
+            sel!(_webViewRequestPointerLock:),
+            older,
+            c"v@:@".as_ptr(),
+        );
         let _: () = msg_send![webview, setUIDelegate: delegate];
         let answers: Bool = msg_send![delegate, respondsToSelector: selector];
         answers.as_bool()

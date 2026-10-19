@@ -17,6 +17,12 @@
 import { Sys_Error } from '../common/sys.js';
 import { GL_MakeAliasModelDisplayLists as GL_MakeAliasModelDisplayLists_mesh } from './gl_mesh.js';
 import { ALIAS_VERSION, ALIAS_SINGLE, ALIAS_SKIN_SINGLE, ALIAS_BASE_SIZE_RATIO, MAX_LBM_HEIGHT, mod_alias, MAX_SKINS, MAXALIASVERTS, MAXALIASTRIS, stvert_t, mtriangle_t, maliasframedesc_t, aliashdr_t } from './gl_model_types.js';
+
+// Portal of Praevus uses Raven's new alias format (`RAPO`, version 50) with per-corner texture indices. The geometry,
+// skins and frames are the same as MDL; the per-corner st index is ignored by this renderer, which uses the vertex's
+// base st coordinate (correct when st_verts == verts, the supplied Portal models' case).
+const RAPOLYHEADER = 0x4f504152; // 'RAPO' little-endian
+const ALIAS_NEWVERSION = 50;
 import { loadmodel, GL_LoadTexture, readString } from './gl_model_common.js';
 
 // Alias model globals
@@ -338,9 +344,10 @@ export function Mod_LoadAliasModel( mod, buffer ) {
 	const bytes = new Uint8Array( buffer );
 
 	// mdl_t header
+	const ident = view.getUint32( 0, true ), newModel = ident === RAPOLYHEADER;
 	const version = view.getInt32( 4, true );
-	if ( version !== ALIAS_VERSION )
-		Sys_Error( mod.name + ' has wrong version number (' + version + ' should be ' + ALIAS_VERSION + ')' );
+	if ( newModel ? version !== ALIAS_NEWVERSION : version !== ALIAS_VERSION )
+		Sys_Error( mod.name + ' has wrong version number (' + version + ' should be ' + ( newModel ? ALIAS_NEWVERSION : ALIAS_VERSION ) + ')' );
 
  // Alias identity belongs to the exact loaded bytes, not its filename or a
  // future pack lookup. Copy once before asynchronous hashing; native decode,
@@ -353,7 +360,8 @@ export function Mod_LoadAliasModel( mod, buffer ) {
  }).then(hash=>{identity.sha256=Array.from(new Uint8Array(hash),v=>v.toString(16).padStart(2,'0')).join('');identity.state='ready';return identity.sha256;})
  .catch(error=>{identity.state='unavailable';identity.error=String(error.message||error);return null;});
 
-	const numframes = view.getInt32( 68, true ); // offset of numframes in mdl_t
+	const numframes = view.getInt32( 68, true ); // offset of numframes in mdl_t/newmdl_t
+	const numStVerts = newModel ? view.getInt32( 84, true ) : view.getInt32( 60, true );
 
 	// Allocate header
 	pheader = new aliashdr_t();
@@ -431,7 +439,7 @@ export function Mod_LoadAliasModel( mod, buffer ) {
 	//
 	// load the skins
 	//
-	const SIZEOF_MDL = 84;
+	const SIZEOF_MDL = newModel ? 88 : 84;
 	let pos = Mod_LoadAllSkins( buffer, pheader.numskins, SIZEOF_MDL );
 
 	//
@@ -439,7 +447,8 @@ export function Mod_LoadAliasModel( mod, buffer ) {
 	// stvert_t: int onseam, int s, int t = 12 bytes
 	//
 	const SIZEOF_STVERT = 12;
-	for ( let i = 0; i < pheader.numverts; i ++ ) {
+	if ( numStVerts <= 0 || numStVerts > MAXALIASVERTS ) Sys_Error( mod.name + ' has invalid ST vertices' );
+	for ( let i = 0; i < numStVerts; i ++ ) {
 
 		const sv = new DataView( buffer, pos + i * SIZEOF_STVERT );
 		stverts[ i ].onseam = sv.getInt32( 0, true );
@@ -448,7 +457,7 @@ export function Mod_LoadAliasModel( mod, buffer ) {
 
 	}
 
-	pos += pheader.numverts * SIZEOF_STVERT;
+	pos += numStVerts * SIZEOF_STVERT;
 
 	//
 	// load triangle lists
@@ -459,8 +468,12 @@ export function Mod_LoadAliasModel( mod, buffer ) {
 
 		const tv = new DataView( buffer, pos + i * SIZEOF_DTRIANGLE );
 		triangles[ i ].facesfront = tv.getInt32( 0, true );
-		for ( let j = 0; j < 3; j ++ )
-			triangles[ i ].vertindex[ j ] = tv.getInt32( 4 + j * 4, true );
+		for ( let j = 0; j < 3; j ++ ) {
+
+			triangles[ i ].vertindex[ j ] = newModel ? tv.getUint16( 4 + j * 2, true ) : tv.getInt32( 4 + j * 4, true );
+			triangles[ i ].stindex[ j ] = newModel ? tv.getUint16( 10 + j * 2, true ) : triangles[ i ].vertindex[ j ];
+
+		}
 
 	}
 

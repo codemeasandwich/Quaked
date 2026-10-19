@@ -1,0 +1,78 @@
+{
+  "purpose": "Read-only audit of the Hexen II external repository references pinned by the approved plan. Metadata only; no upstream source is redistributed.",
+  "date": "2026-10-19",
+  "method": "git clone --filter=blob:none of each reference, then git show/ls-tree at the pinned commit; no build and no runtime use. Clones were temporary (/tmp/h2-refs) and are not repository dependencies.",
+  "references": [
+    {
+      "repository": "KoMiKoZa/jsHexen2-progs",
+      "pin": "621f4a9b0f0ff776610ecc4f459aa2b3c0bcdcdf",
+      "observed": {
+        "topLevel": ["portals/", "README.md", "LICENSE", ".gitignore"],
+        "portalsFiles": 138,
+        "changelogRows": 49,
+        "planRecordsMapped": "F01-F49 one-to-one",
+        "fixCommitRefsResolved": 50
+      },
+      "caveat": "This pin contains the expansion (portals) source only; base gamecode/hc/h2 comes from uhexen2."
+    },
+    {
+      "repository": "sezero/uhexen2",
+      "pin": "475c048b1c8b0806b8585f5cd2715f3ad60bf393",
+      "observed": {
+        "baseGamecodeFiles": 107,
+        "baseGamecodePath": "gamecode/hc/h2",
+        "portalsPresent": true,
+        "hccPath": "utils/hcc",
+        "protocolConstants": { "raven111": 18, "raven112": 19, "uqe113": 20 },
+        "demoSignature": { "entries": 797, "directoryCrc": 22780, "bytes": 27750257, "md5": "8e598d82bf53436ed7a0e133aa4b9f09" }
+      }
+    },
+    {
+      "repository": "fourks/Hexen2",
+      "pin": "eac5fd50832ce2509226761b3b1a387c468e7a50",
+      "observed": {
+        "H2MPHcodeFiles": 139,
+        "H2WPresent": true,
+        "eula": "EULA - Source Code.doc",
+        "gnu": "gnu.txt"
+      }
+    },
+    {
+      "repository": "janisl/jlquake",
+      "pin": "69498ea1ea09482b096f06ab7b433e715b7802a8",
+      "observed": {
+        "hexen2ClientParser": "source/client/game/hexen2/parse.cpp",
+        "hexenWorldPresent": true
+      },
+      "note": "Comparison reference only."
+    },
+    {
+      "repository": "jacqueskrige/uqe-quake",
+      "pin": "05e1285887683cb235a1a29cb625d72df2a0bcf2",
+      "observed": { "engineCodeCHFiles": 110 }
+    },
+    {
+      "repository": "jacqueskrige/uqe-hexen-ii",
+      "pin": "333c0b30c410e9416f9f26d19eba3eb9e7e1fc52",
+      "observed": {
+        "engineCodeCHFiles": 114,
+        "commonRelativeNames": 107,
+        "identicalAfterCrLfNormalisation": 5,
+        "identicalFiles": ["engine/code/glext.h", "engine/code/unzip.c", "engine/code/unzip.h", "engine/code/vid_gamma.c", "engine/code/wglext.h"],
+        "protocolVersionValues": { "raven": 19, "uqe": 20 },
+        "citationsChecked": {
+          "pr_exec.c": ["unsigned data operands at 186-188", "encoded array bounds at 457-478", "signed branches at 485-497", "CALL1/CALL2+ parameter copies at 500-510"],
+          "gl_model.c": ["RAPO dispatch at 277", "Mod_LoadAliasModelNew at 1890", "invalid-BSP sentinel at 1473-1483"],
+          "bspfile.h": "MAX_MAP_HULLS 8"
+        }
+      }
+    }
+  ],
+  "fixApplicabilityCaveat": "F17/F18 touch newai.hc and shield.hc; F47 touches flameorb.hc and lightwp.hc. Those files are absent from the uhexen2 base gamecode/hc/h2 tree, so their requiredProfiles must be split into shared and expansion-only code before G3.",
+  "notPerformed": [
+    "No hcc build, deterministic progs.dat rebuild or executable hash was produced.",
+    "No native oracle/golden fixture was built.",
+    "No upstream repository was added as a runtime dependency."
+  ],
+  "limits": "The clones were temporary and may not survive; this record retains the pins and observed facts, not the source."
+}

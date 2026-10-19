@@ -18,12 +18,13 @@ import { Con_Printf } from '../common/console.js';
 import { MSG_WriteByte, MSG_WriteString, MSG_WriteShort, MSG_WriteCoord, MSG_WriteAngle, MSG_WriteLong, MSG_WriteChar } from '../common/common.js';
 import { MAX_LIGHTSTYLES } from '../common/quakedef.js';
 import { svc_print, svc_stufftext } from '../common/protocol.js';
-import { anglemod } from '../common/mathlib.js';
+import { anglemod, AngleVectors } from '../common/mathlib.js';
 import { Hexen2_EffectParams, Hexen2_WriteStartEffect, Hexen2_WriteEndEffect } from '../common/hexen2_effectwire.js';
 import { SV_MoveToGoal } from '../server/sv_move.js';
-import { PF_checkclient, PF_aim, PF_findradius } from '../server/pr_cmds.js';
-import { SV_StartSound, SV_StartParticle } from '../server/sv_phys.js';
+import { PF_checkclient, PF_aim, PF_findradius, PF_nextent } from '../server/pr_cmds.js';
+import { SV_StartSound, SV_StartParticle, SV_StopSound } from '../server/sv_phys.js';
 import { Hexen2_RegisterBuiltins } from './hexen2_cmds.js';
+import { Hexen2_NormalizeMapName } from '../common/hexen2_save.js';
 
 function varString( first ) {
 
@@ -288,7 +289,7 @@ function starteffect() {
 	}
 	const message = Hexen2_WriteStartEffect( { index, type, params } );
 	if ( !message.ok ) PR_RunError( 'starteffect: %s', message.reason );
-	sv.hexenEffects[ index ] = { type, time: sv.time, expire: 0 };
+	sv.hexenEffects[ index ] = { type, time: sv.time, expire: 0, params };
 	G_FLOAT_SET( OFS_RETURN, index );
 	const target = sv.reliable_datagram;
 	// append the encoded message directly at the buffer tail
@@ -411,6 +412,90 @@ function remove() {
 
 }
 
+// #70 changelevel(level, spot): record the native transition target. The local page owns the map reload; the builtin
+// never rewrites server state mid-physics. A second call in the same level is ignored, as the native PF_changelevel.
+function changelevel() {
+
+	if ( svs.changelevel_issued ) return;
+	const level = Hexen2_NormalizeMapName( G_STRING( OFS_PARM0 ) );
+	if ( level === '' ) PR_RunError( 'changelevel: no level' );
+	sv.nextmap = { level, spot: String( G_STRING( OFS_PARM1 ) ?? '' ) };
+	svs.changelevel_issued = true;
+
+}
+
+// #5 lightstylestatic(style, value): the native Portal light style is a fixed letter string `a`..`z`; the server keeps
+// the same `sv.lightstyles` a normal lightstyle uses.
+function lightstylestatic() {
+
+	const style = G_FLOAT( OFS_PARM0 ) | 0;
+	let value = G_FLOAT( OFS_PARM1 ) | 0;
+	if ( style < 0 || style >= MAX_LIGHTSTYLES ) PR_RunError( 'lightstylestatic: bad style %i', style );
+	value = Math.max( 0, Math.min( 25, value ) );
+	sv.lightstyles[ style ] = String.fromCharCode( 97 + value );
+
+}
+
+// #99 matchAngleToSlope(slope, actor): Portal's wall-walking monsters pitch/roll onto a plane. This is the native
+// PF_matchAngleToSlope body (the slope vector replaces PF_vectoangles' temp input).
+function matchAngleToSlope() {
+
+	const slope = G_VECTOR( OFS_PARM0 ), actor = G_EDICT( OFS_PARM1 );
+	const oldForward = new Float32Array( 3 ), oldRight = new Float32Array( 3 ), up = new Float32Array( 3 );
+	AngleVectors( actor.v.angles, oldForward, oldRight, up );
+	let yaw = 0, pitch = 0;
+	if ( ! ( slope[ 0 ] === 0 && slope[ 1 ] === 0 ) ) {
+
+		yaw = Math.trunc( Math.atan2( slope[ 1 ], slope[ 0 ] ) / ( Math.PI / 180 ) );
+		if ( yaw < 0 ) yaw += 360;
+
+	}
+	pitch = - Math.trunc( Math.asin( Math.max( - 1, Math.min( 1, slope[ 2 ] / Math.hypot( slope[ 0 ], slope[ 1 ], slope[ 2 ] ) ) ) ) / ( Math.PI / 180 ) ) - 90;
+	const forward = new Float32Array( 3 ), right = new Float32Array( 3 ), up2 = new Float32Array( 3 );
+	AngleVectors( new Float32Array( [ 0, yaw, 0 ] ), forward, right, up2 );
+	const mod = forward[ 0 ] * oldRight[ 0 ] + forward[ 1 ] * oldRight[ 1 ] + forward[ 2 ] * oldRight[ 2 ] < 0 ? 1 : - 1;
+	const dot = forward[ 0 ] * oldForward[ 0 ] + forward[ 1 ] * oldForward[ 1 ] + forward[ 2 ] * oldForward[ 2 ];
+	actor.v.angles[ 0 ] = dot * pitch;
+	actor.v.angles[ 2 ] = ( 1 - Math.abs( dot ) ) * pitch * mod;
+
+}
+
+// #106 stopsound(entity, channel): drop a local entity channel; the page's mixer implements it.
+function stopSound() {
+
+	const entity = G_EDICT( OFS_PARM0 ), channel = G_FLOAT( OFS_PARM1 ) | 0;
+	if ( channel < 0 || channel > 7 ) PR_HostError( 'stopsound: channel = ' + channel );
+	if ( typeof SV_StopSound === 'function' ) SV_StopSound( entity, channel );
+
+}
+
+// #100 updateinfoplaque(index, mode): the Portal objective bitmask. The HUD objective pages are not drawn yet, but the
+// native toggle semantics are kept so gamecode can run.
+function updateInfoPlaque() {
+
+	let index = G_FLOAT( OFS_PARM0 ) | 0;
+	const mode = G_FLOAT( OFS_PARM1 ) | 0;
+	if ( index < 0 || index >= 64 ) PR_RunError( 'updateinfoplaque: bad objective index %i', index );
+	const second = index >= 32;
+	if ( second ) index -= 32;
+	const bit = 1 << index;
+	sv.info_mask = sv.info_mask | 0; sv.info_mask2 = sv.info_mask2 | 0;
+	const use = second ? sv.info_mask2 : sv.info_mask;
+	if ( ( ( mode & 1 ) && ( use & bit ) ) || ( ( mode & 2 ) && ! ( use & bit ) ) ) return;
+	if ( second ) sv.info_mask2 = use ^ bit; else sv.info_mask = use ^ bit;
+
+}
+
+// #71 lightstylevalue(style): the native fixed light letter's numeric value (a=0..z=25).
+function lightstylevalue() {
+
+	const style = G_FLOAT( OFS_PARM0 ) | 0;
+	if ( style < 0 || style >= MAX_LIGHTSTYLES ) PR_RunError( 'lightstylevalue: bad style %i', style );
+	const text = sv.lightstyles?.[ style ] ?? 'a';
+	G_FLOAT_SET( OFS_RETURN, Math.max( 0, Math.min( 25, ( text.charCodeAt( 0 ) | 0 ) - 97 ) ) );
+
+}
+
 // #31 eprint(entity): the entity dump
 function eprint() { ED_Print( G_EDICT( OFS_PARM0 ) ); }
 
@@ -419,7 +504,7 @@ function breakBuiltin() { PR_RunError( 'break statement' ); }
 
 /** The server builtins this module installs into the Hexen II dispatcher. */
 export const HEXEN2_SERVER_BUILTINS = Object.freeze( {
-	6: breakBuiltin, 8: sound, 10: errorBuiltin, 11: objerror, 14: spawn, 15: remove, 17: PF_checkclient, 18: find, 21: stuffcmd, 52: writeByte, 53: writeChar, 54: writeShort, 55: writeLong, 56: writeAngle, 57: writeCoord, 58: writeString, 59: writeEntity, 88: starteffect, 89: endeffect, 93: spawntemp, 22: PF_findradius, 23: bprint, 24: sprint, 31: eprint, 35: lightstyle, 44: PF_aim, 48: particle, 49: changeyaw, 63: advanceframe, 65: rewindframe, 66: setclass, 67: SV_MoveToGoal, 69: makestatic, 74: ambientsound, 83: advanceweaponframe, 86: particle4
+	5: lightstylestatic, 6: breakBuiltin, 8: sound, 10: errorBuiltin, 11: objerror, 14: spawn, 15: remove, 17: PF_checkclient, 18: find, 21: stuffcmd, 52: writeByte, 53: writeChar, 54: writeShort, 55: writeLong, 56: writeAngle, 57: writeCoord, 58: writeString, 59: writeEntity, 88: starteffect, 89: endeffect, 93: spawntemp, 22: PF_findradius, 23: bprint, 24: sprint, 31: eprint, 35: lightstyle, 44: PF_aim, 48: particle, 49: changeyaw, 63: advanceframe, 65: rewindframe, 66: setclass, 67: SV_MoveToGoal, 69: makestatic, 70: changelevel, 47: PF_nextent, 71: lightstylevalue, 74: ambientsound, 83: advanceweaponframe, 86: particle4, 99: matchAngleToSlope, 100: updateInfoPlaque, 106: stopSound
 } );
 
 Hexen2_RegisterBuiltins( HEXEN2_SERVER_BUILTINS );

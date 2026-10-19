@@ -25,6 +25,7 @@
  */
 
 import { COM_PackHeader, COM_PackEntries } from './pak.js';
+import { Hexen2_PakDirectorySignature, Hexen2_DemoSignatureProblems, Hexen2_ReadProgHeaderSummary } from './hexen2_filesystem.js';
 import {Distribution_Profile,AssetFetch} from '../../platform/distribution.js';
 import { Cmd_AddCommand } from './cmd.js';
 import { Con_Printf } from './console.js';
@@ -194,7 +195,20 @@ export async function GameCatalogue_ProbePack( url, options = {} ) {
 		else {
 
 			const entries = COM_PackEntries( dir.bytes, header.count, size );
-			result = entries.ok ? { state: 'valid', size, files: entries.files.map( f => f.name ) } : { state: 'invalid', reason: entries.reason, size };
+			if ( entries.ok ) {
+
+				try {
+
+					const signature = Hexen2_PakDirectorySignature( dir.bytes, header.count, size );
+					result = { state: 'valid', size, files: entries.files.map( f => f.name ), signature };
+
+				} catch ( error ) {
+
+					result = { state: 'invalid', reason: 'directory signature: ' + String( error?.message ?? error ), size };
+
+				}
+
+			} else result = { state: 'invalid', reason: entries.reason, size };
 
 		}
 
@@ -212,7 +226,7 @@ const MISSION_PACKS = new Set( [ 'hipnotic', 'rogue' ] );
 const EPISODES = new Set( [ 'dopa', 'mg1' ] ); // mg1 on the large-map protocol (card [34f])
 
 // What a found game's files show it to be, and whether that is evidence enough to call it playable.
-function assess( game, files, byId ) {
+function assess( game, files, byId, entry ) {
 
 	const has = name => files.has( name );
 	if ( game.kind === 'shareware' ) {
@@ -230,8 +244,7 @@ function assess( game, files, byId ) {
 
 	}
 	// Hexen II: the supplied Installed gamecode (loose progs.dat), its palette and demo1 are the Paladin slice; the
-	// Portal expansion needs its own gamecode and a Keep map on top of a playable base. The genuine demo is validated
-	// but not advertised: its fixture acquisition and hash check are still an open plan gate.
+	// Portal expansion needs its own gamecode and a Keep map on top of a playable base.
 	if ( game.kind === 'hexen2' ) {
 
 		const missing = [ 'progs.dat', 'gfx/palette.lmp', 'maps/demo1.bsp' ].filter( name => ! has( name ) );
@@ -239,10 +252,17 @@ function assess( game, files, byId ) {
 		return { playable: true, reason: 'Hexen II: its Installed gamecode, palette and demo1' };
 
 	}
+	// The genuine Nov 1997 demo is a single pak0.pak with the pinned entry count, CCITT directory CRC and size, plus a
+	// loose version-6 program on the base layout. A folder that merely looks like a demo is refused with the mismatch.
 	if ( game.kind === 'hexen2-demo' ) {
 
-		const ok = has( 'progs.dat' ) && has( 'maps/demo1.bsp' );
-		return { playable: false, reason: ok ? 'found, but the genuine demo fixture and its archive hash are not yet verified' : 'its gamecode or demo map is missing' };
+		if ( ! has( 'progs.dat' ) || ! has( 'maps/demo1.bsp' ) ) return { playable: false, reason: 'its gamecode or demo map is missing' };
+		const problems = Hexen2_DemoSignatureProblems( entry.packs[ 0 ]?.signature );
+		if ( problems.length > 0 ) return { playable: false, reason: `archive signature mismatch: ${problems.join( ', ' )}` };
+		if ( ! entry.progsHeader ) return { playable: false, reason: 'the demo archive has no readable version-6 gamecode header' };
+		if ( entry.progsHeader.version !== 6 || entry.progsHeader.layout !== 'hexen2-base' )
+			return { playable: false, reason: `unsupported demo gamecode (version ${entry.progsHeader.version}, layout ${entry.progsHeader.layout})` };
+		return { playable: true, reason: 'the genuine Nov 1997 demo archive and its version-6 base-layout gamecode' };
 
 	}
 	const base = byId.get( game.base );
@@ -399,6 +419,16 @@ async function probeLoose( folder, base, options ) {
 
 }
 
+// The first 60 bytes of a game folder's loose progs.dat, checked as a Hexen II program identity (version/layout). Only
+// an exact range counts: a server that ignores ranges, or answers a missing path with a page, yields no header.
+async function probeProgHeader( folder, base, options ) {
+
+	const got = await rangedGet( options.fetch ?? globalThis.fetch, new URL( folder.split( '/' ).map( encodeURIComponent ).join( '/' ) + '/progs.dat', base ).href, 0, 60, options.timeoutMs ?? GAME_CATALOGUE_LIMITS.timeoutMs );
+	if ( got.response?.status !== 206 || ! got.exact || got.bytes.length !== 60 ) return null;
+	try { return Hexen2_ReadProgHeaderSummary( got.bytes ); } catch { return null; }
+
+}
+
 async function probeGame( game, base, options ) {
 
 	const entry = { id: game.id, name: game.name, kind: game.kind, folder: null, packs: [], present: false, validated: false, playable: false, reason: '', fileCount: 0 };
@@ -408,11 +438,14 @@ async function probeGame( game, base, options ) {
 
 		const packs = [];
 		const maxPacks = game.maxPacks ?? GAME_CATALOGUE_LIMITS.packs;
+		// Portal of Praevus ships only its add-on pak3 beside a loose program: pak0/1 come from its base game, so a
+		// missing pak0 must not stop the probe before pak3.
+		const portal = game.kind === 'hexen2-portals';
 		for ( let n = 0; n < maxPacks; n ++ ) {
 
 			const url = new URL( folder.split( '/' ).map( encodeURIComponent ).join( '/' ) + `/pak${n}.pak`, base ).href;
 			const probe = await GameCatalogue_ProbePack( url, options );
-			if ( probe.state === 'absent' ) break;
+			if ( probe.state === 'absent' ) { if ( portal ) continue; break; }
 			packs.push( { name: `pak${n}.pak`, ...probe } );
 			if ( probe.state === 'error' ) break;
 
@@ -433,6 +466,7 @@ async function probeGame( game, base, options ) {
 		entry.validated = packs.every( p => p.state === 'valid' );
 		for ( const p of packs ) for ( const f of p.files ?? [] ) files.add( f );
 		if ( looseFiles ) { entry.loose = loose; for ( const name of loose ) files.add( name ); }
+		if ( game.kind === 'hexen2-demo' && loose.includes( 'progs.dat' ) ) entry.progsHeader = await probeProgHeader( folder, base, options );
 		entry.fileCount = files.size;
 		break;
 
@@ -459,7 +493,7 @@ async function refresh( options ) {
 		if ( entry.present && ! entry.validated ) entry.reason = 'found, not validated: ' + ( entry.packs.find( p => p.state !== 'valid' )?.reason ?? '' );
 		// the base game is judged on its pak0.pak alone: the pack the start mounts (an original release's pak1.pak,
 		// with Episodes 2 to 4, is not read yet: card [34c])
-		else if ( entry.validated ) Object.assign( entry, assess( game, game.kind === 'base' && !options.allPacks ? new Set( entry.packs[ 0 ]?.files ?? [] ) : files, byId ) );
+		else if ( entry.validated ) Object.assign( entry, assess( game, game.kind === 'base' && !options.allPacks ? new Set( entry.packs[ 0 ]?.files ?? [] ) : files, byId, entry ) );
 		else if ( ! game.placeholder ) entry.reason = 'not installed';
 		if ( entry.beyondLimit ) { entry.playable = false; entry.reason += ` (it has more than ${GAME_CATALOGUE_LIMITS.packs} packs; pak${GAME_CATALOGUE_LIMITS.packs}.pak and later were not read)`; }
 		games.push( entry ); byId.set( game.id, entry );

@@ -5,7 +5,11 @@ mod packs;
 #[cfg(target_os = "macos")]
 mod pointer_lock;
 use library::{Library, Settings};
-use std::{fs, path::{Path, PathBuf}, sync::Mutex};
+use std::{
+    fs,
+    path::{Path, PathBuf},
+    sync::Mutex,
+};
 use tauri::{Emitter, Manager};
 use tauri_plugin_dialog::DialogExt;
 
@@ -67,7 +71,12 @@ fn data_cache(app: &tauri::AppHandle) -> Result<PathBuf, String> {
         fs::create_dir_all(&path).map_err(|e| e.to_string())?;
         return Ok(path);
     }
-    let path = app.path().home_dir().map_err(|e| e.to_string())?.join("quaked").join(".data");
+    let path = app
+        .path()
+        .home_dir()
+        .map_err(|e| e.to_string())?
+        .join("quaked")
+        .join(".data");
     fs::create_dir_all(&path).map_err(|e| e.to_string())?;
     Ok(path)
 }
@@ -119,11 +128,18 @@ fn copy_dir(from: &Path, to: &Path) -> std::io::Result<()> {
 /// upgrade does not re-download data the user already has. A rename is used when possible.
 fn migrate_old_cache(app: &tauri::AppHandle, cache: &Path) -> Result<(), String> {
     let new = cache.join("assets");
-    let has_new = fs::read_dir(&new).map(|mut dir| dir.next().is_some()).unwrap_or(false);
+    let has_new = fs::read_dir(&new)
+        .map(|mut dir| dir.next().is_some())
+        .unwrap_or(false);
     if has_new {
         return Ok(());
     }
-    let old = app.path().app_data_dir().map_err(|e| e.to_string())?.join("packs").join("assets");
+    let old = app
+        .path()
+        .app_data_dir()
+        .map_err(|e| e.to_string())?
+        .join("packs")
+        .join("assets");
     if !old.is_dir() {
         return Ok(());
     }
@@ -141,7 +157,11 @@ fn migrate_old_cache(app: &tauri::AppHandle, cache: &Path) -> Result<(), String>
 /// exists, downloaded into `~/quaked/.data/` otherwise, and kept there for later builds and
 /// for the HTML copy. Returns the folder of unpacked assets.
 #[tauri::command]
-async fn packs_ensure(app: tauri::AppHandle, base: String, packs: Vec<packs::Pack>) -> Result<PathBuf, String> {
+async fn packs_ensure(
+    app: tauri::AppHandle,
+    base: String,
+    packs: Vec<packs::Pack>,
+) -> Result<PathBuf, String> {
     let cache = data_cache(&app)?;
     migrate_old_cache(&app, &cache)?;
     let source = same_dir_data().unwrap_or_else(|| cache.clone());
@@ -226,11 +246,28 @@ fn refresh(app: &tauri::AppHandle) -> Result<Library, String> {
 /// Screen capture and UI automation are unavailable on the trial host, so this is the readable trace.
 /// Trial only: an edition id from `HEXEN2_TRIAL_GAME`, so a packaged Hexen run can be started without UI automation.
 #[tauri::command]
-fn trial_game() -> Option<String> { std::env::var( "HEXEN2_TRIAL_GAME" ).ok() }
+fn trial_game() -> Option<String> {
+    std::env::var("HEXEN2_TRIAL_GAME").ok()
+}
 
 /// Trial only: scripted look/move/attack input for a packaged run (`HEXEN2_TRIAL_AUTOPLAY=1`).
 #[tauri::command]
-fn trial_autoplay() -> bool { std::env::var( "HEXEN2_TRIAL_AUTOPLAY" ).as_deref() == Ok( "1" ) }
+fn trial_autoplay() -> bool {
+    std::env::var("HEXEN2_TRIAL_AUTOPLAY").as_deref() == Ok("1")
+}
+
+/// Trial only: run the packaged pause-menu Save/Load probe.
+#[tauri::command]
+fn trial_save() -> bool {
+    std::env::var("HEXEN2_TRIAL_SAVE").as_deref() == Ok("1")
+}
+
+/// Trial only: the base class an autostarted packaged run uses (`HEXEN2_TRIAL_CLASS`), so all four can be exercised
+/// without UI automation. The frontend still validates it through the normal start gate.
+#[tauri::command]
+fn trial_class() -> Option<String> {
+    std::env::var("HEXEN2_TRIAL_CLASS").ok()
+}
 
 #[tauri::command]
 fn hexen_log(app: tauri::AppHandle, text: String) {
@@ -238,7 +275,11 @@ fn hexen_log(app: tauri::AppHandle, text: String) {
     if let Some(dir) = dir {
         let _ = std::fs::create_dir_all(&dir);
         let path = dir.join("hexen2-trace.log");
-        if let Ok(mut file) = std::fs::OpenOptions::new().create(true).append(true).open(path) {
+        if let Ok(mut file) = std::fs::OpenOptions::new()
+            .create(true)
+            .append(true)
+            .open(path)
+        {
             use std::io::Write;
             let _ = writeln!(file, "{:?} {}", std::time::SystemTime::now(), text);
         }
@@ -300,6 +341,8 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             trial_game,
             trial_autoplay,
+            trial_class,
+            trial_save,
             hexen_log,
             library_scan,
             library_read,
@@ -339,7 +382,9 @@ fn main() {
             if let Some(window) = app.get_webview_window("main") {
                 let hooked = window.with_webview(|webview| {
                     if !pointer_lock::allow(webview.inner()) {
-                        eprintln!("Quaked: pointer lock could not be enabled; mouse look stays off");
+                        eprintln!(
+                            "Quaked: pointer lock could not be enabled; mouse look stays off"
+                        );
                     }
                 });
                 // Mouse look is not worth refusing to start over.

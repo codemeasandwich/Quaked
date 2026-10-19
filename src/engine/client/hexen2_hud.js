@@ -64,6 +64,7 @@ export function Hexen2_ReadHud( player, stringAt ) {
 		timed: Object.freeze( timed ),
 		weaponModel: typeof v.weaponmodel === 'number' ? v.weaponmodel : 0,
 		weaponFrame: number( v.weaponframe ),
+		flags: number( v.flags ),
 		dead: number( v.health ) <= 0,
 		onGround: ( ( v.flags | 0 ) & 8 ) !== 0
 	} );

@@ -45,12 +45,37 @@ git worktree remove --force /tmp/h2-red-<name>
   (the gamecode saw `coop = 0`).
 - Current tree: passes.
 
+## C4 — control sound origin for brush doors
+
+- Fix under test: `Hexen2_SoundOrigin` returns the model/entity bounds centre when a brush entity reports origin 0.
+- Reversal: return the raw origin (skip the bounds-centre fallback).
+- Test: `hexen2_native_ui_test.js` (current uncommitted tree).
+- Retained failure: `a brush door is heard at its bounds centre: [0,0,0] != [528,0,166]`.
+- Current tree: passes. This is a **retroactive** control: the helper and its test were added code-first in the same
+  increment, so it is not a pre-code RED.
+
+## C5 — control local item rotation
+
+- Fix under test: `Hexen2_ItemRotation` spins `EF_ROTATE` items at 100 deg/s and leaves other items still.
+- Reversal: return `null` unconditionally.
+- Test: `hexen2_native_ui_test.js` (current uncommitted tree).
+- Retained failure: `the MDL effect bit spins at 100 deg/s: null != [0,10,0]`.
+- Current tree: passes. Retroactive, as C4.
+
+## C6 — attempted queue-drain control (not counted)
+
+- Attempt: remove `queue.shift()` from `Hexen2_TakeSounds` to prove the "queue is drained" assertion.
+- Result: the reversal made the drain loop forever and the suite crashed without a bounded assertion
+  (`TOTAL 0/0 passed`), so it is **not** a valid RED control and is recorded only as a failed method. The restored
+  tree passes 2/2.
+
 ## Limits (do not overclaim)
 
-- These controls cover three **behavioural fixes** that could be reversed in isolation. They do not retroactively
-  create a pre-code RED for the **new presentation modules** (HUD data, status-bar layout, inventory, audio bridge,
-  view binding, mount): no prior public interface existed against which to assert a baseline failure. Under plan
-  section 8 those modules remain **code-first**, and that obligation is not waived by this record.
+- C1–C3 cover three **behavioural fixes** that could be reversed in isolation. C4–C5 are retroactive controls for
+  helpers introduced code-first in the 19 October increment; they do not create a pre-code RED. The presentation
+  modules (HUD data, status-bar layout, inventory, audio bridge, view binding, mount, page sound queue/use/rotation)
+  remain **code-first** where no prior public interface existed; that obligation is not waived by this record.
 - A missing-module import failure was deliberately not used as a RED; plan section 8 excludes it.
-- The three controls were executed at `737e9730`; later commits do not change the code paths they reverse except where
-  the unaffected suites still pass (reported with every all-suite run).
+- C1–C3 were executed at `737e9730`; C4–C5 in the current dirty tree (HEAD `7f5c01b0` plus the delta worktree). Later
+  commits do not change the code paths they reverse except where the unaffected suites still pass (reported with every
+  all-suite run).

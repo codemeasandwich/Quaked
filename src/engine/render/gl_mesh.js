@@ -55,6 +55,7 @@ let allverts = 0;
 let alltris = 0;
 
 const stripverts = new Int32Array( 128 );
+const stripst = new Int32Array( 128 ); // the texture index paired with each strip vertex
 const striptris = new Int32Array( 128 );
 let stripcount = 0;
 
@@ -80,6 +81,9 @@ function StripLength( starttri, startv ) {
 	stripverts[ 0 ] = last.vertindex[ ( startv ) % 3 ];
 	stripverts[ 1 ] = last.vertindex[ ( startv + 1 ) % 3 ];
 	stripverts[ 2 ] = last.vertindex[ ( startv + 2 ) % 3 ];
+	stripst[ 0 ] = last.stindex[ ( startv ) % 3 ];
+	stripst[ 1 ] = last.stindex[ ( startv + 1 ) % 3 ];
+	stripst[ 2 ] = last.stindex[ ( startv + 2 ) % 3 ];
 
 	striptris[ 0 ] = starttri;
 	stripcount = 1;
@@ -118,6 +122,7 @@ function StripLength( starttri, startv ) {
 					m1 = check.vertindex[ ( k + 2 ) % 3 ];
 
 				stripverts[ stripcount + 2 ] = check.vertindex[ ( k + 2 ) % 3 ];
+				stripst[ stripcount + 2 ] = check.stindex[ ( k + 2 ) % 3 ];
 				striptris[ stripcount ] = j;
 				stripcount ++;
 
@@ -156,6 +161,9 @@ function FanLength( starttri, startv ) {
 	stripverts[ 0 ] = last.vertindex[ ( startv ) % 3 ];
 	stripverts[ 1 ] = last.vertindex[ ( startv + 1 ) % 3 ];
 	stripverts[ 2 ] = last.vertindex[ ( startv + 2 ) % 3 ];
+	stripst[ 0 ] = last.stindex[ ( startv ) % 3 ];
+	stripst[ 1 ] = last.stindex[ ( startv + 1 ) % 3 ];
+	stripst[ 2 ] = last.stindex[ ( startv + 2 ) % 3 ];
 
 	striptris[ 0 ] = starttri;
 	stripcount = 1;
@@ -191,6 +199,7 @@ function FanLength( starttri, startv ) {
 				m2 = check.vertindex[ ( k + 2 ) % 3 ];
 
 				stripverts[ stripcount + 2 ] = m2;
+				stripst[ stripcount + 2 ] = check.stindex[ ( k + 2 ) % 3 ];
 				striptris[ stripcount ] = j;
 				stripcount ++;
 
@@ -236,6 +245,7 @@ BuildTris
 export function BuildTris() {
 
 	const bestverts = new Int32Array( 1024 );
+	const bestst = new Int32Array( 1024 );
 	const besttris = new Int32Array( 1024 );
 
 	//
@@ -267,8 +277,7 @@ export function BuildTris() {
 
 					besttype = type;
 					bestlen = len;
-					for ( let j = 0; j < bestlen + 2; j ++ )
-						bestverts[ j ] = stripverts[ j ];
+					for ( let j = 0; j < bestlen + 2; j ++ ) { bestverts[ j ] = stripverts[ j ]; bestst[ j ] = stripst[ j ]; }
 					for ( let j = 0; j < bestlen; j ++ )
 						besttris[ j ] = striptris[ j ];
 
@@ -290,13 +299,13 @@ export function BuildTris() {
 		for ( let j = 0; j < bestlen + 2; j ++ ) {
 
 			// emit a vertex into the reorder buffer
-			const k = bestverts[ j ];
+			const k = bestverts[ j ], st = bestst[ j ];
 			vertexorder[ numorder ++ ] = k;
 
 			// emit s/t coords into the commands stream
-			let s = stverts[ k ].s;
-			let t = stverts[ k ].t;
-			if ( ! triangles[ besttris[ 0 ] ].facesfront && stverts[ k ].onseam )
+			let s = stverts[ st ].s;
+			let t = stverts[ st ].t;
+			if ( ! triangles[ besttris[ 0 ] ].facesfront && stverts[ st ].onseam )
 				s += pheader.skinwidth / 2; // on back side
 			s = ( s + 0.5 ) / pheader.skinwidth;
 			t = ( t + 0.5 ) / pheader.skinheight;

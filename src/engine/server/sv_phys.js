@@ -262,6 +262,7 @@ export let SV_TestEntityPosition = null;
 export let SV_LinkEdict = null;
 export let SV_PointContents = null;
 export let SV_StartSound = null;
+export let SV_StopSound = null; // SV_StopSound(entity, channel), wired by the host's local mixer
 export let SV_StartParticle = null; // SV_StartParticle(origin, direction, color, count), wired by sv_main
 export let PR_ExecuteProgram = null;
 export let EDICT_TO_PROG = null;
@@ -293,6 +294,7 @@ export function SV_SetCallbacks( callbacks ) {
 	if ( callbacks.SV_LinkEdict !== undefined ) SV_LinkEdict = callbacks.SV_LinkEdict;
 	if ( callbacks.SV_PointContents !== undefined ) SV_PointContents = callbacks.SV_PointContents;
 	if ( callbacks.SV_StartSound ) SV_StartSound = callbacks.SV_StartSound;
+	if ( callbacks.SV_StopSound !== undefined ) SV_StopSound = callbacks.SV_StopSound;
 	if ( callbacks.PR_ExecuteProgram !== undefined ) PR_ExecuteProgram = callbacks.PR_ExecuteProgram;
 	if ( callbacks.EDICT_TO_PROG !== undefined ) EDICT_TO_PROG = callbacks.EDICT_TO_PROG;
 	if ( callbacks.PROG_TO_EDICT ) PROG_TO_EDICT = callbacks.PROG_TO_EDICT;

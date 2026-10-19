@@ -42,6 +42,72 @@ export const HEXEN2_REQUIRED_BASE_FILES = Object.freeze( [ 'progs.dat', 'strings
 export const HEXEN2_PROG_HEADER_BYTES = 60;
 
 /**
+ * The pinned Nov 1997 demo archive (`pak0.pak`): uhexen2 `engine/h2shared/quakefs.c` pins the same entry count,
+ * CCITT directory CRC and size. The demo program itself uses the base layout CRC 38488.
+ */
+export const HEXEN2_DEMO_SIGNATURE = Object.freeze( { entries: 797, directoryCrc: 22780, bytes: 27750257 } );
+
+// CRC-16/CCITT, polynomial 0x1021, init 0xffff, non-reflected: uhexen2 common/crc.c, used for a PAK directory.
+let _ccittTable = null;
+function ccittTable() {
+
+	if ( _ccittTable !== null ) return _ccittTable;
+	const table = new Array( 256 );
+	for ( let i = 0; i < 256; i ++ ) {
+
+		let value = i << 8;
+		for ( let bit = 0; bit < 8; bit ++ ) value = ( value & 0x8000 ? ( value << 1 ) ^ 0x1021 : value << 1 ) & 0xffff;
+		table[ i ] = value;
+
+	}
+	return _ccittTable = table;
+
+}
+
+/**
+ * Computes the native PAK directory signature from the directory bytes.
+ *
+ * @param {ArrayBuffer|Uint8Array|DataView} directory the PAK directory bytes (entries × 64)
+ * @param {number} entries the directory entry count
+ * @param {number} bytes the whole archive size
+ * @returns {{ entries: number, directoryCrc: number, bytes: number }} the signature
+ * @throws {TypeError|Error} for non-bytes, a non-integer count/size, or a directory length that is not entries × 64
+ */
+export function Hexen2_PakDirectorySignature( directory, entries, bytes ) {
+
+	let data;
+	if ( directory instanceof ArrayBuffer ) data = new Uint8Array( directory );
+	else if ( ArrayBuffer.isView( directory ) ) data = new Uint8Array( directory.buffer, directory.byteOffset, directory.byteLength );
+	else throw new TypeError( 'Hexen2_PakDirectorySignature: directory bytes are required' );
+	if ( ! Number.isSafeInteger( entries ) || entries < 0 ) throw new TypeError( 'Hexen2_PakDirectorySignature: a non-negative entry count is required' );
+	if ( ! Number.isSafeInteger( bytes ) || bytes < 0 ) throw new TypeError( 'Hexen2_PakDirectorySignature: a non-negative archive size is required' );
+	if ( data.byteLength !== entries * 64 ) throw new Error( `Hexen2_PakDirectorySignature: ${data.byteLength} bytes is not ${entries} entries` );
+	const table = ccittTable();
+	let crc = 0xffff;
+	for ( const byte of data ) crc = ( ( crc << 8 ) & 0xffff ) ^ table[ ( ( crc >> 8 ) ^ byte ) & 0xff ];
+	return Object.freeze( { entries, directoryCrc: crc, bytes } );
+
+}
+
+/**
+ * Names the parts of a signature that do not match the pinned demo archive.
+ *
+ * @param {?{ entries?: number, directoryCrc?: number, bytes?: number }} signature the observed signature
+ * @returns {ReadonlyArray<string>} the mismatched fields, empty when it matches
+ */
+export function Hexen2_DemoSignatureProblems( signature ) {
+
+	const problems = [];
+	if ( signature === null || signature === undefined ) return Object.freeze( [ 'no archive signature' ] );
+	if ( signature.entries !== HEXEN2_DEMO_SIGNATURE.entries ) problems.push( 'entry count' );
+	if ( signature.directoryCrc !== HEXEN2_DEMO_SIGNATURE.directoryCrc ) problems.push( 'directory CRC' );
+	if ( signature.bytes !== HEXEN2_DEMO_SIGNATURE.bytes ) problems.push( 'size' );
+	return Object.freeze( problems );
+
+}
+
+
+/**
  * The present PAK numbers in the engine's search order: descending, duplicates dropped, gaps kept.
  *
  * @param {Array<number>} numbers the present pack numbers, in any order
@@ -204,6 +270,45 @@ export function Hexen2_Manifest( layers ) {
 
 }
 
+// The fifteen little-endian header words, with the version/count checks every caller needs.
+function progHeaderFields( data, caller ) {
+
+	let view;
+	if ( data instanceof ArrayBuffer ) view = new DataView( data );
+	else if ( ArrayBuffer.isView( data ) ) view = new DataView( data.buffer, data.byteOffset, data.byteLength );
+	else throw new TypeError( `${caller}: bytes are required` );
+
+	if ( view.byteLength < HEXEN2_PROG_HEADER_BYTES ) throw new Error( 'progs.dat is shorter than its 60-byte header' );
+	const ints = [];
+	for ( let i = 0; i < 15; i ++ ) ints.push( view.getInt32( i * 4, true ) );
+	const [ version, crc, , numStatements, , numGlobalDefs, , numFieldDefs, , numFunctions, , numStrings, , numGlobals,
+		entityFields ] = ints;
+	if ( version !== 6 ) throw new Error( `progs.dat has version ${version}, not 6` );
+	if ( numStatements < 1 || numGlobalDefs < 1 || numFieldDefs < 1 || numFunctions < 1 || numGlobals < 1 || entityFields < 1 )
+		throw new Error( 'progs.dat header has a non-positive count' );
+	const layout = crc === HEXEN2_LAYOUT_CRCS.base ? 'hexen2-base'
+		: crc === HEXEN2_LAYOUT_CRCS.portals ? 'hexen2-portals' : 'unknown';
+	return { view, ints, version, crc, layout, entityFields };
+
+}
+
+/**
+ * Checks a Hexen II program's 60-byte header without requiring its sections to be present. This is the identity check
+ * used where only the edition matters (the demo catalogue probe); `Hexen2_ReadProgHeader` additionally proves every
+ * section lies inside the supplied file.
+ *
+ * @param {ArrayBuffer|Uint8Array|DataView} data the first 60 bytes of progs.dat (or the whole file)
+ * @returns {{ version: number, crc: number, layout: string, entityFields: number }} the checked identity; `layout` is
+ *   `hexen2-base`, `hexen2-portals` or `unknown`
+ * @throws {TypeError|Error} as `Hexen2_ReadProgHeader` does for truncation, version and counts
+ */
+export function Hexen2_ReadProgHeaderSummary( data ) {
+
+	const fields = progHeaderFields( data, 'Hexen2_ReadProgHeaderSummary' );
+	return Object.freeze( { version: fields.version, crc: fields.crc, layout: fields.layout, entityFields: fields.entityFields } );
+
+}
+
 /**
  * Reads and validates a Hexen II `dprograms_t` header (the one interpreter's layout check, plan section 4): version 6,
  * positive counts, every section inside the file, and the header CRC recognised as one of the supplied layouts.
@@ -217,21 +322,10 @@ export function Hexen2_Manifest( layers ) {
  */
 export function Hexen2_ReadProgHeader( data ) {
 
-	let view;
-	if ( data instanceof ArrayBuffer ) view = new DataView( data );
-	else if ( ArrayBuffer.isView( data ) ) view = new DataView( data.buffer, data.byteOffset, data.byteLength );
-	else throw new TypeError( 'Hexen2_ReadProgHeader: bytes are required' );
-
-	if ( view.byteLength < HEXEN2_PROG_HEADER_BYTES ) throw new Error( 'progs.dat is shorter than its 60-byte header' );
-
-	const ints = [];
-	for ( let i = 0; i < 15; i ++ ) ints.push( view.getInt32( i * 4, true ) );
-	const [ version, crc, ofsStatements, numStatements, ofsGlobalDefs, numGlobalDefs, ofsFieldDefs, numFieldDefs,
-		ofsFunctions, numFunctions, ofsStrings, numStrings, ofsGlobals, numGlobals, entityFields ] = ints;
-
-	if ( version !== 6 ) throw new Error( `progs.dat has version ${version}, not 6` );
-	if ( numStatements < 1 || numGlobalDefs < 1 || numFieldDefs < 1 || numFunctions < 1 || numGlobals < 1 || entityFields < 1 )
-		throw new Error( 'progs.dat header has a non-positive count' );
+	const fields = progHeaderFields( data, 'Hexen2_ReadProgHeader' );
+	const { view, ints, version, crc, layout, entityFields } = fields;
+	const [ , , ofsStatements, numStatements, ofsGlobalDefs, numGlobalDefs, ofsFieldDefs, numFieldDefs,
+		ofsFunctions, numFunctions, ofsStrings, numStrings, ofsGlobals, numGlobals ] = ints;
 
 	// statement 0 is the error sentinel; each record is op/a/b/c (8 bytes)
 	const sections = [
@@ -251,8 +345,6 @@ export function Hexen2_ReadProgHeader( data ) {
 
 	}
 
-	const layout = crc === HEXEN2_LAYOUT_CRCS.base ? 'hexen2-base'
-		: crc === HEXEN2_LAYOUT_CRCS.portals ? 'hexen2-portals' : 'unknown';
 	return Object.freeze( {
 		version,
 		crc,
@@ -292,14 +384,12 @@ export function Hexen2_DetectEdition( content = {} ) {
 
 	if ( demo !== null && demo !== undefined ) {
 
-		const mismatches = [];
-		if ( demo.entries !== 797 ) mismatches.push( 'entry count' );
-		if ( demo.directoryCrc !== 22780 ) mismatches.push( 'directory CRC' );
-		if ( demo.bytes !== 27750257 ) mismatches.push( 'size' );
+		const mismatches = Hexen2_DemoSignatureProblems( demo );
 		if ( mismatches.length > 0 ) return { ok: false, reason: `demo archive signature mismatch: ${mismatches.join( ', ' )}` };
 		if ( ! demo.progsHeader ) return { ok: false, reason: 'the demo archive has no validated gamecode header' };
 		if ( demo.progsHeader.version !== 6 ) return { ok: false, reason: 'the demo gamecode is not version 6' };
-		return { ok: true, edition: 'demo', gameId: 'hexen2-demo', layout: demo.progsHeader.layout ?? 'unknown', classes: HEXEN2_PROFILES[ 'hexen2-demo' ].classes };
+		if ( demo.progsHeader.layout !== 'hexen2-base' ) return { ok: false, reason: `unsupported demo layout CRC ${demo.progsHeader.crc}` };
+		return { ok: true, edition: 'demo', gameId: 'hexen2-demo', layout: 'hexen2-base', classes: HEXEN2_PROFILES[ 'hexen2-demo' ].classes };
 
 	}
 

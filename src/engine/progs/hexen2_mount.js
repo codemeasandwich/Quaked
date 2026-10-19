@@ -17,7 +17,7 @@ import { VID_SetPalette } from '../render/vid.js';
 import { Mod_SetHexenHullLayout } from '../render/gl_model_bsp.js';
 import { Mod_FindName } from '../render/gl_model_common.js';
 import { PR_LoadProgs, PR_AllocEdicts } from './pr_edict.js';
-import { PR_SetSV, PR_SetSVS, PR_GetString, pr_global_struct, svs as progsSvs } from './progs.js';
+import { PR_SetSV, PR_SetSVS, PR_GetString, PR_SetTempString, pr_global_struct, svs as progsSvs } from './progs.js';
 import { SV_ClearWorld, SV_LinkEdict, SV_PointContents, SV_TestEntityPosition, SV_Move } from '../server/world.js';
 import { SV_SetState } from '../server/sv_phys.js';
 import { sv as serverSv, ss_loading, SIGNON_SIZE } from '../server/server.js';
@@ -104,19 +104,24 @@ export function Hexen2_MountLevel( options ) {
 
 	const sv = options.sv ?? serverSv, svs = options.svs ?? progsSvs;
 	PR_SetSV( sv ); PR_SetSVS( svs );
-	sv.worldmodel = map; sv.time = 0.1;
+	sv.worldmodel = map; sv.name = plan.startMap; sv.time = 0.1;
 	sv.signon.data = sv.signon_buf; sv.signon.maxsize = SIGNON_SIZE; sv.signon.cursize = 0;
 	Hexen2_SeedPrecache( sv, map, name => Mod_FindName( name ) );
 	sv.state = ss_loading;
 	SV_SetState( sv, svs, pr_global_struct );
 	SV_ClearWorld();
 	SV_SetState( sv, svs, pr_global_struct );
+	// native start spot: SelectSpawnPoint compares the targetname against the global `startspot` string.
+	pr_global_struct.startspot = options.spot ? PR_SetTempString( String( options.spot ) ) : 0;
+	// Portal's worldspawn validates cl_playerclass before the player entity exists.
+	pr_global_struct.cl_playerclass = plan.classNumber;
 	const serverCallbacks = { SV_Move, SV_TestEntityPosition, SV_ClearWorld, SV_LinkEdict, SV_PointContents, PR_ExecuteProgram };
 	if ( typeof options.installCallbacks === 'function' ) options.installCallbacks( serverCallbacks );
 	try { Hexen2_SpawnEntities( sv, map, 392, PR_AllocEdicts ); }
 	catch ( error ) { return { ok: false, reason: 'the level entities would not spawn: ' + error.message }; }
 	const wanted = options.startClassname ?? 'info_player_start';
-	const start = sv.edicts.find( ent => ent && ! ent.free && PR_GetString( ent.v.classname ) === wanted );
+	const starts = sv.edicts.filter( ent => ent && ! ent.free && PR_GetString( ent.v.classname ) === wanted );
+	const start = ( options.spot ? starts.find( ent => PR_GetString( ent.v.targetname ) === String( options.spot ) ) : null ) ?? starts[ 0 ];
 	const player = sv.edicts[ 1 ];
 	const placed = Hexen2_SpawnPlayer( { sv, client: options.client, player, gameId: plan.session.gameId, classId: plan.classId,
 		origin: start ? start.v.origin : [ 0, 0, 0 ] } );

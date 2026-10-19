@@ -1204,7 +1204,7 @@ PF_nextent
 entity nextent(entity)
 =============
 */
-function PF_nextent() {
+export function PF_nextent() {
 
 	let i = G_EDICTNUM( OFS_PARM0 );
 
