@@ -10,7 +10,7 @@ const server = startServer();
 await new Promise( resolve => server.listen( 0, '127.0.0.1', resolve ) );
 const base = `http://127.0.0.1:${server.address().port}`;
 const browser = await chromium.launch( { headless: true, channel: process.env.QUAKED_CHROME_CHANNEL ?? 'chrome',
-	args: [ '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist' ] } );
+	args: [ '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist', '--autoplay-policy=no-user-gesture-required' ] } );
 const page = await browser.newPage( { viewport: { width: 960, height: 720 } } );
 const errors = [];
 page.on( 'pageerror', error => errors.push( String( error ) ) );
@@ -32,6 +32,7 @@ try {
 	await mkdir( resolve( import.meta.dirname, '../../docs/evidence' ), { recursive: true } );
 	await page.screenshot( { path: resolve( import.meta.dirname, '../../docs/evidence/hexen2-browser-trial.png' ) } );
 	if ( result.ok && ( result.moved === null || result.moved < 5 || result.frames < 20 ) ) result.ok = false;
+	if ( result.ok && ( !result.audioDeferredResult || result.audioDeferredResult.sources < 1 || result.audioDeferredResult.state !== 'running' ) ) result.ok = false;
 
 } catch ( error ) {
 

@@ -35,6 +35,7 @@ import { Hexen2_WriteEntityUpdate } from '../../src/engine/common/hexen2_entityw
 import { HEXEN2_SERVER_MESSAGES } from '../../src/engine/common/hexen2_protocol.js';
 import { Hexen2_ApplyClientMessage } from '../../src/engine/client/hexen2_clientstate.js';
 import { PR_GetString } from '../../src/engine/progs/progs.js';
+import { S_Init, S_UnlockAudio, S_PrecacheSound, S_StartSound, S_Update, S_GetAudioContext } from '../../src/engine/sound/snd_dma.js';
 
 await import( '../../src/newer/install.js' ); // engine hooks (axe reset etc.) must install before the gamecode loads
 
@@ -91,6 +92,20 @@ try {
 	const worldEntity = new entity_t(); worldEntity.model = session.map; worldEntity.frame = 0; set_r_worldentity( worldEntity );
 	R_NewMap();
 	Draw_Init();
+	// audio: initialise Web Audio, unlock it, and play one of the game's own sounds through the port's mixer
+	window.__SOURCES_STARTED__ = 0;
+	const originalStart = AudioBufferSourceNode.prototype.start;
+	AudioBufferSourceNode.prototype.start = function ( ...args ) { window.__SOURCES_STARTED__ ++; return originalStart.apply( this, args ); };
+	S_Init();
+	S_UnlockAudio();
+	const sfx = S_PrecacheSound( 'ambience/water1.wav' );
+	const beforeSources = window.__SOURCES_STARTED__;
+	if ( sfx ) S_StartSound( null, 0, sfx, session.player.v.origin, 1, 1 );
+	S_Update( session.player.v.origin, [ 1, 0, 0 ], [ 0, 1, 0 ], [ 0, 0, 1 ] );
+	const audio = S_GetAudioContext();
+	result.audio = { context: audio ? audio.state : null, sampleRate: audio ? audio.sampleRate : null,
+		sfx: sfx ? sfx.name : null, sourcesStarted: window.__SOURCES_STARTED__ - beforeSources, currentTime: audio ? audio.currentTime : null };
+
 	const bound = Hexen2_BindClientState( session.state, { cl, clEntities: cl_entities,
 		modelAt: name => name.endsWith( '.mdl' ) ? Mod_ForName( name, true ) : null, viewangles: [ 0, 90, 0 ] } );
 	if ( !bound.ok ) throw new Error( 'bind: ' + bound.reason );
@@ -146,6 +161,18 @@ try {
 			SV_Physics();
 			const player = playerFromSession();
 			applyPlayerMessages( player );
+			if ( !result.audioDeferred && result.frames > 10 ) {
+
+				result.audioDeferred = true;
+				const defer = S_PrecacheSound( 'ambience/water1.wav' );
+				const before = window.__SOURCES_STARTED__;
+				if ( defer ) S_StartSound( null, 0, defer, player.v.origin, 1, 1 );
+				S_Update( player.v.origin, [ 1, 0, 0 ], [ 0, 1, 0 ], [ 0, 0, 1 ] );
+				const ctx = S_GetAudioContext();
+				result.audioDeferredResult = { sources: window.__SOURCES_STARTED__ - before, time: ctx ? ctx.currentTime : null, state: ctx ? ctx.state : null };
+
+			}
+
 			result.entitiesVisible = updateNearbyEntities( player, session.state );
 			result.nearest = nearestDiagnostic();
 			cl.viewangles = [ 0, input.yaw ?? 0, 0 ];

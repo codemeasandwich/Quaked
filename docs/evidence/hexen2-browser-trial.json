@@ -1,16 +1,23 @@
 {
   "trial": "hexen2-browser",
-  "at": "2026-10-19T07:15:11.992Z",
-  "base": "http://127.0.0.1:62872",
+  "at": "2026-10-19T07:17:57.455Z",
+  "base": "http://127.0.0.1:63139",
   "result": {
     "ok": true,
     "errors": [],
     "session": {
       "level": "demo1",
       "viewEntity": 1,
-      "health": 81,
+      "health": 80,
       "models": 342,
       "baselines": 247
+    },
+    "audio": {
+      "context": "running",
+      "sampleRate": 48000,
+      "sfx": "ambience/water1.wav",
+      "sourcesStarted": 0,
+      "currentTime": 0
     },
     "rendered": {
       "eye": [
@@ -43,54 +50,60 @@
       "drawn": 10,
       "skipped": 0
     },
-    "frames": 56,
-    "entitiesVisible": 24,
+    "frames": 49,
+    "entitiesVisible": 23,
     "nearest": [
+      {
+        "name": "waypoint",
+        "model": "models/null.spr",
+        "d": 120
+      },
       {
         "name": "art_HealthBoost",
         "model": "models/a_hboost.mdl",
-        "d": 239
+        "d": 190
       },
       {
         "name": "obj_statue_angel",
         "model": "models/anglstat.mdl",
-        "d": 299
+        "d": 259
       },
       {
         "name": "art_HealthBoost",
         "model": "models/a_hboost.mdl",
-        "d": 361
-      },
-      {
-        "name": "monster_spider_yellow_small",
-        "model": "models/spider.mdl",
-        "d": 421
+        "d": 304
       },
       {
         "name": "obj_tree2",
         "model": "models/tree2.mdl",
-        "d": 439
+        "d": 379
       },
       {
         "name": "obj_tombstone2",
         "model": "models/tombstn2.mdl",
-        "d": 496
+        "d": 436
       }
     ],
     "position": [
-      -448.86846923828125,
+      -509.1502990722656,
       -1640.03125,
-      126.34672546386719
+      95.5360336303711
     ],
-    "health": 81,
-    "hudHealth": 81,
+    "health": 80,
+    "hudHealth": 80,
     "pixel": [
-      72,
-      52,
-      24,
+      17,
+      14,
+      11,
       255
     ],
-    "moved": 612.6138825813499,
+    "audioDeferred": true,
+    "audioDeferredResult": {
+      "sources": 1,
+      "time": 2.432,
+      "state": "running"
+    },
+    "moved": 567.775883536154,
     "movedFrom": [
       -918,
       -2034,
