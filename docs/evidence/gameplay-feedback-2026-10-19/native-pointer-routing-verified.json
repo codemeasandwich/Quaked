@@ -1,0 +1,88 @@
+{
+  "status": "PASS",
+  "checks": {
+    "actual_legacy_route_denied": true,
+    "actual_modern_route_granted": true,
+    "real_dom_pointer_lock_grant": true,
+    "physical_or_synthetic_input_posted": false,
+    "persistent_website_store_used": false
+  },
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t26.4\nBuildVersion:\t\t25E246\n",
+  "before": {
+    "events": [
+      {
+        "phase": "before",
+        "locked": false,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "phase": "error",
+        "locked": false,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "phase": "rejected:WrongDocumentError",
+        "locked": false,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "visibility": "visible",
+        "locked": false,
+        "phase": "final",
+        "focused": true
+      }
+    ],
+    "mode": "before",
+    "physicalInput": false,
+    "appActive": true,
+    "legacyAllowSelectorPresent": false,
+    "modernCalls": 0,
+    "legacyCalls": 1,
+    "windowKey": true
+  },
+  "after": {
+    "events": [
+      {
+        "phase": "before",
+        "locked": false,
+        "visibility": "visible",
+        "focused": true
+      },
+      {
+        "visibility": "visible",
+        "locked": true,
+        "phase": "change",
+        "focused": true
+      },
+      {
+        "visibility": "visible",
+        "phase": "final",
+        "locked": true,
+        "focused": true
+      }
+    ],
+    "mode": "after",
+    "physicalInput": false,
+    "appActive": true,
+    "legacyAllowSelectorPresent": false,
+    "modernCalls": 1,
+    "legacyCalls": 0,
+    "windowKey": true
+  },
+  "inputs": {
+    "/private/tmp/quaked-pointer-routing-20261019.m": "07b9c5d6b8bb1bfaddca5b5c5fa99d2a951faa8e3a21b7420aacbcd8eb4b5545",
+    "/private/tmp/quaked-pointer-routing-20261019": "bf3c927e5b4920a629e57e81356c89afa2459e73c1bc897a90bffd71396074e2",
+    "/private/tmp/quaked-pointer-routing-before-unsandboxed-20261019.json": "b2fe5f850d918d58483ea3af33909d482263003514c450d3fbcb81071af87ef0",
+    "/private/tmp/quaked-pointer-routing-after-unsandboxed-20261019.json": "e8dffcadc54f77ce11f89e7b6a8ebcc42ddd52c4a4160a0c00f73756f1359832",
+    "/Users/bri/SOURCE/Quaked/src-tauri/src/pointer_lock.rs": "ff804a3cc78913c398ee6270623258557adfd772f887bc05cc766e9b70c5e934"
+  },
+  "limits": [
+    "The helper mirrors before/after delegate selectors; it does not link the production Rust allow function.",
+    "Public evaluateJavaScript initiates the request; WebKit gives that API its own user gesture semantics.",
+    "No physical mouse input, mouse delta assertion, existing Quaked app injection, standalone HTML diagnosis or owner acceptance is claimed."
+  ],
+  "retained_initial_failure": "/private/tmp/quaked-pointer-routing-before-20261019.stderr"
+}

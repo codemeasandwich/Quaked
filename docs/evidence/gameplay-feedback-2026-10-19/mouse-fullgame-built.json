@@ -1,0 +1,674 @@
+{
+  "mode": "built",
+  "root": "/Users/bri/SOURCE/Quaked/dist/release-feedback-33406751/web",
+  "url": "http://127.0.0.1:60578/?game=shareware",
+  "errors": [],
+  "console": [],
+  "httpFailures": [],
+  "stages": [
+    {
+      "name": "startup",
+      "state": {
+        "source": {},
+        "time": 1.475305938720703,
+        "angles": [
+          0,
+          0,
+          0
+        ],
+        "origin": [],
+        "demo": true,
+        "state": 2,
+        "signon": 4,
+        "nativeActive": false,
+        "paused": false,
+        "actualPointer": null,
+        "focus": true,
+        "activeElement": "BODY",
+        "storage": {
+          "quake_cvar_cl_backspeed": "400",
+          "quake_cvar_cl_forwardspeed": "400",
+          "quake_cvar_gamma": "1.0",
+          "quake_cvar_volume": "0.7"
+        },
+        "trace": {
+          "requests": [],
+          "events": [],
+          "registrations": [
+            {
+              "type": "mousemove",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousedown",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mouseup",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousemove",
+              "target": "body",
+              "name": "JTe"
+            },
+            {
+              "type": "mousedown",
+              "target": "body",
+              "name": "KTe"
+            },
+            {
+              "type": "mouseup",
+              "target": "body",
+              "name": "jTe"
+            },
+            {
+              "type": "pointerlockchange",
+              "target": "document",
+              "name": "$Te"
+            }
+          ],
+          "moves": 0,
+          "readsX": 0,
+          "readsY": 0,
+          "locks": [],
+          "storageAtBoot": {},
+          "captureAvailable": "function"
+        }
+      }
+    },
+    {
+      "name": "live-before-click",
+      "state": {
+        "source": {},
+        "time": 2.549999952316284,
+        "angles": [
+          0,
+          90,
+          0
+        ],
+        "origin": [],
+        "demo": false,
+        "state": 2,
+        "signon": 4,
+        "nativeActive": true,
+        "paused": false,
+        "actualPointer": null,
+        "focus": true,
+        "activeElement": "BODY",
+        "storage": {
+          "quake_cvar_r_powerups": "1",
+          "quake_cvar_cl_backspeed": "400",
+          "quake_cvar_r_heightshadows": "1",
+          "quake_cvar_cl_forwardspeed": "400",
+          "quake_cvar_gamma": "1.0",
+          "quake_cvar_volume": "0.7",
+          "quake_cvar_r_rockfield": "1"
+        },
+        "trace": {
+          "requests": [],
+          "events": [],
+          "registrations": [
+            {
+              "type": "mousemove",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousedown",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mouseup",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousemove",
+              "target": "body",
+              "name": "JTe"
+            },
+            {
+              "type": "mousedown",
+              "target": "body",
+              "name": "KTe"
+            },
+            {
+              "type": "mouseup",
+              "target": "body",
+              "name": "jTe"
+            },
+            {
+              "type": "pointerlockchange",
+              "target": "document",
+              "name": "$Te"
+            }
+          ],
+          "moves": 0,
+          "readsX": 0,
+          "readsY": 0,
+          "locks": [],
+          "storageAtBoot": {},
+          "captureAvailable": "function"
+        }
+      }
+    },
+    {
+      "name": "after-click",
+      "state": {
+        "source": {},
+        "time": 3.1333000659942627,
+        "angles": [
+          0,
+          90,
+          0
+        ],
+        "origin": [],
+        "demo": false,
+        "state": 2,
+        "signon": 4,
+        "nativeActive": true,
+        "paused": false,
+        "actualPointer": "BODY",
+        "focus": true,
+        "activeElement": "BODY",
+        "storage": {
+          "quake_cvar_r_powerups": "1",
+          "quake_cvar_cl_backspeed": "400",
+          "quake_cvar_r_heightshadows": "1",
+          "quake_cvar_cl_forwardspeed": "400",
+          "quake_cvar_gamma": "1.0",
+          "quake_cvar_volume": "0.7",
+          "quake_cvar_r_rockfield": "1"
+        },
+        "trace": {
+          "requests": [
+            {
+              "target": "BODY",
+              "time": 9011,
+              "stack": "Error\n    at Element.requestPointerLock (<anonymous>:8:126)\n    at z5e (blob:http://127.0.0.1:60578/f6414ca1-b5a8-4bba-a2a2-d79ad3b5305a:4965:2674)\n    at HTMLBodyElement.KTe (blob:http://127.0.0.1:60578/f6414ca1-b5a8-4bba-a2a2-d79ad3b5305a:4966:1969)",
+              "resolved": true
+            }
+          ],
+          "events": [
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 8977.300000011921
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 9010.700000017881
+            },
+            {
+              "type": "mousedown",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 9010.800000011921
+            },
+            {
+              "type": "mouseup",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 9011.40000000596
+            }
+          ],
+          "registrations": [
+            {
+              "type": "mousemove",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousedown",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mouseup",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousemove",
+              "target": "body",
+              "name": "JTe"
+            },
+            {
+              "type": "mousedown",
+              "target": "body",
+              "name": "KTe"
+            },
+            {
+              "type": "mouseup",
+              "target": "body",
+              "name": "jTe"
+            },
+            {
+              "type": "pointerlockchange",
+              "target": "document",
+              "name": "$Te"
+            }
+          ],
+          "moves": 2,
+          "readsX": 4,
+          "readsY": 4,
+          "locks": [
+            {
+              "element": "BODY",
+              "time": 9122.200000017881
+            }
+          ],
+          "storageAtBoot": {},
+          "captureAvailable": "function"
+        }
+      }
+    },
+    {
+      "name": "after-mouse",
+      "state": {
+        "source": {},
+        "time": 3.6166000366210938,
+        "angles": [
+          4.619999885559082,
+          82.0458984375,
+          0
+        ],
+        "origin": [],
+        "demo": false,
+        "state": 2,
+        "signon": 4,
+        "nativeActive": true,
+        "paused": false,
+        "actualPointer": "BODY",
+        "focus": true,
+        "activeElement": "BODY",
+        "storage": {
+          "quake_cvar_r_powerups": "1",
+          "quake_cvar_cl_backspeed": "400",
+          "quake_cvar_r_heightshadows": "1",
+          "quake_cvar_cl_forwardspeed": "400",
+          "quake_cvar_gamma": "1.0",
+          "quake_cvar_volume": "0.7",
+          "quake_cvar_r_rockfield": "1"
+        },
+        "trace": {
+          "requests": [
+            {
+              "target": "BODY",
+              "time": 9011,
+              "stack": "Error\n    at Element.requestPointerLock (<anonymous>:8:126)\n    at z5e (blob:http://127.0.0.1:60578/f6414ca1-b5a8-4bba-a2a2-d79ad3b5305a:4965:2674)\n    at HTMLBodyElement.KTe (blob:http://127.0.0.1:60578/f6414ca1-b5a8-4bba-a2a2-d79ad3b5305a:4966:1969)",
+              "resolved": true
+            }
+          ],
+          "events": [
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 8977.300000011921
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 9010.700000017881
+            },
+            {
+              "type": "mousedown",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 9010.800000011921
+            },
+            {
+              "type": "mouseup",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 9011.40000000596
+            },
+            {
+              "type": "mousemove",
+              "target": "BODY",
+              "trusted": true,
+              "x": 15,
+              "y": 8,
+              "locked": "BODY",
+              "time": 9510
+            },
+            {
+              "type": "mousemove",
+              "target": "BODY",
+              "trusted": true,
+              "x": 15,
+              "y": 9,
+              "locked": "BODY",
+              "time": 9527.5
+            },
+            {
+              "type": "mousemove",
+              "target": "BODY",
+              "trusted": true,
+              "x": 15,
+              "y": 9,
+              "locked": "BODY",
+              "time": 9544.700000017881
+            },
+            {
+              "type": "mousemove",
+              "target": "BODY",
+              "trusted": true,
+              "x": 15,
+              "y": 9,
+              "locked": "BODY",
+              "time": 9561.100000023842
+            },
+            {
+              "type": "mousemove",
+              "target": "BODY",
+              "trusted": true,
+              "x": 15,
+              "y": 8,
+              "locked": "BODY",
+              "time": 9577.700000017881
+            },
+            {
+              "type": "mousemove",
+              "target": "BODY",
+              "trusted": true,
+              "x": 15,
+              "y": 9,
+              "locked": "BODY",
+              "time": 9593.600000023842
+            },
+            {
+              "type": "mousemove",
+              "target": "BODY",
+              "trusted": true,
+              "x": 15,
+              "y": 9,
+              "locked": "BODY",
+              "time": 9610.5
+            },
+            {
+              "type": "mousemove",
+              "target": "BODY",
+              "trusted": true,
+              "x": 15,
+              "y": 9,
+              "locked": "BODY",
+              "time": 9660
+            }
+          ],
+          "registrations": [
+            {
+              "type": "mousemove",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousedown",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mouseup",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousemove",
+              "target": "body",
+              "name": "JTe"
+            },
+            {
+              "type": "mousedown",
+              "target": "body",
+              "name": "KTe"
+            },
+            {
+              "type": "mouseup",
+              "target": "body",
+              "name": "jTe"
+            },
+            {
+              "type": "pointerlockchange",
+              "target": "document",
+              "name": "$Te"
+            }
+          ],
+          "moves": 10,
+          "readsX": 20,
+          "readsY": 20,
+          "locks": [
+            {
+              "element": "BODY",
+              "time": 9122.200000017881
+            }
+          ],
+          "storageAtBoot": {},
+          "captureAvailable": "function"
+        }
+      }
+    },
+    {
+      "name": "after-keyboard",
+      "state": {
+        "source": {},
+        "time": 4.099899768829346,
+        "angles": [
+          4.619999885559082,
+          45.8404541015625,
+          0
+        ],
+        "origin": [],
+        "demo": false,
+        "state": 2,
+        "signon": 4,
+        "nativeActive": true,
+        "paused": false,
+        "actualPointer": "BODY",
+        "focus": true,
+        "activeElement": "BODY",
+        "storage": {
+          "quake_cvar_r_powerups": "1",
+          "quake_cvar_cl_backspeed": "400",
+          "quake_cvar_r_heightshadows": "1",
+          "quake_cvar_cl_forwardspeed": "400",
+          "quake_cvar_gamma": "1.0",
+          "quake_cvar_volume": "0.7",
+          "quake_cvar_r_rockfield": "1"
+        },
+        "trace": {
+          "requests": [
+            {
+              "target": "BODY",
+              "time": 9011,
+              "stack": "Error\n    at Element.requestPointerLock (<anonymous>:8:126)\n    at z5e (blob:http://127.0.0.1:60578/f6414ca1-b5a8-4bba-a2a2-d79ad3b5305a:4965:2674)\n    at HTMLBodyElement.KTe (blob:http://127.0.0.1:60578/f6414ca1-b5a8-4bba-a2a2-d79ad3b5305a:4966:1969)",
+              "resolved": true
+            }
+          ],
+          "events": [
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 8977.300000011921
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 9010.700000017881
+            },
+            {
+              "type": "mousedown",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 9010.800000011921
+            },
+            {
+              "type": "mouseup",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 9011.40000000596
+            },
+            {
+              "type": "mousemove",
+              "target": "BODY",
+              "trusted": true,
+              "x": 15,
+              "y": 8,
+              "locked": "BODY",
+              "time": 9510
+            },
+            {
+              "type": "mousemove",
+              "target": "BODY",
+              "trusted": true,
+              "x": 15,
+              "y": 9,
+              "locked": "BODY",
+              "time": 9527.5
+            },
+            {
+              "type": "mousemove",
+              "target": "BODY",
+              "trusted": true,
+              "x": 15,
+              "y": 9,
+              "locked": "BODY",
+              "time": 9544.700000017881
+            },
+            {
+              "type": "mousemove",
+              "target": "BODY",
+              "trusted": true,
+              "x": 15,
+              "y": 9,
+              "locked": "BODY",
+              "time": 9561.100000023842
+            },
+            {
+              "type": "mousemove",
+              "target": "BODY",
+              "trusted": true,
+              "x": 15,
+              "y": 8,
+              "locked": "BODY",
+              "time": 9577.700000017881
+            },
+            {
+              "type": "mousemove",
+              "target": "BODY",
+              "trusted": true,
+              "x": 15,
+              "y": 9,
+              "locked": "BODY",
+              "time": 9593.600000023842
+            },
+            {
+              "type": "mousemove",
+              "target": "BODY",
+              "trusted": true,
+              "x": 15,
+              "y": 9,
+              "locked": "BODY",
+              "time": 9610.5
+            },
+            {
+              "type": "mousemove",
+              "target": "BODY",
+              "trusted": true,
+              "x": 15,
+              "y": 9,
+              "locked": "BODY",
+              "time": 9660
+            }
+          ],
+          "registrations": [
+            {
+              "type": "mousemove",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousedown",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mouseup",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousemove",
+              "target": "body",
+              "name": "JTe"
+            },
+            {
+              "type": "mousedown",
+              "target": "body",
+              "name": "KTe"
+            },
+            {
+              "type": "mouseup",
+              "target": "body",
+              "name": "jTe"
+            },
+            {
+              "type": "pointerlockchange",
+              "target": "document",
+              "name": "$Te"
+            }
+          ],
+          "moves": 10,
+          "readsX": 20,
+          "readsY": 20,
+          "locks": [
+            {
+              "element": "BODY",
+              "time": 9122.200000017881
+            }
+          ],
+          "storageAtBoot": {},
+          "captureAvailable": "function"
+        }
+      }
+    }
+  ],
+  "screenshot": "/private/tmp/quaked-mouse-fullgame-built.png",
+  "browser": "154.0.8037.98",
+  "status": "OBSERVED"
+}

@@ -1,0 +1,652 @@
+{
+  "mode": "built",
+  "root": "/Users/bri/SOURCE/Quaked/dist/release-feedback-33406751/web",
+  "url": "http://127.0.0.1:60678/?game=shareware",
+  "errors": [],
+  "console": [],
+  "httpFailures": [],
+  "stages": [
+    {
+      "name": "startup",
+      "state": {
+        "source": {},
+        "time": 1.475305938720703,
+        "angles": [
+          0,
+          0,
+          0
+        ],
+        "origin": [],
+        "demo": true,
+        "state": 2,
+        "signon": 4,
+        "nativeActive": false,
+        "paused": false,
+        "actualPointer": null,
+        "focus": true,
+        "activeElement": "BODY",
+        "storage": {
+          "quake_cvar_volume": "0.7",
+          "quake_cvar_cl_forwardspeed": "400",
+          "quake_cvar_gamma": "1.0",
+          "quake_cvar_cl_backspeed": "400"
+        },
+        "trace": {
+          "requests": [],
+          "events": [],
+          "registrations": [
+            {
+              "type": "mousemove",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousedown",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mouseup",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousemove",
+              "target": "body",
+              "name": "JTe"
+            },
+            {
+              "type": "mousedown",
+              "target": "body",
+              "name": "KTe"
+            },
+            {
+              "type": "mouseup",
+              "target": "body",
+              "name": "jTe"
+            },
+            {
+              "type": "pointerlockchange",
+              "target": "document",
+              "name": "$Te"
+            }
+          ],
+          "moves": 0,
+          "readsX": 0,
+          "readsY": 0,
+          "locks": [],
+          "storageAtBoot": {},
+          "captureAvailable": "function"
+        }
+      }
+    },
+    {
+      "name": "live-before-click",
+      "state": {
+        "source": {},
+        "time": 2.2209999561309814,
+        "angles": [
+          0,
+          90,
+          0
+        ],
+        "origin": [],
+        "demo": false,
+        "state": 2,
+        "signon": 4,
+        "nativeActive": true,
+        "paused": false,
+        "actualPointer": null,
+        "focus": true,
+        "activeElement": "BODY",
+        "storage": {
+          "quake_cvar_volume": "0.7",
+          "quake_cvar_r_powerups": "1",
+          "quake_cvar_gamma": "1.0",
+          "quake_cvar_r_rockfield": "1",
+          "quake_cvar_r_heightshadows": "1",
+          "quake_cvar_cl_forwardspeed": "400",
+          "quake_cvar_cl_backspeed": "400"
+        },
+        "trace": {
+          "requests": [],
+          "events": [],
+          "registrations": [
+            {
+              "type": "mousemove",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousedown",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mouseup",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousemove",
+              "target": "body",
+              "name": "JTe"
+            },
+            {
+              "type": "mousedown",
+              "target": "body",
+              "name": "KTe"
+            },
+            {
+              "type": "mouseup",
+              "target": "body",
+              "name": "jTe"
+            },
+            {
+              "type": "pointerlockchange",
+              "target": "document",
+              "name": "$Te"
+            }
+          ],
+          "moves": 0,
+          "readsX": 0,
+          "readsY": 0,
+          "locks": [],
+          "storageAtBoot": {},
+          "captureAvailable": "function"
+        }
+      }
+    },
+    {
+      "name": "after-click",
+      "state": {
+        "source": {},
+        "time": 2.818000078201294,
+        "angles": [
+          0,
+          90,
+          0
+        ],
+        "origin": [],
+        "demo": false,
+        "state": 2,
+        "signon": 4,
+        "nativeActive": true,
+        "paused": false,
+        "actualPointer": null,
+        "focus": true,
+        "activeElement": "BODY",
+        "storage": {
+          "quake_cvar_volume": "0.7",
+          "quake_cvar_r_powerups": "1",
+          "quake_cvar_gamma": "1.0",
+          "quake_cvar_r_rockfield": "1",
+          "quake_cvar_r_heightshadows": "1",
+          "quake_cvar_cl_forwardspeed": "400",
+          "quake_cvar_cl_backspeed": "400"
+        },
+        "trace": {
+          "requests": [
+            {
+              "target": "BODY",
+              "time": 12124,
+              "stack": "@web-inspector://bootstrap.js:24:135\nz5e@blob:http://127.0.0.1:60678/44cb67a4-1222-4959-9788-bc01e87ab86e:4965:2692\nKTe@blob:http://127.0.0.1:60678/44cb67a4-1222-4959-9788-bc01e87ab86e:4966:1972",
+              "rejection": {
+                "name": "WrongDocumentError",
+                "message": "Pointer lock requires the window to have focus."
+              }
+            }
+          ],
+          "events": [
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12054
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12093
+            },
+            {
+              "type": "mousedown",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12124
+            },
+            {
+              "type": "mouseup",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12535
+            }
+          ],
+          "registrations": [
+            {
+              "type": "mousemove",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousedown",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mouseup",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousemove",
+              "target": "body",
+              "name": "JTe"
+            },
+            {
+              "type": "mousedown",
+              "target": "body",
+              "name": "KTe"
+            },
+            {
+              "type": "mouseup",
+              "target": "body",
+              "name": "jTe"
+            },
+            {
+              "type": "pointerlockchange",
+              "target": "document",
+              "name": "$Te"
+            }
+          ],
+          "moves": 2,
+          "readsX": 4,
+          "readsY": 4,
+          "locks": [],
+          "storageAtBoot": {},
+          "captureAvailable": "function"
+        }
+      }
+    },
+    {
+      "name": "after-mouse",
+      "state": {
+        "source": {},
+        "time": 3.250999927520752,
+        "angles": [
+          0,
+          90,
+          0
+        ],
+        "origin": [],
+        "demo": false,
+        "state": 2,
+        "signon": 4,
+        "nativeActive": true,
+        "paused": false,
+        "actualPointer": null,
+        "focus": true,
+        "activeElement": "BODY",
+        "storage": {
+          "quake_cvar_volume": "0.7",
+          "quake_cvar_r_powerups": "1",
+          "quake_cvar_gamma": "1.0",
+          "quake_cvar_r_rockfield": "1",
+          "quake_cvar_r_heightshadows": "1",
+          "quake_cvar_cl_forwardspeed": "400",
+          "quake_cvar_cl_backspeed": "400"
+        },
+        "trace": {
+          "requests": [
+            {
+              "target": "BODY",
+              "time": 12124,
+              "stack": "@web-inspector://bootstrap.js:24:135\nz5e@blob:http://127.0.0.1:60678/44cb67a4-1222-4959-9788-bc01e87ab86e:4965:2692\nKTe@blob:http://127.0.0.1:60678/44cb67a4-1222-4959-9788-bc01e87ab86e:4966:1972",
+              "rejection": {
+                "name": "WrongDocumentError",
+                "message": "Pointer lock requires the window to have focus."
+              }
+            }
+          ],
+          "events": [
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12054
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12093
+            },
+            {
+              "type": "mousedown",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12124
+            },
+            {
+              "type": "mouseup",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12535
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12943
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12956
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12972
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12991
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 13005
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 13021
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 13037
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 13054
+            }
+          ],
+          "registrations": [
+            {
+              "type": "mousemove",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousedown",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mouseup",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousemove",
+              "target": "body",
+              "name": "JTe"
+            },
+            {
+              "type": "mousedown",
+              "target": "body",
+              "name": "KTe"
+            },
+            {
+              "type": "mouseup",
+              "target": "body",
+              "name": "jTe"
+            },
+            {
+              "type": "pointerlockchange",
+              "target": "document",
+              "name": "$Te"
+            }
+          ],
+          "moves": 10,
+          "readsX": 12,
+          "readsY": 12,
+          "locks": [],
+          "storageAtBoot": {},
+          "captureAvailable": "function"
+        }
+      }
+    },
+    {
+      "name": "after-keyboard",
+      "state": {
+        "source": {},
+        "time": 3.7009999752044678,
+        "angles": [
+          0,
+          56.0906982421875,
+          0
+        ],
+        "origin": [],
+        "demo": false,
+        "state": 2,
+        "signon": 4,
+        "nativeActive": true,
+        "paused": false,
+        "actualPointer": null,
+        "focus": true,
+        "activeElement": "BODY",
+        "storage": {
+          "quake_cvar_volume": "0.7",
+          "quake_cvar_r_powerups": "1",
+          "quake_cvar_gamma": "1.0",
+          "quake_cvar_r_rockfield": "1",
+          "quake_cvar_r_heightshadows": "1",
+          "quake_cvar_cl_forwardspeed": "400",
+          "quake_cvar_cl_backspeed": "400"
+        },
+        "trace": {
+          "requests": [
+            {
+              "target": "BODY",
+              "time": 12124,
+              "stack": "@web-inspector://bootstrap.js:24:135\nz5e@blob:http://127.0.0.1:60678/44cb67a4-1222-4959-9788-bc01e87ab86e:4965:2692\nKTe@blob:http://127.0.0.1:60678/44cb67a4-1222-4959-9788-bc01e87ab86e:4966:1972",
+              "rejection": {
+                "name": "WrongDocumentError",
+                "message": "Pointer lock requires the window to have focus."
+              }
+            }
+          ],
+          "events": [
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12054
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12093
+            },
+            {
+              "type": "mousedown",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12124
+            },
+            {
+              "type": "mouseup",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12535
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12943
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12956
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12972
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 12991
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 13005
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 13021
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 13037
+            },
+            {
+              "type": "mousemove",
+              "target": "CANVAS",
+              "trusted": true,
+              "x": 0,
+              "y": 0,
+              "time": 13054
+            }
+          ],
+          "registrations": [
+            {
+              "type": "mousemove",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousedown",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mouseup",
+              "target": "Window",
+              "name": "listener"
+            },
+            {
+              "type": "mousemove",
+              "target": "body",
+              "name": "JTe"
+            },
+            {
+              "type": "mousedown",
+              "target": "body",
+              "name": "KTe"
+            },
+            {
+              "type": "mouseup",
+              "target": "body",
+              "name": "jTe"
+            },
+            {
+              "type": "pointerlockchange",
+              "target": "document",
+              "name": "$Te"
+            }
+          ],
+          "moves": 10,
+          "readsX": 12,
+          "readsY": 12,
+          "locks": [],
+          "storageAtBoot": {},
+          "captureAvailable": "function"
+        }
+      }
+    }
+  ],
+  "screenshot": "/private/tmp/quaked-mouse-fullgame-built-webkit.png",
+  "browser": "27.2",
+  "status": "OBSERVED"
+}

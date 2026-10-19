@@ -62,6 +62,47 @@ Current next action: finish real browser audio and native app verification,
 review the combined implementation, then run the maintained publication gate.
 No app/browser owner acceptance or release is claimed by this implementation log.
 
+## Mouse follow-up: owner still reports no movement
+
+The owner reports neither mouse axis responds in app or HTML while keyboard
+input works. The lifecycle correction in 33406751 is insufficient to close that
+report; the earlier unit checks were not full-game input acceptance.
+
+Independent full-game trials of source and the retained built HTML in fresh
+Chrome use unmodified startup input settings and a real local e1m1 session.
+Clicking acquires BODY pointer lock; trusted mouse movement changes both pitch
+and yaw, and keyboard movement also works. This does not establish the owner's
+saved settings or Safari behavior. The built Newer Game menu path also passes
+after the real loading hold ends: pitch 0 to 4.62 and yaw 90 to 82.0459 under
+trusted mouse movement, with advancing game time and keyboard response.
+
+Independent native source review found a second, concrete capture defect:
+WebKit checks `_webViewRequestPointerLock:` before the modern completion handler.
+Registering both diverts requests into the legacy callback, followed by denial.
+The legacy `_didAllowPointerLock` reply is absent from this machine's WKWebView.
+Install only the modern handler; all supported macOS versions (14+) have it.
+Reference: WebKit `UIProcess/Cocoa/UIDelegate.mm`, `requestPointerLock`.
+An isolated real WKWebView trial reproduces denial before (legacy callback 1,
+modern 0) and actual BODY lock grant after (modern 1, legacy 0). It uses public
+JavaScript evaluation, not physical input, and mirrors the delegate methods
+rather than linking Rust. A Rust regression exercises the actual production
+registration helper against Objective-C's method table and real completion
+block. The app's physical mouse movement still needs a native trial.
+
+Headless Playwright WebKit denies capture with WrongDocumentError despite DOM
+focus, while keyboard and game time advance. This is retained as a failed trial;
+it does not prove the owner's Safari failure or justify a synthetic mouse-input
+fallback. The observer logs raw events and real startup settings without setting
+input coefficients, button state or private capture flags. An early Newer trial
+ran while the game was still warming and is retained separately; its stationary
+angles are not treated as a live input failure. Full receipts and the reproducible
+isolated native helper are in the evidence inventory.
+
+Bluey still fails identity enrollment with storage_error, correlation
+518725770df043c1b6afc92898c32b97; no card update is claimed. This ledger retains
+ownership and next action: finish public game capture trials, independent
+review, exact-index gate and native trial before publishing the correction.
+
 ## Verified progress and failure handling
 
 Independent source review corrected actual PCM acceptance, independent automatic

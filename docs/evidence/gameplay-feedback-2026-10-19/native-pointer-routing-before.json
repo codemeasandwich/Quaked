@@ -1,0 +1,35 @@
+{
+  "events" : [
+    {
+      "phase" : "before",
+      "locked" : false,
+      "visibility" : "visible",
+      "focused" : true
+    },
+    {
+      "phase" : "error",
+      "locked" : false,
+      "visibility" : "visible",
+      "focused" : true
+    },
+    {
+      "phase" : "rejected:WrongDocumentError",
+      "locked" : false,
+      "visibility" : "visible",
+      "focused" : true
+    },
+    {
+      "visibility" : "visible",
+      "locked" : false,
+      "phase" : "final",
+      "focused" : true
+    }
+  ],
+  "mode" : "before",
+  "physicalInput" : false,
+  "appActive" : true,
+  "legacyAllowSelectorPresent" : false,
+  "modernCalls" : 0,
+  "legacyCalls" : 1,
+  "windowKey" : true
+}

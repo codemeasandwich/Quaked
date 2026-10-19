@@ -82,12 +82,15 @@ Found in the owner's app trial, 13 October 2026, and fixed:
   pointer lock. WKWebView grants it only when its UI delegate answers WebKit's
   `_webViewDidRequestPointerLock:completionHandler:`, which Tauri's (wry's) delegate does not.
   `src-tauri/src/pointer_lock.rs` adds that method at start-up, always allowing, and sets the
-  delegate again so WebKit sees it; it also answers the older `_webViewRequestPointerLock:`
-  (granting through `_didAllowPointerLock` where WebKit has it). Escape leaves the lock as
-  before. These are private WebKit methods (the first is in macOS 26's `WKUIDelegatePrivate`
+  delegate again so WebKit sees it. Only the modern callback is installed: WebKit gives the
+  legacy `_webViewRequestPointerLock:` selector precedence and denies that path; its old
+  `_didAllowPointerLock` reply is absent on current WebKit. The supported macOS 14+ range
+  already provides the modern callback. Escape leaves the lock as before. This is a private WebKit method (in macOS 26's `WKUIDelegatePrivate`
   protocol), which suits an app distributed outside the App Store. The app logs only when it
   has no delegate to add them to; whether WebKit honours them shows only in the app, and
-  macOS 14 and 15 are untried. Nothing automated covers it: it needs a click in the real app.
+  macOS 14 and 15 are untried. The Rust regression checks the installed selector and real
+  completion block; an isolated WKWebView trial proves actual capture denial before and
+  grant after. Physical movement still needs a click and mouse trial in the real app.
 - **Quit.** Answering Y to Quit (or `quit` typed in the console) disconnects, shuts down a local
   server, saves the settings, then returns to the game shelf in the app, or goes to
   https://github.com/codemeasandwich/Quaked in the same tab in the HTML (`Host_Quit_f`,

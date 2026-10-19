@@ -1,0 +1,29 @@
+{
+  "events" : [
+    {
+      "phase" : "before",
+      "locked" : false,
+      "visibility" : "visible",
+      "focused" : true
+    },
+    {
+      "visibility" : "visible",
+      "locked" : true,
+      "phase" : "change",
+      "focused" : true
+    },
+    {
+      "visibility" : "visible",
+      "phase" : "final",
+      "locked" : true,
+      "focused" : true
+    }
+  ],
+  "mode" : "after",
+  "physicalInput" : false,
+  "appActive" : true,
+  "legacyAllowSelectorPresent" : false,
+  "modernCalls" : 1,
+  "legacyCalls" : 0,
+  "windowKey" : true
+}
