@@ -43,6 +43,8 @@ Run from `/Users/bri/worktrees/Quaked/Dev/h2` with
 | Packaged web artifact (Quake product) | `tools/distribution/build.mjs web`, `docs/evidence/hexen2-web-distribution-trial.json` | **Executed**: the h2 tree builds its web distribution (6.4 MB index, 2,464 assets, 642 MB site with the Quake core/shareware data) and the distribution trial passes in headless Chrome (ANGLE Metal, 60 s): the packaged app shell and Quake shelf work with h2's changes. This artifact deliberately contains no Hexen data and is not the Hexen packaged shelf/native smoke; Hexen remains a native/local-data product. |
 | Public native smoke (Hexen) | — | **Missing.** No packaged-app UI path (shelf → source → class → difficulty → demo1) exists for Hexen II itself. |
 
+Engine regression sample (unchanged GREEN): **82/82 assertions across 24 non-Hexen suites** — interpreter, edicts, addresses, stack, aim, statement printing, server main/physics, world, client main/demo/keepalive, WAD, sound channels, model digest, animation, decals, traces, post shaders, particles, shotgun (three suites), catalogue and start corridor — all pass alongside the Hexen suite.
+
 Latest runs: **110/110** Hexen assertions across 59 suites; the existing catalogue suite (8/8) and the other regression
 sets remain green. Browser harness receipts: `docs/evidence/hexen2-browser-trial.json`. Browser harness receipt: `docs/evidence/hexen2-browser-trial.json`. The spawn hands `newclass` to the gamecode (resolved from the loaded
 program: offset 212 base, 214 Portal) and `setclass` (#66) records the class, so `stats_NewClass` applies the native
