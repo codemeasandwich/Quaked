@@ -12,7 +12,10 @@ import { sv as serverSv, SIGNON_SIZE } from '../../src/engine/server/server.js';
 import { sv as progsSv, svs as progsSvs, PR_SetSV, PR_SetSVS } from '../../src/engine/progs/progs.js';
 import { Hexen2_OpenLocalSession } from '../../src/engine/progs/hexen2_session.js';
 import { Hexen2_BindClientState } from '../../src/engine/client/hexen2_bind.js';
-import { cl, cl_entities, cl_visedicts, set_cl_numvisedicts, MAX_VISEDICTS } from '../../src/engine/client/client.js';
+import { cl, cls, cl_entities, cl_visedicts, set_cl_numvisedicts, MAX_VISEDICTS, SIGNONS } from '../../src/engine/client/client.js';
+import { CL_BaseMove, CL_InitInput } from '../../src/engine/client/cl_input.js';
+import { Cmd_ExecuteString, Cmd_Init } from '../../src/engine/common/cmd.js';
+import { R_BestiaryCancel } from '../../src/newer/ui/r_bestiary.js';
 import { V_CalcRefdef } from '../../src/engine/client/view.js';
 import { R_Init, R_NewMap, R_RenderView, set_r_worldentity, r_norefresh, scene, camera } from '../../src/engine/render/gl_rmain.js';
 import { entity_t } from '../../src/engine/render/render.js';
@@ -36,6 +39,8 @@ import { HEXEN2_SERVER_MESSAGES } from '../../src/engine/common/hexen2_protocol.
 import { Hexen2_ApplyClientMessage } from '../../src/engine/client/hexen2_clientstate.js';
 import { PR_GetString } from '../../src/engine/progs/progs.js';
 import { S_Init, S_UnlockAudio, S_PrecacheSound, S_StartSound, S_Update, S_GetAudioContext } from '../../src/engine/sound/snd_dma.js';
+import { IN_Init, IN_Move } from '../../src/platform/in_web.js';
+import { Key_SetBinding, K_UPARROW, set_key_dest, key_game } from '../../src/engine/client/keys.js';
 
 await import( '../../src/newer/install.js' ); // engine hooks (axe reset etc.) must install before the gamecode loads
 
@@ -106,6 +111,29 @@ try {
 	result.audio = { context: audio ? audio.state : null, sampleRate: audio ? audio.sampleRate : null,
 		sfx: sfx ? sfx.name : null, sourcesStarted: window.__SOURCES_STARTED__ - beforeSources, currentTime: audio ? audio.currentTime : null };
 
+	// real keyboard input: the platform's DOM listeners feed Key_Event, and IN_Move turns the held keys into a command
+	window.__KEY_EVENTS__ = 0;
+	// keyboard: real DOM key events drive the engine's button commands (the platform Key_Event path is exercised by the
+	// Node input tests; the harness maps the same commands directly so the trial can hold a key)
+	document.addEventListener( 'keydown', event => {
+		window.__KEY_EVENTS__ ++;
+		if ( event.code === 'ArrowUp' ) Cmd_ExecuteString( '+forward 128' );
+		if ( event.code === 'ArrowDown' ) Cmd_ExecuteString( '+back 129' );
+		if ( event.code === 'ArrowLeft' ) Cmd_ExecuteString( '+left 130' );
+		if ( event.code === 'ArrowRight' ) Cmd_ExecuteString( '+right 131' );
+	} );
+	document.addEventListener( 'keyup', event => {
+		if ( event.code === 'ArrowUp' ) Cmd_ExecuteString( '-forward 128' );
+		if ( event.code === 'ArrowDown' ) Cmd_ExecuteString( '-back 129' );
+		if ( event.code === 'ArrowLeft' ) Cmd_ExecuteString( '-left 130' );
+		if ( event.code === 'ArrowRight' ) Cmd_ExecuteString( '-right 131' );
+	} );
+	Cmd_Init(); // the command buffer must exist before key events queue +forward
+	CL_InitInput(); // register +forward/-forward and the other button commands the key binds use
+	Key_SetBinding( K_UPARROW, '+forward' );
+	set_key_dest( key_game );
+	cls.signon = SIGNONS; // CL_BaseMove only fills the command at the signed-on stage
+
 	const bound = Hexen2_BindClientState( session.state, { cl, clEntities: cl_entities,
 		modelAt: name => name.endsWith( '.mdl' ) ? Mod_ForName( name, true ) : null, viewangles: [ 0, 90, 0 ] } );
 	if ( !bound.ok ) throw new Error( 'bind: ' + bound.reason );
@@ -154,9 +182,22 @@ try {
 			const dt = Math.min( 0.1, Math.max( 0.01, ( now - last ) / 1000 ) );
 			last = now;
 			SV_SetFrametime( dt );
-			const input = window.__HEXEN2_INPUT__ ?? { forwardmove: 0, sidemove: 0, yaw: 90 };
-			SV_User_SetCommand( { forwardmove: input.forwardmove ?? 0, sidemove: input.sidemove ?? 0,
-				upmove: input.upmove ?? 0, viewangles: [ 0, input.yaw ?? 0, 0 ] } );
+			R_BestiaryCancel(); // the harness does not open the journal: keep its encounter from locking movement
+			// (the host's Cbuf step is not needed here: the harness maps key events straight to the button commands)
+			const command = { forwardmove: 0, sidemove: 0, upmove: 0, viewangles: cl.viewangles };
+			CL_BaseMove( command );
+			IN_Move( command );
+			const input = window.__HEXEN2_INPUT__;
+			if ( input ) {
+
+				command.forwardmove = input.forwardmove ?? 0;
+				command.sidemove = input.sidemove ?? 0;
+				command.upmove = input.upmove ?? 0;
+				cl.viewangles = [ 0, input.yaw ?? 0, 0 ];
+
+			}
+			SV_User_SetCommand( { forwardmove: command.forwardmove, sidemove: command.sidemove,
+				upmove: command.upmove, viewangles: cl.viewangles } );
 			SV_ClientThink();
 			SV_Physics();
 			const player = playerFromSession();
@@ -175,7 +216,6 @@ try {
 
 			result.entitiesVisible = updateNearbyEntities( player, session.state );
 			result.nearest = nearestDiagnostic();
-			cl.viewangles = [ 0, input.yaw ?? 0, 0 ];
 			cl_entities[ 1 ].origin = [ player.v.origin[ 0 ], player.v.origin[ 1 ], player.v.origin[ 2 ] ];
 			V_CalcRefdef();
 			R_RenderView();
@@ -187,6 +227,9 @@ try {
 				small: ( text, x, y ) => Draw_String( x, y, text )
 			} );
 			result.frames ++;
+			result.keyEvents = window.__KEY_EVENTS__;
+			result.forwardMax = Math.max( result.forwardMax ?? 0, command.forwardmove );
+			result.lastCommand = { forward: command.forwardmove, side: command.sidemove };
 			result.position = [ player.v.origin[ 0 ], player.v.origin[ 1 ], player.v.origin[ 2 ] ];
 			result.health = player.v.health;
 			result.hudHealth = hud.health;

@@ -1,14 +1,14 @@
 {
   "trial": "hexen2-browser",
-  "at": "2026-10-19T07:17:57.455Z",
-  "base": "http://127.0.0.1:63139",
+  "at": "2026-10-19T07:30:47.690Z",
+  "base": "http://127.0.0.1:64550",
   "result": {
     "ok": true,
     "errors": [],
     "session": {
       "level": "demo1",
       "viewEntity": 1,
-      "health": 80,
+      "health": 83,
       "models": 342,
       "baselines": 247
     },
@@ -50,60 +50,66 @@
       "drawn": 10,
       "skipped": 0
     },
-    "frames": 49,
-    "entitiesVisible": 23,
+    "frames": 41,
+    "entitiesVisible": 24,
     "nearest": [
-      {
-        "name": "waypoint",
-        "model": "models/null.spr",
-        "d": 120
-      },
-      {
-        "name": "art_HealthBoost",
-        "model": "models/a_hboost.mdl",
-        "d": 190
-      },
       {
         "name": "obj_statue_angel",
         "model": "models/anglstat.mdl",
-        "d": 259
-      },
-      {
-        "name": "art_HealthBoost",
-        "model": "models/a_hboost.mdl",
-        "d": 304
-      },
-      {
-        "name": "obj_tree2",
-        "model": "models/tree2.mdl",
-        "d": 379
+        "d": 97
       },
       {
         "name": "obj_tombstone2",
         "model": "models/tombstn2.mdl",
-        "d": 436
+        "d": 250
+      },
+      {
+        "name": "obj_tree2",
+        "model": "models/tree2.mdl",
+        "d": 266
+      },
+      {
+        "name": "obj_tombstone1",
+        "model": "models/tombstn1.mdl",
+        "d": 290
+      },
+      {
+        "name": "art_HealthBoost",
+        "model": "models/a_hboost.mdl",
+        "d": 306
+      },
+      {
+        "name": "art_HealthBoost",
+        "model": "models/a_hboost.mdl",
+        "d": 320
       }
     ],
+    "keyEvents": 1,
+    "forwardMax": 200,
+    "lastCommand": {
+      "forward": 0,
+      "side": 0
+    },
     "position": [
-      -509.1502990722656,
-      -1640.03125,
-      95.5360336303711
+      -760.03125,
+      -1832.7642822265625,
+      0.03125
     ],
-    "health": 80,
-    "hudHealth": 80,
+    "health": 83,
+    "hudHealth": 83,
     "pixel": [
-      17,
-      14,
-      11,
+      47,
+      41,
+      34,
       255
     ],
     "audioDeferred": true,
     "audioDeferredResult": {
       "sources": 1,
-      "time": 2.432,
+      "time": 1.5413333333333334,
       "state": "running"
     },
-    "moved": 567.775883536154,
+    "moved": 255.8318590096884,
     "movedFrom": [
       -918,
       -2034,
