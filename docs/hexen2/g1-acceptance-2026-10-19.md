@@ -18,7 +18,7 @@ Run from `/Users/bri/worktrees/Quaked/Dev/h2` with
 
 | G1 element | Evidence (test) | State |
 | --- | --- | --- |
-| Session / edition validation | `hexen2_profile_test.js`, `hexen2_filesystem_test.js`, `hexen2_catalogue_test.js` | Session descriptors and filesystem precedence are module-tested; the public game catalogue now lists Hexen II, its portals sibling and the demo, probes pak0..pak9, recognises loose `progs.dat`/`strings.txt`/`hexen.rc`, and reports found/validated/playable honestly (the demo stays unadvertised until its genuine fixture is verified). Public selection/mounting through the shelf and native boundary is still missing. |
+| Session / edition validation | `hexen2_profile_test.js`, `hexen2_filesystem_test.js`, `hexen2_catalogue_test.js` | Session descriptors and filesystem precedence are module-tested; the public game catalogue now lists Hexen II, its portals sibling and the demo, probes pak0..pak9, recognises loose `progs.dat`/`strings.txt`/`hexen.rc`, and reports found/validated/playable honestly (the demo stays unadvertised until its genuine fixture is verified). Selection/mounting is now engine-level: a playable entry plus a class yields a session plan (with rules/gamecode labels) and mounts gamecode, palette, demo1 and its entities through the existing loaders, placing the Paladin with native stats (`hexen2_mount_test.js`). The shelf click, native boundary and packaged smoke remain. |
 | VM (Hexen layouts, opcodes, builtins) | `hexen2_progs_layout_test.js` (2), `hexen2_progdefs_test.js` (7), `hexen2_vm_test.js` (9) | Supplied base and Portal layouts validated; core ABI exercised. Unimplemented builtins still refuse by name (attack frames stop at `particle4`). |
 | Model / collision | `hexen2_bsp_test.js` (4), `hexen2_model_test.js` (2), `hexen2_world_test.js` (2) | Eight-hull submodels, RAPO bounds, native hull selection and traces verified. |
 | Codec | `hexen2_protocol_test.js`, `hexen2_demo_test.js`, `hexen2_wire_test.js` | Id collision table, native demo framing, and the private `1019 quaked-hexen2-v1` session preamble now round-trips (edition, gamecode mode, rules, class, gamecode CRC, simulation digest) with truncation/foreign-version/unknown-field/mismatch refusal. Entity message bodies and a real peer are still pending. |
@@ -32,8 +32,8 @@ Run from `/Users/bri/worktrees/Quaked/Dev/h2` with
 | End-to-end trace | `hexen2_acceptance_test.js` (1) | Detection → Installed Paladin session → boot → physics → client view → world frame → audio bridge → HUD/status, in one process. Still not a drawn or networked session. |
 | Public native smoke | — | **Missing.** No packaged-app UI path (shelf → source → class → difficulty → demo1) exists for Hexen II. |
 
-Latest runs after the inventory-row work: **79/79** Hexen assertions across 32 suites; the existing catalogue suite
-(8/8) and the other regression sets remain green. The spawn hands `newclass` to the gamecode (resolved from the loaded
+Latest runs after the selection/mounting work: **80/80** Hexen assertions across 33 suites; the existing catalogue
+suite (8/8) and the other regression sets remain green. The spawn hands `newclass` to the gamecode (resolved from the loaded
 program: offset 212 base, 214 Portal) and `setclass` (#66) records the class, so `stats_NewClass` applies the native
 tables instead of returning through its class guard; sprint (#24) and stuffcmd (#21) carry the pickup/class text.
 
@@ -58,8 +58,8 @@ against the pre-change baseline when the candidate is qualified. This is a proce
 5. **Public smoke**: shelf → source → Paladin → demo1 through the public UI, not test-only boot.
 6. **Codec**: the private session preamble round-trips and rejects mismatches; native entity message bodies and a real
    client/server peer remain.
-7. **Public/filesystem integration**: the catalogue now discovers/validates Hexen (with its loose gamecode). Public
-   selection and mounting through the shelf and native boundary remain.
+7. **Public/filesystem integration**: catalogue discovery/validation and engine-level selection/mounting are verified;
+   the shelf click, native boundary and packaged smoke remain.
 
 No owner deadline was supplied; none is invented here. Presentation and combat work must not be declared complete
 because the underlying data paths are verified.
