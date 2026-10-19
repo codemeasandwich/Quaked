@@ -19,6 +19,7 @@ import * as THREE from 'three';
 import { R_WeaponAsset, R_WeaponRotorFrame } from '../common/hooks.js'; // installed by newer/render/r_weapons.js
 import { R_NewerAliasMaterial, R_EnemyAliasMaterial, R_AssetAliasMaterial } from '../common/hooks.js'; // installed by newer/render/r_newerskins.js
 import { R_AnimEnabled, R_AliasPoseBlend, R_BlendArrays } from '../common/hooks.js'; // installed by newer/render/r_anim.js
+import { R_IsNewer } from '../common/hooks.js'; // installed by newer/mode.js
 import { ANIM_STEP } from '../common/quakedef.js';
 import { Con_Printf, Con_DPrintf } from '../common/common.js';
 import { cl } from '../client/client.js';
@@ -26,6 +27,11 @@ import { R_GetPlayerSkinTexture } from './gl_rmisc.js';
 import { gl_nocolors } from './glquake.js';
 import { r_avertexnormals } from '../common/anorm_dots.js';
 import { MAXALIASTRIS } from './gl_model_types.js';
+import { r_origin } from './render.js';
+import {
+	R_AliasScaleTransform, R_FaceViewAngles, R_EntityIsTranslucent, R_ModelSkinMode, R_ApplyModelSkinMode,
+	EF_FACE_VIEW
+} from './gl_entity_semantics.js';
 
 /*
 =================================================================
@@ -626,6 +632,11 @@ per-frame material creation and shader compilation.
 */
 function R_GetAliasMaterial( paliashdr, entity, hasLighting, playerSkinTexture ) {
 
+	// Hexen II's model-flag skin modes are properties of the model, so the cached material can carry them (the
+	// texture's alpha was converted at load); only the enhanced pipeline's own materials are left to their art.
+	const skinMode = R_ModelSkinMode( entity?.model?.flags ?? 0 );
+	const newer = R_IsNewer();
+
 	// Player skin textures are per-entity, not cached on the model
 	if ( playerSkinTexture != null ) {
 
@@ -644,7 +655,7 @@ function R_GetAliasMaterial( paliashdr, entity, hasLighting, playerSkinTexture )
 
 		}
 
-		return entity._playerMaterial;
+		return R_ApplyModelSkinMode( entity._playerMaterial, skinMode, newer );
 
 	}
 
@@ -656,7 +667,7 @@ function R_GetAliasMaterial( paliashdr, entity, hasLighting, playerSkinTexture )
 	if ( entity != null && entity.model != null ) {
 
 		const replacement = R_NewerAliasMaterial( entity, entity.model.name, hasLighting, skinnum );
-		if ( replacement !== null ) return replacement;
+		if ( replacement !== null ) return R_ApplyModelSkinMode( replacement, skinMode, newer );
 
 	}
 
@@ -684,10 +695,10 @@ function R_GetAliasMaterial( paliashdr, entity, hasLighting, playerSkinTexture )
 	if ( texture && entity != null && entity.model != null ) {
 
 		const detailed = R_EnemyAliasMaterial( texture, entity.model.name, hasLighting, skinnum, anim, entity.model );
-		if ( detailed !== null ) return detailed;
+		if ( detailed !== null ) return R_ApplyModelSkinMode( detailed, skinMode, newer );
 
 	}
-	if ( material ) return material;
+	if ( material ) return R_ApplyModelSkinMode( material, skinMode, newer );
 
 	if ( texture ) {
 
@@ -702,7 +713,7 @@ function R_GetAliasMaterial( paliashdr, entity, hasLighting, playerSkinTexture )
 	}
 
 	paliashdr._materialCache.set( cacheKey, material );
-	return material;
+	return R_ApplyModelSkinMode( material, skinMode, newer );
 
 }
 
@@ -712,6 +723,7 @@ const _aliasRZ = new THREE.Matrix4();
 const _aliasRY = new THREE.Matrix4();
 const _aliasRX = new THREE.Matrix4();
 const _DEG2RAD = Math.PI / 180;
+const _entityOffset = new THREE.Vector3();
 
 function weaponAliasFrame( weapon, header, pose ) {
 
@@ -974,38 +986,48 @@ export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight, visu
 	R_LavaManApply( entity, mesh, entity?._aliasBlended ? entity._aliasBlendPos : template.posAttr,
 		entity?._aliasBlended ? entity._aliasBlendNormal : template.normalAttr, visualTime );
 
-	// Apply entity transform — R_RotateForEntity equivalent
+	// Apply entity transform — R_RotateForEntity equivalent, plus Hexen II's per-entity scale and EF_FACE_VIEW
 	if ( entity ) {
 
-		if ( entity.origin ) {
+		const angles = entity.angles ?? [ 0, 0, 0 ];
+		let yaw = angles[ 1 ] * _DEG2RAD;
+		let pitch = - angles[ 0 ] * _DEG2RAD;
+		let roll = angles[ 2 ] * _DEG2RAD;
 
-			mesh.position.set(
-				entity.origin[ 0 ],
-				entity.origin[ 1 ],
-				entity.origin[ 2 ]
-			);
+		if ( entity.model != null && ( entity.model.flags & EF_FACE_VIEW ) !== 0 ) {
 
-		}
-
-		if ( entity.angles ) {
-
-			const yaw = entity.angles[ 1 ] * _DEG2RAD;
-			const pitch = - entity.angles[ 0 ] * _DEG2RAD;
-			const roll = entity.angles[ 2 ] * _DEG2RAD;
-
-			_aliasMat.identity();
-			_aliasRZ.makeRotationZ( yaw );
-			_aliasRY.makeRotationY( pitch );
-			_aliasRX.makeRotationX( roll );
-			_aliasMat.multiply( _aliasRZ ).multiply( _aliasRY ).multiply( _aliasRX );
-			mesh.setRotationFromMatrix( _aliasMat );
+			// uhexen2 gl_rmain.c R_RotateForEntity2: yaw and pitch look from the model to the viewer; roll stays the
+			// entity's own (the native branch keeps -e->angles[2])
+			const facing = R_FaceViewAngles( entity, r_origin );
+			yaw = facing.yaw * _DEG2RAD;
+			pitch = - facing.pitch * _DEG2RAD;
+			roll = - angles[ 2 ] * _DEG2RAD;
 
 		}
+
+		_aliasMat.identity();
+		_aliasRZ.makeRotationZ( yaw );
+		_aliasRY.makeRotationY( pitch );
+		_aliasRX.makeRotationX( roll );
+		_aliasMat.multiply( _aliasRZ ).multiply( _aliasRY ).multiply( _aliasRX );
+		mesh.setRotationFromMatrix( _aliasMat );
+
+		// The scale factors grow the geometry about its model origin, so the native SCALE_ORIGIN_* offset is applied
+		// inside the turned frame (native gl_rmain.c:872-910).
+		const transform = R_AliasScaleTransform( entity, paliashdr );
+		mesh.scale.set( transform.scale[ 0 ], transform.scale[ 1 ], transform.scale[ 2 ] );
+		_entityOffset.set( transform.offset[ 0 ], transform.offset[ 1 ], transform.offset[ 2 ] );
+		_entityOffset.applyQuaternion( mesh.quaternion );
+		mesh.position.set(
+			( entity.origin?.[ 0 ] ?? 0 ) + _entityOffset.x,
+			( entity.origin?.[ 1 ] ?? 0 ) + _entityOffset.y,
+			( entity.origin?.[ 2 ] ?? 0 ) + _entityOffset.z
+		);
 
 	}
 
-	// Reset render overrides (viewmodel sets these)
-	mesh.renderOrder = 0;
+	// Reset render overrides (viewmodel sets these); a translucent entity sorts with the other see-through objects
+	mesh.renderOrder = R_EntityIsTranslucent( entity ) ? 1 : 0;
 	if ( mesh.material.depthTest === false ) {
 
 		// Clone material for weapon so it doesn't affect shared material

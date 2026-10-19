@@ -96,6 +96,11 @@ export class entity_t {
 		this.colormap = null; // byte pointer
 		this.effects = 0; // light, particles, etc
 		this.skinnum = 0; // for Alias models
+		// Hexen II's optional entity state, as on client/client.js's entity_t: Quake entities keep 1.0/0/0 and no
+		// message sets them, so the shared renderer's semantics answer "unchanged" for every Quake entity.
+		this.scale = 1.0;
+		this.drawflags = 0;
+		this.abslight = 0;
 		this.visframe = 0; // last frame this entity was found in an active leaf
 
 		this.dlightframe = 0; // dynamic lighting

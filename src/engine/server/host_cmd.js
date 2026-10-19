@@ -10,8 +10,9 @@
  *
  * Errors: calls `Sys_Error` (fatal) at 1 place; catches at 5 places.
  *
- * Saved games are kept in localStorage; a failed save or load is caught and reported on the console. A map not yet
- * loaded is fetched first and the command reissued.
+ * Saved games are kept in localStorage: Quake's version-5 text, or for Hexen II one atomic whole-hub JSON record. A
+ * failed save or load is caught and reported on the console. A map not yet loaded is fetched first and the command
+ * reissued.
  */
 import { weaponSurface } from '../common/hooks.js'; // installed by newer/render/r_weapon_surface.js
 import { SV_RespawnRestoreDropModel, SV_RespawnClearTravel, SV_RespawnFinishTravel } from '../common/hooks.js'; // installed by newer/gameplay/sv_respawn.js
@@ -65,7 +66,12 @@ import { S_WelcomeJingle } from '../common/hooks.js'; // installed by newer/soun
 const SHELL_SAVE_PREFIX = '// quaked-shells-v1 ';
 import { set_noclip_anglehack } from '../common/host_state.js';
 import { GameSelection_SavePrefix } from '../common/game_selection.js';
-import { GameProfile_IsHexen2 } from '../common/game_profile.js';
+import { GameProfile_Get, GameProfile_IsHexen2 } from '../common/game_profile.js';
+import { Hexen2_SaveEffects, Hexen2_LoadEffects } from '../progs/hexen2_server_cmds.js';
+import {
+	Hexen2Hub_New, Hexen2Hub_Validate, Hexen2Hub_ValidateLevel, Hexen2Hub_CaptureLevel, Hexen2Hub_CaptureClients,
+	Hexen2Hub_RestoreLevel, Hexen2Hub_RestoreClients, Hexen2Hub_PutLevel, Hexen2Hub_GetLevel, Hexen2Hub_LevelCount
+} from './hexen2_hub.js';
 
 // noclip_anglehack lives in a leaf (card [44g], D1a), so the client reads it without importing the host
 export { noclip_anglehack, set_noclip_anglehack } from '../common/host_state.js';
@@ -76,9 +82,10 @@ Host_InitCommands
 ======================
 */
 /**
- * Registers the host console commands (WinQuake host_cmd.c): `status`, `quit`, `map`, `changelevel`, `restart`,
- * `reconnect`, `connect`, `name`, `pause`, `say`, `say_team`, `tell`, `color`, `kill`, `god`, `notarget`, `fly`,
- * `noclip`, `give`, `ping`, `kick`, `save`/`savegame`, `load`/`loadgame`, `startdemos`, `demos`, `stopdemo`, and the
+ * Registers the host console commands (WinQuake host_cmd.c): `status`, `quit`, `map`, `changelevel`, `changelevel2`,
+ * `restart`, `reconnect`, `connect`, `name`, `pause`, `say`, `say_team`, `tell`, `color`, `kill`, `god`, `notarget`,
+ * `fly`, `noclip`, `give`, `ping`, `kick`, `save`/`savegame`, `load`/`loadgame`, `quicksave`/`quickload`,
+ * `startdemos`, `demos`, `stopdemo`, and the
  * signon commands `prespawn`, `spawn` and `begin` that clients send. Called once at startup from `Host_InitLocal`
  * (host.js); the registrations last for the session. WinQuake commands not listed here are not ported.
  */
@@ -88,6 +95,7 @@ export function Host_InitCommands() {
 	Cmd_AddCommand( 'quit', Host_Quit_f );
 	Cmd_AddCommand( 'map', Host_Map_f );
 	Cmd_AddCommand( 'changelevel', Host_Changelevel_f );
+	Cmd_AddCommand( 'changelevel2', Host_Changelevel2_f );
 	Cmd_AddCommand( 'restart', Host_Restart_f );
 	Cmd_AddCommand( 'reconnect', Host_Reconnect_f );
 	Cmd_AddCommand( 'connect', Host_Connect_f );
@@ -109,6 +117,8 @@ export function Host_InitCommands() {
 	Cmd_AddCommand( 'load', Host_Loadgame_f );
 	Cmd_AddCommand( 'savegame', Host_Savegame_f );
 	Cmd_AddCommand( 'loadgame', Host_Loadgame_f );
+	Cmd_AddCommand( 'quicksave', Host_Quicksave_f );
+	Cmd_AddCommand( 'quickload', Host_Quickload_f );
 	Cmd_AddCommand( 'startdemos', Host_Startdemos_f );
 	Cmd_AddCommand( 'demos', Host_Demos_f );
 	Cmd_AddCommand( 'stopdemo', Host_Stopdemo_f );
@@ -183,6 +193,7 @@ function Host_Map_f() {
 	cls.demonum = - 1; // stop demo loop in case this fails
 	SV_ClearCarriedPowerups(); // a fresh run cannot inherit a failed travel's timers
 	R_ShellsReset(); // explicit map/new game, unlike seamless level travel
+	if ( GameProfile_IsHexen2() ) Host_Hexen2HubReset(); // a new game retires the previous unit's hub
 
 	CL_Disconnect();
 	Host_ShutdownServer( false );
@@ -248,6 +259,7 @@ function Host_Changelevel_f() {
 	}
 
 	const level = Cmd_Argv( 1 );
+	const spot = GameProfile_IsHexen2() ? Cmd_Argv( 2 ) : '';
 	const filename = 'maps/' + level + '.bsp';
 
 	// If the map file isn't loaded yet, fetch it on demand
@@ -258,7 +270,7 @@ function Host_Changelevel_f() {
 
 			if ( success ) {
 
-				Cbuf_AddText( 'changelevel ' + level + '\n' );
+				Cbuf_AddText( 'changelevel ' + level + ( spot ? ' ' + spot : '' ) + '\n' );
 
 			} else {
 
@@ -271,11 +283,67 @@ function Host_Changelevel_f() {
 
 	}
 
+	// A unit/episode change starts a fresh hub (native `changelevel`; the hub form is `changelevel2`).
+	if ( GameProfile_IsHexen2() ) Host_Hexen2HubReset();
 	SV_SaveSpawnparms();
-	SV_SpawnServer( level, GameProfile_IsHexen2() ? Cmd_Argv( 2 ) : '' );
+	SV_SpawnServer( level, spot );
 	// Note: SV_SpawnServer handles client reconnection internally via SV_SendReconnect
 	// which calls Host_Reconnect_f to reset cls.signon. We do NOT call CL_EstablishConnection
 	// here because the client is already connected - it just needs new signon messages.
+
+}
+
+/*
+==================
+Host_Changelevel2_f
+
+Changing levels within a unit: save this level's state, then restore the target's if it has been visited (uhexen2
+Host_Changelevel2_f and LoadGamestate mode 0).
+==================
+*/
+function Host_Changelevel2_f() {
+
+	if ( ! GameProfile_IsHexen2() ) {
+
+		Con_Printf( 'changelevel2 <levelname> [startspot] : Hexen II hub travel\n' );
+		return;
+
+	}
+
+	if ( Cmd_Argc() !== 2 && Cmd_Argc() !== 3 ) {
+
+		Con_Printf( 'changelevel2 <levelname> [startspot] : continue game on a new level in the unit\n' );
+		return;
+
+	}
+
+	if ( ! sv.active || cls.demoplayback ) {
+
+		Con_Printf( 'Only the server may changelevel\n' );
+		return;
+
+	}
+
+	const level = Cmd_Argv( 1 );
+	const spot = Cmd_Argv( 2 );
+	const filename = 'maps/' + level + '.bsp';
+
+	// If the map file isn't loaded yet, fetch it on demand
+	if ( COM_FindFile( filename ) === null ) {
+
+		Con_Printf( 'Fetching %s...\n', filename );
+		COM_EnsureFile( filename ).then( ( success ) => {
+
+			if ( success ) Cbuf_AddText( 'changelevel2 ' + level + ( spot ? ' ' + spot : '' ) + '\n' );
+			else Con_Printf( 'Couldn\'t find map: %s\n', level );
+
+		} );
+		return;
+
+	}
+
+	const result = Host_Hexen2ChangeLevel2( level, spot );
+	if ( ! result.ok ) Con_Printf( 'changelevel2: %s\n', result.reason );
 
 }
 
@@ -284,10 +352,27 @@ function Host_Restart_f() {
 	if ( ! sv.active )
 		return;
 
+	if ( Cmd_Argc() === 2 && Cmd_Argv( 1 ).toLowerCase() === 'restore' && GameProfile_IsHexen2() ) {
+
+		const result = Host_Hexen2RestartRestore();
+		if ( ! result.ok ) Con_Printf( 'restart restore: %s\n', result.reason );
+		return;
+
+	}
+
 	const mapname = sv.name;
 	if ( mapname ) {
 
-		Cbuf_AddText( 'map ' + mapname + '\n' );
+		if ( GameProfile_IsHexen2() ) {
+
+			// Native restarts the map directly and leaves the hub's other levels intact.
+			SV_SpawnServer( mapname, sv.startspot ?? '' );
+
+		} else {
+
+			Cbuf_AddText( 'map ' + mapname + '\n' );
+
+		}
 
 	}
 
@@ -973,6 +1058,375 @@ function Host_Kick_f() {
 
 }
 
+//============================================================================
+// Hexen II hubs and saves
+//============================================================================
+
+const HEXEN2_SAVE_HEADER = 'HEXEN2HUB 1';
+let sessionHub = null;
+
+/**
+ * Drops the session's in-memory hub. The `map` command and a new unit (`changelevel`) call it, so a new run can never
+ * inherit a previous unit's stored levels.
+ *
+ * @returns {object} the new empty hub
+ */
+export function Host_Hexen2HubReset() {
+
+	sessionHub = Hexen2Hub_New();
+	return sessionHub;
+
+}
+
+/** The session's in-memory hub, or null before a Hexen II game starts. */
+export function Host_Hexen2Hub() { return sessionHub; }
+
+function hexenHub() {
+
+	if ( sessionHub === null ) sessionHub = Hexen2Hub_New();
+	return sessionHub;
+
+}
+
+function mapNameFor( level ) {
+
+	let name = String( level ?? '' ).trim().replace( /\\/g, '/' ).toLowerCase();
+	if ( name.startsWith( 'maps/' ) ) name = name.slice( 5 );
+	if ( name.endsWith( '.bsp' ) ) name = name.slice( 0, - 4 );
+	return name;
+
+}
+
+function captureSessionInfo() {
+
+	const client = svs.clients?.[ 0 ];
+	let playerclass = client?.playerclass | 0;
+	if ( playerclass < 1 && client?.edict ) {
+
+		const field = GetEdictFieldValue( client.edict, 'playerclass' );
+		if ( field !== null ) playerclass = field.accessor.getFloat( field.ofs ) | 0;
+
+	}
+	const globals = pr_global_struct ?? {};
+	return {
+		gameId: GameProfile_Get().id,
+		skill: current_skill | 0,
+		playerclass,
+		infoMask: ( globals.info_mask ?? sv.info_mask ?? 0 ) >>> 0,
+		infoMask2: ( globals.info_mask2 ?? sv.info_mask2 ?? 0 ) >>> 0,
+		serverflags: globals.serverflags | 0,
+		midiName: String( sv.midi_name ?? '' ),
+		cdTrack: sv.cd_track | 0,
+	};
+
+}
+
+function applySessionInfo( session ) {
+
+	if ( session === null || typeof session !== 'object' ) return;
+	if ( Number.isInteger( session.skill ) ) Cvar_SetValue( 'skill', Math.max( 0, Math.min( 4, session.skill ) ) );
+	if ( Number.isInteger( session.playerclass ) && session.playerclass >= 1 && session.playerclass <= 5 )
+		Cvar_SetValue( '_cl_playerclass', session.playerclass );
+	svs.serverflags = session.serverflags | 0;
+	sv.info_mask = ( session.infoMask ?? 0 ) >>> 0;
+	sv.info_mask2 = ( session.infoMask2 ?? 0 ) >>> 0;
+	if ( pr_global_struct ) {
+
+		if ( 'info_mask' in pr_global_struct ) pr_global_struct.info_mask = sv.info_mask;
+		if ( 'info_mask2' in pr_global_struct ) pr_global_struct.info_mask2 = sv.info_mask2;
+
+	}
+	for ( let i = 0; i < ( svs.maxclients | 0 ); i ++ ) {
+
+		const client = svs.clients?.[ i ];
+		if ( client?.active && session.playerclass >= 1 && session.playerclass <= 5 ) client.playerclass = session.playerclass;
+
+	}
+
+}
+
+function captureCurrentLevel( hub ) {
+
+	const level = Hexen2Hub_CaptureLevel( sv, svs, Hexen2_SaveEffects() );
+	Hexen2Hub_PutLevel( hub, level );
+	hub.currentLevel = level.level;
+	hub.clients = Hexen2Hub_CaptureClients( sv, svs );
+	hub.session = captureSessionInfo();
+	hub.savedAt = new Date().toISOString();
+	return level;
+
+}
+
+function spawnAndRestoreLevel( hub, levelName, startspot = '' ) {
+
+	const record = Hexen2Hub_GetLevel( hub, levelName );
+	if ( record === null ) return { ok: false, reason: `no stored state for ${levelName}` };
+	const name = mapNameFor( record.level );
+	SV_SpawnServer( name, String( startspot ?? '' ) || record.startspot || '' );
+	if ( ! sv.active ) return { ok: false, reason: `couldn't spawn ${name}` };
+	const restored = Hexen2Hub_RestoreLevel( sv, svs, record );
+	if ( ! restored.ok ) return restored;
+	if ( record.effects !== null && record.effects !== undefined ) {
+
+		const effects = Hexen2_LoadEffects( record.effects );
+		if ( ! effects.ok ) Con_Printf( 'Saved effects could not be restored: %s\n', effects.reason );
+
+	}
+	sv.time = record.time;
+	pr_global_struct.time = sv.time;
+	return { ok: true, record, count: restored.count };
+
+}
+
+/**
+ * Hexen II's hub transition (`changelevel2`): saves the live level and clients, then restores the target's stored
+ * state when it has been visited, or spawns it fresh. Either way the latest client record is restored and the
+ * gamecode's `ClientReEnter(timeDiff)` runs, as native `Host_Changelevel2_f` + `LoadGamestate`/`RestoreClients`.
+ *
+ * @param {string} level the map name, with or without `maps/` and `.bsp`
+ * @param {string} [startspot] the target start spot (the stored one when empty)
+ * @returns {{ ok: true, restored: boolean, timeDiff: number, clients: number } | { ok: false, reason: string }} the result
+ */
+export function Host_Hexen2ChangeLevel2( level, startspot = '' ) {
+
+	if ( ! GameProfile_IsHexen2() ) return { ok: false, reason: 'not a Hexen II game' };
+	const name = mapNameFor( level );
+	if ( name === '' ) return { ok: false, reason: 'no level name' };
+
+	const hub = hexenHub();
+	const oldTime = sv.time;
+	SV_SaveSpawnparms();
+
+	// SaveGamestate(false) then SV_SpawnServer's own SaveGamestate(true): both are the live level, before the new one
+	// is loaded.
+	captureCurrentLevel( hub );
+	const clients = hub.clients;
+
+	const target = Hexen2Hub_GetLevel( hub, name );
+	if ( target !== null ) {
+
+		const loaded = spawnAndRestoreLevel( hub, name, startspot );
+		if ( ! loaded.ok ) return loaded;
+		sv.paused = true; // native LoadGamestate mode 0 pauses until the client prespawns
+
+	} else {
+
+		SV_SpawnServer( name, String( startspot ?? '' ) );
+		if ( ! sv.active ) return { ok: false, reason: `couldn't spawn ${name}` };
+
+	}
+
+	const timeDiff = sv.time - oldTime;
+	const clientsResult = Hexen2Hub_RestoreClients( sv, svs, clients, timeDiff );
+	if ( ! clientsResult.ok ) return { ok: false, reason: clientsResult.reason };
+
+	// RestoreClients ends with SaveGamestate(true): keep the re-entered client state for the next visit.
+	hub.currentLevel = sv.name;
+	hub.clients = Hexen2Hub_CaptureClients( sv, svs );
+	hub.session = captureSessionInfo();
+	hub.savedAt = new Date().toISOString();
+	return { ok: true, restored: target !== null, timeDiff, clients: clientsResult.restored };
+
+}
+
+
+/**
+ * `restart restore`: reload the current level's stored state and re-enter the client without a level change
+ * (uhexen2 Host_Restart_f / LoadGamestate mode 3).
+ *
+ * @returns {{ ok: true, restored: boolean } | { ok: false, reason: string }} the result
+ */
+export function Host_Hexen2RestartRestore() {
+
+	if ( ! sv.active ) return { ok: false, reason: 'not playing a local game' };
+	const hub = hexenHub();
+	const name = mapNameFor( sv.name );
+	const record = Hexen2Hub_GetLevel( hub, name );
+	if ( record === null ) {
+
+		SV_SpawnServer( name, sv.startspot ?? '' );
+		if ( ! sv.active ) return { ok: false, reason: `couldn't spawn ${name}` };
+		if ( hub.clients ) Hexen2Hub_RestoreClients( sv, svs, hub.clients, 0 );
+		return { ok: true, restored: false };
+
+	}
+	const loaded = spawnAndRestoreLevel( hub, name, sv.startspot ?? '' );
+	if ( ! loaded.ok ) return loaded;
+	sv.paused = false;
+	const clients = Hexen2Hub_RestoreClients( sv, svs, hub.clients, 0 );
+	if ( ! clients.ok ) return { ok: false, reason: clients.reason };
+	hub.clients = Hexen2Hub_CaptureClients( sv, svs );
+	return { ok: true, restored: true };
+
+}
+
+/**
+ * Reads one Hexen II hub save from the shared save repository. A slot is one localStorage value, so the whole hub and
+ * its comment are committed atomically; the second line stays a save-menu comment like a Quake slot's.
+ *
+ * @param {string} name the slot name
+ * @returns {?{ hub: object, comment: string, text: string }} the record, or null when absent/unreadable
+ */
+export function Host_Hexen2ReadSlot( name ) {
+
+	let text;
+	try { text = localStorage.getItem( GameSelection_SavePrefix() + name ); } catch { return null; }
+	if ( typeof text !== 'string' ) return null;
+	const header = text.indexOf( '\n' );
+	if ( header < 0 || text.slice( 0, header ) !== HEXEN2_SAVE_HEADER ) return null;
+	const commentEnd = text.indexOf( '\n', header + 1 );
+	if ( commentEnd < 0 ) return null;
+	const comment = text.slice( header + 1, commentEnd );
+	try {
+
+		const hub = JSON.parse( text.slice( commentEnd + 1 ) );
+		const valid = Hexen2Hub_Validate( hub );
+		if ( !valid.ok ) return null;
+		return { hub, comment, text };
+
+	} catch { return null; }
+
+}
+
+/**
+ * The save-menu summary of one Hexen II slot without loading it.
+ *
+ * @param {string} name the slot name
+ * @returns {?{ comment: string, level: string, levels: number, skill: number, playerclass: number, savedAt: string }} the summary
+ */
+export function Host_Hexen2SaveSummary( name ) {
+
+	const slot = Host_Hexen2ReadSlot( name );
+	if ( slot === null ) return null;
+	return {
+		comment: slot.comment,
+		level: slot.hub.currentLevel,
+		levels: Hexen2Hub_LevelCount( slot.hub ),
+		skill: slot.hub.session?.skill | 0,
+		playerclass: slot.hub.session?.playerclass | 0,
+		savedAt: slot.hub.savedAt,
+	};
+
+}
+
+/**
+ * Saves the whole session hub into one shared fetch/localStorage slot: every visited level's state, the current level,
+ * the client slot's class/skill/objectives and spawn parms. Quake's version-5 text saves are untouched.
+ *
+ * @param {string} name the slot name
+ * @returns {{ ok: true, levels: number } | { ok: false, reason: string }} the result
+ */
+export function Host_Hexen2SaveGame( name ) {
+
+	if ( ! sv.active ) return { ok: false, reason: 'not playing a local game' };
+	if ( ! GameProfile_IsHexen2() ) return { ok: false, reason: 'not a Hexen II game' };
+	if ( String( name ?? '' ).indexOf( '..' ) !== - 1 ) return { ok: false, reason: 'relative pathnames are not allowed' };
+	const hub = hexenHub();
+	captureCurrentLevel( hub );
+	if ( Hexen2Hub_GetLevel( hub, hub.currentLevel ) === null ) return { ok: false, reason: 'the current level was not captured' };
+	const text = HEXEN2_SAVE_HEADER + '\n' + Host_SavegameComment() + '\n' + JSON.stringify( hub ) + '\n';
+	try {
+
+		localStorage.setItem( GameSelection_SavePrefix() + name, text );
+
+	} catch ( error ) {
+
+		Con_Printf( 'ERROR: couldn\'t save (localStorage full?).\n' );
+		return { ok: false, reason: String( error?.message ?? error ) };
+
+	}
+	return { ok: true, levels: Hexen2Hub_LevelCount( hub ) };
+
+}
+
+/**
+ * Loads a whole-hub save. The current session is left untouched until the slot, its schema and its current level have
+ * all validated; then the level is spawned and its saved edicts/effects restored, with the client record's class,
+ * skill, objectives and spawn parms applied, and the signon reissued.
+ *
+ * @param {string} name the slot name
+ * @returns {{ ok: true, level: string, levels: number } | { ok: false, reason: string }} the result
+ */
+export function Host_Hexen2LoadGame( name ) {
+
+	const slot = Host_Hexen2ReadSlot( name );
+	if ( slot === null ) return { ok: false, reason: 'not a readable Hexen II hub save' };
+	const hub = slot.hub, level = mapNameFor( hub.currentLevel );
+	const record = Hexen2Hub_GetLevel( hub, hub.currentLevel );
+	if ( record === null ) return { ok: false, reason: `the save has no state for ${hub.currentLevel}` };
+	const valid = Hexen2Hub_ValidateLevel( record );
+	if ( !valid.ok ) return { ok: false, reason: valid.reason };
+
+	cls.demonum = - 1;
+	applySessionInfo( hub.session );
+	CL_Disconnect();
+	SV_RespawnClearTravel();
+	SV_SpawnServer( level, record.startspot || '' );
+	if ( ! sv.active ) return { ok: false, reason: `couldn't spawn ${level}` };
+	const restored = Hexen2Hub_RestoreLevel( sv, svs, record );
+	if ( ! restored.ok ) return restored;
+	if ( record.effects !== null && record.effects !== undefined ) {
+
+		const effects = Hexen2_LoadEffects( record.effects );
+		if ( ! effects.ok ) Con_Printf( 'Saved effects could not be restored: %s\n', effects.reason );
+
+	}
+	sv.time = record.time;
+	pr_global_struct.time = sv.time;
+	sv.loadgame = true;
+	sv.paused = true;
+	applySessionInfo( hub.session );
+
+	// client_t carry-over: spawn parms and the class the saved run used (the player edict itself came from the level)
+	const slots = new Map( ( hub.clients?.slots ?? [] ).map( entry => [ entry.slot, entry ] ) );
+	for ( let i = 0; i < ( svs.maxclients | 0 ); i ++ ) {
+
+		const client = svs.clients?.[ i ];
+		if ( !client?.active ) continue;
+		const saved = slots.get( i );
+		if ( saved ) {
+
+			client.playerclass = saved.playerclass | 0;
+			client.colors = saved.colors | 0;
+			if ( saved.name ) client.name = saved.name;
+			for ( let j = 0; j < NUM_SPAWN_PARMS; j ++ ) client.spawn_parms[ j ] = saved.spawn_parms[ j ] ?? 0;
+			if ( client.edict && saved.playerclass > 0 ) SV_SetHexen2Field( client.edict, 'playerclass', saved.playerclass | 0 );
+
+		}
+		client.h2Stats = null;
+		client.old_playerclass = client.playerclass;
+
+	}
+
+	SV_SaveSpawnparms();
+	// Keep the class the level's player edict records, as native does after LoadGamestate.
+	const player = EDICT_NUM( 1 );
+	const classField = player ? GetEdictFieldValue( player, 'playerclass' ) : null;
+	const playerclass = classField ? classField.accessor.getFloat( classField.ofs ) | 0 : 0;
+	if ( playerclass >= 1 && playerclass <= 5 ) {
+
+		Cvar_SetValue( '_cl_playerclass', playerclass );
+		if ( svs.clients?.[ 0 ]?.active ) svs.clients[ 0 ].playerclass = playerclass;
+
+	}
+	// The loaded hub becomes this session's hub: later changelevel2 visits and saves must see every loaded level.
+	hub.currentLevel = sv.name;
+	hub.clients = Hexen2Hub_CaptureClients( sv, svs );
+	hub.session = captureSessionInfo();
+	sessionHub = hub;
+	if ( cls.state !== ca_dedicated ) {
+
+		CL_EstablishConnection( 'local' );
+		Host_Reconnect_f();
+
+	}
+	return { ok: true, level: sv.name, levels: Hexen2Hub_LevelCount( hub ) };
+
+}
+
+function Host_Quicksave_f() { Cmd_ExecuteString( 'save quick', src_command ); }
+function Host_Quickload_f() { Cmd_ExecuteString( 'load quick', src_command ); }
+
 const SAVEGAME_VERSION = 5;
 // each game keeps its own saves (card [34c]): see GameSelection_SavePrefix
 
@@ -1061,6 +1515,15 @@ function Host_Savegame_f() {
 
 	Con_Printf( 'Saving game to %s...\n', name );
 
+	if ( GameProfile_IsHexen2() ) {
+
+		const saved = Host_Hexen2SaveGame( name );
+		if ( ! saved.ok ) Con_Printf( 'ERROR: couldn\'t save: %s\n', saved.reason );
+		else Con_Printf( 'done. (%d level%s)\n', saved.levels, saved.levels === 1 ? '' : 's' );
+		return;
+
+	}
+
 	const lines = [];
 
 	lines.push( String( SAVEGAME_VERSION ) );
@@ -1145,6 +1608,36 @@ function Host_Loadgame_f() {
 
 	Con_Printf( 'Loading game from %s...\n', name );
 
+	if ( GameProfile_IsHexen2() ) {
+
+		const slot = Host_Hexen2ReadSlot( name );
+		if ( slot === null ) {
+
+			Con_Printf( 'ERROR: couldn\'t open.\n' );
+			return;
+
+		}
+		const level = mapNameFor( slot.hub.currentLevel );
+		const mapfilename = 'maps/' + level + '.bsp';
+		if ( COM_FindFile( mapfilename ) === null ) {
+
+			Con_Printf( 'Fetching %s...\n', mapfilename );
+			COM_EnsureFile( mapfilename ).then( ( success ) => {
+
+				if ( success ) Cbuf_AddText( 'load ' + name + '\n' );
+				else Con_Printf( 'Couldn\'t find map: %s\n', level );
+
+			} );
+			return;
+
+		}
+		const loaded = Host_Hexen2LoadGame( name );
+		if ( ! loaded.ok ) Con_Printf( 'ERROR: couldn\'t load: %s\n', loaded.reason );
+		else Con_Printf( 'done. (%d level%s)\n', loaded.levels, loaded.levels === 1 ? '' : 's' );
+		return;
+
+	}
+
 	let saveData;
 
 	try {
@@ -1154,6 +1647,7 @@ function Host_Loadgame_f() {
 	} catch ( e ) {
 
 		// ignore
+
 	}
 
 	if ( saveData == null ) {

@@ -126,6 +126,17 @@ export async function Desktop_Prepare(){
    if(step.loose){const files=[];for(const entry of step.loose)files.push({name:entry.name,data:new Uint8Array(await read(entry))});const pack=COM_LoadPackFile(id+'/loose',COM_BuildPack(files));if(!pack)throw Error('Invalid loose files: '+id);packs.push(pack);continue;}
    const pack=COM_LoadPackFile(step.pack.token,await read(step.pack));if(!pack)throw Error('Invalid archive: '+step.pack.name);packs.push(pack);
   }
+  // Hexen's music is loose OGG beside the PAKs: give the host a streaming URL per game path, so the shared music bus
+  // never reads a whole track into memory and a packaged game can play data1/music or portals/music directly.
+  if(String(id).startsWith('hexen2')){
+   const packDir=game=>{const entry=library.packs.find(p=>p.game===game&&!p.loose&&p.path);return entry?String(entry.path).replace(/[^/\\]+$/,''):null;};
+   const ownDir=packDir(id),baseDir=definition.base?packDir(definition.base):null;
+   if(ownDir||baseDir)globalThis.__QUAKED_HEXEN2_MUSIC_URL__=path=>{
+    const text=String(path),portalFirst=/^music\/(?:tulku|track)/.test(text);
+    for(const dir of portalFirst?[ownDir,baseDir]:[baseDir,ownDir])if(dir)return convertFileSrc(dir+text);
+    return null;
+   };
+  }
   // Re-read metadata after full reads so changing files cannot silently select a different game.
   for(const entry of library.packs.filter(p=>ids.includes(p.game)))await invoke('library_read',{token:entry.token,offset:0,length:12});
   const maps=[...new Set(packs.flatMap(p=>p.files.filter(f=>/^maps\/[a-z0-9_]+\.bsp$/.test(f.name)).map(f=>f.name.slice(5,-4))))].sort();

@@ -9,7 +9,7 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `brushEntityGroups`; 2 module-level collections (Map/Set).
+ * State: no mutable exports; module-level variables `brushEntityGroups`; 3 module-level collections (Map/Set).
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  *
@@ -32,6 +32,7 @@ import { R_BlendLightmaps, lightmapTextures } from './gl_rsurf_lightmaps.js';
 import { createQuakeLightmapMaterial, R_TextureAnimation, _mergeGLPolys } from './gl_rsurf_materials.js';
 import { R_RenderDynamicLightmaps } from './gl_rsurf_world.js';
 import { _getWaterMaterial, _getWaterMesh, EmitWaterPolysQuake, R_LiquidAlpha } from './gl_rsurf_liquids.js';
+import { R_EntityMaterialStyle, R_ApplyEntityMaterialStyle } from './gl_entity_semantics.js';
 
 // Brush entity rendering support
 // worldState.renderGroup is the THREE.Group that surface renderers add meshes to.
@@ -42,6 +43,70 @@ let brushEntityGroups = []; // per-frame brush entity groups to dispose next fra
 // Material cache for brush entities - keyed by "diffuseId_lightmapId"
 // Materials are reused across frames to avoid shader recompilation
 const _brushMaterialCache = new Map();
+
+// Per-entity clones carrying Hexen II drawflags (DRF_TRANSLUCENT alpha, MLS_ABSLIGHT intensity). The shared brush
+// materials are never modified: a door's material is shared with every door of that texture and lightmap.
+const _semanticBrushMaterials = new Set();
+
+function _cloneBrushMaterial( base ) {
+
+	const clone = base.clone();
+	if ( Object.hasOwn( base, 'onBeforeCompile' ) ) clone.onBeforeCompile = base.onBeforeCompile;
+	if ( Object.hasOwn( base, 'customProgramCacheKey' ) ) clone.customProgramCacheKey = function () { return base.customProgramCacheKey.call( this ); };
+	return clone;
+
+}
+
+/**
+ * Applies a brush entity's Hexen II drawflags to its group's materials (uhexen2 engine/hexen2/gl_rsurf.c
+ * R_RenderBrushPoly: `DRF_TRANSLUCENT` at `r_wateralpha`, and `MLS_ABSLIGHT` scaling the texture by abslight/255).
+ * Shared materials are cloned once per style and cached on the entity; an entity back at the defaults gets the
+ * shared materials again. Liquid faces keep their own liquid material.
+ *
+ * @param {entity_t} e the brush entity
+ * @param {THREE.Group} brushGroup its cached group
+ */
+export function R_ApplyBrushEntityRenderState( e, brushGroup ) {
+
+	const style = R_EntityMaterialStyle( e );
+
+	if ( ! style.translucent && style.intensity === 1 ) {
+
+		for ( const child of brushGroup.children ) {
+
+			if ( child.userData.quakeLiquid || child.userData.baseMaterial == null ) continue;
+			if ( child.material !== child.userData.baseMaterial ) child.material = child.userData.baseMaterial;
+
+		}
+		return;
+
+	}
+
+	const key = `${style.alpha}:${style.intensity}`;
+	const cache = e._brushSemanticMaterials ??= new Map();
+
+	for ( const child of brushGroup.children ) {
+
+		if ( child.userData.quakeLiquid ) continue;
+		const base = child.userData.baseMaterial ??= child.material;
+		if ( base == null ) continue;
+
+		const materialKey = `${base.uuid}_${key}`;
+		let material = cache.get( materialKey );
+		if ( material == null ) {
+
+			material = _cloneBrushMaterial( base );
+			R_ApplyEntityMaterialStyle( material, style );
+			material.userData.quakeSemantic = true;
+			cache.set( materialKey, material );
+			_semanticBrushMaterials.add( material );
+
+		}
+		child.material = material;
+
+	}
+
+}
 
 // Track all brush entity groups for disposal on map change
 const _allBrushEntityGroups = new Set();
@@ -255,6 +320,7 @@ function _buildBrushGroup( clmodel, frame ) {
 			if ( rockField && lmTex ) material.userData.rockField = true;
 
 			const mesh = new THREE.Mesh( geom, material );
+			mesh.userData.baseMaterial = material;
 			mesh.userData.rockField = rockField;
 			brushGroup.add( mesh );
 
@@ -460,6 +526,7 @@ export function R_DrawBrushModel( e ) {
 			}
 			if ( child.userData.rockField && anim.lmTex ) material.userData.rockField = true;
 
+			child.userData.baseMaterial = material;
 			child.material = material;
 
 		}
@@ -488,6 +555,8 @@ export function R_DrawBrushModel( e ) {
 		brushGroup.quaternion.identity();
 
 	}
+
+	R_ApplyBrushEntityRenderState( e, brushGroup );
 
 	// Add to scene (will be removed next frame by R_DrawWorld cleanup)
 	brushGroup.userData.archHidden = R_ArchModelHidden( clmodel.name, clmodel.surfaces );
@@ -545,6 +614,8 @@ export function R_BrushClear() {
 	// Clear brush entity material cache (dispose old materials first)
 	for ( const mat of _brushMaterialCache.values() ) mat.dispose();
 	_brushMaterialCache.clear();
+	for ( const mat of _semanticBrushMaterials ) mat.dispose();
+	_semanticBrushMaterials.clear();
 
 	// Dispose all cached brush entity groups (geometry disposal)
 	for ( const group of _allBrushEntityGroups ) {
@@ -555,6 +626,7 @@ export function R_BrushClear() {
 			owner._brushGroup = null;
 			owner._brushGroupFrame = undefined;
 			owner._brushAnimSurfaces = null;
+			owner._brushSemanticMaterials = null;
 
 		}
 		group._quakeOwner = null;

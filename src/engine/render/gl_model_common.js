@@ -18,7 +18,9 @@ import * as THREE from 'three';
 import { Sys_Error } from '../common/sys.js';
 import { d_8to24table, vid } from './vid.js';
 import { Length } from '../common/mathlib.js';
-import { gl_texturemode, GL_TextureLinear, GL_RegisterTexture } from './glquake.js';
+import { gl_texturemode, GL_TextureLinear, GL_RegisterTexture, r_wateralpha } from './glquake.js';
+import { GL_ConvertSkinPixels, GL_SkinPalette } from './gl_draw.js';
+import { SKIN_MODE_DEFAULT } from './gl_entity_semantics.js';
 import { model_t } from './gl_model_types.js';
 
 // Sky textures (set by R_InitSky during level load)
@@ -86,9 +88,32 @@ export function set_r_notexture_mip( value ) { r_notexture_mip = value; }
  * @param {boolean} mipmap whether to make mipmaps
  * @param {boolean} alpha whether index 255 is transparent
  * @param {boolean} splitFullbright whether to split the fullbright texels out
+ * @param {number} [skinMode] a Hexen II model-flag skin mode (gl_entity_semantics.js SKIN_MODE_*): the palette is
+ *   converted by gl_draw.js's `GL_ConvertSkinPixels` instead, with index 0 and odd texels' alpha as the mode says
  * @returns {THREE.DataTexture} the texture
  */
-export function GL_LoadTexture( name, width, height, data, mipmap, alpha, splitFullbright ) {
+export function GL_LoadTexture( name, width, height, data, mipmap, alpha, splitFullbright, skinMode = SKIN_MODE_DEFAULT ) {
+
+	// Hexen II model-flag skins carry their own alpha (uhexen2 gl_draw.c GL_Upload8): convert them first and skip
+	// the Quake path's index-255 transparency and fullbright split, which a skin does not use.
+	if ( skinMode !== SKIN_MODE_DEFAULT ) {
+
+		const skinRgba = GL_ConvertSkinPixels( data, width, height, skinMode, r_wateralpha.value, GL_SkinPalette() );
+		const skinTexture = new THREE.DataTexture( skinRgba, width, height, THREE.RGBAFormat );
+		const skinFilter = GL_TextureLinear() ? THREE.LinearFilter : THREE.NearestFilter;
+		const skinMipFilter = GL_TextureLinear() ? THREE.LinearMipmapLinearFilter : THREE.NearestMipmapLinearFilter;
+		skinTexture.magFilter = skinFilter;
+		skinTexture.minFilter = mipmap ? skinMipFilter : skinFilter;
+		skinTexture.wrapS = THREE.RepeatWrapping;
+		skinTexture.wrapT = THREE.RepeatWrapping;
+		skinTexture.generateMipmaps = mipmap;
+		skinTexture.colorSpace = THREE.SRGBColorSpace;
+		skinTexture.needsUpdate = true;
+		GL_RegisterTexture( skinTexture );
+		if ( loadmodel != null ) loadmodel._threeTextures.add( skinTexture );
+		return skinTexture;
+
+	}
 
 	// Convert 8-bit palette-indexed pixels to RGBA and create a THREE.DataTexture
 	const rgba = new Uint8Array( width * height * 4 );

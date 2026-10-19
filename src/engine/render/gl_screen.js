@@ -42,6 +42,7 @@ import { R_DemoSplitActive, R_DemoSplitFull } from '../common/hooks.js'; // inst
 import { R_ClassicPassActive, R_AnimSetClassicPass } from '../common/hooks.js'; // installed by newer/mode.js
 import { Draw_WithClipRect } from './gl_draw.js';
 import { r_refdef as _r_refdef_canonical } from './render.js';
+import { Hexen2_DrawIntermission, Hexen2_IntermissionActive } from '../client/hexen2_intermission.js';
 
 function SCR_DrawStatusBar() {
 
@@ -1304,6 +1305,11 @@ export function SCR_UpdateScreen() {
 
 		SCR_DrawLoading();
 		SCR_DrawStatusBar();
+
+	} else if ( GameProfile_IsHexen2() && Hexen2_IntermissionActive( _cl ) && key_dest === key_game ) {
+
+		Hexen2_DrawIntermission( _cl, { now: _cl.time, oem: Cvar_VariableValue( 'oem' ) !== 0 } );
+		scr_copyeverything = 1; // native full-screen intermission
 
 	} else if ( _cl.intermission === 1 && key_dest === key_game ) {
 

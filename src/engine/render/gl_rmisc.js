@@ -5,7 +5,8 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports.
+ * State: module-level variables `_playerSkinTextures` and `_playerTranslation` (the latter set by
+ * `Hexen2_SetPlayerTranslation`).
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
@@ -21,12 +22,15 @@ import { d_lightstylevalue, r_viewleaf, r_norefresh, r_lightmap,
 	gl_polyblend, gl_flashblend, gl_playermip, gl_nocolors,
 	gl_keeptjunctions, gl_reporttjunctions, gl_doubleeyes, gl_texturemode,
 	gl_mtexable, skytexturenum, mirrortexturenum, set_mirrortexturenum,
-	getTextureExtensionNumber, particletexture, playertextures,
+	getTextureExtensionNumber, particletexture, playertextures, gl_max_size,
 	envmap } from './glquake.js';
 import { mod_alias, r_worldentity, R_Init as R_Init_rmain, R_NewMap as R_NewMap_rmain } from './gl_rmain.js';
 import { set_skytexturenum as set_skytexturenum_rsurf } from './gl_rsurf.js';
 import { cl, cl_entities } from '../client/client.js';
+import { COM_FindFile } from '../common/pak.js';
 import { d_8to24table } from './vid.js';
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
+import { Hexen2_PlayerClassTexels } from './gl_model_alias.js';
 
 /*
 ===============
@@ -105,6 +109,8 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_drawviewmodel );
 	Cvar_RegisterVariable( r_shadows );
 	Cvar_RegisterVariable( r_mirroralpha );
+	// uhexen2 engine/hexen2/gl_rmain.c:83: Hexen II's translucent pass defaults to 0.33; Quake keeps its opaque 1
+	if ( GameProfile_IsHexen2() && r_wateralpha.string === '1' ) { r_wateralpha.string = '0.33'; r_wateralpha.value = 0.33; }
 	Cvar_RegisterVariable( r_wateralpha );
 	Cvar_RegisterVariable( r_dynamic );
 	Cvar_RegisterVariable( r_novis );
@@ -172,9 +178,12 @@ export function R_GetPlayerSkinTexture( playernum ) {
  * `R_GetPlayerSkinTexture`). Called by `CL_NewTranslation` when a player's colours change and by `cl_parse.js`
  * when a player entity's model or skin changes.
  *
- * The shirt (top, palette rows 16..31) and pants (bottom, rows 96..111) ranges are remapped to the player's
- * `scoreboard.colors` rows, reversing the ranges the artists made backwards (rows 128 and up). The current skin of
- * the player's alias model is converted to RGBA through `d_8to24table`, resampled to at most 512x256 texels, and
+ * In Quake the shirt (top, palette rows 16..31) and pants (bottom, rows 96..111) ranges are remapped to the
+ * player's `scoreboard.colors` rows, reversing the ranges the artists made backwards (rows 128 and up), and the
+ * current skin of the player's alias model is the source. In Hexen II the masks and colour rows come from
+ * `gfx/player.lmp` for the player's class and the source is that class model's own raw skin
+ * (`Hexen2_TranslatePlayerSkinIndices`, uhexen2 engine/hexen2/gl_rmisc.c:278-345). Either way the texels are
+ * converted to RGBA through `d_8to24table`, resampled to at most 512x256 (the Hexen II cap is always 512x256), and
  * uploaded as an sRGB, linearly filtered texture; the slot's previous texture is disposed. Does nothing when the
  * player has no scoreboard entry, no model yet, a non-alias model or no loaded skin.
  *
@@ -185,27 +194,37 @@ export function R_TranslatePlayerSkin( playernum ) {
 	if ( cl.scores == null || cl.scores[ playernum ] == null )
 		return;
 
-	const top = cl.scores[ playernum ].colors & 0xf0;
-	const bottom = ( cl.scores[ playernum ].colors & 15 ) << 4;
+	let translate;
 
-	const translate = new Uint8Array( 256 );
-	for ( let i = 0; i < 256; i ++ )
-		translate[ i ] = i;
+	if ( GameProfile_IsHexen2() ) {
 
-	const TOP_RANGE = 16;
-	const BOTTOM_RANGE = 96;
+		translate = Hexen2_TranslatePlayerSkinIndices( cl.scores[ playernum ] );
 
-	for ( let i = 0; i < 16; i ++ ) {
+	} else {
 
-		if ( top < 128 ) // the artists made some backwards ranges. sigh.
-			translate[ TOP_RANGE + i ] = top + i;
-		else
-			translate[ TOP_RANGE + i ] = top + 15 - i;
+		const top = cl.scores[ playernum ].colors & 0xf0;
+		const bottom = ( cl.scores[ playernum ].colors & 15 ) << 4;
 
-		if ( bottom < 128 )
-			translate[ BOTTOM_RANGE + i ] = bottom + i;
-		else
-			translate[ BOTTOM_RANGE + i ] = bottom + 15 - i;
+		translate = new Uint8Array( 256 );
+		for ( let i = 0; i < 256; i ++ )
+			translate[ i ] = i;
+
+		const TOP_RANGE = 16;
+		const BOTTOM_RANGE = 96;
+
+		for ( let i = 0; i < 16; i ++ ) {
+
+			if ( top < 128 ) // the artists made some backwards ranges. sigh.
+				translate[ TOP_RANGE + i ] = top + i;
+			else
+				translate[ TOP_RANGE + i ] = top + 15 - i;
+
+			if ( bottom < 128 )
+				translate[ BOTTOM_RANGE + i ] = bottom + i;
+			else
+				translate[ BOTTOM_RANGE + i ] = bottom + 15 - i;
+
+		}
 
 	}
 
@@ -224,22 +243,41 @@ export function R_TranslatePlayerSkin( playernum ) {
 	if ( paliashdr == null )
 		return;
 
-	const skinnum = ( entity.skinnum >= 0 && entity.skinnum < paliashdr.numskins )
-		? entity.skinnum : 0;
-	const original = paliashdr.texels[ skinnum ];
-	if ( original == null )
-		return;
+	// The Hexen II player is recoloured from the class's own art set (native player_8bit_texels), not from the
+	// entity's current skin; Quake translates the entity's current skin.
+	const classSkin = GameProfile_IsHexen2() ? Hexen2_PlayerClassTexels( cl.scores[ playernum ].playerclass | 0 ) : null;
+	let original, inwidth, inheight;
+	if ( classSkin != null ) {
 
-	const inwidth = paliashdr.skinwidth;
-	const inheight = paliashdr.skinheight;
+		original = classSkin.data;
+		inwidth = classSkin.width;
+		inheight = classSkin.height;
+
+	} else {
+
+		const skinnum = ( entity.skinnum >= 0 && entity.skinnum < paliashdr.numskins )
+			? entity.skinnum : 0;
+		original = paliashdr.texels[ skinnum ];
+		if ( original == null )
+			return;
+
+		inwidth = paliashdr.skinwidth;
+		inheight = paliashdr.skinheight;
+
+	}
 
 	// Build translated 32-bit pixels
 	const translate32 = new Uint32Array( 256 );
 	for ( let i = 0; i < 256; i ++ )
 		translate32[ i ] = d_8to24table[ translate[ i ] ];
 
-	const scaled_width = Math.min( 512, inwidth );
-	const scaled_height = Math.min( 256, inheight );
+	// Hexen II caps the player texture at 512x256 (and crunches by gl_playermip); Quake caps it at the skin's size
+	const scaled_width = classSkin != null
+		? Math.max( 1, ( Math.min( gl_max_size.value, 512 ) >> gl_playermip.value ) )
+		: Math.min( 512, inwidth );
+	const scaled_height = classSkin != null
+		? Math.max( 1, ( Math.min( gl_max_size.value, 256 ) >> gl_playermip.value ) )
+		: Math.min( 256, inheight );
 
 	const pixels = new Uint8Array( scaled_width * scaled_height * 4 );
 	const fracstep = ( inwidth * 0x10000 / scaled_width ) | 0;
@@ -276,6 +314,81 @@ export function R_TranslatePlayerSkin( playernum ) {
 	texture.needsUpdate = true;
 
 	_playerSkinTextures[ playernum ] = texture;
+
+}
+
+/**
+ * Hexen II's per-class player colour translation (uhexen2 engine/hexen2/gl_rmisc.c:278-320): gfx/player.lmp holds,
+ * per player class, the shirt and pants masks (`colorA`, `colorB`, a 255 entry meaning "leave this index") and 14
+ * shirt/pants colour rows; the class's `color_offsets` entry picks its block. A scoreboard colour of 0 (or one past
+ * 10) means no translation, exactly as the native `top -= 1` arithmetic does. The Quake ranges are not used.
+ *
+ * @param {{ colors?: number, playerclass?: number }} score one player's scoreboard slot
+ * @param {?Uint8Array} [playerTranslation] gfx/player.lmp; defaults to the loaded copy (`Hexen2_PlayerTranslation`)
+ * @returns {Uint8Array} 256 palette-index substitutions (the identity when the player chose no colour)
+ */
+export function Hexen2_TranslatePlayerSkinIndices( score, playerTranslation = Hexen2_PlayerTranslation() ) {
+
+	const translate = new Uint8Array( 256 );
+	for ( let i = 0; i < 256; i ++ )
+		translate[ i ] = i;
+
+	if ( playerTranslation == null || playerTranslation.length < 256 + 7680 + 10 * 256 )
+		return translate;
+
+	let top = ( ( score?.colors ?? 0 ) & 0xf0 ) >> 4;
+	let bottom = ( score?.colors ?? 0 ) & 15;
+
+	if ( top > 10 ) top = 0;
+	if ( bottom > 10 ) bottom = 0;
+	top -= 1;
+	bottom -= 1;
+
+	const playerclass = Number.isInteger( score?.playerclass ) && score.playerclass >= 1 && score.playerclass <= 5 ? score.playerclass : 1;
+	const colorA = 256 + COLOR_OFFSETS[ playerclass - 1 ];
+	const colorB = colorA + 256;
+	const sourceA = colorB + 256 + ( top >= 0 ? top * 256 : 0 );
+	const sourceB = colorB + 256 + ( bottom >= 0 ? bottom * 256 : 0 );
+
+	for ( let i = 0; i < 256; i ++ ) {
+
+		if ( top >= 0 && playerTranslation[ colorA + i ] !== 255 )
+			translate[ i ] = playerTranslation[ sourceA + i ];
+		if ( bottom >= 0 && playerTranslation[ colorB + i ] !== 255 )
+			translate[ i ] = playerTranslation[ sourceB + i ];
+
+	}
+
+	return translate;
+
+}
+
+// uhexen2 engine/hexen2/gl_rmisc.c:26-37, in bytes from the start of gfx/player.lmp
+const COLOR_OFFSETS = Object.freeze( [ 2 * 14 * 256, 0, 1 * 14 * 256, 2 * 14 * 256, 2 * 14 * 256 ] );
+let _playerTranslation = null;
+
+/**
+ * The loaded gfx/player.lmp (uhexen2's `playerTranslation`, loaded in R_Init): player class masks and colour rows.
+ *
+ * @returns {?Uint8Array} the file's bytes, or null when the pack does not have it
+ */
+export function Hexen2_PlayerTranslation() {
+
+	if ( _playerTranslation !== null ) return _playerTranslation;
+	const file = COM_FindFile( 'gfx/player.lmp' );
+	_playerTranslation = file == null ? null : file.data;
+	return _playerTranslation;
+
+}
+
+/**
+ * Installs a gfx/player.lmp copy (tests, or a late pack mount). Passing null forgets the loaded one.
+ *
+ * @param {?Uint8Array} bytes the file's bytes
+ */
+export function Hexen2_SetPlayerTranslation( bytes ) {
+
+	_playerTranslation = bytes ?? null;
 
 }
 

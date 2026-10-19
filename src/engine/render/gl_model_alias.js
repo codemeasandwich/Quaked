@@ -7,7 +7,7 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: mutable exports `pheader`; module-level variables `posenum`.
+ * State: mutable exports `pheader`, `playerClassTexels`; module-level variables `posenum`.
  *
  * Errors: calls `Sys_Error` (fatal) at 7 places; throws at 1 place; catches at 1 place.
  *
@@ -24,6 +24,7 @@ import { ALIAS_VERSION, ALIAS_SINGLE, ALIAS_SKIN_SINGLE, ALIAS_BASE_SIZE_RATIO, 
 const RAPOLYHEADER = 0x4f504152; // 'RAPO' little-endian
 const ALIAS_NEWVERSION = 50;
 import { loadmodel, GL_LoadTexture, readString } from './gl_model_common.js';
+import { R_ModelSkinMode, SKIN_MODE_DEFAULT } from './gl_entity_semantics.js';
 
 // Alias model globals
 export let pheader = null;
@@ -35,8 +36,55 @@ let posenum = 0;
 // Initialize alias arrays
 for ( let i = 0; i < MAXALIASVERTS; i ++ )
 	stverts[ i ] = new stvert_t();
+
 for ( let i = 0; i < MAXALIASTRIS; i ++ )
 	triangles[ i ] = new mtriangle_t();
+
+/*
+==============================================================================
+
+				HEXEN II PLAYER CLASS SKINS
+
+uhexen2 engine/h2shared/gl_model.c:2262-2310 keeps the raw texels of the five
+class models (paladin, crusader, necro, assassin, succubus) so
+R_TranslatePlayerSkin can recolour a player from a class-independent art set
+(engine/hexen2/gl_rmisc.c:276-345). The registry keeps the same texels here,
+filled as each model loads; a Quake model never matches, so it stays empty.
+
+==============================================================================
+*/
+export const HEXEN2_PLAYER_CLASS_MODELS = Object.freeze( [
+	'models/paladin.mdl', 'models/crusader.mdl', 'models/necro.mdl', 'models/assassin.mdl', 'models/succubus.mdl'
+] );
+
+/** Raw (flood-filled) skin texels per Hexen II player class, in native class order (class 1 first). */
+export const playerClassTexels = [ null, null, null, null, null ];
+
+/**
+ * Forgets the class-model skins (a new game session; tests). The model cache owns the texel copies, so this only
+ * drops the references.
+ */
+export function Hexen2_ResetPlayerClassTexels() {
+
+	playerClassTexels.fill( null );
+
+}
+
+/**
+ * The raw skin of a Hexen II player class model, for the per-class colour translation
+ * (`R_TranslatePlayerSkin`, uhexen2 gl_rmisc.c:333-334: an unknown class falls back to the paladin's).
+ *
+ * @param {number} playerclass 1..5 (paladin, crusader, necro, assassin, succubus); anything else takes class 1
+ * @returns {?{ data: Uint8Array, width: number, height: number, model: string }} the skin, or null before any class
+ *   model has loaded
+ */
+export function Hexen2_PlayerClassTexels( playerclass ) {
+
+	const index = Number.isInteger( playerclass ) && playerclass >= 1 && playerclass <= 5 ? playerclass - 1 : 0;
+	return playerClassTexels[ index ] ?? playerClassTexels[ 0 ];
+
+}
+
 
 function GL_MakeAliasModelDisplayLists( mod, hdr ) {
 
@@ -246,7 +294,7 @@ function Mod_FloodFillSkin( skin, skinwidth, skinheight ) {
 // Mod_LoadAllSkins
 // ============================================================================
 
-function Mod_LoadAllSkins( buf, numskins, offset ) {
+function Mod_LoadAllSkins( buf, numskins, offset, skinMode = SKIN_MODE_DEFAULT ) {
 
 	if ( numskins < 1 || numskins > MAX_SKINS )
 		Sys_Error( 'Mod_LoadAliasModel: Invalid # of skins: ' + numskins );
@@ -277,7 +325,7 @@ function Mod_LoadAllSkins( buf, numskins, offset ) {
 			pheader.gl_texturenum[ i ][ 1 ] =
 			pheader.gl_texturenum[ i ][ 2 ] =
 			pheader.gl_texturenum[ i ][ 3 ] =
-				GL_LoadTexture( name, pheader.skinwidth, pheader.skinheight, skin, true, false );
+				GL_LoadTexture( name, pheader.skinwidth, pheader.skinheight, skin, true, false, skinMode );
 
 			pos = skinDataOfs + s;
 
@@ -306,7 +354,7 @@ function Mod_LoadAllSkins( buf, numskins, offset ) {
 
 				const name = loadmodel.name + '_' + i + '_' + j;
 				pheader.gl_texturenum[ i ][ j & 3 ] =
-					GL_LoadTexture( name, pheader.skinwidth, pheader.skinheight, skin, true, false );
+					GL_LoadTexture( name, pheader.skinwidth, pheader.skinheight, skin, true, false, skinMode );
 
 				pos += s;
 
@@ -440,7 +488,15 @@ export function Mod_LoadAliasModel( mod, buffer ) {
 	// load the skins
 	//
 	const SIZEOF_MDL = newModel ? 88 : 84;
-	let pos = Mod_LoadAllSkins( buffer, pheader.numskins, SIZEOF_MDL );
+	const skinMode = R_ModelSkinMode( mod.flags );
+	let pos = Mod_LoadAllSkins( buffer, pheader.numskins, SIZEOF_MDL, skinMode );
+
+	// keep the class models' raw skins for R_TranslatePlayerSkin (native player_8bit_texels)
+	const classIndex = HEXEN2_PLAYER_CLASS_MODELS.indexOf( mod.name.toLowerCase() );
+	if ( classIndex >= 0 && pheader.texels[ 0 ] != null )
+		playerClassTexels[ classIndex ] = {
+			data: pheader.texels[ 0 ], width: pheader.skinwidth, height: pheader.skinheight, model: mod.name
+		};
 
 	//
 	// load base s and t vertices
@@ -533,6 +589,20 @@ export function Mod_LoadAliasModel( mod, buffer ) {
 		decodedPoseverts.push( verts );
 
 	}
+
+	// Hexen II lights an alias model at the middle of its real frame bounds (uhexen2 gl_model.c:2706-2743 computes
+	// them from every pose). Keep only that centre: mod.mins/maxs stay Quake's ±16 placeholder, which the server's
+	// setmodel copies into edicts, so collision boxes are untouched. Computed for every model (a Quake session never
+	// reads it) so a cached model means the same thing whichever profile loads it.
+	let minZ = Infinity, maxZ = - Infinity;
+	for ( const pose of decodedPoseverts ) for ( const vert of pose ) {
+
+		const z = vert.v[ 2 ] * pheader.scale[ 2 ] + pheader.scale_origin[ 2 ];
+		if ( z < minZ ) minZ = z;
+		if ( z > maxZ ) maxZ = z;
+
+	}
+	if ( minZ <= maxZ ) pheader.lightZCentre = ( minZ + maxZ ) / 2;
 
 	// Wire up data needed by GL_MakeAliasModelDisplayLists
 	pheader.triangles = triangles;

@@ -360,16 +360,17 @@ function savedGame() {
 
 /**
  * The prefix of this game's save keys in localStorage: the original `quake_save_` for the default and the full Quake
- * (the saves made so far were made with it), `quake_save_<id>_` for the shareware and each mission pack (their maps
- * share Quake's names, so their saves must not). It follows the game running: a mission pack chosen without its pack
- * runs Quake, with Quake's saves.
+ * (the saves made so far were made with it), `quake_save_<id>_` for the shareware, each mission pack and each Hexen II
+ * edition (their maps share Quake's names, so their saves must not). It follows the game running: a mission pack
+ * chosen without its pack runs Quake, with Quake's saves.
  *
  * @returns {string} the key prefix; a save `s0` is kept under prefix + 's0'
  */
 export function GameSelection_SavePrefix() {
 
 	const game = savedGame();
-	return game === 'shareware' || MISSION_PACKS[ game ] || isAddon( game ) ? `quake_save_${game}_` : 'quake_save_';
+	// Hexen II editions keep their own keys too: their hub slots must never be listed as Quake saves.
+	return game === 'shareware' || MISSION_PACKS[ game ] || isAddon( game ) || HEXEN_CHOICES.has( game ) ? `quake_save_${game}_` : 'quake_save_';
 
 }
 

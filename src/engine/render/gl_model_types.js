@@ -561,6 +561,7 @@ export class aliashdr_t {
 		this.gl_texturenum = [];	// [MAX_SKINS][4]
 		this.texels = [];			// [MAX_SKINS] - only for player skins
 		this.frames = [];			// array of maliasframedesc_t
+		this.lightZCentre = null;	// Hexen II lighting samples here instead of the entity origin (whole model)
 
 		// Initialize gl_texturenum as 2D array
 		for ( let i = 0; i < MAX_SKINS; i ++ ) {

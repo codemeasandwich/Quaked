@@ -33,6 +33,7 @@ import { HEXEN2_SERVER_MESSAGES } from '../common/hexen2_protocol.js';
 import { Hexen2_DecodeUpdateInv } from '../common/hexen2_clientdata.js';
 import { Hexen2_ReadStartEffect, Hexen2_ReadEndEffect } from '../common/hexen2_effectwire.js';
 import { Hexen2_ReadSound } from '../common/hexen2_soundwire.js';
+import { Hexen2_ApplyIntermission } from './hexen2_intermission.js';
 import { cl } from './client.js';
 
 const PARTICLE_HISTORY = 64;
@@ -65,6 +66,8 @@ export function CL_Hexen2Reset() {
 	cl.h2 = {
 		active: false, entityFields: false, nativeBaselines: false, portals: false,
 		levelStringIndex: 0xffff, midiName: '', plaqueIndex: 0, intermission: - 1, statbar: 1,
+		intermissionFlags: 0, intermissionPic: '', intermissionMessageIndex: -1, intermissionLastingTime: 0,
+		intermissionNext: 0, intermissionCompletedTime: 0,
 		viewDrawflags: 0, viewTint: 0, infoMask: 0, infoMask2: 0,
 		playerclass: [], stats: {}, puzzles: [ '', '', '', '', '', '', '', '' ],
 		effects: [], particles: [], rain: [], streams: [], angleTarget: [ 0, 0, 0 ]
@@ -344,9 +347,9 @@ export function CL_Hexen2ParseServerMessage( cmd ) {
 		case svc_hexen2_intermission: {
 
 			const index = MSG_ReadByte();
-			cl.intermission = 1;
-			cl.completed_time = cl.time;
-			cl.h2.intermission = index;
+			// The native picture/text/flags table lives in hexen2_intermission.js; `cl.intermission` stays the Quake
+			// "full-screen, idle view" flag the shared renderer and view test.
+			Hexen2_ApplyIntermission( cl, index, cl.time );
 			hook( 'intermission', index );
 			return true;
 

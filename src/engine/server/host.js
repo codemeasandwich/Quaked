@@ -68,6 +68,7 @@ import { S_UpdateWelcomeJingle } from '../common/hooks.js'; // installed by newe
 import { Sbar_Init, Sbar_SetExternals, Sbar_Changed } from '../client/sbar.js';
 import { CL_Init, CL_SendCmd, CL_ReadFromServer, CL_DecayLights, CL_Disconnect, CL_NextDemo, cl_name, CL_SetExternals } from '../client/cl_main.js';
 import { CL_Parse_SetExternals } from '../client/cl_parse.js';
+import { Hexen2_InstallMusicHook } from '../client/hexen2_music.js';
 import { WT_SetExternals } from '../net/net_webtransport.js';
 import { IN_Init, IN_Commands, IN_Shutdown, IN_UpdateTouch, IN_RequestPointerLock, IN_Move } from '../../platform/in_web.js';
 import { cls, cl, SIGNONS, ca_connected, ca_dedicated } from '../client/client.js';
@@ -307,6 +308,7 @@ export async function Host_Init( parms ) {
 	V_Init();
 	Chase_Init();
 	Host_InitLocal();
+	Hexen2_InstallMusicHook(); // svc_hexen2_midi_name plays through the shared CD/music bus
 
 	Con_Printf( 'Three-Quake Version 1.09\n' );
 	Con_Printf( 'Exe: three-quake (JavaScript/Three.js)\n' );

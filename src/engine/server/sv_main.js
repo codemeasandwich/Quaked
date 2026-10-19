@@ -928,8 +928,9 @@ export function SV_SendServerinfo( client ) {
 
 	// send music
 	MSG_WriteByte( client.message, svc_cdtrack );
-	MSG_WriteByte( client.message, sv.edicts[ 0 ].v.sounds );
-	MSG_WriteByte( client.message, sv.edicts[ 0 ].v.sounds );
+	const cdTrack = hexen2 ? ( sv.cd_track | 0 ) : ( sv.edicts[ 0 ].v.sounds | 0 );
+	MSG_WriteByte( client.message, cdTrack );
+	MSG_WriteByte( client.message, cdTrack );
 
 	if ( hexen2 ) {
 
@@ -2408,6 +2409,15 @@ export function SV_SaveSpawnparms() {
 		if ( ! client.active )
 			continue;
 
+		// Native Hexen II has no SetChangeParms (uhexen2 sv_main.c comments it out): the client edict carries the state
+		// through `clients.gip`/`ClientReEnter`, and a fresh map uses the spawn parms ClientConnect set.
+		if ( GameProfile_IsHexen2() ) {
+
+			if ( i === 0 ) { SV_CapturePowerups( client.edict ); SV_RespawnCaptureTravel( client.edict ); }
+			continue;
+
+		}
+
 		// call the progs to get default spawn parms for the new client
 		pr_global_struct.self = EDICT_TO_PROG( client.edict );
 		if ( i === 0 ) { SV_CapturePowerups( client.edict ); SV_RespawnCaptureTravel( client.edict ); }
@@ -2720,6 +2730,7 @@ function spawnServer( server, startspot ) {
 	sv.startspot = hexen2 ? String( startspot ?? '' ) : '';
 	sv.levelStringIndex = HEXEN2_NO_LEVEL_STRING;
 	sv.midi_name = '';
+	sv.cd_track = 0;
 
 	// Ensure progs.js has references to the canonical server objects
 	PR_SetSV( sv );

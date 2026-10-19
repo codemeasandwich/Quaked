@@ -16,6 +16,7 @@ import { LIGHTNING } from '../common/hooks.js'; // installed by newer/render/r_l
 import * as THREE from 'three';
 import { DotProduct, VectorCopy, VectorSubtract, Length } from '../common/mathlib.js';
 import { MAX_LIGHTSTYLES } from '../common/quakedef.js';
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
 import { MAXLIGHTMAPS, d_lightstylevalue, r_framecount,
 	gl_flashblend, v_blend, v_liquid_blend } from './glquake.js';
 import { r_origin } from './render.js';
@@ -45,10 +46,14 @@ R_AnimateLight
 ==================
 */
 /**
- * Advances the light-style animations (WinQuake gl_rlight.c). Called once per rendered frame from R_SetupFrame
- * through gl_rmain.js's wrapper. Each style string steps at 10 characters per second of `cl.time`; 'm' is normal
- * light, 'a' is no light, 'z' is double bright. Writes `(char - 'a') * 22` (0..550, 256 is normal brightness) into
- * glquake.js's `d_lightstylevalue[j]`, or 256 for a style with no string.
+ * Advances the light-style animations (WinQuake gl_rlight.c; uhexen2 engine/h2shared/gl_rlight.c:33-65). Called
+ * once per rendered frame from R_SetupFrame through gl_rmain.js's wrapper. Each style string steps at 10 characters
+ * per second of `cl.time`; 'm' is normal light, 'a' is no light, 'z' is double bright. Writes `(char - 'a') * 22`
+ * (0..550, 256 is normal brightness) into glquake.js's `d_lightstylevalue[j]`, or 256 for a style with no string.
+ *
+ * In Hexen II a style may open with a rate digit: '1', '2' or '3' select 10, 20 or 30 steps a second and the
+ * characters after it are the cycle (uhexen2 gl_rlight.c:50-59). Quake's server never writes such a string, so the
+ * rule is applied only for the Hexen II profile.
  *
  * @param {client_state_t} cl the client state; only `cl.time` (seconds) is read
  * @param {Array<lightstyle_t>} cl_lightstyle the MAX_LIGHTSTYLES style strings sent by the server
@@ -60,7 +65,8 @@ export function R_AnimateLight( cl, cl_lightstyle ) {
 	// light animations
 	// 'm' is normal light, 'a' is no light, 'z' is double bright
 	//
-	const i = ( cl.time * 10 ) | 0;
+	const hexen = GameProfile_IsHexen2();
+	const locus = [ ( cl.time * 10 ) | 0, ( cl.time * 20 ) | 0, ( cl.time * 30 ) | 0 ];
 	for ( let j = 0; j < MAX_LIGHTSTYLES; j ++ ) {
 
 		if ( ! cl_lightstyle[ j ] || ! cl_lightstyle[ j ].length ) {
@@ -70,8 +76,26 @@ export function R_AnimateLight( cl, cl_lightstyle ) {
 
 		}
 
-		const k_index = i % cl_lightstyle[ j ].length;
-		let k = cl_lightstyle[ j ].map.charCodeAt( k_index ) - 97; // 'a' = 97
+		const style = cl_lightstyle[ j ];
+		const first = style.map.charCodeAt( 0 );
+
+		if ( hexen && first >= 49 && first <= 51 ) { // '1', '2', '3'
+
+			if ( style.length === 1 ) { // bad style definition, native leaves it normal
+
+				d_lightstylevalue[ j ] = 256;
+				continue;
+
+			}
+
+			const k_index = locus[ first - 49 ] % ( style.length - 1 );
+			d_lightstylevalue[ j ] = ( style.map.charCodeAt( k_index + 1 ) - 97 ) * 22;
+			continue;
+
+		}
+
+		const k_index = locus[ 0 ] % style.length;
+		let k = style.map.charCodeAt( k_index ) - 97; // 'a' = 97
 		k = k * 22;
 		d_lightstylevalue[ j ] = k;
 

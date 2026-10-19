@@ -66,8 +66,8 @@ CDAudio_SetTrackURLProvider
 /**
  * Sets a function that maps track number -> URL for music files, e.g.
  * (track) => `music/track${track.toString().padStart(2,'0')}.ogg`. Kept until replaced; `CDAudio_Play` does nothing
- * without one. Only tests/audio_volume_test.js sets one at present, so in the game `CDAudio_Play` logs "no URL" and
- * returns.
+ * without one. The Hexen II music selector (`client/hexen2_music.js`) installs one that maps the level's worldspawn
+ * MIDI name to its OGG/MP3 conversion; tests set their own.
  *
  * @param {?function(number): ?string} fn receives the remapped track (1..99) and returns its URL, or a falsy value
  *     when it has none; null removes the provider

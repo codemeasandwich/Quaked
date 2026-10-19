@@ -43,6 +43,7 @@ import * as THREE from 'three';
 import { Sys_FloatTime } from '../common/sys.js';
 import { Con_Printf } from '../common/common.js';
 import { PITCH, YAW, ROLL } from '../common/quakedef.js';
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
 import { cvar_t, Cvar_RegisterVariable } from '../common/cvar.js';
 import { r_rockfield } from '../common/hooks.js'; // installed by newer/render/r_rockfield.js
 import { r_portals, R_PortalsBeginFrame, R_RenderPortals, R_GetPortals, R_LevelPortalMatrix, R_ImpactPortalPlanes } from '../common/hooks.js'; // installed by newer/render/gl_portal.js
@@ -94,6 +95,10 @@ import { Mod_PointInLeaf, Mod_LeafPVS, SPR_SINGLE, SPR_ORIENTED } from './gl_mod
 import { R_AnimateLight as R_AnimateLight_impl, R_PushDlights as R_PushDlights_impl, R_RenderDlights as R_RenderDlights_impl, R_LightPoint, lightspot, lightplane } from './gl_rlight.js';
 import { R_DrawAliasModel as R_DrawAliasModel_mesh, GL_DrawAliasShadow, GL_DrawAliasLightShadow } from './gl_mesh.js';
 import { r_avertexnormal_dots } from '../common/anorm_dots.js';
+import {
+	R_EntityLightInfo, R_EntityMaterialStyle, R_ApplyEntityMaterialStyle, R_AliasLightOrigin,
+	R_ModelSkinMode, R_ApplyModelSkinMode, R_EntityIsTranslucent
+} from './gl_entity_semantics.js';
 import { CL_AllocDlight, CL_PlayerLightning } from '../client/client.js';
 import { chase_active } from '../client/chase.js';
 import {
@@ -992,6 +997,7 @@ export function R_DrawViewModel() {
 		}
 
 		mesh.material = currententity[ slot ];
+		R_ApplyAliasEntityRenderState( mesh, currententity );
 		mesh.renderOrder = 999;
 
 		mesh.onBeforeRender = _viewmodelBeforeRender;
@@ -1053,9 +1059,10 @@ function _clearEntityMeshCache( entity, geometries, materials ) {
 	if(entity._aliasMesh)R_ReleaseAliasReceiver(entity._aliasMesh);
 	const viewmodelMaterial = entity._viewmodelMaterial;
 	const playerMaterial = entity._playerMaterial;
+	const semanticMaterial = entity._semanticMaterial;
 	if ( spriteMesh == null && aliasMesh == null && shadowMesh == null &&
 		aliasGeometry == null && shadowGeometry == null &&
-		viewmodelMaterial == null && playerMaterial == null ) return;
+		viewmodelMaterial == null && playerMaterial == null && semanticMaterial == null ) return;
 
 	_detachEntityMesh( spriteMesh );
 	_detachEntityMesh( aliasMesh );
@@ -1073,6 +1080,7 @@ function _clearEntityMeshCache( entity, geometries, materials ) {
 
 	}
 	_disposeEntityMaterial( playerMaterial, materials );
+	_disposeEntityMaterial( semanticMaterial, materials );
 
 	entity._spriteMesh = null;
 	entity._aliasMesh = null;
@@ -1090,12 +1098,16 @@ function _clearEntityMeshCache( entity, geometries, materials ) {
 	entity._classicViewmodelMaterialBase = null;
 	entity._playerMaterial = null;
 	entity._playerSkinTexture = null;
+	entity._semanticMaterial = null;
+	entity._semanticMaterialBase = null;
+	entity._semanticMaterialAlpha = undefined;
 
 }
 
 // Pre-allocated vector for dynamic light distance calculation (avoid per-frame allocation)
 const _dlightDist = [ 0, 0, 0 ];
 const _shadevector = new Float32Array( 3 );
+const _lightSampleOrigin = new Float32Array( 3 );
 
 // Cached buffers for R_SetupGL (Golden Rule #4)
 const _setupgl_forward = new Float32Array( 3 );
@@ -1176,6 +1188,50 @@ function R_ShotgunMuzzles( count ) {
 
 const _fireballView = [ 0, 0 ], _fireballForward = new Float32Array( 3 ), _fireballRight = new Float32Array( 3 ), _fireballUp = new Float32Array( 3 );
 
+// An entity's own copy of an alias material, carrying its drawflags alpha (DRF_TRANSLUCENT). Shared base materials
+// are never changed: a Quake model may be drawn by many entities, and the enhanced skins cache their programs.
+function _cloneEntityMaterial( base ) {
+
+	const clone = base.clone();
+	if ( Object.hasOwn( base, 'onBeforeCompile' ) ) clone.onBeforeCompile = base.onBeforeCompile;
+	if ( Object.hasOwn( base, 'customProgramCacheKey' ) ) clone.customProgramCacheKey = function () { return base.customProgramCacheKey.call( this ); };
+	clone._quakeNativeSkin = base._quakeNativeSkin;
+	return clone;
+
+}
+
+/**
+ * Applies Hexen II's entity material semantics to a freshly built alias mesh: the model-flag skin mode's blending
+ * (the texture's alpha was converted at load), and, for `DRF_TRANSLUCENT`, a per-entity clone at `r_wateralpha`.
+ * Called after any Newer Game material choice, so an enhanced replacement skin keeps working under an alpha; the
+ * view model calls it again after it replaces the mesh material with its own held-weapon clone.
+ *
+ * @param {?THREE.Mesh} mesh the entity's alias mesh
+ * @param {?entity_t} e the entity it was built for
+ */
+export function R_ApplyAliasEntityRenderState( mesh, e ) {
+
+	if ( mesh == null || mesh.material == null || e == null ) return;
+
+	R_ApplyModelSkinMode( mesh.material, R_ModelSkinMode( e.model?.flags ?? 0 ), R_IsNewer() );
+
+	if ( ! R_EntityIsTranslucent( e ) ) return;
+
+	// (the mesh may already carry this entity's clone from the previous frame: compare with what it was cloned from)
+	const base = mesh.material === e._semanticMaterial ? e._semanticMaterialBase : mesh.material;
+	const alpha = R_EntityMaterialStyle( e ).alpha;
+	if ( e._semanticMaterial == null || e._semanticMaterialBase !== base || e._semanticMaterialAlpha !== alpha ) {
+
+		e._semanticMaterial?.dispose();
+		e._semanticMaterial = _cloneEntityMaterial( base );
+		e._semanticMaterialBase = base;
+		e._semanticMaterialAlpha = alpha;
+		R_ApplyEntityMaterialStyle( e._semanticMaterial, R_EntityMaterialStyle( e ) );
+
+	}
+	mesh.material = e._semanticMaterial;
+
+}
 
 function R_DrawAliasModel( e ) {
 	if ( R_IsNewer() && SV_AxeEntitySuppressed( e?._entityIndex ) ) return;
@@ -1202,9 +1258,30 @@ function R_DrawAliasModel( e ) {
 	let shadelight = 0;
 	let shadedots = null;
 
-	if ( cl && e.origin ) {
+	// Hexen II's model light styles and absolute light (uhexen2 engine/hexen2/gl_rmain.c:741-791). Quake's entities
+	// have drawflags 0 and abslight 0, so they take the sampled branch exactly as before.
+	const hexen = GameProfile_IsHexen2();
+	const lightInfo = R_EntityLightInfo( e, e.model.flags, hexen );
 
-		ambientlight = shadelight = R_LightPoint( e.origin, cl );
+	if ( lightInfo.mode === 'rotate' ) {
+
+		// EF_ROTATE's floating items pulse (native gl_rmain.c:748-753)
+		ambientlight = shadelight = 60 + 34 + Math.sin( ( e.origin?.[ 0 ] ?? 0 ) + ( e.origin?.[ 1 ] ?? 0 ) + ( cl ? cl.time : 0 ) * 3.8 ) * 34;
+
+	} else if ( lightInfo.mode === 'abslight' ) {
+
+		ambientlight = shadelight = lightInfo.abslight;
+
+	} else if ( lightInfo.mode === 'style' ) {
+
+		// models light styles 25-28: fullbright, power mode, torch, total dark (native gl_rmain.c:754-762)
+		ambientlight = shadelight = d_lightstylevalue[ lightInfo.style ] / 2;
+
+	} else if ( cl && e.origin ) {
+
+		// Hexen II samples the light where the model's middle is, not at its feet (native AliasModelGetLightInfo)
+		const lightOrigin = R_AliasLightOrigin( e, e.model, hexen, _lightSampleOrigin );
+		ambientlight = shadelight = R_LightPoint( lightOrigin, cl );
 
 		// always give the gun some light
 		if ( ! R_NewerLightingActive() && e === cl.viewent && ambientlight < 24 )
@@ -1253,6 +1330,10 @@ function R_DrawAliasModel( e ) {
 		if ( clmodel.name === 'progs/flame2.mdl' || clmodel.name === 'progs/flame.mdl' )
 			ambientlight = shadelight = R_NewerLightingActive() ? 960 : 256; // flames glow past white in HDR
 
+	}
+
+	if ( cl && e.origin ) {
+
 		// select shadedots row based on yaw angle
 		const yaw = e.angles ? e.angles[ 1 ] : 0;
 		shadedots = r_avertexnormal_dots[ ( ( yaw * ( SHADEDOT_QUANT / 360.0 ) ) | 0 ) & ( SHADEDOT_QUANT - 1 ) ];
@@ -1292,6 +1373,7 @@ function R_DrawAliasModel( e ) {
    if(!clone){clone=R_CloneAliasMaterial(base);clone.userData.quakePlayerSurface=true;cache.set(base,clone);}
    mesh.material=clone;
   }
+		R_ApplyAliasEntityRenderState( mesh, e );
   mesh._quakeOwner = e;
 		mesh.userData.quakeViewmodel = e === cl.viewent;
 		_entityMeshCacheOwners.add( e );

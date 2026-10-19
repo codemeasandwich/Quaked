@@ -1195,6 +1195,17 @@ export function ED_ParseEdict( data, ent ) {
 			Sys_Error( 'ED_ParseEntity: closing brace without data' );
 
 		init = true;
+
+		// Native Hexen II keeps worldspawn's music keys out of the field table (h2shared pr_edict.c: MIDI/CD); Quake
+		// has no such special case, so its unknown-key message is unchanged.
+		if ( GameProfile_IsHexen2() ) {
+
+			const musicKey = keyname.toLowerCase();
+			if ( musicKey === 'midi' ) { sv.midi_name = com_token; continue; }
+			if ( musicKey === 'cd' ) { sv.cd_track = Number.parseInt( com_token, 10 ) || 0; continue; }
+
+		}
+
 		if(keyname==='_newer_rend_veil'){ent._rendVeil=Rend_ParseRecord(com_token);continue;}
 		if(keyname==='_newer_face_seed'){ent._faceSeed=Face_ParseSeed(com_token);continue;}
 		if(keyname==='_clockwise_player'){ent._respawn=Respawn_ParsePlayer(com_token);continue;}

@@ -9,7 +9,7 @@ import {AssetURL} from '../../platform/distribution.js';
  *
  * State: no mutable exports; module-level variables `minimumUIWidth`, `minimumUIHeight`, `scopedUIScale`,
  * `overlayCanvas`, `overlayCtx`, `char_canvas`, `conback`, `draw_disc`, `draw_backtile`, `host_basepal`,
- * `d_8to24table`, `scr_conheight` and 13 more.
+ * `d_8to24table`, `scr_conheight` and 13 more; the frozen skin-mode tables `HX_COLOR_INDEX` and `HX_COLOR_PERCENT`.
  *
  * Errors: throws at 2 places; catches at 1 place.
  *
@@ -22,6 +22,7 @@ import { Con_Printf } from '../common/console.js';
 import { Hexen2_CharsetColumns, Hexen2_SmallFontIndex } from '../common/hexen2_charset.js';
 import { W_GetLumpName, W_FindLumpinfo } from '../common/wad.js';
 import { d_8to24table as vid_d_8to24table } from './vid.js';
+import { SKIN_MODE_DEFAULT, SKIN_MODE_TRANSPARENT, SKIN_MODE_HOLEY, SKIN_MODE_SPECIAL } from './gl_entity_semantics.js';
 import { COM_FindFile } from '../common/pak.js';
 import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from '../common/cmd.js';
 import { R_NewerHudCanvas } from '../common/hooks.js'; // installed by newer/ui/r_newerhud.js
@@ -193,6 +194,131 @@ let host_basepal = null;
 
 // d_8to24table for palette conversion
 let d_8to24table = null;
+
+/*
+==============================================================================
+
+			HEXEN II SKIN MODES
+
+uhexen2 engine/h2shared/gl_draw.c GL_Upload8 (1705-1775) converts an alias
+model's palette-indexed skin according to the model-flag skin mode the loader
+chose (engine/h2shared/gl_model.c Mod_LoadAllSkins, 2253-2259). These helpers
+are that conversion; GL_LoadTexture (gl_model_common.js) calls them when the
+model loader passes a skin mode, and the renderer's tests call them directly.
+
+==============================================================================
+*/
+
+// uhexen2 engine/h2shared/gl_vidsdl.c:1051-1057. EF_SPECIAL_TRANS reads each
+// texel as a colour row (the high nibble) and an opacity (the low nibble).
+export const HX_COLOR_INDEX = Object.freeze( [
+	0, 31, 47, 63, 79, 95, 111, 127, 143, 159, 175, 191, 199, 207, 223, 231
+] );
+export const HX_COLOR_PERCENT = Object.freeze( [
+	25, 51, 76, 102, 114, 127, 140, 153, 165, 178, 191, 204, 216, 229, 237, 247
+] );
+
+/**
+ * The palette table skin conversion reads: Draw_SetExternals' table when installed, else vid.js's.
+ *
+ * @returns {Uint32Array} 0xAABBGGRR per palette index
+ */
+export function GL_SkinPalette() {
+
+	return d_8to24table || vid_d_8to24table;
+
+}
+
+/**
+ * One skin texel in a model-flag skin mode (uhexen2 engine/h2shared/gl_draw.c:1741-1773). The RGBA result is the
+ * palette colour with the mode's alpha: EF_TRANSPARENT clears index 0 and makes odd indices `r_wateralpha`; EF_HOLEY
+ * clears index 0 only; EF_SPECIAL_TRANS takes the colour from the high nibble's ColorIndex row and the opacity from
+ * the low nibble's ColorPercent.
+ *
+ * @param {number} index the palette index (0..255)
+ * @param {number} mode SKIN_MODE_DEFAULT/TRANSPARENT/HOLEY/SPECIAL
+ * @param {number} [wateralpha] `r_wateralpha`, the opacity odd EF_TRANSPARENT texels get
+ * @param {Uint32Array} [table] the palette (0xAABBGGRR); defaults to `GL_SkinPalette`
+ * @returns {[number, number, number, number]} red, green, blue and alpha 0..255
+ */
+export function GL_SkinTexel( index, mode, wateralpha = 1, table = GL_SkinPalette() ) {
+
+	const p = index & 255;
+	let color = table[ p ] ?? 0;
+	let red = color & 0xff, green = ( color >> 8 ) & 0xff, blue = ( color >> 16 ) & 0xff, alpha = 255;
+
+	if ( mode === SKIN_MODE_HOLEY ) {
+
+		if ( p === 0 ) alpha = 0;
+
+	} else if ( mode === SKIN_MODE_TRANSPARENT ) {
+
+		if ( p === 0 ) alpha = 0;
+		else if ( p & 1 ) alpha = ( 255 * wateralpha ) & 0xff;
+
+	} else if ( mode === SKIN_MODE_SPECIAL ) {
+
+		color = table[ HX_COLOR_INDEX[ p >> 4 ] ] ?? 0;
+		red = color & 0xff; green = ( color >> 8 ) & 0xff; blue = ( color >> 16 ) & 0xff;
+		alpha = HX_COLOR_PERCENT[ p & 15 ];
+
+	}
+
+	return [ red, green, blue, alpha ];
+
+}
+
+/**
+ * Converts a palette-indexed skin into RGBA for an alias model (uhexen2 gl_draw.c GL_Upload8). Unlike the default
+ * `GL_LoadTexture` path, index 0 keeps its palette colour when it becomes transparent, as the native conversion does.
+ *
+ * @param {Uint8Array} data width * height palette indices
+ * @param {number} width texels across
+ * @param {number} height texels down
+ * @param {number} mode SKIN_MODE_*; SKIN_MODE_DEFAULT copies the palette colour opaquely
+ * @param {number} [wateralpha] `r_wateralpha` for EF_TRANSPARENT's odd texels
+ * @param {Uint32Array} [table] the palette (0xAABBGGRR); defaults to `GL_SkinPalette`
+ * @returns {Uint8Array} width * height * 4 RGBA bytes
+ */
+export function GL_ConvertSkinPixels( data, width, height, mode, wateralpha = 1, table = GL_SkinPalette() ) {
+
+	const rgba = new Uint8Array( width * height * 4 );
+	const count = width * height;
+
+	for ( let i = 0; i < count; i ++ ) {
+
+		const p = data[ i ] & 255;
+		let color = table[ p ] ?? 0;
+		let red = color & 0xff, green = ( color >> 8 ) & 0xff, blue = ( color >> 16 ) & 0xff, alpha = 255;
+
+		if ( mode === SKIN_MODE_HOLEY ) {
+
+			if ( p === 0 ) alpha = 0;
+
+		} else if ( mode === SKIN_MODE_TRANSPARENT ) {
+
+			if ( p === 0 ) alpha = 0;
+			else if ( p & 1 ) alpha = ( 255 * wateralpha ) & 0xff;
+
+		} else if ( mode === SKIN_MODE_SPECIAL ) {
+
+			color = table[ HX_COLOR_INDEX[ p >> 4 ] ] ?? 0;
+			red = color & 0xff; green = ( color >> 8 ) & 0xff; blue = ( color >> 16 ) & 0xff;
+			alpha = HX_COLOR_PERCENT[ p & 15 ];
+
+		}
+
+		const at = i * 4;
+		rgba[ at ] = red;
+		rgba[ at + 1 ] = green;
+		rgba[ at + 2 ] = blue;
+		rgba[ at + 3 ] = alpha;
+
+	}
+
+	return rgba;
+
+}
 
 /*
 ==============================================================================

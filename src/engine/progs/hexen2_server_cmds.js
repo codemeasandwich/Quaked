@@ -38,6 +38,7 @@ import { SV_StartSound, SV_StopSound } from '../server/sv_phys.js';
 import { sv_aim, SV_SoundLimit, SV_WriteIndex } from '../server/sv_main.js';
 import { DAMAGE_YES, FL_ONGROUND, FL_FLY, FL_SWIM, NUM_SPAWN_PARMS, teamplay, ss_active } from '../server/server.js';
 import { Hexen2_RegisterBuiltins } from './hexen2_cmds.js';
+import { Hexen2_WriteNativeServiceByte, Hexen2_FlushNativeService } from '../server/hexen2_native_wire.js';
 import {
 	Hexen2_AppendMessage, Hexen2_WritePlaque, Hexen2_WriteRainEffect, Hexen2_WriteParticleExplosion,
 	Hexen2_WriteSoundUpdatePos, Hexen2_WriteStaticEntity, Hexen2_WriteWhiteFlash, Hexen2_WriteParticle2Message,
@@ -306,14 +307,14 @@ function writeDestination() {
 
 }
 
-const writeByte = () => { const d = writeDestination(); if ( d ) MSG_WriteByte( d, G_FLOAT( OFS_PARM1 ) | 0 ); };
-const writeChar = () => { const d = writeDestination(); if ( d ) MSG_WriteByte( d, G_FLOAT( OFS_PARM1 ) | 0 ); };
-const writeShort = () => { const d = writeDestination(); if ( d ) MSG_WriteShort( d, G_FLOAT( OFS_PARM1 ) | 0 ); };
-const writeLong = () => { const d = writeDestination(); if ( d ) MSG_WriteLong( d, G_FLOAT( OFS_PARM1 ) | 0 ); };
-const writeAngle = () => { const d = writeDestination(); if ( d ) MSG_WriteAngle( d, G_FLOAT( OFS_PARM1 ) ); };
-const writeCoord = () => { const d = writeDestination(); if ( d ) MSG_WriteCoord( d, G_FLOAT( OFS_PARM1 ) ); };
-const writeString = () => { const d = writeDestination(); if ( d ) MSG_WriteString( d, G_STRING( OFS_PARM1 ) ); };
-const writeEntity = () => { const d = writeDestination(); if ( d ) MSG_WriteShort( d, G_EDICTNUM( OFS_PARM1 ) ); };
+const writeByte = () => { const d = writeDestination(); if ( d && !Hexen2_WriteNativeServiceByte( d, G_FLOAT( OFS_PARM1 ) | 0 ) ) MSG_WriteByte( d, G_FLOAT( OFS_PARM1 ) | 0 ); };
+const writeChar = () => { const d = writeDestination(); if ( d && !Hexen2_WriteNativeServiceByte( d, G_FLOAT( OFS_PARM1 ) | 0 ) ) MSG_WriteByte( d, G_FLOAT( OFS_PARM1 ) | 0 ); };
+const writeShort = () => { const d = writeDestination(); if ( d ) { Hexen2_FlushNativeService( d ); MSG_WriteShort( d, G_FLOAT( OFS_PARM1 ) | 0 ); } };
+const writeLong = () => { const d = writeDestination(); if ( d ) { Hexen2_FlushNativeService( d ); MSG_WriteLong( d, G_FLOAT( OFS_PARM1 ) | 0 ); } };
+const writeAngle = () => { const d = writeDestination(); if ( d ) { Hexen2_FlushNativeService( d ); MSG_WriteAngle( d, G_FLOAT( OFS_PARM1 ) ); } };
+const writeCoord = () => { const d = writeDestination(); if ( d ) { Hexen2_FlushNativeService( d ); MSG_WriteCoord( d, G_FLOAT( OFS_PARM1 ) ); } };
+const writeString = () => { const d = writeDestination(); if ( d ) { Hexen2_FlushNativeService( d ); MSG_WriteString( d, G_STRING( OFS_PARM1 ) ); } };
+const writeEntity = () => { const d = writeDestination(); if ( d ) { Hexen2_FlushNativeService( d ); MSG_WriteShort( d, G_EDICTNUM( OFS_PARM1 ) ); } };
 
 // #79 plaque_draw(destination, index): a strings.txt line index (0 clears), written where the gamecode asks
 function plaqueDraw() {

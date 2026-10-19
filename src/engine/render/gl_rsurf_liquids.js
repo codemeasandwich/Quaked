@@ -32,6 +32,7 @@ import { VERTEXSIZE, r_framecount, d_lightstylevalue, r_wateralpha, r_viewleaf }
 import { solidskytexture, alphaskytexture } from './gl_model.js';
 import { realtime } from '../common/host_state.js';
 import { worldState } from './gl_rsurf_state.js';
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
 
 // Turbulent surface sin table for water/sky warping
 const TURBSCALE = ( 256.0 / ( 2 * Math.PI ) );
@@ -308,10 +309,27 @@ export function _getWaterMesh( s, geometry, material, renderGroup, wakePortal = 
  * How see-through a liquid surface is drawn: `r_wateralpha`, as WinQuake; in Newer Game a map's own value for that
  * liquid where its Newer treatment is switched off (newer/render/r_mapliquids.js, card T-3faa98e3 item 13).
  *
+ * Hexen II marks only its own `*rtex078` and `*lowlight` warp textures `SURF_TRANSLUCENT`; its other liquids and the
+ * `*BLACK` visibility breaker are drawn opaque however `r_wateralpha` is set (uhexen2 engine/h2shared/model.c
+ * Mod_SetDrawingFlags and engine/hexen2/gl_rsurf.c R_DrawWaterSurfaces: the sheet is only blended for those two).
+ *
  * @param {?texture_t} t the liquid's texture
  * @returns {number} 0..1
  */
 export function R_LiquidAlpha( t ) {
+
+	if ( GameProfile_IsHexen2() ) {
+
+		const name = ( t?.name ?? '' ).toLowerCase();
+		// always see-through: the two textures Raven flagged SURF_TRANSLUCENT
+		if ( name.startsWith( '*rtex078' ) || name.startsWith( '*lowlight' ) ) return r_wateralpha.value;
+		// *BLACK is an opaque black vis-breaker
+		if ( name.startsWith( '*black' ) ) return 1;
+		// the rest of Hexen II's liquids are opaque in the native GL renderer; the enhanced water still draws them
+		if ( R_NewerGame() ) return R_MapLiquidAlpha( t?.name ) ?? r_wateralpha.value;
+		return 1;
+
+	}
 
 	if ( ! R_NewerGame() ) return r_wateralpha.value;
 	return R_MapLiquidAlpha( t?.name ) ?? r_wateralpha.value;
