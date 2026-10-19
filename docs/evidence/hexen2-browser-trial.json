@@ -1,7 +1,7 @@
 {
   "trial": "hexen2-browser",
-  "at": "2026-10-19T07:30:47.690Z",
-  "base": "http://127.0.0.1:64550",
+  "at": "2026-10-19T07:34:15.666Z",
+  "base": "http://127.0.0.1:65093",
   "result": {
     "ok": true,
     "errors": [],
@@ -50,7 +50,8 @@
       "drawn": 10,
       "skipped": 0
     },
-    "frames": 41,
+    "frames": 67,
+    "attackFrames": 8,
     "entitiesVisible": 24,
     "nearest": [
       {
@@ -66,7 +67,7 @@
       {
         "name": "obj_tree2",
         "model": "models/tree2.mdl",
-        "d": 266
+        "d": 267
       },
       {
         "name": "obj_tombstone1",
@@ -76,12 +77,12 @@
       {
         "name": "art_HealthBoost",
         "model": "models/a_hboost.mdl",
-        "d": 306
+        "d": 307
       },
       {
         "name": "art_HealthBoost",
         "model": "models/a_hboost.mdl",
-        "d": 320
+        "d": 319
       }
     ],
     "keyEvents": 1,
@@ -92,24 +93,26 @@
     },
     "position": [
       -760.03125,
-      -1832.7642822265625,
+      -1833.2340087890625,
       0.03125
     ],
     "health": 83,
     "hudHealth": 83,
     "pixel": [
-      47,
       41,
       34,
+      31,
       255
     ],
     "audioDeferred": true,
     "audioDeferredResult": {
       "sources": 1,
-      "time": 1.5413333333333334,
+      "time": 2.1386666666666665,
       "state": "running"
     },
-    "moved": 255.8318590096884,
+    "mouseYaw": -60,
+    "mouseAttack": true,
+    "moved": 255.46253972642003,
     "movedFrom": [
       -918,
       -2034,

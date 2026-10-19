@@ -24,6 +24,15 @@ try {
 	await mkdir( resolve( import.meta.dirname, '../../docs/evidence' ), { recursive: true } );
 	await page.screenshot( { path: resolve( import.meta.dirname, '../../docs/evidence/hexen2-browser-trial.png' ) } );
 	const before = await page.evaluate( () => window.__HEXEN2_TRIAL__.position ?? null );
+	// mouse look: real pointer moves turn the view; the left button holds +attack for a moment
+	await page.mouse.move( 480, 360 );
+	await page.mouse.move( 580, 360 );
+	await page.mouse.move( 680, 360 );
+	await page.waitForTimeout( 150 );
+	await page.mouse.down();
+	await page.waitForTimeout( 300 );
+	await page.mouse.up();
+	await page.waitForTimeout( 300 );
 	await page.keyboard.down( 'ArrowUp' );
 	await page.waitForTimeout( 1600 );
 	await page.keyboard.up( 'ArrowUp' );
@@ -34,6 +43,8 @@ try {
 	result.movedFrom = before;
 	if ( result.ok && ( result.moved === null || result.moved < 5 || result.frames < 20 ) ) result.ok = false;
 	if ( result.ok && ( ( result.keyEvents ?? 0 ) < 1 || ( result.forwardMax ?? 0 ) <= 0 ) ) result.ok = false;
+	if ( result.ok && ( Math.abs( result.mouseYaw ?? 0 ) < 1 || ( result.attackFrames ?? 0 ) < 1 ) ) result.ok = false;
+	await page.screenshot( { path: resolve( import.meta.dirname, '../../docs/evidence/hexen2-browser-trial-turn.png' ) } ).catch( () => {} );
 	if ( result.ok && ( !result.audioDeferredResult || result.audioDeferredResult.sources < 1 || result.audioDeferredResult.state !== 'running' ) ) result.ok = false;
 
 } catch ( error ) {

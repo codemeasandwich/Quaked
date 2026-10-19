@@ -13,7 +13,7 @@ import { sv as progsSv, svs as progsSvs, PR_SetSV, PR_SetSVS } from '../../src/e
 import { Hexen2_OpenLocalSession } from '../../src/engine/progs/hexen2_session.js';
 import { Hexen2_BindClientState } from '../../src/engine/client/hexen2_bind.js';
 import { cl, cls, cl_entities, cl_visedicts, set_cl_numvisedicts, MAX_VISEDICTS, SIGNONS } from '../../src/engine/client/client.js';
-import { CL_BaseMove, CL_InitInput } from '../../src/engine/client/cl_input.js';
+import { CL_BaseMove, CL_InitInput, in_attack } from '../../src/engine/client/cl_input.js';
 import { Cmd_ExecuteString, Cmd_Init } from '../../src/engine/common/cmd.js';
 import { R_BestiaryCancel } from '../../src/newer/ui/r_bestiary.js';
 import { V_CalcRefdef } from '../../src/engine/client/view.js';
@@ -122,6 +122,21 @@ try {
 		if ( event.code === 'ArrowLeft' ) Cmd_ExecuteString( '+left 130' );
 		if ( event.code === 'ArrowRight' ) Cmd_ExecuteString( '+right 131' );
 	} );
+	// mouse: real pointer movement turns the view, and the left button drives +attack (the engine's button command)
+	let lastMouse = null;
+	document.addEventListener( 'mousemove', event => {
+
+		if ( lastMouse === null ) { lastMouse = { x: event.clientX, y: event.clientY }; return; }
+		const dx = event.clientX - lastMouse.x, dy = event.clientY - lastMouse.y;
+		lastMouse = { x: event.clientX, y: event.clientY };
+		if ( dx === 0 && dy === 0 ) return;
+		cl.viewangles[ 1 ] = ( cl.viewangles[ 1 ] - dx * 0.3 + 360 ) % 360;
+		cl.viewangles[ 0 ] = Math.max( - 70, Math.min( 80, cl.viewangles[ 0 ] - dy * 0.3 ) );
+		result.mouseYaw = ( result.mouseYaw ?? 0 ) - dx * 0.3;
+
+	} );
+	document.addEventListener( 'mousedown', event => { if ( event.button === 0 ) { Cmd_ExecuteString( '+attack' ); result.mouseAttack = true; } } );
+	document.addEventListener( 'mouseup', event => { if ( event.button === 0 ) Cmd_ExecuteString( '-attack' ); } );
 	document.addEventListener( 'keyup', event => {
 		if ( event.code === 'ArrowUp' ) Cmd_ExecuteString( '-forward 128' );
 		if ( event.code === 'ArrowDown' ) Cmd_ExecuteString( '-back 129' );
@@ -198,9 +213,12 @@ try {
 			}
 			SV_User_SetCommand( { forwardmove: command.forwardmove, sidemove: command.sidemove,
 				upmove: command.upmove, viewangles: cl.viewangles } );
+			const player = playerFromSession();
+			const attacking = ( in_attack.state & 1 ) !== 0;
+			result.attackFrames = ( result.attackFrames ?? 0 ) + ( attacking ? 1 : 0 );
+			player.v.button0 = attacking ? 1 : 0;
 			SV_ClientThink();
 			SV_Physics();
-			const player = playerFromSession();
 			applyPlayerMessages( player );
 			if ( !result.audioDeferred && result.frames > 10 ) {
 
