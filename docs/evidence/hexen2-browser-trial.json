@@ -1,7 +1,7 @@
 {
   "trial": "hexen2-browser",
-  "at": "2026-10-19T07:56:41.959Z",
-  "base": "http://127.0.0.1:56045",
+  "at": "2026-10-19T08:04:36.294Z",
+  "base": "http://127.0.0.1:59248",
   "result": {
     "ok": true,
     "errors": [],
@@ -10,7 +10,7 @@
     "session": {
       "level": "demo1",
       "viewEntity": 1,
-      "health": 75,
+      "health": 71,
       "models": 342,
       "baselines": 247
     },
@@ -52,39 +52,39 @@
       "drawn": 10,
       "skipped": 0
     },
-    "frames": 29,
+    "frames": 31,
     "attackFrames": 3,
     "entitiesVisible": 24,
     "nearest": [
       {
         "name": "obj_statue_angel",
         "model": "models/anglstat.mdl",
-        "d": 169
+        "d": 99
       },
       {
         "name": "obj_tombstone1",
         "model": "models/tombstn1.mdl",
-        "d": 183
-      },
-      {
-        "name": "art_HealthBoost",
-        "model": "models/a_hboost.mdl",
-        "d": 226
-      },
-      {
-        "name": "art_HealthBoost",
-        "model": "models/a_hboost.mdl",
-        "d": 278
+        "d": 253
       },
       {
         "name": "obj_tombstone2",
         "model": "models/tombstn2.mdl",
-        "d": 295
+        "d": 279
+      },
+      {
+        "name": "art_HealthBoost",
+        "model": "models/a_hboost.mdl",
+        "d": 279
+      },
+      {
+        "name": "art_HealthBoost",
+        "model": "models/a_hboost.mdl",
+        "d": 300
       },
       {
         "name": "obj_tree2",
         "model": "models/tree2.mdl",
-        "d": 320
+        "d": 303
       }
     ],
     "keyEvents": 1,
@@ -94,27 +94,27 @@
       "side": 0
     },
     "position": [
-      -812.4995727539062,
-      -1928.5,
+      -760.03125,
+      -1873.260986328125,
       0.03125
     ],
-    "health": 75,
-    "hudHealth": 75,
+    "health": 71,
+    "hudHealth": 71,
     "pixel": [
-      33,
-      27,
+      31,
       24,
+      21,
       255
     ],
     "mouseYaw": -60,
     "audioDeferred": true,
     "audioDeferredResult": {
       "sources": 1,
-      "time": 4.1066666666666665,
+      "time": 4.144,
       "state": "running"
     },
     "mouseAttack": true,
-    "moved": 149.1998329392775,
+    "moved": 225.36893417853693,
     "movedFrom": [
       -918,
       -2034,
