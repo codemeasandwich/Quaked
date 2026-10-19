@@ -32,9 +32,10 @@ Run from `/Users/bri/worktrees/Quaked/Dev/h2` with
 | End-to-end trace | `hexen2_acceptance_test.js` (1) | Detection → Installed Paladin session → boot → physics → client view → world frame → audio bridge → HUD/status, in one process. Still not a drawn or networked session. |
 | Public native smoke | — | **Missing.** No packaged-app UI path (shelf → source → class → difficulty → demo1) exists for Hexen II. |
 
-Latest runs after the class-stat fix: health and mana items, class stats, combat, the acceptance trace and all
-earlier suites are green. The spawn now hands `newclass` to the gamecode (`setclass` builtin #66) so
-`stats_NewClass` applies the native tables instead of returning through its class guard.
+Latest runs after the class-stat fix: **73/73** Hexen assertions across 27 suites and **41/41** server, interpreter,
+movement, aim, shotgun and enemy regressions. The spawn hands `newclass` to the gamecode (resolved from the loaded
+program: offset 212 base, 214 Portal) and `setclass` (#66) records the class, so `stats_NewClass` applies the native
+tables instead of returning through its class guard; sprint (#24) and stuffcmd (#21) carry the pickup/class text.
 
 ## RED → GREEN discipline
 
