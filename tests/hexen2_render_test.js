@@ -12,6 +12,8 @@ import { GL_BuildLightmaps, lightmapTextures, R_DrawWorld } from '../src/engine/
 import { R_MarkLeaves } from '../src/engine/render/gl_rsurf_batches.js';
 import { r_visframecount, set_r_viewleaf, set_r_oldviewleaf, set_r_worldentity } from '../src/engine/render/gl_rmain.js';
 import { r_refdef, entity_t } from '../src/engine/render/render.js';
+import { V_CalcRefdef } from '../src/engine/client/view.js';
+import { Hexen2_ApplyPlayerView } from '../src/engine/client/hexen2_client.js';
 import { worldState } from '../src/engine/render/gl_rsurf_state.js';
 import { cl } from '../src/engine/client/client.js';
 
