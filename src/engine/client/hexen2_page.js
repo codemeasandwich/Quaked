@@ -11,7 +11,8 @@
  * Errors: a failed mount returns `{ ok: false, reason }`; a WebGL failure propagates from `VID_Init`.
  */
 
-import { COM_AddPack, COM_FindFile } from '../common/pak.js';
+import { COM_AddPack, COM_FindFile, COM_LoadFile } from '../common/pak.js';
+import { W_LoadWadFile } from '../common/wad.js';
 import { Cmd_Init, Cmd_ExecuteString, Cbuf_Execute, Cbuf_Init } from '../common/cmd.js';
 import { Cvar_SetValue } from '../common/cvar.js';
 import { renderer } from '../render/vid.js';
@@ -24,7 +25,7 @@ import { set_loadmodel } from '../render/gl_model_common.js';
 import { Mod_LoadBrushModel } from '../render/gl_model_bsp.js';
 import { R_Init, R_NewMap, R_RenderView, set_r_worldentity } from '../render/gl_rmain.js';
 import { entity_t, r_refdef } from '../render/render.js';
-import { Draw_Init, Draw_BeginFrame, Draw_CachePic, Draw_Pic, Draw_String, Draw_SetExternals } from '../render/gl_draw.js';
+import { Draw_Init, Draw_BeginFrame, Draw_CachePic, Draw_Pic, Draw_PicFromWad, Draw_String, Draw_SetExternals } from '../render/gl_draw.js';
 import { sv, SIGNON_SIZE } from '../server/server.js';
 import { SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_PointContents } from '../server/world.js';
 import { SV_SetCallbacks as SV_SetPhysCallbacks, SV_Physics, SV_SetFrametime, SV_SetPlayer } from '../server/sv_phys.js';
@@ -133,6 +134,26 @@ export async function Hexen2_PageStart( options ) {
 		const worldEntity = new entity_t(); worldEntity.model = session.map; worldEntity.frame = 0; set_r_worldentity( worldEntity );
 		R_NewMap();
 		Draw_SetExternals( { vid, d_8to24table } );
+		const wad = COM_LoadFile( 'gfx.wad' );
+		if ( wad ) W_LoadWadFile( wad );
+		const sbNums = [];
+		for ( let i = 0; i < 10; i ++ ) sbNums.push( Draw_PicFromWad( 'num_' + i ) );
+		const sbMinus = Draw_PicFromWad( 'num_minus' );
+		const drawNum = ( value, digits, x, y ) => {
+
+			const text = String( value | 0 );
+			let at = Math.max( 0, text.length - digits );
+			if ( text.length < digits ) x += Math.floor( ( digits - text.length ) * 13 / 2 );
+			for ( ; at < text.length; at ++ ) {
+
+				const ch = text[ at ];
+				const pic = ch === '-' ? sbMinus : sbNums[ ch.charCodeAt( 0 ) - 48 ];
+				if ( pic ) Draw_Pic( x, y, pic );
+				x += 13;
+
+			}
+
+		};
 		const charset = COM_FindFile( 'gfx/menu/conchars.lmp' );
 		Draw_Init( null, charset ? new Uint8Array( charset.data.buffer, charset.data.byteOffset, charset.size ) : null );
 		const bound = Hexen2_BindClientState( session.state, { cl, clEntities: cl_entities,
@@ -226,7 +247,7 @@ export async function Hexen2_PageStart( options ) {
 				const hud = Hexen2_HudFromClientState( session.state );
 				Hexen2_DrawStatusBar( Hexen2_StatusBarOps( hud ), {
 					pic: ( name, x, y ) => { const pic = Draw_CachePic( name ); if ( !pic ) return false; Draw_Pic( x, y, pic ); return true; },
-					num: ( value, digits, x, y ) => Draw_String( x, y, String( value ).padStart( digits, '0' ) ),
+					num: drawNum,
 					small: ( text, x, y ) => Draw_String( x, y, text )
 				} );
 				const context = S_GetAudioContext();

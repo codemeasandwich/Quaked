@@ -703,8 +703,8 @@ export function Draw_BeginFrame( mode = 'default' ) {
 		if ( mode === 'height' ) {
 
 			// a native 320x200 HUD scaled to the window height, centred horizontally (Hexen's bar art)
-			const scale = Math.max( 1, Math.floor( overlayCanvas.height / 200 ) );
-			overlayCtx.setTransform( scale, 0, 0, scale, ( overlayCanvas.width - 320 * scale ) / 2, overlayCanvas.height - 200 * scale );
+			const scale = overlayCanvas.width / 320;
+			overlayCtx.setTransform( scale, 0, 0, scale, 0, overlayCanvas.height - 200 * scale );
 
 		} else overlayCtx.setTransform( _uiScale, 0, 0, _uiScale, 0, 0 );
 
