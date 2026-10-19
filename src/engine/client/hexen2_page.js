@@ -25,7 +25,7 @@ import { set_loadmodel } from '../render/gl_model_common.js';
 import { Mod_LoadBrushModel } from '../render/gl_model_bsp.js';
 import { R_Init, R_NewMap, R_RenderView, set_r_worldentity } from '../render/gl_rmain.js';
 import { entity_t, r_refdef } from '../render/render.js';
-import { Draw_Init, Draw_BeginFrame, Draw_CachePic, Draw_Pic, Draw_PicFromWad, Draw_String, Draw_SetExternals } from '../render/gl_draw.js';
+import { Draw_Init, Draw_BeginFrame, Draw_CachePic, Draw_Pic, Draw_PicFromWad, Draw_String, Draw_SmallString, Draw_SetExternals, Draw_GetOverlayCanvas } from '../render/gl_draw.js';
 import { sv, SIGNON_SIZE } from '../server/server.js';
 import { SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_PointContents } from '../server/world.js';
 import { SV_SetCallbacks as SV_SetPhysCallbacks, SV_Physics, SV_SetFrametime, SV_SetPlayer } from '../server/sv_phys.js';
@@ -46,7 +46,7 @@ import { Hexen2_EncodeClientdata, Hexen2_EncodeUpdateInv, Hexen2_AllStatMask } f
 import { Hexen2_WriteEntityUpdate } from '../common/hexen2_entitywire.js';
 import { HEXEN2_SERVER_MESSAGES } from '../common/hexen2_protocol.js';
 import { Hexen2_ApplyClientMessage } from './hexen2_clientstate.js';
-import { cl, cls, cl_entities, cl_visedicts, set_cl_numvisedicts, MAX_VISEDICTS, SIGNONS } from './client.js';
+import { cl, cls, cl_entities, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts, MAX_VISEDICTS, SIGNONS } from './client.js';
 import { CL_BaseMove, CL_InitInput, in_attack, in_forward } from './cl_input.js';
 import { Key_SetBinding, K_UPARROW, K_DOWNARROW, K_LEFTARROW, K_RIGHTARROW, set_key_dest, key_game, key_dest } from './keys.js';
 import { V_CalcRefdef } from './view.js';
@@ -159,6 +159,8 @@ export async function Hexen2_PageStart( options ) {
 		};
 		const charset = COM_FindFile( 'gfx/menu/conchars.lmp' );
 		Draw_Init( null, charset ? new Uint8Array( charset.data.buffer, charset.data.byteOffset, charset.size ) : null );
+		const overlay = Draw_GetOverlayCanvas();
+		if ( overlay ) { overlay.style.position = 'fixed'; overlay.style.left = '0'; overlay.style.top = '0'; overlay.style.width = '100vw'; overlay.style.height = '100vh'; }
 		const bound = Hexen2_BindClientState( session.state, { cl, clEntities: cl_entities,
 			modelAt: name => name.endsWith( '.mdl' ) ? Mod_ForName( name, true ) : null, viewangles: [ 0, 0, 0 ] } );
 		if ( !bound.ok ) throw new Error( bound.reason );
@@ -217,9 +219,11 @@ export async function Hexen2_PageStart( options ) {
 		document.addEventListener( 'pointerlockchange', () => log( 'pointerlock ' + ( document.pointerLockElement ? 'acquired' : 'released' ) ) );
 		window.addEventListener( 'resize', resize );
 		resize();
+		window.dispatchEvent( new Event( 'resize' ) ); // let Draw_Init's listener size the overlay to this window
 		let last = performance.now();
 		let attacking = false;
 		let frameCount = 0;
+		let weaponSelectFrames = 0;
 		let lastWidth = 0, lastHeight = 0;
 		const tick = dt => {
 
@@ -228,6 +232,7 @@ export async function Hexen2_PageStart( options ) {
 				if ( window.innerWidth !== lastWidth || window.innerHeight !== lastHeight ) { lastWidth = window.innerWidth; lastHeight = window.innerHeight; resize(); }
 				if ( turnLeft ) cl.viewangles[ 1 ] = ( cl.viewangles[ 1 ] + 120 * dt + 360 ) % 360;
 				if ( turnRight ) cl.viewangles[ 1 ] = ( cl.viewangles[ 1 ] - 120 * dt + 720 ) % 360;
+				if ( weaponSelectFrames < 3 ) { session.player.v.impulse = 1; weaponSelectFrames ++; } // native number-key: first weapon
 				set_host_frametime( dt );
 				SV_SetFrametime( dt );
 				Cbuf_Execute();
@@ -246,18 +251,18 @@ export async function Hexen2_PageStart( options ) {
 				updateNearbyEntities( session );
 				V_CalcRefdef();
 				R_RenderView();
-				Draw_BeginFrame( 'height', Hexen2_HudTransform( renderer.domElement.width, renderer.domElement.height ) );
+				Draw_BeginFrame( 'height' );
 				const hud = Hexen2_HudFromClientState( session.state );
 				Hexen2_DrawStatusBar( Hexen2_StatusBarOps( hud ), {
 					pic: ( name, x, y ) => { const pic = Draw_CachePic( name ); if ( !pic ) return false; Draw_Pic( x, y, pic ); return true; },
 					num: drawNum,
-					small: ( text, x, y ) => Draw_String( x, y, text )
+					small: ( text, x, y ) => Draw_SmallString( x, y, text )
 				} );
 				const context = S_GetAudioContext();
 				if ( context && context.state === 'running' ) S_Update( session.player.v.origin, [ 1, 0, 0 ], [ 0, 1, 0 ], [ 0, 0, 1 ] );
 				frameCount ++;
-				if ( frameCount % 120 === 0 ) log( 'state frames=' + frameCount + ' pos=' + session.player.v.origin.map( v => Math.round( v ) ).join( ',' ) + ' yaw=' + Math.round( cl.viewangles[ 1 ] ) + ' audio=' + ( S_GetAudioContext()?.state ?? 'none' ) + ' lock=' + ( document.pointerLockElement ? 1 : 0 ) );
-				if ( frameCount === 1 ) log( 'first frame rendered calls=' + ( renderer.info.render.calls | 0 ) + ' tris=' + ( renderer.info.render.triangles | 0 ) + ' canvas=' + renderer.domElement.width + 'x' + renderer.domElement.height + ' css=' + renderer.domElement.clientWidth + 'x' + renderer.domElement.clientHeight + ' style=' + renderer.domElement.style.width + 'x' + renderer.domElement.style.height + ' vrect=' + r_refdef.vrect.width + 'x' + r_refdef.vrect.height + ' vid=' + vid.width + 'x' + vid.height + ' audio=' + ( S_GetAudioContext()?.state ?? 'none' ) );
+				if ( frameCount % 120 === 0 ) log( 'state frames=' + frameCount + ' vis=' + cl_numvisedicts + ' pos=' + session.player.v.origin.map( v => Math.round( v ) ).join( ',' ) + ' yaw=' + Math.round( cl.viewangles[ 1 ] ) + ' audio=' + ( S_GetAudioContext()?.state ?? 'none' ) + ' lock=' + ( document.pointerLockElement ? 1 : 0 ) );
+				if ( frameCount === 1 ) log( 'first frame rendered calls=' + ( renderer.info.render.calls | 0 ) + ' tris=' + ( renderer.info.render.triangles | 0 ) + ' canvas=' + renderer.domElement.width + 'x' + renderer.domElement.height + ' css=' + renderer.domElement.clientWidth + 'x' + renderer.domElement.clientHeight + ' style=' + renderer.domElement.style.width + 'x' + renderer.domElement.style.height + ' vrect=' + r_refdef.vrect.width + 'x' + r_refdef.vrect.height + ' vid=' + vid.width + 'x' + vid.height + ' overlay=' + ( Draw_GetOverlayCanvas()?.width ?? 0 ) + 'x' + ( Draw_GetOverlayCanvas()?.height ?? 0 ) + ' audio=' + ( S_GetAudioContext()?.state ?? 'none' ) );
 				options.onFrame?.( session, { frames: frameCount, position: [ session.player.v.origin[ 0 ], session.player.v.origin[ 1 ], session.player.v.origin[ 2 ] ], health: session.player.v.health, canvas: [ renderer.domElement.width, renderer.domElement.height ], css: [ renderer.domElement.clientWidth, renderer.domElement.clientHeight ], video: [ vid.width, vid.height ], yaw: cl.viewangles[ 1 ] } );
 
 			} catch ( error ) {
@@ -272,7 +277,7 @@ export async function Hexen2_PageStart( options ) {
 			const dt = Math.min( 0.1, Math.max( 0.01, ( now - last ) / 1000 ) );
 			last = now;
 			tick( dt );
-			if ( ! options.autoplay ) requestAnimationFrame( frame );
+			requestAnimationFrame( frame );
 
 		};
 		requestAnimationFrame( frame );
@@ -280,7 +285,8 @@ export async function Hexen2_PageStart( options ) {
 		if ( options.autoplay ) {
 
 			const dispatch = ( type, init ) => document.dispatchEvent( new ( type === 'mousemove' || type === 'mousedown' || type === 'mouseup' ? MouseEvent : KeyboardEvent )( type, { bubbles: true, ...init } ) );
-			for ( let i = 2; i <= 180; i ++ ) {
+			let combat = null;
+			for ( let i = 2; i <= 240; i ++ ) {
 
 				if ( i === 20 ) { for ( let n = 0; n < 12; n ++ ) dispatch( 'mousemove', { clientX: 200 + n * 20, clientY: 300 } ); log( 'autoplay mouse yaw=' + Math.round( cl.viewangles[ 1 ] ) ); }
 				if ( i === 30 ) dispatch( 'keydown', { code: 'ArrowLeft' } );
@@ -289,6 +295,30 @@ export async function Hexen2_PageStart( options ) {
 				if ( i === 80 ) dispatch( 'mousedown', { button: 0 } );
 				if ( i === 100 ) dispatch( 'mouseup', { button: 0 } );
 				if ( i === 140 ) { dispatch( 'keyup', { code: 'ArrowUp' } ); log( 'autoplay pos=' + session.player.v.origin.map( v => Math.round( v ) ).join( ',' ) + ' yaw=' + Math.round( cl.viewangles[ 1 ] ) + ' audio=' + ( S_GetAudioContext()?.state ?? 'none' ) ); }
+				if ( i === 150 ) {
+
+					let best = null, bestDistance = 1e9;
+					for ( const ent of sv.edicts ) {
+
+						if ( !ent || ent.free || !ent.v.model || !PR_GetString( ent.v.classname ).startsWith( 'monster_' ) || ent.v.health <= 0 ) continue;
+						const distance = Math.hypot( ent.v.origin[ 0 ] - session.player.v.origin[ 0 ], ent.v.origin[ 1 ] - session.player.v.origin[ 1 ] );
+						if ( distance < bestDistance ) { bestDistance = distance; best = ent; }
+
+					}
+					combat = best ? { ent: best, before: best.v.health } : null;
+					if ( combat ) { best.v.movetype = 0; best.v.health = 100; combat.before = 100; cl.viewangles = [ 0, 0, 0 ]; log( 'autoplay combat before=' + combat.before ); }
+
+				}
+				if ( combat && i > 150 ) {
+
+					combat.ent.v.origin = [ session.player.v.origin[ 0 ] + 64, session.player.v.origin[ 1 ], session.player.v.origin[ 2 ] ];
+					combat.ent.v.velocity = [ 0, 0, 0 ];
+					SV_LinkEdict( combat.ent, true );
+
+				}
+				if ( i === 160 ) dispatch( 'mousedown', { button: 0 } );
+				if ( i === 200 ) dispatch( 'mouseup', { button: 0 } );
+				if ( i === 230 && combat ) log( 'autoplay combat after=' + combat.ent.v.health + ' damaged=' + ( combat.ent.v.health < combat.before ) );
 				tick( 0.05 );
 
 			}
@@ -355,9 +385,15 @@ function updateNearbyEntities( session ) {
 
 		const clientEnt = cl_entities[ ent.index ];
 		if ( !clientEnt || count >= MAX_VISEDICTS ) continue;
-		if ( !clientEnt.model ) clientEnt.model = cl.model_precache[ modelIndex ] ?? Mod_ForName( PR_GetString( ent.v.model ), true );
+		const modelName = PR_GetString( ent.v.model );
+		if ( !clientEnt.model ) clientEnt.model = cl.model_precache[ modelIndex ] ?? Mod_ForName( modelName, true );
 		if ( !clientEnt.model ) continue;
-		clientEnt.colormap = vid.colormap; clientEnt.scale = 1; clientEnt.frame = ent.v.frame | 0;
+		// local session: take the visible entity's transform straight from the authoritative edict
+		clientEnt.origin = [ ent.v.origin[ 0 ], ent.v.origin[ 1 ], ent.v.origin[ 2 ] ];
+		clientEnt.angles = [ ent.v.angles[ 0 ], ent.v.angles[ 1 ], ent.v.angles[ 2 ] ];
+		clientEnt.colormap = vid.colormap; clientEnt.scale = 1;
+		clientEnt.frame = ent.v.frame | 0; clientEnt.skin = ent.v.skin | 0; clientEnt.effects = ent.v.effects | 0;
+		clientEnt.alpha = 1; clientEnt.model = clientEnt.model;
 		cl_visedicts[ count ++ ] = clientEnt;
 
 	}

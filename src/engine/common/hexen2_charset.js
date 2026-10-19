@@ -24,3 +24,19 @@ export function Hexen2_CharsetColumns( byteLength ) {
 	return 0;
 
 }
+
+
+/**
+ * The native `Draw_SmallCharacter` glyph index for a character code.
+ *
+ * @param {number} num the character code
+ * @returns {number} the 0..127 glyph index (0 means blank)
+ */
+export function Hexen2_SmallFontIndex( num ) {
+
+	if ( num < 32 ) return 0;
+	if ( num >= 97 && num <= 122 ) return num - 64;
+	if ( num > 95 ) return 0;
+	return num - 32;
+
+}

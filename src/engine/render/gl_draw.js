@@ -19,7 +19,7 @@ import {AssetURL} from '../../platform/distribution.js';
 // In browser port: uses a canvas 2D overlay context for HUD/menu/console drawing
 
 import { Con_Printf } from '../common/console.js';
-import { Hexen2_CharsetColumns } from '../common/hexen2_charset.js';
+import { Hexen2_CharsetColumns, Hexen2_SmallFontIndex } from '../common/hexen2_charset.js';
 import { W_GetLumpName, W_FindLumpinfo } from '../common/wad.js';
 import { d_8to24table as vid_d_8to24table } from './vid.js';
 import { COM_FindFile } from '../common/pak.js';
@@ -183,6 +183,7 @@ export function Draw_WithVirtualSize( width, height, draw, scale = 1 ) {
 // Charset
 let char_canvas = null;
 let _charsetCols = 16; // 16 for Quake's 128x128 sheet, 32 for Hexen's 256x128 sheet
+let small_char_canvas = null;
 let conback = null;
 let draw_disc = null;
 let draw_backtile = null;
@@ -652,6 +653,7 @@ export function Draw_Init( canvas, charset = null ) {
 
 	// Load charset from WAD for character drawing
 	_loadCharset( charset );
+	_loadSmallCharset();
 
 	// Load conback from PAK (gfx/conback.lmp)
 	_loadConback();
@@ -739,6 +741,32 @@ export function Draw_WithAlpha( alpha, draw ) {
 
 }
 
+function _loadSmallCharset() {
+
+	const pal = d_8to24table || vid_d_8to24table;
+	if ( W_FindLumpinfo( 'tinyfont' ) === null ) return; // a WAD without it (shareware) falls back to the charset
+	const lump = W_GetLumpName( 'tinyfont' );
+	if ( ! pal || ! lump ) return;
+	const raw = lump.data instanceof Uint8Array ? lump.data.subarray( lump.offset, lump.offset + lump.size ) : new Uint8Array( lump.data, lump.offset, lump.size );
+	if ( raw.length < 128 * 128 ) return;
+	const cs = document.createElement( 'canvas' );
+	cs.width = 128; cs.height = 128;
+	const ctx = cs.getContext( '2d' );
+	const image = ctx.createImageData( 128, 128 );
+	for ( let i = 0; i < 128 * 128; i ++ ) {
+
+		const idx = raw[ i ];
+		if ( idx === 0 ) continue;
+		const rgba = pal[ idx ];
+		image.data[ i * 4 ] = rgba & 0xff; image.data[ i * 4 + 1 ] = ( rgba >> 8 ) & 0xff;
+		image.data[ i * 4 + 2 ] = ( rgba >> 16 ) & 0xff; image.data[ i * 4 + 3 ] = 255;
+
+	}
+	ctx.putImageData( image, 0, 0 );
+	small_char_canvas = cs;
+
+}
+
 /*
 ================
 Draw_Character
@@ -798,6 +826,37 @@ export function Draw_Character( x, y, num ) {
 		}
 
 	}
+
+}
+
+/**
+ * Draws one native small character (WAD `tinyfont`, 5 pixel rows, 16 columns) for the status bar.
+ *
+ * @param {number} x left edge in virtual pixels
+ * @param {number} y top edge in virtual pixels
+ * @param {number} num character code
+ */
+export function Draw_SmallCharacter( x, y, num ) {
+
+	if ( ! overlayCtx ) return;
+	if ( ! small_char_canvas ) { Draw_Character( x, y, num ); return; }
+	num = Hexen2_SmallFontIndex( num );
+	if ( num === 0 ) return;
+	const row = num >> 4, col = num & 15;
+	overlayCtx.drawImage( small_char_canvas, col * 8, row * 8, 8, 5, x, y, 8, 5 );
+
+}
+
+/**
+ * Draws a native small string.
+ *
+ * @param {number} x left edge in virtual pixels
+ * @param {number} y top edge in virtual pixels
+ * @param {string} str the text
+ */
+export function Draw_SmallString( x, y, str ) {
+
+	for ( let i = 0; i < str.length; i ++ ) Draw_SmallCharacter( x + i * 8, y, str.charCodeAt( i ) );
 
 }
 

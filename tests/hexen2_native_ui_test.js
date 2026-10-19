@@ -2,7 +2,7 @@
 // first, precache cache, mixer arguments, graceful missing/failing wire) and the charset sheet width that scrambled the
 // HUD glyphs when Hexen's 256x128 sheet was read as Quake's 128x128.
 import { Hexen2_StartChoice, Hexen2_LocalSoundArgs, Hexen2_PlayLocalSound, HEXEN2_START_CLASSES } from '../src/engine/client/hexen2_native_ui.js';
-import { Hexen2_CharsetColumns } from '../src/engine/common/hexen2_charset.js';
+import { Hexen2_CharsetColumns, Hexen2_SmallFontIndex } from '../src/engine/common/hexen2_charset.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 
@@ -17,6 +17,11 @@ Deno.test( 'the start gate defaults, the sound bridge and the charset width beha
 	same( Hexen2_CharsetColumns( 32768 ), 32, 'Hexen 256x128' );
 	same( Hexen2_CharsetColumns( 16384 ), 16, 'Quake 128x128' );
 	same( Hexen2_CharsetColumns( 1024 ), 0, 'too short' );
+	same( Hexen2_SmallFontIndex( 32 ), 0, 'space' );
+	same( Hexen2_SmallFontIndex( 65 ), 33, 'uppercase A stays in the sheet' );
+	same( Hexen2_SmallFontIndex( 97 ), 33, 'lowercase a maps down' );
+	same( Hexen2_SmallFontIndex( 96 ), 0, 'backtick is blank' );
+	same( Hexen2_SmallFontIndex( 48 ), 16, 'digit 0' );
 
 	const entity = { index: 7, v: { origin: [ 1, 2, 3 ] } };
 	same( JSON.stringify( Hexen2_LocalSoundArgs( entity, 255, 1.5 ) ), JSON.stringify( { entnum: 7, origin: [ 1, 2, 3 ], fvol: 1, attenuation: 1.5 } ), 'full volume' );
