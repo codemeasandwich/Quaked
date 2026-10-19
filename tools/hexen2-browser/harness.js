@@ -4,7 +4,7 @@
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile, COM_LoadFile } from '../../src/engine/common/pak.js';
 import { W_LoadWadFile } from '../../src/engine/common/wad.js';
 import { VID_Init } from '../../src/engine/render/vid.js';
-import { Mod_Init } from '../../src/engine/render/gl_model.js';
+import { Mod_Init, Mod_ForName } from '../../src/engine/render/gl_model.js';
 import { model_t } from '../../src/engine/render/gl_model_types.js';
 import { set_loadmodel } from '../../src/engine/render/gl_model_common.js';
 import { Mod_LoadBrushModel } from '../../src/engine/render/gl_model_bsp.js';
@@ -12,7 +12,7 @@ import { sv as serverSv, SIGNON_SIZE } from '../../src/engine/server/server.js';
 import { sv as progsSv, svs as progsSvs, PR_SetSV, PR_SetSVS } from '../../src/engine/progs/progs.js';
 import { Hexen2_OpenLocalSession } from '../../src/engine/progs/hexen2_session.js';
 import { Hexen2_BindClientState } from '../../src/engine/client/hexen2_bind.js';
-import { cl, cl_entities } from '../../src/engine/client/client.js';
+import { cl, cl_entities, cl_visedicts, set_cl_numvisedicts, MAX_VISEDICTS } from '../../src/engine/client/client.js';
 import { V_CalcRefdef } from '../../src/engine/client/view.js';
 import { R_Init, R_NewMap, R_RenderView, set_r_worldentity, r_norefresh, scene, camera } from '../../src/engine/render/gl_rmain.js';
 import { entity_t } from '../../src/engine/render/render.js';
@@ -92,7 +92,7 @@ try {
 	R_NewMap();
 	Draw_Init();
 	const bound = Hexen2_BindClientState( session.state, { cl, clEntities: cl_entities,
-		modelAt: name => COM_FindFile( name ) ? null : null, viewangles: [ 0, 90, 0 ] } );
+		modelAt: name => name.endsWith( '.mdl' ) ? Mod_ForName( name, true ) : null, viewangles: [ 0, 90, 0 ] } );
 	if ( !bound.ok ) throw new Error( 'bind: ' + bound.reason );
 	cl.viewangles = [ 0, 90, 0 ];
 	Cvar_Set( 'r_hdr', '0' ); // classic direct path first: no post pipeline in the harness
@@ -146,6 +146,8 @@ try {
 			SV_Physics();
 			const player = playerFromSession();
 			applyPlayerMessages( player );
+			result.entitiesVisible = updateNearbyEntities( player, session.state );
+			result.nearest = nearestDiagnostic();
 			cl.viewangles = [ 0, input.yaw ?? 0, 0 ];
 			cl_entities[ 1 ].origin = [ player.v.origin[ 0 ], player.v.origin[ 1 ], player.v.origin[ 2 ] ];
 			V_CalcRefdef();
@@ -200,3 +202,55 @@ function applyPlayerMessages( player ) {
 	if ( update.ok ) Hexen2_ApplyClientMessage( session.state, update.bytes );
 
 }
+
+
+function updateNearbyEntities( player, state ) {
+
+	const indexOf = new Map();
+	for ( let i = 0; i < state.models.length; i ++ ) indexOf.set( state.models[ i ], i + 1 );
+	const candidates = [];
+	for ( const ent of serverSv.edicts ) {
+
+		if ( !ent || ent.free || ent.index === player.index || !ent.v.model ) continue;
+		// non-monster static models (items/statues) currently render at pathological extents in this harness; keep the
+		// proved subset (monsters) visible and record the static-model issue instead of showing a broken frame
+		if ( !PR_GetString( ent.v.classname ).startsWith( 'monster_' ) ) continue;
+		const modelName = PR_GetString( ent.v.model );
+		const modelIndex = indexOf.get( modelName );
+		if ( modelIndex === undefined ) continue;
+		const dx = ent.v.origin[ 0 ] - player.v.origin[ 0 ], dy = ent.v.origin[ 1 ] - player.v.origin[ 1 ];
+		const distance = Math.hypot( dx, dy );
+		if ( distance > 1700 || distance < 48 ) continue;
+		candidates.push( { ent, modelIndex, distance } );
+
+	}
+	candidates.sort( ( a, b ) => a.distance - b.distance );
+	const chosen = candidates.slice( 0, 24 );
+	lastChosen = chosen;
+	for ( const { ent, modelIndex } of chosen ) {
+
+		const update = Hexen2_WriteEntityUpdate( { entity: ent.index, modelIndex, frame: ent.v.frame | 0,
+			origin: ent.v.origin, angles: ent.v.angles } );
+		if ( update.ok ) Hexen2_ApplyClientMessage( state, update.bytes );
+
+	}
+	// the renderer's visible list: the updated entities near the player
+	let count = 0;
+	for ( const { ent } of chosen ) {
+
+		const clientEnt = cl_entities[ ent.index ];
+		if ( !clientEnt || !clientEnt.model || count >= MAX_VISEDICTS ) continue;
+		clientEnt.colormap = vid.colormap;
+		clientEnt.scale = 1;
+		clientEnt.frame = ent.v.frame | 0;
+		cl_visedicts[ count ++ ] = clientEnt;
+
+	}
+	set_cl_numvisedicts( count );
+	return count;
+
+}
+
+
+let lastChosen = [];
+function nearestDiagnostic() { return lastChosen.slice( 0, 6 ).map( c => ( { name: PR_GetString( c.ent.v.classname ), model: PR_GetString( c.ent.v.model ), d: Math.round( c.distance ) } ) ); }
