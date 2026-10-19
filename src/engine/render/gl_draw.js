@@ -487,22 +487,31 @@ Loads the "conchars" lump from gfx.wad and creates a canvas with the charset.
 conchars is 128x128 pixels, 8-bit indexed (16x16 grid of 8x8 characters).
 ===============
 */
-function _loadCharset() {
+function _loadCharset( override ) {
 
 	const pal = d_8to24table || vid_d_8to24table;
 	if ( ! pal ) return;
 
-	const lump = W_GetLumpName( 'conchars' );
-	if ( ! lump ) return;
-
 	let data;
-	if ( lump.data instanceof Uint8Array ) {
+	if ( override ) {
 
-		data = lump.data.subarray( lump.offset, lump.offset + lump.size );
+		// a game's own 128x128 charset (Hexen II ships gfx/menu/conchars.lmp): the native font, not Quake's WAD lump
+		data = override instanceof Uint8Array ? override : new Uint8Array( override );
+		if ( data.length < 128 * 128 ) return;
 
 	} else {
 
-		data = new Uint8Array( lump.data, lump.offset, lump.size );
+		const lump = W_GetLumpName( 'conchars' );
+		if ( ! lump ) return;
+		if ( lump.data instanceof Uint8Array ) {
+
+			data = lump.data.subarray( lump.offset, lump.offset + lump.size );
+
+		} else {
+
+			data = new Uint8Array( lump.data, lump.offset, lump.size );
+
+		}
 
 	}
 
@@ -599,7 +608,7 @@ Draw_Init
  * @param {HTMLCanvasElement} [canvas] an existing canvas to draw on; when omitted a new overlay canvas is created
  * @throws {Error} via `Sys_Error` (from `W_GetLumpName`) when the loaded gfx.wad has no `conchars` lump
  */
-export function Draw_Init( canvas ) {
+export function Draw_Init( canvas, charset = null ) {
 
 	if ( canvas ) {
 
@@ -637,7 +646,7 @@ export function Draw_Init( canvas ) {
 	Draw_InitCommands();
 
 	// Load charset from WAD for character drawing
-	_loadCharset();
+	_loadCharset( charset );
 
 	// Load conback from PAK (gfx/conback.lmp)
 	_loadConback();

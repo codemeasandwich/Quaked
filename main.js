@@ -53,6 +53,31 @@ async function main() {
 		const urlParams = new URLSearchParams( window.location.search );
 		const desktop = Distribution_Profile()==='desktop' ? await (await import('./src/platform/desktop.js')).Desktop_Prepare() : null;
 		if(Distribution_Profile()==='desktop' && !desktop)return;
+		// Hexen II in the native app: its own mount, protocols and eight-hull BSP cannot ride the Quake host below
+		if(desktop&&String(desktop.id).startsWith('hexen2')){
+			const desktopApi=await import('./src/platform/desktop.js');
+			const log=text=>{void desktopApi.Desktop_Log?.(text);};
+			addEventListener('error',event=>log('window error: '+(event.error?.stack??event.message)));
+			addEventListener('unhandledrejection',event=>log('unhandled rejection: '+(event.reason?.stack??event.reason)));
+			log('hexen2 branch id='+desktop.id+' packs='+(desktop.packs?.length??0));
+			document.getElementById('loading')?.remove();
+			const gate=document.createElement('div');
+			gate.style='position:fixed;inset:0;z-index:400;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#07070a;color:#efe2c4;font:16px/1.6 Georgia,serif;text-align:center;cursor:pointer';
+			gate.innerHTML='<div style="letter-spacing:.2em;font-size:1.6em">HEXEN II</div><div style="margin-top:.6em;color:#b7ab90">Click to begin — Paladin</div><div id="hexen2-status" style="margin-top:1.2em;color:#8d8471;font-size:.85em"></div>';
+			document.body.append(gate);
+			if(!desktop.autoStart){
+				await new Promise(resolve=>gate.addEventListener('click',resolve,{once:true}));
+				gate.remove();
+				log('start gate clicked');
+			}else{
+				gate.remove();
+				log('trial autostart');
+			}
+			const started=await(await import('./src/engine/client/hexen2_page.js')).Hexen2_PageStart({packs:desktop.packs,id:desktop.id,classId:'paladin',log,onFrame:()=>{}});
+			log('host result ok='+started.ok+' reason='+(started.reason??''));
+			if(!started.ok){Sys_Printf('Hexen II could not start: '+started.reason+'\n');const note=document.createElement('div');note.role='alert';note.style='position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;background:#07070a;color:#f0c9a0;font:16px/1.6 system-ui,sans-serif;text-align:center;padding:8vw;white-space:pre-wrap';note.textContent='Hexen II could not start:\n'+started.reason;document.body.append(note);}
+			return;
+		}
 		// A player's window in local play (card [37a]): it joins player 1's page, and saves no settings of its own
 		const playerWindow = LocalPlay_PlayerWindow( window.location.search );
 		if ( playerWindow ) { Cvar_SetStorageWritable( false ); document.title = 'Quaked: Player ' + playerWindow.player; }

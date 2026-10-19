@@ -272,3 +272,42 @@ fn a_folder_with_no_ascii_name_gets_a_usable_id_and_a_placeholder_folder_is_not_
     // one `_` per character, as the source build's GameCatalogue_DiscoveredId (its test has the same cases)
     assert_eq!(ids, ["mod_addon", "mod_mod_x"], "no empty id; the placeholder's folder is left to its placeholder");
 }
+
+#[test]
+fn finds_hexen2_under_data1_with_gapped_paks_and_loose_files() {
+    let f = Fixture::new();
+    f.write("Hexen 2/data1/pak0.pak", b"base");
+    f.write("Hexen 2/data1/PAK1.PAK", b"base one");
+    f.write("Hexen 2/data1/pak3.pak", b"base three, after a gap");
+    f.write("Hexen 2/data1/progs.dat", b"loose program");
+    f.write("Hexen 2/data1/strings.txt", b"loose strings");
+    f.write("Hexen 2/data1/hexen.rc", b"loose startup");
+    f.write("Hexen 2/data1/readme.txt", b"not engine content");
+    let found = library::scan(&f.0).unwrap();
+    assert_eq!(
+        tokens(&found),
+        [
+            "hexen2/pak0.pak",
+            "hexen2/pak1.pak",
+            "hexen2/pak3.pak",
+            "hexen2/progs.dat",
+            "hexen2/strings.txt",
+            "hexen2/hexen.rc",
+        ],
+        "the installation's data1 packs are probed through gaps and its loose files are exposed"
+    );
+    let loose: Vec<&str> = found
+        .packs
+        .iter()
+        .filter(|p| p.loose)
+        .map(|p| p.name.as_str())
+        .collect();
+    assert_eq!(loose, ["progs.dat", "strings.txt", "hexen.rc"]);
+    for pack in &found.packs {
+        assert!(pack.path.starts_with(&found.root));
+        assert_eq!(pack.bytes, fs::metadata(&pack.path).unwrap().len());
+    }
+    // selecting the installation folder itself also resolves data1
+    let direct = library::scan(&f.path("Hexen 2")).unwrap();
+    assert_eq!(tokens(&direct).len(), 6, "the installation root resolves its data1 and does not rediscover it as an add-on");
+}

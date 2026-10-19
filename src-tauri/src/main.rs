@@ -222,6 +222,25 @@ fn refresh(app: &tauri::AppHandle) -> Result<Library, String> {
     *current = next.clone();
     Ok(next)
 }
+/// Frontend diagnostics for the native Hexen II path: appends one line to `hexen2-trace.log` in the app data dir.
+/// Screen capture and UI automation are unavailable on the trial host, so this is the readable trace.
+/// Trial only: an edition id from `HEXEN2_TRIAL_GAME`, so a packaged Hexen run can be started without UI automation.
+#[tauri::command]
+fn trial_game() -> Option<String> { std::env::var( "HEXEN2_TRIAL_GAME" ).ok() }
+
+#[tauri::command]
+fn hexen_log(app: tauri::AppHandle, text: String) {
+    let dir = app.path().app_data_dir().ok();
+    if let Some(dir) = dir {
+        let _ = std::fs::create_dir_all(&dir);
+        let path = dir.join("hexen2-trace.log");
+        if let Ok(mut file) = std::fs::OpenOptions::new().create(true).append(true).open(path) {
+            use std::io::Write;
+            let _ = writeln!(file, "{:?} {}", std::time::SystemTime::now(), text);
+        }
+    }
+}
+
 #[tauri::command]
 fn library_scan(app: tauri::AppHandle) -> Result<Library, String> {
     refresh(&app)
@@ -275,6 +294,8 @@ fn main() {
         .manage(lan::Lan::default())
         .plugin(tauri_plugin_dialog::init())
         .invoke_handler(tauri::generate_handler![
+            trial_game,
+            hexen_log,
             library_scan,
             library_read,
             library_choose,
