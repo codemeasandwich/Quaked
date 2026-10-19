@@ -1,19 +1,20 @@
-// Hexen II changelevel(level, spot) (#70): the gamecode's two-string builtin records the transition target in the
-// server state; the page (not the physics step) performs the map reload. A second call before the page consumes the
-// target is ignored, as the native PF_changelevel.
+// Hexen II changelevel(level, spot) (#70): the native two-string builtin writes `changelevel <level> <spot>` when the
+// server flags start a new unit/episode and `changelevel2` (the hub transition) otherwise. The command buffer owns the
+// reload; a second call before the command runs is ignored, as PF_changelevel.
 import { existsSync, readFileSync } from 'node:fs';
-import { G_INT_SET, PR_SetTempString, PR_SetSV, PR_SetSVS } from '../src/engine/progs/progs.js';
+import { G_INT_SET, PR_SetTempString, PR_SetSV, PR_SetSVS, pr_global_struct } from '../src/engine/progs/progs.js';
 import { PR_LoadProgs } from '../src/engine/progs/pr_edict.js';
 import { sv as serverSv } from '../src/engine/server/server.js';
 import { OFS_PARM0, OFS_PARM1 } from '../src/engine/progs/pr_comp.js';
 import { Hexen2_CallBuiltin } from '../src/engine/progs/hexen2_cmds.js';
+import { Cbuf_Init, Cmd_AddCommand, Cmd_Args, Cbuf_Execute } from '../src/engine/common/cmd.js';
 import '../src/engine/progs/hexen2_server_cmds.js';
 import { GameProfile_Set } from '../src/engine/common/game_profile.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 GameProfile_Set( 'hexen2' ); // the selected game before its gamecode loads
 
-Deno.test( 'changelevel records a normalised map and start spot once per level', () => {
+Deno.test( 'changelevel writes the native hub command with the start spot, once per level', () => {
 
 	const HEXEN = '/Users/bri/quaked/Hexen 2/data1/progs.dat';
 	if ( ! existsSync( HEXEN ) ) { console.log( 'SKIP: the supplied Hexen II program is not present' ); return; }
@@ -21,24 +22,40 @@ Deno.test( 'changelevel records a normalised map and start spot once per level',
 	PR_LoadProgs( bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.byteLength ) );
 	const sv = serverSv, state = { clients: [], active: true, changelevel_issued: false };
 	PR_SetSV( sv ); PR_SetSVS( state );
-	sv.nextmap = null; state.changelevel_issued = false;
+	Cbuf_Init();
+	const commands = [];
+	Cmd_AddCommand( 'changelevel', () => commands.push( 'changelevel ' + Cmd_Args() ) );
+	Cmd_AddCommand( 'changelevel2', () => commands.push( 'changelevel2 ' + Cmd_Args() ) );
+
+	state.changelevel_issued = false;
+	pr_global_struct.serverflags = 0; // a hub transition
 	G_INT_SET( OFS_PARM0, PR_SetTempString( 'demo2' ) );
 	G_INT_SET( OFS_PARM1, PR_SetTempString( 'start2' ) );
 	check( Hexen2_CallBuiltin( 70, {} ), 'the builtin is implemented' );
-	same( sv.nextmap.level, 'maps/demo2.bsp', 'the map is normalised to the mount path' );
-	same( sv.nextmap.spot, 'start2', 'the start spot is retained' );
 	same( state.changelevel_issued, true, 'the one-shot guard is set' );
+	Cbuf_Execute();
+	same( commands[ 0 ], 'changelevel2 demo2 start2', 'the native hub command and start spot' );
 
-	sv.nextmap = null;
 	G_INT_SET( OFS_PARM0, PR_SetTempString( 'demo3' ) );
-	G_INT_SET( OFS_PARM1, PR_SetTempString( '' ) );
+	G_INT_SET( OFS_PARM1, PR_SetTempString( 'start3' ) );
 	Hexen2_CallBuiltin( 70, {} );
-	same( sv.nextmap, null, 'a second call before consumption is ignored' );
+	Cbuf_Execute();
+	same( commands.length, 1, 'a second call before the command runs is ignored' );
 
 	state.changelevel_issued = false;
-	G_INT_SET( OFS_PARM0, PR_SetTempString( 'maps/ruins.bsp' ) );
-	G_INT_SET( OFS_PARM1, PR_SetTempString( '' ) );
+	pr_global_struct.serverflags = 16; // SFL_NEW_UNIT
+	G_INT_SET( OFS_PARM0, PR_SetTempString( 'ruins' ) );
+	G_INT_SET( OFS_PARM1, PR_SetTempString( 'exit1' ) );
 	Hexen2_CallBuiltin( 70, {} );
-	same( sv.nextmap.level, 'maps/ruins.bsp', 'an already-normalised map is accepted' );
+	Cbuf_Execute();
+	same( commands[ 1 ], 'changelevel ruins exit1', 'a new unit uses changelevel' );
+
+	state.changelevel_issued = false;
+	pr_global_struct.serverflags = 32; // SFL_NEW_EPISODE
+	G_INT_SET( OFS_PARM0, PR_SetTempString( 'e1m1' ) );
+	G_INT_SET( OFS_PARM1, PR_SetTempString( 'start' ) );
+	Hexen2_CallBuiltin( 70, {} );
+	Cbuf_Execute();
+	same( commands[ 2 ], 'changelevel e1m1 start', 'a new episode uses changelevel' );
 
 } );

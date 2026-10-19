@@ -15,6 +15,7 @@ import { R_NewerGame } from '../mode.js';
 import { SV_CheatPowerOn } from '../gameplay/sv_cheats.js';
 import { SV_AddPowerupObserver, SV_FaceLocalActive, SV_PlayerPowerMask } from '../gameplay/sv_faceevents.js';
 import { createEffectDeck, startEffect, stopEffect, releaseEffect } from './s_effectdeck.js';
+import { NewerBindings } from '../content_bindings.js';
 
 export const PLAYER_EVENT_TRACK_URLS = Object.freeze( {
 	end: new URL( '../../../assets/audio/sounds/end_of_quake1.mp3', import.meta.url ).href,
@@ -173,8 +174,9 @@ export function S_GetPlayerEventsStatus() {
 
 S_AddSoundReplacement( ( sfx, origin, volume, attenuation, entity ) => {
 	if ( entity !== cl.viewentity ) return false;
-	const cue = { 'items/damage.wav': 'quad', 'items/inv1.wav': 'ring', 'items/protect.wav': 'pentagram' }[ sfx?.name ] ??
-		( /^player\/(?:u?death[1-5]?|h2odeath)\.wav$/.test( sfx?.name ?? '' ) ? 'death' : null );
+	const sounds = NewerBindings().sounds;
+	const cue = sounds.playerEvents[ sfx?.name ] ??
+		( sounds.playerDeathPattern.test( sfx?.name ?? '' ) ? 'death' : null );
 	if ( ! cue ) return false;
 	S_UpdatePlayerEvents();
 	return status.active && !! decks[ cue ]?.playing && ! decks[ cue ].blocked;

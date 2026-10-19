@@ -192,7 +192,66 @@ export const svc_packetentities = 47; // [...]
 export const svc_deltapacketentities = 48; // [...]
 export const svc_serversequence = 49; // [long] server frame sequence number
 
+//==============================================
+// Hexen II data on the one unified protocol
+//
+// A Hexen II session speaks PROTOCOL_LARGE and the Quake message flow above; the ids below carry the state Quake has
+// no field for. They start after every Quake id so a Quake message can never be misread as one of them, and they are
+// sent only by a Hexen II server (game_profile.js). Bodies follow the pinned uhexen2 engine/hexen2/protocol.h and the
+// SV_Write* functions that write them; native Hexen message numbers (42, 47..53, ...) are deliberately not reused
+// because those are Quake's playerinfo, packet entities and sequence messages here.
+//==============================================
+
+export const svc_hexen2_features = 50; // [byte] feature flags [short] worldspawn message's strings.txt index
+export const svc_hexen2_start_effect = 51; // [byte] slot [byte] CE_* type and its native body (hexen2_effectwire.js)
+export const svc_hexen2_end_effect = 52; // [byte] slot
+export const svc_hexen2_update_inv = 53; // native svc_update_inv body (hexen2_clientdata.js)
+export const svc_hexen2_plaque = 54; // [short] strings.txt index (native svc_plaque)
+export const svc_hexen2_raineffect = 55; // [vec3] origin [vec3] size [angle] x [angle] y [short] colour [short] count
+export const svc_hexen2_particle2 = 56; // [vec3] origin [vec3] dmin [vec3] dmax [short] colour [byte] count [byte] effect
+export const svc_hexen2_particle3 = 57; // [vec3] origin [byte3] box [short] colour [byte] count [byte] effect
+export const svc_hexen2_particle4 = 58; // [vec3] origin [byte] radius [short] colour [byte] count [byte] effect
+export const svc_hexen2_particle_explosion = 59; // [vec3] origin [short] colour [short] radius [short] counter
+export const svc_hexen2_set_view_flags = 60; // [byte] drawflags to set on the view weapon
+export const svc_hexen2_clear_view_flags = 61; // [byte] drawflags to clear
+export const svc_hexen2_set_view_tint = 62; // [byte] view colourshade
+// 63 is the private 1019 envelope's opcode (hexen2_protocol.js) and is left free here.
+export const svc_hexen2_setangle_interpolate = 64; // [angle3] the native 8-step view-angle interpolation target
+export const svc_hexen2_midi_name = 65; // [string] the level's MIDI/music name
+export const svc_hexen2_updateclass = 66; // [byte] client slot [byte] native player class (1..5)
+export const svc_hexen2_toggle_statbar = 67; // no body: toggles the Hexen status bar
+export const svc_hexen2_sound_update_pos = 68; // [short] ent<<3|channel [vec3] entity-centre origin
+export const svc_hexen2_intermission = 69; // [byte] Hexen intermission picture index (native svc_intermission)
+export const svc_hexen2_temp_entity = 70; // [byte] TE_ type 24..32 then the native stream body
+export const svc_hexen2_info_mask = 71; // [long] objectives [long] objectives2 (Portal)
+
+// The feature flags svc_hexen2_features carries.
+export const HEXEN2_FEATURE_ENTITY_FIELDS = ( 1 << 0 ); // packet entities may carry scale/drawflags/abslight
+export const HEXEN2_FEATURE_NATIVE_BASELINES = ( 1 << 1 ); // baselines/statics use Hexen's fixed byte layout
+export const HEXEN2_FEATURE_PORTALS = ( 1 << 2 ); // the Portal of Praevus rules (cl_playerclass exists)
+export const HEXEN2_FEATURE_ALL = HEXEN2_FEATURE_ENTITY_FIELDS | HEXEN2_FEATURE_NATIVE_BASELINES;
+// The worldspawn `message` field is a strings.txt index in Hexen II, not a progs string offset.
+export const HEXEN2_NO_LEVEL_STRING = 0xffff;
+
+// Hexen II temp-entity stream types carried by svc_hexen2_temp_entity (uhexen2 engine/hexen2/protocol.h).
+export const TE_STREAM_LIGHTNING_SMALL = 24;
+export const TE_STREAM_CHAIN = 25;
+export const TE_STREAM_SUNSTAFF1 = 26;
+export const TE_STREAM_SUNSTAFF2 = 27;
+export const TE_STREAM_LIGHTNING = 28;
+export const TE_STREAM_COLORBEAM = 29;
+export const TE_STREAM_ICECHUNKS = 30;
+export const TE_STREAM_GAZE = 31;
+export const TE_STREAM_FAMINE = 32;
+
+// Hexen II's move button bits: the native crouch bit is 4 (cl_input.c SV_ReadClientMove); Quake keeps 1 and 2.
+export const BUTTON_ATTACK = 1;
+export const BUTTON_JUMP = 2;
+export const BUTTON_CROUCH = 4;
+
 export const clc_delta = 5; // [byte] sequence number, requests delta compression
+// Hexen II's clc_inv_select is native 5, which is clc_delta here; the unified protocol gives it the next free id.
+export const clc_inv_select = 6; // [byte] inventory selection on the player's edict
 
 // Entity number mask: 10 bits for entity number (0-1023)
 export const PE_ENT_BITS = 10;
@@ -215,7 +274,24 @@ export const PE_MODEL = ( 1 << 3 );
 export const PE_COLORMAP = ( 1 << 4 );
 export const PE_SKIN = ( 1 << 5 );
 export const PE_EFFECTS = ( 1 << 6 );
-export const PE_SOLID = ( 1 << 7 ); // entity should be solid for prediction
+// QuakeWorld's PE_SOLID bit is never emitted by this port's server (its packet states carry flags 0), so the unified
+// protocol uses the bit for a second more-bits byte: Hexen II's optional entity fields, absent for every default
+// Quake entity, so a Quake packet is byte for byte unchanged.
+export const PE_MOREBITS2 = ( 1 << 7 );
+// QuakeWorld's name for this bit; kept so code that names the QW layout still compiles, but this port never emits it.
+export const PE_SOLID = PE_MOREBITS2;
+
+// If PE_MOREBITS2 is set, these flags are read in the byte after the first more-bits byte:
+export const PE2_SCALE = ( 1 << 0 ); // [byte] uhexen2's scale*100 (100 is 1.0)
+export const PE2_DRAWFLAGS = ( 1 << 1 ); // [byte] uhexen2's drawflags
+export const PE2_ABSLIGHT = ( 1 << 2 ); // [byte] uhexen2's abslight*255
+
+// Hexen II's fixed signon baseline layout (uhexen2 CL_ParseBaseline): after model (short), frame, colormap and skin
+// bytes come scale, drawflags and abslight bytes, then origin/angle pairs. The feature message says the session uses
+// it; a Quake session keeps the WinQuake layout above and never sees these bytes.
+export const BASELINE_SCALE_DEFAULT = 100; // uhexen2 sends (int)(scale*100); 0 and 100 both draw at 1.0
+export const BASELINE_DRAWFLAGS_DEFAULT = 0;
+export const BASELINE_ABSLIGHT_DEFAULT = 0;
 
 // Packet entities constants
 export const MAX_PACKET_ENTITIES = 64; // max entities in a single packet sent over the network (QuakeWorld's limit)

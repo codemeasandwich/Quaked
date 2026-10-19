@@ -688,6 +688,9 @@ export let MainMenu_TextBox = Hooks_Missing( 'MainMenu_TextBox' );
 
 // newer/ui/newer_defaults.js
 export let NEWER_ENABLED_FEATURES;
+export let NEWER_DEFAULT_GAMMA;
+export let Newer_ApplyGameDefaults = Hooks_Missing( 'Newer_ApplyGameDefaults' );
+export let r_texture_tier;
 
 // newer/ui/r_bestiary.js
 export let R_BestiaryApplyCamera = Hooks_Missing( 'R_BestiaryApplyCamera' );
@@ -835,6 +838,9 @@ const HOOK_NAMES = Object.freeze( [
 	'BuildMenuTextArt', 'BuildSinglePlayerMenuArt',
 	'MainMenu_Begin', 'MainMenu_Blocking', 'MainMenu_Destroy', 'MainMenu_End', 'MainMenu_Glyph', 'MainMenu_Image', 'MainMenu_Panel', 'MainMenu_Preload', 'MainMenu_SetInGame', 'MainMenu_SetVisible', 'MainMenu_Skinned', 'MainMenu_Slider', 'MainMenu_Text', 'MainMenu_TextBox',
 	'NEWER_ENABLED_FEATURES',
+	'NEWER_DEFAULT_GAMMA',
+	'Newer_ApplyGameDefaults',
+	'r_texture_tier',
 	'R_BestiaryApplyCamera', 'R_BestiaryFrame', 'R_BestiaryFrozen', 'R_BestiaryInputLocked', 'R_BestiaryKey', 'R_BestiaryObserve', 'R_BestiaryPortraitLight', 'R_BestiaryTimeScale',
 	'R_BestiaryBookCorner', 'R_BestiaryBookDraw', 'R_BestiaryBookKey', 'R_BestiaryBookOpen', 'R_BestiaryBookTouch', 'R_BestiaryEncounterDraw',
 	'R_DemoLoadingAttract', 'R_DemoLoadingCancel', 'R_DemoLoadingConsoleClosed', 'R_DemoLoadingConsoleDrawn', 'R_DemoLoadingConsoleOverride', 'R_DemoLoadingConsoleSpeed', 'R_DemoLoadingFrame', 'R_DemoLoadingFreeze', 'R_DemoLoadingHolding', 'R_DemoLoadingWelcome', 'R_IntroLoadingHolding', 'R_IntroReadinessChecks', 'R_WelcomeLoadingHolding',
@@ -957,6 +963,9 @@ export function Hooks_Install( table ) {
 	BuildMenuTextArt = table.BuildMenuTextArt; BuildSinglePlayerMenuArt = table.BuildSinglePlayerMenuArt;
 	MainMenu_Begin = table.MainMenu_Begin; MainMenu_Blocking = table.MainMenu_Blocking; MainMenu_Destroy = table.MainMenu_Destroy; MainMenu_End = table.MainMenu_End; MainMenu_Glyph = table.MainMenu_Glyph; MainMenu_Image = table.MainMenu_Image; MainMenu_Panel = table.MainMenu_Panel; MainMenu_SetInGame = table.MainMenu_SetInGame; MainMenu_SetVisible = table.MainMenu_SetVisible; MainMenu_Preload = table.MainMenu_Preload; MainMenu_Skinned = table.MainMenu_Skinned; MainMenu_Slider = table.MainMenu_Slider; MainMenu_Text = table.MainMenu_Text; MainMenu_TextBox = table.MainMenu_TextBox;
 	NEWER_ENABLED_FEATURES = table.NEWER_ENABLED_FEATURES;
+	NEWER_DEFAULT_GAMMA = table.NEWER_DEFAULT_GAMMA;
+	Newer_ApplyGameDefaults = table.Newer_ApplyGameDefaults;
+	r_texture_tier = table.r_texture_tier;
 	R_BestiaryApplyCamera = table.R_BestiaryApplyCamera; R_BestiaryFrame = table.R_BestiaryFrame; R_BestiaryFrozen = table.R_BestiaryFrozen; R_BestiaryInputLocked = table.R_BestiaryInputLocked; R_BestiaryKey = table.R_BestiaryKey; R_BestiaryObserve = table.R_BestiaryObserve; R_BestiaryPortraitLight = table.R_BestiaryPortraitLight; R_BestiaryTimeScale = table.R_BestiaryTimeScale;
 	R_BestiaryBookCorner = table.R_BestiaryBookCorner; R_BestiaryBookDraw = table.R_BestiaryBookDraw; R_BestiaryBookKey = table.R_BestiaryBookKey; R_BestiaryBookOpen = table.R_BestiaryBookOpen; R_BestiaryBookTouch = table.R_BestiaryBookTouch; R_BestiaryEncounterDraw = table.R_BestiaryEncounterDraw;
 	R_DemoLoadingAttract = table.R_DemoLoadingAttract; R_DemoLoadingCancel = table.R_DemoLoadingCancel; R_DemoLoadingConsoleClosed = table.R_DemoLoadingConsoleClosed; R_DemoLoadingConsoleDrawn = table.R_DemoLoadingConsoleDrawn; R_DemoLoadingConsoleOverride = table.R_DemoLoadingConsoleOverride; R_DemoLoadingConsoleSpeed = table.R_DemoLoadingConsoleSpeed; R_DemoLoadingFrame = table.R_DemoLoadingFrame; R_DemoLoadingFreeze = table.R_DemoLoadingFreeze; R_DemoLoadingHolding = table.R_DemoLoadingHolding; R_DemoLoadingWelcome = table.R_DemoLoadingWelcome; R_IntroLoadingHolding = table.R_IntroLoadingHolding; R_IntroReadinessChecks = table.R_IntroReadinessChecks; R_WelcomeLoadingHolding = table.R_WelcomeLoadingHolding;

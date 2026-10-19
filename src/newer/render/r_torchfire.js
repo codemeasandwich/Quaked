@@ -51,6 +51,7 @@ import { smooth, hashJS } from './fx_math.js';
 import { R_NewerGame } from '../mode.js';
 import { GL_DrawAliasFrame } from '../../engine/render/gl_mesh.js';
 import { MRT_OUT, MRT_ZERO, PUFF_VERTEX, PUFF_FRAGMENT, SPARK_VERTEX, SPARK_FRAGMENT, layer, material, R_FireballAssets } from './r_fireball.js';
+import { NewerBindings } from '../content_bindings.js';
 
 // 0 puts the native flame models back
 export const r_torchfire = new cvar_t( 'r_torchfire', '1' );
@@ -69,7 +70,8 @@ export const TORCH = Object.freeze( {
 	fit: .8,
 	embers: 22, smoke: 16,
 	max: 128,         // torches replaced in one frame (a level has at most 128 static entities); any more draw as the native model
-	models: Object.freeze( [ 'progs/flame.mdl', 'progs/flame2.mdl' ] )
+	// the active game's flame models (content_bindings.js): progs/flame*.mdl for Quake, models/flame*.mdl for Hexen
+	get models() { return NewerBindings().torch.models; }
 } );
 
 // ---------------------------------------------------------------------------
@@ -77,21 +79,21 @@ export const TORCH = Object.freeze( {
 // ---------------------------------------------------------------------------
 
 // flame.mdl's wooden handle: the skin columns it occupies (s / skin width) in the front and the back
-// half of the skin, and how many triangles it has. Read off the stock model and its skin.
-const HANDLE = Object.freeze( { model: 'progs/flame.mdl', columns: [ [ .10, .22 ], [ .60, .72 ] ], triangles: 36, top: 2.5 } );
-// the stock models' triangle counts: a model with another count is not the one this module knows
-const STOCK_TRIANGLES = Object.freeze( { 'progs/flame.mdl': 122, 'progs/flame2.mdl': 86 } );
+// half of the skin, and how many triangles it has. Read off the stock Quake model and its skin; the handle model and
+// the stock triangle counts come from the active game's bindings (Hexen binds no handled torch).
+const HANDLE = Object.freeze( { columns: [ [ .10, .22 ], [ .60, .72 ] ], triangles: 36, top: 2.5 } );
 
 const partsOf = new WeakMap();
 
 /**
  * Splits a model into the flame (replaced) and the hardware (kept). `ok` is false when the model is
- * not the one this module knows, and the native model is then left alone: flame.mdl must have 122 triangles, 36 of
- * them in the handle's skin columns and all below 2.5 units; flame2.mdl must have 86. Called by `R_TorchFire` and by
+ * not the one this module knows, and the native model is then left alone: a stock triangle count that differs is
+ * declined, a handled model must have 36 handle triangles and all of them below 2.5 units, and a family with no
+ * handle (Hexen) accepts the flame models its bindings list. Called by `R_TorchFire` and by
  * gl_rmain.js for the handle-only draw. Cached per alias header for the header's life (partsOf: alias header ->
  * { ok, handle: Uint8Array per triangle, handleTriangles, select }).
  *
- * @param {string} name model name, 'progs/flame.mdl' or 'progs/flame2.mdl'
+ * @param {string} name model name, e.g. 'progs/flame.mdl' or 'models/flame2.mdl'
  * @param {aliashdr_t} header the model's alias header (`model.cache.data`)
  * @returns {{ok: boolean, handle: Uint8Array, handleTriangles: number, select: function(): THREE.BufferAttribute}}
  *  frozen: `handle` 1 for each handle triangle; `select` is what gl_mesh.js calls (entity._aliasPart) to draw the
@@ -101,10 +103,13 @@ export function torchParts( name, header ) {
 
 	let parts = partsOf.get( header );
 	if ( parts !== undefined ) return parts;
+	const torch = NewerBindings().torch, stock = torch.stockTriangles[ name ];
 	const t = GL_DrawAliasFrame( header, 0 );
 	const triangles = t.indices.length / 3, handle = new Uint8Array( triangles ), keep = [];
-	let count = 0, ok = triangles === STOCK_TRIANGLES[ name ];
-	if ( name === HANDLE.model ) {
+	// A known stock count is checked exactly; a model from a family with no handle rule must at least be one the
+	// bindings list (Hexen's flame animations have their own counts).
+	let count = 0, ok = stock !== undefined ? triangles === stock : torch.handleModel === null && torch.models.includes( name );
+	if ( name === torch.handleModel ) {
 
 		const uv = t.uvAttr.array, pos = t.posAttr.array;
 		for ( let k = 0; k < triangles; k ++ ) {

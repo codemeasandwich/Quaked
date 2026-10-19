@@ -13,6 +13,7 @@
 // by the original map; charts are a separate, world-anchored sampling space.
 import { seedFrom } from '../assets/rockfield.js';
 import { R_RockPreset } from '../assets/rockfield_presets.js';
+import { NewerBindings, NEWER_QUAKE_BINDINGS } from '../content_bindings.js';
 export const ROCK_TILE_UNITS = 256;
 // One oblique world projection for every bedrock orientation. Audited against
 // native rock faces: walls, slopes and horizontal ceilings all retain area.
@@ -21,19 +22,16 @@ export const ROCK_AXIS_U = Object.freeze( [ .48399890, -.87506860, 0 ] );
 export const ROCK_AXIS_V = Object.freeze( [ .27837972, .15397133, .94804935 ] );
 const SKY = 4, TURB = 16;
 // Names describe material intent, not where a face is or which way it points.
-// Quake's rockN_N family and uwall1_2 are unworked bedrock. Keep visually
-// reviewed terrain exceptions explicit: several "ground" names are paving.
-export const ROCK_MATERIALS = Object.freeze( {
- wgrnd1_5: 'ground',
- wgrnd1_6: 'ground',
- uwall1_2: 'wall',
- bricka2_2: 'wall', // Hard-hub irregular rock artwork; historical name, not brick courses
- ground1_2: 'ground', // organic roots/soil
- ground1_6: 'ground', // outdoor moss/grass and rough ground stones
- wswamp1_2: 'ground', // organic roots, not the masonry in wswamp1_4/2_x
- wizmet1_7: 'ground', // loose aggregate, despite the name
- wall16_7: 'ground' // loose pebbles, not a constructed wall
-} );
+// The material table and the family's bedrock patterns live in content_bindings.js: Quake's rockN_N family and
+// uwall1_2 are unworked bedrock, while Hexen names its masonry by texture number (rtex/mtex/ttex/rpal).
+/** Quake's old material table, kept for callers that read the export; the live lookup is `R_RockMaterials()`. */
+export const ROCK_MATERIALS = NEWER_QUAKE_BINDINGS.rocks.materials;
+/**
+ * The active game's rock materials and bedrock patterns, for callers that report chart inputs.
+ *
+ * @returns {{ materials: Object<string, string>, patterns: Array<[RegExp, string]> }} the frozen binding objects
+ */
+export function R_RockMaterials() { return NewerBindings().rocks; }
 /**
  * A texture's material name for the rock tables: lower case, without an animation prefix (`+0`..`+9`, `+a`..`+j`) or a
  * `.webp` suffix.
@@ -46,7 +44,8 @@ export function R_RockMaterialName( texture ) {
 }
 /**
  * Which rock profile a surface's material gets, if any. Names describe material intent, not where a face is or which
- * way it points: `ROCK_MATERIALS`, then any `rockN_N` as wall. Two exceptions use the surface's signed upward normal
+ * way it points: the active game's material table, then its bedrock patterns (Quake: any `rockN_N` as wall). Two
+ * exceptions use the surface's signed upward normal
  * (z, flipped for SURF_PLANEBACK): wgrnd1_5/1_6 only on faces whose normal z exceeds 0.65, and rock4_1, which the
  * owner explicitly uses on both terrain and walls (signed upward slopes are ground; undersides and tunnel roofs remain
  * wall surfaces).
@@ -56,12 +55,14 @@ export function R_RockMaterialName( texture ) {
  * @returns {?('ground'|'wall')} the profile, or null for a material that gets no rock relief
  */
 export function R_RockMaterialProfile( texture, surface ) {
- const name = R_RockMaterialName( texture );
+ const name = R_RockMaterialName( texture ), rocks = NewerBindings().rocks;
  if ( surface && ( name === 'wgrnd1_5' || name === 'wgrnd1_6' ) && surface.plane.normal[ 2 ] * ( surface.flags & 2 ? -1 : 1 ) <= .65 ) return null;
  // The owner explicitly uses this material on both terrain and walls. Signed
  // upward slopes are ground; undersides and tunnel roofs remain wall surfaces.
  if ( name === 'rock4_1' && surface ) return ( surface.plane.normal[ 2 ] * ( surface.flags & 2 ? -1 : 1 ) > .65 ) ? 'ground' : 'wall';
- return ROCK_MATERIALS[ name ] || ( /^rock\d+_\d+$/.test( name ) ? 'wall' : null );
+ if ( rocks.materials[ name ] ) return rocks.materials[ name ];
+ for ( const [ pattern, profile ] of rocks.patterns ) if ( pattern.test( name ) ) return profile;
+ return null;
 }
 const dot = ( a, b ) => a[ 0 ] * b[ 0 ] + a[ 1 ] * b[ 1 ] + a[ 2 ] * b[ 2 ];
 function vertices( surf ) {

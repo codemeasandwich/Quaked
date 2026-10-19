@@ -41,6 +41,7 @@ const parms = {
 import { GameCatalogue_Refresh, GameCatalogue_Get } from './src/engine/common/game_catalogue.js';
 import { GameSelection_OwnedPacks, GameSelection_StartSwitch, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember, GameSelection_MissionPack, GameSelection_FetchMission, GameSelection_FetchLoose, GameSelection_NeedsDiscovery, GameSelection_SetRunning, GameSelection_Current, GameSelection_Startable } from './src/engine/common/game_selection.js';
 import { GameProfile_Set } from './src/engine/common/game_profile.js';
+import { Newer_ApplyGameDefaults } from './src/engine/common/hooks.js'; // installed by newer/ui/newer_defaults.js
 import { Hexen2_SelectClass } from './src/engine/common/hexen2_profile.js';
 import { LevelSelect_SetGamePacks, LevelSelect_OwnPacks } from './src/engine/client/level_select_auto.js';
 import { GameShelf_Show } from './src/newer/ui/game_shelf.js';
@@ -168,6 +169,8 @@ async function main() {
 		// starts the edition's first map (demo1, or keep1 for Portal). The class and skill are native cvars the menu
 		// pages and gamecode read, never an engine mode.
 		if ( hexen ) {
+			// enhanced (Newer) rendering is on by default for every game (owner, 13 Oct 2026); the Options toggle turns it off
+			Cbuf_AddText( Newer_ApplyGameDefaults( gameProfile, true ) );
 			// an explicit choice (the URL, or the packaged trial's class) wins; otherwise the archived cvar the menu
 			// pages set is kept
 			const requestedClass = typeof startClass === 'string' && startClass !== '' ? startClass

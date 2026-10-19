@@ -28,7 +28,7 @@ import {
 	standard_quake
 } from '../common/common.js';
 import { Cmd_AddCommand, Cmd_ExecuteString, Cbuf_InsertText } from '../common/cmd.js';
-import { cvar_t, Cvar_RegisterVariable, Cvar_Set, Cvar_SetValue } from '../common/cvar.js';
+import { cvar_t, Cvar_RegisterVariable, Cvar_Set, Cvar_SetValue, Cvar_VariableValue } from '../common/cvar.js';
 import { sv_shotdelay } from '../common/hooks.js'; // installed by newer/gameplay/sv_shotdelay.js
 import {
 	MAX_MODELS, MAX_SOUNDS, MAX_DATAGRAM, MAX_DATAGRAM_LOCAL, MAX_EDICTS, MAX_EDICTS_STANDARD, MAX_MSGLEN,
@@ -41,7 +41,7 @@ import {
 	SND_VOLUME, SND_ATTENUATION,
 	svc_print, svc_serverinfo, svc_cdtrack, svc_setview, svc_signonnum,
 	svc_time, svc_particle, svc_sound, svc_clientdata, svc_updatestat, svc_updatefrags,
-	svc_stufftext, svc_nop, svc_spawnbaseline, svc_disconnect,
+	svc_stufftext, svc_nop, svc_stopsound, svc_spawnbaseline, svc_spawnstatic, svc_spawnstaticsound, svc_disconnect,
 	svc_updatename, svc_updatecolors,
 	U_MOREBITS, U_ORIGIN1, U_ORIGIN2, U_ORIGIN3,
 	U_ANGLE1, U_ANGLE2, U_ANGLE3,
@@ -54,10 +54,23 @@ import {
 	CM_ANGLE1, CM_ANGLE2, CM_ANGLE3, CM_FORWARD, CM_SIDE, CM_UP, CM_BUTTONS, CM_IMPULSE,
 	svc_packetentities, svc_deltapacketentities, svc_serversequence,
 	PE_ENT_BITS, PE_ENT_MASK, PE_ORIGIN1, PE_ORIGIN2, PE_ORIGIN3,
-	PE_ANGLE2, PE_REMOVE, PE_MOREBITS,
-	PE_FRAME, PE_ANGLE1, PE_ANGLE3, PE_MODEL, PE_COLORMAP, PE_SKIN, PE_EFFECTS, PE_SOLID,
+	PE_ANGLE2, PE_REMOVE, PE_MOREBITS, PE_MOREBITS2,
+	PE_FRAME, PE_ANGLE1, PE_ANGLE3, PE_MODEL, PE_COLORMAP, PE_SKIN, PE_EFFECTS,
+	PE2_SCALE, PE2_DRAWFLAGS, PE2_ABSLIGHT,
+	BASELINE_SCALE_DEFAULT,
+	svc_hexen2_features, svc_hexen2_start_effect, svc_hexen2_end_effect, svc_hexen2_update_inv,
+	svc_hexen2_plaque, svc_hexen2_raineffect, svc_hexen2_particle2, svc_hexen2_particle3, svc_hexen2_particle4,
+	svc_hexen2_particle_explosion, svc_hexen2_set_view_flags, svc_hexen2_clear_view_flags, svc_hexen2_set_view_tint,
+	svc_hexen2_setangle_interpolate, svc_hexen2_midi_name, svc_hexen2_updateclass, svc_hexen2_toggle_statbar,
+	svc_hexen2_sound_update_pos, svc_hexen2_intermission, svc_hexen2_temp_entity, svc_hexen2_info_mask,
+	HEXEN2_FEATURE_ALL, HEXEN2_FEATURE_PORTALS, HEXEN2_NO_LEVEL_STRING,
+	TE_STREAM_LIGHTNING_SMALL, TE_STREAM_COLORBEAM, TE_STREAM_FAMINE,
 	MAX_PACKET_ENTITIES, MAX_PACKET_ENTITIES_LOCAL, PE_UPDATE_MASK
 } from '../common/protocol.js';
+import { GameProfile_Get, GameProfile_IsHexen2 } from '../common/game_profile.js';
+import { Hexen2_EncodeUpdateInv } from '../common/hexen2_clientdata.js';
+import { Hexen2_WriteStartEffect, Hexen2_WriteEndEffect } from '../common/hexen2_effectwire.js';
+import { HEXEN2_STAT_BITS } from '../common/hexen2_protocol.js';
 import {
 	sv, svs, ss_loading, ss_active,
 	server_t, client_t, NUM_PING_TIMES,
@@ -106,6 +119,11 @@ import { key_dest } from '../common/key_dest.js';
 // at each SV_SpawnServer before anything is precached or written
 export const sv_protocol = new cvar_t( 'sv_protocol', String( PROTOCOL_VERSION ) );
 
+// Hexen II's per-level limits (uhexen2 quakedef.h): 512 models, 512 sounds, 600 edicts with 30 reserved temp slots.
+export const HEXEN2_MODEL_LIMIT = 512;
+export const HEXEN2_SOUND_LIMIT = 512;
+export const max_temp_edicts = new cvar_t( 'max_temp_edicts', '30', true );
+
 /**
  * The protocol a server speaks for an sv_protocol value: this port's large-map protocol for 1015, and also for the
  * larger protocols other engines name, FitzQuake's 666 and RMQ's 999, which add-ons ask for in their own quake.rc
@@ -127,6 +145,7 @@ export function SV_ProtocolFor( value ) {
  */
 export function SV_ModelLimit() {
 
+	if ( GameProfile_IsHexen2() ) return HEXEN2_MODEL_LIMIT; // uhexen2 MAX_MODELS, sent as a word
 	return sv.protocol === PROTOCOL_LARGE ? MAX_MODELS : 256;
 
 }
@@ -138,6 +157,7 @@ export function SV_ModelLimit() {
  */
 export function SV_SoundLimit() {
 
+	if ( GameProfile_IsHexen2() ) return HEXEN2_SOUND_LIMIT; // uhexen2 MAX_SOUNDS (the mission pack's 512)
 	return sv.protocol === PROTOCOL_LARGE ? MAX_SOUNDS : 256;
 
 }
@@ -152,6 +172,162 @@ export function SV_WriteIndex( msg, value ) {
 
 	if ( sv.protocol === PROTOCOL_LARGE ) MSG_WriteShort( msg, value );
 	else MSG_WriteByte( msg, value );
+
+}
+
+// Hexen II's entity fields are resolved by name, never by offset: the base (1.11) and Portal (1.12) layouts differ.
+// One lookup per progs is cached; PR_LoadProgs replaces `progs`, which invalidates the cache.
+let _hexenFieldsFor = null;
+const _hexenFields = new Map();
+
+function hexenFieldOfs( ent, name ) {
+
+	if ( _hexenFieldsFor !== progs ) { _hexenFields.clear(); _hexenFieldsFor = progs; }
+	if ( _hexenFields.has( name ) ) return _hexenFields.get( name );
+	// Cache the slot, never the accessor: every edict has its own accessor over its own field buffer, so reusing the
+	// first edict's accessor would read and write that entity instead of the one passed in.
+	const found = GetEdictFieldValue( ent, name );
+	const ofs = found === null ? null : found.ofs;
+	_hexenFields.set( name, ofs );
+	return ofs;
+
+}
+
+/**
+ * Reads a Hexen II entity field by name, or `fallback` when the loaded progs has none.
+ *
+ * @param {edict_t} ent the edict
+ * @param {string} name the QuakeC field name (`scale`, `drawflags`, `abslight`, `playerclass`, ...)
+ * @param {number} [fallback=0] value for an absent field
+ * @returns {number} the field value
+ */
+export function SV_Hexen2Field( ent, name, fallback = 0 ) {
+
+	const ofs = hexenFieldOfs( ent, name );
+	return ofs === null ? fallback : ent._fieldAccessor.getFloat( ofs );
+
+}
+
+/**
+ * Writes a Hexen II entity field by name when the progs has it.
+ *
+ * @param {edict_t} ent the edict
+ * @param {string} name the QuakeC field name
+ * @param {number} value the value
+ * @returns {boolean} true when the field exists and was written
+ */
+export function SV_SetHexen2Field( ent, name, value ) {
+
+	const ofs = hexenFieldOfs( ent, name );
+	if ( ofs === null ) return false;
+	ent._fieldAccessor.setFloat( ofs, value );
+	return true;
+
+}
+
+/**
+ * The wire values of a Hexen II entity's optional render fields, in native units: scale*100, drawflags, abslight*255.
+ * Quake entities never call this; defaults are 1.0/0/0.
+ *
+ * @param {edict_t} ent the edict
+ * @returns {{ scale: number, drawflags: number, abslight: number }} the bytes to send
+ */
+export function SV_Hexen2EntityFields( ent ) {
+
+	const scale = Math.trunc( SV_Hexen2Field( ent, 'scale', 1.0 ) * 100 ) & 255;
+	const drawflags = SV_Hexen2Field( ent, 'drawflags', 0 ) & 255;
+	const abslight = Math.trunc( SV_Hexen2Field( ent, 'abslight', 0 ) * 255 ) & 255;
+	return { scale, drawflags, abslight };
+
+}
+
+// The SC1/SC2 fields in native write order; the encoder in hexen2_clientdata.js writes values in this same order.
+// `type` is only used to compare strings by progs offset and numbers as numbers.
+const HEXEN2_STAT_FIELDS = Object.freeze( [
+	[ HEXEN2_STAT_BITS.sc1_health, 'health', 'short' ], [ HEXEN2_STAT_BITS.sc1_level, 'level', 'byte' ],
+	[ HEXEN2_STAT_BITS.sc1_intelligence, 'intelligence', 'byte' ], [ HEXEN2_STAT_BITS.sc1_wisdom, 'wisdom', 'byte' ],
+	[ HEXEN2_STAT_BITS.sc1_strength, 'strength', 'byte' ], [ HEXEN2_STAT_BITS.sc1_dexterity, 'dexterity', 'byte' ],
+	[ HEXEN2_STAT_BITS.sc1_weapon, 'weapon', 'byte' ], [ HEXEN2_STAT_BITS.sc1_bluemana, 'bluemana', 'byte' ],
+	[ HEXEN2_STAT_BITS.sc1_greenmana, 'greenmana', 'byte' ], [ HEXEN2_STAT_BITS.sc1_experience, 'experience', 'long' ],
+	[ HEXEN2_STAT_BITS.sc1_cnt_torch, 'cnt_torch', 'byte' ], [ HEXEN2_STAT_BITS.sc1_cnt_h_boost, 'cnt_h_boost', 'byte' ],
+	[ HEXEN2_STAT_BITS.sc1_cnt_sh_boost, 'cnt_sh_boost', 'byte' ], [ HEXEN2_STAT_BITS.sc1_cnt_mana_boost, 'cnt_mana_boost', 'byte' ],
+	[ HEXEN2_STAT_BITS.sc1_cnt_teleport, 'cnt_teleport', 'byte' ], [ HEXEN2_STAT_BITS.sc1_cnt_tome, 'cnt_tome', 'byte' ],
+	[ HEXEN2_STAT_BITS.sc1_cnt_summon, 'cnt_summon', 'byte' ], [ HEXEN2_STAT_BITS.sc1_cnt_invisibility, 'cnt_invisibility', 'byte' ],
+	[ HEXEN2_STAT_BITS.sc1_cnt_glyph, 'cnt_glyph', 'byte' ], [ HEXEN2_STAT_BITS.sc1_cnt_haste, 'cnt_haste', 'byte' ],
+	[ HEXEN2_STAT_BITS.sc1_cnt_blast, 'cnt_blast', 'byte' ], [ HEXEN2_STAT_BITS.sc1_cnt_polymorph, 'cnt_polymorph', 'byte' ],
+	[ HEXEN2_STAT_BITS.sc1_cnt_flight, 'cnt_flight', 'byte' ], [ HEXEN2_STAT_BITS.sc1_cnt_cubeofforce, 'cnt_cubeofforce', 'byte' ],
+	[ HEXEN2_STAT_BITS.sc1_cnt_invincibility, 'cnt_invincibility', 'byte' ], [ HEXEN2_STAT_BITS.sc1_artifact_active, 'artifact_active', 'float' ],
+	[ HEXEN2_STAT_BITS.sc1_artifact_low, 'artifact_low', 'float' ], [ HEXEN2_STAT_BITS.sc1_movetype, 'movetype', 'byte' ],
+	[ HEXEN2_STAT_BITS.sc1_cameramode, 'cameramode', 'byte' ], [ HEXEN2_STAT_BITS.sc1_hasted, 'hasted', 'float' ],
+	[ HEXEN2_STAT_BITS.sc1_inventory, 'inventory', 'byte' ], [ HEXEN2_STAT_BITS.sc1_rings_active, 'rings_active', 'float' ],
+	[ HEXEN2_STAT_BITS.sc2_rings_low, 'rings_low', 'float' ], [ HEXEN2_STAT_BITS.sc2_amulet, 'armor_amulet', 'byte' ],
+	[ HEXEN2_STAT_BITS.sc2_bracer, 'armor_bracer', 'byte' ], [ HEXEN2_STAT_BITS.sc2_breastplate, 'armor_breastplate', 'byte' ],
+	[ HEXEN2_STAT_BITS.sc2_helmet, 'armor_helmet', 'byte' ], [ HEXEN2_STAT_BITS.sc2_flight_t, 'ring_flight', 'byte' ],
+	[ HEXEN2_STAT_BITS.sc2_water_t, 'ring_water', 'byte' ], [ HEXEN2_STAT_BITS.sc2_turning_t, 'ring_turning', 'byte' ],
+	[ HEXEN2_STAT_BITS.sc2_regen_t, 'ring_regeneration', 'byte' ], [ HEXEN2_STAT_BITS.sc2_haste_t, 'haste_time', 'float' ],
+	[ HEXEN2_STAT_BITS.sc2_tome_t, 'tome_time', 'float' ], [ HEXEN2_STAT_BITS.sc2_puzzle1, 'puzzle_inv1', 'string' ],
+	[ HEXEN2_STAT_BITS.sc2_puzzle2, 'puzzle_inv2', 'string' ], [ HEXEN2_STAT_BITS.sc2_puzzle3, 'puzzle_inv3', 'string' ],
+	[ HEXEN2_STAT_BITS.sc2_puzzle4, 'puzzle_inv4', 'string' ], [ HEXEN2_STAT_BITS.sc2_puzzle5, 'puzzle_inv5', 'string' ],
+	[ HEXEN2_STAT_BITS.sc2_puzzle6, 'puzzle_inv6', 'string' ], [ HEXEN2_STAT_BITS.sc2_puzzle7, 'puzzle_inv7', 'string' ],
+	[ HEXEN2_STAT_BITS.sc2_puzzle8, 'puzzle_inv8', 'string' ], [ HEXEN2_STAT_BITS.sc2_maxhealth, 'max_health', 'short' ],
+	[ HEXEN2_STAT_BITS.sc2_maxmana, 'max_mana', 'byte' ], [ HEXEN2_STAT_BITS.sc2_flags, 'flags', 'float' ]
+] );
+
+/**
+ * Sends a Hexen II player's changed inventory/stats record (`svc_hexen2_update_inv`), the native SC1/SC2 delta of
+ * uhexen2's SV_UpdateClientStats. On a fresh spawn every bit is sent. Writes to the client's reliable message, as the
+ * native function does, so a dropped datagram cannot leave a stat stale.
+ *
+ * @param {client_t} client the receiving client; `h2Stats` holds the last values sent
+ * @param {sizebuf_t} msg the reliable message (normally `client.message`)
+ */
+export function SV_UpdateClientStats( client, msg ) {
+
+	const ent = client.edict;
+	if ( ent == null || ent.v == null ) return;
+	const previous = client.h2Stats ?? null;
+	let mask = 0n;
+	const next = {};
+	for ( const [ bit, field, type ] of HEXEN2_STAT_FIELDS ) {
+
+		const value = SV_Hexen2Field( ent, field, 0 );
+		const key = type === 'string' ? ( value | 0 ) : Math.trunc( value );
+		next[ field ] = key;
+		if ( previous === null || previous[ field ] !== key ) mask |= BigInt( bit );
+
+	}
+
+	// Portal's objectives are globals, not entity fields; keep their last values on the client record.
+	const infoMask = ( pr_global_struct?.info_mask ?? 0 ) >>> 0;
+	const infoMask2 = ( pr_global_struct?.info_mask2 ?? 0 ) >>> 0;
+	if ( client.h2InfoMask !== infoMask || client.h2InfoMask2 !== infoMask2 ) {
+
+		MSG_WriteByte( msg, svc_hexen2_info_mask );
+		MSG_WriteLong( msg, infoMask );
+		MSG_WriteLong( msg, infoMask2 );
+		client.h2InfoMask = infoMask;
+		client.h2InfoMask2 = infoMask2;
+
+	}
+
+	if ( mask === 0n ) { client.h2Stats = next; return; }
+	const body = Hexen2_EncodeUpdateInv( ent, mask, offset => PR_GetString( offset ) );
+	MSG_WriteByte( msg, svc_hexen2_update_inv );
+	SZ_Write( msg, body, body.length );
+	client.h2Stats = next;
+
+}
+
+/**
+ * Sends every Hexen II stat to a client (a spawn or a resumed hub), as native's `send_all_v` does.
+ *
+ * @param {client_t} client the receiving client
+ * @param {sizebuf_t} msg the reliable message
+ */
+export function SV_SendAllClientStats( client, msg ) {
+
+	client.h2Stats = null;
+	SV_UpdateClientStats( client, msg );
 
 }
 
@@ -188,6 +364,7 @@ export function SV_Init() {
 	PR_SetHostError( Host_Error );
 	Cvar_RegisterVariable( sv_maxvelocity );
 	Cvar_RegisterVariable( sv_protocol );
+	Cvar_RegisterVariable( max_temp_edicts );
 	Cvar_RegisterVariable( sv_gravity );
 	Cvar_RegisterVariable( sv_shotdelay );
 	Cvar_RegisterVariable( sv_respawnguard );
@@ -302,14 +479,14 @@ export function SV_StartSound( entity, channel, sample, volume, attenuation ) {
 
 	// find precache number for sound
 	let sound_num;
-	for ( sound_num = 1; sound_num < MAX_SOUNDS && sv.sound_precache[ sound_num ]; sound_num ++ ) {
+	for ( sound_num = 1; sound_num < SV_SoundLimit() && sv.sound_precache[ sound_num ]; sound_num ++ ) {
 
 		if ( sample === sv.sound_precache[ sound_num ] )
 			break;
 
 	}
 
-	if ( sound_num === MAX_SOUNDS || sv.sound_precache[ sound_num ] == null ) {
+	if ( sound_num === SV_SoundLimit() || sv.sound_precache[ sound_num ] == null ) {
 
 		Con_Printf( 'SV_StartSound: ' + sample + ' not precacheed\n' );
 		return;
@@ -344,6 +521,348 @@ export function SV_StartSound( entity, channel, sample, volume, attenuation ) {
 /*
 ==============================================================================
 
+HEXEN II MESSAGE WRITERS
+
+The unified protocol's Hexen-only services (protocol.js). They are reached by the Hexen builtins and gamecode paths
+(U3/U8/U9); none of them is called for a Quake game.
+
+==============================================================================
+*/
+
+function writeDatagramBytes( bytes ) {
+
+	if ( sv.datagram.cursize + bytes.length > sv.datagram.maxsize ) return false;
+	SZ_Write( sv.datagram, bytes, bytes.length );
+	return true;
+
+}
+
+/**
+ * Sends `svc_hexen2_start_effect` (a long-lived client effect) on the unreliable datagram. The body is the native
+ * effect codec's, with the unified opcode in place of the native one.
+ *
+ * @param {{ index: number, type: number, params?: object }} effect the slot, CE_* type and its native parameters
+ * @returns {boolean} false when the effect is unknown or the datagram is full
+ */
+export function SV_Hexen2StartEffect( effect ) {
+
+	const written = Hexen2_WriteStartEffect( { ...effect, protocol: 19 } );
+	if ( ! written.ok ) return false;
+	const bytes = written.bytes.slice();
+	bytes[ 0 ] = svc_hexen2_start_effect;
+	return writeDatagramBytes( bytes );
+
+}
+
+/**
+ * Sends `svc_hexen2_end_effect` (an effect slot's expiry) on the unreliable datagram.
+ *
+ * @param {number} index the effect slot
+ * @returns {boolean} false when the index is invalid or the datagram is full
+ */
+export function SV_Hexen2EndEffect( index ) {
+
+	const written = Hexen2_WriteEndEffect( index );
+	if ( ! written.ok ) return false;
+	const bytes = written.bytes.slice();
+	bytes[ 0 ] = svc_hexen2_end_effect;
+	return writeDatagramBytes( bytes );
+
+}
+
+/**
+ * Sends `svc_hexen2_plaque`: a strings.txt index for the plaque overlay (native `plaque_draw`).
+ *
+ * @param {number} index the strings.txt entry (1-based); 0 clears it
+ */
+export function SV_Hexen2Plaque( index ) {
+
+	MSG_WriteByte( sv.reliable_datagram, svc_hexen2_plaque );
+	MSG_WriteShort( sv.reliable_datagram, index | 0 );
+
+}
+
+/**
+ * Sends `svc_hexen2_raineffect` (native `rain_go`): an origin, box size, x/y direction and a colour/count.
+ *
+ * @param {ArrayLike<number>} origin the rain volume's origin
+ * @param {ArrayLike<number>} size the volume's size
+ * @param {number} xDir the x direction angle in degrees
+ * @param {number} yDir the y direction angle in degrees
+ * @param {number} colour the particle palette start
+ * @param {number} count the particle count
+ */
+export function SV_Hexen2RainEffect( origin, size, xDir, yDir, colour, count ) {
+
+	MSG_WriteByte( sv.datagram, svc_hexen2_raineffect );
+	for ( let i = 0; i < 3; i ++ ) MSG_WriteCoord( sv.datagram, origin[ i ] );
+	for ( let i = 0; i < 3; i ++ ) MSG_WriteCoord( sv.datagram, size[ i ] );
+	MSG_WriteAngle( sv.datagram, xDir );
+	MSG_WriteAngle( sv.datagram, yDir );
+	MSG_WriteShort( sv.datagram, colour | 0 );
+	MSG_WriteShort( sv.datagram, count | 0 );
+
+}
+
+/**
+ * Sends `svc_hexen2_particle2`: the native cloud with a velocity range per axis.
+ *
+ * @param {ArrayLike<number>} origin the cloud origin
+ * @param {ArrayLike<number>} dmin the minimum velocity per axis
+ * @param {ArrayLike<number>} dmax the maximum velocity per axis
+ * @param {number} colour the palette start
+ * @param {number} effect the particle type
+ * @param {number} count the particle count
+ */
+export function SV_Hexen2Particle2( origin, dmin, dmax, colour, effect, count ) {
+
+	if ( sv.datagram.cursize > MAX_DATAGRAM - 36 ) return;
+	MSG_WriteByte( sv.datagram, svc_hexen2_particle2 );
+	for ( let i = 0; i < 3; i ++ ) MSG_WriteCoord( sv.datagram, origin[ i ] );
+	for ( let i = 0; i < 3; i ++ ) MSG_WriteFloat( sv.datagram, dmin[ i ] );
+	for ( let i = 0; i < 3; i ++ ) MSG_WriteFloat( sv.datagram, dmax[ i ] );
+	MSG_WriteShort( sv.datagram, colour | 0 );
+	MSG_WriteByte( sv.datagram, count | 0 );
+	MSG_WriteByte( sv.datagram, effect | 0 );
+
+}
+
+/**
+ * Sends `svc_hexen2_particle3`: the native box-cloud (a per-axis box in bytes).
+ *
+ * @param {ArrayLike<number>} origin the cloud origin
+ * @param {ArrayLike<number>} box the per-axis box size in bytes
+ * @param {number} colour the palette start
+ * @param {number} effect the particle type
+ * @param {number} count the particle count
+ */
+export function SV_Hexen2Particle3( origin, box, colour, effect, count ) {
+
+	if ( sv.datagram.cursize > MAX_DATAGRAM - 15 ) return;
+	MSG_WriteByte( sv.datagram, svc_hexen2_particle3 );
+	for ( let i = 0; i < 3; i ++ ) MSG_WriteCoord( sv.datagram, origin[ i ] );
+	for ( let i = 0; i < 3; i ++ ) MSG_WriteByte( sv.datagram, box[ i ] | 0 );
+	MSG_WriteShort( sv.datagram, colour | 0 );
+	MSG_WriteByte( sv.datagram, count | 0 );
+	MSG_WriteByte( sv.datagram, effect | 0 );
+
+}
+
+/**
+ * Sends `svc_hexen2_particle4`: the native radius cloud.
+ *
+ * @param {ArrayLike<number>} origin the cloud origin
+ * @param {number} radius the radius byte
+ * @param {number} colour the palette start
+ * @param {number} effect the particle type
+ * @param {number} count the particle count
+ */
+export function SV_Hexen2Particle4( origin, radius, colour, effect, count ) {
+
+	if ( sv.datagram.cursize > MAX_DATAGRAM - 13 ) return;
+	MSG_WriteByte( sv.datagram, svc_hexen2_particle4 );
+	for ( let i = 0; i < 3; i ++ ) MSG_WriteCoord( sv.datagram, origin[ i ] );
+	MSG_WriteByte( sv.datagram, radius | 0 );
+	MSG_WriteShort( sv.datagram, colour | 0 );
+	MSG_WriteByte( sv.datagram, count | 0 );
+	MSG_WriteByte( sv.datagram, effect | 0 );
+
+}
+
+/**
+ * Sends `svc_hexen2_particle_explosion`: the coloured explosion (native `particleexplosion`).
+ *
+ * @param {ArrayLike<number>} origin the explosion origin
+ * @param {number} colour the palette colour
+ * @param {number} radius the radius
+ * @param {number} counter the counter
+ */
+export function SV_Hexen2ParticleExplosion( origin, colour, radius, counter ) {
+
+	MSG_WriteByte( sv.datagram, svc_hexen2_particle_explosion );
+	for ( let i = 0; i < 3; i ++ ) MSG_WriteCoord( sv.datagram, origin[ i ] );
+	MSG_WriteShort( sv.datagram, colour | 0 );
+	MSG_WriteShort( sv.datagram, radius | 0 );
+	MSG_WriteShort( sv.datagram, counter | 0 );
+
+}
+
+function writeClientMessage( client, fn ) {
+
+	if ( client == null || client.message == null ) return false;
+	fn( client.message );
+	return true;
+
+}
+
+/**
+ * Sends per-client view-weapon draw flags to set or clear (`svc_hexen2_set_view_flags`/`clear_view_flags`).
+ *
+ * @param {client_t} client the receiving client
+ * @param {number} flags the draw flags byte
+ * @param {boolean} [clear=false] clear instead of set
+ */
+export function SV_Hexen2ViewFlags( client, flags, clear = false ) {
+
+	return writeClientMessage( client, msg => {
+
+		MSG_WriteByte( msg, clear ? svc_hexen2_clear_view_flags : svc_hexen2_set_view_flags );
+		MSG_WriteByte( msg, flags & 0xff );
+
+	} );
+
+}
+
+/**
+ * Sends `svc_hexen2_set_view_tint` (the view weapon's colour shade).
+ *
+ * @param {client_t} client the receiving client
+ * @param {number} tint the colourshade byte
+ */
+export function SV_Hexen2ViewTint( client, tint ) {
+
+	return writeClientMessage( client, msg => {
+
+		MSG_WriteByte( msg, svc_hexen2_set_view_tint );
+		MSG_WriteByte( msg, tint & 0xff );
+
+	} );
+
+}
+
+/**
+ * Sends `svc_hexen2_setangle_interpolate`: the native eight-step view-angle target.
+ *
+ * @param {client_t} client the receiving client
+ * @param {ArrayLike<number>} angles the target angles in degrees
+ */
+export function SV_Hexen2SetAngleInterpolate( client, angles ) {
+
+	return writeClientMessage( client, msg => {
+
+		MSG_WriteByte( msg, svc_hexen2_setangle_interpolate );
+		for ( let i = 0; i < 3; i ++ ) MSG_WriteAngle( msg, angles[ i ] );
+
+	} );
+
+}
+
+/**
+ * Sends `svc_hexen2_midi_name` to one client (also part of the signon).
+ *
+ * @param {client_t} client the receiving client
+ * @param {string} name the MIDI/music name
+ */
+export function SV_Hexen2MidiName( client, name ) {
+
+	return writeClientMessage( client, msg => {
+
+		MSG_WriteByte( msg, svc_hexen2_midi_name );
+		MSG_WriteString( msg, String( name ?? '' ) );
+
+	} );
+
+}
+
+/**
+ * Sends `svc_hexen2_toggle_statbar`.
+ *
+ * @param {client_t} client the receiving client
+ */
+export function SV_Hexen2ToggleStatbar( client ) {
+
+	return writeClientMessage( client, msg => MSG_WriteByte( msg, svc_hexen2_toggle_statbar ) );
+
+}
+
+/**
+ * Sends `svc_hexen2_updateclass` for one player.
+ *
+ * @param {sizebuf_t} msg the message (a reliable one)
+ * @param {number} slot the client slot (0-based)
+ * @param {number} playerclass the native class (1..5)
+ */
+export function SV_Hexen2UpdateClass( msg, slot, playerclass ) {
+
+	MSG_WriteByte( msg, svc_hexen2_updateclass );
+	MSG_WriteByte( msg, slot & 0xff );
+	MSG_WriteByte( msg, playerclass & 0xff );
+
+}
+
+/**
+ * Sends `svc_hexen2_sound_update_pos`: an already playing entity sound's centre moved.
+ *
+ * @param {edict_t} entity the entity whose sound moved
+ * @param {number} channel its sound channel (0..7)
+ */
+export function SV_Hexen2SoundUpdatePos( entity, channel ) {
+
+	if ( sv.datagram.cursize > MAX_DATAGRAM - 12 ) return;
+	const ent = NUM_FOR_EDICT( entity );
+	MSG_WriteByte( sv.datagram, svc_hexen2_sound_update_pos );
+	MSG_WriteShort( sv.datagram, ( ent << 3 ) | ( channel & 7 ) );
+	for ( let i = 0; i < 3; i ++ )
+		MSG_WriteCoord( sv.datagram, entity.v.origin[ i ] + 0.5 * ( entity.v.mins[ i ] + entity.v.maxs[ i ] ) );
+
+}
+
+/**
+ * Sends the native `svc_stopsound` for an entity/channel (`misc/null.wav` and `PF_stopSound`).
+ *
+ * @param {edict_t} entity the entity
+ * @param {number} channel its sound channel (0..7)
+ */
+export function SV_Hexen2StopSound( entity, channel ) {
+
+	if ( sv.datagram.cursize > MAX_DATAGRAM - 4 ) return;
+	const ent = NUM_FOR_EDICT( entity );
+	MSG_WriteByte( sv.datagram, svc_stopsound );
+	MSG_WriteShort( sv.datagram, ( ent << 3 ) | ( channel & 7 ) );
+
+}
+
+/**
+ * Sends `svc_hexen2_intermission` with Hexen II's picture index.
+ *
+ * @param {number} index the intermission picture index
+ */
+export function SV_Hexen2Intermission( index ) {
+
+	MSG_WriteByte( sv.reliable_datagram, svc_hexen2_intermission );
+	MSG_WriteByte( sv.reliable_datagram, index & 0xff );
+
+}
+
+/**
+ * Sends a Hexen II temp-entity stream (`TE_STREAM_*`, 24..32) on the unreliable datagram.
+ *
+ * @param {number} type the TE_STREAM_* type
+ * @param {number} entity the beam's owner entity number
+ * @param {number} flags the native flags (low four bits are the tag)
+ * @param {number} duration the duration in 0.05 s steps
+ * @param {ArrayLike<number>} source the beam source
+ * @param {ArrayLike<number>} dest the beam destination
+ * @param {number} [skin=0] the colour beam's skin
+ */
+export function SV_Hexen2TempStream( type, entity, flags, duration, source, dest, skin = 0 ) {
+
+	if ( type < TE_STREAM_LIGHTNING_SMALL || type > TE_STREAM_FAMINE ) return;
+	if ( sv.datagram.cursize > MAX_DATAGRAM - 24 ) return;
+	MSG_WriteByte( sv.datagram, svc_hexen2_temp_entity );
+	MSG_WriteByte( sv.datagram, type );
+	MSG_WriteShort( sv.datagram, entity | 0 );
+	MSG_WriteByte( sv.datagram, flags & 0xff );
+	MSG_WriteByte( sv.datagram, duration | 0 );
+	if ( type === TE_STREAM_COLORBEAM ) MSG_WriteByte( sv.datagram, skin & 0xff );
+	for ( let i = 0; i < 3; i ++ ) MSG_WriteCoord( sv.datagram, source[ i ] );
+	for ( let i = 0; i < 3; i ++ ) MSG_WriteCoord( sv.datagram, dest[ i ] );
+
+}
+
+/*
+==============================================================================
+
 CLIENT SPAWNING
 
 ==============================================================================
@@ -365,6 +884,7 @@ SV_SendServerinfo
  */
 export function SV_SendServerinfo( client ) {
 	client.cloakBodyCapability = false; // renegotiate on every map/signon
+	const hexen2 = GameProfile_IsHexen2();
 
 	MSG_WriteByte( client.message, svc_print );
 	const message = '\x02\nVERSION 1.09 SERVER (' + pr_crc + ' CRC)';
@@ -379,24 +899,44 @@ export function SV_SendServerinfo( client ) {
 	else
 		MSG_WriteByte( client.message, GAME_COOP );
 
-	// world message
+	// world message: a progs string in Quake, a strings.txt index carried beside the feature flags in Hexen II (the
+	// map name stands in as the title until U3 loads strings.txt).
 	const worldEdict = sv.edicts[ 0 ];
-	MSG_WriteString( client.message, worldEdict && worldEdict.v ? PR_GetString( worldEdict.v.message ) : '' );
+	if ( hexen2 ) MSG_WriteString( client.message, sv.name );
+	else MSG_WriteString( client.message, worldEdict && worldEdict.v ? PR_GetString( worldEdict.v.message ) : '' );
 
 	// model precache list
-	for ( let i = 1; i < MAX_MODELS && sv.model_precache[ i ]; i ++ )
+	for ( let i = 1; i < SV_ModelLimit() && sv.model_precache[ i ]; i ++ )
 		MSG_WriteString( client.message, sv.model_precache[ i ] );
 	MSG_WriteByte( client.message, 0 );
 
 	// sound precache list
-	for ( let i = 1; i < MAX_SOUNDS && sv.sound_precache[ i ]; i ++ )
+	for ( let i = 1; i < SV_SoundLimit() && sv.sound_precache[ i ]; i ++ )
 		MSG_WriteString( client.message, sv.sound_precache[ i ] );
 	MSG_WriteByte( client.message, 0 );
+
+	// Hexen II's session feature flags: packet entity fields, the native signon baseline layout, the Portal rules and
+	// the worldspawn message's strings.txt index. Sent only by a Hexen II server, so a Quake message is byte for byte
+	// what it was.
+	if ( hexen2 ) {
+
+		MSG_WriteByte( client.message, svc_hexen2_features );
+		MSG_WriteByte( client.message, HEXEN2_FEATURE_ALL | ( GameProfile_Get().portals ? HEXEN2_FEATURE_PORTALS : 0 ) );
+		MSG_WriteShort( client.message, sv.levelStringIndex ?? HEXEN2_NO_LEVEL_STRING );
+
+	}
 
 	// send music
 	MSG_WriteByte( client.message, svc_cdtrack );
 	MSG_WriteByte( client.message, sv.edicts[ 0 ].v.sounds );
 	MSG_WriteByte( client.message, sv.edicts[ 0 ].v.sounds );
+
+	if ( hexen2 ) {
+
+		MSG_WriteByte( client.message, svc_hexen2_midi_name );
+		MSG_WriteString( client.message, sv.midi_name ?? '' );
+
+	}
 
 	// set view
 	MSG_WriteByte( client.message, svc_setview );
@@ -467,6 +1007,12 @@ export function SV_ConnectClient( clientnum ) {
 	client.name = 'unconnected';
 	client.active = true;
 	client.spawned = false;
+	// Hexen II's per-client state (native client_t): the chosen class and the last stat record sent.
+	client.playerclass = 0;
+	client.old_playerclass = - 1;
+	client.h2Stats = null;
+	client.h2InfoMask = - 1;
+	client.h2InfoMask2 = - 1;
 	client.edict = EDICT_NUM( edictnum );
 	SV_CloakResetPlayer( client.edict );
 	client.message.data = client.msgbuf;
@@ -671,6 +1217,28 @@ function SV_UpdateToReliableMessages() {
 
 	}
 
+	// Hexen II tells every client each player's class (native svc_updateclass)
+	if ( GameProfile_IsHexen2() ) {
+
+		for ( let i = 0; i < svs.maxclients; i ++ ) {
+
+			const hclient = svs.clients[ i ];
+			if ( ! hclient.active || hclient.playerclass === 0 || hclient.old_playerclass === hclient.playerclass ) continue;
+			hclient.old_playerclass = hclient.playerclass;
+			for ( let j = 0; j < svs.maxclients; j ++ ) {
+
+				const client = svs.clients[ j ];
+				if ( ! client.active ) continue;
+				MSG_WriteByte( client.message, svc_hexen2_updateclass );
+				MSG_WriteByte( client.message, i );
+				MSG_WriteByte( client.message, hclient.playerclass | 0 );
+
+			}
+
+		}
+
+	}
+
 	for ( let j = 0; j < svs.maxclients; j ++ ) {
 
 		const client = svs.clients[ j ];
@@ -844,8 +1412,17 @@ function SV_WriteDelta( from, to, msg, force ) {
 	if ( to.modelindex !== from.modelindex )
 		bits |= PE_MODEL;
 
-	if ( to.flags & PE_SOLID )
-		bits |= PE_SOLID;
+	// Hexen II's optional render fields: a second more-bits byte, present only when one of them differs from the delta
+	// base. Quake packet states keep the defaults (scale 100, drawflags 0, abslight 0), so no bit is ever set for them.
+	let bits2 = 0;
+	if ( ( to.scale ?? BASELINE_SCALE_DEFAULT ) !== ( from.scale ?? BASELINE_SCALE_DEFAULT ) )
+		bits2 |= PE2_SCALE;
+	if ( ( to.drawflags ?? 0 ) !== ( from.drawflags ?? 0 ) )
+		bits2 |= PE2_DRAWFLAGS;
+	if ( ( to.abslight ?? 0 ) !== ( from.abslight ?? 0 ) )
+		bits2 |= PE2_ABSLIGHT;
+	if ( bits2 !== 0 )
+		bits |= PE_MOREBITS2;
 
 	// Check if morebits byte is needed (any of the lower-byte flags set)
 	if ( bits & 0xFF )
@@ -875,8 +1452,12 @@ function SV_WriteDelta( from, to, msg, force ) {
 	if ( large )
 		MSG_WriteByte( msg, to.number >> PE_ENT_BITS );
 
-	if ( bits & PE_MOREBITS )
+	if ( bits & PE_MOREBITS ) {
+
 		MSG_WriteByte( msg, bits & 0xFF );
+		if ( bits & PE_MOREBITS2 ) MSG_WriteByte( msg, bits2 );
+
+	}
 	if ( bits & PE_MODEL )
 		SV_WriteIndex( msg, to.modelindex );
 	if ( bits & PE_FRAME )
@@ -899,6 +1480,13 @@ function SV_WriteDelta( from, to, msg, force ) {
 		MSG_WriteCoord( msg, to.origin[ 2 ] );
 	if ( bits & PE_ANGLE3 )
 		MSG_WriteAngle( msg, to.angles[ 2 ] );
+
+	if ( bits2 & PE2_SCALE )
+		MSG_WriteByte( msg, to.scale ?? BASELINE_SCALE_DEFAULT );
+	if ( bits2 & PE2_DRAWFLAGS )
+		MSG_WriteByte( msg, to.drawflags ?? 0 );
+	if ( bits2 & PE2_ABSLIGHT )
+		MSG_WriteByte( msg, to.abslight ?? 0 );
 
 }
 
@@ -1052,6 +1640,21 @@ function SV_WriteEntitiesToClient( client, clent, pvs, msg ) {
 		state.colormap = ent.v.colormap;
 		state.skin = ent.v.skin;
 		state.effects = ent.v.effects;
+		if ( GameProfile_IsHexen2() ) {
+
+			const fields = SV_Hexen2EntityFields( ent );
+			state.scale = fields.scale;
+			state.drawflags = fields.drawflags;
+			state.abslight = fields.abslight;
+
+		} else {
+
+			// a pooled packet state may be left over from a Hexen II session: keep a Quake packet free of the fields
+			state.scale = BASELINE_SCALE_DEFAULT;
+			state.drawflags = 0;
+			state.abslight = 0;
+
+		}
 
 	}
 
@@ -1078,7 +1681,7 @@ SV_WriteClientdataToMessage
  * @param {sizebuf_t} msg the message to append to
  * @throws {Error} through `Sys_Error` when the weapon model was not precached
  */
-export function SV_WriteClientdataToMessage( ent, msg ) {
+export function SV_WriteClientdataToMessage( ent, msg, client = host_client ) {
 
 	//
 	// send a damage message
@@ -1214,6 +1817,9 @@ export function SV_WriteClientdataToMessage( ent, msg ) {
 
 	}
 
+	// Hexen II keeps its stat bar in the separate inventory record, on the reliable stream (native SV_UpdateClientStats)
+	if ( GameProfile_IsHexen2() && client != null ) SV_UpdateClientStats( client, client.message );
+
 }
 
 /*
@@ -1299,8 +1905,10 @@ QuakeWorld-style player info for client-side prediction
 */
 function SV_WritePlayersToClient( client, clent, pvs, msg ) {
 
-	// Find player model index if not cached
-	if ( sv_playermodel === 0 ) {
+	// Find player model index if not cached. Hexen II's players use class models (models/paladin.mdl, ...), so each
+	// update carries its own model index instead of assuming one.
+	const hexen2 = GameProfile_IsHexen2();
+	if ( ! hexen2 && sv_playermodel === 0 ) {
 
 		sv_playermodel = SV_ModelIndex( 'progs/player.mdl' );
 
@@ -1338,7 +1946,7 @@ function SV_WritePlayersToClient( client, clent, pvs, msg ) {
 		const cloakBodyFrame = client.cloakBodyCapability === true ? SV_CloakBodyFrame( ent ) : null;
 		if ( cloakBodyFrame !== null ) pflags |= PF_CLOAK_BODY;
 
-		if ( ent.v.modelindex !== sv_playermodel )
+		if ( hexen2 || ent.v.modelindex !== sv_playermodel )
 			pflags |= PF_MODEL;
 		for ( let i = 0; i < 3; i ++ ) {
 
@@ -1353,7 +1961,7 @@ function SV_WritePlayersToClient( client, clent, pvs, msg ) {
 			pflags |= PF_SKINNUM;
 		if ( ent.v.health <= 0 )
 			pflags |= PF_DEAD;
-		if ( ent.v.mins[ 2 ] !== - 24 )
+		if ( ! hexen2 && ent.v.mins[ 2 ] !== - 24 )
 			pflags |= PF_GIB;
 
 		// For self, don't send msec/command (already known), but send weaponframe
@@ -1479,7 +2087,7 @@ function SV_SendClientDatagram( client ) {
 	MSG_WriteByte( _scdMsg, svc_serversequence );
 	MSG_WriteLong( _scdMsg, client.outgoing_sequence );
 
-	SV_WriteClientdataToMessage( client.edict, _scdMsg );
+	SV_WriteClientdataToMessage( client.edict, _scdMsg, client );
 
 	// Send ping stat (average of recent ping samples, in milliseconds)
 	if ( client.num_pings > 0 ) {
@@ -1811,6 +2419,94 @@ export function SV_SaveSpawnparms() {
 
 }
 
+// The end position of one signon message for a static-entity layout. `legacy` is the older Quaked Hexen writer's
+// short frame with no scale/drawflags/abslight; `native` is uhexen2's fixed layout.
+function hexenSignonLength( data, at, end, layout ) {
+
+	const opcode = data[ at ++ ];
+	if ( opcode === svc_spawnstatic ) {
+
+		if ( at + 2 > end ) return - 1;
+		at += 2; // model short
+		const fixed = layout === 'legacy' ? 4 : 6;
+		if ( at + fixed + 9 > end ) return - 1;
+		return at + fixed + 9;
+
+	}
+	if ( opcode === svc_spawnstaticsound ) return at + 10 > end ? - 1 : at + 10; // coord3 + short sample + vol + atten
+	return - 1;
+
+}
+
+function scanHexenSignon( layout ) {
+
+	const data = sv.signon.data, end = sv.signon.cursize;
+	let at = 0;
+	while ( at < end ) {
+
+		const next = hexenSignonLength( data, at, end, layout );
+		if ( next < 0 ) return false;
+		at = next;
+
+	}
+	return at === end;
+
+}
+
+/*
+================
+SV_NormalizeHexenStatics
+
+U3 owns the Hexen makestatic builtin. Until it writes uhexen2's fixed layout, its signon statics are the older
+short-frame form; convert those to the native layout here, once, so the client has one layout to parse and the
+conversion disappears when the builtin is fixed. A signon with no statics is left untouched.
+================
+*/
+function SV_NormalizeHexenStatics() {
+
+	const data = sv.signon.data, end = sv.signon.cursize;
+	if ( end === 0 ) return;
+	if ( scanHexenSignon( 'native' ) ) return; // already native, or no statics to tell the layouts apart
+	if ( ! scanHexenSignon( 'legacy' ) ) return; // an unknown message: leave the reported signon error to the client
+
+	let statics = 0;
+	for ( let at = 0; at < end; ) { const next = hexenSignonLength( data, at, end, 'legacy' ); if ( data[ at ] === svc_spawnstatic ) statics ++; at = next; }
+	const out = new Uint8Array( Math.max( end + 2 * statics, sv.signon.maxsize ) );
+	let at = 0, to = 0;
+	while ( at < end ) {
+
+		const opcode = data[ at ++ ];
+		out[ to ++ ] = opcode;
+		if ( opcode === svc_spawnstatic ) {
+
+			const model = data[ at ] | ( data[ at + 1 ] << 8 );
+			const frame = data[ at + 2 ] | ( data[ at + 3 ] << 8 );
+			const colormap = data[ at + 4 ], skin = data[ at + 5 ];
+			at += 6;
+			out[ to ++ ] = model & 0xff; out[ to ++ ] = ( model >> 8 ) & 0xff;
+			out[ to ++ ] = frame & 0xff;
+			out[ to ++ ] = colormap;
+			out[ to ++ ] = skin;
+			out[ to ++ ] = BASELINE_SCALE_DEFAULT; // scale 1.0
+			out[ to ++ ] = 0; // drawflags
+			out[ to ++ ] = 0; // abslight
+			out.set( data.subarray( at, at + 9 ), to );
+			at += 9; to += 9;
+
+		} else {
+
+			out.set( data.subarray( at, at + 10 ), to );
+			at += 10; to += 10;
+
+		}
+
+	}
+	sv.signon.data = out;
+	sv.signon.cursize = to;
+	if ( sv.signon.maxsize < to ) sv.signon.maxsize = to;
+
+}
+
 /*
 ================
 SV_CreateBaseline
@@ -1835,11 +2531,28 @@ function SV_CreateBaseline() {
 			VectorCopy( svent.v.angles, svent.baseline.angles );
 			svent.baseline.frame = svent.v.frame;
 			svent.baseline.skin = svent.v.skin;
+			if ( GameProfile_IsHexen2() ) {
+
+				const fields = SV_Hexen2EntityFields( svent );
+				svent.baseline.scale = fields.scale;
+				svent.baseline.drawflags = fields.drawflags;
+				svent.baseline.abslight = fields.abslight;
+
+			} else {
+
+				// same reason: a baseline left from a Hexen II map must not make a Quake delta send the extension bits
+				svent.baseline.scale = BASELINE_SCALE_DEFAULT;
+				svent.baseline.drawflags = 0;
+				svent.baseline.abslight = 0;
+
+			}
 
 			if ( entnum > 0 && entnum <= svs.maxclients ) {
 
 				svent.baseline.colormap = entnum;
-				svent.baseline.modelindex = SV_ModelIndex( 'progs/player.mdl' );
+				// Hexen II's player model is class-specific and arrives in the entity updates, as native leaves the
+				// baseline at 0 (SV_CreateBaseline).
+				svent.baseline.modelindex = GameProfile_IsHexen2() ? 0 : SV_ModelIndex( 'progs/player.mdl' );
 
 			} else {
 
@@ -1856,10 +2569,25 @@ function SV_CreateBaseline() {
 		MSG_WriteByte( sv.signon, svc_spawnbaseline );
 		MSG_WriteShort( sv.signon, entnum );
 
-		SV_WriteIndex( sv.signon, svent.baseline.modelindex );
-		SV_WriteIndex( sv.signon, svent.baseline.frame );
-		MSG_WriteByte( sv.signon, svent.baseline.colormap );
-		MSG_WriteByte( sv.signon, svent.baseline.skin );
+		if ( GameProfile_IsHexen2() ) {
+
+			// uhexen2 CL_ParseBaseline: a short model, then byte frame/colormap/skin/scale/drawflags/abslight
+			MSG_WriteShort( sv.signon, svent.baseline.modelindex );
+			MSG_WriteByte( sv.signon, svent.baseline.frame & 0xff );
+			MSG_WriteByte( sv.signon, svent.baseline.colormap );
+			MSG_WriteByte( sv.signon, svent.baseline.skin );
+			MSG_WriteByte( sv.signon, svent.baseline.scale ?? BASELINE_SCALE_DEFAULT );
+			MSG_WriteByte( sv.signon, svent.baseline.drawflags ?? 0 );
+			MSG_WriteByte( sv.signon, svent.baseline.abslight ?? 0 );
+
+		} else {
+
+			SV_WriteIndex( sv.signon, svent.baseline.modelindex );
+			SV_WriteIndex( sv.signon, svent.baseline.frame );
+			MSG_WriteByte( sv.signon, svent.baseline.colormap );
+			MSG_WriteByte( sv.signon, svent.baseline.skin );
+
+		}
 		for ( let i = 0; i < 3; i ++ ) {
 
 			MSG_WriteCoord( sv.signon, svent.baseline.origin[ i ] );
@@ -1909,11 +2637,11 @@ SV_SpawnServer
  * @throws {Error} through `Sys_Error` when progs.dat cannot be loaded or the power-up carry sounds overflow the sound
  *   precache; a map that cannot be loaded prints a message and leaves `sv.active` false instead
  */
-export function SV_SpawnServer( server ) {
+export function SV_SpawnServer( server, startspot = '' ) {
 
 	try {
 
-		spawnServer( server );
+		spawnServer( server, startspot );
 
 	} catch ( error ) {
 
@@ -1922,13 +2650,16 @@ export function SV_SpawnServer( server ) {
 		Cvar_Set( 'sv_protocol', String( PROTOCOL_LARGE ) );
 		sv.active = false; // its clients were told to reconnect the first time
 		sv.settling = false;
-		spawnServer( server );
+		spawnServer( server, startspot );
 
 	}
 
 }
 
-function spawnServer( server ) {
+function spawnServer( server, startspot ) {
+
+	const profile = GameProfile_Get();
+	const hexen2 = profile.family === 'hexen2';
 
 	// the engine's model functions, for seamless travel's views of other levels and its crossings (given here, before a
 	// level exists, not as this module loads: card [44g], debt D10)
@@ -1968,8 +2699,9 @@ function spawnServer( server ) {
 	current_skill = ( skill.value + 0.5 ) | 0;
 	if ( current_skill < 0 )
 		current_skill = 0;
-	if ( current_skill > 3 )
-		current_skill = 3;
+	const maxSkill = hexen2 ? 4 : 3; // Hexen II has five difficulty levels (uhexen2 SV_SpawnServer)
+	if ( current_skill > maxSkill )
+		current_skill = maxSkill;
 
 	Cvar_SetValue( 'skill', current_skill );
 	PR_SetCurrentSkill( current_skill );
@@ -1982,8 +2714,12 @@ function spawnServer( server ) {
 	// clear the server struct
 	Object.assign( sv, new ( sv.constructor )() );
 	sv._newerMapsEnabled = useNewerMaps;
-	// the protocol for this map, before anything is precached or written (card [34f])
-	sv.protocol = SV_ProtocolFor( sv_protocol.value );
+	// the protocol for this map, before anything is precached or written (card [34f]); Hexen II always uses the one
+	// extended protocol (docs/hexen2/unified-host.md §2 rule 3), never its native 18/19 stream
+	sv.protocol = hexen2 ? PROTOCOL_LARGE : SV_ProtocolFor( sv_protocol.value );
+	sv.startspot = hexen2 ? String( startspot ?? '' ) : '';
+	sv.levelStringIndex = HEXEN2_NO_LEVEL_STRING;
+	sv.midi_name = '';
 
 	// Ensure progs.js has references to the canonical server objects
 	PR_SetSV( sv );
@@ -2017,8 +2753,10 @@ function spawnServer( server ) {
 		GetEdictFieldValue,
 	} );
 
-	// allocate server memory
-	sv.max_edicts = sv.protocol === PROTOCOL_LARGE ? MAX_EDICTS : MAX_EDICTS_STANDARD; // (card [34f])
+	// allocate server memory: Hexen II's own 600-edict ceiling, with its reserved temp slots (uhexen2 SV_SpawnServer,
+	// ED_Alloc_Temp). The slots are left free for U3's ED_Alloc_Temp; ED_Alloc skips them.
+	sv.max_edicts = hexen2 ? profile.maxEdicts : ( sv.protocol === PROTOCOL_LARGE ? MAX_EDICTS : MAX_EDICTS_STANDARD ); // (card [34f])
+	sv.max_temp_edicts = hexen2 ? Math.max( 0, max_temp_edicts.value | 0 ) : 0;
 
 	// Allocate edicts array using entityfields from loaded progs
 	const entityfields = progs ? progs.entityfields : 105; // 105 is default for standard Quake
@@ -2043,12 +2781,24 @@ function spawnServer( server ) {
 	sv.signon.allowoverflow = true;
 	sv.signon.overflowed = false;
 
-	// leave slots at start for clients only
-	sv.num_edicts = svs.maxclients + 1;
+	// leave slots at start for clients only, then Hexen II's reserved temp slots
+	sv.num_edicts = svs.maxclients + 1 + sv.max_temp_edicts;
 	for ( let i = 0; i < svs.maxclients; i ++ ) {
 
 		const ent = EDICT_NUM( i + 1 );
 		svs.clients[ i ].edict = ent;
+
+	}
+	if ( hexen2 ) {
+
+		for ( let i = 0; i < sv.max_temp_edicts; i ++ ) {
+
+			const temp = EDICT_NUM( svs.maxclients + 1 + i );
+			ED_ClearEdict( temp );
+			temp.free = true;
+			temp.freetime = - 999;
+
+		}
 
 	}
 
@@ -2059,6 +2809,7 @@ function spawnServer( server ) {
 	sv.name = server;
 	sv.modelname = 'maps/' + server + '.bsp';
 
+	// Hexen II's eight-headnode submodel records are recognised by the brush loader from the BSP itself
 	sv.worldmodel = Mod_ForName( sv.modelname, false );
 	if ( ! sv.worldmodel ) {
 
@@ -2113,12 +2864,37 @@ function spawnServer( server ) {
 	if ( pr_global_struct )
 		pr_global_struct.serverflags = svs.serverflags;
 
+	if ( hexen2 ) {
+
+		// Hexen II globals by name: the base and Portal layouts differ, so never assume an offset. `startspot` selects
+		// the named player start and `cl_playerclass` (Portal only) is worldspawn's class gate.
+		if ( 'startspot' in pr_global_struct )
+			pr_global_struct.startspot = ED_NewString( sv.startspot );
+		if ( 'cl_playerclass' in pr_global_struct ) {
+
+			const chosen = Cvar_VariableValue( '_cl_playerclass' );
+			pr_global_struct.cl_playerclass = chosen >= 1 && chosen <= 5 ? chosen : 1;
+
+		}
+
+	}
+
 	if ( sv.worldmodel && sv.worldmodel.entities ) {
 
 		ED_LoadFromFile( sv.worldmodel.entities );
 
 		// doorway and pit exits become seamless crossings (single player, Newer Game)
 		SV_SeamlessSetup();
+
+	}
+
+	if ( hexen2 ) {
+
+		// worldspawn's `message` is a strings.txt index in Hexen II, not a progs string offset. Carry the number for U3
+		// and normalise any static-entity baselines still written in the older short-frame layout.
+		const world = EDICT_NUM( 0 );
+		sv.levelStringIndex = world && world.v ? ( world.v.message | 0 ) : HEXEN2_NO_LEVEL_STRING;
+		SV_NormalizeHexenStatics();
 
 	}
 

@@ -15,10 +15,12 @@
 // rather than every touch, so it cannot undo a player's manual switch-off.
 import { Cvar_FindVar, Cvar_SetValue, Cvar_VariableValue } from '../../engine/common/cvar.js';
 import { Con_Printf } from '../../engine/common/common.js';
+import { NewerStartMap } from '../content_bindings.js';
 
 let active = false, map = '', selectedSkill = null, noticeShown = false;
 let lastOn = false;
 const mapName = value => String( value || '' ).toLowerCase().replace( /^maps\//, '' ).replace( /\.bsp$/, '' );
+const startMap = () => mapName( NewerStartMap() );
 function automatic( on, crosshairOn ) {
 	if ( Cvar_FindVar( 'r_flashlight' ) ) Cvar_SetValue( 'r_flashlight', on ? 1 : 0 );
 	if ( Cvar_FindVar( 'crosshair' ) ) Cvar_SetValue( 'crosshair', crosshairOn ? 1 : 0 );
@@ -31,7 +33,7 @@ function automatic( on, crosshairOn ) {
  * the flashlight and crosshair off until a skill hall chooses; direct level starts/restarts retain the current choices,
  * just like load, travel and respawn.
  *
- * @param {string} name the map being started ('start' or 'maps/start.bsp' style; case and path are ignored)
+ * @param {string} name the map being started ('start', 'demo1', 'keep1' or their maps/*.bsp form; case and path ignored)
  * @param {number} skill the game's current skill (not used for the decision)
  * @param {boolean} newer true when connected with `r_hdr` on (Newer Game); only then is the run active
  */
@@ -40,7 +42,7 @@ export function R_FlashlightNewRun( name, skill, newer ) {
 	lastOn = Cvar_VariableValue( 'r_flashlight' ) !== 0;
 	// Only a fresh welcome start resets the aids. Direct level starts/restarts
 	// retain the current choices, just like load, travel and respawn.
-	if ( active && map === 'start' ) automatic( false, false );
+	if ( active && map === startMap() ) automatic( false, false );
 }
 /**
  * Updates the run's map identity when the client receives server info (`CL_ParseServerInfo`, not during demo
@@ -67,7 +69,7 @@ export function R_FlashlightRunMap( name, newer = false ) {
  */
 export function R_FlashlightRunLoaded( name, newer, occupiedSkill = null ) {
  R_FlashlightRunMap( name, newer );
- if ( newer && active && map === 'start' && Number.isInteger( occupiedSkill ) && occupiedSkill >= 0 && occupiedSkill <= 3 ) selectedSkill = occupiedSkill;
+ if ( newer && active && map === startMap() && Number.isInteger( occupiedSkill ) && occupiedSkill >= 0 && occupiedSkill <= 3 ) selectedSkill = occupiedSkill;
 }
 /**
  * Ends the run on an explicit exit (`CL_Disconnect_f`, cl_main.js), unlike a load or connect during a run; takes the
@@ -81,14 +83,15 @@ export function R_FlashlightRunEnd() { active = false; map = ''; selectedSkill =
  * edict 1. Easy gets flashlight and crosshair, Normal the flashlight only, Hard neither (sets `r_flashlight` and
  * `crosshair`).
  *
- * @param {string} name the server's map name (`sv.name`); must be 'start'
+ * @param {string} name the server's map name (`sv.name`); must be the profile's start map (Quake's 'start', Hexen's
+ *   'demo1' or Portal's 'keep1')
  * @param {number|string} value the skill, 0 (easy) to 3 (nightmare)
  * @returns {boolean} true when the aids were set; false outside an active Newer Game run in START, for an invalid
  *   skill, or when that skill was already chosen
  */
 export function R_FlashlightSkillSelected( name, value ) {
 	const skill = Number( value );
-	if ( ! active || Cvar_VariableValue( 'r_hdr' ) === 0 || map !== 'start' || mapName( name ) !== 'start' || ! Number.isInteger( skill ) || skill < 0 || skill > 3 || selectedSkill === skill ) return false;
+	if ( ! active || Cvar_VariableValue( 'r_hdr' ) === 0 || map !== startMap() || mapName( name ) !== startMap() || ! Number.isInteger( skill ) || skill < 0 || skill > 3 || selectedSkill === skill ) return false;
 	selectedSkill = skill; automatic( skill < 2, skill === 0 ); return true;
 }
 /**

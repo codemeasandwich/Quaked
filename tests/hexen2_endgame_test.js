@@ -38,7 +38,7 @@ Deno.test( 'the base endgame Eidolon map mounts with its player and level entiti
 	} );
 	check( mounted.ok, mounted.reason );
 	same( sv.name, 'maps/eidolon.bsp', 'the endgame map is Eidolon' );
-	check( sv.num_edicts > 200, 'Eidolon spawned its entities: ' + sv.num_edicts );
+	check( sv.num_edicts > 150, 'Eidolon spawned its entities: ' + sv.num_edicts ); // 189 for native single player
 	const classOf = ent => { const field = GetEdictFieldValue( ent, 'classname' ); return field ? PR_GetString( field.accessor.getInt32( field.ofs ) ) : ''; };
 	const classes = sv.edicts.filter( ent => ent && ! ent.free ).map( classOf );
 	check( classes.includes( 'worldspawn' ) && classes.includes( 'player' ), 'the endgame player and world spawned' );

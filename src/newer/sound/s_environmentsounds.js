@@ -13,6 +13,7 @@ import { R_NewerGame } from '../mode.js';
 import { R_AmbientPlaces, R_AmbientPlacesVersion } from '../render/r_ambientplaces.js';
 import { R_VisibleAliasBounds } from '../render/r_aliasvisibility.js';
 import { createEffectDeck, startEffect, stopEffect, releaseEffect } from './s_effectdeck.js';
+import { NewerBindings } from '../content_bindings.js';
 
 export const ENVIRONMENT_TRACK_URLS = Object.freeze( {
 	fire: new URL( '../../../assets/audio/sounds/fire-Environmental.mp3', import.meta.url ).href,
@@ -81,9 +82,10 @@ function scanFire() {
 	const version = R_AmbientPlacesVersion();
 	if ( cl.time >= scanAt && cl.time < scanAt + .1 && version === registryVersion && cl.num_statics === staticCount ) return;
 	scanAt = cl.time; registryVersion = version; staticCount = cl.num_statics;
-	const placed = R_AmbientPlaces( 'ambience/fire1.wav' );
+	const sounds = NewerBindings().sounds;
+	const placed = sounds.environmentFire.flatMap( name => R_AmbientPlaces( name ) );
 	const positions = placed.length ? placed : cl_static_entities.slice( 0, Math.min( 128, cl.num_statics ) )
-		.filter( entity => /^progs\/flame2?\.mdl$/i.test( entity?.model?.name ?? '' ) ).map( entity => entity.origin );
+		.filter( entity => sounds.fireModels.includes( entity?.model?.name ) ).map( entity => entity.origin );
 	sources = positions.length; fireTarget = firePan = 0;
 	let loudest = 0;
 	for ( const origin of positions ) {
@@ -137,7 +139,7 @@ export function S_GetEnvironmentSoundsStatus() {
 }
 
 S_AddSoundReplacement( ( sfx ) => {
-	if ( sfx?.name !== 'ambience/fire1.wav' || reason() ) return false;
+	if ( ! NewerBindings().sounds.environmentFire.includes( sfx?.name ) || reason() ) return false;
 	S_UpdateEnvironmentSounds();
 	return status.active && fireTarget > 0 && !! decks.fire?.playing && ! decks.fire.blocked;
 } );

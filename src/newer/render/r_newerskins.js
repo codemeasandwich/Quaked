@@ -48,11 +48,24 @@ import { PowerVisionMode } from '../gameplay/powervision_state.js';
 import { R_IsNewer, R_NewerLightingActive, r_newer_enemies, r_newer_normals } from '../mode.js';
 import { COM_NewerJSON, COM_NewerURL } from '../../engine/common/pak.js';
 import { R_NormalMapFor, R_HeightFromRGBA, R_MultiScaleHeight } from './gl_normals.js';
+import { NewerBindings } from '../content_bindings.js';
+import { GameProfile_IsHexen2 } from '../../engine/common/game_profile.js';
 
 // 1 = each monster picks one of its model's skins at random, 0 = always the first
 export const r_newer_variety = new cvar_t( 'r_newer_variety', '1' );
 
-const BASE = 'newer/enemies/';
+// Quake's manifests and art live at newer/enemies/; Hexen II gets its own namespace (no art is authored yet, so an
+// absent manifest simply leaves every Hexen model on its native skin).
+const SKIN_BASE = Object.freeze( { quake: 'newer/enemies/', hexen2: 'newer/enemies/hexen2/' } );
+const skinBase = () => GameProfile_IsHexen2() ? SKIN_BASE.hexen2 : SKIN_BASE.quake;
+/**
+ * The active game family's skin manifest path: Quake's `newer/enemies/index.json`, or the (not yet authored) Hexen II
+ * namespace `newer/enemies/hexen2/index.json`. Kept apart so a same-named Hexen model (mummy, dragon) cannot wear
+ * Quake's art.
+ *
+ * @returns {string} the logical manifest path
+ */
+export function R_NewerSkinIndexPath() { return skinBase() + 'index.json'; }
 
 // model name -> [ { dir, maps: { diffuse, normal, luma, gloss }, flipGreen } ]
 let skinIndex = null;
@@ -135,7 +148,7 @@ function requestIndex() {
 	const fallback = error => { if ( generation !== indexGeneration ) return; clearTimeout( indexTimer ); skinIndex = {}; indexState = 'fallback'; indexError = String( error.message || error ); indexGeneration ++; indexResolve?.(); indexResolve = null; };
 	indexTimer = setTimeout( () => fallback( new Error( 'Skin index timed out' ) ), NEWER_SKIN_TIMEOUT_MS );
 
-	COM_NewerJSON( BASE + 'index.json', BASE + 'index.json' )
+	COM_NewerJSON( skinBase() + 'index.json', skinBase() + 'index.json' )
 		.then( data => { if ( generation === indexGeneration ) R_NewerSetIndex( data ); } )
 		.catch( fallback );
 	return requested;
@@ -143,15 +156,18 @@ function requestIndex() {
 }
 
 /**
- * The skin-index key of an alias model: "progs/wizard.mdl" -> "wizard".
+ * The skin-index key of an alias model: "progs/wizard.mdl" -> "wizard" for Quake, "models/mummy.mdl" -> "mummy" for
+ * Hexen II. The directory and extension come from the active game's content bindings, so Hexen model keys resolve
+ * through `models/` even though no Hexen skin art is indexed yet (the key simply matches nothing).
  *
  * @param {?string} modelName the model's precache name
- * @returns {?string} the base name, or null when the name is not `progs/<name>.mdl`
+ * @returns {?string} the base name, or null when the name is not `<modelDir>/<name><extension>` for the active game
  */
 export function R_NewerModelKey( modelName ) {
 
-	if ( modelName == null || modelName.indexOf( 'progs/' ) !== 0 || modelName.slice( - 4 ) !== '.mdl' ) return null;
-	return modelName.slice( 6, - 4 );
+	const bindings = NewerBindings(), dir = bindings.modelDir, extension = bindings.modelExtension;
+	if ( modelName == null || modelName.indexOf( dir ) !== 0 || modelName.slice( - extension.length ) !== extension ) return null;
+	return modelName.slice( dir.length, - extension.length );
 
 }
 
@@ -312,7 +328,7 @@ function createSet( variant, modelKey ) {
 		const file = variant.maps[ name ];
 		if ( file === undefined ) return;
 
-		loadSkinTexture( set, name, COM_NewerURL( BASE + key + '/' + file, BASE + key + '/' + file + '?v=' + skinVersion ), ( texture ) => {
+		loadSkinTexture( set, name, COM_NewerURL( skinBase() + key + '/' + file, skinBase() + key + '/' + file + '?v=' + skinVersion ), ( texture ) => {
 
 			if ( ! set.alive ) { texture.dispose(); return; }
 			texture.flipY = false; // skins are stored top row first, like Quake's own
@@ -345,7 +361,7 @@ function createSet( variant, modelKey ) {
 	if ( variant.faces ) {
 		set.uniforms.qrFaceSheet = { value: null };
 		set.uniforms.uHasFace = { value: 0 };
-		const path = BASE + variant.faces.sheet;
+		const path = skinBase() + variant.faces.sheet;
 		loadSkinTexture( set, 'face-sheet', COM_NewerURL( path, path + '?v=' + skinVersion ), texture => {
 			texture.flipY = false; texture.colorSpace = THREE.SRGBColorSpace;
 			texture.wrapS = texture.wrapT = THREE.ClampToEdgeWrapping; texture.anisotropy = 16;
@@ -436,7 +452,8 @@ const nativeSets = new Map(); // selected native Texture -> detail/material set
  * height stays active.
  *
  * @param {THREE.Texture} texture the native skin texture selected for this skin and animation frame
- * @param {string} modelName the model's precache name (`progs/<name>.mdl`); must be one of `ENEMY_SKIN_MODELS`
+ * @param {string} modelName the model's precache name (`progs/<name>.mdl`, or `models/<name>.mdl` for Hexen II); must be
+ *   one of `ENEMY_SKIN_MODELS`
  * @param {boolean} hasLighting true for the vertex-coloured (baked light) variant
  * @param {number} [skinnum=0] the entity's skin number
  * @param {number} [frame=0] the skin animation slot 0..3 (gl_mesh.js: `floor(cl.time * 10) & 3`)
@@ -497,7 +514,7 @@ export function R_EnemyAliasMaterial( texture, modelName, hasLighting, skinnum =
 
 		set.requestedHeight = requestKey;
 		set.cancelHeight?.();
-		set.cancelHeight = loadSkinTexture( set, 'native-height', COM_NewerURL( BASE + stored.file, BASE + stored.file + '?v=' + skinVersion ), ( height ) => {
+		set.cancelHeight = loadSkinTexture( set, 'native-height', COM_NewerURL( skinBase() + stored.file, skinBase() + stored.file + '?v=' + skinVersion ), ( height ) => {
 
 			if ( nativeSets.get( texture ) !== set || ! set.alive || set.requestedHeight !== requestKey ) { height.dispose(); return; }
 			height.flipY = false; height.colorSpace = THREE.NoColorSpace;
@@ -831,7 +848,7 @@ R_NewerAliasMaterial
  * without it (the classic lighting) it is the same picture lit the classic way.
  *
  * @param {entity_t} entity the drawn entity (variant choice, face choice, `model.aliasSourceIdentity`)
- * @param {string} modelName the model's precache name (`progs/<name>.mdl`)
+ * @param {string} modelName the model's precache name (`progs/<name>.mdl`, or `models/<name>.mdl` for Hexen II)
  * @param {boolean} hasLighting true for the vertex-coloured (baked light) variant
  * @param {number} [skinnum=0] the entity's skin number
  * @returns {?THREE.MeshBasicMaterial} the shared cached material, or null to draw the native skin
@@ -993,7 +1010,7 @@ export function R_NewerSkinsPrefetchBsp(bytes){
  * `R_NewerSkinsMaterials`/`R_NewerSkinsTextures`. Repeated calls with the same models and switches return the same
  * promise (until the manifest version changes); `R_NewerSkinsShutdown` or a model's identity changing cancels it.
  *
- * @param {Array<?model_t>} models the level's model precache; non-models and non-`progs/*.mdl` entries are ignored
+ * @param {Array<?model_t>} models the level's model precache; non-models and non-`<modelDir>/*.mdl` entries are ignored
  * @returns {Promise<{ models: Array<string>, started?: true, cancelled?: true, fallback?: true }>} resolves (never
  *   rejects) with the prepared model names and `started`; `{ models: [], cancelled: true }` when superseded; or
  *   `fallback` when the index failed (the error is reported by `R_NewerSkinsStatus`)

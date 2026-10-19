@@ -15,6 +15,7 @@ import { S_GetAudioContext, S_GetMasterGain, SND_Spatialize, S_AddSoundReplaceme
 import { R_NewerGame } from '../mode.js';
 import { SV_AddElectricObserver, SV_ElectricSnapshot, ELECTRIC_ROGUE_CRC } from '../gameplay/sv_electricsounds.js';
 import { createEffectDeck, startEffect, stopEffect, releaseEffect } from './s_effectdeck.js';
+import { NewerBindings } from '../content_bindings.js';
 
 export const ELECTRIC_ROLES = Object.freeze( Object.fromEntries( Object.entries( {
  charge: [ 3, 9 ], shamblerStop: [ 8 ], firing: [ 20 ], playerStop: [ 10, 5 ],
@@ -230,10 +231,7 @@ export function S_GetElectricSoundsStatus() {
 // Native QC and its packets remain intact. Match only cues whose existing
 // native event receipts admitted this actor's custom voice, before PCM starts.
 S_AddSoundReplacement( ( sfx, origin, volume, attenuation, entity ) => {
- const roles = {
-  'weapons/lstart.wav': [ 'firing' ], 'weapons/lhit.wav': [ 'firing', 'hit', 'miss', 'water' ],
-  'shambler/sattck1.wav': [ 'charge' ], 'shambler/sboom.wav': [ 'hit', 'miss', 'water', 'shamblerStop' ]
- }[ sfx?.name ];
+ const roles = NewerBindings().sounds.electric[ sfx?.name ];
  if ( ! roles || why( S_GetAudioContext() ) ) return false;
  S_UpdateElectricSounds();
  return pool.some( voice => voice.entity === entity && roles.includes( voice.role ) &&

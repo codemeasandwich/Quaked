@@ -21,6 +21,7 @@ import {ResourcePath} from '../../platform/resource_paths.js';
 
 import { Sys_Printf, Sys_Error } from './sys.js';
 import { Con_Printf } from './common.js';
+import { GameProfile_Get } from './game_profile.js';
 
 const MAX_FILES_IN_PACK = 2048;
 
@@ -67,6 +68,14 @@ let newerActive = false;
 const newerUrls = new Map(); // name -> blob URL
 let newerMaps = new Map(); // separately built geometry; original packs remain intact
 let newerMapsEnabled = false; // only a supported local game explicitly selects these maps
+// Newer content is built for the Quake family. Hexen II has its own content namespace (models/, maps/, sound/) and its
+// own pack files, so none of newer.pak's game paths (maps, entity lists, art) may shadow a Hexen II file, including
+// through the loose-file fallback. Only engine assets whose identity is pixel/behaviour based cross the family line:
+// shaders and the generated normal bakes, which are keyed by the native pixels they were made from.
+const NEWER_CONTENT_FAMILIES = Object.freeze( [ 'quake' ] );
+const GAME_AGNOSTIC_NEWER_PREFIXES = Object.freeze( [ 'newer/shaders/', 'newer/normals/' ] );
+function newerContentApplies() { return NEWER_CONTENT_FAMILIES.includes( GameProfile_Get().family ); }
+function newerPathApplies( path ) { return newerContentApplies() || GAME_AGNOSTIC_NEWER_PREFIXES.some( prefix => path.startsWith( prefix ) ); }
 /**
  * Selects whether `COM_FindFile` serves Newer Game's rebuilt maps (from `COM_SetNewerMapsPack`) in place of the
  * originals; they are used only while Newer Game is also active (`COM_SetNewerActive`). Set at map spawn by
@@ -295,10 +304,16 @@ COM_FindFile
 =================
 */
 /**
- * Searches through the path looking for a file. The order is: Newer Game's rebuilt maps (when Newer Game is active
- * and its maps are enabled), then newer.pak (only while Newer Game is active), then the packs on the search path
- * (last added first), then the loose files fetched by `COM_PreloadLooseFile`. Called whenever the engine loads a
- * model, map, sound or script.
+ * Searches through the path looking for a file. The order is: Newer Game's rebuilt maps (when Newer Game is active,
+ * its maps are enabled and the active game is in the Newer content's family), then newer.pak (only while Newer Game is
+ * active and the active game is in that family, or for the game-agnostic shader/normal paths), then the packs on the
+ * search path (last added first), then the loose files fetched by `COM_PreloadLooseFile`. Called whenever the engine
+ * loads a model, map, sound or script.
+ *
+ * Scoping rule (docs/hexen2/unified-host.md §2 rule 7): newer.pak, its rebuilt maps and loose Newer game files are
+ * Quake content. They are consulted only when the active profile is in `NEWER_CONTENT_FAMILIES`; otherwise a Hexen II
+ * file always wins, even when a same-named Newer file exists. Assets explicitly marked game-agnostic (shaders, the
+ * generated normal bakes keyed by native pixel identity) remain visible to every family.
  *
  * @param {string} filename the game path, such as `maps/e1m1.bsp` (matched case-insensitively)
  * @returns {?{ data: Uint8Array, size: number }} the file's bytes and length in bytes, or null when it is nowhere.
@@ -308,11 +323,12 @@ COM_FindFile
 export function COM_FindFile( filename ) {
 
 	const search = filename.toLowerCase();
-	const map = newerActive && newerMapsEnabled ? newerMaps.get( search ) : null;
+	const newerVisible = newerPathApplies( search );
+	const map = newerActive && newerMapsEnabled && newerVisible ? newerMaps.get( search ) : null;
 	if ( map ) return { data: map, size: map.byteLength };
 
-	// Newer Game's own files come first
-	if ( newerActive && newerIndex !== null ) {
+	// Newer Game's own files come first (Quake family only, plus the explicitly agnostic asset paths)
+	if ( newerActive && newerIndex !== null && newerVisible ) {
 
 		const nf = newerIndex.get( search );
 		if ( nf !== undefined ) return { data: new Uint8Array( newerPack.data, nf.filepos, nf.filelen ), size: nf.filelen };
@@ -340,8 +356,9 @@ export function COM_FindFile( filename ) {
 
 	}
 
-	// Check virtual files (preloaded loose files)
-	if ( virtualFiles.has( search ) ) {
+	// Check virtual files (preloaded loose files). A loose Newer game path obeys the same family rule as newer.pak;
+	// loose game maps and custom content keep their ordinary lookup.
+	if ( virtualFiles.has( search ) && ( ! search.startsWith( 'newer/' ) || newerVisible ) ) {
 
 		const data = virtualFiles.get( search );
 		return { data: data, size: data.length };

@@ -12,6 +12,8 @@
 // Source-bound physical ceiling fixtures. No renderer, cvars or gameplay state.
 // FNV is a fast admission fingerprint, not a security/hash authenticity claim;
 // known geometry and unique helper matching are checked separately.
+import { NewerBindings } from '../content_bindings.js';
+
 // the E1M1s whose fixtures are known: the bundled 1.06 shareware's, and the 2021 re-release's (recompiled, the same
 // corridor and fixtures: docs/stock-progs-2026-10-14.md); each is still checked panel by panel
 const KNOWN_E1M1 = Object.freeze( [ { bytes: 1365176, fnv: 0xa7af00e6 }, { bytes: 1664336, fnv: 2048426756 } ] );
@@ -69,7 +71,7 @@ float pointCone(vec3 receiver,int index){
  * @returns {boolean} true for the bundled E1M1 bytes
  */
 export function R_KnownFixtureSource(model) {
- if(model?.name!=='maps/e1m1.bsp')return false;
+ if(!NewerBindings().maps.fixtures.includes(model?.name))return false;
  const source=model.bspSourceBytes;
  const bytes=source instanceof ArrayBuffer?new Uint8Array(source):source;
  const known=KNOWN_E1M1.filter(k=>k.bytes===bytes?.byteLength);if(!known.length)return false;
@@ -100,7 +102,9 @@ export function R_KnownFixtureSource(model) {
  */
 export function R_ExitFixturePairs(model,entities,lights,{info,bounds,leaf}) {
  if(!R_KnownFixtureSource(model))return [];
- const exits=entities.filter(e=>e.classname==='trigger_changelevel'&&e.map==='e1m2');
+ const exitMap=NewerBindings().maps.fixturesExit;
+ if(exitMap==null)return [];
+ const exits=entities.filter(e=>e.classname==='trigger_changelevel'&&e.map===exitMap);
  if(exits.length!==1||!/^\*\d+$/.test(exits[0].model||''))return [];
  const exit=model.submodels?.[Number(exits[0].model.slice(1))];
  if(!finite3(exit?.mins)||!finite3(exit?.maxs))return [];

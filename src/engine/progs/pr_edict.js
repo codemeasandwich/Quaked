@@ -23,7 +23,7 @@ import { Respawn_ParseDrop, Respawn_ParsePlayer, Respawn_ParseRemains } from '..
 import { Sys_Error } from '../common/sys.js';
 import { Con_Printf, Con_DPrintf, COM_Parse, com_token } from '../common/common.js';
 import { Cmd_AddCommand, Cmd_Argv } from '../common/cmd.js';
-import { cvar_t, Cvar_RegisterVariable, Cvar_FindVar } from '../common/cvar.js';
+import { cvar_t, Cvar_RegisterVariable, Cvar_FindVar, Cvar_VariableValue } from '../common/cvar.js';
 import { GameProfile_ConfirmProgs, GameProfile_IsHexen2 } from '../common/game_profile.js';
 import { CRC_Init, CRC_ProcessByte, CRC_Value } from '../common/crc.js';
 import {
@@ -58,6 +58,7 @@ import { SV_LargeProtocolNeeded } from '../server/sv_large_protocol.js';
 import { SV_PinnedZombieSpawned } from '../common/hooks.js'; // installed by newer/gameplay/sv_pinnedzombies.js
 import { Axe_ParseRecord, Axe_ValidOwnerKey } from '../common/hooks.js'; // installed by newer/gameplay/axe_record.js
 import { SV_AxeReset } from '../common/hooks.js'; // installed by newer/gameplay/sv_axecut.js
+import { Hexen2_LoadStrings } from '../common/hexen2_text_resources.js';
 
 //============================================================================
 // Module state
@@ -96,6 +97,30 @@ const SPAWNFLAG_NOT_EASY = 256;
 const SPAWNFLAG_NOT_MEDIUM = 512;
 const SPAWNFLAG_NOT_HARD = 1024;
 const SPAWNFLAG_NOT_DEATHMATCH = 2048;
+
+// Hexen II's bits are its own (uhexen2 engine/hexen2/server.h); the low 0x100..0x800 are class filters, not Quake's
+// skill filters, so the whole test is a game-profile branch rather than a reinterpretation of Quake's.
+const H2_SPAWNFLAG_NOT_PALADIN = 0x00000100;
+const H2_SPAWNFLAG_NOT_CLERIC = 0x00000200;
+const H2_SPAWNFLAG_NOT_NECROMANCER = 0x00000400;
+const H2_SPAWNFLAG_NOT_THEIF = 0x00000800;
+const H2_SPAWNFLAG_NOT_EASY = 0x00001000;
+const H2_SPAWNFLAG_NOT_MEDIUM = 0x00002000;
+const H2_SPAWNFLAG_NOT_HARD = 0x00004000;
+const H2_SPAWNFLAG_NOT_DEATHMATCH = 0x00008000;
+const H2_SPAWNFLAG_NOT_COOP = 0x00010000;
+const H2_SPAWNFLAG_NOT_SINGLE = 0x00020000;
+
+// A Hexen II single-player class excludes the spawn flags of the other classes (uhexen2 ED_LoadFromFile).
+function hexenClassFiltered( spawnflags, playerclass ) {
+
+	if ( playerclass === 1 ) return ( spawnflags & H2_SPAWNFLAG_NOT_PALADIN ) !== 0;
+	if ( playerclass === 2 ) return ( spawnflags & H2_SPAWNFLAG_NOT_CLERIC ) !== 0;
+	if ( playerclass === 3 || playerclass === 5 ) return ( spawnflags & H2_SPAWNFLAG_NOT_NECROMANCER ) !== 0;
+	if ( playerclass === 4 ) return ( spawnflags & H2_SPAWNFLAG_NOT_THEIF ) !== 0;
+	return false;
+
+}
 
 // Movetype constant needed by ED_Count
 const MOVETYPE_STEP = 4;
@@ -1263,10 +1288,24 @@ export function ED_LoadFromFile( data ) {
 
 		data = ED_ParseEdict( data, ent );
 
-		// remove things from different skill levels or deathmatch
-		if ( deathmatch.value !== 0 ) {
+		// remove things from different skill levels, game modes or (Hexen II single player) player classes
+		const spawnflags = ent.v.spawnflags | 0;
+		if ( GameProfile_IsHexen2() ) {
 
-			if ( ( ( ent.v.spawnflags | 0 ) & SPAWNFLAG_NOT_DEATHMATCH ) ) {
+			let skip = false;
+			if ( deathmatch.value !== 0 ) skip = ( spawnflags & H2_SPAWNFLAG_NOT_DEATHMATCH ) !== 0;
+			else if ( Cvar_VariableValue( 'coop' ) !== 0 ) skip = ( spawnflags & H2_SPAWNFLAG_NOT_COOP ) !== 0;
+			else {
+
+				const playerclass = ( Cvar_VariableValue( '_cl_playerclass' ) | 0 ) || 1; // native default is the Paladin
+				skip = ( spawnflags & H2_SPAWNFLAG_NOT_SINGLE ) !== 0
+					|| hexenClassFiltered( spawnflags, playerclass );
+
+			}
+			if ( ! skip ) skip = ( current_skill === 0 && ( spawnflags & H2_SPAWNFLAG_NOT_EASY ) !== 0 )
+				|| ( current_skill === 1 && ( spawnflags & H2_SPAWNFLAG_NOT_MEDIUM ) !== 0 )
+				|| ( current_skill >= 2 && ( spawnflags & H2_SPAWNFLAG_NOT_HARD ) !== 0 );
+			if ( skip ) {
 
 				ED_Free( ent );
 				inhibit ++;
@@ -1274,9 +1313,19 @@ export function ED_LoadFromFile( data ) {
 
 			}
 
-		} else if ( ( current_skill === 0 && ( ( ent.v.spawnflags | 0 ) & SPAWNFLAG_NOT_EASY ) )
-			|| ( current_skill === 1 && ( ( ent.v.spawnflags | 0 ) & SPAWNFLAG_NOT_MEDIUM ) )
-			|| ( current_skill >= 2 && ( ( ent.v.spawnflags | 0 ) & SPAWNFLAG_NOT_HARD ) ) ) {
+		} else if ( deathmatch.value !== 0 ) {
+
+			if ( ( spawnflags & SPAWNFLAG_NOT_DEATHMATCH ) ) {
+
+				ED_Free( ent );
+				inhibit ++;
+				continue;
+
+			}
+
+		} else if ( ( current_skill === 0 && ( spawnflags & SPAWNFLAG_NOT_EASY ) )
+			|| ( current_skill === 1 && ( spawnflags & SPAWNFLAG_NOT_MEDIUM ) )
+			|| ( current_skill >= 2 && ( spawnflags & SPAWNFLAG_NOT_HARD ) ) ) {
 
 			ED_Free( ent );
 			inhibit ++;
@@ -1544,6 +1593,16 @@ export function PR_LoadProgs( fileData ) {
 	// In C: pr_edict_size = progs->entityfields * 4 + sizeof(edict_t) - sizeof(entvars_t);
 	// In JS we just store entityfields count - the edict_t class handles the rest
 	PR_SetEdictSize( header.entityfields );
+
+	// A Hexen II program brings strings.txt with it: the indexed prints, plaques and intermission read it by 1-based
+	// line. The search path is already mounted when the host loads progs; a test fixture without the pack simply
+	// leaves the table empty, and the builtins refuse an out-of-range index.
+	if ( programProfile !== null ) {
+
+		const strings = Hexen2_LoadStrings();
+		if ( strings.ok ) Con_DPrintf( 'Read in %i string lines\n', strings.count );
+
+	}
 
 }
 

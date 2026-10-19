@@ -57,6 +57,7 @@ import { R_NewerGame } from '../mode.js';
 import { hashJS, mix } from './fx_math.js';
 import { MRT_OUT, MRT_ZERO, layer, material } from './r_fireball.js';
 import { R_DecalSurface } from './r_decals.js';
+import { NewerBindings } from '../content_bindings.js';
 
 // 0 puts the native laser model and gunshot back
 export const r_stasisbolt = new cvar_t( 'r_stasisbolt', '1' );
@@ -66,7 +67,8 @@ const SCALE = .24; // the owner's call: fireBurst('bolt', { ..., scale: 0.24 })
 
 // Source defaults for the "Stasis bolt" at the owner's scale; source units are metres.
 export const STASIS = Object.freeze( {
-	model: 'progs/laser.mdl',
+	// the active game's laser-like projectile (Quake's progs/laser.mdl; Hexen binds none, so the effect stays off)
+	get model() { return NewerBindings().projectiles.stasis[ 0 ] ?? null; },
 	scale: SCALE,
 	// Quake units per source unit (the Fireball's, the smoke trails' and the shotgun pellets')
 	unit: 24,
@@ -502,7 +504,8 @@ function aim( ent, out ) {
  */
 export function R_StasisBoltTakes( ent ) {
 
-	if ( ent == null || ent.model == null || ent.model.name !== STASIS.model || ent.origin == null || ! active() ) return false;
+	const model = STASIS.model;
+	if ( ent == null || model == null || ent.model == null || ent.model.name !== model || ent.origin == null || ! active() ) return false;
 	const cl = deps.cl?.();
 	if ( cl == null ) return false;
 	const time = cl.time, o = ent.origin;

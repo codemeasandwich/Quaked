@@ -159,6 +159,11 @@ export class entity_state_t {
 		this.colormap = 0;
 		this.skin = 0;
 		this.effects = 0;
+		// Hexen II's optional entity fields in their wire units: scale is scale*100 (100 = 1.0), drawflags and
+		// abslight are the native bytes. Quake leaves them at these defaults and its writer never sends them.
+		this.scale = 100;
+		this.drawflags = 0;
+		this.abslight = 0;
 
 	}
 
@@ -183,6 +188,9 @@ export class entity_state_t {
 		this.colormap = other.colormap;
 		this.skin = other.skin;
 		this.effects = other.effects;
+		this.scale = other.scale;
+		this.drawflags = other.drawflags;
+		this.abslight = other.abslight;
 
 	}
 

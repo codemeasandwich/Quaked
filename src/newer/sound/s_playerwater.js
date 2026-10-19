@@ -9,6 +9,7 @@ import { STAT_HEALTH } from '../../engine/common/quakedef.js';
 import { Cvar_VariableValue } from '../../engine/common/cvar.js';
 import { volume } from '../../engine/sound/sound.js';
 import { S_GetAudioContext, S_GetMasterGain, S_AddSoundReplacement } from '../../engine/sound/snd_dma.js';
+import { NewerBindings } from '../content_bindings.js';
 import { R_NewerGame } from '../mode.js';
 import { CL_PlayerWater } from '../gameplay/cl_water.js';
 import { createEffectDeck, startEffect as start, stopEffect as stop, releaseEffect } from './s_effectdeck.js';
@@ -113,7 +114,7 @@ export function S_GetPlayerWaterStatus() {
 // Replace the native water bed only while the supplied underwater bed is
 // actually admitted and audible. Surface streams and unsupported cues stay native.
 S_AddSoundReplacement( ( sfx, origin, volume, attenuation, entity ) => {
-	const cue = { 'ambience/water1.wav': 'underwater', 'player/inh2o.wav': 'enter', 'misc/water1.wav': 'walking', 'misc/water2.wav': 'walking' }[ sfx?.name ];
+	const cue = NewerBindings().sounds.playerWater[ sfx?.name ];
 	if ( ! cue || ( cue !== 'underwater' && entity !== cl.viewentity ) ) return false;
 	S_UpdatePlayerWater();
 	const deck = decks[ cue ];

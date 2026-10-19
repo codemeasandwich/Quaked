@@ -35,15 +35,16 @@ import { SV_PinnedZombieSpawned } from '../common/hooks.js'; // installed by new
 import { sv_player } from './sv_phys.js';
 import { FL_GODMODE, FL_NOTARGET,
 	MOVETYPE_WALK, MOVETYPE_FLY, MOVETYPE_NOCLIP } from './sv_phys.js';
-import { Cvar_Set, Cvar_SetValue, Cvar_VariableValue } from '../common/cvar.js';
+import { cvar_t, Cvar_Set, Cvar_SetValue, Cvar_VariableValue, Cvar_FindVar, Cvar_RegisterVariable } from '../common/cvar.js';
 import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv, Cmd_Args, Cmd_ExecuteString,
 	Cmd_ForwardToServer, cmd_source, src_command, src_client, Cbuf_AddText } from '../common/cmd.js';
 import { SV_SpawnServer, SV_SaveSpawnparms, SV_RestorePowerups, SV_ClearCarriedPowerups, SV_DropClient,
-	SV_WriteClientdataToMessage, current_skill, SV_CheckSignon, sv_protocol, SV_ProtocolFor } from './sv_main.js';
+	SV_WriteClientdataToMessage, current_skill, SV_CheckSignon, sv_protocol, SV_ProtocolFor,
+	SV_Hexen2UpdateClass, SV_SetHexen2Field } from './sv_main.js';
 import { PROTOCOL_LARGE } from '../common/protocol.js';
 import { MAX_EDICTS, MAX_EDICTS_STANDARD } from '../common/quakedef.js';
 import { sv, svs, host_client, set_host_client,
-	NUM_SPAWN_PARMS, NUM_PING_TIMES } from './server.js';
+	NUM_SPAWN_PARMS, NUM_PING_TIMES, deathmatch } from './server.js';
 import { cls, cl, ca_connected, ca_dedicated, MAX_DEMOS } from '../client/client.js';
 import { key_game, key_console, key_dest, set_key_dest } from '../client/keys.js';
 import { CL_Disconnect, CL_EstablishConnection, CL_NextDemo,
@@ -64,6 +65,7 @@ import { S_WelcomeJingle } from '../common/hooks.js'; // installed by newer/soun
 const SHELL_SAVE_PREFIX = '// quaked-shells-v1 ';
 import { set_noclip_anglehack } from '../common/host_state.js';
 import { GameSelection_SavePrefix } from '../common/game_selection.js';
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
 
 // noclip_anglehack lives in a leaf (card [44g], D1a), so the client reads it without importing the host
 export { noclip_anglehack, set_noclip_anglehack } from '../common/host_state.js';
@@ -113,6 +115,10 @@ export function Host_InitCommands() {
 	Cmd_AddCommand( 'spawn', Host_Spawn_f );
 	Cmd_AddCommand( 'begin', Host_Begin_f );
 	Cmd_AddCommand( 'prespawn', Host_PreSpawn_f );
+	// Hexen II's class choice lives in `_cl_playerclass` (native cl_main.c); registering it here lets the class menu
+	// and the `playerclass` command agree before a game is selected.
+	if ( Cvar_FindVar( '_cl_playerclass' ) === null ) Cvar_RegisterVariable( new cvar_t( '_cl_playerclass', '1', true ) );
+	Cmd_AddCommand( 'playerclass', Host_Class_f );
 
 }
 
@@ -195,7 +201,7 @@ function Host_Map_f() {
 
 	svs.serverflags = 0; // haven't completed an episode yet
 
-	SV_SpawnServer( name );
+	SV_SpawnServer( name, GameProfile_IsHexen2() ? Cmd_Argv( 2 ) : '' );
 
 	if ( ! sv.active )
 		return;
@@ -227,9 +233,9 @@ function Host_Map_f() {
 
 function Host_Changelevel_f() {
 
-	if ( Cmd_Argc() !== 2 ) {
+	if ( Cmd_Argc() !== 2 && ! ( GameProfile_IsHexen2() && Cmd_Argc() === 3 ) ) {
 
-		Con_Printf( 'changelevel <levelname> : continue game on a new level\n' );
+		Con_Printf( 'changelevel <levelname> [startspot] : continue game on a new level\n' );
 		return;
 
 	}
@@ -266,7 +272,7 @@ function Host_Changelevel_f() {
 	}
 
 	SV_SaveSpawnparms();
-	SV_SpawnServer( level );
+	SV_SpawnServer( level, GameProfile_IsHexen2() ? Cmd_Argv( 2 ) : '' );
 	// Note: SV_SpawnServer handles client reconnection internally via SV_SendReconnect
 	// which calls Host_Reconnect_f to reset cls.signon. We do NOT call CL_EstablishConnection
 	// here because the client is already connected - it just needs new signon messages.
@@ -1407,6 +1413,53 @@ function Host_Stopdemo_f() {
 
 /*
 ==================
+Host_Class_f
+
+Hexen II's `playerclass` command (uhexen2 Host_Class_f): on the client it records the choice in `_cl_playerclass` and
+forwards it, so the server's spawn command can put it on the edict before ClientConnect. On the server the class is
+kept on the client and announced to everyone.
+==================
+*/
+function Host_Class_f() {
+
+	if ( Cmd_Argc() === 1 ) {
+
+		Con_Printf( 'playerclass is %d\n', Cvar_VariableValue( '_cl_playerclass' ) | 0 );
+		return;
+
+	}
+
+	const requested = parseFloat( Cmd_Argc() === 2 ? Cmd_Argv( 1 ) : Cmd_Args() );
+	if ( ! Number.isFinite( requested ) || requested < 1 || requested > 5 ) {
+
+		Con_Printf( 'Invalid player class.\n' );
+		return;
+
+	}
+
+	if ( cmd_source === src_command ) {
+
+		Cvar_SetValue( '_cl_playerclass', requested );
+		if ( cls.state === ca_connected ) Cmd_ForwardToServer();
+		return;
+
+	}
+
+	// A load or a hub keeps the class the player already had (native Host_Class_f)
+	let playerclass = requested | 0;
+	let edictClass = 0;
+	const classField = host_client.edict != null ? GetEdictFieldValue( host_client.edict, 'playerclass' ) : null;
+	if ( classField !== null ) edictClass = classField.accessor.getFloat( classField.ofs ) | 0;
+	if ( sv.loadgame || host_client.playerclass ) playerclass = edictClass || host_client.playerclass || playerclass;
+	host_client.playerclass = playerclass;
+	if ( host_client.edict != null ) SV_SetHexen2Field( host_client.edict, 'playerclass', playerclass );
+	host_client.old_playerclass = playerclass;
+	SV_Hexen2UpdateClass( sv.reliable_datagram, svs.clients.indexOf( host_client ), playerclass );
+
+}
+
+/*
+==================
 Host_PreSpawn_f
 ==================
 */
@@ -1465,6 +1518,53 @@ function Host_Spawn_f() {
 		// if this is the last client to be connected, unpause
 		sv.paused = false;
 
+	} else if ( GameProfile_IsHexen2() ) {
+
+		// uhexen2 Host_Spawn_f: a restored hub keeps its edict and stats; a fresh spawn clears them and puts the
+		// chosen class on the entity before ClientConnect, which is where Hexen's gamecode reads it.
+		const ent = host_client.edict;
+		const restored = GetEdictFieldValue( ent, 'stats_restored' );
+		const statsRestored = restored !== null && restored.accessor.getFloat( restored.ofs ) !== 0;
+		sv.paused = false;
+
+		if ( ! statsRestored || deathmatch.value ) {
+
+			ent.clearFields();
+			const team = ( host_client.colors & 15 ) + 1;
+			ent.v.team = team;
+			ent.v.netname = ED_NewString( host_client.name );
+
+			// A fresh connection takes the client's `_cl_playerclass`; a level change keeps the class it had.
+			let playerclass = host_client.playerclass | 0;
+			if ( playerclass < 1 || playerclass > 5 ) playerclass = Cvar_VariableValue( '_cl_playerclass' ) | 0;
+			if ( playerclass < 1 || playerclass > 5 ) playerclass = 1;
+			host_client.playerclass = playerclass;
+			host_client.old_playerclass = playerclass; // the spawn list below announces it
+			SV_SetHexen2Field( ent, 'playerclass', playerclass );
+			host_client.h2Stats = null; // a fresh player: the next frame sends every stat
+
+			if ( pr_global_struct ) {
+
+				for ( let i = 0; i < NUM_SPAWN_PARMS; i ++ )
+					pr_global_struct[ 'parm' + ( i + 1 ) ] = host_client.spawn_parms[ i ];
+
+				pr_global_struct.time = sv.time;
+				pr_global_struct.self = EDICT_TO_PROG( sv_player );
+				PR_ExecuteProgram( pr_global_struct.ClientConnect );
+
+				if ( ( Sys_FloatTime() - host_client.netconnection.connecttime ) <= sv.time )
+					Sys_Printf( '%s entered the game\n', host_client.name );
+
+				PR_ExecuteProgram( pr_global_struct.PutClientInServer );
+
+				SV_RespawnFinishTravel( ent );
+				SV_RestorePowerups( ent );
+				SV_SeamlessPlacePlayer( ent );
+
+			}
+
+		}
+
 	} else {
 
 		// set up the edict
@@ -1519,6 +1619,7 @@ function Host_Spawn_f() {
 		MSG_WriteByte( host_client.message, svc_updatename );
 		MSG_WriteByte( host_client.message, i );
 		MSG_WriteString( host_client.message, client.name );
+		if ( GameProfile_IsHexen2() ) SV_Hexen2UpdateClass( host_client.message, i, client.playerclass | 0 );
 		MSG_WriteByte( host_client.message, svc_updatefrags );
 		MSG_WriteByte( host_client.message, i );
 		MSG_WriteShort( host_client.message, client.old_frags );

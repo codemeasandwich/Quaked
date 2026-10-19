@@ -52,16 +52,16 @@ import { cvar_t } from '../../engine/common/cvar.js';
 import { hashJS } from './fx_math.js';
 import { FIREBALL, MRT_OUT, MRT_ZERO, layer, material } from './r_fireball.js';
 import { R_NewerGame } from '../mode.js';
+import { NewerBindings } from '../content_bindings.js';
 
 // 0 puts the native Death Knight shot model, trail and impact back (lava balls are always native)
 export const r_lavaballs = new cvar_t( 'r_lavaballs', '1' );
 
 export const LAVABALL = Object.freeze( {
-	// the Death Knight's magic shots (card [FB2]: the owner's choice, one supplied fireball on each of the native shots
-	// of hknight.qc's fan, which keeps its count, damage, timing and aim), and only those (owner, 14 October 2026: the lava pits' and Chthon's lava balls keep their own ball
-	// model, with a thin trail like a rocket's, r_smoketrail.js `SMOKE.lavaBallScale`)
-	models: Object.freeze( [ 'progs/k_spike.mdl' ] ),
-	knight: 'progs/k_spike.mdl',
+	// the active game's straight-flight fire/magic shots (Quake: the Death Knight's fan, progs/k_spike.mdl; Hexen:
+	// its native fireball models). Lava balls stay native with a thin rocket trail.
+	get models() { return NewerBindings().projectiles.fireball; },
+	get knight() { return NewerBindings().projectiles.fireballKnight; },
 	knightNear: 64, // an impact this close to a held shot's last drawn origin takes that shot's direction
 	// shootFireballs() defaults of the source (size 0.42, power 1) at quality "high" (density 1)
 	size: .42, power: 1, density: 1,

@@ -1,22 +1,23 @@
 /**
  * @module engine/progs/hexen2_cmds
  *
- * The first Hexen II builtins, implemented against this port's existing globals rather than a new execution path:
- * the vector/angle/maths builtins the supplied gamecode calls constantly. The numbers are the pinned
- * `hexen2_builtins.js` contract, and each implementation mirrors the native C body (uhexen2 pr_cmds.c) with the port's
- * typed global helpers. A builtin outside this table is refused by name, never silently skipped.
+ * The Hexen II builtins that are pure maths, string formatting or RNG: numbers whose native body differs from the
+ * Quake one (`rint` rounds at ±0.1, `random` is the native `rand()/RAND_MAX`, `dprintf`/`dprintv` format one value)
+ * and the numbers Hexen II added where Quake's table has a Fixme (`vhlen`, `cos`, `sin`, `sqrt`, `concatv`,
+ * `v_factor`, `v_factorrange`). Every other Hexen reimplementation of a Quake builtin is gone: the merged table (U0)
+ * resolves those from `server/pr_cmds.js`, and the legacy `Hexen2_CallBuiltin` path below falls back to that same
+ * Quake table so this branch keeps one implementation while the packages are apart.
  *
  * Types: plain values and functions; no exported classes.
- * State: no mutable exports.
- * Errors: none raised here; a caller-provided random source is used for `random`.
+ * State: the registered engine-backed layer (world, server, precache) lives in `registeredBuiltins`.
+ * Errors: none raised here; developer prints never abort on bad gamecode format strings.
  */
 
-import { G_FLOAT, G_FLOAT_SET, G_INT, G_INT_SET, G_STRING, G_VECTOR, PR_SetTempString, pr_argc, pr_global_struct } from './progs.js';
+import { G_FLOAT, G_FLOAT_SET, G_STRING, G_VECTOR, pr_global_struct } from './progs.js';
 import { OFS_PARM0, OFS_PARM1, OFS_RETURN } from './pr_comp.js';
-import { AngleVectors } from '../common/mathlib.js';
-import { Cvar_VariableValue, Cvar_Set } from '../common/cvar.js';
 import { HEXEN2_BUILTIN_COUNT } from './hexen2_builtins.js';
 import { Con_DPrintf } from '../common/console.js';
+import { Hexen2_SharedBuiltin } from './hexen2_shared_builtins.js';
 
 const DEG2RAD = Math.PI / 180;
 
@@ -26,86 +27,28 @@ function writeVector( x, y, z ) {
 
 }
 
-function vectorLength( x, y, z ) { return Math.hypot( x, y, z ); }
 
-// #1 makevectors(angles): write v_forward/v_right/v_up for the current angles
-function makevectors() {
-
-	const angles = G_VECTOR( OFS_PARM0 );
-	const forward = new Float32Array( 3 ), right = new Float32Array( 3 ), up = new Float32Array( 3 );
-	AngleVectors( angles, forward, right, up );
-	pr_global_struct.v_forward = forward;
-	pr_global_struct.v_right = right;
-	pr_global_struct.v_up = up;
-
-}
-
-// #7 random(): rand() * (1 / RAND_MAX), the native body
-function random( context ) { G_FLOAT_SET( OFS_RETURN, context.random() ); }
-
-// #9 normalize(vector): zero-length vectors normalise to zero
-function normalize() {
-
-	const v = G_VECTOR( OFS_PARM0 ), length = vectorLength( v[ 0 ], v[ 1 ], v[ 2 ] );
-	if ( length === 0 ) writeVector( 0, 0, 0 );
-	else writeVector( v[ 0 ] / length, v[ 1 ] / length, v[ 2 ] / length );
-
-}
-
-// #12 vlen(vector)
-function vlen() { const v = G_VECTOR( OFS_PARM0 ); G_FLOAT_SET( OFS_RETURN, vectorLength( v[ 0 ], v[ 1 ], v[ 2 ] ) ); }
+// #7 random(): rand() * (1.0 / RAND_MAX). The injected source is already a value in [0, 1] from the native RNG stream;
+// unlike Quake's Math.random() it may return 1.0, which the gamecode's comparisons can observe.
+function random( context ) { G_FLOAT_SET( OFS_RETURN, context?.random ? context.random() : Math.random() ); }
 
 // #50 vhlen(vector): the horizontal length (no z)
 function vhlen() { const v = G_VECTOR( OFS_PARM0 ); G_FLOAT_SET( OFS_RETURN, Math.hypot( v[ 0 ], v[ 1 ] ) ); }
 
-// #13 vectoyaw(vector)
-function vectoyaw() {
+// #36 rint(float): Hexen II's own rounding, `(int)(f + 0.1)` / `(int)(f - 0.1)`, not Quake's ±0.5
+function rint() {
 
-	const v = G_VECTOR( OFS_PARM0 );
-	let yaw = 0;
-	if ( ! ( v[ 0 ] === 0 && v[ 1 ] === 0 ) ) {
-
-		yaw = Math.trunc( Math.atan2( v[ 1 ], v[ 0 ] ) / DEG2RAD );
-		if ( yaw < 0 ) yaw += 360;
-
-	}
-	G_FLOAT_SET( OFS_RETURN, yaw );
+	const f = G_FLOAT( OFS_PARM0 );
+	G_FLOAT_SET( OFS_RETURN, f > 0 ? Math.trunc( f + 0.1 ) : Math.trunc( f - 0.1 ) );
 
 }
-
-// #51 vectoangles(vector)
-function vectoangles() {
-
-	const v = G_VECTOR( OFS_PARM0 );
-	let yaw, pitch;
-	if ( v[ 0 ] === 0 && v[ 1 ] === 0 ) {
-
-		yaw = 0;
-		pitch = v[ 2 ] > 0 ? 90 : 270;
-
-	} else {
-
-		yaw = Math.trunc( Math.atan2( v[ 1 ], v[ 0 ] ) / DEG2RAD );
-		if ( yaw < 0 ) yaw += 360;
-		const forward = Math.hypot( v[ 0 ], v[ 1 ] );
-		pitch = Math.trunc( Math.atan2( v[ 2 ], forward ) / DEG2RAD );
-		if ( pitch < 0 ) pitch += 360;
-
-	}
-	writeVector( pitch, yaw, 0 );
-
-}
-
-// #36 rint(float), #37 floor(float), #38 ceil(float), #43 fabs(float), #84 sqrt(float)
-function rint() { G_FLOAT_SET( OFS_RETURN, Math.round( G_FLOAT( OFS_PARM0 ) ) ); }
-function floorValue() { G_FLOAT_SET( OFS_RETURN, Math.floor( G_FLOAT( OFS_PARM0 ) ) ); }
-function ceilValue() { G_FLOAT_SET( OFS_RETURN, Math.ceil( G_FLOAT( OFS_PARM0 ) ) ); }
-function fabs() { G_FLOAT_SET( OFS_RETURN, Math.abs( G_FLOAT( OFS_PARM0 ) ) ); }
-function sqrtValue() { G_FLOAT_SET( OFS_RETURN, Math.sqrt( G_FLOAT( OFS_PARM0 ) ) ); }
 
 // #61 cos(float), #62 sin(float): degrees, as the native PF_Cos/PF_Sin convert
 function cosValue() { G_FLOAT_SET( OFS_RETURN, Math.cos( G_FLOAT( OFS_PARM0 ) * DEG2RAD ) ); }
 function sinValue() { G_FLOAT_SET( OFS_RETURN, Math.sin( G_FLOAT( OFS_PARM0 ) * DEG2RAD ) ); }
+
+// #84 sqrt(float)
+function sqrtValue() { G_FLOAT_SET( OFS_RETURN, Math.sqrt( G_FLOAT( OFS_PARM0 ) ) ); }
 
 // #91 concatv(vector, vector range): clamp each axis into [-range, range]
 function concatv() {
@@ -132,7 +75,8 @@ function v_factor() {
 function v_factorrange( context ) {
 
 	const min = G_VECTOR( OFS_PARM0 ), max = G_VECTOR( OFS_PARM1 );
-	const factor = [ 0, 1, 2 ].map( i => ( max[ i ] - min[ i ] ) * context.random() + min[ i ] );
+	const source = context?.random ?? Math.random;
+	const factor = [ 0, 1, 2 ].map( i => ( max[ i ] - min[ i ] ) * source() + min[ i ] );
 	const right = pr_global_struct.v_right, forward = pr_global_struct.v_forward, up = pr_global_struct.v_up;
 	writeVector(
 		right[ 0 ] * factor[ 0 ] + forward[ 0 ] * factor[ 1 ] + up[ 0 ] * factor[ 2 ],
@@ -141,41 +85,52 @@ function v_factorrange( context ) {
 
 }
 
-// The native variadic string: the string arguments from `first` to pr_argc-1, concatenated.
-function varString( first ) {
+// The native `%d` when exact, `%5.1f` otherwise
+function nativeNumberText( value ) {
 
-	let out = '';
-	for ( let i = first; i < pr_argc; i ++ ) out += G_STRING( OFS_PARM0 + i * 3 );
-	return out;
+	return value === Math.trunc( value ) ? String( Math.trunc( value ) ) : value.toFixed( 1 ).padStart( 5, ' ' );
 
 }
 
-// #26 ftos(float): the integer form when exact, else one decimal place (as the native PF_ftos prints)
-function ftos() {
+// #60 dprintf(format, float): a developer console print of one formatted number; gamecode format mistakes never abort
+function dprintf() {
 
-	const v = G_FLOAT( OFS_PARM0 );
-	const text = v === ( v | 0 ) ? String( v | 0 ) : v.toFixed( 1 );
-	G_INT_SET( OFS_RETURN, PR_SetTempString( text ) );
+	const format = G_STRING( OFS_PARM0 );
+	try {
 
-}
+		Con_DPrintf( format, nativeNumberText( G_FLOAT( OFS_PARM1 ) ) );
 
-// #27 vtos(vector): the quoted, space-separated form the native PF_vtos prints
-function vtos() {
+	} catch {
 
-	const v = G_VECTOR( OFS_PARM0 );
-	const text = '\'' + v[ 0 ].toFixed( 1 ) + ' ' + v[ 1 ].toFixed( 1 ) + ' ' + v[ 2 ].toFixed( 1 ) + '\'';
-	G_INT_SET( OFS_RETURN, PR_SetTempString( text ) );
+		// a malformed gamecode format is still a developer print, never a program error
+
+	}
 
 }
 
-// #25 dprint(text...): development print
-function dprint() { Con_DPrintf( '%s', varString( 0 ) ); }
+// #64 dprintv(format, vector): a developer console print of the native quoted vector
+function dprintv() {
 
-// #45 cvar(name): a cvar's value as a float
-function cvarValue() { G_FLOAT_SET( OFS_RETURN, Cvar_VariableValue( G_STRING( OFS_PARM0 ) ) ); }
+	const format = G_STRING( OFS_PARM0 ), v = G_VECTOR( OFS_PARM1 );
+	try {
 
-// #72 cvar_set(name, value)
-function cvarSet() { Cvar_Set( G_STRING( OFS_PARM0 ), G_STRING( OFS_PARM1 ) ); }
+		Con_DPrintf( format, '\'' + nativeNumberText( v[ 0 ] ) + ' ' + nativeNumberText( v[ 1 ] ) + ' ' + nativeNumberText( v[ 2 ] ) + '\'' );
+
+	} catch {
+
+		// as dprintf
+
+	}
+
+}
+
+/**
+ * The self-contained layer: only numbers whose native Hexen II body is not the Quake body.
+ */
+export const HEXEN2_CORE_BUILTINS = Object.freeze( {
+	7: random, 36: rint, 50: vhlen, 60: dprintf, 61: cosValue, 62: sinValue, 64: dprintv, 84: sqrtValue,
+	91: concatv, 94: v_factor, 95: v_factorrange
+} );
 
 // Implementations that need engine/server state are installed by their own module (hexen2_world_cmds.js) so this
 // module keeps no dependency on the server; an installed builtin is resolved after the self-contained table.
@@ -204,23 +159,20 @@ export function Hexen2_RegisterBuiltins( table ) {
 }
 
 /** The implemented builtins, by their pinned contract number. */
-export const HEXEN2_IMPLEMENTED_BUILTINS = Object.freeze( {
-	1: makevectors, 7: random, 9: normalize, 12: vlen, 13: vectoyaw, 25: dprint, 26: ftos, 27: vtos, 36: rint, 37: floorValue,
-	38: ceilValue, 43: fabs, 45: cvarValue, 50: vhlen, 51: vectoangles, 61: cosValue, 62: sinValue, 72: cvarSet,
-	84: sqrtValue, 91: concatv, 94: v_factor, 95: v_factorrange
-} );
+export const HEXEN2_IMPLEMENTED_BUILTINS = HEXEN2_CORE_BUILTINS;
 
 /**
- * Calls an implemented Hexen II builtin.
+ * Calls an implemented Hexen II builtin. Numbers the Hexen layers deliberately do not override are sent to Quake's
+ * own table; after U0 merges the tables this fallback is no longer on the interpreter's path.
  *
  * @param {number} number the builtin number from the function's negative `first_statement`
  * @param {{ random: function(): number }} context the random source (as rand()/RAND_MAX)
- * @returns {boolean} whether the builtin is implemented and was called
+ * @returns {boolean} whether the builtin was found and was called
  */
 export function Hexen2_CallBuiltin( number, context ) {
 
-	const implementation = HEXEN2_IMPLEMENTED_BUILTINS[ number ] ?? registeredBuiltins.get( number );
-	if ( implementation === undefined ) return false;
+	const implementation = HEXEN2_CORE_BUILTINS[ number ] ?? registeredBuiltins.get( number ) ?? Hexen2_SharedBuiltin( number );
+	if ( implementation === undefined || implementation === null ) return false;
 	implementation( context );
 	return true;
 

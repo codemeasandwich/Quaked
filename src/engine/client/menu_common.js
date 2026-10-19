@@ -17,7 +17,7 @@
  *
  * Each state field has one writer, its setter; `menuOpeners` is filled by the facade (menu.js) as it loads.
  */
-import { NEWER_ENABLED_FEATURES } from '../common/hooks.js'; // installed by newer/ui/newer_defaults.js
+import { NEWER_DEFAULT_GAMMA, Newer_ApplyGameDefaults } from '../common/hooks.js'; // installed by newer/ui/newer_defaults.js
 import { MainMenu_Glyph, MainMenu_Image, MainMenu_TextBox, MainMenu_Text } from '../common/hooks.js'; // installed by newer/ui/menu_webgl.js
 import { key_dest } from './keys.js';
 import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from '../render/gl_draw.js';
@@ -607,8 +607,8 @@ export function M_InGame() {
 	return _sv.active || _cls.state === 2;
 
 }
-// Enhanced starts with brightness at the slider midpoint and FPS showing.
-// The successful fresh-map hook chooses the flashlight for the hub/difficulty.
-export const NEWER_DEFAULT_GAMMA = 0.75; // brightness range is gamma1 (dark) to gamma.5 (bright)
-// built when used: the feature list is Newer's, installed after this module loads
-export const newerDefaults = () => NEWER_ENABLED_FEATURES.map( name => name + ' 1\n' ).join( '' ) + `gamma ${NEWER_DEFAULT_GAMMA}\ncl_showfps 1\n`;
+// Enhanced starts with brightness at the slider midpoint and FPS showing. The menus already emit `r_hdr 1` (or 0)
+// beside this, so the shared helper asks Newer for the feature commands alone; the profile-driven start path can ask
+// Newer_ApplyGameDefaults for the full command text, header included.
+export { NEWER_DEFAULT_GAMMA };
+export const newerDefaults = () => Newer_ApplyGameDefaults( undefined, true, { hdr: false } );

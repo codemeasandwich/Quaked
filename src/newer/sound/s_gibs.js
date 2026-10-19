@@ -7,6 +7,7 @@ import {sv} from '../../engine/server/server.js';
 import {R_NewerGame} from '../mode.js';
 import {GibRestObserved} from '../render/gib_rest.js';
 import {S_PrecacheSound,S_StartSoundIfFree} from '../../engine/sound/snd_dma.js';
+import {NewerBindings} from '../content_bindings.js';
 export const s_gibs=new cvar_t('s_gibs','1',true);
 let world=null,frameTime=null,admitted=0;
 /** Observe one current entity. origin may be an interpolated NQ point or a current QW packet point. */
@@ -29,7 +30,7 @@ export function S_GibRestObserve(entity,model,origin,time,identity=entity?._face
  if(frameTime!==time){frameTime=time;admitted=0;}
  if(admitted>=4)return;admitted++;
  // Game-supplied stock-name samples naturally win through the ordinary sound search/cache.
- S_StartSoundIfFree(-1,S_PrecacheSound('zombie/z_fall.wav'),origin,.3,1);
+ S_StartSoundIfFree(-1,S_PrecacheSound(NewerBindings().sounds.gib),origin,.3,1);
 }
 /** QW's render list may fill before an entity origin is updated. Observe packet origins without changing it. */
 export function S_GibRestPackets(pack,time){

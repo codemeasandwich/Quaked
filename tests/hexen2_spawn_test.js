@@ -78,9 +78,10 @@ Deno.test( 'the supplied level spawns every entity with the supplied gamecode', 
 	try { result = spawnLevel(); } catch ( e ) { error = e; }
 	check( error === null, 'the spawn completed without a program error: ' + ( error ? error.message + ' [' + PR_LastRunError() + ']' : '' ) );
 	const sv = result.sv;
-	// pinned counts for the supplied demo1.bsp; a change means the spawn path or the level data changed
-	same( sv.num_edicts, 330, 'the spawned edict count' );
-	same( sv.model_precache.filter( entry => entry !== null ).length, 343, 'the model precache count' );
+	// pinned counts for the supplied demo1.bsp in native single player (Paladin, easy: uhexen2 ED_LoadFromFile filters
+	// spawnflags by mode, class and skill); a change means the spawn path or the level data changed
+	same( sv.num_edicts, 266, 'the spawned edict count' );
+	same( sv.model_precache.filter( entry => entry !== null ).length, 331, 'the model precache count' );
 	same( sv.sound_precache.filter( entry => entry !== null ).length, 215, 'the sound precache count' );
 	same( sv.model_precache[ 0 ], '', 'slot 0 is the native empty dummy' );
 	same( sv.model_precache[ 1 ], 'maps/demo1.bsp', 'slot 1 is the world map' );

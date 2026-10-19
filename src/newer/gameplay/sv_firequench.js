@@ -47,10 +47,12 @@ import { svc_temp_entity, TE_KNIGHTSPIKE } from '../../engine/common/protocol.js
 import { CONTENTS_WATER, CONTENTS_SLIME } from '../../engine/common/bspfile.js';
 import { MAX_DATAGRAM } from '../../engine/common/quakedef.js';
 import { R_NewerGame } from '../mode.js';
+import { NewerBindings } from '../content_bindings.js';
 
 export const FIRE_QUENCH = Object.freeze( {
-	models: Object.freeze( [ 'progs/lavaball.mdl', 'progs/k_spike.mdl' ] ), // the fireballs
-	sound: 'misc/h2ohit1.wav', // stock Quake's missile-into-water splash (precached by world.qc)
+	// the active game's fire-only missiles and its missile-into-water splash (content_bindings.js)
+	get models() { return NewerBindings().projectiles.quench; },
+	get sound() { return NewerBindings().sounds.missileWater; },
 	sample: 2,                 // Quake units between the points sampled along a step for the water
 	halvings: 8                // then the surface found to 1/256 of that
 } );

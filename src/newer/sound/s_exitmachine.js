@@ -1,3 +1,5 @@
+import { NewerBindings } from '../content_bindings.js';
+
 /**
  * @module newer/sound/s_exitmachine
  *
@@ -25,8 +27,10 @@
  *   falloff (any other map, channel or sound, or Classic)
  */
 export function S_ExitMachineFalloff( map, channel, distance, newer ) {
-	if ( ! newer || map !== 'maps/e1m1.bsp' || channel.entnum !== -1 ||
-		channel.sfx?.name !== 'ambience/drone6.wav' ||
+	const bindings = NewerBindings();
+	if ( ! newer || bindings.maps.exitMachine == null || map !== bindings.maps.exitMachine ||
+		bindings.sounds.exitMachine == null || channel.entnum !== -1 ||
+		channel.sfx?.name !== bindings.sounds.exitMachine ||
 		Math.hypot( channel.origin[ 0 ] - 1314, channel.origin[ 1 ] - 450, channel.origin[ 2 ] + 200 ) > 2 ) return null;
 	const t = Math.max( 0, Math.min( 1, ( 950 - distance ) / 850 ) );
 	return .6 * t * t * ( 3 - 2 * t );

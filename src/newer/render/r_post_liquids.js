@@ -20,6 +20,7 @@ import { R_WaterActive, postState } from './r_post_state.js';
 import { r_newer_water, R_NewerGame } from '../mode.js';
 import { R_LavaManHeatSources } from './r_lavaman.js';
 import { R_WaterProbeUpdate, R_WaterProbeReadiness, R_WaterProbes } from './r_waterprobe.js';
+import { NewerBindings } from '../content_bindings.js';
 
 // Independent creature capacity; never consumes a static lava-pool slot.
 export const MAX_LAVA_ACTOR_HEAT = 8;
@@ -53,10 +54,26 @@ export function R_GetLiquidLinks() {
 
 }
 
-// 0 water, 1 slime, -1 not a see-through liquid (lava is opaque, teleporters are portals)
-// Stock Quake's water textures: *water0-2, *04water1/2, *04awater1 and, in Episode 3 (E3M3 to E3M5), *04mwat1/2 (murky
-// water, the name has no "water" in it). Anything else starting with '*' is slime, lava or a teleporter.
-export const R_IsWaterTextureName = name => name.charAt( 0 ) === '*' && /water|mwat/i.test( name ) && ! /slime|lava|teleport/i.test( name );
+// 0 water, 1 slime, -1 not a see-through liquid (lava is opaque, teleporters are portals).
+// The active game's liquid names come from content_bindings.js. Quake's are *water0-2, *04water1/2, *04awater1 and, in
+// Episode 3 (E3M3 to E3M5), *04mwat1/2 (murky water, the name has no "water" in it); Hexen's are Raven's own '*' names,
+// where everything not named lava, slime or teleport is water (the native contents still decide movement and damage).
+const liquidRules = () => NewerBindings().liquids;
+const matches = ( pattern, name ) => pattern != null && pattern.test( name );
+/**
+ * Whether a texture is the active game's see-through water.
+ *
+ * @param {string} name the texture's name
+ * @returns {boolean} true for water; false for slime, lava, teleporters and everything that is not a liquid
+ */
+export function R_IsWaterTextureName( name ) {
+
+	const n = String( name ?? '' ).toLowerCase(), rules = liquidRules();
+	if ( rules.requirePrefix && n.charAt( 0 ) !== rules.requirePrefix ) return false;
+	if ( matches( rules.slimePattern, n ) || matches( rules.lavaPattern, n ) || matches( rules.teleportPattern, n ) ) return false;
+	return rules.waterPattern ? matches( rules.waterPattern, n ) : rules.defaultKind === 0;
+
+}
 
 /**
  * What kind of see-through liquid a texture is, for the pools `R_BuildWorldLights` merges.
@@ -66,11 +83,12 @@ export const R_IsWaterTextureName = name => name.charAt( 0 ) === '*' && /water|m
  */
 export function liquidKind( name ) {
 
-	const n = name.toLowerCase();
-	if ( n.charAt( 0 ) !== '*' || n.indexOf( 'lava' ) >= 0 || n.indexOf( 'teleport' ) >= 0 ) return - 1;
-	if ( n.indexOf( 'slime' ) >= 0 ) return 1;
-	if ( R_IsWaterTextureName( n ) ) return 0;
-	return - 1;
+	const n = String( name ?? '' ).toLowerCase(), rules = liquidRules();
+	if ( rules.requirePrefix && n.charAt( 0 ) !== rules.requirePrefix ) return - 1;
+	if ( matches( rules.lavaPattern, n ) || matches( rules.teleportPattern, n ) ) return - 1;
+	if ( matches( rules.slimePattern, n ) ) return 1;
+	if ( rules.waterPattern ? matches( rules.waterPattern, n ) : rules.defaultKind === 0 ) return 0;
+	return rules.defaultKind;
 
 }
 
@@ -126,9 +144,11 @@ export function R_LiquidOpacity( name, fallback ) {
  * @returns {number} 1 for E1M2's *04water1, else 0 (the kind's own look)
  */
 export function liquidMapLook( name ) {
-	const n = name.toLowerCase();
+	const n = String( name ?? '' ).toLowerCase();
 	// The owner's E1M2 reference uses the existing green-tinted clear look; the same texture elsewhere stays Clear.
-	if ( liquidMapName === 'maps/e1m2.bsp' && n === '*04water1' ) return 1;
+	// The map's authored looks are content bindings (none for Hexen).
+	const look = NewerBindings().liquids.mapLooks[ liquidMapName ]?.[ n ];
+	if ( look !== undefined ) return look;
 	// Every other map's water takes its kind's own (clear) look, so its pools show caustics at full strength: the
 	// owner chose caustics on all maps (13 October 2026), over Muddy as the default for *04water1 (E1M3 and ten other
 	// maps) and Episode 3's murky water. Muddy stays a choice (r_water_look 3).

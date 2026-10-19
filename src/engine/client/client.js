@@ -240,6 +240,10 @@ export class entity_t {
 		this.colormap = null;
 		this.effects = 0; // light, particles, etc
 		this.skinnum = 0; // for Alias models
+		// Hexen II's optional entity state; Quake entities keep 1.0/0/0 and no message sets them.
+		this.scale = 1.0;
+		this.drawflags = 0;
+		this.abslight = 0;
 		this.visframe = 0; // last frame this entity was found in an active leaf
 
 		this.dlightframe = 0; // dynamic lighting
@@ -411,6 +415,31 @@ export class client_state_t {
 
 		this.cdtrack = 0;
 		this.looptrack = 0; // cd audio
+
+		// Hexen II's session state on the shared client (cl_hexen2.js fills it); a Quake session leaves it inert.
+		this.h2 = {
+			active: false, // a Hexen II svc_hexen2_features message was received
+			entityFields: false, // packet entities may carry scale/drawflags/abslight
+			nativeBaselines: false, // signon baselines/statics use the native fixed layout
+			portals: false,
+			levelStringIndex: 0xffff, // worldspawn message: a strings.txt index, not a progs string offset
+			midiName: '',
+			plaqueIndex: 0,
+			intermission: -1,
+			statbar: 1,
+			viewDrawflags: 0,
+			viewTint: 0,
+			infoMask: 0,
+			infoMask2: 0,
+			playerclass: [], // per client slot
+			stats: {}, // the svc_update_inv fields the server last sent
+			puzzles: [ '', '', '', '', '', '', '', '' ],
+			effects: [], // long-lived client effects, by slot
+			particles: [], // the most recent particle2/3/4/explosion records (rendering is U8)
+			rain: [],
+			streams: [], // Hexen temp-entity stream records (rendering is U8)
+			angleTarget: [ 0, 0, 0 ]
+		};
 
 		// frag scoreboard
 		this.scores = null; // [cl.maxclients]

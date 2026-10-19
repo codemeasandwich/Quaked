@@ -24,11 +24,13 @@ import { S_RegisterSoundFallback } from '../../engine/sound/snd_mem.js';
 import { AMBIENT_LAVA } from '../../engine/sound/sound.js';
 import { R_NewerGame } from '../mode.js';
 import { SYNTH_Sound } from './s_synth.js';
+import { NewerBindings } from '../content_bindings.js';
 
 /** Lava you can hear: 0 off, 1 on (saved; Options, Newer features). */
 export const s_lava = new cvar_t( 's_lava', '1', true );
 
-/** The lava's sound, by Dimension of the Machine's name for it. */
+/** Quake's lava sound, by Dimension of the Machine's name for it; kept as the old public constant. The live name is the
+ * active game's binding (`content_bindings.js`), e.g. Hexen's `ambience/lava.wav`. */
 export const LAVA_SOUND = 'ambience/lava1.wav';
 
 let leaves = null, hasLava = false, filled = 0, sound = null;
@@ -124,7 +126,7 @@ export function S_LavaAmbient() {
 	look();
 	if ( ! hasLava ) return null;
 	// (looked up once per map load; a sound restart, which forgets every sound, comes with a new map)
-	sound ??= S_PrecacheSound( LAVA_SOUND );
+	sound ??= S_PrecacheSound( NewerBindings().sounds.lava );
 	return sound;
 
 }

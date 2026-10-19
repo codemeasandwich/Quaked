@@ -209,14 +209,14 @@ Deno.test( 'the extended store, fetch, bit and random opcodes behave as the pinn
 Deno.test( 'a Hexen builtin with no implementation is refused by number and native name', async () => {
 
 	const program = await fixture( {
-		functions: [ empty, { first: 0 }, { builtin: 85 } ], // particle3
+		functions: [ empty, { first: 0 }, { builtin: 107 } ], // a native PF_Fixme slot (#107-113)
 		statements: [ { op: OP_CALL0, a: 770, b: 0, c: 0 }, done( 0 ) ]
 	} );
 	program.setI( 770, 2 );
 	const error = program.fail( 1 );
 	check( error !== null, 'the call throws' );
 	check( /Program error/.test( String( error.message ) ), String( error?.message ) );
-	check( /particle3/.test( PR_LastRunError() ), 'the refusal names the native builtin: ' + PR_LastRunError() );
+	check( /107/.test( PR_LastRunError() ) && /fixme/.test( PR_LastRunError() ), 'the refusal names the number and native name: ' + PR_LastRunError() );
 
 } );
 
@@ -304,7 +304,10 @@ Deno.test( 'the implemented Hexen builtins compute their native results through 
 	same( call( 13, [ 0, 1, 0 ] )[ 0 ], 90, 'vectoyaw' );
 	out = call( 51, [ 0, 0, 1 ] );
 	same( out[ 0 ], 90, 'vectoangles pitch' ); same( out[ 1 ], 0, 'vectoangles yaw' ); same( out[ 2 ], 0, 'vectoangles roll' );
-	same( call( 36, [ 2.6, 0, 0 ] )[ 0 ], 3, 'rint' );
+	same( call( 36, [ 2.6, 0, 0 ] )[ 0 ], 2, 'rint rounds at ±0.1, not ±0.5' );
+	same( call( 36, [ 2.9, 0, 0 ] )[ 0 ], 3, 'rint 2.9' );
+	same( call( 36, [ - 2.6, 0, 0 ] )[ 0 ], - 2, 'rint -2.6' );
+	same( call( 36, [ - 2.9, 0, 0 ] )[ 0 ], - 3, 'rint -2.9' );
 	same( call( 37, [ - 1.2, 0, 0 ] )[ 0 ], - 2, 'floor' );
 	same( call( 38, [ 1.2, 0, 0 ] )[ 0 ], 2, 'ceil' );
 	same( call( 43, [ - 3, 0, 0 ] )[ 0 ], 3, 'fabs' );

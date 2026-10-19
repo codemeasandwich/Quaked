@@ -55,7 +55,7 @@ Deno.test( 'demo1 -> demo2 -> village1 -> village2 -> demo1 works through change
 	G_INT_SET( OFS_PARM0, PR_SetTempString( map ) );
 	G_INT_SET( OFS_PARM1, PR_SetTempString( spot ) );
 	check( Hexen2_CallBuiltin( 70, {} ), 'changelevel is implemented' );
-	same( sv.nextmap.level, 'maps/demo2.bsp', 'the route target is demo2' );
+	same( firstState.changelevel_issued, true, 'the native one-shot transition is issued' );
 
 	const secondState = { maxclients: 1, clients: [ client ], active: true, changelevel_issued: false };
 	const second = mount( 'maps/demo2.bsp', spot, secondState );

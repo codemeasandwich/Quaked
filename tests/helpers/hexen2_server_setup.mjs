@@ -4,12 +4,22 @@
 // installed for the tests that do not exercise monster turning.
 import { SV_SetCallbacks } from '../../src/engine/server/sv_phys.js';
 import { SV_Move_SetCallbacks } from '../../src/engine/server/sv_move.js';
-import { EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, G_FLOAT, G_FLOAT_SET } from '../../src/engine/progs/progs.js';
+import { EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, G_FLOAT, G_FLOAT_SET, svs as progsSvs } from '../../src/engine/progs/progs.js';
 import { GetEdictFieldValue } from '../../src/engine/progs/pr_edict.js';
 import { SV_StartSound, SV_StartParticle } from '../../src/engine/server/sv_main.js';
-import { sv as serverSv } from '../../src/engine/server/server.js';
+import { sv as serverSv, svs as serverSvs } from '../../src/engine/server/server.js';
 
 export function installServerCallbacks( world ) {
+
+	// Isolated Hexen fixtures set the progs view of svs; the shared Quake builtins read server.js's instance. In the
+	// real host SV_SpawnServer calls PR_SetSVS(svs), so mirror the fake fixture state here as well.
+	if ( progsSvs && progsSvs !== serverSvs ) {
+
+		serverSvs.maxclients = progsSvs.maxclients;
+		serverSvs.clients = progsSvs.clients;
+		serverSvs.active = progsSvs.active;
+
+	}
 
 	SV_SetCallbacks( {
 		SV_Move: world.SV_Move,

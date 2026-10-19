@@ -5,17 +5,19 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `index`, `glass`, `ordinaryVariants`, `sources`, `normals`, `version`,
- * `indexPromise`, `indexState`, `indexError`, `appliedFor`, `appliedOn`; 4 module-level collections (Map/Set).
+ * State: no mutable exports; module-level variables `index`, `indexBase`, `indexGeneration`, `glass`, `ordinaryVariants`,
+ * `sources`, `normals`, `version`, `indexPromise`, `indexState`, `indexError`, `appliedFor`, `appliedOn`; 4 module-level
+ * collections (Map/Set).
  *
  * Errors: throws at 2 places; catches at 4 places.
  */
 // Newer Game's wall textures: our own higher resolution versions of the original
 // pictures (see newer/textures/CREDITS.txt).
 //
-// newer/textures/index.json lists them by the game's texture names, with the pixels
-// each was made from ("sources", card [34e]): an add-on's own picture by the same
-// name keeps its look.  A texture is
+// newer/textures/index.json lists Quake's textures by the game's texture names; Hexen II has its own namespace at
+// newer/textures/hexen2/index.json, so a native Hexen name can never select Quake art. An entry may name one file or
+// low/mid/high files selected by r_texture_tier (default mid). Entries carry the pixels each was made from
+// ("sources", card [34e]): an add-on's own picture by the same name keeps its look. A texture is
 // loaded the ordinary way first, so the level is never held up; when its
 // higher resolution picture has arrived, that replaces the pixels of the very same
 // texture object, which every material, lightmap batch and other-level view
@@ -32,11 +34,21 @@ import { R_NewerGame, r_newer_textures } from '../mode.js';
 import { COM_NewerJSON, COM_NewerURL } from '../../engine/common/pak.js';
 import * as THREE from 'three';
 import { gl_texturemode } from '../../engine/render/glquake.js';
+import { cvar_t, Cvar_FindVar, Cvar_RegisterVariable, Cvar_VariableString } from '../../engine/common/cvar.js';
+import { GameProfile_Get } from '../../engine/common/game_profile.js';
 
 // the textures that have been given their Newer picture, so they can be put back (r_demosplit.js)
 const upgraded = new Set();
 
-const BASE = 'newer/textures/';
+// The texture index is namespaced by game family: newer/textures/index.json is Quake's, newer/textures/hexen2/index.json
+// Hexen II's. Pictures in an index are relative to its directory, so no Quake picture can be selected by a Hexen native
+// texture name; the two families also use different native pixel identities (R_GlassTextureKey).
+const TEXTURE_BASE = Object.freeze( { quake: 'newer/textures/', hexen2: 'newer/textures/hexen2/' } );
+/** The three authored texture resolutions an index entry may provide. */
+export const TEXTURE_TIERS = Object.freeze( [ 'low', 'mid', 'high' ] );
+/** Higher-resolution wall texture tier: low (0), mid (1, default) or high (2). */
+export const r_texture_tier = new cvar_t( 'r_texture_tier', '1', true );
+let indexBase = TEXTURE_BASE.quake;
 
 let index = null; // name -> file
 let glass = {}; // native-RGBA identity -> per-window authored/generated material
@@ -57,33 +69,124 @@ function bounded( promise, label, cancel = () => {} ) {
 	return Promise.race( [ promise, new Promise( ( _, reject ) => { timer = setTimeout( () => { cancel(); reject( new Error( label + ' timed out' ) ); }, NEWER_TEXTURE_TIMEOUT_MS ); } ) ] ).finally( () => clearTimeout( timer ) );
 }
 
+/**
+ * The active game family's texture-index directory.
+ *
+ * @param {?object} [profile=GameProfile_Get()] the active profile
+ * @returns {string} `newer/textures/` for Quake, `newer/textures/hexen2/` for Hexen II
+ */
+export function R_TextureIndexBase( profile = GameProfile_Get() ) {
+
+	return profile?.family === 'hexen2' ? TEXTURE_BASE.hexen2 : TEXTURE_BASE.quake;
+
+}
+
+/**
+ * The active game family's texture index file.
+ *
+ * @param {?object} [profile=GameProfile_Get()] the active profile
+ * @returns {string} the logical path, e.g. `newer/textures/index.json`
+ */
+export function R_TextureIndexPath( profile = GameProfile_Get() ) { return R_TextureIndexBase( profile ) + 'index.json'; }
+
+/**
+ * The selected texture tier's name (`r_texture_tier` accepts low/mid/high or 0/1/2). The cvar is registered at Newer
+ * install so the console and Options can change it in a running game; direct imports of this module register it here.
+ *
+ * @returns {'low'|'mid'|'high'} the tier, mid when the cvar is absent or unrecognised
+ */
+export function R_TextureTier() {
+
+	if ( Cvar_FindVar( r_texture_tier.name ) === null ) Cvar_RegisterVariable( r_texture_tier );
+	const text = Cvar_VariableString( r_texture_tier.name ).trim().toLowerCase();
+	if ( TEXTURE_TIERS.includes( text ) ) return text;
+	const number = Number( text );
+	const index = Number.isFinite( number ) ? Math.max( 0, Math.min( 2, Math.round( number ) ) ) : 1;
+	return TEXTURE_TIERS[ index ];
+
+}
+
+/**
+ * The file an index entry names for a tier. An entry may be one file for every tier, an array `[low, mid, high]`, or
+ * an object with `low`, `mid`, `high` (or a nested `tiers` object) members; a missing selected tier falls back to mid,
+ * then to the first file the entry provides.
+ *
+ * @param {string|Array<string>|{low?: string, mid?: string, high?: string, tiers?: object, file?: string}|null} entry
+ *   the index entry
+ * @param {'low'|'mid'|'high'} [tier=null] the selected tier; null reads `r_texture_tier` only for a tiered entry
+ * @returns {?string} the relative picture path, or null when the entry has no usable file
+ */
+export function R_TextureFile( entry, tier = null ) {
+
+	if ( typeof entry === 'string' ) return entry || null;
+	tier ??= R_TextureTier();
+	if ( Array.isArray( entry ) ) {
+
+		const selected = TEXTURE_TIERS.indexOf( tier ), order = [ selected, 1, 0, 2 ];
+		for ( const index of order ) if ( typeof entry[ index ] === 'string' && entry[ index ] ) return entry[ index ];
+		return entry.find( value => typeof value === 'string' && value ) ?? null;
+
+	}
+	if ( entry != null && typeof entry === 'object' ) {
+
+		const tiers = entry.tiers != null && typeof entry.tiers === 'object' ? entry.tiers : entry;
+		const order = [ tier, 'mid', 'low', 'high', 'file' ];
+		for ( const key of order ) if ( typeof tiers[ key ] === 'string' && tiers[ key ] ) return tiers[ key ];
+		for ( const value of Object.values( tiers ) ) if ( typeof value === 'string' && value ) return value;
+
+	}
+	return null;
+
+}
+
+/**
+ * The file a named texture's entry selects from an index's `textures` object. The upgrade and prefetch paths use this,
+ * so a tiered entry behaves the same in both.
+ *
+ * @param {?Object<string, object|string>} textures an index's `textures` object
+ * @param {string} name the game's texture name
+ * @param {'low'|'mid'|'high'} [tier=null] the selected tier; null reads `r_texture_tier` only for a tiered entry
+ * @returns {?string} the relative picture path, or null when it is not listed
+ */
+export function R_TextureIndexFile( textures, name, tier = null ) {
+
+	return R_TextureFile( textures?.[ name ], tier );
+
+}
+
 function loadScalar( file ) {
 
 	if ( ! file ) return Promise.resolve( null );
-	let request = scalarFiles.get( file );
+	const key = indexBase + file;
+	let request = scalarFiles.get( key );
 	if ( ! request ) {
 
 		const controller = new AbortController();
-		request = bounded( fetch( COM_NewerURL( BASE + file, BASE + file + '?v=' + version ), { signal: controller.signal } )
+		request = bounded( fetch( COM_NewerURL( indexBase + file, indexBase + file + '?v=' + version ), { signal: controller.signal } )
 			.then( response => { if ( ! response.ok ) throw new Error( 'Height scalar unavailable: ' + file ); return response.arrayBuffer(); } ), file, () => controller.abort() )
-			.catch( error => { assetErrors.set( file, String( error.message || error ) ); return null; } );
-		scalarFiles.set( file, request );
+			.catch( error => { assetErrors.set( key, String( error.message || error ) ); return null; } );
+		scalarFiles.set( key, request );
 
 	}
 	return request;
 
 }
 
+let indexGeneration = 0;
+
 function loadIndex() {
 
-	if ( indexPromise === null ) {
+	const base = R_TextureIndexBase();
+	if ( indexPromise !== null && indexBase === base ) return indexPromise;
 
-		indexState = 'loading';
-		indexPromise = bounded( COM_NewerJSON( BASE + 'index.json', BASE + 'index.json' ), 'Texture index' )
-			.then( ( j ) => { if ( ! j.textures ) throw new Error( 'Missing texture manifest' ); index = j.textures; normals = j.normals || {}; glass = j.glass || {}; ordinaryVariants = j.ordinaryVariants || {}; sources = j.sources || {}; version = String( j.version ); indexState = 'ready'; return index; } )
-			.catch( error => { indexError = String( error.message || error ); indexState = 'fallback'; index = {}; return index; } );
-
-	}
+	// A profile change (tests, or a host that reloads a game) starts a fresh namespace: in-flight results from the
+	// old directory are ignored rather than mixed into the new one.
+	indexBase = base;
+	const generation = ++ indexGeneration;
+	indexState = 'loading';
+	indexPromise = bounded( COM_NewerJSON( base + 'index.json', base + 'index.json' ), 'Texture index' )
+		.then( ( j ) => { if ( generation !== indexGeneration ) return index ?? {}; if ( ! j.textures ) throw new Error( 'Missing texture manifest' ); index = j.textures; normals = j.normals || {}; glass = j.glass || {}; ordinaryVariants = j.ordinaryVariants || {}; sources = j.sources || {}; version = String( j.version ); indexState = 'ready'; return index; } )
+		.catch( error => { if ( generation !== indexGeneration ) return index ?? {}; indexError = String( error.message || error ); indexState = 'fallback'; index = {}; return index; } );
 
 	return indexPromise;
 
@@ -91,7 +194,8 @@ function loadIndex() {
 
 function loadPicture( file ) {
 
-	let p = pictures.get( file );
+	const key = indexBase + file;
+	let p = pictures.get( key );
 	if ( p !== undefined ) return p;
 
 	p = new Promise( ( resolve ) => {
@@ -117,11 +221,11 @@ function loadPicture( file ) {
 
 		};
 		img.onerror = () => finish( null, new Error( 'Texture unavailable: ' + file ) );
-		img.src = COM_NewerURL( BASE + file, BASE + file + '?v=' + version );
+		img.src = COM_NewerURL( indexBase + file, indexBase + file + '?v=' + version );
 
 	} );
 
-	pictures.set( file, p );
+	pictures.set( key, p );
 	return p;
 
 }
@@ -140,8 +244,8 @@ function loadPicture( file ) {
  */
 export function R_NewerTexturesPrefetch(names){
  return loadIndex().then(idx=>Promise.all([...new Set(names)].flatMap(name=>{
-  const file=idx[name],crafted=normals[name];
-  return file===undefined?[]:[loadPicture(file),crafted?loadPicture(crafted.file):null,
+  const file=R_TextureIndexFile(idx,name),crafted=normals[name];
+  return file===null?[]:[loadPicture(file),crafted?loadPicture(crafted.file):null,
    crafted?.edgeSource?loadPicture(crafted.edgeSource.file):null,loadScalar(crafted?.dataFile)];
  })));
 }
@@ -236,8 +340,8 @@ export function R_NewerTextureUpgrade( name, texture ) {
 		if ( ordinary && ( typeof ordinary.file !== 'string' || !ordinary.file ) ) return null;
 		// the same name over other pixels (an add-on's own picture, such as Scourge of Armagon's metal5_6) keeps its own
 		if ( ! variant && !ordinary && sources[ name ] && ! sources[ name ].includes( nativeKey ) ) return null;
-		const file = variant?.file || ordinary?.file || idx[ name ];
-		if ( file === undefined ) return null;
+		const file = variant?.file || ordinary?.file || R_TextureIndexFile( idx, name );
+		if ( file == null ) return null;
 
 		// the picture and, when there is one, its crafted height map
 		const crafted = variant ? { file: variant.heightFile, normalFile: variant.normalFile, normalChannels: variant.normalChannels, glossFile: variant.glossFile, glossOpeningFile: variant.glossOpeningFile, composeOutsideGlass: variant.composeOutsideGlass, strength: 1, cap: 1.1 } : ordinary ? ordinary.normal : normals[ name ];

@@ -2,7 +2,7 @@
  * @module engine/progs/hexen2_precache_cmds
  *
  * The Hexen II precache and model builtins: `precache_sound`, `precache_model`, their versioned qcc aliases
- * (model2/3/4, sound2/3/4), the no-op `precache_file`, and `setmodel`. They reuse the server's existing
+ * (model2/3/4, sound2/3/4), the no-op `precache_file`, and the puzzle models. They reuse the server's existing
  * `sv.model_precache`/`sv.sound_precache` lists and the port's model loader, so a Hexen spawn function populates the
  * same structures the Quake gamecode does. Numbers are the pinned 114-entry contract; the module registers itself when
  * the server loads it.
@@ -12,10 +12,12 @@
  * Errors: the native program errors for an empty name, an out-of-spawn precache, an overflow or an unprecached model.
  */
 
+import '../server/pr_cmds.js'; // publishes the shared Quake builtin table for the layer fallback
 import { sv, G_STRING, G_INT, G_INT_SET, G_EDICT, PROG_TO_EDICT, PR_GetString, pr_xfunction, pr_xstatement, pr_global_struct } from './progs.js';
 import { OFS_PARM0, OFS_PARM1, OFS_RETURN } from './pr_comp.js';
 import { PR_RunError } from './pr_exec.js';
 import { ss_loading } from '../server/server.js';
+import { SV_SoundLimit } from '../server/sv_main.js';
 import { SV_LinkEdict } from '../server/world.js';
 import { Mod_ForName } from '../render/gl_model.js';
 import { ED_NewString } from './pr_edict.js';
@@ -32,7 +34,8 @@ function checkSpawn() {
 // The existing model list: the name's index, or when allowed the next free slot with the model loaded; -1 otherwise.
 function findModel( name, allowAdd ) {
 
-	for ( let i = 0; i < sv.model_precache.length; i ++ ) {
+	const limit = Math.min( sv.model_precache.length, 512 ); // MAX_MODELS: the model index is a word
+	for ( let i = 0; i < limit; i ++ ) {
 
 		if ( sv.model_precache[ i ] === name ) return i;
 		if ( sv.model_precache[ i ] == null ) {
@@ -77,7 +80,8 @@ function precacheSound() {
 	G_INT_SET( OFS_RETURN, G_INT( OFS_PARM0 ) );
 	if ( name === '' ) PR_RunError( 'PF_precache_sound: empty string' );
 	if ( ! checkSpawn() || ! sv.sound_precache ) return;
-	for ( let i = 0; i < sv.sound_precache.length; i ++ ) {
+	const limit = SV_SoundLimit();
+	for ( let i = 0; i < limit; i ++ ) {
 
 		if ( sv.sound_precache[ i ] === name ) return;
 		if ( sv.sound_precache[ i ] == null ) { sv.sound_precache[ i ] = name; return; }
@@ -87,14 +91,15 @@ function precacheSound() {
 
 }
 
-// #20 precache_model(name) and its qcc variants
+// #20 precache_model(name) and its qcc variants (#75/#97/#102)
 function precacheModel() {
 
 	const name = G_STRING( OFS_PARM0 );
 	G_INT_SET( OFS_RETURN, G_INT( OFS_PARM0 ) );
 	if ( name === '' ) PR_RunError( 'PF_precache_model: empty string' );
 	if ( ! checkSpawn() ) return;
-	for ( let i = 0; i < sv.model_precache.length; i ++ ) {
+	const limit = Math.min( sv.model_precache.length, 512 ); // MAX_MODELS: the model index is a word
+	for ( let i = 0; i < limit; i ++ ) {
 
 		if ( sv.model_precache[ i ] === name ) return;
 		if ( sv.model_precache[ i ] == null ) {
@@ -130,26 +135,15 @@ function setPuzzleModel() {
 
 }
 
-// #68/77/98/103 precache_file(name): native keeps no separate file table
+// #98/#103 precache_file(name): native keeps no separate file table
 function precacheFile() { G_INT_SET( OFS_RETURN, G_INT( OFS_PARM0 ) ); }
-
-// #3 setmodel(entity, model): the native precache lookup, model index/bounds and relink
-function setmodel() {
-
-	const ent = G_EDICT( OFS_PARM0 ), name = G_STRING( OFS_PARM1 );
-	const index = findModel( name, false );
-	if ( index < 0 ) PR_RunError( 'no precache: %s', name );
-	applyModel( ent, G_INT( OFS_PARM1 ), index );
-
-}
 
 /** The precache builtins this module installs into the Hexen II dispatcher. */
 export const HEXEN2_PRECACHE_BUILTINS = Object.freeze( {
-	3: setmodel, 87: setPuzzleModel, 90: precachePuzzleModel,
-	19: precacheSound,
-	20: precacheModel,
-	75: precacheModel, 76: precacheSound, 96: precacheSound, 97: precacheModel, 101: precacheSound, 102: precacheModel,
-	68: precacheFile, 77: precacheFile, 98: precacheFile, 103: precacheFile
+	19: precacheSound, 20: precacheModel, 75: precacheModel, 76: precacheSound,
+	87: setPuzzleModel, 90: precachePuzzleModel,
+	96: precacheSound, 97: precacheModel, 101: precacheSound, 102: precacheModel,
+	98: precacheFile, 103: precacheFile
 } );
 
 Hexen2_RegisterBuiltins( HEXEN2_PRECACHE_BUILTINS );

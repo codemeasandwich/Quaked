@@ -18,9 +18,10 @@ import { Con_Printf, Q_atoi, SZ_Clear,
 	net_message } from '../common/common.js';
 import { Cmd_AddCommand, Cmd_Argv } from '../common/cmd.js';
 import { R_BestiaryInputLocked } from '../common/hooks.js'; // installed by newer/ui/r_bestiary.js
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
 import { cvar_t, Cvar_RegisterVariable } from '../common/cvar.js';
-import { clc_move, clc_delta, PE_UPDATE_BACKUP } from '../common/protocol.js';
-import { SIGNONS,
+import { clc_move, clc_delta, clc_inv_select, BUTTON_CROUCH, PE_UPDATE_BACKUP } from '../common/protocol.js';
+import { SIGNONS, ca_disconnected,
 	kbutton_t, usercmd_t,
 	cl, cls, cl_entities } from './client.js';
 import { anglemod, VectorCopy } from '../common/mathlib.js';
@@ -91,6 +92,7 @@ export const in_strafe = new kbutton_t();
 export const in_speed = new kbutton_t();
 export const in_use = new kbutton_t();
 export const in_jump = new kbutton_t();
+export const in_crouch = new kbutton_t(); // Hexen II's native crouch key
 export const in_attack = new kbutton_t();
 export const in_up = new kbutton_t();
 export const in_down = new kbutton_t();
@@ -212,6 +214,8 @@ function IN_UseDown() { KeyDown( in_use ); }
 function IN_UseUp() { KeyUp( in_use ); }
 function IN_JumpDown() { KeyDown( in_jump ); }
 function IN_JumpUp() { KeyUp( in_jump ); }
+function IN_CrouchDown() { KeyDown( in_crouch ); }
+function IN_CrouchUp() { KeyUp( in_crouch ); }
 
 function IN_Impulse() { in_impulse = Q_atoi( Cmd_Argv( 1 ) ); }
 
@@ -468,6 +472,10 @@ export function CL_SendMove( cmd ) {
 		bits |= 2;
 	in_jump.state &= ~2;
 
+	// Hexen II's crouch is native button bit 4; a Quake server ignores an unknown button byte bit.
+	if ( in_crouch.state & 1 )
+		bits |= BUTTON_CROUCH;
+
 	if ( R_BestiaryInputLocked() ) bits = 0;
 	MSG_WriteByte( buf, bits );
 
@@ -526,6 +534,27 @@ export function CL_SendMove( cmd ) {
 }
 
 /*
+================
+CL_SendInvSelect
+
+Queues Hexen II's inventory selection (`clc_inv_select`, native clc 5). The reliable `cls.message` is flushed by
+CL_SendCmd; U5's inventory keys and status bar call this. A Quake server never sends or accepts it.
+================
+*/
+/**
+ * Queues an inventory selection for the server.
+ *
+ * @param {number} selection the inventory slot (a byte)
+ */
+export function CL_SendInvSelect( selection ) {
+
+	if ( ! GameProfile_IsHexen2() || cls.demoplayback || cls.state === ca_disconnected ) return;
+	MSG_WriteByte( cls.message, clc_inv_select );
+	MSG_WriteByte( cls.message, selection & 0xff );
+
+}
+
+/*
 ============
 CL_InitInput
 ============
@@ -567,6 +596,8 @@ export function CL_InitInput() {
 	Cmd_AddCommand( '-use', IN_UseUp );
 	Cmd_AddCommand( '+jump', IN_JumpDown );
 	Cmd_AddCommand( '-jump', IN_JumpUp );
+	Cmd_AddCommand( '+crouch', IN_CrouchDown );
+	Cmd_AddCommand( '-crouch', IN_CrouchUp );
 	Cmd_AddCommand( 'impulse', IN_Impulse );
 	Cmd_AddCommand( '+klook', IN_KLookDown );
 	Cmd_AddCommand( '-klook', IN_KLookUp );

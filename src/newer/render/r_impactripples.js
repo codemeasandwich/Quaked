@@ -29,6 +29,7 @@
 
 import { cvar_t } from '../../engine/common/cvar.js';
 import { R_NewerGame } from '../mode.js';
+import { NewerBindings } from '../content_bindings.js';
 
 export const r_impactripples = new cvar_t( 'r_impactripples', '1', true );
 
@@ -186,7 +187,6 @@ export function R_ImpactSegment( ax, ay, az, bx, by, bz, time, strength ) {
 
 }
 
-const NAILS = new Set( [ 'progs/spike.mdl', 'progs/s_spike.mdl', 'progs/laser.mdl' ] );
 /**
  * An entity that moved from `from` to `to` this frame: if it is a rocket, a grenade or a nail, its segment is looked
  * at. Called per drawn entity per frame from CL_LinkPacketEntities (live games) and CL_RelinkEntities (demos). A jump
@@ -201,8 +201,9 @@ const NAILS = new Set( [ 'progs/spike.mdl', 'progs/s_spike.mdl', 'progs/laser.md
  */
 export function R_ImpactMissile( model, from, to, time ) {
 
-	if ( model == null || model.name === 'progs/lavaball.mdl' ) return 0; // (the lava fountain's ball carries the rocket's flag)
-	const strength = ( model.flags & 0x01 ) ? STRENGTH.rocket : ( model.flags & 0x02 ) ? STRENGTH.grenade : NAILS.has( model.name ) ? STRENGTH.nail : 0;
+	const projectiles = NewerBindings().projectiles;
+	if ( model == null || projectiles.lavaBall.includes( model.name ) ) return 0; // (the lava fountain's ball carries the rocket's flag)
+	const strength = ( model.flags & 0x01 ) ? STRENGTH.rocket : ( model.flags & 0x02 ) ? STRENGTH.grenade : projectiles.nails.includes( model.name ) ? STRENGTH.nail : 0;
 	if ( strength === 0 ) return 0;
 	if ( Math.abs( to[ 0 ] - from[ 0 ] ) > 128 || Math.abs( to[ 1 ] - from[ 1 ] ) > 128 || Math.abs( to[ 2 ] - from[ 2 ] ) > 128 ) return 0;
 	return R_ImpactSegment( from[ 0 ], from[ 1 ], from[ 2 ], to[ 0 ], to[ 1 ], to[ 2 ], time, strength );

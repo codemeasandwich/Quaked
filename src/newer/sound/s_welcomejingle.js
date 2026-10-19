@@ -28,6 +28,7 @@ import { R_WelcomeLoadingHolding } from '../../engine/common/hooks.js';
 import { S_GetAudioContext } from '../../engine/sound/snd_dma.js';
 import { bgmvolume } from '../../engine/sound/sound.js';
 import { Cvar_VariableValue } from '../../engine/common/cvar.js';
+import { NewerBindings, NewerStartMap } from '../content_bindings.js';
 
 /**
  * The jingle itself. Built with `new URL(..., import.meta.url)` because the
@@ -42,6 +43,7 @@ let element = null, gain = null, pending = false;
 
 /** Accepts the same map spellings as `Host_Map_f`: 'start', 'maps/start.bsp', 'START.BSP'. */
 const mapName = value => String( value || '' ).toLowerCase().replace( /^maps\//, '' ).replace( /\.bsp$/, '' );
+const startName = () => mapName( NewerStartMap() );
 
 /**
  * Arms the Newer Game hub jingle. Called by `Host_Map_f` (host_cmd.js) after an explicit `map`
@@ -49,19 +51,17 @@ const mapName = value => String( value || '' ).toLowerCase().replace( /^maps\//,
  * travel, load, respawn or the attract demo. The jingle itself starts later, from
  * `S_UpdateWelcomeJingle`, once the welcome hold has ended and the player has control.
  *
- * The gate is `r_hdr` on the intro map, which is the one start path all four Quake installs
- * share: shareware and registered both reach 'start' (the Newer hub, or the original
- * Introduction), Scourge of Armagon reaches 'start' (Command HQ) and Dissolution of Eternity
- * reaches 'start' (Split Decision). No game-identity test is needed because every install
- * names that level 'start'; `R_FlashlightNewRun` makes the same assumption for its welcome
- * aids. Only a single-player Newer start arms the hub jingle.
+ * The gate is `r_hdr` on the profile's first map: every Quake install names it 'start' (the Newer hub, the
+ * Introduction, Command HQ, Split Decision), while Hexen II uses demo1 or Portal of Praevus's keep1 (support plan E19).
+ * Hexen has no authored counterpart of this recording, so its bindings switch the cue off. Only a single-player Newer
+ * start arms the hub jingle.
  *
- * @param {string} name the map being started ('start' or 'maps/start.bsp' style; case and path are ignored)
+ * @param {string} name the map being started ('start', 'demo1', 'keep1' or their maps/*.bsp form; case and path ignored)
  * @param {boolean} newer true when connected with `r_hdr` on (Newer Game); only then does it arm
  */
 export function S_WelcomeJingle( name, newer ) {
 
-	if ( newer !== true || mapName( name ) !== 'start' ) { pending = false; return; }
+	if ( newer !== true || ! NewerBindings().sounds.welcomeJingle || mapName( name ) !== startName() ) { pending = false; return; }
 	if ( svs.maxclients !== 1 ) return;
 	pending = true;
 

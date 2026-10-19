@@ -18,9 +18,11 @@ import { R_DisposeKeepingShader } from './r_shaderwarm.js';
 import * as THREE from 'three';
 import { cvar_t } from '../../engine/common/cvar.js';
 import { R_NewerGame, R_ClassicPassActive } from '../mode.js';
+import { NewerBindings } from '../content_bindings.js';
 
 export const r_powerups = new cvar_t( 'r_powerups', '1', true );
-const kinds = { 'progs/quaddama.mdl': 'quad', 'progs/invulner.mdl': 'pentagram', 'progs/invisibl.mdl': 'ring' };
+// the active game's pickup models and art roles (content_bindings.js)
+const kinds = () => NewerBindings().powerups;
 const records = new Map();
 const center = new THREE.Vector3(), nativeScale = new THREE.Vector3(), nativeTranslation = new THREE.Vector3();
 let activeScene = null;
@@ -29,10 +31,10 @@ let shroudTexture = null;
  * Which enhanced power-up a client entity is, by its model name.
  *
  * @param {?entity_t} entity a client entity
- * @returns {?string} 'quad' (progs/quaddama.mdl), 'pentagram' (progs/invulner.mdl), 'ring' (progs/invisibl.mdl), or
- *   null for anything else
+ * @returns {?string} 'quad' (progs/quaddama.mdl), 'pentagram' (progs/invulner.mdl or models/a_invinc.mdl), 'ring'
+ *   (progs/invisibl.mdl or models/a_invis.mdl), or null for anything else
  */
-export function R_PowerupKind( entity ) { return kinds[ entity?.model?.name ] || null; }
+export function R_PowerupKind( entity ) { return kinds()[ entity?.model?.name ] || null; }
 /**
  * The Quad's slow brightness pulse, shared by its flame uniforms here and its light in `selectLights` (gl_post.js) so
  * the two stay in step.

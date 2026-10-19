@@ -22,20 +22,14 @@ import { SV_RecursiveHullCheck, trace_t } from '../../engine/server/world.js';
 import { R_NewerGame } from '../mode.js';
 import { S_MaterialAt, S_FLOOR } from './s_material.js';
 import './s_surfacesounds.js';
+import { NewerBindings, NEWER_QUAKE_BINDINGS } from '../content_bindings.js';
 
 /** Impacts that sound like the surface: 0 off, 1 on (saved; Options, Newer features). */
 export const s_impacts = new cvar_t( 's_impacts', '1', true );
 
-/** Which game sounds bring a surface's sound, and how loud it is beside them (0..1). */
-export const IMPACTS = Object.freeze( {
-	'weapons/tink1.wav': { kind: 'nail', volume: 0.45 },
-	'weapons/ric1.wav': { kind: 'nail', volume: 0.45 },
-	'weapons/ric2.wav': { kind: 'nail', volume: 0.45 },
-	'weapons/ric3.wav': { kind: 'nail', volume: 0.45 },
-	'player/axhit2.wav': { kind: 'axe', volume: 0.6 },
-	'player/land.wav': { kind: 'land', volume: 0.35 },
-	'player/land2.wav': { kind: 'land', volume: 0.55 }
-} );
+/** Quake's table of game sounds that bring a surface's sound, and how loud beside them (0..1); kept for callers that
+ * read the old export. The live lookup is the active game's table (`content_bindings.js`). */
+export const IMPACTS = NEWER_QUAKE_BINDINGS.sounds.impacts;
 
 const trace = new trace_t(), from = new Float32Array( 3 ), to = new Float32Array( 3 );
 
@@ -72,7 +66,7 @@ function axePoint( entnum ) {
  */
 export function S_ImpactSound( sfx, origin, volume, attenuation, entnum ) {
 
-	const cue = IMPACTS[ sfx?.name ];
+	const cue = NewerBindings().sounds.impacts[ sfx?.name ];
 	if ( ! cue || ! R_NewerGame() || ! ( s_impacts.value > 0 ) || ! cl.worldmodel || cls.demoplayback ) return null;
 	let at = null, material;
 	if ( cue.kind === 'nail' ) { at = origin; material = at && S_MaterialAt( cl.worldmodel, at, 8 ); }

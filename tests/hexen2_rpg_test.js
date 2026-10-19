@@ -79,8 +79,9 @@ Deno.test( 'armour, an artifact and a weapon pick up on demo1', () => {
 
 	};
 
-	for ( const [ classname, field ] of [ [ 'item_armor_amulet', 'armor_amulet' ], [ 'item_armor_bracer', 'armor_bracer' ],
-		[ 'item_armor_breastplate', 'armor_breastplate' ], [ 'item_armor_helmet', 'armor_helmet' ] ] ) {
+	// demo1's bracer, breastplate and helmet carry NOT_COOP|NOT_SINGLE (spawnflags 196608): native single player spawns
+	// only the amulet (uhexen2 ED_LoadFromFile), so that is the single-player armour piece this level offers
+	for ( const [ classname, field ] of [ [ 'item_armor_amulet', 'armor_amulet' ] ] ) {
 
 		pickup( classname );
 		check( ( player.v[ field ] | 0 ) > 0, `${field} was picked up: ${player.v[ field ] | 0}` );

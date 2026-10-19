@@ -87,6 +87,7 @@ export const clc_disconnect = 2;
 export const clc_move = 3;
 export const clc_stringcmd = 4;
 export const clc_delta = 5; // [byte] sequence number, requests delta compression
+export const clc_inv_select = 6; // [byte] Hexen II inventory selection (native 5, which is clc_delta here)
 
 /**
  * Injects the engine functions this module needs (callback injection, to avoid circular imports). Called once from
@@ -775,7 +776,6 @@ export function SV_ReadClientMove( move ) {
 	const bits = MSG_ReadByte();
 	host_client.edict.v.button0 = bits & 1;
 	host_client.edict.v.button2 = ( bits & 2 ) >> 1;
-
 	// native H2 button bit 4 crouches (uhexen2 sv_user.c:669)
 	if ( GameProfile_IsHexen2() ) {
 
@@ -946,6 +946,7 @@ export function SV_ReadClientMessage() {
 					else if ( Q_strncasecmp( s, 'ping', 4 ) ) allowed = 1;
 					else if ( Q_strncasecmp( s, 'give', 4 ) ) allowed = 1;
 					else if ( Q_strncasecmp( s, 'ban', 3 ) ) allowed = 1;
+					else if ( Q_strncasecmp( s, 'playerclass', 11 ) ) allowed = 1;
 
 					if ( allowed === 2 )
 						Cbuf_InsertText( s );
@@ -959,6 +960,13 @@ export function SV_ReadClientMessage() {
 
 				case clc_disconnect:
 					return false;
+
+				case clc_inv_select:
+					// Hexen II's inventory selection is a single byte on the player's edict (uhexen2 clc_inv_select)
+					if ( GameProfile_IsHexen2() && host_client.edict != null && host_client.edict.v != null )
+						host_client.edict.v.inventory = MSG_ReadByte();
+					else MSG_ReadByte(); // let a foreign peer stay in sync with a message we do not apply
+					break;
 
 				case clc_move:
 					SV_ReadClientMove( SV_EnsureClientCmd( host_client ) );

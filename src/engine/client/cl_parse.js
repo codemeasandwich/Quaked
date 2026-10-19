@@ -66,9 +66,16 @@ import {
 	svc_packetentities, svc_deltapacketentities, svc_serversequence,
 	PE_ENT_BITS, PE_ENT_MASK, PE_ORIGIN1, PE_ORIGIN2, PE_ORIGIN3,
 	PE_ANGLE2, PE_REMOVE, PE_MOREBITS,
-	PE_FRAME, PE_ANGLE1, PE_ANGLE3, PE_MODEL, PE_COLORMAP, PE_SKIN, PE_EFFECTS, PE_SOLID,
-	MAX_PACKET_ENTITIES_LOCAL, PE_UPDATE_BACKUP, PE_UPDATE_MASK
+	PE_FRAME, PE_ANGLE1, PE_ANGLE3, PE_MODEL, PE_COLORMAP, PE_SKIN, PE_EFFECTS,
+	PE_MOREBITS2, PE2_SCALE, PE2_DRAWFLAGS, PE2_ABSLIGHT,
+	MAX_PACKET_ENTITIES_LOCAL, PE_UPDATE_BACKUP, PE_UPDATE_MASK,
+	svc_hexen2_features, svc_hexen2_start_effect, svc_hexen2_end_effect, svc_hexen2_update_inv,
+	svc_hexen2_plaque, svc_hexen2_raineffect, svc_hexen2_particle2, svc_hexen2_particle3, svc_hexen2_particle4,
+	svc_hexen2_particle_explosion, svc_hexen2_set_view_flags, svc_hexen2_clear_view_flags, svc_hexen2_set_view_tint,
+	svc_hexen2_setangle_interpolate, svc_hexen2_midi_name, svc_hexen2_updateclass, svc_hexen2_toggle_statbar,
+	svc_hexen2_sound_update_pos, svc_hexen2_intermission, svc_hexen2_temp_entity, svc_hexen2_info_mask
 } from '../common/protocol.js';
+import { CL_Hexen2Reset, CL_Hexen2ParseBaseline, CL_Hexen2ParseServerMessage, CL_Hexen2Scale } from './cl_hexen2.js';
 import {
 	SIGNONS, MAX_STATIC_ENTITIES, MAX_DLIGHTS,
 	ca_connected,
@@ -167,6 +174,29 @@ export const svc_strings = [
 	'svc_sellscreen',
 	'svc_cutscene'
 ];
+
+// Hexen II's unified-protocol ids (protocol.js); sparse so the Quake table above stays byte-for-byte what it was.
+svc_strings[ svc_hexen2_features ] = 'svc_hexen2_features';
+svc_strings[ svc_hexen2_start_effect ] = 'svc_hexen2_start_effect';
+svc_strings[ svc_hexen2_end_effect ] = 'svc_hexen2_end_effect';
+svc_strings[ svc_hexen2_update_inv ] = 'svc_hexen2_update_inv';
+svc_strings[ svc_hexen2_plaque ] = 'svc_hexen2_plaque';
+svc_strings[ svc_hexen2_raineffect ] = 'svc_hexen2_raineffect';
+svc_strings[ svc_hexen2_particle2 ] = 'svc_hexen2_particle2';
+svc_strings[ svc_hexen2_particle3 ] = 'svc_hexen2_particle3';
+svc_strings[ svc_hexen2_particle4 ] = 'svc_hexen2_particle4';
+svc_strings[ svc_hexen2_particle_explosion ] = 'svc_hexen2_particle_explosion';
+svc_strings[ svc_hexen2_set_view_flags ] = 'svc_hexen2_set_view_flags';
+svc_strings[ svc_hexen2_clear_view_flags ] = 'svc_hexen2_clear_view_flags';
+svc_strings[ svc_hexen2_set_view_tint ] = 'svc_hexen2_set_view_tint';
+svc_strings[ svc_hexen2_setangle_interpolate ] = 'svc_hexen2_setangle_interpolate';
+svc_strings[ svc_hexen2_midi_name ] = 'svc_hexen2_midi_name';
+svc_strings[ svc_hexen2_updateclass ] = 'svc_hexen2_updateclass';
+svc_strings[ svc_hexen2_toggle_statbar ] = 'svc_hexen2_toggle_statbar';
+svc_strings[ svc_hexen2_sound_update_pos ] = 'svc_hexen2_sound_update_pos';
+svc_strings[ svc_hexen2_intermission ] = 'svc_hexen2_intermission';
+svc_strings[ svc_hexen2_temp_entity ] = 'svc_hexen2_temp_entity';
+svc_strings[ svc_hexen2_info_mask ] = 'svc_hexen2_info_mask';
 
 //=============================================================================
 
@@ -336,6 +366,7 @@ export function CL_ParseServerInfo() {
 	// wipe the client_state_t struct
 	//
 	CL_ClearState();
+	CL_Hexen2Reset(); // the feature message that follows marks a Hexen II session
 
 	// parse protocol version number
 	let i = MSG_ReadLong();
@@ -519,11 +550,14 @@ function CL_ParseDelta( from, to, bits, number ) {
 	to.number = number;
 	bits &= ~PE_ENT_MASK;
 
+	let bits2 = 0;
 	if ( bits & PE_MOREBITS ) {
 
 		// read in the low order bits
 		const i = MSG_ReadByte();
 		bits |= i;
+		// Hexen II's optional fields: a second byte, only when the session has them and this entity is not default
+		if ( bits & PE_MOREBITS2 ) bits2 = MSG_ReadByte();
 
 	}
 
@@ -561,6 +595,13 @@ function CL_ParseDelta( from, to, bits, number ) {
 
 	if ( bits & PE_ANGLE3 )
 		to.angles[ 2 ] = MSG_ReadAngle();
+
+	if ( bits2 & PE2_SCALE )
+		to.scale = MSG_ReadByte();
+	if ( bits2 & PE2_DRAWFLAGS )
+		to.drawflags = MSG_ReadByte();
+	if ( bits2 & PE2_ABSLIGHT )
+		to.abslight = MSG_ReadByte();
 
 }
 
@@ -963,6 +1004,12 @@ export function CL_ParseUpdate( bits ) {
 	else
 		ent.effects = ent.baseline.effects;
 
+	// Hexen II's optional fields never travel in a Quake fast update, but its baselines carry them; keep the entity's
+	// render state right when an update leaves them out.
+	ent.scale = CL_Hexen2Scale( ent.baseline.scale );
+	ent.drawflags = ent.baseline.drawflags | 0;
+	ent.abslight = ent.baseline.abslight | 0;
+
 	// shift the known values for interpolation
 	VectorCopy( ent.msg_origins[ 0 ], ent.msg_origins[ 1 ] );
 	VectorCopy( ent.msg_angles[ 0 ], ent.msg_angles[ 1 ] );
@@ -1023,6 +1070,14 @@ CL_ParseBaseline
  * @param {entity_t} ent the entity; mutated: its `baseline` (entity_state_t) is overwritten
  */
 export function CL_ParseBaseline( ent ) {
+
+	if ( cl.h2.active && cl.h2.nativeBaselines ) {
+
+		// Hexen II's signon layout: scale/drawflags/abslight are always present (uhexen2 CL_ParseBaseline)
+		CL_Hexen2ParseBaseline( ent );
+		return;
+
+	}
 
 	ent.baseline.modelindex = MSG_ReadIndex();
 	ent.baseline.frame = MSG_ReadIndex();
@@ -1362,6 +1417,9 @@ export function CL_ParseStatic() {
 	ent.colormap = null; // vid.colormap
 	ent.skinnum = ent.baseline.skin;
 	ent.effects = ent.baseline.effects;
+	ent.scale = CL_Hexen2Scale( ent.baseline.scale );
+	ent.drawflags = ent.baseline.drawflags | 0;
+	ent.abslight = ent.baseline.abslight | 0;
 
 	VectorCopy( ent.baseline.origin, ent.origin );
 	VectorCopy( ent.baseline.angles, ent.angles );
@@ -1670,6 +1728,31 @@ export function CL_ParseServerMessage() {
 
 			case svc_deltapacketentities:
 				CL_ParsePacketEntities( true );
+				break;
+
+			// Hexen II's unified-protocol messages (cl_hexen2.js). A Quake server never sends one.
+			case svc_hexen2_features:
+			case svc_hexen2_start_effect:
+			case svc_hexen2_end_effect:
+			case svc_hexen2_update_inv:
+			case svc_hexen2_plaque:
+			case svc_hexen2_raineffect:
+			case svc_hexen2_particle2:
+			case svc_hexen2_particle3:
+			case svc_hexen2_particle4:
+			case svc_hexen2_particle_explosion:
+			case svc_hexen2_set_view_flags:
+			case svc_hexen2_clear_view_flags:
+			case svc_hexen2_set_view_tint:
+			case svc_hexen2_setangle_interpolate:
+			case svc_hexen2_midi_name:
+			case svc_hexen2_updateclass:
+			case svc_hexen2_toggle_statbar:
+			case svc_hexen2_sound_update_pos:
+			case svc_hexen2_intermission:
+			case svc_hexen2_temp_entity:
+			case svc_hexen2_info_mask:
+				CL_Hexen2ParseServerMessage( cmd );
 				break;
 
 		}

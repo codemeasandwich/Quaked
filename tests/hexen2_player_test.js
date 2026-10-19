@@ -15,7 +15,7 @@ import { sv as serverSv, ss_loading, ss_active, SOLID_BSP, MOVETYPE_PUSH, SIGNON
 import { PR_LastRunError, PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
 import { Hexen2_CallBuiltin } from '../src/engine/progs/hexen2_cmds.js';
 import { pr_globals } from '../src/engine/progs/progs.js';
-import { OFS_PARM0, OFS_PARM1, OFS_RETURN } from '../src/engine/progs/pr_comp.js';
+import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_RETURN } from '../src/engine/progs/pr_comp.js';
 import '../src/engine/progs/hexen2_world_cmds.js';
 import '../src/engine/progs/hexen2_precache_cmds.js';
 import '../src/engine/progs/hexen2_server_cmds.js';
@@ -97,6 +97,7 @@ Deno.test( 'a Paladin is placed in the supplied level by the supplied gamecode',
 	pr_global_struct.time = sv.time;
 	pr_globals.setFloat( OFS_PARM0, 0 );
 	pr_globals.setFloat( OFS_PARM1, 32 );
+	pr_globals.setFloat( OFS_PARM2, 0 ); // native walkmove's third argument, set_trace: off
 	check( Hexen2_CallBuiltin( 32, { random: () => 0.5 } ) === true, 'walkmove is implemented' );
 	same( pr_globals.getFloat( OFS_RETURN ), 1, 'the step succeeded' );
 	check( Math.abs( player.v.origin[ 0 ] - ( before[ 0 ] + 32 ) ) < 0.1, 'the player advanced 32 units in +x: ' + player.v.origin );

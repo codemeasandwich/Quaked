@@ -37,6 +37,7 @@ import { R_NewerGame } from '../mode.js';
 import { R_DemoSplitActive } from './r_demosplit.js';
 import { R_DecalSurface } from './r_decals.js';
 import { R_ShaderWarmRegister } from './r_shaderwarm.js';
+import { NewerBindings } from '../content_bindings.js';
 
 // 0 puts the native particles back for every explosion
 export const r_fireball = new cvar_t( 'r_fireball', '1' );
@@ -589,7 +590,8 @@ function ringPlane( origin, worldmodel ) {
 export function R_FireballReplacesSprite( ent ) {
 
 	if ( ent == null || deps == null || ! ready || r_fireball.value === 0 || ! R_NewerGame() || bursts.length === 0 ) return false;
-	if ( typeof ent.model?.name !== 'string' || ! ent.model.name.endsWith( 'progs/s_explod.spr' ) || ent.origin == null ) return false;
+	const name = ent.model?.name, sprites = NewerBindings().projectiles.explosionSprites;
+	if ( typeof name !== 'string' || ! sprites.some( sprite => name.endsWith( sprite ) ) || ent.origin == null ) return false;
 	const cl = deps.cl?.(); if ( cl == null ) return false;
 	for ( const b of bursts ) {
 

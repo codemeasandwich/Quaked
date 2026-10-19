@@ -18,6 +18,8 @@ import { LoadingScreen_SetProgress } from './ui/loading_screen.js';
 import { R_LavaManApply, R_LavaManBegin, R_LavaManClear, R_LavaManEnd, R_LavaManPositions, R_LavaManRelease, R_LavaManSeen } from './render/r_lavaman.js';
 
 import { Hooks_Install, Hooks_Installed } from '../engine/common/hooks.js';
+import { Cvar_FindVar, Cvar_RegisterVariable } from '../engine/common/cvar.js';
+import { r_texture_tier } from './render/r_newertextures.js';
 import { R_AliasMeshLookup, R_AliasMeshRemember } from './assets/r_aliasmeshcache.js';
 import { R_DemonBakePrepare, R_DemonBakeRelease, R_DemonBakeStatus, R_DemonBakeSurface } from './assets/r_demonbakes.js';
 import { Axe_ParseRecord, Axe_ValidOwnerKey } from './gameplay/axe_record.js';
@@ -118,7 +120,7 @@ import { S_UpdateWelcomeJingle, S_WelcomeJingle, S_WelcomeJingleShutdown } from 
 import { GameShelf_Show } from './ui/game_shelf.js';
 import { BuildMenuTextArt, BuildSinglePlayerMenuArt } from './ui/menu_art.js';
 import { MainMenu_Begin, MainMenu_Blocking, MainMenu_Destroy, MainMenu_End, MainMenu_Glyph, MainMenu_Image, MainMenu_Panel, MainMenu_Preload, MainMenu_SetInGame, MainMenu_SetVisible, MainMenu_Skinned, MainMenu_Slider, MainMenu_Text, MainMenu_TextBox } from './ui/menu_webgl.js';
-import { NEWER_ENABLED_FEATURES } from './ui/newer_defaults.js';
+import { NEWER_DEFAULT_GAMMA, NEWER_ENABLED_FEATURES, Newer_ApplyGameDefaults } from './ui/newer_defaults.js';
 import { R_BestiaryApplyCamera, R_BestiaryFrame, R_BestiaryFrozen, R_BestiaryInputLocked, R_BestiaryKey, R_BestiaryObserve, R_BestiaryPortraitLight, R_BestiaryTimeScale } from './ui/r_bestiary.js';
 import { R_BestiaryBookCorner, R_BestiaryBookDraw, R_BestiaryBookKey, R_BestiaryBookOpen, R_BestiaryBookTouch, R_BestiaryEncounterDraw } from './ui/r_bestiary_book.js';
 import { R_DemoLoadingAttract, R_DemoLoadingCancel, R_DemoLoadingConsoleClosed, R_DemoLoadingConsoleDrawn, R_DemoLoadingConsoleOverride, R_DemoLoadingConsoleSpeed, R_DemoLoadingFrame, R_DemoLoadingFreeze, R_DemoLoadingHolding, R_DemoLoadingWelcome, R_IntroLoadingHolding, R_IntroReadinessChecks, R_WelcomeLoadingHolding } from './ui/r_demoloading.js';
@@ -127,6 +129,10 @@ import { R_NewerHudCanvas, R_NewerHudPreload, R_NewerHudStatus } from './ui/r_ne
 import { R_PlayerFaceCompose, R_PlayerFacePreload } from './ui/r_playerface.js';
 import { Respawn_NoticeAt } from './ui/respawn_notice.js';
 import { Draw_StudioLogo } from './ui/studio_logo.js';
+
+// The texture tier is read by the texture loader and exposed to the console/Options; register it here because it is
+// new to this package and has no R_Init owner (unlike the long-standing Newer cvars in gl_rmain.js).
+if ( Cvar_FindVar( r_texture_tier.name ) === null ) Cvar_RegisterVariable( r_texture_tier );
 
 if ( ! Hooks_Installed() ) Hooks_Install( {
 	R_AliasMeshLookup, R_AliasMeshRemember,
@@ -218,6 +224,9 @@ if ( ! Hooks_Installed() ) Hooks_Install( {
 	BuildMenuTextArt, BuildSinglePlayerMenuArt,
 	MainMenu_Begin, MainMenu_Blocking, MainMenu_Destroy, MainMenu_End, MainMenu_Glyph, MainMenu_Image, MainMenu_Panel, MainMenu_Preload, MainMenu_SetInGame, MainMenu_SetVisible, MainMenu_Skinned, MainMenu_Slider, MainMenu_Text, MainMenu_TextBox,
 	NEWER_ENABLED_FEATURES,
+	NEWER_DEFAULT_GAMMA,
+	Newer_ApplyGameDefaults,
+	r_texture_tier,
 	R_BestiaryApplyCamera, R_BestiaryFrame, R_BestiaryFrozen, R_BestiaryInputLocked, R_BestiaryKey, R_BestiaryObserve, R_BestiaryPortraitLight, R_BestiaryTimeScale,
 	R_BestiaryBookCorner, R_BestiaryBookDraw, R_BestiaryBookKey, R_BestiaryBookOpen, R_BestiaryBookTouch, R_BestiaryEncounterDraw,
 	R_DemoLoadingAttract, R_DemoLoadingCancel, R_DemoLoadingConsoleClosed, R_DemoLoadingConsoleDrawn, R_DemoLoadingConsoleOverride, R_DemoLoadingConsoleSpeed, R_DemoLoadingFrame, R_DemoLoadingFreeze, R_DemoLoadingHolding, R_DemoLoadingWelcome, R_IntroLoadingHolding, R_IntroReadinessChecks, R_WelcomeLoadingHolding,

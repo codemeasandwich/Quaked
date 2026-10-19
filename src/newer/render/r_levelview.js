@@ -42,6 +42,7 @@ import { R_NewerTexturesForModel } from './r_newertextures.js';
 import { R_RockBakePrefetch } from '../assets/r_rockbakes.js';
 import { R_AxeCorpsePreview } from './r_axecorpses.js';
 import { Con_DPrintf } from '../../engine/common/common.js';
+import { NewerBindings } from '../content_bindings.js';
 
 // glquake.h
 const SURF_PLANEBACK = 2;
@@ -419,7 +420,7 @@ function createGhost( ent, world ) {
 	}
 
 	// what the game's own lighting of a model gives at that spot
-	const flame = m.name === 'progs/flame2.mdl' || m.name === 'progs/flame.mdl';
+	const flame = NewerBindings().torch.models.includes( m.name );
 	const light = flame ? 256 : R_LightPoint( e.origin, { worldmodel: world } );
 
 	const g = {

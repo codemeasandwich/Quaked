@@ -47,12 +47,16 @@ import { MRT_OUT, MRT_ZERO, material } from './r_fireball.js';
 import { R_DecalSurface } from './r_decals.js';
 import { R_AnimEnabled } from './r_anim.js';
 import { R_ShaderWarmRegister } from './r_shaderwarm.js';
+import { NewerBindings } from '../content_bindings.js';
 
 // 0 puts the native Scrag spit back (its mesh, green tracer and impact particles)
 export const r_venom = new cvar_t( 'r_venom', '1' );
 
 // Source defaults (TwinVenomFX.spit / twinPlan / DropletPool, quality "high", tint "toxic"), plus the port's scale.
 export const VENOM = Object.freeze( {
+	// the active game's projectile and caster models (Quake's w_spike/wizard; Hexen binds neither, so the effect is off)
+	get models() { return NewerBindings().projectiles.venom; },
+	get scragModel() { return NewerBindings().projectiles.venomScrag; },
 	speed: 22,          // m/s, the source's jet speed
 	duration: .28,      // s, the spit packet (trailing edge leaves the mouth this long after the leading edge)
 	radius: .015,       // m, stream radius
@@ -72,7 +76,6 @@ export const VENOM = Object.freeze( {
 	minPixels: 2.5      // (port) the narrowest a stream is drawn on screen, pixels across: the source's strand at its stage's view
 } );
 
-const SPIKE_MODEL = 'progs/w_spike.mdl';
 const CONTENTS_SOLID = - 2;
 const SUBSTEP = 1 / 90;  // the source's update() substep
 const MAX_STEP = .1;     // a longer gap (a hitch, a level load) is advanced by this much only
@@ -392,7 +395,7 @@ function build() {
 const active = () => deps != null && deps.scene != null && r_venom.value !== 0 && R_NewerGame();
 // (built for each level's shader warm-up as the first Scrag's spit would: r_shaderwarm.js)
 R_ShaderWarmRegister( 'venom', () => { if ( ! active() ) return null; if ( group === null ) build(); return group; } );
-const isSpike = ent => ent != null && typeof ent.model?.name === 'string' && ent.model.name.endsWith( SPIKE_MODEL );
+const isSpike = ent => ent != null && typeof ent.model?.name === 'string' && VENOM.models.some( model => ent.model.name.endsWith( model ) );
 const rand = ( a, b ) => a + ( b - a ) * Math.random();
 
 function jetOf( ent ) {
@@ -565,11 +568,13 @@ function mouthPoint( e, side, out, time ) {
 }
 function scragMouth( ox, oy, oz, dx, dy, dz, entities, count, out, time ) {
 
+	const scrag = VENOM.scragModel;
+	if ( scrag == null ) return false;
 	let best = null, bestOff = SCRAG_REACH, bestSide = 1;
 	for ( let i = 0; i < count; i ++ ) {
 
 		const e = entities[ i ];
-		if ( e == null || e.origin == null || typeof e.model?.name !== 'string' || ! e.model.name.endsWith( SCRAG_MODEL ) ) continue;
+		if ( e == null || e.origin == null || typeof e.model?.name !== 'string' || ! e.model.name.endsWith( scrag ) ) continue;
 		const vx = e.origin[ 0 ] - ox, vy = e.origin[ 1 ] - oy, vz = e.origin[ 2 ] + SCRAG_MOUTH - oz;
 		const along = vx * dx + vy * dy + vz * dz;
 		if ( along > 0 || along < - SCRAG_BACK ) continue;
@@ -590,7 +595,7 @@ function scragMouth( ox, oy, oz, dx, dy, dz, entities, count, out, time ) {
 
 }
 const POSE_STALE = .25; // r_anim.js STALE: a blend not drawn for this long is not what is on screen
-const SCRAG_MODEL = 'progs/wizard.mdl', SCRAG_MOUTH = 30, SCRAG_REACH = 48, SCRAG_BACK = 200; // Quake units
+const SCRAG_MOUTH = 30, SCRAG_REACH = 48, SCRAG_BACK = 200; // Quake units
 const _mouth = [ 0, 0, 0 ];
 
 function launch( j, ent, time, eye, model, entities, count ) {
