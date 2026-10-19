@@ -76,3 +76,34 @@ export function Hexen2_PlayLocalSound( entity, channel, sample, volume, attenuat
 	return { ok: true, sfx };
 
 }
+
+
+/** The viewmodel's vertical lift above the eye so the weapon clears the native status bar. */
+export const HEXEN2_VIEWMODEL_LIFT = 8;
+
+/**
+ * The viewmodel's angles: the camera yaw/roll, with pitch negated because alias-model pitch is opposite the camera's
+ * positive-down pitch. Without the negation the weapon swings up when looking down (owner-reported inversion).
+ *
+ * @param {ArrayLike<number>} viewangles the player's view angles
+ * @returns {number[]} the entity angles for the viewmodel
+ */
+export function Hexen2_ViewModelAngles( viewangles ) {
+
+	return [ - viewangles[ 0 ], viewangles[ 1 ], viewangles[ 2 ] ];
+
+}
+
+/**
+ * The viewmodel's origin: the player's feet plus the eye offset plus the lift.
+ *
+ * @param {ArrayLike<number>} origin the player origin
+ * @param {ArrayLike<number>|undefined} viewOfs the player's view offset (native 50)
+ * @param {number} [lift] vertical lift, defaulting to HEXEN2_VIEWMODEL_LIFT
+ * @returns {number[]} the entity origin for the viewmodel
+ */
+export function Hexen2_ViewModelOrigin( origin, viewOfs, lift = HEXEN2_VIEWMODEL_LIFT ) {
+
+	return [ origin[ 0 ], origin[ 1 ], origin[ 2 ] + ( viewOfs?.[ 2 ] ?? 50 ) + lift ];
+
+}

@@ -41,7 +41,7 @@ import { Hexen2_HudFromClientState } from './hexen2_clienthud.js';
 import { Hexen2_StatusBarOps } from './hexen2_statusbar.js';
 import { Hexen2_DrawStatusBar } from './hexen2_sbar_draw.js';
 import { Hexen2_HudTransform, Hexen2_NumberLayout } from './hexen2_hud_layout.js';
-import { Hexen2_StartChoice, Hexen2_PlayLocalSound } from './hexen2_native_ui.js';
+import { Hexen2_StartChoice, Hexen2_PlayLocalSound, Hexen2_ViewModelAngles, Hexen2_ViewModelOrigin } from './hexen2_native_ui.js';
 import { Hexen2_EncodeClientdata, Hexen2_EncodeUpdateInv, Hexen2_AllStatMask } from '../common/hexen2_clientdata.js';
 import { Hexen2_WriteEntityUpdate } from '../common/hexen2_entitywire.js';
 import { HEXEN2_SERVER_MESSAGES } from '../common/hexen2_protocol.js';
@@ -271,9 +271,8 @@ export async function Hexen2_PageStart( options ) {
 						const vm = cl.viewent;
 						vm.model = weapon; vm.frame = session.player.v.weaponframe | 0; vm.skin = session.player.v.skin | 0;
 						vm.effects = 0; vm.colormap = vid.colormap; vm.scale = 1;
-						vm.origin = [ session.player.v.origin[ 0 ], session.player.v.origin[ 1 ], session.player.v.origin[ 2 ] + ( session.player.v.view_ofs?.[ 2 ] ?? 50 ) ];
-						// alias pitch is opposite the camera's positive-down pitch; without the negation the weapon swings the wrong way
-						vm.angles = [ - cl.viewangles[ 0 ], cl.viewangles[ 1 ], cl.viewangles[ 2 ] ];
+						vm.origin = Hexen2_ViewModelOrigin( session.player.v.origin, session.player.v.view_ofs );
+						vm.angles = Hexen2_ViewModelAngles( cl.viewangles );
 
 					}
 

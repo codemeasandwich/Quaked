@@ -1,7 +1,7 @@
 // Retroactive controls for the code-first native host wiring: start-gate defaults, the local sound bridge (server write
 // first, precache cache, mixer arguments, graceful missing/failing wire) and the charset sheet width that scrambled the
 // HUD glyphs when Hexen's 256x128 sheet was read as Quake's 128x128.
-import { Hexen2_StartChoice, Hexen2_LocalSoundArgs, Hexen2_PlayLocalSound, HEXEN2_START_CLASSES } from '../src/engine/client/hexen2_native_ui.js';
+import { Hexen2_StartChoice, Hexen2_LocalSoundArgs, Hexen2_PlayLocalSound, Hexen2_ViewModelAngles, Hexen2_ViewModelOrigin, HEXEN2_START_CLASSES, HEXEN2_VIEWMODEL_LIFT } from '../src/engine/client/hexen2_native_ui.js';
 import { Hexen2_CharsetColumns, Hexen2_SmallFontIndex } from '../src/engine/common/hexen2_charset.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
@@ -13,6 +13,9 @@ Deno.test( 'the start gate defaults, the sound bridge and the charset width beha
 	same( Hexen2_StartChoice( { classId: 'succubus', skill: 9 } ).classId, 'paladin', 'invalid class falls back' );
 	same( Hexen2_StartChoice( { classId: 'crusader', skill: 9 } ).skill, 1, 'invalid skill falls back' );
 	same( HEXEN2_START_CLASSES.length, 4, 'four base classes' );
+	same( JSON.stringify( Hexen2_ViewModelAngles( [ 10, 65, 0 ] ) ), JSON.stringify( [ -10, 65, 0 ] ), 'viewmodel pitch is negated' );
+	same( HEXEN2_VIEWMODEL_LIFT, 8, 'the lift clears the status bar' );
+	same( JSON.stringify( Hexen2_ViewModelOrigin( [ 1, 2, 3 ], [ 0, 0, 50 ] ) ), JSON.stringify( [ 1, 2, 61 ] ), 'viewmodel origin at eye + lift' );
 
 	same( Hexen2_CharsetColumns( 32768 ), 32, 'Hexen 256x128' );
 	same( Hexen2_CharsetColumns( 16384 ), 16, 'Quake 128x128' );
