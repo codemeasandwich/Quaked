@@ -44,7 +44,12 @@ export const GAME_CATALOGUE_GAMES = Object.freeze( [
 	{ id: 'malice', name: 'Malice', kind: 'addon', base: 'quake', folders: [ 'games/Malice', 'resources/malice' ], quake: 'malice' },
 	{ id: 'xmen', name: 'X-Men', kind: 'addon', base: 'quake', folders: [ 'games/X-Men', 'resources/xmen' ], quake: 'xmen' },
 	{ id: 'aopfm_v2', name: 'Abyss of Pandemonium', kind: 'addon', base: 'quake', folders: [ 'games/Abyss of Pandemonium', 'resources/aopfm_v2' ], quake: 'aopfm_v2' },
-	{ id: 'soe', name: 'Soul of Evil', kind: 'addon', base: 'quake', folders: [ 'games/Soul of Evil', 'resources/soe' ], quake: 'soe' }
+	{ id: 'soe', name: 'Soul of Evil', kind: 'addon', base: 'quake', folders: [ 'games/Soul of Evil', 'resources/soe' ], quake: 'soe' },
+	// Hexen II (plan section 3): the selected data1 directory, its portals sibling and the separate Portal layout. Its
+	// gamecode, strings and config are loose files beside the packs, and pak0..pak9 are probed independently of gaps.
+	{ id: 'hexen2', name: 'Hexen II', kind: 'hexen2', folders: [ 'games/Hexen 2/data1', 'resources/Hexen 2/data1', 'resources/hexen2/data1' ], quake: 'data1', maxPacks: 10 },
+	{ id: 'hexen2-portals', name: 'Hexen II: Portal of Praevus', kind: 'hexen2-portals', base: 'hexen2', folders: [ 'games/Hexen 2/portals', 'resources/Hexen 2/portals', 'resources/hexen2/portals' ], quake: 'portals', maxPacks: 10 },
+	{ id: 'hexen2-demo', name: 'Hexen II (demo)', kind: 'hexen2-demo', folders: [ 'games/Hexen 2 Demo', 'resources/hexen2-demo' ], quake: 'data1', maxPacks: 10 }
 ] );
 
 // Bounds: packs pak0..pak4 (Quake reads them in that numeric order and stops at a gap); a directory of at most
@@ -224,6 +229,22 @@ function assess( game, files, byId ) {
 		return { playable: true, reason: 'Episodes 1 to 4 and their QuakeC' };
 
 	}
+	// Hexen II: the supplied Installed gamecode (loose progs.dat), its palette and demo1 are the Paladin slice; the
+	// Portal expansion needs its own gamecode and a Keep map on top of a playable base. The genuine demo is validated
+	// but not advertised: its fixture acquisition and hash check are still an open plan gate.
+	if ( game.kind === 'hexen2' ) {
+
+		const missing = [ 'progs.dat', 'gfx/palette.lmp', 'maps/demo1.bsp' ].filter( name => ! has( name ) );
+		if ( missing.length > 0 ) return { playable: false, reason: `its ${missing.join( ', ' )} ${missing.length === 1 ? 'is' : 'are'} missing` };
+		return { playable: true, reason: 'Hexen II: its Installed gamecode, palette and demo1' };
+
+	}
+	if ( game.kind === 'hexen2-demo' ) {
+
+		const ok = has( 'progs.dat' ) && has( 'maps/demo1.bsp' );
+		return { playable: false, reason: ok ? 'found, but the genuine demo fixture and its archive hash are not yet verified' : 'its gamecode or demo map is missing' };
+
+	}
 	const base = byId.get( game.base );
 	if ( ! base?.playable ) return { playable: false, reason: `it needs ${base?.name ?? game.base}, which is not installed and playable` };
 	// the two mission packs run on Quake (card [34c]): their QuakeC, their status bar pictures (in their gfx.wad) and
@@ -247,6 +268,13 @@ function assess( game, files, byId ) {
 	}
 	// any add-on, known or found by its folder (docs/add-ons-2026-10-13.md): it plays over Quake when it brings maps,
 	// with its own QuakeC when it has one (otherwise Quake's); what it needs beyond that the engine adapts to
+	if ( game.kind === 'hexen2-portals' ) {
+
+		const missing = [ 'progs.dat', 'maps/keep1.bsp' ].filter( name => ! has( name ) );
+		if ( missing.length > 0 ) return { playable: false, reason: `its ${missing.join( ', ' )} ${missing.length === 1 ? 'is' : 'are'} missing` };
+		return { playable: true, reason: 'Portal of Praevus: its gamecode and Keep, on Hexen II' };
+
+	}
 	if ( game.kind === 'addon' ) {
 
 		const maps = [ ...files ].some( name => /^maps\/[^/]+\.bsp$/.test( name ) );
@@ -352,7 +380,7 @@ export function GameCatalogue_Refresh( options ) {
 // The loose files Quake reads from a game folder that add-ons ship outside their packs (X-Men's progs.dat, Malice's
 // autoexec.cfg, Arcane Dimensions' quake.rc; docs/add-ons-2026-10-13.md); the Mac app's library lists the same
 // (src-tauri/src/library.rs LOOSE_FILES). config.cfg is not read: the port keeps its own settings.
-export const GAME_CATALOGUE_LOOSE_FILES = Object.freeze( [ 'progs.dat', 'autoexec.cfg', 'quake.rc' ] );
+export const GAME_CATALOGUE_LOOSE_FILES = Object.freeze( [ 'progs.dat', 'autoexec.cfg', 'quake.rc', 'strings.txt', 'hexen.rc' ] );
 
 // one game's folders: the first holding a pak0.pak is the game's; its packs pak0.. in order, stopping at a gap
 // (and, for an add-on, its loose game files: one byte each)
@@ -379,7 +407,8 @@ async function probeGame( game, base, options ) {
 	for ( const folder of game.folders ) {
 
 		const packs = [];
-		for ( let n = 0; n < GAME_CATALOGUE_LIMITS.packs; n ++ ) {
+		const maxPacks = game.maxPacks ?? GAME_CATALOGUE_LIMITS.packs;
+		for ( let n = 0; n < maxPacks; n ++ ) {
 
 			const url = new URL( folder.split( '/' ).map( encodeURIComponent ).join( '/' ) + `/pak${n}.pak`, base ).href;
 			const probe = await GameCatalogue_ProbePack( url, options );
@@ -390,19 +419,20 @@ async function probeGame( game, base, options ) {
 		}
 		// an add-on's loose game files count as its files (one byte read to see each is there); an add-on of loose files
 		// alone (a progs.dat and no packs) is found too
-		const loose = game.kind === 'addon' ? await probeLoose( folder, base, options ) : [];
+		const looseFiles = game.kind === 'addon' || game.kind === 'hexen2' || game.kind === 'hexen2-portals' || game.kind === 'hexen2-demo';
+		const loose = looseFiles ? await probeLoose( folder, base, options ) : [];
 		if ( packs.length === 0 && ! loose.includes( 'progs.dat' ) ) continue;
 		// at the bound: one more header says whether packs were left unread
-		if ( packs.length === GAME_CATALOGUE_LIMITS.packs && packs[ packs.length - 1 ].state !== 'error' ) {
+		if ( packs.length === maxPacks && packs[ packs.length - 1 ].state !== 'error' ) {
 
-			const next = await GameCatalogue_ProbePack( new URL( folder.split( '/' ).map( encodeURIComponent ).join( '/' ) + `/pak${GAME_CATALOGUE_LIMITS.packs}.pak`, base ).href, { ...options, headerOnly: true } );
+			const next = await GameCatalogue_ProbePack( new URL( folder.split( '/' ).map( encodeURIComponent ).join( '/' ) + `/pak${maxPacks}.pak`, base ).href, { ...options, headerOnly: true } );
 			entry.beyondLimit = next.state !== 'absent';
 
 		}
 		entry.folder = folder; entry.packs = packs; entry.present = true;
 		entry.validated = packs.every( p => p.state === 'valid' );
 		for ( const p of packs ) for ( const f of p.files ?? [] ) files.add( f );
-		if ( game.kind === 'addon' ) { entry.loose = loose; for ( const name of loose ) files.add( name ); }
+		if ( looseFiles ) { entry.loose = loose; for ( const name of loose ) files.add( name ); }
 		entry.fileCount = files.size;
 		break;
 
