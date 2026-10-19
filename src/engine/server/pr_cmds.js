@@ -830,7 +830,7 @@ Returns a chain of entities that have origins within a spherical area
 findradius (origin, radius)
 =================
 */
-function PF_findradius() {
+export function PF_findradius() {
 
 	let chain = sv.edicts[ 0 ];
 
@@ -1240,7 +1240,7 @@ vector aim(entity, missilespeed)
 */
 const DAMAGE_AIM = 2;
 
-function PF_aim() {
+export function PF_aim() {
 
 	const ent = G_EDICT( OFS_PARM0 );
 	const teamplayValue = teamplay.value;

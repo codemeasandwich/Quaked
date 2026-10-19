@@ -262,6 +262,7 @@ export let SV_TestEntityPosition = null;
 export let SV_LinkEdict = null;
 export let SV_PointContents = null;
 export let SV_StartSound = null;
+export let SV_StartParticle = null; // SV_StartParticle(origin, direction, color, count), wired by sv_main
 export let PR_ExecuteProgram = null;
 export let EDICT_TO_PROG = null;
 export let PROG_TO_EDICT = null;

@@ -2014,6 +2014,7 @@ function spawnServer( server ) {
 		SV_LinkEdict,
 		SV_PointContents,
 		SV_StartSound,
+		SV_StartParticle,
 		PR_ExecuteProgram,
 		EDICT_TO_PROG,
 		PROG_TO_EDICT,

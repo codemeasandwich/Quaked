@@ -6,7 +6,7 @@ import { SV_SetCallbacks } from '../../src/engine/server/sv_phys.js';
 import { SV_Move_SetCallbacks } from '../../src/engine/server/sv_move.js';
 import { EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, G_FLOAT, G_FLOAT_SET } from '../../src/engine/progs/progs.js';
 import { GetEdictFieldValue } from '../../src/engine/progs/pr_edict.js';
-import { SV_StartSound } from '../../src/engine/server/sv_main.js';
+import { SV_StartSound, SV_StartParticle } from '../../src/engine/server/sv_main.js';
 import { sv as serverSv } from '../../src/engine/server/server.js';
 
 export function installServerCallbacks( world ) {
@@ -17,7 +17,7 @@ export function installServerCallbacks( world ) {
 		SV_LinkEdict: world.SV_LinkEdict,
 		SV_PointContents: world.SV_PointContents,
 		PR_ExecuteProgram: world.PR_ExecuteProgram,
-		EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, GetEdictFieldValue, SV_StartSound
+		EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, GetEdictFieldValue, SV_StartSound, SV_StartParticle
 	} );
 	SV_Move_SetCallbacks( { PF_changeyaw: () => {}, G_FLOAT, G_FLOAT_SET } );
 	// the engine's SV_SpawnServer initialises the per-frame message buffers; sounds and effects write to them, so an

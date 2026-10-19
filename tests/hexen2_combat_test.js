@@ -1,9 +1,7 @@
-// RED (retained): G1 requires working combat with the native Paladin on demo1 using Installed gamecode. Today the
-// attack input path runs without a script error, but no verified damage reaches a monster: this test places a live
-// level monster in front of the player, selects the first weapon, holds attack for twenty frames and requires the
-// monster's health to drop. It fails until the attack/damage path is verified end to end (weapon selection, aim and
-// the projectile/trace damage the supplied gamecode applies). Do not weaken it; other G1 gaps (items, drawn HUD,
-// audible mixer output, public smoke) are recorded in docs/hexen2/g1-acceptance-2026-10-19.md.
+// G1 combat: the native Paladin on demo1 with Installed gamecode. A live level monster is held in front of the player,
+// the first weapon is selected with the native number-key impulse, attack is held for twenty frames, and the monster
+// must take damage while the player stays unhurt. Other G1 gaps (items, drawn HUD, audible mixer output, public
+// smoke) are recorded in docs/hexen2/g1-acceptance-2026-10-19.md.
 import { existsSync, readFileSync } from 'node:fs';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
@@ -26,7 +24,7 @@ import '../src/engine/progs/hexen2_server_cmds.js';
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
 const HEXEN = '/Users/bri/quaked/Hexen 2/data1';
 
-Deno.test( 'RED: a Paladin attack damages a level monster on demo1', () => {
+Deno.test( 'a Paladin attack damages a level monster on demo1', () => {
 
 	if ( ! existsSync( HEXEN + '/pak1.pak' ) ) { console.log( 'SKIP: the supplied Hexen II installation is not present' ); return; }
 	for ( const name of [ 'pak0.pak', 'pak1.pak' ] ) { const raw = readFileSync( HEXEN + '/' + name ); pak.COM_AddPack( pak.COM_LoadPackFile( 'h2-' + name, raw.buffer.slice( raw.byteOffset, raw.byteOffset + raw.length ) ) ); }
@@ -75,5 +73,7 @@ Deno.test( 'RED: a Paladin attack damages a level monster on demo1', () => {
 	try { for ( let frame = 0; frame < 20; frame ++ ) { SV_Physics(); pr_global_struct.time = sv.time; } } catch ( e ) { error = e; }
 	check( error === null, 'the attack frames ran without a script error: ' + ( error ? error.message + ' [' + PR_LastRunError() + ']' : '' ) );
 	check( monster.v.health < healthBefore, `the monster took damage: ${monster.v.health} of ${healthBefore} (weapon ${player.v.current_weapon | 0}, frame ${player.v.weaponframe | 0})` );
+	check( monster.v.health >= 0, 'the damage is bounded: ' + monster.v.health );
+	check( player.v.health === 100, 'the attacking Paladin is unhurt: ' + player.v.health );
 
 } );

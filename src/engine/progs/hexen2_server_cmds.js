@@ -19,8 +19,8 @@ import { MSG_WriteByte, MSG_WriteShort, MSG_WriteCoord, MSG_WriteAngle } from '.
 import { MAX_LIGHTSTYLES } from '../common/quakedef.js';
 import { anglemod } from '../common/mathlib.js';
 import { SV_MoveToGoal } from '../server/sv_move.js';
-import { PF_checkclient } from '../server/pr_cmds.js';
-import { SV_StartSound } from '../server/sv_phys.js';
+import { PF_checkclient, PF_aim, PF_findradius } from '../server/pr_cmds.js';
+import { SV_StartSound, SV_StartParticle } from '../server/sv_phys.js';
 import { Hexen2_RegisterBuiltins } from './hexen2_cmds.js';
 
 function varString( first ) {
@@ -192,6 +192,25 @@ function recordSound( kind, entity, channel, sample, volume, attenuation, origin
 
 }
 
+// #48 particle(origin, direction, color, count): the existing standard particle effect
+function particle() {
+
+	if ( typeof SV_StartParticle === 'function' )
+		SV_StartParticle( G_VECTOR( OFS_PARM0 ), G_VECTOR( OFS_PARM1 ), G_FLOAT( OFS_PARM2 ), G_FLOAT( OFS_PARM3 ) );
+
+}
+
+// #86 particle4(origin, radius, color, effect, count): Hexen's radius cloud. The port has only the standard particle
+// temp entity, so the burst is emitted at the origin with no spread; the radius/effect fields are recorded as a
+// pending presentation divergence (no gameplay reads them). This keeps the attack path running without inventing a
+// payload the client cannot decode.
+function particle4() {
+
+	if ( typeof SV_StartParticle === 'function' )
+		SV_StartParticle( G_VECTOR( OFS_PARM0 ), G_VECTOR( new Float32Array( 3 ) ), G_FLOAT( OFS_PARM2 ), G_FLOAT( OFS_PARM4 ) );
+
+}
+
 // #8 sound(entity, channel, sample, volume, attenuation): the existing SV_StartSound path
 function sound() {
 
@@ -258,7 +277,7 @@ function breakBuiltin() { PR_RunError( 'break statement' ); }
 
 /** The server builtins this module installs into the Hexen II dispatcher. */
 export const HEXEN2_SERVER_BUILTINS = Object.freeze( {
-	6: breakBuiltin, 8: sound, 10: errorBuiltin, 11: objerror, 14: spawn, 17: PF_checkclient, 49: changeyaw, 67: SV_MoveToGoal, 15: remove, 18: find, 23: bprint, 31: eprint, 35: lightstyle, 63: advanceframe, 65: rewindframe, 69: makestatic, 74: ambientsound, 83: advanceweaponframe
+	6: breakBuiltin, 8: sound, 10: errorBuiltin, 11: objerror, 14: spawn, 17: PF_checkclient, 22: PF_findradius, 44: PF_aim, 48: particle, 49: changeyaw, 67: SV_MoveToGoal, 86: particle4, 15: remove, 18: find, 23: bprint, 31: eprint, 35: lightstyle, 63: advanceframe, 65: rewindframe, 69: makestatic, 74: ambientsound, 83: advanceweaponframe
 } );
 
 Hexen2_RegisterBuiltins( HEXEN2_SERVER_BUILTINS );
