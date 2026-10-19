@@ -78,5 +78,8 @@ Deno.test( 'the world runs 120 frames with a walking, attacking Paladin', () => 
 	}
 	check( damagedMonsters >= 0, 'monster damage counted' );
 	check( player.v.health > 0 || player.v.deadflag !== 0, 'the player is alive or properly dead: ' + player.v.health );
+	check( sv.reliable_datagram.cursize > 0, 'the attack feedback wrote effect messages: ' + sv.reliable_datagram.cursize );
+	const firstOpcode = sv.reliable_datagram.data[ 0 ];
+	check( firstOpcode === 42 || firstOpcode === 43, 'the reliable datagram carries start/end effect messages: ' + firstOpcode );
 
 } );

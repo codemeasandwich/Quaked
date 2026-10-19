@@ -19,6 +19,7 @@ import { MSG_WriteByte, MSG_WriteString, MSG_WriteShort, MSG_WriteCoord, MSG_Wri
 import { MAX_LIGHTSTYLES } from '../common/quakedef.js';
 import { svc_print, svc_stufftext } from '../common/protocol.js';
 import { anglemod } from '../common/mathlib.js';
+import { Hexen2_EffectParams, Hexen2_WriteStartEffect, Hexen2_WriteEndEffect } from '../common/hexen2_effectwire.js';
 import { SV_MoveToGoal } from '../server/sv_move.js';
 import { PF_checkclient, PF_aim, PF_findradius } from '../server/pr_cmds.js';
 import { SV_StartSound, SV_StartParticle } from '../server/sv_phys.js';
@@ -277,8 +278,24 @@ function starteffect() {
 
 	}
 	if ( index < 0 ) PR_RunError( 'MAX_EFFECTS reached' );
+	const params = Hexen2_EffectParams( type, { vector: n => G_VECTOR( OFS_PARM0 + n * 3 ), float: n => G_FLOAT( OFS_PARM0 + n * 3 ) } );
+	if ( params === null ) {
+
+		PR_RunError( 'starteffect: unsupported type %i', type );
+
+	}
+	const message = Hexen2_WriteStartEffect( { index, type, params } );
+	if ( !message.ok ) PR_RunError( 'starteffect: %s', message.reason );
 	sv.hexenEffects[ index ] = { type, time: sv.time, expire: 0 };
 	G_FLOAT_SET( OFS_RETURN, index );
+	const target = sv.reliable_datagram;
+	// append the encoded message directly at the buffer tail
+	if ( target && target.cursize + message.bytes.length <= target.maxsize ) {
+
+		target.data.set( message.bytes, target.cursize );
+		target.cursize += message.bytes.length;
+
+	}
 
 }
 
@@ -287,7 +304,16 @@ function endeffect() {
 
 	const index = G_FLOAT( OFS_PARM1 ) | 0;
 	if ( index < 0 || index >= 256 ) PR_RunError( 'endeffect: bad index %i', index );
-	if ( sv.hexenEffects && sv.hexenEffects[ index ] ) sv.hexenEffects[ index ] = null;
+	if ( !sv.hexenEffects || !sv.hexenEffects[ index ] ) return;
+	sv.hexenEffects[ index ] = null;
+	const message = Hexen2_WriteEndEffect( index );
+	const target = sv.reliable_datagram;
+	if ( message.ok && target && target.cursize + message.bytes.length <= target.maxsize ) {
+
+		target.data.set( message.bytes, target.cursize );
+		target.cursize += message.bytes.length;
+
+	}
 
 }
 
