@@ -1,3 +1,5 @@
+import { HEXEN2_SERVER_MESSAGES } from './hexen2_protocol.js';
+
 /**
  * @module engine/common/hexen2_entitywire
  *
@@ -123,6 +125,78 @@ export function Hexen2_ReadEntityUpdate( bytes, options = {} ) {
 		update.clearEntity = ( bits & U.CLEAR_ENT ) !== 0;
 		if ( !options.allowTrailing && r.at !== bytes.length ) return { ok: false, reason: 'trailing entity update bytes' };
 		return { ok: true, update, consumed: r.at };
+
+	} catch ( error ) { return { ok: false, reason: error.message }; }
+
+}
+
+
+/**
+ * Writes an `svc_spawnbaseline` message (the signon baseline for one entity).
+ *
+ * @param {{ entity: number, modelIndex: number, frame: number, colormap: number, skin: number, scale: number,
+ *   drawflags: number, abslight: number, origin: ArrayLike<number>, angles: ArrayLike<number> }} baseline
+ * @returns {{ ok: true, bytes: Uint8Array } | { ok: false, reason: string }} the message
+ */
+export function Hexen2_WriteBaseline( baseline ) {
+
+	if ( !Number.isInteger( baseline.entity ) || baseline.entity < 0 || baseline.entity > 65535 )
+		return { ok: false, reason: 'invalid entity number' };
+	const w = new Writer();
+	w.byte( HEXEN2_SERVER_MESSAGES.spawnbaseline );
+	w.short( baseline.entity );
+	writeBaselineBody( w, baseline );
+	return { ok: true, bytes: w.bytes() };
+
+}
+
+/**
+ * Writes an `svc_spawnstatic` message (a static entity; no entity number on the wire).
+ *
+ * @param {object} baseline the same fields as `Hexen2_WriteBaseline` without `entity`
+ * @returns {{ ok: true, bytes: Uint8Array } | { ok: false, reason: string }} the message
+ */
+export function Hexen2_WriteSpawnStatic( baseline ) {
+
+	const w = new Writer();
+	w.byte( HEXEN2_SERVER_MESSAGES.spawnstatic );
+	writeBaselineBody( w, baseline );
+	return { ok: true, bytes: w.bytes() };
+
+}
+
+function writeBaselineBody( w, baseline ) {
+
+	w.short( baseline.modelIndex );
+	w.byte( baseline.frame ); w.byte( baseline.colormap ); w.byte( baseline.skin ); w.byte( baseline.scale );
+	w.byte( baseline.drawflags ); w.byte( baseline.abslight );
+	for ( let i = 0; i < 3; i ++ ) w.coord( baseline.origin[ i ] );
+	for ( let i = 0; i < 3; i ++ ) w.angle( baseline.angles[ i ] );
+
+}
+
+/**
+ * Reads a baseline message (spawnbaseline or spawnstatic).
+ *
+ * @param {ArrayLike<number>} bytes the message, opcode first
+ * @param {{ allowTrailing?: boolean }} [options] leave the following message(s) unread
+ * @returns {{ ok: true, kind: string, baseline: object, consumed: number } | { ok: false, reason: string }} the
+ *   decoded baseline
+ */
+export function Hexen2_ReadBaseline( bytes, options = {} ) {
+
+	try {
+
+		const r = new Reader( bytes ), opcode = r.byte();
+		let entity = null;
+		if ( opcode === HEXEN2_SERVER_MESSAGES.spawnbaseline ) entity = r.short();
+		else if ( opcode !== HEXEN2_SERVER_MESSAGES.spawnstatic ) return { ok: false, reason: `unknown baseline opcode ${opcode}` };
+		const baseline = { modelIndex: r.short(), frame: r.byte(), colormap: r.byte(), skin: r.byte(), scale: r.byte(),
+			drawflags: r.byte(), abslight: r.byte(), origin: [ r.coord(), r.coord(), r.coord() ],
+			angles: [ r.angle(), r.angle(), r.angle() ] };
+		if ( entity !== null ) baseline.entity = entity;
+		if ( !options.allowTrailing && r.at !== bytes.length ) return { ok: false, reason: 'trailing baseline bytes' };
+		return { ok: true, kind: opcode === HEXEN2_SERVER_MESSAGES.spawnbaseline ? 'spawnbaseline' : 'spawnstatic', baseline, consumed: r.at };
 
 	} catch ( error ) { return { ok: false, reason: error.message }; }
 

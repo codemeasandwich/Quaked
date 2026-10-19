@@ -1,7 +1,7 @@
 // Native Hexen II fast entity updates: the high-bit command, U_* bit bytes (one to three), entity number, and the
 // native field order with 1/8-unit coordinates and 1/256-turn angles. Round-trips a full update, a minimal one, a
 // long entity and concatenated updates; refuses non-updates, truncation and trailing bytes.
-import { Hexen2_WriteEntityUpdate, Hexen2_ReadEntityUpdate, U } from '../src/engine/common/hexen2_entitywire.js';
+import { Hexen2_WriteEntityUpdate, Hexen2_ReadEntityUpdate, Hexen2_WriteBaseline, Hexen2_ReadBaseline, Hexen2_WriteSpawnStatic, U } from '../src/engine/common/hexen2_entitywire.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const near = ( a, b, m, tol = 0.002 ) => check( Math.abs( a - b ) < tol, `${m}: ${a} != ${b}` );
@@ -58,6 +58,41 @@ Deno.test( 'native fast entity updates round-trip and concatenate', () => {
 	check( Hexen2_ReadEntityUpdate( Uint8Array.from( [ ...minimal_bytes(), 0 ] ) ).ok === false, 'trailing update bytes' );
 	check( Hexen2_WriteEntityUpdate( { entity: 300, origin: [ 0, 0, 0 ] } ).ok === false, 'entity 300 without longEntity' );
 	same( U.ORIGIN1, 2, 'the native origin bit' );
+
+} );
+
+Deno.test( 'signon baselines and static entities round-trip', () => {
+
+	const fields = { modelIndex: 12, frame: 3, colormap: 1, skin: 2, scale: 16, drawflags: 9, abslight: 5,
+		origin: [ 1.25, - 2, 3 ], angles: [ 0, 90, 180 ] };
+	const spawn = Hexen2_WriteBaseline( { entity: 77, ...fields } );
+	check( spawn.ok, spawn.reason );
+	const baseline = Hexen2_ReadBaseline( spawn.bytes );
+	check( baseline.ok, baseline.reason );
+	same( baseline.kind, 'spawnbaseline', 'the baseline kind' );
+	same( baseline.baseline.entity, 77, 'the baseline entity' );
+	same( baseline.baseline.modelIndex, 12, 'model index' );
+	same( baseline.baseline.frame, 3, 'frame' );
+	same( baseline.baseline.colormap, 1, 'colormap' );
+	same( baseline.baseline.skin, 2, 'skin' );
+	same( baseline.baseline.scale, 16, 'scale' );
+	same( baseline.baseline.drawflags, 9, 'draw flags' );
+	same( baseline.baseline.abslight, 5, 'absolute light' );
+	near( baseline.baseline.origin[ 0 ], 1.25, 'baseline origin x' );
+	near( baseline.baseline.origin[ 1 ], - 2, 'baseline origin y' );
+	near( baseline.baseline.angles[ 1 ], 90, 'baseline angle y' );
+	near( baseline.baseline.angles[ 2 ], 180, 'baseline angle z' );
+
+	const staticEntity = Hexen2_ReadBaseline( Hexen2_WriteSpawnStatic( fields ).bytes );
+	check( staticEntity.ok, staticEntity.reason );
+	same( staticEntity.kind, 'spawnstatic', 'the static kind' );
+	same( staticEntity.baseline.entity, undefined, 'a static entity has no number on the wire' );
+	same( staticEntity.baseline.modelIndex, 12, 'the static model' );
+
+	const bytes = spawn.bytes;
+	check( Hexen2_ReadBaseline( bytes.subarray( 0, bytes.length - 1 ) ).ok === false, 'truncated baseline' );
+	check( Hexen2_ReadBaseline( Uint8Array.from( [ ...bytes, 0 ] ) ).ok === false, 'trailing baseline bytes' );
+	check( Hexen2_ReadBaseline( Uint8Array.from( [ 200, 0 ] ) ).ok === false, 'an unknown baseline opcode' );
 
 } );
 

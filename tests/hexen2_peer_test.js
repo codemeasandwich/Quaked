@@ -5,6 +5,7 @@ import { createServer, Socket } from 'node:net';
 import { Hexen2_CreateSession } from '../src/engine/common/hexen2_profile.js';
 import { Hexen2_EncodeSessionHello, Hexen2_DecodeSessionHello, Hexen2_CompareSessionHello } from '../src/engine/common/hexen2_wire.js';
 import { Hexen2_WritePrivateDatagram, Hexen2_ParsePrivateDatagram } from '../src/engine/common/hexen2_stream.js';
+import { Hexen2_WriteEntityUpdate, Hexen2_ReadEntityUpdate } from '../src/engine/common/hexen2_entitywire.js';
 import { Hexen2_Frame, Hexen2_Unframe, HEXEN2_FRAME_MAX } from '../src/engine/common/hexen2_peer.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
@@ -21,7 +22,9 @@ Deno.test( 'two peers admit each other over a framed TCP session and transfer a 
 	const datagram = Hexen2_WritePrivateDatagram( player, { time: 3.5, weaponModelIndex: 1, statsMask: 0x81n } );
 	check( datagram.ok, datagram.reason );
 
-	const received = { hello: null, datagram: null };
+	const update = Hexen2_WriteEntityUpdate( { entity: 42, modelIndex: 3, origin: [ 100, 200, 300 ], angles: [ 0, 90, 0 ] } );
+	check( update.ok, update.reason );
+	const received = { hello: null, datagram: null, update: null };
 	const server = createServer( socket => {
 
 		let buffer = new Uint8Array( 0 );
@@ -40,12 +43,19 @@ Deno.test( 'two peers admit each other over a framed TCP session and transfer a 
 					check( peer.ok, peer.reason );
 					received.hello = Hexen2_CompareSessionHello( hostHello.hello, peer.hello );
 					socket.write( Hexen2_Frame( hello.bytes ).bytes );
+	socket.write( Hexen2_Frame( datagram.bytes ).bytes );
+	socket.write( Hexen2_Frame( update.bytes ).bytes );
 					stage = 1;
 
-				} else {
+				} else if ( stage === 1 ) {
 
 					received.datagram = Hexen2_ParsePrivateDatagram( frame );
 					stage = 2;
+
+				} else {
+
+					received.update = Hexen2_ReadEntityUpdate( frame );
+					stage = 3;
 					socket.end();
 
 				}
@@ -72,7 +82,6 @@ Deno.test( 'two peers admit each other over a framed TCP session and transfer a 
 				const peer = Hexen2_DecodeSessionHello( frame );
 				check( peer.ok, peer.reason );
 				check( Hexen2_CompareSessionHello( hostHello.hello, peer.hello ).ok, 'the server identity matches' );
-				socket.write( Hexen2_Frame( datagram.bytes ).bytes );
 				stage = 1;
 
 			}
@@ -81,6 +90,8 @@ Deno.test( 'two peers admit each other over a framed TCP session and transfer a 
 
 	} );
 	socket.write( Hexen2_Frame( hello.bytes ).bytes );
+	socket.write( Hexen2_Frame( datagram.bytes ).bytes );
+	socket.write( Hexen2_Frame( update.bytes ).bytes );
 	await Promise.race( [ closed, new Promise( ( _, reject ) => setTimeout( () => reject( new Error( 'the peer did not close in time' ) ), 5000 ) ) ] );
 	server.close();
 	check( received.hello?.ok, 'the host admitted the peer identity: ' + received.hello?.reason );
@@ -88,6 +99,10 @@ Deno.test( 'two peers admit each other over a framed TCP session and transfer a 
 	same( received.datagram.time, 3.5, 'server time over the peer' );
 	same( received.datagram.stats.health, 85, 'health over the peer' );
 	same( received.datagram.stats.bluemana, 12, 'blue mana over the peer' );
+	check( received.update?.ok, 'the entity update arrived: ' + received.update?.reason );
+	same( received.update.update.entity, 42, 'the entity number over the peer' );
+	same( received.update.update.modelIndex, 3, 'the entity model over the peer' );
+	same( Math.round( received.update.update.origin[ 0 ] ), 100, 'the entity origin over the peer' );
 
 	// framing bounds
 	check( Hexen2_Frame( new Uint8Array( 0 ) ).ok === false, 'empty frame refused' );
