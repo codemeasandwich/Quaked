@@ -686,7 +686,7 @@ Draw_BeginFrame
  * drawing happens in virtual coordinates, with image smoothing off for crisp pixels. Called by `SCR_UpdateScreen`
  * (gl_screen.js) once per drawn frame, after `GL_BeginRendering`. Does nothing before `Draw_Init`.
  */
-export function Draw_BeginFrame() {
+export function Draw_BeginFrame( mode = 'default' ) {
 
 	if ( overlayCtx ) {
 
@@ -697,7 +697,13 @@ export function Draw_BeginFrame() {
 		// Apply UI scale transform
 		// This maps virtual coordinates to canvas pixels
 		_calculateUIScale();
-		overlayCtx.setTransform( _uiScale, 0, 0, _uiScale, 0, 0 );
+		if ( mode === 'height' ) {
+
+			// a native 320x200 HUD scaled to the window height, centred horizontally (Hexen's bar art)
+			const scale = overlayCanvas.height / 200;
+			overlayCtx.setTransform( scale, 0, 0, scale, ( overlayCanvas.width - 320 * scale ) / 2, 0 );
+
+		} else overlayCtx.setTransform( _uiScale, 0, 0, _uiScale, 0, 0 );
 
 		// Disable image smoothing for crisp pixels
 		overlayCtx.imageSmoothingEnabled = false;

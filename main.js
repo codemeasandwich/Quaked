@@ -5,6 +5,7 @@ import {Distribution_Profile} from './src/platform/distribution.js';
 import { Sys_Init, Sys_Printf, Sys_Error } from './src/engine/common/sys.js';
 import { COM_InitArgv } from './src/engine/common/common.js';
 import { Host_Init, Host_Frame, Host_Shutdown } from './src/engine/server/host.js';
+import { S_Init, S_UnlockAudio, S_GetAudioContext } from './src/engine/sound/snd_dma.js';
 import { COM_FetchPak, COM_FetchOptionalPak, COM_AddPack, COM_SetNewerPack, COM_SetNewerStartupPack, COM_SetNewerMapsPack, COM_NewerFile, COM_LoadPackFile, COM_BuildPack } from './src/engine/common/pak.js';
 import { Cbuf_AddText, Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './src/engine/common/cmd.js';
 import { Con_Printf } from './src/engine/common/common.js';
@@ -66,7 +67,7 @@ async function main() {
 			gate.innerHTML='<div style="letter-spacing:.2em;font-size:1.6em">HEXEN II</div><div style="margin-top:.6em;color:#b7ab90">Choose a class</div>';
 			const choices=[['paladin','Paladin'],['crusader','Crusader'],['necromancer','Necromancer'],['assassin','Assassin']];
 			const row=document.createElement('div');row.style='display:flex;gap:.8em;margin-top:1.4em';
-			for(const [id,name] of choices){const button=document.createElement('button');button.dataset.class=id;button.textContent=name;button.style='padding:.7em 1.4em;background:#2a2419;color:#e8dcc0;border:1px solid #7a6a4a;font:inherit;letter-spacing:.08em;cursor:pointer';row.append(button);}
+			for(const [id,name] of choices){const button=document.createElement('button');button.dataset.class=id;button.textContent=name;button.style='padding:.7em 1.4em;background:#2a2419;color:#e8dcc0;border:1px solid #7a6a4a;font:inherit;letter-spacing:.08em;cursor:pointer';button.addEventListener('click',()=>{try{if(!S_GetAudioContext())S_Init();S_UnlockAudio();}catch(error){log('audio unlock: '+error);}},{once:true});row.append(button);}
 			gate.append(row);
 			document.body.append(gate);
 			let chosenClass='paladin';

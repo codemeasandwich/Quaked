@@ -30,6 +30,7 @@ try {
 			receipt.position = stats.position;
 			receipt.health = stats.health;
 			receipt.classNumber = session.plan.classNumber;
+			receipt.canvas = stats.canvas; receipt.css = stats.css; receipt.video = stats.video; receipt.yaw = stats.yaw;
 			receipt.inputLocked = stats.inputLocked;
 			receipt.forward = stats.forward;
 			receipt.keyDest = stats.keyDest;

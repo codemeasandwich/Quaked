@@ -12,7 +12,7 @@
  */
 
 import { COM_AddPack, COM_FindFile } from '../common/pak.js';
-import { Cmd_Init, Cbuf_Execute, Cbuf_Init } from '../common/cmd.js';
+import { Cmd_Init, Cmd_ExecuteString, Cbuf_Execute, Cbuf_Init } from '../common/cmd.js';
 import { renderer } from '../render/vid.js';
 import { set_host_frametime } from '../common/host_state.js';
 import { Sys_Printf } from '../common/sys.js';
@@ -140,13 +140,14 @@ export async function Hexen2_PageStart( options ) {
 		cl.stats[ 0 ] = session.hud.health; cl.stats[ 4 ] = session.hud.health;
 
 		// sound
-		S_Init(); S_UnlockAudio(); S_PrecacheSound( 'ambience/water1.wav' );
+		if ( ! S_GetAudioContext() ) S_Init();
+		S_UnlockAudio(); S_PrecacheSound( 'ambience/water1.wav' );
 
 		// input: real keys and pointer lock through the platform adapter; movement through the engine's button commands
 		IN_Init( options.element ?? document.body );
 		CL_InitInput();
 		Key_SetBinding( K_UPARROW, '+forward' ); Key_SetBinding( K_DOWNARROW, '+back' );
-		Key_SetBinding( K_LEFTARROW, '+left' ); Key_SetBinding( K_RIGHTARROW, '+right' );
+
 		sv.active = true;
 		SV_SetPlayer( session.player );
 		SV_User_SetCallbacks( { host_client: client, get_key_dest: () => key_game, V_CalcRoll: () => 0 } );
@@ -155,6 +156,7 @@ export async function Hexen2_PageStart( options ) {
 
 			const width = Math.max( 320, window.innerWidth || 1280 ), height = Math.max( 240, window.innerHeight || 800 );
 			vid.width = width; vid.height = height; vid.conwidth = width; vid.conheight = height; vid.rowbytes = width;
+			renderer.setPixelRatio( 1 );
 			renderer.setSize( width, height, false );
 			const canvas = renderer.domElement;
 			canvas.style.position = 'fixed'; canvas.style.left = '0'; canvas.style.top = '0';
@@ -164,9 +166,28 @@ export async function Hexen2_PageStart( options ) {
 			r_refdef.fov_y = 2 * Math.atan( Math.tan( Math.PI / 4 ) * height / width ) * 180 / Math.PI;
 
 		};
-		const gesture = () => { S_UnlockAudio(); renderer.domElement.requestPointerLock?.(); removeEventListener( 'pointerdown', gesture ); removeEventListener( 'keydown', gesture ); };
+		const gesture = () => { S_UnlockAudio(); Promise.resolve( renderer.domElement.requestPointerLock?.() ).catch( () => {} ); removeEventListener( 'pointerdown', gesture ); removeEventListener( 'keydown', gesture ); };
 		addEventListener( 'pointerdown', gesture, { once: true } ); addEventListener( 'keydown', gesture, { once: true } );
-		renderer.domElement.addEventListener( 'click', () => { S_UnlockAudio(); renderer.domElement.requestPointerLock?.(); } );
+		renderer.domElement.addEventListener( 'click', () => { S_UnlockAudio(); Promise.resolve( renderer.domElement.requestPointerLock?.() ).catch( () => {} ); } );
+		document.addEventListener( 'mousedown', event => { if ( event.button === 0 ) Cmd_ExecuteString( '+attack' ); } );
+		document.addEventListener( 'mouseup', event => { if ( event.button === 0 ) Cmd_ExecuteString( '-attack' ); } );
+		let turnLeft = false, turnRight = false;
+		addEventListener( 'keydown', event => { if ( event.code === 'ArrowLeft' ) turnLeft = true; if ( event.code === 'ArrowRight' ) turnRight = true; } );
+		addEventListener( 'keyup', event => { if ( event.code === 'ArrowLeft' ) turnLeft = false; if ( event.code === 'ArrowRight' ) turnRight = false; } );
+		// WKWebView may not grant pointer lock: fall back to raw pointer deltas for mouse look
+		let lastMouse = null;
+		document.addEventListener( 'mousemove', event => {
+
+			if ( document.pointerLockElement ) return;
+			if ( lastMouse === null ) { lastMouse = { x: event.clientX, y: event.clientY }; return; }
+			const dx = event.clientX - lastMouse.x, dy = event.clientY - lastMouse.y;
+			lastMouse = { x: event.clientX, y: event.clientY };
+			if ( dx === 0 && dy === 0 ) return;
+			cl.viewangles[ 1 ] = ( cl.viewangles[ 1 ] - dx * 0.25 + 360 ) % 360;
+			cl.viewangles[ 0 ] = Math.max( - 70, Math.min( 80, cl.viewangles[ 0 ] - dy * 0.25 ) );
+
+		} );
+		document.addEventListener( 'pointerlockchange', () => log( 'pointerlock ' + ( document.pointerLockElement ? 'acquired' : 'released' ) ) );
 		window.addEventListener( 'resize', resize );
 		resize();
 		let last = performance.now();
@@ -180,6 +201,8 @@ export async function Hexen2_PageStart( options ) {
 				if ( window.innerWidth !== lastWidth || window.innerHeight !== lastHeight ) { lastWidth = window.innerWidth; lastHeight = window.innerHeight; resize(); }
 				const dt = Math.min( 0.1, Math.max( 0.01, ( now - last ) / 1000 ) );
 				last = now;
+				if ( turnLeft ) cl.viewangles[ 1 ] = ( cl.viewangles[ 1 ] + 120 * dt + 360 ) % 360;
+				if ( turnRight ) cl.viewangles[ 1 ] = ( cl.viewangles[ 1 ] - 120 * dt + 720 ) % 360;
 				set_host_frametime( dt );
 				SV_SetFrametime( dt );
 				Cbuf_Execute();
@@ -197,7 +220,7 @@ export async function Hexen2_PageStart( options ) {
 				updateNearbyEntities( session );
 				V_CalcRefdef();
 				R_RenderView();
-				Draw_BeginFrame();
+				Draw_BeginFrame( 'height' );
 				const hud = Hexen2_HudFromClientState( session.state );
 				Hexen2_DrawStatusBar( Hexen2_StatusBarOps( hud ), {
 					pic: ( name, x, y ) => { const pic = Draw_CachePic( name ); if ( !pic ) return false; Draw_Pic( x, y, pic ); return true; },
@@ -207,8 +230,9 @@ export async function Hexen2_PageStart( options ) {
 				const context = S_GetAudioContext();
 				if ( context && context.state === 'running' ) S_Update( session.player.v.origin, [ 1, 0, 0 ], [ 0, 1, 0 ], [ 0, 0, 1 ] );
 				frameCount ++;
-				if ( frameCount === 1 ) log( 'first frame rendered calls=' + ( renderer.info.render.calls | 0 ) + ' tris=' + ( renderer.info.render.triangles | 0 ) );
-				options.onFrame?.( session, { frames: frameCount, position: [ session.player.v.origin[ 0 ], session.player.v.origin[ 1 ], session.player.v.origin[ 2 ] ], health: session.player.v.health } );
+				if ( frameCount % 120 === 0 ) log( 'state frames=' + frameCount + ' pos=' + session.player.v.origin.map( v => Math.round( v ) ).join( ',' ) + ' yaw=' + Math.round( cl.viewangles[ 1 ] ) + ' audio=' + ( S_GetAudioContext()?.state ?? 'none' ) + ' lock=' + ( document.pointerLockElement ? 1 : 0 ) );
+				if ( frameCount === 1 ) log( 'first frame rendered calls=' + ( renderer.info.render.calls | 0 ) + ' tris=' + ( renderer.info.render.triangles | 0 ) + ' canvas=' + renderer.domElement.width + 'x' + renderer.domElement.height + ' css=' + renderer.domElement.clientWidth + 'x' + renderer.domElement.clientHeight + ' style=' + renderer.domElement.style.width + 'x' + renderer.domElement.style.height + ' vrect=' + r_refdef.vrect.width + 'x' + r_refdef.vrect.height + ' vid=' + vid.width + 'x' + vid.height + ' audio=' + ( S_GetAudioContext()?.state ?? 'none' ) );
+				options.onFrame?.( session, { frames: frameCount, position: [ session.player.v.origin[ 0 ], session.player.v.origin[ 1 ], session.player.v.origin[ 2 ] ], health: session.player.v.health, canvas: [ renderer.domElement.width, renderer.domElement.height ], css: [ renderer.domElement.clientWidth, renderer.domElement.clientHeight ], video: [ vid.width, vid.height ], yaw: cl.viewangles[ 1 ] } );
 
 			} catch ( error ) {
 
@@ -262,7 +286,7 @@ function updateNearbyEntities( session ) {
 		const modelIndex = indexOf.get( modelName );
 		if ( modelIndex === undefined ) continue;
 		const distance = Math.hypot( ent.v.origin[ 0 ] - player.v.origin[ 0 ], ent.v.origin[ 1 ] - player.v.origin[ 1 ] );
-		if ( distance > 1700 || distance < 96 ) continue;
+		if ( distance > 1700 ) continue;
 		candidates.push( { ent, modelIndex, distance } );
 
 	}
