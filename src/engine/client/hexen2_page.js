@@ -16,14 +16,14 @@ import { Cmd_Init, Cbuf_Execute, Cbuf_Init } from '../common/cmd.js';
 import { renderer } from '../render/vid.js';
 import { set_host_frametime } from '../common/host_state.js';
 import { Sys_Printf } from '../common/sys.js';
-import { VID_Init, vid } from '../render/vid.js';
+import { VID_Init, vid, d_8to24table } from '../render/vid.js';
 import { Mod_Init, Mod_ForName } from '../render/gl_model.js';
 import { model_t } from '../render/gl_model_types.js';
 import { set_loadmodel } from '../render/gl_model_common.js';
 import { Mod_LoadBrushModel } from '../render/gl_model_bsp.js';
 import { R_Init, R_NewMap, R_RenderView, set_r_worldentity } from '../render/gl_rmain.js';
 import { entity_t, r_refdef } from '../render/render.js';
-import { Draw_Init, Draw_BeginFrame, Draw_CachePic, Draw_Pic, Draw_String } from '../render/gl_draw.js';
+import { Draw_Init, Draw_BeginFrame, Draw_CachePic, Draw_Pic, Draw_String, Draw_SetExternals } from '../render/gl_draw.js';
 import { sv, SIGNON_SIZE } from '../server/server.js';
 import { SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_PointContents } from '../server/world.js';
 import { SV_SetCallbacks as SV_SetPhysCallbacks, SV_Physics, SV_SetFrametime, SV_SetPlayer } from '../server/sv_phys.js';
@@ -129,6 +129,7 @@ export async function Hexen2_PageStart( options ) {
 		R_Init();
 		const worldEntity = new entity_t(); worldEntity.model = session.map; worldEntity.frame = 0; set_r_worldentity( worldEntity );
 		R_NewMap();
+		Draw_SetExternals( { vid, d_8to24table } );
 		const charset = COM_FindFile( 'gfx/menu/conchars.lmp' );
 		Draw_Init( null, charset ? new Uint8Array( charset.data.buffer, charset.data.byteOffset, charset.size ) : null );
 		const bound = Hexen2_BindClientState( session.state, { cl, clEntities: cl_entities,
@@ -163,16 +164,20 @@ export async function Hexen2_PageStart( options ) {
 			r_refdef.fov_y = 2 * Math.atan( Math.tan( Math.PI / 4 ) * height / width ) * 180 / Math.PI;
 
 		};
+		const gesture = () => { S_UnlockAudio(); renderer.domElement.requestPointerLock?.(); removeEventListener( 'pointerdown', gesture ); removeEventListener( 'keydown', gesture ); };
+		addEventListener( 'pointerdown', gesture, { once: true } ); addEventListener( 'keydown', gesture, { once: true } );
 		renderer.domElement.addEventListener( 'click', () => { S_UnlockAudio(); renderer.domElement.requestPointerLock?.(); } );
 		window.addEventListener( 'resize', resize );
 		resize();
 		let last = performance.now();
 		let attacking = false;
 		let frameCount = 0;
+		let lastWidth = 0, lastHeight = 0;
 		const frame = now => {
 
 			try {
 
+				if ( window.innerWidth !== lastWidth || window.innerHeight !== lastHeight ) { lastWidth = window.innerWidth; lastHeight = window.innerHeight; resize(); }
 				const dt = Math.min( 0.1, Math.max( 0.01, ( now - last ) / 1000 ) );
 				last = now;
 				set_host_frametime( dt );
