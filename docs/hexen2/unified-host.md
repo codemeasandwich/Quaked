@@ -25,11 +25,20 @@ specific to Quake content applies to Hexen II through data, never through a seco
    set from the selected catalogue game before packs are mounted and confirmed by the progs header CRC in
    `PR_LoadProgs` (Hexen II 38488 for the base and demo layout, 26905 for Portal; 14046, v1.03, is unsupported). Portal of Praevus is a `portals`
    flag on the Hexen II family, not a third family.
-3. **Fork at two seams only.**
-   - *Protocol*: one server writer and one client parser per family over the shared transport and message buffers.
-     Hexen II sessions use the native wire format: protocol 18 (base, demo) or 19 (Portal). Quaked extensions, if
-     any, are negotiated bits, never a private envelope. The same parser plays native `.dem` files.
-   - *Builtins*: the profile registers its builtin table (`pr_builtin` for Quake, the 114-slot Hexen II table).
+3. **One protocol, one builtin table.** (Owner, 19 October 2026: "this is our implementation so there's no reason
+   why we cannot standardise the network code".)
+   - *Protocol*: Quaked talks only to Quaked, so live play for every game uses one Quaked protocol: the existing
+     extended protocol (`PROTOCOL_LARGE`, 1015) grown with optional entity bits (`scale`, `drawflags`, `abslight`,
+     wider model index; Quake defaults 1/0/0) and new message ids for Hexen-only data (client effects, the
+     inventory/stats record, plaques, rain, view tint/flags, MIDI name, puzzle and objective state). Entities use
+     Quake's per-packet updates; Hexen's reference-frame deltas are not used. Native formats survive only as
+     read-only demo decoders that translate into the unified messages: Quake protocol 15 (as today) and Hexen II
+     18/19 (`demo1`–`demo3.dem`). There is no native Hexen II server or client interoperability.
+   - *Builtins*: the numbers are compiled into the retail `progs.dat`, so they cannot change. One shared table holds
+     every number whose meaning is the same in both games (`#1–59`, `#67–78`); a Hexen layer supplies `#60–66` and
+     `#79–114` and the few shared numbers whose native behaviour differs (`traceline` hull 0, `aim` shot origin,
+     `walkmove` trace flag, `makestatic`/`ambientsound` fields). The only true collisions are `#79`/`#80`
+     (Quake 2021 re-release `finaleFinished`/`localsound` vs Hexen `plaque_draw`/`rain_go`), resolved by the profile.
 4. **Parameters, not copies.** Shared algorithms read profile data (hull table, limits, frame time, string-temp
    size, pack search). Hexen II behaviour inside shared code is a branch on values Quake never produces (Hexen
    movetypes 13/14, `SOLID_PHASE`, 8-hull BSPs, RAPO models, non-zero `drawflags`), so Quake behaviour is unchanged
@@ -54,9 +63,10 @@ specific to Quake content applies to Hexen II through data, never through a seco
 | --- | --- | --- | --- |
 | Active profile | `common/game_profile.js` | `GAME_PROFILES.quake` (default) | `GAME_PROFILES.hexen2` with `portals`/`demo` flags |
 | Profile selection | host start (`main.js` → `Host_Init`) | catalogue/shelf id | the same; class and skill are cvars (`_cl_playerclass`, `skill`) set by the Hexen menu pages |
-| Builtins | `progs/pr_exec.js` dispatch through `PR_SetBuiltins( table )` | `pr_cmds.js` table | `progs/hexen2_*_cmds.js` tables |
-| Server protocol writer | `server/sv_protocol.js` (`SV_Protocol()`) | existing `sv_main.js` functions | `server/sv_hexen2_send.js` using `common/hexen2_*wire.js` codecs |
-| Client protocol parser | `client/cl_parse.js` → `CL_Protocol()` | existing `CL_ParseServerMessage` | `client/cl_hexen2_parse.js`, writing the shared `cl` state plus `cl.h2` (inventory/stat record) |
+| Builtins | `progs/pr_exec.js` dispatch through `PR_SetBuiltins( table )` | `pr_cmds.js` table | the same table with the Hexen layer from `progs/hexen2_*_cmds.js` applied |
+| Server writer | `server/sv_main.js` | existing functions | the same functions writing the unified protocol's optional bits and Hexen message ids when the game produces that data |
+| Client parser | `client/cl_parse.js` | existing `CL_ParseServerMessage` | the same parser; Hexen-only messages handled in `client/cl_hexen2.js`, writing the shared `cl` state plus `cl.h2` (inventory/stat record) |
+| Native demos | `client/cl_demo.js` | protocol 15 reader (today) | `client/cl_hexen2_demo.js`: translates protocol 18/19 demo messages into unified messages |
 | Hull table | `render/gl_model_bsp.js` per model | 4 hulls, read from the BSP | 8 headnodes when the submodel lump size says so; sizes from the profile (`portals` changes hull 4) |
 | Physics | `server/sv_phys.js`, `world.js`, `sv_move.js`, `sv_user.js` | unchanged | branches on Hexen movetypes/solids/flags/hull fields |
 | Entity state | `cl_entities[i]` | `drawflags = 0`, `abslight = 0`, `scale = 1` | values from the Hexen parser |
@@ -75,8 +85,8 @@ library contracts). Packages communicate only through the seams in §3 and the n
 | ID | Package | Owns | Depends on |
 | --- | --- | --- | --- |
 | U0 | Profile, seams, builtin registration, de-fork `main.js` | `game_profile.js`, `sv_protocol.js`, seam hooks in `pr_exec.js`, `cl_parse.js`, `host.js`, `main.js` | — |
-| U1 | Server spawn and Hexen writer | `sv_main.js` Hexen branches, `sv_hexen2_send.js` | U0 |
-| U2 | Client Hexen parser | `cl_hexen2_parse.js`, `cl_main.js` Hexen state | U0 |
+| U1 | Unified protocol (server and client) | `common/protocol.js`, `sv_main.js`, `cl_parse.js`, `cl_hexen2.js`, `host_cmd.js` spawn | U0 |
+| U2 | Native Hexen demo decoder and client entity semantics | `cl_hexen2_demo.js`, `cl_main.js` Hexen relink/EF bits | U1 (message ids) |
 | U3 | Builtins: fixes and the 17 missing | `progs/hexen2_*_cmds.js`, strings/puzzles/infolist loaders | U0 |
 | U4 | Physics and traces | `sv_phys.js`, `world.js`, `sv_move.js`, `sv_user.js` | U0 |
 | U5 | Input, status bar, menus, console | `cl_input.js` Hexen commands, `sbar.js` seam, Hexen menu pages | U0, U2 |
@@ -92,7 +102,7 @@ library contracts). Packages communicate only through the seams in §3 and the n
 - Hexen II base, demo and Portal start from the shelf through the shared host; `demo1` → village hub travel and
   back, with combat, weapon switching, artifacts, centerprint text, light styles, statics, ambient sounds, music
   and saves; the enhanced options visibly apply.
-- Native `demo1.dem`–`demo3.dem` play back through the Hexen parser.
+- Native `demo1.dem`–`demo3.dem` play back through the demo decoder.
 - Owner trial in the packaged app before any release; each milestone cut as a release under the existing rule.
 
 ## 6. Pinned references
