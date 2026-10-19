@@ -201,3 +201,78 @@ export function Hexen2_ReadBaseline( bytes, options = {} ) {
 	} catch ( error ) { return { ok: false, reason: error.message }; }
 
 }
+
+
+/**
+ * Writes an `svc_reference` message (the entity-frame reference: frame and sequence).
+ *
+ * @param {{ frame: number, sequence: number }} reference
+ * @returns {{ ok: true, bytes: Uint8Array } | { ok: false, reason: string }} the message
+ */
+export function Hexen2_WriteReference( reference ) {
+
+	if ( !Number.isInteger( reference.frame ) || reference.frame < 0 || reference.frame > 255 )
+		return { ok: false, reason: 'invalid frame' };
+	if ( !Number.isInteger( reference.sequence ) || reference.sequence < 0 || reference.sequence > 255 )
+		return { ok: false, reason: 'invalid sequence' };
+	return { ok: true, bytes: Uint8Array.from( [ HEXEN2_SERVER_MESSAGES.reference, reference.frame, reference.sequence ] ) };
+
+}
+
+/**
+ * Reads an `svc_reference` message.
+ *
+ * @param {ArrayLike<number>} bytes the message, opcode first
+ * @returns {{ ok: true, reference: object, consumed: number } | { ok: false, reason: string }} the reference
+ */
+export function Hexen2_ReadReference( bytes ) {
+
+	if ( !bytes || bytes.length !== 3 ) return { ok: false, reason: 'malformed reference' };
+	if ( bytes[ 0 ] !== HEXEN2_SERVER_MESSAGES.reference ) return { ok: false, reason: 'not a reference message' };
+	return { ok: true, reference: { frame: bytes[ 1 ], sequence: bytes[ 2 ] }, consumed: 3 };
+
+}
+
+/**
+ * Writes an `svc_clear_edicts` message (the entities removed from the current frame).
+ *
+ * @param {ReadonlyArray<number>} entities entity numbers to clear
+ * @returns {{ ok: true, bytes: Uint8Array } | { ok: false, reason: string }} the message
+ */
+export function Hexen2_WriteClearEdicts( entities ) {
+
+	if ( !Array.isArray( entities ) || entities.length > 255 ) return { ok: false, reason: 'invalid clear list' };
+	const w = new Writer();
+	w.byte( HEXEN2_SERVER_MESSAGES.clear_edicts );
+	w.byte( entities.length );
+	for ( const entity of entities ) {
+
+		if ( !Number.isInteger( entity ) || entity < 0 || entity > 65535 ) return { ok: false, reason: 'invalid cleared entity' };
+		w.short( entity );
+
+	}
+	return { ok: true, bytes: w.bytes() };
+
+}
+
+/**
+ * Reads an `svc_clear_edicts` message.
+ *
+ * @param {ArrayLike<number>} bytes the message, opcode first
+ * @returns {{ ok: true, entities: ReadonlyArray<number>, consumed: number } | { ok: false, reason: string }} the
+ *   cleared entities
+ */
+export function Hexen2_ReadClearEdicts( bytes ) {
+
+	try {
+
+		const r = new Reader( bytes );
+		if ( r.byte() !== HEXEN2_SERVER_MESSAGES.clear_edicts ) return { ok: false, reason: 'not a clear_edicts message' };
+		const count = r.byte(), entities = [];
+		for ( let i = 0; i < count; i ++ ) entities.push( r.short() );
+		if ( r.at !== bytes.length ) return { ok: false, reason: 'trailing clear_edicts bytes' };
+		return { ok: true, entities, consumed: r.at };
+
+	} catch ( error ) { return { ok: false, reason: error.message }; }
+
+}

@@ -32,8 +32,8 @@ Run from `/Users/bri/worktrees/Quaked/Dev/h2` with
 | End-to-end trace | `hexen2_acceptance_test.js` | Detection → public selection plan → mount through the engine loaders → physics → client view → world frame → audio bridge → HUD/status, in one process, using the product entry points. Still not a drawn or networked session. |
 | Public native smoke | — | **Missing.** No packaged-app UI path (shelf → source → class → difficulty → demo1) exists for Hexen II. |
 
-Latest runs after the baseline and peer entity sync: **90/90** Hexen assertions across 40 suites; the existing
-catalogue suite (8/8) and the other regression sets remain green. The spawn hands `newclass` to the gamecode (resolved from the loaded
+Latest runs after the entity-frame messages: **91/91** Hexen assertions across 40 suites; the existing catalogue suite
+(8/8) and the other regression sets remain green. The spawn hands `newclass` to the gamecode (resolved from the loaded
 program: offset 212 base, 214 Portal) and `setclass` (#66) records the class, so `stats_NewClass` applies the native
 tables instead of returning through its class guard; sprint (#24) and stuffcmd (#21) carry the pickup/class text.
 
@@ -57,7 +57,7 @@ against the pre-change baseline when the candidate is qualified. This is a proce
 4. **Audio activation**: mixer scheduling is verified; the packaged app's Web Audio unlock/user-gesture path is not.
 5. **Public smoke**: shelf → source → Paladin → demo1 through the public UI, not test-only boot.
 6. **Codec**: the private session preamble and the native player bodies (`svc_clientdata`, `svc_update_inv`) round-trip
-   with refusal cases; the player-channel datagram round-trips; native particle effect bodies, the sound/stop/position messages, their composition into the private datagram (after player state, parsed in order), and the fast entity update (three-byte U_* bits, long entities, origin/angle/model/frame fields) are verified; signon baselines and static entities now round-trip, and a live entity update crosses the framed TCP loopback after the player datagram; the full signon sequence/clear-edicts, the packaged LAN UI and the four-peer trial remain.
+   with refusal cases; the player-channel datagram round-trips; native particle effect bodies, the sound/stop/position messages, their composition into the private datagram (after player state, parsed in order), and the fast entity update (three-byte U_* bits, long entities, origin/angle/model/frame fields) are verified; signon baselines, static entities, the entity-frame reference and clear-edicts lists now round-trip, and a live entity update crosses the framed TCP loopback after the player datagram; the packaged LAN UI and the four-peer trial remain.
 7. **Public/filesystem integration**: catalogue discovery/validation and engine-level selection/mounting are verified;
    the shelf click, native boundary and packaged smoke remain.
 
@@ -69,3 +69,17 @@ because the underlying data paths are verified.
 - Continue G1 with the drawn HUD, audible playback and the public smoke.
 - Retroactively establish RED controls for the code-first presentation modules before claiming them for a candidate.
 - Keep this record updated with each executed run; do not describe it as an owner trial or acceptance.
+
+
+## Handover at round 50
+
+- Branch/worktree: `h2` at `/Users/bri/worktrees/Quaked/Dev/h2`; the tree is clean after the final commit.
+- Evidence: this ledger plus 40 Hexen suites run with
+  `QUAKED_THREE_MODULE="/Users/bri/SOURCE/Quaked/node_modules/three/build/three.module.js" node tools/run_tests.mjs <files>`
+  from the worktree.
+- Product entry points: `hexen2_mount.js` (plan + mount), `hexen2_boot.js` (level/player steps), the renderer/HUD data modules,
+  the private session preamble/datagram/peer modules, and the native body codecs (clientdata, effects, sounds, entity updates).
+- Still blocking G1: the packaged shelf click/native smoke, native entity/effect sync inside the packaged LAN UI with four
+  real peers and a real client/server peer, a real browser canvas, and a real audio device. The presentation modules were
+  written code-first, so their RED controls remain a separate obligation (recorded above).
+- Nothing here is an owner trial, qualification, merge or release.

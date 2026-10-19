@@ -1,7 +1,7 @@
 // Native Hexen II fast entity updates: the high-bit command, U_* bit bytes (one to three), entity number, and the
 // native field order with 1/8-unit coordinates and 1/256-turn angles. Round-trips a full update, a minimal one, a
 // long entity and concatenated updates; refuses non-updates, truncation and trailing bytes.
-import { Hexen2_WriteEntityUpdate, Hexen2_ReadEntityUpdate, Hexen2_WriteBaseline, Hexen2_ReadBaseline, Hexen2_WriteSpawnStatic, U } from '../src/engine/common/hexen2_entitywire.js';
+import { Hexen2_WriteEntityUpdate, Hexen2_ReadEntityUpdate, Hexen2_WriteBaseline, Hexen2_ReadBaseline, Hexen2_WriteSpawnStatic, Hexen2_WriteReference, Hexen2_ReadReference, Hexen2_WriteClearEdicts, Hexen2_ReadClearEdicts, U } from '../src/engine/common/hexen2_entitywire.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const near = ( a, b, m, tol = 0.002 ) => check( Math.abs( a - b ) < tol, `${m}: ${a} != ${b}` );
@@ -97,3 +97,25 @@ Deno.test( 'signon baselines and static entities round-trip', () => {
 } );
 
 function minimal_bytes() { return Hexen2_WriteEntityUpdate( { entity: 4, origin: [ 1, 0, 0 ] } ).bytes; }
+
+Deno.test( 'entity frame references and clear-edict lists round-trip', () => {
+
+	const reference = Hexen2_WriteReference( { frame: 3, sequence: 7 } );
+	check( reference.ok, reference.reason );
+	const readReference = Hexen2_ReadReference( reference.bytes );
+	check( readReference.ok, readReference.reason );
+	same( readReference.reference.frame, 3, 'the frame' );
+	same( readReference.reference.sequence, 7, 'the sequence' );
+
+	const clear = Hexen2_WriteClearEdicts( [ 4, 9, 300 ] );
+	check( clear.ok, clear.reason );
+	const readClear = Hexen2_ReadClearEdicts( clear.bytes );
+	check( readClear.ok, readClear.reason );
+	same( readClear.entities.join( ',' ), '4,9,300', 'the cleared entity list' );
+
+	check( Hexen2_WriteReference( { frame: 256, sequence: 0 } ).ok === false, 'an out-of-range frame' );
+	check( Hexen2_WriteClearEdicts( new Array( 256 ).fill( 0 ) ).ok === false, 'a clear list over 255' );
+	check( Hexen2_ReadClearEdicts( clear.bytes.subarray( 0, clear.bytes.length - 1 ) ).ok === false, 'a truncated clear list' );
+	check( Hexen2_ReadReference( Uint8Array.from( [ 47, 1 ] ) ).ok === false, 'a short reference' );
+
+} );
