@@ -9,7 +9,7 @@ import {
 	svc_temp_entity, svc_hexen2_start_effect, svc_hexen2_end_effect, svc_hexen2_plaque,
 	svc_hexen2_raineffect, svc_hexen2_particle2, svc_hexen2_particle_explosion,
 	svc_hexen2_set_view_flags, svc_hexen2_clear_view_flags, svc_hexen2_set_view_tint,
-	svc_hexen2_setangle_interpolate, svc_hexen2_sound_update_pos,
+	svc_hexen2_setangle_interpolate, svc_hexen2_sound_update_pos, svc_hexen2_update_kingofhill,
 	TE_STREAM_LIGHTNING
 } from '../src/engine/common/protocol.js';
 import { COM_SetNetMessage, sizebuf_t, SZ_Alloc, SZ_Write } from '../src/engine/common/common.js';
@@ -209,11 +209,15 @@ Deno.test( 'native service bytes from gamecode are translated before the real cl
 	parseBytes( interp );
 	same( cl.h2.angleTarget[ 0 ] > 89 && cl.h2.angleTarget[ 0 ] < 91, true, 'the parsed angle target' );
 
-	// SVC_UPDATE_KINGOFHILL (51) is refused with its short body: nothing reaches the wire.
+	// SVC_UPDATE_KINGOFHILL (51) + WriteEntity -> the unified message and the client's zero-based slot.
 	reset( server.reliable_datagram );
 	writeByte( 2, 51 );
 	writeShort( 2, 1234 );
-	same( server.reliable_datagram.cursize, 0, 'the king-of-the-hill message has no unified meaning and is dropped' );
+	const koth = bytes( server.reliable_datagram );
+	same( koth[ 0 ], svc_hexen2_update_kingofhill, 'native 51 is svc_hexen2_update_kingofhill' );
+	same( koth[ 1 ] | ( koth[ 2 ] << 8 ), 1234, 'the native entity short' );
+	parseBytes( koth );
+	same( cl.h2.kingOfHill, 1233, 'the client stores the entity as its scoreboard slot' );
 
 	// SVC_SOUND_UPDATE_POS (53) -> 68, MSG_BROADCAST
 	reset( server.datagram );

@@ -398,6 +398,7 @@ function Sbar_Hexen2Deathmatch() {
 	const pic = _Draw_CachePic ? _Draw_CachePic( 'gfx/menu/title8.lmp' ) : null;
 	if ( pic && _Draw_TransPic ) _Draw_TransPic( ( _vid.width - pic.width ) >> 1, 0, pic );
 	const order = Sbar_Hexen2FragSort();
+	const king = _cl.h2?.kingOfHill ?? - 1;
 	const x = 80 + ( ( _vid.width - 320 ) >> 1 );
 	let y = 62;
 	for ( const slot of order ) {
@@ -412,6 +413,7 @@ function Sbar_Hexen2Deathmatch() {
 
 		}
 		const frags = String( score.frags | 0 ).padStart( 3, ' ' );
+		if ( slot === king && _Draw_Character ) _Draw_Character( x - 12, y - 1, 130 ); // sbar.c:872, the king marker
 		for ( let i = 0; i < 3; i ++ ) if ( _Draw_Character ) _Draw_Character( x + 8 + i * 8, y - 1, frags.charCodeAt( i ) );
 		if ( _Draw_String ) _Draw_String( x + 64, y, String( score.name ) );
 		y += 10;
@@ -431,6 +433,7 @@ function Sbar_Hexen2SmallDeathmatch() {
 	const y0 = limited === 1 ? 46 : _vid.height - HEXEN2_BAR_TOP;
 	const x = 10;
 	const scores = _cl.scores ?? [];
+	const king = _cl.h2?.kingOfHill ?? - 1;
 	for ( let row = 0; row < count; row ++ ) {
 
 		const score = scores[ order[ row ] ], y = y0 + row * 10;
@@ -443,6 +446,7 @@ function Sbar_Hexen2SmallDeathmatch() {
 		}
 		const frags = String( score.frags | 0 ).padStart( 3, ' ' );
 		if ( _Draw_Character ) for ( let i = 0; i < 3; i ++ ) _Draw_Character( x + 2 + i * 8, y - 1, frags.charCodeAt( i ) );
+		if ( order[ row ] === king && _Draw_Character ) _Draw_Character( x + 30, y - 1, 130 ); // sbar.c:1013/1021
 
 	}
 

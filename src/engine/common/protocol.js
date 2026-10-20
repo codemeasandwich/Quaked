@@ -224,6 +224,7 @@ export const svc_hexen2_sound_update_pos = 68; // [short] ent<<3|channel [vec3] 
 export const svc_hexen2_intermission = 69; // [byte] Hexen intermission picture index (native svc_intermission)
 export const svc_hexen2_temp_entity = 70; // [byte] TE_ type 24..32 then the native stream body
 export const svc_hexen2_info_mask = 71; // [long] objectives [long] objectives2 (Portal)
+export const svc_hexen2_update_kingofhill = 72; // [short] native entity number; the client stores it minus one
 
 // The feature flags svc_hexen2_features carries.
 export const HEXEN2_FEATURE_ENTITY_FIELDS = ( 1 << 0 ); // packet entities may carry scale/drawflags/abslight

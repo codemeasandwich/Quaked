@@ -158,11 +158,13 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `5082d07e` | fix | packaged start: no `SetNewParms` for Hexen; no unreviewed rock relief; packaged-trial tracing |
 | `b99b7fb0` | U12 | acceptance coverage on the shared host: every base/Portal map, routes, co-op, soak |
 | `72236e8e` | review R1 | Quake temp-string slot, 56-bit stat masks, desktop Level Select, bounce in solid, `playerclass` gating, damaged hub saves, skill 4 |
-| (this commit) | review R2 / F1 | builtins write unified ids; native `WriteByte` service translation; reserved temp edicts; Portal objectives; full stat resend on level change; animated `lightstylevalue` |
+| `43fbca10` | review R2 / F1 | builtins write unified ids; native `WriteByte` service translation; reserved temp edicts; Portal objectives; full stat resend on level change; animated `lightstylevalue` |
+| (this commit) | review R3 / F2 | Hexen never loads Quake beam models (stock `trap_lightning`); puzzle and fractional-timer stat deltas; King of the Hill; out-of-range `lightstylevalue`; native message bodies |
 
-Two independent adversarial reviews (R1 Quake regressions, R2 the Hexen path; DeepSeek V4.1 Flash) found 13 defects;
+Three independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 confirming the fixes; DeepSeek V4.1
+Flash) found 18 defects;
 every one was verified against the code and fixed with a test that fails before and passes after. Verification after
-the fixes: 237/237 across every Hexen II, unified-protocol, profile, Newer, hook and touched Quake suite; engine list
+the fixes: 259/259 across every Hexen II, unified-protocol, profile, Newer, hook and touched Quake suite; engine list
 218/218 in the pre-commit hook; native library contracts 22/22; skin-identity results unchanged by the Newer bindings (60 runs compared
 before/after). The packaged app was run with `HEXEN2_TRIAL_GAME=hexen2`: `demo1` spawned, the client connected and the
 host ran at ~28 fps with the Hexen HUD font. The first frames were held by the enhanced warm-up waiting on rock relief

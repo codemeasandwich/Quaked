@@ -134,3 +134,34 @@ Deno.test( 'plaques wrap like the native text box and the objectives read the in
 	same( SCR_Hexen2PlaqueText(), '', 'index 0 clears the plaque' );
 
 } );
+
+Deno.test( 'the Hexen deathmatch roster marks the king of the hill', () => {
+
+	setWindow();
+	GameProfile_Set( 'hexen2' );
+	const h2 = hexenState();
+	cl.gametype = 1;
+	cl.maxclients = 2;
+	cl.scores = [
+		{ name: 'one', frags: 2, colors: 0, translations: new Uint8Array( 256 ) },
+		{ name: 'two', frags: 1, colors: 0, translations: new Uint8Array( 256 ) }
+	];
+	h2.kingOfHill = 1;
+	const chars = [];
+	sbar.Sbar_SetExternals( {
+		cl, vid: { width: 320, height: 200, numpages: 1 },
+		Draw_CachePic: () => fakePic,
+		Draw_Pic: () => {},
+		Draw_TransPic: () => {},
+		Draw_Character: ( x, y, num ) => chars.push( num ),
+		Draw_String: () => {},
+		Draw_SmallString: () => {},
+		Draw_Fill: () => {},
+		Draw_PicFromWad: () => fakePic
+	} );
+	sbar.Sbar_Init();
+	Cmd_ExecuteString( '+showdm' );
+	sbar.Sbar_Draw();
+	check( chars.includes( 130 ), 'the native king marker character is drawn next to the king' );
+
+} );

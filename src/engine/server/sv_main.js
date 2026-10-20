@@ -260,10 +260,13 @@ export function SV_UpdateClientStats( client, msg ) {
 	const next = {};
 	for ( const [ bit, field, type ] of HEXEN2_STAT_FIELDS ) {
 
-		const value = SV_Hexen2Field( ent, field, 0 );
-		const key = type === 'string' ? ( value | 0 ) : Math.trunc( value );
-		next[ field ] = key;
-		if ( previous === null || previous[ field ] !== key ) mask |= BigInt( bit );
+		// Native compares the progs fields themselves: puzzle_inv* are string offsets (int32 slots), and the timers are
+		// floats whose fractional changes are real deltas. Reading a string offset as a float turns it into a denormal
+		// whose |0 is always 0, and truncating a float hides 1.0 -> 1.25.
+		const ofs = hexenFieldOfs( ent, field );
+		const value = ofs === null ? 0 : type === 'string' ? ent._fieldAccessor.getInt32( ofs ) : ent._fieldAccessor.getFloat( ofs );
+		next[ field ] = value;
+		if ( previous === null || previous[ field ] !== value ) mask |= BigInt( bit );
 
 	}
 

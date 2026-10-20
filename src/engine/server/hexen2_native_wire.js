@@ -7,10 +7,11 @@
  * native 40/41/46/50/53 are Quake playerinfo/packet-entity/sequence messages here. Each destination buffer therefore
  * has a small state machine: a service id and its body are held until the body is complete, then the mapped id and the
  * same native body are written. A native message with no unified meaning is dropped after its body, never written raw;
- * a known no-op (king of the hill) is silent, an unsupported extension (UQE's mod name/skybox) warns.
+ * the king of the hill message is mapped to its unified id (72), an unsupported extension (UQE's mod name/skybox)
+ * warns.
  *
  * The native numbers and body widths come from uhexen2 `engine/hexen2/protocol.h` and the gamecode writes in
- * `gamecode/hc/h2`/`portals` (`SV_StartParticle*`, `PF_*`); the unified ids are `common/protocol.js` 50-71.
+ * `gamecode/hc/h2`/`portals` (`SV_StartParticle*`, `PF_*`); the unified ids are `common/protocol.js` 50-72.
  *
  * Types: plain values and functions; no exported classes.
  * State: one pending native frame per destination buffer (a `WeakMap`).
@@ -25,7 +26,7 @@ import {
 	svc_hexen2_particle3, svc_hexen2_particle4, svc_hexen2_particle_explosion, svc_hexen2_set_view_flags,
 	svc_hexen2_clear_view_flags, svc_hexen2_set_view_tint, svc_hexen2_setangle_interpolate, svc_hexen2_midi_name,
 	svc_hexen2_updateclass, svc_hexen2_toggle_statbar, svc_hexen2_sound_update_pos, svc_hexen2_start_effect,
-	svc_hexen2_end_effect, svc_hexen2_update_inv, svc_hexen2_temp_entity
+	svc_hexen2_end_effect, svc_hexen2_update_inv, svc_hexen2_temp_entity, svc_hexen2_update_kingofhill
 } from '../common/protocol.js';
 import { pr_global_struct } from '../progs/progs.js';
 import { CE } from '../common/hexen2_effectwire.js';
@@ -47,7 +48,7 @@ const NATIVE_SERVICES = Object.freeze( {
 	14: { id: 14, body: [ 1, 2 ] }, // svc_updatefrags
 	16: { id: 16, body: [ 2 ] }, // svc_stopsound
 	17: { id: 17, body: [ 1, 1 ] }, // svc_updatecolors
-	19: { id: 19, body: [] }, // svc_damage
+	19: { id: 19, body: [ 1, 1, 2, 2, 2 ] }, // svc_damage: impact, blood, from
 	21: { id: svc_hexen2_raineffect, body: [ 2, 2, 2, 2, 2, 2, 1, 1, 2, 2 ] }, // svc_raineffect
 	23: { id: svc_hexen2_temp_entity, temp: true }, // svc_temp_entity: the type byte selects the body
 	24: { id: 24, body: [ 1 ] }, // svc_setpause
@@ -57,7 +58,7 @@ const NATIVE_SERVICES = Object.freeze( {
 	28: { id: 28, body: [] }, // svc_foundsecret
 	29: { id: 29, body: [ 2, 2, 2, 1, 1, 1 ] }, // svc_spawnstaticsound
 	30: { id: svc_hexen2_intermission, body: [ 1 ], intermission: true }, // native svc_intermission: a picture index
-	31: { id: 31, body: [ 's', 's' ] }, // svc_finale
+	31: { id: 31, body: [ 's' ] }, // svc_finale: one string (the native parser reads one, as this port does)
 	32: { id: 32, body: [ 1, 1 ] }, // svc_cdtrack
 	33: { id: 33, body: [] }, // svc_sellscreen
 	34: { id: svc_hexen2_particle2, body: [ 2, 2, 2, 4, 4, 4, 4, 4, 4, 2, 1, 1 ] },
@@ -74,7 +75,7 @@ const NATIVE_SERVICES = Object.freeze( {
 	46: { id: svc_hexen2_set_view_tint, body: [ 1 ] }, // svc_set_view_tint
 	49: { id: svc_hexen2_update_inv, inv: true }, // svc_update_inv: flags, optional mask bytes and fields
 	50: { id: svc_hexen2_setangle_interpolate, body: [ 1, 1, 1 ] }, // svc_setangle_interpolate
-	51: { id: null, body: [ 2 ] }, // svc_update_kingofhill: no unified equivalent, drop its short body
+	51: { id: svc_hexen2_update_kingofhill, body: [ 2 ] }, // svc_update_kingofhill: WriteEntity's short
 	52: { id: svc_hexen2_toggle_statbar, body: [] }, // svc_toggle_statbar
 	53: { id: svc_hexen2_sound_update_pos, body: [ 2, 2, 2, 2 ] }, // short, three coords
 	54: { id: null, body: [ 's' ], warn: true }, // svc_mod_name (UQE only)
@@ -194,7 +195,9 @@ function feed( msg, kind, value ) {
 			} else if ( type >= 0 && type <= 13 ) {
 
 				frame.mapped = 23;
-				frame.plan = QUAKE_LIGHTNING.has( type ) ? [ 2, 2, 2, 2, 2, 2, 2 ] : [ 2, 2, 2 ];
+				if ( QUAKE_LIGHTNING.has( type ) ) frame.plan = [ 2, 2, 2, 2, 2, 2, 2 ];
+				else if ( type === 12 ) frame.plan = [ 2, 2, 2, 1, 1 ]; // TE_EXPLOSION2's two colour bytes
+				else frame.plan = [ 2, 2, 2 ];
 
 			} else {
 
@@ -234,23 +237,37 @@ function feed( msg, kind, value ) {
 
 	if ( frame.kind === 'inv' ) {
 
-		frame.out.push( value & 0xff );
 		if ( frame.stage === 'flags' ) {
 
+			frame.out.push( value & 0xff );
 			const flags = value & 0xff;
-			frame.blocks = [];
-			frame.remaining = 0;
-			for ( let i = 0; i < 7; i ++ ) if ( flags & ( 1 << i ) ) frame.remaining ++;
+			frame.blockBits = [];
+			frame.blockValues = new Array( 8 ).fill( 0 );
+			for ( let i = 0; i < 8; i ++ ) if ( flags & ( 1 << i ) ) frame.blockBits.push( i );
+			frame.remaining = frame.blockBits.length;
 			frame.stage = frame.remaining === 0 ? 'fields' : 'blocks';
 			if ( frame.stage === 'fields' ) { frame.plan = invPlan( 0n ); if ( frame.plan.length === 0 ) emit( msg, frame ); }
 
 		} else if ( frame.stage === 'blocks' ) {
 
-			frame.blocks.push( value & 0xff );
+			frame.out.push( value & 0xff );
+			const index = frame.blockBits[ frame.blockBits.length - frame.remaining ];
+			frame.blockValues[ index ] = value & 0xff;
 			if ( -- frame.remaining === 0 ) {
 
+				// Native writes up to eight mask bytes (sv_main.c:1389-1425, cl_parse.c:1619-1626); the pinned SC2 space
+				// ends at bit 55, so the eighth byte is never a field here. Read it so it cannot become the next opcode,
+				// then normalise the message to the seven blocks the unified codec carries.
+				if ( frame.blockBits.includes( 7 ) ) {
+
+					frame.out[ 0 ] &= ~0x80;
+					frame.out.pop();
+					if ( frame.blockValues[ 7 ] !== 0 )
+						Con_Printf( 'Hexen2 native update_inv: unused SC2 high byte 0x%x dropped\n', frame.blockValues[ 7 ] );
+
+				}
 				let mask = 0n;
-				frame.blocks.forEach( ( block, i ) => { mask |= BigInt( block ) << BigInt( i * 8 ); } );
+				for ( let i = 0; i < 7; i ++ ) mask |= BigInt( frame.blockValues[ i ] ) << BigInt( i * 8 );
 				frame.plan = invPlan( mask );
 				frame.stage = 'fields';
 				if ( frame.plan.length === 0 ) emit( msg, frame );

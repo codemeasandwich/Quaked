@@ -601,6 +601,26 @@ Deno.test( 'lightstylevalue follows the native animated style and its 1/2/3 rate
 
 } );
 
+Deno.test( 'lightstylevalue returns zero for an out-of-range style instead of aborting the server', () => {
+
+	check( fixture !== null, 'the supplied Hexen II pack' );
+	const { sv } = fixture;
+	const value = style => {
+
+		sv.time = 1;
+		setF( OFS_PARM0, style );
+		check( call( 71 ), 'lightstylevalue' );
+		return getF( OFS_RETURN );
+
+	};
+
+	// Native PF_lightstylevalue: a style outside 0..MAX_LIGHTSTYLES-1 writes 0 and returns, never PR_RunError.
+	same( value( - 1 ), 0, 'a negative style' );
+	same( value( 64 ), 0, 'one past MAX_LIGHTSTYLES' );
+	same( value( 1000 ), 0, 'a far out-of-range style' );
+
+} );
+
 Deno.test( 'strings, puzzles, infolist and maplist parse CR/LF content and expose lookup', () => {
 
 	// the real data1 strings.txt, if present, loads through the same parser

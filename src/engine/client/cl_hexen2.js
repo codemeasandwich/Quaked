@@ -26,7 +26,7 @@ import {
 	svc_hexen2_particle_explosion, svc_hexen2_set_view_flags, svc_hexen2_clear_view_flags, svc_hexen2_set_view_tint,
 	svc_hexen2_setangle_interpolate, svc_hexen2_midi_name, svc_hexen2_updateclass, svc_hexen2_toggle_statbar,
 	svc_hexen2_sound_update_pos, svc_hexen2_intermission, svc_hexen2_temp_entity, svc_hexen2_info_mask,
-	HEXEN2_FEATURE_ENTITY_FIELDS, HEXEN2_FEATURE_NATIVE_BASELINES, HEXEN2_FEATURE_PORTALS,
+	svc_hexen2_update_kingofhill, HEXEN2_FEATURE_ENTITY_FIELDS, HEXEN2_FEATURE_NATIVE_BASELINES, HEXEN2_FEATURE_PORTALS,
 	TE_STREAM_LIGHTNING_SMALL, TE_STREAM_COLORBEAM, TE_STREAM_FAMINE
 } from '../common/protocol.js';
 import { HEXEN2_SERVER_MESSAGES } from '../common/hexen2_protocol.js';
@@ -68,7 +68,7 @@ export function CL_Hexen2Reset() {
 		levelStringIndex: 0xffff, midiName: '', plaqueIndex: 0, intermission: - 1, statbar: 1,
 		intermissionFlags: 0, intermissionPic: '', intermissionMessageIndex: -1, intermissionLastingTime: 0,
 		intermissionNext: 0, intermissionCompletedTime: 0,
-		viewDrawflags: 0, viewTint: 0, infoMask: 0, infoMask2: 0,
+		viewDrawflags: 0, viewTint: 0, infoMask: 0, infoMask2: 0, kingOfHill: - 1,
 		playerclass: [], stats: {}, puzzles: [ '', '', '', '', '', '', '', '' ],
 		effects: [], particles: [], rain: [], streams: [], angleTarget: [ 0, 0, 0 ]
 	};
@@ -360,6 +360,14 @@ export function CL_Hexen2ParseServerMessage( cmd ) {
 			cl.h2.infoMask = MSG_ReadLong() >>> 0;
 			cl.h2.infoMask2 = MSG_ReadLong() >>> 0;
 			hook( 'infoMask', { infoMask: cl.h2.infoMask, infoMask2: cl.h2.infoMask2 } );
+			return true;
+
+		}
+
+		case svc_hexen2_update_kingofhill: {
+
+			// Native cl_parse.c:1364-1365 subtracts one: the wire entity is one-based, the scoreboard is zero-based.
+			cl.h2.kingOfHill = MSG_ReadShort() - 1;
 			return true;
 
 		}

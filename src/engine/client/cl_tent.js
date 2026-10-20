@@ -33,6 +33,7 @@ import {
 	entity_t, beam_t
 } from './client.js';
 import { CL_AllocDlight } from './cl_main.js';
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
 import { R_WallBurnShot } from '../common/hooks.js'; // installed by newer/render/r_wallburn.js
 import { R_StasisBoltImpact } from '../common/hooks.js'; // installed by newer/render/r_stasisbolt.js
 import { R_DemoSplitActive } from '../common/hooks.js'; // installed by newer/render/r_demosplit.js
@@ -88,6 +89,21 @@ export function CL_InitTEnts() {
 	cl_sfx_ric2 = S_PrecacheSound( 'weapons/ric2.wav' );
 	cl_sfx_ric3 = S_PrecacheSound( 'weapons/ric3.wav' );
 	cl_sfx_r_exp3 = S_PrecacheSound( 'weapons/r_exp3.wav' );
+
+}
+
+/*
+=================
+CL_ParseHexenNativeBeam
+
+uhexen2 cl_tent.c:243-251: Hexen II reads the entity and six coords for TE_LIGHTNING1/2/3 and draws nothing. The Quake
+beam models do not exist in a Hexen II installation, so this branch must never reach Mod_ForName.
+=================
+*/
+function CL_ParseHexenNativeBeam() {
+
+	MSG_ReadShort();
+	for ( let i = 0; i < 6; i ++ ) MSG_ReadCoord();
 
 }
 
@@ -176,6 +192,13 @@ export function CL_ParseTEnt() {
 	const pos = new Float32Array( 3 );
 
 	const type = MSG_ReadByte();
+	// uhexen2 cl_tent.c:243-251 consumes these and draws nothing; a Hexen II installation has no Quake beam models.
+	if ( GameProfile_IsHexen2() && ( type === TE_LIGHTNING1 || type === TE_LIGHTNING2 || type === TE_LIGHTNING3 || type === TE_BEAM ) ) {
+
+		CL_ParseHexenNativeBeam();
+		return;
+
+	}
 	switch ( type ) {
 
 		case TE_WIZSPIKE: // spike hitting wall

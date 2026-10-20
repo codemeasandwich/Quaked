@@ -661,7 +661,12 @@ function changelevel() {
 function lightstylevalue() {
 
 	const style = G_FLOAT( OFS_PARM0 ) | 0;
-	if ( style < 0 || style >= MAX_LIGHTSTYLES ) PR_RunError( 'lightstylevalue: bad style %i', style );
+	if ( style < 0 || style >= MAX_LIGHTSTYLES ) {
+
+		G_FLOAT_SET( OFS_RETURN, 0 ); // native PF_lightstylevalue: no error for a malformed map/mod style
+		return;
+
+	}
 	const text = sv.lightstyles?.[ style ];
 	let index;
 	if ( !text || text.length === 0 ) {

@@ -73,7 +73,8 @@ import {
 	svc_hexen2_plaque, svc_hexen2_raineffect, svc_hexen2_particle2, svc_hexen2_particle3, svc_hexen2_particle4,
 	svc_hexen2_particle_explosion, svc_hexen2_set_view_flags, svc_hexen2_clear_view_flags, svc_hexen2_set_view_tint,
 	svc_hexen2_setangle_interpolate, svc_hexen2_midi_name, svc_hexen2_updateclass, svc_hexen2_toggle_statbar,
-	svc_hexen2_sound_update_pos, svc_hexen2_intermission, svc_hexen2_temp_entity, svc_hexen2_info_mask
+	svc_hexen2_sound_update_pos, svc_hexen2_intermission, svc_hexen2_temp_entity, svc_hexen2_info_mask,
+	svc_hexen2_update_kingofhill
 } from '../common/protocol.js';
 import { CL_Hexen2Reset, CL_Hexen2ParseBaseline, CL_Hexen2ParseServerMessage, CL_Hexen2Scale } from './cl_hexen2.js';
 import {
@@ -197,6 +198,7 @@ svc_strings[ svc_hexen2_sound_update_pos ] = 'svc_hexen2_sound_update_pos';
 svc_strings[ svc_hexen2_intermission ] = 'svc_hexen2_intermission';
 svc_strings[ svc_hexen2_temp_entity ] = 'svc_hexen2_temp_entity';
 svc_strings[ svc_hexen2_info_mask ] = 'svc_hexen2_info_mask';
+svc_strings[ svc_hexen2_update_kingofhill ] = 'svc_hexen2_update_kingofhill';
 
 //=============================================================================
 
@@ -1752,6 +1754,7 @@ export function CL_ParseServerMessage() {
 			case svc_hexen2_intermission:
 			case svc_hexen2_temp_entity:
 			case svc_hexen2_info_mask:
+			case svc_hexen2_update_kingofhill:
 				CL_Hexen2ParseServerMessage( cmd );
 				break;
 
