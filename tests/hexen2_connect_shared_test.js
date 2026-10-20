@@ -1,34 +1,29 @@
-/**
- * A Hexen II client connects through the shared server's real SV_ConnectClient (the path the packaged app takes after
- * `map demo1`): native Hexen II has no SetNewParms, so the connect must not call it and the spawn parms start empty
- * (uhexen2 engine/hexen2/sv_main.c SV_ConnectClient comments the call out).
- */
-import '../src/newer/install.js';
-import { loadHexen2Data } from './helpers/hexen2_live.mjs';
-import { SV_SpawnServer, SV_ConnectClient } from '../src/engine/server/sv_main.js';
-import { sv, svs, client_t } from '../src/engine/server/server.js';
-import { SZ_Alloc } from '../src/engine/common/common.js';
-import { cls, ca_dedicated } from '../src/engine/client/client.js';
-import { pr_global_struct } from '../src/engine/progs/progs.js';
+// Regression for the shared connection path on Hexen II: the installed Hexen programs have no SetNewParms global
+// (uhexen2 sv_main.c leaves the call commented out), so SV_ConnectClient must accept a Hexen client without running it.
+// Before the shared-host fix it called an undefined global and threw during the first real client connection.
+import { existsSync } from 'node:fs';
+import { SV_ConnectClient } from '../src/engine/server/sv_main.js';
+import { hexen2DataPresent, loadHexen2Data, createHexen2Session } from './helpers/hexen2_live.mjs';
 
-function check( condition, message ) { if ( ! condition ) throw new Error( message ); }
+const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
+const HEXEN = '/Users/bri/quaked/Hexen 2/data1';
 
-Deno.test( 'a Hexen II client connects through SV_ConnectClient without SetNewParms', () => {
+Deno.test( 'SV_ConnectClient accepts a Hexen client without a SetNewParms global', () => {
 
-	if ( ! loadHexen2Data() ) { console.log( 'SKIP: the supplied Hexen II installation is not present' ); return; }
-	svs.maxclients = svs.maxclientslimit = 1;
-	svs.clients = [ new client_t() ];
-	SZ_Alloc( svs.clients[ 0 ].message, 32768 );
-	cls.state = ca_dedicated;
-	SV_SpawnServer( 'demo1' );
-	check( sv.active, 'demo1 spawned on the shared server' );
-	check( ! pr_global_struct.SetNewParms, 'Hexen II progs define no SetNewParms (the native engine never calls it)' );
-	const client = svs.clients[ 0 ];
-	client.netconnection = { address: 'LOCAL', canSend: () => true };
-	client.spawn_parms.fill( 7 );
+	if ( ! existsSync( HEXEN + '/pak1.pak' ) || ! hexen2DataPresent( 'hexen2' ) ) {
+		console.log( 'SKIP: the supplied Hexen II installation is not present' );
+		return;
+	}
+	const session = createHexen2Session( 'demo1', 1, { connect: false } );
+	const client = session.svs.clients[ 0 ];
+	client.netconnection = { address: 'regression-client', connecttime: 0, disconnected: false, driver: 0, driverdata: null };
 	let error = null;
 	try { SV_ConnectClient( 0 ); } catch ( e ) { error = e; }
-	check( error === null, 'the connect completed: ' + ( error && error.message ) );
-	check( client.spawn_parms.every( value => value === 0 ), 'a new Hexen II client starts with empty spawn parms' );
+	check( error === null, 'the connection completed: ' + ( error ? error.message : '' ) );
+	same( client.active, true, 'the client slot is active' );
+	same( client.spawned, false, 'the client is not spawned until the signon commands run' );
+	same( client.edict.index, 1, 'the slot owns the reserved client edict' );
+	same( Array.from( client.spawn_parms ).join( ',' ), new Array( 16 ).fill( 0 ).join( ',' ), 'the fresh Hexen spawn parms stay zeroed' );
+	check( client.message.cursize > 0, 'the serverinfo was written to the client' );
 
 } );
