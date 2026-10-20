@@ -91,6 +91,20 @@ async function scenario( name, query, body ) {
 
 }
 
+const music = async ( page, until = 30000 ) => {
+
+	const end = Date.now() + until;
+	let last = null;
+	while ( Date.now() < end ) {
+
+		last = await page.evaluate( async () => { const m = ( await import( '/src/engine/client/hexen2_music.js' ) ).Hexen2_LastMusic(); return m && { name: m.name, ok: m.ok, format: m.format ?? null, path: m.path ?? null, reason: m.reason ?? null }; } );
+		if ( last && ( last.ok || last.reason ) ) return last;
+		await sleep( 500 );
+
+	}
+	return last;
+
+};
 const key = ( page, name, times = 1 ) => ( async () => { for ( let i = 0; i < times; i ++ ) { await page.keyboard.press( name ); await sleep( 160 ); } } )();
 // a live client is ca_connected (2) with every signon received (client.js SIGNONS)
 const playing = s => s.svActive && s.clsState === 2 && s.signon === 4;
@@ -122,6 +136,9 @@ await scenario( 'base', '?game=hexen2&class=paladin&autostart=1', async ( { page
 
 	const start = await until( playing, 120000, 'demo1 starts' );
 	check( start?.svName === 'demo1', 'the base game starts on demo1', start?.svName );
+	const baseMusic = await music( page );
+	result.notes.music = baseMusic;
+	check( baseMusic?.ok && baseMusic.format === 'ogg', 'the base game plays its OGG conversion when the install has one', baseMusic );
 	await page.mouse.click( 640, 400 );
 	await command( 'volume 0; bgmvolume 0; r_dof 0' );
 	await sleep( 3000 ); await shot( 'demo1' );
@@ -163,10 +180,14 @@ await scenario( 'portals', '?game=hexen2-portals&class=demoness&autostart=1', as
 	await page.mouse.click( 640, 400 ); await sleep( 3000 ); await shot( 'keep1' );
 
 } );
-await scenario( 'demo', '?game=hexen2-demo&class=paladin&autostart=1', async ( { page, until, check, shot, command } ) => {
+await scenario( 'demo', '?game=hexen2-demo&class=paladin&autostart=1', async ( { page, until, check, shot, command, result } ) => {
 
 	const s = await until( playing, 120000, 'the demo starts' );
 	check( s?.svName === 'demo1', 'the demo edition starts on demo1', s?.svName );
+	// the demo ships its music only as MIDI: the FM synthesiser renders it to a WAV the shared music bus plays
+	const demoMusic = await music( page, 60000 );
+	result.notes.music = demoMusic;
+	check( demoMusic?.ok && demoMusic.format === 'wav' && /\.mid$/.test( demoMusic.path ?? '' ), 'the demo plays its MIDI music through the synthesiser', demoMusic );
 	await command( 'volume 0; bgmvolume 0; r_dof 0' );
 	await page.mouse.click( 640, 400 ); await sleep( 3000 ); await shot( 'demo1' );
 

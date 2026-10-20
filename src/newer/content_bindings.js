@@ -75,6 +75,7 @@ const QUAKE = frozen( {
 	} ),
 	sounds: frozen( {
 		lava: 'ambience/lava1.wav',
+		stormGust: 'ambience/windfly.wav', // a storm's gust when the map's game has no windgust1..6
 		missileWater: 'misc/h2ohit1.wav',
 		gib: 'zombie/z_fall.wav',
 		welcomeJingle: true,
@@ -188,6 +189,7 @@ const HEXEN2 = frozen( {
 	} ),
 	sounds: frozen( {
 		lava: 'ambience/lava.wav',
+		stormGust: null, // no Hexen II gust is chosen yet: the storm flashes without one
 		missileWater: 'misc/drip.wav',
 		gib: 'player/gib1.wav',
 		welcomeJingle: false, // the supplied jingle is Quake's first-level recording, not a Hexen cue

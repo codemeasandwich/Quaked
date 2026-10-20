@@ -2,7 +2,7 @@
 // entry the catalogue proved playable; the published web product refuses it with a clear reason. A source checkout
 // fetches the edition's packs and loose files in the desktop app's mount order. Quake's own choices keep their
 // behaviour.
-import { GameSelection_Startable, GameSelection_UrlChoice, GameSelection_FetchLibraryGame } from '../src/engine/common/game_selection.js';
+import { GameSelection_Startable, GameSelection_UrlChoice, GameSelection_FetchLibraryGame, GameSelection_LibraryMusicSource } from '../src/engine/common/game_selection.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 
@@ -59,5 +59,25 @@ Deno.test( 'a source checkout fetches a Hexen II edition in the desktop mount or
 	let refused = '';
 	try { await GameSelection_FetchLibraryGame( 'hexen2-portals', fetchPak, fetchFile, loosePack, { games: [ catalogue.games[ 1 ] ] } ); } catch ( error ) { refused = error.message; }
 	check( /Hexen II is not installed/.test( refused ), 'Portal without its base game is refused: ' + refused );
+
+} );
+
+Deno.test( 'a source checkout streams the library\'s loose music in the desktop edition order', async () => {
+
+	const catalogue = { games: [
+		{ id: 'hexen2', present: true, folder: 'games/Hexen 2/data1' },
+		{ id: 'hexen2-portals', present: true, folder: 'games/Hexen 2/portals' }
+	] };
+	const served = new Set( [ 'games/Hexen%202/data1/music/casa1.ogg', 'games/Hexen%202/portals/music/casa1.ogg', 'games/Hexen%202/portals/music/tulku1.ogg', 'games/Hexen%202/data1/music/tulku1.ogg' ] );
+	const asked = [];
+	const fetch = async ( url, init ) => { asked.push( init?.method + ' ' + url ); return { ok: served.has( url ), headers: { get: () => 'audio/ogg' } }; };
+	const portal = GameSelection_LibraryMusicSource( 'hexen2-portals', { catalogue, fetch } );
+	same( await portal( 'music/tulku1.ogg' ), 'games/Hexen%202/portals/music/tulku1.ogg', 'Portal\'s own tracks come from its folder first' );
+	same( await portal( 'music/casa1.ogg' ), 'games/Hexen%202/data1/music/casa1.ogg', 'other tracks come from the base game first' );
+	same( await portal( 'music/egyp3.ogg' ), null, 'a track no folder has is null' );
+	same( await portal( 'midi/casa1.mid' ), null, 'only music/ conversions are offered' );
+	check( asked.every( line => line.startsWith( 'HEAD ' ) ), 'files are probed, not downloaded' );
+	const base = GameSelection_LibraryMusicSource( 'hexen2', { catalogue, fetch } );
+	same( await base( 'music/casa1.ogg' ), 'games/Hexen%202/data1/music/casa1.ogg', 'the base game streams its own conversion' );
 
 } );

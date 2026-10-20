@@ -350,6 +350,46 @@ export async function GameSelection_FetchLibraryGame( id, fetchPak, fetchFile, l
 }
 
 /**
+ * The Hexen II music source for a local source checkout (`Hexen2_SetMusicSource`): a game path `music/<track>.<ogg|
+ * mp3|wav>` becomes the URL of that loose file in the edition's library folder, as the desktop app reads it
+ * (src/platform/desktop.js musicEditionOrder): Portal of Praevus's own `tulku*`/`track*` names from its folder first,
+ * every other track from the base game's first. The served file is streamed by the music bus; nothing is mounted.
+ *
+ * @param {string} id 'hexen2', 'hexen2-portals' or 'hexen2-demo'
+ * @param {{ catalogue?: ?{ games: Array<object> }, fetch?: function(string, object): Promise<Response> }} [options]
+ *   the catalogue (default: the current one) and the fetch to probe with
+ * @returns {function(string): Promise<?string>} game path -> URL, or null when no edition folder has the file
+ */
+export function GameSelection_LibraryMusicSource( id, options = {} ) {
+
+	const fetchImpl = options.fetch ?? globalThis.fetch;
+	const definition = GameCatalogue_AllGames().find( g => g.id === id );
+	return async path => {
+
+		const match = /^music\/([a-z0-9_.-]+\.(?:ogg|mp3|wav))$/i.exec( String( path ?? '' ) );
+		if ( ! match || typeof fetchImpl !== 'function' ) return null;
+		const name = match[ 1 ].toLowerCase(), games = ( options.catalogue ?? GameCatalogue_Get() )?.games ?? [];
+		const editions = definition?.base ? ( /^(?:tulku|track)/.test( name ) ? [ id, definition.base ] : [ definition.base, id ] ) : [ id ];
+		for ( const edition of editions ) {
+
+			const folder = games.find( g => g.id === edition && g.present )?.folder;
+			if ( ! folder ) continue;
+			const url = folder.split( '/' ).map( encodeURIComponent ).join( '/' ) + '/music/' + encodeURIComponent( name );
+			try {
+
+				const response = await fetchImpl( url, { method: 'HEAD' } );
+				if ( response.ok && ! /text\/html/i.test( response.headers?.get?.( 'content-type' ) ?? '' ) ) return url;
+
+			} catch { /* not served: try the next edition */ }
+
+		}
+		return null;
+
+	};
+
+}
+
+/**
  * The order the Mac app mounts a game's library entries in (src/platform/desktop.js): for each game, base first, its
  * loose game files as one pack and then its packs, so the last mounted wins as Quake searches (a game's packs, then its
  * folder, then its base). Only the add-on being run gets its loose files; a player's own autoexec.cfg beside Quake is

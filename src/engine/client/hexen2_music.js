@@ -4,15 +4,16 @@
  * Hexen II's per-level music (uhexen2 engine/hexen2/cl_parse.c `svc_midi_name`, h2shared bgmusic.c). A worldspawn
  * `MIDI` key names a track without a path (`casa1`, or `midi/casa1.mid` in older maps). The owned data ships OGG
  * conversions under `music/`; this module prefers them and feeds the existing Quake music bus (`CDAudio_Play`) through
- * a URL provider, so the mixer, gain and pause rules stay the shared ones. No MIDI synthesiser exists in the repository:
- * a track with only `.mid` is reported as unplayable, never muted silently.
+ * a URL provider, so the mixer, gain and pause rules stay the shared ones. Native MIDI is rendered off-thread to a
+ * cached procedural FM WAV when no conversion exists.
  *
  * Types: plain values and functions; no exported classes.
  * State: the URL provider's track table, the registered platform source and the last selection; installed once by
  * `Hexen2_InstallMusicHook`.
- * Errors: no throws; a missing or MIDI-only track is reported on the console and as `{ ok: false, reason }`.
+ * Errors: no throws; a missing or failed MIDI track is reported on the console and as `{ ok: false, reason }`.
  */
 
+import { MIDI_RenderFile } from '../sound/midi_render.js';
 import { Con_Printf } from '../common/console.js';
 import { COM_FindFile } from '../common/pak.js';
 import { CDAudio_Play, CDAudio_SetTrackURLProvider, CDAudio_Stop } from '../sound/cd_audio.js';
@@ -27,6 +28,9 @@ const trackURLs = new Map(), nameTracks = new Map();
 let lastSelection = null;
 let musicSource = null;
 let selection = 0;
+let cacheGeneration = 0;
+let renderQueue = Promise.resolve();
+const midiURLs = new Map(), ownedURLs = new Set(), renders = new Set();
 
 /**
  * The track stem in a worldspawn `MIDI` value: `casa1`, `midi/casa1` and `midi/casa1.mid` all become `casa1`.
@@ -47,7 +51,7 @@ export function Hexen2_MusicStem( name ) {
 
 /**
  * The game paths to try for one worldspawn value, preferred first: the OGG conversion, then MP3/WAV, then the native
- * `midi/<name>.mid` (unplayable here, but reported precisely).
+ * `midi/<name>.mid` (rendered by the asynchronous resolver).
  *
  * @param {string} name the worldspawn value
  * @returns {Array<string>} candidate game paths
@@ -142,7 +146,7 @@ export function Hexen2_MusicURL( name, options = {} ) {
  * Resolves a worldspawn value, falling back to the registered platform source when the mounted packs have no
  * playable conversion. This is the asynchronous path the desktop app needs (its loose `data1/music` and
  * `portals/music` files are read through the native library); when the source returns a plain URL it resolves at
- * once, and the pack path is exactly `Hexen2_MusicURL`.
+ * once. If neither conversion source succeeds, native MIDI is rendered in a worker and cached until reset.
  *
  * @param {string} name the worldspawn value
  * @param {{ find?: function(string): ?object, makeURL?: function(object): ?string,
@@ -152,22 +156,58 @@ export function Hexen2_MusicURL( name, options = {} ) {
  */
 export async function Hexen2_ResolveMusicURL( name, options = {} ) {
 
+	const generation = cacheGeneration;
 	const resolved = Hexen2_MusicURL( name, options );
 	if ( resolved.ok ) return resolved;
 	const source = options.source ?? musicSource;
-	if ( typeof source !== 'function' ) return resolved;
 	// The pack may hold only the native MIDI, or may not hold the track at all: either way the platform's loose music
 	// directory can still have the conversion, so ask it for every playable candidate.
-	for ( const path of Hexen2_MusicCandidates( name ) ) {
+	for ( const path of typeof source === 'function' ? Hexen2_MusicCandidates( name ) : [] ) {
 
 		const format = path.slice( path.lastIndexOf( '.' ) + 1 ).toLowerCase();
 		if ( MIDI.includes( format ) ) continue;
 		let url = null;
 		try { url = await source( path ); } catch { url = null; }
+		if ( generation !== cacheGeneration ) return { ok: false, reason: 'superseded' };
 		if ( url ) return { ok: true, path, url, format, external: true };
 
 	}
-	return resolved;
+	if ( generation !== cacheGeneration ) return { ok: false, reason: 'superseded' };
+	if ( resolved.reason !== 'midi-no-synth' ) return resolved;
+	const stem = Hexen2_MusicStem( name );
+	if ( midiURLs.has( stem ) ) return midiURLs.get( stem );
+	const controller = new AbortController();
+	renders.add( controller );
+	const pending = renderQueue.then( async () => {
+
+		try {
+
+			if ( generation !== cacheGeneration ) return { ok: false, reason: 'superseded' };
+			const file = Hexen2_MusicFile( name, options.find ?? COM_FindFile );
+			const wav = await MIDI_RenderFile( file.data?.data ?? file.data, { signal: controller.signal } );
+			if ( generation !== cacheGeneration ) return { ok: false, reason: 'superseded' };
+			const url = options.makeURL ? options.makeURL( wav ) : makeObjectURL( wav, 'wav' );
+			if ( ! url ) throw new Error( 'Could not create MIDI WAV URL' );
+			if ( ! options.makeURL ) ownedURLs.add( url );
+			return { ok: true, path: file.path, url, format: 'wav' };
+
+		} catch ( error ) {
+
+			if ( generation === cacheGeneration ) {
+
+				Con_Printf( 'Hexen II music: MIDI render failed for %s: %s\n', resolved.path, error.message );
+				midiURLs.delete( stem );
+
+			}
+			return resolved;
+
+		} finally { renders.delete( controller ); }
+
+	} );
+	// Only one PCM/WAV allocation runs at a time, even when level selections arrive quickly.
+	renderQueue = pending.catch( () => {} );
+	midiURLs.set( stem, pending );
+	return pending;
 
 }
 
@@ -194,7 +234,7 @@ function playResolved( text, resolved, options ) {
 	if ( !resolved.ok ) {
 
 		if ( resolved.reason === 'midi-no-synth' )
-			Con_Printf( 'Hexen II music: %s is a MIDI file and this build has no MIDI synthesiser; supply music/%s.ogg or .mp3\n', resolved.path, Hexen2_MusicStem( text ) );
+			Con_Printf( 'Hexen II music: %s could not be rendered as MIDI; supply music/%s.ogg or .mp3\n', resolved.path, Hexen2_MusicStem( text ) );
 		else
 			Con_Printf( 'Hexen II music: no playable file for %s (looked for %s)\n', text, Hexen2_MusicCandidates( text ).join( ', ' ) );
 		lastSelection = { name: text, ...resolved };
@@ -223,8 +263,8 @@ function playResolved( text, resolved, options ) {
 
 /**
  * Plays the music named by a worldspawn `MIDI` key (or the empty string, which stops the previous level's music).
- * A track in the mounted packs is played synchronously, as before; when only the registered platform source has it,
- * a Promise for the same result is returned once the file has been read. A newer selection supersedes a pending one.
+ * A conversion in the mounted packs is played synchronously; native MIDI and platform-only tracks return
+ * a Promise once the file has been read or the MIDI rendered. A newer selection supersedes a pending one.
  *
  * @param {string} name the worldspawn value, as the server sent it
  * @param {{ find?: function(string): ?object, makeURL?: function(object): ?string,
@@ -248,9 +288,8 @@ export function Hexen2_PlayMusicName( name, options = {} ) {
 	selection += 1;
 	const generation = selection;
 	const immediate = Hexen2_MusicURL( text, options );
-	// Keep the source build's synchronous behaviour; only a platform with a registered source needs the await, and it
-	// is asked even when the packs hold only the native MIDI (the loose conversion may still sit beside them).
-	if ( immediate.ok || typeof ( options.source ?? musicSource ) !== 'function' )
+	// Conversions remain synchronous. Native MIDI needs the worker even without a platform source.
+	if ( immediate.ok || ( immediate.reason !== 'midi-no-synth' && typeof ( options.source ?? musicSource ) !== 'function' ) )
 		return playResolved( text, immediate, options );
 	return Hexen2_ResolveMusicURL( text, options ).then( resolved => {
 
@@ -275,6 +314,12 @@ export function Hexen2_InstallMusicHook() {
 export function Hexen2_ResetMusic() {
 
 	selection += 1;
+	cacheGeneration += 1;
+	for ( const controller of renders ) controller.abort();
+	renders.clear();
+	midiURLs.clear();
+	for ( const url of ownedURLs ) URL.revokeObjectURL( url );
+	ownedURLs.clear();
 	trackURLs.clear();
 	nameTracks.clear();
 	nextTrack = 1;

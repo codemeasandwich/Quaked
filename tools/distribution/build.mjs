@@ -43,8 +43,10 @@ const urlPlugin={name:'quaked-source-urls',setup(b){b.onLoad({filter:/\.js$/},as
   return {contents:`import {AssetURL as __quakedAssetURL} from ${JSON.stringify(assetModule)};\n`+contents,loader:'js'};
 });}};
 const options={bundle:true,minify:true,treeShaking:true,write:false,format:'iife',target:['safari17','chrome120','firefox120'],legalComments:'inline',logLevel:'warning'};
-const worker=await build({...options,entryPoints:['src/newer/assets/rockfield_worker.js'],plugins:[urlPlugin]});
-generated.set('src/newer/assets/rockfield_worker.js',Buffer.from(worker.outputFiles[0].contents));
+for(const entry of ['src/newer/assets/rockfield_worker.js','src/engine/sound/midi_fm_worker.js']){
+ const worker=await build({...options,entryPoints:[entry],plugins:[urlPlugin]});
+ generated.set(entry,Buffer.from(worker.outputFiles[0].contents));
+}
 const runtime=await build({...options,entryPoints:['main.js'],plugins:[urlPlugin],metafile:true});
 const bootstrap=await build({...options,entryPoints:['tools/distribution/bootstrap.js'],plugins:[urlPlugin]});
 generated.set('__runtime.js',Buffer.from(runtime.outputFiles[0].contents));

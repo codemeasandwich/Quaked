@@ -168,7 +168,8 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `245a5cb3` | owner request / M2 | high-resolution Hexen II menus on the one dynamic renderer: per-game skin with a runtime font from the installed bigfont/conchars, grey stone, smoothed original pictures, sliding title, menudot selector; Quake unchanged |
 | `b3f6580c` | browser trial T1 | Hexen II in a local source checkout; M2's font made legible on the GPU; Hexen's own console background |
 | `592220ad` | H1, trial T2 | hub saves on IndexedDB; Portal's text lists and the native demos mounted; Hexen's own plaques; no Quake files requested |
-| (this commit) | E1, E2 | Enhanced Hexen II: neutral grading at launch and the 3D view kept above Raven's status bar |
+| `35a3973b` | E1, E2 | Enhanced Hexen II: neutral grading at launch and the 3D view kept above Raven's status bar |
+| (this commit) | MS | Hexen II MIDI music through an original FM synthesiser; library music streamed in a source checkout |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;
@@ -237,13 +238,24 @@ wizard/hell-knight hit sounds and composed Quake's single-player menu picture. T
 For the owner's eye: Enhanced mode looked darker and hazier than Classic in demo1, with the hands drawn lower (fixed
 by E2 below; the remaining softness at a 2x window is dynamic resolution, `r_dynres`, a frame-rate governor).
 
+Package MS (owner approved a small FM synthesiser, 20 October): Hexen II's native `midi/*.mid` tracks are parsed
+(`midi_smf.js`), rendered off-thread by an original FM synthesiser with procedural General MIDI families and
+synthesised percussion (`midi_fm.js`, `midi_fm_worker.js`; no third-party code, banks or samples) to a cached WAV,
+and played through the shared music bus like the OGG conversions, which stay preferred. All 29 installed tracks
+render within budget (a four-minute track 0.57 s typical, 2.34 s for 48 sustained voices; about 21 MB of WAV);
+details in [ms-midi.md](ms-midi.md) and [ms-verification.md](ms-verification.md). A source checkout now streams the
+library's loose music conversions as the desktop app reads them (`GameSelection_LibraryMusicSource`). Browser trial:
+the base game plays `music/casa1.ogg`, the demo edition (MIDI only) plays `midi/casa1.mid` through the synthesiser.
+The Enhanced storm's fallback gust is now a binding (Quake's `ambience/windfly.wav`; none chosen for Hexen II, whose
+storm flashes silently until a gust sound is picked).
+
 Open decisions and known limits:
 
 - Base-game hull 4 is the 1.11 hydra size (±40) and Portal's the pentacle (±8), following each game's own engine;
   uHexen2 uses ±8 for both. Confirm in play.
 - Procedural rock relief is off for Hexen II until its surfaces pass the texture review.
 - Hub saves use the existing localStorage save boundary (one atomic record per slot); IndexedDB is not yet used.
-- Hexen music plays the OGG conversions shipped in `data1/music` and `portals/music`; there is no MIDI synthesiser.
+- Hexen music prefers the OGG conversions in `data1/music`/`portals/music`; MIDI-only tracks use the FM synthesiser.
 - Hexen II texture art and skins: the per-game index and tiers exist, no Hexen art is indexed yet.
 - Native coordinates and angles re-encoded from gamecode writes truncate like Quaked's `MSG_WriteCoord`/`MSG_WriteAngle`
   (uhexen2 rounds): at most 1/8 unit or 1.4 degrees, kept consistent with the rest of the engine (review R4 finding 3).

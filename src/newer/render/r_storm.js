@@ -10,7 +10,8 @@
  *   sun's light on open ground flashes with it. The flash comes with the sound's start; the crack in each game's
  *   thunder follows a few tenths of a second later, as it would. Stock Quake plays no thunder, so its maps get none.
  * - **Gusts.** Out under the sky (where the wind ambient already plays), now and then a gust passes: the game's own
- *   gust sounds where it has them (Arcane Dimensions' `ambience/windgust1..6.wav`), else Quake's `ambience/windfly.wav`,
+ *   gust sounds where it has them (Arcane Dimensions' `ambience/windgust1..6.wav`), else the game's bound fallback
+ *   (Quake's `ambience/windfly.wav`; Hexen II has none),
  *   quietly, on a free channel only, as loud as the wind is there.
  *
  * Newer Game only (not in demos), with the `r_storm` switch. The sky's fog share, the skybox and cloud shadows are
@@ -32,6 +33,7 @@ import { S_PrecacheSound, S_StartSoundIfFree, S_AddSoundStarted } from '../../en
 import { AMBIENT_SKY } from '../../engine/sound/sound.js';
 import { R_NewerGame } from '../mode.js';
 import { FX_Random } from './fx_world.js';
+import { NewerBindings } from '../content_bindings.js';
 
 /** Living skies (lightning with the thunder, gusts out under the sky): 0 off, 1 on (saved; Options, Newer features). */
 export const r_storm = new cvar_t( 'r_storm', '1', true );
@@ -103,13 +105,15 @@ export function R_StormFlash( time ) {
 
 }
 
-// the gust sounds this game has: its own windgust1..6, else Quake's windfly
+// the gust sounds this game has: its own windgust1..6, else the game's bound fallback (Quake's windfly; none for a
+// game without one, whose storm then flashes silently)
 function gusts() {
 
 	if ( world === cl.worldmodel && gustNames ) return gustNames;
 	world = cl.worldmodel;
 	const own = [ 1, 2, 3, 4, 5, 6 ].map( n => `ambience/windgust${n}.wav` ).filter( n => COM_FindFile( 'sound/' + n ) );
-	gustNames = own.length ? own : [ 'ambience/windfly.wav' ];
+	const fallback = NewerBindings().sounds.stormGust;
+	gustNames = own.length ? own : fallback ? [ fallback ] : [];
 	return gustNames;
 
 }
@@ -137,6 +141,7 @@ export function R_StormFrame( time, eye ) {
 		if ( sky >= STORM.sky ) {
 
 			const names = gusts(), name = names[ Math.floor( FX_Random( 'storm' ) * names.length ) ];
+			if ( name === undefined ) return flash;
 			// from somewhere off to one side, as wind comes; heard everywhere near (no attenuation), quietly
 			const a = FX_Random( 'storm' ) * Math.PI * 2, at = [ eye[ 0 ] + Math.cos( a ) * 64, eye[ 1 ] + Math.sin( a ) * 64, eye[ 2 ] + 32 ];
 			S_StartSoundIfFree( - 1, S_PrecacheSound( name ), at, 0.35 * sky / 255, 0 );

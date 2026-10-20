@@ -39,10 +39,11 @@ const parms = {
 	argv: []
 };
 import { GameCatalogue_Refresh, GameCatalogue_Get } from './src/engine/common/game_catalogue.js';
-import { GameSelection_OwnedPacks, GameSelection_StartSwitch, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember, GameSelection_MissionPack, GameSelection_FetchMission, GameSelection_FetchLoose, GameSelection_NeedsDiscovery, GameSelection_FetchLibraryGame, GameSelection_SetRunning, GameSelection_Current, GameSelection_Startable } from './src/engine/common/game_selection.js';
+import { GameSelection_OwnedPacks, GameSelection_StartSwitch, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember, GameSelection_MissionPack, GameSelection_FetchMission, GameSelection_FetchLoose, GameSelection_NeedsDiscovery, GameSelection_FetchLibraryGame, GameSelection_LibraryMusicSource, GameSelection_SetRunning, GameSelection_Current, GameSelection_Startable } from './src/engine/common/game_selection.js';
 import { GameProfile_Set } from './src/engine/common/game_profile.js';
 import { Newer_ApplyGameDefaults } from './src/engine/common/hooks.js'; // installed by newer/ui/newer_defaults.js
 import { Hexen2_SelectClass } from './src/engine/common/hexen2_profile.js';
+import { Hexen2_SetMusicSource } from './src/engine/client/hexen2_music.js';
 import { LevelSelect_SetGamePacks, LevelSelect_OwnPacks } from './src/engine/client/level_select_auto.js';
 import { GameShelf_Show } from './src/newer/ui/game_shelf.js';
 
@@ -150,6 +151,8 @@ async function main() {
 			GameSelection_SetRunning( desktop ? desktop.id : hexen ? gameProfile.id : missionMounted ? GameSelection_Current() : fullGamePak !== null ? 'quake' : 'shareware' );
 			// Hexen II's maps are not a Quake mission pack, but its own packs feed Level Select the same way
 			if ( hexen ) LevelSelect_SetGamePacks( LevelSelect_OwnPacks( gamePacks, gameProfile.id ) );
+			// a source checkout streams the library's loose music conversions, as the desktop app reads them
+			if ( hexen && ! desktop ) Hexen2_SetMusicSource( GameSelection_LibraryMusicSource( gameProfile.id ) );
 			if ( missionMounted ) { if(!desktop)for ( const pack of [ missionPak ].flat() ) COM_AddPack( pack ); LevelSelect_SetGamePacks( desktop ? LevelSelect_OwnPacks( desktop.packs, desktop.id ) : [ missionPak ].flat() ); /* its own maps, for a Level Select built from them */ const missionSwitch = GameSelection_StartSwitch( mission ); /* its own, or as its gfx.wad's status-bar pictures ask (Quoth's are Scourge of Armagon's) */ if ( missionSwitch ) COM_InitArgv( [ parms.argv[ 0 ] ?? 'quaked', ...parms.argv.slice( 1 ), missionSwitch ] ); /* argv[0] is the program name */ Sys_Printf( mission.name + ' loaded' + ( missionSwitch && ! mission.switch ? ' (' + missionSwitch + ': its status bar is a mission pack\'s)' : '' ) + '\n' ); }
 
 		} else {
