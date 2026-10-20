@@ -40,3 +40,24 @@ Deno.test( 'gyro learns stationary bias continuously but preserves ordinary deli
 	Gyro_Sample( 'one', { pitch: 10.4, yaw: 0, roll: 0 }, { family: 'dualsense' }, 12000 );
 	Gyro_Move( a, pad, [ pad ], 0.01, true, 12000 ); near( a[ 0 ], - 0.1 );
 } );
+// Owner trial 20 October 2026: a Switch Pro Controller over Bluetooth on the Mac. GameController reports the sensor as
+// family 'switch' while WebKit names the pad only "Pro Controller", so the name match failed and no gyro reached the
+// view. Nintendo pads are recognised by WebKit's names, and one pad with one source pairs whatever the names say.
+Deno.test( 'a Mac Switch Pro Controller aims: WebKit pad names and the single-controller pairing', () => {
+	setup();
+	const pro = { index: 0, id: 'Pro Controller', mapping: 'standard', connected: true, buttons: [] };
+	let a = [ 0, 0, 0 ];
+	Gyro_Sample( 'gc-1', { pitch: 100, yaw: 100, roll: 0 }, { family: 'switch' }, 0 );
+	Gyro_Move( a, pro, [ pro ], 0.01, true, 0 ); Gyro_Move( a, pro, [ pro ], 0.01, true, 0 );
+	near( a[ 0 ], - 1 ); check( a[ 1 ] > 0, 'the Pro Controller turns the view: ' + a[ 1 ] );
+	setup(); a = [ 0, 0, 0 ];
+	const other = { index: 0, id: 'Wireless Controller Extended Gamepad', mapping: 'standard', connected: true, buttons: [] };
+	Gyro_Sample( 'gc-2', { pitch: 100, yaw: 0, roll: 0 }, { family: 'unknown' }, 0 );
+	Gyro_Move( a, other, [ other ], 0.01, true, 0 ); Gyro_Move( a, other, [ other ], 0.01, true, 0 );
+	near( a[ 0 ], - 1 );
+	setup(); a = [ 0, 0, 0 ];
+	const second = { ...other, index: 1 };
+	Gyro_Sample( 'gc-3', { pitch: 100, yaw: 0, roll: 0 }, { family: 'unknown' }, 0 );
+	Gyro_Move( a, other, [ other, second ], 0.01, true, 0 ); Gyro_Move( a, other, [ other, second ], 0.01, true, 0 );
+	near( a[ 0 ], 0 );
+} );

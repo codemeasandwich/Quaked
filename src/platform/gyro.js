@@ -59,7 +59,8 @@ function family( pad ) {
 	const id = String( pad.id ).toLowerCase();
 	if ( /dualsense|0ce6|0df2/.test( id ) ) return 'dualsense';
 	if ( /dualshock|054c.*(?:05c4|09cc)|(?:05c4|09cc).*054c/.test( id ) ) return 'dualshock4';
-	if ( /switch|057e.*2009|2009.*057e/.test( id ) ) return 'switch';
+	// WebKit (Safari, the Mac app) names a pad by its product name only, e.g. "Pro Controller" or "Joy-Con (L/R)"
+	if ( /switch|nintendo|pro controller|joy-?con|057e.*20(?:06|07|09|0e)|20(?:06|07|09|0e).*057e/.test( id ) ) return 'switch';
 	return null;
 
 }
@@ -97,11 +98,15 @@ export function Gyro_Move( angles, pad, pads, seconds, active, at = now() ) {
 	}
 	const fresh = [ ...sources.values() ].filter( s => at - s.at >= 0 && at - s.at < 100 );
 	const bound = fresh.filter( s => s.padKey === key );
-	const candidates = bound.length ? bound : fresh.filter( s => matches( s, pad ) );
+	const connected = pads.filter( p => p?.connected );
+	let candidates = bound.length ? bound : fresh.filter( s => matches( s, pad ) );
+	// One controller and one motion source belong together whatever their names say (a platform may name the pad
+	// differently from the sensor); names only matter for telling several controllers apart.
+	const single = candidates.length === 0 && fresh.length === 1 && connected.length === 1 && connected[ 0 ] === pad;
+	if ( single ) candidates = fresh;
 	if ( candidates.length !== 1 ) return false;
 	const source = candidates[ 0 ];
-	const connected = pads.filter( p => p?.connected && p.mapping === 'standard' );
-	if ( connected.filter( p => matches( source, p ) ).length !== 1 ) return false;
+	if ( ! single && connected.filter( p => p.mapping === 'standard' && matches( source, p ) ).length !== 1 ) return false;
 	if ( Cvar_FindVar( 'gyro_hold' ).value ) {
 
 		const index = Math.trunc( Cvar_FindVar( 'gyro_button' ).value );
@@ -115,7 +120,8 @@ export function Gyro_Move( angles, pad, pads, seconds, active, at = now() ) {
 	const rate = source.rate.map( ( v, i ) => Math.abs( v - source.bias[ i ] ) < 0.08 ? 0 : v - source.bias[ i ] );
 	const pitch = - rate[ 0 ] * dt * sensitivity * ( Cvar_FindVar( 'gyro_invert_y' ).value ? - 1 : 1 );
 	angles[ 0 ] = Math.max( - 70, Math.min( 80, angles[ 0 ] + pitch ) );
-	angles[ 1 ] += ( rate[ 1 ] + rate[ 2 ] ) * Math.SQRT1_2 * dt * sensitivity;
-	return pitch !== 0;
+	const yaw = ( rate[ 1 ] + rate[ 2 ] ) * Math.SQRT1_2 * dt * sensitivity;
+	angles[ 1 ] += yaw;
+	return pitch !== 0 || yaw !== 0;
 
 }

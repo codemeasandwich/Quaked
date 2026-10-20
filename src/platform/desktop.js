@@ -11,7 +11,7 @@ import {GameShelf_Show} from '../engine/common/hooks.js'; // filled by src/newer
 import {LoadingScreen_SetProgress} from '../engine/common/hooks.js';
 let listening=false;
 let gyroListener = null;
-const gyroSources = new Set();
+const gyroSources = new Set(), gyroLogged = new Set();
 /** Installs one bounded native motion listener; returns its stop function. No native clock crosses this seam. */
 export async function Desktop_StartGyro(){
  if(gyroListener)return gyroListener;
@@ -21,6 +21,8 @@ export async function Desktop_StartGyro(){
   for(const sample of payload){
    if(typeof sample?.id!=='string'||!sample.id.startsWith('gc-'))continue;
    if(Gyro_Sample(sample.id,sample,{family:sample.family,pairPressed:!!sample.pairPressed}))present.add(sample.id);
+   // one trace line per new source: its family and the pads the game sees, for matching problems
+   if(!gyroLogged.has(sample.id)){gyroLogged.add(sample.id);void Desktop_Log('gyro source '+sample.family+' '+sample.id+'; pads '+JSON.stringify(Array.from(navigator.getGamepads?.()??[]).filter(Boolean).map(p=>p.id+'|'+p.mapping)));}
   }
   for(const id of gyroSources)if(!present.has(id))Gyro_Remove(id);
   gyroSources.clear();for(const id of present)gyroSources.add(id);

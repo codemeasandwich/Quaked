@@ -182,7 +182,8 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `fb1f522e` | HM | one menu system: Hexen extends Quake's HD vector menu (traced vector font, stone signs, shared slide animation and shadow) |
 | `893b2516` | owner trial 10 | Hexen II's sky keeps its native grey storm clouds in Enhanced (per-game sky glow) |
 | `1c188cbf` | HT | the 47 reviewed Hexen II world textures in game: Mid (default) and High tiers, native-keyed, in the Hexen desktop packs |
-| (this commit) | GY | controller gyro aiming for every game: native GameController motion in the Mac app, WebHID in Chrome/Edge |
+| `a08cd71c` | GY | controller gyro aiming for every game: native GameController motion in the Mac app, WebHID in Chrome/Edge |
+| (this commit) | owner trial 11 | gyro reaches the view with a Switch Pro Controller on the Mac |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;
@@ -367,6 +368,13 @@ motion through the objc2 runtime it already uses (`src-tauri/src/gyro.rs`, no ne
 DualShock 4 and Switch Pro reports over WebHID after a one-time permission (`gyro_hid.js`); phone tilt is unchanged.
 Verified with synthetic reports only (no controller here): 324/324 input/menu/Hexen suites, engine list 220/220, all
 Rust tests; owner trial steps in [gy-gyro.md](gy-gyro.md).
+
+Owner trial 11 (20 October): Switch Pro Controller over Bluetooth on the Mac: buttons and sticks worked, gyro did
+nothing. A standalone GameController probe showed macOS delivers its motion (manual sensor activation, live rates). The
+native reader was right; the game matched the motion source to the pad by name, and WebKit names the pad only
+"Pro Controller", which the Nintendo pattern did not cover. Fixed: WebKit's Nintendo names (Pro Controller, Joy-Con,
+Nintendo) are recognised, and one controller with one motion source always pair; a one-time trace line records each
+source's family and the pad names. `tests/gyro_test.js` reproduces the failure (no view change) before the fix.
 
 Open decisions and known limits:
 
