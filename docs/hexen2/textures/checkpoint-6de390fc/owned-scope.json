@@ -1,0 +1,3254 @@
+{
+  "createdAt": "2026-10-20T16:55:07.322505+00:00",
+  "head": "eb6fd7029197e6f5f65543c2fea348bfb02bf52f",
+  "scope": "Owned64 authoring registry, source-bound proofs, authoring adapter and independently reviewed HTML-only checkpoint gate. Frozen new source intake/parent/fibre candidate bytes are pending qualification, never registered here.",
+  "paths": [
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/catalog.json",
+      "sha256": "aaf9ff7807ec78262cc4bf9230389f21a12ba7e5af02d6122b815d599e8686d8",
+      "bytes": 336494
+    },
+    {
+      "path": "docs/hexen2/textures/GOAL.md",
+      "sha256": "459511a94c88f663c0f2568b0e4f72c257d8970f3f29a9306574af94a899249c",
+      "bytes": 5609
+    },
+    {
+      "path": "docs/hexen2/textures/HANDOVER.md",
+      "sha256": "34993a54b305a6fb919002e38fba64b9540cc08f20f91a04761cccfb8fcc3c48",
+      "bytes": 24562
+    },
+    {
+      "path": "docs/hexen2/textures/campaign-status.json",
+      "sha256": "e36d77b26b043e8d638b661473efacf61a05a63db911b5009d6fdf72142429fc",
+      "bytes": 2296
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/streams.json",
+      "sha256": "eebe2925dcd9bceb98832009d0e83fc7fffea96106190520b53429a3b3dc8c14",
+      "bytes": 7267
+    },
+    {
+      "path": "docs/hexen2/textures/progress.json",
+      "sha256": "783c5f859a986619f168dd78b7e8fda2313f1bdc04202e5ed5c312da6a559583",
+      "bytes": 33482
+    },
+    {
+      "path": "docs/hexen2/textures/world-queue.csv",
+      "sha256": "1ac138c631ef4d1d77b24d4bdb1c989e9012d400a6be22821f686784fcecab0e",
+      "bytes": 128767
+    },
+    {
+      "path": "skills/quaked-texture-authoring/SKILL.md",
+      "sha256": "039ba2ce72ed4e697c1522805fca0d9427a6e61a515c9f44de6306b7f0665f4a",
+      "bytes": 6631
+    },
+    {
+      "path": "skills/quaked-texture-authoring/references/repairs-and-verification.md",
+      "sha256": "8225794bc8291daba95dd24256e0e9f80e8f047e18806d9936fba0a594ea898d",
+      "bytes": 13366
+    },
+    {
+      "path": "skills/quaked-texture-authoring/references/workflow.md",
+      "sha256": "e6d6939cccbb1206fdbeb8e3ebffa68a80d9df654c1cff592c0c507b08d80b25",
+      "bytes": 16377
+    },
+    {
+      "path": "tests/staged_contract_test.mjs",
+      "sha256": "c6bf00c4851cf44ff5d88690e671f122ea389e33a9c696fdac671a5d2389ec55",
+      "bytes": 16906
+    },
+    {
+      "path": "tools/distribution/precommit.mjs",
+      "sha256": "f7feff4cb70a22e110b04851b36807faf1e61ce2fddfbe2914381471be6a362a",
+      "bytes": 11563
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/batch-registered-x.json",
+      "sha256": "a9508c102794ea116df76ad66242000ab3caaa11c27a2e7487df90fcd6524da8",
+      "bytes": 4681
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-registered-x/color.png",
+      "sha256": "da1ee50c8fabe6e2ad4bcf492aae0ea83c1d70a127f033ec641048ed4bd76e9a",
+      "bytes": 2377436
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-registered-x/height.npy",
+      "sha256": "6f4b307774ba4e9d4a5b27696be44f43c02eb8a31db83894272bf320231bd789",
+      "bytes": 4194432
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-registered-x/master.json",
+      "sha256": "04fdec43c9dd84b5029632752931a3a0b37aeb1f99d5d4619d13428a848e8101",
+      "bytes": 29885
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/review-registered-x/index.html",
+      "sha256": "f58d3e962b093f751aa818232bc1116704b77b02283498ea2945ae737132f008",
+      "bytes": 1200
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/review-registered-x/rtex499-high-relief.jpg",
+      "sha256": "e73c720efddefcc2e463c9c02a807fc75e04c37f15f1da88d8f5e20245d74fbe",
+      "bytes": 345684
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/review-registered-x/rtex499-high-review.jpg",
+      "sha256": "d09b6f683b954bff3f83bc08598a5a75cfff3c574aa4478c3d52552b881e861a",
+      "bytes": 461670
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/review-registered-x/rtex499-mid-relief.jpg",
+      "sha256": "3db8b75b684c503240c082e447298683f13881203ce73d8487ad562d501f458d",
+      "bytes": 355421
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/review-registered-x/rtex499-mid-review.jpg",
+      "sha256": "f7a0e2541acb8188736b37683336efc900e54e09f387e6b4dd6674b888646f80",
+      "bytes": 464051
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/high-diffuse.webp",
+      "sha256": "839883399f8175918f3e9b209d67aa1f90145a47a92a74a15a679b02ba63c38c",
+      "bytes": 518928
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/high-height.webp",
+      "sha256": "40aac731c146324f350e50972c96d572811823f43ff1f967610628664c531bde",
+      "bytes": 26494
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/high-normalX.webp",
+      "sha256": "09c2d4a2d0593e437581fcede490f99e4ef4653d6717671ddf747460e08609b6",
+      "bytes": 65550
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/high-normalY.webp",
+      "sha256": "64f518fb55238da31ab109b2ec99958004d065baa0d77fbfa5b2b2c7cb4feaab",
+      "bytes": 76900
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/high-normalZ.webp",
+      "sha256": "ca123e8bdaddb5648b991e6ce00d280acd5a73e889cd3069b1f8ec9c483108d2",
+      "bytes": 7520
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/manifest.json",
+      "sha256": "62d8ece71dfaa277d6dc2445f13f2d8d401f94bb8540c3bb8731b501e28a5ac7",
+      "bytes": 9766
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/mid-diffuse.webp",
+      "sha256": "f0f914eb4601d49a5d396382a56f81181eaa1c4c322f36055fab98a2d5c1b9b4",
+      "bytes": 143848
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/mid-height.webp",
+      "sha256": "0999f88ebac29cb6b39ff4527cd658ac3b73235194d5a5daf28b2b1bff2e1980",
+      "bytes": 13408
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/mid-normalX.webp",
+      "sha256": "373633c7a063560ca398afbb67fbe2f3a2f8e3e3f86e61b45c0e7e001eeff3bd",
+      "bytes": 16540
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/mid-normalY.webp",
+      "sha256": "6c806744449c1eb58b868700e317e556a7ff3397fcad15582f3f954d239967d8",
+      "bytes": 21008
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/mid-normalZ.webp",
+      "sha256": "67b3bef1f90db632565add9671f374aef0060faf8518254167237e050f286d9b",
+      "bytes": 3144
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/batch.json",
+      "sha256": "b4588bc5ccacf4f3aa6c6851da4cce0da24c56bfda428b8a4a4fec4b22b736bc",
+      "bytes": 4457
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/generated/rtex053.png",
+      "sha256": "80ab414b986cdc7a67833c25c3d94a3e15363663fc3a789934577c5d217df7bb",
+      "bytes": 4343833
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/color.png",
+      "sha256": "11890a31daff87743b7907ccce69b10dcfe7a902c3eabbf2ff51726326efaa2c",
+      "bytes": 646189
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/height.npy",
+      "sha256": "854a38d973314b7fcbf6913f96d804c193334922c284be96d45bad2b28053656",
+      "bytes": 1048704
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/master.json",
+      "sha256": "19bc1bde08b3e499646b85697275fdd36bf67915495fd04e7b9df44dff65aef6",
+      "bytes": 4304
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/native-selection.json",
+      "sha256": "35eed8a6c4eda47f2825b744e5e9a0f4028393aaa0dde7f774d6752aa3228ae4",
+      "bytes": 13321
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/originals/01-rtex053-0b8ec72958c3.png",
+      "sha256": "d27ad50093cdd2c79a8ed5e687aa8f8450b6dea03931336f05e37979c5172bd2",
+      "bytes": 3242
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/originals/inspect-nearest.png",
+      "sha256": "1419d9ac6f8a82e0a0f5848d270126924bd0d488b9bd8bfb62affa2c8f0c7058",
+      "bytes": 9764
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/originals/native-contact.png",
+      "sha256": "5c4dfec1ef9cbc723b03107372d0b4cac8179ea93d29550c8304f56a6d3f3589",
+      "bytes": 10076
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/prompts/rtex053-material-v1.txt",
+      "sha256": "c3c3fa16dde3251c1591cc85cb97284a01802c0a577549f2fb1b1a3f6385f6fe",
+      "bytes": 2870
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/index.html",
+      "sha256": "dd276544c369c095d2aae2fa7a672e3304c13a5b6cbfe3b24ac87ffdfd6b6b37",
+      "bytes": 1195
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-high-relief.jpg",
+      "sha256": "45a07863699cdbfc8dbd799c060affb29c4d6a9eb4d7d5a8653cbf06d028adb6",
+      "bytes": 535153
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-high-review.jpg",
+      "sha256": "d437cb273b7729c8c24a7fd75cdfbb4131719b4a6c1c902d9939912807e305c8",
+      "bytes": 393015
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-mid-relief.jpg",
+      "sha256": "3f7251dc55712f6d4e6f9ca46d83994dd036bd74427c465784248cb8e426eebc",
+      "bytes": 168055
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-mid-review.jpg",
+      "sha256": "587f4b3ebe03d3dc206d0ff997d5243bdce176527dd4738f406c4f1cd8052c90",
+      "bytes": 330619
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/selection.json",
+      "sha256": "d40a721e4ebda7a774f29c53ace89042654c3dad8f5adddce98742fe4f6895b7",
+      "bytes": 1442
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-diffuse.webp",
+      "sha256": "3818a78a698cc2e9f639a4c917c1b44a89e093acbef1b5efc8a1520e3498a867",
+      "bytes": 147916
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-height.webp",
+      "sha256": "ff23318d4737f625d65b91db800003f6b763fb04a5a7547ecb4fd82e325b476f",
+      "bytes": 94968
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-normalX.webp",
+      "sha256": "e8eb7fd8681002abccbe7dc881a877f95387a296e8bdaf0e0d58b46a1ea9e27d",
+      "bytes": 89828
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-normalY.webp",
+      "sha256": "2d8a082c6b6cc550e0262b57036bcbc4f345670823781cc8c096415c827223c9",
+      "bytes": 91202
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-normalZ.webp",
+      "sha256": "2edcdaf5b175b2bd919653b4a70743600e2934dcf21560b55aee2d760d91f589",
+      "bytes": 24630
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/manifest.json",
+      "sha256": "75bb53d1bd730f261f0fc47d26956014b99e559d59b091876070425e4e4fa5b0",
+      "bytes": 9707
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-diffuse.webp",
+      "sha256": "39679c32bdc34ff5d10d61a9ecaeab2f163a6989731784f5de6eeff53f3d681d",
+      "bytes": 35444
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-height.webp",
+      "sha256": "2c926b31c8a98f65b4900813de3463319ef0fe75ed0431328d3427a8dd396fd0",
+      "bytes": 32690
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-normalX.webp",
+      "sha256": "6cca0133b1a6a1e14e774686ca5539e86da2a1098b5520b000b744540a3876e8",
+      "bytes": 28642
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-normalY.webp",
+      "sha256": "6fb6cf195bb38e6ba32ff228f01563913b822ac2cfcbc5e42743788da3a42408",
+      "bytes": 29274
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-normalZ.webp",
+      "sha256": "a0ecdefd259853cac0ebd272dd5252e6830c2f6a69ca8a4730e5296c490282ee",
+      "bytes": 8124
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/batch.json",
+      "sha256": "aab99a901753e2918befa088ec820559048cea5a7bc11a92779babbcf0941a2f",
+      "bytes": 4393
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/generated/rtex256.png",
+      "sha256": "8b256bd10435c2506d33eed5f6c503cff76859524a5d758289eadb2bb354b02a",
+      "bytes": 4249586
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/masters/rtex256/color.png",
+      "sha256": "dbd53736f0d2d22c2b3b287db5fc6100fe9b5dd47445b7507845e56eb4b65d98",
+      "bytes": 609352
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/masters/rtex256/height.npy",
+      "sha256": "546b4583ca27902adfbbdaf5f811031dcc8083ccd6e114d5f3b1d7f454842b92",
+      "bytes": 1048704
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/masters/rtex256/master.json",
+      "sha256": "5aa574d33782aacfffca44122fe9c92f1713c2396e6b9f3558a310d008762aa8",
+      "bytes": 4282
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/native-selection.json",
+      "sha256": "858a86a74856c52c9e0cdb1b89aa64af031a3b888d1c94a7fac0365a6477b966",
+      "bytes": 1421
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/01-rtex256-73d1bef29871.png",
+      "sha256": "36a7c5b07dad1063c0d1b8fe75b29e4d0415a08da5c5013cb29f689dbe20ca70",
+      "bytes": 2486
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/inspect-nearest.png",
+      "sha256": "e9458c92d45c231ae3b62385aef297003f01accc6b50aaca30406264421e0e7f",
+      "bytes": 8441
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/native-contact.png",
+      "sha256": "9e84bf9fa735d1de166baa04fd9bd5afd4dd6d83e1ef4638796f9773b4f9af22",
+      "bytes": 8525
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/native-coordinate-grid.png",
+      "sha256": "10df42dc24dca2113c97b67aaa0d59e1c974fd4f68a3619bdb60961e8fffa25c",
+      "bytes": 13370
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/native-repeat-nearest.png",
+      "sha256": "24c4c913b8b1e78a040e3aef52df6a97097ae08999d58535f56972c1740e51f8",
+      "bytes": 13811
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/source-face-joint-plan.png",
+      "sha256": "429b48a0d1022262aeff926caa010ac0d6c7c8fce926e54d23c4c96b126fff54",
+      "bytes": 20226
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/prompts/rtex256-material-v1.txt",
+      "sha256": "ad47f6023da22440f23572aa2034b34afac332521eb17eb748b05da2113c7029",
+      "bytes": 2668
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/review/index.html",
+      "sha256": "abc4e0985fedd7aef1ad8dd734963244bb5bb47682332e4840a0d2d1f370499e",
+      "bytes": 1195
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/review/rtex256-high-relief.jpg",
+      "sha256": "b64a42b230cc27ac00cb95cd97047f4e0fb5437860065303099f94a337833a9e",
+      "bytes": 498997
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/review/rtex256-high-review.jpg",
+      "sha256": "7fb614f3db54e488449eac8de582977c7a85609b65ed2259a747c58c32449187",
+      "bytes": 334801
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/review/rtex256-mid-relief.jpg",
+      "sha256": "392d2e29e2ddf53ee454c2cbb0c8bee893f3788e90f28cb68ef9d33d2ecee2b2",
+      "bytes": 152963
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/review/rtex256-mid-review.jpg",
+      "sha256": "57ba0fc721e7db38c445818fe1e3ccec70d3546aef09b401e0bd1e3030882b57",
+      "bytes": 276267
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/selection.json",
+      "sha256": "1334a957e8cbe9b3654014a92c1486116c29f9b5fd9e4180385d587ac2387608",
+      "bytes": 2589
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/high-diffuse.webp",
+      "sha256": "93fa307eabf6dced1ee619b16fc2703b4f59cc4c5d3694c25f6a0dbb35cce835",
+      "bytes": 125986
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/high-height.webp",
+      "sha256": "e9af5c0f8c99752e756f964078a470ebebe812de87f47eb3da4398fab40aa899",
+      "bytes": 92102
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/high-normalX.webp",
+      "sha256": "17e978a565b862c42b89e4fa1e3a765faa78ed17391ab226cfeb50004abdb988",
+      "bytes": 91906
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/high-normalY.webp",
+      "sha256": "857b2bd50941a52bc108b7d35c1c9ecf1571e78da8e9c747c7168a1dce185fda",
+      "bytes": 95178
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/high-normalZ.webp",
+      "sha256": "e72a3c4c2bc84cad578703b6900842c5374434fd761c950583d5e8f5b16d48bc",
+      "bytes": 24548
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/manifest.json",
+      "sha256": "954eab50330cedc24fb7907a41367c129118e94fc4dc7077d665c5a14840d4b6",
+      "bytes": 9767
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/mid-diffuse.webp",
+      "sha256": "3c4635ccc91ff6bdbee722a08686e5d62539a2c1ed91b261e6453882d72db779",
+      "bytes": 29274
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/mid-height.webp",
+      "sha256": "247e16950d819355999f7936f4beafa3804e566902a38fcc3544b696f300d28a",
+      "bytes": 30722
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/mid-normalX.webp",
+      "sha256": "3123cbde998de9fa85dd6610ae559d0b30eb3a30707880ec1a18df46d23b7c43",
+      "bytes": 26992
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/mid-normalY.webp",
+      "sha256": "5a20d17720231d4f092223451bba2e3b922a97f893377b8af56ad2027f0a2d8d",
+      "bytes": 27238
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/mid-normalZ.webp",
+      "sha256": "02c3dd45a9008d7ac2880479a3cd555d51e385e58c504c888c1b08e985768bc1",
+      "bytes": 7876
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/generated/rtex441.png",
+      "sha256": "04f338431167d3bf64e879b8e616fb4db7873d10125735dd6bcf08bbe4f3f9c7",
+      "bytes": 4116853
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters-layered/rtex441/color.png",
+      "sha256": "4653f845e15c0c8261f32a3e5c81487c20f18998f3631c4a52414950301b44f4",
+      "bytes": 622502
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters-layered/rtex441/height.npy",
+      "sha256": "f95f9895ad8f88424477921df9871292e915117aafec83219ba9fc5a24d21745",
+      "bytes": 1048704
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters-layered/rtex441/master.json",
+      "sha256": "f29a3b5ed887acba7e6a04b15815f4a1b61b1dccbb49c64421bc096c55ab34ad",
+      "bytes": 8821
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters/rtex441/color.png",
+      "sha256": "4653f845e15c0c8261f32a3e5c81487c20f18998f3631c4a52414950301b44f4",
+      "bytes": 622502
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters/rtex441/height.npy",
+      "sha256": "2917c3e931ab703842c8e6821ceab0245582142fffc1371ac6b0ae341db02047",
+      "bytes": 1048704
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters/rtex441/master.json",
+      "sha256": "1649e4cfbb33765946816d8a6399f6877638ef0a61831eeb1c4d2e5a7634b0c1",
+      "bytes": 4305
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/native-selection.json",
+      "sha256": "0d4580cd3dca98a4e72b5aa0a1911aa87d08fbad3aef211e253ad462134e7a0a",
+      "bytes": 7546
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/originals/01-rtex441-48f8ee75fe94.png",
+      "sha256": "c9ccb2437d5439a5390e4dae1de9c15a333196f6ad263e9205591d8ccc724d38",
+      "bytes": 2542
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/originals/inspect-nearest.png",
+      "sha256": "0029b35e2fafcb33750508b7fcb4dd4ccf1755f11fde5c3bbd6d67d4c160e04f",
+      "bytes": 7197
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/originals/native-contact.png",
+      "sha256": "8e7aba6935fae2754116bd5c311c052a4c70c8b17e716df51fbd3239b981809c",
+      "bytes": 8500
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/prompts/rtex441-material-v1.txt",
+      "sha256": "2fd84b90fe2653377b53881953468c7a5c7277f3b40b4dc792bf951405b537fe",
+      "bytes": 2520
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/relief/rtex441-flat-slab-v1.json",
+      "sha256": "e3c0e1d3ee5f5522c9d854505b06e0efbf14713e854268018a50eff453cba4bd",
+      "bytes": 2333
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/selection.json",
+      "sha256": "28a2914fbe471782e480c5ade380a9366887fe230ead8e5f490d24c2f82630b9",
+      "bytes": 1442
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/batch.json",
+      "sha256": "c6507e71abfc3c3d10613f571bb07942a1d8daf2159793487dd4a71796b9d6ef",
+      "bytes": 4426
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/generated/rtex388.png",
+      "sha256": "4b431a5aece2e46314629b67fd1222967cf8cccf575629e5acdce0e250d1b074",
+      "bytes": 4227725
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/masters/rtex388-v1/color.png",
+      "sha256": "2faa2ec6b26ba7e0700b18101bb5c1a64a865541274562f8ebc895e7aced90ea",
+      "bytes": 650194
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/masters/rtex388-v1/height.npy",
+      "sha256": "f386607415b6b66259f788f32bed12dd46dea1209ba8a19fbf868ab1077aee32",
+      "bytes": 1048704
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/masters/rtex388-v1/master.json",
+      "sha256": "ad714db9bf3a153daae1ce0cbd3b5da25ddb2d571f438fe4a5b25641d7bea9cf",
+      "bytes": 4296
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/native-selection.json",
+      "sha256": "8640de718807fc6702c54a7866827bd4b150515e7c0119001b047c2184ee4c17",
+      "bytes": 1928
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/originals/01-rtex388-ddf78c81cf51.png",
+      "sha256": "8a7a96186a7e9e785c82a550c9f6a72236183d66520b76e6a6bba1d4fef0fabd",
+      "bytes": 3929
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/originals/02-rtex080-baff63cee96d.png",
+      "sha256": "8a7a96186a7e9e785c82a550c9f6a72236183d66520b76e6a6bba1d4fef0fabd",
+      "bytes": 3929
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/originals/inspect-nearest.png",
+      "sha256": "5440d5a3ba4dc1dd2f8387b3226b9d1631486d8a6250869b7cf81796e4a31128",
+      "bytes": 13412
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/originals/native-contact.png",
+      "sha256": "068ba534e5125dee79ec12d8c29fe7133aea13624b470a7dc4f616369074a0cf",
+      "bytes": 14102
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/originals/native-coordinate-grid.png",
+      "sha256": "da339042423c658556833b16ef56303c9c16671058800a3c81a7efa814d7ff71",
+      "bytes": 19072
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/originals/native-repeat-nearest.png",
+      "sha256": "4eedff2e65c73ae9be5738c7c7b22bd572402892b31876b7b06f59b2f7e85b8f",
+      "bytes": 23009
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/prompts/rtex388-material-v1.txt",
+      "sha256": "13907060a1adda2d9d4489112fea2c34881e3db6d86439a8ba1f3bb9653afdf9",
+      "bytes": 2649
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/review/index.html",
+      "sha256": "bd065be2fff431c99b83b55f64044f5be43de3288db2b5f5c8f0482c64f30a7f",
+      "bytes": 1195
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/review/rtex388-high-relief.jpg",
+      "sha256": "949b4e8a7d866fe0432d82e51a0d6d30770cce25d5ee117e1af3f3270930c5d3",
+      "bytes": 625344
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/review/rtex388-high-review.jpg",
+      "sha256": "a6d0d1ffb608d66e03a6d3530cc33af49b2e43e60512e4fb018c0aa4e5129c61",
+      "bytes": 420699
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/review/rtex388-mid-relief.jpg",
+      "sha256": "931f19123b3ef18a68370c00349b1d843e90baf63e59631ad6d2e20f9a653fab",
+      "bytes": 185118
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/review/rtex388-mid-review.jpg",
+      "sha256": "20eded234c25064975b9cb04f830bfbc6ae1c9beaad811a6f1747068cb536f41",
+      "bytes": 360296
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/selection.json",
+      "sha256": "c7f937ffde5d9bb37f5f1456d8bee89da291a707a4e7bebe32c134ef738facb0",
+      "bytes": 2622
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/high-diffuse.webp",
+      "sha256": "0c2272896ecd0736f00d243887b3330fc05710b7fe15e87b897d1dd70a75f188",
+      "bytes": 155122
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/high-height.webp",
+      "sha256": "09a23ea71f067854a54e947e4f5036f4eaec33ede5db07a73b0cf5c2db2bc7b7",
+      "bytes": 134192
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/high-normalX.webp",
+      "sha256": "6f578a28cc29d53b9497d08c6b64879e0f9111019bc24abe473b884b9f7bbb8e",
+      "bytes": 121286
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/high-normalY.webp",
+      "sha256": "7ea82fc529d00036261737617e54322fc049511b480cbfdeb3ba960aa0cd5493",
+      "bytes": 120168
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/high-normalZ.webp",
+      "sha256": "0ba40ec67acda098d8ea23d14f987402a43477bb9dfe3a7cce7963ab9383a9e1",
+      "bytes": 30254
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/manifest.json",
+      "sha256": "5e7dda481d9dd9f387aa0f3614df386bacd999fed7b4102a846e34a6f6bb89e2",
+      "bytes": 9740
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/mid-diffuse.webp",
+      "sha256": "82a9b1dbd72093ba79aa7d135e3aef971a5c9565753ddbdb11a538e9b9fb0c1c",
+      "bytes": 38904
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/mid-height.webp",
+      "sha256": "891d12ac34a7a4d5eef3a688da37520a3415c8b0f44f7aa5abdd05e8b3fe4faf",
+      "bytes": 39068
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/mid-normalX.webp",
+      "sha256": "105ab57f6b5ea74924fd04be5aef3a8536c0719f8fc89de0516978fc3a2688ef",
+      "bytes": 32004
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/mid-normalY.webp",
+      "sha256": "ad8f58796d60480150e2e9adaa7899359e5a20d57ce75d18d5a0c7ae140ed5d1",
+      "bytes": 31958
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/mid-normalZ.webp",
+      "sha256": "bd4e36fc8da7b00dc4b434c2a1bd78795ea6e7b1ecb2a5238f4a803d7049b0bd",
+      "bytes": 9286
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/supplemental-rtex002-alias/originals/01-rtex002-591fbcbbc7a7.png",
+      "sha256": "514f4fafbd079415017ab8b625b5053dac1a016b68d89d4db709094b178fa0d0",
+      "bytes": 2696
+    },
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/supplemental-rtex002-alias/originals/native-contact.png",
+      "sha256": "57372110644e95b999b54ce96a74ddc56599908027fe0277656b03c870a44bd6",
+      "bytes": 9169
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/cleanup.py",
+      "sha256": "b3ca2544c394de6170c66c013f98955b9ee6d2a10ba4ef9f81f92e2b6e55cd9d",
+      "bytes": 5067
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/journal.json",
+      "sha256": "6a6cdfc5e5948b2c4776ab1908e25780556c2ee18f48859fd72c5efa75fa7613",
+      "bytes": 3504
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/metadata/8f0e96bc/desktop-bundle-metafile.json",
+      "sha256": "f0730d117c5a0beccb7b57211ee83f9e1c778f411c1ca82d73d798e8f4b40b50",
+      "bytes": 235679
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/metadata/8f0e96bc/desktop-inventory.json",
+      "sha256": "e51cc1a8d9adf6fdc5efa711d82d2113761ab08127005f752939b2e4a90a3011",
+      "bytes": 1457143
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/metadata/8f0e96bc/staged-receipt.json",
+      "sha256": "f2ac9cc7a27a3ba7729fa88182e0447171b1e54d37b64ddccca42ef91b8d9246",
+      "bytes": 122
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/metadata/8f0e96bc/web-bundle-metafile.json",
+      "sha256": "f0730d117c5a0beccb7b57211ee83f9e1c778f411c1ca82d73d798e8f4b40b50",
+      "bytes": 235679
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/metadata/8f0e96bc/web-inventory.json",
+      "sha256": "2be8d1c848e8279cca44477c5b7dca0dc083ff46422aa5c9b78dd3771bc70213",
+      "bytes": 724360
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/metadata/c00ca59a/desktop-bundle-metafile.json",
+      "sha256": "2bd07d034527161f1a88bafb54c1c16ac9e522f0c4f471071f03e1e0be9c8c2c",
+      "bytes": 235679
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/metadata/c00ca59a/desktop-inventory.json",
+      "sha256": "7e92591142399fe00fe64d9c3a8a8a4849932790141868d118929ae6a1b443aa",
+      "bytes": 1453105
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/metadata/c00ca59a/staged-receipt.json",
+      "sha256": "b583fba67cc4e84a87b53b5df8bcc98285a8f598dfa6fa08a0cf883624d48919",
+      "bytes": 122
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/metadata/c00ca59a/web-bundle-metafile.json",
+      "sha256": "2bd07d034527161f1a88bafb54c1c16ac9e522f0c4f471071f03e1e0be9c8c2c",
+      "bytes": 235679
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/metadata/c00ca59a/web-inventory.json",
+      "sha256": "cf801ab525c9ec8309013809b14d1089518fc81bb81f3172b9d6c860bfc365f6",
+      "bytes": 724360
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/metadata/eb6fd702/desktop-bundle-metafile.json",
+      "sha256": "bc90f2603a9a68ea421d780ad3100507858c4a031a0bcb63fcc103c22d9e8de1",
+      "bytes": 235679
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/metadata/eb6fd702/desktop-inventory.json",
+      "sha256": "0d831199b11968c6c1bb2990597cc2453e4a3bff553455972d31c91356d9af51",
+      "bytes": 1463580
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/metadata/eb6fd702/staged-receipt.json",
+      "sha256": "72dd49bc2e548cff35ada47553700c6069f8a7ef82fac4461e0882f3977fc19c",
+      "bytes": 122
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/metadata/eb6fd702/web-bundle-metafile.json",
+      "sha256": "bc90f2603a9a68ea421d780ad3100507858c4a031a0bcb63fcc103c22d9e8de1",
+      "bytes": 235679
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/metadata/eb6fd702/web-inventory.json",
+      "sha256": "705d68adb46307f4c6d02dd608295f430bc7404aae337d82d52c49e6928157f0",
+      "bytes": 724360
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/plan-v2.json",
+      "sha256": "61a1dbc294e20ea687234ee3b0d5f0553f879693800ee9fceffb712ddd5f2ac7",
+      "bytes": 4594698
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/plan.json",
+      "sha256": "77f0ccc3b91bf857e9b6997007d0612c94cff50b9ca94cbf35a7fff6565fdaf4",
+      "bytes": 4607605
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/post-check.json",
+      "sha256": "b7ebcbfd755d002f5bef7d8198fbc3c6c923fbcb2300e40f81eee279b7d50535",
+      "bytes": 702
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/quaked-texture-59-gate.log",
+      "sha256": "0884b8d249233e418a7a18430a6b993a1e773aa9faaee431cebed65345b8e78b",
+      "bytes": 167021
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/quaked-texture-oct20-gate.log",
+      "sha256": "7208660f73652a179fcd68b78dd3f40f7d364c505dda818714fbeea4fe7fc1fa",
+      "bytes": 92149
+    },
+    {
+      "path": "docs/hexen2/textures/build-cleanup-2026-10-20/result.json",
+      "sha256": "31789d0ebdbe5ba09a1cceeef459b76d8ab10e231f27845d9e0f40bfe7715ff1",
+      "bytes": 1024
+    },
+    {
+      "path": "docs/hexen2/textures/checkpoint-63-preflight/GATE-PLAN.md",
+      "sha256": "ac7a1032d7246d140951318249d7497716da5f4708df4d264a9d979cd95958f5",
+      "bytes": 8059
+    },
+    {
+      "path": "docs/hexen2/textures/checkpoint-63-preflight/IMPLEMENTATION.md",
+      "sha256": "2726fd8c35167be60ef79bba366e03cfcb18c9f0a66e01046e75ac593d89b2a6",
+      "bytes": 8014
+    },
+    {
+      "path": "docs/hexen2/textures/checkpoint-63-preflight/README.md",
+      "sha256": "ded3e73cb251b17ce2d240ae26ebb3bc6b932b7c828d827739e3292c08d9cf96",
+      "bytes": 3678
+    },
+    {
+      "path": "docs/hexen2/textures/checkpoint-63-preflight/check.py",
+      "sha256": "88c9453dc5a16dc4c17e860c7d8f48e93fcbad0a531c51728c28b2d0123f6b98",
+      "bytes": 13821
+    },
+    {
+      "path": "docs/hexen2/textures/checkpoint-63-preflight/implementation-tests.json",
+      "sha256": "edaca5c7c879ef5b714f81f9e451e8775fe62508bf03d06ffcb254675b8c5eed",
+      "bytes": 2741
+    },
+    {
+      "path": "docs/hexen2/textures/checkpoint-63-preflight/result.json",
+      "sha256": "17e3493afb42c319ff9297f0aab4923e1043f1831667f300214acb3fa5fa4e50",
+      "bytes": 1757369
+    },
+    {
+      "path": "docs/hexen2/textures/checkpoint-63-preflight/root-code-review-v2.json",
+      "sha256": "b5f28aa583d752e7f3b199092931d5f9281d3a1c3371226aa69e88619c16d903",
+      "bytes": 3587
+    },
+    {
+      "path": "docs/hexen2/textures/checkpoint-63-preflight/root-code-review.json",
+      "sha256": "ea7d4178fa9550a32b2df2c148b60d509d013440c42072dc5919c2a062a371fb",
+      "bytes": 2902
+    },
+    {
+      "path": "docs/hexen2/textures/checkpoint-63-preflight/root-current64-custody.json",
+      "sha256": "f5dfaec2d2096ec6bf9bb8cb3016e52501519ba39fe6b4cc63b258e35043aefa",
+      "bytes": 1768
+    },
+    {
+      "path": "docs/hexen2/textures/checkpoint-63-preflight/root-prod-guard-final.log",
+      "sha256": "d413997837afad722a76458c546ac0dad4f723e719d6cfb8a73e02619a06df52",
+      "bytes": 230
+    },
+    {
+      "path": "docs/hexen2/textures/checkpoint-63-preflight/root-prod-guard-v2.log",
+      "sha256": "eb30647d302d4ec11550add19716995bcd5b87360e59f3f9e5e99c629f1d9d06",
+      "bytes": 230
+    },
+    {
+      "path": "docs/hexen2/textures/checkpoint-63-preflight/root-staged-tests-final.log",
+      "sha256": "7a0d5ad3ec8433c3ea401a9039e9e968a08a84a80cfd41561d9ebc6fe7ab9d75",
+      "bytes": 2152
+    },
+    {
+      "path": "docs/hexen2/textures/checkpoint-63-preflight/root-staged-tests-v2.log",
+      "sha256": "d777d731f98e58ad40e6b5701cddc18678536fdfe2cd5c2fd119db6a1f97e287",
+      "bytes": 2147
+    },
+    {
+      "path": "docs/hexen2/textures/checkpoint-eb6fd702-ci.json",
+      "sha256": "47f5d3e8986414264f05f84a8c95e928bdec1ce5a1885ba9cda806803ec4a392",
+      "bytes": 993
+    },
+    {
+      "path": "docs/hexen2/textures/checkpoint-eb6fd702-local.json",
+      "sha256": "ac64885a7ed86801088c19150ececd9d477b4d91702eafac662320107227c454",
+      "bytes": 1300
+    },
+    {
+      "path": "docs/hexen2/textures/checkpoint-eb6fd702-staged-receipt.json",
+      "sha256": "72dd49bc2e548cff35ada47553700c6069f8a7ef82fac4461e0882f3977fc19c",
+      "bytes": 122
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/registration-102.json",
+      "sha256": "16302d1fa835ea20842f52dfda693a56239084a9753ddb9aadeee9cada934914",
+      "bytes": 1478
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/registration-499-053-256.json",
+      "sha256": "a3890a5fa445a3f151b6f17e9be21e0c5fa20af04fb72903d3faedf8fb8c6673",
+      "bytes": 4884
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/adapter-before-guard-metadata-fix.py",
+      "sha256": "ff9cc3bf611e63601946a046f85eb84ea1e2805811ae9ad64b63067e0b47c8ac",
+      "bytes": 11536
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/clipping-fixture-failure.json",
+      "sha256": "bc9749801610dbde8b34157eec6f7c3e32d3321940cb49b0153f0a563afc0a70",
+      "bytes": 521
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/implementation-state.json",
+      "sha256": "9880e91a2f53b2a6414cc44f51557fc9130a730e1489545c500349c56e2f83f0",
+      "bytes": 1424
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/initial-test-import-failure.json",
+      "sha256": "aa3955f2b1cdaded0e718f19eb5cb3a15aaeb20d72abe63e2f9f08c3a1137932",
+      "bytes": 490
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/maintained-tests-v4.log",
+      "sha256": "48373b293909374d5d7aa82d4ee6c856620b48fcbca86437951443880a59d09a",
+      "bytes": 598
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/metric-oracle-roundoff.json",
+      "sha256": "3dcbdc37546290608b2e71c998283620623278977c5055f7b829eaca1eaa012b",
+      "bytes": 499
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/test-before-clipping-fixture-fix.py",
+      "sha256": "2ac72ee95715711dab21d996ce9516788a71c5a8414f0d3a900b4289813d3342",
+      "bytes": 12312
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/test-before-guard-metadata-regressions.py",
+      "sha256": "c689facb59c9e065e112b4a0926a2a98502fcd8823f51e71ad218cf3e4aa817c",
+      "bytes": 12645
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/test-before-metric-roundoff-fix.py",
+      "sha256": "e2e053fe430013ad7112a62b2e8d7da4c0e3ef2ab01035675df9d6e861a24c25",
+      "bytes": 14971
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/test-before-oracle-import-fix.py",
+      "sha256": "81c7195204bbe6807042ecea569effa5ed7d63a59cfef25fb8e1faab18b3485b",
+      "bytes": 11933
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/QUALIFICATION.md",
+      "sha256": "269e6856c0fe7c187fa78326d21710aa4708bb394443caa178a44b8a5336c6dd",
+      "bytes": 2585
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/actual-v1.json",
+      "sha256": "2f1becac4f74545d5ed15ee12a1cd9a509be4bd30dac10fe3595ae78935dea2d",
+      "bytes": 30922
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence-manifest.json",
+      "sha256": "525e7e526c4042ab8d4f09ae82eabb29bbfc579b391ee1f22e4793835714c180",
+      "bytes": 25597
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/high-course3-old-HOLD-vs-successor.png",
+      "sha256": "acaaac11470ebe5318f4ec73f08931ce7505731ad5d8657ff73ac9f872c1a925",
+      "bytes": 589788
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/high-four-course-X-wraps.png",
+      "sha256": "195c5bb7e90fcb4aa91f5ad01861c0ef8f2b83271e68461df4495d9e17af4ada",
+      "bytes": 1195986
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/high-neutral-opposed-A-1to1.png",
+      "sha256": "73a9ef386f9c1f5fc48ae7d5dcb0c0f10e169fdf1fefe1b52dc92ab7ed8675a7",
+      "bytes": 325284
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/high-neutral-opposed-B-1to1.png",
+      "sha256": "04a4c00d85d90cbb3471e4ab014efabeb7f3593733a2176225f011905948b1b4",
+      "bytes": 325668
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/high-one-to-one.png",
+      "sha256": "4795e29eacf239d1baa5cc024a6a1064a9782371038671755557c7f4a54a383a",
+      "bytes": 951341
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/high-semantic-witnesses.png",
+      "sha256": "4da3fe229d7d4b5d9d5a00b98c52c8cdb822df382cb70bcf12ca7e65dcd25218",
+      "bytes": 2343073
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/high-two-by-two-overview.png",
+      "sha256": "2d36616a47cd63b1d480dec9c5c1f9312d55f5725657ba9072c626bbeadfb6c8",
+      "bytes": 317324
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/high-wraps-and-corner.png",
+      "sha256": "708aef8450ee11d985ba5ed5b6408f852dd65da8d22cfd1dc79bab99f5aac258",
+      "bytes": 1195074
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/mid-four-course-X-wraps.png",
+      "sha256": "2faf22c1a49bbe29440c2b25be10888d1745f1070cbb3f560cc40b56789d35e9",
+      "bytes": 328643
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/mid-neutral-opposed-A-1to1.png",
+      "sha256": "be8ba28d39592a9a7fe159f87016c6cafdf05b144fdde43af580f22e92fc56cf",
+      "bytes": 80858
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/mid-neutral-opposed-B-1to1.png",
+      "sha256": "e30c4f4f5442edec6774c0e69c6fa42065169b863623eb82bad6275c87c48a31",
+      "bytes": 80973
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/mid-one-to-one.png",
+      "sha256": "10ef39a505da133b85667526a365172d5545ff2b3fd592c6fadaa0c707e0209e",
+      "bytes": 1024044
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/mid-semantic-witnesses.png",
+      "sha256": "db22f24de8ed3f75c63b7c248d8bff56880e4e357dbcaebb0688830949bb2fe7",
+      "bytes": 619427
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/mid-two-by-two-overview.png",
+      "sha256": "0ca6386aa42d1f93fa329cfbf91d84f7925b75aec385a076f4472228f531406c",
+      "bytes": 317406
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/mid-wraps-and-corner.png",
+      "sha256": "23f6e6fe7721e129dd66d63fd25a27616391ec892f857b9e1dbce1b31b9cc90d",
+      "bytes": 1263999
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-review-v1.json",
+      "sha256": "085d7eefc1d073e95214992d94dc2a6c6e3ebca8800efc27f88bb3e5f33295f2",
+      "bytes": 39725
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/build-art-evidence.py",
+      "sha256": "1d8a35ab0ac84206671adcaf7c6b2ddb2412ab55cd8b47c841faffe8b3cb60fa",
+      "bytes": 7287
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/final-custody-v1.json",
+      "sha256": "464920a4bbd9caf584a4acecaa32470e370fbd219c284dd3cde6d9e8d6e5b961",
+      "bytes": 22574
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/four-course-X-evidence.json",
+      "sha256": "f25ac78412c634ba2bc383742361ea74de6fb18b5781b784b3cb1b5e03b1a694",
+      "bytes": 5078
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/oracle-helpers.py",
+      "sha256": "0f0add2a633a1efa94760d802dd888665d0236b72fb53ed1c362a10581e18c7c",
+      "bytes": 1584
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/preview-v1.json",
+      "sha256": "9d79a3a4b91c99418b7cc7c30d553b225d6cd2ec66200dc0534ce82d36fd941b",
+      "bytes": 32885
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/source-witness-classification.json",
+      "sha256": "16dbb8c3d9c934f27737e18d98b0af40d548f57e0862f11b7fc566315cb44eff",
+      "bytes": 4054
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/verify-actual.py",
+      "sha256": "29828953dcd31118f61ca39c0c631f131e1c6c19d309b6980396e425cd665946",
+      "bytes": 24746
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/verify-preview.py",
+      "sha256": "0e46eb967abff4a9143c4d64d39a9bd233b6bdce391847896fa3ada9b72bb4e7",
+      "bytes": 13924
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-code-review-v1.json",
+      "sha256": "05e86c9b8c2f2e121516819e1cc39b6e58f33ba2a95bafbf1871a8502af62fc9",
+      "bytes": 8533
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-code-review-v2.json",
+      "sha256": "4382fc8086a3eca80acbd03f70668b747cbe593a1d9eb8f2e779d7e104df9608",
+      "bytes": 13765
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-maintained-tests-v1.json",
+      "sha256": "316d88efadfb79e60af7cfc871b83d7840cbdb6062b3d8119278be3e20102cd3",
+      "bytes": 1106
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-maintained-tests-v2.json",
+      "sha256": "b01afbd466fa52c3966e25fe8df2d799d565d9e2c63aa73ed28de1d79d83c9a6",
+      "bytes": 1123
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/adapter-source-v1.py",
+      "sha256": "ff9cc3bf611e63601946a046f85eb84ea1e2805811ae9ad64b63067e0b47c8ac",
+      "bytes": 11536
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/hostile-public-runner.py",
+      "sha256": "83ebb517b257ebac8e698fed5789a9f1bece044fc481fe3b4ae68a83102f992d",
+      "bytes": 1408
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/incorrectly-published-fixture/color.png",
+      "sha256": "931dda77ba96dd202a7cb2c4f095f924dea2c6e5eba4005e926e9eb4807eb7a2",
+      "bytes": 4164
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/incorrectly-published-fixture/height.npy",
+      "sha256": "bd63af2affdff99da60892bcf4521a6abbf51dd06d80d857f839be6ae944d1dd",
+      "bytes": 32896
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/incorrectly-published-fixture/master.json",
+      "sha256": "c6fe6c3f11864b6bbad2e5e5f847c5f04272b8be26897c4ee2be9f4d2933bc5c",
+      "bytes": 10120
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/late-empty-process.json",
+      "sha256": "044d26e527437ea71866a8dfc9ad6e83e46597f2fd45222a560b87c01eabbb9a",
+      "bytes": 1656
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/late-symlink-process.json",
+      "sha256": "22587478b467a2901c84e002505ec2e18ffbd86e28d9739db366954ca9cc00c4",
+      "bytes": 1662
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/original-after-replay-process.json",
+      "sha256": "d612521b82ab66313ddd82683530f25542bda043f48e5478f7ded04bbe6cedd2",
+      "bytes": 903
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/original-after.png",
+      "sha256": "6143955f1af277ff039341000bd2e8c30ceaa487d0311370a18cc1038ee47d16",
+      "bytes": 374
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/original-before.png",
+      "sha256": "8ea74528b89d292d1edbebdac2e4ae289d70d9aae2f49a413a273d3e22e7457e",
+      "bytes": 374
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/stage-write-failure-process.json",
+      "sha256": "07b0f08387a9ae555405a153871b3b1e93b7bd742c6b5bd5ff3f63a3de5922be",
+      "bytes": 1469
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/successor-x-master.json",
+      "sha256": "87accfd21d7232a1db27fe6d780f52caf97fcab0bcd3856a25a5b11b2b3ec877",
+      "bytes": 10121
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/successor-y-master.json",
+      "sha256": "7d166d3955025267d86f475d461321885d4c65a884f3e460739669275e1c1818",
+      "bytes": 10158
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/unsupported-process.json",
+      "sha256": "403d0f168e8ff7bc4422da47a3077d3d69211f53e95189758c098b3c8d45300b",
+      "bytes": 1367
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/adapter-source-v2.py",
+      "sha256": "90f9cb11ff3b6b740e4df56bdbb3746d31fcb2d72ca6b342b102466e01e900c8",
+      "bytes": 12859
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/hostile-public-runner.py",
+      "sha256": "83ebb517b257ebac8e698fed5789a9f1bece044fc481fe3b4ae68a83102f992d",
+      "bytes": 1408
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/late-empty-process.json",
+      "sha256": "243b4a3058906ff12ae28acb2aa021318ebd5930b2a45acc41e9b63b53c8d1f7",
+      "bytes": 1656
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/late-symlink-process.json",
+      "sha256": "9491f7b18aa1a517a6602975f3abf1be66adafabb9c5ba74f60777a66bce2666",
+      "bytes": 1662
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/original-after-replay-process.json",
+      "sha256": "8687b74594fe1127eb3ef3421aa543e4c58e1682e772ee2888508bc06e31903f",
+      "bytes": 1639
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/stage-write-failure-process.json",
+      "sha256": "b7aed14837c4b43aba46ffc4085a808a4dc1057826cad4f8b7033a1b0b8de127",
+      "bytes": 1469
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/successor-x-master.json",
+      "sha256": "9f9976f81a2e76e096a02234278563bb9f7bcfba10ab9e0de012941e402802f7",
+      "bytes": 11112
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/successor-y-master.json",
+      "sha256": "ad559a4864db44284550e81cedba1ff650bba1076ee2f62fd553b52887d7861f",
+      "bytes": 11144
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/unsupported-process.json",
+      "sha256": "4e0a9df36ce9c139bf4f31050cf34c827cc5cbdbafd47f00df5e583fa043f286",
+      "bytes": 1367
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-review-v1.json",
+      "sha256": "01319697b65acf6ecbd4bf07b00a296e502578b4ac1fb41187ed3bd5bff9f0db",
+      "bytes": 10080
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-review-v2.json",
+      "sha256": "02da9af03da7e75bb3c99e00d36945bc47079f20fa0d8b94b7666f18fecb7c69",
+      "bytes": 9629
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/check-adapter-public-v1.py",
+      "sha256": "4043f8b7c3a2203c4aa7a6906f7b01e6583ab78e2d15dc6e6c6307fe1bf3b7ef",
+      "bytes": 10556
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/check-adapter-public-v2.py",
+      "sha256": "8843db2575e109ac9706cacf247183feaac6c8c0ee773f55b7f8f7057ef62740",
+      "bytes": 13318
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier-review.json",
+      "sha256": "79bd9372d33bf84239deada37f4503a4c97838bbc779ac5964ad25a3edf0bd83",
+      "bytes": 1840
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/actual-fourway-corner-1to1.png",
+      "sha256": "d09537c603ce3693022a27dea0f877807c2a302a69dda3fd9f06ba34821d0aa2",
+      "bytes": 591587
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/actual-fullheight-X-strip-1to1.png",
+      "sha256": "cc32f4babb8182353dcf1dbf8ad3838673f28c94078cada749dce661611c0861",
+      "bytes": 1186874
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/neutral-A-1to1.png",
+      "sha256": "8961ea108a2ef148ae02d234b979d0e9c7b586bff0803e9a898b0699e7fa5137",
+      "bytes": 295641
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/neutral-B-1to1.png",
+      "sha256": "cb1f0a897f54bfef232f4388991ba50c4e3abaaf407292e8b0ee5b87782a6a57",
+      "bytes": 296186
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/report.json",
+      "sha256": "a2221566da43a9961f2fc0f69c6736772d60f30e87ecbd61ff2a39950de8b0df",
+      "bytes": 28193
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/textured-A-1to1.png",
+      "sha256": "f372a2a6f86ad9149fc38ad4c61d43f4f0307cb427aa25cf7cee16ae59cff0ad",
+      "bytes": 2316456
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/textured-B-1to1.png",
+      "sha256": "e542cd992a9f6a57f2b3064966294b247d3d613d2ddf103eb3f5a0248360301a",
+      "bytes": 2316861
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/QUALIFICATION.md",
+      "sha256": "027a475b103a04e2c83099fb160dc5d9e4b022d211c532a2d1fd6d10cca57370",
+      "bytes": 3634
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/actual-v1.json",
+      "sha256": "ce4c4d952ce2663d371cdb6be59519ca4057cc2dd5f3b31dfbb912ace6a4cb90",
+      "bytes": 616
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/actual-v2.json",
+      "sha256": "23bc87da1bc2a5014e64fdc1ff15477aa225bfd2929bca1908bb9798d9347aac",
+      "bytes": 60189
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence-manifest.json",
+      "sha256": "0fb983f1998a8f778e7e55f38a755e1e1f4a3e38e187cda2499a2c9521a03b6d",
+      "bytes": 13970
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-XYZ-1to1.png",
+      "sha256": "45862a887f2f090dfbe16f893528eefada7e4abfad9743ecceece9048eadfc1d",
+      "bytes": 488962
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-XYZ-repeat2x2-1to1.png",
+      "sha256": "32c91f2bd1f8112c30ed47fd4d9d1bcef3576385bfc86bf470256ae0199605a7",
+      "bytes": 995456
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-XYZ-seams-1to1.png",
+      "sha256": "b9502ea6b1776a8b1d78f65772ae149fc1af6fe45021c05fb3305521a84cd8b8",
+      "bytes": 284599
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-bothBOX-distance.png",
+      "sha256": "441c14615fbe44fe67f9bac2c55d1935c7022a3a3129993ef4593ab2362058e4",
+      "bytes": 16761
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-color-1to1.png",
+      "sha256": "119136fdc6a590dc6556fabd20e9e641b60e347d76eab84f12cebe9d83dce035",
+      "bytes": 557402
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-color-repeat2x2-1to1.png",
+      "sha256": "ae8728eec5b3fd12acc5b21011622558d48ad6a17cdf5776be35217b8021cf28",
+      "bytes": 1137809
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-color-seams-1to1.png",
+      "sha256": "7e3de8e251c1dc6ca64d12acef236235169efadb590df8a23daaf5894d827d0c",
+      "bytes": 324685
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-height-1to1.png",
+      "sha256": "1266493b19ae375a6cbe4287d8760b877c10a90e0e0627583e92626822ee6c74",
+      "bytes": 321647
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-height-repeat2x2-1to1.png",
+      "sha256": "2f87f427b5a70f7e016f5427b2a21eea96c15d138600e7519e09368e44f89d6a",
+      "bytes": 719265
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-height-seams-1to1.png",
+      "sha256": "277ef7859f6f2c235484e64e919c74d1d417a720fd41b2c13a7ac31153ba4d89",
+      "bytes": 206507
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-A-1to1.png",
+      "sha256": "b0b861f1b99211d04ce5b81ff68408b8a8f6698b5dda13cbfe53413fdbf91e5d",
+      "bytes": 273943
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-A-repeat2x2-1to1.png",
+      "sha256": "69c6cafdb1b929b499057d54c1627ae5b842e50df4c627b43b69b6882e4ba09d",
+      "bytes": 605018
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-A-seams-1to1.png",
+      "sha256": "9c0a4e9585fb92a90bdda4a17f067b99044337742c432ae7eb5f53a1ed21652d",
+      "bytes": 174739
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-B-1to1.png",
+      "sha256": "e64af6a8a4526478362d9022f074a3e3222f843e5043b1702f46cc5229ca6848",
+      "bytes": 273823
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-B-repeat2x2-1to1.png",
+      "sha256": "d5af0ce3bc93d0c86c54bfee143ab6adf77b3cb92dd62a18b942f52d054fb57d",
+      "bytes": 604735
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-B-seams-1to1.png",
+      "sha256": "629d11302fa562b4fd27dbee09e56d405686c9e696b7b6bec0505104c2c4b309",
+      "bytes": 174267
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-textured-light-A-1to1.png",
+      "sha256": "c5d44ad0dbecb79b8ebd3f5a6a1176ef7abdadd44df4a76a1be58038907ed356",
+      "bytes": 532559
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-textured-light-B-1to1.png",
+      "sha256": "0b195eca29982ed6fb7f956ab383526b2991a69fb52dae3c031b324dd329c429",
+      "bytes": 532232
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/master-witness-labels-1to1.png",
+      "sha256": "931f9f9ddee9e180ca1b64e3010530af883291d5d1ec00c847986529b24bb237",
+      "bytes": 563245
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-XYZ-1to1.png",
+      "sha256": "100408bc85e416de13ca6ea585277692d7e89b752ffa02fbddd86e93d42e77e2",
+      "bytes": 140748
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-XYZ-repeat2x2-1to1.png",
+      "sha256": "32b24e9a8d96e88aa1f2041210b21da09d912cd3930f93b41e0355e37281c5f8",
+      "bytes": 286268
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-XYZ-seams-1to1.png",
+      "sha256": "ea6f376370fac2aa9933fe6c18bd5413796e92ccfd9f10a5971b89b984b0939b",
+      "bytes": 185233
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-bothBOX-distance.png",
+      "sha256": "9385ade096b2bcf8fb2621e8534eb71249dca650ccab3c30f3376a8d13980863",
+      "bytes": 16802
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-color-1to1.png",
+      "sha256": "4a497677fece81295c69b1b644f20a0b63c3ec8225fb14a3c27a0a95580a31bb",
+      "bytes": 134303
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-color-repeat2x2-1to1.png",
+      "sha256": "187f0447acd19c6cb4bc7e50ef322bb25aee71b5ccb5c895c7148ebbdf2e3371",
+      "bytes": 274931
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-color-seams-1to1.png",
+      "sha256": "8e02cb150d09f7ab1eb5ae3fbd095956ea2aeca44aadecb27ea7586566f7514a",
+      "bytes": 178721
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-height-1to1.png",
+      "sha256": "f0b0bda0f9d347ee99d18cdba061c8a029a425ea17c4a2e24d1e89c701d78da9",
+      "bytes": 108806
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-height-repeat2x2-1to1.png",
+      "sha256": "b5159d17e6ec6b6b23aa0f68e4d2802ab6700f9e3759d0d612a020d4b85f769b",
+      "bytes": 247476
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-height-seams-1to1.png",
+      "sha256": "1c471ff0adfa90c3294d1a9896b5a09d97660f987fcd860b8d3d76ecae8fd6b2",
+      "bytes": 161141
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-A-1to1.png",
+      "sha256": "0b640b9311c033e66d6e155ab51406ecd96be58bcdbce9a466293db10a54c62f",
+      "bytes": 79699
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-A-repeat2x2-1to1.png",
+      "sha256": "b004278ca072bfe949dc801e514b6b6294b16cb892d5abeee6cf7af8ed2f26fc",
+      "bytes": 181176
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-A-seams-1to1.png",
+      "sha256": "f802a43e2f09adbc5931ef2a0cb4f6f4064acdce4b65b42fce67a89a011c8174",
+      "bytes": 119487
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-B-1to1.png",
+      "sha256": "c95242b3ba28fe53e242fbf22e29bf1f9eb6f27e26b95c0adaaf1c500d231916",
+      "bytes": 79736
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-B-repeat2x2-1to1.png",
+      "sha256": "57e53203d96bbdc6d59570e838722cd7e70de3fa57e4c12ccd12ba354be46322",
+      "bytes": 180805
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-B-seams-1to1.png",
+      "sha256": "f00d9b76e176fce5000331cef3dbbc7294acc3843d9d54b46018b28efaa4c6d7",
+      "bytes": 119151
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-textured-light-A-1to1.png",
+      "sha256": "0790a307be25a7f16a8738747aec0c1c28818e0f3c887beab926c021b50cde8c",
+      "bytes": 128998
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-textured-light-B-1to1.png",
+      "sha256": "c1cec0c1d43c081ccc26f7f686f462e3ac985878755eec104dbc7cf258362377",
+      "bytes": 129010
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/witness-crops-observations.png",
+      "sha256": "d6c58fc03a38a658f903a7624587f69e89c820d4fa5d1ff0b0eb5688f7717958",
+      "bytes": 42506
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-review-v1.json",
+      "sha256": "339059251c87e644e6c1101728c2458ad2cca8054b495fe6c5ddcc8ec1d28ada",
+      "bytes": 11197
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/build-art-evidence.py",
+      "sha256": "a859d62a984402b5967a98d023d84de1a689acfa307f586757932daf37cb0ae3",
+      "bytes": 5057
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/final-custody-v1.json",
+      "sha256": "355c5f5fe6446fe09d0f78b281547ae5ea794a924aa8aa6ef305a12709b9ad78",
+      "bytes": 9878
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/native-audit/inventory.json",
+      "sha256": "344ad22744fd5b6ad9d07ef89102be930ac2c3c88589456d46963c8b4c082d6a",
+      "bytes": 4375465
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/oracle-helpers.py",
+      "sha256": "0f0add2a633a1efa94760d802dd888665d0236b72fb53ed1c362a10581e18c7c",
+      "bytes": 1584
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/preview-v1.json",
+      "sha256": "655ade1fcf17da0285e40f94defc428e3d8c1815b70db1f700d10ad824595f7a",
+      "bytes": 32349
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/progress.json",
+      "sha256": "6177503214d151a2e5554217019ae4479c05620b57e49a15e19bf6530da5f764",
+      "bytes": 869
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/seal-qualification.py",
+      "sha256": "98eddd948ed9387b6cb14d07b01e5649ab2517e54f0bedd6bc9aa62959a3e6f7",
+      "bytes": 9505
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/source-witness-classification.json",
+      "sha256": "1cf9304878ea9489cf5f4e94823b0a3fe079a0dae678d144ab2087fbbf305105",
+      "bytes": 14821
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/verifier-schema-failure-v1.json",
+      "sha256": "742034c4ba6965a48fd7aefbcfb51f8cbef80a6a5a643e46730e7d1bb1693faa",
+      "bytes": 626
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/verify-actual-v1.py",
+      "sha256": "ce68cdb8f9d4d1a9eb5f06749ba077f7502a39aaf11059f977d21b7072d67cf5",
+      "bytes": 17660
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/verify-actual-v2.py",
+      "sha256": "c6b00f07823764ba4ee3c53a86fb398eac77a1d4a5ac14028bf1af297b5cd2b3",
+      "bytes": 17705
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/verify-preview-v1.py",
+      "sha256": "537c9580d8b1d83b221259d4ea206f110f3483a711a56c6ce5ef3030c6df6fb0",
+      "bytes": 13855
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/README.md",
+      "sha256": "afbd43c9b00178ea0831d27808671862009eb724f508e13386ebc7c3daffa027",
+      "bytes": 2978
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/audit-native.py",
+      "sha256": "ffe2bb17f5cfebb8d6aaf8d903bb892012ace5c49580b6d5c31e12bd267cc14b",
+      "bytes": 5490
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/bind-candidate.py",
+      "sha256": "7b5bd64e87969daac5ce43fa54aef104b2927ebf0528f75d2bc53847c9216d20",
+      "bytes": 2652
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/candidate-corner-provenance.json",
+      "sha256": "51b615917363abd0c8f5fcee76ea79917a7426e7bb5050a4a02846a8efa6bb5a",
+      "bytes": 3090
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/candidate-seams-corners.png",
+      "sha256": "33aae0c28cd2b09617ff561c9a37e803b582e0bd28b9bcd05a4abcd131f78ed6",
+      "bytes": 1099890
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/candidate-self-art-review.json",
+      "sha256": "08fb0a64911dbf08f264dd99e6f1f0b98f975ee814618ec0d64b10d4278fd40d",
+      "bytes": 6367
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/candidate-self-replay.json",
+      "sha256": "185bc76ccfef467e4a2514857b7eb1a32f6aeccab18291758bfce0250b3bc13f",
+      "bytes": 19749
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/check-pre-tier.py",
+      "sha256": "317ab430c5473c6bef126db35f40a38fac88e73465040d2d42ac00bf2b736f42",
+      "bytes": 5211
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/handoff.json",
+      "sha256": "ae6ab4d9a88f49bc12bc6893b41afee028b3bd10229a86f3c862208054b66df6",
+      "bytes": 10235
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-decoded-full-repeat.png",
+      "sha256": "def114c68bd287ed64562a7760644398ce6cd5571fe3edba93e87bbd59381942",
+      "bytes": 1287855
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-literal-X-lower-course.png",
+      "sha256": "94b64ce311f158e438184a3fb7b84fb643a5e9fe04df3d83ad20db8af6e66194",
+      "bytes": 1254239
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-literal-X-native-comparison.png",
+      "sha256": "5c885e8ad377c24204887f50ee62b4da826a3f42009e41ee5eb22dd6a332cc7b",
+      "bytes": 309707
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-literal-Y-full-width.png",
+      "sha256": "56cf45df621ade5ca82406860648c7eb5cae3f307737e803e29e84c9dcda871c",
+      "bytes": 659051
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/F-boundary-diagnostic-limit.json",
+      "sha256": "706047fc0d4b3c497cfb3c5c2b185b25f5b6ff1d2426fe23f485a5bc54b89c06",
+      "bytes": 974
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/F-wrapped-source-witness.png",
+      "sha256": "ef6b44d778b53f1bfbf60e8615677ff1d7ce02243425363e21ab86440602e3ca",
+      "bytes": 4758
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/QUALIFICATION.md",
+      "sha256": "a0fa336e6aa0de661cd7c670c8c886eb6d1b4cee4ddba9261db74786770acf97",
+      "bytes": 4385
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/actual-v1.json",
+      "sha256": "c63a346aeda01d1d467535b6ec5139f28fc6c66d7a790523c2a7376adfa01e08",
+      "bytes": 54823
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/additional-native-Y-and-alias-check.json",
+      "sha256": "7e509ed8e2018f77963f664c8d6ede803b92286225a991fb22716b3d9dfa8c04",
+      "bytes": 1674
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence-manifest.json",
+      "sha256": "50828faac46d568d6ede80a1632fdef650cd98c3c80f8bf29706fbea8cb52747",
+      "bytes": 13937
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-XYZ-1to1.png",
+      "sha256": "b6bd30c9d8e9630379cb93d733b721c5f1c87364ee515378df2d9e62a36d8058",
+      "bytes": 488875
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-XYZ-repeat2x2-1to1.png",
+      "sha256": "9fbfaddfcb46e2b36b482cac9aed2a09fae9ddf67d7c4805c6048cd86cd9cea6",
+      "bytes": 995618
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-XYZ-seams-1to1.png",
+      "sha256": "18b8e23aa10c90ddc7819191b5d8b17879372f8afb4c72d41cfef19189bcacd9",
+      "bytes": 279298
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-bothBOX-distance.png",
+      "sha256": "84547910af44c7090e21dd0e51421954fa6a2b980e63a54659c0f75dd9f1aeaf",
+      "bytes": 17114
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-color-1to1.png",
+      "sha256": "1e5441b7295e2644204f11a41b2e1779d0f99026819c845664dea8a02d3ea465",
+      "bytes": 627078
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-color-repeat2x2-1to1.png",
+      "sha256": "def114c68bd287ed64562a7760644398ce6cd5571fe3edba93e87bbd59381942",
+      "bytes": 1287855
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-color-seams-1to1.png",
+      "sha256": "2a0ad54caaaa65e8597bcf34475934071c1053f2ce62b4dcce6d03e2974a3070",
+      "bytes": 362779
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-height-1to1.png",
+      "sha256": "83587a9357a66302f09928a5b4f96d677bc6379a4d7825686ce6e0463d9bee57",
+      "bytes": 319586
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-height-repeat2x2-1to1.png",
+      "sha256": "f53539b0af41f82181afb7fd30a5b48a9edd7256d07e05474146ab35f4eddc79",
+      "bytes": 719244
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-height-seams-1to1.png",
+      "sha256": "490b7dd650cdd8aaa996ad199a1adb7c601dae11f76c76e34427f21477cb737b",
+      "bytes": 204579
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-A-1to1.png",
+      "sha256": "f8c307f1196bb4e32ece3614cf8ae0a09e2f8467bb2ed252d9190342212d1482",
+      "bytes": 274792
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-A-repeat2x2-1to1.png",
+      "sha256": "38c009f76be54d4fc4875e01c3fdea08c4e4c67bcb936fdc21451f71215d5598",
+      "bytes": 609288
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-A-seams-1to1.png",
+      "sha256": "b2083574b00015786d4c4ef3abad1cb4ded8ed90c16516a112b3af8fb7dcfef6",
+      "bytes": 172620
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-B-1to1.png",
+      "sha256": "8d3187c8c48970dafeeed3eb59d24f3fd27ea642bf53c4b5bdcea218db93c157",
+      "bytes": 274760
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-B-repeat2x2-1to1.png",
+      "sha256": "f89fbb2815ea3575f0ff0ec63591ade4cca77f4d25d8f60f1971b81c49518c78",
+      "bytes": 608377
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-B-seams-1to1.png",
+      "sha256": "0a323605e602f803c114e854712fa808ea7bc2e0de4a69ec332422914849035b",
+      "bytes": 172710
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-textured-light-A-1to1.png",
+      "sha256": "8f3eb6ba5cf9a2d61a4c4657f73a242495f35c6539f01555b18edb92f52c26f1",
+      "bytes": 604568
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-textured-light-B-1to1.png",
+      "sha256": "0fd1fb77ab0fbe668a9353816fdfcf9e538c4da793f9d59a6a6d2e0eaf1c638b",
+      "bytes": 603757
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/master-witness-labels-1to1.png",
+      "sha256": "01565c9b31689b6cb2389c8822794fa178c4f007264ded554ff62ce8778367ec",
+      "bytes": 646285
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-XYZ-1to1.png",
+      "sha256": "0e5fd053577dc0af411a977670ec5d55a843a46cfaeead12165298f730c2e47a",
+      "bytes": 137858
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-XYZ-repeat2x2-1to1.png",
+      "sha256": "3b60c71e09e71279f8820043cb31fbeaf848a83cace7cdb77fc66d9b6e39e227",
+      "bytes": 280395
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-XYZ-seams-1to1.png",
+      "sha256": "13dff878b9f5f156e381eaafb03dbc60235563e8213ee757b0d06a8322c9292f",
+      "bytes": 182386
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-bothBOX-distance.png",
+      "sha256": "3932a3f5a6e9af20964ccb83c823ffb8ad70e961798c2581f454a9cd7e36bc8b",
+      "bytes": 17148
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-color-1to1.png",
+      "sha256": "f0dc45d514fefb0bc7a9ac7a73a551bce56232774d2977b156f8183997224855",
+      "bytes": 153750
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-color-repeat2x2-1to1.png",
+      "sha256": "7c387208854292d6b2a00a01b92776a52bc9925f074d9456e545449455cbdc90",
+      "bytes": 315805
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-color-seams-1to1.png",
+      "sha256": "1242af80f9459d50cba665f469b322f8b8a48814100c9d80683ae4153b405c2b",
+      "bytes": 206251
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-height-1to1.png",
+      "sha256": "113f2f88b9e5ee356be6ff02faa8934a189c05db989dcfa4bd475a52f732f58b",
+      "bytes": 103624
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-height-repeat2x2-1to1.png",
+      "sha256": "31431bdee693e9c1876370e9d4e6065955c5345fc639e40abc271c72696f9900",
+      "bytes": 236492
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-height-seams-1to1.png",
+      "sha256": "c34614dc2cbd015e331db21ced6cb7cae74c96c58d9b69d2fda68afd11216311",
+      "bytes": 157132
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-A-1to1.png",
+      "sha256": "5f2f69486cbeef9b1a27ed9257730a2077feef07d3a2dc29d41091153d30e354",
+      "bytes": 77459
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-A-repeat2x2-1to1.png",
+      "sha256": "7d9d36c02c40e9f7eef7fe2a7db71c92c71859aae95ccbbadd972ce0aa07f6c4",
+      "bytes": 176424
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-A-seams-1to1.png",
+      "sha256": "2b473f99199ab0b5f1a648e74fd23b4f79fd4fae3792f2fa2763aeeedcf34d49",
+      "bytes": 117187
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-B-1to1.png",
+      "sha256": "8a74ed9bbbd8f7d26b679b67da212152532ad3c7ea24423d1cf0721a4c2e6cdb",
+      "bytes": 77452
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-B-repeat2x2-1to1.png",
+      "sha256": "49818c5df494554983c2f329410ea1554a4856de963487844da7ba56596b31cc",
+      "bytes": 176449
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-B-seams-1to1.png",
+      "sha256": "12eacb910cca38b3b4d28bf0888893bb8373c608f6acc782fb9cbf82c97ad066",
+      "bytes": 116896
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-textured-light-A-1to1.png",
+      "sha256": "bc6c4a416507bf91793143198807e34be8a3d75819aa1421d311ce537b8379e4",
+      "bytes": 149217
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-textured-light-B-1to1.png",
+      "sha256": "903ed5449e3a19b6ce318b9f590cc62b65f3ed3b4e01f2f44fea5625a734b938",
+      "bytes": 149157
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/witness-crops-observations.png",
+      "sha256": "aa0c5010f49a672028381bde4c97d2b4380b9df62e85a2031ce80347a0a99d90",
+      "bytes": 42495
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-review-v1.json",
+      "sha256": "8bbc7f3022c9cce95ed52d813442c4a2108c9f97abf53828b56fc06d9c7d8023",
+      "bytes": 12206
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/build-art-evidence.py",
+      "sha256": "414eb6b7b50bec5c4cffc0dbcc431306598bb2926c52aea5070445428c441413",
+      "bytes": 5057
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/final-custody-v1.json",
+      "sha256": "7170d892f7c19333ccfac55e2bf3ea1db5a5b53d2eb26ff45e040959ecb57f97",
+      "bytes": 12166
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/fracture-comparison-provenance.json",
+      "sha256": "c7682486a8104bc0a7ede7d9b7a94b3dc9f0649e8f1c5a5304c7905ec6057d19",
+      "bytes": 867
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-role-sheets-provenance.json",
+      "sha256": "743fd96dc4e480a87eea5abced1ba2f1e7bd363bd886668c6ca61b20862670c2",
+      "bytes": 14794
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strip-proof-v1.json",
+      "sha256": "2ba0fcb61532272d7154eafa20b5994ae5b739d3a3f4cb438ff10c5eca843a79",
+      "bytes": 13332
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-all-role-sheet-1.png",
+      "sha256": "e4f200c409d12edf34402db477522df643815038fae4532cc4d0da27249259e7",
+      "bytes": 695291
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-all-role-sheet-2.png",
+      "sha256": "41069827e563c5ea623b420aa22ab91cd1412f6e43e71221aa36fd7b3def5495",
+      "bytes": 853054
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-XYZ-1to1.png",
+      "sha256": "4f71eef9957d2f3b6e974702b0b55952dcb96e08a5a754ad9089377ec0cc8774",
+      "bytes": 233005
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-color-1to1.png",
+      "sha256": "9992a3e1ac7ad5ae1c69c06e26758810a4740643ef1521c09d812db7a1b1660c",
+      "bytes": 300134
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-height-1to1.png",
+      "sha256": "4b2d906ae4b270e0b1e371cbe9342a06e6531901943571e08c689287487550e0",
+      "bytes": 152994
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-neutral-light--1-1to1.png",
+      "sha256": "727ada604c784dae7bc1efe0b2be7a51798c58dbe4239e9ad987d432266bff34",
+      "bytes": 131451
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-neutral-light-1-1to1.png",
+      "sha256": "f1d7e48919003e698bbbfdf5fe8ef43668ef307fc959599e11241742a9196b54",
+      "bytes": 131510
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-textured-light--1-1to1.png",
+      "sha256": "67b9bdc8af1018719def4081bf5a067f33b985a508b1c67a82129039176b17f6",
+      "bytes": 288997
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-textured-light-1-1to1.png",
+      "sha256": "26a3f5c9e2edc8e44154d43570878d7e0dbb06814abebd8a36be2eccfe770731",
+      "bytes": 289362
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-native-full-lower-comparison.png",
+      "sha256": "ddf30553dbfbfa8642266c07ce03787d9d219b6790775c42e87f13141e62c950",
+      "bytes": 317181
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-all-role-sheet-1.png",
+      "sha256": "fed5f9a6e0096250bc334956870d426a37dcf0c240f53e43c51d07bb87587dae",
+      "bytes": 793789
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-XYZ-1to1.png",
+      "sha256": "853d268851eb6b48df9d7a73cad27afa24466c2f05cbbe64ca816e997def2538",
+      "bytes": 118176
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-color-1to1.png",
+      "sha256": "1df758022da98764559fa989464f96147c485190cb4f122b8456b626db7959e6",
+      "bytes": 151992
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-height-1to1.png",
+      "sha256": "6ef7a0fa6b201d6ce70b6ec502a4618299a49893b06ea3854b1520579afd9c83",
+      "bytes": 79152
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-neutral-light--1-1to1.png",
+      "sha256": "478d2e2a6aa3671412cde4e2c0ac9556977fd87fe7382b741bbb70a2368c11d2",
+      "bytes": 67739
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-neutral-light-1-1to1.png",
+      "sha256": "b6c28ddfb6cc782ae3a29fee9c4b4aaf0374addc70117c873a1942351e7043a7",
+      "bytes": 67528
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-textured-light--1-1to1.png",
+      "sha256": "5c5e6efbca9494f69cc8fab0e6cfcb8df461d9dcd9f5eaad52968f02a5d5dbd4",
+      "bytes": 145622
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-textured-light-1-1to1.png",
+      "sha256": "44823667029a3e50cd4d17095189ca3a0d4cb66d28fb638b917a103a14c7f58c",
+      "bytes": 145928
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-native-full-width-comparison.png",
+      "sha256": "37783b5906a3e9b260719ccd95eea89a45d758fc306a2957c19b41672883718c",
+      "bytes": 163586
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-all-role-sheet-1.png",
+      "sha256": "831c619ddcdd71242d6eae9f347b59353b19d2e8244d75fc3a6ca66e1f68a6cd",
+      "bytes": 420934
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-XYZ-1to1.png",
+      "sha256": "0b3821ba8713074afc1fa5c38cdfbe7531edcee2058a8e8a4478beaba9fb82e7",
+      "bytes": 65429
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-color-1to1.png",
+      "sha256": "167229ee5b9c126d62839345ad1f5e89bea81823e76828ce5f60b09f2606f531",
+      "bytes": 73300
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-height-1to1.png",
+      "sha256": "a404d7e8730fe52d4177c7fdacd60169711761ea10d73efad294511b9498783b",
+      "bytes": 50571
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-neutral-light--1-1to1.png",
+      "sha256": "6304be92a12e48d8d33ef956dadbb5eb95717f4c18f3d71fc466d41c58527d85",
+      "bytes": 37699
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-neutral-light-1-1to1.png",
+      "sha256": "15cb7ba7d7378fff62d21113725364820ec7c8c57f71c426b14a5a9aa4c896b7",
+      "bytes": 37561
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-textured-light--1-1to1.png",
+      "sha256": "bd07549377a936d4e9da5a2959daafebcf3c126218c0be19f94514e2ecd146e3",
+      "bytes": 71172
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-textured-light-1-1to1.png",
+      "sha256": "d43b7a46b7fd462ff19a50e5bad7733508386385ad87d968fd523758da077272",
+      "bytes": 71169
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-native-full-lower-comparison.png",
+      "sha256": "be002afffcacb7880e19bc7dc3223ad545e8f44f5dcf86ecb1622a7b74f8b345",
+      "bytes": 82397
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-all-role-sheet-1.png",
+      "sha256": "7935b76d280450c91077d72c1d3a13df3f123fe46aa83059bf2d8e96d0f47dfe",
+      "bytes": 227329
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-XYZ-1to1.png",
+      "sha256": "1be9b8dc48876f7c94800d5b39f3f322db9912cb7fb2b2243cce249549e8df47",
+      "bytes": 33760
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-color-1to1.png",
+      "sha256": "f9f23660c9a5f88c4e95f3a0a722262b497a85ed30e5e7e2566fe8081ab85857",
+      "bytes": 38139
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-height-1to1.png",
+      "sha256": "1745ba334ebbe554202707178bed6e2406a16f7318afbde79f4a6678fa736e5a",
+      "bytes": 27604
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-neutral-light--1-1to1.png",
+      "sha256": "b4a5f4356029180c4038a1630ba47881b5694e833004f5bd274fb2c9e0e815f7",
+      "bytes": 20332
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-neutral-light-1-1to1.png",
+      "sha256": "b05465d5c6b2ef7f904a38edb245468f6f389001080c9ce1b57758e65998bc2f",
+      "bytes": 20383
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-textured-light--1-1to1.png",
+      "sha256": "bc8223aa90dd9fb9129cc099f5a7360cf57d750e5c4b411d62eeaae60b185424",
+      "bytes": 36661
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-textured-light-1-1to1.png",
+      "sha256": "406f6410d2afb99bf88c03635f5762545c1e52cee6c91d4ef6eba30f0d0ea018",
+      "bytes": 36679
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-native-full-width-comparison.png",
+      "sha256": "1cc562893057f070578f773ac69a1659260899ef940d6e0030743288a16488be",
+      "bytes": 44959
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/native-X-full-lower-1to1.png",
+      "sha256": "c3dd7d9dd278730b0f84259a8d13ac23ee6637ad5b43ebda669de13fdd378661",
+      "bytes": 2021
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/native-Y-full-width-1to1.png",
+      "sha256": "34ee7112ee20405b42892e8da5079bace4851d930abe3bac25d65af2958877e4",
+      "bytes": 1145
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/lower-left-partial-fracture-comparison.png",
+      "sha256": "d977ed8459d692f63cb5ccd918807f934de8b84482c4819e7ad218e6550a3360",
+      "bytes": 151233
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/native-audit/inventory.json",
+      "sha256": "344ad22744fd5b6ad9d07ef89102be930ac2c3c88589456d46963c8b4c082d6a",
+      "bytes": 4375465
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/oracle-helpers.py",
+      "sha256": "0f0add2a633a1efa94760d802dd888665d0236b72fb53ed1c362a10581e18c7c",
+      "bytes": 1584
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/preview-v1.json",
+      "sha256": "545e430b86b60d365b7daba53a13dbad8c58798bdf08420d83d2f8e931df5eff",
+      "bytes": 32349
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/progress.json",
+      "sha256": "900fc49f3dfb756a5297e05f6e9493e5e7c616ff0121146c0adc66f340aac4bf",
+      "bytes": 851
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/seal-qualification.py",
+      "sha256": "02602e94879fd34d5ad836062f5363f5da822d9c7668fcb52368b53a5cd75fab",
+      "bytes": 11319
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/source-witness-classification.json",
+      "sha256": "47c16cb667c0d3297b873deecf004365c02037f336608157f18aff36b52469e6",
+      "bytes": 14402
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/verify-actual-v1.py",
+      "sha256": "1a6890cbadca7109386c7374d63edf6ad8d73f221844abca52e336284db51e97",
+      "bytes": 17702
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/verify-literal-strips.py",
+      "sha256": "ecc942a1498df30932482c2e62f2360abe741808d868544e5f2ddb050a5ca650",
+      "bytes": 5187
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/verify-preview-v1.py",
+      "sha256": "7e3fece9dcdfa8367cf52a65827eeb4115d8f5e27f239e1a045289c0df9363d7",
+      "bytes": 13855
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/inspect-candidate.py",
+      "sha256": "ad30341f2a37c6cdd97a3b945ccdaf77de639c063c06a83adc1931f0acf3c488",
+      "bytes": 1990
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/inspect-literal-lower-strips.py",
+      "sha256": "99aaa8631c30e7194b4c8066d1c8d5e247968bb99cb41b0bdbc013407afa9df7",
+      "bytes": 3530
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/inspect-master.py",
+      "sha256": "53d24507fc9e94096da383819203e773a488e7a7c6f152de5ea178c4eab6372a",
+      "bytes": 1794
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/literal-strip-provenance.json",
+      "sha256": "5d34202669f6c7eedf17174e78af166eaa7957dce5601241ff59402615b53f9c",
+      "bytes": 5302
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/master-repeat.png",
+      "sha256": "143b66b92587ad540b1ec6372bbdf46b8dd976f6970365678dfeb922c0a8fa22",
+      "bytes": 1311394
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-decoded-full-repeat.png",
+      "sha256": "7c387208854292d6b2a00a01b92776a52bc9925f074d9456e545449455cbdc90",
+      "bytes": 315805
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-literal-X-lower-course.png",
+      "sha256": "eb1eeec44ef3d35ebaaaae5281dc18f8b3c14cb1d2e9ad6f8d4fb2e7fc0e9142",
+      "bytes": 338896
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-literal-X-native-comparison.png",
+      "sha256": "1bb786c92fe97421a5308a43aa52b3cb35d380aa5b7ad70fe9b25092e8cf5487",
+      "bytes": 80949
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-literal-Y-full-width.png",
+      "sha256": "81a93d72ea1da305ee9d0dbd3f5ae647c1df1955dbef5ef14994c774613f8b1d",
+      "bytes": 188910
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/native-audit/inventory.json",
+      "sha256": "b886ceb8481f4305bc2a98d11647e80d85dc140b54659a3bf6a8fb805bab4191",
+      "bytes": 4375771
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/native-edge-values.json",
+      "sha256": "2f06bb0c716fb0aef04dd461878972579cd848dde0a5eb6f5b144c0a0ed0d9ec",
+      "bytes": 6205
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/native-master-literal-seam-comparison.png",
+      "sha256": "72ef7472fc9ca9a76ec2053c7fbdb35a48153eece4224c1c587d90247eb81da6",
+      "bytes": 641444
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/native-proof.json",
+      "sha256": "8fd26df8b7b40a57fd835093ffc8c70e8f8a3d16faa683c3d461413c534e9093",
+      "bytes": 12255
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/native-repeat.png",
+      "sha256": "54585c85ff28b08fd78c572d9a07adaac5ed758862500fd2367b0ca5dd1ee672",
+      "bytes": 24043
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/physical-witness-proposal.json",
+      "sha256": "2a9d1d89b618a53f59d6251b5c2b5c9113f799c2a11b308d440f6db826df410e",
+      "bytes": 2164
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/physical-witness-proposal.png",
+      "sha256": "e7bd07541e8b960ca8f3b326fd026ff3b73565945634d9318aa98b49d106077b",
+      "bytes": 212661
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/plan.json",
+      "sha256": "aa70c20bd1185cdc1c741cd9fbcf899f075a0f31c0bb00cd4b827c0cd1f37025",
+      "bytes": 2891
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-art-review.json",
+      "sha256": "5a66c55afe4a0d25ff9387341c334a9e353612d63fa0f0f3016d1746f8eeb360",
+      "bytes": 3527
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-distance.png",
+      "sha256": "1c25ce55430c1eff158b8632c6aa901d6fa0df17c1802626b554a2ce5a2aca9b",
+      "bytes": 17588
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-light-minus-repeat.png",
+      "sha256": "0f8037ff15ea4fbaaa4e4b7dd0254006e0dcf33b9150d982cce77b102d7f8c38",
+      "bytes": 1252246
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-light-plus-repeat.png",
+      "sha256": "e9a529f3d2c97e5b90451cf284cdf4e5b7074e810cabdbe21300f7bb9e9fb860",
+      "bytes": 1253108
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-master-diagnostics.json",
+      "sha256": "b79189ba3cee1a2225bd88fc1b2cbaf605d8c4fc120abf2f40b5dc2fc4e64624",
+      "bytes": 376
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-master-repeat.png",
+      "sha256": "143b66b92587ad540b1ec6372bbdf46b8dd976f6970365678dfeb922c0a8fa22",
+      "bytes": 1311394
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-master.png",
+      "sha256": "1dee861b4ae8a5b07dbcfd39cadb2445b427697459e1910c6f4b63e108479fd3",
+      "bytes": 2804917
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-native-repeat.png",
+      "sha256": "54585c85ff28b08fd78c572d9a07adaac5ed758862500fd2367b0ca5dd1ee672",
+      "bytes": 24043
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-physical-witnesses.png",
+      "sha256": "88bc7d7f686f4e5f9cff4e273efedafc809e659b33c9d015094137ed4a2d8b9f",
+      "bytes": 209834
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-seams-corners-1to1.png",
+      "sha256": "bb96f29d4045476844c38dd610dda116220d8b9f75d48ee690f16aa893e84e2c",
+      "bytes": 535910
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-self-check.json",
+      "sha256": "11a5b6bbfa7daf8df6f232174e30028853bfce6f7a2e911756891da99cec0496",
+      "bytes": 7015
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/progress.json",
+      "sha256": "06342fbff663c3863d116b6aaf6fead131719c3899333a2626d7e3952a19861f",
+      "bytes": 1536
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/retained-low-duplicate-screen.json",
+      "sha256": "c36d3f9a61d95578ce329a363aff392f38fe242fb58bc286acd3467d3079840c",
+      "bytes": 401
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/root-plan-review.json",
+      "sha256": "83f6687bead60557492fb7efce88b0676e6402d3f1dadf4f660014c909874809",
+      "bytes": 2368
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/verify-candidate-self.py",
+      "sha256": "0fbd4af3180989db41d6af7198f61d868f388630a6e200d6476b1cf12c95200b",
+      "bytes": 6149
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/CANDIDATE_FREEZE.json",
+      "sha256": "9008ce65ae296bd4b7a804da9773d462d5453414f28b690fc668b28135205bc1",
+      "bytes": 18259
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/FINAL_HANDOFF.md",
+      "sha256": "3a2d7ae29ba25d2ea3cfd6c97db4b26c5552de06b583a16ef91aa7ca6a7ed7e3",
+      "bytes": 4810
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/PLAN.md",
+      "sha256": "6d07c0cec9dce6a73f1bee44b9b96883582f93efbb74acbbde7bf2d84e6b451a",
+      "bytes": 3900
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/art-self-review.json",
+      "sha256": "8ccb6a1a3c545c8ad5d01fb780f49f0f5bb38dc39213adcb57708ea9448acf72",
+      "bytes": 7914
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/audit-native.py",
+      "sha256": "96d7cf34e6685019ac246e096c9a3e43da4d8aa7a3b27c0b19dec61bb904abf7",
+      "bytes": 5674
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/candidate-self-replay.json",
+      "sha256": "c888f67bfe5e28542e155597c51de04824d360c4b2b5d22d667e2cab797f2283",
+      "bytes": 32984
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/XYZ-decoded-1to1.png",
+      "sha256": "baebf25f4e3c9c87e7d293936ff44732f9b1a05c2519adce792fa5d43f34a587",
+      "bytes": 491425
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/diffuse-XY-repeat-1to1.png",
+      "sha256": "cde1e31c2ea5f5fcef166c87029c7ca70d1e87ddabe0f407e166c5dc7fb9035b",
+      "bytes": 1218675
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/diffuse-corner-junction-1to1.png",
+      "sha256": "e93c8befbe09a5d94f29f41b1b6d620d537b69c2200b128fd61e9111389ce125",
+      "bytes": 150497
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/diffuse-decoded-1to1.png",
+      "sha256": "b961793ffcf9664727996ce8c57a4c51619c00bf411657c05c9fa49eafdcbac3",
+      "bytes": 591518
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/half-quarter-BOX.png",
+      "sha256": "7a888a4d1d622c707f0e624c789fc5901a7a3623f0234547bf24244778b1ec8e",
+      "bytes": 14560
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/height-XY-repeat-1to1.png",
+      "sha256": "14b4a635f7e906b401a7ebb654fffed9bb916f87fd074862556c247a5f62385f",
+      "bytes": 704668
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/height-corner-junction-1to1.png",
+      "sha256": "192d720bc13bb9772dc49c038dc8daa18a2420a9d556f2b7cf577aafed9b19d7",
+      "bytes": 80277
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/height-decoded-1to1.png",
+      "sha256": "de1e675942164476cc01b958b042ae582bf4bcf7850ebce00fe9f044221b6fbe",
+      "bytes": 314900
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/materialLightA-decoded-1to1.png",
+      "sha256": "ff0b00d5fadfa300c03d496f06eddbd54728746fc374e4f28df6fb2712771928",
+      "bytes": 603320
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/materialLightB-decoded-1to1.png",
+      "sha256": "d75bc2026ef2ba9cbe9902c737e801ede7f8bce7d2e862db72e3b7f21aff13d1",
+      "bytes": 603895
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/neutralA-XY-repeat-1to1.png",
+      "sha256": "716de7b1c53763f57b1ca2ace79aa52071b5774283e9e03379902d2e42efc3e0",
+      "bytes": 836005
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/neutralA-corner-junction-1to1.png",
+      "sha256": "66e67b0e49265327f086992ba3c1e586f1f49044a6c00debbc7de40ce67b27ba",
+      "bytes": 93210
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/neutralA-decoded-1to1.png",
+      "sha256": "1ba528abca009132089aa85f80f6a05a79f82837fb030992eb942d33b73f8547",
+      "bytes": 366735
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/neutralB-decoded-1to1.png",
+      "sha256": "5cc50ac4d211faadf2416eecbcb391ff140a1a0f2b3d234580d9cc7b98341ce4",
+      "bytes": 367417
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/XYZ-decoded-1to1.png",
+      "sha256": "3989a417e3fc44accc962ae5ed11a160c0c93efe67115bb900d7126022379ad4",
+      "bytes": 133779
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/diffuse-XY-repeat-1to1.png",
+      "sha256": "c8662f08e797d03a79459d229f84562db438b17da731e31ce609cafd762e90ec",
+      "bytes": 285516
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/diffuse-corner-junction-1to1.png",
+      "sha256": "51f4466f8b688e607d50539ece599b230b22c245ccd0c2e5b6292f448c1c6c21",
+      "bytes": 138559
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/diffuse-decoded-1to1.png",
+      "sha256": "9d26d0c924866ba4506e2fe92736812ae96ea499ed19ea42c613f71fefe04e40",
+      "bytes": 138539
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/half-quarter-BOX.png",
+      "sha256": "6310d7eabe4d6b11dfc14c67e406f1c095a453125f68d083f24c6ac1a8806efb",
+      "bytes": 14812
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/height-XY-repeat-1to1.png",
+      "sha256": "b13375181c15f38a780182ecd43d6d0fe4e919f80ad262defd1b4523a2f5d620",
+      "bytes": 218992
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/height-corner-junction-1to1.png",
+      "sha256": "9f27e3609088601acd5fb5c3ef168f9726c96175d543eead1f17253fa02c7941",
+      "bytes": 96255
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/height-decoded-1to1.png",
+      "sha256": "8fc8f4aa2d8b65b6844f05ed58798dd578581999a62b5139ff49ae822465d787",
+      "bytes": 96041
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/materialLightA-decoded-1to1.png",
+      "sha256": "8d881c466b2016a294aa27e0a637b9d74765a3a8efb5b6e597f9248784df9a61",
+      "bytes": 143405
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/materialLightB-decoded-1to1.png",
+      "sha256": "4eb64ee262d141f998c30b101413304062997c80f6e5e243cd46fbe5609afe54",
+      "bytes": 143533
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/neutralA-XY-repeat-1to1.png",
+      "sha256": "48089ca89d2e06dcda4e731db962da85edcdba87e95ed5dd4d2e28a5ede585c3",
+      "bytes": 240056
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/neutralA-corner-junction-1to1.png",
+      "sha256": "a2f1614954c7055c2e45c4e4a45cb37b6f7dbb9b22bbddb69a380d850880f560",
+      "bytes": 104387
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/neutralA-decoded-1to1.png",
+      "sha256": "5676e090565612bff9fc162deedfb710ae09c5d50f24bcc395d93d4f9b801ae9",
+      "bytes": 104379
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/neutralB-decoded-1to1.png",
+      "sha256": "73914d50ff535c6ea10fa7aa0bc5ba8399e58fd0dc1da462c9aacc43d225c1e1",
+      "bytes": 104519
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/eligibility-and-retained-source-screen.json",
+      "sha256": "cc4c76ac315b1709af19f2ed02568a10e66c28fa8b8c57b5c4d376903fb23ac7",
+      "bytes": 61610
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/QUALIFICATION.md",
+      "sha256": "e8dc7190e7bfb62b760b476e3a01b903bf6ae93bc08e19769c69a78a311726e3",
+      "bytes": 2073
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/actual-v1.json",
+      "sha256": "8273cfc73a7df82c54e099b7475a81b230ba004d05f2771bdb0d518bc2d96abb",
+      "bytes": 38529
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence-manifest.json",
+      "sha256": "039c1a0b19e81e4ca5d53d8b51fe9926e74e42e8569b91fd07e428ff50b3405d",
+      "bytes": 25470
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/distance-both-tiers.png",
+      "sha256": "456119403bc3551e1d7cf0732692631655b8072e852ea73055980db24d6ebd0b",
+      "bytes": 25122
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-diffuse-height.png",
+      "sha256": "321683408b199c8c18b8c49dc1e0a89897ea87d07347798e0140e02cac10bf69",
+      "bytes": 952935
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-normal-lights.png",
+      "sha256": "4db227e25c45343c399e034269bc11a2df63dc3e3e9a64e86d3fc1a042415458",
+      "bytes": 1685876
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-physical-witnesses.png",
+      "sha256": "0f890068087affe8087f29faaf03d0e99486b416bd6c615f9ce565e719a2f404",
+      "bytes": 592641
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-two-by-two.png",
+      "sha256": "cde1e31c2ea5f5fcef166c87029c7ca70d1e87ddabe0f407e166c5dc7fb9035b",
+      "bytes": 1218675
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-untextured-lights.png",
+      "sha256": "36b4a97faa0820d90a7520edd5829f1cfdd62757d1c162b6eb256305cfa31225",
+      "bytes": 602250
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-wraps-corner.png",
+      "sha256": "ed24571128e268252ea3b0e454fcff4c98e739b24c4ad37827e8c2876e301838",
+      "bytes": 519889
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-diffuse-height.png",
+      "sha256": "f4a2d20593e06abe4f2e7b07c09cb79e0270330ba719587f7e0271f83a878e6a",
+      "bytes": 253536
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-normal-lights.png",
+      "sha256": "c27e8b1e9a18b12f1fafea06f16be59a9f5bf9513db16be8ced51d7c3a3929a7",
+      "bytes": 416117
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-physical-witnesses.png",
+      "sha256": "b86a968328102e9ede49ce10aad464f5220ceb5eb6580dbb349aecd43074e10b",
+      "bytes": 139849
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-two-by-two.png",
+      "sha256": "c8662f08e797d03a79459d229f84562db438b17da731e31ce609cafd762e90ec",
+      "bytes": 285516
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-untextured-lights.png",
+      "sha256": "ca978924b91c963ed22adfc2d62a4731b617dbb1c1a77f556ef68b6f2268b1fe",
+      "bytes": 165257
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-wraps-corner.png",
+      "sha256": "72e3c59831b22c037fb762bb1d8dd7eee4a1b72b881f12a3a86d0c7f04c27098",
+      "bytes": 532809
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-review-v1.json",
+      "sha256": "6937351466e61b38553cb789c0a4592c30be0598d4860cbfb23dfd65081c4948",
+      "bytes": 42196
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/build-art-evidence.py",
+      "sha256": "3954ca8bf54504cd1a409038d5a8d59a4f90796f73f9555e716f8a062ff3970c",
+      "bytes": 8108
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/final-custody-v1.json",
+      "sha256": "9cf488af402249f89cc82287617507fc2f8495713f191a517cf26452ab40d6ef",
+      "bytes": 20690
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/joint-phase-diagnostics.json",
+      "sha256": "182c2628bc5121f26a99afa091aa8a6941c855920925ca0cfc8d95bacd071d4b",
+      "bytes": 6266
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/oracle-helpers.py",
+      "sha256": "0f0add2a633a1efa94760d802dd888665d0236b72fb53ed1c362a10581e18c7c",
+      "bytes": 1584
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/preview-v1.json",
+      "sha256": "9220618183e22765ed679ff1211a19ffabc3a2d131f12513aa9c3ed5cbba242e",
+      "bytes": 32503
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/record-qualification.py",
+      "sha256": "650207f1c6103a76bb4284059d6f28f2ef54a773a8d7087053f50cf99e056e1e",
+      "bytes": 14910
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/source-witness-classification.json",
+      "sha256": "2efdb8e4dfafa000e9dea9c5bb52e91725911d6e69f3fa64396f7b5fad82239e",
+      "bytes": 2646
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/verify-actual-v1.py",
+      "sha256": "8d03ea0d3da65fb771db7de51a1cf011b2114f05c0c12f15f733716917f7da93",
+      "bytes": 18105
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/verify-preview-v1.py",
+      "sha256": "83fc7b050a09baa2463931939a176c4bdf38053c62afe956ecaf57348981d253",
+      "bytes": 13822
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/intake-handoff.json",
+      "sha256": "a0fcfbfa03fdb232a2ce4f790e142ff0f876a71e2ca152e369bda1cc56bca6fe",
+      "bytes": 6144
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/native-audit/inventory.json",
+      "sha256": "dddc21d444ead3b589429e47ea1fc73aff992ca4a9dee5e05ffb95e8ebd458b0",
+      "bytes": 4375771
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/native-proof.json",
+      "sha256": "9a110b78a052a800c27c114a5e272b5c9708d9f98c4ee6b0cc755faca6b6d58b",
+      "bytes": 7279
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/plan.json",
+      "sha256": "7dd94985528996a4b9992184ec1324ec8f8278f95a27cab35ee5402084791745",
+      "bytes": 6384
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/actual-master-semantic-witnesses.png",
+      "sha256": "65604a1b5d612344134ee0dbe952f75e1a3cb00baeda8e71e2d8ac66a1fee5d6",
+      "bytes": 605515
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/author-material-semantic-review-v2.json",
+      "sha256": "68186908c85bcf1333b1ced12a7d5dc115b5ec1ef2f80abde1100ef59fecc459",
+      "bytes": 6129
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/author-material-semantic-review.json",
+      "sha256": "af8051c00cf8a66948d2ef64a7853c4148953925e59bc72e79aeb072b967ac71",
+      "bytes": 5697
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/master-height-display.png",
+      "sha256": "e118863a9db8d8433e2aff4016eb83b42442c9263f4dca22c06fcfb294452808",
+      "bytes": 181183
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/master-neutral-A.png",
+      "sha256": "d9acb3ad8557acc94106aabc6897d8211758d655342d06afccb50287999b7710",
+      "bytes": 203781
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/master-neutral-B.png",
+      "sha256": "04a6c393cd0fd129f57f925bfd69e10ca4a2ecdbab93e045fd2a68298cddb2b5",
+      "bytes": 203774
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/masterNeutralA-repeat-1to1.png",
+      "sha256": "0b0afa5314a41d8d898e2f823114d6a633b6e6189ab5c4a5c572c13117174fd8",
+      "bytes": 836019
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/masterRGB-repeat-1to1.png",
+      "sha256": "885c63bdf9073910da37b1ac1e6c3f61d28621f2041eeaee2870a1b9dc371736",
+      "bytes": 1237171
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/native-master-distance.png",
+      "sha256": "4904a007ddf4bf28bf577748599e206bed8ecd481aa09758ab210cb1c0301b11",
+      "bytes": 640754
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/native-repeat-1to1.png",
+      "sha256": "24c4c913b8b1e78a040e3aef52df6a97097ae08999d58535f56972c1740e51f8",
+      "bytes": 13811
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/retained-all-image-rgba-screen.json",
+      "sha256": "826192dc40f505ed0edf795dae8b25026f381746ac45c6071e9f63e91b3d7754",
+      "bytes": 12002
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/root-plan-review.json",
+      "sha256": "b31c43cd4f3e8911a8fe6c394eccfc731ed43085d2037f6e97fa230c8bff8b27",
+      "bytes": 2499
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/status.json",
+      "sha256": "56d6acb2486dac7d23673d93b126cd3511ccb41f75479a8bbc25c4d82b73deb5",
+      "bytes": 3862
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/verify-candidate-self.py",
+      "sha256": "252cc23ab9e0aa58a8b0fdfd7e5777b13c7d3f1e1302ff1fca75fadc8bc38df0",
+      "bytes": 9490
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/audit-native.py",
+      "sha256": "f10f08bd679c6b3e25dac4dca329b284fcad7c8a8ee24d1d185118c7d9489bfc",
+      "bytes": 5490
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/flat-slab-layering-proposal-v1.json",
+      "sha256": "c7605a92e09269fb5a35c9f10b1e58483dd89f69be70c421a0db7d8c5e9ec5c6",
+      "bytes": 5657
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/flat-slab-physical-plan-v1.json",
+      "sha256": "b9fd18777816b4060873008b05bd07103940970d5a10535ef41973dcec230133",
+      "bytes": 3708
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/independent-source-master/README.md",
+      "sha256": "82671be183ae2f0d21536f544febab835456faff46df20de6d17d5cb6f80b691",
+      "bytes": 2802
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/independent-source-master/source-master-proof-v1.json",
+      "sha256": "9eb084219c3ff9f97ab9a0ad91c4b74a05eda2eb0878b836780bdb3004ff22a9",
+      "bytes": 468
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/independent-source-master/source-master-proof-v2.json",
+      "sha256": "ce1dcc77c90298715c0601f2fd2c54d4548cad0e64bb4432b2b20db88c0652d6",
+      "bytes": 14377
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/independent-source-master/verify-v1-failed.py",
+      "sha256": "01b67be4b44755370c004b2e8c645e6df6f262c45394b07ce39c5b1545eb54fd",
+      "bytes": 15339
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/independent-source-master/verify.py",
+      "sha256": "c7266a01e3657cbc34c2545a05c9f81b8e0c92e73f0111b6ad7f82bc2d75659a",
+      "bytes": 16791
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/initial-physical-witness-proposal.png",
+      "sha256": "ef89dc88adfe381cdfda2d403a959f8176f6b5e3098aa9cb389ac8ceb385f05a",
+      "bytes": 205735
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/initial-relief-hold.json",
+      "sha256": "962a750e1048f5250bd58467914103a119cec3c972980fc70c712f15fe4848c7",
+      "bytes": 6371
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/inspect-initial-relief.py",
+      "sha256": "e5e5be960656b802258417be2d867e8a5a05f28ed61a37d24d7ec2c8c5337724",
+      "bytes": 4386
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/inspect-master.py",
+      "sha256": "2279321b3f9e64bf3d93cec6871ca039710a77e031ad7f364516d77c8a2f3336",
+      "bytes": 1786
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/native-audit/inventory.json",
+      "sha256": "5cb8f5789e3920d9654447b17783eeb3761e01556596ecd7476b83a51f058a43",
+      "bytes": 4375771
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/native-proof.json",
+      "sha256": "18823df114f393665e43c304c09984c0a87c472203660dec3ed50e80bb6c6930",
+      "bytes": 6582
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/plan.json",
+      "sha256": "c6099cbb5b313105c90377734359d644513808396aba0f54eec41b93ade7e0c4",
+      "bytes": 3016
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/pre-tier-distance.png",
+      "sha256": "833e9b006b7f5a16536272dfe577088afee04ad72d7150f80f836dc07fac82b7",
+      "bytes": 15388
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/pre-tier-master-diagnostics.json",
+      "sha256": "4bc79dfaf065d20c1ebea9c9d07f52395303e079914874bc4d4f648a58d55096",
+      "bytes": 376
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/pre-tier-master-repeat.png",
+      "sha256": "76f1fc6a2fe0eb9bbadf1ba6a4065abb0ed9c4f3a60d3a1a41210d8e877fe4f9",
+      "bytes": 1262721
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/pre-tier-master.png",
+      "sha256": "955e9834c53ec11579c116f420887b8be56b54dd8ca27c780181539d5a4fe2f2",
+      "bytes": 2735115
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/pre-tier-native-repeat.png",
+      "sha256": "7b3c5a58738a408fd5384199f8de869199db86d800713ea8afa2d224821e3f01",
+      "bytes": 18667
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/progress.json",
+      "sha256": "7ab67f71d3bc471f102d7fdcc4ae3ea6402e08dbb5c49c4c630e1f2b40c74839",
+      "bytes": 1608
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/proposal-render-syntax-failure-v1.json",
+      "sha256": "807f940e271345b269e06f47ed6e2babba3ce7540855675717a3f44448ae5f85",
+      "bytes": 422
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/propose-flat-slab-layering-before-syntax-fix.py",
+      "sha256": "2f2129e165f4010e2144824ff4a88422f6dcbafe229c8580eab688cb49c1ea61",
+      "bytes": 4003
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/propose-flat-slab-layering.py",
+      "sha256": "f2372ecf842f605d683b00ef867ad8b6a6d7ceba4440c319b45f864cac9d0a23",
+      "bytes": 4005
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/proposed-flat-slab-joint-mask.png",
+      "sha256": "a990fa2655ff82e981b26c28a443ac284af2f22b7612c2c7c9cf829bb5172f92",
+      "bytes": 1312
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/proposed-flat-slab-joint-overlay.png",
+      "sha256": "123a8b054a5475b5aea60661a5c6ffe2c4a4703de639edfe8359bf0fd1ca162b",
+      "bytes": 620620
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/proposed-flat-slab-joint-wrap-crops-1to1.png",
+      "sha256": "e51209c1ae7740cb7f0d0e6a078f2b6cc52e722eee49bb07539f916e1a3cb3aa",
+      "bytes": 295894
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/retained-low-duplicate-screen.json",
+      "sha256": "f1a1d883b29cbd0ff1f3eb2c6b2c623d9276766e4da5fdef3e3fe31e2940ea55",
+      "bytes": 686
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/root-flat-slab-plan-review-v1.json",
+      "sha256": "2472f5da374c11e2ec4fafb79a9f60585e79ced4cfa864e5698b160d376e7085",
+      "bytes": 2210
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/root-plan-review.json",
+      "sha256": "83ce2f2df8877e69cfd1c92ab50680d2a7f10036a704001903e019444efad91f",
+      "bytes": 2738
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/CANDIDATE_FREEZE.json",
+      "sha256": "0fa5f47f6e7aedcd2b7dd3e0b185905f571c97a79135d8fc602ae831b144596b",
+      "bytes": 19599
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/FINAL_HANDOFF.md",
+      "sha256": "54cddaecba8ec1a44f1ca498256ffdd2de74e6b0f4f4debc48754c3ea5087108",
+      "bytes": 3764
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/PLAN.md",
+      "sha256": "3ea5043e6f6b4fb3e17f0d253a500a4ee9c93e448808effe7896d10345557e8d",
+      "bytes": 7363
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/art-self-review.json",
+      "sha256": "a6ecf39e67f5db54e848baf08673400c5e467604915af27d38af6eced8d10183",
+      "bytes": 10271
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/audit-native-alias.py",
+      "sha256": "45149b3d278ac3a383cab827db262734fcc69fd77c4994275cce2f7a8fc0f37e",
+      "bytes": 7211
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/audit-usage-orientation.py",
+      "sha256": "4c698a9b7ad82b7d30777ef7be2683384955226468ea69a24812baeb5b00583b",
+      "bytes": 4063
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/candidate-self-replay.json",
+      "sha256": "a9363f7a678ea7e611275b744f3eb51ce07adbeecfe741f8d5e8fac03b78e94b",
+      "bytes": 30905
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-XYZ-repeat-1to1.png",
+      "sha256": "927585bfe94685e0e80588f80b32e99d926be207827a3249643c85dfd1a86da3",
+      "bytes": 1123519
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-XYZ.png",
+      "sha256": "47fc9a545f35c851e65d3308c19233d24c2d975a4463d33a8574c5b621dba911",
+      "bytes": 552966
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-allmaps-contact.png",
+      "sha256": "9c807e2588b9ddecf900ccbf7e8df6cf4d4fbae5c05557c192e1acae253776e1",
+      "bytes": 2613835
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-diffuse-repeat-1to1.png",
+      "sha256": "bbf6836a2754df89d77374047363bd0f038c9c2172248044899610b69399be5b",
+      "bytes": 1324343
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-diffuse.png",
+      "sha256": "c019cc539f825785dda749c42b7e20a7deb1b4f4cfa390986e6fba7611d1aae2",
+      "bytes": 652913
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-distance-BOX32-16.png",
+      "sha256": "c7fc12309fee648e482deb76a5b9cf5ae9f6af2fed6fb59a278c6d46d86f3602",
+      "bytes": 13448
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-height-repeat-1to1.png",
+      "sha256": "f932962634ff48ebafa159575f2533db12e38e1bca6af93f4bb3c480f7915a3c",
+      "bytes": 1017267
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-height.png",
+      "sha256": "fa64473a1086244adc3bb97e09c76c16b9a06ba6ac1b21764a7646fcb6d3f3ff",
+      "bytes": 453091
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-neutralA-repeat-1to1.png",
+      "sha256": "7720796a62ea1566070b22de2e8c5cd5d086df6189ae30e7d5c0f850b3392cb3",
+      "bytes": 884013
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-neutralA.png",
+      "sha256": "eb323572bb3edd08ba3422ac7486aa0cd0a4d54baab314d07149c975238bc81b",
+      "bytes": 389354
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-neutralB-repeat-1to1.png",
+      "sha256": "93ef023f778887eba5d1a34afeca2652f8604ff75a70ba159308d5b553389838",
+      "bytes": 883694
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-neutralB.png",
+      "sha256": "10d3b1f08764389da52efe8b08ea45ba19f2a38553194cf69bad8242f5982ba7",
+      "bytes": 388590
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-XYZ-repeat-1to1.png",
+      "sha256": "2deb43b2fb42fcf7e105e03b05e6f18f893426156d77eb13af943d572f11d69e",
+      "bytes": 293912
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-XYZ.png",
+      "sha256": "3f0b51a1433e6ad97deb96289c2b0bd5423da0b5c5f638a250f4508c051389a9",
+      "bytes": 144554
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-allmaps-contact.png",
+      "sha256": "0ee87865b365faf4f5c0bceea6a38304e883672853fb9c2e153378b491201f08",
+      "bytes": 691560
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-diffuse-repeat-1to1.png",
+      "sha256": "c3b0348ea49d673ad740e3f70f03cea26c8d20c981d6b94e21b931f6d89547c1",
+      "bytes": 327706
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-diffuse.png",
+      "sha256": "0604b2dbadc40b9197b4c5afb1cba67e15fbfdf540b3524e24269d02f9723313",
+      "bytes": 161446
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-distance-BOX32-16.png",
+      "sha256": "2686bbed95d63044afb1b0a24cc929dded61799a6b928f1a8ed1135563657f75",
+      "bytes": 13736
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-height-repeat-1to1.png",
+      "sha256": "ce340e48e21ead90cf25fde39f9263bfd0079868759f7b386c29d19e3b17af8e",
+      "bytes": 294032
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-height.png",
+      "sha256": "b3c01dbdb8d79febb67d86483a562d9ef4fa7a0088aee0e5ec3a75ae18279fd2",
+      "bytes": 131716
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-neutralA-repeat-1to1.png",
+      "sha256": "7706aab27230a28932cc37c1f5fb7b1afc81c877e7d1ee86208ca20b987f6f72",
+      "bytes": 236444
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-neutralA.png",
+      "sha256": "512138af39387f57c9e3fc43ab3cc3ad22b3397703f9a0aac6a556f45eee529b",
+      "bytes": 102566
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-neutralB-repeat-1to1.png",
+      "sha256": "2c8987306e59f086e108a210470bfb66948d0aea3f3715302e9927cec4d17ece",
+      "bytes": 235754
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-neutralB.png",
+      "sha256": "8a44450f4cc50ee90d62354cf46c55db876db07adb1c09f989a5200463356dc9",
+      "bytes": 102462
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/provenance.json",
+      "sha256": "e90d92030b1bde2658f1a6a3ac585f1eca34a93b3a2270dbe3d20b2c925ea2d2",
+      "bytes": 6707
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/eligibility-and-retained-source-screen.json",
+      "sha256": "788f667e5a2465a2175abb54ce18a3037f29a890e34a2aa447899a12b30da9cc",
+      "bytes": 66159
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/intake-handoff.json",
+      "sha256": "379e5f8a81839989f2bc24785cf37aa2ef9dc4f4de0538f097064b98bbf23af2",
+      "bytes": 3207
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/native-and-peer-proof.json",
+      "sha256": "0d626e18556c6c4adccfefc8f2da9c8eed80f55260984faf735df83822181735",
+      "bytes": 21176
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/native-audit/inventory.json",
+      "sha256": "72ff24f126b2e321e8c8f03f53ad519d2aafbdfc2ec4666d6e35cbb1e7452346",
+      "bytes": 4376077
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/plan.json",
+      "sha256": "a0aa048ceea97f90d20cba99dcd43a20e78be8ae450bdb1acf4d120c8d6bf217",
+      "bytes": 8719
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/actual-semantic-witnesses.png",
+      "sha256": "93ed6afc3c20f5852b6787a514f8fcbb8a4f55fcf39f7ede9f42894afacc8d09",
+      "bytes": 652640
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/author-material-semantic-review.json",
+      "sha256": "ca9686f6d3d7f0296def409af7191c49d7f8ef4f948e787ce9919fa70cf4d93b",
+      "bytes": 4652
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/master-coordinate-grid.png",
+      "sha256": "9f7611c4abaeaad968d473ceeef463278d0112be19e982c91cdcf4a6e749346e",
+      "bytes": 631760
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/master-height.png",
+      "sha256": "4d555e0bd16b49b38a762a4ce06d3af7d5197df6123d37565b3d84a575e772b3",
+      "bytes": 222336
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/master-neutral-A-repeat.png",
+      "sha256": "68ea0451be62d61dec8dc6c102b168e94c61565e0737112ebec0c883984110a9",
+      "bytes": 422479
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/master-neutral-A.png",
+      "sha256": "c8fdf861960c2dbdc1e89e5f7a7323c0c6bdd6cbeaff0a23695961c250acbf95",
+      "bytes": 208422
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/master-neutral-B-repeat.png",
+      "sha256": "d171597eefe72c17cca24423b565f2aeaa5c98081b14e5808da14679f6c805b0",
+      "bytes": 422329
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/master-neutral-B.png",
+      "sha256": "56bdbfacf7be9e8c05343892a464d37346bf7c6858cfd3dc814c750f4b5ce560",
+      "bytes": 208343
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/masterRGB-repeat.png",
+      "sha256": "e7adbfae938a3dcaa417f8989e325973ffbc0c635b487cb113ebfdef22505432",
+      "bytes": 1318024
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/physical-contact.png",
+      "sha256": "d2428494595aa2d83e068e2eb5429c706361cc9c2a8084d5ac9a7547e55edea4",
+      "bytes": 776195
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/witness-coordinate-contact.png",
+      "sha256": "5e73a2073a8fb8a72060d8d20c001d4446d2fdb2426d51f35450a786adea849a",
+      "bytes": 43739
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/root-plan-review.json",
+      "sha256": "eb37fb3bb9e64e63ba24af64d667945628b10594ac8c665b1567625eb2e0e7bf",
+      "bytes": 3114
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/status.json",
+      "sha256": "b3253beca013b5702b8bb12dcf19d5304f43008997896b95010de56c7fccc09c",
+      "bytes": 735
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/usage-orientation.json",
+      "sha256": "ea5025c7c4ca6b37407700b35d337af7ba23492e335acac1fcef508bdd922eaf",
+      "bytes": 433849
+    },
+    {
+      "path": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/verify-candidate-self.py",
+      "sha256": "bb44d4ab49b2047817e851ed74b805b2199caea598dfb692e17e63270cdb3b38",
+      "bytes": 9348
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/README.md",
+      "sha256": "08b5fb3718436fcc40faf9b83c85711c86dc36b73b18256bf7bccc4e89b4e612",
+      "bytes": 2605
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/actual-source-v1.json",
+      "sha256": "ec56fef66a234bc6af964e53f2c45c6d9b3b414246ec887e4d7986f3f6075c84",
+      "bytes": 11294
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/art-reuse-v1.json",
+      "sha256": "d19b105b4cd9c0fe7b3135e168e9dc1b61310dd05b8b4766f241befb9b338b42",
+      "bytes": 6374
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/art-review-v1.json",
+      "sha256": "823bd84438dcb31c118746931c4e4da2174edc647f919852b6ffb04c85488308",
+      "bytes": 6778
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/final-custody-v1.json",
+      "sha256": "f14df2e882237e2adf63bd3cf3642903a858b12accfbff3ec5fc737aea065f5d",
+      "bytes": 18933
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/final-custody-v2.json",
+      "sha256": "ae3db5b6bb8075bd0eff6675d257a421833ec9718177ce70f445ea56b2195455",
+      "bytes": 19548
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/high-corner.png",
+      "sha256": "777e58cca5b70069e720fdae7c29984a5793e935f10e19865e08b329cce46856",
+      "bytes": 145946
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/high-distance-2.png",
+      "sha256": "9d30f5d3ff8fd0543912b35e5365b012e337c49e0dacf7b2a20b2299b4223f1d",
+      "bytes": 4140
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/high-distance-4.png",
+      "sha256": "69e6941317a209b1772b9d22588db6cfa989465720c9d883aaa566a959d4ab5d",
+      "bytes": 1067
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/high-relief.png",
+      "sha256": "68aad0b8292968498ff58c7d2d6cec57d5032a0cc2b4d7dfe15f3c16ff187660",
+      "bytes": 1925010
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/high-repeat.png",
+      "sha256": "374fa41b2308678568768f8a7ac838773d33c285acc488037120da24ab8b817a",
+      "bytes": 1180898
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/high-xjoin.png",
+      "sha256": "69799aafdc5b69bd7bf772907be75cf753eeca75d5a6d91904e104039a6fef32",
+      "bytes": 289386
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/high-yjoin.png",
+      "sha256": "a74fb3e67cef6ac57b7f08a3a211a794416a92586d757ef2b9070bfbbc497ae4",
+      "bytes": 291253
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-corner.png",
+      "sha256": "e48058bcf12511d4420a8595f2a0cc242bab479c7bbbcd6f66f8c42587a65039",
+      "bytes": 35080
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-distance-2.png",
+      "sha256": "1f0c36e9e72a5debdf123d9c852841c07b98fda9fb5dc6d1b8bfdda2c8cf7d0c",
+      "bytes": 4144
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-distance-4.png",
+      "sha256": "fa94f0d8596413c08927fb10a1e7894f15c0464c2e515989e71946d487e79cec",
+      "bytes": 1065
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-relief.png",
+      "sha256": "877a54a8361518c24719f152f361e39ac5dcb2f19e614ac2360041be147f716a",
+      "bytes": 504530
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-repeat.png",
+      "sha256": "f40f5fa1f10813bdc6c2a6e09936aa4a7873dcd706b4e9e32903c4b25ac2d502",
+      "bytes": 285941
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-xjoin.png",
+      "sha256": "23324f7b8edbadb18dd66046e9d9627951196b093d9379deadc3a96cb982e6fe",
+      "bytes": 69747
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-yjoin.png",
+      "sha256": "d3cd07905ac13da6a08d974063ea810fa6586491c014e1d9d157d00e51ccc168",
+      "bytes": 70265
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/preview-reuse-v1.json",
+      "sha256": "835a67f98ee9dffd11b1f06340e2ccde5d125df845370cd42eb8559cc968160c",
+      "bytes": 15187
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/technical-reuse-v1.json",
+      "sha256": "8a36768b0e5f492d4022cd767523317ed503faabd8b476e0827856a219b997db",
+      "bytes": 47162
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/independent/verify-reuse.py",
+      "sha256": "ce01a171bd862a0ceb95768cba8c9fd888f2ae3d2f8d5ec442ac04bb90a13a84",
+      "bytes": 16163
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/native-audit/inventory.json",
+      "sha256": "d3ea2164378bba9efb301bc606a43cf6cca7e4f0a6e6b4eddd6525157a0b4245",
+      "bytes": 4375760
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/registration.json",
+      "sha256": "083ce9172fe7127fe6c4aea8d52bd8848e62f097dce031b14e2790e1703eb21f",
+      "bytes": 1824
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/source-proof.json",
+      "sha256": "4634a651fe3cec9fbe56c47fb33a01f9a58f99950a8a00cb86c2729e328600e0",
+      "bytes": 15002
+    },
+    {
+      "path": "docs/hexen2/textures/supplemental-rtex002-alias/verify-source.py",
+      "sha256": "1ed783bf5a513f12c98f383d609ad56c82d230001bca9d085b88dc463fa14b1f",
+      "bytes": 7176
+    },
+    {
+      "path": "docs/hexen2/textures/texture-skill-layered-boundary-forward-check/README.md",
+      "sha256": "53a45674af84fe4959439ea0b1b8d80ab2a33d56e966f8ff1c11acbfb49062e3",
+      "bytes": 4652
+    },
+    {
+      "path": "docs/hexen2/textures/texture-skill-layered-boundary-forward-check/corner.png",
+      "sha256": "a58fa27def89d079bf5a12b1e0e41a2e85ab003d530649642fcbc93e4244cc11",
+      "bytes": 147521
+    },
+    {
+      "path": "docs/hexen2/textures/texture-skill-layered-boundary-forward-check/opposed-lights.png",
+      "sha256": "23b0e40179d9391743306041d31f0b7b27a203ffadb6a8a066ba759c8f4227ee",
+      "bytes": 327442
+    },
+    {
+      "path": "docs/hexen2/textures/texture-skill-layered-boundary-forward-check/result.json",
+      "sha256": "08016f408e1992364c660cdc71f346a7d022bd3b50caf4096c9738805f6c1b96",
+      "bytes": 14536
+    },
+    {
+      "path": "docs/hexen2/textures/texture-skill-layered-boundary-forward-check/xjoin.png",
+      "sha256": "21142a25dbf4f463de2a353ef367e16318f3ad372ecad7b598c09a9fb8486513",
+      "bytes": 725754
+    },
+    {
+      "path": "docs/hexen2/textures/texture-skill-layered-boundary-forward-check/yjoin.png",
+      "sha256": "552f8d71a14f9330ef5c72afc741440ac7257b4a1970df37639eefda13855710",
+      "bytes": 874155
+    },
+    {
+      "path": "tests/texture_layered_boundary_test.py",
+      "sha256": "cca0dcd6119452c4d2cddf32b804bcffc7cc6705bba8765275fa5f40096270f4",
+      "bytes": 15221
+    },
+    {
+      "path": "tools/texture_sheets/check_texture_catalog_custody.py",
+      "sha256": "1bd745a642ca3207ed680dae75a8379c416761ad242f25466c42fab36d1ff639",
+      "bytes": 8488
+    },
+    {
+      "path": "tools/texture_sheets/register_layered_texture_boundary.py",
+      "sha256": "90f9cb11ff3b6b740e4df56bdbb3746d31fcb2d72ca6b342b102466e01e900c8",
+      "bytes": 12859
+    }
+  ],
+  "excludedInFlight": [],
+  "foreignWork": "Box artwork/manifest/UI/tests untouched and excluded; no index mutation so far.",
+  "gate": "Maintained hook, default dev-texture; bootstrap controls exact peer-reviewed hashes. No full/native builds or push/native CI launch.",
+  "codeReview": {
+    "file": "docs/hexen2/textures/checkpoint-63-preflight/root-code-review-v2.json",
+    "sha256": "b5f28aa583d752e7f3b199092931d5f9281d3a1c3371226aa69e88619c16d903"
+  }
+}

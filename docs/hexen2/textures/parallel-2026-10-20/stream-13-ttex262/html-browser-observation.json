@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T19:15:35.901801+00:00",
+  "state": "SUPPORTED_BROWSER_NAVIGATION_REJECTED_BEFORE_RENDER_OBSERVATION",
+  "surface": "CUA inventory exposed Chrome extension profile; unrelated app inventory not retained",
+  "attempt": {
+    "method": "cua.createBrowserTab",
+    "browser": "chrome",
+    "URL": "file:///Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/review/index.html"
+  },
+  "result": "Browser Use explicitly rejected file protocol by browser URL policy; allowed protocols http/https only. Tool prohibits workaround/indirect/alternate browser surfaces.",
+  "browserRenderedPASS": false,
+  "screenshotsObserved": 0,
+  "safeAlternative": "Static HTML bindings, actual review CLI content replay and direct JPEG/PNG inspection. No server/browser workaround attempted.",
+  "scopeLimit": "A browser policy rejection, not an asset failure or a successful open/render."
+}

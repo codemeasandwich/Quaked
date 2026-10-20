@@ -1,0 +1,34 @@
+{
+  "verdict": "PASS bounded static HTML image-reference contract",
+  "html": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/review/index.html",
+    "sha256": "5f99393c77934d814460a425bc7deb78169aa65f78846cd561b30e3e7abd6133"
+  },
+  "images": [
+    {
+      "source": "rtex441-mid-review.jpg",
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/review/rtex441-mid-review.jpg",
+      "sha256": "1968f5d541d90914b1e1cc84a5b3d342c140d5141c252c8af3973e104ae0bacb"
+    },
+    {
+      "source": "rtex441-mid-relief.jpg",
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/review/rtex441-mid-relief.jpg",
+      "sha256": "905171fff90c24d505ce89830e12c9f7ae7bdb571bc5b7b4fdc968467421674c"
+    },
+    {
+      "source": "rtex441-high-review.jpg",
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/review/rtex441-high-review.jpg",
+      "sha256": "a2458254c0502a9b6d86a51172a3a42091a5f4645730abb14effb0d8c384f20d"
+    },
+    {
+      "source": "rtex441-high-relief.jpg",
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/review/rtex441-high-relief.jpg",
+      "sha256": "ce6e2ad2325f820a991c4711d46327cdbda969a74eca048616334f3385d691ad"
+    }
+  ],
+  "browserLimit": "Live browser-rendered HTML not checked: supported browser inventory empty. Exact HTML/four preview byte replay and decoded actual image ART checked separately.",
+  "actualCliReplay": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/candidate-self-replay.json",
+    "sha256": "3a33c8b762179bc7e59abf15894a7ffafa159b9676058560df19ed48bc14248f"
+  }
+}

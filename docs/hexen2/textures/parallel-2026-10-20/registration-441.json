@@ -1,0 +1,37 @@
+{
+  "registeredAt": "2026-10-20T17:58:27.183826+00:00",
+  "verdict": "Registered individually qualified same-source corrected441 slab",
+  "nativeIdentity": "48f8ee75fe94cfac4743b222206efab5ee3904af21de8dbeb409b0fe287bd8ff",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters-layered/rtex441/master.json",
+    "sha256": "f29a3b5ed887acba7e6a04b15815f4a1b61b1dccbb49c64421bc096c55ab34ad"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/tiers/rtex441/manifest.json",
+    "sha256": "671b1bdb5854a8d03f8a667960942cba47cffad6fdf5e0c764c916b4a78fb6b9"
+  },
+  "proofs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/independent-final/verified-v2/actual-v1.json": "e3a5a5587cac1a279aa974eb27eccfa4a95f446874391dfc706801662c2d4d57",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/independent-final/verified-v2/preview-v1.json": "d866db38d2679d220b22df46e4c21d95ffb3a25a9539d6840e77cb21f0d0e267",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/independent-final/verified-v2/art-review-v1.json": "4f9e0b2a002f104d952f138dffe58d11811c031ad1682d027ecce2772d3db809",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/independent-final/verified-v2/final-custody-v1.json": "bbea34acd7052c692cba549841f35dd7451537c12f032703c210d2dfc23447e2"
+  },
+  "catalogBeforeSha256": "aaf9ff7807ec78262cc4bf9230389f21a12ba7e5af02d6122b815d599e8686d8",
+  "catalogAfterSha256": "91d7ec3884062d7b2695be9f472c5a0652af2557f388ce4d29c0f92aae922e57",
+  "prior64RowsUnchanged": true,
+  "allTenMapHashesDimensionsLossyCodecDeclarationsVerified": true,
+  "counts": {
+    "reviewedWorldNativeIdentities": 65,
+    "masterPackages": 57,
+    "enhancedTiers": 114,
+    "enhancedMaps": 570,
+    "enhancedTierBindings": 130,
+    "enhancedMapBindings": 650
+  },
+  "rootActualViews": [
+    "high-diffuse.webp",
+    "independent-final/verified-v2/high-height-XYZ-neutral.png"
+  ],
+  "limits": "Near-flat source-faithful stone with restrained shallow relief; B/E mixed samples and Mid BOX/interface-mixed joint neighborhoods explicit. No measured/pigment-neutral geometry, live browser, runtime, owner or release claim.",
+  "boundary": "Offline authoring only; later working registration outside committed64/6de390fc. No new generation, nativebuild, browser/runtime, owner or release acceptance."
+}

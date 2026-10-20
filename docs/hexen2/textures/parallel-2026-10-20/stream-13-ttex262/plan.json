@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "state": "SOURCE_ONLY_AWAITING_INDEPENDENT_EXACT_PLAN_REVIEW",
+  "createdAt": "2026-10-20T18:10:29.056613+00:00",
+  "owner": "/root/repair_skill_forward_check under /root",
+  "scope": "Only selected ordinary Portal ttex262; stop before generation",
+  "nativeIdentity": "48459128c48ad2c273711c7b77e2267f27d1706dba9f84b9eb3a0af4f71f6436",
+  "name": "ttex262",
+  "edition": "portals",
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "original": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/originals/01-ttex262-48459128c48a.png",
+    "sha256": "c2ba9a647d324a78774d8f27958a41cc3c960f86cb4c4ecc853040645bc89453"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/prompts/ttex262-material-v1.txt",
+    "sha256": "01a33a6ae4e4db8ad1dec9e2dc79477ce72ea8daf152621951006722148a0514"
+  },
+  "sourceProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/native-proof.json",
+    "sha256": "39913b7dd0ca0d7fe2232cdc532240232e697ea69eed868905539d74c828723b"
+  },
+  "usage": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/usage-orientation.json",
+    "sha256": "57e92fc71eb47ffaba04076bfae67e079ea57e0f0f885266a8537de9d56e841d"
+  },
+  "retainedSourceScreen": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/retained-source-screen.json",
+    "sha256": "aab59ad5d7c143a92bb2cf0e2ee55d75027179058f5c63d0637989c3204d4bb2"
+  },
+  "materialPlan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/PLAN.md",
+    "sha256": "aacbaee1fe401bb789daab865738065d88267239f27d90ab29c9318f111bf8c6"
+  },
+  "materialInterpretation": "Old dark matte earth-brown sandstone ashlar; coherent fine mineral structure, worn patches and sparse small pores/chips",
+  "uncertainty": "Exact geology uncertain; coarse dark marks may mix stain/pit/wear. Side-adjusted BSP usage is context, not exclusive material identity or visible area.",
+  "nativeLandmarks": {
+    "upperCourse": "two approximately half-width faces in native y0..31 with contact near x31",
+    "lowerCourse": "one broad full-width face in y32..63 with vertical contacts at tile wrap",
+    "horizontalContacts": "near native y31/32 and repeated top/bottom; quiet weathered grey-brown bands",
+    "largeMarks": "irregular dark worn flecks and muted grey/olive patches stay near source positions/scale; no deep new crack or extra grid"
+  },
+  "physicalPlan": "Near-flat stone faces above recessed narrow existing contacts; restrained fine roughness. Pale mortar remains recessed; dark stains do not make broad basins. Actual generated RGB/masks/source proof and neutral physical samples must precede tiers; use genuine source/master-only proof then existing guarded layered policy if needed.",
+  "generation": {
+    "issued": false,
+    "count": 0,
+    "futureSourceCount": 1,
+    "minimumRequiredForHigh": [
+      512,
+      512
+    ],
+    "promptRequestedMinimum": [
+      1024,
+      1024
+    ],
+    "providerPath": "Built-in image generation only after independent exact review and current authority; no provider call in this intake"
+  },
+  "outputContract": {
+    "Low": "Own unchanged native PNG",
+    "canonicalMaster": [
+      512,
+      512
+    ],
+    "Mid": {
+      "factor": 4,
+      "dimensions": [
+        256,
+        256
+      ],
+      "default": true
+    },
+    "High": {
+      "factor": 8,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "mapRoles": [
+      "diffuse",
+      "height",
+      "normalX",
+      "normalY",
+      "normalZ"
+    ],
+    "codec": {
+      "format": "WebP",
+      "quality": 92,
+      "method": 6,
+      "lossless": false
+    },
+    "distanceViews": {
+      "nativeAndReplacementFilter": "BOX",
+      "dimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          16,
+          16
+        ]
+      ]
+    }
+  },
+  "sourceCounts": {
+    "profileFaceSum": 976,
+    "perExpansionInstallation": 488,
+    "uniquePathMapSlots": 8,
+    "uniqueContentMapSlots": 4,
+    "uniqueContentFaceRecords": 488,
+    "zeroFaceSlotsRetained": true
+  },
+  "nextOwner": "Root coordinator for independent exact native/prompt/material/relief plan review; generation forbidden until that review and current issuance authority",
+  "prohibitedEffects": [
+    "No generation",
+    "No master or tier authoring",
+    "No shared registry/queue changes",
+    "No producer/Git/provider/app/full/native build changes",
+    "No children"
+  ]
+}

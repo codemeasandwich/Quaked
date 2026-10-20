@@ -1,0 +1,9 @@
+{
+  "state": "Maintained catalog custody caught stale progress aggregate fields",
+  "terminalSession": 43573,
+  "exitCode": 1,
+  "error": "ValueError: Campaign/progress counts differ",
+  "scope": "Catalog and campaign counts were66/58/580; progress sourceMasterPackages/maps remained57/570. No package or maps changed.",
+  "correction": "Updated both current progress aggregates to actual58masters/580maps, then rerun unchanged maintained verifier.",
+  "secondaryReaderFailure": "Attempt to parse empty rejected-verification stdout raised JSONDecodeError; no success receipt written."
+}

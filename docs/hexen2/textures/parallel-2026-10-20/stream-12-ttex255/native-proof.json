@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS source-only selected ordinary Portal identity, all four mips/flags/provenance exact; no RGBA peer",
+  "targetNativeIdentity": "3d7ed8a7e273c65f769cc6e87f06c7291c2d206e69ba0d05d7813c154819eb8e",
+  "variants": [
+    {
+      "nativeIdentity": "3d7ed8a7e273c65f769cc6e87f06c7291c2d206e69ba0d05d7813c154819eb8e",
+      "name": "ttex255",
+      "edition": "portals",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/originals/01-ttex255-3d7ed8a7e273.png",
+        "sha256": "871275ce09ae534743d49cfb0ae4f3dcc7fe48d46d0800100631c91bf7b879f3"
+      },
+      "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+      "indexedPixelSha256": "f8ecec31ea3c849382e0985f30eb0a68ca4e36c48709ca55d47cc2172261a47a",
+      "rgbaSha256": "9c15bf1f8af83e0de43722adb140bb0d888ca84283b07122caa25caf07ee8fc9",
+      "fourMipSHA256": [
+        "f8ecec31ea3c849382e0985f30eb0a68ca4e36c48709ca55d47cc2172261a47a",
+        "a9455e8b327672d4fdd0ce649dccc496a88346d9223500ef917f313518b4533a",
+        "25786ffb768b76b31790560973cb884cdad8dac8b23c8a790eba3a0dcd193ccc",
+        "3dff7fa114e78c6e12913538d6fc8497030c6d28746ecbd49b0d0eb2214b50b5"
+      ],
+      "ordinaryFlags": [
+        0
+      ],
+      "profileFaces": {
+        "base": 0,
+        "portals-1": 538,
+        "portals-2": 538
+      },
+      "uniquePathMapSlotCount": 4,
+      "uniquePAKContentMapSlotCount": 2,
+      "provenance": [
+        {
+          "profile": "portals-1",
+          "scope": "expansion-own",
+          "map": "maps/tibet1.bsp",
+          "slot": 48,
+          "faces": 185,
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "memberOffset": 27428737,
+          "bspSha256": "b5f6683c91e3fa8afb77bb6d12d336d617907562d958d93247bcd0fe1ee76ea5",
+          "PAKSha256": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+          "fourMipSHA256": [
+            "f8ecec31ea3c849382e0985f30eb0a68ca4e36c48709ca55d47cc2172261a47a",
+            "a9455e8b327672d4fdd0ce649dccc496a88346d9223500ef917f313518b4533a",
+            "25786ffb768b76b31790560973cb884cdad8dac8b23c8a790eba3a0dcd193ccc",
+            "3dff7fa114e78c6e12913538d6fc8497030c6d28746ecbd49b0d0eb2214b50b5"
+          ],
+          "ordinaryTexinfoFlags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "profile": "portals-1",
+          "scope": "expansion-own",
+          "map": "maps/tibet2.bsp",
+          "slot": 46,
+          "faces": 353,
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "memberOffset": 29892041,
+          "bspSha256": "1ad4f076dcab4cde6e951c55ae476ff6785ecc61420b160df7082be2118773c7",
+          "PAKSha256": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+          "fourMipSHA256": [
+            "f8ecec31ea3c849382e0985f30eb0a68ca4e36c48709ca55d47cc2172261a47a",
+            "a9455e8b327672d4fdd0ce649dccc496a88346d9223500ef917f313518b4533a",
+            "25786ffb768b76b31790560973cb884cdad8dac8b23c8a790eba3a0dcd193ccc",
+            "3dff7fa114e78c6e12913538d6fc8497030c6d28746ecbd49b0d0eb2214b50b5"
+          ],
+          "ordinaryTexinfoFlags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "profile": "portals-2",
+          "scope": "expansion-own",
+          "map": "maps/tibet1.bsp",
+          "slot": 48,
+          "faces": 185,
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "memberOffset": 27428737,
+          "bspSha256": "b5f6683c91e3fa8afb77bb6d12d336d617907562d958d93247bcd0fe1ee76ea5",
+          "PAKSha256": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+          "fourMipSHA256": [
+            "f8ecec31ea3c849382e0985f30eb0a68ca4e36c48709ca55d47cc2172261a47a",
+            "a9455e8b327672d4fdd0ce649dccc496a88346d9223500ef917f313518b4533a",
+            "25786ffb768b76b31790560973cb884cdad8dac8b23c8a790eba3a0dcd193ccc",
+            "3dff7fa114e78c6e12913538d6fc8497030c6d28746ecbd49b0d0eb2214b50b5"
+          ],
+          "ordinaryTexinfoFlags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "profile": "portals-2",
+          "scope": "expansion-own",
+          "map": "maps/tibet2.bsp",
+          "slot": 46,
+          "faces": 353,
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "memberOffset": 29892041,
+          "bspSha256": "1ad4f076dcab4cde6e951c55ae476ff6785ecc61420b160df7082be2118773c7",
+          "PAKSha256": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+          "fourMipSHA256": [
+            "f8ecec31ea3c849382e0985f30eb0a68ca4e36c48709ca55d47cc2172261a47a",
+            "a9455e8b327672d4fdd0ce649dccc496a88346d9223500ef917f313518b4533a",
+            "25786ffb768b76b31790560973cb884cdad8dac8b23c8a790eba3a0dcd193ccc",
+            "3dff7fa114e78c6e12913538d6fc8497030c6d28746ecbd49b0d0eb2214b50b5"
+          ],
+          "ordinaryTexinfoFlags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "registered": false
+    }
+  ],
+  "allFourMipBytesEqual": true,
+  "paletteIndexRGBAAndDimensionsEqual": true,
+  "ordinaryFlagsEqual": true,
+  "sourceMeaning": "No exact native RGBA peer found across all980 variants; no alias or photographic source qualification is granted by this proof.",
+  "catalogBindingsScreened": 64,
+  "nativeVariantsScreened": 980,
+  "sameRgbaNativePeerCount": 0,
+  "aliasesRegisteredByThisProof": 0,
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/audit-native.py": "a457ae99955e81574d27f4d72f9257f3bbc65fc4f99b2d0de2f3b4423292b8a2",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/native-audit/inventory.json": "7e6d64432145edd2beb4d4f42503ee890db9378ce4007e1d7324a95052317e55",
+    "docs/evidence/hexen2-textures-2026-10-19/current/inventory.json": "344ad22744fd5b6ad9d07ef89102be930ac2c3c88589456d46963c8b4c082d6a",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/catalog.json": "aaf9ff7807ec78262cc4bf9230389f21a12ba7e5af02d6122b815d599e8686d8"
+  },
+  "limits": [
+    "Native proof only, no photographic source/master/tier/art/runtime acceptance.",
+    "Duplicate Portal installations are independent path observations but identical PAK hashes collapse their content count.",
+    "Full native screen concerns exact RGBA content, not visually similar materials."
+  ],
+  "completedAt": "2026-10-20T17:05:30.762314+00:00"
+}

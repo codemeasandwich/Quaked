@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 2,
+  "batch": "parallel-2026-10-20-stream-13-ttex262",
+  "family": "hexen2",
+  "pathsBase": "repository",
+  "defaultTier": "Mid",
+  "tierFactors": {
+    "Mid": 4,
+    "High": 8
+  },
+  "quality": 92,
+  "method": 6,
+  "lossless": false,
+  "counts": {
+    "nativeBindings": 1,
+    "newGenerations": 1,
+    "newMasterPackages": 1,
+    "newMapFiles": 10,
+    "mapReferences": 10
+  },
+  "scope": "One retained source and one active sameRGB layered master for one native; initialMP/HOLD retained as history. No shared/runtime/owner/CI/release registration.",
+  "items": [
+    {
+      "name": "ttex262",
+      "edition": "portals",
+      "nativeIdentity": {
+        "id": "48459128c48ad2c273711c7b77e2267f27d1706dba9f84b9eb3a0af4f71f6436",
+        "width": 64,
+        "height": 64,
+        "indexedPixelSha256": "4e6eb681f203c4eeb0606450aac8311fcfe0443b0e43654c90ae24433ec68134",
+        "rgbaSha256": "225f06bdeceb897408e45c9b28908d4ffac25e00f1674c1dedbc1fa904e50b0c",
+        "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8"
+      },
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/originals/01-ttex262-48459128c48a.png",
+      "originalSha256": "c2ba9a647d324a78774d8f27958a41cc3c960f86cb4c4ecc853040645bc89453",
+      "generationCount": 1,
+      "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/generated/ttex262.png",
+      "generatedSha256": "8bcb22dd3be99fa8e9048962e157eed3d373049d66483a6b6f5852161395eb8e",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/prompts/ttex262-material-v1.txt",
+      "promptSha256": "01a33a6ae4e4db8ad1dec9e2dc79477ce72ea8daf152621951006722148a0514",
+      "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/masters-layered/ttex262/master.json",
+      "masterPackageSha256": "7922b881e43844d27453869b2afb3203ac3b60ebaec08135ca19a949251baca7",
+      "tierReceipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/tiers/ttex262/manifest.json",
+      "tierReceiptSha256": "3b4f58bb788f960dd427931f9ef29551ab62c2aa9550d84133a77b227fba9047",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            256,
+            256
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/tiers/ttex262/mid-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/tiers/ttex262/mid-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/tiers/ttex262/mid-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/tiers/ttex262/mid-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/tiers/ttex262/mid-normalZ.webp"
+          }
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            512,
+            512
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/tiers/ttex262/high-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/tiers/ttex262/high-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/tiers/ttex262/high-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/tiers/ttex262/high-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/tiers/ttex262/high-normalZ.webp"
+          }
+        }
+      },
+      "newMasters": 1,
+      "newMapFiles": 10,
+      "status": "Author candidate only; independent final source/math/codec/preview/ART/custody qualification pending"
+    }
+  ]
+}

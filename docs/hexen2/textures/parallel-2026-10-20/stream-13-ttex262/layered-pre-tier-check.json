@@ -1,0 +1,227 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS author exact layered scalar replay and sampled body/stain/contact hierarchy; actual ART separately reviewed",
+  "scope": "Canonical pre-tier only; not independent final source/ART acceptance",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/masters-layered/ttex262/master.json",
+    "sha256": "7922b881e43844d27453869b2afb3203ac3b60ebaec08135ca19a949251baca7"
+  },
+  "height": {
+    "sha256": "e7d3fc4dfe8807bac8ee73374dabf8e25c60e0a67a632272c96a24afb3c7cca6",
+    "range": [
+      0.3880000114440918,
+      0.6521084904670715
+    ],
+    "float32": true,
+    "RGBUnchanged": true,
+    "maskFraction": 0.0507354736328125,
+    "sigmaMasterPixels": 0.7
+  },
+  "samples": [
+    {
+      "label": "A",
+      "sourceClass": "upper-left stone face",
+      "masterPixel": [
+        80,
+        80
+      ],
+      "radius": 3,
+      "heightCenter": 0.640921413898468,
+      "heightMean": 0.640476644039154,
+      "heightRange": [
+        0.6335395574569702,
+        0.6440898180007935
+      ],
+      "maskFraction": 0.0,
+      "initialHeightMean": 0.5198569893836975,
+      "semanticLimit": "grey/black marks remain face-plane variation, not broad basins"
+    },
+    {
+      "label": "B",
+      "sourceClass": "upper-right stone face",
+      "masterPixel": [
+        370,
+        120
+      ],
+      "radius": 3,
+      "heightCenter": 0.6388566493988037,
+      "heightMean": 0.6376262307167053,
+      "heightRange": [
+        0.6307274699211121,
+        0.6459394693374634
+      ],
+      "maskFraction": 0.0,
+      "initialHeightMean": 0.4010951519012451,
+      "semanticLimit": "grey/black marks remain face-plane variation, not broad basins"
+    },
+    {
+      "label": "C",
+      "sourceClass": "lower stone face",
+      "masterPixel": [
+        100,
+        350
+      ],
+      "radius": 3,
+      "heightCenter": 0.6365892887115479,
+      "heightMean": 0.6353220343589783,
+      "heightRange": [
+        0.6298692226409912,
+        0.6413242816925049
+      ],
+      "maskFraction": 0.0,
+      "initialHeightMean": 0.3050878345966339,
+      "semanticLimit": "grey/black marks remain face-plane variation, not broad basins"
+    },
+    {
+      "label": "D",
+      "sourceClass": "lower-right stone face",
+      "masterPixel": [
+        450,
+        365
+      ],
+      "radius": 3,
+      "heightCenter": 0.6424039006233215,
+      "heightMean": 0.6405979990959167,
+      "heightRange": [
+        0.6333882212638855,
+        0.6442239880561829
+      ],
+      "maskFraction": 0.0,
+      "initialHeightMean": 0.5249228477478027,
+      "semanticLimit": "grey/black marks remain face-plane variation, not broad basins"
+    },
+    {
+      "label": "S1",
+      "sourceClass": "dark weathering/stain candidate",
+      "masterPixel": [
+        295,
+        365
+      ],
+      "radius": 3,
+      "heightCenter": 0.6293917894363403,
+      "heightMean": 0.6319002509117126,
+      "heightRange": [
+        0.6285445094108582,
+        0.6381189227104187
+      ],
+      "maskFraction": 0.0,
+      "initialHeightMean": 0.16250616312026978,
+      "semanticLimit": "grey/black marks remain face-plane variation, not broad basins"
+    },
+    {
+      "label": "S2",
+      "sourceClass": "dark upper weathering candidate",
+      "masterPixel": [
+        180,
+        210
+      ],
+      "radius": 3,
+      "heightCenter": 0.6287116408348083,
+      "heightMean": 0.6301309466362,
+      "heightRange": [
+        0.6285474300384521,
+        0.6337010264396667
+      ],
+      "maskFraction": 0.0,
+      "initialHeightMean": 0.08878150582313538,
+      "semanticLimit": "grey/black marks remain face-plane variation, not broad basins"
+    },
+    {
+      "label": "H",
+      "sourceClass": "pale horizontal contact",
+      "masterPixel": [
+        350,
+        250
+      ],
+      "radius": 3,
+      "heightCenter": 0.390678346157074,
+      "heightMean": 0.39794158935546875,
+      "heightRange": [
+        0.38800081610679626,
+        0.4119391143321991
+      ],
+      "maskFraction": 1.0,
+      "initialHeightMean": 0.4142327904701233,
+      "semanticLimit": "contact mixed/inferred; mask is raster support, not proof of material purity"
+    },
+    {
+      "label": "V",
+      "sourceClass": "upper vertical contact",
+      "masterPixel": [
+        230,
+        145
+      ],
+      "radius": 3,
+      "heightCenter": 0.39107099175453186,
+      "heightMean": 0.39164045453071594,
+      "heightRange": [
+        0.3885185420513153,
+        0.3991430699825287
+      ],
+      "maskFraction": 1.0,
+      "initialHeightMean": 0.15168613195419312,
+      "semanticLimit": "contact mixed/inferred; mask is raster support, not proof of material purity"
+    },
+    {
+      "label": "X",
+      "sourceClass": "lower X-wrap contact candidate",
+      "masterPixel": [
+        0,
+        350
+      ],
+      "radius": 3,
+      "heightCenter": 0.38933974504470825,
+      "heightMean": 0.45156940817832947,
+      "heightRange": [
+        0.38867372274398804,
+        0.6076669096946716
+      ],
+      "maskFraction": 0.7142857142857143,
+      "initialHeightMean": 0.05785410851240158,
+      "semanticLimit": "contact mixed/inferred; mask is raster support, not proof of material purity"
+    },
+    {
+      "label": "Y",
+      "sourceClass": "Y-wrap contact candidate",
+      "masterPixel": [
+        350,
+        0
+      ],
+      "radius": 3,
+      "heightCenter": 0.4092393219470978,
+      "heightMean": 0.4379149377346039,
+      "heightRange": [
+        0.39643141627311707,
+        0.6280712485313416
+      ],
+      "maskFraction": 0.8571428571428571,
+      "initialHeightMean": 0.7836516499519348,
+      "semanticLimit": "contact mixed/inferred; mask is raster support, not proof of material purity"
+    }
+  ],
+  "sourceClassification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/initial-physical-witnesses.png",
+    "sha256": "642decfb2bd6646838946bca32bb7552df0497f756586f53c1d8531a9b97df28"
+  },
+  "reviewedRecipe": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/relief/ttex262-flat-masonry-v1.json",
+    "sha256": "fa7e281978ea3e36ea80c82a92a1ce7aceaf59e54f6973df02a8a152a612fb31"
+  },
+  "independentPlan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/root-flat-masonry-plan-review-v1.json",
+    "sha256": "a4f76f7b0202ce6ec04c5f41fd5feea09357c83dd89e8254c36d7f8cd9b55523"
+  },
+  "views": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/layered-master-height-repeat.png": "a37d88f24f3e6430f052a971d0a3c981b7f10f3520cf381d26c9907b1a0ef2cc",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/layered-master-literal-contacts.png": "e974baa4d15c378c06436614d0738f3693feec6b78c6669b5a20e9be7e3825c7",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/layered-master-neutral-opposed.png": "52c213fa402be2c96b1d5a810ee96f55c185760a223405d2dacd600491a9dea5",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/layered-master-textured-opposed.png": "a27e9c4e80e00c872fd7b51b73549573c997ba86a6dc73554264a7b2c2a2d0d5",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/layered-master-XYZ-repeat.png": "05eb4ba921a04fc4e0407f4bae0f7c839195efd4732a77d9317d1c80abc5b973",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/layered-master-RGB-repeat.png": "225cedba91d44a85386caaf08619f9344876166a64919389ecf14271250f39ec"
+  },
+  "limits": [
+    "H/V windows are interface samples, not pure material proof.",
+    "LowerX is disclosed native-intent inference; review full upperX/lowerX/Y/corners for addedframe.",
+    "Subtle relative scalar geometry is not measured photogrammetry or calibrated displacement."
+  ]
+}

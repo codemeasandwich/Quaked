@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 2,
+  "batch": "parallel-2026-10-20-stream-10-rtex441",
+  "family": "hexen2",
+  "pathsBase": "repository",
+  "defaultTier": "Mid",
+  "tierFactors": {
+    "Mid": 4,
+    "High": 8
+  },
+  "quality": 92,
+  "method": 6,
+  "lossless": false,
+  "counts": {
+    "nativeBindings": 1,
+    "newGenerations": 1,
+    "newMasterPackages": 1,
+    "newMapFiles": 10,
+    "mapReferences": 10
+  },
+  "scope": "One native candidate only; no shared catalog registration/runtime/owner/release acceptance. One source/master only; same-RGB source-measured layered mortar correction qualified pre-tier; no alternate tier source.",
+  "items": [
+    {
+      "name": "rtex441",
+      "edition": "base",
+      "nativeIdentity": {
+        "id": "48f8ee75fe94cfac4743b222206efab5ee3904af21de8dbeb409b0fe287bd8ff",
+        "width": 64,
+        "height": 64,
+        "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+        "indexedPixelSha256": "aa7d5d7d0a2c7224d0c4c76428a3de1275d45fa403a19e31fbd0eb30651d1b7e",
+        "rgbaSha256": "3c374f978a805545ad81f833a27e2fc87a7c22f1624133d30ba079f4ea6408b9"
+      },
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/originals/01-rtex441-48f8ee75fe94.png",
+      "originalSha256": "c9ccb2437d5439a5390e4dae1de9c15a333196f6ad263e9205591d8ccc724d38",
+      "generationCount": 1,
+      "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/generated/rtex441.png",
+      "generatedSha256": "04f338431167d3bf64e879b8e616fb4db7873d10125735dd6bcf08bbe4f3f9c7",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/prompts/rtex441-material-v1.txt",
+      "promptSha256": "2fd84b90fe2653377b53881953468c7a5c7277f3b40b4dc792bf951405b537fe",
+      "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters-layered/rtex441/master.json",
+      "masterPackageSha256": "f29a3b5ed887acba7e6a04b15815f4a1b61b1dccbb49c64421bc096c55ab34ad",
+      "tierReceipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/tiers/rtex441/manifest.json",
+      "tierReceiptSha256": "671b1bdb5854a8d03f8a667960942cba47cffad6fdf5e0c764c916b4a78fb6b9",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            256,
+            256
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/tiers/rtex441/mid-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/tiers/rtex441/mid-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/tiers/rtex441/mid-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/tiers/rtex441/mid-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/tiers/rtex441/mid-normalZ.webp"
+          }
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            512,
+            512
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/tiers/rtex441/high-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/tiers/rtex441/high-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/tiers/rtex441/high-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/tiers/rtex441/high-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/tiers/rtex441/high-normalZ.webp"
+          }
+        }
+      },
+      "status": "Author self-check candidate; independent actual public and both-tier ART qualification pending",
+      "newMasters": 1,
+      "newMapFiles": 10
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "status": "Contextual actual source-contact comparison, not acceptance metric",
+  "rule": "Same physical1-native-pixel edge band; conservative warm mineral R-B>12 vs cool/neutral snow R-B<3 and meanRGB>100. Independent opposing edge means.",
+  "observations": {
+    "native": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/originals/01-ttex255-3d7ed8a7e273.png",
+      "sha256": "871275ce09ae534743d49cfb0ae4f3dcc7fe48d46d0800100631c91bf7b879f3",
+      "bandWidthPixels": 1,
+      "axis": {
+        "X": {
+          "conservativeMaterialMismatchCount": 7,
+          "edgeSamples": 128,
+          "fraction": 0.0546875
+        },
+        "Y": {
+          "conservativeMaterialMismatchCount": 5,
+          "edgeSamples": 128,
+          "fraction": 0.0390625
+        }
+      }
+    },
+    "master": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v1/color.png",
+      "sha256": "6894b5feeac2ca24c0300f64203ef1775fb142e627fd00bc27ef68729119d7b2",
+      "bandWidthPixels": 8,
+      "axis": {
+        "X": {
+          "conservativeMaterialMismatchCount": 99,
+          "edgeSamples": 1024,
+          "fraction": 0.0966796875
+        },
+        "Y": {
+          "conservativeMaterialMismatchCount": 94,
+          "edgeSamples": 1024,
+          "fraction": 0.091796875
+        }
+      }
+    }
+  },
+  "limits": [
+    "Native pixel palette and generated source differ. Threshold evidence is not historical material or height proof.",
+    "No tolerance or score passes a visible source seam. Do not force equal labels."
+  ]
+}

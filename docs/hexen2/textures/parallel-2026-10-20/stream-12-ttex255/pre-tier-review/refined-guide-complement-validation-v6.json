@@ -1,0 +1,328 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS bounded existing mask-schema and local contour representation ONLY; independent physical plan review pending",
+  "recipeProposal": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/relief/recipe-proposal-v4.json",
+    "sha256": "69088c7353a5a7c2d50a76d8b95f6a5f189e2c3ff79ee3f2704172000b4e02a2"
+  },
+  "sourceGuide": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/rock-feature-guide-v6.json",
+    "sha256": "9e91c111ef68ed78f47e81768fc7192334000450415bdc7ee67534e3f5118522"
+  },
+  "physicalRoleReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-pocket-topology-review-v5.json",
+    "sha256": "896896e3d12f3ff3062cbc8647fbfd75418347da3d5ee3b108c32fe6a3432f3c"
+  },
+  "unchangedComplementMethod": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/diagnose-complement-geometry-v6.py",
+    "sha256": "a28ead45472c740dc09f7a3cf216372e07c03271891b7db2bef525643a08be5f"
+  },
+  "sameSourceRoleBitmapsV3V6Exact": true,
+  "lowerPolygonCount": 223,
+  "maxPolygonVertices": 34,
+  "snowPocketPolygons": [
+    {
+      "pocketId": 1,
+      "region": {
+        "polygon": [
+          [
+            22.0625,
+            35.125
+          ],
+          [
+            22.6875,
+            35.125
+          ],
+          [
+            23.625,
+            36.3125
+          ],
+          [
+            23.625,
+            36.5625
+          ],
+          [
+            22.875,
+            37.0625
+          ],
+          [
+            22.5,
+            37.9375
+          ],
+          [
+            22.625,
+            38.8125
+          ],
+          [
+            21.375,
+            40.0625
+          ],
+          [
+            21.875,
+            40.8125
+          ],
+          [
+            21.25,
+            41.1875
+          ],
+          [
+            21.0,
+            42.0625
+          ],
+          [
+            21.25,
+            42.8125
+          ],
+          [
+            22.4375,
+            44.0
+          ],
+          [
+            22.8125,
+            44.0
+          ],
+          [
+            24.625,
+            45.0625
+          ],
+          [
+            24.75,
+            45.4375
+          ],
+          [
+            24.4375,
+            45.75
+          ],
+          [
+            23.8125,
+            45.75
+          ],
+          [
+            23.3125,
+            45.25
+          ],
+          [
+            22.3125,
+            45.125
+          ],
+          [
+            21.5625,
+            44.375
+          ],
+          [
+            20.3125,
+            43.875
+          ],
+          [
+            19.4375,
+            43.75
+          ],
+          [
+            18.9375,
+            43.125
+          ],
+          [
+            17.6875,
+            43.125
+          ],
+          [
+            17.375,
+            42.8125
+          ],
+          [
+            18.375,
+            42.0625
+          ],
+          [
+            18.25,
+            40.9375
+          ],
+          [
+            19.125,
+            39.9375
+          ],
+          [
+            19.25,
+            38.5625
+          ],
+          [
+            18.75,
+            37.8125
+          ],
+          [
+            19.0,
+            37.0625
+          ],
+          [
+            19.5625,
+            36.5
+          ],
+          [
+            20.1875,
+            36.375
+          ]
+        ]
+      },
+      "role": "Proposed lower snow-filled recess"
+    },
+    {
+      "pocketId": 2,
+      "region": {
+        "polygon": [
+          [
+            6.0625,
+            47.75
+          ],
+          [
+            7.3125,
+            47.875
+          ],
+          [
+            8.875,
+            49.4375
+          ],
+          [
+            9.375,
+            50.0625
+          ],
+          [
+            9.375,
+            50.4375
+          ],
+          [
+            10.125,
+            51.1875
+          ],
+          [
+            9.8125,
+            51.5
+          ],
+          [
+            9.4375,
+            51.125
+          ],
+          [
+            7.8125,
+            51.75
+          ],
+          [
+            7.1875,
+            51.625
+          ],
+          [
+            6.8125,
+            51.875
+          ],
+          [
+            5.375,
+            50.0625
+          ],
+          [
+            5.375,
+            48.6875
+          ]
+        ]
+      },
+      "role": "Uncertain cap/crevice or boundary pocket; retained with upper parent body, not included in lower recipe"
+    },
+    {
+      "pocketId": 3,
+      "region": {
+        "polygon": [
+          [
+            93.8125,
+            59.125
+          ],
+          [
+            94.375,
+            59.4375
+          ],
+          [
+            94.0625,
+            59.75
+          ],
+          [
+            93.4375,
+            59.875
+          ],
+          [
+            93.125,
+            59.5625
+          ]
+        ]
+      },
+      "role": "Uncertain cap/crevice or boundary pocket; retained with upper parent body, not included in lower recipe"
+    },
+    {
+      "pocketId": 4,
+      "region": {
+        "polygon": [
+          [
+            4.3125,
+            61.25
+          ],
+          [
+            4.5625,
+            61.25
+          ],
+          [
+            5.125,
+            61.9375
+          ],
+          [
+            4.8125,
+            62.25
+          ],
+          [
+            4.0,
+            61.6875
+          ]
+        ]
+      },
+      "role": "Uncertain cap/crevice or boundary pocket; retained with upper parent body, not included in lower recipe"
+    }
+  ],
+  "lowerPocketIds": [
+    1
+  ],
+  "retainedUpperPocketIds": [
+    2,
+    3,
+    4
+  ],
+  "sourceRoleComparison": {
+    "changedPixels": 8001,
+    "changedFraction": 0.007630348205566406,
+    "maximumDistanceAwayFromClassBoundaryExcludingOutermostImagePixel": 2.8284271247461903,
+    "differenceBeyondFiveMasterPixelsAndNotImageEdge": 0,
+    "fivePixelBoundMeaning": "3-master-pixel contour representation plus source smoothing/raster interface. Diagnostic locality check, not a material tolerance or relaxed production guard."
+  },
+  "outermostPixelContactUnqualified": true,
+  "sourceContactMeaning": "Actual native and source have contact phase differences. This is context, not a score failure; no source edge equality is imposed. Root must inspect actual intent and any new visibly straight cuts.",
+  "currentUpperLowerRoleEdgeMismatch": {
+    "X": 0.1435546875,
+    "Y": 0.0390625
+  },
+  "diagnosticScript": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/validate-refined-complement-v6.py",
+    "sha256": "4ae7bb5cbceef31c89be7e362040918250af3c22616d8f7e54104bf2e365dcd3"
+  },
+  "edgeMaskObservations": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/wrapped-edge-mask-role-observations-v6.json",
+    "sha256": "15e108e0e6f179cbee80171da0c3eb91c958f72b5011726872be02977a424844"
+  },
+  "noHeightComposition": true,
+  "sourceRGBFloatRawPackageUnchanged": {
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v1/color.png": "6894b5feeac2ca24c0300f64203ef1775fb142e627fd00bc27ef68729119d7b2",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v1/height.npy": "09f169e170206159666f15a9f9fb445de8f0b4555f1b0fe6e37a2c008fa11950",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v1/master.json": "8e8e9d5c959f3f1b5caffc3cf483e9e04435cb6411dceba34a19e9a502697256",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/generated/ttex255.png": "7e888da3f4119d3bc515a84e9634fad7505f6be98b116cca5788a2d746b0ab19"
+  },
+  "remainingHolds": [
+    "Actual native/source edge phase differences are contextual observations, not a score failure. Do not force edge equality; inspect any new straight cuts against actual intent.",
+    "Pocket1 alone is proposed lower recess; Pocket2 cap/crevice and tiny pockets3/4 remain with upper body as uncertain. Underlying bed elevations unmeasured.",
+    "9002 ambiguous source transition pixels and17 tiny pale frost/mineral speck pixels are explicit review evidence.",
+    "No actual corrected scalar or opposed lights exists; shared-detail rock facet preservation remains unproved."
+  ],
+  "notRun": "compose_layered, guarded CLI, tiers, new generation, producer/API changes, Git/shared/build effects"
+}

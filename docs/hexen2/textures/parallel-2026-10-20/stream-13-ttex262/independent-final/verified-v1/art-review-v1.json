@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "root independent final artwork review",
+  "reviewedAt": "2026-10-20T19:33:53.707006+00:00",
+  "verdict": "PASS offline actual decoded material, distance, intended repeats and relief",
+  "nativeIdentity": "48459128c48ad2c273711c7b77e2267f27d1706dba9f84b9eb3a0af4f71f6436",
+  "actualProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/independent-final/verified-v1/actual-v1.json",
+    "sha256": "9bf20cd70993a8cc5fb8946de6f430c9dc1afc4de0ec5eab54de79817b9e0e31"
+  },
+  "actualViews": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/independent-final/verified-v1/mid-height-XYZ-neutral.png": "311d694c8a201da39ed753001bf9efd243a993ba989cd4a969c2f5b9c6f93ca3",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/independent-final/verified-v1/high-height-XYZ-neutral.png": "9ebc3c66c83959d5100ea5932911ac6520a40341ff4a572bdc47b5c408bf6511",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/independent-final/verified-v1/mid-repeat.png": "34e916fad6def72a94367b6b8d9c2341991a98bf5a4eaf2f75d5bb6c34ef4a57",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/independent-final/verified-v1/high-repeat.png": "a4418a3746a919010366176a0b0a6c2c04ccc7c16770a34ec4f7bbced8951a90",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/independent-final/verified-v1/mid-X-full.png": "7f93a0883e300b485a93bfb4e9f88f4f8e4cbcf715626b178f6cd555d30a85d4",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/independent-final/verified-v1/mid-Y-full.png": "e397d0884c665d08a4dd7767abfeb877429312ce822c2550e55630f5b09c8247",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/independent-final/verified-v1/mid-corner.png": "d029c5a5de101e22d78f9b3388d09f8ec9f7be021bd2c4767fa81d0dda484405",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/independent-final/verified-v1/high-corner.png": "971ea47f7db356b8f8dc1e51fd15298634df8a96ff21a03914b17c3b545f5050",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/high-diffuse.png": "01bfaeb089ea00346b6381ba37f8e68746a8e2b673d9bf260c4452c6d4b7c3a7",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/high-X-full.png": "fe447cb404a5f93070cc6dfafab4ef26e22cc6e80444a9df9d335205990a4681",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/high-Y-full.png": "01cf3d112361bb7d61c441e7965fc937cfef62c2dd31fcf30cd14488f502f4b8",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/mid-BOX32.png": "4166b904c50e6b7d7c807c2b1189d2dd98251fa3f1280c6059df44812e55c043",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/high-BOX32.png": "d1e1afee13b227d093ab0a5be731e5448cca55f59bf340351add71d20c5562ad",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/mid-BOX16.png": "ec8a7ea87359b4fb11e87d838d202e7ecffa9744f729d594ef40482a226ccda8",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/high-BOX16.png": "f845d700f5e48381c4eaab3595334b793bdf9dff7c9a3e23506060f1d05f0fa1"
+  },
+  "findings": {
+    "realMaterial": "Recognisable matte dark brown weathered sandstone ashlar, with coherent pores, irregular shallow pits, mineral discoloration and restrained dark surface wear. It does not read as sharpened native pixels or artificial grain.",
+    "distance": "Both decoded Mid and High BOX32/BOX16 pairs preserve native brown-grey palette, course proportions, upper split/lower broad face and feature scale. Similarity, not pixel equality.",
+    "tiling": "Full X/Y joins, corners and repeats at both tiers preserve the native running bond; upper-X remains inside a continuous face and lower-X is an inferred narrow contact. No invented little edge brick, added upper-X frame, ghost edge or broad perimeter shading.",
+    "physical": "Actual decoded height/XYZ/opposed neutral lights show near-flat faces above narrow joints with subdued surface wear. Dark staining does not become broad low cavities and grey joints are recessed.",
+    "limits": "Lower-X contact is inferred from native bond at faint/occluded photographic source, not measured hidden geometry. Mid L/T windows mix BOX/interface support; a model mask fraction is not proof of a pure physical mortar sample. Fine face relief is restrained, not a measured reconstruction. Initial scalar failure retained."
+  },
+  "codec": "All10maps independently reproduced directly from same RGB/fullfloat master at lossyWebP Q92 method6; no tier transcode.",
+  "browserRenderedPASS": false,
+  "runtimeAcceptance": false,
+  "ownerAcceptance": false,
+  "releaseAcceptance": false
+}

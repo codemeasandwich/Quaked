@@ -1,0 +1,25 @@
+{
+  "recordedAt": "2026-10-20T17:12:29.157904+00:00",
+  "state": "complete",
+  "authority": "Owner requested removal of own unneeded build outputs. New current HTML-only checkpoint qualified; old owned HTML no longer needed.",
+  "oldHTML": "dist/staged/web",
+  "oldSourceTree": "0a4dba3f9ba1e884bc38b2daf60cbf85d605e9ba",
+  "newHTML": "dist/texture-checkpoints/05c35d4c79f2d70607249fd810006af77580d812/web",
+  "newSourceTree": "05c35d4c79f2d70607249fd810006af77580d812",
+  "files": 80,
+  "bytes": 642959097,
+  "inventoryReference": "docs/hexen2/textures/build-cleanup-2026-10-20/plan.json target dist/staged/web",
+  "identicalUserPayloadFiles": 78,
+  "changedBuildProvenanceMetadata": [
+    "bundle-metafile.json",
+    "inventory.json"
+  ],
+  "oldPathInactive": true,
+  "protectedFiles": 818,
+  "quarantine": "/Users/bri/SOURCE/Quaked/dist/.retiring-old-html-e4967275d266406d8b4ce6ee09c11e99",
+  "nativeBuildRun": false,
+  "protectedFilesUnchanged": true,
+  "currentHTMLRetained": true,
+  "quarantineRemoved": true,
+  "finishedAt": "2026-10-20T17:12:30.731600+00:00"
+}

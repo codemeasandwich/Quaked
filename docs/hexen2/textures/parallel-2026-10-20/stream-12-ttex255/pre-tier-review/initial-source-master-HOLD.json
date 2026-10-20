@@ -1,0 +1,294 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20T17:32:58.690668+00:00",
+  "verdict": "HOLD initial scalar: source-visible proud dark rocks become low smooth cavities in raised pale snow; no tiers",
+  "materialVerdict": "PASS author source material only; independent actual source/ART review pending",
+  "material": "Recognizable compacted slightly crusted snow and rough fractured ochre/brown mineral. Actual raw1254-square adequate for1024 master. No new object or artificial grain added.",
+  "composition": "Native rock groups and broad snowy areas remain representative at BOX64/32; not pixel equality. Cropped edge clusters remain present.",
+  "literalJoinFinding": "Viewed actual RGB X/Y strips and all-corner contact at1:1. Irregular cropped clusters continue plausibly; no blank border or coherent intensity step apparent. This does not qualify corrected float/tier seams.",
+  "physicalSamples": [
+    {
+      "label": "upperLeftRock",
+      "exposedRockBody": {
+        "boxMasterPixels": [
+          186,
+          61,
+          222,
+          86
+        ],
+        "median": 0.049259766936302185,
+        "mean": 0.07002770900726318,
+        "std": 0.06541165709495544,
+        "range": [
+          0.00667811231687665,
+          0.32198917865753174
+        ]
+      },
+      "adjacentSnow": {
+        "boxMasterPixels": [
+          106,
+          42,
+          140,
+          68
+        ],
+        "median": 0.7771005630493164,
+        "mean": 0.6748652458190918,
+        "std": 0.22077204287052155,
+        "range": [
+          0.07323076575994492,
+          0.8843252062797546
+        ]
+      },
+      "rockAboveSnow": false
+    },
+    {
+      "label": "centralRock",
+      "exposedRockBody": {
+        "boxMasterPixels": [
+          566,
+          383,
+          604,
+          413
+        ],
+        "median": 0.21800650656223297,
+        "mean": 0.2618080675601959,
+        "std": 0.18199346959590912,
+        "range": [
+          0.004965091589838266,
+          0.6987733244895935
+        ]
+      },
+      "adjacentSnow": {
+        "boxMasterPixels": [
+          562,
+          454,
+          600,
+          484
+        ],
+        "median": 0.8743278980255127,
+        "mean": 0.8117443323135376,
+        "std": 0.17901773750782013,
+        "range": [
+          0.10412570089101791,
+          0.9627953767776489
+        ]
+      },
+      "rockAboveSnow": false
+    },
+    {
+      "label": "leftRock",
+      "exposedRockBody": {
+        "boxMasterPixels": [
+          119,
+          375,
+          153,
+          406
+        ],
+        "median": 0.05931690335273743,
+        "mean": 0.09573318064212799,
+        "std": 0.11979683488607407,
+        "range": [
+          0.0028053689748048782,
+          0.723416805267334
+        ]
+      },
+      "adjacentSnow": {
+        "boxMasterPixels": [
+          240,
+          407,
+          274,
+          439
+        ],
+        "median": 0.6250739097595215,
+        "mean": 0.6171725988388062,
+        "std": 0.1259496957063675,
+        "range": [
+          0.265777587890625,
+          0.8718772530555725
+        ]
+      },
+      "rockAboveSnow": false
+    },
+    {
+      "label": "lowerRightRock",
+      "exposedRockBody": {
+        "boxMasterPixels": [
+          791,
+          755,
+          825,
+          785
+        ],
+        "median": 0.021858857944607735,
+        "mean": 0.061788152903318405,
+        "std": 0.11231604963541031,
+        "range": [
+          0.0030217794701457024,
+          0.7137300968170166
+        ]
+      },
+      "adjacentSnow": {
+        "boxMasterPixels": [
+          625,
+          783,
+          660,
+          816
+        ],
+        "median": 0.691031813621521,
+        "mean": 0.6612768173217773,
+        "std": 0.11608099192380905,
+        "range": [
+          0.30201223492622375,
+          0.8797895312309265
+        ]
+      },
+      "rockAboveSnow": false
+    }
+  ],
+  "initialNormalFinding": "Both actual fixed neutral lights show recessed/flattened rock shapes inconsistent with source-visible proud rocks.",
+  "knownRepairLimit": "Existing layered two-plane policy may restore rock/snow hierarchy but cannot invent missing rock microgeometry. Its actual source detail and topology must be assessed; generic mask or source-colour inversion is not approved.",
+  "nextAction": "Root independent actual source/master replay proof (semantic height unaccepted), then concrete source-measured existing-policy repair plan/diagnostic review. No layer CLI or tier encoded by this report.",
+  "inputs": {
+    "raw": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/generated/ttex255.png",
+      "sha256": "7e888da3f4119d3bc515a84e9634fad7505f6be98b116cca5788a2d746b0ab19"
+    },
+    "masterPackage": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v1/master.json",
+      "sha256": "8e8e9d5c959f3f1b5caffc3cf483e9e04435cb6411dceba34a19e9a502697256"
+    },
+    "RGB": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v1/color.png",
+      "sha256": "6894b5feeac2ca24c0300f64203ef1775fb142e627fd00bc27ef68729119d7b2"
+    },
+    "float": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v1/height.npy",
+      "sha256": "09f169e170206159666f15a9f9fb445de8f0b4555f1b0fe6e37a2c008fa11950"
+    },
+    "prompt": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/prompts/ttex255-material-v1.txt",
+      "sha256": "8cca2868736a041f1f5c60b7fe10ab03fc206e382b95ff8d43bbb2496bea42af"
+    }
+  },
+  "actualViewedImages": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/actual-rock-snow-witnesses.png",
+      "sha256": "7083a74fd86dd1c7079042d31b246139c6f213a7c2c845b8237d0f250acfff50"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/master-RGB-Xjoin-1to1.png",
+      "sha256": "0c910b44603fa324147e46736ab4d252fcfce2dddd0c5287502d92d088a829aa"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/master-RGB-Yjoin-1to1.png",
+      "sha256": "71e6487af969200e3481214cc8b1fcbb715470b37a7592ca8d154d57743de053"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/master-RGB-corner-1to1.png",
+      "sha256": "432a002c7131542add3a002bc6603b4c21a59ab6a5c4c0ceaca426ba62a94841"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/master-RGB.png",
+      "sha256": "6894b5feeac2ca24c0300f64203ef1775fb142e627fd00bc27ef68729119d7b2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/master-coordinate-grid.png",
+      "sha256": "053cbee246002262ef936051e7d699f10e0375e7f948466cf083ed8a3d951e34"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/master-height-Xjoin-1to1.png",
+      "sha256": "9b222e4295cd63e8ba8297a8af89c0a085c2e80f5a4b39ce73745479736a635d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/master-height-Yjoin-1to1.png",
+      "sha256": "0cbe47f1cd382fe1a4b75733a80a5710731a625ede2d9007ae799c14f4db04e7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/master-height-corner-1to1.png",
+      "sha256": "56cfa0301fc280526608789a8331b9c0341cd3e478a8995acb0ff9e18d1bd7be"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/master-height.png",
+      "sha256": "179a405e1c6536493cb456b1518ccb8780071c37a6073b082730cbd255309bff"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/master-neutralA-Xjoin-1to1.png",
+      "sha256": "a18b7a9e7b2e70937bf85b22879ca2741800fa7b7e96939bcc6cec9984ce7a4f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/master-neutralA-Yjoin-1to1.png",
+      "sha256": "54c5dd11cb424f1e1e6a4560a032c8331fff31706a5358e87087681133a2271b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/master-neutralA-corner-1to1.png",
+      "sha256": "a700d2b79199987905b17edab7dadfeeb90b7eccdb5663842e380b129e0c6439"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/master-neutralA.png",
+      "sha256": "9fff08978ee664a84b6bd6a59404f1e760789352ed1ca02a9be01025fea232eb"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/master-neutralB-Xjoin-1to1.png",
+      "sha256": "b6ca4f024bb9d996c69bba03f38671dc81341b486ec6bfeca81eaa68306458c1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/master-neutralB-Yjoin-1to1.png",
+      "sha256": "56f1b10d3b6e7e224b546798a0ca3aa0eca7f71611c7573540c020cf8b591238"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/master-neutralB-corner-1to1.png",
+      "sha256": "e0fe9afdd1662abac20a687dfe43d25ceb9143085ee23b507ed483e9363c67d4"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/master-neutralB.png",
+      "sha256": "c8301e7ff089e81beb33008eaf0edc9945c07869510a788bfec4a6e7f6250588"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/native-master-BOX64-32.png",
+      "sha256": "c818bdc9106a563ed5c6d91f724fa9b9847609fb7ac3615744b616c7393d7e8c"
+    }
+  ],
+  "initialRegistrationDiagnostics": {
+    "method": "photographic",
+    "factor": 8,
+    "verticalLandmarks": null,
+    "colorStrength": 0.65,
+    "fieldSigma": 0.75,
+    "edgeAnchor": false,
+    "comparisonDivisor": 2,
+    "comparisonDimensions": [
+      64,
+      64
+    ],
+    "distanceMeanMaxError": 49.01953125,
+    "distanceMeanMAE": 9.346656481424967,
+    "donorDistanceMAE": 22.73340352376302,
+    "newClippedChannelFraction": 0.01130517323811849,
+    "donorContourCorrelation": 0.9986496490808746,
+    "sourceMean": [
+      136.580810546875,
+      134.521484375,
+      135.252685546875
+    ],
+    "outputMean": [
+      143.6120262145996,
+      142.21588802337646,
+      144.42433547973633
+    ],
+    "donorBoundaries": {
+      "wrap_x_mean": 29.294921875,
+      "wrap_y_mean": 30.389973958333332,
+      "interior_x_mean": 8.747119633838388,
+      "interior_y_mean": 10.122337920536003
+    },
+    "boundaries": {
+      "wrap_x_mean": 28.968749999999996,
+      "wrap_y_mean": 30.267252604166664,
+      "interior_x_mean": 8.694930020975887,
+      "interior_y_mean": 10.062255302521177
+    },
+    "passedDistanceCheck": null,
+    "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+    "axis": null
+  },
+  "boundary": "Author evaluation only; genuine independent proof must be authored by root/reviewer, not this child."
+}

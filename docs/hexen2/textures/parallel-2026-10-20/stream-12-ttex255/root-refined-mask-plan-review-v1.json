@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "root independent physical-plan review",
+  "createdAt": "2026-10-20T19:11:18.795117+00:00",
+  "status": "PASS_TO_BOUNDED_PHYSICAL_TRIAL_ONLY",
+  "recipe": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/relief/recipe-proposal-v4.json",
+  "recipeSha256": "69088c7353a5a7c2d50a76d8b95f6a5f189e2c3ff79ee3f2704172000b4e02a2",
+  "sourceProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/independent-source-master/source-master-proof-v1.json",
+    "sha256": "b5df3663628aab06857345947cbcb4675a00a820b825995487d90772b46eeba9"
+  },
+  "actualImagesInspected": [
+    "pre-tier-review/refined-complement-source-overlay-v6.png",
+    "pre-tier-review/four-pocket-topology-context-v5.png",
+    "pre-tier-review/X-source-vs-existing-neutral-v6.png",
+    "pre-tier-review/Y-source-vs-existing-neutral-v6.png"
+  ],
+  "findings": [
+    "Refined source-specific rock contours follow visible mineral body; no automatic brightness-as-elevation interpretation.",
+    "Pocket1 plausible snow-filled recess; pocket2 cap/crevice ambiguous and retained upper, as are tiny uncertain pockets3/4. Material membership alone does not establish elevation.",
+    "Outer inclusive polygon-fill differences and literal RGB edge contacts remain disclosed; reviewed plan does not accept a corrected height or final tiling.",
+    "223 lower polygons preserve unchanged schema guards; face .80, snow .55, floor .70, micro .05 and 2-master-pixel interface blur are artistic trial parameters."
+  ],
+  "authorization": "Use existing unchanged guarded layered CLI with this exact recipe and genuine bound source/master proof. Inspect actual scalar, physical witnesses, relief XYZ and opposed neutral lights before any tiers. No source regeneration, producer edits or builds.",
+  "requiredBeforeTiers": [
+    "Rock bodies must stand above surrounding ground snow without mapping black fissure pigment into large pits.",
+    "Snow caps or ambiguous pale inclusions retained with parent upper body must not become cutout holes.",
+    "Review broad rock facets versus flat plateaus/cookie-cutter interfaces; HOLD if natural broken rock is not recognizable in neutral relief.",
+    "Inspect full literal X/Y/corners for any new straight boundary, jagged rim or halo; small representation differences are not accepted by numerical tolerance alone."
+  ],
+  "finalAcceptance": false
+}

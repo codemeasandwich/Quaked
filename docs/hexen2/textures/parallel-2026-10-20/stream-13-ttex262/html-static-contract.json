@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-20T19:15:35.901110+00:00",
+  "verdict": "PASS actual static HTML structure/4image bindings/default dimensions; no browser rendering claim",
+  "HTML": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/review/index.html",
+    "sha256": "b70b8dd444ddcc45a4c3923183ef4af766b841c8ce58af92215f406e2647d75b"
+  },
+  "images": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/review/ttex262-mid-review.jpg",
+      "sha256": "ef77ba59980f2f039d36f2a3ed1969b5fe33801740479ed335c48529deafe409",
+      "alt": "Native, delivered texture, detail, repeats and both distance comparisons"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/review/ttex262-mid-relief.jpg",
+      "sha256": "02b2c86b79fb753f821a43513aa0e6222758cd86b49e66fa399ec70fc3ec8b7a",
+      "alt": "Actual decoded relief"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/review/ttex262-high-review.jpg",
+      "sha256": "9b1889e02cb513e4d219de3f3e5d3acb8025a36be63cacf5c4361d3d08f35423",
+      "alt": "Native, delivered texture, detail, repeats and both distance comparisons"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/review/ttex262-high-relief.jpg",
+      "sha256": "365168100e3aff6c9575a6e0ca17959d19e2b64d5253e613f379cb7da12df7a9",
+      "alt": "Actual decoded relief"
+    }
+  ],
+  "scriptCount": 0,
+  "default": "Mid",
+  "dimensions": {
+    "Mid": [
+      256,
+      256
+    ],
+    "High": [
+      512,
+      512
+    ]
+  },
+  "actualCLIReplay": "candidate-self-replay.json",
+  "verifier": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/check-html-static.py",
+    "sha256": "234c1d6632d8488b7430c1689823317578501d2bab1c779eda6c0c92315e56c7"
+  },
+  "limits": "Static source and content provenance plus direct JPEG inspection; no live browser or interaction."
+}

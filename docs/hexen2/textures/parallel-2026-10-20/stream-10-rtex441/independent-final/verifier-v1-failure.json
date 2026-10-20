@@ -1,0 +1,10 @@
+{
+  "verdict": "VERIFIER RECEIPT SERIALIZATION FAILURE; no asset/art failure inferred",
+  "error": "TypeError: Object of type bool_ is not JSON serializable",
+  "failedSource": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/independent-final/verify-final-v1-failed.py",
+    "sha256": "279331070f6eb3a31d07208a7e0d2e50ad96033979ef052342fbba9b82b6760c"
+  },
+  "retainedOutputs": "Original root actual-v1.json is zero bytes; original preview-v1.json and derived diagnostic views retained. No successful actual proof claimed from the failed serialization.",
+  "correction": "Cast sample notPureSample predicate to Python bool. Rerun unchanged source/math/CLIs into new verified-v2 output directory; no source/asset or acceptance changes."
+}

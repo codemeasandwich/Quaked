@@ -1,0 +1,350 @@
+{
+  "status": "Finite three-pair same-parent donor proposal for review, not a repair or qualified path",
+  "candidates": [
+    {
+      "candidate": "C0",
+      "centre": [
+        256,
+        256
+      ],
+      "X_donor": [
+        208,
+        0,
+        304,
+        512
+      ],
+      "Y_donor": [
+        0,
+        208,
+        512,
+        304
+      ],
+      "cornerDonor": [
+        208,
+        208,
+        304,
+        304
+      ],
+      "integerTranslations": {
+        "left": [
+          256,
+          0
+        ],
+        "right": [
+          -256,
+          0
+        ],
+        "top": [
+          0,
+          256
+        ],
+        "bottom": [
+          0,
+          -256
+        ],
+        "cornerFourQuadrants": [
+          [
+            256,
+            256
+          ],
+          [
+            -256,
+            256
+          ],
+          [
+            256,
+            -256
+          ],
+          [
+            -256,
+            -256
+          ]
+        ]
+      },
+      "overlapEvidence": []
+    },
+    {
+      "candidate": "C1",
+      "centre": [
+        128,
+        384
+      ],
+      "X_donor": [
+        80,
+        0,
+        176,
+        512
+      ],
+      "Y_donor": [
+        0,
+        336,
+        512,
+        432
+      ],
+      "cornerDonor": [
+        80,
+        336,
+        176,
+        432
+      ],
+      "integerTranslations": {
+        "left": [
+          128,
+          0
+        ],
+        "right": [
+          -384,
+          0
+        ],
+        "top": [
+          0,
+          384
+        ],
+        "bottom": [
+          0,
+          -128
+        ],
+        "cornerFourQuadrants": [
+          [
+            128,
+            384
+          ],
+          [
+            -384,
+            384
+          ],
+          [
+            128,
+            -128
+          ],
+          [
+            -384,
+            -128
+          ]
+        ]
+      },
+      "overlapEvidence": [
+        {
+          "label": "X+ north inner cut",
+          "A_sourceRect": [
+            24,
+            64,
+            48,
+            128
+          ],
+          "B_sourceRect": [
+            152,
+            64,
+            176,
+            128
+          ],
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/C1-overlap-01-v2.png",
+          "sha256": "9a2706ea5ca0f5864d4cc3d094fe775536e34dd161b656ad582d7fcce91dafa0"
+        },
+        {
+          "label": "Y+ east inner cut",
+          "A_sourceRect": [
+            288,
+            24,
+            352,
+            48
+          ],
+          "B_sourceRect": [
+            288,
+            408,
+            352,
+            432
+          ],
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/C1-overlap-02-v2.png",
+          "sha256": "3849aa9ca719a1f273d312822216ae3cba5a8bf3ffa2de6b2349f56f1f839b2b"
+        },
+        {
+          "label": "Corner/X+ north transition",
+          "A_sourceRect": [
+            128,
+            24,
+            176,
+            48
+          ],
+          "B_sourceRect": [
+            128,
+            408,
+            176,
+            432
+          ],
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/C1-overlap-03-v2.png",
+          "sha256": "f0537a980dfa4b9ed380527277c976a93b0c24a7d8d56200a283099abe576dd7"
+        },
+        {
+          "label": "Corner/Y+ west transition",
+          "A_sourceRect": [
+            24,
+            384,
+            48,
+            432
+          ],
+          "B_sourceRect": [
+            152,
+            384,
+            176,
+            432
+          ],
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/C1-overlap-04-v2.png",
+          "sha256": "fb552a0351aa5dbe31a46425ad48260094845dcaeb40f5ab658d6301e0e0bd57"
+        }
+      ]
+    },
+    {
+      "candidate": "C2",
+      "centre": [
+        384,
+        128
+      ],
+      "X_donor": [
+        336,
+        0,
+        432,
+        512
+      ],
+      "Y_donor": [
+        0,
+        80,
+        512,
+        176
+      ],
+      "cornerDonor": [
+        336,
+        80,
+        432,
+        176
+      ],
+      "integerTranslations": {
+        "left": [
+          384,
+          0
+        ],
+        "right": [
+          -128,
+          0
+        ],
+        "top": [
+          0,
+          128
+        ],
+        "bottom": [
+          0,
+          -384
+        ],
+        "cornerFourQuadrants": [
+          [
+            384,
+            128
+          ],
+          [
+            -128,
+            128
+          ],
+          [
+            384,
+            -384
+          ],
+          [
+            -128,
+            -384
+          ]
+        ]
+      },
+      "overlapEvidence": [
+        {
+          "label": "X+ north inner cut",
+          "A_sourceRect": [
+            24,
+            64,
+            48,
+            128
+          ],
+          "B_sourceRect": [
+            408,
+            64,
+            432,
+            128
+          ],
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/C2-overlap-01-v2.png",
+          "sha256": "91be62d2e84538b965ea5924ec966baf50978d72ac07e183f295486c57580425"
+        },
+        {
+          "label": "Y+ east inner cut",
+          "A_sourceRect": [
+            288,
+            24,
+            352,
+            48
+          ],
+          "B_sourceRect": [
+            288,
+            152,
+            352,
+            176
+          ],
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/C2-overlap-02-v2.png",
+          "sha256": "caf935bcc4011ccc03951c6e1d021e2ac1cfbe4bd7c001341e05064157c8ffcc"
+        },
+        {
+          "label": "Corner/X+ north transition",
+          "A_sourceRect": [
+            384,
+            24,
+            432,
+            48
+          ],
+          "B_sourceRect": [
+            384,
+            152,
+            432,
+            176
+          ],
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/C2-overlap-03-v2.png",
+          "sha256": "3511309b9a976ff06f4e263108d67551de265a500a02682949f2efc6cc5afd3a"
+        },
+        {
+          "label": "Corner/Y+ west transition",
+          "A_sourceRect": [
+            24,
+            128,
+            48,
+            176
+          ],
+          "B_sourceRect": [
+            408,
+            128,
+            432,
+            176
+          ],
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/C2-overlap-04-v2.png",
+          "sha256": "2357e15e2cec1bbf226ef2515e95e946662a78bbb0b6db52e3d96232ecfe1e18"
+        }
+      ]
+    }
+  ],
+  "scopeLimit": "Exactly C0 plus two alternatives C1/C2. No offset search, matching, path optimization, composite trial or source/height/tool mutation. Provisional maximum collar remains48 master pixels.",
+  "source": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/masters/rtex388-v1/color.png",
+    "sha256": "2faa2ec6b26ba7e0700b18101bb5c1a64a865541274562f8ebc895e7aced90ea"
+  },
+  "views": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/bounded-X-donors-v2.png": "f09f7e8d75bf4a22f0c1e6645b8decc2bb3528ac1bab796cb65f50dcae1d04b3",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/bounded-Y-donors-v2.png": "4c36ee7953a2e40dfeee25d4dd170c2353394efd1abfb3014990287006c8a62f",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/bounded-corner-donors-v2.png": "c936b54e6d051ac634fdac3257dc46d1c3944387e5a3fd0c1d4a586520db1a6b"
+  },
+  "freeze": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/CANDIDATE_FREEZE.json",
+    "sha256": "0fa5f47f6e7aedcd2b7dd3e0b185905f571c97a79135d8fc602ae831b144596b",
+    "count": 80,
+    "allCurrentExact": true
+  },
+  "script": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/inspect-bounded-offset-set-v2.py",
+    "sha256": "13ac5e0cd5d3d3f73a428a76588b9ff4cbe5741dff1bf71019b6e23881e18717"
+  },
+  "recordedAt": "2026-10-20T18:03:33.704240+00:00"
+}

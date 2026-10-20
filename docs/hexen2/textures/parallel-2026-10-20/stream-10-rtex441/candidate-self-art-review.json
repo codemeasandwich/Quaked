@@ -1,0 +1,61 @@
+{
+  "verdict": "PASS author actual decoded material, representative native similarity, neutral physical relief and literal contacts; independent final qualification pending",
+  "nativeIdentity": "48f8ee75fe94cfac4743b222206efab5ee3904af21de8dbeb409b0fe287bd8ff",
+  "name": "rtex441",
+  "material": "One worn dense grey limestone-like slab is distinguishable through coherent fine aggregate, irregular pores, worn patches and localized pits. No artificial grain, pixel contours, internal divisions or extra stones are introduced. Exact geology remains an interpretation.",
+  "distance": "Both actual decoded tiers retain quiet grey/olive colour, sparse larger marks, broad single face and original slab-contact scale at BOX32 and BOX16 on both inputs. Mid errors8.074/6.009 and High8.008/6.003 are descriptive, not automatic acceptance. Artistic interpretation of fine material detail is retained.",
+  "sameSourceRepair": "The initial tonal height remains HOLD. The reviewed same-RGB guarded layered successor reduces broad X slope from-.108606 to-.005430 and Y-.029994 to-.001500; unchanged photographic colour does not set architectural slab ramp or dome. One raw source only.",
+  "physical": "Actual decoded neutral opposed lights show a broadly near-flat face with shallow natural pits and recessed existing narrow joints. No raised picture-frame rim or new perimeter bevel is observed. Source geometry remains a plausible interpretation rather than measured displacement.",
+  "samples": "A/C/D conservative faces are above F/G pit means and L/T joint means at both tiers. B is explicitly mixed dark-fleck face and E mixed chip/inclusion, with unchanged coordinates and historical labels preserved. Canonical radius2 wrapped joint cores are pure mask; decoded Mid radius1 windows include BOX/interface/compression mixing, reported as actual ranges rather than pure-material neighborhoods.",
+  "compression": {
+    "Mid": {
+      "heightMAE": 0.0033255600233988982,
+      "authoredVsDecodedXYZMeanDegrees": 0.6938362187968938
+    },
+    "High": {
+      "heightMAE": 0.0027916978453446295,
+      "authoredVsDecodedXYZMeanDegrees": 0.6473871649043001
+    }
+  },
+  "perimeter": "Actual full-height X and full-width Y strips, standard XY corners, repeats and neutral lights were inspected for both tiers. The original narrow tile contacts remain; no new frame or internal line is authored.",
+  "actualViews": {
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/generated/rtex441.png": "04f338431167d3bf64e879b8e616fb4db7873d10125735dd6bcf08bbe4f3f9c7",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters-layered/rtex441/color.png": "4653f845e15c0c8261f32a3e5c81487c20f18998f3631c4a52414950301b44f4",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/review/rtex441-mid-review.jpg": "1968f5d541d90914b1e1cc84a5b3d342c140d5141c252c8af3973e104ae0bacb",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/review/rtex441-mid-relief.jpg": "905171fff90c24d505ce89830e12c9f7ae7bdb571bc5b7b4fdc968467421674c",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/review/rtex441-high-review.jpg": "a2458254c0502a9b6d86a51172a3a42091a5f4645730abb14effb0d8c384f20d",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/review/rtex441-high-relief.jpg": "ce6e2ad2325f820a991c4711d46327cdbda969a74eca048616334f3385d691ad",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/candidate-seams-corners.png": "47987cd146a50dd32da9c2a173fd16e38ae116f03df4a96c10e823f8cbf7a477",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/mid-decoded-neutral-opposed.png": "8aa7bfe79bdb30641e1735bd2c84d87b84625dd7573169bd15d98dacd4d93b27",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/mid-decoded-literal-X-full-height.png": "ef9289b3ea41279953d374448479caaf0e5d336124423a3164c4c438029b897c",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/mid-decoded-literal-Y-full-width.png": "357cfb0d19a4605eddba09cd8de0bdbd4833dde794a5e9d2cb7a8fb22cdea47d",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/high-decoded-neutral-opposed.png": "ea00cba9ad960879731a38a918ab51198eec5257cc1cf33d4a6ccfd4daa2d8c0",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/high-decoded-literal-X-full-height.png": "e2c7ba0a05338ada89ea9d3339318218535c498966650d9f8730c2c634d3b1ea",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/high-decoded-literal-Y-full-width.png": "40c7981378c21dd2faf5a089797b63499926ed2a89ae0953d4909bafd2839ef6",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/layered-neutral-opposed-lights.png": "2a47302904687c6642d128b447ba3ede7fcddb4f06698645d341950266cfbedd",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/layered-literal-contacts.png": "e01677496a8a8fbcc2efbf7f8c8b14b3d60b53f86e97e70ebf6bb1a411a260b6"
+  },
+  "staticHtml": "Exact actual review CLI/four JPEG/HTML byte replay PASS and static four-local-image contract PASS.",
+  "browserLimit": "No live browser rendering PASS: createBrowserTab returned browser unavailable, then supported browser inventory was empty. See html-browser-observation.json. No full/native build or alternate browser installation was used.",
+  "retainedFailures": [
+    "Initial ordinary tonal relief remains HOLD as evidence, superseded by qualified-plan same-RGB canonical candidate.",
+    "Proposal-only renderer parse error and failed source are retained; corrected proposal rendered normally. This did not author any canonical asset.",
+    "Original B plain-face label is retained as history; actual source review clarifies the same point as mixed dark fleck."
+  ],
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/candidate-self-replay.json": "3a33c8b762179bc7e59abf15894a7ffafa159b9676058560df19ed48bc14248f",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/decoded-neutral-contact-provenance.json": "bde9e622690fbf54e6e97e3d086d129efd283153f61ead231cfdd967bb33681c",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/layered-pre-tier-check.json": "a1ea48964f3da6562c812c4e946d18b97a4ec0f0379c7e3ddeba6f11fdb92df8",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/layered-pre-tier-art-review.json": "d6f02eb638c1b368d2442e6af55cce1f45801fc2c84cf99e6f022379b406e488",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/physical-witness-clarification.json": "9ee4551c30b16266cea1d15fa3aa6c30901b77a733b5c15201d93475f66de693",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/html-static-contract.json": "b017c85b65846406a92ad9b05b9f063e14531aef17ff9b63101e41606fd452ff",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/html-browser-observation.json": "a6e54919c2831b0853eae7a5db121f6b3801eafa5716cc696a46bcc6285aceaa",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/batch.json": "4ea8a0b32e38adced24a5f81fbbaea3c026df2ebdb8f033436816fd6a6f9e200",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters-layered/rtex441/master.json": "f29a3b5ed887acba7e6a04b15815f4a1b61b1dccbb49c64421bc096c55ab34ad",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/tiers/rtex441/manifest.json": "671b1bdb5854a8d03f8a667960942cba47cffad6fdf5e0c764c916b4a78fb6b9"
+  },
+  "acceptanceLimits": [
+    "Author self-review does not replace independent source/math/codec/preview/ART qualification.",
+    "No shared registry change, pack/runtime/GPU acceptance, owner acceptance, Git landing/CI or release/Pages action."
+  ]
+}

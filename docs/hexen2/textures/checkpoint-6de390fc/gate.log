@@ -1,0 +1,934 @@
+test_bad_prompt_and_nonfinite_parameters_rejected_before_output (__main__.PrepareTextureMasterCLI) ... ok
+test_canonical_single_lossless_rgb_and_full_precision_height_source_bound (__main__.PrepareTextureMasterCLI) ... ok
+test_existing_package_or_file_never_overwritten (__main__.PrepareTextureMasterCLI) ... ok
+test_landmark_errors_rejected_before_output (__main__.PrepareTextureMasterCLI) ... ok
+test_larger_retained_source_downsamples_once_to_eight_native (__main__.PrepareTextureMasterCLI) ... ok
+test_measured_registration_axes_are_bound_without_separate_tier_authorship (__main__.PrepareTextureMasterCLI) ... ok
+test_no_mid_high_or_generation_controls_in_preparation_interface (__main__.PrepareTextureMasterCLI) ... ok
+test_source_dimensions_modes_and_formats_rejected_before_output (__main__.PrepareTextureMasterCLI) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 9.182s
+
+OK
+test_all_ten_outputs_direct_master_exact_q92_and_distance (__main__.HexenTextureTiersCLI) ... ok
+test_craft_opt_in_full_precision_preserves_old_default (__main__.HexenTextureTiersCLI) ... ok
+test_exact_eight_x_and_float64_height_supported_existing_output_preserved (__main__.HexenTextureTiersCLI) ... ok
+test_real_outputs_reject_compressed_chaining_and_height_transcode (__main__.HexenTextureTiersCLI) ... ok
+test_rejects_invalid_inputs_before_any_output (__main__.HexenTextureTiersCLI) ... ok
+test_scale_invariant_interior_gradient (__main__.HexenTextureTiersCLI) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 4.587s
+
+OK
+test_actual_queued512wide_comparison_grows_canvas_without_clipping_right_panel (__main__.TextureBatchReviewCLI) ... ok
+test_existing_portrait128_keeps_original_layout (__main__.TextureBatchReviewCLI) ... ok
+test_tall176_half_and_quarter_comparisons_remain_complete_and_separate (__main__.TextureBatchReviewCLI) ... ok
+test_taller_native_grows_canvas_instead_of_clipping_comparisons (__main__.TextureBatchReviewCLI) ... ok
+test_wide_overviews_fit_columns_without_spilling_below_or_between (__main__.TextureBatchReviewCLI) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 2.902s
+
+OK
+test_actual_two_source_copies_match_reviewed_trials_and_float_height (__main__.RegisterBoundaryCLI) ... skipped 'Explicit actual-art review fixture; ordinary regressions are self-contained'
+test_exact_independent_y_solution_final_height_and_environment (__main__.RegisterBoundaryCLI) ... ok
+test_existing_destinations_and_bad_prompt_profile_preserved (__main__.RegisterBoundaryCLI) ... ok
+test_flat_y_noop_and_real_measured_registration_input (__main__.RegisterBoundaryCLI) ... ok
+test_missing_redirected_or_changed_core_tool_witness_rejects (__main__.RegisterBoundaryCLI) ... ok
+test_noncanonical_filenames_and_inconsistent_landmark_metadata_reject (__main__.RegisterBoundaryCLI) ... ok
+test_repeat_correction_presence_even_empty_is_rejected (__main__.RegisterBoundaryCLI) ... ok
+test_source_master_and_finish_mismatches_reject_before_write (__main__.RegisterBoundaryCLI) ... ok
+test_trailing_or_wrong_dtype_height_rejects_before_write (__main__.RegisterBoundaryCLI) ... ok
+test_undersized_wrong_format_and_legacy_sources_reject (__main__.RegisterBoundaryCLI) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 14.248s
+
+OK (skipped=1)
+test_actual_recipe_replays_unchanged_rgb_and_full_precision_layer (__main__.LayeredMasterCLI) ... skipped 'Actual asset fixture is explicitly opt-in'
+test_bounded_finite_nonempty_geometry_and_unknown_shape_refusals (__main__.LayeredMasterCLI) ... ok
+test_existing_output_and_dangling_symlink_refusals (__main__.LayeredMasterCLI) ... ok
+test_full_precision_same_rgb_one_height_and_no_obsolete_binary_dependency (__main__.LayeredMasterCLI) ... ok
+test_native_payload_raw_adequacy_and_profile_refusals (__main__.LayeredMasterCLI) ... ok
+test_nonboolean_finite_ordered_clipping_safe_layer_parameters (__main__.LayeredMasterCLI) ... ok
+test_repeated_or_noncanonical_authoring_refusals (__main__.LayeredMasterCLI) ... ok
+test_source_hash_and_public_identity_proof_refusals (__main__.LayeredMasterCLI) ... ok
+test_source_input_and_tool_hash_path_roles_refusals (__main__.LayeredMasterCLI) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 15.773s
+
+OK (skipped=1)
+test_existing_and_late_destinations_are_never_clobbered (__main__.LayeredBoundaryCLI) ... ok
+test_nonsquare_x_and_y_exact_geometry_precision_metadata_and_direct_tiers (__main__.LayeredBoundaryCLI) ... ok
+test_noop_and_clipping_are_truthfully_recorded (__main__.LayeredBoundaryCLI) ... ok
+test_original_changed_after_successful_guarded_replay_rejects (__main__.LayeredBoundaryCLI) ... ok
+test_source_proof_current_data_and_metadata_tampering_reject_without_output (__main__.LayeredBoundaryCLI) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 9.422s
+
+OK
+test_bounded_nonboolean_finite_policy_and_geometry_refusals (__main__.MotifMasterCLI) ... ok
+test_canonical_tool_input_replay_and_format_refusals (__main__.MotifMasterCLI) ... ok
+test_constant_delta_noop_and_actual_support_corner_product (__main__.MotifMasterCLI) ... ok
+test_existing_output_and_symlink_refusals (__main__.MotifMasterCLI) ... ok
+test_full_independent_oracle_height_bytes_and_no_old_binary_dependency (__main__.MotifMasterCLI) ... ok
+test_identity_proof_and_source_hash_refusals (__main__.MotifMasterCLI) ... ok
+test_measured_x_landmark_source_replay (__main__.MotifMasterCLI) ... ok
+test_repeated_policy_key_presence_refusals (__main__.MotifMasterCLI) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 14.032s
+
+OK
+{
+  "verdict": "PASS snapshot catalog custody",
+  "counts": {
+    "reviewedWorldNativeIdentities": 64,
+    "masterPackages": 56,
+    "enhancedTiers": 112,
+    "enhancedMaps": 560,
+    "enhancedTierBindings": 128,
+    "enhancedMapBindings": 640
+  },
+  "changedRegistrations": [
+    "e839a43cf82585d2393634074db6a19968c39436e12dd85201ec0074d92710dd",
+    "4461c8b9623bcc682a41c4358b0e486c00aa3f77cde9b2dfebcb2efceab6dfd5",
+    "0b8ec72958c3dcea8b609a9bee857b2be015f90dff46129c584dad2ef51ddf0a",
+    "73d1bef29871f25e3da731e707d7bd9e9062de9275b5fcbc3f8e38d9a3f41f8b",
+    "591fbcbbc7a7b501c8f7467ad10c983ddc17f4f580be036132847322c8a43b5a"
+  ],
+  "checkedFiles": 1366,
+  "externalHistoricalWitnesses": [
+    "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-a045f70a-4f9c-44b0-bc42-efdea32e9221.png",
+    "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-bf709840-122e-4503-adf3-ba156ec360fb.png",
+    "/Users/bri/.codex/generated_images/01a15859-54e7-7d10-a59b-a2b80d80bdfe/exec-9f4f67c3-d7b8-4f42-9210-b825fb9f1cc9.png",
+    "/Users/bri/.codex/generated_images/01a1585b-32f1-76d1-8965-d088532ee69f/exec-daffbbdd-dff8-4004-81dc-8b049faae12a.png",
+    "/Users/bri/.codex/generated_images/01a158fd-3a78-7050-8541-1049e7346311/exec-20ef0d47-1430-4330-a39e-fcb92164da67.png",
+    "/Users/bri/.codex/generated_images/01a158fd-3a78-7050-8541-1049e7346311/exec-741c8161-0d6c-4712-9e35-3aad97195344.png",
+    "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+    "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+    "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+    "/Users/bri/quaked/Hexen 2/portals/pak3.pak"
+  ],
+  "limits": "Sealed custody only; no new artwork/native/provider/runtime/release acceptance"
+}
+
+added 19 packages, and audited 20 packages in 1s
+
+5 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> quaked@0.132.5 pretest:distribution
+> npm run prepare:shareware
+
+
+> quaked@0.132.5 prepare:shareware
+> node tools/distribution/prepare-shareware.mjs
+
+Verified pinned shareware build input: /private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-A9oGqm/.distribution-cache/shareware.pak
+
+> quaked@0.132.5 test:distribution
+> node --test tests/*_contract_test.mjs
+
+✔ every relocated image has one canonical file with its original byte identity (5579.702583ms)
+✔ tools retain their code and records while authoring images stay under assets (21.91725ms)
+✔ retained fitting recipes still resolve their exact source image bytes (1487.905875ms)
+✔ neither distribution includes authoring images or retained source records (990.888041ms)
+✔ public HTTP image aliases, ranges and owned-game boundaries remain valid (2757.259958ms)
+✔ every live face has one canonical role and the current manifest is exhaustive (198.0695ms)
+✔ all runtime pixels fully decode with uniform spines and individually recorded front/back dimensions (5596.800833ms)
+✔ derivatives retain exact original custody and bounded source-panel provenance (2977.514209ms)
+✔ local face overrides, canonical names, missing faces and game authority survive normalization (1.81925ms)
+✔ the actual desktop collector ships all runtime faces and excludes all source originals (313.153375ms)
+✔ approved art-only folders remain discoverable when their local artwork has moved (1.337292ms)
+✔ the current manifest binds fifty-six standard WebP faces to nineteen approved games (198.027167ms)
+✔ historical receipts retain exact original custody through the standardization archive mapping (244.684ms)
+✔ the real desktop collector ships every active face while excluding source-only archives and inactive old image paths (267.075917ms)
+✔ artifact inventories enforce the original-game data boundary (0.747208ms)
+✔ web closure retains every Episode 1/hub normal and eligible custom enemy sample (538.78475ms)
+✔ desktop inventory includes all prepared map transports and no bundled original game (450.128834ms)
+✔ embedded binary codec preserves bytes across word boundaries and excludes HTML delimiters (173.207792ms)
+✔ corrupt encoded data and impossible lengths are rejected (0.255208ms)
+✔ departing peer queued sends cannot close host or prevent another peer receiving (14.509125ms)
+✔ asynchronous sends preserve peer FIFO and copy bytes before caller reuse (6.51125ms)
+✔ poll events completing after close cannot reach the driver or restart polling (9.347042ms)
+✔ late poll failure after close cannot emit fresh driver events (4.553667ms)
+✔ late send failure after close cannot manufacture another peer departure (1.221459ms)
+✔ rejected client handshake closes that client without ending an independent host (3.066666ms)
+✔ desktop catalogue validates selected split archives and preserves legacy default mounting policy (36.062292ms)
+✔ native strict selection refuses unread directories, damaged packs and absent shareware (0.574167ms)
+✔ native catalogue refuses a pack set beyond the existing bounded limit (3.715708ms)
+✔ dated candidate folders are absent; accepted selections point to official assets (2.149084ms)
+✔ every accepted binding and all five official map hashes survive candidate removal (705.052ms)
+✔ comparison references remain the exact original native game extractions (89.810625ms)
+✔ only the parts the release lacks are uploaded; core is bundled, never uploaded (0.81075ms)
+✔ a dist/packs that is not exactly the listed parts is refused (0.296917ms)
+✔ a release asset of a part's name but another size is refused, and so is passing the asset limit (1.386083ms)
+✔ the manifest is read from the built page, and a bundled build has nothing to upload (0.252709ms)
+✔ an asset a cancelled upload left incomplete is replaced, never taken as present; the result is confirmed afresh (0.184125ms)
+✔ a game needs its own pack and its ancestors; shared assets go to the nearest common ancestor (1.461542ms)
+✔ the committed game index is current and covers every playable game (10.5175ms)
+✔ each playable game finds all of its assets in its own packs (233.304708ms)
+✔ the shareware pack holds everything the HTML can start with (72.121541ms)
+✔ ordinary variant names and all companion images use their owning game packs (42.020291ms)
+✔ promotion plan selects an explicit qualified Dev ancestor without mutating anything (3.207292ms)
+✔ plan rejects abbreviated/uppercase/non-SHA selections and invalid repository before API access (1.376208ms)
+✔ plan rejects a non-Dev commit, non-fast-forward and wrong commit object (0.942458ms)
+✔ release source, numeric version and unused tag are mandatory (0.624667ms)
+✔ CI qualification binds commit, Dev branch, push event, workflow, repository and completed success (0.494417ms)
+✔ a pending/failed current Prod publication blocks a later selection; already-selected is explicit (0.61825ms)
+✔ CAS atomically sends exact non-forced Prod and new version-tag refs and verifies both readbacks (1.850042ms)
+✔ actual CLI defaults to a GET-only dry run and rejects applying from a Git checkout (313.684916ms)
+✔ standalone App CLI verifies fake RSA JWT, exact gate, fresh plan and CAS then revokes token (1166.667ms)
+✔ App apply rejects Actions, insecure/in-repository private files, symlink bypass and wrong controller identity (1174.797708ms)
+✔ App rejects a stale reviewed plan or any other bypass actor and revokes issued credentials (3830.946375ms)
+✔ actual production pre-commit and pre-push hooks prohibit direct Prod writes in disposable Git (1383.046791ms)
+✔ actual standalone CLI invoked through a symlink still executes and prints the reviewed dry-run plan (79.707125ms)
+✔ a rejected installation-token permission response is revoked without attempting promotion (157.730667ms)
+✔ App requires creation by only its dedicated identity and immutable no-bypass version-tag history (6554.667333ms)
+✔ operator policy reader rejects unconfigured paths before launch and requires a trusted executable before App auth (520.624875ms)
+✔ hidden actor lists and failed or invalid operator reads block CAS and revoke issued App credentials (8309.235208ms)
+✔ policy inspection never justifies granting Administration permission to the promotion App (295.192167ms)
+✔ verification events never become publication authority; native/package versions must agree (364.064542ms)
+✔ Prod requires an exact workflow SHA, existing branch FF lineage and Dev membership (286.670042ms)
+✔ artifact identity binds the tested HTML, exact commit/version and native ZIP/receipt bytes (191.168042ms)
+✔ another commit, version, tree-only provenance or escaping archive is refused (315.48ms)
+✔ existing released artifacts must match both the common identity and GitHub asset digests (241.349708ms)
+✔ Pages CLI rejects a self-consistent counterfeit pair against upstream artifact digests (985.714083ms)
+✔ publication creates a draft, verifies immutable assets, then publishes a shared identity (1528.718125ms)
+✔ partial upload stays draft; retry completes the same artifacts without replacement (2031.672583ms)
+✔ published retry keeps the original Mac build when the same source rebuild differs (2105.437291ms)
+✔ publisher cannot create a version tag outside the atomic App promotion (683.102792ms)
+✔ web stamping checks the exact browser-tested bytes and clean commit provenance (216.873625ms)
+✔ REST draft-by-tag404 resumes the unique existing empty draft by ID without creating another (1088.431209ms)
+✔ draft lookup searches later pages and rejects a duplicate matching tag on a later page (1736.471458ms)
+✔ ten full listing pages fail closed instead of assuming absence and creating a release (1041.133667ms)
+✔ non404 tag/list API failures and malformed listing never turn into create permission (5883.80175ms)
+✔ matching draft identity and creation responses must be explicit safe metadata (7619.2395ms)
+✔ every existing draft asset is validated before missing uploads; conflicts are never overwritten (4358.243125ms)
+✔ by-ID metadata changes before upload or before publish stop the admitted draft (3919.400417ms)
+✔ successful null primitive or empty by-tag replies never authorize listing or creation (4450.1495ms)
+✔ one canonical physical path resolves each retained logical resource identifier (1.613333ms)
+✔ source URL routing preserves base paths, queries, code and external URLs (1.017334ms)
+✔ both product inventories resolve uniquely to the same authored files (2164.935834ms)
+✔ staged snapshot includes only index bytes and deletions, preserving working files (173.287334ms)
+✔ staged builds and tests never inherit the hook's Git environment (1.338917ms)
+✔ pinned export survives concurrent index changes without reading private work (429.704958ms)
+✔ texture scope rejects foreign endpoints, deletions, symlinks and submodules (1289.408416ms)
+✔ bootstrap admits only exact reviewed changed controls at the exact base (330.508875ms)
+✔ Dev commands include real texture interfaces and HTML, with native commands retained only in full mode (5.22025ms)
+Staged dev-texture checks passed. Receipt: /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-gate-test-N69my6/dist/texture-checkpoints/148a4d526b56f9c0d440685254a6ac52c26f89ae/staged-receipt.json
+Commit blocked. Failed staged snapshot retained at /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-Qf17co
+Commit blocked. Failed staged snapshot retained at /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-cmEfqS
+✔ public Dev orchestration publishes truthful receipt and rejects moved index or failed checks (699.363791ms)
+✔ exclusive texture publication preserves existing directories and symlinks and copies only owned HTML (157.18325ms)
+fatal: path 'assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/catalog.json' does not exist in '94742cce31310bfd9910bd81fcfc2dee54c27af0'
+Commit blocked during setup; owned temporary snapshot removed
+✔ failed export and pre-command setup remove only their private temporary directories (328.91325ms)
+Commit blocked. Failed staged snapshot retained at /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-h2iAKf
+✔ default scope fails closed while explicitly authorized full Dev mode reaches only an injected runner (418.206458ms)
+✔ an unstaged executing gate cannot qualify a different staged control implementation (309.210542ms)
+✔ public custody CLI remaps canonical paths into snapshot and rejects changed or missing bytes (494.086542ms)
+✔ resampled files retain their historical 4x receipt or an explicitly verified native-refit successor (391.379458ms)
+✔ Armagon successor retains the actual before and after records rather than relabelling the old resample (2.634ms)
+▶ missing invalid or mismatched successors cannot bypass the historical file gate
+  ✔ no successor (2.034125ms)
+  ✔ empty successor (4.4435ms)
+  ✔ wrong predecessor (1.547375ms)
+  ✔ missing recipe (1.712625ms)
+  ✔ missing source record (2.91225ms)
+  ✔ different source record (1.043584ms)
+  ✔ wrong pinned model (3.27425ms)
+  ✔ wrong pinned source (75.623875ms)
+  ✔ recipe not 4x (31.85325ms)
+  ✔ record not 4x (9.33425ms)
+  ✔ missing height pin (8.387791ms)
+  ✔ wrong current height (50.8395ms)
+  ✔ wrong current dimensions despite matching hashes (35.091ms)
+✔ missing invalid or mismatched successors cannot bypass the historical file gate (231.570959ms)
+✔ nonsuperseded rows still enforce original file hashes and resample provenance (6.797791ms)
+▶ renamed Q92 successor requires explicit safe filename, real codec and current catalogue
+  ✔ undisclosed rename (4.343083ms)
+  ✔ path escape rename (3.207541ms)
+  ✔ wrong codec despite matching hashes (10.407334ms)
+  ✔ wrong catalogue rename (6.33375ms)
+  ✔ wrong catalogue identity (4.198875ms)
+  ✔ recipe Q92 intent missing (64.308792ms)
+  ✔ SOURCE Q92 intent wrong (140.947417ms)
+  ✔ runtime receipt hash wrong (19.62575ms)
+✔ renamed Q92 successor requires explicit safe filename, real codec and current catalogue (256.571375ms)
+✔ the web build ships the core and shareware packs and the shareware PAK; other games stay out of it (72.188917ms)
+✔ a site is published only with exactly the data files its HTML names, byte for byte (16.694375ms)
+✔ the verifier runs when reached through a symlink, so a CI path can never make it skip (113.369ms)
+✔ only Bestiary pictures are re-encoded; data maps and other assets keep their bytes (19.787958ms)
+✔ a Bestiary page becomes WebP at its own size, under the limit, at the highest quality that fits, and is cached (577.156209ms)
+✔ the web and desktop builds both derive Bestiary pages from the same PNG masters (1.662167ms)
+✔ a page that cannot fit without resizing stops the build for an owner decision (10293.90875ms)
+ℹ tests 126
+ℹ suites 0
+ℹ pass 126
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 39369.686791
+
+> quaked@0.132.5 prebuild:web
+> npm run prepare:shareware
+
+
+> quaked@0.132.5 prepare:shareware
+> node tools/distribution/prepare-shareware.mjs
+
+Verified pinned shareware build input: /private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-A9oGqm/.distribution-cache/shareware.pak
+
+> quaked@0.132.5 build:web
+> node tools/distribution/build.mjs web
+
+{"profile":"web","htmlBytes":5834367,"siteBytes":641999058,"dataFiles":{"core":301019968,"pak0":18689235,"shareware":316455488},"partBytes":8388608,"assets":2464,"output":"dist/web","buildPeakRssBytes":1466056704}
+{"files":77,"bytes":636164691}
+Staged dev-texture checks passed. Receipt: /Users/bri/SOURCE/Quaked/dist/texture-checkpoints/05c35d4c79f2d70607249fd810006af77580d812/staged-receipt.json
+[Dev 6de390fc] feat: add reviewed Hexen textures and HTML-only checkpoints
+ 648 files changed, 1396136 insertions(+), 117 deletions(-)
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/batch-registered-x.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-registered-x/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-registered-x/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-registered-x/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/review-registered-x/index.html
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/review-registered-x/rtex499-high-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/review-registered-x/rtex499-high-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/review-registered-x/rtex499-mid-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/review-registered-x/rtex499-mid-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/high-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/high-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/high-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/high-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/high-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/manifest.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/mid-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/mid-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/mid-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/mid-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499-registered-x/mid-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/batch.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/generated/rtex053.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/native-selection.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/originals/01-rtex053-0b8ec72958c3.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/originals/inspect-nearest.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/originals/native-contact.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/prompts/rtex053-material-v1.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/index.html
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-high-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-high-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-mid-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-mid-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/selection.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/manifest.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/batch.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/generated/rtex256.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/masters/rtex256/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/masters/rtex256/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/masters/rtex256/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/native-selection.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/01-rtex256-73d1bef29871.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/inspect-nearest.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/native-contact.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/native-coordinate-grid.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/native-repeat-nearest.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/source-face-joint-plan.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/prompts/rtex256-material-v1.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/review/index.html
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/review/rtex256-high-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/review/rtex256-high-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/review/rtex256-mid-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/review/rtex256-mid-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/selection.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/high-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/high-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/high-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/high-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/high-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/manifest.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/mid-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/mid-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/mid-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/mid-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/mid-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/generated/rtex441.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters-layered/rtex441/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters-layered/rtex441/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters-layered/rtex441/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters/rtex441/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters/rtex441/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters/rtex441/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/native-selection.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/originals/01-rtex441-48f8ee75fe94.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/originals/inspect-nearest.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/originals/native-contact.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/prompts/rtex441-material-v1.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/relief/rtex441-flat-slab-v1.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/selection.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/batch.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/generated/rtex388.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/masters/rtex388-v1/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/masters/rtex388-v1/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/masters/rtex388-v1/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/native-selection.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/originals/01-rtex388-ddf78c81cf51.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/originals/02-rtex080-baff63cee96d.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/originals/inspect-nearest.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/originals/native-contact.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/originals/native-coordinate-grid.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/originals/native-repeat-nearest.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/prompts/rtex388-material-v1.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/review/index.html
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/review/rtex388-high-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/review/rtex388-high-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/review/rtex388-mid-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/review/rtex388-mid-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/selection.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/high-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/high-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/high-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/high-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/high-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/manifest.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/mid-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/mid-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/mid-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/mid-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/mid-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/supplemental-rtex002-alias/originals/01-rtex002-591fbcbbc7a7.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/supplemental-rtex002-alias/originals/native-contact.png
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/cleanup.py
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/journal.json
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/metadata/8f0e96bc/desktop-bundle-metafile.json
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/metadata/8f0e96bc/desktop-inventory.json
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/metadata/8f0e96bc/staged-receipt.json
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/metadata/8f0e96bc/web-bundle-metafile.json
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/metadata/8f0e96bc/web-inventory.json
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/metadata/c00ca59a/desktop-bundle-metafile.json
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/metadata/c00ca59a/desktop-inventory.json
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/metadata/c00ca59a/staged-receipt.json
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/metadata/c00ca59a/web-bundle-metafile.json
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/metadata/c00ca59a/web-inventory.json
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/metadata/eb6fd702/desktop-bundle-metafile.json
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/metadata/eb6fd702/desktop-inventory.json
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/metadata/eb6fd702/staged-receipt.json
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/metadata/eb6fd702/web-bundle-metafile.json
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/metadata/eb6fd702/web-inventory.json
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/plan-v2.json
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/plan.json
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/post-check.json
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/quaked-texture-59-gate.log
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/quaked-texture-oct20-gate.log
+ create mode 100644 docs/hexen2/textures/build-cleanup-2026-10-20/result.json
+ create mode 100644 docs/hexen2/textures/checkpoint-63-preflight/GATE-PLAN.md
+ create mode 100644 docs/hexen2/textures/checkpoint-63-preflight/IMPLEMENTATION.md
+ create mode 100644 docs/hexen2/textures/checkpoint-63-preflight/README.md
+ create mode 100644 docs/hexen2/textures/checkpoint-63-preflight/check.py
+ create mode 100644 docs/hexen2/textures/checkpoint-63-preflight/implementation-tests.json
+ create mode 100644 docs/hexen2/textures/checkpoint-63-preflight/result.json
+ create mode 100644 docs/hexen2/textures/checkpoint-63-preflight/root-code-review-v2.json
+ create mode 100644 docs/hexen2/textures/checkpoint-63-preflight/root-code-review.json
+ create mode 100644 docs/hexen2/textures/checkpoint-63-preflight/root-current64-custody.json
+ create mode 100644 docs/hexen2/textures/checkpoint-63-preflight/root-prod-guard-final.log
+ create mode 100644 docs/hexen2/textures/checkpoint-63-preflight/root-prod-guard-v2.log
+ create mode 100644 docs/hexen2/textures/checkpoint-63-preflight/root-staged-tests-final.log
+ create mode 100644 docs/hexen2/textures/checkpoint-63-preflight/root-staged-tests-v2.log
+ create mode 100644 docs/hexen2/textures/checkpoint-eb6fd702-ci.json
+ create mode 100644 docs/hexen2/textures/checkpoint-eb6fd702-local.json
+ create mode 100644 docs/hexen2/textures/checkpoint-eb6fd702-staged-receipt.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/registration-102.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/registration-499-053-256.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/adapter-before-guard-metadata-fix.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/clipping-fixture-failure.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/implementation-state.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/initial-test-import-failure.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/maintained-tests-v4.log
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/metric-oracle-roundoff.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/test-before-clipping-fixture-fix.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/test-before-guard-metadata-regressions.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/test-before-metric-roundoff-fix.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/test-before-oracle-import-fix.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/QUALIFICATION.md
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/actual-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence-manifest.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/high-course3-old-HOLD-vs-successor.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/high-four-course-X-wraps.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/high-neutral-opposed-A-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/high-neutral-opposed-B-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/high-one-to-one.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/high-semantic-witnesses.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/high-two-by-two-overview.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/high-wraps-and-corner.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/mid-four-course-X-wraps.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/mid-neutral-opposed-A-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/mid-neutral-opposed-B-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/mid-one-to-one.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/mid-semantic-witnesses.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/mid-two-by-two-overview.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-evidence/mid-wraps-and-corner.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/art-review-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/build-art-evidence.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/final-custody-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/four-course-X-evidence.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/oracle-helpers.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/preview-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/source-witness-classification.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/verify-actual.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent-registered-x/verify-preview.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-code-review-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-code-review-v2.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-maintained-tests-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-maintained-tests-v2.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/adapter-source-v1.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/hostile-public-runner.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/incorrectly-published-fixture/color.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/incorrectly-published-fixture/height.npy
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/incorrectly-published-fixture/master.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/late-empty-process.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/late-symlink-process.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/original-after-replay-process.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/original-after.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/original-before.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/stage-write-failure-process.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/successor-x-master.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/successor-y-master.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/unsupported-process.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/adapter-source-v2.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/hostile-public-runner.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/late-empty-process.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/late-symlink-process.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/original-after-replay-process.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/stage-write-failure-process.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/successor-x-master.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/successor-y-master.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/unsupported-process.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-review-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-review-v2.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/check-adapter-public-v1.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/check-adapter-public-v2.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier-review.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/actual-fourway-corner-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/actual-fullheight-X-strip-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/neutral-A-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/neutral-B-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/report.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/textured-A-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/textured-B-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/QUALIFICATION.md
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/actual-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/actual-v2.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence-manifest.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-XYZ-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-XYZ-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-XYZ-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-bothBOX-distance.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-color-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-color-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-color-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-height-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-height-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-height-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-A-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-A-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-A-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-B-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-B-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-B-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-textured-light-A-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-textured-light-B-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/master-witness-labels-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-XYZ-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-XYZ-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-XYZ-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-bothBOX-distance.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-color-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-color-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-color-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-height-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-height-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-height-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-A-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-A-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-A-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-B-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-B-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-B-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-textured-light-A-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-textured-light-B-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/witness-crops-observations.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-review-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/build-art-evidence.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/final-custody-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/native-audit/inventory.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/oracle-helpers.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/preview-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/progress.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/seal-qualification.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/source-witness-classification.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/verifier-schema-failure-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/verify-actual-v1.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/verify-actual-v2.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/verify-preview-v1.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/README.md
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/audit-native.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/bind-candidate.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/candidate-corner-provenance.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/candidate-seams-corners.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/candidate-self-art-review.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/candidate-self-replay.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/check-pre-tier.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/handoff.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-decoded-full-repeat.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-literal-X-lower-course.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-literal-X-native-comparison.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-literal-Y-full-width.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/F-boundary-diagnostic-limit.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/F-wrapped-source-witness.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/QUALIFICATION.md
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/actual-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/additional-native-Y-and-alias-check.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence-manifest.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-XYZ-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-XYZ-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-XYZ-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-bothBOX-distance.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-color-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-color-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-color-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-height-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-height-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-height-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-A-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-A-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-A-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-B-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-B-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-B-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-textured-light-A-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-textured-light-B-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/master-witness-labels-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-XYZ-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-XYZ-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-XYZ-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-bothBOX-distance.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-color-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-color-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-color-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-height-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-height-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-height-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-A-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-A-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-A-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-B-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-B-repeat2x2-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-B-seams-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-textured-light-A-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-textured-light-B-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/witness-crops-observations.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-review-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/build-art-evidence.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/final-custody-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/fracture-comparison-provenance.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-role-sheets-provenance.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strip-proof-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-all-role-sheet-1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-all-role-sheet-2.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-XYZ-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-color-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-height-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-neutral-light--1-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-neutral-light-1-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-textured-light--1-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-textured-light-1-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-native-full-lower-comparison.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-all-role-sheet-1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-XYZ-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-color-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-height-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-neutral-light--1-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-neutral-light-1-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-textured-light--1-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-textured-light-1-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-native-full-width-comparison.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-all-role-sheet-1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-XYZ-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-color-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-height-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-neutral-light--1-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-neutral-light-1-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-textured-light--1-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-textured-light-1-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-native-full-lower-comparison.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-all-role-sheet-1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-XYZ-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-color-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-height-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-neutral-light--1-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-neutral-light-1-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-textured-light--1-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-textured-light-1-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-native-full-width-comparison.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/native-X-full-lower-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/native-Y-full-width-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/lower-left-partial-fracture-comparison.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/native-audit/inventory.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/oracle-helpers.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/preview-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/progress.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/seal-qualification.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/source-witness-classification.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/verify-actual-v1.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/verify-literal-strips.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/verify-preview-v1.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/inspect-candidate.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/inspect-literal-lower-strips.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/inspect-master.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/literal-strip-provenance.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/master-repeat.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-decoded-full-repeat.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-literal-X-lower-course.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-literal-X-native-comparison.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-literal-Y-full-width.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/native-audit/inventory.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/native-edge-values.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/native-master-literal-seam-comparison.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/native-proof.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/native-repeat.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/physical-witness-proposal.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/physical-witness-proposal.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/plan.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-art-review.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-distance.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-light-minus-repeat.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-light-plus-repeat.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-master-diagnostics.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-master-repeat.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-master.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-native-repeat.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-physical-witnesses.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-seams-corners-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-self-check.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/progress.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/retained-low-duplicate-screen.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/root-plan-review.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/verify-candidate-self.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/CANDIDATE_FREEZE.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/FINAL_HANDOFF.md
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/PLAN.md
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/art-self-review.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/audit-native.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/candidate-self-replay.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/XYZ-decoded-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/diffuse-XY-repeat-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/diffuse-corner-junction-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/diffuse-decoded-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/half-quarter-BOX.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/height-XY-repeat-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/height-corner-junction-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/height-decoded-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/materialLightA-decoded-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/materialLightB-decoded-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/neutralA-XY-repeat-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/neutralA-corner-junction-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/neutralA-decoded-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/high/neutralB-decoded-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/XYZ-decoded-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/diffuse-XY-repeat-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/diffuse-corner-junction-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/diffuse-decoded-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/half-quarter-BOX.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/height-XY-repeat-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/height-corner-junction-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/height-decoded-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/materialLightA-decoded-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/materialLightB-decoded-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/neutralA-XY-repeat-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/neutralA-corner-junction-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/neutralA-decoded-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/decoded-art/mid/neutralB-decoded-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/eligibility-and-retained-source-screen.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/QUALIFICATION.md
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/actual-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence-manifest.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/distance-both-tiers.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-diffuse-height.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-normal-lights.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-physical-witnesses.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-two-by-two.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-untextured-lights.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-wraps-corner.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-diffuse-height.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-normal-lights.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-physical-witnesses.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-two-by-two.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-untextured-lights.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-wraps-corner.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-review-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/build-art-evidence.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/final-custody-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/joint-phase-diagnostics.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/oracle-helpers.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/preview-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/record-qualification.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/source-witness-classification.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/verify-actual-v1.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/verify-preview-v1.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/intake-handoff.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/native-audit/inventory.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/native-proof.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/plan.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/actual-master-semantic-witnesses.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/author-material-semantic-review-v2.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/author-material-semantic-review.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/master-height-display.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/master-neutral-A.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/master-neutral-B.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/masterNeutralA-repeat-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/masterRGB-repeat-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/native-master-distance.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/pre-tier-review/native-repeat-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/retained-all-image-rgba-screen.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/root-plan-review.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/status.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/verify-candidate-self.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/audit-native.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/flat-slab-layering-proposal-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/flat-slab-physical-plan-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/independent-source-master/README.md
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/independent-source-master/source-master-proof-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/independent-source-master/source-master-proof-v2.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/independent-source-master/verify-v1-failed.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/independent-source-master/verify.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/initial-physical-witness-proposal.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/initial-relief-hold.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/inspect-initial-relief.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/inspect-master.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/native-audit/inventory.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/native-proof.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/plan.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/pre-tier-distance.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/pre-tier-master-diagnostics.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/pre-tier-master-repeat.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/pre-tier-master.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/pre-tier-native-repeat.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/progress.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/proposal-render-syntax-failure-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/propose-flat-slab-layering-before-syntax-fix.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/propose-flat-slab-layering.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/proposed-flat-slab-joint-mask.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/proposed-flat-slab-joint-overlay.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/proposed-flat-slab-joint-wrap-crops-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/retained-low-duplicate-screen.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/root-flat-slab-plan-review-v1.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/root-plan-review.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/CANDIDATE_FREEZE.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/FINAL_HANDOFF.md
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/PLAN.md
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/art-self-review.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/audit-native-alias.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/audit-usage-orientation.py
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/candidate-self-replay.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-XYZ-repeat-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-XYZ.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-allmaps-contact.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-diffuse-repeat-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-diffuse.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-distance-BOX32-16.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-height-repeat-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-height.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-neutralA-repeat-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-neutralA.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-neutralB-repeat-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-neutralB.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-XYZ-repeat-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-XYZ.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-allmaps-contact.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-diffuse-repeat-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-diffuse.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-distance-BOX32-16.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-height-repeat-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-height.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-neutralA-repeat-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-neutralA.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-neutralB-repeat-1to1.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-neutralB.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/provenance.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/eligibility-and-retained-source-screen.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/intake-handoff.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/native-and-peer-proof.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/native-audit/inventory.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/plan.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/actual-semantic-witnesses.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/author-material-semantic-review.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/master-coordinate-grid.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/master-height.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/master-neutral-A-repeat.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/master-neutral-A.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/master-neutral-B-repeat.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/master-neutral-B.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/masterRGB-repeat.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/physical-contact.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/witness-coordinate-contact.png
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/root-plan-review.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/status.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/usage-orientation.json
+ create mode 100644 docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/verify-candidate-self.py
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/README.md
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/actual-source-v1.json
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/art-reuse-v1.json
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/art-review-v1.json
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/final-custody-v1.json
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/final-custody-v2.json
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/high-corner.png
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/high-distance-2.png
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/high-distance-4.png
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/high-relief.png
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/high-repeat.png
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/high-xjoin.png
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/high-yjoin.png
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-corner.png
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-distance-2.png
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-distance-4.png
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-relief.png
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-repeat.png
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-xjoin.png
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-yjoin.png
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/preview-reuse-v1.json
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/technical-reuse-v1.json
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/independent/verify-reuse.py
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/native-audit/inventory.json
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/registration.json
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/source-proof.json
+ create mode 100644 docs/hexen2/textures/supplemental-rtex002-alias/verify-source.py
+ create mode 100644 docs/hexen2/textures/texture-skill-layered-boundary-forward-check/README.md
+ create mode 100644 docs/hexen2/textures/texture-skill-layered-boundary-forward-check/corner.png
+ create mode 100644 docs/hexen2/textures/texture-skill-layered-boundary-forward-check/opposed-lights.png
+ create mode 100644 docs/hexen2/textures/texture-skill-layered-boundary-forward-check/result.json
+ create mode 100644 docs/hexen2/textures/texture-skill-layered-boundary-forward-check/xjoin.png
+ create mode 100644 docs/hexen2/textures/texture-skill-layered-boundary-forward-check/yjoin.png
+ create mode 100644 tests/texture_layered_boundary_test.py
+ create mode 100644 tools/texture_sheets/check_texture_catalog_custody.py
+ create mode 100644 tools/texture_sheets/register_layered_texture_boundary.py

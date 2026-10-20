@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "scope": "Author diagnostic helper failures preserved; production tools/assets unaffected",
+  "failures": [
+    {
+      "source": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/check-layered-pre-tier-before-syntax-fix.py",
+        "sha256": "deceb2d1a5bfd7da4ed5d8fd3b1790f9667b0b395ab9ae9307f1e8b40f4ff546"
+      },
+      "error": "SyntaxError: missing whitespace in np.float32and predicate; helper stopped before execution/output.",
+      "correction": "Readable Python bool conjunction in current check-layered-pre-tier.py; same actual scalar/source checks reran PASS."
+    },
+    {
+      "source": "Earlier inline HTML check retained in session tool transcript",
+      "error": "SyntaxError: compact expectedand conjunction; no HTML check executed or output file created.",
+      "correction": "Persisted check-html-static.py reran actual static structure/bindings PASS."
+    }
+  ],
+  "currentChecks": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/check-layered-pre-tier.py",
+      "sha256": "e7008cf478bc6569318f6a5ac97500e1f6f7820e008c147268628ce8bf29890b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/layered-pre-tier-check.json",
+      "sha256": "0aa18dddd9650512e99c012bf879ac8065ede14eaafff7b5970e10d26b27db3e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/check-html-static.py",
+      "sha256": "234c1d6632d8488b7430c1689823317578501d2bab1c779eda6c0c92315e56c7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/html-static-contract.json",
+      "sha256": "035911b50be7293dc5847c14f43ef538b2385ac3387a6f5537fff067bd8f0be8"
+    }
+  ],
+  "acceptanceBoundary": "These are corrected author helper syntax failures, not asset failures, silent skips or relaxed criteria."
+}

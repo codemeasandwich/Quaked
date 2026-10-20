@@ -1,0 +1,23 @@
+{
+  "reviewedAt": "2026-10-20T17:23:28.040476+00:00",
+  "verdict": "PASS independent exact native/prompt snow-rock material plan",
+  "nativeIdentity": "3d7ed8a7e273c65f769cc6e87f06c7291c2d206e69ba0d05d7813c154819eb8e",
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/plan.json": "7873d69941efa826dc3ee618d922c2842039a45a49ee9e9a22783fa8de4ded21",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/PLAN.md": "54323fd6eb62a0f526b6346099c057ee3e9cd31e569dc676713b013632bcc252",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/intake-handoff.json": "6493b7c9b4c7de3839519e996778b82e427a95233bc8a7101aef4c7fb7055e10",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/prompts/ttex255-material-v1.txt": "8cca2868736a041f1f5c60b7fe10ab03fc206e382b95ff8d43bbb2496bea42af",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/originals/01-ttex255-3d7ed8a7e273.png": "871275ce09ae534743d49cfb0ae4f3dcc7fe48d46d0800100631c91bf7b879f3"
+  },
+  "actualNativeViewed": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/originals/01-ttex255-3d7ed8a7e273.png",
+  "exactPromptRead": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/prompts/ttex255-material-v1.txt",
+  "findings": [
+    "Actual native shows light compact snow/ice with irregular ochre/dark fractured rock groups and source-specific cropped edge clusters; proposed snow/rock interpretation is plausible.",
+    "Prompt names real surface cues: restrained compressed snow crust and crystalline structure, coherent fractured mineral facets/chips/pits. It forbids artificial grain, sparkling-dot fields, new tracks/objects or perimeter treatment.",
+    "Existing rock silhouettes, larger cluster positions and quiet cool/ochre palette must remain representative at BOX64/32; coarse colour fit cannot excuse displaced boulders.",
+    "Pale snow is not automatically highest geometry. Actual source-visible proud rock versus adjacent snow hierarchy must pass before tiers. Ordinary source/master proof and source-measured semantics are required if a guarded repair is needed.",
+    "A generic two-plane/shared-detail policy is only a proposed reuse candidate, not an approved terrain solution. Retain HOLD if it flattens rocks or creates plate-like snow/rock topology."
+  ],
+  "allowedNext": "One guarded built-in colour generation, adequate minimum1024 square, exact retention. Existing unqualified source/master preparation and actual material/physical review before tiers. No regeneration, separate tier source or full/native builds.",
+  "boundary": "Exact material plan only; no generated art, geometry, seam, tier, runtime or release acceptance."
+}

@@ -1,0 +1,15 @@
+# ttex262 frozen author candidate
+
+One reviewed built-in color call produced one retained 1254-square RGB source. The final same-RGB layered master supplies default Mid256 and High512 directly, with ten lossy WebP Q92/method6 maps. Initial raw, ordinary master/float and physical HOLD remain retained. No source regeneration, shared registration, Git or app/native build occurred.
+
+Current candidate: batch `f72119ae26fc9bc0830df7884261d9b261a220b0fa55e8aaabacd5935bc55a34`; layered package `7922b881e43844d27453869b2afb3203ac3b60ebaec08135ca19a949251baca7`; tier receipt `3b4f58bb788f960dd427931f9ef29551ab62c2aa9550d84133a77b227fba9047`. Canonical paths are in `handoff.json` and sealed by `CANDIDATE_FREEZE.json`.
+
+Author checks inspected actual source, neutral body/stain/contact hierarchy, decoded material/height/XYZ, neutral and textured opposed lights, native/replacement BOX32/16 and literal full X/Y/corner/repeat views at both tiers. Dark understated stone, two upper partial faces and one broad lower face remain recognizable. The initial broad stain basins/raised contact lips were corrected through the reviewed existing guarded same-RGB layered wrapper, backed by genuine independent source/master proof. Lower X is an explicit native-running-bond inference across faint/occluded photographic contact; mixed contact windows and non-calibrated subtle relief remain limitations.
+
+`candidate-self-replay.json` (`be761308ac33ba8b5d4c921938ab5daadd5b0a5a414e39668c7bd17141af6286`) records actual guarded master/tier/review CLI byte replay, maintained independent direct-tier/normal/Q92 oracles, all ten maps/manifest, HTML and all four complete JPEGs exact, including all 34 content/label panels. Its private replay was removed. `candidate-self-art-review.json` (`3b3544d4da8299c09bd59168a7d59e55ac9e1395f6e0d2b1af31f9431b02d9f3`) is author self-review, not independent qualification.
+
+The actual review is `assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/review/index.html`. Static HTML bindings and direct sheets were checked. The supported browser tool explicitly rejected the local file protocol; no live browser rendering or interaction PASS is claimed, and no server/alternate-browser workaround was attempted. `html-browser-observation.json` preserves that boundary.
+
+Root must independently qualify exact native/source/master/semantic float/math/codec/public preview and actual both-tier ART/custody before registration. Keep inferred lower X, mixed contacts, original HOLD and retained failures explicit. Frozen author replay scripts refuse overwrite; an independent review uses new owned evidence/private output paths. Later runtime/GPU/owner acceptance, checkpoint/CI and release remain separate.
+
+No further generation is needed or authorized by this handoff. No accepted-content peer was identified. Root owns registration and separately authorized retirement of superseded owned binary payloads after replay/preservation proof.

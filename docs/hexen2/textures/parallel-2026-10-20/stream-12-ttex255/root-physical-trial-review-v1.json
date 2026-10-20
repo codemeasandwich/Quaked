@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "root independent actual physical trial",
+  "reviewedAt": "2026-10-20T19:26:45.999628+00:00",
+  "verdict": "HOLD actual rock platforms are flat and sharply cut out",
+  "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v2/master.json",
+  "masterPackageSha256": "0ebac3a8487adcdcc49e17735bc77c73105db65fa000c28affb05a9ea8263087",
+  "actualImagesInspected": [
+    "pre-tier-review/physical-trial-v1/neutralA.png",
+    "pre-tier-review/physical-trial-v1/source-physical-features-1to1.png"
+  ],
+  "findings": [
+    "Rock/snow scalar ordering now follows intended material hierarchy; this alone does not qualify relief.",
+    "Large source-visible fractured rock masses have broad near-flat trial interiors and conspicuous sharp perimeter walls.",
+    "Source photographs show broken facets and partially buried irregular contacts; these are not convincingly represented in actual neutral relief.",
+    "The existing ordered two-plane np.where formula retains an interface jump even with increased facing blur; a larger bevel alone cannot make a continuous embedded surface."
+  ],
+  "nextAction": "Finish exact actual X/Y/corner failure characterization, then independent source-specific minimal continuous base/facet remedy plan. No parameter sweep, revised producer, additional source or tier authoring is approved.",
+  "tiersEncoded": 0,
+  "registration": false,
+  "goalBlocked": false
+}

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-20T17:52:18.796515+00:00",
+  "status": "HOLD_SOURCE_MASK; recipe is a concrete proposal for root review, NOT AUTHORED",
+  "recipe": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/relief/recipe-proposal-v1.json",
+    "sha256": "d7d6827a8ba1983c5a1e565fc32fa424e9210d30d0551d18d23083f0cd9c5484"
+  },
+  "independentSourceMasterProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/independent-source-master/source-master-proof-v1.json",
+    "sha256": "b5df3663628aab06857345947cbcb4675a00a820b825995487d90772b46eeba9"
+  },
+  "sourceGuide": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/rock-feature-guide-v1.json",
+    "sha256": "dca20838aefb0f0879818230d8a6f4cdce9adbb254f069b67e3fc6e5ee875d2d"
+  },
+  "complementDiagnostic": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/snow-complement-geometry-draft-v2.json",
+    "sha256": "2a74dfc8911e7fc2185307c87ab53a75d55f3ea60e76e6fd87ca9eddfba78faf"
+  },
+  "actualMaskView": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/rock-feature-guide-v1-overlay.png",
+    "sha256": "2158febae703ade62077f61bbbacf4b3d2621aa230baea62d3c71e5af32af8fb"
+  },
+  "existingPolicySchemaValidation": "PASS exact existing validate_layering; no compose/CLI correction invoked",
+  "geometricReuse": {
+    "lowerPolygons": 80,
+    "maxVertices": 18,
+    "nativeReference": [
+      128,
+      128
+    ],
+    "lowerSnowCoverage": 0.8045797348022461,
+    "manualRockComplementMeaning": "Source-visible rock footprints form upper facing; their vector complement provides lower snow polygons. Existing policy/mask unchanged.",
+    "firstComplementDiagnostic": "v1 had missing crossing events at overlapping rock edges; retained. v2 includes segment intersections, remaining away-edge raster differences at mostsqrt2 master pixels around rasterized interface."
+  },
+  "proposedPlanes": {
+    "snow": 0.55,
+    "rockBody": 0.8,
+    "rockInterfaceFloor": 0.7,
+    "photographicDetailAmplitude": 0.05,
+    "bevelSigmaMasterPixels": 2,
+    "meaning": "Source-directed artistic shallow hierarchy. Values are not measured geometry or material acceptance. Normal .3/.5 controls remain fixed.",
+    "boundedRangesOnly": {
+      "snow": [
+        0.5,
+        0.6
+      ],
+      "rockIncludingInterface": [
+        0.65,
+        0.85
+      ]
+    },
+    "detailConcern": "Initial rock patches have weaker scalar variation than snow. Reusing existing shared detail at .05 yields approximate rock local std .0065/.0182/.0120/.0112; these may read too smooth/plate-like. No claim that amplitude bounds solve physical material."
+  },
+  "physicalMaskIssues": [
+    "Draft manual outlines overshoot some cool snow contacts by1-2 native pixels; too wide relative to proposed2-master-pixel bevel. Must refine actual source boundary before canonical use.",
+    "Small snow caps sitting on rocks can remain on proud body, but snow-filled gaps between separate rocks must stay lower. Current coarse footprints do not resolve every such topology.",
+    "Opposite-edge material labels are not yet qualified. Wrapped lower polygons can affect outermost pixels; actual literal mask/RGB contacts require source review."
+  ],
+  "draftMaskEdgeMismatchFractions": {
+    "X": 0.2802734375,
+    "Y": 0.0107421875
+  },
+  "nextAction": "Root review exact proposal and source overlay. Refine actual contacts/caps and edge classification; then root approval for guarded successor/actual float/opposed diagnostics. If no faithful mask or convincing two-plane rock/snow detail possible, retain HOLD.",
+  "prohibited": "No correction CLI, new source, tiers, new producer, inverted-mask API, authored-policy change or shared/Git/build effects."
+}

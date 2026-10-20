@@ -1,0 +1,302 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20T19:39:34.344992+00:00",
+  "verdict": "HOLD_PHYSICAL_RELIEF; NO_TIERS",
+  "rootActualFinding": "Root inspected actual neutralA and source-feature contact and confirmed sharp walls/flat platforms/weak broken facets.",
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v2/master.json",
+    "sha256": "0ebac3a8487adcdcc49e17735bc77c73105db65fa000c28affb05a9ea8263087"
+  },
+  "recipe": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/relief/recipe-proposal-v4.json",
+    "sha256": "69088c7353a5a7c2d50a76d8b95f6a5f189e2c3ff79ee3f2704172000b4e02a2"
+  },
+  "approvedTrial": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/root-refined-mask-plan-review-v1.json",
+    "sha256": "e48d49521fb34ff4ffb98e35ff53481c4b9fbbdff55282106ee1cffbeb805b7f"
+  },
+  "bindingAudit": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/approved-trial-bindings-v1.json",
+    "sha256": "290f7d764404c5012e5d79988943f01edf8569e44875cf67c74f0c9ce4bc136a"
+  },
+  "actualCLIReplay": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-trial-v1/actual-CLI-replay.json",
+    "sha256": "0fa601c7f8e42c64ed0c427d7429113fc591e64c08724c24eedd9fc45ebfeca1"
+  },
+  "RGBExactToInitial": true,
+  "physicalHierarchy": "Four source-visible rock body medians now~.752-.772 exceed nearby snow~.563-.587. Pale pockets2-4 remain upper; pocket1classified core is low. Mathematical hierarchy passes, physical ART fails.",
+  "physicalWitnesses": [
+    {
+      "label": "upperLeftRock",
+      "exposedRockBody": {
+        "boxMasterPixels": [
+          186,
+          61,
+          222,
+          86
+        ],
+        "median": 0.7549259662628174,
+        "mean": 0.7567457556724548,
+        "std": 0.007114540319889784,
+        "range": [
+          0.7082085013389587,
+          0.7821989059448242
+        ],
+        "initialMedian": 0.049259766936302185,
+        "initialStd": 0.06541165709495544
+      },
+      "adjacentSnow": {
+        "boxMasterPixels": [
+          106,
+          42,
+          140,
+          68
+        ],
+        "median": 0.5778211355209351,
+        "mean": 0.5680345892906189,
+        "std": 0.02284364029765129,
+        "range": [
+          0.5073230862617493,
+          0.6945018768310547
+        ],
+        "initialMedian": 0.7771005630493164,
+        "initialStd": 0.22077204287052155
+      },
+      "rockMedianAboveSnow": true
+    },
+    {
+      "label": "centralRock",
+      "exposedRockBody": {
+        "boxMasterPixels": [
+          566,
+          383,
+          604,
+          413
+        ],
+        "median": 0.7718006372451782,
+        "mean": 0.7758865356445312,
+        "std": 0.018641812726855278,
+        "range": [
+          0.7081751227378845,
+          0.8198773264884949
+        ],
+        "initialMedian": 0.21800650656223297,
+        "initialStd": 0.18199346959590912
+      },
+      "adjacentSnow": {
+        "boxMasterPixels": [
+          562,
+          454,
+          600,
+          484
+        ],
+        "median": 0.5874327421188354,
+        "mean": 0.5811744332313538,
+        "std": 0.017901774495840073,
+        "range": [
+          0.5104125738143921,
+          0.5962795615196228
+        ],
+        "initialMedian": 0.8743278980255127,
+        "initialStd": 0.17901773750782013
+      },
+      "rockMedianAboveSnow": true
+    },
+    {
+      "label": "leftRock",
+      "exposedRockBody": {
+        "boxMasterPixels": [
+          119,
+          375,
+          153,
+          406
+        ],
+        "median": 0.7559316754341125,
+        "mean": 0.7595733404159546,
+        "std": 0.011979684233665466,
+        "range": [
+          0.7502805590629578,
+          0.8223416805267334
+        ],
+        "initialMedian": 0.05931690335273743,
+        "initialStd": 0.11979683488607407
+      },
+      "adjacentSnow": {
+        "boxMasterPixels": [
+          240,
+          407,
+          274,
+          439
+        ],
+        "median": 0.5625073909759521,
+        "mean": 0.5617172718048096,
+        "std": 0.012594969943165779,
+        "range": [
+          0.5265777707099915,
+          0.5871877074241638
+        ],
+        "initialMedian": 0.6250739097595215,
+        "initialStd": 0.1259496957063675
+      },
+      "rockMedianAboveSnow": true
+    },
+    {
+      "label": "lowerRightRock",
+      "exposedRockBody": {
+        "boxMasterPixels": [
+          791,
+          755,
+          825,
+          785
+        ],
+        "median": 0.7521858811378479,
+        "mean": 0.7561787962913513,
+        "std": 0.011231605894863605,
+        "range": [
+          0.7503021955490112,
+          0.8213729858398438
+        ],
+        "initialMedian": 0.021858857944607735,
+        "initialStd": 0.11231604963541031
+      },
+      "adjacentSnow": {
+        "boxMasterPixels": [
+          625,
+          783,
+          660,
+          816
+        ],
+        "median": 0.5691031813621521,
+        "mean": 0.5661276578903198,
+        "std": 0.011608099564909935,
+        "range": [
+          0.5302011966705322,
+          0.5879789590835571
+        ],
+        "initialMedian": 0.691031813621521,
+        "initialStd": 0.11608099192380905
+      },
+      "rockMedianAboveSnow": true
+    }
+  ],
+  "pocketRoleSubsetSamples": [
+    {
+      "id": 1,
+      "sourceRolePixels": 1945,
+      "wholeRoleMedian": 0.5723288655281067,
+      "wholeRoleRange": [
+        0.5029638409614563,
+        0.7233974933624268
+      ],
+      "eroded3MasterPixelCoreCount": 1256,
+      "coreMedian": 0.5819660425186157,
+      "coreRange": [
+        0.5101683139801025,
+        0.5965836048126221
+      ],
+      "meaning": "Exact source pocket subset; earlier bounding-box sample retained separately includes surrounding rock. No reclassification."
+    },
+    {
+      "id": 2,
+      "sourceRolePixels": 770,
+      "wholeRoleMedian": 0.8133739233016968,
+      "wholeRoleRange": [
+        0.7510936260223389,
+        0.847504734992981
+      ],
+      "eroded3MasterPixelCoreCount": 496,
+      "coreMedian": 0.8301830887794495,
+      "coreRange": [
+        0.7565659284591675,
+        0.847504734992981
+      ],
+      "meaning": "Exact source pocket subset; earlier bounding-box sample retained separately includes surrounding rock. No reclassification."
+    },
+    {
+      "id": 3,
+      "sourceRolePixels": 37,
+      "wholeRoleMedian": 0.7580116391181946,
+      "wholeRoleRange": [
+        0.747909426689148,
+        0.7616627812385559
+      ],
+      "eroded3MasterPixelCoreCount": 0,
+      "coreMedian": null,
+      "coreRange": null,
+      "meaning": "Exact source pocket subset; earlier bounding-box sample retained separately includes surrounding rock. No reclassification."
+    },
+    {
+      "id": 4,
+      "sourceRolePixels": 40,
+      "wholeRoleMedian": 0.7508337497711182,
+      "wholeRoleRange": [
+        0.7503865361213684,
+        0.7521435022354126
+      ],
+      "eroded3MasterPixelCoreCount": 0,
+      "coreMedian": null,
+      "coreRange": null,
+      "meaning": "Exact source pocket subset; earlier bounding-box sample retained separately includes surrounding rock. No reclassification."
+    }
+  ],
+  "actualARTFailure": [
+    "Source-visible broken mineral facets become broad smooth platforms extruded from simplified silhouettes.",
+    "Sharp polygonal rock/snow walls and strong continuous perimeter outlines dominate neutral relief.",
+    "Source black patches/fissures are not independently classified into face slope versus open crack; current shared colour-derived detail neither recovers broad facets nor establishes their physical depth."
+  ],
+  "literalJoinFinding": "Viewed entire neutralA X strip, neutralB Y strip and scalar/XYZ/both-neutral corner contacts at1:1. Cookie-cutter walls persist through repeats; clipped platform boundaries include straight cuts at joins. No source-edge score is used as rejection. Exact corrected-tile acceptance is not claimed.",
+  "mechanism": {
+    "hardSelection": "height=np.where(mask>.5,lower,facing)",
+    "nonzeroSeparation": "With .55lower/.70floor/.05micro, even edge-facing minimum.65 exceeds lower maximum.60. At identical local detail an edge step around.15 remains; growing blur cannot make this selection continuous.",
+    "facetDetail": "height += (detail-.5)*.1; sampled rock std only~.007-.019. Larger micro or lower total amplitude is not an approved physical repair.",
+    "missingCapability": "Source-authored continuous embedded-rock base plus physically guided intra-rock facet variation, separate from colour/staining and fine photographic detail."
+  },
+  "retainedViews": {
+    "scalar.png": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-trial-v1/scalar.png",
+      "sha256": "b5c2a21be79d40099b713f405e398c159f2dd70b3dc2e76edd5c908c0faba36a"
+    },
+    "XYZ.png": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-trial-v1/XYZ.png",
+      "sha256": "5a3188b0a3d77c985f41b15ab42d32909a3531788a1ea9add95a77f2f10d419c"
+    },
+    "neutralA.png": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-trial-v1/neutralA.png",
+      "sha256": "a5c42d0b5eee985e88859b29906ec0402bdb0b476edc0fc1f8e968ded9b289ae"
+    },
+    "neutralB.png": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-trial-v1/neutralB.png",
+      "sha256": "866b982a7540c140934293db9db0a085780df9bc1636becbab3c259af69e1f5e"
+    },
+    "source-physical-features-1to1.png": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-trial-v1/source-physical-features-1to1.png",
+      "sha256": "11310e939ca8fac282f7d970b361dcddb3518a55b84b40eee465e59b44cf12f5"
+    },
+    "neutralA-Xjoin-1to1.png": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-trial-v1/neutralA-Xjoin-1to1.png",
+      "sha256": "a28f9e4b7bb4f09c01387b211429c9245d1703732738243e27f3d146f67d3c02"
+    },
+    "neutralB-Yjoin-1to1.png": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-trial-v1/neutralB-Yjoin-1to1.png",
+      "sha256": "b897f17877a3e1365854e2ba04dd5bca4865a3b5574803560a0ede19e00d95d5"
+    },
+    "scalar-corner-1to1.png": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-trial-v1/scalar-corner-1to1.png",
+      "sha256": "02156291b79b1f5332cfc7f7f83e009d8db92f35919c01f1eb27553f34db32f9"
+    },
+    "XYZ-corner-1to1.png": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-trial-v1/XYZ-corner-1to1.png",
+      "sha256": "5371076baf1db62224f2aefcf233c2e082a57ecf57c4fece23361bca81a209ce"
+    },
+    "neutralA-corner-1to1.png": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-trial-v1/neutralA-corner-1to1.png",
+      "sha256": "90f5b9cbf9a09c55c48d5d5a643d04f00cb7745a32d47db339ebc44eb15ddc83"
+    },
+    "neutralB-corner-1to1.png": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-trial-v1/neutralB-corner-1to1.png",
+      "sha256": "227d65b9ac7b93bf09076c31825d1043726246f08efdec6f8ea57da5c8fe0e1a"
+    }
+  },
+  "nextAction": "Draft smallest source-bound wrapper proposal, actual source facet/contact controls and falsification tests for independent root review. No implementation, blind sweep, producer edit or new source.",
+  "tiersEncoded": 0
+}

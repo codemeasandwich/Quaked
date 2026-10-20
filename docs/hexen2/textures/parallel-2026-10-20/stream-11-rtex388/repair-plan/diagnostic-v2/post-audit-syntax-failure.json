@@ -1,0 +1,8 @@
+{
+  "state": "Planning diagnostic post-audit parse failure, no execution",
+  "cause": "Missing spaces in conditional else0/else4 tokens. No source, result, path or DP state changed.",
+  "failedSourceSha256": "cf73d6e65f62116cc2734f28b0efa5714f095f96e3f7acb4179398415fddef49",
+  "failedSource": "audit_actual_and_focus-before-syntax-fix.py",
+  "actualResultSha256Still": "c73841bfaa46f963cff1afce06e877baabbd8656eba96cabd2d142f7ca70877e",
+  "newLatticeStates": 0
+}

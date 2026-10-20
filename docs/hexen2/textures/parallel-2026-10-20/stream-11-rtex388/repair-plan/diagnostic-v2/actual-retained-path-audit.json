@@ -1,0 +1,140 @@
+{
+  "verdict": "PASS actual retained lookup/cost/source-crop audit, NOT ART or ownership-atlas acceptance",
+  "retainedPaths": 84,
+  "retainedNodeLookups": 8448,
+  "costReplayTolerance": 1e-14,
+  "maximumIndependentCostDifference": 5.551115123125783e-17,
+  "unmarkedSourcePairsPixelExact": 24,
+  "all48OutputHashesExact": true,
+  "sourceAndAllFirstWatchedInputsUnchanged": true,
+  "newLatticeStateEvaluations": 0,
+  "actualRunStatesStill844800": true,
+  "focusWindows": [
+    {
+      "grid": "X+",
+      "retainedPathNodeIndex": 347,
+      "node": [
+        28,
+        395,
+        28,
+        395,
+        412,
+        395,
+        0.28296104575163394
+      ],
+      "sourceBoxes": [
+        [
+          16,
+          371,
+          47,
+          420
+        ],
+        [
+          400,
+          371,
+          431,
+          420
+        ]
+      ],
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/focus-C2-Xplus.png",
+      "sha256": "9e449e5dcd8d9865f53e0c43923dbf1ea10c75d2bff336edaf581926741da7e0"
+    },
+    {
+      "grid": "X-",
+      "retainedPathNodeIndex": 341,
+      "node": [
+        474,
+        389,
+        474,
+        389,
+        346,
+        389,
+        0.2862557516339869
+      ],
+      "sourceBoxes": [
+        [
+          460,
+          365,
+          493,
+          414
+        ],
+        [
+          332,
+          365,
+          365,
+          414
+        ]
+      ],
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/focus-C2-Xminus.png",
+      "sha256": "dd4a174af04ff1f904d52a092956ebd64cdc6ecf7b9161f2410605d532073ffe"
+    },
+    {
+      "grid": "Y+",
+      "retainedPathNodeIndex": 13,
+      "node": [
+        61,
+        39,
+        61,
+        39,
+        61,
+        167,
+        0.37151882352941173
+      ],
+      "sourceBoxes": [
+        [
+          37,
+          26,
+          86,
+          60
+        ],
+        [
+          37,
+          154,
+          86,
+          188
+        ]
+      ],
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/focus-C2-Yplus.png",
+      "sha256": "db84373716e3952fdb5e450d7678f75a08bc31ad4ee05b83951c5f5878ba87e9"
+    },
+    {
+      "grid": "Y-",
+      "retainedPathNodeIndex": 391,
+      "node": [
+        439,
+        469,
+        439,
+        469,
+        439,
+        85,
+        0.3426067973856209
+      ],
+      "sourceBoxes": [
+        [
+          415,
+          455,
+          464,
+          485
+        ],
+        [
+          415,
+          71,
+          464,
+          101
+        ]
+      ],
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/focus-C2-Yminus.png",
+      "sha256": "b0712f635f59937e4785feae7b391fa936be4ef2edbb88085843a534b4c4c55d"
+    }
+  ],
+  "coordinateBoundaryLimit": "Closed cut-node grids include boundary coordinate48; source probes/neighbourhood/context can extend beyond the half-open future copy rectangle. These are read-only cost samples, never changed-pixel/ownership assertions. Clarify final pixel-edge ownership before any compositor.",
+  "remainingRequiredFinding": "F1 and all parent/X/Y/corner junctions remain HOLD. Curved low-error paths can still cross coherent blade bodies. No score or suggestion closes natural-material acceptance.",
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/audit_actual_and_focus.py": "ff470602a4534e3f173eff60036bba18acd208b7d8dec79367c960a14f3a75ab",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/runs/actual-v1/result.json": "c73841bfaa46f963cff1afce06e877baabbd8656eba96cabd2d142f7ca70877e",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/source_path_diagnostic.py": "7c86892020be694258bb0613bae80675bef6b27889c5603c849a7ca6f62ca485",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/fixture-report-v2.json": "4bad94a2ec0820f9234ee7a6ce77ee649988209adf4ce1c57a106826e13bafb8",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/masters/rtex388-v1/color.png": "2faa2ec6b26ba7e0700b18101bb5c1a64a865541274562f8ebc895e7aced90ea"
+  },
+  "recordedAt": "2026-10-20T19:02:05.127296+00:00"
+}

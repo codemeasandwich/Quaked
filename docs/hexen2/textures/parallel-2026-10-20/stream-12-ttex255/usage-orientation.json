@@ -1,0 +1,5979 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS compiled local usage-orientation observations; material interpretation remains uncertain",
+  "rule": "Plane normal times(-1 if face.side else1), normalized. Up/down horizontal at +/-Z within1e-6, vertical abs(z)<=1e-6, otherwise sign-separated sloped.",
+  "reusedContract": "docs/hexen2/textures/batch-007-public-verify-source-usage-v2.py",
+  "sourceProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/native-proof.json",
+    "sha256": "c6c8204a5747f86af7ad32232b646fe396f81667013e78f0d4f2197407276eaf"
+  },
+  "variants": [
+    {
+      "nativeIdentity": "3d7ed8a7e273c65f769cc6e87f06c7291c2d206e69ba0d05d7813c154819eb8e",
+      "name": "ttex255",
+      "uniqueBSPContentSlots": 2,
+      "totalUniqueContentFaceRecords": 538,
+      "orientationCounts": {
+        "upwardSloped": 319,
+        "vertical": 70,
+        "upwardHorizontal": 44,
+        "downwardSloped": 100,
+        "downwardHorizontal": 5
+      },
+      "maps": [
+        {
+          "map": "maps/tibet1.bsp",
+          "bspSha256": "b5f6683c91e3fa8afb77bb6d12d336d617907562d958d93247bcd0fe1ee76ea5",
+          "slot": 48,
+          "path": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "counts": {
+            "upwardSloped": 143,
+            "vertical": 3,
+            "upwardHorizontal": 39
+          },
+          "faces": [
+            {
+              "face": 1577,
+              "plane": 436,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.18428853145141436,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 1578,
+              "plane": 436,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.18428853145141436,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 1579,
+              "plane": 436,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.18428853145141436,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 1606,
+              "plane": 440,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 1615,
+              "plane": 442,
+              "side": 0,
+              "effectiveNormal": [
+                0.24253562503633297,
+                0.0,
+                0.9701425001453319
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 1616,
+              "plane": 442,
+              "side": 0,
+              "effectiveNormal": [
+                0.24253562503633297,
+                0.0,
+                0.9701425001453319
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 1617,
+              "plane": 442,
+              "side": 0,
+              "effectiveNormal": [
+                0.24253562503633297,
+                0.0,
+                0.9701425001453319
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 1618,
+              "plane": 442,
+              "side": 0,
+              "effectiveNormal": [
+                0.24253562503633297,
+                0.0,
+                0.9701425001453319
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 1619,
+              "plane": 442,
+              "side": 0,
+              "effectiveNormal": [
+                0.24253562503633297,
+                0.0,
+                0.9701425001453319
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 1991,
+              "plane": 509,
+              "side": 0,
+              "effectiveNormal": [
+                -0.18428853145141436,
+                0.0,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 1992,
+              "plane": 509,
+              "side": 0,
+              "effectiveNormal": [
+                -0.18428853145141436,
+                0.0,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2036,
+              "plane": 509,
+              "side": 0,
+              "effectiveNormal": [
+                -0.18428853145141436,
+                0.0,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2037,
+              "plane": 509,
+              "side": 0,
+              "effectiveNormal": [
+                -0.18428853145141436,
+                0.0,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2041,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2042,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2043,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2044,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2045,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2046,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2047,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2048,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2049,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2050,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2051,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2052,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2053,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2054,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2055,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2056,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2057,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2058,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2059,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2060,
+              "plane": 84,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2087,
+              "plane": 528,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.18428853145141436,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2089,
+              "plane": 529,
+              "side": 0,
+              "effectiveNormal": [
+                0.1812366245184899,
+                -0.1812366245184899,
+                0.9665953506334943
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2134,
+              "plane": 529,
+              "side": 0,
+              "effectiveNormal": [
+                0.1812366245184899,
+                -0.1812366245184899,
+                0.9665953506334943
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2135,
+              "plane": 529,
+              "side": 0,
+              "effectiveNormal": [
+                0.1812366245184899,
+                -0.1812366245184899,
+                0.9665953506334943
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2136,
+              "plane": 529,
+              "side": 0,
+              "effectiveNormal": [
+                0.1812366245184899,
+                -0.1812366245184899,
+                0.9665953506334943
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2137,
+              "plane": 529,
+              "side": 0,
+              "effectiveNormal": [
+                0.1812366245184899,
+                -0.1812366245184899,
+                0.9665953506334943
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2148,
+              "plane": 528,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.18428853145141436,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2149,
+              "plane": 546,
+              "side": 0,
+              "effectiveNormal": [
+                0.34583426329595407,
+                -0.17291713164797703,
+                0.9222246623861133
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4157,
+              "plane": 546,
+              "side": 0,
+              "effectiveNormal": [
+                0.34583426329595407,
+                -0.17291713164797703,
+                0.9222246623861133
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5570,
+              "plane": 745,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5595,
+              "plane": 745,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5596,
+              "plane": 745,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5608,
+              "plane": 20,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5645,
+              "plane": 1140,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5648,
+              "plane": 20,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5657,
+              "plane": 1141,
+              "side": 1,
+              "effectiveNormal": [
+                -0.447213595499958,
+                -0.894427190999916,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5659,
+              "plane": 745,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5660,
+              "plane": 745,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5673,
+              "plane": 20,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5770,
+              "plane": 20,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5936,
+              "plane": 1260,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5947,
+              "plane": 1264,
+              "side": 0,
+              "effectiveNormal": [
+                0.24253562503633297,
+                -0.0,
+                0.9701425001453319
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5957,
+              "plane": 1264,
+              "side": 0,
+              "effectiveNormal": [
+                0.24253562503633297,
+                -0.0,
+                0.9701425001453319
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5963,
+              "plane": 1269,
+              "side": 0,
+              "effectiveNormal": [
+                0.35112344812040747,
+                -0.0,
+                0.9363291751195385
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5972,
+              "plane": 1271,
+              "side": 0,
+              "effectiveNormal": [
+                0.29827498974208805,
+                -0.0,
+                0.9544799790956106
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5978,
+              "plane": 62,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5979,
+              "plane": 1274,
+              "side": 0,
+              "effectiveNormal": [
+                0.18428853145141436,
+                -0.0,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5980,
+              "plane": 62,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5985,
+              "plane": 1264,
+              "side": 0,
+              "effectiveNormal": [
+                0.24253562503633297,
+                -0.0,
+                0.9701425001453319
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6027,
+              "plane": 1277,
+              "side": 0,
+              "effectiveNormal": [
+                0.23210354152512508,
+                -0.29012942318111606,
+                0.9284141661005003
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6028,
+              "plane": 1278,
+              "side": 0,
+              "effectiveNormal": [
+                0.11846977555181847,
+                -0.2961744388795462,
+                0.9477582044145477
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6092,
+              "plane": 1298,
+              "side": 0,
+              "effectiveNormal": [
+                -0.18428853145141436,
+                0.0,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6243,
+              "plane": 1328,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.4902612311428765,
+                0.8715755418999955
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6244,
+              "plane": 1329,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.447213595499958,
+                0.894427190999916
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6245,
+              "plane": 1330,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 6277,
+              "plane": 1337,
+              "side": 0,
+              "effectiveNormal": [
+                0.21289851892477235,
+                -0.47902166013015735,
+                0.8515940756990894
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6278,
+              "plane": 1338,
+              "side": 0,
+              "effectiveNormal": [
+                0.24253562503633297,
+                0.0,
+                0.9701425001453319
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6279,
+              "plane": 1339,
+              "side": 0,
+              "effectiveNormal": [
+                0.21821789023599236,
+                -0.4364357804719847,
+                0.8728715609439694
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6280,
+              "plane": 1340,
+              "side": 0,
+              "effectiveNormal": [
+                0.2407717061715384,
+                -0.1203858530857692,
+                0.9630868246861536
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6301,
+              "plane": 1351,
+              "side": 0,
+              "effectiveNormal": [
+                -0.12403473458920845,
+                0.0,
+                0.9922778767136676
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6310,
+              "plane": 1356,
+              "side": 0,
+              "effectiveNormal": [
+                -0.12309149097933274,
+                -0.12309149097933274,
+                0.9847319278346619
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6313,
+              "plane": 1357,
+              "side": 0,
+              "effectiveNormal": [
+                0.06237828615518054,
+                0.0,
+                0.9980525784828886
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6314,
+              "plane": 1340,
+              "side": 0,
+              "effectiveNormal": [
+                0.2407717061715384,
+                -0.1203858530857692,
+                0.9630868246861536
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6315,
+              "plane": 1338,
+              "side": 0,
+              "effectiveNormal": [
+                0.24253562503633297,
+                0.0,
+                0.9701425001453319
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6316,
+              "plane": 1358,
+              "side": 0,
+              "effectiveNormal": [
+                0.061898446059017294,
+                -0.12379689211803459,
+                0.9903751369442767
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6319,
+              "plane": 1340,
+              "side": 0,
+              "effectiveNormal": [
+                0.2407717061715384,
+                -0.1203858530857692,
+                0.9630868246861536
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6337,
+              "plane": 1363,
+              "side": 0,
+              "effectiveNormal": [
+                0.12309149097933274,
+                -0.12309149097933274,
+                0.9847319278346619
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6338,
+              "plane": 1364,
+              "side": 0,
+              "effectiveNormal": [
+                0.12403473458920845,
+                -0.0,
+                0.9922778767136676
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6339,
+              "plane": 1340,
+              "side": 0,
+              "effectiveNormal": [
+                0.2407717061715384,
+                -0.1203858530857692,
+                0.9630868246861536
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6340,
+              "plane": 1365,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.12403473458920845,
+                0.9922778767136676
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6341,
+              "plane": 1364,
+              "side": 0,
+              "effectiveNormal": [
+                0.12403473458920845,
+                -0.0,
+                0.9922778767136676
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6342,
+              "plane": 1366,
+              "side": 0,
+              "effectiveNormal": [
+                0.24253562503633297,
+                0.0,
+                0.9701425001453319
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6343,
+              "plane": 1367,
+              "side": 0,
+              "effectiveNormal": [
+                0.5234239123839388,
+                0.1570271707349494,
+                0.8374782836561601
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6360,
+              "plane": 1375,
+              "side": 0,
+              "effectiveNormal": [
+                0.48795003079763366,
+                -0.3903600305985715,
+                0.780720061197143
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6361,
+              "plane": 1376,
+              "side": 0,
+              "effectiveNormal": [
+                0.2407717061715384,
+                -0.1203858530857692,
+                0.9630868246861536
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6362,
+              "plane": 1376,
+              "side": 0,
+              "effectiveNormal": [
+                0.2407717061715384,
+                -0.1203858530857692,
+                0.9630868246861536
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6363,
+              "plane": 1363,
+              "side": 0,
+              "effectiveNormal": [
+                0.12309149097933274,
+                -0.12309149097933274,
+                0.9847319278346619
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6384,
+              "plane": 1378,
+              "side": 0,
+              "effectiveNormal": [
+                -0.1812366245184899,
+                0.1812366245184899,
+                0.9665953506334943
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6385,
+              "plane": 1378,
+              "side": 0,
+              "effectiveNormal": [
+                -0.1812366245184899,
+                0.1812366245184899,
+                0.9665953506334943
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6398,
+              "plane": 1381,
+              "side": 0,
+              "effectiveNormal": [
+                0.2386199943496703,
+                0.17896499948754296,
+                0.9544799773986812
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6399,
+              "plane": 1382,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.18428853145141436,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6403,
+              "plane": 1384,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.18428853145141436,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6416,
+              "plane": 1388,
+              "side": 0,
+              "effectiveNormal": [
+                0.1812366245184899,
+                0.1812366245184899,
+                0.9665953506334943
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6569,
+              "plane": 1433,
+              "side": 0,
+              "effectiveNormal": [
+                0.2407717061715384,
+                0.1203858530857692,
+                0.9630868246861536
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6570,
+              "plane": 1434,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.12403473458920845,
+                0.9922778767136676
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6571,
+              "plane": 1435,
+              "side": 0,
+              "effectiveNormal": [
+                0.18291322465425547,
+                0.12194215225303047,
+                0.9755372180242438
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6580,
+              "plane": 1442,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.12403473458920845,
+                0.9922778767136676
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6582,
+              "plane": 1382,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.18428853145141436,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6583,
+              "plane": 1388,
+              "side": 0,
+              "effectiveNormal": [
+                0.1812366245184899,
+                0.1812366245184899,
+                0.9665953506334943
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6584,
+              "plane": 1384,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.18428853145141436,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6585,
+              "plane": 1388,
+              "side": 0,
+              "effectiveNormal": [
+                0.1812366245184899,
+                0.1812366245184899,
+                0.9665953506334943
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6586,
+              "plane": 1382,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.18428853145141436,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6587,
+              "plane": 1381,
+              "side": 0,
+              "effectiveNormal": [
+                0.2386199943496703,
+                0.17896499948754296,
+                0.9544799773986812
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6670,
+              "plane": 1434,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.12403473458920845,
+                0.9922778767136676
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6673,
+              "plane": 1460,
+              "side": 0,
+              "effectiveNormal": [
+                -0.06131393403252569,
+                0.18394179464699653,
+                0.981022944520411
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6675,
+              "plane": 1461,
+              "side": 0,
+              "effectiveNormal": [
+                -0.061898446059017294,
+                0.12379689211803459,
+                0.9903751369442767
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6676,
+              "plane": 1462,
+              "side": 0,
+              "effectiveNormal": [
+                -0.18291322465425547,
+                0.12194215225303047,
+                0.9755372180242438
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6904,
+              "plane": 1507,
+              "side": 0,
+              "effectiveNormal": [
+                0.2407717061715384,
+                0.1203858530857692,
+                0.9630868246861536
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6905,
+              "plane": 1508,
+              "side": 0,
+              "effectiveNormal": [
+                0.12309149097933274,
+                0.12309149097933274,
+                0.9847319278346619
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6949,
+              "plane": 1517,
+              "side": 0,
+              "effectiveNormal": [
+                -0.06237828615518054,
+                0.0,
+                0.9980525784828886
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6950,
+              "plane": 1460,
+              "side": 0,
+              "effectiveNormal": [
+                -0.06131393403252569,
+                0.18394179464699653,
+                0.981022944520411
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7027,
+              "plane": 892,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 7063,
+              "plane": 1546,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.29827498974208805,
+                0.9544799790956106
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7064,
+              "plane": 1547,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.16439898247254828,
+                0.986393924637612
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7065,
+              "plane": 1547,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.16439898247254828,
+                0.986393924637612
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7066,
+              "plane": 1547,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.16439898247254828,
+                0.986393924637612
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7067,
+              "plane": 1547,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.16439898247254828,
+                0.986393924637612
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7068,
+              "plane": 1547,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.16439898247254828,
+                0.986393924637612
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7069,
+              "plane": 1547,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.16439898247254828,
+                0.986393924637612
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7070,
+              "plane": 1547,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.16439898247254828,
+                0.986393924637612
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7071,
+              "plane": 1547,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.16439898247254828,
+                0.986393924637612
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7082,
+              "plane": 1555,
+              "side": 0,
+              "effectiveNormal": [
+                0.21821789023599236,
+                -0.4364357804719847,
+                0.8728715609439694
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7083,
+              "plane": 1555,
+              "side": 0,
+              "effectiveNormal": [
+                0.21821789023599236,
+                -0.4364357804719847,
+                0.8728715609439694
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7084,
+              "plane": 628,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 7086,
+              "plane": 1556,
+              "side": 0,
+              "effectiveNormal": [
+                0.2386199943496703,
+                0.17896499948754296,
+                0.9544799773986812
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7089,
+              "plane": 1557,
+              "side": 0,
+              "effectiveNormal": [
+                -0.21821789023599236,
+                -0.4364357804719847,
+                0.8728715609439694
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7090,
+              "plane": 1558,
+              "side": 0,
+              "effectiveNormal": [
+                -0.5933618023940902,
+                0.14834045059852255,
+                0.7911490897270022
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7091,
+              "plane": 1559,
+              "side": 0,
+              "effectiveNormal": [
+                -0.5570860042544924,
+                -0.37139067943710263,
+                0.7427813588742053
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7093,
+              "plane": 1558,
+              "side": 0,
+              "effectiveNormal": [
+                -0.5933618023940902,
+                0.14834045059852255,
+                0.7911490897270022
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7094,
+              "plane": 1557,
+              "side": 0,
+              "effectiveNormal": [
+                -0.21821789023599236,
+                -0.4364357804719847,
+                0.8728715609439694
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7102,
+              "plane": 1562,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.447213595499958,
+                0.894427190999916
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7104,
+              "plane": 1557,
+              "side": 0,
+              "effectiveNormal": [
+                -0.21821789023599236,
+                -0.4364357804719847,
+                0.8728715609439694
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7110,
+              "plane": 1562,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.447213595499958,
+                0.894427190999916
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7122,
+              "plane": 1570,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.12403473458920845,
+                0.9922778767136676
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7123,
+              "plane": 1571,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.12403473458920845,
+                0.9922778767136676
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7126,
+              "plane": 1572,
+              "side": 0,
+              "effectiveNormal": [
+                -0.24253562503633297,
+                0.0,
+                0.9701425001453319
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7127,
+              "plane": 1572,
+              "side": 0,
+              "effectiveNormal": [
+                -0.24253562503633297,
+                0.0,
+                0.9701425001453319
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7128,
+              "plane": 1572,
+              "side": 0,
+              "effectiveNormal": [
+                -0.24253562503633297,
+                0.0,
+                0.9701425001453319
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7129,
+              "plane": 1573,
+              "side": 0,
+              "effectiveNormal": [
+                -0.597022304536137,
+                -0.09950371990621641,
+                0.7960297592497313
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7131,
+              "plane": 1574,
+              "side": 0,
+              "effectiveNormal": [
+                -0.20739034054836047,
+                -0.5184758364697398,
+                0.8295613621934419
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7133,
+              "plane": 1575,
+              "side": 0,
+              "effectiveNormal": [
+                -0.2407717061715384,
+                -0.1203858530857692,
+                0.9630868246861536
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7134,
+              "plane": 1576,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.12403473458920845,
+                0.9922778767136676
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7135,
+              "plane": 1547,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.16439898247254828,
+                0.986393924637612
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7136,
+              "plane": 1577,
+              "side": 0,
+              "effectiveNormal": [
+                0.2407717061715384,
+                -0.1203858530857692,
+                0.9630868246861536
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7137,
+              "plane": 1578,
+              "side": 0,
+              "effectiveNormal": [
+                -0.5366563093547408,
+                -0.4472135811948434,
+                0.7155417656745355
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7140,
+              "plane": 1574,
+              "side": 0,
+              "effectiveNormal": [
+                -0.20739034054836047,
+                -0.5184758364697398,
+                0.8295613621934419
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7141,
+              "plane": 1579,
+              "side": 0,
+              "effectiveNormal": [
+                -0.588348395671485,
+                -0.1961161368575488,
+                0.7844645474301952
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7143,
+              "plane": 1580,
+              "side": 0,
+              "effectiveNormal": [
+                -0.18291322465425547,
+                -0.12194215225303047,
+                0.9755372180242438
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7144,
+              "plane": 1581,
+              "side": 0,
+              "effectiveNormal": [
+                0.23570226039551584,
+                -0.23570226039551584,
+                0.9428090415820634
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7145,
+              "plane": 1582,
+              "side": 0,
+              "effectiveNormal": [
+                0.20739034054836047,
+                -0.5184758364697398,
+                0.8295613621934419
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7146,
+              "plane": 1582,
+              "side": 0,
+              "effectiveNormal": [
+                0.20739034054836047,
+                -0.5184758364697398,
+                0.8295613621934419
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7147,
+              "plane": 1581,
+              "side": 0,
+              "effectiveNormal": [
+                0.23570226039551584,
+                -0.23570226039551584,
+                0.9428090415820634
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7148,
+              "plane": 1580,
+              "side": 0,
+              "effectiveNormal": [
+                -0.18291322465425547,
+                -0.12194215225303047,
+                0.9755372180242438
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7149,
+              "plane": 1571,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.12403473458920845,
+                0.9922778767136676
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7150,
+              "plane": 1570,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.12403473458920845,
+                0.9922778767136676
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7151,
+              "plane": 1583,
+              "side": 0,
+              "effectiveNormal": [
+                -0.18291322465425547,
+                0.12194215225303047,
+                0.9755372180242438
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7152,
+              "plane": 1570,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.12403473458920845,
+                0.9922778767136676
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7153,
+              "plane": 1577,
+              "side": 0,
+              "effectiveNormal": [
+                0.2407717061715384,
+                -0.1203858530857692,
+                0.9630868246861536
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7154,
+              "plane": 1547,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.16439898247254828,
+                0.986393924637612
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7155,
+              "plane": 1570,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.12403473458920845,
+                0.9922778767136676
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7156,
+              "plane": 1571,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.12403473458920845,
+                0.9922778767136676
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7206,
+              "plane": 1572,
+              "side": 0,
+              "effectiveNormal": [
+                -0.24253562503633297,
+                0.0,
+                0.9701425001453319
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7230,
+              "plane": 1619,
+              "side": 0,
+              "effectiveNormal": [
+                -0.597022304536137,
+                0.09950371990621641,
+                0.7960297592497313
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7231,
+              "plane": 1620,
+              "side": 0,
+              "effectiveNormal": [
+                -0.5570860042544924,
+                0.37139067943710263,
+                0.7427813588742053
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7233,
+              "plane": 1621,
+              "side": 0,
+              "effectiveNormal": [
+                0.21821789023599236,
+                0.4364357804719847,
+                0.8728715609439694
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7234,
+              "plane": 1621,
+              "side": 0,
+              "effectiveNormal": [
+                0.21821789023599236,
+                0.4364357804719847,
+                0.8728715609439694
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7235,
+              "plane": 628,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 7236,
+              "plane": 628,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 7241,
+              "plane": 1623,
+              "side": 0,
+              "effectiveNormal": [
+                -0.18428853145141436,
+                0.0,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7242,
+              "plane": 1623,
+              "side": 0,
+              "effectiveNormal": [
+                -0.18428853145141436,
+                0.0,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7243,
+              "plane": 1624,
+              "side": 0,
+              "effectiveNormal": [
+                -0.18291322465425547,
+                0.12194215225303047,
+                0.9755372180242438
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7244,
+              "plane": 1624,
+              "side": 0,
+              "effectiveNormal": [
+                -0.18291322465425547,
+                0.12194215225303047,
+                0.9755372180242438
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7245,
+              "plane": 1625,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.12403473458920845,
+                0.9922778767136676
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7247,
+              "plane": 628,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 7248,
+              "plane": 628,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 7253,
+              "plane": 1623,
+              "side": 0,
+              "effectiveNormal": [
+                -0.18428853145141436,
+                0.0,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7266,
+              "plane": 1623,
+              "side": 0,
+              "effectiveNormal": [
+                -0.18428853145141436,
+                0.0,
+                0.9828721876090915
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7268,
+              "plane": 1634,
+              "side": 0,
+              "effectiveNormal": [
+                0.2279211540804053,
+                0.341881716219447,
+                0.9116846163216212
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7269,
+              "plane": 1635,
+              "side": 0,
+              "effectiveNormal": [
+                -0.5746957623833852,
+                0.2873478811916926,
+                0.766261036379395
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7273,
+              "plane": 1634,
+              "side": 0,
+              "effectiveNormal": [
+                0.2279211540804053,
+                0.341881716219447,
+                0.9116846163216212
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7275,
+              "plane": 1635,
+              "side": 0,
+              "effectiveNormal": [
+                -0.5746957623833852,
+                0.2873478811916926,
+                0.766261036379395
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 7276,
+              "plane": 1635,
+              "side": 0,
+              "effectiveNormal": [
+                -0.5746957623833852,
+                0.2873478811916926,
+                0.766261036379395
+              ],
+              "orientation": "upwardSloped"
+            }
+          ]
+        },
+        {
+          "map": "maps/tibet2.bsp",
+          "bspSha256": "1ad4f076dcab4cde6e951c55ae476ff6785ecc61420b160df7082be2118773c7",
+          "slot": 46,
+          "path": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "counts": {
+            "upwardSloped": 176,
+            "downwardSloped": 100,
+            "vertical": 67,
+            "downwardHorizontal": 5,
+            "upwardHorizontal": 5
+          },
+          "faces": [
+            {
+              "face": 97,
+              "plane": 24,
+              "side": 0,
+              "effectiveNormal": [
+                0.5144957484152151,
+                0.5144957484152151,
+                0.6859943510885024
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 98,
+              "plane": 24,
+              "side": 0,
+              "effectiveNormal": [
+                0.5144957484152151,
+                0.5144957484152151,
+                0.6859943510885024
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 99,
+              "plane": 25,
+              "side": 1,
+              "effectiveNormal": [
+                -0.6804138174397717,
+                -0.6804138174397717,
+                -0.2721655269759087
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 100,
+              "plane": 25,
+              "side": 1,
+              "effectiveNormal": [
+                -0.6804138174397717,
+                -0.6804138174397717,
+                -0.2721655269759087
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 113,
+              "plane": 34,
+              "side": 0,
+              "effectiveNormal": [
+                0.6804138174397717,
+                0.6804138174397717,
+                0.2721655269759087
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 130,
+              "plane": 40,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                -0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 131,
+              "plane": 40,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 132,
+              "plane": 40,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 151,
+              "plane": 46,
+              "side": 0,
+              "effectiveNormal": [
+                0.894427190999916,
+                -0.0,
+                0.447213595499958
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 318,
+              "plane": 103,
+              "side": 0,
+              "effectiveNormal": [
+                0.09950371990621641,
+                0.597022304536137,
+                0.7960297592497313
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 319,
+              "plane": 104,
+              "side": 0,
+              "effectiveNormal": [
+                0.2873478811916926,
+                0.5746957623833852,
+                0.766261036379395
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2901,
+              "plane": 666,
+              "side": 1,
+              "effectiveNormal": [
+                0.2279211540804053,
+                0.341881716219447,
+                -0.9116846163216212
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 3601,
+              "plane": 753,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3602,
+              "plane": 753,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3603,
+              "plane": 753,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3604,
+              "plane": 753,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3605,
+              "plane": 753,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3606,
+              "plane": 753,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3609,
+              "plane": 753,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3636,
+              "plane": 770,
+              "side": 0,
+              "effectiveNormal": [
+                0.1111111111111111,
+                0.4444444444444444,
+                0.8888888888888888
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 3638,
+              "plane": 772,
+              "side": 0,
+              "effectiveNormal": [
+                -0.408248290463863,
+                0.408248290463863,
+                0.816496580927726
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 3643,
+              "plane": 774,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3647,
+              "plane": 774,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3834,
+              "plane": 736,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3857,
+              "plane": 732,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 3858,
+              "plane": 732,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 3865,
+              "plane": 619,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                -0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3875,
+              "plane": 832,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3876,
+              "plane": 754,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3878,
+              "plane": 832,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3888,
+              "plane": 838,
+              "side": 1,
+              "effectiveNormal": [
+                0.6000000095367428,
+                -0.0,
+                -0.7999999928474427
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 3890,
+              "plane": 837,
+              "side": 1,
+              "effectiveNormal": [
+                -0.6000000095367428,
+                -0.0,
+                -0.7999999928474427
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 4093,
+              "plane": 732,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 4094,
+              "plane": 732,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 4097,
+              "plane": 884,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4156,
+              "plane": 764,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4160,
+              "plane": 764,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4296,
+              "plane": 916,
+              "side": 1,
+              "effectiveNormal": [
+                -0.8782206633998291,
+                -0.329332733873775,
+                -0.34679737135219113
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 4297,
+              "plane": 916,
+              "side": 1,
+              "effectiveNormal": [
+                -0.8782206633998291,
+                -0.329332733873775,
+                -0.34679737135219113
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 4298,
+              "plane": 916,
+              "side": 1,
+              "effectiveNormal": [
+                -0.8782206633998291,
+                -0.329332733873775,
+                -0.34679737135219113
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 4299,
+              "plane": 916,
+              "side": 1,
+              "effectiveNormal": [
+                -0.8782206633998291,
+                -0.329332733873775,
+                -0.34679737135219113
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 4300,
+              "plane": 916,
+              "side": 1,
+              "effectiveNormal": [
+                -0.8782206633998291,
+                -0.329332733873775,
+                -0.34679737135219113
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 4301,
+              "plane": 917,
+              "side": 0,
+              "effectiveNormal": [
+                -0.408248290463863,
+                -0.408248290463863,
+                0.816496580927726
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4302,
+              "plane": 918,
+              "side": 1,
+              "effectiveNormal": [
+                -0.803352312539926,
+                -0.3012571097518915,
+                0.5136820181402983
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4303,
+              "plane": 919,
+              "side": 0,
+              "effectiveNormal": [
+                0.1111111111111111,
+                -0.4444444444444444,
+                0.8888888888888888
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4304,
+              "plane": 920,
+              "side": 1,
+              "effectiveNormal": [
+                0.2407717061715384,
+                0.1203858530857692,
+                -0.9630868246861536
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 4305,
+              "plane": 920,
+              "side": 1,
+              "effectiveNormal": [
+                0.2407717061715384,
+                0.1203858530857692,
+                -0.9630868246861536
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 4306,
+              "plane": 920,
+              "side": 1,
+              "effectiveNormal": [
+                0.2407717061715384,
+                0.1203858530857692,
+                -0.9630868246861536
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 4307,
+              "plane": 920,
+              "side": 1,
+              "effectiveNormal": [
+                0.2407717061715384,
+                0.1203858530857692,
+                -0.9630868246861536
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 4310,
+              "plane": 921,
+              "side": 1,
+              "effectiveNormal": [
+                -0.3820803557084986,
+                0.11462410820266573,
+                -0.9169928656213259
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 4311,
+              "plane": 921,
+              "side": 1,
+              "effectiveNormal": [
+                -0.3820803557084986,
+                0.11462410820266573,
+                -0.9169928656213259
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 4312,
+              "plane": 921,
+              "side": 1,
+              "effectiveNormal": [
+                -0.3820803557084986,
+                0.11462410820266573,
+                -0.9169928656213259
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 4313,
+              "plane": 922,
+              "side": 0,
+              "effectiveNormal": [
+                0.31799935730475704,
+                -0.42399915300711666,
+                0.8479983060142333
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4314,
+              "plane": 922,
+              "side": 0,
+              "effectiveNormal": [
+                0.31799935730475704,
+                -0.42399915300711666,
+                0.8479983060142333
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4315,
+              "plane": 922,
+              "side": 0,
+              "effectiveNormal": [
+                0.31799935730475704,
+                -0.42399915300711666,
+                0.8479983060142333
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4343,
+              "plane": 929,
+              "side": 0,
+              "effectiveNormal": [
+                0.1111111111111111,
+                -0.4444444444444444,
+                0.8888888888888888
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4344,
+              "plane": 929,
+              "side": 0,
+              "effectiveNormal": [
+                0.1111111111111111,
+                -0.4444444444444444,
+                0.8888888888888888
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4345,
+              "plane": 922,
+              "side": 0,
+              "effectiveNormal": [
+                0.31799935730475704,
+                -0.42399915300711666,
+                0.8479983060142333
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4346,
+              "plane": 930,
+              "side": 1,
+              "effectiveNormal": [
+                -0.8378586897675846,
+                0.10473233622094807,
+                0.5357461653905221
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4347,
+              "plane": 931,
+              "side": 0,
+              "effectiveNormal": [
+                -0.4444444444444444,
+                0.1111111111111111,
+                0.8888888888888888
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4348,
+              "plane": 932,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7213947716607167,
+                0.6312204550054493,
+                -0.2848689533861068
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 4349,
+              "plane": 933,
+              "side": 0,
+              "effectiveNormal": [
+                0.3487429031426,
+                0.1162476393479204,
+                0.9299811147833632
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4350,
+              "plane": 934,
+              "side": 1,
+              "effectiveNormal": [
+                -0.9238845156913428,
+                0.11548556446141785,
+                -0.3648293930960069
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 4351,
+              "plane": 935,
+              "side": 0,
+              "effectiveNormal": [
+                -0.37139067943710263,
+                0.5570860042544924,
+                0.7427813588742053
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4352,
+              "plane": 936,
+              "side": 1,
+              "effectiveNormal": [
+                -0.36345618728911305,
+                0.3271105566392729,
+                -0.8722948375729425
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 4353,
+              "plane": 937,
+              "side": 0,
+              "effectiveNormal": [
+                0.12309149097933274,
+                0.12309149097933274,
+                0.9847319278346619
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4354,
+              "plane": 938,
+              "side": 1,
+              "effectiveNormal": [
+                -0.36345618728911305,
+                -0.3271105566392729,
+                -0.8722948375729425
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 4355,
+              "plane": 939,
+              "side": 1,
+              "effectiveNormal": [
+                -0.6781435032417759,
+                0.5933755653365539,
+                0.43362060314576456
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4356,
+              "plane": 940,
+              "side": 1,
+              "effectiveNormal": [
+                0.2279211540804053,
+                -0.341881716219447,
+                -0.9116846163216212
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 4357,
+              "plane": 941,
+              "side": 0,
+              "effectiveNormal": [
+                0.12309149097933274,
+                0.12309149097933274,
+                0.9847319278346619
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4374,
+              "plane": 764,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4375,
+              "plane": 666,
+              "side": 1,
+              "effectiveNormal": [
+                0.2279211540804053,
+                0.341881716219447,
+                -0.9116846163216212
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 4376,
+              "plane": 764,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4377,
+              "plane": 941,
+              "side": 0,
+              "effectiveNormal": [
+                0.12309149097933274,
+                0.12309149097933274,
+                0.9847319278346619
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4378,
+              "plane": 946,
+              "side": 0,
+              "effectiveNormal": [
+                0.09950371990621641,
+                0.597022304536137,
+                0.7960297592497313
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5651,
+              "plane": 107,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5652,
+              "plane": 107,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5653,
+              "plane": 704,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5654,
+              "plane": 704,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5655,
+              "plane": 1111,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5656,
+              "plane": 1112,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7459645891864539,
+                0.07354580635162039,
+                0.6619122646151642
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5657,
+              "plane": 1113,
+              "side": 1,
+              "effectiveNormal": [
+                -0.2407717061715384,
+                0.1203858530857692,
+                -0.9630868246861536
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5658,
+              "plane": 1114,
+              "side": 1,
+              "effectiveNormal": [
+                -0.766261036379395,
+                -0.2873478811916926,
+                0.5746957623833852
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5659,
+              "plane": 1114,
+              "side": 1,
+              "effectiveNormal": [
+                -0.766261036379395,
+                -0.2873478811916926,
+                0.5746957623833852
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5660,
+              "plane": 1115,
+              "side": 1,
+              "effectiveNormal": [
+                -0.1849000645168872,
+                -0.647150233259686,
+                -0.7396002580675488
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5661,
+              "plane": 1116,
+              "side": 0,
+              "effectiveNormal": [
+                -0.1961161368575488,
+                -0.588348395671485,
+                0.7844645474301952
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5662,
+              "plane": 1117,
+              "side": 0,
+              "effectiveNormal": [
+                0.9950371903575254,
+                0.0,
+                0.09950371754563643
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5663,
+              "plane": 1118,
+              "side": 1,
+              "effectiveNormal": [
+                -0.8930329154975161,
+                0.055814557218594754,
+                -0.44651645774875803
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5664,
+              "plane": 1119,
+              "side": 1,
+              "effectiveNormal": [
+                -0.8329267300725657,
+                -0.36440544440674744,
+                -0.41646336503628284
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5665,
+              "plane": 1120,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.9805806762640418,
+                0.19611613227257615
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5666,
+              "plane": 1121,
+              "side": 1,
+              "effectiveNormal": [
+                -0.9578262835806566,
+                -0.0,
+                0.28734789103466163
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5667,
+              "plane": 1122,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.9805806762640418,
+                0.19611613227257615
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5668,
+              "plane": 1123,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5669,
+              "plane": 1111,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5670,
+              "plane": 1124,
+              "side": 1,
+              "effectiveNormal": [
+                -0.2279211540804053,
+                0.341881716219447,
+                -0.9116846163216212
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5671,
+              "plane": 1125,
+              "side": 0,
+              "effectiveNormal": [
+                -0.19047618915840073,
+                0.619047625940673,
+                0.7619047566336029
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5672,
+              "plane": 1126,
+              "side": 1,
+              "effectiveNormal": [
+                -0.8821085553589688,
+                0.16539534667922617,
+                -0.4410542776794844
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5673,
+              "plane": 1127,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7295372045118395,
+                0.4103646961643616,
+                0.547152888482718
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5674,
+              "plane": 107,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5675,
+              "plane": 107,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5676,
+              "plane": 1128,
+              "side": 0,
+              "effectiveNormal": [
+                -0.44999133563378196,
+                0.11076710132626683,
+                0.8861368106101346
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5677,
+              "plane": 1128,
+              "side": 0,
+              "effectiveNormal": [
+                -0.44999133563378196,
+                0.11076710132626683,
+                0.8861368106101346
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5678,
+              "plane": 1128,
+              "side": 0,
+              "effectiveNormal": [
+                -0.44999133563378196,
+                0.11076710132626683,
+                0.8861368106101346
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5679,
+              "plane": 1128,
+              "side": 0,
+              "effectiveNormal": [
+                -0.44999133563378196,
+                0.11076710132626683,
+                0.8861368106101346
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5680,
+              "plane": 1128,
+              "side": 0,
+              "effectiveNormal": [
+                -0.44999133563378196,
+                0.11076710132626683,
+                0.8861368106101346
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5681,
+              "plane": 1114,
+              "side": 1,
+              "effectiveNormal": [
+                -0.766261036379395,
+                -0.2873478811916926,
+                0.5746957623833852
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5682,
+              "plane": 1116,
+              "side": 0,
+              "effectiveNormal": [
+                -0.1961161368575488,
+                -0.588348395671485,
+                0.7844645474301952
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5683,
+              "plane": 1116,
+              "side": 0,
+              "effectiveNormal": [
+                -0.1961161368575488,
+                -0.588348395671485,
+                0.7844645474301952
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5684,
+              "plane": 1116,
+              "side": 0,
+              "effectiveNormal": [
+                -0.1961161368575488,
+                -0.588348395671485,
+                0.7844645474301952
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5685,
+              "plane": 1116,
+              "side": 0,
+              "effectiveNormal": [
+                -0.1961161368575488,
+                -0.588348395671485,
+                0.7844645474301952
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5686,
+              "plane": 1116,
+              "side": 0,
+              "effectiveNormal": [
+                -0.1961161368575488,
+                -0.588348395671485,
+                0.7844645474301952
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5687,
+              "plane": 1121,
+              "side": 1,
+              "effectiveNormal": [
+                -0.9578262835806566,
+                -0.0,
+                0.28734789103466163
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5688,
+              "plane": 1112,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7459645891864539,
+                0.07354580635162039,
+                0.6619122646151642
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5689,
+              "plane": 1120,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.9805806762640418,
+                0.19611613227257615
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5690,
+              "plane": 1129,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.986393924637612,
+                0.16439898247254828
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5691,
+              "plane": 1130,
+              "side": 1,
+              "effectiveNormal": [
+                -0.986393924637612,
+                -0.0,
+                0.16439898247254828
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5692,
+              "plane": 1131,
+              "side": 0,
+              "effectiveNormal": [
+                0.894427190999916,
+                0.0,
+                0.447213595499958
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5693,
+              "plane": 1122,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.9805806762640418,
+                0.19611613227257615
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5694,
+              "plane": 1117,
+              "side": 0,
+              "effectiveNormal": [
+                0.9950371903575254,
+                0.0,
+                0.09950371754563643
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5695,
+              "plane": 1122,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.9805806762640418,
+                0.19611613227257615
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5696,
+              "plane": 1132,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.894427190999916,
+                0.447213595499958
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5697,
+              "plane": 1133,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5698,
+              "plane": 1128,
+              "side": 0,
+              "effectiveNormal": [
+                -0.44999133563378196,
+                0.11076710132626683,
+                0.8861368106101346
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5699,
+              "plane": 1127,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7295372045118395,
+                0.4103646961643616,
+                0.547152888482718
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5700,
+              "plane": 1125,
+              "side": 0,
+              "effectiveNormal": [
+                -0.19047618915840073,
+                0.619047625940673,
+                0.7619047566336029
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5709,
+              "plane": 753,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5713,
+              "plane": 1111,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5714,
+              "plane": 1111,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5715,
+              "plane": 1111,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5716,
+              "plane": 1111,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5717,
+              "plane": 1111,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5718,
+              "plane": 1134,
+              "side": 1,
+              "effectiveNormal": [
+                -0.23570226039551584,
+                0.23570226039551584,
+                -0.9428090415820634
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5720,
+              "plane": 1135,
+              "side": 0,
+              "effectiveNormal": [
+                0.95539363150785,
+                -0.2388484078769625,
+                -0.17370793571072934
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5721,
+              "plane": 1136,
+              "side": 0,
+              "effectiveNormal": [
+                0.8888888888888888,
+                -0.1111111111111111,
+                0.4444444444444444
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5722,
+              "plane": 1137,
+              "side": 1,
+              "effectiveNormal": [
+                -0.2279211540804053,
+                -0.341881716219447,
+                -0.9116846163216212
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5723,
+              "plane": 1138,
+              "side": 1,
+              "effectiveNormal": [
+                -0.8821085553589688,
+                -0.16539534667922617,
+                -0.4410542776794844
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5724,
+              "plane": 1139,
+              "side": 0,
+              "effectiveNormal": [
+                -0.2407717061715384,
+                -0.1203858530857692,
+                0.9630868246861536
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5725,
+              "plane": 1140,
+              "side": 1,
+              "effectiveNormal": [
+                -0.8888888888888888,
+                0.1111111111111111,
+                -0.4444444444444444
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5726,
+              "plane": 1140,
+              "side": 1,
+              "effectiveNormal": [
+                -0.8888888888888888,
+                0.1111111111111111,
+                -0.4444444444444444
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5727,
+              "plane": 1140,
+              "side": 1,
+              "effectiveNormal": [
+                -0.8888888888888888,
+                0.1111111111111111,
+                -0.4444444444444444
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5728,
+              "plane": 1141,
+              "side": 0,
+              "effectiveNormal": [
+                -0.23570226039551584,
+                -0.23570226039551584,
+                0.9428090415820634
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5729,
+              "plane": 1141,
+              "side": 0,
+              "effectiveNormal": [
+                -0.23570226039551584,
+                -0.23570226039551584,
+                0.9428090415820634
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5730,
+              "plane": 1141,
+              "side": 0,
+              "effectiveNormal": [
+                -0.23570226039551584,
+                -0.23570226039551584,
+                0.9428090415820634
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5732,
+              "plane": 1143,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7977594551344478,
+                -0.07478994705620937,
+                0.5983195764496749
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5733,
+              "plane": 1143,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7977594551344478,
+                -0.07478994705620937,
+                0.5983195764496749
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5734,
+              "plane": 1143,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7977594551344478,
+                -0.07478994705620937,
+                0.5983195764496749
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5735,
+              "plane": 1144,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7911490897270022,
+                -0.14834045059852255,
+                0.5933618023940902
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5736,
+              "plane": 1145,
+              "side": 1,
+              "effectiveNormal": [
+                -0.95539363150785,
+                0.2388484078769625,
+                0.17370793571072934
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5737,
+              "plane": 1146,
+              "side": 0,
+              "effectiveNormal": [
+                0.9523809518403207,
+                -0.23809523796008017,
+                0.19047619334829635
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5738,
+              "plane": 1146,
+              "side": 0,
+              "effectiveNormal": [
+                0.9523809518403207,
+                -0.23809523796008017,
+                0.19047619334829635
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5741,
+              "plane": 1135,
+              "side": 0,
+              "effectiveNormal": [
+                0.95539363150785,
+                -0.2388484078769625,
+                -0.17370793571072934
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5742,
+              "plane": 1147,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5743,
+              "plane": 1135,
+              "side": 0,
+              "effectiveNormal": [
+                0.95539363150785,
+                -0.2388484078769625,
+                -0.17370793571072934
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5744,
+              "plane": 1148,
+              "side": 1,
+              "effectiveNormal": [
+                -0.9609575125572352,
+                0.2402393781393088,
+                0.1372796425222963
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5746,
+              "plane": 1149,
+              "side": 0,
+              "effectiveNormal": [
+                0.9609575125572352,
+                -0.2402393781393088,
+                -0.1372796425222963
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5747,
+              "plane": 1147,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5748,
+              "plane": 1149,
+              "side": 0,
+              "effectiveNormal": [
+                0.9609575125572352,
+                -0.2402393781393088,
+                -0.1372796425222963
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5749,
+              "plane": 1150,
+              "side": 1,
+              "effectiveNormal": [
+                -0.9523809518403207,
+                0.23809523796008017,
+                -0.19047619334829635
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5758,
+              "plane": 920,
+              "side": 1,
+              "effectiveNormal": [
+                0.2407717061715384,
+                0.1203858530857692,
+                -0.9630868246861536
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5761,
+              "plane": 929,
+              "side": 0,
+              "effectiveNormal": [
+                0.1111111111111111,
+                -0.4444444444444444,
+                0.8888888888888888
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5762,
+              "plane": 1154,
+              "side": 1,
+              "effectiveNormal": [
+                -0.2407717061715384,
+                0.1203858530857692,
+                -0.9630868246861536
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5763,
+              "plane": 1155,
+              "side": 0,
+              "effectiveNormal": [
+                -0.21821789023599236,
+                -0.4364357804719847,
+                0.8728715609439694
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5764,
+              "plane": 764,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5765,
+              "plane": 764,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5766,
+              "plane": 1154,
+              "side": 1,
+              "effectiveNormal": [
+                -0.2407717061715384,
+                0.1203858530857692,
+                -0.9630868246861536
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5767,
+              "plane": 920,
+              "side": 1,
+              "effectiveNormal": [
+                0.2407717061715384,
+                0.1203858530857692,
+                -0.9630868246861536
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5768,
+              "plane": 1156,
+              "side": 1,
+              "effectiveNormal": [
+                -0.2279211540804053,
+                -0.341881716219447,
+                -0.9116846163216212
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5769,
+              "plane": 666,
+              "side": 1,
+              "effectiveNormal": [
+                0.2279211540804053,
+                0.341881716219447,
+                -0.9116846163216212
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5770,
+              "plane": 940,
+              "side": 1,
+              "effectiveNormal": [
+                0.2279211540804053,
+                -0.341881716219447,
+                -0.9116846163216212
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5771,
+              "plane": 666,
+              "side": 1,
+              "effectiveNormal": [
+                0.2279211540804053,
+                0.341881716219447,
+                -0.9116846163216212
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5772,
+              "plane": 1157,
+              "side": 1,
+              "effectiveNormal": [
+                -0.2279211540804053,
+                0.341881716219447,
+                -0.9116846163216212
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5773,
+              "plane": 1158,
+              "side": 0,
+              "effectiveNormal": [
+                -0.1961161368575488,
+                0.588348395671485,
+                0.7844645474301952
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5774,
+              "plane": 929,
+              "side": 0,
+              "effectiveNormal": [
+                0.1111111111111111,
+                -0.4444444444444444,
+                0.8888888888888888
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5775,
+              "plane": 1159,
+              "side": 0,
+              "effectiveNormal": [
+                -0.2407717061715384,
+                0.1203858530857692,
+                0.9630868246861536
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5776,
+              "plane": 941,
+              "side": 0,
+              "effectiveNormal": [
+                0.12309149097933274,
+                0.12309149097933274,
+                0.9847319278346619
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5777,
+              "plane": 1159,
+              "side": 0,
+              "effectiveNormal": [
+                -0.2407717061715384,
+                0.1203858530857692,
+                0.9630868246861536
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5778,
+              "plane": 1155,
+              "side": 0,
+              "effectiveNormal": [
+                -0.21821789023599236,
+                -0.4364357804719847,
+                0.8728715609439694
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5779,
+              "plane": 941,
+              "side": 0,
+              "effectiveNormal": [
+                0.12309149097933274,
+                0.12309149097933274,
+                0.9847319278346619
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5780,
+              "plane": 946,
+              "side": 0,
+              "effectiveNormal": [
+                0.09950371990621641,
+                0.597022304536137,
+                0.7960297592497313
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5787,
+              "plane": 704,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5788,
+              "plane": 1116,
+              "side": 0,
+              "effectiveNormal": [
+                -0.1961161368575488,
+                -0.588348395671485,
+                0.7844645474301952
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5789,
+              "plane": 1124,
+              "side": 1,
+              "effectiveNormal": [
+                -0.2279211540804053,
+                0.341881716219447,
+                -0.9116846163216212
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5790,
+              "plane": 1115,
+              "side": 1,
+              "effectiveNormal": [
+                -0.1849000645168872,
+                -0.647150233259686,
+                -0.7396002580675488
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5791,
+              "plane": 1113,
+              "side": 1,
+              "effectiveNormal": [
+                -0.2407717061715384,
+                0.1203858530857692,
+                -0.9630868246861536
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5792,
+              "plane": 1116,
+              "side": 0,
+              "effectiveNormal": [
+                -0.1961161368575488,
+                -0.588348395671485,
+                0.7844645474301952
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5793,
+              "plane": 1116,
+              "side": 0,
+              "effectiveNormal": [
+                -0.1961161368575488,
+                -0.588348395671485,
+                0.7844645474301952
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5848,
+              "plane": 1133,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5849,
+              "plane": 1116,
+              "side": 0,
+              "effectiveNormal": [
+                -0.1961161368575488,
+                -0.588348395671485,
+                0.7844645474301952
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5850,
+              "plane": 1168,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.894427190999916,
+                0.447213595499958
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5851,
+              "plane": 1128,
+              "side": 0,
+              "effectiveNormal": [
+                -0.44999133563378196,
+                0.11076710132626683,
+                0.8861368106101346
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5852,
+              "plane": 1128,
+              "side": 0,
+              "effectiveNormal": [
+                -0.44999133563378196,
+                0.11076710132626683,
+                0.8861368106101346
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5853,
+              "plane": 1128,
+              "side": 0,
+              "effectiveNormal": [
+                -0.44999133563378196,
+                0.11076710132626683,
+                0.8861368106101346
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5854,
+              "plane": 1169,
+              "side": 0,
+              "effectiveNormal": [
+                -0.12309149097933274,
+                0.12309149097933274,
+                0.9847319278346619
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5855,
+              "plane": 764,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5856,
+              "plane": 1170,
+              "side": 0,
+              "effectiveNormal": [
+                -0.09950371990621641,
+                0.597022304536137,
+                0.7960297592497313
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5857,
+              "plane": 1170,
+              "side": 0,
+              "effectiveNormal": [
+                -0.09950371990621641,
+                0.597022304536137,
+                0.7960297592497313
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5866,
+              "plane": 1171,
+              "side": 0,
+              "effectiveNormal": [
+                0.2407717061715384,
+                0.1203858530857692,
+                0.9630868246861536
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5893,
+              "plane": 1172,
+              "side": 0,
+              "effectiveNormal": [
+                0.1961161368575488,
+                0.588348395671485,
+                0.7844645474301952
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5898,
+              "plane": 1157,
+              "side": 1,
+              "effectiveNormal": [
+                -0.2279211540804053,
+                0.341881716219447,
+                -0.9116846163216212
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5912,
+              "plane": 1124,
+              "side": 1,
+              "effectiveNormal": [
+                -0.2279211540804053,
+                0.341881716219447,
+                -0.9116846163216212
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5913,
+              "plane": 1137,
+              "side": 1,
+              "effectiveNormal": [
+                -0.2279211540804053,
+                -0.341881716219447,
+                -0.9116846163216212
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5914,
+              "plane": 1175,
+              "side": 1,
+              "effectiveNormal": [
+                0.36345618728911305,
+                -0.3271105566392729,
+                -0.8722948375729425
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5915,
+              "plane": 937,
+              "side": 0,
+              "effectiveNormal": [
+                0.12309149097933274,
+                0.12309149097933274,
+                0.9847319278346619
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5955,
+              "plane": 1189,
+              "side": 1,
+              "effectiveNormal": [
+                0.29920814311056065,
+                -0.6283371035124097,
+                -0.7180995553862749
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5956,
+              "plane": 1113,
+              "side": 1,
+              "effectiveNormal": [
+                -0.2407717061715384,
+                0.1203858530857692,
+                -0.9630868246861536
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5957,
+              "plane": 1115,
+              "side": 1,
+              "effectiveNormal": [
+                -0.1849000645168872,
+                -0.647150233259686,
+                -0.7396002580675488
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5958,
+              "plane": 1190,
+              "side": 1,
+              "effectiveNormal": [
+                0.3820803557084986,
+                0.11462410820266573,
+                -0.9169928656213259
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5968,
+              "plane": 1113,
+              "side": 1,
+              "effectiveNormal": [
+                -0.2407717061715384,
+                0.1203858530857692,
+                -0.9630868246861536
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6153,
+              "plane": 56,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 6154,
+              "plane": 56,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 6155,
+              "plane": 56,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 6156,
+              "plane": 56,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 6157,
+              "plane": 56,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 6261,
+              "plane": 1115,
+              "side": 1,
+              "effectiveNormal": [
+                -0.1849000645168872,
+                -0.647150233259686,
+                -0.7396002580675488
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6262,
+              "plane": 1115,
+              "side": 1,
+              "effectiveNormal": [
+                -0.1849000645168872,
+                -0.647150233259686,
+                -0.7396002580675488
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6273,
+              "plane": 704,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6274,
+              "plane": 1115,
+              "side": 1,
+              "effectiveNormal": [
+                -0.1849000645168872,
+                -0.647150233259686,
+                -0.7396002580675488
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6278,
+              "plane": 1189,
+              "side": 1,
+              "effectiveNormal": [
+                0.29920814311056065,
+                -0.6283371035124097,
+                -0.7180995553862749
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6279,
+              "plane": 1189,
+              "side": 1,
+              "effectiveNormal": [
+                0.29920814311056065,
+                -0.6283371035124097,
+                -0.7180995553862749
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6280,
+              "plane": 704,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6282,
+              "plane": 1189,
+              "side": 1,
+              "effectiveNormal": [
+                0.29920814311056065,
+                -0.6283371035124097,
+                -0.7180995553862749
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6283,
+              "plane": 1189,
+              "side": 1,
+              "effectiveNormal": [
+                0.29920814311056065,
+                -0.6283371035124097,
+                -0.7180995553862749
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6297,
+              "plane": 494,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 6298,
+              "plane": 1190,
+              "side": 1,
+              "effectiveNormal": [
+                0.3820803557084986,
+                0.11462410820266573,
+                -0.9169928656213259
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6299,
+              "plane": 1238,
+              "side": 0,
+              "effectiveNormal": [
+                0.8930329154975161,
+                0.055814557218594754,
+                -0.44651645774875803
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6300,
+              "plane": 1115,
+              "side": 1,
+              "effectiveNormal": [
+                -0.1849000645168872,
+                -0.647150233259686,
+                -0.7396002580675488
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6301,
+              "plane": 1239,
+              "side": 0,
+              "effectiveNormal": [
+                0.8329267300725657,
+                -0.36440544440674744,
+                -0.41646336503628284
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6302,
+              "plane": 1189,
+              "side": 1,
+              "effectiveNormal": [
+                0.29920814311056065,
+                -0.6283371035124097,
+                -0.7180995553862749
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6305,
+              "plane": 1240,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6311,
+              "plane": 1242,
+              "side": 1,
+              "effectiveNormal": [
+                0.36345618728911305,
+                0.3271105566392729,
+                -0.8722948375729425
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6315,
+              "plane": 1242,
+              "side": 1,
+              "effectiveNormal": [
+                0.36345618728911305,
+                0.3271105566392729,
+                -0.8722948375729425
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6316,
+              "plane": 1243,
+              "side": 0,
+              "effectiveNormal": [
+                0.5144957484152151,
+                0.5144957484152151,
+                0.6859943510885024
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6320,
+              "plane": 1243,
+              "side": 0,
+              "effectiveNormal": [
+                0.5144957484152151,
+                0.5144957484152151,
+                0.6859943510885024
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6321,
+              "plane": 1242,
+              "side": 1,
+              "effectiveNormal": [
+                0.36345618728911305,
+                0.3271105566392729,
+                -0.8722948375729425
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6322,
+              "plane": 1175,
+              "side": 1,
+              "effectiveNormal": [
+                0.36345618728911305,
+                -0.3271105566392729,
+                -0.8722948375729425
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6323,
+              "plane": 1244,
+              "side": 0,
+              "effectiveNormal": [
+                0.588348395671485,
+                -0.1961161368575488,
+                0.7844645474301952
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6324,
+              "plane": 1245,
+              "side": 0,
+              "effectiveNormal": [
+                0.8821085553589688,
+                -0.16539534667922617,
+                -0.4410542776794844
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6325,
+              "plane": 1246,
+              "side": 0,
+              "effectiveNormal": [
+                0.7911490897270022,
+                -0.14834045059852255,
+                0.5933618023940902
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6583,
+              "plane": 1133,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6588,
+              "plane": 704,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6589,
+              "plane": 1194,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6590,
+              "plane": 1274,
+              "side": 0,
+              "effectiveNormal": [
+                0.24253562503633297,
+                -0.5820855000871992,
+                0.7761140001162655
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6591,
+              "plane": 1275,
+              "side": 0,
+              "effectiveNormal": [
+                0.24253562503633297,
+                0.0,
+                0.9701425001453319
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6592,
+              "plane": 1276,
+              "side": 0,
+              "effectiveNormal": [
+                0.9216353796259443,
+                -0.0,
+                0.38805698939941985
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6593,
+              "plane": 1277,
+              "side": 0,
+              "effectiveNormal": [
+                0.8052211924794341,
+                0.4864878013061313,
+                0.3390404848426279
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6594,
+              "plane": 1278,
+              "side": 0,
+              "effectiveNormal": [
+                0.5570860042544924,
+                -0.37139067943710263,
+                0.7427813588742053
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6595,
+              "plane": 1277,
+              "side": 0,
+              "effectiveNormal": [
+                0.8052211924794341,
+                0.4864878013061313,
+                0.3390404848426279
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6596,
+              "plane": 1279,
+              "side": 0,
+              "effectiveNormal": [
+                0.5821804304243161,
+                0.7738299236872059,
+                0.24950590301075287
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6597,
+              "plane": 1280,
+              "side": 0,
+              "effectiveNormal": [
+                0.913867228403305,
+                0.10701021472689964,
+                0.39165737934394185
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6598,
+              "plane": 1281,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.9805806762640418,
+                0.19611613227257615
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6599,
+              "plane": 1282,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6600,
+              "plane": 1283,
+              "side": 1,
+              "effectiveNormal": [
+                -0.9805806762640418,
+                -0.0,
+                0.19611613227257615
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6601,
+              "plane": 1284,
+              "side": 0,
+              "effectiveNormal": [
+                0.9950371903575254,
+                -0.0,
+                0.09950371754563643
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6602,
+              "plane": 1285,
+              "side": 0,
+              "effectiveNormal": [
+                0.9284766929405919,
+                0.0,
+                0.37139067121577224
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6603,
+              "plane": 1286,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.9950371903575254,
+                -0.09950371754563643
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6604,
+              "plane": 1287,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.9284766929405919,
+                0.37139067121577224
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6605,
+              "plane": 1288,
+              "side": 0,
+              "effectiveNormal": [
+                -0.08770448729736043,
+                0.7071173799405331,
+                0.7016358983788834
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6606,
+              "plane": 1289,
+              "side": 0,
+              "effectiveNormal": [
+                -0.1203858530857692,
+                -0.2407717061715384,
+                0.9630868246861536
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6607,
+              "plane": 1275,
+              "side": 0,
+              "effectiveNormal": [
+                0.24253562503633297,
+                0.0,
+                0.9701425001453319
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6608,
+              "plane": 1275,
+              "side": 0,
+              "effectiveNormal": [
+                0.24253562503633297,
+                0.0,
+                0.9701425001453319
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6609,
+              "plane": 1289,
+              "side": 0,
+              "effectiveNormal": [
+                -0.1203858530857692,
+                -0.2407717061715384,
+                0.9630868246861536
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6610,
+              "plane": 1290,
+              "side": 0,
+              "effectiveNormal": [
+                0.23570226039551584,
+                -0.23570226039551584,
+                0.9428090415820634
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6611,
+              "plane": 1244,
+              "side": 0,
+              "effectiveNormal": [
+                0.588348395671485,
+                -0.1961161368575488,
+                0.7844645474301952
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6612,
+              "plane": 1291,
+              "side": 0,
+              "effectiveNormal": [
+                0.8253998252916676,
+                0.43997860448194515,
+                0.3537427822678575
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6613,
+              "plane": 1292,
+              "side": 0,
+              "effectiveNormal": [
+                0.8832766261892112,
+                -0.27663057567119503,
+                0.37854712550966196
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6614,
+              "plane": 1293,
+              "side": 0,
+              "effectiveNormal": [
+                0.8942333464406758,
+                0.2312393636688661,
+                0.3832428457303911
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6615,
+              "plane": 1133,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6616,
+              "plane": 1177,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6619,
+              "plane": 1294,
+              "side": 0,
+              "effectiveNormal": [
+                -0.09950371990621641,
+                -0.597022304536137,
+                0.7960297592497313
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6620,
+              "plane": 1294,
+              "side": 0,
+              "effectiveNormal": [
+                -0.09950371990621641,
+                -0.597022304536137,
+                0.7960297592497313
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6623,
+              "plane": 1294,
+              "side": 0,
+              "effectiveNormal": [
+                -0.09950371990621641,
+                -0.597022304536137,
+                0.7960297592497313
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6624,
+              "plane": 704,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6625,
+              "plane": 1274,
+              "side": 0,
+              "effectiveNormal": [
+                0.24253562503633297,
+                -0.5820855000871992,
+                0.7761140001162655
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6626,
+              "plane": 1274,
+              "side": 0,
+              "effectiveNormal": [
+                0.24253562503633297,
+                -0.5820855000871992,
+                0.7761140001162655
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6627,
+              "plane": 1274,
+              "side": 0,
+              "effectiveNormal": [
+                0.24253562503633297,
+                -0.5820855000871992,
+                0.7761140001162655
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6628,
+              "plane": 1277,
+              "side": 0,
+              "effectiveNormal": [
+                0.8052211924794341,
+                0.4864878013061313,
+                0.3390404848426279
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6629,
+              "plane": 1276,
+              "side": 0,
+              "effectiveNormal": [
+                0.9216353796259443,
+                -0.0,
+                0.38805698939941985
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6630,
+              "plane": 1288,
+              "side": 0,
+              "effectiveNormal": [
+                -0.08770448729736043,
+                0.7071173799405331,
+                0.7016358983788834
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6631,
+              "plane": 1288,
+              "side": 0,
+              "effectiveNormal": [
+                -0.08770448729736043,
+                0.7071173799405331,
+                0.7016358983788834
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6632,
+              "plane": 1288,
+              "side": 0,
+              "effectiveNormal": [
+                -0.08770448729736043,
+                0.7071173799405331,
+                0.7016358983788834
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6633,
+              "plane": 1288,
+              "side": 0,
+              "effectiveNormal": [
+                -0.08770448729736043,
+                0.7071173799405331,
+                0.7016358983788834
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6634,
+              "plane": 1288,
+              "side": 0,
+              "effectiveNormal": [
+                -0.08770448729736043,
+                0.7071173799405331,
+                0.7016358983788834
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6635,
+              "plane": 1288,
+              "side": 0,
+              "effectiveNormal": [
+                -0.08770448729736043,
+                0.7071173799405331,
+                0.7016358983788834
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6636,
+              "plane": 1291,
+              "side": 0,
+              "effectiveNormal": [
+                0.8253998252916676,
+                0.43997860448194515,
+                0.3537427822678575
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6637,
+              "plane": 1292,
+              "side": 0,
+              "effectiveNormal": [
+                0.8832766261892112,
+                -0.27663057567119503,
+                0.37854712550966196
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6638,
+              "plane": 1295,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.986393924637612,
+                0.16439898247254828
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6639,
+              "plane": 1281,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.9805806762640418,
+                0.19611613227257615
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6640,
+              "plane": 46,
+              "side": 0,
+              "effectiveNormal": [
+                0.894427190999916,
+                -0.0,
+                0.447213595499958
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6641,
+              "plane": 1284,
+              "side": 0,
+              "effectiveNormal": [
+                0.9950371903575254,
+                -0.0,
+                0.09950371754563643
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6642,
+              "plane": 1286,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.9950371903575254,
+                -0.09950371754563643
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6643,
+              "plane": 107,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6644,
+              "plane": 1168,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.894427190999916,
+                0.447213595499958
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6645,
+              "plane": 1296,
+              "side": 0,
+              "effectiveNormal": [
+                -0.12309149097933274,
+                0.12309149097933274,
+                0.9847319278346619
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6646,
+              "plane": 1296,
+              "side": 0,
+              "effectiveNormal": [
+                -0.12309149097933274,
+                0.12309149097933274,
+                0.9847319278346619
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6647,
+              "plane": 1297,
+              "side": 1,
+              "effectiveNormal": [
+                -0.986393924637612,
+                -0.0,
+                0.16439898247254828
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6648,
+              "plane": 1282,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6649,
+              "plane": 1286,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.9950371903575254,
+                -0.09950371754563643
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6650,
+              "plane": 1168,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.894427190999916,
+                0.447213595499958
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6651,
+              "plane": 1297,
+              "side": 1,
+              "effectiveNormal": [
+                -0.986393924637612,
+                -0.0,
+                0.16439898247254828
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6652,
+              "plane": 1168,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.894427190999916,
+                0.447213595499958
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6653,
+              "plane": 1279,
+              "side": 0,
+              "effectiveNormal": [
+                0.5821804304243161,
+                0.7738299236872059,
+                0.24950590301075287
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6654,
+              "plane": 1296,
+              "side": 0,
+              "effectiveNormal": [
+                -0.12309149097933274,
+                0.12309149097933274,
+                0.9847319278346619
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6655,
+              "plane": 1296,
+              "side": 0,
+              "effectiveNormal": [
+                -0.12309149097933274,
+                0.12309149097933274,
+                0.9847319278346619
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6656,
+              "plane": 1293,
+              "side": 0,
+              "effectiveNormal": [
+                0.8942333464406758,
+                0.2312393636688661,
+                0.3832428457303911
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6657,
+              "plane": 1280,
+              "side": 0,
+              "effectiveNormal": [
+                0.913867228403305,
+                0.10701021472689964,
+                0.39165737934394185
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6658,
+              "plane": 1177,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6659,
+              "plane": 1133,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6660,
+              "plane": 1133,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6661,
+              "plane": 1276,
+              "side": 0,
+              "effectiveNormal": [
+                0.9216353796259443,
+                -0.0,
+                0.38805698939941985
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6662,
+              "plane": 1274,
+              "side": 0,
+              "effectiveNormal": [
+                0.24253562503633297,
+                -0.5820855000871992,
+                0.7761140001162655
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6663,
+              "plane": 1240,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6664,
+              "plane": 1240,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6665,
+              "plane": 1240,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6667,
+              "plane": 1298,
+              "side": 0,
+              "effectiveNormal": [
+                0.7977594551344478,
+                0.07478994705620937,
+                0.5983195764496749
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6668,
+              "plane": 1299,
+              "side": 0,
+              "effectiveNormal": [
+                0.597022304536137,
+                0.09950371990621641,
+                0.7960297592497313
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6669,
+              "plane": 1300,
+              "side": 0,
+              "effectiveNormal": [
+                0.7977594551344478,
+                -0.07478994705620937,
+                0.5983195764496749
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6670,
+              "plane": 1301,
+              "side": 0,
+              "effectiveNormal": [
+                -0.1111111111111111,
+                -0.4444444444444444,
+                0.8888888888888888
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6671,
+              "plane": 1302,
+              "side": 0,
+              "effectiveNormal": [
+                0.2407717061715384,
+                -0.1203858530857692,
+                0.9630868246861536
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6672,
+              "plane": 1303,
+              "side": 0,
+              "effectiveNormal": [
+                0.5570860042544924,
+                -0.37139067943710263,
+                0.7427813588742053
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6673,
+              "plane": 1154,
+              "side": 1,
+              "effectiveNormal": [
+                -0.2407717061715384,
+                0.1203858530857692,
+                -0.9630868246861536
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6674,
+              "plane": 1154,
+              "side": 1,
+              "effectiveNormal": [
+                -0.2407717061715384,
+                0.1203858530857692,
+                -0.9630868246861536
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6675,
+              "plane": 1134,
+              "side": 1,
+              "effectiveNormal": [
+                -0.23570226039551584,
+                0.23570226039551584,
+                -0.9428090415820634
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6676,
+              "plane": 1304,
+              "side": 1,
+              "effectiveNormal": [
+                0.36345618728911305,
+                -0.3271105566392729,
+                -0.8722948375729425
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6677,
+              "plane": 1156,
+              "side": 1,
+              "effectiveNormal": [
+                -0.2279211540804053,
+                -0.341881716219447,
+                -0.9116846163216212
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6678,
+              "plane": 1305,
+              "side": 1,
+              "effectiveNormal": [
+                0.3747658444979307,
+                0.22485950669875843,
+                -0.8994380267950337
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6679,
+              "plane": 1306,
+              "side": 0,
+              "effectiveNormal": [
+                0.8821085553589688,
+                -0.16539534667922617,
+                -0.4410542776794844
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6680,
+              "plane": 1304,
+              "side": 1,
+              "effectiveNormal": [
+                0.36345618728911305,
+                -0.3271105566392729,
+                -0.8722948375729425
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6681,
+              "plane": 1305,
+              "side": 1,
+              "effectiveNormal": [
+                0.3747658444979307,
+                0.22485950669875843,
+                -0.8994380267950337
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6682,
+              "plane": 1307,
+              "side": 1,
+              "effectiveNormal": [
+                0.3820803557084986,
+                0.11462410820266573,
+                -0.9169928656213259
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6683,
+              "plane": 1307,
+              "side": 1,
+              "effectiveNormal": [
+                0.3820803557084986,
+                0.11462410820266573,
+                -0.9169928656213259
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6684,
+              "plane": 1308,
+              "side": 0,
+              "effectiveNormal": [
+                0.8888888888888888,
+                0.1111111111111111,
+                -0.4444444444444444
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6685,
+              "plane": 1305,
+              "side": 1,
+              "effectiveNormal": [
+                0.3747658444979307,
+                0.22485950669875843,
+                -0.8994380267950337
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6686,
+              "plane": 1309,
+              "side": 0,
+              "effectiveNormal": [
+                0.8930329154975161,
+                0.055814557218594754,
+                -0.44651645774875803
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6687,
+              "plane": 1308,
+              "side": 0,
+              "effectiveNormal": [
+                0.8888888888888888,
+                0.1111111111111111,
+                -0.4444444444444444
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6689,
+              "plane": 1310,
+              "side": 0,
+              "effectiveNormal": [
+                0.597022304536137,
+                -0.09950371990621641,
+                0.7960297592497313
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6690,
+              "plane": 1310,
+              "side": 0,
+              "effectiveNormal": [
+                0.597022304536137,
+                -0.09950371990621641,
+                0.7960297592497313
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6691,
+              "plane": 1310,
+              "side": 0,
+              "effectiveNormal": [
+                0.597022304536137,
+                -0.09950371990621641,
+                0.7960297592497313
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6695,
+              "plane": 1312,
+              "side": 0,
+              "effectiveNormal": [
+                0.21821789023599236,
+                -0.4364357804719847,
+                0.8728715609439694
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6696,
+              "plane": 1303,
+              "side": 0,
+              "effectiveNormal": [
+                0.5570860042544924,
+                -0.37139067943710263,
+                0.7427813588742053
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6697,
+              "plane": 1302,
+              "side": 0,
+              "effectiveNormal": [
+                0.2407717061715384,
+                -0.1203858530857692,
+                0.9630868246861536
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6698,
+              "plane": 1313,
+              "side": 0,
+              "effectiveNormal": [
+                -0.12309149097933274,
+                -0.12309149097933274,
+                0.9847319278346619
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6699,
+              "plane": 1303,
+              "side": 0,
+              "effectiveNormal": [
+                0.5570860042544924,
+                -0.37139067943710263,
+                0.7427813588742053
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6700,
+              "plane": 1314,
+              "side": 0,
+              "effectiveNormal": [
+                0.766261036379395,
+                -0.2873478811916926,
+                0.5746957623833852
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6702,
+              "plane": 1315,
+              "side": 0,
+              "effectiveNormal": [
+                0.7295372045118395,
+                0.4103646961643616,
+                0.547152888482718
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6703,
+              "plane": 1316,
+              "side": 1,
+              "effectiveNormal": [
+                0.36345618728911305,
+                0.3271105566392729,
+                -0.8722948375729425
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6704,
+              "plane": 1317,
+              "side": 0,
+              "effectiveNormal": [
+                0.8821085553589688,
+                0.16539534667922617,
+                -0.4410542776794844
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6714,
+              "plane": 1240,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6715,
+              "plane": 1240,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6716,
+              "plane": 764,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6717,
+              "plane": 764,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6718,
+              "plane": 1315,
+              "side": 0,
+              "effectiveNormal": [
+                0.7295372045118395,
+                0.4103646961643616,
+                0.547152888482718
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 6719,
+              "plane": 1317,
+              "side": 0,
+              "effectiveNormal": [
+                0.8821085553589688,
+                0.16539534667922617,
+                -0.4410542776794844
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 6720,
+              "plane": 1319,
+              "side": 1,
+              "effectiveNormal": [
+                -0.8821085553589688,
+                -0.16539534667922617,
+                0.4410542776794844
+              ],
+              "orientation": "upwardSloped"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Face counts include all native BSP faces, before visibility or brush-entity runtime transforms.",
+    "Not surface-area weights. Duplicate BSP content/profile observations collapsed, including identical Portal installations.",
+    "Orientation can contextualize snowy rocky terrain, but does not identify material, snowfall state or runtime exposure."
+  ],
+  "completedAt": "2026-10-20T17:05:31.184573+00:00"
+}

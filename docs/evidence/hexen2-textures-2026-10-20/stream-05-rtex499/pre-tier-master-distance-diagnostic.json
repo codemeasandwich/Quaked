@@ -1,0 +1,27 @@
+{
+  "scope": "Provisional RGB diagnostic only, no tier or height acceptance",
+  "checks": [
+    {
+      "divisor": 2,
+      "dimensions": [
+        64,
+        64
+      ],
+      "comparison": "native vs provisional uncompressed RGB master; not finaltier",
+      "bothFilter": "BOX",
+      "mae": 5.657877604166667,
+      "max": 65.0
+    },
+    {
+      "divisor": 4,
+      "dimensions": [
+        32,
+        32
+      ],
+      "comparison": "native vs provisional uncompressed RGB master; not finaltier",
+      "bothFilter": "BOX",
+      "mae": 3.0732421875,
+      "max": 27.0
+    }
+  ]
+}
