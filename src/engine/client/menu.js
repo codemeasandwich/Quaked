@@ -31,7 +31,7 @@ import { R_DemoSplitActive } from '../common/hooks.js'; // installed by newer/re
 import { Cmd_AddCommand } from '../common/cmd.js';
 import { GameProfile_IsHexen2 } from '../common/game_profile.js';
 import { Con_ToggleConsole_f } from '../common/console.js';
-import { K_ESCAPE, key_game, key_console, key_menu } from './keys.js';
+import { K_ESCAPE, K_BACKSPACE, key_game, key_console, key_menu } from './keys.js';
 import { scr_con_current } from '../render/gl_screen.js';
 import { Draw_GetUIScale, Draw_WithVirtualSize } from '../render/gl_draw.js';
 import { m_controller_customise, m_controller_test, m_gyro, m_none, m_main, m_singleplayer, m_load, m_save, m_multiplayer, m_setup, m_options, m_video, m_keys, m_quit, m_lanconfig, m_gameoptions, m_credits, m_newer, m_levelselect, m_bestiary, m_cheats, m_mpchoice, m_splitscreen, m_hexen2_main, m_hexen2_single, m_hexen2_class, m_hexen2_skill, m_hexen2_multiplayer, m_hexen2_setup, m_hexen2_options, m_hexen2_keys, m_hexen2_help, m_hexen2_quit, m_hexen2_load, m_hexen2_save, m_state, m_entersound, m_recursiveDraw, set_m_state, set_m_entersound, set_m_recursiveDraw, menuOpeners, _realVid, _vid, _realtime_get, _Draw_Fill, _Draw_FadeScreen, _Draw_ConsoleBackground, _S_LocalSound, getKeyDest, setKeyDest, M_PrintWhite } from './menu_common.js';
@@ -180,6 +180,8 @@ M_Keydown
  */
 export function M_Keydown( key ) {
 
+	// Backspace goes back a page, as Escape does, except on the pages where it edits text or clears a binding
+	if ( key === K_BACKSPACE && ! [ m_keys, m_hexen2_keys, m_setup, m_hexen2_setup, m_lanconfig ].includes( m_state ) ) key = K_ESCAPE;
 	switch ( m_state ) {
 
 		case m_none: return;

@@ -499,7 +499,8 @@ function handleKeyDown( event ) {
 	}
 
 	// Prevent browser defaults for game keys
-	if ( event.code === 'Tab' || event.code === 'Escape' ||
+	// (Backspace too: WebKit, the Mac app's web view, takes an unhandled one as "back a page", which left the game)
+	if ( event.code === 'Tab' || event.code === 'Escape' || event.code === 'Backspace' ||
 		event.code === 'Space' || event.code === 'F5' ||
 		event.code === 'F11' || event.code === 'F12' ) {
 

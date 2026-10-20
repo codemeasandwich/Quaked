@@ -58,6 +58,24 @@ export function M_ControllerActionLabel( input ) {
 function leave() { dropdown = null; set_m_state( m_gyro ); }
 
 /**
+ * Whether an input is in use on the Test page, where only those show their label and leader (owner, 21 October 2026):
+ * a button or trigger pressed past a fifth, a stick pushed past a fifth of its travel.
+ */
+export function M_ControllerInputActive( input, pad ) {
+
+	if ( ! pad ) return false;
+	if ( input.index === null ) {
+
+		const axis = input.id === 'left-move' ? 0 : 2;
+		return Math.hypot( pad.axes?.[ axis ] ?? 0, pad.axes?.[ axis + 1 ] ?? 0 ) > 0.2;
+
+	}
+	const button = pad.buttons?.[ input.index ];
+	return !! button && ( button.pressed || ( button.value ?? 0 ) > 0.2 );
+
+}
+
+/**
  * Advances gyro display and the physical B hold using monotonic milliseconds. Read-only samples share the input
  * poll's entire effective pad population (including remote local-play pads), so ambiguity rules stay identical.
  */
@@ -184,6 +202,7 @@ export function M_Controller_Draw() {
 	const isTest = testing(), progress = isTest ? M_ControllerTest_Update() : 0;
 	if ( ! active() ) return;
 	const { pad } = IN_GamepadState(), page = layout(), selected = page.labels[ cursor ];
+	const shown = label => ! isTest || M_ControllerInputActive( label, pad );
 	const canvas = Draw_GetOverlayCanvas(), ctx = canvas?.getContext( '2d' ), scale = Draw_GetUIScale();
 	let projected = null;
 	if ( ctx ) {
@@ -193,7 +212,7 @@ export function M_Controller_Draw() {
 		ctx.strokeStyle = '#b8a27a'; ctx.lineWidth = Math.max( 1, scale * .5 );
 		for ( const label of page.labels ) {
 
-			const anchor = projected?.[ label.anchor ]; if ( ! anchor ) continue;
+			const anchor = projected?.[ label.anchor ]; if ( ! anchor || ! shown( label ) ) continue;
 			const x = label.side === 'left' ? label.x + label.width : label.x;
 			ctx.beginPath(); ctx.moveTo( x * scale, ( label.y + 8 ) * scale ); ctx.lineTo( anchor.x * scale, anchor.y * scale ); ctx.stroke();
 
@@ -215,6 +234,7 @@ export function M_Controller_Draw() {
 	for ( let i = 0; i < page.labels.length; i ++ ) {
 
 		const label = page.labels[ i ];
+		if ( ! shown( label ) ) continue;
 		for ( const [ line, value ] of [ M_ControllerInputName( label, pad?.id ), M_ControllerActionLabel( label ) ].entries() ) {
 
 			// Fit whole action names even on the minimum menu sheet; the native skin glyphs stay on the overlay.

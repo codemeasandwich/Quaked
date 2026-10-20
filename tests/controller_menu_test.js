@@ -295,3 +295,23 @@ Deno.test( 'changing a held dedicated pad binding releases its old action and wa
 	}
 	keys.Key_SetBinding( keys.K_PAD_A, '' ); pads = []; input.IN_GamepadRelease( () => {} );
 } );
+
+Deno.test( 'Test shows a label and leader only while its input is pressed or pushed', async () => {
+	const f = await menuFixture(); let pads = [];
+	Object.defineProperty( navigator, 'getGamepads', { value: () => pads, configurable: true } );
+	const pad = { index: 0, id: 'Pro Controller Extended Gamepad', connected: true, mapping: 'standard', axes: [ 0, 0, 0, 0 ], buttons: Array.from( { length: 17 }, () => ( { pressed: false, value: 0 } ) ) };
+	pads = [ pad ]; input.IN_GamepadRelease( () => {} );
+	f.pages.M_Menu_Controller_f( true ); input.IN_GamepadPoll( null, () => {} );
+	const idle = f.draw();
+	check( ! idle.includes( 'Move (fixed)' ) && ! idle.includes( 'ZR' ), 'nothing in use: no input labels' );
+	pad.buttons[ 7 ] = { pressed: true, value: 0.8 }; pad.axes = [ 0.5, 0, 0, 0 ]; input.IN_GamepadPoll( null, () => {} );
+	const busy = f.draw();
+	check( busy.includes( 'ZR' ) && busy.includes( 'Move (fixed)' ), 'the pulled trigger and pushed stick show' );
+	check( ! busy.includes( 'Look (fixed)' ), 'the untouched right stick stays hidden' );
+	const inputs = f.labels;
+	check( f.pages.M_ControllerInputActive( inputs.find( x => x.id === 'right-trigger' ), { buttons: [ , , , , , , , { pressed: false, value: 0.1 } ] } ) === false, 'a trigger resting under a fifth is idle' );
+	f.menu.M_Keydown( keys.K_ESCAPE ); f.pages.M_Menu_Controller_f( false ); input.IN_GamepadPoll( null, () => {} );
+	check( f.draw().includes( 'Look (fixed)' ), 'Customise still labels every input' );
+	f.menu.M_Keydown( keys.K_ESCAPE ); f.menu.M_Keydown( keys.K_ESCAPE );
+	pads = []; input.IN_GamepadRelease( () => {} );
+} );
