@@ -12,7 +12,7 @@ import * as pak from '../src/engine/common/pak.js';
 import { W_LoadWadFile } from '../src/engine/common/wad.js';
 import { GameProfile_Set } from '../src/engine/common/game_profile.js';
 import { NewerBindings } from '../src/newer/content_bindings.js';
-import { BuildHexen2FontAtlas, MENU_SKINS, MenuSkin_BigfontIndex, MenuSkin_StoneShaders } from '../src/newer/ui/menu_skins.js';
+import { BuildHexen2FontAtlas, MENU_SKINS, MenuSkin_BigfontIndex, MenuSkin_ConcharsInks, MenuSkin_StoneShaders } from '../src/newer/ui/menu_skins.js';
 import { M_Hexen2_Reset, M_Hexen2_Menu_Main_f, M_Hexen2_Menu_SinglePlayer_f, M_Hexen2_Menu_Class_f,
 	M_Hexen2_Menu_Skill_f } from '../src/engine/client/menu_hexen2.js';
 import { M_Hexen2_Menu_Options_f, M_Hexen2_Menu_Keys_f } from '../src/engine/client/menu_hexen2_options.js';
@@ -258,7 +258,34 @@ Deno.test( 'the Hexen II font atlas is generated from the installed bigfont and 
 
 	}
 	check( low < 64 && high > 192, 'the H distance field spans outside and inside: ' + low + '..' + high );
+	// the sheet's 255 grid line closing each cell (column 19) is not ink: no letter reaches it (a bar after every word)
+	for ( let index = 0; index < 27; index ++ ) {
+
+		const big = atlas.metrics.glyphs[ String.fromCharCode( MENU_SKINS.hexen2.font.privateBase + index ) ];
+		check( big.ink[ 0 ] + big.ink[ 2 ] <= 1 + 1e-6, 'bigfont cell ' + index + ' ink stops before the grid column: ' + ( big.ink[ 0 ] + big.ink[ 2 ] ) );
+
+	}
+	// polarity: the renderer draws where the field is above one half, so the tile's padding corner (always outside the
+	// ink) must be dark and the ink bright; an inverted field draws boxes with letter-shaped holes
+	const corner = atlas.data[ y * atlas.metrics.width + x ];
+	check( corner === 0, 'the padding corner is exactly 0, which the glyph shader discards (else a box is drawn): ' + corner );
 	const small = atlas.metrics.glyphs[ 'H' ];
+	const [ sx, sy, sw, sh ] = small.atlas, smallCorner = atlas.data[ sy * atlas.metrics.width + sx ];
+	check( smallCorner === 0, 'the small H tile\'s corner is exactly 0 too: ' + smallCorner );
+	// a tile holds its own glyph only: its whole border is empty (a neighbouring sheet cell's ink drawn in the padding
+	// shows as a box round the letter)
+	for ( const [ name, tile ] of [ [ 'big H', glyph.atlas ], [ 'small H', small.atlas ] ] ) {
+
+		const [ tx, ty, tw, th ] = tile, row = ( yy, xx ) => atlas.data[ ( ty + yy ) * atlas.metrics.width + tx + xx ];
+		let edge = 0;
+		for ( let i = 0; i < tw; i ++ ) edge = Math.max( edge, row( 0, i ), row( th - 1, i ) );
+		for ( let i = 0; i < th; i ++ ) edge = Math.max( edge, row( i, 0 ), row( i, tw - 1 ) );
+		same( edge, 0, 'the ' + name + ' tile border is empty' );
+
+	}
+	let smallHigh = 0;
+	for ( let row = 0; row < sh; row ++ ) for ( let column = 0; column < sw; column ++ ) smallHigh = Math.max( smallHigh, atlas.data[ ( sy + row ) * atlas.metrics.width + sx + column ] );
+	check( smallHigh > 192, 'the small H ink is above one half: ' + smallHigh );
 	same( small.em, 8, 'the small conchars bank keeps its 8-pixel em' );
 	check( small.atlas, 'the small H has its own tile' );
 
@@ -275,6 +302,24 @@ Deno.test( 'the Hexen II stone material is derived from the supplied shaders, le
 	check( stone.glyphFragment.includes( 'vec3(18.,18.,20.)' ), 'the glyph rim is cool stone' );
 	check( QUAKE_SHADERS.plaqueFragment.includes( 'vec3(.414,.291,.193)' ), 'Quake keeps the supplied bronze shader' );
 	check( MenuSkin_StoneShaders( QUAKE_SHADERS ) !== stone, 'each call returns its own copy' );
+	// the bank colours replace the glyph face only when the generated shader still has the face lines they replace
+	const inked = MenuSkin_StoneShaders( QUAKE_SHADERS, { plain: [ .5, .3, .1 ], highlight: [ .4, 0, 0 ] } );
+	check( inked.glyphFragment.includes( 'const vec3 INK_HIGHLIGHT=vec3(0.4000,0.0000,0.0000);' ), 'the highlighted bank colour is declared' );
+	check( inked.glyphFragment.includes( 'kind < .5 ? INK_HIGHLIGHT : kind < 1.5 ? INK_BIG : kind > 2.5 ? INK_PLAIN' ), 'lettering takes the game\'s colours (the face lines matched)' );
+	check( ! stone.glyphFragment.includes( 'INK_PLAIN' ), 'without inks the stone glyphs are unchanged' );
+
+} );
+
+Deno.test( 'the Hexen II small-font inks are the charset\'s own tan and red banks', () => {
+
+	if ( ! hasHexen ) return;
+	const conchars = pak.COM_FindFile( 'gfx/menu/conchars.lmp' ), palette = new Uint8Array( pak.COM_LoadFile( 'gfx/palette.lmp' ) );
+	const inks = MenuSkin_ConcharsInks( { width: 256, height: 128, data: conchars.data }, palette );
+	check( inks, 'the installed charset and palette give two inks' );
+	const [ hr, hg, hb ] = inks.highlight, [ pr, pg, pb ] = inks.plain;
+	check( hr > 4 * hg && hr > 4 * hb, 'the highlighted bank is red: ' + inks.highlight.map( v => v.toFixed( 3 ) ) );
+	check( pr > pg && pg > pb && pg > .3 * pr, 'the plain bank is tan: ' + inks.plain.map( v => v.toFixed( 3 ) ) );
+	same( MenuSkin_ConcharsInks( null, palette ), null, 'no charset, no inks' );
 
 } );
 

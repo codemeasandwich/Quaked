@@ -23,7 +23,7 @@ import {Distribution_Profile} from '../../platform/distribution.js';
 import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './cmd.js';
 import { Con_Printf } from './console.js';
 import { Sys_Printf } from './sys.js';
-import { GameCatalogue_Refresh, GAME_CATALOGUE_LOOSE_FILES, GAME_CATALOGUE_GAMES, GameCatalogue_AllGames } from './game_catalogue.js';
+import { GameCatalogue_Refresh, GameCatalogue_Get, GAME_CATALOGUE_LOOSE_FILES, GAME_CATALOGUE_GAMES, GameCatalogue_AllGames } from './game_catalogue.js';
 import { COM_FindFile } from './pak.js';
 import { PROTOCOL_LARGE } from './protocol.js';
 
@@ -63,10 +63,12 @@ function addonEntry( id ) {
 const missionEntry = id => MISSION_PACKS[ id ] ?? ( isAddon( id ) ? addonEntry( id ) : null );
 const ownedPacks = id => OWNED_PACKS[ id ] ?? ( isAddon( id ) ? QUAKE_PACKS : null );
 const gameName = id => NAMES[ id ] ?? addonDefinition( id )?.name ?? id;
-const choosable = id => Object.hasOwn( OWNED_PACKS, id ) || isAddon( id ) ||
-	( Distribution_Profile() === 'desktop' && HEXEN_CHOICES.has( id ) );
+const choosable = id => Object.hasOwn( OWNED_PACKS, id ) || isAddon( id ) || ( hexenOffered() && HEXEN_CHOICES.has( id ) );
+// Hexen II runs from the player's own installation: the native desktop app, or a local source checkout serving their
+// library (`tools/serve.py --game-root`); the published web product keeps its Quake shareware product
+const hexenOffered = () => Distribution_Profile() !== 'web';
 
-/** The native desktop app's Hexen II catalogue ids (the web product keeps its Quake shareware product). */
+/** The Hexen II catalogue ids. */
 const HEXEN_CHOICES = new Set( [ 'hexen2', 'hexen2-portals', 'hexen2-demo' ] );
 /** The games that can be chosen by name: the official ones and every known add-on (a found add-on, `mod_...`, too). */
 export const GAME_SELECTION_CHOICES = Object.freeze( [ ...Object.keys( OWNED_PACKS ), ...KNOWN_ADDONS.filter( id => ! Object.hasOwn( OWNED_PACKS, id ) ) ] );
@@ -297,6 +299,57 @@ export async function GameSelection_FetchLoose( url, fetchImpl = globalThis.fetc
 }
 
 /**
+ * Fetches a Hexen II edition from the player's library for a local source checkout, in the order the desktop app mounts
+ * it (`GameSelection_LibraryOrder`): for Portal of Praevus the base game's packs, then Portal's loose files as one pack
+ * and its packs; for the base game or the demo its loose files (progs.dat, strings.txt, hexen.rc…) then its packs. The
+ * folders, packs and loose files are the ones the game catalogue found; music stays loose (Hexen2_MusicStem streams it).
+ *
+ * @param {string} id 'hexen2', 'hexen2-portals' or 'hexen2-demo'
+ * @param {function(string, string): Promise<?object>} fetchPak fetches and loads one pack from its URL under a name
+ *   (`COM_FetchOptionalPak`); the name is `<game id>/<pak>`, as the desktop app's tokens, so Level Select finds an
+ *   edition's own maps
+ * @param {function(string): Promise<?Uint8Array>} fetchFile fetches one loose file (`GameSelection_FetchLoose`)
+ * @param {function(string, Array<{ name: string, data: Uint8Array }>): ?object} loosePack builds a pack from loose files
+ * @param {?{ games: Array<object> }} [catalogue] the catalogue (default: the current one, refreshed when there is none)
+ * @returns {Promise<Array<object>>} the packs, in mount order
+ * @throws {Error} when the edition or its base is not installed, or a found pack cannot be read
+ */
+export async function GameSelection_FetchLibraryGame( id, fetchPak, fetchFile, loosePack, catalogue = null ) {
+
+	const games = ( catalogue ?? GameCatalogue_Get() ?? await GameCatalogue_Refresh() )?.games ?? [];
+	const definition = GameCatalogue_AllGames().find( g => g.id === id );
+	if ( ! definition ) throw Error( `no game called '${id}'` );
+	const ids = definition.base ? [ definition.base, id ] : [ id ], entries = [];
+	for ( const game of ids ) {
+
+		const found = games.find( g => g.id === game );
+		if ( ! found?.present || ! found.folder ) throw Error( `${found?.name ?? GameCatalogue_AllGames().find( g => g.id === game )?.name ?? game} is not installed` );
+		const at = found.folder.split( '/' ).map( encodeURIComponent ).join( '/' ); // as the catalogue probes it
+		for ( const name of found.loose ?? [] ) if ( ! name.startsWith( 'music/' ) ) entries.push( { game, loose: true, name, url: `${at}/${encodeURIComponent( name )}` } );
+		for ( const pack of found.packs ?? [] ) entries.push( { game, name: pack.name, url: `${at}/${pack.name}` } );
+
+	}
+	const packs = [];
+	for ( const step of GameSelection_LibraryOrder( entries, ids, id ) ) {
+
+		if ( step.loose ) {
+
+			const files = [];
+			for ( const entry of step.loose ) { const data = await fetchFile( entry.url ); if ( data ) files.push( { name: entry.name, data } ); }
+			if ( files.length > 0 ) packs.push( loosePack( `${id}/loose`, files ) );
+			continue;
+
+		}
+		const pack = await fetchPak( step.pack.url, `${step.pack.game}/${step.pack.name}` );
+		if ( ! pack ) throw Error( `${step.pack.url} could not be read` );
+		packs.push( pack );
+
+	}
+	return packs;
+
+}
+
+/**
  * The order the Mac app mounts a game's library entries in (src/platform/desktop.js): for each game, base first, its
  * loose game files as one pack and then its packs, so the last mounted wins as Quake searches (a game's packs, then its
  * folder, then its base). Only the add-on being run gets its loose files; a player's own autoexec.cfg beside Quake is
@@ -411,8 +464,9 @@ export function GameSelection_Startable( game, options = {} ) {
 
 	if ( HEXEN_CHOICES.has( game.id ) ) {
 
-		// Hexen II is offered by the native desktop app only; the catalogue has already proved the installation
-		if ( Distribution_Profile() !== 'desktop' )
+		// Hexen II is offered by the desktop app and a local source checkout; the catalogue has already proved the
+		// installation
+		if ( ! hexenOffered() )
 			return { ok: false, unchecked: false, refusal: 'needs the native desktop app', why: 'Hexen II is not part of the web product' };
 		return { ok: true, unchecked: false, refusal: '', why: game.reason ?? '' };
 

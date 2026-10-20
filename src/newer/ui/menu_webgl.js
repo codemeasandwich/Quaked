@@ -20,7 +20,7 @@ import { Draw_GetOverlayCanvas, Draw_FullResolutionCanvas, Draw_FullResolutionIm
 import { COM_LoadFile } from '../../engine/common/pak.js';
 import { GameProfile_Get } from '../../engine/common/game_profile.js';
 import { NewerBindings } from '../content_bindings.js';
-import { BuildHexen2FontAtlas, MENU_SKINS, MenuSkin_ApplyPrograms, MenuSkin_BigfontIndex, MenuSkin_For } from './menu_skins.js';
+import { BuildHexen2FontAtlas, MENU_SKINS, MenuSkin_ApplyPrograms, MenuSkin_BigfontIndex, MenuSkin_ConcharsInks, MenuSkin_For } from './menu_skins.js';
 
 let renderer = null, loading = null, failed = null, visible = false, epoch = 0;
 let frameSkin = false, presented = false, commands = [], blits = [], images = [], size = [ 0, 0 ];
@@ -104,7 +104,10 @@ function loadHexen2Atlas() {
 	const menu = NewerBindings().menu;
 	const widthsFile = menu.fontWidths ? COM_LoadFile( menu.fontWidths ) : null;
 	const widths = widthsFile && widthsFile.byteLength === 27 * 27 ? new Uint8Array( widthsFile ) : null;
-	return BuildHexen2FontAtlas( { bigfont: loadQpic( menu.bigfont ), conchars: loadConchars( menu.conchars ), widths } );
+	const conchars = loadConchars( menu.conchars ), bigfont = loadQpic( menu.bigfont ), palette = COM_LoadFile( 'gfx/palette.lmp' );
+	const atlas = BuildHexen2FontAtlas( { bigfont, conchars, widths } );
+	if ( atlas ) atlas.inks = MenuSkin_ConcharsInks( conchars, palette ? new Uint8Array( palette ) : null, bigfont );
+	return atlas;
 
 }
 
@@ -115,7 +118,7 @@ async function applySkin( rend, skin ) {
 
 		const atlas = loadHexen2Atlas();
 		if ( ! atlas ) throw new Error( 'the installed Hexen II menu fonts could not be read' );
-		rend.font = atlas.metrics; rend.fontSource = atlas.data; rend.__hexenAtlas = atlas.info;
+		rend.font = atlas.metrics; rend.fontSource = atlas.data; rend.__hexenAtlas = atlas.info; rend.__hexenInks = atlas.inks;
 		if ( ! await rend._uploadFont( atlas.data, rend._generation ) ) throw new Error( 'Hexen II font upload was interrupted' );
 
 	} else {
@@ -125,7 +128,7 @@ async function applySkin( rend, skin ) {
 
 	}
 	if ( rend.destroyed || rend.contextLost ) return;
-	MenuSkin_ApplyPrograms( rend, rend.__baseShaders, skin );
+	MenuSkin_ApplyPrograms( rend, rend.__baseShaders, skin, skin.id === 'hexen2' ? rend.__hexenInks : null );
 	rend.__menuSkin = skin.id; rend.__material = skin.material;
 	rend.setConfig( skin.config );
 
@@ -133,6 +136,10 @@ async function applySkin( rend, skin ) {
 
 function ensureSkin( rend ) {
 
+	// The constructor's own atlas upload (the embedded DpQuake image) decodes asynchronously; a skin uploaded before it
+	// finishes is overwritten by it, leaving Hexen metrics over Quake's texture. prepare() applies the skin once the
+	// renderer is ready.
+	if ( ! rend.loaded ) return;
 	const skin = activeSkin();
 	if ( rend.__menuSkin === skin.id && rend.__material === skin.material ) return;
 	if ( rend.__skinPromise ) return;

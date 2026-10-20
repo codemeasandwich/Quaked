@@ -164,7 +164,8 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `659b4026` | owner trial 1 | fullbright index taken from each game's `colormap.lmp` (Hexen's yellow dotted world textures) |
 | `31498a84` | owner trial 2 / M1 | native Hexen II menus on the shared menu framework: main with the sliding title, single player, multiplayer, options, keys, help, quit, load/save |
 | `8cc2c3c7` | owner request | Help as one scroll with sticky section headings |
-| (this commit) | owner request / M2 | high-resolution Hexen II menus on the one dynamic renderer: per-game skin with a runtime font from the installed bigfont/conchars, grey stone, smoothed original pictures, sliding title, menudot selector; Quake unchanged |
+| `245a5cb3` | owner request / M2 | high-resolution Hexen II menus on the one dynamic renderer: per-game skin with a runtime font from the installed bigfont/conchars, grey stone, smoothed original pictures, sliding title, menudot selector; Quake unchanged |
+| (this commit) | browser trial T1 | Hexen II in a local source checkout; M2's font made legible on the GPU; Hexen's own console background |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;
@@ -197,6 +198,22 @@ M2 verification before commit: 245/245 across 81 suites (every `tests/hexen2_*`,
 suite) with M2 on top of the help scroll; M2's own run reported the engine list 217/217 and a Quake command-stream
 snapshot unchanged. `tests/cheats_menu_test.js` fails one case ("Enter on it opens Cheats: 8 != 23") identically on the
 Dev base `713b47d3`, so it predates this branch; it is not in the hook's engine list and is left for a separate fix.
+
+Browser trial T1 (20 October, `tools/distribution/hexen2-trial.mjs`, headed muted Chrome, the owner's library through
+`tools/serve.py --game-root`; keys go to the trial page only). The first run could not start Hexen II at all: since the
+parallel host was retired a local source checkout refused Hexen II (`GameSelection_Startable`) and fell back to Quake
+without its shareware pack, dying with `W_GetLumpinfo: conchars not found`. A source checkout now offers Hexen II and
+mounts the edition from the library in the desktop app's order (`GameSelection_FetchLibraryGame`); the published web
+product still refuses it. The trial then showed M2's high-resolution Hexen lettering unreadable on the GPU (its tests
+checked commands, not pixels). Five defects, each now pinned by a test that fails without its fix where a CPU test can
+see it: the distance field was inverted; the skin uploaded its atlas before the renderer's own DpQuake upload finished,
+which then overwrote it (Hexen metrics over Quake's texture); glyph tiles sampled the neighbouring sheet cells into
+their padding (boxes round letters); the bigfont's 255 grid line counted as ink (a bar after every word); the distance
+range was two to three times Quake's relative to the em (letters swelling into each other). Lettering now takes the
+game's own colours from its charset and palette (tan plain bank, red highlighted bank, the bigfont's stone). Hexen
+II's console background is `gfx/menu/conback.lmp`; Quake's `conback.webp` wallpaper is no longer shown behind Hexen
+menus. Verified by screenshots of the main, options, help (sticky headings) and single-player pages, and 289/289
+across the Hexen, menu, selection, hook and protocol suites.
 
 Open decisions and known limits:
 

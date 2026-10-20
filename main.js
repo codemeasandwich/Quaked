@@ -39,7 +39,7 @@ const parms = {
 	argv: []
 };
 import { GameCatalogue_Refresh, GameCatalogue_Get } from './src/engine/common/game_catalogue.js';
-import { GameSelection_OwnedPacks, GameSelection_StartSwitch, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember, GameSelection_MissionPack, GameSelection_FetchMission, GameSelection_FetchLoose, GameSelection_NeedsDiscovery, GameSelection_SetRunning, GameSelection_Current, GameSelection_Startable } from './src/engine/common/game_selection.js';
+import { GameSelection_OwnedPacks, GameSelection_StartSwitch, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember, GameSelection_MissionPack, GameSelection_FetchMission, GameSelection_FetchLoose, GameSelection_NeedsDiscovery, GameSelection_FetchLibraryGame, GameSelection_SetRunning, GameSelection_Current, GameSelection_Startable } from './src/engine/common/game_selection.js';
 import { GameProfile_Set } from './src/engine/common/game_profile.js';
 import { Newer_ApplyGameDefaults } from './src/engine/common/hooks.js'; // installed by newer/ui/newer_defaults.js
 import { Hexen2_SelectClass } from './src/engine/common/hexen2_profile.js';
@@ -106,7 +106,7 @@ async function main() {
 		Sys_Printf( 'Loading pak0.pak...\n' );
 		// Overlap independent transports; native installation order stays intact.
 		// The web build's boot loader already filled the logo while downloading its data files.
-		const nativePack = desktop ? Promise.resolve(null) : COM_FetchPak( 'games/shareware/pak0.pak', 'pak0.pak', Distribution_Profile() === 'web' ? undefined : value => LoadingScreen_SetProgress( value ) );
+		const nativePack = desktop || hexen ? Promise.resolve(null) : COM_FetchPak( 'games/shareware/pak0.pak', 'pak0.pak', Distribution_Profile() === 'web' ? undefined : value => LoadingScreen_SetProgress( value ) );
 		const optionalPack = COM_FetchOptionalPak( 'newer.pak', 'newer.pak' ).catch( error => {
 			Sys_Printf( 'newer.pak not loaded: ' + error.message );return null;
 		} );
@@ -116,19 +116,23 @@ async function main() {
 		// QuakeC, status bar pictures, quake.rc, default.cfg and start map are the game.)
 		// Which owned pack, if any, comes from the game chosen (card [34c]): none for the shareware, so nothing more is
 		// downloaded; the full Quake's from games/Quake/ or resources/id1/ (the first found) otherwise, as before.
-		const ownedPack = desktop ? Promise.resolve(null) : ( async () => { for ( const url of GameSelection_OwnedPacks() ) { const pack = await COM_FetchOptionalPak( url, url ); if ( pack ) return pack; } return null; } )();
+		const ownedPack = desktop || hexen ? Promise.resolve(null) : ( async () => { for ( const url of GameSelection_OwnedPacks() ) { const pack = await COM_FetchOptionalPak( url, url ); if ( pack ) return pack; } return null; } )();
 		// A mission pack (card [34c]) or episode also fetches its own pack, from games/<name>/ or resources/<dir>/ (the first
 		// found); an add-on every pack of its folder and its loose game files (GameSelection_FetchMission)
 		// a chosen add-on found by its folder (`mod_...`) is known once the catalogue has listed the game library
 		if ( ! desktop && GameSelection_NeedsDiscovery() ) await GameCatalogue_Refresh().catch( error => Sys_Printf( 'Game catalogue: %s\n', error?.message ?? error ) );
 		const mission = GameSelection_MissionPack();
 		const missionLoad = mission && !desktop ? GameSelection_FetchMission( mission, url => COM_FetchOptionalPak( url, url ), url => GameSelection_FetchLoose( url ), ( name, files ) => COM_LoadPackFile( name, COM_BuildPack( files ) ) ) : Promise.resolve( null );
-		const [ sharewarePak, newerPak, hudPak, fullGamePak, missionPak ] = await Promise.all( [ nativePack, optionalPack, startupPack, ownedPack, missionLoad ] );
+		// Hexen II in a local source checkout: the edition's packs and loose files from the player's library, in the
+		// desktop app's order (the app supplies its own through desktop.packs)
+		const libraryGame = hexen && ! desktop ? GameSelection_FetchLibraryGame( gameProfile.id, ( url, name ) => COM_FetchOptionalPak( url, name ), url => GameSelection_FetchLoose( url ), ( name, files ) => COM_LoadPackFile( name, COM_BuildPack( files ) ) ) : Promise.resolve( null );
+		const [ sharewarePak, newerPak, hudPak, fullGamePak, missionPak, hexenPacks ] = await Promise.all( [ nativePack, optionalPack, startupPack, ownedPack, missionLoad, libraryGame ] );
+		const gamePacks = desktop?.packs ?? hexenPacks;
 		// it runs only over Quake: without Quake's pack, the shareware alone starts (and says so). Both packs are fetched
 		// together, so a missing Quake costs the mission pack's download (up to 80 MB), traded for a start not delayed.
 		// Hexen II's Portal entry has a base game, but it is mounted through the same pack list, not as a Quake mission.
 		const missionMounted = hexen ? false : desktop ? desktop.mission : missionPak !== null && fullGamePak !== null;
-		const pak0 = desktop?.packs[0] ?? sharewarePak ?? await COM_FetchPak( 'pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
+		const pak0 = gamePacks?.[ 0 ] ?? sharewarePak ?? await COM_FetchPak( 'pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
 		if(hudPak){
 		 const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',hudPak.data)),n=>n.toString(16).padStart(2,'0')).join('');
 		 if(digest===STARTUP_PACK.sha256)COM_SetNewerStartupPack(hudPak);else Sys_Printf('Startup pack checksum mismatch; loose HUD fallback');
@@ -138,14 +142,14 @@ async function main() {
 			// COM_AddPack gives the last mounted pack priority. Mount the
 			// optional archive first so bundled identities always win.
 			if ( fullGamePak ) COM_AddPack( fullGamePak );
-			if(desktop){for(const pack of desktop.packs)COM_AddPack(pack);}else COM_AddPack( pak0 );
+			if(gamePacks){for(const pack of gamePacks)COM_AddPack(pack);}else COM_AddPack( pak0 );
 			Sys_Printf( 'pak0.pak loaded successfully\n' );
 			// a mission pack's own QuakeC, status bar pictures and maps replace the base game's: it is mounted last,
 			// and its switch (-hipnotic or -rogue) sets the engine's mission-pack behaviour before Host_Init
 			// the game that really starts, which saves and settings follow (card [34c]): set from what was mounted
-			GameSelection_SetRunning( desktop ? desktop.id : missionMounted ? GameSelection_Current() : fullGamePak !== null ? 'quake' : 'shareware' );
+			GameSelection_SetRunning( desktop ? desktop.id : hexen ? gameProfile.id : missionMounted ? GameSelection_Current() : fullGamePak !== null ? 'quake' : 'shareware' );
 			// Hexen II's maps are not a Quake mission pack, but its own packs feed Level Select the same way
-			if ( hexen && desktop ) LevelSelect_SetGamePacks( LevelSelect_OwnPacks( desktop.packs, desktop.id ) );
+			if ( hexen ) LevelSelect_SetGamePacks( LevelSelect_OwnPacks( gamePacks, gameProfile.id ) );
 			if ( missionMounted ) { if(!desktop)for ( const pack of [ missionPak ].flat() ) COM_AddPack( pack ); LevelSelect_SetGamePacks( desktop ? LevelSelect_OwnPacks( desktop.packs, desktop.id ) : [ missionPak ].flat() ); /* its own maps, for a Level Select built from them */ const missionSwitch = GameSelection_StartSwitch( mission ); /* its own, or as its gfx.wad's status-bar pictures ask (Quoth's are Scourge of Armagon's) */ if ( missionSwitch ) COM_InitArgv( [ parms.argv[ 0 ] ?? 'quaked', ...parms.argv.slice( 1 ), missionSwitch ] ); /* argv[0] is the program name */ Sys_Printf( mission.name + ' loaded' + ( missionSwitch && ! mission.switch ? ' (' + missionSwitch + ': its status bar is a mission pack\'s)' : '' ) + '\n' ); }
 
 		} else {
@@ -202,7 +206,7 @@ async function main() {
 		}
 		// a game whose larger levels need the large-map protocol asks for it before any map loads (card [34f])
 		if ( missionMounted && mission.protocol ) Cvar_SetValue( 'sv_protocol', mission.protocol );
-		GameSelection_ReportStart( desktop ? desktop.id !== 'shareware' : fullGamePak !== null, mission === null || missionMounted ); // a chosen game whose pack has gone is said so (card [34c])
+		GameSelection_ReportStart( desktop ? desktop.id !== 'shareware' : hexen || fullGamePak !== null, mission === null || missionMounted ); // a chosen game whose pack has gone is said so (card [34c])
 		// Which games are installed (card [34b]): probed once the game is running, a few bounded reads per folder
 		if ( GameCatalogue_Get() === null ) setTimeout( () => GameCatalogue_Refresh().catch( error => Sys_Printf( 'Game catalogue: ' + error.message + '\n' ) ), 4000 );
 
@@ -256,8 +260,9 @@ async function main() {
 
 		} )(),
 		( async () => {
-		// Console (and menu backdrop) wallpaper; the original conback stays if it fails
-		if ( await Draw_LoadConbackImage( 'conback.webp' ) )
+		// Console (and menu backdrop) wallpaper, Quake's artwork: Hexen II keeps its own gfx/menu/conback.lmp; the
+		// original conback stays if it fails
+		if ( ! hexen && await Draw_LoadConbackImage( 'conback.webp' ) )
 			Sys_Printf( 'Loaded console wallpaper\n' );
 
 		} )()

@@ -33,6 +33,7 @@ export const MENU_BIGFONT_BASE = 0xE000;
 // The native bigfont sheet: 8 columns, 20 x 19 cells on a 20-pixel row pitch (uhexen2 menu.c:380-463).
 const BIGFONT = Object.freeze( { columns: 8, width: 20, height: 19, pitch: 20 } );
 const BIGFONT_LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ/';
+const BIGFONT_EMPTY = Object.freeze( [ 0, 255 ] );
 const SMALL_WIDTH = 8, SMALL_HEIGHT = 8;
 
 /** Quake's skin: the supplied renderer's own atlas, bronze material and rotating Q, byte for byte. */
@@ -101,8 +102,8 @@ export function MenuSkin_BigfontIndex( character ) {
 function nextPower( value ) { return 2 ** Math.ceil( Math.log2( Math.max( 1, value ) ) ); }
 const clamp01 = value => Math.max( 0, Math.min( 1, value ) );
 
-// The source is either a raw palette-index qpic/conchars sheet (`data`, 0 transparent) or RGBA pixels (`imageData` or a
-// canvas). Keeping the raw sheet path first matters: qpic conversion maps 255 to transparent while the native bigfont
+// The source is either a raw palette-index qpic/conchars sheet (`data`; `transparent` lists its empty indices) or RGBA
+// pixels (`imageData` or a canvas). Keeping the raw sheet path first matters: qpic conversion maps 255 to transparent while the native bigfont
 // uses 0, so reading pixels from a canvas would treat the sheet's transparent margin as solid black.
 function pixelSource( source, transparent = 0 ) {
 
@@ -122,8 +123,8 @@ function pixelSource( source, transparent = 0 ) {
 	if ( ! data ) return null;
 	if ( data.length >= width * height * 4 && source.rgba ) return rgbaSource( data, width, height );
 	if ( data.length < width * height ) return null;
-	const alpha = new Uint8Array( width * height );
-	for ( let i = 0; i < alpha.length; i ++ ) alpha[ i ] = data[ i ] === transparent ? 0 : 1;
+	const alpha = new Uint8Array( width * height ), empty = new Set( [].concat( transparent ) );
+	for ( let i = 0; i < alpha.length; i ++ ) alpha[ i ] = empty.has( data[ i ] ) ? 0 : 1;
 	return { width, height, alpha };
 
 }
@@ -137,16 +138,17 @@ function rgbaSource( data, width, height ) {
 }
 
 // Bilinear coverage at a source pixel coordinate: (0,0) is the top-left corner of pixel 0.
-function coverageAt( source, x, y ) {
+function coverageAt( source, x, y, cell ) {
 
 	const px = x - .5, py = y - .5;
 	const x0 = Math.floor( px ), y0 = Math.floor( py );
 	const fx = px - x0, fy = py - y0;
+	// only the glyph's own sheet cell: the sheets pack cells edge to edge, so the padding round a glyph would otherwise
+	// pick up its neighbours' ink
 	const at = ( ix, iy ) => {
 
-		const cx = Math.max( 0, Math.min( source.width - 1, ix ) );
-		const cy = Math.max( 0, Math.min( source.height - 1, iy ) );
-		return source.alpha[ cy * source.width + cx ];
+		if ( ix < cell.x || iy < cell.y || ix >= cell.x + cell.width || iy >= cell.y + cell.height ) return 0;
+		return source.alpha[ iy * source.width + ix ];
 
 	};
 	return ( at( x0, y0 ) * ( 1 - fx ) + at( x0 + 1, y0 ) * fx ) * ( 1 - fy )
@@ -207,25 +209,36 @@ function distanceTransform( mask, width, height, toInside ) {
 
 }
 
+// A tile's padding, in source pixels: wider than the encoded distance so every tile edge reads exactly 0. The glyph
+// shader discards only texels below .001; a non-zero edge is drawn with its outline and shadow as a box round the glyph.
+const tilePad = radius => Math.ceil( radius ) + 1;
+// The distance encoded around each glyph, as a fraction of its em: the supplied DpQuake atlas's (range 16 at em 256).
+// The glyph shader draws a bevelled border as wide as that range, so a wider one swells the letters into each other.
+const RANGE_PER_EM = 16 / 256;
+
 // One glyph: upsample the cell with bilinear coverage, threshold to a mask, take the signed distance to that mask and
 // encode it as 0..255 around 0.5 (the renderer's glyph shader decodes `(r - .5) * range * 2`). `range` stays in source
 // pixels so `_shape` can scale it with the requested em.
 function buildGlyph( source, cellX, cellY, cellWidth, cellHeight, em, radius, upscale, pad ) {
 
 	const width = ( cellWidth + pad * 2 ) * upscale, height = ( cellHeight + pad * 2 ) * upscale;
+	const cell = { x: cellX, y: cellY, width: Math.min( cellWidth, source.width - cellX ), height: Math.min( cellHeight, source.height - cellY ) };
 	const mask = new Uint8Array( width * height );
 	for ( let y = 0; y < height; y ++ ) for ( let x = 0; x < width; x ++ ) {
 
-		const coverage = coverageAt( source, cellX - pad + ( x + .5 ) / upscale, cellY - pad + ( y + .5 ) / upscale );
+		const coverage = coverageAt( source, cellX - pad + ( x + .5 ) / upscale, cellY - pad + ( y + .5 ) / upscale, cell );
 		mask[ y * width + x ] = coverage >= .5 ? 1 : 0;
 
 	}
-	const inside = distanceTransform( mask, width, height, false );
-	const outside = distanceTransform( mask, width, height, true );
+	// toEmpty: from each pixel to the nearest background pixel (non-zero only inside the ink); toInk: to the nearest ink
+	// pixel (non-zero only outside). Positive inside, so the encoded value is above one half on the ink, as the renderer
+	// draws it; the half-pixel term puts the edge between the last ink and first background pixel centres.
+	const toEmpty = distanceTransform( mask, width, height, false );
+	const toInk = distanceTransform( mask, width, height, true );
 	const pixels = new Uint8Array( width * height );
 	for ( let i = 0; i < pixels.length; i ++ ) {
 
-		const distance = ( Math.sqrt( outside[ i ] ) - Math.sqrt( inside[ i ] ) + ( mask[ i ] ? .5 : - .5 ) ) / upscale;
+		const distance = ( Math.sqrt( toEmpty[ i ] ) - Math.sqrt( toInk[ i ] ) + ( mask[ i ] ? - .5 : .5 ) ) / upscale;
 		pixels[ i ] = Math.round( clamp01( .5 + distance / ( radius * 2 ) ) * 255 );
 
 	}
@@ -233,7 +246,7 @@ function buildGlyph( source, cellX, cellY, cellWidth, cellHeight, em, radius, up
 	let minX = cellWidth, minY = cellHeight, maxX = - 1, maxY = - 1;
 	for ( let y = 0; y < cellHeight; y ++ ) for ( let x = 0; x < cellWidth; x ++ ) {
 
-		if ( coverageAt( source, cellX + x + .5, cellY + y + .5 ) < .5 ) continue;
+		if ( coverageAt( source, cellX + x + .5, cellY + y + .5, cell ) < .5 ) continue;
 		if ( x < minX ) minX = x; if ( x > maxX ) maxX = x;
 		if ( y < minY ) minY = y; if ( y > maxY ) maxY = y;
 
@@ -266,7 +279,9 @@ export function BuildHexen2FontAtlas( sources, options = {} ) {
 
 	const upscale = Math.max( 2, Math.min( 6, options.upscale ?? 4 ) );
 	const maxTextureSize = Math.max( 256, Math.min( 4096, options.maxTextureSize ?? 4096 ) );
-	const bigSource = pixelSource( sources?.bigfont );
+	// the bigfont sheet is black (0) behind its letters with a 255 grid line closing each 20 x 20 cell; native drawing
+	// shows neither
+	const bigSource = pixelSource( sources?.bigfont, BIGFONT_EMPTY );
 	const smallSource = pixelSource( sources?.conchars );
 	if ( ! bigSource && ! smallSource ) return null;
 	const widths = sources?.widths && sources.widths.length === 27 * 27 ? sources.widths : null;
@@ -282,7 +297,8 @@ export function BuildHexen2FontAtlas( sources, options = {} ) {
 			if ( cellX + BIGFONT.width > bigSource.width || cellY + BIGFONT.height > bigSource.height ) continue;
 			const advance = ( widths ? widths[ index * 27 + index ] : BIGFONT.width ) / BIGFONT.height;
 			const key = String.fromCharCode( MENU_BIGFONT_BASE + index );
-			const glyph = buildGlyph( bigSource, cellX, cellY, BIGFONT.width, BIGFONT.height, BIGFONT.height, options.bigRadius ?? 2.5, upscale, 2 );
+			const radius = options.bigRadius ?? BIGFONT.height * RANGE_PER_EM;
+			const glyph = buildGlyph( bigSource, cellX, cellY, BIGFONT.width, BIGFONT.height, BIGFONT.height, radius, upscale, tilePad( radius ) );
 			if ( ! glyph ) { glyphs[ key ] = blankGlyph( BIGFONT.height, advance ); continue; }
 			glyphs[ key ] = { advance, em: BIGFONT.height, range: options.bigRadius ?? 2.5,
 				plane: glyph.plane, ink: glyph.ink };
@@ -302,7 +318,8 @@ export function BuildHexen2FontAtlas( sources, options = {} ) {
 			const key = String.fromCharCode( code );
 			if ( code === 32 ) { glyphs[ key ] = blankGlyph( SMALL_HEIGHT, 1 ); continue; }
 			const cellX = ( code % columns ) * SMALL_WIDTH, cellY = Math.floor( code / columns ) * SMALL_HEIGHT;
-			const glyph = buildGlyph( smallSource, cellX, cellY, SMALL_WIDTH, SMALL_HEIGHT, SMALL_HEIGHT, options.smallRadius ?? 1.5, upscale, 1 );
+			const radius = options.smallRadius ?? SMALL_HEIGHT * RANGE_PER_EM;
+			const glyph = buildGlyph( smallSource, cellX, cellY, SMALL_WIDTH, SMALL_HEIGHT, SMALL_HEIGHT, radius, upscale, tilePad( radius ) );
 			if ( ! glyph ) { glyphs[ key ] = blankGlyph( SMALL_HEIGHT, 1 ); continue; }
 			glyphs[ key ] = { advance: 1, em: SMALL_HEIGHT, range: options.smallRadius ?? 1.5,
 				plane: glyph.plane, ink: glyph.ink };
@@ -393,6 +410,15 @@ const STONE_REPLACEMENTS = Object.freeze( [
 	[ 'mix(vec3(.014,.010,.003),vec3(.052,.029,.010),noise2(v_world*.11))', 'mix(vec3(.014,.015,.018),vec3(.048,.049,.053),noise2(v_world*.11))' ]
 ] );
 
+// The glyph shader's face colour (the copper material, brightened and greyed for white text) and its inked
+// replacement: the bank colour with a little of the stone's grain, lifted by the brightness the shader's bevel and
+// lighting take away, so the lettering keeps the game's colours at about the sheets' own brightness.
+const GLYPH_FACE = `vec3 face = copper(v_world);
+        face *= u_copper*(kind>1.5 ? 1.58 : 1.);
+        if(kind>2.5)face=mix(face,vec3(dot(face,vec3(.30,.59,.11))*.92),.84);`;
+const GLYPH_FACE_INKED = `vec3 face = kind < .5 ? INK_HIGHLIGHT : kind < 1.5 ? INK_BIG : kind > 2.5 ? INK_PLAIN : copper(v_world)*u_copper;
+        if(kind < 1.5 || kind > 2.5) face *= 1.25 + .3*dot(copper(v_world),vec3(.30,.59,.11));`;
+
 function replaceFunction( source, name, replacement ) {
 
 	const start = source.indexOf( 'vec3 ' + name + '(' );
@@ -411,13 +437,73 @@ function replaceFunction( source, name, replacement ) {
 }
 
 /**
+ * The colours of Hexen II's menu lettering, from the installed sheets and palette: the mean ink of the small font's
+ * letters (A-Z) in its plain bank (codes 0..255, the help headings' tan) and highlighted bank (256..511, the red menu
+ * text), and of the bigfont's letters (its grey stone). The dynamic lettering is tinted with them so the game's own
+ * colours survive the high-resolution redraw.
+ *
+ * @param {?{ width: number, height: number, data: ArrayLike<number> }} conchars the raw 256 x 128 sheet (index 0 empty)
+ * @param {?ArrayLike<number>} palette gfx/palette.lmp, 768 bytes
+ * @param {?{ width: number, height: number, data: ArrayLike<number> }} [bigfont] the raw bigfont sheet (0 and 255 empty)
+ * @returns {?{ plain: Array<number>, highlight: Array<number>, big: ?Array<number> }} 0..1 sRGB per ink (`big` null
+ *   without the bigfont), or null without the charset or palette
+ */
+export function MenuSkin_ConcharsInks( conchars, palette, bigfont = null ) {
+
+	if ( ! conchars?.data || conchars.width !== 256 || ! palette || palette.length < 768 ) return null;
+	const bank = offset => {
+
+		const sum = [ 0, 0, 0 ];
+		let n = 0;
+		for ( let code = 65; code <= 90; code ++ ) {
+
+			const c = code + offset, cx = ( c % 32 ) * 8, cy = Math.floor( c / 32 ) * 8;
+			for ( let y = 0; y < 8; y ++ ) for ( let x = 0; x < 8; x ++ ) {
+
+				const index = conchars.data[ ( cy + y ) * 256 + cx + x ];
+				if ( index === 0 ) continue;
+				for ( let k = 0; k < 3; k ++ ) sum[ k ] += palette[ index * 3 + k ];
+				n ++;
+
+			}
+
+		}
+		return n ? sum.map( v => v / n / 255 ) : null;
+
+	};
+	const plain = bank( 0 ), highlight = bank( 256 );
+	let big = null;
+	if ( bigfont?.data && bigfont.width > 0 ) {
+
+		const sum = [ 0, 0, 0 ];
+		let n = 0;
+		for ( let i = 0; i < bigfont.width * bigfont.height; i ++ ) {
+
+			const index = bigfont.data[ i ];
+			if ( BIGFONT_EMPTY.includes( index ) ) continue;
+			for ( let k = 0; k < 3; k ++ ) sum[ k ] += palette[ index * 3 + k ];
+			n ++;
+
+		}
+		if ( n ) big = sum.map( v => v / n / 255 );
+
+	}
+	return plain && highlight ? { plain, highlight, big } : null;
+
+}
+
+/**
  * A copy of the supplied shader strings whose `bronze`/`copper` material functions are grey stone. The input is never
  * changed, so Quake's renderer keeps the supplied bronze materials exactly.
  *
+ * With `inks` (`MenuSkin_ConcharsInks`), lettering takes the game's own colours instead of the material: the
+ * highlighted bank (kind 0, `M_Print`), the plain bank (kind 3, `M_PrintWhite`) and the bigfont's stone (kind 1).
+ *
  * @param {object} shaders the generated `QUAKE_SHADERS` object
+ * @param {?{ plain: Array<number>, highlight: Array<number> }} [inks] the bank colours, linear 0..1 RGB
  * @returns {object} a shallow copy with stone fragment shaders
  */
-export function MenuSkin_StoneShaders( shaders ) {
+export function MenuSkin_StoneShaders( shaders, inks = null ) {
 
 	const output = { ...shaders };
 	for ( const [ name, source ] of Object.entries( output ) ) {
@@ -427,6 +513,13 @@ export function MenuSkin_StoneShaders( shaders ) {
 			STONE_MATERIAL.slice( 0, STONE_MATERIAL.indexOf( 'vec3 copper(' ) ) );
 		// The glyph/plaque shaders also carry a few hard-coded warm rim and groove colours; make them cool neutral stone too.
 		for ( const [ warm, cool ] of STONE_REPLACEMENTS ) stone = stone.split( warm ).join( cool );
+		if ( inks && stone.includes( GLYPH_FACE ) ) {
+
+			const vec = rgb => `vec3(${ rgb.map( v => Math.max( 0, Math.min( 1, v ) ).toFixed( 4 ) ).join( ',' ) })`;
+			stone = stone.replace( 'out vec4 fragColor;', `out vec4 fragColor;\nconst vec3 INK_PLAIN=${ vec( inks.plain ) };\nconst vec3 INK_HIGHLIGHT=${ vec( inks.highlight ) };\nconst vec3 INK_BIG=${ vec( inks.big ?? [ .55, .55, .57 ] ) };` )
+				.replace( GLYPH_FACE, GLYPH_FACE_INKED );
+
+		}
 		output[ name ] = stone;
 
 	}
@@ -483,14 +576,16 @@ function makeProgram( gl, vertex, fragment ) {
  * @param {object} renderer a loaded `QuakeMenu`
  * @param {object} shaders the generated `QUAKE_SHADERS`
  * @param {object} skin one of `MENU_SKINS`
+ * @param {?{ plain: Array<number>, highlight: Array<number> }} [inks] the small-font bank colours
+ *   (`MenuSkin_ConcharsInks`); without them small text keeps the stone material
  * @returns {boolean} true when the stone set was applied, false when the supplied set was restored
  * @throws {Error} when a shader fails to compile or link
  */
-export function MenuSkin_ApplyPrograms( renderer, shaders, skin ) {
+export function MenuSkin_ApplyPrograms( renderer, shaders, skin, inks = null ) {
 
 	const gl = renderer.gl;
 	const stone = skin?.material === 'stone';
-	const sources = stone ? MenuSkin_StoneShaders( shaders ) : shaders;
+	const sources = stone ? MenuSkin_StoneShaders( shaders, inks ) : shaders;
 	const entries = [
 		[ 'background', 'backgroundVertex', 'backgroundFragment' ], [ 'plaque', 'rectVertex', 'plaqueFragment' ],
 		[ 'glyph', 'glyphVertex', 'glyphFragment' ], [ 'copy', 'backgroundVertex', 'copyFragment' ],

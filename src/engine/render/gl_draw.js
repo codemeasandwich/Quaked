@@ -698,7 +698,8 @@ function _loadConback() {
 	const pal = d_8to24table || vid_d_8to24table;
 	if ( ! pal ) return;
 
-	const result = COM_FindFile( 'gfx/conback.lmp' );
+	// Hexen II keeps its console background under gfx/menu/; Quake never has that path
+	const result = COM_FindFile( 'gfx/conback.lmp' ) ?? COM_FindFile( 'gfx/menu/conback.lmp' );
 	if ( ! result ) {
 
 		Con_Printf( 'Couldn\'t load gfx/conback.lmp\n' );
