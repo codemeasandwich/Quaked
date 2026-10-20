@@ -200,7 +200,7 @@ export async function Desktop_Prepare(){
   const maps=[...new Set(packs.flatMap(p=>p.files.filter(f=>/^maps\/[a-z0-9_]+\.bsp$/.test(f.name)).map(f=>f.name.slice(5,-4))))].sort();
   let identity;
   await (await import('./lan.js')).LAN_Init({maps,identity:()=>identity??=(async()=>{const hashes=[];for(const p of packs)hashes.push(Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',p.data)),b=>b.toString(16).padStart(2,'0')).join(''));return 'quaked-lan-v1|'+globalThis.__QUAKED_DISTRIBUTION__.engineHash+'|'+id+'|'+hashes.join('|');})()});
-  let autoPlay=false, autoClass='paladin';
+  let autoPlay=false, autoClass='paladin', saveTrial=false;
   if(trial===id){try{autoPlay=await invoke('trial_autoplay');const chosen=await invoke('trial_class');if(typeof chosen==='string'&&chosen)autoClass=chosen;saveTrial=await invoke('trial_save');}catch{}}
   return {id,packs,mission:!!definition.base,autoStart:trial===id,autoPlay,autoClass,saveTrial,source:String(library.root)};
  }catch(error){history.replaceState(null,'',location.pathname);await Desktop_ShowShelf(String(error?.message??error));return null;}
