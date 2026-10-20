@@ -111,7 +111,12 @@ fn snapshot(active: bool) -> Vec<Sample> {
             }
             let manual: Bool = msg_send![motion, sensorsRequireManualActivation];
             if manual.as_bool() {
-                let _: () = msg_send![motion, setSensorsActive: Bool::new(active)];
+                // Switch only on a change: each set can reach the controller as a command, and setting it on every
+                // 60 Hz read left a Switch Pro Controller reporting no motion at all (owner trial, 21 October 2026)
+                let on: Bool = msg_send![motion, sensorsActive];
+                if on.as_bool() != active {
+                    let _: () = msg_send![motion, setSensorsActive: Bool::new(active)];
+                }
             }
             if !active {
                 continue;
