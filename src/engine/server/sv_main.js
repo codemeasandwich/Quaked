@@ -63,6 +63,7 @@ import {
 	svc_hexen2_particle_explosion, svc_hexen2_set_view_flags, svc_hexen2_clear_view_flags, svc_hexen2_set_view_tint,
 	svc_hexen2_setangle_interpolate, svc_hexen2_midi_name, svc_hexen2_updateclass, svc_hexen2_toggle_statbar,
 	svc_hexen2_sound_update_pos, svc_hexen2_intermission, svc_hexen2_temp_entity, svc_hexen2_info_mask,
+	svc_hexen2_update_kingofhill,
 	HEXEN2_FEATURE_ALL, HEXEN2_FEATURE_PORTALS, HEXEN2_NO_LEVEL_STRING,
 	TE_STREAM_LIGHTNING_SMALL, TE_STREAM_COLORBEAM, TE_STREAM_FAMINE,
 	MAX_PACKET_ENTITIES, MAX_PACKET_ENTITIES_LOCAL, PE_UPDATE_MASK
@@ -899,6 +900,14 @@ export function SV_SendServerinfo( client ) {
 		MSG_WriteByte( client.message, svc_hexen2_features );
 		MSG_WriteByte( client.message, HEXEN2_FEATURE_ALL | ( GameProfile_Get().portals ? HEXEN2_FEATURE_PORTALS : 0 ) );
 		MSG_WriteShort( client.message, sv.levelStringIndex ?? HEXEN2_NO_LEVEL_STRING );
+		// Native SV_SendServerinfo writes sv_kingofhill after a deathmatch game type (uhexen2 sv_main.c:453-457),
+		// starting at the zero-based slot 0; the unified message carries entity numbers (cl_parse.c:1364-1365).
+		if ( ! coop.value && deathmatch.value ) {
+
+			MSG_WriteByte( client.message, svc_hexen2_update_kingofhill );
+			MSG_WriteShort( client.message, 1 );
+
+		}
 
 	}
 

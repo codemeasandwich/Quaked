@@ -25,6 +25,7 @@ import {
 	svc_hexen2_particle_explosion, svc_hexen2_set_view_flags, svc_hexen2_clear_view_flags, svc_hexen2_set_view_tint,
 	svc_hexen2_setangle_interpolate, svc_hexen2_midi_name, svc_hexen2_updateclass, svc_hexen2_toggle_statbar,
 	svc_hexen2_sound_update_pos, svc_hexen2_intermission, svc_hexen2_temp_entity, svc_hexen2_info_mask,
+	svc_hexen2_update_kingofhill,
 	PROTOCOL_LARGE,
 	HEXEN2_FEATURE_ENTITY_FIELDS, HEXEN2_FEATURE_NATIVE_BASELINES, HEXEN2_FEATURE_PORTALS, HEXEN2_NO_LEVEL_STRING,
 	PE_MOREBITS, PE_MOREBITS2, PE_ORIGIN1, PE_ORIGIN2, PE_ORIGIN3, PE_ANGLE1, PE_ANGLE2, PE_ANGLE3,
@@ -514,7 +515,10 @@ function translateServerinfo( r, w ) {
 	translator.protocol = protocol;
 	const maxClients = r.byte();
 	const gameType = r.byte();
-	if ( gameType === 1 && protocol > HEXEN2_PROTOCOLS.raven111 ) r.short(); // king of the hill
+	// Native serverinfo carries the zero-based sv_kingofhill slot, while svc_update_kingofhill carries a one-based
+	// entity (cl_parse.c:298, 1364-1365); the unified client stores the scoreboard slot, so seed it as slot + 1.
+	let kingOfHill = null;
+	if ( gameType === 1 && protocol > HEXEN2_PROTOCOLS.raven111 ) kingOfHill = r.short();
 	const levelName = r.string();
 	const models = [], sounds = [];
 	for ( ; ; ) { const s = r.string(); if ( s === '' ) break; models.push( s ); }
@@ -537,6 +541,12 @@ function translateServerinfo( r, w ) {
 	w.byte( svc_hexen2_features );
 	w.byte( flags );
 	w.short( HEXEN2_NO_LEVEL_STRING );
+	if ( kingOfHill !== null ) {
+
+		w.byte( svc_hexen2_update_kingofhill );
+		w.short( kingOfHill + 1 );
+
+	}
 
 }
 
@@ -655,7 +665,7 @@ function translateRecord( payload ) {
 			}
 			case 49: r.at = at + translateUpdateInv( payload, at, w ); break;
 			case 50: { w.byte( svc_hexen2_setangle_interpolate ); for ( let i = 0; i < 3; i ++ ) w.byte( r.byte() ); break; }
-			case 51: r.short(); break; // svc_update_kingofhill: no Quake equivalent
+			case 51: { const entity = r.short(); w.byte( svc_hexen2_update_kingofhill ); w.short( entity ); break; }
 			case 52: w.byte( svc_hexen2_toggle_statbar ); break;
 			case 53: { w.byte( svc_hexen2_sound_update_pos ); for ( let i = 0; i < 4; i ++ ) w.short( r.short() ); break; }
 			case 54: case 55: r.string(); break; // svc_mod_name / svc_skybox: UQE only

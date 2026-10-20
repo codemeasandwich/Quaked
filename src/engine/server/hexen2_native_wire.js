@@ -19,14 +19,15 @@
  */
 
 import { GameProfile_IsHexen2 } from '../common/game_profile.js';
-import { MSG_WriteByte } from '../common/common.js';
+import { MSG_WriteByte, MSG_WriteLong } from '../common/common.js';
 import { Con_Printf } from '../common/console.js';
 import {
 	svc_hexen2_intermission, svc_hexen2_plaque, svc_hexen2_raineffect, svc_hexen2_particle2,
 	svc_hexen2_particle3, svc_hexen2_particle4, svc_hexen2_particle_explosion, svc_hexen2_set_view_flags,
 	svc_hexen2_clear_view_flags, svc_hexen2_set_view_tint, svc_hexen2_setangle_interpolate, svc_hexen2_midi_name,
 	svc_hexen2_updateclass, svc_hexen2_toggle_statbar, svc_hexen2_sound_update_pos, svc_hexen2_start_effect,
-	svc_hexen2_end_effect, svc_hexen2_update_inv, svc_hexen2_temp_entity, svc_hexen2_update_kingofhill
+	svc_hexen2_end_effect, svc_hexen2_update_inv, svc_hexen2_temp_entity, svc_hexen2_update_kingofhill,
+	svc_hexen2_info_mask
 } from '../common/protocol.js';
 import { pr_global_struct } from '../progs/progs.js';
 import { CE } from '../common/hexen2_effectwire.js';
@@ -97,6 +98,7 @@ const FLASH = new Set( [ 10, 12, 13, 14 ] );
 const COORD3 = [ 2, 2, 2 ], FLOAT3 = [ 4, 4, 4 ];
 
 const frames = new WeakMap(); // sizebuf_t -> the native frame being translated
+const infoMasks = new WeakMap(); // sizebuf_t -> the last objective masks sent on it
 
 function effectPlan( type ) {
 
@@ -154,6 +156,15 @@ function emit( msg, frame ) {
 
 }
 
+function finish( msg, frame ) {
+
+	// Native SC2_OBJ/SC2_OBJ2 follow the regular stat fields as two longs (uhexen2 sv_main.c:1536-1547); they are
+	// engine-side objectives, not stat fields, so the unified protocol carries them as its own info-mask message.
+	if ( frame.kind === 'inv' && frame.objectives.length > 0 ) { frame.stage = 'objectives'; return; }
+	emit( msg, frame );
+
+}
+
 function advance( msg, frame, kind, value ) {
 
 	const bytes = tokenBytes( kind, value );
@@ -171,7 +182,7 @@ function advance( msg, frame, kind, value ) {
 
 	frame.plan.shift();
 	frame.out.push( ...bytes );
-	if ( frame.plan.length === 0 ) emit( msg, frame );
+	if ( frame.plan.length === 0 ) finish( msg, frame );
 
 }
 
@@ -246,7 +257,7 @@ function feed( msg, kind, value ) {
 			for ( let i = 0; i < 8; i ++ ) if ( flags & ( 1 << i ) ) frame.blockBits.push( i );
 			frame.remaining = frame.blockBits.length;
 			frame.stage = frame.remaining === 0 ? 'fields' : 'blocks';
-			if ( frame.stage === 'fields' ) { frame.plan = invPlan( 0n ); if ( frame.plan.length === 0 ) emit( msg, frame ); }
+			if ( frame.stage === 'fields' ) { frame.plan = invPlan( 0n ); frame.objectives = []; if ( frame.plan.length === 0 ) finish( msg, frame ); }
 
 		} else if ( frame.stage === 'blocks' ) {
 
@@ -263,14 +274,36 @@ function feed( msg, kind, value ) {
 					frame.out[ 0 ] &= ~0x80;
 					frame.out.pop();
 					if ( frame.blockValues[ 7 ] !== 0 )
-						Con_Printf( 'Hexen2 native update_inv: unused SC2 high byte 0x%x dropped\n', frame.blockValues[ 7 ] );
+						Con_Printf( 'Hexen2 native update_inv: unused SC2 high byte %d dropped\n', frame.blockValues[ 7 ] );
 
 				}
 				let mask = 0n;
 				for ( let i = 0; i < 7; i ++ ) mask |= BigInt( frame.blockValues[ i ] ) << BigInt( i * 8 );
 				frame.plan = invPlan( mask );
+				frame.objectives = [];
+				if ( ( mask & ( 1n << 54n ) ) !== 0n ) frame.objectives.push( 54 );
+				if ( ( mask & ( 1n << 55n ) ) !== 0n ) frame.objectives.push( 55 );
 				frame.stage = 'fields';
-				if ( frame.plan.length === 0 ) emit( msg, frame );
+				if ( frame.plan.length === 0 ) finish( msg, frame );
+
+			}
+
+		} else if ( frame.stage === 'objectives' ) {
+
+			// Native MSG_WriteLong for SC2_OBJ then SC2_OBJ2 (uhexen2 sv_main.c:1536-1547).
+			const bit = frame.objectives.shift();
+			if ( bit === 54 ) frame.infoMask = value >>> 0;
+			else frame.infoMask2 = value >>> 0;
+			if ( frame.objectives.length === 0 ) {
+
+				const masks = infoMasks.get( msg ) ?? { infoMask: 0, infoMask2: 0 };
+				if ( frame.infoMask !== undefined ) masks.infoMask = frame.infoMask;
+				if ( frame.infoMask2 !== undefined ) masks.infoMask2 = frame.infoMask2;
+				infoMasks.set( msg, masks );
+				emit( msg, frame );
+				MSG_WriteByte( msg, svc_hexen2_info_mask );
+				MSG_WriteLong( msg, masks.infoMask );
+				MSG_WriteLong( msg, masks.infoMask2 );
 
 			}
 

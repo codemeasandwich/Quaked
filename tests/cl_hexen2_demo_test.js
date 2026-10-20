@@ -6,12 +6,15 @@ import { existsSync, readFileSync } from './helpers/resource_fs.mjs';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init } from '../src/engine/render/gl_model.js';
-import { CL_Init, CL_RelinkEntities, CL_Disconnect_f, CL_Hexen2SetTrailHooks } from '../src/engine/client/cl_main.js';
+import { CL_Init, CL_ClearState, CL_RelinkEntities, CL_Disconnect_f, CL_Hexen2SetTrailHooks } from '../src/engine/client/cl_main.js';
 import { CL_PlayDemoFromData, CL_GetMessage } from '../src/engine/client/cl_demo.js';
 import { CL_ParseServerMessage } from '../src/engine/client/cl_parse.js';
+import { CL_Hexen2Reset } from '../src/engine/client/cl_hexen2.js';
 import {
 	cl, cls, cl_entities, cl_dlights, cl_visedicts, cl_numvisedicts, entity_t, ca_connected
 } from '../src/engine/client/client.js';
+import { sizebuf_t, SZ_Alloc, SZ_Write, COM_SetNetMessage } from '../src/engine/common/common.js';
+import { PROTOCOL_LARGE } from '../src/engine/common/protocol.js';
 import { CL_SetValidSequence } from '../src/engine/client/cl_pred.js';
 import { R_Init } from '../src/engine/render/gl_rmain.js';
 import { V_Init } from '../src/engine/client/view.js';
@@ -24,7 +27,7 @@ import {
 	CL_Hexen2Demo_Start, CL_Hexen2Demo_Translate, CL_Hexen2Demo_Stop, CL_Hexen2Demo_Probe
 } from '../src/engine/client/cl_hexen2_demo.js';
 import { Hexen2_ReadDemoForceTrack, Hexen2_ReadDemoMessages } from '../src/engine/common/hexen2_demo.js';
-import { HEXEN2_SERVER_MESSAGES } from '../src/engine/common/hexen2_protocol.js';
+import { HEXEN2_PROTOCOLS, HEXEN2_SERVER_MESSAGES } from '../src/engine/common/hexen2_protocol.js';
 import { Hexen2_WriteSound } from '../src/engine/common/hexen2_soundwire.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
@@ -60,7 +63,10 @@ function writeServerinfo( info ) {
 
 	const w = new FixtureWriter();
 	w.byte( HEXEN2_SERVER_MESSAGES.serverinfo );
-	w.long( info.protocol ); w.byte( info.maxClients ); w.byte( info.gameType ); w.string( info.levelName ?? '' );
+	w.long( info.protocol ); w.byte( info.maxClients ); w.byte( info.gameType );
+	// Protocol 19 deathmatch serverinfo carries the native sv_kingofhill slot after the game type.
+	if ( info.gameType === 1 && info.protocol > HEXEN2_PROTOCOLS.raven111 ) w.short( info.kingOfHill ?? 0 );
+	w.string( info.levelName ?? '' );
 	for ( const name of info.models ) w.string( name );
 	w.string( '' );
 	for ( const name of info.sounds ) w.string( name );
@@ -221,6 +227,23 @@ function readPackets( bytes ) {
 
 }
 
+// Runs just the King of the Hill messages through the real client parser, as a live signon would.
+function parseKingOfHill( data ) {
+
+	CL_ClearState();
+	CL_Hexen2Reset();
+	cl.protocol = PROTOCOL_LARGE;
+	cl.maxclients = 1;
+	cl.scores = [ { name: '', frags: 0, colors: 0, translations: new Uint8Array( 256 ) } ];
+	const msg = new sizebuf_t();
+	SZ_Alloc( msg, data.length + 64 );
+	SZ_Write( msg, data, data.length );
+	COM_SetNetMessage( msg );
+	CL_ParseServerMessage();
+	return cl.h2.kingOfHill;
+
+}
+
 Deno.test( 'the supplied native demo1 translates its first several hundred records and plays to signon 4', () => {
 
 	if ( ! existsSync( HEXEN + '/demo1.dem' ) || ! existsSync( HEXEN + '/pak1.pak' ) ) {
@@ -341,6 +364,44 @@ Deno.test( 'SND_OVERFLOW resolves to a unified short sound index for sounds, amb
 	same( u8(), 200, 'volume' );
 	same( u8(), 64, 'attenuation' );
 	same( at, out.bytes.length, 'the fixture ends exactly' );
+	CL_Hexen2Demo_Stop();
+
+} );
+
+Deno.test( 'a native demo 51 record becomes svc_hexen2_update_kingofhill with its entity short', () => {
+
+	const info = writeServerinfo( { protocol: 19, maxClients: 2, gameType: 0, levelName: 'koth',
+		models: [], sounds: [] } );
+	const bytes = demoFile( [ info.bytes ] );
+	const track = Hexen2_ReadDemoForceTrack( bytes );
+	check( CL_Hexen2Demo_Start( bytes, track.offset ).ok, 'the fixture starts' );
+	const out = CL_Hexen2Demo_Translate( Uint8Array.from( [ 51, 5, 0 ] ) );
+	check( out.ok, out.reason );
+	same( out.bytes.length, 3, 'one unified message replaces the native record' );
+	same( out.bytes[ 0 ], 72, 'native 51 maps to svc_hexen2_update_kingofhill' );
+	same( out.bytes[ 1 ] | ( out.bytes[ 2 ] << 8 ), 5, 'the native WriteEntity short is kept' );
+	same( parseKingOfHill( out.bytes ), 4, 'the client stores the short minus one as native cl_parse.c does' );
+	CL_Hexen2Demo_Stop();
+
+} );
+
+Deno.test( 'a native protocol-19 serverinfo King of the Hill short seeds the unified client', () => {
+
+	const info = writeServerinfo( { protocol: 19, maxClients: 2, gameType: 1, kingOfHill: 3, levelName: 'koth',
+		models: [], sounds: [] } );
+	const bytes = demoFile( [ info.bytes ] );
+	const track = Hexen2_ReadDemoForceTrack( bytes );
+	check( CL_Hexen2Demo_Start( bytes, track.offset ).ok, 'the fixture starts' );
+	const read = Hexen2_ReadDemoMessages( bytes );
+	check( read.ok, read.reason );
+	const out = CL_Hexen2Demo_Translate( bytes.subarray( read.messages[ 0 ].payloadOffset, read.messages[ 0 ].endsAt ) );
+	check( out.ok, out.reason );
+
+	const at = out.bytes.length - 3;
+	same( out.bytes[ at ], 72, 'the serverinfo slot follows the feature message' );
+	same( out.bytes[ at + 1 ] | ( out.bytes[ at + 2 ] << 8 ), 4, 'the zero-based serverinfo slot is sent as its entity number' );
+	const tail = out.bytes.subarray( at );
+	same( parseKingOfHill( tail ), 3, 'the client recovers native sv_kingofhill' );
 	CL_Hexen2Demo_Stop();
 
 } );
