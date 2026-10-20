@@ -6,7 +6,7 @@
  * Types: plain values and functions; no exported classes.
  *
  * State: no mutable exports; module-level variables `index`, `indexBase`, `indexGeneration`, `glass`, `ordinaryVariants`,
- * `sources`, `normals`, `version`, `indexPromise`, `indexState`, `indexError`, `appliedFor`, `appliedOn`; 4 module-level
+ * `sources`, `normals`, `version`, `indexPromise`, `indexState`, `indexError`, `appliedFor`, `appliedOn`, `appliedTier`; module-level
  * collections (Map/Set).
  *
  * Errors: throws at 2 places; catches at 4 places.
@@ -39,6 +39,7 @@ import { GameProfile_Get } from '../../engine/common/game_profile.js';
 
 // the textures that have been given their Newer picture, so they can be put back (r_demosplit.js)
 const upgraded = new Set();
+const pendingUpgrades = new Set();
 
 // The texture index is namespaced by game family: newer/textures/index.json is Quake's, newer/textures/hexen2/index.json
 // Hexen II's. Pictures in an index are relative to its directory, so no Quake picture can be selected by a Hexen native
@@ -109,7 +110,7 @@ export function R_TextureTier() {
 /**
  * The file an index entry names for a tier. An entry may be one file for every tier, an array `[low, mid, high]`, or
  * an object with `low`, `mid`, `high` (or a nested `tiers` object) members; a missing selected tier falls back to mid,
- * then to the first file the entry provides.
+ * then to the first file the entry provides. An explicitly null selected tier keeps the unchanged native picture.
  *
  * @param {string|Array<string>|{low?: string, mid?: string, high?: string, tiers?: object, file?: string}|null} entry
  *   the index entry
@@ -123,6 +124,7 @@ export function R_TextureFile( entry, tier = null ) {
 	if ( Array.isArray( entry ) ) {
 
 		const selected = TEXTURE_TIERS.indexOf( tier ), order = [ selected, 1, 0, 2 ];
+		if ( selected in entry && entry[ selected ] === null ) return null;
 		for ( const index of order ) if ( typeof entry[ index ] === 'string' && entry[ index ] ) return entry[ index ];
 		return entry.find( value => typeof value === 'string' && value ) ?? null;
 
@@ -130,6 +132,8 @@ export function R_TextureFile( entry, tier = null ) {
 	if ( entry != null && typeof entry === 'object' ) {
 
 		const tiers = entry.tiers != null && typeof entry.tiers === 'object' ? entry.tiers : entry;
+		// An explicit null means the unchanged native picture; an omitted tier retains legacy fallback.
+		if ( Object.hasOwn( tiers, tier ) && tiers[ tier ] === null ) return null;
 		const order = [ tier, 'mid', 'low', 'high', 'file' ];
 		for ( const key of order ) if ( typeof tiers[ key ] === 'string' && tiers[ key ] ) return tiers[ key ];
 		for ( const value of Object.values( tiers ) ) if ( typeof value === 'string' && value ) return value;
@@ -151,6 +155,19 @@ export function R_TextureFile( entry, tier = null ) {
 export function R_TextureIndexFile( textures, name, tier = null ) {
 
 	return R_TextureFile( textures?.[ name ], tier );
+
+}
+
+/**
+ * Select a crafted recipe with the same tier as its diffuse; legacy recipes apply to every tier.
+ * @param {?object} entry a crafted recipe, optionally with tier-specific recipes in `tiers`
+ * @param {'low'|'mid'|'high'} [tier=R_TextureTier()] selected diffuse tier
+ * @returns {?object} that tier's recipe, or undefined when it has no authored relief
+ */
+export function R_TextureNormal( entry, tier = R_TextureTier() ) {
+
+	if ( entry?.tiers ) return entry.tiers[ tier ] ?? undefined;
+	return entry;
 
 }
 
@@ -244,7 +261,7 @@ function loadPicture( file ) {
  */
 export function R_NewerTexturesPrefetch(names){
  return loadIndex().then(idx=>Promise.all([...new Set(names)].flatMap(name=>{
-  const file=R_TextureIndexFile(idx,name),crafted=normals[name];
+  const tier=R_TextureTier(),file=R_TextureIndexFile(idx,name,tier),crafted=R_TextureNormal(normals[name],tier);
   return file===null?[]:[loadPicture(file),crafted?loadPicture(crafted.file):null,
    crafted?.edgeSource?loadPicture(crafted.edgeSource.file):null,loadScalar(crafted?.dataFile)];
  })));
@@ -328,23 +345,38 @@ export function R_NewerTextureUpgrade( name, texture ) {
 
 	if ( texture == null ) return;
 	if ( ! R_NewerGame() || r_newer_textures.value === 0 ) return;
+	const tier = R_TextureTier(), selection = R_TextureIndexBase() + tier;
+	if ( texture.userData && texture.userData.newerSelection !== selection ) {
+
+		revertTexture( texture );
+		texture.userData.newerSelection = selection;
+		texture.userData.newerRequest = null;
+		pendingUpgrades.delete( texture );
+		texture.userData.newerPending = false;
+		texture.userData.newerFallback = false;
+		delete texture.userData.newerError;
+
+	}
 	if ( texture.userData == null || texture.userData.newerPicture === true || texture.userData.newerPending === true || texture.userData.newerFallback === true ) return;
 	texture.userData.newerPending = true;
+	const request = {};
+	texture.userData.newerRequest = request;
+	pendingUpgrades.add( texture );
 
 	loadIndex().then( ( idx ) => {
 
+		if ( texture.userData.newerRequest !== request ) return null;
 		const nativeKey = R_GlassTextureKey( texture );
 		const variant = glass[ name ]?.[ nativeKey ];
 		if ( glass[ name ] && !variant ) return null;
 		const ordinary = variant ? undefined : ordinaryVariants[ name ]?.[ nativeKey ];
-		if ( ordinary && ( typeof ordinary.file !== 'string' || !ordinary.file ) ) return null;
 		// the same name over other pixels (an add-on's own picture, such as Scourge of Armagon's metal5_6) keeps its own
 		if ( ! variant && !ordinary && sources[ name ] && ! sources[ name ].includes( nativeKey ) ) return null;
-		const file = variant?.file || ordinary?.file || R_TextureIndexFile( idx, name );
+		const file = variant ? R_TextureFile( variant.file, tier ) : ordinary ? R_TextureFile( ordinary.file, tier ) : R_TextureIndexFile( idx, name, tier );
 		if ( file == null ) return null;
 
 		// the picture and, when there is one, its crafted height map
-		const crafted = variant ? { file: variant.heightFile, normalFile: variant.normalFile, normalChannels: variant.normalChannels, glossFile: variant.glossFile, glossOpeningFile: variant.glossOpeningFile, composeOutsideGlass: variant.composeOutsideGlass, strength: 1, cap: 1.1 } : ordinary ? ordinary.normal : normals[ name ];
+		const crafted = variant ? { file: variant.heightFile, normalFile: variant.normalFile, normalChannels: variant.normalChannels, glossFile: variant.glossFile, glossOpeningFile: variant.glossOpeningFile, composeOutsideGlass: variant.composeOutsideGlass, strength: 1, cap: 1.1 } : R_TextureNormal( ordinary ? ordinary.normal : normals[ name ], tier );
 		const channels = crafted?.normalChannels;
 		const channelFiles = [ 'x', 'y', 'z' ].map( axis => typeof channels?.[ axis ] === 'string' && channels[ axis ] ? channels[ axis ] : null );
 		return Promise.all( [ loadPicture( file ), crafted !== undefined ? loadPicture( crafted.file ) : null,
@@ -354,6 +386,9 @@ export function R_NewerTextureUpgrade( name, texture ) {
 
 	} ).then( ( loaded ) => {
 
+		// A tier may change while images decode. Only the current request can install pixels or settle readiness.
+		if ( texture.userData.newerRequest !== request ) return;
+		pendingUpgrades.delete( texture );
 		texture.userData.newerPending = false;
 		if ( loaded == null ) { texture.userData.newerFallback = true; return; }
 		const pic = loaded.pic;
@@ -497,12 +532,13 @@ export function R_NewerTextureUpgrade( name, texture ) {
 		// loader (which would introduce a startup cycle through render.js).
 		texture.dispatchEvent( { type: 'newertextureupdated' } );
 
-	} ).catch( error => { texture.userData.newerPending = false; texture.userData.newerFallback = true; texture.userData.newerError = String( error.message || error ); } );
+	} ).catch( error => { if ( texture.userData.newerRequest !== request ) return; pendingUpgrades.delete( texture ); texture.userData.newerPending = false; texture.userData.newerFallback = true; texture.userData.newerError = String( error.message || error ); } );
 
 }
 
 let appliedFor = null;
 let appliedOn = false;
+let appliedTier = null;
 
 /*
 ================
@@ -515,18 +551,21 @@ the option changes, every texture of the level gets its higher resolution pictur
 */
 /**
  * Every frame from `R_RenderView` (gl_rmain.js). Cheap when nothing changed: it only acts when the world model or the
- * on/off state (Newer Game and `r_newer_textures`) differs from the last call.
+ * on/off state (Newer Game and `r_newer_textures`) or selected tier differs from the last call.
  *
  * @param {?object} worldmodel the level being played (`cl.worldmodel`), or null with no client
  */
 export function R_NewerTexturesFrame( worldmodel ) {
 
 	const on = R_NewerGame() && r_newer_textures.value !== 0;
-	if ( worldmodel === appliedFor && on === appliedOn ) return;
+	const tier = R_TextureTier();
+	if ( worldmodel === appliedFor && on === appliedOn && tier === appliedTier ) return;
 
 	appliedFor = worldmodel;
 	appliedOn = on;
+	appliedTier = tier;
 	if ( on ) R_NewerTexturesForModel( worldmodel );
+	else R_NewerTexturesRevert();
 
 }
 
@@ -764,43 +803,53 @@ export function R_ClassicTexture( texture ) {
 
 }
 
+function revertTexture( t ) {
+
+	if ( ! upgraded.has( t ) || t.userData.classicImage === undefined ) return;
+	t.dispose();
+	t.image = t.userData.classicImage;
+	t.userData.newerPicture = false;
+	t.userData.newerHeight = undefined;
+	t.needsUpdate = true;
+	if ( t._normalMap != null ) { t._normalMap.dispose(); t._normalMap = undefined; }
+
+	const fb = t._fullbright;
+	if ( fb?.userData.newerCreated ) {
+
+		fb.dispose(); t._fullbright = null;
+		t.userData.newerGlowBoost = undefined;
+
+	} else if ( fb != null && fb.userData.classicImage !== undefined ) {
+
+		fb.dispose();
+		fb.image = fb.userData.classicImage;
+		fb.needsUpdate = true;
+
+	}
+	t.dispatchEvent( { type: 'newertextureupdated' } );
+	upgraded.delete( t );
+
+}
+
 /**
  * Puts every upgraded texture back to its original pixels (the Newer picture is fetched again if Newer Game is
  * played): restores `classicImage`, clears `newerPicture` and `newerHeight`, drops the normal map, removes or restores
  * the fullbright map, and dispatches 'newertextureupdated'. Called by r_demosplit.js when a classic game starts from
  * the menus (`R_DemoSplitRelease`) and when the title demo stops with `r_hdr` 0 (`R_DemoSplitEnd`). Empties the
- * upgraded set.
+ * upgraded set and invalidates pending decodes so they cannot undo the reversion.
  */
 export function R_NewerTexturesRevert() {
 
-	for ( const t of upgraded ) {
+	// Cancel decodes as well as installed pictures: a late promise must never undo Classic or Low.
+	for ( const t of pendingUpgrades ) {
 
-		if ( t.userData.classicImage === undefined ) continue;
-		t.dispose();
-		t.image = t.userData.classicImage;
-		t.userData.newerPicture = false;
-		t.userData.newerHeight = undefined;
-		t.needsUpdate = true;
-		if ( t._normalMap != null ) { t._normalMap.dispose(); t._normalMap = undefined; }
-
-		const fb = t._fullbright;
-		if ( fb?.userData.newerCreated ) {
-
-			fb.dispose(); t._fullbright = null;
-			t.userData.newerGlowBoost = undefined;
-
-		} else if ( fb != null && fb.userData.classicImage !== undefined ) {
-
-			fb.dispose();
-			fb.image = fb.userData.classicImage;
-			fb.needsUpdate = true;
-
-		}
-		t.dispatchEvent( { type: 'newertextureupdated' } );
+		t.userData.newerRequest = null;
+		t.userData.newerPending = false;
 
 	}
-
-	upgraded.clear();
+	pendingUpgrades.clear();
+	for ( const t of upgraded ) revertTexture( t );
+	appliedOn = false;
 
 }
 

@@ -14,7 +14,7 @@ import {readFile} from 'node:fs/promises';
 import {assetPath} from './manifest.mjs';
 import {resolve} from 'node:path';
 import {GAME_CATALOGUE_GAMES} from '../../src/engine/common/game_catalogue.js';
-export const PACK_PARENT=Object.freeze(Object.fromEntries([['core',null],['shareware','core'],['quake','shareware'],...GAME_CATALOGUE_GAMES.filter(game=>!['shareware','quake'].includes(game.id)).map(game=>[game.id,game.base??'quake'])]));
+export const PACK_PARENT=Object.freeze(Object.fromEntries([['core',null],['shareware','core'],['quake','shareware'],...GAME_CATALOGUE_GAMES.filter(game=>!['shareware','quake'].includes(game.id)).map(game=>[game.id,game.base??'quake']),['hexen2','core'],['hexen2-demo','hexen2']]));
 function parent(pack){if(!(pack in PACK_PARENT))throw Error('Unknown pack '+pack);return PACK_PARENT[pack];}
 /** Ancestors of a pack, nearest first, ending with core. */
 export function PackChain(pack){const chain=[];for(let p=pack;p;p=parent(p))chain.push(p);return chain;}
@@ -59,6 +59,9 @@ export async function PackClassifier(root=process.cwd()){
  }
  for(const [name,byKey] of Object.entries(textures.glass??{}))for(const v of Object.values(byKey))for(const f of Object.values(v))if(typeof f==='string'&&/\.(png|webp)$/.test(f))add('newer/textures/'+f,name);
  return path=>{
+  // One reviewed, native-keyed Hexen family registry serves base, Portal and demo.
+  // Include the index itself; leaving it in core would ship Hexen data on the web.
+  if(path.startsWith('newer/textures/hexen2/'))return 'hexen2';
   if(owner.has(path))return CommonAncestor(owner.get(path));
   if(textureFiles.has(path))return CommonAncestor([...textureFiles.get(path)].flatMap(name=>games.textures[name]??[]));
   let m=/^newer\/enemies\/heights\/([^/]+)\//.exec(path);if(m)return CommonAncestor(modelGames(m[1]));

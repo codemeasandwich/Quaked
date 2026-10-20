@@ -180,7 +180,8 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `c9a53b22` | owner trial 8 | Hexen II renders the full screen with its bar overlaid, in Classic and Enhanced, framed so the hands stay visible |
 | `78037c41` | owner trial 9 | Hexen title and plaque placed natively (ScrollPic skipped the UI scale); bigfont cut from its sheet, thin as the original |
 | `fb1f522e` | HM | one menu system: Hexen extends Quake's HD vector menu (traced vector font, stone signs, shared slide animation and shadow) |
-| (this commit) | owner trial 10 | Hexen II's sky keeps its native grey storm clouds in Enhanced (per-game sky glow) |
+| `893b2516` | owner trial 10 | Hexen II's sky keeps its native grey storm clouds in Enhanced (per-game sky glow) |
+| (this commit) | HT | the 47 reviewed Hexen II world textures in game: Mid (default) and High tiers, native-keyed, in the Hexen desktop packs |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;
@@ -345,6 +346,17 @@ h2shared/gl_warp.c R_InitSky: index 0 of the front layer clear). Classic matched
 1.9x glow (so Quake's dark skies bloom), which blew Hexen's clouds out to white over black gaps. The sky glow is now a
 profile value (`skyGlow`: Quake 1.9, Hexen II 1), measured in the browser at both values. The HD menu redesign is
 parked at the owner's request (package HS's sign work is held, not integrated).
+
+Package HT (GPT Sol), owner request 20 October ("integrating some of the high resolution textures that have been
+generated into the game"): `tools/distribution/hexen2_textures.mjs` builds `newer/textures/hexen2/index.json` from the
+reviewed catalog and copies its 400 tier maps byte for byte (34.5 MB; `--check` verifies every hash): 47 native
+identities over 46 names, each bound to its exact native pixels (both `rtex439` pictures by key), Low the unchanged
+original. The loader gained tier-specific relief (each tier's own height and XYZ normals), switching tiers at run time
+and dropping stale loads. The desktop packs carry them for the base game, Portal and the demo; the web build and
+Quake's 5,258 pack assignments are unchanged. Browser check (demo1): 16 textures upgrade, at 4x for Mid and 8x for
+High, none for Low or Classic; a close look at `rtex022` shows the stone detail and relief. The six
+`official_texture_*`/`level_texture_runtime` failures are the same with and without the change (they need fixtures
+this host lacks). 840 ordinary world textures, plus animated, liquid, sky and model families, have no reviewed art yet.
 
 Open decisions and known limits:
 
