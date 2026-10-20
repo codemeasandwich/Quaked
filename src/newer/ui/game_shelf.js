@@ -18,17 +18,23 @@ import {AssetURL} from '../../platform/distribution.js';
 
 /** Each installed game's box art (paths relative to the page); a face not listed is a placeholder. */
 export const GAME_BOXES = Object.freeze( {
-	shareware: { front: 'assets/boxes/shareware/front.png', back: 'assets/boxes/shareware/back.png', spine: 'assets/boxes/shareware/spine.png', sticker: 'Shareware' },
-	quake: { front: 'assets/boxes/quake/front.jpg', back: 'assets/boxes/quake/back.jpg', spine: 'assets/boxes/quake/spine.jpg' },
-	hipnotic: { front: 'assets/boxes/hipnotic/front.jpg', back: 'assets/boxes/hipnotic/back.jpg', spine: 'assets/boxes/hipnotic/spine.png' },
-	rogue: { front: 'assets/boxes/rogue/front.jpg', back: 'assets/boxes/rogue/back.jpg', spine: 'assets/boxes/rogue/spine.png' },
-	mg1: { front: 'assets/boxes/mg1/front.png', back: 'assets/boxes/mg1/back.png', spine: 'assets/boxes/mg1/spine.png' },
-	malice: { front: 'assets/boxes/malice/front.jpg', back: 'assets/boxes/malice/back.jpg' },
-	xmen: { front: 'assets/boxes/xmen/front.jpg', back: 'assets/boxes/xmen/back.jpg' },
-	aopfm_v2: { front: 'assets/boxes/aopfm_v2/front.jpg' },
-	quoth: { front: 'assets/boxes/quoth/front.png', back: 'assets/boxes/quoth/back.png', spine: 'assets/boxes/quoth/spine.png' },
-	mod_quaked: { front: 'assets/boxes/mod_quaked/front.png' },
+	shareware: { front: 'assets/boxes/shareware/front.webp', back: 'assets/boxes/shareware/back.webp', spine: 'assets/boxes/shareware/spine.webp', sticker: 'Shareware' },
+	quake: { front: 'assets/boxes/quake/front.webp', back: 'assets/boxes/quake/back.webp', spine: 'assets/boxes/quake/spine.webp' },
+	hipnotic: { front: 'assets/boxes/hipnotic/front.webp', back: 'assets/boxes/hipnotic/back.webp', spine: 'assets/boxes/hipnotic/spine.webp' },
+	rogue: { front: 'assets/boxes/rogue/front.webp', back: 'assets/boxes/rogue/back.webp', spine: 'assets/boxes/rogue/spine.webp' },
+	dopa: { front: 'assets/boxes/dopa/front.webp', back: 'assets/boxes/dopa/back.webp', spine: 'assets/boxes/dopa/spine.webp' },
+	mg1: { front: 'assets/boxes/mg1/front.webp', back: 'assets/boxes/mg1/back.webp', spine: 'assets/boxes/mg1/spine.webp' },
+	dawn: { front: 'assets/boxes/dawn/front.webp', back: 'assets/boxes/dawn/back.webp', spine: 'assets/boxes/dawn/spine.webp' },
+	ad: { front: 'assets/boxes/ad/front.webp', back: 'assets/boxes/ad/back.webp', spine: 'assets/boxes/ad/spine.webp' },
+	malice: { front: 'assets/boxes/malice/front.webp', back: 'assets/boxes/malice/back.webp', spine: 'assets/boxes/malice/spine.webp' },
+	xmen: { front: 'assets/boxes/xmen/front.webp', back: 'assets/boxes/xmen/back.webp', spine: 'assets/boxes/xmen/spine.webp' },
+	aopfm_v2: { front: 'assets/boxes/aopfm_v2/front.webp', back: 'assets/boxes/aopfm_v2/back.webp', spine: 'assets/boxes/aopfm_v2/spine.webp' },
+	quoth: { front: 'assets/boxes/quoth/front.webp', back: 'assets/boxes/quoth/back.webp', spine: 'assets/boxes/quoth/spine.webp' },
+	mod_alkaline: { front: 'assets/boxes/mod_alkaline/front.webp', back: 'assets/boxes/mod_alkaline/back.webp', spine: 'assets/boxes/mod_alkaline/spine.webp' },
+	mod_tremor: { front: 'assets/boxes/mod_tremor/front.webp', back: 'assets/boxes/mod_tremor/back.webp', spine: 'assets/boxes/mod_tremor/spine.webp' },
+	mod_quaked: { front: 'assets/boxes/mod_quaked/front.webp', back: 'assets/boxes/mod_quaked/back.webp', spine: 'assets/boxes/mod_quaked/spine.webp' },
 	mod_hexen_2: { front: 'assets/boxes/mod_hexen_2/front.webp', spine: 'assets/boxes/mod_hexen_2/spine.webp' },
+	mod_hexen_2_shareware: { front: 'assets/boxes/mod_hexen_2_shareware/front.webp', back: 'assets/boxes/mod_hexen_2_shareware/back.webp', spine: 'assets/boxes/mod_hexen_2_shareware/spine.webp' },
 	mod_hexen_2_portal_of_praevus: { front: 'assets/boxes/mod_hexen_2_portal_of_praevus/front.webp', back: 'assets/boxes/mod_hexen_2_portal_of_praevus/back.webp', spine: 'assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp' }
 } );
 

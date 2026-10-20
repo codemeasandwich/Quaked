@@ -1,0 +1,1889 @@
+{
+  "version": 1,
+  "standard": {
+    "front": [
+      1640,
+      2000
+    ],
+    "back": [
+      1640,
+      2000
+    ],
+    "spine": [
+      340,
+      2000
+    ]
+  },
+  "sources": [
+    {
+      "originalPath": "assets/boxes/shareware/front.png",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/shareware/front.png",
+      "sha256": "eda0697bdba1770afaa36913911be8761b70f69fbaba7c633f40bbb1fe7c900a",
+      "bytes": 3188588,
+      "width": 1122,
+      "height": 1402,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/shareware/back.png",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/shareware/back.png",
+      "sha256": "3c50c11c6d7564aa210659e207207b13a0e2b06d22b7d80723a706fab1b7b6fe",
+      "bytes": 2832890,
+      "width": 1109,
+      "height": 1419,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/shareware/spine.png",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/shareware/spine.png",
+      "sha256": "b38b34d4ac4e4dcbb5dee99ae1a4d7413f0e7a2ad50df41150dff7884b9ff629",
+      "bytes": 2045128,
+      "width": 887,
+      "height": 1774,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/quake/front.jpg",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/quake/front.jpg",
+      "sha256": "d4e9b46106281e918f820282cb0dde96564f419b758cc3f5cdfda55a929ceece",
+      "bytes": 137698,
+      "width": 772,
+      "height": 900,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/quake/back.jpg",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/quake/back.jpg",
+      "sha256": "2694eef16d4df4c253dc78b94d9e2b465191ee7c91ec49d9db8302a935e97ca4",
+      "bytes": 203492,
+      "width": 771,
+      "height": 900,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/quake/spine.jpg",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/quake/spine.jpg",
+      "sha256": "54cd759c88245c8a0ca0b00fd13d5d0bf586b7ab576879e9cc9123291023dde6",
+      "bytes": 36735,
+      "width": 145,
+      "height": 900,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/hipnotic/front.jpg",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/hipnotic/front.jpg",
+      "sha256": "c7861a3adbcea22dec22a003d9ab299ccd5d3d19d06f5d609d22004a4eb1867d",
+      "bytes": 196281,
+      "width": 759,
+      "height": 900,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/hipnotic/back.jpg",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/hipnotic/back.jpg",
+      "sha256": "8d25cea7e59e3a31fe4ddde88c1ddeb25b3b2a2ddbfddf6b580957131df92091",
+      "bytes": 239599,
+      "width": 761,
+      "height": 900,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/hipnotic/spine.png",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "bytes": 1609984,
+      "width": 1024,
+      "height": 1536,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/rogue/front.jpg",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/rogue/front.jpg",
+      "sha256": "2a6d7bd7ae13b7c4b05d15d4873f7c827875e6406a89b56d7c8a71b2f24da114",
+      "bytes": 235865,
+      "width": 761,
+      "height": 900,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/rogue/back.jpg",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+      "sha256": "c9779df353ad03f7e3cc24f9e783136aaaac2ed34f3468957899077126af8f97",
+      "bytes": 236326,
+      "width": 763,
+      "height": 900,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/rogue/spine.png",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/rogue/spine.png",
+      "sha256": "687a74a07ba7df5d375cf9503c9425be6b8148194c115af9e32c688781d2fb23",
+      "bytes": 1605957,
+      "width": 1024,
+      "height": 1536,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/mg1/front.png",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/mg1/front.png",
+      "sha256": "dd5dc40420b93912a79d03898d903dae0dcb5098d86b4762fc12b8483082b93e",
+      "bytes": 2288166,
+      "width": 1027,
+      "height": 1531,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/mg1/back.png",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/mg1/back.png",
+      "sha256": "fdea1c72d809c5ebd6407553e6f005d6cec8af4ee56484e8daeccc4ce0ad091f",
+      "bytes": 2299830,
+      "width": 1027,
+      "height": 1531,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/mg1/spine.png",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/mg1/spine.png",
+      "sha256": "b93a28e9ff25427b79267d5f4c005b63dd6513e46f4ed24aae9e3b6248ee090d",
+      "bytes": 1821257,
+      "width": 1024,
+      "height": 1536,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/malice/front.jpg",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/malice/front.jpg",
+      "sha256": "7d7cbd93f41fb4e83687bfc88b4ab971054bf84c74702487ec9c54b5d749ebc2",
+      "bytes": 132809,
+      "width": 800,
+      "height": 799,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/malice/back.jpg",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/malice/back.jpg",
+      "sha256": "7cb619ff4b4162940fcdbd3dc0e9c4569cdb5ba91f4060047c12cec8f882ff71",
+      "bytes": 145135,
+      "width": 800,
+      "height": 732,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/xmen/front.jpg",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/xmen/front.jpg",
+      "sha256": "f3a690f600f74b6226ce38f27a56d7bf534748e0d47a0523578314b1972b18c0",
+      "bytes": 185542,
+      "width": 703,
+      "height": 900,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/xmen/back.jpg",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/xmen/back.jpg",
+      "sha256": "eea12654e6f3d50c89dfb7f8b310ae8163c158541407cd6f1f4c3bd742d81c3f",
+      "bytes": 216000,
+      "width": 706,
+      "height": 900,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/aopfm_v2/front.jpg",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/aopfm_v2/front.jpg",
+      "sha256": "e30655f353f5c960b9ff39463ececc3475576d0e6e43400014f61b30f6b3a1ec",
+      "bytes": 240528,
+      "width": 800,
+      "height": 797,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/quoth/front.png",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/quoth/front.png",
+      "sha256": "e2a33f0eca75fce9505df1534807e74c554579ac477fcfc9ca0b8ccc642d76c1",
+      "bytes": 3331011,
+      "width": 1122,
+      "height": 1402,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/quoth/back.png",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/quoth/back.png",
+      "sha256": "588ba7f569cd7b5882441bd961d1b099d02d002521b065b671622012e39e468b",
+      "bytes": 3091748,
+      "width": 1122,
+      "height": 1402,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/quoth/spine.png",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/quoth/spine.png",
+      "sha256": "56765f4988c52a24e5135817805a39ca5feddea66d131988b1900071348f642a",
+      "bytes": 2572500,
+      "width": 793,
+      "height": 1983,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/mod_quaked/front.png",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/mod_quaked/front.png",
+      "sha256": "06d4152b4cc18a791bc2aa0cad8290e5073c1fa5401babc0c9c7272cef55f998",
+      "bytes": 2696131,
+      "width": 1049,
+      "height": 1500,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/mod_hexen_2/front.webp",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/mod_hexen_2/front.webp",
+      "sha256": "10727f729d09c9c955e290d9f99a5f3ff43a5e54c5dea86a9036b4cf8c997aab",
+      "bytes": 702528,
+      "width": 2048,
+      "height": 2599,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/mod_hexen_2/spine.webp",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/mod_hexen_2/spine.webp",
+      "sha256": "568a25d73f9c4941a66f69f580e99e95579266c64f37eb1126190896c0641e7d",
+      "bytes": 134222,
+      "width": 512,
+      "height": 2599,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/mod_hexen_2_portal_of_praevus/front.webp",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/mod_hexen_2_portal_of_praevus/front.webp",
+      "sha256": "4fc0f41100fc882de6af6da7ff76523f3b3dd615ce32b04dcb464ccf047e2343",
+      "bytes": 1807088,
+      "width": 2048,
+      "height": 2612,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/mod_hexen_2_portal_of_praevus/back.webp",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/mod_hexen_2_portal_of_praevus/back.webp",
+      "sha256": "fa7016df1316fc20d3270bfdb64b062e6bdeae8efd5412df1890cc34bc49c42d",
+      "bytes": 1860074,
+      "width": 2048,
+      "height": 2623,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp",
+      "archivePath": "assets/authoring/box_art/originals-2026-10-20/mod_hexen_2_portal_of_praevus/spine.webp",
+      "sha256": "741de6069aacb0cf66d132d0c50db54b06179ab427c08b64b97f041d40df41a1",
+      "bytes": 520340,
+      "width": 512,
+      "height": 2829,
+      "origin": "runtime"
+    },
+    {
+      "originalPath": "/Users/bri/quaked/Abyss of Pandemonium/cover.png",
+      "archivePath": "assets/authoring/box_art/import-2026-10-20/aopfm_v2/cover.png",
+      "sha256": "3ba9aba5948221135496cce392aa509eb605ff6995837ff09e23df5e09f60c40",
+      "bytes": 2691802,
+      "width": 1613,
+      "height": 975,
+      "origin": "local"
+    },
+    {
+      "originalPath": "/Users/bri/quaked/Alkaline/cover.png",
+      "archivePath": "assets/authoring/box_art/import-2026-10-20/mod_alkaline/cover.png",
+      "sha256": "c8bcd5012fcbd8d3989e8274e5dec6592d05a9ee3f37b4c671bb5016fc087c6e",
+      "bytes": 2224231,
+      "width": 1659,
+      "height": 948,
+      "origin": "local"
+    },
+    {
+      "originalPath": "/Users/bri/quaked/Arcane Dimensions/cover.png",
+      "archivePath": "assets/authoring/box_art/import-2026-10-20/ad/cover.png",
+      "sha256": "3fccf985fe4f9ee1af657c56fb84dc7da3dca9aa1aa5e2c7f4a4b56a8f03a647",
+      "bytes": 3439128,
+      "width": 1610,
+      "height": 977,
+      "origin": "local"
+    },
+    {
+      "originalPath": "/Users/bri/quaked/Dimension of the Past/cover.png",
+      "archivePath": "assets/authoring/box_art/import-2026-10-20/dopa/cover.png",
+      "sha256": "11d3f456a3e3ff1424f0e7dffb7a1534842334e12670fb2a3b996842100b1073",
+      "bytes": 3412746,
+      "width": 1586,
+      "height": 992,
+      "origin": "local"
+    },
+    {
+      "originalPath": "/Users/bri/quaked/Hexen 2 Shareware/cover.png",
+      "archivePath": "assets/authoring/box_art/import-2026-10-20/mod_hexen_2_shareware/cover.png",
+      "sha256": "19dc65db11e2aaa1533b4628cd58cb65190a69c4f951f17bae9f75c6af40459b",
+      "bytes": 2830320,
+      "width": 1574,
+      "height": 999,
+      "origin": "local"
+    },
+    {
+      "originalPath": "/Users/bri/quaked/Malice/back.png",
+      "archivePath": "assets/authoring/box_art/import-2026-10-20/malice/back.png",
+      "sha256": "05978b6ee9bbbb1aa42d8c75647b4238320cd3ce73b783388833c99df21a2aef",
+      "bytes": 2622932,
+      "width": 1122,
+      "height": 1402,
+      "origin": "local"
+    },
+    {
+      "originalPath": "/Users/bri/quaked/Malice/front.png",
+      "archivePath": "assets/authoring/box_art/import-2026-10-20/malice/front.png",
+      "sha256": "894b7c51e13b5a7c8434cbd19eea19f3ec6e11bec5106365ab7cd43934f04a5f",
+      "bytes": 2512517,
+      "width": 1122,
+      "height": 1402,
+      "origin": "local"
+    },
+    {
+      "originalPath": "/Users/bri/quaked/Malice/side.png",
+      "archivePath": "assets/authoring/box_art/import-2026-10-20/malice/side.png",
+      "sha256": "236d2dd48ba27d6f7b9d6c0afd75ce627a652d93c3306d8bd22b405231a401e6",
+      "bytes": 2303645,
+      "width": 724,
+      "height": 2172,
+      "origin": "local"
+    },
+    {
+      "originalPath": "/Users/bri/quaked/X-Men/back.png",
+      "archivePath": "assets/authoring/box_art/import-2026-10-20/xmen/back.png",
+      "sha256": "a78edba5b767d833bfdb6895732dc3df44c1499633a10de3acb8b492721973f6",
+      "bytes": 12934810,
+      "width": 3200,
+      "height": 3840,
+      "origin": "local"
+    },
+    {
+      "originalPath": "/Users/bri/quaked/X-Men/cover.png",
+      "archivePath": "assets/authoring/box_art/import-2026-10-20/xmen/cover.png",
+      "sha256": "a677a5f735540843d7933c816559f3c025a70c683695913fb47418121fbfcbcb",
+      "bytes": 22089410,
+      "width": 7040,
+      "height": 3840,
+      "origin": "local"
+    },
+    {
+      "originalPath": "/Users/bri/quaked/X-Men/front.png",
+      "archivePath": "assets/authoring/box_art/import-2026-10-20/xmen/front.png",
+      "sha256": "7118e03e422b245519ceeb202be5ddfb452131752797fbd6056e20b3818557cf",
+      "bytes": 7387475,
+      "width": 3200,
+      "height": 3840,
+      "origin": "local"
+    },
+    {
+      "originalPath": "/Users/bri/quaked/X-Men/poster.jpg",
+      "archivePath": "assets/authoring/box_art/import-2026-10-20/xmen/poster.jpg",
+      "sha256": "5a9f5bc29bda08f241c4e89347370447a0f2be6228a7d89bfdde44adc02e6174",
+      "bytes": 532461,
+      "width": 1047,
+      "height": 1600,
+      "origin": "local"
+    },
+    {
+      "originalPath": "/Users/bri/quaked/X-Men/side.png",
+      "archivePath": "assets/authoring/box_art/import-2026-10-20/xmen/side.png",
+      "sha256": "22986a8e0526a36a53cfdffb797c5d0b0fe924a1241a6a903d0518ae4f54cac2",
+      "bytes": 1496916,
+      "width": 640,
+      "height": 3840,
+      "origin": "local"
+    },
+    {
+      "originalPath": "/Users/bri/quaked/dawn of the machine/cover.png",
+      "archivePath": "assets/authoring/box_art/import-2026-10-20/dawn/cover.png",
+      "sha256": "1f21ea6beedf9eee5b7dab09ad379078c7ef71e9b1ad4c82218b2917df937d5d",
+      "bytes": 2403223,
+      "width": 1585,
+      "height": 992,
+      "origin": "local"
+    },
+    {
+      "originalPath": "/Users/bri/quaked/tremor/cover.png",
+      "archivePath": "assets/authoring/box_art/import-2026-10-20/mod_tremor/cover.png",
+      "sha256": "36effeb38eec552b5f9891e98cff1aecab5b21d2e0590859a415533e297482fe",
+      "bytes": 2493816,
+      "width": 1584,
+      "height": 993,
+      "origin": "local"
+    },
+    {
+      "originalPath": "assets/authoring/box_art/quaked/back-side.png",
+      "archivePath": "assets/authoring/box_art/quaked/back-side.png",
+      "sha256": "0b1851df89bdc456cab3fe5aac26a52bce155b7d8b8bee62ac2e2f9808bfefa0",
+      "bytes": 2803216,
+      "width": 1122,
+      "height": 1402,
+      "origin": "authoring"
+    },
+    {
+      "originalPath": "/Users/bri/.codex/generated_images/01a15863-6cd3-7402-9d4a-a000ace9c510/exec-e07268ab-0a59-4a88-a5e2-82e49d7a0eaa.png",
+      "archivePath": "assets/authoring/box_art/edits-2026-10-20/malice/spine-layout.png",
+      "sha256": "aa1f08c12caab29fbdd501e189a5afb3a9b92619326f63f2ee4203f15e4ad9b5",
+      "bytes": 905126,
+      "width": 897,
+      "height": 1753,
+      "origin": "generated",
+      "editedFrom": "assets/authoring/box_art/import-2026-10-20/malice/side.png",
+      "tool": "image_gen.imagegen",
+      "prompt": "docs/evidence/box-art-standardization-2026-10-20/ai-edit-prompts.json#malice",
+      "disposition": "REJECTED: original 23RD mistranscribed as 3RD"
+    },
+    {
+      "originalPath": "/Users/bri/.codex/generated_images/01a15863-6cd3-7402-9d4a-a000ace9c510/exec-102d3ac4-230d-4091-bad8-fddbf043baf7.png",
+      "archivePath": "assets/authoring/box_art/edits-2026-10-20/quoth/spine-layout.png",
+      "sha256": "28b6ff62af401358f47608c012ebbd5c779a3ba6f9f16444dab32f22b375cbb0",
+      "bytes": 1176517,
+      "width": 897,
+      "height": 1752,
+      "origin": "generated",
+      "editedFrom": "assets/authoring/box_art/originals-2026-10-20/quoth/spine.png",
+      "tool": "image_gen.imagegen",
+      "prompt": "docs/evidence/box-art-standardization-2026-10-20/ai-edit-prompts.json#quoth"
+    },
+    {
+      "originalPath": "/Users/bri/.codex/generated_images/01a15863-6cd3-7402-9d4a-a000ace9c510/exec-668c0c84-2c25-48ec-88c8-f43a41ad5387.png",
+      "archivePath": "assets/authoring/box_art/edits-2026-10-20/malice/spine-layout-corrected.png",
+      "sha256": "8ea0e115eb2cb2e841030602dc080a2affeda19bc6878e7839cb5d94f19fb272",
+      "bytes": 1379556,
+      "width": 897,
+      "height": 1752,
+      "origin": "generated",
+      "editedFrom": "assets/authoring/box_art/import-2026-10-20/malice/side.png",
+      "corrects": "assets/authoring/box_art/edits-2026-10-20/malice/spine-layout.png",
+      "tool": "image_gen.imagegen",
+      "prompt": "docs/evidence/box-art-standardization-2026-10-20/malice-correction-prompt.json"
+    }
+  ],
+  "faces": [
+    {
+      "game": "ad",
+      "face": "back",
+      "path": "assets/boxes/ad/back.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/ad/cover.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 744,
+        "height": 977
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "3fccf985fe4f9ee1af657c56fb84dc7da3dca9aa1aa5e2c7f4a4b56a8f03a647",
+      "fit": "contain",
+      "content": {
+        "left": 58,
+        "top": 0,
+        "width": 1523,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "20e8c6b4e89e5432f1fc7b19f8b7dc190a91a44bc9661eba1a8e1e65c64b7bbc",
+      "bytes": 3074700
+    },
+    {
+      "game": "ad",
+      "face": "front",
+      "path": "assets/boxes/ad/front.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/ad/cover.png",
+      "crop": {
+        "left": 865,
+        "top": 0,
+        "width": 745,
+        "height": 977
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "3fccf985fe4f9ee1af657c56fb84dc7da3dca9aa1aa5e2c7f4a4b56a8f03a647",
+      "fit": "contain",
+      "content": {
+        "left": 57,
+        "top": 0,
+        "width": 1525,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "e9118cb850cedca10959bd9ef9ac0c72ca8d62075cb00205dc8644a4f9d77a4d",
+      "bytes": 3387546
+    },
+    {
+      "game": "ad",
+      "face": "spine",
+      "path": "assets/boxes/ad/spine.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/ad/cover.png",
+      "crop": {
+        "left": 744,
+        "top": 0,
+        "width": 121,
+        "height": 977
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "3fccf985fe4f9ee1af657c56fb84dc7da3dca9aa1aa5e2c7f4a4b56a8f03a647",
+      "fit": "contain",
+      "content": {
+        "left": 46,
+        "top": 0,
+        "width": 248,
+        "height": 2000
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "ad425d49b7bac0fded253f75e9583b604a983e8f0fb16b0ba9cc0c1a5b314a71",
+      "bytes": 487276
+    },
+    {
+      "game": "aopfm_v2",
+      "face": "back",
+      "path": "assets/boxes/aopfm_v2/back.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/aopfm_v2/cover.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 808,
+        "height": 975
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "3ba9aba5948221135496cce392aa509eb605ff6995837ff09e23df5e09f60c40",
+      "fit": "contain",
+      "content": {
+        "left": 0,
+        "top": 10,
+        "width": 1640,
+        "height": 1979
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "3db4d7d5ba07c683d5ca65272696eabe9079ca1dc6f51a42d3f4fc32d4bdf216",
+      "bytes": 2866166
+    },
+    {
+      "game": "aopfm_v2",
+      "face": "front",
+      "path": "assets/boxes/aopfm_v2/front.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/aopfm_v2/cover.png",
+      "crop": {
+        "left": 940,
+        "top": 0,
+        "width": 673,
+        "height": 975
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "3ba9aba5948221135496cce392aa509eb605ff6995837ff09e23df5e09f60c40",
+      "fit": "contain",
+      "content": {
+        "left": 129,
+        "top": 0,
+        "width": 1381,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "69e19bafbb54d030591cbf6903eb5e469ab126ff956e526e3fc4cecd88f9d067",
+      "bytes": 2003758
+    },
+    {
+      "game": "aopfm_v2",
+      "face": "spine",
+      "path": "assets/boxes/aopfm_v2/spine.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/aopfm_v2/cover.png",
+      "crop": {
+        "left": 808,
+        "top": 0,
+        "width": 132,
+        "height": 975
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "3ba9aba5948221135496cce392aa509eb605ff6995837ff09e23df5e09f60c40",
+      "fit": "contain",
+      "content": {
+        "left": 34,
+        "top": 0,
+        "width": 271,
+        "height": 2000
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "52f6728107312635833fb9b102186564b3ea3ca293f1f5da3fdec703cd1e42fd",
+      "bytes": 391388
+    },
+    {
+      "game": "dawn",
+      "face": "back",
+      "path": "assets/boxes/dawn/back.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/dawn/cover.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 711,
+        "height": 992
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "1f21ea6beedf9eee5b7dab09ad379078c7ef71e9b1ad4c82218b2917df937d5d",
+      "fit": "contain",
+      "content": {
+        "left": 103,
+        "top": 0,
+        "width": 1433,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "c707c8b2b6dd5408f8fd2feda73d6a91659ce21a1329a93fbd7981e8a104653e",
+      "bytes": 2037094
+    },
+    {
+      "game": "dawn",
+      "face": "front",
+      "path": "assets/boxes/dawn/front.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/dawn/cover.png",
+      "crop": {
+        "left": 865,
+        "top": 0,
+        "width": 720,
+        "height": 992
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "1f21ea6beedf9eee5b7dab09ad379078c7ef71e9b1ad4c82218b2917df937d5d",
+      "fit": "contain",
+      "content": {
+        "left": 94,
+        "top": 0,
+        "width": 1452,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "bbfc62ba4a47f4dcffc07cc4e07c165dbe669607d4bc9368a274a418295ecabc",
+      "bytes": 2116692
+    },
+    {
+      "game": "dawn",
+      "face": "spine",
+      "path": "assets/boxes/dawn/spine.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/dawn/cover.png",
+      "crop": {
+        "left": 711,
+        "top": 0,
+        "width": 154,
+        "height": 992
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "1f21ea6beedf9eee5b7dab09ad379078c7ef71e9b1ad4c82218b2917df937d5d",
+      "fit": "contain",
+      "content": {
+        "left": 15,
+        "top": 0,
+        "width": 310,
+        "height": 2000
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "2c2850a7b2c0e5c7f54e31544dd75c8293f01f7085511a21baeaa12ea335dceb",
+      "bytes": 445280
+    },
+    {
+      "game": "dopa",
+      "face": "back",
+      "path": "assets/boxes/dopa/back.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/dopa/cover.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 714,
+        "height": 992
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "11d3f456a3e3ff1424f0e7dffb7a1534842334e12670fb2a3b996842100b1073",
+      "fit": "contain",
+      "content": {
+        "left": 100,
+        "top": 0,
+        "width": 1440,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "810a4b55b208faf8044ab537e86cdc6ad6233e2e3e0c8933cdd5d86d6f51c0e5",
+      "bytes": 2723456
+    },
+    {
+      "game": "dopa",
+      "face": "front",
+      "path": "assets/boxes/dopa/front.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/dopa/cover.png",
+      "crop": {
+        "left": 866,
+        "top": 0,
+        "width": 720,
+        "height": 992
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "11d3f456a3e3ff1424f0e7dffb7a1534842334e12670fb2a3b996842100b1073",
+      "fit": "contain",
+      "content": {
+        "left": 94,
+        "top": 0,
+        "width": 1452,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "752479c414ad4474f7d05bfddfe9d97dd0c9e460733fa92ef632e52bc4931ee2",
+      "bytes": 3164238
+    },
+    {
+      "game": "dopa",
+      "face": "spine",
+      "path": "assets/boxes/dopa/spine.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/dopa/cover.png",
+      "crop": {
+        "left": 714,
+        "top": 0,
+        "width": 152,
+        "height": 992
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "11d3f456a3e3ff1424f0e7dffb7a1534842334e12670fb2a3b996842100b1073",
+      "fit": "contain",
+      "content": {
+        "left": 17,
+        "top": 0,
+        "width": 306,
+        "height": 2000
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "0a9d38b546649ecd3fccf06a4bb967ef273884191ec3e4925406220742dc56d9",
+      "bytes": 633410
+    },
+    {
+      "game": "hipnotic",
+      "face": "back",
+      "path": "assets/boxes/hipnotic/back.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/back.jpg",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 761,
+        "height": 900
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "8d25cea7e59e3a31fe4ddde88c1ddeb25b3b2a2ddbfddf6b580957131df92091",
+      "fit": "contain",
+      "content": {
+        "left": 0,
+        "top": 30,
+        "width": 1640,
+        "height": 1940
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "8db49b57b0ccb8d97a095c4d9dce1edb85bb1580949bf35e013008fa3afd8cc2",
+      "bytes": 2100850
+    },
+    {
+      "game": "hipnotic",
+      "face": "front",
+      "path": "assets/boxes/hipnotic/front.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/front.jpg",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 759,
+        "height": 900
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "c7861a3adbcea22dec22a003d9ab299ccd5d3d19d06f5d609d22004a4eb1867d",
+      "fit": "contain",
+      "content": {
+        "left": 0,
+        "top": 27,
+        "width": 1640,
+        "height": 1945
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "04f1207b0559b252fa385561e338c50ef6f82a0a47ab4525a10582dda9ab4fc4",
+      "bytes": 1714292
+    },
+    {
+      "game": "hipnotic",
+      "face": "spine",
+      "path": "assets/boxes/hipnotic/spine.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "crop": {
+        "left": 387,
+        "top": 0,
+        "width": 249,
+        "height": 1536
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "fit": "contain",
+      "content": {
+        "left": 8,
+        "top": 0,
+        "width": 324,
+        "height": 2000
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "15002eff68178d2936d7b3ee5bafbc9565cf24a41255975050169a53cf3beada",
+      "bytes": 797438
+    },
+    {
+      "game": "malice",
+      "face": "back",
+      "path": "assets/boxes/malice/back.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/malice/back.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1122,
+        "height": 1402
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "05978b6ee9bbbb1aa42d8c75647b4238320cd3ce73b783388833c99df21a2aef",
+      "fit": "contain",
+      "content": {
+        "left": 19,
+        "top": 0,
+        "width": 1601,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "ec1d1abfbf15ef26fb308f3b2fbb53ccc18dd89c2cac2341a57452380be8bfed",
+      "bytes": 3569000
+    },
+    {
+      "game": "malice",
+      "face": "front",
+      "path": "assets/boxes/malice/front.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/malice/front.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1122,
+        "height": 1402
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "894b7c51e13b5a7c8434cbd19eea19f3ec6e11bec5106365ab7cd43934f04a5f",
+      "fit": "contain",
+      "content": {
+        "left": 19,
+        "top": 0,
+        "width": 1601,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "ba88d3aa963134603643b7da4e3cf119e11b02e78b0333d51f5e92355e76ac79",
+      "bytes": 3260210
+    },
+    {
+      "game": "malice",
+      "face": "spine",
+      "path": "assets/boxes/malice/spine.webp",
+      "source": "assets/authoring/box_art/edits-2026-10-20/malice/spine-layout-corrected.png",
+      "crop": {
+        "left": 338,
+        "top": 0,
+        "width": 220,
+        "height": 1752
+      },
+      "background": "#15110c",
+      "note": "AI narrow layout, corrected to original 23RD CENTURY ULTRACONVERSION FOR QUAKE after retained review failure; complete panel fitted without stretching.",
+      "sourceSha256": "8ea0e115eb2cb2e841030602dc080a2affeda19bc6878e7839cb5d94f19fb272",
+      "fit": "contain",
+      "content": {
+        "left": 44,
+        "top": 0,
+        "width": 251,
+        "height": 2000
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "05142187e5e0f02c85f409d901f1d0e7ec2b92a27b19b43d111f6abe8bfa38f6",
+      "bytes": 599926,
+      "editedFrom": "assets/authoring/box_art/import-2026-10-20/malice/side.png"
+    },
+    {
+      "game": "mg1",
+      "face": "back",
+      "path": "assets/boxes/mg1/back.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/mg1/back.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1027,
+        "height": 1531
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "fdea1c72d809c5ebd6407553e6f005d6cec8af4ee56484e8daeccc4ce0ad091f",
+      "fit": "contain",
+      "content": {
+        "left": 149,
+        "top": 0,
+        "width": 1342,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "2bfa324131cba537220b29681b8285479e0c53b35aa1ade38fc9e2f92b0c6cac",
+      "bytes": 2474588
+    },
+    {
+      "game": "mg1",
+      "face": "front",
+      "path": "assets/boxes/mg1/front.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/mg1/front.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1027,
+        "height": 1531
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "dd5dc40420b93912a79d03898d903dae0dcb5098d86b4762fc12b8483082b93e",
+      "fit": "contain",
+      "content": {
+        "left": 149,
+        "top": 0,
+        "width": 1342,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "fa199b56747c05d1a75c2677e000b3d0d75e12d9ad028a29990f47b7e61b7e55",
+      "bytes": 2664856
+    },
+    {
+      "game": "mg1",
+      "face": "spine",
+      "path": "assets/boxes/mg1/spine.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/mg1/spine.png",
+      "crop": {
+        "left": 329,
+        "top": 0,
+        "width": 368,
+        "height": 1536
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "b93a28e9ff25427b79267d5f4c005b63dd6513e46f4ed24aae9e3b6248ee090d",
+      "fit": "contain",
+      "content": {
+        "left": 0,
+        "top": 290,
+        "width": 340,
+        "height": 1419
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "dcc88a838b6e98694f9be5b9e3a7a68b81f1c9b36f61ad373fc2ccbe3f5974ce",
+      "bytes": 683478
+    },
+    {
+      "game": "mod_alkaline",
+      "face": "back",
+      "path": "assets/boxes/mod_alkaline/back.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/mod_alkaline/cover.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 792,
+        "height": 948
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "c8bcd5012fcbd8d3989e8274e5dec6592d05a9ee3f37b4c671bb5016fc087c6e",
+      "fit": "contain",
+      "content": {
+        "left": 0,
+        "top": 18,
+        "width": 1640,
+        "height": 1963
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "7e6a20e108a46343d8f0782d6a3f40c7d27fb382858d180ac7ebaa3e77f25155",
+      "bytes": 2269912
+    },
+    {
+      "game": "mod_alkaline",
+      "face": "front",
+      "path": "assets/boxes/mod_alkaline/front.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/mod_alkaline/cover.png",
+      "crop": {
+        "left": 917,
+        "top": 0,
+        "width": 742,
+        "height": 948
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "c8bcd5012fcbd8d3989e8274e5dec6592d05a9ee3f37b4c671bb5016fc087c6e",
+      "fit": "contain",
+      "content": {
+        "left": 37,
+        "top": 0,
+        "width": 1565,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "6cec774becbe6a9878206cdeeb0b4c240638203309d5d25f3dab82227489baf8",
+      "bytes": 1763806
+    },
+    {
+      "game": "mod_alkaline",
+      "face": "spine",
+      "path": "assets/boxes/mod_alkaline/spine.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/mod_alkaline/cover.png",
+      "crop": {
+        "left": 792,
+        "top": 0,
+        "width": 125,
+        "height": 948
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "c8bcd5012fcbd8d3989e8274e5dec6592d05a9ee3f37b4c671bb5016fc087c6e",
+      "fit": "contain",
+      "content": {
+        "left": 38,
+        "top": 0,
+        "width": 264,
+        "height": 2000
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "4df1829d6cb70443309d523d4a9505cbd6d27110bc7af7f987f37e4eb6356f10",
+      "bytes": 302816
+    },
+    {
+      "game": "mod_hexen_2_portal_of_praevus",
+      "face": "back",
+      "path": "assets/boxes/mod_hexen_2_portal_of_praevus/back.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/mod_hexen_2_portal_of_praevus/back.webp",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 2048,
+        "height": 2623
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "fa7016df1316fc20d3270bfdb64b062e6bdeae8efd5412df1890cc34bc49c42d",
+      "fit": "contain",
+      "content": {
+        "left": 39,
+        "top": 0,
+        "width": 1562,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "a02e52de2f41099228eeb1a51c4b7a20c2531c032f6167f53b4e15faf7bedca7",
+      "bytes": 4007358
+    },
+    {
+      "game": "mod_hexen_2_portal_of_praevus",
+      "face": "front",
+      "path": "assets/boxes/mod_hexen_2_portal_of_praevus/front.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/mod_hexen_2_portal_of_praevus/front.webp",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 2048,
+        "height": 2612
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "4fc0f41100fc882de6af6da7ff76523f3b3dd615ce32b04dcb464ccf047e2343",
+      "fit": "contain",
+      "content": {
+        "left": 36,
+        "top": 0,
+        "width": 1568,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "c1a2057bd9eb5d4529a69c3cb4a07e05eb61d91d7a406dac6e6eb288815150c3",
+      "bytes": 3729712
+    },
+    {
+      "game": "mod_hexen_2_portal_of_praevus",
+      "face": "spine",
+      "path": "assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/mod_hexen_2_portal_of_praevus/spine.webp",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 512,
+        "height": 2829
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "741de6069aacb0cf66d132d0c50db54b06179ab427c08b64b97f041d40df41a1",
+      "fit": "contain",
+      "content": {
+        "left": 0,
+        "top": 60,
+        "width": 340,
+        "height": 1879
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "d6f7f74cc1f501bc73684e884d041d05bb0b6533ab184fbd746544387f131fce",
+      "bytes": 807186
+    },
+    {
+      "game": "mod_hexen_2_shareware",
+      "face": "back",
+      "path": "assets/boxes/mod_hexen_2_shareware/back.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/mod_hexen_2_shareware/cover.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 708,
+        "height": 999
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "19dc65db11e2aaa1533b4628cd58cb65190a69c4f951f17bae9f75c6af40459b",
+      "fit": "contain",
+      "content": {
+        "left": 111,
+        "top": 0,
+        "width": 1417,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "0706277d4878bb7e80338afa71bba1a1ac6db38270564b0cd02d418f02834d91",
+      "bytes": 2478466
+    },
+    {
+      "game": "mod_hexen_2_shareware",
+      "face": "front",
+      "path": "assets/boxes/mod_hexen_2_shareware/front.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/mod_hexen_2_shareware/cover.png",
+      "crop": {
+        "left": 867,
+        "top": 0,
+        "width": 707,
+        "height": 999
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "19dc65db11e2aaa1533b4628cd58cb65190a69c4f951f17bae9f75c6af40459b",
+      "fit": "contain",
+      "content": {
+        "left": 112,
+        "top": 0,
+        "width": 1415,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "1734c7e0e63f5f40ea5d6885849df422516e6d097f287f3d32fdcf52fa1eff0c",
+      "bytes": 2516800
+    },
+    {
+      "game": "mod_hexen_2_shareware",
+      "face": "spine",
+      "path": "assets/boxes/mod_hexen_2_shareware/spine.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/mod_hexen_2_shareware/cover.png",
+      "crop": {
+        "left": 708,
+        "top": 0,
+        "width": 159,
+        "height": 999
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "19dc65db11e2aaa1533b4628cd58cb65190a69c4f951f17bae9f75c6af40459b",
+      "fit": "contain",
+      "content": {
+        "left": 11,
+        "top": 0,
+        "width": 318,
+        "height": 2000
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "48117165ac5a1b093e1b43bc03205705e7660eec98de9b15ecd522479f11b76a",
+      "bytes": 535980
+    },
+    {
+      "game": "mod_hexen_2",
+      "face": "front",
+      "path": "assets/boxes/mod_hexen_2/front.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/mod_hexen_2/front.webp",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 2048,
+        "height": 2599
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "10727f729d09c9c955e290d9f99a5f3ff43a5e54c5dea86a9036b4cf8c997aab",
+      "fit": "contain",
+      "content": {
+        "left": 32,
+        "top": 0,
+        "width": 1576,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "f841234e583866fa7298f626c71b37ace7280046970a540efc84bcf9ca2bde25",
+      "bytes": 3044720
+    },
+    {
+      "game": "mod_hexen_2",
+      "face": "spine",
+      "path": "assets/boxes/mod_hexen_2/spine.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/mod_hexen_2/spine.webp",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 512,
+        "height": 2599
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "568a25d73f9c4941a66f69f580e99e95579266c64f37eb1126190896c0641e7d",
+      "fit": "contain",
+      "content": {
+        "left": 0,
+        "top": 137,
+        "width": 340,
+        "height": 1726
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "395c984f28870c906828de2ca77322299eabeaef3b0720c0f730574904c1f2a0",
+      "bytes": 531018
+    },
+    {
+      "game": "mod_quaked",
+      "face": "back",
+      "path": "assets/boxes/mod_quaked/back.webp",
+      "source": "assets/authoring/box_art/quaked/back-side.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 974,
+        "height": 1402
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "0b1851df89bdc456cab3fe5aac26a52bce155b7d8b8bee62ac2e2f9808bfefa0",
+      "fit": "contain",
+      "content": {
+        "left": 125,
+        "top": 0,
+        "width": 1389,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "adebd2987df25968c4bbd5d11e519c28877e8f6b6a0df3d0bbbdd8cb50d3d341",
+      "bytes": 2869496
+    },
+    {
+      "game": "mod_quaked",
+      "face": "front",
+      "path": "assets/boxes/mod_quaked/front.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/mod_quaked/front.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1049,
+        "height": 1500
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "06d4152b4cc18a791bc2aa0cad8290e5073c1fa5401babc0c9c7272cef55f998",
+      "fit": "contain",
+      "content": {
+        "left": 120,
+        "top": 0,
+        "width": 1399,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "53f82b85e2af613d1c1f02457bbd3a600cd9ec3b586f8c812d9e5b40982dfd22",
+      "bytes": 2757716
+    },
+    {
+      "game": "mod_quaked",
+      "face": "spine",
+      "path": "assets/boxes/mod_quaked/spine.webp",
+      "source": "assets/authoring/box_art/quaked/back-side.png",
+      "crop": {
+        "left": 974,
+        "top": 0,
+        "width": 148,
+        "height": 1402
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "0b1851df89bdc456cab3fe5aac26a52bce155b7d8b8bee62ac2e2f9808bfefa0",
+      "fit": "contain",
+      "content": {
+        "left": 64,
+        "top": 0,
+        "width": 211,
+        "height": 2000
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "4f20bb894e17ea1fb714406415abe5fd5e33f76ace9100b1e088bc2351098cbd",
+      "bytes": 465546
+    },
+    {
+      "game": "mod_tremor",
+      "face": "back",
+      "path": "assets/boxes/mod_tremor/back.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/mod_tremor/cover.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 708,
+        "height": 993
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "36effeb38eec552b5f9891e98cff1aecab5b21d2e0590859a415533e297482fe",
+      "fit": "contain",
+      "content": {
+        "left": 107,
+        "top": 0,
+        "width": 1426,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "99e6b80a24e821b5b047e52b3f7413c92a6967541aae51928ad098c6aa392a04",
+      "bytes": 2045324
+    },
+    {
+      "game": "mod_tremor",
+      "face": "front",
+      "path": "assets/boxes/mod_tremor/front.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/mod_tremor/cover.png",
+      "crop": {
+        "left": 863,
+        "top": 0,
+        "width": 721,
+        "height": 993
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "36effeb38eec552b5f9891e98cff1aecab5b21d2e0590859a415533e297482fe",
+      "fit": "contain",
+      "content": {
+        "left": 94,
+        "top": 0,
+        "width": 1452,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "d0280a89c96b912a714f80b604da94b22558e762f2ebc07dc96e74589fb5117f",
+      "bytes": 2349430
+    },
+    {
+      "game": "mod_tremor",
+      "face": "spine",
+      "path": "assets/boxes/mod_tremor/spine.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/mod_tremor/cover.png",
+      "crop": {
+        "left": 708,
+        "top": 0,
+        "width": 155,
+        "height": 993
+      },
+      "background": "#15110c",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "sourceSha256": "36effeb38eec552b5f9891e98cff1aecab5b21d2e0590859a415533e297482fe",
+      "fit": "contain",
+      "content": {
+        "left": 14,
+        "top": 0,
+        "width": 312,
+        "height": 2000
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "61a60c3302702f010c28a5ee59139c62b94e90d72ec1b2c5332a7e26342a6f9c",
+      "bytes": 432092
+    },
+    {
+      "game": "quake",
+      "face": "back",
+      "path": "assets/boxes/quake/back.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/quake/back.jpg",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 771,
+        "height": 900
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "2694eef16d4df4c253dc78b94d9e2b465191ee7c91ec49d9db8302a935e97ca4",
+      "fit": "contain",
+      "content": {
+        "left": 0,
+        "top": 43,
+        "width": 1640,
+        "height": 1914
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "d956ef6d7a2c7cca1898a8ef285544fbadbee8f6cf1125ce866c21db8fd75641",
+      "bytes": 1491502
+    },
+    {
+      "game": "quake",
+      "face": "front",
+      "path": "assets/boxes/quake/front.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/quake/front.jpg",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 772,
+        "height": 900
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "d4e9b46106281e918f820282cb0dde96564f419b758cc3f5cdfda55a929ceece",
+      "fit": "contain",
+      "content": {
+        "left": 0,
+        "top": 44,
+        "width": 1640,
+        "height": 1912
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "b5513cc3b9158163a3727a9e025ef11e4fe4e8680d270555ccb4820df5cdea31",
+      "bytes": 1235330
+    },
+    {
+      "game": "quake",
+      "face": "spine",
+      "path": "assets/boxes/quake/spine.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/quake/spine.jpg",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 145,
+        "height": 900
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "54cd759c88245c8a0ca0b00fd13d5d0bf586b7ab576879e9cc9123291023dde6",
+      "fit": "contain",
+      "content": {
+        "left": 9,
+        "top": 0,
+        "width": 322,
+        "height": 2000
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "1015e6b7477f5dc8eb3bd758311c212b23c0a879c1da56557911ade287824237",
+      "bytes": 248322
+    },
+    {
+      "game": "quoth",
+      "face": "back",
+      "path": "assets/boxes/quoth/back.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/quoth/back.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1122,
+        "height": 1402
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "588ba7f569cd7b5882441bd961d1b099d02d002521b065b671622012e39e468b",
+      "fit": "contain",
+      "content": {
+        "left": 19,
+        "top": 0,
+        "width": 1601,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "6062c3672f6ff7bb23414f8a1e9a051c7a908aa07b847770ee909711f68f5029",
+      "bytes": 3703670
+    },
+    {
+      "game": "quoth",
+      "face": "front",
+      "path": "assets/boxes/quoth/front.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/quoth/front.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1122,
+        "height": 1402
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "e2a33f0eca75fce9505df1534807e74c554579ac477fcfc9ca0b8ccc642d76c1",
+      "fit": "contain",
+      "content": {
+        "left": 19,
+        "top": 0,
+        "width": 1601,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "9407b1ed7248fa5a445ce43d0ebfbc864544368556fe9d8f3779a8f6d3d37298",
+      "bytes": 3838644
+    },
+    {
+      "game": "quoth",
+      "face": "spine",
+      "path": "assets/boxes/quoth/spine.webp",
+      "source": "assets/authoring/box_art/edits-2026-10-20/quoth/spine-layout.png",
+      "crop": {
+        "left": 332,
+        "top": 0,
+        "width": 233,
+        "height": 1752
+      },
+      "background": "#15110c",
+      "note": "AI reflow of supplied wide spine; preserve title/logos/palette, remove outer black canvas, then fit without stretching. Original and edit both retained.",
+      "sourceSha256": "28b6ff62af401358f47608c012ebbd5c779a3ba6f9f16444dab32f22b375cbb0",
+      "fit": "contain",
+      "content": {
+        "left": 37,
+        "top": 0,
+        "width": 266,
+        "height": 2000
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "dad7d1615a370ee9b5ff62eef4f5d7eaa2e09759df9dee5bba247cbb14d15350",
+      "bytes": 767506,
+      "editedFrom": "assets/authoring/box_art/originals-2026-10-20/quoth/spine.png"
+    },
+    {
+      "game": "rogue",
+      "face": "back",
+      "path": "assets/boxes/rogue/back.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 763,
+        "height": 900
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "c9779df353ad03f7e3cc24f9e783136aaaac2ed34f3468957899077126af8f97",
+      "fit": "contain",
+      "content": {
+        "left": 0,
+        "top": 33,
+        "width": 1640,
+        "height": 1934
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "0a3fe103097194b2fbd1602fde66b1777d053244a79ece196f1b700624e3bb4e",
+      "bytes": 1862668
+    },
+    {
+      "game": "rogue",
+      "face": "front",
+      "path": "assets/boxes/rogue/front.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/front.jpg",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 761,
+        "height": 900
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "2a6d7bd7ae13b7c4b05d15d4873f7c827875e6406a89b56d7c8a71b2f24da114",
+      "fit": "contain",
+      "content": {
+        "left": 0,
+        "top": 30,
+        "width": 1640,
+        "height": 1940
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "4e371270258e662c896d04245c219ea5de8b0796af94eec37f365fb91acdf375",
+      "bytes": 2293546
+    },
+    {
+      "game": "rogue",
+      "face": "spine",
+      "path": "assets/boxes/rogue/spine.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/spine.png",
+      "crop": {
+        "left": 400,
+        "top": 0,
+        "width": 226,
+        "height": 1536
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "687a74a07ba7df5d375cf9503c9425be6b8148194c115af9e32c688781d2fb23",
+      "fit": "contain",
+      "content": {
+        "left": 23,
+        "top": 0,
+        "width": 294,
+        "height": 2000
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "5465bd779f5d4c24641c0d0019ce6b6b29d551f64b3077c01b196b44a4bf4fb2",
+      "bytes": 787776
+    },
+    {
+      "game": "shareware",
+      "face": "back",
+      "path": "assets/boxes/shareware/back.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/shareware/back.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1109,
+        "height": 1419
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "3c50c11c6d7564aa210659e207207b13a0e2b06d22b7d80723a706fab1b7b6fe",
+      "fit": "contain",
+      "content": {
+        "left": 38,
+        "top": 0,
+        "width": 1563,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "4f5c350c180660279dcfff8f750f7a0250036eaeffe9d941110f52f41c5482c6",
+      "bytes": 3355146
+    },
+    {
+      "game": "shareware",
+      "face": "front",
+      "path": "assets/boxes/shareware/front.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/shareware/front.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1122,
+        "height": 1402
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "eda0697bdba1770afaa36913911be8761b70f69fbaba7c633f40bbb1fe7c900a",
+      "fit": "contain",
+      "content": {
+        "left": 19,
+        "top": 0,
+        "width": 1601,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "89bad8c227b7d7e5805c1f5609109320b700b3c2993d7be0fe1741eb08256205",
+      "bytes": 3644270
+    },
+    {
+      "game": "shareware",
+      "face": "spine",
+      "path": "assets/boxes/shareware/spine.webp",
+      "source": "assets/authoring/box_art/originals-2026-10-20/shareware/spine.png",
+      "crop": {
+        "left": 248,
+        "top": 0,
+        "width": 392,
+        "height": 1774
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "b38b34d4ac4e4dcbb5dee99ae1a4d7413f0e7a2ad50df41150dff7884b9ff629",
+      "fit": "contain",
+      "content": {
+        "left": 0,
+        "top": 230,
+        "width": 340,
+        "height": 1539
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "4e6255f6d957ebeb2e107bd84351cef81d9453828f0d20e8c59781162b7d532d",
+      "bytes": 788080
+    },
+    {
+      "game": "xmen",
+      "face": "back",
+      "path": "assets/boxes/xmen/back.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/xmen/back.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 3200,
+        "height": 3840
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "a78edba5b767d833bfdb6895732dc3df44c1499633a10de3acb8b492721973f6",
+      "fit": "contain",
+      "content": {
+        "left": 0,
+        "top": 16,
+        "width": 1640,
+        "height": 1968
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "d95779d58fe75c7829970de6bbf4e10f7b84250228b28a40cad922e9e68c5b84",
+      "bytes": 3559330
+    },
+    {
+      "game": "xmen",
+      "face": "front",
+      "path": "assets/boxes/xmen/front.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/xmen/front.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 3200,
+        "height": 3840
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "7118e03e422b245519ceeb202be5ddfb452131752797fbd6056e20b3818557cf",
+      "fit": "contain",
+      "content": {
+        "left": 0,
+        "top": 16,
+        "width": 1640,
+        "height": 1968
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "a38c67dfd46acbcac2c558d4dabea859a39d2f1acdc1e0aabf9c86e84d753126",
+      "bytes": 2128952
+    },
+    {
+      "game": "xmen",
+      "face": "spine",
+      "path": "assets/boxes/xmen/spine.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/xmen/side.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 640,
+        "height": 3840
+      },
+      "background": "#15110c",
+      "note": "Whole panel, proportional fit; retain all printed content.",
+      "sourceSha256": "22986a8e0526a36a53cfdffb797c5d0b0fe924a1241a6a903d0518ae4f54cac2",
+      "fit": "contain",
+      "content": {
+        "left": 3,
+        "top": 0,
+        "width": 333,
+        "height": 2000
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "709bf07ad46f15ee470b082ab9476b1a164e3c0f858cda90dede2dc5de701224",
+      "bytes": 398788
+    }
+  ],
+  "historicalResolution": {
+    "assets/boxes/shareware/front.png": "assets/authoring/box_art/originals-2026-10-20/shareware/front.png",
+    "assets/boxes/shareware/back.png": "assets/authoring/box_art/originals-2026-10-20/shareware/back.png",
+    "assets/boxes/shareware/spine.png": "assets/authoring/box_art/originals-2026-10-20/shareware/spine.png",
+    "assets/boxes/quake/front.jpg": "assets/authoring/box_art/originals-2026-10-20/quake/front.jpg",
+    "assets/boxes/quake/back.jpg": "assets/authoring/box_art/originals-2026-10-20/quake/back.jpg",
+    "assets/boxes/quake/spine.jpg": "assets/authoring/box_art/originals-2026-10-20/quake/spine.jpg",
+    "assets/boxes/hipnotic/front.jpg": "assets/authoring/box_art/originals-2026-10-20/hipnotic/front.jpg",
+    "assets/boxes/hipnotic/back.jpg": "assets/authoring/box_art/originals-2026-10-20/hipnotic/back.jpg",
+    "assets/boxes/hipnotic/spine.png": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+    "assets/boxes/rogue/front.jpg": "assets/authoring/box_art/originals-2026-10-20/rogue/front.jpg",
+    "assets/boxes/rogue/back.jpg": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+    "assets/boxes/rogue/spine.png": "assets/authoring/box_art/originals-2026-10-20/rogue/spine.png",
+    "assets/boxes/mg1/front.png": "assets/authoring/box_art/originals-2026-10-20/mg1/front.png",
+    "assets/boxes/mg1/back.png": "assets/authoring/box_art/originals-2026-10-20/mg1/back.png",
+    "assets/boxes/mg1/spine.png": "assets/authoring/box_art/originals-2026-10-20/mg1/spine.png",
+    "assets/boxes/malice/front.jpg": "assets/authoring/box_art/originals-2026-10-20/malice/front.jpg",
+    "assets/boxes/malice/back.jpg": "assets/authoring/box_art/originals-2026-10-20/malice/back.jpg",
+    "assets/boxes/xmen/front.jpg": "assets/authoring/box_art/originals-2026-10-20/xmen/front.jpg",
+    "assets/boxes/xmen/back.jpg": "assets/authoring/box_art/originals-2026-10-20/xmen/back.jpg",
+    "assets/boxes/aopfm_v2/front.jpg": "assets/authoring/box_art/originals-2026-10-20/aopfm_v2/front.jpg",
+    "assets/boxes/quoth/front.png": "assets/authoring/box_art/originals-2026-10-20/quoth/front.png",
+    "assets/boxes/quoth/back.png": "assets/authoring/box_art/originals-2026-10-20/quoth/back.png",
+    "assets/boxes/quoth/spine.png": "assets/authoring/box_art/originals-2026-10-20/quoth/spine.png",
+    "assets/boxes/mod_quaked/front.png": "assets/authoring/box_art/originals-2026-10-20/mod_quaked/front.png",
+    "assets/boxes/mod_hexen_2/front.webp": "assets/authoring/box_art/originals-2026-10-20/mod_hexen_2/front.webp",
+    "assets/boxes/mod_hexen_2/spine.webp": "assets/authoring/box_art/originals-2026-10-20/mod_hexen_2/spine.webp",
+    "assets/boxes/mod_hexen_2_portal_of_praevus/front.webp": "assets/authoring/box_art/originals-2026-10-20/mod_hexen_2_portal_of_praevus/front.webp",
+    "assets/boxes/mod_hexen_2_portal_of_praevus/back.webp": "assets/authoring/box_art/originals-2026-10-20/mod_hexen_2_portal_of_praevus/back.webp",
+    "assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp": "assets/authoring/box_art/originals-2026-10-20/mod_hexen_2_portal_of_praevus/spine.webp"
+  },
+  "exclusions": [
+    {
+      "path": "/Users/bri/quaked/Quake/poster.jpg",
+      "sha256": "9fdf29e62fc829c8c48fe764bc8d19739506849b17b8b99eb9218ad262df48f1",
+      "reason": "Owner-held launch poster; leave untouched."
+    }
+  ],
+  "missing": [
+    {
+      "game": "mod_hexen_2",
+      "face": "back",
+      "reason": "No matching back supplied; retain printed placeholder."
+    }
+  ]
+}

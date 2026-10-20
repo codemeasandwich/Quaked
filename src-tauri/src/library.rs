@@ -69,7 +69,7 @@ pub const ADDONS: &[&str] = &["ad", "quoth", "malice", "xmen", "aopfm_v2", "soe"
 pub const PLACEHOLDERS: &[&str] = &["Dawn of the Machine", "dawn"];
 /// Existing folders whose boxes have shipped defaults (GAME_BOXES in newer/ui/game_shelf.js), even when the user
 /// has no local faces. This is shelf metadata only: these names do not add game files or engine compatibility.
-pub const BOXED_FOLDERS: &[&str] = &["Hexen 2", "Hexen 2 Portal of Praevus", "Quaked"];
+pub const BOXED_FOLDERS: &[&str] = &["Hexen 2", "Hexen 2 Portal of Praevus", "Quaked", "Hexen 2 Shareware", "Alkaline", "Tremor"];
 /// At most this many bytes for a loose file.
 const LOOSE_LIMIT: u64 = 64 << 20;
 const BOX_IMAGE_LIMIT: u64 = 16 << 20;

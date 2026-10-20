@@ -11,7 +11,7 @@ const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m
 
 Deno.test( 'every box image exists and belongs to a catalogue game or an explicitly approved discovered title', () => {
 	for ( const [ id, faces ] of Object.entries( GAME_BOXES ) ) {
-		check( GAME_CATALOGUE_GAMES.some( g => g.id === id ) || [ 'mod_hexen_2', 'mod_hexen_2_portal_of_praevus', 'mod_quaked' ].includes( id ), 'a known game or explicitly approved discovered title: ' + id );
+		check( GAME_CATALOGUE_GAMES.some( g => g.id === id ) || [ 'mod_alkaline', 'mod_hexen_2', 'mod_hexen_2_portal_of_praevus', 'mod_hexen_2_shareware', 'mod_quaked', 'mod_tremor' ].includes( id ), 'a known game or explicitly approved discovered title: ' + id );
 		for ( const face of [ 'front', 'back', 'spine' ] ) if ( faces[ face ] ) check( existsSync( new URL( '../' + faces[ face ], import.meta.url ) ), `${id} ${face}: ${faces[ face ]}` );
 	}
 	check( existsSync( new URL( '../assets/boxes/SOURCES.md', import.meta.url ) ), 'the art\'s sources are recorded' );
@@ -22,10 +22,10 @@ Deno.test( 'a game\'s box: its own art, placeholders where it has none, and whet
 	check( quake.front && quake.back && quake.spine && quake.playable, 'Quake: front, back, spine, playable' );
 	same( GameShelf_Box( { id: 'shareware', name: 'Quake (shareware)', kind: 'shareware', playable: true } ).sticker, 'Shareware', 'the shareware wears a sticker on Quake\'s box' );
 	const scourge = GameShelf_Box( { id: 'hipnotic', name: 'Scourge of Armagon', kind: 'mission', playable: false, reason: 'not yet' } );
-	check( scourge.front && scourge.back, 'Scourge retains its front and back' ); same( scourge.spine, 'assets/boxes/hipnotic/spine.png', 'Scourge now ships its imported spine' );
+	check( scourge.front && scourge.back, 'Scourge retains its front and back' ); same( scourge.spine, 'assets/boxes/hipnotic/spine.webp', 'Scourge now ships its imported spine' );
 	same( scourge.playable, false, 'not playable yet' ); same( scourge.text, 'A Quake mission pack', 'its printed text' );
 	const ad = GameShelf_Box( { id: 'ad', name: 'Arcane Dimensions', kind: 'addon' } );
-	check( ad.front === null && ad.back === null && ad.spine === null, 'Arcane Dimensions: every face a placeholder (it was never boxed)' );
+	check( ad.front && ad.back && ad.spine, 'Arcane Dimensions: supplied owner artwork now provides all three faces' );
 	same( ad.text, 'A Quake add-on', 'with its text' );
 } );
 
@@ -142,16 +142,9 @@ Deno.test( 'folder image type ties use native scan priority without allowing an 
 
 
 Deno.test( 'imported defaults work without local files and never authorize an unsupported title', () => {
- const expected = {
-  shareware: { front: 'assets/boxes/shareware/front.png', back: 'assets/boxes/shareware/back.png', spine: 'assets/boxes/shareware/spine.png' },
-  hipnotic: { spine: 'assets/boxes/hipnotic/spine.png' }, rogue: { spine: 'assets/boxes/rogue/spine.png' },
-  quoth: { front: 'assets/boxes/quoth/front.png', back: 'assets/boxes/quoth/back.png', spine: 'assets/boxes/quoth/spine.png' },
-  mg1: { front: 'assets/boxes/mg1/front.png', back: 'assets/boxes/mg1/back.png', spine: 'assets/boxes/mg1/spine.png' },
-  mod_q30a1024: { front: null, back: null, spine: null },
-  mod_quaked: { front: 'assets/boxes/mod_quaked/front.png' },
-  mod_hexen_2: { front: 'assets/boxes/mod_hexen_2/front.webp', back: null, spine: 'assets/boxes/mod_hexen_2/spine.webp' },
-  mod_hexen_2_portal_of_praevus: { front: 'assets/boxes/mod_hexen_2_portal_of_praevus/front.webp', back: 'assets/boxes/mod_hexen_2_portal_of_praevus/back.webp', spine: 'assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp' }
- };
+ const ids = [ 'shareware', 'quake', 'hipnotic', 'rogue', 'mg1', 'malice', 'xmen', 'aopfm_v2', 'quoth', 'mod_quaked', 'mod_hexen_2', 'mod_hexen_2_portal_of_praevus', 'dopa', 'ad', 'dawn', 'mod_alkaline', 'mod_tremor', 'mod_hexen_2_shareware' ];
+ const expected = Object.fromEntries( ids.map( id => [ id, Object.fromEntries( [ 'front', 'back', 'spine' ].map( face => [ face, id === 'mod_hexen_2' && face === 'back' ? null : `assets/boxes/${id}/${face}.webp` ] ) ) ] ) );
+ expected.mod_q30a1024 = { front: null, back: null, spine: null };
  for ( const [ id, faces ] of Object.entries( expected ) ) {
   const box = GameShelf_Box( { id, name: id, playable: false, images: {}, reason: 'No supported game files found' } );
   for ( const [ face, path ] of Object.entries( faces ) ) same( box[ face ], path, id + ' shipped ' + face + ' without local artwork' );
@@ -162,7 +155,7 @@ Deno.test( 'imported defaults work without local files and never authorize an un
 } );
 
 Deno.test( 'artwork-only discovered titles use a neutral game label without implying Quake compatibility', () => {
- for ( const id of [ 'mod_hexen_2', 'mod_hexen_2_portal_of_praevus', 'mod_quaked' ] ) {
+ for ( const id of [ 'mod_alkaline', 'mod_hexen_2', 'mod_hexen_2_portal_of_praevus', 'mod_hexen_2_shareware', 'mod_quaked', 'mod_tremor' ] ) {
   const box = GameShelf_Box( { id, name: id, kind: 'unavailable', playable: false, images: {}, reason: 'No supported game files found' } );
   same( box.text, 'Game', id + ' has a neutral display-only label' ); same( box.playable, false, id + ' cannot start through artwork' ); same( box.reason, 'No supported game files found', id + ' preserves its missing-files explanation' ); check( !! box.front, id + ' still displays shipped artwork' );
  }
@@ -171,9 +164,9 @@ Deno.test( 'artwork-only discovered titles use a neutral game label without impl
 
 Deno.test( 'current Quoth and Machine faces are active defaults while the screenshot collage is never a box front', () => {
  const quoth = GameShelf_Box( { id: 'quoth', name: 'Quoth', playable: true, images: {} } );
- same( quoth.front, 'assets/boxes/quoth/front.png', 'the real Quoth front is now shipped' );
+ same( quoth.front, 'assets/boxes/quoth/front.webp', 'the real Quoth front is now shipped' );
  const machine = GameShelf_Box( { id: 'mg1', name: 'Dimension of the Machine', playable: true, images: {} } );
- for ( const face of [ 'front', 'back', 'spine' ] ) same( machine[ face ], 'assets/boxes/mg1/' + face + '.png', 'the native Machine ' + face + ' bytes are active' );
+ for ( const face of [ 'front', 'back', 'spine' ] ) same( machine[ face ], 'assets/boxes/mg1/' + face + '.webp', 'the standardized Machine ' + face + ' is active' );
  const collage = GameShelf_Box( { id: 'mod_q30a1024', name: 'q30a1024', playable: true, images: {} } );
  for ( const face of [ 'front', 'back', 'spine' ] ) same( collage[ face ], null, 'the q30 collage has no runtime ' + face + ' role' );
  same( collage.playable, true, 'retiring artwork does not change the game validation result' );
