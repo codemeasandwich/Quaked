@@ -176,7 +176,8 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `9c0753c3` | owner trial 4 | Hexen small menu text in the game's own crisp pixels; help scrolls smoothly, held arrows scroll, text fades under pins |
 | `87922a8c` | owner trial 5 | Hexen II starts on its title demos like Quake (Enhanced and Classic halves); Portal mounts the base game's loose files |
 | `f023ded9` | DD, owner trial 6 | native demos play from inside the level; Hexen menu legible over the title demo; split labels clear of its plaque |
-| (this commit) | TR, owner trial 7 | Hexen see-through model skins (EF_HOLEY/TRANSPARENT/SPECIAL_TRANS) loaded with their alpha |
+| `d8564719` | TR, owner trial 7 | Hexen see-through model skins (EF_HOLEY/TRANSPARENT/SPECIAL_TRANS) loaded with their alpha |
+| (this commit) | owner trial 8 | Hexen II renders the full screen with its bar overlaid, in Classic and Enhanced, framed so the hands stay visible |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;
@@ -307,6 +308,14 @@ decoded zero-alpha texels 0 → 1,046,723 of 1,046,723 after the fix; `tests/hex
 skin flags and draw opaque natively too; in demo2 the Famine beam renders without a square, so the exact lightning
 the owner saw is not identified yet. On-screen confirmation of the star is pending (a viewmodel-swap probe could not
 show the small model); the owner can check with the Necromancer's second weapon.
+
+Owner trial 8 (20 October): black bars beside the Hexen HUD on a wide window (E2 had kept the view above the bar);
+"the game renders using the full screen and then the HUD is overlaid", in Classic and Enhanced. For a profile without
+`enhancedViewUnderHud` (Hexen II) the view now always fills the screen under the bar, framed as the view above it
+(`r_refdef.framingHeight`: the camera's `setViewOffset` keeps that view's perspective and extends it downward; the
+vertical cull angle `cullFovY` covers the extra strip), so the held model stays where it was. Quake's Classic and
+Enhanced layouts are unchanged. Wide-window screenshots in both modes; 293/294 suites (`weapon_review` fails the same
+without the change), engine list 220/220.
 
 Open decisions and known limits:
 

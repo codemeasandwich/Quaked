@@ -618,10 +618,20 @@ function SCR_CalcRefdef() {
 	else
 		_r_refdef.vrect.y = Math.floor( ( h - _r_refdef.vrect.height ) / 2 );
 
-	// The profile chooses whether Enhanced fills beneath the bar (Quake), or reserves
-	// the Classic rectangle so Raven's taller bar leaves the held model visible.
-	if ( scr_newer() && GameProfile_Get().screen.enhancedViewUnderHud && _r_refdef.vrect.width >= _vid.width && sb_lines > 0 ) {
+	// Newer Game: the picture fills the screen and the status bar is drawn over the bottom of it, so wide screens do not
+	// show black beside the bar. Quake's view simply grows under the bar. Raven's taller bar would then hide the held
+	// model, so a profile without `enhancedViewUnderHud` keeps the Classic framing (the picture as tall as the view
+	// above the bar) and the extra strip below shows more of the world (`framingHeight`, R_SetupGL).
+	_r_refdef.framingHeight = 0;
+	_r_refdef.cullFovY = 0;
+	// Hexen II does this in Classic too (owner, 20 October 2026: "the game renders using the full screen and then the
+	// HUD is overlaid"); Quake's Classic view keeps its native rectangle.
+	let framing = _r_refdef.vrect.height;
+	const framed = ! GameProfile_Get().screen.enhancedViewUnderHud;
+	if ( ( scr_newer() || framed ) && _r_refdef.vrect.width >= _vid.width && sb_lines > 0 ) {
 
+		if ( framed ) _r_refdef.framingHeight = framing;
+		else framing = _vid.height;
 		_r_refdef.vrect.height = _vid.height;
 		_r_refdef.vrect.y = 0;
 
@@ -630,7 +640,9 @@ function SCR_CalcRefdef() {
 	// Hor+ FOV: lock vertical FOV to what fov cvar gives at 4:3,
 	// then expand horizontal FOV for the actual aspect ratio.
 	_r_refdef.fov_y = CalcFov( scr_fov.value, 4, 3 );
-	_r_refdef.fov_x = CalcFovX( _r_refdef.fov_y, _r_refdef.vrect.width, _r_refdef.vrect.height );
+	_r_refdef.fov_x = CalcFovX( _r_refdef.fov_y, _r_refdef.vrect.width, framing );
+	// the extended strip lies below the framed view: cull with a symmetric angle reaching its bottom edge
+	if ( _r_refdef.framingHeight > 0 ) _r_refdef.cullFovY = 2 * Math.atan( Math.tan( _r_refdef.fov_y * Math.PI / 360 ) * ( 2 * _r_refdef.vrect.height / framing - 1 ) ) * 180 / Math.PI;
 
 	scr_vrect.x = _r_refdef.vrect.x;
 	scr_vrect.y = _r_refdef.vrect.y;

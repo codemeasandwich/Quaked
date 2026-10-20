@@ -1,4 +1,5 @@
-// Public screen update: Enhanced keeps Hexen's held view above its native bar, while Quake still fills the screen.
+// Public screen update: Hexen II renders the whole screen with its bar overlaid, in Classic and Enhanced (owner, 20
+// October 2026), framed as the view above the bar so the held model stays visible; Quake keeps its layouts.
 import * as screen from '../src/engine/render/gl_screen.js';
 import * as draw from '../src/engine/render/gl_draw.js';
 import * as cmd from '../src/engine/common/cmd.js';
@@ -36,7 +37,7 @@ function fixture( run ) {
 			const before = frames;
 			screen.SCR_UpdateScreen();
 			same( frames, before + 1, 'public screen update renders the view' );
-			return { ...refdef.vrect, fov_x: refdef.fov_x, fov_y: refdef.fov_y };
+			return { ...refdef.vrect, fov_x: refdef.fov_x, fov_y: refdef.fov_y, framingHeight: refdef.framingHeight, cullFovY: refdef.cullFovY };
 
 		} } );
 
@@ -56,10 +57,12 @@ Deno.test( 'Quake Enhanced retains its full-height view and Classic bar reservat
 	same( enhanced.height, draw.Draw_GetVirtualHeight(), 'Enhanced full height' );
 	same( enhanced.y, 0, 'Enhanced top' );
 	same( enhanced.fov_y, classic.fov_y, 'vertical FOV unchanged' );
+	same( classic.framingHeight, 0, 'Quake Classic is not framed' );
+	same( enhanced.framingHeight, 0, 'Quake Enhanced is not framed' );
 
 } ) );
 
-for ( const id of [ 'hexen2', 'hexen2-demo', 'hexen2-portals' ] ) Deno.test( id + ' Enhanced keeps the Classic view rectangle and FOV', () => fixture( ( { frame, vid, cl } ) => {
+for ( const id of [ 'hexen2', 'hexen2-demo', 'hexen2-portals' ] ) Deno.test( id + ' fills the screen under its bar in Classic and Enhanced, framed above the bar', () => fixture( ( { frame, vid, cl } ) => {
 
 	for ( const [ width, height ] of [ [ 640, 480 ], [ 1280, 720 ], [ 480, 800 ] ] ) {
 
@@ -68,7 +71,14 @@ for ( const id of [ 'hexen2', 'hexen2-demo', 'hexen2-portals' ] ) Deno.test( id 
 
 			const classic = frame( id, 0, size, inset ), enhanced = frame( id, 1, size, inset );
 			same( JSON.stringify( enhanced ), JSON.stringify( classic ), `${id} ${width}x${height}, size ${size}, inset ${inset}` );
-			if ( size === 100 || size === 110 ) same( enhanced.height, draw.Draw_GetVirtualHeight() - sb_lines - Math.round( inset * draw.Draw_GetVirtualHeight() / vid.height ), 'screen minus bar and touch controls' );
+			if ( size === 100 || size === 110 ) {
+
+				same( enhanced.height, draw.Draw_GetVirtualHeight(), 'the picture fills the screen; the bar is drawn over it' );
+				same( enhanced.y, 0, 'from the top' );
+				same( enhanced.framingHeight, draw.Draw_GetVirtualHeight() - sb_lines - Math.round( inset * draw.Draw_GetVirtualHeight() / vid.height ), 'framed as the view above the bar and touch controls' );
+				check( enhanced.cullFovY > enhanced.fov_y, 'culling covers the strip under the bar' );
+
+			}
 			same( r_hdr.value, 1, 'Enhanced remains on' );
 
 		}

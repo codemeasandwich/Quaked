@@ -133,6 +133,10 @@ export class refdef_t {
 
 		this.vrect = new vrect_t(); // subwindow in video for refresh
 		this.vrectScale = 1; // backing pixels per virtual 2D coordinate
+		// when non-zero, the picture is framed as a view this tall (from the top of `vrect`), and the rest of `vrect`
+		// below shows more of the world under the status bar (Enhanced Hexen II: no black beside its bar, hands above it)
+		this.framingHeight = 0;
+		this.cullFovY = 0; // vertical cull angle covering that extended strip; 0 uses fov_y
 		this.aliasvrect = new vrect_t(); // scaled Alias version
 		this.vrectright = 0;
 		this.vrectbottom = 0; // right & bottom screen coords

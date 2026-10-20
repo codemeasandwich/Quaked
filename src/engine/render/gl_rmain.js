@@ -413,10 +413,10 @@ export function R_SetFrustum() {
 		RotatePointAroundVector( frustum[ 0 ].normal, vup, vpn, - ( 90 - r_refdef.fov_x / 2 ) );
 		// rotate VPN left by FOV_X/2 degrees
 		RotatePointAroundVector( frustum[ 1 ].normal, vup, vpn, 90 - r_refdef.fov_x / 2 );
-		// rotate VPN up by FOV_Y/2 degrees
-		RotatePointAroundVector( frustum[ 2 ].normal, vright, vpn, 90 - r_refdef.fov_y / 2 );
-		// rotate VPN down by FOV_Y/2 degrees
-		RotatePointAroundVector( frustum[ 3 ].normal, vright, vpn, - ( 90 - r_refdef.fov_y / 2 ) );
+		// rotate VPN up and down by FOV_Y/2 degrees (a view framed above an extended strip culls with the wider angle)
+		const cullFovY = r_refdef.cullFovY > 0 ? r_refdef.cullFovY : r_refdef.fov_y;
+		RotatePointAroundVector( frustum[ 2 ].normal, vright, vpn, 90 - cullFovY / 2 );
+		RotatePointAroundVector( frustum[ 3 ].normal, vright, vpn, - ( 90 - cullFovY / 2 ) );
 
 	}
 
@@ -553,7 +553,10 @@ function R_ComputeViewport() {
  */
 export function R_SetupGL() {
 
-	const screenaspect = r_refdef.vrect.width / r_refdef.vrect.height;
+	// a framed view (r_refdef.framingHeight) keeps the perspective of the shorter view above the status bar and shows
+	// the strip below it as an off-centre extension of the same projection
+	const framing = r_refdef.framingHeight > 0 && ! isXRActive() ? r_refdef.framingHeight : 0;
+	const screenaspect = r_refdef.vrect.width / ( framing || r_refdef.vrect.height );
 
 	// set up Three.js camera to match Quake's perspective
 	if ( camera == null ) {
@@ -589,6 +592,8 @@ export function R_SetupGL() {
 
 		}
 
+		if ( framing ) camera.setViewOffset( r_refdef.vrect.width, framing, 0, 0, r_refdef.vrect.width, r_refdef.vrect.height );
+		else if ( camera.view !== null ) camera.clearViewOffset();
 		camera.updateProjectionMatrix();
 
 	}
