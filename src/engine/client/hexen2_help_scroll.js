@@ -4,10 +4,10 @@
  * The Hexen II help text as one scroll with sticky section headings. Native Hexen II shows five full-screen pictures
  * (gfx/menu/help01..05.lmp) whose sections run on from one page to the next; Quaked reflows the same text into the
  * pictures' black panel and scrolls it, keeping the heading of the section being read pinned to the top row and the
- * next unseen heading pinned to the bottom row (the first line of each), with the rows next to a pin faded.
+ * next unseen heading pinned to the bottom row (the first line of each); the text fades into the darkness beside a pin.
  *
  * Types: plain values and functions; no exported classes. A row is `{ text, heading, section }`; a view is
- * `{ scroll, max, pinTop, pinBottom, lines }` (see `Hexen2_HelpView`).
+ * `{ scroll, max, rows, pinTop, pinBottom }` in menu pixels (see `Hexen2_HelpView`).
  * State: none; the page's scroll position lives in menu_hexen2_help.js.
  * Errors: none raised.
  *
@@ -78,80 +78,100 @@ export function Hexen2_HelpRows( sections, columns ) {
 
 }
 
-/**
- * Clamps a scroll position (the row index shown in the top slot) to the scroll's range.
- *
- * @param {number} scroll the requested first row
- * @param {number} rowCount rows in the scroll
- * @param {number} slots visible rows
- * @returns {number} an integer in 0..max(0, rowCount - slots)
- */
-export function Hexen2_HelpClamp( scroll, rowCount, slots ) {
+/** Height of one text row in menu pixels (the 8-pixel character cell). */
+export const HEXEN2_HELP_ROW = 8;
 
-	const max = Math.max( 0, rowCount - slots );
-	return Math.min( max, Math.max( 0, Math.trunc( scroll ) || 0 ) );
+/**
+ * The furthest the help can scroll: the last row resting in the bottom slot.
+ *
+ * @param {{ rows: Array<object> }} layout from `Hexen2_HelpRows`
+ * @param {number} slots visible rows
+ * @returns {number} the maximum scroll in menu pixels
+ */
+export function Hexen2_HelpMaxScroll( layout, slots ) {
+
+	return Math.max( 0, layout.rows.length - slots ) * HEXEN2_HELP_ROW;
 
 }
 
 /**
- * What the help panel shows at a scroll position. When the section in the top slot started above it, that section's
- * first heading line is pinned over the top slot; when a later section's heading starts at or below the bottom slot,
- * its first line is pinned over the bottom slot. A pinned slot shows only the pin, and the row next to each pin is
- * faded so the pins read as sticky headers over the scrolling text.
+ * Clamps a scroll position (menu pixels from the top of the text) to the scroll's range.
+ *
+ * @param {{ rows: Array<object> }} layout from `Hexen2_HelpRows`
+ * @param {number} scroll the requested scroll in menu pixels
+ * @param {number} slots visible rows
+ * @returns {number} the scroll, within 0..`Hexen2_HelpMaxScroll`
+ */
+export function Hexen2_HelpClamp( layout, scroll, slots ) {
+
+	return Math.min( Hexen2_HelpMaxScroll( layout, slots ), Math.max( 0, Number( scroll ) || 0 ) );
+
+}
+
+/**
+ * What the help panel shows at a pixel scroll. Rows are placed at `y` menu pixels below the panel's text top (partly
+ * hidden rows included, for the caller to clip). The section being read has its heading's first line pinned to the top
+ * once that heading has scrolled above it, pushed up by the next heading as it arrives (an accordion's sticky
+ * header); the first heading still below the panel is pinned to the bottom slot. The caller fades the text into the
+ * darkness beside each pin.
  *
  * @param {{ rows: Array<{ text: string, heading: boolean, section: number }>, starts: Array<number> }} layout from
  *   `Hexen2_HelpRows`
- * @param {number} scroll the first row shown (clamped here)
+ * @param {number} scroll menu pixels from the top of the text (clamped here)
  * @param {number} slots visible rows, at least 3
- * @returns {{ scroll: number, max: number, pinTop: ?{ text: string, section: number },
- *   pinBottom: ?{ text: string, section: number }, lines: Array<{ slot: number, row: number, faded: boolean }> }}
- *   the clamped scroll, its maximum, the pins and the scrolling rows to draw by slot
+ * @returns {{ scroll: number, max: number, rows: Array<{ row: number, y: number }>,
+ *   pinTop: ?{ text: string, section: number, y: number }, pinBottom: ?{ text: string, section: number, y: number } }}
  */
 export function Hexen2_HelpView( layout, scroll, slots ) {
 
-	const { rows, starts } = layout;
-	scroll = Hexen2_HelpClamp( scroll, rows.length, slots );
-	const max = Math.max( 0, rows.length - slots );
-	if ( ! rows.length ) return { scroll, max, pinTop: null, pinBottom: null, lines: [] };
+	const { rows, starts } = layout, R = HEXEN2_HELP_ROW;
+	scroll = Hexen2_HelpClamp( layout, scroll, slots );
+	const max = Hexen2_HelpMaxScroll( layout, slots ), height = slots * R;
+	const shown = [];
+	for ( let row = Math.floor( scroll / R ); row < rows.length; row ++ ) {
 
-	const current = rows[ scroll ].section;
-	const pinTop = starts[ current ] < scroll ? { text: rows[ starts[ current ] ].text, section: current } : null;
-	const last = scroll + slots - 1;
-	const next = starts.findIndex( ( start, section ) => section > current && start >= last );
-	const pinBottom = next >= 0 ? { text: rows[ starts[ next ] ].text, section: next } : null;
-
-	const lines = [];
-	for ( let slot = 0; slot < slots; slot ++ ) {
-
-		const row = scroll + slot;
-		if ( row >= rows.length ) break;
-		if ( ( pinTop && slot === 0 ) || ( pinBottom && slot === slots - 1 ) ) continue;
-		lines.push( { slot, row, faded: ( !! pinTop && slot === 1 ) || ( !! pinBottom && slot === slots - 2 ) } );
+		const y = row * R - scroll;
+		if ( y >= height ) break;
+		shown.push( { row, y } );
 
 	}
-	return { scroll, max, pinTop, pinBottom, lines };
+	if ( ! rows.length ) return { scroll, max, rows: shown, pinTop: null, pinBottom: null };
+
+	const current = rows[ Math.min( rows.length - 1, Math.floor( scroll / R ) ) ].section;
+	let pinTop = null;
+	if ( starts[ current ] * R < scroll ) {
+
+		// the next heading arriving under the pin pushes it up and out
+		const next = starts[ current + 1 ], nextY = next === undefined ? Infinity : next * R - scroll;
+		pinTop = { text: rows[ starts[ current ] ].text, section: current, y: Math.min( 0, nextY - R ) };
+
+	}
+	const bottom = ( slots - 1 ) * R;
+	const below = starts.findIndex( start => start * R - scroll > bottom );
+	const pinBottom = below >= 0 ? { text: rows[ starts[ below ] ].text, section: below, y: bottom } : null;
+	return { scroll, max, rows: shown, pinTop, pinBottom };
 
 }
 
 /**
- * The scroll position that brings a neighbouring section's heading to the top: `direction` -1 goes to the start of
- * the section being read (or the one before when already at its start), +1 to the next section.
+ * The scroll that brings a neighbouring section's heading to the top: `direction` -1 goes to the start of the section
+ * being read (or the one before when already at its start), +1 to the next section.
  *
  * @param {{ rows: Array<{ section: number }>, starts: Array<number> }} layout from `Hexen2_HelpRows`
- * @param {number} scroll the current first row
+ * @param {number} scroll the current scroll in menu pixels
  * @param {number} slots visible rows
  * @param {number} direction -1 or +1
- * @returns {number} the new scroll position, clamped
+ * @returns {number} the new scroll in menu pixels, clamped
  */
 export function Hexen2_HelpJump( layout, scroll, slots, direction ) {
 
-	const { rows, starts } = layout;
+	const { rows, starts } = layout, R = HEXEN2_HELP_ROW;
 	if ( ! rows.length ) return 0;
-	scroll = Hexen2_HelpClamp( scroll, rows.length, slots );
-	const current = rows[ scroll ].section;
+	scroll = Hexen2_HelpClamp( layout, scroll, slots );
+	const top = Math.round( scroll / R ), current = rows[ Math.min( rows.length - 1, top ) ].section;
 	let target;
-	if ( direction < 0 ) target = starts[ current ] < scroll ? starts[ current ] : starts[ Math.max( 0, current - 1 ) ];
+	if ( direction < 0 ) target = starts[ current ] < top ? starts[ current ] : starts[ Math.max( 0, current - 1 ) ];
 	else target = current + 1 < starts.length ? starts[ current + 1 ] : rows.length;
-	return Hexen2_HelpClamp( target, rows.length, slots );
+	return Hexen2_HelpClamp( layout, target * R, slots );
 
 }

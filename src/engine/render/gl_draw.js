@@ -1396,6 +1396,30 @@ export function Draw_Fill( x, y, w, h, c, alpha = 1 ) {
 
 }
 
+/**
+ * Fills a rectangle with one palette colour whose opacity changes evenly from the top edge to the bottom edge: text
+ * scrolling under it fades into the colour rather than being cut or dimmed line by line.
+ *
+ * @param {number} x left edge in virtual pixels
+ * @param {number} y top edge in virtual pixels
+ * @param {number} w width in virtual pixels
+ * @param {number} h height in virtual pixels
+ * @param {number} c palette index, 0..255
+ * @param {number} alphaTop opacity at the top edge, 0..1
+ * @param {number} alphaBottom opacity at the bottom edge, 0..1
+ */
+export function Draw_FadeBand( x, y, w, h, c, alphaTop, alphaBottom ) {
+
+	if ( ! overlayCtx || ! ( w > 0 && h > 0 ) ) return;
+	const r = host_basepal ? host_basepal[ c * 3 ] : 0, g = host_basepal ? host_basepal[ c * 3 + 1 ] : 0, b = host_basepal ? host_basepal[ c * 3 + 2 ] : 0;
+	const gradient = overlayCtx.createLinearGradient( 0, y, 0, y + h );
+	gradient.addColorStop( 0, `rgba(${r},${g},${b},${alphaTop})` );
+	gradient.addColorStop( 1, `rgba(${r},${g},${b},${alphaBottom})` );
+	overlayCtx.fillStyle = gradient;
+	overlayCtx.fillRect( x, y, w, h );
+
+}
+
 /*
 ================
 Draw_FadeScreen

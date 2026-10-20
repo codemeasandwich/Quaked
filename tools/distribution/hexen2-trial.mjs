@@ -110,23 +110,44 @@ const key = ( page, name, times = 1 ) => ( async () => { for ( let i = 0; i < ti
 const playing = s => s.svActive && s.clsState === 2 && s.signon === 4;
 
 // Menus: the native pages through the high-resolution skin, and the scrolling help.
-await scenario( 'menus', '?game=hexen2', async ( { page, state, until, check, shot } ) => {
+await scenario( 'menus', '?game=hexen2', async ( { page, state, until, check, shot, result } ) => {
 
 	const s = await until( s => s.keyDest === 3 && s.menu > 0, 60000, 'the main menu opens' );
 	check( s, 'hexen.rc opens the main menu', s );
 	// no click: a click on a menu row chooses it; the trial's page already has the keyboard focus
 	await sleep( 2500 ); // the title slides down
 	await shot( 'main' );
+	// the page each step reached, by the Hexen page names (a flaky key shows as a named wrong page, not a bad shot)
+	const pageName = () => page.evaluate( async () => { const mc = await import( '/src/engine/client/menu_common.js' ); const h = ( await import( '/src/engine/client/menu_hexen2.js' ) ).M_Hexen2_State(); return Object.entries( h ).find( ( [ k, v ] ) => v === mc.m_state && typeof v === 'number' && ! /Cursor|Percent|Target/.test( k ) )?.[ 0 ] ?? String( mc.m_state ); } );
+	const helpState = () => page.evaluate( async () => ( await import( '/src/engine/client/menu_hexen2_help.js' ) ).M_Hexen2_HelpState() );
 	await key( page, 'ArrowDown', 2 ); await key( page, 'Enter' ); await sleep( 1200 );
+	check( ( await pageName() ) === 'options', 'Down, Down, Enter opens Options', await pageName() );
 	await shot( 'options' );
 	await key( page, 'Escape' ); await key( page, 'ArrowDown' ); await key( page, 'Enter' ); await sleep( 800 );
+	check( ( await pageName() ) === 'help', 'Escape, Down, Enter opens Help', await pageName() );
 	await shot( 'help-top' );
-	await key( page, 'ArrowDown', 6 ); await sleep( 300 );
+	await key( page, 'ArrowDown', 6 ); await sleep( 500 );
 	await shot( 'help-scrolled' );
-	await key( page, 'End' ); await sleep( 300 );
+	// held, Down scrolls steadily (menus get no key repeat; the page reads the held key)
+	const beforeHold = ( await helpState() ).scroll;
+	await page.keyboard.down( 'ArrowDown' ); await sleep( 1500 ); await page.keyboard.up( 'ArrowDown' ); await sleep( 300 );
+	const afterHold = ( await helpState() ).scroll;
+	result.notes.helpHold = { before: beforeHold, after: afterHold };
+	check( afterHold - beforeHold > 3 * 8, 'holding Down scrolls the help steadily', { before: beforeHold, after: afterHold } );
+	await shot( 'help-held' );
+	await key( page, 'End' ); await sleep( 500 );
 	await shot( 'help-end' );
 	await key( page, 'Escape' ); await key( page, 'ArrowUp', 3 ); await key( page, 'Enter' ); await sleep( 1200 );
 	await shot( 'single-player' );
+	// the credits (Quit) and Customize Controls pages: small text in the game's own pixel font
+	await key( page, 'Escape' ); await key( page, 'ArrowUp' ); await key( page, 'Enter' ); await sleep( 1500 );
+	check( ( await pageName() ) === 'quit', 'Up from Single Player, Enter opens the credits (Quit)', await pageName() );
+	await shot( 'quit' );
+	await key( page, 'n' ); await key( page, 'ArrowUp', 2 ); await key( page, 'Enter' ); await sleep( 800 );
+	check( ( await pageName() ) === 'options', 'Up, Up, Enter opens Options again', await pageName() );
+	await key( page, 'Enter' ); await sleep( 800 );
+	check( ( await pageName() ) === 'keys', 'Enter on Customize Controls opens the keys page', await pageName() );
+	await shot( 'keys' );
 	check( ( await state() ).menu > 0, 'the menus stay up through the walk' );
 
 } );

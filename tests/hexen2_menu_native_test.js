@@ -172,7 +172,8 @@ Deno.test( 'each main-menu entry opens its Hexen page, never the Quake one', () 
 				check( pictures.some( p => p.name === 'gfx/menu/help01.lmp' ), 'Help draws the native help frame' );
 				check( ! pictures.some( p => /ttl_main|p_option|qplaque/.test( p.name ) ), 'Help draws no Quake credits art' );
 				check( textFrom( chars ).startsWith( 'Basic movement:' ), 'Help shows the native help text in its panel' );
-				menu.M_Keydown( K_RIGHTARROW ); resetDraw(); M_Hexen2_Help_Draw();
+				// the scroll eases over frames: advance the clock before drawing the result
+				menu.M_Keydown( K_RIGHTARROW ); time += 1; M_Hexen2_Help_Draw(); resetDraw(); time += 1; M_Hexen2_Help_Draw();
 				check( textFrom( chars ).startsWith( 'Looking around:' ), 'Right scrolls to the next help section' );
 
 			}

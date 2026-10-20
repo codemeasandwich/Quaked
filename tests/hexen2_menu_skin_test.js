@@ -323,7 +323,7 @@ Deno.test( 'the Hexen II small-font inks are the charset\'s own tan and red bank
 
 } );
 
-Deno.test( 'every Hexen II page emits dynamic commands with the Hexen skin and menudot selector', () => {
+Deno.test( 'every Hexen II page keeps its small text native and draws its titles, bigfont and menudot dynamically', () => {
 
 	if ( ! hasHexen ) return;
 	return fixture( async api => {
@@ -333,7 +333,8 @@ Deno.test( 'every Hexen II page emits dynamic commands with the Hexen skin and m
 		same( state.skin, 'hexen2', 'the active skin' );
 		same( state.menuSkin, 'hexen2', 'the renderer reports the applied skin' );
 		same( state.material, 'stone', 'the renderer reports the stone material' );
-		check( state.font?.bigfont === 27 && state.font?.conchars >= 128, 'the runtime atlas is live: ' + JSON.stringify( state.font ) );
+		// only the bigfont is dynamic lettering: the 8-pixel charset stays native, legible pixels (owner, 20 October 2026)
+		check( state.font?.bigfont === 27 && state.font?.conchars === 0, 'the runtime atlas holds the bigfont only: ' + JSON.stringify( state.font ) );
 
 		const bigText = commands => commands.filter( c => c.type === 'text' && c.bigfont ).map( c => c.display ).join( '' ).toUpperCase();
 		const smallText = commands => commands.filter( c => c.type === 'text' && ! c.bigfont ).map( c => c.text ).join( '' ).toUpperCase();
@@ -346,25 +347,21 @@ Deno.test( 'every Hexen II page emits dynamic commands with the Hexen skin and m
 			[ 'class', M_Hexen2_Menu_Class_f, c => bigText( c ).includes( 'PALADIN' ) && imagePaths( c ).includes( 'cport1' ) ],
 			[ 'difficulty', M_Hexen2_Menu_Skill_f, c => bigText( c ).includes( 'APPRENTICE' ) ],
 			[ 'multiplayer', M_Hexen2_Menu_Multiplayer_f, c => bigText( c ).includes( 'JOINAGAME' ) ],
-			[ 'setup', M_Hexen2_Menu_Setup_f, c => {
-				const glyph = c.find( x => x.type === 'text' && x.text === 'H' );
-				return smallText( c ).includes( 'HOSTNAME' ) && glyph && Math.abs( glyph.size - 8 * draw.Draw_GetUIScale() ) < .01;
-			} ],
-			[ 'options', M_Hexen2_Menu_Options_f, c => stonePanel( c ) && smallText( c ).includes( 'CUSTOMIZECONTROLS' ) ],
-			[ 'keys', M_Hexen2_Menu_Keys_f, c => smallText( c ).includes( 'ENTERTOCHANGE' )
-				&& c.some( x => x.type === 'text' && ( x.text === '\x80' || x.text === '\x81' ) ) ],
-			[ 'video', M_Menu_Video_f, c => smallText( c ).includes( 'VIDEOSETTINGS' ) ],
+			[ 'setup', M_Hexen2_Menu_Setup_f, c => imagePaths( c ).length > 0 ],
+			[ 'options', M_Hexen2_Menu_Options_f, c => imagePaths( c ).length > 0 && ! stonePanel( c ) ],
+			[ 'keys', M_Hexen2_Menu_Keys_f, c => imagePaths( c ).length > 0 ],
+			[ 'video', M_Menu_Video_f, () => true ],
 			[ 'help', M_Hexen2_Menu_Help_f, c => imagePaths( c ).includes( 'help01' ) ],
-			[ 'quit', M_Hexen2_Menu_Quit_f, c => stonePanel( c ) && smallText( c ).includes( 'HEXENIIVERSION' ) ],
-			[ 'load', M_Hexen2_Menu_Load_f, c => imagePaths( c ).length > 0 && smallText( c ).includes( 'UNUSEDSLOT' ) ]
+			[ 'quit', M_Hexen2_Menu_Quit_f, c => ! stonePanel( c ) && ! /gfx\/box_/.test( imagePaths( c ) ) ],
+			[ 'load', M_Hexen2_Menu_Load_f, c => imagePaths( c ).length > 0 ]
 		];
 		for ( const [ name, open, expect ] of pages ) {
 
 			open();
 			api.render();
 			const commands = api.frame().commands;
-			check( commands.some( c => c.skin === 'hexen2' ), name + ' emits commands from the Hexen skin' );
-			check( expect( commands ), name + ' has its dynamic text, picture or panel' );
+			same( smallText( commands ), '', name + ' sends no small text to the dynamic layer (it is drawn natively)' );
+			check( expect( commands ), name + ' has its dynamic title, picture, bigfont or selector, and no dynamic box or slider' );
 
 		}
 		// Save is the only page that natively requires a local game.
@@ -374,8 +371,8 @@ Deno.test( 'every Hexen II page emits dynamic commands with the Hexen skin and m
 			M_Hexen2_Menu_Save_f();
 			api.render();
 			const commands = api.frame().commands;
-			check( commands.some( c => c.skin === 'hexen2' ), 'save emits commands from the Hexen skin' );
-			check( imagePaths( commands ).length > 0 && smallText( commands ).includes( 'UNUSEDSLOT' ), 'save draws its title and slots' );
+			check( imagePaths( commands ).length > 0, 'save draws its title dynamically' );
+			same( smallText( commands ), '', 'save draws its slots natively' );
 
 		} finally { api.server.active = false; }
 

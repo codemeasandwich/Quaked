@@ -172,6 +172,8 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `4a47cd8c` | MS | Hexen II MIDI music through an original FM synthesiser; library music streamed in a source checkout |
 | `33e1fef8` | merge Dev | Dev's standardised box art (`6e3e0237`) and Hexen texture batch 7 with the authoring method (`8f0e96bc`); on the unified host `Hexen 2 Shareware` stays the Hexen II demo's game folder, not a display-only box |
 | `8426b4b9` | owner trial 3 | every game started from the app's shelf fell back to the shelf (`Can't find variable: saveTrial`) |
+| `e77d7b3f` | DP | test of the ordinary shelf start (`tests/desktop_prepare_test.js`) in the engine list |
+| (this commit) | owner trial 4 | Hexen small menu text in the game's own crisp pixels; help scrolls smoothly, held arrows scroll, text fades under pins |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;
@@ -261,6 +263,17 @@ not only `HEXEN2_TRIAL_GAME`.
 
 The merged Hexen texture batch 7 is authoring output (reviewed masters and tiers); no runtime Hexen texture index
 (`newer/textures/hexen2/index.json`) exists yet, so it is not visible in game until registered under the texture skill.
+
+Owner trial 4 (20 October): the help text was illegible, holding Up/Down did not scroll, and the rows next to a pin
+were dimmed instead of fading; then "apply that to the credits and the other settings". M2 drew Hexen's 8-pixel
+charset as distance-field lettering, whose bevel and weight merge an 8-pixel font's strokes (S read as Z). Hexen's
+small text, text boxes and sliders now stay native (`smallTextNative` in menu_webgl.js; the dynamic layer composites
+over native drawing, so the boxes and sliders under the text are native too); the bigfont, plaques, pictures and
+menudot stay high-resolution, and the runtime atlas holds the bigfont only. The help scrolls by the pixel and eases,
+a held arrow scrolls steadily after a short pause (menus get no autorepeat, so the page reads `Key_IsDown`), the
+section heading pinned at the top is pushed out by the next one, and the text fades into the darkness under the top
+pin and above the bottom one (`Draw_FadeBand`). Verified by screenshots of the main, options, help (held), credits
+and Customize Controls pages (trial 10/10, every page checked by name), 290/290 suites and the engine list 220/220.
 
 Open decisions and known limits:
 

@@ -105,7 +105,8 @@ function loadHexen2Atlas() {
 	const widthsFile = menu.fontWidths ? COM_LoadFile( menu.fontWidths ) : null;
 	const widths = widthsFile && widthsFile.byteLength === 27 * 27 ? new Uint8Array( widthsFile ) : null;
 	const conchars = loadConchars( menu.conchars ), bigfont = loadQpic( menu.bigfont ), palette = COM_LoadFile( 'gfx/palette.lmp' );
-	const atlas = BuildHexen2FontAtlas( { bigfont, conchars, widths } );
+	// only the bigfont is dynamic lettering (smallTextNative); the charset still supplies the lettering's colours
+	const atlas = BuildHexen2FontAtlas( { bigfont, conchars: null, widths } );
 	if ( atlas ) atlas.inks = MenuSkin_ConcharsInks( conchars, palette ? new Uint8Array( palette ) : null, bigfont );
 	return atlas;
 
@@ -268,7 +269,6 @@ const SELECTOR_HEIGHT = 0.64;
 const ROW_PITCH = 20, ROW_CORE_TOP = 3, ROW_CORE_BOTTOM = 17;           // stock sheets: one 20-unit row per menu item
 const CELL = 8;                 // engine character cell, virtual units
 const CELL_CAP = 4.8, CELL_CAP_TOP = 1.5, CELL_MAX_W = 7.2;
-const HEXEN_CELL_CAP = 7; // the conchars 'H' ink fills 7 of its 8 pixels, so the dynamic small font keeps native size
 const pixelCache = new WeakMap(), rowCache = new WeakMap();
 
 function pixelsOf( pic ) {
@@ -365,6 +365,12 @@ function labelRows( pic, x, y, labels, firstRow, srcY ) {
 
 }
 
+// Hexen II's small lettering, text boxes and sliders stay native: its 8-pixel charset traced as a distance field
+// cannot keep letters apart (owner, 20 October 2026: the help and settings were illegible), while its own pixels,
+// scaled crisply, read well in the game's own colours. The dynamic layer composites over native drawing, so the boxes
+// and sliders under that text must be native too. The bigfont, plaques, pictures and selector stay dynamic.
+function smallTextNative() { return activeSkin().id === 'hexen2'; }
+
 /**
  * Queues Hexen II's native bigfont lettering with the installed sheet's advances. Each glyph is emitted at its own cell
  * so the 27 x 27 `fontsize.lmp` pair advances (and the C/P kern) are exact; the atlas glyphs live in the private-use
@@ -431,38 +437,26 @@ export function MainMenu_BigText( x, y, text, pic, widths ) {
 export function MainMenu_Text( x, y, text, kind = 0, disabled = false ) {
 
 	if ( ! frameSkin ) return false;
+	if ( smallTextNative() ) return false;
 	// Engine text is a fixed 8-unit cell grid. Keep every character in its own
 	// cell so right-aligned labels, columns and save-slot rows land exactly where
 	// the original bitmap font put them.
-	const hexen = activeSkin().id === 'hexen2';
-	if ( hexen && ! renderer?.__hexenAtlas?.conchars ) return false;
 	if ( kind === 2 ) kind = 3; // stock white engine text
-	const scale = Draw_GetUIScale(), capH = ( hexen ? HEXEN_CELL_CAP : CELL_CAP ) * scale, em = emFor( 'H', capH );
-	const cellTop = ( hexen ? 1 : CELL_CAP_TOP ) * scale, maxWidth = ( hexen ? CELL : CELL_MAX_W ) * scale;
+	const scale = Draw_GetUIScale(), capH = CELL_CAP * scale, em = emFor( 'H', capH );
 	String( text ).split( '\n' ).forEach( ( line, row ) => {
 
 		[ ...line ].forEach( ( raw, i ) => {
 
-			const code = raw.charCodeAt( 0 );
-			const ch = hexen ? raw : raw.toUpperCase();
-			if ( ch === ' ' ) return;
-			if ( code < 32 && ! ( hexen && code >= 10 && code <= 13 ) ) return;
-			const shape = renderer._shape( ch, em, 1, ! hexen );
+			const ch = raw.toUpperCase();
+			if ( ch === ' ' || ch.charCodeAt( 0 ) < 32 ) return;
+			const shape = renderer._shape( ch, em, 1, true );
 			if ( ! ( shape.width > 0 ) ) return;
-			const glyph = hexen ? renderer.font.glyphs[ ch ] : null;
-			const stretch = hexen ? 1 : Math.min( 1, maxWidth / shape.width ), w = shape.width * stretch;
-			const top = ( y + row * CELL ) * scale + cellTop;
+			const stretch = Math.min( 1, CELL_MAX_W * scale / shape.width ), w = shape.width * stretch;
+			const top = ( y + row * CELL + CELL_CAP_TOP ) * scale;
 			const oy = '.,_'.includes( ch ) ? top + capH - shape.height :
 				'-+=<>:;'.includes( ch ) ? top + ( capH - shape.height ) / 2 : top;
-			// Hexen II's conchars are a fixed 8-pixel grid: place the glyph's own ink at the cell's native offset so case,
-			// punctuation and right-aligned columns land where the bitmap font put them. Quake keeps the donor's centring.
-			const commandX = hexen && glyph ? ( x + i * CELL ) * scale + glyph.ink[ 0 ] * em
-				: ( x + i * CELL ) * scale + ( CELL * scale - w ) / 2;
-			const commandY = hexen && glyph ? ( y + row * CELL ) * scale + glyph.ink[ 1 ] * em : oy;
-			const command = { type: 'text', text: ch, x: commandX,
-				y: commandY, size: em, stretch, kind, disabled: !! disabled };
-			if ( hexen ) command.skin = 'hexen2';
-			commands.push( command );
+			commands.push( { type: 'text', text: ch, x: ( x + i * CELL ) * scale + ( CELL * scale - w ) / 2,
+				y: oy, size: em, stretch, kind, disabled: !! disabled } );
 
 		} );
 
@@ -485,17 +479,7 @@ export function MainMenu_Text( x, y, text, kind = 0, disabled = false ) {
 export function MainMenu_Glyph( x, y, code ) {
 
 	if ( ! frameSkin ) return false;
-	if ( activeSkin().id === 'hexen2' ) {
-
-		if ( ! renderer?.__hexenAtlas?.conchars ) return false;
-		// Hexen II's own charset has 512 cells: a raw code (10/11/12/13 cursor, 128/129 scroll arrows) is drawn from the
-		// plain bank; a +256 code is the highlighted menu bank. 128..131 are real glyphs here, not Quake slider pieces.
-		if ( code >= 256 ) return MainMenu_Text( x, y, String.fromCharCode( code & 255 ), 0 );
-		if ( code >= 32 || ( code >= 10 && code <= 13 ) || ( code >= 128 && code <= 131 ) )
-			return MainMenu_Text( x, y, String.fromCharCode( code ), 2 );
-		return true;
-
-	}
+	if ( smallTextNative() ) return false;
 	if ( code >= 12 && code <= 17 ) {
 
 		const [ px, py ] = physical( x + 4, y + 4 );
@@ -552,6 +536,7 @@ export function MainMenu_Panel( x, y, width, height, well = false ) {
 export function MainMenu_TextBox( x, y, width, height, tl, br ) {
 
 	if ( ! frameSkin ) return false;
+	if ( smallTextNative() ) return false;
 	const a = tl && inkBox( tl, 0, tl.height, opaque ), b = br && inkBox( br, 0, br.height, opaque );
 	const left = a ? a.x : 0, top = a ? a.y : 0;
 	const right = b ? br.width - ( b.x + b.w ) : 0, bottom = b ? br.height - ( b.y + b.h ) : 0;
@@ -572,17 +557,14 @@ export function MainMenu_TextBox( x, y, width, height, tl, br ) {
 export function MainMenu_Slider( x, y, width, value ) {
 
 	if ( ! frameSkin ) return false;
+	if ( smallTextNative() ) return false;
 	const scale = Draw_GetUIScale(), v = Math.max( 0, Math.min( 1, value ) );
-	const trackH = 6.5 * scale, [ px, py ] = physical( x, y + ( CELL - 6.5 ) / 2 ), hexen = activeSkin().id === 'hexen2';
-	const track = { type: 'panel', x: px, y: py, w: width * scale, h: trackH, well: true };
-	if ( hexen ) { track.skin = 'hexen2'; track.material = 'stone'; }
-	commands.push( track );
+	const trackH = 6.5 * scale, [ px, py ] = physical( x, y + ( CELL - 6.5 ) / 2 );
+	commands.push( { type: 'panel', x: px, y: py, w: width * scale, h: trackH, well: true } );
 	// The stock knob sits on cell (range-1)*v of the ten middle cells.
 	const knobW = 6 * scale, knobH = 9 * scale;
-	const knob = { type: 'panel', x: px + ( CELL + ( width / CELL - 3 ) * CELL * v ) * scale + ( CELL * scale - knobW ) / 2,
-		y: py + ( trackH - knobH ) / 2, w: knobW, h: knobH };
-	if ( hexen ) { knob.skin = 'hexen2'; knob.material = 'stone'; }
-	commands.push( knob );
+	commands.push( { type: 'panel', x: px + ( CELL + ( width / CELL - 3 ) * CELL * v ) * scale + ( CELL * scale - knobW ) / 2,
+		y: py + ( trackH - knobH ) / 2, w: knobW, h: knobH } );
 	return true;
 
 }
@@ -643,7 +625,9 @@ function hexenImage( x, y, pic, srcY, srcH ) {
 
 	const [ px, py ] = physical( x, y ), scale = Draw_GetUIScale(), path = pic.path || '';
 	if ( path.startsWith( 'gfx/menudot' ) ) return queueHexenSelector( pic, px, py, scale );
-	// The bigfont and conchars sheets are consumed by MainMenu_BigText/MainMenu_Text, never drawn as pictures.
+	// text-box tiles frame native text: drawn natively, under it, never composited over it
+	if ( path.startsWith( 'gfx/box_' ) ) return false;
+	// The bigfont sheet is consumed by MainMenu_BigText, never drawn as a picture.
 	if ( /gfx\/menu\/(?:bigfont2?|conchars)\.lmp$/.test( path ) ) return true;
 	return queueHexenImage( pic, px, py, scale, srcY, srcH );
 

@@ -16,22 +16,29 @@
 import { Cbuf_AddText } from '../common/cmd.js';
 import {
 	K_ESCAPE, K_ENTER, K_SPACE, K_UPARROW, K_DOWNARROW, K_LEFTARROW, K_RIGHTARROW, K_PGUP, K_PGDN, K_HOME, K_END,
-	K_MWHEELUP, K_MWHEELDOWN, key_console, key_menu
+	K_MWHEELUP, K_MWHEELDOWN, Key_IsDown, key_console, key_menu
 } from './keys.js';
 import {
-	m_hexen2_help, m_hexen2_quit, set_m_state, set_m_entersound, setKeyDest, _vid, _Draw_Fill,
-	_host_time_get, _Draw_CachePic, M_DrawTransPic, M_DrawTextBox, M_Print, M_PrintFaded, M_PrintWhite
+	m_hexen2_help, m_hexen2_quit, set_m_state, set_m_entersound, setKeyDest, _vid, _Draw_Fill, _realtime_get,
+	_host_time_get, _Draw_CachePic, M_DrawTransPic, M_DrawTextBox, M_Print, M_PrintWhite, M_PrintPixels, M_WithClip,
+	M_FadeBand
 } from './menu_common.js';
 import { M_Hexen2_Menu_Main_f } from './menu_hexen2.js';
-import { HEXEN2_HELP_SECTIONS, Hexen2_HelpRows, Hexen2_HelpView, Hexen2_HelpJump, Hexen2_HelpClamp } from './hexen2_help_scroll.js';
+import {
+	HEXEN2_HELP_SECTIONS, HEXEN2_HELP_ROW, Hexen2_HelpRows, Hexen2_HelpView, Hexen2_HelpJump, Hexen2_HelpClamp
+} from './hexen2_help_scroll.js';
 
 // The black text panel inside gfx/menu/help01.lmp's stone frame (menu pixels), and the 24 x 18 character grid the
-// help text is reflowed into: 8-pixel cells, so M_Print and the WebGL menu's text place it like any other menu text.
+// help text is reflowed into: 8-pixel cells of the game's own pixel font, drawn natively (M_PrintPixels) so the
+// letters stay legible at any scale and the text can be clipped and faded.
 const PANEL = Object.freeze( { x: 86, y: 25, w: 200, h: 147 } );
 const TEXT_X = 90, TEXT_Y = 27, COLUMNS = 24, SLOTS = 18, PAGE = SLOTS - 2;
+const BAND = Object.freeze( { x: PANEL.x, w: PANEL.w } ), TEXT_H = SLOTS * HEXEN2_HELP_ROW;
 const HELP_LAYOUT = Hexen2_HelpRows( HEXEN2_HELP_SECTIONS, COLUMNS );
+// Held arrows scroll after a short pause, as a key repeat would; a tap moves one row, eased.
+const HOLD_DELAY = 0.25, HOLD_SPEED = 96, EASE = 14, FADE = 14;
 
-let helpScroll = 0;
+let helpScroll = 0, helpTarget = 0, holdKey = 0, holdStart = 0, lastTime = null;
 let frameSource = null, framePic = null;
 
 /**
@@ -42,7 +49,9 @@ export function M_Hexen2_Menu_Help_f() {
 	setKeyDest( key_menu );
 	set_m_state( m_hexen2_help );
 	set_m_entersound( true );
-	helpScroll = 0;
+	helpScroll = helpTarget = 0;
+	holdKey = 0;
+	lastTime = null;
 
 }
 
@@ -70,76 +79,114 @@ function helpFrame( pic ) {
 
 }
 
+// Moves the scroll one frame: a held Up/Down scrolls steadily after HOLD_DELAY (menus receive no autorepeat), any
+// other change eases towards its target.
+function helpAdvance() {
+
+	const now = _realtime_get();
+	const dt = lastTime === null || ! Number.isFinite( now - lastTime ) ? 0 : Math.min( 0.1, Math.max( 0, now - lastTime ) );
+	lastTime = now;
+	if ( holdKey !== 0 && ! Key_IsDown( holdKey ) ) holdKey = 0;
+	if ( holdKey !== 0 && now - holdStart >= HOLD_DELAY ) {
+
+		helpTarget = Hexen2_HelpClamp( HELP_LAYOUT, helpTarget + ( holdKey === K_UPARROW ? - 1 : 1 ) * HOLD_SPEED * dt, SLOTS );
+		helpScroll = helpTarget;
+
+	} else helpScroll += ( helpTarget - helpScroll ) * Math.min( 1, dt * EASE );
+	if ( Math.abs( helpTarget - helpScroll ) < 0.05 ) helpScroll = helpTarget;
+
+}
+
 /**
- * `M_Draw` on Help: the stone frame of gfx/menu/help01.lmp, its panel blacked out, and the help text scrolled into
- * it: the yellow headings in the white bank, the body in the highlighted (red) bank, the current section's heading
- * pinned to the top row and the next unseen heading to the bottom row (`Hexen2_HelpView`).
+ * `M_Draw` on Help: the stone frame of gfx/menu/help01.lmp, its panel blacked out, and the help text scrolled into it
+ * by the pixel in the game's own font: the headings in the plain (tan) bank, the body in the highlighted (red) bank.
+ * The section being read keeps its heading pinned to the top (pushed out by the next heading), the next unseen heading
+ * is pinned to the bottom, and the text fades into the darkness beside each pin (`Hexen2_HelpView`).
  */
 export function M_Hexen2_Help_Draw() {
 
+	helpAdvance();
 	const pic = _Draw_CachePic ? _Draw_CachePic( 'gfx/menu/help01.lmp' ) : null;
 	if ( pic ) M_DrawTransPic( 0, 0, helpFrame( pic ) );
 	if ( _Draw_Fill ) _Draw_Fill( PANEL.x + ( ( _vid.width - 320 ) >> 1 ), PANEL.y + ( ( _vid.height - 200 ) >> 1 ), PANEL.w, PANEL.h, 0 );
 
-	const view = Hexen2_HelpView( HELP_LAYOUT, helpScroll, SLOTS );
-	helpScroll = view.scroll;
-	for ( const { slot, row, faded } of view.lines ) {
+	const view = Hexen2_HelpView( HELP_LAYOUT, Math.round( helpScroll ), SLOTS );
+	M_WithClip( BAND.x, TEXT_Y, BAND.w, TEXT_H, () => {
 
-		const { text, heading } = HELP_LAYOUT.rows[ row ], y = TEXT_Y + slot * 8;
-		if ( heading ) M_PrintWhite( TEXT_X, y, text );
-		else if ( faded ) M_PrintFaded( TEXT_X, y, text );
-		else M_Print( TEXT_X, y, text );
+		for ( const { row, y } of view.rows ) {
 
-	}
-	if ( view.pinTop ) M_PrintWhite( TEXT_X, TEXT_Y, view.pinTop.text );
-	if ( view.pinBottom ) M_PrintWhite( TEXT_X, TEXT_Y + ( SLOTS - 1 ) * 8, view.pinBottom.text );
+			const { text, heading } = HELP_LAYOUT.rows[ row ];
+			M_PrintPixels( TEXT_X, TEXT_Y + y, text, ! heading );
+
+		}
+		if ( view.pinTop ) {
+
+			const y = TEXT_Y + view.pinTop.y;
+			if ( _Draw_Fill ) _Draw_Fill( BAND.x + ( ( _vid.width - 320 ) >> 1 ), y + ( ( _vid.height - 200 ) >> 1 ), BAND.w, HEXEN2_HELP_ROW, 0 );
+			M_PrintPixels( TEXT_X, y, view.pinTop.text );
+			M_FadeBand( BAND.x, y + HEXEN2_HELP_ROW, BAND.w, FADE, 0, 1, 0 );
+
+		}
+		if ( view.pinBottom ) {
+
+			const y = TEXT_Y + view.pinBottom.y;
+			M_FadeBand( BAND.x, y - FADE, BAND.w, FADE, 0, 0, 1 );
+			if ( _Draw_Fill ) _Draw_Fill( BAND.x + ( ( _vid.width - 320 ) >> 1 ), y + ( ( _vid.height - 200 ) >> 1 ), BAND.w, HEXEN2_HELP_ROW, 0 );
+			M_PrintPixels( TEXT_X, y, view.pinBottom.text );
+
+		}
+
+	} );
 
 }
 
 /**
- * Scrolls the help to `scroll`, playing the menu sound when `sound` is set and the position changed.
+ * Sets the scroll target, playing the menu sound when `sound` is set and the target changed.
  *
- * @param {number} scroll the new first row (clamped)
- * @param {boolean} [sound=false] whether a change plays the menu sound (section jumps and pages do; line steps not)
+ * @param {number} target the new scroll in menu pixels (clamped)
+ * @param {boolean} [sound=false] whether a change plays the menu sound (section jumps and pages do; rows not)
  */
-function helpScrollTo( scroll, sound = false ) {
+function helpScrollTo( target, sound = false ) {
 
-	const next = Hexen2_HelpClamp( scroll, HELP_LAYOUT.rows.length, SLOTS );
-	if ( sound && next !== helpScroll ) set_m_entersound( true );
-	helpScroll = next;
+	const next = Hexen2_HelpClamp( HELP_LAYOUT, target, SLOTS );
+	if ( sound && next !== helpTarget ) set_m_entersound( true );
+	helpTarget = next;
 
 }
 
 /**
- * `M_Keydown` on Help. ESC returns to the main menu; Up/Down and the wheel scroll a row (the wheel two); Page Up,
- * Page Down and Space scroll a panel; Left and Right go to the previous and next section heading; Enter goes to the
- * next section and from the last back to the top (where native Enter-style paging wrapped); Home and End go to the
- * ends.
+ * `M_Keydown` on Help. ESC returns to the main menu; Up/Down move a row and, held, scroll steadily; the wheel moves two
+ * rows; Page Up, Page Down and Space a panel; Left and Right go to the previous and next section heading; Enter goes to
+ * the next section and from the last back to the top; Home and End go to the ends.
  *
  * @param {number} key key number (0..255)
  */
 export function M_Hexen2_Help_Key( key ) {
 
+	const R = HEXEN2_HELP_ROW;
 	switch ( key ) {
 
 		case K_ESCAPE:
 			M_Hexen2_Menu_Main_f();
 			break;
-		case K_UPARROW: helpScrollTo( helpScroll - 1 ); break;
-		case K_DOWNARROW: helpScrollTo( helpScroll + 1 ); break;
-		case K_MWHEELUP: helpScrollTo( helpScroll - 2 ); break;
-		case K_MWHEELDOWN: helpScrollTo( helpScroll + 2 ); break;
-		case K_PGUP: helpScrollTo( helpScroll - PAGE, true ); break;
+		case K_UPARROW:
+		case K_DOWNARROW:
+			holdKey = key; holdStart = _realtime_get();
+			helpScrollTo( helpTarget + ( key === K_UPARROW ? - R : R ) );
+			break;
+		case K_MWHEELUP: helpScrollTo( helpTarget - 2 * R ); break;
+		case K_MWHEELDOWN: helpScrollTo( helpTarget + 2 * R ); break;
+		case K_PGUP: helpScrollTo( helpTarget - PAGE * R, true ); break;
 		case K_PGDN:
-		case K_SPACE: helpScrollTo( helpScroll + PAGE, true ); break;
+		case K_SPACE: helpScrollTo( helpTarget + PAGE * R, true ); break;
 		case K_HOME: helpScrollTo( 0, true ); break;
-		case K_END: helpScrollTo( HELP_LAYOUT.rows.length, true ); break;
-		case K_LEFTARROW: helpScrollTo( Hexen2_HelpJump( HELP_LAYOUT, helpScroll, SLOTS, - 1 ), true ); break;
-		case K_RIGHTARROW: helpScrollTo( Hexen2_HelpJump( HELP_LAYOUT, helpScroll, SLOTS, 1 ), true ); break;
+		case K_END: helpScrollTo( Infinity, true ); break;
+		case K_LEFTARROW: helpScrollTo( Hexen2_HelpJump( HELP_LAYOUT, helpTarget, SLOTS, - 1 ), true ); break;
+		case K_RIGHTARROW: helpScrollTo( Hexen2_HelpJump( HELP_LAYOUT, helpTarget, SLOTS, 1 ), true ); break;
 		case K_ENTER: {
 
-			const next = Hexen2_HelpJump( HELP_LAYOUT, helpScroll, SLOTS, 1 );
-			helpScrollTo( next === helpScroll ? 0 : next, true );
+			const next = Hexen2_HelpJump( HELP_LAYOUT, helpTarget, SLOTS, 1 );
+			helpScrollTo( next === helpTarget ? 0 : next, true );
 			break;
 
 		}
@@ -157,20 +204,25 @@ export function M_Hexen2_Help_Key( key ) {
  */
 export function M_Hexen2_Help_Touch( vx, vy ) {
 
-	const view = Hexen2_HelpView( HELP_LAYOUT, helpScroll, SLOTS ), bottom = TEXT_Y + ( SLOTS - 1 ) * 8;
-	if ( view.pinTop && vy >= TEXT_Y && vy < TEXT_Y + 8 ) helpScrollTo( HELP_LAYOUT.starts[ view.pinTop.section ], true );
-	else if ( view.pinBottom && vy >= bottom && vy < bottom + 8 ) helpScrollTo( HELP_LAYOUT.starts[ view.pinBottom.section ], true );
-	else helpScrollTo( helpScroll + ( vy < 100 ? - PAGE : PAGE ), true );
+	const R = HEXEN2_HELP_ROW, view = Hexen2_HelpView( HELP_LAYOUT, Math.round( helpScroll ), SLOTS );
+	const on = pin => pin && vy >= TEXT_Y + pin.y && vy < TEXT_Y + pin.y + R;
+	if ( on( view.pinTop ) ) helpScrollTo( HELP_LAYOUT.starts[ view.pinTop.section ] * R, true );
+	else if ( on( view.pinBottom ) ) helpScrollTo( HELP_LAYOUT.starts[ view.pinBottom.section ] * R, true );
+	else helpScrollTo( helpTarget + ( vy < 100 ? - PAGE : PAGE ) * R, true );
 
 }
 
 /**
- * The help scroll position, for a test or a tool.
+ * The help scroll, for a test or a tool.
  *
- * @returns {{ scroll: number, rows: number, slots: number }} the first row shown, the rows in the scroll and the
- *   visible rows
+ * @returns {{ scroll: number, target: number, rows: number, slots: number, max: number }} the drawn and target
+ *   scroll in menu pixels, the rows in the scroll, the visible rows and the furthest scroll
  */
-export function M_Hexen2_HelpState() { return { scroll: helpScroll, rows: HELP_LAYOUT.rows.length, slots: SLOTS }; }
+export function M_Hexen2_HelpState() {
+
+	return { scroll: helpScroll, target: helpTarget, rows: HELP_LAYOUT.rows.length, slots: SLOTS, max: Hexen2_HelpView( HELP_LAYOUT, 0, SLOTS ).max };
+
+}
 
 /*
 ==============================================================================

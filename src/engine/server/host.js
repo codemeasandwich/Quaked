@@ -54,7 +54,7 @@ import { sv, svs, client_t,
 import { R_Init, D_FlushCaches } from '../render/gl_rmisc.js';
 import { R_SetExternals } from '../render/gl_rmain.js';
 import { VID_Init, VID_Shutdown, VID_FullbrightFromColormap } from '../render/vid.js';
-import { Draw_GetOverlayCanvas, Draw_WithAlpha, Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_Init, Draw_Character, Draw_String, Draw_ConsoleBackground, Draw_SetExternals, Draw_PicFromWad, Draw_CachePic, Draw_Pic, Draw_SubPic, Draw_TransPic, Draw_TransPicRegion, Draw_TransPicTranslate, Draw_Fill, Draw_FadeScreen, Draw_SmallString } from '../render/gl_draw.js';
+import { Draw_GetOverlayCanvas, Draw_WithAlpha, Draw_FadeBand, Draw_WithClipRect, Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_Init, Draw_Character, Draw_String, Draw_ConsoleBackground, Draw_SetExternals, Draw_PicFromWad, Draw_CachePic, Draw_Pic, Draw_SubPic, Draw_TransPic, Draw_TransPicRegion, Draw_TransPicTranslate, Draw_Fill, Draw_FadeScreen, Draw_SmallString } from '../render/gl_draw.js';
 import { SCR_Init, SCR_UpdateScreen, SCR_SetExternals, SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from '../render/gl_screen.js';
 import { S_Init, S_Update, S_Shutdown, S_StopAllSounds, S_SetCallbacks } from '../sound/snd_dma.js';
 import { CDAudio_Init, CDAudio_Update, CDAudio_Shutdown } from '../sound/cd_audio.js';
@@ -429,7 +429,9 @@ export async function Host_Init( parms ) {
 		cl_name: cl_name,
 		Draw_TransPicTranslate: Draw_TransPicTranslate,
 		Draw_SubPic: Draw_SubPic,
-		Draw_TransPicRegion: Draw_TransPicRegion
+		Draw_TransPicRegion: Draw_TransPicRegion,
+		Draw_WithClipRect: Draw_WithClipRect,
+		Draw_FadeBand: Draw_FadeBand
 	} );
 
 	SCR_Init();

@@ -208,6 +208,8 @@ export let _Draw_CachePic = null;
 let _Draw_TransPic = null;
 let _Draw_Pic = null;
 let _Draw_Character = null;
+let _Draw_WithClipRect = ( x, y, width, height, draw ) => draw();
+let _Draw_FadeBand = null;
 // draws through a lowered opacity (gl_draw.js Draw_WithAlpha, set by the host); unwired, at full opacity
 let _Draw_WithAlpha = ( alpha, draw ) => draw();
 export let _Draw_Fill = null;
@@ -279,6 +281,8 @@ export function M_SetExternals( externals ) {
 	if ( externals.Draw_TransPic ) _Draw_TransPic = externals.Draw_TransPic;
 	if ( externals.Draw_Pic ) _Draw_Pic = externals.Draw_Pic;
 	if ( externals.Draw_Character ) _Draw_Character = externals.Draw_Character;
+	if ( externals.Draw_WithClipRect ) _Draw_WithClipRect = externals.Draw_WithClipRect;
+	if ( externals.Draw_FadeBand ) _Draw_FadeBand = externals.Draw_FadeBand;
 	if ( externals.Draw_WithAlpha ) _Draw_WithAlpha = externals.Draw_WithAlpha;
 	if ( externals.Draw_Fill ) _Draw_Fill = externals.Draw_Fill;
 	if ( externals.Draw_FadeScreen ) _Draw_FadeScreen = externals.Draw_FadeScreen;
@@ -400,6 +404,58 @@ export function M_PrintWhite( cx, cy, str ) {
 
 // A menu item that cannot be chosen: the menu's own lettering, faded (the WebGL menu's disabled material; natively at
 // 40% opacity). Card [MP1].
+/**
+ * Prints running text in the game's own pixel font, always natively (never through the WebGL menu's distance-field
+ * lettering, which cannot keep an 8-pixel font's letters apart): crisp at any UI scale, in the plain bank or the
+ * highlighted bank (`Draw_HighlightOffset`: +256 under Hexen II, +128 under Quake).
+ *
+ * @param {number} cx x in menu pixels
+ * @param {number} cy y in menu pixels
+ * @param {string} str the text
+ * @param {boolean} [highlight=false] true for the highlighted bank
+ */
+export function M_PrintPixels( cx, cy, str, highlight = false ) {
+
+	if ( ! _Draw_Character ) return;
+	const x = cx + ( ( _vid.width - 320 ) >> 1 ), y = cy + ( ( _vid.height - 200 ) >> 1 ), offset = highlight ? Draw_HighlightOffset() : 0;
+	for ( let i = 0; i < str.length; i ++ ) _Draw_Character( x + i * 8, y, str.charCodeAt( i ) + offset );
+
+}
+
+/**
+ * Runs native drawing clipped to a rectangle given in menu pixels (`Draw_WithClipRect`); without a host clip the
+ * drawing runs unclipped.
+ *
+ * @param {number} cx left edge in menu pixels
+ * @param {number} cy top edge in menu pixels
+ * @param {number} width width in menu pixels
+ * @param {number} height height in menu pixels
+ * @param {() => void} draw the drawing to clip
+ */
+export function M_WithClip( cx, cy, width, height, draw ) {
+
+	_Draw_WithClipRect( cx + ( ( _vid.width - 320 ) >> 1 ), cy + ( ( _vid.height - 200 ) >> 1 ), width, height, draw );
+
+}
+
+/**
+ * A vertical fade band in menu pixels (`Draw_FadeBand`): one palette colour, its opacity running from the top edge to
+ * the bottom edge.
+ *
+ * @param {number} cx left edge in menu pixels
+ * @param {number} cy top edge in menu pixels
+ * @param {number} width width in menu pixels
+ * @param {number} height height in menu pixels
+ * @param {number} c palette index
+ * @param {number} alphaTop opacity at the top edge, 0..1
+ * @param {number} alphaBottom opacity at the bottom edge, 0..1
+ */
+export function M_FadeBand( cx, cy, width, height, c, alphaTop, alphaBottom ) {
+
+	if ( _Draw_FadeBand ) _Draw_FadeBand( cx + ( ( _vid.width - 320 ) >> 1 ), cy + ( ( _vid.height - 200 ) >> 1 ), width, height, c, alphaTop, alphaBottom );
+
+}
+
 /**
  * Prints a menu item that cannot be chosen: `M_Print`'s lettering at 40% opacity (the WebGL menu's disabled look).
  *

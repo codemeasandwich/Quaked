@@ -168,6 +168,15 @@ const keyshift = new Array( 256 ).fill( 0 );
 export const key_repeats = new Array( 256 ).fill( 0 );
 const keydown = new Array( 256 ).fill( false );
 
+/**
+ * Whether a key is held now (`Key_Event` keeps the state; autorepeats are not delivered to menus, so a page that
+ * scrolls while a key is held reads this each frame).
+ *
+ * @param {number} key key number (0..255)
+ * @returns {boolean} true while the key is down
+ */
+export function Key_IsDown( key ) { return keydown[ key ] === true; }
+
 /*
 ==============================================================================
 
