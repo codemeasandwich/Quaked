@@ -25,7 +25,7 @@ import { R_BestiaryInputLocked } from '../common/hooks.js'; // installed by newe
 import { R_BestiaryEncounterDraw } from '../common/hooks.js'; // installed by newer/ui/r_bestiary_book.js
 import { R_WeaponWheelDraw, R_ControllerPromptsDraw } from '../common/hooks.js'; // installed by newer/ui/r_controller.js
 import { Draw_Character, Draw_String, Draw_CachePic, Draw_Pic, Draw_TransPic, Draw_FadeScreen, Draw_BeginFrame,
-	GL_Set2D, Draw_TileClear, Draw_PicFromWad, Draw_GetUIScale,
+	GL_Set2D, Draw_TileClear, Draw_PicFromWad, Draw_GetUIScale, Draw_HighlightOffset,
 	Draw_GetVirtualWidth, Draw_GetVirtualHeight } from './gl_draw.js';
 import { GameProfile_IsHexen2 } from '../common/game_profile.js';
 import { Hexen2_GetHostString, Hexen2_GetInfoString, Hexen2_InfoStringCount } from '../common/hexen2_text_resources.js';
@@ -378,7 +378,7 @@ function SCR_DrawHexen2PlaqueMessage( message, width, boxX, boxWidth ) {
 
 		const text = lines[ i ];
 		const bx = ( 40 - text.length ) * 8 / 2;
-		for ( let j = 0; j < text.length; j ++ ) Draw_Character( bx + j * 8, by + i * 8, text.charCodeAt( j ) + 128 );
+		for ( let j = 0; j < text.length; j ++ ) Draw_Character( bx + j * 8, by + i * 8, text.charCodeAt( j ) + Draw_HighlightOffset() );
 
 	}
 

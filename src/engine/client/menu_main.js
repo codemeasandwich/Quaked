@@ -413,6 +413,7 @@ function M_ScanSaves() {
  */
 export function M_Menu_Load_f() {
 
+	if ( GameProfile_IsHexen2() ) { menuOpeners.hexenLoad(); return; }
 	set_m_entersound( true );
 	set_m_state( m_load );
 	setKeyDest( key_menu );
@@ -426,6 +427,7 @@ export function M_Menu_Load_f() {
  */
 export function M_Menu_Save_f() {
 
+	if ( GameProfile_IsHexen2() ) { menuOpeners.hexenSave(); return; }
 	if ( ! _sv.active )
 		return;
 	if ( _cl.intermission )
@@ -585,6 +587,8 @@ function M_OpenCreditsSource() {
  */
 export function M_Menu_Credits_f() {
 
+	// Hexen II's Help is its five native help pages, not Quake's credits.
+	if ( GameProfile_IsHexen2() ) { menuOpeners.hexenHelp(); return; }
 	setKeyDest( key_menu );
 	set_m_state( m_credits );
 	set_m_entersound( true );
@@ -683,6 +687,7 @@ export function M_Credits_Touch( vx, vy ) {
  */
 export function M_Menu_Quit_f() {
 
+	if ( GameProfile_IsHexen2() ) { menuOpeners.hexenQuit(); return; }
 	setKeyDest( key_menu );
 	set_m_state( m_quit );
 	set_m_entersound( true );

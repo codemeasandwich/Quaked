@@ -29,7 +29,7 @@ import { R_FogSkyShare, R_FogSkySet } from '../render/r_fog.js';
 import { scr_viewsize } from '../render/gl_screen.js';
 import { v_gamma } from './view.js';
 import { gl_texturemode, GL_UpdateTextureFiltering } from '../render/glquake.js';
-import { m_none, m_options, m_video, m_keys, m_newer, m_cheats, set_m_state, set_m_entersound, _sv, _svs, _vid, _realtime_get, _Draw_CachePic, _Draw_Fill, _S_LocalSound, setKeyDest, M_DrawCharacter, M_Print, M_PrintWhite, M_DrawTransPic, M_DrawPic, NEWER_DEFAULT_GAMMA } from './menu_common.js';
+import { m_none, m_options, m_video, m_keys, m_newer, m_cheats, set_m_state, set_m_entersound, menuOpeners, _sv, _svs, _vid, _realtime_get, _Draw_CachePic, _Draw_Fill, _S_LocalSound, setKeyDest, M_DrawCharacter, M_Print, M_PrintWhite, M_DrawTransPic, M_DrawPic, NEWER_DEFAULT_GAMMA } from './menu_common.js';
 import { M_Menu_Main_f } from './menu_main.js';
 
 /*
@@ -370,6 +370,8 @@ let m_options_cursor = 0;
  */
 export function M_Menu_Options_f() {
 
+	// Hexen II draws its own native options page (the +256 highlighted bank fixes its legibility).
+	if ( GameProfile_IsHexen2() ) { menuOpeners.hexenOptions(); return; }
 	setKeyDest( key_menu );
 	set_m_state( m_options );
 	set_m_entersound( true );
@@ -868,6 +870,7 @@ function M_UnbindCommand( command ) {
  */
 export function M_Menu_Keys_f() {
 
+	if ( GameProfile_IsHexen2() ) { menuOpeners.hexenKeys(); return; }
 	setKeyDest( key_menu );
 	set_m_state( m_keys );
 	set_m_entersound( true );

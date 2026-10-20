@@ -20,7 +20,7 @@
 import { NEWER_DEFAULT_GAMMA, Newer_ApplyGameDefaults } from '../common/hooks.js'; // installed by newer/ui/newer_defaults.js
 import { MainMenu_Glyph, MainMenu_Image, MainMenu_TextBox, MainMenu_Text } from '../common/hooks.js'; // installed by newer/ui/menu_webgl.js
 import { key_dest } from './keys.js';
-import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from '../render/gl_draw.js';
+import { Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_HighlightOffset } from '../render/gl_draw.js';
 
 /*
 ==============================================================================
@@ -61,6 +61,17 @@ export const m_hexen2_main = 26;
 export const m_hexen2_single = 27;
 export const m_hexen2_class = 28;
 export const m_hexen2_skill = 29;
+// The rest of Hexen II's native pages (uhexen2 engine/hexen2/menu.c): each has its own draw/key in the Hexen modules,
+// so a Quake page is never reached from a Hexen menu. m_video is the one engine page Hexen reuses unchanged (native
+// M_Menu_Video_f calls vid_menudrawfn).
+export const m_hexen2_multiplayer = 30;
+export const m_hexen2_setup = 31;
+export const m_hexen2_options = 32;
+export const m_hexen2_keys = 33;
+export const m_hexen2_help = 34;
+export const m_hexen2_quit = 35;
+export const m_hexen2_load = 36;
+export const m_hexen2_save = 37;
 
 export let m_state = m_none;
 export let m_entersound = false;
@@ -123,7 +134,13 @@ export function set_m_save_demonum( value ) { m_save_demonum = value; }
 const unfilled = name => () => { throw new Error( 'menuOpeners.' + name + ': load menu.js first, which fills the openers' ); };
 export const menuOpeners = {
 	levelSelect: unfilled( 'levelSelect' ), multiplayerChoice: unfilled( 'multiplayerChoice' ), options: unfilled( 'options' ),
-	credits: unfilled( 'credits' ), quit: unfilled( 'quit' ), hexenMain: unfilled( 'hexenMain' ), hexenSingle: unfilled( 'hexenSingle' )
+	credits: unfilled( 'credits' ), quit: unfilled( 'quit' ), hexenMain: unfilled( 'hexenMain' ), hexenSingle: unfilled( 'hexenSingle' ),
+	// Hexen II's own pages, filled by menu.js from the Hexen modules. The network pages are shared engine screens with a
+	// Hexen draw branch, reached here so a Hexen menu never calls the Quake page entry points.
+	hexenMultiplayer: unfilled( 'hexenMultiplayer' ), hexenSetup: unfilled( 'hexenSetup' ),
+	hexenOptions: unfilled( 'hexenOptions' ), hexenKeys: unfilled( 'hexenKeys' ), hexenHelp: unfilled( 'hexenHelp' ),
+	hexenQuit: unfilled( 'hexenQuit' ), hexenLoad: unfilled( 'hexenLoad' ), hexenSave: unfilled( 'hexenSave' ),
+	hexenLanConfig: unfilled( 'hexenLanConfig' ), hexenGameOptions: unfilled( 'hexenGameOptions' )
 };
 
 // WT_QueryRooms and WT_CreateRoom will be injected via M_SetExternals
@@ -199,6 +216,7 @@ export let _Draw_ConsoleBackground = null;
 let _Draw_String = null;
 let _Draw_TransPicTranslate = null;
 let _Draw_SubPic = null;
+let _Draw_TransPicRegion = null;
 export let _weaponModelsCredit = null;
 export let _S_LocalSound = null;
 export let _SCR_BeginLoadingPlaque = null;
@@ -228,7 +246,8 @@ export let _CL_NextDemo = null;
  * - `host_time_get()`, `realtime_get()`: host time and real time in seconds, for the animated cursors and
  *   `MainMenu_End`. Default `() => 0`.
  * - `Draw_CachePic`, `Draw_TransPic`, `Draw_Pic`, `Draw_Character`, `Draw_Fill`, `Draw_FadeScreen`,
- *   `Draw_ConsoleBackground`, `Draw_String`, `Draw_TransPicTranslate`, `Draw_SubPic` (gl_draw.js). Default null:
+ *   `Draw_ConsoleBackground`, `Draw_String`, `Draw_TransPicTranslate`, `Draw_SubPic`, `Draw_TransPicRegion`
+ *   (gl_draw.js). Default null:
  *   the menu then draws nothing that needs them (screens that need `Draw_CachePic` return early). `Draw_String` is
  *   stored but not used.
  * - `S_LocalSound(name)`: menu click sounds. Default null (silent).
@@ -277,6 +296,7 @@ export function M_SetExternals( externals ) {
 	if ( externals.cl_name ) _cl_name = externals.cl_name;
 	if ( externals.Draw_TransPicTranslate ) _Draw_TransPicTranslate = externals.Draw_TransPicTranslate;
 	if ( externals.Draw_SubPic ) _Draw_SubPic = externals.Draw_SubPic;
+	if ( externals.Draw_TransPicRegion ) _Draw_TransPicRegion = externals.Draw_TransPicRegion;
 
 }
 
@@ -323,7 +343,7 @@ Draws one solid graphics character
  *
  * @param {number} cx x in menu pixels
  * @param {number} line y in menu pixels
- * @param {number} num the character, 0..255 (128 and up the brown set)
+ * @param {number} num the character, 0..255 under Quake; 0..511 under Hexen II (256 and up its highlighted bank)
  */
 export function M_DrawCharacter( cx, line, num ) {
 
@@ -335,8 +355,9 @@ export function M_DrawCharacter( cx, line, num ) {
 }
 
 /**
- * Prints a menu string in the brown (highlighted) font at a 320 x 200 menu position, 8 pixels a character, through the
- * WebGL menu when it is drawing.
+ * Prints a menu string in the highlighted font at a 320 x 200 menu position, 8 pixels a character, through the WebGL
+ * menu when it is drawing. The highlight is the game's own bank: +128 for Quake, +256 for Hexen II
+ * (`Draw_HighlightOffset`; uhexen2 engine/hexen2/menu.c M_Print).
  *
  * @param {number} cx x in menu pixels
  * @param {number} cy y in menu pixels
@@ -346,9 +367,10 @@ export function M_Print( cx, cy, str ) {
 
 	if ( MainMenu_Text( cx + ( ( _vid.width - 320 ) >> 1 ), cy + ( ( _vid.height - 200 ) >> 1 ), str, 0 ) ) return;
 
+	const offset = Draw_HighlightOffset();
 	for ( let i = 0; i < str.length; i ++ ) {
 
-		M_DrawCharacter( cx, cy, str.charCodeAt( i ) + 128 );
+		M_DrawCharacter( cx, cy, str.charCodeAt( i ) + offset );
 		cx += 8;
 
 	}
@@ -388,9 +410,10 @@ export function M_PrintWhite( cx, cy, str ) {
 export function M_PrintFaded( cx, cy, str ) {
 
 	if ( MainMenu_Text( cx + ( ( _vid.width - 320 ) >> 1 ), cy + ( ( _vid.height - 200 ) >> 1 ), str, 0, true ) ) return;
+	const offset = Draw_HighlightOffset();
 	_Draw_WithAlpha( 0.4, () => {
 
-		for ( let i = 0; i < str.length; i ++ ) { M_DrawCharacter( cx, cy, str.charCodeAt( i ) + 128 ); cx += 8; }
+		for ( let i = 0; i < str.length; i ++ ) { M_DrawCharacter( cx, cy, str.charCodeAt( i ) + offset ); cx += 8; }
 
 	} );
 
@@ -428,6 +451,56 @@ export function M_DrawSubPic( x, y, pic, srcY, srcH ) {
 	if ( MainMenu_Image( dx, dy, pic, srcY ) ) return;
 	if ( _Draw_SubPic && pic )
 		_Draw_SubPic( dx, dy, pic, srcY, srcH );
+
+}
+
+/**
+ * Draws a rectangular region of a picture at a 320 x 200 menu position: the Hexen II bigfont's 20x19 glyph cells.
+ * Positions are centred like the other menu helpers; a missing picture or an unwired renderer draws nothing.
+ *
+ * @param {number} x x in menu pixels
+ * @param {number} y y in menu pixels
+ * @param {?qpic_t} pic the picture
+ * @param {number} srcX first column in the picture
+ * @param {number} srcY first row in the picture
+ * @param {number} srcW region width
+ * @param {number} srcH region height
+ */
+export function M_DrawTransPicRegion( x, y, pic, srcX, srcY, srcW, srcH ) {
+
+	const dx = x + ( ( _vid.width - 320 ) >> 1 ), dy = y + ( ( _vid.height - 200 ) >> 1 );
+	if ( _Draw_TransPicRegion && pic )
+		_Draw_TransPicRegion( dx, dy, pic, srcX, srcY, srcW, srcH );
+
+}
+
+/**
+ * Draws a picture clipped at the top and bottom of the screen: Hexen II's ScrollTitle slides a title and the plaque in
+ * from above, so their top is negative for most of the animation (uhexen2 Draw_TransPicCropped, menu.c:507-575). The
+ * visible slice is drawn through `Draw_SubPic`, which takes a source row and height.
+ *
+ * @param {number} x x in menu pixels
+ * @param {number} y y in menu pixels; may be negative (the top is clipped)
+ * @param {?qpic_t} pic the picture
+ */
+export function M_DrawTransPicCropped( x, y, pic ) {
+
+	if ( ! pic ) return;
+	const height = pic.height ?? 0;
+	if ( height <= 0 ) return;
+	const offsetY = ( _vid.height - 200 ) >> 1;
+	let destY = y + offsetY, srcY = 0, srcH = height;
+	if ( destY >= _vid.height || destY + height <= 0 ) return;
+	if ( destY < 0 ) {
+
+		srcY = - destY;
+		srcH = height + destY;
+		destY = 0;
+
+	}
+	if ( destY + srcH > _vid.height ) srcH = _vid.height - destY;
+	if ( srcH <= 0 ) return;
+	if ( _Draw_SubPic ) _Draw_SubPic( x + ( ( _vid.width - 320 ) >> 1 ), destY, pic, srcY, srcH );
 
 }
 

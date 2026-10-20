@@ -24,6 +24,7 @@ import { W_GetLumpName, W_FindLumpinfo } from '../common/wad.js';
 import { d_8to24table as vid_d_8to24table } from './vid.js';
 import { SKIN_MODE_DEFAULT, SKIN_MODE_TRANSPARENT, SKIN_MODE_HOLEY, SKIN_MODE_SPECIAL } from './gl_entity_semantics.js';
 import { COM_FindFile } from '../common/pak.js';
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
 import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from '../common/cmd.js';
 import { R_NewerHudCanvas } from '../common/hooks.js'; // installed by newer/ui/r_newerhud.js
 import { BuildSinglePlayerMenuArt, BuildMenuTextArt } from '../common/hooks.js'; // installed by newer/ui/menu_art.js
@@ -895,6 +896,20 @@ function _loadSmallCharset() {
 
 }
 
+/**
+ * The character-set offset that turns plain text into a game's highlighted (menus, plaques) glyphs: 128 for Quake's
+ * two-bank 16x16 sheet; 256 for Hexen II's 512-glyph 32x16 gfx/menu/conchars.lmp, whose 128..255 bank is accented
+ * Latin, not a highlight. Native Hexen M_Print adds 256 (uhexen2 engine/hexen2/menu.c:213-221); Quake's M_Print adds
+ * 128. Shared drawing code reads this instead of choosing either constant itself.
+ *
+ * @returns {number} 256 under Hexen II, 128 under Quake
+ */
+export function Draw_HighlightOffset() {
+
+	return GameProfile_IsHexen2() ? 256 : 128;
+
+}
+
 /*
 ================
 Draw_Character
@@ -910,13 +925,13 @@ Draw_Character
  *
  * @param {number} x left edge in virtual pixels
  * @param {number} y top edge in virtual pixels; -8 or less draws nothing
- * @param {number} num character code; only the low 8 bits are used (0..255)
+ * @param {number} num character code; 0..255 for Quake, 0..511 for Hexen II's 512-glyph sheet (256 and up highlighted)
  */
 export function Draw_Character( x, y, num ) {
 
 	if ( ! overlayCtx ) return;
 
-	num &= 255;
+	num &= GameProfile_IsHexen2() ? 511 : 255;
 
 	if ( num === 32 ) return; // space
 
@@ -1020,8 +1035,8 @@ Draw_Alt_String
 ================
 */
 /**
- * Draws a string with alternate (gold) coloring: as `Draw_String`, with 128 added to each character code. Nothing
- * in the engine calls it at present.
+ * Draws a string with alternate (highlighted) glyphs: as `Draw_String`, with `Draw_HighlightOffset()` added to each
+ * character code (128 under Quake, 256 under Hexen II). Nothing in the engine calls it at present.
  *
  * @param {number} x left edge of the first character, in virtual pixels
  * @param {number} y top edge, in virtual pixels
@@ -1029,9 +1044,10 @@ Draw_Alt_String
  */
 export function Draw_Alt_String( x, y, str ) {
 
+	const offset = Draw_HighlightOffset();
 	for ( let i = 0; i < str.length; i ++ ) {
 
-		Draw_Character( x, y, str.charCodeAt( i ) | 128 );
+		Draw_Character( x, y, offset === 256 ? str.charCodeAt( i ) + 256 : str.charCodeAt( i ) | 128 ); // Quake keeps its exact | 128
 		x += 8;
 
 	}

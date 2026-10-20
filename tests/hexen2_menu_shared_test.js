@@ -8,7 +8,8 @@ import { K_ENTER, K_UPARROW, K_DOWNARROW } from '../src/engine/client/keys.js';
 import * as menu from '../src/engine/client/menu.js';
 import * as common from '../src/engine/client/menu_common.js';
 import { M_Hexen2_Reset, Hexen2_MenuClasses, Hexen2_DifficultyNames } from '../src/engine/client/menu_hexen2.js';
-import { M_Menu_Options_f, M_Options_Key } from '../src/engine/client/menu_options.js';
+import { M_Menu_Options_f } from '../src/engine/client/menu_options.js';
+import { M_Hexen2_Options_Key } from '../src/engine/client/menu_hexen2_options.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const commands = [];
@@ -63,17 +64,18 @@ Deno.test( 'classes and per-class skill names follow the edition', () => {
 
 } );
 
-Deno.test( 'the shared Options page exposes the enhanced mode for Hexen', () => {
+Deno.test( 'the Hexen Options page exposes the enhanced mode row', () => {
 
 	GameProfile_Set( 'hexen2' );
 	if ( Cvar_FindVar( 'r_hdr' ) === null ) Cvar_RegisterVariable( new cvar_t( 'r_hdr', '0' ) );
 	Cvar_SetValue( 'r_hdr', 0 );
 	Cbuf_Init();
 	M_Menu_Options_f();
-	// the two Hexen rows are appended, so Up from the first row reaches the texture tier and then the enhanced mode
-	M_Options_Key( K_UPARROW );
-	M_Options_Key( K_UPARROW );
-	M_Options_Key( K_ENTER );
+	same( common.m_state, common.m_hexen2_options, 'Hexen opens its own native Options page' );
+	// the two Quaked rows are last, so Up from the first row reaches Texture detail and then Enhanced mode
+	M_Hexen2_Options_Key( K_UPARROW );
+	M_Hexen2_Options_Key( K_UPARROW );
+	M_Hexen2_Options_Key( K_ENTER );
 	Cbuf_Execute();
 	same( Cvar_VariableValue( 'r_hdr' ), 1, 'the enhanced mode is applied through Newer_ApplyGameDefaults' );
 

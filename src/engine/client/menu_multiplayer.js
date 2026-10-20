@@ -22,10 +22,12 @@ import { Con_Printf } from '../common/console.js';
 import { K_ESCAPE, K_ENTER, K_UPARROW, K_DOWNARROW, K_LEFTARROW, K_RIGHTARROW, K_BACKSPACE, key_game, key_menu } from './keys.js';
 import { cl_color } from './cl_main.js';
 import { Cvar_SetValue } from '../common/cvar.js';
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
 import { skill, coop, teamplay, svs } from '../server/server.js';
 import { LocalPlay_PlayerWindow, LocalPlay_Hosting, LocalPlay_Players, LocalPlay_NextPlayer, LocalPlay_OpenPlayer, LocalPlay_Start, LocalPlay_End, LocalPlay_PlayerCommands, LOCAL_PLAYERS_MIN, LOCAL_PLAYERS_MAX, LOCAL_MODES } from './local_play.js';
-import { m_none, m_multiplayer, m_setup, m_lanconfig, m_gameoptions, m_mpchoice, m_splitscreen, m_state, m_return_state, m_return_onerror, m_return_reason, set_m_state, set_m_entersound, set_m_return_state, set_m_return_onerror, set_m_return_reason, _WT_QueryRooms, _WT_CreateRoom, _cl_name, levels, episodes, _sv, _host_time_get, _realtime_get, _Draw_CachePic, _S_LocalSound, _SCR_BeginLoadingPlaque, _SCR_EndLoadingPlaque, _IN_RequestPointerLock, setKeyDest, M_DrawCharacter, M_Print, M_PrintWhite, M_PrintFaded, M_DrawTransPic, M_DrawPic, M_DrawTransPicTranslate, M_DrawTextBox, M_BuildTranslationTable, newerDefaults } from './menu_common.js';
+import { m_none, m_multiplayer, m_hexen2_multiplayer, m_setup, m_lanconfig, m_gameoptions, m_mpchoice, m_splitscreen, m_state, m_return_state, m_return_onerror, m_return_reason, set_m_state, set_m_entersound, set_m_return_state, set_m_return_onerror, set_m_return_reason, _WT_QueryRooms, _WT_CreateRoom, _cl_name, levels, episodes, _sv, _host_time_get, _realtime_get, _Draw_CachePic, _S_LocalSound, _SCR_BeginLoadingPlaque, _SCR_EndLoadingPlaque, _IN_RequestPointerLock, setKeyDest, M_DrawCharacter, M_Print, M_PrintWhite, M_PrintFaded, M_DrawTransPic, M_DrawPic, M_DrawTransPicTranslate, M_DrawTextBox, M_BuildTranslationTable, newerDefaults } from './menu_common.js';
 import { M_Menu_Main_f } from './menu_main.js';
+import { Hexen2_ScrollTitle } from './menu_hexen2.js';
 
 /*
 ==============================================================================
@@ -136,8 +138,8 @@ export function M_ConnectionError( reason ) {
 
 	} else {
 
-		// Fall back to Multiplayer menu (for URL-based joins that bypass menu)
-		set_m_state( m_multiplayer );
+		// Fall back to the Multiplayer menu (for URL-based joins that bypass menu). Hexen stays on its native page.
+		set_m_state( GameProfile_IsHexen2() ? m_hexen2_multiplayer : m_multiplayer );
 
 	}
 
@@ -455,6 +457,8 @@ const MULTIPLAYER_ITEMS = 3;
  */
 export function M_Menu_MultiPlayer_f() {
 
+	// Hexen II has its own native multiplayer page (Join a Game, New Game, Setup, Load, Save).
+	if ( GameProfile_IsHexen2() ) { menuOpeners.hexenMultiplayer(); return; }
 	setKeyDest( key_menu );
 	set_m_state( m_multiplayer );
 	set_m_entersound( true );
@@ -572,12 +576,22 @@ export function M_LanConfig_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
 
-	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
-	const p = _Draw_CachePic( 'gfx/p_multi.lmp' );
-	const basex = ( 320 - ( p ? p.width : 0 ) ) / 2;
-	M_DrawPic( basex, 4, p );
+	let basex;
+	if ( GameProfile_IsHexen2() ) {
 
-	M_Print( basex, 32, 'Join Game' );
+		Hexen2_ScrollTitle( 'gfx/menu/title4.lmp' );
+		M_Print( 72, 32, 'Join Game' );
+		basex = 72;
+
+	} else {
+
+		M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
+		const p = _Draw_CachePic( 'gfx/p_multi.lmp' );
+		basex = ( 320 - ( p ? p.width : 0 ) ) / 2;
+		M_DrawPic( basex, 4, p );
+		M_Print( basex, 32, 'Join Game' );
+
+	}
 
 	if ( slist_fetching ) {
 
@@ -753,9 +767,17 @@ export function M_GameOptions_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
 
-	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
-	const p = _Draw_CachePic( 'gfx/p_multi.lmp' );
-	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
+	if ( GameProfile_IsHexen2() ) {
+
+		Hexen2_ScrollTitle( 'gfx/menu/title4.lmp' );
+
+	} else {
+
+		M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
+		const p = _Draw_CachePic( 'gfx/p_multi.lmp' );
+		M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
+
+	}
 
 	// Begin game button
 	M_DrawTextBox( 152, 32, 10, 1 );
@@ -1047,6 +1069,7 @@ const NUM_SETUP_CMDS = 4;
  */
 export function M_Menu_Setup_f() {
 
+	if ( GameProfile_IsHexen2() ) { menuOpeners.hexenSetup(); return; }
 	setKeyDest( key_menu );
 	set_m_state( m_setup );
 	set_m_entersound( true );
