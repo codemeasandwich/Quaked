@@ -144,9 +144,9 @@ async function main() {
 			// and its switch (-hipnotic or -rogue) sets the engine's mission-pack behaviour before Host_Init
 			// the game that really starts, which saves and settings follow (card [34c]): set from what was mounted
 			GameSelection_SetRunning( desktop ? desktop.id : missionMounted ? GameSelection_Current() : fullGamePak !== null ? 'quake' : 'shareware' );
-			// the game's own packs feed Level Select, including Hexen II's (its maps are not in a mission pack)
-			if ( desktop ) LevelSelect_SetGamePacks( LevelSelect_OwnPacks( desktop.packs, desktop.id ) );
-			if ( missionMounted ) { if(!desktop)for ( const pack of [ missionPak ].flat() ) COM_AddPack( pack ); LevelSelect_SetGamePacks( [ missionPak ].flat() ); /* its own maps, for a Level Select built from them */ const missionSwitch = GameSelection_StartSwitch( mission ); /* its own, or as its gfx.wad's status-bar pictures ask (Quoth's are Scourge of Armagon's) */ if ( missionSwitch ) COM_InitArgv( [ parms.argv[ 0 ] ?? 'quaked', ...parms.argv.slice( 1 ), missionSwitch ] ); /* argv[0] is the program name */ Sys_Printf( mission.name + ' loaded' + ( missionSwitch && ! mission.switch ? ' (' + missionSwitch + ': its status bar is a mission pack\'s)' : '' ) + '\n' ); }
+			// Hexen II's maps are not a Quake mission pack, but its own packs feed Level Select the same way
+			if ( hexen && desktop ) LevelSelect_SetGamePacks( LevelSelect_OwnPacks( desktop.packs, desktop.id ) );
+			if ( missionMounted ) { if(!desktop)for ( const pack of [ missionPak ].flat() ) COM_AddPack( pack ); LevelSelect_SetGamePacks( desktop ? LevelSelect_OwnPacks( desktop.packs, desktop.id ) : [ missionPak ].flat() ); /* its own maps, for a Level Select built from them */ const missionSwitch = GameSelection_StartSwitch( mission ); /* its own, or as its gfx.wad's status-bar pictures ask (Quoth's are Scourge of Armagon's) */ if ( missionSwitch ) COM_InitArgv( [ parms.argv[ 0 ] ?? 'quaked', ...parms.argv.slice( 1 ), missionSwitch ] ); /* argv[0] is the program name */ Sys_Printf( mission.name + ' loaded' + ( missionSwitch && ! mission.switch ? ' (' + missionSwitch + ': its status bar is a mission pack\'s)' : '' ) + '\n' ); }
 
 		} else {
 
@@ -192,7 +192,7 @@ async function main() {
 				if ( chosenClass.ok ) Cvar_SetValue( '_cl_playerclass', chosenClass.number );
 				else Sys_Printf( 'Hexen II: %s\n', chosenClass.reason );
 			}
-			if ( Number.isInteger( startSkill ) && startSkill >= 0 && startSkill <= 3 ) Cvar_SetValue( 'skill', startSkill );
+			if ( Number.isInteger( startSkill ) && startSkill >= 0 && startSkill <= 4 ) Cvar_SetValue( 'skill', startSkill ); // native Hexen II clamps skill to 0..4 (uhexen2 sv_main.c)
 			else if ( autoStart || desktop?.autoStart ) Cvar_SetValue( 'skill', 1 );
 			const wantedMap = startMap ?? ( autoStart || desktop?.autoStart ? gameProfile.startMap : null );
 			if ( wantedMap !== null && /^[A-Za-z0-9_./-]+$/.test( String( wantedMap ) ) ) {

@@ -139,3 +139,37 @@ stream. As a result centerprint, light styles, statics, ambient sounds, music, i
 reached the player, and `r_hdr` was never set, so no enhanced feature ran. FTEQW and jlquake support both games in
 one engine by selecting a game type at load, forking only the protocol parser/writer and builtin table, and keeping
 the rest shared; this design follows them.
+
+## 10. Progress ledger (20 October 2026)
+
+All packages U0–U12 are implemented on `hexen2-unified` (local branch, not pushed, not merged to Dev). Every commit
+passed the full pre-commit hook (distribution suites, staged desktop build, engine suites 218/218).
+
+| Commit | Package | Content |
+| --- | --- | --- |
+| `33fe52ef` | merge | `h2` (103 commits + preserved working tree `refs/claude/snapshots/2026-10-19/h2-worktree`) onto Dev |
+| `698f0d71` | U0 | one host path (`main.js` has no Hexen fork), one builtin table, BSP hull layout from the file |
+| `54406a74` | U4 | native movetypes 11–14, `SOLID_PHASE`, traces, hover/flight/crouch, move chains |
+| `a02dd649` | U1 U3 U7 | one protocol (ids 50–71, scale/drawflags/abslight bits), complete builtins, Newer content bindings |
+| `66ab7b81` | U2 | native protocol 18/19 demos translated into the unified protocol; Hexen entity effects |
+| `0cd14796` | U5 U8 | Hexen input, status bar, menus, console font; all 62 client effects, particles, beams |
+| `ebd98e99` | U6 U9 | drawflags/abslight/scale/translucency, skin modes, class colours; hubs, saves, intermission, music |
+| `3e9bc6a3` | U10 U11 | parallel host retired (~9,300 lines); packaged music through the scoped library reader |
+| `5082d07e` | fix | packaged start: no `SetNewParms` for Hexen; no unreviewed rock relief; packaged-trial tracing |
+| `b99b7fb0` | U12 | acceptance coverage on the shared host: every base/Portal map, routes, co-op, soak |
+
+Verification at `b99b7fb0`: 209/209 across every Hexen II, unified-protocol, profile, Newer and hook suite; engine
+list 218/218; native library contracts 22/22; skin-identity results unchanged by the Newer bindings (60 runs compared
+before/after). The packaged app was run with `HEXEN2_TRIAL_GAME=hexen2`: `demo1` spawned, the client connected and the
+host ran at ~28 fps with the Hexen HUD font. The first frames were held by the enhanced warm-up waiting on rock relief
+(fixed in `5082d07e`); a visual confirmation of the fixed build was not possible because the Mac was locked (macOS
+pauses a hidden window's frame loop), so it is the first item for the owner's trial.
+
+Open decisions and known limits:
+
+- Base-game hull 4 is the 1.11 hydra size (±40) and Portal's the pentacle (±8), following each game's own engine;
+  uHexen2 uses ±8 for both. Confirm in play.
+- Procedural rock relief is off for Hexen II until its surfaces pass the texture review.
+- Hub saves use the existing localStorage save boundary (one atomic record per slot); IndexedDB is not yet used.
+- Hexen music plays the OGG conversions shipped in `data1/music` and `portals/music`; there is no MIDI synthesiser.
+- Hexen II texture art and skins: the per-game index and tiers exist, no Hexen art is indexed yet.

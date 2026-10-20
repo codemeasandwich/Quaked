@@ -318,6 +318,25 @@ Deno.test( 'Hexen II baselines, statics, player class and the stat record round-
 	check( cl.h2.stats.health !== undefined, 'the record was applied' );
 	check( PR_GetString( client.edict.v.puzzle_inv1 ) === 'tomb', 'the native puzzle string' );
 
+	// A delta carries only what changed, in the right half of the 56-bit SC1/SC2 space: an SC2-only change (armour) must
+	// arrive as that field, and SC1's top bit (rings_active) must not spill into SC2.
+	SV_UpdateClientStats( client, client.message ); // records the baseline the deltas compare against
+	SZ_Clear( client.message );
+	SV_SetHexen2Field( client.edict, 'armor_amulet', 5 );
+	SV_UpdateClientStats( client, client.message );
+	COM_SetNetMessage( client.message );
+	CL_ParseServerMessage();
+	same( cl.h2.stats.armor_amulet, 5, 'an SC2-only delta updates the amulet armour' );
+	same( cl.h2.stats.level, 2, 'the SC2 delta left the SC1 level alone' );
+	SZ_Clear( client.message );
+	SV_SetHexen2Field( client.edict, 'rings_active', 4 );
+	SV_UpdateClientStats( client, client.message );
+	COM_SetNetMessage( client.message );
+	CL_ParseServerMessage();
+	same( cl.h2.stats.rings_active, 4, 'SC1\'s top bit (rings_active) arrives' );
+	same( cl.h2.stats.armor_amulet, 5, 'and does not rewrite the SC2 fields' );
+	SZ_Clear( client.message );
+
 	// The real Host_Spawn_f branch: choice from `_cl_playerclass`, ClientConnect then PutClientInServer, and the class
 	// and stat record on the client's signon message.
 	if ( vars.Cvar_FindVar( '_cl_playerclass' ) === null ) vars.Cvar_RegisterVariable( new cvar_t( '_cl_playerclass', '2', true ) );

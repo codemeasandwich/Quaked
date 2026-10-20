@@ -68,9 +68,8 @@ import {
 	MAX_PACKET_ENTITIES, MAX_PACKET_ENTITIES_LOCAL, PE_UPDATE_MASK
 } from '../common/protocol.js';
 import { GameProfile_Get, GameProfile_IsHexen2 } from '../common/game_profile.js';
-import { Hexen2_EncodeUpdateInv } from '../common/hexen2_clientdata.js';
+import { Hexen2_EncodeUpdateInv, HEXEN2_STAT_FIELDS } from '../common/hexen2_clientdata.js';
 import { Hexen2_WriteStartEffect, Hexen2_WriteEndEffect } from '../common/hexen2_effectwire.js';
-import { HEXEN2_STAT_BITS } from '../common/hexen2_protocol.js';
 import {
 	sv, svs, ss_loading, ss_active,
 	server_t, client_t, NUM_PING_TIMES,
@@ -241,37 +240,8 @@ export function SV_Hexen2EntityFields( ent ) {
 
 }
 
-// The SC1/SC2 fields in native write order; the encoder in hexen2_clientdata.js writes values in this same order.
-// `type` is only used to compare strings by progs offset and numbers as numbers.
-const HEXEN2_STAT_FIELDS = Object.freeze( [
-	[ HEXEN2_STAT_BITS.sc1_health, 'health', 'short' ], [ HEXEN2_STAT_BITS.sc1_level, 'level', 'byte' ],
-	[ HEXEN2_STAT_BITS.sc1_intelligence, 'intelligence', 'byte' ], [ HEXEN2_STAT_BITS.sc1_wisdom, 'wisdom', 'byte' ],
-	[ HEXEN2_STAT_BITS.sc1_strength, 'strength', 'byte' ], [ HEXEN2_STAT_BITS.sc1_dexterity, 'dexterity', 'byte' ],
-	[ HEXEN2_STAT_BITS.sc1_weapon, 'weapon', 'byte' ], [ HEXEN2_STAT_BITS.sc1_bluemana, 'bluemana', 'byte' ],
-	[ HEXEN2_STAT_BITS.sc1_greenmana, 'greenmana', 'byte' ], [ HEXEN2_STAT_BITS.sc1_experience, 'experience', 'long' ],
-	[ HEXEN2_STAT_BITS.sc1_cnt_torch, 'cnt_torch', 'byte' ], [ HEXEN2_STAT_BITS.sc1_cnt_h_boost, 'cnt_h_boost', 'byte' ],
-	[ HEXEN2_STAT_BITS.sc1_cnt_sh_boost, 'cnt_sh_boost', 'byte' ], [ HEXEN2_STAT_BITS.sc1_cnt_mana_boost, 'cnt_mana_boost', 'byte' ],
-	[ HEXEN2_STAT_BITS.sc1_cnt_teleport, 'cnt_teleport', 'byte' ], [ HEXEN2_STAT_BITS.sc1_cnt_tome, 'cnt_tome', 'byte' ],
-	[ HEXEN2_STAT_BITS.sc1_cnt_summon, 'cnt_summon', 'byte' ], [ HEXEN2_STAT_BITS.sc1_cnt_invisibility, 'cnt_invisibility', 'byte' ],
-	[ HEXEN2_STAT_BITS.sc1_cnt_glyph, 'cnt_glyph', 'byte' ], [ HEXEN2_STAT_BITS.sc1_cnt_haste, 'cnt_haste', 'byte' ],
-	[ HEXEN2_STAT_BITS.sc1_cnt_blast, 'cnt_blast', 'byte' ], [ HEXEN2_STAT_BITS.sc1_cnt_polymorph, 'cnt_polymorph', 'byte' ],
-	[ HEXEN2_STAT_BITS.sc1_cnt_flight, 'cnt_flight', 'byte' ], [ HEXEN2_STAT_BITS.sc1_cnt_cubeofforce, 'cnt_cubeofforce', 'byte' ],
-	[ HEXEN2_STAT_BITS.sc1_cnt_invincibility, 'cnt_invincibility', 'byte' ], [ HEXEN2_STAT_BITS.sc1_artifact_active, 'artifact_active', 'float' ],
-	[ HEXEN2_STAT_BITS.sc1_artifact_low, 'artifact_low', 'float' ], [ HEXEN2_STAT_BITS.sc1_movetype, 'movetype', 'byte' ],
-	[ HEXEN2_STAT_BITS.sc1_cameramode, 'cameramode', 'byte' ], [ HEXEN2_STAT_BITS.sc1_hasted, 'hasted', 'float' ],
-	[ HEXEN2_STAT_BITS.sc1_inventory, 'inventory', 'byte' ], [ HEXEN2_STAT_BITS.sc1_rings_active, 'rings_active', 'float' ],
-	[ HEXEN2_STAT_BITS.sc2_rings_low, 'rings_low', 'float' ], [ HEXEN2_STAT_BITS.sc2_amulet, 'armor_amulet', 'byte' ],
-	[ HEXEN2_STAT_BITS.sc2_bracer, 'armor_bracer', 'byte' ], [ HEXEN2_STAT_BITS.sc2_breastplate, 'armor_breastplate', 'byte' ],
-	[ HEXEN2_STAT_BITS.sc2_helmet, 'armor_helmet', 'byte' ], [ HEXEN2_STAT_BITS.sc2_flight_t, 'ring_flight', 'byte' ],
-	[ HEXEN2_STAT_BITS.sc2_water_t, 'ring_water', 'byte' ], [ HEXEN2_STAT_BITS.sc2_turning_t, 'ring_turning', 'byte' ],
-	[ HEXEN2_STAT_BITS.sc2_regen_t, 'ring_regeneration', 'byte' ], [ HEXEN2_STAT_BITS.sc2_haste_t, 'haste_time', 'float' ],
-	[ HEXEN2_STAT_BITS.sc2_tome_t, 'tome_time', 'float' ], [ HEXEN2_STAT_BITS.sc2_puzzle1, 'puzzle_inv1', 'string' ],
-	[ HEXEN2_STAT_BITS.sc2_puzzle2, 'puzzle_inv2', 'string' ], [ HEXEN2_STAT_BITS.sc2_puzzle3, 'puzzle_inv3', 'string' ],
-	[ HEXEN2_STAT_BITS.sc2_puzzle4, 'puzzle_inv4', 'string' ], [ HEXEN2_STAT_BITS.sc2_puzzle5, 'puzzle_inv5', 'string' ],
-	[ HEXEN2_STAT_BITS.sc2_puzzle6, 'puzzle_inv6', 'string' ], [ HEXEN2_STAT_BITS.sc2_puzzle7, 'puzzle_inv7', 'string' ],
-	[ HEXEN2_STAT_BITS.sc2_puzzle8, 'puzzle_inv8', 'string' ], [ HEXEN2_STAT_BITS.sc2_maxhealth, 'max_health', 'short' ],
-	[ HEXEN2_STAT_BITS.sc2_maxmana, 'max_mana', 'byte' ], [ HEXEN2_STAT_BITS.sc2_flags, 'flags', 'float' ]
-] );
+// The SC1/SC2 fields come from the encoder's own 56-bit table (hexen2_clientdata.js HEXEN2_STAT_FIELDS), so the change
+// mask built here is exactly the one Hexen2_EncodeUpdateInv writes against.
 
 /**
  * Sends a Hexen II player's changed inventory/stats record (`svc_hexen2_update_inv`), the native SC1/SC2 delta of

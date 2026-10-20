@@ -248,6 +248,11 @@ export function Hexen2Hub_RestoreLevel( server, clients, record ) {
 
 	const valid = Hexen2Hub_ValidateLevel( record );
 	if ( !valid.ok ) return valid;
+	// the spawned server's own table (600 for Hexen II), checked before anything changes: a damaged save is refused,
+	// never half-restored with an edict count past the table
+	const limit = server.max_edicts | 0;
+	if ( limit > 0 && ( record.num_edicts > limit || record.edicts.some( entry => ( entry.num | 0 ) >= limit ) ) )
+		return { ok: false, reason: `the saved level needs more than this server's ${limit} edicts` };
 
 	const opening = record.globals.indexOf( '{' );
 	if ( opening < 0 ) return { ok: false, reason: 'the level globals have no opening brace' };

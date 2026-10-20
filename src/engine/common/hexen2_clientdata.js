@@ -19,8 +19,11 @@ export const SU = Object.freeze( {
 	SC1: 1 << 9, ONGROUND: 1 << 10, INWATER: 1 << 11, WEAPONFRAME: 1 << 12, ARMOR: 1 << 13, WEAPON: 1 << 14, SC2: 1 << 15
 } );
 
-/** The stat bits in native write order, SC1 then SC2 (`[bit, field, type]`). */
-const STAT_FIELDS = Object.freeze( [
+/**
+ * The stat bits in native write order, SC1 then SC2 (`[bit, field, type]`): one 56-bit space, SC2 at bits 32-55. The
+ * server's change mask and this encoder must use the same table, or an SC2 change would be sent as an SC1 field.
+ */
+export const HEXEN2_STAT_FIELDS = Object.freeze( [
 	[ 1 << 0, 'health', 'short' ], [ 1 << 1, 'level', 'byte' ], [ 1 << 2, 'intelligence', 'byte' ],
 	[ 1 << 3, 'wisdom', 'byte' ], [ 1 << 4, 'strength', 'byte' ], [ 1 << 5, 'dexterity', 'byte' ],
 	[ 1 << 6, 'weapon', 'byte' ], [ 1 << 7, 'bluemana', 'byte' ], [ 1 << 8, 'greenmana', 'byte' ],
@@ -160,7 +163,7 @@ export function Hexen2_EncodeUpdateInv( player, mask, stringAt ) {
 	test.forEach( ( value, i ) => { if ( value !== 0 ) flags |= 1 << i; } );
 	w.byte( flags );
 	for ( let i = 0; i < test.length; i ++ ) if ( test[ i ] !== 0 ) w.byte( test[ i ] );
-	for ( const [ bit, field, type ] of STAT_FIELDS ) {
+	for ( const [ bit, field, type ] of HEXEN2_STAT_FIELDS ) {
 
 		if ( ( mask & BigInt( bit ) ) === 0n ) continue;
 		if ( type === 'byte' ) w.byte( Math.trunc( v[ field ] ?? 0 ) );
@@ -192,7 +195,7 @@ export function Hexen2_DecodeUpdateInv( bytes, options = {} ) {
 		let mask = 0n;
 		blocks.forEach( ( value, i ) => { mask |= BigInt( value ) << BigInt( i * 8 ); } );
 		const stats = {};
-		for ( const [ bit, field, type ] of STAT_FIELDS ) {
+		for ( const [ bit, field, type ] of HEXEN2_STAT_FIELDS ) {
 
 			if ( ( mask & BigInt( bit ) ) === 0n ) continue;
 			if ( type === 'byte' ) stats[ field ] = r.byte();
@@ -213,7 +216,7 @@ export function Hexen2_DecodeUpdateInv( bytes, options = {} ) {
 export function Hexen2_AllStatMask() {
 
 	let mask = 0n;
-	for ( const [ bit ] of STAT_FIELDS ) mask |= BigInt( bit );
+	for ( const [ bit ] of HEXEN2_STAT_FIELDS ) mask |= BigInt( bit );
 	return mask;
 
 }

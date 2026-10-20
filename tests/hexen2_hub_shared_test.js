@@ -73,4 +73,12 @@ Deno.test( 'a captured hub level restores its entities, light styles and player 
 	check( PR_GetString( EDICT_NUM( tempIndex ).v.classname ) !== 'temp_marker' && EDICT_NUM( tempIndex ).v.health !== 123,
 		'the temporary edict is not restored' );
 
+	// A damaged save naming an edict past this server's table is refused before anything changes.
+	const edictsBefore = fresh.sv.num_edicts;
+	const damaged = { ...record, edicts: [ ...record.edicts, { num: fresh.sv.max_edicts + 100, text: '{ "classname" "info_null" }' } ] };
+	const refused = Hexen2Hub_RestoreLevel( fresh.sv, fresh.svs, damaged );
+	check( ! refused.ok, 'a save naming edict ' + ( fresh.sv.max_edicts + 100 ) + ' is refused' );
+	same( fresh.sv.num_edicts, edictsBefore, 'the refused save left the edict count alone' );
+	check( ! Hexen2Hub_RestoreLevel( fresh.sv, fresh.svs, { ...record, num_edicts: fresh.sv.max_edicts + 1 } ).ok, 'an edict count past the table is refused' );
+
 } );

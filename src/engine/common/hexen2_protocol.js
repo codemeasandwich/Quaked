@@ -69,7 +69,7 @@ export const HEXEN2_STAT_BITS = Object.freeze( {
 	sc1_cnt_glyph: 1 << 18, sc1_cnt_haste: 1 << 19, sc1_cnt_blast: 1 << 20, sc1_cnt_polymorph: 1 << 21,
 	sc1_cnt_flight: 1 << 22, sc1_cnt_cubeofforce: 1 << 23, sc1_cnt_invincibility: 1 << 24,
 	sc1_artifact_active: 1 << 25, sc1_artifact_low: 1 << 26, sc1_movetype: 1 << 27, sc1_cameramode: 1 << 28,
-	sc1_hasted: 1 << 29, sc1_inventory: 1 << 30, sc1_rings_active: 1 << 31,
+	sc1_hasted: 1 << 29, sc1_inventory: 1 << 30, sc1_rings_active: 0x80000000, // not 1 << 31, which is negative
 	sc2_rings_low: 1 << 0, sc2_amulet: 1 << 1, sc2_bracer: 1 << 2, sc2_breastplate: 1 << 3, sc2_helmet: 1 << 4,
 	sc2_flight_t: 1 << 5, sc2_water_t: 1 << 6, sc2_turning_t: 1 << 7, sc2_regen_t: 1 << 8, sc2_haste_t: 1 << 9,
 	sc2_tome_t: 1 << 10, sc2_puzzle1: 1 << 11, sc2_puzzle2: 1 << 12, sc2_puzzle3: 1 << 13, sc2_puzzle4: 1 << 14,

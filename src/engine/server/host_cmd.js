@@ -125,10 +125,14 @@ export function Host_InitCommands() {
 	Cmd_AddCommand( 'spawn', Host_Spawn_f );
 	Cmd_AddCommand( 'begin', Host_Begin_f );
 	Cmd_AddCommand( 'prespawn', Host_PreSpawn_f );
-	// Hexen II's class choice lives in `_cl_playerclass` (native cl_main.c); registering it here lets the class menu
-	// and the `playerclass` command agree before a game is selected.
-	if ( Cvar_FindVar( '_cl_playerclass' ) === null ) Cvar_RegisterVariable( new cvar_t( '_cl_playerclass', '1', true ) );
-	Cmd_AddCommand( 'playerclass', Host_Class_f );
+	// Hexen II's class choice lives in `_cl_playerclass` (native cl_main.c). Only a Hexen II session has it: a Quake game
+	// must not archive a Hexen cvar into its config or answer a `playerclass` command (which sends a Hexen message).
+	if ( GameProfile_IsHexen2() ) {
+
+		if ( Cvar_FindVar( '_cl_playerclass' ) === null ) Cvar_RegisterVariable( new cvar_t( '_cl_playerclass', '1', true ) );
+		Cmd_AddCommand( 'playerclass', Host_Class_f );
+
+	}
 
 }
 
@@ -1915,6 +1919,8 @@ kept on the client and announced to everyone.
 ==================
 */
 function Host_Class_f() {
+
+	if ( ! GameProfile_IsHexen2() ) return; // a client of a Quake server cannot set a Hexen player class
 
 	if ( Cmd_Argc() === 1 ) {
 

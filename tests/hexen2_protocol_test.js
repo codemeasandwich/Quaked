@@ -102,7 +102,7 @@ Deno.test( 'the pinned network limits, sound widths and stat masks are exact', (
 	same( Hexen2_SoundIndexLimit( 19 ), 512, 'the 1.12 mission pack index (ambients as a word)' );
 	same( Hexen2_SoundIndexLimit( 20 ), null, 'UQE has no admitted sound width' );
 	same( HEXEN2_STAT_BITS.sc1_health, 1, 'health bit' );
-	same( HEXEN2_STAT_BITS.sc1_rings_active, 1 << 31, 'the last SC1 bit' );
+	same( HEXEN2_STAT_BITS.sc1_rings_active, 0x80000000, 'the last SC1 bit, unsigned (1 << 31 is negative and would sign-extend into SC2)' );
 	same( HEXEN2_STAT_BITS.sc2_obj2, 1 << 23, 'the last SC2 bit' );
 	same( HEXEN2_STAT_MASKS.sc1StatBar, 0x01ffffff, 'SC1_STAT_BAR' );
 	same( HEXEN2_STAT_MASKS.sc2StatBar, 0x0000001e, 'SC2_STAT_BAR' );

@@ -842,8 +842,10 @@ export function SV_PushEntity( ent, push ) {
 	else
 		trace = SV_Move( ent.v.origin, ent.v.mins, ent.v.maxs, end, MOVE_NORMAL, ent );
 
-	if ( ent.v.solid !== SOLID_PHASE ) {
+	if ( ! GameProfile_IsHexen2() ) VectorCopy( trace.endpos, ent.v.origin ); // WinQuake: always move, link and impact
+	else if ( ent.v.solid !== SOLID_PHASE ) {
 
+		// native Hexen II: a bounce entity that starts in solid stays put and skips the impact (uhexen2 SV_PushEntity)
 		if ( ent.v.movetype !== MOVETYPE_BOUNCE || ( ! trace.allsolid && ! trace.startsolid ) )
 			VectorCopy( trace.endpos, ent.v.origin );
 		else {

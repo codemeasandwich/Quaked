@@ -16,6 +16,7 @@
  */
 // Ported from: WinQuake/progs.h -- program execution definitions
 
+import { GameProfile_IsHexen2 } from '../common/game_profile.js';
 import { link_t } from '../common/common.js';
 import { entity_state_t } from '../common/quakedef.js';
 import {
@@ -398,18 +399,20 @@ let programProfile = 'quake';
 export function PR_SetStringTempOfs( o ) { pr_string_temp_ofs = o; pr_string_temp_index = 0; }
 
 /**
- * Writes a string into the next rotating temp buffer at the end of `pr_strings_data`, for the string-returning
- * builtins (`ftos`, `vtos`, precache names). The sixteen buffers match the native Hexen II `pr_string_temp`: a value
- * stays readable until its buffer is reused sixteen calls later. Only the first 1023 characters are kept (plus NUL).
+ * Writes a string into the temp area at the end of `pr_strings_data`, for the string-returning builtins (`ftos`,
+ * `vtos`, precache names). Quake keeps WinQuake's single slot (127 characters plus NUL, the 128 bytes PR_LoadProgs
+ * reserves for it). Hexen II uses the native sixteen rotating buffers (`pr_string_temp`, 1023 characters each): a
+ * value stays readable until its buffer is reused sixteen calls later.
  *
  * @param {string} str text to store
  * @returns {number} the offset into pr_strings_data, usable as a QuakeC string value
  */
 export function PR_SetTempString( str ) {
 
-	const slot = pr_string_temp_index ++ % PR_STRING_TEMP_BUFFERS;
+	const hexen = GameProfile_IsHexen2();
+	const slot = hexen ? pr_string_temp_index ++ % PR_STRING_TEMP_BUFFERS : 0;
 	const base = pr_string_temp_ofs + slot * PR_STRING_TEMP_LENGTH;
-	const maxLen = PR_STRING_TEMP_LENGTH - 1;
+	const maxLen = hexen ? PR_STRING_TEMP_LENGTH - 1 : 127;
 	const len = Math.min( str.length, maxLen );
 	for ( let i = 0; i < len; i ++ ) pr_strings_data[ base + i ] = str.charCodeAt( i );
 	pr_strings_data[ base + len ] = 0;
