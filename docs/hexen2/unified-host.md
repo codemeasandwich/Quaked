@@ -167,7 +167,8 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `8cc2c3c7` | owner request | Help as one scroll with sticky section headings |
 | `245a5cb3` | owner request / M2 | high-resolution Hexen II menus on the one dynamic renderer: per-game skin with a runtime font from the installed bigfont/conchars, grey stone, smoothed original pictures, sliding title, menudot selector; Quake unchanged |
 | `b3f6580c` | browser trial T1 | Hexen II in a local source checkout; M2's font made legible on the GPU; Hexen's own console background |
-| (this commit) | H1, trial T2 | hub saves on IndexedDB; Portal's text lists and the native demos mounted; Hexen's own plaques; no Quake files requested |
+| `592220ad` | H1, trial T2 | hub saves on IndexedDB; Portal's text lists and the native demos mounted; Hexen's own plaques; no Quake files requested |
+| (this commit) | E1, E2 | Enhanced Hexen II: neutral grading at launch and the 3D view kept above Raven's status bar |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;
@@ -233,7 +234,8 @@ native demos and Portal's own `puzzles.txt`, `infolist.txt` and `maplist.txt` we
 plaques used Quake's paths (Hexen's are `gfx/menu/loading.lmp`, `paused.lmp`); every Hexen session requested Quake's
 wizard/hell-knight hit sounds and composed Quake's single-player menu picture. The trial now reads the engine console
 (`Con_RecentLines`) and fails on any file the engine could not load (shown failing with the old plaque path).
-For the owner's eye: Enhanced mode looks darker and hazier than Classic in demo1, with the hands drawn lower.
+For the owner's eye: Enhanced mode looked darker and hazier than Classic in demo1, with the hands drawn lower (fixed
+by E2 below; the remaining softness at a 2x window is dynamic resolution, `r_dynres`, a frame-rate governor).
 
 Open decisions and known limits:
 
@@ -245,3 +247,8 @@ Open decisions and known limits:
 - Hexen II texture art and skins: the per-game index and tiers exist, no Hexen art is indexed yet.
 - Native coordinates and angles re-encoded from gamecode writes truncate like Quaked's `MSG_WriteCoord`/`MSG_WriteAngle`
   (uhexen2 rounds): at most 1/8 unit or 1.4 degrees, kept consistent with the rest of the engine (review R4 finding 3).
+
+E2 (20 October 2026; investigation E1 and a same-spot browser comparison of Classic, Enhanced and neutral grading;
+verified at integration 288/288 suites, engine list 217/217, and the trial's launch screenshot): profile-bound neutral Hexen Enhanced grading and a Classic-sized
+3D rectangle above its HUD; Quake launch text and viewport policy retained. Implementation, RED/GREEN evidence,
+consumer audit, Bluey outage and remaining integration/visual acceptance gates: [e2-enhanced-look.md](e2-enhanced-look.md).

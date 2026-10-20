@@ -23,6 +23,7 @@ const frozenMap = map => Object.freeze( { ...map } );
 // Quake's names, byte for byte the literals the features carried before the bindings existed.
 const QUAKE = frozen( {
 	family: 'quake',
+	launchDefaults: frozenMap( {} ),
 	modelDir: 'progs/',
 	modelExtension: '.mdl',
 	torch: frozen( {
@@ -111,6 +112,8 @@ const QUAKE = frozen( {
 // machine) are deliberately absent: their arrays are empty or their model is null.
 const HEXEN2 = frozen( {
 	family: 'hexen2',
+	// Quake's grade suppresses Raven's baked lighting; keep the shared Enhanced features with neutral controls.
+	launchDefaults: frozenMap( { r_newbright: 1, r_newcontrast: 1, r_newdark: 1 } ),
 	modelDir: 'models/',
 	modelExtension: '.mdl',
 	torch: frozen( {

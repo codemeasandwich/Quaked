@@ -9,13 +9,15 @@
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
+import { NewerBindings } from '../content_bindings.js';
 import { GameProfile_Get } from '../../engine/common/game_profile.js';
 
 // Explicit Newer launches begin with the enhancement switches enabled. This
 // is launch policy, not a per-frame override: feature controls remain effective
-// during play. Numeric appearance/performance settings and flashlight run
-// policy stay with their existing owners. The title demo borrows/restores this
-// same baseline without making it the player's saved configuration.
+// during play. Per-game appearance defaults come from the bindings; other
+// numeric settings and flashlight run policy stay with their existing owners.
+// The title demo borrows/restores the feature baseline without making it the
+// player's saved configuration.
 export const NEWER_ENABLED_FEATURES = Object.freeze( [
  'r_newer_lighting', 'r_newer_normals', 'r_newer_shadows',
  'r_pointshadows', 'r_heightshadows', 'r_rockfield', 'r_powerups',
@@ -34,10 +36,13 @@ export const NEWER_DEFAULT_GAMMA = 0.75; // brightness range is gamma1 (dark) to
  * existing Newer/Classic choice or Options toggle, so the owner can launch without the enhanced features: with it
  * false only `r_hdr 0` is emitted and every feature keeps its saved value.
  *
+ * Like the existing gamma/feature defaults, appearance values override saved choices at an explicit Enhanced
+ * launch or enable; later Options/console changes and configuration replay remain effective.
+ *
  * The Quake menus already emit `r_hdr 1` beside the defaults, so their common `newerDefaults()` helper asks for the
  * feature commands without a second header line (`hdr: false`); the full form is for a host that starts Hexen II.
  *
- * @param {?object} [profile=GameProfile_Get()] the active game profile (accepted so callers can be explicit)
+ * @param {?object} [profile=GameProfile_Get()] the profile whose appearance bindings to apply
  * @param {boolean} [enabled=true] the player's Newer Game choice; false turns Newer off and leaves the switches alone
  * @param {{ hdr?: boolean }} [options] `hdr` (default true) emits the `r_hdr` header line
  * @returns {string} console command text, ready for `Cbuf_AddText`
@@ -51,6 +56,7 @@ export function Newer_ApplyGameDefaults( profile = GameProfile_Get(), enabled = 
 
 		for ( const name of NEWER_ENABLED_FEATURES ) commands.push( name + ' 1\n' );
 		commands.push( `gamma ${NEWER_DEFAULT_GAMMA}\n`, 'cl_showfps 1\n' );
+		for ( const [ name, value ] of Object.entries( NewerBindings( profile ).launchDefaults ) ) commands.push( `${name} ${value}\n` );
 
 	}
 	return commands.join( '' );

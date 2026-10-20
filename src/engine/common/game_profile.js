@@ -35,6 +35,7 @@ const QUAKE = Object.freeze( {
 	hullCount: 4,
 	hulls: null, // the BSP loader's existing Quake hull sizes
 	frameTime: 0.1, // OP_STATE think delay
+	screen: Object.freeze( { enhancedViewUnderHud: true } ),
 	menuSkin: 'quake', // the dynamic menu's skin (newer/ui/menu_skins.js)
 	modelDir: 'progs/',
 	startMap: null, // Quake's quake.rc starts the attract demos; the menu owns New Game
@@ -58,6 +59,8 @@ function hexen2( id, { portals = false, demo = false } = {} ) {
 		hullCount: 8, // dmodel_t carries 8 headnodes; hulls 0-5 are populated
 		hulls: Object.freeze( hulls ),
 		frameTime: 0.05, // HX_FRAME_TIME
+		// Raven's tall bar must not hide the held model at the bottom of an Enhanced full-height view.
+		screen: Object.freeze( { enhancedViewUnderHud: false } ),
 		menuSkin: 'hexen2',
 		modelDir: 'models/',
 		// the first maps of each edition (uhexen2: demo1 opens the base campaign, keep1 Portal); hexen.rc opens the

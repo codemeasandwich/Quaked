@@ -27,7 +27,7 @@ import { R_WeaponWheelDraw, R_ControllerPromptsDraw } from '../common/hooks.js';
 import { Draw_Character, Draw_String, Draw_CachePic, Draw_Pic, Draw_TransPic, Draw_FadeScreen, Draw_BeginFrame,
 	GL_Set2D, Draw_TileClear, Draw_PicFromWad, Draw_GetUIScale, Draw_HighlightOffset,
 	Draw_GetVirtualWidth, Draw_GetVirtualHeight } from './gl_draw.js';
-import { GameProfile_IsHexen2 } from '../common/game_profile.js';
+import { GameProfile_Get, GameProfile_IsHexen2 } from '../common/game_profile.js';
 import { Hexen2_GetHostString, Hexen2_GetInfoString, Hexen2_InfoStringCount } from '../common/hexen2_text_resources.js';
 import { Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from '../common/cvar.js';
 import { Respawn_NoticeAt } from '../common/hooks.js'; // installed by newer/ui/respawn_notice.js
@@ -618,9 +618,9 @@ function SCR_CalcRefdef() {
 	else
 		_r_refdef.vrect.y = Math.floor( ( h - _r_refdef.vrect.height ) / 2 );
 
-	// Newer Game: the picture fills the screen and the status bar is drawn over the
-	// bottom of it, so wide screens do not show black beside the bar
-	if ( scr_newer() && _r_refdef.vrect.width >= _vid.width && sb_lines > 0 ) {
+	// The profile chooses whether Enhanced fills beneath the bar (Quake), or reserves
+	// the Classic rectangle so Raven's taller bar leaves the held model visible.
+	if ( scr_newer() && GameProfile_Get().screen.enhancedViewUnderHud && _r_refdef.vrect.width >= _vid.width && sb_lines > 0 ) {
 
 		_r_refdef.vrect.height = _vid.height;
 		_r_refdef.vrect.y = 0;

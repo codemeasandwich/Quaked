@@ -2,7 +2,7 @@
 // features carried before the seam; Hexen II's resolves its own models/ paths and leaves Quake-only effects unbound.
 import * as bindings from '../src/newer/content_bindings.js';
 import * as skins from '../src/newer/render/r_newerskins.js';
-import { GameProfile_Set } from '../src/engine/common/game_profile.js';
+import { GameProfile_Set, GameProfile_For } from '../src/engine/common/game_profile.js';
 import { NEWER_DEFAULT_GAMMA, NEWER_ENABLED_FEATURES, Newer_ApplyGameDefaults } from '../src/newer/ui/newer_defaults.js';
 
 const check = ( value, message ) => { if ( ! value ) throw new Error( message ); };
@@ -124,5 +124,36 @@ Deno.test( 'the shared enabling function emits the Quake launch defaults for eit
 	const featuresOnly = Newer_ApplyGameDefaults( hexen, true, { hdr: false } );
 	check( ! featuresOnly.includes( 'r_hdr' ), 'the menus already emit the header' );
 	check( featuresOnly.includes( 'r_newer_lighting 1\n' ), 'feature defaults remain' );
+
+} );
+
+// Literal snapshot: changing a feature list must not silently change Quake's launch contract.
+const quakeLaunch = 'r_hdr 1\nr_newer_lighting 1\nr_newer_normals 1\nr_newer_shadows 1\nr_pointshadows 1\nr_heightshadows 1\nr_rockfield 1\nr_powerups 1\nr_newer_weapons 1\nr_newer_textures 1\nr_newer_water 1\nr_newer_enemies 1\nr_newer_portals 1\nr_newer_hud 1\nr_decals 1\nr_lerpmodels 1\nr_newer_variety 1\ngamma 0.75\ncl_showfps 1\n';
+
+Deno.test( 'Quake launch commands stay byte for byte unchanged', () => {
+
+	for ( const id of [ 'quake', 'shareware', 'hipnotic', 'rogue' ] ) {
+
+		same( Newer_ApplyGameDefaults( GameProfile_For( id ) ), quakeLaunch, id );
+		same( Newer_ApplyGameDefaults( GameProfile_For( id ), true, { hdr: false } ), quakeLaunch.slice( 8 ), id + ' without header' );
+
+	}
+
+} );
+
+for ( const id of [ 'hexen2', 'hexen2-demo', 'hexen2-portals' ] ) Deno.test( id + ' launches with neutral grading and leaves Classic alone', () => {
+
+	const neutral = 'r_newbright 1\nr_newcontrast 1\nr_newdark 1\n';
+	try {
+
+		GameProfile_Set( id );
+		same( Newer_ApplyGameDefaults(), quakeLaunch + neutral, id + ' active profile' );
+		GameProfile_Set( 'quake' );
+		same( Newer_ApplyGameDefaults( GameProfile_For( id ) ), quakeLaunch + neutral, id + ' explicit profile wins' );
+		same( Newer_ApplyGameDefaults( GameProfile_For( id ), true, { hdr: false } ), quakeLaunch.slice( 8 ) + neutral, id + ' without header' );
+		same( Newer_ApplyGameDefaults( GameProfile_For( id ), false ), 'r_hdr 0\n', id + ' Classic' );
+		same( Newer_ApplyGameDefaults( GameProfile_For( id ), false, { hdr: false } ), '', id + ' Classic without header' );
+
+	} finally { GameProfile_Set( 'quake' ); }
 
 } );
