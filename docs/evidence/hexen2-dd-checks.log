@@ -1,0 +1,158 @@
+Base RED
+RESULT 6/13 passed (tests/cl_hexen2_demo_test.js)
+FAIL native full updates and sparse baselines preserve every origin and angle axis through the shared parser Error: full packet origin pairs: -17.25,-1247.75,-2028 != -17.25,83.5,219.125
+FAIL native reference sequences use the committed first build, not the preceding displayed delta Error: omitted coordinates revert to reference, not last delta: 40,-1023.875,0 != 10,20,30
+FAIL native clear_edicts affects the displayed frame and the first build removal list only Error: later frame visibility starts at committed reference:  != 2
+FAIL sparse native clientdata retains eye height, pitch, punch, velocity and weapon fields Error: native viewheight persists when absent: 22 != 50
+FAIL a reference-visible entity without a fast update keeps its last displayed position Error: whole-entity omission retains last display, not reference origin: 70,-512,0 != 70,20,30
+FAIL native forced links snap, then clear for ordinary updates and return after missed updates Error: U_NOLERP snaps a 20-unit step instead of interpolating to 20: 19.999998092651367 != 30
+FAIL native U_CLEAR_ENT clears both baseline and committed reference before a sparse update Error: clear zeroes the reference model: 4 != 0
+RESULT 0/3 passed (tests/hexen2_demo_camera_test.js)
+FAIL demo1 native playback keeps the rendered camera inside the level and continuous Error: camera in non-solid space within world bounds: 6.061%
+FAIL demo2 native playback keeps the rendered camera inside the level and continuous Error: camera in non-solid space within world bounds: 0.000%
+FAIL demo3 native playback keeps the rendered camera inside the level and continuous Error: camera in non-solid space within world bounds: 1.779%
+RESULT 0/1 passed (tests/serve_py_test.js)
+FAIL ranges are served as 206 with the right bytes; whole files as before; past the end is 416 Error: the server started
+TOTAL 6/17 passed
+Independent final
+RESULT 13/13 passed (tests/cl_hexen2_demo_test.js)
+RESULT 3/3 passed (tests/hexen2_demo_camera_test.js)
+TOTAL 16/16 passed
+Maintained engine
+RESULT 17/17 passed (tests/game_selection_test.js)
+RESULT 3/3 passed (tests/desktop_prepare_test.js)
+RESULT 13/13 passed (tests/game_shelf_test.js)
+RESULT 3/3 passed (tests/local_play_test.js)
+RESULT 4/4 passed (tests/net_window_test.js)
+RESULT 1/1 passed (tests/window_play_native_test.js)
+RESULT 0/1 passed (tests/serve_py_test.js)
+FAIL ranges are served as 206 with the right bytes; whole files as before; past the end is 416 Error: the server started
+RESULT 7/7 passed (tests/fog_test.js)
+RESULT 4/4 passed (tests/skybox_test.js)
+RESULT 1/1 passed (tests/options_order_test.js)
+RESULT 8/8 passed (tests/blast_shake_test.js)
+RESULT 3/3 passed (tests/newer_menu_scroll_test.js)
+RESULT 3/3 passed (tests/addon_effects_guard_test.js)
+RESULT 13/13 passed (tests/shambler_steps_test.js)
+RESULT 3/3 passed (tests/hooks_test.js)
+RESULT 8/8 passed (tests/drips_test.js)
+RESULT 7/7 passed (tests/electric_native_test.js)
+RESULT 17/17 passed (tests/electric_spatial_test.js)
+RESULT 13/13 passed (tests/milkyway_sky_test.js)
+RESULT 9/9 passed (tests/texture_q92_channels_test.js)
+RESULT 1/1 passed (tests/in_web_test.js)
+RESULT 4/4 passed (tests/in_web_capture_test.js)
+RESULT 1/1 passed (tests/in_web_lifecycle_test.js)
+RESULT 7/7 passed (tests/dof_test.js)
+RESULT 7/7 passed (tests/footsteps_test.js)
+RESULT 8/8 passed (tests/material_impacts_test.js)
+RESULT 6/6 passed (tests/water_audio_test.js)
+RESULT 21/21 passed (tests/native_sound_replacement_test.js)
+RESULT 4/4 passed (tests/environment_sounds_test.js)
+RESULT 7/7 passed (tests/player_events_audio_test.js)
+RESULT 4/4 passed (tests/face_demo_water_test.js)
+RESULT 2/2 passed (tests/face_water_entry_test.js)
+RESULT 1/1 passed (tests/ambient_sounds_test.js)
+RESULT 1/1 passed (tests/sound_channel_steal_test.js)
+TOTAL 211/212 passed
+Local HTTP diagnostic (unchanged tools/serve.py):
+Traceback (most recent call last):
+  File "/Users/bri/worktrees/Quaked/hexen2-unified/dd/tools/serve.py", line 92, in <module>
+    http.server.ThreadingHTTPServer(('127.0.0.1', port), RangeHandler).serve_forever()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socketserver.py", line 457, in __init__
+    self.server_bind()
+    ~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/server.py", line 148, in server_bind
+    socketserver.TCPServer.server_bind(self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socketserver.py", line 478, in server_bind
+    self.socket.bind(self.server_address)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 1] Operation not permitted
+Final full Hexen/demo run
+RESULT 1/1 passed (tests/hexen2_acceptance_shared_test.js)
+RESULT 3/3 passed (tests/hexen2_animation_test.js)
+RESULT 1/1 passed (tests/hexen2_base_maps_shared_test.js)
+RESULT 2/2 passed (tests/hexen2_builtin_wire_live_test.js)
+RESULT 15/15 passed (tests/hexen2_builtins_native_test.js)
+RESULT 2/2 passed (tests/hexen2_builtins_test.js)
+RESULT 1/1 passed (tests/hexen2_campaign_shared_test.js)
+RESULT 1/1 passed (tests/hexen2_changelevel_test.js)
+RESULT 1/1 passed (tests/hexen2_class_stats_test.js)
+RESULT 2/2 passed (tests/hexen2_clientdata_test.js)
+RESULT 1/1 passed (tests/hexen2_combat_clientthink_test.js)
+RESULT 1/1 passed (tests/hexen2_combat_test.js)
+RESULT 1/1 passed (tests/hexen2_connect_shared_test.js)
+RESULT 1/1 passed (tests/hexen2_coop_four_shared_test.js)
+RESULT 1/1 passed (tests/hexen2_coop_leave_shared_test.js)
+RESULT 1/1 passed (tests/hexen2_coop_move_shared_test.js)
+RESULT 1/1 passed (tests/hexen2_coop_spawn_shared_test.js)
+RESULT 3/3 passed (tests/hexen2_demo_camera_test.js)
+RESULT 3/3 passed (tests/hexen2_demo_test.js)
+RESULT 5/5 passed (tests/hexen2_effects_native_test.js)
+RESULT 1/1 passed (tests/hexen2_effects_test.js)
+RESULT 1/1 passed (tests/hexen2_effectwire_test.js)
+RESULT 1/1 passed (tests/hexen2_endgame_shared_test.js)
+RESULT 4/4 passed (tests/hexen2_enhanced_view_test.js)
+RESULT 3/3 passed (tests/hexen2_f2_live_test.js)
+RESULT 8/8 passed (tests/hexen2_f2_native_test.js)
+RESULT 10/10 passed (tests/hexen2_filesystem_test.js)
+RESULT 1/1 passed (tests/hexen2_finale_shared_test.js)
+RESULT 3/3 passed (tests/hexen2_help_scroll_test.js)
+RESULT 5/5 passed (tests/hexen2_hub_native_test.js)
+RESULT 1/1 passed (tests/hexen2_hub_shared_test.js)
+RESULT 1/1 passed (tests/hexen2_hud_layout_test.js)
+RESULT 4/4 passed (tests/hexen2_input_native_test.js)
+RESULT 1/1 passed (tests/hexen2_input_test.js)
+RESULT 1/1 passed (tests/hexen2_intermission_test.js)
+RESULT 1/1 passed (tests/hexen2_inventory_hud_test.js)
+RESULT 1/1 passed (tests/hexen2_items_test.js)
+RESULT 8/8 passed (tests/hexen2_menu_native_test.js)
+RESULT 3/3 passed (tests/hexen2_menu_shared_test.js)
+RESULT 5/5 passed (tests/hexen2_menu_skin_test.js)
+RESULT 4/4 passed (tests/hexen2_midi_music_test.js)
+RESULT 1/1 passed (tests/hexen2_midi_owned_test.js)
+RESULT 4/4 passed (tests/hexen2_midi_test.js)
+RESULT 2/2 passed (tests/hexen2_model_test.js)
+RESULT 1/1 passed (tests/hexen2_msgone_test.js)
+RESULT 4/4 passed (tests/hexen2_music_source_test.js)
+RESULT 14/14 passed (tests/hexen2_physics_native_test.js)
+RESULT 1/1 passed (tests/hexen2_player_bounds_test.js)
+RESULT 1/1 passed (tests/hexen2_player_test.js)
+RESULT 1/1 passed (tests/hexen2_portal_campaign_shared_test.js)
+RESULT 1/1 passed (tests/hexen2_portal_maps_shared_test.js)
+RESULT 1/1 passed (tests/hexen2_portal_shared_test.js)
+RESULT 3/3 passed (tests/hexen2_precache_test.js)
+RESULT 9/9 passed (tests/hexen2_profile_test.js)
+RESULT 7/7 passed (tests/hexen2_progdefs_test.js)
+RESULT 2/2 passed (tests/hexen2_progs_layout_test.js)
+RESULT 6/6 passed (tests/hexen2_protocol_test.js)
+RESULT 14/14 passed (tests/hexen2_render_semantics_test.js)
+RESULT 2/2 passed (tests/hexen2_rpg_test.js)
+RESULT 1/1 passed (tests/hexen2_save_size_portal_test.js)
+RESULT 1/1 passed (tests/hexen2_save_size_test.js)
+RESULT 8/8 passed (tests/hexen2_save_storage_test.js)
+RESULT 3/3 passed (tests/hexen2_save_test.js)
+RESULT 5/5 passed (tests/hexen2_sbar_shared_test.js)
+RESULT 3/3 passed (tests/hexen2_selection_desktop_test.js)
+RESULT 1/1 passed (tests/hexen2_soak_shared_test.js)
+RESULT 1/1 passed (tests/hexen2_soundwire_test.js)
+RESULT 1/1 passed (tests/hexen2_spawn_test.js)
+RESULT 1/1 passed (tests/hexen2_startspot_shared_test.js)
+RESULT 1/1 passed (tests/hexen2_temp_edicts_live_test.js)
+RESULT 2/2 passed (tests/hexen2_transition_stats_live_test.js)
+RESULT 9/9 passed (tests/hexen2_vm_test.js)
+RESULT 2/2 passed (tests/hexen2_world_test.js)
+RESULT 4/4 passed (tests/unified_protocol_test.js)
+RESULT 13/13 passed (tests/cl_hexen2_demo_test.js)
+RESULT 1/1 passed (tests/cl_demo_test.js)
+RESULT 1/1 passed (tests/cl_demo_commands_test.js)
+RESULT 7/7 passed (tests/demo_hdr_ownership_test.js)
+RESULT 4/4 passed (tests/demo_shadow_defaults_test.js)
+RESULT 11/11 passed (tests/demo_startup_loading_test.js)
+RESULT 8/8 passed (tests/classic_demo_isolation_test.js)
+RESULT 4/4 passed (tests/face_demo_water_test.js)
+RESULT 9/9 passed (tests/profiler_demo_mode_test.js)
+RESULT 3/3 passed (tests/r_demosplit_resolution_test.js)
+TOTAL 292/292 passed

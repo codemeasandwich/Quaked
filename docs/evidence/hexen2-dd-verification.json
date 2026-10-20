@@ -1,0 +1,252 @@
+{
+  "base": "9c0753c3e04e5d4a905d2ad19a13bf6cc6db0817",
+  "workspace": "/Users/bri/worktrees/Quaked/hexen2-unified/dd",
+  "candidateFiles": {
+    "src/engine/client/cl_hexen2_demo.js": "0b7138b58057dca70b47fdf187e27abd9ebf13a658eacf2020fb953b7583664a",
+    "src/engine/client/cl_main.js": "ec4f0d87c56ac95b71ebc3c23c205dd71e3c4827272011ea7bbafe316f000d01",
+    "src/engine/client/cl_parse.js": "c823db487c6e79af59a959e3674bfbda972b7af94b727631eba49496c7ea7fea",
+    "src/engine/common/protocol.js": "7269215a870f4ebe169956a238c766251a739cb7ec8cfe4b14a5220b6a502aad",
+    "src/engine/common/quakedef.js": "38b21be7fbf6230d455ffde52c1d7fe9f97114da678ced1a8880b2ce61d80f17",
+    "tests/cl_hexen2_demo_test.js": "d87fa74dd6455deb6fc84574262a3b2ca884934448d87db7c9475a1be562cb34",
+    "tests/hexen2_demo_camera_test.js": "0a6ebd17f166b1be245fafa50a98d5e033209a1c52149e366a407e06e4235b29"
+  },
+  "ownedDemoInputs": {
+    "demo1.dem": {
+      "bytes": 246557,
+      "sha256": "17110a1931b3d64c1f4fc4d0b5d1ed589824d0c029d74ff6234ebaf45a69f3ce"
+    },
+    "demo2.dem": {
+      "bytes": 126935,
+      "sha256": "f7734ff7d45ce0549bfc71f613861e08b46fe81d30b393b5b0377ee256cfd9a8"
+    },
+    "demo3.dem": {
+      "bytes": 408500,
+      "sha256": "57639d9b02a37e5942dd857ae6fe103cb8510c7f0218e96191af24826960bcbf"
+    }
+  },
+  "before": [
+    {
+      "demo": "demo1",
+      "frames": 1815,
+      "valid": 110,
+      "solid": 1705,
+      "outside": 1384,
+      "maxJump": 8091.710037750364,
+      "jumps": 100,
+      "teleports": 0,
+      "discontinuities": [
+        {
+          "time": 80.7635716756184,
+          "from": [
+            -461.21875,
+            514.28125,
+            -1854.009765625
+          ],
+          "to": [
+            -461.21875,
+            514.28125,
+            -1717.96875
+          ],
+          "serverOrigin": [
+            -461.25,
+            514.25,
+            -1728
+          ],
+          "teleport": false
+        },
+        {
+          "time": 83.44690500895157,
+          "from": [
+            -466.6959228515625,
+            513.53125,
+            -2240.124267578125
+          ],
+          "to": [
+            -467.59375,
+            513.53125,
+            -2373.96875
+          ],
+          "serverOrigin": [
+            -467.625,
+            513.5,
+            -2400
+          ],
+          "teleport": false
+        }
+      ],
+      "validPercent": 6.0606060606060606
+    },
+    {
+      "demo": "demo2",
+      "frames": 1576,
+      "valid": 0,
+      "solid": 1576,
+      "outside": 1576,
+      "maxJump": 8091.6207044799075,
+      "jumps": 76,
+      "teleports": 0,
+      "discontinuities": [
+        {
+          "time": 6.76377770105996,
+          "from": [
+            785.7962036132812,
+            -4095.59375,
+            900.3300170898438
+          ],
+          "to": [
+            785.90625,
+            -4095.59375,
+            1037.9169921875
+          ],
+          "serverOrigin": [
+            785.875,
+            -4095.625,
+            1024
+          ],
+          "teleport": false
+        },
+        {
+          "time": 7.763777701059956,
+          "from": [
+            819.3460083007812,
+            -4095.71875,
+            1602.4237060546875
+          ],
+          "to": [
+            819.78125,
+            -4095.71875,
+            1770.319091796875
+          ],
+          "serverOrigin": [
+            819.75,
+            -4095.75,
+            1760
+          ],
+          "teleport": false
+        }
+      ],
+      "validPercent": 0
+    },
+    {
+      "demo": "demo3",
+      "frames": 4891,
+      "valid": 87,
+      "solid": 4804,
+      "outside": 4248,
+      "maxJump": 8128.062042185174,
+      "jumps": 1137,
+      "teleports": 0,
+      "discontinuities": [
+        {
+          "time": 1.3833333571751911,
+          "from": [
+            -917.96875,
+            -1895.96875,
+            22.03125
+          ],
+          "to": [
+            -917.96875,
+            -2247.96875,
+            22.03125
+          ],
+          "serverOrigin": [
+            -918,
+            -2248,
+            0
+          ],
+          "teleport": false
+        },
+        {
+          "time": 1.4166666905085243,
+          "from": [
+            -917.96875,
+            -2247.96875,
+            22.03125
+          ],
+          "to": [
+            -917.96875,
+            -2471.96875,
+            22.03125
+          ],
+          "serverOrigin": [
+            -918,
+            -2472,
+            0
+          ],
+          "teleport": false
+        }
+      ],
+      "validPercent": 1.7787773461459824
+    }
+  ],
+  "after": [
+    {
+      "demo": "demo1",
+      "frames": 1815,
+      "valid": 1815,
+      "solid": 0,
+      "outside": 0,
+      "maxJump": 670.9877346788303,
+      "jumps": 0,
+      "teleports": 1,
+      "discontinuities": [
+        {
+          "time": 84.34690500895152,
+          "from": [
+            -636.155517578125,
+            271.21435546875,
+            49.16551971435547
+          ],
+          "to": [
+            -439.96875,
+            912.03125,
+            82.16551971435547
+          ],
+          "serverOrigin": [
+            -440,
+            912,
+            35
+          ],
+          "teleport": true
+        }
+      ],
+      "validPercent": 100
+    },
+    {
+      "demo": "demo2",
+      "frames": 1576,
+      "valid": 1576,
+      "solid": 0,
+      "outside": 0,
+      "maxJump": 18.699630997351765,
+      "jumps": 0,
+      "teleports": 0,
+      "discontinuities": [],
+      "validPercent": 100
+    },
+    {
+      "demo": "demo3",
+      "frames": 4891,
+      "valid": 4891,
+      "solid": 0,
+      "outside": 0,
+      "maxJump": 17.3747709026773,
+      "jumps": 0,
+      "teleports": 0,
+      "discontinuities": [],
+      "validPercent": 100
+    }
+  ],
+  "verification": {
+    "baseRegressions": "6/13 passed; all seven new regression cases failed",
+    "baseCamera": "0/3 passed",
+    "independentFinal": "16/16 passed (13 decoder/client + 3 camera)",
+    "maintainedEngine": "211/212 passed; serve_py fails on candidate and unchanged base; PermissionError [Errno 1] socket.bind",
+    "finalFullHexenDemo": "292/292 passed, no skips"
+  },
+  "limits": [
+    "No browser/GPU visual owner trial",
+    "No commit, landing, hook or distribution run",
+    "Bluey storage_error; reconciliation owned by integrating orchestrator"
+  ]
+}

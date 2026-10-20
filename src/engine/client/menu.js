@@ -228,9 +228,13 @@ function M_DrawSplitMarks() {
 	if(R_DemoLoadingConsoleOverride()||R_WelcomeLoadingHolding())return;
 	if ( ! _Draw_Fill ) return;
 	_Draw_Fill( ( _vid.width >> 1 ) - 1, 0, 2, _vid.height, 0, 0.9 );
-	const off = ( _vid.width - 320 ) >> 1;
-	M_PrintWhite( 8 - off, 4, 'ENHANCED' );
-	M_PrintWhite( _vid.width - 8 - 7 * 8 - off, 4, 'CLASSIC' );
+	const off = ( _vid.width - 320 ) >> 1, offY = ( _vid.height - 200 ) >> 1;
+	// Hexen II's menu hangs its tall plaque and title signs in the top-left corner: with that menu up the labels go to
+	// the bottom of the picture, above the status bar and its horns, the left one clear of the plaque's column
+	const hexenMenu = GameProfile_IsHexen2() && getKeyDest() === key_menu && m_state !== m_none;
+	const y = hexenMenu ? _vid.height - 72 - offY : 4, left = hexenMenu ? Math.max( 8 - off, 52 ) : 8 - off;
+	M_PrintWhite( left, y, 'ENHANCED' );
+	M_PrintWhite( _vid.width - 8 - 7 * 8 - off, y, 'CLASSIC' );
 
 }
 
@@ -272,8 +276,9 @@ export function M_Draw() {
 
 		} else if ( R_DemoSplitActive() && _Draw_Fill ) {
 
-			// the title demo is half Newer and half classic: dim it only a little, so the two can be compared
-			_Draw_Fill( 0, 0, _vid.width, _vid.height, 0, 0.32 );
+			// the title demo is half Newer and half classic: dim it only a little, so the two can be compared (Hexen II's
+			// menu is dark carved stone, which needs a deeper veil to stand off the demo)
+			_Draw_Fill( 0, 0, _vid.width, _vid.height, 0, GameProfile_IsHexen2() ? 0.55 : 0.32 );
 			M_DrawSplitMarks();
 
 		} else {

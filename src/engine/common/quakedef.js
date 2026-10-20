@@ -164,6 +164,7 @@ export class entity_state_t {
 		this.scale = 100;
 		this.drawflags = 0;
 		this.abslight = 0;
+		this.noLerp = false; // transient native-demo link, carried by PE2_NOLERP
 
 	}
 
@@ -191,6 +192,7 @@ export class entity_state_t {
 		this.scale = other.scale;
 		this.drawflags = other.drawflags;
 		this.abslight = other.abslight;
+		this.noLerp = other.noLerp;
 
 	}
 

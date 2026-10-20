@@ -416,8 +416,8 @@ const STONE_REPLACEMENTS = Object.freeze( [
 const GLYPH_FACE = `vec3 face = copper(v_world);
         face *= u_copper*(kind>1.5 ? 1.58 : 1.);
         if(kind>2.5)face=mix(face,vec3(dot(face,vec3(.30,.59,.11))*.92),.84);`;
-const GLYPH_FACE_INKED = `vec3 face = kind < .5 ? INK_HIGHLIGHT : kind < 1.5 ? INK_BIG : kind > 2.5 ? INK_PLAIN : copper(v_world)*u_copper;
-        if(kind < 1.5 || kind > 2.5) face *= 1.25 + .3*dot(copper(v_world),vec3(.30,.59,.11));`;
+const GLYPH_FACE_INKED = `vec3 face = kind < .5 ? INK_HIGHLIGHT : kind > 2.5 ? INK_PLAIN : INK_BIG;
+        face *= 1.25 + .3*dot(copper(v_world),vec3(.30,.59,.11));`;
 
 function replaceFunction( source, name, replacement ) {
 
@@ -439,7 +439,7 @@ function replaceFunction( source, name, replacement ) {
 /**
  * The colours of Hexen II's menu lettering, from the installed sheets and palette: the mean ink of the small font's
  * letters (A-Z) in its plain bank (codes 0..255, the help headings' tan) and highlighted bank (256..511, the red menu
- * text), and of the bigfont's letters (its grey stone). The dynamic lettering is tinted with them so the game's own
+ * text), and of the bigfont's lit faces (the brighter half of its grey stone ink). The dynamic lettering is tinted with them so the game's own
  * colours survive the high-resolution redraw.
  *
  * @param {?{ width: number, height: number, data: ArrayLike<number> }} conchars the raw 256 x 128 sheet (index 0 empty)
@@ -475,17 +475,20 @@ export function MenuSkin_ConcharsInks( conchars, palette, bigfont = null ) {
 	let big = null;
 	if ( bigfont?.data && bigfont.width > 0 ) {
 
-		const sum = [ 0, 0, 0 ];
-		let n = 0;
+		// the lit face of the carved letters, not their shadowed edges: the mean of the brighter half of the ink (the
+		// mean of all of it is the dark rim, which vanishes over a bright title demo)
+		const inks = [];
 		for ( let i = 0; i < bigfont.width * bigfont.height; i ++ ) {
 
 			const index = bigfont.data[ i ];
 			if ( BIGFONT_EMPTY.includes( index ) ) continue;
-			for ( let k = 0; k < 3; k ++ ) sum[ k ] += palette[ index * 3 + k ];
-			n ++;
+			const rgb = [ palette[ index * 3 ], palette[ index * 3 + 1 ], palette[ index * 3 + 2 ] ];
+			inks.push( { rgb, lum: rgb[ 0 ] * .3 + rgb[ 1 ] * .59 + rgb[ 2 ] * .11 } );
 
 		}
-		if ( n ) big = sum.map( v => v / n / 255 );
+		inks.sort( ( a, b ) => b.lum - a.lum );
+		const face = inks.slice( 0, Math.max( 1, inks.length >> 1 ) );
+		if ( inks.length ) big = [ 0, 1, 2 ].map( k => face.reduce( ( sum, ink ) => sum + ink.rgb[ k ], 0 ) / face.length / 255 );
 
 	}
 	return plain && highlight ? { plain, highlight, big } : null;
@@ -497,7 +500,8 @@ export function MenuSkin_ConcharsInks( conchars, palette, bigfont = null ) {
  * changed, so Quake's renderer keeps the supplied bronze materials exactly.
  *
  * With `inks` (`MenuSkin_ConcharsInks`), lettering takes the game's own colours instead of the material: the
- * highlighted bank (kind 0, `M_Print`), the plain bank (kind 3, `M_PrintWhite`) and the bigfont's stone (kind 1).
+ * highlighted bank (kind 0, `M_Print`), the plain bank (kind 3, `M_PrintWhite`) and the bigfont's stone (kind 2, raised
+ * like the original letters; kind 1 is the supplied renderer's recessed carving, which Hexen II does not use).
  *
  * @param {object} shaders the generated `QUAKE_SHADERS` object
  * @param {?{ plain: Array<number>, highlight: Array<number> }} [inks] the bank colours, linear 0..1 RGB

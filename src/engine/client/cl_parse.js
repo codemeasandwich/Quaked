@@ -67,7 +67,7 @@ import {
 	PE_ENT_BITS, PE_ENT_MASK, PE_ORIGIN1, PE_ORIGIN2, PE_ORIGIN3,
 	PE_ANGLE2, PE_REMOVE, PE_MOREBITS,
 	PE_FRAME, PE_ANGLE1, PE_ANGLE3, PE_MODEL, PE_COLORMAP, PE_SKIN, PE_EFFECTS,
-	PE_MOREBITS2, PE2_SCALE, PE2_DRAWFLAGS, PE2_ABSLIGHT,
+	PE_MOREBITS2, PE2_SCALE, PE2_DRAWFLAGS, PE2_ABSLIGHT, PE2_NOLERP,
 	MAX_PACKET_ENTITIES_LOCAL, PE_UPDATE_BACKUP, PE_UPDATE_MASK,
 	svc_hexen2_features, svc_hexen2_start_effect, svc_hexen2_end_effect, svc_hexen2_update_inv,
 	svc_hexen2_plaque, svc_hexen2_raineffect, svc_hexen2_particle2, svc_hexen2_particle3, svc_hexen2_particle4,
@@ -564,6 +564,8 @@ function CL_ParseDelta( from, to, bits, number ) {
 	}
 
 	to.flags = bits;
+	// This flag belongs to this update, never to the state used as its delta base.
+	to.noLerp = ( bits2 & PE2_NOLERP ) !== 0;
 
 	if ( bits & PE_MODEL )
 		to.modelindex = MSG_ReadIndex();

@@ -286,6 +286,8 @@ export const PE_SOLID = PE_MOREBITS2;
 export const PE2_SCALE = ( 1 << 0 ); // [byte] uhexen2's scale*100 (100 is 1.0)
 export const PE2_DRAWFLAGS = ( 1 << 1 ); // [byte] uhexen2's drawflags
 export const PE2_ABSLIGHT = ( 1 << 2 ); // [byte] uhexen2's abslight*255
+// Native demo U_NOLERP/forced links; transient, no payload, never emitted by the live Quake writer.
+export const PE2_NOLERP = ( 1 << 3 );
 
 // Hexen II's fixed signon baseline layout (uhexen2 CL_ParseBaseline): after model (short), frame, colormap and skin
 // bytes come scale, drawflags and abslight bytes, then origin/angle pairs. The feature message says the session uses

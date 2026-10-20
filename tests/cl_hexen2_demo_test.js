@@ -14,8 +14,8 @@ import {
 	cl, cls, cl_entities, cl_dlights, cl_visedicts, cl_numvisedicts, entity_t, ca_connected
 } from '../src/engine/client/client.js';
 import { sizebuf_t, SZ_Alloc, SZ_Write, COM_SetNetMessage } from '../src/engine/common/common.js';
-import { PROTOCOL_LARGE } from '../src/engine/common/protocol.js';
-import { CL_SetValidSequence } from '../src/engine/client/cl_pred.js';
+import { PROTOCOL_LARGE, svc_hexen2_features, HEXEN2_FEATURE_ENTITY_FIELDS, HEXEN2_FEATURE_NATIVE_BASELINES } from '../src/engine/common/protocol.js';
+import { CL_GetEntityFrame, CL_GetServerSequence, CL_SetValidSequence } from '../src/engine/client/cl_pred.js';
 import { R_Init } from '../src/engine/render/gl_rmain.js';
 import { V_Init } from '../src/engine/client/view.js';
 import { NET_Init } from '../src/engine/net/net_main.js';
@@ -51,6 +51,7 @@ class FixtureWriter {
 	constructor() { this.parts = []; }
 	byte( v ) { this.parts.push( v & 0xff ); }
 	short( v ) { this.parts.push( v & 0xff, ( v >> 8 ) & 0xff ); }
+	float( v ) { const b = new Uint8Array( 4 ); new DataView( b.buffer ).setFloat32( 0, v, true ); this.parts.push( ...b ); }
 	long( v ) { this.parts.push( v & 0xff, ( v >> 8 ) & 0xff, ( v >> 16 ) & 0xff, ( v >>> 24 ) & 0xff ); }
 	coord( v ) { this.short( Math.round( v * 8 ) ); }
 	angle( v ) { this.byte( Math.round( v * 256 / 360 ) & 0xff ); }
@@ -80,8 +81,7 @@ function writeBaselineBody( w, baseline ) {
 	w.short( baseline.modelIndex );
 	w.byte( baseline.frame ); w.byte( baseline.colormap ); w.byte( baseline.skin ); w.byte( baseline.scale );
 	w.byte( baseline.drawflags ); w.byte( baseline.abslight );
-	for ( let i = 0; i < 3; i ++ ) w.coord( baseline.origin[ i ] );
-	for ( let i = 0; i < 3; i ++ ) w.angle( baseline.angles[ i ] );
+	for ( let i = 0; i < 3; i ++ ) { w.coord( baseline.origin[ i ] ); w.angle( baseline.angles[ i ] ); }
 
 }
 
@@ -107,6 +107,8 @@ function writeEntityUpdate( update ) {
 		ANGLE1: 256, ANGLE3: 512, MODEL: 1024, MOREBITS2: 1 << 15, SKIN: 1 << 16, EFFECTS: 1 << 17,
 		SCALE: 1 << 18, COLORMAP: 1 << 19 };
 	let bits = U.SIGNAL;
+	if ( update.noLerp ) bits |= 1 << 5;
+	if ( update.clear ) bits |= 1 << 11;
 	if ( update.modelIndex !== undefined ) bits |= U.MODEL;
 	if ( update.frame !== undefined ) bits |= U.FRAME;
 	if ( update.colormap !== undefined ) bits |= U.COLORMAP;
@@ -540,5 +542,182 @@ Deno.test( 'EF_NODRAW is not linked, EF_DARKLIGHT makes a dark light and EF_ROTA
 		CL_SetValidSequence( 0 );
 
 	}
+
+} );
+
+// These assertions read the shared parser's public entity frame, never a mirror of the translator's packet writer.
+function parseTranslatedFrame( bytes ) {
+
+	CL_ClearState();
+	CL_Hexen2Reset();
+	cl.protocol = PROTOCOL_LARGE;
+	const msg = new sizebuf_t();
+	SZ_Alloc( msg, bytes.length + 64 );
+	// Negotiate the same native baseline body as the fixture serverinfo, without loading a world for unit messages.
+	const features = Uint8Array.from( [ svc_hexen2_features, HEXEN2_FEATURE_ENTITY_FIELDS | HEXEN2_FEATURE_NATIVE_BASELINES, 255, 255 ] );
+	SZ_Write( msg, features, features.length );
+	SZ_Write( msg, bytes, bytes.length );
+	COM_SetNetMessage( msg );
+	CL_ParseServerMessage();
+	const packet = CL_GetEntityFrame( CL_GetServerSequence() ).packet_entities;
+	return packet.entities.slice( 0, packet.num_entities );
+
+}
+
+function startFixture( protocol = 19 ) {
+
+	const info = writeServerinfo( { protocol, maxClients: 1, gameType: 0, models: [], sounds: [] } ).bytes;
+	const bytes = demoFile( [ info ] );
+	check( CL_Hexen2Demo_Start( bytes, Hexen2_ReadDemoForceTrack( bytes ).offset ).ok, 'fixture starts' );
+	check( CL_Hexen2Demo_Translate( info ).ok, 'fixture serverinfo translates' );
+
+}
+
+function translateFixture( parts ) {
+
+	const result = CL_Hexen2Demo_Translate( concat( parts ) );
+	check( result.ok, result.reason );
+	return parseTranslatedFrame( result.bytes );
+
+}
+
+Deno.test( 'native full updates and sparse baselines preserve every origin and angle axis through the shared parser', () => {
+
+	for ( const protocol of [ 18, 19 ] ) {
+
+		startFixture( protocol );
+		const baseline = { entity: 2, modelIndex: 3, frame: 7, colormap: 0, skin: 2, scale: 100,
+			drawflags: 0, abslight: 0, origin: [ - 120.5, 240.25, - 360.125 ], angles: [ 45, 90, 135 ] };
+		let packet = translateFixture( [ writeBaseline( baseline ).bytes, writeReference( { frame: 1, sequence: 1 } ).bytes,
+			writeEntityUpdate( { entity: 2, frame: 8 } ).bytes ] );
+		same( Array.from( packet[ 0 ].origin ).join(), baseline.origin.join(), 'native baseline origin pairs' );
+		same( Array.from( packet[ 0 ].angles ).join(), baseline.angles.join(), 'native baseline angle pairs' );
+		packet = translateFixture( [ writeReference( { frame: 1, sequence: 2 } ).bytes,
+			writeEntityUpdate( { entity: 2, origin: [ - 17.25, 83.5, 219.125 ], angles: [ 225, 270, 315 ] } ).bytes ] );
+		same( Array.from( packet[ 0 ].origin ).join(), '-17.25,83.5,219.125', 'full packet origin pairs' );
+		same( Array.from( packet[ 0 ].angles ).map( anglemod ).join(), '225,270,315', 'full packet angle pairs' );
+		CL_Hexen2Demo_Stop();
+
+	}
+
+} );
+
+Deno.test( 'native reference sequences use the committed first build, not the preceding displayed delta', () => {
+
+	startFixture();
+	const reference = ( frame, sequence ) => writeReference( { frame, sequence } ).bytes;
+	const update = values => writeEntityUpdate( { entity: 2, ...values } ).bytes;
+	translateFixture( [ reference( 1, 1 ), update( { origin: [ 10, 20, 30 ], frame: 1 } ) ] );
+	translateFixture( [ reference( 1, 2 ), update( { origin: [ 40, 50, 60 ], frame: 2 } ) ] );
+	let packet = translateFixture( [ reference( 2, 2 ), update( { frame: 3 } ) ] );
+	same( Array.from( packet[ 0 ].origin ).join(), '10,20,30', 'omitted coordinates revert to reference, not last delta' );
+	packet = translateFixture( [ reference( 1, 3 ), update( { frame: 4 } ) ] );
+	same( Array.from( packet[ 0 ].origin ).join(), '40,50,60', 'next sequence commits only its first received build' );
+	CL_Hexen2Demo_Stop();
+
+} );
+
+Deno.test( 'native clear_edicts affects the displayed frame and the first build removal list only', () => {
+
+	startFixture();
+	const reference = ( frame, sequence ) => writeReference( { frame, sequence } ).bytes;
+	const update = entity => writeEntityUpdate( { entity, modelIndex: 3, origin: [ 8, 16, 24 ] } ).bytes;
+	translateFixture( [ reference( 1, 1 ), update( 2 ), update( 3 ) ] );
+	translateFixture( [ reference( 1, 2 ), writeClearEdicts( [ 2 ] ).bytes ] );
+	let packet = translateFixture( [ reference( 2, 2 ), writeClearEdicts( [ 3 ] ).bytes ] );
+	same( packet.map( e => e.number ).join(), '2', 'later frame visibility starts at committed reference' );
+	packet = translateFixture( [ reference( 1, 3 ) ] );
+	same( packet.map( e => e.number ).join(), '3', 'only first build removal persists to next reference' );
+	CL_Hexen2Demo_Stop();
+
+} );
+
+Deno.test( 'sparse native clientdata retains eye height, pitch, punch, velocity and weapon fields', () => {
+
+	startFixture();
+	const w = new FixtureWriter();
+	w.byte( 15 ); w.short( 0x7000 | 0x00ff );
+	w.byte( 50 ); w.byte( - 5 );
+	for ( let i = 0; i < 3; i ++ ) { w.byte( i + 1 ); w.byte( i + 4 ); }
+	w.byte( 6 ); w.byte( 7 ); w.short( 8 );
+	translateFixture( [ w.bytes() ] );
+	translateFixture( [ Uint8Array.from( [ 15, 0, 0 ] ) ] );
+	same( cl.viewheight, 50, 'native viewheight persists when absent' );
+	same( cl.idealpitch, - 5, 'native idealpitch persists' );
+	same( Array.from( cl.punchangle ).join(), '1,2,3', 'native punch persists' );
+	same( Array.from( cl.mvelocity[ 0 ] ).join(), '64,80,96', 'native velocity persists' );
+	same( cl.stats[ 5 ], 6, 'native weaponframe persists' );
+	same( cl.stats[ 4 ], 7, 'native armour persists' );
+	same( cl.stats[ 2 ], 8, 'native weapon persists' );
+	CL_Hexen2Demo_Stop();
+
+} );
+
+Deno.test( 'a reference-visible entity without a fast update keeps its last displayed position', () => {
+
+	startFixture();
+	const reference = ( frame, sequence ) => writeReference( { frame, sequence } ).bytes;
+	const update = x => writeEntityUpdate( { entity: 2, modelIndex: 1, origin: [ x, 20, 30 ] } ).bytes;
+	translateFixture( [ reference( 1, 1 ), update( 10 ) ] );
+	translateFixture( [ reference( 1, 2 ), update( 40 ) ] );
+	translateFixture( [ reference( 2, 2 ), update( 70 ) ] );
+	const packet = translateFixture( [ reference( 3, 2 ) ] );
+	same( Array.from( packet[ 0 ].origin ).join(), '70,20,30', 'whole-entity omission retains last display, not reference origin' );
+	translateFixture( [ reference( 4, 2 ), writeClearEdicts( [ 2 ] ).bytes ] );
+	const returned = translateFixture( [ reference( 5, 2 ) ] );
+	same( Array.from( returned[ 0 ].origin ).join(), '70,20,30', 'visibility removal preserves the last received origin' );
+	CL_Hexen2Demo_Stop();
+
+} );
+
+Deno.test( 'native forced links snap, then clear for ordinary updates and return after missed updates', () => {
+
+	startFixture();
+	const reference = sequence => writeReference( { frame: 1, sequence } ).bytes;
+	const update = ( x, noLerp ) => writeEntityUpdate( { entity: 2, modelIndex: 1, origin: [ x, 20, 30 ], noLerp } ).bytes;
+	function frame( sequence, time, entityUpdate ) {
+
+		const w = new FixtureWriter(); w.byte( 7 ); w.float( time );
+		const translated = CL_Hexen2Demo_Translate( concat( [ w.bytes(), reference( sequence ), entityUpdate ] ) );
+		check( translated.ok, translated.reason );
+		const msg = new sizebuf_t(); SZ_Alloc( msg, 1024 ); SZ_Write( msg, translated.bytes, translated.bytes.length );
+		COM_SetNetMessage( msg ); CL_ParseServerMessage();
+		cl.time = ( cl.mtime[ 0 ] + cl.mtime[ 1 ] ) / 2;
+		CL_RelinkEntities();
+
+	}
+	CL_ClearState(); cl.protocol = PROTOCOL_LARGE;
+	GameProfile_Set( 'hexen2' ); cls.demoplayback = true;
+	cl.model_precache[ 1 ] = { flags: 0, synctype: 0 };
+	try {
+
+		frame( 1, 1, update( 10, false ) );
+		frame( 2, 1.1, update( 30, true ) );
+		same( cl_entities[ 2 ].origin[ 0 ], 30, 'U_NOLERP snaps a 20-unit step instead of interpolating to 20' );
+		frame( 3, 1.2, update( 50, false ) );
+		check( Math.abs( cl_entities[ 2 ].origin[ 0 ] - 40 ) < 0.001, 'no-lerp clears on the next ordinary update' );
+		frame( 4, 1.3, new Uint8Array() );
+		same( cl_entities[ 2 ].origin[ 0 ], 50, 'a missing update holds the last received endpoint' );
+		frame( 5, 1.4, update( 70, false ) );
+		same( cl_entities[ 2 ].origin[ 0 ], 70, 'first update after a missed frame snaps as native forcelink does' );
+
+	} finally { cls.demoplayback = false; GameProfile_Set( 'quake' ); CL_Hexen2Demo_Stop(); }
+
+} );
+
+Deno.test( 'native U_CLEAR_ENT clears both baseline and committed reference before a sparse update', () => {
+
+	startFixture();
+	const baseline = writeBaseline( { entity: 2, modelIndex: 3, frame: 7, colormap: 0, skin: 2, scale: 125,
+		drawflags: 4, abslight: 50, origin: [ 10, 20, 30 ], angles: [ 45, 90, 135 ] } ).bytes;
+	const reference = ( frame, sequence ) => writeReference( { frame, sequence } ).bytes;
+	translateFixture( [ baseline, reference( 1, 1 ), writeEntityUpdate( { entity: 2 } ).bytes ] );
+	translateFixture( [ reference( 1, 2 ), writeEntityUpdate( { entity: 2, clear: true, modelIndex: 4 } ).bytes ] );
+	const packet = translateFixture( [ reference( 2, 2 ), writeEntityUpdate( { entity: 2, frame: 5 } ).bytes ] );
+	same( Array.from( packet[ 0 ].origin ).join(), '0,0,0', 'clear zeroes the reference coordinates' );
+	same( packet[ 0 ].modelindex, 0, 'clear zeroes the reference model' );
+	same( packet[ 0 ].scale, 0, 'clear uses the native zero scale byte' );
+	same( packet[ 0 ].skin, 0, 'clear zeroes the baseline skin' );
+	CL_Hexen2Demo_Stop();
 
 } );

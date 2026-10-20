@@ -305,7 +305,7 @@ Deno.test( 'the Hexen II stone material is derived from the supplied shaders, le
 	// the bank colours replace the glyph face only when the generated shader still has the face lines they replace
 	const inked = MenuSkin_StoneShaders( QUAKE_SHADERS, { plain: [ .5, .3, .1 ], highlight: [ .4, 0, 0 ] } );
 	check( inked.glyphFragment.includes( 'const vec3 INK_HIGHLIGHT=vec3(0.4000,0.0000,0.0000);' ), 'the highlighted bank colour is declared' );
-	check( inked.glyphFragment.includes( 'kind < .5 ? INK_HIGHLIGHT : kind < 1.5 ? INK_BIG : kind > 2.5 ? INK_PLAIN' ), 'lettering takes the game\'s colours (the face lines matched)' );
+	check( inked.glyphFragment.includes( 'kind < .5 ? INK_HIGHLIGHT : kind > 2.5 ? INK_PLAIN : INK_BIG' ), 'lettering takes the game\'s colours (the face lines matched)' );
 	check( ! stone.glyphFragment.includes( 'INK_PLAIN' ), 'without inks the stone glyphs are unchanged' );
 
 } );

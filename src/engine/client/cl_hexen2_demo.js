@@ -30,7 +30,7 @@ import {
 	HEXEN2_FEATURE_ENTITY_FIELDS, HEXEN2_FEATURE_NATIVE_BASELINES, HEXEN2_FEATURE_PORTALS, HEXEN2_NO_LEVEL_STRING,
 	PE_MOREBITS, PE_MOREBITS2, PE_ORIGIN1, PE_ORIGIN2, PE_ORIGIN3, PE_ANGLE1, PE_ANGLE2, PE_ANGLE3,
 	PE_FRAME, PE_MODEL, PE_COLORMAP, PE_SKIN, PE_EFFECTS,
-	PE2_SCALE, PE2_DRAWFLAGS, PE2_ABSLIGHT, svc_serversequence, svc_packetentities,
+	PE2_SCALE, PE2_DRAWFLAGS, PE2_ABSLIGHT, PE2_NOLERP, svc_serversequence, svc_packetentities,
 	TE_STREAM_LIGHTNING_SMALL, TE_STREAM_FAMINE
 } from '../common/protocol.js';
 import {
@@ -51,7 +51,7 @@ const SMOKE_EFFECTS = new Set( [ CE.WHITE_SMOKE, CE.GREEN_SMOKE, CE.GREY_SMOKE, 
 
 // The native fast-update bits used here (protocol.h U_*).
 const U = Object.freeze( {
-	ORIGIN1: 1 << 1, ORIGIN2: 1 << 2, ORIGIN3: 1 << 3, ANGLE2: 1 << 4, FRAME: 1 << 6,
+	ORIGIN1: 1 << 1, ORIGIN2: 1 << 2, ORIGIN3: 1 << 3, ANGLE2: 1 << 4, NOLERP: 1 << 5, FRAME: 1 << 6,
 	ANGLE1: 1 << 8, ANGLE3: 1 << 9, MODEL: 1 << 10, CLEAR_ENT: 1 << 11, LONGENTITY: 1 << 14, MOREBITS: 1 << 0,
 	MOREBITS2: 1 << 15, SKIN: 1 << 16, EFFECTS: 1 << 17, SCALE: 1 << 18, COLORMAP: 1 << 19
 } );
@@ -64,7 +64,8 @@ class Reader {
 	short() { this.need( 2 ); const v = this.bytes[ this.at ] | ( this.bytes[ this.at + 1 ] << 8 ); this.at += 2; return v; }
 	long() { this.need( 4 ); const v = this.bytes[ this.at ] | ( this.bytes[ this.at + 1 ] << 8 ) | ( this.bytes[ this.at + 2 ] << 16 ) | ( this.bytes[ this.at + 3 ] << 24 ); this.at += 4; return v | 0; }
 	float() { this.need( 4 ); const v = new DataView( this.bytes.buffer, this.bytes.byteOffset + this.at, 4 ).getFloat32( 0, true ); this.at += 4; return v; }
-	coord() { return this.short() / 8; }
+	// uhexen2 engine/h2shared/msg_io.c:346-348: wire coordinates are signed shorts.
+	coord() { return ( this.short() << 16 >> 16 ) / 8; }
 	angle() { return this.byte() * 360 / 256; }
 	string() { const start = this.at; while ( this.at < this.bytes.length && this.bytes[ this.at ] !== 0 ) this.at ++; if ( this.at >= this.bytes.length ) throw new Error( 'unterminated native demo string' ); const s = String.fromCharCode( ...this.bytes.subarray( start, this.at ) ); this.at ++; return s; }
 
@@ -95,7 +96,19 @@ function bytesOf( data ) {
 function zeroState() {
 
 	return { modelIndex: 0, frame: 0, colormap: 0, skin: 0, drawflags: 0, abslight: 0, effects: 0,
-		origin: [ 0, 0, 0 ], angles: [ 0, 0, 0 ], scale: 100 };
+		origin: [ 0, 0, 0 ], angles: [ 0, 0, 0 ], scale: 0 };
+
+}
+
+function nativeClientdata() {
+
+	return { viewheight: 0, idealpitch: 0, punch: [ 0, 0, 0 ], velocity: [ 0, 0, 0 ], weaponframe: 0, armor: 0, weapon: 0 };
+
+}
+
+function cloneState( state ) {
+
+	return { ...state, origin: state.origin.slice(), angles: state.angles.slice() };
 
 }
 
@@ -133,7 +146,9 @@ export function CL_Hexen2Demo_Start( data, offset = 0 ) {
 	catch { return { ok: false, reason: 'malformed native demo record' }; }
 	if ( protocol === null ) return { ok: false, reason: 'not a native Hexen II serverinfo (protocol 18/19)' };
 	translator = {
-		protocol, entities: new Map(), baselines: new Map(), sequence: 0,
+		protocol, entities: new Map(), lastEntities: new Map(), baselines: new Map(), sequence: 0,
+		reference: new Map(), build: new Map(), removals: new Set(), needBuild: 2, referenceFrame: 199, nativeSequence: 99,
+		clientdata: nativeClientdata(), times: [ 0, 0 ], updateTimes: new Map(),
 		stats: {}, infoMask: 0, infoMask2: 0
 	};
 	return { ok: true, protocol };
@@ -220,8 +235,9 @@ function skipEntityUpdate( payload, at ) {
 function readBaselineBody( r ) {
 
 	const baseline = { modelIndex: r.short(), frame: r.byte(), colormap: r.byte(), skin: r.byte(), scale: r.byte(),
-		drawflags: r.byte(), abslight: r.byte(), origin: [ r.coord(), r.coord(), r.coord() ],
-		angles: [ r.angle(), r.angle(), r.angle() ] };
+		drawflags: r.byte(), abslight: r.byte(), origin: [], angles: [] };
+	// uhexen2 engine/hexen2/cl_parse.c:713-718: native baselines interleave each coordinate and angle.
+	for ( let i = 0; i < 3; i ++ ) { baseline.origin[ i ] = r.coord(); baseline.angles[ i ] = r.angle(); }
 	return baseline;
 
 }
@@ -230,9 +246,8 @@ function readBaselineBody( r ) {
 ================
 translateEntityUpdate
 
-Applies one native fast update to the frame map. Fields absent from the update keep the state they had (or the
-entity's signon baseline), which is what the native reference frame supplies; `U_CLEAR_ENT` restarts from zero as
-native does before copying the reference state.
+Applies a delta against the committed reference, never against the previous displayed delta. Only the first received
+frame of a sequence builds the next reference (uhexen2 engine/hexen2/cl_parse.c:475-518).
 ================
 */
 function translateEntityUpdate( payload, at ) {
@@ -245,9 +260,16 @@ function translateEntityUpdate( payload, at ) {
 	if ( bits & U.MOREBITS2 ) bits |= r.byte() << 16;
 	const entity = ( bits & U.LONGENTITY ) ? r.short() : r.byte();
 	const baseline = translator.baselines.get( entity );
-	const state = ( bits & U.CLEAR_ENT ) ? zeroState()
-		: ( translator.entities.has( entity ) ? translator.entities.get( entity )
-			: ( baseline ? stateFromBaseline( baseline ) : zeroState() ) );
+	let state = translator.reference.has( entity ) ? cloneState( translator.reference.get( entity ) )
+		: ( baseline ? stateFromBaseline( baseline ) : zeroState() );
+	if ( bits & U.CLEAR_ENT ) {
+
+		// Native clears both the client baseline and the reference before building the new state (cl_parse.c:511-518).
+		state = zeroState();
+		translator.baselines.delete( entity );
+		if ( translator.reference.has( entity ) ) translator.reference.set( entity, zeroState() );
+
+	}
 
 	if ( bits & U.MODEL ) state.modelIndex = r.short();
 	if ( bits & U.FRAME ) state.frame = r.byte();
@@ -262,7 +284,12 @@ function translateEntityUpdate( payload, at ) {
 	if ( bits & U.ANGLE3 ) state.angles[ 2 ] = r.angle();
 	if ( bits & U.SCALE ) { state.scale = r.byte(); state.abslight = r.byte(); }
 
+	// Native snaps forced updates and an entity returning after a missed update (cl_parse.c:522-525,634-645).
+	state.noLerp = ( bits & ( U.NOLERP | U.CLEAR_ENT ) ) !== 0 || translator.updateTimes.get( entity ) !== translator.times[ 1 ];
+	translator.updateTimes.set( entity, translator.times[ 0 ] );
 	translator.entities.set( entity, state );
+	translator.lastEntities.set( entity, state );
+	if ( translator.needBuild ) translator.build.set( entity, cloneState( state ) );
 	return { entity, consumed: r.at - at };
 
 }
@@ -291,7 +318,7 @@ function writePacketEntities( w ) {
 		const s = translator.entities.get( number );
 		let flags = PE_ORIGIN1 | PE_ORIGIN2 | PE_ORIGIN3 | PE_ANGLE1 | PE_ANGLE2 | PE_ANGLE3 |
 			PE_FRAME | PE_MODEL | PE_COLORMAP | PE_SKIN | PE_EFFECTS;
-		const bits2 = PE2_SCALE | PE2_DRAWFLAGS | PE2_ABSLIGHT;
+		const bits2 = PE2_SCALE | PE2_DRAWFLAGS | PE2_ABSLIGHT | ( s.noLerp ? PE2_NOLERP : 0 );
 		flags |= PE_MOREBITS | PE_MOREBITS2;
 		w.short( ( number & 0x3ff ) | ( flags & ~0x3ff ) ); // only the word's high six bits are flags
 		w.byte( number >> 10 );
@@ -302,8 +329,8 @@ function writePacketEntities( w ) {
 		w.byte( s.colormap );
 		w.byte( s.skin );
 		w.byte( s.effects );
-		for ( let i = 0; i < 3; i ++ ) w.coord( s.origin[ i ] );
-		for ( let i = 0; i < 3; i ++ ) w.angle( s.angles[ i ] );
+		// Keep the native origin/angle pairs (uhexen2 cl_parse.c:600-621) in the shared CL_ParseDelta wire order.
+		for ( let i = 0; i < 3; i ++ ) { w.coord( s.origin[ i ] ); w.angle( s.angles[ i ] ); }
 		w.byte( s.scale );
 		w.byte( s.drawflags );
 		w.byte( s.abslight );
@@ -417,10 +444,12 @@ function translateClientdata( payload, at, w ) {
 	r.at = at;
 	r.byte(); // opcode
 	const bits = r.short();
-	let viewheight = 0, idealpitch = 0;
-	const punch = [ 0, 0, 0 ], velocity = [ 0, 0, 0 ];
-	if ( bits & 0x0001 ) viewheight = r.byte() << 24 >> 24;
-	if ( bits & 0x0002 ) idealpitch = r.byte() << 24 >> 24;
+	// Native SU fields are persistent deltas (uhexen2 engine/hexen2/cl_parse.c:732-755,784-802), whereas Quake
+	// resets omitted fields. Expand them here, keeping live Quake parsing unchanged.
+	const data = translator.clientdata;
+	const { punch, velocity } = data;
+	if ( bits & 0x0001 ) data.viewheight = r.byte() << 24 >> 24;
+	if ( bits & 0x0002 ) data.idealpitch = r.byte() << 24 >> 24;
 	if ( bits & 0x0100 ) r.byte(); // native idealroll: no unified field
 	for ( let i = 0; i < 3; i ++ ) {
 
@@ -428,24 +457,24 @@ function translateClientdata( payload, at, w ) {
 		if ( bits & ( 0x0020 << i ) ) velocity[ i ] = r.byte() << 24 >> 24;
 
 	}
-	const weaponframe = ( bits & 0x1000 ) ? r.byte() : 0;
-	const armor = ( bits & 0x2000 ) ? r.byte() : 0;
-	const weapon = ( bits & 0x4000 ) ? r.short() : 0;
+	if ( bits & 0x1000 ) data.weaponframe = r.byte();
+	if ( bits & 0x2000 ) data.armor = r.byte();
+	if ( bits & 0x4000 ) data.weapon = r.short();
 
 	w.byte( svc_clientdata );
-	w.short( bits );
-	if ( bits & 0x0001 ) w.byte( viewheight );
-	if ( bits & 0x0002 ) w.byte( idealpitch );
+	w.short( 0x70ff | ( bits & 0x0c00 ) );
+	w.byte( data.viewheight );
+	w.byte( data.idealpitch );
 	for ( let i = 0; i < 3; i ++ ) {
 
-		if ( bits & ( 0x0004 << i ) ) w.byte( punch[ i ] );
-		if ( bits & ( 0x0020 << i ) ) w.byte( velocity[ i ] );
+		w.byte( punch[ i ] );
+		w.byte( velocity[ i ] );
 
 	}
 	w.long( 0 ); // items (Hexen keeps the inventory in cl.h2)
-	if ( bits & 0x1000 ) w.short( weaponframe );
-	if ( bits & 0x2000 ) w.byte( armor );
-	if ( bits & 0x4000 ) w.short( weapon );
+	w.short( data.weaponframe );
+	w.byte( data.armor );
+	w.short( data.weapon );
 	const health = Math.max( 0, Math.min( 32767, translator.stats.health ?? 0 ) );
 	const blue = Math.max( 0, Math.min( 255, translator.stats.bluemana ?? 0 ) );
 	const green = Math.max( 0, Math.min( 255, translator.stats.greenmana ?? 0 ) );
@@ -524,7 +553,17 @@ function translateServerinfo( r, w ) {
 	for ( ; ; ) { const s = r.string(); if ( s === '' ) break; models.push( s ); }
 	for ( ; ; ) { const s = r.string(); if ( s === '' ) break; sounds.push( s ); }
 	translator.entities.clear();
+	translator.lastEntities.clear();
 	translator.baselines.clear();
+	translator.reference.clear();
+	translator.build.clear();
+	translator.removals.clear();
+	translator.needBuild = 2;
+	translator.referenceFrame = 199;
+	translator.nativeSequence = 99;
+	translator.clientdata = nativeClientdata();
+	translator.times = [ 0, 0 ];
+	translator.updateTimes.clear();
 	translator.stats = {};
 	translator.infoMask = translator.infoMask2 = 0;
 	w.byte( svc_serverinfo );
@@ -545,6 +584,44 @@ function translateServerinfo( r, w ) {
 
 		w.byte( svc_hexen2_update_kingofhill );
 		w.short( kingOfHill + 1 );
+
+	}
+
+}
+
+// uhexen2 engine/hexen2/cl_parse.c:1525-1597: advance the reference only on sequence changes; later frames in
+// the same sequence are independent deltas against that reference, not a chain of updates to the displayed frame.
+function translateReference( frame, sequence ) {
+
+	if ( translator.needBuild === 2 ) {
+
+		translator.reference.clear();
+
+	} else if ( translator.nativeSequence !== sequence && translator.referenceFrame >= 1 && translator.referenceFrame <= 5 ) {
+
+		for ( const [ number, state ] of translator.build ) translator.reference.set( number, state );
+		for ( const number of translator.removals ) translator.reference.delete( number );
+
+	}
+	if ( translator.needBuild === 2 || translator.nativeSequence !== sequence ) {
+
+		translator.build = new Map();
+		translator.removals = new Set();
+		translator.needBuild = 1;
+		translator.referenceFrame = frame;
+
+	} else translator.needBuild = 0;
+	translator.nativeSequence = sequence;
+	// svc_reference restores model/visibility, not the last received origin/angles (cl_parse.c:1591-1597;
+	// cl_main.c:561-577). An entity with no fast update snaps to its last displayed endpoint.
+	const displayed = translator.lastEntities;
+	translator.entities = new Map();
+	for ( const [ number, reference ] of translator.reference ) {
+
+		const state = cloneState( displayed.get( number ) ?? reference );
+		state.modelIndex = reference.modelIndex;
+		state.noLerp = true;
+		translator.entities.set( number, state );
 
 	}
 
@@ -595,7 +672,7 @@ function translateRecord( payload ) {
 			case 4: { r.long(); w.byte( svc_version ); w.long( PROTOCOL_LARGE ); break; }
 			case 5: { const value = r.short(); w.byte( 5 ); w.short( value ); break; }
 			case 6: r.at = at + translateSound( payload, at, w ); break;
-			case 7: { const value = r.float(); w.byte( 7 ); w.float( value ); break; }
+			case 7: { const value = r.float(); translator.times[ 1 ] = translator.times[ 0 ]; translator.times[ 0 ] = value; w.byte( 7 ); w.float( value ); break; }
 			case 8: case 9: case 26: { const value = r.string(); w.byte( cmd ); w.string( value ); break; }
 			case 10: { w.byte( 10 ); for ( let i = 0; i < 3; i ++ ) w.byte( r.byte() ); break; }
 			case 11: translateServerinfo( r, w ); break;
@@ -654,11 +731,19 @@ function translateRecord( payload ) {
 			case 44: { const index = r.short(); w.byte( svc_hexen2_plaque ); w.short( index ); break; }
 			case 45: copyBody( payload, at + 1, w, svc_hexen2_particle_explosion, 12 ); r.at = at + 13; break;
 			case 46: { const tint = r.byte(); w.byte( svc_hexen2_set_view_tint ); w.byte( tint ); break; }
-			case 47: { r.byte(); r.byte(); frame = true; break; } // svc_reference: frame/sequence are flattened away
+			case 47: { const nativeFrame = r.byte(); translateReference( nativeFrame, r.byte() ); frame = true; break; }
 			case 48: {
 
 				const count = r.byte();
-				for ( let i = 0; i < count; i ++ ) translator.entities.delete( r.short() );
+				// Visibility clears apply now; only the first build's removal list becomes the next reference (cl_parse.c:1600-1613).
+				if ( translator.needBuild ) translator.removals.clear();
+				for ( let i = 0; i < count; i ++ ) {
+
+					const number = r.short();
+					translator.entities.delete( number );
+					if ( translator.needBuild ) translator.removals.add( number );
+
+				}
 				frame = true;
 				break;
 

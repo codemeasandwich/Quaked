@@ -408,7 +408,7 @@ export function MainMenu_BigText( x, y, text, pic, widths ) {
 		if ( glyph.space ) { cellX += 32; continue; }
 		if ( glyph.invalid ) continue;
 		commands.push( { type: 'text', text: glyph.key, display: glyph.display, x: cellX * scale + glyph.ink[ 0 ] * em,
-			y: y * scale + glyph.ink[ 1 ] * em, size: em, stretch: 1, kind: 1, bigfont: true, skin: 'hexen2' } );
+			y: y * scale + glyph.ink[ 1 ] * em, size: em, stretch: 1, kind: 2, bigfont: true, skin: 'hexen2' } ); // raised stone, as native
 		const next = MenuSkin_BigfontIndex( string[ i + 1 ] );
 		if ( next < 0 || next >= 27 ) continue;
 		const extra = glyph.num === 2 && next === 15 ? 3 : 0;

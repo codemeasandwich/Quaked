@@ -991,8 +991,8 @@ function CL_LinkPacketEntities( frac ) {
 
 		} else {
 
-			// Interpolate angles with short-path wrapping
-			let f = frac;
+			// Native step updates snap both origin and angles (uhexen2 engine/hexen2/cl_parse.c:634-635).
+			let f = GameProfile_IsHexen2() && s1.noLerp ? 1 : frac;
 			for ( let i = 0; i < 3; i ++ ) {
 
 				let d = ent.msg_angles[ 0 ][ i ] - ent.msg_angles[ 1 ][ i ];
@@ -1009,7 +1009,7 @@ function CL_LinkPacketEntities( frac ) {
 		// Interpolate origin with teleport detection
 		{
 
-			let f = frac;
+			let f = GameProfile_IsHexen2() && s1.noLerp ? 1 : frac;
 			for ( let i = 0; i < 3; i ++ ) {
 
 				_peDelta[ i ] = ent.msg_origins[ 0 ][ i ] - ent.msg_origins[ 1 ][ i ];

@@ -174,7 +174,8 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `8426b4b9` | owner trial 3 | every game started from the app's shelf fell back to the shelf (`Can't find variable: saveTrial`) |
 | `e77d7b3f` | DP | test of the ordinary shelf start (`tests/desktop_prepare_test.js`) in the engine list |
 | `9c0753c3` | owner trial 4 | Hexen small menu text in the game's own crisp pixels; help scrolls smoothly, held arrows scroll, text fades under pins |
-| (this commit) | owner trial 5 | Hexen II starts on its title demos like Quake (Enhanced and Classic halves); Portal mounts the base game's loose files |
+| `87922a8c` | owner trial 5 | Hexen II starts on its title demos like Quake (Enhanced and Classic halves); Portal mounts the base game's loose files |
+| (this commit) | DD, owner trial 6 | native demos play from inside the level; Hexen menu legible over the title demo; split labels clear of its plaque |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;
@@ -285,8 +286,17 @@ leaves the main menu as Escape does, which resumes the loop the menu paused (hex
 split, the light dim and the world's own effects behind the menu are Quake's code, unchanged. Portal of Praevus now
 mounts the base game's loose files under its own, as the native engine searches data1 too (its demos live there); the
 shareware demo ships no demos and keeps its menu. Verified in the browser: the title demo plays at start with the
-split, Escape opens the menu over it (trial 11/11), playdemo 4/4; 304/304 suites, engine list 220/220. Known and in
-progress (package DD): the native demos' camera leaves the level during playback (owner report).
+split, Escape opens the menu over it (trial 11/11), playdemo 4/4; 304/304 suites, engine list 220/220. Owner trial 6: the title demo's camera was outside the level ("still extremely broken").
+
+Package DD (GPT Sol) fixed the native demo decoder: packet and baseline field order, native reference frames,
+retained clientdata, restoring entity visibility, and no-lerp links (a transient `PE2_NOLERP` bit; the live writer
+never sets it). The camera was valid on 6.06%, 0% and 1.78% of frames in demo1-3 before and 100% of 8,282 frames
+after (`tests/hexen2_demo_camera_test.js`; report [dd-demo-camera.md](dd-demo-camera.md)). Browser: the title demo
+plays inside the cathedral and hands over to rider1a. With the Hexen menu over the split demo, the ENHANCED/CLASSIC
+labels move to the bottom of the picture (Hexen's plaque covered the top-left one), the demo is veiled more deeply
+(0.55, Quake keeps 0.32) and the bigfont is drawn as raised stone in the lit-face ink of its own sheet (it had been
+the supplied renderer's recessed carving, near-black over the demo). 311/311 suites, engine list 220/220, browser
+trial menus 11/11, base 8/8, Portal 3/3, demo 4/4, playdemo 4/4.
 
 Open decisions and known limits:
 
