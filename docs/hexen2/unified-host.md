@@ -170,7 +170,8 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `592220ad` | H1, trial T2 | hub saves on IndexedDB; Portal's text lists and the native demos mounted; Hexen's own plaques; no Quake files requested |
 | `35a3973b` | E1, E2 | Enhanced Hexen II: neutral grading at launch and the 3D view kept above Raven's status bar |
 | `4a47cd8c` | MS | Hexen II MIDI music through an original FM synthesiser; library music streamed in a source checkout |
-| (this commit) | merge Dev | Dev's standardised box art (`6e3e0237`) and Hexen texture batch 7 with the authoring method (`8f0e96bc`); on the unified host `Hexen 2 Shareware` stays the Hexen II demo's game folder, not a display-only box |
+| `33e1fef8` | merge Dev | Dev's standardised box art (`6e3e0237`) and Hexen texture batch 7 with the authoring method (`8f0e96bc`); on the unified host `Hexen 2 Shareware` stays the Hexen II demo's game folder, not a display-only box |
+| `8426b4b9` | owner trial 3 | every game started from the app's shelf fell back to the shelf (`Can't find variable: saveTrial`) |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;
@@ -249,6 +250,17 @@ library's loose music conversions as the desktop app reads them (`GameSelection_
 the base game plays `music/casa1.ogg`, the demo edition (MIDI only) plays `midi/casa1.mid` through the synthesiser.
 The Enhanced storm's fallback gust is now a binding (Quake's `ambience/windfly.wav`; none chosen for Hexen II, whose
 storm flashes silently until a gust sound is picked).
+
+Owner trial 3 (20 October, after the Dev merge): the box art showed, but choosing any game on the shelf (Quake
+shareware, Quake, Hexen II) showed the loading screen and returned to the shelf. `Desktop_Prepare` returned
+`saveTrial`, never declared since the h2 snapshot (`9fbaec20`); a trial launch assigned it first (an implicit global in
+the non-strict bundle) and worked, an ordinary shelf start threw. Every packaged check before this used the trial
+launch, so none saw it; Dev never had the line. Fixed in `8426b4b9`; package DP adds a test that runs the real
+ordinary shelf start with stubbed Tauri modules. Lesson recorded: packaged checks must include an ordinary shelf start,
+not only `HEXEN2_TRIAL_GAME`.
+
+The merged Hexen texture batch 7 is authoring output (reviewed masters and tiers); no runtime Hexen texture index
+(`newer/textures/hexen2/index.json`) exists yet, so it is not visible in game until registered under the texture skill.
 
 Open decisions and known limits:
 

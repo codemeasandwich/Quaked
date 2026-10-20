@@ -1,0 +1,101 @@
+Added packfile shareware/pak0.pak (3 files)
+
+PASS Desktop_Prepare: ordinary shareware shelf start returns packs and saveTrial false
+Added packfile hexen2/loose (1 files)
+
+Added packfile hexen2/pak0.pak (1 files)
+
+Added packfile hexen2/pak1.pak (1 files)
+
+PASS Desktop_Prepare: ordinary Hexen II shelf start returns loose gamecode and ordered data1 packs
+Added packfile hexen2/loose (1 files)
+
+Added packfile hexen2/pak0.pak (1 files)
+
+Added packfile hexen2/pak1.pak (1 files)
+
+PASS Desktop_Prepare: a trial start still returns its autoplay, class and save settings
+RESULT 3/3 passed (tests/desktop_prepare_test.js)
+PASS Hexen II is startable in the desktop app and a source checkout, never the web product
+PASS a source checkout fetches a Hexen II edition in the desktop mount order
+PASS a source checkout streams the library's loose music in the desktop edition order
+RESULT 3/3 passed (tests/hexen2_selection_desktop_test.js)
+node:events:486
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EPERM: operation not permitted 127.0.0.1
+    at Server.setupListenHandle [as _listen2] (node:net:1918:21)
+    at listenInCluster (node:net:1997:12)
+    at node:net:2206:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+  code: 'EPERM',
+  errno: -1,
+  syscall: 'listen',
+  address: '127.0.0.1'
+}
+
+Node.js v24.13.0
+PASS the catalogue game selects its profile, and every Quake game keeps the Quake profile
+PASS a progs header CRC must belong to the selected game
+PASS the BSP models lump selects four 64-byte or eight 80-byte hull records
+Added packfile pak0.pak (339 files)
+
+Programs occupy 403K.
+
+PASS Quake progs still load and run Quake's unchanged builtin table
+RESULT 4/4 passed (tests/game_profile_test.js)
+PASS with no choice, the start is as before
+PASS choosing the shareware keeps it, reloads, fetches no owned pack and keeps its own saves
+PASS unplayable, unsupported and unknown games are refused with the reason; a blocked store refuses
+PASS the shareware needs no catalogue; an unchecked Quake is allowed with a warning; a missing store refuses
+game: quake was chosen, but its pack was not found (games/Quake/pak0.pak or resources/id1/pak0.pak); the shareware is running
+
+game: mod_gone_since was chosen, but no game folder of that name was found; Quake is running
+
+PASS a chosen game whose pack has gone is reported at start
+PASS a mission pack is chosen with Quake under it, its own pack and switch, and saves of its own
+PASS saves and settings follow the game running, not only the one chosen; the default keeps the original keys
+game: Dissolution of Eternity was chosen, but it needs Quake, whose pack was not found (games/Quake/pak0.pak or resources/id1/pak0.pak); the shareware is running
+
+game: Dissolution of Eternity was chosen, but its pack was not found (games/Dissolution of Eternity/pak0.pak or resources/rogue/pak0.pak); Quake is running
+
+PASS a mission pack that could not start says why: Quake missing, or its own pack missing
+PASS one rule for the shelf and the console: what can start, including a game a range-less server could not check
+PASS an add-on fetches every pack of its folder in order, up to the first gap; a mission pack its first found
+PASS an add-on's loose game files become one pack mounted under its own packs
+PASS a folder of loose files with its own QuakeC starts alone; folder names are fetched percent-encoded
+PASS the Mac app mounts base packs, then the add-on's loose files, then its packs; a base game's loose files never
+Loose file x refused: a page, not the file
+
+Loose file x refused: a page, not the file
+
+Loose file x refused: larger than 64 MB
+
+Loose file x refused: larger than 64 MB
+
+Loose file x could not be read: connection reset
+
+PASS a loose file is fetched whole; a page or an oversized file is refused
+PASS the app library gives loose files to exactly the catalogue's add-ons
+PASS an add-on runs with the switch its own status-bar pictures ask for, as Quakespasm runs it
+PASS every add-on starts on the large-map protocol, as a map may pass protocol 15's entities in play
+RESULT 17/17 passed (tests/game_selection_test.js)
+PASS every box image exists and belongs to a catalogue game or an explicitly approved discovered title
+PASS a game's box: its own art, placeholders where it has none, and whether it plays
+PASS a picked folder: its name and its front, side (or spine) and back images, whatever their type
+PASS a game's URL chooses that page's game over the kept choice; the shelf starts on the kept one
+PASS on a game's own URL the game command switches by going to the new game's URL
+PASS a local-play player window opens on its host's game
+PASS native local artwork overlays only supplied faces and preserves bundled art and selection authority
+PASS front and spine canonical image names beat cover and side aliases while unboxed games retain printed missing faces
+PASS folder face selection is independent of enumeration order and never promotes nested or unsupported images
+PASS folder image type ties use native scan priority without allowing an alias to beat a canonical face
+PASS imported defaults work without local files and never authorize an unsupported title
+PASS artwork-only discovered titles use a neutral game label without implying Quake compatibility
+PASS current Quoth and Machine faces are active defaults while the screenshot collage is never a box front
+RESULT 13/13 passed (tests/game_shelf_test.js)
+TOTAL 40/40 passed

@@ -1,0 +1,4218 @@
+node:events:486
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EPERM: operation not permitted 127.0.0.1
+    at Server.setupListenHandle [as _listen2] (node:net:1918:21)
+    at listenInCluster (node:net:1997:12)
+    at node:net:2206:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+  code: 'EPERM',
+  errno: -1,
+  syscall: 'listen',
+  address: '127.0.0.1'
+}
+
+Node.js v24.13.0
+PASS with no choice, the start is as before
+PASS choosing the shareware keeps it, reloads, fetches no owned pack and keeps its own saves
+PASS unplayable, unsupported and unknown games are refused with the reason; a blocked store refuses
+PASS the shareware needs no catalogue; an unchecked Quake is allowed with a warning; a missing store refuses
+game: quake was chosen, but its pack was not found (games/Quake/pak0.pak or resources/id1/pak0.pak); the shareware is running
+
+game: mod_gone_since was chosen, but no game folder of that name was found; Quake is running
+
+PASS a chosen game whose pack has gone is reported at start
+PASS a mission pack is chosen with Quake under it, its own pack and switch, and saves of its own
+PASS saves and settings follow the game running, not only the one chosen; the default keeps the original keys
+game: Dissolution of Eternity was chosen, but it needs Quake, whose pack was not found (games/Quake/pak0.pak or resources/id1/pak0.pak); the shareware is running
+
+game: Dissolution of Eternity was chosen, but its pack was not found (games/Dissolution of Eternity/pak0.pak or resources/rogue/pak0.pak); Quake is running
+
+PASS a mission pack that could not start says why: Quake missing, or its own pack missing
+PASS one rule for the shelf and the console: what can start, including a game a range-less server could not check
+PASS an add-on fetches every pack of its folder in order, up to the first gap; a mission pack its first found
+PASS an add-on's loose game files become one pack mounted under its own packs
+PASS a folder of loose files with its own QuakeC starts alone; folder names are fetched percent-encoded
+PASS the Mac app mounts base packs, then the add-on's loose files, then its packs; a base game's loose files never
+Loose file x refused: a page, not the file
+
+Loose file x refused: a page, not the file
+
+Loose file x refused: larger than 64 MB
+
+Loose file x refused: larger than 64 MB
+
+Loose file x could not be read: connection reset
+
+PASS a loose file is fetched whole; a page or an oversized file is refused
+PASS the app library gives loose files to exactly the catalogue's add-ons
+PASS an add-on runs with the switch its own status-bar pictures ask for, as Quakespasm runs it
+PASS every add-on starts on the large-map protocol, as a map may pass protocol 15's entities in play
+RESULT 17/17 passed (tests/game_selection_test.js)
+Added packfile shareware/pak0.pak (3 files)
+
+PASS Desktop_Prepare: ordinary shareware shelf start returns packs and saveTrial false
+Added packfile hexen2/loose (1 files)
+
+Added packfile hexen2/pak0.pak (1 files)
+
+Added packfile hexen2/pak1.pak (1 files)
+
+PASS Desktop_Prepare: ordinary Hexen II shelf start returns loose gamecode and ordered data1 packs
+Added packfile hexen2/loose (1 files)
+
+Added packfile hexen2/pak0.pak (1 files)
+
+Added packfile hexen2/pak1.pak (1 files)
+
+PASS Desktop_Prepare: a trial start still returns its autoplay, class and save settings
+RESULT 3/3 passed (tests/desktop_prepare_test.js)
+PASS every box image exists and belongs to a catalogue game or an explicitly approved discovered title
+PASS a game's box: its own art, placeholders where it has none, and whether it plays
+PASS a picked folder: its name and its front, side (or spine) and back images, whatever their type
+PASS a game's URL chooses that page's game over the kept choice; the shelf starts on the kept one
+PASS on a game's own URL the game command switches by going to the new game's URL
+PASS a local-play player window opens on its host's game
+PASS native local artwork overlays only supplied faces and preserves bundled art and selection authority
+PASS front and spine canonical image names beat cover and side aliases while unboxed games retain printed missing faces
+PASS folder face selection is independent of enumeration order and never promotes nested or unsupported images
+PASS folder image type ties use native scan priority without allowing an alias to beat a canonical face
+PASS imported defaults work without local files and never authorize an unsupported title
+PASS artwork-only discovered titles use a neutral game label without implying Quake compatibility
+PASS current Quoth and Machine faces are active defaults while the screenshot collage is never a box front
+RESULT 13/13 passed (tests/game_shelf_test.js)
+Unknown command "r_hdr"
+
+Unknown command "r_newer_lighting"
+
+Unknown command "r_newer_normals"
+
+Unknown command "r_newer_shadows"
+
+Unknown command "r_pointshadows"
+
+Unknown command "r_heightshadows"
+
+Unknown command "r_rockfield"
+
+Unknown command "r_powerups"
+
+Unknown command "r_newer_weapons"
+
+Unknown command "r_newer_textures"
+
+Unknown command "r_newer_water"
+
+Unknown command "r_newer_enemies"
+
+Unknown command "r_newer_portals"
+
+Unknown command "r_newer_hud"
+
+Unknown command "r_decals"
+
+Unknown command "r_lerpmodels"
+
+Unknown command "r_newer_variety"
+
+Unknown command "gamma"
+
+Unknown command "cl_showfps"
+
+PASS Start hosts the chosen players and mode, then opens player 2's window
+PASS while hosting: open the next missing player's window, every player is in, end local play
+PASS a player's window: its address, its start-up commands, and Leave
+RESULT 3/3 passed (tests/local_play_test.js)
+NET_Init complete
+
+PASS a player's window joins the hosting page; messages go both ways; unreliable runs keep the newest
+PASS a player's window that loads before its host keeps asking; a full server refuses it
+NET_Connect: WebTransport not available for remote connection
+
+PASS addresses: invalid sessions, an unknown kind and a remote address are not window joins
+PASS a window that gives up before it is taken leaves no ghost player on the host
+RESULT 4/4 passed (tests/net_window_test.js)
+Added packfile pak0.pak (339 files)
+
+NET_Init complete
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+meshing progs/eyes.mdl...
+
+meshing progs/h_player.mdl...
+
+meshing progs/gib1.mdl...
+
+meshing progs/gib2.mdl...
+
+meshing progs/gib3.mdl...
+
+meshing progs/v_axe.mdl...
+
+meshing progs/v_shot.mdl...
+
+meshing progs/v_nail.mdl...
+
+meshing progs/v_rock.mdl...
+
+meshing progs/v_shot2.mdl...
+
+meshing progs/v_nail2.mdl...
+
+meshing progs/v_rock2.mdl...
+
+meshing progs/bolt.mdl...
+
+meshing progs/bolt2.mdl...
+
+meshing progs/bolt3.mdl...
+
+meshing progs/lavaball.mdl...
+
+meshing progs/missile.mdl...
+
+meshing progs/grenade.mdl...
+
+meshing progs/spike.mdl...
+
+meshing progs/s_spike.mdl...
+
+meshing progs/backpack.mdl...
+
+meshing progs/zom_gib.mdl...
+
+meshing progs/v_light.mdl...
+
+meshing progs/armor.mdl...
+
+meshing progs/g_nail.mdl...
+
+meshing progs/soldier.mdl...
+
+meshing progs/h_guard.mdl...
+
+meshing progs/quaddama.mdl...
+
+meshing progs/h_dog.mdl...
+
+meshing progs/dog.mdl...
+
+meshing progs/suit.mdl...
+
+meshing progs/g_shot.mdl...
+
+33 entities inhibited
+
+Server spawned.
+
+Client window:b268817b9c45edec connected
+
+Client window:82f54d4af3b530b1 connected
+
+Player 2
+ entered the game
+
+Player 2 entered the game
+
+Player 3
+ entered the game
+
+Player 3 entered the game
+
+Player 3
+ suicides
+
+SV_ReadClientMessage: NET_GetMessage failed
+
+Player 3
+ left the game with 
+-2
+ frags
+
+Client Player 3 removed
+
+SV_ReadClientMessage: NET_GetMessage failed
+
+Player 2
+ left the game with 
+0
+ frags
+
+Client Player 2 removed
+
+PASS two players' windows join one native co-op server, each with its own player; moves, a kill and a leave stay theirs
+RESULT 1/1 passed (tests/window_play_native_test.js)
+RESULT 0/1 passed (tests/serve_py_test.js)
+FAIL ranges are served as 206 with the right bytes; whole files as before; past the end is 416 Error: the server started
+    at check (file:///Users/bri/worktrees/Quaked/hexen2-unified/dp/tests/serve_py_test.js:8:46)
+    at file:///Users/bri/worktrees/Quaked/hexen2-unified/dp/tests/serve_py_test.js:19:3
+    at async file:///Users/bri/worktrees/Quaked/hexen2-unified/dp/tools/run_tests.mjs:95:9
+PASS a map's worldspawn fog starts it, as Quakespasm reads it; a map without one is clear
+PASS the fog command takes Quakespasm's forms; text counts as 0; too many values change nothing
+PASS a fade passes through the values between
+PASS the scene is fogged while drawn: as given in the classic picture, linear and over the exposure in Newer Game
+PASS the sky takes the fog's colour by its share, not by its distance; the renderer is wired
+PASS sky fog observes every changed console string, even between draws
+PASS sky fog clamps keys and commands, updating every compiled material without recompilation
+RESULT 7/7 passed (tests/fog_test.js)
+PASS TGA images decode to RGBA rows from the top: either row order, run-length packets of every kind, grey, alpha
+PASS the six sides are laid out as Quakespasm lays them, and the lookup by direction finds the same places
+Added packfile sky.pak (19 files)
+
+PASS a map's sky keys name it, as Quakespasm reads them; a missing face is grey, none at all keeps the scrolling sky
+PASS the sky surfaces draw the skybox by direction, with the scrolling sky's rules; the renderer is wired
+RESULT 4/4 passed (tests/skybox_test.js)
+couldn't exec default.cfg
+
+PASS options order, widgets, keyboard and touch dispatch match the visible rows
+RESULT 1/1 passed (tests/options_order_test.js)
+PASS a rocket going off beside the player shakes the eye at once, down first, and is over in under half a second
+PASS it is weaker with the square of the distance, arrives with the blast, and is not felt past its reach
+PASS a Spawn bursting is smaller; Chthon rising is felt across the cave and for longer
+PASS many explosions at once stay within the limits; the setting scales it and 0 switches it off
+PASS New Game, demos, pauses, menus, death and a new map are never shaken
+Added packfile pak0.pak (339 files)
+
+R_Init
+Can't register variable r_hdr, already defined
+
+R_Init: Three.js renderer ready
+PASS the client's explosion parser starts it, and V_CalcRefdef moves the eye and the weapon together, tilting only the eye
+PASS new explosions work immediately after a restart or map clock reset
+PASS the actual render entry clears queued blasts when pause or intermission skips refdef
+RESULT 8/8 passed (tests/blast_shake_test.js)
+PASS the first page is as it was: 17 rows from y 44, lighting first, depth of field last, the cursor on the first
+PASS the page follows the cursor down to the rows past it and back up; Up from the top goes to the last row
+PASS the explosion shake slider and note paging use the actual visible rows
+RESULT 3/3 passed (tests/newer_menu_scroll_test.js)
+PASS a gunshot and the lightning bolts are handled word for word as before the add-on effects
+PASS no add-on effect module reaches into the shotgun's, the casings', the wall burn's or the lightning gun's
+PASS the Shambler's shudder is the same with the explosion shake beside it, and each keeps its own share of the view
+RESULT 3/3 passed (tests/addon_effects_guard_test.js)
+PASS each walking footfall shakes once, at the heel strike, and not between steps
+PASS running footfalls land on run2 and run5
+PASS strength is (1 - distance / 600) squared: a quarter at 300 units, nothing from 600
+PASS several Shamblers stomping together stay within the small-quake limits
+PASS short packet gaps still land their steps; longer jumps never replay one
+PASS starting to walk or run straight onto a contact pose is the first step
+PASS held, non-walking, teleporting, vanished and other-model poses never shake
+PASS a step ends early when the Shambler stops walking, changes model or the level changes
+PASS the player must be on the ground when the foot lands, and feels nothing in the air
+PASS New Game, the setting, demos, pause, death, intermission and menus stop the shake
+PASS small backwards steps in the predicted clock keep the step; a restart forgets it
+PASS with smoothed monster animation the shake waits for the contact pose to be drawn
+PASS V_CalcRefdef moves the eye and weapon together and tilts only the eye
+RESULT 13/13 passed (tests/shambler_steps_test.js)
+PASS no engine or platform module imports Newer, statically or dynamically
+PASS installed: every hook is the export of the Newer module install.js takes it from, none still a stub
+PASS Hooks_Install refuses a table with a hook missing or an unknown name, and changes nothing
+RESULT 3/3 passed (tests/hooks_test.js)
+PASS existing point hull finds exact thin-liquid entry and exit
+PASS public static-sound parser records drips independently of audio playback
+PASS drips fall down the proven column, pause holds, and disabling retires them
+PASS underwater sources do not invent ceiling drips; rewinds restart schedules
+PASS motes never overwrite live effects and new births have no pre-birth movement
+PASS one switch cannot clear another effect owner and Classic hides all new motes
+PASS thin water landings reuse the ripple detector; existing impact events keep priority
+PASS ambient registry is bounded and rejects nonfinite positions
+RESULT 8/8 passed (tests/drips_test.js)
+Added packfile shareware.pak (339 files)
+
+R_Init
+R_Init: Three.js renderer ready
+NET_Init complete
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+meshing progs/eyes.mdl...
+
+meshing progs/h_player.mdl...
+
+meshing progs/gib1.mdl...
+
+meshing progs/gib2.mdl...
+
+meshing progs/gib3.mdl...
+
+meshing progs/v_axe.mdl...
+
+meshing progs/v_shot.mdl...
+
+meshing progs/v_nail.mdl...
+
+meshing progs/v_rock.mdl...
+
+meshing progs/v_shot2.mdl...
+
+meshing progs/v_nail2.mdl...
+
+meshing progs/v_rock2.mdl...
+
+meshing progs/bolt.mdl...
+
+meshing progs/bolt2.mdl...
+
+meshing progs/bolt3.mdl...
+
+meshing progs/lavaball.mdl...
+
+meshing progs/missile.mdl...
+
+meshing progs/grenade.mdl...
+
+meshing progs/spike.mdl...
+
+meshing progs/s_spike.mdl...
+
+meshing progs/backpack.mdl...
+
+meshing progs/zom_gib.mdl...
+
+meshing progs/v_light.mdl...
+
+meshing progs/flame.mdl...
+
+meshing progs/ogre.mdl...
+
+meshing progs/h_ogre.mdl...
+
+meshing progs/soldier.mdl...
+
+meshing progs/h_guard.mdl...
+
+meshing progs/knight.mdl...
+
+meshing progs/h_knight.mdl...
+
+meshing progs/w_s_key.mdl...
+
+meshing progs/flame2.mdl...
+
+meshing progs/armor.mdl...
+
+meshing progs/demon.mdl...
+
+meshing progs/h_demon.mdl...
+
+meshing progs/g_shot.mdl...
+
+meshing progs/quaddama.mdl...
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+meshing progs/g_nail.mdl...
+
+meshing progs/g_nail2.mdl...
+
+meshing progs/g_rock.mdl...
+
+meshing progs/g_rock2.mdl...
+
+meshing progs/g_light.mdl...
+
+meshing progs/shambler.mdl...
+
+meshing progs/s_light.mdl...
+
+meshing progs/h_shams.mdl...
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+PASS actual stock lightning records the visual trace and all three damage rays after one ammo-consuming pulse
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+PASS native damage receipts and contacts distinguish target, armor and invulnerable contact from a miss
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/h_dog.mdl...
+
+meshing progs/dog.mdl...
+
+meshing progs/suit.mdl...
+
+33 entities inhibited
+
+seamless: 1 exit(s) on e1m1
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+ELECTRIC_NATIVE_WATER {"origin":[750,932,-311],"event":{"kind":"pulse","actor":"player","entity":1,"time":1,"source":[750,932,-289],"start":[750,932,-289],"end":[750,932,-289],"traces":[],"hits":[{"target":1,"position":[750,932,-307],"healthLoss":0,"armorLoss":0}],"water":[[750,932,-311]],"liquidDischarge":true,"waterDischarge":true,"epoch":9}}
+PASS waist-deep native water discharge consumes all cells without inventing a normal beam
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+seamless: 1 exit(s) on e1m1
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+PASS a dry native beam crossing actual BSP water reports its first water contact without a discharge
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m6
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/m_g_key.mdl...
+
+meshing progs/m_s_key.mdl...
+
+meshing progs/zombie.mdl...
+
+meshing progs/h_zombie.mdl...
+
+meshing progs/wizard.mdl...
+
+meshing progs/h_wizard.mdl...
+
+meshing progs/w_spike.mdl...
+
+26 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+PASS real native Shambler charge/cast/terminal state events remain distinct and a stop needs an actual cast
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+PASS read-only electric observation leaves native ammo, damage, trace globals and randomness unchanged
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS unrelated weapon, dry fire, demo, unpaired connection and abandoned VM state cannot fabricate electric events
+RESULT 7/7 passed (tests/electric_native_test.js)
+PASS electrical role contract keeps every owner-selected full clip and alternate
+PASS electric stream anchor is the clamped nearest point, including degenerate beams
+Clearing memory
+
+PASS charge originates at its moving source and real stereo reverses with listener orientation
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS player stream follows nearest beam point while damage and water remain at actual contacts
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS ordinary charge, firing and release transitions preserve all full-file tails and never seek past the start
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS firing repeats a whole file only after natural ending while new native pulses still confirm activity
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS voice overload drops new cues rather than cutting existing full clips and completed slots recover
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS eel zap is spatial at its emitter; malformed events cannot create voices
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS pause, death, disconnect, menu and world reset stop safely without fabricating release cues
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS closed audio, rejected playback and late play resolution remain bounded and cannot revive old voices
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS distinct hit targets keep their own contacts, and repeated pulses cannot restart an existing impact tail
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS approved charge and player release alternates advance between complete natural one-shots
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS a full source tail freezes when its emitter disappears and cannot follow a recycled entity slot
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS player release waits for both the pulse hold and actual cessation, and cannot restart an ended file while ceased
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS weapon changes and cell exhaustion respect the same confirmed-pulse hold before the single player stop
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS an emitter freed and recycled entirely between frames cannot move its former full-clip tail
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS rejected contact playback coalesces repeated native pulses instead of filling the voice pool with failures
+RESULT 17/17 passed (tests/electric_spatial_test.js)
+Added packfile milkyway-native-source.pak (339 files)
+
+PASS the shared Milky Way profile dims and increases background contrast while making native clouds more visible
+PASS native sky1 and matching sky4 pixels qualify, while the unrelated same-name E1M1 sky remains native
+PASS both complete native RGBA identities are required and same-name altered pixels do not match
+PASS Classic, split Classic and texture-off avoid loading; Newer demo sky follows the existing visual mode
+PASS JPEG failure preserves native fallback, records the error and retries only after an explicit map clear
+PASS a shared asynchronous image arriving after map clear cannot activate stale or unrelated map materials
+PASS panorama uses world direction and shared fog; faint clouds preserve the exact native alpha and original pixels
+PASS map clear disposes replacement materials exactly once while preserving shared JPEG and borrowed native textures
+PASS the shipped Milky Way JPEG retains the supplied archive member byte for byte and full panorama dimensions
+Added packfile milky-independent-cube.pak (6 files)
+
+PASS public sky-chain draws the lazy panorama on existing meshes, keeps native clouds and gives explicit cubeskies precedence
+PASS a late callback from a failed request cannot replace a later successful shared panorama
+PASS existing neighbor-view uniform holders select the same lazy image and track current visual eligibility
+PASS public main sky HDR switches invalidate the program and specialize every MRT output for the current depth policy
+RESULT 13/13 passed (tests/milkyway_sky_test.js)
+PASS ordinary grayscale XYZ uses channel red values and authored height through public foreground and preparation APIs
+PASS glass recomposes canonical normal AND height outside decoded panes before foreground and prepared keys
+PASS different opening masks produce distinct final normal keys without corrupting shared decoded channel caches
+PASS ordinary missing, incomplete or mismatched XYZ falls back to its crafted height without partial or legacy donor data
+PASS glass missing or wrong-sized XYZ, opening, sheen or height fails safely to canonical matte pigment
+PASS explicit glass composition with an absent opening declaration cannot reinterpret grayscale sheen as a packed aperture
+PASS legacy RGB normal and packed RG gloss behavior stays unchanged without new composition metadata
+PASS composition uses unsplit pigment for fullbright panes and preserves native fullbright Classic images
+PASS Classic pass and disabled texture option never request Q92 channel assets
+RESULT 9/9 passed (tests/texture_q92_channels_test.js)
+PASS mouse input uses the registered sensitivity cvar
+RESULT 1/1 passed (tests/in_web_test.js)
+PASS public body capture admits both mouse axes into real player angles only after a lock grant
+Can't register variable m_filter, already defined
+
+Can't register variable gp_look_yaw, already defined
+
+Can't register variable gp_look_pitch, already defined
+
+Cmd_AddCommand: force_centerview already defined
+
+PASS a refused public lock request remains inactive and another real gesture can retry
+Can't register variable m_filter, already defined
+
+Can't register variable gp_look_yaw, already defined
+
+Can't register variable gp_look_pitch, already defined
+
+Cmd_AddCommand: force_centerview already defined
+
+Can't register variable m_filter, already defined
+
+Can't register variable gp_look_yaw, already defined
+
+Can't register variable gp_look_pitch, already defined
+
+Cmd_AddCommand: force_centerview already defined
+
+PUBLIC_MOUSE_RESTART {"actualElementLocked":false,"reportedLocked":false,"requestsBefore":1,"requestsAfter":2}
+PASS shutdown while captured then async unlock and reinitialization can acquire capture and aim again
+Can't register variable m_filter, already defined
+
+Can't register variable gp_look_yaw, already defined
+
+Can't register variable gp_look_pitch, already defined
+
+Cmd_AddCommand: force_centerview already defined
+
+Cmd_AddCommand: +moveup already defined
+
+Cmd_AddCommand: -moveup already defined
+
+Cmd_AddCommand: +movedown already defined
+
+Cmd_AddCommand: -movedown already defined
+
+Cmd_AddCommand: +left already defined
+
+Cmd_AddCommand: -left already defined
+
+Cmd_AddCommand: +right already defined
+
+Cmd_AddCommand: -right already defined
+
+Cmd_AddCommand: +forward already defined
+
+Cmd_AddCommand: -forward already defined
+
+Cmd_AddCommand: +back already defined
+
+Cmd_AddCommand: -back already defined
+
+Cmd_AddCommand: +lookup already defined
+
+Cmd_AddCommand: -lookup already defined
+
+Cmd_AddCommand: +lookdown already defined
+
+Cmd_AddCommand: -lookdown already defined
+
+Cmd_AddCommand: +strafe already defined
+
+Cmd_AddCommand: -strafe already defined
+
+Cmd_AddCommand: +moveleft already defined
+
+Cmd_AddCommand: -moveleft already defined
+
+Cmd_AddCommand: +moveright already defined
+
+Cmd_AddCommand: -moveright already defined
+
+Cmd_AddCommand: +speed already defined
+
+Cmd_AddCommand: -speed already defined
+
+Cmd_AddCommand: +attack already defined
+
+Cmd_AddCommand: -attack already defined
+
+Cmd_AddCommand: +use already defined
+
+Cmd_AddCommand: -use already defined
+
+Cmd_AddCommand: +jump already defined
+
+Cmd_AddCommand: -jump already defined
+
+Cmd_AddCommand: +crouch already defined
+
+Cmd_AddCommand: -crouch already defined
+
+Cmd_AddCommand: +infoplaque already defined
+
+Cmd_AddCommand: -infoplaque already defined
+
+Cmd_AddCommand: invleft already defined
+
+Cmd_AddCommand: invright already defined
+
+Cmd_AddCommand: invuse already defined
+
+Cmd_AddCommand: invdrop already defined
+
+Cmd_AddCommand: invoff already defined
+
+Cmd_AddCommand: impulse already defined
+
+Cmd_AddCommand: +klook already defined
+
+Cmd_AddCommand: -klook already defined
+
+Cmd_AddCommand: +mlook already defined
+
+Cmd_AddCommand: -mlook already defined
+
+PASS default mouse look survives a bound middle-button cycle while explicit -mlook still disables vertical aiming
+RESULT 4/4 passed (tests/in_web_capture_test.js)
+PASS IN_Init twice adds each listener once; IN_Shutdown removes them all, touch start included
+RESULT 1/1 passed (tests/in_web_lifecycle_test.js)
+PASS the focus is where the view looks: the median of five rays, so one thin thing on the crosshair does not snatch it
+PASS the focus settles smoothly on the client's clock, holds while paused, and snaps on a new level, a teleport or time going back
+PASS off in Classic, at strength 0 and in WebXR; the circle of confusion scales with the picture's height and strength
+PASS inside a wall the focus holds; along the ray the sky focuses far and lava stops it, water does not; clearing forgets
+Added packfile pak0.pak (339 files)
+
+PASS the real E1M1 hull: a ray at the sky stops on its face, and knowing the sky faces makes it focus far
+PASS on by default at the lowest nonzero slider step (0.05); explicit player choices remain saved
+PASS the 19 October default migration handles an already migrated 0.15 configuration once and preserves explicit strength choices
+RESULT 7/7 passed (tests/dof_test.js)
+Added packfile pak0.pak (339 files)
+
+meshing progs/soldier.mdl...
+
+meshing progs/dog.mdl...
+
+meshing progs/shambler.mdl...
+
+meshing progs/wizard.mdl...
+
+meshing progs/gib1.mdl...
+
+meshing progs/ogre.mdl...
+
+meshing progs/knight.mdl...
+
+meshing progs/demon.mdl...
+
+meshing progs/zombie.mdl...
+
+meshing progs/player.mdl...
+
+PASS player movement never produces these enemy-only footsteps
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS all five approved enemy families step on the real floor and retain weight and movement cadence
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS dogs Shamblers fiends zombies players and unknown walkers never gain human enemy footsteps
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS approved enemies still need movement a walking pose and a nearby floor
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+Added packfile soldier/step1.wav.pak (1 files)
+
+PASS native enemy footsteps take ownership only after playback, never merely because a sound is precached
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS Classic demos pause and the switch silence an otherwise eligible moving enemy
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS enemy footsteps keep the four-per-frame bound and cannot steal full native sound channels
+RESULT 7/7 passed (tests/footsteps_test.js)
+Added packfile pak0.pak (339 files)
+
+PASS the material table reads what Quake's texture names say
+PASS every surface sound is a short, clean, distinct sound
+PASS a nail on a wall admits its material sound instead of the original while preserving native random decisions
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS landing on the floor and the axe on a wall bring the surface's sound; the shotgun and lightning gun none
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS New Game, a demo and the switch off: the game's own sound only
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS no game sound is ever cut off: with nearly every channel busy the surface sound waits
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS an admitted surface sound starts one PCM source and preserves logical observer notifications once
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS an inaudible surface candidate cannot swallow an otherwise audible native impact
+RESULT 8/8 passed (tests/material_impacts_test.js)
+Cvar_Set: variable nosound not found
+
+Clearing memory
+
+PASS recorded player submersion starts entry once, loops underwater, and bubbles only during filling
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS wading uses quick fade-in and long fade-out when movement stops
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS water sounds use Sound Volume bus and stop on pause, hide, death, Classic and disconnect
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS shutdown releases media and a late play promise cannot restart a disconnected water loop
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS dry game preparation warms existing water media before the first dive, whose public update starts full gain synchronously
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS a denied silent dry warm-up stays bounded and retries exactly once on the next genuine dive
+RESULT 6/6 passed (tests/water_audio_test.js)
+Added packfile replacement-native-fixture.pak (339 files)
+
+Programs occupy 403K.
+
+PASS actual native packet admits one custom source before native playback and still notifies existing observers once
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS false thrown unmapped and non-boolean replacement results retain one normal native playback
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS Classic and the split Classic pass keep native audio even when a registered Newer replacement would admit it
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS replacement unsubscription restores native playback and one admitted owner prevents duplicate replacement execution
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS admitting a replacement preserves actual native PCM cache file bytes and loaded QC globals
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS admitting a ready replacement stops its old fallback but preserves other actors and channels
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS static loops pass through the same admission policy before any native buffer starts
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS ambient fallback can become replaced and resume natively after its replacement unsubscribes
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS real electric event subscriber replaces native player lightning packets with full clip20 without duplicate starts
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS real electric mapping keeps original audio without actor receipts, in Classic/demo and after replacement media failure
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS the real placed-fire parser and owner replace the native loop with the supplied environmental recording
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS the real underwater owner replaces only the submerged native bed and restores surface ambience
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS real clientdata pickup transitions replace quad ring and pentagram native packets with the supplied individual cues
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS admitting an auto-channel contact never retires independent earlier contacts from the same actor
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS a replacement PCM output start failure falls through to the original rather than claiming admission
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS missing replacement PCM keeps the real native cache and original source usable
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS actual underwater death is replaced while drowning pain after respawn keeps its native sound through the full death tail
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS an old electric contact tail cannot replace native audio belonging to a reused same-object edict life
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS a synchronous MP3 play throw cannot claim electric admission or swallow the native source
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS native water entry is replaced only for the local submerged player with an actually admitted entry recording
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS actual native water1 and water2 wading packets are replaced only while the local walking recording is audible and fall back after its fade or failure
+RESULT 21/21 passed (tests/native_sound_replacement_test.js)
+Clearing memory
+
+PASS actual static-sound placement drives one spatialized fire loop independent of torch rendering
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS fire uses bounded nearest source, existing stereo direction and static-flame fallback only when needed
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS pause, hide, mute, death, menu, Classic and demo silence fire immediately on the effects bus
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS fire resets source history, rejects play-spam and invalidates pending media on shutdown
+RESULT 4/4 passed (tests/environment_sounds_test.js)
+Clearing memory
+
+PASS real clientdata transitions play individual cues, exact-two bed and third acquisition once
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS pair fades after count leaves two and initial baseline or suit cannot fabricate a combo
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS actual clientdata death edge plays once and can finish through same-world respawn
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS only base Quake end-map finale message plays the ending cue
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS new cues use the effects bus and lifecycle gates silence them without stale replay
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS late play success after reset cannot resurrect an old context-bound cue
+Clearing memory
+
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS a clientdata packet replaces expired powers before counting its newly gained powers
+RESULT 7/7 passed (tests/player_events_audio_test.js)
+Added packfile shareware.pak (339 files)
+
+R_Init
+R_Init: Three.js renderer ready
+NET_Init complete
+
+Playing demo (forcetrack -1)
+
+Serverinfo packet received.
+
+Clearing memory
+
+
+
+
+
+
+the Grisly Grotto
+
+meshing progs/player.mdl...
+
+meshing progs/eyes.mdl...
+
+meshing progs/h_player.mdl...
+
+meshing progs/gib1.mdl...
+
+meshing progs/gib2.mdl...
+
+meshing progs/gib3.mdl...
+
+meshing progs/v_axe.mdl...
+
+meshing progs/v_shot.mdl...
+
+meshing progs/v_nail.mdl...
+
+meshing progs/v_rock.mdl...
+
+meshing progs/v_shot2.mdl...
+
+meshing progs/v_nail2.mdl...
+
+meshing progs/v_rock2.mdl...
+
+meshing progs/bolt.mdl...
+
+meshing progs/bolt2.mdl...
+
+meshing progs/bolt3.mdl...
+
+meshing progs/lavaball.mdl...
+
+meshing progs/missile.mdl...
+
+meshing progs/grenade.mdl...
+
+meshing progs/spike.mdl...
+
+meshing progs/s_spike.mdl...
+
+meshing progs/backpack.mdl...
+
+meshing progs/zom_gib.mdl...
+
+meshing progs/v_light.mdl...
+
+meshing progs/flame2.mdl...
+
+meshing progs/flame.mdl...
+
+meshing progs/wizard.mdl...
+
+meshing progs/h_wizard.mdl...
+
+meshing progs/w_spike.mdl...
+
+meshing progs/armor.mdl...
+
+meshing progs/ogre.mdl...
+
+meshing progs/h_ogre.mdl...
+
+meshing progs/w_s_key.mdl...
+
+meshing progs/knight.mdl...
+
+meshing progs/h_knight.mdl...
+
+meshing progs/g_nail2.mdl...
+
+meshing progs/suit.mdl...
+
+meshing progs/g_rock.mdl...
+
+Sound precache list:
+
+  1: weapons/r_exp3.wav
+
+  2: weapons/rocket1i.wav
+
+  3: weapons/sgun1.wav
+
+  4: weapons/guncock.wav
+
+  5: weapons/ric1.wav
+
+  6: weapons/ric2.wav
+
+  7: weapons/ric3.wav
+
+  8: weapons/spike2.wav
+
+  9: weapons/tink1.wav
+
+  10: weapons/grenade.wav
+
+  11: weapons/bounce.wav
+
+  12: weapons/shotgn2.wav
+
+  13: demon/dland2.wav
+
+  14: misc/h2ohit1.wav
+
+  15: items/itembk2.wav
+
+  16: player/plyrjmp8.wav
+
+  17: player/land.wav
+
+  18: player/land2.wav
+
+  19: player/drown1.wav
+
+  20: player/drown2.wav
+
+  21: player/gasp1.wav
+
+  22: player/gasp2.wav
+
+  23: player/h2odeath.wav
+
+  24: misc/talk.wav
+
+  25: player/teledth1.wav
+
+  26: misc/r_tele1.wav
+
+  27: misc/r_tele2.wav
+
+  28: misc/r_tele3.wav
+
+  29: misc/r_tele4.wav
+
+  30: misc/r_tele5.wav
+
+  31: weapons/lock4.wav
+
+  32: weapons/pkup.wav
+
+  33: items/armor1.wav
+
+  34: weapons/lhit.wav
+
+  35: player/gib.wav
+
+  36: player/udeath.wav
+
+  37: player/tornoff2.wav
+
+  38: player/pain1.wav
+
+  39: player/pain2.wav
+
+  40: player/pain3.wav
+
+  41: player/pain4.wav
+
+  42: player/pain5.wav
+
+  43: player/pain6.wav
+
+  44: player/death1.wav
+
+  45: player/death2.wav
+
+  46: player/death3.wav
+
+  47: player/death4.wav
+
+  48: player/death5.wav
+
+  49: weapons/ax1.wav
+
+  50: player/axhit1.wav
+
+  51: player/axhit2.wav
+
+  52: player/h2ojump.wav
+
+  53: player/slimbrn2.wav
+
+  54: player/inh2o.wav
+
+  55: player/inlava.wav
+
+  56: misc/outwater.wav
+
+  57: player/lburn1.wav
+
+  58: player/lburn2.wav
+
+  59: misc/water1.wav
+
+  60: misc/water2.wav
+
+  61: doors/medtry.wav
+
+  62: doors/meduse.wav
+
+  63: doors/stndr1.wav
+
+  64: doors/stndr2.wav
+
+  65: misc/null.wav
+
+  66: ambience/fire1.wav
+
+  67: doors/drclos4.wav
+
+  68: doors/doormv1.wav
+
+  69: plats/medplat1.wav
+
+  70: plats/medplat2.wav
+
+  71: wizard/hit.wav
+
+  72: wizard/wattack.wav
+
+  73: wizard/wdeath.wav
+
+  74: wizard/widle1.wav
+
+  75: wizard/widle2.wav
+
+  76: wizard/wpain.wav
+
+  77: wizard/wsight.wav
+
+  78: items/health1.wav
+
+  79: ogre/ogdrag.wav
+
+  80: ogre/ogdth.wav
+
+  81: ogre/ogidle.wav
+
+  82: ogre/ogidle2.wav
+
+  83: ogre/ogpain1.wav
+
+  84: ogre/ogsawatk.wav
+
+  85: ogre/ogwake.wav
+
+  86: buttons/switch02.wav
+
+  87: misc/medkey.wav
+
+  88: items/r_item1.wav
+
+  89: knight/kdeath.wav
+
+  90: knight/khurt.wav
+
+  91: knight/ksight.wav
+
+  92: knight/sword1.wav
+
+  93: knight/sword2.wav
+
+  94: knight/idle.wav
+
+  95: buttons/airbut1.wav
+
+  96: doors/basesec1.wav
+
+  97: doors/basesec2.wav
+
+  98: misc/secret.wav
+
+  99: buttons/switch21.wav
+
+  100: items/suit.wav
+
+  101: items/suit2.wav
+
+  102: ambience/hum1.wav
+
+  103: ambience/drip1.wav
+
+  104: ambience/swamp1.wav
+
+  105: ambience/swamp2.wav
+
+CL_SignonReply: 1
+
+CL_SignonReply: 2
+
+CL_SignonReply: 3
+
+CL_SignonReply: 4
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 31 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+You got the 
+shells
+
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 65 not precached
+
+CL_ParseStartSoundPacket: sound_num 63 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 77 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 65 not precached
+
+CL_ParseStartSoundPacket: sound_num 64 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 76 not precached
+
+CL_ParseStartSoundPacket: sound_num 72 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 72 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 76 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 72 not precached
+
+CL_ParseStartSoundPacket: sound_num 72 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 76 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 72 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 73 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 13 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 74 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 74 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 95 not precached
+
+CL_ParseStartSoundPacket: sound_num 63 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 64 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 95 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 63 not precached
+
+CL_ParseStartSoundPacket: sound_num 65 not precached
+
+CL_ParseStartSoundPacket: sound_num 98 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 64 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 89 not precached
+
+CL_ParseStartSoundPacket: sound_num 65 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 74 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 74 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 31 not precached
+
+You got the 
+shells
+
+
+CL_ParseStartSoundPacket: sound_num 31 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+You got the 
+nails
+
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 16 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 33 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+You got armor
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 74 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 77 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 31 not precached
+
+You got the 
+nails
+
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 78 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+You receive 
+25
+ health
+
+CL_ParseStartSoundPacket: sound_num 72 not precached
+
+CL_ParseStartSoundPacket: sound_num 74 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 72 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 76 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 72 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 76 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 76 not precached
+
+CL_ParseStartSoundPacket: sound_num 74 not precached
+
+CL_ParseStartSoundPacket: sound_num 74 not precached
+
+CL_ParseStartSoundPacket: sound_num 74 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 76 not precached
+
+CL_ParseStartSoundPacket: sound_num 72 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 72 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 73 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 65 not precached
+
+CL_ParseStartSoundPacket: sound_num 77 not precached
+
+CL_ParseStartSoundPacket: sound_num 54 not precached
+
+CL_ParseStartSoundPacket: sound_num 14 not precached
+
+CL_ParseStartSoundPacket: sound_num 65 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 13 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 14 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 74 not precached
+
+CL_ParseStartSoundPacket: sound_num 72 not precached
+
+CL_ParseStartSoundPacket: sound_num 72 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 72 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 20 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 74 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 76 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 72 not precached
+
+CL_ParseStartSoundPacket: sound_num 72 not precached
+
+CL_ParseStartSoundPacket: sound_num 63 not precached
+
+CL_ParseStartSoundPacket: sound_num 65 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 76 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 72 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 76 not precached
+
+CL_ParseStartSoundPacket: sound_num 64 not precached
+
+CL_ParseStartSoundPacket: sound_num 65 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 72 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 72 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 74 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 76 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 72 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 76 not precached
+
+CL_ParseStartSoundPacket: sound_num 63 not precached
+
+CL_ParseStartSoundPacket: sound_num 65 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 64 not precached
+
+CL_ParseStartSoundPacket: sound_num 65 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 73 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 13 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 19 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 20 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 59 not precached
+
+CL_ParseStartSoundPacket: sound_num 63 not precached
+
+CL_ParseStartSoundPacket: sound_num 65 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 74 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 19 not precached
+
+CL_ParseStartSoundPacket: sound_num 64 not precached
+
+CL_ParseStartSoundPacket: sound_num 65 not precached
+
+CL_ParseStartSoundPacket: sound_num 22 not precached
+
+CL_ParseStartSoundPacket: sound_num 56 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 32 not precached
+
+You got the 
+Super Nailgun
+
+
+CL_ParseStartSoundPacket: sound_num 31 not precached
+
+You got the 
+nails
+
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 16 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 54 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 60 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 56 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 85 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 83 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 74 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 80 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 31 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+You get 
+2
+ rockets  
+
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 91 not precached
+
+CL_ParseStartSoundPacket: sound_num 74 not precached
+
+CL_ParseStartSoundPacket: sound_num 91 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 90 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 89 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 90 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 89 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 85 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 74 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 82 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 10 not precached
+
+CL_ParseStartSoundPacket: sound_num 83 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 1 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 80 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 2 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 78 not precached
+
+You receive 
+25
+ health
+
+CL_ParseStartSoundPacket: sound_num 31 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+You got the 
+shells
+
+
+CL_ParseStartSoundPacket: sound_num 63 not precached
+
+CL_ParseStartSoundPacket: sound_num 65 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 64 not precached
+
+CL_ParseStartSoundPacket: sound_num 65 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 31 not precached
+
+You get 
+2
+ rockets  
+
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 68 not precached
+
+CL_ParseStartSoundPacket: sound_num 65 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 85 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 30 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 29 not precached
+
+CL_ParseStartSoundPacket: sound_num 31 not precached
+
+You got the 
+nails
+
+
+CL_ParseStartSoundPacket: sound_num 14 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 83 not precached
+
+CL_ParseStartSoundPacket: sound_num 74 not precached
+
+CL_ParseStartSoundPacket: sound_num 74 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 67 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 65 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 10 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 11 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 83 not precached
+
+CL_ParseStartSoundPacket: sound_num 11 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 11 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 84 not precached
+
+CL_ParseStartSoundPacket: sound_num 80 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 8 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 31 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+You get 
+2
+ rockets  
+
+
+CL_ParseStartSoundPacket: sound_num 91 not precached
+
+CL_ParseStartSoundPacket: sound_num 90 not precached
+
+CL_ParseStartSoundPacket: sound_num 1 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 16 not precached
+
+CL_ParseStartSoundPacket: sound_num 91 not precached
+
+CL_ParseStartSoundPacket: sound_num 91 not precached
+
+CL_ParseStartSoundPacket: sound_num 93 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 93 not precached
+
+CL_ParseStartSoundPacket: sound_num 69 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 91 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 85 not precached
+
+CL_ParseStartSoundPacket: sound_num 91 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 70 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 90 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 75 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 81 not precached
+
+CL_ParseStartSoundPacket: sound_num 4 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+Host_EndGame: Server disconnected
+
+
+DEMO2_WATER_EVIDENCE {"samples":987,"submerged":210,"maxStage":10,"maxPercent":100}
+PASS real demo2 fills the HUD face from recorded player geometry
+Clearing memory
+
+Clearing memory
+
+PASS demo visual air freezes on repeated reads and resets on surfacing, suit, rewind and file replacement
+Clearing memory
+
+PASS client geometry distinguishes wading from head water and ignores stationary movement
+Clearing memory
+
+PASS demo death and respawn received between visible frames discard the old fill
+RESULT 4/4 passed (tests/face_demo_water_test.js)
+PASS submersion immediately shows W1 and full visor starts at ninety percent air used
+PASS surface drain reverses one frame every fifty game milliseconds and cancels on reentry
+RESULT 2/2 passed (tests/face_water_entry_test.js)
+Added packfile pak0.pak (339 files)
+
+PASS in a leaf by water and sky, the two ambient channels play the map's water and wind sounds; elsewhere they fade
+RESULT 1/1 passed (tests/ambient_sounds_test.js)
+Added packfile pak0.pak (339 files)
+
+PASS with every channel busy, the long sound about to finish is taken, not a short one just begun
+RESULT 1/1 passed (tests/sound_channel_steal_test.js)
+TOTAL 211/212 passed

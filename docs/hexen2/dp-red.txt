@@ -1,0 +1,31 @@
+Added packfile shareware/pak0.pak (3 files)
+
+Added packfile hexen2/loose (1 files)
+
+Added packfile hexen2/pak0.pak (1 files)
+
+Added packfile hexen2/pak1.pak (1 files)
+
+Added packfile hexen2/loose (1 files)
+
+Added packfile hexen2/pak0.pak (1 files)
+
+Added packfile hexen2/pak1.pak (1 files)
+
+RESULT 0/3 passed (tests/desktop_prepare_test.js)
+TOTAL 0/3 passed
+FAIL Desktop_Prepare: ordinary shareware shelf start returns packs and saveTrial false Error: a valid start must never fall back to GameShelf_Show: show shelf saveTrial is not defined: 1 != 0
+    at check (file:///Users/bri/worktrees/Quaked/hexen2-unified/dp/tests/desktop_prepare_test.js:15:46)
+    at same (file:///Users/bri/worktrees/Quaked/hexen2-unified/dp/tests/desktop_prepare_test.js:16:29)
+    at prepare (file:///Users/bri/worktrees/Quaked/hexen2-unified/dp/tests/desktop_prepare_test.js:134:3)
+    at async file:///Users/bri/worktrees/Quaked/hexen2-unified/dp/tools/run_tests.mjs:95:9
+FAIL Desktop_Prepare: ordinary Hexen II shelf start returns loose gamecode and ordered data1 packs Error: a valid start must never fall back to GameShelf_Show: show shelf saveTrial is not defined: 1 != 0
+    at check (file:///Users/bri/worktrees/Quaked/hexen2-unified/dp/tests/desktop_prepare_test.js:15:46)
+    at same (file:///Users/bri/worktrees/Quaked/hexen2-unified/dp/tests/desktop_prepare_test.js:16:29)
+    at prepare (file:///Users/bri/worktrees/Quaked/hexen2-unified/dp/tests/desktop_prepare_test.js:134:3)
+    at async file:///Users/bri/worktrees/Quaked/hexen2-unified/dp/tools/run_tests.mjs:95:9
+FAIL Desktop_Prepare: a trial start still returns its autoplay, class and save settings Error: a valid start must never fall back to GameShelf_Show: show shelf saveTrial is not defined: 1 != 0
+    at check (file:///Users/bri/worktrees/Quaked/hexen2-unified/dp/tests/desktop_prepare_test.js:15:46)
+    at same (file:///Users/bri/worktrees/Quaked/hexen2-unified/dp/tests/desktop_prepare_test.js:16:29)
+    at prepare (file:///Users/bri/worktrees/Quaked/hexen2-unified/dp/tests/desktop_prepare_test.js:134:3)
+    at async file:///Users/bri/worktrees/Quaked/hexen2-unified/dp/tools/run_tests.mjs:95:9

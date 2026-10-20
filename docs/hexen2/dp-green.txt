@@ -1,0 +1,19 @@
+Added packfile shareware/pak0.pak (3 files)
+
+PASS Desktop_Prepare: ordinary shareware shelf start returns packs and saveTrial false
+Added packfile hexen2/loose (1 files)
+
+Added packfile hexen2/pak0.pak (1 files)
+
+Added packfile hexen2/pak1.pak (1 files)
+
+PASS Desktop_Prepare: ordinary Hexen II shelf start returns loose gamecode and ordered data1 packs
+Added packfile hexen2/loose (1 files)
+
+Added packfile hexen2/pak0.pak (1 files)
+
+Added packfile hexen2/pak1.pak (1 files)
+
+PASS Desktop_Prepare: a trial start still returns its autoplay, class and save settings
+RESULT 3/3 passed (tests/desktop_prepare_test.js)
+TOTAL 3/3 passed
