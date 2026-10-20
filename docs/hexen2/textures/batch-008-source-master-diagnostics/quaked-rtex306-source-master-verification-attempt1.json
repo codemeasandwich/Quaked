@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "/usr/bin/python3",
+    "docs/hexen2/textures/batch-008-rtex306-verify-source-master.py"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"/Users/bri/SOURCE/Quaked/docs/hexen2/textures/batch-008-rtex306-verify-source-master.py\", line 202, in <module>\n    main()\n  File \"/Users/bri/SOURCE/Quaked/docs/hexen2/textures/batch-008-rtex306-verify-source-master.py\", line 128, in main\n    assert original.format == raw.format == 'PNG' and original.mode == raw.mode == 'RGB'\nAssertionError\n"
+}

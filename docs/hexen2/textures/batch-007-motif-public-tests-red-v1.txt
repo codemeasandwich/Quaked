@@ -1,0 +1,52 @@
+test_bounded_nonboolean_finite_policy_and_geometry_refusals (__main__.MotifMasterCLI) ... ok
+test_canonical_tool_input_replay_and_format_refusals (__main__.MotifMasterCLI) ... ok
+test_constant_delta_noop_and_actual_support_corner_product (__main__.MotifMasterCLI) ... ok
+test_existing_output_and_symlink_refusals (__main__.MotifMasterCLI) ... ok
+test_full_independent_oracle_height_bytes_and_no_old_binary_dependency (__main__.MotifMasterCLI) ... ok
+test_identity_proof_and_source_hash_refusals (__main__.MotifMasterCLI) ... ok
+test_measured_x_landmark_source_replay (__main__.MotifMasterCLI) ... ok
+test_repeated_policy_key_presence_refusals (__main__.MotifMasterCLI) ... 
+======================================================================
+FAIL: test_repeated_policy_key_presence_refusals (__main__.MotifMasterCLI) (key='motifRestoration', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/SOURCE/Quaked/tests/texture_motif_master_test.py", line 189, in test_repeated_policy_key_presence_refusals
+    self.source=copy.deepcopy(baseline);self.source[key]=value;self.refresh_source();self.reject()
+  File "/Users/bri/SOURCE/Quaked/tests/texture_motif_master_test.py", line 140, in reject
+    run,out=self.run_cli();self.assertNotEqual(run.returncode,0,'Malformed input accepted')
+AssertionError: 0 == 0 : Malformed input accepted
+
+======================================================================
+FAIL: test_repeated_policy_key_presence_refusals (__main__.MotifMasterCLI) (key='motifRestoration', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/SOURCE/Quaked/tests/texture_motif_master_test.py", line 189, in test_repeated_policy_key_presence_refusals
+    self.source=copy.deepcopy(baseline);self.source[key]=value;self.refresh_source();self.reject()
+  File "/Users/bri/SOURCE/Quaked/tests/texture_motif_master_test.py", line 140, in reject
+    run,out=self.run_cli();self.assertNotEqual(run.returncode,0,'Malformed input accepted')
+AssertionError: 0 == 0 : Malformed input accepted
+
+======================================================================
+FAIL: test_repeated_policy_key_presence_refusals (__main__.MotifMasterCLI) (key='layeredRelief', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/SOURCE/Quaked/tests/texture_motif_master_test.py", line 189, in test_repeated_policy_key_presence_refusals
+    self.source=copy.deepcopy(baseline);self.source[key]=value;self.refresh_source();self.reject()
+  File "/Users/bri/SOURCE/Quaked/tests/texture_motif_master_test.py", line 140, in reject
+    run,out=self.run_cli();self.assertNotEqual(run.returncode,0,'Malformed input accepted')
+AssertionError: 0 == 0 : Malformed input accepted
+
+======================================================================
+FAIL: test_repeated_policy_key_presence_refusals (__main__.MotifMasterCLI) (key='layeredRelief', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/SOURCE/Quaked/tests/texture_motif_master_test.py", line 189, in test_repeated_policy_key_presence_refusals
+    self.source=copy.deepcopy(baseline);self.source[key]=value;self.refresh_source();self.reject()
+  File "/Users/bri/SOURCE/Quaked/tests/texture_motif_master_test.py", line 140, in reject
+    run,out=self.run_cli();self.assertNotEqual(run.returncode,0,'Malformed input accepted')
+AssertionError: 0 == 0 : Malformed input accepted
+
+----------------------------------------------------------------------
+Ran 8 tests in 33.036s
+
+FAILED (failures=4)

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-20T07:00:06.803416+00:00",
+  "verifier": {
+    "file": "docs/hexen2/textures/batch-008-first-four-verify-public-preview.py",
+    "sha256": "37488bf830073dfeafb1ed8b2122adea3cce17eab9604ff63ced12995f5f718c",
+    "bytes": 14040
+  },
+  "replayEnvironment": {
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "Python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "Pillow": "10.1.0",
+    "NumPy": "1.26.2",
+    "JPEG": "6.2",
+    "WebP": "1.3.2"
+  },
+  "limits": [
+    "Public review CLI replay binds decoded content panels, not independent artistic acceptance.",
+    "Scope is four batch008 native bindings: four independent current physical masters/40maps; no aliases; fullcampaign remains incomplete.",
+    "Static HTML/image files checked; no browser layout, GPU, engine or gameplay qualification.",
+    "Retained single generator source/declared count is not an independent provider-side invocation audit.",
+    "JPEG full bytes are compared and exactness is recorded per file. Any decoded variance must be confined to the documented empty bottom-right padding, outside every content/label panel; full difference bounds are recorded."
+  ],
+  "verdict": "HOLD",
+  "error": "FileNotFoundError(2, 'No such file or directory')",
+  "completedAt": "2026-10-20T07:00:06.887641+00:00"
+}

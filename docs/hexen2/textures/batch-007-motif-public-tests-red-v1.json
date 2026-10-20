@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "verdict": "HOLD required repeated-policy key-presence guard failures",
+  "source": {
+    "file": "tools/texture_sheets/prepare_motif_texture_master.py",
+    "sha256": "13a531fd67efe6db08aba57f660dddb1d466312e80a8819d9a18de4233519c60"
+  },
+  "retainedSource": {
+    "file": "docs/hexen2/textures/batch-007-motif-before-guards-source.py",
+    "sha256": "13a531fd67efe6db08aba57f660dddb1d466312e80a8819d9a18de4233519c60"
+  },
+  "test": {
+    "file": "tests/texture_motif_master_test.py",
+    "sha256": "160ed1a77c123c9f944ff54fa1bddd1734f44ac4881dfc4caf0ddd5bbeeff8f2"
+  },
+  "command": [
+    "/usr/bin/python3",
+    "tests/texture_motif_master_test.py"
+  ],
+  "exitCode": 1,
+  "groupsRun": 8,
+  "groupsPassed": 7,
+  "failedGroups": 1,
+  "failedSubcases": 4,
+  "requiredFindings": [
+    {
+      "keys": [
+        "motifRestoration",
+        "layeredRelief"
+      ],
+      "values": [
+        null,
+        false
+      ],
+      "publicFailure": "An otherwise source-bound initial package carrying one of these revision keys alone was accepted and output created. Plan requires rejection based on correction-key presence.",
+      "recommendation": "Reject these top-level keys by presence alongside masterRevision before any output creation. Keep all algorithm/height behavior unchanged."
+    }
+  ],
+  "passedContracts": [
+    "Independent direct circular-convolution/analytic periodic-cubic RGB oracle exact.",
+    "Product-window geometry6912support/5120fullweight and feather-corner product exact; constant/noop exact.",
+    "Old RGB/NPY binaries deleted from synthetic fixture; successful reconstruction and height NPY bytes unchanged.",
+    "MeasuredXlandmark replay, parameter/geometry/source/tool/profile/rawpayload/identity refusals and overwrite/symlink checks passed."
+  ],
+  "log": {
+    "file": "docs/hexen2/textures/batch-007-motif-public-tests-red-v1.txt",
+    "sha256": "f0ea856fea7ee55ec6f971d5d070d6c07553deac29babafd583313b696ce50eb"
+  },
+  "limits": [
+    "Synthetic public CLI regression only, not actual asset or ART qualification.",
+    "All malformed test outputs were owned temporary fixtures and cleaned. No asset/core/Git edits by verifier."
+  ]
+}

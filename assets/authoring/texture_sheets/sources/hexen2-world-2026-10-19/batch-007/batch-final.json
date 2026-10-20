@@ -1,0 +1,447 @@
+{
+  "schemaVersion": 2,
+  "batch": "007",
+  "family": "hexen2",
+  "pathsBase": "repository",
+  "defaultTier": "Mid",
+  "tierFactors": {
+    "Mid": 4,
+    "High": 8
+  },
+  "quality": 92,
+  "method": 6,
+  "lossless": false,
+  "items": [
+    {
+      "name": "rtex322",
+      "edition": "base",
+      "nativeIdentity": {
+        "id": "411496d1fad7414033cb4e53662aa4b5389834f94f75fdf1572ece123e14449a",
+        "width": 64,
+        "height": 64,
+        "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+        "rgbaSha256": "02d68069b3b2da7086b70bec3e4d174248546b5dfcac6f01a6d3ce3d536d0f5c",
+        "indexedPixelSha256": "4af12fbc5557466d490234c6a2f00ce0e2c776c651def4049a9f38d68659966f"
+      },
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/01-rtex322-411496d1fad7.png",
+      "generationCount": 1,
+      "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters-motif-v2/rtex322/master.json",
+      "masterPackageSha256": "f4b0a13b8d7a11524957587e4febf92ba128e1c7cb9e6a9e9975b04cd547985d",
+      "tierReceipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/manifest.json",
+      "tierReceiptSha256": "90cf2e460b7856f2641122148ae85584ad57d4fc7c4bad4bc264df588e2625d2",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            256,
+            256
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/mid-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/mid-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/mid-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/mid-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/mid-normalZ.webp"
+          }
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            512,
+            512
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/high-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/high-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/high-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/high-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/high-normalZ.webp"
+          }
+        }
+      },
+      "status": "Same-source colour-motif candidate with initialheight byteexact; final public/art qualification pending",
+      "newMasters": 1,
+      "newMapFiles": 10,
+      "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/generated/rtex322.png",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/rtex322.txt"
+    },
+    {
+      "name": "rtex121",
+      "edition": "base",
+      "nativeIdentity": {
+        "id": "3e356d95bcb646ddce27b5bec894d8155ad631bd1534c6e2668697eb7397764c",
+        "width": 64,
+        "height": 64,
+        "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+        "rgbaSha256": "96cbeb9ca4032b9c1092d46a5151cb3aed710d1392baf14e4053b95c0ac54564",
+        "indexedPixelSha256": "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29"
+      },
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/02-rtex121-3e356d95bcb6.png",
+      "generationCount": 1,
+      "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/rtex121/master.json",
+      "masterPackageSha256": "3b01eeef00c695434b70e34b411cf5bf706164c7ac4588af29fee3fcae42724e",
+      "tierReceipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/manifest.json",
+      "tierReceiptSha256": "3221078b16d2f7ca0aba8dc20be6a1927141622aa26c27c166168f5f808372a5",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            256,
+            256
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/mid-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/mid-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/mid-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/mid-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/mid-normalZ.webp"
+          }
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            512,
+            512
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/high-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/high-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/high-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/high-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/high-normalZ.webp"
+          }
+        }
+      },
+      "status": "Actual public and artwork qualification pending",
+      "newMasters": 1,
+      "newMapFiles": 10,
+      "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/generated/rtex121.png",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/rtex121.txt"
+    },
+    {
+      "name": "rtex413",
+      "edition": "base",
+      "nativeIdentity": {
+        "id": "af54a88c937655486689ad7a29a72ae3a16f053798fd9ad41be6c76ebb78c567",
+        "width": 128,
+        "height": 128,
+        "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+        "rgbaSha256": "5bbcdd9fe8337eccbe65362a5645834e832ce3d9a11c6949ea8d742d6a9fd73b",
+        "indexedPixelSha256": "02bba580e1fd0aee8e7c96a6915bdce8662ccd6aee594318d9c03f9e23cc4860"
+      },
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/03-rtex413-af54a88c9376.png",
+      "generationCount": 1,
+      "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/rtex413/master.json",
+      "masterPackageSha256": "9878a1cc8db23e9f453929e2a2ce9335626790d49c56e0a01738f07952bc2def",
+      "tierReceipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/manifest.json",
+      "tierReceiptSha256": "3780715c1bc473374e01de082865006afa28ce312b755f14581cc805e3d0e7c3",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            512,
+            512
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/mid-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/mid-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/mid-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/mid-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/mid-normalZ.webp"
+          }
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/high-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/high-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/high-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/high-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/high-normalZ.webp"
+          }
+        }
+      },
+      "status": "Actual public and artwork qualification pending",
+      "newMasters": 1,
+      "newMapFiles": 10,
+      "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/generated/rtex413.png",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/rtex413.txt"
+    },
+    {
+      "name": "rtex274",
+      "edition": "base",
+      "nativeIdentity": {
+        "id": "b3fd79635c329d1f4102f51285fee7c35e5caa4c05a312cbbd932197acf97c2c",
+        "width": 64,
+        "height": 128,
+        "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+        "rgbaSha256": "e4606a9fb3b8d8b6fe0100c61f5d736cbf0d86f2e89a5b31f95b97a5ca242538",
+        "indexedPixelSha256": "a3bce739efe421bb4dcf2e8d86f6714cef48df20f516a55002584c580b12860a"
+      },
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/04-rtex274-b3fd79635c32.png",
+      "generationCount": 1,
+      "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/rtex274/master.json",
+      "masterPackageSha256": "9bbb3dd6026f7048a23d3164080514e21b6c8b03d62a394277688fbff0ff0066",
+      "tierReceipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/manifest.json",
+      "tierReceiptSha256": "aca4d4bf32f209cd44347f8b22363b50ddd59e0e6eb30bbf3647d05dbb6908d2",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            256,
+            512
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/mid-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/mid-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/mid-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/mid-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/mid-normalZ.webp"
+          }
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            512,
+            1024
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/high-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/high-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/high-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/high-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/high-normalZ.webp"
+          }
+        }
+      },
+      "status": "Actual public and artwork qualification pending",
+      "newMasters": 1,
+      "newMapFiles": 10,
+      "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/generated/rtex274.png",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/rtex274.txt"
+    },
+    {
+      "name": "ttex005",
+      "edition": "portals",
+      "nativeIdentity": {
+        "id": "c5b5337a494c912b1dc094938e9cff6e0ecaf6932ce46398685b0e6ad458da54",
+        "width": 64,
+        "height": 64,
+        "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+        "rgbaSha256": "e136947b6151516ebe3e805d780c3fe925f82a9059e2e4a1b6398c5b4802b2c0",
+        "indexedPixelSha256": "7f78788e876a26a7782e2aca3d4c07d342b19ddd1d995a094856d2a59ebd9127"
+      },
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/05-ttex005-c5b5337a494c.png",
+      "generationCount": 1,
+      "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/ttex005/master.json",
+      "masterPackageSha256": "9725b79e91d57a55c1993a41ed5310a2bb0dcc529244e26bcdac87a707ec81ff",
+      "tierReceipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/manifest.json",
+      "tierReceiptSha256": "b2d126c0b8ce0f9b0655f1ec474b3a4261c6a7aa74ab1411231a7b239f0cca8c",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            256,
+            256
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/mid-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/mid-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/mid-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/mid-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/mid-normalZ.webp"
+          }
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            512,
+            512
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/high-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/high-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/high-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/high-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/high-normalZ.webp"
+          }
+        }
+      },
+      "status": "Actual public and artwork qualification pending",
+      "newMasters": 1,
+      "newMapFiles": 10,
+      "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/generated/ttex005.png",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/ttex005.txt"
+    },
+    {
+      "name": "ttex032",
+      "edition": "portals",
+      "nativeIdentity": {
+        "id": "d8d2b5c8a30f0a067408c20155d93a4d44f732c233b512c280183f4198610a6b",
+        "width": 64,
+        "height": 64,
+        "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+        "rgbaSha256": "7048198e1433f575d0ccfc53832af93a5e5ae2011c389700c61238e413a3afcf",
+        "indexedPixelSha256": "436426b73c54e7f4dc2b69a5c85f4c47f19c32aeb12223a91c15d093f699a8de"
+      },
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/06-ttex032-d8d2b5c8a30f.png",
+      "generationCount": 1,
+      "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/ttex032/master.json",
+      "masterPackageSha256": "baa2549af9cfa455b5b9237b49b216483441cd5a901c64249329119c3332af60",
+      "tierReceipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/manifest.json",
+      "tierReceiptSha256": "34b767bbaf180042ec6581d926b2580eb198a3917ac3de5810dc9e9e1343f4c1",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            256,
+            256
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/mid-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/mid-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/mid-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/mid-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/mid-normalZ.webp"
+          }
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            512,
+            512
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/high-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/high-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/high-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/high-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/high-normalZ.webp"
+          }
+        }
+      },
+      "status": "Actual public and artwork qualification pending",
+      "newMasters": 1,
+      "newMapFiles": 10,
+      "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/generated/ttex032.png",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/ttex032.txt"
+    },
+    {
+      "name": "ttex068",
+      "edition": "portals",
+      "nativeIdentity": {
+        "id": "b8aa0097f60c3908f00fc78d817b05a3f7af50de5116127596de5bb802cb8499",
+        "width": 64,
+        "height": 64,
+        "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+        "rgbaSha256": "2f7baf24b5cfd8ab279ffe7f69d8f3718bde591923bf2444caa8a9ea2d825635",
+        "indexedPixelSha256": "b08589b6826e88089ed61975caae9c487efad562abf8238805a94144fb3c9681"
+      },
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/07-ttex068-b8aa0097f60c.png",
+      "generationCount": 1,
+      "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/ttex068/master.json",
+      "masterPackageSha256": "2bfe2880234992a2c94e91d7e33de798a7c87aca918d92295f69c7ab6cd94868",
+      "tierReceipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/manifest.json",
+      "tierReceiptSha256": "6e256370e2ae7f613536a376918648c9ccc811036c7da82cd62b0ee96106f0b6",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            256,
+            256
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/mid-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/mid-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/mid-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/mid-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/mid-normalZ.webp"
+          }
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            512,
+            512
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/high-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/high-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/high-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/high-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/high-normalZ.webp"
+          }
+        }
+      },
+      "status": "Actual public and artwork qualification pending",
+      "newMasters": 1,
+      "newMapFiles": 10,
+      "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/generated/ttex068.png",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/ttex068.txt"
+    },
+    {
+      "name": "ttex079",
+      "edition": "portals",
+      "nativeIdentity": {
+        "id": "9365fe57d1b7e0ea8e0b2e522fc2bed703933ae300787aa4a2aab86e235bfdcd",
+        "width": 64,
+        "height": 64,
+        "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+        "rgbaSha256": "6d2fe6a9674968ab0693e4dabee1c972401f79546d2a9c0acbd1f7753ad709ea",
+        "indexedPixelSha256": "c43da5cc5810a907ba40a1bc244a2fdccdd6d58cf3e8a2d7776172e7e2833207"
+      },
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/08-ttex079-9365fe57d1b7.png",
+      "generationCount": 1,
+      "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/ttex079/master.json",
+      "masterPackageSha256": "842e7ae84562581697136f9f6e27afbfcb192eab7f83b0746e488c521e809469",
+      "tierReceipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/manifest.json",
+      "tierReceiptSha256": "8be8d04459cf2a074113ff5209824241ad76e6bedd1da101c2807ab16c1f5b02",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            256,
+            256
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/mid-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/mid-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/mid-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/mid-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/mid-normalZ.webp"
+          }
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            512,
+            512
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/high-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/high-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/high-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/high-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/high-normalZ.webp"
+          }
+        }
+      },
+      "status": "Actual public and artwork qualification pending",
+      "newMasters": 1,
+      "newMapFiles": 10,
+      "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/generated/ttex079.png",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/ttex079.txt"
+    }
+  ],
+  "counts": {
+    "nativeBindings": 8,
+    "newGenerations": 8,
+    "newMasterPackages": 8,
+    "newMapFiles": 80,
+    "mapReferences": 80
+  }
+}

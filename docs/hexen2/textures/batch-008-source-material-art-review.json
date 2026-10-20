@@ -1,0 +1,349 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-19T08:59:45.636392+00:00",
+  "reviewer": "/root/hexen_campaign_review",
+  "verdict": "SOURCE MATERIAL PASS for the three named retained sources only; no final master/tier/tiling acceptance",
+  "materialGate": "A viewer must recognize a plausible physical material from the actual visible structure. High pixel count, sharpness, generic mottling, similarity metrics or a photorealistic prompt label are insufficient. No unreadable/noisy source was passed solely on those grounds.",
+  "instructionsRead": [
+    {
+      "file": "AGENTS.md",
+      "sha256": "d9d12ea00d3d41a0968d6fc33bd822ed986372aa7566c7db867b08a05bd673db"
+    },
+    {
+      "file": "skills/quaked-texture-authoring/SKILL.md",
+      "sha256": "0c96e783d5b56604edfc85fae82b36c98478f297ff49d3d3777402b8322f9bba"
+    },
+    {
+      "file": "skills/quaked-texture-authoring/references/workflow.md",
+      "sha256": "a2ec6402968756a4b0ac63552f58ebd093a075d3563b22f609658a99a2e63382"
+    },
+    {
+      "file": "docs/texture-tier-standard.md",
+      "sha256": "9bbe17838fcbe20f35bc7f73f9c1edde631446fcb7b0bfc9688efb46ac02f07e"
+    }
+  ],
+  "standingInstructions": "Read /Users/bri/agent.md; root remains the live coordinator and owns the Bluey record. No new identity, task claim, provider run or independent follow-up was created.",
+  "reviewScope": [
+    "Individually viewed all eight actual native PNGs and the native contact for source intent and the five material recommendations.",
+    "Viewed the full retained1254x1254 PNG of rtex006, rtex104 and rtex096 at original detail and a separately displayed, unresampled384x384 centre crop of each. Read their exact issued prompts.",
+    "Verified actual native/raw/prompt hashes and dimensions/modes. No master, tier, decoded WebP, half/quarter acceptance, physical relief or final repeated-tile qualification is claimed because those outputs are outside this source-only review."
+  ],
+  "sources": [
+    {
+      "name": "rtex006",
+      "edition": "base",
+      "nativeIdentity": "ed0ea21baafa9262cb44311e6a1fe0663863fe66c361993b465c79ac472b3c42",
+      "verdict": "SOURCE MATERIAL PASS: eligible for shared-master preparation, not final asset acceptance",
+      "native": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/01-rtex006-ed0ea21baafa.png",
+        "sha256": "71e45a9f7dee9464abb728eea45e4f4376f6443fa7ab244a9cd01f9734f43fd0",
+        "dimensions": [
+          64,
+          64
+        ],
+        "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+        "indexedPixelSha256": "d2c3179c904afdf75c2e48669b18f0167abf436eaf095aae936c92e6cccec81d",
+        "rgbaSha256": "8a487f9d64310d2504d7296fbd1b8516a250e080f776edcf55fb51d6f96c7f17"
+      },
+      "retainedRaw": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex006.png",
+        "sha256": "23c91c2d4b7412d3ff761d06f3ca78f0448b75b7f8a50b715758ab5d1788685c",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "mode": "RGB",
+        "generationCountRecorded": 1,
+        "adequateFor8x": true
+      },
+      "issuedPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex006.txt",
+        "sha256": "2d8f75094889557867ba80473ed83a4dae1aa9e8a7a6c96d715d32c8c334060d",
+        "preservedUnchanged": true
+      },
+      "actualObservations": {
+        "material": "Fractured dark slate/basalt-like masonry, matte and weathered.",
+        "physicalCues": [
+          "Coherent stone faces have natural flake/cleavage edges, shallow fracture planes, irregular chips and locally varying mineral grain.",
+          "Dark recessed aggregate/mortar separates two upper blocks from one broad lower block; the material reads as rough stone without relying on a caption."
+        ],
+        "nativeFidelity": [
+          "The native three principal blocks, middle horizontal joint, upper vertical division and partial edge cuts remain recognizable.",
+          "Cool charcoal/blue-grey palette and native broad stone scale are retained as a plausible photographic interpretation. Raw highlights and local contrast are stronger than the native; distant colour fitting and final comparisons are still required."
+        ],
+        "edgeRisks": [
+          "The dark outer cuts appear related to the native physical mortar, not an invented freestanding frame.",
+          "Chipped block lips and small border continuations require actual final repeat/corner review; this source-only PASS does not establish seamlessness."
+        ],
+        "reliefRisks": [
+          "Stone faces must remain above the mortar; do not interpret sparse pale chips or dark pigment variation as an independent material plane."
+        ]
+      },
+      "oneToOneInspection": {
+        "sourceCropXYXY": [
+          435,
+          435,
+          819,
+          819
+        ],
+        "displayedDimensions": [
+          384,
+          384
+        ],
+        "resampled": false
+      },
+      "requiredMaterialFindings": []
+    },
+    {
+      "name": "rtex104",
+      "edition": "base",
+      "nativeIdentity": "9751c9aa37327aefd4515ebf40db4f20412d392a042efa17ee69444b34b0eecc",
+      "verdict": "SOURCE MATERIAL PASS: eligible for shared-master preparation, not final asset acceptance",
+      "native": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/02-rtex104-9751c9aa3732.png",
+        "sha256": "3616d9379c9ded813aaf5b82032b5114469f53abed89d234f35a0e3c884349b0",
+        "dimensions": [
+          64,
+          64
+        ],
+        "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+        "indexedPixelSha256": "0953c90581560ea2fb5128d5b4bbec55d5795524896912052b64508601443d27",
+        "rgbaSha256": "493522e86b13393cd9cade770cb20715e12bd1d8f34430bfcb377f0e59cd8fc6"
+      },
+      "retainedRaw": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex104.png",
+        "sha256": "59f6a9fb6b16b396caef60f30fd694801700ce5be947d6d1a6951fdc5a6733a9",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "mode": "RGB",
+        "generationCountRecorded": 1,
+        "adequateFor8x": true
+      },
+      "issuedPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex104.txt",
+        "sha256": "20e1f37dce19b6d8f4d3e7332edf49fb5b0f2f425162bb07635ab1c7350c0539",
+        "preservedUnchanged": true
+      },
+      "actualObservations": {
+        "material": "Vertically weathered iron/steel-like surface with rust and dark blue-grey oxide/exposed-metal areas, matte rather than polished.",
+        "physicalCues": [
+          "The red-brown material forms narrow coherent vertical corrosion/runoff streaks around irregular blue-grey exposed or oxidized scale.",
+          "At actual 1:1 crop scale, edges of the scale and fine pitting vary locally; the surface is readable as weathered ferrous metal rather than an indeterminate field of sharp noise.",
+          "The actual source does not read as timber: no wood pores, knots or coherent wood fibres are asserted merely because its current numerical profile is named wood."
+        ],
+        "nativeFidelity": [
+          "Long narrow umber/red and cool blue-grey striations keep the native vertical rhythm and scale.",
+          "No broad plank divisions, fasteners, panel redesign or large new scratches were introduced. Colour balance and low-contrast native appearance still need master/final-tier review."
+        ],
+        "edgeRisks": [
+          "No new perimeter frame or raised rim is evident in the retained source.",
+          "Continuous vertical streaks make the top/bottom join a specific risk; verify actual repeats after fitting rather than inferring continuity from material readability."
+        ],
+        "reliefRisks": [
+          "The source interpretation is corrosion over a hard surface, not timber grain. Use actual flake/pit structure for relief; colour differences alone do not prove deep channels or multiple raised layers."
+        ]
+      },
+      "oneToOneInspection": {
+        "sourceCropXYXY": [
+          435,
+          435,
+          819,
+          819
+        ],
+        "displayedDimensions": [
+          384,
+          384
+        ],
+        "resampled": false
+      },
+      "requiredMaterialFindings": []
+    },
+    {
+      "name": "rtex096",
+      "edition": "base",
+      "nativeIdentity": "7d397606c1724f4949baba30d8e25d096c6aa7455af1699f833881ffbc4556b1",
+      "verdict": "SOURCE MATERIAL PASS: eligible for shared-master preparation, not final asset acceptance",
+      "native": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/03-rtex096-7d397606c172.png",
+        "sha256": "3a383b3de48bbb57af4ddce8e3f4b83a842a62a687da5934985c840f8b5e7dcf",
+        "dimensions": [
+          64,
+          64
+        ],
+        "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+        "indexedPixelSha256": "c2fc5a890c20b744c7fa45dbced2373b05cbe5fa959073de946cdecb9542164f",
+        "rgbaSha256": "c0333f98021faf407e41d13bbed6939f7ab3fa36c85520c70fd8a26c00a5b29c"
+      },
+      "retainedRaw": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex096.png",
+        "sha256": "ebc87afb58a812ffa3e58cc60bbe086273c5e3c4a89170808a999859262189b8",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "mode": "RGB",
+        "generationCountRecorded": 1,
+        "adequateFor8x": true
+      },
+      "issuedPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex096.txt",
+        "sha256": "e06996897d3e94c7a037db4897444d243d941828444fa9643a3dc74a75f9a459",
+        "preservedUnchanged": true
+      },
+      "actualObservations": {
+        "material": "Patchy iron-oxide corrosion and weathered dark metal-like substrate, dry matte finish.",
+        "physicalCues": [
+          "Irregular red/orange oxide islands have locally flaky, porous wear edges against coherent cooler dark grey/blue hard areas.",
+          "The actual 1:1 crop shows varying patch size, flake boundaries and pitting rather than a uniform sand/noise overlay. It reads as a plausible corroded material without invented object cues."
+        ],
+        "nativeFidelity": [
+          "Rust-umber/red and cool charcoal-blue/grey patches preserve the native small irregular pattern scale and mottled field.",
+          "No masonry grid, textile weave, bolts, new large cracks or bold added objects are present. Raw patch contrast is stronger than the low-resolution source and must remain representative in subsequent half/quarter checks."
+        ],
+        "edgeRisks": [
+          "No overt added border or perimeter bevel is evident.",
+          "Random corrosion patterns can conceal a wrap discontinuity in a single image; actual two-axis/corner repeats remain a required later check."
+        ],
+        "reliefRisks": [
+          "Oxide scale may have shallow physical relief, while broad red/grey colour patches should not automatically become high islands or deep excavations."
+        ]
+      },
+      "oneToOneInspection": {
+        "sourceCropXYXY": [
+          435,
+          435,
+          819,
+          819
+        ],
+        "displayedDimensions": [
+          384,
+          384
+        ],
+        "resampled": false
+      },
+      "requiredMaterialFindings": []
+    }
+  ],
+  "heldReviewedSources": [],
+  "unissuedNativeRecommendations": [
+    {
+      "name": "rtex306",
+      "nativeIdentity": "c690e6f1907297bdf1d164689621c07b8f70837282afe898c2eed1e013713482",
+      "native": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/04-rtex306-c690e6f19072.png",
+        "sha256": "9006db56beaa6350e08be2e04539d4b85fc7ad3326f67409be674d6160f66549",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "recommendation": {
+        "material": "Weathered dark sandstone architectural frame around a recessed grey-green slate panel.",
+        "visibleCues": "Fine sandstone aggregate/edge chips on the existing frame and subtle continuous slate cleavage in the native inset; retain the exact nested frame widths and dark recess.",
+        "doNotAdd": "No additional border, corner blocks, carvings or stone courses. Material cues must come from fine natural structure, not new geometry.",
+        "relief": "The inset slate must remain below its existing frame; do not let green/grey pigment determine physical elevation."
+      },
+      "scope": "Material interpretation from the native image only. This report does not review or qualify any subsequently issued raw source."
+    },
+    {
+      "name": "ttex054",
+      "nativeIdentity": "cddf441f348f0a3182edadeeeb9028ece70c2eadbef541955e7197f8213c9752",
+      "native": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/05-ttex054-cddf441f348f.png",
+        "sha256": "cc7cbc5b106803b459a72454e08c047481f20396c549422dbc96d8202c1c6b57",
+        "dimensions": [
+          64,
+          128
+        ]
+      },
+      "recommendation": {
+        "material": "Aged lime-plaster wall with matte mineral pigments and painted red/ochre meander trim.",
+        "visibleCues": "Fine coherent plaster aggregate, shallow trowel/rubbed wear and restrained worn pigment within the exact native bands and meander pattern.",
+        "doNotAdd": "No new trim, symbols, brick grid, cloth weave, deep peeling cavities or unrelated cracks.",
+        "relief": "Treat the painted trim and colour fields mainly as pigment on the same plaster surface; do not emboss every colour transition."
+      },
+      "scope": "Material interpretation from the native image only. This report does not review or qualify any subsequently issued raw source."
+    },
+    {
+      "name": "ttex012",
+      "nativeIdentity": "84bb278bdd9451b619a5de58d58a32fa07e9ce0cdc40b785070f3324e79181d3",
+      "native": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/06-ttex012-84bb278bdd94.png",
+        "sha256": "514f4fafbd079415017ab8b625b5053dac1a016b68d89d4db709094b178fa0d0",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "recommendation": {
+        "material": "Dry dressed ochre sandstone masonry with recessed dark lime mortar.",
+        "visibleCues": "Readable dressed stone faces, sparse fine pores and small natural mineral inclusions/chips, preserving all original courses and offsets.",
+        "doNotAdd": "No extra edge bricks, equalized grid, large new damage, oversized mortar or heavy perimeter bevel.",
+        "relief": "Actual block faces above the native dark joint centres; verify physical order rather than accepting brightness alone."
+      },
+      "scope": "Material interpretation from the native image only. This report does not review or qualify any subsequently issued raw source."
+    },
+    {
+      "name": "rpal317",
+      "nativeIdentity": "4bf05bb0cae8053cb2260e2bded0385706d3d9be305b3761f6c9986fb66c758d",
+      "native": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/07-rpal317-4bf05bb0cae8.png",
+        "sha256": "9e701188d3bc33902976e6b94eea4d2ebd7b03c9687dde79a0094b16307bf1bd",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "recommendation": {
+        "material": "Very dark basalt/volcanic rock with narrow weathered mineral fracture interfaces.",
+        "visibleCues": "Coherent dark rock faces with subtle fine mineral/cleavage texture and the native sinuous fracture network at its existing scale.",
+        "doNotAdd": "No loose pebble bed, new bright veins, artificial cellular outlines, large holes or a manufactured wall grid.",
+        "relief": "Fracture interfaces may be shallow recesses; preserve the native dark field rather than inventing high white rims."
+      },
+      "scope": "Material interpretation from the native image only. This report does not review or qualify any subsequently issued raw source."
+    },
+    {
+      "name": "ttex153",
+      "nativeIdentity": "b0d888d2faaedfc77346980aefcce52f620cabf34f80365bbbd17fd7835e10c6",
+      "native": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/08-ttex153-b0d888d2faae.png",
+        "sha256": "107b63272f5d20d7a16a65224886ac28519b2e2d11afc54264a7bff3b4fb32e4",
+        "dimensions": [
+          64,
+          64
+        ]
+      },
+      "recommendation": {
+        "material": "Weathered pale sandy limestone blocks with pale recessed lime mortar.",
+        "visibleCues": "Fine chalky/calcareous stone porosity and restrained dressed face wear within the exact native varied block layout.",
+        "doNotAdd": "No new tiny bricks, inflated block pillows, coarse grain coating, enlarged joints or new border.",
+        "relief": "Pale mortar is not automatically raised. Use actual independently classified stone-face and joint-centre witnesses before deriving tiers; if ordinary craft reverses the order, retain a source/master-only proof and use a reviewed semantic recipe."
+      },
+      "scope": "Material interpretation from the native image only. This report does not review or qualify any subsequently issued raw source."
+    }
+  ],
+  "inspectionEvidence": {
+    "directAuthoritativeImages": [
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/01-rtex006-ed0ea21baafa.png",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/02-rtex104-9751c9aa3732.png",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/03-rtex096-7d397606c172.png",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex006.png",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex104.png",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex096.png"
+    ],
+    "diagnosticContact": {
+      "file": "/private/tmp/h2-batch008-source-material-crops.png",
+      "sha256": "5919d0acd1fc39188dcccf0f936ce887bc6520dcc2893b08f24f3fe0926e58bc",
+      "purpose": "Unresampled1:1 crops; the retained full raw PNGs and recorded crop coordinates are the durable authoritative evidence."
+    }
+  },
+  "limits": [
+    "The historical substance of an ambiguous native is not proven by this interpretation. The actual outputs for104/096 visibly support corrosion/metal-like readings; this is not permission to keep calling an unreadable surface neutral.",
+    "Material PASS at raw resolution can be lost after resizing, fitting or encoding. Both eventual tiers must still visibly read as the chosen material and pass native-half/native-quarter similarity, repeats/corners and actual relief review.",
+    "No new generation, prompt rewrite, master/tier asset edit, cleanup, staging/ref or runtime/release action was performed. All exact issued prompts/raws remain unchanged.",
+    "Recommendations cover five natives that were unissued when this review was requested. Any source issued while the review ran, including306, needs its own incremental actual-source readability review; this report does not infer that result from its material label."
+  ],
+  "nextAction": "Root may prepare shared masters for the three source-material passes, then qualify actual relief and both enhanced tiers. Continue incremental actual-source review for subsequent retained outputs; keep the full campaign active."
+}

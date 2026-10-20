@@ -1,0 +1,1820 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-19T06:17:11.147430+00:00",
+  "limits": [
+    "Native source integrity and exact alias screening only; no generated master, enhanced tier, binding or texture acceptance.",
+    "Alias screen covers these eight peers and current37-entry catalog only, not all unenhanced world content.",
+    "All native names/ids/edition context retained. Equal colour hashes would be only a shortlist; all four mip bytes and ordinary source semantics would be required before reuse."
+  ],
+  "verdict": "PASS eight native sources/all four mips/ordinary provenance; no exact peer or catalog37 alias candidates",
+  "materials": [
+    {
+      "id": "411496d1fad7414033cb4e53662aa4b5389834f94f75fdf1572ece123e14449a",
+      "name": "rtex322",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/01-rtex322-411496d1fad7.png",
+        "sha256": "61b562f0876ab63e1649f6f447afb1d31e0d3cd4fe535f81b378d55836c776c6",
+        "bytes": 2776
+      },
+      "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+      "indexedPixelSha256": "4af12fbc5557466d490234c6a2f00ce0e2c776c651def4049a9f38d68659966f",
+      "rgbaSha256": "02d68069b3b2da7086b70bec3e4d174248546b5dfcac6f01a6d3ce3d536d0f5c",
+      "fourMipSHA256": [
+        "4af12fbc5557466d490234c6a2f00ce0e2c776c651def4049a9f38d68659966f",
+        "ce3d6be5c90a89053696203bc711f28b994e1f9fda9cc254e3a704617d85b581",
+        "9a4e8806777886f5804515442c081101db544cfc69709e3ab8286a92a851e7f2",
+        "b153fa61f9c7e5e585f06d92e3aaab38d889e9cda450db30c89785295bfe68ea"
+      ],
+      "profileFaceCounts": {
+        "base": 2069,
+        "portals-1": 2069,
+        "portals-2": 2069
+      },
+      "uniquePAKOccurrences": [
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/egypt1.bsp",
+          "slot": 3,
+          "bspSha256": "e89db939a54fb0070a93ffbab6ef06f763db4ae6702e75148ff701f11fd42537",
+          "memberOffset": 30548711,
+          "faces": 500,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "4af12fbc5557466d490234c6a2f00ce0e2c776c651def4049a9f38d68659966f",
+            "ce3d6be5c90a89053696203bc711f28b994e1f9fda9cc254e3a704617d85b581",
+            "9a4e8806777886f5804515442c081101db544cfc69709e3ab8286a92a851e7f2",
+            "b153fa61f9c7e5e585f06d92e3aaab38d889e9cda450db30c89785295bfe68ea"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/egypt2.bsp",
+          "slot": 6,
+          "bspSha256": "60bb8e08005e74de42ddd90abe7b539bd32e2c04970ab86c658307735174ed92",
+          "memberOffset": 32887183,
+          "faces": 434,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "4af12fbc5557466d490234c6a2f00ce0e2c776c651def4049a9f38d68659966f",
+            "ce3d6be5c90a89053696203bc711f28b994e1f9fda9cc254e3a704617d85b581",
+            "9a4e8806777886f5804515442c081101db544cfc69709e3ab8286a92a851e7f2",
+            "b153fa61f9c7e5e585f06d92e3aaab38d889e9cda450db30c89785295bfe68ea"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/egypt3.bsp",
+          "slot": 24,
+          "bspSha256": "0a69e345487a7fccf5f2136c54933c1b61b12cebaa6aae976a89e59f0142bb88",
+          "memberOffset": 35163115,
+          "faces": 91,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "4af12fbc5557466d490234c6a2f00ce0e2c776c651def4049a9f38d68659966f",
+            "ce3d6be5c90a89053696203bc711f28b994e1f9fda9cc254e3a704617d85b581",
+            "9a4e8806777886f5804515442c081101db544cfc69709e3ab8286a92a851e7f2",
+            "b153fa61f9c7e5e585f06d92e3aaab38d889e9cda450db30c89785295bfe68ea"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/egypt4.bsp",
+          "slot": 6,
+          "bspSha256": "215a4911b39b72644b617c249dda942d7797f673b75bb35e5e4c3e1340049a07",
+          "memberOffset": 37126999,
+          "faces": 498,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "4af12fbc5557466d490234c6a2f00ce0e2c776c651def4049a9f38d68659966f",
+            "ce3d6be5c90a89053696203bc711f28b994e1f9fda9cc254e3a704617d85b581",
+            "9a4e8806777886f5804515442c081101db544cfc69709e3ab8286a92a851e7f2",
+            "b153fa61f9c7e5e585f06d92e3aaab38d889e9cda450db30c89785295bfe68ea"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/egypt5.bsp",
+          "slot": 8,
+          "bspSha256": "ef1f3af6f4122c7377639d75088e05f888a83f180303f24875025f0c8360012e",
+          "memberOffset": 39050855,
+          "faces": 245,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "4af12fbc5557466d490234c6a2f00ce0e2c776c651def4049a9f38d68659966f",
+            "ce3d6be5c90a89053696203bc711f28b994e1f9fda9cc254e3a704617d85b581",
+            "9a4e8806777886f5804515442c081101db544cfc69709e3ab8286a92a851e7f2",
+            "b153fa61f9c7e5e585f06d92e3aaab38d889e9cda450db30c89785295bfe68ea"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/egypt6.bsp",
+          "slot": 3,
+          "bspSha256": "d96b45867061b549390978d6fe6c473e117f8ec215c387d6e94336259b5b30de",
+          "memberOffset": 41238451,
+          "faces": 99,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "4af12fbc5557466d490234c6a2f00ce0e2c776c651def4049a9f38d68659966f",
+            "ce3d6be5c90a89053696203bc711f28b994e1f9fda9cc254e3a704617d85b581",
+            "9a4e8806777886f5804515442c081101db544cfc69709e3ab8286a92a851e7f2",
+            "b153fa61f9c7e5e585f06d92e3aaab38d889e9cda450db30c89785295bfe68ea"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/egypt7.bsp",
+          "slot": 5,
+          "bspSha256": "5cc8609dc3941b51057c0d7f6a61267c3bf588c3e477fc1098d01879deda9bc3",
+          "memberOffset": 42276911,
+          "faces": 202,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "4af12fbc5557466d490234c6a2f00ce0e2c776c651def4049a9f38d68659966f",
+            "ce3d6be5c90a89053696203bc711f28b994e1f9fda9cc254e3a704617d85b581",
+            "9a4e8806777886f5804515442c081101db544cfc69709e3ab8286a92a851e7f2",
+            "b153fa61f9c7e5e585f06d92e3aaab38d889e9cda450db30c89785295bfe68ea"
+          ]
+        }
+      ],
+      "ordinaryFlagsOnly": true,
+      "exactPeerCandidates": 0,
+      "exactCatalogCandidates": 0
+    },
+    {
+      "id": "3e356d95bcb646ddce27b5bec894d8155ad631bd1534c6e2668697eb7397764c",
+      "name": "rtex121",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/02-rtex121-3e356d95bcb6.png",
+        "sha256": "0fd9128f6bb98656f9643f915eeb9db6c0b246e11bc99148d65858195d37c61a",
+        "bytes": 3028
+      },
+      "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+      "indexedPixelSha256": "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+      "rgbaSha256": "96cbeb9ca4032b9c1092d46a5151cb3aed710d1392baf14e4053b95c0ac54564",
+      "fourMipSHA256": [
+        "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+        "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+        "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+        "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+      ],
+      "profileFaceCounts": {
+        "base": 1814,
+        "portals-1": 2059,
+        "portals-2": 2059
+      },
+      "uniquePAKOccurrences": [
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/cath.bsp",
+          "slot": 53,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95",
+          "memberOffset": 28535383,
+          "faces": 179,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "map": "maps/demo1.bsp",
+          "slot": 6,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa",
+          "memberOffset": 16089935,
+          "faces": 392,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "map": "maps/demo2.bsp",
+          "slot": 3,
+          "bspSha256": "0d85522091e6dd9b25333c6cdaafe49f9e07cbd1e0ad87fb53ae92a5651a0a25",
+          "memberOffset": 17986387,
+          "faces": 201,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "map": "maps/demo3.bsp",
+          "slot": 30,
+          "bspSha256": "98c61bc1948ac4aa9fd3d8e5c25dc704ac5c0e3e46877af511d42b8fa277809b",
+          "memberOffset": 20225415,
+          "faces": 272,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/egypt2.bsp",
+          "slot": 32,
+          "bspSha256": "60bb8e08005e74de42ddd90abe7b539bd32e2c04970ab86c658307735174ed92",
+          "memberOffset": 32887183,
+          "faces": 47,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/egypt4.bsp",
+          "slot": 21,
+          "bspSha256": "215a4911b39b72644b617c249dda942d7797f673b75bb35e5e4c3e1340049a07",
+          "memberOffset": 37126999,
+          "faces": 301,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/egypt5.bsp",
+          "slot": 37,
+          "bspSha256": "ef1f3af6f4122c7377639d75088e05f888a83f180303f24875025f0c8360012e",
+          "memberOffset": 39050855,
+          "faces": 98,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/egypt7.bsp",
+          "slot": 40,
+          "bspSha256": "5cc8609dc3941b51057c0d7f6a61267c3bf588c3e477fc1098d01879deda9bc3",
+          "memberOffset": 42276911,
+          "faces": 6,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/eidolon.bsp",
+          "slot": 16,
+          "bspSha256": "4e2cf50a2e5c00d5fc3c198db90408ad282bffbc77d0ea33fa2b85f7937311ac",
+          "memberOffset": 52915519,
+          "faces": 5,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/village1.bsp",
+          "slot": 53,
+          "bspSha256": "5a7317e09d999ee71f6cede26aeb40d354c549876d20362af789562816bcafe0",
+          "memberOffset": 65297547,
+          "faces": 18,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/village2.bsp",
+          "slot": 12,
+          "bspSha256": "7618534439da6c8dc2f0119dcfe76e38e8caed8373281e33596e7d1da80ac163",
+          "memberOffset": 67165367,
+          "faces": 57,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/village3.bsp",
+          "slot": 49,
+          "bspSha256": "3c0ff1dff84606f0a6fc302020ac72cd3fb696cae96dbab41df8f664073f5686",
+          "memberOffset": 69471027,
+          "faces": 63,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/village4.bsp",
+          "slot": 41,
+          "bspSha256": "885cafea0a71c31b13e9d04402dd8e373fdbf01921c25b3dae563750c1f25480",
+          "memberOffset": 71120107,
+          "faces": 64,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/village5.bsp",
+          "slot": 19,
+          "bspSha256": "75d344ccd10b78c55877eaacbf96ce1887082fda3434d06a86c16665007cd53f",
+          "memberOffset": 72328775,
+          "faces": 111,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/keep1.bsp",
+          "slot": 22,
+          "bspSha256": "0845e665f8b17ac6bdfd82958e0dd5cbbddfe98a8e63f2980554c451401c8e86",
+          "memberOffset": 15560455,
+          "faces": 217,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/keep4.bsp",
+          "slot": 70,
+          "bspSha256": "046a25e4ea9fec27d7da6aa65663a8656f8e3003b3449d8c3df6164a4848aa40",
+          "memberOffset": 23004559,
+          "faces": 6,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/monsters.bsp",
+          "slot": 18,
+          "bspSha256": "0cb4e2795defec67168a824e74363c35ac93dc8dcc86a86b878956cf949e46e0",
+          "memberOffset": 48340170,
+          "faces": 12,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/thomas.bsp",
+          "slot": 28,
+          "bspSha256": "12cd2fc0de7b2ad97d15c1aa5562693529ab9d0fb8cca2b54f0b97f32a56ac5c",
+          "memberOffset": 46932290,
+          "faces": 10,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/keep1.bsp",
+          "slot": 22,
+          "bspSha256": "0845e665f8b17ac6bdfd82958e0dd5cbbddfe98a8e63f2980554c451401c8e86",
+          "memberOffset": 15560455,
+          "faces": 217,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/keep4.bsp",
+          "slot": 70,
+          "bspSha256": "046a25e4ea9fec27d7da6aa65663a8656f8e3003b3449d8c3df6164a4848aa40",
+          "memberOffset": 23004559,
+          "faces": 6,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/monsters.bsp",
+          "slot": 18,
+          "bspSha256": "0cb4e2795defec67168a824e74363c35ac93dc8dcc86a86b878956cf949e46e0",
+          "memberOffset": 48340170,
+          "faces": 12,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/thomas.bsp",
+          "slot": 28,
+          "bspSha256": "12cd2fc0de7b2ad97d15c1aa5562693529ab9d0fb8cca2b54f0b97f32a56ac5c",
+          "memberOffset": 46932290,
+          "faces": 10,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "5fad220804fe3d6e4b7b68698cd7a1081baddc0c1eed34df6e1e112445c29d29",
+            "cc36ff7f9cd1b1f22cd94e83afaea20f2a4e477ba3d2cb6000312d1f877a4538",
+            "9d8647f6a00fcd82f5c56b3b95cc07448120ac268d76975d79886604c11aafca",
+            "0a0b5d5d197f49d666048cc33fa0981b28a55866c8ddc05b695db815524bbdd1"
+          ]
+        }
+      ],
+      "ordinaryFlagsOnly": true,
+      "exactPeerCandidates": 0,
+      "exactCatalogCandidates": 0
+    },
+    {
+      "id": "af54a88c937655486689ad7a29a72ae3a16f053798fd9ad41be6c76ebb78c567",
+      "name": "rtex413",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/03-rtex413-af54a88c9376.png",
+        "sha256": "34b2a6a55b78ea0ed48c28a18dd61dc17ad1b7d39041f89f900a134bf7a59d10",
+        "bytes": 13035
+      },
+      "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+      "indexedPixelSha256": "02bba580e1fd0aee8e7c96a6915bdce8662ccd6aee594318d9c03f9e23cc4860",
+      "rgbaSha256": "5bbcdd9fe8337eccbe65362a5645834e832ce3d9a11c6949ea8d742d6a9fd73b",
+      "fourMipSHA256": [
+        "02bba580e1fd0aee8e7c96a6915bdce8662ccd6aee594318d9c03f9e23cc4860",
+        "305516b21010ca693cfd532fdd53c4ed136319af3a783c8bf098ace6788495e3",
+        "2566ae0572e637768d8a81057c358a254572cc99954d8744a9dc6e152e2a7c85",
+        "1ff79f20168048a078ddb7214dfccf399e89599e8fd8e0ad4fec3f8b6a07ee3f"
+      ],
+      "profileFaceCounts": {
+        "base": 1779,
+        "portals-1": 2070,
+        "portals-2": 2070
+      },
+      "uniquePAKOccurrences": [
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "map": "maps/demo1.bsp",
+          "slot": 0,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa",
+          "memberOffset": 16089935,
+          "faces": 368,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "02bba580e1fd0aee8e7c96a6915bdce8662ccd6aee594318d9c03f9e23cc4860",
+            "305516b21010ca693cfd532fdd53c4ed136319af3a783c8bf098ace6788495e3",
+            "2566ae0572e637768d8a81057c358a254572cc99954d8744a9dc6e152e2a7c85",
+            "1ff79f20168048a078ddb7214dfccf399e89599e8fd8e0ad4fec3f8b6a07ee3f"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "map": "maps/demo2.bsp",
+          "slot": 22,
+          "bspSha256": "0d85522091e6dd9b25333c6cdaafe49f9e07cbd1e0ad87fb53ae92a5651a0a25",
+          "memberOffset": 17986387,
+          "faces": 694,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "02bba580e1fd0aee8e7c96a6915bdce8662ccd6aee594318d9c03f9e23cc4860",
+            "305516b21010ca693cfd532fdd53c4ed136319af3a783c8bf098ace6788495e3",
+            "2566ae0572e637768d8a81057c358a254572cc99954d8744a9dc6e152e2a7c85",
+            "1ff79f20168048a078ddb7214dfccf399e89599e8fd8e0ad4fec3f8b6a07ee3f"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "map": "maps/demo3.bsp",
+          "slot": 18,
+          "bspSha256": "98c61bc1948ac4aa9fd3d8e5c25dc704ac5c0e3e46877af511d42b8fa277809b",
+          "memberOffset": 20225415,
+          "faces": 717,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "02bba580e1fd0aee8e7c96a6915bdce8662ccd6aee594318d9c03f9e23cc4860",
+            "305516b21010ca693cfd532fdd53c4ed136319af3a783c8bf098ace6788495e3",
+            "2566ae0572e637768d8a81057c358a254572cc99954d8744a9dc6e152e2a7c85",
+            "1ff79f20168048a078ddb7214dfccf399e89599e8fd8e0ad4fec3f8b6a07ee3f"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/keep2.bsp",
+          "slot": 39,
+          "bspSha256": "0dc718bff2dead5a84bea36a8f44064cdea604eee9cf44ee0744685f7dcba51d",
+          "memberOffset": 18060579,
+          "faces": 140,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "02bba580e1fd0aee8e7c96a6915bdce8662ccd6aee594318d9c03f9e23cc4860",
+            "305516b21010ca693cfd532fdd53c4ed136319af3a783c8bf098ace6788495e3",
+            "2566ae0572e637768d8a81057c358a254572cc99954d8744a9dc6e152e2a7c85",
+            "1ff79f20168048a078ddb7214dfccf399e89599e8fd8e0ad4fec3f8b6a07ee3f"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/keep3.bsp",
+          "slot": 11,
+          "bspSha256": "84a6c76050ac37790706b2370031025b7f1843cf162e7cd7390374c7c563ca34",
+          "memberOffset": 20574867,
+          "faces": 129,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "02bba580e1fd0aee8e7c96a6915bdce8662ccd6aee594318d9c03f9e23cc4860",
+            "305516b21010ca693cfd532fdd53c4ed136319af3a783c8bf098ace6788495e3",
+            "2566ae0572e637768d8a81057c358a254572cc99954d8744a9dc6e152e2a7c85",
+            "1ff79f20168048a078ddb7214dfccf399e89599e8fd8e0ad4fec3f8b6a07ee3f"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/keep4.bsp",
+          "slot": 68,
+          "bspSha256": "046a25e4ea9fec27d7da6aa65663a8656f8e3003b3449d8c3df6164a4848aa40",
+          "memberOffset": 23004559,
+          "faces": 18,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "02bba580e1fd0aee8e7c96a6915bdce8662ccd6aee594318d9c03f9e23cc4860",
+            "305516b21010ca693cfd532fdd53c4ed136319af3a783c8bf098ace6788495e3",
+            "2566ae0572e637768d8a81057c358a254572cc99954d8744a9dc6e152e2a7c85",
+            "1ff79f20168048a078ddb7214dfccf399e89599e8fd8e0ad4fec3f8b6a07ee3f"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/keep5.bsp",
+          "slot": 47,
+          "bspSha256": "748d7abc99d44222d066de05a49da7b0a79b5ce0b4623ad4a8c2df4dcd428a2c",
+          "memberOffset": 24601115,
+          "faces": 4,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "02bba580e1fd0aee8e7c96a6915bdce8662ccd6aee594318d9c03f9e23cc4860",
+            "305516b21010ca693cfd532fdd53c4ed136319af3a783c8bf098ace6788495e3",
+            "2566ae0572e637768d8a81057c358a254572cc99954d8744a9dc6e152e2a7c85",
+            "1ff79f20168048a078ddb7214dfccf399e89599e8fd8e0ad4fec3f8b6a07ee3f"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/keep2.bsp",
+          "slot": 39,
+          "bspSha256": "0dc718bff2dead5a84bea36a8f44064cdea604eee9cf44ee0744685f7dcba51d",
+          "memberOffset": 18060579,
+          "faces": 140,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "02bba580e1fd0aee8e7c96a6915bdce8662ccd6aee594318d9c03f9e23cc4860",
+            "305516b21010ca693cfd532fdd53c4ed136319af3a783c8bf098ace6788495e3",
+            "2566ae0572e637768d8a81057c358a254572cc99954d8744a9dc6e152e2a7c85",
+            "1ff79f20168048a078ddb7214dfccf399e89599e8fd8e0ad4fec3f8b6a07ee3f"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/keep3.bsp",
+          "slot": 11,
+          "bspSha256": "84a6c76050ac37790706b2370031025b7f1843cf162e7cd7390374c7c563ca34",
+          "memberOffset": 20574867,
+          "faces": 129,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "02bba580e1fd0aee8e7c96a6915bdce8662ccd6aee594318d9c03f9e23cc4860",
+            "305516b21010ca693cfd532fdd53c4ed136319af3a783c8bf098ace6788495e3",
+            "2566ae0572e637768d8a81057c358a254572cc99954d8744a9dc6e152e2a7c85",
+            "1ff79f20168048a078ddb7214dfccf399e89599e8fd8e0ad4fec3f8b6a07ee3f"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/keep4.bsp",
+          "slot": 68,
+          "bspSha256": "046a25e4ea9fec27d7da6aa65663a8656f8e3003b3449d8c3df6164a4848aa40",
+          "memberOffset": 23004559,
+          "faces": 18,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "02bba580e1fd0aee8e7c96a6915bdce8662ccd6aee594318d9c03f9e23cc4860",
+            "305516b21010ca693cfd532fdd53c4ed136319af3a783c8bf098ace6788495e3",
+            "2566ae0572e637768d8a81057c358a254572cc99954d8744a9dc6e152e2a7c85",
+            "1ff79f20168048a078ddb7214dfccf399e89599e8fd8e0ad4fec3f8b6a07ee3f"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/keep5.bsp",
+          "slot": 47,
+          "bspSha256": "748d7abc99d44222d066de05a49da7b0a79b5ce0b4623ad4a8c2df4dcd428a2c",
+          "memberOffset": 24601115,
+          "faces": 4,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "02bba580e1fd0aee8e7c96a6915bdce8662ccd6aee594318d9c03f9e23cc4860",
+            "305516b21010ca693cfd532fdd53c4ed136319af3a783c8bf098ace6788495e3",
+            "2566ae0572e637768d8a81057c358a254572cc99954d8744a9dc6e152e2a7c85",
+            "1ff79f20168048a078ddb7214dfccf399e89599e8fd8e0ad4fec3f8b6a07ee3f"
+          ]
+        }
+      ],
+      "ordinaryFlagsOnly": true,
+      "exactPeerCandidates": 0,
+      "exactCatalogCandidates": 0
+    },
+    {
+      "id": "b3fd79635c329d1f4102f51285fee7c35e5caa4c05a312cbbd932197acf97c2c",
+      "name": "rtex274",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/04-rtex274-b3fd79635c32.png",
+        "sha256": "78253c6418ccefd98e826d745e2856956c6bd804660038f1e09ab59600327f84",
+        "bytes": 6311
+      },
+      "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+      "indexedPixelSha256": "a3bce739efe421bb4dcf2e8d86f6714cef48df20f516a55002584c580b12860a",
+      "rgbaSha256": "e4606a9fb3b8d8b6fe0100c61f5d736cbf0d86f2e89a5b31f95b97a5ca242538",
+      "fourMipSHA256": [
+        "a3bce739efe421bb4dcf2e8d86f6714cef48df20f516a55002584c580b12860a",
+        "51b2c2cbe5eaa552f5078fba346de4dcdfa1376b6406bee18dfcd393545f7231",
+        "081cfd22d3f8a25ae9a20d292297e3e8a06bc074f1ba243ea1ef2fa4e32e137d",
+        "f4749532e76143e431ab9345c2034d475551c5508a7b257f0fe048b57ffe6110"
+      ],
+      "profileFaceCounts": {
+        "base": 1965,
+        "portals-1": 1965,
+        "portals-2": 1965
+      },
+      "uniquePAKOccurrences": [
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/meso2.bsp",
+          "slot": 16,
+          "bspSha256": "4d18357483c568716583f481f5eb61752797ce4a191de1d066e389fde102aaa8",
+          "memberOffset": 44256635,
+          "faces": 420,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "a3bce739efe421bb4dcf2e8d86f6714cef48df20f516a55002584c580b12860a",
+            "51b2c2cbe5eaa552f5078fba346de4dcdfa1376b6406bee18dfcd393545f7231",
+            "081cfd22d3f8a25ae9a20d292297e3e8a06bc074f1ba243ea1ef2fa4e32e137d",
+            "f4749532e76143e431ab9345c2034d475551c5508a7b257f0fe048b57ffe6110"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/meso3.bsp",
+          "slot": 27,
+          "bspSha256": "5bc28676e4e88467b6817f8c5d2b6f8c990f3e8b38df3bebf23be4d6fcb96265",
+          "memberOffset": 45677519,
+          "faces": 0,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "a3bce739efe421bb4dcf2e8d86f6714cef48df20f516a55002584c580b12860a",
+            "51b2c2cbe5eaa552f5078fba346de4dcdfa1376b6406bee18dfcd393545f7231",
+            "081cfd22d3f8a25ae9a20d292297e3e8a06bc074f1ba243ea1ef2fa4e32e137d",
+            "f4749532e76143e431ab9345c2034d475551c5508a7b257f0fe048b57ffe6110"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/meso4.bsp",
+          "slot": 7,
+          "bspSha256": "d5b6f1151cd92f649c4d29376b39db0c0a4dba6f8f2840d5a73bfb10f8346271",
+          "memberOffset": 47221627,
+          "faces": 188,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "a3bce739efe421bb4dcf2e8d86f6714cef48df20f516a55002584c580b12860a",
+            "51b2c2cbe5eaa552f5078fba346de4dcdfa1376b6406bee18dfcd393545f7231",
+            "081cfd22d3f8a25ae9a20d292297e3e8a06bc074f1ba243ea1ef2fa4e32e137d",
+            "f4749532e76143e431ab9345c2034d475551c5508a7b257f0fe048b57ffe6110"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/meso5.bsp",
+          "slot": 6,
+          "bspSha256": "4c683f2d6fe9473f26338003e0ad34541255855722c136ab7e111474a9781972",
+          "memberOffset": 48114555,
+          "faces": 456,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "a3bce739efe421bb4dcf2e8d86f6714cef48df20f516a55002584c580b12860a",
+            "51b2c2cbe5eaa552f5078fba346de4dcdfa1376b6406bee18dfcd393545f7231",
+            "081cfd22d3f8a25ae9a20d292297e3e8a06bc074f1ba243ea1ef2fa4e32e137d",
+            "f4749532e76143e431ab9345c2034d475551c5508a7b257f0fe048b57ffe6110"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/meso6.bsp",
+          "slot": 3,
+          "bspSha256": "1d7f425b3f66328838b91a675046ec41f095f21d4d29d49f70e52c85537ae315",
+          "memberOffset": 48933083,
+          "faces": 476,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "a3bce739efe421bb4dcf2e8d86f6714cef48df20f516a55002584c580b12860a",
+            "51b2c2cbe5eaa552f5078fba346de4dcdfa1376b6406bee18dfcd393545f7231",
+            "081cfd22d3f8a25ae9a20d292297e3e8a06bc074f1ba243ea1ef2fa4e32e137d",
+            "f4749532e76143e431ab9345c2034d475551c5508a7b257f0fe048b57ffe6110"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "map": "maps/meso8.bsp",
+          "slot": 11,
+          "bspSha256": "934310afa137ed25fb3cbb1d0175954eda9052418ab4a38f195db3a8168922d0",
+          "memberOffset": 50376823,
+          "faces": 425,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "a3bce739efe421bb4dcf2e8d86f6714cef48df20f516a55002584c580b12860a",
+            "51b2c2cbe5eaa552f5078fba346de4dcdfa1376b6406bee18dfcd393545f7231",
+            "081cfd22d3f8a25ae9a20d292297e3e8a06bc074f1ba243ea1ef2fa4e32e137d",
+            "f4749532e76143e431ab9345c2034d475551c5508a7b257f0fe048b57ffe6110"
+          ]
+        }
+      ],
+      "ordinaryFlagsOnly": true,
+      "exactPeerCandidates": 0,
+      "exactCatalogCandidates": 0
+    },
+    {
+      "id": "c5b5337a494c912b1dc094938e9cff6e0ecaf6932ce46398685b0e6ad458da54",
+      "name": "ttex005",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/05-ttex005-c5b5337a494c.png",
+        "sha256": "04d6fbe08e4afcf348d132fc7f2cbfb565c1c819b3a4e1a92bd68a798b3580aa",
+        "bytes": 2062
+      },
+      "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+      "indexedPixelSha256": "7f78788e876a26a7782e2aca3d4c07d342b19ddd1d995a094856d2a59ebd9127",
+      "rgbaSha256": "e136947b6151516ebe3e805d780c3fe925f82a9059e2e4a1b6398c5b4802b2c0",
+      "fourMipSHA256": [
+        "7f78788e876a26a7782e2aca3d4c07d342b19ddd1d995a094856d2a59ebd9127",
+        "c227d57eb908e0b2322136e24031503814ce0532995de2640432087f405ee8d6",
+        "1d9b2d6dacf87342273343cfa3c348e62a08eeaf59ccde42892b0361ebbe1bc7",
+        "958984ab804db38a30ee6e73bfb75c3adcc6df32db055b084a1264b4966b7814"
+      ],
+      "profileFaceCounts": {
+        "portals-1": 872,
+        "portals-2": 872
+      },
+      "uniquePAKOccurrences": [
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/tibet10.bsp",
+          "slot": 19,
+          "bspSha256": "15e37449c6ab8541687b0942a78c635df4bfa98c10c3a44151a5c43d289f8187",
+          "memberOffset": 45562653,
+          "faces": 190,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "7f78788e876a26a7782e2aca3d4c07d342b19ddd1d995a094856d2a59ebd9127",
+            "c227d57eb908e0b2322136e24031503814ce0532995de2640432087f405ee8d6",
+            "1d9b2d6dacf87342273343cfa3c348e62a08eeaf59ccde42892b0361ebbe1bc7",
+            "958984ab804db38a30ee6e73bfb75c3adcc6df32db055b084a1264b4966b7814"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/tibet6.bsp",
+          "slot": 14,
+          "bspSha256": "eef25c22979f2b4ec9b3c761f22ff91c292a8d41b9e06efaf50c4af73bd30685",
+          "memberOffset": 37510077,
+          "faces": 116,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "7f78788e876a26a7782e2aca3d4c07d342b19ddd1d995a094856d2a59ebd9127",
+            "c227d57eb908e0b2322136e24031503814ce0532995de2640432087f405ee8d6",
+            "1d9b2d6dacf87342273343cfa3c348e62a08eeaf59ccde42892b0361ebbe1bc7",
+            "958984ab804db38a30ee6e73bfb75c3adcc6df32db055b084a1264b4966b7814"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/tibet7.bsp",
+          "slot": 36,
+          "bspSha256": "b57c23d661936051792ea193ace9e84ac2a3147e971f2c5855b8052cb65b4b2c",
+          "memberOffset": 39718737,
+          "faces": 183,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "7f78788e876a26a7782e2aca3d4c07d342b19ddd1d995a094856d2a59ebd9127",
+            "c227d57eb908e0b2322136e24031503814ce0532995de2640432087f405ee8d6",
+            "1d9b2d6dacf87342273343cfa3c348e62a08eeaf59ccde42892b0361ebbe1bc7",
+            "958984ab804db38a30ee6e73bfb75c3adcc6df32db055b084a1264b4966b7814"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/tibet8.bsp",
+          "slot": 9,
+          "bspSha256": "2309541eaf4f7375efdb1c859ff6a6cc2d971d18c76c3089a1316d5ab312fd17",
+          "memberOffset": 42468149,
+          "faces": 132,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "7f78788e876a26a7782e2aca3d4c07d342b19ddd1d995a094856d2a59ebd9127",
+            "c227d57eb908e0b2322136e24031503814ce0532995de2640432087f405ee8d6",
+            "1d9b2d6dacf87342273343cfa3c348e62a08eeaf59ccde42892b0361ebbe1bc7",
+            "958984ab804db38a30ee6e73bfb75c3adcc6df32db055b084a1264b4966b7814"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/tibet9.bsp",
+          "slot": 41,
+          "bspSha256": "401aa77a1f90ebc775d57464f68544fe07e8ddcc1e363633be6042970609bf6e",
+          "memberOffset": 44110061,
+          "faces": 251,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "7f78788e876a26a7782e2aca3d4c07d342b19ddd1d995a094856d2a59ebd9127",
+            "c227d57eb908e0b2322136e24031503814ce0532995de2640432087f405ee8d6",
+            "1d9b2d6dacf87342273343cfa3c348e62a08eeaf59ccde42892b0361ebbe1bc7",
+            "958984ab804db38a30ee6e73bfb75c3adcc6df32db055b084a1264b4966b7814"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/tibet10.bsp",
+          "slot": 19,
+          "bspSha256": "15e37449c6ab8541687b0942a78c635df4bfa98c10c3a44151a5c43d289f8187",
+          "memberOffset": 45562653,
+          "faces": 190,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "7f78788e876a26a7782e2aca3d4c07d342b19ddd1d995a094856d2a59ebd9127",
+            "c227d57eb908e0b2322136e24031503814ce0532995de2640432087f405ee8d6",
+            "1d9b2d6dacf87342273343cfa3c348e62a08eeaf59ccde42892b0361ebbe1bc7",
+            "958984ab804db38a30ee6e73bfb75c3adcc6df32db055b084a1264b4966b7814"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/tibet6.bsp",
+          "slot": 14,
+          "bspSha256": "eef25c22979f2b4ec9b3c761f22ff91c292a8d41b9e06efaf50c4af73bd30685",
+          "memberOffset": 37510077,
+          "faces": 116,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "7f78788e876a26a7782e2aca3d4c07d342b19ddd1d995a094856d2a59ebd9127",
+            "c227d57eb908e0b2322136e24031503814ce0532995de2640432087f405ee8d6",
+            "1d9b2d6dacf87342273343cfa3c348e62a08eeaf59ccde42892b0361ebbe1bc7",
+            "958984ab804db38a30ee6e73bfb75c3adcc6df32db055b084a1264b4966b7814"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/tibet7.bsp",
+          "slot": 36,
+          "bspSha256": "b57c23d661936051792ea193ace9e84ac2a3147e971f2c5855b8052cb65b4b2c",
+          "memberOffset": 39718737,
+          "faces": 183,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "7f78788e876a26a7782e2aca3d4c07d342b19ddd1d995a094856d2a59ebd9127",
+            "c227d57eb908e0b2322136e24031503814ce0532995de2640432087f405ee8d6",
+            "1d9b2d6dacf87342273343cfa3c348e62a08eeaf59ccde42892b0361ebbe1bc7",
+            "958984ab804db38a30ee6e73bfb75c3adcc6df32db055b084a1264b4966b7814"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/tibet8.bsp",
+          "slot": 9,
+          "bspSha256": "2309541eaf4f7375efdb1c859ff6a6cc2d971d18c76c3089a1316d5ab312fd17",
+          "memberOffset": 42468149,
+          "faces": 132,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "7f78788e876a26a7782e2aca3d4c07d342b19ddd1d995a094856d2a59ebd9127",
+            "c227d57eb908e0b2322136e24031503814ce0532995de2640432087f405ee8d6",
+            "1d9b2d6dacf87342273343cfa3c348e62a08eeaf59ccde42892b0361ebbe1bc7",
+            "958984ab804db38a30ee6e73bfb75c3adcc6df32db055b084a1264b4966b7814"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/tibet9.bsp",
+          "slot": 41,
+          "bspSha256": "401aa77a1f90ebc775d57464f68544fe07e8ddcc1e363633be6042970609bf6e",
+          "memberOffset": 44110061,
+          "faces": 251,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "7f78788e876a26a7782e2aca3d4c07d342b19ddd1d995a094856d2a59ebd9127",
+            "c227d57eb908e0b2322136e24031503814ce0532995de2640432087f405ee8d6",
+            "1d9b2d6dacf87342273343cfa3c348e62a08eeaf59ccde42892b0361ebbe1bc7",
+            "958984ab804db38a30ee6e73bfb75c3adcc6df32db055b084a1264b4966b7814"
+          ]
+        }
+      ],
+      "ordinaryFlagsOnly": true,
+      "exactPeerCandidates": 0,
+      "exactCatalogCandidates": 0
+    },
+    {
+      "id": "d8d2b5c8a30f0a067408c20155d93a4d44f732c233b512c280183f4198610a6b",
+      "name": "ttex032",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/06-ttex032-d8d2b5c8a30f.png",
+        "sha256": "74243ab74f1880a4731a0ed824deb5bc556c871079e9d667045f483ab874fc36",
+        "bytes": 1889
+      },
+      "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+      "indexedPixelSha256": "436426b73c54e7f4dc2b69a5c85f4c47f19c32aeb12223a91c15d093f699a8de",
+      "rgbaSha256": "7048198e1433f575d0ccfc53832af93a5e5ae2011c389700c61238e413a3afcf",
+      "fourMipSHA256": [
+        "436426b73c54e7f4dc2b69a5c85f4c47f19c32aeb12223a91c15d093f699a8de",
+        "e505cb8bc3a650c7d977db397c5249c259f020645d4e36a0cddea16f949a720f",
+        "90ca276565b8faa71befe58b1661539f3286446abeaf0b916767c48ce0536654",
+        "78843910abffe53e099c8827e7a80e9f80eb0e8367e452c45312a7a07035a1e9"
+      ],
+      "profileFaceCounts": {
+        "portals-1": 842,
+        "portals-2": 842
+      },
+      "uniquePAKOccurrences": [
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/tibet3.bsp",
+          "slot": 88,
+          "bspSha256": "babe8ec472c8a4dfc2840d4467f13f30df297624a852920d14dc1857bb5b08c7",
+          "memberOffset": 32140205,
+          "faces": 23,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "436426b73c54e7f4dc2b69a5c85f4c47f19c32aeb12223a91c15d093f699a8de",
+            "e505cb8bc3a650c7d977db397c5249c259f020645d4e36a0cddea16f949a720f",
+            "90ca276565b8faa71befe58b1661539f3286446abeaf0b916767c48ce0536654",
+            "78843910abffe53e099c8827e7a80e9f80eb0e8367e452c45312a7a07035a1e9"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/tibet6.bsp",
+          "slot": 38,
+          "bspSha256": "eef25c22979f2b4ec9b3c761f22ff91c292a8d41b9e06efaf50c4af73bd30685",
+          "memberOffset": 37510077,
+          "faces": 5,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "436426b73c54e7f4dc2b69a5c85f4c47f19c32aeb12223a91c15d093f699a8de",
+            "e505cb8bc3a650c7d977db397c5249c259f020645d4e36a0cddea16f949a720f",
+            "90ca276565b8faa71befe58b1661539f3286446abeaf0b916767c48ce0536654",
+            "78843910abffe53e099c8827e7a80e9f80eb0e8367e452c45312a7a07035a1e9"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/tibet7.bsp",
+          "slot": 30,
+          "bspSha256": "b57c23d661936051792ea193ace9e84ac2a3147e971f2c5855b8052cb65b4b2c",
+          "memberOffset": 39718737,
+          "faces": 814,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "436426b73c54e7f4dc2b69a5c85f4c47f19c32aeb12223a91c15d093f699a8de",
+            "e505cb8bc3a650c7d977db397c5249c259f020645d4e36a0cddea16f949a720f",
+            "90ca276565b8faa71befe58b1661539f3286446abeaf0b916767c48ce0536654",
+            "78843910abffe53e099c8827e7a80e9f80eb0e8367e452c45312a7a07035a1e9"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/tibet3.bsp",
+          "slot": 88,
+          "bspSha256": "babe8ec472c8a4dfc2840d4467f13f30df297624a852920d14dc1857bb5b08c7",
+          "memberOffset": 32140205,
+          "faces": 23,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "436426b73c54e7f4dc2b69a5c85f4c47f19c32aeb12223a91c15d093f699a8de",
+            "e505cb8bc3a650c7d977db397c5249c259f020645d4e36a0cddea16f949a720f",
+            "90ca276565b8faa71befe58b1661539f3286446abeaf0b916767c48ce0536654",
+            "78843910abffe53e099c8827e7a80e9f80eb0e8367e452c45312a7a07035a1e9"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/tibet6.bsp",
+          "slot": 38,
+          "bspSha256": "eef25c22979f2b4ec9b3c761f22ff91c292a8d41b9e06efaf50c4af73bd30685",
+          "memberOffset": 37510077,
+          "faces": 5,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "436426b73c54e7f4dc2b69a5c85f4c47f19c32aeb12223a91c15d093f699a8de",
+            "e505cb8bc3a650c7d977db397c5249c259f020645d4e36a0cddea16f949a720f",
+            "90ca276565b8faa71befe58b1661539f3286446abeaf0b916767c48ce0536654",
+            "78843910abffe53e099c8827e7a80e9f80eb0e8367e452c45312a7a07035a1e9"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/tibet7.bsp",
+          "slot": 30,
+          "bspSha256": "b57c23d661936051792ea193ace9e84ac2a3147e971f2c5855b8052cb65b4b2c",
+          "memberOffset": 39718737,
+          "faces": 814,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "436426b73c54e7f4dc2b69a5c85f4c47f19c32aeb12223a91c15d093f699a8de",
+            "e505cb8bc3a650c7d977db397c5249c259f020645d4e36a0cddea16f949a720f",
+            "90ca276565b8faa71befe58b1661539f3286446abeaf0b916767c48ce0536654",
+            "78843910abffe53e099c8827e7a80e9f80eb0e8367e452c45312a7a07035a1e9"
+          ]
+        }
+      ],
+      "ordinaryFlagsOnly": true,
+      "exactPeerCandidates": 0,
+      "exactCatalogCandidates": 0
+    },
+    {
+      "id": "b8aa0097f60c3908f00fc78d817b05a3f7af50de5116127596de5bb802cb8499",
+      "name": "ttex068",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/07-ttex068-b8aa0097f60c.png",
+        "sha256": "c9c1f4fc0d70eecab827946ebb67c3acf13126fca4629af2c3a84b16502a2823",
+        "bytes": 2703
+      },
+      "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+      "indexedPixelSha256": "b08589b6826e88089ed61975caae9c487efad562abf8238805a94144fb3c9681",
+      "rgbaSha256": "2f7baf24b5cfd8ab279ffe7f69d8f3718bde591923bf2444caa8a9ea2d825635",
+      "fourMipSHA256": [
+        "b08589b6826e88089ed61975caae9c487efad562abf8238805a94144fb3c9681",
+        "d007e87f096d19b364705961d093d34429b16ecc3dfca628bf140c81bd3de93d",
+        "b444b28ea99102826d6eca478f7a8f02dd34f4943c0e0580f4fdf2f7bac41921",
+        "8d3c29940f18c795990f656dc0e975d155bf0fbe2f4b3ab8811b4fd9d24f66cd"
+      ],
+      "profileFaceCounts": {
+        "portals-1": 817,
+        "portals-2": 817
+      },
+      "uniquePAKOccurrences": [
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/tibet1.bsp",
+          "slot": 42,
+          "bspSha256": "b5f6683c91e3fa8afb77bb6d12d336d617907562d958d93247bcd0fe1ee76ea5",
+          "memberOffset": 27428737,
+          "faces": 8,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "b08589b6826e88089ed61975caae9c487efad562abf8238805a94144fb3c9681",
+            "d007e87f096d19b364705961d093d34429b16ecc3dfca628bf140c81bd3de93d",
+            "b444b28ea99102826d6eca478f7a8f02dd34f4943c0e0580f4fdf2f7bac41921",
+            "8d3c29940f18c795990f656dc0e975d155bf0fbe2f4b3ab8811b4fd9d24f66cd"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/tibet2.bsp",
+          "slot": 42,
+          "bspSha256": "1ad4f076dcab4cde6e951c55ae476ff6785ecc61420b160df7082be2118773c7",
+          "memberOffset": 29892041,
+          "faces": 222,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "b08589b6826e88089ed61975caae9c487efad562abf8238805a94144fb3c9681",
+            "d007e87f096d19b364705961d093d34429b16ecc3dfca628bf140c81bd3de93d",
+            "b444b28ea99102826d6eca478f7a8f02dd34f4943c0e0580f4fdf2f7bac41921",
+            "8d3c29940f18c795990f656dc0e975d155bf0fbe2f4b3ab8811b4fd9d24f66cd"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/tibet3.bsp",
+          "slot": 21,
+          "bspSha256": "babe8ec472c8a4dfc2840d4467f13f30df297624a852920d14dc1857bb5b08c7",
+          "memberOffset": 32140205,
+          "faces": 281,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "b08589b6826e88089ed61975caae9c487efad562abf8238805a94144fb3c9681",
+            "d007e87f096d19b364705961d093d34429b16ecc3dfca628bf140c81bd3de93d",
+            "b444b28ea99102826d6eca478f7a8f02dd34f4943c0e0580f4fdf2f7bac41921",
+            "8d3c29940f18c795990f656dc0e975d155bf0fbe2f4b3ab8811b4fd9d24f66cd"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/tibet4.bsp",
+          "slot": 7,
+          "bspSha256": "bb37486d403770ac4df290a7d15442741ba88a4475e7b58efe46e5033da23e3c",
+          "memberOffset": 34062449,
+          "faces": 175,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "b08589b6826e88089ed61975caae9c487efad562abf8238805a94144fb3c9681",
+            "d007e87f096d19b364705961d093d34429b16ecc3dfca628bf140c81bd3de93d",
+            "b444b28ea99102826d6eca478f7a8f02dd34f4943c0e0580f4fdf2f7bac41921",
+            "8d3c29940f18c795990f656dc0e975d155bf0fbe2f4b3ab8811b4fd9d24f66cd"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/tibet7.bsp",
+          "slot": 95,
+          "bspSha256": "b57c23d661936051792ea193ace9e84ac2a3147e971f2c5855b8052cb65b4b2c",
+          "memberOffset": 39718737,
+          "faces": 131,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "b08589b6826e88089ed61975caae9c487efad562abf8238805a94144fb3c9681",
+            "d007e87f096d19b364705961d093d34429b16ecc3dfca628bf140c81bd3de93d",
+            "b444b28ea99102826d6eca478f7a8f02dd34f4943c0e0580f4fdf2f7bac41921",
+            "8d3c29940f18c795990f656dc0e975d155bf0fbe2f4b3ab8811b4fd9d24f66cd"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/tibet1.bsp",
+          "slot": 42,
+          "bspSha256": "b5f6683c91e3fa8afb77bb6d12d336d617907562d958d93247bcd0fe1ee76ea5",
+          "memberOffset": 27428737,
+          "faces": 8,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "b08589b6826e88089ed61975caae9c487efad562abf8238805a94144fb3c9681",
+            "d007e87f096d19b364705961d093d34429b16ecc3dfca628bf140c81bd3de93d",
+            "b444b28ea99102826d6eca478f7a8f02dd34f4943c0e0580f4fdf2f7bac41921",
+            "8d3c29940f18c795990f656dc0e975d155bf0fbe2f4b3ab8811b4fd9d24f66cd"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/tibet2.bsp",
+          "slot": 42,
+          "bspSha256": "1ad4f076dcab4cde6e951c55ae476ff6785ecc61420b160df7082be2118773c7",
+          "memberOffset": 29892041,
+          "faces": 222,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "b08589b6826e88089ed61975caae9c487efad562abf8238805a94144fb3c9681",
+            "d007e87f096d19b364705961d093d34429b16ecc3dfca628bf140c81bd3de93d",
+            "b444b28ea99102826d6eca478f7a8f02dd34f4943c0e0580f4fdf2f7bac41921",
+            "8d3c29940f18c795990f656dc0e975d155bf0fbe2f4b3ab8811b4fd9d24f66cd"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/tibet3.bsp",
+          "slot": 21,
+          "bspSha256": "babe8ec472c8a4dfc2840d4467f13f30df297624a852920d14dc1857bb5b08c7",
+          "memberOffset": 32140205,
+          "faces": 281,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "b08589b6826e88089ed61975caae9c487efad562abf8238805a94144fb3c9681",
+            "d007e87f096d19b364705961d093d34429b16ecc3dfca628bf140c81bd3de93d",
+            "b444b28ea99102826d6eca478f7a8f02dd34f4943c0e0580f4fdf2f7bac41921",
+            "8d3c29940f18c795990f656dc0e975d155bf0fbe2f4b3ab8811b4fd9d24f66cd"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/tibet4.bsp",
+          "slot": 7,
+          "bspSha256": "bb37486d403770ac4df290a7d15442741ba88a4475e7b58efe46e5033da23e3c",
+          "memberOffset": 34062449,
+          "faces": 175,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "b08589b6826e88089ed61975caae9c487efad562abf8238805a94144fb3c9681",
+            "d007e87f096d19b364705961d093d34429b16ecc3dfca628bf140c81bd3de93d",
+            "b444b28ea99102826d6eca478f7a8f02dd34f4943c0e0580f4fdf2f7bac41921",
+            "8d3c29940f18c795990f656dc0e975d155bf0fbe2f4b3ab8811b4fd9d24f66cd"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/tibet7.bsp",
+          "slot": 95,
+          "bspSha256": "b57c23d661936051792ea193ace9e84ac2a3147e971f2c5855b8052cb65b4b2c",
+          "memberOffset": 39718737,
+          "faces": 131,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "b08589b6826e88089ed61975caae9c487efad562abf8238805a94144fb3c9681",
+            "d007e87f096d19b364705961d093d34429b16ecc3dfca628bf140c81bd3de93d",
+            "b444b28ea99102826d6eca478f7a8f02dd34f4943c0e0580f4fdf2f7bac41921",
+            "8d3c29940f18c795990f656dc0e975d155bf0fbe2f4b3ab8811b4fd9d24f66cd"
+          ]
+        }
+      ],
+      "ordinaryFlagsOnly": true,
+      "exactPeerCandidates": 0,
+      "exactCatalogCandidates": 0
+    },
+    {
+      "id": "9365fe57d1b7e0ea8e0b2e522fc2bed703933ae300787aa4a2aab86e235bfdcd",
+      "name": "ttex079",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/08-ttex079-9365fe57d1b7.png",
+        "sha256": "e032eea20b131931ca998cc8ca444ff197f01f088948659f66a56895977009fc",
+        "bytes": 3058
+      },
+      "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+      "indexedPixelSha256": "c43da5cc5810a907ba40a1bc244a2fdccdd6d58cf3e8a2d7776172e7e2833207",
+      "rgbaSha256": "6d2fe6a9674968ab0693e4dabee1c972401f79546d2a9c0acbd1f7753ad709ea",
+      "fourMipSHA256": [
+        "c43da5cc5810a907ba40a1bc244a2fdccdd6d58cf3e8a2d7776172e7e2833207",
+        "f93beb81db0e2aa847134bc068843539eddb76a8fd4422346551d3cebe101145",
+        "07f721c9e08645f1742679d17baf2b3f915333fa1519b635f5f7b922c6fc1d5e",
+        "a07fb3a491a24bb9f35142b584e8b114a873dfc3f726afaaee408d93d7f1c335"
+      ],
+      "profileFaceCounts": {
+        "portals-1": 787,
+        "portals-2": 787
+      },
+      "uniquePAKOccurrences": [
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/tibet1.bsp",
+          "slot": 39,
+          "bspSha256": "b5f6683c91e3fa8afb77bb6d12d336d617907562d958d93247bcd0fe1ee76ea5",
+          "memberOffset": 27428737,
+          "faces": 37,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "c43da5cc5810a907ba40a1bc244a2fdccdd6d58cf3e8a2d7776172e7e2833207",
+            "f93beb81db0e2aa847134bc068843539eddb76a8fd4422346551d3cebe101145",
+            "07f721c9e08645f1742679d17baf2b3f915333fa1519b635f5f7b922c6fc1d5e",
+            "a07fb3a491a24bb9f35142b584e8b114a873dfc3f726afaaee408d93d7f1c335"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/tibet2.bsp",
+          "slot": 108,
+          "bspSha256": "1ad4f076dcab4cde6e951c55ae476ff6785ecc61420b160df7082be2118773c7",
+          "memberOffset": 29892041,
+          "faces": 16,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "c43da5cc5810a907ba40a1bc244a2fdccdd6d58cf3e8a2d7776172e7e2833207",
+            "f93beb81db0e2aa847134bc068843539eddb76a8fd4422346551d3cebe101145",
+            "07f721c9e08645f1742679d17baf2b3f915333fa1519b635f5f7b922c6fc1d5e",
+            "a07fb3a491a24bb9f35142b584e8b114a873dfc3f726afaaee408d93d7f1c335"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/tibet3.bsp",
+          "slot": 62,
+          "bspSha256": "babe8ec472c8a4dfc2840d4467f13f30df297624a852920d14dc1857bb5b08c7",
+          "memberOffset": 32140205,
+          "faces": 193,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "c43da5cc5810a907ba40a1bc244a2fdccdd6d58cf3e8a2d7776172e7e2833207",
+            "f93beb81db0e2aa847134bc068843539eddb76a8fd4422346551d3cebe101145",
+            "07f721c9e08645f1742679d17baf2b3f915333fa1519b635f5f7b922c6fc1d5e",
+            "a07fb3a491a24bb9f35142b584e8b114a873dfc3f726afaaee408d93d7f1c335"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/tibet4.bsp",
+          "slot": 37,
+          "bspSha256": "bb37486d403770ac4df290a7d15442741ba88a4475e7b58efe46e5033da23e3c",
+          "memberOffset": 34062449,
+          "faces": 37,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "c43da5cc5810a907ba40a1bc244a2fdccdd6d58cf3e8a2d7776172e7e2833207",
+            "f93beb81db0e2aa847134bc068843539eddb76a8fd4422346551d3cebe101145",
+            "07f721c9e08645f1742679d17baf2b3f915333fa1519b635f5f7b922c6fc1d5e",
+            "a07fb3a491a24bb9f35142b584e8b114a873dfc3f726afaaee408d93d7f1c335"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/tibet5.bsp",
+          "slot": 37,
+          "bspSha256": "0bbc03c110d387c795ceb36ab32226cbfa4d1788cd5f7fba131d5038c653e177",
+          "memberOffset": 36092861,
+          "faces": 33,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "c43da5cc5810a907ba40a1bc244a2fdccdd6d58cf3e8a2d7776172e7e2833207",
+            "f93beb81db0e2aa847134bc068843539eddb76a8fd4422346551d3cebe101145",
+            "07f721c9e08645f1742679d17baf2b3f915333fa1519b635f5f7b922c6fc1d5e",
+            "a07fb3a491a24bb9f35142b584e8b114a873dfc3f726afaaee408d93d7f1c335"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "map": "maps/tibet6.bsp",
+          "slot": 54,
+          "bspSha256": "eef25c22979f2b4ec9b3c761f22ff91c292a8d41b9e06efaf50c4af73bd30685",
+          "memberOffset": 37510077,
+          "faces": 471,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "c43da5cc5810a907ba40a1bc244a2fdccdd6d58cf3e8a2d7776172e7e2833207",
+            "f93beb81db0e2aa847134bc068843539eddb76a8fd4422346551d3cebe101145",
+            "07f721c9e08645f1742679d17baf2b3f915333fa1519b635f5f7b922c6fc1d5e",
+            "a07fb3a491a24bb9f35142b584e8b114a873dfc3f726afaaee408d93d7f1c335"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/tibet1.bsp",
+          "slot": 39,
+          "bspSha256": "b5f6683c91e3fa8afb77bb6d12d336d617907562d958d93247bcd0fe1ee76ea5",
+          "memberOffset": 27428737,
+          "faces": 37,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "c43da5cc5810a907ba40a1bc244a2fdccdd6d58cf3e8a2d7776172e7e2833207",
+            "f93beb81db0e2aa847134bc068843539eddb76a8fd4422346551d3cebe101145",
+            "07f721c9e08645f1742679d17baf2b3f915333fa1519b635f5f7b922c6fc1d5e",
+            "a07fb3a491a24bb9f35142b584e8b114a873dfc3f726afaaee408d93d7f1c335"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/tibet2.bsp",
+          "slot": 108,
+          "bspSha256": "1ad4f076dcab4cde6e951c55ae476ff6785ecc61420b160df7082be2118773c7",
+          "memberOffset": 29892041,
+          "faces": 16,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "c43da5cc5810a907ba40a1bc244a2fdccdd6d58cf3e8a2d7776172e7e2833207",
+            "f93beb81db0e2aa847134bc068843539eddb76a8fd4422346551d3cebe101145",
+            "07f721c9e08645f1742679d17baf2b3f915333fa1519b635f5f7b922c6fc1d5e",
+            "a07fb3a491a24bb9f35142b584e8b114a873dfc3f726afaaee408d93d7f1c335"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/tibet3.bsp",
+          "slot": 62,
+          "bspSha256": "babe8ec472c8a4dfc2840d4467f13f30df297624a852920d14dc1857bb5b08c7",
+          "memberOffset": 32140205,
+          "faces": 193,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "c43da5cc5810a907ba40a1bc244a2fdccdd6d58cf3e8a2d7776172e7e2833207",
+            "f93beb81db0e2aa847134bc068843539eddb76a8fd4422346551d3cebe101145",
+            "07f721c9e08645f1742679d17baf2b3f915333fa1519b635f5f7b922c6fc1d5e",
+            "a07fb3a491a24bb9f35142b584e8b114a873dfc3f726afaaee408d93d7f1c335"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/tibet4.bsp",
+          "slot": 37,
+          "bspSha256": "bb37486d403770ac4df290a7d15442741ba88a4475e7b58efe46e5033da23e3c",
+          "memberOffset": 34062449,
+          "faces": 37,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "c43da5cc5810a907ba40a1bc244a2fdccdd6d58cf3e8a2d7776172e7e2833207",
+            "f93beb81db0e2aa847134bc068843539eddb76a8fd4422346551d3cebe101145",
+            "07f721c9e08645f1742679d17baf2b3f915333fa1519b635f5f7b922c6fc1d5e",
+            "a07fb3a491a24bb9f35142b584e8b114a873dfc3f726afaaee408d93d7f1c335"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/tibet5.bsp",
+          "slot": 37,
+          "bspSha256": "0bbc03c110d387c795ceb36ab32226cbfa4d1788cd5f7fba131d5038c653e177",
+          "memberOffset": 36092861,
+          "faces": 33,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "c43da5cc5810a907ba40a1bc244a2fdccdd6d58cf3e8a2d7776172e7e2833207",
+            "f93beb81db0e2aa847134bc068843539eddb76a8fd4422346551d3cebe101145",
+            "07f721c9e08645f1742679d17baf2b3f915333fa1519b635f5f7b922c6fc1d5e",
+            "a07fb3a491a24bb9f35142b584e8b114a873dfc3f726afaaee408d93d7f1c335"
+          ]
+        },
+        {
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "map": "maps/tibet6.bsp",
+          "slot": 54,
+          "bspSha256": "eef25c22979f2b4ec9b3c761f22ff91c292a8d41b9e06efaf50c4af73bd30685",
+          "memberOffset": 37510077,
+          "faces": 471,
+          "ordinaryTexinfoFlags": [
+            0
+          ],
+          "fourMipSHA256": [
+            "c43da5cc5810a907ba40a1bc244a2fdccdd6d58cf3e8a2d7776172e7e2833207",
+            "f93beb81db0e2aa847134bc068843539eddb76a8fd4422346551d3cebe101145",
+            "07f721c9e08645f1742679d17baf2b3f915333fa1519b635f5f7b922c6fc1d5e",
+            "a07fb3a491a24bb9f35142b584e8b114a873dfc3f726afaaee408d93d7f1c335"
+          ]
+        }
+      ],
+      "ordinaryFlagsOnly": true,
+      "exactPeerCandidates": 0,
+      "exactCatalogCandidates": 0
+    }
+  ],
+  "nativeCount": 8,
+  "existingCatalogBindings": 37,
+  "exactPeerCandidates": 0,
+  "exactCatalogCandidates": 0,
+  "uniquePAKSlotOccurrencesChecked": 84,
+  "full980NativeInventoryMetadataUnchanged": true,
+  "archiveInputsStable": [
+    {
+      "path": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+      "bytes": 22704056,
+      "sha256": "57936acc4cd9abed7acb480dd9c6d59c7c98e96e4eca4e2d04f390d2dfa5ffde",
+      "directoryEntries": 696,
+      "duplicates": []
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+      "bytes": 75601170,
+      "sha256": "6940cc03dc731f9c19f4e8a21259d7f191bd60a7487b50ceed3f8268e0d32a56",
+      "directoryEntries": 523,
+      "duplicates": [
+        {
+          "name": "models/mumshot.mdl",
+          "firstOffset": 10902172,
+          "duplicateOffset": 25184081,
+          "bytes": 11308,
+          "sha256": "eea20e14d61fa1572799a2844133c907b8c7b84c07beeb6a8d8a6df835371020",
+          "resolution": "identical bytes; first native directory entry retained"
+        },
+        {
+          "name": "sound/mummy/mislfire.wav",
+          "firstOffset": 1830694,
+          "duplicateOffset": 25214497,
+          "bytes": 40140,
+          "sha256": "e269c07608f322518e709925d5b13daded150460d19d3091f15152ce4c06c9bf",
+          "resolution": "identical bytes; first native directory entry retained"
+        },
+        {
+          "name": "sound/eidolon/flamend.wav",
+          "firstOffset": 955356,
+          "duplicateOffset": 25254637,
+          "bytes": 13964,
+          "sha256": "fbf1257269c77856bcad55dbded533f0279b7fc2dec68c2322bbca68e8c893fa",
+          "resolution": "identical bytes; first native directory entry retained"
+        }
+      ]
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+      "bytes": 49089114,
+      "sha256": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+      "directoryEntries": 245,
+      "duplicates": []
+    },
+    {
+      "path": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+      "bytes": 49089114,
+      "sha256": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+      "directoryEntries": 245,
+      "duplicates": []
+    }
+  ],
+  "inputsStable": true,
+  "inputs": [
+    {
+      "file": "docs/hexen2/textures/batch-007-public-verify-source-usage.py",
+      "sha256": "dee176d18fe1fbf6daf293166e2d4eb51bb64a40c3a11ef1a15dfca91b554215",
+      "bytes": 11377
+    },
+    {
+      "file": "docs/evidence/hexen2-textures-2026-10-19/batch-007-selection/inventory.json",
+      "sha256": "e3b3f013147be3edefc825a3a7ab4240692b93ff70b249ea84f8bca75c08a47f",
+      "bytes": 4377689
+    },
+    {
+      "file": "docs/evidence/hexen2-textures-2026-10-19/current/inventory.json",
+      "sha256": "344ad22744fd5b6ad9d07ef89102be930ac2c3c88589456d46963c8b4c082d6a",
+      "bytes": 4375465
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/catalog.json",
+      "sha256": "5ca1983ea2ae250a62b65a695530f80c2a96b794bdc508401bbb4b6c10069fbf",
+      "bytes": 189837
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/01-rtex322-411496d1fad7.png",
+      "sha256": "61b562f0876ab63e1649f6f447afb1d31e0d3cd4fe535f81b378d55836c776c6",
+      "bytes": 2776
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/02-rtex121-3e356d95bcb6.png",
+      "sha256": "0fd9128f6bb98656f9643f915eeb9db6c0b246e11bc99148d65858195d37c61a",
+      "bytes": 3028
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/03-rtex413-af54a88c9376.png",
+      "sha256": "34b2a6a55b78ea0ed48c28a18dd61dc17ad1b7d39041f89f900a134bf7a59d10",
+      "bytes": 13035
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/04-rtex274-b3fd79635c32.png",
+      "sha256": "78253c6418ccefd98e826d745e2856956c6bd804660038f1e09ab59600327f84",
+      "bytes": 6311
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/05-ttex005-c5b5337a494c.png",
+      "sha256": "04d6fbe08e4afcf348d132fc7f2cbfb565c1c819b3a4e1a92bd68a798b3580aa",
+      "bytes": 2062
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/06-ttex032-d8d2b5c8a30f.png",
+      "sha256": "74243ab74f1880a4731a0ed824deb5bc556c871079e9d667045f483ab874fc36",
+      "bytes": 1889
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/07-ttex068-b8aa0097f60c.png",
+      "sha256": "c9c1f4fc0d70eecab827946ebb67c3acf13126fca4629af2c3a84b16502a2823",
+      "bytes": 2703
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/08-ttex079-9365fe57d1b7.png",
+      "sha256": "e032eea20b131931ca998cc8ca444ff197f01f088948659f66a56895977009fc",
+      "bytes": 3058
+    }
+  ],
+  "newGenerations": 0,
+  "newMasterPackages": 0,
+  "bindingCreated": false,
+  "completedAt": "2026-10-19T06:17:23.474490+00:00"
+}

@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-10-19T05:58:50.536577+00:00",
+  "updatedAt": "2026-10-20T06:59:04.102422+00:00",
   "owner": "initiating coordinator",
   "scope": "Whole HexenII/Portal texture enhancement campaign; ordinaryWORLD underway, othernativefamilies require their own semantics and remain explicitly incomplete",
-  "state": "Active full campaign: 37 reviewed WORLD native identities, 32 unique master packages and 320 physical enhanced map files (370 native bindings). Batch006 final artwork, code, CLI, source and preview checks passed.",
+  "state": "Active full campaign:47reviewednativebindings/40uniquemasterpackages/400physicalmaps. B8all8single-sourceoutputsretained;306insetand006jointpre-tiergatesPASS.054paint-reliefHOLD;nextqualifyeligiblematerialswithoutdroppingheldscope.",
   "standard": {
     "appliesTo": [
       "Quake and its official expansions",
@@ -26,8 +26,8 @@
       4
     ]
   },
-  "nextAction": "Stage only owned verified texture campaign changes and run the unchanged normal Dev commit gate. Continue the active campaign after checkpoint; no full completion, runtime integration or release implied.",
-  "Bluey": "Last same-session whoami storage_error e13d09d90e64411a9747e26e7b903365, outcome unknown. No automatic retry, registration or card mutation claimed. Coordinator retains ledger; service owner repairs storage/identity, then reconcile existing task.",
+  "nextAction": "Finish independentfirst4actualpublic/ARTqualificationandregisterindividualpassesonly. Correct054paint-reliefand153pale-mortarreliefusingreviewedsame-sourcepolicybeforetheirtiers. Source-review012/317andverifyphysicalsemantics. PrepareexplicitownedDevcheckpointthroughmaintainedgateswithB8unqualifiedstateclear.",
+  "Bluey": "Fresh supported agent_work_checkpoint failedstorage_error correlation300582c3e9e84f79bfef530d3cdfe4a9, mutationOutcomeunknown,automaticRetryfalse. No taskclaim/update or newidentity asserted. Initiatingcoordinatorretainsevidence;serviceownerrepairsstorage/identitythenreconcileexistingcard.",
   "inventory": {
     "path": "docs/evidence/hexen2-textures-2026-10-19/current/inventory.json",
     "nativeVariants": 980,
@@ -57,8 +57,8 @@
   "HighFactor": 8,
   "newGPTGenerations": 2,
   "reusedPriorSingleGPTSources": 4,
-  "sourceMasterPackages": 32,
-  "maps": 320,
+  "sourceMasterPackages": 40,
+  "maps": 400,
   "codeReview": "docs/hexen2/textures/two-tier-code-review.json",
   "actualVerification": "docs/hexen2/textures/two-tier-actual-public-verification.json",
   "browserUI": "docs/hexen2/textures/two-tier-browser-ui.json",
@@ -74,8 +74,8 @@
   },
   "additionalNativeScopeAudit": "docs/hexen2/textures/batch-002-public-scope.md",
   "campaignStatus": "docs/hexen2/textures/campaign-status.json",
-  "retainedGeneratedSources": 33,
-  "unqualifiedGeneratedSources": 1,
+  "retainedGeneratedSources": 49,
+  "unqualifiedGeneratedSources": 9,
   "checkpoint": "dist/hexen2-campaign-checkpoint/progress.json",
   "batch003": {
     "qualifiedIdentity": "rtex022",
@@ -138,13 +138,9 @@
     "retirementAudit": "docs/hexen2/textures/batch-005-public-retirement-audit.json",
     "portablePostCleanupTests": "docs/hexen2/textures/batch-005-boundary-public-portable-post-cleanup.json"
   },
-  "reviewedWorldNativeIdentities": 37,
-  "enhancedMapBindings": 370,
-  "remoteDevObserved": {
-    "sha": "33406751ed9e9511b8430e866cbdc9d361ff791b",
-    "checkedAt": "2026-10-19T03:55:18.050310+00:00",
-    "state": "Read-only GitHub check; foreign local ancestor remains unpublished. No push or Prod action."
-  },
+  "reviewedWorldNativeIdentities": 47,
+  "enhancedMapBindings": 470,
+  "remoteDevObserved": "c00ca59a465ce267fbff56607b095be09e7120b1",
   "batch006": {
     "state": "Final offline ART and public qualification PASS; eight native bindings registered, seven unique masters and70physical maps. One exact peer alias; no additional GPT calls for repairs.",
     "selection": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/selection.json",
@@ -177,7 +173,7 @@
       "sha256": "9edb9682485010e053cc72725503cc4ad59f56f9d63b033a962942b143db17b7"
     }
   },
-  "checkpointState": "All37reviewed native identities and320physicalmaps are qualified offline. Preparing a scoped Dev checkpoint through the unchanged normal commit hook; no new commit or gate success is asserted in this source record. Earlier approval-service capacity failures remain historical. Git and ignored checkpoint receipts hold actual commit/build results.",
+  "checkpointState": "Dev c00ca59 was committed/pushed with normal local gates and exact-commit GitHub CI PASS. Later batch007/batch008 and skill changes remain working-tree changes, outside that earlier CI scope.",
   "checkpointApprovalHistory": [
     {
       "outcome": "First staging request was not executed: automatic approval review model was at capacity, not an unsafe-action finding."
@@ -189,5 +185,87 @@
       "outcome": "Commit request and one bounded retry both failed before execution due to approval-service model capacity. Existing staged scope preserved; no unsafe-action determination, no Git commit, no push/Prod action."
     }
   ],
-  "previousGoalTurnClassification": "Progress: seven single-generation sources and70physicalmaps qualified for8nativebindings; same-source layered relief, fine-pattern and timber-seam findings closed. Whole campaign remains active."
+  "previousGoalTurnClassification": "Progress: updated source-bound handover and current ledgers; five concrete-material prompts passed independent planning; superseded owned files retired with actual80-map and32-preview post-cleanup replay PASS. Full campaign remains active.",
+  "CI": {
+    "id": 39208412208,
+    "head": "c00ca59a465ce267fbff56607b095be09e7120b1",
+    "source": "success",
+    "web": "success",
+    "macOSAppleSilicon": "success",
+    "macOSIntel": "success",
+    "release": "skipped (Dev qualification)",
+    "pages": "skipped (Dev qualification)"
+  },
+  "batch007": {
+    "state": "All8newmaterials and2supplementalaliases registered; initial/trialHOLDs retained as historical evidence.",
+    "selection": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/selection.json",
+    "sourceProof": {
+      "docs/hexen2/textures/batch-007-public-source-proof-v2.json": "fe7d9ffd177c424d0b834b4e867b7e0d17bfabdc27d5733640ce85e2ac3ff8aa",
+      "docs/hexen2/textures/batch-007-public-ttex005-usage-v2.json": "b409aa371f9487c31104cd18fafb50c4dd1c5bbd41359f25ad06ed067686f1b2"
+    },
+    "plan": "docs/hexen2/textures/BATCH-007.md",
+    "ttex005": "Mixed floor/ceiling/wall/sloped native use; material-neutral matte red coating interpretation, no exclusive carpet assumption.",
+    "generationCalls": 8,
+    "newMasterPackages": 8,
+    "newPhysicalMaps": 80,
+    "batch": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/batch-final.json",
+    "aliasBatch": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/alias-batch.json",
+    "reviewIndex": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/index.html",
+    "planReview": "docs/hexen2/textures/batch-007-plan-art-review.json",
+    "planReviewSha256": "231d0508ccc4a5c8a8b4cd220e0f7fafc434ffb92507177c141e43c9c7b62f4c",
+    "aliasSourceProof": "docs/hexen2/textures/batch-007-alias-public-source-proof.json",
+    "aliasSourceProofSha256": "40df0252adf2c6c5d2a12074c42e3a2f7fa1dbd19800591d5ab4b7b6b64a71a7",
+    "actualProof": "docs/hexen2/textures/batch-007-public-actual-v2.json",
+    "actualProofSha256": "f3721db7aaf26e69aa8a9aa82a7df5578fccf6b7db50d3b65c283fc7dd5e57d9",
+    "previewProof": "docs/hexen2/textures/batch-007-public-preview-v1.json",
+    "previewProofSha256": "617d3de20ff4092ebcd160624e5c398d4029f7a3fdfdc9bd02d0a532f306814b",
+    "aliasBindingProof": "docs/hexen2/textures/batch-007-alias-public-bindings-v1.json",
+    "aliasBindingProofSha256": "79e96bf7b53bee440e6c31ab04f8ee434c8617112c4e798ba011cfe36a437fd5",
+    "registeredBindings": 10,
+    "registeredNewMasterPackages": 8,
+    "registeredNewPhysicalMaps": 80,
+    "held": null,
+    "artReceipt": "docs/hexen2/textures/batch-007-art-review.json",
+    "finalArtReceipt": "docs/hexen2/textures/batch-007-art-review-v2.json",
+    "initialBatch": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/batch.json",
+    "initialReviewIndex": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review/index.html",
+    "finalActualProof": "docs/hexen2/textures/batch-007-public-final-actual-v1.json",
+    "finalPreviewProof": "docs/hexen2/textures/batch-007-public-final-preview-v1.json",
+    "retirementState": "Independent full47catalog and exact79-file retirement audit PASS. Source-bound actual80-map and32-preview replay PASS. Counts and unchanged accepted custody verified; historical deletion identity limits explicitly recorded.",
+    "retirement": "docs/hexen2/textures/batch-007-retirement.json",
+    "postCleanupActual": "docs/hexen2/textures/batch-007-public-post-cleanup-actual.json",
+    "postCleanupPreview": "docs/hexen2/textures/batch-007-public-post-cleanup-preview.json",
+    "postCleanupCatalog": "docs/hexen2/textures/batch-007-public-catalog-post-cleanup.json",
+    "retirementAudit": "docs/hexen2/textures/batch-007-public-retirement-audit.json"
+  },
+  "batch008": {
+    "state": "All8single-source rawoutputsretained;8initialsharedmasters+306same-RGBlayeredsuccessorprepared. Fourcandidatepairs006/104/096/306 deriveddirectlytoMid4High8,40mapsQ92/method6 and16reviewsheets;independentactualpublicandARTreviewsunderway.054paintheightand153palemortarheightHOLDbeforetierencoding;012/317initialmastersexistbuttierspending.",
+    "selection": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/selection.json",
+    "sourceProof": "docs/hexen2/textures/batch-008-public-source-proof.json",
+    "planReview": "docs/hexen2/textures/batch-008-plan-public-review.json",
+    "generationCalls": 8,
+    "futureReliefGate": "153 source/master-only proof and semantic joint check before tier derivation; never encode knownbadrelief or weakenwrapperguard.",
+    "materialPlanV2": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/material-plan-v2.json",
+    "materialPlanV2Review": "docs/hexen2/textures/batch-008-material-plan-v2-public-review.json",
+    "materialPlanV2ReviewSha256": "64e5c724d646a25ad1c7d0fbf80ce48eae424f8e16f504ea5b293e22aef94d2a",
+    "liveHandles": {},
+    "sourceMaterialReview": "docs/hexen2/textures/batch-008-source-material-art-review.json",
+    "candidateBatch": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/batch-first-four.json",
+    "reviewIndex": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-first-four/index.html",
+    "candidatePhysicalMaps": 40,
+    "candidateMaterials": 4,
+    "firstFourActual": "docs/hexen2/textures/batch-008-first-four-public-actual.json",
+    "firstFourPreview": "docs/hexen2/textures/batch-008-first-four-public-preview-v2.json",
+    "firstFourPublicState": "Actualnative/source/master/math/all40mapQ92outputsPASSfd0a6591. Preview16content/labelpanelsHTMLexactPASS93816e35;knownemptytailJPEGpaddinglimitretained. FirstpreviewverifierHOLDwrongreview-finalpathkeptwithfailedsource,notassetfailure. ActualARTpending."
+  },
+  "textureAuthoringSkill": {
+    "file": "skills/quaked-texture-authoring/SKILL.md",
+    "agentRouting": "AGENTS.md",
+    "validation": "docs/hexen2/textures/texture-skill-validation.json",
+    "state": "Installed and bounded independent forward test PASS; working tree, not new CI or release acceptance."
+  },
+  "currentDevObserved": "713b47d322f0674f154a70ec4baebd4566905d41",
+  "currentDevObservationNote": "Subsequent box-art recovery/handover commit preserved; index empty at current read. Latest texture checkpoint remainsc00ca59; latercurrenttextureworknotcoveredbyitsCI.",
+  "handover": "docs/hexen2/textures/HANDOVER.md",
+  "handoverState": "Updated docs/hexen2/textures/HANDOVER.md with current47/40/400scope, Dev213cc7 ownership boundary, strict real-material gate, skill, exactB8issue states, five-prompt independentPASS and B7actual/preview post-cleanupPASS. Independent three-source material and whole47catalog retirement reviews remain pending under initiating coordinator; no durable background execution claimed."
 }

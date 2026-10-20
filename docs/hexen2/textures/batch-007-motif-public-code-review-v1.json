@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS independent code review; required repeated-policy finding corrected",
+  "source": {
+    "file": "tools/texture_sheets/prepare_motif_texture_master.py",
+    "sha256": "233bd52f30abbc276ba1e5895b44d2a81c3425531f82b10d5d999a48d080b430"
+  },
+  "portableProof": {
+    "file": "docs/hexen2/textures/batch-007-motif-public-tests-green-v1.json",
+    "sha256": "1f723c187ed4013583ce5d9f857aa4045d5941d69895cb4a5e44a0db93b66d46"
+  },
+  "plan": {
+    "file": "docs/hexen2/textures/batch-007-rtex322-motif-plan-public-review.json",
+    "sha256": "9a2efe158ba85960dd5b233d40d2e6b1eb7478e9470e9c47146ad81a4f3307fb"
+  },
+  "minimalSourceChange": "Only the old masterRevision-key check became presence rejection of masterRevision/motifRestoration/layeredRelief. RGB equation/parameters/height preservation and all other code bytes unchanged.",
+  "reviewedContracts": [
+    "Fixed recipe/output public interface and bounded source/proof identity with canonical tool roles, paths and hashes.",
+    "Unrevised initial8xphotographic source contract; repeated-revision key presence rejected even false/null.",
+    "Native-coordinate four-ramp C1product field, explicit pixel-centre phase, local disjoint supports, bounded finite scalar/RGB values and exact outside/perimeter bytes.",
+    "Shared area/Gaussian/bicubic policies reused; no global strict projection, spatial relocation, source cloning or new image generation.",
+    "One baseline craft(False) replay validates original float32NPY SHA; finalheight_data is those identical bytes. Corrected pigment never enters height authoring.",
+    "No predecessorRGB/height binary read; inputstable beforemkdir/finalmanifest, exclusive output refusal, complete embedded recipe/provenance/current environment and explicit policy references.",
+    "Existing producers unchanged; output is one masterpackage for subsequent sharedtier derivation."
+  ],
+  "remainingLimits": [
+    "No finalencodedtier or artistic acceptance from source/code/public tests.",
+    "Actualphoto correction can still have color/shape defects requiring decoded ART; clippingstatistics are diagnostics."
+  ]
+}

@@ -1,0 +1,332 @@
+{
+  "schemaVersion": 1,
+  "defaultTier": "Mid",
+  "inputs": {
+    "original": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/03-rtex096-7d397606c172.png",
+      "sha256": "3a383b3de48bbb57af4ddce8e3f4b83a842a62a687da5934985c840f8b5e7dcf",
+      "dimensions": [
+        64,
+        64
+      ]
+    },
+    "master": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex096/color.png",
+      "sha256": "be89dbea23f01d93e2868be790a4feea9576e7f701f552f7d57512a5513dbc79",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "heightMaster": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex096/height.npy",
+      "sha256": "d3f60f4dae6d24d0507e94a4f3fd31e0b089bf397b5f54eb757737ee1d6f4dbc",
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  },
+  "Low": {
+    "source": "original",
+    "unchanged": true,
+    "sha256": "3a383b3de48bbb57af4ddce8e3f4b83a842a62a687da5934985c840f8b5e7dcf"
+  },
+  "strength": 0.3,
+  "cap": 0.5,
+  "tools": {
+    "deriverSha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+    "normalMathSha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+  },
+  "policy": "Independent direct-master reductions; no compressed tier is an authoring source",
+  "tiers": {
+    "Mid": {
+      "factor": 4,
+      "dimensions": [
+        256,
+        256
+      ],
+      "outputs": {
+        "diffuse": {
+          "file": "mid-diffuse.webp",
+          "sha256": "ea18988d357565e2f3bdf088ab57e4d89aca259b2b48f5739d7414a9421b9e47",
+          "bytes": 30038,
+          "dimensions": [
+            256,
+            256
+          ],
+          "quality": 92,
+          "method": 6,
+          "lossless": false,
+          "sourceMaster": "master"
+        },
+        "height": {
+          "file": "mid-height.webp",
+          "sha256": "03abd6b856d215d5c547fddab32895331be7246d8d8352c748451aab5909ac25",
+          "bytes": 37358,
+          "dimensions": [
+            256,
+            256
+          ],
+          "quality": 92,
+          "method": 6,
+          "lossless": false,
+          "sourceMaster": "heightMaster"
+        },
+        "normalX": {
+          "file": "mid-normalX.webp",
+          "sha256": "d871c2a1979d4a01e269145dee66ad625293197fd7fa84a772636141aec28770",
+          "bytes": 30660,
+          "dimensions": [
+            256,
+            256
+          ],
+          "quality": 92,
+          "method": 6,
+          "lossless": false,
+          "sourceMaster": "heightMaster"
+        },
+        "normalY": {
+          "file": "mid-normalY.webp",
+          "sha256": "cc172389d7a26dd98770b66c055246d4ce5c129beed5f9491de68d4fb41bf8aa",
+          "bytes": 30792,
+          "dimensions": [
+            256,
+            256
+          ],
+          "quality": 92,
+          "method": 6,
+          "lossless": false,
+          "sourceMaster": "heightMaster"
+        },
+        "normalZ": {
+          "file": "mid-normalZ.webp",
+          "sha256": "5359ed4974278034688c61c988e38af86b74880e6d3edcff20a2759706094e56",
+          "bytes": 8954,
+          "dimensions": [
+            256,
+            256
+          ],
+          "quality": 92,
+          "method": 6,
+          "lossless": false,
+          "sourceMaster": "heightMaster"
+        }
+      },
+      "distanceChecks": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "meanAbsoluteError": 6.79296875,
+          "maximum": 34.0
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            16
+          ],
+          "meanAbsoluteError": 4.947916666666667,
+          "maximum": 21.0
+        }
+      ],
+      "normalSource": "Uncompressed height master reduced directly to tier",
+      "heightQuantizationCompressionMAE": 0.005679949040958176,
+      "authoredNormalVsDecodedXYZDegrees": {
+        "mean": 1.0514064989124972,
+        "p99": 2.6376537886776457,
+        "maximum": 4.016464467541224
+      },
+      "authoredNormalVsDecodedHeightDegrees": {
+        "mean": 0.5264971759726474,
+        "p99": 1.9256599262807874,
+        "maximum": 3.3364256183023433
+      },
+      "decodedHeightNormalVsDecodedXYZDegrees": {
+        "mean": 1.2032626419463874,
+        "p99": 3.072893530013424,
+        "maximum": 5.585392680359727
+      },
+      "edges": {
+        "diffuse": {
+          "wrapX": 7.997395833333333,
+          "wrapY": 12.740885416666666,
+          "interiorX": 8.240982434640523,
+          "interiorY": 8.478936887254902
+        },
+        "height": {
+          "wrapX": 27.303385416666668,
+          "wrapY": 48.971354166666664,
+          "interiorX": 30.509921364379085,
+          "interiorY": 31.057536764705883
+        },
+        "normalX": {
+          "wrapX": 21.59765625,
+          "wrapY": 16.01953125,
+          "interiorX": 20.877721609477124,
+          "interiorY": 14.829651756535947
+        },
+        "normalY": {
+          "wrapX": 12.709635416666666,
+          "wrapY": 18.807291666666668,
+          "interiorX": 14.791048815359478,
+          "interiorY": 21.41203022875817
+        },
+        "normalZ": {
+          "wrapX": 3.15625,
+          "wrapY": 2.8489583333333335,
+          "interiorX": 2.442943218954248,
+          "interiorY": 2.4935355392156864
+        }
+      },
+      "qualification": "Decoded diagnostics only; both-tier art/repeats/relief require review"
+    },
+    "High": {
+      "factor": 8,
+      "dimensions": [
+        512,
+        512
+      ],
+      "outputs": {
+        "diffuse": {
+          "file": "high-diffuse.webp",
+          "sha256": "779e06c71d4a4ef73db4f9486ef0ba370ea5aa02b1161f5d3b224732977900a2",
+          "bytes": 129208,
+          "dimensions": [
+            512,
+            512
+          ],
+          "quality": 92,
+          "method": 6,
+          "lossless": false,
+          "sourceMaster": "master"
+        },
+        "height": {
+          "file": "high-height.webp",
+          "sha256": "6e9b8c7cfe907cc46031c23fa0ef97bb71958ec97ef8c9d80d804a2f5d052b96",
+          "bytes": 130240,
+          "dimensions": [
+            512,
+            512
+          ],
+          "quality": 92,
+          "method": 6,
+          "lossless": false,
+          "sourceMaster": "heightMaster"
+        },
+        "normalX": {
+          "file": "high-normalX.webp",
+          "sha256": "27301ab2cde7933a47091040c0531bf09d911dd006117cd8713f6a524c7b73c1",
+          "bytes": 119402,
+          "dimensions": [
+            512,
+            512
+          ],
+          "quality": 92,
+          "method": 6,
+          "lossless": false,
+          "sourceMaster": "heightMaster"
+        },
+        "normalY": {
+          "file": "high-normalY.webp",
+          "sha256": "67393bfc5c19d2323c50641cad8b3e8e06ad0b1a5ae6af9b7ea26ba3a0bac0db",
+          "bytes": 118834,
+          "dimensions": [
+            512,
+            512
+          ],
+          "quality": 92,
+          "method": 6,
+          "lossless": false,
+          "sourceMaster": "heightMaster"
+        },
+        "normalZ": {
+          "file": "high-normalZ.webp",
+          "sha256": "3fa535803bca96a805f0d7a01e6dee990c4d405fb3bf52f8d53c25051ea68ca8",
+          "bytes": 28730,
+          "dimensions": [
+            512,
+            512
+          ],
+          "quality": 92,
+          "method": 6,
+          "lossless": false,
+          "sourceMaster": "heightMaster"
+        }
+      },
+      "distanceChecks": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "meanAbsoluteError": 6.779947916666667,
+          "maximum": 33.0
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            16
+          ],
+          "meanAbsoluteError": 4.912760416666667,
+          "maximum": 21.0
+        }
+      ],
+      "normalSource": "Uncompressed height master reduced directly to tier",
+      "heightQuantizationCompressionMAE": 0.0056533451602677484,
+      "authoredNormalVsDecodedXYZDegrees": {
+        "mean": 0.9966841256177039,
+        "p99": 2.5685391474767987,
+        "maximum": 4.649205685118556
+      },
+      "authoredNormalVsDecodedHeightDegrees": {
+        "mean": 0.9180035548982722,
+        "p99": 3.7479964682643065,
+        "maximum": 7.701211130481694
+      },
+      "decodedHeightNormalVsDecodedXYZDegrees": {
+        "mean": 1.4170769196480733,
+        "p99": 4.269785059202615,
+        "maximum": 8.819221235291074
+      },
+      "edges": {
+        "diffuse": {
+          "wrapX": 12.68359375,
+          "wrapY": 16.237630208333332,
+          "interiorX": 10.648666829745597,
+          "interiorY": 10.994397983936725
+        },
+        "height": {
+          "wrapX": 20.320963541666668,
+          "wrapY": 35.717447916666664,
+          "interiorX": 21.127437265574038,
+          "interiorY": 21.636519997553815
+        },
+        "normalX": {
+          "wrapX": 17.380208333333332,
+          "wrapY": 14.031901041666666,
+          "interiorX": 17.774854248206132,
+          "interiorY": 12.816708200831702
+        },
+        "normalY": {
+          "wrapX": 12.421223958333334,
+          "wrapY": 14.617838541666666,
+          "interiorX": 12.652401082436398,
+          "interiorY": 18.393411356409
+        },
+        "normalZ": {
+          "wrapX": 2.7565104166666665,
+          "wrapY": 2.4375,
+          "interiorX": 1.9126279150358774,
+          "interiorY": 1.9537671232876712
+        }
+      },
+      "qualification": "Decoded diagnostics only; both-tier art/repeats/relief require review"
+    }
+  }
+}

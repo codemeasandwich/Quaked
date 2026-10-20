@@ -1,0 +1,315 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-19T06:37:36.796040+00:00",
+  "reviewer": "/root/hexen_campaign_review",
+  "verdict": "PLAN PASS for all eight final briefs after neutral121, patterned322 and resolved005 corrections",
+  "requiredFindings": [],
+  "selectionSnapshot": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/selection.json",
+    "sha256": "634608318604c65531d44f6042ce90f05d04da876c776737739e48f740269313",
+    "note": "Journal may already contain one-time issuance of the separately cleared413/274; prompt hashes and the review scope are the stable source bindings. This is not a claim all eight generation results exist or pass."
+  },
+  "materials": [
+    {
+      "name": "rtex322",
+      "edition": "base",
+      "nativeIdentity": "411496d1fad7414033cb4e53662aa4b5389834f94f75fdf1572ece123e14449a",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "requiredMasterMinimum": [
+        512,
+        512
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/01-rtex322-411496d1fad7.png",
+        "sha256": "61b562f0876ab63e1649f6f447afb1d31e0d3cd4fe535f81b378d55836c776c6"
+      },
+      "finalPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/rtex322.txt",
+        "sha256": "a73c06a45657c8c991eec499e5cd2148b8571a82b52ca02de290e714d67257b2"
+      },
+      "profile": "carch",
+      "colourFit": {
+        "strength": 0.65,
+        "fieldSigma": 0.75
+      },
+      "verdict": "PLAN PASS for one adequate photographic generation and the shared master pipeline",
+      "observations": [
+        "PASS after the field-pattern correction. Preserve upper/lower mouldings, the central nested rectangular ochre motif and two muted green/blue opaque inlays. Keep the fine dark olive field rhythm; no generic patina/noise replacement, luminous jewels, extra symbols or new border bands.",
+        "The carch shaping profile is a plausible low-strength starting point for ornament, not proof that every colour boundary is a deep carving. Check actual inset/moulding relationships and fine field relief; avoid inflating the inlays or casting baked rim shadows."
+      ]
+    },
+    {
+      "name": "rtex121",
+      "edition": "base",
+      "nativeIdentity": "3e356d95bcb646ddce27b5bec894d8155ad631bd1534c6e2668697eb7397764c",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "requiredMasterMinimum": [
+        512,
+        512
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/02-rtex121-3e356d95bcb6.png",
+        "sha256": "0fd9128f6bb98656f9643f915eeb9db6c0b246e11bc99148d65858195d37c61a"
+      },
+      "finalPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/rtex121.txt",
+        "sha256": "ef54c1cbfa537bddec63cfffdd8565394a7ddb0c33a6d13859904efc432694a9"
+      },
+      "profile": "wood",
+      "colourFit": {
+        "strength": 0.65,
+        "fieldSigma": 0.75
+      },
+      "verdict": "PLAN PASS for one adequate photographic generation and the shared master pipeline",
+      "observations": [
+        "PASS after replacing the timber assertion with a neutral aged architectural-panel interpretation. Native cool charcoal/blue-grey faces, umber dividing lines and crosswise scores do not establish one historical material. Preserve them literally without invented fibres, knots, hardware or marbling.",
+        "Retained wood frequency weights describe the existing low-frequency relief function, not physical identification. The actual map review must judge the neutral panel forms and shallow wear."
+      ]
+    },
+    {
+      "name": "rtex413",
+      "edition": "base",
+      "nativeIdentity": "af54a88c937655486689ad7a29a72ae3a16f053798fd9ad41be6c76ebb78c567",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "requiredMasterMinimum": [
+        1024,
+        1024
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/03-rtex413-af54a88c9376.png",
+        "sha256": "34b2a6a55b78ea0ed48c28a18dd61dc17ad1b7d39041f89f900a134bf7a59d10"
+      },
+      "finalPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/rtex413.txt",
+        "sha256": "be7a42e274b79c62c627f4781000a8f98544f433f7bc9e8959529da45e72798f"
+      },
+      "profile": "rock0_0",
+      "colourFit": {
+        "strength": 0.65,
+        "fieldSigma": 0.75
+      },
+      "verdict": "PLAN PASS for one adequate photographic generation and the shared master pipeline",
+      "observations": [
+        "PASS: irregular dark grey/umber fractured bedrock, native oblique ribs and fissure positions/scale. Do not regularize into brick courses or add bright veins, moss, round boulders or larger cracks.",
+        "Native128 square requires an actual >=1024x1024 generated source before a High tier. Profile rock0_0 shapes natural rough relief; source darkness is not a licence for deep new cavities or a perimeter frame."
+      ]
+    },
+    {
+      "name": "rtex274",
+      "edition": "base",
+      "nativeIdentity": "b3fd79635c329d1f4102f51285fee7c35e5caa4c05a312cbbd932197acf97c2c",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "requiredMasterMinimum": [
+        512,
+        1024
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/04-rtex274-b3fd79635c32.png",
+        "sha256": "78253c6418ccefd98e826d745e2856956c6bd804660038f1e09ab59600327f84"
+      },
+      "finalPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/rtex274.txt",
+        "sha256": "9f5ea2b1dcd619ed5e1588d0676e8c0dff8fc64e1360e919803d21e91988c27d"
+      },
+      "profile": "stone",
+      "colourFit": {
+        "strength": 0.65,
+        "fieldSigma": 0.75
+      },
+      "verdict": "PLAN PASS for one adequate photographic generation and the shared master pipeline",
+      "observations": [
+        "PASS: exact upper tall pair, narrow irregular middle course and broad lower slab, with original cut pieces and mortar intersections. The native small shapes are intentional; preserve them without adding missing edge squares or regularizing the layout.",
+        "Retain muted tan-grey/ochre faces and narrow dark joints. Both edge axes and repeated tiles must preserve course phase, not rely only on low distance error."
+      ]
+    },
+    {
+      "name": "ttex005",
+      "edition": "portals",
+      "nativeIdentity": "c5b5337a494c912b1dc094938e9cff6e0ecaf6932ce46398685b0e6ad458da54",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "requiredMasterMinimum": [
+        512,
+        512
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/05-ttex005-c5b5337a494c.png",
+        "sha256": "04d6fbe08e4afcf348d132fc7f2cbfb565c1c819b3a4e1a92bd68a798b3580aa"
+      },
+      "finalPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/ttex005.txt",
+        "sha256": "fa92b64b06167acb93d2152b22377535583d294ab3c636ece2c7847dc9a49a76"
+      },
+      "profile": "painted",
+      "colourFit": {
+        "strength": 0.65,
+        "fieldSigma": 0.75
+      },
+      "verdict": "PLAN PASS for one adequate photographic generation and the shared master pipeline",
+      "observations": [
+        "PASS after neutral final coating brief. Mixed floors/walls/ceilings/slopes does not prove carpet, wood or a uniquely known material. A restrained matte crimson/vermilion mineral-pigment architectural finish is a faithful interpretation of the observed red mottling and tiny ochre/umber marks.",
+        "Keep broad red patches largely colour on a shallow surface: no woven cloth, blood/flesh, liquid gloss, pebble bed, new cracks or large chips. The painted DEFAULT fallback profile is only a starting shaping policy; actual relief must not turn pigment variations into deep cavities or raised islands."
+      ]
+    },
+    {
+      "name": "ttex032",
+      "edition": "portals",
+      "nativeIdentity": "d8d2b5c8a30f0a067408c20155d93a4d44f732c233b512c280183f4198610a6b",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "requiredMasterMinimum": [
+        512,
+        512
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/06-ttex032-d8d2b5c8a30f.png",
+        "sha256": "74243ab74f1880a4731a0ed824deb5bc556c871079e9d667045f483ab874fc36"
+      },
+      "finalPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/ttex032.txt",
+        "sha256": "32c9b5af1f0fbe354b63c024b3b038230c3cfaef4f6ecc1f8d876c5a7ac5e3f1"
+      },
+      "profile": "wood",
+      "colourFit": {
+        "strength": 0.65,
+        "fieldSigma": 0.75
+      },
+      "verdict": "PLAN PASS for one adequate photographic generation and the shared master pipeline",
+      "observations": [
+        "PASS: quiet grey-olive/khaki elongated vertical fibres, low-contrast field and faint darker streaks. Fine smooth aged material, without new broad boards, knots, diagonal grain, metal scratches or sand-like noise.",
+        "Check that both colour and relief preserve shallow, restrained texture rather than exaggerating dark marks into grooves. Actual material history remains an interpretation."
+      ]
+    },
+    {
+      "name": "ttex068",
+      "edition": "portals",
+      "nativeIdentity": "b8aa0097f60c3908f00fc78d817b05a3f7af50de5116127596de5bb802cb8499",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "requiredMasterMinimum": [
+        512,
+        512
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/07-ttex068-b8aa0097f60c.png",
+        "sha256": "c9c1f4fc0d70eecab827946ebb67c3acf13126fca4629af2c3a84b16502a2823"
+      },
+      "finalPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/ttex068.txt",
+        "sha256": "73de270bf0bbfddad356c0d35a61a34a3f9832e9fe6a210dbccb44b6fbd69a88"
+      },
+      "profile": "wood",
+      "colourFit": {
+        "strength": 0.65,
+        "fieldSigma": 0.75
+      },
+      "verdict": "PLAN PASS for one adequate photographic generation and the shared master pipeline",
+      "observations": [
+        "PASS: very dark horizontal gnarled timber, native long wavy ochre-brown strands and near-black horizontal troughs. Keep the large wave positions/widths and existing turns; no rotated vertical grain or new knot composition.",
+        "Horizontal flow makes the left/right grain continuation especially important; also review top/bottom and corners. Preserve intentional dark gaps without brightening them into unrelated new forms."
+      ]
+    },
+    {
+      "name": "ttex079",
+      "edition": "portals",
+      "nativeIdentity": "9365fe57d1b7e0ea8e0b2e522fc2bed703933ae300787aa4a2aab86e235bfdcd",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "requiredMasterMinimum": [
+        512,
+        512
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/08-ttex079-9365fe57d1b7.png",
+        "sha256": "e032eea20b131931ca998cc8ca444ff197f01f088948659f66a56895977009fc"
+      },
+      "finalPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/ttex079.txt",
+        "sha256": "1c0f2236ab489a19df30e954d6d58cb6106dc610698bfb6f70adf24d1b6222d8"
+      },
+      "profile": "wood",
+      "colourFit": {
+        "strength": 0.65,
+        "fieldSigma": 0.75
+      },
+      "verdict": "PLAN PASS for one adequate photographic generation and the shared master pipeline",
+      "observations": [
+        "PASS: warm ochre-brown long vertical fibres and reddish darker patches, with no major native plank division. Preserve their rhythm, scale and broad smooth material areas.",
+        "No new horizontal board ends, conspicuous knots, hardware or outer rim. Actual wood repeats require both axes/corners and decoded relief review, following the earlier seam findings."
+      ]
+    }
+  ],
+  "resolvedPlanFindings": [
+    {
+      "material": "rtex121",
+      "resolution": "Removed forced timber/fibres/knots; preserved uncertainty as neutral cool-grey/umber architectural panel. Final prompt ef54c1cb\u2026 inspected."
+    },
+    {
+      "material": "rtex322",
+      "resolution": "Explicitly preserved faint fine native dark olive field pattern; no generic patina/noise substitution. Final prompt a73c06a4\u2026 inspected."
+    },
+    {
+      "material": "ttex005",
+      "resolution": "Mixed native usage does not establish carpet. Final fa92b64b\u2026 matte red coating interpretation preserves colour/form and low relief without inventing a historical identity."
+    }
+  ],
+  "reviewMethod": [
+    "Viewed the native contact and all eight actual original PNGs individually. Read all eight draft prompts and the exact three corrected final prompts before clearing those corrected materials.",
+    "Checked native IDs, dimensions, original/prompt SHA bindings and ordinary category against the saved authoritative world inventory. Public helper separately proves fresh source/mip/flag and duplicate-content coverage.",
+    "Reviewed the existing prepare/craft/derive/review architecture as unchanged reuse. No new production architecture, test campaign, engine wiring or release is required for this bounded art batch."
+  ],
+  "separatePublicSourceProof": [
+    {
+      "file": "docs/hexen2/textures/batch-007-public-source-proof-v2.json",
+      "sha256": "fe7d9ffd177c424d0b834b4e867b7e0d17bfabdc27d5733640ce85e2ac3ff8aa",
+      "verdict": "PASS eight native sources/all four mips/ordinary provenance; no exact peer or catalog37 alias candidates"
+    },
+    {
+      "file": "docs/hexen2/textures/batch-007-public-ttex005-usage-v2.json",
+      "sha256": "b409aa371f9487c31104cd18fafb50c4dd1c5bbd41359f25ad06ed067686f1b2",
+      "verdict": "PASS bounded compiled-face orientation/source proof; material interpretation unqualified"
+    }
+  ],
+  "usageInterpretation": {
+    "ttex005PhysicalFaces": 872,
+    "orientationCounts": {
+      "floor": 225,
+      "ceiling": 130,
+      "vertical": 387,
+      "sloped": 130
+    },
+    "limit": "Plane orientation describes native usage, not physical material identity or historical artistic intention."
+  },
+  "qualificationRequirements": [
+    "Exactly one retained adequate-resolution GPT source per distinct native material, with exact prompt and journal/provenance. No Mid/High generation or authorship separately. Actual dimensions/aspect must support >=8x in both axes; never upscale an undersized source to qualify High.",
+    "One retained active RGB/full-precision scalar-height master package per texture; all fitting/registration and relief authorship once there. Derive Mid4 default and High8 independently from that same uncompressed package. Low is unchanged. Every enhanced map is lossy WebP92/method6.",
+    "Review actual decoded Mid and High at full detail, repeated tiles, both axes/corners, height/XYZ and opposed lights. Original and replacement must be BOX-downsampled to identical half/quarter native dimensions before visual similarity decisions. Metrics alone cannot accept style/forms/feature scale.",
+    "For decorated/coated materials322/005 and neutral121, colour boundaries do not automatically establish deep relief. Judge intended forms rather than assigning geometry solely from brightness.",
+    "If an actual repeat seam, form, colour or relief problem appears, keep the failed receipt and use bounded same-source master-level correction before new direct tiers; no additional GPT generation or compressed-tier painting."
+  ],
+  "limits": [
+    "Plan PASS is not actual generated-source, tier art, runtime/pack, owner or release acceptance. The complete Hexen II/Portal campaign and nonordinary/model/sprite families remain active.",
+    "No new model call by reviewer; generation count and execution are controlled by the root journal/tool receipts. Larger frozen ttex098 remains undersized and its optional API choice is not approved by this plan.",
+    "No authoring assets, tools, source, staging or Git refs modified by this reviewer. Only this bounded plan-review JSON was written."
+  ]
+}

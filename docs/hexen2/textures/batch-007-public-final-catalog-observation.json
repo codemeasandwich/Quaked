@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS bounded9accepted-entry catalog46 observation; candidate322excluded and actualCLIpackage exact",
+  "catalog": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/catalog.json",
+    "sha256": "10d3dd492510dd24c1c75179542ea53dbcf0455d2ccd0c238bcc02f34a94bc92"
+  },
+  "observedCatalogCounts": {
+    "reviewedWorldNativeIdentities": 46,
+    "masterPackages": 39,
+    "enhancedTiers": 78,
+    "enhancedMaps": 390,
+    "enhancedTierBindings": 92,
+    "enhancedMapBindings": 460
+  },
+  "entriesChecked": [
+    {
+      "id": "3e356d95bcb646ddce27b5bec894d8155ad631bd1534c6e2668697eb7397764c",
+      "name": "rtex121",
+      "masterPackageSha256": "3b01eeef00c695434b70e34b411cf5bf706164c7ac4588af29fee3fcae42724e",
+      "tierReceiptSha256": "3221078b16d2f7ca0aba8dc20be6a1927141622aa26c27c166168f5f808372a5"
+    },
+    {
+      "id": "af54a88c937655486689ad7a29a72ae3a16f053798fd9ad41be6c76ebb78c567",
+      "name": "rtex413",
+      "masterPackageSha256": "9878a1cc8db23e9f453929e2a2ce9335626790d49c56e0a01738f07952bc2def",
+      "tierReceiptSha256": "3780715c1bc473374e01de082865006afa28ce312b755f14581cc805e3d0e7c3"
+    },
+    {
+      "id": "b3fd79635c329d1f4102f51285fee7c35e5caa4c05a312cbbd932197acf97c2c",
+      "name": "rtex274",
+      "masterPackageSha256": "9bbb3dd6026f7048a23d3164080514e21b6c8b03d62a394277688fbff0ff0066",
+      "tierReceiptSha256": "aca4d4bf32f209cd44347f8b22363b50ddd59e0e6eb30bbf3647d05dbb6908d2"
+    },
+    {
+      "id": "c5b5337a494c912b1dc094938e9cff6e0ecaf6932ce46398685b0e6ad458da54",
+      "name": "ttex005",
+      "masterPackageSha256": "9725b79e91d57a55c1993a41ed5310a2bb0dcc529244e26bcdac87a707ec81ff",
+      "tierReceiptSha256": "b2d126c0b8ce0f9b0655f1ec474b3a4261c6a7aa74ab1411231a7b239f0cca8c"
+    },
+    {
+      "id": "d8d2b5c8a30f0a067408c20155d93a4d44f732c233b512c280183f4198610a6b",
+      "name": "ttex032",
+      "masterPackageSha256": "baa2549af9cfa455b5b9237b49b216483441cd5a901c64249329119c3332af60",
+      "tierReceiptSha256": "34b767bbaf180042ec6581d926b2580eb198a3917ac3de5810dc9e9e1343f4c1"
+    },
+    {
+      "id": "b8aa0097f60c3908f00fc78d817b05a3f7af50de5116127596de5bb802cb8499",
+      "name": "ttex068",
+      "masterPackageSha256": "2bfe2880234992a2c94e91d7e33de798a7c87aca918d92295f69c7ab6cd94868",
+      "tierReceiptSha256": "6e256370e2ae7f613536a376918648c9ccc811036c7da82cd62b0ee96106f0b6"
+    },
+    {
+      "id": "9365fe57d1b7e0ea8e0b2e522fc2bed703933ae300787aa4a2aab86e235bfdcd",
+      "name": "ttex079",
+      "masterPackageSha256": "842e7ae84562581697136f9f6e27afbfcb192eab7f83b0746e488c521e809469",
+      "tierReceiptSha256": "8be8d04459cf2a074113ff5209824241ad76e6bedd1da101c2807ab16c1f5b02"
+    },
+    {
+      "id": "2c1bff60990ab841f2f770dad2326dbbc0acf4e45013b7a69652cb18283e76b6",
+      "name": "ttex052",
+      "masterPackageSha256": "7af47f74be99bd7cb66edeef796608b5220cbf102d32872e763acdd36b51a7a8",
+      "tierReceiptSha256": "8cc68c35ef677c64ad657510f77f558fee97d7eb65fb3cd0faf8249784832bd8"
+    },
+    {
+      "id": "42b6bee9ca16e917cfe1d06ea755c0513072d161d0595c0299f010c7fbfb29df",
+      "name": "rtex036",
+      "masterPackageSha256": "89a71ffe0cefd200fa3225257350594d133f7280230a6005fa93a9e66d18e903",
+      "tierReceiptSha256": "64a35922841d3b153cf720edd453303de3eda75fff10900713b5d3303f863123"
+    }
+  ],
+  "pending322NotClaimedAccepted": true,
+  "motifPackageEqualsQualifiedActualCLIJSON": true,
+  "historicalCatalog37SourceSnapshotLimit": "Earlier native sourceproof snapshot37 is unchanged historical evidence, not current catalog coverage.",
+  "limits": [
+    "Only nine relevant accepted entries were checked here, not a complete catalog46 path/hash audit.",
+    "Final8source/map oracle is separate; no artistic or runtime acceptance assigned by this observation."
+  ]
+}

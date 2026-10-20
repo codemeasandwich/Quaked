@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "scope": "Bounded read-only reuse research for lost rtex322 native end-square olive/blue nested marks",
+  "status": "Research complete; implementation waits for independent .90/.35 trial art decision",
+  "observation": "Actual high review shows generated blue end-square interiors but no clear native olive inner rectangles/blue nested rings. Main orange meander and surrounding photographic surface remain present. This is a visual research observation, not the independent trial verdict.",
+  "nearestReuse": {
+    "file": "tools/texture_sheets/sources/official-world-2026-10-17/finish_trim_rails.py",
+    "capability": "Full-native cross-section color correction: native column mean minus area-reduced donor, periodic_blur(.35), periodic_resize, additive correction to retained donor. Explicitly written because reduced photographic fields cannot retain narrow rail centres.",
+    "incompatibility": "Hardcoded16x128native/64x512donor,1Dcolumn averages. It cannot isolate two2D square interiors or explicitly restore their nested rectangular marks unchanged."
+  },
+  "reusablePrimitives": [
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "symbols": [
+        "periodic_blur",
+        "periodic_resize",
+        "area"
+      ],
+      "use": "Smooth field reconstruction and same generated-detail base; reuse primitives without altering current photographic/strict policies."
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/prepare_horizontal_trims.py",
+      "use": "Existing smooth-alpha local compositor and byte-exact outside-mask assertions; current application uses a separate photographic fastener, so only bounded-composition policy is relevant."
+    },
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "symbol": "brick_mask",
+      "use": "Source-bound native-coordinate region rasterization; not itself a color restorer. A continuous feathered guide must avoid scaling native pixel-block masks."
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "use": "Existing source-bound successor master/recipe custody pattern, exact initial finish replay and one final float height package; its scalar-layer policy alone cannot restore RGB motifs."
+    }
+  ],
+  "missingCapabilityEvidence": [
+    "Photographic finish uses only half/quarter-original coarse fields and explicitly cannot fix wrong geometry. Raising field strength cannot guarantee a missing small inner rectangle.",
+    "Whole strict mode reconstructs native source over the entire image and suppresses broad generated features; that conflicts with this localized photographic repair goal.",
+    "tile_stud_motif repeats an already reviewed GPT motif at fixed pitch. It has no missing-inner-shape restoration or suitable existing322 motif donor.",
+    "Landmark registration moves existing rows/columns; it cannot create a lost inner rectangle from a blank blue patch.",
+    "Seam/joint helpers alter boundary bands or copy real existing donor joints, while these marks lie inside the texture. No matching painted inner-mark donor is established.",
+    "Enemy pigment/structural helpers affect luminance/height only and explicitly do not edit diffuse; they are not a drop-in world color operation.",
+    "No drop-in localized2D diffuse mark restorer was found in the bounded top-level helpers and relevant official-world12/17 Python authoring files searched. No repository-wide absence claim."
+  ],
+  "smallestConditionalAdaptation": [
+    "If independent trial art remains HOLD, add only a fixed-material source-bound authoring wrapper/recipe, leaving prepare/finish/craft/derive and runtime/index code unchanged.",
+    "Replay the chosen initial photographic finish from unchanged original/raw/prompt; keep its generated photographic material as base. Record the exact predecessor package and tool hashes.",
+    "Use artist-reviewed continuous native-coordinate nested-region shapes for only the two existing end-square interiors. Source colors/shape proportions come from the actual original; no invented extra ring, frame, bevel, hardware or ornament.",
+    "Adapt the rail-helper native color-field policy to two bounded2D guide regions, using native region palette estimates and smooth sub-native transitions while retaining the same generated material detail. Do not paste enlarged native pixels, reconstruct a whole native noise field or clone unrelated ornament.",
+    "Outside the two approved feathered interior supports require decoded-authoring RGB byte identity, including all image edges and the central meander. Avoid global normalization or iterative equality projection.",
+    "Author relief once from the final material interpretation at the sole8x master, then use unchanged Mid/High tier derivation. Pigment/ring color must not silently become an invented raised bevel; inspect decoded height/opposed-light semantics.",
+    "Retain raw generation; create no model call or per-tier artwork. Emit one new active RGB/float32 master with embedded full recipe/source hashes/current environment and explicit not-another-generation history."
+  ],
+  "requiredBeforeImplementation": [
+    "Receive actual independent art decision on current .90/.35 trial.",
+    "If still held, independent measured-source plan defines both mark extents, nested line/center geometry, palette sample regions, bounded feather support and intended pigment/relief semantics; no guessed coordinates or parameters supplied by this research.",
+    "Review the narrow adapter math/guards and public refusal cases before installing an actual successor."
+  ],
+  "futureQualification": [
+    "Exact source/recipe/tool identity, no overwrite or repeated correction, finite bounded inputs, exact outside-support preservation and no edge changes.",
+    "Both decoded tiers must visibly retain distinct native nested olive/blue inner rectangles at photographic/half/quarter views, preserve main ornament and tile phase, avoid pixelated contours/artificial grain and pass relief/opposed-light review.",
+    "Independent direct-master Q92/method6/normal/height/source replay follows any approved successor; lower MAE alone never establishes restored geometry."
+  ],
+  "inputs": [
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "bytes": 13322
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/finish_trim_rails.py",
+      "sha256": "6bcb8c1d594a65bd1c8e05bc058c59aedb1dcb42493bc90128164c0f393ce099",
+      "bytes": 2525
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/prepare_horizontal_trims.py",
+      "sha256": "c8d185417a9a4bc80d3b202efdb37065c1aa700c2ad348a1237327b199f99ab2",
+      "bytes": 3314
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/tile_stud_motif.py",
+      "sha256": "5259403fbd7d4e7c3e4521580cf2ced3abcfc036a4286bc3f127fde1dd9c3bde",
+      "bytes": 1456
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/finish_registered_columns.py",
+      "sha256": "424aa285b1ecc10e78b433c0cf9bd10700301a93f4fcc818eb8c614dd908e818",
+      "bytes": 2427
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/finish_character_stone.py",
+      "sha256": "a1e70d2e2d82c6e880f741b9470f6a58cd59b65f78ce4a716d0ec5a448256536",
+      "bytes": 2998
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/restore_stone3_joint.py",
+      "sha256": "827d8b679c35fc5887cf6a2cbeac12876be1eee571a16a504f49cdedec9047fe",
+      "bytes": 2562
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/restore_wall145_joint.py",
+      "sha256": "1e61d045a2b2568c4a3c9f4c48d069e3d7608c1ff370b6666b532606fa3098b5",
+      "bytes": 2348
+    },
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5",
+      "bytes": 7863
+    },
+    {
+      "file": "tools/texture_sheets/enemy_height_authoring.py",
+      "sha256": "5e7879093ffe2b3e1163b2cf74f08bb451a754046a11c1181e368eba2e6471cc",
+      "bytes": 4272
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d",
+      "bytes": 13904
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/01-rtex322-411496d1fad7.png",
+      "sha256": "61b562f0876ab63e1649f6f447afb1d31e0d3cd4fe535f81b378d55836c776c6",
+      "bytes": 2776
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters-pattern/rtex322/master.json",
+      "sha256": "4c5597ae58cdfb6b1d79afc670411e390c2506260fdbb19b65d0625b04900597",
+      "bytes": 4204
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters-pattern/rtex322/color.png",
+      "sha256": "081e1cd6ddbbd266e8ab23b28a811d048181e46ea1e8ac3a44d404323095c982",
+      "bytes": 521568
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-pattern/rtex322-high-review.jpg",
+      "sha256": "a390808ff5ff91417bf22fb622090113912f174070215fa38feb33265f34c9de",
+      "bytes": 340851
+    }
+  ],
+  "limits": [
+    "No code/core/assets/recipes edited, tests or image/model generation executed. Only research evidence/docs written.",
+    "No repair prototype, chosen mask/parameter, implementation qualification, artistic acceptance, binding, runtime, Git, CI or release claim."
+  ]
+}

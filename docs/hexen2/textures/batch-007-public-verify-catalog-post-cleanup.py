@@ -1,0 +1,170 @@
+"""Read-only accepted catalog checkpoint through007 after retirement.
+
+Count canonical physical paths separately from native bindings and bind every
+referenced source/master/height/tier/map/review hash. No encoding or gate rerun.
+"""
+import datetime, hashlib, json, pathlib
+import numpy as np
+from PIL import Image
+
+ROOT = pathlib.Path(__file__).resolve().parents[3]
+BASE = ROOT/'assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19'
+OUT = ROOT/'docs/hexen2/textures/batch-007-public-catalog-post-cleanup.json'
+assert not OUT.exists(), 'Retain prior evidence'
+sha = lambda b: hashlib.sha256(b).hexdigest()
+load = lambda p: json.loads(p.read_text())
+def witness(p):
+    b=p.read_bytes()
+    try:name=str(p.relative_to(ROOT))
+    except ValueError:name=str(p)
+    return {'file':name,'sha256':sha(b),'bytes':len(b)}
+def asset(mp, record):
+    value=record['file'];p=pathlib.Path(value)
+    return p if p.is_absolute() else ROOT/p if value.startswith('assets/') else mp.parent/p
+REPORT={'schemaVersion':1,'startedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+ 'limits':['This verifies the catalog offline acceptance checkpoint and referenced immutable bytes, not owner acceptance, runtime integration or the full campaign.',
+           'Source/tier/map hashes are rechecked; unchanged qualified codec/math and tests are not rerun.',
+           'Physical counts use unique canonical paths; native bindings retain names/ids/context.']}
+try:
+    catalog_path=BASE/'catalog.json';catalog_digest=sha(catalog_path.read_bytes());catalog=load(catalog_path)
+    assert catalog['pathsBase']=='repository'and catalog['family']=='hexen2'and catalog['defaultTier']=='Mid'
+    assert catalog['campaignComplete']is False
+    inventory_path=ROOT/'docs/evidence/hexen2-textures-2026-10-19/current/inventory.json';inventory=load(inventory_path)
+    native={v['id']:v for v in inventory['variants']}
+    items=catalog['materials'];assert len(items)==47 and len({i['id']for i in items})==47
+    fixed={catalog_path,inventory_path};masters=set();tiers=set();physical_maps=set();physical_tiers=set();map_bindings=0;tier_bindings=0
+    entries=[]
+    for item in items:
+        variant=native[item['id']];assert item['nativeIdentity']['id']==variant['id']and item['name']==variant['name']
+        for key in('width','height','paletteSha256','indexedPixelSha256','rgbaSha256'):assert item['nativeIdentity'][key]==variant[key]
+        low=ROOT/item['Low']['original'];assert item['Low']['unchanged']is True and sha(low.read_bytes())==item['Low']['sha256']
+        assert sha(Image.open(low).convert('RGBA').tobytes())==variant['rgbaSha256']
+        mp,tp=ROOT/item['masterPackage'],ROOT/item['tierReceipt'];assert sha(mp.read_bytes())==item['masterPackageSha256'];assert sha(tp.read_bytes())==item['tierReceiptSha256']
+        masters.add(mp.resolve());tiers.add(tp.resolve());m,t=load(mp),load(tp)
+        assert t['Low']['unchanged']is True and t['inputs']['original']['sha256']==item['Low']['sha256']
+        assert t['defaultTier']=='Mid'and set(t['tiers'])=={'Mid','High'}and set(item['tiers'])=={'Mid','High'}
+        assert m['generationCount']==1 and m['height']['authoredOnce']is True and m['height']['quantizedTo8Bit']is False
+        source_inputs=[]
+        if all(isinstance(v,str)for v in m['inputs'].values()):
+            source_inputs=[(ROOT/path,digest)for path,digest in m['inputs'].items()]
+        else:
+            source_inputs=[(pathlib.Path(row['file'])if pathlib.Path(row['file']).is_absolute()else ROOT/row['file'],row['sha256'])for row in m['inputs'].values()]
+        for p,digest in source_inputs:assert sha(p.read_bytes())==digest;fixed.add(p)
+        if all(isinstance(v,str)for v in m['inputs'].values()):
+            raw_candidates=[p for p,digest in source_inputs if 'generated'in p.name.lower()and p.suffix=='.png']
+        else:
+            raw_value=pathlib.Path(m['inputs']['generated']['file'])
+            raw_candidates=[raw_value if raw_value.is_absolute()else ROOT/raw_value]
+        assert len(raw_candidates)==1
+        with Image.open(raw_candidates[0])as raw:
+            assert list(raw.size)==m['generatedDimensions']
+            assert raw.width>=variant['width']*8 and raw.height>=variant['height']*8
+            assert raw.width*variant['height']==raw.height*variant['width']
+
+        for key,value in m['tools'].items():
+            if isinstance(value,str):p,digest=ROOT/key,value
+            else:p,digest=pathlib.Path(value['file']),value['sha256']
+            assert sha(p.read_bytes())==digest;fixed.add(p)
+        for role in('color','height'):
+            p=asset(mp,m[role]);assert sha(p.read_bytes())==m[role]['sha256'];fixed.add(p)
+        assert m['nativeDimensions']==[variant['width'],variant['height']]
+        assert m['masterDimensions']==[variant['width']*8,variant['height']*8]and m['canonicalMasterFactor']==8
+        assert list(Image.open(asset(mp,m['color'])).size)==m['masterDimensions']
+        height=np.load(asset(mp,m['height']),allow_pickle=False)
+        assert height.shape==tuple(m['masterDimensions'][::-1])and height.dtype==np.dtype('float32')
+        assert np.isfinite(height).all()and height.min()>=0 and height.max()<=1
+        if item.get('contentAliasOf'):
+            alias=item['contentAliasOf'];target=next(i for i in items if i['id']==alias['id'])
+            assert low.read_bytes()==(ROOT/target['Low']['original']).read_bytes()
+            assert (ROOT/alias['masterPackage']).resolve()==mp.resolve()==(ROOT/target['masterPackage']).resolve()
+            assert (ROOT/alias['tierReceipt']).resolve()==tp.resolve()==(ROOT/target['tierReceipt']).resolve()
+            for key in ('width','height','paletteSha256','indexedPixelSha256','rgbaSha256'):
+                assert item['nativeIdentity'][key]==target['nativeIdentity'][key]
+        for tier,factor in(('Mid',4),('High',8)):
+            row,receipt=item['tiers'][tier],t['tiers'][tier];assert row['factor']==factor and row['dimensions']==receipt['dimensions']==[variant['width']*factor,variant['height']*factor]
+            physical_tiers.add((tp.resolve(),tier));tier_bindings+=1
+            assert set(row['outputs'])==set(receipt['outputs'])=={'diffuse','height','normalX','normalY','normalZ'}
+            for role,record in row['outputs'].items():
+                p=ROOT/record['file'];r=receipt['outputs'][role]
+                assert p.resolve()==(tp.parent/r['file']).resolve()and sha(p.read_bytes())==record['sha256']==r['sha256']
+                assert (r['quality'],r['method'],r['lossless'])==(92,6,False)
+                assert list(Image.open(p).size)==row['dimensions']
+                physical_maps.add(p.resolve());fixed.add(p);map_bindings+=1
+        review_records=[]
+        for path,digest in item['reviews'].items():
+            p=ROOT/path;assert sha(p.read_bytes())==digest;fixed.add(p);review_records.append(witness(p))
+        fixed.update((low,mp,tp));entries.append({'id':item['id'],'name':item['name'],'Low':witness(low),'masterPackage':witness(mp),'tierReceipt':witness(tp),'reviews':review_records})
+    measured={'reviewedWorldNativeIdentities':len(items),'masterPackages':len(masters),'enhancedTiers':len(physical_tiers),
+              'enhancedMaps':len(physical_maps),'enhancedTierBindings':tier_bindings,'enhancedMapBindings':map_bindings}
+    assert measured==catalog['counts']=={'reviewedWorldNativeIdentities':47,'masterPackages':40,'enhancedTiers':80,'enhancedMaps':400,'enhancedTierBindings':94,'enhancedMapBindings':470}
+    four_expected={
+     'docs/hexen2/textures/batch-004-art-review.json':'47045c789d89322ce35202c53bb1d2e3bf4d49637bf9445f53cd647fba725fd0',
+     'docs/hexen2/textures/batch-004-public-actual-v1.json':'375ee72905b5f996265cb13b7503621a9a77016a3c252608a607683bb64d480b',
+     'docs/hexen2/textures/batch-004-public-preview-v1.json':'65dcb81aeb1d7ee53e9b05055376dd8ad1cdfa22cb916e491a23b057e6e8571d',
+     'docs/hexen2/textures/batch-004-public-alias.json':'3b1c1c569cd9486e65f49247fce2e57d959bc1103c91345321892fb1b34c4076'}
+    for path,digest in four_expected.items():assert sha((ROOT/path).read_bytes())==digest;fixed.add(ROOT/path)
+    immutable_batch=BASE/'batch-004/batch.json';assert sha(immutable_batch.read_bytes())=='dbc055e09e62ea57ae4db52ee3f445c21c1a06a829a2c8762b5fdff4b148fac9';fixed.add(immutable_batch)
+    preview_proof=load(ROOT/'docs/hexen2/textures/batch-004-public-preview-v1.json')
+    # Target004 inputs include its unchanged batch/selection/raw/provider files,
+    # aliases and all map refs. Check that exact retained custody snapshot.
+    for row in preview_proof['inputs']:
+        p=pathlib.Path(row['file'])if pathlib.Path(row['file']).is_absolute()else ROOT/row['file']
+        assert sha(p.read_bytes())==row['sha256'],row['file'];fixed.add(p)
+    final005={
+      'docs/hexen2/textures/batch-005-art-review-v2.json':'ea384953629e5c3760b085009cbacf5e8da2e7a1c831d19ff362ae54d0d12dd7',
+      'docs/hexen2/textures/batch-005-public-registered-actual-v1.json':'4158d659d423cb9405a525e63bdf91658f9af8ee375ceae4b8df5f56a692c236',
+      'docs/hexen2/textures/batch-005-public-registered-preview-v1.json':'091449acd217d53341dca2ce83bcec583c0915d9955ec5d4978dec68a28d26de'}
+    for path,digest in final005.items():assert sha((ROOT/path).read_bytes())==digest;fixed.add(ROOT/path)
+    for proof_name in('batch-005-public-registered-actual-v1.json','batch-005-public-registered-preview-v1.json'):
+        proof=load(ROOT/'docs/hexen2/textures'/proof_name)
+        for row in proof['inputs']:
+            p=pathlib.Path(row['file'])if pathlib.Path(row['file']).is_absolute()else ROOT/row['file']
+            assert sha(p.read_bytes())==row['sha256'],row['file'];fixed.add(p)
+    REPORT['final005Proofs']=final005
+    REPORT['005FinalInputCustodyMatches']=True
+    final006={
+      'docs/hexen2/textures/batch-006-art-review-v2.json':'959886c98c2c1acbd07209c0e7895f89d0dd75fa1e1be12b511b5d4863dd09ad',
+      'docs/hexen2/textures/batch-006-public-final-actual-v1.json':'2b77f5b27156a81e212fc301282022955c2a12caed2e73c2fb02691347680c12',
+      'docs/hexen2/textures/batch-006-public-final-preview-v1.json':'4e9ea5e8ae135d7fe01deacf4d25887ba432dce1e6ebf18f77a7f68dea84a845',
+      'docs/hexen2/textures/batch-006-public-final-mortar-v1.json':'f3a6529f4fbcce771b1f642c2ce282ec4c7818e4972dbf9e210c69b5172134c1',
+      'docs/hexen2/textures/batch-006-alias-public-source-proof.json':'61406896f47d5a067cf93a1b4739853b07b0d551d69acb286cf962c6d8bbf6ab'}
+    for path,digest in final006.items():assert sha((ROOT/path).read_bytes())==digest;fixed.add(ROOT/path)
+    for proof_name in ('batch-006-public-final-actual-v1.json','batch-006-public-final-preview-v1.json','batch-006-public-final-mortar-v1.json'):
+        proof=load(ROOT/'docs/hexen2/textures'/proof_name)
+        for row in proof['inputs']:
+            p=pathlib.Path(row['file'])if pathlib.Path(row['file']).is_absolute()else ROOT/row['file']
+            assert sha(p.read_bytes())==row['sha256'],row['file'];fixed.add(p)
+    assert sum(bool(i.get('contentAliasOf'))for i in items)==7
+    REPORT['final006Proofs']=final006
+    REPORT['006FinalInputCustodyMatches']=True
+    REPORT['aliasBindings']=7
+    final007={
+      'docs/hexen2/textures/batch-007-art-review-v2.json':'11da20ecb67626912299b40d80328a88c1f062c46c91c97af28959446e905443',
+      'docs/hexen2/textures/batch-007-public-final-actual-v1.json':'ac492fa986b05ef1e61960d12d6d117bb13a3606135a186cbd89e3d5446addbe',
+      'docs/hexen2/textures/batch-007-public-final-preview-v1.json':'a0b9e8bd23ba4dc1c59e2632c038534493e293c6892bc760c506fa5b996949ec',
+      'docs/hexen2/textures/batch-007-alias-public-source-proof.json':'40df0252adf2c6c5d2a12074c42e3a2f7fa1dbd19800591d5ab4b7b6b64a71a7',
+      'docs/hexen2/textures/batch-007-alias-public-bindings-v1.json':'79e96bf7b53bee440e6c31ab04f8ee434c8617112c4e798ba011cfe36a437fd5',
+      'docs/hexen2/textures/batch-007-public-post-cleanup-actual.json':'dc89c73acbdd75d31c68485d3386d455b6daa38f1f025c08a71d1074be4fac58',
+      'docs/hexen2/textures/batch-007-public-post-cleanup-preview.json':'e0f0f93b980f95ff3d12218d469b94fd5a8f948d52f7b29667d6a7f180384f96'}
+    for path,digest in final007.items():assert sha((ROOT/path).read_bytes())==digest;fixed.add(ROOT/path)
+    for proof_name in ('batch-007-public-final-actual-v1.json','batch-007-public-final-preview-v1.json','batch-007-alias-public-bindings-v1.json',
+                       'batch-007-public-post-cleanup-actual.json','batch-007-public-post-cleanup-preview.json'):
+        proof=load(ROOT/'docs/hexen2/textures'/proof_name);assert proof['verdict'].startswith('PASS')
+        for row in proof['inputs']:
+            p=pathlib.Path(row['file'])if pathlib.Path(row['file']).is_absolute()else ROOT/row['file']
+            assert sha(p.read_bytes())==row['sha256'],row['file'];fixed.add(p)
+    REPORT['final007Proofs']=final007
+    REPORT['007FinalInputCustodyMatches']=True
+    REPORT['rootExecutedPostCleanupOracles']='Actual80 and preview32/272 current-byte custody checked; independent verifier source preserved. Not rerun again by this audit.'
+    REPORT['historicalCatalogSnapshots']='Earlier sourceproof catalog37 snapshots stay historical; they are not substituted for this fresh47-entry catalog audit.'
+    snapshots=[witness(p)for p in sorted(fixed)]
+    assert all(sha((ROOT/r['file']).read_bytes())==r['sha256']for r in snapshots)
+    assert sha(catalog_path.read_bytes())==catalog_digest
+    REPORT.update({'verdict':'PASS accepted007catalog47nativebindings/40physicalmasters/400physicalmaps/470mapbindings; all referenced hashes stable',
+      'catalog':witness(catalog_path),'measuredCounts':measured,'entries':entries,'four004Proofs':four_expected,
+      'immutable004Batch':witness(immutable_batch),'004PreviewInputCustodyMatches':True,'inputs':snapshots,'inputsStable':True})
+except Exception as exc:
+    REPORT['verdict']='HOLD';REPORT['error']=repr(exc);raise
+finally:
+    REPORT['completedAt']=datetime.datetime.now(datetime.timezone.utc).isoformat();OUT.write_text(json.dumps(REPORT,indent=2)+'\n')
+    print(json.dumps({'proof':str(OUT),'verdict':REPORT['verdict'],'sha256':sha(OUT.read_bytes())}))
