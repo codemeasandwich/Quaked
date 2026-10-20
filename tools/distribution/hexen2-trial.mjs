@@ -21,6 +21,11 @@ import { createServer } from 'node:net';
 const library = resolve( process.argv[ 2 ] ?? resolve( homedir(), 'quaked' ) );
 const out = resolve( process.argv[ 3 ] ?? 'dist/hexen2-trial' );
 const only = process.env.HEXEN2_TRIAL_ONLY?.split( ',' ) ?? null;
+// HM uses the same trial at two sizes, plus optional exhaustive page captures and a Quake comparison.
+const [ viewportWidth, viewportHeight ] = ( process.env.HEXEN2_TRIAL_VIEWPORT ?? '1280x800' ).split( 'x' ).map( Number );
+if ( ! Number.isInteger( viewportWidth ) || ! Number.isInteger( viewportHeight ) || viewportWidth < 320 || viewportHeight < 200 ) throw new Error( 'Invalid HEXEN2_TRIAL_VIEWPORT (expected WxH)' );
+const allMenuPages = process.env.HEXEN2_TRIAL_MENU_ALL === '1';
+
 await mkdir( out, { recursive: true } );
 
 const port = await new Promise( done => { const s = createServer(); s.listen( 0, '127.0.0.1', () => { const p = s.address().port; s.close( () => done( p ) ); } ); } );
@@ -38,7 +43,7 @@ const sleep = ms => new Promise( r => setTimeout( r, ms ) );
 async function scenario( name, query, body ) {
 
 	if ( only && ! only.includes( name ) ) return;
-	const context = await browser.newContext( { viewport: { width: 1280, height: 800 }, deviceScaleFactor: 2 } );
+	const context = await browser.newContext( { viewport: { width: viewportWidth, height: viewportHeight }, deviceScaleFactor: 2 } );
 	const page = await context.newPage();
 	const result = { name, query, checks: [], shots: [], consoleErrors: [], pageErrors: [], failedRequests: [], missingAssets: [], notes: {} };
 	page.on( 'response', r => { if ( r.status() >= 400 ) result.failedRequests.push( r.status() + ' ' + decodeURIComponent( new URL( r.url() ).pathname ) ); } );
@@ -154,7 +159,50 @@ await scenario( 'menus', '?game=hexen2', async ( { page, state, until, check, sh
 	check( ( await pageName() ) === 'keys', 'Enter on Customize Controls opens the keys page', await pageName() );
 	await shot( 'keys' );
 	check( ( await state() ).menu > 0, 'the menus stay up through the walk' );
+	if ( allMenuPages ) {
+		// Use native public page entry points, then read the actual state: wrong pages cannot masquerade as captures.
+		const pages = [
+			[ 'main', 'menu_hexen2', 'M_Hexen2_Menu_Main_f', 'm_hexen2_main' ],
+			[ 'single-player', 'menu_hexen2', 'M_Hexen2_Menu_SinglePlayer_f', 'm_hexen2_single' ],
+			[ 'class', 'menu_hexen2', 'M_Hexen2_Menu_Class_f', 'm_hexen2_class' ],
+			[ 'difficulty', 'menu_hexen2', 'M_Hexen2_Menu_Skill_f', 'm_hexen2_skill' ],
+			[ 'multiplayer', 'menu_hexen2_multiplayer', 'M_Hexen2_Menu_Multiplayer_f', 'm_hexen2_multiplayer' ],
+			[ 'setup', 'menu_hexen2_multiplayer', 'M_Hexen2_Menu_Setup_f', 'm_hexen2_setup' ],
+			[ 'load', 'menu_hexen2_multiplayer', 'M_Hexen2_Menu_Load_f', 'm_hexen2_load' ],
+			[ 'options', 'menu_hexen2_options', 'M_Hexen2_Menu_Options_f', 'm_hexen2_options' ],
+			[ 'keys', 'menu_hexen2_options', 'M_Hexen2_Menu_Keys_f', 'm_hexen2_keys' ],
+			[ 'video', 'menu_options', 'M_Menu_Video_f', 'm_video' ],
+			[ 'help', 'menu_hexen2_help', 'M_Hexen2_Menu_Help_f', 'm_hexen2_help' ],
+			[ 'quit', 'menu_hexen2_help', 'M_Hexen2_Menu_Quit_f', 'm_hexen2_quit' ]
+		];
+		const openPage = async ( label, module, open, expected ) => {
+			const reached = await page.evaluate( async ( { module, open, expected } ) => {
+				( await import( '/src/engine/client/' + module + '.js' ) )[ open ]();
+				const common = await import( '/src/engine/client/menu_common.js' );
+				return { actual: common.m_state, expected: common[ expected ] };
+			}, { module, open, expected } );
+			check( Number.isInteger( reached.expected ) && reached.actual === reached.expected, 'HM page: ' + label, reached );
+			await sleep( 2200 );
+			const skin = await page.evaluate( async () => ( await import( '/src/newer/ui/menu_webgl.js' ) ).MainMenu_Snapshot() );
+			check( skin.ready && ! skin.error, 'HM vector renderer ready: ' + label, skin.error );
+			await shot( 'all-' + label );
+		};
+		for ( const args of pages ) await openPage( ...args );
+		// Native Save requires a local game; starting one is sufficient, and no save is written by opening the page.
+		await page.evaluate( async () => ( await import( '/src/engine/common/cmd.js' ) ).Cbuf_AddText( 'map demo1\n' ) );
+		await until( playing, 120000, 'a local game for the Save page' );
+		await openPage( 'save', 'menu_hexen2_multiplayer', 'M_Hexen2_Menu_Save_f', 'm_hexen2_save' );
+	}
 
+} );
+
+// Optional HM comparison, on Quake's own menu/demo path and the exact same viewport.
+if ( allMenuPages ) await scenario( 'quake-menu', '?game=quake', async ( { page, until, shot, check } ) => {
+	await until( s => s.world && s.demo, 90000, 'Quake title demo' );
+	await key( page, 'Escape' );
+	const state = await until( s => s.keyDest === 3 && s.menu > 0, 10000, 'Quake main menu' );
+	check( state?.demo, 'Quake menu remains over its title demo', state );
+	await sleep( 2200 ); await shot( 'main' );
 } );
 
 // The base game: start, move, attack, hub travel and back, save and load, enhanced on and off.

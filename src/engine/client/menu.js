@@ -232,6 +232,8 @@ function M_DrawSplitMarks() {
 	// Hexen II's menu hangs its tall plaque and title signs in the top-left corner: with that menu up the labels go to
 	// the bottom of the picture, above the status bar and its horns, the left one clear of the plaque's column
 	const hexenMenu = GameProfile_IsHexen2() && getKeyDest() === key_menu && m_state !== m_none;
+	// (deeper Hexen pages fill the screen with their rows: the labels stand down there, the divider stays)
+	if ( hexenMenu && m_state !== m_hexen2_main ) return;
 	const y = hexenMenu ? _vid.height - 72 - offY : 4, left = hexenMenu ? Math.max( 8 - off, 52 ) : 8 - off;
 	M_PrintWhite( left, y, 'ENHANCED' );
 	M_PrintWhite( _vid.width - 8 - 7 * 8 - off, y, 'CLASSIC' );

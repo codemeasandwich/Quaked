@@ -1124,7 +1124,7 @@ export class QuakeMenu {
      * @param {number} height framebuffer height in physical pixels; width x height at most 24 million
      * @param {number} timeMs a finite, monotonic time in milliseconds
      * @param {?Array<object>} [commands=null] `{ type: 'text', text, x, y, size, stretch?, kind? }`,
-     *   `{ type: 'panel', x, y, w, h, well? }`, `{ type: 'selector', x, y, size }`, `{ type: 'slider', x, y, w, value }`
+     *   `{ type: 'panel', x, y, w, h, well? }`, `{ type: 'selector', x, y, size, variant?, text?, stretch?, kind? }`, `{ type: 'slider', x, y, w, value }`
      *   in physical pixels; null draws the donor's own layout
      * @param {number} [backgroundOpacity=1] 0..1; with commands the backdrop is transparent
      * @returns {boolean} false while unready, destroyed, context-lost or capturing; true after one completed draw
@@ -1154,7 +1154,7 @@ export class QuakeMenu {
         if(command.type==='panel'){
           panels.push(command.x-8,command.y-8,command.w+16,command.h+16,
             command.vertical||0,command.well?1:0,0,0);
-        }else if(command.type==='text'){
+        }else if(command.type==='text'||(command.type==='selector'&&command.variant==='glyph')){
           const shape=this._shape(String(command.text),command.size,command.stretch||1,true);
           const ox=command.x-shape.minX,oy=command.y-shape.minY;
           for(const part of shape.parts){const r=part.rect;glyphs.push(r[0]+ox,r[1]+oy,r[2],r[3],...part.uv,

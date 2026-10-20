@@ -178,7 +178,8 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `f023ded9` | DD, owner trial 6 | native demos play from inside the level; Hexen menu legible over the title demo; split labels clear of its plaque |
 | `d8564719` | TR, owner trial 7 | Hexen see-through model skins (EF_HOLEY/TRANSPARENT/SPECIAL_TRANS) loaded with their alpha |
 | `c9a53b22` | owner trial 8 | Hexen II renders the full screen with its bar overlaid, in Classic and Enhanced, framed so the hands stay visible |
-| (this commit) | owner trial 9 | Hexen title and plaque placed natively (ScrollPic skipped the UI scale); bigfont cut from its sheet, thin as the original |
+| `78037c41` | owner trial 9 | Hexen title and plaque placed natively (ScrollPic skipped the UI scale); bigfont cut from its sheet, thin as the original |
+| (this commit) | HM | one menu system: Hexen extends Quake's HD vector menu (traced vector font, stone signs, shared slide animation and shadow) |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;
@@ -325,6 +326,17 @@ blocky. Fixed: the scroll pictures convert like the rest; the bigfont is cut let
 sheet (background indices 0 and 255 clear) and smoothly scaled; the title-demo veil is Quake's again. This is an
 interim: the owner's direction is a unified menu system where Hexen extends Quake's (moving titles as an extension),
 redrawn as HD vector elements like Quake's, with Quake's dark text shadow (design decisions pending).
+
+Package HM (GPT Sol; owner decisions 20 October: trace Hexen's own sheet into vector letters; rebuild the signs as
+vector stone panels): the bigfont is traced at run time from `bigfont2.lmp` into smooth outlines and rasterised into
+an atlas in QUAKE_FONT's format (`menu_font_trace.js`); titles, the HEXEN II column, chains, skull and the menudot
+selector go through the same panel/fitText/selector vocabulary and shadow composite as Quake's plaques; the slide is
+a shared framework animation (`menu_animation.js`); Quake's command stream is byte-identical (snapshot test). At
+integration the browser screenshots showed every I missing from the signs (MAN, SNGLE, HEXEN I, CUSTOMZE): the traced
+letters' single advance was the pair table's diagonal, I followed by I = 3 pixels; it is now the median of each
+letter's pair advances (tests pin it, including I >= 6). The ENHANCED/CLASSIC labels stand down on Hexen pages other
+than the main menu, which fill the screen with rows. 306/306 suites, engine list 220/220, menus trial 11/11 with
+screenshots of the main, options, help, credits and Customize pages.
 
 Open decisions and known limits:
 

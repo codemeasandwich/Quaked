@@ -1,5 +1,5 @@
-// M2: the dynamic menu's per-game skins. The Hexen II atlas is built at runtime from the installed bigfont/conchars
-// bitmaps and the native advance table; every Hexen page then emits dynamic text/panel/image/selector commands with the
+// HM: the dynamic menu's per-game skins. Hexen outlines are traced at runtime from its installed bigfont
+// and use the native advance table; every Hexen page then emits dynamic text/panel/image/selector commands with the
 // Hexen skin and the menudot selector. Quake's own command stream is snapshotted to prove its skin and output are
 // unchanged. GPU appearance is not claimed here (tests/menu_webgl_gpu_trial.html and the live capture do).
 import { existsSync, readFileSync } from './helpers/resource_fs.mjs';
@@ -188,10 +188,10 @@ function norm( list ) {
 
 }
 
-function digest( commands ) {
+function digest( commands, exact = false ) {
 
 	let hash = 2166136261 >>> 0;
-	for ( const character of JSON.stringify( norm( commands ) ) ) {
+	for ( const character of JSON.stringify( exact ? commands : norm( commands ) ) ) {
 
 		hash ^= character.charCodeAt( 0 ); hash = Math.imul( hash, 16777619 ) >>> 0;
 
@@ -208,7 +208,7 @@ const hexenQuakePics = {
 	'gfx/ttl_main.lmp': picture( 'gfx/ttl_main.lmp', 48, 48, [ { x: 4, y: 4, w: 40, h: 40 } ] )
 };
 
-Deno.test( 'the Hexen II font atlas is generated from the installed bigfont and conchars bitmaps', () => {
+Deno.test( 'the Hexen II font atlas traces installed bigfont outlines and leaves small text native', () => {
 
 	if ( ! hasHexen ) return;
 	const bigfont = ( () => {
@@ -231,7 +231,8 @@ Deno.test( 'the Hexen II font atlas is generated from the installed bigfont and 
 	same( bindings.menu.fontWidths, 'gfx/menu/fontsize.lmp', 'advances come from the native table' );
 	check( atlas, 'the installed sheets produce an atlas' );
 	same( atlas.info.bigfont, 27, 'all 27 bigfont cells' );
-	check( atlas.info.conchars >= 128, 'the small conchars bank is present: ' + atlas.info.conchars );
+	check( atlas.info.vector, 'atlas comes from smoothed vector outlines' );
+	same( atlas.info.conchars, 0, 'small text stays native; no redundant bitmap atlas' );
 	same( atlas.data.length, atlas.metrics.width * atlas.metrics.height, '8-bit atlas pixel count' );
 	same( MenuSkin_BigfontIndex( 'A' ), 0, 'A is cell 0' );
 	same( MenuSkin_BigfontIndex( 'Z' ), 25, 'Z is cell 25' );
@@ -243,7 +244,8 @@ Deno.test( 'the Hexen II font atlas is generated from the installed bigfont and 
 
 		const glyph = atlas.metrics.glyphs[ String.fromCharCode( MENU_SKINS.hexen2.font.privateBase + index ) ];
 		check( glyph?.atlas, 'bigfont cell ' + index + ' has distance-field pixels' );
-		same( Math.round( glyph.advance * glyph.em ), widths[ index * 27 + index ], 'advance follows fontsize.lmp for cell ' + index );
+		const pairs = Array.from( { length: 27 }, ( _, next ) => widths[ index * 27 + next ] ).sort( ( a, b ) => a - b );
+		same( Math.round( glyph.advance * glyph.em ), pairs[ 13 ], 'advance is the median of fontsize.lmp\'s pairs for cell ' + index );
 		check( glyph.range > 0 && glyph.plane[ 2 ] > 0 && glyph.ink[ 2 ] > 0, 'cell ' + index + ' has sensible normalised metrics' );
 
 	}
@@ -269,25 +271,15 @@ Deno.test( 'the Hexen II font atlas is generated from the installed bigfont and 
 	// ink) must be dark and the ink bright; an inverted field draws boxes with letter-shaped holes
 	const corner = atlas.data[ y * atlas.metrics.width + x ];
 	check( corner === 0, 'the padding corner is exactly 0, which the glyph shader discards (else a box is drawn): ' + corner );
-	const small = atlas.metrics.glyphs[ 'H' ];
-	const [ sx, sy, sw, sh ] = small.atlas, smallCorner = atlas.data[ sy * atlas.metrics.width + sx ];
-	check( smallCorner === 0, 'the small H tile\'s corner is exactly 0 too: ' + smallCorner );
-	// a tile holds its own glyph only: its whole border is empty (a neighbouring sheet cell's ink drawn in the padding
-	// shows as a box round the letter)
-	for ( const [ name, tile ] of [ [ 'big H', glyph.atlas ], [ 'small H', small.atlas ] ] ) {
-
-		const [ tx, ty, tw, th ] = tile, row = ( yy, xx ) => atlas.data[ ( ty + yy ) * atlas.metrics.width + tx + xx ];
+	// Every vector glyph tile retains fully empty padding, including its corners and all four edges.
+	for ( const glyph of Object.values( atlas.metrics.glyphs ) ) {
+		if ( ! glyph.atlas ) continue;
+		const [ tx, ty, tw, th ] = glyph.atlas, at = ( yy, xx ) => atlas.data[ ( ty + yy ) * atlas.metrics.width + tx + xx ];
 		let edge = 0;
-		for ( let i = 0; i < tw; i ++ ) edge = Math.max( edge, row( 0, i ), row( th - 1, i ) );
-		for ( let i = 0; i < th; i ++ ) edge = Math.max( edge, row( i, 0 ), row( i, tw - 1 ) );
-		same( edge, 0, 'the ' + name + ' tile border is empty' );
-
+		for ( let i = 0; i < tw; i ++ ) edge = Math.max( edge, at( 0, i ), at( th - 1, i ) );
+		for ( let i = 0; i < th; i ++ ) edge = Math.max( edge, at( i, 0 ), at( i, tw - 1 ) );
+		same( edge, 0, 'vector tile border is empty' );
 	}
-	let smallHigh = 0;
-	for ( let row = 0; row < sh; row ++ ) for ( let column = 0; column < sw; column ++ ) smallHigh = Math.max( smallHigh, atlas.data[ ( sy + row ) * atlas.metrics.width + sx + column ] );
-	check( smallHigh > 192, 'the small H ink is above one half: ' + smallHigh );
-	same( small.em, 8, 'the small conchars bank keeps its 8-pixel em' );
-	check( small.atlas, 'the small H has its own tile' );
 
 } );
 
@@ -336,25 +328,25 @@ Deno.test( 'every Hexen II page keeps its small text native and draws its titles
 		// only the bigfont is dynamic lettering: the 8-pixel charset stays native, legible pixels (owner, 20 October 2026)
 		check( state.font?.bigfont === 27 && state.font?.conchars === 0, 'the runtime atlas holds the bigfont only: ' + JSON.stringify( state.font ) );
 
-		// the bigfont is cut from the installed sheet as smoothed pictures, one image per letter (owner, 20 October 2026)
-		const bigText = commands => commands.filter( c => c.type === 'image' && c.bigfont ).map( c => c.display ).join( '' ).toUpperCase();
-		const smallText = commands => commands.filter( c => c.type === 'text' && ! c.bigfont ).map( c => c.text ).join( '' ).toUpperCase();
+		// Bigfont, signs and selector share the vector renderer; only portrait/help artwork remains an image.
+		const bigText = commands => commands.filter( c => c.type === 'text' && c.bigfont ).map( c => c.display ).join( '' ).toUpperCase();
+		const smallText = commands => commands.filter( c => c.type === 'text' && ! c.bigfont && ! c.heading && ! c.ornament ).map( c => c.text ).join( '' ).toUpperCase();
 		const imagePaths = commands => commands.filter( c => c.type === 'image' ).map( c => c.path ).join( '|' );
 		const stonePanel = commands => commands.some( c => c.type === 'panel' && c.skin === 'hexen2' && c.material === 'stone' );
 		const menudot = commands => commands.some( c => c.type === 'selector' && c.skin === 'hexen2' && /gfx\/menu\/menudot[1-8]\.lmp/.test( c.path ) );
 		const pages = [
-			[ 'main', M_Hexen2_Menu_Main_f, c => bigText( c ).includes( 'SINGLEPLAYER' ) && imagePaths( c ).includes( 'title0' ) && menudot( c ) ],
+			[ 'main', M_Hexen2_Menu_Main_f, c => bigText( c ).includes( 'SINGLEPLAYER' ) && c.some( x => x.heading && x.display === 'MAIN' ) && stonePanel( c ) && menudot( c ) ],
 			[ 'single player', M_Hexen2_Menu_SinglePlayer_f, c => bigText( c ).includes( 'NEWGAME' ) ],
 			[ 'class', M_Hexen2_Menu_Class_f, c => bigText( c ).includes( 'PALADIN' ) && imagePaths( c ).includes( 'cport1' ) ],
 			[ 'difficulty', M_Hexen2_Menu_Skill_f, c => bigText( c ).includes( 'APPRENTICE' ) ],
 			[ 'multiplayer', M_Hexen2_Menu_Multiplayer_f, c => bigText( c ).includes( 'JOINAGAME' ) ],
-			[ 'setup', M_Hexen2_Menu_Setup_f, c => imagePaths( c ).length > 0 ],
-			[ 'options', M_Hexen2_Menu_Options_f, c => imagePaths( c ).length > 0 && ! stonePanel( c ) ],
-			[ 'keys', M_Hexen2_Menu_Keys_f, c => imagePaths( c ).length > 0 ],
+			[ 'setup', M_Hexen2_Menu_Setup_f, c => stonePanel( c ) ],
+			[ 'options', M_Hexen2_Menu_Options_f, c => stonePanel( c ) && c.some( x => x.heading && x.display === 'OPTIONS' ) ],
+			[ 'keys', M_Hexen2_Menu_Keys_f, c => stonePanel( c ) ],
 			[ 'video', M_Menu_Video_f, () => true ],
 			[ 'help', M_Hexen2_Menu_Help_f, c => imagePaths( c ).includes( 'help01' ) ],
 			[ 'quit', M_Hexen2_Menu_Quit_f, c => ! stonePanel( c ) && ! /gfx\/box_/.test( imagePaths( c ) ) ],
-			[ 'load', M_Hexen2_Menu_Load_f, c => imagePaths( c ).length > 0 ]
+			[ 'load', M_Hexen2_Menu_Load_f, c => stonePanel( c ) ]
 		];
 		for ( const [ name, open, expect ] of pages ) {
 
@@ -362,9 +354,20 @@ Deno.test( 'every Hexen II page keeps its small text native and draws its titles
 			api.render();
 			const commands = api.frame().commands;
 			same( smallText( commands ), '', name + ' sends no small text to the dynamic layer (it is drawn natively)' );
+			check( commands.every( c => c.type !== 'image' || ! /(?:bigfont|title[0-8]|hplaque|menudot|\/load\.|\/save\.)/.test( c.path ) ), name + ' has no redundant image path' );
 			check( expect( commands ), name + ' has its dynamic title, picture, bigfont or selector, and no dynamic box or slider' );
 
 		}
+		// All sign mappings, including currently unused title7/8, preserve their installed words and native geometry.
+		for ( const [ path, word ] of [ [ 'title7', 'VIDEO MODES' ], [ 'title8', 'RANKINGS' ] ] ) {
+			gpu.MainMenu_Begin();
+			check( gpu.MainMenu_ScrollPic( 60, - 8, { path: 'gfx/menu/' + path + '.lmp', width: 189, height: 60 } ), 'scroll sign handled' );
+			gpu.MainMenu_End( 1 );
+			const commands = api.frame().commands;
+			check( commands.some( c => c.type === 'text' && c.heading && c.display === word ), path + ' shared vector heading' );
+			check( commands.every( c => c.type !== 'image' ), path + ' has no source-image layer' );
+		}
+
 		// Save is the only page that natively requires a local game.
 		api.server.active = true; api.client.intermission = 0; api.svs.maxclients = 1;
 		try {
@@ -372,7 +375,7 @@ Deno.test( 'every Hexen II page keeps its small text native and draws its titles
 			M_Hexen2_Menu_Save_f();
 			api.render();
 			const commands = api.frame().commands;
-			check( imagePaths( commands ).length > 0, 'save draws its title dynamically' );
+			check( stonePanel( commands ) && commands.some( c => c.heading && c.display === 'SAVE' ), 'save draws its vector title' );
 			same( smallText( commands ), '', 'save draws its slots natively' );
 
 		} finally { api.server.active = false; }
@@ -392,10 +395,12 @@ Deno.test( 'Quake main and options command streams are unchanged by the skin sea
 		same( state.font, null, 'Quake keeps the supplied embedded atlas' );
 		api.open();
 		const main = api.frame().commands;
+		same( digest( main, true ), 1987595902, 'the complete unrounded Quake main stream matches base 78037c41' );
 		same( digest( main ), 2157577950, 'the main menu command stream is byte-for-byte the old one' );
 		check( main.every( c => c.skin === undefined && c.type !== 'image' ), 'Quake commands carry no skin tags and no Hexen images' );
 		cmd.Cmd_ExecuteString( 'menu_options' );
 		api.render();
+		same( digest( api.frame().commands, true ), 840811737, 'the complete unrounded Quake options stream matches base 78037c41' );
 		same( digest( api.frame().commands ), 3551365704, 'the options command stream is byte-for-byte the old one' );
 
 	}, { profile: 'quake', pics: hexenQuakePics } );

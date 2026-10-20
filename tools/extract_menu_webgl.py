@@ -180,7 +180,7 @@ def renderer_module(source):
         if(command.type==='panel'){
           panels.push(command.x-8,command.y-8,command.w+16,command.h+16,
             command.vertical||0,command.well?1:0,0,0);
-        }else if(command.type==='text'){
+        }else if(command.type==='text'||(command.type==='selector'&&command.variant==='glyph')){
           const shape=this._shape(String(command.text),command.size,command.stretch||1,true);
           const ox=command.x-shape.minX,oy=command.y-shape.minY;
           for(const part of shape.parts){const r=part.rect;glyphs.push(r[0]+ox,r[1]+oy,r[2],r[3],...part.uv,
@@ -282,7 +282,7 @@ QUAKEMENU_JSDOC = [
     ('    requestRender(){',
      '    /**\n     * Schedules one standalone render on the next animation frame (repeating while the selector animates). Does\n     * nothing in external-frame mode, while a frame is already pending, or when destroyed, context-lost or capturing.\n     */\n'),
     ('    frame(width,height,timeMs,commands=null,backgroundOpacity=1){',
-     "    /**\n     * Draws one host-driven frame (external-frame mode). The host supplies physical framebuffer pixels and optional\n     * native-menu glyph/panel commands; no CSS/DPR multiplier or event input is introduced. The canvas is resized to\n     * `width` x `height`; a changed command list rebuilds the layout. The selector advances by the elapsed time\n     * (each step capped at 100 ms; reduced motion and document visibility are honoured).\n     *\n     * @param {number} width framebuffer width in physical pixels (integer, 1..min(8192, MAX_RENDERBUFFER_SIZE))\n     * @param {number} height framebuffer height in physical pixels; width x height at most 24 million\n     * @param {number} timeMs a finite, monotonic time in milliseconds\n     * @param {?Array<object>} [commands=null] `{ type: 'text', text, x, y, size, stretch?, kind? }`,\n     *   `{ type: 'panel', x, y, w, h, well? }`, `{ type: 'selector', x, y, size }`, `{ type: 'slider', x, y, w, value }`\n     *   in physical pixels; null draws the donor's own layout\n     * @param {number} [backgroundOpacity=1] 0..1; with commands the backdrop is transparent\n     * @returns {boolean} false while unready, destroyed, context-lost or capturing; true after one completed draw\n     * @throws {RangeError} on dimensions outside the budget or an opacity outside 0..1\n     * @throws {TypeError} on a non-finite time\n     */\n"),
+     "    /**\n     * Draws one host-driven frame (external-frame mode). The host supplies physical framebuffer pixels and optional\n     * native-menu glyph/panel commands; no CSS/DPR multiplier or event input is introduced. The canvas is resized to\n     * `width` x `height`; a changed command list rebuilds the layout. The selector advances by the elapsed time\n     * (each step capped at 100 ms; reduced motion and document visibility are honoured).\n     *\n     * @param {number} width framebuffer width in physical pixels (integer, 1..min(8192, MAX_RENDERBUFFER_SIZE))\n     * @param {number} height framebuffer height in physical pixels; width x height at most 24 million\n     * @param {number} timeMs a finite, monotonic time in milliseconds\n     * @param {?Array<object>} [commands=null] `{ type: 'text', text, x, y, size, stretch?, kind? }`,\n     *   `{ type: 'panel', x, y, w, h, well? }`, `{ type: 'selector', x, y, size, variant?, text?, stretch?, kind? }`, `{ type: 'slider', x, y, w, value }`\n     *   in physical pixels; null draws the donor's own layout\n     * @param {number} [backgroundOpacity=1] 0..1; with commands the backdrop is transparent\n     * @returns {boolean} false while unready, destroyed, context-lost or capturing; true after one completed draw\n     * @throws {RangeError} on dimensions outside the budget or an opacity outside 0..1\n     * @throws {TypeError} on a non-finite time\n     */\n"),
     ('    render(){',
      '    /**\n     * Draws the cached static scene and the rotating Q selector to the canvas at its current size, rebuilding the\n     * layout and background cache when dirty. Does nothing until loaded, or when destroyed or context-lost.\n     *\n     * @throws {Error} when the background framebuffer cannot be allocated\n     */\n'),
     ('    async capture({width=3840,height=2160}={}){',
@@ -336,6 +336,7 @@ def outputs(source_bytes):
             'externalFrame defaults false; true retains only context lifecycle listeners',
             'frame accepts bounded physical pixels and finite millisecond timestamps without DPR rescaling',
             'optional native text, panel, selector and slider commands reuse donor glyph, plaque and solid-Q materials with transparent gameplay overlay alpha',
+            'native selectors may use a skin glyph through the shared glyph material and shadow',
             'shared original selector step serves RAF and external frames with original reduced-motion policy',
             'font readiness and generation guards prevent late upload/restoration after disposal',
             'idempotent resource cleanup handles partial program construction and restoration failure',
@@ -367,7 +368,9 @@ host menu is open, then copy that completed framebuffer to the overlay at 1:1 pi
 The optional command list uses `{{type:'text',text,x,y,size,kind}}`,
 `{{type:'panel',x,y,w,h,well}}`, `{{type:'selector',x,y,size}}` and
 `{{type:'slider',x,y,w,value}}`. Coordinates and dimensions are backing pixels.
-These commands use the supplied glyph atlas, bronze shaders and Q selector.
+A selector may instead carry `variant:'glyph',text,stretch,kind` to use the skin's atlas through the glyph path.
+Its x/y are ink top-left (the Q selector uses its centre). Both share the host's shadow composite.
+These commands use the supplied glyph atlas, bronze shaders and Q selector by default.
 A zero background alpha suppresses the donor backdrop in the native menu; only command geometry reaches the overlay.
 Dimensions are physical pixels, not CSS pixels; the renderer applies no second DPR multiplier.
 The host selects the dimensions. The renderer rejects values outside positive integer dimensions,

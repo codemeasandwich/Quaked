@@ -6,18 +6,13 @@
  * animation is used. Quake's skin is the supplied renderer exactly as it was (its embedded DpQuake atlas, bronze
  * materials and rotating Q); Hexen II's is built at runtime from the player's installed data:
  *
- * - `font`: `gfx/menu/bigfont2.lmp` (falling back to `bigfont.lmp`) supplies the 27 20 x 19 menu capitals (A-Z and `/`)
- *   and `gfx/menu/conchars.lmp` the 8 x 8 small font. Both are upsampled and converted to a signed distance field here;
- *   `gfx/menu/fontsize.lmp` (the native 27 x 27 advance table) supplies the bigfont advances. No glyph is shipped and
- *   none comes from Quake's atlas. Bigfont glyphs live in the private-use block starting at `0xE000` so a single atlas
- *   can carry both sizes; `MenuSkin_BigfontIndex` maps a native character to its cell.
- * - `material`: `stone`, a cool grey variant of the renderer's own material functions. The material no-art rule holds:
- *   the GLSL is derived from the supplied shaders, only the hue/roughness terms change, and the existing wear/grain/
- *   exposure uniforms are tuned by `config`.
- * - `image`: Hexen II's title plaques, help pages and menu art are drawn from the original pictures through the
- *   high-resolution image path, smoothed (never replaced with guessed typography). The scroll title is animated in the
- *   adapter, so its source picture is only ever a picture.
- * - `selector`: the native animated `gfx/menu/menudot*.lmp`, not the rotating Q.
+ * - `font`: outlines traced at runtime from the installed bigfont2.lmp (fallback bigfont.lmp), A-Z and `/` in
+ *   native 20 x 19 cells. Simplified, rounded contours retain counters and are rasterised into the renderer's SDF
+ *   contract. fontsize.lmp supplies the native advances. Small text remains native; conchars supplies colours only.
+ * - `material`: grey stone derived from the supplied shaders, with the original grain/wear/exposure controls.
+ * - `image`: only portraits/help artwork remains raster. Title signs and the side column use shared vector panels
+ *   and lettering; their page-owned slide clock also serves native fallback.
+ * - `selector`: a vector menudot glyph variant of the shared selector, driven by the native eight-frame phase.
  *
  * Types: plain frozen objects and functions; no exported classes.
  *
@@ -27,6 +22,8 @@
  * `MenuSkin_ApplyPrograms` compiles GLSL and can throw the WebGL compiler's message.
  */
 
+import { MenuFont_Trace, MenuFont_Rasterise, MenuFont_Ornaments } from './menu_font_trace.js';
+
 /** Private-use code point of bigfont cell 0 (A); the rest of A-Z and `/` follow. */
 export const MENU_BIGFONT_BASE = 0xE000;
 
@@ -34,7 +31,6 @@ export const MENU_BIGFONT_BASE = 0xE000;
 const BIGFONT = Object.freeze( { columns: 8, width: 20, height: 19, pitch: 20 } );
 const BIGFONT_LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ/';
 const BIGFONT_EMPTY = Object.freeze( [ 0, 255 ] );
-const SMALL_WIDTH = 8, SMALL_HEIGHT = 8;
 
 /** Quake's skin: the supplied renderer's own atlas, bronze material and rotating Q, byte for byte. */
 const QUAKE_SKIN = Object.freeze( {
@@ -46,7 +42,7 @@ const QUAKE_SKIN = Object.freeze( {
 	selector: 'q'
 } );
 
-/** Hexen II's skin: runtime bigfont/conchars atlas, grey stone, original pictures and the menudot selector. */
+/** Hexen II's skin: traced installed bigfont, grey stone and the menudot selector variant. */
 const HEXEN2_SKIN = Object.freeze( {
 	id: 'hexen2',
 	material: 'stone',
@@ -88,11 +84,20 @@ export function MenuSkin_For( profile ) {
  */
 export function MenuSkin_BigfontIndex( character ) {
 
+	if ( character == null || character === '' ) return - 1;
 	if ( character === ' ' ) return 32;
 	if ( character === '/' ) return 26;
 	const code = String( character ).toUpperCase().charCodeAt( 0 ) - 65;
 	return code >= 0 && code < 26 ? code : - 1;
 
+}
+
+/** Native menu.c:465-493 advance, including the C/P correction; spaces advance without ink. */
+export function MenuSkin_BigfontAdvance( character, nextCharacter, widths ) {
+	const current = MenuSkin_BigfontIndex( character ), next = MenuSkin_BigfontIndex( nextCharacter );
+	if ( current === 32 ) return 32;
+	if ( current < 0 || current >= 27 || next < 0 || next >= 27 ) return 0;
+	return ( widths?.length === 27 * 27 ? widths[ current * 27 + next ] : 14 ) + ( current === 2 && next === 15 ? 3 : 0 );
 }
 
 // ---------------------------------------------------------------------------
@@ -134,25 +139,6 @@ function rgbaSource( data, width, height ) {
 	const alpha = new Uint8Array( width * height );
 	for ( let i = 0; i < alpha.length; i ++ ) alpha[ i ] = data[ i * 4 + 3 ] > 24 ? 1 : 0;
 	return { width, height, alpha };
-
-}
-
-// Bilinear coverage at a source pixel coordinate: (0,0) is the top-left corner of pixel 0.
-function coverageAt( source, x, y, cell ) {
-
-	const px = x - .5, py = y - .5;
-	const x0 = Math.floor( px ), y0 = Math.floor( py );
-	const fx = px - x0, fy = py - y0;
-	// only the glyph's own sheet cell: the sheets pack cells edge to edge, so the padding round a glyph would otherwise
-	// pick up its neighbours' ink
-	const at = ( ix, iy ) => {
-
-		if ( ix < cell.x || iy < cell.y || ix >= cell.x + cell.width || iy >= cell.y + cell.height ) return 0;
-		return source.alpha[ iy * source.width + ix ];
-
-	};
-	return ( at( x0, y0 ) * ( 1 - fx ) + at( x0 + 1, y0 ) * fx ) * ( 1 - fy )
-		+ ( at( x0, y0 + 1 ) * ( 1 - fx ) + at( x0 + 1, y0 + 1 ) * fx ) * fy;
 
 }
 
@@ -216,20 +202,16 @@ const tilePad = radius => Math.ceil( radius ) + 1;
 // The glyph shader draws a bevelled border as wide as that range, so a wider one swells the letters into each other.
 const RANGE_PER_EM = 16 / 256;
 
-// One glyph: upsample the cell with bilinear coverage, threshold to a mask, take the signed distance to that mask and
+// One glyph: trace and fit the native ink contours, rasterise the vector paths, take the signed distance and
 // encode it as 0..255 around 0.5 (the renderer's glyph shader decodes `(r - .5) * range * 2`). `range` stays in source
 // pixels so `_shape` can scale it with the requested em.
-function buildGlyph( source, cellX, cellY, cellWidth, cellHeight, em, radius, upscale, pad ) {
+function buildGlyph( source, cellX, cellY, cellWidth, cellHeight, em, radius, upscale, pad, vectorOutlines = null ) {
 
-	const width = ( cellWidth + pad * 2 ) * upscale, height = ( cellHeight + pad * 2 ) * upscale;
-	const cell = { x: cellX, y: cellY, width: Math.min( cellWidth, source.width - cellX ), height: Math.min( cellHeight, source.height - cellY ) };
-	const mask = new Uint8Array( width * height );
-	for ( let y = 0; y < height; y ++ ) for ( let x = 0; x < width; x ++ ) {
-
-		const coverage = coverageAt( source, cellX - pad + ( x + .5 ) / upscale, cellY - pad + ( y + .5 ) / upscale, cell );
-		mask[ y * width + x ] = coverage >= .5 ? 1 : 0;
-
-	}
+	const cellMask = new Uint8Array( cellWidth * cellHeight );
+	for ( let y = 0; y < cellHeight; y ++ ) for ( let x = 0; x < cellWidth; x ++ )
+		cellMask[ y * cellWidth + x ] = source?.alpha[ ( cellY + y ) * source.width + cellX + x ] ?? 0;
+	const outlines = vectorOutlines ?? MenuFont_Trace( cellMask, cellWidth, cellHeight );
+	const { width, height, mask } = MenuFont_Rasterise( outlines, cellWidth, cellHeight, upscale, pad );
 	// toEmpty: from each pixel to the nearest background pixel (non-zero only inside the ink); toInk: to the nearest ink
 	// pixel (non-zero only outside). Positive inside, so the encoded value is above one half on the ink, as the renderer
 	// draws it; the half-pixel term puts the edge between the last ink and first background pixel centres.
@@ -242,50 +224,45 @@ function buildGlyph( source, cellX, cellY, cellWidth, cellHeight, em, radius, up
 		pixels[ i ] = Math.round( clamp01( .5 + distance / ( radius * 2 ) ) * 255 );
 
 	}
-	// Ink bounds inside the unpadded cell, in source pixels. The tile's own transparent padding still surrounds them.
-	let minX = cellWidth, minY = cellHeight, maxX = - 1, maxY = - 1;
-	for ( let y = 0; y < cellHeight; y ++ ) for ( let x = 0; x < cellWidth; x ++ ) {
-
-		if ( coverageAt( source, cellX + x + .5, cellY + y + .5, cell ) < .5 ) continue;
-		if ( x < minX ) minX = x; if ( x > maxX ) maxX = x;
-		if ( y < minY ) minY = y; if ( y > maxY ) maxY = y;
-
-	}
+	// Bounds follow the vectors, including their fitted bearings; native letter positions still use the cell origin.
+	const points = outlines.flatMap( c => c.curves.flatMap( curve => [ curve.from, curve.control, curve.to ] ) );
+	const minX = Math.min( ...points.map( p => p[ 0 ] ) ), minY = Math.min( ...points.map( p => p[ 1 ] ) );
+	const maxX = Math.max( ...points.map( p => p[ 0 ] ) ), maxY = Math.max( ...points.map( p => p[ 1 ] ) );
 	if ( maxX < 0 ) return null;
-	return { width, height, pixels, ink: [ minX / em, minY / em, ( maxX - minX + 1 ) / em, ( maxY - minY + 1 ) / em ],
+	return { width, height, pixels, outlines, ink: [ minX / em, minY / em, ( maxX - minX ) / em, ( maxY - minY ) / em ],
 		plane: [ - pad / em, - pad / em, ( cellWidth + pad * 2 ) / em, ( cellHeight + pad * 2 ) / em ] };
 
 }
 
 function blankGlyph( em, advance ) {
 
-	return { advance, em, range: 1, plane: [ 0, 0, 1, 1 ], ink: [ 0, 0, 0, 0 ] };
+	return { advance, em, range: em * RANGE_PER_EM, plane: [ 0, 0, 1, 1 ], ink: [ 0, 0, 0, 0 ] };
 
 }
 
 /**
- * Builds one distance-field atlas from the installed Hexen II fonts. Sources are raw qpic/conchars data
- * (`{ width, height, data }`, palette index 0 transparent) or pictures/canvases. The bigfont's advances come from the
+ * Builds a vector-derived distance-field atlas from the installed Hexen II bigfont. Sources are raw qpic data
+ * (`{ width, height, data }`, indices 0/255 transparent) or pictures/canvases. The bigfont's advances come from the
  * native `fontsize.lmp` 27 x 27 table when supplied; otherwise the sheet's cell width is used.
  *
- * @param {{ bigfont?: ?object, conchars?: ?object, widths?: ?(Uint8Array|ArrayLike<number>) }} sources the installed
+ * @param {{ bigfont?: ?object, widths?: ?(Uint8Array|ArrayLike<number>) }} sources the installed
  *   font sheets and the native advance table
- * @param {{ upscale?: number, radius?: number, maxTextureSize?: number }} [options] atlas quality limits
+ * @param {{ upscale?: number, maxTextureSize?: number }} [options] atlas quality limits
  * @returns {?{ metrics: object, data: Uint8Array, info: { bigfont: number, conchars: number, width: number,
  *   height: number } }} the renderer's font metrics, 8-bit atlas pixels (row-major) and a small report; null when no
  *   usable sheet is present
  */
 export function BuildHexen2FontAtlas( sources, options = {} ) {
 
-	const upscale = Math.max( 2, Math.min( 6, options.upscale ?? 4 ) );
+	const upscale = Math.max( 2, Math.min( 8, Math.round( options.upscale ?? 8 ) ) );
 	const maxTextureSize = Math.max( 256, Math.min( 4096, options.maxTextureSize ?? 4096 ) );
 	// the bigfont sheet is black (0) behind its letters with a 255 grid line closing each 20 x 20 cell; native drawing
 	// shows neither
 	const bigSource = pixelSource( sources?.bigfont, BIGFONT_EMPTY );
-	const smallSource = pixelSource( sources?.conchars );
-	if ( ! bigSource && ! smallSource ) return null;
+
+	if ( ! bigSource || bigSource.width < 160 || bigSource.height < 79 ) return null;
 	const widths = sources?.widths && sources.widths.length === 27 * 27 ? sources.widths : null;
-	const glyphs = {};
+	const glyphs = { ' ': blankGlyph( BIGFONT.height, 32 / BIGFONT.height ) };
 	const packed = [];
 
 	if ( bigSource ) {
@@ -295,12 +272,15 @@ export function BuildHexen2FontAtlas( sources, options = {} ) {
 			const cellX = ( index % BIGFONT.columns ) * BIGFONT.width;
 			const cellY = Math.floor( index / BIGFONT.columns ) * BIGFONT.pitch;
 			if ( cellX + BIGFONT.width > bigSource.width || cellY + BIGFONT.height > bigSource.height ) continue;
-			const advance = ( widths ? widths[ index * 27 + index ] : BIGFONT.width ) / BIGFONT.height;
+			// a single advance for laid-out words (signs): the median of the letter's native pair advances. The table's
+			// diagonal is the letter followed by itself, which for I is 3 pixels and would hide it under the next letter
+			const pairs = widths ? Array.from( { length: 27 }, ( _, next ) => widths[ index * 27 + next ] ).sort( ( a, b ) => a - b ) : null;
+			const advance = ( pairs ? pairs[ 13 ] : BIGFONT.width ) / BIGFONT.height;
 			const key = String.fromCharCode( MENU_BIGFONT_BASE + index );
-			const radius = options.bigRadius ?? BIGFONT.height * RANGE_PER_EM;
+			const radius = BIGFONT.height * RANGE_PER_EM;
 			const glyph = buildGlyph( bigSource, cellX, cellY, BIGFONT.width, BIGFONT.height, BIGFONT.height, radius, upscale, tilePad( radius ) );
 			if ( ! glyph ) { glyphs[ key ] = blankGlyph( BIGFONT.height, advance ); continue; }
-			glyphs[ key ] = { advance, em: BIGFONT.height, range: options.bigRadius ?? 2.5,
+			glyphs[ key ] = { advance, em: BIGFONT.height, range: radius, outlines: glyph.outlines,
 				plane: glyph.plane, ink: glyph.ink };
 			packed.push( { key, glyph } );
 
@@ -308,25 +288,11 @@ export function BuildHexen2FontAtlas( sources, options = {} ) {
 
 	}
 
-	if ( smallSource ) {
-
-		const columns = Math.floor( smallSource.width / SMALL_WIDTH );
-		const rows = Math.floor( smallSource.height / SMALL_HEIGHT );
-		const count = Math.min( 256, columns * rows );
-		for ( let code = 0; code < count; code ++ ) {
-
-			const key = String.fromCharCode( code );
-			if ( code === 32 ) { glyphs[ key ] = blankGlyph( SMALL_HEIGHT, 1 ); continue; }
-			const cellX = ( code % columns ) * SMALL_WIDTH, cellY = Math.floor( code / columns ) * SMALL_HEIGHT;
-			const radius = options.smallRadius ?? SMALL_HEIGHT * RANGE_PER_EM;
-			const glyph = buildGlyph( smallSource, cellX, cellY, SMALL_WIDTH, SMALL_HEIGHT, SMALL_HEIGHT, radius, upscale, tilePad( radius ) );
-			if ( ! glyph ) { glyphs[ key ] = blankGlyph( SMALL_HEIGHT, 1 ); continue; }
-			glyphs[ key ] = { advance: 1, em: SMALL_HEIGHT, range: options.smallRadius ?? 1.5,
-				plane: glyph.plane, ink: glyph.ink };
-			packed.push( { key, glyph } );
-
-		}
-
+	for ( const [ key, outlines ] of Object.entries( MenuFont_Ornaments() ) ) {
+		const em = 20, radius = em * RANGE_PER_EM;
+		const glyph = buildGlyph( null, 0, 0, 20, 20, em, radius, upscale, tilePad( radius ), outlines );
+		glyphs[ key ] = { advance: 1, em, range: radius, plane: glyph.plane, ink: glyph.ink };
+		packed.push( { key, glyph } );
 	}
 
 	const limit = Math.min( maxTextureSize, 4096 );
@@ -361,12 +327,12 @@ export function BuildHexen2FontAtlas( sources, options = {} ) {
 	}
 
 	const bigfont = bigSource ? BIGFONT_LETTERS.length : 0;
-	const conchars = smallSource ? Math.min( 256, Math.floor( smallSource.width / SMALL_WIDTH ) * Math.floor( smallSource.height / SMALL_HEIGHT ) ) : 0;
+	const conchars = 0;
 	return {
-		metrics: { family: 'Hexen II stock fonts', sourceName: 'gfx/menu/bigfont2.lmp + gfx/menu/conchars.lmp',
-			unitsPerEm: 1, capHeight: .8, range: options.bigRadius ?? 2.5, glyphs, width, height },
+		metrics: { family: 'Hexen II traced outlines', sourceName: 'installed gfx/menu/bigfont2.lmp (fallback bigfont.lmp)',
+			unitsPerEm: 1, capHeight: .8, range: BIGFONT.height * RANGE_PER_EM, glyphs, width, height },
 		data,
-		info: { bigfont, conchars, width, height }
+		info: { bigfont, conchars, width, height, vector: true }
 	};
 
 }

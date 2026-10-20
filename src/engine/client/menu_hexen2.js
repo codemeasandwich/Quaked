@@ -17,6 +17,7 @@
  * M_SinglePlayer, M_Class, M_Difficulty).
  */
 
+import { MENU_TITLE_CONFIG, MenuTitle_Create, MenuTitle_Advance } from './menu_animation.js';
 import { GameProfile_Get, GameProfile_IsHexen2 } from '../common/game_profile.js';
 import { Cbuf_AddText } from '../common/cmd.js';
 import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue, Cvar_VariableValue, cvar_t } from '../common/cvar.js';
@@ -53,9 +54,7 @@ let enterPortals = false;
 
 // ScrollTitle (menu.c:507-575): a percentage of the picture's height, eased toward a target. The title and the plaque
 // start above the screen, slide down; a page change retracts the old title before sliding the new one in.
-const TITLE_RISE = 0.5, TITLE_FALL = 0.15, LOGO_RISE = 0.15;
-let titlePercent = 0, titleTarget = 1, logoPercent = 0, logoTarget = 1;
-let titleLastName = '', titleCanSwitch = true, titleLastTime = null;
+let titleAnimation = MenuTitle_Create( MENU_TITLE_CONFIG.hexen2 );
 
 /**
  * The classes this edition offers: the four base classes, plus the Demoness in Portal of Praevus.
@@ -285,45 +284,7 @@ export function Hexen2_BlinkCharacter() { return 12 + ( Math.floor( _realtime_ge
  */
 export function Hexen2_ScrollTitle( name ) {
 
-	const now = _host_time_get();
-	let delta = titleLastTime === null ? 1 / 60 : now - titleLastTime;
-	titleLastTime = now;
-	if ( ! Number.isFinite( delta ) || delta <= 0 ) delta = 1 / 60; // a frame when the clock has not advanced
-	delta = Math.min( delta, 0.25 );
-
-	if ( titlePercent < titleTarget ) {
-
-		const step = Math.max( ( ( titleTarget - titlePercent ) / TITLE_RISE ) * delta, 0.004 );
-		titlePercent = Math.min( titleTarget, titlePercent + step );
-
-	} else if ( titlePercent > titleTarget ) {
-
-		const step = Math.max( ( ( titlePercent - titleTarget ) / TITLE_FALL ) * delta, 0.02 );
-		titlePercent = Math.max( titleTarget, titlePercent - step );
-		if ( titlePercent <= titleTarget ) titleCanSwitch = true;
-
-	}
-
-	if ( logoPercent < logoTarget ) {
-
-		const step = Math.max( ( ( logoTarget - logoPercent ) / LOGO_RISE ) * delta, 0.02 );
-		logoPercent = Math.min( logoTarget, logoPercent + step );
-
-	} else if ( logoPercent > logoTarget ) {
-
-		const step = Math.max( ( ( logoPercent - logoTarget ) / LOGO_RISE ) * delta, 0.02 );
-		logoPercent = Math.max( logoTarget, logoPercent - step );
-
-	}
-
-	if ( titleLastName !== name && titleTarget !== 0 ) titleTarget = 0;
-	if ( titleCanSwitch ) {
-
-		titleLastName = name;
-		titleCanSwitch = false;
-		titleTarget = 1;
-
-	}
+	const { name: titleLastName, titlePercent, logoPercent } = MenuTitle_Advance( titleAnimation, name, _host_time_get() );
 
 	if ( ! _Draw_CachePic || ! titleLastName ) return;
 	const title = _Draw_CachePic( titleLastName );
@@ -352,8 +313,7 @@ export function Hexen2_ScrollTitle( name ) {
 // The native M_ToggleMenu_f resets the scroll when the menu opens from the game.
 function Hexen2_ResetTitle() {
 
-	titlePercent = 0; titleTarget = 1; logoPercent = 0; logoTarget = 1;
-	titleLastName = ''; titleCanSwitch = true; titleLastTime = null;
+	titleAnimation = MenuTitle_Create( MENU_TITLE_CONFIG.hexen2 );
 
 }
 
@@ -765,7 +725,8 @@ export function M_Hexen2_State() {
 	return { main: m_hexen2_main, single: m_hexen2_single, class: m_hexen2_class, skill: m_hexen2_skill,
 		multiplayer: m_hexen2_multiplayer, setup: m_hexen2_setup, options: m_hexen2_options, keys: m_hexen2_keys,
 		help: m_hexen2_help, quit: m_hexen2_quit, load: m_hexen2_load, save: m_hexen2_save,
-		classCursor, skillCursor, titlePercent, titleTarget, logoPercent, logoTarget };
+		classCursor, skillCursor, titlePercent: titleAnimation.titlePercent, titleTarget: titleAnimation.titleTarget,
+		logoPercent: titleAnimation.logoPercent, logoTarget: titleAnimation.logoTarget };
 
 }
 

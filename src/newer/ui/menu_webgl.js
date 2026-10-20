@@ -4,7 +4,7 @@
  * The supplied WebGL2 menu renderer (glyphs, panels, selector) drawn over the native menu, which keeps the actions and
  * input. One renderer serves both games through data-only skins (`newer/ui/menu_skins.js`): Quake keeps the supplied
  * DpQuake atlas, bronze material and rotating Q; Hexen II gets a runtime distance-field atlas from its installed
- * bigfont/conchars, grey stone, original pictures and the animated menudot. The skin is resolved from the active game
+ * traced bigfont, grey stone vector signs and the menudot selector variant. The skin is resolved from the active game
  * profile every frame, so no module-global mode toggle exists.
  *
  * Types: plain values and functions; no exported classes.
@@ -20,7 +20,9 @@ import { Draw_GetOverlayCanvas, Draw_FullResolutionCanvas, Draw_FullResolutionIm
 import { COM_LoadFile } from '../../engine/common/pak.js';
 import { GameProfile_Get } from '../../engine/common/game_profile.js';
 import { NewerBindings } from '../content_bindings.js';
-import { BuildHexen2FontAtlas, MENU_SKINS, MenuSkin_ApplyPrograms, MenuSkin_BigfontIndex, MenuSkin_ConcharsInks, MenuSkin_For } from './menu_skins.js';
+import { BuildHexen2FontAtlas, MENU_BIGFONT_BASE, MENU_SKINS, MenuSkin_ApplyPrograms, MenuSkin_BigfontIndex, MenuSkin_BigfontAdvance, MenuSkin_ConcharsInks, MenuSkin_For } from './menu_skins.js';
+
+import { MENU_ORNAMENTS } from './menu_font_trace.js';
 
 let renderer = null, loading = null, failed = null, visible = false, epoch = 0;
 let frameSkin = false, presented = false, commands = [], blits = [], images = [], size = [ 0, 0 ];
@@ -365,34 +367,6 @@ function labelRows( pic, x, y, labels, firstRow, srcY ) {
 
 }
 
-const BIGFONT_CELL = Object.freeze( { w: 20, h: 19, pitch: 20 } ); // the native bigfont sheet's cells
-let bigfontSheet = null, bigfontSheetFor = null;
-
-// The bigfont sheet as a picture whose background (palette indices 0 and 255, the sheet's black and its cell grid) is
-// clear: the cached picture's conversion keeps index 0 opaque, which would draw a black box behind every letter.
-function bigfontPicture( pic ) {
-
-	if ( bigfontSheetFor === pic ) return bigfontSheet;
-	bigfontSheetFor = pic; bigfontSheet = pic;
-	const raw = loadQpic( NewerBindings().menu.bigfont ), palette = COM_LoadFile( 'gfx/palette.lmp' );
-	const canvas = globalThis.document?.createElement?.( 'canvas' ), ctx = canvas?.getContext?.( '2d' );
-	if ( ! raw || ! palette || ! ctx || raw.width !== pic.width || raw.height !== pic.height ) return bigfontSheet;
-	const pal = new Uint8Array( palette );
-	canvas.width = raw.width; canvas.height = raw.height;
-	const image = ctx.createImageData( raw.width, raw.height );
-	for ( let i = 0; i < raw.width * raw.height; i ++ ) {
-
-		const index = raw.data[ i ];
-		if ( index === 0 || index === 255 ) continue;
-		image.data.set( [ pal[ index * 3 ], pal[ index * 3 + 1 ], pal[ index * 3 + 2 ], 255 ], i * 4 );
-
-	}
-	ctx.putImageData( image, 0, 0 );
-	bigfontSheet = { width: pic.width, height: pic.height, canvas, path: pic.path };
-	return bigfontSheet;
-
-}
-
 // Hexen II's small lettering, text boxes and sliders stay native: its 8-pixel charset traced as a distance field
 // cannot keep letters apart (owner, 20 October 2026: the help and settings were illegible), while its own pixels,
 // scaled crisply, read well in the game's own colours. The dynamic layer composites over native drawing, so the boxes
@@ -400,40 +374,33 @@ function bigfontPicture( pic ) {
 function smallTextNative() { return activeSkin().id === 'hexen2'; }
 
 /**
- * Queues Hexen II's native bigfont lettering: each letter an `image` command cutting its 20 x 19 cell out of the
- * installed sheet, smoothly scaled, at the native pair advances (the 27 x 27 `fontsize.lmp` table and the C/P kern).
- * The command carries `display`, the character, for diagnostics.
+ * Queues installed Hexen bigfont outlines as shared text commands at the native pair advances (fontsize.lmp and
+ * the C/P kern). Cell bearings are retained; `display` carries the source character for diagnostics.
  *
  * @param {number} x left edge in virtual screen units, menu offset already applied
  * @param {number} y top of the glyph cell in virtual units
  * @param {string} text the text (A-Z, space and `/`)
- * @param {?qpic_t} pic the native bigfont sheet (its canvas is drawn from)
+ * @param {?qpic_t} pic the native bigfont sheet (fallback identity; glyphs come from the installed outline atlas)
  * @param {?Uint8Array} widths the native 27 x 27 advance table
- * @returns {boolean} true when queued (drawing skips a sheet without a canvas); false when the frame is not Hexen-skinned
+ * @returns {boolean} true when queued; false when the frame is not Hexen-skinned
  */
 export function MainMenu_BigText( x, y, text, pic, widths ) {
 
 	if ( ! frameSkin || activeSkin().id !== 'hexen2' || ! pic ) return false;
-	// Each letter is a cut-out of the installed sheet, smoothly scaled like the plaques and pictures: the original's
-	// thin carved letters (owner, 20 October 2026: the distance-field lettering came out fat and blocky). Cells and
-	// advances are native (menu.c M_DrawBigString / M_DrawBigCharacter, the 27 x 27 fontsize.lmp table).
-	const scale = Draw_GetUIScale(), string = String( text ), sheet = bigfontPicture( pic );
+	// Native menu.c:465-505 uses cell origins and pair advances, while shared text commands use ink origins.
+	const scale = Draw_GetUIScale(), string = String( text ).toUpperCase();
 	let cellX = x;
 	for ( let i = 0; i < string.length; i ++ ) {
-
-		const num = MenuSkin_BigfontIndex( string[ i ] );
-		if ( num === 32 ) { cellX += 32; continue; }
-		if ( num < 0 || num >= 27 ) continue;
-		const [ px, py ] = physical( cellX, y );
-		commands.push( { type: 'image', pic: sheet, path: pic.path || '', x: px, y: py, w: BIGFONT_CELL.w * scale, h: BIGFONT_CELL.h * scale,
-			srcX: ( num % 8 ) * BIGFONT_CELL.w, srcY: Math.floor( num / 8 ) * BIGFONT_CELL.pitch, srcW: BIGFONT_CELL.w, srcH: BIGFONT_CELL.h,
-			smooth: true, skin: 'hexen2', bigfont: true, display: string[ i ] } );
-		const next = MenuSkin_BigfontIndex( string[ i + 1 ] );
-		if ( next < 0 || next >= 27 ) continue;
-		const extra = num === 2 && next === 15 ? 3 : 0; // menu.c M_DrawBigCharacter's C-P kern
-		cellX += ( widths && widths.length === 27 * 27 ? widths[ num * 27 + next ] : 14 ) + extra;
-
+		const index = MenuSkin_BigfontIndex( string[ i ] );
+		if ( index >= 0 && index < 27 ) {
+			const text = String.fromCharCode( MENU_SKINS.hexen2.font.privateBase + index );
+			const glyph = renderer.font.glyphs[ text ], size = 19 * scale;
+			if ( glyph?.atlas ) commands.push( { type: 'text', text, x: cellX * scale + glyph.ink[ 0 ] * size,
+				y: y * scale + glyph.ink[ 1 ] * size, size, stretch: 1, kind: 2, skin: 'hexen2', bigfont: true, display: string[ i ] } );
+		}
+		cellX += MenuSkin_BigfontAdvance( string[ i ], string[ i + 1 ], widths );
 	}
+
 	return true;
 
 }
@@ -441,8 +408,7 @@ export function MainMenu_BigText( x, y, text, pic, widths ) {
 /**
  * Queues engine menu text in the supplied font. Engine text is a fixed 8-unit cell grid; every character stays in its
  * own cell (cap height 4.8 units) so right-aligned labels, columns and save-slot rows land exactly where the original
- * bitmap font put them. Under Hexen II the runtime conchars atlas is used and case is preserved for player names, save
- * names and key binds; Quake keeps its upper-cased fixed-grid behaviour. Called by `M_Print`/`M_PrintWhite` and for
+ * bitmap font put them. Hexen II returns false so its small text remains native; Quake keeps its upper-cased fixed-grid behaviour. Called by `M_Print`/`M_PrintWhite` and for
  * printable characters by `MainMenu_Glyph`.
  *
  * @param {number} x left edge in virtual (320 x 200 based) screen units, menu offset already applied
@@ -618,10 +584,9 @@ function deferPicture( pic, px, py, scale, srcY ) {
 
 }
 
-// Hexen II's own pictures are presented as pictures: queued before the WebGL panels so the dynamic lettering and
-// panels stay on top, copied with smoothing so a 117 x 60 plaque or a 320 x 200 help page reads as clean art rather
-// than nearest-neighbour blocks. They are not replaced with guessed typography.
-function queueHexenImage( pic, px, py, scale, srcY = 0, srcH = 0 ) {
+// Residual portrait/help artwork remains a picture behind the dynamic layer. Titles, bigfont and selectors never
+// enter this path; they share the renderer and its shadow composite.
+function queueArtwork( pic, px, py, scale, srcY = 0, srcH = 0 ) {
 
 	const height = srcH || pic.height || 0;
 	if ( ! ( pic.width > 0 && height > 0 ) ) return false;
@@ -632,23 +597,67 @@ function queueHexenImage( pic, px, py, scale, srcY = 0, srcH = 0 ) {
 }
 
 function queueHexenSelector( pic, px, py, scale ) {
-
 	if ( ! ( pic.width > 0 && pic.height > 0 ) ) return false;
-	commands.push( { type: 'selector', x: px, y: py, w: pic.width * scale, h: pic.height * scale,
-		pic, path: pic.path || '', smooth: true, skin: 'hexen2' } );
+	const phase = Number( ( pic.path || '' ).match( /menudot(\d)/ )?.[ 1 ] ?? 1 );
+	const size = 19 * scale, stretch = 1 - .08 * Math.sin( ( phase - 1 ) * Math.PI / 4 );
+	const text = MENU_ORNAMENTS.menudot, shape = renderer._shape( text, size, stretch, false );
+	commands.push( { type: 'selector', variant: 'glyph', text, size, stretch, kind: 0,
+		x: px + ( pic.width * scale - shape.width ) / 2, y: py + ( pic.height * scale - shape.height ) / 2,
+		path: pic.path || '', skin: 'hexen2' } );
 	return true;
+}
 
+// Titles and side rails extend the same panel/fitText vocabulary as Quake. Source pictures only supply dimensions.
+const HEXEN_TITLES = Object.freeze( {
+	'gfx/menu/title0.lmp': 'MAIN', 'gfx/menu/title1.lmp': 'SINGLE', 'gfx/menu/title2.lmp': 'CLASS',
+	'gfx/menu/title3.lmp': 'OPTIONS', 'gfx/menu/title4.lmp': 'MULTIPLAYER', 'gfx/menu/title5.lmp': 'DIFFICULTY',
+	'gfx/menu/title6.lmp': 'CUSTOMIZE', 'gfx/menu/title7.lmp': 'VIDEO MODES', 'gfx/menu/title8.lmp': 'RANKINGS',
+	'gfx/menu/load.lmp': 'LOAD', 'gfx/menu/save.lmp': 'SAVE'
+} );
+
+function vectorWord( word, x, y, w, h ) {
+	// Roman II is two traced I outlines; the installed bigfont has capitals and slash only.
+	const text = [ ...word ].map( c => c === ' ' ? ' ' : String.fromCharCode( MENU_BIGFONT_BASE + MenuSkin_BigfontIndex( c ) ) ).join( '' );
+	const before = commands.length;
+	fitText( text, { x, y, w, h }, 2 );
+	if ( commands.length > before ) Object.assign( commands.at( - 1 ), { skin: 'hexen2', heading: true, display: word } );
+}
+
+function vectorOrnament( ornament, x, y, w, h ) {
+	fitText( ornament, { x, y, w, h }, 2 );
+	Object.assign( commands.at( - 1 ), { skin: 'hexen2', ornament: true } );
+}
+
+function vectorSign( x, y, pic ) {
+	const path = pic.path || '', word = HEXEN_TITLES[ path ], column = path === 'gfx/menu/hplaque.lmp';
+	if ( ! word && ! column ) return false;
+	const s = Draw_GetUIScale(), w = pic.width, h = pic.height;
+	const panelTop = column ? 49 : 25;
+	MainMenu_Panel( x, y + panelTop, w, h - panelTop );
+	// Two short, interlocked chain runs. All ornaments pass through the glyph shader and shared shadow composite.
+	for ( const cx of column ? [ 8, w - 10 ] : [ w / 2 - 43, w / 2 + 37 ] ) {
+		for ( let cy = 0; cy < panelTop; cy += 8 ) vectorOrnament( MENU_ORNAMENTS.chain, ( x + cx ) * s, ( y + cy ) * s, 6 * s, 11 * s );
+	}
+	if ( column ) {
+		for ( let i = 0; i < 5; i ++ ) vectorWord( 'HEXEN'[ i ], ( x + 7 ) * s, ( y + 54 + i * 18 ) * s, 21 * s, 16 * s );
+		vectorWord( 'II', ( x + 8 ) * s, ( y + 151 ) * s, 19 * s, 18 * s );
+	} else {
+		vectorOrnament( MENU_ORNAMENTS.skull, ( x + w / 2 - 14 ) * s, ( y + 15 ) * s, 28 * s, 22 * s );
+		vectorWord( word, ( x + 10 ) * s, ( y + 36 ) * s, ( w - 20 ) * s, 17 * s );
+	}
+	return true;
 }
 
 function hexenImage( x, y, pic, srcY, srcH ) {
 
 	const [ px, py ] = physical( x, y ), scale = Draw_GetUIScale(), path = pic.path || '';
+	if ( vectorSign( x, y, pic ) ) return true;
 	if ( path.startsWith( 'gfx/menudot' ) ) return queueHexenSelector( pic, px, py, scale );
 	// text-box tiles frame native text: drawn natively, under it, never composited over it
 	if ( path.startsWith( 'gfx/box_' ) ) return false;
 	// The bigfont sheet is consumed by MainMenu_BigText, never drawn as a picture.
 	if ( /gfx\/menu\/(?:bigfont2?|conchars)\.lmp$/.test( path ) ) return true;
-	return queueHexenImage( pic, px, py, scale, srcY, srcH );
+	return queueArtwork( pic, px, py, scale, srcY, srcH );
 
 }
 
@@ -659,8 +668,8 @@ function hexenImage( x, y, pic, srcY, srcH ) {
  * multiplayer). `gfx/box_*` tiles are dropped (the text box panel replaces them); `gfx/bigbox.lmp` stays native;
  * pictures with no replacement are queued as blits so they still land above the WebGL panels.
  *
- * Under Hexen II every game picture is queued as a smoothed high-resolution image or, for `gfx/menu/menudot*`, as the
- * animated selector; Quake's replacements below are unchanged.
+ * Hexen signs extend the shared panel/text vocabulary, with portraits/help retained as artwork and menudot as a
+ * selector variant; Quake's replacements below are unchanged.
  *
  * @param {number} x left edge in virtual screen units
  * @param {number} y top edge in virtual units
@@ -738,7 +747,7 @@ export function MainMenu_Image( x, y, pic, srcY = 0, srcH = 0 ) {
 
 /**
  * Queues one animated menudot frame as Hexen II's selector. The native page has already chosen the frame from
- * `realtime`; the dynamic layer draws that original sprite cleanly upscaled instead of the rotating Q.
+ * `realtime`; the shared renderer draws the skin's vector selector glyph with that phase.
  *
  * @param {number} x left edge in virtual screen units
  * @param {number} y top edge in virtual units
@@ -754,20 +763,19 @@ export function MainMenu_MenuDot( x, y, pic ) {
 }
 
 /**
- * Queues a scrolling title or plaque picture at its animated destination. The native clipping is not baked in: the
+ * Queues a title or plaque through the shared image-to-vector mapping at its animated destination. The native clipping is not baked in: the
  * picture keeps its whole source and the overlay clips the negative top, so the dynamic layer can animate the slide at
  * full resolution. Called by `M_DrawTransPicCropped`.
  *
  * @param {number} x left edge in virtual screen units, menu offset already applied
  * @param {number} y top edge in virtual units; may be negative
  * @param {?qpic_t} pic the title or plaque picture
- * @returns {boolean} true when queued; false when the frame is not Hexen-skinned or the picture is missing
+ * @returns {boolean} true when handled; false when the frame is unskinned or the picture is missing
  */
 export function MainMenu_ScrollPic( x, y, pic ) {
 
-	if ( ! frameSkin || activeSkin().id !== 'hexen2' || ! pic ) return false;
-	const [ px, py ] = physical( x, y ); // menu-space in, physical pixels out, as every other picture hook
-	return queueHexenImage( pic, px, py, Draw_GetUIScale() );
+	if ( ! frameSkin || ! pic ) return false;
+	return MainMenu_Image( x, y, pic );
 
 }
 
@@ -781,11 +789,9 @@ let inGameSnapshot = false;
 export function MainMenu_SetInGame( value ) { inGameSnapshot = !! value; }
 
 /**
- * Finishes a skinned frame: for Hexen II draws the queued original pictures at full resolution first, renders the
- * queued text/panel commands at the overlay canvas's size, composites the result over the native drawing with the
- * menu's soft drop shadow (`SHADOW`), then draws the menudot selectors and Quake's deferred blits. Quake's command list
- * and composite order are unchanged. Called at the end of `M_Draw`. A render error disables the WebGL menu for the
- * session (native drawing resumes next frame) and is logged, not thrown.
+ * Finishes a skinned frame: draws residual artwork, then shared panel/text/selector commands and the shared soft
+ * shadow. Quake's deferred original-art blits retain their composite order. A render error disables the dynamic
+ * layer for the session; native drawing resumes next frame.
  *
  * @param {number} timeSeconds real time in seconds (`realtime`), passed to the renderer in milliseconds for the
  *   selector's rotation
@@ -801,15 +807,13 @@ export function MainMenu_End( timeSeconds ) {
 	try {
 
 		size = [ canvas.width, canvas.height ];
-		const renderCommands = hexen ? commands.filter( c => c.type === 'text' || c.type === 'panel' || c.type === 'slider' ) : commands;
+		const renderCommands = hexen ? commands.filter( c => c.type !== 'image' ) : commands;
 		if ( renderer.frame( size[ 0 ], size[ 1 ], timeSeconds * 1000, renderCommands, 0 ) === false ) return false;
-		// Hexen II's plaques, help pages and menu art are backgrounds: draw them before the renderer's canvas, then its
-		// dynamic lettering and panels over them. Menudots are the selector and stay crisp on top. Quake's command list
-		// is passed unchanged.
+		// Residual Hexen portrait/help artwork lies behind the shared renderer; all vector elements receive SHADOW.
+		// Quake's command list is passed unchanged.
 		if ( hexen ) for ( const command of commands ) if ( command.type === 'image' ) drawQueued( command );
 		const scale = Draw_GetUIScale();
 		Draw_FullResolutionCanvas( renderer.canvas, SHADOW.map( ( [ blur, alpha ] ) => [ blur * scale, alpha ] ) );
-		if ( hexen ) for ( const command of commands ) if ( command.type === 'selector' ) drawQueued( command );
 		// Logo artwork (the id mark) stays the original pixels, unsmoothed.
 		for ( const b of blits ) Draw_FullResolutionImage( b.pic.canvas, b.sx, b.sy, b.sw, b.sh, b.dx, b.dy, b.dw, b.dh, !! b.smooth );
 		presented = true; return true;
@@ -824,7 +828,7 @@ export function MainMenu_End( timeSeconds ) {
 
 }
 
-// Copies one queued Hexen image/selector at full resolution. The picture's canvas can be larger than its logical size
+// Copies one queued residual artwork image at full resolution. The picture's canvas can be larger than its logical size
 // (a high-DPI decode); source rectangles stay in picture units and are scaled here.
 function drawQueued( command ) {
 
