@@ -163,15 +163,10 @@ const HEXEN2 = frozen( {
 		mapLooks: frozenMap( {} )
 	} ),
 	rocks: frozen( {
-		// Hexen's texture names are generic material numbers, not Quake's descriptive ones: its stone architecture is
-		// rtex/mtex/ttex/rpal plus the few named marble and trim sheets. Liquids and skies are excluded before this.
-		materials: frozenMap( {
-			celt2: 'wall', celtbrown: 'wall', marble: 'wall', marbleseam: 'wall',
-			thronetex1: 'wall', trimtex: 'wall'
-		} ),
-		patterns: frozenArray( [
-			[ /^rtex\d+$/, 'wall' ], [ /^mtex\d+$/, 'wall' ], [ /^ttex\d+$/, 'wall' ], [ /^rpal\d+$/, 'wall' ]
-		] )
+		// No Hexen II surface takes the procedural rock relief yet: its material choices need the owner's texture review
+		// (skills/quaked-texture-authoring), so the rock field has no charts and its warm-up has nothing to wait for
+		materials: frozenMap( {} ),
+		patterns: frozenArray( [] )
 	} ),
 	sounds: frozen( {
 		lava: 'ambience/lava.wav',

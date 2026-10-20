@@ -56,6 +56,8 @@ Deno.test( 'Hexen II bindings resolve models/ and native names, and Quake-only e
 
 	GameProfile_Set( 'hexen2' );
 	const h = bindings.NewerBindings();
+	// no Hexen surface takes the procedural rock relief until the owner's texture review chooses its materials
+	same( Object.keys( h.rocks.materials ).length + h.rocks.patterns.length, 0, 'Hexen II rock relief surfaces' );
 	same( h.family, 'hexen2', 'family' );
 	same( h.modelDir, 'models/', 'model directory' );
 	same( h.modelExtension, '.mdl', 'model extension' );

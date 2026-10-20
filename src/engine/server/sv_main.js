@@ -1027,6 +1027,12 @@ export function SV_ConnectClient( clientnum ) {
 		for ( let i = 0; i < NUM_SPAWN_PARMS; i ++ )
 			client.spawn_parms[ i ] = savedSpawnParms[ i ];
 
+	} else if ( GameProfile_IsHexen2() ) {
+
+		// Native Hexen II has no SetNewParms (uhexen2 sv_main.c SV_ConnectClient comments the call out): a new client's
+		// spawn parms start empty and ClientConnect/PutClientInServer set the player up
+		client.spawn_parms.fill( 0 );
+
 	} else {
 
 		// call the progs to get default spawn parms for the new client

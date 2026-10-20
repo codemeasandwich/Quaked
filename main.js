@@ -57,6 +57,18 @@ async function main() {
 		const startClass = urlParams.get( 'class' ), startMap = urlParams.get( 'map' ), startSkillParam = urlParams.get( 'skill' ), startSkill = startSkillParam === null ? null : Number( startSkillParam ), autoStart = urlParams.get( 'autostart' ) === '1';
 		const desktop = Distribution_Profile()==='desktop' ? await (await import('./src/platform/desktop.js')).Desktop_Prepare() : null;
 		if(Distribution_Profile()==='desktop' && !desktop)return;
+		// A packaged trial (HEXEN2_TRIAL_GAME) has no visible console: mirror uncaught errors and the engine's console
+		// output to the app's trace log so a failed start can be diagnosed (src-tauri main.rs hexen_log)
+		if ( desktop?.autoStart ) {
+			const { Desktop_Log } = await import( './src/platform/desktop.js' );
+			const trace = ( kind, values ) => void Desktop_Log( kind + ' ' + values.map( v => v?.stack ?? String( v ) ).join( ' ' ).slice( 0, 2000 ) );
+			addEventListener( 'error', event => trace( 'window error:', [ event.error ?? event.message ] ) );
+			addEventListener( 'unhandledrejection', event => trace( 'unhandled rejection:', [ event.reason ] ) );
+			for ( const level of [ 'log', 'warn', 'error' ] ) {
+				const original = console[ level ].bind( console );
+				console[ level ] = ( ...values ) => { original( ...values ); trace( 'console.' + level + ':', values ); };
+			}
+		}
 		// One host for every game: the selected catalogue entry (the desktop app's id, or ?game=/the kept choice)
 		// chooses the game profile before any pack is mounted, so the same Host_Init, server, client and renderer run
 		// Quake, its mission packs and Hexen II alike.
@@ -312,6 +324,7 @@ async function main() {
 		} );
 
 		let oldtime = performance.now() / 1000;
+		let trialFrames = 0; // packaged-trial state lines (HEXEN2_TRIAL_GAME)
 
 		// Use renderer.setAnimationLoop instead of requestAnimationFrame.
 		// This is required for WebXR — Three.js automatically switches to
@@ -326,6 +339,7 @@ async function main() {
 			if ( R_PerfProfiling() ) R_PerfPump( Host_Frame );
 			else Host_Frame( time );
 			const startup=R_DemoLoadingStatus();
+			if ( desktop?.autoStart && ( ++ trialFrames % 120 ) === 1 ) void import( './src/platform/desktop.js' ).then( m => m.Desktop_Log( 'trial state frames=' + trialFrames + ' cls.state=' + cls.state + ' sv.active=' + sv.active + ' world=' + ( cl.worldmodel?.name ?? 'none' ) + ' startup=' + JSON.stringify( startup ) + ' key_dest=' + key_dest ) );
 			// Current demo samples fit the bounded cache. Warming both worlds at
 			// once evicted them before their images could admit those inputs.
 			if(hubNormalBytes&&!hubNormalsStarted&&(startup.mode==='welcome'&&cl.worldmodel?.name==='maps/start.bsp'||startup.mode==='demo'&&startup.phase==='done')){hubNormalsStarted=true;R_StartupNormalsPrefetch('maps/start.bsp',hubNormalBytes);}
