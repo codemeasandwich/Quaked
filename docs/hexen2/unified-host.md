@@ -175,7 +175,8 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `e77d7b3f` | DP | test of the ordinary shelf start (`tests/desktop_prepare_test.js`) in the engine list |
 | `9c0753c3` | owner trial 4 | Hexen small menu text in the game's own crisp pixels; help scrolls smoothly, held arrows scroll, text fades under pins |
 | `87922a8c` | owner trial 5 | Hexen II starts on its title demos like Quake (Enhanced and Classic halves); Portal mounts the base game's loose files |
-| (this commit) | DD, owner trial 6 | native demos play from inside the level; Hexen menu legible over the title demo; split labels clear of its plaque |
+| `f023ded9` | DD, owner trial 6 | native demos play from inside the level; Hexen menu legible over the title demo; split labels clear of its plaque |
+| (this commit) | TR, owner trial 7 | Hexen see-through model skins (EF_HOLEY/TRANSPARENT/SPECIAL_TRANS) loaded with their alpha |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;
@@ -298,6 +299,15 @@ labels move to the bottom of the picture (Hexen's plaque covered the top-left on
 the supplied renderer's recessed carving, near-black over the demo). 311/311 suites, engine list 220/220, browser
 trial menus 11/11, base 8/8, Portal 3/3, demo 4/4, playdemo 4/4.
 
+Owner trial 7 (20 October): the Necromancer's star spell and a horse boss's lightning showed black square
+backgrounds. Package TR (GPT Sol) found the loader passed each Hexen model's skin mode into `GL_LoadTexture`'s
+`splitFullbright` slot, so all 32 flagged retail models (`star.mdl` is EF_HOLEY) were uploaded opaque in every path;
+decoded zero-alpha texels 0 → 1,046,723 of 1,046,723 after the fix; `tests/hexen2_skin_alpha_test.js` 3/10 before,
+10/10 after; Quake's skins are unchanged (mode 0). Famine's `fambeam.mdl` and the lightning `stlghtng.mdl` have no
+skin flags and draw opaque natively too; in demo2 the Famine beam renders without a square, so the exact lightning
+the owner saw is not identified yet. On-screen confirmation of the star is pending (a viewmodel-swap probe could not
+show the small model); the owner can check with the Necromancer's second weapon.
+
 Open decisions and known limits:
 
 - Base-game hull 4 is the 1.11 hydra size (±40) and Portal's the pentacle (±8), following each game's own engine;
@@ -313,3 +323,8 @@ E2 (20 October 2026; investigation E1 and a same-spot browser comparison of Clas
 verified at integration 288/288 suites, engine list 217/217, and the trial's launch screenshot): profile-bound neutral Hexen Enhanced grading and a Classic-sized
 3D rectangle above its HUD; Quake launch text and viewport policy retained. Implementation, RED/GREEN evidence,
 consumer audit, Bluey outage and remaining integration/visual acceptance gates: [e2-enhanced-look.md](e2-enhanced-look.md).
+
+TR (20 October 2026, uncommitted local candidate): alias skin modes reached the texture loader in its fullbright
+argument slot, leaving index-zero texels opaque. Both single and grouped uploads now use the proper argument.
+Regression, installed-model coverage, coordination outage and outstanding independent/GPU/owner gates are retained
+in [tr-skin-alpha.md](tr-skin-alpha.md). This is not a qualified delivery or a release.

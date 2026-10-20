@@ -325,7 +325,7 @@ function Mod_LoadAllSkins( buf, numskins, offset, skinMode = SKIN_MODE_DEFAULT )
 			pheader.gl_texturenum[ i ][ 1 ] =
 			pheader.gl_texturenum[ i ][ 2 ] =
 			pheader.gl_texturenum[ i ][ 3 ] =
-				GL_LoadTexture( name, pheader.skinwidth, pheader.skinheight, skin, true, false, skinMode );
+				GL_LoadTexture( name, pheader.skinwidth, pheader.skinheight, skin, true, false, false, skinMode );
 
 			pos = skinDataOfs + s;
 
@@ -354,7 +354,7 @@ function Mod_LoadAllSkins( buf, numskins, offset, skinMode = SKIN_MODE_DEFAULT )
 
 				const name = loadmodel.name + '_' + i + '_' + j;
 				pheader.gl_texturenum[ i ][ j & 3 ] =
-					GL_LoadTexture( name, pheader.skinwidth, pheader.skinheight, skin, true, false, skinMode );
+					GL_LoadTexture( name, pheader.skinwidth, pheader.skinheight, skin, true, false, false, skinMode );
 
 				pos += s;
 
@@ -488,6 +488,7 @@ export function Mod_LoadAliasModel( mod, buffer ) {
 	// load the skins
 	//
 	const SIZEOF_MDL = newModel ? 88 : 84;
+	// uhexen2 engine/h2shared/gl_model.c:2253-2259: skin flags select the palette alpha conversion.
 	const skinMode = R_ModelSkinMode( mod.flags );
 	let pos = Mod_LoadAllSkins( buffer, pheader.numskins, SIZEOF_MDL, skinMode );
 
