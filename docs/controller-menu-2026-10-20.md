@@ -130,6 +130,11 @@ Checked in that browser trial: mapping X through the drop-down wrote `bind PAD_X
 turned the model, and holding B returned to the Controller page; no page errors. Suites: 415/415 across every
 controller, gyro, gamepad, keys, menu, options, input, Hexen II, shelf and selection suite.
 
+Owner trial, 21 October 2026: the packaged app showed the labels without the controller. WebKit (Safari, the Mac
+app) copies the preview's detached WebGL canvas onto the overlay as blank unless the drawing buffer is kept. Measured
+in Playwright's WebKit on the Customise page, the share of bright pixels where the model sits was 0.000 before
+`preserveDrawingBuffer: true` and 0.733 after (Chrome: 0.725); Hexen II's Test page 0.725 in WebKit after the fix.
+
 Not yet checked: a physical controller (button and axis mapping and gyro direction on the owner's Switch Pro
 Controller in the packaged app), touch input on a phone, and the WebGL-unavailable list fallback in a real browser.
 

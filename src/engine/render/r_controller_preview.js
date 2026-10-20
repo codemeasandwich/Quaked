@@ -38,7 +38,8 @@ export function R_ControllerPreviewOpen() {
 	let renderer;
 	try {
 
-		renderer = new THREE.WebGLRenderer( { canvas: document.createElement( 'canvas' ), alpha: true, antialias: true } );
+		// WebKit (Safari, the Mac app) copies a detached WebGL canvas as blank unless its drawing buffer is kept
+		renderer = new THREE.WebGLRenderer( { canvas: document.createElement( 'canvas' ), alpha: true, antialias: true, preserveDrawingBuffer: true } );
 		const model = buildController( THREE ), scene = new THREE.Scene();
 		scene.add( model.group, new THREE.HemisphereLight( 0xffffff, 0x454555, 2.4 ) );
 		const light = new THREE.DirectionalLight( 0xffffff, 3 ); light.position.set( - 3, 8, - 4 ); scene.add( light );
