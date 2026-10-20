@@ -16,15 +16,15 @@ const read=path=>readFile(new URL('../'+path,import.meta.url));
 const json=async path=>JSON.parse(await read(path));
 const digest=bytes=>createHash('sha256').update(bytes).digest('hex');
 const roles=['front','back','spine'];
-const expectedIDs=['shareware','quake','hipnotic','rogue','dopa','mg1','dawn','ad','quoth','malice','xmen','aopfm_v2','mod_quaked','mod_hexen_2','mod_hexen_2_portal_of_praevus','mod_alkaline','mod_tremor','mod_hexen_2_shareware'].sort();
-const discoveredNames={mod_quaked:'Quaked',mod_hexen_2:'Hexen 2',mod_hexen_2_portal_of_praevus:'Hexen 2 Portal of Praevus',mod_alkaline:'Alkaline',mod_tremor:'Tremor',mod_hexen_2_shareware:'Hexen 2 Shareware'};
+const expectedIDs=['shareware','quake','hipnotic','rogue','dopa','mg1','dawn','ad','quoth','malice','xmen','aopfm_v2','mod_quaked','mod_hexen_2','mod_hexen_2_portal_of_praevus','mod_alkaline','mod_tremor','mod_hexen_2_shareware','mod_the_immortal_lock'].sort();
+const discoveredNames={mod_quaked:'Quaked',mod_hexen_2:'Hexen 2',mod_hexen_2_portal_of_praevus:'Hexen 2 Portal of Praevus',mod_alkaline:'Alkaline',mod_tremor:'Tremor',mod_hexen_2_shareware:'Hexen 2 Shareware',mod_the_immortal_lock:'The Immortal Lock'};
 const activeRows=()=>Object.entries(GAME_BOXES).flatMap(([game,faces])=>roles.filter(face=>faces[face]).map(face=>({game,face,path:faces[face]}))).sort((a,b)=>a.path.localeCompare(b.path));
 async function images(path){const result=[];for(const item of await readdir(new URL('../'+path,import.meta.url),{withFileTypes:true})){const child=path+'/'+item.name;if(item.isDirectory())result.push(...await images(child));else if(item.isFile()&&/\.(png|jpe?g|webp|avif|gif)$/i.test(child))result.push(child);}return result;}
 
 test('every live face has one canonical role and the current manifest is exhaustive',async()=>{
  assert.deepEqual(Object.keys(GAME_BOXES).sort(),expectedIDs);
  const live=activeRows(),manifest=await json('assets/boxes/manifest.json');
- assert.equal(live.length,53,'eighteen complete supplied boxes except unavailable retail Hexen II back');
+ assert.equal(live.length,56,'nineteen complete supplied boxes except unavailable retail Hexen II back');
  assert.deepEqual(manifest.faces.map(({game,face,path})=>({game,face,path})).sort((a,b)=>a.path.localeCompare(b.path)),live);
  assert.equal(new Set(live.map(r=>r.path)).size,live.length);
  for(const row of live)assert.equal(row.path,`assets/boxes/${row.game}/${row.face}.webp`,'wraps, side aliases and inactive originals cannot become live fronts');
@@ -77,6 +77,12 @@ test('derivatives retain exact original custody and bounded source-panel provena
   const content=face.content;assert.ok(content.left>=0&&content.top>=0&&content.width>0&&content.height>0);assert.ok(content.left+content.width<=width&&content.top+content.height<=height);
   assert.ok(Math.abs(content.width/crop.width-content.height/crop.height)<Math.max(1/crop.width,1/crop.height)*2,face.path+' scales source proportions without stretching letters');
  }
+ const immortal=Object.fromEntries(record.faces.filter(face=>face.game==='mod_the_immortal_lock').map(face=>[face.face,face]));
+ // In the supplied 1659×948 wrap, the spine's PC / MAC footer starts near
+ // x783, left of its central title column. The first x792 cut split its P.
+ assert.ok(immortal.spine.crop.left<=780,'Immortal Lock spine keeps margin before the complete PC / MAC footer');
+ assert.equal(immortal.back.crop.left+immortal.back.crop.width,immortal.spine.crop.left,'back ends before the complete spine footer, with no fragment duplicated');
+ assert.equal(immortal.spine.crop.left+immortal.spine.crop.width,immortal.front.crop.left,'spine/front share one source boundary');
  // The superseded historical manifest remains immutable evidence: every original
  // hash must resolve through its explicit new authoring path.
  const previous=await json('docs/evidence/box-art-standardization-2026-10-20/baseline-runtime-manifest.json');

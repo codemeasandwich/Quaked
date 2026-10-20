@@ -1,0 +1,15 @@
+PASS every box image exists and belongs to a catalogue game or an explicitly approved discovered title
+PASS a game's box: its own art, placeholders where it has none, and whether it plays
+PASS a picked folder: its name and its front, side (or spine) and back images, whatever their type
+PASS a game's URL chooses that page's game over the kept choice; the shelf starts on the kept one
+PASS on a game's own URL the game command switches by going to the new game's URL
+PASS a local-play player window opens on its host's game
+PASS native local artwork overlays only supplied faces and preserves bundled art and selection authority
+PASS front and spine canonical image names beat cover and side aliases while unboxed games retain printed missing faces
+PASS folder face selection is independent of enumeration order and never promotes nested or unsupported images
+PASS folder image type ties use native scan priority without allowing an alias to beat a canonical face
+PASS imported defaults work without local files and never authorize an unsupported title
+PASS artwork-only discovered titles use a neutral game label without implying Quake compatibility
+PASS current Quoth and Machine faces are active defaults while the screenshot collage is never a box front
+RESULT 13/13 passed (tests/game_shelf_test.js)
+TOTAL 13/13 passed

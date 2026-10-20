@@ -25,13 +25,13 @@ on 10 October 2026 from the LaunchBox Games Database (`gamesdb.launchbox-app.com
 
 The owner directs supplied game artwork to become bundled defaults for every downloader, with independently replaceable local faces. The owner additionally authorizes splitting combined wraps and standardizing dimensions, explicitly permitting deterministic crops/resizing and AI only where composition repair is needed.
 
-The current [manifest](manifest.json) contains **53 faces across 18 titles**. All fronts and backs are **1640×2000 pixels**; all spines are **340×2000 pixels**. These ratios match the existing shelf's .82 face aspect and .17 depth/height. Every runtime filename is `front.webp`, `back.webp` or `spine.webp`, encoded losslessly. Complete reviewed panels are fitted proportionally inside their canvases with a restrained dark background; no lettering is stretched or discarded to fill a different ratio. Exact panel rectangles, content placement, hashes and immutable sources are bound by the [derivation record](../../docs/evidence/box-art-standardization-2026-10-20/derivation.json) and reproducible with `node tools/box_art/standardize.mjs docs/evidence/box-art-standardization-2026-10-20/derivation.json`.
+The current [manifest](manifest.json) contains **56 faces across 19 titles**. All fronts and backs are **1640×2000 pixels**; all spines are **340×2000 pixels**. These ratios match the existing shelf's .82 face aspect and .17 depth/height. Every runtime filename is `front.webp`, `back.webp` or `spine.webp`, encoded losslessly. Complete reviewed panels are fitted proportionally inside their canvases with a restrained dark background; no lettering is stretched or discarded to fill a different ratio. Exact panel rectangles, content placement, hashes and immutable sources are bound by the [derivation record](../../docs/evidence/box-art-standardization-2026-10-20/derivation.json) and reproducible with `node tools/box_art/standardize.mjs docs/evidence/box-art-standardization-2026-10-20/derivation.json`.
 
 | Bundled IDs | Source / current faces |
 |---|---|
 | quake, hipnotic, rogue | Retained retail fronts/backs; supplied mission spines; all three faces |
 | shareware, mg1, quoth | Owner-supplied separate originals; all three faces |
-| aopfm_v2, ad, dopa, dawn, mod_alkaline, mod_tremor, mod_hexen_2_shareware | New supplied wraps split into back/spine/front |
+| aopfm_v2, ad, dopa, dawn, mod_alkaline, mod_tremor, mod_hexen_2_shareware, mod_the_immortal_lock | New supplied wraps split into back/spine/front |
 | malice, xmen | New supplied separate front/back/side originals; X-Men wrap retained as source |
 | mod_quaked | Supplied front and newly split retained back/spine composite |
 | mod_hexen_2 | Supplied front/spine; back remains a printed placeholder |
@@ -41,10 +41,12 @@ Malice and Quoth had wide spine layouts that left large unused areas when fitted
 
 All originals are preserved unchanged under `assets/authoring/box_art`: earlier runtime originals under `originals-2026-10-20`, new local images under `import-2026-10-20`, and AI edit canvases under `edits-2026-10-20`. Authoring is excluded from runtime distribution. The unchanged [19 October baseline](../../docs/evidence/box-art-standardization-2026-10-20/baseline-runtime-manifest.json), its historical relocation evidence and `historicalResolution` preserve exact prior byte identities. Old import receipts describe the original images, not today's normalized runtime derivatives.
 
-The `mod_` IDs reuse discovered-folder naming. The scanner retains the six explicitly approved artwork-only folders after their images move into the project; this metadata adds no mount tokens or engine compatibility. Missing game content remains unplayable. Every game directory and non-image file is retained. Quake's held launch-promotion poster stays untouched. The newly supplied X-Men poster is archived as source material and never assigned a box-face role. q30's screenshot collage, previous Machine cover and other alternate scans/flaps remain source-only.
+The `mod_` IDs reuse discovered-folder naming. The scanner retains the seven explicitly approved artwork-only folders after their images move into the project; this metadata adds no mount tokens or engine compatibility. Missing game content remains unplayable. Every game directory and non-image file is retained. Quake's held launch-promotion poster stays untouched. The newly supplied X-Men poster is archived as source material and never assigned a box-face role. q30's screenshot collage, previous Machine cover and other alternate scans/flaps remain source-only.
 
 Local overrides still accept `front`, `back`, `spine` (aliases `cover` for front and `side` for spine), case-insensitive PNG/JPG/JPEG/WebP/GIF/AVIF. Canonical names win over aliases. A missing or failed override retains that face's bundled image, then its printed placeholder. See the [existing native contract](../../docs/native-box-art-2026-10-19.md). A combined wrap named `cover` must be split before it is suitable as a local front override; automatic import heuristics are not added.
 
 ## Missing artwork
 
-Among these 18 titles, only the retail Hexen II back has no supplied matching artwork and retains its printed placeholder. Other catalogue titles without supplied artwork, including q30a1024 and Soul of Evil, retain their existing printed placeholders. Artwork availability never proves game compatibility.
+Among these 19 titles, only the retail Hexen II back has no supplied matching artwork and retains its printed placeholder. Other catalogue titles without supplied artwork, including q30a1024 and Soul of Evil, retain their existing printed placeholders. Artwork availability never proves game compatibility.
+
+The Immortal Lock wrap arrived during the first batch’s native build and was added as a subsequent three-face increment using the same reviewed deterministic pipeline. The first 53-face candidate remains retained at Dev commit `6e3e0237e9a1c3b520689b10ab824fc737e04b5c`; earlier receipts are historical for that exact batch.

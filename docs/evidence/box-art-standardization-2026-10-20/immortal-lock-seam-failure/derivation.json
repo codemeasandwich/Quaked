@@ -1,0 +1,83 @@
+{
+  "reason": "Original x792 seam bisected bottom PC/MAC label: stray P on back, missing left edge on spine. Move seam to770; retain source unchanged.",
+  "faces": [
+    {
+      "game": "mod_the_immortal_lock",
+      "face": "back",
+      "path": "assets/boxes/mod_the_immortal_lock/back.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/mod_the_immortal_lock/cover.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 792,
+        "height": 948
+      },
+      "background": "#15110c",
+      "note": "Newly arrived owner wrap after first qualified batch; independently reviewed back/spine/front panel boundaries, no AI.",
+      "sourceSha256": "0d3f49b0a84ec1990c81de336f864868b1d1f13ad7d0752dd789c888664c5467",
+      "fit": "contain",
+      "content": {
+        "left": 0,
+        "top": 18,
+        "width": 1640,
+        "height": 1963
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "2721a429eb66090b35c9d2af8c584fe512f04f849213c8712e0a204712d92185",
+      "bytes": 1544824
+    },
+    {
+      "game": "mod_the_immortal_lock",
+      "face": "front",
+      "path": "assets/boxes/mod_the_immortal_lock/front.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/mod_the_immortal_lock/cover.png",
+      "crop": {
+        "left": 917,
+        "top": 0,
+        "width": 742,
+        "height": 948
+      },
+      "background": "#15110c",
+      "note": "Newly arrived owner wrap after first qualified batch; independently reviewed back/spine/front panel boundaries, no AI.",
+      "sourceSha256": "0d3f49b0a84ec1990c81de336f864868b1d1f13ad7d0752dd789c888664c5467",
+      "fit": "contain",
+      "content": {
+        "left": 37,
+        "top": 0,
+        "width": 1565,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "84f9716ea95847e842eabc770268234bdbf5013f81d88a972afdede074eb7462",
+      "bytes": 2649222
+    },
+    {
+      "game": "mod_the_immortal_lock",
+      "face": "spine",
+      "path": "assets/boxes/mod_the_immortal_lock/spine.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/mod_the_immortal_lock/cover.png",
+      "crop": {
+        "left": 792,
+        "top": 0,
+        "width": 125,
+        "height": 948
+      },
+      "background": "#15110c",
+      "note": "Newly arrived owner wrap after first qualified batch; independently reviewed back/spine/front panel boundaries, no AI.",
+      "sourceSha256": "0d3f49b0a84ec1990c81de336f864868b1d1f13ad7d0752dd789c888664c5467",
+      "fit": "contain",
+      "content": {
+        "left": 38,
+        "top": 0,
+        "width": 264,
+        "height": 2000
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "3e34798aaf3119fac46db7036904c37e63c818353b67cd443e528882b8c46cb4",
+      "bytes": 297106
+    }
+  ]
+}

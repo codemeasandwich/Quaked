@@ -457,6 +457,15 @@
       "corrects": "assets/authoring/box_art/edits-2026-10-20/malice/spine-layout.png",
       "tool": "image_gen.imagegen",
       "prompt": "docs/evidence/box-art-standardization-2026-10-20/malice-correction-prompt.json"
+    },
+    {
+      "originalPath": "/Users/bri/quaked/The Immortal Lock/cover.png",
+      "archivePath": "assets/authoring/box_art/import-2026-10-20/mod_the_immortal_lock/cover.png",
+      "sha256": "0d3f49b0a84ec1990c81de336f864868b1d1f13ad7d0752dd789c888664c5467",
+      "bytes": 2247585,
+      "width": 1659,
+      "height": 948,
+      "origin": "local"
     }
   ],
   "faces": [
@@ -1370,6 +1379,84 @@
       "height": 2000,
       "sha256": "4f20bb894e17ea1fb714406415abe5fd5e33f76ace9100b1e088bc2351098cbd",
       "bytes": 465546
+    },
+    {
+      "game": "mod_the_immortal_lock",
+      "face": "back",
+      "path": "assets/boxes/mod_the_immortal_lock/back.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/mod_the_immortal_lock/cover.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 770,
+        "height": 948
+      },
+      "background": "#15110c",
+      "note": "Newly arrived owner wrap; independent panel review corrected seam from792 to770 to preserve entire bottom PC/MAC label on spine. Full source retained; no AI.",
+      "sourceSha256": "0d3f49b0a84ec1990c81de336f864868b1d1f13ad7d0752dd789c888664c5467",
+      "fit": "contain",
+      "content": {
+        "left": 8,
+        "top": 0,
+        "width": 1624,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "a1f7ab02e864a8cd750827d38405e016c76967a324a5a97af1185b77fb5f0799",
+      "bytes": 1545442
+    },
+    {
+      "game": "mod_the_immortal_lock",
+      "face": "front",
+      "path": "assets/boxes/mod_the_immortal_lock/front.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/mod_the_immortal_lock/cover.png",
+      "crop": {
+        "left": 917,
+        "top": 0,
+        "width": 742,
+        "height": 948
+      },
+      "background": "#15110c",
+      "note": "Newly arrived owner wrap; independent panel review corrected seam from792 to770 to preserve entire bottom PC/MAC label on spine. Full source retained; no AI.",
+      "sourceSha256": "0d3f49b0a84ec1990c81de336f864868b1d1f13ad7d0752dd789c888664c5467",
+      "fit": "contain",
+      "content": {
+        "left": 37,
+        "top": 0,
+        "width": 1565,
+        "height": 2000
+      },
+      "width": 1640,
+      "height": 2000,
+      "sha256": "84f9716ea95847e842eabc770268234bdbf5013f81d88a972afdede074eb7462",
+      "bytes": 2649222
+    },
+    {
+      "game": "mod_the_immortal_lock",
+      "face": "spine",
+      "path": "assets/boxes/mod_the_immortal_lock/spine.webp",
+      "source": "assets/authoring/box_art/import-2026-10-20/mod_the_immortal_lock/cover.png",
+      "crop": {
+        "left": 770,
+        "top": 0,
+        "width": 147,
+        "height": 948
+      },
+      "background": "#15110c",
+      "note": "Newly arrived owner wrap; independent panel review corrected seam from792 to770 to preserve entire bottom PC/MAC label on spine. Full source retained; no AI.",
+      "sourceSha256": "0d3f49b0a84ec1990c81de336f864868b1d1f13ad7d0752dd789c888664c5467",
+      "fit": "contain",
+      "content": {
+        "left": 15,
+        "top": 0,
+        "width": 310,
+        "height": 2000
+      },
+      "width": 340,
+      "height": 2000,
+      "sha256": "fed5355b046691cfc7dbba2a6da83bfe4245c497f4ee63fd4310f7699aab0909",
+      "bytes": 311780
     },
     {
       "game": "mod_tremor",

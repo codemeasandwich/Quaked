@@ -373,7 +373,7 @@ fn retained_new_boxed_folders_remain_visible_after_original_art_is_imported() {
     let f = Fixture::new();
     // Import removes canonical local faces only after preserving their originals in
     // the project. Empty retained folders still identify bundled, display-only boxes.
-    for folder in ["aLkAlInE", "Tremor", "Hexen 2 Shareware", "Unboxed Empty"] {
+    for folder in ["aLkAlInE", "Tremor", "Hexen 2 Shareware", "The Immortal Lock", "Unboxed Empty"] {
         fs::create_dir(f.path(folder)).unwrap();
     }
     let found = library::scan(&f.0).unwrap();
@@ -382,6 +382,7 @@ fn retained_new_boxed_folders_remain_visible_after_original_art_is_imported() {
     assert_eq!(titles, [
         ("mod_alkaline", "aLkAlInE"),
         ("mod_hexen_2_shareware", "Hexen 2 Shareware"),
+        ("mod_the_immortal_lock", "The Immortal Lock"),
         ("mod_tremor", "Tremor"),
     ], "the exact retained folder identities select their shipped defaults case-insensitively");
     assert!(found.packs.is_empty(), "box defaults never admit game archives");
