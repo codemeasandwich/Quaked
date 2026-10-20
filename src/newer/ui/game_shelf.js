@@ -34,7 +34,7 @@ export const GAME_BOXES = Object.freeze( {
 	mod_the_immortal_lock: { front: 'assets/boxes/mod_the_immortal_lock/front.webp', back: 'assets/boxes/mod_the_immortal_lock/back.webp', spine: 'assets/boxes/mod_the_immortal_lock/spine.webp' },
 	mod_tremor: { front: 'assets/boxes/mod_tremor/front.webp', back: 'assets/boxes/mod_tremor/back.webp', spine: 'assets/boxes/mod_tremor/spine.webp' },
 	mod_quaked: { front: 'assets/boxes/mod_quaked/front.webp', back: 'assets/boxes/mod_quaked/back.webp', spine: 'assets/boxes/mod_quaked/spine.webp' },
-	mod_hexen_2: { front: 'assets/boxes/mod_hexen_2/front.webp', spine: 'assets/boxes/mod_hexen_2/spine.webp' },
+	mod_hexen_2: { front: 'assets/boxes/mod_hexen_2/front.webp', back: 'assets/boxes/mod_hexen_2/back.webp', spine: 'assets/boxes/mod_hexen_2/spine.webp' },
 	mod_hexen_2_shareware: { front: 'assets/boxes/mod_hexen_2_shareware/front.webp', back: 'assets/boxes/mod_hexen_2_shareware/back.webp', spine: 'assets/boxes/mod_hexen_2_shareware/spine.webp' },
 	mod_hexen_2_portal_of_praevus: { front: 'assets/boxes/mod_hexen_2_portal_of_praevus/front.webp', back: 'assets/boxes/mod_hexen_2_portal_of_praevus/back.webp', spine: 'assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp' }
 } );

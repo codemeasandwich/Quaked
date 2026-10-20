@@ -1,0 +1,20 @@
+{
+  "tool": "image_gen.imagegen",
+  "mode": "built-in edit",
+  "prompt": "Use case: precise-object-edit / outpainting. Asset: existing Abyss of Pandemonium front cover, widened to match its back. Image 1 is the EDIT TARGET: an 808x975 canvas with the complete original clean front panel centered and two MAGENTA missing strips, exactly 69 pixels wide at left and right. Replace ONLY those two magenta strips with natural continuation of the adjoining smoky dark green/brown upper background and luminous orange fire/mist lower background. The strips should look like original surrounding cover artwork, full bleed to every edge. Image 2 is the same original front without the magenta canvas. Image 3 is an older broader retail scan, provided ONLY to guide the surrounding smoky/fire atmosphere; DO NOT borrow its different text/layout or compress the target. Preserve the center of Image 1, every original pixel, all lettering, title, mascot face, teeth/eyes, printed PC & MAC CD-ROM line, subtitle, legal line and circular logo exactly in shape, size, position, color and proportions. Do not enlarge, shrink, squeeze, crop, move or redraw center elements. No new letters/logos/objects. Do not add a frame, crease, border, dark bar or vignette seam. Remove all magenta; render only a straight-on flat full cover (same 808:975 width/height ratio). The goal is modest left/right environmental extension with seamless transitions while preserving all original artwork and wording. Keep the central composition intact; only extend its sides.",
+  "authority": "Owner explicitly requested AI side extension to match Abyss back proportions.",
+  "protectedSource": {
+    "path": "assets/authoring/box_art/import-2026-10-20/aopfm_v2/cover.png",
+    "crop": {
+      "left": 943,
+      "top": 0,
+      "width": 670,
+      "height": 975
+    },
+    "destination": {
+      "left": 69,
+      "top": 0
+    }
+  },
+  "newPixels": "Only left and right 69-pixel wings; original center restored after generation."
+}

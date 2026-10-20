@@ -10,6 +10,8 @@ const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const CATALOG='assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/catalog.json';
 async function fixture(fn){
  const root=await mkdtemp(join(tmpdir(),'quaked-gate-test-')),env=withoutGitEnvironment();
+ // Test default scope unless a case opts in; isolate the enclosing gate's mode.
+ delete env.QUAKED_CHECKPOINT_MODE;
  const git=(...args)=>execFileSync('git',args,{cwd:root,env,encoding:'utf8'}).trimEnd();
  const put=async(path,value)=>{await mkdir(join(root,path,'..'),{recursive:true});await writeFile(join(root,path),value);};
  try{

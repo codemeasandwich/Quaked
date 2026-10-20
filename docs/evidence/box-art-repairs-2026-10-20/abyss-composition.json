@@ -1,0 +1,44 @@
+{
+  "master": "assets/authoring/box_art/repairs-2026-10-20/aopfm_v2/front-expanded-master.png",
+  "donor": "assets/authoring/box_art/repairs-2026-10-20/aopfm_v2/front-outpaint-draft-v2.png",
+  "dimensions": [
+    808,
+    975
+  ],
+  "protectedCenter": {
+    "left": 81,
+    "top": 0,
+    "width": 646,
+    "height": 975,
+    "sourceCrop": {
+      "left": 955,
+      "top": 0,
+      "width": 646,
+      "height": 975
+    },
+    "pixelIdentity": true,
+    "rgbSha256": "a3ae4bbc9f72f3c7452c6a91594beb258d2f644bf9fa77c3898adedc21d95e58"
+  },
+  "newWings": [
+    69,
+    69
+  ],
+  "backgroundOnlyBlend": {
+    "left": [
+      69,
+      80
+    ],
+    "right": [
+      727,
+      738
+    ],
+    "widthEach": 12,
+    "method": "smoothstep original weight; independently inspected strips contain only smoke/haze/fire, no meaningful text, mascot or logo pixels."
+  },
+  "removedScanFold": {
+    "left": 940,
+    "width": 3
+  },
+  "authority": "Owner explicitly authorized AI side extension/regeneration to match back proportions.",
+  "failedStrictTrials": "Retained; strict whole-background rectangle restoration caused visible joins and color-matching trials caused streaks."
+}

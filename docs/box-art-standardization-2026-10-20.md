@@ -1,5 +1,7 @@
 # Box-art standardization — 20 October 2026
 
+Subsequent owner-reference correction: see [two-box repair](box-art-repairs-2026-10-20.md). The currentinventory is 57 faces / 19 complete titles; the owner-supplied Hexen II back is integrated and Abyss has an explicitly authorized background extension. Earlier “not supplied” conclusions and56-face/zero-AI current-state descriptions below are historical and superseded; original spine-fidelity rules remain unchanged.
+
 Current artwork: **56 canonical faces across 19 titles**. Current front/back canvases: **1640×2000**; front/back dimensions are flexible under the owner’s final ruling. Spine: **340×2000**. All supplied originals remain unchanged in authoring; the retail Hexen II back remains the only missing face among these titles. The latest Immortal Lock increment and its separate evidence are recorded below.
 
 ## Authority, ownership and plan

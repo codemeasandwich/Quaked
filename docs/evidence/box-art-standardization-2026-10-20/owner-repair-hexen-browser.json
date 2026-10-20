@@ -1,0 +1,3371 @@
+{
+  "status": "PASS",
+  "started": "2026-10-20T16:33:23.933Z",
+  "scope": "Focused owner-reference repair trial: supplied main Hexen II back and, when final, Abyss front/back; all current default images decoded; no native executable, game launch, release or owner acceptance",
+  "completed": "2026-10-20T16:33:53.028Z",
+  "phases": [
+    {
+      "phase": "large",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "snapshot": {
+        "games": [
+          {
+            "id": "shareware",
+            "name": "Quake (shareware)",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/shareware/front.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "Shareware",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/shareware/back.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/shareware/spine.webp\")",
+                "placeholder": false,
+                "width": 85,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "quake",
+            "name": "Quake",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/quake/front.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/quake/back.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/quake/spine.webp\")",
+                "placeholder": false,
+                "width": 85,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "hipnotic",
+            "name": "Scourge of Armagon",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/hipnotic/front.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/hipnotic/back.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/hipnotic/spine.webp\")",
+                "placeholder": false,
+                "width": 85,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "rogue",
+            "name": "Dissolution of Eternity",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/rogue/front.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/rogue/back.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/rogue/spine.webp\")",
+                "placeholder": false,
+                "width": 85,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "dopa",
+            "name": "Dimension of the Past",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/dopa/front.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/dopa/back.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/dopa/spine.webp\")",
+                "placeholder": false,
+                "width": 85,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mg1",
+            "name": "Dimension of the Machine",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mg1/front.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mg1/back.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mg1/spine.webp\")",
+                "placeholder": false,
+                "width": 85,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "dawn",
+            "name": "Dawn of the Machine",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/dawn/front.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/dawn/back.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/dawn/spine.webp\")",
+                "placeholder": false,
+                "width": 85,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "ad",
+            "name": "Arcane Dimensions",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/ad/front.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/ad/back.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/ad/spine.webp\")",
+                "placeholder": false,
+                "width": 85,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "malice",
+            "name": "Malice",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/malice/front.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/malice/back.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/malice/spine.webp\")",
+                "placeholder": false,
+                "width": 85,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "xmen",
+            "name": "X-Men",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/xmen/front.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/xmen/back.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/xmen/spine.webp\")",
+                "placeholder": false,
+                "width": 85,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "aopfm_v2",
+            "name": "Abyss of Pandemonium",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/aopfm_v2/front.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/aopfm_v2/back.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/aopfm_v2/spine.webp\")",
+                "placeholder": false,
+                "width": 85,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "quoth",
+            "name": "Quoth",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/quoth/front.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/quoth/back.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/quoth/spine.webp\")",
+                "placeholder": false,
+                "width": 85,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_alkaline",
+            "name": "Alkaline",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_alkaline/front.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_alkaline/back.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_alkaline/spine.webp\")",
+                "placeholder": false,
+                "width": 85,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_the_immortal_lock",
+            "name": "The Immortal Lock",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/front.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/back.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/spine.webp\")",
+                "placeholder": false,
+                "width": 85,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_tremor",
+            "name": "Tremor",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_tremor/front.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_tremor/back.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_tremor/spine.webp\")",
+                "placeholder": false,
+                "width": 85,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_quaked",
+            "name": "Quaked",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_quaked/front.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_quaked/back.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_quaked/spine.webp\")",
+                "placeholder": false,
+                "width": 85,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2",
+            "name": "Hexen 2",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2/front.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2/back.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2/spine.webp\")",
+                "placeholder": false,
+                "width": 85,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2_shareware",
+            "name": "Hexen 2 Shareware",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/front.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/back.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/spine.webp\")",
+                "placeholder": false,
+                "width": 85,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2_portal_of_praevus",
+            "name": "Hexen 2 Portal of Praevus",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/front.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/back.webp\")",
+                "placeholder": false,
+                "width": 410,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp\")",
+                "placeholder": false,
+                "width": 85,
+                "height": 500,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          }
+        ],
+        "ipcCalls": [],
+        "unexpectedOpen": null
+      },
+      "frontBackIDs": [
+        "mod_hexen_2"
+      ],
+      "spineIDs": [
+        "mod_hexen_2"
+      ]
+    },
+    {
+      "phase": "small",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "snapshot": {
+        "games": [
+          {
+            "id": "shareware",
+            "name": "Quake (shareware)",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/shareware/front.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "Shareware",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/shareware/back.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/shareware/spine.webp\")",
+                "placeholder": false,
+                "width": 37,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "quake",
+            "name": "Quake",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/quake/front.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/quake/back.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/quake/spine.webp\")",
+                "placeholder": false,
+                "width": 37,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "hipnotic",
+            "name": "Scourge of Armagon",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/hipnotic/front.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/hipnotic/back.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/hipnotic/spine.webp\")",
+                "placeholder": false,
+                "width": 37,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "rogue",
+            "name": "Dissolution of Eternity",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/rogue/front.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/rogue/back.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/rogue/spine.webp\")",
+                "placeholder": false,
+                "width": 37,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "dopa",
+            "name": "Dimension of the Past",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/dopa/front.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/dopa/back.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/dopa/spine.webp\")",
+                "placeholder": false,
+                "width": 37,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mg1",
+            "name": "Dimension of the Machine",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mg1/front.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mg1/back.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mg1/spine.webp\")",
+                "placeholder": false,
+                "width": 37,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "dawn",
+            "name": "Dawn of the Machine",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/dawn/front.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/dawn/back.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/dawn/spine.webp\")",
+                "placeholder": false,
+                "width": 37,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "ad",
+            "name": "Arcane Dimensions",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/ad/front.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/ad/back.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/ad/spine.webp\")",
+                "placeholder": false,
+                "width": 37,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "malice",
+            "name": "Malice",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/malice/front.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/malice/back.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/malice/spine.webp\")",
+                "placeholder": false,
+                "width": 37,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "xmen",
+            "name": "X-Men",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/xmen/front.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/xmen/back.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/xmen/spine.webp\")",
+                "placeholder": false,
+                "width": 37,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "aopfm_v2",
+            "name": "Abyss of Pandemonium",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/aopfm_v2/front.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/aopfm_v2/back.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/aopfm_v2/spine.webp\")",
+                "placeholder": false,
+                "width": 37,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "quoth",
+            "name": "Quoth",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/quoth/front.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/quoth/back.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/quoth/spine.webp\")",
+                "placeholder": false,
+                "width": 37,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_alkaline",
+            "name": "Alkaline",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_alkaline/front.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_alkaline/back.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_alkaline/spine.webp\")",
+                "placeholder": false,
+                "width": 37,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_the_immortal_lock",
+            "name": "The Immortal Lock",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/front.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/back.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/spine.webp\")",
+                "placeholder": false,
+                "width": 37,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_tremor",
+            "name": "Tremor",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_tremor/front.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_tremor/back.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_tremor/spine.webp\")",
+                "placeholder": false,
+                "width": 37,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_quaked",
+            "name": "Quaked",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_quaked/front.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_quaked/back.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_quaked/spine.webp\")",
+                "placeholder": false,
+                "width": 37,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2",
+            "name": "Hexen 2",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2/front.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2/back.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2/spine.webp\")",
+                "placeholder": false,
+                "width": 37,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2_shareware",
+            "name": "Hexen 2 Shareware",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/front.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/back.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/spine.webp\")",
+                "placeholder": false,
+                "width": 37,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2_portal_of_praevus",
+            "name": "Hexen 2 Portal of Praevus",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/front.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/back.webp\")",
+                "placeholder": false,
+                "width": 176,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp\")",
+                "placeholder": false,
+                "width": 37,
+                "height": 215,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          }
+        ],
+        "ipcCalls": [],
+        "unexpectedOpen": null
+      },
+      "frontBackIDs": [
+        "mod_hexen_2"
+      ],
+      "spineIDs": [
+        "mod_hexen_2"
+      ]
+    },
+    {
+      "phase": "overrides",
+      "snapshot": {
+        "games": [
+          {
+            "id": "shareware",
+            "name": "Quake (shareware)",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/shareware/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "Shareware",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"/override-back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/shareware/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "quake",
+            "name": "Quake",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/quake/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/quake/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/quake/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "hipnotic",
+            "name": "Scourge of Armagon",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/hipnotic/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/hipnotic/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/hipnotic/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "rogue",
+            "name": "Dissolution of Eternity",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/rogue/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/rogue/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/rogue/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "dopa",
+            "name": "Dimension of the Past",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/dopa/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/dopa/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/dopa/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mg1",
+            "name": "Dimension of the Machine",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mg1/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mg1/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mg1/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "dawn",
+            "name": "Dawn of the Machine",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/dawn/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/dawn/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/dawn/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "ad",
+            "name": "Arcane Dimensions",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/ad/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/ad/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/ad/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "malice",
+            "name": "Malice",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/malice/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/malice/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/malice/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "xmen",
+            "name": "X-Men",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/xmen/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/xmen/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/xmen/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "aopfm_v2",
+            "name": "Abyss of Pandemonium",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/aopfm_v2/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/aopfm_v2/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/aopfm_v2/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "quoth",
+            "name": "Quoth",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/quoth/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/quoth/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/quoth/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_alkaline",
+            "name": "Alkaline",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_alkaline/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_alkaline/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_alkaline/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_the_immortal_lock",
+            "name": "The Immortal Lock",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_tremor",
+            "name": "Tremor",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_tremor/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_tremor/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_tremor/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_quaked",
+            "name": "Quaked",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_quaked/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_quaked/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_quaked/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2",
+            "name": "Hexen 2",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2_shareware",
+            "name": "Hexen 2 Shareware",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2_portal_of_praevus",
+            "name": "Hexen 2 Portal of Praevus",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_corrupt_fixture",
+            "name": "Unboxed invalid local art",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "",
+                "placeholder": true,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "auto",
+                "text": "Unboxed invalid local artGame"
+              },
+              "back": {
+                "background": "",
+                "placeholder": true,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "auto",
+                "text": "Unboxed invalid local artGame. Not playable yet"
+              },
+              "spine": {
+                "background": "",
+                "placeholder": true,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "auto",
+                "text": "Unboxed invalid local art"
+              }
+            }
+          }
+        ],
+        "ipcCalls": [],
+        "unexpectedOpen": null
+      }
+    },
+    {
+      "phase": "desktop",
+      "snapshot": {
+        "games": [
+          {
+            "id": "shareware",
+            "name": "Quake (shareware)",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/shareware/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "Shareware",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/shareware/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/shareware/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "quake",
+            "name": "Quake",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/quake/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/quake/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/quake/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "hipnotic",
+            "name": "Scourge of Armagon",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/hipnotic/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/hipnotic/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/hipnotic/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "rogue",
+            "name": "Dissolution of Eternity",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/rogue/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/rogue/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/rogue/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "dopa",
+            "name": "Dimension of the Past",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/dopa/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/dopa/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/dopa/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mg1",
+            "name": "Dimension of the Machine",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mg1/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mg1/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mg1/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "dawn",
+            "name": "Dawn of the Machine",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/dawn/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/dawn/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/dawn/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "ad",
+            "name": "Arcane Dimensions",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/ad/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/ad/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/ad/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "quoth",
+            "name": "Quoth",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/quoth/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/quoth/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/quoth/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "malice",
+            "name": "Malice",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/malice/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/malice/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/malice/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "xmen",
+            "name": "X-Men",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/xmen/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/xmen/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/xmen/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "aopfm_v2",
+            "name": "Abyss of Pandemonium",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/aopfm_v2/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/aopfm_v2/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/aopfm_v2/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "soe",
+            "name": "Soul of Evil",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "",
+                "placeholder": true,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "auto",
+                "text": "Soul of EvilA Quake add-on"
+              },
+              "back": {
+                "background": "",
+                "placeholder": true,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "auto",
+                "text": "Soul of EvilA Quake add-on. Not playable yet: not installed"
+              },
+              "spine": {
+                "background": "",
+                "placeholder": true,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "auto",
+                "text": "Soul of Evil"
+              }
+            }
+          },
+          {
+            "id": "mod_quaked",
+            "name": "Quaked",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_quaked/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_quaked/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_quaked/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2",
+            "name": "Hexen 2",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2_portal_of_praevus",
+            "name": "Hexen 2 Portal of Praevus",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_alkaline",
+            "name": "Alkaline",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_alkaline/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_alkaline/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_alkaline/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_tremor",
+            "name": "Tremor",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_tremor/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_tremor/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_tremor/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2_shareware",
+            "name": "Hexen 2 Shareware",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_the_immortal_lock",
+            "name": "The Immortal Lock",
+            "playable": false,
+            "present": false,
+            "validated": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/front.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/back.webp\")",
+                "placeholder": false,
+                "width": 369,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/spine.webp\")",
+                "placeholder": false,
+                "width": 77,
+                "height": 450,
+                "backgroundSize": "contain",
+                "text": "",
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          }
+        ],
+        "ipcCalls": [
+          {
+            "cmd": "library_scan",
+            "args": {}
+          }
+        ],
+        "unexpectedOpen": null
+      }
+    }
+  ],
+  "screenshots": [
+    "owner-repair-hexen-large-mod_hexen_2-front.jpg",
+    "owner-repair-hexen-large-mod_hexen_2-back.jpg",
+    "owner-repair-hexen-large-mod_hexen_2-spine.jpg",
+    "owner-repair-hexen-small-mod_hexen_2-front.jpg",
+    "owner-repair-hexen-small-mod_hexen_2-back.jpg",
+    "owner-repair-hexen-small-mod_hexen_2-spine.jpg",
+    "owner-repair-hexen-overrides.jpg",
+    "owner-repair-hexen-desktop.jpg"
+  ],
+  "sourceHashes": {
+    "src/newer/ui/game_shelf.js": "36f929174ddf9905a0f3a2651101880329167e92225a1941b43405a3de394e20",
+    "src/platform/desktop.js": "75de063e794545350665cf915e98da17530fe65fd80b144566ae6d4f969a141d",
+    "src-tauri/src/library.rs": "d81c38765e9a1f285ca2283d1ee6a8c4d59d8b5ae4310728994f9fc2472e5904",
+    "assets/boxes/manifest.json": "04b1521342f78a0e9943d4427f96482a9c962817f4f31181c2d8caba0a2e27f7",
+    "tests/box_art_standardization_test.mjs": "2bdc76e4458b830919421c420dd501bcc606ac07a37d83c11ea1e169efa0eefc",
+    "tests/box_art_contract_test.mjs": "8f55b999190549dd2655625a9f36519facda74c8de792a8d5649ea9edecde79f",
+    "tests/game_shelf_test.js": "e9650b097e3f061eae13d74d29d6143bf40894347402ef1b7c44f5fdab1eac87",
+    "docs/evidence/box-art-standardization-2026-10-20/derivation.json": "7bf601ec681b4dee3a40782aba3db922c14087bc13cc5fcafb34692193a47297",
+    "docs/evidence/box-art-standardization-2026-10-20/owner-repair-browser-check.mjs": "e822d805adbfbffcd0727d47e3efadc8cf594ca7fe8ba8bc13c049304f34dd4a",
+    "docs/evidence/box-art-standardization-2026-10-20/ai-edit-prompts.json": "aad7d3cf3b1654321dacc99f48f7a0c7227206f651f5a7b5f75478b495bf611f",
+    "docs/evidence/box-art-standardization-2026-10-20/malice-correction-prompt.json": "b2be328f4f39b8dadd6951e3da24ab55094877bf31ff48de81b3d72bda078c3b",
+    "docs/evidence/box-art-standardization-2026-10-20/baseline-runtime-manifest.json": "20d4297d8deb33a44f91b404a9d697b5ccb3af0d755cfb5e2eb6c53d42b621ff"
+  },
+  "pageErrors": [],
+  "consoleErrors": [],
+  "failedResponses": [],
+  "requestPaths": [
+    "/",
+    "/src/newer/ui/game_shelf.js",
+    "/src/platform/distribution.js",
+    "/favicon.ico",
+    "/src/platform/resource_paths.js",
+    "/assets/layout.json",
+    "/assets/boxes/shareware/front.webp",
+    "/assets/boxes/shareware/back.webp",
+    "/assets/boxes/shareware/spine.webp",
+    "/assets/boxes/quake/front.webp",
+    "/assets/boxes/quake/back.webp",
+    "/assets/boxes/quake/spine.webp",
+    "/assets/boxes/hipnotic/front.webp",
+    "/assets/boxes/hipnotic/back.webp",
+    "/assets/boxes/hipnotic/spine.webp",
+    "/assets/boxes/rogue/front.webp",
+    "/assets/boxes/rogue/back.webp",
+    "/assets/boxes/rogue/spine.webp",
+    "/assets/boxes/dopa/front.webp",
+    "/assets/boxes/dopa/back.webp",
+    "/assets/boxes/aopfm_v2/front.webp",
+    "/assets/boxes/mg1/spine.webp",
+    "/assets/boxes/dawn/front.webp",
+    "/assets/boxes/mod_the_immortal_lock/spine.webp",
+    "/assets/boxes/xmen/front.webp",
+    "/assets/boxes/aopfm_v2/back.webp",
+    "/assets/boxes/mod_alkaline/front.webp",
+    "/assets/boxes/malice/back.webp",
+    "/assets/boxes/ad/spine.webp",
+    "/assets/boxes/mod_hexen_2_shareware/front.webp",
+    "/assets/boxes/quoth/spine.webp",
+    "/assets/boxes/mg1/front.webp",
+    "/assets/boxes/mod_quaked/back.webp",
+    "/assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp",
+    "/assets/boxes/dopa/spine.webp",
+    "/assets/boxes/ad/front.webp",
+    "/assets/boxes/quoth/front.webp",
+    "/assets/boxes/mod_tremor/back.webp",
+    "/assets/boxes/malice/front.webp",
+    "/assets/boxes/mod_tremor/spine.webp",
+    "/assets/boxes/xmen/spine.webp",
+    "/assets/boxes/mod_hexen_2_portal_of_praevus/back.webp",
+    "/assets/boxes/mod_alkaline/spine.webp",
+    "/assets/boxes/mod_the_immortal_lock/back.webp",
+    "/assets/boxes/mod_hexen_2/back.webp",
+    "/assets/boxes/mod_hexen_2/spine.webp",
+    "/assets/boxes/mod_hexen_2_shareware/spine.webp",
+    "/assets/boxes/mod_the_immortal_lock/front.webp",
+    "/assets/boxes/dawn/spine.webp",
+    "/assets/boxes/quoth/back.webp",
+    "/assets/boxes/dawn/back.webp",
+    "/assets/boxes/mod_hexen_2/front.webp",
+    "/assets/boxes/mod_alkaline/back.webp",
+    "/assets/boxes/mod_hexen_2_shareware/back.webp",
+    "/assets/boxes/xmen/back.webp",
+    "/assets/boxes/ad/back.webp",
+    "/assets/boxes/aopfm_v2/spine.webp",
+    "/assets/boxes/malice/spine.webp",
+    "/assets/boxes/mod_quaked/front.webp",
+    "/assets/boxes/mg1/back.webp",
+    "/assets/boxes/mod_quaked/spine.webp",
+    "/assets/boxes/mod_hexen_2_portal_of_praevus/front.webp",
+    "/assets/boxes/mod_tremor/front.webp",
+    "/override-back.webp",
+    "/invalid-local-image.webp",
+    "/src/engine/render/gl_rsurf.js",
+    "/src/engine/common/hooks.js",
+    "/src/engine/client/client.js",
+    "/src/engine/render/render.js",
+    "/src/engine/render/gl_rmain.js",
+    "/src/engine/common/mathlib.js",
+    "/src/engine/render/gl_rsurf_state.js",
+    "/src/engine/render/gl_rsurf_lightmaps.js",
+    "/src/engine/render/gl_rsurf_materials.js",
+    "/src/engine/render/gl_rsurf_liquids.js",
+    "/src/engine/render/gl_rsurf_batches.js",
+    "/src/engine/render/gl_rsurf_world.js",
+    "/src/engine/render/gl_rsurf_brush.js",
+    "/src/engine/common/quakedef.js",
+    "/src/engine/render/vid.js",
+    "/src/engine/common/common.js",
+    "/src/engine/render/r_part.js",
+    "/src/engine/render/gl_refrag.js",
+    "/src/engine/common/protocol.js",
+    "/src/engine/common/sys.js",
+    "/node_modules/three/build/three.module.js",
+    "/src/engine/render/gl_model.js",
+    "/src/engine/common/host_state.js",
+    "/src/engine/render/r_fog.js",
+    "/src/engine/render/r_skybox.js",
+    "/src/engine/server/server.js",
+    "/src/engine/common/cvar.js",
+    "/src/engine/render/gl_rlight.js",
+    "/src/engine/render/gl_mesh.js",
+    "/src/engine/common/anorm_dots.js",
+    "/src/engine/client/chase.js",
+    "/src/platform/webxr.js",
+    "/src/engine/render/glquake.js",
+    "/src/engine/common/console.js",
+    "/src/engine/common/bspfile.js",
+    "/src/engine/common/pak.js",
+    "/src/engine/common/cmd.js",
+    "/src/engine/render/gl_model_types.js",
+    "/src/engine/render/gl_model_common.js",
+    "/src/engine/render/gl_model_bsp.js",
+    "/src/engine/render/gl_model_alias.js",
+    "/src/engine/render/gl_model_sprite.js",
+    "/src/engine/render/gl_rmisc.js",
+    "/node_modules/three/build/three.core.js",
+    "/src/engine/common/key_dest.js",
+    "/src/engine/render/lit.js",
+    "/src/engine/render/gl_warp.js",
+    "/src/newer/install.js",
+    "/src/newer/ui/loading_screen.js",
+    "/src/newer/render/r_lavaman.js",
+    "/src/newer/assets/r_aliasmeshcache.js",
+    "/src/newer/assets/r_demonbakes.js",
+    "/src/newer/gameplay/axe_record.js",
+    "/src/newer/gameplay/powervision_state.js",
+    "/src/newer/gameplay/respawn_record.js",
+    "/src/newer/gameplay/sv_axecut.js",
+    "/src/newer/gameplay/sv_cheats.js",
+    "/src/newer/gameplay/sv_electricsounds.js",
+    "/src/newer/gameplay/sv_faceevents.js",
+    "/src/newer/gameplay/sv_gore.js",
+    "/src/newer/gameplay/sv_meleespray.js",
+    "/src/newer/gameplay/sv_pinnedzombies.js",
+    "/src/newer/gameplay/sv_portal.js",
+    "/src/newer/gameplay/sv_portalmotion.js",
+    "/src/newer/gameplay/sv_firequench.js",
+    "/src/newer/gameplay/sv_teleporttrain.js",
+    "/src/newer/gameplay/sv_pronezombie.js",
+    "/src/newer/gameplay/sv_quadmovement.js",
+    "/src/newer/gameplay/sv_rendveil.js",
+    "/src/newer/gameplay/sv_respawn.js",
+    "/src/newer/gameplay/sv_seamless.js",
+    "/src/newer/gameplay/sv_shotdelay.js",
+    "/src/newer/gameplay/sv_unseen.js",
+    "/src/newer/mode.js",
+    "/src/newer/render/enemy_face.js",
+    "/src/newer/render/gl_portal.js",
+    "/src/newer/render/gl_post.js",
+    "/src/newer/render/r_anim.js",
+    "/src/newer/render/r_archframe.js",
+    "/src/newer/render/r_axecorpses.js",
+    "/src/newer/render/r_classicstate.js",
+    "/src/newer/render/r_cratevariants.js",
+    "/src/newer/render/r_decals.js",
+    "/src/newer/render/r_demonrelief.js",
+    "/src/newer/render/r_demosplit.js",
+    "/src/newer/render/r_dof.js",
+    "/src/newer/render/r_fireball.js",
+    "/src/newer/render/r_flashlight.js",
+    "/src/newer/render/r_flashlightrun.js",
+    "/src/newer/render/r_heightshadows.js",
+    "/src/newer/render/r_impactripples.js",
+    "/src/newer/render/r_lavaballs.js",
+    "/src/newer/render/r_levelview.js",
+    "/src/newer/render/r_lightning.js",
+    "/src/newer/render/r_mist.js",
+    "/src/newer/render/r_motes.js",
+    "/src/newer/render/r_ambientplaces.js",
+    "/src/newer/render/r_drips.js",
+    "/src/newer/render/r_sparks.js",
+    "/src/newer/render/r_nailhits.js",
+    "/src/newer/render/r_embers.js",
+    "/src/newer/sound/s_gibs.js",
+    "/src/newer/sound/s_lava.js",
+    "/src/newer/render/r_itemturn.js",
+    "/src/newer/render/r_mapliquids.js",
+    "/src/newer/render/r_storm.js",
+    "/src/newer/sound/s_impacts.js",
+    "/src/newer/sound/s_footsteps.js",
+    "/src/newer/ui/r_controller.js",
+    "/src/newer/render/r_muzzle.js",
+    "/src/newer/render/r_newerskins.js",
+    "/src/newer/render/r_newertextures.js",
+    "/src/newer/render/r_perf.js",
+    "/src/newer/render/r_powerups.js",
+    "/src/newer/render/r_cloak.js",
+    "/src/newer/render/r_powervision.js",
+    "/src/newer/render/r_prewarm.js",
+    "/src/newer/render/r_quadvision.js",
+    "/src/newer/render/r_eelcharge.js",
+    "/src/newer/render/r_rendveil.js",
+    "/src/newer/render/r_respawn.js",
+    "/src/newer/render/r_rockfield.js",
+    "/src/newer/render/r_screendrops.js",
+    "/src/newer/render/r_shaderwarm.js",
+    "/src/newer/render/r_shells.js",
+    "/src/newer/render/r_shelltrace.js",
+    "/src/newer/render/r_shotgun.js",
+    "/src/newer/render/r_stasisbolt.js",
+    "/src/newer/render/r_teleportfx.js",
+    "/src/newer/render/r_torchfire.js",
+    "/src/newer/render/r_venom.js",
+    "/src/newer/render/r_wallburn.js",
+    "/src/newer/render/r_waves.js",
+    "/src/newer/render/r_weapon_surface.js",
+    "/src/newer/render/r_weapons.js",
+    "/src/newer/render/v_blastshake.js",
+    "/src/newer/render/v_shamblersteps.js",
+    "/src/newer/sound/s_ambientgame.js",
+    "/src/newer/sound/s_ambientmusic.js",
+    "/src/newer/sound/s_exitmachine.js",
+    "/src/newer/render/r_milkywaysky.js",
+    "/src/newer/sound/s_electricsounds.js",
+    "/src/newer/sound/s_environmentsounds.js",
+    "/src/newer/sound/s_playerevents.js",
+    "/src/newer/sound/s_playerwater.js",
+    "/src/newer/sound/s_lowhealth.js",
+    "/src/newer/sound/s_welcomejingle.js",
+    "/src/newer/ui/menu_art.js",
+    "/src/newer/ui/menu_webgl.js",
+    "/src/newer/ui/newer_defaults.js",
+    "/src/newer/ui/r_bestiary.js",
+    "/src/newer/ui/r_bestiary_book.js",
+    "/src/newer/ui/r_demoloading.js",
+    "/src/newer/ui/r_facegame.js",
+    "/src/newer/ui/r_newerhud.js",
+    "/src/newer/ui/r_playerface.js",
+    "/src/newer/ui/respawn_notice.js",
+    "/src/newer/ui/studio_logo.js",
+    "/src/newer/render/r_post_gbuffer.js",
+    "/src/newer/render/r_post_config.js",
+    "/src/newer/assets/alias_mesh_bakes.js",
+    "/src/newer/assets/alias_mesh_format.js",
+    "/src/newer/assets/displacement_store.js",
+    "/src/newer/assets/prepared_transport.js",
+    "/src/newer/assets/prepared_corpus.js",
+    "/src/newer/assets/demon_bakes.js",
+    "/src/newer/assets/demon_bake_format.js",
+    "/src/engine/progs/progs.js",
+    "/src/engine/progs/pr_edict.js",
+    "/src/engine/progs/pr_exec.js",
+    "/src/engine/progs/pr_comp.js",
+    "/src/engine/server/sv_main.js",
+    "/src/newer/render/r_axepose.js",
+    "/src/engine/server/world.js",
+    "/src/newer/gameplay/sv_shotrays.js",
+    "/src/newer/gameplay/rend_veil_state.js",
+    "/src/engine/server/sv_phys.js",
+    "/src/engine/server/sv_large_protocol.js",
+    "/src/engine/server/host.js",
+    "/src/newer/ui/respawn_motion.js",
+    "/src/newer/gameplay/shotgun_flight.js",
+    "/src/newer/render/r_levelgraph.js",
+    "/src/newer/render/r_powerupfire.js",
+    "/src/newer/render/r_rendveil_optics.js",
+    "/src/newer/render/r_post_state.js",
+    "/src/newer/render/r_post_liquids.js",
+    "/src/newer/render/r_post_sky.js",
+    "/src/newer/render/r_post_lights.js",
+    "/src/newer/render/r_post_shadows.js",
+    "/src/newer/render/r_post_targets.js",
+    "/src/newer/render/r_post_composite.js",
+    "/src/newer/render/r_bisect.js",
+    "/src/newer/render/gib_rest.js",
+    "/src/newer/render/fx_world.js",
+    "/src/engine/render/r_trace.js",
+    "/src/newer/render/fx_math.js",
+    "/src/newer/render/r_smoketrail.js",
+    "/src/newer/render/r_fixturelights.js",
+    "/src/newer/render/gl_normals.js",
+    "/src/newer/render/r_levelents.js",
+    "/src/newer/assets/r_rockbakes.js",
+    "/src/engine/sound/snd_dma.js",
+    "/src/engine/sound/snd_mem.js",
+    "/src/engine/sound/sound.js",
+    "/src/newer/sound/s_synth.js",
+    "/src/newer/sound/s_material.js",
+    "/src/newer/sound/s_surfacesounds.js",
+    "/src/engine/client/keys.js",
+    "/src/engine/render/gl_draw.js",
+    "/src/platform/touch_layout.js",
+    "/src/newer/ui/r_wheelicons.js",
+    "/src/newer/assets/normal_prepare.js",
+    "/src/newer/render/normal_math.js",
+    "/src/newer/assets/enemy_height.js",
+    "/src/newer/render/r_weaponstyle.js",
+    "/src/newer/render/cloak_reference.js",
+    "/src/newer/render/powervision_shaders.js",
+    "/src/newer/render/vision_coordinates.js",
+    "/src/newer/render/quadvision_region.js",
+    "/src/newer/render/rend_veil/config.js",
+    "/src/newer/render/rend_veil/timeline.js",
+    "/src/newer/render/rend_veil/local-effects.js",
+    "/src/newer/render/rend_veil/material-binding.js",
+    "/src/newer/render/rend_veil/frame.js",
+    "/src/newer/render/r_rocksurfaces.js",
+    "/src/newer/assets/rockfield_presets.js",
+    "/src/engine/client/cl_input.js",
+    "/src/newer/sound/s_effectdeck.js",
+    "/src/newer/render/r_aliasvisibility.js",
+    "/src/newer/gameplay/cl_water.js",
+    "/src/engine/common/game_selection.js",
+    "/src/newer/ui/bestiary_state.js",
+    "/src/newer/ui/bestiary_art.js",
+    "/src/newer/ui/r_folio.js",
+    "/src/platform/touch.js",
+    "/src/newer/ui/face_state.js",
+    "/src/newer/ui/playerface_manifest.js",
+    "/src/newer/render/r_rockshader.js",
+    "/src/newer/render/r_pointshadows.js",
+    "/src/engine/progs/progdefs.js",
+    "/src/engine/common/crc.js",
+    "/src/engine/server/sv_cloak.js",
+    "/src/engine/net/net_main.js",
+    "/src/engine/net/net.js",
+    "/src/engine/server/sv_user.js",
+    "/src/engine/client/view.js",
+    "/src/engine/common/zone.js",
+    "/src/engine/common/wad.js",
+    "/src/engine/client/menu.js",
+    "/src/engine/server/pr_cmds.js",
+    "/src/engine/render/gl_screen.js",
+    "/src/engine/sound/cd_audio.js",
+    "/src/engine/client/sbar.js",
+    "/src/engine/client/cl_main.js",
+    "/src/engine/client/cl_parse.js",
+    "/src/engine/net/net_webtransport.js",
+    "/src/platform/in_web.js",
+    "/src/engine/server/host_cmd.js",
+    "/src/engine/common/game_catalogue.js",
+    "/src/newer/render/rend_veil/optics-shader.js",
+    "/src/newer/render/r_waterprobe.js",
+    "/src/newer/render/r_post_shaders.js",
+    "/src/newer/assets/rockfield_bakes.js",
+    "/src/newer/assets/rockfield_bake_format.js",
+    "/src/newer/assets/rockfield_prepare.js",
+    "/src/newer/assets/normal_bake_format.js",
+    "/src/newer/assets/normal_bakes.js",
+    "/src/newer/assets/normal_transport.js",
+    "/src/newer/render/rend_veil/shader-common.js",
+    "/src/newer/render/rend_veil/glyph-data.js",
+    "/src/newer/assets/rockfield.js",
+    "/src/engine/client/cl_pred.js",
+    "/src/newer/render/shadow_pose.js",
+    "/src/engine/net/net_loop.js",
+    "/src/engine/net/net_window.js",
+    "/src/engine/client/menu_common.js",
+    "/src/engine/client/menu_main.js",
+    "/src/engine/client/menu_levelselect.js",
+    "/src/engine/client/menu_multiplayer.js",
+    "/src/engine/client/menu_options.js",
+    "/src/engine/server/sv_move.js",
+    "/src/engine/client/cl_demo.js",
+    "/src/engine/client/cl_tent.js",
+    "/src/engine/client/local_play.js",
+    "/src/platform/pad_share.js",
+    "/src/engine/server/pmove.js",
+    "/src/engine/client/level_select_auto.js",
+    "/src/platform/pad_assign.js",
+    "/assets/game/bestiary/folio/index.json",
+    "/node_modules/@tauri-apps/api/mocks.js",
+    "/src/platform/desktop.js",
+    "/node_modules/@tauri-apps/api/core.js",
+    "/node_modules/@tauri-apps/api/event.js",
+    "/node_modules/@tauri-apps/api/external/tslib/tslib.es6.js"
+  ]
+}

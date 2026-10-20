@@ -143,7 +143,7 @@ Deno.test( 'folder image type ties use native scan priority without allowing an 
 
 Deno.test( 'imported defaults work without local files and never authorize an unsupported title', () => {
  const ids = [ 'shareware', 'quake', 'hipnotic', 'rogue', 'mg1', 'malice', 'xmen', 'aopfm_v2', 'quoth', 'mod_quaked', 'mod_hexen_2', 'mod_hexen_2_portal_of_praevus', 'dopa', 'ad', 'dawn', 'mod_alkaline', 'mod_tremor', 'mod_hexen_2_shareware', 'mod_the_immortal_lock' ];
- const expected = Object.fromEntries( ids.map( id => [ id, Object.fromEntries( [ 'front', 'back', 'spine' ].map( face => [ face, id === 'mod_hexen_2' && face === 'back' ? null : `assets/boxes/${id}/${face}.webp` ] ) ) ] ) );
+ const expected = Object.fromEntries( ids.map( id => [ id, Object.fromEntries( [ 'front', 'back', 'spine' ].map( face => [ face, `assets/boxes/${id}/${face}.webp` ] ) ) ] ) );
  expected.mod_q30a1024 = { front: null, back: null, spine: null };
  for ( const [ id, faces ] of Object.entries( expected ) ) {
   const box = GameShelf_Box( { id, name: id, playable: false, images: {}, reason: 'No supported game files found' } );

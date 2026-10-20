@@ -24,13 +24,13 @@ async function images(path){const result=[];for(const item of await readdir(new 
 test('every live face has one canonical role and the current manifest is exhaustive',async()=>{
  assert.deepEqual(Object.keys(GAME_BOXES).sort(),expectedIDs);
  const live=activeRows(),manifest=await json('assets/boxes/manifest.json');
- assert.equal(live.length,56,'nineteen complete supplied boxes except unavailable retail Hexen II back');
+ assert.equal(live.length,57,'nineteen complete supplied boxes, including the recovered owner-supplied main Hexen II back');
  assert.deepEqual(manifest.faces.map(({game,face,path})=>({game,face,path})).sort((a,b)=>a.path.localeCompare(b.path)),live);
  assert.equal(new Set(live.map(r=>r.path)).size,live.length);
  for(const row of live)assert.equal(row.path,`assets/boxes/${row.game}/${row.face}.webp`,'wraps, side aliases and inactive originals cannot become live fronts');
  assert.deepEqual((await images('assets/boxes')).sort((a,b)=>a.localeCompare(b)),live.map(r=>r.path),'runtime has no inactive image copies');
- for(const id of expectedIDs){for(const face of roles)if(!(id==='mod_hexen_2'&&face==='back'))assert.ok(GAME_BOXES[id][face],id+' supplied '+face);assert.ok(GAME_CATALOGUE_GAMES.some(g=>g.id===id)||discoveredNames[id],id+' approved identity');}
- assert.equal(GAME_BOXES.mod_hexen_2.back,undefined,'unavailable retail Hexen II back is not invented');
+ for(const id of expectedIDs){for(const face of roles)assert.ok(GAME_BOXES[id][face],id+' supplied '+face);assert.ok(GAME_CATALOGUE_GAMES.some(g=>g.id===id)||discoveredNames[id],id+' approved identity');}
+ assert.equal(GAME_BOXES.mod_hexen_2.back,'assets/boxes/mod_hexen_2/back.webp','the provided main-game back is never replaced by an absence assertion');
  assert.equal(GAME_BOXES.mod_q30a1024,undefined,'historical screenshot collage remains unboxed');
 });
 
@@ -63,7 +63,9 @@ test('derivatives retain exact original custody and bounded source-panel provena
  for(const [hash,paths]of hashPaths)assert.equal(paths.size,1,'one canonical retained blob per original SHA-256 '+hash);
  const generated=record.sources.filter(source=>source.origin==='generated');
  const selectedGenerated=generated.filter(source=>record.faces.some(face=>face.source===source.archivePath));
- assert.equal(selectedGenerated.length,0,'runtime preserves supplied artwork proportions; all AI drafts remain source-only history');
+ assert.equal(selectedGenerated.length,1,'only the explicitly owner-authorized Abyss background extension is selected');
+ assert.deepEqual(record.faces.filter(face=>selectedGenerated.some(source=>source.archivePath===face.source)).map(face=>face.game+':'+face.face),['aopfm_v2:front'],'AI never replaces a spine or any other box face');
+ for(const path of ['edits-2026-10-20/malice/spine-layout.png','edits-2026-10-20/malice/spine-layout-corrected.png','edits-2026-10-20/quoth/spine-layout.png']){const source=archives.get('assets/authoring/box_art/'+path);assert.ok(source);assert.match(source.disposition,/REJECTED FOR RUNTIME/);assert.ok(!record.faces.some(face=>face.source===source.archivePath),'the rejected spine draft remains source-only');}
  const promptFor=async source=>{const [path,key]=source.prompt.split('#'),document=await json(path);return key?document.prompts[key]:document.prompt;};
  for(const source of generated){assert.ok(archives.has(source.editedFrom),'generated reflow keeps its supplied original');assert.equal(source.tool,'image_gen.imagegen');assert.ok(await promptFor(source),'AI edit prompt retained');}
  const malice=record.faces.find(face=>face.game==='malice'&&face.face==='spine');
@@ -72,6 +74,15 @@ test('derivatives retain exact original custody and bounded source-panel provena
  const quoth=record.faces.find(face=>face.game==='quoth'&&face.face==='spine');assert.equal(quoth.source,'assets/authoring/box_art/originals-2026-10-20/quoth/spine.png','Quoth retains original glyph proportions');assert.equal(quoth.sourceSha256,'56765f4988c52a24e5135817805a39ca5feddea66d131988b1900071348f642a','original Quoth glyph identity');
  const manifest=await json('assets/boxes/manifest.json');
  assert.deepEqual(record.faces.map(({game,face,path,sha256,bytes})=>({game,face,path,sha256,bytes})).sort((a,b)=>a.path.localeCompare(b.path)),manifest.faces.map(({game,face,path,sha256,bytes})=>({game,face,path,sha256,bytes})).sort((a,b)=>a.path.localeCompare(b.path)),'derivation covers exactly the shipped hashes');
+ const abyssFront=record.faces.find(face=>face.game==='aopfm_v2'&&face.face==='front'),abyssBack=record.faces.find(face=>face.game==='aopfm_v2'&&face.face==='back');
+ assert.equal(abyssFront.sourceSha256,'5f95e591f4bd3981a23d39a9223483793d967b31fd10e2f5c0581fcc6a5390df','reviewed seam-repaired master identity');
+ assert.deepEqual([abyssFront.width,abyssFront.height],[abyssBack.width,abyssBack.height],'Abyss front and back have matching canvas dimensions');
+ assert.deepEqual(abyssFront.content,abyssBack.content,'Abyss front and back have matching complete content placement and proportions');
+ const composition=await json(abyssFront.compositionReceipt);assert.equal(composition.master,abyssFront.source);assert.deepEqual(composition.dimensions,[808,975]);
+ const center={left:81,top:0,width:646,height:975},sourceCenter={left:955,top:0,width:646,height:975};
+ assert.deepEqual(composition.protectedCenter.sourceCrop,sourceCenter);assert.deepEqual(Object.fromEntries(Object.keys(center).map(key=>[key,composition.protectedCenter[key]])),center);
+ const masterCenter=await sharp(await read(abyssFront.source)).extract(center).removeAlpha().raw().toBuffer(),originalCenter=await sharp(await read(abyssBack.source)).extract(sourceCenter).removeAlpha().raw().toBuffer();
+ assert.ok(masterCenter.equals(originalCenter),'every meaningful original Abyss center pixel, glyph and logo stays exact');assert.equal(digest(masterCenter),'a3ae4bbc9f72f3c7452c6a91594beb258d2f644bf9fa77c3898adedc21d95e58');
  for(const face of record.faces){
   const source=archives.get(face.source);assert.ok(source,face.path+' retained source exists');assert.equal(face.sourceSha256,source.sha256);
   const crop=face.crop;for(const value of Object.values(crop))assert.ok(Number.isInteger(value)&&value>=0,'integer crop: '+face.path);
@@ -85,7 +96,11 @@ test('derivatives retain exact original custody and bounded source-panel provena
   // keep all lettering, logos and strip texture rather than shrinking the pad.
   const printedSpines={shareware:{left:248,width:392},hipnotic:{left:387,width:249},rogue:{left:400,width:226},mg1:{left:329,width:368}};
   if(face.face==='spine'&&printedSpines[face.game])assert.deepEqual(crop,{left:printedSpines[face.game].left,top:0,width:printedSpines[face.game].width,height:source.height},face.path+' complete reviewed printed strip, only blank outer padding removed');
-  if(face.face==='spine'&&['malice','quoth'].includes(face.game)){
+  if(face.game==='mod_hexen_2'&&face.face==='back'){
+   assert.equal(face.sourceSha256,'f4e3f4eebdf35052c943895178d45fe591a334d39a2af5630f47c7770d816118','actual owner attachment, never a Portal substitution');
+   assert.deepEqual(crop,{left:22,top:120,width:950,height:1342},'complete independently reviewed back with all publisher logos, excluding printer margins and adjacent panels');
+  }
+  if((face.face==='spine'&&['malice','quoth'].includes(face.game))||(face.game==='mod_hexen_2'&&face.face==='back')||(face.game==='aopfm_v2'&&['front','back'].includes(face.face))){
    // Bind the disputed glyphs/disc directly to the supplied original pixels:
    // uniform resampling + padding must be the entire operation, with no redraw.
    const scaled=await sharp(await read(source.archivePath)).extract(crop).resize(content.width,content.height,{kernel:'lanczos3'}).png().toBuffer();
@@ -120,7 +135,7 @@ test('local face overrides, canonical names, missing faces and game authority su
  const files=['cover.png','front.webp','side.png','spine.webp','back.webp','nested/front.png'].map(name=>({name:name.split('/').at(-1),webkitRelativePath:'Picked/'+name}));
  for(const order of [files,[...files].reverse()]){const faces=GameShelf_ReadFolder(order,'Picked').files;assert.equal(faces.front.webkitRelativePath,'Picked/front.webp');assert.equal(faces.side.webkitRelativePath,'Picked/spine.webp');assert.equal(faces.back.webkitRelativePath,'Picked/back.webp');}
  const missing=GameShelf_Box({id:'mod_unboxed_fixture',name:'Unboxed',playable:false,images:{}});for(const face of roles)assert.equal(missing[face],null);
- assert.equal(GameShelf_Box({id:'mod_hexen_2',name:'Hexen II',playable:false}).back,null);
+ assert.equal(GameShelf_Box({id:'mod_hexen_2',name:'Hexen II',playable:false}).back,'assets/boxes/mod_hexen_2/back.webp');
 });
 
 test('the actual desktop collector ships all runtime faces and excludes all source originals',async()=>{
