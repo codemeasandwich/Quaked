@@ -1,0 +1,214 @@
+{
+  "scope": "Self-check only, physical witness classifications require independent review; before encoding tiers",
+  "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/masters/rtex485/master.json",
+  "masterPackageSha256": "f998a78a229a11ff94627c3990d4e83e8e816d0841d2a95a7abaf0d97606ceb2",
+  "masterDimensions": [
+    1024,
+    1024
+  ],
+  "heightDtype": "float32",
+  "heightFinite": true,
+  "samples": [
+    {
+      "label": "joint-horizontal-left",
+      "nativePixel": [
+        24,
+        63
+      ],
+      "masterPixel": [
+        196,
+        508
+      ],
+      "height": 0.008258574642241001,
+      "neighborhoodMean": 0.0519694983959198,
+      "neighborhoodMin": 0.0009689756552688777,
+      "neighborhoodMax": 0.4514964818954468,
+      "rgb": [
+        51,
+        47,
+        44
+      ]
+    },
+    {
+      "label": "joint-horizontal-right",
+      "nativePixel": [
+        104,
+        63
+      ],
+      "masterPixel": [
+        836,
+        508
+      ],
+      "height": 0.06259507685899734,
+      "neighborhoodMean": 0.05342249944806099,
+      "neighborhoodMin": 0.012982502579689026,
+      "neighborhoodMax": 0.15535928308963776,
+      "rgb": [
+        66,
+        51,
+        41
+      ]
+    },
+    {
+      "label": "joint-upper-vertical",
+      "nativePixel": [
+        63,
+        24
+      ],
+      "masterPixel": [
+        508,
+        196
+      ],
+      "height": 0.007196282036602497,
+      "neighborhoodMean": 0.010254206135869026,
+      "neighborhoodMin": 0.005743829067796469,
+      "neighborhoodMax": 0.034559398889541626,
+      "rgb": [
+        21,
+        21,
+        20
+      ]
+    },
+    {
+      "label": "joint-upper-vertical-lower",
+      "nativePixel": [
+        63,
+        48
+      ],
+      "masterPixel": [
+        508,
+        388
+      ],
+      "height": 0.003101853420957923,
+      "neighborhoodMean": 0.003999682608991861,
+      "neighborhoodMin": 0.001966434996575117,
+      "neighborhoodMax": 0.01009242795407772,
+      "rgb": [
+        16,
+        14,
+        13
+      ]
+    },
+    {
+      "label": "joint-wrap-lower",
+      "nativePixel": [
+        0,
+        96
+      ],
+      "masterPixel": [
+        4,
+        772
+      ],
+      "height": 0.024846142157912254,
+      "neighborhoodMean": 0.03917377069592476,
+      "neighborhoodMin": 0.015491317957639694,
+      "neighborhoodMax": 0.10394039005041122,
+      "rgb": [
+        38,
+        33,
+        29
+      ]
+    },
+    {
+      "label": "joint-wrap-horizontal",
+      "nativePixel": [
+        32,
+        0
+      ],
+      "masterPixel": [
+        260,
+        4
+      ],
+      "height": 0.0031615288462489843,
+      "neighborhoodMean": 0.004676704294979572,
+      "neighborhoodMin": 0.0010848348028957844,
+      "neighborhoodMax": 0.01681830734014511,
+      "rgb": [
+        50,
+        45,
+        36
+      ]
+    },
+    {
+      "label": "face-upper-left",
+      "nativePixel": [
+        24,
+        28
+      ],
+      "masterPixel": [
+        196,
+        228
+      ],
+      "height": 0.263149231672287,
+      "neighborhoodMean": 0.2920680642127991,
+      "neighborhoodMin": 0.05495186522603035,
+      "neighborhoodMax": 0.546989381313324,
+      "rgb": [
+        51,
+        41,
+        36
+      ]
+    },
+    {
+      "label": "face-upper-right",
+      "nativePixel": [
+        96,
+        28
+      ],
+      "masterPixel": [
+        772,
+        228
+      ],
+      "height": 0.3854217529296875,
+      "neighborhoodMean": 0.4054226875305176,
+      "neighborhoodMin": 0.12268875539302826,
+      "neighborhoodMax": 0.8415902256965637,
+      "rgb": [
+        131,
+        130,
+        130
+      ]
+    },
+    {
+      "label": "face-lower-left",
+      "nativePixel": [
+        32,
+        96
+      ],
+      "masterPixel": [
+        260,
+        772
+      ],
+      "height": 0.24792888760566711,
+      "neighborhoodMean": 0.22418636083602905,
+      "neighborhoodMin": 0.11948065459728241,
+      "neighborhoodMax": 0.3580792546272278,
+      "rgb": [
+        93,
+        89,
+        87
+      ]
+    },
+    {
+      "label": "face-lower-right",
+      "nativePixel": [
+        96,
+        96
+      ],
+      "masterPixel": [
+        772,
+        772
+      ],
+      "height": 0.8532412648200989,
+      "neighborhoodMean": 0.7235850691795349,
+      "neighborhoodMin": 0.48547953367233276,
+      "neighborhoodMax": 0.8574692010879517,
+      "rgb": [
+        185,
+        179,
+        175
+      ]
+    }
+  ],
+  "diagnostic": "docs/evidence/hexen2-textures-2026-10-20/stream-03-rtex485/pre-tier-master-height-opposed.png"
+}

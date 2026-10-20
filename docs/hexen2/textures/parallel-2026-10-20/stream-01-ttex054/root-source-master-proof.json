@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent source/master replay only; current plaster pigment relief and final tiers/art remain unaccepted.",
+  "materials": [
+    {
+      "nativeIdentity": "cddf441f348f0a3182edadeeeb9028ece70c2eadbef541955e7197f8213c9752",
+      "name": "ttex054",
+      "edition": "portals",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/master.json",
+        "sha256": "1a37137c4bc629057fd5771ae511d0462eb21133dd9abb746d573a8cbcd0a547"
+      },
+      "masterColor": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/color.png",
+        "sha256": "75735d60f4199165c89f02f38d96a021ce471ddd4acd4ca5196a6fae6abf1eba"
+      },
+      "masterHeight": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/height.npy",
+        "sha256": "0f332e0a9fc7ea5c51d7de0a11824d3d53eca805493ea08cc614c9a12b7f06d6"
+      },
+      "currentReliefArtAccepted": false
+    }
+  ],
+  "verdict": "PASS source/master-only exact RGB/float/CLI replay; current shallow plaster relief remains HOLD",
+  "verifier": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/root-verify-source-master.py",
+    "sha256": "6d43b836e6082380049dacf81f8293fc168dce37df68db018c2c75e2d7d8598a"
+  },
+  "inputs": [
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-0363d005-08ee-4265-84ad-a4be0993d5b9.png",
+      "sha256": "4ef4e7a484c6861345153d6f0ed4491f84e4d5fb5561ca9af3d979a6eb98fcb2"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/ttex054.png",
+      "sha256": "4ef4e7a484c6861345153d6f0ed4491f84e4d5fb5561ca9af3d979a6eb98fcb2"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/color.png",
+      "sha256": "75735d60f4199165c89f02f38d96a021ce471ddd4acd4ca5196a6fae6abf1eba"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/height.npy",
+      "sha256": "0f332e0a9fc7ea5c51d7de0a11824d3d53eca805493ea08cc614c9a12b7f06d6"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/master.json",
+      "sha256": "1a37137c4bc629057fd5771ae511d0462eb21133dd9abb746d573a8cbcd0a547"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/05-ttex054-cddf441f348f.png",
+      "sha256": "cc7cbc5b106803b459a72454e08c047481f20396c549422dbc96d8202c1c6b57"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex054-material-v2.txt",
+      "sha256": "721d2df4207a5ffeca421eb70aaa7c8e2852421c457cf85a41c18b1255c6f392"
+    },
+    {
+      "file": "docs/evidence/hexen2-textures-2026-10-19/current/inventory.json",
+      "sha256": "344ad22744fd5b6ad9d07ef89102be930ac2c3c88589456d46963c8b4c082d6a"
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-first-four-verify-public-actual.py",
+      "sha256": "1a83157cb064bf8b74af1b0e04bf641014471f43b1aec861ea8ba1fed50e85de"
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-material-plan-v2-public-review.json",
+      "sha256": "64e5c724d646a25ad1c7d0fbf80ce48eae424f8e16f504ea5b293e22aef94d2a"
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-public-source-proof.json",
+      "sha256": "eac871ece0eb18fa0472fc7e72604fc154e5b810593fcb4b123c3781ff68f27f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/root-verify-source-master.py",
+      "sha256": "6d43b836e6082380049dacf81f8293fc168dce37df68db018c2c75e2d7d8598a"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    }
+  ],
+  "actualCLIReplayDirectory": "/private/tmp/quaked-ttex054-source-master-1ygsmd3x",
+  "inputsStable": true,
+  "completedAt": "2026-10-20T11:30:49.797163+00:00"
+}

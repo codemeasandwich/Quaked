@@ -1,0 +1,736 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-20T11:27:37.344549+00:00",
+  "scope": "Author self-check only; independent source/math/preview/art qualification and root registration pending",
+  "verdict": "Candidate mechanical self-check PASS; actual visual self-review recorded separately",
+  "nativeID": "4461c8b9623bcc682a41c4358b0e486c00aa3f77cde9b2dfebcb2efceab6dfd5",
+  "source": {
+    "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/originals/01-rtex499-4461c8b9623b.png",
+    "originalSha256": "03f3fe8960c22643f2cf8f0f6de71f0b8a3b03d3fc578fd1505c72e73186899b",
+    "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/prompts/rtex499-material-v1.txt",
+    "promptSha256": "619fd727e2c0600dca43de349a6707db40a6e3b1d2eff71c7aeab05053e4fca2",
+    "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/generated/rtex499.png",
+    "generatedSha256": "a05148321e9e57d5aa041fa300215abcdd9203cbc82658287f8d87d45d2734fb",
+    "generationCount": 1,
+    "generatedDimensions": [
+      1254,
+      1254
+    ]
+  },
+  "descriptor": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/batch.json",
+    "sha256": "de57328a13762e24b28a16332c22abd98141091bc8e708e9363d5a47de838d7e"
+  },
+  "canonicalMaster": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-layered/master.json",
+    "sha256": "f87690b61af0b066dcd804f03f58d4070aa0f81b6b53f810c3619f797c50430f"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/manifest.json",
+    "sha256": "fc482b9e57b783a004760049abd907bc82d88cc0b6b63fbdfdeaa5e3483e83a3"
+  },
+  "canonicalPreTierRootReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-canonical-pre-tier-review.json",
+    "sha256": "61c656ce8aabf994583490fe44c795d0f50dc3ead1239f5e5797299b2e025bd6"
+  },
+  "reviewArtifacts": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/review/index.html",
+      "sha256": "f58d3e962b093f751aa818232bc1116704b77b02283498ea2945ae737132f008"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/review/rtex499-high-relief.jpg",
+      "sha256": "48d4eb72e6b11b8f7daa642b4d98124fffbc600460a5bd5c73e97eb5d1c39cbf"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/review/rtex499-high-review.jpg",
+      "sha256": "14094435d3fcec4d7392cfed53a1c6d90e2a860b51634bcf1e48ac906b44ee7c"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/review/rtex499-mid-relief.jpg",
+      "sha256": "de27d86693cbe855f3ac69302b3b37132b0a3b396ba59a0ddfb2dbfcd72ee94a"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/review/rtex499-mid-review.jpg",
+      "sha256": "deb3dfbe5155624423491c340478792914e9ffd5faa15146e8a2e51bc9995583"
+    }
+  ],
+  "actualTierDiagnostics": [
+    {
+      "file": "docs/evidence/hexen2-textures-2026-10-20/stream-05-rtex499/actual-final-tier-views/high-actual-fourway-corner-1to1.png",
+      "sha256": "1dfd64f316766a02e39a60fffee1a85925b87f24cf39cfef48c72c6089da5b00"
+    },
+    {
+      "file": "docs/evidence/hexen2-textures-2026-10-20/stream-05-rtex499/actual-final-tier-views/high-actual-opposed-A-1to1.png",
+      "sha256": "3040301b5c2a05699e6a7daf5fb82407fd3ba15aedd9c6a8341667cd8cbec96b"
+    },
+    {
+      "file": "docs/evidence/hexen2-textures-2026-10-20/stream-05-rtex499/actual-final-tier-views/high-actual-opposed-B-1to1.png",
+      "sha256": "71f6f4ff883886573bc3247bb93d6dc334a34b028acfa756457ac414a946c8fe"
+    },
+    {
+      "file": "docs/evidence/hexen2-textures-2026-10-20/stream-05-rtex499/actual-final-tier-views/high-actual-repeat2x2.png",
+      "sha256": "ed6ded786240c3aeda0aba1df9be2b6fe4f8b19c92624d6657275ce6c38b0c39"
+    },
+    {
+      "file": "docs/evidence/hexen2-textures-2026-10-20/stream-05-rtex499/actual-final-tier-views/mid-actual-fourway-corner-1to1.png",
+      "sha256": "bc3ee6e0ff87ffac92d1b1aecdf06dfa4c979daf21adbcd6ae53240892ced726"
+    },
+    {
+      "file": "docs/evidence/hexen2-textures-2026-10-20/stream-05-rtex499/actual-final-tier-views/mid-actual-opposed-A-1to1.png",
+      "sha256": "1a0aa1b7d973d4cbe7cecb23ca765d0b55a87d87e201f4ae61be10e5c661195d"
+    },
+    {
+      "file": "docs/evidence/hexen2-textures-2026-10-20/stream-05-rtex499/actual-final-tier-views/mid-actual-opposed-B-1to1.png",
+      "sha256": "c621415b9450a7efbe125a47519d813f90ff2672c4b96800f583113c0c0baa47"
+    },
+    {
+      "file": "docs/evidence/hexen2-textures-2026-10-20/stream-05-rtex499/actual-final-tier-views/mid-actual-repeat2x2.png",
+      "sha256": "e4ac70be44079edb43f90f018dc7e6bf8036fa4b70c300754ba0f552095b4450"
+    }
+  ],
+  "tiers": {
+    "Mid": {
+      "maps": [
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/mid-diffuse.webp",
+          "sha256": "2ea5f067fc85dd934f4d811664bb885c16a62937c4724ac5ab394af32b7c8c82",
+          "role": "diffuse",
+          "dimensions": [
+            512,
+            512
+          ],
+          "codecChunks": [
+            "VP8 "
+          ]
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/mid-height.webp",
+          "sha256": "380878f1d4fb0e160c9d08402380f648019201fa3cfa063498b97d103b7402dd",
+          "role": "height",
+          "dimensions": [
+            512,
+            512
+          ],
+          "codecChunks": [
+            "VP8 "
+          ]
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/mid-normalX.webp",
+          "sha256": "96ea32cd7959868fa6501b1f403395238fcd4b058c116403a5622554a8088115",
+          "role": "normalX",
+          "dimensions": [
+            512,
+            512
+          ],
+          "codecChunks": [
+            "VP8 "
+          ]
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/mid-normalY.webp",
+          "sha256": "d522f13c0aedcd6b600ec4965193f07e1237daa79ef992c9eb753b815b61218a",
+          "role": "normalY",
+          "dimensions": [
+            512,
+            512
+          ],
+          "codecChunks": [
+            "VP8 "
+          ]
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/mid-normalZ.webp",
+          "sha256": "9b5ef11b7cd1839deb30673545db388f9e542e686055f5249ff056da4a9cf876",
+          "role": "normalZ",
+          "dimensions": [
+            512,
+            512
+          ],
+          "codecChunks": [
+            "VP8 "
+          ]
+        }
+      ],
+      "distanceChecks": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            64,
+            64
+          ],
+          "filterBoth": "BOX",
+          "meanAbsoluteError": 5.676106770833333,
+          "maximum": 65.0
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            32,
+            32
+          ],
+          "filterBoth": "BOX",
+          "meanAbsoluteError": 3.0595703125,
+          "maximum": 27.0
+        }
+      ],
+      "physicalWitnesses": [
+        {
+          "label": "pale-face-A",
+          "nativeFrame": [
+            31,
+            6
+          ],
+          "decodedTierPixel": [
+            124,
+            24
+          ],
+          "physicalClass": "stone",
+          "radius": 1,
+          "centralHeight": 0.6941176470588235,
+          "patchMean": 0.6845315904139434
+        },
+        {
+          "label": "pale-face-B",
+          "nativeFrame": [
+            63.5,
+            38
+          ],
+          "decodedTierPixel": [
+            254,
+            152
+          ],
+          "physicalClass": "stone",
+          "radius": 1,
+          "centralHeight": 0.6862745098039216,
+          "patchMean": 0.6836601307189543
+        },
+        {
+          "label": "pale-face-C-left",
+          "nativeFrame": [
+            28.5,
+            70
+          ],
+          "decodedTierPixel": [
+            114,
+            280
+          ],
+          "physicalClass": "stone",
+          "radius": 1,
+          "centralHeight": 0.6784313725490196,
+          "patchMean": 0.681045751633987
+        },
+        {
+          "label": "pale-face-course2-left",
+          "nativeFrame": [
+            11,
+            35
+          ],
+          "decodedTierPixel": [
+            44,
+            140
+          ],
+          "physicalClass": "stone",
+          "radius": 1,
+          "centralHeight": 0.6784313725490196,
+          "patchMean": 0.681045751633987
+        },
+        {
+          "label": "pale-face-course4",
+          "nativeFrame": [
+            85,
+            101
+          ],
+          "decodedTierPixel": [
+            340,
+            404
+          ],
+          "physicalClass": "stone",
+          "radius": 1,
+          "centralHeight": 0.6862745098039216,
+          "patchMean": 0.6862745098039216
+        },
+        {
+          "label": "latent-joint-A",
+          "nativeFrame": [
+            32.6,
+            6
+          ],
+          "decodedTierPixel": [
+            130,
+            24
+          ],
+          "physicalClass": "mortar",
+          "radius": 1,
+          "centralHeight": 0.26666666666666666,
+          "patchMean": 0.2649237472766884
+        },
+        {
+          "label": "latent-joint-B",
+          "nativeFrame": [
+            65,
+            38
+          ],
+          "decodedTierPixel": [
+            260,
+            152
+          ],
+          "physicalClass": "mortar",
+          "radius": 1,
+          "centralHeight": 0.3254901960784314,
+          "patchMean": 0.3172113289760349
+        },
+        {
+          "label": "latent-joint-C",
+          "nativeFrame": [
+            30.8,
+            70
+          ],
+          "decodedTierPixel": [
+            123,
+            280
+          ],
+          "physicalClass": "mortar",
+          "radius": 1,
+          "centralHeight": 0.29411764705882354,
+          "patchMean": 0.2984749455337691
+        },
+        {
+          "label": "visible-joint-A",
+          "nativeFrame": [
+            29.4,
+            18
+          ],
+          "decodedTierPixel": [
+            118,
+            72
+          ],
+          "physicalClass": "mortar",
+          "radius": 1,
+          "centralHeight": 0.27058823529411763,
+          "patchMean": 0.2679738562091503
+        },
+        {
+          "label": "visible-joint-B",
+          "nativeFrame": [
+            63.8,
+            50
+          ],
+          "decodedTierPixel": [
+            255,
+            200
+          ],
+          "physicalClass": "mortar",
+          "radius": 1,
+          "centralHeight": 0.26666666666666666,
+          "patchMean": 0.26492374727668844
+        },
+        {
+          "label": "visible-joint-C",
+          "nativeFrame": [
+            29.4,
+            82
+          ],
+          "decodedTierPixel": [
+            118,
+            328
+          ],
+          "physicalClass": "mortar",
+          "radius": 1,
+          "centralHeight": 0.26666666666666666,
+          "patchMean": 0.26666666666666666
+        },
+        {
+          "label": "stone-face-course1",
+          "nativeFrame": [
+            64,
+            16
+          ],
+          "decodedTierPixel": [
+            256,
+            64
+          ],
+          "physicalClass": "stone",
+          "radius": 1,
+          "centralHeight": 0.6745098039215687,
+          "patchMean": 0.672331154684096
+        },
+        {
+          "label": "stone-face-course2",
+          "nativeFrame": [
+            32,
+            48
+          ],
+          "decodedTierPixel": [
+            128,
+            192
+          ],
+          "physicalClass": "stone",
+          "radius": 1,
+          "centralHeight": 0.6470588235294118,
+          "patchMean": 0.6483660130718955
+        },
+        {
+          "label": "stone-face-course3",
+          "nativeFrame": [
+            64,
+            80
+          ],
+          "decodedTierPixel": [
+            256,
+            320
+          ],
+          "physicalClass": "stone",
+          "radius": 1,
+          "centralHeight": 0.6549019607843137,
+          "patchMean": 0.6583877995642702
+        },
+        {
+          "label": "stone-face-course4",
+          "nativeFrame": [
+            96,
+            112
+          ],
+          "decodedTierPixel": [
+            384,
+            448
+          ],
+          "physicalClass": "stone",
+          "radius": 1,
+          "centralHeight": 0.6705882352941176,
+          "patchMean": 0.6705882352941177
+        }
+      ],
+      "allReviewedMortarMeansBelowAllReviewedStoneMeans": true
+    },
+    "High": {
+      "maps": [
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/high-diffuse.webp",
+          "sha256": "f71636222de1909710faa133c74eb87361a8c4553577460b9d4e9e67050f2fe4",
+          "role": "diffuse",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "codecChunks": [
+            "VP8 "
+          ]
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/high-height.webp",
+          "sha256": "6bd900baa039d21d51b9c319cad66840b42f7fd9d9ce9d2f9176237320d839dc",
+          "role": "height",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "codecChunks": [
+            "VP8 "
+          ]
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/high-normalX.webp",
+          "sha256": "daaa3565b481b2fc88fbad77b0538cda553233201499a061bade1196236c8cb2",
+          "role": "normalX",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "codecChunks": [
+            "VP8 "
+          ]
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/high-normalY.webp",
+          "sha256": "d2aff83532452c6390a94213b0728d64546af65529200211594cc6cd0cafe1ab",
+          "role": "normalY",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "codecChunks": [
+            "VP8 "
+          ]
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/high-normalZ.webp",
+          "sha256": "93bfca90165d0bfed65e9c2022219186d7177ff43e8092e3d029a38200f1061b",
+          "role": "normalZ",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "codecChunks": [
+            "VP8 "
+          ]
+        }
+      ],
+      "distanceChecks": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            64,
+            64
+          ],
+          "filterBoth": "BOX",
+          "meanAbsoluteError": 5.638102213541667,
+          "maximum": 65.0
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            32,
+            32
+          ],
+          "filterBoth": "BOX",
+          "meanAbsoluteError": 3.0576171875,
+          "maximum": 28.0
+        }
+      ],
+      "physicalWitnesses": [
+        {
+          "label": "pale-face-A",
+          "nativeFrame": [
+            31,
+            6
+          ],
+          "decodedTierPixel": [
+            248,
+            48
+          ],
+          "physicalClass": "stone",
+          "radius": 3,
+          "centralHeight": 0.6901960784313725,
+          "patchMean": 0.6840336134453782
+        },
+        {
+          "label": "pale-face-B",
+          "nativeFrame": [
+            63.5,
+            38
+          ],
+          "decodedTierPixel": [
+            508,
+            304
+          ],
+          "physicalClass": "stone",
+          "radius": 3,
+          "centralHeight": 0.6862745098039216,
+          "patchMean": 0.6862745098039217
+        },
+        {
+          "label": "pale-face-C-left",
+          "nativeFrame": [
+            28.5,
+            70
+          ],
+          "decodedTierPixel": [
+            228,
+            560
+          ],
+          "physicalClass": "stone",
+          "radius": 3,
+          "centralHeight": 0.6862745098039216,
+          "patchMean": 0.6862745098039217
+        },
+        {
+          "label": "pale-face-course2-left",
+          "nativeFrame": [
+            11,
+            35
+          ],
+          "decodedTierPixel": [
+            88,
+            280
+          ],
+          "physicalClass": "stone",
+          "radius": 3,
+          "centralHeight": 0.6862745098039216,
+          "patchMean": 0.6823529411764706
+        },
+        {
+          "label": "pale-face-course4",
+          "nativeFrame": [
+            85,
+            101
+          ],
+          "decodedTierPixel": [
+            680,
+            808
+          ],
+          "physicalClass": "stone",
+          "radius": 3,
+          "centralHeight": 0.6862745098039216,
+          "patchMean": 0.6862745098039217
+        },
+        {
+          "label": "latent-joint-A",
+          "nativeFrame": [
+            32.6,
+            6
+          ],
+          "decodedTierPixel": [
+            261,
+            48
+          ],
+          "physicalClass": "mortar",
+          "radius": 3,
+          "centralHeight": 0.27058823529411763,
+          "patchMean": 0.2668267306922769
+        },
+        {
+          "label": "latent-joint-B",
+          "nativeFrame": [
+            65,
+            38
+          ],
+          "decodedTierPixel": [
+            520,
+            304
+          ],
+          "physicalClass": "mortar",
+          "radius": 3,
+          "centralHeight": 0.3137254901960784,
+          "patchMean": 0.3137254901960784
+        },
+        {
+          "label": "latent-joint-C",
+          "nativeFrame": [
+            30.8,
+            70
+          ],
+          "decodedTierPixel": [
+            246,
+            560
+          ],
+          "physicalClass": "mortar",
+          "radius": 3,
+          "centralHeight": 0.30196078431372547,
+          "patchMean": 0.30268107242897163
+        },
+        {
+          "label": "visible-joint-A",
+          "nativeFrame": [
+            29.4,
+            18
+          ],
+          "decodedTierPixel": [
+            235,
+            144
+          ],
+          "physicalClass": "mortar",
+          "radius": 3,
+          "centralHeight": 0.26666666666666666,
+          "patchMean": 0.26666666666666666
+        },
+        {
+          "label": "visible-joint-B",
+          "nativeFrame": [
+            63.8,
+            50
+          ],
+          "decodedTierPixel": [
+            510,
+            400
+          ],
+          "physicalClass": "mortar",
+          "radius": 3,
+          "centralHeight": 0.26666666666666666,
+          "patchMean": 0.26666666666666666
+        },
+        {
+          "label": "visible-joint-C",
+          "nativeFrame": [
+            29.4,
+            82
+          ],
+          "decodedTierPixel": [
+            235,
+            656
+          ],
+          "physicalClass": "mortar",
+          "radius": 3,
+          "centralHeight": 0.26666666666666666,
+          "patchMean": 0.26666666666666666
+        },
+        {
+          "label": "stone-face-course1",
+          "nativeFrame": [
+            64,
+            16
+          ],
+          "decodedTierPixel": [
+            512,
+            128
+          ],
+          "physicalClass": "stone",
+          "radius": 3,
+          "centralHeight": 0.6745098039215687,
+          "patchMean": 0.6728291316526611
+        },
+        {
+          "label": "stone-face-course2",
+          "nativeFrame": [
+            32,
+            48
+          ],
+          "decodedTierPixel": [
+            256,
+            384
+          ],
+          "physicalClass": "stone",
+          "radius": 3,
+          "centralHeight": 0.6549019607843137,
+          "patchMean": 0.6529811924769908
+        },
+        {
+          "label": "stone-face-course3",
+          "nativeFrame": [
+            64,
+            80
+          ],
+          "decodedTierPixel": [
+            512,
+            640
+          ],
+          "physicalClass": "stone",
+          "radius": 3,
+          "centralHeight": 0.6588235294117647,
+          "patchMean": 0.6597839135654261
+        },
+        {
+          "label": "stone-face-course4",
+          "nativeFrame": [
+            96,
+            112
+          ],
+          "decodedTierPixel": [
+            768,
+            896
+          ],
+          "physicalClass": "stone",
+          "radius": 3,
+          "centralHeight": 0.6705882352941176,
+          "patchMean": 0.6713085234093636
+        }
+      ],
+      "allReviewedMortarMeansBelowAllReviewedStoneMeans": true
+    }
+  },
+  "code": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/check-final-candidate.py",
+    "sha256": "21333ff5f56fe5f63732d62296a03d811ddf0a6f5955377d4103ead6b962d48b"
+  },
+  "environment": {
+    "pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "libwebp": "1.3.2"
+  },
+  "honestLimits": [
+    "Restrained fine relief; tiny pits mainly visible in RGB.",
+    "Latent C contact is a bounded reviewed authoring hypothesis, not measured hidden geometry.",
+    "No runtime/owner acceptance, shared catalog mutation, Git/build/landing/push/release performed by this stream."
+  ]
+}

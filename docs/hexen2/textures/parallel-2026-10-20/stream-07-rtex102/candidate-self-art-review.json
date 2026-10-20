@@ -1,0 +1,38 @@
+{
+  "verdict": "PASS author actual decoded material, distance, repeats/corners and relief; independent final qualification pending",
+  "nativeIdentity": "e839a43cf82585d2393634074db6a19968c39436e12dd85201ec0074d92710dd",
+  "name": "rtex102",
+  "material": "Dark dense weathered volcanic rock with irregular coherent grey/grey-green mineral faces, small pits and muted brown oxide weathering. Exact geology is interpretation. Material is physically readable in actual raw, canonical master and both decoded tiers; no uniform grain overlay, pixel contours, hardware or invented blocks.",
+  "distance": "At32-square and16-square both BOX-reduced original and actual decoded diffuse preserve a very dark muted charcoal/brown field, subordinate grey-green faces and irregular native patch scale. No distinguishing regular forms exist to reconstruct. Numeric mean errors are descriptive, not acceptance thresholds.",
+  "repeat": "Viewed actual decoded X/Y/XY seams and corners plus both4-tile repeats. No introduced straight edge line, border, new object or disconnected masonry feature observed. Irregular feature repetition is the same single source, not a guarantee that repeated motifs are invisible.",
+  "relief": "Actual decoded height/XYZ and opposed lights show coherent mineral faces above irregular dark recesses. Thin oxide does not form isolated raised blobs. There is no reviewed architectural plane hierarchy in this unjointed rough stone; scalar shape is plausible interpretation, not measured geology.",
+  "witnessLimits": "B/P are conservative coherent face witnesses and F/N conservative dark recesses. I is rough microfacet structure; D is a pit beside a rim; M is a small pit whose7x7neighborhood includes surrounding stone. Their neighborhood means are retained, not claimed pure material classes. A/J/G explicitly retain mixed stain/edge observations and are not used as pure depth witnesses. All actual coordinates and unclassified proposals are preserved.",
+  "physicalVerification": {
+    "sourceMasterPreTier": "pre-tier-self-check.json",
+    "decodedSamples": "candidate-self-replay.json",
+    "compression": "All10 maps are byte-exact direct Q92/method6 oracle outputs. Height compression MAE .005690Mid/.005636High; authored-vs-decoded XYZ average angular divergence1.020/1.000degrees disclosed."
+  },
+  "actualViews": [
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/generated/rtex102.png",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/masters/rtex102/color.png",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/review/rtex102-mid-review.jpg",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/review/rtex102-high-review.jpg",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/review/rtex102-mid-relief.jpg",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/review/rtex102-high-relief.jpg",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/candidate-seams-corners.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/pre-tier-physical-witnesses.png"
+  ],
+  "acceptanceLimits": [
+    "Author review and source-bound self replay do not replace independent final qualification.",
+    "No shared catalog/queue registration, runtime/pack/GPU qualification, owner acceptance, Git landing/CI or release/Pages action."
+  ],
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/candidate-self-replay.json": "0d7c7327b257203261ee16ff67bc4e2dc17ca956ab5cf5d076198f46541f8fdd",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/pre-tier-self-check.json": "161f54bd34e1de95aa8a70d486fae0a8a107cdfa4481c97140599ff0a0c59344",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/pre-tier-art-review.json": "8284b871a7ba5e4aa975bb1dcbc318a8ac57d9f5c837fc5f2d26051dd0c20ba7",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/batch.json": "7a444829defc64e8f0a7b8cb10943d193ed70ca08c0697deaa25b4434ce40a4b",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/masters/rtex102/master.json": "6154051cd40e1bbb22f291ddcf04815904092832c9e9ce3c74ef8d0f41a60b09",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/tiers/rtex102/manifest.json": "da18ecb625122f25d9e2e3c57405ce5124d48ed4c74ed995f18316d53ade3a9f",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/candidate-corner-provenance.json": "d3b493c3c99dc2cfee50aee4f7ef10adab3c553657441c2727ca5970af10f5c0"
+  }
+}

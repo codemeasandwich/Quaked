@@ -1,0 +1,95 @@
+{
+  "verdict": "PASS author pre-tier actual successor custody/physical self-check; independent final source/math/codec/ART pending",
+  "sourceMasterPackageSha256": "924ce09475c47d82e992aa2ff8935984691606d854d1c64ae756d3c448d2a0bd",
+  "finalMasterPackageSha256": "707a313f58845271e03b6c9ad927fc47856b4125f17536b27bda26b2ee980001",
+  "RGBByteIdentical": true,
+  "floatHeightExactReviewedPolicy": true,
+  "precisionOrder": "craft float64 -> ordered planes and microrelief float64 -> one final float32 cast",
+  "finiteFloat32": true,
+  "plateRange": [
+    0.2879999876022339,
+    0.3119998872280121
+  ],
+  "headRange": [
+    0.3280014395713806,
+    0.7060176134109497
+  ],
+  "allEightRightRadialProfiles": {
+    "NW": [
+      0.6990283727645874,
+      0.6713694930076599,
+      0.6032314896583557,
+      0.45315805077552795,
+      0.3290101885795593,
+      0.30297383666038513
+    ],
+    "N": [
+      0.6934584975242615,
+      0.6673890948295593,
+      0.6200157999992371,
+      0.4511088728904724,
+      0.32918351888656616,
+      0.31070345640182495
+    ],
+    "NE": [
+      0.6950279474258423,
+      0.6824695467948914,
+      0.6257461309432983,
+      0.49178633093833923,
+      0.3441046178340912,
+      0.29918745160102844
+    ],
+    "W": [
+      0.7023299336433411,
+      0.6837201714515686,
+      0.6209506392478943,
+      0.45219534635543823,
+      0.3312075436115265,
+      0.3048919141292572
+    ],
+    "E": [
+      0.692444384098053,
+      0.6853170394897461,
+      0.641703188419342,
+      0.4750010371208191,
+      0.34444737434387207,
+      0.30710017681121826
+    ],
+    "SW": [
+      0.7022224068641663,
+      0.6799283027648926,
+      0.6212368011474609,
+      0.45432189106941223,
+      0.3286714255809784,
+      0.2967630922794342
+    ],
+    "S": [
+      0.7021594643592834,
+      0.685757577419281,
+      0.6207810044288635,
+      0.4656267762184143,
+      0.329448938369751,
+      0.30419933795928955
+    ],
+    "SE": [
+      0.7040334939956665,
+      0.6925545930862427,
+      0.6314888596534729,
+      0.4846546947956085,
+      0.3445545732975006,
+      0.29593998193740845
+    ]
+  },
+  "radialFractions": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    0.9,
+    1.1
+  ],
+  "allPerimeterPixelsClassifiedPlate": true,
+  "noPerimeterBevel": true,
+  "heightSha256": "88ff421e65e8bc20223f6a3b0fa2cfb70b94383b8ecb8e0f96b47cbb4ad8f4a2",
+  "initialCheckFailure": "pre-tier-self-check-initial-failure.json retained; oracle used rounded float32 initial, now corrected to actual documented full-precision order. Maximum difference5.960464477539063e-08, no material-policy or visual acceptance changed."
+}

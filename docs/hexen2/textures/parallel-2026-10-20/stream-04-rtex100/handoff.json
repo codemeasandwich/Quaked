@@ -1,0 +1,75 @@
+{
+  "nativeIdentity": "276edf04e9d48c0a4eabaf3b40555c9534af9977ebd42afa5dffa7407c9881e0",
+  "name": "rtex100",
+  "state": "ACTUAL CANDIDATE READY: author self-check PASS; independent final root verification/ART pending",
+  "batch": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-04-rtex100/batch.json",
+    "sha256": "e1edb0705961fa59e6ec60e1fdb0c2f9f1c59724f700824bd4dcec059cdeb2dd"
+  },
+  "canonicalMaster": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-04-rtex100/masters/rtex100/master.json",
+    "sha256": "8b619d9feca715a89ac4b819b606af15ab26c98f1c08d06a2fd5556c95a1bd91"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-04-rtex100/tiers/rtex100/manifest.json",
+    "sha256": "f8128969df857a14bad6758ac3793ecce955ddcc082aef72014b453934a47826"
+  },
+  "reviewIndex": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-04-rtex100/review/index.html",
+  "reviewFiles": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-04-rtex100/review/index.html",
+      "sha256": "8ea9438d1f2f2c5dfde54754f4e1190a95b249b523963b05591b763a325c2d3f"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-04-rtex100/review/rtex100-high-relief.jpg",
+      "sha256": "e1e3884a5ddeea66f5e26c0750554c79b4af25e0ae2cc81023959fe1c83d0c49"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-04-rtex100/review/rtex100-high-review.jpg",
+      "sha256": "4beae393cdd62e91f587096fa3b3d311b847ce5e0c432d8c215f3a0516705107"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-04-rtex100/review/rtex100-mid-relief.jpg",
+      "sha256": "fe9c2fa8220b8ce26b41965b16e01c0c81f97e0a44025f7e5c59c0d9980e7780"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-04-rtex100/review/rtex100-mid-review.jpg",
+      "sha256": "e2044e3ead78660eb1997cedfb149cf83c0ac84ce275e99d10d63f68b7081568"
+    }
+  ],
+  "counts": {
+    "generationCalls": 1,
+    "canonicalMasterPackages": 1,
+    "enhancedMaps": 10,
+    "nativeBindings": 1
+  },
+  "profile": "rock0_0, strength0.3/cap0.5, photographic color0.65/fieldSigma0.75",
+  "sourceProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-04-rtex100/native-proof.json",
+    "sha256": "fcd7a819eeb57d2065694be0496cf88f9124e5aaec67d3fc8d66b26a8863385b"
+  },
+  "preTierSelfCheck": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-04-rtex100/pre-tier-self-check.json",
+    "sha256": "0d8a82352c15bfa5b3395fe651b6ba8d9687c31052145cfbf59a23162beb3957"
+  },
+  "retainedCorrections": [
+    "Root caught unmatched bare rock numerical label before master; explicit maintained rock0_0 profile used. Old plan bytes retained; prompt unchanged.",
+    "Three initial physical-witness labels were wrong. Same coordinates relabeled after actual crop inspection; initial source/JSON/PNG retained. No master or source-data alteration."
+  ],
+  "tools": {
+    "tools/audit_hexen2_textures.mjs": "d596d318b55b117bad533cc7258ba9ace96223246097c515c5559bff49135863",
+    "skills/quaked-texture-authoring/scripts/generation_journal.py": "f1aab4d98ac1701f0d054b9892232f88c8e3fbc03332d9b9dcddfa7785329dc8",
+    "tools/texture_sheets/prepare_texture_master.py": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+    "tools/texture_sheets/finish_official_texture.py": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+    "tools/craft_normals.py": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+    "tools/texture_sheets/derive_texture_tiers.py": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+    "tools/texture_sheets/build_texture_batch_review.py": "7b14678ba508b15c283d2793488098f01d5993e16db662c10c3ef084d4270a2f"
+  },
+  "nextOwner": "Root coordinator for independent final source/math/codec/preview/ART and catalog registration if qualified.",
+  "limits": [
+    "No shared catalog/queue/Git changes",
+    "No runtime/gameplay/owner acceptance/landing/CI/release qualification",
+    "Frozen preceding rtex011 assets/receipts untouched; full campaign remains active"
+  ],
+  "createdAt": "2026-10-20T09:46:09.691736+00:00"
+}

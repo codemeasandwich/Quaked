@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "batch": "008",
+  "createdAt": "2026-10-19T07:42:47.034552+00:00",
+  "scope": "Eight source-proved native materials with draft exact prompts. Independent final prompt/relief-plan review required before generation; no source issued.",
+  "items": [
+    {
+      "id": "b0d888d2faaedfc77346980aefcce52f620cabf34f80365bbbd17fd7835e10c6",
+      "name": "ttex153",
+      "edition": "portals",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "profileFaceReferences": 1392,
+      "state": "Native selected and source-proved; no generation issued.",
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/08-ttex153-b0d888d2faae.png",
+      "originalSha256": "107b63272f5d20d7a16a65224886ac28519b2e2d11afc54264a7bff3b4fb32e4",
+      "rgbaSha256": "aa585f66c1030b878c4215b07c74127e92c7960aa6e613757bb6ca8b5010b8e9",
+      "indexedPixelSha256": "ab852fbf41240b4bf879bd612bdae4931327206c25d9b4e731068f6f1112a418",
+      "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+      "generationCount": 1,
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex153-material-v2.txt",
+      "promptSha256": "cd0e24bdce7296f1f7764d4ebaa16b5667e60a24f786d2cc30e6c26b38c59e93",
+      "profile": "stone",
+      "colorStrength": 0.65,
+      "fieldSigma": 0.75,
+      "generationState": "generated-retained",
+      "reliefCheckBeforeTierDerivation": "Identify actual stone-face and pale-joint-centre witnesses after master preparation. Require intended recessed joint ordering before deriving either tier; if ordinary tonal craft fails, use reviewed semantic relief from the same source, never brightness-only acceptance.",
+      "priorPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex153.txt",
+        "sha256": "e71f22e5ec0369b7c902592c9e70c3dac874fcce9acfe24abba94535c2ac39da",
+        "reason": "Unissued prompt versioned after concrete material readability clarification."
+      },
+      "materialInterpretation": "Weathered pale sandy limestone blocks with pale recessed lime mortar.",
+      "generationIssuedAt": "2026-10-19T09:06:36.622433+00:00",
+      "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/ttex153.png",
+      "generatedSha256": "27dedc24745eaf900ec6ea7f3d4c3f4e1dc698efefa178106776c631f8251778",
+      "generatedDimensions": [
+        1254,
+        1254
+      ],
+      "generatedMode": "RGB",
+      "generatedAt": "2026-10-20T06:46:00.506287+00:00",
+      "builtInOutput": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-78dfd743-b0af-4cb7-9796-69b9d5d61ede.png"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "verdict": "HOLD - initial physical cavity geometry not qualified",
+  "source": "physical-survey-v1/proposed-cavity-polygon-contact.png",
+  "retainedFailure": "Initial manual polygon contact reveals several missed features and mixed positive/negative marks; do not reuse as canonical geometry.",
+  "rejectedOrUnresolved": [
+    "S037",
+    "S041",
+    "S045",
+    "S054",
+    "S074",
+    "S078",
+    "S089"
+  ],
+  "strongerProposalsStillRequireReview": [
+    "S015",
+    "S020",
+    "S032",
+    "S093",
+    "S094"
+  ],
+  "noHeightAuthored": true,
+  "nextAction": "Root source/sign/geometry review; sparse reliable negative-only subset does not establish convincing physical plaster roughness."
+}

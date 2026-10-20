@@ -1,0 +1,1205 @@
+{
+  "schemaVersion": 1,
+  "status": "HOLD - incomplete classification; do not normalize height",
+  "source": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/color.png",
+    "sha256": "75735d60f4199165c89f02f38d96a021ce471ddd4acd4ca5196a6fae6abf1eba",
+    "bytes": 1075572
+  },
+  "coordinateConvention": "registered master pixel-edge coordinates, [x0,y0,x1,y1) boxes; native=master/8",
+  "classOrder": [
+    "UNRESOLVED",
+    "green",
+    "upper-red",
+    "middle-red",
+    "ochre",
+    "dark-ornament"
+  ],
+  "calibrations": [
+    {
+      "class": "UNRESOLVED",
+      "value": 1.0,
+      "meaning": "IDENTITY SENTINEL, not measured pigment albedo; ineligible for height"
+    },
+    {
+      "class": "green",
+      "value": 0.2463137254901961,
+      "method": "median of equal-weight patch medians, no per-pixel fit",
+      "patches": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "minMaxPatchMedians": [
+        0.22673921568627448,
+        0.2603725490196078
+      ],
+      "relativePatchMedianSpread": 0.13654672822798922,
+      "status": "Unaccepted empirical reflectance proxy; illumination confounded"
+    },
+    {
+      "class": "upper-red",
+      "value": 0.19432941176470586,
+      "method": "median of equal-weight patch medians, no per-pixel fit",
+      "patches": [
+        "U1",
+        "U2",
+        "U3"
+      ],
+      "minMaxPatchMedians": [
+        0.1777098039215686,
+        0.19960588235294116
+      ],
+      "relativePatchMedianSpread": 0.11267506154901731,
+      "status": "Unaccepted empirical reflectance proxy; illumination confounded"
+    },
+    {
+      "class": "middle-red",
+      "value": 0.16779607843137256,
+      "method": "median of equal-weight patch medians, no per-pixel fit",
+      "patches": [
+        "M1",
+        "M2",
+        "M3"
+      ],
+      "minMaxPatchMedians": [
+        0.1628764705882353,
+        0.19522352941176468
+      ],
+      "relativePatchMedianSpread": 0.19277601196597166,
+      "status": "Unaccepted empirical reflectance proxy; illumination confounded"
+    },
+    {
+      "class": "ochre",
+      "value": 0.265378431372549,
+      "method": "median of equal-weight patch medians, no per-pixel fit",
+      "patches": [
+        "O1",
+        "O2",
+        "O3",
+        "O4",
+        "O5",
+        "O6",
+        "O7"
+      ],
+      "minMaxPatchMedians": [
+        0.2419235294117647,
+        0.29799215686274505
+      ],
+      "relativePatchMedianSpread": 0.2112780121616927,
+      "status": "Unaccepted empirical reflectance proxy; illumination confounded"
+    },
+    {
+      "class": "dark-ornament",
+      "value": 0.10851960784313724,
+      "method": "median of equal-weight patch medians, no per-pixel fit",
+      "patches": [
+        "D1",
+        "D2",
+        "D3"
+      ],
+      "minMaxPatchMedians": [
+        0.08719607843137255,
+        0.11087843137254902
+      ],
+      "relativePatchMedianSpread": 0.21823109585328399,
+      "status": "Unaccepted empirical reflectance proxy; illumination confounded"
+    }
+  ],
+  "calibrationPatches": [
+    {
+      "label": "G1",
+      "class": "green",
+      "masterPixelEdgeBox": [
+        96,
+        160,
+        132,
+        196
+      ],
+      "nativePixelEdgeBox": [
+        12.0,
+        20.0,
+        16.5,
+        24.5
+      ],
+      "pixels": 1296,
+      "medianRGB": [
+        0.20784313725490197,
+        0.24313725490196078,
+        0.2
+      ],
+      "medianLuminance": 0.22673921568627448,
+      "p10p90Luminance": [
+        0.1905176470588235,
+        0.3025490196078431
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": false,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "G2",
+      "class": "green",
+      "masterPixelEdgeBox": [
+        326,
+        240,
+        362,
+        276
+      ],
+      "nativePixelEdgeBox": [
+        40.75,
+        30.0,
+        45.25,
+        34.5
+      ],
+      "pixels": 1296,
+      "medianRGB": [
+        0.24705882352941178,
+        0.27450980392156865,
+        0.23137254901960785
+      ],
+      "medianLuminance": 0.2603725490196078,
+      "p10p90Luminance": [
+        0.19039999999999999,
+        0.3496098039215686
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": false,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "G3",
+      "class": "green",
+      "masterPixelEdgeBox": [
+        185,
+        375,
+        221,
+        411
+      ],
+      "nativePixelEdgeBox": [
+        23.125,
+        46.875,
+        27.625,
+        51.375
+      ],
+      "pixels": 1296,
+      "medianRGB": [
+        0.23529411764705882,
+        0.2549019607843137,
+        0.2235294117647059
+      ],
+      "medianLuminance": 0.2463137254901961,
+      "p10p90Luminance": [
+        0.1845392156862745,
+        0.3072078431372549
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": false,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "U1",
+      "class": "upper-red",
+      "masterPixelEdgeBox": [
+        72,
+        32,
+        108,
+        56
+      ],
+      "nativePixelEdgeBox": [
+        9.0,
+        4.0,
+        13.5,
+        7.0
+      ],
+      "pixels": 864,
+      "medianRGB": [
+        0.34901960784313724,
+        0.13725490196078433,
+        0.10196078431372549
+      ],
+      "medianLuminance": 0.19432941176470586,
+      "p10p90Luminance": [
+        0.12354235294117645,
+        0.2732670588235294
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": false,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "U2",
+      "class": "upper-red",
+      "masterPixelEdgeBox": [
+        246,
+        32,
+        282,
+        56
+      ],
+      "nativePixelEdgeBox": [
+        30.75,
+        4.0,
+        35.25,
+        7.0
+      ],
+      "pixels": 864,
+      "medianRGB": [
+        0.34901960784313724,
+        0.1411764705882353,
+        0.10980392156862745
+      ],
+      "medianLuminance": 0.19960588235294116,
+      "p10p90Luminance": [
+        0.14098235294117648,
+        0.27288352941176475
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": false,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "U3",
+      "class": "upper-red",
+      "masterPixelEdgeBox": [
+        400,
+        32,
+        436,
+        56
+      ],
+      "nativePixelEdgeBox": [
+        50.0,
+        4.0,
+        54.5,
+        7.0
+      ],
+      "pixels": 864,
+      "medianRGB": [
+        0.32941176470588235,
+        0.11764705882352941,
+        0.08627450980392157
+      ],
+      "medianLuminance": 0.1777098039215686,
+      "p10p90Luminance": [
+        0.1252023529411765,
+        0.24278980392156863
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": false,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "M1",
+      "class": "middle-red",
+      "masterPixelEdgeBox": [
+        72,
+        516,
+        108,
+        540
+      ],
+      "nativePixelEdgeBox": [
+        9.0,
+        64.5,
+        13.5,
+        67.5
+      ],
+      "pixels": 864,
+      "medianRGB": [
+        0.30980392156862746,
+        0.10196078431372549,
+        0.0784313725490196
+      ],
+      "medianLuminance": 0.1628764705882353,
+      "p10p90Luminance": [
+        0.1164313725490196,
+        0.2570266666666667
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": false,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "M2",
+      "class": "middle-red",
+      "masterPixelEdgeBox": [
+        246,
+        516,
+        282,
+        540
+      ],
+      "nativePixelEdgeBox": [
+        30.75,
+        64.5,
+        35.25,
+        67.5
+      ],
+      "pixels": 864,
+      "medianRGB": [
+        0.30980392156862746,
+        0.10980392156862745,
+        0.08627450980392157
+      ],
+      "medianLuminance": 0.16779607843137256,
+      "p10p90Luminance": [
+        0.11431999999999999,
+        0.22994705882352942
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": false,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "M3",
+      "class": "middle-red",
+      "masterPixelEdgeBox": [
+        400,
+        516,
+        436,
+        540
+      ],
+      "nativePixelEdgeBox": [
+        50.0,
+        64.5,
+        54.5,
+        67.5
+      ],
+      "pixels": 864,
+      "medianRGB": [
+        0.35294117647058826,
+        0.12941176470588237,
+        0.10588235294117647
+      ],
+      "medianLuminance": 0.19522352941176468,
+      "p10p90Luminance": [
+        0.13820117647058822,
+        0.2860596078431372
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": false,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "O1",
+      "class": "ochre",
+      "masterPixelEdgeBox": [
+        72,
+        3,
+        108,
+        11
+      ],
+      "nativePixelEdgeBox": [
+        9.0,
+        0.375,
+        13.5,
+        1.375
+      ],
+      "pixels": 288,
+      "medianRGB": [
+        0.3803921568627451,
+        0.28627450980392155,
+        0.13725490196078433
+      ],
+      "medianLuminance": 0.29799215686274505,
+      "p10p90Luminance": [
+        0.1922662745098039,
+        0.4053011764705883
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": false,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "O2",
+      "class": "ochre",
+      "masterPixelEdgeBox": [
+        278,
+        3,
+        314,
+        11
+      ],
+      "nativePixelEdgeBox": [
+        34.75,
+        0.375,
+        39.25,
+        1.375
+      ],
+      "pixels": 288,
+      "medianRGB": [
+        0.34901960784313724,
+        0.23921568627450981,
+        0.09803921568627451
+      ],
+      "medianLuminance": 0.255143137254902,
+      "p10p90Luminance": [
+        0.18346235294117647,
+        0.33472823529411766
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": false,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "O3",
+      "class": "ochre",
+      "masterPixelEdgeBox": [
+        72,
+        559,
+        108,
+        566
+      ],
+      "nativePixelEdgeBox": [
+        9.0,
+        69.875,
+        13.5,
+        70.75
+      ],
+      "pixels": 252,
+      "medianRGB": [
+        0.3333333333333333,
+        0.2235294117647059,
+        0.09803921568627451
+      ],
+      "medianLuminance": 0.2419235294117647,
+      "p10p90Luminance": [
+        0.1954976470588235,
+        0.30489137254901955
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": false,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "O4",
+      "class": "ochre",
+      "masterPixelEdgeBox": [
+        278,
+        559,
+        314,
+        566
+      ],
+      "nativePixelEdgeBox": [
+        34.75,
+        69.875,
+        39.25,
+        70.75
+      ],
+      "pixels": 252,
+      "medianRGB": [
+        0.3607843137254902,
+        0.23529411764705882,
+        0.08627450980392157
+      ],
+      "medianLuminance": 0.2540901960784314,
+      "p10p90Luminance": [
+        0.17899568627450982,
+        0.3057545098039215
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": false,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "O5",
+      "class": "ochre",
+      "masterPixelEdgeBox": [
+        44,
+        583,
+        76,
+        591
+      ],
+      "nativePixelEdgeBox": [
+        5.5,
+        72.875,
+        9.5,
+        73.875
+      ],
+      "pixels": 256,
+      "medianRGB": [
+        0.37254901960784315,
+        0.24705882352941178,
+        0.08627450980392157
+      ],
+      "medianLuminance": 0.265378431372549,
+      "p10p90Luminance": [
+        0.20234901960784313,
+        0.32619607843137255
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": false,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "O6",
+      "class": "ochre",
+      "masterPixelEdgeBox": [
+        170,
+        583,
+        202,
+        591
+      ],
+      "nativePixelEdgeBox": [
+        21.25,
+        72.875,
+        25.25,
+        73.875
+      ],
+      "pixels": 256,
+      "medianRGB": [
+        0.39019607843137255,
+        0.25098039215686274,
+        0.09019607843137255
+      ],
+      "medianLuminance": 0.27498039215686276,
+      "p10p90Luminance": [
+        0.21579607843137252,
+        0.34255882352941175
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": false,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "O7",
+      "class": "ochre",
+      "masterPixelEdgeBox": [
+        294,
+        583,
+        326,
+        591
+      ],
+      "nativePixelEdgeBox": [
+        36.75,
+        72.875,
+        40.75,
+        73.875
+      ],
+      "pixels": 256,
+      "medianRGB": [
+        0.38823529411764707,
+        0.2549019607843137,
+        0.09019607843137255
+      ],
+      "medianLuminance": 0.2760254901960784,
+      "p10p90Luminance": [
+        0.2044156862745098,
+        0.3582431372549019
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": false,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "D1",
+      "class": "dark-ornament",
+      "masterPixelEdgeBox": [
+        44,
+        596,
+        76,
+        603
+      ],
+      "nativePixelEdgeBox": [
+        5.5,
+        74.5,
+        9.5,
+        75.375
+      ],
+      "pixels": 224,
+      "medianRGB": [
+        0.11372549019607843,
+        0.0784313725490196,
+        0.056862745098039215
+      ],
+      "medianLuminance": 0.08719607843137255,
+      "p10p90Luminance": [
+        0.05710980392156862,
+        0.13553725490196078
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": false,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "D2",
+      "class": "dark-ornament",
+      "masterPixelEdgeBox": [
+        171,
+        596,
+        201,
+        603
+      ],
+      "nativePixelEdgeBox": [
+        21.375,
+        74.5,
+        25.125,
+        75.375
+      ],
+      "pixels": 210,
+      "medianRGB": [
+        0.14901960784313725,
+        0.1,
+        0.07058823529411765
+      ],
+      "medianLuminance": 0.11087843137254902,
+      "p10p90Luminance": [
+        0.08303764705882352,
+        0.14403764705882352
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": false,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "D3",
+      "class": "dark-ornament",
+      "masterPixelEdgeBox": [
+        294,
+        596,
+        326,
+        603
+      ],
+      "nativePixelEdgeBox": [
+        36.75,
+        74.5,
+        40.75,
+        75.375
+      ],
+      "pixels": 224,
+      "medianRGB": [
+        0.13529411764705884,
+        0.10196078431372549,
+        0.07450980392156863
+      ],
+      "medianLuminance": 0.10851960784313724,
+      "p10p90Luminance": [
+        0.07580078431372549,
+        0.14836078431372549
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": false,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "L1",
+      "class": "lower-red-unresolved",
+      "masterPixelEdgeBox": [
+        100,
+        842,
+        116,
+        858
+      ],
+      "nativePixelEdgeBox": [
+        12.5,
+        105.25,
+        14.5,
+        107.25
+      ],
+      "pixels": 256,
+      "medianRGB": [
+        0.1803921568627451,
+        0.10784313725490197,
+        0.08235294117647059
+      ],
+      "medianLuminance": 0.12378039215686273,
+      "p10p90Luminance": [
+        0.08385882352941176,
+        0.17777450980392157
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": true,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "L2",
+      "class": "lower-red-unresolved",
+      "masterPixelEdgeBox": [
+        318,
+        750,
+        334,
+        766
+      ],
+      "nativePixelEdgeBox": [
+        39.75,
+        93.75,
+        41.75,
+        95.75
+      ],
+      "pixels": 256,
+      "medianRGB": [
+        0.19803921568627453,
+        0.06666666666666667,
+        0.0392156862745098
+      ],
+      "medianLuminance": 0.0973,
+      "p10p90Luminance": [
+        0.07005490196078432,
+        0.1339254901960784
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": true,
+      "physicalWitnessOverlapPixels": 0
+    },
+    {
+      "label": "L3",
+      "class": "lower-red-unresolved",
+      "masterPixelEdgeBox": [
+        408,
+        940,
+        424,
+        956
+      ],
+      "nativePixelEdgeBox": [
+        51.0,
+        117.5,
+        53.0,
+        119.5
+      ],
+      "pixels": 256,
+      "medianRGB": [
+        0.16470588235294117,
+        0.09019607843137255,
+        0.06666666666666667
+      ],
+      "medianLuminance": 0.10970980392156862,
+      "p10p90Luminance": [
+        0.07963725490196077,
+        0.16190588235294118
+      ],
+      "status": "PROPOSED calibration; independent review required",
+      "lowerFieldAmbiguity": true,
+      "physicalWitnessOverlapPixels": 0
+    }
+  ],
+  "conservativeSupports": [
+    {
+      "class": "ochre",
+      "masterPixelEdgeBox": [
+        0,
+        0,
+        512,
+        15
+      ]
+    },
+    {
+      "class": "upper-red",
+      "masterPixelEdgeBox": [
+        0,
+        22,
+        512,
+        72
+      ]
+    },
+    {
+      "class": "green",
+      "masterPixelEdgeBox": [
+        0,
+        82,
+        512,
+        489
+      ]
+    },
+    {
+      "class": "middle-red",
+      "masterPixelEdgeBox": [
+        0,
+        506,
+        512,
+        552
+      ]
+    },
+    {
+      "class": "ochre",
+      "masterPixelEdgeBox": [
+        0,
+        560,
+        512,
+        569
+      ]
+    },
+    {
+      "class": "dark-ornament",
+      "masterPixelEdgeBox": [
+        0,
+        575,
+        512,
+        651
+      ]
+    },
+    {
+      "class": "ochre",
+      "masterPixelEdgeBox": [
+        0,
+        655,
+        512,
+        663
+      ]
+    }
+  ],
+  "manualOchreStrokeHypothesis": {
+    "paths": [
+      [
+        [
+          -8,
+          632
+        ],
+        [
+          13,
+          632
+        ],
+        [
+          13,
+          586
+        ],
+        [
+          103,
+          586
+        ],
+        [
+          103,
+          610
+        ],
+        [
+          139,
+          610
+        ],
+        [
+          139,
+          586
+        ],
+        [
+          231,
+          586
+        ],
+        [
+          231,
+          632
+        ],
+        [
+          270,
+          632
+        ],
+        [
+          270,
+          586
+        ],
+        [
+          361,
+          586
+        ],
+        [
+          361,
+          610
+        ],
+        [
+          397,
+          610
+        ],
+        [
+          397,
+          586
+        ],
+        [
+          491,
+          586
+        ],
+        [
+          491,
+          632
+        ],
+        [
+          520,
+          632
+        ]
+      ],
+      [
+        [
+          74,
+          610
+        ],
+        [
+          44,
+          610
+        ],
+        [
+          44,
+          632
+        ],
+        [
+          196,
+          632
+        ],
+        [
+          196,
+          610
+        ],
+        [
+          171,
+          610
+        ]
+      ],
+      [
+        [
+          330,
+          610
+        ],
+        [
+          300,
+          610
+        ],
+        [
+          300,
+          632
+        ],
+        [
+          453,
+          632
+        ],
+        [
+          453,
+          610
+        ],
+        [
+          428,
+          610
+        ]
+      ]
+    ],
+    "widthMasterPixels": 10,
+    "supersampleFactor": 4,
+    "warning": "Approximate centreline hypothesis, NOT accepted actual paint-edge trace"
+  },
+  "boundaryPolicy": "Any class transition enlarged by square radius3 is UNRESOLVED; all lower field unresolved. No fitting to source microdetail.",
+  "witnesses": [
+    {
+      "label": "P1",
+      "description": "green raised flake / dark adjacent pore",
+      "masterPixelEdgeBox": [
+        47,
+        376,
+        86,
+        416
+      ],
+      "nativePixelEdgeBox": [
+        5.875,
+        47.0,
+        10.75,
+        52.0
+      ],
+      "proposedClass": "green",
+      "validGuideFraction": 1.0,
+      "guideRange": [
+        0.24631372094154358,
+        0.24631372094154358
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    },
+    {
+      "label": "P2",
+      "description": "green granular aggregate / pores",
+      "masterPixelEdgeBox": [
+        92,
+        224,
+        145,
+        270
+      ],
+      "nativePixelEdgeBox": [
+        11.5,
+        28.0,
+        18.125,
+        33.75
+      ],
+      "proposedClass": "green",
+      "validGuideFraction": 1.0,
+      "guideRange": [
+        0.24631372094154358,
+        0.24631372094154358
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    },
+    {
+      "label": "P3",
+      "description": "green pale worn aggregate cluster",
+      "masterPixelEdgeBox": [
+        307,
+        135,
+        353,
+        177
+      ],
+      "nativePixelEdgeBox": [
+        38.375,
+        16.875,
+        44.125,
+        22.125
+      ],
+      "proposedClass": "green",
+      "validGuideFraction": 1.0,
+      "guideRange": [
+        0.24631372094154358,
+        0.24631372094154358
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    },
+    {
+      "label": "P4",
+      "description": "upper red pitted plaster",
+      "masterPixelEdgeBox": [
+        175,
+        32,
+        212,
+        59
+      ],
+      "nativePixelEdgeBox": [
+        21.875,
+        4.0,
+        26.5,
+        7.375
+      ],
+      "proposedClass": "upper-red",
+      "validGuideFraction": 1.0,
+      "guideRange": [
+        0.1943294107913971,
+        0.1943294107913971
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    },
+    {
+      "label": "A1",
+      "description": "lower red / dark green islands - ambiguous",
+      "masterPixelEdgeBox": [
+        12,
+        690,
+        90,
+        770
+      ],
+      "nativePixelEdgeBox": [
+        1.5,
+        86.25,
+        11.25,
+        96.25
+      ],
+      "proposedClass": "UNRESOLVED",
+      "validGuideFraction": 0.0,
+      "guideRange": [
+        1.0,
+        1.0
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    },
+    {
+      "label": "A2",
+      "description": "lower mixed wear/pigment/shadow - ambiguous",
+      "masterPixelEdgeBox": [
+        304,
+        772,
+        382,
+        850
+      ],
+      "nativePixelEdgeBox": [
+        38.0,
+        96.5,
+        47.75,
+        106.25
+      ],
+      "proposedClass": "UNRESOLVED",
+      "validGuideFraction": 0.0,
+      "guideRange": [
+        1.0,
+        1.0
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    },
+    {
+      "label": "A3",
+      "description": "red/green dark rim - pigment vs shadow unresolved",
+      "masterPixelEdgeBox": [
+        185,
+        68,
+        263,
+        88
+      ],
+      "nativePixelEdgeBox": [
+        23.125,
+        8.5,
+        32.875,
+        11.0
+      ],
+      "proposedClass": "UNRESOLVED",
+      "validGuideFraction": 0.1,
+      "guideRange": [
+        0.24631372094154358,
+        1.0
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    },
+    {
+      "label": "A4",
+      "description": "middle green/red dark rim - unresolved",
+      "masterPixelEdgeBox": [
+        185,
+        484,
+        263,
+        511
+      ],
+      "nativePixelEdgeBox": [
+        23.125,
+        60.5,
+        32.875,
+        63.875
+      ],
+      "proposedClass": "UNRESOLVED",
+      "validGuideFraction": 0.07407407407407407,
+      "guideRange": [
+        0.1677960753440857,
+        1.0
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    },
+    {
+      "label": "E1",
+      "description": "ochre stroke and dark ground boundary",
+      "masterPixelEdgeBox": [
+        43,
+        581,
+        84,
+        608
+      ],
+      "nativePixelEdgeBox": [
+        5.375,
+        72.625,
+        10.5,
+        76.0
+      ],
+      "proposedClass": "edge-review",
+      "validGuideFraction": 0.33514001806684734,
+      "guideRange": [
+        0.10851960629224777,
+        1.0
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    },
+    {
+      "label": "E2",
+      "description": "meander inside corner",
+      "masterPixelEdgeBox": [
+        94,
+        583,
+        150,
+        620
+      ],
+      "nativePixelEdgeBox": [
+        11.75,
+        72.875,
+        18.75,
+        77.5
+      ],
+      "proposedClass": "edge-review",
+      "validGuideFraction": 0.3108108108108108,
+      "guideRange": [
+        0.10851960629224777,
+        1.0
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    }
+  ],
+  "normalizationAllowed": false,
+  "guideMeaning": "A=sum(Wc*medianPatchLuminance_c); UNRESOLVED A=1 identity sentinel is NOT an albedo estimate",
+  "requiredValidityPolicy": "Reject this entire proposal for authoring while any source support is unresolved; no silently ignoring/normalizing unknown pixels"
+}

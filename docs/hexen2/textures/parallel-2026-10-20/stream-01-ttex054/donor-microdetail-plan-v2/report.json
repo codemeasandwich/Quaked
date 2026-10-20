@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "status": "PLAN/TINY DIAGNOSTIC ONLY - source patch/material/outline review required",
+  "source": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/color.png",
+    "sha256": "75735d60f4199165c89f02f38d96a021ce471ddd4acd4ca5196a6fae6abf1eba"
+  },
+  "soleAuthoringSource": "Same retained ttex054 master; no new generation or unrelated texture.",
+  "donorPatches": [
+    {
+      "label": "D1",
+      "sourceBoxMasterPixels": [
+        416,
+        280,
+        464,
+        328
+      ],
+      "sourceScale": 1.0,
+      "originalFineMeanRemoved": -0.00028710812568320094,
+      "zeroMeanResidualSha256": "9c8e99f4fd03c4b7fa2b51dc5738febf9d7f4bc6a4d9d56db4221d66051c01b1",
+      "protectedAndBoundaryOverlapPixels": 0,
+      "robustSigma": 0.022570454649009936,
+      "psd": {
+        "totalPower": 1875.2380775902573,
+        "belowOnePer16Fraction": 0.004707891514351291,
+        "onePer16ToOnePer4Fraction": 0.5679415004891138,
+        "aboveOnePer4Fraction": 0.4273506079965348
+      }
+    },
+    {
+      "label": "D2",
+      "sourceBoxMasterPixels": [
+        80,
+        112,
+        128,
+        160
+      ],
+      "sourceScale": 1.0,
+      "originalFineMeanRemoved": -0.00012044424097209123,
+      "zeroMeanResidualSha256": "e31ef3186d69bdcb5bb713952d292be91096f7c3c7fd57e2d80c79b815fa0376",
+      "protectedAndBoundaryOverlapPixels": 0,
+      "robustSigma": 0.018510686817171655,
+      "psd": {
+        "totalPower": 1148.9099881137754,
+        "belowOnePer16Fraction": 0.008916937371110554,
+        "onePer16ToOnePer4Fraction": 0.542496903457209,
+        "aboveOnePer4Fraction": 0.4485861591716805
+      }
+    }
+  ],
+  "math": {
+    "fineFilter": "wrapped Gsigma0.5(N)-Gsigma2.0(N), each patch mean removed",
+    "sampling": "48x48 master-pixel patches at scale1,32px tile stride,8px C1 cosine edge ramps; donor index=(17cx+29cy+(cx*cy)%7)%2; no rotation/warp/no random values",
+    "assembly": "Weighted overlap normalized by weights; subtract wrapped8px slow mean then global mean. No RGB copied.",
+    "variance": "One gain chosen by bounded24-step search so measured resulting-core robust fine sigma matches clean-source target after the same fine filter; target uses boundary exclusion16px. Flat material variance gives gain0.",
+    "addition": "Inside reviewed support only: weight*gain*photographic donor field, weighted zero-mean correction. Outside normalized signal exact; no clipping or per-panel amplitude change."
+  },
+  "actualTinyBoxMasterPixels": [
+    32,
+    560,
+    160,
+    688
+  ],
+  "actualStats": {
+    "targetRobustFineSigma": 0.02985171430857721,
+    "presentCoreRobustFineSigma": 0.006808338552537949,
+    "donorCoreRobustFineSigma": 0.01026054177827708,
+    "gain": 2.8223644495010376,
+    "additionMeanOnSupport": 7.670204893427236e-19,
+    "resultingCoreRobustFineSigma": 0.02985171475478805,
+    "outsideNormalizedSignalBitExact": true,
+    "addedMaximumAbsolute": 0.2101684157955725
+  },
+  "assembledDonorPSD": {
+    "totalPower": 42803093.17584268,
+    "belowOnePer16Fraction": 0.003326020322879971,
+    "onePer16ToOnePer4Fraction": 0.5712851596303054,
+    "aboveOnePer4Fraction": 0.42538882004681483
+  },
+  "fixtures": [
+    {
+      "name": "flat",
+      "targetRobustFineSigma": 1.3260619961916074e-06,
+      "presentCoreRobustFineSigma": 0.0,
+      "donorCoreRobustFineSigma": 0.010319092142580357,
+      "gain": 0.0001284778118133545,
+      "additionMeanOnSupport": 3.382983770236407e-23,
+      "resultingCoreRobustFineSigma": 1.3257743785658581e-06,
+      "outsideNormalizedSignalBitExact": true,
+      "addedMaximumAbsolute": 7.284170788417695e-06,
+      "flatPlaneMaximumError": 7.28417078843524e-06,
+      "flatPlanePass": false,
+      "truthFineSigma": 0.0,
+      "outsideTruthMaximumError": 0.0
+    },
+    {
+      "name": "photographic",
+      "targetRobustFineSigma": 0.010458306621117795,
+      "presentCoreRobustFineSigma": 0.0007403791091265374,
+      "donorCoreRobustFineSigma": 0.010319092142580357,
+      "gain": 0.9854131042957306,
+      "additionMeanOnSupport": 2.6508472478568965e-19,
+      "resultingCoreRobustFineSigma": 0.010458306625692816,
+      "outsideNormalizedSignalBitExact": true,
+      "addedMaximumAbsolute": 0.055868925906542084,
+      "truthFineSigma": 0.010231993616200273,
+      "outsideTruthMaximumError": 1.1102230246251565e-16
+    }
+  ],
+  "actualCanonicalRgbUnchanged": true,
+  "macroCloneLimit": "Fine-only clean patches and low-frequency PSD constrain copied large forms; actual contact/lighting review still required. Not a numerical claim of no recognizable artefact.",
+  "effects": "Tiny scalar diagnostics and fixtures only. No restored whole-image height, producer, master recipe/tier/catalog/Git/source change.",
+  "nextAction": "Root independently view proposed patch source/fine contact, actual tiny fine/opposed lights and PSD/stats. Reject synthetic-grain appearance, recognizable copied feature or persistent coherent paint outline before whole-image/production implementation."
+}

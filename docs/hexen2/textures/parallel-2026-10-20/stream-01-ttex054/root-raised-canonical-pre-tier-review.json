@@ -1,0 +1,15 @@
+{
+  "updatedAt": "2026-10-20T11:45:32.801527+00:00",
+  "verdict": "PASS canonical pre-tier identity and shallow relief interpretation",
+  "scope": "Current canonical RGB, float height and actual light bytes verified against source and independently inspected .001 diagnostic. No encoded tier or final artwork acceptance.",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054-raised-ornament-v1/master.json",
+    "sha256": "87887864a1559fb8779ea1cdf17e87468de16ffa7819d1c16966377b7c21274a"
+  },
+  "canonicalReport": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/canonical-raised-ornament-v1-review/report.json",
+    "sha256": "c5316e1f1108662e3c1eae5cc6729be1d8e8ec0fe77ef9562b1609e13716472c"
+  },
+  "limitations": "micro0.001 weak fine wear and common-colour median span0.0011923 remain. Final decoded usable geometry/XYZ/height/tiling/codec loss untested. No tiers yet.",
+  "allowedNext": "Derive both tiers directly from this canonical RGB/float master, Q92 method6. Inspect actual decoded shallow ornament in height/XYZ and opposed lights, half/quarter likeness and repeats/corners. Hold if codec loses useful geometry or introduces seams. Final independent public/art qualification before registration."
+}

@@ -1,0 +1,55 @@
+{
+  "verdict": "Public review replay investigation",
+  "rows": [
+    {
+      "file": "index.html",
+      "originalSha": "12090f6311d5c7bcf1a3589b53121a07717c8783e01c957b1420eaeff8f53e64",
+      "replayASha": "12090f6311d5c7bcf1a3589b53121a07717c8783e01c957b1420eaeff8f53e64",
+      "replayBSha": "12090f6311d5c7bcf1a3589b53121a07717c8783e01c957b1420eaeff8f53e64"
+    },
+    {
+      "file": "ttex054-high-relief.jpg",
+      "originalSha": "ab850fa65d067c54197958403d7e3cc17a10537c64ff231f2fafe001a4e174d8",
+      "replayASha": "ab850fa65d067c54197958403d7e3cc17a10537c64ff231f2fafe001a4e174d8",
+      "replayBSha": "329a03d5f60df3260b7114bb14ada545940ecf193f28f6c03809db541b41c99a",
+      "originalVsAMaximum": 0,
+      "originalVsAMae": 0.0,
+      "changedPixels": 0,
+      "replayAvsBPixelExact": false,
+      "changeBoundsYx": null
+    },
+    {
+      "file": "ttex054-high-review.jpg",
+      "originalSha": "a9bbf55065279c2f1960488e61ed8fa9d2ac586d043d2c750e196ab3d0bce709",
+      "replayASha": "a9bbf55065279c2f1960488e61ed8fa9d2ac586d043d2c750e196ab3d0bce709",
+      "replayBSha": "f562000b815a5cf9d6f08e2860c13b1bbfe645ddc8c4aa552b9d6678a341acb8",
+      "originalVsAMaximum": 0,
+      "originalVsAMae": 0.0,
+      "changedPixels": 0,
+      "replayAvsBPixelExact": false,
+      "changeBoundsYx": null
+    },
+    {
+      "file": "ttex054-mid-relief.jpg",
+      "originalSha": "47929e9a681213f03a5770745c87f62947bf55898e8f577a0a351e1b33453f56",
+      "replayASha": "47929e9a681213f03a5770745c87f62947bf55898e8f577a0a351e1b33453f56",
+      "replayBSha": "23a195e514b5ff1fdd5b146e5d231fd2a9f89e471b20f4df533fa0b624c9afdf",
+      "originalVsAMaximum": 0,
+      "originalVsAMae": 0.0,
+      "changedPixels": 0,
+      "replayAvsBPixelExact": false,
+      "changeBoundsYx": null
+    },
+    {
+      "file": "ttex054-mid-review.jpg",
+      "originalSha": "024250509c2f5acb45e109d1286855a5e5a153c79b90958e072a094f57960256",
+      "replayASha": "024250509c2f5acb45e109d1286855a5e5a153c79b90958e072a094f57960256",
+      "replayBSha": "459f02bc193c4d2253c19430345f27fc591a0d21466a70f346c1193f05f0da20",
+      "originalVsAMaximum": 0,
+      "originalVsAMae": 0.0,
+      "changedPixels": 0,
+      "replayAvsBPixelExact": true,
+      "changeBoundsYx": null
+    }
+  ]
+}

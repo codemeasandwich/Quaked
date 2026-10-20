@@ -1,0 +1,230 @@
+{
+  "verdict": "PASS author numeric pre-tier pit/face hierarchy; actual material/edge/relief review recorded separately",
+  "scope": "Actual single ordinary RGB/float master; no tier or semantic repair authored. Mixed stain/edge observations are explicitly not pure depth witnesses.",
+  "updatedAt": "2026-10-20T12:31:34.568119+00:00",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/masters/rtex102/master.json",
+    "sha256": "6154051cd40e1bbb22f291ddcf04815904092832c9e9ce3c74ef8d0f41a60b09"
+  },
+  "samples": [
+    {
+      "label": "B",
+      "physicalClass": "coherent grey mineral face",
+      "masterPixel": [
+        380,
+        80
+      ],
+      "nativeEquivalent": [
+        47.5,
+        10.0
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.7635083198547363,
+      "heightRange": [
+        0.45392581820487976,
+        0.9098003506660461
+      ]
+    },
+    {
+      "label": "P",
+      "physicalClass": "coherent grey mineral face",
+      "masterPixel": [
+        216,
+        435
+      ],
+      "nativeEquivalent": [
+        27.0,
+        54.375
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.6660405397415161,
+      "heightRange": [
+        0.2809145450592041,
+        0.8646960258483887
+      ]
+    },
+    {
+      "label": "I",
+      "physicalClass": "rough mineral face",
+      "masterPixel": [
+        75,
+        222
+      ],
+      "nativeEquivalent": [
+        9.375,
+        27.75
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.4596971869468689,
+      "heightRange": [
+        0.06906914710998535,
+        0.9378638863563538
+      ]
+    },
+    {
+      "label": "D",
+      "physicalClass": "black pit beside chipped mineral rim",
+      "masterPixel": [
+        151,
+        143
+      ],
+      "nativeEquivalent": [
+        18.875,
+        17.875
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.09484197944402695,
+      "heightRange": [
+        0.0025610688608139753,
+        0.6542508602142334
+      ]
+    },
+    {
+      "label": "F",
+      "physicalClass": "black fissure/pit",
+      "masterPixel": [
+        273,
+        170
+      ],
+      "nativeEquivalent": [
+        34.125,
+        21.25
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.03359261155128479,
+      "heightRange": [
+        0.00475792121142149,
+        0.10259035974740982
+      ]
+    },
+    {
+      "label": "M",
+      "physicalClass": "small dark physical pit",
+      "masterPixel": [
+        208,
+        232
+      ],
+      "nativeEquivalent": [
+        26.0,
+        29.0
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.06478103995323181,
+      "heightRange": [
+        0.0013220531400293112,
+        0.39415648579597473
+      ]
+    },
+    {
+      "label": "N",
+      "physicalClass": "dark recess between mineral edges",
+      "masterPixel": [
+        308,
+        298
+      ],
+      "nativeEquivalent": [
+        38.5,
+        37.25
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.013148351572453976,
+      "heightRange": [
+        0.004767500329762697,
+        0.031277552247047424
+      ]
+    },
+    {
+      "label": "A",
+      "physicalClass": "mixed oxide-stained rough face, not pure depth class",
+      "masterPixel": [
+        83,
+        195
+      ],
+      "nativeEquivalent": [
+        10.375,
+        24.375
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.48088228702545166,
+      "heightRange": [
+        0.17569266259670258,
+        0.8571317791938782
+      ]
+    },
+    {
+      "label": "J",
+      "physicalClass": "thin brown stain / mineral-face transition, not pure depth class",
+      "masterPixel": [
+        256,
+        250
+      ],
+      "nativeEquivalent": [
+        32.0,
+        31.25
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.34394967555999756,
+      "heightRange": [
+        0.08768398314714432,
+        0.7565363049507141
+      ]
+    },
+    {
+      "label": "G",
+      "physicalClass": "oxide-stained depression / mixed edge, not pure depth class",
+      "masterPixel": [
+        284,
+        93
+      ],
+      "nativeEquivalent": [
+        35.5,
+        11.625
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.09333031624555588,
+      "heightRange": [
+        0.02872098982334137,
+        0.2271200567483902
+      ]
+    }
+  ],
+  "distance": [
+    {
+      "divisor": 2,
+      "dimensions": [
+        32,
+        32
+      ],
+      "meanAbsoluteError": 5.861979166666667,
+      "maximum": 29.0
+    },
+    {
+      "divisor": 4,
+      "dimensions": [
+        16,
+        16
+      ],
+      "meanAbsoluteError": 3.3111979166666665,
+      "maximum": 15.0
+    }
+  ],
+  "faceAbovePitMeans": true,
+  "geometryUncertainty": "Fine dark volcanic rock cannot establish every microfacet from shading. Independent final ART must inspect coherent faces/pits and stain transitions; no all-brown-is-deep rule or historical geological certainty claimed.",
+  "views": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/pre-tier-master.png": "f3f5524464eeb277ccbcb30e4f7dbc4b7042707d02b7a4f0eed9026e45af0cb9",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/pre-tier-physical-witnesses.png": "62f88fa50fed8f948aaba7ac66f44b652c395910a46b109d96f3706503fb0f3b",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/pre-tier-seams-corners-1to1.png": "35f8c267e2b96fc706fa64fbf872f413edae8dd5d605f7a7b5bcc282fd857b6a",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/pre-tier-master-repeat.png": "c60ccf632043fe9298d2957b0b960ae63cef681528d25977c0f13e6e587c2812",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/pre-tier-native-repeat.png": "36aec6b876341bd2273d06fb5354f4ddd88c8542af91edb5df1a6c4d324c9b7e",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/pre-tier-light-minus-repeat.png": "e301f08bbb62f6d5efe3f3c4c9e2c270570044fb011437adcb13e34a4c685732",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/pre-tier-light-plus-repeat.png": "adb8a6565e98eec4beb84be23d7c7d9e001f1124def44a4cc2f5fe51a44bf3d1",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/pre-tier-distance.png": "1e2694866822c58821865af5de2a159a48204cefb298ac76e05fb5e333258969"
+  },
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/check-pre-tier.py": "4be61640adf28b6aba00ef9638e4d4c04e5d935f9df69048f66f38b337843570",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/physical-witness-proposal.json": "d018629a19d4df02adf1637e64fcf73fc834c5ec64d68a972c570a33948f57f0",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/physical-witness-proposal-second.json": "496060415e3a4b5ce77bdaee854cf71b5fe5d77f4d7dc176775453e1a7307dd0",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/masters/rtex102/color.png": "ffc551a51c618962d42cc565572e2ae617b9314728255243297e31f1a855e3dd",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/masters/rtex102/height.npy": "474c5bb24cb4a213c4af8c3396061644036b06bb9d3f17bea0392348316ea0d5"
+  }
+}

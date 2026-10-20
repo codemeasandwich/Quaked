@@ -1,0 +1,13 @@
+{
+  "recordedAt": "2026-10-20T11:13:20.829420+00:00",
+  "question": "For the gold Greek-key band in the mural comparison, should the height and normal maps depict flat painted plaster or shallow raised plaster ornament? The original pixels leave that depth ambiguous.",
+  "ownerAnswer": "Shallow plaster relief",
+  "scope": "Gold Greek-key ornament on the existing retained ttex054 source. This supersedes the prior flat-paint interpretation for that ornament only.",
+  "preserve": [
+    "All earlier flat-paint diagnostic HOLDs remain historical findings, not retroactive passes.",
+    "Same retained RGB generation; no new generated source or separate tier authoring.",
+    "Surrounding painted bands are not automatically raised geometry.",
+    "Shallow physical relief, actual source masks and material cues need independent review before canonical production."
+  ],
+  "nextOwner": "texture_01_ttex054 authors bounded reuse plan; root independently reviews."
+}

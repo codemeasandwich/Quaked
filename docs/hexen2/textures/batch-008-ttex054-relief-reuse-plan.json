@@ -1,0 +1,377 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-20T07:10:42.585821+00:00",
+  "scope": "Supervised bounded reuse/plan research only for retained batch008ttex054 scalar relief, before any tier encoding",
+  "verdict": "RESEARCH COMPLETE: no safe drop-in producer; proposed narrow pigment-neutral source guide requires independent classification/plan review before code",
+  "currentAssetVerdict": "HOLD ordinary scalar makes painted meander and adjacent colour-band rims into physical geometry",
+  "gitObservation": {
+    "branch": "Dev",
+    "head": "713b47d322f0674f154a70ec4baebd4566905d41"
+  },
+  "actualSource": {
+    "nativeIdentity": "cddf441f348f0a3182edadeeeb9028ece70c2eadbef541955e7197f8213c9752",
+    "nativeDimensions": [
+      64,
+      128
+    ],
+    "retainedRawDimensions": [
+      887,
+      1774
+    ],
+    "retainedRawSha256": "4ef4e7a484c6861345153d6f0ed4491f84e4d5fb5561ca9af3d979a6eb98fcb2",
+    "masterDimensions": [
+      512,
+      1024
+    ],
+    "RGBSha256": "75735d60f4199165c89f02f38d96a021ce471ddd4acd4ca5196a6fae6abf1eba",
+    "heldHeightSha256": "0f332e0a9fc7ea5c51d7de0a11824d3d53eca805493ea08cc614c9a12b7f06d6",
+    "sourcePromptSha256": "721d2df4207a5ffeca421eb70aaa7c8e2852421c457cf85a41c18b1255c6f392",
+    "sameGenerationCount": 1,
+    "encodedTiersExist": false,
+    "observedMaterial": "Rough painted lime-plaster field; existing physical pores/worn flakes remain visible in RGB. Diagnostic height/opposed-light view visibly follows meander contrast and band boundaries.",
+    "sourceGeometryLimitation": "RGB-derived relief is an authored approximation, not a recovery of measured hidden surface geometry."
+  },
+  "reuseFindings": [
+    {
+      "route": "craft_normals.remove_print / flatprint",
+      "result": "NOT APPLICABLE unchanged",
+      "evidence": "Actual crate-olive detector paper fraction0.026042938232421875; dense fraction0; qualifyingrows0/columns0; remove_print returns L bit-identical (changedPixels0).",
+      "reason": "Hardcoded olive-crate paper/red-or-dark print assumptions do not match green/red/ochre/dark paintedplaster. Swapping to a crate profile does not establish correct material semantics."
+    },
+    {
+      "route": "enemy_height_authoring.pigment_surface",
+      "result": "CLOSEST reusable policy, not exact producer",
+      "evidence": "Existing source-bound permitted/protected regions and normalized masked convolution separate paint luminance from material before craft.",
+      "reason": "Current detector is redblood-specific and fill smooths through the marked region; it does not preserve observed under-paint pores or handle all plaster pigments. author_height also takes the old quantized craft path and model structural features."
+    },
+    {
+      "route": "update_level_sheets flat-polished / fit_rogue_skins.flatten_height",
+      "result": "REJECT for this requirement",
+      "reason": "Constant height or decoded-height edits erase plaster texture and/or violate sole uncompressed master authoring. Flatflash semantics are unrelated."
+    },
+    {
+      "route": "update_level_sheets fine-checker",
+      "result": "Frequency-band selection useful, not sufficient",
+      "reason": "Dropping broad bands alone still leaves sharp painted edges in fine bands; its groove/bump boosts dark/bright lines, so it can continue embossing pigment."
+    },
+    {
+      "route": "guarded layered master",
+      "result": "Reuse guard/package pattern and bounded physical-detail policy only",
+      "reason": "Two ordered planes are correct for real facing/substrate, not for different paint colours on one surface. Do not invent colour-based depth classes or waive both-region guards."
+    },
+    {
+      "route": "guarded motif master",
+      "result": "Not a height repair",
+      "reason": "It edits colour while preserving initial height; RGB is not the defect and the current height is held."
+    },
+    {
+      "route": "Existing spectral blur/masked-convolution/scalar craft",
+      "result": "Reuse unchanged primitives",
+      "reason": "gblur, reviewed region handling, fine-band craft and fullprecision scalar/normal/derivation can support a small source-specific adapter without changing any prior producer bytes."
+    }
+  ],
+  "dropInDiagnostic": {
+    "detailScaleK": 2.8284271247461903,
+    "paperFraction": 0.026042938232421875,
+    "denseFraction": 0.0,
+    "qualifyingRows": 0,
+    "qualifyingColumns": 0,
+    "returnedLuminanceBitIdentical": true,
+    "changedPixels": 0,
+    "computationScope": "Only existing helper/luminance and colour-sample observations. No corrected height candidate, master, normal map, tier or implementation generated."
+  },
+  "sourceClassificationNeeded": [
+    "Freeze a registered-master-resolution pigment/albedo guide derived from this exact RGB, not nearest-upscaled native pixels or crate/blood thresholds. Its labels represent paint reflectance, never depth planes.",
+    "Classify uppergreen plaster pigment, upper/middle/lower red appearances, ochre meander/rules and dark ornament ground as needed; several red regions have different medians, so one global red baseline is inadequate.",
+    "Separately mark actual pores, shallow flake edges and protected physical wear. Their luminance variation must not be fitted away as a new pigment class.",
+    "Guide must include actual antialiased paint transitions; independent reviewer checks meander on all sides and both horizontal band rims. No automatic hue mask is accepted merely for having plausible colours.",
+    "The guessed dark-ground patch in the sample table is actually ochre by its measured colour; exclude it. This demonstrates that exact actual-RGB class review is required before calibration, rather than guessing native coordinate patches."
+  ],
+  "readOnlySampleEvidence": [
+    {
+      "label": "green interior",
+      "nativePixelEdgeBox": [
+        10,
+        20,
+        20,
+        30
+      ],
+      "masterPixelHalfOpenBox": [
+        80,
+        160,
+        160,
+        240
+      ],
+      "medianRGB": [
+        0.21176470588235294,
+        0.24313725490196078,
+        0.20392156862745098
+      ],
+      "medianExistingLuminance": 0.22932941176470586,
+      "p10p90Luminance": [
+        0.1713956862745098,
+        0.30496862745098036
+      ],
+      "notApprovedCalibration": true
+    },
+    {
+      "label": "upper red stripe",
+      "nativePixelEdgeBox": [
+        10,
+        3,
+        20,
+        7
+      ],
+      "masterPixelHalfOpenBox": [
+        80,
+        24,
+        160,
+        56
+      ],
+      "medianRGB": [
+        0.3215686274509804,
+        0.12156862745098039,
+        0.08235294117647059
+      ],
+      "medianExistingLuminance": 0.17882745098039216,
+      "p10p90Luminance": [
+        0.1131521568627451,
+        0.26558470588235294
+      ],
+      "notApprovedCalibration": true
+    },
+    {
+      "label": "lower red field",
+      "nativePixelEdgeBox": [
+        10,
+        105,
+        20,
+        115
+      ],
+      "masterPixelHalfOpenBox": [
+        80,
+        840,
+        160,
+        920
+      ],
+      "medianRGB": [
+        0.1843137254901961,
+        0.09411764705882353,
+        0.07058823529411765
+      ],
+      "medianExistingLuminance": 0.11704705882352939,
+      "p10p90Luminance": [
+        0.08234117647058824,
+        0.16659764705882357
+      ],
+      "notApprovedCalibration": true
+    },
+    {
+      "label": "ochre candidate",
+      "nativePixelEdgeBox": [
+        3,
+        72.8,
+        9,
+        73.8
+      ],
+      "masterPixelHalfOpenBox": [
+        24,
+        582,
+        72,
+        590
+      ],
+      "medianRGB": [
+        0.3764705882352941,
+        0.25098039215686274,
+        0.08823529411764705
+      ],
+      "medianExistingLuminance": 0.26988627450980396,
+      "p10p90Luminance": [
+        0.19855058823529412,
+        0.34457921568627453
+      ],
+      "notApprovedCalibration": true
+    },
+    {
+      "label": "rejected dark-ground guess",
+      "nativePixelEdgeBox": [
+        5,
+        75.8,
+        8,
+        76.5
+      ],
+      "masterPixelHalfOpenBox": [
+        40,
+        606,
+        64,
+        612
+      ],
+      "medianRGB": [
+        0.396078431372549,
+        0.25098039215686274,
+        0.08235294117647059
+      ],
+      "medianExistingLuminance": 0.274821568627451,
+      "p10p90Luminance": [
+        0.21597803921568628,
+        0.3304705882352941
+      ],
+      "notApprovedCalibration": true
+    }
+  ],
+  "proposedSmallestRoute": {
+    "producer": "One narrow source-bound same-RGB material-luminance/height wrapper. No new engine/encoder, generic intrinsic-image framework or noise generator.",
+    "guideContract": "Reviewed authoring-only scalar albedo guide A(x)>0 at512x1024, sourceRGB/nativeID/hash bound. Prefer a small bounded set of reviewed regional colour weights Wc summing to1 with calibrated luminance mc; A=sum(Wc*mc). Labels/soft transitions must follow actual photograph and omit material pore/flake variation.",
+    "calibration": "Estimate mc robustly from multiple independently confirmed clean same-pigment patches. Existing masked normalized-convolution/median policy can help build a smooth guide within a class, but any per-pixel guide must be frozen/reviewed before use and must not track the material texture itself. No new class per native cell or luminance bin.",
+    "math": [
+      "Keep canonical RGB byte-identical. L is existing0.299R+0.587G+0.114B on sourcefloatRGB.",
+      "Normalize paint albedo with J=L/A. Use bounded monotonic N=J/(1+J) as a temporary greyscale HEIGHT signal only. No RGB rewrite, source warp, donor cloning or new noise.",
+      "Call unchanged craft on repeat(N,3) with a reviewed fine-only profile, quantize_height=False. Disable flatprint, groove, bump and glow so pigment lines are not deliberately cut or raised.",
+      "Place the resulting actual material detail on one common shallow surface using the existing bounded-microrelief idea; one final float32 cast. No different plane per pigment.",
+      "Both tiers are derived only after actual master relief passes. Use unchanged scalar reductions/UVnormalmath and Q92method6; never use the held height or compressed data as the corrected authoring source."
+    ],
+    "provisionalParametersForIndependentReview": {
+      "fineBands": [
+        1,
+        0.35,
+        0,
+        0
+      ],
+      "groove": 0,
+      "bump": 0,
+      "glow": 0,
+      "strength": 0.3,
+      "cap": 0.5,
+      "candidateBaseHeight": 0.98,
+      "candidateAmplitude": 0.02,
+      "candidateAffineDetail": "H=base+amplitude*(F-median(F)); with F in[0,1], candidate range lies within[.96,1]. A truly constantmaterial fixture gives a constant plane.",
+      "status": "Not production-approved values. Calibrate against actual pores/flakes and decodedMid/High data retention; do not copy another texture or reduce amplitude merely to conceal residual paint embossing."
+    },
+    "criticalLimit": "One RGB photograph does not uniquely separate pigment from microgeometry. Guide errors can leave a residual paint step or erase actual surface detail. The guide and physical-semantic review are required inputs, not evidence to manufacture from a PASS schema.",
+    "whyNecessary": "No exact current CLI accepts a source-reviewed pigment-albedo guide while keeping RGB fixed and retaining observed microtexture across all colours in one float master. Exact flatprint is a demonstrated no-op; existing flat/scalar-plane/colour routes have incompatible semantics."
+  },
+  "sourceGuardPlan": [
+    "Before code, obtain independent review of this proposed math, actual pigment guide/weights, calibration patches and protected pore/flake witnesses. If classification is ambiguous, retain054HOLD rather than automatically flatten or add grain.",
+    "Before any guarded correction, independently qualify retained native/raw/prompt->initialRGB/master replay with exactMP/nativeIdentity/name/edition row. The native-only proof does not contain future master identity; relief semantics may explicitly remain held.",
+    "Validate initial unrevised source, canonical tools/paths/hashes, guide registration/shape/finitepositive values, bounded class count and weights sum, all complete inputs and actual sourceadequacy before output creation. Reject prior correction keys, missing guide support, overlap/unsupported classes, wrong hashes and existing/symlink destinations.",
+    "Preserve sourceRGB bytes, raw and prompt. Emit one new active RGB/floatheight package with embedded full recipe/guide provenance/current code environment; no oldRGB/NPY dependency, no originalproducer changes."
+  ],
+  "meaningfulPublicTestsAfterReviewedImplementation": [
+    "Analytical flat physical surface with several paint colours and soft pigment boundaries: constant corrected height and front normals, including meander-like and horizontal paint transitions. Colour layout must not appear in height.",
+    "Known nonconstant material microfield painted with different colour classes: compare against an independent guide-normalization oracle, retain pore/flake locations and spatial variation, recolour-invariance under the declared fixed guide. No imported producer helper as sole expected result.",
+    "Explicitly test an incorrect/shifted guide and unsupported/dark denominator samples reject or remain unqualified; no silent fallback to constantheight or added noise.",
+    "Portable source/proof/native/tool/guide mismatch, malformed/nonfinite/Boolean parameters, wrong dimensions, repeated-policy and overwrite refusals before creating output.",
+    "Actual temporary CLI reconstruction without obsolete initialRGB/height binaries: same canonicalRGB bytes and sourcejournal, finite newfloat32height, no new model/tier authoring.",
+    "Before tier encoding independently classify paint strokes vs same physical plaster and several actual pores/flakes; compare patch and edge height profiles/opposed lights. A narrow white/black motif rim is a requiredfailure even if wholeheightvariance is low.",
+    "After semanticmasterpass, independently reproduce both Q92tiers and UVnormals; inspect encoded height/XYZ/opposed lights and repeats/corners at both scales. Check that Q92 does not remove the real microrelief or leave paint-step artefacts."
+  ],
+  "physicalAcceptance": [
+    "Paint colour bands/meander must not have systematic raised/recessed plateaux or outline ridges. Under opposed lights the real microtexture remains coherent through the painted pattern.",
+    "Actual source pores/flakes retain their spatial relationship and plausible shallow roughness. A constant plane, synthetic grain or generic mottling fails even if pigment embossing is gone.",
+    "RGBandnativecolour/forms/scale/Yband identities remain byte-identical at the master; never blend originalYends. Review height joins separately without imposing another colourpattern.",
+    "No numericalaggregate, reducedamplitude or prototype-only success grants ART/runtime/owner acceptance. Material recognition of the source still applies."
+  ],
+  "nextAction": {
+    "owner": "Live root coordinator",
+    "action": "Independent review and source classification/guide calibration before any implementation; keep054pre-tierHOLD while other eligible materials advance."
+  },
+  "inputs": [
+    {
+      "file": "AGENTS.md",
+      "sha256": "d9d12ea00d3d41a0968d6fc33bd822ed986372aa7566c7db867b08a05bd673db",
+      "bytes": 1941
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/ttex054.png",
+      "sha256": "4ef4e7a484c6861345153d6f0ed4491f84e4d5fb5561ca9af3d979a6eb98fcb2",
+      "bytes": 3489050
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/color.png",
+      "sha256": "75735d60f4199165c89f02f38d96a021ce471ddd4acd4ca5196a6fae6abf1eba",
+      "bytes": 1075572
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/height.npy",
+      "sha256": "0f332e0a9fc7ea5c51d7de0a11824d3d53eca805493ea08cc614c9a12b7f06d6",
+      "bytes": 2097280
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/master.json",
+      "sha256": "1a37137c4bc629057fd5771ae511d0462eb21133dd9abb746d573a8cbcd0a547",
+      "bytes": 4225
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/05-ttex054-cddf441f348f.png",
+      "sha256": "cc7cbc5b106803b459a72454e08c047481f20396c549422dbc96d8202c1c6b57",
+      "bytes": 6883
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/pre-tier-root-review/ttex054-material-height-opposed.png",
+      "sha256": "e6cbbba4a3dccf974e95e6530dc790d2860305a8b02590a7af96d25d8c1e29c7",
+      "bytes": 4257749
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex054-material-v2.txt",
+      "sha256": "721d2df4207a5ffeca421eb70aaa7c8e2852421c457cf85a41c18b1255c6f392",
+      "bytes": 2536
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-material-plan-v2-public-review.json",
+      "sha256": "64e5c724d646a25ad1c7d0fbf80ce48eae424f8e16f504ea5b293e22aef94d2a",
+      "bytes": 32392
+    },
+    {
+      "file": "skills/quaked-texture-authoring/SKILL.md",
+      "sha256": "0c96e783d5b56604edfc85fae82b36c98478f297ff49d3d3777402b8322f9bba",
+      "bytes": 6424
+    },
+    {
+      "file": "skills/quaked-texture-authoring/references/repairs-and-verification.md",
+      "sha256": "83987e8c6719e31617271b51a9469217a24216182ddb6e2db689b0cd63692a89",
+      "bytes": 10121
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "tools/texture_sheets/enemy_height_authoring.py",
+      "sha256": "5e7879093ffe2b3e1163b2cf74f08bb451a754046a11c1181e368eba2e6471cc",
+      "bytes": 4272
+    },
+    {
+      "file": "tools/texture_sheets/fit_rogue_skins.py",
+      "sha256": "8c3d2dc19eddc0c69deca3f5a32aab749a18cb7d86e71265389f41ebef9fe854",
+      "bytes": 17660
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d",
+      "bytes": 13904
+    },
+    {
+      "file": "tools/texture_sheets/prepare_motif_texture_master.py",
+      "sha256": "233bd52f30abbc276ba1e5895b44d2a81c3425531f82b10d5d999a48d080b430",
+      "bytes": 16526
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "bytes": 7692
+    },
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5",
+      "bytes": 7863
+    }
+  ],
+  "inputsStableDuringResearch": true,
+  "effects": "Only researchJSON/MD written. No producer/core/source/master/height/tier/Git change, new test, image request or duplicate generation."
+}

@@ -1,0 +1,78 @@
+{
+  "state": "Finished one-texture candidate; paused for independent final qualification before root registration",
+  "owner": "/root/texture_06_mtex470 supervised by /root",
+  "nativeID": "e068750f3f11baad13dc050abc9fc5a3e860fbe9a450a653364315dccfb4209f",
+  "name": "mtex470",
+  "edition": "base",
+  "counts": {
+    "generationCalls": 1,
+    "activeCanonicalMasters": 1,
+    "enhancedTiers": 2,
+    "physicalMapFiles": 10,
+    "nativeBindingsProposed": 1
+  },
+  "defaultTier": "Mid",
+  "dimensions": {
+    "Low": [
+      64,
+      64
+    ],
+    "Mid": [
+      256,
+      256
+    ],
+    "High": [
+      512,
+      512
+    ]
+  },
+  "codec": {
+    "quality": 92,
+    "method": 6,
+    "lossless": false
+  },
+  "canonicalPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters-layered/mtex470/master.json",
+  "batch": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/batch.json",
+  "reviewIndex": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/review/index.html",
+  "reviewerNextAction": "Independently replay actual native/source/master/semantic correction, all ten direct Q92 maps and four review JPEGs/HTML; inspect decoded full material, both reduced comparisons, repeats/corners and physical relief. Root alone registers a named PASS.",
+  "frozenCandidateInputs": {
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/batch.json": "3837730b86ebf1c785cb40c7a5e826eb83414bcd7128e505f0a974511ac224e6",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/native-selection.json": "fd8a64610aacdbf5ee296d1a16ae1ed60dae238fdfca34e3e00e59840a5690b1",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/selection.json": "0b904078c51a5e190a6aa45b067f73cb5b3114597d7d2393c8ee670a2f90ac76",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/generated/mtex470.png": "93c22b1f240649bd3476f5b007cf1397d5210a30d24e1c516d02eb8cb5d04fe7",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/prompts/mtex470-material-v1.txt": "02d4b9622c853cbe068c62132845df775c19951c1ab650f757008df0ffa53c6e",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters-layered/mtex470/master.json": "975951a59f2bcf2547125d74d1e9baf24c9c019973f026c756f828a57596d310",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters-layered/mtex470/color.png": "3959bd2c2dc52cc5ab9ba99757a34c635bb6ceff196b7e4d5ac44b6cbd35acc2",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters-layered/mtex470/height.npy": "a6b7d4c4eecc66631152aded8859bdcae4ce7b18cccf52101f7d5dbcbfac7017",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/manifest.json": "c6af99e5eabce61ba3015e6d24864801fa98bb9dcac5a5d60ecd19a5085cbd7b",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/native-proof.json": "c1c44a5c3f8fa575501d401de875b27ee3721cb937794f69b68d79438e998fd4",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/root-plan-review.json": "eecdb4af6de2dfb861ffd8f05b9fbb05f41aeec92393cb60e4d0a0b465cfff62",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/root-source-master-proof-v2.json": "8cf7a2fec0b3a2ba668fad55fe381561f5b291c2e767be93b053a29bd053c266",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/root-mortar-plan-review.json": "afbce3b9a8b7130820184d3b5afa1be9dd50d92cca580a67591dfcfd46288968",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/root-layered-pre-tier-review.json": "4848403877244bbf5049fb7fdeb732f037b40f733d5056c4cb83adc1dc5de47b",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/candidate-self-replay.json": "080439be236a31fafd50a8562972c5e8eebb99ef9a9266464e34f4a0b2937cdf",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/candidate-self-art-review.json": "7ed48b70c9184b3ddb00576a927cbfa61448723e670a416ce557533f3d2c3141",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/candidate-seams-corners.png": "03c7263b9743f5e84749a9a7b186d7fae5384d2bff2f9c7d08d4e0ddf8faa676",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/high-diffuse.webp": "0e8d3a88b84077cb62ea6ae41e149354aa8fc98742f7c0b6931f6308a00b055d",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/mid-diffuse.webp": "3d3e8c686390e849fd93f6383f75f1ea82a93f50791ab3b108ef4a4aafd3b7f7",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/mid-normalZ.webp": "4972a2da22d5049f35f0b18184b4585540d0ec894b24a05a881f0edeea67ca61",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/high-height.webp": "9f6e9cf74cb866c26ccbf0146886e1b7d1a3c98a0e31daaa6204714996eb8aae",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/high-normalZ.webp": "5363cb25b2f232ef4f3bcabf630c108cd577ef8c022b44af07c1b7dca89f24c0",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/mid-height.webp": "2544c2df1df92fb12bbda035038acbf14313bcdb60a9e3d37a6d3d9edb66481e",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/mid-normalX.webp": "8009219b297e66916e2323304eb29ee428ee07b00a41eecf51292f15e517b9a3",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/high-normalY.webp": "b63df794538ed0e596aed9a70986d6332b24c9e3bf533877af79ffaa9a202033",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/high-normalX.webp": "3903309c7cdbbd4a92c1f73874bca96a75e34a5abce04c2c00773f47bfb94a87",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/mid-normalY.webp": "8a3ddf841963242e3b258ff84d0bf94bd2a4d8f1a9bb629b43596028a437ec61",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/review/index.html": "05eb3ba3265e98027dc64d2d8fc98d841d2879ce314fb1312d190598a160bb49",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/review/mtex470-high-review.jpg": "fbac2ca06e5862ae0e3442860aca725a6e9b6bf9e8e4a566123ca156e7050c35",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/review/mtex470-mid-review.jpg": "4be76e1bc599f0a52832c64863418ba0221a16096e962c8cb0ed991e9e0b1432",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/review/mtex470-mid-relief.jpg": "477df4bbcc6c5d6b727aef2150b8387e4e7e7a0354ace690ddc6b8de5306e34c",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/review/mtex470-high-relief.jpg": "78290db3e577b1de3e5286a7200055b214693157f3cbe849b82020ecaff3b27f"
+  },
+  "temporaryReplay": "Actual canonical wrapper, tier and preview CLIs reran in one automatically removed temporary directory; canonical RGB/height/MP, ten maps/tier manifest and four JPEGs+HTML all exact.",
+  "limits": [
+    "Author self-review does not replace independent final qualification.",
+    "No shared catalog/queue registration, runtime/pack/GPU acceptance, owner acceptance, Git landing, CI, release or Pages claim."
+  ],
+  "updatedAt": "2026-10-20T11:35:12.797194+00:00"
+}

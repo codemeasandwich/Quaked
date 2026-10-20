@@ -1,0 +1,17 @@
+{
+  "stage": "First inline exploratory network proposal; no production recipe/master emitted",
+  "error": "AssertionError: ('F3A', 'incorrect class')",
+  "coordinate": [
+    37,
+    43
+  ],
+  "originalProposedClass": "face",
+  "actualClass": "narrow-course vertical mortar channel",
+  "correctedFaceCoordinate": [
+    40,
+    43
+  ],
+  "findingType": "reviewer sample classification defect, not an authoring guard or asset replay defect",
+  "retainedSourceMasterProof": "docs/hexen2/textures/batch-008-ttex153-source-master-public-proof.json",
+  "resolution": "Source/master replay remains exact; do not use the old third upper-neighbor label as a face. Corrected proposal records source-based labels. Earlier two local physical inversions remain valid."
+}

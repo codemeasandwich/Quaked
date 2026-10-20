@@ -1,0 +1,30 @@
+{
+  "scope": "Root-authorised diagnostic alternatives only; canonical producer and tiers not invoked",
+  "sourceMasterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499/master.json",
+  "sourceMasterPackageSha256": "2fe411c060670ed1bc1ddda7ec88d78282bc89cd366d383caca33ae4a0c19d8b",
+  "sourceProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-source-master-proof-v2.json",
+    "sha256": "2eec791f293ad192ff7e845c4eee102a9b5bb1bb75205e2c424be893e88d967e"
+  },
+  "rootGeometryReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-mortar-geometry-review.json",
+    "sha256": "e2d5dbcc6e236dfcc79640667147f3b8c3518bd0e25fbac358c31a8f89cd9536"
+  },
+  "code": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/diagnose-mortar-v3.py",
+    "sha256": "b6b8a3ab36dd4746204c8f866f02b9367cd931eff7f06263b06024ab489806ee"
+  },
+  "existingComposeFunction": "tools/texture_sheets/prepare_layered_texture_master.py::compose_layered unchanged",
+  "alternatives": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/v3a-diagnostic.json",
+      "sha256": "62abfab4efb55e9009cd930d6d5dbe824aff5f7873d808390c6ca4bd61f58f65"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/v3b-diagnostic.json",
+      "sha256": "6cf16a8601c13ba67f07c84329894f9e6db4913e57467a854ffce702f8824c8a"
+    }
+  ],
+  "support": "docs/evidence/hexen2-textures-2026-10-20/stream-05-rtex499/v3-interface-alternatives-support.png",
+  "nextAction": "Root inspects masks, source arrises and diagnostic actual relief. Only a named accepted alternative may become a guarded canonical wrapper recipe."
+}

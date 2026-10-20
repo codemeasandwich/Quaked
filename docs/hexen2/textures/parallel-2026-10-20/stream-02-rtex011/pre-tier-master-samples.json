@@ -1,0 +1,101 @@
+{
+  "scope": "Master pre-tier diagnostic only; author self-check, independent review pending",
+  "masterPackageSha256": "e5db5997d03d5b3c5bc05115f16121c83f6e5869655bdab85e824bcea32bf9b2",
+  "heightRange": [
+    0.0,
+    0.9999995231628418
+  ],
+  "heightUniqueSamples": 260470,
+  "rivetInteriorSamples": {
+    "NW": {
+      "nativeEdgeCoordinates": [
+        7.5,
+        7.5
+      ],
+      "heightMean": 0.7042253017425537,
+      "range": [
+        0.023523181676864624,
+        0.9966334104537964
+      ]
+    },
+    "N": {
+      "nativeEdgeCoordinates": [
+        30,
+        7.5
+      ],
+      "heightMean": 0.09404876828193665,
+      "range": [
+        0.0024023293517529964,
+        0.6278530955314636
+      ]
+    },
+    "NE": {
+      "nativeEdgeCoordinates": [
+        54.5,
+        8
+      ],
+      "heightMean": 0.044381387531757355,
+      "range": [
+        0.006512008141726255,
+        0.3895362913608551
+      ]
+    },
+    "W": {
+      "nativeEdgeCoordinates": [
+        7.5,
+        32.5
+      ],
+      "heightMean": 0.544721245765686,
+      "range": [
+        0.025909999385476112,
+        0.9997063279151917
+      ]
+    },
+    "E": {
+      "nativeEdgeCoordinates": [
+        55.5,
+        33
+      ],
+      "heightMean": 0.7551419138908386,
+      "range": [
+        0.30290722846984863,
+        0.9387843012809753
+      ]
+    },
+    "SW": {
+      "nativeEdgeCoordinates": [
+        7.5,
+        56
+      ],
+      "heightMean": 0.9995890855789185,
+      "range": [
+        0.9919728636741638,
+        0.999999463558197
+      ]
+    },
+    "S": {
+      "nativeEdgeCoordinates": [
+        31.5,
+        56.5
+      ],
+      "heightMean": 0.9985067844390869,
+      "range": [
+        0.970558762550354,
+        0.9999731183052063
+      ]
+    },
+    "SE": {
+      "nativeEdgeCoordinates": [
+        54.5,
+        56.5
+      ],
+      "heightMean": 0.6479167342185974,
+      "range": [
+        0.10859888046979904,
+        0.9865110516548157
+      ]
+    }
+  },
+  "plateCentreMean": 0.5073212385177612,
+  "materialDecision": "PENDING actual image inspection; no automatic acceptance from samples."
+}

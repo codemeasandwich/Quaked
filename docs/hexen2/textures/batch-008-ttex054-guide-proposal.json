@@ -1,0 +1,594 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-20T07:20:54.051384+00:00",
+  "scope": "Supervised ttex054 source classification/calibration proposal only",
+  "verdict": "HOLD - a faithful full albedo guide has NOT been established",
+  "eligibleForHeightAuthoring": false,
+  "sourceIdentity": "cddf441f348f0a3182edadeeeb9028ece70c2eadbef541955e7197f8213c9752",
+  "sourceInputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/color.png",
+      "sha256": "75735d60f4199165c89f02f38d96a021ce471ddd4acd4ca5196a6fae6abf1eba",
+      "bytes": 1075572
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/height.npy",
+      "sha256": "0f332e0a9fc7ea5c51d7de0a11824d3d53eca805493ea08cc614c9a12b7f06d6",
+      "bytes": 2097280
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/master.json",
+      "sha256": "1a37137c4bc629057fd5771ae511d0462eb21133dd9abb746d573a8cbcd0a547",
+      "bytes": 4225
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/ttex054.png",
+      "sha256": "4ef4e7a484c6861345153d6f0ed4491f84e4d5fb5561ca9af3d979a6eb98fcb2",
+      "bytes": 3489050
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/05-ttex054-cddf441f348f.png",
+      "sha256": "cc7cbc5b106803b459a72454e08c047481f20396c549422dbc96d8202c1c6b57",
+      "bytes": 6883
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex054-material-v2.txt",
+      "sha256": "721d2df4207a5ffeca421eb70aaa7c8e2852421c457cf85a41c18b1255c6f392",
+      "bytes": 2536
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-ttex054-relief-reuse-plan.json",
+      "sha256": "4a212b2602e52c298f1bb9d3bb1187eca14a923c273298a4d8d587e6493f01cb",
+      "bytes": 19291
+    }
+  ],
+  "dimensions": [
+    512,
+    1024
+  ],
+  "guideChecks": {
+    "shape": [
+      1024,
+      512
+    ],
+    "dtype": "float32",
+    "finite": true,
+    "strictlyPositive": true,
+    "minMax": [
+      0.10851960629224777,
+      1.0
+    ],
+    "weightShape": [
+      6,
+      1024,
+      512
+    ],
+    "weightMinMax": [
+      0.0,
+      1.0
+    ],
+    "maxAbsWeightSumError": 0.0,
+    "unresolvedPixels": 258114,
+    "unresolvedFraction": 0.4923133850097656,
+    "candidateValidPixels": 266174,
+    "validMeans": "Conservative class interiors, not independent acceptance",
+    "reloadExact": true,
+    "allProtectedSourceHashesStable": true
+  },
+  "calibrations": [
+    {
+      "class": "UNRESOLVED",
+      "value": 1.0,
+      "meaning": "IDENTITY SENTINEL, not measured pigment albedo; ineligible for height"
+    },
+    {
+      "class": "green",
+      "value": 0.2463137254901961,
+      "method": "median of equal-weight patch medians, no per-pixel fit",
+      "patches": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "minMaxPatchMedians": [
+        0.22673921568627448,
+        0.2603725490196078
+      ],
+      "relativePatchMedianSpread": 0.13654672822798922,
+      "status": "Unaccepted empirical reflectance proxy; illumination confounded"
+    },
+    {
+      "class": "upper-red",
+      "value": 0.19432941176470586,
+      "method": "median of equal-weight patch medians, no per-pixel fit",
+      "patches": [
+        "U1",
+        "U2",
+        "U3"
+      ],
+      "minMaxPatchMedians": [
+        0.1777098039215686,
+        0.19960588235294116
+      ],
+      "relativePatchMedianSpread": 0.11267506154901731,
+      "status": "Unaccepted empirical reflectance proxy; illumination confounded"
+    },
+    {
+      "class": "middle-red",
+      "value": 0.16779607843137256,
+      "method": "median of equal-weight patch medians, no per-pixel fit",
+      "patches": [
+        "M1",
+        "M2",
+        "M3"
+      ],
+      "minMaxPatchMedians": [
+        0.1628764705882353,
+        0.19522352941176468
+      ],
+      "relativePatchMedianSpread": 0.19277601196597166,
+      "status": "Unaccepted empirical reflectance proxy; illumination confounded"
+    },
+    {
+      "class": "ochre",
+      "value": 0.265378431372549,
+      "method": "median of equal-weight patch medians, no per-pixel fit",
+      "patches": [
+        "O1",
+        "O2",
+        "O3",
+        "O4",
+        "O5",
+        "O6",
+        "O7"
+      ],
+      "minMaxPatchMedians": [
+        0.2419235294117647,
+        0.29799215686274505
+      ],
+      "relativePatchMedianSpread": 0.2112780121616927,
+      "status": "Unaccepted empirical reflectance proxy; illumination confounded"
+    },
+    {
+      "class": "dark-ornament",
+      "value": 0.10851960784313724,
+      "method": "median of equal-weight patch medians, no per-pixel fit",
+      "patches": [
+        "D1",
+        "D2",
+        "D3"
+      ],
+      "minMaxPatchMedians": [
+        0.08719607843137255,
+        0.11087843137254902
+      ],
+      "relativePatchMedianSpread": 0.21823109585328399,
+      "status": "Unaccepted empirical reflectance proxy; illumination confounded"
+    }
+  ],
+  "lowerRedCalibrationOnly": {
+    "patches": [
+      {
+        "label": "L1",
+        "class": "lower-red-unresolved",
+        "masterPixelEdgeBox": [
+          100,
+          842,
+          116,
+          858
+        ],
+        "nativePixelEdgeBox": [
+          12.5,
+          105.25,
+          14.5,
+          107.25
+        ],
+        "pixels": 256,
+        "medianRGB": [
+          0.1803921568627451,
+          0.10784313725490197,
+          0.08235294117647059
+        ],
+        "medianLuminance": 0.12378039215686273,
+        "p10p90Luminance": [
+          0.08385882352941176,
+          0.17777450980392157
+        ],
+        "status": "PROPOSED calibration; independent review required",
+        "lowerFieldAmbiguity": true,
+        "physicalWitnessOverlapPixels": 0
+      },
+      {
+        "label": "L2",
+        "class": "lower-red-unresolved",
+        "masterPixelEdgeBox": [
+          318,
+          750,
+          334,
+          766
+        ],
+        "nativePixelEdgeBox": [
+          39.75,
+          93.75,
+          41.75,
+          95.75
+        ],
+        "pixels": 256,
+        "medianRGB": [
+          0.19803921568627453,
+          0.06666666666666667,
+          0.0392156862745098
+        ],
+        "medianLuminance": 0.0973,
+        "p10p90Luminance": [
+          0.07005490196078432,
+          0.1339254901960784
+        ],
+        "status": "PROPOSED calibration; independent review required",
+        "lowerFieldAmbiguity": true,
+        "physicalWitnessOverlapPixels": 0
+      },
+      {
+        "label": "L3",
+        "class": "lower-red-unresolved",
+        "masterPixelEdgeBox": [
+          408,
+          940,
+          424,
+          956
+        ],
+        "nativePixelEdgeBox": [
+          51.0,
+          117.5,
+          53.0,
+          119.5
+        ],
+        "pixels": 256,
+        "medianRGB": [
+          0.16470588235294117,
+          0.09019607843137255,
+          0.06666666666666667
+        ],
+        "medianLuminance": 0.10970980392156862,
+        "p10p90Luminance": [
+          0.07963725490196077,
+          0.16190588235294118
+        ],
+        "status": "PROPOSED calibration; independent review required",
+        "lowerFieldAmbiguity": true,
+        "physicalWitnessOverlapPixels": 0
+      }
+    ],
+    "reasonNotExtrapolated": "Dark islands are spatially interleaved with red on pore/flake scale. Hue/brightness segmentation would risk fitting real physical wear; no faithful guide claimed."
+  },
+  "protectedPhysicalWitnesses": [
+    {
+      "label": "P1",
+      "description": "green raised flake / dark adjacent pore",
+      "masterPixelEdgeBox": [
+        47,
+        376,
+        86,
+        416
+      ],
+      "nativePixelEdgeBox": [
+        5.875,
+        47.0,
+        10.75,
+        52.0
+      ],
+      "proposedClass": "green",
+      "validGuideFraction": 1.0,
+      "guideRange": [
+        0.24631372094154358,
+        0.24631372094154358
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    },
+    {
+      "label": "P2",
+      "description": "green granular aggregate / pores",
+      "masterPixelEdgeBox": [
+        92,
+        224,
+        145,
+        270
+      ],
+      "nativePixelEdgeBox": [
+        11.5,
+        28.0,
+        18.125,
+        33.75
+      ],
+      "proposedClass": "green",
+      "validGuideFraction": 1.0,
+      "guideRange": [
+        0.24631372094154358,
+        0.24631372094154358
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    },
+    {
+      "label": "P3",
+      "description": "green pale worn aggregate cluster",
+      "masterPixelEdgeBox": [
+        307,
+        135,
+        353,
+        177
+      ],
+      "nativePixelEdgeBox": [
+        38.375,
+        16.875,
+        44.125,
+        22.125
+      ],
+      "proposedClass": "green",
+      "validGuideFraction": 1.0,
+      "guideRange": [
+        0.24631372094154358,
+        0.24631372094154358
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    },
+    {
+      "label": "P4",
+      "description": "upper red pitted plaster",
+      "masterPixelEdgeBox": [
+        175,
+        32,
+        212,
+        59
+      ],
+      "nativePixelEdgeBox": [
+        21.875,
+        4.0,
+        26.5,
+        7.375
+      ],
+      "proposedClass": "upper-red",
+      "validGuideFraction": 1.0,
+      "guideRange": [
+        0.1943294107913971,
+        0.1943294107913971
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    },
+    {
+      "label": "A1",
+      "description": "lower red / dark green islands - ambiguous",
+      "masterPixelEdgeBox": [
+        12,
+        690,
+        90,
+        770
+      ],
+      "nativePixelEdgeBox": [
+        1.5,
+        86.25,
+        11.25,
+        96.25
+      ],
+      "proposedClass": "UNRESOLVED",
+      "validGuideFraction": 0.0,
+      "guideRange": [
+        1.0,
+        1.0
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    },
+    {
+      "label": "A2",
+      "description": "lower mixed wear/pigment/shadow - ambiguous",
+      "masterPixelEdgeBox": [
+        304,
+        772,
+        382,
+        850
+      ],
+      "nativePixelEdgeBox": [
+        38.0,
+        96.5,
+        47.75,
+        106.25
+      ],
+      "proposedClass": "UNRESOLVED",
+      "validGuideFraction": 0.0,
+      "guideRange": [
+        1.0,
+        1.0
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    },
+    {
+      "label": "A3",
+      "description": "red/green dark rim - pigment vs shadow unresolved",
+      "masterPixelEdgeBox": [
+        185,
+        68,
+        263,
+        88
+      ],
+      "nativePixelEdgeBox": [
+        23.125,
+        8.5,
+        32.875,
+        11.0
+      ],
+      "proposedClass": "UNRESOLVED",
+      "validGuideFraction": 0.1,
+      "guideRange": [
+        0.24631372094154358,
+        1.0
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    },
+    {
+      "label": "A4",
+      "description": "middle green/red dark rim - unresolved",
+      "masterPixelEdgeBox": [
+        185,
+        484,
+        263,
+        511
+      ],
+      "nativePixelEdgeBox": [
+        23.125,
+        60.5,
+        32.875,
+        63.875
+      ],
+      "proposedClass": "UNRESOLVED",
+      "validGuideFraction": 0.07407407407407407,
+      "guideRange": [
+        0.1677960753440857,
+        1.0
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    },
+    {
+      "label": "E1",
+      "description": "ochre stroke and dark ground boundary",
+      "masterPixelEdgeBox": [
+        43,
+        581,
+        84,
+        608
+      ],
+      "nativePixelEdgeBox": [
+        5.375,
+        72.625,
+        10.5,
+        76.0
+      ],
+      "proposedClass": "edge-review",
+      "validGuideFraction": 0.33514001806684734,
+      "guideRange": [
+        0.10851960629224777,
+        1.0
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    },
+    {
+      "label": "E2",
+      "description": "meander inside corner",
+      "masterPixelEdgeBox": [
+        94,
+        583,
+        150,
+        620
+      ],
+      "nativePixelEdgeBox": [
+        11.75,
+        72.875,
+        18.75,
+        77.5
+      ],
+      "proposedClass": "edge-review",
+      "validGuideFraction": 0.3108108108108108,
+      "guideRange": [
+        0.10851960629224777,
+        1.0
+      ],
+      "meaning": "P witnesses are protected from guide fitting; A/E remain unqualified semantic/edge witnesses"
+    }
+  ],
+  "findings": [
+    "Broad green, upper red and middle red interiors are visually distinct; upper/middle red have separate measured proxies, not one global red baseline.",
+    "Ochre rules/strokes and dark ornament ground have separate measured proxies; this does not prove historic paint chemistry or recover illumination-free albedo.",
+    "Manual broad stroke layout is an auditable hypothesis only. Exact antialiased paint boundaries remain unresolved, guarded by 3 master pixels.",
+    "Lower red/dark green field remains entirely unresolved; no per-native-cell, luminance-bin or fine hue mask classifies its small islands.",
+    "Dark band rims may contain actual cracks/shadows as well as pigment. They remain unresolved, not flattened into albedo.",
+    "Within protected green/upper-red material witnesses A is constant. The guide therefore does not track those observed pores/flakes; no resulting physical relief has been generated or accepted.",
+    "Calibration patch scatter is visible and retained. Low whole-image error or a small later relief amplitude cannot qualify incorrect paint removal."
+  ],
+  "requiredNextAction": {
+    "owner": "Live root coordinator and independent material reviewer",
+    "action": "Inspect source overlay/crops. Resolve pigment-versus-physical lower-field islands and dark band rims, plus actual soft-edge locations, before a complete guide or height wrapper. If unresolved retain texture HOLD; do not promote this partial guide."
+  },
+  "laterGatesStillRequired": [
+    "Reviewed complete source albedo guide, not just finite values/weights sum",
+    "Flat multi-paint fixture gives constant height; nonconstant microfield invariant under recolouring with correct guide",
+    "Source-specific paint-edge and pore/flake witnesses before tier encoding; decoded Q92 height/normal/UV-light detail retention after qualification",
+    "No amplitude reduction or brightness-only proxy as semantic acceptance"
+  ],
+  "effects": "Only proposal guide/weights/masks/diagnostics/recipe/report written. No RGB/raw/prompt/height/master/tier/producer/Git edits, new generation or corrected-height computation.",
+  "builder": {
+    "file": "docs/hexen2/textures/batch-008-ttex054-build-guide-proposal.py",
+    "sha256": "f48b401d14c6526a7332f62eb7c079659cbfb00e359b13f7478abc4c291e2e14",
+    "bytes": 19834
+  },
+  "outputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/ttex054-guide-draft/albedo-guide-display-not-height.png",
+      "sha256": "f193cfec829ca725a1a03a48e08b3328dc60abdc483b2464f894db0b76819439",
+      "bytes": 3195
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/ttex054-guide-draft/albedo-guide.npy",
+      "sha256": "6742519cf792e665df4fb3c3af5807f71defbeffeb355f612db36d28e4254400",
+      "bytes": 2097280
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/ttex054-guide-draft/calibration-patch-contact.png",
+      "sha256": "3c0f074071c4d7b27972fe106f9527d5e54e252e11092bba65e2086fafe49a1f",
+      "bytes": 131218
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/ttex054-guide-draft/class-overlay.png",
+      "sha256": "1e8d49bf5c93c6ac7b302fa0100411ec6ddd3266285f75a1f39d388a74007257",
+      "bytes": 921075
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/ttex054-guide-draft/class-weights.npz",
+      "sha256": "1e23006e7b805e504b31b568d5230b0f50316f50baf119f3ea3bd84e485fb8d0",
+      "bytes": 17356
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/ttex054-guide-draft/classification-and-calibration.json",
+      "sha256": "900210081b5e5e374c87cd85da0d830eb9e6f1826fb486163a296de2c0972df6",
+      "bytes": 26265
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/ttex054-guide-draft/physical-and-ambiguity-witnesses.png",
+      "sha256": "0b5345581e23da7086bc1120b7a615bafc79a2cd372f478058ceb025ee5b8612",
+      "bytes": 137513
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/ttex054-guide-draft/protected-physical-witness-mask.png",
+      "sha256": "75e85560d4d68e9b444172a6cbb9cd827d4d67ce1d70798609b704b292a8e12e",
+      "bytes": 932
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/ttex054-guide-draft/source-classification-review.png",
+      "sha256": "fde99afa9b2e2367801f8334ad1b881cbe65bf49647f41b17ea9e569f812f512",
+      "bytes": 2118594
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/ttex054-guide-draft/unresolved-boundary-mask.png",
+      "sha256": "2b0697651db11857bae89f422ff412f6a2fd9c562e8dc8b35b173c53d8f80dc6",
+      "bytes": 1507
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/ttex054-guide-draft/validity-mask.png",
+      "sha256": "c57ce4211d725949ecb5e359e093182fcf3fee96c26529e0355bbee0699e5612",
+      "bytes": 2253
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/ttex054-guide-draft/visual-review.json",
+      "sha256": "fd26b5868b6e0b242543af403422248e475797059ecd66a3f510508823d68acd",
+      "bytes": 2557
+    }
+  ],
+  "actualDiagnosticInspection": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/ttex054-guide-draft/visual-review.json",
+    "sha256": "fd26b5868b6e0b242543af403422248e475797059ecd66a3f510508823d68acd",
+    "priorProposal": {
+      "file": "docs/hexen2/textures/batch-008-ttex054-guide-proposal-pre-view-v1.json",
+      "sha256": "a2feeba56ba9ae65ba13200195913ef68930978c64f9059a12ecc1c1393b1f9a"
+    },
+    "lowerRedPatchCalibration": "REJECTED as pure-pigment calibration; mixed source observations only, unused in A",
+    "qualifiedSoftPaintEdges": false,
+    "guideEligibleForAuthoring": false
+  }
+}

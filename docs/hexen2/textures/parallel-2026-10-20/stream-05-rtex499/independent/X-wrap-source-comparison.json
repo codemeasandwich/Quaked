@@ -1,0 +1,113 @@
+{
+  "scope": "Read-only native and decoded exact UV-X boundary crops; no asset modification",
+  "images": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/originals/01-rtex499-4461c8b9623b.png",
+      "sha256": "03f3fe8960c22643f2cf8f0f6de71f0b8a3b03d3fc578fd1505c72e73186899b"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/high-diffuse.webp",
+      "sha256": "f71636222de1909710faa133c74eb87361a8c4553577460b9d4e9e67050f2fe4"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/mid-diffuse.webp",
+      "sha256": "2ea5f067fc85dd934f4d811664bb885c16a62937c4724ac5ab394af32b7c8c82"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/native-and-decoded-X-wrap-face-comparison.png",
+      "sha256": "fa5bdad9b197348f95ff173f8ab81ae5a0d5788d8b38a384bbdc2c903a6d6284"
+    }
+  ],
+  "metrics": [
+    {
+      "source": "unchanged native",
+      "courseNativeY": 16,
+      "sourcePixelRows": [
+        6,
+        26
+      ],
+      "wrapXMeanRGB": 7.266666666666667,
+      "meanInteriorNeighborMeanRGB": 15.392650918635173,
+      "medianInteriorNeighborMeanRGB": 14.133333333333333,
+      "firstNeighborMeanRGB": 6.533333333333333,
+      "lastNeighborMeanRGB": 5.466666666666667,
+      "wrapRankPercentileAmongInteriorColumnMeans": 4.724409448818897,
+      "interpretation": "Diagnostics only, visual seam decision separate"
+    },
+    {
+      "source": "unchanged native",
+      "courseNativeY": 80,
+      "sourcePixelRows": [
+        70,
+        90
+      ],
+      "wrapXMeanRGB": 22.466666666666665,
+      "meanInteriorNeighborMeanRGB": 15.01259842519685,
+      "medianInteriorNeighborMeanRGB": 13.866666666666667,
+      "firstNeighborMeanRGB": 10.6,
+      "lastNeighborMeanRGB": 17.4,
+      "wrapRankPercentileAmongInteriorColumnMeans": 88.9763779527559,
+      "interpretation": "Diagnostics only, visual seam decision separate"
+    },
+    {
+      "source": "decoded Mid",
+      "courseNativeY": 16,
+      "sourcePixelRows": [
+        24,
+        104
+      ],
+      "wrapXMeanRGB": 18.5,
+      "meanInteriorNeighborMeanRGB": 16.250554468362687,
+      "medianInteriorNeighborMeanRGB": 15.954166666666667,
+      "firstNeighborMeanRGB": 10.558333333333334,
+      "lastNeighborMeanRGB": 12.329166666666667,
+      "wrapRankPercentileAmongInteriorColumnMeans": 78.86497064579257,
+      "interpretation": "Diagnostics only, visual seam decision separate"
+    },
+    {
+      "source": "decoded Mid",
+      "courseNativeY": 80,
+      "sourcePixelRows": [
+        280,
+        360
+      ],
+      "wrapXMeanRGB": 32.03333333333333,
+      "meanInteriorNeighborMeanRGB": 15.681457925636009,
+      "medianInteriorNeighborMeanRGB": 15.2125,
+      "firstNeighborMeanRGB": 14.204166666666667,
+      "lastNeighborMeanRGB": 14.2375,
+      "wrapRankPercentileAmongInteriorColumnMeans": 100.0,
+      "interpretation": "Diagnostics only, visual seam decision separate"
+    },
+    {
+      "source": "decoded High",
+      "courseNativeY": 16,
+      "sourcePixelRows": [
+        48,
+        208
+      ],
+      "wrapXMeanRGB": 20.625,
+      "meanInteriorNeighborMeanRGB": 14.139862333007494,
+      "medianInteriorNeighborMeanRGB": 13.96875,
+      "firstNeighborMeanRGB": 8.745833333333334,
+      "lastNeighborMeanRGB": 8.83125,
+      "wrapRankPercentileAmongInteriorColumnMeans": 99.12023460410558,
+      "interpretation": "Diagnostics only, visual seam decision separate"
+    },
+    {
+      "source": "decoded High",
+      "courseNativeY": 80,
+      "sourcePixelRows": [
+        560,
+        720
+      ],
+      "wrapXMeanRGB": 34.297916666666666,
+      "meanInteriorNeighborMeanRGB": 13.774558080808081,
+      "medianInteriorNeighborMeanRGB": 13.741666666666667,
+      "firstNeighborMeanRGB": 9.689583333333333,
+      "lastNeighborMeanRGB": 9.639583333333333,
+      "wrapRankPercentileAmongInteriorColumnMeans": 100.0,
+      "interpretation": "Diagnostics only, visual seam decision separate"
+    }
+  ]
+}

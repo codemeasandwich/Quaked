@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent source/master replay only; current pale feature relief and final tiers/art remain unaccepted.",
+  "materials": [
+    {
+      "nativeIdentity": "4461c8b9623bcc682a41c4358b0e486c00aa3f77cde9b2dfebcb2efceab6dfd5",
+      "name": "rtex499",
+      "edition": "portals",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499/master.json",
+        "sha256": "2fe411c060670ed1bc1ddda7ec88d78282bc89cd366d383caca33ae4a0c19d8b"
+      },
+      "masterColor": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499/color.png",
+        "sha256": "527aee2f9d599a7efeb65808c7f944c37a3377c0b6dff4bf927a7370d80c7ad4"
+      },
+      "masterHeight": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499/height.npy",
+        "sha256": "8f7310d5367ebe259e9d127c78804360f1cc83d9ecedea74a266426dbd558d57"
+      },
+      "currentReliefArtAccepted": false
+    }
+  ],
+  "verdict": "PASS source/master-only exact RGB/float/CLI replay; current pale-mark relief remains HOLD",
+  "verifier": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-verify-source-master.py",
+    "sha256": "9f6666dab1e968b361db2f9bb7260dada500ef03bec19f221be84b226ffd2751"
+  },
+  "inputs": [
+    {
+      "file": "/Users/bri/.codex/generated_images/01a1585b-32f1-76d1-8965-d088532ee69f/exec-daffbbdd-dff8-4004-81dc-8b049faae12a.png",
+      "sha256": "a05148321e9e57d5aa041fa300215abcdd9203cbc82658287f8d87d45d2734fb"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/generated/rtex499.png",
+      "sha256": "a05148321e9e57d5aa041fa300215abcdd9203cbc82658287f8d87d45d2734fb"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499/color.png",
+      "sha256": "527aee2f9d599a7efeb65808c7f944c37a3377c0b6dff4bf927a7370d80c7ad4"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499/height.npy",
+      "sha256": "8f7310d5367ebe259e9d127c78804360f1cc83d9ecedea74a266426dbd558d57"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499/master.json",
+      "sha256": "2fe411c060670ed1bc1ddda7ec88d78282bc89cd366d383caca33ae4a0c19d8b"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/originals/01-rtex499-4461c8b9623b.png",
+      "sha256": "03f3fe8960c22643f2cf8f0f6de71f0b8a3b03d3fc578fd1505c72e73186899b"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/prompts/rtex499-material-v1.txt",
+      "sha256": "619fd727e2c0600dca43de349a6707db40a6e3b1d2eff71c7aeab05053e4fca2"
+    },
+    {
+      "file": "docs/evidence/hexen2-textures-2026-10-19/current/inventory.json",
+      "sha256": "344ad22744fd5b6ad9d07ef89102be930ac2c3c88589456d46963c8b4c082d6a"
+    },
+    {
+      "file": "docs/evidence/hexen2-textures-2026-10-20/stream-05-rtex499/native-four-mips-flags.json",
+      "sha256": "b57f643aa464d70cff3fc2cb69318269048795a7aa386108e41ef92cc0d1ce4d"
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-first-four-verify-public-actual.py",
+      "sha256": "1a83157cb064bf8b74af1b0e04bf641014471f43b1aec861ea8ba1fed50e85de"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-plan-review.json",
+      "sha256": "1229386337a66e87c5b631a86b7b6a23b619b155d8acd1e961f932f2045df88b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-verify-source-master.py",
+      "sha256": "9f6666dab1e968b361db2f9bb7260dada500ef03bec19f221be84b226ffd2751"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    }
+  ],
+  "actualCLIReplayDirectory": "/private/tmp/quaked-rtex499-source-master-8375k3lr",
+  "inputsStable": true,
+  "completedAt": "2026-10-20T10:17:54.095880+00:00"
+}

@@ -1,0 +1,1063 @@
+{
+  "schemaVersion": 1,
+  "scope": "Source-measured semantic mask/plane proposal only, not an authored production recipe/master or acceptance receipt.",
+  "name": "ttex153",
+  "edition": "portals",
+  "nativeIdentity": "b0d888d2faaedfc77346980aefcce52f620cabf34f80365bbbd17fd7835e10c6",
+  "sourceMasterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex153/master.json",
+    "sha256": "81bcd0e6c5bde3afc3df4834f634a3b48ceb659f1a729d9c35d96a35c8c76022",
+    "bytes": 4226
+  },
+  "sourceRGB": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex153/color.png",
+    "sha256": "53dfd220323faf46b3dd43ea8528f2d26d3fa47cbf9dae55ba829f6f0756a45e",
+    "bytes": 637764
+  },
+  "sourceHeight": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex153/height.npy",
+    "sha256": "23ef68c1a51689295957cba4e43a6efb101e27143e1ce5827af556d9798942d2",
+    "bytes": 1048704
+  },
+  "referenceSize": [
+    64,
+    64
+  ],
+  "sourceMeasurement": "Inspected actual64px native,1254px raw and512px registered RGB, with enlarged native-coordinate grid. Continuous physical arrises/course offsets traced manually. No whiteness threshold, regular rectangular grid or copied other-material coordinates.",
+  "physicalInterpretation": "Ochre limestone facing stands above pale lime-mortar channels. White deposits terminating within stone faces remain facing surface color; they are not structural joints.",
+  "regions": [
+    {
+      "label": "H0-top-periodic",
+      "polygon": [
+        [
+          0,
+          0
+        ],
+        [
+          64,
+          0
+        ],
+        [
+          64,
+          1.4
+        ],
+        [
+          56,
+          1.2
+        ],
+        [
+          48,
+          1.3
+        ],
+        [
+          40,
+          1.2
+        ],
+        [
+          32,
+          1.2
+        ],
+        [
+          24,
+          1.1
+        ],
+        [
+          16,
+          1.2
+        ],
+        [
+          8,
+          1.5
+        ],
+        [
+          0,
+          1.4
+        ]
+      ]
+    },
+    {
+      "label": "H1-first-course",
+      "polygon": [
+        [
+          0,
+          8.5
+        ],
+        [
+          4,
+          8.6
+        ],
+        [
+          8,
+          8.4
+        ],
+        [
+          12,
+          8.5
+        ],
+        [
+          16,
+          8.7
+        ],
+        [
+          20,
+          8.5
+        ],
+        [
+          24,
+          8.6
+        ],
+        [
+          28,
+          8.9
+        ],
+        [
+          32,
+          9.1
+        ],
+        [
+          36,
+          9.5
+        ],
+        [
+          40,
+          9.2
+        ],
+        [
+          44,
+          10
+        ],
+        [
+          48,
+          10
+        ],
+        [
+          52,
+          9.7
+        ],
+        [
+          56,
+          9.2
+        ],
+        [
+          60,
+          8.7
+        ],
+        [
+          64,
+          8.8
+        ],
+        [
+          64,
+          11
+        ],
+        [
+          60,
+          11.2
+        ],
+        [
+          56,
+          11.8
+        ],
+        [
+          52,
+          11.5
+        ],
+        [
+          48,
+          11.9
+        ],
+        [
+          44,
+          11.8
+        ],
+        [
+          40,
+          11.6
+        ],
+        [
+          36,
+          11.6
+        ],
+        [
+          32,
+          11.8
+        ],
+        [
+          28,
+          11.8
+        ],
+        [
+          24,
+          11.6
+        ],
+        [
+          20,
+          11.5
+        ],
+        [
+          16,
+          11.4
+        ],
+        [
+          12,
+          11.1
+        ],
+        [
+          8,
+          10.8
+        ],
+        [
+          4,
+          11
+        ],
+        [
+          0,
+          11.1
+        ]
+      ]
+    },
+    {
+      "label": "H2-below-large-course",
+      "polygon": [
+        [
+          0,
+          27
+        ],
+        [
+          8,
+          27.4
+        ],
+        [
+          16,
+          27.4
+        ],
+        [
+          24,
+          27.6
+        ],
+        [
+          32,
+          27.4
+        ],
+        [
+          40,
+          27.6
+        ],
+        [
+          48,
+          27.7
+        ],
+        [
+          56,
+          27.8
+        ],
+        [
+          64,
+          27.8
+        ],
+        [
+          64,
+          29.4
+        ],
+        [
+          56,
+          30
+        ],
+        [
+          48,
+          29.7
+        ],
+        [
+          40,
+          29.6
+        ],
+        [
+          32,
+          29.5
+        ],
+        [
+          24,
+          29.7
+        ],
+        [
+          16,
+          29.5
+        ],
+        [
+          8,
+          29.4
+        ],
+        [
+          0,
+          29.2
+        ]
+      ]
+    },
+    {
+      "label": "H3-below-middle-course",
+      "polygon": [
+        [
+          0,
+          37
+        ],
+        [
+          8,
+          37.4
+        ],
+        [
+          16,
+          37.7
+        ],
+        [
+          24,
+          37.9
+        ],
+        [
+          32,
+          38.3
+        ],
+        [
+          40,
+          38.1
+        ],
+        [
+          48,
+          38.5
+        ],
+        [
+          56,
+          38
+        ],
+        [
+          64,
+          37.5
+        ],
+        [
+          64,
+          39.7
+        ],
+        [
+          56,
+          40.2
+        ],
+        [
+          48,
+          40.4
+        ],
+        [
+          40,
+          40.1
+        ],
+        [
+          32,
+          40.1
+        ],
+        [
+          24,
+          39.8
+        ],
+        [
+          16,
+          39.4
+        ],
+        [
+          8,
+          39.6
+        ],
+        [
+          0,
+          39.5
+        ]
+      ]
+    },
+    {
+      "label": "H4-below-narrow-course",
+      "polygon": [
+        [
+          0,
+          44.6
+        ],
+        [
+          8,
+          45.1
+        ],
+        [
+          16,
+          45.3
+        ],
+        [
+          24,
+          45.3
+        ],
+        [
+          32,
+          45.5
+        ],
+        [
+          40,
+          45
+        ],
+        [
+          48,
+          45.1
+        ],
+        [
+          56,
+          45.1
+        ],
+        [
+          64,
+          45.2
+        ],
+        [
+          64,
+          47.9
+        ],
+        [
+          56,
+          47.7
+        ],
+        [
+          48,
+          47.8
+        ],
+        [
+          40,
+          47.7
+        ],
+        [
+          32,
+          48
+        ],
+        [
+          24,
+          47.4
+        ],
+        [
+          16,
+          47.6
+        ],
+        [
+          8,
+          47.7
+        ],
+        [
+          0,
+          47.8
+        ]
+      ]
+    },
+    {
+      "label": "H5-bottom-periodic",
+      "polygon": [
+        [
+          0,
+          61.8
+        ],
+        [
+          8,
+          61.8
+        ],
+        [
+          16,
+          61.5
+        ],
+        [
+          24,
+          61.9
+        ],
+        [
+          32,
+          61.7
+        ],
+        [
+          40,
+          61.8
+        ],
+        [
+          48,
+          61.6
+        ],
+        [
+          56,
+          61.4
+        ],
+        [
+          64,
+          61.6
+        ],
+        [
+          64,
+          64
+        ],
+        [
+          0,
+          64
+        ]
+      ]
+    },
+    {
+      "label": "V1-top-left",
+      "polygon": [
+        [
+          8,
+          1.1
+        ],
+        [
+          10.4,
+          1.1
+        ],
+        [
+          10.1,
+          4
+        ],
+        [
+          10.2,
+          7
+        ],
+        [
+          10.8,
+          10.4
+        ],
+        [
+          8,
+          10.7
+        ],
+        [
+          8.2,
+          7
+        ],
+        [
+          7.9,
+          4
+        ]
+      ]
+    },
+    {
+      "label": "V2-top-centre",
+      "polygon": [
+        [
+          40.2,
+          1.1
+        ],
+        [
+          42.1,
+          1.1
+        ],
+        [
+          42.3,
+          4.5
+        ],
+        [
+          42,
+          7.5
+        ],
+        [
+          42.5,
+          11.5
+        ],
+        [
+          40,
+          11.6
+        ],
+        [
+          40,
+          8
+        ],
+        [
+          40.3,
+          5
+        ]
+      ]
+    },
+    {
+      "label": "V3-top-right",
+      "polygon": [
+        [
+          46.8,
+          1.2
+        ],
+        [
+          48.8,
+          1.1
+        ],
+        [
+          48.4,
+          4.5
+        ],
+        [
+          48.4,
+          7.5
+        ],
+        [
+          49.1,
+          11.7
+        ],
+        [
+          46.6,
+          11.8
+        ],
+        [
+          46.5,
+          8
+        ],
+        [
+          46.8,
+          4.5
+        ]
+      ]
+    },
+    {
+      "label": "V4-large-course",
+      "polygon": [
+        [
+          32.2,
+          11
+        ],
+        [
+          34.7,
+          11.3
+        ],
+        [
+          34.5,
+          15
+        ],
+        [
+          34.3,
+          19
+        ],
+        [
+          34,
+          23
+        ],
+        [
+          34.2,
+          27.7
+        ],
+        [
+          31.5,
+          28
+        ],
+        [
+          31.8,
+          24
+        ],
+        [
+          32,
+          20
+        ],
+        [
+          32.2,
+          16
+        ]
+      ]
+    },
+    {
+      "label": "V5-middle-left",
+      "polygon": [
+        [
+          4.4,
+          28.7
+        ],
+        [
+          7.2,
+          29.1
+        ],
+        [
+          7.3,
+          32
+        ],
+        [
+          7.3,
+          35
+        ],
+        [
+          7.9,
+          38
+        ],
+        [
+          5,
+          38.3
+        ],
+        [
+          4.8,
+          35
+        ],
+        [
+          4.6,
+          32
+        ]
+      ]
+    },
+    {
+      "label": "V6-middle-right",
+      "polygon": [
+        [
+          55.4,
+          29.4
+        ],
+        [
+          57.8,
+          29.7
+        ],
+        [
+          57.7,
+          32
+        ],
+        [
+          57.6,
+          35
+        ],
+        [
+          57.9,
+          38.6
+        ],
+        [
+          55.6,
+          38.6
+        ],
+        [
+          55.4,
+          35
+        ],
+        [
+          55.4,
+          32
+        ]
+      ]
+    },
+    {
+      "label": "V7-narrow-left",
+      "polygon": [
+        [
+          26.2,
+          39.2
+        ],
+        [
+          27.8,
+          39.5
+        ],
+        [
+          27.7,
+          42
+        ],
+        [
+          27.6,
+          45.9
+        ],
+        [
+          25.9,
+          45.8
+        ],
+        [
+          26.1,
+          42.5
+        ]
+      ]
+    },
+    {
+      "label": "V8-narrow-centre",
+      "polygon": [
+        [
+          35.7,
+          39.5
+        ],
+        [
+          37.5,
+          39.7
+        ],
+        [
+          37.1,
+          42.5
+        ],
+        [
+          37,
+          45.9
+        ],
+        [
+          35.3,
+          46
+        ],
+        [
+          35.5,
+          43
+        ]
+      ]
+    },
+    {
+      "label": "V9-narrow-right",
+      "polygon": [
+        [
+          46.4,
+          39.8
+        ],
+        [
+          48.2,
+          39.5
+        ],
+        [
+          47.7,
+          42.3
+        ],
+        [
+          47.9,
+          45.8
+        ],
+        [
+          46.1,
+          45.7
+        ],
+        [
+          46.3,
+          43
+        ]
+      ]
+    },
+    {
+      "label": "V10-bottom-left",
+      "polygon": [
+        [
+          17,
+          47
+        ],
+        [
+          19.8,
+          47.3
+        ],
+        [
+          19.4,
+          51
+        ],
+        [
+          19.2,
+          55
+        ],
+        [
+          19.1,
+          59
+        ],
+        [
+          18.8,
+          63
+        ],
+        [
+          16.6,
+          63
+        ],
+        [
+          17.1,
+          59
+        ],
+        [
+          17.4,
+          55
+        ],
+        [
+          17.6,
+          51
+        ]
+      ]
+    },
+    {
+      "label": "V11-bottom-right",
+      "polygon": [
+        [
+          53.1,
+          47.1
+        ],
+        [
+          55.2,
+          47.3
+        ],
+        [
+          55,
+          51
+        ],
+        [
+          54.7,
+          55
+        ],
+        [
+          55.1,
+          59
+        ],
+        [
+          55.4,
+          62.8
+        ],
+        [
+          53.2,
+          63
+        ],
+        [
+          53,
+          59
+        ],
+        [
+          53.1,
+          55
+        ],
+        [
+          53.1,
+          51
+        ]
+      ]
+    }
+  ],
+  "planeProposal": {
+    "facingHeight": 0.7,
+    "brickHeight": 0.3,
+    "chipFloor": 0.55,
+    "microAmplitude": 0.035,
+    "bevelPixels": 0.5
+  },
+  "planeExplanation": "Existing layered-veneer brickRegions/brickHeight denote lower mortar substrate here. No additional literal bricks. .5 reference bevel gives sigma1masterpx at512, on interface only; RGB stays unchanged. Conservative normalized ranges mortar .265..335, facing .515..735. Full-precision photograph-derived fine detail is retained within those ranges.",
+  "wrapExplanation": "H0/H5 represent observed top/bottom periodic mortar, with connected actual staggered vertical channels. No new image-perimeter bevel is requested; decoded repeats/corners remain required.",
+  "proposalWitnessClassifications": {
+    "J1": {
+      "nativeEdgeCoordinates": [
+        22,
+        10
+      ],
+      "proposedLowerMask": true,
+      "currentHeightMean": 0.9624878764152527,
+      "currentHeightMedian": 0.9660719633102417
+    },
+    "F1A": {
+      "nativeEdgeCoordinates": [
+        22,
+        6
+      ],
+      "proposedLowerMask": false,
+      "currentHeightMean": 0.21757125854492188,
+      "currentHeightMedian": 0.18977554142475128
+    },
+    "F1B": {
+      "nativeEdgeCoordinates": [
+        22,
+        15
+      ],
+      "proposedLowerMask": false,
+      "currentHeightMean": 0.22792427241802216,
+      "currentHeightMedian": 0.1752215474843979
+    },
+    "J2": {
+      "nativeEdgeCoordinates": [
+        42,
+        28.5
+      ],
+      "proposedLowerMask": true,
+      "currentHeightMean": 0.8228647708892822,
+      "currentHeightMedian": 0.8631702661514282
+    },
+    "F2A": {
+      "nativeEdgeCoordinates": [
+        42,
+        25
+      ],
+      "proposedLowerMask": false,
+      "currentHeightMean": 0.6270492076873779,
+      "currentHeightMedian": 0.6536837816238403
+    },
+    "F2B": {
+      "nativeEdgeCoordinates": [
+        42,
+        32
+      ],
+      "proposedLowerMask": false,
+      "currentHeightMean": 0.339666485786438,
+      "currentHeightMedian": 0.27873897552490234
+    },
+    "J3": {
+      "nativeEdgeCoordinates": [
+        37,
+        46.5
+      ],
+      "proposedLowerMask": true,
+      "currentHeightMean": 0.9847476482391357,
+      "currentHeightMedian": 0.9908892512321472
+    },
+    "F3A": {
+      "nativeEdgeCoordinates": [
+        40,
+        43
+      ],
+      "proposedLowerMask": false,
+      "currentHeightMean": 0.1706361621618271,
+      "currentHeightMedian": 0.1303257942199707
+    },
+    "F3B": {
+      "nativeEdgeCoordinates": [
+        37,
+        51
+      ],
+      "proposedLowerMask": false,
+      "currentHeightMean": 0.9293358325958252,
+      "currentHeightMedian": 0.9425837993621826
+    },
+    "drip1": {
+      "nativeEdgeCoordinates": [
+        19,
+        17
+      ],
+      "proposedLowerMask": false,
+      "currentHeightMean": 0.37334877252578735,
+      "currentHeightMedian": 0.34401774406433105
+    },
+    "drip2": {
+      "nativeEdgeCoordinates": [
+        12.3,
+        33
+      ],
+      "proposedLowerMask": false,
+      "currentHeightMean": 0.8813886046409607,
+      "currentHeightMedian": 0.9610350131988525
+    },
+    "drip3": {
+      "nativeEdgeCoordinates": [
+        36.5,
+        51
+      ],
+      "proposedLowerMask": false,
+      "currentHeightMean": 0.5672948360443115,
+      "currentHeightMedian": 0.7872685194015503
+    }
+  },
+  "excludedSurfaceDeposits": [
+    "drip1(19,17): downward white tongue inside second-course left face.",
+    "drip2(12.3,33): white smear inside middle-course facing, away from actual structural vertical joint atx~6.",
+    "drip3(36.5,51): white tongue inside broad bottom face, between actual structural vertical joints atx~18 and54."
+  ],
+  "correctedWitness": {
+    "priorLabel": "F3A",
+    "priorCoordinate": [
+      37,
+      43
+    ],
+    "actualClass": "narrow-course vertical mortar joint, not face",
+    "correctedFaceCoordinate": [
+      40,
+      43
+    ],
+    "effect": "Earlier source/master-only replay PASS unchanged; its third upper-neighbor art label was wrong and is explicitly superseded here. First two correctly classified local inversions and overall semantic HOLD stand."
+  },
+  "coordinateLimits": "Manual chipped-arrise boundary uncertainty approximately .25nativepx/2masterpx. Inspect the proposal overlay; actual successor mixed interfaces and opposed lights must pass before tier derivation. Sample classes alone do not qualify every boundary.",
+  "currentReliefStatus": "HOLD: exact tonal craft raises pale physical joint centres. Do not encode current bad height.",
+  "nextChecks": [
+    "Root can bind source/master proof to existing guarded layered wrapper after approving measured plan; no guard weakening/new pipeline.",
+    "Before tiers inspect exact full-precision successor composition, RGB preservation, all network interfaces/junctions, actual face/joint witnesses and opposed lights.",
+    "Retain three marked white face deposits on facing.",
+    "Then inspect both actual decoded tiers, native-half/quarter BOX, repeats/corners and relief."
+  ],
+  "preview": {
+    "file": "docs/hexen2/textures/batch-008-ttex153-pre-tier-diagnostics/proposed-mortar-network-boundary.png",
+    "sha256": "1cbb3d0049269f7b70204ee5754a286ae52a7b8f202628441d9815e8b9e1b798",
+    "bytes": 797763
+  },
+  "probeSource": {
+    "file": "docs/hexen2/textures/batch-008-ttex153-propose-mortar-network.py",
+    "sha256": "6ed79c7d8dd4a7c2c7e6f3fa91af8ca4b01a96d8b5461658b264ddfc3d2bf9bf",
+    "bytes": 8174
+  },
+  "proposalNotExecutionAuthority": true
+}

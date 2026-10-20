@@ -1,0 +1,414 @@
+{
+  "scope": "Pre-tier self-diagnostic; independent physical witness classification required before tier encoding",
+  "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499/master.json",
+  "masterPackageSha256": "2fe411c060670ed1bc1ddda7ec88d78282bc89cd366d383caca33ae4a0c19d8b",
+  "masterDimensions": [
+    1024,
+    1024
+  ],
+  "heightDtype": "float32",
+  "heightFinite": true,
+  "samples": [
+    {
+      "label": "joint-course1-left",
+      "nativePixel": [
+        31,
+        16
+      ],
+      "masterPixel": [
+        252,
+        132
+      ],
+      "height": 0.19066911935806274,
+      "neighborhoodRadius": 3,
+      "neighborhoodMean": 0.184542715549469,
+      "neighborhoodMin": 0.09491613507270813,
+      "neighborhoodMax": 0.27819496393203735,
+      "rgb": [
+        72,
+        71,
+        68
+      ]
+    },
+    {
+      "label": "joint-course1-right",
+      "nativePixel": [
+        95,
+        16
+      ],
+      "masterPixel": [
+        764,
+        132
+      ],
+      "height": 0.17624951899051666,
+      "neighborhoodRadius": 3,
+      "neighborhoodMean": 0.17246684432029724,
+      "neighborhoodMin": 0.07549979537725449,
+      "neighborhoodMax": 0.29113951325416565,
+      "rgb": [
+        58,
+        59,
+        62
+      ]
+    },
+    {
+      "label": "joint-course2-centre",
+      "nativePixel": [
+        63,
+        48
+      ],
+      "masterPixel": [
+        508,
+        388
+      ],
+      "height": 0.031739067286252975,
+      "neighborhoodRadius": 3,
+      "neighborhoodMean": 0.03432010859251022,
+      "neighborhoodMin": 0.021054156124591827,
+      "neighborhoodMax": 0.05962372571229935,
+      "rgb": [
+        2,
+        2,
+        3
+      ]
+    },
+    {
+      "label": "joint-course3-left",
+      "nativePixel": [
+        31,
+        80
+      ],
+      "masterPixel": [
+        252,
+        644
+      ],
+      "height": 0.4297914505004883,
+      "neighborhoodRadius": 3,
+      "neighborhoodMean": 0.41985398530960083,
+      "neighborhoodMin": 0.24655529856681824,
+      "neighborhoodMax": 0.6235061287879944,
+      "rgb": [
+        91,
+        90,
+        92
+      ]
+    },
+    {
+      "label": "joint-course4-centre",
+      "nativePixel": [
+        63,
+        112
+      ],
+      "masterPixel": [
+        508,
+        900
+      ],
+      "height": 0.3206399977207184,
+      "neighborhoodRadius": 3,
+      "neighborhoodMean": 0.3459921181201935,
+      "neighborhoodMin": 0.08219923824071884,
+      "neighborhoodMax": 0.6800698041915894,
+      "rgb": [
+        60,
+        61,
+        68
+      ]
+    },
+    {
+      "label": "joint-horizontal1",
+      "nativePixel": [
+        24,
+        31
+      ],
+      "masterPixel": [
+        196,
+        252
+      ],
+      "height": 0.8329842686653137,
+      "neighborhoodRadius": 3,
+      "neighborhoodMean": 0.7745150923728943,
+      "neighborhoodMin": 0.6408121585845947,
+      "neighborhoodMax": 0.9114135503768921,
+      "rgb": [
+        135,
+        143,
+        180
+      ]
+    },
+    {
+      "label": "joint-horizontal2",
+      "nativePixel": [
+        80,
+        63
+      ],
+      "masterPixel": [
+        644,
+        508
+      ],
+      "height": 0.0025318574625998735,
+      "neighborhoodRadius": 3,
+      "neighborhoodMean": 0.003507128683850169,
+      "neighborhoodMin": 0.0014818829949945211,
+      "neighborhoodMax": 0.010388337075710297,
+      "rgb": [
+        7,
+        6,
+        8
+      ]
+    },
+    {
+      "label": "joint-horizontal3",
+      "nativePixel": [
+        16,
+        95
+      ],
+      "masterPixel": [
+        132,
+        764
+      ],
+      "height": 0.004406022373586893,
+      "neighborhoodRadius": 3,
+      "neighborhoodMean": 0.0057738544419407845,
+      "neighborhoodMin": 0.003969818819314241,
+      "neighborhoodMax": 0.009085312485694885,
+      "rgb": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "label": "face-course1-centre",
+      "nativePixel": [
+        64,
+        16
+      ],
+      "masterPixel": [
+        516,
+        132
+      ],
+      "height": 0.8567112684249878,
+      "neighborhoodRadius": 3,
+      "neighborhoodMean": 0.7940412759780884,
+      "neighborhoodMin": 0.6692336201667786,
+      "neighborhoodMax": 0.8753679394721985,
+      "rgb": [
+        184,
+        192,
+        199
+      ]
+    },
+    {
+      "label": "face-course2-left",
+      "nativePixel": [
+        32,
+        48
+      ],
+      "masterPixel": [
+        260,
+        388
+      ],
+      "height": 0.3576759099960327,
+      "neighborhoodRadius": 3,
+      "neighborhoodMean": 0.36557260155677795,
+      "neighborhoodMin": 0.2604684829711914,
+      "neighborhoodMax": 0.48564907908439636,
+      "rgb": [
+        78,
+        63,
+        48
+      ]
+    },
+    {
+      "label": "face-course2-right",
+      "nativePixel": [
+        96,
+        48
+      ],
+      "masterPixel": [
+        772,
+        388
+      ],
+      "height": 0.4580842852592468,
+      "neighborhoodRadius": 3,
+      "neighborhoodMean": 0.446033239364624,
+      "neighborhoodMin": 0.33472877740859985,
+      "neighborhoodMax": 0.5876952409744263,
+      "rgb": [
+        103,
+        102,
+        96
+      ]
+    },
+    {
+      "label": "face-course3-centre",
+      "nativePixel": [
+        64,
+        80
+      ],
+      "masterPixel": [
+        516,
+        644
+      ],
+      "height": 0.28522631525993347,
+      "neighborhoodRadius": 3,
+      "neighborhoodMean": 0.340668261051178,
+      "neighborhoodMin": 0.22728568315505981,
+      "neighborhoodMax": 0.5223627090454102,
+      "rgb": [
+        49,
+        49,
+        48
+      ]
+    },
+    {
+      "label": "face-course4-left",
+      "nativePixel": [
+        32,
+        112
+      ],
+      "masterPixel": [
+        260,
+        900
+      ],
+      "height": 0.5342690348625183,
+      "neighborhoodRadius": 3,
+      "neighborhoodMean": 0.4952809512615204,
+      "neighborhoodMin": 0.3823988437652588,
+      "neighborhoodMax": 0.5646088719367981,
+      "rgb": [
+        117,
+        123,
+        122
+      ]
+    },
+    {
+      "label": "face-course4-right",
+      "nativePixel": [
+        96,
+        112
+      ],
+      "masterPixel": [
+        772,
+        900
+      ],
+      "height": 0.5929833650588989,
+      "neighborhoodRadius": 3,
+      "neighborhoodMean": 0.5976039171218872,
+      "neighborhoodMin": 0.4068969190120697,
+      "neighborhoodMax": 0.700775146484375,
+      "rgb": [
+        86,
+        81,
+        82
+      ]
+    },
+    {
+      "label": "pale-course1",
+      "nativePixel": [
+        56,
+        2
+      ],
+      "masterPixel": [
+        452,
+        20
+      ],
+      "height": 0.98508620262146,
+      "neighborhoodRadius": 3,
+      "neighborhoodMean": 0.9737952947616577,
+      "neighborhoodMin": 0.9251152873039246,
+      "neighborhoodMax": 0.99028480052948,
+      "rgb": [
+        188,
+        181,
+        176
+      ]
+    },
+    {
+      "label": "pale-course2-left",
+      "nativePixel": [
+        11,
+        35
+      ],
+      "masterPixel": [
+        92,
+        284
+      ],
+      "height": 0.99278324842453,
+      "neighborhoodRadius": 3,
+      "neighborhoodMean": 0.9900707602500916,
+      "neighborhoodMin": 0.9762141108512878,
+      "neighborhoodMax": 0.9948201179504395,
+      "rgb": [
+        229,
+        228,
+        227
+      ]
+    },
+    {
+      "label": "pale-course2-right",
+      "nativePixel": [
+        93,
+        32
+      ],
+      "masterPixel": [
+        748,
+        260
+      ],
+      "height": 0.984683096408844,
+      "neighborhoodRadius": 3,
+      "neighborhoodMean": 0.9828749895095825,
+      "neighborhoodMin": 0.9705318808555603,
+      "neighborhoodMax": 0.9884726405143738,
+      "rgb": [
+        224,
+        225,
+        220
+      ]
+    },
+    {
+      "label": "pale-course3",
+      "nativePixel": [
+        35,
+        66
+      ],
+      "masterPixel": [
+        284,
+        532
+      ],
+      "height": 0.993198573589325,
+      "neighborhoodRadius": 3,
+      "neighborhoodMean": 0.9913475513458252,
+      "neighborhoodMin": 0.9717317223548889,
+      "neighborhoodMax": 0.9958309531211853,
+      "rgb": [
+        204,
+        203,
+        205
+      ]
+    },
+    {
+      "label": "pale-course4",
+      "nativePixel": [
+        85,
+        101
+      ],
+      "masterPixel": [
+        684,
+        812
+      ],
+      "height": 0.9925521016120911,
+      "neighborhoodRadius": 3,
+      "neighborhoodMean": 0.9881846904754639,
+      "neighborhoodMin": 0.9453662037849426,
+      "neighborhoodMax": 0.997320294380188,
+      "rgb": [
+        245,
+        244,
+        245
+      ]
+    }
+  ],
+  "diagnostic": "docs/evidence/hexen2-textures-2026-10-20/stream-05-rtex499/pre-tier-master-height-opposed.png",
+  "status": "Await actual white-mark geometry inspection; brightness alone cannot qualify height"
+}

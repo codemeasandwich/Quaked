@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 1,
+  "status": "PLAN/TINY DIAGNOSTIC ONLY - source patch/material/outline review required",
+  "source": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/color.png",
+    "sha256": "75735d60f4199165c89f02f38d96a021ce471ddd4acd4ca5196a6fae6abf1eba"
+  },
+  "soleAuthoringSource": "Same retained ttex054 master; no new generation or unrelated texture.",
+  "donorPatches": [
+    {
+      "label": "D1",
+      "sourceBoxMasterPixels": [
+        416,
+        280,
+        464,
+        328
+      ],
+      "sourceScale": 1.0,
+      "originalFineMeanRemoved": -0.00028710812568320094,
+      "zeroMeanResidualSha256": "9c8e99f4fd03c4b7fa2b51dc5738febf9d7f4bc6a4d9d56db4221d66051c01b1",
+      "protectedAndBoundaryOverlapPixels": 0,
+      "robustSigma": 0.022570454649009936,
+      "psd": {
+        "totalPower": 1875.2380775902573,
+        "belowOnePer16Fraction": 0.004707891514351291,
+        "onePer16ToOnePer4Fraction": 0.5679415004891138,
+        "aboveOnePer4Fraction": 0.4273506079965348
+      }
+    },
+    {
+      "label": "D2",
+      "sourceBoxMasterPixels": [
+        80,
+        112,
+        128,
+        160
+      ],
+      "sourceScale": 1.0,
+      "originalFineMeanRemoved": -0.00012044424097209123,
+      "zeroMeanResidualSha256": "e31ef3186d69bdcb5bb713952d292be91096f7c3c7fd57e2d80c79b815fa0376",
+      "protectedAndBoundaryOverlapPixels": 0,
+      "robustSigma": 0.018510686817171655,
+      "psd": {
+        "totalPower": 1148.9099881137754,
+        "belowOnePer16Fraction": 0.008916937371110554,
+        "onePer16ToOnePer4Fraction": 0.542496903457209,
+        "aboveOnePer4Fraction": 0.4485861591716805
+      }
+    }
+  ],
+  "math": {
+    "fineFilter": "wrapped Gsigma0.5(N)-Gsigma2.0(N), each patch mean removed",
+    "sampling": "48x48 master-pixel patches at scale1,32px tile stride,8px C1 cosine edge ramps; donor index=(17cx+29cy+(cx*cy)%7)%2; dihedral orientation=(7cx+11cy+3cxcy)%8, exact quarter turns plus optional reflection. No interpolation/warp/random values. Orientation is an explicit proposed artistic choice for isotropic fine plaster, not alteration of registered coarse features.",
+    "assembly": "Weighted overlap normalized by weights; subtract wrapped8px slow mean then global mean. No RGB copied.",
+    "variance": "One gain chosen by bounded24-step search so resulting-core robust fine sigma matches clean-source target after the same fine filter. Target uses normalized masked Gaussians on known source only, with boundary exclusion16px; excluded rims never enter either mean. Flat material variance gives gain0.",
+    "addition": "Inside reviewed support only: weight*gain*photographic donor field, weighted zero-mean correction. Outside normalized signal exact; no clipping or per-panel amplitude change."
+  },
+  "actualTinyBoxMasterPixels": [
+    32,
+    560,
+    160,
+    688
+  ],
+  "actualStats": {
+    "targetRobustFineSigma": 0.02984706287661252,
+    "presentCoreRobustFineSigma": 0.006808338552537949,
+    "donorCoreRobustFineSigma": 0.010606348580024596,
+    "gain": 2.7142847776412964,
+    "additionMeanOnSupport": -8.765948449631126e-19,
+    "resultingCoreRobustFineSigma": 0.0298470616057259,
+    "outsideNormalizedSignalBitExact": true,
+    "addedMaximumAbsolute": 0.24686030933263634
+  },
+  "assembledDonorPSD": {
+    "totalPower": 43557302.87871541,
+    "belowOnePer16Fraction": 0.00454943184257591,
+    "onePer16ToOnePer4Fraction": 0.58126019003997,
+    "aboveOnePer4Fraction": 0.41419037811745424
+  },
+  "assembledDonorAxisCorrelationsByMasterPixelLag": {
+    "16": [
+      0.04934199715136454,
+      0.0453488947611511
+    ],
+    "32": [
+      0.06890520491996155,
+      0.0581049940098953
+    ],
+    "48": [
+      0.00875782128410603,
+      0.009505769320432886
+    ],
+    "64": [
+      0.12603078241639942,
+      0.13417968448644554
+    ],
+    "96": [
+      0.07191499825414534,
+      0.051527978507710064
+    ],
+    "128": [
+      0.3088692362065749,
+      0.2825952278705641
+    ],
+    "224": [
+      0.0022152912299258053,
+      0.007450078208544963
+    ],
+    "448": [
+      0.22095935080711596,
+      0.2511526580071558
+    ]
+  },
+  "fixtures": [
+    {
+      "name": "flat",
+      "targetRobustFineSigma": 0.0,
+      "presentCoreRobustFineSigma": 0.0,
+      "donorCoreRobustFineSigma": 0.010659926036758086,
+      "gain": 0.0,
+      "additionMeanOnSupport": 0.0,
+      "resultingCoreRobustFineSigma": 0.0,
+      "outsideNormalizedSignalBitExact": true,
+      "addedMaximumAbsolute": 0.0,
+      "flatPlaneMaximumError": 0.0,
+      "flatPlanePass": true,
+      "truthFineSigma": 0.0,
+      "outsideTruthMaximumError": 0.0
+    },
+    {
+      "name": "photographic",
+      "targetRobustFineSigma": 0.01053308041342119,
+      "presentCoreRobustFineSigma": 0.0007569480949731151,
+      "donorCoreRobustFineSigma": 0.010659926036758086,
+      "gain": 0.9727729260921478,
+      "additionMeanOnSupport": -9.036979254057601e-20,
+      "resultingCoreRobustFineSigma": 0.010533080299323924,
+      "outsideNormalizedSignalBitExact": true,
+      "addedMaximumAbsolute": 0.059158293867002575,
+      "truthFineSigma": 0.010333938359904902,
+      "outsideTruthMaximumError": 1.1102230246251565e-16
+    }
+  ],
+  "actualCanonicalRgbUnchanged": true,
+  "macroCloneLimit": "Fine-only clean patches and low-frequency PSD constrain copied large forms; actual contact/lighting review still required. Not a numerical claim of no recognizable artefact.",
+  "effects": "Tiny scalar diagnostics and fixtures only. No restored whole-image height, producer, master recipe/tier/catalog/Git/source change.",
+  "nextAction": "Root independently view proposed patch source/fine contact, actual tiny fine/opposed lights and PSD/stats. Reject synthetic-grain appearance, recognizable copied feature or persistent coherent paint outline before whole-image/production implementation.",
+  "joinSlopeDiagnostics": {
+    "before": {
+      "safeMaterial": {
+        "slopeRms": 0.05964206946932481,
+        "slopeMedian": 0.04216349527412478,
+        "slope95": 0.11276608086579015
+      },
+      "outerJoin": {
+        "slopeRms": 0.06346602147365304,
+        "slopeMedian": 0.04311385557928481,
+        "slope95": 0.11971833297320002
+      },
+      "transition": {
+        "slopeRms": 0.07075900995811356,
+        "slopeMedian": 0.04746874060788775,
+        "slope95": 0.138751174517672
+      },
+      "core": {
+        "slopeRms": 0.0880794533560644,
+        "slopeMedian": 0.0605421760483986,
+        "slope95": 0.17386231790993814
+      }
+    },
+    "interpolated": {
+      "safeMaterial": {
+        "slopeRms": 0.05964206946932481,
+        "slopeMedian": 0.04216349527412478,
+        "slope95": 0.11276608086579015
+      },
+      "outerJoin": {
+        "slopeRms": 0.054746069775361395,
+        "slopeMedian": 0.036703104526533886,
+        "slope95": 0.10283278214003726
+      },
+      "transition": {
+        "slopeRms": 0.039712974515004794,
+        "slopeMedian": 0.02601796014387318,
+        "slope95": 0.07429103227182804
+      },
+      "core": {
+        "slopeRms": 0.015514892890987975,
+        "slopeMedian": 0.008979746087498837,
+        "slope95": 0.0319590322162878
+      }
+    },
+    "restored": {
+      "safeMaterial": {
+        "slopeRms": 0.05964206946932481,
+        "slopeMedian": 0.04216349527412478,
+        "slope95": 0.11276608086579015
+      },
+      "outerJoin": {
+        "slopeRms": 0.056085756280061294,
+        "slopeMedian": 0.03846339012881067,
+        "slope95": 0.10500664536269655
+      },
+      "transition": {
+        "slopeRms": 0.049832276937797036,
+        "slopeMedian": 0.0367650482719426,
+        "slope95": 0.09107022595111526
+      },
+      "core": {
+        "slopeRms": 0.051420394570881864,
+        "slopeMedian": 0.04049687079132656,
+        "slope95": 0.09331097431160301
+      }
+    }
+  },
+  "protectedPatchProof": [
+    {
+      "label": "P1",
+      "box": [
+        47,
+        376,
+        86,
+        416
+      ],
+      "outsideMask": true,
+      "normalizedSignalBitExact": true,
+      "beforeSha256": "666342eb1045b90a6616811c81b55d338b7ee907295bdaf4ddf9d69ada67826f",
+      "afterSha256": "666342eb1045b90a6616811c81b55d338b7ee907295bdaf4ddf9d69ada67826f"
+    },
+    {
+      "label": "P2",
+      "box": [
+        92,
+        224,
+        145,
+        270
+      ],
+      "outsideMask": true,
+      "normalizedSignalBitExact": true,
+      "beforeSha256": "fd305231e64da69ffd306c49dc6908503d81a854d736947edf36c748948d2153",
+      "afterSha256": "fd305231e64da69ffd306c49dc6908503d81a854d736947edf36c748948d2153"
+    },
+    {
+      "label": "P3",
+      "box": [
+        307,
+        135,
+        353,
+        177
+      ],
+      "outsideMask": true,
+      "normalizedSignalBitExact": true,
+      "beforeSha256": "d10b0b3472c4d25f5861fd4b7bf4b51f6b4ffd3196750d6a8bd6ccae2ebdf267",
+      "afterSha256": "d10b0b3472c4d25f5861fd4b7bf4b51f6b4ffd3196750d6a8bd6ccae2ebdf267"
+    },
+    {
+      "label": "P4",
+      "box": [
+        175,
+        32,
+        212,
+        59
+      ],
+      "outsideMask": true,
+      "normalizedSignalBitExact": true,
+      "beforeSha256": "01499a2063bd28f40fd134ef3e99e6585faa7f4114a9764cb86ed38abc0b1a00",
+      "afterSha256": "01499a2063bd28f40fd134ef3e99e6585faa7f4114a9764cb86ed38abc0b1a00"
+    }
+  ],
+  "sourceVarianceGainLimit": "One statistic-based gain2.714 is global, not per paint feature or display. Gain and rare extremes require root source/material review; no hidden clipping.",
+  "sourceStatisticsNotArtAcceptance": true,
+  "actualTinyCropFineRmsAndPSD": {
+    "before": {
+      "rms": 0.04463169808223382,
+      "lowFrequencyBelowOnePer16PowerFraction": 0.017709866614763925,
+      "fineFrequencyAboveOnePer4PowerFraction": 0.33286878262401737
+    },
+    "interpolated": {
+      "rms": 0.026228891877948003,
+      "lowFrequencyBelowOnePer16PowerFraction": 0.03448653219608103,
+      "fineFrequencyAboveOnePer4PowerFraction": 0.3573237663883788
+    },
+    "augmented": {
+      "rms": 0.03183934482021717,
+      "lowFrequencyBelowOnePer16PowerFraction": 0.02471062351061871,
+      "fineFrequencyAboveOnePer4PowerFraction": 0.3591303901636171
+    }
+  }
+}

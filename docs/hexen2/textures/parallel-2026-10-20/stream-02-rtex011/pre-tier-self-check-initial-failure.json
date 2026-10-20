@@ -1,0 +1,9 @@
+{
+  "verdict": "HOLD initial author self-check oracle precision mismatch; no tiers encoded",
+  "error": "AssertionError: compared guarded float64\u2192compose\u2192single-float32 result to diagnostic stored-float32\u2192compose result",
+  "maximumScalarDifference": 5.960464477539063e-08,
+  "differentSamples": 2481,
+  "reviewPrototypeUsedStoredInitialFloat32": true,
+  "guardedProductionPolicy": "craft float64 -> ordered planes and microrelief float64 -> one final float32 cast",
+  "next": "Replay documented float64 producer order exactly, then independently inspect shape and RGB custody; retain this failed check as verifier history."
+}

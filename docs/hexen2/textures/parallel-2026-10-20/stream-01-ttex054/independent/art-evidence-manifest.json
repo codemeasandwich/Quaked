@@ -1,0 +1,572 @@
+{
+  "scope": "Independent actual decoded artifact support; only review evidence written",
+  "timestamp": "2026-10-20T12:43:32.772468+00:00",
+  "inputs": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/ttex054-raised-ornament-v1-batch.json",
+      "sha256": "8c0359c97df660049e26d1711dbb0081fbc5794a7ccd3743f255669d940357d5",
+      "bytes": 3494
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054-raised-ornament-v1/master.json",
+      "sha256": "87887864a1559fb8779ea1cdf17e87468de16ffa7819d1c16966377b7c21274a",
+      "bytes": 35938
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054-raised-ornament-v1/color.png",
+      "sha256": "75735d60f4199165c89f02f38d96a021ce471ddd4acd4ca5196a6fae6abf1eba",
+      "bytes": 1075572
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054-raised-ornament-v1/height.npy",
+      "sha256": "8a604306bbe7bab6b1070b8098675034582b3108171054394cd43c7d3c09dfc9",
+      "bytes": 2097280
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/05-ttex054-cddf441f348f.png",
+      "sha256": "cc7cbc5b106803b459a72454e08c047481f20396c549422dbc96d8202c1c6b57",
+      "bytes": 6883
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/actual-v1.json",
+      "sha256": "bd02cc3681dd6c497027b274531e31a9b573399eb1a838488feabe70c2a003ef",
+      "bytes": 40976
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/preview-v1.json",
+      "sha256": "af79c6afa16922b1c825e00758b76a6b21ec5f34e02128b2ebe1df5ff814c953",
+      "bytes": 31759
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-diffuse.webp",
+      "sha256": "a1c7a11fbac2e55991769469a182760fa0eb79f6da0651872efc797a2fc4cd87",
+      "bytes": 51316
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-height.webp",
+      "sha256": "1259f274854963d38ef9f75305391e242cb39f582c8214176ced536eb58a6998",
+      "bytes": 990
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-normalX.webp",
+      "sha256": "f938d2be749552ac053bd1466acd83e0c47e55b4eecb860185d795760eb10198",
+      "bytes": 1666
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-normalY.webp",
+      "sha256": "8b6888b490bcff78d4a4eb86fcb0328e6661f2bcb4d8b6f15c9d89fa0c9eb6c4",
+      "bytes": 1588
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-normalZ.webp",
+      "sha256": "dedf0aa84b942ffab5f0091e2ab3427da5998c85794d70dff23592730ab42432",
+      "bytes": 294
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-diffuse.webp",
+      "sha256": "d2229fbccd81018c4b3a2ae9dc27712c30926ef36c1b844046d5e000d8b155a5",
+      "bytes": 223346
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-height.webp",
+      "sha256": "1510cc91868cf73436c7d93ded14a5ac3064bb7bb320a4cc9b253162156e6e31",
+      "bytes": 2960
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-normalX.webp",
+      "sha256": "b5a6e0a898ccb347cc6e4870fb2ed75c6bd7d0320b5c2f41d01a14dc4710bf12",
+      "bytes": 5016
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-normalY.webp",
+      "sha256": "8dc179f42213f6dee741738dd54ea32612a7fa887f8bddefbc01240c0c74a89c",
+      "bytes": 4898
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-normalZ.webp",
+      "sha256": "3580ce27c2caaad93b2226cfe24635e66ce311d656964d65aa5bbf24c731c0f4",
+      "bytes": 996
+    }
+  ],
+  "inputsStable": true,
+  "sourceClassification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/source-witness-classification.json",
+    "sha256": "c3840e40b78e869d5d7f6d7c04392e637657c3f8542c77b8a7c2d5b32ca90263",
+    "bytes": 1751
+  },
+  "semanticWitnesses": {
+    "Mid": {
+      "sourceClassifiedWitnesses": [
+        {
+          "label": "G1",
+          "physicalClass": "upper gold meander horizontal stroke",
+          "group": "gold",
+          "masterPixel": [
+            50,
+            587
+          ],
+          "tierPixel": [
+            25,
+            293
+          ],
+          "radius": 1,
+          "mean": 0.996078431372549,
+          "minimum": 0.996078431372549,
+          "maximum": 0.996078431372549
+        },
+        {
+          "label": "G2",
+          "physicalClass": "lower gold meander horizontal stroke",
+          "group": "gold",
+          "masterPixel": [
+            186,
+            640
+          ],
+          "tierPixel": [
+            93,
+            320
+          ],
+          "radius": 1,
+          "mean": 0.9803921568627452,
+          "minimum": 0.9725490196078431,
+          "maximum": 0.996078431372549
+        },
+        {
+          "label": "G3",
+          "physicalClass": "right gold meander vertical stroke",
+          "group": "gold",
+          "masterPixel": [
+            426,
+            607
+          ],
+          "tierPixel": [
+            213,
+            303
+          ],
+          "radius": 1,
+          "mean": 0.996078431372549,
+          "minimum": 0.9921568627450981,
+          "maximum": 1.0
+        },
+        {
+          "label": "B1",
+          "physicalClass": "green lime-plaster background",
+          "group": "base",
+          "masterPixel": [
+            220,
+            360
+          ],
+          "tierPixel": [
+            110,
+            180
+          ],
+          "radius": 1,
+          "mean": 0.976470588235294,
+          "minimum": 0.9764705882352941,
+          "maximum": 0.9764705882352941
+        },
+        {
+          "label": "B2",
+          "physicalClass": "red lower painted plaster",
+          "group": "base",
+          "masterPixel": [
+            350,
+            740
+          ],
+          "tierPixel": [
+            175,
+            370
+          ],
+          "radius": 1,
+          "mean": 0.9738562091503267,
+          "minimum": 0.9725490196078431,
+          "maximum": 0.9764705882352941
+        },
+        {
+          "label": "B3",
+          "physicalClass": "red horizontal painted band",
+          "group": "base",
+          "masterPixel": [
+            250,
+            535
+          ],
+          "tierPixel": [
+            125,
+            267
+          ],
+          "radius": 1,
+          "mean": 0.976470588235294,
+          "minimum": 0.9764705882352941,
+          "maximum": 0.9764705882352941
+        },
+        {
+          "label": "B4",
+          "physicalClass": "dark recess inside meander",
+          "group": "base",
+          "masterPixel": [
+            325,
+            601
+          ],
+          "tierPixel": [
+            162,
+            300
+          ],
+          "radius": 1,
+          "mean": 0.976470588235294,
+          "minimum": 0.9725490196078431,
+          "maximum": 0.9803921568627451
+        }
+      ],
+      "decodedGoldMedian": 0.996078431372549,
+      "decodedBaseMedian": 0.9764705882352941,
+      "goldBaseMedianSeparation": 0.019607843137254943,
+      "globalHeightUniqueValues": 9,
+      "retainedWearPatches": [
+        {
+          "label": "P1",
+          "tierRectangle": [
+            23,
+            188,
+            43,
+            208
+          ],
+          "decodedHeightValues": 2,
+          "decodedHeightRange": [
+            0.9725490196078431,
+            0.9764705882352941
+          ],
+          "decodedHeightStd": 0.0011764705882352901,
+          "distinctStoredXYVectors": 4
+        },
+        {
+          "label": "P2",
+          "tierRectangle": [
+            46,
+            112,
+            72,
+            135
+          ],
+          "decodedHeightValues": 2,
+          "decodedHeightRange": [
+            0.9725490196078431,
+            0.9764705882352941
+          ],
+          "decodedHeightStd": 0.0018099547511312153,
+          "distinctStoredXYVectors": 4
+        },
+        {
+          "label": "P3",
+          "tierRectangle": [
+            153,
+            67,
+            176,
+            88
+          ],
+          "decodedHeightValues": 2,
+          "decodedHeightRange": [
+            0.9725490196078431,
+            0.9764705882352941
+          ],
+          "decodedHeightStd": 0.00035539428617284484,
+          "distinctStoredXYVectors": 4
+        },
+        {
+          "label": "P4",
+          "tierRectangle": [
+            87,
+            16,
+            106,
+            29
+          ],
+          "decodedHeightValues": 1,
+          "decodedHeightRange": [
+            0.9764705882352941,
+            0.9764705882352941
+          ],
+          "decodedHeightStd": 2.220446049250313e-16,
+          "distinctStoredXYVectors": 4
+        }
+      ],
+      "limitation": "Gold is shallow actual ornament, not flat paint by owner decision. Common-substrate wear remains weak and can quantize away; no fine-wear recovery or measured pigment-neutral geometry claim."
+    },
+    "High": {
+      "sourceClassifiedWitnesses": [
+        {
+          "label": "G1",
+          "physicalClass": "upper gold meander horizontal stroke",
+          "group": "gold",
+          "masterPixel": [
+            50,
+            587
+          ],
+          "tierPixel": [
+            50,
+            587
+          ],
+          "radius": 1,
+          "mean": 0.996078431372549,
+          "minimum": 0.996078431372549,
+          "maximum": 0.996078431372549
+        },
+        {
+          "label": "G2",
+          "physicalClass": "lower gold meander horizontal stroke",
+          "group": "gold",
+          "masterPixel": [
+            186,
+            640
+          ],
+          "tierPixel": [
+            186,
+            640
+          ],
+          "radius": 1,
+          "mean": 0.9803921568627452,
+          "minimum": 0.9725490196078431,
+          "maximum": 0.996078431372549
+        },
+        {
+          "label": "G3",
+          "physicalClass": "right gold meander vertical stroke",
+          "group": "gold",
+          "masterPixel": [
+            426,
+            607
+          ],
+          "tierPixel": [
+            426,
+            607
+          ],
+          "radius": 1,
+          "mean": 0.996078431372549,
+          "minimum": 0.996078431372549,
+          "maximum": 0.996078431372549
+        },
+        {
+          "label": "B1",
+          "physicalClass": "green lime-plaster background",
+          "group": "base",
+          "masterPixel": [
+            220,
+            360
+          ],
+          "tierPixel": [
+            220,
+            360
+          ],
+          "radius": 1,
+          "mean": 0.976470588235294,
+          "minimum": 0.9764705882352941,
+          "maximum": 0.9764705882352941
+        },
+        {
+          "label": "B2",
+          "physicalClass": "red lower painted plaster",
+          "group": "base",
+          "masterPixel": [
+            350,
+            740
+          ],
+          "tierPixel": [
+            350,
+            740
+          ],
+          "radius": 1,
+          "mean": 0.9738562091503267,
+          "minimum": 0.9725490196078431,
+          "maximum": 0.9764705882352941
+        },
+        {
+          "label": "B3",
+          "physicalClass": "red horizontal painted band",
+          "group": "base",
+          "masterPixel": [
+            250,
+            535
+          ],
+          "tierPixel": [
+            250,
+            535
+          ],
+          "radius": 1,
+          "mean": 0.976470588235294,
+          "minimum": 0.9764705882352941,
+          "maximum": 0.9764705882352941
+        },
+        {
+          "label": "B4",
+          "physicalClass": "dark recess inside meander",
+          "group": "base",
+          "masterPixel": [
+            325,
+            601
+          ],
+          "tierPixel": [
+            325,
+            601
+          ],
+          "radius": 1,
+          "mean": 0.972549019607843,
+          "minimum": 0.9725490196078431,
+          "maximum": 0.9725490196078431
+        }
+      ],
+      "decodedGoldMedian": 0.996078431372549,
+      "decodedBaseMedian": 0.9764705882352941,
+      "goldBaseMedianSeparation": 0.019607843137254943,
+      "globalHeightUniqueValues": 9,
+      "retainedWearPatches": [
+        {
+          "label": "P1",
+          "tierRectangle": [
+            47,
+            376,
+            86,
+            416
+          ],
+          "decodedHeightValues": 2,
+          "decodedHeightRange": [
+            0.9725490196078431,
+            0.9764705882352941
+          ],
+          "decodedHeightStd": 0.0015215107345904612,
+          "distinctStoredXYVectors": 4
+        },
+        {
+          "label": "P2",
+          "tierRectangle": [
+            92,
+            224,
+            145,
+            270
+          ],
+          "decodedHeightValues": 2,
+          "decodedHeightRange": [
+            0.9725490196078431,
+            0.9764705882352941
+          ],
+          "decodedHeightStd": 0.001936565684295945,
+          "distinctStoredXYVectors": 4
+        },
+        {
+          "label": "P3",
+          "tierRectangle": [
+            307,
+            135,
+            353,
+            177
+          ],
+          "decodedHeightValues": 2,
+          "decodedHeightRange": [
+            0.9725490196078431,
+            0.9764705882352941
+          ],
+          "decodedHeightStd": 0.000916426001511625,
+          "distinctStoredXYVectors": 4
+        },
+        {
+          "label": "P4",
+          "tierRectangle": [
+            175,
+            32,
+            212,
+            59
+          ],
+          "decodedHeightValues": 2,
+          "decodedHeightRange": [
+            0.9725490196078431,
+            0.9764705882352941
+          ],
+          "decodedHeightStd": 0.0003495233160933794,
+          "distinctStoredXYVectors": 4
+        }
+      ],
+      "limitation": "Gold is shallow actual ornament, not flat paint by owner decision. Common-substrate wear remains weak and can quantize away; no fine-wear recovery or measured pigment-neutral geometry claim."
+    }
+  },
+  "opposedLights": "Actual decoded normalized XYZ; unit[+.65,-.4,.6] and[-.65,+.4,.6]. Neutral max(dot,0); textured uses.35+.65*neutral. Offline diagnostics only.",
+  "fixedHeightDisplay": "One fixed .965..1.005 scalar display, not a displacement multiplier or fine-wear claim.",
+  "literalCrops": "Actual unfiltered cyclic128px crops at X green, X gold, Y and XY, for both tiers; band repeated at1:1. Only the labelled overview uses Lanczos resizing.",
+  "outputs": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/art-evidence/half-quarter-both-tiers.png",
+      "sha256": "653ad2514bfe38985c4f0783bf9f6a63a0898b3b0a5d8c4df3c86e049266706a",
+      "bytes": 44145
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/art-evidence/high-diffuse-height.png",
+      "sha256": "6a1d62a2b39a1df9404437cb83eae375f2e1c98932eafde1368e160f44c7f79e",
+      "bytes": 1061477
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/art-evidence/high-height-textured-light.png",
+      "sha256": "b30ef6b151f3c21faaef886428a5cbdde67f96e0f366776589c62a145738d616",
+      "bytes": 1567464
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/art-evidence/high-literal-glyph-repeat.png",
+      "sha256": "644895fb299aa9643038ce16e1cb83cb085a38d2e299733ae000f9291508efc3",
+      "bytes": 125624
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/art-evidence/high-literal-wraps-corner.png",
+      "sha256": "43db571eaae4dc58b7f18dcc9fcb68b1ce2bb02198ec902aa3700e26910a9b69",
+      "bytes": 167127
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/art-evidence/high-physical-witnesses.png",
+      "sha256": "010e9b985a0b57140ec284bf93b012efa617a9e8c281f5af83601252bdae7117",
+      "bytes": 1002670
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/art-evidence/high-two-by-two-overview.png",
+      "sha256": "c055659edc928140df85e394c49e1c31efba9d24ba56f56ffc13215e16795dc2",
+      "bytes": 517379
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/art-evidence/high-xyz-neutral.png",
+      "sha256": "dde73d5b7f0d7ac89870320bdb0ed566d1a2b6d8bab2dbc4b9ed53f3c862b4c1",
+      "bytes": 61580
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/art-evidence/mid-diffuse-height.png",
+      "sha256": "6297d29644ece4ee8b460f6495bc97b62be2f08514101597de4927a127a0767e",
+      "bytes": 255636
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/art-evidence/mid-height-textured-light.png",
+      "sha256": "dedb9737d8116ef9391c65720ff20852be0f4b4a71eddd7a1ae96a3e873a1bf5",
+      "bytes": 379944
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/art-evidence/mid-literal-glyph-repeat.png",
+      "sha256": "e1c53bc112aa2eed2a6ea1a655f4359ddff21f94ad5db355e27d769267f90bfb",
+      "bytes": 30299
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/art-evidence/mid-literal-wraps-corner.png",
+      "sha256": "8e38f973050dc7bfbd203f31502a0b9a16a82928aa79860a3556aab4b6f24cae",
+      "bytes": 160900
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/art-evidence/mid-physical-witnesses.png",
+      "sha256": "e98d4f55a88f8485d9a7727da9f4c6ce2c9e1384d82393749527841306fbe7ae",
+      "bytes": 236529
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/art-evidence/mid-two-by-two-overview.png",
+      "sha256": "8f2e950d0483541cdc3bdb2994cbf7fe53f9f8f90ac61335ebbdd4f48bcaa8da",
+      "bytes": 490689
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/art-evidence/mid-xyz-neutral.png",
+      "sha256": "ca6c6661db5d7787bc6d6bda7113a88161631b317ea80cfa7bd84a69ce0c26c7",
+      "bytes": 24314
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/art-evidence/source-physical-witnesses.png",
+      "sha256": "ab3052f5a92959a6a84450ee134e5626bdf066c583522fc3d0309d5c149a9dd2",
+      "bytes": 1076856
+    }
+  ]
+}

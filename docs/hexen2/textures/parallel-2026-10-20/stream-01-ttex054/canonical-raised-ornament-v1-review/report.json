@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-20T11:37:30.299280+00:00",
+  "verdict": "PASS fresh canonical candidate identity/source geometry/light replay; not tier/art/runtime qualification",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054-raised-ornament-v1/master.json",
+    "sha256": "87887864a1559fb8779ea1cdf17e87468de16ffa7819d1c16966377b7c21274a"
+  },
+  "masterRGB": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054-raised-ornament-v1/color.png",
+    "sha256": "75735d60f4199165c89f02f38d96a021ce471ddd4acd4ca5196a6fae6abf1eba",
+    "byteIdenticalToInitial": true
+  },
+  "masterHeight": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054-raised-ornament-v1/height.npy",
+    "sha256": "8a604306bbe7bab6b1070b8098675034582b3108171054394cd43c7d3c09dfc9",
+    "byteIdenticalToReviewedMicro001Diagnostic": true,
+    "dtype": "float32",
+    "dimensions": [
+      512,
+      1024
+    ],
+    "range": [
+      0.9739999771118164,
+      0.996100902557373
+    ]
+  },
+  "recipe": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/ttex054-raised-ornament-v1.json",
+    "sha256": "150513a363adaecdf29659cd13c2aa2f0a31b487b08d1c9576d29252fd5a5296"
+  },
+  "ownerPlanReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/root-raised-ornament-plan-review.json",
+    "sha256": "32b4888fbd083ee0415986d5ed6cdb4996a2ca5ec6e215bc8c1b3113da98fcc3"
+  },
+  "sourceProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/root-source-master-proof.json",
+    "sha256": "e63c3c917ea3608650687632d542849eadeaeb0eb92ab4639249bd9eeedc17ab"
+  },
+  "geometry": {
+    "positiveGoldPixels": 16865,
+    "positiveGoldFraction": 0.03216743469238281,
+    "substrateRange": [
+      0.9739999771118164,
+      0.9760000109672546
+    ],
+    "goldRange": [
+      0.9797188639640808,
+      0.996100902557373
+    ],
+    "strictHierarchy": true,
+    "polygonCount": 73,
+    "interpretation": "Owner-directed shallow raised gold only; no new plane assigned per surrounding colour. Residual microcolour variation remains."
+  },
+  "actualLights": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/canonical-raised-ornament-v1-review/canonical-neutral-lightA-1to1.png",
+      "sha256": "40ca2b9d84671906a1326033ba38a37bcff61e009cf9af352a8870959346b3a8",
+      "identicalToReviewedDiagnostic": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/canonical-raised-ornament-v1-review/canonical-neutral-lightB-1to1.png",
+      "sha256": "933834870b7c9b4e5064c73473f4096956111d82da3eb1f1d94c03e9c16d413a",
+      "identicalToReviewedDiagnostic": true
+    }
+  ],
+  "limits": "micro0.001 weak fine wear and common-colour median span0.0011923 remain. Final decoded usable geometry/XYZ/height/tiling/codec loss untested. No tiers yet.",
+  "canonicalCliResult": "Successful existing guarded layered producer, root-proof-bound, no producer edits, unchanged source generation and RGB.",
+  "nextAction": "Report fresh canonical candidate to root before tier derivation; proceed only under root candidate/decoded-review authority."
+}

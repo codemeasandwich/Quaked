@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "status": "DIAGNOSTIC HOLD - source contour/support and math ordering require root review",
+  "source": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/color.png",
+    "sha256": "75735d60f4199165c89f02f38d96a021ce471ddd4acd4ca5196a6fae6abf1eba"
+  },
+  "scope": "Mask, normalized-convolution and analytic fixture only. No real-image corrected height, master, tier or registration.",
+  "interpretation": "Local interpolation of unknown microsurface under narrow paint edges is artistic authoring, not measured physical recovery.",
+  "proposedMath": [
+    "J=L/A with fixed source class baselines; all lower red uses one constant baseline.",
+    "Known=1 outside compact support, 0 inside; fill=wrapped G(J*Known)/G(Known).",
+    "Inside support Jprime=(1-weight)*J+weight*fill; outside Jprime=J by exact assignment.",
+    "Only then apply unchanged fine-band extraction. Fine-first correction fails the flat-plane fixture because its Gaussian tails already escaped the narrow mask.",
+    "This ordering preserves normalized photographic signal exactly outside support. It does NOT preserve the already-filtered fine signal there; root must explicitly review that semantic distinction."
+  ],
+  "rootTargetApproximateMaximumSupportFraction": 0.08,
+  "maskVariants": [
+    {
+      "name": "narrow",
+      "sourceBandRowsHalfOpen": [
+        [
+          18,
+          22
+        ],
+        [
+          74,
+          79
+        ],
+        [
+          498,
+          503
+        ],
+        [
+          554,
+          559
+        ],
+        [
+          567,
+          571
+        ],
+        [
+          650,
+          654
+        ],
+        [
+          662,
+          667
+        ]
+      ],
+      "supportPixels": 39724,
+      "supportFraction": 0.07576751708984375,
+      "fullReplacementPixels": 26118,
+      "minimumSafeDenominator": 0.08974777803950715,
+      "protectedWitnessOverlapPixels": 0,
+      "sourceContourUncertainty": "7px chromaticity median misses some actual paint/corner transitions; color overlay requires independent review. No complete alpha proof claimed."
+    },
+    {
+      "name": "observed-rim",
+      "sourceBandRowsHalfOpen": [
+        [
+          14,
+          25
+        ],
+        [
+          73,
+          84
+        ],
+        [
+          494,
+          506
+        ],
+        [
+          552,
+          560
+        ],
+        [
+          567,
+          573
+        ],
+        [
+          649,
+          656
+        ],
+        [
+          662,
+          672
+        ]
+      ],
+      "supportPixels": 56620,
+      "supportFraction": 0.10799407958984375,
+      "fullReplacementPixels": 43014,
+      "minimumSafeDenominator": 0.08169095954500892,
+      "protectedWitnessOverlapPixels": 0,
+      "sourceContourUncertainty": "7px chromaticity median misses some actual paint/corner transitions; color overlay requires independent review. No complete alpha proof claimed."
+    }
+  ],
+  "protectedWitnesses": [
+    {
+      "label": "P1",
+      "box": [
+        47,
+        376,
+        86,
+        416
+      ]
+    },
+    {
+      "label": "P2",
+      "box": [
+        92,
+        224,
+        145,
+        270
+      ]
+    },
+    {
+      "label": "P3",
+      "box": [
+        307,
+        135,
+        353,
+        177
+      ]
+    },
+    {
+      "label": "P4",
+      "box": [
+        175,
+        32,
+        212,
+        59
+      ]
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "flat",
+      "supportPixels": 4607,
+      "outsideNormalizedSignalBitExact": true,
+      "outsideTruthMaximumError": 0.0,
+      "authoredInsideRmsError": 0.0,
+      "minimumSafeDenominator": 0.17105771153827692,
+      "correctedSignalRange": [
+        1.0,
+        1.0
+      ],
+      "truthRange": [
+        1.0,
+        1.0
+      ],
+      "preInterpolationFineMaximumError": 0.01588569228460165,
+      "interpolateBeforeFineMaximumError": 0.0,
+      "firstOutsideFineTailError": 0.0,
+      "interpretation": "Inside microgeometry is authored local interpolation. Fine filtering after correction changes neighboring filter responses; normalized signal alone is exact outside support.",
+      "planeOraclePass": true,
+      "farFromPoreEdgeContinuationMaximumError": 0.0
+    },
+    {
+      "name": "nonconstant",
+      "supportPixels": 4607,
+      "outsideNormalizedSignalBitExact": true,
+      "outsideTruthMaximumError": 1.1102230246251565e-16,
+      "authoredInsideRmsError": 0.0036263169563534904,
+      "minimumSafeDenominator": 0.17105771153827692,
+      "correctedSignalRange": [
+        0.9550022162350068,
+        1.04499977911447
+      ],
+      "truthRange": [
+        0.9550022162350068,
+        1.04499977911447
+      ],
+      "preInterpolationFineMaximumError": 0.01667128360723022,
+      "interpolateBeforeFineMaximumError": 0.014166614705587848,
+      "firstOutsideFineTailError": 0.005160245113211465,
+      "interpretation": "Inside microgeometry is authored local interpolation. Fine filtering after correction changes neighboring filter responses; normalized signal alone is exact outside support.",
+      "farFromPoreEdgeContinuationMaximumError": 0.0038115681071955176
+    }
+  ],
+  "unresolved": [
+    "Complete actual corner/soft-edge trace is not qualified by the median hue contour.",
+    "Observed source band rim support and narrow approximate 8 percent target are in tension.",
+    "Actual corrected real-image material field has not been authored or art-qualified.",
+    "Outside exactness applies before downstream filtering; fine-first has a demonstrated halo failure."
+  ],
+  "prohibitedEffectsPreserved": [
+    "No source generation or color modification",
+    "No per-stroke nuisance profile",
+    "No production authoring wrapper",
+    "No master/height/tier output",
+    "No producer/catalog/Git/build/release changes"
+  ]
+}

@@ -1,0 +1,691 @@
+{
+  "scope": "Independent actual decoded material/distance/wrap/corner/height/XYZ/opposed-light inspection; not a production authoring pipeline.",
+  "timestamp": "2026-10-20T11:48:20.050317+00:00",
+  "inputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/batch.json",
+      "sha256": "3837730b86ebf1c785cb40c7a5e826eb83414bcd7128e505f0a974511ac224e6",
+      "bytes": 4509
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters-layered/mtex470/master.json",
+      "sha256": "975951a59f2bcf2547125d74d1e9baf24c9c019973f026c756f828a57596d310",
+      "bytes": 14391
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters-layered/mtex470/color.png",
+      "sha256": "3959bd2c2dc52cc5ab9ba99757a34c635bb6ceff196b7e4d5ac44b6cbd35acc2",
+      "bytes": 616782
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters-layered/mtex470/height.npy",
+      "sha256": "a6b7d4c4eecc66631152aded8859bdcae4ce7b18cccf52101f7d5dbcbfac7017",
+      "bytes": 1048704
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/originals/01-mtex470-e068750f3f11.png",
+      "sha256": "1492faf7b58e1861012a4eb39f0ebf2f17ea0fbb5ea301c53e6108bc32dcbfdf",
+      "bytes": 4095
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/actual-v1.json",
+      "sha256": "0d0cf6018334f9c82b8d4d352321e59b3a3e0fe64609659de20e20aacfb461e5",
+      "bytes": 35485
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/preview-v1.json",
+      "sha256": "24a7d77a0d32c049d15abf2c0fdf1732146c33c8c8471daa04937c77b2948795",
+      "bytes": 32446
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/mid-diffuse.webp",
+      "sha256": "3d3e8c686390e849fd93f6383f75f1ea82a93f50791ab3b108ef4a4aafd3b7f7",
+      "bytes": 33114
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/mid-height.webp",
+      "sha256": "2544c2df1df92fb12bbda035038acbf14313bcdb60a9e3d37a6d3d9edb66481e",
+      "bytes": 6086
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/mid-normalX.webp",
+      "sha256": "8009219b297e66916e2323304eb29ee428ee07b00a41eecf51292f15e517b9a3",
+      "bytes": 7076
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/mid-normalY.webp",
+      "sha256": "8a3ddf841963242e3b258ff84d0bf94bd2a4d8f1a9bb629b43596028a437ec61",
+      "bytes": 7392
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/mid-normalZ.webp",
+      "sha256": "4972a2da22d5049f35f0b18184b4585540d0ec894b24a05a881f0edeea67ca61",
+      "bytes": 554
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/high-diffuse.webp",
+      "sha256": "0e8d3a88b84077cb62ea6ae41e149354aa8fc98742f7c0b6931f6308a00b055d",
+      "bytes": 142310
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/high-height.webp",
+      "sha256": "9f6e9cf74cb866c26ccbf0146886e1b7d1a3c98a0e31daaa6204714996eb8aae",
+      "bytes": 14166
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/high-normalX.webp",
+      "sha256": "3903309c7cdbbd4a92c1f73874bca96a75e34a5abce04c2c00773f47bfb94a87",
+      "bytes": 22946
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/high-normalY.webp",
+      "sha256": "b63df794538ed0e596aed9a70986d6332b24c9e3bf533877af79ffaa9a202033",
+      "bytes": 24800
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/high-normalZ.webp",
+      "sha256": "5363cb25b2f232ef4f3bcabf630c108cd577ef8c022b44af07c1b7dca89f24c0",
+      "bytes": 1752
+    }
+  ],
+  "inputsStable": true,
+  "sourceClassification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/source-witness-classification.json",
+    "sha256": "eb726e093af5395bd3f1e8ad3eb42db5be7bf63cd6c32d48d645a1cf2feca728",
+    "bytes": 2125
+  },
+  "semanticWitnesses": {
+    "Mid": {
+      "samples": [
+        {
+          "label": "F1",
+          "physicalClass": "left ochre sandstone face",
+          "group": "face",
+          "masterPixel": [
+            55,
+            230
+          ],
+          "tierPixel": [
+            27,
+            115
+          ],
+          "radius": 2,
+          "mean": 0.6848627450980392,
+          "minimum": 0.6705882352941176,
+          "maximum": 0.6980392156862745
+        },
+        {
+          "label": "F2",
+          "physicalClass": "upper grey sandstone face",
+          "group": "face",
+          "masterPixel": [
+            270,
+            70
+          ],
+          "tierPixel": [
+            135,
+            35
+          ],
+          "radius": 2,
+          "mean": 0.6831372549019608,
+          "minimum": 0.6666666666666666,
+          "maximum": 0.6941176470588235
+        },
+        {
+          "label": "F3",
+          "physicalClass": "right ochre sandstone face",
+          "group": "face",
+          "masterPixel": [
+            440,
+            260
+          ],
+          "tierPixel": [
+            220,
+            130
+          ],
+          "radius": 2,
+          "mean": 0.6853333333333333,
+          "minimum": 0.6745098039215687,
+          "maximum": 0.6941176470588235
+        },
+        {
+          "label": "F4",
+          "physicalClass": "lower ochre sandstone face",
+          "group": "face",
+          "masterPixel": [
+            205,
+            420
+          ],
+          "tierPixel": [
+            102,
+            210
+          ],
+          "radius": 2,
+          "mean": 0.6922352941176471,
+          "minimum": 0.6784313725490196,
+          "maximum": 0.7019607843137254
+        },
+        {
+          "label": "F5",
+          "physicalClass": "central rusty red sandstone face",
+          "group": "face",
+          "masterPixel": [
+            250,
+            250
+          ],
+          "tierPixel": [
+            125,
+            125
+          ],
+          "radius": 2,
+          "mean": 0.6715294117647059,
+          "minimum": 0.6627450980392157,
+          "maximum": 0.6784313725490196
+        },
+        {
+          "label": "J1",
+          "physicalClass": "upper central dark mortar",
+          "group": "joint",
+          "masterPixel": [
+            265,
+            146
+          ],
+          "tierPixel": [
+            132,
+            73
+          ],
+          "radius": 2,
+          "mean": 0.28752941176470587,
+          "minimum": 0.2549019607843137,
+          "maximum": 0.4196078431372549
+        },
+        {
+          "label": "J2",
+          "physicalClass": "left central dark mortar",
+          "group": "joint",
+          "masterPixel": [
+            137,
+            245
+          ],
+          "tierPixel": [
+            68,
+            122
+          ],
+          "radius": 2,
+          "mean": 0.25866666666666666,
+          "minimum": 0.25098039215686274,
+          "maximum": 0.27058823529411763
+        },
+        {
+          "label": "J3",
+          "physicalClass": "right central dark mortar",
+          "group": "joint",
+          "masterPixel": [
+            359,
+            265
+          ],
+          "tierPixel": [
+            179,
+            132
+          ],
+          "radius": 2,
+          "mean": 0.36784313725490203,
+          "minimum": 0.2549019607843137,
+          "maximum": 0.6588235294117647
+        },
+        {
+          "label": "J4",
+          "physicalClass": "lower central dark mortar",
+          "group": "joint",
+          "masterPixel": [
+            260,
+            361
+          ],
+          "tierPixel": [
+            130,
+            180
+          ],
+          "radius": 2,
+          "mean": 0.2588235294117647,
+          "minimum": 0.25098039215686274,
+          "maximum": 0.27450980392156865
+        }
+      ],
+      "allMortarMeansBelowAllFaceMeans": true,
+      "separation": 0.3036862745098039,
+      "faceRegions": {
+        "leftOchreFace": {
+          "rectangle": [
+            12,
+            14,
+            55,
+            165
+          ],
+          "median": 0.6862745098039216,
+          "mean": 0.6844299894607467,
+          "p05": 0.6627450980392157,
+          "p95": 0.7019607843137254
+        },
+        "upperGreyFace": {
+          "rectangle": [
+            82,
+            12,
+            240,
+            60
+          ],
+          "median": 0.6784313725490196,
+          "mean": 0.6796434185488541,
+          "p05": 0.6588235294117647,
+          "p95": 0.6980392156862745
+        },
+        "rightOchreFace": {
+          "rectangle": [
+            195,
+            87,
+            240,
+            240
+          ],
+          "median": 0.6862745098039216,
+          "mean": 0.686008515243425,
+          "p05": 0.6627450980392157,
+          "p95": 0.7019607843137254
+        },
+        "lowerOchreFace": {
+          "rectangle": [
+            12,
+            197,
+            165,
+            240
+          ],
+          "median": 0.6862745098039216,
+          "mean": 0.6839837987178455,
+          "p05": 0.6627450980392157,
+          "p95": 0.6980392156862745
+        },
+        "centralRedFace": {
+          "rectangle": [
+            87,
+            87,
+            165,
+            165
+          ],
+          "median": 0.6745098039215687,
+          "mean": 0.675312294543064,
+          "p05": 0.6588235294117647,
+          "p95": 0.6941176470588235
+        }
+      },
+      "faceMedianSpread": 0.0117647058823529,
+      "limit": "Broadly coplanar facing planes with source-driven microrelief. Residual regional differences are measured, not claimed exactly pigment-neutral."
+    },
+    "High": {
+      "samples": [
+        {
+          "label": "F1",
+          "physicalClass": "left ochre sandstone face",
+          "group": "face",
+          "masterPixel": [
+            55,
+            230
+          ],
+          "tierPixel": [
+            55,
+            230
+          ],
+          "radius": 3,
+          "mean": 0.6890756302521008,
+          "minimum": 0.6666666666666666,
+          "maximum": 0.6980392156862745
+        },
+        {
+          "label": "F2",
+          "physicalClass": "upper grey sandstone face",
+          "group": "face",
+          "masterPixel": [
+            270,
+            70
+          ],
+          "tierPixel": [
+            270,
+            70
+          ],
+          "radius": 3,
+          "mean": 0.6821928771508605,
+          "minimum": 0.6666666666666666,
+          "maximum": 0.6941176470588235
+        },
+        {
+          "label": "F3",
+          "physicalClass": "right ochre sandstone face",
+          "group": "face",
+          "masterPixel": [
+            440,
+            260
+          ],
+          "tierPixel": [
+            440,
+            260
+          ],
+          "radius": 3,
+          "mean": 0.6829931972789117,
+          "minimum": 0.6745098039215687,
+          "maximum": 0.6941176470588235
+        },
+        {
+          "label": "F4",
+          "physicalClass": "lower ochre sandstone face",
+          "group": "face",
+          "masterPixel": [
+            205,
+            420
+          ],
+          "tierPixel": [
+            205,
+            420
+          ],
+          "radius": 3,
+          "mean": 0.6956382553021209,
+          "minimum": 0.6784313725490196,
+          "maximum": 0.7019607843137254
+        },
+        {
+          "label": "F5",
+          "physicalClass": "central rusty red sandstone face",
+          "group": "face",
+          "masterPixel": [
+            250,
+            250
+          ],
+          "tierPixel": [
+            250,
+            250
+          ],
+          "radius": 3,
+          "mean": 0.66890756302521,
+          "minimum": 0.6627450980392157,
+          "maximum": 0.6862745098039216
+        },
+        {
+          "label": "J1",
+          "physicalClass": "upper central dark mortar",
+          "group": "joint",
+          "masterPixel": [
+            265,
+            146
+          ],
+          "tierPixel": [
+            265,
+            146
+          ],
+          "radius": 3,
+          "mean": 0.25658263305322127,
+          "minimum": 0.2549019607843137,
+          "maximum": 0.26666666666666666
+        },
+        {
+          "label": "J2",
+          "physicalClass": "left central dark mortar",
+          "group": "joint",
+          "masterPixel": [
+            137,
+            245
+          ],
+          "tierPixel": [
+            137,
+            245
+          ],
+          "radius": 3,
+          "mean": 0.25762304921968787,
+          "minimum": 0.25098039215686274,
+          "maximum": 0.25882352941176473
+        },
+        {
+          "label": "J3",
+          "physicalClass": "right central dark mortar",
+          "group": "joint",
+          "masterPixel": [
+            359,
+            265
+          ],
+          "tierPixel": [
+            359,
+            265
+          ],
+          "radius": 3,
+          "mean": 0.3071628651460584,
+          "minimum": 0.2549019607843137,
+          "maximum": 0.5725490196078431
+        },
+        {
+          "label": "J4",
+          "physicalClass": "lower central dark mortar",
+          "group": "joint",
+          "masterPixel": [
+            260,
+            361
+          ],
+          "tierPixel": [
+            260,
+            361
+          ],
+          "radius": 3,
+          "mean": 0.2551420568227291,
+          "minimum": 0.25098039215686274,
+          "maximum": 0.27058823529411763
+        }
+      ],
+      "allMortarMeansBelowAllFaceMeans": true,
+      "separation": 0.36174469787915164,
+      "faceRegions": {
+        "leftOchreFace": {
+          "rectangle": [
+            24,
+            28,
+            110,
+            330
+          ],
+          "median": 0.6862745098039216,
+          "mean": 0.684405830713619,
+          "p05": 0.6627450980392157,
+          "p95": 0.7019607843137254
+        },
+        "upperGreyFace": {
+          "rectangle": [
+            165,
+            25,
+            480,
+            120
+          ],
+          "median": 0.6784313725490196,
+          "mean": 0.6796329385555391,
+          "p05": 0.6588235294117647,
+          "p95": 0.7019607843137254
+        },
+        "rightOchreFace": {
+          "rectangle": [
+            390,
+            175,
+            480,
+            480
+          ],
+          "median": 0.6862745098039216,
+          "mean": 0.6860390728240295,
+          "p05": 0.6627450980392157,
+          "p95": 0.7058823529411765
+        },
+        "lowerOchreFace": {
+          "rectangle": [
+            25,
+            395,
+            330,
+            480
+          ],
+          "median": 0.6862745098039216,
+          "mean": 0.6840522623707148,
+          "p05": 0.6627450980392157,
+          "p95": 0.7019607843137254
+        },
+        "centralRedFace": {
+          "rectangle": [
+            175,
+            175,
+            330,
+            330
+          ],
+          "median": 0.6745098039215687,
+          "mean": 0.6755379812695107,
+          "p05": 0.6588235294117647,
+          "p95": 0.6941176470588235
+        }
+      },
+      "faceMedianSpread": 0.0117647058823529,
+      "limit": "Broadly coplanar facing planes with source-driven microrelief. Residual regional differences are measured, not claimed exactly pigment-neutral."
+    }
+  },
+  "compositions": [
+    {
+      "output": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/art-evidence/mid-diffuse-height.png",
+        "sha256": "e466cc9b8d4e93cbb1e4c9ab17788c549bd95d19b904c49de77e373ecc415851",
+        "bytes": 195396
+      },
+      "scale": "1 source pixel = 1 image pixel; no resize",
+      "panels": [
+        "diffuse",
+        "height"
+      ]
+    },
+    {
+      "output": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/art-evidence/mid-normal-lights.png",
+        "sha256": "0396375f601f1dc33789dc44a308c694331601a668dff7a9724d92852c00a423",
+        "bytes": 359789
+      },
+      "scale": "1 source pixel = 1 image pixel; no resize",
+      "panels": [
+        "decoded XYZ",
+        "light A",
+        "light B"
+      ]
+    },
+    {
+      "output": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/art-evidence/mid-untextured-lights.png",
+        "sha256": "10fe36b5ca25591e44beefa8f07eec11095e3345c63f243a68f25ab8b2d255c3",
+        "bytes": 85097
+      },
+      "scale": "1 source pixel = 1 image pixel; no resize",
+      "panels": [
+        "untextured A",
+        "untextured B"
+      ]
+    },
+    {
+      "output": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/art-evidence/high-diffuse-height.png",
+        "sha256": "0fb8e41d2c6a4a0c2418b8f56a69bbc5d8c91271581082c520d1bc2412740451",
+        "bytes": 746395
+      },
+      "scale": "1 source pixel = 1 image pixel; no resize",
+      "panels": [
+        "diffuse",
+        "height"
+      ]
+    },
+    {
+      "output": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/art-evidence/high-normal-lights.png",
+        "sha256": "bb50bcdc2a01710112eab8f945a1b16037a0a9b50712e572c2b92f191b38ca32",
+        "bytes": 1457858
+      },
+      "scale": "1 source pixel = 1 image pixel; no resize",
+      "panels": [
+        "decoded XYZ",
+        "light A",
+        "light B"
+      ]
+    },
+    {
+      "output": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/art-evidence/high-untextured-lights.png",
+        "sha256": "0dcc14ba08f28dbcbb0a67eba7c0aaa0d2549d3de69cc5a6361c8377852a5cab",
+        "bytes": 298433
+      },
+      "scale": "1 source pixel = 1 image pixel; no resize",
+      "panels": [
+        "untextured A",
+        "untextured B"
+      ]
+    }
+  ],
+  "normalLightFormula": "Decode XYZ channels /127.5-1, normalize; unit +/-[.6,.3,.75] (z remains +.75), .35+.65*max(dot,0). Both textured and untextured diagnostics.",
+  "distanceDisplay": "Both original64 and decoded Mid256/High512 BOX to32 and16; nearest display enlargement only.",
+  "literalRepeatedMaps": true,
+  "outputs": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/art-evidence/distance-both-tiers.png",
+      "sha256": "888ebffee754afa27a3211eb9c87c3b4b8c43c96824a8553274ff44e66cec556",
+      "bytes": 27108
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/art-evidence/high-diffuse-height.png",
+      "sha256": "0fb8e41d2c6a4a0c2418b8f56a69bbc5d8c91271581082c520d1bc2412740451",
+      "bytes": 746395
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/art-evidence/high-normal-lights.png",
+      "sha256": "bb50bcdc2a01710112eab8f945a1b16037a0a9b50712e572c2b92f191b38ca32",
+      "bytes": 1457858
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/art-evidence/high-physical-witnesses.png",
+      "sha256": "012dc43b24d5f041baa2b60382f1d0e1c3e1e9e321d945ad8e4aeaaa3af9270c",
+      "bytes": 616858
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/art-evidence/high-two-by-two.png",
+      "sha256": "599a628def070d6995a113d5d5fe9a615cfc92f135caedb4728d32bc598490a9",
+      "bytes": 1252504
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/art-evidence/high-untextured-lights.png",
+      "sha256": "0dcc14ba08f28dbcbb0a67eba7c0aaa0d2549d3de69cc5a6361c8377852a5cab",
+      "bytes": 298433
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/art-evidence/high-wraps-corner.png",
+      "sha256": "b7047621cfa114b912976818c659afd0fcbe1e59dc61bdee276ddbbab416744a",
+      "bytes": 434133
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/art-evidence/mid-diffuse-height.png",
+      "sha256": "e466cc9b8d4e93cbb1e4c9ab17788c549bd95d19b904c49de77e373ecc415851",
+      "bytes": 195396
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/art-evidence/mid-normal-lights.png",
+      "sha256": "0396375f601f1dc33789dc44a308c694331601a668dff7a9724d92852c00a423",
+      "bytes": 359789
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/art-evidence/mid-physical-witnesses.png",
+      "sha256": "b690329d23a2245552742dbbf72edfba969999a8e93be0d286b1036a14763c7c",
+      "bytes": 145689
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/art-evidence/mid-two-by-two.png",
+      "sha256": "2ec9685effd27ba83b577d50f38fc0f19da025f6dadb1d93ea379a96a13a5c18",
+      "bytes": 294926
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/art-evidence/mid-untextured-lights.png",
+      "sha256": "10fe36b5ca25591e44beefa8f07eec11095e3345c63f243a68f25ab8b2d255c3",
+      "bytes": 85097
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/art-evidence/mid-wraps-corner.png",
+      "sha256": "a74de99897b18fbaa6fbd2f09b6c110c0a0ceb75b31657989282bf23c0649714",
+      "bytes": 432542
+    }
+  ]
+}

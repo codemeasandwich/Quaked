@@ -1,0 +1,95 @@
+{
+  "verdict": "Bounded actual RGB semantic classification; mixed witnesses are retained but excluded from pure-class ordering",
+  "sourceMasterRGB": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-04-rtex100/masters/rtex100/color.png",
+    "sha256": "f8c2bf19d97b31e2da3484c5929fd1854d031f008fe5737088dc20653f963b7d"
+  },
+  "actualObservation": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-04-rtex100/independent/witness-classification-observation.png",
+    "sha256": "73c65dc33ca9556ecca477a66d0ac6102d79b328052fb49da62821ac036a0a23"
+  },
+  "coordinatePolicy": "All8author source coordinates retained unchanged; reviewer inspected actual RGB crops instead of inheriting either author label set. Mixed exclusions reflect source ambiguity, not a different height score or moved point.",
+  "samples": [
+    {
+      "label": "W1",
+      "masterPixel": [
+        70,
+        235
+      ],
+      "physicalClass": "pit/crevice floor",
+      "explanation": "Local dark irregular floor below adjacent green lips; brown aggregate remains visible.",
+      "orderingGroup": "pit"
+    },
+    {
+      "label": "W2",
+      "masterPixel": [
+        155,
+        170
+      ],
+      "physicalClass": "mixed pit with small chip",
+      "explanation": "Centre and7x7neighborhood include a grey-green chip in a dark cavity. Not a pure floor or flat face witness.",
+      "orderingGroup": "mixed"
+    },
+    {
+      "label": "W3",
+      "masterPixel": [
+        370,
+        335
+      ],
+      "physicalClass": "mixed face/rim transition",
+      "explanation": "Green stone visible but narrow brown/ochre seam lies at the target. Not a pure face witness.",
+      "orderingGroup": "mixed"
+    },
+    {
+      "label": "W4",
+      "masterPixel": [
+        475,
+        470
+      ],
+      "physicalClass": "green mineral face",
+      "explanation": "Target lies on a continuous green ridged face, away from the neighboring dark cavity.",
+      "orderingGroup": "face"
+    },
+    {
+      "label": "W5",
+      "masterPixel": [
+        300,
+        60
+      ],
+      "physicalClass": "pit/crevice floor",
+      "explanation": "Target on dark oxide-lined cavity within jagged face margin.",
+      "orderingGroup": "pit"
+    },
+    {
+      "label": "W6",
+      "masterPixel": [
+        225,
+        260
+      ],
+      "physicalClass": "green mineral face",
+      "explanation": "Target on coherent green-grey surface between darker cavities; small aggregate is material texture.",
+      "orderingGroup": "face"
+    },
+    {
+      "label": "W7",
+      "masterPixel": [
+        75,
+        465
+      ],
+      "physicalClass": "pit/crevice floor",
+      "explanation": "Target inside dark cavity bounded by irregular rust-brown/green fractured lips.",
+      "orderingGroup": "pit"
+    },
+    {
+      "label": "W8",
+      "masterPixel": [
+        337,
+        370
+      ],
+      "physicalClass": "mixed pit/rim transition",
+      "explanation": "Target close to green/brown contact and cavity rim; cannot certify a pure floor for7x7patch.",
+      "orderingGroup": "mixed"
+    }
+  ],
+  "requiredPhysicalReview": "Confirm intended green mineral faces / pits coherent in decoded wholefield and opposed lights; this sample table is not an all-pixel depth proof."
+}

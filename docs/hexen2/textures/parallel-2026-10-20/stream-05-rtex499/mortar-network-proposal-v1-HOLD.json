@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-20T09:59:19.958195+00:00",
+  "verdict": "HOLD diagnostic proposal; do not invoke layered producer with these polygons",
+  "proposal": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/mortar-network-proposal-v1.json",
+    "sha256": "c54a56103c25d09ea27ddeae497867202cd88511539bd1c7b64e062b987f0504"
+  },
+  "finding": "Several pale upper-corner forms cover nominal vertical-joint locations. A darkest-pixel search within a bounded native joint band can jump to a neighbouring dark stone fissure and create a false zigzag through white facing. The actual visible colour boundary is insufficient to classify all of this physical interface as dark mortar.",
+  "sourceSamples": [
+    {
+      "nativeFrame": [
+        31,
+        6
+      ],
+      "registeredLuminance": 247
+    },
+    {
+      "nativeFrame": [
+        63.5,
+        38
+      ],
+      "registeredLuminance": 251
+    },
+    {
+      "nativeFrame": [
+        28.5,
+        70
+      ],
+      "registeredLuminance": 247
+    }
+  ],
+  "prohibitedNextAction": "No wrapper recipe or accepted topology from this diagnostic; no tiers from known questionable initial height.",
+  "nextOwner": "Root independent physical source classification",
+  "nextAction": "Classify actual pale-mark/joint interfaces and review whether a bounded existing repair is physically justified. Retain initial raw/master, tonal-height finding and failed mask proposal."
+}

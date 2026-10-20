@@ -1,0 +1,697 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20T07:56:22.211242+00:00",
+  "verdict": "PASS one named mortar-candidate material at both Mid and High; no full-batch/campaign/runtime acceptance",
+  "scope": "Actual decoded Mid4/High8 diffuse, height, XYZ and opposed lights; material readability at actual image scale, original+replacement BOX native-half/quarter, repeated tiles and 1:1 X/Y/four-corner inspection.",
+  "descriptor": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/batch-mortar-candidate.json",
+    "sha256": "7f4ed8486e510a80c7bcdef8f62c322b6b019753019703f9793ecd7728604a34",
+    "bytes": 3678
+  },
+  "selection": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/selection-mortar-candidate.json",
+    "sha256": "0924d0e503754558f72014877fadddd3958eee5d828413010a17422ff75d9931",
+    "bytes": 2787
+  },
+  "materials": [
+    {
+      "name": "ttex153",
+      "nativeID": "b0d888d2faaedfc77346980aefcce52f620cabf34f80365bbbd17fd7835e10c6",
+      "nativeSha256": "107b63272f5d20d7a16a65224886ac28519b2e2d11afc54264a7bff3b4fb32e4",
+      "masterPackageSha256": "c532d6d8bf399ae8c6e859845f5c0acfa794fb4eca0e93103f976c447a298c65",
+      "tierReceiptSha256": "e84a981595ed8cf3aaf31c2c4c1a477c4774afa984901d7864477b067636ad4c",
+      "uniqueHeightSamples": 244708,
+      "tiers": {
+        "Mid": {
+          "maps": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/mid-diffuse.webp",
+              "sha256": "631328f074373b6ad793d4a0b7a87952cd3b3e7c53d38a4836a3ec7f1444da81",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/mid-height.webp",
+              "sha256": "50b59f278fdf165e01dd43e7f0e60e2545c17da7c2efb3620f083bc22ed133e8",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/mid-normalX.webp",
+              "sha256": "d33757a97190f22be625a8cb888014b4b55cfbe3e6518779f99af8a674ea2c25",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/mid-normalY.webp",
+              "sha256": "9ef000919623fe44b05e3e94841cdc58d771497c5eed3a3fb3a01b0b170054cb",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/mid-normalZ.webp",
+              "sha256": "dd519ed23f39c042204ea4b44961b201db169998b3ce2d8e55063f6db3d43286",
+              "dimensions": [
+                256,
+                256
+              ]
+            }
+          },
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                32
+              ],
+              "meanAbsoluteError": 10.32421875,
+              "maximum": 51.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                16
+              ],
+              "meanAbsoluteError": 5.89453125,
+              "maximum": 25.0
+            }
+          ],
+          "edges": {
+            "diffuse": {
+              "wrapX": 16.865885416666668,
+              "wrapY": 16.91015625,
+              "interiorX": 14.143847017973856,
+              "interiorY": 17.5554891748366
+            },
+            "height": {
+              "wrapX": 5.915364583333333,
+              "wrapY": 2.9231770833333335,
+              "interiorX": 2.6272109885620916,
+              "interiorY": 5.419010416666667
+            },
+            "normalX": {
+              "wrapX": 3.0638020833333335,
+              "wrapY": 2.23046875,
+              "interiorX": 3.332317197712418,
+              "interiorY": 1.7423151552287581
+            },
+            "normalY": {
+              "wrapX": 4.5234375,
+              "wrapY": 3.625,
+              "interiorX": 1.7358149509803922,
+              "interiorY": 6.306985294117647
+            },
+            "normalZ": {
+              "wrapX": 0.6549479166666666,
+              "wrapY": 0.734375,
+              "interiorX": 0.2761182598039216,
+              "interiorY": 0.7527165032679739
+            }
+          },
+          "heightCompressionMAE": 0.004125756188279732,
+          "normalVsDecodedHeightDegrees": {
+            "mean": 0.866550035462417,
+            "p99": 2.469404645595904,
+            "maximum": 4.7695089119004574
+          }
+        },
+        "High": {
+          "maps": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/high-diffuse.webp",
+              "sha256": "5ff909dbfdd3ee3e6ac265bb337e31b073657970017f85b265b7e6266b0321f6",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/high-height.webp",
+              "sha256": "f3b38a729ed5f2996a4832674b7932fb7b893abac2cc057db463fd69c9908da2",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/high-normalX.webp",
+              "sha256": "b76e63ecb363074f86dd01393ac25ec22efa079f5a8ff5c414833ec97cfe9b71",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/high-normalY.webp",
+              "sha256": "614ed9e35b5b92f88e304e63b223eb2ddeaff0e1a944745fe5774445114ceb6f",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/high-normalZ.webp",
+              "sha256": "120dddd6d90809026596dde4e7b8e4cb3efecd226a934572218d5646bae22df8",
+              "dimensions": [
+                512,
+                512
+              ]
+            }
+          },
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                32
+              ],
+              "meanAbsoluteError": 10.267578125,
+              "maximum": 50.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                16
+              ],
+              "meanAbsoluteError": 5.872395833333333,
+              "maximum": 25.0
+            }
+          ],
+          "edges": {
+            "diffuse": {
+              "wrapX": 21.431640625,
+              "wrapY": 23.659505208333332,
+              "interiorX": 16.138577594993478,
+              "interiorY": 18.654918613421398
+            },
+            "height": {
+              "wrapX": 4.838541666666667,
+              "wrapY": 1.7421875,
+              "interiorX": 1.3929412304305284,
+              "interiorY": 2.805783186562296
+            },
+            "normalX": {
+              "wrapX": 3.9205729166666665,
+              "wrapY": 1.984375,
+              "interiorX": 2.4709362769080236,
+              "interiorY": 1.3763657860404437
+            },
+            "normalY": {
+              "wrapX": 3.7506510416666665,
+              "wrapY": 3.0,
+              "interiorX": 1.3862486240215264,
+              "interiorY": 4.314454399054142
+            },
+            "normalZ": {
+              "wrapX": 0.5677083333333334,
+              "wrapY": 0.0,
+              "interiorX": 0.1876834637964775,
+              "interiorY": 0.49856541503587737
+            }
+          },
+          "heightCompressionMAE": 0.0030647038813181185,
+          "normalVsDecodedHeightDegrees": {
+            "mean": 1.255121762073956,
+            "p99": 3.653545273403546,
+            "maximum": 6.925809786423633
+          }
+        }
+      },
+      "sheets": {
+        "/private/tmp/h2-batch008-mortar-art/ttex153-art.png": "e4ffc09b916ca477dc60ed835f799461b1df6cf10ba3540d879dd48f1ef2f2cb",
+        "/private/tmp/h2-batch008-mortar-art/ttex153-relief.png": "43cdea17c458e78440c6008b512a3b281f1b7130204c84a3d84a1dfca79cc64d"
+      },
+      "decodedSemanticWitnesses": {
+        "semanticSourceProof": {
+          "file": "docs/hexen2/textures/batch-008-ttex153-layered-semantic-public-review.json",
+          "sha256": "145e9524f86a294de5ba19269b34b67046d02fb5c4969b83c09328e98510cd39"
+        },
+        "coordinateConvention": "Native edge coordinates multiplied by factor, floored to tier pixel; radius1 decoded L-height patch, all values divided by255. Independent reviewer visually confirmed J1/2/3 in existing joint network, F neighbors on limestone and drip1/2/3 pale face deposits on upper surface.",
+        "tiers": {
+          "Mid": {
+            "heightFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/mid-height.webp",
+            "heightSHA256": "50b59f278fdf165e01dd43e7f0e60e2545c17da7c2efb3620f083bc22ed133e8",
+            "samples": {
+              "J1": {
+                "nativeEdgeCoordinates": [
+                  22,
+                  10
+                ],
+                "tierPixel": [
+                  88,
+                  40
+                ],
+                "mean": 0.330718954248366,
+                "min": 0.3254901960784314,
+                "max": 0.3333333333333333
+              },
+              "F1A": {
+                "nativeEdgeCoordinates": [
+                  22,
+                  6
+                ],
+                "tierPixel": [
+                  88,
+                  24
+                ],
+                "mean": 0.6801742919389979,
+                "min": 0.6705882352941176,
+                "max": 0.7019607843137254
+              },
+              "F1B": {
+                "nativeEdgeCoordinates": [
+                  22,
+                  15
+                ],
+                "tierPixel": [
+                  88,
+                  60
+                ],
+                "mean": 0.681045751633987,
+                "min": 0.6666666666666666,
+                "max": 0.6980392156862745
+              },
+              "J2": {
+                "nativeEdgeCoordinates": [
+                  42,
+                  28.5
+                ],
+                "tierPixel": [
+                  168,
+                  114
+                ],
+                "mean": 0.322875816993464,
+                "min": 0.3137254901960784,
+                "max": 0.32941176470588235
+              },
+              "F2A": {
+                "nativeEdgeCoordinates": [
+                  42,
+                  25
+                ],
+                "tierPixel": [
+                  168,
+                  100
+                ],
+                "mean": 0.7058823529411764,
+                "min": 0.6901960784313725,
+                "max": 0.7254901960784313
+              },
+              "F2B": {
+                "nativeEdgeCoordinates": [
+                  42,
+                  32
+                ],
+                "tierPixel": [
+                  168,
+                  128
+                ],
+                "mean": 0.6854030501089325,
+                "min": 0.6705882352941176,
+                "max": 0.7137254901960784
+              },
+              "J3": {
+                "nativeEdgeCoordinates": [
+                  37,
+                  46.5
+                ],
+                "tierPixel": [
+                  148,
+                  186
+                ],
+                "mean": 0.3333333333333333,
+                "min": 0.3333333333333333,
+                "max": 0.3333333333333333
+              },
+              "F3A": {
+                "nativeEdgeCoordinates": [
+                  40,
+                  43
+                ],
+                "tierPixel": [
+                  160,
+                  172
+                ],
+                "mean": 0.676252723311547,
+                "min": 0.6745098039215687,
+                "max": 0.6862745098039216
+              },
+              "F3B": {
+                "nativeEdgeCoordinates": [
+                  37,
+                  51
+                ],
+                "tierPixel": [
+                  148,
+                  204
+                ],
+                "mean": 0.7342047930283225,
+                "min": 0.7294117647058823,
+                "max": 0.7411764705882353
+              },
+              "drip1": {
+                "nativeEdgeCoordinates": [
+                  19,
+                  17
+                ],
+                "tierPixel": [
+                  76,
+                  68
+                ],
+                "mean": 0.6910675381263617,
+                "min": 0.6666666666666666,
+                "max": 0.7176470588235294
+              },
+              "drip2": {
+                "nativeEdgeCoordinates": [
+                  12.3,
+                  33
+                ],
+                "tierPixel": [
+                  49,
+                  132
+                ],
+                "mean": 0.7285403050108933,
+                "min": 0.7058823529411765,
+                "max": 0.7411764705882353
+              },
+              "drip3": {
+                "nativeEdgeCoordinates": [
+                  36.5,
+                  51
+                ],
+                "tierPixel": [
+                  146,
+                  204
+                ],
+                "mean": 0.7119825708061002,
+                "min": 0.6784313725490196,
+                "max": 0.7411764705882353
+              }
+            },
+            "comparisons": [
+              {
+                "joint": "J1",
+                "jointMean": 0.330718954248366,
+                "faceMeans": [
+                  0.6801742919389979,
+                  0.681045751633987
+                ],
+                "fullPatchRangesOrdered": true
+              },
+              {
+                "joint": "J2",
+                "jointMean": 0.322875816993464,
+                "faceMeans": [
+                  0.7058823529411764,
+                  0.6854030501089325
+                ],
+                "fullPatchRangesOrdered": true
+              },
+              {
+                "joint": "J3",
+                "jointMean": 0.3333333333333333,
+                "faceMeans": [
+                  0.676252723311547,
+                  0.7342047930283225
+                ],
+                "fullPatchRangesOrdered": true
+              }
+            ],
+            "allFaceDepositMeansAboveAllMortarMeans": true
+          },
+          "High": {
+            "heightFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/high-height.webp",
+            "heightSHA256": "f3b38a729ed5f2996a4832674b7932fb7b893abac2cc057db463fd69c9908da2",
+            "samples": {
+              "J1": {
+                "nativeEdgeCoordinates": [
+                  22,
+                  10
+                ],
+                "tierPixel": [
+                  176,
+                  80
+                ],
+                "mean": 0.33202614379084966,
+                "min": 0.32941176470588235,
+                "max": 0.3333333333333333
+              },
+              "F1A": {
+                "nativeEdgeCoordinates": [
+                  22,
+                  6
+                ],
+                "tierPixel": [
+                  176,
+                  48
+                ],
+                "mean": 0.6775599128540306,
+                "min": 0.6745098039215687,
+                "max": 0.6784313725490196
+              },
+              "F1B": {
+                "nativeEdgeCoordinates": [
+                  22,
+                  15
+                ],
+                "tierPixel": [
+                  176,
+                  120
+                ],
+                "mean": 0.676252723311547,
+                "min": 0.6705882352941176,
+                "max": 0.6862745098039216
+              },
+              "J2": {
+                "nativeEdgeCoordinates": [
+                  42,
+                  28.5
+                ],
+                "tierPixel": [
+                  336,
+                  228
+                ],
+                "mean": 0.32679738562091504,
+                "min": 0.3254901960784314,
+                "max": 0.32941176470588235
+              },
+              "F2A": {
+                "nativeEdgeCoordinates": [
+                  42,
+                  25
+                ],
+                "tierPixel": [
+                  336,
+                  200
+                ],
+                "mean": 0.711111111111111,
+                "min": 0.7019607843137254,
+                "max": 0.7215686274509804
+              },
+              "F2B": {
+                "nativeEdgeCoordinates": [
+                  42,
+                  32
+                ],
+                "tierPixel": [
+                  336,
+                  256
+                ],
+                "mean": 0.6915032679738562,
+                "min": 0.6784313725490196,
+                "max": 0.7137254901960784
+              },
+              "J3": {
+                "nativeEdgeCoordinates": [
+                  37,
+                  46.5
+                ],
+                "tierPixel": [
+                  296,
+                  372
+                ],
+                "mean": 0.3333333333333333,
+                "min": 0.3333333333333333,
+                "max": 0.3333333333333333
+              },
+              "F3A": {
+                "nativeEdgeCoordinates": [
+                  40,
+                  43
+                ],
+                "tierPixel": [
+                  320,
+                  344
+                ],
+                "mean": 0.672331154684096,
+                "min": 0.6705882352941176,
+                "max": 0.6745098039215687
+              },
+              "F3B": {
+                "nativeEdgeCoordinates": [
+                  37,
+                  51
+                ],
+                "tierPixel": [
+                  296,
+                  408
+                ],
+                "mean": 0.7315904139433551,
+                "min": 0.7294117647058823,
+                "max": 0.7333333333333333
+              },
+              "drip1": {
+                "nativeEdgeCoordinates": [
+                  19,
+                  17
+                ],
+                "tierPixel": [
+                  152,
+                  136
+                ],
+                "mean": 0.6884531590413944,
+                "min": 0.6705882352941176,
+                "max": 0.7137254901960784
+              },
+              "drip2": {
+                "nativeEdgeCoordinates": [
+                  12.3,
+                  33
+                ],
+                "tierPixel": [
+                  98,
+                  264
+                ],
+                "mean": 0.730718954248366,
+                "min": 0.7294117647058823,
+                "max": 0.7333333333333333
+              },
+              "drip3": {
+                "nativeEdgeCoordinates": [
+                  36.5,
+                  51
+                ],
+                "tierPixel": [
+                  292,
+                  408
+                ],
+                "mean": 0.7132897603485838,
+                "min": 0.6705882352941176,
+                "max": 0.7333333333333333
+              }
+            },
+            "comparisons": [
+              {
+                "joint": "J1",
+                "jointMean": 0.33202614379084966,
+                "faceMeans": [
+                  0.6775599128540306,
+                  0.676252723311547
+                ],
+                "fullPatchRangesOrdered": true
+              },
+              {
+                "joint": "J2",
+                "jointMean": 0.32679738562091504,
+                "faceMeans": [
+                  0.711111111111111,
+                  0.6915032679738562
+                ],
+                "fullPatchRangesOrdered": true
+              },
+              {
+                "joint": "J3",
+                "jointMean": 0.3333333333333333,
+                "faceMeans": [
+                  0.672331154684096,
+                  0.7315904139433551
+                ],
+                "fullPatchRangesOrdered": true
+              }
+            ],
+            "allFaceDepositMeansAboveAllMortarMeans": true
+          }
+        }
+      },
+      "verdict": "PASS both-tier bounded actual ART review",
+      "observations": {
+        "material": "Chipped sandy ochre limestone with pale granular lime mortar and white mineral/lime face deposits; physical aggregate and hard fractured faces remain recognizable at both decoded tiers.",
+        "distance": "Both32x32 and16x16 native/replacement BOX pairs retain alternating tall and thin courses, original stagger, pale joint/deposit placement and sandy ochre/grey balance; natural chips replace pixel contours without invented small edge bricks.",
+        "repeat": "Inspected full2x2 repeats and actual1:1 Mid/High X/Y/four-corner grids. Original pale course network continues across edges, without an additional perimeter bevel or separate tile-border shading.",
+        "relief": "Viewed actual source-bound mask overlay and both-tier decoded height/XYZ/opposed lights. Existing mortar network is lower than stone, while white deposits on faces remain on the upper surface; mask traces physical joints rather than brightness. Planar source-traced block boundaries are present in scalar height, but no additional visible contour defect is demonstrated in actual diffuse/opposed-light views. Independent three-mortar/six-face decoded patches plus three face-deposit samples support the classification. Scalar bands do not calibrate world displacement depth."
+      },
+      "seamEvidence": {
+        "file": "/private/tmp/h2-batch008-mortar-art/ttex153-seams.png",
+        "sha256": "ff91e6a9d7c0cbaa5331c3416f48d1479f1d28399731f841bd43306054cea94e"
+      }
+    }
+  ],
+  "reviewEvidence": [
+    {
+      "file": "/private/tmp/h2-batch008-mortar-art-inspect.py",
+      "sha256": "c67eaa3ea1212f147664ac8fc944102b9c5735feb198669913cf7fa2f14a812e",
+      "bytes": 4252
+    },
+    {
+      "file": "/private/tmp/h2-batch008-mortar-art/inspection.json",
+      "sha256": "d65bd679fc9cbd10fb1afeaebe592f49905b6f86de652d24ab9e5152bcfc36c2",
+      "bytes": 8059
+    },
+    {
+      "file": "/private/tmp/h2-batch008-mortar-corners.py",
+      "sha256": "a91d1cd904959796babfffb0dc1e57b7b042040afb26c303559a9e32709c16e5",
+      "bytes": 2240
+    },
+    {
+      "file": "/private/tmp/h2-batch008-mortar-art/seams-and-decoded-witnesses.json",
+      "sha256": "9038f3f282a4c762f0ceec3df51d9a7a7fe8b111dda30fa280b986a4eefe184f",
+      "bytes": 173
+    },
+    {
+      "file": "/private/tmp/h2-batch008-mortar-decoded-witnesses.py",
+      "sha256": "29af39eb42c4b628ba79cc66c3502c657dfd8b24b7c8efb5aea79a2f717a6d97",
+      "bytes": 2087
+    },
+    {
+      "file": "/private/tmp/h2-batch008-mortar-art/decoded-semantic-witnesses.json",
+      "sha256": "35daaa59218268f9fff4e26b5d9a8b1dee4f0032a7d2f7742ba4bff36abb78f7",
+      "bytes": 9597
+    }
+  ],
+  "independentTechnicalReferences": [
+    {
+      "file": "docs/hexen2/textures/batch-008-mortar-public-actual.json",
+      "sha256": "e93b76c800273e68211f1f4d42eb36289f26765597722f7dd083f9460058b66c",
+      "bytes": 28878
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-mortar-public-preview.json",
+      "sha256": "1d44b1f488e3598876f5100b79bef9236c327481b34add176a8fe47af4c71d72",
+      "bytes": 30944
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-ttex153-layered-semantic-public-review.json",
+      "sha256": "145e9524f86a294de5ba19269b34b67046d02fb5c4969b83c09328e98510cd39",
+      "bytes": 8278
+    }
+  ],
+  "method": "Native64x64 retained unchanged. Both replacements compared via identical BOX filters to32x32 and16x16, viewed alongside native pairs. High512x512 reviewed at1:1, Mid256x256 full image plus1:1 centre/edge crops. Cyclic X and Y shifts put actual seams at crop centres; XY puts four original corners together. Reconstructed actual encoded XYZ normalized; two opposed lights +/-[.6,.3] with z .75 and ambient .35. Scalar .0..1 heights are relative, not world-distance calibration.",
+  "limitations": [
+    "Reviewer did not generate, author, modify or encode maps; source/codec/math claims are separately bound public proofs.",
+    "No GPU/runtime or owner acceptance, registration, CI, landing or release claim.",
+    "Only exact layered153 candidate reviewed here, superseding its earlier tonalheight failure for these map hashes. Original failure evidence remains valid history.054 is still held; other cohorts have separate receipts.",
+    "Recognizable material interpretations are plausible art readings, not historical material identification.",
+    "Campaign and special native families remain incomplete."
+  ]
+}

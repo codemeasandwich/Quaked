@@ -1,0 +1,37 @@
+{
+  "verdict": "PASS author actual pre-tier material, source fidelity, physical relief and repeats",
+  "scope": "One retained photographic source and one ordinary shared master; independent final qualification still required.",
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/generated/rtex102.png",
+    "sha256": "9b7b306f581f0fabbb34d0e93a927021baf6a79965c3a2458100992748d7c2da",
+    "dimensions": [
+      1254,
+      1254
+    ]
+  },
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/masters/rtex102/master.json",
+    "sha256": "6154051cd40e1bbb22f291ddcf04815904092832c9e9ce3c74ef8d0f41a60b09",
+    "dimensions": [
+      512,
+      512
+    ]
+  },
+  "material": "Actual raw and master depict coherent angular volcanic mineral faces, irregular pits and thin rust-brown weathering; continuous natural rock remains visible rather than abstract grain.",
+  "fidelity": "At native/2 and native/4, both BOX-reduced inputs preserve the low-value charcoal/brown/grey-green field and irregular scale; no new dominant form or bright hue introduced. Master MAE5.862/3.311 is descriptive only.",
+  "physical": "Classified coherent faces B/P/I are above physical dark recesses D/F/M/N. A/J/G are retained as mixed stain/edge observations, not asserted pure physical depth classes. Actual opposed lights show coherent rock facets and no isolated raised oxide beads. Broad scalar relief is interpretation of weathered rock, not measured geology.",
+  "tiling": "Viewed actual RGB full repeat and literal X/Y/XY seam/corner RGB/height/XYZ/lights; no introduced axis-aligned line, border or disconnected new object observed. All grayscale/Lights diagnostic views remain source-derived, not authoring inputs.",
+  "actualViews": [
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/pre-tier-master.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/physical-witness-proposal.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/physical-witness-proposal-second.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/pre-tier-master-repeat.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/pre-tier-seams-corners-1to1.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/pre-tier-distance.png"
+  ],
+  "preTierNumeric": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/pre-tier-self-check.json",
+    "sha256": "161f54bd34e1de95aa8a70d486fae0a8a107cdfa4481c97140599ff0a0c59344"
+  },
+  "decision": "Proceed with existing direct 4x/8x tier CLI; no guarded semantic repair needed on these actual observations."
+}

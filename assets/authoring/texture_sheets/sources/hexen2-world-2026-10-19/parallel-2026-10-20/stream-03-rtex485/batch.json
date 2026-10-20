@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 2,
+  "batch": "parallel-2026-10-20-stream-03-rtex485",
+  "family": "hexen2",
+  "pathsBase": "repository",
+  "defaultTier": "Mid",
+  "tierFactors": {
+    "Mid": 4,
+    "High": 8
+  },
+  "quality": 92,
+  "method": 6,
+  "lossless": false,
+  "counts": {
+    "nativeBindings": 1,
+    "newGenerations": 1,
+    "newMasterPackages": 1,
+    "newMapFiles": 10,
+    "mapReferences": 10
+  },
+  "scope": "One isolated ordinary WORLD candidate; qualification separate from campaign/runtime/owner acceptance",
+  "items": [
+    {
+      "name": "rtex485",
+      "edition": "portals",
+      "nativeIdentity": {
+        "id": "4f593a76545c348b03fa63e4f6c7522cb1d51beda62bbc6e1d26ebcb7af3c32b",
+        "width": 128,
+        "height": 128,
+        "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+        "indexedPixelSha256": "09dcfcab9abc61cfc73c10583480ade0bdd57d318a2d0becdc687e4031c066ed",
+        "rgbaSha256": "7a5433731379f6eaad362a2bbcb943961f960d861fb9e486cc651faa05f31dd9"
+      },
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/originals/01-rtex485-4f593a76545c.png",
+      "generationCount": 1,
+      "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/generated/rtex485.png",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/prompts/rtex485-material-v1.txt",
+      "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/masters/rtex485/master.json",
+      "masterPackageSha256": "f998a78a229a11ff94627c3990d4e83e8e816d0841d2a95a7abaf0d97606ceb2",
+      "tierReceipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/manifest.json",
+      "tierReceiptSha256": "83c0fcf57d8bc1c6711b5db1782b5a3a7a257d5e7c277c73093fb8a27ce90c79",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            512,
+            512
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/mid-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/mid-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/mid-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/mid-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/mid-normalZ.webp"
+          }
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/high-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/high-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/high-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/high-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/high-normalZ.webp"
+          }
+        }
+      },
+      "status": "Working candidate; independent actual-map math/ART qualification and catalog registration pending",
+      "newMasters": 1,
+      "newMapFiles": 10
+    }
+  ]
+}

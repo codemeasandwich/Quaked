@@ -1,0 +1,258 @@
+{
+  "scope": "Author actual source/master pre-tier diagnostic only; independent material/relief/tier acceptance remains pending",
+  "updatedAt": "2026-10-20T11:14:56.924952+00:00",
+  "masterPackageSha256": "aeee674cc1d9d95187abf9728367fd078f75ae8a471bc70a57adb33a27f9278b",
+  "canonicalRgbSha256": "3959bd2c2dc52cc5ab9ba99757a34c635bb6ceff196b7e4d5ac44b6cbd35acc2",
+  "floatHeightSha256": "8b87d72f15306d37562d794266f5555f3d87b39b5ffbc933ee2110f6f3ba71d2",
+  "samples": [
+    {
+      "label": "F1",
+      "physicalClass": "left ochre stone face",
+      "masterPixel": [
+        60,
+        200
+      ],
+      "nativeEquivalent": [
+        7.5,
+        25.0
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.5103837847709656,
+      "heightRange": [
+        0.30223095417022705,
+        0.7446311116218567
+      ]
+    },
+    {
+      "label": "F2",
+      "physicalClass": "upper grey stone face",
+      "masterPixel": [
+        250,
+        70
+      ],
+      "nativeEquivalent": [
+        31.25,
+        8.75
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.7438834309577942,
+      "heightRange": [
+        0.46096158027648926,
+        0.8954165577888489
+      ]
+    },
+    {
+      "label": "F3",
+      "physicalClass": "right ochre stone face",
+      "masterPixel": [
+        425,
+        250
+      ],
+      "nativeEquivalent": [
+        53.125,
+        31.25
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.627749502658844,
+      "heightRange": [
+        0.33779066801071167,
+        0.794776439666748
+      ]
+    },
+    {
+      "label": "F4",
+      "physicalClass": "lower ochre stone face",
+      "masterPixel": [
+        200,
+        425
+      ],
+      "nativeEquivalent": [
+        25.0,
+        53.125
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.6266407370567322,
+      "heightRange": [
+        0.36105501651763916,
+        0.8204745054244995
+      ]
+    },
+    {
+      "label": "F5",
+      "physicalClass": "central red stone face",
+      "masterPixel": [
+        250,
+        250
+      ],
+      "nativeEquivalent": [
+        31.25,
+        31.25
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.3228820264339447,
+      "heightRange": [
+        0.23297731578350067,
+        0.535065770149231
+      ]
+    },
+    {
+      "label": "J1",
+      "physicalClass": "upper central mortar joint",
+      "masterPixel": [
+        250,
+        146
+      ],
+      "nativeEquivalent": [
+        31.25,
+        18.25
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.013774448074400425,
+      "heightRange": [
+        0.0024497692938894033,
+        0.04555366560816765
+      ]
+    },
+    {
+      "label": "J2",
+      "physicalClass": "left central mortar joint",
+      "masterPixel": [
+        137,
+        250
+      ],
+      "nativeEquivalent": [
+        17.125,
+        31.25
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.023881888017058372,
+      "heightRange": [
+        0.004629418719559908,
+        0.06340809166431427
+      ]
+    },
+    {
+      "label": "J3",
+      "physicalClass": "right central mortar joint",
+      "masterPixel": [
+        359,
+        250
+      ],
+      "nativeEquivalent": [
+        44.875,
+        31.25
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.020496485754847527,
+      "heightRange": [
+        0.002593451412394643,
+        0.07252722978591919
+      ]
+    },
+    {
+      "label": "J4",
+      "physicalClass": "lower central mortar joint",
+      "masterPixel": [
+        250,
+        361
+      ],
+      "nativeEquivalent": [
+        31.25,
+        45.125
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.021686362102627754,
+      "heightRange": [
+        0.009141707792878151,
+        0.07545828819274902
+      ]
+    }
+  ],
+  "coarseFaceStatistics": {
+    "left": {
+      "bounds": [
+        20,
+        40,
+        115,
+        330
+      ],
+      "mean": 0.5601193308830261,
+      "median": 0.5778099298477173,
+      "p10": 0.295618462562561,
+      "p90": 0.7947074890136719
+    },
+    "upper": {
+      "bounds": [
+        175,
+        25,
+        470,
+        115
+      ],
+      "mean": 0.48794347047805786,
+      "median": 0.49786484241485596,
+      "p10": 0.2088991343975067,
+      "p90": 0.745369851589203
+    },
+    "right": {
+      "bounds": [
+        390,
+        185,
+        485,
+        475
+      ],
+      "mean": 0.5794503688812256,
+      "median": 0.601753294467926,
+      "p10": 0.3143715918064118,
+      "p90": 0.8066729843616487
+    },
+    "lower": {
+      "bounds": [
+        30,
+        395,
+        320,
+        485
+      ],
+      "mean": 0.5484371781349182,
+      "median": 0.5697729587554932,
+      "p10": 0.30819995105266573,
+      "p90": 0.7555999934673311
+    },
+    "center": {
+      "bounds": [
+        175,
+        185,
+        330,
+        325
+      ],
+      "mean": 0.4308646023273468,
+      "median": 0.42716968059539795,
+      "p10": 0.1884711429476738,
+      "p90": 0.6782751262187958
+    }
+  },
+  "distance": {
+    "2": {
+      "dimensions": [
+        32,
+        32
+      ],
+      "filter": "BOX on both original and master",
+      "rgbMae": 10.311197916666666
+    },
+    "4": {
+      "dimensions": [
+        16,
+        16
+      ],
+      "filter": "BOX on both original and master",
+      "rgbMae": 8.895833333333334
+    }
+  },
+  "diagnostics": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/pre-tier-master.png": "ddace891bb8b2451af5832682ee0c66a6744ffb5e687e66d88eca49da803daa6",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/pre-tier-physical-witnesses.png": "7ccaa7448be41b3744bdb24450a5f9d58f5dd02745ac8f1fbecff9fbc9ecba7d",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/pre-tier-distance.png": "d0250b569999c4b5cac9c2a0f0d314f815c08f1370b0e79fb332319252b518a7",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/pre-tier-master-repeat.png": "3cfd2a2c6ad98199c26eca3101cdbccd90c394211f0d590169640a9b9058951c",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/pre-tier-native-repeat.png": "c0eb4e61d34e961c03469d37232618d5fbe390a5deb77eff09763a5930826b87"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20T12:44:53.233984+00:00",
+  "verdict": "HOLD plan wording pending bounded corrections; repair direction and reuse choice are sound",
+  "scope": "Independent saved-plan/source-contract review only, before adapter code. No implementation or texture change.",
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/X-BOUNDARY-REPAIR-PLAN.md",
+    "sha256": "ccfd3194bf66cf27e48fc883f0b99b7dafd108b35199c0705fe3aaf0c2c1cae7",
+    "bytes": 4756
+  },
+  "planSnapshot": "# rtex499: bounded same-source X boundary repair\n\nCurrent maps remain **ART HOLD**. Independent actual-map proof passed, but courses 1 and 3 contain an introduced X-wrap cut through continuous stone. Course 3 includes a fracture/chip transition. Original courses 2/4 cross legitimate mortar. The initial HOLD remains unchanged.\n\nRoot's diagnostic reuses unchanged `periodic_y` on transposed RGB. Independent `X-intensity-diagnostic-review-v1.json` finds this a plausible repair direction: the dominant long tonal cut is reduced and the fracture reads as weathering. This does not qualify encoded outputs or claim geometric realignment.\n\n## Smallest necessary adapter\n\nThe current public Y-boundary CLI rejects layered packages; the layered CLI rejects an already boundary-registered package. Editing either would invalidate historical tool hashes. Add one bounded `tools/texture_sheets/register_layered_texture_boundary.py` adapter, reusing the maintained guarded layered CLI and unchanged `periodic_y`, `craft` and `compose_layered`. No new generation, source image, geometry placement, grain, cloned strips or independent tier authoring.\n\nInputs: explicit current layered `--package`, required `--axis x|y`, and nonexistent `--output`. Initial production caller is rtex499/X only; Y support is the same maintained primitive and needs its own test, not an implicit second production correction.\n\n1. Pin current package and sibling RGB/full-float height bytes, all recorded input/tool hashes, and the source-bound layering recipe. Require a single-generation 8x unrepeated layered package, no prior periodic registration, correct dimensions/profile and retained source proof. Reject changed/missing inputs or existing/symlink output.\n2. Run the unchanged guarded layered CLI into an isolated temporary directory using that exact recipe. Require its RGB/NPY/package to reproduce the supplied current baseline exactly. This delegates original/source/proof/geometry validation to the established public guard; no fabricated proof or duplicate relaxed validator.\n3. Apply unchanged `periodic_y` to replayed RGB; transpose input/output only for X. Recompute actual original-orientation metrics and half/quarter diagnostics. Keep zero-mean/intensity-only semantics explicit; it is not a general seam guarantee.\n4. Recompute full-float craft detail from corrected uncompressed RGB, compose the **same source-measured physical mask/planes** using unchanged `compose_layered`, cast once, and require strict mortar/facing hierarchy without clipping. No diagnostic float32 or compressed data is consumed.\n5. Write one canonical successor package with corrected RGB/float height. Bind parent package/hash, original recipe/proof, correction axis/statistics, unchanged raw/prompt/native identity, unchanged existing tool hashes and new adapter hash. Correct the old RGBUnchanged flag and retain prior revision history. Preserve generationCount1/authoredOnce; no tiers authored here. Use a temporary sibling and atomic final directory rename after final input-stability checks; no partial output on failure.\n\n## Meaningful checks\n\n- Isolated analytic source fixture through actual prepare/layered public CLIs, with an independently checked fixture source/master proof. Then actual new CLI: independent periodic field/matrix and layer oracles reproduce RGB/full-float bytes; X and Y orientation, means and scalar hierarchy verified.\n- Wrong proof, tampered source/current master, unsupported/repeated package and existing output must reject without canonical output. Existing producers' hashes remain unchanged.\n- Public derive CLI consumes the new uncompressed package directly for Mid/High; independent oracle proves all ten Q92/method6 map bytes and UV normal scaling. No change to maintained encoding.\n- Independent plan review before implementation; independent code/public-interface review and maintained gates before landing.\n- Production after adapter qualification: replay actual rtex499; inspect corrected RGB/material/half-quarter and current source masks under canonical lights before tiers. Then independently qualify actual decoded both-tier X/Y/corners, four course strips, relief/XYZ/opposed lights and preview provenance. Keep the current HOLD unless the replacement actually passes.\n\n## Boundaries and remaining work\n\nNo existing producer modification, runtime/renderer feature, provider/API switch, second source, new material geometry, release or Prod action. Geometry hidden by pale stain remains a documented interpretation. Fine pits remain mostly RGB with restrained scalar relief. Keep source/raw/prompt/recipes and decisive old seam evidence. Register only a final individual pass; otherwise preserve HOLD and pursue remaining eligible textures.\n",
+  "findingsAlreadySound": [
+    "Current uncorrected maps remain ART HOLD; an intensity diagnostic is not encoded acceptance or measured geometric realignment.",
+    "One narrow guarded layered-boundary adapter is justified by the two existing incompatible input contracts. Keep all existing producer bytes/hash identities frozen; do not weaken original source guards.",
+    "Reproduce current layered baseline through its unchanged public CLI and exact retained recipe, then apply the unchanged periodic primitive with transpose only inside the selected axis operation.",
+    "Restore original orientation before full-float craft and the same reviewed mask/planes. Recompute final relief from corrected RGB at master resolution; one finalfloat32cast. Do not use a diagnostic early-cast NPY or a compressed tier.",
+    "Both direct-master tiers, physical pale-face/mortar gates and literal course1/3X seams must be requalified independently. Existing partial artistic interpretation remains explicit."
+  ],
+  "requiredCorrectionsBeforeImplementation": [
+    {
+      "id": "P1",
+      "priority": "required",
+      "topic": "Atomic publication must also be no-clobber",
+      "problem": "A nonexistent-output check followed by ordinary Path.rename/os.rename is not a no-replace guarantee. On supported POSIX hosts rename may replace an empty destination directory that appeared after validation. A symlink/output race must not be turned into overwriting another agent work.",
+      "requiredPlanChange": "State the actual fail-safe publication contract: same-filesystem staged sibling, final input-stability check, then a verified no-replace atomic publication primitive or an explicitly safe exclusive protocol. Never os.replace. If the supported host cannot provide the chosen guarantee, fail without canonical publication rather than silently weakening it. Scope all cleanup to the adapter-owned staging/replay directories.",
+      "test": "Insert an empty directory and a dangling/occupied symlink at destination after staging but before publication; operation rejects, preserves the competing path/sentinel byte-exact and leaves no adapter canonical directory. Also simulate replay/craft/write/last-stability failures."
+    },
+    {
+      "id": "P2",
+      "priority": "required",
+      "topic": "Exact baseline contract and repeat-key presence",
+      "problem": "Single-generation/unrepeated/layered and exact package reproduction must be defined precisely. Python dict equality can equate BooleanTrue with integer1; truthiness checks can accept a present periodicBoundary:null/false marker.",
+      "requiredPlanChange": "Require strict non-Boolean schema/count/factor fields, canonical RGBPNG/float32NPY files with exact shape/bounded valid payload and the established six canonical tool roles/paths. Reject periodic/correction marker KEY PRESENCE in registration/revision/tools even for null/false, unexpected source/tool roles and already boundary-registered packages. Verify recipe/current-layer metadata/proof/native/package identity and current sibling byte hashes. Compare reproduced RGB,NPY and package BYTES, with any environment portability policy explicitly fail-closed rather than undocumented dictionary normalization.",
+      "test": "Present-null/false markers, unknown or missing roles, wrong tool path with a matching attacker-supplied digest, Boolean numeric fields, wrong/trailing/nonfinite scalar payloads, malformed recipe/proof/native/dimensions/profile and mismatched current package all refuse before canonical output."
+    },
+    {
+      "id": "P3",
+      "priority": "required",
+      "topic": "Successor metadata must distinguish initial source, parent layer and corrected result",
+      "problem": "Copying the parent package unchanged except RGBUnchanged leaves stale hashes/statistics or makes the original layered recipe authoringDiffuseSha256 appear to describe corrected RGB. X transpose can also leave Y-labelled metrics/axes. History and physical mask must remain source-bound without retroactively rewriting the original recipe.",
+      "requiredPlanChange": "Keep the original recipe/proof bytes and their original sourceRGBA hash as immutable parent provenance. Record the direct parent package/color/height hashes plus prior revision history; flag RGB equality from actual bytes and generation unchanged. Explicitly bind corrected RGB as the new height-detail source. Recompute all current color/height hashes,uniqueSamples,finite/ranges,layered substrate/facing ranges and original-orientation correction/distance/edge/mean statistics. Preserve old finish statistics only under explicitly historical names, not as current outputMean/boundaries. Record selected canonical axisX/Y separately from the primitive workingY axis. State that physical polygons/planes stay fixed but fullheight/normal bytes may change after recrafting.",
+      "test": "Check parent history/proof/recipe byte custody, exact new hashes/ranges/statistics and axis metadata against independent calculations. A constant no-op fixture must not claim RGBchanged if its bytes are identical."
+    },
+    {
+      "id": "P4",
+      "priority": "required",
+      "topic": "Meaningful fixtures and final seam acceptance need concrete edge cases",
+      "problem": "A square symmetric fixture can conceal an X/Y transpose or mask-orientation error. Zero-mean float correction does not guarantee exact8bitRGBmean preservation after clipping/rounding. A passing boundary mean alone cannot close the actual fracture/material finding.",
+      "requiredPlanChange": "Specify at least one nonsquare anisotropic fixture with asymmetric source-measured masks, independent X andY Poisson/layer equations, fullfloat64-to-one-cast discrimination and all10direct-map replay. Include constant identity, clipping/rounding accounting, fail-before-publication/source-change/overwrite-race cases. Finalactual review must inspect literal continuous course1/3faces, legitimate2/4mortar, both axes/corners and fracture/material reading at both decoded tiers, as well as native64/32BOX and opposed lights. Any residual visible UV cut or false pale cap remains HOLD regardless metrics.",
+      "test": "Same unchanged independent oracle/test inputs before and after any guard fixes; retain all failed sources/receipts. Portable fixtures are not proof of actual rtex499 source or ART."
+    }
+  ],
+  "retentionAndScopeClarifications": [
+    "Clarify the lifecycle of mandatory parent sibling RGB/NPY guard inputs. If the adapter requires them, retain them while actual CLI replay depends on them; do not claim post-cleanup replay independence unless the retained raw/recipes/parentJSON+independent oracle actually prove it. Later retirement requires protected-file inventory and fresh replay evidence.",
+    "X-only production is sufficient for this card. IfYremains a public option, keep explicit axis selection and its own anisotropic test; it grants no implicit second correction or another texture production run.",
+    "The adapter must not alter or synthesize a PASS proof. A portable synthetic proof may only label the independently checked fixture contract; the real retained source/master proof stays hash-bound and explicitly leaves current artwork HOLD.",
+    "All temporary replay processes must finish successfully before publication; record real exit code/stderr. No synthetic fixture or staging directory is catalog registration."
+  ],
+  "reviewerConclusion": "Approve the core approach after the saved plan incorporates P1-P4 explicitly. No broader architecture or old producer changes are needed. Independent code/public tests and actual successor ART remain mandatory, and currentART HOLD is untouched.",
+  "inputs": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/X-BOUNDARY-REPAIR-PLAN.md",
+      "sha256": "ccfd3194bf66cf27e48fc883f0b99b7dafd108b35199c0705fe3aaf0c2c1cae7",
+      "bytes": 4756
+    },
+    {
+      "file": "tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee",
+      "bytes": 10541
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d",
+      "bytes": 13904
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "skills/quaked-texture-authoring/references/repairs-and-verification.md",
+      "sha256": "83987e8c6719e31617271b51a9469217a24216182ddb6e2db689b0cd63692a89",
+      "bytes": 10121
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/art-review-v1.json",
+      "sha256": "efa39ab3ff702e870b520596a0a6d2cca836aa358220bc3e58efb2de95588219",
+      "bytes": 40725
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/X-intensity-diagnostic-review-v1.json",
+      "sha256": "f2aca007b7fafbadbc05e1974c9963b2e8bd6372183b757ab96ead42f95fa758",
+      "bytes": 6706
+    }
+  ],
+  "effects": "New independent review receipt only; no source/tool/test/assets/master/maps/catalog/Git/build/image calls.",
+  "nextAction": {
+    "owner": "Root coordinator",
+    "action": "Amend the saved plan with the bounded guard/publication/metadata/test corrections; preserve this review. Implement only the sound reviewed contract, then request independent code/public verification before canonical production."
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "selected": [
+    {
+      "id": "4f593a76545c348b03fa63e4f6c7522cb1d51beda62bbc6e1d26ebcb7af3c32b",
+      "name": "rtex485",
+      "width": 128,
+      "height": 128,
+      "category": "ordinary",
+      "indexedPixelSha256": "09dcfcab9abc61cfc73c10583480ade0bdd57d318a2d0becdc687e4031c066ed",
+      "rgbaSha256": "7a5433731379f6eaad362a2bbcb943961f960d861fb9e486cc651faa05f31dd9",
+      "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+      "provenance": [
+        {
+          "profile": "portals-1",
+          "scope": "expansion-own",
+          "map": "maps/keep1.bsp",
+          "slot": 4,
+          "faces": 668,
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "memberOffset": 15560455,
+          "bspSha256": "0845e665f8b17ac6bdfd82958e0dd5cbbddfe98a8e63f2980554c451401c8e86"
+        },
+        {
+          "profile": "portals-2",
+          "scope": "expansion-own",
+          "map": "maps/keep1.bsp",
+          "slot": 4,
+          "faces": 668,
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "memberOffset": 15560455,
+          "bspSha256": "0845e665f8b17ac6bdfd82958e0dd5cbbddfe98a8e63f2980554c451401c8e86"
+        }
+      ],
+      "totalFaces": 1336,
+      "profileFaces": {
+        "base": 0,
+        "portals-1": 668,
+        "portals-2": 668
+      },
+      "rendererStatus": "unqualified: Hexen II profile/runtime support not demonstrated",
+      "selectedOriginal": {
+        "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/originals/01-rtex485-4f593a76545c.png",
+        "sha256": "f47fc476408f6bd1357e19fac70e696e901182972ed5424a0f84e7aaf640fe0a"
+      }
+    }
+  ],
+  "nativeMipAndFlagProof": [
+    {
+      "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+      "map": "maps/keep1.bsp",
+      "bspSha256": "0845e665f8b17ac6bdfd82958e0dd5cbbddfe98a8e63f2980554c451401c8e86",
+      "slot": 4,
+      "texinfoFlags": [
+        0
+      ],
+      "mips": [
+        {
+          "level": 0,
+          "dimensions": [
+            128,
+            128
+          ],
+          "indexedSha256": "09dcfcab9abc61cfc73c10583480ade0bdd57d318a2d0becdc687e4031c066ed"
+        },
+        {
+          "level": 1,
+          "dimensions": [
+            64,
+            64
+          ],
+          "indexedSha256": "b3389b3824dbf068f467969fc98637f6005127f9fd6233fe2517622b398ea8a6"
+        },
+        {
+          "level": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "indexedSha256": "9986dbaae41faa9ff5529d144587812efddedafa585a5f9312a1cb6569d663a1"
+        },
+        {
+          "level": 3,
+          "dimensions": [
+            16,
+            16
+          ],
+          "indexedSha256": "acdb9f0571bdfc1392c5a6b77732e9fd0ff86995e0989a2d00ddadfff5c575b9"
+        }
+      ]
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+      "map": "maps/keep1.bsp",
+      "bspSha256": "0845e665f8b17ac6bdfd82958e0dd5cbbddfe98a8e63f2980554c451401c8e86",
+      "slot": 4,
+      "texinfoFlags": [
+        0
+      ],
+      "mips": [
+        {
+          "level": 0,
+          "dimensions": [
+            128,
+            128
+          ],
+          "indexedSha256": "09dcfcab9abc61cfc73c10583480ade0bdd57d318a2d0becdc687e4031c066ed"
+        },
+        {
+          "level": 1,
+          "dimensions": [
+            64,
+            64
+          ],
+          "indexedSha256": "b3389b3824dbf068f467969fc98637f6005127f9fd6233fe2517622b398ea8a6"
+        },
+        {
+          "level": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "indexedSha256": "9986dbaae41faa9ff5529d144587812efddedafa585a5f9312a1cb6569d663a1"
+        },
+        {
+          "level": 3,
+          "dimensions": [
+            16,
+            16
+          ],
+          "indexedSha256": "acdb9f0571bdfc1392c5a6b77732e9fd0ff86995e0989a2d00ddadfff5c575b9"
+        }
+      ]
+    }
+  ],
+  "sameRgbaInventoryMatches": [
+    {
+      "id": "4f593a76545c348b03fa63e4f6c7522cb1d51beda62bbc6e1d26ebcb7af3c32b",
+      "name": "rtex485",
+      "dimensions": [
+        128,
+        128
+      ]
+    }
+  ],
+  "acceptedCatalogContainsNativeID": false,
+  "note": "Full native inventory refreshed from both retained expansion installations; duplicates are provenance, not extra native coverage."
+}

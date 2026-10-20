@@ -1,0 +1,514 @@
+{
+  "schemaVersion": 1,
+  "status": "WHOLE IMAGE DIAGNOSTIC ONLY - actual material/repeat review pending",
+  "sourceIdentity": "cddf441f348f0a3182edadeeeb9028ece70c2eadbef541955e7197f8213c9752",
+  "inputsBefore": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/color.png",
+      "sha256": "75735d60f4199165c89f02f38d96a021ce471ddd4acd4ca5196a6fae6abf1eba",
+      "bytes": 1075572
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/height.npy",
+      "sha256": "0f332e0a9fc7ea5c51d7de0a11824d3d53eca805493ea08cc614c9a12b7f06d6",
+      "bytes": 2097280
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/master.json",
+      "sha256": "1a37137c4bc629057fd5771ae511d0462eb21133dd9abb746d573a8cbcd0a547",
+      "bytes": 4225
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/05-ttex054-cddf441f348f.png",
+      "sha256": "cc7cbc5b106803b459a72454e08c047481f20396c549422dbc96d8202c1c6b57",
+      "bytes": 6883
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/ttex054.png",
+      "sha256": "4ef4e7a484c6861345153d6f0ed4491f84e4d5fb5561ca9af3d979a6eb98fcb2",
+      "bytes": 3489050
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex054-material-v2.txt",
+      "sha256": "721d2df4207a5ffeca421eb70aaa7c8e2852421c457cf85a41c18b1255c6f392",
+      "bytes": 2536
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/root-donor-plan-review.json",
+      "sha256": "be4fd65966bdcf4b305d582901edd36ddedae1b489cb69ea53eb1d2510df8f10",
+      "bytes": 2126
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/donor_microdetail_diagnostic_v4.py",
+      "sha256": "04d46473eefdd5096fafb879a8107c295044eb24cb8184af93df8b169d9cd8b8",
+      "bytes": 13627
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual_boundary_trial_v2.py",
+      "sha256": "611c99a8ed8d66f3afe2ba158401f48eb00f77b57c30fabd2c75d2f5ea9ebe5a",
+      "bytes": 11929
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/full_donor_trial_v5.py",
+      "sha256": "53e586a230bfcc56228f83889f1ca524304e770181abf422ac7c5ada55b923e7",
+      "bytes": 8663
+    }
+  ],
+  "inputsAfter": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/color.png",
+      "sha256": "75735d60f4199165c89f02f38d96a021ce471ddd4acd4ca5196a6fae6abf1eba",
+      "bytes": 1075572
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/height.npy",
+      "sha256": "0f332e0a9fc7ea5c51d7de0a11824d3d53eca805493ea08cc614c9a12b7f06d6",
+      "bytes": 2097280
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/master.json",
+      "sha256": "1a37137c4bc629057fd5771ae511d0462eb21133dd9abb746d573a8cbcd0a547",
+      "bytes": 4225
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/05-ttex054-cddf441f348f.png",
+      "sha256": "cc7cbc5b106803b459a72454e08c047481f20396c549422dbc96d8202c1c6b57",
+      "bytes": 6883
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/ttex054.png",
+      "sha256": "4ef4e7a484c6861345153d6f0ed4491f84e4d5fb5561ca9af3d979a6eb98fcb2",
+      "bytes": 3489050
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex054-material-v2.txt",
+      "sha256": "721d2df4207a5ffeca421eb70aaa7c8e2852421c457cf85a41c18b1255c6f392",
+      "bytes": 2536
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/root-donor-plan-review.json",
+      "sha256": "be4fd65966bdcf4b305d582901edd36ddedae1b489cb69ea53eb1d2510df8f10",
+      "bytes": 2126
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/donor_microdetail_diagnostic_v4.py",
+      "sha256": "04d46473eefdd5096fafb879a8107c295044eb24cb8184af93df8b169d9cd8b8",
+      "bytes": 13627
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual_boundary_trial_v2.py",
+      "sha256": "611c99a8ed8d66f3afe2ba158401f48eb00f77b57c30fabd2c75d2f5ea9ebe5a",
+      "bytes": 11929
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/full_donor_trial_v5.py",
+      "sha256": "53e586a230bfcc56228f83889f1ca524304e770181abf422ac7c5ada55b923e7",
+      "bytes": 8663
+    }
+  ],
+  "inputsUnchanged": true,
+  "maskSupportPixels": 56740,
+  "maskSupportFraction": 0.10822296142578125,
+  "outsideJExact": true,
+  "protectedPatches": [
+    {
+      "label": "P1",
+      "box": [
+        47,
+        376,
+        86,
+        416
+      ],
+      "JExact": true,
+      "beforeJHash": "70c85cfdb90a51c08ca1792342e314234e2377ebf16fc867a2ff10b82030c3bc",
+      "afterJHash": "70c85cfdb90a51c08ca1792342e314234e2377ebf16fc867a2ff10b82030c3bc",
+      "craftedHeightBeforeAfterCorrelation": 0.9999267114539695
+    },
+    {
+      "label": "P2",
+      "box": [
+        92,
+        224,
+        145,
+        270
+      ],
+      "JExact": true,
+      "beforeJHash": "5c6747226f9434d0774a252238054cdee480673b50de43c33d6627b8cfbff2f5",
+      "afterJHash": "5c6747226f9434d0774a252238054cdee480673b50de43c33d6627b8cfbff2f5",
+      "craftedHeightBeforeAfterCorrelation": 0.9999363938303656
+    },
+    {
+      "label": "P3",
+      "box": [
+        307,
+        135,
+        353,
+        177
+      ],
+      "JExact": true,
+      "beforeJHash": "0e3fd9b7fff8ab499a07a04f9de508ba7f7ac2bd4909f2bf4ec3b7c174553a72",
+      "afterJHash": "0e3fd9b7fff8ab499a07a04f9de508ba7f7ac2bd4909f2bf4ec3b7c174553a72",
+      "craftedHeightBeforeAfterCorrelation": 0.9999528767104042
+    },
+    {
+      "label": "P4",
+      "box": [
+        175,
+        32,
+        212,
+        59
+      ],
+      "JExact": true,
+      "beforeJHash": "2dbf0d8055ac07150bf6485af55aa2c5ced1546bdbbd504f58ec75a4b69467cc",
+      "afterJHash": "2dbf0d8055ac07150bf6485af55aa2c5ced1546bdbbd504f58ec75a4b69467cc",
+      "craftedHeightBeforeAfterCorrelation": 0.9999443544456779
+    }
+  ],
+  "varianceStatistics": {
+    "targetRobustFineSigma": 0.02984706287661252,
+    "presentCoreRobustFineSigma": 0.006808338552537949,
+    "donorCoreRobustFineSigma": 0.010606348580024596,
+    "gain": 2.7142847776412964,
+    "additionMeanOnSupport": -8.765948449631126e-19,
+    "resultingCoreRobustFineSigma": 0.0298470616057259,
+    "outsideNormalizedSignalBitExact": true,
+    "addedMaximumAbsolute": 0.24686030933263634
+  },
+  "donorSampling": "Exact approved v4 tiny diagnostic coordinate/math; same two retained-master fine-only patches, scale1.",
+  "donorPSD": {
+    "totalPower": 43557302.87871541,
+    "belowOnePer16Fraction": 0.00454943184257591,
+    "onePer16ToOnePer4Fraction": 0.58126019003997,
+    "aboveOnePer4Fraction": 0.41419037811745424
+  },
+  "donorAxisCorrelations": {
+    "16": [
+      0.04934199715136454,
+      0.0453488947611511
+    ],
+    "32": [
+      0.06890520491996155,
+      0.0581049940098953
+    ],
+    "48": [
+      0.00875782128410603,
+      0.009505769320432886
+    ],
+    "64": [
+      0.12603078241639942,
+      0.13417968448644554
+    ],
+    "96": [
+      0.07191499825414534,
+      0.051527978507710064
+    ],
+    "128": [
+      0.3088692362065749,
+      0.2825952278705641
+    ],
+    "224": [
+      0.0022152912299258053,
+      0.007450078208544963
+    ],
+    "448": [
+      0.22095935080711596,
+      0.2511526580071558
+    ]
+  },
+  "profile": {
+    "bands": [
+      1.0,
+      0.35,
+      0.0,
+      0.0
+    ],
+    "groove": 0.0,
+    "bump": 0.0,
+    "glow": 0.0,
+    "strength": 0.3,
+    "cap": 0.5
+  },
+  "commonFixedHeightBase": 0.98,
+  "commonFixedHeightAmplitude": 0.02,
+  "comparisonLimits": "No per-panel amplitude change. Unscaled F and strength.3 shallow H retained; strength1 shallow H is explicitly labelled diagnostic magnification matching older trial views.",
+  "downstreamFiltering": {
+    "maximumFineChangeOutsideMask": 0.10959152912105835,
+    "rmsFineChangeOutsideMask": 0.004018295930780604,
+    "statement": "Outside J is exact. Downstream filters and normal slopes couple nearby pixels; final filtered height is not claimed outside-bit-identical."
+  },
+  "literalInspection": "512x1024 individual lights/fine/scalar, X1024x1024 and Y512x2048 repeats;256px corner joints and seam strips contain unchanged-size source pixels.",
+  "limits": "No canonical wrapper, master package, tiers, RGB change, generation, registration or release. Whole-image art and repeated-grain sampling remain unqualified until root review.",
+  "outputs": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/before-fine-1to1.png",
+      "sha256": "b0de340ec78939092eccc386f545d0d86f25e9b46412bcbf73d5b8a1f64e1dde",
+      "bytes": 892251
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/height-TRIAL.npy",
+      "sha256": "b12c7dc4e9546a170e310a4716bd3d6d4add66c54084c5b7e5f171b845927b55",
+      "bytes": 2097280
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/interpolated-crafted-F-1to1.png",
+      "sha256": "172c6f3ee378030d1f25a41d91f6305e8f8cdffe3279882b153048aabd75adff",
+      "bytes": 1191526
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/interpolated-fine-1to1.png",
+      "sha256": "1863b96b59b4398284fd392209698c954203df38c1160fbe91be142b953e32e3",
+      "bytes": 854047
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/interpolated-height-TRIAL.npy",
+      "sha256": "09c7ba09e8147fd016af8bfa34d6964e4bd0a9da752f36a94e2f4f273dd4c447",
+      "bytes": 2097280
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/interpolated-shallow-H-lightA-1to1.png",
+      "sha256": "73e3b04cda431754d1217af9df9172703713318ac605f2fd8bf3dfb901879973",
+      "bytes": 507159
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/interpolated-shallow-H-lightB-1to1.png",
+      "sha256": "3719a98234ef3b0731c3c7f5382b4242d2f3a176e485ae348afa835eb77e36f7",
+      "bytes": 506507
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/interpolated-shallow-H-strength1-review-lightA-1to1.png",
+      "sha256": "084a07263aecff048247592b2a04584da0a2d7db84fc6b0caaf5c93ba250b153",
+      "bytes": 736423
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/interpolated-shallow-H-strength1-review-lightB-1to1.png",
+      "sha256": "a1d3ec6ed615a79f7c1d21a1a13509607d10a8a2c8edf49b776a233d4d3d79c3",
+      "bytes": 734978
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/interpolated-unscaled-F-lightA-1to1.png",
+      "sha256": "ffde8bd7532b98a7085d2826fbda36ec7ccc28f6df399c150be4f77bbbd62bad",
+      "bytes": 1202952
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/interpolated-unscaled-F-lightB-1to1.png",
+      "sha256": "2030594b1ba8192cc5f9c1d35b6955d4aca8e8d8607d9f7faafd1e88b75ed88c",
+      "bytes": 1203338
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-J-DIAGNOSTIC.npy",
+      "sha256": "939ddd6cee67a93425b106f608bbd3fcdafd880c855e4a260fa680e88cde01cf",
+      "bytes": 4194432
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-N-DIAGNOSTIC.npy",
+      "sha256": "1e3f742cfb08eb61c12b2d46c0308eb65def297be3339d313493fc1b846f11d6",
+      "bytes": 4194432
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-crafted-F-1to1.png",
+      "sha256": "187535081349e8df68af9e53c037dc3a0a7c772263fe233794a061618ab20826",
+      "bytes": 1239722
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-crafted-F-DIAGNOSTIC.npy",
+      "sha256": "e71d362511d24d8c1ce26e67b0024ba7efb186589d888a91d3fa9b4946156c19",
+      "bytes": 4194432
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-fine-1to1.png",
+      "sha256": "c88d4c2014d61e5e6e2acf04ec2bf776c4a844580239015611cfc8cb710e3a96",
+      "bytes": 878295
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-fine-DIAGNOSTIC.npy",
+      "sha256": "e984d877f7ed617a6ec03e8df8d5ea3d9361e27f12d36cfa97fccd59fe25cb82",
+      "bytes": 4194432
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-fine-X-repeat-1to1.png",
+      "sha256": "651437a86e137acfc17beb7b80726ca872ff34b034189007b26d4dec5dff7f73",
+      "bytes": 1027131
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-fine-X-seam-strip-1to1.png",
+      "sha256": "7b0b0fa99ca0ce8af11bf2a80123f5de0f7db9c0151ddbd548b6cb83e86eb23d",
+      "bytes": 444212
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-fine-Y-repeat-1to1.png",
+      "sha256": "eefa8114b27dc8be754bc9c298c67b139c94970500896e2b0c1a094f185e5b70",
+      "bytes": 1753289
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-fine-Y-seam-strip-1to1.png",
+      "sha256": "6aba013a06422862227643984c9202c18c773c15d7a58c733091359fec07cc1e",
+      "bytes": 227052
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-fine-corner-junction-1to1.png",
+      "sha256": "70067ccd7d4893865172ec7f96056a57879f0b8bab4900a01da0690b102ec672",
+      "bytes": 116258
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-shallow-H-lightA-1to1.png",
+      "sha256": "a4d51a925c4166277701f9b757b3529b5d3f6dfe9926d1c7ef66ad6b627bafdd",
+      "bytes": 526316
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-shallow-H-lightA-X-repeat-1to1.png",
+      "sha256": "930386d35ee428c681db7b159de8f059116496ba6ae2b83cd4f776eee75bc18c",
+      "bytes": 577335
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-shallow-H-lightA-X-seam-strip-1to1.png",
+      "sha256": "2b6a12143ec044852943e56484ce39530de80492100e4cc9c20f62df98c4d02a",
+      "bytes": 264299
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-shallow-H-lightA-Y-repeat-1to1.png",
+      "sha256": "90e643686abf05f123023e0257f3b33b81c3cc379f61a41cdcc09f1d2e26257e",
+      "bytes": 1051751
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-shallow-H-lightA-Y-seam-strip-1to1.png",
+      "sha256": "1158fc439e51f6f73988f0d50b1405ee1e82b45132f61ab6c278c822385dd422",
+      "bytes": 133317
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-shallow-H-lightA-corner-junction-1to1.png",
+      "sha256": "e8e95e7da0567dc322eb2a0166e0543ea5c4aacfafd81cd890bfec5f04a779d9",
+      "bytes": 67611
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-shallow-H-lightB-1to1.png",
+      "sha256": "0c643da81c3d8abcf11e4d0056ab43e2f166050760ffab50f6cbe8e0d6360fb3",
+      "bytes": 526459
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-shallow-H-strength1-review-lightA-1to1.png",
+      "sha256": "adcb3ed1d7fb6abbb573de1d70b7835f3ebfd3f40d43f11df0597e1bd1b41a56",
+      "bytes": 752757
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-shallow-H-strength1-review-lightB-1to1.png",
+      "sha256": "24f5efd3ec715406f27d4fdaa7330c3c67d833a7ac985bf506f65fd37468003d",
+      "bytes": 752442
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-unscaled-F-lightA-1to1.png",
+      "sha256": "ee115f0657f0fd9b1676138c7be730fa387412b3c4b808e7c9f645be3f5ef219",
+      "bytes": 1236901
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-unscaled-F-lightA-X-repeat-1to1.png",
+      "sha256": "2744bd1001b0a209ede984100e9569cd286ebb88cc9502de0f1dc73f202100df",
+      "bytes": 1373671
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-unscaled-F-lightA-X-seam-strip-1to1.png",
+      "sha256": "2353f1101f9f869fb59ea0540cacb1542e2c15f4cc8a8cc336100e4a8c71ad63",
+      "bytes": 621243
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-unscaled-F-lightA-Y-repeat-1to1.png",
+      "sha256": "9ad0298c8781e150ee86543e8120e19f4546098f3ad2883edb91029c50b62b6a",
+      "bytes": 2470983
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-unscaled-F-lightA-Y-seam-strip-1to1.png",
+      "sha256": "46baae4c67e8e911b190312559c5673a9a03614c3cee71a76bae3c78786f3203",
+      "bytes": 311633
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-unscaled-F-lightA-corner-junction-1to1.png",
+      "sha256": "ee9256937b11102f359fe09c95a32cfec6ac3484d8fe51dff5602ef82966e416",
+      "bytes": 157475
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-unscaled-F-lightB-1to1.png",
+      "sha256": "aa136378211ec46128cf0079709d402646176037524b6ae3b6f1f22f95370955",
+      "bytes": 1237364
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-unscaled-F-lightB-X-repeat-1to1.png",
+      "sha256": "bab827ad5ff823cbed011e98d44448fe21de4cd86a07e52ba245f51d14652a1c",
+      "bytes": 1373634
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-unscaled-F-lightB-X-seam-strip-1to1.png",
+      "sha256": "041fbf7c73f02c16fb79d8a0c3843a50ce7664d2f8bcb16ba360d69147f88974",
+      "bytes": 620333
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-unscaled-F-lightB-Y-repeat-1to1.png",
+      "sha256": "0ca1026fe70a5a8981e80e05141ab8f9c000b5489b1b5aaa3357b75ca3fd8724",
+      "bytes": 2471883
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-unscaled-F-lightB-Y-seam-strip-1to1.png",
+      "sha256": "290600c92678f55e487d1d4e3e09e249435c093c26efcc7d318a4d254a354837",
+      "bytes": 311635
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/restored-unscaled-F-lightB-corner-junction-1to1.png",
+      "sha256": "7233a8d5e6aa3e5fdbe21496a8d9b133daa469441bc14a949676d2012db3a651",
+      "bytes": 157052
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/reviewed-weight.npy",
+      "sha256": "0450301bc1af4d407b09df3aff8d258d88d25079622374e05886fefac1168edd",
+      "bytes": 4194432
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/same-master-donor-residual.npy",
+      "sha256": "a735b7099446c7c4660553eef57377ef10e6d8576ef3afa931cb0f1534958b52",
+      "bytes": 4194432
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/unchanged-source-RGB-1to1.png",
+      "sha256": "75735d60f4199165c89f02f38d96a021ce471ddd4acd4ca5196a6fae6abf1eba",
+      "bytes": 1075572
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/unchanged-source-RGB-X-repeat-1to1.png",
+      "sha256": "65dc1419b98a52c2b12172d0f751931078790659f32ef788131002072c691c9b",
+      "bytes": 1094790
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/unchanged-source-RGB-X-seam-strip-1to1.png",
+      "sha256": "8d4cfd2e0bce5bc54e4cb3408ac383d2b14f5c713bc34d757498bfad2a9c3702",
+      "bytes": 540083
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/unchanged-source-RGB-Y-repeat-1to1.png",
+      "sha256": "3c662fc2ac11ff7ddfd51bee6ffa8e90226c0e7a759f0aa0afac24cec49494e1",
+      "bytes": 2151375
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/unchanged-source-RGB-Y-seam-strip-1to1.png",
+      "sha256": "7bfe8512915b44d14a2353a0919824ff49c084796f4afbb7fc770328668ae49e",
+      "bytes": 266693
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/unchanged-source-RGB-corner-junction-1to1.png",
+      "sha256": "5b5ab31d9727dac3f9a836281126677c8fbe131811c96f1b071bedfa566b5044",
+      "bytes": 133618
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/whole-donor-trial-v5/whole-source-fine-opposed-contact.png",
+      "sha256": "a32b7f2a50d81f6a6c7f31c1ca9418e575a545647c9906dbef3ccaf64243e646",
+      "bytes": 4955995
+    }
+  ],
+  "nextAction": "Inspect full individual lights/fine and literal repeats/corners for residual raised/recessed paint, smooth rails or donor-grid/stamps, then report actual PASS/HOLD before production code."
+}

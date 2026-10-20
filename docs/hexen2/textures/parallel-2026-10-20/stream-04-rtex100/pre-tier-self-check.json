@@ -1,0 +1,37 @@
+{
+  "verdict": "PASS author actual source/master material and pre-tier physical self-check; independent final source/math/codec/ART pending",
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-04-rtex100/generated/rtex100.png",
+    "sha256": "ca9ccbdcbdc1b3a75ab1fc2c82ec7a97595ebfe32e564841627eb046dd8f51fa",
+    "dimensions": [
+      1254,
+      1254
+    ]
+  },
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-04-rtex100/masters/rtex100/master.json",
+    "sha256": "8b619d9feca715a89ac4b819b606af15ab26c98f1c08d06a2fd5556c95a1bd91"
+  },
+  "material": "Recognisable weathered green-gray mineral rock with fractured lips, embedded mineral texture and oxidized earthy crevices; continuous unjointed field, no artificial grain or new regular cobbles.",
+  "height": "Actual RGB/floatheight/XYZ/opposed lights inspected before encoding. Green mineral faces stand above selected dark weathered pits. Oxide occurs in mixed crevice erosion and does not form a separate embossed island network; no peripheral frame or bevel.",
+  "faceMeanRange": [
+    0.510383129119873,
+    0.7310959696769714
+  ],
+  "pitMeanRange": [
+    0.08849926292896271,
+    0.34775310754776
+  ],
+  "minimumFaceMeanMinusMaximumPitMean": 0.16263002157211304,
+  "limits": "Witness neighbourhood averages support actual visual inspection; no global plane hierarchy or historical geology asserted.",
+  "classificationCorrection": "pre-tier-classification-correction.json: original three erroneous labels/source/crops retained; same positions relabeled by actual visible material classes before tier encoding.",
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-04-rtex100/root-plan-review.json": "ebea12b309e5b633148bda8732b07e038eb08c8b1c4d5ad96999c89f358a3e51",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-04-rtex100/plan-before-profile-clarification.json": "716db04520fb921844e7e756d78fbe278002a70a7a4b5690749512e7c2303094",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-04-rtex100/plan.json": "b4d4ec64105329b31f3397abdecab545f86110cc812bf38c137499d3e371b5d5",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-04-rtex100/pre-tier-master.png": "703f60a62f059071598470c6125d662d66edda894b595f223f8078abcc2565ea",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-04-rtex100/pre-tier-physical-witnesses.png": "ef192e3fe78677b13b3ee6324888a0d5035d6df5b1391e1a917d0580fbc51c84",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-04-rtex100/pre-tier-physical-witnesses.json": "8421f11bef3bfe4334e005970d79e6612305bdb82fef99dc51bda22914dd7c37"
+  },
+  "completedAt": "2026-10-20T09:34:46.006178+00:00"
+}

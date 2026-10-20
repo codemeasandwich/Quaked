@@ -1,0 +1,51 @@
+{
+  "updatedAt": "2026-10-20T11:33:27.113112+00:00",
+  "state": "single-texture-candidate-complete-awaiting-independent-final-qualification",
+  "nativeID": "4461c8b9623bcc682a41c4358b0e486c00aa3f77cde9b2dfebcb2efceab6dfd5",
+  "generationCount": 1,
+  "defaultTier": "Mid",
+  "Mid": [
+    512,
+    512
+  ],
+  "High": [
+    1024,
+    1024
+  ],
+  "enhancedMaps": 10,
+  "canonicalMaster": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-layered/master.json",
+    "sha256": "f87690b61af0b066dcd804f03f58d4070aa0f81b6b53f810c3619f797c50430f"
+  },
+  "descriptor": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/batch.json",
+    "sha256": "de57328a13762e24b28a16332c22abd98141091bc8e708e9363d5a47de838d7e"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/manifest.json",
+    "sha256": "fc482b9e57b783a004760049abd907bc82d88cc0b6b63fbdfdeaa5e3483e83a3"
+  },
+  "selfCheck": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/candidate-self-check.json",
+    "sha256": "f6985691c3896db3616860132572354664de1364e2eea860195f0b3143a04fe6"
+  },
+  "selfArtReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/candidate-art-self-review.json",
+    "sha256": "61272154245c8a0f6438b7b5fff6f6375985b73537aaa5d7e223b355a28b8c01"
+  },
+  "rootCanonicalPreTierReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-canonical-pre-tier-review.json",
+    "sha256": "61c656ce8aabf994583490fe44c795d0f50dc3ead1239f5e5797299b2e025bd6"
+  },
+  "nextOwner": "Root independent source/math/preview/ART verifier and catalog registrar",
+  "nextAction": "Independently qualify exact final source/master/codec/math and actual review provenance/art. Register only if approved. Worker pauses with no shared mutations or new texture pickup.",
+  "runtimeAcceptance": false,
+  "ownerAcceptance": false,
+  "landing": false,
+  "release": false,
+  "honestLimits": [
+    "Restrained fine relief; tiny pits mainly visible in RGB.",
+    "Latent C contact is a bounded reviewed authoring hypothesis, not measured hidden geometry.",
+    "No runtime/owner acceptance, shared catalog mutation, Git/build/landing/push/release performed by this stream."
+  ]
+}

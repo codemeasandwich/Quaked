@@ -1,0 +1,38 @@
+{
+  "native": {
+    "id": "276edf04e9d48c0a4eabaf3b40555c9534af9977ebd42afa5dffa7407c9881e0",
+    "name": "rtex100",
+    "edition": "base",
+    "nativeDimensions": [
+      64,
+      64
+    ],
+    "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-04-rtex100/originals/01-rtex100-276edf04e9d4.png",
+    "originalSha256": "003f4d189886f6ef9b57e31a343058617e847e6931777688b9cd186dd0621129",
+    "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-04-rtex100/prompts/rtex100.txt",
+    "promptSha256": "43562c8254db812111c093f5df56a403a82800f09c46b46aa927aee58042bc8e",
+    "profile": "rock0_0",
+    "generationCount": 0,
+    "generationState": "not-issued"
+  },
+  "interpretation": "Heavily weathered dark greenstone (chlorite-green volcanic rock) with thin earthy iron-oxide staining in weathered crevices. This is a reviewed physical interpretation, not asserted historical mineral identification.",
+  "nativeObservation": "Continuous unjointed mottled field: gray-green irregular mineral-like faces, brown/black branching pits/crevices and red-brown/ochre transitions. No clear cut masonry, objects, border or regular alignment.",
+  "uncertainty": "Original64 texels cannot establish literal mineral type; stone interpretation uses actual irregular patch/fissure forms. Do not inherit prior riveted-iron interpretation or add geometric indicators.",
+  "reliefPlan": "Existing rock0_0 profile, ordinary photographic colour .65/.75, normal strength.3/cap.5. Green mineral faces above dark pitted/fissured areas; thin oxide stain should not become separate raised islands. Inspect actual float height/opposed lights before any tier. HOLD wrong material or semantic depth; use source-reviewed existing repair only when justified.",
+  "repeatAxes": [
+    "X",
+    "Y"
+  ],
+  "independentReview": "Required against exact native/prompt/relief plan before guarded ONE built-in generation",
+  "authority": "One new texture stream only. Frozen011 untouched. No shared catalog/Git/build/runtime/release mutation.",
+  "hashes": {
+    "original": "003f4d189886f6ef9b57e31a343058617e847e6931777688b9cd186dd0621129",
+    "prompt": "43562c8254db812111c093f5df56a403a82800f09c46b46aa927aee58042bc8e"
+  },
+  "profileClarification": {
+    "rootReview": "root-plan-review.json",
+    "previousPlanSha256": "716db04520fb921844e7e756d78fbe278002a70a7a4b5690749512e7c2303094",
+    "previousPlanRetained": "plan-before-profile-clarification.json",
+    "reason": "Bare rock does not match maintained ^rock\\d_\\d expression and would select DEFAULT. Explicit reviewed rock0_0 selects existing coarse-face/fissure profile. Prompt bytes unchanged."
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "updatedAt": "2026-10-20T11:33:29.840275+00:00",
+  "verdict": "PASS bounded plan for one candidate canonical shallow ornament master; not final qualification",
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/RAISED_ORNAMENT_PLAN.md": "70bdcfb810b71a059b55a37c77d58571114f1aef2d5aee9b1485ab5a5a8319c1",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/root-source-master-proof.json": "e63c3c917ea3608650687632d542849eadeaeb0eb92ab4639249bd9eeedc17ab",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/owner-relief-decision.json": "9c0e8be5c9b234758e5096d315fb4b04e71279a8a9edafb64a12d50230a14d12",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/raised-ornament-plan-2026-10-20/source-initial-height-assessment.json": "f347fcbe3b8e3420cc5ce5ce9bdedb21346dd7b1a16f11999a037d758a9aab2d",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/raised-ornament-plan-2026-10-20/source-gold-geometry-proposal-overlay.png": "3daaaad1491b539ddd64167eed6feb38bc02ba7d03e086eee4a264cd46458e50",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/raised-ornament-plan-2026-10-20/layered-policy-diagnostics/fixed-neutral-lightA-comparison.png": "ecfcf7714a13ef55a1e632dc521efdf79d399f1d8f95d1802ff032d277e178bf",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/raised-ornament-plan-2026-10-20/layered-policy-diagnostics/micro-0p001-neutral-lightA-1to1.png": "40ca2b9d84671906a1326033ba38a37bcff61e009cf9af352a8870959346b3a8",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/raised-ornament-plan-2026-10-20/layered-policy-diagnostics/micro-0p001-neutral-lightB-1to1.png": "933834870b7c9b4e5064c73473f4096956111d82da3eb1f1d94c03e9c16d413a"
+  },
+  "chosenCandidate": {
+    "commonPlasterPlane": 0.975,
+    "goldFacePlane": 0.995,
+    "microAmplitude": 0.001,
+    "bevelPixels256Reference": 0.25
+  },
+  "actualFindings": [
+    "Source overlay follows the existing gold Greek-key strokes and crosses X only at intended band geometry; no image-perimeter bevel is added.",
+    "Fixed-light .001 candidate depicts coherent shallow raised ornament, unlike the historical .869 tonal height separation.",
+    "Surrounding colour regions do not read as large architectural steps in the viewed fixed lights. Fine plaster wear is weak.",
+    "Residual colour-correlated height remains: common-region median span .0011923, P1-P4 standard deviation .000432-.000600. This is a restrained approximate relief interpretation, not recovered pigment-neutral measured geometry."
+  ],
+  "tradeoff": "Select the existing .001 candidate as the simplest plausible physical interpretation for encoded review. Do not claim exact removal of pigment from height or full wear recovery. Full decoded height and normals must demonstrate usable shallow ornament, plausible weak substrate relief and tiling; quantization may erase tiny height detail. HOLD if decoded maps undermine that physical interpretation.",
+  "allowedNext": "Use genuine source/master proof e63c3c91 and existing guarded layered CLI, one canonical successor from unchanged RGB/source. Recheck actual canonical source geometry and lights before tier derivation. No donor trial scalar, new generation, producer edit or acceptance-threshold relabelling."
+}

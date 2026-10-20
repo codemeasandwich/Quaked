@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "native": {
+    "id": "e839a43cf82585d2393634074db6a19968c39436e12dd85201ec0074d92710dd",
+    "name": "rtex102",
+    "edition": "base",
+    "nativeDimensions": [
+      64,
+      64
+    ],
+    "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/originals/01-rtex102-e839a43cf825.png",
+    "originalSha256": "f6ccf25c53e50751f5500370281e9682a49ace6d752717e0266c0eaa2789445c",
+    "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/prompts/rtex102-material-v1.txt",
+    "promptSha256": "26b1182d94589bf54d7249e6f1c29fa1dfe4c6633f82a98d29ffd70192ae76f9",
+    "profile": "rock0_0",
+    "generationCount": 0,
+    "generationState": "not-issued"
+  },
+  "sourceProof": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/native-proof.json",
+  "sourceProofSha256": "0e6f3c3e19110247747370433c04413c8787c8907a90f4b34c452fbd686d1002",
+  "nativeObservation": "Continuous very dark mottled field; charcoal / subdued grey-green faces, brown/ochre weathering and black irregular pits. No regular joints, objects, border, clear hardware or plank direction. Mean native RGB is approximately33,26,22, maximumchannel80.",
+  "materialInterpretation": "Dense weathered dark volcanic stone, basalt-like, with thin rusty brown iron-oxide staining and small dull grey-green mineral faces.",
+  "uncertainty": "Exact lithology is not recoverable from these pixels; basalt is a concrete photographic interpretation, not historical geological proof. Grey/black/brown surface pattern is preserved rather than assigning unrelated metal/wood cues.",
+  "reliefPlan": "Existing explicitly matched rock0_0 numerical profile (.3,1,1.6,1.3 bands; groove1.6/bump.9/glow0), normal strength.3/cap.5. Existing photographic fit .65/.75. Inspect actual fullfloat height and physically classified rock face/pit/oxide witnesses plus opposed lights before tiers. Brown oxide stain should not become independent raised beads; brightness is not proof. HOLD unreadable grain or wrong physical depth; reuse only justified source-bound existing repair.",
+  "repeatAxes": [
+    "X",
+    "Y"
+  ],
+  "sourceMinimum": [
+    1024,
+    1024
+  ],
+  "generationPlan": "Exactly one guarded built-in colour image after root independent plan PASS, retain exact returned source and prompt. No separate tier source, new provider/API, upscale or duplicate request. Canonical source supports native8x512square.",
+  "scope": "Only stream-07-rtex102 asset/doc roots; no shared catalog/queue/global progress/Git/producer/build/release changes.",
+  "reviewGate": "STOP before generation; root must view actual native and read exact prompt."
+}

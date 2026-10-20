@@ -1,0 +1,113 @@
+{
+  "scope": "Independent float64 statistics from retained diagnostic float32 arrays; removes float32 summation roundoff from constant-patch std.",
+  "candidates": [
+    {
+      "name": "micro-0p0",
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/raised-ornament-plan-2026-10-20/layered-policy-diagnostics/micro-0p0-height-DIAGNOSTIC.npy",
+      "sha256": "6491118d053ffe9e663e7513ab3cf80113430656ad3c1d14b27a2cadfa7b759c",
+      "patches": {
+        "P1": {
+          "stdFloat64": 0.0,
+          "peakToPeak": 0.0,
+          "uniqueSamples": 1
+        },
+        "P2": {
+          "stdFloat64": 0.0,
+          "peakToPeak": 0.0,
+          "uniqueSamples": 1
+        },
+        "P3": {
+          "stdFloat64": 0.0,
+          "peakToPeak": 0.0,
+          "uniqueSamples": 1
+        },
+        "P4": {
+          "stdFloat64": 0.0,
+          "peakToPeak": 0.0,
+          "uniqueSamples": 1
+        }
+      }
+    },
+    {
+      "name": "micro-0p00025",
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/raised-ornament-plan-2026-10-20/layered-policy-diagnostics/micro-0p00025-height-DIAGNOSTIC.npy",
+      "sha256": "38325841f02faf627f3e9ea6c8a4220ea8970236303109850cf9413b8adfc6b7",
+      "patches": {
+        "P1": {
+          "stdFloat64": 0.00014485841182705538,
+          "peakToPeak": 0.000497281551361084,
+          "uniqueSamples": 1378
+        },
+        "P2": {
+          "stdFloat64": 0.0001499477050463148,
+          "peakToPeak": 0.0004953742027282715,
+          "uniqueSamples": 2052
+        },
+        "P3": {
+          "stdFloat64": 0.00010968079382792662,
+          "peakToPeak": 0.00048238039016723633,
+          "uniqueSamples": 1654
+        },
+        "P4": {
+          "stdFloat64": 0.00010799999760472049,
+          "peakToPeak": 0.00041371583938598633,
+          "uniqueSamples": 922
+        }
+      }
+    },
+    {
+      "name": "micro-0p001",
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/raised-ornament-plan-2026-10-20/layered-policy-diagnostics/micro-0p001-height-DIAGNOSTIC.npy",
+      "sha256": "8a604306bbe7bab6b1070b8098675034582b3108171054394cd43c7d3c09dfc9",
+      "patches": {
+        "P1": {
+          "stdFloat64": 0.0005794347349635901,
+          "peakToPeak": 0.001989006996154785,
+          "uniqueSamples": 1516
+        },
+        "P2": {
+          "stdFloat64": 0.0005997895959461868,
+          "peakToPeak": 0.001981496810913086,
+          "uniqueSamples": 2340
+        },
+        "P3": {
+          "stdFloat64": 0.00043872287734384374,
+          "peakToPeak": 0.0019294023513793945,
+          "uniqueSamples": 1864
+        },
+        "P4": {
+          "stdFloat64": 0.00043199912600034603,
+          "peakToPeak": 0.0016548633575439453,
+          "uniqueSamples": 982
+        }
+      }
+    },
+    {
+      "name": "micro-0p003",
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/raised-ornament-plan-2026-10-20/layered-policy-diagnostics/micro-0p003-height-DIAGNOSTIC.npy",
+      "sha256": "af273accdcd86474c8febfdd860a3671e0d9df17cfef2b7d9a888db95d0cea75",
+      "patches": {
+        "P1": {
+          "stdFloat64": 0.0017383045146580687,
+          "peakToPeak": 0.00596696138381958,
+          "uniqueSamples": 1547
+        },
+        "P2": {
+          "stdFloat64": 0.0017993687993875878,
+          "peakToPeak": 0.005944609642028809,
+          "uniqueSamples": 2416
+        },
+        "P3": {
+          "stdFloat64": 0.0013161677590309544,
+          "peakToPeak": 0.005788147449493408,
+          "uniqueSamples": 1912
+        },
+        "P4": {
+          "stdFloat64": 0.0012959984879561703,
+          "peakToPeak": 0.0049645304679870605,
+          "uniqueSamples": 997
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "native": {
+    "id": "99e1795d878bb2e95a2a7d68bf49c94664193b73427ec4a84cb4c00ac9808246",
+    "name": "rtex011",
+    "edition": "base",
+    "nativeDimensions": [
+      64,
+      64
+    ],
+    "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-02-rtex011/originals/01-rtex011-99e1795d878b.png",
+    "originalSha256": "9406eefb10e1c1f436da63c899275ec47d27fc4b11eeeebcf1218336d404f5a0",
+    "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-02-rtex011/prompts/rtex011.txt",
+    "promptSha256": "99470330a94b9b5257ffa24db25a8e0e8afaa9bbde0cb9a43031ea7a9d745366",
+    "profile": "cop",
+    "generationCount": 0,
+    "generationState": "not-issued"
+  },
+  "interpretation": "Aged riveted iron plate. Historical material is interpretation; native clearly supplies eight rounded heads and dark irregular oxidation.",
+  "landmarks": "Three upper, two middle side, three lower rivets. Approx native centres x7/30/54 y7/32/56; no centre head. Thin native edge joint preserved.",
+  "reliefPlan": "cop profile at ordinary .65/.75 colour fit, strength .3/cap .5. Raised rounded rivet heads; shallow pitting on broadly flat plate. Oxidation is colour with minor crust, never broad raised ornamental rust. Inspect actual master height and opposed lights before encoding; HOLD if rivet/plate hierarchy fails.",
+  "reviewsRequired": [
+    "Independent exact native/prompt/material/relief plan before issue",
+    "Independent native/source/math/codec and preview after candidates",
+    "Actual both-tier close material/BOX32/BOX16/repeats/corners/relief art"
+  ],
+  "paths": {
+    "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-02-rtex011/originals/01-rtex011-99e1795d878b.png",
+    "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-02-rtex011/prompts/rtex011.txt"
+  },
+  "hashes": {
+    "original": "9406eefb10e1c1f436da63c899275ec47d27fc4b11eeeebcf1218336d404f5a0",
+    "prompt": "99470330a94b9b5257ffa24db25a8e0e8afaa9bbde0cb9a43031ea7a9d745366"
+  },
+  "authority": "One native texture stream only; no Git/shared catalog/runtime/release mutations; one built-in generation only.",
+  "bluey": "storage_error 300582c3e9e84f79bfef530d3cdfe4a9 outcome unknown, root coordinator owns fallback ledger"
+}

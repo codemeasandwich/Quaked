@@ -1,0 +1,40 @@
+{
+  "verdict": "HOLD pre-tier relief pending independent root review",
+  "scope": "Actual author review of retained raw, one shared RGB/float master, native half/quarter comparisons, both-axis repeats and physical witnesses. No encoded tier.",
+  "sourceMaterial": "PASS author assessment: clearly recognisable matte dressed stone with coherent sedimentary lines, small natural pores and wear; five primary forms preserved. Exact geology remains an interpretation.",
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/generated/mtex470.png",
+    "sha256": "93c22b1f240649bd3476f5b007cf1397d5210a30d24e1c516d02eb8cb5d04fe7",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "generationCount": 1
+  },
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters/mtex470/master.json",
+    "sha256": "aeee674cc1d9d95187abf9728367fd078f75ae8a471bc70a57adb33a27f9278b",
+    "dimensions": [
+      512,
+      512
+    ]
+  },
+  "distanceAssessment": "Both 32-square and 16-square pairs preserve the five-form pinwheel, red central square and top grey slab. Existing .65/.75 fit keeps representative colours but joint boundaries have modest position differences. Measured RGB MAE 10.3112 at half and 8.8958 at quarter is descriptive, not automatic acceptance.",
+  "repeatAssessment": "Master repeats without disconnected or invented small stones. Generated dark joints are more sharply defined than native; perimeter joints and rounded arrises deserve independent review against the original repeat. No blanket seamless acceptance is claimed.",
+  "reliefFinding": "All four central mortar witnesses are below the five face witnesses. However large interior face medians differ with colour: left .578, top .498, right .602, lower .570, red center .427. The red stone appears lower in scalar height; this is not proof of intended physical inset. Current plan calls for broadly coplanar faces, so stop before tiers for root assessment of whether source-bound layered mortar/face correction is needed.",
+  "notYetAccepted": [
+    "independent source/master replay",
+    "physical relief",
+    "decoded Mid/High",
+    "preview provenance",
+    "runtime or owner acceptance"
+  ],
+  "evidence": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/pre-tier-master.png": "ddace891bb8b2451af5832682ee0c66a6744ffb5e687e66d88eca49da803daa6",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/pre-tier-physical-witnesses.png": "7ccaa7448be41b3744bdb24450a5f9d58f5dd02745ac8f1fbecff9fbc9ecba7d",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/pre-tier-distance.png": "d0250b569999c4b5cac9c2a0f0d314f815c08f1370b0e79fb332319252b518a7",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/pre-tier-master-repeat.png": "3cfd2a2c6ad98199c26eca3101cdbccd90c394211f0d590169640a9b9058951c",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/pre-tier-native-repeat.png": "c0eb4e61d34e961c03469d37232618d5fbe390a5deb77eff09763a5930826b87",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/pre-tier-self-check.json": "3506e82fd3e27fbf42e45aef1c32dea3f1fbd663ed00e402e7e1381321a0be8c"
+  }
+}

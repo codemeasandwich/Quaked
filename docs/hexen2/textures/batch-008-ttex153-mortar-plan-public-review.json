@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20T07:11:39.313705+00:00",
+  "verdict": "PASS independent source-specific layered repair PLAN; current ttex153 semantic height remains HOLD",
+  "scope": "Review actual native/raw/master interpretation, concrete pale-mortar inversion and proposed manually measured mortar channels; no successor or encoded tiers accepted.",
+  "material": "Recognizable weathered ochre limestone faces with pale granular lime-mortar channels. Physical material structure is present in actual source/master; shade alone did not determine region labels.",
+  "sourceMasterProof": {
+    "file": "docs/hexen2/textures/batch-008-ttex153-source-master-public-proof.json",
+    "sha256": "145edf09b788dcf4104662e1faf6aa42d8931cac6862c7b1529997d8738b83f9",
+    "bytes": 10777
+  },
+  "sourceMasterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex153/master.json",
+    "sha256": "81bcd0e6c5bde3afc3df4834f634a3b48ceb659f1a729d9c35d96a35c8c76022",
+    "bytes": 4226
+  },
+  "confirmedFindings": [
+    {
+      "joint": "J1(22,10)",
+      "mean": 0.9624878764152527,
+      "nearbyFaces": [
+        "(22,6) .2175712585",
+        "(22,15) .2279242724"
+      ],
+      "finding": "Pale physical horizontal mortar joint raised above both actual nearby faces."
+    },
+    {
+      "joint": "J2(42,28.5)",
+      "mean": 0.8228647708892822,
+      "nearbyFaces": [
+        "(42,25) .6270492077",
+        "(42,32) .3396664858"
+      ],
+      "finding": "Second independently classified horizontal joint inversion."
+    },
+    {
+      "joint": "J3(37,46.5)",
+      "mean": 0.9847476482391357,
+      "nearbyFaces": [
+        "CORRECTED upper (40,43) .1706361622",
+        "lower(37,51) .9293358326"
+      ],
+      "finding": "Lower horizontal mortar raised above adjacent narrow-course stone and white-deposit lower facing. The lower facing is itself light-colored and tonal height high; brightness is not geometry."
+    }
+  ],
+  "witnessCorrection": {
+    "priorLabel": "F3A",
+    "priorCoordinate": [
+      37,
+      43
+    ],
+    "actualClass": "narrow-course vertical mortar joint, not face",
+    "correctedFaceCoordinate": [
+      40,
+      43
+    ],
+    "effect": "Earlier source/master-only replay PASS unchanged; its third upper-neighbor art label was wrong and is explicitly superseded here. First two correctly classified local inversions and overall semantic HOLD stand."
+  },
+  "correctionEvidence": {
+    "file": "docs/hexen2/textures/batch-008-ttex153-pre-tier-diagnostics/proposal-witness-classification-failure-v1.json",
+    "sha256": "d329a2588d6940a461c6f8ff7e919fb5cd96cdb1b16b6f13ab2be947f843bfe4",
+    "bytes": 757
+  },
+  "actualImageReview": [
+    "Native64x64, raw1254x1254, registered512x512 RGB inspected directly.",
+    "Native-coordinate grid and final 17-polygon magenta boundary overlay inspected. Channels follow actual offset course arrises and vertical recesses; top/bottom channels stay periodic.",
+    "White tongues terminating inside faces at(19,17),(12.3,33),(36.5,51) remain outside the proposed lower network.",
+    "Current uncompressed height/neutral NW+SE opposed-light diagnostic inspected. It shows raised horizontal mortar-like strips, supporting the local measured inversions."
+  ],
+  "measuredPlan": {
+    "file": "docs/hexen2/textures/batch-008-ttex153-pre-tier-diagnostics/mortar-network-proposal.json",
+    "sha256": "476420c471cafae8b0017b220c63dc2d6df448abd45dd7e1ba769ffcde242ced",
+    "bytes": 18192
+  },
+  "proposalPreview": {
+    "file": "docs/hexen2/textures/batch-008-ttex153-pre-tier-diagnostics/proposed-mortar-network-boundary.png",
+    "sha256": "1cbb3d0049269f7b70204ee5754a286ae52a7b8f202628441d9815e8b9e1b798",
+    "bytes": 797763
+  },
+  "currentHeightOpposedPreview": {
+    "file": "docs/hexen2/textures/batch-008-ttex153-pre-tier-diagnostics/initial-tonal-height-opposed.png",
+    "sha256": "2436c2705c53e52866322e617d7550a70df93defa84a6d40a18371a6bb5e3306",
+    "bytes": 1610523
+  },
+  "proposedPlanePolicy": {
+    "facingHeight": 0.7,
+    "brickHeight": 0.3,
+    "chipFloor": 0.55,
+    "microAmplitude": 0.035,
+    "bevelPixels": 0.5
+  },
+  "implementationRoute": "Reuse guarded prepare_layered_texture_master.py with unchanged same-source RGB and proof-bound full native identity. Proposed brickRegions denote LOWER mortar, not actual bricks. Author no compressed maps until actual successor semantics pass.",
+  "planAcceptance": "PASS bounded preparation plan:17 manually traced variable-edge channel polygons and conservative clipping-safe planes. This permits coordinator to create a source-bound candidate recipe under existing authority. It does not accept every mask pixel or the uncreated successor.",
+  "mandatorySuccessorChecks": [
+    "Root can bind source/master proof to existing guarded layered wrapper after approving measured plan; no guard weakening/new pipeline.",
+    "Before tiers inspect exact full-precision successor composition, RGB preservation, all network interfaces/junctions, actual face/joint witnesses and opposed lights.",
+    "Retain three marked white face deposits on facing.",
+    "Then inspect both actual decoded tiers, native-half/quarter BOX, repeats/corners and relief."
+  ],
+  "reproducibleProbeSources": [
+    {
+      "file": "docs/hexen2/textures/batch-008-ttex153-verify-source-master.py",
+      "sha256": "32cc9058c0669d504729515ad03da7527a0e8a3d8388c2acd88dc74867987887",
+      "bytes": 9763
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-ttex153-propose-mortar-network.py",
+      "sha256": "6ed79c7d8dd4a7c2c7e6f3fa91af8ca4b01a96d8b5461658b264ddfc3d2bf9bf",
+      "bytes": 8174
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-ttex153-current-height-probe.py",
+      "sha256": "510259c076942208b55bdd8522aa6a03b345be45147dae8b1156bbe32425b69a",
+      "bytes": 1699
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-pre-tier-semantic-probe.py",
+      "sha256": "5ffc7a834bdf5edf9ce4f85ff0bafc9321eea7c4747523c0d3e22bf8bfac64b0",
+      "bytes": 8536
+    }
+  ],
+  "limits": [
+    "Existing source/master proof is exact and guarded-row valid; its F3A(37,43) art label is explicitly corrected here without rewriting the sealed proof.",
+    "Manual chipped-arrise uncertainty about .25nativepx/2masterpx remains for actual successor review.",
+    "No generation, production recipe/master/map/catalog/core/Git edits or tier encoding performed.",
+    "Final decoded tiers, ART/runtime/owner/landing/release/campaign completion remain separate."
+  ]
+}

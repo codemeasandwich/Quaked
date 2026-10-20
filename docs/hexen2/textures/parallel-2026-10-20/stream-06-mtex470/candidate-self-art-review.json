@@ -1,0 +1,32 @@
+{
+  "verdict": "PASS author actual decoded material, distance, repeats and relief; independent qualification pending",
+  "nativeIdentity": "e068750f3f11baad13dc050abc9fc5a3e860fbe9a450a653364315dccfb4209f",
+  "actualViews": [
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/generated/mtex470.png",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters-layered/mtex470/color.png",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/review/mtex470-mid-review.jpg",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/review/mtex470-high-review.jpg",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/review/mtex470-mid-relief.jpg",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/review/mtex470-high-relief.jpg",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/candidate-seams-corners.png"
+  ],
+  "material": "Both decoded tiers clearly show worn, matte dressed stone: coherent irregular sedimentary lines, tiny pores, small edge wear and distinct red / ochre / grey stone colours. Mid naturally resolves fewer small grains than High without becoming synthetic uniform noise.",
+  "nativeSimilarity": "The five-form pinwheel is representative in colour, shape, scale and intention at 32-square and 16-square. The center remains red-brown, top slab greyer, remaining three ochre; small joint coordinate differences are retained and visible, not claimed pixel-identical.",
+  "tiling": "Actual decoded X/Y/XY seam and literal corner crops show existing mortar contacts and coherent slabs. No invented small corner stones, disconnected extra forms, new seam line or added RGB perimeter shading observed. The sharper photographed stone arrises remain part of the reviewed native masonry interpretation.",
+  "relief": "Source-measured mortar lies below all five faces at both decoded tiers. Shared broad plane prevents red pigment becoming an architectural inset. Small bounded residual surface differences and Q92 compression are disclosed in the numeric proof; no new relief failure observed in actual height/XYZ/opposed lights.",
+  "failuresRetained": [
+    "Initial brightness-derived master and pre-tier-art-review.json remain HOLD, superseded by the reviewed same-RGB layered canonical master.",
+    "Root source-master proof initial HOLD is explicitly verifier-only, with failed script/result preserved by root; successor actually ran."
+  ],
+  "acceptanceLimits": [
+    "Author self-review does not replace independent final qualification.",
+    "No shared catalog/queue registration, runtime/pack/GPU acceptance, owner acceptance, Git landing, CI, release or Pages claim."
+  ],
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/candidate-self-replay.json": "080439be236a31fafd50a8562972c5e8eebb99ef9a9266464e34f4a0b2937cdf",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/batch.json": "3837730b86ebf1c785cb40c7a5e826eb83414bcd7128e505f0a974511ac224e6",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters-layered/mtex470/master.json": "975951a59f2bcf2547125d74d1e9baf24c9c019973f026c756f828a57596d310",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/tiers/mtex470/manifest.json": "c6af99e5eabce61ba3015e6d24864801fa98bb9dcac5a5d60ecd19a5085cbd7b",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/candidate-corner-provenance.json": "ca7143cc5fafb1fe21cde94f9ecc82a84ebb0f66d619ab6c9786d77618d14c0a"
+  }
+}

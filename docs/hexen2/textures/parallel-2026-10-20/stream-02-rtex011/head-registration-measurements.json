@@ -1,0 +1,254 @@
+{
+  "method": "Manual rim bounds from actual native and512 canonical RGB, checked with retained native-coordinate grid and BOX32/16 witnesses. These are approximate source measurements, not an automated detector. Native uncertainty about0.5pixel per edge; master about2pixel.",
+  "heads": [
+    {
+      "head": "NW",
+      "nativeRimPixelEdgeBounds": [
+        4,
+        4,
+        12,
+        11
+      ],
+      "initialMasterRimPixelEdgeBounds": [
+        38,
+        27,
+        87,
+        77
+      ],
+      "nativeCentre": [
+        8.0,
+        7.5
+      ],
+      "initialMasterCentreNativeEquivalent": [
+        7.8125,
+        6.5
+      ],
+      "driftNative": [
+        -0.1875,
+        -1.0
+      ]
+    },
+    {
+      "head": "N",
+      "nativeRimPixelEdgeBounds": [
+        26,
+        4,
+        34,
+        11
+      ],
+      "initialMasterRimPixelEdgeBounds": [
+        234,
+        27,
+        283,
+        77
+      ],
+      "nativeCentre": [
+        30.0,
+        7.5
+      ],
+      "initialMasterCentreNativeEquivalent": [
+        32.3125,
+        6.5
+      ],
+      "driftNative": [
+        2.3125,
+        -1.0
+      ]
+    },
+    {
+      "head": "NE",
+      "nativeRimPixelEdgeBounds": [
+        51,
+        5,
+        59,
+        12
+      ],
+      "initialMasterRimPixelEdgeBounds": [
+        429,
+        27,
+        479,
+        78
+      ],
+      "nativeCentre": [
+        55.0,
+        8.5
+      ],
+      "initialMasterCentreNativeEquivalent": [
+        56.75,
+        6.5625
+      ],
+      "driftNative": [
+        1.75,
+        -1.9375
+      ]
+    },
+    {
+      "head": "W",
+      "nativeRimPixelEdgeBounds": [
+        4,
+        29,
+        12,
+        36
+      ],
+      "initialMasterRimPixelEdgeBounds": [
+        39,
+        234,
+        88,
+        283
+      ],
+      "nativeCentre": [
+        8.0,
+        32.5
+      ],
+      "initialMasterCentreNativeEquivalent": [
+        7.9375,
+        32.3125
+      ],
+      "driftNative": [
+        -0.0625,
+        -0.1875
+      ]
+    },
+    {
+      "head": "E",
+      "nativeRimPixelEdgeBounds": [
+        51,
+        30,
+        59,
+        37
+      ],
+      "initialMasterRimPixelEdgeBounds": [
+        431,
+        235,
+        480,
+        284
+      ],
+      "nativeCentre": [
+        55.0,
+        33.5
+      ],
+      "initialMasterCentreNativeEquivalent": [
+        56.9375,
+        32.4375
+      ],
+      "driftNative": [
+        1.9375,
+        -1.0625
+      ]
+    },
+    {
+      "head": "SW",
+      "nativeRimPixelEdgeBounds": [
+        4,
+        53,
+        12,
+        60
+      ],
+      "initialMasterRimPixelEdgeBounds": [
+        38,
+        429,
+        87,
+        480
+      ],
+      "nativeCentre": [
+        8.0,
+        56.5
+      ],
+      "initialMasterCentreNativeEquivalent": [
+        7.8125,
+        56.8125
+      ],
+      "driftNative": [
+        -0.1875,
+        0.3125
+      ]
+    },
+    {
+      "head": "S",
+      "nativeRimPixelEdgeBounds": [
+        28,
+        53,
+        36,
+        60
+      ],
+      "initialMasterRimPixelEdgeBounds": [
+        234,
+        429,
+        283,
+        480
+      ],
+      "nativeCentre": [
+        32.0,
+        56.5
+      ],
+      "initialMasterCentreNativeEquivalent": [
+        32.3125,
+        56.8125
+      ],
+      "driftNative": [
+        0.3125,
+        0.3125
+      ]
+    },
+    {
+      "head": "SE",
+      "nativeRimPixelEdgeBounds": [
+        51,
+        53,
+        59,
+        60
+      ],
+      "initialMasterRimPixelEdgeBounds": [
+        429,
+        429,
+        479,
+        480
+      ],
+      "nativeCentre": [
+        55.0,
+        56.5
+      ],
+      "initialMasterCentreNativeEquivalent": [
+        56.75,
+        56.8125
+      ],
+      "driftNative": [
+        1.75,
+        0.3125
+      ]
+    }
+  ],
+  "finding": "Middle/right columns displaced right about1.3-2.3 nativepixels; right margin narrows. BOX32 shows shifted dark head groups. Correct with existing X-only landmarks before binding final source-master proof. Top row also about1nativepixel upward, near native rim/lighting uncertainty; no second-axis authoring mechanism introduced.",
+  "proposedXRegistration": {
+    "axis": "x",
+    "points": [
+      [
+        0,
+        0
+      ],
+      [
+        8,
+        7.9
+      ],
+      [
+        31,
+        32.3
+      ],
+      [
+        55,
+        56.8
+      ],
+      [
+        64,
+        64
+      ]
+    ]
+  },
+  "landmarkFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-02-rtex011/landmarks-x.json",
+  "landmarkSha256": "50df6aa2ccabfe07e51bc9aca10e5cfc47cee19085ad270c9d7a5f16bd662f95",
+  "reviewImages": [
+    "native-master-coordinate-grid.png",
+    "initial-master-box32-box16.png"
+  ],
+  "independentReview": "Pending root before registered master preparation."
+}

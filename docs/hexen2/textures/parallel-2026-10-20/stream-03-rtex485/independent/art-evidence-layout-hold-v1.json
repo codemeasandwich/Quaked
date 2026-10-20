@@ -1,0 +1,10 @@
+{
+  "verdict": "HOLD diagnostic layout only; not asset or map failure",
+  "issue": "Footer label at y585 overlaps the right Y-wrap actual pixel panel extending to611. Move footer to645 in a new version; do not hide image history.",
+  "retainedManifest": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/independent/art-evidence-manifest.json",
+    "sha256": "411efa2404c9aa42249021d6e303ef224d696608bb4640d1711e3917e039d937"
+  },
+  "successorScript": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/independent/build-art-evidence-v2.py",
+  "sourceAssetsUnchanged": true
+}
