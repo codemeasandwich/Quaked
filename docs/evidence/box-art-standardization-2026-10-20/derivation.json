@@ -431,7 +431,7 @@
       "editedFrom": "assets/authoring/box_art/import-2026-10-20/malice/side.png",
       "tool": "image_gen.imagegen",
       "prompt": "docs/evidence/box-art-standardization-2026-10-20/ai-edit-prompts.json#malice",
-      "disposition": "REJECTED: original 23RD mistranscribed as 3RD"
+      "disposition": "REJECTED FOR RUNTIME: original element proportions changed; retain exact draft/prompt as historical evidence only."
     },
     {
       "originalPath": "/Users/bri/.codex/generated_images/01a15863-6cd3-7402-9d4a-a000ace9c510/exec-102d3ac4-230d-4091-bad8-fddbf043baf7.png",
@@ -443,7 +443,8 @@
       "origin": "generated",
       "editedFrom": "assets/authoring/box_art/originals-2026-10-20/quoth/spine.png",
       "tool": "image_gen.imagegen",
-      "prompt": "docs/evidence/box-art-standardization-2026-10-20/ai-edit-prompts.json#quoth"
+      "prompt": "docs/evidence/box-art-standardization-2026-10-20/ai-edit-prompts.json#quoth",
+      "disposition": "REJECTED FOR RUNTIME: original element proportions changed; retain exact draft/prompt as historical evidence only."
     },
     {
       "originalPath": "/Users/bri/.codex/generated_images/01a15863-6cd3-7402-9d4a-a000ace9c510/exec-668c0c84-2c25-48ec-88c8-f43a41ad5387.png",
@@ -456,7 +457,8 @@
       "editedFrom": "assets/authoring/box_art/import-2026-10-20/malice/side.png",
       "corrects": "assets/authoring/box_art/edits-2026-10-20/malice/spine-layout.png",
       "tool": "image_gen.imagegen",
-      "prompt": "docs/evidence/box-art-standardization-2026-10-20/malice-correction-prompt.json"
+      "prompt": "docs/evidence/box-art-standardization-2026-10-20/malice-correction-prompt.json",
+      "disposition": "REJECTED FOR RUNTIME: original element proportions changed; retain exact draft/prompt as historical evidence only."
     },
     {
       "originalPath": "/Users/bri/quaked/The Immortal Lock/cover.png",
@@ -915,28 +917,28 @@
       "game": "malice",
       "face": "spine",
       "path": "assets/boxes/malice/spine.webp",
-      "source": "assets/authoring/box_art/edits-2026-10-20/malice/spine-layout-corrected.png",
+      "source": "assets/authoring/box_art/import-2026-10-20/malice/side.png",
       "crop": {
-        "left": 338,
+        "left": 0,
         "top": 0,
-        "width": 220,
-        "height": 1752
+        "width": 724,
+        "height": 2172
       },
       "background": "#15110c",
-      "note": "AI narrow layout, corrected to original 23RD CENTURY ULTRACONVERSION FOR QUAKE after retained review failure; complete panel fitted without stretching.",
-      "sourceSha256": "8ea0e115eb2cb2e841030602dc080a2affeda19bc6878e7839cb5d94f19fb272",
+      "note": "Final owner proportion ruling: complete unchanged original spine, uniformly scaled with padding; no AI-altered glyphs/logos are shipped.",
+      "sourceSha256": "236d2dd48ba27d6f7b9d6c0afd75ce627a652d93c3306d8bd22b405231a401e6",
       "fit": "contain",
       "content": {
-        "left": 44,
-        "top": 0,
-        "width": 251,
-        "height": 2000
+        "left": 0,
+        "top": 490,
+        "width": 340,
+        "height": 1020
       },
       "width": 340,
       "height": 2000,
-      "sha256": "05142187e5e0f02c85f409d901f1d0e7ec2b92a27b19b43d111f6abe8bfa38f6",
-      "bytes": 599926,
-      "editedFrom": "assets/authoring/box_art/import-2026-10-20/malice/side.png"
+      "sha256": "db2350ef27a3a138bdee8b2239e7b76b573869959e58c7b8b82e5433fcd36eba",
+      "bytes": 454676,
+      "supersededSource": "assets/authoring/box_art/edits-2026-10-20/malice/spine-layout-corrected.png"
     },
     {
       "game": "mg1",
@@ -1670,28 +1672,28 @@
       "game": "quoth",
       "face": "spine",
       "path": "assets/boxes/quoth/spine.webp",
-      "source": "assets/authoring/box_art/edits-2026-10-20/quoth/spine-layout.png",
+      "source": "assets/authoring/box_art/originals-2026-10-20/quoth/spine.png",
       "crop": {
-        "left": 332,
+        "left": 0,
         "top": 0,
-        "width": 233,
-        "height": 1752
+        "width": 793,
+        "height": 1983
       },
       "background": "#15110c",
-      "note": "AI reflow of supplied wide spine; preserve title/logos/palette, remove outer black canvas, then fit without stretching. Original and edit both retained.",
-      "sourceSha256": "28b6ff62af401358f47608c012ebbd5c779a3ba6f9f16444dab32f22b375cbb0",
+      "note": "Final owner proportion ruling: complete unchanged original spine, uniformly scaled with padding; no AI-altered glyphs/logos are shipped.",
+      "sourceSha256": "56765f4988c52a24e5135817805a39ca5feddea66d131988b1900071348f642a",
       "fit": "contain",
       "content": {
-        "left": 37,
-        "top": 0,
-        "width": 266,
-        "height": 2000
+        "left": 0,
+        "top": 575,
+        "width": 340,
+        "height": 850
       },
       "width": 340,
       "height": 2000,
-      "sha256": "dad7d1615a370ee9b5ff62eef4f5d7eaa2e09759df9dee5bba247cbb14d15350",
-      "bytes": 767506,
-      "editedFrom": "assets/authoring/box_art/originals-2026-10-20/quoth/spine.png"
+      "sha256": "64e8c42948bcb016eb33c92fb893f26641351548dd83c0fdf7f6a12dd9a3ad11",
+      "bytes": 418812,
+      "supersededSource": "assets/authoring/box_art/edits-2026-10-20/quoth/spine-layout.png"
     },
     {
       "game": "rogue",

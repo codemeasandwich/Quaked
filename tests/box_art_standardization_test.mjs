@@ -34,22 +34,23 @@ test('every live face has one canonical role and the current manifest is exhaust
  assert.equal(GAME_BOXES.mod_q30a1024,undefined,'historical screenshot collage remains unboxed');
 });
 
-test('all runtime pixels fully decode to one physical-box standard and match manifest bytes',async()=>{
- const manifest=await json('assets/boxes/manifest.json');
+test('all runtime pixels fully decode with uniform spines and individually recorded front/back dimensions',async()=>{
+ const manifest=await json('assets/boxes/manifest.json'),record=await json('docs/evidence/box-art-standardization-2026-10-20/derivation.json');
  for(const row of manifest.faces){
   const bytes=await read(row.path);assert.equal(bytes.length,row.bytes,row.path+' bytes');assert.equal(digest(bytes),row.sha256,row.path+' SHA-256');
   // raw().toBuffer decodes every pixel; metadata alone could pass a truncated file.
   const {info}=await sharp(bytes).raw().toBuffer({resolveWithObject:true});
-  assert.equal(info.width,row.face==='spine'?340:1640,row.path+' decoded width');assert.equal(info.height,2000,row.path+' decoded height');
-  if(row.width!==undefined)assert.equal(row.width,info.width,row.path+' recorded width');
-  if(row.height!==undefined)assert.equal(row.height,info.height,row.path+' recorded height');
+  assert.ok(Number.isInteger(row.width)&&row.width>0&&Number.isInteger(row.height)&&row.height>0,row.path+' positive recorded dimensions');
+  assert.equal(row.width,info.width,row.path+' recorded width');assert.equal(row.height,info.height,row.path+' recorded height');
+  if(row.face==='spine')assert.deepEqual([info.width,info.height],[340,2000],row.path+' uniform spine dimensions');
+  const derived=record.faces.find(face=>face.path===row.path);assert.ok(derived,row.path+' recorded recipe');assert.deepEqual([info.width,info.height],[derived.width,derived.height],row.path+' matches its own recipe dimensions');
  }
 });
 
 test('derivatives retain exact original custody and bounded source-panel provenance',async()=>{
  const record=await json('docs/evidence/box-art-standardization-2026-10-20/derivation.json');
  assert.equal(record.version,1);
- assert.deepEqual(record.standard,{front:[1640,2000],back:[1640,2000],spine:[340,2000]});
+ assert.deepEqual(record.standard.spine,[340,2000],'only spines have universal dimensions');
  const archives=new Map(),hashPaths=new Map();
  for(const source of record.sources){
   assert.ok(source.archivePath.startsWith('assets/authoring/box_art/'),'original is retained in source-only authoring');
@@ -62,20 +63,36 @@ test('derivatives retain exact original custody and bounded source-panel provena
  for(const [hash,paths]of hashPaths)assert.equal(paths.size,1,'one canonical retained blob per original SHA-256 '+hash);
  const generated=record.sources.filter(source=>source.origin==='generated');
  const selectedGenerated=generated.filter(source=>record.faces.some(face=>face.source===source.archivePath));
- assert.equal(selectedGenerated.length,2,'only the two reviewed wide-spine reflows use AI; rejected candidates can remain retained');
+ assert.equal(selectedGenerated.length,0,'runtime preserves supplied artwork proportions; all AI drafts remain source-only history');
  const promptFor=async source=>{const [path,key]=source.prompt.split('#'),document=await json(path);return key?document.prompts[key]:document.prompt;};
  for(const source of generated){assert.ok(archives.has(source.editedFrom),'generated reflow keeps its supplied original');assert.equal(source.tool,'image_gen.imagegen');assert.ok(await promptFor(source),'AI edit prompt retained');}
- const malice=selectedGenerated.find(source=>record.faces.some(face=>face.game==='malice'&&face.source===source.archivePath));
- assert.match(await promptFor(malice),/23RD CENTURY/,'active Malice repair instructions retain the exact supplied century wording');
+ const malice=record.faces.find(face=>face.game==='malice'&&face.face==='spine');
+ assert.equal(malice.source,'assets/authoring/box_art/import-2026-10-20/malice/side.png','Malice uses its exact supplied source with original23RD wording and elliptical disc');
+ assert.equal(malice.sourceSha256,'236d2dd48ba27d6f7b9d6c0afd75ce627a652d93c3306d8bd22b405231a401e6','original Malice23RD and ellipse source identity');
+ const quoth=record.faces.find(face=>face.game==='quoth'&&face.face==='spine');assert.equal(quoth.source,'assets/authoring/box_art/originals-2026-10-20/quoth/spine.png','Quoth retains original glyph proportions');assert.equal(quoth.sourceSha256,'56765f4988c52a24e5135817805a39ca5feddea66d131988b1900071348f642a','original Quoth glyph identity');
  const manifest=await json('assets/boxes/manifest.json');
  assert.deepEqual(record.faces.map(({game,face,path,sha256,bytes})=>({game,face,path,sha256,bytes})).sort((a,b)=>a.path.localeCompare(b.path)),manifest.faces.map(({game,face,path,sha256,bytes})=>({game,face,path,sha256,bytes})).sort((a,b)=>a.path.localeCompare(b.path)),'derivation covers exactly the shipped hashes');
  for(const face of record.faces){
   const source=archives.get(face.source);assert.ok(source,face.path+' retained source exists');assert.equal(face.sourceSha256,source.sha256);
   const crop=face.crop;for(const value of Object.values(crop))assert.ok(Number.isInteger(value)&&value>=0,'integer crop: '+face.path);
   assert.ok(crop.width>0&&crop.height>0);assert.ok(crop.left+crop.width<=source.width&&crop.top+crop.height<=source.height,face.path+' crop inside actual original');
-  const [width,height]=record.standard[face.face];assert.equal(face.width,width);assert.equal(face.height,height);assert.equal(face.fit,'contain','preserve complete panel composition');
+  const {width,height}=face;assert.ok(Number.isInteger(width)&&width>0&&Number.isInteger(height)&&height>0,'each front/back recipe records its own positive dimensions');if(face.face==='spine')assert.deepEqual([width,height],[340,2000]);assert.equal(face.fit,'contain','preserve complete panel composition');
   const content=face.content;assert.ok(content.left>=0&&content.top>=0&&content.width>0&&content.height>0);assert.ok(content.left+content.width<=width&&content.top+content.height<=height);
   assert.ok(Math.abs(content.width/crop.width-content.height/crop.height)<Math.max(1/crop.width,1/crop.height)*2,face.path+' scales source proportions without stretching letters');
+  if(face.face==='spine'&&['malice','quoth'].includes(face.game))assert.deepEqual(crop,{left:0,top:0,width:source.width,height:source.height},face.path+' supplied separate spine remains complete');
+  // Independently inspected originals have one full-height printed strip,
+  // surrounded only by black/gradient authoring padding. These pinned bounds
+  // keep all lettering, logos and strip texture rather than shrinking the pad.
+  const printedSpines={shareware:{left:248,width:392},hipnotic:{left:387,width:249},rogue:{left:400,width:226},mg1:{left:329,width:368}};
+  if(face.face==='spine'&&printedSpines[face.game])assert.deepEqual(crop,{left:printedSpines[face.game].left,top:0,width:printedSpines[face.game].width,height:source.height},face.path+' complete reviewed printed strip, only blank outer padding removed');
+  if(face.face==='spine'&&['malice','quoth'].includes(face.game)){
+   // Bind the disputed glyphs/disc directly to the supplied original pixels:
+   // uniform resampling + padding must be the entire operation, with no redraw.
+   const scaled=await sharp(await read(source.archivePath)).extract(crop).resize(content.width,content.height,{kernel:'lanczos3'}).png().toBuffer();
+   const expected=await sharp({create:{width,height,channels:3,background:face.background}}).composite([{input:scaled,left:content.left,top:content.top}]).removeAlpha().raw().toBuffer();
+   const actual=await sharp(await read(face.path)).removeAlpha().raw().toBuffer();
+   assert.ok(actual.equals(expected),face.path+' is only a uniform resize of supplied pixels plus padding; glyphs and ellipse are never redrawn');
+  }
  }
  const immortal=Object.fromEntries(record.faces.filter(face=>face.game==='mod_the_immortal_lock').map(face=>[face.face,face]));
  // In the supplied 1659×948 wrap, the spine's PC / MAC footer starts near

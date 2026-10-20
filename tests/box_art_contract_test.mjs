@@ -36,8 +36,10 @@ test('the current manifest binds fifty-six standard WebP faces to nineteen appro
  assert.deepEqual(derivation.faces.map(({game,face,path})=>({game,face,path})).sort((a,b)=>a.path.localeCompare(b.path)),expectedRows,'each runtime face has a derivation');
  for(const row of manifest.faces){
   await verify(row,row.path);
-  const bytes=await readFile(new URL('../'+row.path,import.meta.url)),metadata=await sharp(bytes).metadata(),dimensions=row.face==='spine'?[340,2000]:[1640,2000];
-  assert.equal(metadata.format,'webp',row.path+' actual format');assert.deepEqual([metadata.width,metadata.height],dimensions,row.path+' decoded standard dimensions');
+  const bytes=await readFile(new URL('../'+row.path,import.meta.url)),metadata=await sharp(bytes).metadata(),dimensions=[row.width,row.height];
+  assert.ok(dimensions.every(value=>Number.isInteger(value)&&value>0),row.path+' individually recorded positive dimensions');
+  assert.equal(metadata.format,'webp',row.path+' actual format');assert.deepEqual([metadata.width,metadata.height],dimensions,row.path+' decoded recorded dimensions');
+  if(row.face==='spine')assert.deepEqual(dimensions,[340,2000],row.path+' uniform spine dimensions');
   const derived=derivation.faces.find(face=>face.path===row.path);assert.equal(derived.sha256,row.sha256,row.path+' derivation hash');assert.equal(derived.bytes,row.bytes,row.path+' derivation bytes');assert.deepEqual([derived.width,derived.height],dimensions,row.path+' derivation dimensions');
   const source=derivation.sources.find(source=>(source.archivePath===derived.source||source.originalPath===derived.source)&&source.sha256===derived.sourceSha256);assert.ok(source,row.path+' has an identified retained original');
  }
