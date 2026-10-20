@@ -28,7 +28,7 @@ import {
 	set_m_state, set_m_entersound, setKeyDest, getKeyDest, menuOpeners,
 	_sv, _cls, _realtime_get, _host_time_get, _S_LocalSound, _IN_RequestPointerLock, _Draw_CachePic,
 	set_m_save_demonum, m_save_demonum, _CL_NextDemo,
-	M_DrawTransPic, M_DrawPic, M_DrawTransPicRegion, M_DrawTransPicCropped, M_Print
+	M_DrawTransPic, M_DrawPic, M_DrawTransPicCropped, M_DrawBigString, M_DrawMenuDot, M_Print
 } from './menu_common.js';
 
 /** The native class names, in `playerclass` order (menu.c ClassNames). */
@@ -139,15 +139,6 @@ const BIGFONT_FALLBACK_WIDTH = ( () => {
 } )();
 
 let bigfontWidths = null;
-
-function Hexen2_BigfontNumber( character ) {
-
-	if ( character === ' ' ) return 32;
-	if ( character === '/' ) return 26;
-	const code = String( character ).toUpperCase().charCodeAt( 0 ) - 65;
-	return code >= 0 && code < 26 ? code : - 1;
-
-}
 
 // Native M_BuildBigCharWidth (menu.c:387-463): the right edge of a glyph plus the space the next glyph's ink leaves at
 // its left, so adjacent letters keep the native kerning. fontsize.lmp is the cached 27x27 byte table; without it the
@@ -260,26 +251,7 @@ export function M_Hexen2BigString( x, y, text ) {
 
 	const pic = Hexen2_BigfontPic();
 	if ( ! pic ) { M_Print( x, y, String( text ) ); return; }
-	const widths = Hexen2_LoadBigfontWidths( pic );
-	const string = String( text );
-	let px = x;
-
-	for ( let i = 0; i < string.length; i ++ ) {
-
-		const num = Hexen2_BigfontNumber( string[ i ] );
-		if ( num === 32 ) { px += 32; continue; }
-		if ( num < 0 || num >= 27 ) continue;
-
-		const next = Hexen2_BigfontNumber( string[ i + 1 ] );
-		M_DrawTransPicRegion( px, y, pic, ( num % BIGFONT_COLUMNS ) * BIGFONT_CELL_W,
-			Math.floor( num / BIGFONT_COLUMNS ) * BIGFONT_PITCH, BIGFONT_CELL_W, BIGFONT_CELL_H );
-		if ( next < 0 || next >= 27 ) continue;
-
-		// menu.c M_DrawBigCharacter's one-off kern for C followed by P
-		const add = num === 2 && next === 15 ? 3 : 0;
-		px += widths[ num * 27 + next ] + add;
-
-	}
+	M_DrawBigString( x, y, text, pic, Hexen2_LoadBigfontWidths( pic ) );
 
 }
 
@@ -293,7 +265,7 @@ export function Hexen2_MenuDot( row ) {
 
 	if ( ! _Draw_CachePic ) return;
 	const frame = Math.floor( _realtime_get() * 10 ) % 8;
-	M_DrawTransPic( 43, 54 + row * 20, _Draw_CachePic( 'gfx/menu/menudot' + ( frame + 1 ) + '.lmp' ) );
+	M_DrawMenuDot( 43, 54 + row * 20, _Draw_CachePic( 'gfx/menu/menudot' + ( frame + 1 ) + '.lmp' ) );
 
 }
 

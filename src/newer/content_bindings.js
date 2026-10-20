@@ -67,6 +67,11 @@ const QUAKE = frozen( {
 		} ),
 		patterns: frozenArray( [ [ /^rock\d+_\d+$/, 'wall' ] ] )
 	} ),
+	menu: frozen( {
+		// Quake keeps the supplied renderer exactly: its embedded DpQuake atlas, bronze shaders and rotating Q.
+		skin: 'quake', material: 'bronze',
+		bigfont: frozenArray( [] ), conchars: null, fontWidths: null
+	} ),
 	sounds: frozen( {
 		lava: 'ambience/lava1.wav',
 		missileWater: 'misc/h2ohit1.wav',
@@ -167,6 +172,16 @@ const HEXEN2 = frozen( {
 		// (skills/quaked-texture-authoring), so the rock field has no charts and its warm-up has nothing to wait for
 		materials: frozenMap( {} ),
 		patterns: frozenArray( [] )
+	} ),
+	menu: frozen( {
+		// One dynamic menu, skinned from the installed game data: distance-field atlases from the stock bigfont and
+		// conchars sheets, the native advance table, grey stone instead of bronze, original pictures and menudots.
+		skin: 'hexen2', material: 'stone',
+		bigfont: frozenArray( [ 'gfx/menu/bigfont2.lmp', 'gfx/menu/bigfont.lmp' ] ),
+		conchars: 'gfx/menu/conchars.lmp',
+		fontWidths: 'gfx/menu/fontsize.lmp',
+		imageSmoothing: true,
+		selectorFrames: 8
 	} ),
 	sounds: frozen( {
 		lava: 'ambience/lava.wav',

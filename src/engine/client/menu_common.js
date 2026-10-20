@@ -18,7 +18,7 @@
  * Each state field has one writer, its setter; `menuOpeners` is filled by the facade (menu.js) as it loads.
  */
 import { NEWER_DEFAULT_GAMMA, Newer_ApplyGameDefaults } from '../common/hooks.js'; // installed by newer/ui/newer_defaults.js
-import { MainMenu_Glyph, MainMenu_Image, MainMenu_TextBox, MainMenu_Text } from '../common/hooks.js'; // installed by newer/ui/menu_webgl.js
+import { MainMenu_BigText, MainMenu_Glyph, MainMenu_Image, MainMenu_MenuDot, MainMenu_ScrollPic, MainMenu_Slider, MainMenu_TextBox, MainMenu_Text } from '../common/hooks.js'; // installed by newer/ui/menu_webgl.js
 import { key_dest } from './keys.js';
 import { Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_HighlightOffset } from '../render/gl_draw.js';
 
@@ -448,7 +448,7 @@ export function M_DrawTransPic( x, y, pic ) {
 export function M_DrawSubPic( x, y, pic, srcY, srcH ) {
 
 	const dx = x + ( ( _vid.width - 320 ) >> 1 ), dy = y + ( ( _vid.height - 200 ) >> 1 );
-	if ( MainMenu_Image( dx, dy, pic, srcY ) ) return;
+	if ( MainMenu_Image( dx, dy, pic, srcY, srcH ) ) return;
 	if ( _Draw_SubPic && pic )
 		_Draw_SubPic( dx, dy, pic, srcY, srcH );
 
@@ -474,6 +474,97 @@ export function M_DrawTransPicRegion( x, y, pic, srcX, srcY, srcW, srcH ) {
 
 }
 
+// The native bigfont sheet's cell and character mapping: 8 columns of 20 x 19 glyphs on a 20-pixel row pitch, A-Z then
+// `/`; a space advances 32 (uhexen2 engine/hexen2/menu.c M_DrawBigString, M_DrawBigCharacter).
+const BIGFONT_COLUMNS = 8, BIGFONT_CELL_W = 20, BIGFONT_CELL_H = 19, BIGFONT_PITCH = 20;
+
+function BigfontIndex( character ) {
+
+	if ( character === ' ' ) return 32;
+	if ( character === '/' ) return 26;
+	const code = String( character ).toUpperCase().charCodeAt( 0 ) - 65;
+	return code >= 0 && code < 26 ? code : - 1;
+
+}
+
+/**
+ * Draws Hexen II's native bigfont lettering (A-Z, space and `/`, 20 x 19 cells) at a 320 x 200 menu position: through
+ * the WebGL menu when it is drawing (each glyph keeps the native pair advance from `widths`, the 27 x 27
+ * `gfx/menu/fontsize.lmp` table), otherwise as the original sub-pictures. Quake has no bigfont and never calls this.
+ *
+ * @param {number} x x in menu pixels
+ * @param {number} y y in menu pixels
+ * @param {string} text the text (A-Z, space and `/`)
+ * @param {?qpic_t} pic the bigfont sheet (`gfx/menu/bigfont2.lmp` or `bigfont.lmp`)
+ * @param {?Uint8Array} widths the native advance table, 27 x 27 bytes
+ */
+export function M_DrawBigString( x, y, text, pic, widths ) {
+
+	const dx = x + ( ( _vid.width - 320 ) >> 1 ), dy = y + ( ( _vid.height - 200 ) >> 1 );
+	if ( MainMenu_BigText( dx, dy, text, pic, widths ) ) return;
+	if ( ! pic ) { M_Print( x, y, String( text ) ); return; }
+
+	const string = String( text );
+	let px = x;
+	for ( let i = 0; i < string.length; i ++ ) {
+
+		const num = BigfontIndex( string[ i ] );
+		if ( num === 32 ) { px += 32; continue; }
+		if ( num < 0 || num >= 27 ) continue;
+
+		M_DrawTransPicRegion( px, y, pic, ( num % BIGFONT_COLUMNS ) * BIGFONT_CELL_W,
+			Math.floor( num / BIGFONT_COLUMNS ) * BIGFONT_PITCH, BIGFONT_CELL_W, BIGFONT_CELL_H );
+		const next = BigfontIndex( string[ i + 1 ] );
+		if ( next < 0 || next >= 27 ) continue;
+
+		// menu.c M_DrawBigCharacter's one-off kern for C followed by P
+		const extra = num === 2 && next === 15 ? 3 : 0;
+		px += ( widths && widths.length === 27 * 27 ? widths[ num * 27 + next ] : 14 ) + extra;
+
+	}
+
+}
+
+/**
+ * Draws Hexen II's animated selection menudot at a 320 x 200 menu position: through the WebGL menu when it is drawing
+ * (the original frame, cleanly upscaled), otherwise with the host's transparent picture draw. Quake's rotating Q is
+ * never involved.
+ *
+ * @param {number} x x in menu pixels
+ * @param {number} y y in menu pixels
+ * @param {?qpic_t} pic one `gfx/menu/menudot1..8.lmp` frame
+ */
+export function M_DrawMenuDot( x, y, pic ) {
+
+	const dx = x + ( ( _vid.width - 320 ) >> 1 ), dy = y + ( ( _vid.height - 200 ) >> 1 );
+	if ( MainMenu_MenuDot( dx, dy, pic ) ) return;
+	if ( _Draw_TransPic && pic ) _Draw_TransPic( dx, dy, pic );
+
+}
+
+/**
+ * Draws a grouped slider row at a 320 x 200 menu position: through the WebGL menu when it is drawing, otherwise the
+ * game's four slider glyphs from `base` (128..131 under Quake, 256..259 under Hexen II). `range` is clamped to 0..1.
+ *
+ * @param {number} x the left end of the track in menu pixels
+ * @param {number} y y in menu pixels
+ * @param {number} range the slider position, 0..1
+ * @param {number} [base=128] the first slider glyph code
+ */
+export function M_DrawSlider( x, y, range, base = 128 ) {
+
+	const dx = x - 8 + ( ( _vid.width - 320 ) >> 1 ), dy = y + ( ( _vid.height - 200 ) >> 1 );
+	if ( MainMenu_Slider( dx, dy, ( 10 + 2 ) * 8, range ) ) return;
+
+	if ( range < 0 ) range = 0;
+	if ( range > 1 ) range = 1;
+	M_DrawCharacter( x - 8, y, base );
+	for ( let i = 0; i < 10; i ++ ) M_DrawCharacter( x + i * 8, y, base + 1 );
+	M_DrawCharacter( x + 10 * 8, y, base + 2 );
+	M_DrawCharacter( x + Math.floor( 9 * 8 * range ), y, base + 3 );
+
+}
+
 /**
  * Draws a picture clipped at the top and bottom of the screen: Hexen II's ScrollTitle slides a title and the plaque in
  * from above, so their top is negative for most of the animation (uhexen2 Draw_TransPicCropped, menu.c:507-575). The
@@ -486,6 +577,8 @@ export function M_DrawTransPicRegion( x, y, pic, srcX, srcY, srcW, srcH ) {
 export function M_DrawTransPicCropped( x, y, pic ) {
 
 	if ( ! pic ) return;
+	const dx = x + ( ( _vid.width - 320 ) >> 1 ), dy = y + ( ( _vid.height - 200 ) >> 1 );
+	if ( MainMenu_ScrollPic( dx, dy, pic ) ) return;
 	const height = pic.height ?? 0;
 	if ( height <= 0 ) return;
 	const offsetY = ( _vid.height - 200 ) >> 1;

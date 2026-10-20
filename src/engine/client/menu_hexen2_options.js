@@ -29,12 +29,10 @@ import { v_gamma } from './view.js';
 import { chase_active } from './chase.js';
 import {
 	m_none, m_hexen2_options, m_hexen2_keys, set_m_state, set_m_entersound, setKeyDest,
-	M_DrawCharacter, M_Print
+	M_DrawCharacter, M_DrawSlider, M_Print
 } from './menu_common.js';
 import { M_Hexen2_Menu_Main_f, Hexen2_ScrollTitle, Hexen2_MenuSound, Hexen2_BlinkCharacter } from './menu_hexen2.js';
 import { M_Menu_Video_f } from './menu_options.js';
-
-const SLIDER_RANGE = 10;
 
 // The native rows, in order, with the two Quaked rows that matter for Hexen appended. The labels are right-aligned to
 // the native 22-character field (menu.c:2021-2104).
@@ -162,17 +160,6 @@ function Hexen2_ToggleRow() {
 
 }
 
-function Hexen2_DrawSlider( x, y, range ) {
-
-	if ( range < 0 ) range = 0;
-	if ( range > 1 ) range = 1;
-	M_DrawCharacter( x - 8, y, 256 );
-	for ( let i = 0; i < SLIDER_RANGE; i ++ ) M_DrawCharacter( x + i * 8, y, 257 );
-	M_DrawCharacter( x + SLIDER_RANGE * 8, y, 258 );
-	M_DrawCharacter( x + Math.floor( ( SLIDER_RANGE - 1 ) * 8 * range ), y, 259 );
-
-}
-
 function Hexen2_DrawCheckbox( x, y, on ) { M_Print( x, y, on ? 'on' : 'off' ); }
 
 function Hexen2_RowValue( row ) {
@@ -218,7 +205,7 @@ export function M_Hexen2_Options_Draw() {
 		const row = OPTIONS[ i ], y = 60 + 8 * i;
 		M_Print( 16 + Math.max( 0, 22 - row.label.length ) * 8, y, row.label );
 		const value = Hexen2_RowValue( row );
-		if ( value.slider !== undefined ) Hexen2_DrawSlider( 220, y, value.slider );
+		if ( value.slider !== undefined ) M_DrawSlider( 220, y, value.slider, 256 );
 		else if ( value.check !== undefined ) Hexen2_DrawCheckbox( 220, y, value.check );
 		else if ( value.text !== undefined ) M_Print( 220, y, value.text );
 

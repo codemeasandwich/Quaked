@@ -35,6 +35,7 @@ const QUAKE = Object.freeze( {
 	hullCount: 4,
 	hulls: null, // the BSP loader's existing Quake hull sizes
 	frameTime: 0.1, // OP_STATE think delay
+	menuSkin: 'quake', // the dynamic menu's skin (newer/ui/menu_skins.js)
 	modelDir: 'progs/',
 	startMap: null, // Quake's quake.rc starts the attract demos; the menu owns New Game
 	startupScript: 'quake.rc', // Host_Init execs it before the saved configuration
@@ -57,6 +58,7 @@ function hexen2( id, { portals = false, demo = false } = {} ) {
 		hullCount: 8, // dmodel_t carries 8 headnodes; hulls 0-5 are populated
 		hulls: Object.freeze( hulls ),
 		frameTime: 0.05, // HX_FRAME_TIME
+		menuSkin: 'hexen2',
 		modelDir: 'models/',
 		// the first maps of each edition (uhexen2: demo1 opens the base campaign, keep1 Portal); hexen.rc opens the
 		// menu, as native Hexen II does, so a host that would start Quake's attract demos starts these only on request

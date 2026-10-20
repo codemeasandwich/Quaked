@@ -163,6 +163,8 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `0ca3857c` | review R4 / F3 | King of the Hill in native demos and the deathmatch signon; native objective bits in the inventory translator |
 | `659b4026` | owner trial 1 | fullbright index taken from each game's `colormap.lmp` (Hexen's yellow dotted world textures) |
 | `31498a84` | owner trial 2 / M1 | native Hexen II menus on the shared menu framework: main with the sliding title, single player, multiplayer, options, keys, help, quit, load/save |
+| `8cc2c3c7` | owner request | Help as one scroll with sticky section headings |
+| (this commit) | owner request / M2 | high-resolution Hexen II menus on the one dynamic renderer: per-game skin with a runtime font from the installed bigfont/conchars, grey stone, smoothed original pictures, sliding title, menudot selector; Quake unchanged |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;
@@ -190,6 +192,11 @@ with `M_Print`/`M_PrintWhite`, so the WebGL menu redraws it at full resolution; 
 panel cut out. Keys: Up/Down and the wheel scroll, Page Up/Down and Space a panel, Left/Right a section, Enter the next
 section (wrapping), Home/End; touching a pinned heading goes to that section. Module `hexen2_help_scroll.js`, test
 `tests/hexen2_help_scroll_test.js` (red against the paged help, then green).
+
+M2 verification before commit: 245/245 across 81 suites (every `tests/hexen2_*`, menu, hook, binding and protocol
+suite) with M2 on top of the help scroll; M2's own run reported the engine list 217/217 and a Quake command-stream
+snapshot unchanged. `tests/cheats_menu_test.js` fails one case ("Enter on it opens Cheats: 8 != 23") identically on the
+Dev base `713b47d3`, so it predates this branch; it is not in the hook's engine list and is left for a separate fix.
 
 Open decisions and known limits:
 

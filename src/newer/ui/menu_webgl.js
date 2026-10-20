@@ -1,22 +1,29 @@
 /**
  * @module newer/ui/menu_webgl
  *
- * The supplied WebGL2 menu renderer (glyphs, bronze panels, selector) drawn over Quake's native menu, which keeps the
- * actions and input.
+ * The supplied WebGL2 menu renderer (glyphs, panels, selector) drawn over the native menu, which keeps the actions and
+ * input. One renderer serves both games through data-only skins (`newer/ui/menu_skins.js`): Quake keeps the supplied
+ * DpQuake atlas, bronze material and rotating Q; Hexen II gets a runtime distance-field atlas from its installed
+ * bigfont/conchars, grey stone, original pictures and the animated menudot. The skin is resolved from the active game
+ * profile every frame, so no module-global mode toggle exists.
  *
  * Types: plain values and functions; no exported classes.
  *
  * State: no mutable exports; module-level variables `renderer`, `loading`, `failed`, `visible`, `epoch`, `frameSkin`,
- * `presented`, `commands`, `blits`, `size`, `inGameSnapshot`; 1 module-level collection (Map/Set).
+ * `presented`, `commands`, `blits`, `images`, `size`, `inGameSnapshot`; 1 module-level collection (Map/Set).
  *
  * Errors: catches at 3 places.
  */
-// Reuses the supplied WebGL2 glyph, bronze panel and selector renderer across
-// Quaked's native menu stack. menu.js remains the only action/input owner.
+// Reuses the supplied WebGL2 glyph, panel and selector renderer across Quaked's
+// native menu stack. menu.js remains the only action/input owner.
 import { Draw_GetOverlayCanvas, Draw_FullResolutionCanvas, Draw_FullResolutionImage, Draw_GetUIScale } from '../../engine/render/gl_draw.js';
+import { COM_LoadFile } from '../../engine/common/pak.js';
+import { GameProfile_Get } from '../../engine/common/game_profile.js';
+import { NewerBindings } from '../content_bindings.js';
+import { BuildHexen2FontAtlas, MENU_SKINS, MenuSkin_ApplyPrograms, MenuSkin_BigfontIndex, MenuSkin_For } from './menu_skins.js';
 
 let renderer = null, loading = null, failed = null, visible = false, epoch = 0;
-let frameSkin = false, presented = false, commands = [], blits = [], size = [ 0, 0 ];
+let frameSkin = false, presented = false, commands = [], blits = [], images = [], size = [ 0, 0 ];
 
 /**
  * Tells the adapter whether Quaked's native menu is up. Called at the start of every `M_Draw` (`menu.js`): true while
@@ -33,7 +40,7 @@ export function MainMenu_SetVisible( value ) {
 	visible = value;
 	if ( ! value ) {
 
-		presented = false; frameSkin = false; commands = []; blits = [];
+		presented = false; frameSkin = false; commands = []; blits = []; images = [];
 		// Gameplay can run for hours with the menu closed: release the screen-sized buffers.
 		// frame() resizes the canvas (and its framebuffers) again on the next opening.
 		if ( renderer?.canvas ) { renderer.canvas.width = 1; renderer.canvas.height = 1; }
@@ -50,7 +57,93 @@ export function MainMenu_SetVisible( value ) {
 export function MainMenu_Destroy() {
 
 	epoch ++; renderer?.destroy(); renderer = null; loading = null; failed = null;
-	visible = false; frameSkin = false; presented = false; commands = []; blits = []; size = [ 0, 0 ];
+	visible = false; frameSkin = false; presented = false; commands = []; blits = []; images = []; size = [ 0, 0 ];
+
+}
+
+// The active skin: Quake's until the host selects a Hexen II game.
+function activeSkin() { return MenuSkin_For( GameProfile_Get() ); }
+
+function skinReady( rend ) {
+
+	if ( ! rend?.loaded || rend.contextLost ) return false;
+	const skin = activeSkin();
+	return rend.__menuSkin === skin.id && rend.__material === skin.material;
+
+}
+
+// The installed Hexen II fonts as raw palette-index sheets, so the atlas builder sees the native transparency (index 0)
+// rather than a canvas conversion that treats 255 as transparent.
+function loadQpic( paths ) {
+
+	for ( const path of paths || [] ) {
+
+		const file = COM_LoadFile( path );
+		if ( ! file || file.byteLength < 8 ) continue;
+		const width = new DataView( file ).getInt32( 0, true ), height = new DataView( file ).getInt32( 4, true );
+		if ( ! ( width > 0 && height > 0 ) || file.byteLength < 8 + width * height ) continue;
+		return { width, height, data: new Uint8Array( file, 8, width * height ) };
+
+	}
+	return null;
+
+}
+
+function loadConchars( path ) {
+
+	if ( ! path ) return null;
+	const file = COM_LoadFile( path );
+	if ( ! file || file.byteLength < 128 * 128 ) return null;
+	const width = file.byteLength >= 256 * 128 ? 256 : 128;
+	return { width, height: 128, data: new Uint8Array( file ) };
+
+}
+
+function loadHexen2Atlas() {
+
+	const menu = NewerBindings().menu;
+	const widthsFile = menu.fontWidths ? COM_LoadFile( menu.fontWidths ) : null;
+	const widths = widthsFile && widthsFile.byteLength === 27 * 27 ? new Uint8Array( widthsFile ) : null;
+	return BuildHexen2FontAtlas( { bigfont: loadQpic( menu.bigfont ), conchars: loadConchars( menu.conchars ), widths } );
+
+}
+
+async function applySkin( rend, skin ) {
+
+	if ( rend.destroyed || rend.contextLost ) return;
+	if ( skin.id === 'hexen2' ) {
+
+		const atlas = loadHexen2Atlas();
+		if ( ! atlas ) throw new Error( 'the installed Hexen II menu fonts could not be read' );
+		rend.font = atlas.metrics; rend.fontSource = atlas.data; rend.__hexenAtlas = atlas.info;
+		if ( ! await rend._uploadFont( atlas.data, rend._generation ) ) throw new Error( 'Hexen II font upload was interrupted' );
+
+	} else {
+
+		rend.font = rend.__baseFont.metrics; rend.fontSource = rend.__baseFont.image; rend.__hexenAtlas = null;
+		if ( ! await rend._uploadFont( rend.fontSource, rend._generation ) ) throw new Error( 'font upload was interrupted' );
+
+	}
+	if ( rend.destroyed || rend.contextLost ) return;
+	MenuSkin_ApplyPrograms( rend, rend.__baseShaders, skin );
+	rend.__menuSkin = skin.id; rend.__material = skin.material;
+	rend.setConfig( skin.config );
+
+}
+
+function ensureSkin( rend ) {
+
+	const skin = activeSkin();
+	if ( rend.__menuSkin === skin.id && rend.__material === skin.material ) return;
+	if ( rend.__skinPromise ) return;
+	rend.__skinPromise = applySkin( rend, skin ).catch( error => {
+
+		if ( rend.destroyed ) return;
+		failed = String( error.message || error );
+		rend.destroy(); if ( renderer === rend ) renderer = null;
+		console.warn( 'Menu skin unavailable; native menu remains active:', failed );
+
+	} ).finally( () => { rend.__skinPromise = null; } );
 
 }
 
@@ -62,12 +155,14 @@ function prepare() {
 	if ( typeof document === 'undefined' || typeof document.createElement !== 'function' ) { failed = 'no DOM canvas'; return; }
 	if ( renderer || loading || failed ) return;
 	const generation = epoch;
-	loading = import( './menu_webgl_source.js' ).then( async ( { QuakeMenu } ) => {
+	loading = import( './menu_webgl_source.js' ).then( async ( { QuakeMenu, QUAKE_FONT, QUAKE_SHADERS } ) => {
 
 		if ( generation !== epoch ) return;
 		const canvas = document.createElement( 'canvas' );
 		const next = new QuakeMenu( canvas, { externalFrame: true,
 			config: { title: 'Quake', items: [ { id: 'native-menu-frame', label: '' } ], selected: 0, selectorRotate: true } } );
+		next.__baseFont = QUAKE_FONT; next.__baseShaders = QUAKE_SHADERS;
+		next.__menuSkin = 'quake'; next.__material = 'bronze'; next.__hexenAtlas = null;
 		renderer = next;
 		canvas.addEventListener( 'quake:error', event => {
 
@@ -75,8 +170,12 @@ function prepare() {
 			failed = String( event.detail ); next.destroy(); renderer = null;
 
 		} );
+		// The generated renderer restores its own base programs on context restoration; forget the applied skin so the
+		// next visible frame uploads the atlas and material again.
+		canvas.addEventListener( 'webglcontextlost', () => { next.__menuSkin = 'quake'; next.__material = 'bronze'; } );
 		await next.ready;
-		if ( generation !== epoch ) next.destroy();
+		if ( generation !== epoch ) { next.destroy(); return; }
+		ensureSkin( next );
 
 	} ).catch( error => {
 
@@ -98,17 +197,19 @@ export function MainMenu_Preload() { prepare(); }
 
 /**
  * Starts one menu frame: clears the queued commands and blits, starts loading the renderer on first use (a dynamic
- * import of `menu_webgl_source.js`), and decides whether this frame is skinned (the renderer is loaded and its context
- * not lost). Called by `M_Draw` each frame the menu is up, before the native drawing helpers. While the renderer is
- * still loading `M_Draw` blocks the classic menu; only a permanent failure falls back to it.
+ * import of `menu_webgl_source.js`), and decides whether this frame is skinned (the renderer is loaded, its context not
+ * lost and the active game's skin applied). Called by `M_Draw` each frame the menu is up, before the native drawing
+ * helpers. While the renderer or its skin is still loading `M_Draw` blocks the classic menu; only a permanent failure
+ * falls back to it.
  */
 export function MainMenu_Begin() {
 
-	frameSkin = false; commands = []; blits = [];
+	frameSkin = false; commands = []; blits = []; images = [];
 	presented = false;
 	if ( ! visible || failed ) return;
 	prepare();
-	frameSkin = !! renderer?.loaded && ! renderer.contextLost;
+	if ( renderer ) ensureSkin( renderer );
+	frameSkin = skinReady( renderer );
 
 }
 
@@ -122,12 +223,12 @@ export function MainMenu_Skinned() { return frameSkin; }
 
 /**
  * Whether the high-quality menu is expected but not ready yet. `M_Draw` uses this to draw a
- * neutral backdrop instead of the classic menu while the renderer loads. A permanent failure
+ * neutral backdrop instead of the classic menu while the renderer or its game skin loads. A permanent failure
  * returns false so the native menu remains usable.
  *
- * @returns {boolean} true while visible, not failed, and the renderer has not finished loading
+ * @returns {boolean} true while visible, not failed, and the renderer (and its skin) has not finished loading
  */
-export function MainMenu_Blocking() { return visible && ! failed && ! ( renderer?.loaded && ! renderer.contextLost ); }
+export function MainMenu_Blocking() { return visible && ! failed && ! skinReady( renderer ); }
 
 function physical( x, y ) {
 
@@ -160,6 +261,7 @@ const SELECTOR_HEIGHT = 0.64;
 const ROW_PITCH = 20, ROW_CORE_TOP = 3, ROW_CORE_BOTTOM = 17;           // stock sheets: one 20-unit row per menu item
 const CELL = 8;                 // engine character cell, virtual units
 const CELL_CAP = 4.8, CELL_CAP_TOP = 1.5, CELL_MAX_W = 7.2;
+const HEXEN_CELL_CAP = 7; // the conchars 'H' ink fills 7 of its 8 pixels, so the dynamic small font keeps native size
 const pixelCache = new WeakMap(), rowCache = new WeakMap();
 
 function pixelsOf( pic ) {
@@ -257,10 +359,59 @@ function labelRows( pic, x, y, labels, firstRow, srcY ) {
 }
 
 /**
+ * Queues Hexen II's native bigfont lettering with the installed sheet's advances. Each glyph is emitted at its own cell
+ * so the 27 x 27 `fontsize.lmp` pair advances (and the C/P kern) are exact; the atlas glyphs live in the private-use
+ * block, so one runtime atlas carries both the bigfont and the small conchars. The command carries `display` (the
+ * original character) for diagnostics because `text` is the private atlas key.
+ *
+ * @param {number} x left edge in virtual screen units, menu offset already applied
+ * @param {number} y top of the glyph cell in virtual units
+ * @param {string} text the text (A-Z, space and `/`)
+ * @param {?qpic_t} pic the native bigfont sheet (used only to confirm the source exists)
+ * @param {?Uint8Array} widths the native 27 x 27 advance table
+ * @returns {boolean} true when queued; false when the frame is not Hexen-skinned or its atlas is not ready
+ */
+export function MainMenu_BigText( x, y, text, pic, widths ) {
+
+	if ( ! frameSkin || activeSkin().id !== 'hexen2' || ! renderer?.__hexenAtlas?.bigfont ) return false;
+	if ( ! pic ) return false;
+	const scale = Draw_GetUIScale(), em = 19 * scale, string = String( text );
+	const base = MENU_SKINS.hexen2.font.privateBase;
+	const placed = [];
+	for ( let i = 0; i < string.length; i ++ ) {
+
+		const num = MenuSkin_BigfontIndex( string[ i ] );
+		if ( num === 32 ) { placed.push( { space: true } ); continue; }
+		if ( num < 0 || num >= 27 ) { placed.push( { invalid: true } ); continue; }
+		const key = String.fromCharCode( base + num ), glyph = renderer.font.glyphs[ key ];
+		if ( ! glyph?.atlas ) return false;
+		placed.push( { key, display: string[ i ], ink: glyph.ink, num } );
+
+	}
+	let cellX = x;
+	for ( let i = 0; i < placed.length; i ++ ) {
+
+		const glyph = placed[ i ];
+		if ( glyph.space ) { cellX += 32; continue; }
+		if ( glyph.invalid ) continue;
+		commands.push( { type: 'text', text: glyph.key, display: glyph.display, x: cellX * scale + glyph.ink[ 0 ] * em,
+			y: y * scale + glyph.ink[ 1 ] * em, size: em, stretch: 1, kind: 1, bigfont: true, skin: 'hexen2' } );
+		const next = MenuSkin_BigfontIndex( string[ i + 1 ] );
+		if ( next < 0 || next >= 27 ) continue;
+		const extra = glyph.num === 2 && next === 15 ? 3 : 0;
+		cellX += ( widths && widths.length === 27 * 27 ? widths[ glyph.num * 27 + next ] : 14 ) + extra;
+
+	}
+	return true;
+
+}
+
+/**
  * Queues engine menu text in the supplied font. Engine text is a fixed 8-unit cell grid; every character stays in its
- * own cell (upper-cased, cap height 4.8 units) so right-aligned labels, columns and save-slot rows land exactly where
- * the original bitmap font put them. Called by `M_Print`/`M_PrintWhite` and for printable characters by
- * `MainMenu_Glyph`.
+ * own cell (cap height 4.8 units) so right-aligned labels, columns and save-slot rows land exactly where the original
+ * bitmap font put them. Under Hexen II the runtime conchars atlas is used and case is preserved for player names, save
+ * names and key binds; Quake keeps its upper-cased fixed-grid behaviour. Called by `M_Print`/`M_PrintWhite` and for
+ * printable characters by `MainMenu_Glyph`.
  *
  * @param {number} x left edge in virtual (320 x 200 based) screen units, menu offset already applied
  * @param {number} y top of the first line in virtual units; `\n` starts a new 8-unit row
@@ -276,22 +427,35 @@ export function MainMenu_Text( x, y, text, kind = 0, disabled = false ) {
 	// Engine text is a fixed 8-unit cell grid. Keep every character in its own
 	// cell so right-aligned labels, columns and save-slot rows land exactly where
 	// the original bitmap font put them.
+	const hexen = activeSkin().id === 'hexen2';
+	if ( hexen && ! renderer?.__hexenAtlas?.conchars ) return false;
 	if ( kind === 2 ) kind = 3; // stock white engine text
-	const scale = Draw_GetUIScale(), capH = CELL_CAP * scale, em = emFor( 'H', capH );
+	const scale = Draw_GetUIScale(), capH = ( hexen ? HEXEN_CELL_CAP : CELL_CAP ) * scale, em = emFor( 'H', capH );
+	const cellTop = ( hexen ? 1 : CELL_CAP_TOP ) * scale, maxWidth = ( hexen ? CELL : CELL_MAX_W ) * scale;
 	String( text ).split( '\n' ).forEach( ( line, row ) => {
 
 		[ ...line ].forEach( ( raw, i ) => {
 
-			const ch = raw.toUpperCase();
-			if ( ch === ' ' || ch.charCodeAt( 0 ) < 32 ) return;
-			const shape = renderer._shape( ch, em, 1, true );
+			const code = raw.charCodeAt( 0 );
+			const ch = hexen ? raw : raw.toUpperCase();
+			if ( ch === ' ' ) return;
+			if ( code < 32 && ! ( hexen && code >= 10 && code <= 13 ) ) return;
+			const shape = renderer._shape( ch, em, 1, ! hexen );
 			if ( ! ( shape.width > 0 ) ) return;
-			const stretch = Math.min( 1, CELL_MAX_W * scale / shape.width ), w = shape.width * stretch;
-			const top = ( y + row * CELL + CELL_CAP_TOP ) * scale;
+			const glyph = hexen ? renderer.font.glyphs[ ch ] : null;
+			const stretch = hexen ? 1 : Math.min( 1, maxWidth / shape.width ), w = shape.width * stretch;
+			const top = ( y + row * CELL ) * scale + cellTop;
 			const oy = '.,_'.includes( ch ) ? top + capH - shape.height :
 				'-+=<>:;'.includes( ch ) ? top + ( capH - shape.height ) / 2 : top;
-			commands.push( { type: 'text', text: ch, x: ( x + i * CELL ) * scale + ( CELL * scale - w ) / 2,
-				y: oy, size: em, stretch, kind, disabled: !! disabled } );
+			// Hexen II's conchars are a fixed 8-pixel grid: place the glyph's own ink at the cell's native offset so case,
+			// punctuation and right-aligned columns land where the bitmap font put them. Quake keeps the donor's centring.
+			const commandX = hexen && glyph ? ( x + i * CELL ) * scale + glyph.ink[ 0 ] * em
+				: ( x + i * CELL ) * scale + ( CELL * scale - w ) / 2;
+			const commandY = hexen && glyph ? ( y + row * CELL ) * scale + glyph.ink[ 1 ] * em : oy;
+			const command = { type: 'text', text: ch, x: commandX,
+				y: commandY, size: em, stretch, kind, disabled: !! disabled };
+			if ( hexen ) command.skin = 'hexen2';
+			commands.push( command );
 
 		} );
 
@@ -314,6 +478,17 @@ export function MainMenu_Text( x, y, text, kind = 0, disabled = false ) {
 export function MainMenu_Glyph( x, y, code ) {
 
 	if ( ! frameSkin ) return false;
+	if ( activeSkin().id === 'hexen2' ) {
+
+		if ( ! renderer?.__hexenAtlas?.conchars ) return false;
+		// Hexen II's own charset has 512 cells: a raw code (10/11/12/13 cursor, 128/129 scroll arrows) is drawn from the
+		// plain bank; a +256 code is the highlighted menu bank. 128..131 are real glyphs here, not Quake slider pieces.
+		if ( code >= 256 ) return MainMenu_Text( x, y, String.fromCharCode( code & 255 ), 0 );
+		if ( code >= 32 || ( code >= 10 && code <= 13 ) || ( code >= 128 && code <= 131 ) )
+			return MainMenu_Text( x, y, String.fromCharCode( code ), 2 );
+		return true;
+
+	}
 	if ( code >= 12 && code <= 17 ) {
 
 		const [ px, py ] = physical( x + 4, y + 4 );
@@ -348,7 +523,9 @@ export function MainMenu_Panel( x, y, width, height, well = false ) {
 
 	if ( ! frameSkin ) return false;
 	const [ px, py ] = physical( x, y ), scale = Draw_GetUIScale();
-	commands.push( { type: 'panel', x: px, y: py, w: width * scale, h: height * scale, well } );
+	const command = { type: 'panel', x: px, y: py, w: width * scale, h: height * scale, well };
+	if ( activeSkin().id === 'hexen2' ) { command.skin = 'hexen2'; command.material = 'stone'; }
+	commands.push( command );
 	return true;
 
 }
@@ -389,12 +566,16 @@ export function MainMenu_Slider( x, y, width, value ) {
 
 	if ( ! frameSkin ) return false;
 	const scale = Draw_GetUIScale(), v = Math.max( 0, Math.min( 1, value ) );
-	const trackH = 6.5 * scale, [ px, py ] = physical( x, y + ( CELL - 6.5 ) / 2 );
-	commands.push( { type: 'panel', x: px, y: py, w: width * scale, h: trackH, well: true } );
+	const trackH = 6.5 * scale, [ px, py ] = physical( x, y + ( CELL - 6.5 ) / 2 ), hexen = activeSkin().id === 'hexen2';
+	const track = { type: 'panel', x: px, y: py, w: width * scale, h: trackH, well: true };
+	if ( hexen ) { track.skin = 'hexen2'; track.material = 'stone'; }
+	commands.push( track );
 	// The stock knob sits on cell (range-1)*v of the ten middle cells.
 	const knobW = 6 * scale, knobH = 9 * scale;
-	commands.push( { type: 'panel', x: px + ( CELL + ( width / CELL - 3 ) * CELL * v ) * scale + ( CELL * scale - knobW ) / 2,
-		y: py + ( trackH - knobH ) / 2, w: knobW, h: knobH } );
+	const knob = { type: 'panel', x: px + ( CELL + ( width / CELL - 3 ) * CELL * v ) * scale + ( CELL * scale - knobW ) / 2,
+		y: py + ( trackH - knobH ) / 2, w: knobW, h: knobH };
+	if ( hexen ) { knob.skin = 'hexen2'; knob.material = 'stone'; }
+	commands.push( knob );
 	return true;
 
 }
@@ -429,6 +610,38 @@ function deferPicture( pic, px, py, scale, srcY ) {
 
 }
 
+// Hexen II's own pictures are presented as pictures: queued before the WebGL panels so the dynamic lettering and
+// panels stay on top, copied with smoothing so a 117 x 60 plaque or a 320 x 200 help page reads as clean art rather
+// than nearest-neighbour blocks. They are not replaced with guessed typography.
+function queueHexenImage( pic, px, py, scale, srcY = 0, srcH = 0 ) {
+
+	const height = srcH || pic.height || 0;
+	if ( ! ( pic.width > 0 && height > 0 ) ) return false;
+	commands.push( { type: 'image', pic, path: pic.path || '', x: px, y: py, w: pic.width * scale, h: height * scale,
+		srcX: 0, srcY, srcW: pic.width, srcH: height, smooth: true, skin: 'hexen2' } );
+	return true;
+
+}
+
+function queueHexenSelector( pic, px, py, scale ) {
+
+	if ( ! ( pic.width > 0 && pic.height > 0 ) ) return false;
+	commands.push( { type: 'selector', x: px, y: py, w: pic.width * scale, h: pic.height * scale,
+		pic, path: pic.path || '', smooth: true, skin: 'hexen2' } );
+	return true;
+
+}
+
+function hexenImage( x, y, pic, srcY, srcH ) {
+
+	const [ px, py ] = physical( x, y ), scale = Draw_GetUIScale(), path = pic.path || '';
+	if ( path.startsWith( 'gfx/menudot' ) ) return queueHexenSelector( pic, px, py, scale );
+	// The bigfont and conchars sheets are consumed by MainMenu_BigText/MainMenu_Text, never drawn as pictures.
+	if ( /gfx\/menu\/(?:bigfont2?|conchars)\.lmp$/.test( path ) ) return true;
+	return queueHexenImage( pic, px, py, scale, srcY, srcH );
+
+}
+
 /**
  * Replaces a native menu picture (`M_DrawPic`, `M_DrawTransPic`, `M_DrawSubPic`) with the supplied typography placed
  * on the original artwork's measured ink: the QUAKE plaque's letters (its id mark blitted as original pixels), the
@@ -436,16 +649,21 @@ function deferPicture( pic, px, py, scale, srcY ) {
  * multiplayer). `gfx/box_*` tiles are dropped (the text box panel replaces them); `gfx/bigbox.lmp` stays native;
  * pictures with no replacement are queued as blits so they still land above the WebGL panels.
  *
+ * Under Hexen II every game picture is queued as a smoothed high-resolution image or, for `gfx/menu/menudot*`, as the
+ * animated selector; Quake's replacements below are unchanged.
+ *
  * @param {number} x left edge in virtual screen units
  * @param {number} y top edge in virtual units
  * @param {?qpic_t} pic the picture (its `path` selects the replacement; `canvas` is read for measurement)
  * @param {number} [srcY=0] the top row of a sub-picture in picture units; a nonzero value cannot be blitted
+ * @param {number} [srcH=0] the sub-picture height in picture units (the whole picture when omitted)
  * @returns {boolean} true when replaced or queued; false to draw natively (not skinned, no picture, the portrait
  *   frame, an unmeasurable sheet, or a sub-picture with no replacement)
  */
-export function MainMenu_Image( x, y, pic, srcY = 0 ) {
+export function MainMenu_Image( x, y, pic, srcY = 0, srcH = 0 ) {
 
 	if ( ! frameSkin || ! pic ) return false;
+	if ( activeSkin().id === 'hexen2' ) return hexenImage( x, y, pic, srcY, srcH );
 	const path = pic.path || '', [ px, py ] = physical( x, y ), scale = Draw_GetUIScale();
 	if ( ! path ) return deferPicture( pic, px, py, scale, srcY );
 	if ( path === 'gfx/qplaque.lmp' ) {
@@ -508,6 +726,40 @@ export function MainMenu_Image( x, y, pic, srcY = 0 ) {
 
 }
 
+/**
+ * Queues one animated menudot frame as Hexen II's selector. The native page has already chosen the frame from
+ * `realtime`; the dynamic layer draws that original sprite cleanly upscaled instead of the rotating Q.
+ *
+ * @param {number} x left edge in virtual screen units
+ * @param {number} y top edge in virtual units
+ * @param {?qpic_t} pic the `gfx/menu/menudot1..8.lmp` frame
+ * @returns {boolean} true when queued; false when the frame is not Hexen-skinned or the picture is missing
+ */
+export function MainMenu_MenuDot( x, y, pic ) {
+
+	if ( ! frameSkin || activeSkin().id !== 'hexen2' || ! pic ) return false;
+	const [ px, py ] = physical( x, y );
+	return queueHexenSelector( pic, px, py, Draw_GetUIScale() );
+
+}
+
+/**
+ * Queues a scrolling title or plaque picture at its animated destination. The native clipping is not baked in: the
+ * picture keeps its whole source and the overlay clips the negative top, so the dynamic layer can animate the slide at
+ * full resolution. Called by `M_DrawTransPicCropped`.
+ *
+ * @param {number} x left edge in physical overlay pixels, menu offset already applied
+ * @param {number} y top edge in physical overlay pixels; may be negative
+ * @param {?qpic_t} pic the title or plaque picture
+ * @returns {boolean} true when queued; false when the frame is not Hexen-skinned or the picture is missing
+ */
+export function MainMenu_ScrollPic( x, y, pic ) {
+
+	if ( ! frameSkin || activeSkin().id !== 'hexen2' || ! pic ) return false;
+	return queueHexenImage( pic, x, y, Draw_GetUIScale() );
+
+}
+
 let inGameSnapshot = false;
 /**
  * Tells the main menu sheet whether a game is in progress, so its rows are labelled with Continue first. Called by
@@ -518,10 +770,11 @@ let inGameSnapshot = false;
 export function MainMenu_SetInGame( value ) { inGameSnapshot = !! value; }
 
 /**
- * Finishes a skinned frame: renders the queued commands at the overlay canvas's size, composites the result over the
- * native drawing with the menu's soft drop shadow (`SHADOW`), then draws the queued blits unsmoothed. Called at the end
- * of `M_Draw`. A render error disables the WebGL menu for the session (native drawing resumes next frame) and is
- * logged, not thrown.
+ * Finishes a skinned frame: for Hexen II draws the queued original pictures at full resolution first, renders the
+ * queued text/panel commands at the overlay canvas's size, composites the result over the native drawing with the
+ * menu's soft drop shadow (`SHADOW`), then draws the menudot selectors and Quake's deferred blits. Quake's command list
+ * and composite order are unchanged. Called at the end of `M_Draw`. A render error disables the WebGL menu for the
+ * session (native drawing resumes next frame) and is logged, not thrown.
  *
  * @param {number} timeSeconds real time in seconds (`realtime`), passed to the renderer in milliseconds for the
  *   selector's rotation
@@ -533,12 +786,19 @@ export function MainMenu_End( timeSeconds ) {
 	frameSkin = false; // a frame is skinned only between Begin and End
 	const canvas = Draw_GetOverlayCanvas();
 	if ( ! canvas || ! renderer ) return false;
+	const hexen = activeSkin().id === 'hexen2';
 	try {
 
 		size = [ canvas.width, canvas.height ];
-		if ( renderer.frame( size[ 0 ], size[ 1 ], timeSeconds * 1000, commands, 0 ) === false ) return false;
+		const renderCommands = hexen ? commands.filter( c => c.type === 'text' || c.type === 'panel' || c.type === 'slider' ) : commands;
+		if ( renderer.frame( size[ 0 ], size[ 1 ], timeSeconds * 1000, renderCommands, 0 ) === false ) return false;
+		// Hexen II's plaques, help pages and menu art are backgrounds: draw them before the renderer's canvas, then its
+		// dynamic lettering and panels over them. Menudots are the selector and stay crisp on top. Quake's command list
+		// is passed unchanged.
+		if ( hexen ) for ( const command of commands ) if ( command.type === 'image' ) drawQueued( command );
 		const scale = Draw_GetUIScale();
 		Draw_FullResolutionCanvas( renderer.canvas, SHADOW.map( ( [ blur, alpha ] ) => [ blur * scale, alpha ] ) );
+		if ( hexen ) for ( const command of commands ) if ( command.type === 'selector' ) drawQueued( command );
 		// Logo artwork (the id mark) stays the original pixels, unsmoothed.
 		for ( const b of blits ) Draw_FullResolutionImage( b.pic.canvas, b.sx, b.sy, b.sw, b.sh, b.dx, b.dy, b.dw, b.dh, !! b.smooth );
 		presented = true; return true;
@@ -550,6 +810,20 @@ export function MainMenu_End( timeSeconds ) {
 		return false;
 
 	}
+
+}
+
+// Copies one queued Hexen image/selector at full resolution. The picture's canvas can be larger than its logical size
+// (a high-DPI decode); source rectangles stay in picture units and are scaled here.
+function drawQueued( command ) {
+
+	const pic = command.pic, canvas = pic?.canvas;
+	if ( ! canvas || ! ( canvas.width > 0 ) || ! ( canvas.height > 0 ) ) return false;
+	const ratioX = canvas.width / ( pic.width || 1 ), ratioY = canvas.height / ( pic.height || 1 );
+	const srcX = ( command.srcX || 0 ) * ratioX, srcY = ( command.srcY || 0 ) * ratioY;
+	const srcW = ( command.srcW || pic.width ) * ratioX, srcH = ( command.srcH || pic.height ) * ratioY;
+	Draw_FullResolutionImage( canvas, srcX, srcY, srcW, srcH, command.x, command.y, command.w, command.h, command.smooth !== false );
+	return true;
 
 }
 
@@ -574,8 +848,11 @@ export function MainMenu_Frame() {
  */
 export function MainMenu_Snapshot() {
 
-	return { visible, skinActive: presented, ready: !! renderer?.loaded && ! renderer.contextLost && ! failed,
+	const skin = activeSkin();
+	return { visible, skinActive: presented, ready: skinReady( renderer ) && ! failed,
 		error: failed, contextLost: !! renderer?.contextLost, size: [ ...size ], commands: commands.length,
+		skin: skin.id, menuSkin: renderer?.__menuSkin || null, material: renderer?.__material || null,
+		font: renderer?.__hexenAtlas ? { ...renderer.__hexenAtlas } : null,
 		pendingFrame: renderer?.pendingFrame || 0, layout: renderer?.layout ? {
 			width: renderer.layout.width, height: renderer.layout.height,
 			glyphInstances: renderer.layout.glyphs.length / 12,
