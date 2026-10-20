@@ -24,9 +24,11 @@ class RangeHandler(http.server.SimpleHTTPRequestHandler):
         logical = unquote(urlsplit(path).path)
         if self.game_root is not None and logical.startswith('/games/'):
             candidate = (self.game_root / logical[len('/games/'):]).resolve()
-            if candidate.is_relative_to(self.game_root):
+            if not candidate.is_relative_to(self.game_root):
+                return str(self.game_root / '__refused_path__')
+            # the checkout's own games/ (the shareware pak) stays served when the library has no such file
+            if candidate.exists() or not Path(super().translate_path(path)).exists():
                 return str(candidate)
-            return str(self.game_root / '__refused_path__')
         original = Path(super().translate_path(path))
         directory = Path(self.directory)
         root = directory.resolve()

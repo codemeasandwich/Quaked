@@ -29,3 +29,27 @@ Deno.test( 'ranges are served as 206 with the right bytes; whole files as before
 	} finally { server.kill(); }
 
 } );
+
+// A games library given with --game-root that has no shareware folder still gets this checkout's shareware pack (a
+// local library holds owned games only); what the library does hold is served from it, and a path out of it is refused.
+Deno.test( 'a games library without the shareware keeps the checkout\'s shareware pack and refuses paths out of it', async () => {
+
+	const { mkdtempSync, writeFileSync, mkdirSync, rmSync } = await import( 'node:fs' ), { tmpdir } = await import( 'node:os' );
+	const library = mkdtempSync( tmpdir() + '/quaked-library-' ), own = port + 1, base = `http://127.0.0.1:${own}/games/`;
+	mkdirSync( library + '/Quake' ); writeFileSync( library + '/Quake/pak0.pak', 'PACK owned' );
+	const server = spawn( python, [ 'tools/serve.py', String( own ), '--game-root', library ], { cwd: root, stdio: 'ignore' } );
+	try {
+
+		let up = false;
+		for ( let i = 0; i < 50 && ! up; i ++ ) { try { await fetch( base + 'Quake/pak0.pak', { method: 'HEAD' } ); up = true; } catch { await new Promise( r => setTimeout( r, 100 ) ); } }
+		check( up, 'the server started' );
+		const shareware = await fetch( base + 'shareware/pak0.pak' ), bytes = Buffer.from( await shareware.arrayBuffer() );
+		check( shareware.status === 200 && bytes.equals( readFileSync( root + 'games/shareware/pak0.pak' ) ), 'the checkout\'s shareware pack' );
+		const owned = await fetch( base + 'Quake/pak0.pak' );
+		check( owned.status === 200 && await owned.text() === 'PACK owned', 'the library\'s own pack' );
+		check( ( await fetch( base + 'Hexen%202/data1/pak0.pak' ) ).status === 404, 'a game the library lacks is missing' );
+		check( ( await fetch( base + '..%2F..%2Fetc%2Fpasswd' ) ).status === 404, 'a path out of the library is refused' );
+
+	} finally { server.kill(); rmSync( library, { recursive: true, force: true } ); }
+
+} );

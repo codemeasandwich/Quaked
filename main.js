@@ -133,7 +133,8 @@ async function main() {
 		// together, so a missing Quake costs the mission pack's download (up to 80 MB), traded for a start not delayed.
 		// Hexen II's Portal entry has a base game, but it is mounted through the same pack list, not as a Quake mission.
 		const missionMounted = hexen ? false : desktop ? desktop.mission : missionPak !== null && fullGamePak !== null;
-		const pak0 = gamePacks?.[ 0 ] ?? sharewarePak ?? await COM_FetchPak( 'pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
+		// the full game alone is a complete base when the shareware pack is not served (a local games library)
+		const pak0 = gamePacks?.[ 0 ] ?? sharewarePak ?? fullGamePak ?? await COM_FetchPak( 'pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
 		if(hudPak){
 		 const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',hudPak.data)),n=>n.toString(16).padStart(2,'0')).join('');
 		 if(digest===STARTUP_PACK.sha256)COM_SetNewerStartupPack(hudPak);else Sys_Printf('Startup pack checksum mismatch; loose HUD fallback');
@@ -143,7 +144,7 @@ async function main() {
 			// COM_AddPack gives the last mounted pack priority. Mount the
 			// optional archive first so bundled identities always win.
 			if ( fullGamePak ) COM_AddPack( fullGamePak );
-			if(gamePacks){for(const pack of gamePacks)COM_AddPack(pack);}else COM_AddPack( pak0 );
+			if(gamePacks){for(const pack of gamePacks)COM_AddPack(pack);}else if ( pak0 !== fullGamePak ) COM_AddPack( pak0 );
 			Sys_Printf( 'pak0.pak loaded successfully\n' );
 			// a mission pack's own QuakeC, status bar pictures and maps replace the base game's: it is mounted last,
 			// and its switch (-hipnotic or -rogue) sets the engine's mission-pack behaviour before Host_Init
