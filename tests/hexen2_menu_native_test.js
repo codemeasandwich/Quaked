@@ -166,10 +166,11 @@ Deno.test( 'each main-menu entry opens its Hexen page, never the Quake one', () 
 			if ( item === 3 ) {
 
 				resetDraw(); M_Hexen2_Help_Draw();
-				check( pictures.some( p => p.name === 'gfx/menu/help01.lmp' ), 'Help draws the first native help page' );
+				check( pictures.some( p => p.name === 'gfx/menu/help01.lmp' ), 'Help draws the native help frame' );
 				check( ! pictures.some( p => /ttl_main|p_option|qplaque/.test( p.name ) ), 'Help draws no Quake credits art' );
+				check( textFrom( chars ).startsWith( 'Basic movement:' ), 'Help shows the native help text in its panel' );
 				menu.M_Keydown( K_RIGHTARROW ); resetDraw(); M_Hexen2_Help_Draw();
-				check( pictures.some( p => p.name === 'gfx/menu/help02.lmp' ), 'Right advances to the second help page' );
+				check( textFrom( chars ).startsWith( 'Looking around:' ), 'Right scrolls to the next help section' );
 
 			}
 			if ( item === 4 ) {

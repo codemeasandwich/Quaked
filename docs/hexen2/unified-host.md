@@ -160,7 +160,9 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `72236e8e` | review R1 | Quake temp-string slot, 56-bit stat masks, desktop Level Select, bounce in solid, `playerclass` gating, damaged hub saves, skill 4 |
 | `43fbca10` | review R2 / F1 | builtins write unified ids; native `WriteByte` service translation; reserved temp edicts; Portal objectives; full stat resend on level change; animated `lightstylevalue` |
 | `e46a77bb` | review R3 / F2 | Hexen never loads Quake beam models (stock `trap_lightning`); puzzle and fractional-timer stat deltas; King of the Hill; out-of-range `lightstylevalue`; native message bodies |
-| (this commit) | review R4 / F3 | King of the Hill in native demos and the deathmatch signon; native objective bits in the inventory translator |
+| `0ca3857c` | review R4 / F3 | King of the Hill in native demos and the deathmatch signon; native objective bits in the inventory translator |
+| `659b4026` | owner trial 1 | fullbright index taken from each game's `colormap.lmp` (Hexen's yellow dotted world textures) |
+| `31498a84` | owner trial 2 / M1 | native Hexen II menus on the shared menu framework: main with the sliding title, single player, multiplayer, options, keys, help, quit, load/save |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;
@@ -171,6 +173,23 @@ before/after). The packaged app was run with `HEXEN2_TRIAL_GAME=hexen2`: `demo1`
 host ran at ~28 fps with the Hexen HUD font. The first frames were held by the enhanced warm-up waiting on rock relief
 (fixed in `5082d07e`); a visual confirmation of the fixed build was not possible because the Mac was locked (macOS
 pauses a hidden window's frame loop), so it is the first item for the owner's trial.
+
+Owner trial follow-up (20 October, 06:40, packaged app from `31498a84`, Enhanced mode): the main menu shows the MAIN
+plaque above the items in the gray big font with the cursor on the selected row; one Down moves one row; Options opens
+the Hexen Options page (legible, OPTIONS plaque); Help opens the Hexen help pages on the stone frame and Right turns
+the page. Still Quake-looking in Enhanced mode: the selector is the rotating Q and the text uses Quake's distance-field
+font, because the WebGL menu skin is Quake's. Package M2 (running) gives the dynamic renderer a per-game skin: a
+runtime font from the installed `bigfont2.lmp`, gray stone instead of bronze, high-resolution plaques with the slide and
+the menudot selector, with Quake's command stream unchanged.
+
+Owner request (20 October, 06:50): Help is one scroll inside the help panel instead of five pages, with accordion-style
+sticky headings: the section being read keeps its yellow heading pinned to the top row, the next unseen heading is
+pinned to the bottom row (first line of each), and the rows next to a pin fade. The text is transcribed from the five
+native pictures (identical in the full game and the demo; the owner approved keeping it in the repository) and drawn
+with `M_Print`/`M_PrintWhite`, so the WebGL menu redraws it at full resolution; help01's stone frame is kept with its
+panel cut out. Keys: Up/Down and the wheel scroll, Page Up/Down and Space a panel, Left/Right a section, Enter the next
+section (wrapping), Home/End; touching a pinned heading goes to that section. Module `hexen2_help_scroll.js`, test
+`tests/hexen2_help_scroll_test.js` (red against the paged help, then green).
 
 Open decisions and known limits:
 
