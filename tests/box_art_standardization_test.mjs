@@ -63,8 +63,8 @@ test('derivatives retain exact original custody and bounded source-panel provena
  for(const [hash,paths]of hashPaths)assert.equal(paths.size,1,'one canonical retained blob per original SHA-256 '+hash);
  const generated=record.sources.filter(source=>source.origin==='generated');
  const selectedGenerated=generated.filter(source=>record.faces.some(face=>face.source===source.archivePath));
- assert.equal(selectedGenerated.length,1,'only the explicitly owner-authorized Abyss background extension is selected');
- assert.deepEqual(record.faces.filter(face=>selectedGenerated.some(source=>source.archivePath===face.source)).map(face=>face.game+':'+face.face),['aopfm_v2:front'],'AI never replaces a spine or any other box face');
+ assert.equal(selectedGenerated.length,4,'only the explicitly owner-authorized Abyss and Shareware background composites are selected');
+ assert.deepEqual(record.faces.filter(face=>selectedGenerated.some(source=>source.archivePath===face.source)).map(face=>face.game+':'+face.face).sort(),['aopfm_v2:front','shareware:back','shareware:front','shareware:spine'],'generated pixels are confined to the four approved background composites; original printed elements have separate pixel proofs');
  for(const path of ['edits-2026-10-20/malice/spine-layout.png','edits-2026-10-20/malice/spine-layout-corrected.png','edits-2026-10-20/quoth/spine-layout.png']){const source=archives.get('assets/authoring/box_art/'+path);assert.ok(source);assert.match(source.disposition,/REJECTED FOR RUNTIME/);assert.ok(!record.faces.some(face=>face.source===source.archivePath),'the rejected spine draft remains source-only');}
  const promptFor=async source=>{const [path,key]=source.prompt.split('#'),document=await json(path);return key?document.prompts[key]:document.prompt;};
  for(const source of generated){assert.ok(archives.has(source.editedFrom),'generated reflow keeps its supplied original');assert.equal(source.tool,'image_gen.imagegen');assert.ok(await promptFor(source),'AI edit prompt retained');}
@@ -94,7 +94,7 @@ test('derivatives retain exact original custody and bounded source-panel provena
   // Independently inspected originals have one full-height printed strip,
   // surrounded only by black/gradient authoring padding. These pinned bounds
   // keep all lettering, logos and strip texture rather than shrinking the pad.
-  const printedSpines={shareware:{left:248,width:392},hipnotic:{left:387,width:249},rogue:{left:400,width:226},mg1:{left:329,width:368}};
+  const printedSpines={hipnotic:{left:387,width:249},rogue:{left:400,width:226},mg1:{left:329,width:368}};
   if(face.face==='spine'&&printedSpines[face.game])assert.deepEqual(crop,{left:printedSpines[face.game].left,top:0,width:printedSpines[face.game].width,height:source.height},face.path+' complete reviewed printed strip, only blank outer padding removed');
   if(face.game==='mod_hexen_2'&&face.face==='back'){
    assert.equal(face.sourceSha256,'f4e3f4eebdf35052c943895178d45fe591a334d39a2af5630f47c7770d816118','actual owner attachment, never a Portal substitution');
@@ -153,4 +153,66 @@ test('approved art-only folders remain discoverable when their local artwork has
  const names=[...retention[1].matchAll(/"([^"]+)"/g)].map(m=>m[1].toLowerCase());
  for(const name of Object.values(discoveredNames))assert.ok(names.includes(name.toLowerCase()),name+' remains discoverable without recognized art or data');
  assert.match(native,/found\.is_none\(\)\s*&&\s*faces\.is_empty\(\)\s*&&\s*!BOXED_FOLDERS/,'retention is wired into the real discovery path');
+});
+
+// This owner-reviewed correction concerns the visible material, not merely equal
+// canvas dimensions. The public browser separately inspects the flat/3D joins.
+test('Shareware edge completion and explicit logo/strip moves preserve original printed pixels and all other boxes',async()=>{
+ const evidence='docs/evidence/box-art-shareware-alignment-2026-10-20/';
+ assert.equal(digest(await read(evidence+'baseline-manifest.json')),'68fe0479a1b385c82dc8d45a68d98ab5c35887a30919f495455d78791fbdcccc','immutable owner-feedback baseline manifest');
+ const baseline=await json(evidence+'baseline-manifest.json'),originalRows=await json(evidence+'baseline-faces.json');
+ const recipe=await json('docs/evidence/box-art-standardization-2026-10-20/derivation.json'),manifest=await json('assets/boxes/manifest.json');
+ const composition=await json(evidence+'composition.json');
+ assert.equal(baseline.faces.length,57);assert.equal(originalRows.length,3);
+ assert.deepEqual(originalRows.map(row=>row.face).sort(),roles.slice().sort());
+ for(const old of baseline.faces.filter(row=>row.game!=='shareware'))assert.deepEqual(manifest.faces.find(row=>row.path===old.path),old,'only Shareware may change: '+old.path);
+ assert.equal(baseline.faces.filter(row=>row.game!=='shareware').length,54);
+ assert.deepEqual(composition.faces.map(row=>row.face).sort(),roles.slice().sort());
+ assert.equal(composition.featherPixels,12,'joins can touch only the reviewed twelve background pixels');
+ for(const input of [{path:composition.donor,sha:composition.donorSha256},{path:composition.spineDonor.path,sha:composition.spineDonor.sha256}])assert.equal(digest(await read(input.path)),input.sha,'exact retained background donor');
+ assert.ok((await json(composition.prompt)).prompt,'wrap background prompt retained');assert.ok((await json(composition.spineDonor.prompt)).prompt,'spine detail prompt retained');
+ assert.deepEqual(composition.spineDonor.sourceCanvas,[1020,512],'retained fine-scale three-patch background board');
+ assert.deepEqual(composition.spineDonor.patches,[{column:0,top:100},{column:1,top:1200},{column:2,top:1488}],'reviewed background-only gap placements');
+ const expected={
+  front:{width:1640,height:2000,sourceCrop:{left:0,top:0,width:1122,height:1402},scaled:[1601,2000],pieces:[{sourceTop:0,height:2000,top:0}],proofs:[{sourceScaled:{left:12,top:0,width:1577,height:2000},destination:{left:31,top:0,width:1577,height:2000}}]},
+  back:{width:1640,height:2000,sourceCrop:{left:0,top:0,width:1109,height:1419},scaled:[1563,2000],pieces:[{sourceTop:0,height:2000,top:0}],proofs:[{sourceScaled:{left:12,top:0,width:1539,height:2000},destination:{left:50,top:0,width:1539,height:2000}}]},
+  spine:{width:340,height:2000,sourceCrop:{left:248,top:0,width:392,height:1774},scaled:[340,1539],pieces:[{sourceTop:170,height:855,top:484},{sourceTop:1025,height:514,top:1439}],proofs:[{sourceScaled:{left:0,top:182,width:340,height:831},destination:{left:0,top:496,width:340,height:831}},{sourceScaled:{left:0,top:1037,width:340,height:490},destination:{left:0,top:1451,width:340,height:490}}]}
+ };
+ for(const face of roles){
+  const row=composition.faces.find(row=>row.face===face),old=originalRows.find(row=>row.face===face),standard=expected[face];
+  const runtime=recipe.faces.find(row=>row.game==='shareware'&&row.face===face);
+  assert.equal(row.source,old.source);assert.equal(row.sourceSha256,old.sourceSha256);assert.equal(digest(await read(row.source)),old.sourceSha256,'retained original source identity');
+  assert.deepEqual(row.sourceCrop,standard.sourceCrop);assert.deepEqual(row.sourceScaledDimensions,standard.scaled);
+  assert.deepEqual(row.dimensions,[standard.width,standard.height]);assert.equal(runtime.source,row.master);assert.equal(runtime.compositionReceipt,evidence+'composition.json');
+  assert.equal(digest(await read(row.master)),row.masterSha256);assert.equal(runtime.sourceSha256,row.masterSha256);
+  const whole={left:0,top:0,width:standard.width,height:standard.height};
+  assert.deepEqual(row.content,whole);assert.deepEqual(runtime.crop,whole);assert.deepEqual(runtime.content,whole,'material reaches the complete face, without old letterbox caps/sidebars');
+  const master=await sharp(await read(row.master)).removeAlpha().raw().toBuffer({resolveWithObject:true});
+  const current=await sharp(await read(runtime.path)).removeAlpha().raw().toBuffer({resolveWithObject:true});
+  assert.deepEqual([current.info.width,current.info.height],[standard.width,standard.height]);assert.ok(current.data.equals(master.data),'runtime pixels equal the full composite without a second crop/stretch');
+  // Fail the exact prior padding regression on every full row/column. This is
+  // deliberately not a proxy for visual material quality or cross-face seams.
+  for(let y=0;y<standard.height;y++){let padded=true;for(let x=0;x<standard.width&&padded;x++){const i=(y*standard.width+x)*3;padded=current.data[i]===21&&current.data[i+1]===17&&current.data[i+2]===12;}assert.ok(!padded,face+' has no old flat background row at '+y);}
+  for(let x=0;x<standard.width;x++){let padded=true;for(let y=0;y<standard.height&&padded;y++){const i=(y*standard.width+x)*3;padded=current.data[i]===21&&current.data[i+1]===17&&current.data[i+2]===12;}assert.ok(!padded,face+' has no old flat background column at '+x);}
+  const actualPieces=face==='spine'?row.pieces.filter(piece=>piece.sourceTop>=170):row.pieces;assert.deepEqual(actualPieces,standard.pieces,'owner-approved printed-group destinations');
+  assert.equal(row.protectedOriginals.length,standard.proofs.length);
+  const scaled=await sharp(await read(row.source)).extract(row.sourceCrop).resize(...standard.scaled,{kernel:'lanczos3'}).removeAlpha().raw().toBuffer();
+  for(const [index,proof]of row.protectedOriginals.entries()){
+   assert.deepEqual(proof.sourceScaled,standard.proofs[index].sourceScaled);assert.deepEqual(proof.destination,standard.proofs[index].destination);assert.equal(proof.pixelIdentical,true);
+   const original=await sharp(scaled,{raw:{width:standard.scaled[0],height:standard.scaled[1],channels:3}}).extract(proof.sourceScaled).raw().toBuffer();
+   const actual=await sharp(current.data,{raw:{width:standard.width,height:standard.height,channels:3}}).extract(proof.destination).raw().toBuffer();
+   assert.ok(actual.equals(original),face+' complete protected printed group '+index+' has original glyph/logo proportions');assert.equal(digest(original),proof.rgbSha256);
+  }
+ }
+ const logo=composition.logoTransform,oldSpine=originalRows.find(row=>row.face==='spine');assert.ok(logo,'owner-authorized larger id logo has a deterministic transform');
+ assert.equal(logo.source,oldSpine.source);assert.equal(logo.sourceSha256,oldSpine.sourceSha256);assert.deepEqual(logo.sourceCrop,{left:382,top:54,width:126,height:140});assert.equal(logo.scale,2);
+ assert.deepEqual(logo.destination,{left:44,top:16,width:252,height:280},'original id block enlarged uniformly, never AI lettering');
+ assert.equal(logo.featherPixels,12,'only the reviewed background border of the original logo may feather');
+ const proof=logo.protectedOriginal;assert.equal(proof.pixelIdentical,true);
+ assert.deepEqual(proof.sourceScaled,{left:12,top:12,width:228,height:256},'complete reviewed original logo interior remains exact');
+ assert.deepEqual(proof.destination,{left:44+proof.sourceScaled.left,top:16+proof.sourceScaled.top,width:proof.sourceScaled.width,height:proof.sourceScaled.height});
+ const enlarged=await sharp(await read(logo.source)).extract(logo.sourceCrop).resize(252,280,{kernel:'lanczos3'}).removeAlpha().raw().toBuffer();
+ const expectedLogo=await sharp(enlarged,{raw:{width:252,height:280,channels:3}}).extract(proof.sourceScaled).raw().toBuffer();
+ const actualLogo=await sharp(await read(recipe.faces.find(row=>row.game==='shareware'&&row.face==='spine').path)).removeAlpha().extract(proof.destination).raw().toBuffer();
+ assert.ok(actualLogo.equals(expectedLogo),'enlarged id logo retains deterministic original pixels/proportions');assert.equal(digest(expectedLogo),proof.rgbSha256);
 });

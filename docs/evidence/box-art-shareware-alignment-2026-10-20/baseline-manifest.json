@@ -1,0 +1,534 @@
+{
+  "version": 2,
+  "method": "Reviewed panel crops; proportion-preserving fit on standard canvases; lossless WebP; immutable authoring originals",
+  "standard": {
+    "front": [
+      1640,
+      2000
+    ],
+    "back": [
+      1640,
+      2000
+    ],
+    "spine": [
+      340,
+      2000
+    ]
+  },
+  "provenance": "docs/evidence/box-art-standardization-2026-10-20/derivation.json",
+  "faces": [
+    {
+      "game": "ad",
+      "face": "back",
+      "path": "assets/boxes/ad/back.webp",
+      "sha256": "20e8c6b4e89e5432f1fc7b19f8b7dc190a91a44bc9661eba1a8e1e65c64b7bbc",
+      "bytes": 3074700,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "ad",
+      "face": "front",
+      "path": "assets/boxes/ad/front.webp",
+      "sha256": "e9118cb850cedca10959bd9ef9ac0c72ca8d62075cb00205dc8644a4f9d77a4d",
+      "bytes": 3387546,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "ad",
+      "face": "spine",
+      "path": "assets/boxes/ad/spine.webp",
+      "sha256": "ad425d49b7bac0fded253f75e9583b604a983e8f0fb16b0ba9cc0c1a5b314a71",
+      "bytes": 487276,
+      "width": 340,
+      "height": 2000
+    },
+    {
+      "game": "aopfm_v2",
+      "face": "back",
+      "path": "assets/boxes/aopfm_v2/back.webp",
+      "sha256": "3db4d7d5ba07c683d5ca65272696eabe9079ca1dc6f51a42d3f4fc32d4bdf216",
+      "bytes": 2866166,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "aopfm_v2",
+      "face": "front",
+      "path": "assets/boxes/aopfm_v2/front.webp",
+      "sha256": "e50c3843460e87f82dd31cc9fbcfaf5dbc8cbbaa1e57a740068ede86e4653c1a",
+      "bytes": 2290446,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "aopfm_v2",
+      "face": "spine",
+      "path": "assets/boxes/aopfm_v2/spine.webp",
+      "sha256": "52f6728107312635833fb9b102186564b3ea3ca293f1f5da3fdec703cd1e42fd",
+      "bytes": 391388,
+      "width": 340,
+      "height": 2000
+    },
+    {
+      "game": "dawn",
+      "face": "back",
+      "path": "assets/boxes/dawn/back.webp",
+      "sha256": "c707c8b2b6dd5408f8fd2feda73d6a91659ce21a1329a93fbd7981e8a104653e",
+      "bytes": 2037094,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "dawn",
+      "face": "front",
+      "path": "assets/boxes/dawn/front.webp",
+      "sha256": "bbfc62ba4a47f4dcffc07cc4e07c165dbe669607d4bc9368a274a418295ecabc",
+      "bytes": 2116692,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "dawn",
+      "face": "spine",
+      "path": "assets/boxes/dawn/spine.webp",
+      "sha256": "2c2850a7b2c0e5c7f54e31544dd75c8293f01f7085511a21baeaa12ea335dceb",
+      "bytes": 445280,
+      "width": 340,
+      "height": 2000
+    },
+    {
+      "game": "dopa",
+      "face": "back",
+      "path": "assets/boxes/dopa/back.webp",
+      "sha256": "810a4b55b208faf8044ab537e86cdc6ad6233e2e3e0c8933cdd5d86d6f51c0e5",
+      "bytes": 2723456,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "dopa",
+      "face": "front",
+      "path": "assets/boxes/dopa/front.webp",
+      "sha256": "752479c414ad4474f7d05bfddfe9d97dd0c9e460733fa92ef632e52bc4931ee2",
+      "bytes": 3164238,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "dopa",
+      "face": "spine",
+      "path": "assets/boxes/dopa/spine.webp",
+      "sha256": "0a9d38b546649ecd3fccf06a4bb967ef273884191ec3e4925406220742dc56d9",
+      "bytes": 633410,
+      "width": 340,
+      "height": 2000
+    },
+    {
+      "game": "hipnotic",
+      "face": "back",
+      "path": "assets/boxes/hipnotic/back.webp",
+      "sha256": "8db49b57b0ccb8d97a095c4d9dce1edb85bb1580949bf35e013008fa3afd8cc2",
+      "bytes": 2100850,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "hipnotic",
+      "face": "front",
+      "path": "assets/boxes/hipnotic/front.webp",
+      "sha256": "04f1207b0559b252fa385561e338c50ef6f82a0a47ab4525a10582dda9ab4fc4",
+      "bytes": 1714292,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "hipnotic",
+      "face": "spine",
+      "path": "assets/boxes/hipnotic/spine.webp",
+      "sha256": "15002eff68178d2936d7b3ee5bafbc9565cf24a41255975050169a53cf3beada",
+      "bytes": 797438,
+      "width": 340,
+      "height": 2000
+    },
+    {
+      "game": "malice",
+      "face": "back",
+      "path": "assets/boxes/malice/back.webp",
+      "sha256": "ec1d1abfbf15ef26fb308f3b2fbb53ccc18dd89c2cac2341a57452380be8bfed",
+      "bytes": 3569000,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "malice",
+      "face": "front",
+      "path": "assets/boxes/malice/front.webp",
+      "sha256": "ba88d3aa963134603643b7da4e3cf119e11b02e78b0333d51f5e92355e76ac79",
+      "bytes": 3260210,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "malice",
+      "face": "spine",
+      "path": "assets/boxes/malice/spine.webp",
+      "sha256": "db2350ef27a3a138bdee8b2239e7b76b573869959e58c7b8b82e5433fcd36eba",
+      "bytes": 454676,
+      "width": 340,
+      "height": 2000
+    },
+    {
+      "game": "mg1",
+      "face": "back",
+      "path": "assets/boxes/mg1/back.webp",
+      "sha256": "2bfa324131cba537220b29681b8285479e0c53b35aa1ade38fc9e2f92b0c6cac",
+      "bytes": 2474588,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "mg1",
+      "face": "front",
+      "path": "assets/boxes/mg1/front.webp",
+      "sha256": "fa199b56747c05d1a75c2677e000b3d0d75e12d9ad028a29990f47b7e61b7e55",
+      "bytes": 2664856,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "mg1",
+      "face": "spine",
+      "path": "assets/boxes/mg1/spine.webp",
+      "sha256": "dcc88a838b6e98694f9be5b9e3a7a68b81f1c9b36f61ad373fc2ccbe3f5974ce",
+      "bytes": 683478,
+      "width": 340,
+      "height": 2000
+    },
+    {
+      "game": "mod_alkaline",
+      "face": "back",
+      "path": "assets/boxes/mod_alkaline/back.webp",
+      "sha256": "7e6a20e108a46343d8f0782d6a3f40c7d27fb382858d180ac7ebaa3e77f25155",
+      "bytes": 2269912,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "mod_alkaline",
+      "face": "front",
+      "path": "assets/boxes/mod_alkaline/front.webp",
+      "sha256": "6cec774becbe6a9878206cdeeb0b4c240638203309d5d25f3dab82227489baf8",
+      "bytes": 1763806,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "mod_alkaline",
+      "face": "spine",
+      "path": "assets/boxes/mod_alkaline/spine.webp",
+      "sha256": "4df1829d6cb70443309d523d4a9505cbd6d27110bc7af7f987f37e4eb6356f10",
+      "bytes": 302816,
+      "width": 340,
+      "height": 2000
+    },
+    {
+      "game": "mod_hexen_2_portal_of_praevus",
+      "face": "back",
+      "path": "assets/boxes/mod_hexen_2_portal_of_praevus/back.webp",
+      "sha256": "a02e52de2f41099228eeb1a51c4b7a20c2531c032f6167f53b4e15faf7bedca7",
+      "bytes": 4007358,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "mod_hexen_2_portal_of_praevus",
+      "face": "front",
+      "path": "assets/boxes/mod_hexen_2_portal_of_praevus/front.webp",
+      "sha256": "c1a2057bd9eb5d4529a69c3cb4a07e05eb61d91d7a406dac6e6eb288815150c3",
+      "bytes": 3729712,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "mod_hexen_2_portal_of_praevus",
+      "face": "spine",
+      "path": "assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp",
+      "sha256": "d6f7f74cc1f501bc73684e884d041d05bb0b6533ab184fbd746544387f131fce",
+      "bytes": 807186,
+      "width": 340,
+      "height": 2000
+    },
+    {
+      "game": "mod_hexen_2_shareware",
+      "face": "back",
+      "path": "assets/boxes/mod_hexen_2_shareware/back.webp",
+      "sha256": "0706277d4878bb7e80338afa71bba1a1ac6db38270564b0cd02d418f02834d91",
+      "bytes": 2478466,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "mod_hexen_2_shareware",
+      "face": "front",
+      "path": "assets/boxes/mod_hexen_2_shareware/front.webp",
+      "sha256": "1734c7e0e63f5f40ea5d6885849df422516e6d097f287f3d32fdcf52fa1eff0c",
+      "bytes": 2516800,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "mod_hexen_2_shareware",
+      "face": "spine",
+      "path": "assets/boxes/mod_hexen_2_shareware/spine.webp",
+      "sha256": "48117165ac5a1b093e1b43bc03205705e7660eec98de9b15ecd522479f11b76a",
+      "bytes": 535980,
+      "width": 340,
+      "height": 2000
+    },
+    {
+      "game": "mod_hexen_2",
+      "face": "back",
+      "path": "assets/boxes/mod_hexen_2/back.webp",
+      "sha256": "ef7ce484563f8b166cfa99ad029eb332cee926c2a0863d3cd94b940f2c164c14",
+      "bytes": 4270198,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "mod_hexen_2",
+      "face": "front",
+      "path": "assets/boxes/mod_hexen_2/front.webp",
+      "sha256": "f841234e583866fa7298f626c71b37ace7280046970a540efc84bcf9ca2bde25",
+      "bytes": 3044720,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "mod_hexen_2",
+      "face": "spine",
+      "path": "assets/boxes/mod_hexen_2/spine.webp",
+      "sha256": "395c984f28870c906828de2ca77322299eabeaef3b0720c0f730574904c1f2a0",
+      "bytes": 531018,
+      "width": 340,
+      "height": 2000
+    },
+    {
+      "game": "mod_quaked",
+      "face": "back",
+      "path": "assets/boxes/mod_quaked/back.webp",
+      "sha256": "adebd2987df25968c4bbd5d11e519c28877e8f6b6a0df3d0bbbdd8cb50d3d341",
+      "bytes": 2869496,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "mod_quaked",
+      "face": "front",
+      "path": "assets/boxes/mod_quaked/front.webp",
+      "sha256": "53f82b85e2af613d1c1f02457bbd3a600cd9ec3b586f8c812d9e5b40982dfd22",
+      "bytes": 2757716,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "mod_quaked",
+      "face": "spine",
+      "path": "assets/boxes/mod_quaked/spine.webp",
+      "sha256": "4f20bb894e17ea1fb714406415abe5fd5e33f76ace9100b1e088bc2351098cbd",
+      "bytes": 465546,
+      "width": 340,
+      "height": 2000
+    },
+    {
+      "game": "mod_the_immortal_lock",
+      "face": "back",
+      "path": "assets/boxes/mod_the_immortal_lock/back.webp",
+      "sha256": "a1f7ab02e864a8cd750827d38405e016c76967a324a5a97af1185b77fb5f0799",
+      "bytes": 1545442,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "mod_the_immortal_lock",
+      "face": "front",
+      "path": "assets/boxes/mod_the_immortal_lock/front.webp",
+      "sha256": "84f9716ea95847e842eabc770268234bdbf5013f81d88a972afdede074eb7462",
+      "bytes": 2649222,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "mod_the_immortal_lock",
+      "face": "spine",
+      "path": "assets/boxes/mod_the_immortal_lock/spine.webp",
+      "sha256": "fed5355b046691cfc7dbba2a6da83bfe4245c497f4ee63fd4310f7699aab0909",
+      "bytes": 311780,
+      "width": 340,
+      "height": 2000
+    },
+    {
+      "game": "mod_tremor",
+      "face": "back",
+      "path": "assets/boxes/mod_tremor/back.webp",
+      "sha256": "99e6b80a24e821b5b047e52b3f7413c92a6967541aae51928ad098c6aa392a04",
+      "bytes": 2045324,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "mod_tremor",
+      "face": "front",
+      "path": "assets/boxes/mod_tremor/front.webp",
+      "sha256": "d0280a89c96b912a714f80b604da94b22558e762f2ebc07dc96e74589fb5117f",
+      "bytes": 2349430,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "mod_tremor",
+      "face": "spine",
+      "path": "assets/boxes/mod_tremor/spine.webp",
+      "sha256": "61a60c3302702f010c28a5ee59139c62b94e90d72ec1b2c5332a7e26342a6f9c",
+      "bytes": 432092,
+      "width": 340,
+      "height": 2000
+    },
+    {
+      "game": "quake",
+      "face": "back",
+      "path": "assets/boxes/quake/back.webp",
+      "sha256": "d956ef6d7a2c7cca1898a8ef285544fbadbee8f6cf1125ce866c21db8fd75641",
+      "bytes": 1491502,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "quake",
+      "face": "front",
+      "path": "assets/boxes/quake/front.webp",
+      "sha256": "b5513cc3b9158163a3727a9e025ef11e4fe4e8680d270555ccb4820df5cdea31",
+      "bytes": 1235330,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "quake",
+      "face": "spine",
+      "path": "assets/boxes/quake/spine.webp",
+      "sha256": "1015e6b7477f5dc8eb3bd758311c212b23c0a879c1da56557911ade287824237",
+      "bytes": 248322,
+      "width": 340,
+      "height": 2000
+    },
+    {
+      "game": "quoth",
+      "face": "back",
+      "path": "assets/boxes/quoth/back.webp",
+      "sha256": "6062c3672f6ff7bb23414f8a1e9a051c7a908aa07b847770ee909711f68f5029",
+      "bytes": 3703670,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "quoth",
+      "face": "front",
+      "path": "assets/boxes/quoth/front.webp",
+      "sha256": "9407b1ed7248fa5a445ce43d0ebfbc864544368556fe9d8f3779a8f6d3d37298",
+      "bytes": 3838644,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "quoth",
+      "face": "spine",
+      "path": "assets/boxes/quoth/spine.webp",
+      "sha256": "64e8c42948bcb016eb33c92fb893f26641351548dd83c0fdf7f6a12dd9a3ad11",
+      "bytes": 418812,
+      "width": 340,
+      "height": 2000
+    },
+    {
+      "game": "rogue",
+      "face": "back",
+      "path": "assets/boxes/rogue/back.webp",
+      "sha256": "0a3fe103097194b2fbd1602fde66b1777d053244a79ece196f1b700624e3bb4e",
+      "bytes": 1862668,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "rogue",
+      "face": "front",
+      "path": "assets/boxes/rogue/front.webp",
+      "sha256": "4e371270258e662c896d04245c219ea5de8b0796af94eec37f365fb91acdf375",
+      "bytes": 2293546,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "rogue",
+      "face": "spine",
+      "path": "assets/boxes/rogue/spine.webp",
+      "sha256": "5465bd779f5d4c24641c0d0019ce6b6b29d551f64b3077c01b196b44a4bf4fb2",
+      "bytes": 787776,
+      "width": 340,
+      "height": 2000
+    },
+    {
+      "game": "shareware",
+      "face": "back",
+      "path": "assets/boxes/shareware/back.webp",
+      "sha256": "4f5c350c180660279dcfff8f750f7a0250036eaeffe9d941110f52f41c5482c6",
+      "bytes": 3355146,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "shareware",
+      "face": "front",
+      "path": "assets/boxes/shareware/front.webp",
+      "sha256": "89bad8c227b7d7e5805c1f5609109320b700b3c2993d7be0fe1741eb08256205",
+      "bytes": 3644270,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "shareware",
+      "face": "spine",
+      "path": "assets/boxes/shareware/spine.webp",
+      "sha256": "4e6255f6d957ebeb2e107bd84351cef81d9453828f0d20e8c59781162b7d532d",
+      "bytes": 788080,
+      "width": 340,
+      "height": 2000
+    },
+    {
+      "game": "xmen",
+      "face": "back",
+      "path": "assets/boxes/xmen/back.webp",
+      "sha256": "d95779d58fe75c7829970de6bbf4e10f7b84250228b28a40cad922e9e68c5b84",
+      "bytes": 3559330,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "xmen",
+      "face": "front",
+      "path": "assets/boxes/xmen/front.webp",
+      "sha256": "a38c67dfd46acbcac2c558d4dabea859a39d2f1acdc1e0aabf9c86e84d753126",
+      "bytes": 2128952,
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "xmen",
+      "face": "spine",
+      "path": "assets/boxes/xmen/spine.webp",
+      "sha256": "709bf07ad46f15ee470b082ab9476b1a164e3c0f858cda90dede2dc5de701224",
+      "bytes": 398788,
+      "width": 340,
+      "height": 2000
+    }
+  ]
+}
