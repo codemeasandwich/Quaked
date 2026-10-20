@@ -165,6 +165,17 @@ export function Hexen2_ClassNumber( classId ) { return Object.hasOwn( HEXEN2_CLA
  */
 export function Hexen2_ClassFromNumber( number ) { return Object.values( HEXEN2_CLASSES ).find( entry => entry.number === number ) ?? null; }
 
+/** The native attract demos in play order: hexen.rc's `startdemos demo1 demo2 demo3`, shipped commented out. */
+export const HEXEN2_ATTRACT_DEMOS = Object.freeze( [ 'demo1', 'demo2', 'demo3' ] );
+
+/**
+ * The attract demos this installation has, in play order (the shareware demo ships none).
+ *
+ * @param {function(string): ?object} find looks a file up in the mounted game (`COM_FindFile`)
+ * @returns {Array<string>} the demo names, without `.dem`
+ */
+export function Hexen2_AttractDemos( find ) { return HEXEN2_ATTRACT_DEMOS.filter( name => find( name + '.dem' ) !== null ); }
+
 /**
  * Validates a class choice for an edition. The Succubus exists only with Portal of Praevus; the demo keeps the four
  * base classes, and an unknown class is refused rather than defaulted.

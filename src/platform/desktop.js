@@ -182,9 +182,10 @@ export async function Desktop_Prepare(){
   };
   // the add-on's loose game files (X-Men's progs.dat; library.rs LOOSE_FILES) as one pack under its own packs, as
   // Quake searches a game folder after its packs (GameSelection_LibraryOrder; docs/add-ons-2026-10-13.md)
-  const looseId=definition.kind==='addon'||String(id).startsWith('hexen2')?id:null; // Hexen's loose progs.dat/strings/hexen.rc sit above its PAKs
+  // Hexen's loose progs.dat/strings/hexen.rc/demos sit above its PAKs, for every edition run (Portal reads the base's too)
+  const looseId=definition.kind==='addon'?id:String(id).startsWith('hexen2')?ids:null;
   for(const step of GameSelection_LibraryOrder(library.packs,ids,looseId)){
-   if(step.loose){const files=[];for(const entry of step.loose){if(entry.name.startsWith('music/'))continue;files.push({name:entry.name,data:new Uint8Array(await read(entry))});}const pack=COM_LoadPackFile(id+'/loose',COM_BuildPack(files));if(!pack)throw Error('Invalid loose files: '+id);packs.push(pack);continue;}
+   if(step.loose){const files=[];for(const entry of step.loose){if(entry.name.startsWith('music/'))continue;files.push({name:entry.name,data:new Uint8Array(await read(entry))});}const pack=COM_LoadPackFile(step.loose[0].game+'/loose',COM_BuildPack(files));if(!pack)throw Error('Invalid loose files: '+id);packs.push(pack);continue;}
    const pack=COM_LoadPackFile(step.pack.token,await read(step.pack));if(!pack)throw Error('Invalid archive: '+step.pack.name);packs.push(pack);
   }
   // Hexen's music is loose OGG beside the PAKs: register a source that reads each track through the scoped library

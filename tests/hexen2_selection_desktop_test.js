@@ -3,6 +3,7 @@
 // fetches the edition's packs and loose files in the desktop app's mount order. Quake's own choices keep their
 // behaviour.
 import { GameSelection_Startable, GameSelection_UrlChoice, GameSelection_FetchLibraryGame, GameSelection_LibraryMusicSource } from '../src/engine/common/game_selection.js';
+import { Hexen2_AttractDemos } from '../src/engine/common/hexen2_profile.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 
@@ -47,8 +48,8 @@ Deno.test( 'a source checkout fetches a Hexen II edition in the desktop mount or
 	const loosePack = ( name, files ) => ( { filename: name, files: files.map( f => f.name ) } );
 
 	const portal = await GameSelection_FetchLibraryGame( 'hexen2-portals', fetchPak, fetchFile, loosePack, catalogue );
-	same( portal.map( p => p.filename ).join(), 'hexen2/pak0.pak,hexen2/pak1.pak,hexen2-portals/loose,hexen2-portals/pak3.pak', 'Portal mounts the base packs, then its loose files and packs' );
-	same( portal[ 2 ].files.join(), 'progs.dat,puzzles.txt', 'Portal\'s own loose files form its loose pack' );
+	same( portal.map( p => p.filename ).join(), 'hexen2/loose,hexen2/pak0.pak,hexen2/pak1.pak,hexen2-portals/loose,hexen2-portals/pak3.pak', 'Portal mounts the base game\'s loose files and packs, then its own' );
+	same( portal[ 3 ].files.join(), 'progs.dat,puzzles.txt', 'Portal\'s own loose files form its loose pack, above the base game\'s' );
 	same( fetched[ 0 ], 'games/Hexen%202/data1/pak0.pak', 'folders are URL-encoded as the catalogue probes them' );
 
 	loose.length = 0;
@@ -79,5 +80,14 @@ Deno.test( 'a source checkout streams the library\'s loose music in the desktop 
 	check( asked.every( line => line.startsWith( 'HEAD ' ) ), 'files are probed, not downloaded' );
 	const base = GameSelection_LibraryMusicSource( 'hexen2', { catalogue, fetch } );
 	same( await base( 'music/casa1.ogg' ), 'games/Hexen%202/data1/music/casa1.ogg', 'the base game streams its own conversion' );
+
+} );
+
+Deno.test( 'Hexen II\'s title demos are the native demos the installation has, in order', () => {
+
+	const have = names => path => names.includes( path ) ? {} : null;
+	same( Hexen2_AttractDemos( have( [ 'demo3.dem', 'demo1.dem', 'demo2.dem' ] ) ).join(), 'demo1,demo2,demo3', 'all three, in play order' );
+	same( Hexen2_AttractDemos( have( [ 'demo2.dem' ] ) ).join(), 'demo2', 'only those present' );
+	same( Hexen2_AttractDemos( have( [] ) ).length, 0, 'none for the shareware demo, which keeps its menu' );
 
 } );

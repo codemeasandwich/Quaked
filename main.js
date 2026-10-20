@@ -5,7 +5,7 @@ import {Distribution_Profile} from './src/platform/distribution.js';
 import { Sys_Init, Sys_Printf, Sys_Error } from './src/engine/common/sys.js';
 import { COM_InitArgv } from './src/engine/common/common.js';
 import { Host_Init, Host_Frame, Host_Shutdown } from './src/engine/server/host.js';
-import { COM_FetchPak, COM_FetchOptionalPak, COM_AddPack, COM_SetNewerPack, COM_SetNewerStartupPack, COM_SetNewerMapsPack, COM_NewerFile, COM_LoadPackFile, COM_BuildPack } from './src/engine/common/pak.js';
+import { COM_FetchPak, COM_FetchOptionalPak, COM_AddPack, COM_SetNewerPack, COM_SetNewerStartupPack, COM_SetNewerMapsPack, COM_NewerFile, COM_LoadPackFile, COM_BuildPack, COM_FindFile } from './src/engine/common/pak.js';
 import { Cbuf_AddText, Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './src/engine/common/cmd.js';
 import { Con_Printf } from './src/engine/common/common.js';
 import { Cvar_VariableValue, Cvar_SetValue, Cvar_SetStorageWritable } from './src/engine/common/cvar.js';
@@ -42,7 +42,7 @@ import { GameCatalogue_Refresh, GameCatalogue_Get } from './src/engine/common/ga
 import { GameSelection_OwnedPacks, GameSelection_StartSwitch, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember, GameSelection_MissionPack, GameSelection_FetchMission, GameSelection_FetchLoose, GameSelection_NeedsDiscovery, GameSelection_FetchLibraryGame, GameSelection_LibraryMusicSource, GameSelection_SetRunning, GameSelection_Current, GameSelection_Startable } from './src/engine/common/game_selection.js';
 import { GameProfile_Set } from './src/engine/common/game_profile.js';
 import { Newer_ApplyGameDefaults } from './src/engine/common/hooks.js'; // installed by newer/ui/newer_defaults.js
-import { Hexen2_SelectClass } from './src/engine/common/hexen2_profile.js';
+import { Hexen2_SelectClass, Hexen2_AttractDemos } from './src/engine/common/hexen2_profile.js';
 import { Hexen2_SetMusicSource } from './src/engine/client/hexen2_music.js';
 import { LevelSelect_SetGamePacks, LevelSelect_OwnPacks } from './src/engine/client/level_select_auto.js';
 import { GameShelf_Show } from './src/newer/ui/game_shelf.js';
@@ -185,7 +185,7 @@ async function main() {
 		}
 		await Host_Init( parms );
 		// Hexen II starts through the same host: hexen.rc has opened the main menu; a trial or an explicit ?map= then
-		// starts the edition's first map (demo1, or keep1 for Portal). The class and skill are native cvars the menu
+		// starts the edition's first map (demo1, or keep1 for Portal), otherwise the title demos play. The class and skill are native cvars the menu
 		// pages and gamecode read, never an engine mode.
 		if ( hexen ) {
 			// enhanced (Newer) rendering is on by default for every game (owner, 13 Oct 2026); the Options toggle turns it off
@@ -206,6 +206,17 @@ async function main() {
 				Sys_Printf( 'Starting %s\n', String( wantedMap ) );
 				Cbuf_AddText( 'map ' + String( wantedMap ) + '\n' );
 			} else if ( wantedMap !== null ) Sys_Printf( 'Hexen II: refusing the map name %s\n', String( wantedMap ) );
+			else if ( ! joining ) {
+
+				// Like Quake (owner, 20 October 2026): the title demos play, halves Enhanced and Classic (r_demosplit), and
+				// Escape brings the menu up over them. Native hexen.rc opens the menu and ships `startdemos` commented out;
+				// an edition with no native demos (the shareware demo) keeps that menu.
+				const demos = Hexen2_AttractDemos( COM_FindFile );
+				// (hexen.rc runs first, in the first frame: its menu_main pauses the loop, so the list is set while paused
+				// and menu_close then leaves the menu as Escape does, which resumes the loop with the first demo)
+				if ( demos.length > 0 ) Cbuf_AddText( 'startdemos ' + demos.join( ' ' ) + '\nmenu_close\n' );
+
+			}
 		}
 		// a game whose larger levels need the large-map protocol asks for it before any map loads (card [34f])
 		if ( missionMounted && mission.protocol ) Cvar_SetValue( 'sv_protocol', mission.protocol );

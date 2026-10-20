@@ -300,8 +300,8 @@ export async function GameSelection_FetchLoose( url, fetchImpl = globalThis.fetc
 
 /**
  * Fetches a Hexen II edition from the player's library for a local source checkout, in the order the desktop app mounts
- * it (`GameSelection_LibraryOrder`): for Portal of Praevus the base game's packs, then Portal's loose files as one pack
- * and its packs; for the base game or the demo its loose files (progs.dat, strings.txt, hexen.rc…) then its packs. The
+ * it (`GameSelection_LibraryOrder`): for Portal of Praevus the base game's loose files and packs, then Portal's loose
+ * files as one pack and its packs; for the base game or the demo its loose files (progs.dat, strings.txt, hexen.rc…) then its packs. The
  * folders, packs and loose files are the ones the game catalogue found; music stays loose (Hexen2_MusicStem streams it).
  *
  * @param {string} id 'hexen2', 'hexen2-portals' or 'hexen2-demo'
@@ -330,13 +330,13 @@ export async function GameSelection_FetchLibraryGame( id, fetchPak, fetchFile, l
 
 	}
 	const packs = [];
-	for ( const step of GameSelection_LibraryOrder( entries, ids, id ) ) {
+	for ( const step of GameSelection_LibraryOrder( entries, ids, ids ) ) {
 
 		if ( step.loose ) {
 
 			const files = [];
 			for ( const entry of step.loose ) { const data = await fetchFile( entry.url ); if ( data ) files.push( { name: entry.name, data } ); }
-			if ( files.length > 0 ) packs.push( loosePack( `${id}/loose`, files ) );
+			if ( files.length > 0 ) packs.push( loosePack( `${step.loose[ 0 ].game}/loose`, files ) );
 			continue;
 
 		}
@@ -393,19 +393,20 @@ export function GameSelection_LibraryMusicSource( id, options = {} ) {
  * The order the Mac app mounts a game's library entries in (src/platform/desktop.js): for each game, base first, its
  * loose game files as one pack and then its packs, so the last mounted wins as Quake searches (a game's packs, then its
  * folder, then its base). Only the add-on being run gets its loose files; a player's own autoexec.cfg beside Quake is
- * not part of any game.
+ * not part of any game. Hexen II mounts the loose files of every edition it runs (Portal of Praevus also reads the
+ * base game's folder natively, where the native demos are).
  *
  * @param {Array<{ game: string, loose?: boolean }>} entries the library's entries
  * @param {Array<string>} ids the games to mount, base first
- * @param {?string} addon the add-on being run, if any
+ * @param {?(string|Array<string>)} addon the game, or games, whose loose files are mounted
  * @returns {Array<{ loose: Array<object> }|{ pack: object }>} what to mount, in order
  */
 export function GameSelection_LibraryOrder( entries, ids, addon ) {
 
-	const out = [];
+	const out = [], looseGames = new Set( [].concat( addon ?? [] ) );
 	for ( const game of ids ) {
 
-		const loose = game === addon ? entries.filter( e => e.game === game && e.loose ) : [];
+		const loose = looseGames.has( game ) ? entries.filter( e => e.game === game && e.loose ) : [];
 		if ( loose.length > 0 ) out.push( { loose } );
 		for ( const pack of entries.filter( e => e.game === game && ! e.loose ) ) out.push( { pack } );
 

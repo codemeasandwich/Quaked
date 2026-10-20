@@ -112,8 +112,13 @@ const playing = s => s.svActive && s.clsState === 2 && s.signon === 4;
 // Menus: the native pages through the high-resolution skin, and the scrolling help.
 await scenario( 'menus', '?game=hexen2', async ( { page, state, until, check, shot, result } ) => {
 
-	const s = await until( s => s.keyDest === 3 && s.menu > 0, 60000, 'the main menu opens' );
-	check( s, 'hexen.rc opens the main menu', s );
+	// like Quake: the title demos play (Enhanced | Classic halves) and Escape brings the menu up over them
+	const attract = await until( s => s.demo && s.world, 90000, 'the title demo plays' );
+	check( attract && attract.keyDest !== 3, 'Hexen II starts on its title demo, not the menu', attract );
+	await sleep( 3000 ); await shot( 'attract' );
+	await key( page, 'Escape' );
+	const s = await until( s => s.keyDest === 3 && s.menu > 0, 10000, 'Escape opens the main menu' );
+	check( s && s.demo, 'the menu opens over the playing demo', s );
 	// no click: a click on a menu row chooses it; the trial's page already has the keyboard focus
 	await sleep( 2500 ); // the title slides down
 	await shot( 'main' );
@@ -217,7 +222,7 @@ await scenario( 'demo', '?game=hexen2-demo&class=paladin&autostart=1', async ( {
 // A native protocol-19 demo through the read-only decoder.
 await scenario( 'playdemo', '?game=hexen2', async ( { until, check, shot, command } ) => {
 
-	await until( s => s.keyDest === 3, 60000, 'the menu opens' );
+	await until( s => s.demo, 90000, 'the title demo starts' );
 	await command( 'volume 0; bgmvolume 0; r_dof 0; playdemo demo1' );
 	const s = await until( s => s.demo && s.clsState === 2 && s.world, 60000, 'demo1.dem plays' );
 	check( s, 'demo1.dem plays back', s?.world );

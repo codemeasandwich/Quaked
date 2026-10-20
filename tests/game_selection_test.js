@@ -210,6 +210,9 @@ Deno.test( 'the Mac app mounts base packs, then the add-on\'s loose files, then 
 	const show = steps => steps.map( s => s.loose ? 'loose(' + s.loose.map( x => x.name ).join( '+' ) + ')' : s.pack.game + '/' + s.pack.name ).join( ' ' );
 	same( show( GameSelection_LibraryOrder( entries, [ 'quake', 'xmen' ], 'xmen' ) ), 'quake/pak0.pak loose(progs.dat+autoexec.cfg) xmen/pak0.pak xmen/pak1.pak', 'an add-on over Quake' );
 	same( show( GameSelection_LibraryOrder( entries, [ 'quake' ], null ) ), 'quake/pak0.pak', 'Quake alone: the player\'s autoexec.cfg is not mounted' );
+	// Hexen II mounts every edition's loose files: Portal of Praevus reads the base game's folder too (its native demos)
+	const hexen = [ e( 'hexen2', 'pak0.pak' ), e( 'hexen2', 'demo1.dem', true ), e( 'hexen2-portals', 'pak3.pak' ), e( 'hexen2-portals', 'puzzles.txt', true ) ];
+	same( show( GameSelection_LibraryOrder( hexen, [ 'hexen2', 'hexen2-portals' ], [ 'hexen2', 'hexen2-portals' ] ) ), 'loose(demo1.dem) hexen2/pak0.pak loose(puzzles.txt) hexen2-portals/pak3.pak', 'every listed game\'s loose files, each under its packs' );
 
 } );
 

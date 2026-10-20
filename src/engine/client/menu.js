@@ -56,6 +56,17 @@ M_ToggleMenu_f
 ================
 */
 /**
+ * The `menu_close` command: leaves the main menu as Escape does there (Quake's or Hexen II's), which also resumes the
+ * title demo loop the menu paused (`m_save_demonum`). Does nothing unless the main menu is up, so a start script can
+ * queue it after `menu_main` without knowing whether the menu opened.
+ */
+function M_Close_f() {
+
+	if ( getKeyDest() === key_menu && ( m_state === m_main || m_state === m_hexen2_main ) ) M_Keydown( K_ESCAPE );
+
+}
+
+/**
  * The `togglemenu` command, also called by `Key_Event` for Escape outside the menu and for a console key during demo
  * playback, and by a tap or click when no menu is up. In the menu: from a submenu goes back to the main menu; from
  * the main menu closes it (key_dest `key_game`, `m_state` `m_none`). In the console it closes the console
@@ -134,6 +145,7 @@ menuOpeners.hexenGameOptions = M_Menu_GameOptions_f;
 export function M_Init() {
 
 	Cmd_AddCommand( 'togglemenu', M_ToggleMenu_f );
+	Cmd_AddCommand( 'menu_close', M_Close_f );
 	Cmd_AddCommand( 'menu_main', M_Menu_Main_f );
 	Cmd_AddCommand( 'menu_singleplayer', M_Menu_SinglePlayer_f );
 	Cmd_AddCommand( 'menu_load', M_Menu_Load_f );

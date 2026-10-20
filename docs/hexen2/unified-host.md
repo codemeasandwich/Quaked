@@ -173,7 +173,8 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `33e1fef8` | merge Dev | Dev's standardised box art (`6e3e0237`) and Hexen texture batch 7 with the authoring method (`8f0e96bc`); on the unified host `Hexen 2 Shareware` stays the Hexen II demo's game folder, not a display-only box |
 | `8426b4b9` | owner trial 3 | every game started from the app's shelf fell back to the shelf (`Can't find variable: saveTrial`) |
 | `e77d7b3f` | DP | test of the ordinary shelf start (`tests/desktop_prepare_test.js`) in the engine list |
-| (this commit) | owner trial 4 | Hexen small menu text in the game's own crisp pixels; help scrolls smoothly, held arrows scroll, text fades under pins |
+| `9c0753c3` | owner trial 4 | Hexen small menu text in the game's own crisp pixels; help scrolls smoothly, held arrows scroll, text fades under pins |
+| (this commit) | owner trial 5 | Hexen II starts on its title demos like Quake (Enhanced and Classic halves); Portal mounts the base game's loose files |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;
@@ -274,6 +275,18 @@ a held arrow scrolls steadily after a short pause (menus get no autorepeat, so t
 section heading pinned at the top is pushed out by the next one, and the text fades into the darkness under the top
 pin and above the bottom one (`Draw_FadeBand`). Verified by screenshots of the main, options, help (held), credits
 and Customize Controls pages (trial 10/10, every page checked by name), 290/290 suites and the engine list 220/220.
+
+Owner trial 5 (20 October): "like quake when the game starts it's supposed to play the demo", with the menu over
+the playing demo, and "this is also where we need to have the split between the classic and the enhanced". Quake's
+title demo is the split (r_demosplit: Enhanced left, Classic right) and its menu dims it lightly; native hexen.rc
+opens the menu instead and ships `startdemos demo1 demo2 demo3` commented out. A Hexen II start with no explicit map
+now queues `startdemos` with the native demos installed (`Hexen2_AttractDemos`) and `menu_close`, a new command that
+leaves the main menu as Escape does, which resumes the loop the menu paused (hexen.rc's `menu_main` runs first). The
+split, the light dim and the world's own effects behind the menu are Quake's code, unchanged. Portal of Praevus now
+mounts the base game's loose files under its own, as the native engine searches data1 too (its demos live there); the
+shareware demo ships no demos and keeps its menu. Verified in the browser: the title demo plays at start with the
+split, Escape opens the menu over it (trial 11/11), playdemo 4/4; 304/304 suites, engine list 220/220. Known and in
+progress (package DD): the native demos' camera leaves the level during playback (owner report).
 
 Open decisions and known limits:
 
