@@ -92,7 +92,7 @@ Deno.test( 'the sky surfaces draw the skybox by direction, with the scrolling sk
 	const rmain = readFileSync( new URL( '../src/engine/render/gl_rmain.js', import.meta.url ), 'utf8' ), liquids = readFileSync( new URL( '../src/engine/render/gl_rsurf_liquids.js', import.meta.url ), 'utf8' );
 	check( /R_SkyBoxNewMap\( cl\?\.worldmodel\?\.entities \)/.test( rmain ) && /R_SkyBoxInit\(\);/.test( rmain ), 'R_NewMap and R_Init' );
 	check( /const solidLayerMaterial = skyBox \? skyBoxMaterial : night \? night.solid : solidSkyMaterial;/.test( liquids ), 'the sky surfaces draw it' );
-	check( /skyBoxMaterial\.depthWrite !== skyDepthWrite/.test( liquids ) && /R_RegisterGlow\( skyBoxMaterial, 1\.9 \)/.test( liquids ), 'with the scrolling sky\'s depth and glow rules' );
+	check( /skyBoxMaterial\.depthWrite !== skyDepthWrite/.test( liquids ) && /R_RegisterGlow\( skyBoxMaterial, skyGlow \)/.test( liquids ) && /const skyGlow = GameProfile_Get\(\)\.skyGlow/.test( liquids ), 'with the scrolling sky\'s depth and glow rules' );
 	check( /if \( cloudLayerMaterial && ! skyBox \)/.test( liquids ), 'no scrolling cloud layer over a skybox' );
 
 } );

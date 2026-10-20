@@ -36,6 +36,8 @@ const QUAKE = Object.freeze( {
 	hulls: null, // the BSP loader's existing Quake hull sizes
 	frameTime: 0.1, // OP_STATE think delay
 	screen: Object.freeze( { enhancedViewUnderHud: true } ),
+	// Enhanced brightens the scrolling sky so its openings bloom; Quake's dark skies want it (gl_rsurf_liquids.js)
+	skyGlow: 1.9,
 	menuSkin: 'quake', // the dynamic menu's skin (newer/ui/menu_skins.js)
 	modelDir: 'progs/',
 	startMap: null, // Quake's quake.rc starts the attract demos; the menu owns New Game
@@ -61,6 +63,8 @@ function hexen2( id, { portals = false, demo = false } = {} ) {
 		frameTime: 0.05, // HX_FRAME_TIME
 		// Raven's tall bar must not hide the held model at the bottom of an Enhanced full-height view.
 		screen: Object.freeze( { enhancedViewUnderHud: false } ),
+		// Raven's grey storm clouds would blow out to white over black gaps: the native sky at its own brightness
+		skyGlow: 1,
 		menuSkin: 'hexen2',
 		modelDir: 'models/',
 		// the first maps of each edition (uhexen2: demo1 opens the base campaign, keep1 Portal); hexen.rc opens the

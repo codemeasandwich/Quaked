@@ -20,6 +20,7 @@
 import * as THREE from 'three';
 import { R_FogSkyMaterial } from './r_fog.js';
 import { R_MilkyWaySkyLayers, R_MilkyWaySkyClear } from '../common/hooks.js';
+import { GameProfile_Get } from '../common/game_profile.js';
 import { R_SkyBoxMaterial } from './r_skybox.js';
 import { R_NewerLightingActive } from '../common/hooks.js'; // installed by newer/mode.js
 import { cl } from '../client/client.js';
@@ -781,20 +782,21 @@ export function R_DrawSkyChain( s ) {
 	if ( solidSkyMaterial && solidSkyMaterial.depthWrite !== skyDepthWrite ) solidSkyMaterial.depthWrite = skyDepthWrite;
 	if ( alphaSkyMaterial && alphaSkyMaterial.depthWrite !== skyDepthWrite ) alphaSkyMaterial.depthWrite = skyDepthWrite;
 
-	// the sky is a light source too: brighter than white lets it bloom around openings
-	if ( solidSkyMaterial && solidSkyMaterial.userData.glowBoost === undefined ) R_RegisterGlow( solidSkyMaterial, 1.9 );
-	if ( alphaSkyMaterial && alphaSkyMaterial.userData.glowBoost === undefined ) R_RegisterGlow( alphaSkyMaterial, 1.9 );
+	// the sky is a light source too: brighter than white lets it bloom around openings (by game: GameProfile skyGlow)
+	const skyGlow = GameProfile_Get().skyGlow ?? 1.9;
+	if ( solidSkyMaterial && solidSkyMaterial.userData.glowBoost === undefined ) R_RegisterGlow( solidSkyMaterial, skyGlow );
+	if ( alphaSkyMaterial && alphaSkyMaterial.userData.glowBoost === undefined ) R_RegisterGlow( alphaSkyMaterial, skyGlow );
 
 	// a skybox (r_skybox.js) shows instead: the sky surfaces draw it, looked up by direction from whichever camera draws
 	// them, with the same depth, glow and fog rules as the scrolling sky; no cloud layer over it
 	const skyBoxMaterial = R_SkyBoxMaterial(), skyBox = skyBoxMaterial !== null;
 	if ( skyBox && skyBoxMaterial.depthWrite !== skyDepthWrite ) skyBoxMaterial.depthWrite = skyDepthWrite;
-	if ( skyBox && skyBoxMaterial.userData.glowBoost === undefined ) R_RegisterGlow( skyBoxMaterial, 1.9 );
+	if ( skyBox && skyBoxMaterial.userData.glowBoost === undefined ) R_RegisterGlow( skyBoxMaterial, skyGlow );
 	const night = skyBox ? null : R_MilkyWaySkyLayers( solidskytexture, alphaskytexture );
  if ( night ) {
   if ( night.solid.depthWrite !== skyDepthWrite ) { night.solid.depthWrite = skyDepthWrite; night.solid.needsUpdate = true; }
-  if ( night.solid.userData.glowBoost === undefined ) R_RegisterGlow( night.solid, 1.9 );
-  if ( night.alpha.userData.glowBoost === undefined ) R_RegisterGlow( night.alpha, 1.9 );
+  if ( night.solid.userData.glowBoost === undefined ) R_RegisterGlow( night.solid, skyGlow );
+  if ( night.alpha.userData.glowBoost === undefined ) R_RegisterGlow( night.alpha, skyGlow );
  }
  const solidLayerMaterial = skyBox ? skyBoxMaterial : night ? night.solid : solidSkyMaterial;
  const cloudLayerMaterial = night ? night.alpha : alphaSkyMaterial;

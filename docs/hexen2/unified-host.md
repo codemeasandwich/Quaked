@@ -179,7 +179,8 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `d8564719` | TR, owner trial 7 | Hexen see-through model skins (EF_HOLEY/TRANSPARENT/SPECIAL_TRANS) loaded with their alpha |
 | `c9a53b22` | owner trial 8 | Hexen II renders the full screen with its bar overlaid, in Classic and Enhanced, framed so the hands stay visible |
 | `78037c41` | owner trial 9 | Hexen title and plaque placed natively (ScrollPic skipped the UI scale); bigfont cut from its sheet, thin as the original |
-| (this commit) | HM | one menu system: Hexen extends Quake's HD vector menu (traced vector font, stone signs, shared slide animation and shadow) |
+| `fb1f522e` | HM | one menu system: Hexen extends Quake's HD vector menu (traced vector font, stone signs, shared slide animation and shadow) |
+| (this commit) | owner trial 10 | Hexen II's sky keeps its native grey storm clouds in Enhanced (per-game sky glow) |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;
@@ -337,6 +338,13 @@ letters' single advance was the pair table's diagonal, I followed by I = 3 pixel
 letter's pair advances (tests pin it, including I >= 6). The ENHANCED/CLASSIC labels stand down on Hexen pages other
 than the main menu, which fill the screen with rows. 306/306 suites, engine list 220/220, menus trial 11/11 with
 screenshots of the main, options, help, credits and Customize pages.
+
+Owner trial 10 (20 October): "check the sky box as I don't think it's correct but its colours". demo1's `sky001` is
+grey storm clouds (indices 0-9, greys) over a darker grey layer, drawn natively like Quake's (uhexen2
+h2shared/gl_warp.c R_InitSky: index 0 of the front layer clear). Classic matched that; Enhanced registered the sky as a
+1.9x glow (so Quake's dark skies bloom), which blew Hexen's clouds out to white over black gaps. The sky glow is now a
+profile value (`skyGlow`: Quake 1.9, Hexen II 1), measured in the browser at both values. The HD menu redesign is
+parked at the owner's request (package HS's sign work is held, not integrated).
 
 Open decisions and known limits:
 
