@@ -4,6 +4,8 @@ mod library;
 mod packs;
 #[cfg(target_os = "macos")]
 mod pointer_lock;
+#[cfg(target_os = "macos")]
+mod gyro;
 use library::{Library, Settings};
 use std::{
     fs,
@@ -358,6 +360,8 @@ fn main() {
             lan_stop
         ])
         .setup(|app| {
+            #[cfg(target_os = "macos")]
+            gyro::start(app.handle().clone());
             use tauri::menu::{Menu, MenuItem, PredefinedMenuItem, Submenu};
             let locations = MenuItem::with_id(
                 app,

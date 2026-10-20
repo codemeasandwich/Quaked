@@ -1,0 +1,1424 @@
+GY check evidence; no hardware verification. Base 1c188cbfd331294290f27d3bf0233f0a663c57a3
+
+== gy-focused-all.txt ==
+PASS Options retains the Cheats row; it opens the Cheats menu; Escape returns to Options
+PASS the cheats run the game's own commands, show their state, say when one was used, and refuse outside a single-player game
+RESULT 2/2 passed (tests/cheats_menu_test.js)
+PASS desktop gyro listens once, forwards canonical samples, removes disconnects and stops
+RESULT 1/1 passed (tests/desktop_gyro_test.js)
+PASS Desktop_Prepare: ordinary shareware shelf start returns packs and saveTrial false
+PASS Desktop_Prepare: ordinary Hexen II shelf start returns loose gamecode and ordered data1 packs
+PASS Desktop_Prepare: a trial start still returns its autoplay, class and save settings
+RESULT 3/3 passed (tests/desktop_prepare_test.js)
+PASS real spawned START player and native QC corridor activate flashlight through both public direct touch and actual linked collision dispatch
+RESULT 1/1 passed (tests/flashlight_native_touch_test.js)
+PASS each button releases the key it pressed, even when a menu opens in between; a key two buttons hold goes up with the last
+PASS triggers at half travel; a disconnect or another controller taking over releases only the controller's own keys
+PASS the controller playing stays while connected; a standard layout is preferred to a nonstandard one
+PASS sticks: deadzones, then movement and look in the game; nothing in a menu or without a command
+PASS keyboard and controller on the same key: neither cuts the other (real Key_Event, bindings and buttons)
+PASS the buttons are read every host frame, with no level running; WebXR makes the controller let go
+PASS look: right stick turns and tilts the view by the look settings; no sticks in a demo; the layout note once; a new id at the same index is a new controller
+PASS in local play player 1's page plays only the controller given to player 1
+RESULT 8/8 passed (tests/gamepad_test.js)
+PASS gyro HID dualsense report 1
+PASS gyro HID dualsense report 49
+PASS gyro HID dualshock4 report 1
+PASS gyro HID dualshock4 report 17
+PASS gyro HID Switch averages all three IMU frames with canonical axes
+PASS Switch full reports correlate the right stick button, never B, with the selected player
+PASS remembered HID grants restore healthy devices even if an earlier device fails
+PASS HID factory trims remove stationary offsets and use transport-specific scale layouts
+PASS HID stop/start serialises a cancelled in-flight open before reopening the same handle
+PASS HID stop/start waits for the previous successful connection to close
+PASS a late permission grant cannot restart HID after input shutdown
+PASS Switch Pro IMU axes match the common PlayStation/GameController frame
+PASS Switch USB setup sends full descriptor-sized reports with the report ID supplied separately
+RESULT 13/13 passed (tests/gyro_hid_test.js)
+PASS quake: the public gamepad poll combines the right stick and gyro; button-only polling does not drain it
+PASS quake: no gyro leaves movement and right-stick aiming unchanged
+PASS hexen2: the public gamepad poll combines the right stick and gyro; button-only polling does not drain it
+PASS hexen2: no gyro leaves movement and right-stick aiming unchanged
+PASS public gamepad gyro is gated in menus, demos and the input lock; returning drains one frame
+PASS quake: Options reaches the shared gyro page through touch and keyboard, with working controls and return
+PASS hexen2: Options reaches the shared gyro page through touch and keyboard, with working controls and return
+PASS Hexen Options exposes its hidden gyro row through the touch-only More and Top affordances
+PASS gyro uses the same effective remote PadShare population as the selected local-play controller
+RESULT 9/9 passed (tests/gyro_integration_test.js)
+PASS gyro public input adds local yaw/roll and pitch, clamps and archives
+PASS gyro rejects stale, inactive, missing, ambiguous and unheld input
+PASS gyro learns stationary bias continuously but preserves ordinary deliberate aim
+RESULT 3/3 passed (tests/gyro_test.js)
+PASS the inventory commands send the native selection and impulses
+PASS crouch and the objectives plaque drive the native buttons
+PASS the game default.cfg bindings survive for Hexen II
+PASS Hexen II keeps its own saved key configuration
+RESULT 4/4 passed (tests/hexen2_input_native_test.js)
+PASS a synthetic usercmd moves the Paladin through the engine path on the supplied level
+RESULT 1/1 passed (tests/hexen2_input_test.js)
+PASS the main menu bigfont rows and the menudot cursor share a row centre
+PASS ScrollTitle eases the title down over time and ends at the native y
+PASS each main-menu entry opens its Hexen page, never the Quake one
+PASS the highlighted-text offset is profile-driven: +256 for Hexen, +128 for Quake
+PASS the Hexen cursor is the animated gfx/menu/menudot, not the Quake dot
+PASS Single Player opens the Hexen hub load and save pages
+PASS menu.M_Draw dispatches to the Hexen pages, never the Quake art
+PASS hub load pages draw cached comments, refresh from IndexedDB and delete through the repository
+RESULT 8/8 passed (tests/hexen2_menu_native_test.js)
+PASS the Hexen main menu reaches class and difficulty and starts demo1
+PASS classes and per-class skill names follow the edition
+PASS the Hexen Options page exposes the enhanced mode row
+RESULT 3/3 passed (tests/hexen2_menu_shared_test.js)
+PASS the Hexen II font atlas traces installed bigfont outlines and leaves small text native
+PASS the Hexen II stone material is derived from the supplied shaders, leaving Quake untouched
+PASS the Hexen II small-font inks are the charset's own tan and red banks
+PASS every Hexen II page keeps its small text native and draws its titles, bigfont and menudot dynamically
+PASS Quake main and existing options command streams remain unchanged with the appended gyro row
+RESULT 5/5 passed (tests/hexen2_menu_skin_test.js)
+PASS HM traces closed smooth contours with the installed glyph counters and exact SDF metrics
+PASS HM shared title animation supports static Quake and native Hexen retract/switch/slide
+PASS HM fitted outlines retain a hole and detached ink while smoothing a diagonal staircase
+RESULT 3/3 passed (tests/hexen2_menu_vector_test.js)
+PASS public body capture admits both mouse axes into real player angles only after a lock grant
+PASS a refused public lock request remains inactive and another real gesture can retry
+PASS shutdown while captured then async unlock and reinitialization can acquire capture and aim again
+PASS default mouse look survives a bound middle-button cycle while explicit -mlook still disables vertical aiming
+RESULT 4/4 passed (tests/in_web_capture_test.js)
+PASS IN_Init twice adds each listener once; IN_Shutdown removes them all, touch start included
+RESULT 1/1 passed (tests/in_web_lifecycle_test.js)
+PASS mouse input uses the registered sensitivity cvar
+RESULT 1/1 passed (tests/in_web_test.js)
+PASS supplied seven-row main menu remains byte-identical and uses the existing native-pitch PNG loader
+PASS actual main menu artwork and fallback follow title order and every keyboard/touch action matches its authored row
+RESULT 2/2 passed (tests/main_menu_art_test.js)
+PASS the menu state is set only through its setters, and menu.js shows the same binding
+PASS M_InGame: a local server or a connection, but not a demo
+PASS menu art is placed at 320 x 200 positions centred on the screen; the setup player through the colour table
+RESULT 3/3 passed (tests/menu_common_test.js)
+PASS level select opens, offers only the maps the game has, and ESC goes back to single player
+RESULT 1/1 passed (tests/menu_levelselect_test.js)
+PASS the main menu: opened, its cursor moving and wrapping, Enter into single player, ESC back
+RESULT 1/1 passed (tests/menu_main_test.js)
+PASS the multiplayer choice opens and ESC returns to the main menu
+PASS a failed connection returns to the menu that joined, once; otherwise to multiplayer
+RESULT 2/2 passed (tests/menu_multiplayer_test.js)
+PASS options: the sound slider steps by 0.1 within 0..1; the first row opens Newer's options; ESC returns
+RESULT 1/1 passed (tests/menu_options_test.js)
+PASS load menu discovers and opens browser save slots
+RESULT 1/1 passed (tests/menu_save_test.js)
+PASS customize controls binds printable and named keys
+RESULT 1/1 passed (tests/menu_test.js)
+PASS skinned main menu keeps native keyboard and touch routing: each action fires exactly once
+PASS item sheets: lettering is placed on the original sprite ink, row pitch preserved, exact labels
+PASS engine text keeps its fixed 8-unit character grid and right alignment
+PASS pictures without a replacement are layered above the renderer, not hidden under its panels
+PASS WebGL failure leaves the native menu drawing, keyboard and touch functional
+PASS closing the menu releases the frame and leaves nothing scheduled
+PASS a descender from the row above cannot widen the next label (stock Load/New Game overlap)
+PASS selector is placed from the sprite cell, identically on every rotation frame
+PASS sliders and text boxes follow the native cell geometry
+PASS left plaque letters are fitted and the id mark is blitted from the original pixels
+PASS Credits text honours the scoped 0.75 scale and the cursor blinks on one phase only
+PASS context loss and restoration rebuild from the host commands, never the donor layout
+PASS hiding the menu releases the screen-sized renderer buffers and the next opening restores them
+PASS everything the menu draws gets a large soft black drop shadow, laid down before the crisp image
+PASS Multiplayer screen: Online is drawn disabled by the supplied renderer, Local enabled
+PASS the classic menu is never drawn while the high-quality menu loads
+RESULT 16/16 passed (tests/menu_webgl_test.js)
+PASS Multiplayer offers Local and a disabled Online; Local opens split screen; Esc goes back
+PASS natively, Online is drawn faded through Draw_WithAlpha and Local at full strength
+RESULT 2/2 passed (tests/mp_menu_test.js)
+PASS the first page is as it was: 17 rows from y 44, lighting first, depth of field last, the cursor on the first
+PASS the page follows the cursor down to the rows past it and back up; Up from the top goes to the last row
+PASS the explosion shake slider and note paging use the actual visible rows
+RESULT 3/3 passed (tests/newer_menu_scroll_test.js)
+PASS options order, widgets, keyboard and touch dispatch match the visible rows
+RESULT 1/1 passed (tests/options_order_test.js)
+PASS controllers go to players 2 and up first, stay while connected, come back to their player
+PASS a player's window that reads no controllers plays its own from player 1's page
+RESULT 2/2 passed (tests/pad_assign_test.js)
+PASS a teleporter-pad exit gets a view-only window onto the next level, in its slipgate, on the side the player comes from
+PASS walking into the window is not a seamless crossing: the pad keeps its own teleport
+PASS the renderer builds a view for the window
+PASS the start map's episode gates show their episodes
+RESULT 4/4 passed (tests/pad_window_test.js)
+PASS native menu composition preserves sources, dimensions and missing-art fallback
+PASS single-player menu keeps five cursor rows and Newer/classic/load/save/level actions
+RESULT 2/2 passed (tests/singleplayer_menu_test.js)
+PASS every control is on the screen and none overlap
+PASS the buttons are an arc around the forward button in the corner
+PASS portrait has a panel the status bar sits above, landscape does not; the views differ
+PASS the safe area keeps the controls off the notch and the home bar
+PASS the weapon menu offers the weapons held that have ammo
+RESULT 5/5 passed (tests/touch_layout_test.js)
+PASS a trigger killtargeting the next trigger in its list: both handled, the walk ends
+RESULT 1/1 passed (tests/trigger_touch_order_native_test.js)
+PASS lighting, normal maps and liquids switch independently on existing materials
+PASS Newer menu exposes independent lighting, normals and liquids controls
+RESULT 2/2 passed (tests/visual_options_test.js)
+TOTAL 120/120 passed
+
+== gy-hexen-all.txt ==
+PASS acceptance: profile -> spawn -> physics -> server frame -> client parser -> HUD on the shared host
+RESULT 1/1 passed (tests/hexen2_acceptance_shared_test.js)
+PASS holding attack advances the first-person weapon frames
+PASS a live monster enters an attack state and advances its model frame
+PASS player and enemy projectile entities spawn with their model and move
+RESULT 3/3 passed (tests/hexen2_animation_test.js)
+PASS every supplied base map mounts with its Paladin and level entities on the shared host
+RESULT 1/1 passed (tests/hexen2_base_maps_shared_test.js)
+PASS live particle/effect/plaque/rain/sound messages use unified ids and parse on the real client
+PASS native service bytes from gamecode are translated before the real client parses them
+RESULT 2/2 passed (tests/hexen2_builtin_wire_live_test.js)
+PASS the Hexen layers keep only numbers whose native body differs from Quake
+PASS 56 writes a coord and 57 an angle (the native order)
+PASS makestatic carries scale, drawflags and abslight and frees the edict
+PASS ambientsound and sound use the protocol-wide word sound index
+PASS centerprint, localcmd, developer prints and the debug toggles are implemented
+PASS tracearea boxes the trace, traceline forces hull 0, and walkmove reads set_trace
+PASS aim uses the shot origin and DAMAGE_YES, not Quake's DAMAGE_AIM
+PASS particle2/3/4, particle explosions, plaques and rain write their native bodies
+PASS getstring and setspawnparms read the host table and all 16 spawn parms
+PASS Portal white flash, sound position and the sound channel helpers write the native messages
+PASS starteffect expires by native type, reuses slots, ends effects and saves/loads its data shape
+PASS spawntemp reuses the reserved pool and recycles the oldest slot
+PASS lightstylevalue follows the native animated style and its 1/2/3 rate prefix
+PASS lightstylevalue returns zero for an out-of-range style instead of aborting the server
+PASS strings, puzzles, infolist and maplist parse CR/LF content and expose lookup
+RESULT 15/15 passed (tests/hexen2_builtins_native_test.js)
+PASS the native builtin table has its pinned count, order and names
+PASS the native unimplemented slots are exactly entry 0, 39 and the QUAKE2 tail
+RESULT 2/2 passed (tests/hexen2_builtins_test.js)
+PASS demo1 -> demo2 -> village1 -> village2 -> demo1 works through changelevel2 and the hub restore
+RESULT 1/1 passed (tests/hexen2_campaign_shared_test.js)
+PASS changelevel writes the native hub command with the start spot, once per level
+RESULT 1/1 passed (tests/hexen2_changelevel_test.js)
+PASS the spawned Paladin receives the native class statistics
+RESULT 1/1 passed (tests/hexen2_class_stats_test.js)
+PASS native clientdata round-trips its view, punch, velocity and weapon fields
+PASS native update_inv round-trips stat deltas, masks and puzzle strings
+RESULT 2/2 passed (tests/hexen2_clientdata_test.js)
+PASS an attack through SV_ClientThink damages a monster
+RESULT 1/1 passed (tests/hexen2_combat_clientthink_test.js)
+PASS a Paladin attack damages a level monster on demo1
+RESULT 1/1 passed (tests/hexen2_combat_test.js)
+PASS SV_ConnectClient accepts a Hexen client without a SetNewParms global
+RESULT 1/1 passed (tests/hexen2_connect_shared_test.js)
+PASS four co-op clients spawn, run and move in turn on the shared server
+RESULT 1/1 passed (tests/hexen2_coop_four_shared_test.js)
+PASS a co-op client leaves and rejoins without disturbing the other on the shared server
+RESULT 1/1 passed (tests/hexen2_coop_leave_shared_test.js)
+PASS two players walk independently through the shared engine movement path
+RESULT 1/1 passed (tests/hexen2_coop_move_shared_test.js)
+PASS two client slots become distinct native players on one shared server
+RESULT 1/1 passed (tests/hexen2_coop_spawn_shared_test.js)
+PASS demo1 native playback keeps the rendered camera inside the level and continuous
+PASS demo2 native playback keeps the rendered camera inside the level and continuous
+PASS demo3 native playback keeps the rendered camera inside the level and continuous
+RESULT 3/3 passed (tests/hexen2_demo_camera_test.js)
+PASS the forcing-track line and one framed message are read exactly
+PASS malformed and truncated framing is refused with a reason
+PASS the supplied native demos read end to end and start with a server message
+RESULT 3/3 passed (tests/hexen2_demo_test.js)
+PASS every CE_* type 1..62 spawns its native entity or particle volume and ends natively
+PASS Hexen II particle2/3/4 types, coloured explosions and trails are native and expire
+PASS rain and snow CE slots emit their volumes on the native cadence
+PASS the 24..32 stream temp entities lay native models, frames and the sunstaff orbs
+PASS Hexen II view shifts: dark/white flash, artifact freeze and the stoned grayscale marker
+RESULT 5/5 passed (tests/hexen2_effects_native_test.js)
+PASS all four native particle messages round-trip and refuse malformed bodies
+RESULT 1/1 passed (tests/hexen2_effects_test.js)
+PASS native start/end effect messages round-trip across their groups
+RESULT 1/1 passed (tests/hexen2_effectwire_test.js)
+PASS the base endgame Eidolon map mounts with its player and level entities on the shared host
+RESULT 1/1 passed (tests/hexen2_endgame_shared_test.js)
+PASS Quake Enhanced retains its full-height view and Classic bar reservation
+PASS hexen2 fills the screen under its bar in Classic and Enhanced, framed above the bar
+PASS hexen2-demo fills the screen under its bar in Classic and Enhanced, framed above the bar
+PASS hexen2-portals fills the screen under its bar in Classic and Enhanced, framed above the bar
+RESULT 4/4 passed (tests/hexen2_enhanced_view_test.js)
+PASS a Hexen session consumes native lightning/beam temp entities without loading a Quake model
+PASS a live puzzle string change sends update_inv and reaches cl.h2.puzzles
+PASS a fractional haste_time change sends update_inv without truncation
+RESULT 3/3 passed (tests/hexen2_f2_live_test.js)
+PASS native King of the Hill becomes the unified message and stores the client state
+PASS svc_damage reads its native two bytes and three coords, even when they look like service ids
+PASS svc_finale has one native string body
+PASS TE_EXPLOSION2 reads its native three coords and two colour bytes
+PASS svc_update_inv reads all eight native mask bytes and normalises the unused high byte
+PASS native update_inv SC2_OBJ and SC2_OBJ2 consume their long bodies into svc_hexen2_info_mask
+PASS a Hexen II deathmatch signon sends the native initial King of the Hill slot
+PASS the King of the Hill id is the next free unified Hexen message
+RESULT 8/8 passed (tests/hexen2_f2_native_test.js)
+PASS paks are ordered highest first across gaps, and only 0..9 are accepted
+PASS the native precedence holds tier by tier, and the corrected overlay wins everything
+PASS names match case-insensitively and a later entry in one pack wins, as native sequential loading does
+PASS the corrected overlay may carry only its approved program outputs
+PASS the effective manifest lists each winning file once, sorted, with a stable digest
+PASS the program header check accepts both supplied layouts and rejects malformed ones
+PASS edition detection proves the program layout and refuses mixed editions
+PASS the demo edition needs the pinned archive signature and a version 6 base-layout program
+PASS the demo archive signature is the native CCITT directory CRC, and the supplied archive matches it
+PASS the supplied base and Portal installations resolve through the native precedence and are detected
+RESULT 10/10 passed (tests/hexen2_filesystem_test.js)
+PASS GotoNextMap records and runs the ending hand-off on the shared host
+RESULT 1/1 passed (tests/hexen2_finale_shared_test.js)
+PASS the help text is all six native sections, wrapped to the panel
+PASS the view scrolls by the pixel, pushes the top pin out and pins the next unseen heading
+PASS Help draws native pixel text that eases, scrolls while held, and fades beside its pins
+RESULT 3/3 passed (tests/hexen2_help_scroll_test.js)
+PASS changelevel2 demo1 -> demo2 -> demo1 restores the level, clients and ClientReEnter
+PASS one save slot holds every visited level and loads the whole hub atomically
+PASS the native intermission table selects the picture, strings.txt line and finale sequence
+PASS music selection prefers the OGG conversion and reports MIDI-only tracks
+PASS the native svc_intermission write becomes the unified message
+RESULT 5/5 passed (tests/hexen2_hub_native_test.js)
+PASS a captured hub level restores its entities, light styles and player state on a fresh server
+RESULT 1/1 passed (tests/hexen2_hub_shared_test.js)
+PASS the native bar scales by width, anchors at the bottom and lays numbers out like Sbar_DrawNum
+RESULT 1/1 passed (tests/hexen2_hud_layout_test.js)
+PASS the inventory commands send the native selection and impulses
+PASS crouch and the objectives plaque drive the native buttons
+PASS the game default.cfg bindings survive for Hexen II
+PASS Hexen II keeps its own saved key configuration
+RESULT 4/4 passed (tests/hexen2_input_native_test.js)
+PASS a synthetic usercmd moves the Paladin through the engine path on the supplied level
+RESULT 1/1 passed (tests/hexen2_input_test.js)
+PASS intermission reads the gamecode next map and start spot
+RESULT 1/1 passed (tests/hexen2_intermission_test.js)
+PASS the native artifact inventory emits the bar icon and the six-icon row
+RESULT 1/1 passed (tests/hexen2_inventory_hud_test.js)
+PASS the Paladin picks up native health and mana items on demo1
+RESULT 1/1 passed (tests/hexen2_items_test.js)
+PASS the main menu bigfont rows and the menudot cursor share a row centre
+PASS ScrollTitle eases the title down over time and ends at the native y
+PASS each main-menu entry opens its Hexen page, never the Quake one
+PASS the highlighted-text offset is profile-driven: +256 for Hexen, +128 for Quake
+PASS the Hexen cursor is the animated gfx/menu/menudot, not the Quake dot
+PASS Single Player opens the Hexen hub load and save pages
+PASS menu.M_Draw dispatches to the Hexen pages, never the Quake art
+PASS hub load pages draw cached comments, refresh from IndexedDB and delete through the repository
+RESULT 8/8 passed (tests/hexen2_menu_native_test.js)
+PASS the Hexen main menu reaches class and difficulty and starts demo1
+PASS classes and per-class skill names follow the edition
+PASS the Hexen Options page exposes the enhanced mode row
+RESULT 3/3 passed (tests/hexen2_menu_shared_test.js)
+PASS the Hexen II font atlas traces installed bigfont outlines and leaves small text native
+PASS the Hexen II stone material is derived from the supplied shaders, leaving Quake untouched
+PASS the Hexen II small-font inks are the charset's own tan and red banks
+PASS every Hexen II page keeps its small text native and draws its titles, bigfont and menudot dynamically
+PASS Quake main and existing options command streams remain unchanged with the appended gyro row
+RESULT 5/5 passed (tests/hexen2_menu_skin_test.js)
+PASS HM traces closed smooth contours with the installed glyph counters and exact SDF metrics
+PASS HM shared title animation supports static Quake and native Hexen retract/switch/slide
+PASS HM fitted outlines retain a hole and detached ink while smoothing a diagonal staircase
+RESULT 3/3 passed (tests/hexen2_menu_vector_test.js)
+PASS MIDI-only music resolves to a cached playable WAV and feeds the shared bus
+PASS mounted and platform OGG stay preferred over MIDI; render errors remain unplayable
+PASS reset supersedes pending MIDI/source selections without repopulating the session cache
+PASS MIDI creates an audio WAV object URL and reset revokes it
+RESULT 4/4 passed (tests/hexen2_midi_music_test.js)
+PASS every installed Hexen II MIDI parses and renders within three seconds
+RESULT 1/1 passed (tests/hexen2_midi_owned_test.js)
+PASS SMF tempo map, running status and format 1 merge use seconds
+PASS SMF SMPTE, sysex, meta and malformed bounds
+PASS FM PCM is stereo, audible, bounded, deterministic and WAV encoded
+PASS FM note-off releases and sustain holds until pedal up
+RESULT 4/4 passed (tests/hexen2_midi_test.js)
+PASS a Quake level keeps four 64-byte hull records and WinQuake hull sizes
+PASS the supplied Hexen demo1.bsp loads 100 eight-hull submodels with native hull sizes
+RESULT 2/2 passed (tests/hexen2_model_test.js)
+PASS MSG_ONE writes to the edict the pointer names
+RESULT 1/1 passed (tests/hexen2_msgone_test.js)
+PASS the packaged music source reads a token in bounded chunks into a Blob URL and revokes the old URL
+PASS the packaged source prefers the portals token for Portal tuklu and track tracks and the base for the rest
+PASS the packaged source refuses missing, unsafe and oversized music tokens
+PASS the registered source is the only platform fallback and the pack/source path stays synchronous
+RESULT 4/4 passed (tests/hexen2_music_source_test.js)
+PASS Hexen movetypes are native 11-14 with SOLID_PHASE and the two extra trace modes
+PASS Hexen defaults sv_maxspeed to 640 and restores the Quake 320 default
+PASS PUSHPULL falls with step physics while SWIM uses toss physics without gravity
+PASS MOVE_WATER stops at the water surface and MOVE_PHASE ignores non-BSP entities
+PASS the hull rules choose 0/4/3/1/5, honour ent.hull, and zero a monster X/Y offset
+PASS rotating BSP entities rotate trace start/end and the impact plane (world.c SV_ClipMoveToEntity)
+PASS SV_FlyExtras hovers around six units and applies vertical friction
+PASS Hexen water speed scales by class and level, and ground friction multiplies ent.friction
+PASS a Hexen FLY player uses SV_FlightMove, and MOVETYPE_NONE aborts SV_ClientThink
+PASS the crouch button sets FL2_CROUCHED
+PASS checkbottom and ideal pitch trace the point hull while ent.hull is restored
+PASS move chains carry origin, angle and chainmoved to at most ten followers
+PASS SV_movestep honours noenemy, set_trace and FL_NOZ; FL_MONSTER skips the landing sound
+PASS a real Hexen map runs and its pushables move (owned data only)
+RESULT 14/14 passed (tests/hexen2_physics_native_test.js)
+PASS the Paladin carries the native feet-origin box the class hull expects
+RESULT 1/1 passed (tests/hexen2_player_bounds_test.js)
+PASS a Paladin is placed in the supplied level by the supplied gamecode
+RESULT 1/1 passed (tests/hexen2_player_test.js)
+PASS the Portal Tibet campaign mounts its chain with the Succubus on the shared host
+RESULT 1/1 passed (tests/hexen2_portal_campaign_shared_test.js)
+PASS every supplied Portal map mounts with the Succubus on the shared host
+RESULT 1/1 passed (tests/hexen2_portal_maps_shared_test.js)
+PASS Portal offers the Succubus and the Keep route carries her through changelevel2
+RESULT 1/1 passed (tests/hexen2_portal_shared_test.js)
+PASS precache_model loads a real pack model once and returns its name
+PASS precache_sound, the qcc version aliases and precache_file share the existing lists
+PASS setmodel finds the precached model, applies its bounds and relinks the entity
+RESULT 3/3 passed (tests/hexen2_precache_test.js)
+PASS the three public Hexen II editions carry their native classes and pinned layout CRCs
+PASS the private session protocol is 1019 quaked-hexen2-v1 with demo readers 18 and 19
+PASS a new run defaults to Corrected gamecode and the Classic rules preset
+PASS the simulation digest covers the simulation fields and excludes content root and presentation
+PASS Installed gamecode keeps its native rules: Enhanced is refused, not silently weakened
+PASS the SP simulation features are Corrected Enhanced single-player only
+PASS descriptor validation rejects tampering instead of repairing it
+PASS the legal descriptor accepts a lowered hex digest and refuses a malformed one
+PASS class ids map to the pinned native playerclass numbers
+RESULT 9/9 passed (tests/hexen2_profile_test.js)
+PASS the pinned layouts carry the source header CRCs and the real structure slots
+PASS the supplied base and Portal programs validate against their own layouts
+PASS a tampered definition is refused with the field and offsets named
+PASS an unsupported layout is refused, with v1.03 named as obsolete data
+PASS the one interpreter loads the supplied programs and execution has a bounded outcome
+PASS RED: a Hexen edict exposes the Hexen field offsets, not Quake's
+PASS a Quake program loaded after a Hexen one restores Quake's field layout
+RESULT 7/7 passed (tests/hexen2_progdefs_test.js)
+PASS RED: the supplied Hexen II base progs.dat loads with its own layout and definitions
+PASS RED: the supplied Hexen II Portal progs.dat loads with its own layout and definitions
+RESULT 2/2 passed (tests/hexen2_progs_layout_test.js)
+PASS the pinned Raven ids are exact, including the effect/inventory block
+PASS the colliding ids mean different things in each family, so a family must be chosen first
+PASS family selection accepts the natives and the private session, and refuses unsupported numbers by name
+PASS Quake keeps its own numbers and cannot borrow the private Hexen session
+PASS the extension envelope is opcode 63 with a bounded body
+PASS the pinned network limits, sound widths and stat masks are exact
+RESULT 6/6 passed (tests/hexen2_protocol_test.js)
+PASS each drawflags light mode selects the native light style or absolute light
+PASS SCALE_TYPE and SCALE_ORIGIN place a scaled model with the native 127.95 constant
+PASS EF_FACE_VIEW looks at the viewer and reports yaw and pitch in degrees
+PASS Hexen II samples alias lighting at the model mid-height and Quake at the origin
+PASS model flags select the skin mode and its native blend state
+PASS skin-mode pixel conversion matches GL_Upload8
+PASS DRF_TRANSLUCENT and MLS_ABSLIGHT give an entity its own material style
+PASS the light-style rate prefix selects 10/20/30 Hz for Hexen strings only
+PASS Hexen liquids are translucent only for *rtex078 and *lowlight
+PASS Hexen II player skins translate from gfx/player.lmp per class
+PASS a DRF_TRANSLUCENT alias entity gets its own material, not the shared one
+PASS DRF_TRANSLUCENT and MLS_ABSLIGHT clone a brush entity's materials
+PASS the supplied Hexen II class models load with their skin mode and raw texels
+PASS a scaled Hexen alias entity reaches the mesh as scale and native origin offset
+RESULT 14/14 passed (tests/hexen2_render_semantics_test.js)
+PASS armour, an artifact and a weapon pick up on demo1
+PASS a kill awards experience and advances the class level
+RESULT 2/2 passed (tests/hexen2_rpg_test.js)
+PASS owned Portal hub save sizes through the public host
+RESULT 1/1 passed (tests/hexen2_save_size_portal_test.js)
+PASS owned first hub save size through the public host
+RESULT 1/1 passed (tests/hexen2_save_size_test.js)
+PASS legacy localStorage hub slots migrate only after the IndexedDB transaction commits
+PASS a save request that succeeds then aborts must reject and preserve the old committed record
+PASS host saves round-trip through IndexedDB; quota failure keeps the old hub and Quake keys
+PASS unavailable IndexedDB keeps the localStorage fallback, and unavailable storage keeps memory
+PASS deleting a migrated hub slot cannot resurrect its legacy source
+PASS the repository separates base, demo and Portal slot names, and never migrates Quake text
+PASS newer outage saves recover over old IndexedDB records and deletion clears both backends
+PASS deletion during an IndexedDB outage refuses before removing either saved copy
+RESULT 8/8 passed (tests/hexen2_save_storage_test.js)
+PASS a native player snapshot builds, validates and applies back
+PASS malformed and lookalike save records are refused before any live field is written
+PASS the memory and localStorage stores round-trip a record without Quake keys
+RESULT 3/3 passed (tests/hexen2_save_test.js)
+PASS Sbar_Draw draws the native Hexen II bar from cl.h2
+PASS the lower character bar and the artifact inventory draw from the shared state
+PASS the +showdm puzzle roster names pieces from puzzles.txt
+PASS plaques wrap like the native text box and the objectives read the info mask
+PASS the Hexen deathmatch roster marks the king of the hill
+RESULT 5/5 passed (tests/hexen2_sbar_shared_test.js)
+PASS Hexen II is startable in the desktop app and a source checkout, never the web product
+PASS a source checkout fetches a Hexen II edition in the desktop mount order
+PASS a source checkout streams the library's loose music in the desktop edition order
+PASS Hexen II's title demos are the native demos the installation has, in order
+RESULT 4/4 passed (tests/hexen2_selection_desktop_test.js)
+PASS alias skin alpha survives loading and both render paths: flags=16384, group=false
+PASS alias skin alpha survives loading and both render paths: flags=4096, group=false
+PASS alias skin alpha survives loading and both render paths: flags=32768, group=false
+PASS alias skin alpha survives loading and both render paths: flags=0, group=false
+PASS alias skin alpha survives loading and both render paths: flags=16384, group=true
+PASS alias skin alpha survives loading and both render paths: flags=4096, group=true
+PASS alias skin alpha survives loading and both render paths: flags=32768, group=true
+PASS alias skin alpha survives loading and both render paths: flags=0, group=true
+PASS installed Hexen skin-mode models preserve native alpha through their real material
+PASS sprites keep index 255 clear and index 0 opaque in Classic, Enhanced and split Classic
+RESULT 10/10 passed (tests/hexen2_skin_alpha_test.js)
+PASS the sky glow is per game: Quake 1.9, every Hexen II edition 1
+RESULT 1/1 passed (tests/hexen2_sky_glow_test.js)
+PASS 300 frames run without growth or overflow and the effect slots are reused
+RESULT 1/1 passed (tests/hexen2_soak_shared_test.js)
+PASS native sound, stop and moving-position messages round-trip
+RESULT 1/1 passed (tests/hexen2_soundwire_test.js)
+PASS the supplied level spawns every entity with the supplied gamecode
+RESULT 1/1 passed (tests/hexen2_spawn_test.js)
+PASS a changelevel start spot places the player at its targetname on the shared host
+RESULT 1/1 passed (tests/hexen2_startspot_shared_test.js)
+PASS map entities skip the reserved temp range, spawntemp only touches it, and a hub round trip keeps them
+RESULT 1/1 passed (tests/hexen2_temp_edicts_live_test.js)
+PASS every reviewed native binding and every byte-identical tier map is registered, without unreviewed art
+PASS every reviewed key matches the actual engine WORLD upload of the unchanged owned BSP pixels
+PASS all Hexen tier maps and index reach every Hexen edition but no web pack
+PASS same-name Hexen identities use matching tier relief and switch live Mid High Low Mid on one model
+PASS obsolete pending tier loads cannot overwrite High or native Low; Classic never upgrades
+PASS Classic reversion cancels a pending upgrade before its images arrive
+RESULT 6/6 passed (tests/hexen2_texture_runtime_test.js)
+PASS a hub level spawn resends every stat and objective, so a reset client sees the complete record
+PASS updateinfoplaque stores engine-side objectives that SV_UpdateClientStats sends
+RESULT 2/2 passed (tests/hexen2_transition_stats_live_test.js)
+PASS unsigned operands above 32767 are global offsets, while a branch displacement is signed
+PASS CALL1 copies its argument into OFS_PARM0 and CALL2+ also copies the second into OFS_PARM1
+PASS the extended store, fetch, bit and random opcodes behave as the pinned interpreter does
+PASS a Hexen builtin with no implementation is refused by number and native name
+PASS the entity opcodes schedule thinks at 20 fps and cycle frames and weapon frames natively
+PASS the implemented Hexen builtins compute their native results through the dispatch table
+PASS the string and console builtins produce native text and read and write cvars
+PASS makevectors writes the native camera basis into the globals
+PASS changeyaw turns self toward ideal_yaw by at most 20 degrees and wraps
+RESULT 9/9 passed (tests/hexen2_vm_test.js)
+PASS Hexen hull selection uses a named hull and the native size rules; Quake keeps its own
+PASS world contents, a traceline and entity sizing work on the supplied level
+RESULT 2/2 passed (tests/hexen2_world_test.js)
+TOTAL 248/248 passed
+Error: listen EPERM: operation not permitted 127.0.0.1
+  code: 'EPERM',
+  syscall: 'listen',
+  address: '127.0.0.1'
+
+== gy-engine-all.txt ==
+PASS with no choice, the start is as before
+PASS choosing the shareware keeps it, reloads, fetches no owned pack and keeps its own saves
+PASS unplayable, unsupported and unknown games are refused with the reason; a blocked store refuses
+PASS the shareware needs no catalogue; an unchecked Quake is allowed with a warning; a missing store refuses
+PASS a chosen game whose pack has gone is reported at start
+PASS a mission pack is chosen with Quake under it, its own pack and switch, and saves of its own
+PASS saves and settings follow the game running, not only the one chosen; the default keeps the original keys
+PASS a mission pack that could not start says why: Quake missing, or its own pack missing
+PASS one rule for the shelf and the console: what can start, including a game a range-less server could not check
+PASS an add-on fetches every pack of its folder in order, up to the first gap; a mission pack its first found
+PASS an add-on's loose game files become one pack mounted under its own packs
+PASS a folder of loose files with its own QuakeC starts alone; folder names are fetched percent-encoded
+PASS the Mac app mounts base packs, then the add-on's loose files, then its packs; a base game's loose files never
+PASS a loose file is fetched whole; a page or an oversized file is refused
+PASS the app library gives loose files to exactly the catalogue's add-ons
+PASS an add-on runs with the switch its own status-bar pictures ask for, as Quakespasm runs it
+PASS every add-on starts on the large-map protocol, as a map may pass protocol 15's entities in play
+RESULT 17/17 passed (tests/game_selection_test.js)
+PASS Desktop_Prepare: ordinary shareware shelf start returns packs and saveTrial false
+PASS Desktop_Prepare: ordinary Hexen II shelf start returns loose gamecode and ordered data1 packs
+PASS Desktop_Prepare: a trial start still returns its autoplay, class and save settings
+RESULT 3/3 passed (tests/desktop_prepare_test.js)
+PASS every box image exists and belongs to a catalogue game or an explicitly approved discovered title
+PASS a game's box: its own art, placeholders where it has none, and whether it plays
+PASS a picked folder: its name and its front, side (or spine) and back images, whatever their type
+PASS a game's URL chooses that page's game over the kept choice; the shelf starts on the kept one
+PASS on a game's own URL the game command switches by going to the new game's URL
+PASS a local-play player window opens on its host's game
+PASS native local artwork overlays only supplied faces and preserves bundled art and selection authority
+PASS front and spine canonical image names beat cover and side aliases while unboxed games retain printed missing faces
+PASS folder face selection is independent of enumeration order and never promotes nested or unsupported images
+PASS folder image type ties use native scan priority without allowing an alias to beat a canonical face
+PASS imported defaults work without local files and never authorize an unsupported title
+PASS artwork-only discovered titles use a neutral game label without implying Quake compatibility
+PASS current Quoth and Machine faces are active defaults while the screenshot collage is never a box front
+RESULT 13/13 passed (tests/game_shelf_test.js)
+PASS Start hosts the chosen players and mode, then opens player 2's window
+PASS while hosting: open the next missing player's window, every player is in, end local play
+PASS a player's window: its address, its start-up commands, and Leave
+RESULT 3/3 passed (tests/local_play_test.js)
+PASS a player's window joins the hosting page; messages go both ways; unreliable runs keep the newest
+PASS a player's window that loads before its host keeps asking; a full server refuses it
+PASS addresses: invalid sessions, an unknown kind and a remote address are not window joins
+PASS a window that gives up before it is taken leaves no ghost player on the host
+RESULT 4/4 passed (tests/net_window_test.js)
+PASS two players' windows join one native co-op server, each with its own player; moves, a kill and a leave stay theirs
+RESULT 1/1 passed (tests/window_play_native_test.js)
+RESULT 0/1 passed (tests/serve_py_test.js)
+PASS a map's worldspawn fog starts it, as Quakespasm reads it; a map without one is clear
+PASS the fog command takes Quakespasm's forms; text counts as 0; too many values change nothing
+PASS a fade passes through the values between
+PASS the scene is fogged while drawn: as given in the classic picture, linear and over the exposure in Newer Game
+PASS the sky takes the fog's colour by its share, not by its distance; the renderer is wired
+PASS sky fog observes every changed console string, even between draws
+PASS sky fog clamps keys and commands, updating every compiled material without recompilation
+RESULT 7/7 passed (tests/fog_test.js)
+PASS TGA images decode to RGBA rows from the top: either row order, run-length packets of every kind, grey, alpha
+PASS the six sides are laid out as Quakespasm lays them, and the lookup by direction finds the same places
+PASS a map's sky keys name it, as Quakespasm reads them; a missing face is grey, none at all keeps the scrolling sky
+PASS the sky surfaces draw the skybox by direction, with the scrolling sky's rules; the renderer is wired
+RESULT 4/4 passed (tests/skybox_test.js)
+PASS options order, widgets, keyboard and touch dispatch match the visible rows
+RESULT 1/1 passed (tests/options_order_test.js)
+PASS a rocket going off beside the player shakes the eye at once, down first, and is over in under half a second
+PASS it is weaker with the square of the distance, arrives with the blast, and is not felt past its reach
+PASS a Spawn bursting is smaller; Chthon rising is felt across the cave and for longer
+PASS many explosions at once stay within the limits; the setting scales it and 0 switches it off
+PASS New Game, demos, pauses, menus, death and a new map are never shaken
+PASS the client's explosion parser starts it, and V_CalcRefdef moves the eye and the weapon together, tilting only the eye
+PASS new explosions work immediately after a restart or map clock reset
+PASS the actual render entry clears queued blasts when pause or intermission skips refdef
+RESULT 8/8 passed (tests/blast_shake_test.js)
+PASS the first page is as it was: 17 rows from y 44, lighting first, depth of field last, the cursor on the first
+PASS the page follows the cursor down to the rows past it and back up; Up from the top goes to the last row
+PASS the explosion shake slider and note paging use the actual visible rows
+RESULT 3/3 passed (tests/newer_menu_scroll_test.js)
+PASS a gunshot and the lightning bolts are handled word for word as before the add-on effects
+PASS no add-on effect module reaches into the shotgun's, the casings', the wall burn's or the lightning gun's
+PASS the Shambler's shudder is the same with the explosion shake beside it, and each keeps its own share of the view
+RESULT 3/3 passed (tests/addon_effects_guard_test.js)
+PASS each walking footfall shakes once, at the heel strike, and not between steps
+PASS running footfalls land on run2 and run5
+PASS strength is (1 - distance / 600) squared: a quarter at 300 units, nothing from 600
+PASS several Shamblers stomping together stay within the small-quake limits
+PASS short packet gaps still land their steps; longer jumps never replay one
+PASS starting to walk or run straight onto a contact pose is the first step
+PASS held, non-walking, teleporting, vanished and other-model poses never shake
+PASS a step ends early when the Shambler stops walking, changes model or the level changes
+PASS the player must be on the ground when the foot lands, and feels nothing in the air
+PASS New Game, the setting, demos, pause, death, intermission and menus stop the shake
+PASS small backwards steps in the predicted clock keep the step; a restart forgets it
+PASS with smoothed monster animation the shake waits for the contact pose to be drawn
+PASS V_CalcRefdef moves the eye and weapon together and tilts only the eye
+RESULT 13/13 passed (tests/shambler_steps_test.js)
+PASS no engine or platform module imports Newer, statically or dynamically
+PASS installed: every hook is the export of the Newer module install.js takes it from, none still a stub
+PASS Hooks_Install refuses a table with a hook missing or an unknown name, and changes nothing
+RESULT 3/3 passed (tests/hooks_test.js)
+PASS existing point hull finds exact thin-liquid entry and exit
+PASS public static-sound parser records drips independently of audio playback
+PASS drips fall down the proven column, pause holds, and disabling retires them
+PASS underwater sources do not invent ceiling drips; rewinds restart schedules
+PASS motes never overwrite live effects and new births have no pre-birth movement
+PASS one switch cannot clear another effect owner and Classic hides all new motes
+PASS thin water landings reuse the ripple detector; existing impact events keep priority
+PASS ambient registry is bounded and rejects nonfinite positions
+RESULT 8/8 passed (tests/drips_test.js)
+PASS actual stock lightning records the visual trace and all three damage rays after one ammo-consuming pulse
+PASS native damage receipts and contacts distinguish target, armor and invulnerable contact from a miss
+PASS waist-deep native water discharge consumes all cells without inventing a normal beam
+PASS a dry native beam crossing actual BSP water reports its first water contact without a discharge
+PASS real native Shambler charge/cast/terminal state events remain distinct and a stop needs an actual cast
+PASS read-only electric observation leaves native ammo, damage, trace globals and randomness unchanged
+PASS unrelated weapon, dry fire, demo, unpaired connection and abandoned VM state cannot fabricate electric events
+RESULT 7/7 passed (tests/electric_native_test.js)
+PASS electrical role contract keeps every owner-selected full clip and alternate
+PASS electric stream anchor is the clamped nearest point, including degenerate beams
+PASS charge originates at its moving source and real stereo reverses with listener orientation
+PASS player stream follows nearest beam point while damage and water remain at actual contacts
+PASS ordinary charge, firing and release transitions preserve all full-file tails and never seek past the start
+PASS firing repeats a whole file only after natural ending while new native pulses still confirm activity
+PASS voice overload drops new cues rather than cutting existing full clips and completed slots recover
+PASS eel zap is spatial at its emitter; malformed events cannot create voices
+PASS pause, death, disconnect, menu and world reset stop safely without fabricating release cues
+PASS closed audio, rejected playback and late play resolution remain bounded and cannot revive old voices
+PASS distinct hit targets keep their own contacts, and repeated pulses cannot restart an existing impact tail
+PASS approved charge and player release alternates advance between complete natural one-shots
+PASS a full source tail freezes when its emitter disappears and cannot follow a recycled entity slot
+PASS player release waits for both the pulse hold and actual cessation, and cannot restart an ended file while ceased
+PASS weapon changes and cell exhaustion respect the same confirmed-pulse hold before the single player stop
+PASS an emitter freed and recycled entirely between frames cannot move its former full-clip tail
+PASS rejected contact playback coalesces repeated native pulses instead of filling the voice pool with failures
+RESULT 17/17 passed (tests/electric_spatial_test.js)
+PASS the shared Milky Way profile dims and increases background contrast while making native clouds more visible
+PASS native sky1 and matching sky4 pixels qualify, while the unrelated same-name E1M1 sky remains native
+PASS both complete native RGBA identities are required and same-name altered pixels do not match
+PASS Classic, split Classic and texture-off avoid loading; Newer demo sky follows the existing visual mode
+PASS JPEG failure preserves native fallback, records the error and retries only after an explicit map clear
+PASS a shared asynchronous image arriving after map clear cannot activate stale or unrelated map materials
+PASS panorama uses world direction and shared fog; faint clouds preserve the exact native alpha and original pixels
+PASS map clear disposes replacement materials exactly once while preserving shared JPEG and borrowed native textures
+PASS the shipped Milky Way JPEG retains the supplied archive member byte for byte and full panorama dimensions
+PASS public sky-chain draws the lazy panorama on existing meshes, keeps native clouds and gives explicit cubeskies precedence
+PASS a late callback from a failed request cannot replace a later successful shared panorama
+PASS existing neighbor-view uniform holders select the same lazy image and track current visual eligibility
+PASS public main sky HDR switches invalidate the program and specialize every MRT output for the current depth policy
+RESULT 13/13 passed (tests/milkyway_sky_test.js)
+PASS ordinary grayscale XYZ uses channel red values and authored height through public foreground and preparation APIs
+PASS glass recomposes canonical normal AND height outside decoded panes before foreground and prepared keys
+PASS different opening masks produce distinct final normal keys without corrupting shared decoded channel caches
+PASS ordinary missing, incomplete or mismatched XYZ falls back to its crafted height without partial or legacy donor data
+PASS glass missing or wrong-sized XYZ, opening, sheen or height fails safely to canonical matte pigment
+PASS explicit glass composition with an absent opening declaration cannot reinterpret grayscale sheen as a packed aperture
+PASS legacy RGB normal and packed RG gloss behavior stays unchanged without new composition metadata
+PASS composition uses unsplit pigment for fullbright panes and preserves native fullbright Classic images
+PASS Classic pass and disabled texture option never request Q92 channel assets
+RESULT 9/9 passed (tests/texture_q92_channels_test.js)
+PASS mouse input uses the registered sensitivity cvar
+RESULT 1/1 passed (tests/in_web_test.js)
+PASS public body capture admits both mouse axes into real player angles only after a lock grant
+PASS a refused public lock request remains inactive and another real gesture can retry
+PASS shutdown while captured then async unlock and reinitialization can acquire capture and aim again
+PASS default mouse look survives a bound middle-button cycle while explicit -mlook still disables vertical aiming
+RESULT 4/4 passed (tests/in_web_capture_test.js)
+PASS IN_Init twice adds each listener once; IN_Shutdown removes them all, touch start included
+RESULT 1/1 passed (tests/in_web_lifecycle_test.js)
+PASS the focus is where the view looks: the median of five rays, so one thin thing on the crosshair does not snatch it
+PASS the focus settles smoothly on the client's clock, holds while paused, and snaps on a new level, a teleport or time going back
+PASS off in Classic, at strength 0 and in WebXR; the circle of confusion scales with the picture's height and strength
+PASS inside a wall the focus holds; along the ray the sky focuses far and lava stops it, water does not; clearing forgets
+PASS the real E1M1 hull: a ray at the sky stops on its face, and knowing the sky faces makes it focus far
+PASS on by default at the lowest nonzero slider step (0.05); explicit player choices remain saved
+PASS the 19 October default migration handles an already migrated 0.15 configuration once and preserves explicit strength choices
+RESULT 7/7 passed (tests/dof_test.js)
+PASS player movement never produces these enemy-only footsteps
+PASS all five approved enemy families step on the real floor and retain weight and movement cadence
+PASS dogs Shamblers fiends zombies players and unknown walkers never gain human enemy footsteps
+PASS approved enemies still need movement a walking pose and a nearby floor
+PASS native enemy footsteps take ownership only after playback, never merely because a sound is precached
+PASS Classic demos pause and the switch silence an otherwise eligible moving enemy
+PASS enemy footsteps keep the four-per-frame bound and cannot steal full native sound channels
+RESULT 7/7 passed (tests/footsteps_test.js)
+PASS the material table reads what Quake's texture names say
+PASS every surface sound is a short, clean, distinct sound
+PASS a nail on a wall admits its material sound instead of the original while preserving native random decisions
+PASS landing on the floor and the axe on a wall bring the surface's sound; the shotgun and lightning gun none
+PASS New Game, a demo and the switch off: the game's own sound only
+PASS no game sound is ever cut off: with nearly every channel busy the surface sound waits
+PASS an admitted surface sound starts one PCM source and preserves logical observer notifications once
+PASS an inaudible surface candidate cannot swallow an otherwise audible native impact
+RESULT 8/8 passed (tests/material_impacts_test.js)
+PASS recorded player submersion starts entry once, loops underwater, and bubbles only during filling
+PASS wading uses quick fade-in and long fade-out when movement stops
+PASS water sounds use Sound Volume bus and stop on pause, hide, death, Classic and disconnect
+PASS shutdown releases media and a late play promise cannot restart a disconnected water loop
+PASS dry game preparation warms existing water media before the first dive, whose public update starts full gain synchronously
+PASS a denied silent dry warm-up stays bounded and retries exactly once on the next genuine dive
+RESULT 6/6 passed (tests/water_audio_test.js)
+PASS actual native packet admits one custom source before native playback and still notifies existing observers once
+PASS false thrown unmapped and non-boolean replacement results retain one normal native playback
+PASS Classic and the split Classic pass keep native audio even when a registered Newer replacement would admit it
+PASS replacement unsubscription restores native playback and one admitted owner prevents duplicate replacement execution
+PASS admitting a replacement preserves actual native PCM cache file bytes and loaded QC globals
+PASS admitting a ready replacement stops its old fallback but preserves other actors and channels
+PASS static loops pass through the same admission policy before any native buffer starts
+PASS ambient fallback can become replaced and resume natively after its replacement unsubscribes
+PASS real electric event subscriber replaces native player lightning packets with full clip20 without duplicate starts
+PASS real electric mapping keeps original audio without actor receipts, in Classic/demo and after replacement media failure
+PASS the real placed-fire parser and owner replace the native loop with the supplied environmental recording
+PASS the real underwater owner replaces only the submerged native bed and restores surface ambience
+PASS real clientdata pickup transitions replace quad ring and pentagram native packets with the supplied individual cues
+PASS admitting an auto-channel contact never retires independent earlier contacts from the same actor
+PASS a replacement PCM output start failure falls through to the original rather than claiming admission
+PASS missing replacement PCM keeps the real native cache and original source usable
+PASS actual underwater death is replaced while drowning pain after respawn keeps its native sound through the full death tail
+PASS an old electric contact tail cannot replace native audio belonging to a reused same-object edict life
+PASS a synchronous MP3 play throw cannot claim electric admission or swallow the native source
+PASS native water entry is replaced only for the local submerged player with an actually admitted entry recording
+PASS actual native water1 and water2 wading packets are replaced only while the local walking recording is audible and fall back after its fade or failure
+RESULT 21/21 passed (tests/native_sound_replacement_test.js)
+PASS actual static-sound placement drives one spatialized fire loop independent of torch rendering
+PASS fire uses bounded nearest source, existing stereo direction and static-flame fallback only when needed
+PASS pause, hide, mute, death, menu, Classic and demo silence fire immediately on the effects bus
+PASS fire resets source history, rejects play-spam and invalidates pending media on shutdown
+RESULT 4/4 passed (tests/environment_sounds_test.js)
+PASS real clientdata transitions play individual cues, exact-two bed and third acquisition once
+PASS pair fades after count leaves two and initial baseline or suit cannot fabricate a combo
+PASS actual clientdata death edge plays once and can finish through same-world respawn
+PASS only base Quake end-map finale message plays the ending cue
+PASS new cues use the effects bus and lifecycle gates silence them without stale replay
+PASS late play success after reset cannot resurrect an old context-bound cue
+PASS a clientdata packet replaces expired powers before counting its newly gained powers
+RESULT 7/7 passed (tests/player_events_audio_test.js)
+PASS real demo2 fills the HUD face from recorded player geometry
+PASS demo visual air freezes on repeated reads and resets on surfacing, suit, rewind and file replacement
+PASS client geometry distinguishes wading from head water and ignores stationary movement
+PASS demo death and respawn received between visible frames discard the old fill
+RESULT 4/4 passed (tests/face_demo_water_test.js)
+PASS submersion immediately shows W1 and full visor starts at ninety percent air used
+PASS surface drain reverses one frame every fifty game milliseconds and cancels on reentry
+RESULT 2/2 passed (tests/face_water_entry_test.js)
+PASS in a leaf by water and sky, the two ambient channels play the map's water and wind sounds; elsewhere they fade
+RESULT 1/1 passed (tests/ambient_sounds_test.js)
+PASS with every channel busy, the long sound about to finish is taken, not a short one just begun
+RESULT 1/1 passed (tests/sound_channel_steal_test.js)
+TOTAL 211/212 passed
+Error: listen EPERM: operation not permitted 127.0.0.1
+  code: 'EPERM',
+  syscall: 'listen',
+  address: '127.0.0.1'
+FAIL ranges are served as 206 with the right bytes; whole files as before; past the end is 416 Error: the server started
+    at check (file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/serve_py_test.js:8:46)
+    at file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/serve_py_test.js:19:3
+    at async file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tools/run_tests.mjs:95:9
+
+== gy-focused-initial.txt ==
+PASS the cheats run the game's own commands, show their state, say when one was used, and refuse outside a single-player game
+RESULT 1/2 passed (tests/cheats_menu_test.js)
+PASS desktop gyro listens once, forwards canonical samples, removes disconnects and stops
+RESULT 1/1 passed (tests/desktop_gyro_test.js)
+PASS Desktop_Prepare: ordinary shareware shelf start returns packs and saveTrial false
+PASS Desktop_Prepare: ordinary Hexen II shelf start returns loose gamecode and ordered data1 packs
+PASS Desktop_Prepare: a trial start still returns its autoplay, class and save settings
+RESULT 3/3 passed (tests/desktop_prepare_test.js)
+PASS each button releases the key it pressed, even when a menu opens in between; a key two buttons hold goes up with the last
+PASS triggers at half travel; a disconnect or another controller taking over releases only the controller's own keys
+PASS the controller playing stays while connected; a standard layout is preferred to a nonstandard one
+PASS sticks: deadzones, then movement and look in the game; nothing in a menu or without a command
+PASS keyboard and controller on the same key: neither cuts the other (real Key_Event, bindings and buttons)
+PASS the buttons are read every host frame, with no level running; WebXR makes the controller let go
+PASS look: right stick turns and tilts the view by the look settings; no sticks in a demo; the layout note once; a new id at the same index is a new controller
+PASS in local play player 1's page plays only the controller given to player 1
+RESULT 8/8 passed (tests/gamepad_test.js)
+PASS gyro HID dualsense report 1
+PASS gyro HID dualsense report 49
+PASS gyro HID dualshock4 report 1
+PASS gyro HID dualshock4 report 17
+PASS gyro HID Switch averages all three IMU frames with canonical axes
+PASS Switch full reports correlate the right stick button, never B, with the selected player
+PASS remembered HID grants restore healthy devices even if an earlier device fails
+PASS HID factory trims remove stationary offsets and use transport-specific scale layouts
+PASS HID stop/start serialises a cancelled in-flight open before reopening the same handle
+PASS HID stop/start waits for the previous successful connection to close
+RESULT 10/11 passed (tests/gyro_hid_test.js)
+PASS quake: the public gamepad poll combines the right stick and gyro; button-only polling does not drain it
+PASS quake: no gyro leaves movement and right-stick aiming unchanged
+PASS hexen2: the public gamepad poll combines the right stick and gyro; button-only polling does not drain it
+PASS hexen2: no gyro leaves movement and right-stick aiming unchanged
+PASS public gamepad gyro is gated in menus, demos and the input lock; returning drains one frame
+PASS quake: Options reaches the shared gyro page through touch and keyboard, with working controls and return
+PASS hexen2: Options reaches the shared gyro page through touch and keyboard, with working controls and return
+PASS Hexen Options exposes its hidden gyro row through the touch-only More and Top affordances
+PASS gyro uses the same effective remote PadShare population as the selected local-play controller
+RESULT 9/9 passed (tests/gyro_integration_test.js)
+PASS gyro public input adds local yaw/roll and pitch, clamps and archives
+PASS gyro rejects stale, inactive, missing, ambiguous and unheld input
+PASS gyro learns stationary bias continuously but preserves ordinary deliberate aim
+RESULT 3/3 passed (tests/gyro_test.js)
+PASS the inventory commands send the native selection and impulses
+PASS crouch and the objectives plaque drive the native buttons
+PASS the game default.cfg bindings survive for Hexen II
+PASS Hexen II keeps its own saved key configuration
+RESULT 4/4 passed (tests/hexen2_input_native_test.js)
+PASS a synthetic usercmd moves the Paladin through the engine path on the supplied level
+RESULT 1/1 passed (tests/hexen2_input_test.js)
+PASS the main menu bigfont rows and the menudot cursor share a row centre
+PASS ScrollTitle eases the title down over time and ends at the native y
+PASS each main-menu entry opens its Hexen page, never the Quake one
+PASS the highlighted-text offset is profile-driven: +256 for Hexen, +128 for Quake
+PASS the Hexen cursor is the animated gfx/menu/menudot, not the Quake dot
+PASS Single Player opens the Hexen hub load and save pages
+PASS menu.M_Draw dispatches to the Hexen pages, never the Quake art
+PASS hub load pages draw cached comments, refresh from IndexedDB and delete through the repository
+RESULT 8/8 passed (tests/hexen2_menu_native_test.js)
+PASS the Hexen main menu reaches class and difficulty and starts demo1
+PASS classes and per-class skill names follow the edition
+RESULT 2/3 passed (tests/hexen2_menu_shared_test.js)
+PASS the Hexen II font atlas traces installed bigfont outlines and leaves small text native
+PASS the Hexen II stone material is derived from the supplied shaders, leaving Quake untouched
+PASS the Hexen II small-font inks are the charset's own tan and red banks
+PASS every Hexen II page keeps its small text native and draws its titles, bigfont and menudot dynamically
+RESULT 4/5 passed (tests/hexen2_menu_skin_test.js)
+PASS HM traces closed smooth contours with the installed glyph counters and exact SDF metrics
+PASS HM shared title animation supports static Quake and native Hexen retract/switch/slide
+PASS HM fitted outlines retain a hole and detached ink while smoothing a diagonal staircase
+RESULT 3/3 passed (tests/hexen2_menu_vector_test.js)
+PASS public body capture admits both mouse axes into real player angles only after a lock grant
+PASS a refused public lock request remains inactive and another real gesture can retry
+PASS shutdown while captured then async unlock and reinitialization can acquire capture and aim again
+PASS default mouse look survives a bound middle-button cycle while explicit -mlook still disables vertical aiming
+RESULT 4/4 passed (tests/in_web_capture_test.js)
+PASS IN_Init twice adds each listener once; IN_Shutdown removes them all, touch start included
+RESULT 1/1 passed (tests/in_web_lifecycle_test.js)
+PASS mouse input uses the registered sensitivity cvar
+RESULT 1/1 passed (tests/in_web_test.js)
+PASS supplied seven-row main menu remains byte-identical and uses the existing native-pitch PNG loader
+PASS actual main menu artwork and fallback follow title order and every keyboard/touch action matches its authored row
+RESULT 2/2 passed (tests/main_menu_art_test.js)
+PASS the menu state is set only through its setters, and menu.js shows the same binding
+PASS M_InGame: a local server or a connection, but not a demo
+PASS menu art is placed at 320 x 200 positions centred on the screen; the setup player through the colour table
+RESULT 3/3 passed (tests/menu_common_test.js)
+PASS level select opens, offers only the maps the game has, and ESC goes back to single player
+RESULT 1/1 passed (tests/menu_levelselect_test.js)
+PASS the main menu: opened, its cursor moving and wrapping, Enter into single player, ESC back
+RESULT 1/1 passed (tests/menu_main_test.js)
+PASS the multiplayer choice opens and ESC returns to the main menu
+PASS a failed connection returns to the menu that joined, once; otherwise to multiplayer
+RESULT 2/2 passed (tests/menu_multiplayer_test.js)
+PASS options: the sound slider steps by 0.1 within 0..1; the first row opens Newer's options; ESC returns
+RESULT 1/1 passed (tests/menu_options_test.js)
+PASS load menu discovers and opens browser save slots
+RESULT 1/1 passed (tests/menu_save_test.js)
+PASS customize controls binds printable and named keys
+RESULT 1/1 passed (tests/menu_test.js)
+PASS skinned main menu keeps native keyboard and touch routing: each action fires exactly once
+PASS item sheets: lettering is placed on the original sprite ink, row pitch preserved, exact labels
+PASS engine text keeps its fixed 8-unit character grid and right alignment
+PASS pictures without a replacement are layered above the renderer, not hidden under its panels
+PASS WebGL failure leaves the native menu drawing, keyboard and touch functional
+PASS closing the menu releases the frame and leaves nothing scheduled
+PASS a descender from the row above cannot widen the next label (stock Load/New Game overlap)
+PASS selector is placed from the sprite cell, identically on every rotation frame
+PASS sliders and text boxes follow the native cell geometry
+PASS left plaque letters are fitted and the id mark is blitted from the original pixels
+PASS Credits text honours the scoped 0.75 scale and the cursor blinks on one phase only
+PASS context loss and restoration rebuild from the host commands, never the donor layout
+PASS hiding the menu releases the screen-sized renderer buffers and the next opening restores them
+PASS everything the menu draws gets a large soft black drop shadow, laid down before the crisp image
+PASS Multiplayer screen: Online is drawn disabled by the supplied renderer, Local enabled
+PASS the classic menu is never drawn while the high-quality menu loads
+RESULT 16/16 passed (tests/menu_webgl_test.js)
+PASS Multiplayer offers Local and a disabled Online; Local opens split screen; Esc goes back
+PASS natively, Online is drawn faded through Draw_WithAlpha and Local at full strength
+RESULT 2/2 passed (tests/mp_menu_test.js)
+PASS the first page is as it was: 17 rows from y 44, lighting first, depth of field last, the cursor on the first
+PASS the page follows the cursor down to the rows past it and back up; Up from the top goes to the last row
+PASS the explosion shake slider and note paging use the actual visible rows
+RESULT 3/3 passed (tests/newer_menu_scroll_test.js)
+PASS actual offline skin image helper waits for decoded pixels before reading canvas; removing await recreates the original empty input
+PASS actual baker palette initialization matches runtime224 fullbright boundary and prevents old all-black native normal inputs
+RESULT 2/2 passed (tests/normal_baker_inputs_test.js)
+PASS options order, widgets, keyboard and touch dispatch match the visible rows
+RESULT 1/1 passed (tests/options_order_test.js)
+PASS controllers go to players 2 and up first, stay while connected, come back to their player
+PASS a player's window that reads no controllers plays its own from player 1's page
+RESULT 2/2 passed (tests/pad_assign_test.js)
+PASS native menu composition preserves sources, dimensions and missing-art fallback
+PASS single-player menu keeps five cursor rows and Newer/classic/load/save/level actions
+RESULT 2/2 passed (tests/singleplayer_menu_test.js)
+PASS every control is on the screen and none overlap
+PASS the buttons are an arc around the forward button in the corner
+PASS portrait has a panel the status bar sits above, landscape does not; the views differ
+PASS the safe area keeps the controls off the notch and the home bar
+PASS the weapon menu offers the weapons held that have ammo
+RESULT 5/5 passed (tests/touch_layout_test.js)
+TOTAL 108/112 passed
+FAIL Options lists Cheats last; it opens the Cheats menu; Escape returns to Options Error: Enter on it opens Cheats: 38 != 23
+    at check (file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/cheats_menu_test.js:5:46)
+    at same (file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/cheats_menu_test.js:5:87)
+    at file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/cheats_menu_test.js:21:3
+    at file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tools/run_tests.mjs:95:15
+FAIL a late permission grant cannot restart HID after input shutdown Error: cancelled permission result never opens or configures a device
+    at check (file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/gyro_hid_test.js:3:46)
+    at file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/gyro_hid_test.js:140:3
+    at async file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tools/run_tests.mjs:95:9
+FAIL the Hexen Options page exposes the enhanced mode row Error: the enhanced mode is applied through Newer_ApplyGameDefaults: 0 != 1
+    at check (file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/hexen2_menu_shared_test.js:14:46)
+    at same (file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/hexen2_menu_shared_test.js:14:87)
+    at file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/hexen2_menu_shared_test.js:80:2
+    at file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tools/run_tests.mjs:95:15
+FAIL Quake main and options command streams are unchanged by the skin seam Error: the complete unrounded Quake options stream matches base 78037c41: 1274738615 != 840811737
+    at check (file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/hexen2_menu_skin_test.js:24:58)
+    at same (file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/hexen2_menu_skin_test.js:25:45)
+    at fixture.profile (file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/hexen2_menu_skin_test.js:403:3)
+    at async file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/hexen2_menu_skin_test.js:146:4
+    at async file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tools/run_tests.mjs:95:9
+
+== gy-hid-red.txt ==
+PASS gyro HID dualsense report 1
+PASS gyro HID dualsense report 49
+PASS gyro HID dualshock4 report 1
+PASS gyro HID dualshock4 report 17
+PASS gyro HID Switch averages all three IMU frames with canonical axes
+RESULT 5/7 passed (tests/gyro_hid_test.js)
+FAIL Switch full reports correlate the right stick button, never B, with the selected player Error: B does not bind a motion device to a right-stick click
+    at check (file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/gyro_hid_test.js:3:46)
+    at file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/gyro_hid_test.js:57:19
+    at async file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tools/run_tests.mjs:95:9
+FAIL remembered HID grants restore healthy devices even if an earlier device fails Error: later healthy controller still initialised
+    at check (file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/gyro_hid_test.js:3:46)
+    at file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/gyro_hid_test.js:68:31
+    at async file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tools/run_tests.mjs:95:9
+TOTAL 5/7 passed
+
+== gy-lifecycle-red.txt ==
+PASS gyro HID dualsense report 1
+PASS gyro HID dualsense report 49
+PASS gyro HID dualshock4 report 1
+PASS gyro HID dualshock4 report 17
+PASS gyro HID Switch averages all three IMU frames with canonical axes
+PASS Switch full reports correlate the right stick button, never B, with the selected player
+PASS remembered HID grants restore healthy devices even if an earlier device fails
+PASS HID factory trims remove stationary offsets and use transport-specific scale layouts
+RESULT 8/9 passed (tests/gyro_hid_test.js)
+FAIL HID stop/start serialises a cancelled in-flight open before reopening the same handle Error: replacement waits for cancelled handle cleanup
+    at check (file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/gyro_hid_test.js:3:46)
+    at file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/gyro_hid_test.js:107:3
+    at async file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tools/run_tests.mjs:95:9
+TOTAL 8/9 passed
+
+== gy-close-red.txt ==
+PASS gyro HID dualsense report 1
+PASS gyro HID dualsense report 49
+PASS gyro HID dualshock4 report 1
+PASS gyro HID dualshock4 report 17
+PASS gyro HID Switch averages all three IMU frames with canonical axes
+PASS Switch full reports correlate the right stick button, never B, with the selected player
+PASS remembered HID grants restore healthy devices even if an earlier device fails
+PASS HID factory trims remove stationary offsets and use transport-specific scale layouts
+PASS HID stop/start serialises a cancelled in-flight open before reopening the same handle
+RESULT 9/10 passed (tests/gyro_hid_test.js)
+FAIL HID stop/start waits for the previous successful connection to close Error: replacement reopens after the old deferred close completes
+    at check (file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/gyro_hid_test.js:3:46)
+    at file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/gyro_hid_test.js:123:3
+    at async file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tools/run_tests.mjs:95:9
+TOTAL 9/10 passed
+
+== gy-permission-red.txt ==
+PASS gyro HID dualsense report 1
+PASS gyro HID dualsense report 49
+PASS gyro HID dualshock4 report 1
+PASS gyro HID dualshock4 report 17
+PASS gyro HID Switch averages all three IMU frames with canonical axes
+PASS Switch full reports correlate the right stick button, never B, with the selected player
+PASS remembered HID grants restore healthy devices even if an earlier device fails
+PASS HID factory trims remove stationary offsets and use transport-specific scale layouts
+PASS HID stop/start serialises a cancelled in-flight open before reopening the same handle
+PASS HID stop/start waits for the previous successful connection to close
+RESULT 10/11 passed (tests/gyro_hid_test.js)
+FAIL a late permission grant cannot restart HID after input shutdown Error: cancelled permission result never opens or configures a device
+    at check (file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/gyro_hid_test.js:3:46)
+    at file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/gyro_hid_test.js:140:3
+    at async file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tools/run_tests.mjs:95:9
+TOTAL 10/11 passed
+
+== gy-switch-axes-red.txt ==
+PASS gyro HID dualsense report 1
+PASS gyro HID dualsense report 49
+PASS gyro HID dualshock4 report 1
+PASS gyro HID dualshock4 report 17
+PASS gyro HID Switch averages all three IMU frames with canonical axes
+PASS Switch full reports correlate the right stick button, never B, with the selected player
+PASS remembered HID grants restore healthy devices even if an earlier device fails
+PASS HID factory trims remove stationary offsets and use transport-specific scale layouts
+PASS HID stop/start serialises a cancelled in-flight open before reopening the same handle
+PASS HID stop/start waits for the previous successful connection to close
+PASS a late permission grant cannot restart HID after input shutdown
+RESULT 11/12 passed (tests/gyro_hid_test.js)
+FAIL Switch Pro IMU axes match the common PlayStation/GameController frame Error: physical Switch axes require a permutation as well as sign changes
+    at check (file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/gyro_hid_test.js:3:46)
+    at file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/gyro_hid_test.js:151:2
+    at file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tools/run_tests.mjs:95:15
+TOTAL 11/12 passed
+
+== gy-switch-output-red.txt ==
+PASS gyro HID dualsense report 1
+PASS gyro HID dualsense report 49
+PASS gyro HID dualshock4 report 1
+PASS gyro HID dualshock4 report 17
+PASS gyro HID Switch averages all three IMU frames with canonical axes
+PASS remembered HID grants restore healthy devices even if an earlier device fails
+PASS HID factory trims remove stationary offsets and use transport-specific scale layouts
+PASS HID stop/start serialises a cancelled in-flight open before reopening the same handle
+PASS HID stop/start waits for the previous successful connection to close
+PASS a late permission grant cannot restart HID after input shutdown
+PASS Switch Pro IMU axes match the common PlayStation/GameController frame
+RESULT 11/13 passed (tests/gyro_hid_test.js)
+FAIL Switch full reports correlate the right stick button, never B, with the selected player Error: Bluetooth subcommand body excludes the separate report ID
+    at check (file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/gyro_hid_test.js:3:46)
+    at file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/gyro_hid_test.js:61:3
+    at async file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tools/run_tests.mjs:95:9
+FAIL Switch USB setup sends full descriptor-sized reports with the report ID supplied separately Error: USB body is 63 bytes, not 64 including the report ID
+    at check (file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/gyro_hid_test.js:3:46)
+    at file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tests/gyro_hid_test.js:165:3
+    at async file:///Users/bri/worktrees/Quaked/hexen2-unified/gy/tools/run_tests.mjs:95:9
+TOTAL 11/13 passed
+
+== gy-cargo-build-final.txt ==
+   Compiling quaked v0.132.5 (/Users/bri/worktrees/Quaked/hexen2-unified/gy/src-tauri)
+warning: function `ensure` is never used
+   --> src/packs.rs:409:8
+    |
+409 | pub fn ensure(
+    |        ^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `quaked` (bin "quaked") generated 1 warning
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 28.13s
+
+== gy-cargo-x86-final.txt ==
+   Compiling quaked v0.132.5 (/Users/bri/worktrees/Quaked/hexen2-unified/gy/src-tauri)
+warning: function `ensure` is never used
+   --> src/packs.rs:409:8
+    |
+409 | pub fn ensure(
+    |        ^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `quaked` (bin "quaked") generated 1 warning
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 22.80s
+
+== gy-cargo-test-final.txt ==
+warning: function `ensure` is never used
+   --> src/packs.rs:409:8
+    |
+409 | pub fn ensure(
+    |        ^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: struct `Settings` is never constructed
+  --> examples/../src/library.rs:44:12
+   |
+44 | pub struct Settings {
+   |            ^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `read_range` is never used
+   --> examples/../src/library.rs:426:8
+    |
+426 | pub fn read_range(
+    |        ^^^^^^^^^^
+
+   Compiling quaked v0.132.5 (/Users/bri/worktrees/Quaked/hexen2-unified/gy/src-tauri)
+warning: `quaked` (bin "quaked") generated 1 warning
+warning: `quaked` (example "library_inventory") generated 2 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 11.02s
+     Running unittests src/main.rs (/private/tmp/quaked-gy-target/debug/deps/quaked-fa9bd2e473b89926)
+
+running 12 tests
+test gyro::tests::rotation_abi_matches_sdk ... ok
+test packs::tests::a_corrupt_part_is_refused_and_nothing_unverified_is_kept ... FAILED
+test packs::tests::downloads_verifies_unpacks_and_then_works_offline ... FAILED
+test gyro::tests::native_rate_units_are_degrees_and_finite ... ok
+test packs::tests::a_part_longer_than_listed_is_refused ... FAILED
+test packs::tests::an_asset_that_does_not_match_its_listed_hash_is_refused ... FAILED
+test packs::tests::a_verified_part_is_not_downloaded_again ... FAILED
+test packs::tests::a_read_only_source_part_is_used_without_downloading ... FAILED
+test packs::tests::only_the_parts_holding_missing_assets_are_downloaded ... FAILED
+test packs::tests::refuses_unsafe_names ... ok
+test packs::tests::refuses_plain_http_hosts_and_unsafe_names ... ok
+test pointer_lock::tests::delegate_registers_only_modern_pointer_lock_and_completes_once ... ok
+
+failures:
+
+---- packs::tests::a_corrupt_part_is_refused_and_nothing_unverified_is_kept stdout ----
+
+thread 'packs::tests::a_corrupt_part_is_refused_and_nothing_unverified_is_kept' (23232403) panicked at src/packs.rs:429:57:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- packs::tests::downloads_verifies_unpacks_and_then_works_offline stdout ----
+
+thread 'packs::tests::downloads_verifies_unpacks_and_then_works_offline' (23232408) panicked at src/packs.rs:429:57:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+---- packs::tests::a_part_longer_than_listed_is_refused stdout ----
+
+thread 'packs::tests::a_part_longer_than_listed_is_refused' (23232404) panicked at src/packs.rs:429:57:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+---- packs::tests::an_asset_that_does_not_match_its_listed_hash_is_refused stdout ----
+
+thread 'packs::tests::an_asset_that_does_not_match_its_listed_hash_is_refused' (23232407) panicked at src/packs.rs:429:57:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+---- packs::tests::a_verified_part_is_not_downloaded_again stdout ----
+
+thread 'packs::tests::a_verified_part_is_not_downloaded_again' (23232406) panicked at src/packs.rs:429:57:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+---- packs::tests::a_read_only_source_part_is_used_without_downloading stdout ----
+
+thread 'packs::tests::a_read_only_source_part_is_used_without_downloading' (23232405) panicked at src/packs.rs:429:57:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+---- packs::tests::only_the_parts_holding_missing_assets_are_downloaded stdout ----
+
+thread 'packs::tests::only_the_parts_holding_missing_assets_are_downloaded' (23232409) panicked at src/packs.rs:429:57:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+
+failures:
+    packs::tests::a_corrupt_part_is_refused_and_nothing_unverified_is_kept
+    packs::tests::a_part_longer_than_listed_is_refused
+    packs::tests::a_read_only_source_part_is_used_without_downloading
+    packs::tests::a_verified_part_is_not_downloaded_again
+    packs::tests::an_asset_that_does_not_match_its_listed_hash_is_refused
+    packs::tests::downloads_verifies_unpacks_and_then_works_offline
+    packs::tests::only_the_parts_holding_missing_assets_are_downloaded
+
+test result: FAILED. 5 passed; 7 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--bin quaked`
+
+== gy-cargo-test-base-qualified.txt ==
+warning: struct `Settings` is never constructed
+  --> examples/../src/library.rs:44:12
+   |
+44 | pub struct Settings {
+   |            ^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `read_range` is never used
+   --> examples/../src/library.rs:426:8
+    |
+426 | pub fn read_range(
+    |        ^^^^^^^^^^
+
+   Compiling quaked v0.132.5 (/private/tmp/quaked-gy-base/src-tauri)
+warning: `quaked` (example "library_inventory") generated 2 warnings
+warning: function `ensure` is never used
+   --> src/packs.rs:409:8
+    |
+409 | pub fn ensure(
+    |        ^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `quaked` (bin "quaked") generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 28.19s
+     Running unittests src/main.rs (/private/tmp/quaked-gy-target/debug/deps/quaked-fa9bd2e473b89926)
+
+running 10 tests
+test packs::tests::a_part_longer_than_listed_is_refused ... FAILED
+test packs::tests::only_the_parts_holding_missing_assets_are_downloaded ... FAILED
+test packs::tests::a_corrupt_part_is_refused_and_nothing_unverified_is_kept ... FAILED
+test packs::tests::an_asset_that_does_not_match_its_listed_hash_is_refused ... FAILED
+test packs::tests::downloads_verifies_unpacks_and_then_works_offline ... FAILED
+test packs::tests::refuses_plain_http_hosts_and_unsafe_names ... ok
+test pointer_lock::tests::delegate_registers_only_modern_pointer_lock_and_completes_once ... ok
+test packs::tests::a_verified_part_is_not_downloaded_again ... FAILED
+test packs::tests::a_read_only_source_part_is_used_without_downloading ... FAILED
+test packs::tests::refuses_unsafe_names ... ok
+
+failures:
+
+---- packs::tests::a_part_longer_than_listed_is_refused stdout ----
+
+thread 'packs::tests::a_part_longer_than_listed_is_refused' (23271284) panicked at src/packs.rs:429:57:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+---- packs::tests::only_the_parts_holding_missing_assets_are_downloaded stdout ----
+
+thread 'packs::tests::only_the_parts_holding_missing_assets_are_downloaded' (23271289) panicked at src/packs.rs:429:57:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- packs::tests::a_corrupt_part_is_refused_and_nothing_unverified_is_kept stdout ----
+
+thread 'packs::tests::a_corrupt_part_is_refused_and_nothing_unverified_is_kept' (23271283) panicked at src/packs.rs:429:57:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+---- packs::tests::an_asset_that_does_not_match_its_listed_hash_is_refused stdout ----
+
+thread 'packs::tests::an_asset_that_does_not_match_its_listed_hash_is_refused' (23271287) panicked at src/packs.rs:429:57:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+---- packs::tests::downloads_verifies_unpacks_and_then_works_offline stdout ----
+
+thread 'packs::tests::downloads_verifies_unpacks_and_then_works_offline' (23271288) panicked at src/packs.rs:429:57:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+---- packs::tests::a_verified_part_is_not_downloaded_again stdout ----
+
+thread 'packs::tests::a_verified_part_is_not_downloaded_again' (23271286) panicked at src/packs.rs:429:57:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+---- packs::tests::a_read_only_source_part_is_used_without_downloading stdout ----
+
+thread 'packs::tests::a_read_only_source_part_is_used_without_downloading' (23271285) panicked at src/packs.rs:429:57:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+
+failures:
+    packs::tests::a_corrupt_part_is_refused_and_nothing_unverified_is_kept
+    packs::tests::a_part_longer_than_listed_is_refused
+    packs::tests::a_read_only_source_part_is_used_without_downloading
+    packs::tests::a_verified_part_is_not_downloaded_again
+    packs::tests::an_asset_that_does_not_match_its_listed_hash_is_refused
+    packs::tests::downloads_verifies_unpacks_and_then_works_offline
+    packs::tests::only_the_parts_holding_missing_assets_are_downloaded
+
+test result: FAILED. 3 passed; 7 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--bin quaked`
+
+== gy-js-base-failures-qualified.txt ==
+node:events:486
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EPERM: operation not permitted 127.0.0.1
+    at Server.setupListenHandle [as _listen2] (node:net:1918:21)
+    at listenInCluster (node:net:1997:12)
+    at node:net:2206:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+  code: 'EPERM',
+  errno: -1,
+  syscall: 'listen',
+  address: '127.0.0.1'
+}
+
+Node.js v24.13.0
+node:events:486
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EPERM: operation not permitted 127.0.0.1
+    at Server.setupListenHandle [as _listen2] (node:net:1918:21)
+    at listenInCluster (node:net:1997:12)
+    at node:net:2206:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+  code: 'EPERM',
+  errno: -1,
+  syscall: 'listen',
+  address: '127.0.0.1'
+}
+
+Node.js v24.13.0
+RESULT 0/1 passed (tests/serve_py_test.js)
+FAIL ranges are served as 206 with the right bytes; whole files as before; past the end is 416 Error: the server started
+    at check (file:///private/tmp/quaked-gy-base/tests/serve_py_test.js:8:46)
+    at file:///private/tmp/quaked-gy-base/tests/serve_py_test.js:19:3
+    at async file:///private/tmp/quaked-gy-base/tools/run_tests.mjs:95:9
+Cvar_Set: variable r_skyfog not found
+
+Cmd_AddCommand: stuffcmds already defined
+
+Cmd_AddCommand: exec already defined
+
+Cmd_AddCommand: echo already defined
+
+Cmd_AddCommand: alias already defined
+
+Cmd_AddCommand: cmd already defined
+
+Cmd_AddCommand: wait already defined
+
+Cmd_AddCommand: bind already defined
+
+Cmd_AddCommand: unbind already defined
+
+Cmd_AddCommand: unbindall already defined
+
+Cmd_AddCommand: togglemenu already defined
+
+Cmd_AddCommand: menu_close already defined
+
+Cmd_AddCommand: menu_main already defined
+
+Cmd_AddCommand: menu_singleplayer already defined
+
+Cmd_AddCommand: menu_load already defined
+
+Cmd_AddCommand: menu_save already defined
+
+Cmd_AddCommand: menu_multiplayer already defined
+
+Cmd_AddCommand: menu_setup already defined
+
+Cmd_AddCommand: menu_options already defined
+
+Cmd_AddCommand: menu_keys already defined
+
+Cmd_AddCommand: menu_video already defined
+
+Cmd_AddCommand: help already defined
+
+Cmd_AddCommand: menu_credits already defined
+
+Cmd_AddCommand: menu_bestiary already defined
+
+Cmd_AddCommand: menu_quit already defined
+
+Cmd_AddCommand: menu_lanconfig already defined
+
+Cmd_AddCommand: menu_gameoptions already defined
+
+PASS the cheats run the game's own commands, show their state, say when one was used, and refuse outside a single-player game
+RESULT 1/2 passed (tests/cheats_menu_test.js)
+FAIL Options lists Cheats last; it opens the Cheats menu; Escape returns to Options Error: Enter on it opens Cheats: 8 != 23
+    at check (file:///private/tmp/quaked-gy-base/tests/cheats_menu_test.js:5:46)
+    at same (file:///private/tmp/quaked-gy-base/tests/cheats_menu_test.js:5:87)
+    at file:///private/tmp/quaked-gy-base/tests/cheats_menu_test.js:21:3
+    at file:///private/tmp/quaked-gy-base/tools/run_tests.mjs:95:15
+TOTAL 1/3 passed
+
+== gy-js-base-feature-red-qualified.txt ==
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/tmp/quaked-gy-base/src/platform/gyro.js' imported from /private/tmp/quaked-gy-base/tests/gyro_test.js
+    at finalizeResolution (node:internal/modules/esm/resolve:274:11)
+    at moduleResolve (node:internal/modules/esm/resolve:864:10)
+    at defaultResolve (node:internal/modules/esm/resolve:990:11)
+    at nextResolve (node:internal/modules/esm/hooks:785:28)
+    at resolve (data:text/javascript,let%20three%3B%20export%20function%20initialize(data)%20%7B%20three%20%3D%20data.three%3B%20%7D%0Aexport%20async%20function%20resolve(specifier%2C%20context%2C%20next)%20%7B%0A%20if%20(specifier%20%3D%3D%3D%20'three')%20return%20%7Burl%3A%20three%2C%20shortCircuit%3A%20true%7D%3B%0A%20return%20next(specifier%2C%20context)%3B%0A%7D:4:9)
+    at nextResolve (node:internal/modules/esm/hooks:785:28)
+    at AsyncLoaderHooksOnLoaderHookWorker.resolve (node:internal/modules/esm/hooks:269:30)
+    at MessagePort.handleMessage (node:internal/modules/esm/worker:251:24)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:845:20)
+    at MessagePort.<anonymous> (node:internal/per_context/messageport:23:28) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/tmp/quaked-gy-base/src/platform/gyro.js'
+}
+
+Node.js v24.13.0
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/tmp/quaked-gy-base/src/platform/gyro_hid.js' imported from /private/tmp/quaked-gy-base/tests/gyro_hid_test.js
+    at finalizeResolution (node:internal/modules/esm/resolve:274:11)
+    at moduleResolve (node:internal/modules/esm/resolve:864:10)
+    at defaultResolve (node:internal/modules/esm/resolve:990:11)
+    at nextResolve (node:internal/modules/esm/hooks:785:28)
+    at resolve (data:text/javascript,let%20three%3B%20export%20function%20initialize(data)%20%7B%20three%20%3D%20data.three%3B%20%7D%0Aexport%20async%20function%20resolve(specifier%2C%20context%2C%20next)%20%7B%0A%20if%20(specifier%20%3D%3D%3D%20'three')%20return%20%7Burl%3A%20three%2C%20shortCircuit%3A%20true%7D%3B%0A%20return%20next(specifier%2C%20context)%3B%0A%7D:4:9)
+    at nextResolve (node:internal/modules/esm/hooks:785:28)
+    at AsyncLoaderHooksOnLoaderHookWorker.resolve (node:internal/modules/esm/hooks:269:30)
+    at MessagePort.handleMessage (node:internal/modules/esm/worker:251:24)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:845:20)
+    at MessagePort.<anonymous> (node:internal/per_context/messageport:23:28) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/tmp/quaked-gy-base/src/platform/gyro_hid.js'
+}
+
+Node.js v24.13.0
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/tmp/quaked-gy-base/src/platform/gyro.js' imported from /private/tmp/quaked-gy-base/tests/gyro_integration_test.js
+    at finalizeResolution (node:internal/modules/esm/resolve:274:11)
+    at moduleResolve (node:internal/modules/esm/resolve:864:10)
+    at defaultResolve (node:internal/modules/esm/resolve:990:11)
+    at nextResolve (node:internal/modules/esm/hooks:785:28)
+    at resolve (data:text/javascript,let%20three%3B%20export%20function%20initialize(data)%20%7B%20three%20%3D%20data.three%3B%20%7D%0Aexport%20async%20function%20resolve(specifier%2C%20context%2C%20next)%20%7B%0A%20if%20(specifier%20%3D%3D%3D%20'three')%20return%20%7Burl%3A%20three%2C%20shortCircuit%3A%20true%7D%3B%0A%20return%20next(specifier%2C%20context)%3B%0A%7D:4:9)
+    at nextResolve (node:internal/modules/esm/hooks:785:28)
+    at AsyncLoaderHooksOnLoaderHookWorker.resolve (node:internal/modules/esm/hooks:269:30)
+    at MessagePort.handleMessage (node:internal/modules/esm/worker:251:24)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:845:20)
+    at MessagePort.<anonymous> (node:internal/per_context/messageport:23:28) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/tmp/quaked-gy-base/src/platform/gyro.js'
+}
+
+Node.js v24.13.0
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/tmp/quaked-gy-base/src/platform/gyro.js' imported from /private/tmp/quaked-gy-base/tests/desktop_gyro_test.js
+    at finalizeResolution (node:internal/modules/esm/resolve:274:11)
+    at moduleResolve (node:internal/modules/esm/resolve:864:10)
+    at defaultResolve (node:internal/modules/esm/resolve:990:11)
+    at nextResolve (node:internal/modules/esm/hooks:785:28)
+    at resolve (data:text/javascript,let%20three%3B%20export%20function%20initialize(data)%20%7B%20three%20%3D%20data.three%3B%20%7D%0Aexport%20async%20function%20resolve(specifier%2C%20context%2C%20next)%20%7B%0A%20if%20(specifier%20%3D%3D%3D%20'three')%20return%20%7Burl%3A%20three%2C%20shortCircuit%3A%20true%7D%3B%0A%20return%20next(specifier%2C%20context)%3B%0A%7D:4:9)
+    at nextResolve (node:internal/modules/esm/hooks:785:28)
+    at AsyncLoaderHooksOnLoaderHookWorker.resolve (node:internal/modules/esm/hooks:269:30)
+    at handleMessage (node:internal/modules/esm/worker:251:24)
+    at checkForMessages (node:internal/modules/esm/worker:193:28)
+    at process.<anonymous> (node:internal/modules/esm/worker:212:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/tmp/quaked-gy-base/src/platform/gyro.js'
+}
+
+Node.js v24.13.0
+TOTAL 0/0 passed

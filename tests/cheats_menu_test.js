@@ -5,7 +5,7 @@ const cmd = await import( '../src/engine/common/cmd.js' ), menu = await import( 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( JSON.stringify( a ) === JSON.stringify( b ), `${m}: ${JSON.stringify( a )} != ${JSON.stringify( b )}` );
 for ( const name of [ 'deathmatch', 'coop' ] ) if ( ! cvar.Cvar_FindVar( name ) ) cvar.Cvar_RegisterVariable( new cvar.cvar_t( name, '0' ) );
 
-Deno.test( 'Options lists Cheats last; it opens the Cheats menu; Escape returns to Options', () => {
+Deno.test( 'Options retains the Cheats row; it opens the Cheats menu; Escape returns to Options', () => {
 
 	const oldWindow = Object.getOwnPropertyDescriptor( globalThis, 'window' ); Object.defineProperty( globalThis, 'window', { configurable: true, value: { devicePixelRatio: 1 } } );
 	try {
@@ -16,8 +16,9 @@ Deno.test( 'Options lists Cheats last; it opens the Cheats menu; Escape returns 
 		const dx = ( draw.Draw_GetVirtualWidth() - 320 ) >> 1, dy = ( draw.Draw_GetVirtualHeight() - 200 ) >> 1;
 		cmd.Cmd_ExecuteString( 'menu_options' ); glyphs.length = 0; menu.M_Draw();
 		const text = y => { let out = '', last = null; for ( const g of glyphs.filter( g => g.y === y + dy ).sort( ( a, b ) => a.x - b.x ) ) { if ( last !== null && g.x - last > 8 ) out += ' '; out += String.fromCharCode( g.code >= 128 ? g.code - 128 : g.code ); last = g.x; } return out.trim(); };
-		same( text( 32 + 17 * 8 ), 'Cheats', 'the last Options row is Cheats' );
-		menu.M_Keydown( keys.K_UPARROW ); menu.M_Keydown( keys.K_ENTER ); // up from the first row wraps to the last
+		same( text( 32 + 17 * 8 ), 'Cheats', 'the established Cheats row is unchanged' );
+		for ( let row = 0; row < 17; row ++ ) menu.M_Keydown( keys.K_DOWNARROW );
+		menu.M_Keydown( keys.K_ENTER ); // Later platform options must not change the Cheats row's dispatch.
 		same( menu.m_state, menu.m_cheats, 'Enter on it opens Cheats' );
 		menu.M_Keydown( keys.K_ESCAPE ); same( menu.m_state, menu.m_options, 'Escape returns to Options' );
 		cmd.Cmd_ExecuteString( 'menu_options' ); menu.M_TouchInput( 201 + dx, 32 + dy + 17 * 8 + 2, draw.Draw_GetVirtualWidth(), draw.Draw_GetVirtualHeight() ); same( menu.m_state, menu.m_cheats, 'a tap on the row opens Cheats' );

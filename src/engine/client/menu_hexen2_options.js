@@ -14,6 +14,7 @@
  * Native code: menu.c:1818-2700 (M_Options, M_Keys, M_Video).
  */
 
+import { M_Menu_Gyro_f } from './menu_gyro.js';
 import { GameProfile_Get } from '../common/game_profile.js';
 import { Newer_ApplyGameDefaults } from '../common/hooks.js'; // installed by newer/ui/newer_defaults.js
 import { Cbuf_AddText } from '../common/cmd.js';
@@ -54,10 +55,13 @@ const OPTIONS = Object.freeze( [
 	Object.freeze( { label: 'Chase Mode', toggle: 'chase' } ),
 	Object.freeze( { label: 'Video Modes', action: 'video' } ),
 	Object.freeze( { label: 'Enhanced (Newer) mode', toggle: 'enhanced' } ),
-	Object.freeze( { label: 'Texture detail', choice: 'tier' } )
+	Object.freeze( { label: 'Texture detail', choice: 'tier' } ),
+	Object.freeze( { label: 'Gyro controls', action: 'gyro' } )
 ] );
 
 let optionsCursor = 0;
+// Keep the last row reachable without moving the established native rows on the first page.
+const optionsTop = () => Math.max( 0, optionsCursor - 16 );
 
 function Hexen2_TextureTierIndex() {
 
@@ -200,9 +204,10 @@ export function M_Hexen2_Menu_Options_f() {
 export function M_Hexen2_Options_Draw() {
 
 	Hexen2_ScrollTitle( 'gfx/menu/title3.lmp' );
-	for ( let i = 0; i < OPTIONS.length; i ++ ) {
+	M_Print( 256, 52, optionsTop() ? 'Top ^' : 'More v' );
+	for ( let i = optionsTop(); i < Math.min( OPTIONS.length, optionsTop() + 17 ); i ++ ) {
 
-		const row = OPTIONS[ i ], y = 60 + 8 * i;
+		const row = OPTIONS[ i ], y = 60 + 8 * ( i - optionsTop() );
 		M_Print( 16 + Math.max( 0, 22 - row.label.length ) * 8, y, row.label );
 		const value = Hexen2_RowValue( row );
 		if ( value.slider !== undefined ) M_DrawSlider( 220, y, value.slider, 256 );
@@ -210,7 +215,7 @@ export function M_Hexen2_Options_Draw() {
 		else if ( value.text !== undefined ) M_Print( 220, y, value.text );
 
 	}
-	M_DrawCharacter( 200, 60 + 8 * optionsCursor, Hexen2_BlinkCharacter() );
+	M_DrawCharacter( 200, 60 + 8 * ( optionsCursor - optionsTop() ), Hexen2_BlinkCharacter() );
 
 }
 
@@ -249,6 +254,7 @@ export function M_Hexen2_Options_Key( key ) {
 			if ( row.action === 'keys' ) M_Hexen2_Menu_Keys_f();
 			else if ( row.action === 'console' ) { set_m_state( m_none ); Con_ToggleConsole_f(); }
 			else if ( row.action === 'defaults' ) Cbuf_AddText( 'exec default.cfg\n' );
+			else if ( row.action === 'gyro' ) M_Menu_Gyro_f( m_hexen2_options );
 			else if ( row.action === 'video' ) M_Menu_Video_f();
 			else if ( row.toggle || row.choice ) Hexen2_ToggleRow();
 			else Hexen2_AdjustSlider( 1 );
@@ -268,9 +274,11 @@ export function M_Hexen2_Options_Key( key ) {
  */
 export function M_Hexen2_Options_Touch( vx, vy ) {
 
-	if ( vy >= 60 && vy < 60 + OPTIONS.length * 8 ) {
+	if ( vx >= 248 && vy >= 48 && vy < 60 ) { optionsCursor = optionsTop() ? 0 : OPTIONS.length - 1; return; }
 
-		optionsCursor = Math.floor( ( vy - 60 ) / 8 );
+	if ( vy >= 60 && vy < 60 + 17 * 8 ) {
+
+		optionsCursor = optionsTop() + Math.floor( ( vy - 60 ) / 8 );
 		M_Hexen2_Options_Key( K_ENTER );
 
 	}

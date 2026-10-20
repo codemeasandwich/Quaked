@@ -20,6 +20,7 @@
  */
 // Ported from: WinQuake/menu.c, WinQuake/menu.h -- menu system
 
+import { M_Gyro_Draw, M_Gyro_Key, M_Gyro_Touch } from './menu_gyro.js';
 import { MainMenu_Begin, MainMenu_Blocking, MainMenu_End, MainMenu_SetVisible } from '../common/hooks.js'; // installed by newer/ui/menu_webgl.js
 import { R_BestiaryBookDraw, R_BestiaryBookTouch, R_BestiaryBookCorner } from '../common/hooks.js'; // installed by newer/ui/r_bestiary_book.js
 import { R_DemoLoadingConsoleOverride, R_WelcomeLoadingHolding } from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js
@@ -31,7 +32,7 @@ import { Con_ToggleConsole_f } from '../common/console.js';
 import { K_ESCAPE, key_game, key_console, key_menu } from './keys.js';
 import { scr_con_current } from '../render/gl_screen.js';
 import { Draw_GetUIScale, Draw_WithVirtualSize } from '../render/gl_draw.js';
-import { m_none, m_main, m_singleplayer, m_load, m_save, m_multiplayer, m_setup, m_options, m_video, m_keys, m_quit, m_lanconfig, m_gameoptions, m_credits, m_newer, m_levelselect, m_bestiary, m_cheats, m_mpchoice, m_splitscreen, m_hexen2_main, m_hexen2_single, m_hexen2_class, m_hexen2_skill, m_hexen2_multiplayer, m_hexen2_setup, m_hexen2_options, m_hexen2_keys, m_hexen2_help, m_hexen2_quit, m_hexen2_load, m_hexen2_save, m_state, m_entersound, m_recursiveDraw, set_m_state, set_m_entersound, set_m_recursiveDraw, menuOpeners, _realVid, _vid, _realtime_get, _Draw_Fill, _Draw_FadeScreen, _Draw_ConsoleBackground, _S_LocalSound, getKeyDest, setKeyDest, M_PrintWhite } from './menu_common.js';
+import { m_gyro, m_none, m_main, m_singleplayer, m_load, m_save, m_multiplayer, m_setup, m_options, m_video, m_keys, m_quit, m_lanconfig, m_gameoptions, m_credits, m_newer, m_levelselect, m_bestiary, m_cheats, m_mpchoice, m_splitscreen, m_hexen2_main, m_hexen2_single, m_hexen2_class, m_hexen2_skill, m_hexen2_multiplayer, m_hexen2_setup, m_hexen2_options, m_hexen2_keys, m_hexen2_help, m_hexen2_quit, m_hexen2_load, m_hexen2_save, m_state, m_entersound, m_recursiveDraw, set_m_state, set_m_entersound, set_m_recursiveDraw, menuOpeners, _realVid, _vid, _realtime_get, _Draw_Fill, _Draw_FadeScreen, _Draw_ConsoleBackground, _S_LocalSound, getKeyDest, setKeyDest, M_PrintWhite } from './menu_common.js';
 import { M_Menu_Main_f, M_Main_Draw, M_Main_Key, M_Menu_Bestiary_f, M_Bestiary_Key, M_Menu_SinglePlayer_f, M_SinglePlayer_Draw, M_SinglePlayer_Key, M_Menu_Load_f, M_Menu_Save_f, M_Load_Draw, M_Save_Draw, M_Load_Key, M_Save_Key, CREDITS_HEIGHT, CREDITS_SCALE, CREDITS_TOP, M_Menu_Credits_f, M_Credits_Draw, M_Credits_Key, M_Credits_Touch, M_Menu_Quit_f, M_Quit_Draw, M_Quit_Key, M_Main_Touch, M_SinglePlayer_Touch, M_LoadSave_Touch, M_Quit_Touch } from './menu_main.js';
 import { M_Menu_LevelSelect_f, M_LevelSelect_Draw, M_LevelSelect_Key, M_LevelSelect_Touch } from './menu_levelselect.js';
 import { M_Menu_MultiplayerChoice_f, M_MultiplayerChoice_Draw, M_MultiplayerChoice_Key, M_MultiplayerChoice_Touch, M_SplitScreen_Draw, M_SplitScreen_Key, M_SplitScreen_Touch, M_Menu_MultiPlayer_f, M_MultiPlayer_Draw, M_MultiPlayer_Key, M_Menu_LanConfig_f, M_LanConfig_Draw, M_LanConfig_Key, M_Menu_GameOptions_f, M_GameOptions_Draw, M_GameOptions_Key, M_Menu_Setup_f, M_Setup_Draw, M_Setup_Key, M_MultiPlayer_Touch, M_LanConfig_Touch, M_GameOptions_Touch } from './menu_multiplayer.js';
@@ -44,7 +45,7 @@ export { CHEATS } from './menu_options.js';
 export { M_ConnectionError, M_ShouldReturnOnError, M_Menu_MultiplayerChoice_f, M_LocalPlayerJoin } from './menu_multiplayer.js';
 export { LEVEL_SELECT_LEVELS, LEVEL_SELECT_EPISODES, M_LevelSelectOffer } from './menu_levelselect.js';
 export { M_Menu_Main_f, M_Menu_Bestiary_f } from './menu_main.js';
-export { m_none, m_main, m_singleplayer, m_load, m_save, m_multiplayer, m_setup, m_net, m_options, m_video, m_keys, m_help, m_quit, m_serialconfig, m_modemconfig, m_lanconfig, m_gameoptions, m_search, m_slist, m_credits, m_newer, m_levelselect, m_bestiary, m_cheats, m_mpchoice, m_splitscreen, m_hexen2_main, m_hexen2_single, m_hexen2_class, m_hexen2_skill, m_hexen2_multiplayer, m_hexen2_setup, m_hexen2_options, m_hexen2_keys, m_hexen2_help, m_hexen2_quit, m_hexen2_load, m_hexen2_save, m_state, m_entersound, set_m_state, set_m_entersound, set_m_recursiveDraw, set_m_return_state, set_m_return_onerror, set_m_return_reason, set_m_save_demonum, menuOpeners, M_SetExternals, M_DrawPic_export } from './menu_common.js';
+export { m_gyro, m_none, m_main, m_singleplayer, m_load, m_save, m_multiplayer, m_setup, m_net, m_options, m_video, m_keys, m_help, m_quit, m_serialconfig, m_modemconfig, m_lanconfig, m_gameoptions, m_search, m_slist, m_credits, m_newer, m_levelselect, m_bestiary, m_cheats, m_mpchoice, m_splitscreen, m_hexen2_main, m_hexen2_single, m_hexen2_class, m_hexen2_skill, m_hexen2_multiplayer, m_hexen2_setup, m_hexen2_options, m_hexen2_keys, m_hexen2_help, m_hexen2_quit, m_hexen2_load, m_hexen2_save, m_state, m_entersound, set_m_state, set_m_entersound, set_m_recursiveDraw, set_m_return_state, set_m_return_onerror, set_m_return_reason, set_m_save_demonum, menuOpeners, M_SetExternals, M_DrawPic_export } from './menu_common.js';
 export { M_Hexen2_Menu_Main_f, M_Hexen2_Menu_SinglePlayer_f, M_Hexen2_Menu_Class_f, M_Hexen2_Menu_Skill_f } from './menu_hexen2.js';
 export { M_Hexen2_Menu_Multiplayer_f, M_Hexen2_Menu_Setup_f, M_Hexen2_Menu_Load_f, M_Hexen2_Menu_Save_f } from './menu_hexen2_multiplayer.js';
 export { M_Hexen2_Menu_Options_f, M_Hexen2_Menu_Keys_f } from './menu_hexen2_options.js';
@@ -188,6 +189,7 @@ export function M_Keydown( key ) {
 		case m_mpchoice: M_MultiplayerChoice_Key( key ); return;
 		case m_splitscreen: M_SplitScreen_Key( key ); return;
 		case m_setup: M_Setup_Key( key ); return;
+		case m_gyro: M_Gyro_Key( key ); return;
 		case m_options: M_Options_Key( key ); return;
 		case m_newer: M_Newer_Key( key ); return;
 		case m_levelselect: M_LevelSelect_Key( key ); return;
@@ -304,6 +306,7 @@ export function M_Draw() {
 		case m_mpchoice: M_MultiplayerChoice_Draw(); break;
 		case m_splitscreen: M_SplitScreen_Draw(); break;
 		case m_setup: M_Setup_Draw(); break;
+		case m_gyro: M_Gyro_Draw(); break;
 		case m_options: M_Options_Draw(); break;
 		case m_newer: M_Newer_Draw(); break;
 		case m_levelselect: M_LevelSelect_Draw(); break;
@@ -434,6 +437,10 @@ function M_TouchInViewport( touchX, touchY, screenWidth, screenHeight ) {
 			break;
 		case m_multiplayer:
 			M_MultiPlayer_Touch( vx, vy );
+			break;
+
+		case m_gyro:
+			M_Gyro_Touch( vx, vy );
 			break;
 
 		case m_options:

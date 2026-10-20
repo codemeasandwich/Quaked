@@ -26,6 +26,7 @@ let channel = null, session = null, me = null, host = false;
 let remote = { pads: [], at: - Infinity };
 let table = new Map(), sentAt = - Infinity, postedAt = - Infinity;
 const last = new Map();
+let framePads = [];
 
 /**
  * A controller as plain data: what the gamepad code reads (index, id, mapping, buttons, axes), cloned so it can be
@@ -63,7 +64,7 @@ export function PadShare_Join( id, player = 1 ) {
 	if ( id === session && player === me ) return;
 	if ( channel ) channel.close();
 	channel = null; session = id; me = id === null ? null : player; host = player === 1;
-	remote = { pads: [], at: - Infinity }; table = new Map(); sentAt = postedAt = - Infinity; last.clear();
+	remote = { pads: [], at: - Infinity }; framePads = []; table = new Map(); sentAt = postedAt = - Infinity; last.clear();
 	if ( id === null || typeof BroadcastChannel === 'undefined' ) return;
 	channel = new BroadcastChannel( PADS_CHANNEL_PREFIX + id );
 	channel.onmessage = onMessage;
@@ -86,6 +87,7 @@ export function PadShare_Frame( own, players, now = performance.now() ) {
 	const mine = own.map( PadShare_Snapshot );
 	if ( mine.length > 0 && channel && now - postedAt >= POST_MS ) { channel.postMessage( { k: 'pads', from: me, pads: mine } ); postedAt = now; }
 	const pads = mine.length > 0 ? mine : now - remote.at < FRESH_MS ? remote.pads : [];
+	framePads = pads;
 	if ( host ) {
 
 		// a controller's motion sensor or touchpad can be listed as a device of its own: only standard controllers are
@@ -112,5 +114,12 @@ export function PadShare_Frame( own, players, now = performance.now() ) {
 export function PadShare_Table() {
 
 	return [ ...table ];
+
+}
+
+/** The effective connected population used by the latest Frame, for physical-source pairing and ambiguity checks. */
+export function PadShare_Connected() {
+
+	return framePads.slice();
 
 }

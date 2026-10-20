@@ -1,6 +1,7 @@
 /** Thin native adapter: location authority stays in Rust; content validation and
  * mount ordering stay in the existing engine. Imported only by the desktop profile.
  */
+import { Gyro_Sample, Gyro_Remove } from './gyro.js';
 import {invoke,convertFileSrc} from '@tauri-apps/api/core';
 import {listen} from '@tauri-apps/api/event';
 import {GameCatalogue_AllGames,GameCatalogue_Refresh,GameCatalogue_SetProvider,GameCatalogue_SetDiscovered} from '../engine/common/game_catalogue.js';
@@ -9,6 +10,24 @@ import {COM_LoadPackFile,COM_BuildPack} from '../engine/common/pak.js';
 import {GameShelf_Show} from '../engine/common/hooks.js'; // filled by src/newer/install.js, which main.js loads first
 import {LoadingScreen_SetProgress} from '../engine/common/hooks.js';
 let listening=false;
+let gyroListener = null;
+const gyroSources = new Set();
+/** Installs one bounded native motion listener; returns its stop function. No native clock crosses this seam. */
+export async function Desktop_StartGyro(){
+ if(gyroListener)return gyroListener;
+ gyroListener=listen('controller-gyro',({payload})=>{
+  if(!Array.isArray(payload)||payload.length>16)return;
+  const present=new Set();
+  for(const sample of payload){
+   if(typeof sample?.id!=='string'||!sample.id.startsWith('gc-'))continue;
+   if(Gyro_Sample(sample.id,sample,{family:sample.family,pairPressed:!!sample.pairPressed}))present.add(sample.id);
+  }
+  for(const id of gyroSources)if(!present.has(id))Gyro_Remove(id);
+  gyroSources.clear();for(const id of present)gyroSources.add(id);
+ }).then(unlisten=>()=>{unlisten();for(const id of gyroSources)Gyro_Remove(id);gyroSources.clear();gyroListener=null;})
+ .catch(error=>{gyroListener=null;throw error;});
+ return gyroListener;
+}
 export async function Desktop_Log(text){
  try{localStorage.setItem('hexen2_stage',String(text).slice(0,2500));}catch{}
  try{await invoke('hexen_log',{text:String(text)});}catch{}
@@ -152,6 +171,7 @@ export async function Desktop_ShowShelf(reason=''){
 }
 export async function Desktop_Prepare(){
  void Desktop_Log('desktop prepare start');
+ try{await Desktop_StartGyro();}catch(error){void Desktop_Log('Controller gyro unavailable: '+String(error));}
  GameCatalogue_SetProvider(async()=>{
   const library=await invoke('library_scan');
   GameCatalogue_SetDiscovered((library.discovered??[]).map(d=>({...d,folder:`library/${d.id}`})));

@@ -14,6 +14,8 @@
 // Ported from: WinQuake/in_win.c, WinQuake/input.h -- browser input system
 // Adapted for web: uses Pointer Lock API for mouse, DOM keyboard events
 
+import { Gyro_Init, Gyro_Remove, Gyro_Move } from './gyro.js';
+import { GyroHID_Start, GyroHID_Stop } from './gyro_hid.js';
 import {
 	K_TAB, K_ENTER, K_ESCAPE, K_SPACE, K_BACKSPACE,
 	K_UPARROW, K_DOWNARROW, K_LEFTARROW, K_RIGHTARROW,
@@ -44,7 +46,7 @@ import { M_TouchInput } from '../engine/client/menu.js';
 import { S_UnlockAudio } from '../engine/sound/snd_dma.js';
 import { Window_InLocalPlay, Window_LocalSession } from '../engine/net/net_window.js';
 import { LocalPlay_PlayerWindow, LocalPlay_PlayerNumbers } from '../engine/client/local_play.js';
-import { PadShare_Join, PadShare_Frame } from './pad_share.js';
+import { PadShare_Join, PadShare_Frame, PadShare_Connected } from './pad_share.js';
 import { isXRActive, XR_PollInput, xrInput } from './webxr.js';
 
 /*
@@ -142,20 +144,24 @@ const GP_BUTTONS = () => gpButtons ??= [
 	[ 8, 'back', K_ESCAPE, K_ESCAPE ], [ 9, 'start', K_ESCAPE, K_ESCAPE ],
 	[ 12, 'du', K_UPARROW, K_UPARROW ], [ 13, 'dd', K_DOWNARROW, K_DOWNARROW ], [ 14, 'dl', K_LEFTARROW, K_LEFTARROW ], [ 15, 'dr', K_RIGHTARROW, K_RIGHTARROW ]
 ];
+let gpGyroPads = [];
 const gpState = { index: null, id: null, sent: new Map(), owned: new Map(), noticed: new Set() };
 
 function GP_GetPrimary() {
 
-	if ( typeof navigator === 'undefined' || navigator.getGamepads == null ) return null;
+	if ( typeof navigator === 'undefined' || navigator.getGamepads == null ) { gpGyroPads = []; return null; }
 	const gamepads = navigator.getGamepads();
 	const connected = gamepads ? Array.from( gamepads ).filter( gp => gp && gp.connected ) : [];
+	gpGyroPads = connected;
 	// local play across windows (card [37c]): every window sees the same controllers, so each plays only the one
 	// player 1's page gave its player (pad_share.js)
 	if ( Window_InLocalPlay() ) {
 
 		const role = typeof location !== 'undefined' ? LocalPlay_PlayerWindow( location.search ) : null;
 		PadShare_Join( Window_LocalSession(), role ? role.player : 1 );
-		return PadShare_Frame( connected, LocalPlay_PlayerNumbers() );
+		const selected = PadShare_Frame( connected, LocalPlay_PlayerNumbers() );
+		gpGyroPads = PadShare_Connected();
+		return selected;
 
 	}
 	PadShare_Join( null );
@@ -233,6 +239,7 @@ function GP_ReleaseOwned( keyEvent ) {
  */
 export function IN_GamepadRelease( keyEvent = Key_Event ) {
 
+	Gyro_Move( cl.viewangles, null, [], 0, false );
 	GP_ReleaseOwned( keyEvent ); gpState.index = null; gpState.id = null;
 
 }
@@ -265,6 +272,8 @@ export function IN_GamepadPoll( cmd, keyEvent = Key_Event, print = Con_Printf ) 
 
 	const gp = GP_GetPrimary();
 	if ( ! gp ) {
+
+		Gyro_Move( cl.viewangles, null, [], 0, false );
 
 		if ( gpState.index !== null ) { GP_ReleaseOwned( keyEvent ); gpState.index = null; gpState.id = null; }
 		return null;
@@ -301,6 +310,14 @@ export function IN_GamepadPoll( cmd, keyEvent = Key_Event, print = Con_Printf ) 
 	// stick is the wheel's, not the view's. card T-3faa98e3)
 	const wheelHasStick = cmd ? R_ControllerPoll( gp, GP_ApplyDeadzone( gp.axes?.[ 2 ] ?? 0, 0.12 ), GP_ApplyDeadzone( gp.axes?.[ 3 ] ?? 0, 0.12 ), cl.time ) : false;
 	// Gameplay movement/look (skip in menus; skip when cmd is missing)
+	const gyroActive = !! cmd && key_dest === key_game && ! cls.demoplayback && ! R_BestiaryInputLocked() &&
+		! wheelHasStick && ( typeof document === 'undefined' || ( ! document.hidden && document.hasFocus?.() !== false ) );
+	// Button-only polling must not consume motion; inactive destinations reset selection before the next command.
+	if ( cmd || key_dest !== key_game || cls.demoplayback || R_BestiaryInputLocked() ) {
+
+		if ( Gyro_Move( cl.viewangles, gp, gpGyroPads, host_frametime, gyroActive ) ) V_StopPitchDrift();
+
+	}
 	if ( ! cmd || key_dest !== key_game || cls.demoplayback || R_BestiaryInputLocked() ) return gp;
 
 	const moveDeadzone = 0.15;
@@ -706,6 +723,8 @@ export function IN_Init( element ) {
 	};
 
 	// Register cvars
+	Gyro_Init();
+	void GyroHID_Start();
 	Cvar_RegisterVariable( m_filter );
 	Cvar_RegisterVariable( gp_look_yaw );
 	Cvar_RegisterVariable( gp_look_pitch );
@@ -766,6 +785,7 @@ export function IN_Shutdown() {
 
 	if ( ! in_initialized ) return;
 
+	GyroHID_Stop(); Gyro_Remove();
 	document.removeEventListener( 'keydown', handleKeyDown );
 	document.removeEventListener( 'keyup', handleKeyUp );
 

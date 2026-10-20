@@ -181,7 +181,8 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `78037c41` | owner trial 9 | Hexen title and plaque placed natively (ScrollPic skipped the UI scale); bigfont cut from its sheet, thin as the original |
 | `fb1f522e` | HM | one menu system: Hexen extends Quake's HD vector menu (traced vector font, stone signs, shared slide animation and shadow) |
 | `893b2516` | owner trial 10 | Hexen II's sky keeps its native grey storm clouds in Enhanced (per-game sky glow) |
-| (this commit) | HT | the 47 reviewed Hexen II world textures in game: Mid (default) and High tiers, native-keyed, in the Hexen desktop packs |
+| `1c188cbf` | HT | the 47 reviewed Hexen II world textures in game: Mid (default) and High tiers, native-keyed, in the Hexen desktop packs |
+| (this commit) | GY | controller gyro aiming for every game: native GameController motion in the Mac app, WebHID in Chrome/Edge |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;
@@ -357,6 +358,15 @@ Quake's 5,258 pack assignments are unchanged. Browser check (demo1): 16 textures
 High, none for Low or Classic; a close look at `rtex022` shows the stone detail and relief. The six
 `official_texture_*`/`level_texture_runtime` failures are the same with and without the change (they need fixtures
 this host lacks). 840 ordinary world textures, plus animated, liquid, sky and model families, have no reviewed art yet.
+
+Package GY (GPT Sol), owner request 20 October ("please add gyro aiming support"; owner choices: Mac app and
+browser, on by default, aim-assist style). Engine-wide, not Hexen-only: a shared gyro module (`src/platform/gyro.js`)
+turns angular velocity into view-angle deltas beside the right stick, with drift calibration while still and options
+in both games' menus (on/off, sensitivity, invert, hold-to-aim). Sources: the Mac app reads Apple's GameController
+motion through the objc2 runtime it already uses (`src-tauri/src/gyro.rs`, no new library), Chrome/Edge read DualSense,
+DualShock 4 and Switch Pro reports over WebHID after a one-time permission (`gyro_hid.js`); phone tilt is unchanged.
+Verified with synthetic reports only (no controller here): 324/324 input/menu/Hexen suites, engine list 220/220, all
+Rust tests; owner trial steps in [gy-gyro.md](gy-gyro.md).
 
 Open decisions and known limits:
 

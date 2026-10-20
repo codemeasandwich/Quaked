@@ -1,0 +1,29 @@
+{
+  "base": "1c188cbfd331294290f27d3bf0233f0a663c57a3",
+  "branch": "u/gy",
+  "worktree": "/Users/bri/worktrees/Quaked/hexen2-unified/gy",
+  "uncommitted": true,
+  "source_and_test_sha256": {
+    "src-tauri/src/gyro.rs": "46c5da7780875dab75ece99bdee7571b89439ad79dc1918e9e61bcf243eb1f15",
+    "src-tauri/src/main.rs": "ceb6e1c62453033a165f8a8988a762c2f344f6b7813922baaf4f024e27184337",
+    "src/engine/client/menu.js": "039d336f55d462f9e91d2e4eae34e540a1ab90458105c0c5a81104109b5e72b4",
+    "src/engine/client/menu_common.js": "fa7a5a24c7071394e0a031a59d5b46c19c14c05ddac6df160c2a2ceb5636646e",
+    "src/engine/client/menu_gyro.js": "96d3027801455fda3a90cddd536393eea9a6e225006b1b18b7cf202fedfed621",
+    "src/engine/client/menu_hexen2_options.js": "f79d1c54e4324d82216af800dca4910fa7a563a5c1f9c11f80c7df1b488f1bb8",
+    "src/engine/client/menu_options.js": "f6dbe57cb2feac48faf03640145cfdd30ae6ddc47ee63ea367aa0711aa07a362",
+    "src/platform/desktop.js": "617098e06aedd4121cd0b03f988e263c6f7330acbbcab75dfe4e6bbbc4d98983",
+    "src/platform/gyro.js": "8672ae19f71efd4597eafa67b876edefb33a4d0c6215731aaed03cf769d4a14f",
+    "src/platform/gyro_hid.js": "a96b94fe4eb0bd726658bc7b21ce41df894cc0434f2393cc0b67e9f7033f607d",
+    "src/platform/in_web.js": "dcbee72ad4fa0e50cf5fdf218fb71d58e76ac47144c2bb36628390fb606fe5e5",
+    "src/platform/pad_share.js": "4094a000b7a2976bee25d3e3c2c3d46ef359cf3fb19c8c587da41b230a80602d",
+    "tests/cheats_menu_test.js": "ef2bd30d3d950ec84724b5a42e6295febbfcf6b3cdb22a3eefbb6161dfc0812b",
+    "tests/desktop_gyro_test.js": "68f86bbfdaf8e73f69facc5b1454f507662adefa2a58b8e5e09f9f1962d43012",
+    "tests/desktop_prepare_test.js": "14e8bdc12818702e4c5e3a71759d40c6d667265ed6824be4e328910fda5d7330",
+    "tests/gyro_hid_test.js": "546d73fc51061f48a0fe59d3503a623a8b9017069e775ec80dd759fd46ca5a63",
+    "tests/gyro_integration_test.js": "a6a4d404932dd12bc39b8848a5647ae680267c6e2be3cea65d22a05c8023668c",
+    "tests/gyro_test.js": "6c653167f473b0f7a39320951e275c67ee3b34511895b48cd4393d2c2bd2f478",
+    "tests/hexen2_menu_shared_test.js": "405aa97c14373b369260a3637fc32acd35ec5f2a9f51604b9f75bef54fef508a",
+    "tests/hexen2_menu_skin_test.js": "9ff25ea224aa55fd8f1c1f252ebd62b2d1d8fd17761d4101e5d18da61db4eb32",
+    "tests/options_order_test.js": "4030b385159204dda8289f89f44e8c00a67091b0f4a8062c99acb0d6854d01ff"
+  }
+}

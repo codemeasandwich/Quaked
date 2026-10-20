@@ -1,3 +1,4 @@
+import { M_Menu_Gyro_f } from './menu_gyro.js';
 import {Distribution_Profile} from '../../platform/distribution.js';
 /**
  * @module engine/client/menu_options
@@ -324,7 +325,7 @@ function M_AdjustSliders( dir ) {
 // meaning across drawing, Enter and slider/toggle dispatch.
 // The classic options, then Hexen II's two profile rows (enhanced mode and texture detail). The rows are added at
 // runtime, not at module load, because the game profile is chosen before the host starts but after this module loads.
-const BASE_OPTIONS_ORDER = [ 13, 0, 15, 1, 2, 14, 3, 4, 5, 6, 7, 16, 8, 9, 10, 11, 12, 17, 19 ];
+const BASE_OPTIONS_ORDER = [ 13, 0, 15, 1, 2, 14, 3, 4, 5, 6, 7, 16, 8, 9, 10, 11, 12, 17, 19, 22 ];
 const HEXEN2_ENHANCED_ROW = 20, HEXEN2_TIER_ROW = 21;
 function optionsOrder() {
 
@@ -391,6 +392,7 @@ export function M_Options_Draw() {
 	const p = _Draw_CachePic( 'gfx/p_option.lmp' );
 	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
 
+	M_Print( 16, optionsY( 22 ), '         Gyro controls' );
 	M_Print( 16, optionsY( 0 ), '    Customize controls' );
 	M_Print( 16, optionsY( 1 ), '         Go to console' );
 	M_Print( 16, optionsY( 2 ), '     Reset to defaults' );
@@ -505,6 +507,8 @@ export function M_Options_Key( key ) {
 					Cbuf_AddText( 'volume 0.4\n' );
 					Cbuf_AddText( 'bgmvolume 1\n' );
 					break;
+				case 22:
+					M_Menu_Gyro_f(); break;
 				case 18:
 					globalThis.__QUAKED_SELECT_LOCATION__?.();break;
 				case 13:

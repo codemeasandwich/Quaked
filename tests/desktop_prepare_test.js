@@ -98,7 +98,7 @@ async function prepare( id, trial = null ) {
 		convertFileSrc: path => 'https://asset.invalid/' + encodeURIComponent( path ),
 		async listen( event ) {
 
-			check( [ 'select-game-location', 'lan-menu' ].includes( event ), 'only startup listeners: ' + event );
+			check( [ 'select-game-location', 'lan-menu', 'controller-gyro' ].includes( event ), 'only startup listeners: ' + event );
 			return () => {};
 
 		}

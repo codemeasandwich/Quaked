@@ -72,6 +72,7 @@ export const m_hexen2_help = 34;
 export const m_hexen2_quit = 35;
 export const m_hexen2_load = 36;
 export const m_hexen2_save = 37;
+export const m_gyro = 38; // Shared platform controls, reached from both Options pages.
 
 export let m_state = m_none;
 export let m_entersound = false;
