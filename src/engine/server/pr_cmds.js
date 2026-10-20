@@ -55,7 +55,6 @@ import { R_FlashlightSkillSelected } from '../common/hooks.js'; // installed by 
 import { SV_GoreOnSetModel } from '../common/hooks.js'; // installed by newer/gameplay/sv_gore.js
 import { SV_AxeGibSeen } from '../common/hooks.js'; // installed by newer/gameplay/sv_axecut.js
 import { Cbuf_AddText } from '../common/cmd.js';
-import { Hexen2_SetSharedBuiltinResolver } from '../progs/hexen2_shared_builtins.js';
 import { SV_ElectricTrace } from '../common/hooks.js'; // installed by newer/gameplay/sv_electricsounds.js
 import { SV_FaceShotTrace } from '../common/hooks.js'; // installed by newer/gameplay/sv_faceevents.js
 import { Cvar_VariableValue, Cvar_Set } from '../common/cvar.js';
@@ -1645,21 +1644,6 @@ export const pr_builtin = [
 	PF_finaleFinished,	// void() finaleFinished = #79;
 	PF_localsound,		// void(entity client, string sample) localsound = #80;
 ];
-
-/**
- * The shared Quake builtin at a number. The engine dispatches through the one table `PR_LoadProgs` installs; this only
- * serves the `Hexen2_CallBuiltin` test helper (retired with the old Hexen host in package U10).
- *
- * @param {number} number the builtin number
- * @returns {?function(): void} the Quake implementation, or null outside the table
- */
-export function PF_SharedBuiltin( number ) {
-
-	return Number.isInteger( number ) && number >= 0 && number < pr_builtin.length ? pr_builtin[ number ] : null;
-
-}
-
-Hexen2_SetSharedBuiltinResolver( PF_SharedBuiltin );
 
 /*
 ===============

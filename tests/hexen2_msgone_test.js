@@ -5,8 +5,11 @@ import { sv as serverSv } from '../src/engine/server/server.js';
 import { PR_SetSV, PR_SetSVS, PR_SetArgc, PR_SetGlobalStruct, PR_SetGlobalsFloat, EDICT_TO_PROG } from '../src/engine/progs/progs.js';
 import { OFS_PARM0, OFS_PARM1 } from '../src/engine/progs/pr_comp.js';
 import { G_FLOAT_SET } from '../src/engine/progs/progs.js';
-import { Hexen2_CallBuiltin } from '../src/engine/progs/hexen2_cmds.js';
+import { callProfileBuiltin } from './helpers/builtin_table.mjs';
 import '../src/engine/progs/hexen2_server_cmds.js';
+import { GameProfile_Set } from '../src/engine/common/game_profile.js';
+
+GameProfile_Set( 'hexen2' );
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 
@@ -31,7 +34,7 @@ Deno.test( 'MSG_ONE writes to the edict the pointer names', () => {
 	G_FLOAT_SET( OFS_PARM1, 42 );
 	PR_SetArgc( 2 );
 	globals.msg_entity = EDICT_TO_PROG( client );
-	check( Hexen2_CallBuiltin( 52, {} ) === true, 'writebyte is implemented' );
+	check( callProfileBuiltin( 52, {} ) === true, 'writebyte is implemented' );
 	same( message.cursize, 1, 'the client message grew' );
 	same( message.data[ 0 ], 42, 'the client received the byte' );
 

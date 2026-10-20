@@ -1,5 +1,11 @@
 # Hexen II implementation plan review
 
+> **Historical record — the parallel host is retired.** This document describes the `h2` branch's parallel Hexen II
+> host (`hexen2_page.js`, its private 1019 protocol and its private wire/session modules) as it stood before package
+> U10. That host and those modules were deleted when Hexen II moved onto the shared host; file, module and test names
+> below are evidence of that earlier work, not current entry points. The current architecture is
+> [unified-host.md](unified-host.md).
+
 Date: 18 October 2026. Review authority: owner-requested plan updating gate. Scope: strengthen the saved plan before implementation. This review changes planning documents and input inventories only; no product code, test code, builds, runtime configuration, purchased files, commits or releases have changed.
 
 ## Prioritised findings and amendments

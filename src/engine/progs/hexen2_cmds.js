@@ -4,20 +4,17 @@
  * The Hexen II builtins that are pure maths, string formatting or RNG: numbers whose native body differs from the
  * Quake one (`rint` rounds at ±0.1, `random` is the native `rand()/RAND_MAX`, `dprintf`/`dprintv` format one value)
  * and the numbers Hexen II added where Quake's table has a Fixme (`vhlen`, `cos`, `sin`, `sqrt`, `concatv`,
- * `v_factor`, `v_factorrange`). Every other Hexen reimplementation of a Quake builtin is gone: the merged table (U0)
- * resolves those from `server/pr_cmds.js`, and the legacy `Hexen2_CallBuiltin` path below falls back to that same
- * Quake table so this branch keeps one implementation while the packages are apart.
+ * `v_factor`, `v_factorrange`). Every other Hexen reimplementation of a Quake builtin is gone: the one profile table in
+ * `pr_builtin_table.js` resolves those from `server/pr_cmds.js`.
  *
  * Types: plain values and functions; no exported classes.
- * State: the registered engine-backed layer (world, server, precache) lives in `registeredBuiltins`.
+ * State: no mutable exports.
  * Errors: none raised here; developer prints never abort on bad gamecode format strings.
  */
 
 import { G_FLOAT, G_FLOAT_SET, G_STRING, G_VECTOR, pr_global_struct } from './progs.js';
 import { OFS_PARM0, OFS_PARM1, OFS_RETURN } from './pr_comp.js';
-import { HEXEN2_BUILTIN_COUNT } from './hexen2_builtins.js';
 import { Con_DPrintf } from '../common/console.js';
-import { Hexen2_SharedBuiltin } from './hexen2_shared_builtins.js';
 
 const DEG2RAD = Math.PI / 180;
 
@@ -132,48 +129,5 @@ export const HEXEN2_CORE_BUILTINS = Object.freeze( {
 	91: concatv, 94: v_factor, 95: v_factorrange
 } );
 
-// Implementations that need engine/server state are installed by their own module (hexen2_world_cmds.js) so this
-// module keeps no dependency on the server; an installed builtin is resolved after the self-contained table.
-const registeredBuiltins = new Map();
-
-/**
- * Installs engine-backed Hexen II builtins (the world, model and movement layer). A number must be inside the pinned
- * 114-entry contract; an installed number overrides nothing in the self-contained table (those are checked first).
- *
- * @param {object} table builtin number -> implementation
- * @throws {RangeError} for a number outside the contract
- * @throws {TypeError} for a non-function implementation
- */
-export function Hexen2_RegisterBuiltins( table ) {
-
-	for ( const [ key, implementation ] of Object.entries( table ?? {} ) ) {
-
-		const number = Number( key );
-		if ( ! Number.isInteger( number ) || number < 0 || number >= HEXEN2_BUILTIN_COUNT )
-			throw new RangeError( `Hexen II builtin number ${key} is outside the contract` );
-		if ( typeof implementation !== 'function' ) throw new TypeError( `Hexen II builtin ${key} is not a function` );
-		registeredBuiltins.set( number, implementation );
-
-	}
-
-}
-
 /** The implemented builtins, by their pinned contract number. */
 export const HEXEN2_IMPLEMENTED_BUILTINS = HEXEN2_CORE_BUILTINS;
-
-/**
- * Calls an implemented Hexen II builtin. Numbers the Hexen layers deliberately do not override are sent to Quake's
- * own table; after U0 merges the tables this fallback is no longer on the interpreter's path.
- *
- * @param {number} number the builtin number from the function's negative `first_statement`
- * @param {{ random: function(): number }} context the random source (as rand()/RAND_MAX)
- * @returns {boolean} whether the builtin was found and was called
- */
-export function Hexen2_CallBuiltin( number, context ) {
-
-	const implementation = HEXEN2_CORE_BUILTINS[ number ] ?? registeredBuiltins.get( number ) ?? Hexen2_SharedBuiltin( number );
-	if ( implementation === undefined || implementation === null ) return false;
-	implementation( context );
-	return true;
-
-}

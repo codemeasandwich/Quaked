@@ -13,7 +13,7 @@ import { PR_LoadProgs, PR_AllocEdicts, ED_LoadFromFile } from '../src/engine/pro
 import { PR_SetSV, PR_SetSVS, PR_GetString, pr_global_struct, svs } from '../src/engine/progs/progs.js';
 import { sv as serverSv, ss_loading, ss_active, SOLID_BSP, MOVETYPE_PUSH, SIGNON_SIZE, FL_CLIENT, FL_ONGROUND } from '../src/engine/server/server.js';
 import { PR_LastRunError, PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
-import { Hexen2_CallBuiltin } from '../src/engine/progs/hexen2_cmds.js';
+import { callProfileBuiltin } from './helpers/builtin_table.mjs';
 import { pr_globals } from '../src/engine/progs/progs.js';
 import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_RETURN } from '../src/engine/progs/pr_comp.js';
 import '../src/engine/progs/hexen2_world_cmds.js';
@@ -88,7 +88,7 @@ Deno.test( 'a Paladin is placed in the supplied level by the supplied gamecode',
 	// Settle the native feet-origin box on the floor with the gamecode's own droptofloor (self-based), then walk:
 	// the hull offset converts the feet origin onto hull 1's centre-based tree, one 32-unit step in +x, on the floor.
 	pr_global_struct.self = 1;
-	check( Hexen2_CallBuiltin( 34, { random: () => 0.5 } ) === true, 'droptofloor is implemented' );
+	check( callProfileBuiltin( 34, { random: () => 0.5 } ) === true, 'droptofloor is implemented' );
 	same( pr_globals.getFloat( OFS_RETURN ), 1, 'the player dropped to the floor' );
 	check( Math.abs( player.v.origin[ 2 ] ) < 1, 'the feet are on the floor: ' + player.v.origin[ 2 ] );
 	const before = [ player.v.origin[ 0 ], player.v.origin[ 1 ], player.v.origin[ 2 ] ];
@@ -98,7 +98,7 @@ Deno.test( 'a Paladin is placed in the supplied level by the supplied gamecode',
 	pr_globals.setFloat( OFS_PARM0, 0 );
 	pr_globals.setFloat( OFS_PARM1, 32 );
 	pr_globals.setFloat( OFS_PARM2, 0 ); // native walkmove's third argument, set_trace: off
-	check( Hexen2_CallBuiltin( 32, { random: () => 0.5 } ) === true, 'walkmove is implemented' );
+	check( callProfileBuiltin( 32, { random: () => 0.5 } ) === true, 'walkmove is implemented' );
 	same( pr_globals.getFloat( OFS_RETURN ), 1, 'the step succeeded' );
 	check( Math.abs( player.v.origin[ 0 ] - ( before[ 0 ] + 32 ) ) < 0.1, 'the player advanced 32 units in +x: ' + player.v.origin );
 	same( player.v.origin[ 1 ], before[ 1 ], 'the player did not slide sideways' );

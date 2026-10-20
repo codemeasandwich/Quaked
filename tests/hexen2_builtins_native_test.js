@@ -21,7 +21,7 @@ import { sv as serverSv, svs as serverSvs, ss_loading, ss_active, SOLID_BSP, SOL
 import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3, OFS_PARM4, OFS_PARM5, OFS_PARM6, OFS_RETURN } from '../src/engine/progs/pr_comp.js';
 import { PROTOCOL_LARGE, PROTOCOL_VERSION, svc_centerprint, svc_spawnstatic, svc_stufftext } from '../src/engine/common/protocol.js';
 import { HEXEN2_SERVER_MESSAGES } from '../src/engine/common/hexen2_protocol.js';
-import { Hexen2_CallBuiltin } from '../src/engine/progs/hexen2_cmds.js';
+import { callProfileBuiltin } from './helpers/builtin_table.mjs';
 import { HEXEN2_CORE_BUILTINS } from '../src/engine/progs/hexen2_cmds.js';
 import { HEXEN2_WORLD_BUILTINS } from '../src/engine/progs/hexen2_world_cmds.js';
 import { HEXEN2_PRECACHE_BUILTINS } from '../src/engine/progs/hexen2_precache_cmds.js';
@@ -31,7 +31,6 @@ import {
 } from '../src/engine/progs/hexen2_server_cmds.js';
 import { Hexen2_ReserveTempEdicts, Hexen2_ED_Alloc_Temp, Hexen2_TempEdictStart, Hexen2_IsTempEdict } from '../src/engine/progs/hexen2_temp_edicts.js';
 import { Hexen2_WriteParticle2, Hexen2_WriteParticle3, Hexen2_WriteParticle4, Hexen2_ReadParticle } from '../src/engine/common/hexen2_effects.js';
-import { Hexen2_ReadBaseline } from '../src/engine/common/hexen2_entitywire.js';
 import { Hexen2_ReadStartEffect, Hexen2_ReadEndEffect, CE } from '../src/engine/common/hexen2_effectwire.js';
 import {
 	Hexen2_LoadStrings, Hexen2_GetHostString, Hexen2_HostStringCount,
@@ -51,7 +50,7 @@ const near = ( a, b, m ) => check( Math.abs( a - b ) < 0.001, `${m}: ${a} != ${b
 const HEXEN = '/Users/bri/quaked/Hexen 2/data1';
 const setF = ( o, v ) => pr_globals.setFloat( o, v ), setI = ( o, v ) => pr_globals.setInt32( o, v );
 const getF = o => pr_globals.getFloat( o ), getI = o => pr_globals.getInt32( o );
-const call = ( number, context = { random: () => 0.5 } ) => Hexen2_CallBuiltin( number, context );
+const call = ( number, context = { random: () => 0.5 } ) => callProfileBuiltin( number, context );
 const string = text => PR_SetTempString( text );
 
 function initBuffer( buffer, size ) {
@@ -183,13 +182,16 @@ Deno.test( 'makestatic carries scale, drawflags and abslight and frees the edict
 	reset( sv.signon );
 	setI( OFS_PARM0, 2 );
 	check( call( 69 ), 'makestatic' );
-	const decoded = Hexen2_ReadBaseline( bytes( sv.signon ) );
-	check( decoded.ok, decoded.reason );
-	same( decoded.baseline.modelIndex, 300, 'the word model index' );
-	same( decoded.baseline.frame, 7, 'the byte frame, not a short' );
-	same( decoded.baseline.scale, 50, 'scale * 100' );
-	same( decoded.baseline.drawflags, 3, 'drawflags' );
-	same( decoded.baseline.abslight, 63, 'abslight * 255' );
+	// the unified static-entity body: opcode, word model, byte frame/colormap/skin, scale/drawflags/abslight bytes
+	const data = bytes( sv.signon );
+	same( data[ 0 ], 20, 'svc_spawnstatic' );
+	same( data[ 1 ] | ( data[ 2 ] << 8 ), 300, 'the word model index' );
+	same( data[ 3 ], 7, 'the byte frame, not a short' );
+	same( data[ 4 ], 1, 'colormap' );
+	same( data[ 5 ], 2, 'skin' );
+	same( data[ 6 ], 50, 'scale * 100' );
+	same( data[ 7 ], 3, 'drawflags' );
+	same( data[ 8 ], 63, 'abslight * 255' );
 	same( ent.free, true, 'the static edict is thrown away' );
 
 } );

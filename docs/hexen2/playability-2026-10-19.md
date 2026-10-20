@@ -1,5 +1,11 @@
 # Hexen II playability increment — menus, animations and RPG mechanics
 
+> **Historical record — the parallel host is retired.** This document describes the `h2` branch's parallel Hexen II
+> host (`hexen2_page.js`, its private 1019 protocol and its private wire/session modules) as it stood before package
+> U10. That host and those modules were deleted when Hexen II moved onto the shared host; file, module and test names
+> below are evidence of that earlier work, not current entry points. The current architecture is
+> [unified-host.md](unified-host.md).
+
 Status: **executed increment, not qualification.** This record covers the in-game pause menu, four-class selection,
 first-person and enemy animation evidence, and the core RPG mechanics on the supplied Installed retail data. It does
 not claim the full native menu art set, whole-hub cross-level trigger semantics, the full campaigns or owner acceptance.

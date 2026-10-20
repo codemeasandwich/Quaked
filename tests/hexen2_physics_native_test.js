@@ -25,7 +25,7 @@ import {
 import { SV_CheckBottom, SV_movestep, SV_NewChaseDir } from '../src/engine/server/sv_move.js';
 import {
 	SV_SetIdealPitch, SV_UserFriction, SV_WaterMove, SV_FlightMove, SV_ClientThink,
-	SV_User_SetCallbacks, SV_User_SetCommand, SV_ReadClientMove
+	SV_User_SetCallbacks, SV_ReadClientMove, host_client
 } from '../src/engine/server/sv_user.js';
 import {
 	GameProfile_Set, GameProfile_Get, GAME_PROFILES
@@ -46,6 +46,15 @@ import { installServerCallbacks } from './helpers/hexen2_server_setup.mjs';
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
 const same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const near = ( a, b, m, e = 1e-3 ) => check( Math.abs( a - b ) <= e, `${m}: ${a} != ${b}` );
+
+// The test drives the client it installed; the server's real input path is SV_ReadClientMove.
+function setCommand( move ) {
+
+	host_client.cmd.forwardmove = move.forwardmove ?? 0;
+	host_client.cmd.sidemove = move.sidemove ?? 0;
+	host_client.cmd.upmove = move.upmove ?? 0;
+
+}
 
 const profileBefore = GameProfile_Get();
 
@@ -359,7 +368,7 @@ Deno.test( 'Hexen water speed scales by class and level, and ground friction mul
 		player.v.playerclass = playerclass;
 		player.v.level = level;
 		player.v.velocity = [ 0, 0, 0 ];
-		SV_User_SetCommand( { forwardmove: 1000 } );
+		setCommand( { forwardmove: 1000 } );
 		SV_ClientThink();
 		return player.v.velocity[ 0 ];
 
@@ -379,7 +388,7 @@ Deno.test( 'Hexen water speed scales by class and level, and ground friction mul
 	player.v.flags = FL_ONGROUND;
 	player.v.friction = 2;
 	player.v.velocity = [ 100, 0, 0 ];
-	SV_User_SetCommand( { forwardmove: 0 } );
+	setCommand( { forwardmove: 0 } );
 	SV_ClientThink();
 	near( player.v.velocity[ 0 ], 20, 'ground friction is sv_friction * ent.friction' );
 	player.v.friction = 0;
@@ -403,7 +412,7 @@ Deno.test( 'a Hexen FLY player uses SV_FlightMove, and MOVETYPE_NONE aborts SV_C
 	player.v.movetype = MOVETYPE_FLY;
 	SV_SetPlayer( player );
 	SV_User_SetCallbacks( { host_client: { cmd: {} }, V_CalcRoll: () => 0 } );
-	SV_User_SetCommand( { forwardmove: 100, viewangles: [ - 45, 0, 0 ] } );
+	setCommand( { forwardmove: 100, viewangles: [ - 45, 0, 0 ] } );
 	player.v.v_angle = [ - 45, 0, 0 ];
 	player.v.angles = [ - 45, 0, 0 ];
 	SV_ClientThink();
@@ -614,47 +623,45 @@ Deno.test( 'a real Hexen map runs and its pushables move (owned data only)', asy
 	const pak = await import( '../src/engine/common/pak.js' );
 	const { VID_SetPalette } = await import( '../src/engine/render/vid.js' );
 	const { Mod_Init } = await import( '../src/engine/render/gl_model.js' );
-	const { model_t } = await import( '../src/engine/render/gl_model_types.js' );
-	const { set_loadmodel, Mod_FindName } = await import( '../src/engine/render/gl_model_common.js' );
-	const { Mod_LoadBrushModel } = await import( '../src/engine/render/gl_model_bsp.js' );
-	const { PR_LoadProgs, PR_AllocEdicts } = await import( '../src/engine/progs/pr_edict.js' );
-	const { Hexen2_SeedPrecache, Hexen2_SpawnEntities } = await import( '../src/engine/progs/hexen2_boot.js' );
-	const { PR_ExecuteProgram } = await import( '../src/engine/progs/pr_exec.js' );
+	const { PR_InitBuiltins } = await import( '../src/engine/server/pr_cmds.js' );
+	const { SV_SpawnServer } = await import( '../src/engine/server/sv_main.js' );
+	const { Cbuf_Init, Cmd_Init } = await import( '../src/engine/common/cmd.js' );
+	const { Host_InitCommands } = await import( '../src/engine/server/host_cmd.js' );
+	const { sv, svs, client_t } = await import( '../src/engine/server/server.js' );
+	const { cls, ca_dedicated } = await import( '../src/engine/client/client.js' );
+	const { SZ_Alloc } = await import( '../src/engine/common/common.js' );
+	const vars = await import( '../src/engine/common/cvar.js' );
+	const { r_hdr } = await import( '../src/newer/render/gl_post.js' );
+	const { skill } = await import( '../src/engine/server/host.js' );
 	for ( const name of [ 'pak0.pak', 'pak1.pak' ] ) {
 
 		const raw = readFileSync( HEXEN + '/' + name );
 		pak.COM_AddPack( pak.COM_LoadPackFile( 'h2-' + name, raw.buffer.slice( raw.byteOffset, raw.byteOffset + raw.length ) ) );
 
 	}
+	// The base data1 keeps progs.dat, strings.txt and hexen.rc loose beside the paks.
+	const loose = [];
+	for ( const name of [ 'progs.dat', 'strings.txt', 'hexen.rc' ] )
+		if ( existsSync( HEXEN + '/' + name ) ) loose.push( { name, data: new Uint8Array( readFileSync( HEXEN + '/' + name ) ) } );
+	pak.COM_AddPack( pak.COM_LoadPackFile( 'h2-loose', pak.COM_BuildPack( loose ) ) );
 	const palette = pak.COM_FindFile( 'gfx/palette.lmp' ).data;
 	VID_SetPalette( palette.buffer.slice( palette.byteOffset, palette.byteOffset + palette.byteLength ) );
 	Mod_Init();
-	const progsBytes = readFileSync( HEXEN + '/progs.dat' );
-	PR_LoadProgs( progsBytes.buffer.slice( progsBytes.byteOffset, progsBytes.byteOffset + progsBytes.byteLength ) );
-	const map = new model_t();
-	map.name = 'maps/village2.bsp';
-	set_loadmodel( map );
-	const bsp = pak.COM_FindFile( 'maps/village2.bsp' ).data;
-	Mod_LoadBrushModel( map, bsp.buffer.slice( bsp.byteOffset, bsp.byteOffset + bsp.byteLength ) );
-
-	const sv = ( await import( '../src/engine/server/server.js' ) ).sv;
-	PR_SetSV( sv );
-	PR_SetSVS( hexenSvs );
-	sv.time = 0.1;
-	sv.signon.data = sv.signon_buf;
-	sv.signon.maxsize = 8192;
-	sv.worldmodel = map;
-	sv.models = [ map ];
-	Hexen2_SeedPrecache( sv, map, name => Mod_FindName( name ) );
-	sv.state = 0;
-	SV_SetState( sv, hexenSvs, hexenGlobals );
-	SV_ClearWorld();
-	installServerCallbacks( {
-		SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_PointContents, PR_ExecuteProgram
-	} );
-	Hexen2_SpawnEntities( sv, map, 392, PR_AllocEdicts );
-	sv.active = true;
-	sv.state = 1;
+	PR_InitBuiltins();
+	Cbuf_Init();
+	Cmd_Init();
+	Host_InitCommands();
+	for ( const value of [ r_hdr, skill, sv_gravity ] ) if ( ! vars.Cvar_FindVar( value.name ) ) vars.Cvar_RegisterVariable( value );
+	vars.Cvar_SetValue( 'r_hdr', 0 );
+	vars.Cvar_SetValue( 'skill', 1 );
+	vars.Cvar_SetValue( '_cl_playerclass', 1 );
+	svs.maxclients = svs.maxclientslimit = 1;
+	svs.clients = [ new client_t() ];
+	SZ_Alloc( svs.clients[ 0 ].message, 32768 );
+	sv.active = false;
+	cls.state = ca_dedicated;
+	SV_SpawnServer( 'village2' );
+	check( sv.active && sv.name === 'village2', 'the real server starts village2' );
 	SV_SetFrametime( 0.1 );
 
 	const pushables = sv.edicts.filter( ent => ent && ! ent.free && ent.v.movetype === MOVETYPE_PUSHPULL );

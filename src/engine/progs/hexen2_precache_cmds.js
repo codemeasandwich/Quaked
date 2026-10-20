@@ -4,15 +4,14 @@
  * The Hexen II precache and model builtins: `precache_sound`, `precache_model`, their versioned qcc aliases
  * (model2/3/4, sound2/3/4), the no-op `precache_file`, and the puzzle models. They reuse the server's existing
  * `sv.model_precache`/`sv.sound_precache` lists and the port's model loader, so a Hexen spawn function populates the
- * same structures the Quake gamecode does. Numbers are the pinned 114-entry contract; the module registers itself when
- * the server loads it.
+ * same structures the Quake gamecode does. Numbers are the pinned 114-entry contract; `pr_builtin_table.js` installs
+ * this layer with the active profile's one table.
  *
  * Types: plain values and functions; no exported classes.
- * State: none here; the server holds the precache lists.
+ * State: none; the server holds the precache lists.
  * Errors: the native program errors for an empty name, an out-of-spawn precache, an overflow or an unprecached model.
  */
 
-import '../server/pr_cmds.js'; // publishes the shared Quake builtin table for the layer fallback
 import { sv, G_STRING, G_INT, G_INT_SET, G_EDICT, PROG_TO_EDICT, PR_GetString, pr_xfunction, pr_xstatement, pr_global_struct } from './progs.js';
 import { OFS_PARM0, OFS_PARM1, OFS_RETURN } from './pr_comp.js';
 import { PR_RunError } from './pr_exec.js';
@@ -21,7 +20,6 @@ import { SV_SoundLimit } from '../server/sv_main.js';
 import { SV_LinkEdict } from '../server/world.js';
 import { Mod_ForName } from '../render/gl_model.js';
 import { ED_NewString } from './pr_edict.js';
-import { Hexen2_RegisterBuiltins } from './hexen2_cmds.js';
 
 function checkSpawn() {
 
@@ -145,5 +143,3 @@ export const HEXEN2_PRECACHE_BUILTINS = Object.freeze( {
 	96: precacheSound, 97: precacheModel, 101: precacheSound, 102: precacheModel,
 	98: precacheFile, 103: precacheFile
 } );
-
-Hexen2_RegisterBuiltins( HEXEN2_PRECACHE_BUILTINS );

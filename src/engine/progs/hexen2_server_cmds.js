@@ -8,9 +8,8 @@
  * event bridge for a listen server.
  *
  * Builtins with the same body as Quake (spawn, remove, prints, light styles, writes, find, particle, changeyaw,
- * centerprint, localcmd, the debug dumps, precaches) are absent: U0's merged table uses Quake's `PF_*`, and the
- * legacy dispatcher falls back to that table here. `changelevel` stays because Hexen's native form carries a start
- * spot and chooses `changelevel2` for a hub transition.
+ * centerprint, localcmd, the debug dumps, precaches) are absent: the one profile table uses Quake's `PF_*`.
+ * `changelevel` stays because Hexen's native form carries a start spot and chooses `changelevel2` for a hub transition.
  *
  * Types: plain values and functions; no exported classes.
  * State: the pending-sound queue and `sv.hexenEffects`; the queue is bounded.
@@ -18,7 +17,6 @@
  * temporary-edict reservation.
  */
 
-import '../server/pr_cmds.js'; // publishes the shared Quake builtin table for the layer fallback
 import { ED_Free, ED_Print, ED_NewString } from './pr_edict.js';
 import {
 	sv, svs, G_STRING, G_INT, G_INT_SET, G_FLOAT, G_FLOAT_SET, G_EDICT, G_EDICTNUM, NUM_FOR_EDICT,
@@ -37,7 +35,6 @@ import { SV_Move } from '../server/world.js';
 import { SV_StartSound, SV_StopSound } from '../server/sv_phys.js';
 import { sv_aim, SV_SoundLimit, SV_WriteIndex } from '../server/sv_main.js';
 import { DAMAGE_YES, FL_ONGROUND, FL_FLY, FL_SWIM, NUM_SPAWN_PARMS, teamplay, ss_active } from '../server/server.js';
-import { Hexen2_RegisterBuiltins } from './hexen2_cmds.js';
 import { Hexen2_WriteNativeServiceByte, Hexen2_FlushNativeService } from '../server/hexen2_native_wire.js';
 import {
 	Hexen2_AppendMessage, Hexen2_WritePlaque, Hexen2_WriteRainEffect, Hexen2_WriteParticleExplosion,
@@ -203,8 +200,8 @@ const pendingSounds = [];
 const PENDING_SOUND_LIMIT = 64;
 
 /**
- * Drains the sound events the gamecode produced, oldest first. The audio bridge (engine/client/hexen2_audio.js)
- * consumes them for a local session; a networked client still receives the same sounds through SV_StartSound.
+ * Drains the sound events the gamecode produced, oldest first. A listen server observes them for its local mixer; a
+ * networked client still receives the same sounds through SV_StartSound.
  *
  * @returns {Array<{ kind: string, entity: number, channel: number, sample: string, volume: number,
  *   attenuation: number, origin: ReadonlyArray<number> }>} the events, then empties the queue
@@ -225,7 +222,7 @@ function recordSound( kind, entity, channel, sample, volume, attenuation, origin
 }
 
 // #8 sound(entity, channel, sample, volume, attenuation): the existing SV_StartSound path, with Hexen's word-wide
-// sound indexes through the protocol helper and the local event queue the audio bridge drains.
+// sound indexes through the protocol helper and the local event queue a listen server can observe.
 function sound() {
 
 	const ent = G_EDICT( OFS_PARM0 ), channel = G_FLOAT( OFS_PARM1 ) | 0, sample = G_STRING( OFS_PARM2 );
@@ -700,5 +697,3 @@ export const HEXEN2_SERVER_BUILTINS = Object.freeze( {
 	83: advanceweaponframe, 85: particle3, 86: particle4, 88: starteffect, 89: endeffect, 92: getString,
 	93: spawntemp, 99: matchAngleToSlope, 100: updateInfoPlaque, 104: doWhiteFlash, 105: updateSoundPos, 106: stopSound
 } );
-
-Hexen2_RegisterBuiltins( HEXEN2_SERVER_BUILTINS );

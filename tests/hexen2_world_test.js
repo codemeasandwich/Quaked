@@ -13,7 +13,7 @@ import { SV_Move, SV_TestEntityPosition } from '../src/engine/server/world.js';
 import { PR_LoadProgs, PR_AllocEdicts } from '../src/engine/progs/pr_edict.js';
 import { pr_global_struct, pr_globals, PR_SetSV } from '../src/engine/progs/progs.js';
 import { sv as serverSv } from '../src/engine/server/server.js';
-import { Hexen2_CallBuiltin } from '../src/engine/progs/hexen2_cmds.js';
+import { callProfileBuiltin } from './helpers/builtin_table.mjs';
 import '../src/engine/progs/hexen2_world_cmds.js';
 import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3, OFS_RETURN } from '../src/engine/progs/pr_comp.js';
 import { SOLID_BSP, MOVETYPE_PUSH } from '../src/engine/server/server.js';
@@ -26,7 +26,7 @@ GameProfile_Set( 'hexen2' );
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const HEXEN = '/Users/bri/quaked/Hexen 2/data1';
 const setF = ( o, v ) => pr_globals.setFloat( o, v ), setI = ( o, v ) => pr_globals.setInt32( o, v ), getF = o => pr_globals.getFloat( o );
-const call = ( number ) => Hexen2_CallBuiltin( number, { random: () => 0.5 } );
+const call = ( number ) => callProfileBuiltin( number, { random: () => 0.5 } );
 
 function setup() {
 

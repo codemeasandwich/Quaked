@@ -4,22 +4,19 @@
  * The Hexen II builtins that need the server world and whose native body differs from Quake's: `traceline` and
  * `tracearea` force hull 0 while tracing, `walkmove`/`movestep` read the native `set_trace` argument, `movetogoal`
  * returns the native 0/1 result, and `traceline`'s hull rule is shared by both trace builtins. `setorigin`, `setsize`,
- * `droptofloor`, `checkbottom` and `pointcontents` are gone: U0's merged table uses Quake's `PF_*` for those, and the
- * legacy dispatcher falls back to it here.
+ * `droptofloor`, `checkbottom` and `pointcontents` are gone: the one profile table uses Quake's `PF_*` for those.
  *
  * Types: plain values and functions; no exported classes.
- * State: none here; the dispatcher holds the registered table.
+ * State: none.
  * Errors: none raised here.
  */
 
-import '../server/pr_cmds.js'; // publishes the shared Quake builtin table for the layer fallback
 import { SV_Move } from '../server/world.js';
 import { SV_StepDirection, SV_NewChaseDir, SV_CloseEnough, SV_movestep } from '../server/sv_move.js';
 import { EDICT_TO_PROG, G_EDICT, G_FLOAT, G_FLOAT_SET, G_VECTOR, PROG_TO_EDICT, pr_global_struct, sv } from './progs.js';
 import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3, OFS_PARM4, OFS_PARM5, OFS_RETURN } from './pr_comp.js';
 import { FL_ONGROUND, FL_FLY, FL_SWIM } from '../server/server.js';
 import { vec3_origin } from '../common/mathlib.js';
-import { Hexen2_RegisterBuiltins } from './hexen2_cmds.js';
 
 // The trace globals, exactly as the native PR_SetTrace writes them.
 function setTrace( trace ) {
@@ -139,5 +136,3 @@ function movetogoal( context ) {
 
 /** The world builtins this module installs into the Hexen II dispatcher. */
 export const HEXEN2_WORLD_BUILTINS = Object.freeze( { 16: traceline, 32: walkmove, 33: tracearea, 67: movetogoal, 82: movestep } );
-
-Hexen2_RegisterBuiltins( HEXEN2_WORLD_BUILTINS );

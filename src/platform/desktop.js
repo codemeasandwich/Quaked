@@ -42,6 +42,67 @@ async function snapshot(){
  const catalogue=await GameCatalogue_Refresh({games,allPacks:true,base:'https://quaked.invalid/',fetch:rangedFetch(library)});
  return {library,catalogue};
 }
+const MUSIC_TYPES=Object.freeze({ogg:'audio/ogg',mp3:'audio/mpeg',wav:'audio/wav'});
+const MUSIC_FILE_LIMIT=64<<20,MUSIC_READ_CHUNK=131072; // read_range's per-call bound
+// The Portal expansion reads base tracks from the base game's data folder and its own from portals/music. Its
+// tuklu*/track* set is Portal-only, so it prefers the portals token; everything else prefers the base, as the game's
+// filesystem does (src-tauri/src/library.rs lists both editions' music tokens).
+function musicEditionOrder(game,base,name){
+ const editions=[...new Set([game,base].filter(Boolean))];
+ if(game!=='hexen2-portals'||editions.length<2)return editions;
+ const others=editions.filter(edition=>edition!==game);
+ return /^(?:tulku|track)/i.test(name)?[game,...others]:[...others,game];
+}
+/** The Hexen II music source for the packaged app: reads a loose track through the existing scoped library reader
+ * (library.rs read_range via the library_read command) into a Blob and returns an object URL. The file path never
+ * reaches an asset URL, so the asset protocol's scope is unchanged. Only direct data-folder music is listed; a file
+ * over the bound, or a token that is not in the current library, is refused. The previous object URL is revoked when a
+ * new track starts.
+ * @param {object} library the library_scan result
+ * @param {{game?:string,base?:?string,read?:Function,createObjectURL?:Function,revokeObjectURL?:Function,
+ *   maxBytes?:number,chunk?:number}} [options] edition, base edition and test seams
+ * @returns {function(string): Promise<?string>} game path -> object URL, or null
+ */
+export function Desktop_Hexen2MusicSource(library,options={}){
+ const game=options.game??'hexen2',base=options.base??null;
+ const read=options.read??((token,offset,length)=>invoke('library_read',{token,offset,length}));
+ const createURL=options.createObjectURL??(blob=>URL.createObjectURL(blob));
+ const revokeURL=options.revokeObjectURL??(url=>URL.revokeObjectURL(url));
+ const limit=options.maxBytes??MUSIC_FILE_LIMIT,chunk=Math.min(options.chunk??MUSIC_READ_CHUNK,MUSIC_READ_CHUNK);
+ let current=null,currentPath=null;
+ return async path=>{
+  const text=String(path??'');
+  const match=/^music\/([a-z0-9_.-]+)$/i.exec(text);
+  if(!match)return null;
+  const name=match[1].toLowerCase(),format=name.slice(name.lastIndexOf('.')+1);
+  if(!MUSIC_TYPES[format])return null;
+  // Asking for the track already playing is not a new track: reuse its URL, never revoke a URL the music element
+  // still points at (CDAudio_Play ignores a repeat of the same track).
+  if(current&&currentPath===text)return current;
+  for(const edition of musicEditionOrder(game,base,name)){
+   const token=`${edition}/music/${name}`;
+   const entry=(library.packs??[]).find(p=>p.token===token);
+   if(!entry)continue;
+   if(!Number.isSafeInteger(entry.bytes)||entry.bytes<0||entry.bytes>limit)return null;
+   try{
+    const parts=[];let at=0;
+    while(at<entry.bytes){
+     const want=Math.min(chunk,entry.bytes-at);
+     const part=await read(token,at,want);
+     const bytes=part instanceof Uint8Array?part:new Uint8Array(part??[]);
+     if(!bytes.length||bytes.length>want)return null;
+     parts.push(bytes);at+=bytes.length;
+    }
+    const url=createURL(new Blob(parts,{type:MUSIC_TYPES[format]}));
+    if(!url)return null;
+    if(current)try{revokeURL(current);}catch{}
+    current=url;currentPath=text;
+    return url;
+   }catch{return null;}
+  }
+  return null;
+ };
+}
 /** Per-game data packs (docs/per-game-packs-design-2026-10-13.md): the app bundles the core
  * pack; a game's other packs are downloaded, verified and unpacked by the app (packs_ensure in
  * src-tauri/src/packs.rs) before it starts, while the loading screen shows the progress. Once
@@ -123,22 +184,19 @@ export async function Desktop_Prepare(){
   // Quake searches a game folder after its packs (GameSelection_LibraryOrder; docs/add-ons-2026-10-13.md)
   const looseId=definition.kind==='addon'||String(id).startsWith('hexen2')?id:null; // Hexen's loose progs.dat/strings/hexen.rc sit above its PAKs
   for(const step of GameSelection_LibraryOrder(library.packs,ids,looseId)){
-   if(step.loose){const files=[];for(const entry of step.loose)files.push({name:entry.name,data:new Uint8Array(await read(entry))});const pack=COM_LoadPackFile(id+'/loose',COM_BuildPack(files));if(!pack)throw Error('Invalid loose files: '+id);packs.push(pack);continue;}
+   if(step.loose){const files=[];for(const entry of step.loose){if(entry.name.startsWith('music/'))continue;files.push({name:entry.name,data:new Uint8Array(await read(entry))});}const pack=COM_LoadPackFile(id+'/loose',COM_BuildPack(files));if(!pack)throw Error('Invalid loose files: '+id);packs.push(pack);continue;}
    const pack=COM_LoadPackFile(step.pack.token,await read(step.pack));if(!pack)throw Error('Invalid archive: '+step.pack.name);packs.push(pack);
   }
-  // Hexen's music is loose OGG beside the PAKs: give the host a streaming URL per game path, so the shared music bus
-  // never reads a whole track into memory and a packaged game can play data1/music or portals/music directly.
+  // Hexen's music is loose OGG beside the PAKs: register a source that reads each track through the scoped library
+  // reader (library.rs music tokens) into a Blob URL. It is not an asset URL, so the asset protocol's scope is not
+  // widened; the web/source build registers nothing and keeps its pack conversion.
   if(String(id).startsWith('hexen2')){
-   const packDir=game=>{const entry=library.packs.find(p=>p.game===game&&!p.loose&&p.path);return entry?String(entry.path).replace(/[^/\\]+$/,''):null;};
-   const ownDir=packDir(id),baseDir=definition.base?packDir(definition.base):null;
-   if(ownDir||baseDir)globalThis.__QUAKED_HEXEN2_MUSIC_URL__=path=>{
-    const text=String(path),portalFirst=/^music\/(?:tulku|track)/.test(text);
-    for(const dir of portalFirst?[ownDir,baseDir]:[baseDir,ownDir])if(dir)return convertFileSrc(dir+text);
-    return null;
-   };
+   const {Hexen2_SetMusicSource}=await import('../engine/client/hexen2_music.js');
+   Hexen2_SetMusicSource(Desktop_Hexen2MusicSource(library,{game:id,base:definition.base??null}));
   }
-  // Re-read metadata after full reads so changing files cannot silently select a different game.
-  for(const entry of library.packs.filter(p=>ids.includes(p.game)))await invoke('library_read',{token:entry.token,offset:0,length:12});
+  // Re-read metadata after full reads so changing files cannot silently select a different game (music is read on
+  // demand by the provider, not mounted).
+  for(const entry of library.packs.filter(p=>ids.includes(p.game)&&!p.name.startsWith('music/')))await invoke('library_read',{token:entry.token,offset:0,length:12});
   const maps=[...new Set(packs.flatMap(p=>p.files.filter(f=>/^maps\/[a-z0-9_]+\.bsp$/.test(f.name)).map(f=>f.name.slice(5,-4))))].sort();
   let identity;
   await (await import('./lan.js')).LAN_Init({maps,identity:()=>identity??=(async()=>{const hashes=[];for(const p of packs)hashes.push(Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',p.data)),b=>b.toString(16).padStart(2,'0')).join(''));return 'quaked-lan-v1|'+globalThis.__QUAKED_DISTRIBUTION__.engineHash+'|'+id+'|'+hashes.join('|');})()});

@@ -24,10 +24,7 @@ import {
 	CL_Hexen2Demo_Start, CL_Hexen2Demo_Translate, CL_Hexen2Demo_Stop, CL_Hexen2Demo_Probe
 } from '../src/engine/client/cl_hexen2_demo.js';
 import { Hexen2_ReadDemoForceTrack, Hexen2_ReadDemoMessages } from '../src/engine/common/hexen2_demo.js';
-import {
-	Hexen2_WriteReference, Hexen2_WriteClearEdicts, Hexen2_WriteBaseline, Hexen2_WriteEntityUpdate
-} from '../src/engine/common/hexen2_entitywire.js';
-import { Hexen2_WriteServerinfo } from '../src/engine/common/hexen2_signon.js';
+import { HEXEN2_SERVER_MESSAGES } from '../src/engine/common/hexen2_protocol.js';
 import { Hexen2_WriteSound } from '../src/engine/common/hexen2_soundwire.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
@@ -41,6 +38,107 @@ function concat( parts ) {
 	let at = 0;
 	for ( const p of parts ) { out.set( p, at ); at += p.length; }
 	return out;
+
+}
+
+// Native protocol-19 fixture writers: the demo decoder reads the native records, so the synthetic tests build the
+// same bytes the retired private wire modules used to write.
+class FixtureWriter {
+
+	constructor() { this.parts = []; }
+	byte( v ) { this.parts.push( v & 0xff ); }
+	short( v ) { this.parts.push( v & 0xff, ( v >> 8 ) & 0xff ); }
+	long( v ) { this.parts.push( v & 0xff, ( v >> 8 ) & 0xff, ( v >> 16 ) & 0xff, ( v >>> 24 ) & 0xff ); }
+	coord( v ) { this.short( Math.round( v * 8 ) ); }
+	angle( v ) { this.byte( Math.round( v * 256 / 360 ) & 0xff ); }
+	string( value ) { for ( const ch of String( value ) ) this.byte( ch.charCodeAt( 0 ) ); this.byte( 0 ); }
+	bytes() { return Uint8Array.from( this.parts ); }
+
+}
+
+function writeServerinfo( info ) {
+
+	const w = new FixtureWriter();
+	w.byte( HEXEN2_SERVER_MESSAGES.serverinfo );
+	w.long( info.protocol ); w.byte( info.maxClients ); w.byte( info.gameType ); w.string( info.levelName ?? '' );
+	for ( const name of info.models ) w.string( name );
+	w.string( '' );
+	for ( const name of info.sounds ) w.string( name );
+	w.string( '' );
+	return { ok: true, bytes: w.bytes() };
+
+}
+
+function writeBaselineBody( w, baseline ) {
+
+	w.short( baseline.modelIndex );
+	w.byte( baseline.frame ); w.byte( baseline.colormap ); w.byte( baseline.skin ); w.byte( baseline.scale );
+	w.byte( baseline.drawflags ); w.byte( baseline.abslight );
+	for ( let i = 0; i < 3; i ++ ) w.coord( baseline.origin[ i ] );
+	for ( let i = 0; i < 3; i ++ ) w.angle( baseline.angles[ i ] );
+
+}
+
+function writeBaseline( baseline ) {
+
+	const w = new FixtureWriter();
+	w.byte( HEXEN2_SERVER_MESSAGES.spawnbaseline );
+	w.short( baseline.entity );
+	writeBaselineBody( w, baseline );
+	return { ok: true, bytes: w.bytes() };
+
+}
+
+function writeReference( reference ) {
+
+	return { ok: true, bytes: Uint8Array.from( [ HEXEN2_SERVER_MESSAGES.reference, reference.frame, reference.sequence ] ) };
+
+}
+
+function writeEntityUpdate( update ) {
+
+	const U = { MOREBITS: 1, ORIGIN1: 2, ORIGIN2: 4, ORIGIN3: 8, ANGLE2: 16, FRAME: 64, SIGNAL: 1 << 7,
+		ANGLE1: 256, ANGLE3: 512, MODEL: 1024, MOREBITS2: 1 << 15, SKIN: 1 << 16, EFFECTS: 1 << 17,
+		SCALE: 1 << 18, COLORMAP: 1 << 19 };
+	let bits = U.SIGNAL;
+	if ( update.modelIndex !== undefined ) bits |= U.MODEL;
+	if ( update.frame !== undefined ) bits |= U.FRAME;
+	if ( update.colormap !== undefined ) bits |= U.COLORMAP;
+	if ( update.skin !== undefined || update.drawflags !== undefined ) bits |= U.SKIN;
+	if ( update.effects !== undefined ) bits |= U.EFFECTS;
+	if ( update.scale !== undefined || update.abslight !== undefined ) bits |= U.SCALE;
+	if ( update.origin ) bits |= U.ORIGIN1 | U.ORIGIN2 | U.ORIGIN3;
+	if ( update.angles ) bits |= U.ANGLE1 | U.ANGLE2 | U.ANGLE3;
+	if ( bits & 0xff00 ) bits |= U.MOREBITS;
+	if ( bits & 0xff0000 ) bits |= 1 << 15;
+	const w = new FixtureWriter();
+	w.byte( 0x80 | ( bits & 0x7f ) );
+	if ( bits & U.MOREBITS ) w.byte( ( bits >> 8 ) & 0xff );
+	if ( bits & ( 1 << 15 ) ) w.byte( ( bits >> 16 ) & 0xff );
+	w.byte( update.entity );
+	if ( bits & U.MODEL ) w.short( update.modelIndex );
+	if ( bits & U.FRAME ) w.byte( update.frame );
+	if ( bits & U.COLORMAP ) w.byte( update.colormap );
+	if ( bits & U.SKIN ) { w.byte( update.skin ?? 0 ); w.byte( update.drawflags ?? 0 ); }
+	if ( bits & U.EFFECTS ) w.byte( update.effects );
+	if ( bits & U.ORIGIN1 ) w.coord( update.origin[ 0 ] );
+	if ( bits & U.ANGLE1 ) w.angle( update.angles[ 0 ] );
+	if ( bits & U.ORIGIN2 ) w.coord( update.origin[ 1 ] );
+	if ( bits & U.ANGLE2 ) w.angle( update.angles[ 1 ] );
+	if ( bits & U.ORIGIN3 ) w.coord( update.origin[ 2 ] );
+	if ( bits & U.ANGLE3 ) w.angle( update.angles[ 2 ] );
+	if ( bits & U.SCALE ) { w.byte( update.scale ?? 0 ); w.byte( update.abslight ?? 0 ); }
+	return { ok: true, bytes: w.bytes() };
+
+}
+
+function writeClearEdicts( entities ) {
+
+	const w = new FixtureWriter();
+	w.byte( HEXEN2_SERVER_MESSAGES.clear_edicts );
+	w.byte( entities.length );
+	for ( const entity of entities ) w.short( entity );
+	return { ok: true, bytes: w.bytes() };
 
 }
 
@@ -205,7 +303,7 @@ Deno.test( 'the supplied native demo1 translates its first several hundred recor
 
 Deno.test( 'SND_OVERFLOW resolves to a unified short sound index for sounds, ambients and the overflow bits', () => {
 
-	const info = Hexen2_WriteServerinfo( { protocol: 19, maxClients: 1, gameType: 0, levelName: 'sound',
+	const info = writeServerinfo( { protocol: 19, maxClients: 1, gameType: 0, levelName: 'sound',
 		models: [ 'maps/demo1.bsp' ], sounds: [] } );
 	check( info.ok, info.reason );
 	const sound = Hexen2_WriteSound( { entity: 1, channel: 0, soundNum: 300, origin: [ 8, 16, 24 ],
@@ -249,12 +347,12 @@ Deno.test( 'SND_OVERFLOW resolves to a unified short sound index for sounds, amb
 
 Deno.test( 'reference frames become full packets: clear_edicts removes entities and every frame gets a sequence', () => {
 
-	const info = Hexen2_WriteServerinfo( { protocol: 19, maxClients: 1, gameType: 0, levelName: 'synthetic',
+	const info = writeServerinfo( { protocol: 19, maxClients: 1, gameType: 0, levelName: 'synthetic',
 		models: [ 'maps/demo1.bsp' ], sounds: [] } );
 	check( info.ok, info.reason );
 	const baseline = ( entity, x ) => {
 
-		const b = Hexen2_WriteBaseline( { entity, modelIndex: 2, frame: 0, colormap: 0, skin: 0, scale: 100,
+		const b = writeBaseline( { entity, modelIndex: 2, frame: 0, colormap: 0, skin: 0, scale: 100,
 			drawflags: 0, abslight: 0, origin: [ x, 0, 0 ], angles: [ 0, 0, 0 ] } );
 		check( b.ok, b.reason );
 		return b.bytes;
@@ -262,14 +360,14 @@ Deno.test( 'reference frames become full packets: clear_edicts removes entities 
 	};
 	const reference = ( frame, sequence ) => {
 
-		const r = Hexen2_WriteReference( { frame, sequence } );
+		const r = writeReference( { frame, sequence } );
 		check( r.ok, r.reason );
 		return r.bytes;
 
 	};
 	const update = ( entity, x ) => {
 
-		const u = Hexen2_WriteEntityUpdate( { entity, modelIndex: 2, frame: 0, colormap: 0, skin: 0,
+		const u = writeEntityUpdate( { entity, modelIndex: 2, frame: 0, colormap: 0, skin: 0,
 			drawflags: 0, effects: 0, scale: 100, abslight: 0, origin: [ x, 0, 0 ], angles: [ 0, 0, 0 ] } );
 		check( u.ok, u.reason );
 		return u.bytes;
@@ -277,7 +375,7 @@ Deno.test( 'reference frames become full packets: clear_edicts removes entities 
 	};
 	const clear = entities => {
 
-		const c = Hexen2_WriteClearEdicts( entities );
+		const c = writeClearEdicts( entities );
 		check( c.ok, c.reason );
 		return c.bytes;
 

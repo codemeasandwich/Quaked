@@ -25,7 +25,8 @@ import { Host_InitCommands, Host_Hexen2ChangeLevel2, Host_Hexen2SaveGame, Host_H
 import { Hexen2Hub_LastClientRestore } from '../src/engine/server/hexen2_hub.js';
 import { Hexen2_ApplyIntermission, Hexen2_IntermissionActive, Hexen2_IntermissionInfo, Hexen2_IntermissionText,
 	Hexen2_IntermissionTextLines, INTERMISSION_PRINT_DELAY, INTERMISSION_NOT_CONNECTED } from '../src/engine/client/hexen2_intermission.js';
-import { Hexen2_MusicCandidates, Hexen2_MusicFile, Hexen2_MusicStem, Hexen2_MusicURL, Hexen2_PlayMusicName } from '../src/engine/client/hexen2_music.js';
+import { Hexen2_MusicCandidates, Hexen2_MusicFile, Hexen2_MusicStem, Hexen2_MusicURL, Hexen2_PlayMusicName,
+	Hexen2_ResolveMusicURL, Hexen2_SetMusicSource } from '../src/engine/client/hexen2_music.js';
 import { Hexen2_WriteNativeServiceByte } from '../src/engine/server/hexen2_native_wire.js';
 import { svc_hexen2_intermission } from '../src/engine/common/protocol.js';
 import '../src/engine/progs/hexen2_world_cmds.js';
@@ -274,7 +275,7 @@ Deno.test( 'the native intermission table selects the picture, strings.txt line 
 
 } );
 
-Deno.test( 'music selection prefers the OGG conversion and reports MIDI-only tracks', () => {
+Deno.test( 'music selection prefers the OGG conversion and reports MIDI-only tracks', async () => {
 
 	same( Hexen2_MusicStem( 'casa1' ), 'casa1', 'a bare worldspawn name' );
 	same( Hexen2_MusicStem( 'midi/casa1.mid' ), 'casa1', 'a native MIDI path' );
@@ -298,19 +299,18 @@ Deno.test( 'music selection prefers the OGG conversion and reports MIDI-only tra
 	same( calls.length, 1, 'the shared music bus is asked to play' );
 	same( calls[ 0 ][ 1 ], true, 'level music loops' );
 
-	const savedResolver = globalThis.__QUAKED_HEXEN2_MUSIC_URL__;
+	Hexen2_SetMusicSource( async path => path === 'music/casa2.ogg' ? 'blob:hub-stream' : null );
 	try {
 
-		globalThis.__QUAKED_HEXEN2_MUSIC_URL__ = path => path === 'music/casa2.ogg' ? 'asset://music/casa2.ogg' : null;
-		const streamed = Hexen2_MusicURL( 'casa2', { find: path => path === 'midi/casa2.mid' ? { data: new Uint8Array( 1 ) } : null } );
-		check( streamed.ok && streamed.external === true && streamed.path === 'music/casa2.ogg', 'a platform mount streams the OGG beside the MIDI-only pak' );
-		const loose = Hexen2_MusicURL( 'casa4', { find: () => null } );
-		check( !loose.ok, 'the platform resolver is asked for the exact candidate path' );
+		const streamed = await Hexen2_ResolveMusicURL( 'casa2', { find: path => path === 'midi/casa2.mid' ? { data: new Uint8Array( 1 ) } : null } );
+		check( streamed.ok && streamed.external === true && streamed.path === 'music/casa2.ogg' && streamed.url === 'blob:hub-stream',
+			'a registered platform source supplies the OGG beside the MIDI-only pak' );
+		const loose = await Hexen2_ResolveMusicURL( 'casa4', { find: () => null } );
+		check( !loose.ok, 'a source with no such file leaves the missing-track report' );
 
 	} finally {
 
-		if ( savedResolver === undefined ) delete globalThis.__QUAKED_HEXEN2_MUSIC_URL__;
-		else globalThis.__QUAKED_HEXEN2_MUSIC_URL__ = savedResolver;
+		Hexen2_SetMusicSource( null );
 
 	}
 

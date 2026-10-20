@@ -1,5 +1,11 @@
 # Hexen II plan delta — 19 October 2026
 
+> **Historical record — the parallel host is retired.** This document describes the `h2` branch's parallel Hexen II
+> host (`hexen2_page.js`, its private 1019 protocol and its private wire/session modules) as it stood before package
+> U10. That host and those modules were deleted when Hexen II moved onto the shared host; file, module and test names
+> below are evidence of that earlier work, not current entry points. The current architecture is
+> [unified-host.md](unified-host.md).
+
 Status: **working delta; its first version received an independent PASS WITH NOTES review (section 8). This expanded
 version, including the demo-detection and G1-smoke changes, is not yet independently reviewed.** This record adds facts the approved plan and its frozen input
 inventory could not contain on 18 October 2026. It edits no approved plan text and does not rewrite the approved

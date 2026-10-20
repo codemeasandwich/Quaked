@@ -17,8 +17,9 @@ pub struct Pack {
     pub path: PathBuf,
     pub bytes: u64,
     pub modified: String,
-    /// A loose game file beside the packs (LOOSE_FILES), not a pack: the frontend mounts these as one pack under
-    /// the game's own packs, as Quake searches a game folder after its packs.
+    /// A loose game file beside the packs (LOOSE_FILES) or a Hexen II music track, not a pack: the frontend mounts
+    /// the former as one pack under the game's own packs, as Quake searches a game folder after its packs, and reads
+    /// the latter through `read_range` and a platform music source.
     pub loose: bool,
 }
 /// A folder found in the library that no known game names (`mod_<folder>`). Its contents are validated as an add-on
@@ -89,6 +90,11 @@ pub const BOXED_FOLDERS: &[&str] = &["Hexen 2", "Hexen 2 Portal of Praevus", "Qu
 /// At most this many bytes for a loose file.
 const LOOSE_LIMIT: u64 = 64 << 20;
 const BOX_IMAGE_LIMIT: u64 = 16 << 20;
+/// The music files directly under a Hexen II edition's data folder `music/` that the host can play
+/// (src/engine/client/hexen2_music.js PLAYABLE): the owned data ships OGG conversions beside the packs.
+const MUSIC_EXTENSIONS: &[&str] = &["ogg", "mp3", "wav"];
+/// A bound on the listed tracks: discovery itself never grows without limit, however many files a folder holds.
+const MUSIC_LIMIT: usize = 512;
 // Match GameShelf_ReadFolder's supported image types. Extension order breaks ties within one stem; canonical
 // face names always win over their aliases, independently of the filesystem's directory enumeration order.
 const BOX_IMAGE_EXTENSIONS: &[&str] = &["png", "jpg", "jpeg", "webp", "gif", "avif"];
@@ -129,9 +135,45 @@ fn list_artwork(dir: &Path, root: &Path) -> BTreeMap<String, PathBuf> {
     }
     artwork
 }
-/// Lists one game folder's packs (pak0.. up to the first gap; pak5 only to detect the engine's bounded-set overflow)
-/// and, for an add-on, its loose game files. Returns None when the folder is not a game: no pak0.pak, and (for an
-/// add-on) no loose progs.dat either.
+/// Lists an edition's loose tracks directly under `<data dir>/music/`. The engine asks for `music/<stem>.<ext>`, so the
+/// token keeps the lower-case name the game filesystem uses; the files are optional like loose game files, so an
+/// unreadable folder lists nothing and a symlink out of the library, a non-file, or one over LOOSE_LIMIT is left out
+/// rather than failing the whole scan.
+fn list_music(dir: &Path, game: &str, root: &Path) -> Vec<Pack> {
+    let Ok(entries) = children(&dir.join("music")) else {
+        return Vec::new();
+    };
+    let mut tracks = Vec::new();
+    for (name, path) in entries {
+        if tracks.len() >= MUSIC_LIMIT {
+            break;
+        }
+        let extension = name.rsplit_once('.').map(|(_, extension)| extension);
+        if !extension.is_some_and(|extension| MUSIC_EXTENSIONS.contains(&extension)) {
+            continue;
+        }
+        let Ok(path) = path.canonicalize() else { continue };
+        let Ok(meta) = fs::metadata(&path) else { continue };
+        let Ok(modified) = meta.modified() else { continue };
+        if !path.starts_with(root) || !meta.is_file() || meta.len() > LOOSE_LIMIT {
+            continue;
+        }
+        tracks.push(Pack {
+            token: format!("{game}/music/{name}"),
+            game: game.to_string(),
+            name: format!("music/{name}"),
+            path,
+            bytes: meta.len(),
+            modified: format!("{modified:?}"),
+            loose: true,
+        });
+    }
+    tracks
+}
+
+/// Lists one game folder's packs (pak0.. up to the first gap; pak5 only to detect the engine's bounded-set overflow),
+/// its loose game files and, for a Hexen II edition, its loose music. Returns None when the folder is not a game: no
+/// pak0.pak, and (for an add-on) no loose progs.dat either.
 fn list_game(
     dir: &Path,
     game: &str,
@@ -209,6 +251,10 @@ fn list_game(
             modified: format!("{modified:?}"),
             loose: true,
         });
+    }
+    // Hexen II music is loose beside its packs (`<data dir>/music`), not inside a PAK, so each edition lists its own.
+    if hexen {
+        packs.extend(list_music(dir, game, root));
     }
     Ok(Some(packs))
 }

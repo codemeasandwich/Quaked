@@ -44,6 +44,14 @@ impl Drop for Fixture {
 fn tokens(found: &library::Library) -> Vec<&str> {
     found.packs.iter().map(|p| p.token.as_str()).collect()
 }
+fn music_tokens(found: &library::Library) -> Vec<&str> {
+    found
+        .packs
+        .iter()
+        .filter(|p| p.name.starts_with("music/"))
+        .map(|p| p.token.as_str())
+        .collect()
+}
 fn error_contains(result: Result<Vec<u8>, String>, expected: &str) {
     assert!(
         result
@@ -353,6 +361,105 @@ fn finds_hexen2_under_data1_with_gapped_paks_and_loose_files() {
         6,
         "the installation root resolves its data1 and does not rediscover it as an add-on"
     );
+}
+
+#[test]
+fn lists_hexen_music_tracks_for_each_edition_and_never_for_a_quake_game() {
+    let f = Fixture::new();
+    f.write("Hexen 2/data1/pak0.pak", b"base");
+    f.write("Hexen 2/data1/music/casa1.ogg", b"ogg one");
+    f.write("Hexen 2/data1/music/CASA2.MP3", b"mp3 two");
+    f.write("Hexen 2/data1/music/casa3.wav", b"wav three");
+    f.write("Hexen 2/data1/music/readme.txt", b"not a track");
+    f.write("Hexen 2/data1/music/nested/deep.ogg", b"not directly in music/");
+    f.write("Hexen 2/portals/pak3.pak", b"portal add-on");
+    f.write("Hexen 2/portals/progs.dat", b"portal program");
+    f.write("Hexen 2/portals/music/tulku1.ogg", b"portal track");
+    f.write("Hexen 2/portals/music/track02.mp3", b"portal menu");
+    f.write(
+        "Hexen 2 Shareware/hexen2-demo/data1/pak0.pak",
+        b"demo",
+    );
+    f.write(
+        "Hexen 2 Shareware/hexen2-demo/data1/music/demo1.ogg",
+        b"demo track",
+    );
+    f.write("Quake/pak0.pak", b"quake");
+    f.write("Quake/music/quake.ogg", b"not a Hexen edition");
+    let found = library::scan(&f.0).unwrap();
+    assert_eq!(
+        music_tokens(&found),
+        [
+            "hexen2/music/casa1.ogg",
+            "hexen2/music/casa2.mp3",
+            "hexen2/music/casa3.wav",
+            "hexen2-portals/music/track02.mp3",
+            "hexen2-portals/music/tulku1.ogg",
+            "hexen2-demo/music/demo1.ogg",
+        ],
+        "the case-insensitive direct music files of each Hexen edition, and no Quake folder"
+    );
+    for pack in found.packs.iter().filter(|p| p.name.starts_with("music/")) {
+        assert!(pack.loose, "music is a loose game file, not an archive");
+        assert!(pack.path.starts_with(&found.root));
+        assert_eq!(pack.bytes, fs::metadata(&pack.path).unwrap().len());
+    }
+    assert_eq!(
+        library::read_range(&found, "hexen2/music/casa1.ogg", 0, 3).unwrap(),
+        b"ogg"
+    );
+    assert_eq!(
+        library::read_range(&found, "hexen2-portals/music/tulku1.ogg", 7, 5).unwrap(),
+        b"track"
+    );
+    let quake = library::scan(&f.path("Quake")).unwrap();
+    assert!(
+        music_tokens(&quake).is_empty(),
+        "Quake's music folder is not the Hexen II loose-music contract"
+    );
+}
+
+#[test]
+fn hexen_music_lists_only_direct_regular_files_within_the_loose_bound() {
+    let f = Fixture::new();
+    f.write("Hexen 2/data1/pak0.pak", b"base");
+    f.write("Hexen 2/data1/music/good.ogg", b"good");
+    f.write("Hexen 2/data1/music/nested/deep.ogg", b"nested");
+    fs::create_dir_all(f.path("Hexen 2/data1/music/folder.mp3")).unwrap();
+    let big = fs::File::create(f.path("Hexen 2/data1/music/big.wav")).unwrap();
+    big.set_len((64 << 20) + 1).unwrap();
+    let found = library::scan(&f.0).unwrap();
+    assert_eq!(
+        music_tokens(&found),
+        ["hexen2/music/good.ogg"],
+        "nested paths, directories and files over the bound are left out"
+    );
+    // The bound is inclusive, as for loose game files.
+    let edge = fs::File::create(f.path("Hexen 2/data1/music/edge.ogg")).unwrap();
+    edge.set_len(64 << 20).unwrap();
+    assert_eq!(
+        music_tokens(&library::scan(&f.0).unwrap()),
+        ["hexen2/music/edge.ogg", "hexen2/music/good.ogg"]
+    );
+}
+
+#[cfg(unix)]
+#[test]
+fn hexen_music_ignores_a_symlink_that_resolves_outside_the_library() {
+    let f = Fixture::new();
+    let outside = Fixture::new();
+    f.write("Hexen 2/data1/pak0.pak", b"base");
+    f.write("Hexen 2/data1/music/safe.ogg", b"safe");
+    let external = outside.write("escape.ogg", b"outside the library");
+    symlink(&external, &f.path("Hexen 2/data1/music/escape.ogg"));
+    symlink(&outside.0, &f.path("Hexen 2/data1/music/linked.ogg"));
+    let found = library::scan(&f.0).expect("an escaping music symlink never fails the scan");
+    assert_eq!(
+        music_tokens(&found),
+        ["hexen2/music/safe.ogg"],
+        "a music symlink out of the library is left out like a loose game file"
+    );
+    assert!(library::read_range(&found, "hexen2/music/escape.ogg", 0, 1).is_err());
 }
 
 #[test]

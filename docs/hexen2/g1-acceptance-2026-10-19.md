@@ -1,5 +1,11 @@
 # G1 acceptance record — 19 October 2026
 
+> **Historical record — the parallel host is retired.** This document describes the `h2` branch's parallel Hexen II
+> host (`hexen2_page.js`, its private 1019 protocol and its private wire/session modules) as it stood before package
+> U10. That host and those modules were deleted when Hexen II moved onto the shared host; file, module and test names
+> below are evidence of that earlier work, not current entry points. The current architecture is
+> [unified-host.md](unified-host.md).
+
 Status: **G1 NOT COMPLETE.** This record maps the G1 definition in
 [the approved plan](../hexen2-support-plan.md#9-ordered-increments-and-completion-boundaries) (increment 2) to executed
 evidence in the `h2` worktree, and lists what still blocks the first playable slice. It is an evidence ledger, not an
