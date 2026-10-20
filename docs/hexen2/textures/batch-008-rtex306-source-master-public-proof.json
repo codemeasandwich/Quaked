@@ -1,0 +1,298 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-19T08:57:37.165452+00:00",
+  "verdict": "PASS independent source/master-only exact replay; semantic relief and final art remain unaccepted",
+  "scope": "Native PNG custody against prior public native proof; exact reviewed prompt/raw/tool binding; independent photographic .65/.75 RGB and unquantized craft oracle; actual prepare CLI replay. No tier encoding.",
+  "materials": [
+    {
+      "nativeIdentity": "c690e6f1907297bdf1d164689621c07b8f70837282afe898c2eed1e013713482",
+      "name": "rtex306",
+      "edition": "base",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex306/master.json",
+        "sha256": "b356e2739de896328278b3fffd65a4731ceb3fe12fca02f1bef429dcf6392a53",
+        "bytes": 4222
+      },
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/04-rtex306-c690e6f19072.png",
+        "sha256": "9006db56beaa6350e08be2e04539d4b85fc7ad3326f67409be674d6160f66549",
+        "bytes": 2778
+      },
+      "generated": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex306.png",
+        "sha256": "18eb31fc8a471cf6c909e3351468cfd1d3c48a309e53f3324b3c8f74eea70639",
+        "bytes": 3618734
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex306-material-v2.txt",
+        "sha256": "308e4ad1838a47f07382c3cb03698c1cbd5f21cecaf5478a0f593c065512a168",
+        "bytes": 2307
+      },
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "generatedDimensions": [
+        1254,
+        1254
+      ],
+      "masterDimensions": [
+        512,
+        512
+      ],
+      "color": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex306/color.png",
+        "sha256": "6a0358355f74a77fef04a6996b494689272a87e2f677577e5b5a91fdbec8ab87",
+        "bytes": 559003
+      },
+      "height": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex306/height.npy",
+        "sha256": "910072c682e930478408d35d1b4a28976a9c2ab8a7e5ce0bf3b54bad2a6c17e3",
+        "bytes": 1048704
+      },
+      "independentRGBPixelsExact": true,
+      "independentRGBPNGBytesExact": true,
+      "independentFloatHeightExact": true,
+      "independentNPYBytesExact": true,
+      "actualCLIColorHeightPackageExact": true,
+      "currentHeightSemanticsAccepted": false,
+      "finalArtAccepted": false,
+      "currentHeightWitnesses": {
+        "centreNW": {
+          "nativePixel": [
+            22,
+            22
+          ],
+          "sampleMasterCentre": [
+            180,
+            180
+          ],
+          "mean": 0.13949064910411835,
+          "minimum": 0.062184423208236694,
+          "maximum": 0.3509976267814636
+        },
+        "centreNE": {
+          "nativePixel": [
+            42,
+            22
+          ],
+          "sampleMasterCentre": [
+            340,
+            180
+          ],
+          "mean": 0.24766553938388824,
+          "minimum": 0.16798938810825348,
+          "maximum": 0.4066254794597626
+        },
+        "centreSW": {
+          "nativePixel": [
+            22,
+            42
+          ],
+          "sampleMasterCentre": [
+            180,
+            340
+          ],
+          "mean": 0.232207253575325,
+          "minimum": 0.15100178122520447,
+          "maximum": 0.39987537264823914
+        },
+        "centreSE": {
+          "nativePixel": [
+            42,
+            42
+          ],
+          "sampleMasterCentre": [
+            340,
+            340
+          ],
+          "mean": 0.6832743883132935,
+          "minimum": 0.318735271692276,
+          "maximum": 0.9048197865486145
+        },
+        "frameN": {
+          "nativePixel": [
+            32,
+            13
+          ],
+          "sampleMasterCentre": [
+            260,
+            108
+          ],
+          "mean": 0.33438074588775635,
+          "minimum": 0.23133374750614166,
+          "maximum": 0.5346083045005798
+        },
+        "frameE": {
+          "nativePixel": [
+            51,
+            32
+          ],
+          "sampleMasterCentre": [
+            412,
+            260
+          ],
+          "mean": 0.42655593156814575,
+          "minimum": 0.2803994119167328,
+          "maximum": 0.7669257521629333
+        }
+      }
+    }
+  ],
+  "semanticPlanReview": {
+    "verdict": "PASS bounded layered-plan interpretation; successor not yet authored or artistically accepted",
+    "material": "Sandstone facing surrounds a recessed grey-green slate centre; interpretation, not historical material identification.",
+    "sourceMeasuredNativePolygon": [
+      [
+        18,
+        18
+      ],
+      [
+        46.5,
+        18
+      ],
+      [
+        46.5,
+        47
+      ],
+      [
+        18,
+        47
+      ]
+    ],
+    "referenceSize": [
+      64,
+      64
+    ],
+    "measurementBasis": "Viewed actual native 64x64, retained raw 1254x1254 and canonical 512x512 RGB. Inner slate/contact seam lies approximately x144..372,y144..376 in master pixels. Rectangle follows the existing inset boundary, wholly interior; no outer edge or new frame is authored.",
+    "coordinateUncertaintyNativePixels": 0.25,
+    "recommendedPlanes": {
+      "brickHeight": 0.3,
+      "facingHeight": 0.7,
+      "chipFloor": 0.55,
+      "microAmplitude": 0.035,
+      "bevelPixels": 0.5
+    },
+    "planeBounds": {
+      "substrate": [
+        0.265,
+        0.335
+      ],
+      "facing": [
+        0.515,
+        0.735
+      ],
+      "minimumGuaranteedSeparation": 0.18
+    },
+    "bevelSigmaAt512MasterPixels": 1.0,
+    "contract": "Use existing prepare_layered_texture_master.py with a source-bound reviewed recipe. RGB stays byte-identical, original full-precision craft is replayed, compose at master then cast once to float32. Recipe name brickRegions denotes the lower slate inset here, not literal brick.",
+    "requiredChecks": [
+      "Confirm mask aligns to actual slate/contact seam before treating plan as authored acceptance.",
+      "Check actual centre witnesses below frame and mixed interfaces on successor; mathematical ranges alone do not establish correct material labels.",
+      "Inspect opposed-light response and shallow inset perception; scalar .4 separation has no independently accepted runtime physical-depth meaning.",
+      "Then derive both tiers directly; compare decoded heights/normals/lights, native-half/quarter BOX color views, repeats and corners."
+    ]
+  },
+  "nativeProof": {
+    "file": "docs/hexen2/textures/batch-008-public-source-proof.json",
+    "sha256": "eac871ece0eb18fa0472fc7e72604fc154e5b810593fcb4b123c3781ff68f27f",
+    "bytes": 89263
+  },
+  "reviewedPlan": {
+    "file": "docs/hexen2/textures/batch-008-material-plan-v2-public-review.json",
+    "sha256": "64e5c724d646a25ad1c7d0fbf80ce48eae424f8e16f504ea5b293e22aef94d2a",
+    "bytes": 32392
+  },
+  "verifier": {
+    "file": "docs/hexen2/textures/batch-008-rtex306-verify-source-master.py",
+    "sha256": "a93570cc9a035a0fecab3b9c4563420a8244220a3e4d3db7ba4ad3500abe7fde",
+    "bytes": 14309
+  },
+  "actualCLIReplayDirectory": "/private/tmp/quaked-rtex306-source-master-bkkv11i2",
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "libwebp": "1.3.2"
+  },
+  "inputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex306/master.json",
+      "sha256": "b356e2739de896328278b3fffd65a4731ceb3fe12fca02f1bef429dcf6392a53",
+      "bytes": 4222
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-public-source-proof.json",
+      "sha256": "eac871ece0eb18fa0472fc7e72604fc154e5b810593fcb4b123c3781ff68f27f",
+      "bytes": 89263
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-material-plan-v2-public-review.json",
+      "sha256": "64e5c724d646a25ad1c7d0fbf80ce48eae424f8e16f504ea5b293e22aef94d2a",
+      "bytes": 32392
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/04-rtex306-c690e6f19072.png",
+      "sha256": "9006db56beaa6350e08be2e04539d4b85fc7ad3326f67409be674d6160f66549",
+      "bytes": 2778
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex306.png",
+      "sha256": "18eb31fc8a471cf6c909e3351468cfd1d3c48a309e53f3324b3c8f74eea70639",
+      "bytes": 3618734
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex306-material-v2.txt",
+      "sha256": "308e4ad1838a47f07382c3cb03698c1cbd5f21cecaf5478a0f593c065512a168",
+      "bytes": 2307
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-e3370a95-b546-419c-a253-eabd40290586.png",
+      "sha256": "18eb31fc8a471cf6c909e3351468cfd1d3c48a309e53f3324b3c8f74eea70639",
+      "bytes": 3618734
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "bytes": 7692
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "bytes": 13322
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex306/color.png",
+      "sha256": "6a0358355f74a77fef04a6996b494689272a87e2f677577e5b5a91fdbec8ab87",
+      "bytes": 559003
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex306/height.npy",
+      "sha256": "910072c682e930478408d35d1b4a28976a9c2ab8a7e5ce0bf3b54bad2a6c17e3",
+      "bytes": 1048704
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-rtex306-verify-source-master.py",
+      "sha256": "a93570cc9a035a0fecab3b9c4563420a8244220a3e4d3db7ba4ad3500abe7fde",
+      "bytes": 14309
+    }
+  ],
+  "inputsStable": true,
+  "exclusions": [
+    "Prior PAK/four-mip native proof is source-bound and reused, not physically re-audited here.",
+    "Current tonal height is replay-correct but NOT semantically accepted.",
+    "No final artwork, tier/codec/GPU/runtime/owner/landing/release acceptance.",
+    "No recipe, new master, maps, generation, catalog or Git mutation. Only proof/verifier and isolated CLI replay evidence written."
+  ]
+}

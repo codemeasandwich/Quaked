@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "/usr/bin/python3",
+    "docs/hexen2/textures/batch-008-rtex306-verify-source-master.py"
+  ],
+  "returncode": 0,
+  "stdout": "{\"verdict\": \"PASS independent source/master-only exact replay; semantic relief and final art remain unaccepted\", \"proof\": \"/Users/bri/SOURCE/Quaked/docs/hexen2/textures/batch-008-rtex306-source-master-public-proof.json\", \"proofSha256\": \"d0987359d7647da63e8785b7e07957cf80aaa9c129ddcdd1ac591b9f8fd03ed0\", \"masterPackage\": {\"file\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex306/master.json\", \"sha256\": \"b356e2739de896328278b3fffd65a4731ceb3fe12fca02f1bef429dcf6392a53\", \"bytes\": 4222}, \"cliReplay\": \"/private/tmp/quaked-rtex306-source-master-bkkv11i2\"}\n",
+  "stderr": ""
+}

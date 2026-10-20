@@ -1,0 +1,100 @@
+[
+  {
+    "label": "ordinary issue",
+    "argv": [
+      "/usr/bin/python3",
+      "skills/quaked-texture-authoring/scripts/generation_journal.py",
+      "--root",
+      "/private/tmp/quaked-texture-skill-forward-ssew5dj3",
+      "--selection",
+      "/private/tmp/quaked-texture-skill-forward-ssew5dj3/ordinary-journal/selection.json",
+      "issue",
+      "0e27dabe64f6f678eab3aa844d7f2eed5954c1d1c4889e825a94a875148aaede"
+    ],
+    "exitCode": 0,
+    "stdout": "{\"nativeIdentity\": \"0e27dabe64f6f678eab3aa844d7f2eed5954c1d1c4889e825a94a875148aaede\", \"promptText\": \"Fixture only; no generation authorized. Plausible matte limestone; preserve palette, joints and feature scale. One source at least 512x512.\\n\", \"original\": \"/private/tmp/quaked-texture-skill-forward-ssew5dj3/ordinary-journal/originals/native.png\"}\n",
+    "stderr": "",
+    "journalBefore": "dc0ab37bc6bf2fb3bf6a513965b22dfcb3dffcd022327862b05ce8f94e690220",
+    "journalAfter": "548fa121f28362f690f7c23c659353b26cbf178d26aecacd33bbf964614a2b6e"
+  },
+  {
+    "label": "duplicate issue while unresolved",
+    "argv": [
+      "/usr/bin/python3",
+      "skills/quaked-texture-authoring/scripts/generation_journal.py",
+      "--root",
+      "/private/tmp/quaked-texture-skill-forward-ssew5dj3",
+      "--selection",
+      "/private/tmp/quaked-texture-skill-forward-ssew5dj3/ordinary-journal/selection.json",
+      "issue",
+      "0e27dabe64f6f678eab3aa844d7f2eed5954c1d1c4889e825a94a875148aaede"
+    ],
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": "Generation journal refused: Source already issued/retained or proposed as an alias; reconcile instead of regenerating\n",
+    "journalBefore": "548fa121f28362f690f7c23c659353b26cbf178d26aecacd33bbf964614a2b6e",
+    "journalAfter": "548fa121f28362f690f7c23c659353b26cbf178d26aecacd33bbf964614a2b6e"
+  },
+  {
+    "label": "ordinary retain",
+    "argv": [
+      "/usr/bin/python3",
+      "skills/quaked-texture-authoring/scripts/generation_journal.py",
+      "--root",
+      "/private/tmp/quaked-texture-skill-forward-ssew5dj3",
+      "--selection",
+      "/private/tmp/quaked-texture-skill-forward-ssew5dj3/ordinary-journal/selection.json",
+      "retain",
+      "0e27dabe64f6f678eab3aa844d7f2eed5954c1d1c4889e825a94a875148aaede",
+      "--generated",
+      "/private/tmp/quaked-texture-skill-forward-ssew5dj3/ordinary-journal/returned.png",
+      "--destination",
+      "/private/tmp/quaked-texture-skill-forward-ssew5dj3/ordinary-journal/generated/raw.png"
+    ],
+    "exitCode": 0,
+    "stdout": "{\"nativeIdentity\": \"0e27dabe64f6f678eab3aa844d7f2eed5954c1d1c4889e825a94a875148aaede\", \"dimensions\": [512, 512], \"mode\": \"RGB\", \"dimensionsAdequate\": true, \"adequateFor8x\": true, \"materialQualityAccepted\": false, \"retained\": \"/private/tmp/quaked-texture-skill-forward-ssew5dj3/ordinary-journal/generated/raw.png\", \"sha256\": \"bacac053259721a4ed88a10467b4b1c8704be11bd55755101be7d9699377db99\"}\n",
+    "stderr": "",
+    "journalBefore": "548fa121f28362f690f7c23c659353b26cbf178d26aecacd33bbf964614a2b6e",
+    "journalAfter": "ddfdb961e9ced9b468e759e3ac6566c31fb0dace42eff28303933ba6361af114"
+  },
+  {
+    "label": "duplicate issue after retained",
+    "argv": [
+      "/usr/bin/python3",
+      "skills/quaked-texture-authoring/scripts/generation_journal.py",
+      "--root",
+      "/private/tmp/quaked-texture-skill-forward-ssew5dj3",
+      "--selection",
+      "/private/tmp/quaked-texture-skill-forward-ssew5dj3/ordinary-journal/selection.json",
+      "issue",
+      "0e27dabe64f6f678eab3aa844d7f2eed5954c1d1c4889e825a94a875148aaede"
+    ],
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": "Generation journal refused: Source already issued/retained or proposed as an alias; reconcile instead of regenerating\n",
+    "journalBefore": "ddfdb961e9ced9b468e759e3ac6566c31fb0dace42eff28303933ba6361af114",
+    "journalAfter": "ddfdb961e9ced9b468e759e3ac6566c31fb0dace42eff28303933ba6361af114"
+  },
+  {
+    "label": "duplicate retain",
+    "argv": [
+      "/usr/bin/python3",
+      "skills/quaked-texture-authoring/scripts/generation_journal.py",
+      "--root",
+      "/private/tmp/quaked-texture-skill-forward-ssew5dj3",
+      "--selection",
+      "/private/tmp/quaked-texture-skill-forward-ssew5dj3/ordinary-journal/selection.json",
+      "retain",
+      "0e27dabe64f6f678eab3aa844d7f2eed5954c1d1c4889e825a94a875148aaede",
+      "--generated",
+      "/private/tmp/quaked-texture-skill-forward-ssew5dj3/ordinary-journal/returned.png",
+      "--destination",
+      "/private/tmp/quaked-texture-skill-forward-ssew5dj3/ordinary-journal/generated/duplicate.png"
+    ],
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": "Generation journal refused: No unresolved issued request for this native identity\n",
+    "journalBefore": "ddfdb961e9ced9b468e759e3ac6566c31fb0dace42eff28303933ba6361af114",
+    "journalAfter": "ddfdb961e9ced9b468e759e3ac6566c31fb0dace42eff28303933ba6361af114"
+  }
+]

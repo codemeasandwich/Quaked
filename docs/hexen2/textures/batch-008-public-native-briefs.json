@@ -1,0 +1,209 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent native-only material/layout briefs before exact prompts and generation",
+  "verdict": "Source PASS; bounded planning recommendations supplied; exact prompt and generated-art qualification pending",
+  "sourceProof": {
+    "file": "docs/hexen2/textures/batch-008-public-source-proof.json",
+    "sha256": "eac871ece0eb18fa0472fc7e72604fc154e5b810593fcb4b123c3781ff68f27f"
+  },
+  "inspectedContact": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/native-contact.png",
+    "sha256": "0c8410db3b9655773df9342255f4942c4074d2e1ea7eae3440df6d65bffbf2fd"
+  },
+  "materials": [
+    {
+      "id": "ed0ea21baafa9262cb44311e6a1fe0663863fe66c361993b465c79ac472b3c42",
+      "name": "rtex006",
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/01-rtex006-ed0ea21baafa.png",
+        "sha256": "71e45a9f7dee9464abb728eea45e4f4376f6443fa7ab244a9cd01f9734f43fd0",
+        "bytes": 2843
+      },
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "minimumRetainedMasterDimensions": [
+        512,
+        512
+      ],
+      "appearance": "Large coarse blue/charcoal-grey masonry blocks with very dark open-looking joints; central top-course joint and broad lower block grouping are distinguishing forms.",
+      "materialInference": "Weathered rough stone is plausible; exact geological or historical material is not established.",
+      "layout": "Preserve existing course height, stagger, block widths and native edge-cut continuations. Naturalize pixel-stepped contours without introducing extra small edge bricks or an outer frame.",
+      "photographicDetail": "Sharp stone grains, restrained chips and shallow pores at subordinate scale; flat diffuse lighting and dark joint interiors, no artificial uniform speckle.",
+      "reliefReview": "Existing joint centers below block faces; keep fractured stone within its face plane and avoid dark-patch identity inferred solely from luminance."
+    },
+    {
+      "id": "9751c9aa37327aefd4515ebf40db4f20412d392a042efa17ee69444b34b0eecc",
+      "name": "rtex104",
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/02-rtex104-9751c9aa3732.png",
+        "sha256": "3616d9379c9ded813aaf5b82032b5114469f53abed89d234f35a0e3c884349b0",
+        "bytes": 3671
+      },
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "minimumRetainedMasterDimensions": [
+        512,
+        512
+      ],
+      "appearance": "Dense upright brown/umber and cool grey streaks with narrow darker vertical divisions; fine fibers dominate rather than large panel geometry.",
+      "materialInference": "Weathered timber/fibrous surface is plausible. Do not assert a particular timber species or add hardware.",
+      "layout": "Keep vertical direction, source stripe spacing, brown/cool-grey balance and left/right phase. Do not invent regularly spaced wide plank seams, cross-braces, knots or grooves absent from the source.",
+      "photographicDetail": "Fine continuous fibers, restrained worn highlights and natural shallow striation; avoid individually enlarged pixel columns, coarse painted grain or gritty noise.",
+      "reliefReview": "Shallow grain subordinate to broad native streaks; check repeated-tile X/Y joins for the horizontal stripe seam class seen in earlier wood."
+    },
+    {
+      "id": "7d397606c1724f4949baba30d8e25d096c6aa7455af1699f833881ffbc4556b1",
+      "name": "rtex096",
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/03-rtex096-7d397606c172.png",
+        "sha256": "3a383b3de48bbb57af4ddce8e3f4b83a842a62a687da5934985c840f8b5e7dcf",
+        "bytes": 4299
+      },
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "minimumRetainedMasterDimensions": [
+        512,
+        512
+      ],
+      "appearance": "Dark charcoal/cool grey mottling over rust-red and umber patches, without a clear regular masonry grid or panel layout.",
+      "materialInference": "Material identity remains ambiguous: mottled mineral, aged coating or oxidation-like variation are possible. Preserve source intent without choosing unsupported large structure.",
+      "layout": "Keep the cloud/patch scale, rust/charcoal proportions and irregular weak directional flow. No new block joints, tiled checker, deep cracks, studs or perimeter rim.",
+      "photographicDetail": "Sharp restrained surface pores and fine natural color variation within the existing patches; no screen-wide artificial grain or oversized gravel.",
+      "reliefReview": "Bound small material relief; do not turn every red/grey color cloud into a separate displaced slab."
+    },
+    {
+      "id": "c690e6f1907297bdf1d164689621c07b8f70837282afe898c2eed1e013713482",
+      "name": "rtex306",
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/04-rtex306-c690e6f19072.png",
+        "sha256": "9006db56beaa6350e08be2e04539d4b85fc7ad3326f67409be674d6160f66549",
+        "bytes": 2778
+      },
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "minimumRetainedMasterDimensions": [
+        512,
+        512
+      ],
+      "appearance": "A nested square dark/cool central panel surrounded by broad warm brown/grey frame bands and a darker inner recess.",
+      "materialInference": "A worn stone or coated architectural panel is plausible. Apparent inset reading must be retained or independently resolved against source; historical function is unknown.",
+      "layout": "Preserve center-square size/location, concentric band widths, corner construction, dark inner outline and outer image-edge continuations. Existing framed features may have physical edges; do not add another texture-perimeter bevel/frame.",
+      "photographicDetail": "Distinct compact wear, small chips and fine pores confined to existing planes; no invented inscriptions, fasteners or corner ornaments.",
+      "reliefReview": "Review the intended central-field versus inner/outer-frame hierarchy under opposed light and semantic height probes; brightness alone must not invert the original apparent recess."
+    },
+    {
+      "id": "cddf441f348f0a3182edadeeeb9028ece70c2eadbef541955e7197f8213c9752",
+      "name": "ttex054",
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/05-ttex054-cddf441f348f.png",
+        "sha256": "cc7cbc5b106803b459a72454e08c047481f20396c549422dbc96d8202c1c6b57",
+        "bytes": 6883
+      },
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "minimumRetainedMasterDimensions": [
+        512,
+        1024
+      ],
+      "appearance": "Portrait64x128 decorative wall-band composition: thin red/ochre top trim, broad green-grey upper field, central red/gold meander trim and lower fine red/dark patterned field.",
+      "materialInference": "Architectural decoration is clear; plaster/paint, inlay or textile-like microdetail is not established from pixels. Keep region-specific detail restrained and avoid an exclusive carpet interpretation.",
+      "layout": "Approximate native landmark bands from visual/row inspection: green field y12..60; red trim around64..70; gold right-angle meander around72..80; lower fine red field about82..127. These are guidance, not a substitute for registered source measurement. Preserve horizontal ornamental period and original top/bottom endpoint colors.",
+      "photographicDetail": "Sharp fine surface wear on the source gold/red linework and realistic subtle green-field material; keep the meander stroke widths and repeat count. Do not replace the lower fine pattern with coarse fibers or enlarge decorative cells.",
+      "edgeReview": "Source top/bottom are distinct architectural bands. Preserve native X periodicity and Y edge alignment; inspect native adjacent-role/stacked trim intent before declaring a Y seam defective. Do not automatically apply Y boundary correction or invent matching endpoint bands.",
+      "reliefReview": "Broad fields remain plausible planes; ornamental lines have bounded relief rather than becoming deep channels. Check feature scale at half/quarter and exact period under repeated tiling."
+    },
+    {
+      "id": "84bb278bdd9451b619a5de58d58a32fa07e9ce0cdc40b785070f3324e79181d3",
+      "name": "ttex012",
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/06-ttex012-84bb278bdd94.png",
+        "sha256": "514f4fafbd079415017ab8b625b5053dac1a016b68d89d4db709094b178fa0d0",
+        "bytes": 2696
+      },
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "minimumRetainedMasterDimensions": [
+        512,
+        512
+      ],
+      "appearance": "Warm ochre/golden-brown staggered rectangular brick or cut-stone courses with narrow dark joints and rounded worn face edges.",
+      "materialInference": "Warm weathered cut stone is plausible; exact sandstone/brick composition is not established.",
+      "layout": "Retain course heights, block aspect ratios, stagger offsets, dark joint widths and edge-cut brick continuations. No extra square fillers or all-around perimeter bevel.",
+      "photographicDetail": "Clear small pores, restrained abrasions and locally chipped edges; source blocks stay large relative to texture and must not become a finer masonry grid.",
+      "reliefReview": "Dark mortar/joint centers below warm faces; source highlights should not create puffy pillows or overdeep black separations."
+    },
+    {
+      "id": "4bf05bb0cae8053cb2260e2bded0385706d3d9be305b3761f6c9986fb66c758d",
+      "name": "rpal317",
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/07-rpal317-4bf05bb0cae8.png",
+        "sha256": "9e701188d3bc33902976e6b94eea4d2ebd7b03c9687dde79a0094b16307bf1bd",
+        "bytes": 2850
+      },
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "minimumRetainedMasterDimensions": [
+        512,
+        512
+      ],
+      "appearance": "Very dark blue/charcoal irregular rock-like faces with broad undulating/faceted forms, soft cool highlights and darker clefts.",
+      "materialInference": "Dark natural rock is plausible; source does not establish a specific mineral, wetness or historical use.",
+      "layout": "Keep broad irregular form scale and directional flow, dark palette and cleft placement. Do not regularize into masonry, add bright crystals, insert a frame or copy pixel steps as angular polygons.",
+      "photographicDetail": "Sharp rock microfracture and subtle pores subordinate to existing large forms, without grey haze, painted grain or coarse noise.",
+      "reliefReview": "Inspect broad face/cleft relationship and cyclic edges/corners; lower luminance can be pigment/shade, so avoid mechanically exaggerating every dark cloud."
+    },
+    {
+      "id": "b0d888d2faaedfc77346980aefcce52f620cabf34f80365bbbd17fd7835e10c6",
+      "name": "ttex153",
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/08-ttex153-b0d888d2faae.png",
+        "sha256": "107b63272f5d20d7a16a65224886ac28519b2e2d11afc54264a7bff3b4fb32e4",
+        "bytes": 4401
+      },
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "minimumRetainedMasterDimensions": [
+        512,
+        512
+      ],
+      "appearance": "Sandy beige/ochre rectangular blocks in horizontal courses, separated by a conspicuous pale grey/cream narrow joint-and-edge network.",
+      "materialInference": "Weathered pale masonry is plausible. Some pale lines may be mortar and some edge highlights; preserve that ambiguity until point classification.",
+      "layout": "Keep block/course scale, stagger, varied rectangular widths and pale line thickness/phase. Do not darken all joints, create new small edge bricks or add another border.",
+      "photographicDetail": "Natural stone pores and restrained chips within existing faces; maintain pale joint color at distance without overbright lighting or uniform grit.",
+      "reliefReview": "If classified as mortar, pale joint centers must sit below adjacent stone despite their bright RGB. Require source-classified decoded height samples and opposed-light review; generic brightness-driven relief is not a semantic proof."
+    }
+  ],
+  "commonRequirements": [
+    "One retained adequate source master per distinct native content, at least8x width/height; defaultMid4x andHigh8x derive from the same source with once-authored master relief.",
+    "Preserve colors, source layout/feature scale and intended forms at native half/quarter comparisons while replacing pixelated contours with sharp photographic material interpretation.",
+    "No new perimeter bevel/edge shading, invented small filler bricks, thickened ornamental strokes, artificial grain or unsupported material-specific fixtures.",
+    "Seam/edge and relief judgments remain visual/material-specific, not inferred from source hash equality or numerical distance scores."
+  ],
+  "aliasScreen": {
+    "peer8": 0,
+    "catalog37": 0,
+    "pending007eight": 0,
+    "newGenerationOrBinding": false
+  },
+  "limits": [
+    "These are source-based visual interpretations and review risks, not historical material facts or a final generation prompt.",
+    "No generated output, master/tier, artistic acceptance, runtime binding, model call, core edit or Git mutation.",
+    "Root will write exact prompts; independent final prompt/native plan review remains required before issuance."
+  ]
+}

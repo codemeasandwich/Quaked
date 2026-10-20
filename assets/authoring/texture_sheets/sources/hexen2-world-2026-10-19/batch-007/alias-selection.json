@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "batch": "007-alias-supplement",
+  "createdAt": "2026-10-19T06:27:33.341249+00:00",
+  "scope": "Two supplemental native identities potentially reuse reviewed batch006 content; main8source selection remains unchanged. No generation, duplicated master, derived map or acceptance claimed.",
+  "items": [
+    {
+      "id": "2c1bff60990ab841f2f770dad2326dbbc0acf4e45013b7a69652cb18283e76b6",
+      "name": "ttex052",
+      "edition": "portals",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/alias-originals/01-ttex052-2c1bff60990a.png",
+      "originalSha256": "262fe1ee17f9f3cd734e4041131cba5bf427953735903bd8abe09d5300997f51",
+      "candidateContentAliasOf": {
+        "id": "2880c270e3b99a91010e650e191d5280fb056cb400ef8f6be9d287ee50d8cef6",
+        "name": "rtex439",
+        "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/masters-registered/rtex439/master.json",
+        "masterPackageSha256": "7af47f74be99bd7cb66edeef796608b5220cbf102d32872e763acdd36b51a7a8",
+        "tierReceipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-registered/rtex439/manifest.json",
+        "tierReceiptSha256": "8cc68c35ef677c64ad657510f77f558fee97d7eb65fb3cd0faf8249784832bd8"
+      },
+      "generationCount": 0,
+      "state": "Potential exact alias; full native mip/provenance/semantics proof required before reuse."
+    },
+    {
+      "id": "42b6bee9ca16e917cfe1d06ea755c0513072d161d0595c0299f010c7fbfb29df",
+      "name": "rtex036",
+      "edition": "base",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/alias-originals/02-rtex036-42b6bee9ca16.png",
+      "originalSha256": "ce64230db484ffea41bff23d3923eca402aa49c19f7ecf277306ca0670bcc691",
+      "candidateContentAliasOf": {
+        "id": "2db73383343bfc6b212d264e514cc4c8358d1c2fdcd4ff762b40504ed0228f01",
+        "name": "ttex018",
+        "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/masters/ttex018/master.json",
+        "masterPackageSha256": "89a71ffe0cefd200fa3225257350594d133f7280230a6005fa93a9e66d18e903",
+        "tierReceipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers/ttex018/manifest.json",
+        "tierReceiptSha256": "64a35922841d3b153cf720edd453303de3eda75fff10900713b5d3303f863123"
+      },
+      "generationCount": 0,
+      "state": "Potential exact alias; full native mip/provenance/semantics proof required before reuse."
+    }
+  ]
+}

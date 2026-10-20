@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-19T07:31:53.824917+00:00",
+  "limits": [
+    "Actual authoring CLI replay only; no finalasset/tier/ART/runtime acceptance.",
+    "No predecessor RGB/NPY binary read; baseline rebuilt from Low/raw and recipe.",
+    "Only owned temporary output written and cleaned; no core/assets/Git mutation."
+  ],
+  "process": {
+    "command": [
+      "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+      "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_motif_texture_master.py",
+      "--recipe",
+      "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/relief/rtex322-inlays.json",
+      "--output",
+      "/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/texture-motif-actual-public-fouv_d5e/master"
+    ],
+    "exitCode": 0,
+    "stdout": "{\"master\": \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/texture-motif-actual-public-fouv_d5e/master/master.json\", \"dimensions\": [512, 512], \"heightUnchanged\": true, \"policy\": \"native-colour-motifs\", \"statistics\": {\"supportPixels\": 6912, \"fullWeightPixels\": 5120, \"supportFraction\": 0.0263671875, \"outsideRGBUnchanged\": true, \"edgeRGBUnchanged\": true, \"changedPixels\": 6854, \"meanAbsoluteCorrectionInside\": 12.074893904320987, \"newClippedChannelFractionInside\": 0.012490354938271605, \"spatialResampling\": false, \"nativePixelEqualityAcceptance\": false}}\n",
+    "stderr": ""
+  },
+  "tempResultSHA256": {
+    "color.png": "ab159ab412619576420a752e63874529d5e1d4b044f5c0d6e8f817bdd649fde8",
+    "height.npy": "f462a26a4b02f87a4694e61c0a7c1262d95ac3a86a1ca208c6487b53c954d7be",
+    "master.json": "f4b0a13b8d7a11524957587e4febf92ba128e1c7cb9e6a9e9975b04cd547985d"
+  },
+  "statistics": {
+    "supportPixels": 6912,
+    "fullWeightPixels": 5120,
+    "supportFraction": 0.0263671875,
+    "outsideRGBUnchanged": true,
+    "edgeRGBUnchanged": true,
+    "changedPixels": 6854,
+    "meanAbsoluteCorrectionInside": 12.074893904320987,
+    "newClippedChannelFractionInside": 0.012490354938271605,
+    "spatialResampling": false,
+    "nativePixelEqualityAcceptance": false
+  },
+  "independentRGBOracleExact": true,
+  "independentOracle": "Direct circular spatial Gaussian convolution + analytic periodic cubic reconstruction; producer restore helper not imported.",
+  "initialHeightBytesPreserved": true,
+  "canonicalOutsideRGBExact": true,
+  "noPredecessorBinaryRead": true,
+  "verdict": "PASS explicit actual motif CLI RGB oracle/outside support/unchangedheight; ART and encodedtier qualification separate",
+  "inputs": [
+    {
+      "file": "docs/hexen2/textures/batch-007-motif-public-verify-actual-cli.py",
+      "sha256": "30e379523253efb6546a031112fe461932b60d4b9a3635ad33487b83ef9b2cd0",
+      "bytes": 5638
+    },
+    {
+      "file": "tools/texture_sheets/prepare_motif_texture_master.py",
+      "sha256": "233bd52f30abbc276ba1e5895b44d2a81c3425531f82b10d5d999a48d080b430",
+      "bytes": 16526
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/relief/rtex322-inlays.json",
+      "sha256": "aa8dc96469be8ddc61fd8f1c5a1ab0fc07b879c37849a41582ddcff95a514613",
+      "bytes": 1255
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/rtex322/master.json",
+      "sha256": "ff0b870814feb29f85e87a97ce149d642e1790dba5d12ee73abead0adb6c67b2",
+      "bytes": 4204
+    },
+    {
+      "file": "docs/hexen2/textures/batch-007-public-actual-v2.json",
+      "sha256": "f3721db7aaf26e69aa8a9aa82a7df5578fccf6b7db50d3b65c283fc7dd5e57d9",
+      "bytes": 102883
+    },
+    {
+      "file": "tests/texture_motif_master_test.py",
+      "sha256": "160ed1a77c123c9f944ff54fa1bddd1734f44ac4881dfc4caf0ddd5bbeeff8f2",
+      "bytes": 15975
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/01-rtex322-411496d1fad7.png",
+      "sha256": "61b562f0876ab63e1649f6f447afb1d31e0d3cd4fe535f81b378d55836c776c6",
+      "bytes": 2776
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/generated/rtex322.png",
+      "sha256": "764913444d2aa837249c78e2c42c57376bc0f34d2b2d2ca24b77b6a8301e9167",
+      "bytes": 3314622
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/rtex322.txt",
+      "sha256": "a73c06a45657c8c991eec499e5cd2148b8571a82b52ca02de290e714d67257b2",
+      "bytes": 2708
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "bytes": 7692
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "bytes": 13322
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    }
+  ],
+  "inputsStable": true,
+  "ownedTemporaryOutputRemoved": true,
+  "completedAt": "2026-10-19T07:31:55.075253+00:00"
+}

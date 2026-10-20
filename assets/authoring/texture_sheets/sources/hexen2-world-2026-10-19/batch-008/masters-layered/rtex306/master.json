@@ -1,0 +1,220 @@
+{
+  "schemaVersion": 1,
+  "name": "rtex306",
+  "edition": "base",
+  "generationCount": 1,
+  "generatorPolicy": "One retained generator output; this CLI never calls a generator",
+  "inputs": {
+    "original": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/04-rtex306-c690e6f19072.png",
+      "sha256": "9006db56beaa6350e08be2e04539d4b85fc7ad3326f67409be674d6160f66549"
+    },
+    "generated": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex306.png",
+      "sha256": "18eb31fc8a471cf6c909e3351468cfd1d3c48a309e53f3324b3c8f74eea70639"
+    },
+    "prompt": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex306-material-v2.txt",
+      "sha256": "308e4ad1838a47f07382c3cb03698c1cbd5f21cecaf5478a0f593c065512a168"
+    },
+    "heightLayering": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/rtex306-inset.json",
+      "sha256": "be827093fb1ff9b62dcac35b9d5b701eff55d81d8b1ea4b99ff9b406769b555c"
+    }
+  },
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "generatedDimensions": [
+    1254,
+    1254
+  ],
+  "masterDimensions": [
+    512,
+    512
+  ],
+  "canonicalMasterFactor": 8,
+  "color": {
+    "file": "color.png",
+    "sha256": "6a0358355f74a77fef04a6996b494689272a87e2f677577e5b5a91fdbec8ab87"
+  },
+  "height": {
+    "file": "height.npy",
+    "sha256": "8e690e8189c58dbdecc1fef664db7ebff5a034b88196837e073efa3ddf86bb0b",
+    "dtype": "float32",
+    "authoredOnce": true,
+    "quantizedTo8Bit": false,
+    "profile": {
+      "bands": [
+        0.4,
+        1,
+        1.3,
+        1
+      ],
+      "groove": 0.9,
+      "bump": 0.9,
+      "glow": 0,
+      "strength": 0.3,
+      "cap": 0.5
+    },
+    "uniqueSamples": 243116,
+    "authoringPolicy": "layered-veneer"
+  },
+  "registration": {
+    "method": "photographic",
+    "factor": 8,
+    "verticalLandmarks": null,
+    "colorStrength": 0.65,
+    "fieldSigma": 0.75,
+    "edgeAnchor": false,
+    "comparisonDivisor": 2,
+    "comparisonDimensions": [
+      32,
+      32
+    ],
+    "distanceMeanMaxError": 21.359375,
+    "distanceMeanMAE": 3.5587806701660156,
+    "donorDistanceMAE": 6.418825785319011,
+    "newClippedChannelFraction": 0.001865386962890625,
+    "donorContourCorrelation": 0.9998143711106409,
+    "sourceMean": [
+      49.759765625,
+      43.4169921875,
+      37.568359375
+    ],
+    "outputMean": [
+      52.49459457397461,
+      45.161380767822266,
+      38.01747512817383
+    ],
+    "donorBoundaries": {
+      "wrap_x_mean": 17.247395833333332,
+      "wrap_y_mean": 16.034505208333332,
+      "interior_x_mean": 9.67608192677756,
+      "interior_y_mean": 10.33429269610241
+    },
+    "boundaries": {
+      "wrap_x_mean": 17.241536458333332,
+      "wrap_y_mean": 15.967447916666666,
+      "interior_x_mean": 9.670762750733854,
+      "interior_y_mean": 10.328468994618396
+    },
+    "passedDistanceCheck": null,
+    "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+    "axis": null
+  },
+  "tools": {
+    "prepare": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    "finish": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    "derive": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    "craft": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    "layeredAuthoring": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d"
+    },
+    "layeredPolicy": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5"
+    }
+  },
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "libwebp": "1.3.2"
+  },
+  "qualification": "Sole layered master prepared; decoded both-tier material and public checks remain required",
+  "masterRevision": {
+    "replacesUnqualifiedPackageSha256": "b356e2739de896328278b3fffd65a4731ceb3fe12fca02f1bef429dcf6392a53",
+    "previousHeightSha256": "910072c682e930478408d35d1b4a28976a9c2ab8a7e5ce0bf3b54bad2a6c17e3",
+    "generatorOutputUnchanged": true,
+    "RGBUnchanged": true,
+    "notAnotherGeneration": true
+  },
+  "layeredRelief": {
+    "nativeIdentity": "c690e6f1907297bdf1d164689621c07b8f70837282afe898c2eed1e013713482",
+    "recipe": {
+      "schemaVersion": 1,
+      "policy": "layered-veneer",
+      "name": "rtex306",
+      "edition": "base",
+      "nativeIdentity": "c690e6f1907297bdf1d164689621c07b8f70837282afe898c2eed1e013713482",
+      "sourceMasterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex306/master.json",
+      "sourceMasterPackageSha256": "b356e2739de896328278b3fffd65a4731ceb3fe12fca02f1bef429dcf6392a53",
+      "sourceVerification": {
+        "file": "docs/hexen2/textures/batch-008-rtex306-source-master-public-proof.json",
+        "sha256": "d0987359d7647da63e8785b7e07957cf80aaa9c129ddcdd1ac591b9f8fd03ed0"
+      },
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "authoredAtMasterDimensions": [
+        512,
+        512
+      ],
+      "originalSha256": "9006db56beaa6350e08be2e04539d4b85fc7ad3326f67409be674d6160f66549",
+      "authoringDiffuseSha256": "6a0358355f74a77fef04a6996b494689272a87e2f677577e5b5a91fdbec8ab87",
+      "layering": {
+        "referenceSize": [
+          64,
+          64
+        ],
+        "facingHeight": 0.7,
+        "brickHeight": 0.3,
+        "chipFloor": 0.55,
+        "microAmplitude": 0.035,
+        "bevelPixels": 0.5,
+        "brickRegions": [
+          {
+            "polygon": [
+              [
+                18,
+                18
+              ],
+              [
+                46.5,
+                18
+              ],
+              [
+                46.5,
+                47
+              ],
+              [
+                18,
+                47
+              ]
+            ]
+          }
+        ]
+      },
+      "intent": "Same-source stone frame above slate centre; pre-tier tonal-height hierarchy HOLD repaired using source-measured centre mask. Coordinates/planes independently reviewed; final semantic/art/opposed-light qualification remains required."
+    },
+    "recipeSha256": "be827093fb1ff9b62dcac35b9d5b701eff55d81d8b1ea4b99ff9b406769b555c",
+    "bevelSigmaMasterPixels": 1.0,
+    "precisionOrder": "craft float64 -> ordered planes and microrelief float64 -> one final float32 cast",
+    "substrateRange": [
+      0.2650510370731354,
+      0.33232173323631287
+    ],
+    "facingRange": [
+      0.5748414397239685,
+      0.7349996566772461
+    ],
+    "mortarQualification": "Requires semantic face/joint samples and decoded tier art review; not implied by plane bounds"
+  }
+}

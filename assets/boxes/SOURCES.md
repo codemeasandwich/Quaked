@@ -21,56 +21,30 @@ on 10 October 2026 from the LaunchBox Games Database (`gamesdb.launchbox-app.com
 | X-Men: The Ravages of Apocalypse (United States) | front, back | [100832](https://gamesdb.launchbox-app.com/games/images/100832) | front `dc89672b-90fc-46e7-a3e8-9608a9b4b95a`, back `abe7ff62-70e5-42d5-b52d-b69c4388e571` |
 | Abyss of Pandemonium (United Kingdom) | front | [44091](https://gamesdb.launchbox-app.com/games/images/44091) | front `72077fcf-93c8-4a8e-912b-22d06ac9b61c` |
 
-## Owner-supplied bundled defaults — 19 October 2026
+## Current owner-supplied and normalized defaults — 20 October 2026
 
-The owner asked to move artwork from `~/quaked` into the project so all native
-downloads receive the defaults, with user-folder images overriding individual
-faces. These additions are byte-identical copies; no resizing, re-encoding or
-pixel edits were applied. [Import identities](../../docs/evidence/native-box-art-2026-10-19/bundled-import.json)
-record the first import's source paths, destination paths, byte counts and hashes.
-The current live inventory is [manifest.json](manifest.json): 29 default faces.
-The later [consolidation record](../../docs/box-art-consolidation-2026-10-19.md)
-supersedes the first import where a face has since been replaced or archived.
+The owner directs supplied game artwork to become bundled defaults for every downloader, with independently replaceable local faces. The owner additionally authorizes splitting combined wraps and standardizing dimensions, explicitly permitting deterministic crops/resizing and AI only where composition repair is needed.
 
-| Default ID | Faces imported | Supplied game folder |
-|---|---|---|
-| shareware | front, back, spine | Quake shareware |
-| hipnotic | spine | Scourge of Armagon |
-| rogue | spine | Dissolution of Eternity |
-| quoth | front, back, spine | Quoth |
-| mg1 | front, back, spine | Dimension of the Machine |
-| mod_quaked | front | Quaked |
-| mod_hexen_2 | front, spine | Hexen 2 |
-| mod_hexen_2_portal_of_praevus | front, back, spine | Hexen 2 Portal of Praevus |
+The current [manifest](manifest.json) contains **53 faces across 18 titles**. All fronts and backs are **1640×2000 pixels**; all spines are **340×2000 pixels**. These ratios match the existing shelf's .82 face aspect and .17 depth/height. Every runtime filename is `front.webp`, `back.webp` or `spine.webp`, encoded losslessly. Complete reviewed panels are fitted proportionally inside their canvases with a restrained dark background; no lettering is stretched or discarded to fill a different ratio. Exact panel rectangles, content placement, hashes and immutable sources are bound by the [derivation record](../../docs/evidence/box-art-standardization-2026-10-20/derivation.json) and reproducible with `node tools/box_art/standardize.mjs docs/evidence/box-art-standardization-2026-10-20/derivation.json`.
 
-The `mod_` IDs use the existing discovered-folder slug rule; they do not add
-game-engine compatibility. The Hexen II and Quaked folders may display unavailable
-boxes without mountable game data. The correct Quoth front has now been supplied;
-the former accidentally substituted Quaked cover is not used for Quoth.
-Quake's unrelated launch-promotion poster is intentionally untouched and unbundled;
-posters are outside this change.
+| Bundled IDs | Source / current faces |
+|---|---|
+| quake, hipnotic, rogue | Retained retail fronts/backs; supplied mission spines; all three faces |
+| shareware, mg1, quoth | Owner-supplied separate originals; all three faces |
+| aopfm_v2, ad, dopa, dawn, mod_alkaline, mod_tremor, mod_hexen_2_shareware | New supplied wraps split into back/spine/front |
+| malice, xmen | New supplied separate front/back/side originals; X-Men wrap retained as source |
+| mod_quaked | Supplied front and newly split retained back/spine composite |
+| mod_hexen_2 | Supplied front/spine; back remains a printed placeholder |
+| mod_hexen_2_portal_of_praevus | Retained supplied front/back/spine originals |
 
-Distinct alternate covers, posters, screenshots, bottom flaps and the intact
-Quaked back/spine composite are preserved under `assets/authoring/box_art`.
-They are source material, excluded from distribution. The q30 screenshot collage
-and previous Machine JPEG are retained there rather than shipped as live covers.
-Every canonical image keeps its original pixels and encoding; no faces were
-generated, cropped or extracted. Duplicate local copies are removed only after
-the matching canonical project file is hash-verified and retained in pushed Git.
+Malice and Quoth had wide spine layouts that left large unused areas when fitted intact. Built-in `image_gen.imagegen` reflowed those two spine compositions. The original artwork, full generated edit canvases and exact [prompts](../../docs/evidence/box-art-standardization-2026-10-20/ai-edit-prompts.json) remain in authoring/evidence. Independent review caught a missing initial digit in Malice's subtitle; the rejected edit is retained, and the corrected current image reads **23RD CENTURY ULTRACONVERSION FOR QUAKE**, matching the supplied original. The [correction prompt](../../docs/evidence/box-art-standardization-2026-10-20/malice-correction-prompt.json) records that repair. Other faces use deterministic cropping/fitting only.
 
-Local overrides: put `front.png`, `back.png`, `spine.png` in the game's own folder.
-JPG/JPEG/WebP/GIF/AVIF and case variants work too. `cover` aliases `front`; `side`
-aliases `spine`. Canonical names win over aliases. A missing or failed override
-retains that face's bundled default, then its printed placeholder. Other images
-and nested folders do not override faces. See [the full contract](../../docs/native-box-art-2026-10-19.md).
+All originals are preserved unchanged under `assets/authoring/box_art`: earlier runtime originals under `originals-2026-10-20`, new local images under `import-2026-10-20`, and AI edit canvases under `edits-2026-10-20`. Authoring is excluded from runtime distribution. The unchanged [19 October baseline](../../docs/evidence/box-art-standardization-2026-10-20/baseline-runtime-manifest.json), its historical relocation evidence and `historicalResolution` preserve exact prior byte identities. Old import receipts describe the original images, not today's normalized runtime derivatives.
 
-## Faces that still have no image
+The `mod_` IDs reuse discovered-folder naming. The scanner retains the six explicitly approved artwork-only folders after their images move into the project; this metadata adds no mount tokens or engine compatibility. Missing game content remains unplayable. Every game directory and non-image file is retained. Quake's held launch-promotion poster stays untouched. The newly supplied X-Men poster is archived as source material and never assigned a box-face role. q30's screenshot collage, previous Machine cover and other alternate scans/flaps remain source-only.
 
-These faces are drawn as placeholders with the box's text printed on them, as the owner asked:
+Local overrides still accept `front`, `back`, `spine` (aliases `cover` for front and `side` for spine), case-insensitive PNG/JPG/JPEG/WebP/GIF/AVIF. Canonical names win over aliases. A missing or failed override retains that face's bundled image, then its printed placeholder. See the [existing native contract](../../docs/native-box-art-2026-10-19.md). A combined wrap named `cover` must be split before it is suitable as a local front override; automatic import heuristics are not added.
 
-- every face of Dimension of the Past, Arcane Dimensions and q30a1024;
-- the missing back of Abyss of Pandemonium;
-- other spines not listed above, Hexen II's back and Quaked's back/spine.
+## Missing artwork
 
-A game added from a folder uses those same naming conventions. Missing faces
-without a bundled default are printed placeholders.
+Among these 18 titles, only the retail Hexen II back has no supplied matching artwork and retains its printed placeholder. Other catalogue titles without supplied artwork, including q30a1024 and Soul of Evil, retain their existing printed placeholders. Artwork availability never proves game compatibility.

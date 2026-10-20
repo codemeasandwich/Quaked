@@ -1,0 +1,473 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-19T07:47:30.863682+00:00",
+  "verdict": "PASS exact8prompts and bounded production plan for issuance; no generated asset/relief/tier acceptance",
+  "scope": "Read-only exact prompt/native/source identity and production-sequence review; no generation issued at bound snapshot",
+  "sourceProof": {
+    "file": "docs/hexen2/textures/batch-008-public-source-proof.json",
+    "sha256": "eac871ece0eb18fa0472fc7e72604fc154e5b810593fcb4b123c3781ff68f27f"
+  },
+  "nativeBriefs": {
+    "file": "docs/hexen2/textures/batch-008-public-native-briefs.json",
+    "sha256": "935b9c12b397bcdec33d69a2f0dfcee55bc5574bf84e7473527e5e434e942a85"
+  },
+  "materials": [
+    {
+      "id": "ed0ea21baafa9262cb44311e6a1fe0663863fe66c361993b465c79ac472b3c42",
+      "name": "rtex006",
+      "edition": "base",
+      "verdict": "PASS exact native/prompt/production intent",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/01-rtex006-ed0ea21baafa.png",
+        "sha256": "71e45a9f7dee9464abb728eea45e4f4376f6443fa7ab244a9cd01f9734f43fd0"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex006.txt",
+        "sha256": "2d8f75094889557867ba80473ed83a4dae1aa9e8a7a6c96d715d32c8c334060d"
+      },
+      "minimumRetainedSourceDimensions": [
+        512,
+        512
+      ],
+      "expectedTierDimensions": {
+        "Mid": [
+          256,
+          256
+        ],
+        "High": [
+          512,
+          512
+        ]
+      },
+      "profile": "stone",
+      "colorStrength": 0.65,
+      "fieldSigma": 0.75,
+      "basis": "Three principal block arrangement matches source: two upper masses and broad lower course. Coolgrey palette, fracture scale and dark joints retained; no extra filler bricks.",
+      "qualificationRisk": "Review source course/joint phase and dark-mortar depth; pixel-staircase shapes must be interpreted naturally."
+    },
+    {
+      "id": "9751c9aa37327aefd4515ebf40db4f20412d392a042efa17ee69444b34b0eecc",
+      "name": "rtex104",
+      "edition": "base",
+      "verdict": "PASS exact native/prompt/production intent",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/02-rtex104-9751c9aa3732.png",
+        "sha256": "3616d9379c9ded813aaf5b82032b5114469f53abed89d234f35a0e3c884349b0"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex104.txt",
+        "sha256": "20e1f37dce19b6d8f4d3e7332edf49fb5b0f2f425162bb07635ab1c7350c0539"
+      },
+      "minimumRetainedSourceDimensions": [
+        512,
+        512
+      ],
+      "expectedTierDimensions": {
+        "Mid": [
+          256,
+          256
+        ],
+        "High": [
+          512,
+          512
+        ]
+      },
+      "profile": "wood",
+      "colorStrength": 0.65,
+      "fieldSigma": 0.75,
+      "basis": "Historical identity explicitly uncertain; fine upright brown/coolgrey striation is preserved without regular plank/panel invention. Wood profile is documented as frequency weighting only.",
+      "qualificationRisk": "Check X/Y repeats for introduced horizontal banding and keep narrow native striation scale rather than broad grooves."
+    },
+    {
+      "id": "7d397606c1724f4949baba30d8e25d096c6aa7455af1699f833881ffbc4556b1",
+      "name": "rtex096",
+      "edition": "base",
+      "verdict": "PASS exact native/prompt/production intent",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/03-rtex096-7d397606c172.png",
+        "sha256": "3a383b3de48bbb57af4ddce8e3f4b83a842a62a687da5934985c840f8b5e7dcf"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex096.txt",
+        "sha256": "e06996897d3e94c7a037db4897444d243d941828444fa9643a3dc74a75f9a459"
+      },
+      "minimumRetainedSourceDimensions": [
+        512,
+        512
+      ],
+      "expectedTierDimensions": {
+        "Mid": [
+          256,
+          256
+        ],
+        "High": [
+          512,
+          512
+        ]
+      },
+      "profile": "painted",
+      "colorStrength": 0.65,
+      "fieldSigma": 0.75,
+      "basis": "Neutral rustyumber/red and charcoal/coolgrey mottling with source patch scale; forbids new masonry, weave, cracks, hardware and artificial noise.",
+      "qualificationRisk": "Colour/patina clouds must not automatically become deep physical slabs or craters."
+    },
+    {
+      "id": "c690e6f1907297bdf1d164689621c07b8f70837282afe898c2eed1e013713482",
+      "name": "rtex306",
+      "edition": "base",
+      "verdict": "PASS exact native/prompt/production intent",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/04-rtex306-c690e6f19072.png",
+        "sha256": "9006db56beaa6350e08be2e04539d4b85fc7ad3326f67409be674d6160f66549"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex306.txt",
+        "sha256": "e1c337f8140556870cfb9c2cfc4c634f74b37479ab82b0b565e3d63262bb18f0"
+      },
+      "minimumRetainedSourceDimensions": [
+        512,
+        512
+      ],
+      "expectedTierDimensions": {
+        "Mid": [
+          256,
+          256
+        ],
+        "High": [
+          512,
+          512
+        ]
+      },
+      "profile": "carch",
+      "colorStrength": 0.65,
+      "fieldSigma": 0.75,
+      "basis": "Nested square frame widths, dark centre, offsets and apparent inset are explicit; forbids protruding jewel/deep black hole, added outer bevel/glyphs/hardware.",
+      "qualificationRisk": "Later relief review must use classified centre/frame witnesses and opposed light; prompt wording does not itself prove the scalar inset."
+    },
+    {
+      "id": "cddf441f348f0a3182edadeeeb9028ece70c2eadbef541955e7197f8213c9752",
+      "name": "ttex054",
+      "edition": "portals",
+      "verdict": "PASS exact native/prompt/production intent",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/05-ttex054-cddf441f348f.png",
+        "sha256": "cc7cbc5b106803b459a72454e08c047481f20396c549422dbc96d8202c1c6b57"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex054.txt",
+        "sha256": "fcb2bea1686cb8cafefdb09a17c55baa055b60e67c8cbcd1ecb8893ca3857cfb"
+      },
+      "minimumRetainedSourceDimensions": [
+        512,
+        1024
+      ],
+      "expectedTierDimensions": {
+        "Mid": [
+          256,
+          512
+        ],
+        "High": [
+          512,
+          1024
+        ]
+      },
+      "profile": "painted",
+      "colorStrength": 0.65,
+      "fieldSigma": 0.75,
+      "basis": "Portrait1:2 source and approximate native Ybands match inspected source. Xperiod/meander counts/edge crossings retained; both prompt sections explicitly preserve distinct Yendpoint identities and forbid forcedYblend.",
+      "qualificationRisk": "Inspect source-intended vertical band transition and actual Yends, not an invented self-seam objective; preserve tiny meander stroke width and lower-field rhythm."
+    },
+    {
+      "id": "84bb278bdd9451b619a5de58d58a32fa07e9ce0cdc40b785070f3324e79181d3",
+      "name": "ttex012",
+      "edition": "portals",
+      "verdict": "PASS exact native/prompt/production intent",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/06-ttex012-84bb278bdd94.png",
+        "sha256": "514f4fafbd079415017ab8b625b5053dac1a016b68d89d4db709094b178fa0d0"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex012.txt",
+        "sha256": "17a8376b4724541683f79b16f5ff3b6fe4a9dda68b2ab532fec31cbe510a8f37"
+      },
+      "minimumRetainedSourceDimensions": [
+        512,
+        512
+      ],
+      "expectedTierDimensions": {
+        "Mid": [
+          256,
+          256
+        ],
+        "High": [
+          512,
+          512
+        ]
+      },
+      "profile": "stone",
+      "colorStrength": 0.65,
+      "fieldSigma": 0.75,
+      "basis": "Warm ochre staggered stone, course heights, offsets, edge clips, narrow dark mortar and fine dressed-stone wear match source; newedgebricks/raisedmortar prohibited.",
+      "qualificationRisk": "Keep mortar below faces with source width/stagger; avoid puffy masonry or widened black gaps."
+    },
+    {
+      "id": "4bf05bb0cae8053cb2260e2bded0385706d3d9be305b3761f6c9986fb66c758d",
+      "name": "rpal317",
+      "edition": "portals",
+      "verdict": "PASS exact native/prompt/production intent",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/07-rpal317-4bf05bb0cae8.png",
+        "sha256": "9e701188d3bc33902976e6b94eea4d2ebd7b03c9687dde79a0094b16307bf1bd"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rpal317.txt",
+        "sha256": "c7da7c727b1415c419944b86251557fd70b41f792f1437fc2721a51385bec1de"
+      },
+      "minimumRetainedSourceDimensions": [
+        512,
+        512
+      ],
+      "expectedTierDimensions": {
+        "Mid": [
+          256,
+          256
+        ],
+        "High": [
+          512,
+          512
+        ]
+      },
+      "profile": "rock0_0",
+      "colorStrength": 0.65,
+      "fieldSigma": 0.75,
+      "basis": "Very dark irregular mineral/rock forms, thin smoky coolnetwork and broad masses preserved. Geological identity uncertain; no bright veins, regular masonry, large pebbles or newdeepfissures.",
+      "qualificationRisk": "Retain low native tonal hierarchy and broad form scale; decoded relief must not over-carve every dark colour patch."
+    },
+    {
+      "id": "b0d888d2faaedfc77346980aefcce52f620cabf34f80365bbbd17fd7835e10c6",
+      "name": "ttex153",
+      "edition": "portals",
+      "verdict": "PASS exact native/prompt/production intent",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/08-ttex153-b0d888d2faae.png",
+        "sha256": "107b63272f5d20d7a16a65224886ac28519b2e2d11afc54264a7bff3b4fb32e4"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex153.txt",
+        "sha256": "e71f22e5ec0369b7c902592c9e70c3dac874fcce9acfe24abba94535c2ac39da"
+      },
+      "minimumRetainedSourceDimensions": [
+        512,
+        512
+      ],
+      "expectedTierDimensions": {
+        "Mid": [
+          256,
+          256
+        ],
+        "High": [
+          512,
+          512
+        ]
+      },
+      "profile": "stone",
+      "colorStrength": 0.65,
+      "fieldSigma": 0.75,
+      "basis": "Pale joint pigmentation, mixed block sizes/course offsets and original partial edges retained. Stone-face-above-joint intent is explicit without darkening all mortar or depicting raisedcaulking. Selection requires semantic witnesses BEFORE either tier is derived.",
+      "qualificationRisk": "Classify real joint centres vs pale edge highlights first. If tonalheight fails, use reviewed semantic planes/mask from same canonical RGB and retain correct palecolour; no brightness-only pass."
+    }
+  ],
+  "requiredPromptCorrections": [],
+  "sharedProductionStandard": {
+    "retainedGeneration": "Exactly one generated source per distinct native identity/content, actual dimensions >=8xnative in each axis and exact aspect; insufficient output is held rather than upscaled.",
+    "masterAndTiers": "One active RGB/once-authored fullprecision floatheight master at canonical8x. Unchanged originalLow, defaultMid4x andHigh8x derive directly from the same master, not each other or separately generated artwork.",
+    "enhancedEncoding": "All enhanced colour/height/XYZmaps lossyWebPquality92method6 through unchanged sharedderiver; authoringPNG/floatNPY are source masters, not compressedtier donors.",
+    "validation": "Both original and each decoded tier BOX-reduced to identical nativehalf and quarter dimensions, plus actual repeat/edge/corner/height/normal/opposedlight review. No metric=ARTpass.",
+    "sourceIdentity": "ExactIDs/original+prompt hashes bound; no name-only source substitution. Sourceproof had100physicaloccurrences/all4mips and no peer/catalog37/pending0078exactalias.",
+    "note": "Encoding/floatmaster requirements are standing sharedpipeline contracts, not instructions for the image model to author data maps."
+  },
+  "ttex153MandatoryPreTierGate": {
+    "required": "Independently classify actual master stonefaces/palejointcentres; verify intended relative scalar depth BEFOREderivingMid orHigh. A prompt or brightness score does not satisfy this.",
+    "ifTonalHeightFails": "Keep candidate unqualified and use reviewed same-source semantic region/plane authoring via the existing layered master mechanism. Parameters/mask need actual source review; do not blindly copy another material\u2019s veneer depth.",
+    "guardedSourceProofDependency": "prepare_layered_texture_master requires a PASS material row with nativeIdentity/name/edition and exact masterPackage file/SHA. Native-only eac871predates generated master and is insufficient by itself.",
+    "smallestSequence": "After prepare-only source output, independently replay native/raw/prompt\u2192RGB and baselinefloatheight, bind native sourceproof and masterPackage in a source/master-only PASS receipt whose qualification explicitly excludes failed relief semantics. Then pass that receipt to the unchanged guarded semantic wrapper. No badtiers, fake ARTpass, guard weakening or newcoreframework required.",
+    "afterSemanticCorrection": "Only the reviewed finalscalar master feeds sharedtierderivation. Decoded both-tier semantic/order/art/public checks remain required."
+  },
+  "advisories": [
+    "Retain rtex104profile-as-frequency interpretation without claimingwoodhistory.",
+    "ttex054originalYband identity is authoritative; do not apply automaticYboundaryblend or demand an invented matchingendpattern.",
+    "rtex306centre/frame depth and ttex153joint pigment/height are source-semantic questions, not luminance acceptance shortcuts."
+  ],
+  "inputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/native-selection.json",
+      "sha256": "106b4d05c507a3c5a8545f7f62bc03096111701dd33eeada7ae253f11d1f7489",
+      "bytes": 7086
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/01-rtex006-ed0ea21baafa.png",
+      "sha256": "71e45a9f7dee9464abb728eea45e4f4376f6443fa7ab244a9cd01f9734f43fd0",
+      "bytes": 2843
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/02-rtex104-9751c9aa3732.png",
+      "sha256": "3616d9379c9ded813aaf5b82032b5114469f53abed89d234f35a0e3c884349b0",
+      "bytes": 3671
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/03-rtex096-7d397606c172.png",
+      "sha256": "3a383b3de48bbb57af4ddce8e3f4b83a842a62a687da5934985c840f8b5e7dcf",
+      "bytes": 4299
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/04-rtex306-c690e6f19072.png",
+      "sha256": "9006db56beaa6350e08be2e04539d4b85fc7ad3326f67409be674d6160f66549",
+      "bytes": 2778
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/05-ttex054-cddf441f348f.png",
+      "sha256": "cc7cbc5b106803b459a72454e08c047481f20396c549422dbc96d8202c1c6b57",
+      "bytes": 6883
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/06-ttex012-84bb278bdd94.png",
+      "sha256": "514f4fafbd079415017ab8b625b5053dac1a016b68d89d4db709094b178fa0d0",
+      "bytes": 2696
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/07-rpal317-4bf05bb0cae8.png",
+      "sha256": "9e701188d3bc33902976e6b94eea4d2ebd7b03c9687dde79a0094b16307bf1bd",
+      "bytes": 2850
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/08-ttex153-b0d888d2faae.png",
+      "sha256": "107b63272f5d20d7a16a65224886ac28519b2e2d11afc54264a7bff3b4fb32e4",
+      "bytes": 4401
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/native-contact.png",
+      "sha256": "0c8410db3b9655773df9342255f4942c4074d2e1ea7eae3440df6d65bffbf2fd",
+      "bytes": 69144
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rpal317.txt",
+      "sha256": "c7da7c727b1415c419944b86251557fd70b41f792f1437fc2721a51385bec1de",
+      "bytes": 2325
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex006.txt",
+      "sha256": "2d8f75094889557867ba80473ed83a4dae1aa9e8a7a6c96d715d32c8c334060d",
+      "bytes": 2172
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex096.txt",
+      "sha256": "e06996897d3e94c7a037db4897444d243d941828444fa9643a3dc74a75f9a459",
+      "bytes": 2155
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex104.txt",
+      "sha256": "20e1f37dce19b6d8f4d3e7332edf49fb5b0f2f425162bb07635ab1c7350c0539",
+      "bytes": 2177
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex306.txt",
+      "sha256": "e1c337f8140556870cfb9c2cfc4c634f74b37479ab82b0b565e3d63262bb18f0",
+      "bytes": 2202
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex012.txt",
+      "sha256": "17a8376b4724541683f79b16f5ff3b6fe4a9dda68b2ab532fec31cbe510a8f37",
+      "bytes": 2153
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex054.txt",
+      "sha256": "fcb2bea1686cb8cafefdb09a17c55baa055b60e67c8cbcd1ecb8893ca3857cfb",
+      "bytes": 2719
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex153.txt",
+      "sha256": "e71f22e5ec0369b7c902592c9e70c3dac874fcce9acfe24abba94535c2ac39da",
+      "bytes": 2370
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/selection.json",
+      "sha256": "499d339cef8d60d648e72cdf3209ead58e4b379aaf4c43f1b0ddcf0350c8c21d",
+      "bytes": 10065
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-public-native-briefs.json",
+      "sha256": "935b9c12b397bcdec33d69a2f0dfcee55bc5574bf84e7473527e5e434e942a85",
+      "bytes": 13765
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-public-source-proof.json",
+      "sha256": "eac871ece0eb18fa0472fc7e72604fc154e5b810593fcb4b123c3781ff68f27f",
+      "bytes": 89263
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "bytes": 13322
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d",
+      "bytes": 13904
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "bytes": 7692
+    }
+  ],
+  "inputsStable": true,
+  "generationCountAtSnapshot": 0,
+  "effects": "Only this bounded review receipt written. No assets/core/recipe/Git edit, model call, build/test or acceptedtexture created.",
+  "limits": [
+    "Planning PASS authorizes no new repository/release authority; work remains within existing owner campaign scope.",
+    "Minimum8xsource adequacy, actualphoto fidelity, semantic relief, tiling and alltier/public acceptance remain unqualified until produced and verified.",
+    "Historical sourceproof catalog37/pending0078screen is a bound sourcefinding; this receipt does not claim currentwholecatalog coverage."
+  ]
+}

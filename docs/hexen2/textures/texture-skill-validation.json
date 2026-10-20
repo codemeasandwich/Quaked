@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-19T08:33:03.734091+00:00",
+  "scope": "Repository texture-authoring skill, routing and metadata-only generation journal; no texture artwork qualification, build, runtime or release acceptance.",
+  "verdict": "PASS for the stated documentation and exercised journal behavior",
+  "files": [
+    {
+      "file": "AGENTS.md",
+      "sha256": "d9d12ea00d3d41a0968d6fc33bd822ed986372aa7566c7db867b08a05bd673db"
+    },
+    {
+      "file": "docs/texture-tier-standard.md",
+      "sha256": "9bbe17838fcbe20f35bc7f73f9c1edde631446fcb7b0bfc9688efb46ac02f07e"
+    },
+    {
+      "file": "skills/quaked-texture-authoring/SKILL.md",
+      "sha256": "0c96e783d5b56604edfc85fae82b36c98478f297ff49d3d3777402b8322f9bba"
+    },
+    {
+      "file": "skills/quaked-texture-authoring/agents/openai.yaml",
+      "sha256": "118cce58a74e9be231046d3fb22460a742482ebc80ca3a527b0b86f6190a625c"
+    },
+    {
+      "file": "skills/quaked-texture-authoring/references/repairs-and-verification.md",
+      "sha256": "83987e8c6719e31617271b51a9469217a24216182ddb6e2db689b0cd63692a89"
+    },
+    {
+      "file": "skills/quaked-texture-authoring/references/workflow.md",
+      "sha256": "a2ec6402968756a4b0ac63552f58ebd093a075d3563b22f609658a99a2e63382"
+    },
+    {
+      "file": "skills/quaked-texture-authoring/scripts/generation_journal.py",
+      "sha256": "f1aab4d98ac1701f0d054b9892232f88c8e3fbc03332d9b9dcddfa7785329dc8"
+    }
+  ],
+  "checks": {
+    "skillCreatorQuickValidate": "PASS",
+    "scriptHelp": "PASS",
+    "scriptSyntax": "PASS",
+    "localMarkdownTargets": [
+      {
+        "source": "AGENTS.md",
+        "target": "skills/quaked-texture-authoring/SKILL.md"
+      },
+      {
+        "source": "AGENTS.md",
+        "target": "docs/texture-tier-standard.md"
+      },
+      {
+        "source": "skills/quaked-texture-authoring/SKILL.md",
+        "target": "../../docs/texture-tier-standard.md"
+      },
+      {
+        "source": "skills/quaked-texture-authoring/SKILL.md",
+        "target": "references/workflow.md"
+      },
+      {
+        "source": "skills/quaked-texture-authoring/SKILL.md",
+        "target": "references/repairs-and-verification.md"
+      }
+    ],
+    "gitDiffCheck": "PASS"
+  },
+  "independentForwardTest": {
+    "agent": "/root/texture_skill_forward",
+    "fixtures": "/private/tmp/quaked-texture-skill-forward-ssew5dj3",
+    "evidence": [
+      {
+        "file": "docs/hexen2/textures/texture-skill-validation/forward-report.md",
+        "sha256": "1b973e909b4903d6b9dd596c0718a103feac07aa14968a0926e50abb496204ca",
+        "source": "/private/tmp/quaked-texture-skill-forward-ssew5dj3/forward-report.md"
+      },
+      {
+        "file": "docs/hexen2/textures/texture-skill-validation/ordinary-journal-operations.json",
+        "sha256": "0c8ce72b85811c9123ce8b2e2527bb1a269c2de157d76a03a4040eb6834d5feb",
+        "source": "/private/tmp/quaked-texture-skill-forward-ssew5dj3/ordinary-journal-operations.json"
+      },
+      {
+        "file": "docs/hexen2/textures/texture-skill-validation/fixture-integrity.json",
+        "sha256": "5ab5f83bd55c47bfe4c1ff74e1d94d808e6d0c79d72735ff592eeb75bc8d4a96",
+        "source": "/private/tmp/quaked-texture-skill-forward-ssew5dj3/fixture-integrity.json"
+      }
+    ],
+    "exercised": [
+      "retain exact undersized output without reissue or upscale",
+      "hold adequate but noisy source before master/tier authoring",
+      "reject alias with differing final native mip",
+      "ordinary issue then exact retain",
+      "refuse duplicate issue before/after retain and duplicate retain without journal change"
+    ],
+    "documentationCorrections": [
+      "Clarified journal root is also stored-path base, including isolated fixture roots.",
+      "Spaced reference-scale bevel example."
+    ],
+    "limits": "Synthetic bounded fixtures, not native-source proof or image generation. No blocking defect observed in exercised paths; not an exhaustive concurrency/security test."
+  },
+  "sharedAgent": {
+    "file": "/Users/bri/agent.md",
+    "previousSha256": "8bba5602327086f583afe9bba23b2f460495cf7c6cd816730886175490db9fec",
+    "sha256": "9358d551a4a97a83d8619fc845b7297d2b5b115e9776383ad1c3d3cbcfcf8228",
+    "previousBytes": 6642,
+    "previousBytesPreservedExactly": true,
+    "change": "Append-only Quaked-specific skill routing."
+  },
+  "discovery": {
+    "link": "/Users/bri/.codex/skills/quaked-texture-authoring",
+    "target": "/Users/bri/SOURCE/Quaked/skills/quaked-texture-authoring",
+    "verified": true,
+    "runningAppCatalogReloadClaimed": false
+  },
+  "landing": "Working tree only; no new commit, CI run or release claimed for these changes.",
+  "owner": "initiating coordinator",
+  "nextAction": "Review current batch008 source material readability before master preparation; preserve unissued prompt review and full-campaign obligations.",
+  "repositoryObservation": {
+    "branch": "Dev",
+    "head": "213cc7e3cd91032daf284c12a1af560b20b9bc79",
+    "note": "Subsequent box-art commits preserved; no Git mutation performed by this documentation validation."
+  }
+}

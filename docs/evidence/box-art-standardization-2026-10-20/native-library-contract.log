@@ -1,0 +1,20 @@
+   Compiling quaked v0.132.5 (/Users/bri/SOURCE/Quaked/src-tauri)
+error: failed to run custom build command for `quaked v0.132.5 (/Users/bri/SOURCE/Quaked/src-tauri)`
+
+Caused by:
+  process didn't exit successfully: `/Users/bri/build/quaked-distribution/debug/build/quaked-337d13f9ae5de7dd/build-script-build` (exit status: 1)
+  --- stdout
+  cargo:rerun-if-env-changed=TAURI_CONFIG
+  cargo:rustc-check-cfg=cfg(desktop)
+  cargo:rustc-cfg=desktop
+  cargo:rustc-check-cfg=cfg(mobile)
+  cargo:rerun-if-changed=/Users/bri/SOURCE/Quaked/src-tauri/tauri.conf.json
+  cargo:rustc-env=TAURI_ANDROID_PACKAGE_NAME_APP_NAME=quaked
+  cargo:rustc-env=TAURI_ANDROID_PACKAGE_NAME_PREFIX=com_codemeasandwich
+  cargo:rustc-check-cfg=cfg(dev)
+  cargo:rustc-cfg=dev
+  cargo:PERMISSION_FILES_PATH=/Users/bri/build/quaked-distribution/debug/build/quaked-ce5ea6ac09a9d322/out/app-manifest/__app__-permission-files
+  cargo:rerun-if-changed=/Users/bri/SOURCE/Quaked/src-tauri/capabilities
+  cargo:rerun-if-env-changed=REMOVE_UNUSED_COMMANDS
+  cargo:rustc-env=TAURI_ENV_TARGET_TRIPLE=aarch64-apple-darwin
+  resource path `../dist/desktop-assets` doesn't exist

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS unchanged portable8publicCLI/algorithm groups on guard-fixed source",
+  "source": {
+    "file": "tools/texture_sheets/prepare_motif_texture_master.py",
+    "sha256": "233bd52f30abbc276ba1e5895b44d2a81c3425531f82b10d5d999a48d080b430"
+  },
+  "test": {
+    "file": "tests/texture_motif_master_test.py",
+    "sha256": "160ed1a77c123c9f944ff54fa1bddd1734f44ac4881dfc4caf0ddd5bbeeff8f2"
+  },
+  "command": [
+    "/usr/bin/python3",
+    "tests/texture_motif_master_test.py"
+  ],
+  "exitCode": 0,
+  "groupsRun": 8,
+  "groupsPassed": 8,
+  "sameTestSourceAsRED": true,
+  "priorRED": {
+    "file": "docs/hexen2/textures/batch-007-motif-public-tests-red-v1.json",
+    "sha256": "38e09265777979b6740671bd6373f14d668637c84e1e3c742a345675d81d1f77"
+  },
+  "log": {
+    "file": "docs/hexen2/textures/batch-007-motif-public-tests-green-v1.txt",
+    "sha256": "5bfc868b967be0395168fd37001d98d8b7ac4e71b7e1580f3f5f6c4bd7bbb660"
+  },
+  "verified": [
+    "Direct circular Gaussian + analytical periodic cubic independent oracle produces exact RGB.",
+    "Product alpha geometry6912positive/5120fullweight, corner products and exact outside/perimeter preservation.",
+    "Initial float32NPY bytes preserved after oldRGB/height fixture files are removed; metadata/environment/source history correct.",
+    "All4repeated-policy presence cases fixed; original7passing groups remain green.",
+    "NonBoolean/finite/region-locality/overlap/budget/identity/proof/tool/source/raw/profile/landmark/overwrite guards verified."
+  ],
+  "limits": [
+    "Portable synthetic fixtures only; actualrecipe, rootasset tiers and artistic acceptance separate.",
+    "No core/assets/Git mutation by tests; owned temporary fixtures cleaned."
+  ]
+}

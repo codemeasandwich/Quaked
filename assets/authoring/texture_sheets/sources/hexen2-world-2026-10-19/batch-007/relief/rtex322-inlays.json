@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "policy": "native-colour-motifs",
+  "name": "rtex322",
+  "edition": "base",
+  "nativeIdentity": "411496d1fad7414033cb4e53662aa4b5389834f94f75fdf1572ece123e14449a",
+  "sourceMasterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/rtex322/master.json",
+  "sourceMasterPackageSha256": "ff0b870814feb29f85e87a97ce149d642e1790dba5d12ee73abead0adb6c67b2",
+  "sourceVerification": {
+    "file": "docs/hexen2/textures/batch-007-public-actual-v2.json",
+    "sha256": "f3721db7aaf26e69aa8a9aa82a7df5578fccf6b7db50d3b65c283fc7dd5e57d9"
+  },
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "authoredAtMasterDimensions": [
+    512,
+    512
+  ],
+  "originalSha256": "61b562f0876ab63e1649f6f447afb1d31e0d3cd4fe535f81b378d55836c776c6",
+  "authoringDiffuseSha256": "34abd79cbd90a058d53405237452cb38eab8a34c5d4c8a333cf61a5a1e383ab2",
+  "motifs": {
+    "referenceSize": [
+      64,
+      64
+    ],
+    "regions": [
+      [
+        5.5,
+        28.5,
+        14.5,
+        34.5
+      ],
+      [
+        49.5,
+        28.5,
+        58.5,
+        34.5
+      ]
+    ],
+    "featherNativePixels": 0.5,
+    "fieldSigmaNativePixels": 0.35,
+    "strength": 0.95,
+    "heightPolicy": "preserve-initial-float32"
+  }
+}

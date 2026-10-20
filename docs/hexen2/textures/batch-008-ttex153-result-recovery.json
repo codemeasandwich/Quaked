@@ -1,0 +1,26 @@
+{
+  "recoveredAt": "2026-10-20T06:48:53.620806+00:00",
+  "scope": "Recover terminal built-in result for the existing issued ttex153 request; not a new image call or artwork pass.",
+  "oldHandleObservation": "functions.exec cell442 no longer exists; terminal Extension event found in original session transcript.",
+  "transcript": "/Users/bri/.codex/sessions/2026/10/19/rollout-2026-10-19T02-15-57-01a151ba-c5de-7711-a88e-13b835f898d1.jsonl",
+  "matchingOriginalEvents": [
+    {
+      "line": 6145,
+      "timestamp": "2026-10-19T09:07:31.129Z",
+      "eventType": "event_msg",
+      "payloadType": "item_completed",
+      "canonicalEventSha256": "213e14e66053126ef1263e78c6fc72ffffaa20435a3786f2bfac82a37d1aa9af",
+      "outputIdentityAndPath": [
+        "exec-78dfd743-b0af-4cb7-9796-69b9d5d61ede",
+        "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-78dfd743-b0af-4cb7-9796-69b9d5d61ede.png"
+      ]
+    }
+  ],
+  "retained": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/ttex153.png",
+    "sha256": "27dedc24745eaf900ec6ea7f3d4c3f4e1dc698efefa178106776c631f8251778"
+  },
+  "generationCount": 1,
+  "newGeneration": false,
+  "preservation": "Binary image retained once in generated/ttex153.png; transcript output identity and canonical event hash retained here without embedding a duplicate base64 image."
+}

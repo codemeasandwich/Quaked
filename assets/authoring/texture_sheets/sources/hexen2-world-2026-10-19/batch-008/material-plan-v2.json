@@ -1,0 +1,60 @@
+{
+  "scope": "Five unissued batch008 material briefs; original historical material is interpreted, not established. No used prompt or raw output changed.",
+  "items": [
+    {
+      "id": "c690e6f1907297bdf1d164689621c07b8f70837282afe898c2eed1e013713482",
+      "name": "rtex306",
+      "edition": "base",
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/04-rtex306-c690e6f19072.png",
+      "originalSha256": "9006db56beaa6350e08be2e04539d4b85fc7ad3326f67409be674d6160f66549",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex306-material-v2.txt",
+      "promptSha256": "308e4ad1838a47f07382c3cb03698c1cbd5f21cecaf5478a0f593c065512a168",
+      "materialInterpretation": "Weathered dark sandstone architectural frame surrounding a recessed grey-green slate panel."
+    },
+    {
+      "id": "cddf441f348f0a3182edadeeeb9028ece70c2eadbef541955e7197f8213c9752",
+      "name": "ttex054",
+      "edition": "portals",
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/05-ttex054-cddf441f348f.png",
+      "originalSha256": "cc7cbc5b106803b459a72454e08c047481f20396c549422dbc96d8202c1c6b57",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex054-material-v2.txt",
+      "promptSha256": "721d2df4207a5ffeca421eb70aaa7c8e2852421c457cf85a41c18b1255c6f392",
+      "materialInterpretation": "Aged lime-plaster wall with matte mineral pigments and painted red/ochre meander trim."
+    },
+    {
+      "id": "84bb278bdd9451b619a5de58d58a32fa07e9ce0cdc40b785070f3324e79181d3",
+      "name": "ttex012",
+      "edition": "portals",
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/06-ttex012-84bb278bdd94.png",
+      "originalSha256": "514f4fafbd079415017ab8b625b5053dac1a016b68d89d4db709094b178fa0d0",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex012-material-v2.txt",
+      "promptSha256": "411561dc33ec50c6252ac273fe1a33fa2a54e65f744c0a1b182165055bf071b6",
+      "materialInterpretation": "Dry dressed ochre sandstone masonry with recessed dark lime mortar."
+    },
+    {
+      "id": "4bf05bb0cae8053cb2260e2bded0385706d3d9be305b3761f6c9986fb66c758d",
+      "name": "rpal317",
+      "edition": "portals",
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/07-rpal317-4bf05bb0cae8.png",
+      "originalSha256": "9e701188d3bc33902976e6b94eea4d2ebd7b03c9687dde79a0094b16307bf1bd",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rpal317-material-v2.txt",
+      "promptSha256": "0da7d23f35aaf2508aa22812719a4fa296710b909566044441b69ffd1a9b10db",
+      "materialInterpretation": "Very dark basalt with narrow weathered mineral fracture interfaces."
+    },
+    {
+      "id": "b0d888d2faaedfc77346980aefcce52f620cabf34f80365bbbd17fd7835e10c6",
+      "name": "ttex153",
+      "edition": "portals",
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/08-ttex153-b0d888d2faae.png",
+      "originalSha256": "107b63272f5d20d7a16a65224886ac28519b2e2d11afc54264a7bff3b4fb32e4",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex153-material-v2.txt",
+      "promptSha256": "cd0e24bdce7296f1f7764d4ebaa16b5667e60a24f786d2cc30e6c26b38c59e93",
+      "materialInterpretation": "Weathered pale sandy limestone blocks with pale recessed lime mortar."
+    }
+  ],
+  "reliefGates": {
+    "rtex306": "Inset centre must be below source frame; classify source-specific witnesses before tiers.",
+    "ttex054": "Painted ornament remains pigment, not invented embossed relief; native Y endpoint bands retained.",
+    "ttex153": "Source-specific stone face and pale joint witnesses before tier encoding, source/master-only proof before semantic repair if needed."
+  }
+}

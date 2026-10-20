@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "policy": "layered-veneer",
+  "name": "rtex306",
+  "edition": "base",
+  "nativeIdentity": "c690e6f1907297bdf1d164689621c07b8f70837282afe898c2eed1e013713482",
+  "sourceMasterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex306/master.json",
+  "sourceMasterPackageSha256": "b356e2739de896328278b3fffd65a4731ceb3fe12fca02f1bef429dcf6392a53",
+  "sourceVerification": {
+    "file": "docs/hexen2/textures/batch-008-rtex306-source-master-public-proof.json",
+    "sha256": "d0987359d7647da63e8785b7e07957cf80aaa9c129ddcdd1ac591b9f8fd03ed0"
+  },
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "authoredAtMasterDimensions": [
+    512,
+    512
+  ],
+  "originalSha256": "9006db56beaa6350e08be2e04539d4b85fc7ad3326f67409be674d6160f66549",
+  "authoringDiffuseSha256": "6a0358355f74a77fef04a6996b494689272a87e2f677577e5b5a91fdbec8ab87",
+  "layering": {
+    "referenceSize": [
+      64,
+      64
+    ],
+    "facingHeight": 0.7,
+    "brickHeight": 0.3,
+    "chipFloor": 0.55,
+    "microAmplitude": 0.035,
+    "bevelPixels": 0.5,
+    "brickRegions": [
+      {
+        "polygon": [
+          [
+            18,
+            18
+          ],
+          [
+            46.5,
+            18
+          ],
+          [
+            46.5,
+            47
+          ],
+          [
+            18,
+            47
+          ]
+        ]
+      }
+    ]
+  },
+  "intent": "Same-source stone frame above slate centre; pre-tier tonal-height hierarchy HOLD repaired using source-measured centre mask. Coordinates/planes independently reviewed; final semantic/art/opposed-light qualification remains required."
+}

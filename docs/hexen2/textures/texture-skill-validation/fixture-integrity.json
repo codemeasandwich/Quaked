@@ -1,0 +1,30 @@
+{
+  "source-a": {
+    "originalHashMatches": true,
+    "promptHashMatches": true,
+    "generatedHashMatches": true,
+    "generatedDimensions": [
+      256,
+      256
+    ],
+    "generatedMode": "RGB",
+    "generationCount": 1,
+    "generationState": "generated-retained-unqualified-dimensions",
+    "selectionSha256": "9cad2b0d320ab1a816725691da85adb6153a6e9da717eb10deac8b11a55214c2",
+    "returnedSha256": "150acf3567487932f966c847a2ec614f21bc56b919e20fc8dff02ceb0d885a67"
+  },
+  "source-b": {
+    "originalHashMatches": true,
+    "promptHashMatches": true,
+    "generatedHashMatches": true,
+    "generatedDimensions": [
+      512,
+      512
+    ],
+    "generatedMode": "RGB",
+    "generationCount": 1,
+    "generationState": "generated-retained",
+    "selectionSha256": "831b5ee419f6aefad91ef7ce90f0527512a963c75e2333d0e3b3518ef1c95a3e",
+    "returnedSha256": "bacac053259721a4ed88a10467b4b1c8704be11bd55755101be7d9699377db99"
+  }
+}

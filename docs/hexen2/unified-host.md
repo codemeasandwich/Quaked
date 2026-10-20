@@ -169,7 +169,8 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `b3f6580c` | browser trial T1 | Hexen II in a local source checkout; M2's font made legible on the GPU; Hexen's own console background |
 | `592220ad` | H1, trial T2 | hub saves on IndexedDB; Portal's text lists and the native demos mounted; Hexen's own plaques; no Quake files requested |
 | `35a3973b` | E1, E2 | Enhanced Hexen II: neutral grading at launch and the 3D view kept above Raven's status bar |
-| (this commit) | MS | Hexen II MIDI music through an original FM synthesiser; library music streamed in a source checkout |
+| `4a47cd8c` | MS | Hexen II MIDI music through an original FM synthesiser; library music streamed in a source checkout |
+| (this commit) | merge Dev | Dev's standardised box art (`6e3e0237`) and Hexen texture batch 7 with the authoring method (`8f0e96bc`); on the unified host `Hexen 2 Shareware` stays the Hexen II demo's game folder, not a display-only box |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;

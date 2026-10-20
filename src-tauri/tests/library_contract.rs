@@ -691,6 +691,34 @@ fn existing_folders_with_default_boxes_get_metadata_without_local_art_or_nested_
     assert!(!refreshed.discovered.iter().any(|d| d.id == "mod_quaked"), "a default box does not fabricate a missing folder");
 }
 
+#[test]
+fn retained_new_boxed_folders_remain_visible_after_original_art_is_imported() {
+    let f = Fixture::new();
+    // Import removes canonical local faces only after preserving their originals in
+    // the project. Empty retained folders still identify bundled, display-only boxes.
+    for folder in ["aLkAlInE", "Tremor", "Hexen 2 Shareware", "Unboxed Empty"] {
+        fs::create_dir(f.path(folder)).unwrap();
+    }
+    let found = library::scan(&f.0).unwrap();
+    let titles: Vec<(&str, &str)> = found.discovered.iter()
+        .map(|d| (d.id.as_str(), d.name.as_str())).collect();
+    // On the unified host "Hexen 2 Shareware" is the Hexen II demo's folder (GAMES), claimed by that game and shown
+    // through it once installed, never re-discovered as a display-only add-on.
+    assert_eq!(titles, [
+        ("mod_alkaline", "aLkAlInE"),
+        ("mod_tremor", "Tremor"),
+    ], "the exact retained folder identities select their shipped defaults case-insensitively");
+    assert!(found.packs.is_empty(), "box defaults never admit game archives");
+    assert!(found.artwork.is_empty(), "no local images remain or are fabricated");
+    for title in &found.discovered {
+        assert!(library::read_range(&found, &format!("{}/pak0.pak", title.id), 0, 1).is_err());
+    }
+    fs::remove_dir(f.path("Tremor")).unwrap();
+    let refreshed = library::scan(&f.0).unwrap();
+    assert!(!refreshed.discovered.iter().any(|d| d.id == "mod_tremor"),
+        "a bundled default does not invent an absent folder");
+}
+
 #[cfg(unix)]
 #[test]
 fn invalid_optional_box_images_are_skipped_without_hiding_the_game_or_safe_face_fallback() {

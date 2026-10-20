@@ -1,0 +1,519 @@
+{
+  "scope": "Pre-tier master diagnostics only; visual decision is in separate semantic review JSON.",
+  "materials": {
+    "rtex306": {
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters-layered/rtex306/master.json",
+        "sha256": "b76ca4cf54f668e22c9620eecc9fbd233e704514da6a61eea667e95e9d64237d",
+        "bytes": 7776
+      },
+      "checks": {
+        "independentLayerCompositionFloat32Exact": true,
+        "RGBBytesUnchanged": true,
+        "maskInclusiveMasterBounds": [
+          144,
+          144,
+          372,
+          376
+        ],
+        "bevelSigmaMasterPixels": 1.0,
+        "substrateRange": [
+          0.2650510370731354,
+          0.33232173323631287
+        ],
+        "facingRange": [
+          0.5748414397239685,
+          0.7349996566772461
+        ]
+      },
+      "preview": {
+        "file": "docs/hexen2/textures/batch-008-pre-tier-semantic-diagnostics/rtex306-master-semantic.png",
+        "sha256": "ba250701a18edee5c615a7048222c0ffc579b2562cc5e40373b2124901aec44b",
+        "bytes": 1054758
+      },
+      "samples": {
+        "CNW": {
+          "nativeEdgeCoordinates": [
+            22,
+            22
+          ],
+          "masterPixel": [
+            176,
+            176
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.27383384108543396,
+          "median": 0.2731511890888214,
+          "minimum": 0.2710973918437958,
+          "maximum": 0.2797256112098694
+        },
+        "CNE": {
+          "nativeEdgeCoordinates": [
+            42,
+            22
+          ],
+          "masterPixel": [
+            336,
+            176
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.2858593463897705,
+          "median": 0.2851390242576599,
+          "minimum": 0.2790255844593048,
+          "maximum": 0.2961035668849945
+        },
+        "CSW": {
+          "nativeEdgeCoordinates": [
+            22,
+            42
+          ],
+          "masterPixel": [
+            176,
+            336
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.297689288854599,
+          "median": 0.2978709638118744,
+          "minimum": 0.2762448787689209,
+          "maximum": 0.32082080841064453
+        },
+        "CSE": {
+          "nativeEdgeCoordinates": [
+            42,
+            42
+          ],
+          "masterPixel": [
+            336,
+            336
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.30303534865379333,
+          "median": 0.3013109266757965,
+          "minimum": 0.28249242901802063,
+          "maximum": 0.3282569348812103
+        },
+        "FN": {
+          "nativeEdgeCoordinates": [
+            32,
+            13
+          ],
+          "masterPixel": [
+            256,
+            104
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.7192425727844238,
+          "median": 0.7230691313743591,
+          "minimum": 0.7004740238189697,
+          "maximum": 0.7306861877441406
+        },
+        "FE": {
+          "nativeEdgeCoordinates": [
+            51,
+            32
+          ],
+          "masterPixel": [
+            408,
+            256
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.6986237168312073,
+          "median": 0.6983222961425781,
+          "minimum": 0.6931726932525635,
+          "maximum": 0.7054056525230408
+        },
+        "FS": {
+          "nativeEdgeCoordinates": [
+            32,
+            51
+          ],
+          "masterPixel": [
+            256,
+            408
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.700239896774292,
+          "median": 0.7012515068054199,
+          "minimum": 0.6879300475120544,
+          "maximum": 0.707629919052124
+        },
+        "FW": {
+          "nativeEdgeCoordinates": [
+            13,
+            32
+          ],
+          "masterPixel": [
+            104,
+            256
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.7279609441757202,
+          "median": 0.7279924154281616,
+          "minimum": 0.722527265548706,
+          "maximum": 0.7320860028266907
+        }
+      }
+    },
+    "rtex006": {
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex006/master.json",
+        "sha256": "d2173994ac0d268af0a5cb16c77a0b7995142460120557d742467b29af2734d0",
+        "bytes": 4215
+      },
+      "checks": {
+        "independentOrdinaryCraftFloat32Exact": true
+      },
+      "preview": {
+        "file": "docs/hexen2/textures/batch-008-pre-tier-semantic-diagnostics/rtex006-master-semantic.png",
+        "sha256": "5ee1711c917d3949d6c3707615fe01cb8e8056217adbe720f9870d4d66d8bacb",
+        "bytes": 1614165
+      },
+      "samples": {
+        "VJ": {
+          "nativeEdgeCoordinates": [
+            30,
+            15
+          ],
+          "masterPixel": [
+            240,
+            120
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.09277308732271194,
+          "median": 0.08360769599676132,
+          "minimum": 0.060563620179891586,
+          "maximum": 0.20964589715003967
+        },
+        "VFL": {
+          "nativeEdgeCoordinates": [
+            27,
+            15
+          ],
+          "masterPixel": [
+            216,
+            120
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.522437572479248,
+          "median": 0.5258216261863708,
+          "minimum": 0.1366991400718689,
+          "maximum": 0.8885312080383301
+        },
+        "VFR": {
+          "nativeEdgeCoordinates": [
+            33,
+            15
+          ],
+          "masterPixel": [
+            264,
+            120
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.5869597792625427,
+          "median": 0.6037895083427429,
+          "minimum": 0.23019826412200928,
+          "maximum": 0.7690601348876953
+        },
+        "HJW": {
+          "nativeEdgeCoordinates": [
+            15,
+            32.5
+          ],
+          "masterPixel": [
+            120,
+            260
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.14162300527095795,
+          "median": 0.1197621151804924,
+          "minimum": 0.05015990138053894,
+          "maximum": 0.33416301012039185
+        },
+        "HFWU": {
+          "nativeEdgeCoordinates": [
+            15,
+            29
+          ],
+          "masterPixel": [
+            120,
+            232
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.41645756363868713,
+          "median": 0.3779256045818329,
+          "minimum": 0.05104826018214226,
+          "maximum": 0.8430221676826477
+        },
+        "HFWL": {
+          "nativeEdgeCoordinates": [
+            15,
+            36
+          ],
+          "masterPixel": [
+            120,
+            288
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.9167821407318115,
+          "median": 0.9366593360900879,
+          "minimum": 0.7588807940483093,
+          "maximum": 0.9770962595939636
+        },
+        "HJE": {
+          "nativeEdgeCoordinates": [
+            46,
+            32.5
+          ],
+          "masterPixel": [
+            368,
+            260
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.00892757810652256,
+          "median": 0.007365192752331495,
+          "minimum": 0.0025572502054274082,
+          "maximum": 0.016249390318989754
+        },
+        "HFEU": {
+          "nativeEdgeCoordinates": [
+            46,
+            29
+          ],
+          "masterPixel": [
+            368,
+            232
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.28008320927619934,
+          "median": 0.22437158226966858,
+          "minimum": 0.07597433775663376,
+          "maximum": 0.6999783515930176
+        },
+        "HFEL": {
+          "nativeEdgeCoordinates": [
+            46,
+            36
+          ],
+          "masterPixel": [
+            368,
+            288
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.07969097048044205,
+          "median": 0.07129199057817459,
+          "minimum": 0.031736213713884354,
+          "maximum": 0.14271771907806396
+        }
+      }
+    }
+  },
+  "earlierVerifierFailureCustody": [
+    {
+      "original": {
+        "file": "/private/tmp/quaked-rtex306-source-master-verifier-failed-attempt1.py",
+        "sha256": "036bbd40140f4f6318484020137b6af28ad3c00de07dba5f9d1da4d3b8b253f9",
+        "bytes": 14136
+      },
+      "retained": {
+        "file": "docs/hexen2/textures/batch-008-source-master-diagnostics/quaked-rtex306-source-master-verifier-failed-attempt1.py",
+        "sha256": "036bbd40140f4f6318484020137b6af28ad3c00de07dba5f9d1da4d3b8b253f9",
+        "bytes": 14136
+      },
+      "byteIdentical": true
+    },
+    {
+      "original": {
+        "file": "/private/tmp/quaked-rtex306-source-master-verification-attempt1.json",
+        "sha256": "b6fae3ac5ca4b2a8ec41246a03a678bad8bd9b2d1a8cd6e01eaa27e0502f233f",
+        "bytes": 560
+      },
+      "retained": {
+        "file": "docs/hexen2/textures/batch-008-source-master-diagnostics/quaked-rtex306-source-master-verification-attempt1.json",
+        "sha256": "b6fae3ac5ca4b2a8ec41246a03a678bad8bd9b2d1a8cd6e01eaa27e0502f233f",
+        "bytes": 560
+      },
+      "byteIdentical": true
+    },
+    {
+      "original": {
+        "file": "/private/tmp/quaked-rtex306-source-master-verification-attempt2.json",
+        "sha256": "7d91fcbc9a05a26e8482906a151285826309139a4e85902f83118ca935880aad",
+        "bytes": 789
+      },
+      "retained": {
+        "file": "docs/hexen2/textures/batch-008-source-master-diagnostics/quaked-rtex306-source-master-verification-attempt2.json",
+        "sha256": "7d91fcbc9a05a26e8482906a151285826309139a4e85902f83118ca935880aad",
+        "bytes": 789
+      },
+      "byteIdentical": true
+    }
+  ],
+  "probe": {
+    "file": "docs/hexen2/textures/batch-008-pre-tier-semantic-probe.py",
+    "sha256": "5ffc7a834bdf5edf9ce4f85ff0bafc9321eea7c4747523c0d3e22bf8bfac64b0",
+    "bytes": 8536
+  },
+  "inputsStable": true,
+  "inputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters-layered/rtex306/master.json",
+      "sha256": "b76ca4cf54f668e22c9620eecc9fbd233e704514da6a61eea667e95e9d64237d",
+      "bytes": 7776
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters-layered/rtex306/color.png",
+      "sha256": "6a0358355f74a77fef04a6996b494689272a87e2f677577e5b5a91fdbec8ab87",
+      "bytes": 559003
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters-layered/rtex306/height.npy",
+      "sha256": "8e690e8189c58dbdecc1fef664db7ebff5a034b88196837e073efa3ddf86bb0b",
+      "bytes": 1048704
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/04-rtex306-c690e6f19072.png",
+      "sha256": "9006db56beaa6350e08be2e04539d4b85fc7ad3326f67409be674d6160f66549",
+      "bytes": 2778
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex306.png",
+      "sha256": "18eb31fc8a471cf6c909e3351468cfd1d3c48a309e53f3324b3c8f74eea70639",
+      "bytes": 3618734
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex306-material-v2.txt",
+      "sha256": "308e4ad1838a47f07382c3cb03698c1cbd5f21cecaf5478a0f593c065512a168",
+      "bytes": 2307
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/rtex306-inset.json",
+      "sha256": "be827093fb1ff9b62dcac35b9d5b701eff55d81d8b1ea4b99ff9b406769b555c",
+      "bytes": 1641
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "bytes": 7692
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "bytes": 13322
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d",
+      "bytes": 13904
+    },
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5",
+      "bytes": 7863
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex306/color.png",
+      "sha256": "6a0358355f74a77fef04a6996b494689272a87e2f677577e5b5a91fdbec8ab87",
+      "bytes": 559003
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex306/master.json",
+      "sha256": "b356e2739de896328278b3fffd65a4731ceb3fe12fca02f1bef429dcf6392a53",
+      "bytes": 4222
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-rtex306-source-master-public-proof.json",
+      "sha256": "d0987359d7647da63e8785b7e07957cf80aaa9c129ddcdd1ac591b9f8fd03ed0",
+      "bytes": 11030
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex306/height.npy",
+      "sha256": "910072c682e930478408d35d1b4a28976a9c2ab8a7e5ce0bf3b54bad2a6c17e3",
+      "bytes": 1048704
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-pre-tier-semantic-diagnostics/rtex306-master-semantic.png",
+      "sha256": "ba250701a18edee5c615a7048222c0ffc579b2562cc5e40373b2124901aec44b",
+      "bytes": 1054758
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex006/master.json",
+      "sha256": "d2173994ac0d268af0a5cb16c77a0b7995142460120557d742467b29af2734d0",
+      "bytes": 4215
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex006/color.png",
+      "sha256": "fc864b69e6b98c71a248d2cdaeabf010e0e52b260bcf9a6ecb11ee61ca9ee594",
+      "bytes": 610812
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex006/height.npy",
+      "sha256": "7fc18f11adaa08f06617d9cdcfca91cbbb0ccd307c85d6e16792fc3ffa41b078",
+      "bytes": 1048704
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/01-rtex006-ed0ea21baafa.png",
+      "sha256": "71e45a9f7dee9464abb728eea45e4f4376f6443fa7ab244a9cd01f9734f43fd0",
+      "bytes": 2843
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex006.png",
+      "sha256": "23c91c2d4b7412d3ff761d06f3ca78f0448b75b7f8a50b715758ab5d1788685c",
+      "bytes": 4092768
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex006.txt",
+      "sha256": "2d8f75094889557867ba80473ed83a4dae1aa9e8a7a6c96d715d32c8c334060d",
+      "bytes": 2172
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-pre-tier-semantic-diagnostics/rtex006-master-semantic.png",
+      "sha256": "5ee1711c917d3949d6c3707615fe01cb8e8056217adbe720f9870d4d66d8bacb",
+      "bytes": 1614165
+    },
+    {
+      "file": "/private/tmp/quaked-rtex306-source-master-verifier-failed-attempt1.py",
+      "sha256": "036bbd40140f4f6318484020137b6af28ad3c00de07dba5f9d1da4d3b8b253f9",
+      "bytes": 14136
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-source-master-diagnostics/quaked-rtex306-source-master-verifier-failed-attempt1.py",
+      "sha256": "036bbd40140f4f6318484020137b6af28ad3c00de07dba5f9d1da4d3b8b253f9",
+      "bytes": 14136
+    },
+    {
+      "file": "/private/tmp/quaked-rtex306-source-master-verification-attempt1.json",
+      "sha256": "b6fae3ac5ca4b2a8ec41246a03a678bad8bd9b2d1a8cd6e01eaa27e0502f233f",
+      "bytes": 560
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-source-master-diagnostics/quaked-rtex306-source-master-verification-attempt1.json",
+      "sha256": "b6fae3ac5ca4b2a8ec41246a03a678bad8bd9b2d1a8cd6e01eaa27e0502f233f",
+      "bytes": 560
+    },
+    {
+      "file": "/private/tmp/quaked-rtex306-source-master-verification-attempt2.json",
+      "sha256": "7d91fcbc9a05a26e8482906a151285826309139a4e85902f83118ca935880aad",
+      "bytes": 789
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-source-master-diagnostics/quaked-rtex306-source-master-verification-attempt2.json",
+      "sha256": "7d91fcbc9a05a26e8482906a151285826309139a4e85902f83118ca935880aad",
+      "bytes": 789
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-pre-tier-semantic-probe.py",
+      "sha256": "5ffc7a834bdf5edf9ce4f85ff0bafc9321eea7c4747523c0d3e22bf8bfac64b0",
+      "bytes": 8536
+    }
+  ]
+}

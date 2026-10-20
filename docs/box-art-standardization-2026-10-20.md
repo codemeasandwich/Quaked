@@ -1,0 +1,33 @@
+# Box-art standardization — 20 October 2026
+
+## Authority, ownership and plan
+
+Owner chat `01a15863-6cd3-7402-9d4a-a000ace9c510` authorizes moving newly supplied game artwork into the project, splitting combined back/spine/front wraps, standardizing all shipped face dimensions and fitting artwork to the existing 3D boxes. The owner explicitly permits deterministic crops/resizing and AI only where needed for extension or repair. This extends the 19 October import beyond byte-preserving relocation; original source files remain preserved unchanged.
+
+Execution owner: this chat, `/Users/bri/SOURCE/Quaked`, branch `Dev`. Foreign Hexen texture work is present and excluded. No Prod release is authorized. Existing per-face local overrides and game playability boundaries remain unchanged.
+
+Independent planning by `art_plan_review` traced `GAME_BOXES` → `GameShelf_Box` → face backgrounds → `build`/`aspectOf`: front aspect defaults to .82, depth is .17 times height. Adopt **1640×2000 front/back** and **340×2000 spine**, canonical `front.webp`, `back.webp`, `spine.webp`, retaining complete panel content without stretching letters. Separate supplied faces take priority over matching wraps. Record inspected crop rectangles and any padding. Preserve original runtime images and new local source bytes in authoring, deduplicated by hash. Quake's held launch poster and unrelated root concept images remain untouched.
+
+Sequence:
+
+1. Inventory, identify and visually inspect all scoped images and existing spines. Bind paths, source hashes, dimensions, crops and destinations in a derivation record.
+2. Archive originals first, then deterministically crop/fill/resize normalized runtime faces. Use AI only if source composition cannot fit without damage. Do not invent a missing face or promote a poster/screenshot to a cover.
+3. Update existing shelf defaults and current manifest. Keep historical evidence immutable, with explicit archive resolution for original paths superseded by derivatives. Reuse discovered-title IDs; artwork never confers engine compatibility.
+4. Independent public-interface verification checks all decoded dimensions, roles, source custody, runtime manifest equality, packaging inclusion/authoring exclusion, overrides, fallbacks and actual shelf turnover at two viewport sizes. Inspect every normalized panel for boundary/text damage.
+5. Independent review, scoped maintained checks and normal delivery gates precede qualified delivery. Source cleanup requires unchanged original and destination hashes plus pushed retention, as in the prior campaign; preserve every game folder and non-image file.
+
+## Coordination and current state
+
+Bluey `agent_whoami` failed with `storage_error`, correlation `c2e509e8f51e4843b1b57c89684ac916`, mutation outcome unknown, automatic retry false. No registration/card mutation is claimed. This ledger retains the obligation, owner, evidence and next action; reconcile to the existing card when storage returns.
+
+Implementation now provides 53 canonical lossless WebP faces across 18 titles, with all supplied old/new originals retained. Seven new wraps are split; X-Men uses matching supplied separate panels and retains its full wrap. Quaked’s retained back/spine composite is split. Malice/Quoth use AI composition repairs with original and generated canvases retained; a caught Malice 23RD→3RD transcription failure is retained and corrected. Independent exact-dimension/custody/package checks and initial browser trial pass; final corrected-art review, native gate, publication and external move cleanup remain. Next: finish independent review and exact-candidate delivery verification. Owner visual acceptance, Dev delivery, filesystem cleanup and Prod release are distinct gates.
+
+## Independent verification and preserved failures
+
+Final independent checks: 53 runtime faces decoded at exact dimensions, 48 retained source images hash-verified, six exhaustive public contracts passed, maintained box contracts passed 3/3 and shelf checks passed 13/13. The real shelf was exercised front/back/spine for all 18 titles at 1440×1000 and 390×844, including actual Turn Over. The corrected Malice received a further six-view trial and all current default images were decoded again; partial overrides, corrupt override fallback, missing Hexen II back and the real desktop adapter with labelled synthetic filesystem endpoints passed. No browser page, console or HTTP errors remained. See [verification details](evidence/box-art-standardization-2026-10-20/VERIFICATION.md), [independent source review](evidence/box-art-standardization-2026-10-20/independent-review.md) and [visual review](evidence/box-art-standardization-2026-10-20/independent-visual-review.json). These are browser/public-code proofs, not installed native transport or gameplay acceptance.
+
+Retained failures include first harness sort/prompt-shape errors, initial sandbox loopback denial, rejected Malice 3RD text, and a native test attempt that stopped before assertions because the ordinary generated `dist/desktop-assets` prerequisite was absent. The normal exact-index gate prepares real desktop resources and runs the native tests before the universal app build; no dummy directory, skip or weakened check is allowed.
+
+Before that gate, the existing staged output (tree `37484fed55e60832e1b743418ee79c38498d0822`, 2.3 GB) and current native app were cloned into `dist/art-prior-37484fed`; recursive comparison verifies preservation before the gate can replace its normal output. No foreign Hexen authoring files are staged. Post-commit native build/package, publication and exact 15-file source-move receipts belong in `dist/art-standardization-<candidate-prefix>/`; the normal gate's staged receipt binds its source tree. `tools/box_art/finish-move.mjs` defaults to read-only and requires candidate retention on `origin/Dev`, exact recipe/archive/Git/source hashes and canonical regular-file identity before any exact unlink. It preserves all directories, game files, held Quake poster and newly changed/unplanned images. Its single-operator atomic receipts retain completed paths; an interruption between unlink and receipt persistence stops for explicit reconciliation rather than asserting an unacknowledged removal.
+
+Current owner/next action: this chat completes the normal gate and publishes the exact candidate, then verifies pushed source retention and moves the 15 unchanged local source images. Owner subsequently tries the retained native app and accepts appearance. No Prod release follows from this work.

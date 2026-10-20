@@ -1,0 +1,306 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-19T08:43:09.096795+00:00",
+  "verdict": "PASS five unissued concrete-material prompts and mandatory relief-gate plan; generated-art acceptance pending",
+  "scope": "Only five material-v2 prompts; used006/104/096 requests and raw outputs are not changed or reattributed.",
+  "consequentialRequiredPromptCorrections": [],
+  "materialPlan": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/material-plan-v2.json",
+    "sha256": "3d607f9ba4d4e05c3c76d5cd7e47a08f32956b82f146f6f9e7e7f17ce7b64530"
+  },
+  "sourceProof": {
+    "file": "docs/hexen2/textures/batch-008-public-source-proof.json",
+    "sha256": "eac871ece0eb18fa0472fc7e72604fc154e5b810593fcb4b123c3781ff68f27f"
+  },
+  "materials": [
+    {
+      "id": "c690e6f1907297bdf1d164689621c07b8f70837282afe898c2eed1e013713482",
+      "name": "rtex306",
+      "edition": "base",
+      "verdict": "PASS source-faithful concrete material plan",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/04-rtex306-c690e6f19072.png",
+        "sha256": "9006db56beaa6350e08be2e04539d4b85fc7ad3326f67409be674d6160f66549"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex306-material-v2.txt",
+        "sha256": "308e4ad1838a47f07382c3cb03698c1cbd5f21cecaf5478a0f593c065512a168"
+      },
+      "materialInterpretation": "Weathered dark sandstone architectural frame surrounding a recessed grey-green slate panel.",
+      "interpretationNotHistoricalFact": true,
+      "basis": "Weathered dark sandstone frame with slightly recessed grey-green slate centre is a plausible physical interpretation of the native dark nested panel. Fine chisel/fracture cues and coherent slate lamination make the finish concrete without new joints or ornaments. Exact frame widths/offsets/centre shape and no new outerbevel are explicit.",
+      "requiredGate": "Classify actual centre/frame witnesses before tiers: centre below frame, not a deep hole/protrudingjewel. Fine lamination/chisel wear must remain subordinate; no broad new stripes or fracture motifs.",
+      "minimumRetainedSourceDimensions": [
+        512,
+        512
+      ],
+      "generationCountAtSnapshot": 0
+    },
+    {
+      "id": "cddf441f348f0a3182edadeeeb9028ece70c2eadbef541955e7197f8213c9752",
+      "name": "ttex054",
+      "edition": "portals",
+      "verdict": "PASS source-faithful concrete material plan",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/05-ttex054-cddf441f348f.png",
+        "sha256": "cc7cbc5b106803b459a72454e08c047481f20396c549422dbc96d8202c1c6b57"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex054-material-v2.txt",
+        "sha256": "721d2df4207a5ffeca421eb70aaa7c8e2852421c457cf85a41c18b1255c6f392"
+      },
+      "materialInterpretation": "Aged lime-plaster wall with matte mineral pigments and painted red/ochre meander trim.",
+      "interpretationNotHistoricalFact": true,
+      "basis": "Aged matte lime plaster/mineral pigment is a concrete plausible wall interpretation. The greenupper/redlowerfields and angular meander remain painted marks. Xperiod, band heights, tiny motif spacing, corner intersections and distinct Yends are explicit; forcedYblend is forbidden.",
+      "requiredGate": "Before tiers verify plaster microrelief without embossing pigment/meander strokes. Defaultpainted profile is not semantic proof. Preserve original Yband identities; do not use a boundary blend to erase them.",
+      "minimumRetainedSourceDimensions": [
+        512,
+        1024
+      ],
+      "generationCountAtSnapshot": 0
+    },
+    {
+      "id": "84bb278bdd9451b619a5de58d58a32fa07e9ce0cdc40b785070f3324e79181d3",
+      "name": "ttex012",
+      "edition": "portals",
+      "verdict": "PASS source-faithful concrete material plan",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/06-ttex012-84bb278bdd94.png",
+        "sha256": "514f4fafbd079415017ab8b625b5053dac1a016b68d89d4db709094b178fa0d0"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex012-material-v2.txt",
+        "sha256": "411561dc33ec50c6252ac273fe1a33fa2a54e65f744c0a1b182165055bf071b6"
+      },
+      "materialInterpretation": "Dry dressed ochre sandstone masonry with recessed dark lime mortar.",
+      "interpretationNotHistoricalFact": true,
+      "basis": "Dry dressed ochre sandstone/dark recessed lime mortar coherently interprets the native warm coursed masonry. Exact course/offset/block/edge shapes and narrowjointnetwork retained; quiet faces/sparsepores counter uniformgrain.",
+      "requiredGate": "Confirm source course/edge continuity and jointcentres below faces before tiers. Dressedstone cues must not add smaller bricks, larger chips or wider bevels.",
+      "minimumRetainedSourceDimensions": [
+        512,
+        512
+      ],
+      "generationCountAtSnapshot": 0
+    },
+    {
+      "id": "4bf05bb0cae8053cb2260e2bded0385706d3d9be305b3761f6c9986fb66c758d",
+      "name": "rpal317",
+      "edition": "portals",
+      "verdict": "PASS source-faithful concrete material plan",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/07-rpal317-4bf05bb0cae8.png",
+        "sha256": "9e701188d3bc33902976e6b94eea4d2ebd7b03c9687dde79a0094b16307bf1bd"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rpal317-material-v2.txt",
+        "sha256": "0da7d23f35aaf2508aa22812719a4fa296710b909566044441b69ffd1a9b10db"
+      },
+      "materialInterpretation": "Very dark basalt with narrow weathered mineral fracture interfaces.",
+      "interpretationNotHistoricalFact": true,
+      "basis": "Matte charcoal-blue basalt with restrained smoky fracture interfaces is a plausible explicit interpretation, recorded as uncertain historical geology. Broad darkmasses and narrow network scale are preserved; brightveins/openfissures/newpebbles are forbidden.",
+      "requiredGate": "Reject an actual source that still reads as indeterminate granularnoise despite the basalt label. Fine facets/pores must make coherent basalt surfaces without changing networkwidth or darkpalette.",
+      "minimumRetainedSourceDimensions": [
+        512,
+        512
+      ],
+      "generationCountAtSnapshot": 0
+    },
+    {
+      "id": "b0d888d2faaedfc77346980aefcce52f620cabf34f80365bbbd17fd7835e10c6",
+      "name": "ttex153",
+      "edition": "portals",
+      "verdict": "PASS source-faithful concrete material plan",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/08-ttex153-b0d888d2faae.png",
+        "sha256": "107b63272f5d20d7a16a65224886ac28519b2e2d11afc54264a7bff3b4fb32e4"
+      },
+      "prompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex153-material-v2.txt",
+        "sha256": "cd0e24bdce7296f1f7764d4ebaa16b5667e60a24f786d2cc30e6c26b38c59e93"
+      },
+      "materialInterpretation": "Weathered pale sandy limestone blocks with pale recessed lime mortar.",
+      "interpretationNotHistoricalFact": true,
+      "basis": "Weathered pale sandy limestone/pale recessed lime mortar preserves mixedblocks, offsets, clippededges, palejointcolour and fine darkjointcentres. Concrete limestone cues are restrained; no raisedcaulking or palette-darkening shortcut.",
+      "requiredGate": "Independently classify real stonefaces vs palejointcentres before tiers. BrightRGB does not establish height. If tonalheight fails, source/master-only proof and reviewed semantic correction precede encoding; no copied foreignmask/depthvalues.",
+      "minimumRetainedSourceDimensions": [
+        512,
+        512
+      ],
+      "generationCountAtSnapshot": 0
+    }
+  ],
+  "realMaterialGate": "Actual raw must visibly read as its selected sandstone/slate, limeplaster, sandstone, basalt or limestone without relying on a label. Pixel count, sharpness, similarity scores and the wordphotographic are insufficient; noisy/abstract/syntheticgrain remainsHOLD before master/tier work.",
+  "preTierReliefGates": {
+    "rtex306": "Independently classify actual inset/frame witnesses and inspect opposed lights before either tier. Preserve intended shallowrecess and no extra geometry.",
+    "ttex054": "Before either tier, check plaster surface relief independently of paintedmeander/colourband brightness. Paint is pigment, not carved/embossed ornament. If tonalcraft introduces emboss, keepHOLD until a source-specific reviewed physical-relief plan is qualified; no automatic repair prescribed by this prompt review.",
+    "ttex153": "Independent stoneface/palejointcentre sampling before either tier. If tonalheight fails, qualify actual source/master-only proof with nativeIdentity/name/edition/exactMPpathSHA; then use a reviewed source-specific semantic recipe without RGB palette change or guard weakening."
+  },
+  "sharedSourceTierContract": "One retained adequate>=8x/aspect source and oneactive RGB/fullprecision scalar master; unchangedLow, defaultMid4x/High8x directfromsame master, allenhancedmaps lossyWebP92method6. Matchingnormals from uncompressedscalar; no separatelygeneratedtiers or model-authorednormalmaps.",
+  "edgeAndFidelityGates": "Both native and decodedreplacement use sameBOX atnativehalf/quarter; actual1:1/decodedtiers/repeats/corners/opposedlights remain mandatory. Preserve shapes/feature scale and nativeedge relationships; no extraedgebricks/perimeterbevels/uniformnoise/sharpening.",
+  "usedThreePreservationObservation": [
+    {
+      "name": "rtex006",
+      "promptFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex006.txt",
+      "promptSha256": "2d8f75094889557867ba80473ed83a4dae1aa9e8a7a6c96d715d32c8c334060d",
+      "retainedRawFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex006.png",
+      "retainedRawSha256": "23c91c2d4b7412d3ff761d06f3ca78f0448b75b7f8a50b715758ab5d1788685c",
+      "generationCount": 1,
+      "scope": "Preservation observation only; no material/art acceptance or relabel/reissue authorized."
+    },
+    {
+      "name": "rtex104",
+      "promptFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex104.txt",
+      "promptSha256": "20e1f37dce19b6d8f4d3e7332edf49fb5b0f2f425162bb07635ab1c7350c0539",
+      "retainedRawFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex104.png",
+      "retainedRawSha256": "59f6a9fb6b16b396caef60f30fd694801700ce5be947d6d1a6951fdc5a6733a9",
+      "generationCount": 1,
+      "scope": "Preservation observation only; no material/art acceptance or relabel/reissue authorized."
+    },
+    {
+      "name": "rtex096",
+      "promptFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex096.txt",
+      "promptSha256": "e06996897d3e94c7a037db4897444d243d941828444fa9643a3dc74a75f9a459",
+      "retainedRawFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex096.png",
+      "retainedRawSha256": "ebc87afb58a812ffa3e58cc60bbe086273c5e3c4a89170808a999859262189b8",
+      "generationCount": 1,
+      "scope": "Preservation observation only; no material/art acceptance or relabel/reissue authorized."
+    }
+  ],
+  "journalObservation": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/selection.json",
+    "sha256AtReview": "824b7cbc69febbe66d08577ea1ae77fe74954cafc9abc96e6321646f3117a8c0",
+    "mutableAfterReview": true,
+    "immutableSnapshotEncoding": "Exact UTF8 bytes embedded in this immutable review receipt; later journalissue/retain updates are expected, not a permanent-currenthash claim.",
+    "exactUtf8Snapshot": "{\n  \"schemaVersion\": 1,\n  \"batch\": \"008\",\n  \"createdAt\": \"2026-10-19T07:42:47.034552+00:00\",\n  \"scope\": \"Eight source-proved native materials with draft exact prompts. Independent final prompt/relief-plan review required before generation; no source issued.\",\n  \"items\": [\n    {\n      \"id\": \"ed0ea21baafa9262cb44311e6a1fe0663863fe66c361993b465c79ac472b3c42\",\n      \"name\": \"rtex006\",\n      \"edition\": \"base\",\n      \"nativeDimensions\": [\n        64,\n        64\n      ],\n      \"profileFaceReferences\": 5695,\n      \"state\": \"Native selected and source-proved; no generation issued.\",\n      \"original\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/01-rtex006-ed0ea21baafa.png\",\n      \"originalSha256\": \"71e45a9f7dee9464abb728eea45e4f4376f6443fa7ab244a9cd01f9734f43fd0\",\n      \"rgbaSha256\": \"8a487f9d64310d2504d7296fbd1b8516a250e080f776edcf55fb51d6f96c7f17\",\n      \"indexedPixelSha256\": \"d2c3179c904afdf75c2e48669b18f0167abf436eaf095aae936c92e6cccec81d\",\n      \"paletteSha256\": \"a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8\",\n      \"generationCount\": 1,\n      \"prompt\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex006.txt\",\n      \"promptSha256\": \"2d8f75094889557867ba80473ed83a4dae1aa9e8a7a6c96d715d32c8c334060d\",\n      \"profile\": \"stone\",\n      \"colorStrength\": 0.65,\n      \"fieldSigma\": 0.75,\n      \"generationState\": \"generated-retained\",\n      \"generationIssuedAt\": \"2026-10-19T07:49:37.312865+00:00\",\n      \"generated\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex006.png\",\n      \"generatedSha256\": \"23c91c2d4b7412d3ff761d06f3ca78f0448b75b7f8a50b715758ab5d1788685c\",\n      \"generatedDimensions\": [\n        1254,\n        1254\n      ],\n      \"generatedAt\": \"2026-10-19T07:51:35.255920+00:00\",\n      \"builtInOutput\": \"/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-c9cefeab-3e99-4dbf-9639-b172899fbdc6.png\"\n    },\n    {\n      \"id\": \"9751c9aa37327aefd4515ebf40db4f20412d392a042efa17ee69444b34b0eecc\",\n      \"name\": \"rtex104\",\n      \"edition\": \"base\",\n      \"nativeDimensions\": [\n        64,\n        64\n      ],\n      \"profileFaceReferences\": 5333,\n      \"state\": \"Native selected and source-proved; no generation issued.\",\n      \"original\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/02-rtex104-9751c9aa3732.png\",\n      \"originalSha256\": \"3616d9379c9ded813aaf5b82032b5114469f53abed89d234f35a0e3c884349b0\",\n      \"rgbaSha256\": \"493522e86b13393cd9cade770cb20715e12bd1d8f34430bfcb377f0e59cd8fc6\",\n      \"indexedPixelSha256\": \"0953c90581560ea2fb5128d5b4bbec55d5795524896912052b64508601443d27\",\n      \"paletteSha256\": \"a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8\",\n      \"generationCount\": 1,\n      \"prompt\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex104.txt\",\n      \"promptSha256\": \"20e1f37dce19b6d8f4d3e7332edf49fb5b0f2f425162bb07635ab1c7350c0539\",\n      \"profile\": \"wood\",\n      \"colorStrength\": 0.65,\n      \"fieldSigma\": 0.75,\n      \"generationState\": \"generated-retained\",\n      \"materialInterpretation\": \"Uncertain historical material; wood profile is frequency weighting, not a material identification.\",\n      \"generationIssuedAt\": \"2026-10-19T07:51:38.222177+00:00\",\n      \"generated\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex104.png\",\n      \"generatedSha256\": \"59f6a9fb6b16b396caef60f30fd694801700ce5be947d6d1a6951fdc5a6733a9\",\n      \"generatedDimensions\": [\n        1254,\n        1254\n      ],\n      \"generatedAt\": \"2026-10-19T07:55:22.006527+00:00\",\n      \"builtInOutput\": \"/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-6085cc56-a6c2-4435-b32c-b82f40b3433a.png\"\n    },\n    {\n      \"id\": \"7d397606c1724f4949baba30d8e25d096c6aa7455af1699f833881ffbc4556b1\",\n      \"name\": \"rtex096\",\n      \"edition\": \"base\",\n      \"nativeDimensions\": [\n        64,\n        64\n      ],\n      \"profileFaceReferences\": 5191,\n      \"state\": \"Native selected and source-proved; no generation issued.\",\n      \"original\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/03-rtex096-7d397606c172.png\",\n      \"originalSha256\": \"3a383b3de48bbb57af4ddce8e3f4b83a842a62a687da5934985c840f8b5e7dcf\",\n      \"rgbaSha256\": \"c0333f98021faf407e41d13bbed6939f7ab3fa36c85520c70fd8a26c00a5b29c\",\n      \"indexedPixelSha256\": \"c2fc5a890c20b744c7fa45dbced2373b05cbe5fa959073de946cdecb9542164f\",\n      \"paletteSha256\": \"a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8\",\n      \"generationCount\": 1,\n      \"prompt\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex096.txt\",\n      \"promptSha256\": \"e06996897d3e94c7a037db4897444d243d941828444fa9643a3dc74a75f9a459\",\n      \"profile\": \"painted\",\n      \"colorStrength\": 0.65,\n      \"fieldSigma\": 0.75,\n      \"generationState\": \"generated-retained\",\n      \"generationIssuedAt\": \"2026-10-19T07:55:24.536964+00:00\",\n      \"generated\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex096.png\",\n      \"generatedSha256\": \"ebc87afb58a812ffa3e58cc60bbe086273c5e3c4a89170808a999859262189b8\",\n      \"generatedDimensions\": [\n        1254,\n        1254\n      ],\n      \"generatedAt\": \"2026-10-19T08:01:53.805712+00:00\",\n      \"builtInOutput\": \"/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-6cab4f3b-d28a-4fde-9347-8091c7ac633a.png\"\n    },\n    {\n      \"id\": \"c690e6f1907297bdf1d164689621c07b8f70837282afe898c2eed1e013713482\",\n      \"name\": \"rtex306\",\n      \"edition\": \"base\",\n      \"nativeDimensions\": [\n        64,\n        64\n      ],\n      \"profileFaceReferences\": 4980,\n      \"state\": \"Native selected and source-proved; no generation issued.\",\n      \"original\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/04-rtex306-c690e6f19072.png\",\n      \"originalSha256\": \"9006db56beaa6350e08be2e04539d4b85fc7ad3326f67409be674d6160f66549\",\n      \"rgbaSha256\": \"65f54a78400319ac049206b82e30fbf8c624ca32083115d24ea87a0b64bc0fe5\",\n      \"indexedPixelSha256\": \"48b787326e2905a035201f157ca18339d18e113e26f0f395780eae770370e9a4\",\n      \"paletteSha256\": \"a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8\",\n      \"generationCount\": 0,\n      \"prompt\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex306-material-v2.txt\",\n      \"promptSha256\": \"308e4ad1838a47f07382c3cb03698c1cbd5f21cecaf5478a0f593c065512a168\",\n      \"profile\": \"carch\",\n      \"colorStrength\": 0.65,\n      \"fieldSigma\": 0.75,\n      \"generationState\": \"not-issued\",\n      \"priorPrompt\": {\n        \"file\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex306.txt\",\n        \"sha256\": \"e1c337f8140556870cfb9c2cfc4c634f74b37479ab82b0b565e3d63262bb18f0\",\n        \"reason\": \"Unissued prompt versioned after concrete material readability clarification.\"\n      },\n      \"materialInterpretation\": \"Weathered dark sandstone architectural frame surrounding a recessed grey-green slate panel.\"\n    },\n    {\n      \"id\": \"cddf441f348f0a3182edadeeeb9028ece70c2eadbef541955e7197f8213c9752\",\n      \"name\": \"ttex054\",\n      \"edition\": \"portals\",\n      \"nativeDimensions\": [\n        64,\n        128\n      ],\n      \"profileFaceReferences\": 1502,\n      \"state\": \"Native selected and source-proved; no generation issued.\",\n      \"original\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/05-ttex054-cddf441f348f.png\",\n      \"originalSha256\": \"cc7cbc5b106803b459a72454e08c047481f20396c549422dbc96d8202c1c6b57\",\n      \"rgbaSha256\": \"699fb8c8853426cf4e1d318ebb181238b4f3f95ec69ebc2dbf8483c3838a49d6\",\n      \"indexedPixelSha256\": \"a50d38aba710a165c4afc9f317e50385d2dacc50f32220b43d42295325e5b767\",\n      \"paletteSha256\": \"a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8\",\n      \"generationCount\": 0,\n      \"prompt\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex054-material-v2.txt\",\n      \"promptSha256\": \"721d2df4207a5ffeca421eb70aaa7c8e2852421c457cf85a41c18b1255c6f392\",\n      \"profile\": \"painted\",\n      \"colorStrength\": 0.65,\n      \"fieldSigma\": 0.75,\n      \"generationState\": \"not-issued\",\n      \"priorPrompt\": {\n        \"file\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex054.txt\",\n        \"sha256\": \"fcb2bea1686cb8cafefdb09a17c55baa055b60e67c8cbcd1ecb8893ca3857cfb\",\n        \"reason\": \"Unissued prompt versioned after concrete material readability clarification.\"\n      },\n      \"materialInterpretation\": \"Aged lime-plaster wall with matte mineral pigments and painted red/ochre meander trim.\"\n    },\n    {\n      \"id\": \"84bb278bdd9451b619a5de58d58a32fa07e9ce0cdc40b785070f3324e79181d3\",\n      \"name\": \"ttex012\",\n      \"edition\": \"portals\",\n      \"nativeDimensions\": [\n        64,\n        64\n      ],\n      \"profileFaceReferences\": 1484,\n      \"state\": \"Native selected and source-proved; no generation issued.\",\n      \"original\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/06-ttex012-84bb278bdd94.png\",\n      \"originalSha256\": \"514f4fafbd079415017ab8b625b5053dac1a016b68d89d4db709094b178fa0d0\",\n      \"rgbaSha256\": \"94e12befffdfd570cc4a48121a99d6048cb10125a9bc010950ec11fdb859c8c0\",\n      \"indexedPixelSha256\": \"757e2b338a0defa5725d69d8f1f6452d5d1b329f3e83add5ab190162f40a69bf\",\n      \"paletteSha256\": \"a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8\",\n      \"generationCount\": 0,\n      \"prompt\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex012-material-v2.txt\",\n      \"promptSha256\": \"411561dc33ec50c6252ac273fe1a33fa2a54e65f744c0a1b182165055bf071b6\",\n      \"profile\": \"stone\",\n      \"colorStrength\": 0.65,\n      \"fieldSigma\": 0.75,\n      \"generationState\": \"not-issued\",\n      \"priorPrompt\": {\n        \"file\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex012.txt\",\n        \"sha256\": \"17a8376b4724541683f79b16f5ff3b6fe4a9dda68b2ab532fec31cbe510a8f37\",\n        \"reason\": \"Unissued prompt versioned after concrete material readability clarification.\"\n      },\n      \"materialInterpretation\": \"Dry dressed ochre sandstone masonry with recessed dark lime mortar.\"\n    },\n    {\n      \"id\": \"4bf05bb0cae8053cb2260e2bded0385706d3d9be305b3761f6c9986fb66c758d\",\n      \"name\": \"rpal317\",\n      \"edition\": \"portals\",\n      \"nativeDimensions\": [\n        64,\n        64\n      ],\n      \"profileFaceReferences\": 1470,\n      \"state\": \"Native selected and source-proved; no generation issued.\",\n      \"original\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/07-rpal317-4bf05bb0cae8.png\",\n      \"originalSha256\": \"9e701188d3bc33902976e6b94eea4d2ebd7b03c9687dde79a0094b16307bf1bd\",\n      \"rgbaSha256\": \"b686ece73207f03305566e185480a09db5848f2b61e273d67026d273b68f9fd9\",\n      \"indexedPixelSha256\": \"b143b922dd5dbf13df552c620c30508bbfcfed15b1ecb67bfed1896ade9b972c\",\n      \"paletteSha256\": \"a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8\",\n      \"generationCount\": 0,\n      \"prompt\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rpal317-material-v2.txt\",\n      \"promptSha256\": \"0da7d23f35aaf2508aa22812719a4fa296710b909566044441b69ffd1a9b10db\",\n      \"profile\": \"rock0_0\",\n      \"colorStrength\": 0.65,\n      \"fieldSigma\": 0.75,\n      \"generationState\": \"not-issued\",\n      \"priorPrompt\": {\n        \"file\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rpal317.txt\",\n        \"sha256\": \"c7da7c727b1415c419944b86251557fd70b41f792f1437fc2721a51385bec1de\",\n        \"reason\": \"Unissued prompt versioned after concrete material readability clarification.\"\n      },\n      \"materialInterpretation\": \"Very dark basalt with narrow weathered mineral fracture interfaces.\"\n    },\n    {\n      \"id\": \"b0d888d2faaedfc77346980aefcce52f620cabf34f80365bbbd17fd7835e10c6\",\n      \"name\": \"ttex153\",\n      \"edition\": \"portals\",\n      \"nativeDimensions\": [\n        64,\n        64\n      ],\n      \"profileFaceReferences\": 1392,\n      \"state\": \"Native selected and source-proved; no generation issued.\",\n      \"original\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/08-ttex153-b0d888d2faae.png\",\n      \"originalSha256\": \"107b63272f5d20d7a16a65224886ac28519b2e2d11afc54264a7bff3b4fb32e4\",\n      \"rgbaSha256\": \"aa585f66c1030b878c4215b07c74127e92c7960aa6e613757bb6ca8b5010b8e9\",\n      \"indexedPixelSha256\": \"ab852fbf41240b4bf879bd612bdae4931327206c25d9b4e731068f6f1112a418\",\n      \"paletteSha256\": \"a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8\",\n      \"generationCount\": 0,\n      \"prompt\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex153-material-v2.txt\",\n      \"promptSha256\": \"cd0e24bdce7296f1f7764d4ebaa16b5667e60a24f786d2cc30e6c26b38c59e93\",\n      \"profile\": \"stone\",\n      \"colorStrength\": 0.65,\n      \"fieldSigma\": 0.75,\n      \"generationState\": \"not-issued\",\n      \"reliefCheckBeforeTierDerivation\": \"Identify actual stone-face and pale-joint-centre witnesses after master preparation. Require intended recessed joint ordering before deriving either tier; if ordinary tonal craft fails, use reviewed semantic relief from the same source, never brightness-only acceptance.\",\n      \"priorPrompt\": {\n        \"file\": \"assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex153.txt\",\n        \"sha256\": \"e71f22e5ec0369b7c902592c9e70c3dac874fcce9acfe24abba94535c2ac39da\",\n        \"reason\": \"Unissued prompt versioned after concrete material readability clarification.\"\n      },\n      \"materialInterpretation\": \"Weathered pale sandy limestone blocks with pale recessed lime mortar.\"\n    }\n  ]\n}\n"
+  },
+  "immutableInputs": [
+    {
+      "file": "AGENTS.md",
+      "sha256": "d9d12ea00d3d41a0968d6fc33bd822ed986372aa7566c7db867b08a05bd673db",
+      "bytes": 1941
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/material-plan-v2.json",
+      "sha256": "3d607f9ba4d4e05c3c76d5cd7e47a08f32956b82f146f6f9e7e7f17ce7b64530",
+      "bytes": 4054
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/native-selection.json",
+      "sha256": "106b4d05c507a3c5a8545f7f62bc03096111701dd33eeada7ae253f11d1f7489",
+      "bytes": 7086
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/04-rtex306-c690e6f19072.png",
+      "sha256": "9006db56beaa6350e08be2e04539d4b85fc7ad3326f67409be674d6160f66549",
+      "bytes": 2778
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/05-ttex054-cddf441f348f.png",
+      "sha256": "cc7cbc5b106803b459a72454e08c047481f20396c549422dbc96d8202c1c6b57",
+      "bytes": 6883
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/06-ttex012-84bb278bdd94.png",
+      "sha256": "514f4fafbd079415017ab8b625b5053dac1a016b68d89d4db709094b178fa0d0",
+      "bytes": 2696
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/07-rpal317-4bf05bb0cae8.png",
+      "sha256": "9e701188d3bc33902976e6b94eea4d2ebd7b03c9687dde79a0094b16307bf1bd",
+      "bytes": 2850
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/08-ttex153-b0d888d2faae.png",
+      "sha256": "107b63272f5d20d7a16a65224886ac28519b2e2d11afc54264a7bff3b4fb32e4",
+      "bytes": 4401
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rpal317-material-v2.txt",
+      "sha256": "0da7d23f35aaf2508aa22812719a4fa296710b909566044441b69ffd1a9b10db",
+      "bytes": 2377
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex306-material-v2.txt",
+      "sha256": "308e4ad1838a47f07382c3cb03698c1cbd5f21cecaf5478a0f593c065512a168",
+      "bytes": 2307
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex012-material-v2.txt",
+      "sha256": "411561dc33ec50c6252ac273fe1a33fa2a54e65f744c0a1b182165055bf071b6",
+      "bytes": 2302
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex054-material-v2.txt",
+      "sha256": "721d2df4207a5ffeca421eb70aaa7c8e2852421c457cf85a41c18b1255c6f392",
+      "bytes": 2536
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex153-material-v2.txt",
+      "sha256": "cd0e24bdce7296f1f7764d4ebaa16b5667e60a24f786d2cc30e6c26b38c59e93",
+      "bytes": 2328
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-plan-public-review.json",
+      "sha256": "fe4a343789b1857379bf68330c2de978c08b71235c02ee2dded2a6e940a0ed13",
+      "bytes": 21378
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-public-source-proof.json",
+      "sha256": "eac871ece0eb18fa0472fc7e72604fc154e5b810593fcb4b123c3781ff68f27f",
+      "bytes": 89263
+    },
+    {
+      "file": "docs/texture-tier-standard.md",
+      "sha256": "9bbe17838fcbe20f35bc7f73f9c1edde631446fcb7b0bfc9688efb46ac02f07e",
+      "bytes": 7548
+    },
+    {
+      "file": "skills/quaked-texture-authoring/SKILL.md",
+      "sha256": "0c96e783d5b56604edfc85fae82b36c98478f297ff49d3d3777402b8322f9bba",
+      "bytes": 6424
+    },
+    {
+      "file": "skills/quaked-texture-authoring/references/repairs-and-verification.md",
+      "sha256": "83987e8c6719e31617271b51a9469217a24216182ddb6e2db689b0cd63692a89",
+      "bytes": 10121
+    },
+    {
+      "file": "skills/quaked-texture-authoring/references/workflow.md",
+      "sha256": "a2ec6402968756a4b0ac63552f58ebd093a075d3563b22f609658a99a2e63382",
+      "bytes": 14780
+    },
+    {
+      "file": "/Users/bri/agent.md",
+      "sha256": "9358d551a4a97a83d8619fc845b7297d2b5b115e9776383ad1c3d3cbcfcf8228",
+      "bytes": 7244
+    }
+  ],
+  "inputsStableDuringReview": true,
+  "coordinationOwner": "Live root coordinator; no board/provider/release authority created by this review.",
+  "effects": "Only this review JSON written; no generation/master/tier/core/asset/recipe/Git edit or test/build execution.",
+  "limits": [
+    "Material choices are plausible artistic interpretations of native pixels, not established historical material facts.",
+    "No generated image, master relief, encodedmap, ART/runtime/owner/landing/release/campaigncompletion accepted here.",
+    "Existing sourceproof is reused; no repeated physical PAK/mip audit or newalias acceptance performed."
+  ]
+}

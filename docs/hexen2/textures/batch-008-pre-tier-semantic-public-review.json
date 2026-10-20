@@ -1,0 +1,447 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-19T09:04:20.711428+00:00",
+  "verdict": "PASS bounded independent pre-tier semantic gate for rtex306 layered successor and rtex006 ordinary master",
+  "scope": "Actual master material/height semantics, source-classified local witnesses, rtex306 mask alignment and independent composition, neutral opposed-light diagnostics. This permits continuing existing tier derivation within root authority; it is not final tier artwork acceptance.",
+  "materials": [
+    {
+      "name": "rtex306",
+      "edition": "base",
+      "nativeIdentity": "c690e6f1907297bdf1d164689621c07b8f70837282afe898c2eed1e013713482",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters-layered/rtex306/master.json",
+        "sha256": "b76ca4cf54f668e22c9620eecc9fbd233e704514da6a61eea667e95e9d64237d",
+        "bytes": 7776
+      },
+      "verdict": "PASS pre-tier sandstone-facing / recessed slate-inset semantics",
+      "materialObservation": "Actual retained raw and canonical RGB visibly depict weathered brown sandstone with fractured/chiseled faces, sparse pores and a grey-green slate centre with coherent mineral lamination. They read as physical stone rather than abstract grain.",
+      "maskAlignment": "Viewed magenta mask boundary over exact unchanged registered RGB. Inclusive master rectangle x144..372,y144..376 follows the existing inner slate/contact-seam boundary on all four sides and corners, wholly inside the tile. It does not create an image-perimeter frame or alter RGB. Small chipped/color irregularities at the contact remain photographic detail; no mask boundary crosses a broad sandstone face.",
+      "independentComposition": {
+        "independentLayerCompositionFloat32Exact": true,
+        "RGBBytesUnchanged": true,
+        "maskInclusiveMasterBounds": [
+          144,
+          144,
+          372,
+          376
+        ],
+        "bevelSigmaMasterPixels": 1.0,
+        "substrateRange": [
+          0.2650510370731354,
+          0.33232173323631287
+        ],
+        "facingRange": [
+          0.5748414397239685,
+          0.7349996566772461
+        ]
+      },
+      "sourceClassifiedWitnesses": {
+        "CNW": {
+          "nativeEdgeCoordinates": [
+            22,
+            22
+          ],
+          "masterPixel": [
+            176,
+            176
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.27383384108543396,
+          "median": 0.2731511890888214,
+          "minimum": 0.2710973918437958,
+          "maximum": 0.2797256112098694
+        },
+        "CNE": {
+          "nativeEdgeCoordinates": [
+            42,
+            22
+          ],
+          "masterPixel": [
+            336,
+            176
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.2858593463897705,
+          "median": 0.2851390242576599,
+          "minimum": 0.2790255844593048,
+          "maximum": 0.2961035668849945
+        },
+        "CSW": {
+          "nativeEdgeCoordinates": [
+            22,
+            42
+          ],
+          "masterPixel": [
+            176,
+            336
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.297689288854599,
+          "median": 0.2978709638118744,
+          "minimum": 0.2762448787689209,
+          "maximum": 0.32082080841064453
+        },
+        "CSE": {
+          "nativeEdgeCoordinates": [
+            42,
+            42
+          ],
+          "masterPixel": [
+            336,
+            336
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.30303534865379333,
+          "median": 0.3013109266757965,
+          "minimum": 0.28249242901802063,
+          "maximum": 0.3282569348812103
+        },
+        "FN": {
+          "nativeEdgeCoordinates": [
+            32,
+            13
+          ],
+          "masterPixel": [
+            256,
+            104
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.7192425727844238,
+          "median": 0.7230691313743591,
+          "minimum": 0.7004740238189697,
+          "maximum": 0.7306861877441406
+        },
+        "FE": {
+          "nativeEdgeCoordinates": [
+            51,
+            32
+          ],
+          "masterPixel": [
+            408,
+            256
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.6986237168312073,
+          "median": 0.6983222961425781,
+          "minimum": 0.6931726932525635,
+          "maximum": 0.7054056525230408
+        },
+        "FS": {
+          "nativeEdgeCoordinates": [
+            32,
+            51
+          ],
+          "masterPixel": [
+            256,
+            408
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.700239896774292,
+          "median": 0.7012515068054199,
+          "minimum": 0.6879300475120544,
+          "maximum": 0.707629919052124
+        },
+        "FW": {
+          "nativeEdgeCoordinates": [
+            13,
+            32
+          ],
+          "masterPixel": [
+            104,
+            256
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.7279609441757202,
+          "median": 0.7279924154281616,
+          "minimum": 0.722527265548706,
+          "maximum": 0.7320860028266907
+        }
+      },
+      "physicalOrdering": "Four centre patches are actual interior slate, not frame or mortar. Means .2738,.2859,.2977,.3030 are below actual N/E/S/W sandstone-facing means .7192,.6986,.7002,.7280. The full slate range .2651..3323 is below the full facing range .5748..7350. Global bounds support, but do not replace, image-based classification.",
+      "opposedLightObservation": "Inspected unsaturated neutral NW and SE light panels derived from actual uncompressed height. The inset remains a lowered centre: its light/dark contact-edge polarity reverses coherently under opposed lights, and slate microstructure remains small compared with the interface. No protruding jewel or new outer bevel is introduced. This master diagnostic does not calibrate runtime displacement depth.",
+      "preview": {
+        "file": "docs/hexen2/textures/batch-008-pre-tier-semantic-diagnostics/rtex306-master-semantic.png",
+        "sha256": "ba250701a18edee5c615a7048222c0ffc579b2562cc5e40373b2124901aec44b",
+        "bytes": 1054758
+      }
+    },
+    {
+      "name": "rtex006",
+      "edition": "base",
+      "nativeIdentity": "ed0ea21baafa9262cb44311e6a1fe0663863fe66c361993b465c79ac472b3c42",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex006/master.json",
+        "sha256": "d2173994ac0d268af0a5cb16c77a0b7995142460120557d742467b29af2734d0",
+        "bytes": 4215
+      },
+      "verdict": "PASS pre-tier coarse masonry local face/joint semantics; no demonstrated repair requirement",
+      "materialObservation": "Viewed native, actual 1254px raw and 512px registered RGB. Three principal blue-grey stone blocks remain recognizable with irregular fractured/chipped faces, dark granular masonry joints and subordinate natural pores. This is coherent physical masonry, not indeterminate noise.",
+      "classification": "VJ at native-edge (30,15) lies in the visible vertical joint between upper blocks; VFL(27,15) and VFR(33,15) lie on the immediately neighboring stone faces. HJW(15,32.5) lies in the dark horizontal joint with HFWU(15,29) on the upper face and HFWL(15,36) on the lower face. HJE(46,32.5) is the same principal horizontal joint to the east; HFEU(46,29) and HFEL(46,36) are neighboring chipped stone faces. Markers are retained on exact RGB for independent reclassification.",
+      "sourceClassifiedWitnesses": {
+        "VJ": {
+          "nativeEdgeCoordinates": [
+            30,
+            15
+          ],
+          "masterPixel": [
+            240,
+            120
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.09277308732271194,
+          "median": 0.08360769599676132,
+          "minimum": 0.060563620179891586,
+          "maximum": 0.20964589715003967
+        },
+        "VFL": {
+          "nativeEdgeCoordinates": [
+            27,
+            15
+          ],
+          "masterPixel": [
+            216,
+            120
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.522437572479248,
+          "median": 0.5258216261863708,
+          "minimum": 0.1366991400718689,
+          "maximum": 0.8885312080383301
+        },
+        "VFR": {
+          "nativeEdgeCoordinates": [
+            33,
+            15
+          ],
+          "masterPixel": [
+            264,
+            120
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.5869597792625427,
+          "median": 0.6037895083427429,
+          "minimum": 0.23019826412200928,
+          "maximum": 0.7690601348876953
+        },
+        "HJW": {
+          "nativeEdgeCoordinates": [
+            15,
+            32.5
+          ],
+          "masterPixel": [
+            120,
+            260
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.14162300527095795,
+          "median": 0.1197621151804924,
+          "minimum": 0.05015990138053894,
+          "maximum": 0.33416301012039185
+        },
+        "HFWU": {
+          "nativeEdgeCoordinates": [
+            15,
+            29
+          ],
+          "masterPixel": [
+            120,
+            232
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.41645756363868713,
+          "median": 0.3779256045818329,
+          "minimum": 0.05104826018214226,
+          "maximum": 0.8430221676826477
+        },
+        "HFWL": {
+          "nativeEdgeCoordinates": [
+            15,
+            36
+          ],
+          "masterPixel": [
+            120,
+            288
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.9167821407318115,
+          "median": 0.9366593360900879,
+          "minimum": 0.7588807940483093,
+          "maximum": 0.9770962595939636
+        },
+        "HJE": {
+          "nativeEdgeCoordinates": [
+            46,
+            32.5
+          ],
+          "masterPixel": [
+            368,
+            260
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.00892757810652256,
+          "median": 0.007365192752331495,
+          "minimum": 0.0025572502054274082,
+          "maximum": 0.016249390318989754
+        },
+        "HFEU": {
+          "nativeEdgeCoordinates": [
+            46,
+            29
+          ],
+          "masterPixel": [
+            368,
+            232
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.28008320927619934,
+          "median": 0.22437158226966858,
+          "minimum": 0.07597433775663376,
+          "maximum": 0.6999783515930176
+        },
+        "HFEL": {
+          "nativeEdgeCoordinates": [
+            46,
+            36
+          ],
+          "masterPixel": [
+            368,
+            288
+          ],
+          "radiusMasterPixels": 2,
+          "mean": 0.07969097048044205,
+          "median": 0.07129199057817459,
+          "minimum": 0.031736213713884354,
+          "maximum": 0.14271771907806396
+        }
+      },
+      "localComparisons": [
+        {
+          "joint": "VJ",
+          "nearbyFaces": [
+            "VFL",
+            "VFR"
+          ],
+          "jointMean": 0.09277308732271194,
+          "faceMeans": [
+            0.522437572479248,
+            0.5869597792625427
+          ],
+          "meanAndMedianRecessed": true
+        },
+        {
+          "joint": "HJW",
+          "nearbyFaces": [
+            "HFWU",
+            "HFWL"
+          ],
+          "jointMean": 0.14162300527095795,
+          "faceMeans": [
+            0.41645756363868713,
+            0.9167821407318115
+          ],
+          "meanAndMedianRecessed": true
+        },
+        {
+          "joint": "HJE",
+          "nearbyFaces": [
+            "HFEU",
+            "HFEL"
+          ],
+          "jointMean": 0.00892757810652256,
+          "faceMeans": [
+            0.28008320927619934,
+            0.07969097048044205
+          ],
+          "meanAndMedianRecessed": true
+        }
+      ],
+      "physicalOrdering": "All three sampled principal joint patches have lower mean AND median than BOTH adjacent face patches. Surface microrelief creates overlapping per-pixel ranges, so requiring every face pixel everywhere to exceed every joint pixel would misclassify real chips/cracks. A distant lower-face low point is not evidence of a raised masonry joint without a matched local comparison.",
+      "opposedLightObservation": "Inspected actual-height NW and SE neutral panels at unsaturated exposure. The principal vertical and horizontal joint edges reverse shading as recessed grooves. Fracture relief remains visible on the face; no coarse inverted masonry row is demonstrated. Fine scalar detail is strong and remains subject to actual decoded tier art/lighting review.",
+      "independentOrdinaryHeight": {
+        "independentOrdinaryCraftFloat32Exact": true
+      },
+      "preview": {
+        "file": "docs/hexen2/textures/batch-008-pre-tier-semantic-diagnostics/rtex006-master-semantic.png",
+        "sha256": "5ee1711c917d3949d6c3707615fe01cb8e8056217adbe720f9870d4d66d8bacb",
+        "bytes": 1614165
+      }
+    }
+  ],
+  "probe": {
+    "file": "docs/hexen2/textures/batch-008-pre-tier-semantic-diagnostics/probe.json",
+    "sha256": "d4ea36d8d010303f41c4d08bb5451c9db27bb08b8c17cbe70c4f80ea654a5fc1",
+    "bytes": 17177
+  },
+  "probeSource": {
+    "file": "docs/hexen2/textures/batch-008-pre-tier-semantic-probe.py",
+    "sha256": "5ffc7a834bdf5edf9ce4f85ff0bafc9321eea7c4747523c0d3e22bf8bfac64b0",
+    "bytes": 8536
+  },
+  "previewMethod": {
+    "albedo": "neutral grayscale, separate RGB diagnostic panel",
+    "lights": [
+      [
+        -0.55,
+        -0.55,
+        0.63
+      ],
+      [
+        0.55,
+        0.55,
+        0.63
+      ]
+    ],
+    "exposure": ".15 + .75 * max(dot(normal, normalized-light),0)",
+    "normals": "Independent wrapped derivative, strength .3 and soft cap .5 from master profile; no tier map read or encoded.",
+    "sampling": "native pixel-edge continuous coordinates multiplied by8; 5x5 master neighborhoods, means and medians retained"
+  },
+  "earlierVerifierFailureCustody": [
+    {
+      "original": {
+        "file": "/private/tmp/quaked-rtex306-source-master-verifier-failed-attempt1.py",
+        "sha256": "036bbd40140f4f6318484020137b6af28ad3c00de07dba5f9d1da4d3b8b253f9",
+        "bytes": 14136
+      },
+      "retained": {
+        "file": "docs/hexen2/textures/batch-008-source-master-diagnostics/quaked-rtex306-source-master-verifier-failed-attempt1.py",
+        "sha256": "036bbd40140f4f6318484020137b6af28ad3c00de07dba5f9d1da4d3b8b253f9",
+        "bytes": 14136
+      },
+      "byteIdentical": true
+    },
+    {
+      "original": {
+        "file": "/private/tmp/quaked-rtex306-source-master-verification-attempt1.json",
+        "sha256": "b6fae3ac5ca4b2a8ec41246a03a678bad8bd9b2d1a8cd6e01eaa27e0502f233f",
+        "bytes": 560
+      },
+      "retained": {
+        "file": "docs/hexen2/textures/batch-008-source-master-diagnostics/quaked-rtex306-source-master-verification-attempt1.json",
+        "sha256": "b6fae3ac5ca4b2a8ec41246a03a678bad8bd9b2d1a8cd6e01eaa27e0502f233f",
+        "bytes": 560
+      },
+      "byteIdentical": true
+    },
+    {
+      "original": {
+        "file": "/private/tmp/quaked-rtex306-source-master-verification-attempt2.json",
+        "sha256": "7d91fcbc9a05a26e8482906a151285826309139a4e85902f83118ca935880aad",
+        "bytes": 789
+      },
+      "retained": {
+        "file": "docs/hexen2/textures/batch-008-source-master-diagnostics/quaked-rtex306-source-master-verification-attempt2.json",
+        "sha256": "7d91fcbc9a05a26e8482906a151285826309139a4e85902f83118ca935880aad",
+        "bytes": 789
+      },
+      "byteIdentical": true
+    }
+  ],
+  "failureInterpretation": "Prior source/master verifier attempt1 was a verifier assumption error: native PNG is fully opaque RGBA, not RGB. Failed verifier source and exact stderr log retained byte-for-byte with path/hash map. Corrected verifier verifies opaque alpha, converts to RGB as producer does, and attempt2 passes exact independent + actual CLI replay. No texture defect was relabeled.",
+  "limits": [
+    "No tier encoding, recipe/master/raw/prompt/catalog edits, generation or Git mutation. Diagnostics and reports only.",
+    "These are source-specific pre-tier gates, not an exhaustive proof of every microscopic feature or final relief quality.",
+    "Both decoded tiers still require native-half/quarter BOX color/form checks, repeats/corners, height/XYZ/opposed lights and independent final art/public qualification.",
+    "Runtime/parallax/pack/GPU behavior, owner acceptance, landing and release remain separate."
+  ],
+  "inputsStable": true
+}

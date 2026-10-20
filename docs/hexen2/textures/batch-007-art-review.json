@@ -1,0 +1,2146 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-19T07:10:12.816475+00:00",
+  "reviewer": "/root/hexen_campaign_review",
+  "verdict": "ART HOLD initial007: seven new materials PASS, rtex322 inlay-form HOLD; two supplemental exact aliases pass accepted-art custody",
+  "batch": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/batch.json",
+    "sha256": "9d158fe87a8217f7323c5bb0bad1b7b83871fb81b61f3e1b233950d963390529"
+  },
+  "requiredFindings": [
+    {
+      "id": "007-322-inner-olive-inlay-markings",
+      "priority": 1,
+      "materials": [
+        "rtex322"
+      ],
+      "tiers": [
+        "Mid",
+        "High"
+      ],
+      "acceptance": "Restore the source-measured inner olive rectangular markings inside both blue end inlays at sole-master resolution, retaining photographic material detail and the original positions/scale. Then derive both tiers and review actual close/half/quarter forms, repeated edges and relief. No new GPT source, independent tier paint-over or global pixel-grid projection."
+    }
+  ],
+  "materials": [
+    {
+      "name": "rtex322",
+      "nativeID": "411496d1fad7414033cb4e53662aa4b5389834f94f75fdf1572ece123e14449a",
+      "nativeSha256": "61b562f0876ab63e1649f6f447afb1d31e0d3cd4fe535f81b378d55836c776c6",
+      "masterPackageSha256": "ff0b870814feb29f85e87a97ce149d642e1790dba5d12ee73abead0adb6c67b2",
+      "tierReceiptSha256": "58ad2cb2ce3567efe96e76cff0ba922693807d7a6fb5ec0711828bb6db55562d",
+      "uniqueHeightSamples": 260824,
+      "tiers": {
+        "Mid": {
+          "maps": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex322/mid-diffuse.webp",
+              "sha256": "77a533847dba2db77ed339d72fb34211155c572ccb0c5ed54cfb541b0a98449e",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex322/mid-height.webp",
+              "sha256": "5d2c750fdae2ac6d64f188433be9e3ed4c43a5b63e05f31ca715b8708ca46d5e",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex322/mid-normalX.webp",
+              "sha256": "f95b951c3a0bb81614810494717f417a6d0120080dda501fd77871fe98da122f",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex322/mid-normalY.webp",
+              "sha256": "472c5747d33b4c4ec609219c3dbe6788d74bed63988c633c29a783fa452d1aea",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex322/mid-normalZ.webp",
+              "sha256": "c87c6d33de06b60a28742fc627ebb6909344801eba76e944581d64fc9d94233f",
+              "dimensions": [
+                256,
+                256
+              ]
+            }
+          },
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                32
+              ],
+              "meanAbsoluteError": 7.322916666666667,
+              "maximum": 64.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                16
+              ],
+              "meanAbsoluteError": 4.549479166666667,
+              "maximum": 35.0
+            }
+          ],
+          "edges": {
+            "diffuse": {
+              "wrapX": 11.9140625,
+              "wrapY": 16.217447916666668,
+              "interiorX": 7.28657066993464,
+              "interiorY": 12.311146854575163
+            },
+            "height": {
+              "wrapX": 18.02734375,
+              "wrapY": 25.94140625,
+              "interiorX": 11.346165236928105,
+              "interiorY": 24.186514501633987
+            },
+            "normalX": {
+              "wrapX": 10.584635416666666,
+              "wrapY": 10.751302083333334,
+              "interiorX": 10.629651756535948,
+              "interiorY": 7.576342933006536
+            },
+            "normalY": {
+              "wrapX": 10.415364583333334,
+              "wrapY": 13.015625,
+              "interiorX": 6.951536968954248,
+              "interiorY": 18.874877450980392
+            },
+            "normalZ": {
+              "wrapX": 2.4388020833333335,
+              "wrapY": 2.0390625,
+              "interiorX": 1.12578125,
+              "interiorY": 2.4951286764705882
+            }
+          },
+          "heightCompressionMAE": 0.0056798158514503325,
+          "normalVsDecodedHeightDegrees": {
+            "mean": 0.7185128778303291,
+            "p99": 2.2472237626660885,
+            "maximum": 4.015428825259246
+          },
+          "verdict": "ART HOLD both tiers: distinguishing inner inlay forms missing"
+        },
+        "High": {
+          "maps": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex322/high-diffuse.webp",
+              "sha256": "062eff86bb0cf921f42453c67b2d587c6c40461d47cd749ba70fbf1de20287f6",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex322/high-height.webp",
+              "sha256": "f417bd319db4af7bbe65fad47e030bf9ee1bd3cc7af8cb82237810504e0925a7",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex322/high-normalX.webp",
+              "sha256": "621a55d062842f745abf6286bbe6ab7dd43a77290d222c447324dc9b090cf258",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex322/high-normalY.webp",
+              "sha256": "9cd9ccfeb5d953514529926da54d4b448a0798a8f294d1c98f0cdcf4f7f99af7",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex322/high-normalZ.webp",
+              "sha256": "dcb855d40005b3249c8a41db645385896f1c57ca5efa6a214a206c109e12a211",
+              "dimensions": [
+                512,
+                512
+              ]
+            }
+          },
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                32
+              ],
+              "meanAbsoluteError": 7.2763671875,
+              "maximum": 64.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                16
+              ],
+              "meanAbsoluteError": 4.513020833333333,
+              "maximum": 33.0
+            }
+          ],
+          "edges": {
+            "diffuse": {
+              "wrapX": 16.25,
+              "wrapY": 21.260416666666668,
+              "interiorX": 8.034858121330725,
+              "interiorY": 10.853287569308545
+            },
+            "height": {
+              "wrapX": 14.626302083333334,
+              "wrapY": 20.841145833333332,
+              "interiorX": 7.239983386333986,
+              "interiorY": 13.633355247064578
+            },
+            "normalX": {
+              "wrapX": 9.251953125,
+              "wrapY": 10.623046875,
+              "interiorX": 9.545390726924332,
+              "interiorY": 6.634905770955642
+            },
+            "normalY": {
+              "wrapX": 10.548828125,
+              "wrapY": 10.072265625,
+              "interiorX": 5.954086910877365,
+              "interiorY": 13.600271883153946
+            },
+            "normalZ": {
+              "wrapX": 2.3424479166666665,
+              "wrapY": 2.10546875,
+              "interiorX": 1.0046273646444879,
+              "interiorY": 1.8807434360730593
+            }
+          },
+          "heightCompressionMAE": 0.00556988503469545,
+          "normalVsDecodedHeightDegrees": {
+            "mean": 1.3279255147839697,
+            "p99": 4.303455718464429,
+            "maximum": 9.108186508227742
+          },
+          "verdict": "ART HOLD both tiers: distinguishing inner inlay forms missing"
+        }
+      },
+      "sheets": {
+        "/private/tmp/h2-batch007-review-actual/rtex322-art.png": "6c5119a74fe92cc9c8644fec9b4ef27144cb695df26ad4da0bfe835eb016e25d",
+        "/private/tmp/h2-batch007-review-actual/rtex322-relief.png": "54bd7038eed464dd2ba1aef50e3d437d4e261ba4314225edd72c87f53523fadb"
+      },
+      "verdict": "ART HOLD both tiers: distinguishing inner inlay forms missing",
+      "observations": [
+        "Main amber/ochre mouldings, central nested long rectangular ornament and fine dark olive patterned field are retained with plausible photographic wear.",
+        "Both end inlays largely read as solid dark teal/blue interiors. The native distinguishing olive inner rectangular markings inside the blue fields are missing. This is a form loss, not merely a colour metric difference.",
+        "The existing same-source .90/.35 fitting trial was viewed in both tier reviews/relief: it adds a diffuse olive tint but does not restore the distinct inner rectangle. Keep it a trial; local source-measured motif restoration is required before acceptance."
+      ]
+    },
+    {
+      "name": "rtex121",
+      "nativeID": "3e356d95bcb646ddce27b5bec894d8155ad631bd1534c6e2668697eb7397764c",
+      "nativeSha256": "0fd9128f6bb98656f9643f915eeb9db6c0b246e11bc99148d65858195d37c61a",
+      "masterPackageSha256": "3b01eeef00c695434b70e34b411cf5bf706164c7ac4588af29fee3fcae42724e",
+      "tierReceiptSha256": "3221078b16d2f7ca0aba8dc20be6a1927141622aa26c27c166168f5f808372a5",
+      "uniqueHeightSamples": 261278,
+      "tiers": {
+        "Mid": {
+          "maps": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/mid-diffuse.webp",
+              "sha256": "134cb46c8f99bcff0e192b41770b41965d4556689a21150e206ff04dfb8df4e8",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/mid-height.webp",
+              "sha256": "429e35ffc995f61311528bfc52b09be7c55fd784fe45a518371a80ffe1d781c1",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/mid-normalX.webp",
+              "sha256": "d49b391d665ef5e4a409f15c450eaadb16cab1e735b7de739235cf3178d119c7",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/mid-normalY.webp",
+              "sha256": "2d0bdbda9f056431d52ee98cb959c899f628124545634dbd2f5be61bc0494b0a",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/mid-normalZ.webp",
+              "sha256": "b01b61e18bdda4cfddc2453a11c1f69d4c726991a5007f702511ea7061c55ef4",
+              "dimensions": [
+                256,
+                256
+              ]
+            }
+          },
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                32
+              ],
+              "meanAbsoluteError": 5.2587890625,
+              "maximum": 28.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                16
+              ],
+              "meanAbsoluteError": 3.5377604166666665,
+              "maximum": 13.0
+            }
+          ],
+          "edges": {
+            "diffuse": {
+              "wrapX": 5.459635416666667,
+              "wrapY": 4.786458333333333,
+              "interiorX": 5.867580678104575,
+              "interiorY": 3.993627450980392
+            },
+            "height": {
+              "wrapX": 33.173177083333336,
+              "wrapY": 25.033854166666668,
+              "interiorX": 36.243336397058826,
+              "interiorY": 23.67892156862745
+            },
+            "normalX": {
+              "wrapX": 22.076822916666668,
+              "wrapY": 12.727864583333334,
+              "interiorX": 25.75342626633987,
+              "interiorY": 11.487229370915033
+            },
+            "normalY": {
+              "wrapX": 13.0625,
+              "wrapY": 19.479166666666668,
+              "interiorX": 13.005678104575164,
+              "interiorY": 17.01989379084967
+            },
+            "normalZ": {
+              "wrapX": 3.3098958333333335,
+              "wrapY": 2.6328125,
+              "interiorX": 2.83703022875817,
+              "interiorY": 1.8849877450980392
+            }
+          },
+          "heightCompressionMAE": 0.005577859754359146,
+          "normalVsDecodedHeightDegrees": {
+            "mean": 0.537452061865043,
+            "p99": 1.9388473557006836,
+            "maximum": 3.9329945641843334
+          },
+          "verdict": "ART PASS both tiers"
+        },
+        "High": {
+          "maps": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/high-diffuse.webp",
+              "sha256": "26d21b497e9b7afcc591ebdea12b82137e4b1d8192e9b8e1afe92fe9c416ae68",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/high-height.webp",
+              "sha256": "bb098279e7a79fead92e1f7b985c0c48de503a6d8ea20022982115a5df98fb3f",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/high-normalX.webp",
+              "sha256": "9db9a38247019081021f321cb5465c45473612a20e204974ee1b0645c14303d1",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/high-normalY.webp",
+              "sha256": "d9b44d94291662dafa452a3a144e557acf723d0c4f864835366965b5a58a385d",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/high-normalZ.webp",
+              "sha256": "583aeb4eb7fbcf91a8a3e3ae87e825dbf4ff591267af6851798626a0367df5f2",
+              "dimensions": [
+                512,
+                512
+              ]
+            }
+          },
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                32
+              ],
+              "meanAbsoluteError": 5.2548828125,
+              "maximum": 27.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                16
+              ],
+              "meanAbsoluteError": 3.5677083333333335,
+              "maximum": 13.0
+            }
+          ],
+          "edges": {
+            "diffuse": {
+              "wrapX": 7.550130208333333,
+              "wrapY": 6.529947916666667,
+              "interiorX": 6.730169347276582,
+              "interiorY": 5.287401133398565
+            },
+            "height": {
+              "wrapX": 22.944661458333332,
+              "wrapY": 21.7890625,
+              "interiorX": 25.648596756767777,
+              "interiorY": 18.78505177756034
+            },
+            "normalX": {
+              "wrapX": 17.848307291666668,
+              "wrapY": 13.813151041666666,
+              "interiorX": 21.62564084923353,
+              "interiorY": 11.135484191536204
+            },
+            "normalY": {
+              "wrapX": 13.508463541666666,
+              "wrapY": 17.132161458333332,
+              "interiorX": 12.750034399461839,
+              "interiorY": 17.195367284328114
+            },
+            "normalZ": {
+              "wrapX": 2.9108072916666665,
+              "wrapY": 2.6126302083333335,
+              "interiorX": 2.295811164791259,
+              "interiorY": 1.6095750265003261
+            }
+          },
+          "heightCompressionMAE": 0.005528570647347036,
+          "normalVsDecodedHeightDegrees": {
+            "mean": 0.9321527511202177,
+            "p99": 3.7882001290171132,
+            "maximum": 8.192790699713832
+          },
+          "verdict": "ART PASS both tiers"
+        }
+      },
+      "sheets": {
+        "/private/tmp/h2-batch007-review-actual/rtex121-art.png": "da9d465dc16f8a21e1873394d5b520c02c2644bcd2e3e70e5711951fc8b5779b",
+        "/private/tmp/h2-batch007-review-actual/rtex121-relief.png": "edc3d84dd2f2f536139308eaf028af457786d273849471562acca4038497c6ed"
+      },
+      "verdict": "ART PASS both tiers",
+      "observations": [
+        "Native cool blue-grey/charcoal panel faces, umber vertical lines, exact widths and restrained crosswise scores remain representative at half/quarter. No forced wood fibres, knots, hardware or rock marbling.",
+        "Sharp natural shallow wear retains neutral material intention. Both-axis cyclic repeat and opposed relief preserve native linear joints without a new image border."
+      ]
+    },
+    {
+      "name": "rtex413",
+      "nativeID": "af54a88c937655486689ad7a29a72ae3a16f053798fd9ad41be6c76ebb78c567",
+      "nativeSha256": "34b2a6a55b78ea0ed48c28a18dd61dc17ad1b7d39041f89f900a134bf7a59d10",
+      "masterPackageSha256": "9878a1cc8db23e9f453929e2a2ce9335626790d49c56e0a01738f07952bc2def",
+      "tierReceiptSha256": "3780715c1bc473374e01de082865006afa28ce312b755f14581cc805e3d0e7c3",
+      "uniqueHeightSamples": 1034981,
+      "tiers": {
+        "Mid": {
+          "maps": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/mid-diffuse.webp",
+              "sha256": "4f8abd95904136cff37012db2f5b5f032e558cd234cbfb5c2725aa6f476d8f82",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/mid-height.webp",
+              "sha256": "ca11a3358c5f1975f18920200d05eace29733a7a47044f927433590899a01657",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/mid-normalX.webp",
+              "sha256": "2095c62cf2a3074a464177aa8c71be3d2c87d7587a022cc06011bb197eb8179c",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/mid-normalY.webp",
+              "sha256": "019e06c4b338f415c5abb6eaa27fb39b379e2183db47ea66084eb02da24e0e03",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/mid-normalZ.webp",
+              "sha256": "20b6f5fe77f268f411ee0d3dd6f64bfd861834ff537e60c496b3baac3a5c2d4d",
+              "dimensions": [
+                512,
+                512
+              ]
+            }
+          },
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                64,
+                64
+              ],
+              "meanAbsoluteError": 4.656087239583333,
+              "maximum": 30.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                32,
+                32
+              ],
+              "meanAbsoluteError": 2.724609375,
+              "maximum": 15.0
+            }
+          ],
+          "edges": {
+            "diffuse": {
+              "wrapX": 12.6875,
+              "wrapY": 13.022135416666666,
+              "interiorX": 10.610238808708415,
+              "interiorY": 12.546026479941291
+            },
+            "height": {
+              "wrapX": 12.108072916666666,
+              "wrapY": 11.733072916666666,
+              "interiorX": 10.735269386007827,
+              "interiorY": 13.073946102413569
+            },
+            "normalX": {
+              "wrapX": 9.754557291666666,
+              "wrapY": 7.615885416666667,
+              "interiorX": 9.568991305854533,
+              "interiorY": 7.7352031351924335
+            },
+            "normalY": {
+              "wrapX": 7.796875,
+              "wrapY": 12.239583333333334,
+              "interiorX": 7.30298281555773,
+              "interiorY": 11.900794500163078
+            },
+            "normalZ": {
+              "wrapX": 2.2727864583333335,
+              "wrapY": 2.2141927083333335,
+              "interiorX": 1.3641233997879973,
+              "interiorY": 1.6432024115296804
+            }
+          },
+          "heightCompressionMAE": 0.005400914511635395,
+          "normalVsDecodedHeightDegrees": {
+            "mean": 1.1468091910062563,
+            "p99": 3.9437073321829677,
+            "maximum": 7.433828063044492
+          },
+          "verdict": "ART PASS both tiers"
+        },
+        "High": {
+          "maps": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/high-diffuse.webp",
+              "sha256": "3f66a98c58a5b9ee1aec00b613ed1a10f80d6d3c34555a5c7b71fb039aff74d7",
+              "dimensions": [
+                1024,
+                1024
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/high-height.webp",
+              "sha256": "c0ab34320df5a6ed26f557860782ced5ab07644510fc353066c3060a4902cf46",
+              "dimensions": [
+                1024,
+                1024
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/high-normalX.webp",
+              "sha256": "28559dfdf8fbaa560802340623dc980ce77f1e59ca4acd97c56f8ef76efd39f7",
+              "dimensions": [
+                1024,
+                1024
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/high-normalY.webp",
+              "sha256": "ba8cfa52d90c998fb0598d586aa44d4b5572317462eda3176cc11c26f6cbff86",
+              "dimensions": [
+                1024,
+                1024
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/high-normalZ.webp",
+              "sha256": "8b7527c5f8b279f7b29bbc05163a8de038b7581afc7670b3526ca3cf80574963",
+              "dimensions": [
+                1024,
+                1024
+              ]
+            }
+          },
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                64,
+                64
+              ],
+              "meanAbsoluteError": 4.597737630208333,
+              "maximum": 30.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                32,
+                32
+              ],
+              "meanAbsoluteError": 2.6748046875,
+              "maximum": 15.0
+            }
+          ],
+          "edges": {
+            "diffuse": {
+              "wrapX": 14.199869791666666,
+              "wrapY": 14.067708333333334,
+              "interiorX": 9.17978232425057,
+              "interiorY": 11.653885757779406
+            },
+            "height": {
+              "wrapX": 7.395833333333333,
+              "wrapY": 7.705403645833333,
+              "interiorX": 5.837902716682959,
+              "interiorY": 7.169359611742424
+            },
+            "normalX": {
+              "wrapX": 6.774088541666667,
+              "wrapY": 6.6484375,
+              "interiorX": 7.699220659213099,
+              "interiorY": 6.398538051889866
+            },
+            "normalY": {
+              "wrapX": 6.641927083333333,
+              "wrapY": 8.3564453125,
+              "interiorX": 5.991959030832518,
+              "interiorY": 9.98501426818589
+            },
+            "normalZ": {
+              "wrapX": 1.7008463541666667,
+              "wrapY": 1.6764322916666667,
+              "interiorX": 0.9161215863269795,
+              "interiorY": 1.1268048427826654
+            }
+          },
+          "heightCompressionMAE": 0.004905759244773831,
+          "normalVsDecodedHeightDegrees": {
+            "mean": 2.0231972781309207,
+            "p99": 6.9521145924449534,
+            "maximum": 16.608730043145112
+          },
+          "verdict": "ART PASS both tiers"
+        }
+      },
+      "sheets": {
+        "/private/tmp/h2-batch007-review-actual/rtex413-art.png": "8b5e58dfdd6e0407d93081917101120693e5703d32cbf1fc9a66756cadfcb3ab",
+        "/private/tmp/h2-batch007-review-actual/rtex413-relief.png": "04eb7e5cf6cdfce16313cc07349d3ae369309919e473833ecb8a86ca4d168c0b"
+      },
+      "verdict": "ART PASS both tiers",
+      "observations": [
+        "Very dark grey/umber fractured rock retains native oblique ribs, fissures, large stone-mass placement and feature scale at native64/32 distance. No substituted brick courses, loose pebbles, bright veins or rounded new boulders.",
+        "Distinct natural fracture/strata detail remains photographic. Repeats/cyclic joins and decoded height/XYZ/opposed lights retain irregular bedrock intention without a perimeter bevel."
+      ]
+    },
+    {
+      "name": "rtex274",
+      "nativeID": "b3fd79635c329d1f4102f51285fee7c35e5caa4c05a312cbbd932197acf97c2c",
+      "nativeSha256": "78253c6418ccefd98e826d745e2856956c6bd804660038f1e09ab59600327f84",
+      "masterPackageSha256": "9bbb3dd6026f7048a23d3164080514e21b6c8b03d62a394277688fbff0ff0066",
+      "tierReceiptSha256": "aca4d4bf32f209cd44347f8b22363b50ddd59e0e6eb30bbf3647d05dbb6908d2",
+      "uniqueHeightSamples": 519927,
+      "tiers": {
+        "Mid": {
+          "maps": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/mid-diffuse.webp",
+              "sha256": "a86c5d96679c59c29d01c76ee03afd7096b4dc228c0036283098942a83fbbb9c",
+              "dimensions": [
+                256,
+                512
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/mid-height.webp",
+              "sha256": "b01ddbee3975e35eeacb8ffc204b9e8497efdfdb114eb5b6346fb200e39afa6f",
+              "dimensions": [
+                256,
+                512
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/mid-normalX.webp",
+              "sha256": "0f7b1571784194c7054c39a8c0e62219854be73f29d7cd380a98ab8998bfc943",
+              "dimensions": [
+                256,
+                512
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/mid-normalY.webp",
+              "sha256": "0901bc2d6ff5a908e970655e6e7bc56a3a4b6eff218a8a52d70bb79f7fb5ba16",
+              "dimensions": [
+                256,
+                512
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/mid-normalZ.webp",
+              "sha256": "2d69c898983e91da9031d735558e508621ae945c7f9644f9c9a583ef32b94c25",
+              "dimensions": [
+                256,
+                512
+              ]
+            }
+          },
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                64
+              ],
+              "meanAbsoluteError": 10.118001302083334,
+              "maximum": 63.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                32
+              ],
+              "meanAbsoluteError": 8.639973958333334,
+              "maximum": 36.0
+            }
+          ],
+          "edges": {
+            "diffuse": {
+              "wrapX": 19.064453125,
+              "wrapY": 10.470052083333334,
+              "interiorX": 16.395912479575163,
+              "interiorY": 18.50262200342466
+            },
+            "height": {
+              "wrapX": 12.496744791666666,
+              "wrapY": 4.125,
+              "interiorX": 17.290785845588236,
+              "interiorY": 19.27769793705153
+            },
+            "normalX": {
+              "wrapX": 9.746744791666666,
+              "wrapY": 4.12890625,
+              "interiorX": 15.009740093954248,
+              "interiorY": 11.017472378506197
+            },
+            "normalY": {
+              "wrapX": 8.597005208333334,
+              "wrapY": 9.671875,
+              "interiorX": 10.690173100490195,
+              "interiorY": 16.913782208088715
+            },
+            "normalZ": {
+              "wrapX": 1.705078125,
+              "wrapY": 0.8984375,
+              "interiorX": 1.8805683210784314,
+              "interiorY": 2.085422782126549
+            }
+          },
+          "heightCompressionMAE": 0.005615307977935014,
+          "normalVsDecodedHeightDegrees": {
+            "mean": 0.7804808350551876,
+            "p99": 2.7616035038472746,
+            "maximum": 5.556086590198537
+          },
+          "verdict": "ART PASS both tiers"
+        },
+        "High": {
+          "maps": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/high-diffuse.webp",
+              "sha256": "dda79d104465c2ec9527f9825301daf4f811732788d9cefab4357bde4b7d10d9",
+              "dimensions": [
+                512,
+                1024
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/high-height.webp",
+              "sha256": "0f1c89ee407a693c419ad024305da807687a2bac819635220d25dcc8ee1cf229",
+              "dimensions": [
+                512,
+                1024
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/high-normalX.webp",
+              "sha256": "e1865f4d60c834f369dd6e6f09433ef2a9061382b1fe532838f9c4b68681acd2",
+              "dimensions": [
+                512,
+                1024
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/high-normalY.webp",
+              "sha256": "8dc5e1d974181dfebbd1c2945629aeeb6bd5b69064ed2a1882e37bda3ee08d99",
+              "dimensions": [
+                512,
+                1024
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/high-normalZ.webp",
+              "sha256": "f23d3a23a207080e3619f30c87c7fc389de43f70c585f971a58456199276cc7b",
+              "dimensions": [
+                512,
+                1024
+              ]
+            }
+          },
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                64
+              ],
+              "meanAbsoluteError": 10.056640625,
+              "maximum": 63.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                32
+              ],
+              "meanAbsoluteError": 8.612630208333334,
+              "maximum": 36.0
+            }
+          ],
+          "edges": {
+            "diffuse": {
+              "wrapX": 23.1884765625,
+              "wrapY": 14.095703125,
+              "interiorX": 16.834396531515004,
+              "interiorY": 18.997435926808407
+            },
+            "height": {
+              "wrapX": 8.329427083333334,
+              "wrapY": 2.82421875,
+              "interiorX": 9.846374551532943,
+              "interiorY": 11.01458638807429
+            },
+            "normalX": {
+              "wrapX": 7.3203125,
+              "wrapY": 4.134765625,
+              "interiorX": 10.943189925799087,
+              "interiorY": 8.199752693263278
+            },
+            "normalY": {
+              "wrapX": 7.192708333333333,
+              "wrapY": 6.0078125,
+              "interiorX": 7.87610970115786,
+              "interiorY": 12.231234980856957
+            },
+            "normalZ": {
+              "wrapX": 1.5026041666666667,
+              "wrapY": 0.7805989583333334,
+              "interiorX": 1.2787974457762556,
+              "interiorY": 1.421843816186054
+            }
+          },
+          "heightCompressionMAE": 0.005490920596104156,
+          "normalVsDecodedHeightDegrees": {
+            "mean": 1.398545775289478,
+            "p99": 5.1698155885247274,
+            "maximum": 10.063721699211763
+          },
+          "verdict": "ART PASS both tiers"
+        }
+      },
+      "sheets": {
+        "/private/tmp/h2-batch007-review-actual/rtex274-art.png": "14aaa568f80b28b493d8156fff6247953467779b5126c9bb2d47de2d63638c0e",
+        "/private/tmp/h2-batch007-review-actual/rtex274-relief.png": "3c8aea7b090fe5042a44ce797d39ca3db7ff94ba61cb885564a75d11dcb0635f"
+      },
+      "verdict": "ART PASS both tiers",
+      "observations": [
+        "Upper tall pair, narrow irregular native middle course and broad lower slab remain at the original scale and edge intersections. No extra missing little edge bricks or regularized grid.",
+        "Muted warm grey/ochre stone has natural pits/mineral wear, with dark recessed mortar. Half/quarter, repeats and decoded opposed relief preserve the native architecture."
+      ]
+    },
+    {
+      "name": "ttex005",
+      "nativeID": "c5b5337a494c912b1dc094938e9cff6e0ecaf6932ce46398685b0e6ad458da54",
+      "nativeSha256": "04d6fbe08e4afcf348d132fc7f2cbfb565c1c819b3a4e1a92bd68a798b3580aa",
+      "masterPackageSha256": "9725b79e91d57a55c1993a41ed5310a2bb0dcc529244e26bcdac87a707ec81ff",
+      "tierReceiptSha256": "b2d126c0b8ce0f9b0655f1ec474b3a4261c6a7aa74ab1411231a7b239f0cca8c",
+      "uniqueHeightSamples": 260988,
+      "tiers": {
+        "Mid": {
+          "maps": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/mid-diffuse.webp",
+              "sha256": "8838f4ec68753b5f19b3e81261b205853dd65afc1b274a85ea0f95a7a03e69ea",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/mid-height.webp",
+              "sha256": "30ddc3a8777a5cb33b01312cfe39d6346ad03003f3efeb74114af550f4f8994b",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/mid-normalX.webp",
+              "sha256": "1cb4c5b3c082806d0dc39f8a3e774e46f9839ab1b9dacef159da300a2698eaea",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/mid-normalY.webp",
+              "sha256": "5cf40bb16ce5be0dbb99fb384885c7f50cdbd4876d27a07f9249534c57192ba2",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/mid-normalZ.webp",
+              "sha256": "cac8fe08834b6f968e052cc4b3d79852462f191660652564f1f73e8141359710",
+              "dimensions": [
+                256,
+                256
+              ]
+            }
+          },
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                32
+              ],
+              "meanAbsoluteError": 4.927083333333333,
+              "maximum": 33.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                16
+              ],
+              "meanAbsoluteError": 3.8684895833333335,
+              "maximum": 18.0
+            }
+          ],
+          "edges": {
+            "diffuse": {
+              "wrapX": 3.5221354166666665,
+              "wrapY": 5.313802083333333,
+              "interiorX": 3.1350745506535946,
+              "interiorY": 3.6113715277777776
+            },
+            "height": {
+              "wrapX": 24.109375,
+              "wrapY": 37.778645833333336,
+              "interiorX": 25.848600898692812,
+              "interiorY": 29.62057802287582
+            },
+            "normalX": {
+              "wrapX": 19.231770833333332,
+              "wrapY": 13.58984375,
+              "interiorX": 18.694955065359476,
+              "interiorY": 14.187739991830066
+            },
+            "normalY": {
+              "wrapX": 14.205729166666666,
+              "wrapY": 21.1875,
+              "interiorX": 13.67015931372549,
+              "interiorY": 21.63715277777778
+            },
+            "normalZ": {
+              "wrapX": 3.0846354166666665,
+              "wrapY": 3.29296875,
+              "interiorX": 2.221389910130719,
+              "interiorY": 2.491967933006536
+            }
+          },
+          "heightCompressionMAE": 0.005603076794188021,
+          "normalVsDecodedHeightDegrees": {
+            "mean": 0.5625595660179972,
+            "p99": 1.9897385924308368,
+            "maximum": 3.539141329674281
+          },
+          "verdict": "ART PASS both tiers"
+        },
+        "High": {
+          "maps": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/high-diffuse.webp",
+              "sha256": "d2a191af2a6ec5f5c7034364baabecb3b45b22ee1bb94257e128a2fb3b757502",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/high-height.webp",
+              "sha256": "175b032b2e4e6534da26780c8d90fb0c04720e24531cf37a7ce1333c344ec62d",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/high-normalX.webp",
+              "sha256": "6fcf92689c8977b712decca9a30cf131d8884150d0454f92515c97f4b90fd44d",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/high-normalY.webp",
+              "sha256": "5ff8eaf10312e36f509138a99da3a7b1b110c838069a1ddacc1297bc9e15d2ac",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/high-normalZ.webp",
+              "sha256": "78be9a09a67a3e4650bffc8e910c1789a6c256b1527aa73175ef6dac2a5ab87a",
+              "dimensions": [
+                512,
+                512
+              ]
+            }
+          },
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                32
+              ],
+              "meanAbsoluteError": 5.129231770833333,
+              "maximum": 34.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                16
+              ],
+              "meanAbsoluteError": 4.110677083333333,
+              "maximum": 18.0
+            }
+          ],
+          "edges": {
+            "diffuse": {
+              "wrapX": 5.065104166666667,
+              "wrapY": 7.439453125,
+              "interiorX": 4.4996916788975865,
+              "interiorY": 5.032380086024136
+            },
+            "height": {
+              "wrapX": 19.430338541666668,
+              "wrapY": 29.158203125,
+              "interiorX": 19.420546161529682,
+              "interiorY": 22.067296813845402
+            },
+            "normalX": {
+              "wrapX": 18.470703125,
+              "wrapY": 11.875651041666666,
+              "interiorX": 17.431755289872797,
+              "interiorY": 13.654138892286367
+            },
+            "normalY": {
+              "wrapX": 14.732421875,
+              "wrapY": 16.201822916666668,
+              "interiorX": 12.827303235078277,
+              "interiorY": 20.277015044031312
+            },
+            "normalZ": {
+              "wrapX": 2.8990885416666665,
+              "wrapY": 2.5403645833333335,
+              "interiorX": 1.8288677735649055,
+              "interiorY": 2.1004515247879976
+            }
+          },
+          "heightCompressionMAE": 0.005676153947198326,
+          "normalVsDecodedHeightDegrees": {
+            "mean": 0.9730032480297107,
+            "p99": 3.78422718578158,
+            "maximum": 7.6622566148472835
+          },
+          "verdict": "ART PASS both tiers"
+        }
+      },
+      "sheets": {
+        "/private/tmp/h2-batch007-review-actual/ttex005-art.png": "1c6fdbe13f7eecb46bff16367d358add0fd6ce2a1cf0a085bcf62f192eb8554d",
+        "/private/tmp/h2-batch007-review-actual/ttex005-relief.png": "be7c6f476700e8b4e27b542cc9ef67e14f0aa2242c81eaff77e2c26030ea20af"
+      },
+      "verdict": "ART PASS both tiers",
+      "observations": [
+        "Deep crimson/red mottling and sparse muted ochre/umber marks remain recognizable at32/16 distance. It reads as a convincing matte pigment/mineral architectural finish, without carpet weave, liquid, blood/flesh, new symbols or coarse pebble grid.",
+        "Actual opposed-light close and repeated views read shallow rough pigment/plaster wear rather than newly carved large cavities or raised islands. Scalar dynamic range alone is not physical depth; no excessive-relief art finding is established from that number."
+      ]
+    },
+    {
+      "name": "ttex032",
+      "nativeID": "d8d2b5c8a30f0a067408c20155d93a4d44f732c233b512c280183f4198610a6b",
+      "nativeSha256": "74243ab74f1880a4731a0ed824deb5bc556c871079e9d667045f483ab874fc36",
+      "masterPackageSha256": "baa2549af9cfa455b5b9237b49b216483441cd5a901c64249329119c3332af60",
+      "tierReceiptSha256": "34b767bbaf180042ec6581d926b2580eb198a3917ac3de5810dc9e9e1343f4c1",
+      "uniqueHeightSamples": 261143,
+      "tiers": {
+        "Mid": {
+          "maps": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/mid-diffuse.webp",
+              "sha256": "b927d4a730a3b1c7354b184d9ccc735baaaa117d40c6966c8a31afb0b112fde3",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/mid-height.webp",
+              "sha256": "68036043c5c47d5a792fa13cff246385ba0437a6f36d89e61712baac87a14108",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/mid-normalX.webp",
+              "sha256": "734af0b9380635a9a4a63aede932ae221f24fd56534b4586b27956f3620c47e5",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/mid-normalY.webp",
+              "sha256": "14df1f84ddf14f2ae084af24b4147b205349f9e0898fb85b9d42add7b5f50408",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/mid-normalZ.webp",
+              "sha256": "f84661ff4cf6403bcad4050a3408b2f35a66db47986e07ddd53a61d9db595ef7",
+              "dimensions": [
+                256,
+                256
+              ]
+            }
+          },
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                32
+              ],
+              "meanAbsoluteError": 5.876302083333333,
+              "maximum": 22.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                16
+              ],
+              "meanAbsoluteError": 5.14453125,
+              "maximum": 13.0
+            }
+          ],
+          "edges": {
+            "diffuse": {
+              "wrapX": 8.834635416666666,
+              "wrapY": 5.88671875,
+              "interiorX": 8.078058619281046,
+              "interiorY": 3.9063368055555556
+            },
+            "height": {
+              "wrapX": 48.243489583333336,
+              "wrapY": 24.329427083333332,
+              "interiorX": 41.57290134803922,
+              "interiorY": 17.258501838235293
+            },
+            "normalX": {
+              "wrapX": 32.041666666666664,
+              "wrapY": 12.09765625,
+              "interiorX": 29.818852124183007,
+              "interiorY": 8.917927900326797
+            },
+            "normalY": {
+              "wrapX": 10.319010416666666,
+              "wrapY": 12.00390625,
+              "interiorX": 11.715088848039215,
+              "interiorY": 12.522074142156862
+            },
+            "normalZ": {
+              "wrapX": 3.6041666666666665,
+              "wrapY": 2.7161458333333335,
+              "interiorX": 3.307087418300654,
+              "interiorY": 1.4589358660130718
+            }
+          },
+          "heightCompressionMAE": 0.005997627917096437,
+          "normalVsDecodedHeightDegrees": {
+            "mean": 0.5649637583750652,
+            "p99": 2.076702976189608,
+            "maximum": 3.8401311741504256
+          },
+          "verdict": "ART PASS both tiers"
+        },
+        "High": {
+          "maps": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/high-diffuse.webp",
+              "sha256": "821a01fa2d1c289eb9f1b58dc9c487e9abd32d32d8ff8995e01e69babc601a14",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/high-height.webp",
+              "sha256": "c4c7c5f7e1ed0ce4a837ff90f36f32367cf9cedfcb372c1c0a6572af300c41f7",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/high-normalX.webp",
+              "sha256": "f724c0cfaecb7ba28150107225d28f60eee8497cff9d9f4cdfb3f45a64d179f5",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/high-normalY.webp",
+              "sha256": "f2afb9128631e3a356e821610c79504960f6873f597ae48982695b8ab1d9caac",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/high-normalZ.webp",
+              "sha256": "54d5fa93d67cb66910c9125b67f1c458c4ce7333ed6609d1fad69129dfb8f31f",
+              "dimensions": [
+                512,
+                512
+              ]
+            }
+          },
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                32
+              ],
+              "meanAbsoluteError": 5.800455729166667,
+              "maximum": 23.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                16
+              ],
+              "meanAbsoluteError": 5.11328125,
+              "maximum": 13.0
+            }
+          ],
+          "edges": {
+            "diffuse": {
+              "wrapX": 11.51953125,
+              "wrapY": 9.428385416666666,
+              "interiorX": 10.208249245759948,
+              "interiorY": 5.161389534409654
+            },
+            "height": {
+              "wrapX": 34.935546875,
+              "wrapY": 24.455729166666668,
+              "interiorX": 30.174212889350947,
+              "interiorY": 13.973573568982388
+            },
+            "normalX": {
+              "wrapX": 22.522135416666668,
+              "wrapY": 15.388020833333334,
+              "interiorX": 26.86296783268102,
+              "interiorY": 8.9650399543379
+            },
+            "normalY": {
+              "wrapX": 12.33203125,
+              "wrapY": 11.696614583333334,
+              "interiorX": 12.551265390574038,
+              "interiorY": 13.541745658023483
+            },
+            "normalZ": {
+              "wrapX": 3.0592447916666665,
+              "wrapY": 2.6529947916666665,
+              "interiorX": 2.801944461431833,
+              "interiorY": 1.2747510498206132
+            }
+          },
+          "heightCompressionMAE": 0.005696948036180605,
+          "normalVsDecodedHeightDegrees": {
+            "mean": 0.9054775494452955,
+            "p99": 3.7670139463969394,
+            "maximum": 7.94327920401739
+          },
+          "verdict": "ART PASS both tiers"
+        }
+      },
+      "sheets": {
+        "/private/tmp/h2-batch007-review-actual/ttex032-art.png": "ccf58382a0a45f7f2156d29777e2fd201f1115378b9a4f77336b771ee6b9db25",
+        "/private/tmp/h2-batch007-review-actual/ttex032-relief.png": "d57610dc34812cbebf5708e4b966aef1ce3fb5d0dc90ce9c9b83e5b290b4499a"
+      },
+      "verdict": "ART PASS both tiers",
+      "observations": [
+        "Quiet grey-olive/khaki field, fine vertical elongated fibres and faint darker streak rhythm remain representative at half/quarter. No new broad boards, knots, diagonal grain or sand-like artificial grain.",
+        "Close photographic material structure and decoded opposed relief remain restrained; repeat/cyclic views retain vertical flow without a new perimeter frame."
+      ]
+    },
+    {
+      "name": "ttex068",
+      "nativeID": "b8aa0097f60c3908f00fc78d817b05a3f7af50de5116127596de5bb802cb8499",
+      "nativeSha256": "c9c1f4fc0d70eecab827946ebb67c3acf13126fca4629af2c3a84b16502a2823",
+      "masterPackageSha256": "2bfe2880234992a2c94e91d7e33de798a7c87aca918d92295f69c7ab6cd94868",
+      "tierReceiptSha256": "6e256370e2ae7f613536a376918648c9ccc811036c7da82cd62b0ee96106f0b6",
+      "uniqueHeightSamples": 261259,
+      "tiers": {
+        "Mid": {
+          "maps": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/mid-diffuse.webp",
+              "sha256": "a1bc85cc22d3253db7faf5bec67fe3a592c81d4370afa1f025ec608ea94ca1ea",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/mid-height.webp",
+              "sha256": "8ab32ca2005ee1e0c9de0c930330aff14a14e1d589faec30672edfd71b8284de",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/mid-normalX.webp",
+              "sha256": "161671b7559df6e0ad09e483e1edbe59a41e366c7e9a5b8278eecd1022dd44f4",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/mid-normalY.webp",
+              "sha256": "645051d6f508ef52016bf17b83f81ef142dde9c31de0b384765f7b45fa25c35e",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/mid-normalZ.webp",
+              "sha256": "47deaecbfd457422585b438e1046675dab61cb66216192d531b7564241596990",
+              "dimensions": [
+                256,
+                256
+              ]
+            }
+          },
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                32
+              ],
+              "meanAbsoluteError": 8.909830729166666,
+              "maximum": 43.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                16
+              ],
+              "meanAbsoluteError": 6.04296875,
+              "maximum": 29.0
+            }
+          ],
+          "edges": {
+            "diffuse": {
+              "wrapX": 5.774739583333333,
+              "wrapY": 7.661458333333333,
+              "interiorX": 4.159574142156862,
+              "interiorY": 10.212387663398692
+            },
+            "height": {
+              "wrapX": 17.065104166666668,
+              "wrapY": 26.911458333333332,
+              "interiorX": 13.753707107843137,
+              "interiorY": 39.179156454248364
+            },
+            "normalX": {
+              "wrapX": 8.6640625,
+              "wrapY": 10.764322916666666,
+              "interiorX": 9.382914624183007,
+              "interiorY": 10.166763684640523
+            },
+            "normalY": {
+              "wrapX": 8.688802083333334,
+              "wrapY": 28.434895833333332,
+              "interiorX": 7.85890012254902,
+              "interiorY": 28.061192810457516
+            },
+            "normalZ": {
+              "wrapX": 2.3671875,
+              "wrapY": 3.3072916666666665,
+              "interiorX": 1.2795138888888888,
+              "interiorY": 3.4316074346405228
+            }
+          },
+          "heightCompressionMAE": 0.005765512318618102,
+          "normalVsDecodedHeightDegrees": {
+            "mean": 0.6009785592610414,
+            "p99": 2.1920266154849215,
+            "maximum": 4.123243076703948
+          },
+          "verdict": "ART PASS both tiers"
+        },
+        "High": {
+          "maps": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/high-diffuse.webp",
+              "sha256": "e4c921c8792430afca0e7debdf3e76bcc8072de42ceb37285ca907d5e40515f7",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/high-height.webp",
+              "sha256": "e065d29a8ed8a912debf4ca8008a2639cc1e91a42d170af3f3d0bbb6f7693623",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/high-normalX.webp",
+              "sha256": "3b53529013f6611c9b009893f7b1c474f4991ae1123390df9f58d15c09f48249",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/high-normalY.webp",
+              "sha256": "a19ab57b8c67423e346e80f51be13a1f4b9ac7efc228a069bac5cb8f1d4949be",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/high-normalZ.webp",
+              "sha256": "9eb85358a76f5b9e527c42dae1b1ee5f6460f0862589b565f04d8a161165a8b5",
+              "dimensions": [
+                512,
+                512
+              ]
+            }
+          },
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                32
+              ],
+              "meanAbsoluteError": 8.901692708333334,
+              "maximum": 44.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                16
+              ],
+              "meanAbsoluteError": 6.053385416666667,
+              "maximum": 29.0
+            }
+          ],
+          "edges": {
+            "diffuse": {
+              "wrapX": 8.967447916666666,
+              "wrapY": 9.418619791666666,
+              "interiorX": 4.75232897097195,
+              "interiorY": 10.945976282208088
+            },
+            "height": {
+              "wrapX": 19.86328125,
+              "wrapY": 24.520833333333332,
+              "interiorX": 11.226937071917808,
+              "interiorY": 28.396269059849967
+            },
+            "normalX": {
+              "wrapX": 9.791666666666666,
+              "wrapY": 11.680338541666666,
+              "interiorX": 11.440170417482062,
+              "interiorY": 11.175808005136986
+            },
+            "normalY": {
+              "wrapX": 11.602864583333334,
+              "wrapY": 21.793619791666668,
+              "interiorX": 7.944520038323549,
+              "interiorY": 26.68907345686562
+            },
+            "normalZ": {
+              "wrapX": 2.2975260416666665,
+              "wrapY": 3.228515625,
+              "interiorX": 1.1676336737606001,
+              "interiorY": 2.9528001161937376
+            }
+          },
+          "heightCompressionMAE": 0.0055308876120179675,
+          "normalVsDecodedHeightDegrees": {
+            "mean": 0.9901815086115127,
+            "p99": 3.879292353325198,
+            "maximum": 9.606824680257706
+          },
+          "verdict": "ART PASS both tiers"
+        }
+      },
+      "sheets": {
+        "/private/tmp/h2-batch007-review-actual/ttex068-art.png": "c10456cb1b5d5196dfc76b7d50110dcbd04d6f2a261b35fed6b2c22f9c21192f",
+        "/private/tmp/h2-batch007-review-actual/ttex068-relief.png": "6e421652d5c665bede828d9a757e8c3bafa25d7028923a4e057ffd03f99571a2"
+      },
+      "verdict": "ART PASS both tiers",
+      "observations": [
+        "Very dark horizontal gnarled timber retains native broad wavy ochre-brown strands, dark trough rhythm and existing turns/feature scale at half/quarter. No rotation into vertical planks, new knot composition or stone courses.",
+        "Fine natural fibres and splits give photographic character. Opposed relief and repeated/cyclic joins remain consistent with the dark horizontal material."
+      ]
+    },
+    {
+      "name": "ttex079",
+      "nativeID": "9365fe57d1b7e0ea8e0b2e522fc2bed703933ae300787aa4a2aab86e235bfdcd",
+      "nativeSha256": "e032eea20b131931ca998cc8ca444ff197f01f088948659f66a56895977009fc",
+      "masterPackageSha256": "842e7ae84562581697136f9f6e27afbfcb192eab7f83b0746e488c521e809469",
+      "tierReceiptSha256": "8be8d04459cf2a074113ff5209824241ad76e6bedd1da101c2807ab16c1f5b02",
+      "uniqueHeightSamples": 261137,
+      "tiers": {
+        "Mid": {
+          "maps": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/mid-diffuse.webp",
+              "sha256": "e41bebc1c1ec364e55037bc12ed8f81cda8e9a3ed7313a2be1a58b10448ba10f",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/mid-height.webp",
+              "sha256": "c1c4c6da819211fbd4ab349d7e299f6abd36c6bb7e94eb1e20fac3dcedf5196a",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/mid-normalX.webp",
+              "sha256": "78d2538455e3876ee25bd84aeeb3b8e9b556807d00c8a73a2f9f762badd722fb",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/mid-normalY.webp",
+              "sha256": "c46a8218bde0237e0ad5abe9065c27242c33a2a1b014a5285f0d8d9670b450bf",
+              "dimensions": [
+                256,
+                256
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/mid-normalZ.webp",
+              "sha256": "71e92cec52ae692b1e6a0b49491475c6241c01e4d4df58304f58955b8cfbd4b2",
+              "dimensions": [
+                256,
+                256
+              ]
+            }
+          },
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                32
+              ],
+              "meanAbsoluteError": 6.3662109375,
+              "maximum": 32.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                16
+              ],
+              "meanAbsoluteError": 4.369791666666667,
+              "maximum": 14.0
+            }
+          ],
+          "edges": {
+            "diffuse": {
+              "wrapX": 11.333333333333334,
+              "wrapY": 7.841145833333333,
+              "interiorX": 9.691993464052288,
+              "interiorY": 4.400561683006536
+            },
+            "height": {
+              "wrapX": 36.194010416666664,
+              "wrapY": 31.358072916666668,
+              "interiorX": 38.69253982843137,
+              "interiorY": 14.776792279411765
+            },
+            "normalX": {
+              "wrapX": 32.756510416666664,
+              "wrapY": 12.302083333333334,
+              "interiorX": 28.15763378267974,
+              "interiorY": 7.827113970588235
+            },
+            "normalY": {
+              "wrapX": 10.9765625,
+              "wrapY": 10.24609375,
+              "interiorX": 10.415277777777778,
+              "interiorY": 10.925709763071895
+            },
+            "normalZ": {
+              "wrapX": 3.3893229166666665,
+              "wrapY": 2.49609375,
+              "interiorX": 3.3544270833333334,
+              "interiorY": 1.3020578022875817
+            }
+          },
+          "heightCompressionMAE": 0.006018835291340037,
+          "normalVsDecodedHeightDegrees": {
+            "mean": 0.6107527159842933,
+            "p99": 2.181766973028939,
+            "maximum": 3.856559868567842
+          },
+          "verdict": "ART PASS both tiers"
+        },
+        "High": {
+          "maps": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/high-diffuse.webp",
+              "sha256": "59ddffa067599855465e684922b490c9a25839eae14186f2e5b17af8e365bf9e",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/high-height.webp",
+              "sha256": "ee64add5a35900af4020aff5ead136bd15c4e30caf12f855a40756e8b0f43b71",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/high-normalX.webp",
+              "sha256": "a46864deb76d124cd4a67b9fd2fef27d293a9d79bfd0f1eeabd76fe26d94402d",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/high-normalY.webp",
+              "sha256": "a4c8309fe1090216aaedf31c4184215a212fb1c2e22e850b33a35736b7d3d91b",
+              "dimensions": [
+                512,
+                512
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/high-normalZ.webp",
+              "sha256": "8848165dc8c5820ae91d3a5fc7c26bcb6b655ed28b631a89b4bda31bd085a73e",
+              "dimensions": [
+                512,
+                512
+              ]
+            }
+          },
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                32
+              ],
+              "meanAbsoluteError": 6.350260416666667,
+              "maximum": 33.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                16
+              ],
+              "meanAbsoluteError": 4.356770833333333,
+              "maximum": 15.0
+            }
+          ],
+          "edges": {
+            "diffuse": {
+              "wrapX": 14.569661458333334,
+              "wrapY": 9.971354166666666,
+              "interiorX": 10.862388138046315,
+              "interiorY": 5.508444430854533
+            },
+            "height": {
+              "wrapX": 30.109375,
+              "wrapY": 27.108072916666668,
+              "interiorX": 28.08096104452055,
+              "interiorY": 12.660928326810176
+            },
+            "normalX": {
+              "wrapX": 22.324869791666668,
+              "wrapY": 12.517578125,
+              "interiorX": 26.52066388413242,
+              "interiorY": 8.55650812336921
+            },
+            "normalY": {
+              "wrapX": 13.318359375,
+              "wrapY": 10.069661458333334,
+              "interiorX": 11.987326983447488,
+              "interiorY": 13.34548398768754
+            },
+            "normalZ": {
+              "wrapX": 2.759765625,
+              "wrapY": 2.3697916666666665,
+              "interiorX": 2.87289653661122,
+              "interiorY": 1.2227658186562296
+            }
+          },
+          "heightCompressionMAE": 0.005675114937607125,
+          "normalVsDecodedHeightDegrees": {
+            "mean": 0.9834909757945933,
+            "p99": 3.8945038576134046,
+            "maximum": 9.109201054800458
+          },
+          "verdict": "ART PASS both tiers"
+        }
+      },
+      "sheets": {
+        "/private/tmp/h2-batch007-review-actual/ttex079-art.png": "d4aeba32e74e2dfec87dcf625db96b5971a34eff480b2505a84e6f1c0bb5d0e3",
+        "/private/tmp/h2-batch007-review-actual/ttex079-relief.png": "f8bbb75a4b10309101e8e72754207003b2318fd0ab09af33114d127ea91761e1"
+      },
+      "verdict": "ART PASS both tiers",
+      "observations": [
+        "Warm ochre-brown vertical fibres, elongated darker reddish patches and tan streak rhythm remain representative at half/quarter. No added plank grid, horizontal board ends, hardware or large new knots.",
+        "Distinct natural wood wear and broad smooth areas remain readable without uniform noise. Repeat/cyclic and decoded relief reviews preserve native flow and edge phase."
+      ]
+    }
+  ],
+  "trialObservation": {
+    "descriptor": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/batch-pattern.json",
+      "sha256": "daa1ae6560a7bc61462bce9a0e64612fddf69743ee4ae3d7d2e6be05c700b6f9"
+    },
+    "verdict": "Still HOLD; .90/.35 coarse fitting improves tint but cannot restore the missing distinguishing inner rectangle.",
+    "viewedEvidence": [
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-pattern/rtex322-high-relief.jpg",
+        "sha256": "65a4315eb3ea3540c5559f0fd725d0f83a0424c1a2d005edc498263a0dfec9fd"
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-pattern/rtex322-high-review.jpg",
+        "sha256": "a390808ff5ff91417bf22fb622090113912f174070215fa38feb33265f34c9de"
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-pattern/rtex322-mid-relief.jpg",
+        "sha256": "0420c9d7e4116acb2d6abb43c729e7e94c213b1739ec92b0fdcf65efa7bea45b"
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-pattern/rtex322-mid-review.jpg",
+        "sha256": "598f939307f3ac14fec194c5ff8bf9fa510c453702f3bdf918e55394d6d4f50f"
+      }
+    ]
+  },
+  "supplementalAliasCustody": {
+    "descriptor": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/alias-batch.json",
+      "sha256": "16708d044390bf1075b8bba0a023df63bdfe3837c083ec91594d066197c781c4"
+    },
+    "items": [
+      {
+        "name": "ttex052",
+        "nativeIdentity": {
+          "id": "2c1bff60990ab841f2f770dad2326dbbc0acf4e45013b7a69652cb18283e76b6",
+          "width": 64,
+          "height": 128,
+          "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+          "rgbaSha256": "9bea7f4d4390ab52b1a555ca4ab73dbf50418ac5602d7eec9d997bf22c670a6a",
+          "indexedPixelSha256": "e2aef6dd65280d2bb1dec5f7cfddc98162a632a4dd726bda51d9f4a7cbaa5955"
+        },
+        "ownUnchangedLow": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/alias-originals/01-ttex052-2c1bff60990a.png",
+          "sha256": "262fe1ee17f9f3cd734e4041131cba5bf427953735903bd8abe09d5300997f51",
+          "byteIdenticalToTargetOriginal": true
+        },
+        "target": {
+          "id": "2880c270e3b99a91010e650e191d5280fb056cb400ef8f6be9d287ee50d8cef6",
+          "name": "rtex439",
+          "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/originals/05-rtex439-2880c270e3b9.png",
+          "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/masters-registered/rtex439/master.json",
+          "masterPackageSha256": "7af47f74be99bd7cb66edeef796608b5220cbf102d32872e763acdd36b51a7a8",
+          "tierReceipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-registered/rtex439/manifest.json",
+          "tierReceiptSha256": "8cc68c35ef677c64ad657510f77f558fee97d7eb65fb3cd0faf8249784832bd8"
+        },
+        "maps": {
+          "Mid": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-registered/rtex439/mid-diffuse.webp",
+              "sha256": "d0dc68170185d519816c28dcbd4a26a82f4906d90d044650c2378fc1830e0b10",
+              "dimensions": [
+                256,
+                512
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-registered/rtex439/mid-height.webp",
+              "sha256": "e2256e53f7026d22772b865527ef45806037cfa3f308fe9843025dcd3c834584",
+              "dimensions": [
+                256,
+                512
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-registered/rtex439/mid-normalX.webp",
+              "sha256": "3c632203af59fcdb2237f31f8f0c36f2b2f8d81303920f3500365ebe60edb68b",
+              "dimensions": [
+                256,
+                512
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-registered/rtex439/mid-normalY.webp",
+              "sha256": "bcb315afb14bfba724f47a914a16ecbe3cede516234a240464e3d8bba18cd3d1",
+              "dimensions": [
+                256,
+                512
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-registered/rtex439/mid-normalZ.webp",
+              "sha256": "bf0f1d1f482d620b5729957e3dcdda8941ec18070d439e8dae0d56ce93a08c7f",
+              "dimensions": [
+                256,
+                512
+              ]
+            }
+          },
+          "High": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-registered/rtex439/high-diffuse.webp",
+              "sha256": "73e0851b915ab3b1eecdeaf03f92491862c11cf32e86354554a787ed86c8216a",
+              "dimensions": [
+                512,
+                1024
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-registered/rtex439/high-height.webp",
+              "sha256": "c554ef82234a89b2c44317f91bb0d6df86c4d4230f3235af077fbf96efc4b522",
+              "dimensions": [
+                512,
+                1024
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-registered/rtex439/high-normalX.webp",
+              "sha256": "d1a0931dde7c5b2102c8d643674c54758467bf208f12b111f4e247f373e58494",
+              "dimensions": [
+                512,
+                1024
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-registered/rtex439/high-normalY.webp",
+              "sha256": "b2b0fffbefa3f4cd3928aa799590979fa1edd4df02cda52c24f989c82341bb89",
+              "dimensions": [
+                512,
+                1024
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers-registered/rtex439/high-normalZ.webp",
+              "sha256": "df6d011abe244f5de5c2b7af5c59138da813d24cb7d2b7ed96c7eb0b811ec91d",
+              "dimensions": [
+                512,
+                1024
+              ]
+            }
+          }
+        },
+        "generationCount": 0,
+        "newMasters": 0,
+        "newMaps": 0,
+        "sourceProof": {
+          "file": "docs/hexen2/textures/batch-007-alias-public-source-proof.json",
+          "sha256": "40df0252adf2c6c5d2a12074c42e3a2f7fa1dbd19800591d5ab4b7b6b64a71a7"
+        },
+        "priorIndependentArtReceipt": {
+          "file": "docs/hexen2/textures/batch-006-art-review-v2.json",
+          "sha256": "959886c98c2c1acbd07209c0e7895f89d0dd75fa1e1be12b511b5d4863dd09ad",
+          "targetVerdict": "ART PASS both Mid and High"
+        },
+        "verdict": "ART CUSTODY PASS: exact source and all prior accepted target bytes; no duplicate art review required"
+      },
+      {
+        "name": "rtex036",
+        "nativeIdentity": {
+          "id": "42b6bee9ca16e917cfe1d06ea755c0513072d161d0595c0299f010c7fbfb29df",
+          "width": 64,
+          "height": 128,
+          "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+          "rgbaSha256": "cac176593da8e8d756987ef724462392a282a6e324d65cc2c65f69fd5327aebf",
+          "indexedPixelSha256": "de97cf0da7a0eb57c0533b10ac3f9ed5e100843131f096269d9768648bfd9ddb"
+        },
+        "ownUnchangedLow": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/alias-originals/02-rtex036-42b6bee9ca16.png",
+          "sha256": "ce64230db484ffea41bff23d3923eca402aa49c19f7ecf277306ca0670bcc691",
+          "byteIdenticalToTargetOriginal": true
+        },
+        "target": {
+          "id": "2db73383343bfc6b212d264e514cc4c8358d1c2fdcd4ff762b40504ed0228f01",
+          "name": "ttex018",
+          "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/originals/08-ttex018-2db73383343b.png",
+          "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/masters/ttex018/master.json",
+          "masterPackageSha256": "89a71ffe0cefd200fa3225257350594d133f7280230a6005fa93a9e66d18e903",
+          "tierReceipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers/ttex018/manifest.json",
+          "tierReceiptSha256": "64a35922841d3b153cf720edd453303de3eda75fff10900713b5d3303f863123"
+        },
+        "maps": {
+          "Mid": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers/ttex018/mid-diffuse.webp",
+              "sha256": "f297aeca9ebb877d76ce5b942fb249277fad08d2a9f408bd382a3df20724376d",
+              "dimensions": [
+                256,
+                512
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers/ttex018/mid-height.webp",
+              "sha256": "4eadbe4e942d724a8bf94ada4638a224157ab523daaaa1aa3de89f0e835494f4",
+              "dimensions": [
+                256,
+                512
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers/ttex018/mid-normalX.webp",
+              "sha256": "c13819b7aab1b0e774db5bb34171567f74f4553bfb64ce1cda5402804c140877",
+              "dimensions": [
+                256,
+                512
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers/ttex018/mid-normalY.webp",
+              "sha256": "276d955d8643a24ee8ea73c15699be3a43b910b68c15074f5eef72d2e90514af",
+              "dimensions": [
+                256,
+                512
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers/ttex018/mid-normalZ.webp",
+              "sha256": "e29a4599033244c96f68e5b7d743b6ddb461a8f746461f7e7cdfc379ea848e63",
+              "dimensions": [
+                256,
+                512
+              ]
+            }
+          },
+          "High": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers/ttex018/high-diffuse.webp",
+              "sha256": "3b95072bbf3d6eda804f3f6890a53f58e6e0ca84c97ef26b576765767a459e46",
+              "dimensions": [
+                512,
+                1024
+              ]
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers/ttex018/high-height.webp",
+              "sha256": "2cf61a4102402a34b15885a09f9edaa0c307bf35072d32fbf5f446bba91dc225",
+              "dimensions": [
+                512,
+                1024
+              ]
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers/ttex018/high-normalX.webp",
+              "sha256": "8c64defd1269e739bfe3ec16e12bf97fcdf5bfe2315383b3c419d3242367fb04",
+              "dimensions": [
+                512,
+                1024
+              ]
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers/ttex018/high-normalY.webp",
+              "sha256": "117f20622f2d0a223f97681573911be442890975a4ea42f8ccf2a1b0dd0051cc",
+              "dimensions": [
+                512,
+                1024
+              ]
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/tiers/ttex018/high-normalZ.webp",
+              "sha256": "9d65e8b5d009427253ce2b5a125ad3f82b67b74d136b9e38aaca6a8e1eb574ba",
+              "dimensions": [
+                512,
+                1024
+              ]
+            }
+          }
+        },
+        "generationCount": 0,
+        "newMasters": 0,
+        "newMaps": 0,
+        "sourceProof": {
+          "file": "docs/hexen2/textures/batch-007-alias-public-source-proof.json",
+          "sha256": "40df0252adf2c6c5d2a12074c42e3a2f7fa1dbd19800591d5ab4b7b6b64a71a7"
+        },
+        "priorIndependentArtReceipt": {
+          "file": "docs/hexen2/textures/batch-006-art-review-v2.json",
+          "sha256": "959886c98c2c1acbd07209c0e7895f89d0dd75fa1e1be12b511b5d4863dd09ad",
+          "targetVerdict": "ART PASS both Mid and High"
+        },
+        "verdict": "ART CUSTODY PASS: exact source and all prior accepted target bytes; no duplicate art review required"
+      }
+    ],
+    "summary": "Two native bindings reuse exact accepted006 packages and20 existing maps; zero new generations/masters/maps. Source four-mip proof remains separate from accepted-art byte custody."
+  },
+  "reviewMethod": [
+    "Independently decoded/hashchecked all80 new map bindings and native/master/tier receipts, including full-precision float32 heights. Reviewed all8 both-tier colour/distance/repeat/cyclic sheets and all8 both-tier decoded height/XYZ/opposed-light sheets.",
+    "Original and decoded replacement were both BOX-reduced to identical half/quarter native dimensions before visual similarity decisions. All square High images except413 appeared1:1 at512 in the independent sheets; actual crop/normal lighting inspection provides close detail. Metrics alone did not accept forms.",
+    "Decoded XYZ reconstructed from actual red channels, normalized and rendered opposed Lambert lights [-.6,-.3,.75]/[.6,.3,.75], ambient.35/diffuse.65. Viewed actual centre crops and cyclic offsets carrying both wrap axes/corners.",
+    "Viewed all4 dedicated .90/.35 rtex322 trial review/relief JPGs after the initial review. Missing inlay geometry remains a concrete finding despite improved colour.",
+    "Alias originals are PNG-byte-identical to accepted targets; target IDs, master/tier receipts and all20 map bytes match prior independent final006 ART PASS. No duplicate generation or speculative name alias was accepted."
+  ],
+  "inspectionEvidence": {
+    "file": "/private/tmp/h2-batch007-review-actual/inspection.json",
+    "sha256": "4a417be9d0ee6712750d65c405a833f34f5daaa996302448c0976e3efd004dd7",
+    "script": "/private/tmp/h2-batch007-art-inspect.py",
+    "scriptSha256": "5e0f0259a65a50532f77f04e3522828d68ab4052cc056eacad8cae170fc214e5"
+  },
+  "separatePublicEvidence": {
+    "batch-007-public-actual-v1.json": {
+      "file": "docs/hexen2/textures/batch-007-public-actual-v1.json",
+      "sha256": "309d4d752c04a6a09b24788bbe9c57f2a79ff671d3562682d51f85faef93e4ff",
+      "verdict": "HOLD"
+    },
+    "batch-007-public-preview-v1.json": {
+      "file": "docs/hexen2/textures/batch-007-public-preview-v1.json",
+      "sha256": "617d3de20ff4092ebcd160624e5c398d4029f7a3fdfdc9bd02d0a532f306814b",
+      "verdict": "PASS source bindings and all32 decoded preview content/label panels; bounded empty JPEG-tail padding variance retained"
+    },
+    "batch-007-alias-public-bindings-v1.json": {
+      "file": "docs/hexen2/textures/batch-007-alias-public-bindings-v1.json",
+      "sha256": "79e96bf7b53bee440e6c31ab04f8ee434c8617112c4e798ba011cfe36a437fd5",
+      "verdict": "PASS supplemental2descriptors/20existingmapreferences and final006qualified source/art custody; reuse acceptance separate"
+    }
+  },
+  "limits": [
+    "Initial batch007 is not fully accepted while322 is held. Seven other new material PASS findings and two exact alias custody PASS findings may be carried forward only under exact source/master/map hash custody.",
+    "No owner acceptance, Hexen runtime/pack, production GPU/POM or gameplay qualification. Full campaign remains active, including undersized frozen098 and outstanding other families.",
+    "Height is interpreted material relief, not measured displacement. Physical native mouldings/mortar are preserved; no blanket numerical edge-equality or all-pixel semantic claim."
+  ],
+  "reviewerEffects": "Only this bounded initial art-review JSON and temporary inspection artifacts written. No source/master/map/tool/model/Git/process mutations.",
+  "nextAction": "Root restores322 locally from the same retained source, retains this initial HOLD, then requests focused final successor review."
+}

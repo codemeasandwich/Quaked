@@ -1,0 +1,9 @@
+# rtex322 local colour repair: independent plan review
+
+PASS the narrow adaptation, with an explicit feather convention and preserved height. The source grid confirms blue cells x6..13/y29..33 and x50..57/y29..33 surrounding small olive centres. The proposed supports[5.5,28.5,14.5,34.5]and[49.5,28.5,58.5,34.5] cover those marks plus half a native pixel of fringe. They occupy6912master pixels(2.6367%) and leave every image edge and the central meander untouched. Some generated thin inner-rim pixels lie within the allowed feather; they may be retinted to match the native plate.
+
+Use the initial.65/.75RGB, the full-native difference original-area(base,8), existing periodic blur sigma.35, existing periodic resize to512 and strength.95. Define alpha as the product of four inward cubic-smoothstep edge ramps with.5native feather, evaluated at master texel centres in native pixel-edge units. Sum the disjoint masks and round/clip once. This resolves corner behaviour without a new global restoration framework.
+
+Preserve the initial float32height NPY bytes exactly, reconstructed and hash-checked from the original authoring source. Recrafting height from restored olive pigment would risk inventing embossing where ART already cleared geometry. Shared tier derivation should therefore change only Mid/Highdiffuse; the twoheight and sixnormal-component files must stay byte-identical. This supersedes the earlier conditional recraft recommendation.
+
+The detailedJSON pins original/package/RGB/height/source-proof/helper hashes, measured native/baseline colour contrasts, exact support math, guards and meaningful future public checks. Only source/coordinate and alpha-domain diagnostics were computed. No corrected colour candidate, recipe, implementation, test or model call was produced. Final photographic shape, no cell-scale grain, retained relief and all seven unaffected materials still require actual independent proof and ART acceptance.
