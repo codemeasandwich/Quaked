@@ -782,7 +782,7 @@ function SCR_DrawPause() {
 	if ( ! _cl.paused )
 		return;
 
-	const pic = Draw_CachePic( 'gfx/pause.lmp' );
+	const pic = Draw_CachePic( GameProfile_IsHexen2() ? 'gfx/menu/paused.lmp' : 'gfx/pause.lmp' ); // Hexen II keeps its plaques under gfx/menu/
 	if ( pic )
 		Draw_Pic( ( _vid.width - ( pic.width || 0 ) ) / 2,
 			( _vid.height - 48 - ( pic.height || 0 ) ) / 2, pic );
@@ -795,7 +795,7 @@ SCR_DrawLoading
 ==============
 */
 /**
- * Draws the `gfx/loading.lmp` plaque centred on the screen (24 virtual pixels above centre, as in WinQuake) when a
+ * Draws the `gfx/loading.lmp` plaque (Hexen II's `gfx/menu/loading.lmp`) centred on the screen (24 virtual pixels above centre, as in WinQuake) when a
  * load is showing: the one frame drawn by `SCR_BeginLoadingPlaque`, or Newer Game's first load from the menu, which
  * shows the plaque instead of the console. Called by `SCR_UpdateScreen`; draws nothing otherwise.
  */
@@ -804,7 +804,7 @@ export function SCR_DrawLoading() {
 	if ( ! scr_drawloading && ! scr_plaque )
 		return;
 
-	const pic = Draw_CachePic( 'gfx/loading.lmp' );
+	const pic = Draw_CachePic( GameProfile_IsHexen2() ? 'gfx/menu/loading.lmp' : 'gfx/loading.lmp' );
 	if ( pic )
 		Draw_Pic( ( _vid.width - ( pic.width || 0 ) ) / 2,
 			( _vid.height - 48 - ( pic.height || 0 ) ) / 2, pic );

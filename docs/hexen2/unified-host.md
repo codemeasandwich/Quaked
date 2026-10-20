@@ -128,8 +128,9 @@ uHexen2 `475c048b1c8b0806b8585f5cd2715f3ad60bf393` (canonical behaviour), Raven 
 ## 8. Coordination
 
 Bluey returned `storage_error` on 19 October 2026 (correlations `d24795f5…`, `9ddff495…`); until it recovers this
-document and the branch history are the ledger. Implementation sub-agents run on DeepSeek V4.1 Flash through the local
-DeepSeek Harness (owner instruction, 19 October 2026); the orchestrator reviews and integrates every package.
+document and the branch history are the ledger. Implementation sub-agents ran on DeepSeek V4.1 Flash through the local DeepSeek Harness (owner instruction, 19 October
+2026) and, from 20 October, on GPT Sol 6.1 high through the Codex CLI (owner instruction); the orchestrator reviews and
+integrates every package.
 
 ## 9. Why the parallel host is retired
 
@@ -165,7 +166,8 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `31498a84` | owner trial 2 / M1 | native Hexen II menus on the shared menu framework: main with the sliding title, single player, multiplayer, options, keys, help, quit, load/save |
 | `8cc2c3c7` | owner request | Help as one scroll with sticky section headings |
 | `245a5cb3` | owner request / M2 | high-resolution Hexen II menus on the one dynamic renderer: per-game skin with a runtime font from the installed bigfont/conchars, grey stone, smoothed original pictures, sliding title, menudot selector; Quake unchanged |
-| (this commit) | browser trial T1 | Hexen II in a local source checkout; M2's font made legible on the GPU; Hexen's own console background |
+| `b3f6580c` | browser trial T1 | Hexen II in a local source checkout; M2's font made legible on the GPU; Hexen's own console background |
+| (this commit) | H1, trial T2 | hub saves on IndexedDB; Portal's text lists and the native demos mounted; Hexen's own plaques; no Quake files requested |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;
@@ -214,6 +216,24 @@ game's own colours from its charset and palette (tan plain bank, red highlighted
 II's console background is `gfx/menu/conback.lmp`; Quake's `conback.webp` wallpaper is no longer shown behind Hexen
 menus. Verified by screenshots of the main, options, help (sticky headings) and single-player pages, and 289/289
 across the Hexen, menu, selection, hook and protocol suites.
+
+Package H1 (GPT Sol 6.1 high; owner, 20 October: sub-agents run GPT Sol) measured real hub saves: demo1 alone
+134,400 bytes, the first hub 1,223,081, Portal's Keep 844,884 and Tibet 1,285,484, so three slots of the larger hubs
+(about 7.5 MB) exceed localStorage's ~5 MB. Hub saves now go through `Hexen2_SaveStore` on IndexedDB (localStorage
+and memory fallbacks; a failed write keeps the previous save; old localStorage slots migrate after the new write
+commits; the menus show cached slot comments and refresh them in the background). Review change: the `save`/`load`
+commands stay synchronous, so Quake's failure handling is unchanged; only the Hexen branch runs in the background.
+Details and measurements: [h1-save-storage.md](h1-save-storage.md).
+
+Trial T2 (all scenarios, browser): demo1 start, walking, hub travel demo1 → demo2 → demo1 (286 edicts restored),
+save and load back to the saved position through IndexedDB, Portal of Praevus on keep1, the demo edition, and
+`playdemo demo1` through the native-demo decoder: 21/21 checks. It found and this commit fixes: the base game's
+native demos and Portal's own `puzzles.txt`, `infolist.txt` and `maplist.txt` were never mounted, by the desktop app
+(`library.rs` HEXEN_LOOSE_FILES) or a source checkout, so Portal used the base game's lists; the loading and pause
+plaques used Quake's paths (Hexen's are `gfx/menu/loading.lmp`, `paused.lmp`); every Hexen session requested Quake's
+wizard/hell-knight hit sounds and composed Quake's single-player menu picture. The trial now reads the engine console
+(`Con_RecentLines`) and fails on any file the engine could not load (shown failing with the old plaque path).
+For the owner's eye: Enhanced mode looks darker and hazier than Classic in demo1, with the hands drawn lower.
 
 Open decisions and known limits:
 

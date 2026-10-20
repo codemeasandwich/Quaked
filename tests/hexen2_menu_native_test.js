@@ -5,11 +5,14 @@
 import { Cbuf_Init } from '../src/engine/common/cmd.js';
 import { Cvar_FindVar, Cvar_RegisterVariable, cvar_t } from '../src/engine/common/cvar.js';
 import { GameProfile_Set } from '../src/engine/common/game_profile.js';
-import { K_ESCAPE, K_ENTER, K_DOWNARROW, K_RIGHTARROW } from '../src/engine/client/keys.js';
+import { K_ESCAPE, K_ENTER, K_DOWNARROW, K_RIGHTARROW, K_DEL } from '../src/engine/client/keys.js';
 import * as menu from '../src/engine/client/menu.js';
 import * as common from '../src/engine/client/menu_common.js';
 import { M_Hexen2_Reset, M_Hexen2_State, M_Hexen2_Main_Draw, M_Hexen2_SinglePlayer_Draw } from '../src/engine/client/menu_hexen2.js';
-import { M_Hexen2_Multiplayer_Draw } from '../src/engine/client/menu_hexen2_multiplayer.js';
+import { fakeIndexedDB, saveLocalStorage } from './helpers/fake_indexeddb.mjs';
+import { GameSelection_SavePrefix } from '../src/engine/common/game_selection.js';
+import { Host_Hexen2ReadSlot } from '../src/engine/server/host_cmd.js';
+import { M_Hexen2_Menu_Load_f, M_Hexen2_Load_Draw, M_Hexen2_Load_Key, M_Hexen2_Multiplayer_Draw } from '../src/engine/client/menu_hexen2_multiplayer.js';
 import { M_Hexen2_Options_Draw, M_Hexen2_Keys_Draw } from '../src/engine/client/menu_hexen2_options.js';
 import { M_Hexen2_Help_Draw, M_Hexen2_Quit_Draw } from '../src/engine/client/menu_hexen2_help.js';
 import { Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_HighlightOffset } from '../src/engine/render/gl_draw.js';
@@ -279,4 +282,34 @@ Deno.test( 'menu.M_Draw dispatches to the Hexen pages, never the Quake art', () 
 
 	} finally { restore(); }
 
+} );
+
+Deno.test( 'hub load pages draw cached comments, refresh from IndexedDB and delete through the repository', async () => {
+	const restore = win(), oldIDB = globalThis.indexedDB, oldLocal = globalThis.localStorage;
+	try {
+		wire();
+		globalThis.indexedDB = fakeIndexedDB();
+		globalThis.localStorage = saveLocalStorage();
+		const key = GameSelection_SavePrefix() + 's0';
+		const level = { schema: 1, level: 'demo1', globals: '{}', lightstyles: new Array( 64 ).fill( 'm' ), time: 1, edicts: [], num_edicts: 2 };
+		const text = 'HEXEN2HUB 1\nINDEXED_HUB\n' + JSON.stringify( { schema: 1, kind: 'hexen2-hub', currentLevel: 'demo1', levels: { demo1: level } } );
+		indexedDB.records.set( key, text );
+		const opening = M_Hexen2_Menu_Load_f();
+		same( common.m_state, common.m_hexen2_load, 'the page opens before storage completes' );
+		M_Hexen2_Load_Key( K_ESCAPE );
+		same( common.m_state, common.m_hexen2_single, 'input works while the slot index is loading' );
+		await opening;
+		await M_Hexen2_Menu_Load_f();
+		resetDraw(); M_Hexen2_Load_Draw();
+		check( textFrom( chars ).includes( 'INDEXED HUB' ), 'the refreshed comment is drawn' );
+		// Drawing must use the cached index even if the platform is busy/unavailable.
+		indexedDB.open = () => { throw new Error( 'drawing attempted storage IO' ); };
+		resetDraw(); M_Hexen2_Load_Draw();
+		check( textFrom( chars ).includes( 'INDEXED HUB' ), 'drawing uses cached metadata' );
+		M_Hexen2_Load_Key( K_DEL );
+		same( await Host_Hexen2ReadSlot( 's0' ), null, 'Delete uses the asynchronous repository' );
+		await M_Hexen2_Menu_Load_f();
+		resetDraw(); M_Hexen2_Load_Draw();
+		check( ! textFrom( chars ).includes( 'INDEXED HUB' ), 'deleted slot disappears on refresh' );
+	} finally { globalThis.indexedDB = oldIDB; globalThis.localStorage = oldLocal; restore(); }
 } );

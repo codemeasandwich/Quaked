@@ -40,9 +40,16 @@ async function scenario( name, query, body ) {
 	if ( only && ! only.includes( name ) ) return;
 	const context = await browser.newContext( { viewport: { width: 1280, height: 800 }, deviceScaleFactor: 2 } );
 	const page = await context.newPage();
-	const result = { name, query, checks: [], shots: [], consoleErrors: [], pageErrors: [], failedRequests: [], notes: {} };
+	const result = { name, query, checks: [], shots: [], consoleErrors: [], pageErrors: [], failedRequests: [], missingAssets: [], notes: {} };
 	page.on( 'response', r => { if ( r.status() >= 400 ) result.failedRequests.push( r.status() + ' ' + decodeURIComponent( new URL( r.url() ).pathname ) ); } );
-	page.on( 'console', m => { if ( m.type() === 'error' ) result.consoleErrors.push( m.text().slice( 0, 300 ) ); } );
+	page.on( 'console', m => {
+
+		if ( m.type() === 'error' ) result.consoleErrors.push( m.text().slice( 0, 300 ) );
+		// a game picture or file the engine asked for and could not find (a Quake path used under Hexen II, say)
+		const missing = m.text().match( /(?:Draw_CachePic: failed to load|Couldn't load) (\S+)/ );
+		if ( missing && ! result.missingAssets.includes( missing[ 1 ] ) ) result.missingAssets.push( missing[ 1 ] );
+
+	} );
 	page.on( 'pageerror', e => result.pageErrors.push( String( e?.stack ?? e ).slice( 0, 600 ) ) );
 	const check = ( ok, what, detail ) => result.checks.push( { ok: !! ok, what, ...( detail === undefined ? {} : { detail } ) } );
 	const shot = async label => { const file = `${name}-${label}.png`; await page.screenshot( { path: resolve( out, file ) } ); result.shots.push( file ); };
@@ -66,6 +73,19 @@ async function scenario( name, query, body ) {
 
 	} catch ( error ) { check( false, 'scenario threw', String( error?.stack ?? error ).slice( 0, 600 ) ); }
 	check( result.pageErrors.length === 0, 'no uncaught page errors', result.pageErrors.slice( 0, 3 ) );
+	// the engine's own console (Con_Printf never reaches the browser console)
+	try {
+
+		const lines = await page.evaluate( async () => ( await import( '/src/engine/common/console.js' ) ).Con_RecentLines( 1000 ) );
+		for ( const line of lines ) {
+
+			const missing = line.match( /(?:Draw_CachePic: failed to load|Couldn't load) (\S+)/i );
+			if ( missing && ! result.missingAssets.includes( missing[ 1 ] ) ) result.missingAssets.push( missing[ 1 ] );
+
+		}
+
+	} catch ( error ) { check( false, 'the engine console can be read', String( error ) ); }
+	check( result.missingAssets.length === 0, 'every game picture and file the engine asked for was found', result.missingAssets );
 	report.scenarios.push( result );
 	await context.close();
 
@@ -125,9 +145,11 @@ await scenario( 'base', '?game=hexen2&class=paladin&autostart=1', async ( { page
 	check( back, 'hub travel returns to demo1', back?.svName );
 	result.notes.edicts = { left: saved.numEdicts, returned: back?.numEdicts };
 	await sleep( 1500 ); await shot( 'demo1-return' );
+	// load reads the save repository asynchronously: wait for the restored position, not the first playing frame
 	await command( 'load trial1' );
-	const loaded = await until( s => playing( s ) && s.svName === 'demo1', 60000, 'load restores the save' );
-	check( loaded && saved.origin && loaded.origin && Math.hypot( loaded.origin[ 0 ] - saved.origin[ 0 ], loaded.origin[ 1 ] - saved.origin[ 1 ] ) < 16, 'load puts the player back where the save was made', { saved: saved.origin, loaded: loaded?.origin } );
+	const near = s => s.origin && saved.origin && Math.hypot( s.origin[ 0 ] - saved.origin[ 0 ], s.origin[ 1 ] - saved.origin[ 1 ] ) < 16;
+	const loaded = await until( s => playing( s ) && s.svName === 'demo1' && near( s ), 60000, 'load restores the save' );
+	check( loaded, 'load puts the player back where the save was made', { saved: saved.origin, loaded: loaded?.origin } );
 	await sleep( 1500 ); await shot( 'loaded' );
 
 } );

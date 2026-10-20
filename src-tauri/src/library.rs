@@ -76,7 +76,18 @@ pub const GAMES: &[(&str, &[&str])] = &[
 pub const LOOSE_FILES: &[&str] = &["progs.dat", "autoexec.cfg", "quake.rc"];
 /// The loose files a Hexen II installation may carry beside its packs; the engine's Hexen filesystem resolves loose
 /// files above PAKs, so these are exposed even though the game is not an add-on.
-pub const HEXEN_LOOSE_FILES: &[&str] = &["progs.dat", "strings.txt", "hexen.rc"];
+/// Portal of Praevus keeps its puzzle, info and map lists loose too, and the base game its native demos.
+pub const HEXEN_LOOSE_FILES: &[&str] = &[
+    "progs.dat",
+    "strings.txt",
+    "hexen.rc",
+    "puzzles.txt",
+    "infolist.txt",
+    "maplist.txt",
+    "demo1.dem",
+    "demo2.dem",
+    "demo3.dem",
+];
 /// Games whose files live under the installation's `data1` directory and whose pak0..pak9 are probed independently.
 pub const HEXEN_GAMES: &[&str] = &["hexen2", "hexen2-portals", "hexen2-demo"];
 /// The add-ons among GAMES (game_catalogue.js kind 'addon'): only they get loose files.

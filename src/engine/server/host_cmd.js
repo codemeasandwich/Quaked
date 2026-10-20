@@ -6,11 +6,11 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; browser storage.
+ * State: no mutable exports; the session hub, cached slot summaries and queued save-repository operations.
  *
- * Errors: calls `Sys_Error` (fatal) at 1 place; catches at 5 places.
+ * Errors: command/storage failures are reported on the console; `Sys_Error` handles fatal engine failures.
  *
- * Saved games are kept in localStorage: Quake's version-5 text, or for Hexen II one atomic whole-hub JSON record. A
+ * Quake's version-5 saves stay in localStorage; Hexen II's atomic whole-hub records use the save repository. A
  * failed save or load is caught and reported on the console. A map not yet loaded is fetched first and the command
  * reissued.
  */
@@ -67,6 +67,7 @@ const SHELL_SAVE_PREFIX = '// quaked-shells-v1 ';
 import { set_noclip_anglehack } from '../common/host_state.js';
 import { GameSelection_SavePrefix } from '../common/game_selection.js';
 import { GameProfile_Get, GameProfile_IsHexen2 } from '../common/game_profile.js';
+import { Hexen2_SaveStore } from '../common/hexen2_save.js';
 import { Hexen2_SaveEffects, Hexen2_LoadEffects } from '../progs/hexen2_server_cmds.js';
 import {
 	Hexen2Hub_New, Hexen2Hub_Validate, Hexen2Hub_ValidateLevel, Hexen2Hub_CaptureLevel, Hexen2Hub_CaptureClients,
@@ -1264,17 +1265,40 @@ export function Host_Hexen2RestartRestore() {
 
 }
 
-/**
- * Reads one Hexen II hub save from the shared save repository. A slot is one localStorage value, so the whole hub and
- * its comment are committed atomically; the second line stays a save-menu comment like a Quake slot's.
- *
- * @param {string} name the slot name
- * @returns {?{ hub: object, comment: string, text: string }} the record, or null when absent/unreadable
- */
-export function Host_Hexen2ReadSlot( name ) {
+// Repository work is ordered independently of the frame/command loop. In particular, a read or a migration cannot
+// overtake a pending save/delete. Capture the game key and platform before yielding to avoid cross-game writes.
+let saveRepository = null;
+let saveRepositoryIDB, saveRepositoryLocal;
+let saveOperations = Promise.resolve();
+const saveSummaries = new Map();
 
-	let text;
-	try { text = localStorage.getItem( GameSelection_SavePrefix() + name ); } catch { return null; }
+function hexenSaveRepository() {
+
+	let storage = null, factory = null;
+	try { storage = globalThis.localStorage ?? null; } catch { /* disabled browser storage */ }
+	try { factory = globalThis.indexedDB ?? null; } catch { /* disabled browser storage */ }
+	if ( saveRepository === null || factory !== saveRepositoryIDB || storage !== saveRepositoryLocal ) {
+
+		saveRepositoryIDB = factory;
+		saveRepositoryLocal = storage;
+		saveRepository = Hexen2_SaveStore( { indexedDB: factory, localStorage: storage } );
+		saveSummaries.clear();
+
+	}
+	return { store: saveRepository, storage, requiresDatabase: typeof factory?.open === 'function', fallback: Hexen2_SaveStore( { indexedDB: null, localStorage: storage } ) };
+
+}
+
+function queueHexenSave( action ) {
+
+	const result = saveOperations.then( action );
+	saveOperations = result.catch( () => {} );
+	return result;
+
+}
+
+function parseHexenSave( text ) {
+
 	if ( typeof text !== 'string' ) return null;
 	const header = text.indexOf( '\n' );
 	if ( header < 0 || text.slice( 0, header ) !== HEXEN2_SAVE_HEADER ) return null;
@@ -1284,43 +1308,179 @@ export function Host_Hexen2ReadSlot( name ) {
 	try {
 
 		const hub = JSON.parse( text.slice( commentEnd + 1 ) );
-		const valid = Hexen2Hub_Validate( hub );
-		if ( !valid.ok ) return null;
+		if ( ! Hexen2Hub_Validate( hub ).ok ) return null;
 		return { hub, comment, text };
 
 	} catch { return null; }
 
 }
 
-/**
- * The save-menu summary of one Hexen II slot without loading it.
- *
- * @param {string} name the slot name
- * @returns {?{ comment: string, level: string, levels: number, skill: number, playerclass: number, savedAt: string }} the summary
- */
-export function Host_Hexen2SaveSummary( name ) {
+function cacheHexenSummary( key, slot ) {
 
-	const slot = Host_Hexen2ReadSlot( name );
-	if ( slot === null ) return null;
-	return {
-		comment: slot.comment,
-		level: slot.hub.currentLevel,
-		levels: Hexen2Hub_LevelCount( slot.hub ),
-		skill: slot.hub.session?.skill | 0,
-		playerclass: slot.hub.session?.playerclass | 0,
-		savedAt: slot.hub.savedAt,
+	const summary = slot === null ? null : {
+		comment: slot.comment, level: slot.hub.currentLevel, levels: Hexen2Hub_LevelCount( slot.hub ),
+		skill: slot.hub.session?.skill | 0, playerclass: slot.hub.session?.playerclass | 0, savedAt: slot.hub.savedAt,
 	};
+	saveSummaries.set( key, summary );
+	return summary;
+
+}
+
+function removeLegacyHexenSave( storage, key ) {
+
+	try { storage?.removeItem( key ); }
+	catch ( error ) { Con_Printf( 'WARNING: Hexen II save committed, but legacy slot cleanup failed: %s\n', String( error?.message ?? error ) ); }
+
+}
+
+async function recoverFallbackHexenSave( repository, key, slot ) {
+
+	// Opening failure makes the primary store use this very fallback key: never remove its own active save.
+	if ( repository.store.kind !== 'indexeddb' ) return slot;
+	let fallback = null;
+	try { fallback = parseHexenSave( await repository.fallback.get( key ) ); } catch { /* no readable fallback */ }
+	if ( fallback === null ) return slot;
+	const timestamp = record => Date.parse( record?.hub.savedAt ) || 0;
+	if ( slot !== null && timestamp( slot ) > timestamp( fallback ) ) return slot;
+	try {
+
+		await repository.store.put( key, fallback.text );
+		await repository.fallback.remove( key );
+
+	} catch ( error ) { Con_Printf( 'WARNING: Hexen II fallback recovery failed; fallback retained: %s\n', String( error?.message ?? error ) ); }
+	return fallback;
+
+}
+
+function cleanupFallbackHexenSave( repository, key ) {
+
+	if ( repository.store.kind !== 'indexeddb' ) return Promise.resolve();
+	return repository.fallback.remove( key ).catch( error => {
+
+		Con_Printf( 'WARNING: Hexen II save committed, but fallback cleanup failed: %s\n', String( error?.message ?? error ) );
+
+	} );
+
+}
+
+async function readHexenSave( repository, key ) {
+
+	let slot = null;
+	try { slot = parseHexenSave( await repository.store.get( key ) ); }
+	catch ( error ) { Con_Printf( 'ERROR: couldn\'t read Hexen II save: %s\n', String( error?.message ?? error ) ); }
+	slot = await recoverFallbackHexenSave( repository, key, slot );
+	if ( slot === null ) {
+
+		try { slot = parseHexenSave( repository.storage?.getItem( key ) ); } catch { /* no readable legacy slot */ }
+		if ( slot !== null ) {
+
+			try {
+
+				await repository.store.put( key, slot.text );
+				await cleanupFallbackHexenSave( repository, key );
+				// Memory is useful for the current session, but cannot replace the only persistent copy.
+				if ( repository.store.kind !== 'memory' ) removeLegacyHexenSave( repository.storage, key );
+
+			} catch ( error ) { Con_Printf( 'WARNING: Hexen II save migration failed; legacy slot retained: %s\n', String( error?.message ?? error ) ); }
+
+		}
+
+	}
+	cacheHexenSummary( key, slot );
+	return slot;
 
 }
 
 /**
- * Saves the whole session hub into one shared fetch/localStorage slot: every visited level's state, the current level,
+ * Reads and validates a hub slot, migrating an old localStorage record only after the new transaction commits.
+ * A failed migration still returns the readable old slot. Quake version-5 records are never migrated.
+ *
+ * @param {string} name the slot name
+ * @returns {Promise<?{ hub: object, comment: string, text: string }>} the record, or null
+ */
+export function Host_Hexen2ReadSlot( name ) {
+
+	const repository = hexenSaveRepository(), key = GameSelection_SavePrefix() + name;
+	return queueHexenSave( () => readHexenSave( repository, key ) );
+
+}
+
+/**
+ * The cached save-menu summary. Refresh the index when opening a page; drawing never reads storage or parses hubs.
+ *
+ * @param {string} name the slot name
+ * @returns {?object} the summary, or null until the slot has been read
+ */
+export function Host_Hexen2SaveSummary( name ) {
+
+	hexenSaveRepository();
+	return saveSummaries.get( GameSelection_SavePrefix() + name ) ?? null;
+
+}
+
+/**
+ * Refreshes the menu's twelve slot summaries asynchronously, returning the index for the game that opened the page.
+ *
+ * @returns {Promise<Array<?object>>} the refreshed summaries
+ */
+export function Host_Hexen2RefreshSaveIndex() {
+
+	const repository = hexenSaveRepository(), prefix = GameSelection_SavePrefix();
+	return queueHexenSave( async () => {
+
+		const index = [];
+		for ( let i = 0; i < 12; i ++ ) index.push( cacheHexenSummary( prefix + 's' + i, await readHexenSave( repository, prefix + 's' + i ) ) );
+		return index;
+
+	} );
+
+}
+
+/**
+ * Deletes both the repository slot and its legacy source so a later refresh cannot resurrect a deleted hub.
+ *
+ * @param {string} name the slot name
+ * @returns {Promise<{ ok: boolean, reason?: string }>} the deletion result
+ */
+export function Host_Hexen2DeleteSlot( name ) {
+
+	const repository = hexenSaveRepository(), key = GameSelection_SavePrefix() + name;
+	return queueHexenSave( async () => {
+
+		try {
+
+			// Resolve the opening decision before removing anything: a fallback-only delete during an outage could
+			// resurrect the previous IndexedDB record at the next successful open. The owner can retry after recovery.
+			await repository.store.get( key );
+			if ( repository.requiresDatabase && repository.store.kind !== 'indexeddb' )
+				throw new Error( 'IndexedDB is unavailable; save retained. Retry deletion when storage is available.' );
+			await repository.store.remove( key );
+			await repository.fallback.remove( key );
+			// Keep a failed legacy deletion visible rather than claim that the slot is gone.
+			const legacy = parseHexenSave( repository.storage?.getItem( key ) );
+			if ( legacy !== null ) repository.storage.removeItem( key );
+			saveSummaries.delete( key );
+			return { ok: true };
+
+		} catch ( error ) {
+
+			Con_Printf( 'ERROR: couldn\'t delete Hexen II save: %s\n', String( error?.message ?? error ) );
+			return { ok: false, reason: String( error?.message ?? error ) };
+
+		}
+
+	} );
+
+}
+
+/**
+ * Saves the whole session hub through the IndexedDB repository (localStorage/memory fallback): every visited level,
  * the client slot's class/skill/objectives and spawn parms. Quake's version-5 text saves are untouched.
  *
  * @param {string} name the slot name
- * @returns {{ ok: true, levels: number } | { ok: false, reason: string }} the result
+ * @returns {Promise<{ ok: true, levels: number } | { ok: false, reason: string }>} the result
  */
-export function Host_Hexen2SaveGame( name ) {
+export async function Host_Hexen2SaveGame( name ) {
 
 	if ( ! sv.active ) return { ok: false, reason: 'not playing a local game' };
 	if ( ! GameProfile_IsHexen2() ) return { ok: false, reason: 'not a Hexen II game' };
@@ -1329,17 +1489,32 @@ export function Host_Hexen2SaveGame( name ) {
 	captureCurrentLevel( hub );
 	if ( Hexen2Hub_GetLevel( hub, hub.currentLevel ) === null ) return { ok: false, reason: 'the current level was not captured' };
 	const text = HEXEN2_SAVE_HEADER + '\n' + Host_SavegameComment() + '\n' + JSON.stringify( hub ) + '\n';
-	try {
+	const repository = hexenSaveRepository(), key = GameSelection_SavePrefix() + name;
+	const levels = Hexen2Hub_LevelCount( hub );
+	return queueHexenSave( async () => {
 
-		localStorage.setItem( GameSelection_SavePrefix() + name, text );
+		try {
 
-	} catch ( error ) {
+			await repository.store.put( key, text );
+			await cleanupFallbackHexenSave( repository, key );
+			cacheHexenSummary( key, parseHexenSave( text ) );
+			if ( repository.store.kind === 'memory' ) Con_Printf( 'WARNING: Hexen II save is in memory only; it will be lost when this app closes.\n' );
+			else {
 
-		Con_Printf( 'ERROR: couldn\'t save (localStorage full?).\n' );
-		return { ok: false, reason: String( error?.message ?? error ) };
+				// Remove only this game's old hub format; never a Quake version-5 record.
+				try { if ( parseHexenSave( repository.storage?.getItem( key ) ) ) removeLegacyHexenSave( repository.storage, key ); } catch { /* legacy storage unavailable */ }
 
-	}
-	return { ok: true, levels: Hexen2Hub_LevelCount( hub ) };
+			}
+			return { ok: true, levels };
+
+		} catch ( error ) {
+
+			Con_Printf( 'ERROR: couldn\'t save Hexen II hub; previous save retained: %s\n', String( error?.message ?? error ) );
+			return { ok: false, reason: String( error?.message ?? error ) };
+
+		}
+
+	} );
 
 }
 
@@ -1349,11 +1524,13 @@ export function Host_Hexen2SaveGame( name ) {
  * skill, objectives and spawn parms applied, and the signon reissued.
  *
  * @param {string} name the slot name
- * @returns {{ ok: true, level: string, levels: number } | { ok: false, reason: string }} the result
+ * @returns {Promise<{ ok: true, level: string, levels: number } | { ok: false, reason: string }>} the result
  */
-export function Host_Hexen2LoadGame( name ) {
+export async function Host_Hexen2LoadGame( name ) {
 
-	const slot = Host_Hexen2ReadSlot( name );
+	const game = GameProfile_Get().id, prefix = GameSelection_SavePrefix();
+	const slot = await Host_Hexen2ReadSlot( name );
+	if ( game !== GameProfile_Get().id || prefix !== GameSelection_SavePrefix() ) return { ok: false, reason: 'the active game changed while reading the save' };
 	if ( slot === null ) return { ok: false, reason: 'not a readable Hexen II hub save' };
 	const hub = slot.hub, level = mapNameFor( hub.currentLevel );
 	const record = Hexen2Hub_GetLevel( hub, hub.currentLevel );
@@ -1521,9 +1698,13 @@ function Host_Savegame_f() {
 
 	if ( GameProfile_IsHexen2() ) {
 
-		const saved = Host_Hexen2SaveGame( name );
-		if ( ! saved.ok ) Con_Printf( 'ERROR: couldn\'t save: %s\n', saved.reason );
-		else Con_Printf( 'done. (%d level%s)\n', saved.levels, saved.levels === 1 ? '' : 's' );
+		// the hub is captured now; the repository write completes in the background (Quake's path stays synchronous)
+		void Host_Hexen2SaveGame( name ).then( saved => {
+
+			if ( ! saved.ok ) Con_Printf( 'ERROR: couldn\'t save: %s\n', saved.reason );
+			else Con_Printf( 'done. (%d level%s)\n', saved.levels, saved.levels === 1 ? '' : 's' );
+
+		} );
 		return;
 
 	}
@@ -1590,6 +1771,42 @@ function Host_Savegame_f() {
 
 }
 
+/**
+ * The `load` command for a Hexen II hub save: reads the slot from the save repository (asynchronously), fetches its
+ * map when it is not loaded yet and reissues the command, otherwise restores the hub and reports the result.
+ *
+ * @param {string} name the slot name
+ * @returns {Promise<void>} settles when the load has been attempted and reported
+ */
+async function Host_Hexen2Loadgame( name ) {
+
+	const slot = await Host_Hexen2ReadSlot( name );
+	if ( slot === null ) {
+
+		Con_Printf( 'ERROR: couldn\'t open.\n' );
+		return;
+
+	}
+	const level = mapNameFor( slot.hub.currentLevel );
+	const mapfilename = 'maps/' + level + '.bsp';
+	if ( COM_FindFile( mapfilename ) === null ) {
+
+		Con_Printf( 'Fetching %s...\n', mapfilename );
+		COM_EnsureFile( mapfilename ).then( ( success ) => {
+
+			if ( success ) Cbuf_AddText( 'load ' + name + '\n' );
+			else Con_Printf( 'Couldn\'t find map: %s\n', level );
+
+		} );
+		return;
+
+	}
+	const loaded = await Host_Hexen2LoadGame( name );
+	if ( ! loaded.ok ) Con_Printf( 'ERROR: couldn\'t load: %s\n', loaded.reason );
+	else Con_Printf( 'done. (%d level%s)\n', loaded.levels, loaded.levels === 1 ? '' : 's' );
+
+}
+
 /*
 ===============
 Host_Loadgame_f
@@ -1614,30 +1831,8 @@ function Host_Loadgame_f() {
 
 	if ( GameProfile_IsHexen2() ) {
 
-		const slot = Host_Hexen2ReadSlot( name );
-		if ( slot === null ) {
-
-			Con_Printf( 'ERROR: couldn\'t open.\n' );
-			return;
-
-		}
-		const level = mapNameFor( slot.hub.currentLevel );
-		const mapfilename = 'maps/' + level + '.bsp';
-		if ( COM_FindFile( mapfilename ) === null ) {
-
-			Con_Printf( 'Fetching %s...\n', mapfilename );
-			COM_EnsureFile( mapfilename ).then( ( success ) => {
-
-				if ( success ) Cbuf_AddText( 'load ' + name + '\n' );
-				else Con_Printf( 'Couldn\'t find map: %s\n', level );
-
-			} );
-			return;
-
-		}
-		const loaded = Host_Hexen2LoadGame( name );
-		if ( ! loaded.ok ) Con_Printf( 'ERROR: couldn\'t load: %s\n', loaded.reason );
-		else Con_Printf( 'done. (%d level%s)\n', loaded.levels, loaded.levels === 1 ? '' : 's' );
+		// the repository read is asynchronous; Quake's path below stays synchronous
+		void Host_Hexen2Loadgame( name );
 		return;
 
 	}

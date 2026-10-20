@@ -82,8 +82,13 @@ CL_InitTEnts
  */
 export function CL_InitTEnts() {
 
-	cl_sfx_wizhit = S_PrecacheSound( 'wizard/hit.wav' );
-	cl_sfx_knighthit = S_PrecacheSound( 'hknight/hit.wav' );
+	// Quake's monster spike hits: Hexen II has neither sound (nor sends those temp entities); a null handle plays nothing
+	if ( ! GameProfile_IsHexen2() ) {
+
+		cl_sfx_wizhit = S_PrecacheSound( 'wizard/hit.wav' );
+		cl_sfx_knighthit = S_PrecacheSound( 'hknight/hit.wav' );
+
+	}
 	cl_sfx_tink1 = S_PrecacheSound( 'weapons/tink1.wav' );
 	cl_sfx_ric1 = S_PrecacheSound( 'weapons/ric1.wav' );
 	cl_sfx_ric2 = S_PrecacheSound( 'weapons/ric2.wav' );

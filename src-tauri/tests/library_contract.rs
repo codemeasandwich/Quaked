@@ -321,6 +321,39 @@ fn a_folder_with_no_ascii_name_gets_a_usable_id_and_a_placeholder_folder_is_not_
 }
 
 #[test]
+fn exposes_portal_text_lists_and_base_demos_as_loose_files() {
+    let f = Fixture::new();
+    f.write("Hexen 2/data1/pak0.pak", b"base");
+    f.write("Hexen 2/data1/progs.dat", b"base program");
+    f.write("Hexen 2/data1/demo1.dem", b"native demo");
+    f.write("Hexen 2/data1/demo3.dem", b"native demo three");
+    f.write("Hexen 2/portals/pak3.pak", b"portal");
+    f.write("Hexen 2/portals/progs.dat", b"portal program");
+    f.write("Hexen 2/portals/puzzles.txt", b"portal puzzles");
+    f.write("Hexen 2/portals/infolist.txt", b"portal info");
+    f.write("Hexen 2/portals/maplist.txt", b"portal maps");
+    let found = library::scan(&f.0).unwrap();
+    let loose = |game: &str| -> Vec<String> {
+        found
+            .packs
+            .iter()
+            .filter(|p| p.loose && p.game == game)
+            .map(|p| p.name.clone())
+            .collect()
+    };
+    assert_eq!(
+        loose("hexen2"),
+        ["progs.dat", "demo1.dem", "demo3.dem"],
+        "the base game's native demos are exposed beside its program"
+    );
+    assert_eq!(
+        loose("hexen2-portals"),
+        ["progs.dat", "puzzles.txt", "infolist.txt", "maplist.txt"],
+        "Portal's own puzzle, info and map lists are exposed, so they win over the base pak's"
+    );
+}
+
+#[test]
 fn finds_hexen2_under_data1_with_gapped_paks_and_loose_files() {
     let f = Fixture::new();
     f.write("Hexen 2/data1/pak0.pak", b"base");

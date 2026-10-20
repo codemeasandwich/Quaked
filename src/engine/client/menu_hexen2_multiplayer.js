@@ -16,6 +16,7 @@
 import { Cbuf_AddText } from '../common/cmd.js';
 import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from '../common/cvar.js';
 import { GameSelection_SavePrefix } from '../common/game_selection.js';
+import { Host_Hexen2SaveSummary, Host_Hexen2RefreshSaveIndex, Host_Hexen2DeleteSlot } from '../server/host_cmd.js';
 import { SAVEGAME_COMMENT_LENGTH } from '../common/quakedef.js';
 import { hostname } from '../net/net_main.js';
 import { cl_color } from './cl_main.js';
@@ -295,33 +296,30 @@ const loadable = new Array( MAX_SAVEGAMES ).fill( false );
 let loadCursor = 0;
 let loadReturnState = m_hexen2_single;
 
-/**
- * Reads the Hexen II hub save comments from the shared save repository. The record's second line is the same comment a
- * Quake slot carries (Host_Hexen2SaveGame writes the header, the comment and the hub JSON), so the menu lists it
- * without decoding the whole hub. The `save`/`load` commands these pages issue are what run Host_Hexen2SaveGame and
- * Host_Hexen2LoadGame.
- */
+let saveScan = 0;
+
+function Hexen2_ApplySaveIndex( index ) {
+
+	for ( let i = 0; i < MAX_SAVEGAMES; i ++ ) {
+
+		const summary = index[ i ];
+		loadFilenames[ i ] = summary ? summary.comment.substring( 0, SAVEGAME_COMMENT_LENGTH ).replace( /_/g, ' ' ) : '--- UNUSED SLOT ---';
+		loadable[ i ] = summary !== null;
+
+	}
+
+}
+
+/** Shows cached comments immediately, then refreshes without blocking input or per-frame drawing. */
 function Hexen2_ScanSaves() {
 
-	for ( let i = 0; i < MAX_SAVEGAMES; i ++ ) {
+	const scan = ++ saveScan, prefix = GameSelection_SavePrefix();
+	Hexen2_ApplySaveIndex( Array.from( { length: MAX_SAVEGAMES }, ( _, i ) => Host_Hexen2SaveSummary( 's' + i ) ) );
+	return Host_Hexen2RefreshSaveIndex().then( index => {
 
-		loadFilenames[ i ] = '--- UNUSED SLOT ---';
-		loadable[ i ] = false;
+		if ( scan === saveScan && prefix === GameSelection_SavePrefix() ) Hexen2_ApplySaveIndex( index );
 
-	}
-	let storage;
-	try { if ( typeof localStorage === 'undefined' ) return; storage = localStorage; } catch { return; }
-	for ( let i = 0; i < MAX_SAVEGAMES; i ++ ) {
-
-		let data;
-		try { data = storage.getItem( GameSelection_SavePrefix() + 's' + i ); } catch { return; }
-		if ( data === null ) continue;
-		const lines = data.split( '\n', 3 );
-		if ( lines.length < 2 ) continue;
-		loadFilenames[ i ] = lines[ 1 ].substring( 0, SAVEGAME_COMMENT_LENGTH ).replace( /_/g, ' ' );
-		loadable[ i ] = true;
-
-	}
+	} );
 
 }
 
@@ -329,6 +327,7 @@ function Hexen2_ScanSaves() {
  * Opens the Hexen II whole-hub load page (`menu_load` and Load from Single Player or Multiplayer).
  *
  * @param {number} [returnState=m_hexen2_single] the page ESC returns to
+ * @returns {Promise<void>|undefined} index refresh completion (the page itself opens immediately)
  */
 export function M_Hexen2_Menu_Load_f( returnState = m_hexen2_single ) {
 
@@ -336,7 +335,7 @@ export function M_Hexen2_Menu_Load_f( returnState = m_hexen2_single ) {
 	set_m_state( m_hexen2_load );
 	setKeyDest( key_menu );
 	loadReturnState = returnState;
-	Hexen2_ScanSaves();
+	return Hexen2_ScanSaves();
 
 }
 
@@ -345,6 +344,7 @@ export function M_Hexen2_Menu_Load_f( returnState = m_hexen2_single ) {
  * intermission and maxclients is 1.
  *
  * @param {number} [returnState=m_hexen2_single] the page ESC returns to
+ * @returns {Promise<void>|undefined} index refresh completion (the page itself opens immediately)
  */
 export function M_Hexen2_Menu_Save_f( returnState = m_hexen2_single ) {
 
@@ -353,7 +353,7 @@ export function M_Hexen2_Menu_Save_f( returnState = m_hexen2_single ) {
 	set_m_state( m_hexen2_save );
 	setKeyDest( key_menu );
 	loadReturnState = returnState;
-	Hexen2_ScanSaves();
+	return Hexen2_ScanSaves();
 
 }
 
@@ -386,8 +386,12 @@ function Hexen2_DeleteSlot() {
 
 	if ( ! loadable[ loadCursor ] ) return;
 	Hexen2_MenuSound( 'raven/menu2.wav' );
-	try { localStorage.removeItem( GameSelection_SavePrefix() + 's' + loadCursor ); } catch { /* storage unavailable */ }
-	Hexen2_ScanSaves();
+	const prefix = GameSelection_SavePrefix();
+	Host_Hexen2DeleteSlot( 's' + loadCursor ).then( () => {
+
+		if ( prefix === GameSelection_SavePrefix() ) Hexen2_ScanSaves();
+
+	} );
 
 }
 

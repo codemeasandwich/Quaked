@@ -401,15 +401,21 @@ export function GameCatalogue_Refresh( options ) {
 // autoexec.cfg, Arcane Dimensions' quake.rc; docs/add-ons-2026-10-13.md); the Mac app's library lists the same
 // (src-tauri/src/library.rs LOOSE_FILES). config.cfg is not read: the port keeps its own settings.
 export const GAME_CATALOGUE_LOOSE_FILES = Object.freeze( [ 'progs.dat', 'autoexec.cfg', 'quake.rc', 'strings.txt', 'hexen.rc' ] );
+/**
+ * The loose files a Hexen II folder may carry beside its packs (src-tauri/src/library.rs HEXEN_LOOSE_FILES): the
+ * program, strings and startup script, Portal of Praevus's own puzzle, info and map lists, and the base game's native
+ * demos.
+ */
+export const GAME_CATALOGUE_HEXEN_LOOSE_FILES = Object.freeze( [ 'progs.dat', 'strings.txt', 'hexen.rc', 'puzzles.txt', 'infolist.txt', 'maplist.txt', 'demo1.dem', 'demo2.dem', 'demo3.dem' ] );
 
 // one game's folders: the first holding a pak0.pak is the game's; its packs pak0.. in order, stopping at a gap
 // (and, for an add-on, its loose game files: one byte each)
 // An add-on folder's loose game files (GAME_CATALOGUE_LOOSE_FILES) that are there: one byte each, and only an exact
 // ranged answer counts (a server that answers a missing path with a page must not make one).
-async function probeLoose( folder, base, options ) {
+async function probeLoose( folder, base, options, names = GAME_CATALOGUE_LOOSE_FILES ) {
 
 	const found = [];
-	for ( const name of GAME_CATALOGUE_LOOSE_FILES ) {
+	for ( const name of names ) {
 
 		const got = await rangedGet( options.fetch ?? globalThis.fetch, new URL( folder.split( '/' ).map( encodeURIComponent ).join( '/' ) + '/' + name, base ).href, 0, 1, options.timeoutMs ?? GAME_CATALOGUE_LIMITS.timeoutMs );
 		if ( got.response?.status === 206 && got.exact && got.bytes.length > 0 ) found.push( name );
@@ -453,7 +459,7 @@ async function probeGame( game, base, options ) {
 		// an add-on's loose game files count as its files (one byte read to see each is there); an add-on of loose files
 		// alone (a progs.dat and no packs) is found too
 		const looseFiles = game.kind === 'addon' || game.kind === 'hexen2' || game.kind === 'hexen2-portals' || game.kind === 'hexen2-demo';
-		const loose = looseFiles ? await probeLoose( folder, base, options ) : [];
+		const loose = looseFiles ? await probeLoose( folder, base, options, game.kind === 'addon' ? GAME_CATALOGUE_LOOSE_FILES : GAME_CATALOGUE_HEXEN_LOOSE_FILES ) : [];
 		if ( packs.length === 0 && ! loose.includes( 'progs.dat' ) ) continue;
 		// at the bound: one more header says whether packs were left unread
 		if ( packs.length === maxPacks && packs[ packs.length - 1 ].state !== 'error' ) {

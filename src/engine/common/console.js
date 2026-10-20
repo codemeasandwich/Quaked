@@ -741,6 +741,30 @@ export function Con_DrawConsole( lines, drawinput ) {
 
 }
 
+/**
+ * The newest lines of the console scrollback as plain text (coloured characters folded to plain, trailing spaces
+ * trimmed), oldest first: what `Con_DrawConsole` would show with no backscroll. For a test or a tool (the browser
+ * trial reads it to find files the engine could not load); drawing and input never use it.
+ *
+ * @param {number} [count=64] how many lines, at most the scrollback
+ * @returns {Array<string>} the lines; empty before `Con_Init`
+ */
+export function Con_RecentLines( count = 64 ) {
+
+	if ( ! con_text || con_linewidth <= 0 ) return [];
+	const lines = [];
+	for ( let i = Math.max( 0, con_current - Math.min( count, con_totallines ) + 1 ); i <= con_current; i ++ ) {
+
+		const start = ( i % con_totallines ) * con_linewidth;
+		let line = '';
+		for ( let x = 0; x < con_linewidth; x ++ ) line += String.fromCharCode( ( con_text[ start + x ] ?? 32 ) & 127 );
+		lines.push( line.trimEnd() );
+
+	}
+	return lines;
+
+}
+
 /*
 ==================
 Con_NotifyBox

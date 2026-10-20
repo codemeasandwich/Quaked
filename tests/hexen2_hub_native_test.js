@@ -1,5 +1,5 @@
 // Native Hexen II hubs on the shared host: changelevel2 saves a level and restores it with ClientReEnter, a save slot
-// holds the whole visited hub atomically through the existing Quake save key, and the intermission/music tables select
+// holds the whole visited hub atomically through the save repository, and the intermission/music tables select
 // the native pictures, strings and music name. Uses the supplied Hexen II data; skips cleanly when it is absent.
 import { existsSync, readFileSync } from 'node:fs';
 import * as pak from '../src/engine/common/pak.js';
@@ -181,7 +181,7 @@ Deno.test( 'changelevel2 demo1 -> demo2 -> demo1 restores the level, clients and
 
 } );
 
-Deno.test( 'one save slot holds every visited level and loads the whole hub atomically', () => {
+Deno.test( 'one save slot holds every visited level and loads the whole hub atomically', async () => {
 
 	if ( !loadHexenData() ) { console.log( 'SKIP: the supplied Hexen II installation is not present' ); return; }
 	const storage = localStorageShim();
@@ -197,10 +197,10 @@ Deno.test( 'one save slot holds every visited level and loads the whole hub atom
 	const demonNum = demon.index;
 	svs.clients[ 0 ].spawn_parms[ 3 ] = 0.25;
 
-	const saved = Host_Hexen2SaveGame( 'hubroundtrip' );
+	const saved = await Host_Hexen2SaveGame( 'hubroundtrip' );
 	check( saved.ok, saved.reason );
 	same( saved.levels, 2, 'both visited levels are in the slot' );
-	const slot = Host_Hexen2ReadSlot( 'hubroundtrip' );
+	const slot = await Host_Hexen2ReadSlot( 'hubroundtrip' );
 	check( slot !== null, 'the slot reads back' );
 	check( slot.text.startsWith( 'HEXEN2HUB 1\n' ), 'the slot has the hub header' );
 	check( Object.hasOwn( slot.hub.levels, 'demo1' ) && Object.hasOwn( slot.hub.levels, 'demo2' ), 'the visited-level table' );
@@ -209,7 +209,7 @@ Deno.test( 'one save slot holds every visited level and loads the whole hub atom
 	same( slot.hub.clients.slots[ 0 ].spawn_parms[ 3 ], 0.25, 'the slot records the spawn parms' );
 	check( storage.length > 0, 'the shared storage boundary is used' );
 	const keys = [ ...Array( storage.length ).keys() ].map( i => storage.key( i ) );
-	check( keys.every( key => key.startsWith( 'quake_save_' ) ), 'the hub uses the existing save keys: ' + keys.join( ', ' ) );
+	check( keys.every( key => key.startsWith( 'quaked.hexen2.save.' ) ), 'the hub uses the repository fallback keys: ' + keys.join( ', ' ) );
 	const summary = Host_Hexen2SaveSummary( 'hubroundtrip' );
 	check( summary !== null && summary.levels === 2 && summary.level === 'demo2', 'the menu summary names the hub' );
 
@@ -219,7 +219,7 @@ Deno.test( 'one save slot holds every visited level and loads the whole hub atom
 	check( Host_Hexen2ChangeLevel2( 'demo1' ).ok, 'return to demo1' );
 	cls.state = ca_dedicated; // no loopback connection in the test
 	Host_Hexen2HubReset(); // the slot alone must restore the whole hub
-	const loaded = Host_Hexen2LoadGame( 'hubroundtrip' );
+	const loaded = await Host_Hexen2LoadGame( 'hubroundtrip' );
 	check( loaded.ok, loaded.reason );
 	same( sv.name, 'demo2', 'the slot current level loads' );
 	same( svs.clients[ 0 ].edict.v.health, 66, 'the saved player state loads' );
@@ -230,11 +230,12 @@ Deno.test( 'one save slot holds every visited level and loads the whole hub atom
 	// The F6/F9 path: the console save/load commands use the same hub slot.
 	Cbuf_AddText( 'save commandquick\n' );
 	Cbuf_Execute();
-	check( Host_Hexen2ReadSlot( 'commandquick' ) !== null, 'the save command writes a hub slot' );
+	check( ( await Host_Hexen2ReadSlot( 'commandquick' ) ) !== null, 'the save command writes a hub slot' );
 	svs.clients[ 0 ].edict.v.health = 3;
 	svs.clients[ 0 ].message.cursize = 0; // the frame loop would have sent this before another map
 	Cbuf_AddText( 'load commandquick\n' );
 	Cbuf_Execute();
+	await new Promise( resolve => setTimeout( resolve, 0 ) );
 	same( sv.name, 'demo2', 'the load command restores the saved hub' );
 	same( svs.clients[ 0 ].edict.v.health, 66, 'the load command restores the saved player' );
 

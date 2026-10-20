@@ -1,10 +1,9 @@
 /**
  * @module engine/common/hexen2_save
  *
- * The first version of Hexen II's save record: a self-describing, validated single-player snapshot of the player's
- * native fields, the current level and the run identity. It is deliberately a *record and store* boundary, not a hub
- * serializer: the later whole-hub bundle adds visited-level snapshots and non-edict effects without changing this
- * shape (the version field is the seam).
+ * Hexen II's save repository and legacy single-session record helpers. The unified host serialises its versioned
+ * whole-hub text in `server/host_cmd.js`; the repository persists that text without imposing the legacy player-bundle
+ * schema. Values are JSON-compatible, committed atomically per key; map/client restoration stays with the host.
  *
  * Types: plain values and functions; no exported classes.
  * State: no mutable exports; `Hexen2_SaveStore` returns a store object with its own IndexedDB/localStorage state.
@@ -151,15 +150,16 @@ function memoryStore() {
 /**
  * The persistence boundary. IndexedDB stores the record in one object store with a single put (a failed put leaves the
  * previous value); without IndexedDB the browser's localStorage keeps the JSON record, and without storage an in-memory
- * store is returned so the UI can still report a non-persistent save.
+ * store is returned so the UI can still report a non-persistent save. Writes resolve only on transaction completion;
+ * an unavailable/blocked database falls back at open, while a failed transaction rejects without switching backends.
  *
- * @param {{ indexedDB?: object, localStorage?: object, name?: string }} [env] the platform objects (defaults to the globals)
- * @returns {{ put: function(string, object): Promise<void>, get: function(string): Promise<?object>,
+ * @param {{ indexedDB?: ?object, localStorage?: ?object, name?: string }} [env] platform objects (globals by default; null disables a backend)
+ * @returns {{ put: function(string, object|string): Promise<void>, get: function(string): Promise<object|string|null>,
  *   list: function(): Promise<Array<string>>, remove: function(string): Promise<void>, kind: string }} the store
  */
 export function Hexen2_SaveStore( env = {} ) {
 
-	const factory = env.indexedDB ?? globalThis.indexedDB;
+	const factory = 'indexedDB' in env ? env.indexedDB : globalThis.indexedDB;
 	if ( factory && typeof factory.open === 'function' ) {
 
 		const dbName = env.name ?? 'quaked-hexen2-saves', storeName = 'saves';
@@ -170,6 +170,7 @@ export function Hexen2_SaveStore( env = {} ) {
 			request.onupgradeneeded = () => { if ( !request.result.objectStoreNames.contains( storeName ) ) request.result.createObjectStore( storeName ); };
 			request.onsuccess = () => resolve( request.result );
 			request.onerror = () => reject( request.error ?? new Error( 'IndexedDB open failed' ) );
+			request.onblocked = () => reject( new Error( 'IndexedDB open blocked' ) );
 
 		} );
 		const run = async ( mode, action ) => {
@@ -179,20 +180,37 @@ export function Hexen2_SaveStore( env = {} ) {
 
 				const tx = db.transaction( storeName, mode ), store = tx.objectStore( storeName );
 				const request = action( store );
-				request.onsuccess = () => resolve( request.result );
+				let result;
+				request.onsuccess = () => { result = request.result; };
+				tx.oncomplete = () => resolve( result );
 				request.onerror = () => reject( request.error ?? new Error( 'IndexedDB request failed' ) );
 				tx.onabort = () => reject( tx.error ?? new Error( 'IndexedDB transaction aborted' ) );
 
 			} );
 
 		};
-		return { kind: 'indexeddb', async put( key, value ) { await run( 'readwrite', store => store.put( value, key ) ); },
-			async get( key ) { return ( await run( 'readonly', store => store.get( key ) ) ) ?? null; },
-			async list() { return ( await run( 'readonly', store => store.getAllKeys() ) ) ?? []; },
-			async remove( key ) { await run( 'readwrite', store => store.delete( key ) ); } };
+		// Only opening failure selects a fallback. Falling back after a failed transaction could hide a quota error
+		// behind a second, divergent save while the previous IndexedDB record remains authoritative.
+		const fallback = Hexen2_SaveStore( { ...env, indexedDB: null } );
+		let backend = null;
+		const ready = async () => {
+
+			if ( backend === null ) {
+
+				try { await open(); backend = 'indexeddb'; } catch { backend = fallback; }
+
+			}
+			return backend;
+
+		};
+		return { get kind() { return backend && backend !== 'indexeddb' ? backend.kind : 'indexeddb'; },
+			async put( key, value ) { if ( await ready() !== 'indexeddb' ) return backend.put( key, value ); await run( 'readwrite', store => store.put( value, key ) ); },
+			async get( key ) { if ( await ready() !== 'indexeddb' ) return backend.get( key ); return ( await run( 'readonly', store => store.get( key ) ) ) ?? null; },
+			async list() { if ( await ready() !== 'indexeddb' ) return backend.list(); return ( await run( 'readonly', store => store.getAllKeys() ) ) ?? []; },
+			async remove( key ) { if ( await ready() !== 'indexeddb' ) return backend.remove( key ); await run( 'readwrite', store => store.delete( key ) ); } };
 
 	}
-	const storage = env.localStorage ?? ( () => { try { return globalThis.localStorage ?? null; } catch { return null; } } )();
+	const storage = 'localStorage' in env ? env.localStorage : ( () => { try { return globalThis.localStorage ?? null; } catch { return null; } } )();
 	if ( storage ) return { kind: 'localstorage',
 		async put( key, value ) { storage.setItem( 'quaked.hexen2.save.' + key, JSON.stringify( value ) ); },
 		async get( key ) { const raw = storage.getItem( 'quaked.hexen2.save.' + key ); return raw ? JSON.parse( raw ) : null; },

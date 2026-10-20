@@ -269,7 +269,8 @@ async function main() {
 		];
 		// Compose added labels from native glyphs; preserve the original rows.
 		// This avoids the miscropped letters in older cached spmenu.png artwork.
-		if ( Draw_CacheSinglePlayerMenu() === null )
+		// (Quake's menu pictures: Hexen II has its own single-player page)
+		if ( ! hexen && Draw_CacheSinglePlayerMenu() === null )
 			Sys_Printf( 'Warning: Could not build the single player menu image\n' );
 
 
