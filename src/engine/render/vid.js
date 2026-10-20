@@ -176,6 +176,27 @@ export function VID_ShiftPalette( palette ) {
  * @param {?Uint8Array} palette 768 bytes of RGB triplets (gfx/palette.lmp); when missing the tables are left as they are
  * @throws {Error} from `THREE.WebGLRenderer` when the browser cannot create a WebGL context
  */
+/**
+ * The first fullbright palette index the game's own `gfx/colormap.lmp` implies: the lowest index from which every entry
+ * up to 254 keeps its colour at every light level (a fullbright texel is never darkened). Quake's colormap gives 224
+ * (its last 32 colours glow); Hexen II's has none, so its golds and browns are lit like any other colour. Derived from
+ * the data, so any game or add-on with its own colormap gets its own rule.
+ *
+ * @param {?Uint8Array} colormap the game's colormap (64 rows of 256 entries, plus a trailing byte)
+ * @returns {number} the first fullbright index, or 256 when the palette has none; 224 when no colormap is given
+ */
+export function VID_FullbrightFromColormap( colormap ) {
+
+	const rows = 64;
+	if ( colormap == null || colormap.length < rows * 256 ) return 256 - 32;
+	const constant = index => { for ( let row = 0; row < rows; row ++ ) if ( colormap[ row * 256 + index ] !== index ) return false; return true; };
+	let first = 255;
+	while ( first > 0 && constant( first - 1 ) ) first --;
+	// index 0 (black) maps to itself in every colormap; it alone is not a fullbright range
+	return first === 255 || first === 0 ? 256 : first;
+
+}
+
 export function VID_Init( palette ) {
 
 	Sys_Printf( 'VID_Init' );

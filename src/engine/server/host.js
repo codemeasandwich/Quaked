@@ -53,7 +53,7 @@ import { sv, svs, client_t,
 	host_client, set_host_client } from './server.js';
 import { R_Init, D_FlushCaches } from '../render/gl_rmisc.js';
 import { R_SetExternals } from '../render/gl_rmain.js';
-import { VID_Init, VID_Shutdown } from '../render/vid.js';
+import { VID_Init, VID_Shutdown, VID_FullbrightFromColormap } from '../render/vid.js';
 import { Draw_GetOverlayCanvas, Draw_WithAlpha, Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_Init, Draw_Character, Draw_String, Draw_ConsoleBackground, Draw_SetExternals, Draw_PicFromWad, Draw_CachePic, Draw_Pic, Draw_SubPic, Draw_TransPic, Draw_TransPicTranslate, Draw_Fill, Draw_FadeScreen, Draw_SmallString } from '../render/gl_draw.js';
 import { SCR_Init, SCR_UpdateScreen, SCR_SetExternals, SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from '../render/gl_screen.js';
 import { S_Init, S_Update, S_Shutdown, S_StopAllSounds, S_SetCallbacks } from '../sound/snd_dma.js';
@@ -380,6 +380,8 @@ export async function Host_Init( parms ) {
 	}
 
 	VID_Init( host_basepal );
+	// which palette entries glow comes from the game's own colormap: Quake's last 32, none in Hexen II
+	if ( host_colormap ) vid.fullbright = VID_FullbrightFromColormap( host_colormap );
 
 	// Wire Draw externals before Draw_Init so overlay canvas gets correct size
 	Draw_SetExternals( {
