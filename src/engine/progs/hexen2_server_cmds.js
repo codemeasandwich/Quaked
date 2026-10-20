@@ -35,7 +35,11 @@ import { SV_Move } from '../server/world.js';
 import { SV_StartSound, SV_StopSound } from '../server/sv_phys.js';
 import { sv_aim, SV_SoundLimit, SV_WriteIndex } from '../server/sv_main.js';
 import { DAMAGE_YES, FL_ONGROUND, FL_FLY, FL_SWIM, NUM_SPAWN_PARMS, teamplay, ss_active } from '../server/server.js';
-import { Hexen2_WriteNativeServiceByte, Hexen2_FlushNativeService } from '../server/hexen2_native_wire.js';
+import {
+	Hexen2_WriteNativeServiceByte, Hexen2_WriteNativeServiceShort, Hexen2_WriteNativeServiceEntity,
+	Hexen2_WriteNativeServiceLong, Hexen2_WriteNativeServiceCoord, Hexen2_WriteNativeServiceAngle,
+	Hexen2_WriteNativeServiceString,
+} from '../server/hexen2_native_wire.js';
 import {
 	Hexen2_AppendMessage, Hexen2_WritePlaque, Hexen2_WriteRainEffect, Hexen2_WriteParticleExplosion,
 	Hexen2_WriteSoundUpdatePos, Hexen2_WriteStaticEntity, Hexen2_WriteWhiteFlash, Hexen2_WriteParticle2Message,
@@ -304,14 +308,16 @@ function writeDestination() {
 
 }
 
-const writeByte = () => { const d = writeDestination(); if ( d && !Hexen2_WriteNativeServiceByte( d, G_FLOAT( OFS_PARM1 ) | 0 ) ) MSG_WriteByte( d, G_FLOAT( OFS_PARM1 ) | 0 ); };
-const writeChar = () => { const d = writeDestination(); if ( d && !Hexen2_WriteNativeServiceByte( d, G_FLOAT( OFS_PARM1 ) | 0 ) ) MSG_WriteByte( d, G_FLOAT( OFS_PARM1 ) | 0 ); };
-const writeShort = () => { const d = writeDestination(); if ( d ) { Hexen2_FlushNativeService( d ); MSG_WriteShort( d, G_FLOAT( OFS_PARM1 ) | 0 ); } };
-const writeLong = () => { const d = writeDestination(); if ( d ) { Hexen2_FlushNativeService( d ); MSG_WriteLong( d, G_FLOAT( OFS_PARM1 ) | 0 ); } };
-const writeAngle = () => { const d = writeDestination(); if ( d ) { Hexen2_FlushNativeService( d ); MSG_WriteAngle( d, G_FLOAT( OFS_PARM1 ) ); } };
-const writeCoord = () => { const d = writeDestination(); if ( d ) { Hexen2_FlushNativeService( d ); MSG_WriteCoord( d, G_FLOAT( OFS_PARM1 ) ); } };
-const writeString = () => { const d = writeDestination(); if ( d ) { Hexen2_FlushNativeService( d ); MSG_WriteString( d, G_STRING( OFS_PARM1 ) ); } };
-const writeEntity = () => { const d = writeDestination(); if ( d ) { Hexen2_FlushNativeService( d ); MSG_WriteShort( d, G_EDICTNUM( OFS_PARM1 ) ); } };
+// Every writer feeds the stateful translator first: a native service id and its body are rewritten as one unified
+// message, while an ordinary value outside a native frame is written exactly as before.
+const writeByte = () => { const d = writeDestination(), value = G_FLOAT( OFS_PARM1 ) | 0; if ( d && !Hexen2_WriteNativeServiceByte( d, value ) ) MSG_WriteByte( d, value ); };
+const writeChar = () => { const d = writeDestination(), value = G_FLOAT( OFS_PARM1 ) | 0; if ( d && !Hexen2_WriteNativeServiceByte( d, value ) ) MSG_WriteByte( d, value ); };
+const writeShort = () => { const d = writeDestination(), value = G_FLOAT( OFS_PARM1 ) | 0; if ( d && !Hexen2_WriteNativeServiceShort( d, value ) ) MSG_WriteShort( d, value ); };
+const writeLong = () => { const d = writeDestination(), value = G_FLOAT( OFS_PARM1 ) | 0; if ( d && !Hexen2_WriteNativeServiceLong( d, value ) ) MSG_WriteLong( d, value ); };
+const writeAngle = () => { const d = writeDestination(), value = G_FLOAT( OFS_PARM1 ); if ( d && !Hexen2_WriteNativeServiceAngle( d, value ) ) MSG_WriteAngle( d, value ); };
+const writeCoord = () => { const d = writeDestination(), value = G_FLOAT( OFS_PARM1 ); if ( d && !Hexen2_WriteNativeServiceCoord( d, value ) ) MSG_WriteCoord( d, value ); };
+const writeString = () => { const d = writeDestination(), value = G_STRING( OFS_PARM1 ); if ( d && !Hexen2_WriteNativeServiceString( d, value ) ) MSG_WriteString( d, value ); };
+const writeEntity = () => { const d = writeDestination(), value = G_EDICTNUM( OFS_PARM1 ); if ( d && !Hexen2_WriteNativeServiceEntity( d, value ) ) MSG_WriteShort( d, value ); };
 
 // #79 plaque_draw(destination, index): a strings.txt line index (0 clears), written where the gamecode asks
 function plaqueDraw() {
@@ -647,13 +653,45 @@ function changelevel() {
 
 }
 
-// #71 lightstylevalue(style): the native fixed light letter's numeric value (a=0..z=25).
+// #71 lightstylevalue(style): the currently animated letter, as native PF_lightstylevalue returns
+// d_lightstylevalue[style] / 22 (uhexen2 h2shared/pr_cmds.c:2253). The animation is r_light.c's R_AnimateLight rule
+// (uhexen2 h2shared/r_light.c:33-64): a default 10 Hz locus over the style string, or a leading '1'/'2'/'3' selecting
+// 10/20/30 Hz with the characters after it as the cycle. The renderer applies the same rule on the client; the server
+// needs its own copy because gamecode reads the value in physics think functions.
 function lightstylevalue() {
 
 	const style = G_FLOAT( OFS_PARM0 ) | 0;
 	if ( style < 0 || style >= MAX_LIGHTSTYLES ) PR_RunError( 'lightstylevalue: bad style %i', style );
-	const text = sv.lightstyles?.[ style ] ?? 'a';
-	G_FLOAT_SET( OFS_RETURN, Math.max( 0, Math.min( 25, ( text.charCodeAt( 0 ) | 0 ) - 97 ) ) );
+	const text = sv.lightstyles?.[ style ];
+	let index;
+	if ( !text || text.length === 0 ) {
+
+		index = 11; // R_AnimateLight's no-style value 256, divided by PF_lightstylevalue's 22
+
+	} else {
+
+		const first = text.charCodeAt( 0 );
+		if ( first >= 49 && first <= 51 ) { // '1', '2', '3'
+
+			if ( text.length === 1 ) index = 11; // a bad style definition: native leaves it at normal light
+			else {
+
+				const rate = [ 10, 20, 30 ][ first - 49 ];
+				const at = ( ( sv.time * rate ) | 0 ) % ( text.length - 1 );
+				index = text.charCodeAt( at + 1 ) - 97;
+
+			}
+
+		} else {
+
+			const at = ( ( sv.time * 10 ) | 0 ) % text.length;
+			index = text.charCodeAt( at ) - 97;
+
+		}
+
+	}
+
+	G_FLOAT_SET( OFS_RETURN, index );
 
 }
 

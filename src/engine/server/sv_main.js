@@ -267,9 +267,10 @@ export function SV_UpdateClientStats( client, msg ) {
 
 	}
 
-	// Portal's objectives are globals, not entity fields; keep their last values on the client record.
-	const infoMask = ( pr_global_struct?.info_mask ?? 0 ) >>> 0;
-	const infoMask2 = ( pr_global_struct?.info_mask2 ?? 0 ) >>> 0;
+	// Portal's objectives are engine-side server state (native `sv.info_mask`/`sv.info_mask2`), written by
+	// updateInfoPlaque's builtin #100 rather than a progs global; keep their last values on the client record.
+	const infoMask = ( sv.info_mask ?? 0 ) >>> 0;
+	const infoMask2 = ( sv.info_mask2 ?? 0 ) >>> 0;
 	if ( client.h2InfoMask !== infoMask || client.h2InfoMask2 !== infoMask2 ) {
 
 		MSG_WriteByte( msg, svc_hexen2_info_mask );
@@ -297,6 +298,8 @@ export function SV_UpdateClientStats( client, msg ) {
 export function SV_SendAllClientStats( client, msg ) {
 
 	client.h2Stats = null;
+	client.h2InfoMask = - 1;
+	client.h2InfoMask2 = - 1;
 	SV_UpdateClientStats( client, msg );
 
 }
@@ -2917,6 +2920,23 @@ function spawnServer( server, startspot ) {
 	SV_CreateBaseline();
 	if ( sv.signon.overflowed ) SV_LargeProtocolNeeded( { state: ss_loading, protocol: sv.protocol }, 'a signon over ' + sv.signon.maxsize + ' bytes' );
 	SV_CheckSignon( 'SV_SpawnServer' );
+
+	// Native SV_SpawnServer sets send_all_v for every client on every map load. A Hexen II spawn therefore forgets the
+	// per-client stat/objective delta base, so Host_Spawn_f and the first clientdata frame resend the whole record
+	// after a changelevel2, restart restore or load, as native does.
+	if ( hexen2 ) {
+
+		for ( let i = 0; i < svs.maxclients; i ++ ) {
+
+			const client = svs.clients[ i ];
+			if ( !client?.active ) continue;
+			client.h2Stats = null;
+			client.h2InfoMask = - 1;
+			client.h2InfoMask2 = - 1;
+
+		}
+
+	}
 
 	// send serverinfo to all connected clients
 	for ( let i = 0; i < svs.maxclients; i ++ ) {

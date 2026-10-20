@@ -157,9 +157,13 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `3e9bc6a3` | U10 U11 | parallel host retired (~9,300 lines); packaged music through the scoped library reader |
 | `5082d07e` | fix | packaged start: no `SetNewParms` for Hexen; no unreviewed rock relief; packaged-trial tracing |
 | `b99b7fb0` | U12 | acceptance coverage on the shared host: every base/Portal map, routes, co-op, soak |
+| `72236e8e` | review R1 | Quake temp-string slot, 56-bit stat masks, desktop Level Select, bounce in solid, `playerclass` gating, damaged hub saves, skill 4 |
+| (this commit) | review R2 / F1 | builtins write unified ids; native `WriteByte` service translation; reserved temp edicts; Portal objectives; full stat resend on level change; animated `lightstylevalue` |
 
-Verification at `b99b7fb0`: 209/209 across every Hexen II, unified-protocol, profile, Newer and hook suite; engine
-list 218/218; native library contracts 22/22; skin-identity results unchanged by the Newer bindings (60 runs compared
+Two independent adversarial reviews (R1 Quake regressions, R2 the Hexen path; DeepSeek V4.1 Flash) found 13 defects;
+every one was verified against the code and fixed with a test that fails before and passes after. Verification after
+the fixes: 237/237 across every Hexen II, unified-protocol, profile, Newer, hook and touched Quake suite; engine list
+218/218 in the pre-commit hook; native library contracts 22/22; skin-identity results unchanged by the Newer bindings (60 runs compared
 before/after). The packaged app was run with `HEXEN2_TRIAL_GAME=hexen2`: `demo1` spawned, the client connected and the
 host ran at ~28 fps with the Hexen HUD font. The first frames were held by the enhanced warm-up waiting on rock relief
 (fixed in `5082d07e`); a visual confirmation of the fixed build was not possible because the Mac was locked (macOS

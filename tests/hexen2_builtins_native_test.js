@@ -19,7 +19,12 @@ import {
 } from '../src/engine/progs/progs.js';
 import { sv as serverSv, svs as serverSvs, ss_loading, ss_active, SOLID_BSP, SOLID_BBOX, MOVETYPE_PUSH, MOVETYPE_NONE, FL_ONGROUND } from '../src/engine/server/server.js';
 import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3, OFS_PARM4, OFS_PARM5, OFS_PARM6, OFS_RETURN } from '../src/engine/progs/pr_comp.js';
-import { PROTOCOL_LARGE, PROTOCOL_VERSION, svc_centerprint, svc_spawnstatic, svc_stufftext } from '../src/engine/common/protocol.js';
+import {
+	PROTOCOL_LARGE, PROTOCOL_VERSION, svc_centerprint, svc_spawnstatic, svc_stufftext,
+	svc_hexen2_particle2, svc_hexen2_particle3, svc_hexen2_particle4, svc_hexen2_particle_explosion,
+	svc_hexen2_plaque, svc_hexen2_raineffect, svc_hexen2_sound_update_pos, svc_hexen2_start_effect,
+	svc_hexen2_end_effect,
+} from '../src/engine/common/protocol.js';
 import { HEXEN2_SERVER_MESSAGES } from '../src/engine/common/hexen2_protocol.js';
 import { callProfileBuiltin } from './helpers/builtin_table.mjs';
 import { HEXEN2_CORE_BUILTINS } from '../src/engine/progs/hexen2_cmds.js';
@@ -65,6 +70,18 @@ function initBuffer( buffer, size ) {
 
 function bytes( buffer ) { return buffer.data.subarray( 0, buffer.cursize ); }
 function reset( buffer ) { buffer.cursize = 0; buffer.overflowed = false; }
+
+// The native decoders still take their own opcode; the live builtins now write the unified one, so test the body by
+// restoring the native opcode on a copy.
+function withNativeOpcode( data, opcode ) {
+
+	const copy = Uint8Array.from( data );
+	copy[ 0 ] = opcode;
+	return copy;
+
+}
+
+function decodeNativeParticle( data, opcode ) { return Hexen2_ReadParticle( withNativeOpcode( data, opcode ) ); }
 
 function setup() {
 
@@ -351,9 +368,10 @@ Deno.test( 'particle2/3/4, particle explosions, plaques and rain write their nat
 	[ 1, 2, 3 ].forEach( ( v, i ) => setF( OFS_PARM2 + i, v ) );
 	setF( OFS_PARM3, 300 ); setF( OFS_PARM4, 4 ); setF( OFS_PARM5, 5 );
 	check( call( 42 ), 'particle2' );
-	let decoded = Hexen2_ReadParticle( bytes( sv.datagram ) );
+	same( bytes( sv.datagram )[ 0 ], svc_hexen2_particle2, 'particle2 uses the unified opcode' );
+	let decoded = decodeNativeParticle( bytes( sv.datagram ), HEXEN2_SERVER_MESSAGES.particle2 );
 	check( decoded.ok, decoded.reason );
-	same( decoded.kind, 'particle2', 'particle2 opcode' );
+	same( decoded.kind, 'particle2', 'particle2 body' );
 	same( decoded.effect.color, 300, 'the 16-bit colour' );
 	same( decoded.effect.effect, 4, 'the effect' );
 
@@ -362,18 +380,20 @@ Deno.test( 'particle2/3/4, particle explosions, plaques and rain write their nat
 	[ 8, 16, 24 ].forEach( ( v, i ) => setF( OFS_PARM1 + i, v ) );
 	setF( OFS_PARM2, 12 ); setF( OFS_PARM3, 2 ); setF( OFS_PARM4, 3 );
 	check( call( 85 ), 'particle3' );
-	decoded = Hexen2_ReadParticle( bytes( sv.datagram ) );
+	same( bytes( sv.datagram )[ 0 ], svc_hexen2_particle3, 'particle3 uses the unified opcode' );
+	decoded = decodeNativeParticle( bytes( sv.datagram ), HEXEN2_SERVER_MESSAGES.particle3 );
 	check( decoded.ok, decoded.reason );
-	same( decoded.kind, 'particle3', 'particle3 opcode' );
+	same( decoded.kind, 'particle3', 'particle3 body' );
 	same( decoded.effect.box.join( ',' ), '8,16,24', 'the box bytes' );
 
 	reset( sv.datagram );
 	[ 10, 20, 30 ].forEach( ( v, i ) => setF( OFS_PARM0 + i, v ) );
 	setF( OFS_PARM1, 32 ); setF( OFS_PARM2, 14 ); setF( OFS_PARM3, 6 ); setF( OFS_PARM4, 20 );
 	check( call( 86 ), 'particle4' );
-	decoded = Hexen2_ReadParticle( bytes( sv.datagram ) );
+	same( bytes( sv.datagram )[ 0 ], svc_hexen2_particle4, 'particle4 uses the unified opcode' );
+	decoded = decodeNativeParticle( bytes( sv.datagram ), HEXEN2_SERVER_MESSAGES.particle4 );
 	check( decoded.ok, decoded.reason );
-	same( decoded.kind, 'particle4', 'particle4 opcode' );
+	same( decoded.kind, 'particle4', 'particle4 body' );
 	same( decoded.effect.radius, 32, 'the radius is kept' );
 	same( decoded.effect.effect, 6, 'the effect type is kept' );
 
@@ -382,7 +402,7 @@ Deno.test( 'particle2/3/4, particle explosions, plaques and rain write their nat
 	setF( OFS_PARM1, 7 ); setF( OFS_PARM2, 9 ); setF( OFS_PARM3, 11 );
 	check( call( 81 ), 'particleexplosion' );
 	const explosion = bytes( sv.datagram );
-	same( explosion[ 0 ], HEXEN2_SERVER_MESSAGES.particle_explosion, 'particle explosion opcode' );
+	same( explosion[ 0 ], svc_hexen2_particle_explosion, 'particle explosion uses the unified opcode' );
 	same( explosion[ 7 ] | ( explosion[ 8 ] << 8 ), 7, 'colour' );
 	same( explosion[ 9 ] | ( explosion[ 10 ] << 8 ), 9, 'radius' );
 	same( explosion[ 11 ] | ( explosion[ 12 ] << 8 ), 11, 'counter' );
@@ -391,7 +411,7 @@ Deno.test( 'particle2/3/4, particle explosions, plaques and rain write their nat
 	reset( sv.datagram );
 	setF( OFS_PARM0, 0 ); setF( OFS_PARM1, 2 );
 	check( call( 79 ), 'plaque_draw' );
-	same( bytes( sv.datagram )[ 0 ], HEXEN2_SERVER_MESSAGES.plaque, 'plaque opcode' );
+	same( bytes( sv.datagram )[ 0 ], svc_hexen2_plaque, 'plaque uses the unified opcode' );
 	same( bytes( sv.datagram )[ 1 ] | ( bytes( sv.datagram )[ 2 ] << 8 ), 2, 'the plaque index' );
 
 	reset( sv.datagram );
@@ -402,7 +422,7 @@ Deno.test( 'particle2/3/4, particle explosions, plaques and rain write their nat
 	setF( OFS_PARM4, 13 ); setF( OFS_PARM5, 14 );
 	check( call( 80 ), 'rain_go' );
 	const rain = bytes( sv.datagram );
-	same( rain[ 0 ], HEXEN2_SERVER_MESSAGES.raineffect, 'rain opcode' );
+	same( rain[ 0 ], svc_hexen2_raineffect, 'rain uses the unified opcode' );
 	same( rain.length, 19, 'the native rain body length' );
 
 } );
@@ -445,7 +465,7 @@ Deno.test( 'Portal white flash, sound position and the sound channel helpers wri
 	setI( OFS_PARM0, 2 ); setF( OFS_PARM1, 3 );
 	check( call( 105 ), 'updatesoundpos' );
 	const pos = bytes( sv.datagram );
-	same( pos[ 0 ], HEXEN2_SERVER_MESSAGES.sound_update_pos, 'sound position opcode' );
+	same( pos[ 0 ], svc_hexen2_sound_update_pos, 'sound position uses the unified opcode' );
 	same( pos[ 1 ] | ( pos[ 2 ] << 8 ), ( 2 << 3 ) | 3, 'entity and channel word' );
 	same( pos[ 3 ] | ( pos[ 4 ] << 8 ), 10 * 8, 'box centre x' );
 
@@ -466,9 +486,10 @@ Deno.test( 'starteffect expires by native type, reuses slots, ends effects and s
 	check( call( 88 ), 'starteffect' );
 	same( getF( OFS_RETURN ), 0, 'the first slot' );
 	same( sv.hexenEffects[ 0 ].expire_time, 2, 'white smoke expires after one second' );
-	const startMessage = Hexen2_ReadStartEffect( bytes( sv.reliable_datagram ) );
+	same( bytes( sv.reliable_datagram )[ 0 ], svc_hexen2_start_effect, 'starteffect uses the unified opcode' );
+	const startMessage = Hexen2_ReadStartEffect( withNativeOpcode( bytes( sv.reliable_datagram ), HEXEN2_SERVER_MESSAGES.start_effect ) );
 	check( startMessage.ok, startMessage.reason );
-	same( startMessage.type, CE.WHITE_SMOKE, 'the native start effect message' );
+	same( startMessage.type, CE.WHITE_SMOKE, 'the native start effect body' );
 
 	sv.time = 2;
 	reset( sv.reliable_datagram );
@@ -491,9 +512,10 @@ Deno.test( 'starteffect expires by native type, reuses slots, ends effects and s
 	setF( OFS_PARM1, 0 );
 	check( call( 89 ), 'endeffect' );
 	same( sv.hexenEffects[ 0 ], null, 'the slot is cleared' );
-	const endMessage = Hexen2_ReadEndEffect( bytes( sv.reliable_datagram ) );
+	same( bytes( sv.reliable_datagram )[ 0 ], svc_hexen2_end_effect, 'endeffect uses the unified opcode' );
+	const endMessage = Hexen2_ReadEndEffect( withNativeOpcode( bytes( sv.reliable_datagram ), HEXEN2_SERVER_MESSAGES.end_effect ) );
 	check( endMessage.ok, endMessage.reason );
-	same( endMessage.index, 0, 'the native end effect message' );
+	same( endMessage.index, 0, 'the native end effect body' );
 
 	// a rain slot and a bone-shard slot survive a save/load round trip with their expiry
 	sv.time = 4;
@@ -540,6 +562,42 @@ Deno.test( 'spawntemp reuses the reserved pool and recycles the oldest slot', ()
 	check( call( 93 ), 'spawntemp' );
 	const returned = getI( OFS_RETURN );
 	check( inRange( returned, range.start, 3 ), 'spawntemp returns a reserved slot' );
+
+} );
+
+
+Deno.test( 'lightstylevalue follows the native animated style and its 1/2/3 rate prefix', () => {
+
+	check( fixture !== null, 'the supplied Hexen II pack' );
+	const { sv } = fixture;
+	const value = ( style, time ) => {
+
+		sv.time = time;
+		setF( OFS_PARM0, style );
+		check( call( 71 ), 'lightstylevalue' );
+		return getF( OFS_RETURN );
+
+	};
+
+	// Default 10 Hz locus over a multi-letter cycle.
+	sv.lightstyles[ 0 ] = 'abcdef';
+	same( value( 0, 0 ), 0, 'a at time 0' );
+	same( value( 0, 0.25 ), 2, 'c after 0.25 s at 10 Hz' );
+	same( value( 0, 1.1 ), 5, 'f after 1.1 s (the cycle wraps)' );
+
+	// '2' selects 20 Hz and the characters after the prefix are the cycle.
+	sv.lightstyles[ 1 ] = '2jkl';
+	same( value( 1, 0 ), 9, 'j at time 0' );
+	same( value( 1, 0.1 ), 11, 'l after 0.1 s at 20 Hz' );
+	same( value( 1, 0.15 ), 9, 'j again as the two-letter cycle wraps' );
+
+	// '3' selects 30 Hz.
+	sv.lightstyles[ 2 ] = '3abcd';
+	same( value( 2, 0.1 ), 3, 'd after 0.1 s at 30 Hz' );
+
+	// A bare rate prefix is the native malformed style: normal light.
+	sv.lightstyles[ 3 ] = '2';
+	same( value( 3, 0.5 ), 11, 'a malformed rate style is normal light (256 / 22)' );
 
 } );
 

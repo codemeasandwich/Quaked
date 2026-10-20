@@ -173,7 +173,8 @@ ED_Alloc
  * entity that was recently freed, because it can cause the client to think the entity morphed into something else
  * instead of being removed and recreated, which can cause interpolated angles and bad trails: a free edict is reused
  * only if it was freed more than 0.5 seconds ago, or during the first 2 seconds of server time (which can involve a
- * lot of freeing and allocating). Client slots and the world (0..`svs.maxclients`) are never returned.
+ * lot of freeing and allocating). Client slots and the world (0..`svs.maxclients`), and a Hexen II server's reserved
+ * temporary-edict range, are never returned.
  *
  * @returns {edict_t} a cleared edict (`ED_ClearEdict`); a new one raises `sv.num_edicts`
  * @throws {Error} via `PR_HostError` (Host_Error) when all `sv.max_edicts` edicts are in use
@@ -183,8 +184,11 @@ export function ED_Alloc() {
 	let i;
 	let e;
 
-	// skip clients + world entity
-	for ( i = svs.maxclients + 1; i < sv.num_edicts; i ++ ) {
+	// skip clients + world entity, then Hexen II's reserved temporary-edict pool (uhexen2 SV_SpawnServer and
+	// ED_Alloc_Temp): ordinary map entities start after it, so spawntemp can never free a door, brush or player start.
+	// Quake reserves nothing (sv.max_temp_edicts is 0), so its allocation numbers are unchanged.
+	const first = svs.maxclients + 1 + Math.max( 0, sv.max_temp_edicts | 0 );
+	for ( i = first; i < sv.num_edicts; i ++ ) {
 
 		e = EDICT_NUM( i );
 		// the first couple seconds of server time can involve a lot of
@@ -207,6 +211,8 @@ export function ED_Alloc() {
 
 	}
 
+	// a table that did not reserve the range yet still never hands out a slot below it
+	if ( sv.num_edicts < i ) sv.num_edicts = i;
 	sv.num_edicts ++;
 	e = EDICT_NUM( i );
 	ED_ClearEdict( e );

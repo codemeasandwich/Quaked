@@ -5,21 +5,36 @@
  * messages, particle explosions, sound-position updates, white flashes and the Hexen static-entity record. The bodies
  * are the pinned Raven `SV_StartParticle*`/`PF_*` layouts (`sv_main.c`, `pr_cmds.c`).
  *
- * This is the one seam package U1 replaces: the ids come from `hexen2_protocol.js` here, while the unified protocol
- * owns their final numbers and the optional static-entity bits. Keep every caller going through these functions so
- * integration changes one module, not every builtin.
+ * The ids are the unified protocol's (`common/protocol.js`, 50-71); the bodies stay the native Hexen II layouts the
+ * unified client parser reads. Keep every caller going through these functions so a wire change stays in one module.
  *
  * Types: plain values and functions; no exported classes.
  * State: no mutable exports.
  * Errors: none raised; a message that does not fit its buffer is dropped whole by `Hexen2_AppendMessage`.
  */
 
-import { svc_spawnstatic, svc_stufftext } from '../common/protocol.js';
-import { HEXEN2_SERVER_MESSAGES } from '../common/hexen2_protocol.js';
+import {
+	svc_spawnstatic, svc_stufftext,
+	svc_hexen2_particle2, svc_hexen2_particle3, svc_hexen2_particle4,
+	svc_hexen2_start_effect, svc_hexen2_end_effect, svc_hexen2_plaque, svc_hexen2_raineffect,
+	svc_hexen2_particle_explosion, svc_hexen2_sound_update_pos,
+} from '../common/protocol.js';
 import { Hexen2_WriteParticle2, Hexen2_WriteParticle3, Hexen2_WriteParticle4 } from '../common/hexen2_effects.js';
 import { Hexen2_WriteStartEffect, Hexen2_WriteEndEffect } from '../common/hexen2_effectwire.js';
 
-const messageId = name => HEXEN2_SERVER_MESSAGES[ name ];
+// The unified service ids, never the native Hexen II ones: a live client parses protocol.js's 50-71 table.
+const UNIFIED_MESSAGE = Object.freeze( {
+	particle2: svc_hexen2_particle2,
+	particle3: svc_hexen2_particle3,
+	particle4: svc_hexen2_particle4,
+	start_effect: svc_hexen2_start_effect,
+	end_effect: svc_hexen2_end_effect,
+	plaque: svc_hexen2_plaque,
+	raineffect: svc_hexen2_raineffect,
+	particle_explosion: svc_hexen2_particle_explosion,
+	sound_update_pos: svc_hexen2_sound_update_pos
+} );
+const messageId = name => UNIFIED_MESSAGE[ name ];
 
 // The common particle/effect encoders own the bodies; rewriting the opcode here keeps every unified-protocol id in
 // this one module for the U1 integration.

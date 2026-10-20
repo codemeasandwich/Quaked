@@ -29,14 +29,15 @@ Deno.test( 'MSG_ONE writes to the edict the pointer names', () => {
 	const svs = { maxclients: 1, clients: [ { message } ], active: true };
 	PR_SetSVS( svs );
 
-	// a client destination receives the byte
+	// a client destination receives an ordinary byte; 99 is outside every native service id, so the native-wire
+	// translator passes it straight through
 	G_FLOAT_SET( OFS_PARM0, 1 ); // MSG_ONE
-	G_FLOAT_SET( OFS_PARM1, 42 );
+	G_FLOAT_SET( OFS_PARM1, 99 );
 	PR_SetArgc( 2 );
 	globals.msg_entity = EDICT_TO_PROG( client );
 	check( callProfileBuiltin( 52, {} ) === true, 'writebyte is implemented' );
 	same( message.cursize, 1, 'the client message grew' );
-	same( message.data[ 0 ], 42, 'the client received the byte' );
+	same( message.data[ 0 ], 99, 'the client received the byte' );
 
 	// the failed form treated msg_entity as a globals slot: G_EDICTNUM(pointer) read beyond the globals array
 	check( message.cursize === 1, 'the client message is intact' );
