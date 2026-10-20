@@ -365,6 +365,34 @@ function labelRows( pic, x, y, labels, firstRow, srcY ) {
 
 }
 
+const BIGFONT_CELL = Object.freeze( { w: 20, h: 19, pitch: 20 } ); // the native bigfont sheet's cells
+let bigfontSheet = null, bigfontSheetFor = null;
+
+// The bigfont sheet as a picture whose background (palette indices 0 and 255, the sheet's black and its cell grid) is
+// clear: the cached picture's conversion keeps index 0 opaque, which would draw a black box behind every letter.
+function bigfontPicture( pic ) {
+
+	if ( bigfontSheetFor === pic ) return bigfontSheet;
+	bigfontSheetFor = pic; bigfontSheet = pic;
+	const raw = loadQpic( NewerBindings().menu.bigfont ), palette = COM_LoadFile( 'gfx/palette.lmp' );
+	const canvas = globalThis.document?.createElement?.( 'canvas' ), ctx = canvas?.getContext?.( '2d' );
+	if ( ! raw || ! palette || ! ctx || raw.width !== pic.width || raw.height !== pic.height ) return bigfontSheet;
+	const pal = new Uint8Array( palette );
+	canvas.width = raw.width; canvas.height = raw.height;
+	const image = ctx.createImageData( raw.width, raw.height );
+	for ( let i = 0; i < raw.width * raw.height; i ++ ) {
+
+		const index = raw.data[ i ];
+		if ( index === 0 || index === 255 ) continue;
+		image.data.set( [ pal[ index * 3 ], pal[ index * 3 + 1 ], pal[ index * 3 + 2 ], 255 ], i * 4 );
+
+	}
+	ctx.putImageData( image, 0, 0 );
+	bigfontSheet = { width: pic.width, height: pic.height, canvas, path: pic.path };
+	return bigfontSheet;
+
+}
+
 // Hexen II's small lettering, text boxes and sliders stay native: its 8-pixel charset traced as a distance field
 // cannot keep letters apart (owner, 20 October 2026: the help and settings were illegible), while its own pixels,
 // scaled crisply, read well in the game's own colours. The dynamic layer composites over native drawing, so the boxes
@@ -372,47 +400,38 @@ function labelRows( pic, x, y, labels, firstRow, srcY ) {
 function smallTextNative() { return activeSkin().id === 'hexen2'; }
 
 /**
- * Queues Hexen II's native bigfont lettering with the installed sheet's advances. Each glyph is emitted at its own cell
- * so the 27 x 27 `fontsize.lmp` pair advances (and the C/P kern) are exact; the atlas glyphs live in the private-use
- * block, so one runtime atlas carries both the bigfont and the small conchars. The command carries `display` (the
- * original character) for diagnostics because `text` is the private atlas key.
+ * Queues Hexen II's native bigfont lettering: each letter an `image` command cutting its 20 x 19 cell out of the
+ * installed sheet, smoothly scaled, at the native pair advances (the 27 x 27 `fontsize.lmp` table and the C/P kern).
+ * The command carries `display`, the character, for diagnostics.
  *
  * @param {number} x left edge in virtual screen units, menu offset already applied
  * @param {number} y top of the glyph cell in virtual units
  * @param {string} text the text (A-Z, space and `/`)
- * @param {?qpic_t} pic the native bigfont sheet (used only to confirm the source exists)
+ * @param {?qpic_t} pic the native bigfont sheet (its canvas is drawn from)
  * @param {?Uint8Array} widths the native 27 x 27 advance table
- * @returns {boolean} true when queued; false when the frame is not Hexen-skinned or its atlas is not ready
+ * @returns {boolean} true when queued (drawing skips a sheet without a canvas); false when the frame is not Hexen-skinned
  */
 export function MainMenu_BigText( x, y, text, pic, widths ) {
 
-	if ( ! frameSkin || activeSkin().id !== 'hexen2' || ! renderer?.__hexenAtlas?.bigfont ) return false;
-	if ( ! pic ) return false;
-	const scale = Draw_GetUIScale(), em = 19 * scale, string = String( text );
-	const base = MENU_SKINS.hexen2.font.privateBase;
-	const placed = [];
+	if ( ! frameSkin || activeSkin().id !== 'hexen2' || ! pic ) return false;
+	// Each letter is a cut-out of the installed sheet, smoothly scaled like the plaques and pictures: the original's
+	// thin carved letters (owner, 20 October 2026: the distance-field lettering came out fat and blocky). Cells and
+	// advances are native (menu.c M_DrawBigString / M_DrawBigCharacter, the 27 x 27 fontsize.lmp table).
+	const scale = Draw_GetUIScale(), string = String( text ), sheet = bigfontPicture( pic );
+	let cellX = x;
 	for ( let i = 0; i < string.length; i ++ ) {
 
 		const num = MenuSkin_BigfontIndex( string[ i ] );
-		if ( num === 32 ) { placed.push( { space: true } ); continue; }
-		if ( num < 0 || num >= 27 ) { placed.push( { invalid: true } ); continue; }
-		const key = String.fromCharCode( base + num ), glyph = renderer.font.glyphs[ key ];
-		if ( ! glyph?.atlas ) return false;
-		placed.push( { key, display: string[ i ], ink: glyph.ink, num } );
-
-	}
-	let cellX = x;
-	for ( let i = 0; i < placed.length; i ++ ) {
-
-		const glyph = placed[ i ];
-		if ( glyph.space ) { cellX += 32; continue; }
-		if ( glyph.invalid ) continue;
-		commands.push( { type: 'text', text: glyph.key, display: glyph.display, x: cellX * scale + glyph.ink[ 0 ] * em,
-			y: y * scale + glyph.ink[ 1 ] * em, size: em, stretch: 1, kind: 2, bigfont: true, skin: 'hexen2' } ); // raised stone, as native
+		if ( num === 32 ) { cellX += 32; continue; }
+		if ( num < 0 || num >= 27 ) continue;
+		const [ px, py ] = physical( cellX, y );
+		commands.push( { type: 'image', pic: sheet, path: pic.path || '', x: px, y: py, w: BIGFONT_CELL.w * scale, h: BIGFONT_CELL.h * scale,
+			srcX: ( num % 8 ) * BIGFONT_CELL.w, srcY: Math.floor( num / 8 ) * BIGFONT_CELL.pitch, srcW: BIGFONT_CELL.w, srcH: BIGFONT_CELL.h,
+			smooth: true, skin: 'hexen2', bigfont: true, display: string[ i ] } );
 		const next = MenuSkin_BigfontIndex( string[ i + 1 ] );
 		if ( next < 0 || next >= 27 ) continue;
-		const extra = glyph.num === 2 && next === 15 ? 3 : 0;
-		cellX += ( widths && widths.length === 27 * 27 ? widths[ glyph.num * 27 + next ] : 14 ) + extra;
+		const extra = num === 2 && next === 15 ? 3 : 0; // menu.c M_DrawBigCharacter's C-P kern
+		cellX += ( widths && widths.length === 27 * 27 ? widths[ num * 27 + next ] : 14 ) + extra;
 
 	}
 	return true;
@@ -739,15 +758,16 @@ export function MainMenu_MenuDot( x, y, pic ) {
  * picture keeps its whole source and the overlay clips the negative top, so the dynamic layer can animate the slide at
  * full resolution. Called by `M_DrawTransPicCropped`.
  *
- * @param {number} x left edge in physical overlay pixels, menu offset already applied
- * @param {number} y top edge in physical overlay pixels; may be negative
+ * @param {number} x left edge in virtual screen units, menu offset already applied
+ * @param {number} y top edge in virtual units; may be negative
  * @param {?qpic_t} pic the title or plaque picture
  * @returns {boolean} true when queued; false when the frame is not Hexen-skinned or the picture is missing
  */
 export function MainMenu_ScrollPic( x, y, pic ) {
 
 	if ( ! frameSkin || activeSkin().id !== 'hexen2' || ! pic ) return false;
-	return queueHexenImage( pic, x, y, Draw_GetUIScale() );
+	const [ px, py ] = physical( x, y ); // menu-space in, physical pixels out, as every other picture hook
+	return queueHexenImage( pic, px, py, Draw_GetUIScale() );
 
 }
 

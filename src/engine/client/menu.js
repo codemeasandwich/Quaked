@@ -276,9 +276,8 @@ export function M_Draw() {
 
 		} else if ( R_DemoSplitActive() && _Draw_Fill ) {
 
-			// the title demo is half Newer and half classic: dim it only a little, so the two can be compared (Hexen II's
-			// menu is dark carved stone, which needs a deeper veil to stand off the demo)
-			_Draw_Fill( 0, 0, _vid.width, _vid.height, 0, GameProfile_IsHexen2() ? 0.55 : 0.32 );
+			// the title demo is half Newer and half classic: dim it only a little, so the two can be compared
+			_Draw_Fill( 0, 0, _vid.width, _vid.height, 0, 0.32 );
 			M_DrawSplitMarks();
 
 		} else {

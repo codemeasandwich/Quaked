@@ -177,7 +177,8 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `87922a8c` | owner trial 5 | Hexen II starts on its title demos like Quake (Enhanced and Classic halves); Portal mounts the base game's loose files |
 | `f023ded9` | DD, owner trial 6 | native demos play from inside the level; Hexen menu legible over the title demo; split labels clear of its plaque |
 | `d8564719` | TR, owner trial 7 | Hexen see-through model skins (EF_HOLEY/TRANSPARENT/SPECIAL_TRANS) loaded with their alpha |
-| (this commit) | owner trial 8 | Hexen II renders the full screen with its bar overlaid, in Classic and Enhanced, framed so the hands stay visible |
+| `c9a53b22` | owner trial 8 | Hexen II renders the full screen with its bar overlaid, in Classic and Enhanced, framed so the hands stay visible |
+| (this commit) | owner trial 9 | Hexen title and plaque placed natively (ScrollPic skipped the UI scale); bigfont cut from its sheet, thin as the original |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;
@@ -316,6 +317,14 @@ Owner trial 8 (20 October): black bars beside the Hexen HUD on a wide window (E2
 vertical cull angle `cullFovY` covers the extra strip), so the held model stays where it was. Quake's Classic and
 Enhanced layouts are unchanged. Wide-window screenshots in both modes; 293/294 suites (`weapon_review` fails the same
 without the change), engine list 220/220.
+
+Owner trial 9 (20 October), against a video of the original: the menu was "still not correct". The sliding title
+and plaque were placed at a fraction of their x (`MainMenu_ScrollPic` passed menu units where every other picture hook
+converts to pixels), so the title sat on the plaque instead of hanging centred; the distance-field bigfont was fat and
+blocky. Fixed: the scroll pictures convert like the rest; the bigfont is cut letter by letter from the installed
+sheet (background indices 0 and 255 clear) and smoothly scaled; the title-demo veil is Quake's again. This is an
+interim: the owner's direction is a unified menu system where Hexen extends Quake's (moving titles as an extension),
+redrawn as HD vector elements like Quake's, with Quake's dark text shadow (design decisions pending).
 
 Open decisions and known limits:
 

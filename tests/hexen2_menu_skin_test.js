@@ -336,7 +336,8 @@ Deno.test( 'every Hexen II page keeps its small text native and draws its titles
 		// only the bigfont is dynamic lettering: the 8-pixel charset stays native, legible pixels (owner, 20 October 2026)
 		check( state.font?.bigfont === 27 && state.font?.conchars === 0, 'the runtime atlas holds the bigfont only: ' + JSON.stringify( state.font ) );
 
-		const bigText = commands => commands.filter( c => c.type === 'text' && c.bigfont ).map( c => c.display ).join( '' ).toUpperCase();
+		// the bigfont is cut from the installed sheet as smoothed pictures, one image per letter (owner, 20 October 2026)
+		const bigText = commands => commands.filter( c => c.type === 'image' && c.bigfont ).map( c => c.display ).join( '' ).toUpperCase();
 		const smallText = commands => commands.filter( c => c.type === 'text' && ! c.bigfont ).map( c => c.text ).join( '' ).toUpperCase();
 		const imagePaths = commands => commands.filter( c => c.type === 'image' ).map( c => c.path ).join( '|' );
 		const stonePanel = commands => commands.some( c => c.type === 'panel' && c.skin === 'hexen2' && c.material === 'stone' );
