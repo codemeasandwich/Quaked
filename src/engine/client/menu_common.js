@@ -72,6 +72,8 @@ export const m_hexen2_help = 34;
 export const m_hexen2_quit = 35;
 export const m_hexen2_load = 36;
 export const m_hexen2_save = 37;
+export const m_controller_customise = 39;
+export const m_controller_test = 40;
 export const m_gyro = 38; // Shared platform controls, reached from both Options pages.
 
 export let m_state = m_none;
@@ -84,14 +86,13 @@ export let m_return_reason = '';
 
 export let m_save_demonum = 0;
 
-// The setters of the menu's shared state: every screen family changes the state, and an importer cannot assign a
-// module's binding, so each of these has one writer here (card [44j]).
-/**
- * Sets the screen the menu shows (`m_state`, one of the `m_*` ids; `m_none` when no menu is open).
- *
- * @param {number} value the screen id
- */
-export function set_m_state( value ) { m_state = value; }
+const stateListeners = new Set();
+/** Observes menu transitions for page-owned resource disposal; listeners grant no navigation authority. */
+export function M_OnStateChange( listener ) { stateListeners.add( listener ); }
+
+// Every screen changes shared state through the setter so page-owned resources can follow all transitions.
+/** Sets the menu screen, notifying page resource owners of the previous and next states. */
+export function set_m_state( value ) { const previous = m_state; m_state = value; for ( const listener of stateListeners ) listener( value, previous ); }
 /**
  * Asks for the menu's enter sound on the next draw (`m_entersound`); `M_Draw` plays it and clears the flag.
  *

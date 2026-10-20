@@ -72,7 +72,7 @@ Deno.test( 'the Hexen Options page exposes the enhanced mode row', () => {
 	Cbuf_Init();
 	M_Menu_Options_f();
 	same( common.m_state, common.m_hexen2_options, 'Hexen opens its own native Options page' );
-	// The final rows are Gyro controls, Texture detail and Enhanced mode; preserve the latter's action.
+	// The final rows are Controller, Texture detail and Enhanced mode; preserve the latter's action.
 	M_Hexen2_Options_Key( K_UPARROW );
 	M_Hexen2_Options_Key( K_UPARROW );
 	M_Hexen2_Options_Key( K_UPARROW );

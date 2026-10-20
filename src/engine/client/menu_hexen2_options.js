@@ -13,6 +13,7 @@
  *
  * Native code: menu.c:1818-2700 (M_Options, M_Keys, M_Video).
  */
+import { M_ControllerActions } from './menu_actions.js';
 
 import { M_Menu_Gyro_f } from './menu_gyro.js';
 import { GameProfile_Get } from '../common/game_profile.js';
@@ -56,7 +57,7 @@ const OPTIONS = Object.freeze( [
 	Object.freeze( { label: 'Video Modes', action: 'video' } ),
 	Object.freeze( { label: 'Enhanced (Newer) mode', toggle: 'enhanced' } ),
 	Object.freeze( { label: 'Texture detail', choice: 'tier' } ),
-	Object.freeze( { label: 'Gyro controls', action: 'gyro' } )
+	Object.freeze( { label: 'Controller', action: 'gyro' } )
 ] );
 
 let optionsCursor = 0;
@@ -293,22 +294,8 @@ export function M_Hexen2_Options_Touch( vx, vy ) {
 ==============================================================================
 */
 
-// menu.c bindnames, in the native order.
-const BINDINGS = Object.freeze( [
-	[ '+attack', 'attack' ], [ 'impulse 10', 'next weapon' ], [ 'impulse 12', 'prev.weapon' ], [ '+jump', 'jump / swim up' ],
-	[ '+forward', 'walk forward' ], [ '+back', 'backpedal' ], [ '+left', 'turn left' ], [ '+right', 'turn right' ],
-	[ '+speed', 'run' ], [ '+moveleft', 'step left' ], [ '+moveright', 'step right' ], [ '+strafe', 'sidestep' ],
-	[ '+crouch', 'crouch' ], [ '+lookup', 'look up' ], [ '+lookdown', 'look down' ], [ 'centerview', 'center view' ],
-	[ '+moveup', 'swim up' ], [ '+movedown', 'swim down' ], [ 'impulse 13', 'lift object' ], [ 'invuse', 'use inv item' ],
-	[ 'invdrop', 'drop inv item' ], [ '+showinfo', 'full inventory' ], [ '+showdm', 'info / frags' ], [ 'toggle_dm', 'toggle frags' ],
-	[ '+infoplaque', 'objectives' ], [ 'invleft', 'inv move left' ], [ 'invright', 'inv move right' ], [ 'impulse 100', 'inv:torch' ],
-	[ 'impulse 101', 'inv:qrtz flask' ], [ 'impulse 102', 'inv:mystic urn' ], [ 'impulse 103', 'inv:krater' ],
-	[ 'impulse 104', 'inv:chaos devc' ], [ 'impulse 105', 'inv:tome power' ], [ 'impulse 106', 'inv:summon stn' ],
-	[ 'impulse 107', 'inv:invisiblty' ], [ 'impulse 108', 'inv:glyph' ], [ 'impulse 109', 'inv:boots' ],
-	[ 'impulse 110', 'inv:repulsion' ], [ 'impulse 111', 'inv:bo peep' ], [ 'impulse 112', 'inv:flight' ],
-	[ 'impulse 113', 'inv:force cube' ], [ 'impulse 114', 'inv:icon defn' ]
-] );
-
+// menu.c bindnames, in the native order (menu_actions.js, shared with the controller page).
+const BINDINGS = M_ControllerActions( 'hexen2' );
 const KEYS_SIZE = 14;
 let keysCursor = 0, keysTop = 0, bindGrab = false;
 

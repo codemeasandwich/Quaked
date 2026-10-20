@@ -396,3 +396,13 @@ TR (20 October 2026, uncommitted local candidate): alias skin modes reached the 
 argument slot, leaving index-zero texels opaque. Both single and grouped uploads now use the proper argument.
 Regression, installed-model coverage, coordination outage and outstanding independent/GPU/owner gates are retained
 in [tr-skin-alpha.md](tr-skin-alpha.md). This is not a qualified delivery or a release.
+
+CT (20 October 2026, in progress; Bluey still returns storage_error, so this ledger is the record): the owner asked for
+the reference 3D controller (`/Users/bri/SOURCE/QuakedResources/controller-source`, read-only) in the menus as two
+shared items on the Controller page (formerly "Gyro controls"), for both games: Customise controller (top-down model,
+a label and leader per input, a drop-down of every action, any action on any input; pad inputs get their own bindable
+keys that fall back to today's keys when unbound) and Test controller (gyro turns the model, pressed buttons, sticks
+and triggers shown live). Brief: scratchpad `prompts/CT.md`; one GPT Sol 6.1 (high) agent in worktree
+`~/worktrees/Quaked/hexen2-unified/ct` from 5d63589a. Reviewed and browser-verified in both games (scripted pad,
+synthetic gyro; 415/415 affected suites); record: [controller-menu-2026-10-20.md](../controller-menu-2026-10-20.md).
+Next: the owner's Switch Pro trial in the packaged app. Not delivered, not released.

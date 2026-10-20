@@ -24,10 +24,12 @@ import {
 	K_INS, K_DEL, K_PGDN, K_PGUP, K_HOME, K_END, K_PAUSE,
 	K_MOUSE1, K_MOUSE2, K_MOUSE3,
 	K_MWHEELUP, K_MWHEELDOWN,
+	K_PAD_A, K_PAD_B, K_PAD_X, K_PAD_Y, K_PAD_LB, K_PAD_RB, K_PAD_LT, K_PAD_RT,
+	K_PAD_BACK, K_PAD_START, K_PAD_LSTICK, K_PAD_RSTICK, K_PAD_UP, K_PAD_DOWN, K_PAD_LEFT, K_PAD_RIGHT, K_PAD_GUIDE, keybindings,
 	Key_Event,
 	key_game, key_menu, key_dest
 } from '../engine/client/keys.js';
-import { Cvar_RegisterVariable } from '../engine/common/cvar.js';
+import { Cvar_RegisterVariable, Cvar_VariableValue } from '../engine/common/cvar.js';
 import { Cmd_AddCommand } from '../engine/common/cmd.js';
 import { Con_Printf } from '../engine/common/console.js';
 import { cl, cls, ca_connected } from '../engine/client/client.js';
@@ -42,6 +44,7 @@ import {
 	Touch_GetMoveInput, Touch_GetLookDelta, Touch_GetStick, touch_turn, touch_aim, touch_strafe, Touch_StrafeHeld, Touch_UpdateFov,
 	Touch_ShowMenu, Touch_HideMenu, Touch_SetMenuCallback, Touch_RequestFullscreen
 } from './touch.js';
+import { m_state, m_controller_test } from '../engine/client/menu_common.js';
 import { M_TouchInput } from '../engine/client/menu.js';
 import { S_UnlockAudio } from '../engine/sound/snd_dma.js';
 import { Window_InLocalPlay, Window_LocalSession } from '../engine/net/net_window.js';
@@ -142,8 +145,39 @@ const GP_BUTTONS = () => gpButtons ??= [
 	[ 4, 'lb', K_SHIFT, K_SHIFT ], [ 5, 'rb', K_CTRL, K_CTRL ],
 	[ 6, 'lt', K_SPACE, K_ENTER, true ], [ 7, 'rt', K_MOUSE1, K_MOUSE1, true ],
 	[ 8, 'back', K_ESCAPE, K_ESCAPE ], [ 9, 'start', K_ESCAPE, K_ESCAPE ],
-	[ 12, 'du', K_UPARROW, K_UPARROW ], [ 13, 'dd', K_DOWNARROW, K_DOWNARROW ], [ 14, 'dl', K_LEFTARROW, K_LEFTARROW ], [ 15, 'dr', K_RIGHTARROW, K_RIGHTARROW ]
+	[ 10, 'ls', null, null ], [ 11, 'rs', null, null ],
+	[ 12, 'du', K_UPARROW, K_UPARROW ], [ 13, 'dd', K_DOWNARROW, K_DOWNARROW ], [ 14, 'dl', K_LEFTARROW, K_LEFTARROW ], [ 15, 'dr', K_RIGHTARROW, K_RIGHTARROW ], [ 16, 'guide', null, null ]
 ];
+/** Deliberately empty binding: a harmless console separator, persisted by the normal config writer. */
+export const PAD_BIND_NONE = ';';
+
+/** Standard pad descriptors in button-index order; fallback keys are the original game's inputs. */
+export function IN_GamepadInputs() {
+
+	const keys = [ K_PAD_A, K_PAD_B, K_PAD_X, K_PAD_Y, K_PAD_LB, K_PAD_RB, K_PAD_LT, K_PAD_RT,
+		K_PAD_BACK, K_PAD_START, K_PAD_LSTICK, K_PAD_RSTICK, K_PAD_UP, K_PAD_DOWN, K_PAD_LEFT, K_PAD_RIGHT, K_PAD_GUIDE ];
+	return GP_BUTTONS().map( ( [ index, name, gameKey, menuKey, trigger ] ) => Object.freeze( { index, name, gameKey, menuKey, trigger: !! trigger, key: keys[ index ] } ) );
+
+}
+
+/** The left-stick press belongs to the existing Newer weapon wheel while enabled. */
+export function IN_GamepadWheelFixed() { return !! R_NewerGame() && Cvar_VariableValue( 'joy_wheel' ) > 0; }
+
+let gpSnapshot = Object.freeze( { pad: null, pads: Object.freeze( [] ) } );
+
+/** Returns the last input poll's immutable snapshot; never polls or changes controller assignment. */
+export function IN_GamepadState() { return gpSnapshot; }
+
+function GP_Snapshot( primary ) {
+
+	const pads = gpGyroPads.map( pad => Object.freeze( { index: pad.index, id: pad.id, connected: pad.connected, mapping: pad.mapping,
+		axes: Object.freeze( Array.from( pad.axes || [] ) ), buttons: Object.freeze( Array.from( pad.buttons || [], b => Object.freeze( {
+			pressed: typeof b === 'object' ? !! b?.pressed : !! b, value: typeof b === 'object' ? b?.value ?? ( b?.pressed ? 1 : 0 ) : b ? 1 : 0
+		} ) ) ) } ) );
+	gpSnapshot = Object.freeze( { pad: pads.find( p => p.index === primary?.index && p.id === primary?.id ) || null, pads: Object.freeze( pads ) } );
+
+}
+
 let gpGyroPads = [];
 const gpState = { index: null, id: null, sent: new Map(), owned: new Map(), noticed: new Set() };
 
@@ -241,6 +275,7 @@ export function IN_GamepadRelease( keyEvent = Key_Event ) {
 
 	Gyro_Move( cl.viewangles, null, [], 0, false );
 	GP_ReleaseOwned( keyEvent ); gpState.index = null; gpState.id = null;
+	gpGyroPads = []; GP_Snapshot( null );
 
 }
 
@@ -252,7 +287,9 @@ IN_GamepadPoll
 /**
  * Reads the game controller (card [36]). Every host frame (`IN_Commands`, with no command: the buttons, in menus and
  * between levels too) and again when a command is built (`IN_Move`: the sticks as movement and look, in the game).
- * Reading twice in a frame changes nothing: each button remembers what it sent. Each button sends its game key, or
+ * Reading twice in a frame changes nothing: each button remembers what it sent. In game a bound pad key runs through
+ * the ordinary key path; an unbound one sends its original fallback below (`;` deliberately sends nothing). Menus
+ * always retain the original navigation key. The default is the game key, or
  * its menu key while the menu has the keys (A: space or Enter, B/Back/Start: Escape, X: '/', Y: Tab, LB: Shift, RB:
  * Ctrl, LT: space or Enter, RT: mouse 1, D-pad: arrows; triggers count as down past half way), and releases that same
  * key when let go. When the playing controller disconnects or another takes over, only the keys it holds are
@@ -271,6 +308,7 @@ IN_GamepadPoll
 export function IN_GamepadPoll( cmd, keyEvent = Key_Event, print = Con_Printf ) {
 
 	const gp = GP_GetPrimary();
+	GP_Snapshot( gp );
 	if ( ! gp ) {
 
 		Gyro_Move( cl.viewangles, null, [], 0, false );
@@ -295,14 +333,31 @@ export function IN_GamepadPoll( cmd, keyEvent = Key_Event, print = Con_Printf ) 
 
 	// (Newer Game: the bestiary takes the controls, with the game's clock stopped: an open weapon wheel closes, taking nothing)
 	if ( R_BestiaryInputLocked() ) R_ControllerCancel();
-	// Standard mapping: 0 A, 1 B, 2 X, 3 Y, 4 LB, 5 RB, 6 LT, 7 RT, 8 Back, 9 Start, 10 LS, 11 RS, 12-15 D-pad.
+	// Standard mapping: 0 A, 1 B, 2 X, 3 Y, 4 LB, 5 RB, 6 LT, 7 RT, 8 Back, 9 Start, 10 LS, 11 RS, 12-15 D-pad, 16 Guide (when exposed by the platform).
 	const inMenu = key_dest === key_menu;
-	for ( const [ index, name, gameKey, menuKey, trigger ] of GP_BUTTONS() ) {
+	for ( const { index, name, gameKey, menuKey, trigger, key: padKey } of IN_GamepadInputs() ) {
 
 		const down = trigger ? GP_ButtonValue( gp, index ) > 0.5 : GP_ButtonDown( gp, index );
-		const sent = gpState.sent.get( name );
-		if ( down && sent === undefined ) { const key = inMenu ? menuKey : gameKey; gpState.sent.set( name, key ); GP_Press( key, keyEvent ); }
-		else if ( ! down && sent !== undefined ) { gpState.sent.delete( name ); GP_Release( sent, keyEvent ); }
+		let sent = gpState.sent.get( name );
+		// Test every physical input without dispatching a menu command (including menubound mouse buttons).
+		if ( key_dest === key_menu && m_state === m_controller_test && sent != null ) {
+
+			GP_Release( sent, keyEvent ); gpState.sent.delete( name ); sent = undefined;
+
+		}
+		if ( down && sent === undefined ) {
+
+			const binding = keybindings[ padKey ];
+			const blocked = ( key_dest === key_menu && m_state === m_controller_test ) || ( index === 10 && IN_GamepadWheelFixed() );
+			const key = blocked ? null : inMenu ? menuKey : key_dest === key_game && binding ? binding === PAD_BIND_NONE ? null : padKey : gameKey;
+			gpState.sent.set( name, key );
+			if ( key !== null ) GP_Press( key, keyEvent );
+
+		} else if ( ! down && sent !== undefined ) {
+
+			gpState.sent.delete( name ); if ( sent !== null ) GP_Release( sent, keyEvent );
+
+		}
 
 	}
 

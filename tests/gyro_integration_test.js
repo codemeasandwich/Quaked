@@ -97,12 +97,12 @@ function drawOptions( hexen ) {
 	for ( let step = 0; step < 32; step ++ ) {
 
 		text = []; ( hexen ? hexenOptions.M_Hexen2_Options_Draw : options.M_Options_Draw )();
-		row = text.find( item => item.value.trim() === 'Gyro controls' );
+		row = text.find( item => item.value.trim() === 'Controller' );
 		if ( row ) break;
 		menu.M_Keydown( keys.K_DOWNARROW );
 
 	}
-	check( row, 'Options draws a Gyro controls row' );
+	check( row, 'Options draws a Controller row' );
 	const y = row.y - ( ( common._vid.height - 200 ) >> 1 );
 	check( y >= 0 && y <= 192, 'Options gyro row is visible and touchable: y=' + y ); return y;
 }
@@ -121,12 +121,12 @@ for ( const game of [ 'quake', 'hexen2' ] ) Deno.test( `${game}: Options reaches
 	check( text.some( item => item.value === 'WebHID needs Chrome/Edge' ), 'unsupported browsers receive a clear capability note' );
 	// Menu touch uses element coordinates; these are the centred 320x200 menu's logical coordinates transformed back.
 	const tap = y => menu.M_TouchInput( 100 + ( common._vid.width - 320 ) / 2, y + ( common._vid.height - 200 ) / 2, common._vid.width, common._vid.height );
-	tap( 57 ); near( Cvar_VariableValue( 'gyro_enable' ), 0, 'touch toggles gyro' );
+	tap( 73 ); near( Cvar_VariableValue( 'gyro_enable' ), 0, 'touch toggles gyro' );
 	menu.M_Keydown( keys.K_ENTER ); near( Cvar_VariableValue( 'gyro_enable' ), 1, 'Enter toggles gyro back' );
 	menu.M_Keydown( keys.K_DOWNARROW ); menu.M_Keydown( keys.K_RIGHTARROW ); near( Cvar_VariableValue( 'gyro_sensitivity' ), 1.1, 'right adjusts sensitivity' );
-	tap( 89 ); near( Cvar_VariableValue( 'gyro_invert_y' ), 1, 'touch toggles invert' );
-	tap( 105 ); near( Cvar_VariableValue( 'gyro_hold' ), 1, 'touch toggles hold mode' );
-	tap( 121 ); near( Cvar_VariableValue( 'gyro_button' ), 11, 'touch selects hold button' );
+	tap( 105 ); near( Cvar_VariableValue( 'gyro_invert_y' ), 1, 'touch toggles invert' );
+	tap( 121 ); near( Cvar_VariableValue( 'gyro_hold' ), 1, 'touch toggles hold mode' );
+	tap( 137 ); near( Cvar_VariableValue( 'gyro_button' ), 11, 'touch selects hold button' );
 	menu.M_Keydown( keys.K_ESCAPE ); check( common.m_state === parent, 'Escape returns to originating Options' );
 	// The Options cursor remains on the touched row, so Enter exercises its separate keyboard dispatch.
 	menu.M_Keydown( keys.K_ENTER ); check( common.m_state === common.m_gyro, 'Enter reopens shared page' );
@@ -142,12 +142,12 @@ Deno.test( 'Hexen Options exposes its hidden gyro row through the touch-only Mor
 	// Cursors survive reopening Options. Reach the top using touch alone when the previous trial left it scrolled.
 	if ( text.some( item => item.value === 'Top ^' ) ) { tap( 260, 54 ); draw(); }
 	check( text.some( item => item.value === 'More v' ), 'the first page visibly offers More' );
-	check( ! text.some( item => item.value.trim() === 'Gyro controls' ), 'gyro begins below the native first page' );
+	check( ! text.some( item => item.value.trim() === 'Controller' ), 'gyro begins below the native first page' );
 	tap( 260, 54 ); draw();
 	check( common.m_state === common.m_hexen2_options, 'More scrolls without opening another page' );
 	check( text.some( item => item.value === 'Top ^' ), 'the scrolled page visibly offers Top' );
-	const row = text.find( item => item.value.trim() === 'Gyro controls' );
-	check( row, 'More reveals Gyro controls' );
+	const row = text.find( item => item.value.trim() === 'Controller' );
+	check( row, 'More reveals Controller' );
 	const y = row.y - ( ( common._vid.height - 200 ) >> 1 );
 	check( y >= 60 && y <= 192, 'revealed row remains within the touchable page' );
 	tap( 120, y + 1 ); check( common.m_state === common.m_gyro, 'touch opens the revealed gyro row' );

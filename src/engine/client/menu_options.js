@@ -1,5 +1,3 @@
-import { M_Menu_Gyro_f } from './menu_gyro.js';
-import {Distribution_Profile} from '../../platform/distribution.js';
 /**
  * @module engine/client/menu_options
  *
@@ -15,6 +13,9 @@ import {Distribution_Profile} from '../../platform/distribution.js';
  *
  * The options are opened from the main menu (through `menuOpeners`); ESC returns there.
  */
+import { M_ControllerActions } from './menu_actions.js';
+import { M_Menu_Gyro_f } from './menu_gyro.js';
+import {Distribution_Profile} from '../../platform/distribution.js';
 import { MainMenu_Skinned, MainMenu_Slider } from '../common/hooks.js'; // installed by newer/ui/menu_webgl.js
 import { R_FlashlightToggle } from '../common/hooks.js'; // installed by newer/render/r_flashlight.js
 import { Newer_ApplyGameDefaults } from '../common/hooks.js'; // installed by newer/ui/newer_defaults.js
@@ -392,7 +393,7 @@ export function M_Options_Draw() {
 	const p = _Draw_CachePic( 'gfx/p_option.lmp' );
 	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
 
-	M_Print( 16, optionsY( 22 ), '         Gyro controls' );
+	M_Print( 16, optionsY( 22 ), '            Controller' );
 	M_Print( 16, optionsY( 0 ), '    Customize controls' );
 	M_Print( 16, optionsY( 1 ), '         Go to console' );
 	M_Print( 16, optionsY( 2 ), '     Reset to defaults' );
@@ -789,26 +790,8 @@ export function M_Newer_Touch( vx, vy ) {
 let m_keys_cursor = 0;
 let bind_grab = false;
 
-const bindnames = [
-	[ '+attack', 'attack' ],
-	[ 'impulse 10', 'change weapon' ],
-	[ '+jump', 'jump / swim up' ],
-	[ '+forward', 'walk forward' ],
-	[ '+back', 'backpedal' ],
-	[ '+left', 'turn left' ],
-	[ '+right', 'turn right' ],
-	[ '+speed', 'run' ],
-	[ '+moveleft', 'step left' ],
-	[ '+moveright', 'step right' ],
-	[ '+strafe', 'sidestep' ],
-	[ '+lookup', 'look up' ],
-	[ '+lookdown', 'look down' ],
-	[ 'centerview', 'center view' ],
-	[ '+mlook', 'mouse look' ],
-	[ '+klook', 'keyboard look' ],
-	[ '+moveup', 'swim up' ],
-	[ '+movedown', 'swim down' ],
-];
+// the shared action list (menu_actions.js), also offered for controller inputs
+const bindnames = M_ControllerActions( 'quake' );
 
 const NUMCOMMANDS = bindnames.length;
 

@@ -384,7 +384,7 @@ Deno.test( 'every Hexen II page keeps its small text native and draws its titles
 
 } );
 
-Deno.test( 'Quake main and existing options command streams remain unchanged with the appended gyro row', () => {
+Deno.test( 'Quake main and existing options command streams remain unchanged around the shared Controller row', () => {
 
 	return fixture( async api => {
 
@@ -404,7 +404,7 @@ Deno.test( 'Quake main and existing options command streams remain unchanged wit
 		// The new platform row is the sole intended addition. Keep the old full-stream snapshots for every existing
 		// row, instead of accepting an unrelated change by replacing the golden hashes.
 		const gyro = options.filter( c => c.type === 'text' && c.y >= ( 184 + dy ) * scale && c.y < ( 192 + dy ) * scale );
-		same( gyro.map( c => c.text ).join( '' ), 'GYROCONTROLS', 'the appended gyro row is drawn at its own location' );
+		same( gyro.map( c => c.text ).join( '' ), 'CONTROLLER', 'the renamed Controller row is drawn at its original location' );
 		const added = new Set( gyro ), original = options.filter( c => ! added.has( c ) );
 		same( digest( original, true ), 840811737, 'the complete unrounded existing Quake options stream matches base 78037c41' );
 		same( digest( original ), 3551365704, 'the existing options command stream is byte-for-byte the old one' );

@@ -71,6 +71,25 @@ export const K_PGUP = 150;
 export const K_HOME = 151;
 export const K_END = 152;
 
+// Standard-mapping pad inputs use the unused range below mouse/joystick keys.
+export const K_PAD_A = 153;
+export const K_PAD_B = 154;
+export const K_PAD_X = 155;
+export const K_PAD_Y = 156;
+export const K_PAD_LB = 157;
+export const K_PAD_RB = 158;
+export const K_PAD_LT = 159;
+export const K_PAD_RT = 160;
+export const K_PAD_BACK = 161;
+export const K_PAD_START = 162;
+export const K_PAD_LSTICK = 163;
+export const K_PAD_RSTICK = 164;
+export const K_PAD_UP = 165;
+export const K_PAD_DOWN = 166;
+export const K_PAD_LEFT = 167;
+export const K_PAD_RIGHT = 168;
+export const K_PAD_GUIDE = 169;
+
 export const K_PAUSE = 255;
 
 // mouse buttons generate virtual keys
@@ -186,6 +205,24 @@ export function Key_IsDown( key ) { return keydown[ key ] === true; }
 */
 
 const keynames = [
+	{ name: 'PAD_A', keynum: K_PAD_A },
+	{ name: 'PAD_B', keynum: K_PAD_B },
+	{ name: 'PAD_X', keynum: K_PAD_X },
+	{ name: 'PAD_Y', keynum: K_PAD_Y },
+	{ name: 'PAD_LB', keynum: K_PAD_LB },
+	{ name: 'PAD_RB', keynum: K_PAD_RB },
+	{ name: 'PAD_LT', keynum: K_PAD_LT },
+	{ name: 'PAD_RT', keynum: K_PAD_RT },
+	{ name: 'PAD_BACK', keynum: K_PAD_BACK },
+	{ name: 'PAD_START', keynum: K_PAD_START },
+	{ name: 'PAD_LSTICK', keynum: K_PAD_LSTICK },
+	{ name: 'PAD_RSTICK', keynum: K_PAD_RSTICK },
+	{ name: 'PAD_UP', keynum: K_PAD_UP },
+	{ name: 'PAD_DOWN', keynum: K_PAD_DOWN },
+	{ name: 'PAD_LEFT', keynum: K_PAD_LEFT },
+	{ name: 'PAD_RIGHT', keynum: K_PAD_RIGHT },
+	{ name: 'PAD_GUIDE', keynum: K_PAD_GUIDE },
+
 	{ name: 'TAB', keynum: K_TAB },
 	{ name: 'ENTER', keynum: K_ENTER },
 	{ name: 'ESCAPE', keynum: K_ESCAPE },
@@ -638,6 +675,9 @@ export function Key_SetBinding( keynum, binding ) {
 	if ( keynum === - 1 )
 		return;
 
+	// The live pad editor may replace a held +command. Release its old binding before overwriting it; the input
+	// poll still remembers this press until physical release, so the replacement requires a fresh press.
+	if ( keynum >= K_PAD_A && keynum <= K_PAD_GUIDE && keybindings[ keynum ] !== binding && Key_IsDown( keynum ) ) Key_Event( keynum, false, 'pad' );
 	keybindings[ keynum ] = binding;
 
 }

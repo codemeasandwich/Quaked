@@ -1,7 +1,7 @@
 await import('../src/engine/render/gl_rsurf.js');
 const cmd=await import('../src/engine/common/cmd.js'),menu=await import('../src/engine/client/menu.js'),keys=await import('../src/engine/client/keys.js'),draw=await import('../src/engine/render/gl_draw.js'),cvar=await import('../src/engine/common/cvar.js');
 const fog=await import('../src/engine/render/r_fog.js');
-const expected=['Newer Game features','Customize controls','Performance profiler','Go to console','Reset to defaults','FPS counter','Texture Filtering','Screen size','Brightness','Mouse Speed','Sound Volume','Music Volume','Always Run','Invert Mouse','Lookspring','Lookstrafe','Crosshair','Cheats','Sky fog','Gyro controls'];
+const expected=['Newer Game features','Customize controls','Performance profiler','Go to console','Reset to defaults','FPS counter','Texture Filtering','Screen size','Brightness','Mouse Speed','Sound Volume','Music Volume','Always Run','Invert Mouse','Lookspring','Lookstrafe','Crosshair','Cheats','Sky fog','Controller'];
 function equal(a,b,label){if(a!==b)throw new Error(`${label}: expected ${b}, got ${a}`);}
 Deno.test('options order, widgets, keyboard and touch dispatch match the visible rows',async()=>{
  const mode = await import('../src/newer/mode.js'),post=await import('../src/newer/render/gl_post.js'),screen=await import('../src/engine/render/gl_screen.js'),glq=await import('../src/engine/render/glquake.js'),view=await import('../src/engine/client/view.js'),input=await import('../src/engine/client/cl_input.js'),client=await import('../src/engine/client/cl_main.js'),sound=await import('../src/engine/sound/sound.js');
