@@ -1,0 +1,544 @@
+{
+  "verdict": "PASS author exact source-bound replay, all ten direct-master Q92 maps, distance diagnostics, decoded physical witnesses and four preview JPEGs + HTML",
+  "independenceLimit": "Author self-check only; independent actual ART/math/preview review and root registration remain pending. Fixture oracle functions are maintained independent math, not another authoring pipeline.",
+  "updatedAt": "2026-10-20T14:40:41.764633+00:00",
+  "batch": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/batch.json",
+    "sha256": "b4588bc5ccacf4f3aa6c6851da4cce0da24c56bfda428b8a4a4fec4b22b736bc"
+  },
+  "canonicalMaster": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/master.json",
+    "sha256": "19bc1bde08b3e499646b85697275fdd36bf67915495fd04e7b9df44dff65aef6"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/manifest.json",
+    "sha256": "75bb53d1bd730f261f0fc47d26956014b99e559d59b091876070425e4e4fa5b0"
+  },
+  "checks": {
+    "Mid": {
+      "dimensions": [
+        256,
+        256
+      ],
+      "maps": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-diffuse.webp",
+          "sha256": "39679c32bdc34ff5d10d61a9ecaeab2f163a6989731784f5de6eeff53f3d681d",
+          "bytes": 35444,
+          "directOracleAndQ92BytesExact": true
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-height.webp",
+          "sha256": "2c926b31c8a98f65b4900813de3463319ef0fe75ed0431328d3427a8dd396fd0",
+          "bytes": 32690,
+          "directOracleAndQ92BytesExact": true
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-normalX.webp",
+          "sha256": "6cca0133b1a6a1e14e774686ca5539e86da2a1098b5520b000b744540a3876e8",
+          "bytes": 28642,
+          "directOracleAndQ92BytesExact": true
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-normalY.webp",
+          "sha256": "6fb6cf195bb38e6ba32ff228f01563913b822ac2cfcbc5e42743788da3a42408",
+          "bytes": 29274,
+          "directOracleAndQ92BytesExact": true
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-normalZ.webp",
+          "sha256": "a0ecdefd259853cac0ebd272dd5252e6830c2f6a69ca8a4730e5296c490282ee",
+          "bytes": 8124,
+          "directOracleAndQ92BytesExact": true
+        }
+      },
+      "distance": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "meanAbsoluteError": 8.1181640625,
+          "maximum": 33.0
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            16
+          ],
+          "meanAbsoluteError": 6.234375,
+          "maximum": 21.0
+        }
+      ],
+      "decodedPhysicalWitnesses": [
+        {
+          "label": "A",
+          "physicalClass": "upper left coherent stone face",
+          "tierPixel": [
+            50,
+            50
+          ],
+          "radiusPixels": 1,
+          "decodedHeightMean": 0.5228758169934641,
+          "decodedHeightRange": [
+            0.25882352941176473,
+            0.6980392156862745
+          ]
+        },
+        {
+          "label": "B",
+          "physicalClass": "upper right coherent stone face",
+          "tierPixel": [
+            190,
+            50
+          ],
+          "radiusPixels": 1,
+          "decodedHeightMean": 0.5808278867102397,
+          "decodedHeightRange": [
+            0.34509803921568627,
+            0.8431372549019608
+          ]
+        },
+        {
+          "label": "C",
+          "physicalClass": "lower coherent stone face",
+          "tierPixel": [
+            135,
+            165
+          ],
+          "radiusPixels": 1,
+          "decodedHeightMean": 0.42091503267973857,
+          "decodedHeightRange": [
+            0.16470588235294117,
+            0.6627450980392157
+          ]
+        },
+        {
+          "label": "D",
+          "physicalClass": "central vertical mortar",
+          "tierPixel": [
+            117,
+            65
+          ],
+          "radiusPixels": 1,
+          "decodedHeightMean": 0.06013071895424836,
+          "decodedHeightRange": [
+            0.00392156862745098,
+            0.12156862745098039
+          ]
+        },
+        {
+          "label": "E",
+          "physicalClass": "horizontal mortar",
+          "tierPixel": [
+            140,
+            127
+          ],
+          "radiusPixels": 1,
+          "decodedHeightMean": 0.057080610021786486,
+          "decodedHeightRange": [
+            0.0392156862745098,
+            0.08627450980392157
+          ]
+        },
+        {
+          "label": "F",
+          "physicalClass": "tile boundary mortar beside rim",
+          "tierPixel": [
+            253,
+            185
+          ],
+          "radiusPixels": 1,
+          "decodedHeightMean": 0.13333333333333333,
+          "decodedHeightRange": [
+            0.00392156862745098,
+            0.4117647058823529
+          ]
+        },
+        {
+          "label": "G",
+          "physicalClass": "local lower-left fracture beside chipped rim",
+          "tierPixel": [
+            71,
+            223
+          ],
+          "radiusPixels": 1,
+          "decodedHeightMean": 0.06405228758169934,
+          "decodedHeightRange": [
+            0.011764705882352941,
+            0.21176470588235294
+          ]
+        },
+        {
+          "label": "H",
+          "physicalClass": "upper chipped-edge recess",
+          "tierPixel": [
+            49,
+            98
+          ],
+          "radiusPixels": 1,
+          "decodedHeightMean": 0.1429193899782135,
+          "decodedHeightRange": [
+            0.0196078431372549,
+            0.44313725490196076
+          ]
+        },
+        {
+          "label": "I",
+          "physicalClass": "dark recess below ochre chip, mixed boundary",
+          "tierPixel": [
+            35,
+            87
+          ],
+          "radiusPixels": 1,
+          "decodedHeightMean": 0.03529411764705882,
+          "decodedHeightRange": [
+            0.0196078431372549,
+            0.054901960784313725
+          ]
+        },
+        {
+          "label": "J",
+          "physicalClass": "ochre-weathered stone transition, mixed boundary",
+          "tierPixel": [
+            150,
+            235
+          ],
+          "radiusPixels": 1,
+          "decodedHeightMean": 0.1542483660130719,
+          "decodedHeightRange": [
+            0.11764705882352941,
+            0.20392156862745098
+          ]
+        }
+      ],
+      "faceMeanSpread": 0.1599128540305011,
+      "physicalPitsBelowEveryFaceWitness": true,
+      "normalQuantizationDiagnostics": {
+        "heightQuantizationCompressionMAE": 0.005751179447383947,
+        "authoredNormalVsDecodedXYZDegrees": {
+          "mean": 1.0143661083693034,
+          "p99": 2.631587662652303,
+          "maximum": 4.195356019637885
+        },
+        "authoredNormalVsDecodedHeightDegrees": {
+          "mean": 0.595214864037154,
+          "p99": 2.0505265055333814,
+          "maximum": 3.973886877832186
+        },
+        "decodedHeightNormalVsDecodedXYZDegrees": {
+          "mean": 1.2018141415604395,
+          "p99": 3.1381317250139515,
+          "maximum": 6.290157331277761
+        }
+      }
+    },
+    "High": {
+      "dimensions": [
+        512,
+        512
+      ],
+      "maps": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-diffuse.webp",
+          "sha256": "3818a78a698cc2e9f639a4c917c1b44a89e093acbef1b5efc8a1520e3498a867",
+          "bytes": 147916,
+          "directOracleAndQ92BytesExact": true
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-height.webp",
+          "sha256": "ff23318d4737f625d65b91db800003f6b763fb04a5a7547ecb4fd82e325b476f",
+          "bytes": 94968,
+          "directOracleAndQ92BytesExact": true
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-normalX.webp",
+          "sha256": "e8eb7fd8681002abccbe7dc881a877f95387a296e8bdaf0e0d58b46a1ea9e27d",
+          "bytes": 89828,
+          "directOracleAndQ92BytesExact": true
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-normalY.webp",
+          "sha256": "2d8a082c6b6cc550e0262b57036bcbc4f345670823781cc8c096415c827223c9",
+          "bytes": 91202,
+          "directOracleAndQ92BytesExact": true
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-normalZ.webp",
+          "sha256": "2edcdaf5b175b2bd919653b4a70743600e2934dcf21560b55aee2d760d91f589",
+          "bytes": 24630,
+          "directOracleAndQ92BytesExact": true
+        }
+      },
+      "distance": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "meanAbsoluteError": 8.033203125,
+          "maximum": 33.0
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            16
+          ],
+          "meanAbsoluteError": 6.186197916666667,
+          "maximum": 20.0
+        }
+      ],
+      "decodedPhysicalWitnesses": [
+        {
+          "label": "A",
+          "physicalClass": "upper left coherent stone face",
+          "tierPixel": [
+            100,
+            100
+          ],
+          "radiusPixels": 3,
+          "decodedHeightMean": 0.5000400160064026,
+          "decodedHeightRange": [
+            0.19607843137254902,
+            0.7686274509803922
+          ]
+        },
+        {
+          "label": "B",
+          "physicalClass": "upper right coherent stone face",
+          "tierPixel": [
+            380,
+            100
+          ],
+          "radiusPixels": 3,
+          "decodedHeightMean": 0.595438175270108,
+          "decodedHeightRange": [
+            0.30980392156862746,
+            0.9254901960784314
+          ]
+        },
+        {
+          "label": "C",
+          "physicalClass": "lower coherent stone face",
+          "tierPixel": [
+            270,
+            330
+          ],
+          "radiusPixels": 3,
+          "decodedHeightMean": 0.45586234493797523,
+          "decodedHeightRange": [
+            0.11764705882352941,
+            0.7725490196078432
+          ]
+        },
+        {
+          "label": "D",
+          "physicalClass": "central vertical mortar",
+          "tierPixel": [
+            235,
+            130
+          ],
+          "radiusPixels": 3,
+          "decodedHeightMean": 0.054421768707483,
+          "decodedHeightRange": [
+            0.0,
+            0.1568627450980392
+          ]
+        },
+        {
+          "label": "E",
+          "physicalClass": "horizontal mortar",
+          "tierPixel": [
+            280,
+            255
+          ],
+          "radiusPixels": 3,
+          "decodedHeightMean": 0.05178071228491396,
+          "decodedHeightRange": [
+            0.011764705882352941,
+            0.10588235294117647
+          ]
+        },
+        {
+          "label": "F",
+          "physicalClass": "tile boundary mortar beside rim",
+          "tierPixel": [
+            507,
+            370
+          ],
+          "radiusPixels": 3,
+          "decodedHeightMean": 0.1139655862344938,
+          "decodedHeightRange": [
+            0.00392156862745098,
+            0.5490196078431373
+          ]
+        },
+        {
+          "label": "G",
+          "physicalClass": "local lower-left fracture beside chipped rim",
+          "tierPixel": [
+            143,
+            447
+          ],
+          "radiusPixels": 3,
+          "decodedHeightMean": 0.06266506602641056,
+          "decodedHeightRange": [
+            0.00784313725490196,
+            0.3803921568627451
+          ]
+        },
+        {
+          "label": "H",
+          "physicalClass": "upper chipped-edge recess",
+          "tierPixel": [
+            98,
+            196
+          ],
+          "radiusPixels": 3,
+          "decodedHeightMean": 0.15862344937975192,
+          "decodedHeightRange": [
+            0.00392156862745098,
+            0.592156862745098
+          ]
+        },
+        {
+          "label": "I",
+          "physicalClass": "dark recess below ochre chip, mixed boundary",
+          "tierPixel": [
+            70,
+            175
+          ],
+          "radiusPixels": 3,
+          "decodedHeightMean": 0.044657863145258096,
+          "decodedHeightRange": [
+            0.0196078431372549,
+            0.10196078431372549
+          ]
+        },
+        {
+          "label": "J",
+          "physicalClass": "ochre-weathered stone transition, mixed boundary",
+          "tierPixel": [
+            300,
+            470
+          ],
+          "radiusPixels": 3,
+          "decodedHeightMean": 0.16350540216086434,
+          "decodedHeightRange": [
+            0.09019607843137255,
+            0.32941176470588235
+          ]
+        }
+      ],
+      "faceMeanSpread": 0.13957583033213278,
+      "physicalPitsBelowEveryFaceWitness": true,
+      "normalQuantizationDiagnostics": {
+        "heightQuantizationCompressionMAE": 0.005523376816852407,
+        "authoredNormalVsDecodedXYZDegrees": {
+          "mean": 1.0089093154313709,
+          "p99": 2.6010958134014732,
+          "maximum": 4.4155171175348125
+        },
+        "authoredNormalVsDecodedHeightDegrees": {
+          "mean": 1.0190905310535396,
+          "p99": 3.7185091606341305,
+          "maximum": 8.103306921514152
+        },
+        "decodedHeightNormalVsDecodedXYZDegrees": {
+          "mean": 1.4755867865424366,
+          "p99": 4.282755232101091,
+          "maximum": 8.963152198903812
+        }
+      }
+    }
+  },
+  "previewReplay": {
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/index.html": {
+      "sha256": "dd276544c369c095d2aae2fa7a672e3304c13a5b6cbfe3b24ac87ffdfd6b6b37",
+      "actualCliByteExact": true
+    },
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-mid-relief.jpg": {
+      "sha256": "3f7251dc55712f6d4e6f9ca46d83994dd036bd74427c465784248cb8e426eebc",
+      "actualCliByteExact": true
+    },
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-mid-review.jpg": {
+      "sha256": "587f4b3ebe03d3dc206d0ff997d5243bdce176527dd4738f406c4f1cd8052c90",
+      "actualCliByteExact": true
+    },
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-high-review.jpg": {
+      "sha256": "d437cb273b7729c8c24a7fd75cdfbb4131719b4a6c1c902d9939912807e305c8",
+      "actualCliByteExact": true
+    },
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-high-relief.jpg": {
+      "sha256": "45a07863699cdbfc8dbd799c060affb29c4d6a9eb4d7d5a8653cbf06d028adb6",
+      "actualCliByteExact": true
+    }
+  },
+  "actualCliRuns": [
+    {
+      "arguments": [
+        "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_texture_master.py",
+        "--original",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/originals/01-rtex053-0b8ec72958c3.png",
+        "--generated",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/generated/rtex053.png",
+        "--prompt",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/prompts/rtex053-material-v1.txt",
+        "--name",
+        "rtex053",
+        "--edition",
+        "base",
+        "--profile",
+        "stone",
+        "--color-strength",
+        ".65",
+        "--field-sigma",
+        ".75",
+        "--output",
+        "/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-rtex053-self-54axfqo3/master"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"master\": \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-rtex053-self-54axfqo3/master/master.json\", \"dimensions\": [512, 512]}\n"
+    },
+    {
+      "arguments": [
+        "/Users/bri/SOURCE/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+        "--original",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/originals/01-rtex053-0b8ec72958c3.png",
+        "--master",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/color.png",
+        "--height-master",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/height.npy",
+        "--output",
+        "/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-rtex053-self-54axfqo3/tiers"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"manifest\": \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-rtex053-self-54axfqo3/tiers/manifest.json\", \"defaultTier\": \"Mid\", \"tierDimensions\": {\"Mid\": [256, 256], \"High\": [512, 512]}}\n"
+    },
+    {
+      "arguments": [
+        "/Users/bri/SOURCE/Quaked/tools/texture_sheets/build_texture_batch_review.py",
+        "--batch",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/batch.json",
+        "--paths-root",
+        "/Users/bri/SOURCE/Quaked",
+        "--output",
+        "/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-rtex053-self-54axfqo3/review"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"review\": \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-rtex053-self-54axfqo3/review/index.html\", \"materials\": 1, \"sheets\": 4}\n"
+    }
+  ],
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/verify-candidate-self.py": "0fbd4af3180989db41d6af7198f61d868f388630a6e200d6476b1cf12c95200b",
+    "tests/hexen2_texture_tiers_test.py": "ab93750f13369e4eee6335c7f90a43d2ea78276b5f9fe3300de3b546492ab766",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/selection.json": "d40a721e4ebda7a774f29c53ace89042654c3dad8f5adddce98742fe4f6895b7",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/native-selection.json": "35eed8a6c4eda47f2825b744e5e9a0f4028393aaa0dde7f774d6752aa3228ae4",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/root-plan-review.json": "83f6687bead60557492fb7efce88b0676e6402d3f1dadf4f660014c909874809"
+  },
+  "temporaryReplayOutputsRemovedByContextManager": true
+}

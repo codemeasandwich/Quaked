@@ -1,0 +1,22 @@
+{
+  "recordedAt": "2026-10-20T14:39:48.449043+00:00",
+  "commit": "eb6fd7029197e6f5f65543c2fea348bfb02bf52f",
+  "run": 39433737036,
+  "event": "push",
+  "branch": "Dev",
+  "workflow": "Distribution",
+  "status": "completed",
+  "conclusion": "success",
+  "url": "https://github.com/codemeasandwich/Quaked/actions/runs/39433737036",
+  "jobs": {
+    "source": "success",
+    "web": "success",
+    "mac (macos-15)": "success",
+    "mac (macos-15-intel)": "success",
+    "release": "skipped",
+    "pages": "skipped"
+  },
+  "observedBy": "Authenticated read-only gh run view, terminal69426 exit0; direct runs endpoint also confirmed exactSHA/event/status.",
+  "priorReadFailure": "First gh workflow lookup ended unexpected EOF; bounded direct endpoint retry succeeded. No mutation occurred.",
+  "scope": "Exact pushed59 offline checkpoint only. Current60 registration and uncommitted boundary adapter/new sources are outside its tree. No new release, Prod promotion, runtime or owner acceptance."
+}

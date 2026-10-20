@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-20T16:30:57.072896+00:00",
+  "status": "READY_FOR_ROOT_INDEPENDENT_EXACT_PLAN_REVIEW; STOP_BEFORE_GENERATION",
+  "requestsIssued": 0,
+  "sourceMasterTierPackagesAuthored": 0,
+  "ownedAssetRoot": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388",
+  "ownedDocsRoot": "/Users/bri/SOURCE/Quaked/docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388",
+  "files": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/PLAN.md",
+      "sha256": "3ea5043e6f6b4fb3e17f0d253a500a4ee9c93e448808effe7896d10345557e8d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/plan.json",
+      "sha256": "a0aa048ceea97f90d20cba99dcd43a20e78be8ae450bdb1acf4d120c8d6bf217"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/native-and-peer-proof.json",
+      "sha256": "0d626e18556c6c4adccfefc8f2da9c8eed80f55260984faf735df83822181735"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/usage-orientation.json",
+      "sha256": "ea5025c7c4ca6b37407700b35d337af7ba23492e335acac1fcef508bdd922eaf"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/eligibility-and-retained-source-screen.json",
+      "sha256": "788f667e5a2465a2175abb54ce18a3037f29a890e34a2aa447899a12b30da9cc"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/native-selection.json",
+      "sha256": "8640de718807fc6702c54a7866827bd4b150515e7c0119001b047c2184ee4c17"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/selection.json",
+      "sha256": "525a01f754625fce90e7747cc3d145bef89f3d1883bfba869d8fa39d8ad9b33a"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/prompts/rtex388-material-v1.txt",
+      "sha256": "13907060a1adda2d9d4489112fea2c34881e3db6d86439a8ba1f3bb9653afdf9"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/originals/01-rtex388-ddf78c81cf51.png",
+      "sha256": "8a7a96186a7e9e785c82a550c9f6a72236183d66520b76e6a6bba1d4fef0fabd"
+    }
+  ],
+  "checks": {
+    "journalSingleTargetNotIssued": true,
+    "originalAndPromptHashesExact": true,
+    "native64Square": true,
+    "planEvidenceHashesExact": true,
+    "noGeneratedMasterTierDirectory": true
+  },
+  "nativePeer": "rtex080 exact all-four-mip/flags evidence only; no alias registered or second generation item.",
+  "nextOwner": "Root coordinator: view actual native and exact prompt, review photographic material/relief interpretation.",
+  "prohibitedEffects": "No generation pending review; no children, shared catalog/progress/queue edits, producer/provider change, Git, app/Rust/distribution build or release.",
+  "coordination": "Supervised native helper; root retains Bluey fallback ledger responsibility. No durable job or new board identity claimed."
+}

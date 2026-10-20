@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T13:04:48.075847+00:00",
+  "updatedAt": "2026-10-20T16:22:56.211741+00:00",
   "ownerInstruction": "Three active subagents maximum, one texture each. Owner withdrew earlier twenty-stream request.",
   "concurrency": {
     "coordinator": 1,
@@ -65,7 +65,7 @@
       "texture": "rtex499",
       "agent": "/root/texture_03_rtex485",
       "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499",
-      "state": "Current candidate ART HOLD. Independent review of bounded same-source X correction plan active; no new adapter implementation or corrected maps yet.",
+      "state": "Independently qualified and root registered in registration-499-053-256.json; completed.",
       "reviewer": "/root/hexen_campaign_public"
     },
     {
@@ -83,14 +83,69 @@
       "texture": "rtex102",
       "agent": "/root/texture_06_mtex470",
       "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102",
-      "state": "Frozen author candidate; independent final native/source/math/preview/ART qualification active.",
+      "state": "Independently qualified and root registered; completed.",
       "reviewer": "/root/texture_03_rtex485"
+    },
+    {
+      "stream": "08-rtex053",
+      "nativeID": "0b8ec72958c3dcea8b609a9bee857b2be015f90dff46129c584dad2ef51ddf0a",
+      "texture": "rtex053",
+      "agent": "/root/texture_06_mtex470",
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053",
+      "state": "Independently qualified and root registered in registration-499-053-256.json; completed.",
+      "reviewer": "/root/texture_03_rtex485"
+    },
+    {
+      "stream": "09-rtex256",
+      "nativeID": "73d1bef29871f25e3da731e707d7bd9e9062de9275b5fcbc3f8e38d9a3f41f8b",
+      "texture": "rtex256",
+      "agent": "/root/texture_01_ttex054",
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256",
+      "state": "Independently qualified and root registered in registration-499-053-256.json; completed."
+    },
+    {
+      "stream": "10-rtex441",
+      "nativeID": "48f8ee75fe94cfac4743b222206efab5ee3904af21de8dbeb409b0fe287bd8ff",
+      "texture": "rtex441",
+      "agent": "/root/texture_06_mtex470",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441",
+      "scope": "One source, shared master, physical checks and direct Mid/High plus HTML reviews; freeze for independent final qualification. No app/full builds.",
+      "state": "Root exact plan PASS; one guarded image request issued, supervise same helper/output. Candidate source/master/tiers not yet qualified."
+    },
+    {
+      "stream": "11-rtex388",
+      "nativeID": "ddf78c81cf519fbda0afc975b11b42f42949e3f9297a2e8f8dc3310c183b8d24",
+      "texture": "rtex388",
+      "agent": "/root/texture_01_ttex054",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388",
+      "scope": "Source proof, aliases, material/prompt/relief intake only; stop before generation for independent plan review.",
+      "state": "Active intake; inspect live result before any generation."
     }
   ],
   "twentyStreamsCreated": false,
   "authority": "Latest owner correction: three active subagents max, one texture each; no20-stream queue.",
   "activeAssignments": [
-    "05-rtex499",
-    "07-rtex102"
-  ]
+    {
+      "agent": "/root/texture_06_mtex470",
+      "stream": "10-rtex441",
+      "scope": "One source, shared master, physical checks and direct Mid/High plus HTML reviews; freeze for independent final qualification. No app/full builds."
+    },
+    {
+      "agent": "/root/texture_01_ttex054",
+      "stream": "11-rtex388",
+      "scope": "Source proof, aliases, material/prompt/relief intake only; stop before generation for independent plan review."
+    }
+  ],
+  "gateHelper": {
+    "agent": "/root/repair_skill_forward_check",
+    "state": "Approved exact-index texture/HTML Dev gate implementation; no full/native builds."
+  }
 }

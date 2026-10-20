@@ -1,0 +1,6 @@
+{
+  "recordedAt": "2026-10-20T14:37:28.335470+00:00",
+  "verdict": "HOLD diagnostic scalar assertion only",
+  "error": "Expected wrap_x_mean39.32291666666666 versus39.322916666666664; exact dict equality rejected double summation order. Other public groups including post-replay source mutation rejection passed.",
+  "correction": "Use absolute1e-12 only for independently computed descriptive scalar metrics. All RGB/float/NPY/map byte comparisons remain exact and physical ART gates unchanged."
+}

@@ -1,0 +1,381 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-20T15:04:03.234440+00:00",
+  "scope": "Independent evidence from actual frozen decoded maps; not an ART verdict",
+  "nativeIdentity": "0b8ec72958c3dcea8b609a9bee857b2be015f90dff46129c584dad2ef51ddf0a",
+  "handoff": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/handoff.json",
+    "sha256": "ae6ab4d9a88f49bc12bc6893b41afee028b3bd10229a86f3c862208054b66df6"
+  },
+  "code": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/build-art-evidence.py",
+    "sha256": "414eb6b7b50bec5c4cffc0dbcc431306598bb2926c52aea5070445428c441413"
+  },
+  "source": {
+    "original": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/originals/01-rtex053-0b8ec72958c3.png",
+      "sha256": "d27ad50093cdd2c79a8ed5e687aa8f8450b6dea03931336f05e37979c5172bd2"
+    },
+    "canonicalMaster": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/master.json",
+      "sha256": "19bc1bde08b3e499646b85697275fdd36bf67915495fd04e7b9df44dff65aef6"
+    }
+  },
+  "witnessObservations": [
+    {
+      "label": "A",
+      "authorProposedClass": "upper left coherent stone face",
+      "masterPixel": [
+        100,
+        100
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.38780367374420166,
+      "mean7x7": 0.4981381893157959,
+      "range7x7": [
+        0.19455452263355255,
+        0.7773991227149963
+      ],
+      "centerRGB": [
+        22,
+        25,
+        25
+      ]
+    },
+    {
+      "label": "B",
+      "authorProposedClass": "upper right coherent stone face",
+      "masterPixel": [
+        380,
+        100
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.6784928441047668,
+      "mean7x7": 0.5941612720489502,
+      "range7x7": [
+        0.3034689128398895,
+        0.9203606843948364
+      ],
+      "centerRGB": [
+        83,
+        81,
+        73
+      ]
+    },
+    {
+      "label": "C",
+      "authorProposedClass": "lower coherent stone face",
+      "masterPixel": [
+        270,
+        330
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.5019928216934204,
+      "mean7x7": 0.4542143642902374,
+      "range7x7": [
+        0.13315998017787933,
+        0.755363941192627
+      ],
+      "centerRGB": [
+        111,
+        107,
+        103
+      ]
+    },
+    {
+      "label": "D",
+      "authorProposedClass": "central vertical mortar",
+      "masterPixel": [
+        235,
+        130
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.03855324164032936,
+      "mean7x7": 0.05331464856863022,
+      "range7x7": [
+        0.0018967603100463748,
+        0.16832125186920166
+      ],
+      "centerRGB": [
+        24,
+        23,
+        24
+      ]
+    },
+    {
+      "label": "E",
+      "authorProposedClass": "horizontal mortar",
+      "masterPixel": [
+        280,
+        255
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.031965743750333786,
+      "mean7x7": 0.05184781178832054,
+      "range7x7": [
+        0.012666532769799232,
+        0.10915470123291016
+      ],
+      "centerRGB": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "label": "F",
+      "authorProposedClass": "tile boundary mortar beside rim",
+      "masterPixel": [
+        507,
+        370
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.012280099093914032,
+      "mean7x7": 0.11252237856388092,
+      "range7x7": [
+        0.001608300139196217,
+        0.5518803596496582
+      ],
+      "centerRGB": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "label": "G",
+      "authorProposedClass": "local lower-left fracture beside chipped rim",
+      "masterPixel": [
+        143,
+        447
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.05279889330267906,
+      "mean7x7": 0.06255681812763214,
+      "range7x7": [
+        0.0071692634373903275,
+        0.3852648437023163
+      ],
+      "centerRGB": [
+        122,
+        120,
+        115
+      ]
+    },
+    {
+      "label": "H",
+      "authorProposedClass": "upper chipped-edge recess",
+      "masterPixel": [
+        98,
+        196
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.12624458968639374,
+      "mean7x7": 0.15865132212638855,
+      "range7x7": [
+        0.010521345771849155,
+        0.5907289385795593
+      ],
+      "centerRGB": [
+        34,
+        21,
+        7
+      ]
+    },
+    {
+      "label": "I",
+      "authorProposedClass": "dark recess below ochre chip, mixed boundary",
+      "masterPixel": [
+        70,
+        175
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.0376616008579731,
+      "mean7x7": 0.04409101605415344,
+      "range7x7": [
+        0.018521538004279137,
+        0.10231437534093857
+      ],
+      "centerRGB": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "label": "J",
+      "authorProposedClass": "ochre-weathered stone transition, mixed boundary",
+      "masterPixel": [
+        300,
+        470
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.12991797924041748,
+      "mean7x7": 0.1632683277130127,
+      "range7x7": [
+        0.0893271341919899,
+        0.3218174874782562
+      ],
+      "centerRGB": [
+        45,
+        40,
+        38
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-XYZ-1to1.png",
+      "sha256": "b6bd30c9d8e9630379cb93d733b721c5f1c87364ee515378df2d9e62a36d8058"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-XYZ-repeat2x2-1to1.png",
+      "sha256": "9fbfaddfcb46e2b36b482cac9aed2a09fae9ddf67d7c4805c6048cd86cd9cea6"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-XYZ-seams-1to1.png",
+      "sha256": "18b8e23aa10c90ddc7819191b5d8b17879372f8afb4c72d41cfef19189bcacd9"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-bothBOX-distance.png",
+      "sha256": "84547910af44c7090e21dd0e51421954fa6a2b980e63a54659c0f75dd9f1aeaf"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-color-1to1.png",
+      "sha256": "1e5441b7295e2644204f11a41b2e1779d0f99026819c845664dea8a02d3ea465"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-color-repeat2x2-1to1.png",
+      "sha256": "def114c68bd287ed64562a7760644398ce6cd5571fe3edba93e87bbd59381942"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-color-seams-1to1.png",
+      "sha256": "2a0ad54caaaa65e8597bcf34475934071c1053f2ce62b4dcce6d03e2974a3070"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-height-1to1.png",
+      "sha256": "83587a9357a66302f09928a5b4f96d677bc6379a4d7825686ce6e0463d9bee57"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-height-repeat2x2-1to1.png",
+      "sha256": "f53539b0af41f82181afb7fd30a5b48a9edd7256d07e05474146ab35f4eddc79"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-height-seams-1to1.png",
+      "sha256": "490b7dd650cdd8aaa996ad199a1adb7c601dae11f76c76e34427f21477cb737b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-A-1to1.png",
+      "sha256": "f8c307f1196bb4e32ece3614cf8ae0a09e2f8467bb2ed252d9190342212d1482"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-A-repeat2x2-1to1.png",
+      "sha256": "38c009f76be54d4fc4875e01c3fdea08c4e4c67bcb936fdc21451f71215d5598"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-A-seams-1to1.png",
+      "sha256": "b2083574b00015786d4c4ef3abad1cb4ded8ed90c16516a112b3af8fb7dcfef6"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-B-1to1.png",
+      "sha256": "8d3187c8c48970dafeeed3eb59d24f3fd27ea642bf53c4b5bdcea218db93c157"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-B-repeat2x2-1to1.png",
+      "sha256": "f89fbb2815ea3575f0ff0ec63591ade4cca77f4d25d8f60f1971b81c49518c78"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-B-seams-1to1.png",
+      "sha256": "0a323605e602f803c114e854712fa808ea7bc2e0de4a69ec332422914849035b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-textured-light-A-1to1.png",
+      "sha256": "8f3eb6ba5cf9a2d61a4c4657f73a242495f35c6539f01555b18edb92f52c26f1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-textured-light-B-1to1.png",
+      "sha256": "0fd1fb77ab0fbe668a9353816fdfcf9e538c4da793f9d59a6a6d2e0eaf1c638b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/master-witness-labels-1to1.png",
+      "sha256": "01565c9b31689b6cb2389c8822794fa178c4f007264ded554ff62ce8778367ec"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-XYZ-1to1.png",
+      "sha256": "0e5fd053577dc0af411a977670ec5d55a843a46cfaeead12165298f730c2e47a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-XYZ-repeat2x2-1to1.png",
+      "sha256": "3b60c71e09e71279f8820043cb31fbeaf848a83cace7cdb77fc66d9b6e39e227"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-XYZ-seams-1to1.png",
+      "sha256": "13dff878b9f5f156e381eaafb03dbc60235563e8213ee757b0d06a8322c9292f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-bothBOX-distance.png",
+      "sha256": "3932a3f5a6e9af20964ccb83c823ffb8ad70e961798c2581f454a9cd7e36bc8b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-color-1to1.png",
+      "sha256": "f0dc45d514fefb0bc7a9ac7a73a551bce56232774d2977b156f8183997224855"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-color-repeat2x2-1to1.png",
+      "sha256": "7c387208854292d6b2a00a01b92776a52bc9925f074d9456e545449455cbdc90"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-color-seams-1to1.png",
+      "sha256": "1242af80f9459d50cba665f469b322f8b8a48814100c9d80683ae4153b405c2b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-height-1to1.png",
+      "sha256": "113f2f88b9e5ee356be6ff02faa8934a189c05db989dcfa4bd475a52f732f58b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-height-repeat2x2-1to1.png",
+      "sha256": "31431bdee693e9c1876370e9d4e6065955c5345fc639e40abc271c72696f9900"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-height-seams-1to1.png",
+      "sha256": "c34614dc2cbd015e331db21ced6cb7cae74c96c58d9b69d2fda68afd11216311"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-A-1to1.png",
+      "sha256": "5f2f69486cbeef9b1a27ed9257730a2077feef07d3a2dc29d41091153d30e354"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-A-repeat2x2-1to1.png",
+      "sha256": "7d9d36c02c40e9f7eef7fe2a7db71c92c71859aae95ccbbadd972ce0aa07f6c4"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-A-seams-1to1.png",
+      "sha256": "2b473f99199ab0b5f1a648e74fd23b4f79fd4fae3792f2fa2763aeeedcf34d49"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-B-1to1.png",
+      "sha256": "8a74ed9bbbd8f7d26b679b67da212152532ad3c7ea24423d1cf0721a4c2e6cdb"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-B-repeat2x2-1to1.png",
+      "sha256": "49818c5df494554983c2f329410ea1554a4856de963487844da7ba56596b31cc"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-B-seams-1to1.png",
+      "sha256": "12eacb910cca38b3b4d28bf0888893bb8373c608f6acc782fb9cbf82c97ad066"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-textured-light-A-1to1.png",
+      "sha256": "bc6c4a416507bf91793143198807e34be8a3d75819aa1421d311ce537b8379e4"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-textured-light-B-1to1.png",
+      "sha256": "903ed5449e3a19b6ce318b9f590cc62b65f3ed3b4e01f2f44fea5625a734b938"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/witness-crops-observations.png",
+      "sha256": "aa0c5010f49a672028381bde4c97d2b4380b9df62e85a2031ce80347a0a99d90"
+    }
+  ],
+  "frozenInputsStable": true
+}

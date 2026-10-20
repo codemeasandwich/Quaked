@@ -1,0 +1,19 @@
+# Stream09 rtex256 native/material intake
+
+Status: **STOPPED BEFORE GENERATION — independent exact native/prompt review required.** Root assigned only this ordinary native identity to the freed stream. No source call, journal issue, master, tier, producer edit, catalog/Git/build/release mutation or child agent occurred.
+
+Native `rtex256`, base HexenII, ID `73d1bef29871f25e3da731e707d7bd9e9062de9275b5fcbc3f8e38d9a3f41f8b`,64×64. Fresh existing PAK audit agrees with the retained980-variant inventory. Seven unique PAK/map slots have identical four mip levels and all texinfo flags0. There are1134base face records; the two Portal profiles inherit the same data and do not create three times as many physical occurrences. `native-proof.json` retains PAK/member/map/slot and every mip SHA256.
+
+The current authoring catalog snapshot has60native bindings and rtex256 is absent; its ordinary queue row ispending. All980native RGBA identities have no exact-content peer. Screens of222other retained Hexen sourceJSONs and1021retained image metadata files (36at64×64, actually RGBA-decoded) found no existing candidate or native RGBA match outside this stream. This is a zero-candidate screen, not alias acceptance by filename. Current registry state and source eligibility are not Git/release qualification.
+
+Material interpretation for review: weathered, rough-dressed fine-grained sandstone masonry, with dark matte warm grey-brown mineral patina. Historical lithology is unproven. Actual source cues are broad dressed faces, small chipped contours and dark thin joints; photographic grain/pores must be real and coherent rather than noise.
+
+Preserve the irregular native layout: main vertical joint near x16; left-column joint near y24; right horizontal course near y32; upper division near x33 and lower division near x50. Preserve the cropped top course/joint near y6 and existing X/Y endpoints. Do not regularize into a brick grid, add a frame/perimeter bevel or invent edge stones. Actual original, coordinate grid, face/joint witness sheet and native repeat are retained under the asset original folder.
+
+Exact prompt: `assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/prompts/rtex256-material-v1.txt`, SHA256 `ad47f6023da22440f23572aa2034b34afac332521eb17eb748b05da2113c7029`. Native PNG: `assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/01-rtex256-73d1bef29871.png`, SHA256 `36a7c5b07dad1063c0d1b8fe75b29e4d0415a08da5c5013cb29f689dbe20ca70`. The prompt requests one square photographic colour source with at least512×512actual pixels, not maps or tier variants. `selection.json` iscount0/not-issued. Root must inspect these exact bytes and actual native first.
+
+After a root PASS, the existing generation journal must issue exactly one built-in request and retain its exact reported raw output. Then use `prepare_texture_master.py` photographic.65/.75 with existing stone profile, strength.3/cap.5, canonical512square. Actually validate stone-face-above-mortar and photographic material before any tier. A wrong relief/seam/noisy-source result staysHOLD and routes only to a separately reviewed existing repair; no new pipeline or silent guard change.
+
+Mid256square andHigh512square would derive directly from the same RGB/float master through `derive_texture_tiers.py`, allenhancedmaps lossyQ92/method6. Independent public/math replay and actual decoded half/quarter BOX, both-axis/corner/repeat, height/XYZ/opposed lights remain later gates. No final qualification or runtime/owner acceptance is implied by this intake.
+
+Root owns shared stream/Bluey coordination and any service-recovery reconciliation. This remains a supervised native handoff, not a durable execution claim. Next action: root exact source/prompt/material/relief plan review; this stream stops here.

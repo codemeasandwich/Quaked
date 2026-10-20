@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "policy": "layered-veneer",
+  "nativeIdentity": "48f8ee75fe94cfac4743b222206efab5ee3904af21de8dbeb409b0fe287bd8ff",
+  "name": "rtex441",
+  "edition": "base",
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "sourceMasterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters/rtex441/master.json",
+  "sourceMasterPackageSha256": "1649e4cfbb33765946816d8a6399f6877638ef0a61831eeb1c4d2e5a7634b0c1",
+  "sourceVerification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/independent-source-master/source-master-proof-v2.json",
+    "sha256": "ce1dcc77c90298715c0601f2fd2c54d4548cad0e64bb4432b2b20db88c0652d6"
+  },
+  "originalSha256": "c9ccb2437d5439a5390e4dae1de9c15a333196f6ad263e9205591d8ccc724d38",
+  "authoringDiffuseSha256": "4653f845e15c0c8261f32a3e5c81487c20f18998f3631c4a52414950301b44f4",
+  "authoredAtMasterDimensions": [
+    512,
+    512
+  ],
+  "layering": {
+    "referenceSize": [
+      64,
+      64
+    ],
+    "facingHeight": 0.68,
+    "brickHeight": 0.4,
+    "chipFloor": 0.61,
+    "microAmplitude": 0.025,
+    "bevelPixels": 0.3,
+    "brickRegions": [
+      {
+        "polygon": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.25,
+            0.0
+          ],
+          [
+            0.25,
+            64.0
+          ],
+          [
+            0.0,
+            64.0
+          ]
+        ]
+      },
+      {
+        "polygon": [
+          [
+            63.625,
+            0.0
+          ],
+          [
+            64.0,
+            0.0
+          ],
+          [
+            64.0,
+            64.0
+          ],
+          [
+            63.625,
+            64.0
+          ]
+        ]
+      },
+      {
+        "polygon": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            64.0,
+            0.0
+          ],
+          [
+            64.0,
+            0.25
+          ],
+          [
+            0.0,
+            0.25
+          ]
+        ]
+      },
+      {
+        "polygon": [
+          [
+            0.0,
+            63.625
+          ],
+          [
+            64.0,
+            63.625
+          ],
+          [
+            64.0,
+            64.0
+          ],
+          [
+            0.0,
+            64.0
+          ]
+        ]
+      }
+    ]
+  }
+}

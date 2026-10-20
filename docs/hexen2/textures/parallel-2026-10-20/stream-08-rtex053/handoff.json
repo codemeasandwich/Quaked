@@ -1,0 +1,90 @@
+{
+  "state": "Finished single-texture candidate, frozen for independent final qualification before root registration",
+  "owner": "/root/texture_06_mtex470 supervised by /root",
+  "stream": "stream-08-rtex053",
+  "nativeID": "0b8ec72958c3dcea8b609a9bee857b2be015f90dff46129c584dad2ef51ddf0a",
+  "name": "rtex053",
+  "edition": "base",
+  "counts": {
+    "generationCalls": 1,
+    "canonicalMasters": 1,
+    "enhancedTiers": 2,
+    "physicalMapFiles": 10,
+    "proposedNativeBindings": 1
+  },
+  "dimensions": {
+    "Low": [
+      64,
+      64
+    ],
+    "Mid": [
+      256,
+      256
+    ],
+    "High": [
+      512,
+      512
+    ]
+  },
+  "defaultTier": "Mid",
+  "codec": {
+    "quality": 92,
+    "method": 6,
+    "lossless": false
+  },
+  "canonicalPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/master.json",
+  "batch": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/batch.json",
+  "reviewIndex": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/index.html",
+  "frozenCandidateInputs": {
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/batch.json": "b4588bc5ccacf4f3aa6c6851da4cce0da24c56bfda428b8a4a4fec4b22b736bc",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/native-selection.json": "35eed8a6c4eda47f2825b744e5e9a0f4028393aaa0dde7f774d6752aa3228ae4",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/selection.json": "d40a721e4ebda7a774f29c53ace89042654c3dad8f5adddce98742fe4f6895b7",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/generated/rtex053.png": "80ab414b986cdc7a67833c25c3d94a3e15363663fc3a789934577c5d217df7bb",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/prompts/rtex053-material-v1.txt": "c3c3fa16dde3251c1591cc85cb97284a01802c0a577549f2fb1b1a3f6385f6fe",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/master.json": "19bc1bde08b3e499646b85697275fdd36bf67915495fd04e7b9df44dff65aef6",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/color.png": "11890a31daff87743b7907ccce69b10dcfe7a902c3eabbf2ff51726326efaa2c",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/height.npy": "854a38d973314b7fcbf6913f96d804c193334922c284be96d45bad2b28053656",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/manifest.json": "75bb53d1bd730f261f0fc47d26956014b99e559d59b091876070425e4e4fa5b0",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/native-proof.json": "8fd26df8b7b40a57fd835093ffc8c70e8f8a3d16faa683c3d461413c534e9093",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/retained-low-duplicate-screen.json": "c36d3f9a61d95578ce329a363aff392f38fe242fb58bc286acd3467d3079840c",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/root-plan-review.json": "83f6687bead60557492fb7efce88b0676e6402d3f1dadf4f660014c909874809",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-art-review.json": "5a66c55afe4a0d25ff9387341c334a9e353612d63fa0f0f3016d1746f8eeb360",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-self-check.json": "11a5b6bbfa7daf8df6f232174e30028853bfce6f7a2e911756891da99cec0496",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/candidate-self-replay.json": "185bc76ccfef467e4a2514857b7eb1a32f6aeccab18291758bfce0250b3bc13f",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/candidate-self-art-review.json": "08fb0a64911dbf08f264dd99e6f1f0b98f975ee814618ec0d64b10d4278fd40d",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/literal-strip-provenance.json": "5d34202669f6c7eedf17174e78af166eaa7957dce5601241ff59402615b53f9c",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/verify-candidate-self.py": "0fbd4af3180989db41d6af7198f61d868f388630a6e200d6476b1cf12c95200b",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/inspect-literal-lower-strips.py": "99aaa8631c30e7194b4c8066d1c8d5e247968bb99cb41b0bdbc013407afa9df7",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-diffuse.webp": "3818a78a698cc2e9f639a4c917c1b44a89e093acbef1b5efc8a1520e3498a867",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-diffuse.webp": "39679c32bdc34ff5d10d61a9ecaeab2f163a6989731784f5de6eeff53f3d681d",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-normalZ.webp": "a0ecdefd259853cac0ebd272dd5252e6830c2f6a69ca8a4730e5296c490282ee",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-height.webp": "ff23318d4737f625d65b91db800003f6b763fb04a5a7547ecb4fd82e325b476f",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-normalZ.webp": "2edcdaf5b175b2bd919653b4a70743600e2934dcf21560b55aee2d760d91f589",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-height.webp": "2c926b31c8a98f65b4900813de3463319ef0fe75ed0431328d3427a8dd396fd0",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-normalX.webp": "6cca0133b1a6a1e14e774686ca5539e86da2a1098b5520b000b744540a3876e8",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-normalY.webp": "2d8a082c6b6cc550e0262b57036bcbc4f345670823781cc8c096415c827223c9",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-normalX.webp": "e8eb7fd8681002abccbe7dc881a877f95387a296e8bdaf0e0d58b46a1ea9e27d",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-normalY.webp": "6fb6cf195bb38e6ba32ff228f01563913b822ac2cfcbc5e42743788da3a42408",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/index.html": "dd276544c369c095d2aae2fa7a672e3304c13a5b6cbfe3b24ac87ffdfd6b6b37",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-mid-relief.jpg": "3f7251dc55712f6d4e6f9ca46d83994dd036bd74427c465784248cb8e426eebc",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-mid-review.jpg": "587f4b3ebe03d3dc206d0ff997d5243bdce176527dd4738f406c4f1cd8052c90",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-high-review.jpg": "d437cb273b7729c8c24a7fd75cdfbb4131719b4a6c1c902d9939912807e305c8",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-high-relief.jpg": "45a07863699cdbfc8dbd799c060affb29c4d6a9eb4d7d5a8653cbf06d028adb6",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/candidate-seams-corners.png": "33aae0c28cd2b09617ff561c9a37e803b582e0bd28b9bcd05a4abcd131f78ed6",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-literal-X-lower-course.png": "eb1eeec44ef3d35ebaaaae5281dc18f8b3c14cb1d2e9ad6f8d4fb2e7fc0e9142",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-literal-X-native-comparison.png": "1bb786c92fe97421a5308a43aa52b3cb35d380aa5b7ad70fe9b25092e8cf5487",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-literal-Y-full-width.png": "81a93d72ea1da305ee9d0dbd3f5ae647c1df1955dbef5ef14994c774613f8b1d",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-literal-X-lower-course.png": "94b64ce311f158e438184a3fb7b84fb643a5e9fe04df3d83ad20db8af6e66194",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-literal-X-native-comparison.png": "5c885e8ad377c24204887f50ee62b4da826a3f42009e41ee5eb22dd6a332cc7b",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-literal-Y-full-width.png": "56cf45df621ade5ca82406860648c7eb5cae3f307737e803e29e84c9dcda871c",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/native-master-literal-seam-comparison.png": "72ef7472fc9ca9a76ec2053c7fbdb35a48153eece4224c1c587d90247eb81da6"
+  },
+  "selfReplay": "Actual ordinary prepare, direct tier and review CLIs all replayed in one automatically removed temporary directory. Canonical RGB/float NPY/MP, all ten maps/tier manifest and four review JPEGs+HTML are byte-identical. Maintained independent math/codec oracles also reproduce all maps.",
+  "literalStripReview": "literal-strip-provenance.json binds exact decoded map paths, hashes, roll phase and native extents. Entire lower-course X strips and full-width Y strips show actual pixels at 1:1 for both tiers, in addition to standard corner/repeat sheets.",
+  "reviewerNextAction": "Independently verify native four-mip/flag/source identity, actual single source/master/float and direct tier math/codec, preview provenance and decoded ART. Inspect full lower-course X native comparison and both-tier strip views, actual Y/corners, partial fracture and physical depth. Root registers only an individually qualified PASS.",
+  "limits": [
+    "Author self-review is not independent final qualification.",
+    "No registration, pack/runtime/GPU qualification, owner acceptance, Git landing/CI or release/Pages action."
+  ],
+  "updatedAt": "2026-10-20T14:44:40.920482+00:00"
+}

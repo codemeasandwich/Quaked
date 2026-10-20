@@ -1,0 +1,215 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20T14:51:06.952941+00:00",
+  "verdict": "PASS author actual source material/semantic master check with corrected source-measured joint cores; independent final qualification pending",
+  "nativeIdentity": "73d1bef29871f25e3da731e707d7bd9e9062de9275b5fcbc3f8e38d9a3f41f8b",
+  "sourceMaterial": "Actual1254square source shows recognizable rough mineral sandstone with coherent broken grains/chipped edges; not abstract noise. Single raw retained unchanged.",
+  "fidelity": "Asymmetric coarse courses retained, including narrow cropped top course, left column, upper/lower right stagger. Natural worn edges and modest joint-phase drift are visible; not pixel-exact geometry recovery.",
+  "relief": "Viewed actual height and opposed lights; actual dark mortar core samples lie below stone face medians. Broad stone microfracture/pore relief remains source-derived. No new semantic producer required at this check.",
+  "repeat": "Actual1to1two-by-two RGB/neutral repeats viewed. Native offset joints continue as cropped masonry rather than an added all-image frame; no new perimeter bevel operation. Decoded repeats still require review.",
+  "witnesses": [
+    {
+      "label": "F1",
+      "classification": "stoneFace",
+      "boxMasterPixels": [
+        15,
+        65,
+        105,
+        155
+      ],
+      "minimum": 0.036750175058841705,
+      "median": 0.6049388647079468,
+      "maximum": 0.9763146042823792,
+      "p10p90": [
+        0.3106800585985184,
+        0.819722592830658
+      ]
+    },
+    {
+      "label": "F2",
+      "classification": "stoneFace",
+      "boxMasterPixels": [
+        140,
+        75,
+        215,
+        215
+      ],
+      "minimum": 0.01377028226852417,
+      "median": 0.44256848096847534,
+      "maximum": 0.9800489544868469,
+      "p10p90": [
+        0.1859083577990532,
+        0.6846339643001557
+      ]
+    },
+    {
+      "label": "F3",
+      "classification": "stoneFace",
+      "boxMasterPixels": [
+        270,
+        70,
+        480,
+        225
+      ],
+      "minimum": 0.0032899414654821157,
+      "median": 0.44672077894210815,
+      "maximum": 0.9877113699913025,
+      "p10p90": [
+        0.16868400126695635,
+        0.7507254481315614
+      ]
+    },
+    {
+      "label": "F4",
+      "classification": "stoneFace",
+      "boxMasterPixels": [
+        145,
+        265,
+        360,
+        495
+      ],
+      "minimum": 0.0023738478776067495,
+      "median": 0.4320804476737976,
+      "maximum": 0.9774280786514282,
+      "p10p90": [
+        0.16798000037670138,
+        0.7146666586399079
+      ]
+    },
+    {
+      "label": "F5",
+      "classification": "stoneFace",
+      "boxMasterPixels": [
+        408,
+        265,
+        495,
+        495
+      ],
+      "minimum": 0.009760608896613121,
+      "median": 0.3912624418735504,
+      "maximum": 0.9560148119926453,
+      "p10p90": [
+        0.17242818623781206,
+        0.6563777267932892
+      ]
+    },
+    {
+      "label": "F6",
+      "classification": "stoneFace",
+      "boxMasterPixels": [
+        15,
+        205,
+        100,
+        490
+      ],
+      "minimum": 0.028734883293509483,
+      "median": 0.509996235370636,
+      "maximum": 0.9896782636642456,
+      "p10p90": [
+        0.23374489247798919,
+        0.8049471735954286
+      ]
+    },
+    {
+      "label": "J1",
+      "classification": "mortar",
+      "boxMasterPixels": [
+        120,
+        62,
+        124,
+        499
+      ],
+      "minimum": 0.00019224642892368138,
+      "median": 0.005925427190959454,
+      "maximum": 0.28475192189216614,
+      "p10p90": [
+        0.0011551509727723897,
+        0.031166134588420383
+      ]
+    },
+    {
+      "label": "J2",
+      "classification": "mortar",
+      "boxMasterPixels": [
+        132,
+        242,
+        500,
+        246
+      ],
+      "minimum": 0.00036502553848549724,
+      "median": 0.008507860824465752,
+      "maximum": 0.808859646320343,
+      "p10p90": [
+        0.0016439564642496407,
+        0.16479752808809292
+      ]
+    },
+    {
+      "label": "J3",
+      "classification": "mortar",
+      "boxMasterPixels": [
+        239,
+        60,
+        244,
+        235
+      ],
+      "minimum": 1.034418437484419e-05,
+      "median": 0.005443878471851349,
+      "maximum": 0.15480084717273712,
+      "p10p90": [
+        0.0008667722111567856,
+        0.043437597900629045
+      ]
+    },
+    {
+      "label": "J4",
+      "classification": "mortar",
+      "boxMasterPixels": [
+        379,
+        300,
+        383,
+        410
+      ],
+      "minimum": 0.00011522746353875846,
+      "median": 0.003398299217224121,
+      "maximum": 0.11609344929456711,
+      "p10p90": [
+        0.0005314800364430994,
+        0.027854684554040453
+      ]
+    },
+    {
+      "label": "J5",
+      "classification": "mortar",
+      "boxMasterPixels": [
+        15,
+        174,
+        105,
+        177
+      ],
+      "minimum": 0.0002771529834717512,
+      "median": 0.02126631885766983,
+      "maximum": 0.31391239166259766,
+      "p10p90": [
+        0.0009178693755529824,
+        0.1137458212673664
+      ]
+    }
+  ],
+  "viewed": [
+    "native-master-distance.png",
+    "master-neutral-A.png",
+    "master-neutral-B.png",
+    "masterRGB-repeat-1to1.png",
+    "masterNeutralA-repeat-1to1.png"
+  ],
+  "generationCount": 1,
+  "sourceAdequate": true,
+  "limits": [
+    "Physical/lithology interpretation is approximate, not historical measured material.",
+    "Final decoded material, half/quarter likeness, image/seam edges, XYZ/height and codec retention remain unqualified until delivered-tier checks."
+  ],
+  "nextAction": "Routine existing direct Mid/High derivation now; preserve pre-tier findings and qualify decoded maps independently before registration.",
+  "correction": "Retained v1 includes two mislocated broad mortar boxes that overlapped face/bevel (J4/J5). Actual source row/column profiles show joint cores x379..383/y300..410 and y174..177/x15..105. These are corrected actual physical witnesses, not a material-depth waiver; original receipt remains retained.",
+  "replacesUnqualifiedWitnessReceipt": "author-material-semantic-review.json"
+}

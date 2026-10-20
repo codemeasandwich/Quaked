@@ -1,0 +1,10 @@
+test_existing_and_late_destinations_are_never_clobbered (__main__.LayeredBoundaryCLI) ... ok
+test_nonsquare_x_and_y_exact_geometry_precision_metadata_and_direct_tiers (__main__.LayeredBoundaryCLI) ... ok
+test_noop_and_clipping_are_truthfully_recorded (__main__.LayeredBoundaryCLI) ... ok
+test_original_changed_after_successful_guarded_replay_rejects (__main__.LayeredBoundaryCLI) ... ok
+test_source_proof_current_data_and_metadata_tampering_reject_without_output (__main__.LayeredBoundaryCLI) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 9.386s
+
+OK

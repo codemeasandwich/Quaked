@@ -1,0 +1,57 @@
+{
+  "scope": "Focused disposable public fixtures only; no real gate, HTML, app/native build, Git staging/commit/push or provider operation",
+  "recordedAt": "2026-10-20T16:30:16.185662+00:00",
+  "source": {
+    "tools/distribution/precommit.mjs": "f55967ee4d039ad9bc260958a3777c6f103d487b300f71d862a8415ae03ebe3a",
+    "tests/staged_contract_test.mjs": "3f5ff12f922477237aa78c0c8a62b40f30faba376622b43f1a802e1ac746b413",
+    "tools/texture_sheets/check_texture_catalog_custody.py": "1bd745a642ca3207ed680dae75a8379c416761ad242f25466c42fab36d1ff639"
+  },
+  "checks": [
+    {
+      "command": "node --test tests/staged_contract_test.mjs",
+      "tests": 12,
+      "pass": 12,
+      "fail": 0,
+      "skipped": 0,
+      "durationMs": 4669.561584,
+      "scope": "Final output-custody correction; full staged public fixture suite"
+    },
+    {
+      "command": "node --test tests/staged_contract_test.mjs tests/prod_promotion_contract_test.mjs",
+      "tests": 27,
+      "pass": 27,
+      "fail": 0,
+      "skipped": 0,
+      "durationMs": 31886.50125,
+      "scopeLimit": "Earlier code: before the final executing-control hash guard and its additional fixture. Existing Prod guard logic unchanged."
+    },
+    {
+      "command": "node --test --test-name-pattern='actual production pre-commit' tests/prod_promotion_contract_test.mjs",
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "skipped": 0,
+      "durationMs": null,
+      "scope": "Final source; one selected direct-Prod pre-commit/pre-push fixture, pass1/fail0/skipped0"
+    }
+  ],
+  "notes": [
+    "Injected command recorder fixtures assert the exact selected commands without executing builds.",
+    "Synthetic custody fixture uses dummy byte payloads and checks path/hash/receipt wiring; it is not image/artwork qualification.",
+    "Expected failure fixtures retained previous successful publication; their owned temporary snapshots were removed."
+  ],
+  "previousSourceBeforeOutputCustodyCorrection": {
+    "tools/distribution/precommit.mjs": "066bf1637af71067adf2e2687ba076ce96c084b14842c130d06291a25d0e58d6",
+    "tests/staged_contract_test.mjs": "174053b4c5d169d20aef739ffd6618ae609f36381ba02ac5a062c7e022cd2af8",
+    "tools/texture_sheets/check_texture_catalog_custody.py": "1bd745a642ca3207ed680dae75a8379c416761ad242f25466c42fab36d1ff639"
+  },
+  "outputCustodyCorrection": {
+    "requiredBy": "Independent root review",
+    "destination": "dist/texture-checkpoints/<pinned-tree>",
+    "exclusiveCreation": true,
+    "neverTouches": "dist/staged in dev-texture mode",
+    "existingDestinationDirectoryAndSymlinkFixtures": "PASS",
+    "privateSetupExportCleanupFixtures": "PASS",
+    "sameTreeSuccessfulRerun": "Refuses existing destination; no reuse/overwrite"
+  }
+}

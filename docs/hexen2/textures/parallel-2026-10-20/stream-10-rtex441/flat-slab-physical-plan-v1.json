@@ -1,0 +1,38 @@
+{
+  "state": "Awaiting root source-specific joint mask and physical-plan review before guarded successor authoring; genuine source/master proof is available",
+  "recipe": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/relief/rtex441-flat-slab-v1.json",
+    "sha256": "e3c0e1d3ee5f5522c9d854505b06e0efbf14713e854268018a50eff453cba4bd"
+  },
+  "proposal": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/flat-slab-layering-proposal-v1.json",
+    "sha256": "c7605a92e09269fb5a35c9f10b1e58483dd89f69be70c421a0db7d8c5e9ec5c6"
+  },
+  "sourceMasterProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/independent-source-master/source-master-proof-v2.json",
+    "sha256": "ce1dcc77c90298715c0601f2fd2c54d4548cad0e64bb4432b2b20db88c0652d6"
+  },
+  "defect": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/initial-relief-hold.json",
+    "sha256": "962a750e1048f5250bd58467914103a119cec3c972980fc70c712f15fe4848c7",
+    "measuredInitialInteriorUnitXPlaneChange": -0.10860647387815686,
+    "reason": "The mostly flat photographic face has a broad scalar dark-right ramp from colour/illumination. Do not encode it as architecture."
+  },
+  "physicalRationale": "Existing same-RGB layered planes with one broad face .68, existing narrow outer contacts .40, interface floor .61, original scalar detail plus/minus .025. Source pits remain shallow bounded detail. No internal polygon, raised frame or pit rim is introduced. Stone face brightness no longer sets a broad architectural slope.",
+  "interfaceSigmaMasterPixels": 0.6,
+  "maskCoverage": 0.0233001708984375,
+  "physicalSamplePlan": {
+    "faceAndStain": "Keep actual A/B/C/D source coordinates from initial-physical-witness-proposal; D is a flat olive-grey face/stain observation, not a recess. All are on the broad facing plane with bounded texture.",
+    "pits": "F/G are local depressions; E is a chipped patch/mineral inclusion with uncertain exact microshape, recorded as mixed rather than claiming a pure hole. Use exact actual crops and bounded local relative height, not macro depth invented from colour.",
+    "jointCores": "Use wrapped (0,240) and (240,0) with radius2; these fall inside the six-master-pixel joint across tile wrap. Report radius3 neighborhoods as mixed if they include stone. Former H/J bright edge observations remain mixed and are not relabelled pure mortar.",
+    "macroFlatness": "Replay full precision scalar composition and inspect whole height/XYZ/opposed lights. Measure coarse quadrants and normalized interior best-fit X/Y slope; expected X ramp shrinks from-.1086 to about-.00543 from bounded detail. This is a prediction to check, not automatic visual acceptance.",
+    "edges": "Inspect literal X/Y/corner geometry and normal lights at full resolution, not only the 2x2 preview. Preserve existing narrow contacts and unchanged RGB."
+  },
+  "limits": "No canonical wrapper or tier has been executed for this proposal. Parent independent review and actual successor physical check remain.",
+  "views": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/proposed-flat-slab-joint-overlay.png": "123a8b054a5475b5aea60661a5c6ffe2c4a4703de639edfe8359bf0fd1ca162b",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/proposed-flat-slab-joint-mask.png": "a990fa2655ff82e981b26c28a443ac284af2f22b7612c2c7c9cf829bb5172f92",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/proposed-flat-slab-joint-wrap-crops-1to1.png": "e51209c1ae7740cb7f0d0e6a078f2b6cc52e722eee49bb07539f916e1a3cb3aa"
+  },
+  "updatedAt": "2026-10-20T16:42:14.315003+00:00"
+}

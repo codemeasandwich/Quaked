@@ -50,6 +50,24 @@ This is a schema description, **not a proof to copy or fabricate**. A native-onl
 
 Review regions against actual registered RGB and native intention; do not copy another asset's polygon coordinates or depth planes. Plane separation proves a mathematical hierarchy, not that the mask labels physical stone/brick/mortar correctly. Independently classify actual face and joint samples, check decoded central and neighborhood heights at both tiers, inspect mixed interfaces and opposed lighting. Bright pale mortar must not become raised solely because it is bright. Keep source/master qualification, semantic sampling, art and runtime displacement distinct.
 
+## Introduced X/Y seam in an already layered candidate
+
+```sh
+/usr/bin/python3 tools/texture_sheets/register_layered_texture_boundary.py \
+  --package "$UNQUALIFIED_LAYERED_MASTER/master.json" --axis x \
+  --output "$NEW_MASTER_DIRECTORY"
+```
+
+Use only for a demonstrated intensity discontinuity after source-specific layered relief has been authored. The ordinary Y-only CLI does not accept a layered package, and the layered CLI does not accept a prior boundary correction. This adapter reuses their existing mechanisms without changing the historical producers. It requires the actual parent RGB/float NPY, source-bound recipe/proof and tool hashes; the unchanged guarded layered CLI must reproduce the parent RGB, NPY and package bytes exactly. A prior periodic-correction key, even null/empty, is rejected. Never remove metadata to bypass a refusal.
+
+The adapter applies the unchanged zero-mean Poisson function, transposing only for X. It changes intensity, not feature placement: it cannot realign an incorrectly placed crack, invent missing material or guarantee a seamless result. It then computes fresh float64 detail from corrected uncompressed RGB, reuses the same physical mask/planes, and casts once. The successor uses `periodic-layered-veneer-v1`, records the parent and original recipe as historical facts, and recomputes current statistics. The original recipe's diffuse hash describes the baseline, not the corrected RGB. Keep generation count one; this command never calls a generator or authors tiers.
+
+Inspect actual corrected material, clipping, semantic samples and opposed lights before deriving Mid/High directly. Then independently replay source/parent/correction/layer math, the actual CLI, both tiers' Q92/method6 maps, normals and public previews. Review literal full-resolution strips across every relevant course, both axes and corners against native intent. A small repeated thumbnail or lower wrap error can hide a straight cut; an intentional native mortar joint must remain. The rtex499 case qualified an X correction through continuous stone faces while preserving the alternating rows' real mortar contacts. Its coordinates, inferred hidden contact and restrained relief are not universal recipes.
+
+The output parent must already exist. Publication uses a native atomic no-replace rename and refuses existing destinations, including a late empty directory or symlink. Unsupported platform/filesystem publication fails closed. macOS is runtime-qualified in the current campaign; Linux support requires its own platform evidence. Keep the parent RGB/NPY guard inputs until separate retirement/replay evidence proves they can be removed. Preserve first input observations; a changed reread must reject, not replace the stability witness.
+
+Run `/usr/bin/python3 tests/texture_layered_boundary_test.py` for this adapter. Its isolated fixtures cover nonsquare X/Y orientation, full-float composition and direct tier bytes, no-op/clipping, changed source after a real guarded replay, malformed/repeated packages and no-clobber output. Fixture/code PASS is distinct from actual texture ART qualification. Preserve sealed failures and the exact successor-specific final reviews.
+
 ## Missing flat colour motif inside accepted geometry
 
 ```sh
@@ -67,7 +85,7 @@ Prove canonical outside-support RGB, all four image edges and unrelated ornament
 
 ## Public checks and exactness
 
-Run the relevant maintained interface tests when changing a tool, then the actual source/package replay. Current tests include `prepare_texture_master_test.py`, `hexen2_texture_tiers_test.py`, `texture_batch_review_test.py`, `texture_boundary_registration_test.py`, `texture_layered_master_test.py` and `texture_motif_master_test.py` under `tests/`. Inspect each invocation/env contract. Portable fixture PASS or skipped owned-asset integration is not an actual texture pass. Do not rerun unrelated broad suites as a substitute for the missing material evidence.
+Run the relevant maintained interface tests when changing a tool, then the actual source/package replay. Current tests include `prepare_texture_master_test.py`, `hexen2_texture_tiers_test.py`, `texture_batch_review_test.py`, `texture_boundary_registration_test.py`, `texture_layered_master_test.py`, `texture_layered_boundary_test.py` and `texture_motif_master_test.py` under `tests/`. Inspect each invocation/env contract. Portable fixture PASS or skipped owned-asset integration is not an actual texture pass. Do not rerun unrelated broad suites as a substitute for the missing material evidence.
 
 Source/codec verification must independently check actual original/raw/prompt/master bytes, source dimensions/aspect, finite float relief, direct tier reductions, UV-scaled normal math and Q92/method6 encoding. Capture the actual environment. Reproduce preview panels from the bound decoded maps, not screenshots of unrelated files. Existing JPEG replay has a narrowly documented empty-tail padding allowance; it is never a tolerance on material/label pixels or WebP output. If a current replay is byte-identical, report that stronger result accurately.
 

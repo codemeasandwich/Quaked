@@ -1,0 +1,28 @@
+{
+  "reviewedAt": "2026-10-20T14:58:49.345418+00:00",
+  "verdict": "PASS root actual canonical physical check before tier derivation",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-registered-x/master.json",
+    "sha256": "04fdec43c9dd84b5029632752931a3a0b37aeb1f99d5d4619d13428a848e8101"
+  },
+  "report": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/report.json",
+    "sha256": "a2221566da43a9961f2fc0f69c6736772d60f30e87ecbd61ff2a39950de8b0df"
+  },
+  "codeReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-code-review-v2.json",
+    "sha256": "4382fc8086a3eca80acbd03f70668b747cbe593a1d9eb8f2e779d7e104df9608"
+  },
+  "actualViews": [
+    "actual-fullheight-X-strip-1to1.png",
+    "neutral-A-1to1.png",
+    "textured-B-1to1.png"
+  ],
+  "findings": [
+    "Corrected RGB is byte-identical to the earlier independently promising intensity diagnostic. Literal continuous-face strip no longer has the strong straight tonal cutoff in the inspected uncompressed image.",
+    "Neutral and textured lights retain narrow recessed mortar and upper stone faces without raised pale caps or a new perimeter treatment.",
+    "Actual original fixed-coordinate face/joint samples remain correctly ordered; hiddenC remains an inferred geometry interpretation.",
+    "Fine relief remains restrained and many tiny pits are primarily photographic RGB."
+  ],
+  "allowedNext": "Derive both tiers directly from this sole corrected RGB/float height master using unchanged Q92/method6 tool, build normal review, then independent actual-source/math/codec/preview and both-tier ART. No registration yet; current uncorrected maps stay historical HOLD."
+}

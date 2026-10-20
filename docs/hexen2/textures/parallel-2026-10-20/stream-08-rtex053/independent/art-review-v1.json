@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS independent actual material, native fidelity, literal full-wrap extents, partial fracture and plausible physical relief for one rtex053 candidate",
+  "reviewedAt": "2026-10-20T15:40:24.276659+00:00",
+  "reviewer": "Different-author supervised reviewer; no generation/assets/producers/shared-state changes",
+  "nativeID": "0b8ec72958c3dcea8b609a9bee857b2be015f90dff46129c584dad2ef51ddf0a",
+  "name": "rtex053",
+  "edition": "base",
+  "canonicalMaster": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/master.json",
+    "sha256": "19bc1bde08b3e499646b85697275fdd36bf67915495fd04e7b9df44dff65aef6"
+  },
+  "descriptor": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/batch.json",
+    "sha256": "b4588bc5ccacf4f3aa6c6851da4cce0da24c56bfda428b8a4a4fec4b22b736bc"
+  },
+  "sourceMath": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/actual-v1.json",
+    "sha256": "c63a346aeda01d1d467535b6ec5139f28fc6c66d7a790523c2a7376adfa01e08"
+  },
+  "preview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/preview-v1.json",
+    "sha256": "545e430b86b60d365b7daba53a13dbad8c58798bdf08420d83d2f8e931df5eff"
+  },
+  "literalStripProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strip-proof-v1.json",
+    "sha256": "2ba0fcb61532272d7154eafa20b5994ae5b739d3a3f4cb438ff10c5eca843a79"
+  },
+  "classification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/source-witness-classification.json",
+    "sha256": "47c16cb667c0d3297b873deecf004365c02037f336608157f18aff36b52469e6"
+  },
+  "material": "Actual retained1254 source, canonical512 and decoded256/512 show tangible dense grey stone, coherent mineral grain, pits, chipped facets and ochre weathering. Limestone-like interpretation is plausible; exact geology is not asserted. Detail does not read as abstract grain, pixel contours or an added noise layer.",
+  "nativeFidelity": "Two upper faces and one broad lower face retain native colours, course/joint positions, characteristic diagonal chips and feature scale. Both native and decoded replacements at32/16 with BOX preserve representative grey/ochre relationships and intended forms. Natural detail is an interpretation rather than pixel equality.",
+  "nativeWrapJointFinding": "Independent original-vs-decoded full-width X roll confirms narrow mortar at native X wrap in the lower course; it is not an introduced seam. Full-width Y native comparison likewise confirms the native horizontal wrap course. Candidate colour, height, XYZ, both textured and neutral opposed lights and literal corners preserve these intended joints without added framing or a disconnected break.",
+  "partialFractureFinding": "The lower-left fracture terminates within the lower stone face and leaves a broad stone bridge above it. Direct native/canonical lower-left comparison and full[34,64)lowercourse strips do not show an invented complete little block or full internal mortar division.",
+  "physicalDepth": "Source-classified rough stone samples A/B/C remain above central/horizontal mortar D/E after actual tier compression. F boundary/arris, G/H fracture/rim and I/J weathering transitions remain mixed observations, not pure neighborhood proof. Opposed neutral/textured lighting is plausible for worn stone and shows no independent raised ochre coating.",
+  "literalExtentClarification": "Author strip code actually uses end-exclusive native[34,63). Independent review extends to[34,64), including bottommost row, and checks fullwidthY[-8,8). Author source/role/labels/fullPNGbytes replay exactly. No small thumbnail or omitted bottom row is used to accept a seam.",
+  "diagnosticCorrection": "The generic F witness crop includes out-of-image black padding on its right. It is retained with that limit, excluded from boundary classification, and replaced for actual review by an explicit cyclic F crop. Literal wrap strips never use such padding. This is a diagnostic correction, not an asset failure.",
+  "viewsActuallyInspected": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/generated/rtex053.png",
+      "sha256": "80ab414b986cdc7a67833c25c3d94a3e15363663fc3a789934577c5d217df7bb"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/color.png",
+      "sha256": "11890a31daff87743b7907ccce69b10dcfe7a902c3eabbf2ff51726326efaa2c"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-mid-review.jpg",
+      "sha256": "587f4b3ebe03d3dc206d0ff997d5243bdce176527dd4738f406c4f1cd8052c90"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-high-review.jpg",
+      "sha256": "d437cb273b7729c8c24a7fd75cdfbb4131719b4a6c1c902d9939912807e305c8"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-mid-relief.jpg",
+      "sha256": "3f7251dc55712f6d4e6f9ca46d83994dd036bd74427c465784248cb8e426eebc"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-high-relief.jpg",
+      "sha256": "45a07863699cdbfc8dbd799c060affb29c4d6a9eb4d7d5a8653cbf06d028adb6"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-color-1to1.png",
+      "sha256": "f0dc45d514fefb0bc7a9ac7a73a551bce56232774d2977b156f8183997224855"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-bothBOX-distance.png",
+      "sha256": "3932a3f5a6e9af20964ccb83c823ffb8ad70e961798c2581f454a9cd7e36bc8b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-color-repeat2x2-1to1.png",
+      "sha256": "7c387208854292d6b2a00a01b92776a52bc9925f074d9456e545449455cbdc90"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-height-seams-1to1.png",
+      "sha256": "c34614dc2cbd015e331db21ced6cb7cae74c96c58d9b69d2fda68afd11216311"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-XYZ-seams-1to1.png",
+      "sha256": "13dff878b9f5f156e381eaafb03dbc60235563e8213ee757b0d06a8322c9292f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-A-seams-1to1.png",
+      "sha256": "2b473f99199ab0b5f1a648e74fd23b4f79fd4fae3792f2fa2763aeeedcf34d49"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/mid-neutral-light-B-seams-1to1.png",
+      "sha256": "12eacb910cca38b3b4d28bf0888893bb8373c608f6acc782fb9cbf82c97ad066"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-native-full-lower-comparison.png",
+      "sha256": "be002afffcacb7880e19bc7dc3223ad545e8f44f5dcf86ecb1622a7b74f8b345"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-native-full-width-comparison.png",
+      "sha256": "1cc562893057f070578f773ac69a1659260899ef940d6e0030743288a16488be"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-color-1to1.png",
+      "sha256": "1e5441b7295e2644204f11a41b2e1779d0f99026819c845664dea8a02d3ea465"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-bothBOX-distance.png",
+      "sha256": "84547910af44c7090e21dd0e51421954fa6a2b980e63a54659c0f75dd9f1aeaf"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-color-repeat2x2-1to1.png",
+      "sha256": "def114c68bd287ed64562a7760644398ce6cd5571fe3edba93e87bbd59381942"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-height-seams-1to1.png",
+      "sha256": "490b7dd650cdd8aaa996ad199a1adb7c601dae11f76c76e34427f21477cb737b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-XYZ-seams-1to1.png",
+      "sha256": "18b8e23aa10c90ddc7819191b5d8b17879372f8afb4c72d41cfef19189bcacd9"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-A-seams-1to1.png",
+      "sha256": "b2083574b00015786d4c4ef3abad1cb4ded8ed90c16516a112b3af8fb7dcfef6"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/high-neutral-light-B-seams-1to1.png",
+      "sha256": "0a323605e602f803c114e854712fa808ea7bc2e0de4a69ec332422914849035b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-native-full-lower-comparison.png",
+      "sha256": "ddf30553dbfbfa8642266c07ce03787d9d219b6790775c42e87f13141e62c950"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-native-full-width-comparison.png",
+      "sha256": "37783b5906a3e9b260719ccd95eea89a45d758fc306a2957c19b41672883718c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-all-role-sheet-1.png",
+      "sha256": "e4f200c409d12edf34402db477522df643815038fae4532cc4d0da27249259e7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-all-role-sheet-2.png",
+      "sha256": "41069827e563c5ea623b420aa22ab91cd1412f6e43e71221aa36fd7b3def5495"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-all-role-sheet-1.png",
+      "sha256": "fed5f9a6e0096250bc334956870d426a37dcf0c240f53e43c51d07bb87587dae"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-all-role-sheet-1.png",
+      "sha256": "831c619ddcdd71242d6eae9f347b59353b19d2e8244d75fc3a6ca66e1f68a6cd"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-all-role-sheet-1.png",
+      "sha256": "7935b76d280450c91077d72c1d3a13df3f123fe46aa83059bf2d8e96d0f47dfe"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/master-witness-labels-1to1.png",
+      "sha256": "01565c9b31689b6cb2389c8822794fa178c4f007264ded554ff62ce8778367ec"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/art-evidence/witness-crops-observations.png",
+      "sha256": "aa0c5010f49a672028381bde4c97d2b4380b9df62e85a2031ce80347a0a99d90"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/F-wrapped-source-witness.png",
+      "sha256": "ef6b44d778b53f1bfbf60e8615677ff1d7ce02243425363e21ab86440602e3ca"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/lower-left-partial-fracture-comparison.png",
+      "sha256": "d977ed8459d692f63cb5ccd918807f934de8b84482c4819e7ad218e6550a3360"
+    }
+  ],
+  "limits": [
+    "Some repeated rock motifs remain visible as one source repeats; no invisible-repetition guarantee.",
+    "Physical microrelief and geology are authored interpretations, not measured truth.",
+    "No pack/runtime/GPU/gameplay, owner acceptance, registration, Git landing/CI or release/full-campaign qualification."
+  ]
+}

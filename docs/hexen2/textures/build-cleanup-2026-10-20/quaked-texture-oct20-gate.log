@@ -1,0 +1,988 @@
+
+added 19 packages, and audited 20 packages in 1s
+
+5 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> quaked@0.132.5 pretest:distribution
+> npm run prepare:shareware
+
+
+> quaked@0.132.5 prepare:shareware
+> node tools/distribution/prepare-shareware.mjs
+
+Verified pinned shareware build input: /private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-UcLHtZ/.distribution-cache/shareware.pak
+
+> quaked@0.132.5 test:distribution
+> node --test tests/*_contract_test.mjs
+
+✔ every relocated image has one canonical file with its original byte identity (6897.901083ms)
+✔ tools retain their code and records while authoring images stay under assets (10.876667ms)
+✔ retained fitting recipes still resolve their exact source image bytes (653.706042ms)
+✔ neither distribution includes authoring images or retained source records (384.380917ms)
+✔ public HTTP image aliases, ranges and owned-game boundaries remain valid (2780.984916ms)
+✔ the current manifest binds all twenty-nine runtime roles to exact active images and three approved discovered ids (298.628458ms)
+✔ archive and dedup records retain original bytes once per project blob without reading or deleting game-folder sources (232.812291ms)
+✔ the real desktop collector ships every active face while excluding source-only archives and inactive old image paths (398.972ms)
+✔ artifact inventories enforce the original-game data boundary (1.440625ms)
+✔ web closure retains every Episode 1/hub normal and eligible custom enemy sample (397.953875ms)
+✔ desktop inventory includes all prepared map transports and no bundled original game (346.580917ms)
+✔ embedded binary codec preserves bytes across word boundaries and excludes HTML delimiters (150.86575ms)
+✔ corrupt encoded data and impossible lengths are rejected (1.913917ms)
+✔ departing peer queued sends cannot close host or prevent another peer receiving (15.601333ms)
+✔ asynchronous sends preserve peer FIFO and copy bytes before caller reuse (3.978541ms)
+✔ poll events completing after close cannot reach the driver or restart polling (0.932708ms)
+✔ late poll failure after close cannot emit fresh driver events (8.930541ms)
+✔ late send failure after close cannot manufacture another peer departure (9.070125ms)
+✔ rejected client handshake closes that client without ending an independent host (4.270208ms)
+✔ desktop catalogue validates selected split archives and preserves legacy default mounting policy (35.628167ms)
+✔ native strict selection refuses unread directories, damaged packs and absent shareware (0.5775ms)
+✔ native catalogue refuses a pack set beyond the existing bounded limit (2.067667ms)
+✔ dated candidate folders are absent; accepted selections point to official assets (6.94775ms)
+✔ every accepted binding and all five official map hashes survive candidate removal (1970.10025ms)
+✔ comparison references remain the exact original native game extractions (318.766083ms)
+✔ only the parts the release lacks are uploaded; core is bundled, never uploaded (1.003458ms)
+✔ a dist/packs that is not exactly the listed parts is refused (0.515625ms)
+✔ a release asset of a part's name but another size is refused, and so is passing the asset limit (1.349792ms)
+✔ the manifest is read from the built page, and a bundled build has nothing to upload (0.263041ms)
+✔ an asset a cancelled upload left incomplete is replaced, never taken as present; the result is confirmed afresh (0.204083ms)
+✔ a game needs its own pack and its ancestors; shared assets go to the nearest common ancestor (2.451959ms)
+✔ the committed game index is current and covers every playable game (14.530875ms)
+✔ each playable game finds all of its assets in its own packs (175.969459ms)
+✔ the shareware pack holds everything the HTML can start with (41.737375ms)
+✔ ordinary variant names and all companion images use their owning game packs (25.425917ms)
+✔ promotion plan selects an explicit qualified Dev ancestor without mutating anything (2.11575ms)
+✔ plan rejects abbreviated/uppercase/non-SHA selections and invalid repository before API access (0.982084ms)
+✔ plan rejects a non-Dev commit, non-fast-forward and wrong commit object (0.345083ms)
+✔ release source, numeric version and unused tag are mandatory (1.5155ms)
+✔ CI qualification binds commit, Dev branch, push event, workflow, repository and completed success (0.620917ms)
+✔ a pending/failed current Prod publication blocks a later selection; already-selected is explicit (0.418292ms)
+✔ CAS atomically sends exact non-forced Prod and new version-tag refs and verifies both readbacks (0.739958ms)
+✔ actual CLI defaults to a GET-only dry run and rejects applying from a Git checkout (286.5845ms)
+✔ standalone App CLI verifies fake RSA JWT, exact gate, fresh plan and CAS then revokes token (656.916042ms)
+✔ App apply rejects Actions, insecure/in-repository private files, symlink bypass and wrong controller identity (387.901ms)
+✔ App rejects a stale reviewed plan or any other bypass actor and revokes issued credentials (7133.407292ms)
+✔ actual production pre-commit and pre-push hooks prohibit direct Prod writes in disposable Git (1064.7805ms)
+✔ actual standalone CLI invoked through a symlink still executes and prints the reviewed dry-run plan (52.286458ms)
+✔ a rejected installation-token permission response is revoked without attempting promotion (141.766375ms)
+✔ App requires creation by only its dedicated identity and immutable no-bypass version-tag history (6718.854417ms)
+✔ operator policy reader rejects unconfigured paths before launch and requires a trusted executable before App auth (1651.699417ms)
+✔ hidden actor lists and failed or invalid operator reads block CAS and revoke issued App credentials (10222.172833ms)
+✔ policy inspection never justifies granting Administration permission to the promotion App (146.832667ms)
+✔ verification events never become publication authority; native/package versions must agree (338.011584ms)
+✔ Prod requires an exact workflow SHA, existing branch FF lineage and Dev membership (249.551167ms)
+✔ artifact identity binds the tested HTML, exact commit/version and native ZIP/receipt bytes (166.089042ms)
+✔ another commit, version, tree-only provenance or escaping archive is refused (222.116958ms)
+✔ existing released artifacts must match both the common identity and GitHub asset digests (123.695458ms)
+✔ Pages CLI rejects a self-consistent counterfeit pair against upstream artifact digests (625.287709ms)
+✔ publication creates a draft, verifies immutable assets, then publishes a shared identity (5223.188458ms)
+✔ partial upload stays draft; retry completes the same artifacts without replacement (1612.242833ms)
+✔ published retry keeps the original Mac build when the same source rebuild differs (1573.286708ms)
+✔ publisher cannot create a version tag outside the atomic App promotion (579.814167ms)
+✔ web stamping checks the exact browser-tested bytes and clean commit provenance (143.385375ms)
+✔ REST draft-by-tag404 resumes the unique existing empty draft by ID without creating another (826.917291ms)
+✔ draft lookup searches later pages and rejects a duplicate matching tag on a later page (1849.1335ms)
+✔ ten full listing pages fail closed instead of assuming absence and creating a release (996.897208ms)
+✔ non404 tag/list API failures and malformed listing never turn into create permission (11110.780916ms)
+✔ matching draft identity and creation responses must be explicit safe metadata (6663.618708ms)
+✔ every existing draft asset is validated before missing uploads; conflicts are never overwritten (3026.30025ms)
+✔ by-ID metadata changes before upload or before publish stop the admitted draft (2641.108917ms)
+✔ successful null primitive or empty by-tag replies never authorize listing or creation (2888.775708ms)
+✔ one canonical physical path resolves each retained logical resource identifier (0.791792ms)
+✔ source URL routing preserves base paths, queries, code and external URLs (0.379ms)
+✔ both product inventories resolve uniquely to the same authored files (631.243792ms)
+✔ staged snapshot includes only index bytes and deletions, preserving working files (134.3475ms)
+✔ staged builds and tests never inherit the hook's Git environment (0.380542ms)
+✔ resampled files retain their historical 4x receipt or an explicitly verified native-refit successor (166.32625ms)
+✔ Armagon successor retains the actual before and after records rather than relabelling the old resample (0.6455ms)
+▶ missing invalid or mismatched successors cannot bypass the historical file gate
+  ✔ no successor (0.650458ms)
+  ✔ empty successor (1.079459ms)
+  ✔ wrong predecessor (0.468333ms)
+  ✔ missing recipe (0.490125ms)
+  ✔ missing source record (0.575291ms)
+  ✔ different source record (0.438833ms)
+  ✔ wrong pinned model (1.070375ms)
+  ✔ wrong pinned source (2.975292ms)
+  ✔ recipe not 4x (2.419ms)
+  ✔ record not 4x (3.694042ms)
+  ✔ missing height pin (2.067208ms)
+  ✔ wrong current height (3.540416ms)
+  ✔ wrong current dimensions despite matching hashes (4.872792ms)
+✔ missing invalid or mismatched successors cannot bypass the historical file gate (25.378208ms)
+✔ nonsuperseded rows still enforce original file hashes and resample provenance (4.832708ms)
+▶ renamed Q92 successor requires explicit safe filename, real codec and current catalogue
+  ✔ undisclosed rename (2.94875ms)
+  ✔ path escape rename (1.342209ms)
+  ✔ wrong codec despite matching hashes (5.5135ms)
+  ✔ wrong catalogue rename (4.208583ms)
+  ✔ wrong catalogue identity (5.664333ms)
+  ✔ recipe Q92 intent missing (4.80675ms)
+  ✔ SOURCE Q92 intent wrong (5.10425ms)
+  ✔ runtime receipt hash wrong (5.202709ms)
+✔ renamed Q92 successor requires explicit safe filename, real codec and current catalogue (35.933666ms)
+✔ the web build ships the core and shareware packs and the shareware PAK; other games stay out of it (23.442708ms)
+✔ a site is published only with exactly the data files its HTML names, byte for byte (9.833083ms)
+✔ the verifier runs when reached through a symlink, so a CI path can never make it skip (50.297583ms)
+✔ only Bestiary pictures are re-encoded; data maps and other assets keep their bytes (13.316125ms)
+✔ a Bestiary page becomes WebP at its own size, under the limit, at the highest quality that fits, and is cached (352.353625ms)
+✔ the web and desktop builds both derive Bestiary pages from the same PNG masters (1.047625ms)
+✔ a page that cannot fit without resizing stops the build for an owner decision (8522.555709ms)
+ℹ tests 110
+ℹ suites 0
+ℹ pass 110
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 41194.001291
+
+> quaked@0.132.5 prebuild:web
+> npm run prepare:shareware
+
+
+> quaked@0.132.5 prepare:shareware
+> node tools/distribution/prepare-shareware.mjs
+
+Verified pinned shareware build input: /private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-UcLHtZ/.distribution-cache/shareware.pak
+
+> quaked@0.132.5 build:web
+> node tools/distribution/build.mjs web
+
+{"profile":"web","htmlBytes":5834162,"siteBytes":641998853,"dataFiles":{"core":301019968,"pak0":18689235,"shareware":316455488},"partBytes":8388608,"assets":2464,"output":"dist/web","buildPeakRssBytes":1414201344}
+
+> quaked@0.132.5 build:desktop
+> node tools/distribution/build.mjs desktop
+
+{"profile":"desktop","htmlBytes":674485,"siteBytes":674485,"dataFiles":{},"partBytes":8388608,"assets":5236,"output":"dist/desktop","buildPeakRssBytes":489209856}
+   Compiling quaked v0.132.5 (/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-UcLHtZ/src-tauri)
+warning: struct `Settings` is never constructed
+  --> examples/../src/library.rs:43:12
+   |
+43 | pub struct Settings {
+   |            ^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `read_range` is never used
+   --> examples/../src/library.rs:280:8
+    |
+280 | pub fn read_range(
+    |        ^^^^^^^^^^
+
+warning: `quaked` (example "library_inventory") generated 2 warnings
+warning: function `ensure` is never used
+   --> src/packs.rs:293:8
+    |
+293 | pub fn ensure(root: &Path, base: &str, packs: &[Pack], progress: &mut dyn FnMut(Progress)) -> Result<PathBuf, String> {
+    |        ^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `quaked` (bin "quaked") generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 26.65s
+     Running unittests src/main.rs (/Users/bri/build/quaked-distribution/debug/deps/quaked-fa9bd2e473b89926)
+
+running 10 tests
+test packs::tests::refuses_plain_http_hosts_and_unsafe_names ... ok
+test packs::tests::refuses_unsafe_names ... ok
+test pointer_lock::tests::delegate_registers_only_modern_pointer_lock_and_completes_once ... ok
+test packs::tests::a_corrupt_part_is_refused_and_nothing_unverified_is_kept ... ok
+test packs::tests::a_part_longer_than_listed_is_refused ... ok
+test packs::tests::a_read_only_source_part_is_used_without_downloading ... ok
+test packs::tests::an_asset_that_does_not_match_its_listed_hash_is_refused ... ok
+test packs::tests::a_verified_part_is_not_downloaded_again ... ok
+test packs::tests::downloads_verifies_unpacks_and_then_works_offline ... ok
+test packs::tests::only_the_parts_holding_missing_assets_are_downloaded ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.19s
+
+     Running tests/lan_contract.rs (/Users/bri/build/quaked-distribution/debug/deps/lan_contract-dec6b650a1e2fc35)
+
+running 9 tests
+test message_direction_and_peer_identity_cannot_be_forged ... ok
+test spoofed_stream_is_closed_without_delivering_its_message_to_the_host ... ok
+test malformed_lengths_truncation_and_engine_payloads_are_rejected ... ok
+test delayed_join_success_cannot_resurrect_a_stopped_or_replaced_session ... ok
+test full_engine_payload_survives_fragmented_and_coalesced_frames ... ok
+test stop_disconnects_peers_and_rehost_has_no_previous_session_messages ... ok
+test real_tcp_handshake_refuses_mismatch_then_transfers_full_binary_payload ... ok
+test three_remote_peers_are_isolated_and_leaving_one_does_not_stop_the_others ... ok
+test byte_queue_overflow_disconnects_only_the_flooding_peer ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.35s
+
+     Running tests/library_contract.rs (/Users/bri/build/quaked-distribution/debug/deps/library_contract-c834920a3843cb8c)
+
+running 15 tests
+test bounded_reads_return_exact_bytes_clip_at_eof_and_refuse_unknown_tokens ... ok
+test any_folder_with_a_pak0_or_progs_dat_is_discovered_as_an_add_on_named_from_its_folder ... ok
+test a_folder_with_no_ascii_name_gets_a_usable_id_and_a_placeholder_folder_is_not_discovered ... ok
+test existing_folders_with_default_boxes_get_metadata_without_local_art_or_nested_game_admission ... ok
+test canonical_paths_prevent_directory_and_archive_symlink_escape ... ok
+test box_art_uses_only_the_directory_selected_for_the_game_not_another_alias_or_nested_folder ... ok
+test missing_root_and_directory_named_as_archive_fail_without_creating_content ... ok
+test box_faces_are_case_insensitive_deterministic_and_never_mounted_as_game_files ... ok
+test a_base_game_gets_no_loose_files_and_a_bad_loose_file_is_left_out_without_failing_the_scan ... ok
+test refuses_a_file_changed_since_discovery_then_allows_an_explicit_rescan ... ok
+test lists_an_add_ons_loose_game_files_after_its_packs_and_nothing_else_loose ... ok
+test invalid_optional_box_images_are_skipped_without_hiding_the_game_or_safe_face_fallback ... ok
+test stops_at_a_numbering_gap_and_exposes_only_one_overflow_sentinel ... ok
+test scans_known_case_insensitive_aliases_without_recursing_arbitrary_directories ... ok
+test shareware_and_addons_get_art_while_art_only_folders_get_titles_without_mountable_content ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/packs_release_trial.rs (/Users/bri/build/quaked-distribution/debug/deps/packs_release_trial-a8a8e7e39f1eb91e)
+
+running 10 tests
+test a_real_part_downloads_from_the_data_release ... ok
+test packs::tests::refuses_plain_http_hosts_and_unsafe_names ... ok
+test packs::tests::refuses_unsafe_names ... ok
+test packs::tests::an_asset_that_does_not_match_its_listed_hash_is_refused ... ok
+test packs::tests::a_part_longer_than_listed_is_refused ... ok
+test packs::tests::a_corrupt_part_is_refused_and_nothing_unverified_is_kept ... ok
+test packs::tests::a_verified_part_is_not_downloaded_again ... ok
+test packs::tests::downloads_verifies_unpacks_and_then_works_offline ... ok
+test packs::tests::a_read_only_source_part_is_used_without_downloading ... ok
+test packs::tests::only_the_parts_holding_missing_assets_are_downloaded ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s
+
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.55s
+PASS the two mission packs and both episodes are playable on Quake when whole; never without Quake
+PASS each folder is classified honestly, with every read bounded
+PASS a pack dropped in between refreshes is found; an unchanged one is not re-read; a changed one is
+PASS two refreshes asked for together are one probe
+PASS a wrong range is not a directory; a failed read is retried; no validator means read again; empty is invalid
+PASS a source build finds add-ons by their folders; one with maps plays, one with nothing to play does not
+PASS a found folder's id is the Mac app's: no empty id, one _ per character, a clash numbered
+PASS the probe reads only a header from a server that ignores Range, and refuses HTML for a pack
+RESULT 8/8 passed (tests/game_catalogue_test.js)
+PASS with no choice, the start is as before
+PASS choosing the shareware keeps it, reloads, fetches no owned pack and keeps its own saves
+PASS unplayable, unsupported and unknown games are refused with the reason; a blocked store refuses
+PASS the shareware needs no catalogue; an unchecked Quake is allowed with a warning; a missing store refuses
+PASS a chosen game whose pack has gone is reported at start
+PASS a mission pack is chosen with Quake under it, its own pack and switch, and saves of its own
+PASS saves and settings follow the game running, not only the one chosen; the default keeps the original keys
+PASS a mission pack that could not start says why: Quake missing, or its own pack missing
+PASS one rule for the shelf and the console: what can start, including a game a range-less server could not check
+PASS an add-on fetches every pack of its folder in order, up to the first gap; a mission pack its first found
+PASS an add-on's loose game files become one pack mounted under its own packs
+PASS a folder of loose files with its own QuakeC starts alone; folder names are fetched percent-encoded
+PASS the Mac app mounts base packs, then the add-on's loose files, then its packs; a base game's loose files never
+PASS a loose file is fetched whole; a page or an oversized file is refused
+PASS the app library gives loose files to exactly the catalogue's add-ons
+PASS an add-on runs with the switch its own status-bar pictures ask for, as Quakespasm runs it
+PASS every add-on starts on the large-map protocol, as a map may pass protocol 15's entities in play
+RESULT 17/17 passed (tests/game_selection_test.js)
+PASS every box image exists and belongs to a catalogue game or an explicitly approved discovered title
+PASS a game's box: its own art, placeholders where it has none, and whether it plays
+PASS a picked folder: its name and its front, side (or spine) and back images, whatever their type
+PASS a game's URL chooses that page's game over the kept choice; the shelf starts on the kept one
+PASS on a game's own URL the game command switches by going to the new game's URL
+PASS a local-play player window opens on its host's game
+PASS native local artwork overlays only supplied faces and preserves bundled art and selection authority
+PASS front and spine canonical image names beat cover and side aliases while unboxed games retain printed missing faces
+PASS folder face selection is independent of enumeration order and never promotes nested or unsupported images
+PASS folder image type ties use native scan priority without allowing an alias to beat a canonical face
+PASS imported defaults work without local files and never authorize an unsupported title
+PASS artwork-only discovered titles use a neutral game label without implying Quake compatibility
+PASS current Quoth and Machine faces are active defaults while the screenshot collage is never a box front
+RESULT 13/13 passed (tests/game_shelf_test.js)
+PASS Start hosts the chosen players and mode, then opens player 2's window
+PASS while hosting: open the next missing player's window, every player is in, end local play
+PASS a player's window: its address, its start-up commands, and Leave
+RESULT 3/3 passed (tests/local_play_test.js)
+PASS a player's window joins the hosting page; messages go both ways; unreliable runs keep the newest
+PASS a player's window that loads before its host keeps asking; a full server refuses it
+PASS addresses: invalid sessions, an unknown kind and a remote address are not window joins
+PASS a window that gives up before it is taken leaves no ghost player on the host
+RESULT 4/4 passed (tests/net_window_test.js)
+PASS two players' windows join one native co-op server, each with its own player; moves, a kill and a leave stay theirs
+RESULT 1/1 passed (tests/window_play_native_test.js)
+PASS ranges are served as 206 with the right bytes; whole files as before; past the end is 416
+RESULT 1/1 passed (tests/serve_py_test.js)
+PASS a map's worldspawn fog starts it, as Quakespasm reads it; a map without one is clear
+PASS the fog command takes Quakespasm's forms; text counts as 0; too many values change nothing
+PASS a fade passes through the values between
+PASS the scene is fogged while drawn: as given in the classic picture, linear and over the exposure in Newer Game
+PASS the sky takes the fog's colour by its share, not by its distance; the renderer is wired
+PASS sky fog observes every changed console string, even between draws
+PASS sky fog clamps keys and commands, updating every compiled material without recompilation
+RESULT 7/7 passed (tests/fog_test.js)
+PASS TGA images decode to RGBA rows from the top: either row order, run-length packets of every kind, grey, alpha
+PASS the six sides are laid out as Quakespasm lays them, and the lookup by direction finds the same places
+PASS a map's sky keys name it, as Quakespasm reads them; a missing face is grey, none at all keeps the scrolling sky
+PASS the sky surfaces draw the skybox by direction, with the scrolling sky's rules; the renderer is wired
+RESULT 4/4 passed (tests/skybox_test.js)
+PASS options order, widgets, keyboard and touch dispatch match the visible rows
+RESULT 1/1 passed (tests/options_order_test.js)
+PASS a rocket going off beside the player shakes the eye at once, down first, and is over in under half a second
+PASS it is weaker with the square of the distance, arrives with the blast, and is not felt past its reach
+PASS a Spawn bursting is smaller; Chthon rising is felt across the cave and for longer
+PASS many explosions at once stay within the limits; the setting scales it and 0 switches it off
+PASS New Game, demos, pauses, menus, death and a new map are never shaken
+PASS the client's explosion parser starts it, and V_CalcRefdef moves the eye and the weapon together, tilting only the eye
+PASS new explosions work immediately after a restart or map clock reset
+PASS the actual render entry clears queued blasts when pause or intermission skips refdef
+RESULT 8/8 passed (tests/blast_shake_test.js)
+PASS the first page is as it was: 17 rows from y 44, lighting first, depth of field last, the cursor on the first
+PASS the page follows the cursor down to the rows past it and back up; Up from the top goes to the last row
+PASS the explosion shake slider and note paging use the actual visible rows
+RESULT 3/3 passed (tests/newer_menu_scroll_test.js)
+PASS a gunshot and the lightning bolts are handled word for word as before the add-on effects
+PASS no add-on effect module reaches into the shotgun's, the casings', the wall burn's or the lightning gun's
+PASS the Shambler's shudder is the same with the explosion shake beside it, and each keeps its own share of the view
+RESULT 3/3 passed (tests/addon_effects_guard_test.js)
+PASS each walking footfall shakes once, at the heel strike, and not between steps
+PASS running footfalls land on run2 and run5
+PASS strength is (1 - distance / 600) squared: a quarter at 300 units, nothing from 600
+PASS several Shamblers stomping together stay within the small-quake limits
+PASS short packet gaps still land their steps; longer jumps never replay one
+PASS starting to walk or run straight onto a contact pose is the first step
+PASS held, non-walking, teleporting, vanished and other-model poses never shake
+PASS a step ends early when the Shambler stops walking, changes model or the level changes
+PASS the player must be on the ground when the foot lands, and feels nothing in the air
+PASS New Game, the setting, demos, pause, death, intermission and menus stop the shake
+PASS small backwards steps in the predicted clock keep the step; a restart forgets it
+PASS with smoothed monster animation the shake waits for the contact pose to be drawn
+PASS V_CalcRefdef moves the eye and weapon together and tilts only the eye
+RESULT 13/13 passed (tests/shambler_steps_test.js)
+PASS no engine or platform module imports Newer, statically or dynamically
+PASS installed: every hook is the export of the Newer module install.js takes it from, none still a stub
+PASS Hooks_Install refuses a table with a hook missing or an unknown name, and changes nothing
+RESULT 3/3 passed (tests/hooks_test.js)
+PASS existing point hull finds exact thin-liquid entry and exit
+PASS public static-sound parser records drips independently of audio playback
+PASS drips fall down the proven column, pause holds, and disabling retires them
+PASS underwater sources do not invent ceiling drips; rewinds restart schedules
+PASS motes never overwrite live effects and new births have no pre-birth movement
+PASS one switch cannot clear another effect owner and Classic hides all new motes
+PASS thin water landings reuse the ripple detector; existing impact events keep priority
+PASS ambient registry is bounded and rejects nonfinite positions
+RESULT 8/8 passed (tests/drips_test.js)
+PASS actual stock lightning records the visual trace and all three damage rays after one ammo-consuming pulse
+PASS native damage receipts and contacts distinguish target, armor and invulnerable contact from a miss
+PASS waist-deep native water discharge consumes all cells without inventing a normal beam
+PASS a dry native beam crossing actual BSP water reports its first water contact without a discharge
+PASS real native Shambler charge/cast/terminal state events remain distinct and a stop needs an actual cast
+PASS read-only electric observation leaves native ammo, damage, trace globals and randomness unchanged
+PASS unrelated weapon, dry fire, demo, unpaired connection and abandoned VM state cannot fabricate electric events
+RESULT 7/7 passed (tests/electric_native_test.js)
+PASS electrical role contract keeps every owner-selected full clip and alternate
+PASS electric stream anchor is the clamped nearest point, including degenerate beams
+PASS charge originates at its moving source and real stereo reverses with listener orientation
+PASS player stream follows nearest beam point while damage and water remain at actual contacts
+PASS ordinary charge, firing and release transitions preserve all full-file tails and never seek past the start
+PASS firing repeats a whole file only after natural ending while new native pulses still confirm activity
+PASS voice overload drops new cues rather than cutting existing full clips and completed slots recover
+PASS eel zap is spatial at its emitter; malformed events cannot create voices
+PASS pause, death, disconnect, menu and world reset stop safely without fabricating release cues
+PASS closed audio, rejected playback and late play resolution remain bounded and cannot revive old voices
+PASS distinct hit targets keep their own contacts, and repeated pulses cannot restart an existing impact tail
+PASS approved charge and player release alternates advance between complete natural one-shots
+PASS a full source tail freezes when its emitter disappears and cannot follow a recycled entity slot
+PASS player release waits for both the pulse hold and actual cessation, and cannot restart an ended file while ceased
+PASS weapon changes and cell exhaustion respect the same confirmed-pulse hold before the single player stop
+PASS an emitter freed and recycled entirely between frames cannot move its former full-clip tail
+PASS rejected contact playback coalesces repeated native pulses instead of filling the voice pool with failures
+RESULT 17/17 passed (tests/electric_spatial_test.js)
+PASS the shared Milky Way profile dims and increases background contrast while making native clouds more visible
+PASS native sky1 and matching sky4 pixels qualify, while the unrelated same-name E1M1 sky remains native
+PASS both complete native RGBA identities are required and same-name altered pixels do not match
+PASS Classic, split Classic and texture-off avoid loading; Newer demo sky follows the existing visual mode
+PASS JPEG failure preserves native fallback, records the error and retries only after an explicit map clear
+PASS a shared asynchronous image arriving after map clear cannot activate stale or unrelated map materials
+PASS panorama uses world direction and shared fog; faint clouds preserve the exact native alpha and original pixels
+PASS map clear disposes replacement materials exactly once while preserving shared JPEG and borrowed native textures
+PASS the shipped Milky Way JPEG retains the supplied archive member byte for byte and full panorama dimensions
+PASS public sky-chain draws the lazy panorama on existing meshes, keeps native clouds and gives explicit cubeskies precedence
+PASS a late callback from a failed request cannot replace a later successful shared panorama
+PASS existing neighbor-view uniform holders select the same lazy image and track current visual eligibility
+PASS public main sky HDR switches invalidate the program and specialize every MRT output for the current depth policy
+RESULT 13/13 passed (tests/milkyway_sky_test.js)
+PASS ordinary grayscale XYZ uses channel red values and authored height through public foreground and preparation APIs
+PASS glass recomposes canonical normal AND height outside decoded panes before foreground and prepared keys
+PASS different opening masks produce distinct final normal keys without corrupting shared decoded channel caches
+PASS ordinary missing, incomplete or mismatched XYZ falls back to its crafted height without partial or legacy donor data
+PASS glass missing or wrong-sized XYZ, opening, sheen or height fails safely to canonical matte pigment
+PASS explicit glass composition with an absent opening declaration cannot reinterpret grayscale sheen as a packed aperture
+PASS legacy RGB normal and packed RG gloss behavior stays unchanged without new composition metadata
+PASS composition uses unsplit pigment for fullbright panes and preserves native fullbright Classic images
+PASS Classic pass and disabled texture option never request Q92 channel assets
+RESULT 9/9 passed (tests/texture_q92_channels_test.js)
+PASS mouse input uses the registered sensitivity cvar
+RESULT 1/1 passed (tests/in_web_test.js)
+PASS public body capture admits both mouse axes into real player angles only after a lock grant
+PASS a refused public lock request remains inactive and another real gesture can retry
+PASS shutdown while captured then async unlock and reinitialization can acquire capture and aim again
+PASS default mouse look survives a bound middle-button cycle while explicit -mlook still disables vertical aiming
+RESULT 4/4 passed (tests/in_web_capture_test.js)
+PASS IN_Init twice adds each listener once; IN_Shutdown removes them all, touch start included
+RESULT 1/1 passed (tests/in_web_lifecycle_test.js)
+PASS the focus is where the view looks: the median of five rays, so one thin thing on the crosshair does not snatch it
+PASS the focus settles smoothly on the client's clock, holds while paused, and snaps on a new level, a teleport or time going back
+PASS off in Classic, at strength 0 and in WebXR; the circle of confusion scales with the picture's height and strength
+PASS inside a wall the focus holds; along the ray the sky focuses far and lava stops it, water does not; clearing forgets
+PASS the real E1M1 hull: a ray at the sky stops on its face, and knowing the sky faces makes it focus far
+PASS on by default at the lowest nonzero slider step (0.05); explicit player choices remain saved
+PASS the 19 October default migration handles an already migrated 0.15 configuration once and preserves explicit strength choices
+RESULT 7/7 passed (tests/dof_test.js)
+PASS player movement never produces these enemy-only footsteps
+PASS all five approved enemy families step on the real floor and retain weight and movement cadence
+PASS dogs Shamblers fiends zombies players and unknown walkers never gain human enemy footsteps
+PASS approved enemies still need movement a walking pose and a nearby floor
+PASS native enemy footsteps take ownership only after playback, never merely because a sound is precached
+PASS Classic demos pause and the switch silence an otherwise eligible moving enemy
+PASS enemy footsteps keep the four-per-frame bound and cannot steal full native sound channels
+RESULT 7/7 passed (tests/footsteps_test.js)
+PASS the material table reads what Quake's texture names say
+PASS every surface sound is a short, clean, distinct sound
+PASS a nail on a wall admits its material sound instead of the original while preserving native random decisions
+PASS landing on the floor and the axe on a wall bring the surface's sound; the shotgun and lightning gun none
+PASS New Game, a demo and the switch off: the game's own sound only
+PASS no game sound is ever cut off: with nearly every channel busy the surface sound waits
+PASS an admitted surface sound starts one PCM source and preserves logical observer notifications once
+PASS an inaudible surface candidate cannot swallow an otherwise audible native impact
+RESULT 8/8 passed (tests/material_impacts_test.js)
+PASS recorded player submersion starts entry once, loops underwater, and bubbles only during filling
+PASS wading uses quick fade-in and long fade-out when movement stops
+PASS water sounds use Sound Volume bus and stop on pause, hide, death, Classic and disconnect
+PASS shutdown releases media and a late play promise cannot restart a disconnected water loop
+PASS dry game preparation warms existing water media before the first dive, whose public update starts full gain synchronously
+PASS a denied silent dry warm-up stays bounded and retries exactly once on the next genuine dive
+RESULT 6/6 passed (tests/water_audio_test.js)
+PASS actual native packet admits one custom source before native playback and still notifies existing observers once
+PASS false thrown unmapped and non-boolean replacement results retain one normal native playback
+PASS Classic and the split Classic pass keep native audio even when a registered Newer replacement would admit it
+PASS replacement unsubscription restores native playback and one admitted owner prevents duplicate replacement execution
+PASS admitting a replacement preserves actual native PCM cache file bytes and loaded QC globals
+PASS admitting a ready replacement stops its old fallback but preserves other actors and channels
+PASS static loops pass through the same admission policy before any native buffer starts
+PASS ambient fallback can become replaced and resume natively after its replacement unsubscribes
+PASS real electric event subscriber replaces native player lightning packets with full clip20 without duplicate starts
+PASS real electric mapping keeps original audio without actor receipts, in Classic/demo and after replacement media failure
+PASS the real placed-fire parser and owner replace the native loop with the supplied environmental recording
+PASS the real underwater owner replaces only the submerged native bed and restores surface ambience
+PASS real clientdata pickup transitions replace quad ring and pentagram native packets with the supplied individual cues
+PASS admitting an auto-channel contact never retires independent earlier contacts from the same actor
+PASS a replacement PCM output start failure falls through to the original rather than claiming admission
+PASS missing replacement PCM keeps the real native cache and original source usable
+PASS actual underwater death is replaced while drowning pain after respawn keeps its native sound through the full death tail
+PASS an old electric contact tail cannot replace native audio belonging to a reused same-object edict life
+PASS a synchronous MP3 play throw cannot claim electric admission or swallow the native source
+PASS native water entry is replaced only for the local submerged player with an actually admitted entry recording
+PASS actual native water1 and water2 wading packets are replaced only while the local walking recording is audible and fall back after its fade or failure
+RESULT 21/21 passed (tests/native_sound_replacement_test.js)
+PASS actual static-sound placement drives one spatialized fire loop independent of torch rendering
+PASS fire uses bounded nearest source, existing stereo direction and static-flame fallback only when needed
+PASS pause, hide, mute, death, menu, Classic and demo silence fire immediately on the effects bus
+PASS fire resets source history, rejects play-spam and invalidates pending media on shutdown
+RESULT 4/4 passed (tests/environment_sounds_test.js)
+PASS real clientdata transitions play individual cues, exact-two bed and third acquisition once
+PASS pair fades after count leaves two and initial baseline or suit cannot fabricate a combo
+PASS actual clientdata death edge plays once and can finish through same-world respawn
+PASS only base Quake end-map finale message plays the ending cue
+PASS new cues use the effects bus and lifecycle gates silence them without stale replay
+PASS late play success after reset cannot resurrect an old context-bound cue
+PASS a clientdata packet replaces expired powers before counting its newly gained powers
+RESULT 7/7 passed (tests/player_events_audio_test.js)
+PASS real demo2 fills the HUD face from recorded player geometry
+PASS demo visual air freezes on repeated reads and resets on surfacing, suit, rewind and file replacement
+PASS client geometry distinguishes wading from head water and ignores stationary movement
+PASS demo death and respawn received between visible frames discard the old fill
+RESULT 4/4 passed (tests/face_demo_water_test.js)
+PASS submersion immediately shows W1 and full visor starts at ninety percent air used
+PASS surface drain reverses one frame every fifty game milliseconds and cancels on reentry
+RESULT 2/2 passed (tests/face_water_entry_test.js)
+PASS in a leaf by water and sky, the two ambient channels play the map's water and wind sounds; elsewhere they fade
+RESULT 1/1 passed (tests/ambient_sounds_test.js)
+PASS with every channel busy, the long sound about to finish is taken, not a short one just begun
+RESULT 1/1 passed (tests/sound_channel_steal_test.js)
+PASS two remote TCP clients join the native Quake server; movement, death and disconnect remain isolated
+RESULT 1/1 passed (tests/lan_gameplay_test.js)
+TOTAL 218/218 passed
+
+> quaked@0.132.5 tauri
+> tauri build --target universal-apple-darwin -- --locked
+
+        Info Looking up installed tauri packages to check mismatched versions...
+   Compiling quaked v0.132.5 (/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-UcLHtZ/src-tauri)
+warning: function `ensure` is never used
+   --> src/packs.rs:293:8
+    |
+293 | pub fn ensure(root: &Path, base: &str, packs: &[Pack], progress: &mut dyn FnMut(Progress)) -> Result<PathBuf, String> {
+    |        ^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `quaked` (bin "quaked") generated 1 warning
+    Finished `release` profile [optimized] target(s) in 2m 03s
+   Compiling quaked v0.132.5 (/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-UcLHtZ/src-tauri)
+warning: function `ensure` is never used
+   --> src/packs.rs:293:8
+    |
+293 | pub fn ensure(root: &Path, base: &str, packs: &[Pack], progress: &mut dyn FnMut(Progress)) -> Result<PathBuf, String> {
+    |        ^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `quaked` (bin "quaked") generated 1 warning
+    Finished `release` profile [optimized] target(s) in 1m 41s
+       Built application at: /Users/bri/build/quaked-distribution/universal-apple-darwin/release/quaked
+    Bundling Quaked.app (/Users/bri/build/quaked-distribution/universal-apple-darwin/release/bundle/macos/Quaked.app)
+     Signing with identity "-"
+Signing with identity "-"
+Signing /Users/bri/build/quaked-distribution/universal-apple-darwin/release/bundle/macos/Quaked.app/Contents/MacOS/quaked
+/Users/bri/build/quaked-distribution/universal-apple-darwin/release/bundle/macos/Quaked.app/Contents/MacOS/quaked: replacing existing signature
+Signing with identity "-"
+Signing /Users/bri/build/quaked-distribution/universal-apple-darwin/release/bundle/macos/Quaked.app
+/Users/bri/build/quaked-distribution/universal-apple-darwin/release/bundle/macos/Quaked.app: replacing existing signature
+        Warn skipping app notarization, no APPLE_ID & APPLE_PASSWORD & APPLE_TEAM_ID or APPLE_API_KEY & APPLE_API_ISSUER & APPLE_API_KEY_PATH environment variables found
+    Finished 1 bundle at:
+        /Users/bri/build/quaked-distribution/universal-apple-darwin/release/bundle/macos/Quaked.app (1.69 GiB)
+
+Staged builds passed. Receipt: /Users/bri/SOURCE/Quaked/dist/staged/staged-receipt.json
+[Dev 8f0e96bc] Record texture authoring methodology and reviewed Hexen batch 7
+ 443 files changed, 480329 insertions(+), 48 deletions(-)
+ create mode 100644 AGENTS.md
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/alias-batch.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/alias-originals/01-ttex052-2c1bff60990a.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/alias-originals/02-rtex036-42b6bee9ca16.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/alias-originals/native-contact.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/alias-selection.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/batch-final.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/batch-motif-trial.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/batch-pattern.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/batch.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/codec-environment.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/generated/rtex121.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/generated/rtex274.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/generated/rtex322.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/generated/rtex413.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/generated/ttex005.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/generated/ttex032.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/generated/ttex068.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/generated/ttex079.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters-motif-v2/rtex322/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters-motif-v2/rtex322/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters-motif-v2/rtex322/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters-motif/rtex322/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters-pattern/rtex322/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/rtex121/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/rtex121/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/rtex121/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/rtex274/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/rtex274/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/rtex274/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/rtex322/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/rtex413/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/rtex413/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/rtex413/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/ttex005/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/ttex005/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/ttex005/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/ttex032/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/ttex032/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/ttex032/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/ttex068/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/ttex068/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/ttex068/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/ttex079/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/ttex079/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/masters/ttex079/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/native-selection.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/01-rtex322-411496d1fad7.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/02-rtex121-3e356d95bcb6.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/03-rtex413-af54a88c9376.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/04-rtex274-b3fd79635c32.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/05-ttex005-c5b5337a494c.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/06-ttex032-d8d2b5c8a30f.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/07-ttex068-b8aa0097f60c.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/08-ttex079-9365fe57d1b7.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/originals/native-contact.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/rtex121.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/rtex274.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/rtex322.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/rtex413.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/ttex005.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/ttex032.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/ttex068.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/prompts/ttex079.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/registered-qualified-bindings.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/relief/rtex322-inlays.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/index.html
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/rtex121-high-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/rtex121-high-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/rtex121-mid-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/rtex121-mid-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/rtex274-high-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/rtex274-high-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/rtex274-mid-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/rtex274-mid-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/rtex322-high-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/rtex322-high-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/rtex322-mid-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/rtex322-mid-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/rtex413-high-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/rtex413-high-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/rtex413-mid-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/rtex413-mid-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/ttex005-high-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/ttex005-high-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/ttex005-mid-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/ttex005-mid-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/ttex032-high-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/ttex032-high-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/ttex032-mid-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/ttex032-mid-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/ttex068-high-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/ttex068-high-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/ttex068-mid-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/ttex068-mid-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/ttex079-high-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/ttex079-high-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/ttex079-mid-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/ttex079-mid-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/selection-final.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/selection.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/high-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/high-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/high-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/high-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/high-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/manifest.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/mid-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/mid-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/mid-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/mid-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif-v2/rtex322/mid-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-motif/rtex322/manifest.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers-pattern/rtex322/manifest.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/high-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/high-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/high-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/high-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/high-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/manifest.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/mid-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/mid-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/mid-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/mid-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex121/mid-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/high-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/high-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/high-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/high-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/high-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/manifest.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/mid-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/mid-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/mid-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/mid-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex274/mid-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex322/manifest.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/high-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/high-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/high-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/high-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/high-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/manifest.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/mid-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/mid-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/mid-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/mid-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/rtex413/mid-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/high-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/high-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/high-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/high-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/high-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/manifest.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/mid-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/mid-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/mid-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/mid-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex005/mid-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/high-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/high-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/high-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/high-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/high-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/manifest.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/mid-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/mid-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/mid-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/mid-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex032/mid-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/high-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/high-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/high-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/high-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/high-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/manifest.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/mid-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/mid-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/mid-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/mid-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex068/mid-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/high-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/high-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/high-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/high-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/high-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/manifest.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/mid-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/mid-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/mid-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/mid-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/tiers/ttex079/mid-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/batch-first-four.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rpal317.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex006.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex096.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex104.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rtex306.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/ttex012.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/ttex054.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/ttex153.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters-layered/rtex306/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters-layered/rtex306/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters-layered/rtex306/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rpal317/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rpal317/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rpal317/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex006/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex006/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex006/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex096/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex096/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex096/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex104/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex104/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex104/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex306/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex306/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/rtex306/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex012/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex012/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex012/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex153/color.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex153/height.npy
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex153/master.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/material-plan-v2.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/native-selection.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/01-rtex006-ed0ea21baafa.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/02-rtex104-9751c9aa3732.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/03-rtex096-7d397606c172.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/04-rtex306-c690e6f19072.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/05-ttex054-cddf441f348f.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/06-ttex012-84bb278bdd94.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/07-rpal317-4bf05bb0cae8.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/08-ttex153-b0d888d2faae.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/native-contact.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/pre-tier-root-review/rtex096-material-height-opposed.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/pre-tier-root-review/rtex104-material-height-opposed.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/pre-tier-root-review/ttex054-material-height-opposed.png
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rpal317-material-v2.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rpal317.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex006.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex096.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex104.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex306-material-v2.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rtex306.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex012-material-v2.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex012.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex054-material-v2.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex054.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex153-material-v2.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex153.txt
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/rtex306-inset.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-first-four/index.html
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-first-four/rtex006-high-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-first-four/rtex006-high-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-first-four/rtex006-mid-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-first-four/rtex006-mid-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-first-four/rtex096-high-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-first-four/rtex096-high-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-first-four/rtex096-mid-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-first-four/rtex096-mid-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-first-four/rtex104-high-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-first-four/rtex104-high-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-first-four/rtex104-mid-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-first-four/rtex104-mid-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-first-four/rtex306-high-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-first-four/rtex306-high-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-first-four/rtex306-mid-relief.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-first-four/rtex306-mid-review.jpg
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/selection-first-four.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/selection.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex006/high-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex006/high-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex006/high-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex006/high-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex006/high-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex006/manifest.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex006/mid-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex006/mid-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex006/mid-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex006/mid-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex006/mid-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex096/high-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex096/high-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex096/high-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex096/high-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex096/high-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex096/manifest.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex096/mid-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex096/mid-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex096/mid-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex096/mid-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex096/mid-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex104/high-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex104/high-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex104/high-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex104/high-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex104/high-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex104/manifest.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex104/mid-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex104/mid-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex104/mid-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex104/mid-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex104/mid-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex306/high-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex306/high-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex306/high-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex306/high-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex306/high-normalZ.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex306/manifest.json
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex306/mid-diffuse.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex306/mid-height.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex306/mid-normalX.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex306/mid-normalY.webp
+ create mode 100644 assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/rtex306/mid-normalZ.webp
+ create mode 100644 docs/evidence/hexen2-textures-2026-10-19/batch-007-alias-selection/inventory.json
+ create mode 100644 docs/evidence/hexen2-textures-2026-10-19/batch-007-selection/inventory.json
+ create mode 100644 docs/evidence/hexen2-textures-2026-10-19/batch-008-selection/inventory.json
+ create mode 100644 docs/hexen2/textures/BATCH-007-REPAIRS.md
+ create mode 100644 docs/hexen2/textures/BATCH-007.md
+ create mode 100644 docs/hexen2/textures/HANDOVER.md
+ create mode 100644 docs/hexen2/textures/batch-007-alias-public-bindings-v1.json
+ create mode 100644 docs/hexen2/textures/batch-007-alias-public-source-proof.json
+ create mode 100644 docs/hexen2/textures/batch-007-alias-public-verify-bindings.py
+ create mode 100644 docs/hexen2/textures/batch-007-alias-public-verify.py
+ create mode 100644 docs/hexen2/textures/batch-007-art-review-v2.json
+ create mode 100644 docs/hexen2/textures/batch-007-art-review.json
+ create mode 100644 docs/hexen2/textures/batch-007-final-review-preparation.log
+ create mode 100644 docs/hexen2/textures/batch-007-motif-before-guards-source.py
+ create mode 100644 docs/hexen2/textures/batch-007-motif-preparation.log
+ create mode 100644 docs/hexen2/textures/batch-007-motif-public-actual-cli-v1.json
+ create mode 100644 docs/hexen2/textures/batch-007-motif-public-code-review-v1.json
+ create mode 100644 docs/hexen2/textures/batch-007-motif-public-qualification.md
+ create mode 100644 docs/hexen2/textures/batch-007-motif-public-tests-green-v1.json
+ create mode 100644 docs/hexen2/textures/batch-007-motif-public-tests-green-v1.txt
+ create mode 100644 docs/hexen2/textures/batch-007-motif-public-tests-red-v1.json
+ create mode 100644 docs/hexen2/textures/batch-007-motif-public-tests-red-v1.txt
+ create mode 100644 docs/hexen2/textures/batch-007-motif-public-verify-actual-cli.py
+ create mode 100644 docs/hexen2/textures/batch-007-motif-review-preparation.log
+ create mode 100644 docs/hexen2/textures/batch-007-motif-v2-preparation.log
+ create mode 100644 docs/hexen2/textures/batch-007-pattern-preparation.log
+ create mode 100644 docs/hexen2/textures/batch-007-pattern-review-preparation.log
+ create mode 100644 docs/hexen2/textures/batch-007-plan-art-review.json
+ create mode 100644 docs/hexen2/textures/batch-007-preparation.log
+ create mode 100644 docs/hexen2/textures/batch-007-public-actual-v1.json
+ create mode 100644 docs/hexen2/textures/batch-007-public-actual-v2.json
+ create mode 100644 docs/hexen2/textures/batch-007-public-actual-verification.md
+ create mode 100644 docs/hexen2/textures/batch-007-public-catalog-post-cleanup.json
+ create mode 100644 docs/hexen2/textures/batch-007-public-final-actual-v1.json
+ create mode 100644 docs/hexen2/textures/batch-007-public-final-catalog-observation.json
+ create mode 100644 docs/hexen2/textures/batch-007-public-final-preview-v1.json
+ create mode 100644 docs/hexen2/textures/batch-007-public-final-verification.md
+ create mode 100644 docs/hexen2/textures/batch-007-public-post-cleanup-actual.json
+ create mode 100644 docs/hexen2/textures/batch-007-public-post-cleanup-preview.json
+ create mode 100644 docs/hexen2/textures/batch-007-public-post-cleanup.md
+ create mode 100644 docs/hexen2/textures/batch-007-public-prepared-and-alias.md
+ create mode 100644 docs/hexen2/textures/batch-007-public-preview-v1.json
+ create mode 100644 docs/hexen2/textures/batch-007-public-preview-verification.md
+ create mode 100644 docs/hexen2/textures/batch-007-public-retirement-audit.json
+ create mode 100644 docs/hexen2/textures/batch-007-public-source-proof-v2.json
+ create mode 100644 docs/hexen2/textures/batch-007-public-source-proof.json
+ create mode 100644 docs/hexen2/textures/batch-007-public-source-usage.md
+ create mode 100644 docs/hexen2/textures/batch-007-public-ttex005-usage-v2.json
+ create mode 100644 docs/hexen2/textures/batch-007-public-ttex005-usage.json
+ create mode 100644 docs/hexen2/textures/batch-007-public-verify-actual-v2.py
+ create mode 100644 docs/hexen2/textures/batch-007-public-verify-actual.py
+ create mode 100644 docs/hexen2/textures/batch-007-public-verify-catalog-post-cleanup.py
+ create mode 100644 docs/hexen2/textures/batch-007-public-verify-final-preview.py
+ create mode 100644 docs/hexen2/textures/batch-007-public-verify-final.py
+ create mode 100644 docs/hexen2/textures/batch-007-public-verify-preview-v2.py
+ create mode 100644 docs/hexen2/textures/batch-007-public-verify-preview.py
+ create mode 100644 docs/hexen2/textures/batch-007-public-verify-retirement.py
+ create mode 100644 docs/hexen2/textures/batch-007-public-verify-source-usage-v2.py
+ create mode 100644 docs/hexen2/textures/batch-007-public-verify-source-usage.py
+ create mode 100644 docs/hexen2/textures/batch-007-repair-diagnostic/review--index.html
+ create mode 100644 docs/hexen2/textures/batch-007-repair-diagnostic/review--rtex322-high-relief.jpg
+ create mode 100644 docs/hexen2/textures/batch-007-repair-diagnostic/review--rtex322-high-review.jpg
+ create mode 100644 docs/hexen2/textures/batch-007-repair-diagnostic/review--rtex322-mid-relief.jpg
+ create mode 100644 docs/hexen2/textures/batch-007-repair-diagnostic/review--rtex322-mid-review.jpg
+ create mode 100644 docs/hexen2/textures/batch-007-repair-diagnostic/review-pattern--index.html
+ create mode 100644 docs/hexen2/textures/batch-007-repair-diagnostic/review-pattern--rtex322-high-relief.jpg
+ create mode 100644 docs/hexen2/textures/batch-007-repair-diagnostic/review-pattern--rtex322-high-review.jpg
+ create mode 100644 docs/hexen2/textures/batch-007-repair-diagnostic/review-pattern--rtex322-mid-relief.jpg
+ create mode 100644 docs/hexen2/textures/batch-007-repair-diagnostic/review-pattern--rtex322-mid-review.jpg
+ create mode 100644 docs/hexen2/textures/batch-007-retirement.json
+ create mode 100644 docs/hexen2/textures/batch-007-review-preparation.log
+ create mode 100644 docs/hexen2/textures/batch-007-rtex322-motif-plan-public-review.json
+ create mode 100644 docs/hexen2/textures/batch-007-rtex322-motif-plan-public-review.md
+ create mode 100644 docs/hexen2/textures/batch-007-rtex322-motif-reuse-research.json
+ create mode 100644 docs/hexen2/textures/batch-007-rtex322-motif-reuse-research.md
+ create mode 100644 docs/hexen2/textures/batch-007-rtex322-native-inset-grid.png
+ create mode 100644 docs/hexen2/textures/batch-008-first-four-public-actual.json
+ create mode 100644 docs/hexen2/textures/batch-008-first-four-public-diagnostics/preview-failed-v1-error.txt
+ create mode 100644 docs/hexen2/textures/batch-008-first-four-public-diagnostics/preview-failure-custody.json
+ create mode 100644 docs/hexen2/textures/batch-008-first-four-public-diagnostics/preview-verifier-failed-v1.py
+ create mode 100644 docs/hexen2/textures/batch-008-first-four-public-preview-v2.json
+ create mode 100644 docs/hexen2/textures/batch-008-first-four-public-preview.json
+ create mode 100644 docs/hexen2/textures/batch-008-first-four-tier-derivation.log
+ create mode 100644 docs/hexen2/textures/batch-008-first-four-verify-public-actual.py
+ create mode 100644 docs/hexen2/textures/batch-008-first-four-verify-public-preview.py
+ create mode 100644 docs/hexen2/textures/batch-008-first-three-master-preparation.log
+ create mode 100644 docs/hexen2/textures/batch-008-last-two-master-preparation.log
+ create mode 100644 docs/hexen2/textures/batch-008-material-plan-v2-public-review.json
+ create mode 100644 docs/hexen2/textures/batch-008-plan-public-review.json
+ create mode 100644 docs/hexen2/textures/batch-008-pre-tier-semantic-diagnostics/probe.json
+ create mode 100644 docs/hexen2/textures/batch-008-pre-tier-semantic-diagnostics/rtex006-master-semantic.png
+ create mode 100644 docs/hexen2/textures/batch-008-pre-tier-semantic-diagnostics/rtex306-master-semantic.png
+ create mode 100644 docs/hexen2/textures/batch-008-pre-tier-semantic-probe.py
+ create mode 100644 docs/hexen2/textures/batch-008-pre-tier-semantic-public-review.json
+ create mode 100644 docs/hexen2/textures/batch-008-public-native-briefs.json
+ create mode 100644 docs/hexen2/textures/batch-008-public-native-briefs.md
+ create mode 100644 docs/hexen2/textures/batch-008-public-source-proof.json
+ create mode 100644 docs/hexen2/textures/batch-008-public-verify-source.py
+ create mode 100644 docs/hexen2/textures/batch-008-rtex306-source-master-public-proof.json
+ create mode 100644 docs/hexen2/textures/batch-008-rtex306-verify-source-master.py
+ create mode 100644 docs/hexen2/textures/batch-008-source-master-diagnostics/quaked-rtex306-source-master-verification-attempt1.json
+ create mode 100644 docs/hexen2/textures/batch-008-source-master-diagnostics/quaked-rtex306-source-master-verification-attempt2.json
+ create mode 100644 docs/hexen2/textures/batch-008-source-master-diagnostics/quaked-rtex306-source-master-verifier-failed-attempt1.py
+ create mode 100644 docs/hexen2/textures/batch-008-source-material-art-review.json
+ create mode 100644 docs/hexen2/textures/batch-008-ttex153-pre-tier-diagnostics/master-native-coordinate-grid.png
+ create mode 100644 docs/hexen2/textures/batch-008-ttex153-result-recovery.json
+ create mode 100644 docs/hexen2/textures/checkpoint-c00ca59-ci.json
+ create mode 100644 docs/hexen2/textures/texture-skill-validation.json
+ create mode 100644 docs/hexen2/textures/texture-skill-validation/fixture-integrity.json
+ create mode 100644 docs/hexen2/textures/texture-skill-validation/forward-report.md
+ create mode 100644 docs/hexen2/textures/texture-skill-validation/ordinary-journal-operations.json
+ create mode 100644 skills/quaked-texture-authoring/SKILL.md
+ create mode 100644 skills/quaked-texture-authoring/agents/openai.yaml
+ create mode 100644 skills/quaked-texture-authoring/references/repairs-and-verification.md
+ create mode 100644 skills/quaked-texture-authoring/references/workflow.md
+ create mode 100644 skills/quaked-texture-authoring/scripts/generation_journal.py
+ create mode 100644 tests/texture_motif_master_test.py
+ create mode 100644 tools/texture_sheets/prepare_motif_texture_master.py

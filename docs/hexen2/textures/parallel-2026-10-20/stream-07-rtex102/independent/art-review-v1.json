@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS independent actual material, native fidelity, repeat/corners and plausible authored relief for this one candidate",
+  "reviewedAt": "2026-10-20T13:41:30.758104+00:00",
+  "reviewer": "Different-author supervised reviewer; no generation, producer, asset or shared-state changes",
+  "nativeID": "e839a43cf82585d2393634074db6a19968c39436e12dd85201ec0074d92710dd",
+  "name": "rtex102",
+  "edition": "base",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/masters/rtex102/master.json",
+    "sha256": "6154051cd40e1bbb22f291ddcf04815904092832c9e9ce3c74ef8d0f41a60b09"
+  },
+  "descriptor": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/batch.json",
+    "sha256": "7a444829defc64e8f0a7b8cb10943d193ed70ca08c0697deaa25b4434ce40a4b"
+  },
+  "mapProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/actual-v2.json",
+    "sha256": "23bc87da1bc2a5014e64fdc1ff15477aa225bfd2929bca1908bb9798d9347aac"
+  },
+  "previewProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/preview-v1.json",
+    "sha256": "655ade1fcf17da0285e40f94defc428e3d8c1815b70db1f700d10ad824595f7a"
+  },
+  "witnessClassification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/source-witness-classification.json",
+    "sha256": "1cf9304878ea9489cf5f4e94823b0a3fe079a0dae678d144ab2087fbbf305105"
+  },
+  "material": "Actual raw1254, canonical512 and decoded256/512 depict recognisable dark weathered rock: coherent angular grey/grey-green mineral faces, irregular pits/fissures and thin brown oxide variation. It reads as rock without relying on the basalt-like label. Exact lithology is interpretation. No synthetic grain overlay, pixel tracing, invented masonry blocks or added perimeter framing observed.",
+  "nativeFidelity": "BOTH native and decoded replacements BOX-reduced to32 and16 preserve the very dark charcoal/brown field, subordinate grey-green patches, irregular feature scale and overall mood. The source has no regular emblem or architectural layout to reconstruct. Mean errors are diagnostic only.",
+  "repeatsAndCorners": "Actual literal X/Y/four-way colour, height, XYZ and both neutral-light seams inspected at each tier, plus full 2x2 colour repeats. No introduced straight join, frame, disconnected new object or corner break observed. Individual rock motifs repeat, as expected for one source; no claim of invisible repetition.",
+  "relief": "Both textured and neutral opposed lights retain plausible rough-rock facets and recesses. Conservative B/P face-dominated observations remain above F/N recesses after actual tier compression. No isolated raised oxide beads or coating plane observed. Mixed staining/rims are not pure depth classes. Photometric relief remains a plausible authored interpretation rather than measured geology.",
+  "viewsActuallyInspected": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/generated/rtex102.png",
+      "sha256": "9b7b306f581f0fabbb34d0e93a927021baf6a79965c3a2458100992748d7c2da"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/masters/rtex102/color.png",
+      "sha256": "ffc551a51c618962d42cc565572e2ae617b9314728255243297e31f1a855e3dd"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/tiers/rtex102/mid-diffuse.webp",
+      "sha256": "f1ac8c6548f9cb55746115cac48663828d619b872b4e838e6c74d7292777150d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/tiers/rtex102/high-diffuse.webp",
+      "sha256": "535cd730e6e95e37c29f2f5d4a68c1fd24233fca9850525e0816170545f56ffb"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/review/rtex102-mid-review.jpg",
+      "sha256": "34e38f442c4bcc25e67803459e97747931936916ed38dd816e8c5f6b062987f7"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/review/rtex102-high-review.jpg",
+      "sha256": "242db88f1eb44e250d4199bf09341360ef0adc55ece208b876ccd0b527d3edcd"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/review/rtex102-mid-relief.jpg",
+      "sha256": "3ed02d8754e0efbe9e8229fe3c89ae83e41b068f0718a9f3204c4105908df787"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/review/rtex102-high-relief.jpg",
+      "sha256": "06c3a51f79c6372847a3818729267f872838a83d07471f27c281fe907bb30711"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/master-witness-labels-1to1.png",
+      "sha256": "931f9f9ddee9e180ca1b64e3010530af883291d5d1ec00c847986529b24bb237"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/witness-crops-observations.png",
+      "sha256": "d6c58fc03a38a658f903a7624587f69e89c820d4fa5d1ff0b0eb5688f7717958"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-color-1to1.png",
+      "sha256": "4a497677fece81295c69b1b644f20a0b63c3ec8225fb14a3c27a0a95580a31bb"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-A-1to1.png",
+      "sha256": "0b640b9311c033e66d6e155ab51406ecd96be58bcdbce9a466293db10a54c62f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-B-1to1.png",
+      "sha256": "c95242b3ba28fe53e242fbf22e29bf1f9eb6f27e26b95c0adaaf1c500d231916"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-textured-light-A-1to1.png",
+      "sha256": "0790a307be25a7f16a8738747aec0c1c28818e0f3c887beab926c021b50cde8c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-textured-light-B-1to1.png",
+      "sha256": "c1cec0c1d43c081ccc26f7f686f462e3ac985878755eec104dbc7cf258362377"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-color-seams-1to1.png",
+      "sha256": "8e02cb150d09f7ab1eb5ae3fbd095956ea2aeca44aadecb27ea7586566f7514a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-height-seams-1to1.png",
+      "sha256": "1c471ff0adfa90c3294d1a9896b5a09d97660f987fcd860b8d3d76ecae8fd6b2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-XYZ-seams-1to1.png",
+      "sha256": "ea6f376370fac2aa9933fe6c18bd5413796e92ccfd9f10a5971b89b984b0939b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-A-seams-1to1.png",
+      "sha256": "f802a43e2f09adbc5931ef2a0cb4f6f4064acdce4b65b42fce67a89a011c8174"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-B-seams-1to1.png",
+      "sha256": "f00d9b76e176fce5000331cef3dbbc7294acc3843d9d54b46018b28efaa4c6d7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-color-repeat2x2-1to1.png",
+      "sha256": "187f0447acd19c6cb4bc7e50ef322bb25aee71b5ccb5c895c7148ebbdf2e3371"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-bothBOX-distance.png",
+      "sha256": "9385ade096b2bcf8fb2621e8534eb71249dca650ccab3c30f3376a8d13980863"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-color-1to1.png",
+      "sha256": "119136fdc6a590dc6556fabd20e9e641b60e347d76eab84f12cebe9d83dce035"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-A-1to1.png",
+      "sha256": "b0b861f1b99211d04ce5b81ff68408b8a8f6698b5dda13cbfe53413fdbf91e5d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-B-1to1.png",
+      "sha256": "e64af6a8a4526478362d9022f074a3e3222f843e5043b1702f46cc5229ca6848"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-textured-light-A-1to1.png",
+      "sha256": "c5d44ad0dbecb79b8ebd3f5a6a1176ef7abdadd44df4a76a1be58038907ed356"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-textured-light-B-1to1.png",
+      "sha256": "0b195eca29982ed6fb7f956ab383526b2991a69fb52dae3c031b324dd329c429"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-color-seams-1to1.png",
+      "sha256": "7e3de8e251c1dc6ca64d12acef236235169efadb590df8a23daaf5894d827d0c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-height-seams-1to1.png",
+      "sha256": "277ef7859f6f2c235484e64e919c74d1d417a720fd41b2c13a7ac31153ba4d89"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-XYZ-seams-1to1.png",
+      "sha256": "b9502ea6b1776a8b1d78f65772ae149fc1af6fe45021c05fb3305521a84cd8b8"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-A-seams-1to1.png",
+      "sha256": "9c0a4e9585fb92a90bdda4a17f067b99044337742c432ae7eb5f53a1ed21652d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-B-seams-1to1.png",
+      "sha256": "629d11302fa562b4fd27dbee09e56d405686c9e696b7b6bec0505104c2c4b309"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-color-repeat2x2-1to1.png",
+      "sha256": "ae8728eec5b3fd12acc5b21011622558d48ad6a17cdf5776be35217b8021cf28"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-bothBOX-distance.png",
+      "sha256": "441c14615fbe44fe67f9bac2c55d1935c7022a3a3129993ef4593ab2362058e4"
+    }
+  ],
+  "limits": [
+    "Very dark diffuse is intentionally preserved; it limits visibility under weak lighting.",
+    "Fine roughness/geological microgeometry is not scientifically measured.",
+    "No runtime/pack/GPU/gameplay or owner acceptance, catalog mutation, Git landing/CI or release is established."
+  ]
+}

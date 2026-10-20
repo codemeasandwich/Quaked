@@ -1,0 +1,76 @@
+{
+  "scope": "Actual decoded tier pixels, no reauthoring or automatic ART acceptance",
+  "definitions": {
+    "X": "Full width roll by half-tier width; columns are1:1 and central X is the exact tile boundary. Show entire lower-course interior native y34..63.",
+    "Y": "Full width native x0..64, cyclic Y roll by half-tier height, with native y-8..8 around exact tile boundary. No resizing of decoded tier pixels."
+  },
+  "tiers": {
+    "Mid": {
+      "factor": 4,
+      "sourceFiles": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-diffuse.webp",
+          "sha256": "39679c32bdc34ff5d10d61a9ecaeab2f163a6989731784f5de6eeff53f3d681d"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-height.webp",
+          "sha256": "2c926b31c8a98f65b4900813de3463319ef0fe75ed0431328d3427a8dd396fd0"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-normalX.webp",
+          "sha256": "6cca0133b1a6a1e14e774686ca5539e86da2a1098b5520b000b744540a3876e8"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-normalY.webp",
+          "sha256": "6fb6cf195bb38e6ba32ff228f01563913b822ac2cfcbc5e42743788da3a42408"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-normalZ.webp",
+          "sha256": "a0ecdefd259853cac0ebd272dd5252e6830c2f6a69ca8a4730e5296c490282ee"
+        }
+      },
+      "views": {
+        "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-literal-X-lower-course.png": "eb1eeec44ef3d35ebaaaae5281dc18f8b3c14cb1d2e9ad6f8d4fb2e7fc0e9142",
+        "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-literal-Y-full-width.png": "81a93d72ea1da305ee9d0dbd3f5ae647c1df1955dbef5ef14994c774613f8b1d",
+        "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-literal-X-native-comparison.png": "1bb786c92fe97421a5308a43aa52b3cb35d380aa5b7ad70fe9b25092e8cf5487",
+        "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-decoded-full-repeat.png": "7c387208854292d6b2a00a01b92776a52bc9925f074d9456e545449455cbdc90"
+      }
+    },
+    "High": {
+      "factor": 8,
+      "sourceFiles": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-diffuse.webp",
+          "sha256": "3818a78a698cc2e9f639a4c917c1b44a89e093acbef1b5efc8a1520e3498a867"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-height.webp",
+          "sha256": "ff23318d4737f625d65b91db800003f6b763fb04a5a7547ecb4fd82e325b476f"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-normalX.webp",
+          "sha256": "e8eb7fd8681002abccbe7dc881a877f95387a296e8bdaf0e0d58b46a1ea9e27d"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-normalY.webp",
+          "sha256": "2d8a082c6b6cc550e0262b57036bcbc4f345670823781cc8c096415c827223c9"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-normalZ.webp",
+          "sha256": "2edcdaf5b175b2bd919653b4a70743600e2934dcf21560b55aee2d760d91f589"
+        }
+      },
+      "views": {
+        "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-literal-X-lower-course.png": "94b64ce311f158e438184a3fb7b84fb643a5e9fe04df3d83ad20db8af6e66194",
+        "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-literal-Y-full-width.png": "56cf45df621ade5ca82406860648c7eb5cae3f307737e803e29e84c9dcda871c",
+        "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-literal-X-native-comparison.png": "5c885e8ad377c24204887f50ee62b4da826a3f42009e41ee5eb22dd6a332cc7b",
+        "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-decoded-full-repeat.png": "def114c68bd287ed64562a7760644398ce6cd5571fe3edba93e87bbd59381942"
+      }
+    }
+  },
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/inspect-literal-lower-strips.py": "99aaa8631c30e7194b4c8066d1c8d5e247968bb99cb41b0bdbc013407afa9df7",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/batch.json": "b4588bc5ccacf4f3aa6c6851da4cce0da24c56bfda428b8a4a4fec4b22b736bc",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/originals/01-rtex053-0b8ec72958c3.png": "d27ad50093cdd2c79a8ed5e687aa8f8450b6dea03931336f05e37979c5172bd2"
+  }
+}

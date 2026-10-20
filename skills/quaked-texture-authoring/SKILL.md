@@ -44,6 +44,7 @@ Read [repair and verification contracts](references/repairs-and-verification.md)
 - Coarse colour/landmark fit: `prepare_texture_master.py` and its existing finishing controls.
 - Confirmed unqualified Y boundary defect: `register_texture_boundary.py`; review both axes/corners afterwards.
 - Known facing/substrate hierarchy: `prepare_layered_texture_master.py`, with source-measured masks and a qualifying source/master proof.
+- Confirmed X/Y seam in an already layered candidate: `register_layered_texture_boundary.py`; retain its parent RGB/float inputs and requalify both decoded tiers. Read the conditional repair contract first.
 - Missing flat chromatic mark inside accepted geometry: `prepare_motif_texture_master.py`; bounded source guide, canonical outside RGB and initial float height unchanged.
 
 None of these commands qualifies a source merely by running. Do not copy another texture's coordinates, depth planes or smoothing values without source-specific review. The current tier CLI covers opaque RGB surfaces; special alpha/glass, emission, liquids, skies, animation, models, sprites and UI require their own native semantics and qualification. Their incomplete coverage must remain in the campaign ledger.

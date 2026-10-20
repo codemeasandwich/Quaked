@@ -1,0 +1,11 @@
+{
+  "scope": "Correct source-neighborhood view for boundary witnessF; no asset change",
+  "originalDiagnosticLimit": "Generic witness-crops-observations.png uses a rectangular PIL crop atF507,370; its rightmost7columns extend beyondcanonical512 and are blackpadding. That padded portion is not source mortar and is excluded from classification/acceptance.",
+  "successorView": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/F-wrapped-source-witness.png",
+    "sha256": "ef6b44d778b53f1bfbf60e8615677ff1d7ce02243425363e21ab86440602e3ca"
+  },
+  "recipe": "SourceRGB24x24 at canonicalx[495,519),y[358,382), bothaxesmodulo512; nearest8 reviewenlargement only.",
+  "numericLimit": "F7x7 atx504..510,y367..373 is within actualsourcebounds and remains valid but mixedrim/mortar. No pure-neighborhood claim.",
+  "relatedAcceptance": "Literal full-width wrap strips and corners independently use actualcyclic pixels with no outside padding."
+}

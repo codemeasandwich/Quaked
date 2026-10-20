@@ -1,0 +1,294 @@
+{
+  "schemaVersion": 1,
+  "name": "anisotropic",
+  "edition": "fixture",
+  "generationCount": 1,
+  "generatorPolicy": "One retained generator output; this CLI never calls a generator",
+  "inputs": {
+    "original": {
+      "file": "/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/layered-boundary-public-qbzi6gsj/anisotropic/native.png",
+      "sha256": "8ea74528b89d292d1edbebdac2e4ae289d70d9aae2f49a413a273d3e22e7457e"
+    },
+    "generated": {
+      "file": "/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/layered-boundary-public-qbzi6gsj/anisotropic/raw.png",
+      "sha256": "12db0a377143c00957ddfb5333192570f19740745fdb08f6ba9f966e69e10c25"
+    },
+    "prompt": {
+      "file": "/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/layered-boundary-public-qbzi6gsj/anisotropic/prompt.txt",
+      "sha256": "2687fef3be3f3a89db24f548b9c6a243d10b775bc60a2f769745de8bc582879e"
+    },
+    "heightLayering": {
+      "file": "/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/layered-boundary-public-qbzi6gsj/anisotropic/recipe.json",
+      "sha256": "747bf69963f179720df5fe5df799bb45e74018edbf97cffbd5f0623f69b5d30e"
+    },
+    "boundaryParent": {
+      "file": "/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/layered-boundary-public-qbzi6gsj/anisotropic/layered/master.json",
+      "sha256": "5d2afc18c0386facf18592ab71f7a33a3607129ed4ab4e3d51215f37addc3fa1"
+    }
+  },
+  "nativeDimensions": [
+    16,
+    8
+  ],
+  "generatedDimensions": [
+    128,
+    64
+  ],
+  "masterDimensions": [
+    128,
+    64
+  ],
+  "canonicalMasterFactor": 8,
+  "color": {
+    "file": "color.png",
+    "sha256": "931dda77ba96dd202a7cb2c4f095f924dea2c6e5eba4005e926e9eb4807eb7a2"
+  },
+  "height": {
+    "file": "height.npy",
+    "sha256": "bd63af2affdff99da60892bcf4521a6abbf51dd06d80d857f839be6ae944d1dd",
+    "dtype": "float32",
+    "authoredOnce": true,
+    "quantizedTo8Bit": false,
+    "profile": {
+      "bands": [
+        0.35,
+        1,
+        1.4,
+        1
+      ],
+      "groove": 1.4,
+      "bump": 0.7,
+      "glow": 0,
+      "strength": 0.3,
+      "cap": 0.5
+    },
+    "uniqueSamples": 8162,
+    "authoringPolicy": "periodic-layered-veneer-v1"
+  },
+  "registration": {
+    "method": "photographic",
+    "factor": 8,
+    "verticalLandmarks": null,
+    "colorStrength": 0.65,
+    "fieldSigma": 0.75,
+    "edgeAnchor": false,
+    "comparisonDivisor": 2,
+    "comparisonDimensions": [
+      8,
+      4
+    ],
+    "distanceMeanMaxError": 1.0,
+    "distanceMeanMAE": 0.5213216145833334,
+    "donorDistanceMAE": 0.547119140625,
+    "newClippedChannelFraction": 0.0,
+    "donorContourCorrelation": 0.9999951702745106,
+    "sourceMean": [
+      105.359375,
+      81.9609375,
+      60.2578125
+    ],
+    "outputMean": [
+      104.701904296875,
+      81.751708984375,
+      59.560546875
+    ],
+    "donorBoundaries": {
+      "wrap_x_mean": 39.98958333333333,
+      "wrap_y_mean": 40.7890625,
+      "interior_x_mean": 10.793061023622048,
+      "interior_y_mean": 6.921750992063493
+    },
+    "boundaries": {
+      "wrap_x_mean": 39.98958333333333,
+      "wrap_y_mean": 40.7890625,
+      "interior_x_mean": 10.792979002624671,
+      "interior_y_mean": 6.9216683201058204
+    },
+    "passedDistanceCheck": null,
+    "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+    "axis": null,
+    "periodicBoundary": {
+      "algorithm": "periodic-plus-smooth discrete Poisson, zero-mean, v1",
+      "axes": [
+        "x"
+      ],
+      "featureRelocation": false,
+      "perimeterBand": false,
+      "meanAbsoluteCorrection": 2.483881428866622,
+      "maxAbsoluteCorrection": 49.006391844407126,
+      "clippedChannelFraction": 0.0,
+      "before": {
+        "wrap_x_mean": 39.98958333333333,
+        "wrap_y_mean": 40.7890625,
+        "interior_x_mean": 10.792979002624671,
+        "interior_y_mean": 6.9216683201058204
+      },
+      "after": {
+        "wrap_x_mean": 8.510416666666666,
+        "wrap_y_mean": 40.372395833333336,
+        "interior_x_mean": 10.78280839895013,
+        "interior_y_mean": 6.927538029100529
+      },
+      "meanRGBChange": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "computationAxes": [
+        "y"
+      ],
+      "transposed": true,
+      "distanceChecks": {
+        "2": {
+          "dimensions": [
+            8,
+            4
+          ],
+          "RGBMeanAbsoluteError": 2.1914876302083335
+        },
+        "4": {
+          "dimensions": [
+            4,
+            2
+          ],
+          "RGBMeanAbsoluteError": 1.7509765625
+        }
+      }
+    }
+  },
+  "tools": {
+    "prepare": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    "finish": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    "derive": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    "craft": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    "layeredAuthoring": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d"
+    },
+    "layeredPolicy": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5"
+    },
+    "layeredBoundaryRegistration": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/register_layered_texture_boundary.py",
+      "sha256": "ff9cc3bf611e63601946a046f85eb84ea1e2805811ae9ad64b63067e0b47c8ac"
+    },
+    "boundaryPolicy": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee"
+    }
+  },
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "libwebp": "1.3.2"
+  },
+  "qualification": "Same-source periodic layered successor; both-tier public and ART checks required",
+  "masterRevision": {
+    "replacesUnqualifiedPackageSha256": "5d2afc18c0386facf18592ab71f7a33a3607129ed4ab4e3d51215f37addc3fa1",
+    "previousColorSha256": "a0eab926c69d67ebb20c74fe4c47e89824bd7d2cf3fad843bd240a72280fefe3",
+    "previousHeightSha256": "5dc3bb700e0eb713486b22e38c0a173f0477acbd52eb18aa5b22a4f6db3d20d2",
+    "generatorOutputUnchanged": true,
+    "notAnotherGeneration": true,
+    "RGBUnchanged": false,
+    "priorRevision": {
+      "replacesUnqualifiedPackageSha256": "24de40e5f070b77f417716ced696d938f25f00cbe84f58aa7f5a2be9fcf9eb74",
+      "previousHeightSha256": "78ec3af91ef5b1f818546a663d9ee258d6e67ec85f4d9cd0c5f69131339dd886",
+      "generatorOutputUnchanged": true,
+      "RGBUnchanged": true,
+      "notAnotherGeneration": true
+    }
+  },
+  "layeredRelief": {
+    "nativeIdentity": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "baselineRecipe": {
+      "schemaVersion": 1,
+      "policy": "layered-veneer",
+      "nativeIdentity": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "name": "anisotropic",
+      "edition": "fixture",
+      "nativeDimensions": [
+        16,
+        8
+      ],
+      "sourceMasterPackage": "/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/layered-boundary-public-qbzi6gsj/anisotropic/source/master.json",
+      "sourceMasterPackageSha256": "24de40e5f070b77f417716ced696d938f25f00cbe84f58aa7f5a2be9fcf9eb74",
+      "sourceVerification": {
+        "file": "/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/layered-boundary-public-qbzi6gsj/anisotropic/fixture-proof.json",
+        "sha256": "ff6c7bcc393e2d6eb2a6d93b4510f44555eba2b043d06dff4acc01a56d3aa123"
+      },
+      "originalSha256": "8ea74528b89d292d1edbebdac2e4ae289d70d9aae2f49a413a273d3e22e7457e",
+      "authoringDiffuseSha256": "a0eab926c69d67ebb20c74fe4c47e89824bd7d2cf3fad843bd240a72280fefe3",
+      "authoredAtMasterDimensions": [
+        128,
+        64
+      ],
+      "layering": {
+        "referenceSize": [
+          16,
+          8
+        ],
+        "facingHeight": 0.78,
+        "brickHeight": 0.38,
+        "chipFloor": 0.66,
+        "microAmplitude": 0.025,
+        "bevelPixels": 0.5,
+        "brickRegions": [
+          {
+            "polygon": [
+              [
+                2,
+                1
+              ],
+              [
+                9,
+                1
+              ],
+              [
+                9,
+                5
+              ],
+              [
+                4,
+                6
+              ],
+              [
+                2,
+                4
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "baselineRecipeSha256": "747bf69963f179720df5fe5df799bb45e74018edbf97cffbd5f0623f69b5d30e",
+    "baselineRecipeAuthoringDiffuseSha256": "a0eab926c69d67ebb20c74fe4c47e89824bd7d2cf3fad843bd240a72280fefe3",
+    "detailRGBSourceSha256": "931dda77ba96dd202a7cb2c4f095f924dea2c6e5eba4005e926e9eb4807eb7a2",
+    "sourceMeasuredGeometryReused": true,
+    "bevelSigmaMasterPixels": 0.1767766952966369,
+    "precisionOrder": "corrected RGB -> craft float64 -> layers float64 -> one float32 cast",
+    "substrateRange": [
+      0.3550002872943878,
+      0.4049731194972992
+    ],
+    "facingRange": [
+      0.743907630443573,
+      0.8052247762680054
+    ],
+    "qualification": "Baseline recipe identifies original RGB; final geometry/colour needs ART review"
+  }
+}

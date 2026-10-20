@@ -1,0 +1,286 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20T14:49:09.588377+00:00",
+  "verdict": "PASS fixed adapter code/public-interface qualification on macOS synthetic fixtures",
+  "subject": {
+    "file": "tools/texture_sheets/register_layered_texture_boundary.py",
+    "sha256": "90f9cb11ff3b6b740e4df56bdbb3746d31fcb2d72ca6b342b102466e01e900c8",
+    "bytes": 12859
+  },
+  "maintainedTests": {
+    "file": "tests/texture_layered_boundary_test.py",
+    "sha256": "cca0dcd6119452c4d2cddf32b804bcffc7cc6705bba8765275fa5f40096270f4",
+    "bytes": 15221
+  },
+  "independentSourceSnapshot": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/adapter-source-v2.py",
+    "sha256": "90f9cb11ff3b6b740e4df56bdbb3746d31fcb2d72ca6b342b102466e01e900c8",
+    "bytes": 12859
+  },
+  "approvedPlan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/X-boundary-repair-plan-review-v2.json",
+    "sha256": "1c605d3a2705872f6bed7383458e15ecd387d0ad660ac319f916fa8712490e47",
+    "bytes": 15015
+  },
+  "closedFindings": [
+    {
+      "id": "G1",
+      "result": "CLOSED",
+      "evidence": "read() now rejects a changed second observation, and the post-replay original read supplies its recorded digest. The original deterministic validPNGmutation after a real guarded baseline subprocess now exits1, creates no canonical output and removes owned staging; original bytes restored in the owned fixture.",
+      "sameProbeRecord": {
+        "kind": "hostile full public main invocation",
+        "mode": "original-after-replay",
+        "exitCode": 1,
+        "canonicalPublished": false,
+        "privateStagingRemoved": true,
+        "originalChangedAfterSuccessfulGuardedBaseline": true,
+        "expectedRejected": true
+      }
+    },
+    {
+      "id": "M1",
+      "result": "CLOSED",
+      "evidence": "Complete original registration is preserved in priorRegistration. Current registration is rebuilt from correctedRGB/native: outputMean, edges, comparison dimensions and half-native mean/max error now match independent calculations in X andY fixtures. No stale donor/distance/current-looking field is copied.",
+      "positiveRecords": [
+        {
+          "kind": "independent anisotropic public CLI/replay",
+          "axis": "x",
+          "exitCode": 0,
+          "RGBPNGExact": true,
+          "fullFloat64LayerNPYExact": true,
+          "claimedRegistrationOutputMean": [
+            104.701904296875,
+            81.751708984375,
+            59.560546875
+          ],
+          "actualOutputMean": [
+            104.701904296875,
+            81.751708984375,
+            59.560546875
+          ],
+          "claimedRegistrationBoundaries": {
+            "wrap_x_mean": 8.510416666666666,
+            "wrap_y_mean": 40.372395833333336,
+            "interior_x_mean": 10.78280839895013,
+            "interior_y_mean": 6.927538029100529
+          },
+          "actualBoundaries": {
+            "wrap_x_mean": 8.510416666666666,
+            "wrap_y_mean": 40.372395833333336,
+            "interior_x_mean": 10.78280839895013,
+            "interior_y_mean": 6.927538029100529
+          },
+          "edgeScalarMaximumAbsDifference": 0.0,
+          "descriptiveScalarTolerance": 1e-12,
+          "RGBAndNPYComparisonTolerance": 0,
+          "priorRegistrationExactlyPreserved": true,
+          "currentHalfNativeStatsIndependent": true,
+          "correctionSubrecordAfterCorrect": true,
+          "staleTopLevelRegistrationStatistics": false
+        },
+        {
+          "kind": "independent anisotropic public CLI/replay",
+          "axis": "y",
+          "exitCode": 0,
+          "RGBPNGExact": true,
+          "fullFloat64LayerNPYExact": true,
+          "claimedRegistrationOutputMean": [
+            104.701904296875,
+            81.751953125,
+            59.560546875
+          ],
+          "actualOutputMean": [
+            104.701904296875,
+            81.751953125,
+            59.560546875
+          ],
+          "claimedRegistrationBoundaries": {
+            "wrap_x_mean": 39.32291666666666,
+            "wrap_y_mean": 9.893229166666666,
+            "interior_x_mean": 10.760662729658792,
+            "interior_y_mean": 6.956059854497355
+          },
+          "actualBoundaries": {
+            "wrap_x_mean": 39.322916666666664,
+            "wrap_y_mean": 9.893229166666666,
+            "interior_x_mean": 10.760662729658792,
+            "interior_y_mean": 6.956059854497354
+          },
+          "edgeScalarMaximumAbsDifference": 7.105427357601002e-15,
+          "descriptiveScalarTolerance": 1e-12,
+          "RGBAndNPYComparisonTolerance": 0,
+          "priorRegistrationExactlyPreserved": true,
+          "currentHalfNativeStatsIndependent": true,
+          "correctionSubrecordAfterCorrect": true,
+          "staleTopLevelRegistrationStatistics": false
+        }
+      ]
+    }
+  ],
+  "passedChecks": {
+    "maintainedPublicGroups": 5,
+    "maintainedRun": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-maintained-tests-v2.json",
+      "sha256": "b01afbd466fa52c3966e25fe8df2d799d565d9e2c63aa73ed28de1d79d83c9a6",
+      "bytes": 1123
+    },
+    "independentPublicRun": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-review-v2.json",
+      "sha256": "02da9af03da7e75bb3c99e00d36945bc47079f20fa0d8b94b7666f18fecb7c69",
+      "bytes": 9629
+    },
+    "independentCheckCount": 15,
+    "freshIndependentSourceRGBFloatLayerOracle": true,
+    "exactXAndYRGBPNGAndFullFloat64SingleCastNPY": true,
+    "directMidHighTenQ92Method6Outputs": "Both axis fixtures validated by maintained independent reduction/UVnormal/codec oracles, all output bytes exact.",
+    "temporalOriginalMutationSafelyRejected": true,
+    "lateEmptyDirectoryAndDanglingSymlinkPreserved": true,
+    "stageWriteAndUnsupportedPublicationRejectWithoutOutput": true,
+    "nullFalseAndEmptyCorrectionMarkersRejected": true,
+    "schemaBooleanAndFloatFactorRejected": true,
+    "unknownSourceToolRolesRejected": true,
+    "actualSuccessorRepeatRegistrationRejected": true,
+    "noOpAndClippingCoveredByMaintainedGroup": true,
+    "privateTemporaryFixturesRemoved": true
+  },
+  "precisionAndHistoryReview": "Original orientation restored before craft and composition. Corrected uncompressed RGB feeds fullfloat64craft; compose_layered reuses unchanged mask/planes and casts once tofloat32. New height policy, corrected detail RGB hash, parent revision and parent registration history are explicit. Original recipe/proof remain immutable baseline facts. Float factor8 is now explicitly rejected.",
+  "scalarToleranceScope": {
+    "absolute": 1e-12,
+    "largestObservedIndependentDifference": 7.105427357601002e-15,
+    "appliesOnlyTo": "Descriptive double scalar metrics with different mean summation order; no pixel,NPY or WebP tolerance",
+    "priorRoundoffEvidence": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/metric-oracle-roundoff.json",
+      "sha256": "3dcbdc37546290608b2e71c998283620623278977c5055f7b829eaca1eaa012b",
+      "bytes": 499
+    },
+    "RGBPNGFloatNPYAndDirectMapBytes": "exact"
+  },
+  "platformLimits": "Native macOS no-replace helper executed against existing/late destinations in owned temporary filesystem. Linux branch and other filesystems not runtime-qualified here; unsupported paths fail closed by contract. No broad CI/build/checkpoint qualification claimed.",
+  "historicalProducersUnchanged": [
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "bytes": 7692
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "bytes": 13322
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d",
+      "bytes": 13904
+    },
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5",
+      "bytes": 7863
+    }
+  ],
+  "retainedRED": {
+    "codeReview": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-code-review-v1.json",
+      "sha256": "05e86c9b8c2f2e121516819e1cc39b6e58f33ba2a95bafbf1871a8502af62fc9",
+      "bytes": 8533
+    },
+    "publicReview": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-review-v1.json",
+      "sha256": "01319697b65acf6ecbd4bf07b00a296e502578b4ac1fb41187ed3bd5bff9f0db",
+      "bytes": 10080
+    },
+    "originalSubject": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/adapter-source-v1.py",
+      "sha256": "ff9cc3bf611e63601946a046f85eb84ea1e2805811ae9ad64b63067e0b47c8ac",
+      "bytes": 11536
+    },
+    "badSyntheticOutputKept": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/incorrectly-published-fixture/master.json",
+      "sha256": "c6fe6c3f11864b6bbad2e5e5f847c5f04272b8be26897c4ee2be9f4d2933bc5c",
+      "bytes": 10120
+    }
+  },
+  "currentTextureBoundary": {
+    "masterStillUncorrected": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-layered/master.json",
+      "sha256": "f87690b61af0b066dcd804f03f58d4070aa0f81b6b53f810c3619f797c50430f",
+      "bytes": 26201
+    },
+    "currentArtHOLD": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/art-review-v1.json",
+      "sha256": "efa39ab3ff702e870b520596a0a6d2cca836aa358220bc3e58efb2de95588219",
+      "bytes": 40725
+    },
+    "tenCurrentMapsUnchanged": [
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/mid-diffuse.webp",
+        "sha256": "2ea5f067fc85dd934f4d811664bb885c16a62937c4724ac5ab394af32b7c8c82",
+        "bytes": 143932
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/mid-height.webp",
+        "sha256": "380878f1d4fb0e160c9d08402380f648019201fa3cfa063498b97d103b7402dd",
+        "bytes": 13276
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/mid-normalX.webp",
+        "sha256": "96ea32cd7959868fa6501b1f403395238fcd4b058c116403a5622554a8088115",
+        "bytes": 16586
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/mid-normalY.webp",
+        "sha256": "d522f13c0aedcd6b600ec4965193f07e1237daa79ef992c9eb753b815b61218a",
+        "bytes": 20966
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/mid-normalZ.webp",
+        "sha256": "9b5ef11b7cd1839deb30673545db388f9e542e686055f5249ff056da4a9cf876",
+        "bytes": 3112
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/high-diffuse.webp",
+        "sha256": "f71636222de1909710faa133c74eb87361a8c4553577460b9d4e9e67050f2fe4",
+        "bytes": 519160
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/high-height.webp",
+        "sha256": "6bd900baa039d21d51b9c319cad66840b42f7fd9d9ce9d2f9176237320d839dc",
+        "bytes": 26522
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/high-normalX.webp",
+        "sha256": "daaa3565b481b2fc88fbad77b0538cda553233201499a061bade1196236c8cb2",
+        "bytes": 65826
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/high-normalY.webp",
+        "sha256": "d2aff83532452c6390a94213b0728d64546af65529200211594cc6cd0cafe1ab",
+        "bytes": 76686
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/tiers/rtex499/high-normalZ.webp",
+        "sha256": "93bfca90165d0bfed65e9c2022219186d7177ff43e8092e3d029a38200f1061b",
+        "bytes": 7630
+      }
+    ],
+    "actualRepairedCanonicalProducedByReviewer": false,
+    "artworkAccepted": false,
+    "registrationGranted": false
+  },
+  "requiredIssuesRemaining": [],
+  "effects": "New independent scripts/receipts and synthetic evidence only. No production/test changes, real canonical repair, shared records/Git/build/release or image generation.",
+  "nextAction": {
+    "owner": "Root coordinator",
+    "action": "May proceed with the bounded actual same-source repair under the approved plan. Qualify the actual successor master/height and both decoded tiers/preview/material/seams/relief independently before registration. Keep currentHOLD and all RED evidence."
+  }
+}

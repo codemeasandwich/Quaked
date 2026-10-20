@@ -1,0 +1,21 @@
+{
+  "finishedAt": "2026-10-20T15:39:07.080362+00:00",
+  "verdict": "PASS inactive generated build payload cleanup",
+  "plan": {
+    "file": "docs/hexen2/textures/build-cleanup-2026-10-20/plan-v2.json",
+    "sha256": "61a1dbc294e20ea687234ee3b0d5f0553f879693800ee9fceffb712ddd5f2ac7"
+  },
+  "journal": {
+    "file": "docs/hexen2/textures/build-cleanup-2026-10-20/journal.json",
+    "sha256": "6a6cdfc5e5948b2c4776ab1908e25780556c2ee18f48859fd72c5efa75fa7613"
+  },
+  "removedBytes": 6735819838,
+  "removedFiles": 15887,
+  "directories": 11,
+  "protectedFilesUnchanged": 1563,
+  "HTML": "Current dist/staged/web plus all authoring HTML/source assets preserved byte-exactly. Active HTML server cwd is the untouched fc24 worktree.",
+  "preserved": "Staged/CI/gate/verification receipts and exact asset inventories retained; no binary build archive. Other agents' builds/worktrees, shared Rust cache and live Quaked.app left alone.",
+  "freeBytesBefore": 9420320768,
+  "freeBytesAfter": 16166473728,
+  "quarantineRemoved": true
+}

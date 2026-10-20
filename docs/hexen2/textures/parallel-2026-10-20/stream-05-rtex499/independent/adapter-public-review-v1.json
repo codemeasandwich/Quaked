@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-20T14:27:05.526079+00:00",
+  "checks": [
+    {
+      "kind": "independent anisotropic public CLI/replay",
+      "axis": "x",
+      "exitCode": 0,
+      "RGBPNGExact": true,
+      "fullFloat64LayerNPYExact": true,
+      "claimedRegistrationOutputMean": [
+        104.701904296875,
+        81.751708984375,
+        59.560546875
+      ],
+      "actualOutputMean": [
+        104.701904296875,
+        81.751708984375,
+        59.560546875
+      ],
+      "claimedRegistrationBoundaries": {
+        "wrap_x_mean": 39.98958333333333,
+        "wrap_y_mean": 40.7890625,
+        "interior_x_mean": 10.792979002624671,
+        "interior_y_mean": 6.9216683201058204
+      },
+      "actualBoundaries": {
+        "wrap_x_mean": 8.510416666666666,
+        "wrap_y_mean": 40.372395833333336,
+        "interior_x_mean": 10.78280839895013,
+        "interior_y_mean": 6.927538029100529
+      },
+      "correctionSubrecordAfterCorrect": true,
+      "staleTopLevelRegistrationStatistics": true
+    },
+    {
+      "kind": "independent anisotropic public CLI/replay",
+      "axis": "y",
+      "exitCode": 0,
+      "RGBPNGExact": true,
+      "fullFloat64LayerNPYExact": true,
+      "claimedRegistrationOutputMean": [
+        104.701904296875,
+        81.751708984375,
+        59.560546875
+      ],
+      "actualOutputMean": [
+        104.701904296875,
+        81.751953125,
+        59.560546875
+      ],
+      "claimedRegistrationBoundaries": {
+        "wrap_x_mean": 39.98958333333333,
+        "wrap_y_mean": 40.7890625,
+        "interior_x_mean": 10.792979002624671,
+        "interior_y_mean": 6.9216683201058204
+      },
+      "actualBoundaries": {
+        "wrap_x_mean": 39.322916666666664,
+        "wrap_y_mean": 9.893229166666666,
+        "interior_x_mean": 10.760662729658792,
+        "interior_y_mean": 6.956059854497354
+      },
+      "correctionSubrecordAfterCorrect": false,
+      "staleTopLevelRegistrationStatistics": true
+    },
+    {
+      "kind": "hostile full public main invocation",
+      "mode": "original-after-replay",
+      "exitCode": 0,
+      "canonicalPublished": true,
+      "privateStagingRemoved": true,
+      "originalChangedAfterSuccessfulGuardedBaseline": true,
+      "expectedRejected": false,
+      "resultOriginalHash": "8ea74528b89d292d1edbebdac2e4ae289d70d9aae2f49a413a273d3e22e7457e",
+      "actualOriginalHashAfterChange": "6143955f1af277ff039341000bd2e8c30ceaa487d0311370a18cc1038ee47d16"
+    },
+    {
+      "kind": "hostile full public main invocation",
+      "mode": "late-empty",
+      "exitCode": 1,
+      "canonicalPublished": false,
+      "privateStagingRemoved": true,
+      "expectedFailureSafelyPreserved": true
+    },
+    {
+      "kind": "hostile full public main invocation",
+      "mode": "late-symlink",
+      "exitCode": 1,
+      "canonicalPublished": false,
+      "privateStagingRemoved": true,
+      "expectedFailureSafelyPreserved": true
+    },
+    {
+      "kind": "hostile full public main invocation",
+      "mode": "stage-write-failure",
+      "exitCode": 1,
+      "canonicalPublished": false,
+      "privateStagingRemoved": true,
+      "expectedFailureSafelyPreserved": true
+    },
+    {
+      "kind": "hostile full public main invocation",
+      "mode": "unsupported",
+      "exitCode": 1,
+      "canonicalPublished": false,
+      "privateStagingRemoved": true,
+      "expectedFailureSafelyPreserved": true
+    }
+  ],
+  "requiredFindings": [
+    {
+      "id": "M1",
+      "finding": "Successor retains old registration.outputMean/boundaries as current-looking statistics.",
+      "lines": [
+        163,
+        173
+      ],
+      "requiredFix": "Move baseline finish diagnostics into an explicit historical namespace or recompute the current fields. New periodicBoundary.after alone does not remove conflicting old current-looking facts."
+    },
+    {
+      "id": "G1",
+      "finding": "Original source changed after guarded baseline replay, but adapter publishes and retains the old original hash.",
+      "lines": [
+        74,
+        79,
+        148,
+        195
+      ],
+      "requiredFix": "Pin first-read bytes immutably; repeated reads must compare against that snapshot and/or expected input digest. Do not overwrite watched[path] with a newly read unvalidated source. Add this temporal negative test."
+    }
+  ],
+  "limits": [
+    "Synthetic source/public interface only, not actual rtex499 or ART acceptance.",
+    "Linux native publication is not executed on this macOS host."
+  ],
+  "fixtureIndependentSourceMasterBytesExact": true,
+  "subject": {
+    "file": "tools/texture_sheets/register_layered_texture_boundary.py",
+    "sha256": "ff9cc3bf611e63601946a046f85eb84ea1e2805811ae9ad64b63067e0b47c8ac",
+    "bytes": 11536
+  },
+  "maintainedTest": {
+    "file": "tests/texture_layered_boundary_test.py",
+    "sha256": "c689facb59c9e065e112b4a0926a2a98502fcd8823f51e71ad218cf3e4aa817c",
+    "bytes": 12645
+  },
+  "oldProducersUntouched": [
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "bytes": 7692
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d",
+      "bytes": 13904
+    },
+    {
+      "file": "tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee",
+      "bytes": 10541
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5",
+      "bytes": 7863
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    }
+  ],
+  "verdict": "HOLD required source-stability/metadata findings",
+  "ownedFixtureTemporaryRemoved": true,
+  "completedAt": "2026-10-20T14:27:08.429423+00:00",
+  "evidence": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/adapter-source-v1.py",
+      "sha256": "ff9cc3bf611e63601946a046f85eb84ea1e2805811ae9ad64b63067e0b47c8ac",
+      "bytes": 11536
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/hostile-public-runner.py",
+      "sha256": "83ebb517b257ebac8e698fed5789a9f1bece044fc481fe3b4ae68a83102f992d",
+      "bytes": 1408
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/unsupported-process.json",
+      "sha256": "403d0f168e8ff7bc4422da47a3077d3d69211f53e95189758c098b3c8d45300b",
+      "bytes": 1367
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/stage-write-failure-process.json",
+      "sha256": "07b0f08387a9ae555405a153871b3b1e93b7bd742c6b5bd5ff3f63a3de5922be",
+      "bytes": 1469
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/original-after.png",
+      "sha256": "6143955f1af277ff039341000bd2e8c30ceaa487d0311370a18cc1038ee47d16",
+      "bytes": 374
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/late-empty-process.json",
+      "sha256": "044d26e527437ea71866a8dfc9ad6e83e46597f2fd45222a560b87c01eabbb9a",
+      "bytes": 1656
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/successor-x-master.json",
+      "sha256": "87accfd21d7232a1db27fe6d780f52caf97fcab0bcd3856a25a5b11b2b3ec877",
+      "bytes": 10121
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/late-symlink-process.json",
+      "sha256": "22587478b467a2901c84e002505ec2e18ffbd86e28d9739db366954ca9cc00c4",
+      "bytes": 1662
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/successor-y-master.json",
+      "sha256": "7d166d3955025267d86f475d461321885d4c65a884f3e460739669275e1c1818",
+      "bytes": 10158
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/original-before.png",
+      "sha256": "8ea74528b89d292d1edbebdac2e4ae289d70d9aae2f49a413a273d3e22e7457e",
+      "bytes": 374
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/original-after-replay-process.json",
+      "sha256": "d612521b82ab66313ddd82683530f25542bda043f48e5478f7ded04bbe6cedd2",
+      "bytes": 903
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/incorrectly-published-fixture/height.npy",
+      "sha256": "bd63af2affdff99da60892bcf4521a6abbf51dd06d80d857f839be6ae944d1dd",
+      "bytes": 32896
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/incorrectly-published-fixture/color.png",
+      "sha256": "931dda77ba96dd202a7cb2c4f095f924dea2c6e5eba4005e926e9eb4807eb7a2",
+      "bytes": 4164
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/incorrectly-published-fixture/master.json",
+      "sha256": "c6fe6c3f11864b6bbad2e5e5f847c5f04272b8be26897c4ee2be9f4d2933bc5c",
+      "bytes": 10120
+    }
+  ],
+  "verifier": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/check-adapter-public-v1.py",
+    "sha256": "4043f8b7c3a2203c4aa7a6906f7b01e6583ab78e2d15dc6e6c6307fe1bf3b7ef",
+    "bytes": 10556
+  }
+}

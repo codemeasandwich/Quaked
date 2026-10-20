@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-20T14:32:58.404426+00:00",
+  "state": "PLAN ONLY - stopped before generation for independent exact source/prompt review",
+  "nativeIdentity": "73d1bef29871f25e3da731e707d7bd9e9062de9275b5fcbc3f8e38d9a3f41f8b",
+  "name": "rtex256",
+  "edition": "base",
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "sourceProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/native-proof.json",
+    "sha256": "9a110b78a052a800c27c114a5e272b5c9708d9f98c4ee6b0cc755faca6b6d58b"
+  },
+  "eligibilityProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/eligibility-and-retained-source-screen.json",
+    "sha256": "cc4c76ac315b1709af19f2ed02568a10e66c28fa8b8c57b5c4d376903fb23ac7"
+  },
+  "allRetainedImageScreen": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/retained-all-image-rgba-screen.json",
+    "sha256": "826192dc40f505ed0edf795dae8b25026f381746ac45c6071e9f63e91b3d7754"
+  },
+  "original": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/01-rtex256-73d1bef29871.png",
+    "sha256": "36a7c5b07dad1063c0d1b8fe75b29e4d0415a08da5c5013cb29f689dbe20ca70"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/prompts/rtex256-material-v1.txt",
+    "sha256": "ad47f6023da22440f23572aa2034b34afac332521eb17eb748b05da2113c7029",
+    "exactBytes": 2668
+  },
+  "nativeUse": {
+    "uniquePAKMapSlots": 7,
+    "profileFaces": {
+      "base": 1134,
+      "portals-1": 1134,
+      "portals-2": 1134
+    },
+    "baseFaces": 1134,
+    "interpretation": "Face records, not visible coverage. Portal profiles inherit base content; do not triple-count as unique faces."
+  },
+  "material": {
+    "chosen": "Weathered rough-dressed fine-grained sandstone masonry, matte dark warm grey-brown mineral patina",
+    "historicalTruthClaim": false,
+    "observableCues": "Coherent mineral grain, restrained pores/fissures, worn chipped edges and broad dressed stone faces. No uniform noise or artificial grain.",
+    "ambiguity": "Original opaque rtex name and low-resolution pixels do not identify a historical lithology; sandstone is the concrete physical interpretation for review."
+  },
+  "layout": {
+    "mainVerticalJointNativeX": "near16",
+    "leftColumnHorizontalJointNativeY": "near24",
+    "rightHorizontalJointNativeY": "near32",
+    "rightUpperVerticalJointNativeX": "near33",
+    "rightLowerVerticalJointNativeX": "near50",
+    "croppedTopCourse": "preserve partial top course and joint near y6, not a new trim/frame",
+    "repeatAxes": [
+      "X",
+      "Y"
+    ],
+    "sourceFaceWitnessBoxes": {
+      "F1-left-upper": [
+        3,
+        10,
+        13,
+        20
+      ],
+      "F2-middle-upper": [
+        20,
+        12,
+        29,
+        24
+      ],
+      "F3-right-upper": [
+        38,
+        12,
+        58,
+        27
+      ],
+      "F4-middle-lower": [
+        21,
+        39,
+        45,
+        59
+      ],
+      "F5-right-lower": [
+        54,
+        39,
+        61,
+        58
+      ],
+      "F6-left-lower": [
+        3,
+        31,
+        12,
+        58
+      ]
+    },
+    "sourceJointWitnessBoxes": {
+      "J1-main-vertical": [
+        16,
+        10,
+        18,
+        60
+      ],
+      "J2-right-horizontal": [
+        19,
+        32,
+        61,
+        34
+      ],
+      "J3-upper-divide": [
+        33,
+        10,
+        35,
+        30
+      ],
+      "J4-lower-divide": [
+        49,
+        36,
+        51,
+        62
+      ],
+      "J5-left-horizontal": [
+        1,
+        24,
+        14,
+        26
+      ]
+    }
+  },
+  "relief": {
+    "policy": "Existing photographic prepare + stone profile first, no new producer",
+    "meaning": "Broad stone faces above thin dark mortar; chips/pits shallow and registered; mineral/patina colour remains colour rather than deep embossing.",
+    "firstCli": {
+      "tool": "tools/texture_sheets/prepare_texture_master.py",
+      "profile": "stone",
+      "colorStrength": 0.65,
+      "fieldSigma": 0.75,
+      "strength": 0.3,
+      "cap": 0.5,
+      "canonicalMasterFactor": 8,
+      "masterDimensions": [
+        512,
+        512
+      ]
+    },
+    "guard": "Actually inspect source material then master scalar/XYZ/opposed lights before tiers. If face/joint sign, noise, deep discolouration emboss or a new seam fails, HOLD before encoding and request reviewed existing repair."
+  },
+  "generation": {
+    "kind": "one built-in colour image call only after root PASS",
+    "issued": false,
+    "count": 0,
+    "minimumRawDimensions": [
+      512,
+      512
+    ],
+    "aspect": "1:1",
+    "reference": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/01-rtex256-73d1bef29871.png",
+    "transparentBackground": false,
+    "retain": "Exact returned raw path/bytes and exact prompt through existing generation journal",
+    "prohibited": [
+      "No duplicate request/unreconciled timeout reissue",
+      "No CLI/API fallback without owner-specific permission and local credential",
+      "No upscaling inadequate raw",
+      "No independent tier generation",
+      "No generation in this intake turn"
+    ]
+  },
+  "verification": {
+    "source": "Fresh PAK/native/4mips/flags and all980+retainedRGBA screens",
+    "postGeneration": "Source material1to1, exact canonical source replay, semantic face/joint witnesses, both decoded Q92m6 tiers and UV-scaled normals",
+    "art": "Mid256square/High512square; original and decoded both BOX to32square and16square; preserve colour/forms/feature scale; repeats both axes/corners, actual height/XYZ/opposed lights",
+    "independent": "Root independent exact native/prompt plan review required now; independent final public/math/art qualification later before registration."
+  },
+  "scope": "Only stream09 asset/doc roots; no shared catalog/Git/build/release/producer edit/other texture or children.",
+  "coordination": "Supervised native stream assigned by root; root owns Bluey fallback/accountability and shared ledger. No identity/card mutation or durable worker execution claim.",
+  "nextAction": "Root independently view actual original/native layout, exact prompt and source/alias proofs. STOP before generation until review."
+}

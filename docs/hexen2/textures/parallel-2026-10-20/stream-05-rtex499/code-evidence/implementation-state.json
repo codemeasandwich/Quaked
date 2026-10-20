@@ -1,0 +1,21 @@
+{
+  "recordedAt": "2026-10-20T14:45:13.808105+00:00",
+  "state": "Independent re-review pending; no actual repaired rtex499 canonical package yet",
+  "planReview": "../independent/X-boundary-repair-plan-review-v2.json",
+  "code": {
+    "file": "tools/texture_sheets/register_layered_texture_boundary.py",
+    "sha256": "90f9cb11ff3b6b740e4df56bdbb3746d31fcb2d72ca6b342b102466e01e900c8"
+  },
+  "tests": {
+    "file": "tests/texture_layered_boundary_test.py",
+    "sha256": "cca0dcd6119452c4d2cddf32b804bcffc7cc6705bba8765275fa5f40096270f4",
+    "groupsPassed": 5,
+    "terminalSession": 24339,
+    "exit": 0,
+    "logSha256": "48373b293909374d5d7aa82d4ee6c856620b48fcbca86437951443880a59d09a"
+  },
+  "requiredReviewFindings": "G1 post-replay changed source could replace first witness; M1 current metadata copied baseline stats. Both corrected and new tests added; independent original RED probes must confirm before production use.",
+  "historicalFailures": "Pre-fix source/test, failed import, clipping-fixture coverage and diagnostic scalar roundoff evidence retained. Scalar descriptive metrics use1e-12; all actual RGB/NPY/map byte comparisons remain exact.",
+  "syntax": "In-memory compile PASS. py_compile initially tried protected global cache and failed with PermissionError; no global cache mutation or permission bypass.",
+  "landing": "Untracked implementation/test outside pushed eb6fd702 exact59 checkpoint."
+}

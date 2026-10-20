@@ -1,0 +1,14 @@
+{
+  "recordedAt": "2026-10-20T14:45:18.230472+00:00",
+  "command": [
+    "/usr/bin/python3",
+    "/Users/bri/SOURCE/Quaked/tests/texture_layered_boundary_test.py"
+  ],
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": "test_existing_and_late_destinations_are_never_clobbered (__main__.LayeredBoundaryCLI) ... ok\ntest_nonsquare_x_and_y_exact_geometry_precision_metadata_and_direct_tiers (__main__.LayeredBoundaryCLI) ... ok\ntest_noop_and_clipping_are_truthfully_recorded (__main__.LayeredBoundaryCLI) ... ok\ntest_original_changed_after_successful_guarded_replay_rejects (__main__.LayeredBoundaryCLI) ... ok\ntest_source_proof_current_data_and_metadata_tampering_reject_without_output (__main__.LayeredBoundaryCLI) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 7.555s\n\nOK\n",
+  "subjectSha256": "90f9cb11ff3b6b740e4df56bdbb3746d31fcb2d72ca6b342b102466e01e900c8",
+  "testSha256": "cca0dcd6119452c4d2cddf32b804bcffc7cc6705bba8765275fa5f40096270f4",
+  "sourceStable": true,
+  "scope": "Independent invocation of maintained public regressions; no CI/actual texture/ART claim"
+}

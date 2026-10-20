@@ -1,0 +1,10 @@
+{
+  "scope": "Verifier occurrence-schema adaptation error, not an observed asset failure",
+  "failure": "Author native-proof.json deliberately deduplicates physical(source,map,slot) occurrences, retaining first mount profile. Verifier v1 attempted profile equality for44mount occurrences against20physical rows.",
+  "correction": "v2 binds author row by physical source/map/slot/BSP hash/memberOffset; independently still parses and checks all44 mount occurrences with fresh inventory provenance, fullmips/flags andfacecounts.",
+  "preserved": [
+    "verify-actual-v1.py",
+    "actual-v1.json"
+  ],
+  "noAssetChanges": true
+}

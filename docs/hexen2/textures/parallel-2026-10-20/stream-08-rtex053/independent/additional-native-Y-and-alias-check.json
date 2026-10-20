@@ -1,0 +1,21 @@
+{
+  "scope": "Supplementary independent diagnostics, not standalone ART verdict",
+  "YComparisons": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-native-full-width-comparison.png",
+      "sha256": "1cc562893057f070578f773ac69a1659260899ef940d6e0030743288a16488be",
+      "sourceNative": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/originals/01-rtex053-0b8ec72958c3.png",
+      "sourceDecoded": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-diffuse.webp",
+      "recipe": "NativeRGB rollY32/crop24:40 then nearest integer factor; decodedRGB rollYwidth/2 and cropwidth/2-8f:width/2+8f, no enhanced resize."
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-native-full-width-comparison.png",
+      "sha256": "37783b5906a3e9b260719ccd95eea89a45d758fc306a2957c19b41672883718c",
+      "sourceNative": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/originals/01-rtex053-0b8ec72958c3.png",
+      "sourceDecoded": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-diffuse.webp",
+      "recipe": "NativeRGB rollY32/crop24:40 then nearest integer factor; decodedRGB rollYwidth/2 and cropwidth/2-8f:width/2+8f, no enhanced resize."
+    }
+  ],
+  "otherSameRgbaNativeIdentities": [],
+  "freshNativeInventorySha256": "344ad22744fd5b6ad9d07ef89102be930ac2c3c88589456d46963c8b4c082d6a"
+}
