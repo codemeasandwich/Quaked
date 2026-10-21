@@ -35,6 +35,13 @@ then the installed, reviewed App controller atomically fast-forwards Prod and
 creates `v0.133.0` at that same full SHA. The Prod push workflow tests and
 publishes the downloadable app and GitHub Pages from that commit.
 
+The first release commit (`910d925f`) failed Dev Distribution run `39592545811`:
+the Quake texture custody contract tests, which reached Dev in `[skip ci]`
+commits, drive `/usr/bin/python3` with Pillow and NumPy, and the macOS runners
+had neither. The web and Mac jobs now install the verified authoring versions
+(Pillow 10.1.0, NumPy 1.26.2) before the contract tests; the tests are unchanged.
+The selected release commit is the one after that fix, still at 0.133.0.
+
 Acceptance requires the source, web, both Mac, release and Pages jobs to succeed
 at the selected commit, and the public release `release.json` to match the Pages
 copy. A ref update or running workflow alone is not accepted publication.
