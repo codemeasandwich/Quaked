@@ -1,7 +1,9 @@
 /**
+ * @module newer/gameplay/cl_water
+ *
  * Read-only player water observation shared by the HUD and player sound cues.
  * Live single-player air comes exclusively from QC's air_finished. Demos do not
- * transmit that field: their BSP/recorded eye position supplies submersion and a
+ * transmit that field: the rendered view (or recorded body before rendering) supplies submersion and a
  * twelve-second VISUAL estimate, never health, damage or a server timer.
  */
 import { cl, cls, cl_entities } from '../../engine/client/client.js';
@@ -12,13 +14,15 @@ import { CONTENTS_WATER, CONTENTS_LAVA } from '../../engine/common/bspfile.js';
 import { IT_SUIT, STAT_HEALTH } from '../../engine/common/quakedef.js';
 import { SV_FaceLocalActive } from './sv_faceevents.js';
 
-let world, file, edicts, playback, epoch, lastTime = -Infinity, entered = null;
+let world, file, edicts, playback, epoch, lastTime = -Infinity;
+const entered = { player: null, view: null };
 const clamp = value => Math.max( 0, Math.min( 100, value ) );
 const liquid = contents => contents <= CONTENTS_WATER && contents >= CONTENTS_LAVA;
 
 /** Clears visual demo history on CL_ClearState, including a same-world restart. */
 export function CL_WaterReset() {
-	world = file = edicts = playback = undefined; epoch = {}; lastTime = -Infinity; entered = null;
+	world = file = edicts = playback = undefined; epoch = {}; lastTime = -Infinity;
+	entered.player = entered.view = null;
 }
 
 /**
@@ -26,12 +30,19 @@ export function CL_WaterReset() {
  * client, server or QC. Geometry may classify remote/custom-program water, while remote air stays unknown. Repeated reads at one
  * game time do not consume air; new worlds/files, rewind, death and surfacing
  * reset the demo estimate. Native air is never estimated.
+ *
+ * @param {client_state_t} [client=cl] the client state
+ * @param {{ view?: boolean }} [options] observe the rendered view for the HUD,
+ *   falling back to the body before rendering; sounds retain their body observation
+ * @returns {object} water, movement and read-only air observation
  */
-export function CL_PlayerWater( client = cl ) {
+export function CL_PlayerWater( client = cl, { view = false } = {} ) {
 	if ( world !== client.worldmodel || file !== cls.demofile || edicts !== sv.edicts || playback !== cls.demoplayback || client.time < lastTime ) {
 		CL_WaterReset(); world = client.worldmodel; file = cls.demofile; edicts = sv.edicts; playback = cls.demoplayback;
 	}
 	lastTime = client.time;
+	const sample = view && client.viewcontents?.world === client.worldmodel ? client.viewcontents : null;
+	const reserve = view ? 'view' : 'player';
 	let known = false, airKnown = false, submerged = false, water = false, level = 0, waterPercent = 0;
 	let velocity = client.velocity;
 	const local = client === cl && ! cls.demoplayback && SV_FaceLocalActive() && client.worldmodel === sv.worldmodel;
@@ -39,13 +50,18 @@ export function CL_PlayerWater( client = cl ) {
 	// dependency (it may be unset during signon or a native public test).
 	const player = local ? sv.edicts?.[ 1 ] : null;
 	if ( player && player.v.health > 0 && player.v.movetype !== MOVETYPE_NOCLIP ) {
-		known = true; level = player.v.waterlevel; submerged = level === 3;
+		known = true; level = player.v.waterlevel; submerged = sample ? liquid( sample.contents ) : level === 3;
 		water = level > 0 && player.v.watertype === CONTENTS_WATER;
 		velocity = player.v.velocity;
 		const field = GetEdictFieldValue( player, 'air_finished' );
 		const air = field?.accessor.getFloat( field.ofs );
 		airKnown = Number.isFinite( air );
 		if ( submerged && airKnown ) waterPercent = clamp( ( 12 - ( air - sv.time ) ) / 12 * 100 );
+	} else if ( ! local && client === cl && sample && client.stats[ STAT_HEALTH ] > 0 ) {
+		// R_SetupFrame already queried this eye for tint/warp. Do not re-test an
+		// approximate recorded eye or require the feet/waist to be in the same liquid.
+		known = true; submerged = liquid( sample.contents );
+		level = submerged ? 3 : 0; water = sample.contents === CONTENTS_WATER;
 	} else if ( ! local && client === cl && client.worldmodel?.nodes?.length && client.stats[ STAT_HEALTH ] > 0 ) {
 		const origin = cl_entities[ client.viewentity ]?.origin;
 		if ( origin && client.viewentity > 0 ) {
@@ -54,14 +70,15 @@ export function CL_PlayerWater( client = cl ) {
 			const feet = contents( -23 ), waist = contents( -4 ), eye = contents( client.viewheight );
 			level = liquid( feet ) ? ( liquid( waist ) ? ( liquid( eye ) ? 3 : 2 ) : 1 ) : 0;
 			submerged = level === 3; water = level > 0 && feet === CONTENTS_WATER;
-			if ( ! submerged || ( client.items & IT_SUIT ) !== 0 ) entered = null;
-			if ( submerged && cls.demoplayback ) {
-				entered ??= client.time;
-				waterPercent = clamp( ( client.time - entered ) / 12 * 100 );
-			}
 		}
 	}
-	if ( ! known || ! submerged ) entered = null;
+	// Separate entry instants keep pre-render sound reads of the body from
+	// resetting the HUD reserve when the rendered eye is across a water boundary.
+	if ( ! known || ! submerged || ( client.items & IT_SUIT ) !== 0 ) entered[ reserve ] = null;
+	if ( known && submerged && cls.demoplayback ) {
+		entered[ reserve ] ??= client.time;
+		waterPercent = clamp( ( client.time - entered[ reserve ] ) / 12 * 100 );
+	}
 	const moving = Math.hypot( velocity?.[ 0 ] ?? 0, velocity?.[ 1 ] ?? 0 ) > 20;
 	return { known, airKnown, waterPercent, submerged, water, moving, epoch,
 		filling: submerged && waterPercent < 90 && ( client.items & IT_SUIT ) === 0 && ( airKnown || cls.demoplayback ),

@@ -408,6 +408,7 @@ export class client_state_t {
 
 		// refresh related state
 		this.worldmodel = null; // cl_entities[0].model
+		this.viewcontents = null; // { world, contents } from the rendered view; absent before R_SetupFrame
 		this.free_efrags = null;
 		this.num_entities = 0; // held in cl_entities array
 		this.num_statics = 0; // held in cl_staticentities array

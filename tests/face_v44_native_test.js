@@ -23,12 +23,14 @@ import {cls,cl,ca_disconnected} from '../src/engine/client/client.js';
 import {NET_Init,NET_SendMessage,NET_GetMessage,NET_CanSendMessage} from '../src/engine/net/net_main.js';
 import {SZ_Clear,sizebuf_t,SZ_Alloc,COM_SetNetMessage} from '../src/engine/common/common.js';
 import {CL_ParseServerMessage} from '../src/engine/client/cl_parse.js';
-import {R_Init} from '../src/engine/render/gl_rmain.js';
+import {R_Init,R_SetupFrame} from '../src/engine/render/gl_rmain.js';
+import {r_refdef} from '../src/engine/render/render.js';
 import {V_Init} from '../src/engine/client/view.js';
 import * as travel from '../src/newer/gameplay/sv_seamless.js';
 import {R_DemoLoadingCancel} from '../src/newer/ui/r_demoloading.js';
 import {SV_FaceLocalActive} from '../src/newer/gameplay/sv_faceevents.js';
 import {R_FaceWater,R_PlayerFaceFrame} from '../src/newer/ui/r_facegame.js';
+import {CL_PlayerWater} from '../src/newer/gameplay/cl_water.js';
 import {IT_SUIT,IT_QUAD,STAT_HEALTH} from '../src/engine/common/quakedef.js';
 import {CONTENTS_WATER} from '../src/engine/common/bspfile.js';
 
@@ -99,6 +101,22 @@ Deno.test('v4.4 actual BSP submersion follows native air deadline and only QC ca
  const surfacedAt=sv.time;for(let i=1;i<=10;i++){sv.time=surfacedAt+i*.05;native(p,'WaterMove');same(observe(p).waterStage,10-i,'native surface drain frame '+i);near(field(p,'air_finished')-sv.time,12,'draining never consumes native air');}
  console.log('FACE_V44_NATIVE_AIR '+JSON.stringify({deadline,submergedStages:11,surface:surface,healthAfterNativeDrowning:p.v.health}));
  acknowledge();CL_Disconnect_f();
+});
+
+Deno.test('rendered native water keeps the same QC air clock, fill stages and surface drain',async()=>{
+ const p=await fresh(),surface=Array.from(p.v.origin);SV_CheckWater(p);native(p,'WaterMove');submerged(p);
+ const deadline=field(p,'air_finished');
+ const render=()=>{r_refdef.vieworg.set([p.v.origin[0],p.v.origin[1],p.v.origin[2]+22]);R_SetupFrame();};
+ for(let i=0;i<=9;i++){
+  sv.time=deadline-12+i*1.2+.00001;native(p,'WaterMove');wire(p);
+  const before=snapshot(p),body=CL_PlayerWater();render();const value=R_PlayerFaceFrame();
+  same(value.waterKnown,true,'rendered HUD retains native air authority');same(value.waterEstimated,false,'live air is never estimated');
+  same(value.waterSubmerged,body.submerged,'normal native head and rendered eye agree');near(value.waterPercent,body.waterPercent,'same native percentage');
+  same(value.waterStage,i+1,'same native fill stage');same(snapshot(p),before,'rendering/HUD never changes native timers or gameplay');
+ }
+ p.v.origin=surface;SV_CheckWater(p);native(p,'WaterMove');wire(p);render();same(R_PlayerFaceFrame().waterStage,10,'surface starts the same drain');
+ const at=sv.time;for(let i=1;i<=10;i++){sv.time=at+i*.05;native(p,'WaterMove');wire(p);render();same(R_PlayerFaceFrame().waterStage,10-i,'same rendered drain cadence');}
+ acknowledge();CL_Disconnect_f();CL_ClearState();
 });
 
 Deno.test('v4.4 actual suit pickup renewal and expiry control equipment and refill native air underwater',async()=>{

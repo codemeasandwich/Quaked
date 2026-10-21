@@ -11,8 +11,8 @@ import { CL_Init, CL_RelinkEntities, CL_ClearState, CL_Disconnect_f } from '../s
 import { CL_PlayDemoFromData, CL_GetMessage } from '../src/engine/client/cl_demo.js';
 import { CL_ParseServerMessage } from '../src/engine/client/cl_parse.js';
 import { cl, cls, cl_entities, ca_connected } from '../src/engine/client/client.js';
-import { R_Init } from '../src/engine/render/gl_rmain.js';
-import { V_Init } from '../src/engine/client/view.js';
+import { R_Init, R_SetupFrame } from '../src/engine/render/gl_rmain.js';
+import { V_Init, V_CalcRefdef } from '../src/engine/client/view.js';
 import { NET_Init } from '../src/engine/net/net_main.js';
 import { Cbuf_Init, Cmd_Init } from '../src/engine/common/cmd.js';
 import { Cvar_SetValue } from '../src/engine/common/cvar.js';
@@ -33,7 +33,7 @@ function fixture( z = -40 ) {
  return cl_entities[ 1 ].origin;
 }
 
-Deno.test( 'real demo2 fills the HUD face from recorded player geometry', () => {
+Deno.test( 'real demo2 fills the HUD face from the rendered player view', () => {
  const data = pak.COM_FindFile( 'demo2.dem' )?.data; assert.ok( data, 'shareware contains demo2.dem' );
  const demo = data instanceof Uint8Array ? data : new Uint8Array( data );
  cls.demonum = -1; CL_PlayDemoFromData( demo.buffer.slice( demo.byteOffset, demo.byteOffset + demo.byteLength ), false ); cls.timedemo = false;
@@ -49,7 +49,8 @@ Deno.test( 'real demo2 fills the HUD face from recorded player geometry', () => 
    }
    if ( ! cls.demoplayback || cls.signon !== 4 ) continue;
    cl.time = cl.mtime[ 0 ]; cl.oldtime = cl.time; CL_RelinkEntities();
-   const observation = CL_PlayerWater(), face = R_PlayerFaceFrame(); samples++;
+   V_CalcRefdef(); R_SetupFrame();
+   const observation = CL_PlayerWater( cl, { view: true } ), face = R_PlayerFaceFrame(); samples++;
    if ( observation.submerged && cl.stats[ STAT_HEALTH ] > 0 ) {
     submerged++; assert.ok( face.waterStage >= 1, 'recorded eye submersion immediately shows water' );
     assert.equal( observation.airKnown, false, 'recording cannot expose a native air deadline' );

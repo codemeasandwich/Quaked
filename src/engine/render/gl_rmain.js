@@ -479,11 +479,19 @@ export function R_SetupFrame() {
 	if ( cl && cl.worldmodel ) {
 
 		r_viewleaf = Mod_PointInLeaf( r_origin, cl.worldmodel );
+		// Share the actual camera contents with the HUD: demos have no local waterlevel,
+		// and bob/stair smoothing can put this eye across a boundary from the body.
+		cl.viewcontents = { world: cl.worldmodel, contents: r_viewleaf.contents };
 		R_ScreenDropsSetView( r_origin );
 		R_ScreenDropsView( r_viewleaf.contents );
   R_WeaponSurfaceContext(R_NewerGame(),r_origin,_surfaceBloodVisible,_surfaceBloodContact);
   if(cls.signon===4)R_WeaponSurfaceFrame(cl.time,r_viewleaf.contents,cl.paused);
 		R_PostSetUnderwater( r_viewleaf.contents === - 3 || r_viewleaf.contents === - 4 || r_viewleaf.contents === - 5, r_viewleaf.contents );
+
+	} else {
+
+		r_viewleaf = null;
+		if ( cl ) cl.viewcontents = null;
 
 	}
 

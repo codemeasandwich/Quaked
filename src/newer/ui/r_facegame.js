@@ -135,8 +135,8 @@ export function R_FaceShot( cadence = .6 ) { controller().shot( { time: cl.time,
 /**
  * The drowning overlay for the face, once per HUD frame from `R_PlayerFaceFrame`. Stock native WaterMove refreshes
  * air_finished=time+12 below waterlevel3; CheckPowerups refreshes it while the suit timer is active. Read that clock,
- * never alter a breathing timer or infer head submersion from SU_INWATER. Demo playback uses the recorded
- * player eye and BSP contents with a visual-only estimate (waterEstimated); native air remains waterKnown.
+ * never alter a breathing timer or infer head submersion from SU_INWATER. Reuse the rendered view's contents
+ * (the same eye as tint/warp); demo air is a visual-only estimate (waterEstimated), native air remains waterKnown.
  *
  * @param {client_state_t} [client=cl] the client state
  * @returns {{ waterPercent: number, waterSubmerged: boolean, waterStage: number, waterVisualStage: number,
@@ -145,7 +145,7 @@ export function R_FaceShot( cadence = .6 ) { controller().shot( { time: cl.time,
  *   overlay opacity (always 50), and whether the air clock could be read
  */
 export function R_FaceWater(client=cl) {
-	const water = CL_PlayerWater( client );
+	const water = CL_PlayerWater( client, { view: true } );
 	const { waterPercent, submerged: waterSubmerged } = water;
 	const enabled = water.known && ( water.airKnown || cls.demoplayback );
 	const stage = waterVisual.frame( { time: client.time, epoch: water.epoch, submerged: waterSubmerged,

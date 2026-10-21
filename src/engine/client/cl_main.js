@@ -179,6 +179,7 @@ export function CL_ClearState() {
 	cl.maxclients = 0;
 	cl.gametype = 0;
 	cl.worldmodel = null;
+	cl.viewcontents = null;
 	cl.free_efrags = null;
 	cl.num_entities = 0;
 	cl.num_statics = 0;
