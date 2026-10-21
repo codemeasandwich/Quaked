@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/texture_06_mtex470",
+  "scope": "Fresh actual PAK/BSP/native all-four-mip/flags/paletteRGBA only; no source/master/ART/tier acceptance",
+  "startedAt": "2026-10-21T03:16:13.465501+00:00",
+  "verdict": "HOLD",
+  "error": "AssertionError()",
+  "inputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+      "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+    },
+    {
+      "file": "docs/evidence/hexen2-textures-2026-10-19/current/inventory.json",
+      "sha256": "344ad22744fd5b6ad9d07ef89102be930ac2c3c88589456d46963c8b4c082d6a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/native-audit/inventory.json",
+      "sha256": "85385d0aeaed5edc2d7d1e1caff27ed7de595276d65afea336b9af2f8f99f045"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/native-proof.json",
+      "sha256": "acf555f1c8a824bff3eeca24fc7cde06d4e45611dbe3d8eb81eee8b946c99ce7"
+    }
+  ],
+  "verifier": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/verify-native-v1.py",
+    "sha256": "39bc0164baf1e45b742251d9ca2ea2e00d37b8befdb474952c53c492109a4c43"
+  },
+  "completedAt": "2026-10-21T03:16:13.704719+00:00"
+}

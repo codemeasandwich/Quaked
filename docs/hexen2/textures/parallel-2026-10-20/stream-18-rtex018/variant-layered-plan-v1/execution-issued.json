@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "state": "ROOT_APPROVES_EXACT_TWO_VARIANT_GUARDED_LAYER_CALLS_BEFORE_EXECUTION",
+  "at": "2026-10-21T05:59:00.329629+00:00",
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/plan.json",
+    "sha256": "8cdfd605ad98024e0c76ba11ee7e0418cf0af9990f4fdbb6fc63cc408a89c5ef"
+  },
+  "independentPlanReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-plan-review-v1/pre-run-PASS.json",
+    "sha256": "511a95905f549370168676d268ff324aaa107c737ed4eb3a541ac350842dfdcf"
+  },
+  "baselineActualPhysicalPASS": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v2/physical-PASS-v1.json",
+    "sha256": "cd1c50c5e542156ca2eee3d93067ad83ade09dee3853c989d763b17b18000255"
+  },
+  "rootBaselinePhysicalPASS": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/root-v3-pre-tier-physical-review.json",
+    "sha256": "740e62f829af327c67747ab335fe685be8b57141fbc0adf35994f9a8a07d69a7"
+  },
+  "scope": "EachownverifiedRGB+genuinesourceproof andactualcorresponding49geometry; no copiedheight/newproducer/modelcall/tier. Actualvariantmath/physicalreviewstillrequired."
+}

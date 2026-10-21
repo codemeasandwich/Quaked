@@ -1,0 +1,6 @@
+{
+  "at": "2026-10-21T07:13:19.471871+00:00",
+  "exitCode": 1,
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr": "Traceback (most recent call last):\n  File \"/Users/bri/SOURCE/Quaked/tools/texture_sheets/check_texture_catalog_custody.py\", line 589, in <module>\n    print(json.dumps(verify(Path.cwd(), args.source_root, json.loads(args.baseline.read_bytes()), args.family, args.reference_root), indent=2))\n  File \"/Users/bri/SOURCE/Quaked/tools/texture_sheets/check_texture_catalog_custody.py\", line 548, in verify\n    raise ValueError('Changed registration needs actual, preview, ART and custody receipts')\nValueError: Changed registration needs actual, preview, ART and custody receipts\n"
+}

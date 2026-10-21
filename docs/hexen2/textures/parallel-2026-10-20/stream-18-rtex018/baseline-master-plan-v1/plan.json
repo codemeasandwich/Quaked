@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "state": "EXACT_BASELINE_SOURCE_SELECTION_AND_INITIAL_PREPARE_PLAN_NOT_EXECUTED",
+  "createdAt": "2026-10-21T03:17:23.318398+00:00",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "artVariantID": "woodland-bridge",
+  "proposedImmutableSelection": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/proposed-source-selection.json",
+    "sha256": "ceb9cb762719ebc6d7ec9e89bc2988b68ad985104bdbb26a5c87dce9236df97e"
+  },
+  "proposedSelectionDestination": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/source-selections/s1.json",
+  "proposedPointerDestination": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/active-source.json",
+  "pointerShape": {
+    "schemaVersion": 1,
+    "selection": "actual file/hash of exclusively sealed selection; no additional mutable fields"
+  },
+  "command": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/prepare-command.json",
+    "sha256": "3694b891ea225f2ac52aa326c6e5f4f03f5be9623b93b2bc82102e508fcc3b4f"
+  },
+  "commandText": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/prepare-command.txt",
+    "sha256": "9d80ed1a7743f7b8854ee3b92f532a8aee4e84a4c23310b90ba0e72a46536731"
+  },
+  "sourceGate": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-registration-source-v1/review.json",
+    "sha256": "8cff5d7ce809f17d2631ef3f521d9ea7243bf633b73e258c0099f409c75c176c"
+  },
+  "actualInspection": "Viewed actual512x2048 selectedPNG and native64x256: recognizable leaded Gothic stained-glass assembly with artist woodland/sky/bridge, patinated dark frame/came, mineral-grained jambs. Main upper lobes/centre/crossbars persist, no inventedbottomrosettes or externalgrey. Painting remains stylized/variegated;03source gate allows canonical preparation, not final material/physical acceptance. Source warmer/brighter thanLow; existing.65/.75colourfield is the bounded next step.",
+  "canonicalPreparation": {
+    "producer": {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    "finisher": {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    "craft": {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    "profileName": "window02_1",
+    "resolvedProfile": {
+      "bands": [
+        0.3,
+        1,
+        1,
+        0.6
+      ],
+      "groove": 1.2,
+      "bump": 0.2,
+      "glow": 0.6,
+      "strength": 0.3,
+      "cap": 0.5
+    },
+    "whyProfile": "Explicit existing stained-glass heuristic, not generic DEFAULT. Its brightness-derived initial scalar is provisional even though source material is glass. Strength.3/cap.5 override historical steep defaults.",
+    "registration": "No new landmarks or spatial registration. Selectedsource already512x2048 equals8xnative; finisher donorresize at same dimensions must be identity in actual proof. Existing photographic coarse-colour correction then unquantized craft once.",
+    "reliefRepresentation": "One initial float32height.npy at512x2048, quantize_height=False. Do not copy oldscalar or resample tiers. CLIlocalgenerationCount1 denotes singleinput; complete sourceproof must retain primary1+edit1=2.",
+    "expectedOutput": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1",
+    "expectedFiles": [
+      "color.png",
+      "height.npy",
+      "master.json"
+    ]
+  },
+  "physicalGateBeforeTiers": {
+    "intendedHierarchy": "Solid dark jamb/tracery/came shallowly above insetglass. Artist sky/leaves/valley/bridge are glass coloration and must not become terrain, cavities, walls or proudstones.",
+    "actualSourceGeometricRoles": "Actual centre mullion near nativeX30..33, narrow lateral jambs and structural horizontalbars divide pairedlonglights and uppercurvedlobes. Pane interiors are measured from source geometry, not classified by pale/darkscene colour. Exact laterpane polygons must follow actual preparedRGB boundaries; none authored now.",
+    "initialEvidenceAfterPreparation": [
+      "Fullscalar/XYZ/opposedneutral views and literalX/Y/corners at512x2048, no encoded tiers",
+      "Source-corresponding brightupperglass, darklowerglass and bridgepaint witnesses compared with neighbouring solidframe/came; brightnessinversion/paintemboss remainsHOLD even if boundsvalid",
+      "ActualcanonicalRGB/nativeBOX32x128/16x64, tracery/barphase/scene palette/material and fullrepeatreview"
+    ],
+    "existingRepairPreference": "If initialheight is wrong, obtain genuine06independent source/master-only replay first. Then source-measured paneinterior polygons may use unchanged prepare_layered_texture_master.py: lowerglass/common shallowupperframe, microAmplitude0 to keep paintedscene flat. Exact polygons/planes/bevel need actual review before guarded successor. No newproducer, complexthreeplanes or compositor presumed.",
+    "limitation": "microAmplitude0 omits all scalar fineglass/framewear; two-plane architecture cannot claim measuredglasswaviness or arbitraryroundedmetal. Must inspect actualgeometry withfixedlights and keepHOLD if simplisticwalls/flatplasticfail physicalmaterialgate.",
+    "variantRequirementCorrection": "Root clarified exact frameRGB sharing is NOT an ownerrequirement; commonlayout/material and individuallyqualifiedrelief suffice. Earlier proposed exactsharedframe/mask mechanism is superseded as a self-imposed optional approach, not a prerequisite to running this baseline. No variantcall or runtimeaction now."
+  },
+  "approvalOrder": [
+    "texture06 exactselection/command/profile/lineage review first",
+    "Root approves and seals actualimmutable selection/pointer and bounded initialprepare execution authority",
+    "Execute existingCLI once into freshoutput only after root approval",
+    "06 genuine independentactualsource/master replay; actual physical/material review before any guardedsuccessor or tiers"
+  ],
+  "notPerformed": [
+    "actual immutable assetsource-selection or pointer",
+    "prepare execution",
+    "mask/polygon authoring",
+    "heightauthoring",
+    "tiers",
+    "imagecall",
+    "shared/Git/build/enginechange"
+  ]
+}

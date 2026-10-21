@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "scope": "Actual source dimensions/bounds and literal inspection contacts only; no registered source produced.",
+  "recordedAt": "2026-10-21T03:20:34.167929+00:00",
+  "variant": "forest-stone-shrine",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "source": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/forest-stone-shrine-r1.png",
+    "sha256": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752",
+    "dimensions": [
+      724,
+      2171
+    ],
+    "mode": "RGB"
+  },
+  "toolCopyExact": true,
+  "sourceBindings": {
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/forest-stone-shrine-r1.png": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/issued.json": "77e10d0b28c96a1b41c44111912ea590c7ae08386feb72044ece089f1364b3fb",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/selection.json": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/forest-stone-shrine-prompt.txt": "d922991b02d50f6dfe690579d804e832954f19e1d3ae17f20b1be896b9884551",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/issued.json": "d7d0edc91559015defd99fa8fac2924b0c964144347ac92deab55d7e984c008f",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/issued.json": "4e485b896e0d8698525febe1497ece7cade4e19bbf7c8da82fea6a5a50efcb8a",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/retained.json": "6d82c7a147171290bd21ea6dd04931556661e4a51ccdd1bfaacb7243a5952d3e",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/retained.json": "ab231e81ee9ba280886252dda5e58c9a18414e9b4d7a5735bf484f28ff6e0aac",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/scene-variants-plan-v2/root-pre-issuance-review.json": "91f668c390a75b578f4088b3abd1f7cfb006fc8708e9b7ea056cfae64fcffcc1",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-plan-review-v1/pre-issuance-v2-PASS.json": "46917735d7f2bea24aba4c8bd24571bea0b3681e08a1156c646968f3d95275ef",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/retained.json": "67b3b7b1594b0a47e128fb913a63989478eb2a2af596e39432323ed4354fee6d"
+  },
+  "parentDimensions": [
+    724,
+    2172
+  ],
+  "actualHeightDifferencePixels": -1,
+  "gradientMeasurements": {
+    "definition": "Mean absoluteRGB horizontal adjacent-pixel difference, max per row within local edge bands. Positions mean between x and x+1; not exact semantic alpha boundaries.",
+    "bands": {
+      "left": [
+        65,
+        135
+      ],
+      "right": [
+        595,
+        660
+      ]
+    },
+    "rowTransitionHistogram": {
+      "left": {
+        "98": 49,
+        "99": 2073,
+        "130": 42,
+        "133": 1,
+        "134": 6
+      },
+      "right": {
+        "603": 3,
+        "605": 1,
+        "623": 2167
+      }
+    },
+    "rows": 2171
+  },
+  "candidateRegistrationProposal": {
+    "state": "PROPOSED_ONLY_REQUIRES_ROOT_ACTUAL_ROI_REVIEW",
+    "parentSha256": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752",
+    "cropXYXYHalfOpen": [
+      100,
+      0,
+      624,
+      2171
+    ],
+    "proposedCoreDimensions": [
+      524,
+      2171
+    ],
+    "targetDimensions": [
+      512,
+      2048
+    ],
+    "operation": "One external-carrier trim then one direct Pillow10.1LANCZOS down-only resize; no height crop. Not performed.",
+    "scaleX": 0.9770992366412213,
+    "scaleY": 0.943344081068632,
+    "bothAxesStrictlyReduce": true,
+    "sourceSamplesPerNative": [
+      8.1875,
+      8.48046875
+    ],
+    "relativeVerticalShorteningPercent": 3.454629203132187,
+    "boundsRationale": "Fullheight preserves apex/sill. Independently measured source border supports provisional x100..623solid/dark core; no blind use of baseline bounds. Actual transition fringes are disclosed, not an exact alpha mask.",
+    "uncertainty": "ActualAA/dark-edge bands around98..101and623..626 must be reviewed against literal source/native frame before crop. No final join acceptance."
+  },
+  "diagnosticContacts": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-review-v1/forest-stone-shrine/literal-material-frame-scene.png",
+      "sha256": "71f00e5a7a54c7651b53746ccfc0f97a98d6449602040f373746295d011f9897",
+      "pixelPolicy": "Unscaled literal source copies and labels, diagnostic only."
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-review-v1/forest-stone-shrine/literal-carrier-boundaries.png",
+      "sha256": "810afa038d21a63e55456623104b28832a1f576bc24e9c935bf965fa90819b57",
+      "pixelPolicy": "Unscaled literal source copies and labels, diagnostic only."
+    }
+  ],
+  "countsAtShrineIssueAndRetention": {
+    "originalGeneration": 1,
+    "edits": 3,
+    "total": 4,
+    "thisVariantNewEdits": 1
+  },
+  "noAuthoringOutputOrSourceMutation": true
+}

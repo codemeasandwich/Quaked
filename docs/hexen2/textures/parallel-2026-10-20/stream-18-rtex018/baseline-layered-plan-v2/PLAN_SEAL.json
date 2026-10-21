@@ -1,0 +1,418 @@
+{
+  "state": "EXACT49_PANE_GUIDE_EXISTING_LAYERED_PLAN_ONLY",
+  "guide": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v2/final49-pane-guide.json",
+    "sha256": "601f32c6a259609728227d990d9e4eab9f480de8192abce2e0a9befb86d390d4"
+  },
+  "overlay": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v2/final49-pane-overlay.png",
+    "sha256": "82762dec772fe7fda3230caa109552bf1dcff4d909c8a85a2620f0d6472790a4"
+  },
+  "topOverlay": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v2/final49-top-pane-overlay.png",
+    "sha256": "798e12004ef75670d83721089e268aabbb687ee4fdee9911b29d195e83004417"
+  },
+  "mask": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v2/final49-pane-mask.png",
+    "sha256": "9c31bcc8b13305b1caebc606ad48cef38d711933aa1f9a14df88878786d4453a"
+  },
+  "recipe": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v2/layered-recipe-v2.json",
+    "sha256": "38cc5cde96a901032e12f27d2627b496ba156da2ead50261b159ad4e1f7f8179"
+  },
+  "command": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v2/command.json",
+    "sha256": "167a12fea42dd6622e819829848e2a59a8106afb25bc3c4b880fd541414ef883"
+  },
+  "sourceMasterProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/source-master-proof-v1.json",
+    "sha256": "e3d123607ad2643dad1047eb7a3360d17745e8d59417da8a6a2277b362f46cde"
+  },
+  "sourceMaster": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/master.json",
+    "sha256": "9faf21c8d9fb9e4098302a0d826c5022745a33e0ccae5feb324f3496cb2b1185"
+  },
+  "pocketContribution": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v2/rosette-glass-contribution-03.json",
+    "sha256": "11fbf9092835f5cf2a3d3eae503d8d5a2dae24f4566eb8cdc12a4348be1f89ae"
+  },
+  "sixCorrectionReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-physical-plan-v1/six-upper-corrections-v2-review.json",
+    "sha256": "d1f568d86f4441402150838524630192404ecabec82bed098ea2986deb5d338c"
+  },
+  "sourceClassifiedSamples": [
+    {
+      "role": "upper painted glass",
+      "masterXY": [
+        100,
+        610
+      ],
+      "nativeXY": [
+        12.5,
+        76.25
+      ],
+      "expectedPane": true,
+      "actualPaneMask": true,
+      "RGB": [
+        193,
+        162,
+        134
+      ],
+      "initialHeightMedian9x9": 0.8397801518440247,
+      "sampleScope": "pointclassification only; 9x9median may include interfaces for smallpockets. Do not treat mixedpatch as paneinterior proof."
+    },
+    {
+      "role": "right painted glass",
+      "masterXY": [
+        390,
+        980
+      ],
+      "nativeXY": [
+        48.75,
+        122.5
+      ],
+      "expectedPane": true,
+      "actualPaneMask": true,
+      "RGB": [
+        163,
+        143,
+        108
+      ],
+      "initialHeightMedian9x9": 0.3854469060897827,
+      "sampleScope": "pointclassification only; 9x9median may include interfaces for smallpockets. Do not treat mixedpatch as paneinterior proof."
+    },
+    {
+      "role": "painted bridge",
+      "masterXY": [
+        150,
+        1705
+      ],
+      "nativeXY": [
+        18.75,
+        213.125
+      ],
+      "expectedPane": true,
+      "actualPaneMask": true,
+      "RGB": [
+        101,
+        93,
+        66
+      ],
+      "initialHeightMedian9x9": 0.7716608643531799,
+      "sampleScope": "pointclassification only; 9x9median may include interfaces for smallpockets. Do not treat mixedpatch as paneinterior proof."
+    },
+    {
+      "role": "dark painted lower glass",
+      "masterXY": [
+        100,
+        1530
+      ],
+      "nativeXY": [
+        12.5,
+        191.25
+      ],
+      "expectedPane": true,
+      "actualPaneMask": true,
+      "RGB": [
+        28,
+        28,
+        22
+      ],
+      "initialHeightMedian9x9": 0.3138830065727234,
+      "sampleScope": "pointclassification only; 9x9median may include interfaces for smallpockets. Do not treat mixedpatch as paneinterior proof."
+    },
+    {
+      "role": "centre mullion",
+      "masterXY": [
+        255,
+        650
+      ],
+      "nativeXY": [
+        31.875,
+        81.25
+      ],
+      "expectedPane": false,
+      "actualPaneMask": false,
+      "RGB": [
+        68,
+        51,
+        39
+      ],
+      "initialHeightMedian9x9": 0.016535889357328415,
+      "sampleScope": "pointclassification only; 9x9median may include interfaces for smallpockets. Do not treat mixedpatch as paneinterior proof."
+    },
+    {
+      "role": "side jamb",
+      "masterXY": [
+        10,
+        650
+      ],
+      "nativeXY": [
+        1.25,
+        81.25
+      ],
+      "expectedPane": false,
+      "actualPaneMask": false,
+      "RGB": [
+        40,
+        29,
+        23
+      ],
+      "initialHeightMedian9x9": 0.17510227859020233,
+      "sampleScope": "pointclassification only; 9x9median may include interfaces for smallpockets. Do not treat mixedpatch as paneinterior proof."
+    },
+    {
+      "role": "horizontal came",
+      "masterXY": [
+        100,
+        701
+      ],
+      "nativeXY": [
+        12.5,
+        87.625
+      ],
+      "expectedPane": false,
+      "actualPaneMask": false,
+      "RGB": [
+        15,
+        8,
+        3
+      ],
+      "initialHeightMedian9x9": 0.010166125372052193,
+      "sampleScope": "pointclassification only; 9x9median may include interfaces for smallpockets. Do not treat mixedpatch as paneinterior proof."
+    },
+    {
+      "role": "upper glass wedge",
+      "masterXY": [
+        135,
+        188
+      ],
+      "nativeXY": [
+        16.875,
+        23.5
+      ],
+      "expectedPane": true,
+      "actualPaneMask": true,
+      "RGB": [
+        212,
+        189,
+        155
+      ],
+      "initialHeightMedian9x9": 0.8949416279792786,
+      "sampleScope": "pointclassification only; 9x9median may include interfaces for smallpockets. Do not treat mixedpatch as paneinterior proof."
+    },
+    {
+      "role": "upper brown ring",
+      "masterXY": [
+        157,
+        177
+      ],
+      "nativeXY": [
+        19.625,
+        22.125
+      ],
+      "expectedPane": false,
+      "actualPaneMask": false,
+      "RGB": [
+        53,
+        42,
+        35
+      ],
+      "initialHeightMedian9x9": 0.03915182501077652,
+      "sampleScope": "pointclassification only; 9x9median may include interfaces for smallpockets. Do not treat mixedpatch as paneinterior proof."
+    },
+    {
+      "role": "lobe brown ring",
+      "masterXY": [
+        215,
+        290
+      ],
+      "nativeXY": [
+        26.875,
+        36.25
+      ],
+      "expectedPane": false,
+      "actualPaneMask": false,
+      "RGB": [
+        46,
+        38,
+        34
+      ],
+      "initialHeightMedian9x9": 0.025477835908532143,
+      "sampleScope": "pointclassification only; 9x9median may include interfaces for smallpockets. Do not treat mixedpatch as paneinterior proof."
+    },
+    {
+      "role": "upper left pocket",
+      "masterXY": [
+        225,
+        234
+      ],
+      "nativeXY": [
+        28.125,
+        29.25
+      ],
+      "expectedPane": true,
+      "actualPaneMask": true,
+      "RGB": [
+        196,
+        184,
+        178
+      ],
+      "initialHeightMedian9x9": 0.8153668642044067,
+      "sampleScope": "pointclassification only; 9x9median may include interfaces for smallpockets. Do not treat mixedpatch as paneinterior proof."
+    },
+    {
+      "role": "upper right pocket",
+      "masterXY": [
+        281,
+        235
+      ],
+      "nativeXY": [
+        35.125,
+        29.375
+      ],
+      "expectedPane": true,
+      "actualPaneMask": true,
+      "RGB": [
+        221,
+        217,
+        212
+      ],
+      "initialHeightMedian9x9": 0.653135359287262,
+      "sampleScope": "pointclassification only; 9x9median may include interfaces for smallpockets. Do not treat mixedpatch as paneinterior proof."
+    },
+    {
+      "role": "lower left pocket",
+      "masterXY": [
+        224,
+        285
+      ],
+      "nativeXY": [
+        28.0,
+        35.625
+      ],
+      "expectedPane": true,
+      "actualPaneMask": true,
+      "RGB": [
+        232,
+        218,
+        207
+      ],
+      "initialHeightMedian9x9": 0.784035325050354,
+      "sampleScope": "pointclassification only; 9x9median may include interfaces for smallpockets. Do not treat mixedpatch as paneinterior proof."
+    },
+    {
+      "role": "lower right pocket",
+      "masterXY": [
+        286,
+        285
+      ],
+      "nativeXY": [
+        35.75,
+        35.625
+      ],
+      "expectedPane": true,
+      "actualPaneMask": true,
+      "RGB": [
+        239,
+        230,
+        214
+      ],
+      "initialHeightMedian9x9": 0.9093132019042969,
+      "sampleScope": "pointclassification only; 9x9median may include interfaces for smallpockets. Do not treat mixedpatch as paneinterior proof."
+    },
+    {
+      "role": "pocket came upperleft",
+      "masterXY": [
+        235,
+        234
+      ],
+      "nativeXY": [
+        29.375,
+        29.25
+      ],
+      "expectedPane": false,
+      "actualPaneMask": false,
+      "RGB": [
+        27,
+        19,
+        16
+      ],
+      "initialHeightMedian9x9": 0.03389878571033478,
+      "sampleScope": "pointclassification only; 9x9median may include interfaces for smallpockets. Do not treat mixedpatch as paneinterior proof."
+    },
+    {
+      "role": "pocket came upperright",
+      "masterXY": [
+        276,
+        231
+      ],
+      "nativeXY": [
+        34.5,
+        28.875
+      ],
+      "expectedPane": false,
+      "actualPaneMask": false,
+      "RGB": [
+        26,
+        15,
+        10
+      ],
+      "initialHeightMedian9x9": 0.05086085572838783,
+      "sampleScope": "pointclassification only; 9x9median may include interfaces for smallpockets. Do not treat mixedpatch as paneinterior proof."
+    },
+    {
+      "role": "pocket came lowerleft",
+      "masterXY": [
+        234,
+        282
+      ],
+      "nativeXY": [
+        29.25,
+        35.25
+      ],
+      "expectedPane": false,
+      "actualPaneMask": false,
+      "RGB": [
+        9,
+        1,
+        1
+      ],
+      "initialHeightMedian9x9": 0.055267300456762314,
+      "sampleScope": "pointclassification only; 9x9median may include interfaces for smallpockets. Do not treat mixedpatch as paneinterior proof."
+    },
+    {
+      "role": "pocket came lowerright",
+      "masterXY": [
+        277,
+        282
+      ],
+      "nativeXY": [
+        34.625,
+        35.25
+      ],
+      "expectedPane": false,
+      "actualPaneMask": false,
+      "RGB": [
+        16,
+        3,
+        0
+      ],
+      "initialHeightMedian9x9": 0.06518858671188354,
+      "sampleScope": "pointclassification only; 9x9median may include interfaces for smallpockets. Do not treat mixedpatch as paneinterior proof."
+    }
+  ],
+  "existingProducer": {
+    "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+    "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d"
+  },
+  "guideStats": {
+    "regionCount": 49,
+    "paneMaskPixels": 596458,
+    "paneMaskFraction": 0.5688266754150391,
+    "imagePerimeterMasked": false,
+    "bevelSigmaMasterPixels": 2.0
+  },
+  "heightComposeExecuted": false,
+  "tierCount": 0
+}

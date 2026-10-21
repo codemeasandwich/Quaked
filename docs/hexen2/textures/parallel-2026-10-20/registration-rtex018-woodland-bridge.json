@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-21T07:11:15.295256+00:00",
+  "verdict": "PASS root registered exactly one independently qualified native identity",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "artVariantID": "woodland-bridge",
+  "previousCatalogSha256": "323885d69fe8d1b1d97ae966733f3f37c902fda3f42192172cbd9d3ff868eae7",
+  "countsBefore": {
+    "reviewedWorldNativeIdentities": 68,
+    "masterPackages": 60,
+    "enhancedTiers": 120,
+    "enhancedMaps": 600,
+    "enhancedTierBindings": 136,
+    "enhancedMapBindings": 680
+  },
+  "countsAfter": {
+    "reviewedWorldNativeIdentities": 69,
+    "masterPackages": 61,
+    "enhancedTiers": 122,
+    "enhancedMaps": 610,
+    "enhancedTierBindings": 138,
+    "enhancedMapBindings": 690
+  },
+  "nativeRowsPreserved": 68,
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2/master.json",
+    "sha256": "e2c9998965b28a588e3fab8a7c97e601a97b8c2eb4ef0d94f0a403ddd382a582"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/manifest.json",
+    "sha256": "780eb8af2ccfa8bcb1e597266170cdfdb22f57bfdd099c320cfeceef149e36d4"
+  },
+  "reviews": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/actual-v1.json": "d1881d1a69f20ac92b87070a0cd57057ec90a6fb147b983d3e34e95ce3a6905a",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/art-review-v1.json": "c4acd788e78098a051d83def6cc37a07279f3f853eef800682732392f073ace1",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/final-custody-v1.json": "28acc1dde999370c46ac7a7f46408b9aae48b66f4c7dfaa7bf7f24fbfd62ffff",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/root-baseline-final-art-review.json": "c62d799a991ebdce794d478441e96707b3ef34061a00b2bfd5222e8a893322f5",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/source-master-proof-v1.json": "e3d123607ad2643dad1047eb7a3360d17745e8d59417da8a6a2277b362f46cde",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v2/proof-v1.json": "9e679ca0a4182d4a9a078af663f4deac90383fbca3fe58af7b5279a9f24c168b",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v2/physical-PASS-v1.json": "cd1c50c5e542156ca2eee3d93067ad83ade09dee3853c989d763b17b18000255"
+  },
+  "authorFreeze": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/BASELINE_FINAL_FREEZE.json",
+    "sha256": "83abf7c12f5f4af487ba6b9320bb4ce7994bf277a5b124d98ceff841cf810d64"
+  },
+  "frozenFilesRechecked": 105,
+  "batch": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/batch-final-v1.json",
+    "sha256": "6e07206b153cae10388d5a8f0431ce9fcc9ba0427feb471abaf849102a7019ac"
+  },
+  "limits": "No alternative-native-count inflation, runtime/owner/Git/release claim. Sourcecallsremain65primary+6edits=71.",
+  "catalogSha256": "112db43adcfdddb7cbb2ea062234c1089555534477dcdcbde94d44011586cecb"
+}

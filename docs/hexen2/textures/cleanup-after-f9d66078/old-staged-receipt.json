@@ -1,0 +1,106 @@
+{
+  "base": "98725bca4d5947f57d7f3c0097feee417a64ff3e",
+  "tree": "5cdfe3e6c929fe636f469ab3ea8ebb9d898653d8",
+  "scope": "dev-texture",
+  "output": "/Users/bri/SOURCE/Quaked/dist/texture-checkpoints/5cdfe3e6c929fe636f469ab3ea8ebb9d898653d8",
+  "platform": "darwin",
+  "node": "v24.13.0",
+  "commands": [
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/prepare_texture_master_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/hexen2_texture_tiers_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/texture_batch_review_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/texture_boundary_registration_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/texture_layered_master_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/texture_layered_boundary_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/texture_motif_master_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tools/texture_sheets/check_texture_catalog_custody.py",
+        "--baseline",
+        ".texture-gate-baseline.json",
+        "--source-root",
+        "/Users/bri/SOURCE/Quaked"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "ci",
+        "--ignore-scripts"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:distribution"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build:web"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "node",
+        "tools/distribution/verify-site.mjs",
+        "dist/web"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "bootstrap": null,
+  "htmlSha256": "30fc28dc6d1457bfa09d8de0a335802ca90756102ed010ff84e907bc762bbd54",
+  "macBuilt": false,
+  "qualification": "Texture and HTML only; native/release/remote CI not qualified"
+}

@@ -1,0 +1,2427 @@
+{
+  "schemaVersion": 1,
+  "state": "DIAGNOSTICS_READY_FOR_ACTUAL_VARIANT_SOURCE_CONTEXT_REVIEW_NOT_A_VERDICT",
+  "recordedAt": "2026-10-21T04:55:06.509530+00:00",
+  "guide": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v2/final49-pane-guide.json",
+    "sha256": "601f32c6a259609728227d990d9e4eab9f480de8192abce2e0a9befb86d390d4"
+  },
+  "guideMaskPixels": 596458,
+  "regionCount": 49,
+  "maskFunction": {
+    "file": "tools/texture_sheets/update_level_sheets.py",
+    "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5",
+    "executionScope": "ASTextract of purebrick_mask only; no modulemain, heightfunction or publication."
+  },
+  "maskReplayMatchesSealed49Mask": true,
+  "materials": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/master.json",
+        "sha256": "039466e7af1765c9b488a99f5526e097d52f56da7e10ae1aa6be971c69ba9db9"
+      },
+      "sourceRGB": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/color.png",
+        "sha256": "e9453b368e07c788fe9334a067de9cb4810885eefe187861cdb465d06f668415",
+        "dimensions": [
+          512,
+          2048
+        ]
+      },
+      "contextPoints": [
+        {
+          "label": "upper brown ring",
+          "expectedPane": false,
+          "masterXY": [
+            157,
+            177
+          ],
+          "nativeTexelCentre": [
+            19.6875,
+            22.1875
+          ],
+          "sourceRGB": [
+            53,
+            42,
+            33
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "solid upperleft curvedring lower",
+          "expectedPane": false,
+          "masterXY": [
+            161,
+            187
+          ],
+          "nativeTexelCentre": [
+            20.1875,
+            23.4375
+          ],
+          "sourceRGB": [
+            59,
+            52,
+            48
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "solid upperright curvedring",
+          "expectedPane": false,
+          "masterXY": [
+            355,
+            178
+          ],
+          "nativeTexelCentre": [
+            44.4375,
+            22.3125
+          ],
+          "sourceRGB": [
+            34,
+            28,
+            19
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "solid left lowerring/came",
+          "expectedPane": false,
+          "masterXY": [
+            170,
+            216
+          ],
+          "nativeTexelCentre": [
+            21.3125,
+            27.0625
+          ],
+          "sourceRGB": [
+            2,
+            1,
+            0
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "solid right lowerring/came",
+          "expectedPane": false,
+          "masterXY": [
+            345,
+            216
+          ],
+          "nativeTexelCentre": [
+            43.1875,
+            27.0625
+          ],
+          "sourceRGB": [
+            0,
+            0,
+            0
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "upper glass wedge",
+          "expectedPane": true,
+          "masterXY": [
+            135,
+            188
+          ],
+          "nativeTexelCentre": [
+            16.9375,
+            23.5625
+          ],
+          "sourceRGB": [
+            183,
+            161,
+            118
+          ],
+          "guideMaskPane": true,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "lobe brown ring",
+          "expectedPane": false,
+          "masterXY": [
+            215,
+            290
+          ],
+          "nativeTexelCentre": [
+            26.9375,
+            36.3125
+          ],
+          "sourceRGB": [
+            45,
+            38,
+            34
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "solidframe leftlobe inwardextensionlower",
+          "expectedPane": false,
+          "masterXY": [
+            222,
+            301
+          ],
+          "nativeTexelCentre": [
+            27.8125,
+            37.6875
+          ],
+          "sourceRGB": [
+            68,
+            53,
+            44
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "solidframe rightlobe inwardextensionlower",
+          "expectedPane": false,
+          "masterXY": [
+            290,
+            298
+          ],
+          "nativeTexelCentre": [
+            36.3125,
+            37.3125
+          ],
+          "sourceRGB": [
+            32,
+            23,
+            18
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "G_UL",
+          "expectedPane": true,
+          "masterXY": [
+            225,
+            234
+          ],
+          "nativeTexelCentre": [
+            28.1875,
+            29.3125
+          ],
+          "sourceRGB": [
+            210,
+            201,
+            200
+          ],
+          "guideMaskPane": true,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "G_UR",
+          "expectedPane": true,
+          "masterXY": [
+            281,
+            235
+          ],
+          "nativeTexelCentre": [
+            35.1875,
+            29.4375
+          ],
+          "sourceRGB": [
+            216,
+            214,
+            207
+          ],
+          "guideMaskPane": true,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "upper painted glass",
+          "expectedPane": true,
+          "masterXY": [
+            100,
+            610
+          ],
+          "nativeTexelCentre": [
+            12.5625,
+            76.3125
+          ],
+          "sourceRGB": [
+            219,
+            201,
+            184
+          ],
+          "guideMaskPane": true,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "right painted glass",
+          "expectedPane": true,
+          "masterXY": [
+            390,
+            980
+          ],
+          "nativeTexelCentre": [
+            48.8125,
+            122.5625
+          ],
+          "sourceRGB": [
+            158,
+            134,
+            91
+          ],
+          "guideMaskPane": true,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "painted bridge",
+          "expectedPane": true,
+          "masterXY": [
+            150,
+            1705
+          ],
+          "nativeTexelCentre": [
+            18.8125,
+            213.1875
+          ],
+          "sourceRGB": [
+            98,
+            78,
+            43
+          ],
+          "guideMaskPane": true,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "dark painted lower glass",
+          "expectedPane": true,
+          "masterXY": [
+            100,
+            1530
+          ],
+          "nativeTexelCentre": [
+            12.5625,
+            191.3125
+          ],
+          "sourceRGB": [
+            31,
+            30,
+            26
+          ],
+          "guideMaskPane": true,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "centre mullion",
+          "expectedPane": false,
+          "masterXY": [
+            255,
+            650
+          ],
+          "nativeTexelCentre": [
+            31.9375,
+            81.3125
+          ],
+          "sourceRGB": [
+            67,
+            49,
+            41
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "side jamb",
+          "expectedPane": false,
+          "masterXY": [
+            10,
+            650
+          ],
+          "nativeTexelCentre": [
+            1.3125,
+            81.3125
+          ],
+          "sourceRGB": [
+            51,
+            38,
+            30
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "horizontal came",
+          "expectedPane": false,
+          "masterXY": [
+            100,
+            701
+          ],
+          "nativeTexelCentre": [
+            12.5625,
+            87.6875
+          ],
+          "sourceRGB": [
+            0,
+            0,
+            0
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "G_LL",
+          "expectedPane": true,
+          "masterXY": [
+            224,
+            285
+          ],
+          "nativeTexelCentre": [
+            28.0625,
+            35.6875
+          ],
+          "sourceRGB": [
+            224,
+            189,
+            150
+          ],
+          "guideMaskPane": true,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "G_LR",
+          "expectedPane": true,
+          "masterXY": [
+            286,
+            285
+          ],
+          "nativeTexelCentre": [
+            35.8125,
+            35.6875
+          ],
+          "sourceRGB": [
+            243,
+            233,
+            212
+          ],
+          "guideMaskPane": true,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "C_UL",
+          "expectedPane": false,
+          "masterXY": [
+            235,
+            234
+          ],
+          "nativeTexelCentre": [
+            29.4375,
+            29.3125
+          ],
+          "sourceRGB": [
+            26,
+            18,
+            15
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "C_UR",
+          "expectedPane": false,
+          "masterXY": [
+            276,
+            231
+          ],
+          "nativeTexelCentre": [
+            34.5625,
+            28.9375
+          ],
+          "sourceRGB": [
+            24,
+            14,
+            7
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "C_LL",
+          "expectedPane": false,
+          "masterXY": [
+            234,
+            282
+          ],
+          "nativeTexelCentre": [
+            29.3125,
+            35.3125
+          ],
+          "sourceRGB": [
+            5,
+            0,
+            0
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "C_LR",
+          "expectedPane": false,
+          "masterXY": [
+            277,
+            282
+          ],
+          "nativeTexelCentre": [
+            34.6875,
+            35.3125
+          ],
+          "sourceRGB": [
+            10,
+            0,
+            0
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        }
+      ],
+      "perRegionInsidePoints": [
+        {
+          "regionID": "outer-upper-left",
+          "masterXY": [
+            95,
+            54
+          ],
+          "RGB": [
+            62,
+            59,
+            32
+          ],
+          "supportPixels": 6074,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "outer-upper-right",
+          "masterXY": [
+            417,
+            54
+          ],
+          "RGB": [
+            85,
+            73,
+            27
+          ],
+          "supportPixels": 6074,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "outer-middle-left",
+          "masterXY": [
+            64,
+            126
+          ],
+          "RGB": [
+            20,
+            26,
+            21
+          ],
+          "supportPixels": 4237,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "outer-middle-right",
+          "masterXY": [
+            448,
+            126
+          ],
+          "RGB": [
+            220,
+            186,
+            144
+          ],
+          "supportPixels": 4237,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "outer-lower-left",
+          "masterXY": [
+            39,
+            203
+          ],
+          "RGB": [
+            112,
+            103,
+            66
+          ],
+          "supportPixels": 391,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "outer-lower-right",
+          "masterXY": [
+            473,
+            203
+          ],
+          "RGB": [
+            139,
+            107,
+            67
+          ],
+          "supportPixels": 391,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "apex-glass",
+          "masterXY": [
+            255,
+            69
+          ],
+          "RGB": [
+            216,
+            187,
+            161
+          ],
+          "supportPixels": 1693,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "inner-left-upper-wedge",
+          "masterXY": [
+            135,
+            182
+          ],
+          "RGB": [
+            78,
+            61,
+            42
+          ],
+          "supportPixels": 1018,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "inner-right-upper-wedge",
+          "masterXY": [
+            377,
+            182
+          ],
+          "RGB": [
+            88,
+            83,
+            44
+          ],
+          "supportPixels": 1017,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "inner-left-lower-wedge",
+          "masterXY": [
+            111,
+            216
+          ],
+          "RGB": [
+            189,
+            176,
+            156
+          ],
+          "supportPixels": 345,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "inner-right-lower-wedge",
+          "masterXY": [
+            401,
+            216
+          ],
+          "RGB": [
+            194,
+            185,
+            175
+          ],
+          "supportPixels": 346,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-small-pocket",
+          "masterXY": [
+            50,
+            352
+          ],
+          "RGB": [
+            55,
+            66,
+            54
+          ],
+          "supportPixels": 315,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-small-pocket",
+          "masterXY": [
+            462,
+            352
+          ],
+          "RGB": [
+            53,
+            55,
+            49
+          ],
+          "supportPixels": 315,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "left-lower-spandrel",
+          "masterXY": [
+            60,
+            391
+          ],
+          "RGB": [
+            138,
+            143,
+            130
+          ],
+          "supportPixels": 1320,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "right-lower-spandrel",
+          "masterXY": [
+            452,
+            391
+          ],
+          "RGB": [
+            172,
+            170,
+            163
+          ],
+          "supportPixels": 1320,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "left-inner-triangle",
+          "masterXY": [
+            215,
+            405
+          ],
+          "RGB": [
+            193,
+            199,
+            196
+          ],
+          "supportPixels": 2736,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "right-inner-triangle",
+          "masterXY": [
+            297,
+            405
+          ],
+          "RGB": [
+            205,
+            210,
+            211
+          ],
+          "supportPixels": 2736,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "left-pointed-pane",
+          "masterXY": [
+            136,
+            481
+          ],
+          "RGB": [
+            180,
+            155,
+            121
+          ],
+          "supportPixels": 13936,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "right-pointed-pane",
+          "masterXY": [
+            376,
+            481
+          ],
+          "RGB": [
+            150,
+            151,
+            148
+          ],
+          "supportPixels": 13936,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "top-round-lobe",
+          "masterXY": [
+            254,
+            159
+          ],
+          "RGB": [
+            92,
+            67,
+            45
+          ],
+          "supportPixels": 9110,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "left-round-lobe",
+          "masterXY": [
+            144,
+            302
+          ],
+          "RGB": [
+            148,
+            137,
+            118
+          ],
+          "supportPixels": 9874,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "right-round-lobe",
+          "masterXY": [
+            368,
+            302
+          ],
+          "RGB": [
+            66,
+            63,
+            44
+          ],
+          "supportPixels": 9874,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "small-central-four-lobed-pane",
+          "masterXY": [
+            254,
+            258
+          ],
+          "RGB": [
+            178,
+            181,
+            180
+          ],
+          "supportPixels": 3010,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-1",
+          "masterXY": [
+            139,
+            616
+          ],
+          "RGB": [
+            62,
+            33,
+            13
+          ],
+          "supportPixels": 29747,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-1",
+          "masterXY": [
+            372,
+            616
+          ],
+          "RGB": [
+            211,
+            187,
+            160
+          ],
+          "supportPixels": 29747,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-2",
+          "masterXY": [
+            139,
+            790
+          ],
+          "RGB": [
+            184,
+            170,
+            158
+          ],
+          "supportPixels": 31323,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-2",
+          "masterXY": [
+            372,
+            790
+          ],
+          "RGB": [
+            144,
+            146,
+            148
+          ],
+          "supportPixels": 31323,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-3",
+          "masterXY": [
+            139,
+            963
+          ],
+          "RGB": [
+            182,
+            149,
+            89
+          ],
+          "supportPixels": 29944,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-3",
+          "masterXY": [
+            372,
+            963
+          ],
+          "RGB": [
+            191,
+            189,
+            186
+          ],
+          "supportPixels": 29944,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-4",
+          "masterXY": [
+            139,
+            1085
+          ],
+          "RGB": [
+            161,
+            137,
+            109
+          ],
+          "supportPixels": 11426,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-4",
+          "masterXY": [
+            372,
+            1085
+          ],
+          "RGB": [
+            166,
+            157,
+            141
+          ],
+          "supportPixels": 11426,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-5",
+          "masterXY": [
+            139,
+            1174
+          ],
+          "RGB": [
+            63,
+            61,
+            43
+          ],
+          "supportPixels": 17139,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-5",
+          "masterXY": [
+            372,
+            1174
+          ],
+          "RGB": [
+            183,
+            174,
+            154
+          ],
+          "supportPixels": 17139,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-6",
+          "masterXY": [
+            139,
+            1253
+          ],
+          "RGB": [
+            23,
+            37,
+            32
+          ],
+          "supportPixels": 7880,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-6",
+          "masterXY": [
+            372,
+            1253
+          ],
+          "RGB": [
+            92,
+            82,
+            70
+          ],
+          "supportPixels": 7880,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-7",
+          "masterXY": [
+            139,
+            1373
+          ],
+          "RGB": [
+            13,
+            13,
+            5
+          ],
+          "supportPixels": 30732,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-7",
+          "masterXY": [
+            372,
+            1373
+          ],
+          "RGB": [
+            30,
+            34,
+            40
+          ],
+          "supportPixels": 30732,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-8",
+          "masterXY": [
+            139,
+            1524
+          ],
+          "RGB": [
+            31,
+            43,
+            41
+          ],
+          "supportPixels": 19897,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-8",
+          "masterXY": [
+            372,
+            1524
+          ],
+          "RGB": [
+            60,
+            65,
+            60
+          ],
+          "supportPixels": 19897,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-9",
+          "masterXY": [
+            139,
+            1682
+          ],
+          "RGB": [
+            141,
+            125,
+            100
+          ],
+          "supportPixels": 33687,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-9",
+          "masterXY": [
+            372,
+            1682
+          ],
+          "RGB": [
+            120,
+            90,
+            67
+          ],
+          "supportPixels": 33687,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-10",
+          "masterXY": [
+            139,
+            1832
+          ],
+          "RGB": [
+            73,
+            63,
+            18
+          ],
+          "supportPixels": 19503,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-10",
+          "masterXY": [
+            372,
+            1832
+          ],
+          "RGB": [
+            43,
+            41,
+            25
+          ],
+          "supportPixels": 19503,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-11",
+          "masterXY": [
+            139,
+            1948
+          ],
+          "RGB": [
+            12,
+            12,
+            14
+          ],
+          "supportPixels": 19306,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-11",
+          "masterXY": [
+            372,
+            1948
+          ],
+          "RGB": [
+            60,
+            46,
+            44
+          ],
+          "supportPixels": 19306,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "rosette-surrounding-upper-left",
+          "masterXY": [
+            224,
+            234
+          ],
+          "RGB": [
+            204,
+            199,
+            195
+          ],
+          "supportPixels": 237,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "rosette-surrounding-upper-right",
+          "masterXY": [
+            286,
+            233
+          ],
+          "RGB": [
+            213,
+            211,
+            207
+          ],
+          "supportPixels": 217,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "rosette-surrounding-lower-left",
+          "masterXY": [
+            224,
+            284
+          ],
+          "RGB": [
+            234,
+            212,
+            193
+          ],
+          "supportPixels": 253,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "rosette-surrounding-lower-right",
+          "masterXY": [
+            286,
+            285
+          ],
+          "RGB": [
+            243,
+            233,
+            212
+          ],
+          "supportPixels": 278,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        }
+      ],
+      "inspectionContacts": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/woodland-abbey-ruin-whole49-overlay.png",
+          "sha256": "091eb7703112fd78b83eb2997dec8c3462388d81c47d238d6cf5ddf9f58c826c",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/woodland-abbey-ruin-upper-RGB-overlay-mask.png",
+          "sha256": "0e99cf2f14cdac0be09b284bf2387e8d21b368b947c91a2013e1c9e713596ced",
+          "dimensions": [
+            1536,
+            570
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/woodland-abbey-ruin-lower-RGB-overlay.png",
+          "sha256": "45f7f1513a9394347918e01e3e9d256c394b980a4055d2289121eddf79e8e289",
+          "dimensions": [
+            1024,
+            848
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/woodland-abbey-ruin-upper-contacts-2x.png",
+          "sha256": "3d88d3fe598e970075a0da15689fe15c9e0c8a72f3ef364f5350c94c95299dbb",
+          "dimensions": [
+            1408,
+            460
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/woodland-abbey-ruin-rosette-RGB-overlay-mask-6x.png",
+          "sha256": "221342a046e62a287551ab12d40499f811572b81dc648922f711c1e09190004d",
+          "dimensions": [
+            2016,
+            576
+          ]
+        }
+      ]
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/master.json",
+        "sha256": "ba3ef70824407373a1eaabb009557a38ce7adaa1915d85475c2ade1617dec298"
+      },
+      "sourceRGB": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/color.png",
+        "sha256": "850deb57f3d886e961de485a67c8698d738eac9ae0256e29a507102c71015b32",
+        "dimensions": [
+          512,
+          2048
+        ]
+      },
+      "contextPoints": [
+        {
+          "label": "upper brown ring",
+          "expectedPane": false,
+          "masterXY": [
+            157,
+            177
+          ],
+          "nativeTexelCentre": [
+            19.6875,
+            22.1875
+          ],
+          "sourceRGB": [
+            52,
+            41,
+            31
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "solid upperleft curvedring lower",
+          "expectedPane": false,
+          "masterXY": [
+            161,
+            187
+          ],
+          "nativeTexelCentre": [
+            20.1875,
+            23.4375
+          ],
+          "sourceRGB": [
+            51,
+            43,
+            37
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "solid upperright curvedring",
+          "expectedPane": false,
+          "masterXY": [
+            355,
+            178
+          ],
+          "nativeTexelCentre": [
+            44.4375,
+            22.3125
+          ],
+          "sourceRGB": [
+            32,
+            25,
+            18
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "solid left lowerring/came",
+          "expectedPane": false,
+          "masterXY": [
+            170,
+            216
+          ],
+          "nativeTexelCentre": [
+            21.3125,
+            27.0625
+          ],
+          "sourceRGB": [
+            5,
+            4,
+            2
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "solid right lowerring/came",
+          "expectedPane": false,
+          "masterXY": [
+            345,
+            216
+          ],
+          "nativeTexelCentre": [
+            43.1875,
+            27.0625
+          ],
+          "sourceRGB": [
+            5,
+            3,
+            3
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "upper glass wedge",
+          "expectedPane": true,
+          "masterXY": [
+            135,
+            188
+          ],
+          "nativeTexelCentre": [
+            16.9375,
+            23.5625
+          ],
+          "sourceRGB": [
+            211,
+            195,
+            161
+          ],
+          "guideMaskPane": true,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "lobe brown ring",
+          "expectedPane": false,
+          "masterXY": [
+            215,
+            290
+          ],
+          "nativeTexelCentre": [
+            26.9375,
+            36.3125
+          ],
+          "sourceRGB": [
+            43,
+            34,
+            31
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "solidframe leftlobe inwardextensionlower",
+          "expectedPane": false,
+          "masterXY": [
+            222,
+            301
+          ],
+          "nativeTexelCentre": [
+            27.8125,
+            37.6875
+          ],
+          "sourceRGB": [
+            58,
+            45,
+            35
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "solidframe rightlobe inwardextensionlower",
+          "expectedPane": false,
+          "masterXY": [
+            290,
+            298
+          ],
+          "nativeTexelCentre": [
+            36.3125,
+            37.3125
+          ],
+          "sourceRGB": [
+            37,
+            25,
+            22
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "G_UL",
+          "expectedPane": true,
+          "masterXY": [
+            225,
+            234
+          ],
+          "nativeTexelCentre": [
+            28.1875,
+            29.3125
+          ],
+          "sourceRGB": [
+            217,
+            211,
+            207
+          ],
+          "guideMaskPane": true,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "G_UR",
+          "expectedPane": true,
+          "masterXY": [
+            281,
+            235
+          ],
+          "nativeTexelCentre": [
+            35.1875,
+            29.4375
+          ],
+          "sourceRGB": [
+            218,
+            218,
+            212
+          ],
+          "guideMaskPane": true,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "upper painted glass",
+          "expectedPane": true,
+          "masterXY": [
+            100,
+            610
+          ],
+          "nativeTexelCentre": [
+            12.5625,
+            76.3125
+          ],
+          "sourceRGB": [
+            222,
+            204,
+            193
+          ],
+          "guideMaskPane": true,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "right painted glass",
+          "expectedPane": true,
+          "masterXY": [
+            390,
+            980
+          ],
+          "nativeTexelCentre": [
+            48.8125,
+            122.5625
+          ],
+          "sourceRGB": [
+            155,
+            129,
+            87
+          ],
+          "guideMaskPane": true,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "painted bridge",
+          "expectedPane": true,
+          "masterXY": [
+            150,
+            1705
+          ],
+          "nativeTexelCentre": [
+            18.8125,
+            213.1875
+          ],
+          "sourceRGB": [
+            93,
+            85,
+            64
+          ],
+          "guideMaskPane": true,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "dark painted lower glass",
+          "expectedPane": true,
+          "masterXY": [
+            100,
+            1530
+          ],
+          "nativeTexelCentre": [
+            12.5625,
+            191.3125
+          ],
+          "sourceRGB": [
+            56,
+            49,
+            34
+          ],
+          "guideMaskPane": true,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "centre mullion",
+          "expectedPane": false,
+          "masterXY": [
+            255,
+            650
+          ],
+          "nativeTexelCentre": [
+            31.9375,
+            81.3125
+          ],
+          "sourceRGB": [
+            69,
+            52,
+            44
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "side jamb",
+          "expectedPane": false,
+          "masterXY": [
+            10,
+            650
+          ],
+          "nativeTexelCentre": [
+            1.3125,
+            81.3125
+          ],
+          "sourceRGB": [
+            49,
+            37,
+            30
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "horizontal came",
+          "expectedPane": false,
+          "masterXY": [
+            100,
+            701
+          ],
+          "nativeTexelCentre": [
+            12.5625,
+            87.6875
+          ],
+          "sourceRGB": [
+            0,
+            0,
+            0
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "G_LL",
+          "expectedPane": true,
+          "masterXY": [
+            224,
+            285
+          ],
+          "nativeTexelCentre": [
+            28.0625,
+            35.6875
+          ],
+          "sourceRGB": [
+            232,
+            215,
+            199
+          ],
+          "guideMaskPane": true,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "G_LR",
+          "expectedPane": true,
+          "masterXY": [
+            286,
+            285
+          ],
+          "nativeTexelCentre": [
+            35.8125,
+            35.6875
+          ],
+          "sourceRGB": [
+            244,
+            237,
+            223
+          ],
+          "guideMaskPane": true,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "C_UL",
+          "expectedPane": false,
+          "masterXY": [
+            235,
+            234
+          ],
+          "nativeTexelCentre": [
+            29.4375,
+            29.3125
+          ],
+          "sourceRGB": [
+            30,
+            21,
+            18
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "C_UR",
+          "expectedPane": false,
+          "masterXY": [
+            276,
+            231
+          ],
+          "nativeTexelCentre": [
+            34.5625,
+            28.9375
+          ],
+          "sourceRGB": [
+            37,
+            25,
+            18
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "C_LL",
+          "expectedPane": false,
+          "masterXY": [
+            234,
+            282
+          ],
+          "nativeTexelCentre": [
+            29.3125,
+            35.3125
+          ],
+          "sourceRGB": [
+            0,
+            0,
+            0
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        },
+        {
+          "label": "C_LR",
+          "expectedPane": false,
+          "masterXY": [
+            277,
+            282
+          ],
+          "nativeTexelCentre": [
+            34.6875,
+            35.3125
+          ],
+          "sourceRGB": [
+            11,
+            0,
+            0
+          ],
+          "guideMaskPane": false,
+          "sampleScope": "Source-context point, not a pure9x9interiorheightmeasurement or RGBthreshold label."
+        }
+      ],
+      "perRegionInsidePoints": [
+        {
+          "regionID": "outer-upper-left",
+          "masterXY": [
+            95,
+            54
+          ],
+          "RGB": [
+            52,
+            50,
+            25
+          ],
+          "supportPixels": 6074,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "outer-upper-right",
+          "masterXY": [
+            417,
+            54
+          ],
+          "RGB": [
+            80,
+            68,
+            27
+          ],
+          "supportPixels": 6074,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "outer-middle-left",
+          "masterXY": [
+            64,
+            126
+          ],
+          "RGB": [
+            29,
+            37,
+            30
+          ],
+          "supportPixels": 4237,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "outer-middle-right",
+          "masterXY": [
+            448,
+            126
+          ],
+          "RGB": [
+            221,
+            186,
+            137
+          ],
+          "supportPixels": 4237,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "outer-lower-left",
+          "masterXY": [
+            39,
+            203
+          ],
+          "RGB": [
+            92,
+            83,
+            51
+          ],
+          "supportPixels": 391,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "outer-lower-right",
+          "masterXY": [
+            473,
+            203
+          ],
+          "RGB": [
+            150,
+            120,
+            74
+          ],
+          "supportPixels": 391,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "apex-glass",
+          "masterXY": [
+            255,
+            69
+          ],
+          "RGB": [
+            220,
+            194,
+            172
+          ],
+          "supportPixels": 1693,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "inner-left-upper-wedge",
+          "masterXY": [
+            135,
+            182
+          ],
+          "RGB": [
+            79,
+            62,
+            41
+          ],
+          "supportPixels": 1018,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "inner-right-upper-wedge",
+          "masterXY": [
+            377,
+            182
+          ],
+          "RGB": [
+            78,
+            71,
+            33
+          ],
+          "supportPixels": 1017,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "inner-left-lower-wedge",
+          "masterXY": [
+            111,
+            216
+          ],
+          "RGB": [
+            203,
+            190,
+            170
+          ],
+          "supportPixels": 345,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "inner-right-lower-wedge",
+          "masterXY": [
+            401,
+            216
+          ],
+          "RGB": [
+            192,
+            185,
+            178
+          ],
+          "supportPixels": 346,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-small-pocket",
+          "masterXY": [
+            50,
+            352
+          ],
+          "RGB": [
+            61,
+            71,
+            60
+          ],
+          "supportPixels": 315,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-small-pocket",
+          "masterXY": [
+            462,
+            352
+          ],
+          "RGB": [
+            65,
+            66,
+            59
+          ],
+          "supportPixels": 315,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "left-lower-spandrel",
+          "masterXY": [
+            60,
+            391
+          ],
+          "RGB": [
+            152,
+            152,
+            133
+          ],
+          "supportPixels": 1320,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "right-lower-spandrel",
+          "masterXY": [
+            452,
+            391
+          ],
+          "RGB": [
+            171,
+            167,
+            156
+          ],
+          "supportPixels": 1320,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "left-inner-triangle",
+          "masterXY": [
+            215,
+            405
+          ],
+          "RGB": [
+            197,
+            201,
+            196
+          ],
+          "supportPixels": 2736,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "right-inner-triangle",
+          "masterXY": [
+            297,
+            405
+          ],
+          "RGB": [
+            202,
+            204,
+            206
+          ],
+          "supportPixels": 2736,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "left-pointed-pane",
+          "masterXY": [
+            136,
+            481
+          ],
+          "RGB": [
+            177,
+            150,
+            112
+          ],
+          "supportPixels": 13936,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "right-pointed-pane",
+          "masterXY": [
+            376,
+            481
+          ],
+          "RGB": [
+            149,
+            152,
+            146
+          ],
+          "supportPixels": 13936,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "top-round-lobe",
+          "masterXY": [
+            254,
+            159
+          ],
+          "RGB": [
+            95,
+            72,
+            50
+          ],
+          "supportPixels": 9110,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "left-round-lobe",
+          "masterXY": [
+            144,
+            302
+          ],
+          "RGB": [
+            145,
+            137,
+            121
+          ],
+          "supportPixels": 9874,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "right-round-lobe",
+          "masterXY": [
+            368,
+            302
+          ],
+          "RGB": [
+            59,
+            55,
+            33
+          ],
+          "supportPixels": 9874,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "small-central-four-lobed-pane",
+          "masterXY": [
+            254,
+            258
+          ],
+          "RGB": [
+            175,
+            176,
+            174
+          ],
+          "supportPixels": 3010,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-1",
+          "masterXY": [
+            139,
+            616
+          ],
+          "RGB": [
+            80,
+            45,
+            28
+          ],
+          "supportPixels": 29747,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-1",
+          "masterXY": [
+            372,
+            616
+          ],
+          "RGB": [
+            216,
+            188,
+            156
+          ],
+          "supportPixels": 29747,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-2",
+          "masterXY": [
+            139,
+            790
+          ],
+          "RGB": [
+            180,
+            162,
+            141
+          ],
+          "supportPixels": 31323,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-2",
+          "masterXY": [
+            372,
+            790
+          ],
+          "RGB": [
+            143,
+            146,
+            146
+          ],
+          "supportPixels": 31323,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-3",
+          "masterXY": [
+            139,
+            963
+          ],
+          "RGB": [
+            186,
+            151,
+            94
+          ],
+          "supportPixels": 29944,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-3",
+          "masterXY": [
+            372,
+            963
+          ],
+          "RGB": [
+            194,
+            196,
+            195
+          ],
+          "supportPixels": 29944,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-4",
+          "masterXY": [
+            139,
+            1085
+          ],
+          "RGB": [
+            164,
+            140,
+            106
+          ],
+          "supportPixels": 11426,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-4",
+          "masterXY": [
+            372,
+            1085
+          ],
+          "RGB": [
+            171,
+            170,
+            156
+          ],
+          "supportPixels": 11426,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-5",
+          "masterXY": [
+            139,
+            1174
+          ],
+          "RGB": [
+            68,
+            65,
+            46
+          ],
+          "supportPixels": 17139,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-5",
+          "masterXY": [
+            372,
+            1174
+          ],
+          "RGB": [
+            188,
+            180,
+            164
+          ],
+          "supportPixels": 17139,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-6",
+          "masterXY": [
+            139,
+            1253
+          ],
+          "RGB": [
+            36,
+            47,
+            40
+          ],
+          "supportPixels": 7880,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-6",
+          "masterXY": [
+            372,
+            1253
+          ],
+          "RGB": [
+            76,
+            70,
+            56
+          ],
+          "supportPixels": 7880,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-7",
+          "masterXY": [
+            139,
+            1373
+          ],
+          "RGB": [
+            14,
+            14,
+            9
+          ],
+          "supportPixels": 30732,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-7",
+          "masterXY": [
+            372,
+            1373
+          ],
+          "RGB": [
+            69,
+            71,
+            69
+          ],
+          "supportPixels": 30732,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-8",
+          "masterXY": [
+            139,
+            1524
+          ],
+          "RGB": [
+            33,
+            42,
+            42
+          ],
+          "supportPixels": 19897,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-8",
+          "masterXY": [
+            372,
+            1524
+          ],
+          "RGB": [
+            38,
+            42,
+            38
+          ],
+          "supportPixels": 19897,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-9",
+          "masterXY": [
+            139,
+            1682
+          ],
+          "RGB": [
+            81,
+            69,
+            55
+          ],
+          "supportPixels": 33687,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-9",
+          "masterXY": [
+            372,
+            1682
+          ],
+          "RGB": [
+            136,
+            102,
+            60
+          ],
+          "supportPixels": 33687,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-10",
+          "masterXY": [
+            139,
+            1832
+          ],
+          "RGB": [
+            5,
+            13,
+            1
+          ],
+          "supportPixels": 19503,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-10",
+          "masterXY": [
+            372,
+            1832
+          ],
+          "RGB": [
+            158,
+            151,
+            123
+          ],
+          "supportPixels": 19503,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-left-11",
+          "masterXY": [
+            139,
+            1948
+          ],
+          "RGB": [
+            50,
+            48,
+            53
+          ],
+          "supportPixels": 19306,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "lower-right-11",
+          "masterXY": [
+            372,
+            1948
+          ],
+          "RGB": [
+            44,
+            23,
+            21
+          ],
+          "supportPixels": 19306,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "rosette-surrounding-upper-left",
+          "masterXY": [
+            224,
+            234
+          ],
+          "RGB": [
+            219,
+            212,
+            207
+          ],
+          "supportPixels": 237,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "rosette-surrounding-upper-right",
+          "masterXY": [
+            286,
+            233
+          ],
+          "RGB": [
+            214,
+            211,
+            207
+          ],
+          "supportPixels": 217,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "rosette-surrounding-lower-left",
+          "masterXY": [
+            224,
+            284
+          ],
+          "RGB": [
+            240,
+            232,
+            227
+          ],
+          "supportPixels": 253,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        },
+        {
+          "regionID": "rosette-surrounding-lower-right",
+          "masterXY": [
+            286,
+            285
+          ],
+          "RGB": [
+            244,
+            237,
+            223
+          ],
+          "supportPixels": 278,
+          "scope": "One insidepoint per finitepolygon, descriptive actualRGB only. Whole/contacts supply geometric classification, not colourthreshold."
+        }
+      ],
+      "inspectionContacts": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/forest-stone-shrine-whole49-overlay.png",
+          "sha256": "a17ab0124a5d9e28c769b3583defb1e549c40fef1e300f18801fd67e0158d131",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/forest-stone-shrine-upper-RGB-overlay-mask.png",
+          "sha256": "c804c4f05fa21cc63bd50e9c76b6bc1a7076e0c187c54eb8825379cba787a7dd",
+          "dimensions": [
+            1536,
+            570
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/forest-stone-shrine-lower-RGB-overlay.png",
+          "sha256": "c1f344df9c889b5b960f7721b65084048ed8c1ebded07efda55dd14f9a6e4e9b",
+          "dimensions": [
+            1024,
+            848
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/forest-stone-shrine-upper-contacts-2x.png",
+          "sha256": "ac5ff811a9384e91e943d194baae318acac9cd9a05d80e4893802d6b94497845",
+          "dimensions": [
+            1408,
+            460
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/forest-stone-shrine-rosette-RGB-overlay-mask-6x.png",
+          "sha256": "7301c049572bae38cc022669a94c43c53bb7b09135b77ed366f828201c7f89f6",
+          "dimensions": [
+            2016,
+            576
+          ]
+        }
+      ]
+    }
+  ],
+  "old68ProofInputsUnchanged": true,
+  "noHeightAuthoringOrAcceptance": true
+}

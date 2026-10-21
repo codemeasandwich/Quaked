@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "state": "SOURCE_ONLY_PREPARATION_FROZEN_UNISSUED_FOR_ROOT_DEV_SYNC_AND_INDEPENDENT_REVIEW",
+  "nativeIdentity": "a82a4c652d0b2d12874d4a6c04fed591a390370a4a5c4f42da30190a48fa2c3a",
+  "name": "rtex034",
+  "edition": "base",
+  "nativeDimensions": [
+    64,
+    128
+  ],
+  "priorityProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-19-rtex034/demo-priority-proof.json",
+    "sha256": "2fc18952c613eef3e77a7aa6ab6f2188b0eb40999d21f62fdc6bc305c98dc8f4"
+  },
+  "nativeProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-19-rtex034/native-proof.json",
+    "sha256": "ab6f00b9fef67ddf5e16c31c0ad49051a824ec896c042a1c7d2a7eff5c01ddf0"
+  },
+  "retainedSourceScreen": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-19-rtex034/eligibility-and-retained-source-screen.json",
+    "sha256": "d94481e8a56c16ff762eedc0914adf3b5bf4ca5bc36c4bcaa0d2b7b80347dc3d"
+  },
+  "exactPrompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-19-rtex034/prompts/rtex034-material-v1.txt",
+    "sha256": "8a7182598084aa9cf3e08b7663142187fcd34d23d47f7d5ba2fce8ca9ca41cef"
+  },
+  "journal": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-19-rtex034/selection.json",
+    "sha256": "704e4650a3ffa2118a71c6d83a31d59907e5918c44d56a6c0703d05f706d1630"
+  },
+  "nativeSelection": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-19-rtex034/native-selection.json",
+    "sha256": "ec9dfbf4d224d6b3774018c7ac50ce26322c5e257bd3b612e8f0099452800200"
+  },
+  "actualSourceViews": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-19-rtex034/originals/01-rtex034-a82a4c652d0b.png",
+      "sha256": "7261a2fc66689b6c27a74805aebdddcce115a2ce864c5cdafc59bcf289501513"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-19-rtex034/originals/native-nearest.png",
+      "sha256": "f525665b6447d52dd9c89e523818d1ba0c17e7cf2d811a0d4dbe813b04c57b68"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-19-rtex034/originals/native-repeat-nearest.png",
+      "sha256": "dabe40675147e75bbde1aacfe40d68220c3ef7352d46e81704624ac48ea63c5e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-19-rtex034/originals/native-coordinate-grid.png",
+      "sha256": "15ecf276e86e506564ef5fd7ec055cbe040e3be4f0c97e32e828e19f5bf6ad62"
+    }
+  ],
+  "actualMaterialInterpretation": "Weathered closely fitted irregular angular fieldstone paving/cobbles; matte worn faces, muted grey/taupe/brown, narrow dark shallow earth/grit joints. Not a regular coursed wall or noisy pile of pebbles.",
+  "usageEvidence": {
+    "allDeduplicatedContentFaces": 903,
+    "allOrientationCounts": {
+      "vertical": 179,
+      "upwardHorizontal": 636,
+      "downwardHorizontal": 45,
+      "upwardSloped": 37,
+      "downwardSloped": 6
+    },
+    "demoOnlyFaces": 212,
+    "demoOnlyOrientations": {
+      "upwardHorizontal": 174,
+      "vertical": 12,
+      "downwardHorizontal": 26
+    },
+    "actualScope": "Upward-facing use supports paving interpretation; some walls/undersides also use this native. Face count is not surface area, camera visibility, material species or runtime proof.",
+    "proof": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-19-rtex034/usage-orientation.json",
+      "sha256": "2a29c43c21908951f95e3e55167d64ed0f30287aefcc9d017fa0fb51f897374f"
+    }
+  },
+  "nativeFeatureScale": "Principal irregular stones about6..22nativepixels, smallinterstitialchips; selected native-stone landmarks are in exactprompt. Preserve originalpartialedge stones andjointphase, no newedgeband orperimeterbevel.",
+  "adequacy": {
+    "requiredSourceMinimum": [
+      512,
+      1024
+    ],
+    "requiredAspect": [
+      1,
+      2
+    ],
+    "futureMaster": [
+      512,
+      1024
+    ],
+    "futureMid4": [
+      256,
+      512
+    ],
+    "futureHigh8": [
+      512,
+      1024
+    ],
+    "distanceBOX": [
+      [
+        32,
+        64
+      ],
+      [
+        16,
+        32
+      ]
+    ],
+    "toolLimit": "Built-in actualreturn mustbe measured. Prior1:2raw887x1774 demonstrates feasible output family but doesnot guarantee thisreturn. No inadequate-source upscale/crop/strips/providerfallback/automaticretry."
+  },
+  "physicalIntent": {
+    "roles": "Stoneface shallowlyabove joint; artist mineralcolour withinface doesnot prove microdepth. Finephotographic facets/pits mayremain but no joint/faceinversion ordeepplateau architecture.",
+    "existingPrepareCandidate": "prepare_texture_master.py, name rtex034/base, profile stone, colorstrength.65/fieldsigma.75, strength.3/cap.5, freshsole8xRGB/fullfloat. Exactcommand andsource/masterproof follow only after actualadequatephotographic source.",
+    "gates": "Actualsource material/layout/edge/BOX first, then initialscalar/XYZ/fixedopposed and classifiedface/joints before knownbadtiers. If wronghierarchy, obtain genuineindependent source/master-only proof and source-measured existingguarded repairreview; no invented universalstone mask.",
+    "tierContract": "Both directfromone finalsharedRGB/fullfloat, unchangedLow; Hexen lane enhancedmapsremain lossyWebP Q92method6. Separate Quake encodingmission is not imported."
+  },
+  "reviewAndStop": "Exact independent/root native/material/prompt approval before generation. Owner asksrootDev synchronization now; this lane stops after stablecount0handoff. No newauthoring untilrootcheckpoint/pull completes androotauthorizes.",
+  "preservation": "Current65primarychains perrootaccounting andfourheld098/388/255/020chains untouched. Broadscreen326retainedJSON/1263images plusall980native variants yieldsno targetID/RGBApeer/priorselection. Existingcandidatefreezesandotherworktreesuntouched.",
+  "scopeBoundary": "Whole Hexen II/Portal campaign remains active; snapshot69qualifiedordinaryidentities leaves818ordinary plus specialfamilies. This source-only increment doesnot narrow that obligation.",
+  "effects": {
+    "modelCalls": 0,
+    "masterCount": 0,
+    "tierCount": 0,
+    "sharedCatalogGitBuildMutations": 0
+  },
+  "nextOwner": "Root Dev sync/pull, then independent exactnative/prompt review and explicit sourcecall decision."
+}

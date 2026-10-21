@@ -1,0 +1,42 @@
+{
+  "state": "issued-existing-direct-tier-derive-once",
+  "issuedAt": "2026-10-21T06:53:59.724914+00:00",
+  "artVariantID": "forest-stone-shrine",
+  "authority": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/root-variant-pre-tier-physical-review.json",
+    "sha256": "b5a5a48c4c7e989aeb8335bf24c5dd4f28b5d34139028cd224ceceb465478b65"
+  },
+  "sourceSelection": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/source-selections/s1.json",
+    "sha256": "404a521f8a44b9a474f6c7a60bd1ff0bb3610885e78817d84fabda2777744347"
+  },
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/master.json",
+    "sha256": "32f15a798d8ec79974a18b2d639aeabb8bc117eb03d15c1b8c1ea29a81bf9468"
+  },
+  "RGB": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/color.png",
+    "sha256": "850deb57f3d886e961de485a67c8698d738eac9ae0256e29a507102c71015b32"
+  },
+  "floatHeight": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/height.npy",
+    "sha256": "e899c58d8faac4c077c0dda9441e3a8e448462ee5a9540f36b5b66b4321ba754"
+  },
+  "argv": [
+    "/usr/bin/python3",
+    "tools/texture_sheets/derive_texture_tiers.py",
+    "--original",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+    "--master",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/color.png",
+    "--height-master",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/height.npy",
+    "--strength",
+    ".3",
+    "--cap",
+    ".5",
+    "--output",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1"
+  ],
+  "newModelCalls": 0
+}

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "state": "ACTUAL_RETURN_RETAINED_AWAITING_SOURCE_ART_GEOMETRY_REVIEW",
+  "retainedAt": "2026-10-21T03:16:39.496361+00:00",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "artVariantID": "woodland-abbey-ruin",
+  "issued": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/issued.json",
+    "sha256": "4e485b896e0d8698525febe1497ece7cade4e19bbf7c8da82fea6a5a50efcb8a"
+  },
+  "actualToolReportedOutput": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-33ad903f-1b34-41d2-8908-8c28de68f26d.png",
+  "actualToolOutputSha256": "04e54f28e2cc4247e276d6c08f6183af6e3fdababe1f9e7dcef01c6c17de8bb2",
+  "retained": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/woodland-abbey-ruin-r1.png",
+    "sha256": "04e54f28e2cc4247e276d6c08f6183af6e3fdababe1f9e7dcef01c6c17de8bb2",
+    "dimensions": [
+      724,
+      2171
+    ],
+    "mode": "RGB",
+    "format": "PNG"
+  },
+  "modelCalls": {
+    "originalGeneration": 1,
+    "edits": 2,
+    "total": 3,
+    "thisVariantNewEdits": 1
+  },
+  "campaignCallCounts": {
+    "primary": 65,
+    "issuedEdits": 5,
+    "retainedEditReturns": 5,
+    "totalIssued": 70,
+    "totalRetained": 70
+  },
+  "rawRetainedWithoutProcessing": true,
+  "adequacy": "Whole padded canvas724x2171 is not native aspect. Actual fullwindow bounds/content and source core adequacy must be remeasured before any down-only registration. No blindly reused ROI.",
+  "qualifiedMasterOrTier": false
+}

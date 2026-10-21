@@ -1,0 +1,52 @@
+{
+  "cwd": "/Users/bri/SOURCE/Quaked",
+  "argv": [
+    "/usr/bin/python3",
+    "tools/texture_sheets/prepare_texture_master.py",
+    "--original",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+    "--generated",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registered-source.png",
+    "--prompt",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/woodland-abbey-ruin-prompt.txt",
+    "--name",
+    "rtex018",
+    "--edition",
+    "base",
+    "--profile",
+    "window02_1",
+    "--color-strength",
+    ".65",
+    "--field-sigma",
+    ".75",
+    "--strength",
+    ".3",
+    "--cap",
+    ".5",
+    "--output",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1"
+  ],
+  "expectedOutputDimensions": [
+    512,
+    2048
+  ],
+  "expectedFiles": [
+    "color.png",
+    "height.npy",
+    "master.json"
+  ],
+  "profileResolved": {
+    "bands": [
+      0.3,
+      1,
+      1,
+      0.6
+    ],
+    "groove": 1.2,
+    "bump": 0.2,
+    "glow": 0.6,
+    "strength": 0.3,
+    "cap": 0.5
+  },
+  "executed": false
+}

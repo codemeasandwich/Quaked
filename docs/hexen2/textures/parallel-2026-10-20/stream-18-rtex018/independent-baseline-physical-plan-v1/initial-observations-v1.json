@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/texture_06_mtex470",
+  "at": "2026-10-21T03:34:59.365880+00:00",
+  "state": "Independent diagnostic samples before exact proposed region-plan review; actualviews require inspection",
+  "sampleClassificationBasis": "Actual fullRGB/native viewed first; darkmullion/came/masonry are physicalstructure, bright/dark/bridge motifs inside panes are painted glass coloration. Height not used to infer material labels.",
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/master.json",
+    "sha256": "9faf21c8d9fb9e4098302a0d826c5022745a33e0ccae5feb324f3496cb2b1185"
+  },
+  "samples": [
+    {
+      "label": "light upper paintedglass",
+      "classificationFromRGB": "pane",
+      "masterCentre": [
+        100,
+        610
+      ],
+      "nativeTexelCentre": [
+        12.5625,
+        76.3125
+      ],
+      "diagnosticCropHalfOpen": [
+        52,
+        562,
+        148,
+        658
+      ],
+      "heightMedian9x9": 0.8397801518440247,
+      "heightRange9x9": [
+        0.5681790709495544,
+        0.8883523344993591
+      ]
+    },
+    {
+      "label": "light right paintedglass",
+      "classificationFromRGB": "pane",
+      "masterCentre": [
+        390,
+        980
+      ],
+      "nativeTexelCentre": [
+        48.8125,
+        122.5625
+      ],
+      "diagnosticCropHalfOpen": [
+        342,
+        932,
+        438,
+        1028
+      ],
+      "heightMedian9x9": 0.3854469060897827,
+      "heightRange9x9": [
+        0.16420239210128784,
+        0.6364836692810059
+      ]
+    },
+    {
+      "label": "dark lower paintedglass",
+      "classificationFromRGB": "pane",
+      "masterCentre": [
+        105,
+        1580
+      ],
+      "nativeTexelCentre": [
+        13.1875,
+        197.5625
+      ],
+      "diagnosticCropHalfOpen": [
+        57,
+        1532,
+        153,
+        1628
+      ],
+      "heightMedian9x9": 0.40854328870773315,
+      "heightRange9x9": [
+        0.19964221119880676,
+        0.6350309252738953
+      ]
+    },
+    {
+      "label": "paintedbridge in glass",
+      "classificationFromRGB": "pane",
+      "masterCentre": [
+        150,
+        1705
+      ],
+      "nativeTexelCentre": [
+        18.8125,
+        213.1875
+      ],
+      "diagnosticCropHalfOpen": [
+        102,
+        1657,
+        198,
+        1753
+      ],
+      "heightMedian9x9": 0.7716608643531799,
+      "heightRange9x9": [
+        0.44085434079170227,
+        0.8580321669578552
+      ]
+    },
+    {
+      "label": "central mullion",
+      "classificationFromRGB": "structural",
+      "masterCentre": [
+        255,
+        650
+      ],
+      "nativeTexelCentre": [
+        31.9375,
+        81.3125
+      ],
+      "diagnosticCropHalfOpen": [
+        207,
+        602,
+        303,
+        698
+      ],
+      "heightMedian9x9": 0.016535889357328415,
+      "heightRange9x9": [
+        0.004834074527025223,
+        0.037868600338697433
+      ]
+    },
+    {
+      "label": "left masonry jamb",
+      "classificationFromRGB": "structural",
+      "masterCentre": [
+        10,
+        650
+      ],
+      "nativeTexelCentre": [
+        1.3125,
+        81.3125
+      ],
+      "diagnosticCropHalfOpen": [
+        0,
+        602,
+        96,
+        698
+      ],
+      "heightMedian9x9": 0.17510227859020233,
+      "heightRange9x9": [
+        0.11042839288711548,
+        0.23247899115085602
+      ]
+    },
+    {
+      "label": "horizontal came",
+      "classificationFromRGB": "structural",
+      "masterCentre": [
+        100,
+        701
+      ],
+      "nativeTexelCentre": [
+        12.5625,
+        87.6875
+      ],
+      "diagnosticCropHalfOpen": [
+        52,
+        653,
+        148,
+        749
+      ],
+      "heightMedian9x9": 0.010166125372052193,
+      "heightRange9x9": [
+        0.0015312773175537586,
+        0.11567337810993195
+      ]
+    }
+  ],
+  "diagnosticContact": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-physical-plan-v1/initial-classified-samples-height-lights-v1.png",
+    "sha256": "8b182f95593163fb757fabd8e4305af175ce3d03d4ab5eb49479c4e6b595d714"
+  },
+  "neutralMath": "Unchanged actualnormals_from_height ASTfunction, masterfloat as input, strength.3 cap.5, neutralgrey and opposedfixedlights. These are diagnostic views, no authoredgeometry/maps.",
+  "inputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/color.png",
+      "sha256": "ee3f2aa075868a6b81eafb96ef0434cfb42a3c06ba0d8248e487fe7f0cada5fa"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/height.npy",
+      "sha256": "82e42448d353ff033e64acbe20fc0da0d0a488e6185fdb3fed770ddb14f7cdc7"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/master.json",
+      "sha256": "9faf21c8d9fb9e4098302a0d826c5022745a33e0ccae5feb324f3496cb2b1185"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    }
+  ],
+  "effects": "Only diagnosticPNG/JSON under owned independentreviewdocs; no source/master/height/tiers/model/producer/Git/build changes."
+}

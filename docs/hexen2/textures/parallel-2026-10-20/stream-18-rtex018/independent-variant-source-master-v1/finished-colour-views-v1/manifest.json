@@ -1,0 +1,153 @@
+{
+  "scope": "Finished canonicalRGB diagnostics only, not tiers or physical scalar acceptance.",
+  "createdAt": "2026-10-21T04:07:10.150682+00:00",
+  "materials": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "master": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/master.json",
+        "sha256": "039466e7af1765c9b488a99f5526e097d52f56da7e10ae1aa6be971c69ba9db9"
+      },
+      "color": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/color.png",
+        "sha256": "e9453b368e07c788fe9334a067de9cb4810885eefe187861cdb465d06f668415"
+      },
+      "BOX": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            128
+          ],
+          "meanAbsoluteRGBDifference255": 16.175537109375,
+          "filter": "Identical BOX reduction native/master; displayNNonly"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            64
+          ],
+          "meanAbsoluteRGBDifference255": 11.125325520833334,
+          "filter": "Identical BOX reduction native/master; displayNNonly"
+        }
+      ],
+      "inspectionContacts": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/finished-colour-views-v1/woodland-abbey-ruin-BOX-div2.png",
+          "sha256": "5c482c2d91e9f22594ff6eac6ebc06822e034de1aa03fe3baf1816a3cd9c7a71",
+          "dimensions": [
+            512,
+            1056
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/finished-colour-views-v1/woodland-abbey-ruin-BOX-div4.png",
+          "sha256": "3bbae8b87f76476f93b900a9674bfe35ca5f1b577d07844a70e7ef1c381f182b",
+          "dimensions": [
+            512,
+            1056
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/finished-colour-views-v1/woodland-abbey-ruin-literal-full-X.png",
+          "sha256": "4e555f81856045e7da46a7dfaad760def1586427c9fbafc3ace1d601ad45cf58",
+          "dimensions": [
+            256,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/finished-colour-views-v1/woodland-abbey-ruin-literal-full-Y-corners.png",
+          "sha256": "3cd7587d2f8158f442d0553b55fa622901ce1b519280a21ec1ff330e68c4ab37",
+          "dimensions": [
+            768,
+            288
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/finished-colour-views-v1/woodland-abbey-ruin-2x2-BOX-overview.png",
+          "sha256": "ac49f017fb51fc647ecc5d8f9907a5ad848424f69ea418610ca7212ba67405f5",
+          "dimensions": [
+            512,
+            2048
+          ]
+        }
+      ]
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "master": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/master.json",
+        "sha256": "ba3ef70824407373a1eaabb009557a38ce7adaa1915d85475c2ade1617dec298"
+      },
+      "color": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/color.png",
+        "sha256": "850deb57f3d886e961de485a67c8698d738eac9ae0256e29a507102c71015b32"
+      },
+      "BOX": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            128
+          ],
+          "meanAbsoluteRGBDifference255": 16.2958984375,
+          "filter": "Identical BOX reduction native/master; displayNNonly"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            64
+          ],
+          "meanAbsoluteRGBDifference255": 11.186848958333334,
+          "filter": "Identical BOX reduction native/master; displayNNonly"
+        }
+      ],
+      "inspectionContacts": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/finished-colour-views-v1/forest-stone-shrine-BOX-div2.png",
+          "sha256": "5716889e05d57724034359f73af73859a19d4e72d49898aedf297d54084e4d6a",
+          "dimensions": [
+            512,
+            1056
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/finished-colour-views-v1/forest-stone-shrine-BOX-div4.png",
+          "sha256": "c5611c6b50d8b2623ede795be6ac37699f37ed85c59fe67448eaa723434398d0",
+          "dimensions": [
+            512,
+            1056
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/finished-colour-views-v1/forest-stone-shrine-literal-full-X.png",
+          "sha256": "e5d34742e897b9c1f3e7782f1a2efdc4d0e58acebab7d3e1c033a178db1f187f",
+          "dimensions": [
+            256,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/finished-colour-views-v1/forest-stone-shrine-literal-full-Y-corners.png",
+          "sha256": "85c079765a1d1571ef424400c42ddc3f5b3bf59cc4fe5907faf74b2d8fe9dcd4",
+          "dimensions": [
+            768,
+            288
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/finished-colour-views-v1/forest-stone-shrine-2x2-BOX-overview.png",
+          "sha256": "c97c6a7f9fcb8eb6fb67bd30ad1fd896305673ff98dbf1c77fbde9e9480be1e1",
+          "dimensions": [
+            512,
+            2048
+          ]
+        }
+      ]
+    }
+  ],
+  "displayPolicy": "Xfull2048rows nativeleftNNx8/masterrightliteral64px. FullYandcorners nativeaboveNNx8/masterbelowliteral64px. 2x2overview usesBOX256x1024colour then repetition; literalcontacts reviewedseparately. Only owned docs inspection PNGs written."
+}

@@ -1,0 +1,8 @@
+{
+  "scope": "Exact plan reviewer optional argv assertion only; no source/master execution",
+  "state": "FAILED before finalreviewreceipt",
+  "observedError": "AssertionError at inline line39",
+  "cause": "Reviewer incorrectly expected12 flags/26argv; exact sealed command has11 named flags/24argv. Correct namedflagset is11; public prepare interface and owner plan are unchanged.",
+  "effects": "No image/master/pointer/selection writes; no publicprepare, Git or build actions.",
+  "retainedEvidence": "functions.exec chunk9f6816 EXIT1"
+}

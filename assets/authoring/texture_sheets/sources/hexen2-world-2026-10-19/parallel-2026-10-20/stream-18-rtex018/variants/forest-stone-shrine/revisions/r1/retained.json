@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "state": "ACTUAL_RETURN_RETAINED_AWAITING_SOURCE_ART_GEOMETRY_REVIEW",
+  "retainedAt": "2026-10-21T03:18:32.976781+00:00",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "artVariantID": "forest-stone-shrine",
+  "issued": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/issued.json",
+    "sha256": "77e10d0b28c96a1b41c44111912ea590c7ae08386feb72044ece089f1364b3fb"
+  },
+  "actualToolReportedOutput": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-d2194eaf-ae94-4a68-8081-351b249f67ef.png",
+  "actualToolOutputSha256": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752",
+  "retained": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/forest-stone-shrine-r1.png",
+    "sha256": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752",
+    "dimensions": [
+      724,
+      2171
+    ],
+    "mode": "RGB",
+    "format": "PNG"
+  },
+  "modelCalls": {
+    "originalGeneration": 1,
+    "edits": 3,
+    "total": 4,
+    "thisVariantNewEdits": 1
+  },
+  "campaignCallCounts": {
+    "primary": 65,
+    "issuedEdits": 6,
+    "retainedEditReturns": 6,
+    "totalIssued": 71,
+    "totalRetained": 71
+  },
+  "rawRetainedWithoutProcessing": true,
+  "adequacy": "Whole padded canvas724x2171 is not native aspect. Actual fullwindow bounds/content and source core adequacy must be remeasured before any down-only registration. No blindly reused ROI.",
+  "qualifiedMasterOrTier": false
+}

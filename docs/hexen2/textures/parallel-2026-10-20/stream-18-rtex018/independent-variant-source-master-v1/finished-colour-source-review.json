@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-21T04:11:00.438715+00:00",
+  "reviewer": "Independent repair_skill_forward_check",
+  "verdict": "PASS finished-colour source material/layout/distant-composition and colour-boundary review only; source/master math/publicCLI PASS separately. Scalar physical acceptance remains provisional HOLD, zero tiers.",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "actualSourceMasterProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/source-master-proof-v1.json",
+    "sha256": "f80a3aa67034a761b318473892690c7e4666a75d3cab497f5e9fb79ef64e40a0"
+  },
+  "actualVerifierRun": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/verification-run.json",
+    "sha256": "e1ac6f32c81d5541ed8343d5dbaf08af647d7ba53a1f7c15c75f009116c45787"
+  },
+  "actualViews": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/finished-colour-views-v1/manifest.json",
+    "sha256": "40dc7bbba45f7251154630f1e2cf5024a59748010ec0ea4c3fd053645af32688"
+  },
+  "materials": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "master": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/master.json",
+        "sha256": "039466e7af1765c9b488a99f5526e097d52f56da7e10ae1aa6be971c69ba9db9"
+      },
+      "color": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/color.png",
+        "sha256": "e9453b368e07c788fe9334a067de9cb4810885eefe187861cdb465d06f668415"
+      },
+      "BOX": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            128
+          ],
+          "meanAbsoluteRGBDifference255": 16.175537109375,
+          "filter": "Identical BOX reduction native/master; displayNNonly"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            64
+          ],
+          "meanAbsoluteRGBDifference255": 11.125325520833334,
+          "filter": "Identical BOX reduction native/master; displayNNonly"
+        }
+      ]
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "master": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/master.json",
+        "sha256": "ba3ef70824407373a1eaabb009557a38ce7adaa1915d85475c2ade1617dec298"
+      },
+      "color": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/color.png",
+        "sha256": "850deb57f3d886e961de485a67c8698d738eac9ae0256e29a507102c71015b32"
+      },
+      "BOX": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            128
+          ],
+          "meanAbsoluteRGBDifference255": 16.2958984375,
+          "filter": "Identical BOX reduction native/master; displayNNonly"
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            64
+          ],
+          "meanAbsoluteRGBDifference255": 11.186848958333334,
+          "filter": "Identical BOX reduction native/master; displayNNonly"
+        }
+      ]
+    }
+  ],
+  "actualObserved": "Both whole canonical512x2048RGBimages; all four identical-filter nativeBOXcomparisons; both full2048-row literalXcontacts and full512-columnY/cornercontacts; both2x2reducedrepeat overviews. All10inspectionPNGs observed. Native compared NNdisplayonly, masterboundarystrips literal; overview BOX256x1024per tile is not a literal-detail claim.",
+  "colourFindings": [
+    "Actual .65/.75photographic finishing retains convincing aged mineral-brown frame, dark came and artist-painted/vitreous coloured glass. Distinct ruin and lowshrine scenes remain legible; no frame duplication, newly added lower rosettes, extra physical leadwork or obvious new synthetic detail overlay observed.",
+    "Native Gothic arch/upperroundlobes/centre rosette/mullion/bar rhythm/jamb/sill and full-height composition remain representative. The colourfield changes local tonal emphasis rather than moving geometry.",
+    "AtBOX32x128and16x64, the finishedpalette is appreciably closer to native than uncorrected registeredsources: dark olive/brown lower masses and pale upper fields restored while scene subject remains illustrative. Some pane brightness/colour detail differs as expected for new scene artwork; no pixel-equality or numerical-threshold acceptance asserted.",
+    "FullXcontact uses adjacent jambs; Ycontact uses sill against next lintel; fourcorners join in intended framing. No externalgrey carrier strip, duplicatedpaint ghost, discontinuity cutting a glassscene feature, or correction-field rim observed. Literal stone joints are separate framing pieces, not a promised single continuous stone face.",
+    "2x2overviews show regular native-intended window repeats with consistent structuralbar phase. This does not establish actual BSPphysicalwindow grouping or runtime handling of partialUVs.",
+    "Fine came/framewear and textured illustrativeglass remain readable in fullcolour images. Painted leaves, ruins and shrine stones are artwork, not geometry to emboss."
+  ],
+  "physicalScalarStatus": {
+    "status": "PROVISIONAL_HOLD",
+    "source": "Required gate retained from root plan; no new neutral/opposed scalar ART review claimed in this colour-only review.",
+    "reason": "The exact reproduced brightness-derived float is mathematical output, not source-specific proof of pane/frame depth; scene paint must not become physical terrain.",
+    "requires": "Source-measured pane/frame physical plan and independent semantic review, preserving existing source/master proof and actualbytes, before guarded correction or any tier."
+  },
+  "boundariesOfProof": [
+    "Independentmath reconstructs newcolourPNG and fullfloatNPY, not inheritedbaselineverdicts. Actual unchangedpublicCLI replays compareall3bytes onceperownedprivateoutput then cleanup.",
+    "Native13path/10content priorfreshsourceproof is retained through currentoriginal/input/fourarchivehash custody; not reparsed as a newnativeaudit.",
+    "Family4history and selectedancestry3 checked from actual issue/return/toolcopy bytes. LocalmastergenerationCount1 means oneCLIinput only.",
+    "Mutablecurrentpointers observed selecting s1 but not frozen as immutable proof inputs.",
+    "No encodedMid/Highmaps, actualheight/XYZ/opposedlight acceptance, runtimepack/assetregistration, gameplay, ownerfinalacceptance or release claimed."
+  ],
+  "nextOwner": "Root: inspect genuine source/master proof and finishedcolour views; prepare/review source-specific commonpane/frame physical semantics before scalar correction. Preserve currentinitial masters and zero tiers until physical gate passes."
+}

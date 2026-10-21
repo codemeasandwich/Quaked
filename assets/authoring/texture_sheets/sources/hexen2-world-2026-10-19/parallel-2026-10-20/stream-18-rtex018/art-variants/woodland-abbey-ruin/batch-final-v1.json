@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 2,
+  "batch": "parallel-2026-10-20-stream-18-rtex018-woodland-abbey-ruin",
+  "family": "hexen2",
+  "pathsBase": "repository",
+  "defaultTier": "Mid",
+  "tierFactors": {
+    "Mid": 4,
+    "High": 8
+  },
+  "quality": 92,
+  "method": 6,
+  "lossless": false,
+  "counts": {
+    "nativeIdentities": 1,
+    "artVariantsInDescriptor": 1,
+    "primarySourceGenerations": 1,
+    "familyModelCallsAtSelection": 4,
+    "selectedAncestryModelCalls": 3,
+    "newModelCallsThisDerivation": 0,
+    "newMasterPackages": 1,
+    "newMapFiles": 10,
+    "mapReferences": 10
+  },
+  "scope": "One baseline art-variant candidate against unchangedLow. Threefamilyartworks do not coverthreenativeidentities. Registeredsource/4callfamilyhistory bound throughimmutableselection, not primaryraw-equality. No catalog/runtime/release acceptance.",
+  "items": [
+    {
+      "name": "rtex018",
+      "edition": "base",
+      "artVariantID": "woodland-abbey-ruin",
+      "nativeIdentity": {
+        "id": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+        "rgbaSha256": "a107c37db3faf6677b6e280a635ffb866da5b646c6a686790181bb68c0ed95f5",
+        "indexedPixelSha256": "9845e64518852b0b17f1b2ec376e24efbfd42b9913ec3f5e5a4d7fb264627be8",
+        "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+        "width": 64,
+        "height": 256
+      },
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+      "originalSha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb",
+      "generationCount": 1,
+      "modelCalls": {
+        "originalGeneration": 1,
+        "edits": 3,
+        "total": 4
+      },
+      "selectedAncestryCalls": {
+        "originalGeneration": 1,
+        "edits": 2,
+        "total": 3
+      },
+      "sourceSelection": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/source-selections/s1.json",
+        "sha256": "05b6d16012f95b3494c8d5b89f5068582a093338e234d2997843d642761b7982"
+      },
+      "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registered-source.png",
+      "generatedSha256": "75e996db83dc1780a1ffd8d433b47e56be28b35405f5b08f75fd2dacd631c105",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/woodland-abbey-ruin-prompt.txt",
+      "promptSha256": "d6aeeb60ff62b62366af10768053b6d196f5be8ead785079c04268278d119c86",
+      "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/layered-v1/master.json",
+      "masterPackageSha256": "d3dea7770acc641b7bd1739be438f0956c3a74c346131ba4ac956724709271d6",
+      "tierReceipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/manifest.json",
+      "tierReceiptSha256": "f29a06da5323b9716f4e45ab9dfaa937f912d4a08744701c15c71c9911270362",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            256,
+            1024
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/mid-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/mid-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/mid-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/mid-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/mid-normalZ.webp"
+          }
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            512,
+            2048
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/high-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/high-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/high-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/high-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/high-normalZ.webp"
+          }
+        }
+      },
+      "status": "Author alternative-scene candidate; independent final qualification and root registration pending.",
+      "newMasters": 1,
+      "newMapFiles": 10
+    }
+  ]
+}

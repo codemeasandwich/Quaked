@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS author decoded art/physical/distance/contact candidate review; independent final and root registration separate",
+  "reviewedAt": "2026-10-21T07:39:44.211146+00:00",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "artVariantID": "forest-stone-shrine",
+  "scene": "ancient mossy stone shrine in a forest clearing",
+  "descriptor": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/batch-final-v1.json",
+    "sha256": "cdabf7dd0e79b3539c2650fb9b921c42e537ef3ce3f1392b89056b8ce94ac897"
+  },
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/master.json",
+    "sha256": "32f15a798d8ec79974a18b2d639aeabb8bc117eb03d15c1b8c1ea29a81bf9468"
+  },
+  "tierManifest": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/manifest.json",
+    "sha256": "e0b45d0024bac8307ff4b60661af13b689a608ffbce896cb4ed6af9534c95f1b"
+  },
+  "decodedDiagnostics": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/actual-decoded-observations.json",
+    "sha256": "bc931dd711738b4fa757ddc7ca71a52f770f651823be8d10daaa8b63ee300b58"
+  },
+  "actualPhysicalMapCorrespondence": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/geometry-map-correspondence.json",
+    "sha256": "a303c0a062b6fdbc4d8bce63f994853d38413d8311706e1dfb6dcd1800bd02b6"
+  },
+  "observations": [
+    "Actual full Mid256x1024 and High512x2048 diffuse viewed. The named woodland scene reads as artist-depicted stained-glass artwork in the same Gothic frame/material family, not an outdoor photograph behind clear panes. Lower focal motif is small and distinct from the bridge baseline.",
+    "Native/Mid/High identicalBOX32x128 and16x64 contacts viewed: pale upper fields, darkolive lower woodland and small warm lower scene cluster remain representative. Tracery/mullion/bar phase persist; no invented bottom rosettes or exteriorgrey.",
+    "Actual own full opposed textured lighting and central Mid/High RGB/height/neutral contacts viewed. Painting remains flat insetglass with shallow structural frame/came; no ruin/shrine/leaf terrain emboss. All8 delivered height/XYZ maps are byte-identical to the actually-viewed and independently-qualified baseline maps, independently generated from each own proven master; not a copied donor height.",
+    "Actual unique full-height X and full-width Y diffuse joins plus corners viewed at both resolutions. Window/jamb contacts remain coherent, without new carrier stripe or image-perimeter bevel. Fullrepeat files are retained; no claim of literal inspection of a viewer-resized High2x2overview.",
+    "Actual four public JPEG sheets viewed per scene, including native, decoded colour, detail, repeats, both distance panels, height/XYZ and textured opposed panels. Public output folders are separate, so common rtex018 filenames do not collide."
+  ],
+  "limits": [
+    "microAmplitude0 omits fine physical glass/frame wear and waviness; photographic/paint detail remains RGB. This is a shallow architectural approximation, not measured 3D glass.",
+    "Finite polygon/AA and Q92height/normal quantization remain explicit. Decoded glass samples128, principal frame133, restored petal camepoint132 survive at both resolutions.",
+    "Opaque baked native appearance only; no alpha/refraction/emission, random-per-window runtime integration, owner acceptance or release is qualified by this asset review.",
+    "Family history remains1primary+3edits=4; each alternative ancestry1primary+2edits=3. Both alternatives remain art variants of ONE native identity and unchangedLow."
+  ],
+  "verification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/author-replay/preview-content-replay.json",
+    "sha256": "8257359c70f3046c031be5acabac3c65204caca0504b017f5ff748ca204f38d8"
+  },
+  "independence": "Author self-review;03 owns independent final source/math/codec/decoded ART; root owns registration/checkpoint/runtime."
+}

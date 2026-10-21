@@ -1,0 +1,1198 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/texture_06_mtex470",
+  "reviewedAt": "2026-10-21T07:01:12.914826+00:00",
+  "verdict": "PASS independent final decoded material, distance, tiling and physical ART for woodland-bridge only; root registration and runtime/owner acceptance separate",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "artVariantID": "woodland-bridge",
+  "technicalProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/actual-v1.json",
+    "sha256": "d1881d1a69f20ac92b87070a0cd57057ec90a6fb147b983d3e34e95ce3a6905a"
+  },
+  "authorFreeze": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/BASELINE_FINAL_FREEZE.json",
+    "sha256": "83abf7c12f5f4af487ba6b9320bb4ce7994bf277a5b124d98ceff841cf810d64"
+  },
+  "materialFindings": [
+    "Viewed both actual decoded full RGB textures at their native tier sizes. They read as dark Gothic structural framing around painted/stained glass, with a coherent woodland/sky/water/bridge scene and distinguishable glass/frame finish. Fine colour detail remains readable; no added procedural grain, native-pixel contour grid or abstract material is relied upon.",
+    "The owner-requested artist scene is interpreted within the glazing. The upper lobes, central quatrefoil, pointed framework, main mullion, lateral jambs and horizontal-bar rhythm remain representative of Low. Mid and High have the same forms from their shared source.",
+    "Viewed both exact BOX comparisons at32x128 and16x64, including enlarged public comparison panels. Both tiers retain the dark pointed framework and pale-upper/darker-lower palette and feature scale. Scene detail differs, as authorized; resemblance rather than pixel equality is the criterion."
+  ],
+  "lowestPaneInterpretation": {
+    "actualNativeObservation": "Two round/radial dark-gold motifs are discernible inside the lowest native panes. They are not claimed absent from Low. The new artist scene does not preserve those exact optical motifs.",
+    "structuralAssessment": "Native pixels do not establish whether these small marks are painted/optical medallions or fine leaded ornament. They sit within the rectangular glazing rather than providing an unambiguous continuous heavy frame connection like the main mullion, came, arch or sill. It would overstate the evidence to call them proven projecting solid hardware.",
+    "acceptanceReason": "Under the explicit owner request for an artist-depicted stained-glass scene, replacing this uncertain within-glass pattern is an allowed artwork interpretation. The actual rectangular pane boundaries and coarse dark olive/brown and warm optical masses remain representative in both BOX views. No new solid bottom rosettes are added. This acknowledges motif reinterpretation and uncertainty, rather than erasing a native feature by label.",
+    "sourceContext": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/lowest-pane-optical-context-and-BOX.png",
+      "sha256": "33f00d619a2fe297af50501a73d8094448d85a5accfc0e60a9aead7441e94de3"
+    },
+    "native": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+      "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+    },
+    "ownerSceneDecision": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/owner-stained-scene-decision.json",
+      "sha256": "8ef83dc86a12326cd92b689b8d047750429e90670e4033463b4b546afe104ba9"
+    }
+  },
+  "decodedPhysicalFindings": [
+    "Viewed both full decoded heights/XYZ, full fixed opposed neutral and textured lights, and the literal central-petal panel. Glass remains flat; frame and came remain shallowly above it. Painted scene details do not become embossed terrain.",
+    "The corrected central opening preserves surrounding came in both tiers. Restored came points remain above pane values after lossy encoding; small mixed neighborhoods are reported honestly. No persistent deep frame trench, wrong pigment relief or introduced raised painted rim is apparent.",
+    "Q92 height/XYZ quantization produces finite precision, but it does not reverse the intended broad pane/frame hierarchy in the actual reviewed maps."
+  ],
+  "sourceClassifiedDecodedHeightSupport": [
+    {
+      "tier": "Mid",
+      "samples": [
+        {
+          "role": "upperpaint",
+          "tierXY": [
+            50,
+            305
+          ],
+          "point": 128,
+          "median5x5": 128.0,
+          "scope": "Point and local neighborhood; the petal/came neighborhood is mixed, not a pure-material patch."
+        },
+        {
+          "role": "lowerwoodland",
+          "tierXY": [
+            50,
+            765
+          ],
+          "point": 128,
+          "median5x5": 128.0,
+          "scope": "Point and local neighborhood; the petal/came neighborhood is mixed, not a pure-material patch."
+        },
+        {
+          "role": "bridgepaint",
+          "tierXY": [
+            75,
+            852
+          ],
+          "point": 128,
+          "median5x5": 128.0,
+          "scope": "Point and local neighborhood; the petal/came neighborhood is mixed, not a pure-material patch."
+        },
+        {
+          "role": "mullion",
+          "tierXY": [
+            127,
+            325
+          ],
+          "point": 133,
+          "median5x5": 133.0,
+          "scope": "Point and local neighborhood; the petal/came neighborhood is mixed, not a pure-material patch."
+        },
+        {
+          "role": "came",
+          "tierXY": [
+            50,
+            350
+          ],
+          "point": 133,
+          "median5x5": 133.0,
+          "scope": "Point and local neighborhood; the petal/came neighborhood is mixed, not a pure-material patch."
+        },
+        {
+          "role": "restoredpetalcame",
+          "tierXY": [
+            115,
+            136
+          ],
+          "point": 132,
+          "median5x5": 130.0,
+          "scope": "Point and local neighborhood; the petal/came neighborhood is mixed, not a pure-material patch."
+        }
+      ]
+    },
+    {
+      "tier": "High",
+      "samples": [
+        {
+          "role": "upperpaint",
+          "tierXY": [
+            100,
+            610
+          ],
+          "point": 128,
+          "median5x5": 128.0,
+          "scope": "Point and local neighborhood; the petal/came neighborhood is mixed, not a pure-material patch."
+        },
+        {
+          "role": "lowerwoodland",
+          "tierXY": [
+            100,
+            1530
+          ],
+          "point": 128,
+          "median5x5": 128.0,
+          "scope": "Point and local neighborhood; the petal/came neighborhood is mixed, not a pure-material patch."
+        },
+        {
+          "role": "bridgepaint",
+          "tierXY": [
+            150,
+            1705
+          ],
+          "point": 128,
+          "median5x5": 128.0,
+          "scope": "Point and local neighborhood; the petal/came neighborhood is mixed, not a pure-material patch."
+        },
+        {
+          "role": "mullion",
+          "tierXY": [
+            255,
+            650
+          ],
+          "point": 133,
+          "median5x5": 133.0,
+          "scope": "Point and local neighborhood; the petal/came neighborhood is mixed, not a pure-material patch."
+        },
+        {
+          "role": "came",
+          "tierXY": [
+            100,
+            701
+          ],
+          "point": 133,
+          "median5x5": 133.0,
+          "scope": "Point and local neighborhood; the petal/came neighborhood is mixed, not a pure-material patch."
+        },
+        {
+          "role": "restoredpetalcame",
+          "tierXY": [
+            230,
+            273
+          ],
+          "point": 132,
+          "median5x5": 132.0,
+          "scope": "Point and local neighborhood; the petal/came neighborhood is mixed, not a pure-material patch."
+        }
+      ]
+    }
+  ],
+  "tilingFindings": [
+    "Viewed actual2x2 RGB, XYZ and neutral repeats for both tiers. Window aspect and intended framed-window repetition are preserved.",
+    "Inspected literal full X and Y joins and corners for all seven roles using unscaled collations; X was split into exact top/bottom halves for readable full-resolution review. Existing jamb/sill joints are intentional material boundaries. No added perimeter height bevel or new unexplained line appears beyond those native frame contacts."
+  ],
+  "personallyInspectedDecodedEvidence": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-RGB-full.png",
+      "sha256": "190bcd795964b36d8628dbb53d7b8ab1e6e2e8a15af10143825f9d311f9334e0",
+      "dimensions": [
+        256,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-RGB-Xjoin-1to1.png",
+      "sha256": "4cd708030deda2a67274d5e3462964e4faf38d360f6e7566f4e635de7168fb1e",
+      "dimensions": [
+        64,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-RGB-Yjoin-1to1.png",
+      "sha256": "697441c0ccf5c54780dbe84f3de6b5dccb20ef2c123435efcd8f582433c5f5ac",
+      "dimensions": [
+        256,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-RGB-corner-1to1.png",
+      "sha256": "d5ce1043dbed8c728cab8f36e0aa16abe0d6b1764c79027b0a937ac18bb3fe6e",
+      "dimensions": [
+        64,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-RGB-repeat-1to1.png",
+      "sha256": "6296f00561cf678273bde0ae53654ac9922b98919a6419b4c3506177344186a4",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-height-full.png",
+      "sha256": "be1f569e47df8b1786884aaf155e001af0d95c20776a52785a2a8a6bcdb9891d",
+      "dimensions": [
+        256,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-height-Xjoin-1to1.png",
+      "sha256": "d096ddb5f3e6ea00648c86d2cf76e4c7b735159592db14c60a3152acef330c36",
+      "dimensions": [
+        64,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-height-Yjoin-1to1.png",
+      "sha256": "179509890784ec5ad3b450605a90c10005045c10ef87cf5d11471fa8bf6b1c95",
+      "dimensions": [
+        256,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-height-corner-1to1.png",
+      "sha256": "5435c3815b7423ddf7c50427448e983a25462bc01b5baaebd86cb690cb24bfae",
+      "dimensions": [
+        64,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-XYZ-full.png",
+      "sha256": "a23b7ce1c57ff045a0cf987f7f75cbde1729a20aad88e3801dd3fcec1485736f",
+      "dimensions": [
+        256,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-XYZ-Xjoin-1to1.png",
+      "sha256": "a72d5157dcad019a71748f0bace425cbf525b0a4363660ddd10683a913c8faee",
+      "dimensions": [
+        64,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-XYZ-Yjoin-1to1.png",
+      "sha256": "48acd9b0645e583bfc6ca39cf78b44bc1da4f24fb55c473e772721b49823e92e",
+      "dimensions": [
+        256,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-XYZ-corner-1to1.png",
+      "sha256": "65e6e115a8d28c7dcf3f92edded933ff540b0c7fa15f83fc348764e04a7bf8f6",
+      "dimensions": [
+        64,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-XYZ-repeat-1to1.png",
+      "sha256": "1ef2b8952135022d429a3cd5492e00ce7eef13cd1f810c0755bc0d02be0d1ff2",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-neutral-A-full.png",
+      "sha256": "24ef31cbc3f8b720c82ba286857be729f191a1de045bd708b310144113dc447e",
+      "dimensions": [
+        256,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-neutral-A-Xjoin-1to1.png",
+      "sha256": "186680cdfc927db169175189018d496105d987e84a0945eec0f8eb9143fb5387",
+      "dimensions": [
+        64,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-neutral-A-Yjoin-1to1.png",
+      "sha256": "d1fb3bde227909d16c7dee4832aa96b2aac492b310be56e2e5c0fcb364d612e8",
+      "dimensions": [
+        256,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-neutral-A-corner-1to1.png",
+      "sha256": "e8251fec5faf652fc6c466319ddc1dad65fcf826913416e4ba755a86dc0e3f88",
+      "dimensions": [
+        64,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-neutral-A-repeat-1to1.png",
+      "sha256": "fed57e5caca5c95d413097edd37ecbf811470293bef4523108d4aefbc752a240",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-textured-A-full.png",
+      "sha256": "5572462dade66704a68c044672e5ac743e1f9f212945aa1eb6579037a9374124",
+      "dimensions": [
+        256,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-textured-A-Xjoin-1to1.png",
+      "sha256": "e6bd6bdf604f3fc374480dd8a471d04b117c87d5d844a27b5ba7ebbcdbb67a01",
+      "dimensions": [
+        64,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-textured-A-Yjoin-1to1.png",
+      "sha256": "c85c041eb66deca8c2febb213daaaf887b350decf2a75e6366f7c28d3abc279c",
+      "dimensions": [
+        256,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-textured-A-corner-1to1.png",
+      "sha256": "c49e8fdd283bf6610cf682589ac9fabbc23d68e2aa036f1e1ffd8c3b3fbfae2c",
+      "dimensions": [
+        64,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-neutral-B-full.png",
+      "sha256": "31b018bad9779d45ccbd23ac8b6d806cfdbb1a9de67c29460e39484bb6515b67",
+      "dimensions": [
+        256,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-neutral-B-Xjoin-1to1.png",
+      "sha256": "6ef595e62c00cf4b8f27b715bc4d4c315e3dc90cb5b0ef4e91af59a7eb7444d1",
+      "dimensions": [
+        64,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-neutral-B-Yjoin-1to1.png",
+      "sha256": "c2e9831727cf8867b11a4de6cdbe2896259720c21c1d961108aebed569e5d7e8",
+      "dimensions": [
+        256,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-neutral-B-corner-1to1.png",
+      "sha256": "d1b1ec3b811c0840d438d7981ecf581234b900fe7bf358cfc3bc427e61892289",
+      "dimensions": [
+        64,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-textured-B-full.png",
+      "sha256": "d6e0b7cf1f0f753032442583adcf9d36b52c234bab43fee2e0eb82e0677a581d",
+      "dimensions": [
+        256,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-textured-B-Xjoin-1to1.png",
+      "sha256": "91a7e21b12738b85e2418ab060d2263517e0c48a627582390f9deb1791092657",
+      "dimensions": [
+        64,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-textured-B-Yjoin-1to1.png",
+      "sha256": "0749aa819a3751734df2fe8199a25e84efc059822b4c36392714c9482d10ac43",
+      "dimensions": [
+        256,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-textured-B-corner-1to1.png",
+      "sha256": "a7dd11861862bd8ff4f1eed47d893bd99fc7946a9afb507c664f0c7dff85b247",
+      "dimensions": [
+        64,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-RGB-full.png",
+      "sha256": "ab2c3f2523fb48198f6583564919726cd905ba27905c41ae98b754da465aa0c5",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-RGB-Xjoin-1to1.png",
+      "sha256": "422862aaf9a6c54eceb709cf7c92043f82a88fd1d64436f27890c0b58af3f821",
+      "dimensions": [
+        128,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-RGB-Yjoin-1to1.png",
+      "sha256": "fd2f6213b41299b39fff3b77cffd88832f0fd235c178f406fc34868f3506d221",
+      "dimensions": [
+        512,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-RGB-corner-1to1.png",
+      "sha256": "a6103b4a877132904f70c03bcc2bad26d35823ba9cf2584593e6e3387ce981dc",
+      "dimensions": [
+        128,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-RGB-repeat-1to1.png",
+      "sha256": "f5797ee269d643a178ba6bb6058fa1c995d2b503d1958e525788ea285d70686f",
+      "dimensions": [
+        1024,
+        4096
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-height-full.png",
+      "sha256": "f8b9444aca2e2bf7bb74a8fd40df1285f6b38f30cae5e48d8d20a86c7329aecb",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-height-Xjoin-1to1.png",
+      "sha256": "22ea6c872b830838ce6bb465c225a9b60bba34821cc70f820865cc7ab87f7d65",
+      "dimensions": [
+        128,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-height-Yjoin-1to1.png",
+      "sha256": "d174df963e19939f515d9ebcd096475da5ed27dcdc16280bf057d72dc35a6e7d",
+      "dimensions": [
+        512,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-height-corner-1to1.png",
+      "sha256": "cb1808256d510c43c543128c9b63dc495bd0caffc75578903c7e08c531e359e9",
+      "dimensions": [
+        128,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-XYZ-full.png",
+      "sha256": "75e5785873f0432f81386869abe3b3ca33e237e32aca1deec72de2fc902b366f",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-XYZ-Xjoin-1to1.png",
+      "sha256": "3a255a5f5c59662b07061e166b2b2e5fd6c78a9735986e3e14ca5bcdc074cab9",
+      "dimensions": [
+        128,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-XYZ-Yjoin-1to1.png",
+      "sha256": "090f76de4ebe68573a6a1a3ec426e627fe47911edfcae00b71fd7b5cd8b27fbc",
+      "dimensions": [
+        512,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-XYZ-corner-1to1.png",
+      "sha256": "df82d0b3ab884b02c58bd3be92d12cf84ebb0ec7b232f5b45611dd3de3f9117a",
+      "dimensions": [
+        128,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-XYZ-repeat-1to1.png",
+      "sha256": "b5d9a3d03f2375efe67649c1611c565196396d0e6baf5600f3654a95f30c73ea",
+      "dimensions": [
+        1024,
+        4096
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-neutral-A-full.png",
+      "sha256": "101c46cc64706de214fa9cf959bc4b3456c0a7dda35058e023e3d2ffac2bc48b",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-neutral-A-Xjoin-1to1.png",
+      "sha256": "f804348fd040fc400286bbc0059f8e86e3cc4287018595bd8172eb88599612b0",
+      "dimensions": [
+        128,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-neutral-A-Yjoin-1to1.png",
+      "sha256": "696fdaedd1d81c5f5ccbf76e95a4224f7ebbc25434359ee4fe2dccb8f242c455",
+      "dimensions": [
+        512,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-neutral-A-corner-1to1.png",
+      "sha256": "8ca0ede1fe0a2bbe131ee628869e1b50a5859ef4683a6c40f804d9e11d63c6ae",
+      "dimensions": [
+        128,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-neutral-A-repeat-1to1.png",
+      "sha256": "1785aebb479b2add7c7d7c2d318f9e09980de004da922a603e23d4209ba6566f",
+      "dimensions": [
+        1024,
+        4096
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-textured-A-full.png",
+      "sha256": "12c58ce03c8139a91f8119fb5dde2a53f5480b3df671b40de24689c9297945fe",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-textured-A-Xjoin-1to1.png",
+      "sha256": "8dc05800d3a71aedbe2f4f6517b870132088a01ccad0ce94f281ac22646a7768",
+      "dimensions": [
+        128,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-textured-A-Yjoin-1to1.png",
+      "sha256": "e84d66638c6ac4d71a5fb9774e94a71a2fd9d798ab376b222c2b9bd0d37dd7f4",
+      "dimensions": [
+        512,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-textured-A-corner-1to1.png",
+      "sha256": "31f6af7682ebc2ccc281fb47f7921d74198ca9b31bfa68e5195e8cbe856bda73",
+      "dimensions": [
+        128,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-neutral-B-full.png",
+      "sha256": "375e937a01e29cd260b6b388cd4172718f193e72cc698c3aa1a8f4b6bc4f5d37",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-neutral-B-Xjoin-1to1.png",
+      "sha256": "1d90ab82dabdc0a9012ecfd1bd0ea7de2a07a965facd63ac2988573b1c6e7925",
+      "dimensions": [
+        128,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-neutral-B-Yjoin-1to1.png",
+      "sha256": "70c1634cf4c9b92b77ba04899690eee2d376e15a80c01c38e5c184fc333e4864",
+      "dimensions": [
+        512,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-neutral-B-corner-1to1.png",
+      "sha256": "d461c38089f686abc4320548764653b02f13d2101b3bf61527d4186386e25b64",
+      "dimensions": [
+        128,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-textured-B-full.png",
+      "sha256": "c62f660a709ce2d40d5f684094bacf9b537b183eaa0fb9482d84a4044f95bb4e",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-textured-B-Xjoin-1to1.png",
+      "sha256": "1db691ff144621fd0faae4e48521672b8bdb22c1d32cbef6336eb3ef67fda13a",
+      "dimensions": [
+        128,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-textured-B-Yjoin-1to1.png",
+      "sha256": "076b8dc0f1f990c06196e2570a5b76a638e7eaed8d7bc7bf175107173f64b71b",
+      "dimensions": [
+        512,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-textured-B-corner-1to1.png",
+      "sha256": "f45de54b450abcdd1ba2a3e5665a6bf926e82a225b87a62a55e4391f4b585895",
+      "dimensions": [
+        128,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/native-Mid-High-BOX32.png",
+      "sha256": "ac4385df5847d3d77505ecba70193c67f763e04503e740cc120e70560409de50",
+      "dimensions": [
+        96,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/native-Mid-High-BOX16.png",
+      "sha256": "27d0ec8e2116bb6a3fb8634df1bd762dc4d064a46090414e7e15db71e6d0ca6a",
+      "dimensions": [
+        48,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/actual-central-petal-both-tiers-1to1.png",
+      "sha256": "a540c7636f8c9b7fd63a84eb3b826f800582a03c654a4af63a2bfc1489c677d0",
+      "dimensions": [
+        512,
+        310
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    }
+  ],
+  "literalContactCollations": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/art-contact-collations/collations.json",
+    "sha256": "867a087f79b7c9603958a26e645ac8401eb65510aaf739f52b255405eafb7508"
+  },
+  "publicPreviewEvidence": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/review/final-v1/rtex018-mid-review.jpg",
+      "sha256": "88d28075fdbe4190306f0c2b5440212426b46c10bc4efb0600551bc69583c289",
+      "fullJPEGBytesExact": true,
+      "changedPixels": 0,
+      "panels": [
+        {
+          "label": "title",
+          "rectangle": [
+            0,
+            0,
+            1400,
+            32
+          ],
+          "decodedRGBSHA256": "26fa3f22ede95f3bde391e49fb3028cbb729b7c1716b97d6130bf18e09718cc1",
+          "exact": true
+        },
+        {
+          "label": "native",
+          "rectangle": [
+            12,
+            32,
+            140,
+            544
+          ],
+          "decodedRGBSHA256": "9884a0a33144da4c26d9c580206005e923438876f871bae772bd2885990b682a",
+          "exact": true
+        },
+        {
+          "label": "diffuse",
+          "rectangle": [
+            540,
+            32,
+            668,
+            544
+          ],
+          "decodedRGBSHA256": "40534d7837f53ea52dde56192454feed07e5d33a6ce643cdd5709a1f267f64ff",
+          "exact": true
+        },
+        {
+          "label": "detail",
+          "rectangle": [
+            1068,
+            32,
+            1324,
+            288
+          ],
+          "decodedRGBSHA256": "2fe60ca59862fb276b83af1f882cfd90cba82e530a9154bc7772f603c3b6e48c",
+          "exact": true
+        },
+        {
+          "label": "repeat",
+          "rectangle": [
+            12,
+            570,
+            524,
+            1082
+          ],
+          "decodedRGBSHA256": "251ba255e15fedc204e5e3e2a9f2c80d6bba5c333981dd9744f2b1a86e9cfd10",
+          "exact": true
+        },
+        {
+          "label": "half-label",
+          "rectangle": [
+            540,
+            570,
+            1400,
+            595
+          ],
+          "decodedRGBSHA256": "d2d816939df552a56c8257bd5fdc8a98b2c4bc02eb44ade8544471f231c44c4d",
+          "exact": true
+        },
+        {
+          "label": "half-native",
+          "rectangle": [
+            540,
+            595,
+            636,
+            979
+          ],
+          "decodedRGBSHA256": "b4c6120fda5cf8e7cca58d5dc2b8c5eee78243706921926d378169c762bb9cfb",
+          "exact": true
+        },
+        {
+          "label": "half-enhanced",
+          "rectangle": [
+            646,
+            595,
+            742,
+            979
+          ],
+          "decodedRGBSHA256": "7da4ff598a8a628a825d7fbec3dadc66e4056181ca326a07a0fd4eaec15887f7",
+          "exact": true
+        },
+        {
+          "label": "quarter-label",
+          "rectangle": [
+            540,
+            997,
+            1400,
+            1022
+          ],
+          "decodedRGBSHA256": "abc53865fb53e7636be9f3472481ba98a3b9aa8f1a134a4e2e15a92ca0de9f3f",
+          "exact": true
+        },
+        {
+          "label": "quarter-native",
+          "rectangle": [
+            540,
+            1022,
+            588,
+            1214
+          ],
+          "decodedRGBSHA256": "285fd45b339775997e30b020484792c40790fb1dd8cdd5815a7aa5dadeb9d197",
+          "exact": true
+        },
+        {
+          "label": "quarter-enhanced",
+          "rectangle": [
+            598,
+            1022,
+            646,
+            1214
+          ],
+          "decodedRGBSHA256": "13af9c8b7e460954a9e2cc40b55bb64ed85211dd8843964ea7aaae17717a0e23",
+          "exact": true
+        }
+      ],
+      "onlyUnusedTailMayDiffer": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/review/final-v1/rtex018-mid-relief.jpg",
+      "sha256": "2ddd859416896bacd8ddba4d7922d92db4784aa8ff256191b4ff927274e9266d",
+      "fullJPEGBytesExact": true,
+      "changedPixels": 0,
+      "panels": [
+        {
+          "label": "top-labels",
+          "rectangle": [
+            0,
+            0,
+            1200,
+            30
+          ],
+          "decodedRGBSHA256": "06a24703c9b1f69369d8da024b06fc3b896cc4f416eb29b4e10b0f570160a0b2",
+          "exact": true
+        },
+        {
+          "label": "bottom-labels",
+          "rectangle": [
+            0,
+            550,
+            1200,
+            580
+          ],
+          "decodedRGBSHA256": "b2a464d2739256979a3a643f174ce73642c83b526543b148a309e3cee775d145",
+          "exact": true
+        },
+        {
+          "label": "height",
+          "rectangle": [
+            10,
+            30,
+            138,
+            542
+          ],
+          "decodedRGBSHA256": "1cbd2284df6baba432a91887d189a5943045452b1adb66e62fffb5e45e297a71",
+          "exact": true
+        },
+        {
+          "label": "XYZ",
+          "rectangle": [
+            610,
+            30,
+            738,
+            542
+          ],
+          "decodedRGBSHA256": "4e71795af555f7894d4ba5e8ab42dbc0615aa374138d8b0c0dd6cee4dcb00c78",
+          "exact": true
+        },
+        {
+          "label": "light-A",
+          "rectangle": [
+            10,
+            580,
+            138,
+            1092
+          ],
+          "decodedRGBSHA256": "8e1b089d0cde8d633d1f785d1fe810a32b8b7511dd885cc2c7f7a851ed424dc9",
+          "exact": true
+        },
+        {
+          "label": "light-B",
+          "rectangle": [
+            610,
+            580,
+            738,
+            1092
+          ],
+          "decodedRGBSHA256": "e6303055214bab4c537f823b4d78612880e87379a8fa1d203a421b07bc728964",
+          "exact": true
+        }
+      ],
+      "onlyUnusedTailMayDiffer": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/review/final-v1/rtex018-high-review.jpg",
+      "sha256": "1882cec554c7be7c7eb2ddafa403ed7d02776f8802fe5f24db98a2578b2b4eb3",
+      "fullJPEGBytesExact": true,
+      "changedPixels": 0,
+      "panels": [
+        {
+          "label": "title",
+          "rectangle": [
+            0,
+            0,
+            1400,
+            32
+          ],
+          "decodedRGBSHA256": "91822d285d2a768ca7764d8bd0639dcfc1eb16907a5c2a526221534055fbbd33",
+          "exact": true
+        },
+        {
+          "label": "native",
+          "rectangle": [
+            12,
+            32,
+            140,
+            544
+          ],
+          "decodedRGBSHA256": "9884a0a33144da4c26d9c580206005e923438876f871bae772bd2885990b682a",
+          "exact": true
+        },
+        {
+          "label": "diffuse",
+          "rectangle": [
+            540,
+            32,
+            668,
+            544
+          ],
+          "decodedRGBSHA256": "1a69e1712a54339a9c17debfbe4c8b722ed3bdd086ae570e6de9d48149f53f1d",
+          "exact": true
+        },
+        {
+          "label": "detail",
+          "rectangle": [
+            1068,
+            32,
+            1324,
+            288
+          ],
+          "decodedRGBSHA256": "fd72a6b9984843902bbb8e2f5f4528263451ffa2b0ec9c004c58e82b675a3b42",
+          "exact": true
+        },
+        {
+          "label": "repeat",
+          "rectangle": [
+            12,
+            570,
+            524,
+            1082
+          ],
+          "decodedRGBSHA256": "c6a31e16ec054761d384abac28f3b139effc84da0d2136c536e5d3a937c33554",
+          "exact": true
+        },
+        {
+          "label": "half-label",
+          "rectangle": [
+            540,
+            570,
+            1400,
+            595
+          ],
+          "decodedRGBSHA256": "62524d8358dd2fb9f2581e3a526069649af9da269ed445f9d4f7c2ba608b1773",
+          "exact": true
+        },
+        {
+          "label": "half-native",
+          "rectangle": [
+            540,
+            595,
+            636,
+            979
+          ],
+          "decodedRGBSHA256": "b4c6120fda5cf8e7cca58d5dc2b8c5eee78243706921926d378169c762bb9cfb",
+          "exact": true
+        },
+        {
+          "label": "half-enhanced",
+          "rectangle": [
+            646,
+            595,
+            742,
+            979
+          ],
+          "decodedRGBSHA256": "20781348ba9131afcb9017584eddd56f17c1a93ddc11695f088a7f362bdfc309",
+          "exact": true
+        },
+        {
+          "label": "quarter-label",
+          "rectangle": [
+            540,
+            997,
+            1400,
+            1022
+          ],
+          "decodedRGBSHA256": "673a4ff566863af87efd58a35eb035df75b805547bd7cc80f909f78b7b8a352f",
+          "exact": true
+        },
+        {
+          "label": "quarter-native",
+          "rectangle": [
+            540,
+            1022,
+            588,
+            1214
+          ],
+          "decodedRGBSHA256": "285fd45b339775997e30b020484792c40790fb1dd8cdd5815a7aa5dadeb9d197",
+          "exact": true
+        },
+        {
+          "label": "quarter-enhanced",
+          "rectangle": [
+            598,
+            1022,
+            646,
+            1214
+          ],
+          "decodedRGBSHA256": "5e205c6a1af8b2b70009ca4c57832cba1e93a751878e1bcdfc52d3747502ca53",
+          "exact": true
+        }
+      ],
+      "onlyUnusedTailMayDiffer": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/review/final-v1/rtex018-high-relief.jpg",
+      "sha256": "8970156482fa63801fd647ccb1746582f0fdc604903eef6073ce85fd6d4f1adb",
+      "fullJPEGBytesExact": true,
+      "changedPixels": 0,
+      "panels": [
+        {
+          "label": "top-labels",
+          "rectangle": [
+            0,
+            0,
+            1200,
+            30
+          ],
+          "decodedRGBSHA256": "d1870422eb003d43d292c214f39e8b227368d1a2c27a5158dc9af82828c92152",
+          "exact": true
+        },
+        {
+          "label": "bottom-labels",
+          "rectangle": [
+            0,
+            550,
+            1200,
+            580
+          ],
+          "decodedRGBSHA256": "5e9c7bb3a2ee2721e75af1d2c166f81da6407c20b5054aa225f8aa0fe3ae19c6",
+          "exact": true
+        },
+        {
+          "label": "height",
+          "rectangle": [
+            10,
+            30,
+            138,
+            542
+          ],
+          "decodedRGBSHA256": "8b11a963c203e0c49b0f3bc1c087d0406b4a232ea62524e866397a301961b979",
+          "exact": true
+        },
+        {
+          "label": "XYZ",
+          "rectangle": [
+            610,
+            30,
+            738,
+            542
+          ],
+          "decodedRGBSHA256": "45c978d385cb76dcca411d8199fcdc4dd2167cfeb186cf1a53e2bb4205365992",
+          "exact": true
+        },
+        {
+          "label": "light-A",
+          "rectangle": [
+            10,
+            580,
+            138,
+            1092
+          ],
+          "decodedRGBSHA256": "212b917fd6d03c5e10adc5188dd7fde78fbf7007523c3d91a5de0dd3227c8790",
+          "exact": true
+        },
+        {
+          "label": "light-B",
+          "rectangle": [
+            610,
+            580,
+            738,
+            1092
+          ],
+          "decodedRGBSHA256": "f53c3e23787d180fdf36e2476efa5caadee8af6265c8b83fbf93b03696239f85",
+          "exact": true
+        }
+      ],
+      "onlyUnusedTailMayDiffer": true
+    }
+  ],
+  "previewAndHTML": "All4actual JPEGs were personally inspected; technical replay reproduced every JPEG byte and all34 content/label panels exactly. HTML references the same delivered maps. No live browser claim.",
+  "limits": [
+    "One native identity and one named baseline art variant only; the two alternative scenes and random runtime assignment are not qualified here.",
+    "MicroAmplitude0 omits measured glass waviness and frame fine relief. Relative depth is not calibrated thickness.",
+    "No alpha/refraction/emission, gameplay/GPU, catalog registration, owner acceptance, Git, CI or release claim."
+  ],
+  "preservedFailures": [
+    "Initial brightness-derived physical HOLD",
+    "V1 wedge/lobe geometry HOLD",
+    "First layered a206 central-came physical HOLD"
+  ],
+  "custodyBeforeReceipt": {
+    "all105AuthorFrozenFilesExact": true,
+    "all162TechnicalReadInputsExact": true
+  },
+  "effects": "Own independent review and diagnostic collations only; no candidate/source/master/map/producer/model/Git/build changes."
+}
