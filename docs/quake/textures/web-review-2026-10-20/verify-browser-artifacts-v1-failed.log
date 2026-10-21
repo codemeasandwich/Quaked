@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/web-review-2026-10-20/verify-browser-artifacts-v1-failed.py", line 50, in <module>
+    assert matched,('BOX/close comparison differs',c.name)
+AssertionError: ('BOX/close comparison differs', 'church1-high-quarter-repeat3-comparison.png')

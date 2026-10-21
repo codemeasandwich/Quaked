@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "state": "Diagnostic setup path failure before geometry reconstruction or output; not a388 guard result",
+  "failedSource": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/diagnose-before-root-depth-fix.py",
+    "sha256": "9da3ee02bb738137766f1e091b4b62e16ba16e89e75f07020974857c42baa02c"
+  },
+  "error": "FileNotFoundError: computed repository root was docs, producing docs/docs/hexen2/... protected054 path",
+  "correction": "Use actual nested file parents[8] for repository root. All pinned388 files and journals were read only; no geometry replay/search or labels ran before error.",
+  "outputsCreated": false
+}

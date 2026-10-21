@@ -1,0 +1,131 @@
+{
+  "status": "Predeclared actualsource/native semanticwitnesses; no height read or authored",
+  "referenceSize": [
+    128,
+    128
+  ],
+  "masterFactor": 8,
+  "witnesses": [
+    {
+      "label": "course1_vertical",
+      "mortarNativeXY": [
+        96.5,
+        16
+      ],
+      "stoneLeftNativeXY": [
+        90,
+        16
+      ],
+      "stoneRightNativeXY": [
+        104,
+        16
+      ]
+    },
+    {
+      "label": "course2_vertical",
+      "mortarNativeXY": [
+        32,
+        48
+      ],
+      "stoneLeftNativeXY": [
+        26,
+        48
+      ],
+      "stoneRightNativeXY": [
+        38,
+        48
+      ]
+    },
+    {
+      "label": "course3_vertical",
+      "mortarNativeXY": [
+        96.5,
+        80
+      ],
+      "stoneLeftNativeXY": [
+        90,
+        80
+      ],
+      "stoneRightNativeXY": [
+        104,
+        80
+      ]
+    },
+    {
+      "label": "course4_vertical",
+      "mortarNativeXY": [
+        32,
+        112
+      ],
+      "stoneLeftNativeXY": [
+        26,
+        112
+      ],
+      "stoneRightNativeXY": [
+        38,
+        112
+      ]
+    },
+    {
+      "label": "row1_horizontal",
+      "mortarNativeXY": [
+        64,
+        32
+      ],
+      "stoneAboveNativeXY": [
+        64,
+        27
+      ],
+      "stoneBelowNativeXY": [
+        64,
+        38
+      ]
+    },
+    {
+      "label": "row2_horizontal",
+      "mortarNativeXY": [
+        12,
+        64
+      ],
+      "stoneAboveNativeXY": [
+        12,
+        59
+      ],
+      "stoneBelowNativeXY": [
+        12,
+        70
+      ]
+    },
+    {
+      "label": "row3_horizontal",
+      "mortarNativeXY": [
+        110,
+        96
+      ],
+      "stoneAboveNativeXY": [
+        110,
+        91
+      ],
+      "stoneBelowNativeXY": [
+        110,
+        101
+      ]
+    },
+    {
+      "label": "Yrepeat_joint",
+      "mortarNativeXY": [
+        64,
+        0
+      ],
+      "stoneAboveWrappedNativeXY": [
+        64,
+        123
+      ],
+      "stoneBelowNativeXY": [
+        64,
+        5
+      ]
+    }
+  ],
+  "policy": "Confirm each semanticlabel against futurefinalRGB/mask before queryingheight; retainfailedobservations, no pointmoves to manufactureorderPASS. Right/left Xedge is generally stoneface, not mortarjoint."
+}

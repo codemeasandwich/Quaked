@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "state": "issued",
+  "revision": "r2",
+  "issuedAt": "2026-10-20T23:38:05.466248+00:00",
+  "nativeID": "e000f2f3924be87a02be5d0b90eb36fb8e1b1776a284d847eb7d3c360a3b4e4c",
+  "parent": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/generated/rtex020.png",
+    "sha256": "3574e5e3cb69cf8e99d44d47688fb1b477c823ae52397e8c6998616b6f8db7c3"
+  },
+  "native": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/originals/01-rtex020-e000f2f3924b.png",
+    "sha256": "53f9b965991724fafe1ef3bdf0582f64dba7d456232fd939aee88121ce2a30ff"
+  },
+  "primaryJournal": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/selection.json",
+    "sha256": "8a79319d99368a62c43d6ac0df60778657a78433cdc675be80589a7551dc684c"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/revisions/r2-plan/edit-prompt.txt",
+    "sha256": "11fe666294b9416b3e8764575c5b23a756ead888248a67f5da80ac7330e21132"
+  },
+  "referenceRoles": [
+    "Image1 original unwarped photographic edit target",
+    "Image2 unchanged native masonry layout reference"
+  ],
+  "authority": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/source-edit-r2-plan/root-plan-review-v1.json",
+    "sha256": "233f1444ef3d3fb84dc7d971cd4ef7e9bcb2a9075e6277553f9559cbec12af54"
+  },
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/source-edit-r2-plan/plan.json",
+    "sha256": "c043bf0766824b7982970521843b0107c74b0befb63c8f638161ffebb6b1e2d2"
+  },
+  "priorIssuedRevisions": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/revisions/r1/source-revision-r1-issued.json",
+      "sha256": "53672ec7661d1da4f92dff2f7c4197e3c1b69a54927bbb802f9a57d205b246bd"
+    }
+  ],
+  "priorRetainedRevisions": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/revisions/r1/retention-receipt.json",
+      "sha256": "e05cd1982d72c0e4470d780a6d558db4bc0a6dc9a348c83859ed67546657a5a6"
+    }
+  ],
+  "originalGenerationCalls": 1,
+  "editCalls": 2,
+  "totalModelCalls": 3,
+  "oneFinalMaster": true,
+  "restrictions": "One exact built-in edit call only. No automatic further call. No composition, active pointer, master or tiers. Preserve this issued record immutably; return custody goes in separate retained.json."
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "state": "REAL_PRODUCTION_TIER_TERMINAL_COMPLETED",
+  "sessionId": 56720,
+  "initialExecChunk": "45f00d",
+  "completionChunk": "9bf2e9",
+  "terminalExitCode": 0,
+  "command": [
+    "/usr/bin/python3",
+    "tools/texture_sheets/derive_texture_tiers.py",
+    "--original",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/originals/01-rtex054-d007ea021eb3.png",
+    "--master",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/color.png",
+    "--height-master",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/height.npy",
+    "--output",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/tiers/rtex054"
+  ],
+  "receipt": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/tier-execution-receipt.json",
+    "sha256": "e85296ba30af3295c40baa813b121d836bfe06997034d69401275a1e960cfaf7"
+  },
+  "fullTerminalLog": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/tier-terminal.log",
+    "sha256": "49e467ce7cfc73481074cdba3edab9802843eac6d4c703aa9579c9a41aa8abc0"
+  },
+  "productionTierInvocations": 1,
+  "automaticRetry": false
+}

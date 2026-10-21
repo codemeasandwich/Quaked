@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 1,
+  "state": "OWNER_STAINED_GLASS_SCENE_PLAN_ONLY_NOT_ISSUED_NO_PIXEL_OPERATIONS",
+  "createdAt": "2026-10-21T00:38:56.328435+00:00",
+  "nativeID": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "revisionProposed": "r1",
+  "authority": "Root requests exact source-specific padded-canvas edit PLAN only; root review precedes any model call or pixel operation. Owner already permits tracked same-master edits.",
+  "inputs": {
+    "editTarget": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/generated/rtex018.png",
+      "sha256": "1af4618ce68c65ff1837bf1bbfeafb91ab6e7ffac64fa4cdb8372810d8922b2d"
+    },
+    "nativeGeometryReference": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+      "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+    },
+    "primaryJournalCurrent": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/selection.json",
+      "sha256": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8"
+    },
+    "immutablePrimaryIssued": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/issued.json",
+      "sha256": "75c98b76b62ebb13f14b33dda27b84323eb5f685848d420cd176a24a5f7dc807"
+    },
+    "immutablePrimaryRetained": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/retained.json",
+      "sha256": "37770bb54a5ff60fe39e74ac8411751fd8b4163c448e9e5fc26355dfc2b4ac9d"
+    },
+    "primarySourceHOLD": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/source-review/source-HOLD.json",
+      "sha256": "7a266eaf3dc8099c70e59c526ce1ff648f9db80ba28a83078bcfffa5f37d8774"
+    },
+    "primaryFreeze": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/source-review/FREEZE.json",
+      "sha256": "f5a808b6e8bb213b9fb664531814b4fb289e674d6af1da952bb8e960d7c915d8"
+    }
+  },
+  "referenceRoles": [
+    "Image1 actual retained724x2172 photographic source, preserve material; it is not adequate or currently selectable.",
+    "Image2 unchanged64x256 native, exact full-window proportions/tracery/bar phase/colour arrangement, including absence of bottom hardware.",
+    "No precomputed padded reference, mask or composited bitmap exists; do not imply it was supplied."
+  ],
+  "exactPrompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1-plan/edit-prompt-v2.txt",
+    "sha256": "6dce01459a30a41793219b9af19d632a81db2c3e5e04dd1bb9d27b62d9cd4d10"
+  },
+  "sourceDefects": {
+    "aspect": "Raw724x2172 is1:3, native64x256 is1:4. It cannot be rescued by cropping or anisotropically resizing the current photographic content.",
+    "topology": "Two explicit added circular/trefoil rosettes in lower lights are not native hardware; remove them rather than preserving native lower mottled marks as dark new metal rings.",
+    "bottomOrnamentApproxRegionNativeEquivalent": [
+      [
+        8,
+        233,
+        29,
+        252
+      ],
+      [
+        36,
+        233,
+        58,
+        252
+      ]
+    ],
+    "upperTracery": "Native upper lobes and centre feature are real and must remain; do not remove all circles indiscriminately.",
+    "glassArtDirection": "Native is now explicitly stained glass depicting a scene per owner. Current photographic random-mottled panes are a retained earlier interpretation, not an accepted scene rendering."
+  },
+  "canvasMethod": {
+    "status": "PROPOSED_MODEL_AUTHORED_PADDED_CARRIER_NOT_CURRENT_SOURCE_CROP",
+    "observedToolAspect": "Current actual return is3:1portrait. This plan requests the same whole-canvas ratio; the tool has no explicit size/aspect/mask argument, so actual result remains unguaranteed.",
+    "requestedCanvasWH": [
+      768,
+      2304
+    ],
+    "requestedTextureXYXY": [
+      96,
+      0,
+      672,
+      2304
+    ],
+    "requestedTextureWH": [
+      576,
+      2304
+    ],
+    "requestedPadWidths": [
+      96,
+      96
+    ],
+    "carrierAspectWidthHeight": [
+      1,
+      3
+    ],
+    "textureAspectWidthHeight": [
+      1,
+      4
+    ],
+    "centralTextureWidthFraction": 0.75,
+    "padding": "Opaque flat neutral mid-grey, external left/right only. No top/bottom pad, material content, cast shadow or newly added frame inside pads. Texture includes complete original sidejambs/top/bottom.",
+    "countsIfOneCallAuthorised": {
+      "originalGenerationCalls": 1,
+      "editCalls": 1,
+      "totalModelCalls": 2,
+      "oneFinalMaster": true
+    },
+    "whyNotStretch": "The model must author the complete narrow native-proportioned window inside external pads. A pixel resize of the current1:3 photograph is neither proposed nor permitted. This changes source content via reviewed model edit rather than treating current wide source as adequate.",
+    "globalMaterialRisk": "Whole-window recomposition and new painted/vitreous scene can change glass, came thickness and bar phase. Explicit material/geometry invariants remain hypotheses, not guarantees; actual photographic material, stained-glass scene and native distance fields must be inspected independently."
+  },
+  "losslessExtractionProposal": {
+    "status": "NOT_AUTHORISED_NOW_AND_NOT_IMPLEMENTED",
+    "inputs": "Only a future reviewed actual padded returned canvas; NEVER crop the current1:3raw1af4618c\u2026.",
+    "exactIntegerGeometry": "Require wholecanvasH=3*W and H divisible4 so expected textureW=H/4 is integer. Require H>=2048, textureW>=512; nominal512x2048 is a lower target, not an upscale permission. If choosing the mathematically centred expected ROI, x0=floor((W-textureW)/2), x1=x0+textureW, y0=0,y1=H. Actual full-content bounds must match this ROI before using it. A one-column pad asymmetry is allowed only from integer centering, not cropping photo content.",
+    "actualReturnExampleOnly": {
+      "ifCanvasWH": [
+        724,
+        2172
+      ],
+      "expectedTextureWH": [
+        543,
+        2172
+      ],
+      "expectedROI": [
+        90,
+        0,
+        633,
+        2172
+      ],
+      "externalPadWidths": [
+        90,
+        91
+      ],
+      "qualified": false,
+      "note": "Mathematical hypothetical only. These bounds do NOT apply to current724x2172raw, which has no externalpadding. A future return must visibly/structurally contain ONLY external grey in those excluded columns and the complete native window in the ROI."
+    },
+    "preExtractionEvidence": [
+      "Retain exact whole model return, actual toolpath/hash/dimensions/mode and separate custody receipt, preserving immutable issue snapshot.",
+      "View complete canvas and literal left/right boundary strips at top, centre and bottom. Demonstrate every excluded region contains only external neutral pad and no photographed native frame/glass; ensure no pad remains inside proposed texture.",
+      "Verify all native content lies inside the exact1:4 full-height ROI: both sidejambs, pointed apex, lower panes, bottom sill; no half-frame cut, overscan or missing source edge.",
+      "Prove integer ROI size>=512x2048 and raw array crop will preserve every RGB sample exactly, without interpolation/filtering/grade/feather/rotation.",
+      "Root reviews actual proposedROI/overlay/geometry and authorizes extraction before any authoring pixel operation."
+    ],
+    "operationIfLaterApproved": "One lossless RGB array extraction only. Preserve whole padded canvas as model raw; separately retain selected lossless texture with extraction recipe/ROI/parenthash/outputhash and byte-exact pixel correspondence proof. Keep one final shared master input.",
+    "failureStates": [
+      "Actual carrier aspect/dimensions do not admit exact adequate integer1:4ROI.",
+      "Pads irregular, contain native photo parts or new frame; claimed bounds would crop real jambs/glass or leave grey slivers.",
+      "Window geometry merely squeezed, cropped, broadened or rebuilt with shifted native bars.",
+      "Invented bottom rosettes/hardware persists or true upper tracery disappears.",
+      "Material degraded, including repaired lower panes.",
+      "Native original frame repeats become incompatible or seams/cuts visible.",
+      "Stained-glass scene becomes an outdoor photograph behind panes, invents saturated palette/large focal objects, shifts native light/dark masses or loses plausible glass material."
+    ],
+    "noAutomaticCorrection": "Do not move/crop frame, widen ROI beyond true content, resize, fill missing pixels, blend padding, assemble strips, call fallback or issue another model call. Retain precise HOLD."
+  },
+  "gateSequence": [
+    "Root exact UPDATED owner-scene method/prompt/native/source provenance review before any r1 call; old paddedplan is not sufficient authorization for changed prompt.",
+    "If authorised, create exclusive immutable revisions/r1/issued.json with counts1+1=2 and actual parent; retain actual complete canvas via separate retained.json, never mutate primary journal/raw.",
+    "Actual padded-source glass/came material, owner-directed stained-glass scene at native distance, structural layout/rosette removal/adequacy and external-padding evidence first. Report actual canvas and exactROI; no automatic extraction.",
+    "Only after separately approved lossless extraction, inspect selected1:4 texture material/BOX32x128/16x64/barphase/fullX/Y/corners before any active pointer or master.",
+    "Actual physical glass/frame hierarchy and genuine source/master proof plus reviewed existing guarded semantic repair if needed, before tiers."
+  ],
+  "prohibitionsNow": [
+    "model call",
+    "padded native/reference bitmap creation",
+    "source crop/resize/composition",
+    "active-source pointer",
+    "master/height/tier",
+    "new producer/provider",
+    "shared/Git/build/children"
+  ],
+  "version": 2,
+  "supersedesPlanForNextReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-plan/plan.json",
+    "sha256": "2e3f87780925f40a024d031e56e7a3cc13550263bdc5cb093ed131ab570c2e23"
+  },
+  "supersedesPromptForNextReview": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1-plan/edit-prompt.txt",
+    "sha256": "23a2864307b9166b65b5768f85c7caa42784605b097bdc27ac342a986763d3bf"
+  },
+  "ownerDirection": {
+    "receivedOn": "2026-10-21",
+    "exactInstruction": "This should be stained glass so try to interpret a scene that could be depicted by an artist within",
+    "rootConcreteSteering": "Restrained medieval woodland/valley landscape: existing uppercreamfields become pale clouded sky; native150..190 darkolive woodland;194..223 warm lightcluster a small stonebridge/path. Preserve palette/macrocomposition/native frame, remove inventedbottomrosettes.",
+    "supersededInterpretation": "Prior no-recognisable-scene / optical-mottle-only prompt restriction is superseded for the proposed revision. Original primary prompt and actual HOLD remain unchanged historical evidence.",
+    "authorityLimit": "Plan/prompt update only. No call, pixel operation, composition, extraction, active source, master or tiers."
+  },
+  "stainedGlassScene": {
+    "material": "Photographic leaded stained glass, real glass waviness/translucent colour/tiny bubbles/patina; complete opaque colour representation remains compatible with native flags0.",
+    "scene": "Artist-depicted restrained medieval woodland valley, pale clouded sky, dark olive woodland and small warm stone bridge/path.",
+    "nativeGrounding": {
+      "upperSky": "Actual native paired broad grey/cream fields above abouty140 already carry the light sky mass.",
+      "woodland": "Actual native lower central darkolive/nearblack aroundy150..190 supports a subdued woodland/valley band.",
+      "bridgePath": "Actual native warm pale lower cluster aroundy194..223 supports a small warm stone crossing/path subordinate to the dark woodland; no literal native bridge geometry claimed.",
+      "uncertainty": "Scene is owner-authorised artistic interpretation, not a recovered native historical illustration. Exact tree/bridge outlines cannot be inferred from low-resolution mottling. The requested composition is better grounded than inventing a bright heraldic/religious motif."
+    },
+    "preserve": [
+      "native pale/dark colour mass placement and muted palette",
+      "pointed arch, genuine upper lobes, centre mullion and actual crossbar phase",
+      "both native sidejambs and bottom sill",
+      "native cropped edge contacts"
+    ],
+    "avoid": [
+      "outdoorphotograph behind transparent window",
+      "new bottom hardware or new architectural grid",
+      "bright saturated scene or enlarged bridge",
+      "carved scene relief or tree/bridge luminance embossed into glass",
+      "unreadable random marbling or added grain"
+    ],
+    "physicalImplication": "Any future scalar master keeps the artwork as glass coloration on continuous pane surfaces with solid frame standing shallowly above. Scene sky/trees/bridge do not acquire terrain depth; actual guarded glass/frame relief still requires genuine proof/review."
+  }
+}

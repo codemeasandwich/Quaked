@@ -1,0 +1,81 @@
+{
+  "at": "2026-10-21T09:28:48.164541+00:00",
+  "base": "ae03a8b23a74fdf598e41aa824ca4ac81a6f4c95",
+  "mergeParent": "efd8e30f08280348f5070d95bc42889ebf833cbe",
+  "priorPendingMergeTree": "10a55ceb4105a3ce89e30501f1f5e9222cb22193",
+  "scope": "Only post-firstcommit source/evidence/synchronization records appended; no newasset/runtime/controlbytes. Original1156fileoverlay remains ancestor. No deletions.",
+  "changedFiles": 10,
+  "changedBytes": 88954,
+  "files": [
+    {
+      "file": "docs/quake/textures/HANDOVER.md",
+      "bytes": 34703,
+      "sha256": "7230c2f966165367b08c7a98ddc82c02e534a61b320612580663b5ee134c60b8",
+      "mode": "100644",
+      "gitBlob": "74f63830e9aecee90c414849172d9daa00536667"
+    },
+    {
+      "file": "docs/quake/textures/progress.json",
+      "bytes": 32581,
+      "sha256": "c389520936778f5687404d30968ee9a4860e6b91390e71d17a234ec9f1bdb875",
+      "mode": "100644",
+      "gitBlob": "8bf77ff4e0b684b08546ac6db829283d14b11329"
+    },
+    {
+      "file": "docs/quake/textures/sync-dev-2026-10-21/final-stage.json",
+      "bytes": 1799,
+      "sha256": "8ffe80802c51c7a512e38919c0df27ddd475ef11113405e7ef236d1e0317f1c9",
+      "mode": "100644",
+      "gitBlob": "35bf5d64179e10db3e2d483b25a99fc46e3147cb"
+    },
+    {
+      "file": "docs/quake/textures/sync-dev-2026-10-21/first-push-race.json",
+      "bytes": 603,
+      "sha256": "2689969fcd877285ba7971c271b59e5623225c3bc8e2b606336d969d2e92a0da",
+      "mode": "100644",
+      "gitBlob": "7568ba63d4877de8734b2688fdb81d051fb65f9f"
+    },
+    {
+      "file": "docs/quake/textures/sync-dev-2026-10-21/independent-plan/RACE1.md",
+      "bytes": 2522,
+      "sha256": "3a8c9ea9213567b2d0cf685380042c6c312546f1700158164dc25e7e0edbab33",
+      "mode": "100644",
+      "gitBlob": "dc1e15137afe98fac9c1a098ec7a7e4642d61365"
+    },
+    {
+      "file": "docs/quake/textures/sync-dev-2026-10-21/independent-plan/base-adaptation-race1-review.json",
+      "bytes": 8038,
+      "sha256": "e986afc017f9374e189392e327664eeda9805c16e6570413f1358b520ffa2705",
+      "mode": "100644",
+      "gitBlob": "240f8665478a1c2e44025f16aca6e0b1fc02eb9a"
+    },
+    {
+      "file": "docs/quake/textures/sync-dev-2026-10-21/independent-plan/reviewed-bootstrap-race1.json",
+      "bytes": 1497,
+      "sha256": "495a55a03d7d314c60a22899c331dae98fc4aaab1c375f37bf87528a27a6add8",
+      "mode": "100644",
+      "gitBlob": "bb30d11d4b8a0af02171d38c6664ad29ad8529ff"
+    },
+    {
+      "file": "docs/quake/textures/sync-dev-2026-10-21/normal-hook-receipt.json",
+      "bytes": 6072,
+      "sha256": "33086f18d9a03efdd691cedc5603cbc2dde6a872ca6a69c075ef60ab806e9d3a",
+      "mode": "100644",
+      "gitBlob": "762bee8719f85dd4bb5b8e1faa20543097c1a06d"
+    },
+    {
+      "file": "docs/quake/textures/sync-dev-2026-10-21/race1-preparation.json",
+      "bytes": 489,
+      "sha256": "c5dff8f14bf84b5ed3c70965789d5c73af2cf2c6a9948a43ff9f3f77a0bbb43d",
+      "mode": "100644",
+      "gitBlob": "5f84ca9d2a9baddcd455e4f7ee616ba98a198ba3"
+    },
+    {
+      "file": "docs/quake/textures/sync-dev-2026-10-21/verified-commit.json",
+      "bytes": 650,
+      "sha256": "148a96f6f7daa95504fe033fe41bba4b63dac11954c6d7a5e3458395eeefedb0",
+      "mode": "100644",
+      "gitBlob": "78215aef06c397af893ceedcc754840a79092fde"
+    }
+  ]
+}

@@ -1,0 +1,789 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T05:47:45.970185+00:00",
+  "reviewer": "/root/quake_stone_retained_plan independent of Brick trial author",
+  "verdict": "HOLD_PHYSICAL_MORTAR_SHOULDERS_AND_ARRIS_TRANSITION",
+  "numericVerdict": "PASS bounded exact source/float/receipt reconstruction",
+  "nativeIdentity": "d3ce46e945f9c961bb863204801c0b3e783878b620189ac1cf989ffbc1d534e5",
+  "scope": "Actual one1024layered master only; no tiers or overall acceptance",
+  "approval": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/root-layer-trial-approval-v1.json",
+    "sha256": "ae86cb06bdaa0d7722b6abe191ab1b12de702107629d8b5be5f2c76de0755baa"
+  },
+  "recipe": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-recipe-proposal-v4.json",
+    "sha256": "8793c794047079196d81c50c7b0436fae7a6d54fcdab1ab5f79e2535211a73fc"
+  },
+  "sourceRGBPlan": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-layer-plan-v4.json",
+    "sha256": "6570b757b1522a4455d82347b0d530267a28b2169aa38f46f3ea31d2fe450497"
+  },
+  "genuineSourceMasterProof": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/root-source-master-proof.json",
+    "sha256": "8ecda6ba7027644fd2eaa31d6491c967489347bddfe044c8ac898ac3d9ed1a19"
+  },
+  "parentPackage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/master.json",
+    "sha256": "c9720150578f554bb853905c69f4ab3770eaf07ac9b46f5d63886d387041f32f"
+  },
+  "actualPackage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-layered-v1/master.json",
+    "sha256": "dc7e0239301e724363f432739960a6342276adcf9a2cfdf34cefe770a84cf3c6"
+  },
+  "actualRGB": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-layered-v1/color.png",
+    "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "mode": "RGB"
+  },
+  "actualFloat": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-layered-v1/height.npy",
+    "sha256": "718d211590d99dd90e908dbd26abf950a60d2de90c729af9272534d3ad9fae64"
+  },
+  "actualCLIExecution": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-execution.json",
+    "sha256": "52f32388cf88e7b4b0031f17c9a90e416f0713c6b86611f88405cb0f7846d1f0"
+  },
+  "numericChecks": {
+    "all17ExecutionProtectedAnd3OutputHashesExact": true,
+    "RGBByteIdenticalParent": true,
+    "independentPillowMaskRasterExact": true,
+    "reusedCraftFloat32BaselineBytesExact": true,
+    "independentBlurPlaneMicroSingleCastFloat32ArrayExact": true,
+    "actualNPYBytesExact": true,
+    "deterministicCLIReceiptBytesExact": true,
+    "UVNormalAgainstPublicHelperMaxAbs": 2.220446049250313e-16,
+    "complexVsRealFFTBlurMaxAbs": 6.661338147750939e-16
+  },
+  "numericalMethod": "Mask separately rasterized with wrappedPillowpolygons; own realFFTGaussian and independent fullcomplexFFT comparison; own orderedplane/micro formula singlefloat32cast; own UVscaled cyclic3x3 slopes and softcap/normals. No compose_layered,brick_mask,gblur or layerCLI called.",
+  "reusedHelpers": [
+    "craft_normals.craft(quantize_height=False) for original unquantized photographic detail",
+    "craft_normals.normals_from_height only as independent-normal oracle comparison"
+  ],
+  "RGBBeforeScalar": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/RGB-classification-before-scalar.json",
+    "sha256": "c5fdb70f6f73d945b05d4e3029b7fc38fd44615a8a0c1ce418c607c7eef5a150"
+  },
+  "extraRGBBeforeScalar": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/additional-outer-mortar-classification-before-scalar.json",
+    "sha256": "29a776986408537c43a77da294cddb8ebb1b59e3b401a3cc6b4ec9f6498e5290"
+  },
+  "fixedWitnessNeighborhoods": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/fixed-witness-neighborhoods-v1.json",
+    "sha256": "dc4a357fd107adf6a018925ef46e73f2455640c44f5016eef42810b8771e0780"
+  },
+  "physicalFinding": "Actualfull1024 height/UVXYZ/opposedneutralresponse shows narrow straight grooves and rectangular ledges through wider visiblemortar. Outside-core mortar rises toward facingdomain, failing convincing source-matched chippedarris/mortar transition despite lowercore ordering.",
+  "fixedSampleLimits": {
+    "originalGreenRect": [
+      80,
+      660,
+      105,
+      680
+    ],
+    "originalGreenMaskFraction": 0.24,
+    "originalGreenMean": 0.9686131626367569,
+    "handling": "Originalmixedobservation retained, no coordinate moves or substitute purefacePASS",
+    "ownPreclassifiedShoulders": "Upper/lowercourse0c1 mortar mean.971629/.964516 vs adjacentfaces.985217/.987896 and core.933558. No localinversion claimed; wider physicaltransition stillARTFAIL."
+  },
+  "actualVisualChecks": {
+    "wholeActual1024RGBViewedBeforeScalar": true,
+    "heightContrastDisplayViewed": true,
+    "actualFloatUVXYZViewed": true,
+    "bothOpposedNeutralAndColourLightsViewed": true,
+    "flatControlViewed": true,
+    "literalX_Y_CornersViewed": true,
+    "ownPreclassifiedHorizontalContactFocusViewed": true,
+    "supportingVerticalContactFocusViewed": true
+  },
+  "actualOpenedImages": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/color.png",
+      "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/height-contrast-display.png",
+      "sha256": "745972bda29c9c4c3df709aacad51f6d55187314aa847deb642fb17e8c9d13fe",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "L"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/XYZ-diagnostic.png",
+      "sha256": "19440c1616d7038d6f2270f6e0b808811fb798ea5d5d75e6bb6a0c78c13c8b25",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/neutral-light-0.png",
+      "sha256": "39846eae02a39cd8fdc58cbb7ec23a3d058c6a44a912ecf43a9dba2ffb0980f3",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/neutral-light-1.png",
+      "sha256": "fbc95006f524819c25db03f6cb515537bd6747effd731c6aa8dd57821480db15",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/flat-control.png",
+      "sha256": "5cd1203ce455274bcfa29b1937b4ead7322d7c6fd969d37fa8bfc255e4e6f219",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/colour-light-0.png",
+      "sha256": "130759b036608d92d294a10680ba1b349b9a099fdfc2ea6e3ccc60e3db8d1dc2",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/colour-light-1.png",
+      "sha256": "42a4c79eeea78c29fccc9e09dfc57edf23d5ef33dd82808357328571126d98fe",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/height-literal-x.png",
+      "sha256": "d7194e1ae4b9799b1f90a51bda6b5bbeb53d9525b8d96d5715c294faaa70b973",
+      "dimensions": [
+        128,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/neutral-light-0-literal-x.png",
+      "sha256": "d68f58e91b441801a4a2dd294d8bb27a27c7273a623f4aa5e2c8058d4bde3963",
+      "dimensions": [
+        128,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/neutral-light-1-literal-x.png",
+      "sha256": "388765d2addcb2ab0b590925d0b42e058c508113f76f077dc06ed5232da89f1b",
+      "dimensions": [
+        128,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/neutral-light-0-literal-y.png",
+      "sha256": "7d87a9c18b9e8dcc1b72489912f564337b7c3aa91f9a0f392ddd744d801a1b0f",
+      "dimensions": [
+        1024,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/neutral-light-0-four-corners.png",
+      "sha256": "aab9a2e9a0f72806a2d0f1fd00aa3c0144de9263321fb61be1395a6510198cf3",
+      "dimensions": [
+        128,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/own-preclassified-c0-c1-shoulders-six-panel-nearest4.png",
+      "sha256": "5b744a325d274d13f03405ff350168055e2da9c8c5a6432d0e5f27c6a36b206d",
+      "dimensions": [
+        960,
+        464
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/c14-j3-source-contact-six-panel-nearest4.png",
+      "sha256": "6e07e374325849e3a07ed476948107133b4622149e1e00aa482b0f37c07fd6f9",
+      "dimensions": [
+        780,
+        384
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/height-literal-y.png",
+      "sha256": "06186f16da4cc151972d1001a241559a42131b6b676c0d8f5d8f923dfcc67ce3",
+      "dimensions": [
+        1024,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/height-four-corners.png",
+      "sha256": "15163ac530953bfae549f8466aec9f75e5aa2912236d40de42a9cf7975bc1227",
+      "dimensions": [
+        128,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/neutral-light-1-literal-y.png",
+      "sha256": "871ed22a96ebe54a05f86f2d46c9b0ef98fe398d4b2355934b7aac2a85f5d076",
+      "dimensions": [
+        1024,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/neutral-light-1-four-corners.png",
+      "sha256": "4e813689d80856022af175a7535834474bf3d03fd7a18d4f6e3a90ca6304e3e3",
+      "dimensions": [
+        128,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/outer-mortar-RGB-classification-crop.png",
+      "sha256": "a74bca8b666f3ffc67c1c47026042c8177c593fb79540e1bc4cfe373c60455e3",
+      "dimensions": [
+        640,
+        368
+      ],
+      "mode": "RGB"
+    }
+  ],
+  "diagnosticPolicy": "Height display contrast-normalized ONLYforview; actualscalar staysunmodified. XYZ/neutral/colour lights use actualfloat .3strength/.5cap at1024 and opposednormalizeddirections; no tierencoding or assetwrite. FlatcontrolusesconstantZnormal. Wrapviews literal2x2crop without resize.",
+  "inspectionIndependence": "RGBfixedwitnesses plus additionalownhorizontalshoulderroles sealed before firsttrialscalarread. Actualauthorwarninglaterprompted c14focus; that location is supportingcontext, not falselyclaimed blindednewwitness. Independentfullmath and actualownlightviews support result.",
+  "preservedHolds": [
+    "Initialpigment-deriveddraftscalarHOLD",
+    "V3falsefacecutreports and allpriorwitnesses",
+    "V4maskreview limitedRGBcoreplacementPASS, not completeouterarrisqualification",
+    "CurrentlayeredtrialHOLD"
+  ],
+  "protectedInputInventory": [
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/root-layer-trial-approval-v1.json",
+      "sha256": "ae86cb06bdaa0d7722b6abe191ab1b12de702107629d8b5be5f2c76de0755baa"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-recipe-proposal-v4.json",
+      "sha256": "8793c794047079196d81c50c7b0436fae7a6d54fcdab1ab5f79e2535211a73fc"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-layer-plan-v4.json",
+      "sha256": "6570b757b1522a4455d82347b0d530267a28b2169aa38f46f3ea31d2fe450497"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v1/review.json",
+      "sha256": "0b5929c7e7e04838ab648892cdc8d83cf412e8831a2a942163cbe7bf9c205b34"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/root-source-master-proof.json",
+      "sha256": "8ecda6ba7027644fd2eaa31d6491c967489347bddfe044c8ac898ac3d9ed1a19"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/master.json",
+      "sha256": "c9720150578f554bb853905c69f4ab3770eaf07ac9b46f5d63886d387041f32f"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/color.png",
+      "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/height.npy",
+      "sha256": "c8801271e8981bd556859ad624f0031a4ec4469c7bc6a7faeb041c7c20103787"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/originals/native-TF_Brick1_01.png",
+      "sha256": "a78aa6c8228507311a8b1c88104c8d4758b0adc38d7c0bad4b66e8011b75db29"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/TF_Brick1_01-generated-v1.png",
+      "sha256": "84c8e0d7990485471d52f453ec0029a46ee276c077e89a8cec63ed08a5279334"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/TF_Brick1_01-photographic-prompt-v1.txt",
+      "sha256": "d9c743cc7b0aa7f0e3b41b56c93b4c1188680006b7a671a661fdc7be00bbe792"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d"
+    },
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-layered-v1/color.png",
+      "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-layered-v1/height.npy",
+      "sha256": "718d211590d99dd90e908dbd26abf950a60d2de90c729af9272534d3ad9fae64"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-layered-v1/master.json",
+      "sha256": "dc7e0239301e724363f432739960a6342276adcf9a2cfdf34cefe770a84cf3c6"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/root-source-master-verification.py",
+      "sha256": "775e4c2783cc50ac1fa5b234ff58634bcdcd7410ebac2be3e35e427327ffd2bb"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/trace-mortar-plan-v4.py",
+      "sha256": "858c817ed08f65139d37857c0e8c9a6a223e0f932f0bf5c45437eae1ca42db4e"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v4/proposed-mortar-mask.png",
+      "sha256": "d6d13fbdaf35e3af899e3f79284a0af3a0c4eb0d2a46997d8e1afe53ca2721e1"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v4/proposed-mortar-overlay.png",
+      "sha256": "082d2618e972de181278df403b3fb5cfd12babe168ad2149a4174a8c2409cdb6"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-layer-plan-v1.json",
+      "sha256": "23a04f41a392f4b3979addb7d79d0c19a80e86fe504cd23f774ce563285fd14e"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-layer-plan-v2.json",
+      "sha256": "02e71d9b1c446f89a046cbb9200f185c1f1cd9eda315060501b32b5ee0d88ac0"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-layer-plan-v3.json",
+      "sha256": "645d3de38c398cd47f1d7df39370002c89b17a43cf4aaf37f631c91e93ab3de4"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/draft-rgb-witnesses-v1.json",
+      "sha256": "4342cc80c9f0e51d288eac4ed2c2b63b5043780049976abdb9ab65bceb3f99b0"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/contacts.json",
+      "sha256": "6ac66ece46c081a3612c61c6f746225dd27842f081f06b9d843e6edf510e315f"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-0-pixel-coordinate-measurement.png",
+      "sha256": "5de69cc9ef4f27242b5553d935300572e3499516dafa1f17c2efbea4b144ad30"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-00-rgb-overlay.png",
+      "sha256": "811457a0224e305a115776006de77d8e2602dd6956464ceba32452e8181f81a9"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-01-rgb-overlay.png",
+      "sha256": "b43c0468058f7434036d802518e16f232f6024cf6d8b64a2098ce8cc74d94993"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-02-rgb-overlay.png",
+      "sha256": "6b8deebfe7c44b34aff99e516cafac336612ed3b72a27950b8f06344135c5472"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-03-rgb-overlay.png",
+      "sha256": "986f996dfff59c6a8adaa6a2102e9a618e88021cb13099bb48c0a0ac0c3229ea"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-04-rgb-overlay.png",
+      "sha256": "8a866750c93708b30a755a7c1dbc4651a3fd0e600af5daaa73aa9b44e64c3111"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-05-rgb-overlay.png",
+      "sha256": "5bf6ca4be80806e7373a8ce192cd5be03c8db3cfa1ff58c48af0b30ebf0ab070"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-06-rgb-overlay.png",
+      "sha256": "b1f03e5c48a75e2cc386f2dc9db9501baafabab8fd06cd67ce85312696503fdf"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-07-rgb-overlay.png",
+      "sha256": "59a406f33dfa3cddbc969bbca55242ac2ead0595a17825b4e23eb12c9b253d35"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-08-rgb-overlay.png",
+      "sha256": "fef657d87ccb50cb505c64ef84090ed71572f3d60903695c41a08395a963eebf"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-09-rgb-overlay.png",
+      "sha256": "ea0fade37e1879d2c7470e9693c8980ff9dbfdd00a234d6bc59e2043b6333554"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-1-pixel-coordinate-measurement.png",
+      "sha256": "c8416fafde9131ab26158226a5db492195bce8df0dc6ce0bc93b5d500b28c462"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-10-pixel-coordinate-measurement.png",
+      "sha256": "4b750fdbd3fdcde60f40a0a09e73e5acfb45c62bd70d36ed280734d2b3d33ffe"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-10-rgb-overlay.png",
+      "sha256": "6bfd610a7269fdc6f29850f86badf68536fd4daeee16db26189fd921545464ac"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-11-pixel-coordinate-measurement.png",
+      "sha256": "e3dc47b80c496e88e8b9769a4c191cc414d53469d0fab93477008f2aced0e593"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-11-rgb-overlay.png",
+      "sha256": "935c27760b919defd98f7d574e5722dec269153cb63c271ca05bdf4107e47ec6"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-12-pixel-coordinate-measurement.png",
+      "sha256": "69e055e585446680925a16595aee6338fd9edaac6389d38ef66ed61a02f69866"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-12-rgb-overlay.png",
+      "sha256": "60b7b9db9dd17f873b4d8195aaceedf4a71637ef07c2eaffb59e277749d45f8f"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-13-pixel-coordinate-measurement.png",
+      "sha256": "a0d35bd843152b9a9f1f1b61fcbc0490fc83806a667d7e5785d5910cdd4bf0df"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-13-rgb-overlay.png",
+      "sha256": "4d8e8cb4b61ced102c57f6b6b881e1196dcbef85c27fb208fd02a491b4c4488d"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-14-pixel-coordinate-measurement.png",
+      "sha256": "102d02fb6d670edfc7f6b02870d1178092d5003d59d0a4d98c727f99b3055bd5"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-14-rgb-overlay.png",
+      "sha256": "3fa74eb664d64c388593858f4b15ceefc04386fa02403f86a582b72dcc82af9a"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-15-pixel-coordinate-measurement.png",
+      "sha256": "e1439e661be09cff3ea30cc9a05e1962c9ddb3a9d8c8b0b2b88d61be08c1510c"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-15-rgb-overlay.png",
+      "sha256": "91ed8257a64e541bab1513da97e500c7c744b88c62ade0efe4bbaaf510623d41"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-2-pixel-coordinate-measurement.png",
+      "sha256": "86ecc8377eacddd8a61b4db4ddf4910ec5cc5f20ec10e4a083c9d57c49f714a2"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-3-pixel-coordinate-measurement.png",
+      "sha256": "8c7a8825447a81f1590cb3a65cc66840268505e5f5c46752933269e30253395d"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-4-pixel-coordinate-measurement.png",
+      "sha256": "b8922e08f236882bdc43ac8f3aaae862e24600dcc78ee2a4fd81e45cadd07f03"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-5-pixel-coordinate-measurement.png",
+      "sha256": "e4dd66e2d17b6edb56ad6d2bce8182767663a420cfe24e3d0e2394783310a38c"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-6-pixel-coordinate-measurement.png",
+      "sha256": "2bb7b427d84e4d4fb6278ccc636096149fe05d4d9a8a59308d55579258eb331b"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-7-pixel-coordinate-measurement.png",
+      "sha256": "4f5bb15b9231f56ccff55193940b51abe93653006cb57e277d4a112d3b0f1427"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-8-pixel-coordinate-measurement.png",
+      "sha256": "aedaa17291a56f902e80cdd5a5ba67b7884bbba3a1b41ecf4b22e29c44a69c9b"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/course-9-pixel-coordinate-measurement.png",
+      "sha256": "85e8c9187def6c2aa4119ebb2f5bf6642c13b29b18c41cfff10fac3a5e74f12f"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/suspect-crops.json",
+      "sha256": "5f2bf3e78a1003114ae07123ccf9bec188133eb574ad94c372a5c34c7561c5f2"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/vertical-c12-joint5-suspect-exact-crop.png",
+      "sha256": "a23fd58eb409e58e9a62bb0ab37849b281a019ae4183ba48a56415b92553c3b6"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/vertical-c14-joint3-suspect-exact-crop.png",
+      "sha256": "dfb40f8812a36423460f8b6538dc2b21bea81331882483ea70465e0e4c1d3a17"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/vertical-c14-joint4-suspect-exact-crop.png",
+      "sha256": "5a97d0570b6b7d462e740827f849a04357e66f47355715a3ccde31fa9d7b2860"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/vertical-c14-joint5-suspect-exact-crop.png",
+      "sha256": "59e63c3a4eecf4d34bfb7a3600238d4c11b81a951684c94072ebcf421d6cf9d5"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/vertical-c15-joint10-suspect-exact-crop.png",
+      "sha256": "4f29a64c44797be9aa1f2f6f0219ddc079748ef335db18b511235c0c5f2bc3a9"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/vertical-c15-joint2-suspect-exact-crop.png",
+      "sha256": "082cc69f01bf7a03425aa18343b22e7840de70733d88812e905a76d9131d251c"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/vertical-c15-joint3-suspect-exact-crop.png",
+      "sha256": "25d4890d6fa89153e58931872aef7306097e5bb274f5b4e139da1c6bf47532bc"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/vertical-c15-joint8-suspect-exact-crop.png",
+      "sha256": "95444e9900fd0dd26da9bb361c79ee271d2f48551321138f7ea59edbdcbe7c3e"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/vertical-c15-joint9-suspect-exact-crop.png",
+      "sha256": "9d4194cd093154f296a091d2c26dab2ef8c1dddea759acb035578893e9880382"
+    }
+  ],
+  "evidenceInventory": [
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/REVIEW.md",
+      "sha256": "0b373879e13d073fb79628a09ad2fcd408ba14bff6c306d9cdea89600417c4a8"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/RGB-classification-before-scalar.json",
+      "sha256": "c5fdb70f6f73d945b05d4e3029b7fc38fd44615a8a0c1ce418c607c7eef5a150"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/XYZ-diagnostic.png",
+      "sha256": "19440c1616d7038d6f2270f6e0b808811fb798ea5d5d75e6bb6a0c78c13c8b25",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/additional-outer-mortar-classification-before-scalar.json",
+      "sha256": "29a776986408537c43a77da294cddb8ebb1b59e3b401a3cc6b4ec9f6498e5290"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/c14-j3-source-contact-six-panel-nearest4.png",
+      "sha256": "6e07e374325849e3a07ed476948107133b4622149e1e00aa482b0f37c07fd6f9",
+      "dimensions": [
+        780,
+        384
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/colour-light-0.png",
+      "sha256": "130759b036608d92d294a10680ba1b349b9a099fdfc2ea6e3ccc60e3db8d1dc2",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/colour-light-1.png",
+      "sha256": "42a4c79eeea78c29fccc9e09dfc57edf23d5ef33dd82808357328571126d98fe",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/exact-math-and-samples-v1.json",
+      "sha256": "e32b28b8b9c7514c5ed46581c556bde6b02d0cbfa88f09a5116b5935335e470b"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/fixed-witness-neighborhoods-v1.json",
+      "sha256": "dc4a357fd107adf6a018925ef46e73f2455640c44f5016eef42810b8771e0780"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/flat-control.png",
+      "sha256": "5cd1203ce455274bcfa29b1937b4ead7322d7c6fd969d37fa8bfc255e4e6f219",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/height-contrast-display.png",
+      "sha256": "745972bda29c9c4c3df709aacad51f6d55187314aa847deb642fb17e8c9d13fe",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "L"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/height-four-corners.png",
+      "sha256": "15163ac530953bfae549f8466aec9f75e5aa2912236d40de42a9cf7975bc1227",
+      "dimensions": [
+        128,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/height-literal-x.png",
+      "sha256": "d7194e1ae4b9799b1f90a51bda6b5bbeb53d9525b8d96d5715c294faaa70b973",
+      "dimensions": [
+        128,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/height-literal-y.png",
+      "sha256": "06186f16da4cc151972d1001a241559a42131b6b676c0d8f5d8f923dfcc67ce3",
+      "dimensions": [
+        1024,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/neutral-light-0-four-corners.png",
+      "sha256": "aab9a2e9a0f72806a2d0f1fd00aa3c0144de9263321fb61be1395a6510198cf3",
+      "dimensions": [
+        128,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/neutral-light-0-literal-x.png",
+      "sha256": "d68f58e91b441801a4a2dd294d8bb27a27c7273a623f4aa5e2c8058d4bde3963",
+      "dimensions": [
+        128,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/neutral-light-0-literal-y.png",
+      "sha256": "7d87a9c18b9e8dcc1b72489912f564337b7c3aa91f9a0f392ddd744d801a1b0f",
+      "dimensions": [
+        1024,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/neutral-light-0.png",
+      "sha256": "39846eae02a39cd8fdc58cbb7ec23a3d058c6a44a912ecf43a9dba2ffb0980f3",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/neutral-light-1-four-corners.png",
+      "sha256": "4e813689d80856022af175a7535834474bf3d03fd7a18d4f6e3a90ca6304e3e3",
+      "dimensions": [
+        128,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/neutral-light-1-literal-x.png",
+      "sha256": "388765d2addcb2ab0b590925d0b42e058c508113f76f077dc06ed5232da89f1b",
+      "dimensions": [
+        128,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/neutral-light-1-literal-y.png",
+      "sha256": "871ed22a96ebe54a05f86f2d46c9b0ef98fe398d4b2355934b7aac2a85f5d076",
+      "dimensions": [
+        1024,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/neutral-light-1.png",
+      "sha256": "fbc95006f524819c25db03f6cb515537bd6747effd731c6aa8dd57821480db15",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/outer-mortar-RGB-classification-crop.png",
+      "sha256": "a74bca8b666f3ffc67c1c47026042c8177c593fb79540e1bc4cfe373c60455e3",
+      "dimensions": [
+        640,
+        368
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/own-preclassified-c0-c1-profile.json",
+      "sha256": "71900a1f92c964f675bd26c79668e478ff9e7002cfef3b526900bf67acd0349b"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/own-preclassified-c0-c1-shoulders-six-panel-nearest4.png",
+      "sha256": "5b744a325d274d13f03405ff350168055e2da9c8c5a6432d0e5f27c6a36b206d",
+      "dimensions": [
+        960,
+        464
+      ],
+      "mode": "RGB"
+    }
+  ],
+  "reviewMarkdown": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/REVIEW.md",
+    "sha256": "0b373879e13d073fb79628a09ad2fcd408ba14bff6c306d9cdea89600417c4a8"
+  },
+  "nextOwner": "root coordinator",
+  "nextAction": "Retain actualtrial and failures; plan actualsource-measured wider mortar/chippedarris representation using existing route, independentlyreview before any successortrial. No tierexport until actualphysicalgatepasses.",
+  "limits": [
+    "No additional layer/heightauthoring CLI, scalarasset, tier, provider or journal action",
+    "No new numericoracle for craft; establishedunquantizedcraft reused and labeled",
+    "No hardware/glancingrenderer/POM test; offlineUVnormal/opposedlights only",
+    "No tiermath/codec/ART, catalog/runtime, owner, landing/CI or release acceptance",
+    "Historical actualimageinvocation/referencearguments/cumulativecalltotal remain unknown"
+  ],
+  "writes": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1 only; no assets/productcode/catalog/sharedpolicy/Hexen/Git/build/browser/service changes",
+  "coordination": "Root retainsBlueyfallback accountability; livechildreview is not durablejob execution"
+}

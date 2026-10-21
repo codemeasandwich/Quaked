@@ -1,0 +1,28 @@
+{
+  "verdict": "PASS snapshot catalog custody",
+  "family": "quake",
+  "counts": {
+    "masterPackages": 4,
+    "enhancedTiers": 8,
+    "enhancedMaps": 40,
+    "enhancedTierBindings": 8,
+    "enhancedMapBindings": 40,
+    "reviewedNativeIdentities": 4
+  },
+  "changedRegistrations": [
+    "d3a2c99fece575542c7c9ff1f7d089089a789ddb5d3bd54ddf618d000c501f56",
+    "b16acb978829b31a7b52adb0f5bfeb24841b7e20fece5a271117aca8c7fc66db",
+    "35455dabf6f0dbc29303debf312d80695087f2f4914c6df28994ef8e0158ee5a",
+    "2313e68258ba0197b1b1d1423bc1c2880b4cd5ea2ac4ca8e6d5f2a558f702ed6"
+  ],
+  "checkedFiles": 191,
+  "externalHistoricalWitnesses": [
+    "/private/tmp/quaked-quake-library-20261020-fc24/Dimension of the Machine/pak0.pak",
+    "/private/tmp/quaked-quake-library-20261020-fc24/Dimension of the Past/pak0.pak",
+    "/private/tmp/quaked-quake-library-20261020-fc24/Dissolution of Eternity/pak0.pak",
+    "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+    "/private/tmp/quaked-quake-library-20261020-fc24/Scourge of Armagon/pak0.pak",
+    "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak"
+  ],
+  "limits": "Sealed custody only; no new artwork/native/provider/runtime/release acceptance"
+}

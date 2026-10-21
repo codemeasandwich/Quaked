@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-20T12:10:47.741792+00:00",
+  "verdict": "PASS clean source projection: nine public tests, seven required committed producer pins, no dated docs or inherited motif dependency",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "verifier": {
+    "file": "docs/quake/textures/codec-transition-portable-public-verify.py",
+    "sha256": "75ecc5086adc66ae2df98552a0c1ac61e20cf46ff7e58d7221099f79edf71aab"
+  },
+  "scope": "Exactly the maintained nine-test derive suite with seven committed producer-preservation pins. No dated campaign evidence or inherited untracked authoring tool dependency.",
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "Pillow": "10.1.0",
+    "NumPy": "1.26.2",
+    "WebP": "1.3.2"
+  },
+  "committedDependencies": [
+    {
+      "file": "assets/layout.json",
+      "sha256": "dc032d9332273c492bd4cf9fc3f6eb278dd4829182a238f8d8b2def7404448bb",
+      "fromCommit": "713b47d322f0674f154a70ec4baebd4566905d41"
+    },
+    {
+      "file": "tests/hexen2_texture_tiers_test.py",
+      "sha256": "ab93750f13369e4eee6335c7f90a43d2ea78276b5f9fe3300de3b546492ab766",
+      "fromCommit": "713b47d322f0674f154a70ec4baebd4566905d41"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "fromCommit": "713b47d322f0674f154a70ec4baebd4566905d41"
+    },
+    {
+      "file": "tools/resource_paths.py",
+      "sha256": "7a5c2c5b4fa36d57ece723b454b3ea27310a6ba370d6436362cc3c506e98bf6e",
+      "fromCommit": "713b47d322f0674f154a70ec4baebd4566905d41"
+    },
+    {
+      "file": "tools/texture_sheets/build_texture_batch_review.py",
+      "sha256": "7b14678ba508b15c283d2793488098f01d5993e16db662c10c3ef084d4270a2f",
+      "fromCommit": "713b47d322f0674f154a70ec4baebd4566905d41"
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "fromCommit": "713b47d322f0674f154a70ec4baebd4566905d41"
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "fromCommit": "713b47d322f0674f154a70ec4baebd4566905d41"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d",
+      "fromCommit": "713b47d322f0674f154a70ec4baebd4566905d41"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "fromCommit": "713b47d322f0674f154a70ec4baebd4566905d41"
+    },
+    {
+      "file": "tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee",
+      "fromCommit": "713b47d322f0674f154a70ec4baebd4566905d41"
+    }
+  ],
+  "ownedAdditions": [
+    {
+      "file": "tools/texture_sheets/derive_quake_texture_tiers.py",
+      "sha256": "bd00c945a204e72963120cfedfe976080040013e36399caee5a817c598595999"
+    },
+    {
+      "file": "tools/texture_sheets/build_quake_texture_batch_review.py",
+      "sha256": "80e4489158900353c63cf5d0970f0a293eab1ac2528cf5dfbcfb39fe40aba33d"
+    },
+    {
+      "file": "tests/quake_texture_tiers_test.py",
+      "sha256": "df945ace925208e4c063a143ea7154d59769995ec478768af4e9e1baab9705c2"
+    },
+    {
+      "file": "tests/quake_texture_batch_review_test.py",
+      "sha256": "13010b66357ea791bd1254a4d9ecdccdbbbe934ac9d6d00fa01ec7b008aa57b1"
+    },
+    {
+      "file": "tests/fixtures/quake_codec_protected_producers.json",
+      "sha256": "6fcdc95dce04fb46c4dfe5ff2c32c10e8886f7e700806247a733c0d0e717d9f3"
+    }
+  ],
+  "limits": [
+    "This is a clean source projection of a pinned commit plus five owned additions, not a Git checkout or a new commit.",
+    "Pillow/NumPy/libwebp are the recorded installed runtime dependencies; no installation or global environment mutation occurs.",
+    "The portable gate checks seven required committed producers. It does not claim to check the inherited eighth motif producer or the217-file actual custody set.",
+    "Separate immutable plan/actual-custody evidence retains its broader local scope. No asset, master, Hexen, shared producer or Git mutation occurs."
+  ],
+  "baseCommit": "713b47d322f0674f154a70ec4baebd4566905d41",
+  "scratchInventory": [
+    {
+      "file": "assets/layout.json",
+      "sha256": "dc032d9332273c492bd4cf9fc3f6eb278dd4829182a238f8d8b2def7404448bb"
+    },
+    {
+      "file": "tests/fixtures/quake_codec_protected_producers.json",
+      "sha256": "6fcdc95dce04fb46c4dfe5ff2c32c10e8886f7e700806247a733c0d0e717d9f3"
+    },
+    {
+      "file": "tests/hexen2_texture_tiers_test.py",
+      "sha256": "ab93750f13369e4eee6335c7f90a43d2ea78276b5f9fe3300de3b546492ab766"
+    },
+    {
+      "file": "tests/quake_texture_batch_review_test.py",
+      "sha256": "13010b66357ea791bd1254a4d9ecdccdbbbe934ac9d6d00fa01ec7b008aa57b1"
+    },
+    {
+      "file": "tests/quake_texture_tiers_test.py",
+      "sha256": "df945ace925208e4c063a143ea7154d59769995ec478768af4e9e1baab9705c2"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    {
+      "file": "tools/resource_paths.py",
+      "sha256": "7a5c2c5b4fa36d57ece723b454b3ea27310a6ba370d6436362cc3c506e98bf6e"
+    },
+    {
+      "file": "tools/texture_sheets/build_quake_texture_batch_review.py",
+      "sha256": "80e4489158900353c63cf5d0970f0a293eab1ac2528cf5dfbcfb39fe40aba33d"
+    },
+    {
+      "file": "tools/texture_sheets/build_texture_batch_review.py",
+      "sha256": "7b14678ba508b15c283d2793488098f01d5993e16db662c10c3ef084d4270a2f"
+    },
+    {
+      "file": "tools/texture_sheets/derive_quake_texture_tiers.py",
+      "sha256": "bd00c945a204e72963120cfedfe976080040013e36399caee5a817c598595999"
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    {
+      "file": "tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee"
+    }
+  ],
+  "excludedDependencies": {
+    "docs": true,
+    ".git": true,
+    "assets/authoring": true,
+    "tools/texture_sheets/prepare_motif_texture_master.py": true
+  },
+  "publicSuite": {
+    "command": [
+      "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+      "/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quake-codec-clean-projection-icxov6ha/Quaked/tests/quake_texture_tiers_test.py"
+    ],
+    "cwd": "/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quake-codec-clean-projection-icxov6ha/Quaked",
+    "returnCode": 0,
+    "stdout": "",
+    "stderr": "test_both_tiers_exact_role_codecs_non_square_direct_master (__main__.QuakeTextureTiersCLI) ... ok\ntest_existing_directory_and_symlink_outputs_are_preserved (__main__.QuakeTextureTiersCLI) ... ok\ntest_explicit_encoder_roles_preserve_scalar_bytes_and_reject_modes (__main__.QuakeTextureTiersCLI) ... ok\ntest_float64_exact8x_and_opaque_rgba_native (__main__.QuakeTextureTiersCLI) ... ok\ntest_input_and_imported_producer_changes_are_detected_before_manifest (__main__.QuakeTextureTiersCLI) ... ok\ntest_normals_do_not_use_quantized_height_and_neither_tier_chains (__main__.QuakeTextureTiersCLI) ... ok\ntest_quantization_ties_endpoints_and_actual_lossless_channel_hashes (__main__.QuakeTextureTiersCLI) ... ok\ntest_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) ... ok\ntest_unchanged_historical_producer_sources (__main__.QuakeTextureTiersCLI) ... ok\n\n----------------------------------------------------------------------\nRan 9 tests in 7.666s\n\nOK\n",
+    "testsRequired": 9,
+    "testNamesRequired": [
+      "test_unchanged_historical_producer_sources",
+      "test_both_tiers_exact_role_codecs_non_square_direct_master",
+      "test_float64_exact8x_and_opaque_rgba_native",
+      "test_quantization_ties_endpoints_and_actual_lossless_channel_hashes",
+      "test_normals_do_not_use_quantized_height_and_neither_tier_chains",
+      "test_rejects_transparency_bad_master_scalar_and_parameters_before_writes",
+      "test_existing_directory_and_symlink_outputs_are_preserved",
+      "test_explicit_encoder_roles_preserve_scalar_bytes_and_reject_modes",
+      "test_input_and_imported_producer_changes_are_detected_before_manifest"
+    ],
+    "PYTHONPATHRemoved": true,
+    "PYTHONHOMERemoved": true,
+    "bytecodeWritesDisabled": true
+  },
+  "scratchSourcesByteExactAfterSuite": true,
+  "temporaryProjectionRemovedAfterVerification": true,
+  "watchedOriginalInputs": {
+    "files": 16,
+    "allByteHashesUnchanged": true
+  },
+  "finishedAt": "2026-10-20T12:10:55.783630+00:00"
+}

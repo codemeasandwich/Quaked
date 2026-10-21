@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T09:27:17.306Z",
+  "reviewer": "/root/owner_repair_tool_review",
+  "verdict": "PASS exact new-base adaptation and unchanged controls; new normalgate/commit/publication remain required",
+  "baseCommit": "ae03a8b23a74fdf598e41aa824ca4ac81a6f4c95",
+  "mergeParent": "efd8e30f08280348f5070d95bc42889ebf833cbe",
+  "clone": "/private/tmp/quaked-sync-dev-20261021-fc24-race1",
+  "controls": [
+    {
+      "file": "tools/distribution/precommit.mjs",
+      "sha256": "763953bca9c92f2153be87f67b645e200bce0f6ba0e008333364e5ebaa608bd5",
+      "stagedMatchesWorkingAndQualifiedParent": true
+    },
+    {
+      "file": "tests/staged_contract_test.mjs",
+      "sha256": "ae2b3eea84318ac12aa925a1de008f6638aace353c9ea5a25e05f3cf9b753f01",
+      "stagedMatchesWorkingAndQualifiedParent": true
+    },
+    {
+      "file": "tools/texture_sheets/check_texture_catalog_custody.py",
+      "sha256": "639b622a46e74d444cce100b5cbf7c70b928c6c4712d9ef103f165e26e04cbc1",
+      "stagedMatchesWorkingAndQualifiedParent": true
+    }
+  ],
+  "stagedQuakeCatalog": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/catalog.json",
+    "status": "A",
+    "sha256": "9356d6637b0fcec5b87b5d74a6746ec909d44430d1f034b9c33edbab7786f447"
+  },
+  "firstIntroductionHistory": {
+    "base": "ae03a8b23a74fdf598e41aa824ca4ac81a6f4c95",
+    "anchor": "260a3cc5551ed8a8d5b76b03d64a3253813fe420",
+    "catalog": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/catalog.json",
+    "baseCatalogAbsent": true,
+    "nonShallow": true,
+    "completeHistory": true,
+    "historyCommits": [],
+    "reachableCommitCount": 1107,
+    "graphSha256": "062d7bcd5babda99e60a7f6ea561f88ef6c04d4c0babe07d5e1e409a3209045f"
+  },
+  "remoteBoxArtwork": {
+    "commit": "ae03a8b23a74fdf598e41aa824ca4ac81a6f4c95",
+    "parent": "ed603b16f261e475583ffa95bb26b19f87e7a38e",
+    "changedPathCount": 55,
+    "changedPaths": [
+      "assets/authoring/box_art/README.md",
+      "assets/authoring/box_art/mission-wraps-2026-10-21/composition.json",
+      "assets/authoring/box_art/mission-wraps-2026-10-21/foreground-plan.json",
+      "assets/authoring/box_art/mission-wraps-2026-10-21/hipnotic/back-master.png",
+      "assets/authoring/box_art/mission-wraps-2026-10-21/hipnotic/background.png",
+      "assets/authoring/box_art/mission-wraps-2026-10-21/hipnotic/front-master.png",
+      "assets/authoring/box_art/mission-wraps-2026-10-21/hipnotic/spine-master.png",
+      "assets/authoring/box_art/mission-wraps-2026-10-21/hipnotic/wrap-master.png",
+      "assets/authoring/box_art/mission-wraps-2026-10-21/owner-backgrounds.json",
+      "assets/authoring/box_art/mission-wraps-2026-10-21/rogue/back-master.png",
+      "assets/authoring/box_art/mission-wraps-2026-10-21/rogue/background.png",
+      "assets/authoring/box_art/mission-wraps-2026-10-21/rogue/front-master.png",
+      "assets/authoring/box_art/mission-wraps-2026-10-21/rogue/spine-master.png",
+      "assets/authoring/box_art/mission-wraps-2026-10-21/rogue/wrap-master.png",
+      "assets/boxes/SOURCES.md",
+      "assets/boxes/ad/back.webp",
+      "assets/boxes/ad/front.webp",
+      "assets/boxes/hipnotic/back.webp",
+      "assets/boxes/hipnotic/front.webp",
+      "assets/boxes/hipnotic/spine.webp",
+      "assets/boxes/manifest.json",
+      "assets/boxes/mod_hexen_2_portal_of_praevus/back.webp",
+      "assets/boxes/mod_hexen_2_portal_of_praevus/front.webp",
+      "assets/boxes/mod_hexen_2_shareware/back.webp",
+      "assets/boxes/mod_hexen_2_shareware/front.webp",
+      "assets/boxes/quake/back.webp",
+      "assets/boxes/quake/front.webp",
+      "assets/boxes/rogue/back.webp",
+      "assets/boxes/rogue/front.webp",
+      "assets/boxes/rogue/spine.webp",
+      "docs/box-art-face-sizing-2026-10-21.md",
+      "docs/box-art-mission-wraps-2026-10-21.md",
+      "docs/evidence/box-art-face-sizing-2026-10-21/app-art-verification.json",
+      "docs/evidence/box-art-face-sizing-2026-10-21/approved-crops.json",
+      "docs/evidence/box-art-face-sizing-2026-10-21/audit.json",
+      "docs/evidence/box-art-face-sizing-2026-10-21/browser.json",
+      "docs/evidence/box-art-face-sizing-2026-10-21/contracts.log",
+      "docs/evidence/box-art-face-sizing-2026-10-21/crop-pixel-verification.json",
+      "docs/evidence/box-art-face-sizing-2026-10-21/independent-review.json",
+      "docs/evidence/box-art-face-sizing-2026-10-21/native-launch.json",
+      "docs/evidence/box-art-mission-wraps-2026-10-21/baseline-faces.json",
+      "docs/evidence/box-art-mission-wraps-2026-10-21/baseline-manifest.json",
+      "docs/evidence/box-art-mission-wraps-2026-10-21/foreground-plan.md",
+      "docs/evidence/box-art-mission-wraps-2026-10-21/independent-browser.json",
+      "docs/evidence/box-art-mission-wraps-2026-10-21/independent-review.json",
+      "docs/evidence/box-art-mission-wraps-2026-10-21/independent-runtime-bindings.json",
+      "docs/evidence/box-art-mission-wraps-2026-10-21/maintained-contract.log",
+      "docs/evidence/box-art-mission-wraps-2026-10-21/maintained-shelf.log",
+      "docs/evidence/box-art-mission-wraps-2026-10-21/owner-backgrounds.json",
+      "docs/evidence/box-art-mission-wraps-2026-10-21/source-review.json",
+      "docs/evidence/box-art-mission-wraps-2026-10-21/source-review.md",
+      "docs/evidence/box-art-standardization-2026-10-20/derivation.json",
+      "tests/box_art_standardization_test.mjs",
+      "tools/box_art/compose_mission_wraps.mjs",
+      "tools/box_art/standardize.mjs"
+    ],
+    "actualStagedDeltaFromRemote": "EMPTY for every incoming box-art path",
+    "predictedMergeTree": "10a55ceb4105a3ce89e30501f1f5e9222cb22193",
+    "predictedTreeDeltaFromRemote": "EMPTY for every incoming box-art path",
+    "scope": "Preservation proof only; independent acceptance of boxwork is not claimed"
+  },
+  "priorQualifiedCommit": {
+    "commit": "efd8e30f08280348f5070d95bc42889ebf833cbe",
+    "tree": "09078d08e84db0d6df812c985d99cf6422688d51",
+    "parents": [
+      "ed603b16f261e475583ffa95bb26b19f87e7a38e",
+      "de49ef8f6eb130011fe9ea170d881c756229dc74"
+    ],
+    "normalHookReceipt": {
+      "file": "docs/quake/textures/sync-dev-2026-10-21/normal-hook-receipt.json",
+      "sha256": "33086f18d9a03efdd691cedc5603cbc2dde6a872ca6a69c075ef60ab806e9d3a",
+      "commands": 17,
+      "allExitZero": true,
+      "nativeBuilt": false
+    },
+    "boundary": "Original actual PASS stays valid for its originaltree/base; rejected nonforce push reported byroot. It cannot serve as normalgate proof for the newbase/tree."
+  },
+  "guardPreservation": "No implementation/control/source edit. Prior exact frozen namedpubliccase and prior normalgate bind these identical controlbytes; no duplicate namedtest needed. Existing immutablehistory, fullsnapshot/staged-source and cataloguecustody guards unchanged.",
+  "gate": {
+    "commandCount": 17,
+    "nativeCommands": [],
+    "mustRerunAtNewBase": true
+  },
+  "referenceRoots": [
+    "/Users/bri/SOURCE/Quaked",
+    "/Users/bri/.codex/worktrees/fc24/Quaked"
+  ],
+  "newBootstrap": {
+    "file": "docs/quake/textures/sync-dev-2026-10-21/independent-plan/reviewed-bootstrap-race1.json",
+    "sha256": "495a55a03d7d314c60a22899c331dae98fc4aaab1c375f37bf87528a27a6add8"
+  },
+  "originalBootstrap": {
+    "file": "docs/quake/textures/sync-dev-2026-10-21/independent-plan/reviewed-bootstrap.json",
+    "sha256": "6d5cc0753f5699dbfc580485654b98aaa58e63c7c0092f2de067f6f3a84abc9a",
+    "retainedUnchanged": true
+  },
+  "remaining": [
+    "Root stages newreview/bootstrap/receipts with exactcontrols unchanged",
+    "Rerun actualnormal17commandgate atae03base and finalmergedtree",
+    "Create actual mergecommit withparentsae03+efd8, preserveboxpaths",
+    "Recheckremote and nonforcepublish/readback",
+    "Safely synchronizeDev intofc24 withprotectedforeignbytes verified"
+  ],
+  "limits": "No successful newgate, mergecommit, remote publication, synchronization, runtime/owneracceptance or release claim. Reviewer made no ref/index/asset/provider/control mutations."
+}

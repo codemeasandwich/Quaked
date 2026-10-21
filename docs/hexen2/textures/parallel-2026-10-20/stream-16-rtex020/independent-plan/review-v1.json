@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS independent actual-native/material-layout/physical-plan/exact-prompt review; root generation decision separate",
+  "reviewedAt": "2026-10-20T21:38:14.738146+00:00",
+  "reviewer": "texture06 independent helper; not020author",
+  "nativeIdentity": "e000f2f3924be87a02be5d0b90eb36fb8e1b1776a284d847eb7d3c360a3b4e4c",
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/plan.json",
+    "sha256": "23cd4cd1ef2270bd1b6e6cebdd1a5a80b120b39ff9558ccb8595a67b3dc0e72a"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/prompts/rtex020-material-v1.txt",
+    "sha256": "29bac48faba5119bb46b80c1780c4261319eb6f194116bb11981b34210b6d574"
+  },
+  "journal": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/selection.json",
+    "sha256": "7f822a90cab8c6d232be230eccc81771f63bffcecc1587bdbd0a21d6aa42e738"
+  },
+  "original": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/originals/01-rtex020-e000f2f3924b.png",
+    "sha256": "53f9b965991724fafe1ef3bdf0582f64dba7d456232fd939aee88121ce2a30ff"
+  },
+  "freshNativeDemoEligibilityProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/independent-plan/input-proof-v1.json",
+    "sha256": "e143de950f6e1650a8f41a60a30f4fd8f762f6cd5eca1aa04013414a2f5e6bcc"
+  },
+  "narrative": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/independent-plan/REVIEW.md",
+    "sha256": "a7def83483ee7a63b79e3cd4b6260f63ba540d3adb9b46caa10d5c80995e0805"
+  },
+  "actualImagesViewed": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/originals/01-rtex020-e000f2f3924b.png",
+      "sha256": "53f9b965991724fafe1ef3bdf0582f64dba7d456232fd939aee88121ce2a30ff"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/originals/native-nearest.png",
+      "sha256": "33ada8c8c699e1adb0380e40f03066996df2faf669e69c84d28e4ec1919d4c33"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/originals/native-repeat-nearest.png",
+      "sha256": "c1c46d8dceca49b4cd45237a86b3b4079f6f10dfc0454aa249a7412f59c42d12"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/originals/native-coordinate-grid.png",
+      "sha256": "35c2937b30a2edfc78c08a719d2b2aced05124f618eb4a51d0aacb66e723ce94"
+    }
+  ],
+  "exactPromptActuallyRead": true,
+  "allSealedInputsRecheckedStable": true,
+  "materialInterpretation": "Roughly dressed dark weathered sandstone masonry is plausible; species and diagonal-mark mechanism remain uncertain artistic interpretation.",
+  "layoutFindings": [
+    "Broad left and offset broad right central blocks remain distinguishing native forms.",
+    "Smaller upper/lower courses and cropped/stepped joints must retain phase, without perimeter bricks or frame."
+  ],
+  "physicalFindings": [
+    "Broad stone faces above existing recessed mortar.",
+    "Tonal/mineral marks must not become deepVcarving or broad pits/domes.",
+    "Actual physical gate before either tier; genuine source/master proof before any needed guarded repair."
+  ],
+  "priority": {
+    "basis": "actual native HexenII recordings first-packet map literals plus compiled presence",
+    "maps": {
+      "maps/cath.bsp": 394,
+      "maps/demo1.bsp": 209
+    },
+    "deduplicatedCompiledFaces": 603,
+    "cameraVisibilityEstablished": false
+  },
+  "eligibility": {
+    "catalogBindings": 67,
+    "nativeIdentities": 980,
+    "nativeRgbaPeers": 0,
+    "retainedJson": 272,
+    "nativeDimensionImagesDecoded": 23,
+    "exactRetainedMatches": 0
+  },
+  "authoringContract": {
+    "sourceCountProposed": 1,
+    "master": [
+      512,
+      1024
+    ],
+    "Mid": [
+      256,
+      512
+    ],
+    "High": [
+      512,
+      1024
+    ],
+    "codec": {
+      "quality": 92,
+      "method": 6,
+      "lossless": false
+    },
+    "distanceDims": [
+      [
+        32,
+        64
+      ],
+      [
+        16,
+        32
+      ]
+    ],
+    "Low": "unchanged"
+  },
+  "generationIssuedByReviewer": false,
+  "sourceOrFinalARTQualified": false,
+  "noAuthorOr388FrozenChanges": true,
+  "limits": [
+    "Planning only, no photorealistic output exists or is accepted.",
+    "Compiled recorded-map incidence is not measured demo-camera exposure.",
+    "Orientation receipt pinned but plane normals not recalculated by this review.",
+    "Exact retained screen is not perceptual similarity or a cross-process snapshot lock."
+  ],
+  "nextOwner": "root",
+  "nextAction": "Inspect exact review/native/prompt and decide guarded single generation; preserve actual source/material/relief/final qualification gates."
+}

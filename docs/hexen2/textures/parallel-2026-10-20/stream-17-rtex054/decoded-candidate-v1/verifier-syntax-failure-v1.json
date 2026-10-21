@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "state": "Author verifier syntax failure before execution or output; not an asset failure",
+  "source": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/verify-decoded-candidate-before-whitespace-fix.py",
+    "sha256": "92197f48ec65ea07f6c009909361d835b306ed7d844e5724827dafd55d9cca74"
+  },
+  "error": "SyntaxError at conditional expression: else512 lacked separating space",
+  "correction": "Whitespace-only fix to else 512; full verifier compiled before rerunning. No source/master/production tier/review file was changed or command rerun.",
+  "diagnosticOutputsCreated": false,
+  "productionCommandsRerun": false
+}

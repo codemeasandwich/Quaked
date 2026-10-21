@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "sourceID": "ogre-native-skin0-source-001",
+  "retainedAt": "2026-10-21T06:58:21.374016+00:00",
+  "issued": {
+    "file": "assets/authoring/texture_sheets/sources/quake-model-skins-2026-10-21/ogre/source-001/issued.json",
+    "sha256": "b4281374fcf301abfbdc3f413e4b02164110d52b537eda0099e76b4059080319"
+  },
+  "actualTool": "built-in image_gen.imagegen",
+  "terminal": "Normal tool completion;47.4 seconds observed, no live handle/timeout/retry.",
+  "actualToolReportedOutput": "/Users/bri/.codex/generated_images/01a158c5-4816-7e51-bd81-574c25fd3058/exec-ae9551ba-f013-406b-af6b-271e9a451266.png",
+  "retained": {
+    "file": "assets/authoring/texture_sheets/sources/quake-model-skins-2026-10-21/ogre/source-001/returned-source.png",
+    "sha256": "f46db41d404f4cb38b5cacd614af65cc32bc54bee86497eb16271879dc956be6",
+    "bytes": 2153963,
+    "width": 1463,
+    "height": 1075,
+    "mode": "RGB",
+    "format": "PNG"
+  },
+  "defaultOutputPreserved": true,
+  "byteIdenticalCopy": true,
+  "referenceHashesUnchanged": true,
+  "requestedDimensions": [
+    2112,
+    1552
+  ],
+  "requestedAspect": "132:97",
+  "adequateFor8xAxes": false,
+  "exactRequestedAspect": false,
+  "verdict": "HOLD_INADEQUATE_SOURCE_DIMENSIONS",
+  "modelCalls": {
+    "knownNewOriginalGeneration": 1,
+    "knownNewEdits": 0,
+    "knownNewTotal": 1,
+    "inheritedAppearanceReferenceHistory": null,
+    "cumulativeIncludingInheritedHistory": null,
+    "reason": "Legacy owner-source invocation/cumulative history is unknown. Do not infer cumulative one."
+  },
+  "campaignKnownIssued": 16,
+  "campaignKnownResolved": 16,
+  "selectionOrMasterOrTiersCreated": false,
+  "diagnosticSetupFailure": "First retain attempt used default python3 lacking PIL; failed at import before any copy/metadata write. Retried retention only with maintained /usr/bin/python3 environment, no model retry.",
+  "nextAction": "Retain inadequate return. No upscale,forcedaspectcrop/pad or automaticretry. Continue WORLD work; explicit owner choice required before imagegen CLI/API fallback. One observed request does not establish every built-in size as a hard global cap."
+}

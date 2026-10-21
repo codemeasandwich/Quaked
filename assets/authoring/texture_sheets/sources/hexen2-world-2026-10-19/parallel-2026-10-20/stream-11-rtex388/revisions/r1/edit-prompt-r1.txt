@@ -1,0 +1,12 @@
+Use case: precise-object-edit.
+Asset type: one seamless photographic game colour texture, square, at least 1024 by 1024 pixels.
+
+Input image 1 is the EDIT TARGET: the retained photograph of densely matted dead grass, flattened ribbon-like dry plant fibres, fine stems and dark compact organic ground. Input image 2 is REFERENCE ONLY: the unchanged 64 by 64 native texture, for its dark muted colours, material intention, density and feature scale. Do not recreate its pixelation.
+
+Make one focused edit to image 1: repair natural fibre continuity across the left/right and top/bottom tile boundaries together, including all four corners. When this single image repeats horizontally and vertically, coherent blades and stems reaching an edge must continue plausibly into their neighbouring edge rather than ending in a straight join, changing width abruptly, doubling as a ghost, or forming a visible cut line. Natural broken or frayed individual fibres are fine, but there must be no coherent artificial seam. Keep the central majority of the existing photograph and its material character; modify the peripheral material only as needed to make those physical joins convincing. Preserve the original feature sizes, overall arrangement, density and native distant appearance.
+
+Preserve sharp, distinct photographic dead plant material: recognisable flattened olive-grey and dry muted ochre-brown grass ribbons, thin stems, natural lengthwise fibres, restrained folds and frayed ends, with real dark gaps and occlusion against the existing dark earth. Preserve the subdued dark brown/olive-grey palette and low overall value. Keep the same orthographic, square-on surface view and even diffuse light. Do not turn this into abstract mottling, uniform grain, sand, stone, wood planks, a woven mat, fresh green lawn, or a different scale of straw. Do not sharpen pixel contours, add noise or blur/paint over the edges.
+
+Avoid a frame, border strip, bevel, vignette, darkened or brightened perimeter, artificial edge shadows, mirrored or stretched bands, repeated stamped fibres, a grid, masonry, extra objects, labels or text. Tile continuity must come from coherent natural material, not from an enclosing rim or a colour fade. Preserve sharp physical details right up to the edges.
+
+Return only ONE full-resolution opaque PNG colour tile. Do not return a tiled preview, comparison board, height map, normal map, alternate variants or separate Mid/High tiers. This edited source will feed one final shared master and both enhanced tiers.

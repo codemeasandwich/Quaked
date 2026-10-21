@@ -1,0 +1,239 @@
+{
+  "schemaVersion": 1,
+  "texture": "wwall1_1",
+  "status": "candidate-ready-for-root-review",
+  "observedAt": "2026-10-20T08:40:02.540218+00:00",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "head": "713b47d322f0674f154a70ec4baebd4566905d41",
+  "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+  "sourcePlan": "Parent independently approved exact native/raw stone interpretation before master authoring. Weathered brown/taupe slabs with cool-grey patina; two half-height courses; upper vertical joint near50%, lower near25%/75%; partial stones continue through sides.",
+  "newGenerations": 0,
+  "sourceReused": true,
+  "sourceInputs": {
+    "original": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-wwall1_1.png",
+      "sha256": "d3864e3f26a1268fa4c749cbc8ab6f505270629d6f7bb1896ee39a0f19ac9997",
+      "bytes": 5339
+    },
+    "generated": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/wwall1_1-generated-v1.png",
+      "sha256": "441fc424dbd6e2799616fc0a09820105bcd1cdc018eb2194b562dbd760029f70",
+      "bytes": 3879801
+    },
+    "prompt": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/wwall1_1-photographic-prompt-v1.txt",
+      "sha256": "6a3e93b2bd7ca237f59d80a0b836465523ba2a1a0ecc87bdb8fabc30ee80712f",
+      "bytes": 1806
+    }
+  },
+  "recipe": {
+    "profile": "stone",
+    "colorStrength": 0.65,
+    "fieldSigma": 0.75,
+    "boundaryOrSemanticRepairs": false,
+    "masterFactor": 8,
+    "strength": 0.3,
+    "cap": 0.5
+  },
+  "master": {
+    "receipt": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/master.json",
+      "sha256": "d26917c460fa1ac6ef8a7ab87551a8d0654d796b32a58faa6652a4aa203b7914",
+      "bytes": 4275
+    },
+    "RGB": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/color.png",
+      "sha256": "c707407574a8a891efb70469de36d8e83b9ac5dacc70b141e5f17e8973f99f1a",
+      "bytes": 581122
+    },
+    "floatHeight": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/height.npy",
+      "sha256": "1aa38a9abdf8c2e0a39cf9ff43c64066485243e85d53ecdab842d6229b484b52",
+      "bytes": 1048704
+    }
+  },
+  "tiers": {
+    "receipt": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/manifest.json",
+      "sha256": "1e95b1486ce6154bf3004ebc76a57d12d1a40c8e4dd68139a409d6adce28290a",
+      "bytes": 9691
+    },
+    "default": "Mid",
+    "maps": [
+      {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/mid-diffuse.webp",
+        "sha256": "ac5013d9fdfd2f27f5a5a8cf000ec14dd6a5c231ad59b7c221841e55c8155540",
+        "bytes": 28824
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/mid-height.webp",
+        "sha256": "a9087bf56bacd0bc14116cfd2d29d033464d40c4602bbc49cc9f94d8317e70e1",
+        "bytes": 29718
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/mid-normalX.webp",
+        "sha256": "ca4b12b81a9d3f29e82bd033a52ec2b1acb2bf5316f6911f641c9ad503f52c6f",
+        "bytes": 26594
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/mid-normalY.webp",
+        "sha256": "83a77993e9df07f65fcdd8861aa2c3f607dd3e28e94930f88074341cd59e3544",
+        "bytes": 26592
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/mid-normalZ.webp",
+        "sha256": "047fee61f7e57e126a4b03bcde9c8eb851403d06b9bc6af938d947263f7562c9",
+        "bytes": 7740
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/high-diffuse.webp",
+        "sha256": "77c77ef5a13cf67457509c80ce3cf915223757273a3f74911e389c8b442bb83d",
+        "bytes": 122386
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/high-height.webp",
+        "sha256": "9b908870ad065ca06b33d2955e6847fc7afd740d7c09cabb3b85ac1dfb3238d7",
+        "bytes": 90874
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/high-normalX.webp",
+        "sha256": "a1dc30a574b74616940bfb73cd46d93b2414ee70b771e8c4bb2eaa5014004434",
+        "bytes": 89958
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/high-normalY.webp",
+        "sha256": "eb62c222b2e9a52bafec545f9ddb3089a7fc13806e0956f284264885d32b9074",
+        "bytes": 86492
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/high-normalZ.webp",
+        "sha256": "056d04e3ba6905cc05a88482208e692b724d01d43b7967f941fe30b88d7c8887",
+        "bytes": 23534
+      }
+    ]
+  },
+  "verification": {
+    "nativeIdentity": "PASS one full native identity across9 occurrences and36 all-mip observations. ActualPAK/BSP/palette/index/RGBA/material flags; bounded baseline scope.",
+    "preTierSemantics": "PASS6 face>joint witnesses; actual RGB/height/opposed-light inspected before encoding.",
+    "decodedTierSemantics": "PASS same6 central and neighborhood witnesses at both tiers.",
+    "publicSourceMasterTierMath": "PASS actual prepare replay and independent fixture-oracle reconstruction of all10 exactQ92method6 maps; final preview-only failure retained.",
+    "previewContent": "PASS exact material/label panels and every decoded pixel outside documented40x16 empty JPEG tail. No whole-JPEG binary identity claim.",
+    "authorArtObservation": "Physical quarry-stone material, two-course native forms/scale/colour, repeats/corners and both-tier relief inspected; pending independent root judgment."
+  },
+  "evidence": {
+    "README.md": {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/README.md",
+      "sha256": "4a675a52feda337ec77cd6233f3d1a45180f4d5ae0f62e4f44fa725428df1718",
+      "bytes": 5052
+    },
+    "native-source-proof-v2.json": {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/native-source-proof-v2.json",
+      "sha256": "22c54ff48177ea9085de10529b593f08f2443f5f73b85e504fbb5feae3727ad3",
+      "bytes": 59437
+    },
+    "pre-tier.json": {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/pre-tier.json",
+      "sha256": "5c617f1cc1af9981437de6e6059d2fb9286f7815cd1b423477eee01ca2a03075",
+      "bytes": 1920
+    },
+    "pre-tier.png": {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/pre-tier.png",
+      "sha256": "49e9b0f3cc42da86491531b95ad2b09191cf579228d847a5ac95d61d51719efc",
+      "bytes": 2042382
+    },
+    "decoded-depth-witnesses.json": {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/decoded-depth-witnesses.json",
+      "sha256": "7609c5a2204de56623bd7b0d41c325c0e8c2bde51b3916f5f5c97df86a2046ec",
+      "bytes": 6320
+    },
+    "batch.json": {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/batch.json",
+      "sha256": "80687a2b9474011c7fb062419fa940b8a8c97b165aab40f64c6b3c2c65a38e52",
+      "bytes": 3743
+    },
+    "public-verification.json": {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/public-verification.json",
+      "sha256": "1a6b2f96c486aec6c45782268c8fb7b93469fe63805b68c04f0a284379530d6f",
+      "bytes": 1998
+    },
+    "public-verification-v2.json": {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/public-verification-v2.json",
+      "sha256": "9f78f41f3f8c3b3de41415df9e185be0d36d7867ea47a607071640100b369c6d",
+      "bytes": 16894
+    },
+    "public-final-verification.json": {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/public-final-verification.json",
+      "sha256": "3b76100114209ceda6991ba8fa97b563a439570d59df7029e622a1ec1b007583",
+      "bytes": 24527
+    },
+    "verify-preview-content.py": {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/verify-preview-content.py",
+      "sha256": "a53dce124fb4c5c9f6fd57b8a49ee5aab6b6898f1b37c49e58f46fb15acb5d13",
+      "bytes": 4370
+    }
+  },
+  "reviewFiles": [
+    {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/review/index.html",
+      "sha256": "18dda6dcc88c8f16c97d56c1514de24dcc0870bb24c7b221d252ccfe8cb5fdbf",
+      "bytes": 1201
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/review/wwall1_1-high-relief.jpg",
+      "sha256": "1c0e696c9da1ea30cd98a139ff2071b7df1997b6c604f286d01a222191a5a96c",
+      "bytes": 471839
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/review/wwall1_1-high-review.jpg",
+      "sha256": "32b11aa64a702ae38a28db4f4d140d2b8471156ca69a0b21a84053f45cca2fb7",
+      "bytes": 342381
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/review/wwall1_1-mid-relief.jpg",
+      "sha256": "d63b8522743986133d1955f8830db3de3035bb5742efc23153337d433987fb2f",
+      "bytes": 151205
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/review/wwall1_1-mid-review.jpg",
+      "sha256": "d0dfd94370f2b50842ea5389fffcf68ad5c0fb85c6101cd1a162d4b5e32f5bc1",
+      "bytes": 291017
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/review-v2/index.html",
+      "sha256": "18dda6dcc88c8f16c97d56c1514de24dcc0870bb24c7b221d252ccfe8cb5fdbf",
+      "bytes": 1201
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/review-v2/wwall1_1-high-relief.jpg",
+      "sha256": "27455021238f46952dabdff464a7f3ac92fd6a19524fa9b0d967a76b75c05c0c",
+      "bytes": 471847
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/review-v2/wwall1_1-high-review.jpg",
+      "sha256": "1f7268c7983450f18e2e969bcf3a0e71e78db4a1725449b11e460655bb8c6072",
+      "bytes": 342386
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/review-v2/wwall1_1-mid-relief.jpg",
+      "sha256": "95656aa6fc3e76860b13536e764ed6f5e2e9366ee830f027f6818aeeef9460bf",
+      "bytes": 151204
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/review-v2/wwall1_1-mid-review.jpg",
+      "sha256": "6bc0100d9bfb5d9ed52d746c7b9c4d5f7e9e500993c4132b7c0617b355d83f02",
+      "bytes": 291012
+    }
+  ],
+  "limits": [
+    "Candidate only: root independent material/edge/public review remains. No catalog/runtime/GPU/gameplay/owner/landing/release acceptance.",
+    "Full native proof is bounded to selected baseline occurrences, including installed tests and mg1 rerelease; no full campaign census.",
+    "Historical generation provenance/count is retained metadata, not independently authenticated tool-call transcript. This lane made zero calls.",
+    "JPEG differences confined to known empty padding are retained, with no tolerance on material/label pixels or WebP bytes.",
+    "Six local semantic witnesses do not establish exhaustive per-texel displacement qualification."
+  ],
+  "nextAction": {
+    "owner": "root coordinator",
+    "action": "Independently review native/source/master/decoded tiers/repeats/edges/relief and public scope; integrate catalog only after qualification; root owns Bluey fallback reconciliation and Git."
+  },
+  "prohibitedEffectsObserved": "No writes outside assigned output/evidence directories; no shared manifest/catalog/runtime/Git/Hexen/global changes, generation, server/compiler or durable-execution claim."
+}

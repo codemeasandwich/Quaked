@@ -1,0 +1,1313 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T11:31:59.041811+00:00",
+  "reviewer": "Independent delegated affected ART reviewer /root/quake_stone_lossless_art",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "head": "713b47d322f0674f154a70ec4baebd4566905d41",
+  "scope": "Exactly church1 and maya1_9 at Mid512 and High1024 after the Quake mixed-codec transition. Carry forward source/canonical geometry/colour acceptance only under exact custody; review new actual decoded height and XYZ values, opposed lighting, material, BOX reductions, repeats and corners.",
+  "verdict": "PASS_AFFECTED_OFFLINE_ART_TWO_STONES_BOTH_TIERS",
+  "counts": {
+    "materials": 2,
+    "tiers": 4,
+    "actualMapInputs": 20
+  },
+  "batch": {
+    "file": "docs/quake/textures/codec-transition-batch-v1.json",
+    "sha256": "a9a0cba171be4d479c73470e03bf2eb56fe0af95bad356c525f7f59caa97f4e9"
+  },
+  "priorFinalOfflineArt": {
+    "file": "docs/quake/textures/batch-001-stones-final-art-review.json",
+    "sha256": "fa913839ac77a8be107a451b77a7ac726fb3fb08f78d505ad405e2f5cd1e960c"
+  },
+  "independentCodecSourceVerification": {
+    "file": "docs/quake/textures/codec-transition-actual-public.json",
+    "sha256": "0591a80b2aa0618b0e5472072a903436c8a54ab485f2b8a31ea919c051e21d95"
+  },
+  "reviewIndex": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/index.html",
+    "sha256": "48069927a831b0e5880b0c1b1df0f4e48f50a92021c5f4c6ce6de11c6fae5390"
+  },
+  "coordination": "Root coordinator retains actual Bluey task ownership and storage-fallback record; this supervised helper makes no board ownership, integration or release mutation.",
+  "method": [
+    "Read current AGENTS, owner standing instructions, Quake mission, shared standard and repository texture-authoring skill/workflow.",
+    "Verified every retained original/raw/prompt/master receipt/RGB/float-height/prior tier receipt against the exact prior ART review hashes. Verified descriptor master and prior tier receipt bindings and new tier receipt hashes.",
+    "Verified all four new diffuse WebP byte strings equal the prior qualified diffuse files, and verified every prior map still matches its sealed ART-review SHA256. Data maps changed as expected; measured decoded deltas are diagnostic only.",
+    "Viewed all four actual decoded diffuse images at full512/1024 dimensions, independently decoded all four height/combined XYZ sets and viewed full-resolution neutral opposed lighting from those decoded XYZ channels. Grey lighting normalizes the decoded vectors solely for visualization.",
+    "Viewed eight new coordinator-produced review/relief sheets, containing actual decoded diffuse opposed lighting and repeated tiles. Read review-builder source to confirm decoded map use and BOX reduction on both comparison inputs.",
+    "Independently reduced BOTH unchanged native128 and actual decoded Mid/High inputs to64 and32 using Pillow BOX, retained PNGs and viewed their nearest4x contact sheets.",
+    "Viewed exact1:1 diffuse X/Y seam strips and four-tile corner crosses, plus new height/XYZ/grey representative X/Y seam strips and four-corner crosses at each tier.",
+    "Reused the prior visually classified physical stone/joint rectangles only as spatial sampling locations, rescaled from master1024; recomputed all decoded8-bit scalar statistics on the new actual lossless maps. Physical acceptance is visual, not a numerical threshold."
+  ],
+  "diagnosticProbe": {
+    "script": {
+      "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/probe.py",
+      "sha256": "4dc2e71009abac00aa0266245de19a2a74f6b692bbdd210553091c51d9ba0876"
+    },
+    "samplesAndMaps": {
+      "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/probe.json",
+      "sha256": "15d435dd5b5cf3869671477ae79d864157a0a7b714f25260bd5a04a93ac92b28"
+    },
+    "custodyAndDecodedChanges": {
+      "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/custody-and-decoded-deltas.json",
+      "sha256": "524c010ed4676e2298f26fff58eb6493beb4f8fab4d3a4cf97098cba59436a98"
+    }
+  },
+  "items": [
+    {
+      "name": "church1",
+      "nativeId": "d3a2c99fece575542c7c9ff1f7d089089a789ddb5d3bd54ddf618d000c501f56",
+      "verdict": "PASS_AFFECTED_OFFLINE_ART_BOTH_TIERS",
+      "carryForward": {
+        "verdict": "EXACT_CUSTODY_VERIFIED",
+        "scope": "Prior native/source/material-plan/master RGB/canonical float-relief geometry and unchanged colour-map acceptance. This does not carry forward the affected decoded height/XYZ acceptance without review.",
+        "inputs": {
+          "original": {
+            "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-church1.png",
+            "sha256": "63483f24a22750d76cc066359c522f47471dcbbb1a9af13c1a49391e82dc97e3"
+          },
+          "raw": {
+            "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/church1-generated-v1.png",
+            "sha256": "a00d951f2c3ac403b82317b1f4ae19c17b907554433866152010361a53f6f3af"
+          },
+          "prompt": {
+            "file": "tools/texture_sheets/sources/official-world-2026-10-17/church1-photographic-prompt-v1.txt",
+            "sha256": "28fb712fdf137e7cf4b1bb8e95366a44d72e6de468dda32b2613e9d921dce37c"
+          },
+          "masterReceipt": {
+            "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/church1/master.json",
+            "sha256": "7b82b461d055e1b1d978a3a999cb047cde7a45245446e59d3a0c23baf81e9993"
+          },
+          "masterRGB": {
+            "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/church1/color.png",
+            "sha256": "641dbf22f92269ea267d3de2d407d7713cf77231cb41ecd327fbc5934c76db73"
+          },
+          "masterHeight": {
+            "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/church1/height.npy",
+            "sha256": "454b252151857a9cbeeec706447f13e8a9359142d439aadd5c41bf6f2d0cf8e2"
+          },
+          "tierReceipt": {
+            "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/manifest.json",
+            "sha256": "17da8a1d1f3cc4a35a8b0968906f868617354c014b093b384fe3d9ddff7e2136"
+          }
+        },
+        "generationCountUnchanged": 1,
+        "newTierReceipt": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/manifest.json",
+          "sha256": "cd8df5ef19694aa3263bef8da99258d67fa7660d94fec787e207a7b4740b6f75"
+        }
+      },
+      "tiers": [
+        {
+          "tier": "Mid",
+          "factor": 4,
+          "dimensions": [
+            512,
+            512
+          ],
+          "verdict": "PASS_AFFECTED_OFFLINE_ART",
+          "actualDecodedMapInputs": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-diffuse.webp",
+              "sha256": "b0f4ad9001c272ac6a1451fc748b8ade93f171cd690ba040274a275acb337f95"
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-height.webp",
+              "sha256": "57ff4dcc3ac54c6136e03d17adf3dee4b40571ecf3a53cce6684f3b7e72df53b"
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalX.webp",
+              "sha256": "6108e1637e45bfad1da76072784cc186c94bb98d44c49e2149015d20ff63ca7b"
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalY.webp",
+              "sha256": "347c616d5296abbed69f523f6089b1f7c30b4c89533fb707bb7634870c92cb63"
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalZ.webp",
+              "sha256": "26ada80ac07f84941399ca2866d62ae5b2b01806d9b732cb8023c361b2e17300"
+            }
+          },
+          "changedDataDiagnostics": {
+            "diffuse": {
+              "newSha256": "b0f4ad9001c272ac6a1451fc748b8ade93f171cd690ba040274a275acb337f95",
+              "priorSha256": "b0f4ad9001c272ac6a1451fc748b8ade93f171cd690ba040274a275acb337f95",
+              "bytesIdentical": true,
+              "maxAbsDecodedChange8bit": 0.0,
+              "meanAbsDecodedChange8bit": 0.0
+            },
+            "height": {
+              "newSha256": "57ff4dcc3ac54c6136e03d17adf3dee4b40571ecf3a53cce6684f3b7e72df53b",
+              "priorSha256": "fe1cb33f88493b04b6c36900daf5c5f9514d4cd66c15fe7e50803fdb6fdfb4c9",
+              "bytesIdentical": false,
+              "maxAbsDecodedChange8bit": 10.0,
+              "meanAbsDecodedChange8bit": 1.3558133443196614
+            },
+            "normalX": {
+              "newSha256": "6108e1637e45bfad1da76072784cc186c94bb98d44c49e2149015d20ff63ca7b",
+              "priorSha256": "9beb894bced28903a7d07cc4520309a91a042f6ee9c17c8a4d54736685f61217",
+              "bytesIdentical": false,
+              "maxAbsDecodedChange8bit": 9.0,
+              "meanAbsDecodedChange8bit": 1.3487307230631511
+            },
+            "normalY": {
+              "newSha256": "347c616d5296abbed69f523f6089b1f7c30b4c89533fb707bb7634870c92cb63",
+              "priorSha256": "a5b6f4c95c2f9395fc9fe8ac922723c448c8e4cd74ddd6b0747fef3f0c8b0e97",
+              "bytesIdentical": false,
+              "maxAbsDecodedChange8bit": 8.0,
+              "meanAbsDecodedChange8bit": 1.3060582478841145
+            },
+            "normalZ": {
+              "newSha256": "26ada80ac07f84941399ca2866d62ae5b2b01806d9b732cb8023c361b2e17300",
+              "priorSha256": "f120c5174ad21ce32f1f56b6c5b61f2becaf630db9962e5daa80ea7b5bd22aaf",
+              "bytesIdentical": false,
+              "maxAbsDecodedChange8bit": 9.0,
+              "meanAbsDecodedChange8bit": 1.0704905192057292
+            }
+          },
+          "gates": {
+            "materialAt1to1": {
+              "verdict": "PASS",
+              "observation": "Actual decoded pale warm-grey limestone remains recognisable: irregular pits, chips, weathering and broad diagonal fracture faces at this full tier size. The colour bytes are unchanged; no new abstract grain or colour-compression injury is introduced."
+            },
+            "nativeHalfAndQuarter": {
+              "verdict": "PASS",
+              "comparisonDimensions": [
+                [
+                  64,
+                  64
+                ],
+                [
+                  32,
+                  32
+                ]
+              ],
+              "filter": "Pillow Resampling.BOX on BOTH original128 and actual decoded replacement; nearest4x display only",
+              "observation": "At64/32, both inputs reduced with BOX retain two courses, upper central and lower quarter-width joints, diagonal face marks and warm light/dark relationships. The inherited mildly lighter/smoother replacement remains representative of native colour/forms/scale."
+            },
+            "repeatAndFourCorners": {
+              "verdict": "PASS",
+              "observation": "Horizontal mortar remains the intended Y repeat. The X wrap crosses stone faces with the previously accepted native-derived diagonal detail discontinuity; it is still visible and has not been hidden by an invented joint, block or perimeter frame. Fresh height/XYZ seam/corner views introduce no new boundary feature."
+            },
+            "freshDecodedHeightAndXYZ": {
+              "verdict": "PASS",
+              "observation": "New decoded lossless height retains low vertical and horizontal joint cores against both neighboring stone faces. The broad fracture relief and pores remain face structure; no face/joint inversion or separately raised pigment motif appears. New XYZ retains joint shoulders and directionally coherent face variation.",
+              "samples": {
+                "upper_vertical_joint": {
+                  "decodedRectPixels": [
+                    252,
+                    62,
+                    259,
+                    205
+                  ],
+                  "meanHeight": 0.006667841961959608,
+                  "medianHeight": 0.00392156862745098,
+                  "p10p90": [
+                    0.00392156862745098,
+                    0.011764705882352941
+                  ]
+                },
+                "upper_left_adjacent_stone": {
+                  "decodedRectPixels": [
+                    228,
+                    62,
+                    241,
+                    205
+                  ],
+                  "meanHeight": 0.4075140545728781,
+                  "medianHeight": 0.3686274509803922,
+                  "p10p90": [
+                    0.10980392156862745,
+                    0.7647058823529411
+                  ]
+                },
+                "upper_right_adjacent_stone": {
+                  "decodedRectPixels": [
+                    270,
+                    62,
+                    284,
+                    205
+                  ],
+                  "meanHeight": 0.4153532741768036,
+                  "medianHeight": 0.38823529411764707,
+                  "p10p90": [
+                    0.06313725490196087,
+                    0.8392156862745098
+                  ]
+                },
+                "lower_vertical_joint": {
+                  "decodedRectPixels": [
+                    118,
+                    300,
+                    124,
+                    455
+                  ],
+                  "meanHeight": 0.007792536369386463,
+                  "medianHeight": 0.00392156862745098,
+                  "p10p90": [
+                    0.0,
+                    0.0196078431372549
+                  ]
+                },
+                "lower_left_adjacent_stone": {
+                  "decodedRectPixels": [
+                    96,
+                    300,
+                    110,
+                    455
+                  ],
+                  "meanHeight": 0.40859130749073824,
+                  "medianHeight": 0.4,
+                  "p10p90": [
+                    0.12156862745098039,
+                    0.6901960784313725
+                  ]
+                },
+                "lower_right_adjacent_stone": {
+                  "decodedRectPixels": [
+                    134,
+                    300,
+                    148,
+                    455
+                  ],
+                  "meanHeight": 0.4334670642450529,
+                  "medianHeight": 0.41568627450980394,
+                  "p10p90": [
+                    0.07450980392156863,
+                    0.8470588235294118
+                  ]
+                },
+                "middle_horizontal_joint": {
+                  "decodedRectPixels": [
+                    285,
+                    252,
+                    455,
+                    260
+                  ],
+                  "meanHeight": 0.01322087658592849,
+                  "medianHeight": 0.00392156862745098,
+                  "p10p90": [
+                    0.0,
+                    0.03529411764705882
+                  ]
+                },
+                "middle_above_stone": {
+                  "decodedRectPixels": [
+                    285,
+                    230,
+                    455,
+                    242
+                  ],
+                  "meanHeight": 0.6464186851211073,
+                  "medianHeight": 0.6666666666666666,
+                  "p10p90": [
+                    0.3803921568627451,
+                    0.8862745098039215
+                  ]
+                },
+                "middle_below_stone": {
+                  "decodedRectPixels": [
+                    285,
+                    272,
+                    455,
+                    284
+                  ],
+                  "meanHeight": 0.3953613994617455,
+                  "medianHeight": 0.35490196078431374,
+                  "p10p90": [
+                    0.09803921568627451,
+                    0.7807843137254907
+                  ]
+                }
+              }
+            },
+            "freshOpposedLighting": {
+              "verdict": "PASS",
+              "observation": "Viewed both decoded-XYZ neutral-grey light directions at exact tier dimensions and both actual diffuse lighting panels. Joint-side highlights reverse with light direction while joint cores remain recessed relative to rough stone faces. Relief has a strong directional surface response, but the combined material remains readable stone; the codec transition introduces no new band, block edge or material inversion. This is offline art review, not runtime shader acceptance."
+            }
+          },
+          "evidence": [
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/church1-mid-decoded-diffuse.png",
+              "sha256": "c7dfbb1c9df17513762e4fada1af5f39ab18bf29584ac43aff0b44dd0a248b6d"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/church1-mid-decoded-height.png",
+              "sha256": "816925f108265532f8e25a0e3d9b6175db175cdddb0b45b7bfec3bf0d6a1fce4"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/church1-mid-decoded-xyz.png",
+              "sha256": "511b2173c1a03042a818bab6276b3eb3191b606a74fe28d96899ea2b7235f560"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/church1-mid-decoded-grey-lights.png",
+              "sha256": "69dccac3cea65b972eda13c881a53e0a674034d9db81c586f9cbd65560e76719"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/church1-mid-boundary.png",
+              "sha256": "c0b111a7059f196669102385a1c1a75f938e345ad178a9dcb042134961be8597"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/church1-mid-data-boundaries.png",
+              "sha256": "2cccc5a3a87118318edebadddbdbceed785f011c004b2c760b137a294a2f01c0"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/church1-distance.png",
+              "sha256": "126e6890c993fd3df49ebc0135c0a281201dfabf101852540323cdbe206a5aa5"
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/church1-mid-review.jpg",
+              "sha256": "cdb8453f4385c72f4e10ada4a0a8d919e4a497bb8fc8876bbf4e63e556172a5e"
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/church1-mid-relief.jpg",
+              "sha256": "00995a32cbce42168acc657561fa2d7782889ce382eb7f2bfa83c736f5851d52"
+            }
+          ]
+        },
+        {
+          "tier": "High",
+          "factor": 8,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "verdict": "PASS_AFFECTED_OFFLINE_ART",
+          "actualDecodedMapInputs": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-diffuse.webp",
+              "sha256": "febf9e1198be880e872e391d9fa4d6d135da0440767267f272574e135a88d20f"
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-height.webp",
+              "sha256": "3404c46aba95c2d4dcb0180ae5c1aed2197621d3e5152e0b646b24d6d8dd5db0"
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalX.webp",
+              "sha256": "1e73ed43607eb169197bb6b7012719b73ec0645c00fb5c53a2622e97f373f8b1"
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalY.webp",
+              "sha256": "e58670cfbd2b1fd3dbe113ddd9fc8e549367a3b131a946536fc31cbbae726cd7"
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalZ.webp",
+              "sha256": "fa12594926369528fb641ea2c21f61a22a90c806825c3925d292bf5e40c9b4a0"
+            }
+          },
+          "changedDataDiagnostics": {
+            "diffuse": {
+              "newSha256": "febf9e1198be880e872e391d9fa4d6d135da0440767267f272574e135a88d20f",
+              "priorSha256": "febf9e1198be880e872e391d9fa4d6d135da0440767267f272574e135a88d20f",
+              "bytesIdentical": true,
+              "maxAbsDecodedChange8bit": 0.0,
+              "meanAbsDecodedChange8bit": 0.0
+            },
+            "height": {
+              "newSha256": "3404c46aba95c2d4dcb0180ae5c1aed2197621d3e5152e0b646b24d6d8dd5db0",
+              "priorSha256": "de573c000c15674dd8449ef57f217dec216ebdae1c38216f2764a69fd3d4ac64",
+              "bytesIdentical": false,
+              "maxAbsDecodedChange8bit": 9.0,
+              "meanAbsDecodedChange8bit": 1.341279665629069
+            },
+            "normalX": {
+              "newSha256": "1e73ed43607eb169197bb6b7012719b73ec0645c00fb5c53a2622e97f373f8b1",
+              "priorSha256": "e4861956111cf6f976aac39d52d9601c635b2e667356e272b6034803d928ab79",
+              "bytesIdentical": false,
+              "maxAbsDecodedChange8bit": 9.0,
+              "meanAbsDecodedChange8bit": 1.3741353352864583
+            },
+            "normalY": {
+              "newSha256": "e58670cfbd2b1fd3dbe113ddd9fc8e549367a3b131a946536fc31cbbae726cd7",
+              "priorSha256": "ca5cdb70d4d2facf38244615d9f922dd69f64bf0acdc8840ee8f452d20eff95e",
+              "bytesIdentical": false,
+              "maxAbsDecodedChange8bit": 11.0,
+              "meanAbsDecodedChange8bit": 1.3798052469889324
+            },
+            "normalZ": {
+              "newSha256": "fa12594926369528fb641ea2c21f61a22a90c806825c3925d292bf5e40c9b4a0",
+              "priorSha256": "939bbe1a68593c1b2e23323cb63fd1e8cde5d7c3ce2aabc765c3722ac84d7e95",
+              "bytesIdentical": false,
+              "maxAbsDecodedChange8bit": 9.0,
+              "meanAbsDecodedChange8bit": 1.0522435506184895
+            }
+          },
+          "gates": {
+            "materialAt1to1": {
+              "verdict": "PASS",
+              "observation": "Actual decoded pale warm-grey limestone remains recognisable: irregular pits, chips, weathering and broad diagonal fracture faces at this full tier size. The colour bytes are unchanged; no new abstract grain or colour-compression injury is introduced."
+            },
+            "nativeHalfAndQuarter": {
+              "verdict": "PASS",
+              "comparisonDimensions": [
+                [
+                  64,
+                  64
+                ],
+                [
+                  32,
+                  32
+                ]
+              ],
+              "filter": "Pillow Resampling.BOX on BOTH original128 and actual decoded replacement; nearest4x display only",
+              "observation": "At64/32, both inputs reduced with BOX retain two courses, upper central and lower quarter-width joints, diagonal face marks and warm light/dark relationships. The inherited mildly lighter/smoother replacement remains representative of native colour/forms/scale."
+            },
+            "repeatAndFourCorners": {
+              "verdict": "PASS",
+              "observation": "Horizontal mortar remains the intended Y repeat. The X wrap crosses stone faces with the previously accepted native-derived diagonal detail discontinuity; it is still visible and has not been hidden by an invented joint, block or perimeter frame. Fresh height/XYZ seam/corner views introduce no new boundary feature."
+            },
+            "freshDecodedHeightAndXYZ": {
+              "verdict": "PASS",
+              "observation": "New decoded lossless height retains low vertical and horizontal joint cores against both neighboring stone faces. The broad fracture relief and pores remain face structure; no face/joint inversion or separately raised pigment motif appears. New XYZ retains joint shoulders and directionally coherent face variation.",
+              "samples": {
+                "upper_vertical_joint": {
+                  "decodedRectPixels": [
+                    505,
+                    125,
+                    518,
+                    410
+                  ],
+                  "meanHeight": 0.0067635151226482495,
+                  "medianHeight": 0.00392156862745098,
+                  "p10p90": [
+                    0.0,
+                    0.011764705882352941
+                  ]
+                },
+                "upper_left_adjacent_stone": {
+                  "decodedRectPixels": [
+                    456,
+                    125,
+                    482,
+                    410
+                  ],
+                  "meanHeight": 0.40758011166679897,
+                  "medianHeight": 0.3686274509803922,
+                  "p10p90": [
+                    0.10980392156862745,
+                    0.7686274509803922
+                  ]
+                },
+                "upper_right_adjacent_stone": {
+                  "decodedRectPixels": [
+                    540,
+                    125,
+                    568,
+                    410
+                  ],
+                  "meanHeight": 0.4158666273526955,
+                  "medianHeight": 0.39215686274509803,
+                  "p10p90": [
+                    0.06274509803921569,
+                    0.8470588235294118
+                  ]
+                },
+                "lower_vertical_joint": {
+                  "decodedRectPixels": [
+                    236,
+                    600,
+                    248,
+                    910
+                  ],
+                  "meanHeight": 0.007812565886569681,
+                  "medianHeight": 0.00392156862745098,
+                  "p10p90": [
+                    0.0,
+                    0.0196078431372549
+                  ]
+                },
+                "lower_left_adjacent_stone": {
+                  "decodedRectPixels": [
+                    191,
+                    600,
+                    219,
+                    910
+                  ],
+                  "meanHeight": 0.4055525435980844,
+                  "medianHeight": 0.396078431372549,
+                  "p10p90": [
+                    0.11372549019607843,
+                    0.7019607843137254
+                  ]
+                },
+                "lower_right_adjacent_stone": {
+                  "decodedRectPixels": [
+                    269,
+                    600,
+                    297,
+                    910
+                  ],
+                  "meanHeight": 0.4354545043823982,
+                  "medianHeight": 0.4117647058823529,
+                  "p10p90": [
+                    0.07450980392156863,
+                    0.8549019607843137
+                  ]
+                },
+                "middle_horizontal_joint": {
+                  "decodedRectPixels": [
+                    570,
+                    505,
+                    910,
+                    520
+                  ],
+                  "meanHeight": 0.014030757400999617,
+                  "medianHeight": 0.00392156862745098,
+                  "p10p90": [
+                    0.0,
+                    0.03529411764705882
+                  ]
+                },
+                "middle_above_stone": {
+                  "decodedRectPixels": [
+                    570,
+                    461,
+                    910,
+                    485
+                  ],
+                  "meanHeight": 0.6438307381776239,
+                  "medianHeight": 0.6627450980392157,
+                  "p10p90": [
+                    0.37254901960784315,
+                    0.8823529411764706
+                  ]
+                },
+                "middle_below_stone": {
+                  "decodedRectPixels": [
+                    570,
+                    543,
+                    910,
+                    568
+                  ],
+                  "meanHeight": 0.3953001153402537,
+                  "medianHeight": 0.35294117647058826,
+                  "p10p90": [
+                    0.09411764705882353,
+                    0.7803921568627451
+                  ]
+                }
+              }
+            },
+            "freshOpposedLighting": {
+              "verdict": "PASS",
+              "observation": "Viewed both decoded-XYZ neutral-grey light directions at exact tier dimensions and both actual diffuse lighting panels. Joint-side highlights reverse with light direction while joint cores remain recessed relative to rough stone faces. Relief has a strong directional surface response, but the combined material remains readable stone; the codec transition introduces no new band, block edge or material inversion. This is offline art review, not runtime shader acceptance."
+            }
+          },
+          "evidence": [
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/church1-high-decoded-diffuse.png",
+              "sha256": "3fd7b41426ea636cd3903dfbc184cef753dc0293b16ec8c63805e9e11fc3e793"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/church1-high-decoded-height.png",
+              "sha256": "0a79aca42b60b3b3db2423901d2c88937699158e10ef537ed069096c09e07cfe"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/church1-high-decoded-xyz.png",
+              "sha256": "3df8bb0bedf1160b299b1d02badf708d2f24513a24184752304defca48106fc9"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/church1-high-decoded-grey-lights.png",
+              "sha256": "18772fc6e26b8af81bb39149265c95fe931e4c7a8c77fcb815387f3f31d51516"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/church1-high-boundary.png",
+              "sha256": "11b0d0daf2558ef5e6d56bc4676629d87ddb6ee3f8acde0ea5d6a16614a79607"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/church1-high-data-boundaries.png",
+              "sha256": "e994577a39f27352524012aabece074e52c73a4e771aa062504242298f7637c9"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/church1-distance.png",
+              "sha256": "126e6890c993fd3df49ebc0135c0a281201dfabf101852540323cdbe206a5aa5"
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/church1-high-review.jpg",
+              "sha256": "e1b5d00c54bd23583a8bd051b6d205c1b88a67442d9a86f1c2bd51b501f818c7"
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/church1-high-relief.jpg",
+              "sha256": "15542783cf306ac8fb746e6e6cdcffc357073c16c9515c379890d5b2b77063bb"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "maya1_9",
+      "nativeId": "b16acb978829b31a7b52adb0f5bfeb24841b7e20fece5a271117aca8c7fc66db",
+      "verdict": "PASS_AFFECTED_OFFLINE_ART_BOTH_TIERS",
+      "carryForward": {
+        "verdict": "EXACT_CUSTODY_VERIFIED",
+        "scope": "Prior native/source/material-plan/master RGB/canonical float-relief geometry and unchanged colour-map acceptance. This does not carry forward the affected decoded height/XYZ acceptance without review.",
+        "inputs": {
+          "original": {
+            "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-maya1_9.png",
+            "sha256": "7c48e540e2b01e7e52293143642c06cbf7d77cfe4b76ec5058fe8487c437ef89"
+          },
+          "raw": {
+            "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/maya1_9-generated-v1.png",
+            "sha256": "02a9fc8be194e19f71a4fa7314429ab679f960583c71cc1e3658c9936d79fc5c"
+          },
+          "prompt": {
+            "file": "tools/texture_sheets/sources/official-world-2026-10-17/maya1_9-photographic-prompt-v1.txt",
+            "sha256": "5f30846cf5b4e09c24098f339e514d2020c9bc441c9a2a3a3dc712174a1d1a85"
+          },
+          "masterReceipt": {
+            "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/maya1_9/master.json",
+            "sha256": "387fc5b923f5c32a688b7f9cf0e60e26f57560b23f3a72a4bd3b0f7985126f9b"
+          },
+          "masterRGB": {
+            "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/maya1_9/color.png",
+            "sha256": "1e9191c5bb8b133e7a612e02d7233695c9e35db55e2b7cb4269db00443bc2e71"
+          },
+          "masterHeight": {
+            "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/maya1_9/height.npy",
+            "sha256": "d36c1b5952616f5b04318ad1a3b38bbd9df477861d43aa63f904dc6fc190ea90"
+          },
+          "tierReceipt": {
+            "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/manifest.json",
+            "sha256": "01213a1b345dbcef477dbc7b57c712ca98beaae0a79efce49f0715995a303b4a"
+          }
+        },
+        "generationCountUnchanged": 1,
+        "newTierReceipt": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/manifest.json",
+          "sha256": "149bb218edb27365028c0ee93dd4f97d2082838ea50cc75ee13101a391327fa0"
+        }
+      },
+      "tiers": [
+        {
+          "tier": "Mid",
+          "factor": 4,
+          "dimensions": [
+            512,
+            512
+          ],
+          "verdict": "PASS_AFFECTED_OFFLINE_ART",
+          "actualDecodedMapInputs": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-diffuse.webp",
+              "sha256": "8cc0f966ad756777416489b1108fb0d904d851f7826b62c87e3546f1e2cd4897"
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-height.webp",
+              "sha256": "b42a1bd05216a2e1020537dff68635e5e1ca7454f11fc709823845019351e009"
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalX.webp",
+              "sha256": "414a448c176f3ab979d1d52d604ba23028b0c8b57249a7d6bfab21a798f13e4e"
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalY.webp",
+              "sha256": "e36cde7e622c7e6156d2f2c8e286c01ca06cb66fe183d81dffa8ce4c04a1232b"
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalZ.webp",
+              "sha256": "4d577e3ad104fd254c406f11ad75ae8f49741361bd5cae21a23cd42c30118313"
+            }
+          },
+          "changedDataDiagnostics": {
+            "diffuse": {
+              "newSha256": "8cc0f966ad756777416489b1108fb0d904d851f7826b62c87e3546f1e2cd4897",
+              "priorSha256": "8cc0f966ad756777416489b1108fb0d904d851f7826b62c87e3546f1e2cd4897",
+              "bytesIdentical": true,
+              "maxAbsDecodedChange8bit": 0.0,
+              "meanAbsDecodedChange8bit": 0.0
+            },
+            "height": {
+              "newSha256": "b42a1bd05216a2e1020537dff68635e5e1ca7454f11fc709823845019351e009",
+              "priorSha256": "b0f729ee8b98f261cddcde00b9599080cb163970b0d22c9c27663ecca232b8b3",
+              "bytesIdentical": false,
+              "maxAbsDecodedChange8bit": 9.0,
+              "meanAbsDecodedChange8bit": 1.3755111694335938
+            },
+            "normalX": {
+              "newSha256": "414a448c176f3ab979d1d52d604ba23028b0c8b57249a7d6bfab21a798f13e4e",
+              "priorSha256": "3355808932d912dabf90bdbbed847960c7b19be90c1b08ad58072588c0531501",
+              "bytesIdentical": false,
+              "maxAbsDecodedChange8bit": 9.0,
+              "meanAbsDecodedChange8bit": 1.3587748209635417
+            },
+            "normalY": {
+              "newSha256": "e36cde7e622c7e6156d2f2c8e286c01ca06cb66fe183d81dffa8ce4c04a1232b",
+              "priorSha256": "35578dd7bb986c802b3d21a1fcff0f7cc00f5ee0276a1ff3716b0f897680207b",
+              "bytesIdentical": false,
+              "maxAbsDecodedChange8bit": 9.0,
+              "meanAbsDecodedChange8bit": 1.3024571736653645
+            },
+            "normalZ": {
+              "newSha256": "4d577e3ad104fd254c406f11ad75ae8f49741361bd5cae21a23cd42c30118313",
+              "priorSha256": "4140d8c855178e59796488cd4e2b46284ab0d83f414181c837a9f8e5f7a1f019",
+              "bytesIdentical": false,
+              "maxAbsDecodedChange8bit": 8.0,
+              "meanAbsDecodedChange8bit": 1.0702120463053386
+            }
+          },
+          "gates": {
+            "materialAt1to1": {
+              "verdict": "PASS",
+              "observation": "Actual decoded dark russet sandstone remains recognisable: coherent granular pores, small chips and uneven matte stone faces at this full tier size. The colour bytes are unchanged; no new abstract grain or colour-compression injury is introduced."
+            },
+            "nativeHalfAndQuarter": {
+              "verdict": "PASS",
+              "comparisonDimensions": [
+                [
+                  64,
+                  64
+                ],
+                [
+                  32,
+                  32
+                ]
+              ],
+              "filter": "Pillow Resampling.BOX on BOTH original128 and actual decoded replacement; nearest4x display only",
+              "observation": "At64/32, both inputs reduced with BOX retain four courses, alternating staggered joints, relative block values and a dark warm russet palette. Native dark granular marks become plausible stone detail; fine mark-for-mark identity is not claimed."
+            },
+            "repeatAndFourCorners": {
+              "verdict": "PASS",
+              "observation": "Course joints continue through the Y wrap; X side partial blocks and alternating vertical-joint phases persist through four-tile corners. No added small edge bricks, perimeter frame or cross-course joint. Fresh height/XYZ seam/corner views preserve those relationships."
+            },
+            "freshDecodedHeightAndXYZ": {
+              "verdict": "PASS",
+              "observation": "New decoded lossless height retains low vertical and horizontal joint cores against both neighboring stone faces across sampled courses. Rough face relief remains inside the existing blocks; no invented raised motif or face/joint inversion appears. New XYZ keeps coherent joint shoulders and granular stone-face variation.",
+              "samples": {
+                "course1_vertical_joint": {
+                  "decodedRectPixels": [
+                    136,
+                    24,
+                    141,
+                    105
+                  ],
+                  "meanHeight": 0.023074316146211568,
+                  "medianHeight": 0.011764705882352941,
+                  "p10p90": [
+                    0.00392156862745098,
+                    0.050980392156862744
+                  ]
+                },
+                "course1_left_adjacent_stone": {
+                  "decodedRectPixels": [
+                    118,
+                    24,
+                    128,
+                    105
+                  ],
+                  "meanHeight": 0.5485354635681432,
+                  "medianHeight": 0.5607843137254902,
+                  "p10p90": [
+                    0.2466666666666667,
+                    0.8274509803921568
+                  ]
+                },
+                "course1_right_adjacent_stone": {
+                  "decodedRectPixels": [
+                    150,
+                    24,
+                    160,
+                    105
+                  ],
+                  "meanHeight": 0.4576906318082789,
+                  "medianHeight": 0.4470588235294118,
+                  "p10p90": [
+                    0.18352941176470594,
+                    0.7333333333333333
+                  ]
+                },
+                "course2_vertical_joint": {
+                  "decodedRectPixels": [
+                    194,
+                    148,
+                    200,
+                    232
+                  ],
+                  "meanHeight": 0.01859632741985683,
+                  "medianHeight": 0.00784313725490196,
+                  "p10p90": [
+                    0.0,
+                    0.050980392156862744
+                  ]
+                },
+                "course2_left_adjacent_stone": {
+                  "decodedRectPixels": [
+                    176,
+                    148,
+                    187,
+                    232
+                  ],
+                  "meanHeight": 0.550046685340803,
+                  "medianHeight": 0.5568627450980392,
+                  "p10p90": [
+                    0.3568627450980392,
+                    0.7254901960784313
+                  ]
+                },
+                "course2_right_adjacent_stone": {
+                  "decodedRectPixels": [
+                    210,
+                    148,
+                    221,
+                    232
+                  ],
+                  "meanHeight": 0.3888634241575418,
+                  "medianHeight": 0.3764705882352941,
+                  "p10p90": [
+                    0.15294117647058825,
+                    0.6823529411764706
+                  ]
+                },
+                "row1_horizontal_joint": {
+                  "decodedRectPixels": [
+                    21,
+                    124,
+                    58,
+                    130
+                  ],
+                  "meanHeight": 0.06020137784843667,
+                  "medianHeight": 0.0196078431372549,
+                  "p10p90": [
+                    0.00392156862745098,
+                    0.18784313725490198
+                  ]
+                },
+                "row1_above_stone": {
+                  "decodedRectPixels": [
+                    21,
+                    109,
+                    58,
+                    118
+                  ],
+                  "meanHeight": 0.5029735617970912,
+                  "medianHeight": 0.592156862745098,
+                  "p10p90": [
+                    0.12627450980392158,
+                    0.8384313725490197
+                  ]
+                },
+                "row1_below_stone": {
+                  "decodedRectPixels": [
+                    21,
+                    139,
+                    58,
+                    148
+                  ],
+                  "meanHeight": 0.5644114702938232,
+                  "medianHeight": 0.5764705882352941,
+                  "p10p90": [
+                    0.3419607843137255,
+                    0.7686274509803922
+                  ]
+                },
+                "row2_horizontal_joint": {
+                  "decodedRectPixels": [
+                    285,
+                    252,
+                    310,
+                    259
+                  ],
+                  "meanHeight": 0.020392156862745096,
+                  "medianHeight": 0.00392156862745098,
+                  "p10p90": [
+                    0.0,
+                    0.06117647058823527
+                  ]
+                },
+                "row2_above_stone": {
+                  "decodedRectPixels": [
+                    285,
+                    238,
+                    310,
+                    245
+                  ],
+                  "meanHeight": 0.26973669467787115,
+                  "medianHeight": 0.23529411764705882,
+                  "p10p90": [
+                    0.09019607843137255,
+                    0.4729411764705882
+                  ]
+                },
+                "row2_below_stone": {
+                  "decodedRectPixels": [
+                    285,
+                    270,
+                    310,
+                    279
+                  ],
+                  "meanHeight": 0.28113289760348587,
+                  "medianHeight": 0.2784313725490196,
+                  "p10p90": [
+                    0.1607843137254902,
+                    0.41411764705882353
+                  ]
+                }
+              }
+            },
+            "freshOpposedLighting": {
+              "verdict": "PASS",
+              "observation": "Viewed both decoded-XYZ neutral-grey light directions at exact tier dimensions and both actual diffuse lighting panels. Joint-side highlights reverse with light direction while joint cores remain recessed relative to rough stone faces. Relief has a strong directional surface response, but the combined material remains readable stone; the codec transition introduces no new band, block edge or material inversion. This is offline art review, not runtime shader acceptance."
+            }
+          },
+          "evidence": [
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/maya1_9-mid-decoded-diffuse.png",
+              "sha256": "7dec5b89183ff0e673ce3ee8ff79f00b540474b30035d58337086bb24363f4b7"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/maya1_9-mid-decoded-height.png",
+              "sha256": "350b2c7f5fcdc4cc6c5b9517901336e6568a4c6e12538d30d4563784995e7ce5"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/maya1_9-mid-decoded-xyz.png",
+              "sha256": "d8092f7b44b09e7b6f28cacd92f7cab68e43f3cc9cc9802d5b76411f6a45d953"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/maya1_9-mid-decoded-grey-lights.png",
+              "sha256": "6f91f6f2691b92efa46450ac0af88a7ca13186eb9b47befe5ae9a54607089a5e"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/maya1_9-mid-boundary.png",
+              "sha256": "a7d5a842d4cbe27dca9ec81f3ca60f302ffbdc8171e6f9423b5eebeef1bb03cc"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/maya1_9-mid-data-boundaries.png",
+              "sha256": "14b50c7ce87cf0494b0d53e018f02aff4c89c75393e366e1042892ad97386fe5"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/maya1_9-distance.png",
+              "sha256": "cf2f090c41ee3c4e1c41aba8a08a4bf2f73f4c6ba68fbb030b0c83fd12e52193"
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/maya1_9-mid-review.jpg",
+              "sha256": "35ef2ccd3a15077861a0bb9f31cfac9cda1e322ddffd61a29319c4e4d3ec4481"
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/maya1_9-mid-relief.jpg",
+              "sha256": "aa9e53fe9c79c662a14d805b88acde63a271e86c57708bb8a44e293c5a744920"
+            }
+          ]
+        },
+        {
+          "tier": "High",
+          "factor": 8,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "verdict": "PASS_AFFECTED_OFFLINE_ART",
+          "actualDecodedMapInputs": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-diffuse.webp",
+              "sha256": "bce3485cfb7bc23793bfa738368c2d73bcf010ec5a3b098a639461e378b2ee09"
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-height.webp",
+              "sha256": "c4bcb33a4074042eb9ac1428e92d7858078d7dcdf52d9bf731439b6bdea0c9c7"
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalX.webp",
+              "sha256": "dcb5ca26df6ff8965845bd498899c47f9ebdee6021b6ed4ea53febcdd978b66f"
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalY.webp",
+              "sha256": "528ef07b24b18555bf8330f69c22c57d52127069d57fd2845908a805acc1da4a"
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalZ.webp",
+              "sha256": "cc0972a1b18adaa58e29eb601622c10e0f517672975f0229f2e02dd2369fe378"
+            }
+          },
+          "changedDataDiagnostics": {
+            "diffuse": {
+              "newSha256": "bce3485cfb7bc23793bfa738368c2d73bcf010ec5a3b098a639461e378b2ee09",
+              "priorSha256": "bce3485cfb7bc23793bfa738368c2d73bcf010ec5a3b098a639461e378b2ee09",
+              "bytesIdentical": true,
+              "maxAbsDecodedChange8bit": 0.0,
+              "meanAbsDecodedChange8bit": 0.0
+            },
+            "height": {
+              "newSha256": "c4bcb33a4074042eb9ac1428e92d7858078d7dcdf52d9bf731439b6bdea0c9c7",
+              "priorSha256": "be05c220184a170a1610f96b7501e789b051cd3cc0a9877e7d6ff8f3a7512c51",
+              "bytesIdentical": false,
+              "maxAbsDecodedChange8bit": 10.0,
+              "meanAbsDecodedChange8bit": 1.3245080312093098
+            },
+            "normalX": {
+              "newSha256": "dcb5ca26df6ff8965845bd498899c47f9ebdee6021b6ed4ea53febcdd978b66f",
+              "priorSha256": "9f3101046e26ec871eda1329679abad5eedb2050b37eebb6d2b47741738e3f10",
+              "bytesIdentical": false,
+              "maxAbsDecodedChange8bit": 10.0,
+              "meanAbsDecodedChange8bit": 1.344821612040202
+            },
+            "normalY": {
+              "newSha256": "528ef07b24b18555bf8330f69c22c57d52127069d57fd2845908a805acc1da4a",
+              "priorSha256": "7ba05b2f1e31a8d67b7132d9143d2afa0b5fbb479cf25c617c080c8f07d248d0",
+              "bytesIdentical": false,
+              "maxAbsDecodedChange8bit": 10.0,
+              "meanAbsDecodedChange8bit": 1.403586705525716
+            },
+            "normalZ": {
+              "newSha256": "cc0972a1b18adaa58e29eb601622c10e0f517672975f0229f2e02dd2369fe378",
+              "priorSha256": "ccefc587d4457f1a0b0b56c0345b650e1beccfe8c3be3fb019a7fc89f06ddb32",
+              "bytesIdentical": false,
+              "maxAbsDecodedChange8bit": 11.0,
+              "meanAbsDecodedChange8bit": 1.132428805033366
+            }
+          },
+          "gates": {
+            "materialAt1to1": {
+              "verdict": "PASS",
+              "observation": "Actual decoded dark russet sandstone remains recognisable: coherent granular pores, small chips and uneven matte stone faces at this full tier size. The colour bytes are unchanged; no new abstract grain or colour-compression injury is introduced."
+            },
+            "nativeHalfAndQuarter": {
+              "verdict": "PASS",
+              "comparisonDimensions": [
+                [
+                  64,
+                  64
+                ],
+                [
+                  32,
+                  32
+                ]
+              ],
+              "filter": "Pillow Resampling.BOX on BOTH original128 and actual decoded replacement; nearest4x display only",
+              "observation": "At64/32, both inputs reduced with BOX retain four courses, alternating staggered joints, relative block values and a dark warm russet palette. Native dark granular marks become plausible stone detail; fine mark-for-mark identity is not claimed."
+            },
+            "repeatAndFourCorners": {
+              "verdict": "PASS",
+              "observation": "Course joints continue through the Y wrap; X side partial blocks and alternating vertical-joint phases persist through four-tile corners. No added small edge bricks, perimeter frame or cross-course joint. Fresh height/XYZ seam/corner views preserve those relationships."
+            },
+            "freshDecodedHeightAndXYZ": {
+              "verdict": "PASS",
+              "observation": "New decoded lossless height retains low vertical and horizontal joint cores against both neighboring stone faces across sampled courses. Rough face relief remains inside the existing blocks; no invented raised motif or face/joint inversion appears. New XYZ keeps coherent joint shoulders and granular stone-face variation.",
+              "samples": {
+                "course1_vertical_joint": {
+                  "decodedRectPixels": [
+                    272,
+                    48,
+                    282,
+                    210
+                  ],
+                  "meanHeight": 0.023100944081336238,
+                  "medianHeight": 0.01568627450980392,
+                  "p10p90": [
+                    0.00392156862745098,
+                    0.050980392156862744
+                  ]
+                },
+                "course1_left_adjacent_stone": {
+                  "decodedRectPixels": [
+                    235,
+                    48,
+                    255,
+                    210
+                  ],
+                  "meanHeight": 0.5646623093681917,
+                  "medianHeight": 0.5803921568627451,
+                  "p10p90": [
+                    0.2627450980392157,
+                    0.8352941176470589
+                  ]
+                },
+                "course1_right_adjacent_stone": {
+                  "decodedRectPixels": [
+                    299,
+                    48,
+                    319,
+                    210
+                  ],
+                  "meanHeight": 0.4557492132655531,
+                  "medianHeight": 0.44313725490196076,
+                  "p10p90": [
+                    0.1803921568627451,
+                    0.7333333333333333
+                  ]
+                },
+                "course2_vertical_joint": {
+                  "decodedRectPixels": [
+                    389,
+                    295,
+                    401,
+                    465
+                  ],
+                  "meanHeight": 0.013819684736639751,
+                  "medianHeight": 0.00784313725490196,
+                  "p10p90": [
+                    0.0,
+                    0.03529411764705882
+                  ]
+                },
+                "course2_left_adjacent_stone": {
+                  "decodedRectPixels": [
+                    352,
+                    295,
+                    374,
+                    465
+                  ],
+                  "meanHeight": 0.5505609730523225,
+                  "medianHeight": 0.5568627450980392,
+                  "p10p90": [
+                    0.3568627450980392,
+                    0.7294117647058823
+                  ]
+                },
+                "course2_right_adjacent_stone": {
+                  "decodedRectPixels": [
+                    420,
+                    295,
+                    442,
+                    465
+                  ],
+                  "meanHeight": 0.3884439551221558,
+                  "medianHeight": 0.37254901960784315,
+                  "p10p90": [
+                    0.14901960784313725,
+                    0.6823529411764706
+                  ]
+                },
+                "row1_horizontal_joint": {
+                  "decodedRectPixels": [
+                    42,
+                    249,
+                    117,
+                    260
+                  ],
+                  "meanHeight": 0.062459893048128344,
+                  "medianHeight": 0.01568627450980392,
+                  "p10p90": [
+                    0.00392156862745098,
+                    0.21176470588235294
+                  ]
+                },
+                "row1_above_stone": {
+                  "decodedRectPixels": [
+                    42,
+                    218,
+                    117,
+                    236
+                  ],
+                  "meanHeight": 0.5057806826434277,
+                  "medianHeight": 0.592156862745098,
+                  "p10p90": [
+                    0.1290196078431373,
+                    0.8356862745098045
+                  ]
+                },
+                "row1_below_stone": {
+                  "decodedRectPixels": [
+                    42,
+                    278,
+                    117,
+                    296
+                  ],
+                  "meanHeight": 0.5647436456063907,
+                  "medianHeight": 0.5764705882352941,
+                  "p10p90": [
+                    0.33725490196078434,
+                    0.7725490196078432
+                  ]
+                },
+                "row2_horizontal_joint": {
+                  "decodedRectPixels": [
+                    570,
+                    505,
+                    620,
+                    518
+                  ],
+                  "meanHeight": 0.019167420814479634,
+                  "medianHeight": 0.00392156862745098,
+                  "p10p90": [
+                    0.0,
+                    0.050980392156862744
+                  ]
+                },
+                "row2_above_stone": {
+                  "decodedRectPixels": [
+                    570,
+                    475,
+                    620,
+                    490
+                  ],
+                  "meanHeight": 0.27060392156862745,
+                  "medianHeight": 0.23137254901960785,
+                  "p10p90": [
+                    0.09019607843137255,
+                    0.49019607843137253
+                  ]
+                },
+                "row2_below_stone": {
+                  "decodedRectPixels": [
+                    570,
+                    541,
+                    620,
+                    558
+                  ],
+                  "meanHeight": 0.27534025374855825,
+                  "medianHeight": 0.27058823529411763,
+                  "p10p90": [
+                    0.15294117647058825,
+                    0.403921568627451
+                  ]
+                }
+              }
+            },
+            "freshOpposedLighting": {
+              "verdict": "PASS",
+              "observation": "Viewed both decoded-XYZ neutral-grey light directions at exact tier dimensions and both actual diffuse lighting panels. Joint-side highlights reverse with light direction while joint cores remain recessed relative to rough stone faces. Relief has a strong directional surface response, but the combined material remains readable stone; the codec transition introduces no new band, block edge or material inversion. This is offline art review, not runtime shader acceptance."
+            }
+          },
+          "evidence": [
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/maya1_9-high-decoded-diffuse.png",
+              "sha256": "02d25a74bb51ec1330e1dc995bb339403ea0d34eff993f88a3efb9d11e0ece07"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/maya1_9-high-decoded-height.png",
+              "sha256": "86661c777f183267335114957689e804ed4697494bfaabeabe0223929e398bac"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/maya1_9-high-decoded-xyz.png",
+              "sha256": "5e1278825bcdd09f6fe8da964aa1aafa77a7c4dc75fbad78d0dd13c6c7ebcb27"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/maya1_9-high-decoded-grey-lights.png",
+              "sha256": "19f82b5682159740981b9a755abed3fa4708d7a274c3ed0987929ae2246c35df"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/maya1_9-high-boundary.png",
+              "sha256": "037808538c340784c3272e059baa5a6cbf315499f0c5afb6edde75144ffaf9a0"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/maya1_9-high-data-boundaries.png",
+              "sha256": "c417682227254eeac73ee74c5637481edf2793e2c537973c3f844b60154327a8"
+            },
+            {
+              "file": "docs/quake/textures/codec-transition-stones-art-diagnostics/maya1_9-distance.png",
+              "sha256": "cf2f090c41ee3c4e1c41aba8a08a4bf2f73f4c6ba68fbb030b0c83fd12e52193"
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/maya1_9-high-review.jpg",
+              "sha256": "5e39ea9bb065864d336c60dfbffb0b88aa1fe2706d68428e7b57484d7cbd4e5f"
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/maya1_9-high-relief.jpg",
+              "sha256": "a6baeb19522f9a3cd5eb1214831d07a6289d0db6d64c3aa8c9921aef3d05d0e9"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "retainedObservations": [
+    "church1 native-derived side-edge fracture/detail discontinuity remains visible at close range; no added joint or bevel was accepted to conceal it.",
+    "Data exports are exact to the intended8-bit channels per the separate public report; lossless codec does not remove scalar/normal channel quantization. Fresh decoded visual inspection above accepts this bounded affected output."
+  ],
+  "remainingBoundaries": [
+    "city8_2, rock3_2 and wwall1_1 remain ART-HOLD; this review neither inspects nor promotes them.",
+    "Other earlier HOLDs and all separate Hexen work remain outside this review.",
+    "Independent public pipeline/codec math verification is bound as a separate result; this reviewer did not rerun the complete public verifier.",
+    "No runtime pack selection, live engine/GPU appearance, owner acceptance, landing, CI, publication or release is asserted.",
+    "Two ordinary WORLD materials do not establish full Quake or official expansion8x coverage or qualify other native families."
+  ],
+  "nextOwner": "Root coordinator: combine bounded affected ART and exact public codec/source results, preserve all HOLDs, and keep runtime/owner/landing/CI/release gates separate."
+}

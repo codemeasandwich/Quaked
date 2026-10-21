@@ -1,0 +1,131 @@
+{
+  "verdict": "PASS bounded actual tiers math/codec/source binding checks",
+  "scope": "NativeLow unchanged; ten delivered map bytes independently reproduced via public fixture RGB/float/UV-normal/Q92 oracles, distance metrics recomputed with BOX on BOTHinputs; no artistic/runtimerelease acceptance",
+  "nativeProof": {
+    "file": "docs/quake/textures/parallel-020/city8_2/native-proof.json",
+    "sha256": "ff72a2a03944defe206bb9b3989b82dc640a15e43d89b42c91d318b258a102ea"
+  },
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/master.json",
+    "sha256": "aa7f749af729dea2d3f7789764bc884332ce26b7f1bb2af5afcae09ea0e0a7a1"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/manifest.json",
+    "sha256": "9a26cdee03418112c198888d0cb275f0f68b2e30b1c77f874580d27c6a61420e"
+  },
+  "oracle": {
+    "file": "tests/hexen2_texture_tiers_test.py",
+    "sha256": "ab93750f13369e4eee6335c7f90a43d2ea78276b5f9fe3300de3b546492ab766"
+  },
+  "verifier": {
+    "file": "docs/quake/textures/parallel-020/city8_2/verify-actual.py",
+    "sha256": "baaa80337b6a05ef582fe66aec9bad43882badbdeced1eac4e7e810577df36ef"
+  },
+  "tiers": [
+    {
+      "tier": "Mid",
+      "dimensions": [
+        256,
+        256
+      ],
+      "exactQ92M6IndependentRoleReplays": [
+        "diffuse",
+        "height",
+        "normalX",
+        "normalY",
+        "normalZ"
+      ],
+      "VP8Lossy": true,
+      "distanceChecks": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "meanAbsoluteError": 5.569661458333333,
+          "maximum": 32.0
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            16
+          ],
+          "meanAbsoluteError": 3.3333333333333335,
+          "maximum": 13.0
+        }
+      ],
+      "boundaries": {
+        "native": {
+          "xWrapMAE": 14.421875,
+          "yWrapMAE": 9.75,
+          "interiorXMAE": 2.12624591503268,
+          "interiorYMAE": 2.754575163398693
+        },
+        "diffuse": {
+          "xWrapMAE": 16.37890625,
+          "yWrapMAE": 16.5,
+          "interiorXMAE": 9.131285743464053,
+          "interiorYMAE": 11.350827205882354
+        }
+      },
+      "uvNormalMath": "independent cyclic_normals fixture oracle strength0.3 cap0.5 with UV scaling"
+    },
+    {
+      "tier": "High",
+      "dimensions": [
+        512,
+        512
+      ],
+      "exactQ92M6IndependentRoleReplays": [
+        "diffuse",
+        "height",
+        "normalX",
+        "normalY",
+        "normalZ"
+      ],
+      "VP8Lossy": true,
+      "distanceChecks": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "meanAbsoluteError": 5.4560546875,
+          "maximum": 32.0
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            16
+          ],
+          "meanAbsoluteError": 3.2864583333333335,
+          "maximum": 13.0
+        }
+      ],
+      "boundaries": {
+        "native": {
+          "xWrapMAE": 14.421875,
+          "yWrapMAE": 9.75,
+          "interiorXMAE": 1.0610424820613176,
+          "interiorYMAE": 1.3745923026744944
+        },
+        "diffuse": {
+          "xWrapMAE": 18.80859375,
+          "yWrapMAE": 18.994791666666668,
+          "interiorXMAE": 9.587868966079583,
+          "interiorYMAE": 10.882330907534246
+        }
+      },
+      "uvNormalMath": "independent cyclic_normals fixture oracle strength0.3 cap0.5 with UV scaling"
+    }
+  ],
+  "limits": [
+    "Same codec environment reproduces bytes; this is not broad codec portability proof.",
+    "Native source proof is bounded to current selected baseline PAK occurrences.",
+    "Material/art/tile-edge acceptance requires independent root review; no runtime/catalog/pack/Git release claims."
+  ]
+}

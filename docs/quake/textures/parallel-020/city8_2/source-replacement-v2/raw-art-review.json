@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T15:39:34.584658+00:00",
+  "verdict": "HOLD raw replacement artwork; no master or tiers authored",
+  "name": "city8_2",
+  "nativeIdentity": "712726be7f599dd7d1d755bcb3c7de16bd36fd19e2d619c6305f48979abce772",
+  "sourceOrdinal": 2,
+  "knownPriorRetainedSources": 1,
+  "newBuiltInCalls": 1,
+  "cumulativeKnownSources": 2,
+  "journal": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v2/selection.json",
+    "sha256": "960d23a3256fd095879d58e19e5ee2379ae3ab19cf72a78fc90ce11c5a283ec2"
+  },
+  "reviewedPrompt": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v2/prompts/city8_2-source-v2.txt",
+    "sha256": "42b39b1cea5f2f969dcbdf3b7dd3e06219274fece764d94bd2cf3f3851429dfd"
+  },
+  "independentPlanReview": {
+    "file": "docs/quake/textures/parallel-020/replacement-sources-v2-root-plan-review.json",
+    "sha256": "c8bd315664c5c685a65650cb01cd225f4ddd9f3ace8c17998cab8d1163ae732c"
+  },
+  "providerMode": "Built-in image_gen.imagegen, no API/CLI/model override",
+  "actualReturnedPath": "/Users/bri/.codex/generated_images/01a158ce-0cd2-79b3-9199-fe8de0b939ea/exec-e8e983eb-242f-4cf8-a3d5-a75c7d4ac55e.png",
+  "retainedRaw": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v2/generated/city8_2-source-v2.png",
+    "sha256": "44197dc413f3811cb0db7bf98ac794a2341f3de69871519a22b784270189ef04"
+  },
+  "actualDimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGB",
+  "adequateFor8x": true,
+  "materialQualityAccepted": false,
+  "material": {
+    "verdict": "HOLD",
+    "observation": "At1:1 the replacement has pervasive repeated curled, worm-like/etched strokes and bright glossy flecks across nearly every stone face. The previous source has more coherent natural worn-mineral pores; this return reads stylized/coated rather than restrained photographic stone. Pixel count and coarse block recognition do not accept those fine material cues.",
+    "diagnostics": [
+      "docs/quake/textures/parallel-020/city8_2/source-replacement-v2/raw-review/raw-detail-1to1.png",
+      "docs/quake/textures/parallel-020/city8_2/source-replacement-v2/raw-review/old-detail-1to1.png"
+    ]
+  },
+  "nativeFormsPalette": {
+    "observation": "Small staggered courses and overall stone silhouette layout remain broadly close to the oldsource/native. The new source is visibly brighter/greener in both32and16BOX views. No numerical threshold is used as art acceptance; source finishing could address coarse palette but cannot supply missing natural material or geometric continuity.",
+    "comparisons": [
+      {
+        "divisor": 2,
+        "dimensions": [
+          32,
+          32
+        ],
+        "nativeReplacementMAE": 19.172526041666668
+      },
+      {
+        "divisor": 4,
+        "dimensions": [
+          16,
+          16
+        ],
+        "nativeReplacementMAE": 18.774739583333332
+      }
+    ],
+    "diagnostic": "docs/quake/textures/parallel-020/city8_2/source-replacement-v2/raw-review/raw-half-quarter.png"
+  },
+  "repeatGeometry": {
+    "verdict": "HOLD",
+    "observation": "The128pixel raw Xstrip still shows stone/mineral/moss detail ending incompatibly at the original right|leftsplice. Rolled corners expose the same straight material break. Correct average colour or retained coarse course count does not continue the missing physical feature geometry. The Ystrip retains recognizable course structure but does not clear the Xfinding.",
+    "diagnostics": [
+      "docs/quake/textures/parallel-020/city8_2/source-replacement-v2/raw-review/raw-x-join.png",
+      "docs/quake/textures/parallel-020/city8_2/source-replacement-v2/raw-review/raw-y-join.png",
+      "docs/quake/textures/parallel-020/city8_2/source-replacement-v2/raw-review/raw-rolled-corners.png"
+    ]
+  },
+  "executionReceipt": {
+    "functionsExecCell": "125",
+    "journalIssueSucceeded": true,
+    "exactBuiltInReturnRecovered": true,
+    "duplicateCallMade": false,
+    "postProcessingCorrection": "The first path-extraction loop scanned the large base64 image payload and delayed result handling. Stored returned metadata revealed the exact file; the same cell then completed. No provider failure was inferred and no request was repeated.",
+    "defaultReturnedFilePreserved": true,
+    "retainedCopyByteExact": true
+  },
+  "newMasterPackages": 0,
+  "newTierFiles": 0,
+  "catalogWrites": 0,
+  "GitWrites": 0,
+  "HexenWrites": 0,
+  "oneCanonicalMasterRule": "No replacement canonical package activated. Historical source/master/Xtrial and new rejected source remain retained evidence; coordinator alone decides any future active package after independent acceptance.",
+  "nextOwner": "Root Quake coordinator",
+  "nextAction": "Retain rawART-HOLD and failedgenerationhistory; independent root review of the actualraw may confirm or challenge the finding. No extra call or another repair/finisher is authorized in this bounded lane.",
+  "limits": [
+    "Raw-only artwork finding; no new scalar relief, Mid/High, codec/browser/GPU/runtime/owner/release acceptance.",
+    "Provider model identity is not exposed by this built-in result; no unsupported model claim is made."
+  ]
+}

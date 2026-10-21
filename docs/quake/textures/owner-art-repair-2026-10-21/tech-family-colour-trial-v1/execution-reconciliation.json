@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-21T07:55:53.060972+00:00",
+  "author": "/root",
+  "scope": "Uninstalled legacy4x colour-only trial; no geometry/phase/height changes, no8x qualification.",
+  "independentPretrialPlan": {
+    "file": "docs/quake/textures/owner-art-repair-2026-10-21/minimal-tool-review/screenshot-source-audit.json",
+    "sha256": "3c0d2fa09e603d71a4e862d805a0d04e3cb3b892e4c6ef690771e8658fc1e779"
+  },
+  "settings": {
+    "factor": 4,
+    "method": "photographic",
+    "comparison_divisor": 2,
+    "color_strength": 0.35,
+    "field_sigma": 1.5,
+    "edge_anchor": false,
+    "vertical_landmarks": null
+  },
+  "materials": [
+    {
+      "name": "tech08_1",
+      "native": {
+        "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech08_1.png",
+        "sha256": "105b216a96145f29e3c392002ffe2d5c553b953ffe6f4019dc42bb87a4bfd8fc",
+        "dimensions": [
+          128,
+          128
+        ]
+      },
+      "source": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech08_1-4x-diffuse.png",
+        "sha256": "696a677dfab3b5bdfed1806bde624ff8a86a06363a7900833fb4939328c89fdc",
+        "dimensions": [
+          512,
+          512
+        ],
+        "matchesPinnedHash": true
+      },
+      "installed": {
+        "file": "assets/game/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-diffuse.webp",
+        "sha256": "57e96b1311e8b7192dc6cd6ec2d0235544335e5ce5167e75f0ae33d9fac7595b",
+        "dimensions": [
+          512,
+          512
+        ],
+        "matchesPinnedHash": true
+      },
+      "candidate": {
+        "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech08_1-colour.png",
+        "sha256": "f8db1118d6219f7c26e5d21d0ded4bc3d5ceab050aef0cffde33801a90d2fdd7"
+      }
+    },
+    {
+      "name": "tech09_3",
+      "native": {
+        "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech09_3.png",
+        "sha256": "e7984eba6e501d50bc65d8202176791584622de2ca4764184ccc95baf559464e",
+        "dimensions": [
+          128,
+          128
+        ]
+      },
+      "source": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech09_3-4x-diffuse.png",
+        "sha256": "e0732b888f072d0dbe19717b1a0ffb8d4daa9e103b66fe0a12b7ff26056aafbe",
+        "dimensions": [
+          512,
+          512
+        ],
+        "matchesPinnedHash": true
+      },
+      "installed": {
+        "file": "assets/game/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-diffuse.webp",
+        "sha256": "6e09150d3ecf0bbf52dad75225b910a3417d2ef42fd93ac9c4808a1361c147f8",
+        "dimensions": [
+          512,
+          512
+        ],
+        "matchesPinnedHash": true
+      },
+      "candidate": {
+        "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech09_3-colour.png",
+        "sha256": "d80cd31266547ce902eacf1d1f2750bb0d39c3678b21c0094219a1622a7b2ad0"
+      }
+    }
+  ],
+  "protectedCurrentHashes": [
+    {
+      "file": "assets/game/textures/index.json",
+      "sha256": "4bdc95a3a622fbb0ba71afb6aacde1d0504bfe3c4282b91e8dc2be872eb85faa"
+    },
+    {
+      "file": "assets/game/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-diffuse.webp",
+      "sha256": "57e96b1311e8b7192dc6cd6ec2d0235544335e5ce5167e75f0ae33d9fac7595b"
+    },
+    {
+      "file": "assets/game/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-height.webp",
+      "sha256": "bf00c93c581cce7a194699d9551830c6556e5a871e3668c2861790e4e7f73672"
+    },
+    {
+      "file": "assets/game/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-diffuse.webp",
+      "sha256": "6e09150d3ecf0bbf52dad75225b910a3417d2ef42fd93ac9c4808a1361c147f8"
+    },
+    {
+      "file": "assets/game/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-height.webp",
+      "sha256": "f5d65e5e9e95bc9d0bb44e6775b29a26d0967795f01200a631897fb392d83918"
+    }
+  ],
+  "executionFailurePreserved": "Initial metadata preparation used PATH python3 withoutPIL and failed at import before any metadata write. Subsequent two separately specified /usr/bin/python3 existing-finisher commands completed once and emitted exact receipts. This record reconciles them after completion; no claim that a pre-call plan file was sealed. Independent planning and root command intent preceded execution. No model call was made.",
+  "sourceCustody": "Retained512 lossless intermediates came from surviving768 lossy owner crops. No claim recovered pristine original atlas.",
+  "actualCLIs": "Existing unmodified finish_official_texture.py, one invocation per material, exact parameters in each emitted JSON. No overwrite or hidden retry.",
+  "next": "Inspect actual joins and BOXviews independently; colour improvement cannot close spatial alignment defects. Current runtime and height stay untouched."
+}

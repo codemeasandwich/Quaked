@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T16:11:03.252158+00:00",
+  "texture": "rock3_2",
+  "nativeIdentity": "70fdd089e566c1cf477b4d1a484c1ab8aea7b29952ec1c01d289b7da7af60f23",
+  "verdict": "HOLD_SEAM_EDIT_COMPOSITE_BEFORE_MASTER",
+  "scope": "One explicitly approved built-in contextual image edit and one deterministic source-bound composite only. No canonical master or tier qualification.",
+  "execution": {
+    "imagegenCallsThisRequest": 1,
+    "imagegenCallOrdinal": 3,
+    "historicalKnownCalls": 2,
+    "cumulativeKnownImagegenCallCount": 3,
+    "state": "Completed and exact returned PNG retained; no unresolved handle or retry.",
+    "authoritativeToolCompletion": "functions exec Script completed after45.0seconds with one displayed image and exact saved PNG path.",
+    "returnedPath": "/Users/bri/.codex/generated_images/01a15911-2e97-71c0-958a-f42a2ea7664b/exec-12ca49b0-8f93-4f7f-a89e-1a40607e8b82.png",
+    "rawEdit": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/seam-edit-v1/generated/rock3_2-rolled-edit-v1.png",
+      "sha256": "d3a5dfa88ea08e1b51f02c9a4d4cd3a714bb8078242d0075299e6a9a17d63b15"
+    },
+    "actualDimensions": [
+      1254,
+      1254
+    ],
+    "actualMode": "opaque RGB PNG; no alpha",
+    "journal": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/seam-edit-v1/selection.json",
+      "sha256": "cab4ee17ece9e44742a61b6e98cb777d6029d2c8bb5623fbdf6ebcb57c39d6bb"
+    }
+  },
+  "rootApproval": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/root-plan-review.json",
+    "sha256": "4a10b0378abdd82ec899c69cad3548501d05165997655b70eada84753f624602"
+  },
+  "exactPrompt": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/prompt.txt",
+    "sha256": "1007a864e13c71204adaf60ff7aa584fe2fd10b63800f2f73a9fad005494423d"
+  },
+  "boundRecipe": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/recipe-proposal.json",
+    "sha256": "02aea5221eb4b086ea958d9851fd5a78555d29d173fb1356ab2b7817a26cf464"
+  },
+  "compositor": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/compose-approved-v1.py",
+    "sha256": "602fe548560bb5fa992db8903450744920c491c3be5228488849b369034b6b4a"
+  },
+  "compositeLineage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/seam-edit-v1/source/composite-lineage.json",
+    "sha256": "d0bdabf85f65db7a0d053329d515fe5811c350f2372a8bb4234cb86f17031be7"
+  },
+  "compositeSource": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/seam-edit-v1/source/rock3_2-seam-composite-v1.png",
+    "sha256": "6167475c2a2f6ce9e9e921bacfc1f85b5f8705d452a41206b5ed586d1bae3845"
+  },
+  "parentSource": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/replacement-source-v2/generated/rock3_2-source-v2.png",
+    "sha256": "fee762afcc1819aca412df1c97013a4d00bb4e491088f3d6c3c4a02a0a07f64d"
+  },
+  "pixelCustody": {
+    "verdict": "PASS local source-composition assertions; independent root reconstruction separate",
+    "outsideOriginalMiddleColumns": [
+      128,
+      1126
+    ],
+    "outsideOriginalPixelsByteExact": true,
+    "rolledCoreColumns": [
+      523,
+      731
+    ],
+    "coreEqualsReturnedEdit": true,
+    "inverseRollExact": true,
+    "changedSourcePixelCount": 312030,
+    "sourceResampling": false,
+    "originalDimensionsRetained": true,
+    "floatAlpha": "exact approved texel-centre smoothstep formula,24sourcepixel feather; no quantized-mask substitution",
+    "allWatchedInputsUnchanged": true
+  },
+  "actualVisualReview": {
+    "material": {
+      "verdict": "HOLD",
+      "observation": "The retained source outside the support remains recognisable weathered layered mineral stone. The new full-weight repair band has conspicuous wrinkled/worm-like drawn ridges and repeated curls rather than the parent fractured mineral faces. It reads as a different synthetic surface, including in the actual finalXwrap. Clear stone material is required; exact pixel preservation elsewhere cannot accept this band."
+    },
+    "transitionBands": {
+      "verdict": "HOLD",
+      "observation": "At both fixed feather transitions, photographic mineral detail meets the drawn repair surface. Some ledges/mineral outlines appear doubled or smeared through the24pixel blend. Feathering has not supplied compatible physical geometry; no band-width or strength tuning was attempted."
+    },
+    "nativeHalfQuarter": {
+      "verdict": "PASS representativeness only",
+      "observation": "Native64and actualcomposite1254 were BOTH BOX reduced to32and16, with nearest8x display only. Warm subdued brown values, seven broad uneven horizontal strata and longledge scale remain broadly representative. This does not overrule the close material and transition failures.",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          16,
+          16
+        ]
+      ],
+      "filter": "Pillow Resampling.BOX on BOTH actualinputs"
+    },
+    "XRepeatYAndCorners": {
+      "verdict": "HOLD",
+      "observation": "Viewed full1254composite, exactXandY strips, four-tile cornercross and full2x2repeat. FinalXedges come from the editedcentre as planned, but the visible repair has a different drawn surface and local ledge transitions remain implausible. The cornercross reveals the same different material above/below the intentionalYstratum. No automaticYcontinuity or physically recessed joint acceptance is claimed.",
+      "nativePhase": "Inverse roll preserves original phase; no enhancedUV shift."
+    }
+  },
+  "decisiveViews": [
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-result/source-x-join.png",
+      "sha256": "7aadbc06449538f1c4dc403e2aa7e7af65c8d92866eb0d28cb1e6e2213a78072"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-result/repair-and-both-transitions.png",
+      "sha256": "7af53ab5d59d9fef4e119b5d0398e3e86f20d2f1728fcae585ed83242d128b1e"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-result/source-y-join.png",
+      "sha256": "518ec5bbef1c46b72fd7b5bc2e80c5728bee2cfd5d5674c6aaa52a3b597f1829"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-result/source-four-corners.png",
+      "sha256": "87e5321a273751ada1a7aee2976284353ad09b6b4527e49d918376a917482838"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-result/source-repeat2x2.png",
+      "sha256": "155eb4a9322433652dd5fae4f149369f6776da36452934806522a982226491ce"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-result/rolled-composite.png",
+      "sha256": "c9353dcb297a17aae00ba38782ef1d8ca146ac71939a556a070ac656defa3569"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-result/native-composite-box-both.png",
+      "sha256": "ef0f0ea867907e1889798cd4409db719276cd055e55a541621be35a9693e1674"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-result/native-box-32.png",
+      "sha256": "3e826c7e053d65059a81810197be14f3b3c545c3a41e59cf27fa805740326d0a"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-result/composite-box-32.png",
+      "sha256": "0043ec8b41a4c85a7672326ff30dca5b8c720387ecc8bc781de1881a7e9adf03"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-result/native-box-16.png",
+      "sha256": "e598ea67bf632536974bcacf19841116481ddd038cae815adf90354f94b0c9ec"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-result/composite-box-16.png",
+      "sha256": "4c14da3645819518fa61ba103d7e56d9b8c4c296c58259cdccc9090237e5d4ad"
+    }
+  ],
+  "stop": {
+    "masterPrepared": false,
+    "floatReliefAuthored": false,
+    "tiersExported": false,
+    "furtherCallIssued": false,
+    "metadataRelabeling": false,
+    "reason": "Actual source material/transition failure is decisive before any canonical authoring. Existingprepare was not fed the composite as an untouched raw/count1 source."
+  },
+  "remainingBoundaries": [
+    "Root independent array reconstruction and final art decision are separate.",
+    "No master/source replay, data codec, webGPU/runtime, catalog, owner, Git/CI or release acceptance.",
+    "All olderraws, sourcefailures and oneXtrial retained. Currentoneedit/composite authority exhausted; no extra call, tuning, API/CLI/provider switch, numericalframework, Git/catalog/Hexen or desktopbuild."
+  ],
+  "nextOwner": "Root coordinator: independently inspect retained edit/composite material and transitions, reconstruct arrays, and keep HOLD unless a further concrete owner-authorized authoring decision exists."
+}

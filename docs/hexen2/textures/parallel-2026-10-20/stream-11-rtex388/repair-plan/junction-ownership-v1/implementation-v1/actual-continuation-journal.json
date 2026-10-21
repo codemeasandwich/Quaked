@@ -1,0 +1,18 @@
+{
+  "state": "FAILED_OR_UNRESOLVED_NO_RETRY_ART_F1_HOLD",
+  "previousStates": 844800,
+  "additionalReserved": 8725,
+  "maximumCumulativeStates": 853525,
+  "globalLimit": 1000000,
+  "automaticRetry": false,
+  "parentJournalSha256": "2edeb522da651a828ee4cd19159cde7ec846c01daa003b5df5f4c166e146cd2a",
+  "parentResultSha256": "c73841bfaa46f963cff1afce06e877baabbd8656eba96cabd2d142f7ca70877e",
+  "rootCodeFixtureApproval": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/root-code-fixture-review-v1.json",
+  "rootCodeFixtureApprovalSha256": "8dac52057aceda7144c8b9381d05b8720105ebeacd81972e1a589123490f1eb0",
+  "knownChargedAdditionalStates": 8725,
+  "error": "GuardError('Overlapping incoming caps')",
+  "partialFailureEvidence": {
+    "directory": "/Users/bri/SOURCE/Quaked/docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/actual-failure-v1",
+    "sha256": "8ec1a04118a20f02787fbafa8db6546eac8bd150f9a19599b893e1d13622aee9"
+  }
+}

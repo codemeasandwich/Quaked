@@ -1,0 +1,5 @@
+{
+  "initialError": "Verifier expected normalizedreceipt.bootstrap.purpose; actual receipt binds originalbootstrapfile/hash andcontrols, omits purpose. No source/build/commit failure.",
+  "correction": "Read exact original bootstrap bytes, require purpose reference-relocation and hash equality with both intent and realhookreceipt; all17exit0 and actualcommitparent/tree/index verified.",
+  "weakenedChecks": false
+}

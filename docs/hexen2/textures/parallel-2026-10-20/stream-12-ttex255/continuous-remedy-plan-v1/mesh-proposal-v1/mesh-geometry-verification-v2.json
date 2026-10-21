@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS author geometry/topology/source-footprint checks ONLY; independent physical design review remains",
+  "mesh": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/mesh-proposal-v1/pilot-mesh-v2.json",
+    "sha256": "c42fd8971689e230c18e221a918cbd2274ea7a846ea491c04254c33340c91e6f"
+  },
+  "sourceWireframe": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/mesh-proposal-v1/source-mesh-wire-overlay-v2-1to1.png",
+    "sha256": "7d5e824365f8d03ac0a9289906e4171a76a3be5e8a0d06dab646dcdf0f51e0db"
+  },
+  "vertices": 95,
+  "triangles": 110,
+  "sourceFootprintArea": 29644.5,
+  "summedTriangleArea": 29644.5,
+  "areaDifference": 0.0,
+  "positiveAreas": true,
+  "manifoldEdges": true,
+  "oneConnectedDiskNoHoles": true,
+  "exactSourceBoundarySubsegmentsAndPerimeter": true,
+  "properEdgeCrossings": 0,
+  "unsharedTJunctions": 0,
+  "pixelCentresChecked": 75023,
+  "pixelFootprintMatchesSourcePolygonExactly": true,
+  "sharedEdgeTieSamples": 18,
+  "sharedCreaseSubsegments": [
+    {
+      "crease": "C12",
+      "vertices": [
+        73,
+        78
+      ],
+      "incidentSourceZones": [
+        1,
+        2
+      ]
+    },
+    {
+      "crease": "C12",
+      "vertices": [
+        72,
+        78
+      ],
+      "incidentSourceZones": [
+        1,
+        2
+      ]
+    },
+    {
+      "crease": "C23",
+      "vertices": [
+        75,
+        79
+      ],
+      "incidentSourceZones": [
+        2,
+        3
+      ]
+    },
+    {
+      "crease": "C23",
+      "vertices": [
+        74,
+        80
+      ],
+      "incidentSourceZones": [
+        2,
+        3
+      ]
+    },
+    {
+      "crease": "C23",
+      "vertices": [
+        79,
+        80
+      ],
+      "incidentSourceZones": [
+        2,
+        3
+      ]
+    },
+    {
+      "crease": "C34",
+      "vertices": [
+        77,
+        82
+      ],
+      "incidentSourceZones": [
+        3,
+        4
+      ]
+    },
+    {
+      "crease": "C34",
+      "vertices": [
+        81,
+        82
+      ],
+      "incidentSourceZones": [
+        3,
+        4
+      ]
+    },
+    {
+      "crease": "C34",
+      "vertices": [
+        76,
+        81
+      ],
+      "incidentSourceZones": [
+        3,
+        4
+      ]
+    }
+  ],
+  "allVerticesAnchorsAndCreasesUnchangedFromV1": true,
+  "maximumProposedRise": 0.24,
+  "minimumProposedRise": 0.0,
+  "allContactAnchorTriangles": {
+    "count": 35,
+    "area": 2811.457320574163,
+    "areaFraction": 0.09483908720248825,
+    "maximumCentroidDistanceFromContact": 13.049052754042265,
+    "meaning": "Retained geometry-only support uncertainty, not a physical PASS. Any flat mineral interior or spurious interpolation ridge must fail the later actual pilot."
+  },
+  "noScalarHeightOrNormalFieldEvaluated": true,
+  "verificationScript": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/mesh-proposal-v1/verify-pilot-mesh-geometry.py",
+    "sha256": "05e3a3ee74ff42a96968db79575b77f10abc2deae7cf044b7754800a535b4d4a"
+  }
+}

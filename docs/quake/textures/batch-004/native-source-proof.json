@@ -1,0 +1,440 @@
+{
+  "verdict": "PASS within selected2native intake only",
+  "createdAt": "2026-10-20T21:44:12.010754+00:00",
+  "scope": "Actual unchanged palette/indexed/RGBA/all4mips/texinfoflags andeffectivePAKprovenance for wood3_6,woodflr1_5. Existing weak inventory locates occurrences; actual bytes determine newstrong IDs. Extra map rows retained separately byscope. No generation or artwork qualification.",
+  "reader": {
+    "file": "docs/quake/textures/batch-001-native-source-proof.py",
+    "sha256": "176156d71d427c4ea743a80cc55fa5e00326b08982601c3715a30c4458c94893"
+  },
+  "driver": {
+    "file": "docs/quake/textures/batch-004/extract-native-sources.py",
+    "sha256": "d9098b941e77bd49bfcb52fb8fda731909176f2ebf52624048f1ec97cab398a2"
+  },
+  "inventory": {
+    "file": "docs/evidence/quake-textures-2026-10-20/legacy-baseline/inventory.json",
+    "sha256": "3e6c650ae22431858af0294989941e6cd7068dfa45d2111a8f637b9c1c9af00e"
+  },
+  "packs": [
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Quake/pak0.pak",
+      "bytes": 179618935,
+      "sha256": "9de6f83944011ae4647beef1966ca4fbf490b35baf1f333097a0d363116ebea0",
+      "directoryOffset": 179550391,
+      "directoryBytes": 68544,
+      "directorySha256": "12ff750ce910f4c340f99a79a806504a4eb5d1c32baaca1164a9400936b4cbc4",
+      "memberCount": 1071
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+      "resolvedPath": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+      "bytes": 18689235,
+      "sha256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af",
+      "directoryOffset": 18254423,
+      "directoryBytes": 21696,
+      "directorySha256": "17c53db207fda90e6f7d2a8ce0c0c2682d19602d21402f17ca18ecaf865835d5",
+      "memberCount": 339
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Dissolution of Eternity/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+      "bytes": 44484697,
+      "sha256": "6ff24b3857303f3c38aa091461cac9fe8c740554c6e693ef8a37a91ad930182f",
+      "directoryOffset": 44474329,
+      "directoryBytes": 10368,
+      "directorySha256": "d0bbbe99499245d132b469b74cc90a1cb37dc0eeaf4c1d5d1b32871ea36fbed9",
+      "memberCount": 162
+    }
+  ],
+  "materials": [
+    {
+      "name": "wood3_6",
+      "nativeIdentity": "2313e68258ba0197b1b1d1423bc1c2880b4cd5ea2ac4ca8e6d5f2a558f702ed6",
+      "identity": {
+        "name": "wood3_6",
+        "dimensions": [
+          64,
+          64
+        ],
+        "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+        "indexedSha256": "579924b30d7e558b886c3287605decd6e1660279bf45ed8072e83a3e4fc96c64",
+        "rgbaSha256": "a1b438153e077cd4f95b4df691e5d09bb86ac0d32d582c5722d73bad76d03e0b",
+        "mipIndexedSha256": [
+          "579924b30d7e558b886c3287605decd6e1660279bf45ed8072e83a3e4fc96c64",
+          "348a3d82ef2d84418dcc2b38e9a352f0466a3dbae3b48a392e6625b16b1104f4",
+          "9575e7629a410a773680d752b11be883cbdd0adde22ebcbcdecb063ec5ce0bca",
+          "6dcb80786eafcf7d6df879959a6794d839df65fff9e46e6f7fbbe0246c5de881"
+        ],
+        "materialFlags": [
+          0
+        ],
+        "nativeSemantics": {
+          "family": "ordinary-world",
+          "alphaIndex255": false,
+          "fullbrightStart": 224,
+          "fullbrightMaskSha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        }
+      },
+      "otherNativeIdentities": [],
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/originals/native-wood3_6.png",
+      "originalSha256": "0ad3fb6191a9f3e1e9eb3292c60490ab9159fc4c44ef90ad14571b4e838ee6d6",
+      "legacyStatus": "missing",
+      "legacyAction": "generate",
+      "uses": [
+        {
+          "game": "rogue",
+          "scope": "campaign-or-multiplayer",
+          "map": "maps/r2m4.bsp",
+          "slot": 15,
+          "nativeIdentity": "2313e68258ba0197b1b1d1423bc1c2880b4cd5ea2ac4ca8e6d5f2a558f702ed6",
+          "bspSha256": "bb93b5b7b99519a3305ecc39a53d285d1e9bfb31e7af6aef138725c6568d86d5",
+          "mapMember": {
+            "name": "maps/r2m4.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Dissolution of Eternity/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "offset": 20304691,
+            "bytes": 2166736
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/Dissolution of Eternity/pak0.pak"
+          ],
+          "name": "wood3_6",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "579924b30d7e558b886c3287605decd6e1660279bf45ed8072e83a3e4fc96c64"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "348a3d82ef2d84418dcc2b38e9a352f0466a3dbae3b48a392e6625b16b1104f4"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "9575e7629a410a773680d752b11be883cbdd0adde22ebcbcdecb063ec5ce0bca"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "6dcb80786eafcf7d6df879959a6794d839df65fff9e46e6f7fbbe0246c5de881"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 52,
+              "flags": 0,
+              "vectorsSha256": "aeed388c015d823196bbef6603537bcf5eda7ae2ba6198db2cb41f4d09ada301"
+            },
+            {
+              "index": 53,
+              "flags": 0,
+              "vectorsSha256": "ad74493665c7a4560773026d9514c61448b44e460e2ad0c97aaffbcc99a77642"
+            },
+            {
+              "index": 54,
+              "flags": 0,
+              "vectorsSha256": "7388c43dc9c36c74915b23220876410ecc7e01626e16c6250e456a7d7b68afa2"
+            },
+            {
+              "index": 55,
+              "flags": 0,
+              "vectorsSha256": "f6638e41795887db4205bb3a8b6206096884e2ad2512144729ba9b22176c4b9c"
+            },
+            {
+              "index": 56,
+              "flags": 0,
+              "vectorsSha256": "9a59fd34e2071a2925f4f5196f7a2b03a2cd2eb88b585c39366d890a2fd129df"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 94
+            }
+          ],
+          "directFaces": 94,
+          "bspVersion": 29
+        }
+      ],
+      "profile": "wood",
+      "status": "Native source PASS only; no generation/master/tier/material acceptance"
+    },
+    {
+      "name": "woodflr1_5",
+      "nativeIdentity": "0bada3070362f749c548267124f282329dfc7c693b75a4416e51dc4a9fa59243",
+      "identity": {
+        "name": "woodflr1_5",
+        "dimensions": [
+          64,
+          64
+        ],
+        "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+        "indexedSha256": "8e5096e5b5228b88d2fb0bad27e4eff377ea04ab64ebfe4992276af23f8b34d0",
+        "rgbaSha256": "d3a153651e03450bbbe5d733ace7ad23f8a19772c09984b6c83e2aaad310a0a2",
+        "mipIndexedSha256": [
+          "8e5096e5b5228b88d2fb0bad27e4eff377ea04ab64ebfe4992276af23f8b34d0",
+          "0fbb2c15c0a73eaf8962ae30eb57011c58a135ebdb8087b618691007a5361333",
+          "7207b70607597b8e4002b32f1ad06981a36f324e2a44c520746d29e61d494eb0",
+          "ed70c774e7602c6fb0387bff5264b777b8813f4359e5f23338eb6acb1d0db333"
+        ],
+        "materialFlags": [
+          0
+        ],
+        "nativeSemantics": {
+          "family": "ordinary-world",
+          "alphaIndex255": false,
+          "fullbrightStart": 224,
+          "fullbrightMaskSha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        }
+      },
+      "otherNativeIdentities": [],
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/originals/native-woodflr1_5.png",
+      "originalSha256": "4fa88d699adab24301546c3be81738f0eb9356a5ee57eb7e906dca931b220e8e",
+      "legacyStatus": "missing",
+      "legacyAction": "generate",
+      "uses": [
+        {
+          "game": "id1",
+          "scope": "campaign-or-multiplayer",
+          "map": "maps/e4m5.bsp",
+          "slot": 8,
+          "nativeIdentity": "0bada3070362f749c548267124f282329dfc7c693b75a4416e51dc4a9fa59243",
+          "bspSha256": "253c4e4081bbbb9e4c8f1ffebe9cdd2aff1a5e292cb0804ae19d1f7f34acbba3",
+          "mapMember": {
+            "name": "maps/e4m5.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Quake/pak0.pak",
+            "offset": 111192335,
+            "bytes": 1323920
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak"
+          ],
+          "name": "woodflr1_5",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "8e5096e5b5228b88d2fb0bad27e4eff377ea04ab64ebfe4992276af23f8b34d0"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "0fbb2c15c0a73eaf8962ae30eb57011c58a135ebdb8087b618691007a5361333"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "7207b70607597b8e4002b32f1ad06981a36f324e2a44c520746d29e61d494eb0"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "ed70c774e7602c6fb0387bff5264b777b8813f4359e5f23338eb6acb1d0db333"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 49,
+              "flags": 0,
+              "vectorsSha256": "7388c43dc9c36c74915b23220876410ecc7e01626e16c6250e456a7d7b68afa2"
+            },
+            {
+              "index": 60,
+              "flags": 0,
+              "vectorsSha256": "ad74493665c7a4560773026d9514c61448b44e460e2ad0c97aaffbcc99a77642"
+            },
+            {
+              "index": 70,
+              "flags": 0,
+              "vectorsSha256": "aeed388c015d823196bbef6603537bcf5eda7ae2ba6198db2cb41f4d09ada301"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 231
+            }
+          ],
+          "directFaces": 231,
+          "bspVersion": 29
+        },
+        {
+          "game": "rogue",
+          "scope": "campaign-or-multiplayer",
+          "map": "maps/r1m5.bsp",
+          "slot": 14,
+          "nativeIdentity": "0bada3070362f749c548267124f282329dfc7c693b75a4416e51dc4a9fa59243",
+          "bspSha256": "4857b69c857d25246d7a33a063868fbdd7d67cc847fc32f7b8b50ae370e60257",
+          "mapMember": {
+            "name": "maps/r1m5.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Dissolution of Eternity/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "offset": 9657203,
+            "bytes": 2130424
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/Dissolution of Eternity/pak0.pak"
+          ],
+          "name": "woodflr1_5",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "8e5096e5b5228b88d2fb0bad27e4eff377ea04ab64ebfe4992276af23f8b34d0"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "0fbb2c15c0a73eaf8962ae30eb57011c58a135ebdb8087b618691007a5361333"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "7207b70607597b8e4002b32f1ad06981a36f324e2a44c520746d29e61d494eb0"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "ed70c774e7602c6fb0387bff5264b777b8813f4359e5f23338eb6acb1d0db333"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 51,
+              "flags": 0,
+              "vectorsSha256": "aeed388c015d823196bbef6603537bcf5eda7ae2ba6198db2cb41f4d09ada301"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 13
+            }
+          ],
+          "directFaces": 13,
+          "bspVersion": 29
+        }
+      ],
+      "profile": "wood",
+      "status": "Native source PASS only; no generation/master/tier/material acceptance"
+    }
+  ]
+}

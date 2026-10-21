@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 1,
+  "recordType": "Independent repaired wood3_6 source/attachment and both-tier mathematical proof",
+  "reviewer": "/root/quake_checkpoint_review independent from root repair/master author",
+  "startedAt": "2026-10-21T00:04:45.180782+00:00",
+  "verdict": "PASS_BOUNDED_ALIGNED_SOURCE_PREPARE_ATTACHMENT_AND_BOTH_TIERS_MATH",
+  "publicPrepareReplay": {
+    "command": [
+      "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+      "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "--original",
+      "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/originals/native-wood3_6.png",
+      "--generated",
+      "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/source-aligned-v1/registered-source.png",
+      "--prompt",
+      "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/prompts/wood3_6-source-v1.txt",
+      "--landmarks",
+      "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/source-aligned-v1/x-landmarks.json",
+      "--name",
+      "wood3_6",
+      "--edition",
+      "rogue",
+      "--profile",
+      "wood",
+      "--color-strength",
+      "0.65",
+      "--field-sigma",
+      "0.75",
+      "--strength",
+      "0.3",
+      "--cap",
+      "0.5",
+      "--output",
+      "/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/wood36-aligned-prepare-public-m9_wfidw/master"
+    ],
+    "returnCode": 0,
+    "stdout": "{\"master\": \"/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/wood36-aligned-prepare-public-m9_wfidw/master/master.json\", \"dimensions\": [512, 512]}\n",
+    "stderr": "",
+    "exactRGBPNG": true,
+    "exactFloatNPY": true,
+    "exactOriginalPrepareReceipt": true
+  },
+  "candidateBatch": {
+    "file": "docs/quake/textures/batch-004/wood3_6/candidate-aligned-v1-batch.json",
+    "sha256": "9340eb7995fbd1686d4dcf54a31e184c23a91f3ebe056ce68db3e720b03562db"
+  },
+  "sourceComposition": {
+    "exactPNGBytes": true,
+    "allForwardPixelsExact": true,
+    "outsideCutExact": true,
+    "inverseAllPixelsExact": true,
+    "newSourcePixelsOrInterpolation": 0,
+    "rawCallCount": 1,
+    "landmarksExact": true,
+    "permutationLimit": "Exact-pixel guarantee applies only before photographic finishing/X resampling."
+  },
+  "metadataAttachment": {
+    "exactReconstruction": true,
+    "originalPrepareReceipt": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master-aligned-v1/original-prepare-receipt.json",
+      "sha256": "c7394c160845bc7b76956056db7660e18397afb2d87d1194712414928b56fd91"
+    },
+    "changedOnly": "Declared generatorPolicy plus sixexplicitlineage fields, allotheroriginalCLI receiptfieldsunchanged.",
+    "truthfulDerivativeBinding": "Master generated input is reviewed derivative; journal generated input is original raw, intentionallydistinct and fullybound.",
+    "batchBinding": "Schema3batch pins the enrichedmasterPackage hash containing allsixfields; batchitem doesnotduplicate thosefields."
+  },
+  "tierProof": {
+    "verifier": "MaintainedQuakeTextureTiersCLI.verify_output/raw_maps unchanged",
+    "exactRoleByteExports": 10,
+    "exactLosslessDataMaps": 8,
+    "Q92Method6Diffuse": 2,
+    "Mid": [
+      256,
+      256
+    ],
+    "High": [
+      512,
+      512
+    ],
+    "includes": "Actualcodecs/intendedpixels/bytehash/dimensions/directmasterRGBandfloatreduction/UVnormals/BOX32/16/quantization andangle diagnostic equality."
+  },
+  "temporaryReplayRemovedAfterExactComparison": true,
+  "verifier": {
+    "file": "docs/quake/textures/batch-004/wood3_6/verify-aligned-candidate-independent.py",
+    "sha256": "82eae0d2c0ab9671094274ea7eee7d75f951ab1ffc3a7d18bf45633b071bdf4c"
+  },
+  "watchedInputs": [
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/candidate-aligned-v1-batch.json",
+      "sha256": "9340eb7995fbd1686d4dcf54a31e184c23a91f3ebe056ce68db3e720b03562db"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/native-source-proof.json",
+      "sha256": "84e0bc6086b8ae2dec766225e73f1b900a2e9980e73ef7b1ad4d6c0f006b4b08"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/originals/native-wood3_6.png",
+      "sha256": "0ad3fb6191a9f3e1e9eb3292c60490ab9159fc4c44ef90ad14571b4e838ee6d6"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master-aligned-v1/master.json",
+      "sha256": "641703a9cb7adb7576f5e8b04dac4ee114d6df40bb68510fee8882260046b6fa"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/source-aligned-v1/source-lineage.json",
+      "sha256": "4f59b107ca38e7e0100d9d6858141d650d1373afe8ef2236e0a2222f8769115d"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/alignment-measurements-v1/independent-composition-review.json",
+      "sha256": "32b4051405d0e05f95fd5a4e585bdff786d7a00419fcd6da82b0f9905d8fc616"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/alignment-measurements-v1/independent-plan-review.json",
+      "sha256": "206d27964f505795bfe2b03e9e58eb93b78d9aeef7447e37587b4f751c1fe9fd"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/alignment-measurements-v1/same-source-alignment-plan-v1.json",
+      "sha256": "404d4f69e5d46d8a08efbf690103c3c17a9c32c175588a9a2663fbd28cc4a411"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/generated/wood3_6-source-v1.png",
+      "sha256": "972d2189be25b1e3e5652e0f7302f6dd2a1d49765b0910cf215806acb6eec7e8"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/selection.json",
+      "sha256": "c7f26a523e3c8c295337403e8f83a88d2521ef7651eea9951253d802b7b9ade1"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/prompts/wood3_6-source-v1.txt",
+      "sha256": "b0628d9b62ab308f1ddbdab24f8873a7e282615b6595fdf60da1d084e8e549c8"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/candidate-batch.json",
+      "sha256": "d07fc9211a813b86d483355bfc6aebf801dcf1aa90a4e910b0dad109df3dffee"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master/master.json",
+      "sha256": "8a573adbe633ef063332e45081ad96eb7d792d06880eb090e4a1ebbbb052812b"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers/manifest.json",
+      "sha256": "ed15c7c3c40172407b7c9cc4256a932d5f79b703658d037d6ab7439a95726707"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers/mid-diffuse.webp",
+      "sha256": "d01e67275ab29ea0c2531fd745be8bb58654fef579b617e3d380f1bd8ac37d0a"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers/mid-height.webp",
+      "sha256": "70d2c65646690d12bc33f6c2a488c66dac1fb666b49466311747f0dd23cb19d8"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers/mid-normalX.webp",
+      "sha256": "9e61516fa4b1aab48f757d067ccc6f90a93f1022f40f66744a52ca9a7bf02b79"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers/mid-normalY.webp",
+      "sha256": "f32f7dc7008bce97ae2e107ea441408277adcd15cda2ec186a0d995404198d35"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers/mid-normalZ.webp",
+      "sha256": "3caaffadb9a2b2f9d03c385705f8f5c47fd0ad78c9dbfc0b6a9a68b565686778"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers/high-diffuse.webp",
+      "sha256": "416c006a44a84840bb1914f8ec17cd375a45a827ec55ab0b9c18631f56b8f94b"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers/high-height.webp",
+      "sha256": "da1dc91c24f91961fb53324f9ac9f0eb74cf56eb832bcf1d8848a70051606116"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers/high-normalX.webp",
+      "sha256": "ab32ed7f163498f31231705f12df25c429ff28f6272939a4870552255eec4537"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers/high-normalY.webp",
+      "sha256": "4eca22d38eb6f125d645219d4a42c1a6f5494d6aa0c444962797fe7f65b46d23"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers/high-normalZ.webp",
+      "sha256": "842ec4d2f0c93bea91a0dd2c28daaab636aff74fc730c49ff2af4b2d007e4b07"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/alignment-measurements-v1/compose-approved-source.py",
+      "sha256": "ee46bc42ab21d809c075806bacf91e40ca8877e19d070b86ae41d142063e899f"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/source-aligned-v1/registered-source.png",
+      "sha256": "f790c7cb8da1c77fd8561c8c7cb9eb797ce2fb545e2bb6a74ca011b0970224cc"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/source-aligned-v1/x-landmarks.json",
+      "sha256": "61905de9e7fff9ee8a216a3065aa5b6790c8c34c837173eb1c605bc6491efa36"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master-aligned-v1/original-prepare-receipt.json",
+      "sha256": "c7394c160845bc7b76956056db7660e18397afb2d87d1194712414928b56fd91"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/alignment-measurements-v1/attach-source-lineage.py",
+      "sha256": "6adc20c19d00ee7600b87ae7dbca847b54fb8f985e8aaa6cdfa27958747254c4"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master-aligned-v1/color.png",
+      "sha256": "109f76923637787df1000e1d3b7f8af90335ce4cb169426ba55b065236a4fbf5"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master-aligned-v1/height.npy",
+      "sha256": "196618fc98607e1dfe1d0953fc44436e2e4c070e0ddc13b9b0e407e193e1ae79"
+    },
+    {
+      "file": "tests/quake_texture_tiers_test.py",
+      "sha256": "df945ace925208e4c063a143ea7154d59769995ec478768af4e9e1baab9705c2"
+    },
+    {
+      "file": "tests/hexen2_texture_tiers_test.py",
+      "sha256": "ab93750f13369e4eee6335c7f90a43d2ea78276b5f9fe3300de3b546492ab766"
+    },
+    {
+      "file": "tests/fixtures/quake_codec_protected_producers.json",
+      "sha256": "6fcdc95dce04fb46c4dfe5ff2c32c10e8886f7e700806247a733c0d0e717d9f3"
+    },
+    {
+      "file": "tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d"
+    },
+    {
+      "file": "tools/texture_sheets/build_texture_batch_review.py",
+      "sha256": "7b14678ba508b15c283d2793488098f01d5993e16db662c10c3ef084d4270a2f"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers-aligned-v1/manifest.json",
+      "sha256": "097d1a95556552c3f37182dbc6b63b693464cfeec38b33f428360119331f10e5"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers-aligned-v1/mid-diffuse.webp",
+      "sha256": "2f5f8e154fb284514e51f8b3fdb9d99cf35e04c185377a603fa4f61eebe917e7"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers-aligned-v1/mid-height.webp",
+      "sha256": "f7e337ed2c6538b01af6dae1ff9b4c3f4435ffefe19c3ddd1af3b4afd2da4709"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers-aligned-v1/mid-normalX.webp",
+      "sha256": "57d2b54bcd706ae719219b17e04518ccd3b83e82cab7a5e360f3690348455825"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers-aligned-v1/mid-normalY.webp",
+      "sha256": "39dd10c5b782d23e5e7ccae4592e4355b397d43d0dcfaf8645816d76a783f4fd"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers-aligned-v1/mid-normalZ.webp",
+      "sha256": "ebb6ef7c5d3081f17b5c44722768b15116ba69eba23d94825c998e0c3d12b0cc"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers-aligned-v1/high-diffuse.webp",
+      "sha256": "505beae0cabc4c9f1b7ca4c00fa67e9dc008b02961ee700e936db19cbc5c9122"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers-aligned-v1/high-height.webp",
+      "sha256": "9de0be0f9f519447754cfd9adffdc77bc9d1e5804f28c8d3248a5c62806da442"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers-aligned-v1/high-normalX.webp",
+      "sha256": "a91c06380927565ed186d51c2a3642b30c860d56cd722acad9f66d10ac4afa07"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers-aligned-v1/high-normalY.webp",
+      "sha256": "db929c86680c6c9340da9a82bbbec95bc7eb1f2316608f155188092269db2299"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers-aligned-v1/high-normalZ.webp",
+      "sha256": "e2fc001d3ba441848264ba9b5f85b1f15af4dd38b9fae56c6cdb05a445148a63"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/verify-aligned-candidate-independent.py",
+      "sha256": "82eae0d2c0ab9671094274ea7eee7d75f951ab1ffc3a7d18bf45633b071bdf4c"
+    }
+  ],
+  "finishedAt": "2026-10-21T00:04:47.827411+00:00",
+  "limits": [
+    "Source/provenance/attachment/numericalproof only; actualmaterial/physical/repeat/ART/GPU/runtime/catalog/owner/CI/releaseacceptance separate.",
+    "Nativeidentity rebound to batch004selectedproof and actualPNG; no freshallPAK/allnativefamily audit.",
+    "Existingcurrenttools/assets/raw/journal/oldfailedcandidateunchanged. Onlyowneddriver/report andtemporarypublicreplay outputs written.",
+    "Historical failedMidwitness remains underoldcandidate scope; newfixed/mappedwitnessandactualdecodedART require separate review."
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS bounded same-source composition + existing measured X registration trial; final source/master/ART gates remain",
+  "reviewer": "Original wood3_6 source author independently reviewing root repair plan; not final independent ART author of repairedasset",
+  "reviewedAt": "2026-10-20T23:00:44.930898+00:00",
+  "plan": {
+    "file": "docs/quake/textures/batch-004/wood3_6/alignment-measurements-v1/same-source-alignment-plan-v1.json",
+    "sha256": "404d4f69e5d46d8a08efbf690103c3c17a9c32c175588a9a2663fbd28cc4a411"
+  },
+  "observedContext": {
+    "file": "docs/quake/textures/batch-004/wood3_6/alignment-measurements-v1/right-board-top-native-source-crop.png",
+    "sha256": "3d422cdbee69e7c0693d84e19020f4ac4b6cdf0bf7b32211ebdb9c20ac7d79e6"
+  },
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/generated/wood3_6-source-v1.png",
+    "sha256": "972d2189be25b1e3e5652e0f7302f6dd2a1d49765b0910cf215806acb6eec7e8"
+  },
+  "reason": "Actual fourthboard short endstrip is a misplaced nativebutt, not a missingmaterialcue. Exact per-board phase shift addresses this specific geometry without a newproviderimage or editingotherboards.",
+  "operatorReview": "For1254\u00b2 raw, x>=935 maps row(y+38)%1254. This is an exact bijection on each supportedcolumn, inverse shift -38, outside x<935 byteexact. It moves the measured buttcentre38 toYwrap0. It does not create/interpolatepixelcontent. Only the rightboard shifts; otherhalfheightjoints stayfixed.",
+  "cutReview": "Actualfullraw reviewed andexistingmeasuredgap identifies physicalverticalopenjoint atx935. Read-only fullcolumnRGBmean range0..7.333 (median.333,p99 5.333), supporting cutinsidedarkgap overfullheight. This diagnosticdoesnotautomaticallyacceptthefuture seam; inspectfullcomposite andbothaxes/corners beforemaster.",
+  "XRegistrationReview": "Existing prepare axis=x transposes thenreuses measuredfinish interpolation. Points [0,0],[16,276*64/1254],[32,620*64/1254],[48,935*64/1254],[64,64] arefinite/strictlyincreasinganduse actualnativefourboardlandmarks. They alignwidths after losslessphasecomposition, with no newmath. Existingfinisher interpolation/resizing must be recordedseparately from the exactpermutation, whose pixelpreservationclaim doesnotextendthroughfinishing.",
+  "mandatoryBeforeMaster": [
+    "Composerreceipt pins actualraw/native/prompt/journal/plan/scriptbytes, exactformula/dims/cut/shift, outputSHA, fullinverse+outside-supportpixelchecks, andbefore/afterwatchedhashes. RetaininitialHOLDcandidate andrawunchanged.",
+    "Actualunmodifiedcomposite full1254/detail/512repeat/corners must removeextraendstrip withoutnewXcut, offset/illuminationband orbrokenhalfheightjoints; failurestaysHOLD. No smoothing/rescue/newcall.",
+    "Keepstandardgenerationjournal generatedfield pointingatUNTAMPEREDraw andcount1. Composite is a derivedsource, not returnedimagegenoutput. Existingprepare inputs.generated mayreferderivedsource onlywithexplicitseparatelyboundcomposition lineage; do notclaimdirectjournal/rawproducerreplay onit. Preserveexistingpreparebytes.",
+    "Newmaster hasonefinalRGB/fullfloatfieldforbothdirecttiers. RGBsource/warp changesinvalidateoldphysicalpasses: retainalloldcoords/failures, mapcorrespondences fromknowngeometryandclassifyactualnewRGBbeforeheight sampling. Do notmoveoldthirdMidwitnessjustformeanPASS.",
+    "Independent root source/composition/masterreplay andeventualtiercodec/art/GPU acceptancerequired beforecanonical/catalogpromotion. Thisplanpass isnot artacceptance."
+  ],
+  "noProductionMutationByReviewer": true,
+  "conclusion": "Smallest source-specific repair usesexactphasepermutation atalreadydarkgap + existinglandmarkarchitecture. Proceedoneboundedtrialunderexistingauthority, retainingtruthfulderivedlineageandallgates."
+}

@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "verdict": "HOLD edited source natural X/Y fibre continuity; material readable, no source/master/tier qualification",
+  "reviewedAt": "2026-10-20T23:44:52.112144+00:00",
+  "nativeIdentity": "ddf78c81cf519fbda0afc975b11b42f42949e3f9297a2e8f8dc3310c183b8d24",
+  "revision": "r1",
+  "issued": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/revisions/r1/source-revision-r1-issued.json",
+    "sha256": "07afdf69c34cb87e97b81b40156214fff866ea3978b72e1bb1ca04cfff488f92"
+  },
+  "completion": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/revisions/r1/completion-receipt.json",
+    "sha256": "cba92edade601c0bb74dc7acdfd0a7fae11fbcaaf96a86438ba3d51e71e1081d"
+  },
+  "returnedRaw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/revisions/r1/rtex388-r1.png",
+    "sha256": "f719fffa3be901217e7a73974aa9f1806670e234e16f2f368bf4b90f123020ce",
+    "bytes": 4042965,
+    "format": "PNG",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGB"
+  },
+  "exactEditPrompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/revisions/r1/edit-prompt-r1.txt",
+    "sha256": "d3a16961ffa727b62d5c4398576b09c4af91c2a333ff90ab371b8aee65aa9a12",
+    "bytes": 2533
+  },
+  "parentRaw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/generated/rtex388.png",
+    "sha256": "4b431a5aece2e46314629b67fd1222967cf8cccf575629e5acdce0e250d1b074",
+    "bytes": 4227725
+  },
+  "primaryJournal": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/selection.json",
+    "sha256": "c7f937ffde5d9bb37f5f1456d8bee89da291a707a4e7bebe32c134ef738facb0",
+    "bytes": 2622
+  },
+  "original80FreezeUnchanged": true,
+  "historicalModelCalls": {
+    "initialGeneration": 1,
+    "edits": 1,
+    "total": 2
+  },
+  "oneFinalMaster": true,
+  "materialObservation": "Recognisable dry grass ribbons, stems and dark organic substrate; subdued palette and feature scale retained.",
+  "distanceObservation": "Viewed both original/sourceBOX32/16; no gross object/material change. No final registered master or tier colour acceptance implied.",
+  "failedArtGate": "Coherent straight join and repeated leaf/stem termination/displacement at both raw wrap boundaries; whole-strip observations and concrete crops determine HOLD, not mean colour.",
+  "actualFeatureWitnesses": [
+    {
+      "axis": "X",
+      "coordinate": 840,
+      "stripCentre": 96,
+      "crossBoundaryRGBDifferenceDiagnostic": 98.66666666666667,
+      "cropName": "edit-X-cut-witness-1-native-coordinate-840.png",
+      "cropPixelsOriginal": [
+        80,
+        80
+      ],
+      "display": "4xnearest, no source edits; cut runs throughdisplaycentre160"
+    },
+    {
+      "axis": "X",
+      "coordinate": 1114,
+      "stripCentre": 96,
+      "crossBoundaryRGBDifferenceDiagnostic": 97.66666666666667,
+      "cropName": "edit-X-cut-witness-2-native-coordinate-1114.png",
+      "cropPixelsOriginal": [
+        80,
+        80
+      ],
+      "display": "4xnearest, no source edits; cut runs throughdisplaycentre160"
+    },
+    {
+      "axis": "X",
+      "coordinate": 263,
+      "stripCentre": 96,
+      "crossBoundaryRGBDifferenceDiagnostic": 89.66666666666667,
+      "cropName": "edit-X-cut-witness-3-native-coordinate-263.png",
+      "cropPixelsOriginal": [
+        80,
+        80
+      ],
+      "display": "4xnearest, no source edits; cut runs throughdisplaycentre160"
+    },
+    {
+      "axis": "Y",
+      "coordinate": 480,
+      "stripCentre": 96,
+      "crossBoundaryRGBDifferenceDiagnostic": 117.0,
+      "cropName": "edit-Y-cut-witness-1-native-coordinate-480.png",
+      "cropPixelsOriginal": [
+        80,
+        80
+      ],
+      "display": "4xnearest, no source edits; cut runs throughdisplaycentre160"
+    },
+    {
+      "axis": "Y",
+      "coordinate": 991,
+      "stripCentre": 96,
+      "crossBoundaryRGBDifferenceDiagnostic": 113.0,
+      "cropName": "edit-Y-cut-witness-2-native-coordinate-991.png",
+      "cropPixelsOriginal": [
+        80,
+        80
+      ],
+      "display": "4xnearest, no source edits; cut runs throughdisplaycentre160"
+    },
+    {
+      "axis": "Y",
+      "coordinate": 55,
+      "stripCentre": 96,
+      "crossBoundaryRGBDifferenceDiagnostic": 103.66666666666667,
+      "cropName": "edit-Y-cut-witness-3-native-coordinate-55.png",
+      "cropPixelsOriginal": [
+        80,
+        80
+      ],
+      "display": "4xnearest, no source edits; cut runs throughdisplaycentre160"
+    }
+  ],
+  "observedEvidence": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/edit-X-cut-witness-1-native-coordinate-840.png",
+      "sha256": "91893d465f1d9508ebc4c6ce636848c3ea0046b77ca4e1bade1db7b5273a1849"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/edit-X-cut-witness-2-native-coordinate-1114.png",
+      "sha256": "6413d83bf8069a47c7e2167d331e73de6f6487d3c5c630c5f2f3223f54818bc2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/edit-X-cut-witness-3-native-coordinate-263.png",
+      "sha256": "43171df148f310bed28e6b27eec238e5bfafc76967d2fd2fb1b651b0666651f3"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/edit-X-full-1to1.png",
+      "sha256": "5bbcf160527814feab473633a9acd9db4829c4d795f28ebce1e21ffd9a2d9222"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/edit-Y-cut-witness-1-native-coordinate-480.png",
+      "sha256": "ee5884c398f38e11edc049379fce2383832c4f5b0bb92514f9cc091e39e47a6b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/edit-Y-cut-witness-2-native-coordinate-991.png",
+      "sha256": "90ac93e5321e94bb862207471840605eb67ffdcaa256fb94b8da0a33b42aab2d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/edit-Y-cut-witness-3-native-coordinate-55.png",
+      "sha256": "5b0688a3efaa17ace6be98a7384c08ec5db705cacd47141e3971bfd929556095"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/edit-Y-full-1to1.png",
+      "sha256": "3bc7e297f2050c7617ec3395942a8a18151beb687036de6fae9878175992858d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/edit-four-corner-contact-1to1.png",
+      "sha256": "6fa7d2776f1265809a6cdbf3783ec1bbf54c9b7b6f469810f1ae2a11e6b14e31"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/edit-native-source-BOX16.png",
+      "sha256": "2467ff7ea1b7a0f446017cc082b2fdbcf609bd0631ae19c43ff464433fda2f11"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/edit-native-source-BOX32.png",
+      "sha256": "77f3a0398c8eeef5ade7da395db6bcccce711727acd6c3dce182158fd931c28b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/edit-repeat-512-display-only.png",
+      "sha256": "779672c40e5e7cc7b24e63d38c59d6e010a2784a2c1be4e35c8b4a986a383a72"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/parent-X-full-1to1.png",
+      "sha256": "20fd4ee58d1de74a3d319297aa5f2e44d3733b647b12a2fd589b581e6a9042ca"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/parent-Y-full-1to1.png",
+      "sha256": "577a4e8239aaa192d04deca3ab46bbfa48576624de57b1e9c79534a0504a30ab"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/parent-four-corner-contact-1to1.png",
+      "sha256": "61f70c73d187a95220b9db11f023dd72b91ef3d1e4e7556a41792589aa13018d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/parent-native-source-BOX16.png",
+      "sha256": "345527619373423e2f372f2b3987d6960959bb03ec95bcf4dc18753a4455016f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/parent-native-source-BOX32.png",
+      "sha256": "cc28ac8fc8028b5c949634694bc92cba1dd3cf5fe9eb99fe910c561337a700d7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/parent-repeat-512-display-only.png",
+      "sha256": "5cb40a2945262492705e2b5d2b3b80de838ac33f0a4e1ed0d623bed033521104"
+    }
+  ],
+  "diagnostics": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/diagnostic-provenance.json",
+    "sha256": "5934f345ce0c0fe2c6fdea364fec853f6ff370826ea69f8f3002d897cfaff102"
+  },
+  "narrative": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/SOURCE_EDIT_HOLD.md",
+    "sha256": "1cda9ec3e15a989183da4ba45eb4c1a76945c7fd19bae6d591d7c0b9ba2ea582"
+  },
+  "activeSourceSelectedByReviewer": false,
+  "newMasterHeightOrTiers": 0,
+  "automaticExtraEdit": false,
+  "primaryJournalModified": false,
+  "oldGeometryOrHoldsModified": false,
+  "nextOwner": "root",
+  "nextAction": "Preserve r1HOLD and full revision chain; no extra edit without separately tracked authorization. Continue assigned gate/process reviews."
+}

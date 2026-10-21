@@ -1,0 +1,435 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20T07:14:40.048523+00:00",
+  "reviewer": "Independent bounded quake_scope_review helper",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "head": "713b47d322f0674f154a70ec4baebd4566905d41",
+  "verdict": "Proceed with bounded source-proof and shared-master reauthoring; full campaign coverage remains unproven",
+  "scope": [
+    "id1 full Quake",
+    "hipnotic Scourge of Armagon",
+    "rogue Dissolution of Eternity",
+    "dopa Dimension of the Past",
+    "mg1 Dimension of the Machine"
+  ],
+  "preservedBroaderObligations": [
+    "Enemy/model/skin families including UV/frame/tint/emission and original model variants",
+    "Sprites/particles/UI/WAD/gfx",
+    "Animated WORLD sequences, liquids, skies, utility provenance",
+    "Default Mid4x plus High8x from same master, unchanged Low, relief/codec/half-quarter/repeat checks",
+    "Runtime selection/package reachability/actual engine review distinct from offline authoring"
+  ],
+  "currentIndex": {
+    "path": "assets/game/textures/index.json",
+    "sha256": "4bdc95a3a622fbb0ba71afb6aacde1d0504bfe3c4282b91e8dc2be872eb85faa",
+    "version": 2026101811,
+    "textures": 361,
+    "ordinaryVariantNames": 111,
+    "sourceAllowlistNames": 354,
+    "glassNames": 110,
+    "tierDeclaration": "No top-level tier declaration; these selector counts establish neither 8x nor Q92/material acceptance."
+  },
+  "auditFindings": [
+    {
+      "severity": "coverage",
+      "finding": "Current auditor reads only pak0 of each official game plus bundled shareware pak0 for base; it misses other installed archives and loose assets and covers BSP textures only. Historical 967/983/etc generate counts are not current 8x deficit."
+    },
+    {
+      "severity": "identity",
+      "finding": "Variant map uses name plus renderer 16hex dual32 FNV-style RGBA key. Strong SHA256 RGBA is present but omitted from grouping identity; raw indexed/palette/full four mips/material flag sets absent. Renderer key is compatibility selector, not collision-proof authoritative alias ID."
+    },
+    {
+      "severity": "provenance",
+      "finding": "Current entries hold map/pack/slot/face usage, but not archive directory/member hash and complete native source tuple. Exact aliases need all source variants/flags, not base-RGBA equality."
+    },
+    {
+      "severity": "output",
+      "finding": "Catalogued checks file presence only. It does not prove actual 4x/8x dimensions, lossyQ92method6 encoder provenance, matching maps/master lineage or photoreal acceptance."
+    },
+    {
+      "severity": "precedence",
+      "finding": "main.js source/web mounts owned Quake pak0 then bundled shareware pak0 then official mission pak0. Generic addon FetchMission loops pak0..9 and stops at first gap. Desktop mounts selected game base first, applicable loose pack before archive packs, archives winning. Do not assume Hexen independent-gap probing or loose-over-pak order."
+    }
+  ],
+  "smallestSoundAuditExtension": [
+    "Keep renderer legacy key for selection/backward compatibility; add collision-resistant sourceIdentity from native dimensions/palette/indexed/RGBA/all mip hashes and per-source texinfo/material semantic flags with provenance. Distinct authoritative source identities may map to same legacy selector; surface collision explicitly.",
+    "Extend existing bounded pakDirectory/readMember/memberSearch path with explicit profile/source mount descriptors and optional loose files. Separate inventory of all physical source archives from actual runtime-effective member precedence; identify gaps/unmounted physical assets rather than silently counting them as runtime-loaded. Preserve current known-official source/web pak0 behavior in evidence; desktop/addon profile differs.",
+    "Validate BSP all4 mip offsets/lengths and permap texinfo flag sets/face animation reachability. Record palette origin, map member content hash, native indexed/fullbright/alpha semantics and occurrence provenance. Keep special sky/liquid/utility/animation buckets visible.",
+    "Inspect selected runtime image dimensions and hash-bound encoder/master receipts; distinguish missing8x, adequate raw pending qualification, authored verified tiers, runtime installed and owner accepted. Do not turn old4x or name-only presence into High coverage.",
+    "Add meaningful bounded fixture tests for duplicate name / same base RGB with different mip/index/palette/flags; missing pak/gap/loose shadowing perprofile; malformed mip offsets; correct 4x mistaken asHigh negative. Source-specific selected batch can qualify before whole-inventory rewrite.",
+    "Maintain explicit non-WORLD family pending rows. Do not invent a total missing count before native scope audit."
+  ],
+  "firstBoundedSet": [
+    {
+      "name": "cop2_5",
+      "legacyIdentity": "cop2_5|64x64:e25a260daecd597f",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "rawDimensions": [
+        1254,
+        1254
+      ],
+      "targetMid": [
+        256,
+        256
+      ],
+      "targetHigh": [
+        512,
+        512
+      ],
+      "dimensionAdequacy": true,
+      "actualSourceReadability": "Recognisable physical material viewed in actual original and raw. Source planning approval only; no final tier or repeat/relief acceptance.",
+      "materialPlan": "Flat aged copper sheet with coherent russet oxide and muted turquoise verdigris; no added plate seam, hardware, or geometric emboss.",
+      "sourceUses": [
+        {
+          "game": "id1",
+          "map": "maps/dm1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+          "slot": 10,
+          "faces": 13,
+          "visibleCandidateFaces": 13,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/dm7.bsp",
+          "scope": "installed-extra-review",
+          "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+          "slot": 43,
+          "faces": 169,
+          "visibleCandidateFaces": 169,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "id1",
+          "map": "maps/e2m7.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Quake/pak0.pak",
+          "slot": 42,
+          "faces": 13,
+          "visibleCandidateFaces": 13,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "rogue",
+          "map": "maps/ctf1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dissolution of Eternity/pak0.pak",
+          "slot": 13,
+          "faces": 244,
+          "visibleCandidateFaces": 244,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "rogue",
+          "map": "maps/r1m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dissolution of Eternity/pak0.pak",
+          "slot": 14,
+          "faces": 324,
+          "visibleCandidateFaces": 324,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "dopa",
+          "map": "maps/e5m7.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Past/pak0.pak",
+          "slot": 66,
+          "faces": 104,
+          "visibleCandidateFaces": 104,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mgdm3.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+          "slot": 107,
+          "faces": 1199,
+          "visibleCandidateFaces": 1199,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mgend.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dimension of the Machine/pak0.pak",
+          "slot": 92,
+          "faces": 101,
+          "visibleCandidateFaces": 101,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        }
+      ],
+      "files": [
+        {
+          "path": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-cop2_5.png",
+          "sha256": "9d1ed504bbdb4147fbda54dfc188da995d86bd4ce2201df1ef840e20bbd8034f"
+        },
+        {
+          "path": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/cop2_5-generated-v1.png",
+          "sha256": "8a6af9361d8750dfb10ee75e7cac77efe9e154bba24ce4af5b1277ac740d667c"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-17/cop2_5-photographic-prompt-v1.txt",
+          "sha256": "253e47f6c7fda080921ad9ee7e524b8d64a4e311910eb778470288dce0f8f27f"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-17/native-cop2_5.json",
+          "sha256": "c254fea1f1162a616cbfc74d670ff39625ab8a087c2357858ae3dcfe092585aa"
+        }
+      ],
+      "nextGate": "Re-read current effective native source and all four mips/palette/indexed/RGBA/material flags; prepare one lossless 8x RGB/float-relief master directly from retained raw. Verify material semantics before encoding; independently derive/review both tiers."
+    },
+    {
+      "name": "church1",
+      "legacyIdentity": "church1|128x128:8d401a31a05f9e4b",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "rawDimensions": [
+        1254,
+        1254
+      ],
+      "targetMid": [
+        512,
+        512
+      ],
+      "targetHigh": [
+        1024,
+        1024
+      ],
+      "dimensionAdequacy": true,
+      "actualSourceReadability": "Recognisable physical material viewed in actual original and raw. Source planning approval only; no final tier or repeat/relief acceptance.",
+      "materialPlan": "Pale warm-grey weathered limestone. Two half-height courses; upper major vertical joint x50%, lower x25%; stone portions cross side edges.",
+      "sourceUses": [
+        {
+          "game": "hipnotic",
+          "map": "maps/hip2m2.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 2,
+          "faces": 1445,
+          "visibleCandidateFaces": 1445,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip3m1.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Scourge of Armagon/pak0.pak",
+          "slot": 3,
+          "faces": 781,
+          "visibleCandidateFaces": 781,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        }
+      ],
+      "files": [
+        {
+          "path": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-church1.png",
+          "sha256": "63483f24a22750d76cc066359c522f47471dcbbb1a9af13c1a49391e82dc97e3"
+        },
+        {
+          "path": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/church1-generated-v1.png",
+          "sha256": "a00d951f2c3ac403b82317b1f4ae19c17b907554433866152010361a53f6f3af"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-17/church1-photographic-prompt-v1.txt",
+          "sha256": "28fb712fdf137e7cf4b1bb8e95366a44d72e6de468dda32b2613e9d921dce37c"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-17/native-church1.json",
+          "sha256": "918ee0e326739a1fd8185dbb3ef59fafb93a139213d37ce00f936c643a4806dd"
+        }
+      ],
+      "nextGate": "Re-read current effective native source and all four mips/palette/indexed/RGBA/material flags; prepare one lossless 8x RGB/float-relief master directly from retained raw. Verify material semantics before encoding; independently derive/review both tiers."
+    },
+    {
+      "name": "maya1_9",
+      "legacyIdentity": "maya1_9|128x128:694bfeae23b74c54",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "rawDimensions": [
+        1254,
+        1254
+      ],
+      "targetMid": [
+        512,
+        512
+      ],
+      "targetHigh": [
+        1024,
+        1024
+      ],
+      "dimensionAdequacy": true,
+      "actualSourceReadability": "Recognisable physical material viewed in actual original and raw. Source planning approval only; no final tier or repeat/relief acceptance.",
+      "materialPlan": "Dark russet sandstone masonry. Four equal courses with four block widths each; alternating 0/16 native-pixel joint phase.",
+      "sourceUses": [
+        {
+          "game": "rogue",
+          "map": "maps/r2m6.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dissolution of Eternity/pak0.pak",
+          "slot": 0,
+          "faces": 2163,
+          "visibleCandidateFaces": 2163,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        }
+      ],
+      "files": [
+        {
+          "path": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-maya1_9.png",
+          "sha256": "7c48e540e2b01e7e52293143642c06cbf7d77cfe4b76ec5058fe8487c437ef89"
+        },
+        {
+          "path": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/maya1_9-generated-v1.png",
+          "sha256": "02a9fc8be194e19f71a4fa7314429ab679f960583c71cc1e3658c9936d79fc5c"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-17/maya1_9-photographic-prompt-v1.txt",
+          "sha256": "5f30846cf5b4e09c24098f339e514d2020c9bc441c9a2a3a3dc712174a1d1a85"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-17/native-maya1_9.json",
+          "sha256": "36e46e3745ed4cfb9d05ed78dca774fa6f590fc479c1da5b6f67331a4e872f4a"
+        }
+      ],
+      "nextGate": "Re-read current effective native source and all four mips/palette/indexed/RGBA/material flags; prepare one lossless 8x RGB/float-relief master directly from retained raw. Verify material semantics before encoding; independently derive/review both tiers."
+    },
+    {
+      "name": "metal9_4",
+      "legacyIdentity": "metal9_4|64x64:0ad528e1164b691b",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "rawDimensions": [
+        1254,
+        1254
+      ],
+      "targetMid": [
+        256,
+        256
+      ],
+      "targetHigh": [
+        512,
+        512
+      ],
+      "dimensionAdequacy": true,
+      "actualSourceReadability": "Recognisable physical material viewed in actual original and raw. Source planning approval only; no final tier or repeat/relief acceptance.",
+      "materialPlan": "Dark oxidized iron/steel with vertical shallow wear/runoff and pitting; preserve broad dark brown bands without carving each rust patch.",
+      "sourceUses": [
+        {
+          "game": "rogue",
+          "map": "maps/r2m6.bsp",
+          "scope": "campaign-or-multiplayer",
+          "pack": "/private/tmp/quaked-official-library-20261017/Dissolution of Eternity/pak0.pak",
+          "slot": 9,
+          "faces": 2404,
+          "visibleCandidateFaces": 2404,
+          "hiddenTriggerFaces": 0,
+          "animationVisibleCandidateFaces": 0
+        }
+      ],
+      "files": [
+        {
+          "path": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-metal9_4.png",
+          "sha256": "f0e31fa3f8efa7f78f8255ef8108833234b06cd2ea4118872fd344c88d823e1c"
+        },
+        {
+          "path": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/metal9_4-generated-v1.png",
+          "sha256": "6eb038cd5e1bb4bb9768d22cb86c2c5efce2171d45680e2fc29b8b921be21673"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-17/metal9_4-photographic-prompt-v1.txt",
+          "sha256": "3177507d97e57993e0784ddcaa9ad3d2ac348bfe981e79526faa603b1410e7af"
+        },
+        {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-17/native-metal9_4.json",
+          "sha256": "8ec80784ce2c030e5732ac247201130520d1c4561de1d4f06d86d097091eb1ea"
+        }
+      ],
+      "nextGate": "Re-read current effective native source and all four mips/palette/indexed/RGBA/material flags; prepare one lossless 8x RGB/float-relief master directly from retained raw. Verify material semantics before encoding; independently derive/review both tiers."
+    }
+  ],
+  "alternateSources": {
+    "city6_7": "1254square raw >=512native-target with readable dark ochre stone; id1/Dopa reuse candidate conditional all-mip proof.",
+    "cliff2": "1254square raw >=1024target, readable vertically fractured charcoal stone; Rogue candidate. Do not confuse TF_Cliff2 native256 requiring2048, whose retained1254raw is inadequate.",
+    "hipnotic-metal5_6": "887x1774 raw supports256x512 target, readable oxidized copper/bronze ornament; inspect exact stepped-pattern/register/edge and relief semantics before reuse.",
+    "mg1-metal1_4": "1254square raw supports512target, readable oxidized X-braced steel. Original existing frame is legitimate; no new perimeter bevel."
+  },
+  "retainedSourceObservation": {
+    "generatedNamedPngCandidates": 129,
+    "qualification": "Filename scan of retained official source folders; includes rejected and superseded sources, not unique materials or accepted masters."
+  },
+  "historicalEvidence": [
+    "Crosspack-six v2 art approved old decoded4x outputs only; new High requires actual full-resolution review.",
+    "Global-world-standards-all79 audit explicitly limited dimensions/codec/provenance, not photoreal acceptance or complete source inventory.",
+    "CAMPAIGN.md old111 artworks/114bindings/571maps relates old4x campaign and historical source mount."
+  ],
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "d9d12ea00d3d41a0968d6fc33bd822ed986372aa7566c7db867b08a05bd673db"
+    },
+    {
+      "path": "skills/quaked-texture-authoring/SKILL.md",
+      "sha256": "0c96e783d5b56604edfc85fae82b36c98478f297ff49d3d3777402b8322f9bba"
+    },
+    {
+      "path": "tools/audit_official_textures.mjs",
+      "sha256": "8d975a5e42470586be68fae7caa429000674587d74f41baa94759f84a62ddc29"
+    },
+    {
+      "path": "tools/pak_members.mjs",
+      "sha256": "3073edb6b6574b2b70b993c941864e8683bb3f3e73f4671b1da979f02322513c"
+    },
+    {
+      "path": "main.js",
+      "sha256": "a097af480a064c46f4f0adc897617ee602d0d7a7c5d75fd025c7e5550323d3cc"
+    },
+    {
+      "path": "src/engine/common/game_selection.js",
+      "sha256": "716ca943c90185e61cab4e786311eece3c5e9c9e1d1d1ed2bc2408f1d9338db8"
+    },
+    {
+      "path": "src/newer/render/r_newertextures.js",
+      "sha256": "5aabea2d4c5e713ae1c81cf4e606ef3b387ce98bcca0b6e293719a7cded32246"
+    },
+    {
+      "path": "assets/game/textures/index.json",
+      "sha256": "4bdc95a3a622fbb0ba71afb6aacde1d0504bfe3c4282b91e8dc2be872eb85faa"
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-17/CAMPAIGN.md",
+      "sha256": "34a6435009390a43d45513e7847380e97ff97e6078bf42333feadc11cc3287e7"
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-17/crosspack-six-finish-v1.json",
+      "sha256": "301571154fc24a73043e580b48aaca7b98d5330ca395ae2b0da47574f70e373f"
+    },
+    {
+      "path": "tools/texture_sheets/sources/official-world-2026-10-17/verification/crosspack-six-independent-v2-review.json",
+      "sha256": "0682446a84e9282bcefd44282ebb712679d0b3071c90ca38b25c05720f6c1a8a"
+    }
+  ],
+  "writes": "Only this report; no code, assets, generated images, Git, Hexen files, shared skill or board mutations by reviewer.",
+  "remainingUnproven": "No full native rescan/8x catalog/GPU/runtime/owner acceptance by this independent planning review."
+}

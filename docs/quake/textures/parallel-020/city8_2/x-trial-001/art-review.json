@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T15:03:24.716151+00:00",
+  "verdict": "HOLD: one bounded X-only intensity trial did not repair geometric material cut",
+  "nativeIdentity": "712726be7f599dd7d1d755bcb3c7de16bd36fd19e2d619c6305f48979abce772",
+  "name": "city8_2",
+  "edition": "quake-ordinary-world",
+  "operatorApplications": 1,
+  "newGenerationCalls": 0,
+  "newTierExports": 0,
+  "candidateMaster": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master-x-v1/master.json",
+    "sha256": "b8d59cf8ecf7a84f2e257decefe8511774a2c56f184040435acc0fd4727738e8"
+  },
+  "recipe": {
+    "file": "docs/quake/textures/parallel-020/city8_2/x-trial-001/recipe.json",
+    "sha256": "a13d76d6cc37f51bc92e8676d9f8c0fbc98b45e89ebec6c21868821b44ef5d3c"
+  },
+  "diagnostics": {
+    "file": "docs/quake/textures/parallel-020/city8_2/x-trial-001/master-diagnostics.json",
+    "sha256": "259940dd59d20e0176337426b08dc8f1981e3a4d03f17da9c9369d37fe764020"
+  },
+  "adapter": {
+    "file": "tools/texture_sheets/register_texture_boundary_x.py",
+    "sha256": "fbfdb7a70ed18969b18b73fad37343112b4abe6c6b1b949b18f7f827b50b0487"
+  },
+  "publicTests": {
+    "file": "docs/quake/textures/parallel-020/x-boundary-public-tests.json",
+    "sha256": "42a8e7fcf5a340cd5d6ce0299c850174a0fc81e6617837601a816dc64a134550"
+  },
+  "rootCodeReview": {
+    "file": "docs/quake/textures/parallel-020/x-boundary-root-code-public-review.json",
+    "sha256": "cdc7cb1cfa7412f06355685dccbdcefb6325204c1fb7b2813d3f6dd093aaa364"
+  },
+  "originalMasterPreserved": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/master.json",
+    "sha256": "aa7f749af729dea2d3f7789764bc884332ce26b7f1bb2af5afcae09ea0e0a7a1"
+  },
+  "material": {
+    "observation": "Corrected512RGB still reads as dark weathered olive/brown small masonry stones with coherent mineral flecks, rough faces and moss in recesses. No new bricks, invented hardware, noise overlay or feature warp.",
+    "scope": "Master visual material review only; not a new Mid/High ART pass."
+  },
+  "XRepeat": {
+    "verdict": "HOLD",
+    "observation": "The straight splice through stone/mineral face detail at original x511|0 remains after tone equalization. The128pixelXstrip and rolled corners still show incompatible fine feature/face endpoints meeting along the same straight line, particularly sourcey roughly60\u2013155 and280\u2013420; opposed lights retain the physical discontinuity. Reduced edge contrast does not make it a plausible recessed native joint.",
+    "diagnostics": [
+      "docs/quake/textures/parallel-020/city8_2/x-trial-001/master-x-join.png",
+      "docs/quake/textures/parallel-020/city8_2/x-trial-001/master-x-opposed-lights.png",
+      "docs/quake/textures/parallel-020/city8_2/x-trial-001/master-repeat-2x2.png",
+      "docs/quake/textures/parallel-020/city8_2/x-trial-001/master-rolled-corners.png"
+    ]
+  },
+  "YAndTopology": {
+    "observation": "The broad native horizontal course/joint relationship remains recognizable in the Ystrip and repeat. No Yoperator, spatial resampling, relocation or extra perimeter brick was applied. This does not clear the decisive Xfinding.",
+    "diagnostic": "docs/quake/textures/parallel-020/city8_2/x-trial-001/master-y-join.png"
+  },
+  "physicalRelief": {
+    "scope": "Existing three source-specific5x5 master witnesses retained at exactly the same actual RGB-classified locations; full master height visualization and two opposed lights inspected. This is not exhaustive relief semantics.",
+    "witnesses": [
+      {
+        "faceMasterXY": [
+          100,
+          40
+        ],
+        "jointMasterXY": [
+          100,
+          64
+        ],
+        "oldFace": 0.5983691215515137,
+        "oldJoint": 0.11399232596158981,
+        "newFace": 0.596117377281189,
+        "newJoint": 0.10706876963376999,
+        "faceAboveJoint": true,
+        "locationsUnchanged": true
+      },
+      {
+        "faceMasterXY": [
+          291,
+          279
+        ],
+        "jointMasterXY": [
+          291,
+          298
+        ],
+        "oldFace": 0.846514105796814,
+        "oldJoint": 0.142943874001503,
+        "newFace": 0.8465189337730408,
+        "newJoint": 0.14010591804981232,
+        "faceAboveJoint": true,
+        "locationsUnchanged": true
+      },
+      {
+        "faceMasterXY": [
+          450,
+          475
+        ],
+        "jointMasterXY": [
+          410,
+          475
+        ],
+        "oldFace": 0.46090272068977356,
+        "oldJoint": 0.020872117951512337,
+        "newFace": 0.4870173931121826,
+        "newJoint": 0.020746979862451553,
+        "faceAboveJoint": true,
+        "locationsUnchanged": true
+      }
+    ],
+    "allSelectedFacesAboveJoints": true,
+    "diagnostics": [
+      "docs/quake/textures/parallel-020/city8_2/x-trial-001/master-physical-witnesses.png",
+      "docs/quake/textures/parallel-020/city8_2/x-trial-001/master-height-diagnostic.png",
+      "docs/quake/textures/parallel-020/city8_2/x-trial-001/master-opposed-lights.png"
+    ]
+  },
+  "clipping": {
+    "negativeChannels": 23224,
+    "overflowChannels": 0,
+    "negativePixels": 19333,
+    "overflowPixels": 0,
+    "meanAbsoluteCorrection": 1.6092628771421316,
+    "maximumAbsoluteCorrection": 46.00033194103726,
+    "postRoundMeanRGBChange": [
+      0.01720428466796875,
+      0.011554718017578125,
+      0.028713226318359375
+    ]
+  },
+  "clippingObservation": "Independent pre-clipping masks retain negative/overflow locations. Negative-channel clipping is concentrated in dark detail and joints toward the left region; no clipping percentage is used as acceptance. The geometric Xcut is independently decisive.",
+  "stoppingReason": "Root explicitly directed that a master retaining the same geometric Xcut must not be encoded. No Mid/High were derived from this trial, no tuning/retry/Yrepair/generation/catalogue/Hexen/Git operation followed.",
+  "nextOwner": "Root Quake coordinator",
+  "nextAction": "Retain city8_2 HOLD and this failed candidate/evidence. A materially different geometry authoring decision requires further owner authority; no second automaticXtrial or broadenedrepair in this lane.",
+  "limits": [
+    "Prior all-lossy and original-master mixed-codec receipts remain historical evidence of their stated packages.",
+    "This master-only failed trial has no current-tier/public-browser/GPU/runtime/owner/release qualification. Root owns web renderer evidence."
+  ]
+}

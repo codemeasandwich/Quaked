@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T23:50:51.769097+00:00",
+  "status": "PLAN ONLY; no master or registration candidate authored",
+  "name": "woodflr1_5",
+  "nativeIdentity": "0bada3070362f749c548267124f282329dfc7c693b75a4416e51dc4a9fa59243",
+  "source": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/generated/woodflr1_5-source-v1.png",
+    "sha256": "ba9745b12d154cf41f62a74d6976e2379075253689c23adde8f0df167d458b0e"
+  },
+  "original": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/originals/native-woodflr1_5.png",
+    "sha256": "4fa88d699adab24301546c3be81738f0eb9356a5ee57eb7e906dca931b220e8e"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/prompts/woodflr1_5-source-v1.txt",
+    "sha256": "c453eec03326ce344a3886df37364673998047d1974c09fc0e59f6dcf2d0d4fa"
+  },
+  "journal": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/selection.json",
+    "sha256": "1ce7d142836822a3a95b0e80cc9a78d9684c47b60244063f12aa7667a88a91a4"
+  },
+  "sourceDimensions": [
+    1254,
+    1254
+  ],
+  "materialObservation": "Actualraw1254 and directBOX512 depict weathered matte nearblack cool-blue timber with coherent horizontalfibres and restrainedwear. Broadstaggeredcolumns remain recognisable. Native exactmaterial interpretation stays reviewable; actualphoto resolves the trial as timber rather than abstractmottling.",
+  "layoutFinding": "Leftmiddle joint near halfheight is correct. Right blackjoint cores are atsource rows272/976, nativeequivalent13.88198/49.81180 rather than target16/48. Centralrightblock is therefore taller than native and its two partialYwrap pieces are shorter; this is an actual source-specific phase error.",
+  "measurement": {
+    "record": {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/raw-review/measured-joint-cores.json",
+      "sha256": "141dca3a58f3ac58cb482f81d57dc3c96cd3fd1ccb04fd075a98f53dccdf0783"
+    },
+    "method": "Within visually identified narrow joint bands and interior columnspan, record lowest mean luma row as a reproducible darkcore witness. These are alignment diagnostics, not a material or depth acceptance score.",
+    "leftPin": "Map native32 to source32. Source32 corresponds627rows, inside the existing broad blackmidgap (minimum row622, phase31.7448); do not shift the intended leftmidpoint.",
+    "rightTargets": "Map native16 to source272*64/1254 and native48 to source976*64/1254. Endpointmapping remains0->0 and64->64.",
+    "overlay": {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/raw-review/measured-joints-overlay-display.png",
+      "sha256": "81cfdfd0ae7b246d92083e0519d7ba46be1a205b48e6d4194c9368ecd17fa94a"
+    }
+  },
+  "rightYWrapClassification": {
+    "observation": "At actual1254Ystrip and direct5122x2repeat, the rightwrap has a thin grey/dark horizontalgrain/value transition but no broad emptyblack trough, paired endbevel or distinct small endstrip. It reads as a localgrain/value discontinuity rather than a new boardcap at512. This is provisional worker interpretation for root toreview; final decodedrepeat remains a gate.",
+    "notWaivedByBOX": true,
+    "nativeSemantics": "RightYboundary crosses the middle of a continuingface, leftYboundary is an intendedjoint. No automatic globalperiodicYerase or addedcap is authorized.",
+    "evidence": [
+      {
+        "file": "docs/quake/textures/batch-004/woodflr1_5/raw-review/raw-y-join.png",
+        "sha256": "cad36a03b04800748ebcd63b036537b3d7d3563d3389fc94f67a202eadb410e2"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/woodflr1_5/raw-review/raw512-repeat2x2.png",
+        "sha256": "b4021989e376cd1e6410b01db0969937e3574e420ec582bacf48ce4c90b768f2"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/woodflr1_5/raw-review/raw512-right-y-wrap.png",
+        "sha256": "e54ce3f70ad995a592656f5c1f46b7b61aac5ea1fdcfe3b3bcb23f33d3b2ac30"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/woodflr1_5/raw-review/raw-four-corners.png",
+        "sha256": "900d66b985fe3a4eb952425967c602dc2a87af2b928f3b9beef4f3604e6b3d49"
+      }
+    ]
+  },
+  "recommendedSmallestChange": {
+    "mechanism": "Use unchanged prepare_texture_master.py --landmarks with this reviewed globalYmapping; existing finish_official_texture.finish applies one bounded piecewise-linear measured landmark registration after ordinary reduction. No new algorithm/adapter/sourceimage.",
+    "landmarkFile": {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/landmarks-y-v1.json",
+      "sha256": "62a97aedbc6f77bfeab58cbc2929109fa5ad4f172d6e60a05b0b2c1eecbba8c2"
+    },
+    "points": [
+      [
+        0,
+        0
+      ],
+      [
+        16,
+        13.881977671451356
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        48,
+        49.811802232854866
+      ],
+      [
+        64,
+        64
+      ]
+    ],
+    "scope": "Actualnative/original, raw and prompt remain byteexact. Resampling occurs once under the existingfinisher; globalYwarp also moves finegrain in the leftcolumn between pins, so no outsideRGBpreservation claim. Pinning0/32/64 keeps leftjoint/endpoints inphase.",
+    "controlsUnchanged": {
+      "profile": "wood",
+      "colorStrength": 0.65,
+      "fieldSigma": 0.75,
+      "strength": 0.3,
+      "cap": 0.5,
+      "edgeAnchor": false
+    },
+    "freshMasterOutput": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/master",
+    "whyNotOtherMethods": "No newimagecall, columnroll/clone, strictcolourprojection, intensityperiodiccorrection, sourcecrop or arbitraryinterative strength. A globalmonotonemeasuredmapping directly addresses the symmetric rightjointphase and preserves leftmidpoint. It does not claim to repair a realcap if rootfindsone."
+  },
+  "producerBindings": [
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    }
+  ],
+  "boundedChecks": [
+    "Recheck exactsource/native/prompt/landmark/tool hashes and fresh output before one preparation.",
+    "Verify recorded mapping strictlyincreasing, endpoints0/64 and left32pin, with exactsource-derived rightcoordinates; existingCLI records axis/points/inputhashes.",
+    "Independently replay sameordinaryfinish mapping in a fresh verification destination, compare actualRGBandfloat; retain raw withoutchanges.",
+    "Before tierencoding view actual512RGB/fullscalar/XYZ/opposedlights and native BOX32/16. Check trueleftjoint32/rightjoints16/48, continuousrightYface, Xjoints and allcorners, reject newphasebands or wideblur.",
+    "Select actual newmaster face/joint/fibre-wear witnesses from RGB; retainallfailures, do not move points merely toobtain ordering.",
+    "If viable derive both256/512 directly from sameRGB/fullfloat master using currentQuakecodecs; actualdecodedmaterial/repeat/BOX/physical review remains required. Rootfinalpublic/web/canonical decision separate."
+  ],
+  "noExecutionYet": {
+    "additionalImageCalls": 0,
+    "mastersAuthored": 0,
+    "tiersExported": 0,
+    "sourceModified": false,
+    "rawJournalReset": false
+  },
+  "nextOwner": "Root independent review of exactsourcephase/landmarks and provisionalrightYline classification before anymaster. If root identifies aphysicalcap, retainHOLD and resolve that concreteproblem rather than applying this registration as falseclosure."
+}

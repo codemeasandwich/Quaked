@@ -1,0 +1,8 @@
+"""Planning-only readable captions over separately displayed unchanged source crops."""
+from pathlib import Path
+import json,hashlib
+from PIL import Image,ImageDraw
+R=Path.cwd();D=R/'docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan';r=json.loads((D/'overlap-obstruction-crops.json').read_text());c=Image.open(R/r['source']['file']).convert('RGB');sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();rel=lambda p:str(p.relative_to(R));out=[]
+for i,row in enumerate(r['crops']):
+ a,b=row['A_sourceRect'],row['B_sourceRect'];im1,im2=c.crop(a),c.crop(b);scale=4;h=max(im1.height,im2.height)*scale;s=Image.new('RGB',(780,h+82),(25,27,30));dr=ImageDraw.Draw(s);dr.text((4,4),row['label'],fill='white');dr.text((4,23),'Original A rectangle '+str(a),fill='white');dr.text((394,23),'Original B rectangle '+str(b),fill='white');dr.text((4,40),'Separate unchanged source crops; NEAREST display 4x. No repair trial.',fill='white');s.paste(im1.resize((im1.width*4,im1.height*4),Image.Resampling.NEAREST),(4,62));s.paste(im2.resize((im2.width*4,im2.height*4),Image.Resampling.NEAREST),(394,62));p=D/f'overlap-{i+1:02d}-readable-v2.png';s.save(p);out.append({**row,'file':rel(p),'sha256':sha(p)})
+q={'scope':'Same exact crop pairs with larger caption area; earlier small captions clipped, earlier evidence retained. No source/material/coordinate change.','source':r['source'],'crops':out,'inputs':{rel(p):sha(p)for p in[Path(__file__),D/'overlap-obstruction-crops.json']}};(D/'readable-overlap-crops-v2.json').write_text(json.dumps(q,indent=2)+'\n');print(sha(D/'readable-overlap-crops-v2.json'))

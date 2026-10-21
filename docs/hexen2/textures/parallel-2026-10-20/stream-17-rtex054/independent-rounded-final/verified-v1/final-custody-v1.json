@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS exact frozen rtex054 offline candidate source/math/10map/preview/ART/custody; ready for root independent registration decision",
+  "verifiedAt": "2026-10-21T02:16:01.110548+00:00",
+  "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+  "handoff": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/handoff.json",
+    "sha256": "307ccc87f1dbee1274cd39751a37ea9e6facc3cbf61b73cb60cda938f7b2f439"
+  },
+  "freeze": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/CANDIDATE_FREEZE.json",
+    "sha256": "6ae6eaecd3a8bd2906b79137769611d552cd0007e555b3b412491e2ab9147030"
+  },
+  "frozenInputCount": 187,
+  "all187FrozenInputsStable": true,
+  "sourceMathPublicProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-rounded-final/source-master-partial-v1.json",
+    "sha256": "378463ec278b83d7a7448b3eb1e4fcb411d750ed9468bca1085ef71c927f7e4c"
+  },
+  "sourcePartialCustody": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-rounded-final/partial-custody-v1.json",
+    "sha256": "32bd26984108df392c54923b2c6f38782d0375e9c6552b5b0955786868bcec5b"
+  },
+  "actual": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-rounded-final/verified-v1/actual-v1.json",
+    "sha256": "67d7a03465b3970884ca8526e1647c195e4216ef99dfc6446683573c91499b9e"
+  },
+  "preview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-rounded-final/verified-v1/preview-v1.json",
+    "sha256": "8358b0e2c0237396762e44cb07ad968346881253641110bd1e4f433d546e5cc0"
+  },
+  "ART": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-rounded-final/verified-v1/art-review-v1.json",
+    "sha256": "a8eacdd1718b65ad20dee8a7542d6e8d802a8405b1739b6a3f43865448b1f15b"
+  },
+  "batch": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/batch.json",
+    "sha256": "a4f45366001996b6404fa2bfdd23b275d44ed38d5d3fbb64b854c5b512edff32"
+  },
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/master.json",
+    "sha256": "5eead8ad9bd8fbd84b45a5905cba9b36fbd4de00371761b8c16e82389d5869b4"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/tiers/rtex054/manifest.json",
+    "sha256": "4f95aea7a8aa31383ca4ca07c297e5eca83d2f73e8c3433315293680ea71f1cb"
+  },
+  "physicalMapFiles": 10,
+  "allMapBytesExactQ92Method6": true,
+  "decodedWitnesses": 24,
+  "publicContentLabelPanels": 34,
+  "all4PreviewJPEGBytesExactThisRun": true,
+  "oldHoldsAndSourceUnchanged": true,
+  "privateVerificationOutputsRemoved": true,
+  "newModelCalls": 0,
+  "authorOrSharedAssetMutations": 0,
+  "GitBuildReleaseActions": 0,
+  "sealer": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-rounded-final/seal-final-v1.py",
+    "sha256": "c502ba4a3213fd1d4c43ebab6e584942455281327e05c5e44d9ff29131d55690"
+  },
+  "nextOwner": "root",
+  "nextAction": "Independently inspect exact proof/ART and decide registration, then owner-authorized owned Dev checkpoint through maintained gate. No automatic registration or release by this receipt."
+}

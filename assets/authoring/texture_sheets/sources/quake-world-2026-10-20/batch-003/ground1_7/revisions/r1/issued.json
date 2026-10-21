@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "revisionID": "r1",
+  "nativeIdentity": "41987356d8ccd3f5a1754b2e514d85e13d6e3dbc2dc454949524b5992db26e00",
+  "name": "ground1_7",
+  "issuedAt": "2026-10-21T04:52:52.997573+00:00",
+  "state": "issued; awaiting actual built-in output",
+  "parent": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/generated/ground1_7-source-v1.png",
+    "sha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+    "bytes": 2937459,
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "format": "PNG"
+  },
+  "original": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+    "sha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+    "bytes": 4474,
+    "dimensions": [
+      64,
+      64
+    ],
+    "mode": "RGB",
+    "format": "PNG"
+  },
+  "primaryJournal": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/selection.json",
+    "sha256": "2e0ffe124bf8df52568823080b84ccb8d3d1418bbdb96b1ca763b4423a8e95e7",
+    "bytes": 2420
+  },
+  "prompt": {
+    "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-plan/prompt-r1.txt",
+    "sha256": "a752582b98a434a79f6ad37081f5e3c096f145e60cbf9c4e93992df28d1c2744"
+  },
+  "referenceRoles": [
+    {
+      "image": 1,
+      "role": "edit-target and actual parent",
+      "reference": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/generated/ground1_7-source-v1.png",
+        "sha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+        "bytes": 2937459,
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "mode": "RGB",
+        "format": "PNG"
+      }
+    },
+    {
+      "image": 2,
+      "role": "native palette/coarse arrangement/scale only, not fine detail",
+      "reference": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+        "sha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+        "bytes": 4474,
+        "dimensions": [
+          64,
+          64
+        ],
+        "mode": "RGB",
+        "format": "PNG"
+      }
+    }
+  ],
+  "builtInArguments": {
+    "prompt": "Use case: precise-object-edit.\nAsset type: one seamless photographic Quake ground texture source, square 1024 x 1024, opaque RGB, adequate for one shared 512 x 512 master.\n\nInput images: Image 1 is the exact original photographic raw and the image to EDIT. Image 2 is the unchanged native 64 x 64 texture, supplied only to check the dark palette, broad feature positions, proportions and scale. Do not turn Image 2's pixel texture into fine detail. Do not produce a comparison board or multiple variants.\n\nMake one targeted material correction to Image 1. Its dominant brown/olive branching ridges currently look like woody roots or bark because they are rounded cords with long fibrous striations. Rework those same brown areas so the surface clearly depicts weathered rocky ground with a compact dark-ochre earth/mineral matrix between the existing angular cool-grey stones. The brown matrix should form low, irregular compact masses with matte erosion and mineral-fracture structure, small broken edges, sparse embedded grit and shallow restrained fissures. Break up the cylindrical cord appearance and remove lengthwise wood fibres. Fine detail must follow compact earth and weathered mineral, not a branching organic skeleton. Keep this change within the existing broad brown footprints; do not spread a new flat soil field across the grey stones or introduce large cracks that dominate the pattern.\n\nPreserve the actual cool charcoal/slate-grey mineral islands, their angular fractured faces, positions and relative sizes. Preserve the coarse brown-versus-grey layout, broad connected brown areas, their approximate widths, the diagonal rhythm and scale, and the dark interstices. Do not add or remove dominant islands, widen the gaps, impose regular paving, add cobbles or replace the composition. The native is a coarse arrangement guide, not permission to invent a different surface. Keep its very dark brown-black and muted dirty olive, with restrained cool dark grey. No broad lightening, bright gravel, orange rust, vivid moss or global hue shift. Keep natural stone pores and mineral detail convincing; do not soften or sharpen them into a synthetic texture.\n\nAcross left/right and top/bottom, every intersected brown area, grey stone and dark interstice must retain its phase, approximate width and direction and continue naturally onto the opposite edge. Preserve the four-corner relationships. Correct the brown material locally across those contacts too; do not hide a join with blur, an edge strip, a border, a bevel or perimeter darkening. Keep one continuous edge-to-edge surface with flat orthographic framing and even diffuse albedo lighting, without cast shadows, glossy highlights, perspective or a vignette.\n\nAt close range, the dominant brown material must clearly look like compact earth and weathered mineral. At BOX reductions to 32 x 32 and 16 x 16, preserve the native's broad palette, feature islands and scale. No roots, wood fibres, bark, ropes, cables, braided strands, wormlike tubes, etched loops, cellular or bubbly grain, uniform procedural noise, sharpening halos, loose debris, new boulders, piles, plants, text or hardware. Output exactly one square opaque photographic colour source, not normals, height maps, tier variants, a tiled preview or a schematic.\n",
+    "referenced_image_paths": [
+      "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/generated/ground1_7-source-v1.png",
+      "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png"
+    ],
+    "transparent_background": false
+  },
+  "authority": "Owner directs allQuake/officialtexturephotorealisticenhancement with source-faithful shared-master4x8x; targetedrevision ofheldsource, no independenttiergeneration.",
+  "coordinatorApproval": {
+    "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-root-plan-review.json",
+    "sha256": "d10800910c1999a42bc94cf7fadece30d793f4a758e57e66238e79009aae2a6c"
+  },
+  "independentPlanReview": {
+    "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-plan/review.json",
+    "sha256": "3e2f83176d875395961dfc99271d58886ebbd0fddb6c37dd61ce0c3d83fe5399"
+  },
+  "sourceEditContract": {
+    "commit": "6565be3fec5f504873eb794cfb41381c26968dcb",
+    "file": "skills/quaked-texture-authoring/references/source-edits.md",
+    "sha256": "1d38ae56f5e8e4125ccf51716509786aec503ae064c10f7e136f0ae83f362a66",
+    "readMethod": "git show exactcommit:path; current working-copy source-edits reference absent",
+    "scope": "Existing revision/immutable selection custody only; no new image/tier producer"
+  },
+  "previousIssuedRevisions": [],
+  "previousRetainedRevisions": [],
+  "modelCalls": {
+    "originalGeneration": 1,
+    "edits": 1,
+    "total": 2
+  },
+  "campaignKnownNewCallsBeforeIssue": 13,
+  "campaignKnownNewCallsIncludingThisIssue": 14,
+  "limits": "Immutable issuance before single actualcall. Issued isnotretained, qualified, registered or released. Resume samehandle ifobservationtimesout; no secondcall."
+}

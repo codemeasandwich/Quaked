@@ -1,0 +1,71 @@
+{
+  "observedAt": "2026-10-21T07:05:18.611697+00:00",
+  "scope": "V6RGB/native/rawclassification before proposedmask, no scalar",
+  "source": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/color.png",
+    "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5"
+  },
+  "native": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/originals/native-TF_Brick1_01.png",
+    "sha256": "a78aa6c8228507311a8b1c88104c8d4758b0adc38d7c0bad4b66e8011b75db29"
+  },
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/TF_Brick1_01-generated-v1.png",
+    "sha256": "84c8e0d7990485471d52f453ec0029a46ee276c077e89a8cec63ed08a5279334"
+  },
+  "independentDefectDiagnostic": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/first-course-native-source-Xwrap-nearest4.png",
+    "sha256": "70d48f1e950edb70c29870d7db8dd142cfa0ee2222415f1b9e3a0c8833f9b2e7"
+  },
+  "witnesses": [
+    {
+      "label": "course0-visible-warm-partial-clay",
+      "role": "solid-clay-face",
+      "rectMasterPixelEdges": [
+        0,
+        37,
+        7,
+        54
+      ],
+      "basis": "Warmporousclay face visible in actualregisteredRGB/raw and nativebroadcourse identity, continuing fromrightedgeunit acrossX. V5incorrectlylowersthisface.",
+      "oldV5LowerMaskFraction": 0.957983193277311
+    },
+    {
+      "label": "course0-upper-dark-green-partial-continuation",
+      "role": "proposed-same-face-continuation-UNRESOLVED",
+      "rectMasterPixelEdges": [
+        0,
+        14,
+        4,
+        30
+      ],
+      "basis": "Green/dark upperpart maycontinue samephysicaledgecutbrick; proposed highfacecontinuity follows the nativeunit/wholephotobrick. Lowcontrastendpoint needs independentreview; not colour-onlyproof.",
+      "oldV5LowerMaskFraction": 1.0
+    },
+    {
+      "label": "course0-physical-mortar-to-right-of-partial",
+      "role": "mortar",
+      "rectMasterPixelEdges": [
+        12,
+        35,
+        20,
+        54
+      ],
+      "basis": "Visible dark physicalcontact between partial clay end nearx8and firstfullbrickarris nearx24.",
+      "oldV5LowerMaskFraction": 1.0
+    },
+    {
+      "label": "course0-lower-horizontal-mortar",
+      "role": "mortar",
+      "rectMasterPixelEdges": [
+        0,
+        60,
+        8,
+        65
+      ],
+      "basis": "Existing horizontalcontact below the actual partialface, not extended into warmface to forcewrapmatch.",
+      "oldV5LowerMaskFraction": 1.0
+    }
+  ],
+  "scalarRead": false
+}

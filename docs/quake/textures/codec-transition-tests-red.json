@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "recordType": "public CLI RED receipt",
+  "recordedAt": "2026-10-20T10:38:03.327477+00:00",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "result": "RED: additive Quake derive/review CLIs absent",
+  "commands": [
+    {
+      "command": "/usr/bin/python3 tests/quake_texture_tiers_test.py",
+      "exitCode": 1,
+      "tests": 9,
+      "failuresIncludingSubtests": 29,
+      "log": "docs/quake/textures/codec-transition-tests-derive-red.log"
+    },
+    {
+      "command": "/usr/bin/python3 tests/quake_texture_batch_review_test.py",
+      "exitCode": 1,
+      "tests": 4,
+      "failuresIncludingSubtests": 4,
+      "log": "docs/quake/textures/codec-transition-tests-review-red.log"
+    }
+  ],
+  "files": [
+    {
+      "file": "tests/quake_texture_tiers_test.py",
+      "sha256": "4f6ce1556663b38bbf82889ccc7300e83d00862fe10acfaa5c0ef78b27693224"
+    },
+    {
+      "file": "tests/quake_texture_batch_review_test.py",
+      "sha256": "7bcf03e4daf51d6ff857be69fe1f0764a4015f431838d291eb0c4a1fb9a9a2b2"
+    },
+    {
+      "file": "docs/quake/textures/codec-transition-tests-derive-red.log",
+      "sha256": "e6d08076ce992943e7015d6e3b7046d29c2bba617228e9c0de29663207e3d57f"
+    },
+    {
+      "file": "docs/quake/textures/codec-transition-tests-review-red.log",
+      "sha256": "4ceabce89136653ef71557833cff0738c25ab7f555e63591c80211b40544517d"
+    }
+  ],
+  "limits": [
+    "Negative validation tests explicitly assert that the implementation CLI exists; absent executables cannot accidentally count as passing rejection.",
+    "Review fixture source preparation and all data mutation occur only inside a temporary directory.",
+    "No implementation, assets, retained masters, shared tools, Git or Hexen changes.",
+    "Manifest metadata tests will adopt agreed explicit field names before the first GREEN run; RED log/test hashes remain retained."
+  ]
+}

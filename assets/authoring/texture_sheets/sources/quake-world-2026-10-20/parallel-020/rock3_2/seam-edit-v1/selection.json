@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "scope": "One approved contextual edit, imagegen call ordinal3; preserve both prior resolved source calls and their journals.",
+  "requestKind": "contextual-image-edit",
+  "imagegenCallOrdinal": 3,
+  "historicalKnownImagegenCallCount": 2,
+  "cumulativeKnownImagegenCallCount": 3,
+  "cumulativeCountFormula": "historicalKnownImagegenCallCount + items[0].generationCount",
+  "parentSourceJournal": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/replacement-source-v2/selection.json",
+    "sha256": "483ed703ced86feff15a73301b292097648b1f11bfd799f5b4760254125b2079"
+  },
+  "parentSource": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/replacement-source-v2/generated/rock3_2-source-v2.png",
+    "sha256": "fee762afcc1819aca412df1c97013a4d00bb4e491088f3d6c3c4a02a0a07f64d"
+  },
+  "parentSourceHold": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/replacement-source-v2/source-art-review.json",
+    "sha256": "be26d3e200977dc9f25fb606c8cae72d9de137178b9a47a738bb971bad3acba1"
+  },
+  "rootApproval": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/root-plan-review.json",
+    "sha256": "4a10b0378abdd82ec899c69cad3548501d05165997655b70eada84753f624602"
+  },
+  "recipe": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/recipe-proposal.json",
+    "sha256": "02aea5221eb4b086ea958d9851fd5a78555d29d173fb1356ab2b7817a26cf464"
+  },
+  "editReferences": [
+    {
+      "role": "edit target",
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/seam-edit-v1/references/rolled-target.png",
+      "sha256": "95d37b5ed349fda3abfc335bfc823c6c5482ceb890118dfb743ec3e9332e64e2"
+    },
+    {
+      "role": "native phase/layout only",
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/seam-edit-v1/references/rolled-native.png",
+      "sha256": "6d7e7045ab037feecab250ccc2f421326f8623e3e15232d9edf7e37ca92f72df"
+    }
+  ],
+  "items": [
+    {
+      "id": "70fdd089e566c1cf477b4d1a484c1ab8aea7b29952ec1c01d289b7da7af60f23",
+      "name": "rock3_2",
+      "edition": "base",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/seam-edit-v1/originals/native-rock3_2.png",
+      "originalSha256": "2983c75b4694114d49fc863251be32a30242801255eb5496da6397e063865cf0",
+      "prompt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/seam-edit-v1/prompts/seam-edit-v1.txt",
+      "promptSha256": "1007a864e13c71204adaf60ff7aa584fe2fd10b63800f2f73a9fad005494423d",
+      "generationCount": 1,
+      "generationState": "generated-retained",
+      "requestKind": "contextual-image-edit",
+      "imagegenCallOrdinal": 3,
+      "parentSource": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/replacement-source-v2/generated/rock3_2-source-v2.png",
+        "sha256": "fee762afcc1819aca412df1c97013a4d00bb4e491088f3d6c3c4a02a0a07f64d"
+      },
+      "editReferences": [
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/seam-edit-v1/references/rolled-target.png",
+          "sha256": "95d37b5ed349fda3abfc335bfc823c6c5482ceb890118dfb743ec3e9332e64e2"
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/seam-edit-v1/references/rolled-native.png",
+          "sha256": "6d7e7045ab037feecab250ccc2f421326f8623e3e15232d9edf7e37ca92f72df"
+        }
+      ],
+      "generationIssuedAt": "2026-10-20T15:59:45.592289+00:00",
+      "generated": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/seam-edit-v1/generated/rock3_2-rolled-edit-v1.png",
+      "generatedSha256": "d3a5dfa88ea08e1b51f02c9a4d4cd3a714bb8078242d0075299e6a9a17d63b15",
+      "generatedDimensions": [
+        1254,
+        1254
+      ],
+      "generatedMode": "RGB",
+      "generatedAt": "2026-10-20T16:02:58.397336+00:00",
+      "builtInOutput": "/Users/bri/.codex/generated_images/01a15911-2e97-71c0-958a-f42a2ea7664b/exec-12ca49b0-8f93-4f7f-a89e-1a40607e8b82.png"
+    }
+  ]
+}

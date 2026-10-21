@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent source registration replay only. All image operations in memory. No production script rerun or image file write; no master/height/tier/pointer/registry/provider/Git/build action.",
+  "recordedAt": "2026-10-21T02:09:00.646198+00:00",
+  "target": {
+    "name": "rtex018",
+    "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6"
+  },
+  "method": "Independent NumPy full-row raw[:,100:624] copy -> Pillow RGB LANCZOS once to512x2048 -> PNG BytesIO; compare all decoded RGB and exact PNG bytes. Production execute-once.py read as source, never imported/executed.",
+  "operation": {
+    "inputDimensions": [
+      724,
+      2172
+    ],
+    "cropXYXYHalfOpen": [
+      100,
+      0,
+      624,
+      2172
+    ],
+    "croppedDimensions": [
+      524,
+      2172
+    ],
+    "outputDimensions": [
+      512,
+      2048
+    ],
+    "oneResize": true,
+    "bothAxesStrictlyReduce": true,
+    "scaleX": 0.9770992366412213,
+    "scaleY": 0.9429097605893186,
+    "relativeVerticalShorteningPercent": 3.4990791896869156,
+    "cropArrayExact": true,
+    "outputRGBExact": true,
+    "outputPNGBytesExact": true,
+    "outputSha256": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef",
+    "rawParentUnchanged": true
+  },
+  "environment": {
+    "pythonExecutable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "Pillow": "10.1.0",
+    "NumPy": "1.26.2",
+    "zlib": "1.2.12",
+    "libwebp": "1.3.2",
+    "pinnedPillowMatched": true
+  },
+  "lineage": {
+    "files": {
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/plan.json": "2e77bd636de2377b70c4741f737a0cb461dc3759931ccfa5826798b18d986519",
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-plan-v2/plan.json": "1967f56cf023e6d0f28d83735aba6c2edb6a22d8d83cc0be2dec0794e330f2e2",
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/source-HOLD.json": "205dc8a6ab791a3d021a3fd776c6acf070ab82d18c5b4e838e0c6971f995b9e7",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1-plan/edit-prompt-v2.txt": "6dce01459a30a41793219b9af19d632a81db2c3e5e04dd1bb9d27b62d9cd4d10",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/issued.json": "d7d0edc91559015defd99fa8fac2924b0c964144347ac92deab55d7e984c008f",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/retained.json": "6d82c7a147171290bd21ea6dd04931556661e4a51ccdd1bfaacb7243a5952d3e",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/selection.json": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/issued.json": "75c98b76b62ebb13f14b33dda27b84323eb5f685848d420cd176a24a5f7dc807",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/retained.json": "37770bb54a5ff60fe39e74ac8411751fd8b4163c448e9e5fc26355dfc2b4ac9d",
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/measurement.json": "2a3dae49fe272f94867da0e9dc0c8e125c7d6de51175cbf6b39a16a905655fee",
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/proposed-recipe.json": "01bc357f7c9a77f1e75b340ca2d249f762bd09c7793aad23ab55d8f1b50dd1fb",
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/whole-canvas-ROI-boundary-overlay.png": "2af820ef3cad22866aa93212d52a413cec8f02230d218f79d20e7f47b222985f",
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/boundary-strips-top-middle-bottom-1to1.png": "327d6d9029893a446826e12fc5dd2b01c876cf4ea7c83b596c157151bca9724e",
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/scene-material-bottom-witnesses-1to1.png": "6cfc1c8127ebb54c3ff5208e9a3809c10f55301175ae5d925f58b713493e35f1",
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/PLAN_SEAL.json": "87f6ff483c8d597e222cdcbd2973862f6b8a626f0832d9787292aac1249328d4",
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/PLAN.md": "8afbd5719b990d09d7cb24a6f90758631c63ab9961d9cecca686e4492aba6f36",
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/root-finishing-review-v1.json": "ed932ab98806a7b4c81ad56d7eb66b76ffd7ed8602778afeddd2acca3056e215",
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-finishing-plan/review-v1.json": "b0521ca188025fa6fc582ce49d7647874aabeac44e736165ee96f5f653e7a9fa",
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/owner-stained-scene-decision.json": "8ef83dc86a12326cd92b689b8d047750429e90670e4033463b4b546afe104ba9",
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-plan-v2/root-plan-review-v1.json": "e546021257aca89b92c281de2c30383360cfc6f848b5c0a136822a88da3cb375",
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/execution-issued-v1.json": "a034dfef117d2284fde26264d21d4ee5eb845b06c0914031b59eb5d5e7e46d3b",
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/execute-once.py": "4556433ced071f150eb299714c863799c833118946648fb553d16ab1af0212a2",
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-review/actual-comparison-v1.json": "b141415599de09ad3b32dfd2075ae827572ffb50ac3b52e7f67be11192b357a5",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef",
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-review/original-source-BOX-div2.png": "8aad3e8f5a1f93393a95809c8783a9e000299ecf6d1113c065b84730b72a3571",
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-review/original-source-BOX-div4.png": "bc12db603dcbfb1b28a4926690b05cfe672497599caf03cc3a5881a932ebb9a6",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registration-receipt.json": "db31ea8445f67b8bd96657e89d761d6c921d8e28c7ba42fef17e75410870ef82",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/generated/rtex018.png": "1af4618ce68c65ff1837bf1bbfeafb91ab6e7ffac64fa4cdb8372810d8922b2d",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/selection-count0.json": "f289194e54736f20585f1288b1426fc978deb57db3f6c4384fda0ab6fbe08a2e",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/selection-issued.json": "153f74fc3278586707ed672256dc6445a67026901ceda2bf78b240f9efff9324",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/prompts/rtex018-material-v1.txt": "3532bca1c8e698a7a3274f47c07e09904e2f09f0423065c376c0a450e557c338",
+      "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/root-plan-review-v1.json": "2cbcc60cf0274aa466a71af2c31d64df2fd8a31d66a3abfd6e727dd701648b4a",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/selection-retained.json": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8"
+    },
+    "allBindingsCurrentBeforeAndAfter": true,
+    "originalGenerationCalls": 1,
+    "editCalls": 1,
+    "totalModelCalls": 2,
+    "thisReviewModelCalls": 0,
+    "deterministicFinishingModelCalls": 0,
+    "builtInRawCopy": "/Users/bri/.codex/generated_images/01a15859-54e7-7d10-a59b-a2b80d80bdfe/exec-b3b9c27a-e632-4c05-ac3f-a697d93be347.png",
+    "builtInRawCopyExact": true,
+    "builtInRawCopySha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+  },
+  "nativeBOXInput": {
+    "nativeMode": "RGBA",
+    "allAlpha255": true,
+    "comparisonMode": "RGB, matching root contact content; no native file conversion written"
+  },
+  "BOXComparisons": [
+    {
+      "divisor": 2,
+      "dimensions": [
+        32,
+        128
+      ],
+      "meanAbsoluteRGBDifference255": 26.664876302083332,
+      "sameBOXRule": true,
+      "existingContactPixelsExact": true,
+      "panelY": 30,
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-review/original-source-BOX-div2.png",
+      "sha256": "8aad3e8f5a1f93393a95809c8783a9e000299ecf6d1113c065b84730b72a3571"
+    },
+    {
+      "divisor": 4,
+      "dimensions": [
+        16,
+        64
+      ],
+      "meanAbsoluteRGBDifference255": 22.879557291666668,
+      "sameBOXRule": true,
+      "existingContactPixelsExact": true,
+      "panelY": 30,
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-review/original-source-BOX-div4.png",
+      "sha256": "bc12db603dcbfb1b28a4926690b05cfe672497599caf03cc3a5881a932ebb9a6"
+    }
+  ],
+  "comparisonReceipt": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-review/actual-comparison-v1.json",
+    "sha256": "b141415599de09ad3b32dfd2075ae827572ffb50ac3b52e7f67be11192b357a5"
+  },
+  "retainedVerifierFailure": {
+    "toolChunk": "38a267",
+    "exitCode": 1,
+    "phase": "BOX RGB metric assembly after exact PNG replay passed, before output directory/file creation",
+    "error": "ValueError: operands could not be broadcast together with shapes (128,32,4) (128,32,3)",
+    "correction": "Explicit in-memory opaque RGBA native -> RGB comparison; alpha independently all255. No recipe/source/asset changed; no production script rerun."
+  },
+  "rtex054FrozenInputsUnchanged": 187,
+  "limits": [
+    "No native PAK/source proof replay.",
+    "No physical relief, tier codec, full wrap/tiling, final palette, browser or runtime acceptance.",
+    "No image or temporary replay file was created."
+  ]
+}

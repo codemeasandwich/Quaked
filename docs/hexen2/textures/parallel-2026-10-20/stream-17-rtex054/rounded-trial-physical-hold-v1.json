@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "verdict": "HOLD actual one-trial physical head shape; zero tiers",
+  "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+  "name": "rtex054",
+  "edition": "base",
+  "generationCount": 1,
+  "physicalRecipeTrials": 1,
+  "tierMaps": 0,
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/generated/rtex054.png",
+    "sha256": "c347d238584b5d0aa3a597ab6014b51c30b3f808c593bec8f7756b3c00db6aab"
+  },
+  "initialMasterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/master.json",
+    "sha256": "eacb48c1a29970e6ca95ac093fb276c5dedc6eebf42951913b65edf16d8db189"
+  },
+  "trialMasterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters-layered/rtex054/master.json",
+    "sha256": "0629a0401e8be7b9960b24653e9c00dcb4c77892daf86ab25a836a315d19dcab"
+  },
+  "recipe": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/relief/rtex054-shallow-fastener-v1.json",
+    "sha256": "7afd4f8d8b10764bf42607d1dbe242e208e10aa4eaeb4309d451d325bbf78bbf"
+  },
+  "sourceMasterProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-source-master/source-master-proof-v1.json",
+    "sha256": "86284d4b4cfff5b049082c94069193a7995e43e1af9d097120d590ebb0053ebd"
+  },
+  "independentPhysicalPlan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/root-rounded-fastener-plan-review-v1.json",
+    "sha256": "ead5d6bef0b8a9b0de10bb95e35a0ee1351e64f2ef5b81125fc01ea0838ca7df"
+  },
+  "technicalReplay": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/one-trial-layered-cli-replay.json",
+    "sha256": "995d871bfd64336f3d3ef5f9a4ef7134538c1f98d3b6a9c399cf034b3f0cab9a"
+  },
+  "actualProfileObservation": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/actual-rounded-heads-observation-v2.json",
+    "sha256": "ed3735d08b35a8441aa9aa1b32b8d7123017c063593439173f9a78feed6a0ab1"
+  },
+  "strictRadialFailure": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/rounded-head-strict-annulus-failure.json",
+    "sha256": "8e6fef1e1d3f6150a9807313f381ca6ba116b7173710fe398bdbc69f56a178be"
+  },
+  "observedViews": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-RGB.png",
+      "sha256": "20ab4d43c4c4cf7877629ff231a1bb15acfd4b136ce4a5373ffc7696873d0951"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-BOX32-16.png",
+      "sha256": "c2c6998eeb94e12084454391b656468bab82a400ec854990c52a66dc6c6f7112"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/layered-master-neutral-opposed.png",
+      "sha256": "b1579c72f1393b4e92e0fb305b87a84fb7b4ca181cbb89993135b6c294031fdd"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/layered-master-textured-opposed.png",
+      "sha256": "73dad600c73b59a45f0432b6adf91fb5685cea756a7d47663d9a2b63a87c0b9a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/layered-master-literal-contacts.png",
+      "sha256": "2cfbcbf7efde911c9f8f8ba5e01c04c1fdc32c4eb18ed076fed84138acc2c79f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/layered-master-XYZ-repeat.png",
+      "sha256": "bd32661e0303da5efe1a714ab04cc28fa7ac7f29831a91c87f52d4e26ec0a595"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/actual-eight-rounded-heads-RGB-XYZ-neutral.png",
+      "sha256": "6a683bc903fc2ed8f74fb55e07d47fd38ab4d268cc27af85741890b80f25c25d"
+    }
+  ],
+  "findings": {
+    "material": "Actual source and same RGB master visibly depict corroded painted iron with eight rounded fastener heads. Material recognition is not the present failure.",
+    "technical": "Source/master proof and unchanged actual layered CLI replay pass. RGB is byte-identical; float remains full precision. All eight actual centre means exceed shoulders and lower plate; broad rust and coating fields no longer create deep basins.",
+    "physicalHold": "In actual neutral and XYZ views the head shapes remain dominated by a thin edge band, with pointed lower cap outlines. They do not convincingly match the clearly rounded source metal heads. The author cannot accept convex physical shape from annular hierarchy alone. Keep this actual trial on HOLD, not a claim that nonzero scalar curvature is mathematically absent.",
+    "strictAnnulus": "The added stronger every-consecutive-annulus test fails H3 only: centre mean .6069489 versus4..8pixel mean .6072167, delta approximately.0002678. This is small local source variation and is not, by itself, proof of an architectural washer/donut. Retain it honestly without automatically accepting or amplifying it into the whole-art verdict.",
+    "mixed": "Head/plate edge windows and original G coating/oxide candidate remain explicitly mixed. Upper or lower raster support is not material purity or photogrammetric measurement.",
+    "joins": "Observed literal full X/Y and corners follow existing panel edge relationships. RGB was not repaired or requalified as final delivered maps; no tier ART or runtime claim."
+  },
+  "nextAction": "Root independently inspect the exact actual cap evidence and decide a bounded source-specific geometry correction plan or retain HOLD. No second parameter trial, new source, producer change or tiers are authorized by this receipt.",
+  "prohibitedEffects": [
+    "No new generation, retry, fallback, crop or upscale",
+    "No encoding of current unaccepted physical relief",
+    "No Quake, shared registry/queue, Git, producer, app/native/full build or children"
+  ],
+  "completedAt": "2026-10-20T22:24:06.069146+00:00"
+}

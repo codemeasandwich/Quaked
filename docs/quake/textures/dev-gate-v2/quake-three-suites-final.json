@@ -1,0 +1,20 @@
+[
+  {
+    "test": "tests/quake_texture_tiers_test.py",
+    "sha256": "df945ace925208e4c063a143ea7154d59769995ec478768af4e9e1baab9705c2",
+    "returnCode": 0,
+    "log": "docs/quake/textures/dev-gate-v2/quake_texture_tiers_test-final.log"
+  },
+  {
+    "test": "tests/quake_texture_batch_review_test.py",
+    "sha256": "13010b66357ea791bd1254a4d9ecdccdbbbe934ac9d6d00fa01ec7b008aa57b1",
+    "returnCode": 0,
+    "log": "docs/quake/textures/dev-gate-v2/quake_texture_batch_review_test-final.log"
+  },
+  {
+    "test": "tests/texture_boundary_x_registration_test.py",
+    "sha256": "d6c38cf47ce3772f4ddc7f0d7b1387879e59c0d93af0d1f1926154ccf6b9a923",
+    "returnCode": 0,
+    "log": "docs/quake/textures/dev-gate-v2/texture_boundary_x_registration_test-final.log"
+  }
+]

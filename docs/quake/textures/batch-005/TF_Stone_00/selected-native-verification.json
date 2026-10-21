@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T02:46:12.497493+00:00",
+  "verdict": "PASS selected TF_Stone_00 actual native reconstruction only",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "nativeIdentity": "423af89cbbd6557269c90286020997d7f5782a52b799ba8307df9c2b24a8e9b5",
+  "identity": {
+    "name": "TF_Stone_00",
+    "dimensions": [
+      128,
+      128
+    ],
+    "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+    "indexedSha256": "51554b5eca5d18879f8e42bbf24b89070cd004f46ed48cc7a8125f98b9c3d5ec",
+    "rgbaSha256": "ba14bfde84114b24cd1b6f2966b74472c73ac44ea9b3e48146f1629f1bfa75aa",
+    "mipIndexedSha256": [
+      "51554b5eca5d18879f8e42bbf24b89070cd004f46ed48cc7a8125f98b9c3d5ec",
+      "96da2df0f052cc86622e632c213198545b4d725d447f9c75dd41832e9b231cc3",
+      "e9720ba87f507304f97c3f29a2967e16986ef698686557c9df897c524b9f0b14",
+      "8e1671272eca993511d14c25ba33b1a2d8fd4ae1922b6aaea239fe8ed367d2dc"
+    ],
+    "materialFlags": [
+      0
+    ],
+    "nativeSemantics": {
+      "family": "ordinary-world",
+      "alphaIndex255": false,
+      "fullbrightStart": 224,
+      "fullbrightMaskSha256": "4fe7b59af6de3b665b67788cc2f99892ab827efae3a467342b3bb4e3bc8e5bfe"
+    }
+  },
+  "original": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Stone_00/originals/native-TF_Stone_00.png",
+    "sha256": "a9ec496d1ff976cd24f44e68d89fee08f62bfb80362edc0957d39ae11ec83856"
+  },
+  "rootProof": {
+    "file": "docs/quake/textures/batch-005/native-source-proof.json",
+    "sha256": "ad7bcca34ce37f4a983c21644b3252c6f4335f77923b88eb5ba1d808ccd02c49"
+  },
+  "reader": {
+    "file": "docs/quake/textures/batch-001-native-source-proof.py",
+    "sha256": "176156d71d427c4ea743a80cc55fa5e00326b08982601c3715a30c4458c94893"
+  },
+  "verifier": {
+    "file": "docs/quake/textures/batch-005/TF_Stone_00/verify-selected-native.py",
+    "sha256": "4ef75853dddbef20e94b1651a1e8ddc9b161300b8f8a240ef3bdec156025516b"
+  },
+  "occurrences": [
+    {
+      "game": "mg1",
+      "map": "maps/mgdm3.bsp",
+      "slot": 130,
+      "directFaces": 51,
+      "bspSha256": "d981353b3b9bc03778153eb25ade436c9c03e035528c529502f12dcd6fe2caa2",
+      "allFourMipsExact": true,
+      "RGBAEqualsRetainedOriginal": true,
+      "paletteExact": true,
+      "texinfoFlagsAndFaceUseExact": true,
+      "effectiveMembersExact": true
+    },
+    {
+      "game": "mg1",
+      "map": "maps/mge2m1.bsp",
+      "slot": 4,
+      "directFaces": 1244,
+      "bspSha256": "7587f710342160e1ce955f961c101ce5126eb1dec102c5328b4858575b9a639e",
+      "allFourMipsExact": true,
+      "RGBAEqualsRetainedOriginal": true,
+      "paletteExact": true,
+      "texinfoFlagsAndFaceUseExact": true,
+      "effectiveMembersExact": true
+    },
+    {
+      "game": "mg1",
+      "map": "maps/mge3m2.bsp",
+      "slot": 61,
+      "directFaces": 17,
+      "bspSha256": "0c4aaf499a6e17ec39ce3de4242cdb047fe830d9793c8b2bed22e4b94ee9302c",
+      "allFourMipsExact": true,
+      "RGBAEqualsRetainedOriginal": true,
+      "paletteExact": true,
+      "texinfoFlagsAndFaceUseExact": true,
+      "effectiveMembersExact": true
+    },
+    {
+      "game": "mg1",
+      "map": "maps/mge4m1.bsp",
+      "slot": 40,
+      "directFaces": 701,
+      "bspSha256": "9c2711cd7cfababcc8b5620888c09dd7dffaf6d284c1c36eb0510650669b96fd",
+      "allFourMipsExact": true,
+      "RGBAEqualsRetainedOriginal": true,
+      "paletteExact": true,
+      "texinfoFlagsAndFaceUseExact": true,
+      "effectiveMembersExact": true
+    },
+    {
+      "game": "mg1",
+      "map": "maps/mge4m2.bsp",
+      "slot": 114,
+      "directFaces": 496,
+      "bspSha256": "6cd4cc7a636b4cf5b28edcbe7d7c53d40c356453e88f75370bbeed1904d5d8c2",
+      "allFourMipsExact": true,
+      "RGBAEqualsRetainedOriginal": true,
+      "paletteExact": true,
+      "texinfoFlagsAndFaceUseExact": true,
+      "effectiveMembersExact": true
+    },
+    {
+      "game": "mg1",
+      "map": "maps/mge4m2b.bsp",
+      "slot": 114,
+      "directFaces": 500,
+      "bspSha256": "f56e56c3d9b545ad29d7bf5c67c40b0c1740681b0c5e1ce7ff921fb3f9295358",
+      "allFourMipsExact": true,
+      "RGBAEqualsRetainedOriginal": true,
+      "paletteExact": true,
+      "texinfoFlagsAndFaceUseExact": true,
+      "effectiveMembersExact": true
+    },
+    {
+      "game": "mg1",
+      "map": "maps/mge5m2.bsp",
+      "slot": 213,
+      "directFaces": 102,
+      "bspSha256": "88c8e41590c27d6176122ead1ece11131395a2d1955aeb25cb8e4477e76868dd",
+      "allFourMipsExact": true,
+      "RGBAEqualsRetainedOriginal": true,
+      "paletteExact": true,
+      "texinfoFlagsAndFaceUseExact": true,
+      "effectiveMembersExact": true
+    }
+  ],
+  "packProofs": [
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Quake/pak0.pak",
+      "bytes": 179618935,
+      "sha256": "9de6f83944011ae4647beef1966ca4fbf490b35baf1f333097a0d363116ebea0",
+      "directoryOffset": 179550391,
+      "directoryBytes": 68544,
+      "directorySha256": "12ff750ce910f4c340f99a79a806504a4eb5d1c32baaca1164a9400936b4cbc4",
+      "memberCount": 1071
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+      "resolvedPath": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+      "bytes": 18689235,
+      "sha256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af",
+      "directoryOffset": 18254423,
+      "directoryBytes": 21696,
+      "directorySha256": "17c53db207fda90e6f7d2a8ce0c0c2682d19602d21402f17ca18ecaf865835d5",
+      "memberCount": 339
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Dimension of the Machine/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+      "bytes": 760105822,
+      "sha256": "6da314d85d07eb2ebdd08502239c93efab1060fbbe2be78fcf18e7ec0a2851aa",
+      "directoryOffset": 760096286,
+      "directoryBytes": 9536,
+      "directorySha256": "7f4f95c24380d51843a7cbf6671b86b0d32fb08bd3484be0f5adac9aef07b11a",
+      "memberCount": 149
+    }
+  ],
+  "counts": {
+    "selectedNativeIdentities": 1,
+    "DimensionMachineMapOccurrences": 7,
+    "nativeMipsReconstructed": 28
+  },
+  "limits": [
+    "Reuse of the retained reader is an actual independent selected-input invocation, not a separately implemented PACK/BSP parser.",
+    "No source photo, master, art, seamlessness, semantic relief, tier codec, webGPU or whole-campaign acceptance."
+  ]
+}

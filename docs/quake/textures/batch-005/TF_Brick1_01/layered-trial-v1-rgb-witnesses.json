@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T05:26:36.015868+00:00",
+  "scope": "Actual layeredRGB-only classification fixed BEFORE scalar load; source/parentRGBbyteexact",
+  "registeredRGB": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-layered-v1/color.png",
+    "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5"
+  },
+  "priorFixedWitnessRecord": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/draft-rgb-witnesses.json",
+    "sha256": "008ca070b4fba0ffb2c11a6e45a4acd06927e45b067f1b6c4f05a78993dceea4"
+  },
+  "frozenV4": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-layer-plan-v4.json",
+    "sha256": "6570b757b1522a4455d82347b0d530267a28b2169aa38f46f3ea31d2fe450497"
+  },
+  "samples": [
+    {
+      "label": "warm-clay-face",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        50,
+        20,
+        90,
+        40
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Previously fixed and actualRGB-reviewed witness; sameRGBbytes."
+    },
+    {
+      "label": "ochre-clay-face",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        720,
+        20,
+        750,
+        40
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Previously fixed and actualRGB-reviewed witness; sameRGBbytes."
+    },
+    {
+      "label": "pale-mineral-brick-face",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        280,
+        85,
+        310,
+        100
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Previously fixed and actualRGB-reviewed witness; sameRGBbytes."
+    },
+    {
+      "label": "dark-stained-solid-brick-face",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        330,
+        210,
+        365,
+        230
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Previously fixed and actualRGB-reviewed witness; sameRGBbytes."
+    },
+    {
+      "label": "green-stained-solid-brick-face",
+      "classification": "mixed-face-joint-retained",
+      "rectMasterPixelEdges": [
+        80,
+        660,
+        105,
+        680
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Original fixed witness crosses actual c10physicaljoint,24%V4mask; retained mixedstatistic, not pureface."
+    },
+    {
+      "label": "weathered-grey-solid-brick-c12",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        450,
+        790,
+        475,
+        815
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Previously fixed and actualRGB-reviewed witness; sameRGBbytes."
+    },
+    {
+      "label": "horizontal-mortar-c0-c1",
+      "classification": "mortar",
+      "rectMasterPixelEdges": [
+        350,
+        66,
+        380,
+        69
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Previously fixed and actualRGB-reviewed witness; sameRGBbytes."
+    },
+    {
+      "label": "horizontal-mortar-c3-c4",
+      "classification": "mortar",
+      "rectMasterPixelEdges": [
+        350,
+        246,
+        380,
+        252
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Previously fixed and actualRGB-reviewed witness; sameRGBbytes."
+    },
+    {
+      "label": "vertical-mortar-c1",
+      "classification": "mortar",
+      "rectMasterPixelEdges": [
+        257,
+        85,
+        261,
+        105
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Previously fixed and actualRGB-reviewed witness; sameRGBbytes."
+    },
+    {
+      "label": "horizontal-mortar-c6-c7",
+      "classification": "mortar",
+      "rectMasterPixelEdges": [
+        420,
+        450,
+        450,
+        453
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Previously fixed and actualRGB-reviewed witness; sameRGBbytes."
+    },
+    {
+      "label": "green-stained-solid-face-interior-proposed-v2",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        128,
+        660,
+        160,
+        680
+      ],
+      "basis": "Existing V4proposed RGB-only replacement interior in actualsolidgreenbrick; newheight not yetloaded."
+    },
+    {
+      "label": "c14j3-mortar-left-shoulder",
+      "classification": "mortar-shoulder",
+      "rectMasterPixelEdges": [
+        448,
+        922,
+        451,
+        935
+      ],
+      "basis": "ActualRGBphysicalgreenmortar left of narrowed V4core x451.44..456.56, awayfromfaceatx445."
+    },
+    {
+      "label": "c14j3-mortar-right-shoulder",
+      "classification": "mortar-shoulder",
+      "rectMasterPixelEdges": [
+        458,
+        922,
+        461,
+        935
+      ],
+      "basis": "ActualRGBphysicalmortar right of V4core, beforewarmrightface beginsatx463."
+    },
+    {
+      "label": "c14j3-brick-left-arris",
+      "classification": "brick-arris-contact",
+      "rectMasterPixelEdges": [
+        441,
+        922,
+        445,
+        935
+      ],
+      "basis": "Actualbrownleftbrick roundededge, adjacent to greenmortargap."
+    },
+    {
+      "label": "c14j3-brick-right-arris",
+      "classification": "brick-arris-contact",
+      "rectMasterPixelEdges": [
+        463,
+        922,
+        467,
+        935
+      ],
+      "basis": "Actualwarmrightbrick edge adjacent to physicalmortargap."
+    },
+    {
+      "label": "c15j2-left-mortar-shoulder",
+      "classification": "mortar-shoulder",
+      "rectMasterPixelEdges": [
+        104,
+        986,
+        108,
+        1000
+      ],
+      "basis": "ActualRGBgreenmortar left of core centre111, withoutincludingbrownfaceends~102."
+    },
+    {
+      "label": "c15j2-right-mortar-shoulder",
+      "classification": "mortar-shoulder",
+      "rectMasterPixelEdges": [
+        115,
+        986,
+        117,
+        1000
+      ],
+      "basis": "ActualRGBgreenmortar right of core centre111, beforebrickstarts~119."
+    }
+  ],
+  "newLayeredHeightRead": false,
+  "limits": "Physicalclassification fromRGB; outermortarshoulders are not accepted throughmask membership."
+}

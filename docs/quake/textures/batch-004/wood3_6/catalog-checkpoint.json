@@ -1,0 +1,39 @@
+{
+  "verdict": "Registeredoneadditionalindependentlyqualifiedmaterial; authoringonly",
+  "time": "2026-10-21T02:50:10.815298+00:00",
+  "priorCatalog": {
+    "file": "docs/quake/textures/batch-004/wood3_6/catalog-before-registration.json",
+    "sha256": "9a8079ef51fbd2ec97a52f745a69c812ea5700164eb56f50822f45d40f82b8be"
+  },
+  "currentCatalog": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/catalog.json",
+    "sha256": "9356d6637b0fcec5b87b5d74a6746ec909d44430d1f034b9c33edbab7786f447"
+  },
+  "newMaterial": "wood3_6",
+  "nativeIdentity": "2313e68258ba0197b1b1d1423bc1c2880b4cd5ea2ac4ca8e6d5f2a558f702ed6",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master-aligned-v1/master.json",
+    "sha256": "641703a9cb7adb7576f5e8b04dac4ee114d6df40bb68510fee8882260046b6fa"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers-aligned-v1/manifest.json",
+    "sha256": "097d1a95556552c3f37182dbc6b63b693464cfeec38b33f428360119331f10e5"
+  },
+  "finalReview": {
+    "file": "docs/quake/textures/batch-004/wood3_6/root-final-art-review.json",
+    "sha256": "595d6f96451ee81bc87f9ed98f5a47538e3ac420fd2b7f53425f8983c9c3baae"
+  },
+  "counts": {
+    "reviewedNativeIdentities": 4,
+    "masterPackages": 4,
+    "enhancedTiers": 8,
+    "enhancedMaps": 40,
+    "enhancedTierBindings": 8,
+    "enhancedMapBindings": 40
+  },
+  "limits": [
+    "Finiteauthoring materialplane, notinstalledloader/full-map/owneracceptance.",
+    "NoDevcommit/CI/releasequalification fromthisregistration; maintainedgate mustadmit exact composedsourcecontract andcurrentproofs beforecheckpoint.",
+    "Exactpixelpermutation appliesonlybeforeexistingXfinishing/resampling; noeverytexelphysicaltruth orpixelidentityclaim."
+  ]
+}

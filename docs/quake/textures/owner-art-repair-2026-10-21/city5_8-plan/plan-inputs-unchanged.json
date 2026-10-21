@@ -1,0 +1,60 @@
+{
+  "observedAt": "2026-10-21T08:13:57.575427+00:00",
+  "scope": "Planonly currentbytecustody; no changedcandidatepixels authored",
+  "plan": {
+    "file": "docs/quake/textures/owner-art-repair-2026-10-21/city5_8-plan/city5_8-minimal-plan.json",
+    "sha256": "879fbcd1e52bf7b06a129f2761014751c8b336a8e866c5eb985bab4a9fa452da"
+  },
+  "markdown": {
+    "file": "docs/quake/textures/owner-art-repair-2026-10-21/city5_8-plan/PLAN.md",
+    "sha256": "5460348aedcb7570d261892b2b5cf2012d2bda74d8d0a4ad69341cd3da3cbca3"
+  },
+  "protectedInputsUnchanged": [
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/root-city5_8-before/native.png",
+      "sha256": "b7e567df51c617ca5f9f2d378e4d447211018ba9da4821fd7b614d2c60ac905e",
+      "bytes": 4002
+    },
+    {
+      "file": "assets/game/textures/city5_8.webp",
+      "sha256": "4a4ec5964e891de99b377cf03d57aba5d941070f7beef518ef774526cf125a13",
+      "bytes": 107140
+    },
+    {
+      "file": "assets/game/textures/normals/city5_8.webp",
+      "sha256": "d516ed5146f322d3cfc0b3af759236dd83a9213b58acd17d4418ec14013f863d",
+      "bytes": 51932
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/level-2026-10-02/city_church_2.png",
+      "sha256": "2134cb9a375bf1032a838ed4917de2d4d64bb7463bdbd88510bb3bbe74afb519",
+      "bytes": 2746407
+    },
+    {
+      "file": "tools/texture_sheets/sources/level-2026-10-02/manifest.json",
+      "sha256": "e3ee3573f2bf984c1b921b8a3f5ec7c0d89b0bf1c58bc2d26243bc299b98c885",
+      "bytes": 12237
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/root-city5_8-before/before-proof.json",
+      "sha256": "6138cd24faeb9114da1c2a33595158a29f7f336e485af509869f53c95778f619",
+      "bytes": 4800
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/root-city5_8-before/existing-finisher-noop-control.json",
+      "sha256": "50e8da58fa4db2048c2c8365a534b1681c724691cf90db4389660f2c8b48886f",
+      "bytes": 2416
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "bytes": 13322
+    },
+    {
+      "file": "tools/texture_sheets/seam_fixes.json",
+      "sha256": "788bc2d8f60bf610b65aaeb26a83618cc7f11a3fad3a9a80e5e7edf7ec185535",
+      "bytes": 42077
+    }
+  ],
+  "correctedRGBHeightOrAssetWritten": false
+}

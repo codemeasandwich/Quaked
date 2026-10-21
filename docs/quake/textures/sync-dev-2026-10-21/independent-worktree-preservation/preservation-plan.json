@@ -1,0 +1,434 @@
+{
+  "schemaVersion": 1,
+  "scope": "Read-only classification plus NEW documentation-only custody copies. Foreign originals, Git index/refs/stashes and primary checkout untouched.",
+  "inputInventory": {
+    "file": "docs/quake/textures/sync-dev-2026-10-21/independent-worktree-preservation/three-way.json",
+    "sha256": "312d793736d3cd5825d32183f59bbfa890702a5651534927552f230e4671a474"
+  },
+  "summary": {
+    "scopedFiles": 350,
+    "exactIncoming": 344,
+    "differentCurrentFiles": 6,
+    "exactCopiesReadbackVerified": 6,
+    "stableInitialReads": true
+  },
+  "differentFiles": [
+    {
+      "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/catalog.json",
+      "workingSha256": "7401598d463f5ec21307bdb0961b408302e440daa897cbcbe8429fe9bc0026bb",
+      "retainedCopy": "docs/quake/textures/sync-dev-2026-10-21/independent-worktree-preservation/retained-working-bytes/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/catalog.json",
+      "copySha256": "7401598d463f5ec21307bdb0961b408302e440daa897cbcbe8429fe9bc0026bb",
+      "incomingSha256": "323885d69fe8d1b1d97ae966733f3f37c902fda3f42192172cbd9d3ff868eae7",
+      "exactWorkingHistoricalSnapshots": [
+        {
+          "commit": "8f0e96bcd9635859afb46578ee78565eff954e95",
+          "exactBytesAtPath": true,
+          "ancestorOfCloneHead": true
+        }
+      ],
+      "semanticObservation": {
+        "workingMaterials": 47,
+        "incomingMaterials": 68,
+        "workingIDsAbsentIncoming": [],
+        "workingRowsDifferIncoming": [],
+        "verdict": "Incoming retains every exact working material row, adds21; current working count47 is the earlier snapshot."
+      }
+    },
+    {
+      "path": "docs/hexen2/textures/GOAL.md",
+      "workingSha256": "b0f086c49b59aa149575ca00fd2d072a4b87b44ef5640c19955eb374167a8a4e",
+      "retainedCopy": "docs/quake/textures/sync-dev-2026-10-21/independent-worktree-preservation/retained-working-bytes/docs/hexen2/textures/GOAL.md",
+      "copySha256": "b0f086c49b59aa149575ca00fd2d072a4b87b44ef5640c19955eb374167a8a4e",
+      "incomingSha256": "11846d3020c5b8df82d984de1b700587cdcd0cc2c92e5e282dcf998ebed8fec2",
+      "exactWorkingHistoricalSnapshots": [
+        {
+          "commit": "8f0e96bcd9635859afb46578ee78565eff954e95",
+          "exactBytesAtPath": true,
+          "ancestorOfCloneHead": true
+        }
+      ],
+      "semanticObservation": {
+        "verdict": "Exact working bytes already in verified incoming-ancestor8f0e96bc; incoming ledger is a later changed snapshot. Retain prior bytes, do not overlay its earlier47-state."
+      }
+    },
+    {
+      "path": "docs/hexen2/textures/campaign-status.json",
+      "workingSha256": "8d4edabcee2aeefa40ee6e11a1bd6c9ac060e96d5beb5a59ccce2653b75b28fb",
+      "retainedCopy": "docs/quake/textures/sync-dev-2026-10-21/independent-worktree-preservation/retained-working-bytes/docs/hexen2/textures/campaign-status.json",
+      "copySha256": "8d4edabcee2aeefa40ee6e11a1bd6c9ac060e96d5beb5a59ccce2653b75b28fb",
+      "incomingSha256": "0f110403aea2fb5066eda7448a15cafd8d877df516700a950d98c0e3ece4c115",
+      "exactWorkingHistoricalSnapshots": [
+        {
+          "commit": "8f0e96bcd9635859afb46578ee78565eff954e95",
+          "exactBytesAtPath": true,
+          "ancestorOfCloneHead": true
+        }
+      ],
+      "semanticObservation": {
+        "verdict": "Exact working bytes already in verified incoming-ancestor8f0e96bc; incoming ledger is a later changed snapshot. Retain prior bytes, do not overlay its earlier47-state."
+      }
+    },
+    {
+      "path": "docs/hexen2/textures/progress.json",
+      "workingSha256": "1709650802ccb999e52409e080517737fb024c8f6d60b1ee0854348a20dc7a8a",
+      "retainedCopy": "docs/quake/textures/sync-dev-2026-10-21/independent-worktree-preservation/retained-working-bytes/docs/hexen2/textures/progress.json",
+      "copySha256": "1709650802ccb999e52409e080517737fb024c8f6d60b1ee0854348a20dc7a8a",
+      "incomingSha256": "6d0eb8e30f0505b0096baac5ff3931c4f59b93fb2d12dd3e5578c661196ffbb8",
+      "exactWorkingHistoricalSnapshots": [],
+      "semanticObservation": {
+        "workingTopKeys": 56,
+        "incomingTopKeys": 87,
+        "oldOnlyKeys": [],
+        "changedOrAddedKeys": [
+          "Bluey",
+          "HTMLReviewAttempt",
+          "activeCheckpoint",
+          "batch008",
+          "buildArtifactCleanup",
+          "checkpointGateDecision",
+          "checkpointPreparation",
+          "checkpointState",
+          "ciObservation",
+          "completedCheckpointReady",
+          "currentDevObservationNote",
+          "currentDevObserved",
+          "demoPriority",
+          "durableFollowup",
+          "enhancedMapBindings",
+          "fibreRepairAssessment",
+          "gateIncrement",
+          "handoverState",
+          "lastRegistration",
+          "latestCatalogCustody",
+          "latestCheckpoint",
+          "liveSourceJournals",
+          "maps",
+          "nextAction",
+          "ownerReliefDecision",
+          "parallelPhysicalReviews",
+          "parallelRegistrations",
+          "parallelRetirement",
+          "parallelStreams",
+          "pendingAdequateGeneratedSources",
+          "previousGoalTurnClassification",
+          "remoteDevObserved",
+          "repositoryObservation",
+          "retainedGeneratedSources",
+          "retainedGeneratedSourcesMeaning",
+          "reviewedWorldNativeIdentities",
+          "roundedCapPublicCode",
+          "runtimeHT",
+          "sharedMasterEditDecision",
+          "sourceMasterPackages",
+          "sourceStateCounts",
+          "state",
+          "supplementalAliasCandidate",
+          "terrainSourceMasterProof",
+          "textureAuthoringSkill",
+          "textureAuthoringSkillForwardCheck",
+          "unqualifiedGeneratedSources",
+          "unqualifiedGeneratedSourcesMeaning",
+          "updatedAt"
+        ],
+        "uniqueHistoricalWorkingValues": {
+          "state": "Active full campaign:47 reviewed WORLD native identities,40unique masters,400physical maps (470bindings). Final007ART/public/code/CLI checks passed;322localpigment repair preserves existingheight. Current008three sources need material-readability review before master preparation.",
+          "nextAction": "Retain current317output exactly, issue153once. Finish pre-tiersemanticgates (306inset,006mortar,153palemortar,054paint), then directderiveboth4/8tiers and independentactualsource/codec/art/repeat/distance/relief qualification. Existingforeignstaged docs/handover-2026-10-19.md must remain untouched during any owncheckpoint.",
+          "batch008": {
+            "state": "Six adequate raw sources retained:006,104,096,306,054,012.317soleliveimagecell436;153notissued. First3source-materialreadability independentPASS1916c5b6. Six distinct masterpreparations exist;306tonalheightheld and same-RGB layered successor awaitingpre-tiersemanticreview. NoB8tierencoded/registered yet.",
+            "selection": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/selection.json",
+            "sourceProof": "docs/hexen2/textures/batch-008-public-source-proof.json",
+            "planReview": "docs/hexen2/textures/batch-008-plan-public-review.json",
+            "generationCalls": 7,
+            "futureReliefGate": "153 source/master-only proof and semantic joint check before tier derivation; never encode knownbadrelief or weakenwrapperguard.",
+            "materialPlanV2": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/material-plan-v2.json",
+            "materialPlanV2Review": "docs/hexen2/textures/batch-008-material-plan-v2-public-review.json",
+            "materialPlanV2ReviewSha256": "64e5c724d646a25ad1c7d0fbf80ce48eae424f8e16f504ea5b293e22aef94d2a",
+            "liveHandles": {
+              "image": "functions.exec cell436 rpal317"
+            },
+            "sourceMaterialReview": "docs/hexen2/textures/batch-008-source-material-art-review.json"
+          },
+          "handoverState": "Updated docs/hexen2/textures/HANDOVER.md with current47/40/400scope, Dev213cc7 ownership boundary, strict real-material gate, skill, exactB8issue states, five-prompt independentPASS and B7actual/preview post-cleanupPASS. Independent three-source material and whole47catalog retirement reviews remain pending under initiating coordinator; no durable background execution claimed."
+        },
+        "verdict": "Exact working bytes not found in reachable path history. Older working ledger is not a current execution queue; preserve full bytes before replacing, do not restore it over incoming68-state."
+      }
+    },
+    {
+      "path": "docs/hexen2/textures/world-queue.csv",
+      "workingSha256": "e4309d2783f09daf310dffcfa3494afd2ad0eb96e6d405f69a087f9263dc1d6b",
+      "retainedCopy": "docs/quake/textures/sync-dev-2026-10-21/independent-worktree-preservation/retained-working-bytes/docs/hexen2/textures/world-queue.csv",
+      "copySha256": "e4309d2783f09daf310dffcfa3494afd2ad0eb96e6d405f69a087f9263dc1d6b",
+      "incomingSha256": "7f9cedef2966aebcb6136a0d00815cc73b8792be042dabefe8d2b7fbbff48352",
+      "exactWorkingHistoricalSnapshots": [
+        {
+          "commit": "8f0e96bcd9635859afb46578ee78565eff954e95",
+          "exactBytesAtPath": true,
+          "ancestorOfCloneHead": true
+        }
+      ],
+      "semanticObservation": {
+        "workingRows": 980,
+        "incomingRows": 980,
+        "changes": [
+          {
+            "nativeID": "e068750f3f11baad13dc050abc9fc5a3e860fbe9a450a653364315dccfb4209f",
+            "name": "mtex470",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "4bf05bb0cae8053cb2260e2bded0385706d3d9be305b3761f6c9986fb66c758d",
+            "name": "rpal317",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "591fbcbbc7a7b501c8f7467ad10c983ddc17f4f580be036132847322c8a43b5a",
+            "name": "rtex002",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "ed0ea21baafa9262cb44311e6a1fe0663863fe66c361993b465c79ac472b3c42",
+            "name": "rtex006",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "99e1795d878bb2e95a2a7d68bf49c94664193b73427ec4a84cb4c00ac9808246",
+            "name": "rtex011",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "0b8ec72958c3dcea8b609a9bee857b2be015f90dff46129c584dad2ef51ddf0a",
+            "name": "rtex053",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+            "name": "rtex054",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "7d397606c1724f4949baba30d8e25d096c6aa7455af1699f833881ffbc4556b1",
+            "name": "rtex096",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "276edf04e9d48c0a4eabaf3b40555c9534af9977ebd42afa5dffa7407c9881e0",
+            "name": "rtex100",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "e839a43cf82585d2393634074db6a19968c39436e12dd85201ec0074d92710dd",
+            "name": "rtex102",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "9751c9aa37327aefd4515ebf40db4f20412d392a042efa17ee69444b34b0eecc",
+            "name": "rtex104",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "73d1bef29871f25e3da731e707d7bd9e9062de9275b5fcbc3f8e38d9a3f41f8b",
+            "name": "rtex256",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "c690e6f1907297bdf1d164689621c07b8f70837282afe898c2eed1e013713482",
+            "name": "rtex306",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "6879799910e3c79bcc11e600e8975856fff356eedc1d04b5764b451a6653fae8",
+            "name": "rtex336",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "48f8ee75fe94cfac4743b222206efab5ee3904af21de8dbeb409b0fe287bd8ff",
+            "name": "rtex441",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "4f593a76545c348b03fa63e4f6c7522cb1d51beda62bbc6e1d26ebcb7af3c32b",
+            "name": "rtex485",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "4461c8b9623bcc682a41c4358b0e486c00aa3f77cde9b2dfebcb2efceab6dfd5",
+            "name": "rtex499",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "84bb278bdd9451b619a5de58d58a32fa07e9ce0cdc40b785070f3324e79181d3",
+            "name": "ttex012",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "cddf441f348f0a3182edadeeeb9028ece70c2eadbef541955e7197f8213c9752",
+            "name": "ttex054",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "b0d888d2faaedfc77346980aefcce52f620cabf34f80365bbbd17fd7835e10c6",
+            "name": "ttex153",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          },
+          {
+            "nativeID": "48459128c48ad2c273711c7b77e2267f27d1706dba9f84b9eb3a0af4f71f6436",
+            "name": "ttex262",
+            "changedColumns": {
+              "state": [
+                "pending",
+                "reviewed"
+              ]
+            }
+          }
+        ],
+        "only21PendingToReviewed": true
+      }
+    },
+    {
+      "path": "docs/hexen2/textures/HANDOVER.md",
+      "workingSha256": "c0920e752771e12da6f213e4b40f02ea7b5c21d6a96c0de7abfdf8cc10a2c75f",
+      "retainedCopy": "docs/quake/textures/sync-dev-2026-10-21/independent-worktree-preservation/retained-working-bytes/docs/hexen2/textures/HANDOVER.md",
+      "copySha256": "c0920e752771e12da6f213e4b40f02ea7b5c21d6a96c0de7abfdf8cc10a2c75f",
+      "incomingSha256": "790aa6e30f64f982aebe93800eef9fdba7c770a0df2936e3ad1f9889424dc972",
+      "exactWorkingHistoricalSnapshots": [],
+      "semanticObservation": {
+        "workingLines": 103,
+        "incomingLines": 178,
+        "nonEqualOpcodes": [
+          {
+            "kind": "insert",
+            "workingRange": [
+              1,
+              1
+            ],
+            "incomingRange": [
+              1,
+              76
+            ]
+          }
+        ],
+        "allWorkingLinesRetainedInOrder": true,
+        "verdict": "Incoming adds75lines and removes/replaces no working lines; retain exact prior file separately anyway."
+      }
+    }
+  ],
+  "safeSynchronizationRoute": [
+    "Recheck HEAD/index and rehash all350 scoped foreign paths against three-way.json immediately before synchronization; stop/reconcile on drift. This report is not a lock.",
+    "Retain exact full350file custody outside the physical fc24 checkout before clearing any overlap. Preserve path, bytes and mode and verify every readback against this inventory. Six differing files already have verified documentation-only copies here;344others are exact in incomingtree. None is disposable.",
+    "Commit/stage only explicitly owned Quake work on the prepared true-merge candidate through maintained review/gates; never blanket-add foreign ledgers/artifacts. The active incoming Hexen catalog/progress/queue must retain their laterstate.",
+    "For a required physical-fc24 synchronization, root may use the finite allowlist:345untracked paths (all overlap incomingtrackedfiles) are moved into verified external custody, not deleted. After verifying custody, restore only the5trackedforeignpaths from oldHEAD713b to remove localoverlap. Do not touch unrelated dirty/untracked/ignoredpaths or another checkout. This reviewer performed none of these mutations.",
+    "Then use normal Git fastforward to the finalized/published integratedDev once all ownedchanges/index are resolved. Do not autostash, blanketstash, reset--hard or clean to force the operation. If any Git conflict remains, retain exact refusal andresolveactualpath before continuing.",
+    "Do not overlay the six older47-state ledgers on incoming68-state. Keep their exact copies/history as historical custody. HANDOVER already retains all workinglines in order; progress oldlivehandle metadata remains historical and must not be resumed as currentauthority.",
+    "Finalproof: fc24HEAD equalsfinalintegratedDev, actualincomingHexenfiles rehash to the intendedcommittedtree, all350 originalworkingbyte/modeidentities remain readable from unchanged physical checkout or verified externalcustody/history, and no foreignbyte/version was discarded. The literal single-path checkout goal is distinct from merely attaching the synchronizedclone."
+  ],
+  "limits": [
+    "344exactfiles are verified byte+mode equality to namedincomingtree, not qualification of Hexen feature quality.",
+    "No file difference was labelled disposable. Four historical exactsnapshots, one fullyretainedhandover and one uniqueprogress snapshot remain preserved.",
+    "No merge/pull/index/stash/delete operation was performed by this reviewer."
+  ],
+  "scopeCounts": {
+    "trackedModified": 5,
+    "untrackedFiles": 345,
+    "untrackedAllOverlapIncomingTrackedFiles": true
+  }
+}

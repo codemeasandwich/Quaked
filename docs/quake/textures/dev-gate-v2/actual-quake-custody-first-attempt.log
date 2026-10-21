@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/check_texture_catalog_custody.py", line 385, in <module>
+    print(json.dumps(verify(Path.cwd(), args.source_root, json.loads(args.baseline.read_bytes()), args.family, args.reference_root), indent=2))
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/check_texture_catalog_custody.py", line 325, in verify
+    quake_map(role, target, output, tier['dimensions'])
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/check_texture_catalog_custody.py", line 151, in quake_map
+    raise ValueError('Quake role encoding/layout differs')
+ValueError: Quake role encoding/layout differs

@@ -1,0 +1,718 @@
+[
+  {
+    "name": "church1",
+    "tier": "Mid",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mapFiles": {
+      "diffuse": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/mid-diffuse.webp",
+        "sha256": "b0f4ad9001c272ac6a1451fc748b8ade93f171cd690ba040274a275acb337f95"
+      },
+      "height": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/mid-height.webp",
+        "sha256": "fe1cb33f88493b04b6c36900daf5c5f9514d4cd66c15fe7e50803fdb6fdfb4c9"
+      },
+      "normalX": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/mid-normalX.webp",
+        "sha256": "9beb894bced28903a7d07cc4520309a91a042f6ee9c17c8a4d54736685f61217"
+      },
+      "normalY": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/mid-normalY.webp",
+        "sha256": "a5b6f4c95c2f9395fc9fe8ac922723c448c8e4cd74ddd6b0747fef3f0c8b0e97"
+      },
+      "normalZ": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/mid-normalZ.webp",
+        "sha256": "f120c5174ad21ce32f1f56b6c5b61f2becaf630db9962e5daa80ea7b5bd22aaf"
+      }
+    },
+    "samples": {
+      "upper_vertical_joint": {
+        "decodedRectPixels": [
+          252,
+          62,
+          259,
+          205
+        ],
+        "meanHeight": 0.006436700554347613,
+        "medianHeight": 0.00392156862745098,
+        "p10p90": [
+          0.00392156862745098,
+          0.011764705882352941
+        ]
+      },
+      "upper_left_adjacent_stone": {
+        "decodedRectPixels": [
+          228,
+          62,
+          241,
+          205
+        ],
+        "meanHeight": 0.40779250914997517,
+        "medianHeight": 0.36470588235294116,
+        "p10p90": [
+          0.11372549019607843,
+          0.7686274509803922
+        ]
+      },
+      "upper_right_adjacent_stone": {
+        "decodedRectPixels": [
+          270,
+          62,
+          284,
+          205
+        ],
+        "meanHeight": 0.4157215333685922,
+        "medianHeight": 0.39215686274509803,
+        "p10p90": [
+          0.06274509803921569,
+          0.8431372549019608
+        ]
+      },
+      "lower_vertical_joint": {
+        "decodedRectPixels": [
+          118,
+          300,
+          124,
+          455
+        ],
+        "meanHeight": 0.00770820156019397,
+        "medianHeight": 0.00392156862745098,
+        "p10p90": [
+          0.0,
+          0.0196078431372549
+        ]
+      },
+      "lower_left_adjacent_stone": {
+        "decodedRectPixels": [
+          96,
+          300,
+          110,
+          455
+        ],
+        "meanHeight": 0.40904490828589496,
+        "medianHeight": 0.4,
+        "p10p90": [
+          0.11764705882352941,
+          0.6901960784313725
+        ]
+      },
+      "lower_right_adjacent_stone": {
+        "decodedRectPixels": [
+          134,
+          300,
+          148,
+          455
+        ],
+        "meanHeight": 0.4338574139333153,
+        "medianHeight": 0.4176470588235294,
+        "p10p90": [
+          0.07450980392156863,
+          0.8509803921568627
+        ]
+      },
+      "middle_horizontal_joint": {
+        "decodedRectPixels": [
+          285,
+          252,
+          455,
+          260
+        ],
+        "meanHeight": 0.01328719723183391,
+        "medianHeight": 0.00392156862745098,
+        "p10p90": [
+          0.0,
+          0.03529411764705882
+        ]
+      },
+      "middle_above_stone": {
+        "decodedRectPixels": [
+          285,
+          230,
+          455,
+          242
+        ],
+        "meanHeight": 0.6468031526336024,
+        "medianHeight": 0.6666666666666666,
+        "p10p90": [
+          0.3803921568627451,
+          0.8862745098039215
+        ]
+      },
+      "middle_below_stone": {
+        "decodedRectPixels": [
+          285,
+          272,
+          455,
+          284
+        ],
+        "meanHeight": 0.39558054594386777,
+        "medianHeight": 0.3568627450980392,
+        "p10p90": [
+          0.09411764705882353,
+          0.7843137254901961
+        ]
+      }
+    }
+  },
+  {
+    "name": "church1",
+    "tier": "High",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "mapFiles": {
+      "diffuse": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/high-diffuse.webp",
+        "sha256": "febf9e1198be880e872e391d9fa4d6d135da0440767267f272574e135a88d20f"
+      },
+      "height": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/high-height.webp",
+        "sha256": "de573c000c15674dd8449ef57f217dec216ebdae1c38216f2764a69fd3d4ac64"
+      },
+      "normalX": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/high-normalX.webp",
+        "sha256": "e4861956111cf6f976aac39d52d9601c635b2e667356e272b6034803d928ab79"
+      },
+      "normalY": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/high-normalY.webp",
+        "sha256": "ca5cdb70d4d2facf38244615d9f922dd69f64bf0acdc8840ee8f452d20eff95e"
+      },
+      "normalZ": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/high-normalZ.webp",
+        "sha256": "939bbe1a68593c1b2e23323cb63fd1e8cde5d7c3ce2aabc765c3722ac84d7e95"
+      }
+    },
+    "samples": {
+      "upper_vertical_joint": {
+        "decodedRectPixels": [
+          505,
+          125,
+          518,
+          410
+        ],
+        "meanHeight": 0.006709534016035564,
+        "medianHeight": 0.00392156862745098,
+        "p10p90": [
+          0.00392156862745098,
+          0.011764705882352941
+        ]
+      },
+      "upper_left_adjacent_stone": {
+        "decodedRectPixels": [
+          456,
+          125,
+          482,
+          410
+        ],
+        "meanHeight": 0.4079045275330105,
+        "medianHeight": 0.3666666666666667,
+        "p10p90": [
+          0.10980392156862745,
+          0.7686274509803922
+        ]
+      },
+      "upper_right_adjacent_stone": {
+        "decodedRectPixels": [
+          540,
+          125,
+          568,
+          410
+        ],
+        "meanHeight": 0.41613592805543265,
+        "medianHeight": 0.38823529411764707,
+        "p10p90": [
+          0.06274509803921569,
+          0.8509803921568627
+        ]
+      },
+      "lower_vertical_joint": {
+        "decodedRectPixels": [
+          236,
+          600,
+          248,
+          910
+        ],
+        "meanHeight": 0.007632300231920725,
+        "medianHeight": 0.00392156862745098,
+        "p10p90": [
+          0.0,
+          0.0196078431372549
+        ]
+      },
+      "lower_left_adjacent_stone": {
+        "decodedRectPixels": [
+          191,
+          600,
+          219,
+          910
+        ],
+        "meanHeight": 0.406000722869793,
+        "medianHeight": 0.396078431372549,
+        "p10p90": [
+          0.11372549019607843,
+          0.7019607843137254
+        ]
+      },
+      "lower_right_adjacent_stone": {
+        "decodedRectPixels": [
+          269,
+          600,
+          297,
+          910
+        ],
+        "meanHeight": 0.4356790458118731,
+        "medianHeight": 0.4117647058823529,
+        "p10p90": [
+          0.07450980392156863,
+          0.8549019607843137
+        ]
+      },
+      "middle_horizontal_joint": {
+        "decodedRectPixels": [
+          570,
+          505,
+          910,
+          520
+        ],
+        "meanHeight": 0.013743175701653211,
+        "medianHeight": 0.00392156862745098,
+        "p10p90": [
+          0.0,
+          0.03529411764705882
+        ]
+      },
+      "middle_above_stone": {
+        "decodedRectPixels": [
+          570,
+          461,
+          910,
+          485
+        ],
+        "meanHeight": 0.6443118031526337,
+        "medianHeight": 0.6666666666666666,
+        "p10p90": [
+          0.37254901960784315,
+          0.8823529411764706
+        ]
+      },
+      "middle_below_stone": {
+        "decodedRectPixels": [
+          570,
+          543,
+          910,
+          568
+        ],
+        "meanHeight": 0.39545098039215687,
+        "medianHeight": 0.3568627450980392,
+        "p10p90": [
+          0.09019607843137255,
+          0.7803921568627451
+        ]
+      }
+    }
+  },
+  {
+    "name": "maya1_9",
+    "tier": "Mid",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mapFiles": {
+      "diffuse": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/mid-diffuse.webp",
+        "sha256": "8cc0f966ad756777416489b1108fb0d904d851f7826b62c87e3546f1e2cd4897"
+      },
+      "height": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/mid-height.webp",
+        "sha256": "b0f729ee8b98f261cddcde00b9599080cb163970b0d22c9c27663ecca232b8b3"
+      },
+      "normalX": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/mid-normalX.webp",
+        "sha256": "3355808932d912dabf90bdbbed847960c7b19be90c1b08ad58072588c0531501"
+      },
+      "normalY": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/mid-normalY.webp",
+        "sha256": "35578dd7bb986c802b3d21a1fcff0f7cc00f5ee0276a1ff3716b0f897680207b"
+      },
+      "normalZ": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/mid-normalZ.webp",
+        "sha256": "4140d8c855178e59796488cd4e2b46284ab0d83f414181c837a9f8e5f7a1f019"
+      }
+    },
+    "samples": {
+      "course1_vertical_joint": {
+        "decodedRectPixels": [
+          136,
+          24,
+          141,
+          105
+        ],
+        "meanHeight": 0.022648269184216894,
+        "medianHeight": 0.011764705882352941,
+        "p10p90": [
+          0.00392156862745098,
+          0.050980392156862744
+        ]
+      },
+      "course1_left_adjacent_stone": {
+        "decodedRectPixels": [
+          118,
+          24,
+          128,
+          105
+        ],
+        "meanHeight": 0.5489857177438877,
+        "medianHeight": 0.5607843137254902,
+        "p10p90": [
+          0.2466666666666667,
+          0.8274509803921568
+        ]
+      },
+      "course1_right_adjacent_stone": {
+        "decodedRectPixels": [
+          150,
+          24,
+          160,
+          105
+        ],
+        "meanHeight": 0.4583297022512709,
+        "medianHeight": 0.4470588235294118,
+        "p10p90": [
+          0.1843137254901961,
+          0.7333333333333333
+        ]
+      },
+      "course2_vertical_joint": {
+        "decodedRectPixels": [
+          194,
+          148,
+          200,
+          232
+        ],
+        "meanHeight": 0.01855742296918767,
+        "medianHeight": 0.00784313725490196,
+        "p10p90": [
+          0.0,
+          0.047058823529411764
+        ]
+      },
+      "course2_left_adjacent_stone": {
+        "decodedRectPixels": [
+          176,
+          148,
+          187,
+          232
+        ],
+        "meanHeight": 0.5500891265597148,
+        "medianHeight": 0.5568627450980392,
+        "p10p90": [
+          0.3607843137254902,
+          0.7254901960784313
+        ]
+      },
+      "course2_right_adjacent_stone": {
+        "decodedRectPixels": [
+          210,
+          148,
+          221,
+          232
+        ],
+        "meanHeight": 0.3891053391053391,
+        "medianHeight": 0.3686274509803922,
+        "p10p90": [
+          0.14901960784313725,
+          0.6862745098039216
+        ]
+      },
+      "row1_horizontal_joint": {
+        "decodedRectPixels": [
+          21,
+          124,
+          58,
+          130
+        ],
+        "meanHeight": 0.06014838367779544,
+        "medianHeight": 0.0196078431372549,
+        "p10p90": [
+          0.00392156862745098,
+          0.1843137254901961
+        ]
+      },
+      "row1_above_stone": {
+        "decodedRectPixels": [
+          21,
+          109,
+          58,
+          118
+        ],
+        "meanHeight": 0.5038214685273508,
+        "medianHeight": 0.5882352941176471,
+        "p10p90": [
+          0.13333333333333333,
+          0.8345098039215687
+        ]
+      },
+      "row1_below_stone": {
+        "decodedRectPixels": [
+          21,
+          139,
+          58,
+          148
+        ],
+        "meanHeight": 0.5650709533062473,
+        "medianHeight": 0.5803921568627451,
+        "p10p90": [
+          0.3419607843137255,
+          0.775686274509804
+        ]
+      },
+      "row2_horizontal_joint": {
+        "decodedRectPixels": [
+          285,
+          252,
+          310,
+          259
+        ],
+        "meanHeight": 0.020123249299719887,
+        "medianHeight": 0.00784313725490196,
+        "p10p90": [
+          0.0,
+          0.054901960784313725
+        ]
+      },
+      "row2_above_stone": {
+        "decodedRectPixels": [
+          285,
+          238,
+          310,
+          245
+        ],
+        "meanHeight": 0.2704761904761904,
+        "medianHeight": 0.23921568627450981,
+        "p10p90": [
+          0.08784313725490196,
+          0.46901960784313723
+        ]
+      },
+      "row2_below_stone": {
+        "decodedRectPixels": [
+          285,
+          270,
+          310,
+          279
+        ],
+        "meanHeight": 0.2812374727668845,
+        "medianHeight": 0.2784313725490196,
+        "p10p90": [
+          0.1623529411764706,
+          0.41411764705882353
+        ]
+      }
+    }
+  },
+  {
+    "name": "maya1_9",
+    "tier": "High",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "mapFiles": {
+      "diffuse": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/high-diffuse.webp",
+        "sha256": "bce3485cfb7bc23793bfa738368c2d73bcf010ec5a3b098a639461e378b2ee09"
+      },
+      "height": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/high-height.webp",
+        "sha256": "be05c220184a170a1610f96b7501e789b051cd3cc0a9877e7d6ff8f3a7512c51"
+      },
+      "normalX": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/high-normalX.webp",
+        "sha256": "9f3101046e26ec871eda1329679abad5eedb2050b37eebb6d2b47741738e3f10"
+      },
+      "normalY": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/high-normalY.webp",
+        "sha256": "7ba05b2f1e31a8d67b7132d9143d2afa0b5fbb479cf25c617c080c8f07d248d0"
+      },
+      "normalZ": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/high-normalZ.webp",
+        "sha256": "ccefc587d4457f1a0b0b56c0345b650e1beccfe8c3be3fb019a7fc89f06ddb32"
+      }
+    },
+    "samples": {
+      "course1_vertical_joint": {
+        "decodedRectPixels": [
+          272,
+          48,
+          282,
+          210
+        ],
+        "meanHeight": 0.02291696925683854,
+        "medianHeight": 0.011764705882352941,
+        "p10p90": [
+          0.00392156862745098,
+          0.050980392156862744
+        ]
+      },
+      "course1_left_adjacent_stone": {
+        "decodedRectPixels": [
+          235,
+          48,
+          255,
+          210
+        ],
+        "meanHeight": 0.5651537158073106,
+        "medianHeight": 0.5764705882352941,
+        "p10p90": [
+          0.26666666666666666,
+          0.8352941176470589
+        ]
+      },
+      "course1_right_adjacent_stone": {
+        "decodedRectPixels": [
+          299,
+          48,
+          319,
+          210
+        ],
+        "meanHeight": 0.4562563543936093,
+        "medianHeight": 0.44313725490196076,
+        "p10p90": [
+          0.1843137254901961,
+          0.7333333333333333
+        ]
+      },
+      "course2_vertical_joint": {
+        "decodedRectPixels": [
+          389,
+          295,
+          401,
+          465
+        ],
+        "meanHeight": 0.01357747020376778,
+        "medianHeight": 0.00392156862745098,
+        "p10p90": [
+          0.0,
+          0.03529411764705882
+        ]
+      },
+      "course2_left_adjacent_stone": {
+        "decodedRectPixels": [
+          352,
+          295,
+          374,
+          465
+        ],
+        "meanHeight": 0.5511429170598721,
+        "medianHeight": 0.5568627450980392,
+        "p10p90": [
+          0.3568627450980392,
+          0.7294117647058823
+        ]
+      },
+      "course2_right_adjacent_stone": {
+        "decodedRectPixels": [
+          420,
+          295,
+          442,
+          465
+        ],
+        "meanHeight": 0.3889357240222292,
+        "medianHeight": 0.37254901960784315,
+        "p10p90": [
+          0.14901960784313725,
+          0.6784313725490196
+        ]
+      },
+      "row1_horizontal_joint": {
+        "decodedRectPixels": [
+          42,
+          249,
+          117,
+          260
+        ],
+        "meanHeight": 0.06226500297088532,
+        "medianHeight": 0.011764705882352941,
+        "p10p90": [
+          0.00392156862745098,
+          0.21411764705882363
+        ]
+      },
+      "row1_above_stone": {
+        "decodedRectPixels": [
+          42,
+          218,
+          117,
+          236
+        ],
+        "meanHeight": 0.5062251270878723,
+        "medianHeight": 0.6,
+        "p10p90": [
+          0.12941176470588237,
+          0.8352941176470589
+        ]
+      },
+      "row1_below_stone": {
+        "decodedRectPixels": [
+          42,
+          278,
+          117,
+          296
+        ],
+        "meanHeight": 0.5654233841684821,
+        "medianHeight": 0.5764705882352941,
+        "p10p90": [
+          0.34078431372549023,
+          0.7725490196078432
+        ]
+      },
+      "row2_horizontal_joint": {
+        "decodedRectPixels": [
+          570,
+          505,
+          620,
+          518
+        ],
+        "meanHeight": 0.018847662141779787,
+        "medianHeight": 0.00392156862745098,
+        "p10p90": [
+          0.0,
+          0.05137254901960793
+        ]
+      },
+      "row2_above_stone": {
+        "decodedRectPixels": [
+          570,
+          475,
+          620,
+          490
+        ],
+        "meanHeight": 0.2705673202614379,
+        "medianHeight": 0.23137254901960785,
+        "p10p90": [
+          0.08980392156862747,
+          0.48352941176470615
+        ]
+      },
+      "row2_below_stone": {
+        "decodedRectPixels": [
+          570,
+          541,
+          620,
+          558
+        ],
+        "meanHeight": 0.2758339100346021,
+        "medianHeight": 0.27058823529411763,
+        "p10p90": [
+          0.1568627450980392,
+          0.4
+        ]
+      }
+    }
+  }
+]

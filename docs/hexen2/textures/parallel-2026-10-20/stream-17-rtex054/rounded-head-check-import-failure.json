@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "state": "AUTHOR VERIFIER IMPORT FAILURE BEFORE OUTPUT; not an asset or physical gate result",
+  "failedSource": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/check-actual-rounded-heads-before-import-fix.py",
+    "sha256": "7db322b4a35074f388d1e9d6bc06e766e7d9104132236c75af575c362b272699"
+  },
+  "exception": "ModuleNotFoundError: No module named craft_normals",
+  "cause": "The standalone diagnostic added tools/texture_sheets but omitted tools; no helper imported prepare_texture_master first.",
+  "correction": "Add existing tools import path explicitly. No producer or source/master change. Rerun unchanged head hierarchy check.",
+  "outputCreated": false
+}

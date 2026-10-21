@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "state": "FROZEN for independent review; not staged/landed qualification",
+  "createdAt": "2026-10-21T03:33:14.656749+00:00",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "committedUpstreamBase": "f9d66078be4056b00a80fd1761e42df1e79c8231",
+  "controls": {
+    "tools/distribution/precommit.mjs": "02ff8e3f10aede1d7e72c2f4d90ca40a14fd5fca2833db43bd2aa676e35aa12d",
+    "tests/staged_contract_test.mjs": "37791f0a8f7f2ce33c175590ca0780df44dc66a431002da8cb3ae042fe06e2db",
+    "tools/texture_sheets/check_texture_catalog_custody.py": "639b622a46e74d444cce100b5cbf7c70b928c6c4712d9ef103f165e26e04cbc1"
+  },
+  "publicTests": {
+    "command": "node --test tests/staged_contract_test.mjs",
+    "groupsPassed": 39,
+    "log": "docs/quake/textures/dev-gate-v2/public-r1-r5-final.log",
+    "sha256": "e0f7bb1304c26e9ef9e8c038ac87f9f50463fe9a29034d18372e25fe5164c73b"
+  },
+  "quakeSuites": [
+    {
+      "test": "tests/quake_texture_tiers_test.py",
+      "sha256": "df945ace925208e4c063a143ea7154d59769995ec478768af4e9e1baab9705c2",
+      "returnCode": 0,
+      "log": "docs/quake/textures/dev-gate-v2/quake_texture_tiers_test-final.log"
+    },
+    {
+      "test": "tests/quake_texture_batch_review_test.py",
+      "sha256": "13010b66357ea791bd1254a4d9ecdccdbbbe934ac9d6d00fa01ec7b008aa57b1",
+      "returnCode": 0,
+      "log": "docs/quake/textures/dev-gate-v2/quake_texture_batch_review_test-final.log"
+    },
+    {
+      "test": "tests/texture_boundary_x_registration_test.py",
+      "sha256": "d6c38cf47ce3772f4ddc7f0d7b1387879e59c0d93af0d1f1926154ccf6b9a923",
+      "returnCode": 0,
+      "log": "docs/quake/textures/dev-gate-v2/texture_boundary_x_registration_test-final.log"
+    }
+  ],
+  "actualCatalogCustody": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 /usr/bin/python3 tools/texture_sheets/check_texture_catalog_custody.py --family quake --baseline docs/quake/textures/dev-gate-v2/empty-quake-baseline.json --source-root /Users/bri/.codex/worktrees/fc24/Quaked --reference-root /Users/bri/SOURCE/Quaked",
+    "log": "docs/quake/textures/dev-gate-v2/actual-four-r1-r5-role-closure-final.log",
+    "sha256": "531b0adbf687908c485cfe13ae53ea6ee484cbf54275b8a9897dfca67696a5e8",
+    "counts": {
+      "masterPackages": 4,
+      "enhancedTiers": 8,
+      "enhancedMaps": 40,
+      "enhancedTierBindings": 8,
+      "enhancedMapBindings": 40,
+      "reviewedNativeIdentities": 4
+    },
+    "checkedFiles": 194
+  },
+  "upstreamPreserved": "f9d6 exact rounded-cap producer/test/standard admission and eighth inherited Python suite, plus Quake three = eleven suites; checker default Hexen path retained",
+  "findingsAddressed": [
+    "R1 exact sixteen-pose independent public capture-set/triples/current inputs and accepted ART numerical proof",
+    "R2 exact Mid/High and five manifest+catalog roles",
+    "R3 shared numeric/ART candidate path/hash/map closure",
+    "R4 current catalog policy before empty materials iteration",
+    "R5 consistent no-replacement real Git objects and early history override/graft guards; root-owned implementation"
+  ],
+  "limits": [
+    "No Git mutation, build, browser, asset, catalog or shared producer edit by this worker.",
+    "Focused public fixtures use an injected runner and synthetic attestations, not actual hardware or artwork acceptance.",
+    "Direct current catalog check is sealed custody only. Independent final control review, isolated clone bootstrap, normal full HTML gate and Dev commit remain root responsibilities."
+  ],
+  "retainedFailures": [
+    "public-red.log",
+    "public-expanded-failed-fixture-v1.mjs",
+    "actual-quake-custody-first-attempt.log",
+    "actual-four-r1-r4-first-attempt.log",
+    "public-r1-r4-first-attempt.log",
+    "independent-review/public-negative-probes-v1.log",
+    "independent-review/public-empty-schema-negative-v1.log",
+    "independent-review/public-replacement-history-negative-v1.log"
+  ]
+}

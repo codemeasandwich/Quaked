@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "state": "issued",
+  "operation": "built-in-image-edit",
+  "revision": "r1",
+  "nativeIdentity": "ddf78c81cf519fbda0afc975b11b42f42949e3f9297a2e8f8dc3310c183b8d24",
+  "name": "rtex388",
+  "edition": "base",
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "parentRaw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/generated/rtex388.png",
+    "sha256": "4b431a5aece2e46314629b67fd1222967cf8cccf575629e5acdce0e250d1b074",
+    "bytes": 4227725
+  },
+  "parentPrompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/prompts/rtex388-material-v1.txt",
+    "sha256": "13907060a1adda2d9d4489112fea2c34881e3db6d86439a8ba1f3bb9653afdf9",
+    "bytes": 2649
+  },
+  "native": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/originals/01-rtex388-ddf78c81cf51.png",
+    "sha256": "8a7a96186a7e9e785c82a550c9f6a72236183d66520b76e6a6bba1d4fef0fabd",
+    "bytes": 3929
+  },
+  "primaryJournal": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/selection.json",
+    "sha256": "c7f937ffde5d9bb37f5f1456d8bee89da291a707a4e7bebe32c134ef738facb0",
+    "bytes": 2622
+  },
+  "editPrompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/revisions/r1/edit-prompt-r1.txt",
+    "sha256": "d3a16961ffa727b62d5c4398576b09c4af91c2a333ff90ab371b8aee65aa9a12",
+    "bytes": 2533
+  },
+  "originalFreeze": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/CANDIDATE_FREEZE.json",
+    "sha256": "0fa5f47f6e7aedcd2b7dd3e0b185905f571c97a79135d8fc602ae831b144596b",
+    "bytes": 19599
+  },
+  "originalFrozenInputCount": 80,
+  "initialGenerationCallCount": 1,
+  "editCallCount": 1,
+  "totalModelCalls": 2,
+  "countsMeaning": "Issued calls: retained historical generation1 plus this authorized edit1; return remains pending. No provider-side invocation audit.",
+  "oneFinalMaster": true,
+  "tierSources": "Same final selected source/master for Mid4x and High8x; no separately authored tiers.",
+  "ownerAuthority": "Owner explicitly approved tracked GPT image-edit revisions of the same shared source; root delegated exactly one built-in seam edit.",
+  "scope": "Only natural X/Y/corner fibre continuity, same material/palette/feature scale.",
+  "issuedAt": "2026-10-20T23:29:07.704648+00:00",
+  "automaticExtraEdit": false,
+  "primaryJournalModified": false,
+  "previousSourcesAndDiagnosticsPreserved": true,
+  "nextAction": "Reconcile this exact issued built-in edit handle; retain actual returned bytes once, inspect material/edges/BOX; no duplicate issuance."
+}

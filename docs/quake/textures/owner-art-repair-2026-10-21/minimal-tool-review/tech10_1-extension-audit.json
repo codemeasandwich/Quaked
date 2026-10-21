@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "scope": "Owner-authorized extension to one three-file colour-only legacy trial. No candidate pixels retained by reviewer.",
+  "name": "tech10_1",
+  "native": {
+    "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech10_1.png",
+    "sha256": "9cde6704748c6651903fe8d9b602327ae7abaeeab4e681028e85bdd43fe4ba8b",
+    "dimensions": [
+      64,
+      64
+    ]
+  },
+  "bestSurvivingOwnerArtwork": {
+    "file": "assets/game/textures/tech10_1.webp",
+    "sha256": "83d0b4bb09cb912760a1c2ad26b8eef566b4a71f73b5627b723ad6a17cb4bb63",
+    "dimensions": [
+      256,
+      256
+    ],
+    "format": "WEBP; compressed historical owner art, not pristine lossless or8x master"
+  },
+  "noOpControl": {
+    "call": "finish(native,owner,factor=4,color_strength=0)",
+    "allChannelsExact": true
+  },
+  "halfNativeBox": {
+    "installedMinusNativeMean": [
+      24.7646484375,
+      15.4072265625,
+      5.46484375
+    ],
+    "mae": 16.749348958333332
+  },
+  "firstTrial": {
+    "factor": 4,
+    "comparisonDivisor": 2,
+    "method": "photographic",
+    "colorStrength": 0.35,
+    "fieldSigma": 1.5,
+    "edgeAnchor": false,
+    "landmarks": null,
+    "geometryAndHeight": "unchanged",
+    "authoring": "losslessPNG candidate from best surviving256px art; no upscale or8x claim"
+  },
+  "sceneAuthority": "Use source=base exactSharedEdgeJoins in screenshot-scene-intake/wall-joins.json. Previous whole-edge shareware summary is a different map geometry and not screenshot acceptance."
+}

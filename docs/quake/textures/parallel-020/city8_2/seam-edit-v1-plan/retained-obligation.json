@@ -1,0 +1,22 @@
+{
+  "state": "HOLD retained; seamedit remains UNISSUED",
+  "observedAt": "2026-10-20T16:44:35.520323+00:00",
+  "nativeIdentity": "712726be7f599dd7d1d755bcb3c7de16bd36fd19e2d619c6305f48979abce772",
+  "materialSource": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v3/generated/city8_2-source-v3.png",
+    "sha256": "7d6626de61f9bdb268d361fc828f3f545256bd7911f91e9967674ce80390e9d9"
+  },
+  "splitArtReceipt": {
+    "file": "docs/quake/textures/parallel-020/city8_2/source-replacement-v3/raw-art-review.json",
+    "sha256": "185795039666d7ccc0b8458a62cb97862d30d14a2794fb652e5e8fa3835fb123"
+  },
+  "unissuedSeamPlan": {
+    "file": "docs/quake/textures/parallel-020/city8_2/seam-edit-v1-plan/plan.json",
+    "sha256": "069c398b24783b67aeebf98cc0702bd918b69f9d390072a37059fc7987ed48ca"
+  },
+  "reason": "Root reported the rock edit trial introduced a bad material band and retained geometric cuts; root stopped blind reuse of that method. No city seamedit call was issued.",
+  "knownCityImagegenCalls": 3,
+  "newCallsFromThisIntake": 0,
+  "nextOwner": "Root Quake coordinator",
+  "nextAction": "Keep city geometry repair obligation visible for a materially different authorized art decision; new ground intake neither closes city nor shrinks the Quake/official-expansion campaign."
+}

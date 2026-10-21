@@ -1,0 +1,342 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T04:00:30.003904+00:00",
+  "reviewer": "fresh supervised retained-source planning lane",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "localHEAD": "713b47d322f0674f154a70ec4baebd4566905d41",
+  "nativeIdentity": "423af89cbbd6557269c90286020997d7f5782a52b799ba8307df9c2b24a8e9b5",
+  "verdict": "HOLD before master: structural X-contact finding; independent coordinator review pending",
+  "scope": "Current file custody, actual material/distance/repeat inspection and conditional plan only; NOT source/master qualification",
+  "finding": {
+    "material": "Recognisable weathered dark brown stone, fractures, pores and chipped mineral edges; basalt-like is interpretation",
+    "phase": "Four courses near nativeY0/32/64/96; vertical joints alternate X96/32/96/32",
+    "distance": "Native and raw BOX64/32 retain course rhythm and brown values; raw mortar paler/sharper",
+    "blockedAxis": "X",
+    "literalRawStitch": "1253|0",
+    "joinPositionInStripX": 160,
+    "decisiveRawYRanges": [
+      [
+        350,
+        620
+      ],
+      [
+        970,
+        1240
+      ]
+    ],
+    "reason": "Straight contact interrupts fracture/detail inside continuous stone rather than at native mortar. Intensity correction cannot establish physical feature continuation.",
+    "evidence": [
+      "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-x-contact-finding.png",
+      "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-x-join.png"
+    ],
+    "YAndCorners": "Horizontal mortar phase remains coherent; does not close X-contact finding"
+  },
+  "visuallyOpened": [
+    "assets/authoring/texture_sheets/sources/official-world-2026-10-17/TF_Stone_00-generated-v1.png",
+    "docs/quake/textures/batch-005/TF_Stone_00/source-review/native-nearest4.png",
+    "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-direct1024-display.png",
+    "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-native-box-both.png",
+    "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-x-join.png",
+    "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-y-join.png",
+    "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-four-corners.png",
+    "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-repeat2x2.png",
+    "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-x-contact-finding.png",
+    "docs/quake/textures/batch-005/TF_Stone_00/source-review/proposed-mask-overlay-DIAGNOSTIC.png"
+  ],
+  "readOnlyPixelReconstruction": [
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/native-box-64.png",
+      "operation": "Direct BOX reduction to 64",
+      "pixelsExact": true
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-box-64.png",
+      "operation": "Direct BOX reduction to 64",
+      "pixelsExact": true
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/native-box-32.png",
+      "operation": "Direct BOX reduction to 32",
+      "pixelsExact": true
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-box-32.png",
+      "operation": "Direct BOX reduction to 32",
+      "pixelsExact": true
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/native-nearest4.png",
+      "operation": "NEAREST 4x display",
+      "pixelsExact": true
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-direct1024-display.png",
+      "operation": "Direct BOX reduction to1024; diagnostic only",
+      "pixelsExact": true
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-x-join.png",
+      "operation": "Last160 columns followed by first160",
+      "pixelsExact": true
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-y-join.png",
+      "operation": "Last160 rows followed by first160",
+      "pixelsExact": true
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-repeat2x2.png",
+      "operation": "Literal 2x2 raw repeat",
+      "pixelsExact": true
+    }
+  ],
+  "retainedVerificationFailure": {
+    "attempt": "Initial assumption that existing raw-direct1024-display used LANCZOS",
+    "result": "Assertion failed before report publication; no input changed",
+    "resolution": "Probed six Pillow resamplers. BOX alone reproduces exact existing display pixels. Re-ran with explicit BOX and passed. This was a diagnostic provenance assumption, not an artwork defect or a change to source."
+  },
+  "preservedInputInventory": [
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/selected-native-verification.json",
+      "sha256": "8e93a19851e96eb8aac5769f46e8416d752e4c4902b308debf6f375a72ce6eb7",
+      "bytes": 6509
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/verify-selected-native.py",
+      "sha256": "4ef75853dddbef20e94b1651a1e8ddc9b161300b8f8a240ef3bdec156025516b",
+      "bytes": 3740
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-custody.json",
+      "sha256": "f08f3abd1559d9907d618ec69c0ea3f8567058b815c34f715f4d5af94619f930",
+      "bytes": 3457
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-registration-relief-plan-v1.json",
+      "sha256": "11bf7a7ad3c734990b6991160634bf2830cc7a0737b5939dca1b13f82fe9295a",
+      "bytes": 10919
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/physical-witness-plan-v1.json",
+      "sha256": "91cec27a547ea0228dec495ef18cb12c763769733829ec8dcc274130156aafb0",
+      "bytes": 2238
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/layering-proposal-v1.json",
+      "sha256": "708ff6cd3b91a33dc2c01e1f65d7d1d04fd95910f12b00b45149a0ff69578e15",
+      "bytes": 6454
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Stone_00/originals/native-TF_Stone_00.png",
+      "sha256": "a9ec496d1ff976cd24f44e68d89fee08f62bfb80362edc0957d39ae11ec83856",
+      "bytes": 16668,
+      "dimensions": [
+        128,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/TF_Stone_00-generated-v1.png",
+      "sha256": "a0642793a8414b0afadc434e00c742343419e34519fcc23c03e3da7220f4b443",
+      "bytes": 3395132,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Stone_00-imagegen-prompt-v1.txt",
+      "sha256": "c4721c9d2a31d0d67cc4f0ac344e60e416f833b2510fc97d130cf11580801cf7",
+      "bytes": 1281
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/native-box-32.png",
+      "sha256": "a44b2d5fb7100c91b00622655c3c0a50b0643f36a481bf100afb9b8e0fdaca86",
+      "bytes": 1896,
+      "dimensions": [
+        32,
+        32
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/native-box-64.png",
+      "sha256": "3e3796430208d583b1c1e3edb25abff75597dd618b7268765f58bdb8fb959eb0",
+      "bytes": 8036,
+      "dimensions": [
+        64,
+        64
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/native-nearest4.png",
+      "sha256": "6f12e8f83240feb938b7e2ba12e1223730754dd0e517ece231084ad7e4fe7793",
+      "bytes": 26946,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/proposed-mask-overlay-DIAGNOSTIC.png",
+      "sha256": "b19563c05f4c27fe18a72b87ae62c1eba3fed719811ce7a6604e69b5bfde2529",
+      "bytes": 2071228,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/proposed-mortar-mask1024.png",
+      "sha256": "a09b4ffbb66ee55a236e45bcacbdcb6e0665f6b0709b108e6212b77a915aaf63",
+      "bytes": 3524,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "L"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-box-32.png",
+      "sha256": "42bccf33f50dc2c02fd9192f730c7c7a6ee503ee1c165b5670f7cadecae097d8",
+      "bytes": 1930,
+      "dimensions": [
+        32,
+        32
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-box-64.png",
+      "sha256": "97d7e66834d4b7b5f2ebf7294d9ae374e4d8fffc6cf60e62b6185d02f9e427a3",
+      "bytes": 7501,
+      "dimensions": [
+        64,
+        64
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-direct1024-display.png",
+      "sha256": "5dc66d5df24c93939fc19b17e92aa35ad9b719228d9ae1e8bee5fd236b60fa53",
+      "bytes": 2093259,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-four-corners.png",
+      "sha256": "3633bc82a8568917931d94c5fea90ec78a2e9d9a06d40e3403a5059dafecf593",
+      "bytes": 508338,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-native-box-both.png",
+      "sha256": "6805f9d9695c0b3d58f5d089f05b30c26c3aab468389f622ab7ac7413680bac2",
+      "bytes": 40236,
+      "dimensions": [
+        1100,
+        710
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-native-coordinate-grid.png",
+      "sha256": "ccf5b6fac9850fd1201bfee939e25b28d9a324398aedd389f8f3361cf7abc468",
+      "bytes": 2094874,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-repeat2x2.png",
+      "sha256": "43328fc66157cd2af54bcd7bae237e104a4f3e380747020e77b0490971f152ab",
+      "bytes": 6318745,
+      "dimensions": [
+        2508,
+        2508
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-x-contact-finding.png",
+      "sha256": "53c9c3e38885b14588aacf2e0f3a4fe804e70e03495d35ebcc8c8dfba475e129",
+      "bytes": 351147,
+      "dimensions": [
+        640,
+        390
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-x-join.png",
+      "sha256": "973b5e71cb8703db3e569d5c8f3799c9c470df36027bcbac8790199b58215f16",
+      "bytes": 789007,
+      "dimensions": [
+        320,
+        1254
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-y-join.png",
+      "sha256": "fb1154d5d067b210bd1b42cc7f667cb27aa36c3c38b5f67b1d04d7d147c76a66",
+      "bytes": 780590,
+      "dimensions": [
+        1254,
+        320
+      ],
+      "mode": "RGB"
+    }
+  ],
+  "custodyLimits": [
+    "Retained native proof was read/rehashed, not PACK/BSP-rerun",
+    "Existing raw hash chain retained; exact actual historical invocation, returned path and cumulative provider-call total unverified",
+    "Exact retained prompt file is not proof of original call arguments",
+    "Old512 all-lossy ART does not qualify new1024 float or Quake mixed codecs"
+  ],
+  "plan": {
+    "file": "docs/quake/textures/batch-005/TF_Stone_00/RETAINED-SOURCE-REVIEW-v2.md",
+    "state": "BLOCKED until independent coordinator X assessment and plan approval",
+    "oneFinalMaster": [
+      1024,
+      1024
+    ],
+    "defaultMid": [
+      512,
+      512
+    ],
+    "High": [
+      1024,
+      1024
+    ],
+    "colourEncoding": "WebP Q92/method6 lossy",
+    "dataEncoding": "WebP method6 lossless exact intended decoded channels",
+    "semanticGate": "Actual registered RGB/mask classification and fixed witnesses must prove pale mortar below stone; real source/master-only guarded proof before layering",
+    "notExecutable": "Future master/proof hashes unknown; no fabricated materials[] PASS guard row"
+  },
+  "actions": {
+    "newProviderCalls": 0,
+    "artworkMasterTierEdits": 0,
+    "newFiles": [
+      "docs/quake/textures/batch-005/TF_Stone_00/RETAINED-SOURCE-REVIEW-v2.md",
+      "docs/quake/textures/batch-005/TF_Stone_00/retained-source-review-v2.json"
+    ],
+    "forbiddenEffects": "No catalog/shared policy/Hexen/Git/build/browser/service changes"
+  },
+  "nextOwner": "root coordinator: independent structural X-contact decision and truthful HOLD tracking",
+  "coordination": "Root retains reported Bluey storage_error fallback record; this is supervised live assistance, no durable job claimed."
+}

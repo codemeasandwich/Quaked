@@ -1,0 +1,663 @@
+{
+  "scope": "Geometry-only source/contact measurement. No repaired pixels, mask package, height, generation, runtime, installation or acceptance.",
+  "inputs": [
+    {
+      "name": "native08",
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech08_1.png",
+      "sha256": "105b216a96145f29e3c392002ffe2d5c553b953ffe6f4019dc42bb87a4bfd8fc"
+    },
+    {
+      "name": "donor08",
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech08_1-4x-diffuse.png",
+      "sha256": "696a677dfab3b5bdfed1806bde624ff8a86a06363a7900833fb4939328c89fdc"
+    },
+    {
+      "name": "retained6x08",
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech08_1.webp",
+      "sha256": "ca44d13c7342edf163f40ddf65b657170e7354240ce311f9f59bebc4305c7792"
+    },
+    {
+      "name": "candidate08",
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech08_1-colour.png",
+      "sha256": "f8db1118d6219f7c26e5d21d0ded4bc3d5ceab050aef0cffde33801a90d2fdd7"
+    },
+    {
+      "name": "native09",
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech09_3.png",
+      "sha256": "e7984eba6e501d50bc65d8202176791584622de2ca4764184ccc95baf559464e"
+    },
+    {
+      "name": "donor09",
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech09_3-4x-diffuse.png",
+      "sha256": "e0732b888f072d0dbe19717b1a0ffb8d4daa9e103b66fe0a12b7ff26056aafbe"
+    },
+    {
+      "name": "candidate09",
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech09_3-colour.png",
+      "sha256": "d80cd31266547ce902eacf1d1f2750bb0d39c3678b21c0094219a1622a7b2ad0"
+    },
+    {
+      "name": "joins",
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/wall-joins.json",
+      "sha256": "d69bb11726d0cdca7b1cecdd1b4d770d2db40f08bcaeb8508d393bcde4394a3a"
+    },
+    {
+      "name": "UVproof",
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/scene-proof.json",
+      "sha256": "2211cda694ae1f7d69077fee7933ea02dfba33f8650930c8beb6d3f209831d3e"
+    },
+    {
+      "name": "finisher",
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    }
+  ],
+  "actualBaseSeam": {
+    "source": "base",
+    "wallY": 2816.0,
+    "aFace": 2818,
+    "aTexture": "tech09_3",
+    "bFace": 2830,
+    "bTexture": "tech08_1",
+    "worldEndpoints": [
+      [
+        -352.0,
+        2816.0,
+        -32.0
+      ],
+      [
+        -448.0,
+        2816.0,
+        -32.0
+      ]
+    ],
+    "aUV": [
+      [
+        -272.0,
+        128.0
+      ],
+      [
+        -368.0,
+        128.0
+      ]
+    ],
+    "bUV": [
+      [
+        -272.0,
+        128.0
+      ],
+      [
+        -368.0,
+        128.0
+      ]
+    ]
+  },
+  "samplingAt4x": "At worldZ=-32 the seam has both nativeT128. Last upper09sample atZ=-31.875 usesT127.875. First lower08sample atZ=-32.125 usesT128.125, modulo128=0.125. DoorSrange modulo128 is16..112. Thus lower cut caps originate in08top source rows, not from a native mapping offset.",
+  "sourceSupportBand": {
+    "nativeCoordinateRect": [
+      0,
+      0,
+      128,
+      20
+    ],
+    "donor512PixelRectExclusive": [
+      0,
+      0,
+      512,
+      80
+    ],
+    "retained768PixelRectExclusive": [
+      0,
+      0,
+      768,
+      120
+    ],
+    "content": "Top-boundary clipped bolt caps, invented horizontal rail nearT5.0..6.25, and extra full studs aroundT12..14. Entireband is olive substrate in native except naturalpatina; native louver upper structural contact begins nearT20. Donor louverborder dark core continuesT20..24, outside admittedtopband.",
+    "preserve": "All existing source pixels at nativeT>=20 must stay byte-identical under any later bounded repair. Preserve native/HD louveroutline and all acceptedlower photograph. Proposed support only, not an authored mask or repair approval.",
+    "sourceAdequacy": "512 is4x; retained768 is6x; neither qualifiesHigh8x."
+  },
+  "profiles": {
+    "native08": {
+      "topOliveU32to96MeanLuminanceByQuarterNativeRow": [
+        62.8125,
+        62.8125,
+        62.8125,
+        62.8125,
+        69.3125,
+        69.3125,
+        69.3125,
+        69.3125,
+        66.671875,
+        66.671875,
+        66.671875,
+        66.671875,
+        59.875,
+        59.875,
+        59.875,
+        59.875,
+        58.4375,
+        58.4375,
+        58.4375,
+        58.4375,
+        57.625,
+        57.625,
+        57.625,
+        57.625,
+        56.578125,
+        56.578125,
+        56.578125,
+        56.578125,
+        56.171875,
+        56.171875,
+        56.171875,
+        56.171875,
+        56.390625,
+        56.390625,
+        56.390625,
+        56.390625,
+        55.15625,
+        55.15625,
+        55.15625,
+        55.15625,
+        57.5,
+        57.5,
+        57.5,
+        57.5,
+        58.875,
+        58.875,
+        58.875,
+        58.875,
+        56.9375,
+        56.9375,
+        56.9375,
+        56.9375,
+        54.671875,
+        54.671875,
+        54.671875,
+        54.671875,
+        55.296875,
+        55.296875,
+        55.296875,
+        55.296875,
+        56.578125,
+        56.578125,
+        56.578125,
+        56.578125,
+        54.796875,
+        54.796875,
+        54.796875,
+        54.796875,
+        55.96875,
+        55.96875,
+        55.96875,
+        55.96875,
+        55.0,
+        55.0,
+        55.0,
+        55.0,
+        55.046875,
+        55.046875,
+        55.046875,
+        55.046875
+      ],
+      "strongestTopGradientNativeT": 3.0,
+      "strongestTopGradient": -6.796875,
+      "leftVentU0to16UpperBorderDarkestWithinT16to24": 19.0,
+      "method": "Luminance source BOX resized to4x; native nearest4x. Gradient is adjacent4x rows, T=(i+1)/4. Broadfeature location diagnostic; not automatic semantic acceptance."
+    },
+    "donor08": {
+      "topOliveU32to96MeanLuminanceByQuarterNativeRow": [
+        66.30078125,
+        67.1484375,
+        67.578125,
+        67.1875,
+        66.09375,
+        64.625,
+        63.51171875,
+        62.19921875,
+        61.2890625,
+        60.8125,
+        60.4765625,
+        60.55078125,
+        60.2890625,
+        59.9453125,
+        58.87890625,
+        57.90625,
+        57.984375,
+        59.13671875,
+        61.93359375,
+        62.984375,
+        51.23046875,
+        73.61328125,
+        96.546875,
+        91.19140625,
+        79.30859375,
+        73.0234375,
+        74.18359375,
+        76.53125,
+        76.88671875,
+        74.8125,
+        73.296875,
+        72.7421875,
+        72.64453125,
+        73.1171875,
+        73.51953125,
+        73.61328125,
+        73.125,
+        72.14453125,
+        71.703125,
+        72.1328125,
+        71.953125,
+        70.68359375,
+        69.91796875,
+        69.6796875,
+        68.93359375,
+        68.1875,
+        67.51171875,
+        67.12109375,
+        67.75,
+        68.76171875,
+        70.6640625,
+        71.72265625,
+        71.08984375,
+        70.16015625,
+        69.63671875,
+        70.0703125,
+        71.046875,
+        71.29296875,
+        71.60546875,
+        71.91796875,
+        72.328125,
+        72.66796875,
+        72.640625,
+        72.1015625,
+        70.94140625,
+        70.28125,
+        70.3984375,
+        70.234375,
+        69.4609375,
+        68.3984375,
+        68.1875,
+        69.0703125,
+        70.53125,
+        71.19140625,
+        71.05078125,
+        70.92578125,
+        71.5703125,
+        71.87890625,
+        71.8046875,
+        71.52734375
+      ],
+      "strongestTopGradientNativeT": 5.5,
+      "strongestTopGradient": 22.93359375,
+      "leftVentU0to16UpperBorderDarkestWithinT16to24": 22.25,
+      "method": "Luminance source BOX resized to4x; native nearest4x. Gradient is adjacent4x rows, T=(i+1)/4. Broadfeature location diagnostic; not automatic semantic acceptance."
+    },
+    "candidate08": {
+      "topOliveU32to96MeanLuminanceByQuarterNativeRow": [
+        62.66796875,
+        63.69921875,
+        64.2734375,
+        63.8984375,
+        62.94921875,
+        61.5859375,
+        60.5390625,
+        59.33203125,
+        58.48828125,
+        58.046875,
+        57.7265625,
+        57.84765625,
+        57.640625,
+        57.19921875,
+        56.03125,
+        55.01953125,
+        54.953125,
+        55.9375,
+        58.640625,
+        59.625,
+        47.83203125,
+        70.05078125,
+        92.8671875,
+        87.3671875,
+        75.33203125,
+        68.87890625,
+        69.8828125,
+        72.15625,
+        72.33203125,
+        70.2109375,
+        68.62890625,
+        67.9765625,
+        67.85546875,
+        68.26953125,
+        68.66796875,
+        68.75,
+        68.19140625,
+        67.15234375,
+        66.68359375,
+        67.1328125,
+        66.9609375,
+        65.6875,
+        64.8671875,
+        64.6875,
+        63.9296875,
+        63.19921875,
+        62.484375,
+        62.1015625,
+        62.68359375,
+        63.75390625,
+        65.6484375,
+        66.73828125,
+        66.12890625,
+        65.140625,
+        64.6328125,
+        65.0703125,
+        66.01953125,
+        66.26953125,
+        66.54296875,
+        66.79296875,
+        67.17578125,
+        67.5546875,
+        67.50390625,
+        66.95703125,
+        65.77734375,
+        65.08984375,
+        65.23046875,
+        65.04296875,
+        64.234375,
+        63.23046875,
+        63.0078125,
+        63.87890625,
+        65.28125,
+        65.98046875,
+        65.80078125,
+        65.65234375,
+        66.3046875,
+        66.61328125,
+        66.546875,
+        66.25390625
+      ],
+      "strongestTopGradientNativeT": 5.5,
+      "strongestTopGradient": 22.81640625,
+      "leftVentU0to16UpperBorderDarkestWithinT16to24": 22.25,
+      "method": "Luminance source BOX resized to4x; native nearest4x. Gradient is adjacent4x rows, T=(i+1)/4. Broadfeature location diagnostic; not automatic semantic acceptance."
+    },
+    "retained6x08": {
+      "topOliveU32to96MeanLuminanceByQuarterNativeRow": [
+        66.7890625,
+        67.5234375,
+        67.9296875,
+        67.125,
+        66.265625,
+        64.46484375,
+        63.6796875,
+        62.09765625,
+        61.56640625,
+        60.8828125,
+        60.8671875,
+        60.59375,
+        60.5546875,
+        59.99609375,
+        58.9765625,
+        57.9375,
+        58.4609375,
+        59.640625,
+        62.4140625,
+        62.6015625,
+        53.9375,
+        82.69140625,
+        95.01953125,
+        89.703125,
+        78.46484375,
+        72.859375,
+        75.015625,
+        76.83984375,
+        76.8515625,
+        74.4453125,
+        73.53515625,
+        72.72265625,
+        73.1328125,
+        73.38671875,
+        73.859375,
+        73.74609375,
+        73.26953125,
+        72.16796875,
+        72.15625,
+        72.2890625,
+        72.0625,
+        70.64453125,
+        70.21875,
+        69.703125,
+        69.13671875,
+        68.1875,
+        67.71875,
+        67.2734375,
+        68.265625,
+        69.22265625,
+        71.25,
+        71.78125,
+        71.31640625,
+        70.21875,
+        70.03515625,
+        70.26171875,
+        71.44140625,
+        71.5,
+        72.01171875,
+        72.015625,
+        72.625,
+        72.96484375,
+        72.83984375,
+        72.0390625,
+        71.17578125,
+        70.2734375,
+        70.76171875,
+        70.20703125,
+        69.609375,
+        68.40234375,
+        68.73046875,
+        69.359375,
+        71.02734375,
+        71.33984375,
+        71.37109375,
+        70.95703125,
+        72.0234375,
+        71.96875,
+        72.08203125,
+        71.55078125
+      ],
+      "strongestTopGradientNativeT": 5.25,
+      "strongestTopGradient": 28.75390625,
+      "leftVentU0to16UpperBorderDarkestWithinT16to24": 22.25,
+      "method": "Luminance source BOX resized to4x; native nearest4x. Gradient is adjacent4x rows, T=(i+1)/4. Broadfeature location diagnostic; not automatic semantic acceptance."
+    }
+  },
+  "topBoundaryDarkComponentDiagnostic": {
+    "thresholdL": 30,
+    "sourceBandAt4x": [
+      0,
+      0,
+      512,
+      20
+    ],
+    "fourConnectedMinimumArea": 10,
+    "components": {
+      "native08": [],
+      "donor08": [
+        {
+          "boundsNative": [
+            2.5,
+            0,
+            6.5,
+            2.0
+          ],
+          "darkPixelsAt4x": 72
+        },
+        {
+          "boundsNative": [
+            18.0,
+            0,
+            21.75,
+            2.0
+          ],
+          "darkPixelsAt4x": 51
+        },
+        {
+          "boundsNative": [
+            29.25,
+            0,
+            33.0,
+            1.75
+          ],
+          "darkPixelsAt4x": 51
+        },
+        {
+          "boundsNative": [
+            96.25,
+            0,
+            99.75,
+            1.75
+          ],
+          "darkPixelsAt4x": 61
+        },
+        {
+          "boundsNative": [
+            107.25,
+            0,
+            110.75,
+            1.75
+          ],
+          "darkPixelsAt4x": 47
+        },
+        {
+          "boundsNative": [
+            122.75,
+            0,
+            127.25,
+            2.25
+          ],
+          "darkPixelsAt4x": 100
+        }
+      ],
+      "candidate08": [
+        {
+          "boundsNative": [
+            2.5,
+            0,
+            6.75,
+            2.25
+          ],
+          "darkPixelsAt4x": 86
+        },
+        {
+          "boundsNative": [
+            17.75,
+            0,
+            21.75,
+            2.0
+          ],
+          "darkPixelsAt4x": 59
+        },
+        {
+          "boundsNative": [
+            29.25,
+            0,
+            33.0,
+            1.75
+          ],
+          "darkPixelsAt4x": 57
+        },
+        {
+          "boundsNative": [
+            96.0,
+            0,
+            99.75,
+            1.75
+          ],
+          "darkPixelsAt4x": 73
+        },
+        {
+          "boundsNative": [
+            107.25,
+            0,
+            110.75,
+            1.75
+          ],
+          "darkPixelsAt4x": 57
+        },
+        {
+          "boundsNative": [
+            122.75,
+            0,
+            127.25,
+            2.25
+          ],
+          "darkPixelsAt4x": 113
+        }
+      ],
+      "retained6x08": [
+        {
+          "boundsNative": [
+            2.5,
+            0,
+            6.5,
+            2.0
+          ],
+          "darkPixelsAt4x": 74
+        },
+        {
+          "boundsNative": [
+            18.0,
+            0,
+            21.75,
+            2.0
+          ],
+          "darkPixelsAt4x": 49
+        },
+        {
+          "boundsNative": [
+            29.25,
+            0,
+            32.75,
+            1.75
+          ],
+          "darkPixelsAt4x": 54
+        },
+        {
+          "boundsNative": [
+            96.25,
+            0,
+            99.75,
+            1.75
+          ],
+          "darkPixelsAt4x": 58
+        },
+        {
+          "boundsNative": [
+            107.25,
+            0,
+            110.75,
+            1.75
+          ],
+          "darkPixelsAt4x": 45
+        },
+        {
+          "boundsNative": [
+            122.75,
+            0,
+            127.0,
+            2.0
+          ],
+          "darkPixelsAt4x": 87
+        }
+      ]
+    },
+    "interpretation": "Native haszero such cut darkregions; donor/candidate have multiple edge-cutcap-shaped regions visible in the directcrops. Threshold is supplementary diagnostic, not hardware semantic proof."
+  },
+  "decision": {
+    "globalPhase": "REJECT as minimal correction: shifting away top hardware moves otherwise approximatelycorrect louverenvelope and every existing join; it doesnot remove repeated extraobjects.",
+    "existingVerticalLandmarks": "CANNOT remove extra topobjects: finish_official_texture requires strictly increasing [0,0]...[128,128] mapping. It resamples source rows and pinsouterboundary; no selective object removal. Compressing hardware would distort physical feature scale. Internalrail registration is a separate question.",
+    "smallestDefensibleSpatialOperation": "Local source-content correction confined to nativeT[0,20), preservingT>=20 exactly, to retain olive substrate/material while removing only the extra rail/boltcaps/studs. This is not a phase/UV offset. No existing reviewed generic colour/landmark control performs that object-selective operation. Exact pixel operation or new source-edit call remains separately reviewed/authorized.",
+    "noRecoveredOriginalClaim": "Surviving sourcealreadycontains hardware; original owneratlas not recovered in sourceintake. No claim it originated specifically from historicaloffset rather than atlas/crop/generation. Both768retained and512donor show it."
+  },
+  "inputsStableAfter": true,
+  "driverSha256": "bea3cd1436b5b51ff52a06e2f843b0bf63f2d17e1266efdbb27d3ebeeffcfed4"
+}

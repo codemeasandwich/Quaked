@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "state": "GENUINE_SOURCE_MASTER_ONLY_PASS_PHYSICAL_HOLD",
+  "verifiedAt": "2026-10-20T21:46:47.519980+00:00",
+  "proof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-source-master/source-master-proof-v1.json",
+    "sha256": "86284d4b4cfff5b049082c94069193a7995e43e1af9d097120d590ebb0053ebd"
+  },
+  "verifier": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-source-master/verify.py",
+    "sha256": "c69eccc34b808d98e38b8a0e1b14dba6aa6abe9f5d0a6537727bf09337855231"
+  },
+  "narrative": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-source-master/HANDOFF.md",
+    "sha256": "fcfe725fa8e2c8d2e5411ea89674e0cbe0500b35985d7ee431bb2e375b84cdb5"
+  },
+  "directBoundedReference": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/independent-source-master/verify.py",
+    "sha256": "be94224c5e46a865bcd81bcef32f8366413c2238baee42df810caca66d6e3f26"
+  },
+  "material": {
+    "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+    "name": "rtex054",
+    "edition": "base",
+    "masterPackage": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/master.json",
+      "sha256": "eacb48c1a29970e6ca95ac093fb276c5dedc6eebf42951913b65edf16d8db189",
+      "bytes": 4304
+    },
+    "masterColor": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/color.png",
+      "sha256": "20ab4d43c4c4cf7877629ff231a1bb15acfd4b136ce4a5373ffc7696873d0951",
+      "bytes": 575683
+    },
+    "masterHeight": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/height.npy",
+      "sha256": "723aae186ff12e332d587af3a8ba01c78bdde123c4507db989956e53cce2273e",
+      "bytes": 1048704
+    },
+    "currentReliefArtAccepted": false
+  },
+  "initialPhysicalHold": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-relief-hold.json",
+    "sha256": "d82f1ab91449f333bcd73e7dbad2d21e2823311df4b07f654459e98e0c025cb0"
+  },
+  "nativePhysicalSlots": 19,
+  "nativeContentSlots": 14,
+  "nativeContentFaces": 1296,
+  "currentInputsStable": true,
+  "profile": "metal",
+  "actualUnchangedPrepareCLIThreeFilesExact": true,
+  "historicalJournalCustodyDisclosed": true,
+  "currentPhysicalReliefAccepted": false,
+  "tiersAccepted": false,
+  "newGenerations": 0,
+  "authorOrProducerChanges": 0,
+  "388Changes": 0,
+  "nextOwner": "root/author",
+  "nextAction": "Source-measured physical repair plan review using genuine exact-bound proof; current relief and later tiers/finalART remain HOLD."
+}

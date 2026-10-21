@@ -1,0 +1,8 @@
+{
+  "status": "REJECTED audit-only schema assumption, no evidence accepted",
+  "time": "2026-10-21T01:55:04.406269+00:00",
+  "priorScriptSha256": "1b7abf280ce77789ba0814b20c8122772a763a1eeffc4efaa017940eed1a014d",
+  "failedCheck": "Model lump modulo64 assertion",
+  "actualCathModelLumpBytes": 7440,
+  "cause": "Quake64-byte submodel layout does not divide the actual HexenII BSP model lump. HexenII stores8headnodes and80-byte model records; use explicit native80 stride and validate face ownership/ranges. No engine change or runtime compatibility claim."
+}

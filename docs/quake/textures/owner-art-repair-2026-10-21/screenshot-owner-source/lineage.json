@@ -1,0 +1,1977 @@
+{
+  "scope": "Read-only source/runtime lineage; no repaired artwork or runtime acceptance",
+  "worktree": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "head": "713b47d322f0674f154a70ec4baebd4566905d41",
+  "indexSha256": "4bdc95a3a622fbb0ba71afb6aacde1d0504bfe3c4282b91e8dc2be872eb85faa",
+  "nativeManifest": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-owner-source/native-sheets/manifest.json",
+  "nativeManifestSha256": "94bca139cbfb47d86b23481f02150bdf91bf083709a961b4dd2e867b0312dac4",
+  "sourceAtlasStatus": "Original owner-upscaled tech_computers_1 atlas and original wall-sheets manifest were not found in either current checkout. Reproduced native atlas is a new deterministic evidence artifact, not recovered owner artwork.",
+  "materials": [
+    {
+      "name": "tech04_3",
+      "nativeAtlasCrop": {
+        "sheet": "tech_computers_1.png",
+        "x": 4,
+        "y": 4,
+        "w": 16,
+        "h": 128
+      },
+      "nativeDimensions": [
+        16,
+        128
+      ],
+      "nativeRgbSha256": "277a19ee753995b695fc3abbe7c26fe9e20bb937fb0a4936d1879be8e5953566",
+      "sourceGuards": [
+        "16x128:a479c5cd7f65b1bf"
+      ],
+      "currentDiffuse": {
+        "file": "assets/game/textures/official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-diffuse.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "5277531ebcefde22227852e3c186b9fae5a7884c6624d7ec4f8b4f15ab532ee5",
+        "bytes": 6442,
+        "dimensions": [
+          64,
+          512
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "c3c6c7194a401afc352c31e206790b7033182d03a588656c62cb0ae81923af7a"
+      },
+      "currentHeightDescriptor": {
+        "file": "official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-height.webp",
+        "strength": 1.15
+      },
+      "currentHeight": {
+        "file": "assets/game/textures/official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-height.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "a969527350c04c8908fc0682dc68dcf43690e1b6e70da6abc652d81d3f9a8159",
+        "bytes": 14782,
+        "dimensions": [
+          64,
+          512
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "d2f93e2aa2c7e08d0f269fab68aee9869bef626447e65d2389d6ba754699e4b3"
+      },
+      "historicalBlobs": [
+        {
+          "commit": "7259378011fa4d85cf9aa4d28a22d68c7b0854d2",
+          "path": "newer/textures/tech04_3.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "14b9a59acf663444cfe3b176ab3463cd94b033a1a74fd7a4ed1872e124d99826",
+          "bytes": 10930,
+          "dimensions": [
+            64,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "15be0da56c2a29262dda53d76f58d3806eea506356e479bec523d488e9ff98d8"
+        },
+        {
+          "commit": "f4a260ecc325ccd6150ac1209e6ef2bedc2c4d48",
+          "path": "newer/textures/tech04_3.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "2346b57fd1352dbf716815849bfe6ac88ffa1e72b0e0d5946fd9921da7c7b0d5",
+          "bytes": 10164,
+          "dimensions": [
+            96,
+            768
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "1132cc0b55da8cf3a8bce3e0b878cdb976abb1183db9b7f5ed4b76eb7686a307"
+        },
+        {
+          "commit": "0abd6528ae9d1a1df5e69dbe4d937fd8ec1a1da9",
+          "path": "newer/textures/tech04_3.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "6627d3b39ec0fe7753501af3d719f416c54d17b956e47156c689493f209b83ab",
+          "bytes": 11876,
+          "dimensions": [
+            96,
+            768
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "6bcaa71eb039c867ee2a1ca07a13c5719f58a7bbfa6f2e977b12d270e16d62c6"
+        },
+        {
+          "commit": "c865b7540c89251aa17a68d5c2aeb3e995217c43",
+          "path": "newer/textures/tech04_3.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "43ba54d680bca36ecc8e47436a9dd470be8d9b62cfe625978547dabe20ac0988",
+          "bytes": 11242,
+          "dimensions": [
+            96,
+            768
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "a250cbf9e148702ba667be8c3475928d35561ee834f3b1243d49df87849d3011"
+        },
+        {
+          "commit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+          "path": "newer/textures/tech04_3.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "65b463d19c2de7397242f1a77bf130abbf9802a57a94f9db115503b043fac3cc",
+          "bytes": 8302,
+          "dimensions": [
+            64,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "33ce425538ed3626503b2016a523496f4ae4a05e052c72d0da92d13b3173cdb3"
+        }
+      ],
+      "retainedNativeFile": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-tech04_3.png",
+        "webpFirstChunk": null,
+        "sha256": "b80951843977f762c9d331d9de897980008d6ee13d5b57a03661da5ef375103d",
+        "bytes": 1891,
+        "dimensions": [
+          16,
+          128
+        ],
+        "mode": "RGBA",
+        "decodedRgbSha256": "277a19ee753995b695fc3abbe7c26fe9e20bb937fb0a4936d1879be8e5953566"
+      },
+      "retainedNativePixelsMatchRebuiltAtlas": true,
+      "retainedPre4x": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech04_3.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "43ba54d680bca36ecc8e47436a9dd470be8d9b62cfe625978547dabe20ac0988",
+        "bytes": 11242,
+        "dimensions": [
+          96,
+          768
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "a250cbf9e148702ba667be8c3475928d35561ee834f3b1243d49df87849d3011"
+      },
+      "retainedPre4xEqualsC865Blob": true,
+      "retainedSourceScale": [
+        6.0,
+        6.0
+      ],
+      "adequate8x": false,
+      "q92LineageReceipt": {
+        "factor": 4,
+        "quality": 92,
+        "lossless": false,
+        "method": 6,
+        "qualification": "Uninstalled direct-source format derivatives; not new photographic artworks or selected runtime bindings."
+      },
+      "q92ReceiptMaps": [
+        {
+          "name": "tech04_3",
+          "role": "diffuse",
+          "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech04_3.webp",
+          "retainedPre4xSha256": "43ba54d680bca36ecc8e47436a9dd470be8d9b62cfe625978547dabe20ac0988",
+          "predecessor": "newer/textures/tech04_3.webp",
+          "predecessorSha256": "65b463d19c2de7397242f1a77bf130abbf9802a57a94f9db115503b043fac3cc",
+          "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech04_3-4x-diffuse.png",
+          "masterDecodedRgbSha256": "9785befd284e231579d3457e3aefb1b0e6d31709c65aa7d75023de6dc6d2f0a7",
+          "file": "newer/textures/official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-diffuse.webp",
+          "dimensions": [
+            64,
+            512
+          ],
+          "masterSha256": "edda6c77d7b6294d2a0157b38a70cdff012362bcbbcd7e2ff05624ac81058581",
+          "sha256": "5277531ebcefde22227852e3c186b9fae5a7884c6624d7ec4f8b4f15ab532ee5",
+          "pillowDecodedRgbaSha256": "9ac7cf170d4ab730f41371aa4043fceb7a8c970c08607e5907c652b49fa8cd62",
+          "bytes": 6442
+        },
+        {
+          "name": "tech04_3",
+          "role": "height",
+          "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech04_3.webp",
+          "retainedPre4xSha256": "31577af5a6fcca735941313cc5cf5c7d312456c95183bb7afde36764c5bd5c1c",
+          "predecessor": "newer/textures/normals/tech04_3.webp",
+          "predecessorSha256": "8f8bc60e3ca359c90fbaa5df481006a8b0d3827503c05d18be699cbc46649e20",
+          "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech04_3-4x-height.png",
+          "masterDecodedRgbSha256": "dc790b9a592749b79e8b58773de52154689055da308ca7c14638beb56f4ed093",
+          "file": "newer/textures/official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-height.webp",
+          "dimensions": [
+            64,
+            512
+          ],
+          "masterSha256": "3a3f66625c20e31ee19fd93264ec2a05eea8246d92e949666a0d0c37d73c2739",
+          "sha256": "a969527350c04c8908fc0682dc68dcf43690e1b6e70da6abc652d81d3f9a8159",
+          "pillowDecodedRgbaSha256": "c077aad6c1417c857a097e7806010a05be2bf1ad10fea5800061404d4db02382",
+          "bytes": 14782
+        }
+      ],
+      "actualQ92MasterFilesMatchHistoricalReceipt": true,
+      "actualSelectedRuntimeMatchesQ92Receipt": true,
+      "BOX": {
+        "2": {
+          "dimensions": [
+            8,
+            64
+          ],
+          "nativeMeanRgb": [
+            60.375,
+            45.40234375,
+            26.6015625
+          ],
+          "currentMeanRgb": [
+            81.06640625,
+            64.056640625,
+            37.326171875
+          ],
+          "currentMinusNativeMeanRgb": [
+            20.69140625,
+            18.654296875,
+            10.724609375
+          ],
+          "meanAbsoluteRgbDifference": 17.813802083333332
+        },
+        "4": {
+          "dimensions": [
+            4,
+            32
+          ],
+          "nativeMeanRgb": [
+            60.5234375,
+            45.515625,
+            26.734375
+          ],
+          "currentMeanRgb": [
+            80.984375,
+            63.984375,
+            37.2421875
+          ],
+          "currentMinusNativeMeanRgb": [
+            20.4609375,
+            18.46875,
+            10.5078125
+          ],
+          "meanAbsoluteRgbDifference": 16.583333333333332
+        }
+      }
+    },
+    {
+      "name": "tech07_2",
+      "nativeAtlasCrop": {
+        "sheet": "tech_computers_1.png",
+        "x": 28,
+        "y": 4,
+        "w": 128,
+        "h": 128
+      },
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "nativeRgbSha256": "71f9461dec6525b17bf45b9cb810d6e1172713ba2da6283408855b0f8a99bddf",
+      "sourceGuards": [
+        "128x128:5d03decdcf531707"
+      ],
+      "currentDiffuse": {
+        "file": "assets/game/textures/official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-diffuse.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "07cfce1768ac7afd6aad979b32b7c356ddc9245c185c17b3a2a78fa0fc6b19b5",
+        "bytes": 61598,
+        "dimensions": [
+          512,
+          512
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "c226437a1e02c6f6b7514cbf41c5dea926dfe60b6bbb570eb4218fd3d9be4372"
+      },
+      "currentHeightDescriptor": {
+        "file": "official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-height.webp",
+        "strength": 1.15
+      },
+      "currentHeight": {
+        "file": "assets/game/textures/official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-height.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "87e2e4fdf8eff8c96603ddaa8f009d5d24a1b4418929bf1ca058afcaa789ad84",
+        "bytes": 90264,
+        "dimensions": [
+          512,
+          512
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "0fb580addc6df6996253bb26aad4518fae9a531a9e2b950322672806bb8ec411"
+      },
+      "historicalBlobs": [
+        {
+          "commit": "7259378011fa4d85cf9aa4d28a22d68c7b0854d2",
+          "path": "newer/textures/tech07_2.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "25e14d6e3e949c7d2f4a7a5ef2823444125b31a5c5349975105be7c59a22a301",
+          "bytes": 106740,
+          "dimensions": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "2f7f3bee0bcb4fd257396ee63fc0f5e3ccf8425d403c2e4d8571b0020a47b104"
+        },
+        {
+          "commit": "f4a260ecc325ccd6150ac1209e6ef2bedc2c4d48",
+          "path": "newer/textures/tech07_2.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "2231b55ad581cabb49a5fdd52d83df74a13a9a63c83b0e50102f326da0ebab5c",
+          "bytes": 91040,
+          "dimensions": [
+            768,
+            768
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "a8a28f4a72f7fb8f1076ec53b70dbeb2e0418eb935da177fa6300e90340e53d7"
+        },
+        {
+          "commit": "0abd6528ae9d1a1df5e69dbe4d937fd8ec1a1da9",
+          "path": "newer/textures/tech07_2.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "431d5d4b5a1220eaed017c4a59636e1dbb54ff953872d7c0ba853abfff125254",
+          "bytes": 102346,
+          "dimensions": [
+            768,
+            768
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "e7e17e0178cbfb2ae49a65d1c55568f26672ef61edba32a0fd63c0ae08f9fa50"
+        },
+        {
+          "commit": "c865b7540c89251aa17a68d5c2aeb3e995217c43",
+          "path": "newer/textures/tech07_2.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "bc85af99ae792dfdf50e7a955d984c4f99c00dd0c0c2e07bc8f7004a5c48d2b2",
+          "bytes": 101010,
+          "dimensions": [
+            768,
+            768
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "aac6aa23da033d48c161c5c725519562a2c2918af053ccbb2c458395db965853"
+        },
+        {
+          "commit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+          "path": "newer/textures/tech07_2.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "d0ad3b6262891ad41028c87de42105e912df9dd12dda64c5d89b3c70aa43d270",
+          "bytes": 78392,
+          "dimensions": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "fecb590f8e08151e2dae518d65e6bbb8e6e54bcd635e5c89cc03ac0ded3d7262"
+        }
+      ],
+      "retainedNativeFile": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-tech07_2.png",
+        "webpFirstChunk": null,
+        "sha256": "be6ee33c32da6720643875741d99d7cf37a37da5e575634ddd4e47422a14bf0f",
+        "bytes": 14340,
+        "dimensions": [
+          128,
+          128
+        ],
+        "mode": "RGBA",
+        "decodedRgbSha256": "71f9461dec6525b17bf45b9cb810d6e1172713ba2da6283408855b0f8a99bddf"
+      },
+      "retainedNativePixelsMatchRebuiltAtlas": true,
+      "retainedPre4x": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech07_2.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "bc85af99ae792dfdf50e7a955d984c4f99c00dd0c0c2e07bc8f7004a5c48d2b2",
+        "bytes": 101010,
+        "dimensions": [
+          768,
+          768
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "aac6aa23da033d48c161c5c725519562a2c2918af053ccbb2c458395db965853"
+      },
+      "retainedPre4xEqualsC865Blob": true,
+      "retainedSourceScale": [
+        6.0,
+        6.0
+      ],
+      "adequate8x": false,
+      "q92LineageReceipt": {
+        "factor": 4,
+        "quality": 92,
+        "lossless": false,
+        "method": 6,
+        "qualification": "Uninstalled direct-source format derivatives; not new photographic artworks or selected runtime bindings."
+      },
+      "q92ReceiptMaps": [
+        {
+          "name": "tech07_2",
+          "role": "diffuse",
+          "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech07_2.webp",
+          "retainedPre4xSha256": "bc85af99ae792dfdf50e7a955d984c4f99c00dd0c0c2e07bc8f7004a5c48d2b2",
+          "predecessor": "newer/textures/tech07_2.webp",
+          "predecessorSha256": "d0ad3b6262891ad41028c87de42105e912df9dd12dda64c5d89b3c70aa43d270",
+          "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech07_2-4x-diffuse.png",
+          "masterDecodedRgbSha256": "494f3bac172ce5a3b49957bf3ab19e995fdf1e4583ae76f9676775e84ea4d983",
+          "file": "newer/textures/official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-diffuse.webp",
+          "dimensions": [
+            512,
+            512
+          ],
+          "masterSha256": "2f9bdd2f834893434dc5c0554d2a3016ce6d77badb3dcbf8524c27aff98ff021",
+          "sha256": "07cfce1768ac7afd6aad979b32b7c356ddc9245c185c17b3a2a78fa0fc6b19b5",
+          "pillowDecodedRgbaSha256": "0578ea5b2b7e0a17e1646dbe9ea40af1955db586f17ebb5259b05cb2b0c1db8e",
+          "bytes": 61598
+        },
+        {
+          "name": "tech07_2",
+          "role": "height",
+          "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech07_2.webp",
+          "retainedPre4xSha256": "93ea9d4f8dd74921120194d1184709f1253654e6f4f82c7ccb4182d28f99fb04",
+          "predecessor": "newer/textures/normals/tech07_2.webp",
+          "predecessorSha256": "4486dcfbbb0bf955eb7b014e8bf528b0b0a6e6770abc83edc702caa254118f05",
+          "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech07_2-4x-height.png",
+          "masterDecodedRgbSha256": "9daac2c8f208d9d09d9fd47a6ff18d7f7f5e8578352c09633a49cce277a49be7",
+          "file": "newer/textures/official/owner-tech07_2-5d03decdcf531707-v1-4x-q92-height.webp",
+          "dimensions": [
+            512,
+            512
+          ],
+          "masterSha256": "818c8d45958a0960787492d88c7eef10d2e43c21d4e504255e1066f9b28df83c",
+          "sha256": "87e2e4fdf8eff8c96603ddaa8f009d5d24a1b4418929bf1ca058afcaa789ad84",
+          "pillowDecodedRgbaSha256": "9a0b764aa558898cdfa6c63232efd75dedecab04444a9e0cbe0d10b75d37e472",
+          "bytes": 90264
+        }
+      ],
+      "actualQ92MasterFilesMatchHistoricalReceipt": true,
+      "actualSelectedRuntimeMatchesQ92Receipt": true,
+      "BOX": {
+        "2": {
+          "dimensions": [
+            64,
+            64
+          ],
+          "nativeMeanRgb": [
+            76.42822265625,
+            58.603759765625,
+            41.231689453125
+          ],
+          "currentMeanRgb": [
+            94.915771484375,
+            77.10888671875,
+            55.84033203125
+          ],
+          "currentMinusNativeMeanRgb": [
+            18.487548828125,
+            18.505126953125,
+            14.608642578125
+          ],
+          "meanAbsoluteRgbDifference": 19.239013671875
+        },
+        "4": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "nativeMeanRgb": [
+            76.564453125,
+            58.7275390625,
+            41.3466796875
+          ],
+          "currentMeanRgb": [
+            94.8544921875,
+            77.0380859375,
+            55.7763671875
+          ],
+          "currentMinusNativeMeanRgb": [
+            18.2900390625,
+            18.310546875,
+            14.4296875
+          ],
+          "meanAbsoluteRgbDifference": 18.560221354166668
+        }
+      }
+    },
+    {
+      "name": "tech08_1",
+      "nativeAtlasCrop": {
+        "sheet": "tech_computers_1.png",
+        "x": 164,
+        "y": 4,
+        "w": 128,
+        "h": 128
+      },
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "nativeRgbSha256": "b3f693057b7469f135596c2b1fad1d2781ad89545fa53142e1b89b4323ed5962",
+      "sourceGuards": [
+        "128x128:ba7e0769a9a0ce1b"
+      ],
+      "currentDiffuse": {
+        "file": "assets/game/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-diffuse.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "57e96b1311e8b7192dc6cd6ec2d0235544335e5ce5167e75f0ae33d9fac7595b",
+        "bytes": 55944,
+        "dimensions": [
+          512,
+          512
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "43f7d7159414d8e06c62843f1c08b1c029ea672430e97938695bdffeb48abe9c"
+      },
+      "currentHeightDescriptor": {
+        "file": "official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-height.webp",
+        "strength": 1.15,
+        "cap": 1.1
+      },
+      "currentHeight": {
+        "file": "assets/game/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-height.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "bf00c93c581cce7a194699d9551830c6556e5a871e3668c2861790e4e7f73672",
+        "bytes": 76198,
+        "dimensions": [
+          512,
+          512
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "d15c328768a33b354a54de5aeecf18fe7e92e31a6d8c30f7cd386b4dc3a9f6fe"
+      },
+      "historicalBlobs": [
+        {
+          "commit": "7259378011fa4d85cf9aa4d28a22d68c7b0854d2",
+          "path": "newer/textures/tech08_1.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "b131d2f0fad2a76fcac8dd84e6c06d06e30426c5439df73ecd5fc96f655f3531",
+          "bytes": 92782,
+          "dimensions": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "75a73edcb6e58939663a285aa0b43e669f0ea79f7863a3f31d2a4220ae6279e9"
+        },
+        {
+          "commit": "f4a260ecc325ccd6150ac1209e6ef2bedc2c4d48",
+          "path": "newer/textures/tech08_1.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "c32d08e6b1d47b01d5a85a033aa75d9fafd26253416b7309ab6f2f851f3a07b4",
+          "bytes": 82650,
+          "dimensions": [
+            768,
+            768
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "56be66020167790612b3a9a1ad227cb4e06490e6c71590b99394a53357b4d359"
+        },
+        {
+          "commit": "0abd6528ae9d1a1df5e69dbe4d937fd8ec1a1da9",
+          "path": "newer/textures/tech08_1.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "64eef49f2c5ff71c2c8ae3e1fe9060d1f806d74d3639214922a08d82154464b4",
+          "bytes": 90490,
+          "dimensions": [
+            768,
+            768
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "0251a7c78f65e433472aceb3a14676330dabd2ee4cb7add359255b09eb74c67d"
+        },
+        {
+          "commit": "c865b7540c89251aa17a68d5c2aeb3e995217c43",
+          "path": "newer/textures/tech08_1.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "ca44d13c7342edf163f40ddf65b657170e7354240ce311f9f59bebc4305c7792",
+          "bytes": 89112,
+          "dimensions": [
+            768,
+            768
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "78d6af113f160ef3b68539282103572fdaef2c172e48f82bf91c80de6a86e0d8"
+        },
+        {
+          "commit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+          "path": "newer/textures/tech08_1.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "ead6026af77d57c09b970bd1f8a52a4f4b7ceb3636c16a56b70d75ca1c098b0b",
+          "bytes": 71642,
+          "dimensions": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "fcb4c7cc46e31d8476698a292c8119dc1d2e0ab2faddb3f3274b4ca57ef9cf65"
+        }
+      ],
+      "retainedNativeFile": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-tech08_1.png",
+        "webpFirstChunk": null,
+        "sha256": "ec6e5213fb6df03856fcb2f3b1f1d22f143b6a49a016e035599fa301ce84cbbc",
+        "bytes": 15671,
+        "dimensions": [
+          128,
+          128
+        ],
+        "mode": "RGBA",
+        "decodedRgbSha256": "b3f693057b7469f135596c2b1fad1d2781ad89545fa53142e1b89b4323ed5962"
+      },
+      "retainedNativePixelsMatchRebuiltAtlas": true,
+      "retainedPre4x": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech08_1.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "ca44d13c7342edf163f40ddf65b657170e7354240ce311f9f59bebc4305c7792",
+        "bytes": 89112,
+        "dimensions": [
+          768,
+          768
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "78d6af113f160ef3b68539282103572fdaef2c172e48f82bf91c80de6a86e0d8"
+      },
+      "retainedPre4xEqualsC865Blob": true,
+      "retainedSourceScale": [
+        6.0,
+        6.0
+      ],
+      "adequate8x": false,
+      "q92LineageReceipt": {
+        "factor": 4,
+        "quality": 92,
+        "lossless": false,
+        "method": 6,
+        "qualification": "Uninstalled direct-source format derivatives; not new photographic artworks or selected runtime bindings."
+      },
+      "q92ReceiptMaps": [
+        {
+          "name": "tech08_1",
+          "role": "diffuse",
+          "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech08_1.webp",
+          "retainedPre4xSha256": "ca44d13c7342edf163f40ddf65b657170e7354240ce311f9f59bebc4305c7792",
+          "predecessor": "newer/textures/tech08_1.webp",
+          "predecessorSha256": "ead6026af77d57c09b970bd1f8a52a4f4b7ceb3636c16a56b70d75ca1c098b0b",
+          "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech08_1-4x-diffuse.png",
+          "masterDecodedRgbSha256": "5e477a534f439965d02ddebba576565f4c17af2c4d14bbd6c4f5d9c0bc9eaff5",
+          "file": "newer/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-diffuse.webp",
+          "dimensions": [
+            512,
+            512
+          ],
+          "masterSha256": "696a677dfab3b5bdfed1806bde624ff8a86a06363a7900833fb4939328c89fdc",
+          "sha256": "57e96b1311e8b7192dc6cd6ec2d0235544335e5ce5167e75f0ae33d9fac7595b",
+          "pillowDecodedRgbaSha256": "75bdac9ab2607ac638a47c8a52004b35bb9b66c8a9cbe572e76b27e0944210f6",
+          "bytes": 55944
+        },
+        {
+          "name": "tech08_1",
+          "role": "height",
+          "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech08_1.webp",
+          "retainedPre4xSha256": "caf9ce0d34eeaf6c1f324ae6df3f272617f30131fb74d995c38b7befb85f3880",
+          "predecessor": "newer/textures/normals/tech08_1.webp",
+          "predecessorSha256": "a3aa6e8ec1a8b9c5e109dd8b05dea5629870b24e0b90760ad42caba97722ce7a",
+          "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech08_1-4x-height.png",
+          "masterDecodedRgbSha256": "4080e35550055f0b5998df5b50f622bcdd59fec9a23e0251eb5fd99ee13b1bf1",
+          "file": "newer/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-height.webp",
+          "dimensions": [
+            512,
+            512
+          ],
+          "masterSha256": "bb05569b8ff2e4b0039beef253bc6cd0b1b0df7d220474b243efbeea94610d3b",
+          "sha256": "bf00c93c581cce7a194699d9551830c6556e5a871e3668c2861790e4e7f73672",
+          "pillowDecodedRgbaSha256": "21a3e0ecf4ccbe6ba1e6fe604aebd531b6e80eb63b7a9eec313659447676ade9",
+          "bytes": 76198
+        }
+      ],
+      "actualQ92MasterFilesMatchHistoricalReceipt": true,
+      "actualSelectedRuntimeMatchesQ92Receipt": true,
+      "BOX": {
+        "2": {
+          "dimensions": [
+            64,
+            64
+          ],
+          "nativeMeanRgb": [
+            83.709716796875,
+            63.82861328125,
+            45.5390625
+          ],
+          "currentMeanRgb": [
+            93.370849609375,
+            74.51513671875,
+            52.60107421875
+          ],
+          "currentMinusNativeMeanRgb": [
+            9.6611328125,
+            10.6865234375,
+            7.06201171875
+          ],
+          "meanAbsoluteRgbDifference": 16.124837239583332
+        },
+        "4": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "nativeMeanRgb": [
+            83.83984375,
+            63.966796875,
+            45.66015625
+          ],
+          "currentMeanRgb": [
+            93.3134765625,
+            74.47265625,
+            52.529296875
+          ],
+          "currentMinusNativeMeanRgb": [
+            9.4736328125,
+            10.505859375,
+            6.869140625
+          ],
+          "meanAbsoluteRgbDifference": 13.097981770833334
+        }
+      }
+    },
+    {
+      "name": "tech09_3",
+      "nativeAtlasCrop": {
+        "sheet": "tech_computers_1.png",
+        "x": 4,
+        "y": 140,
+        "w": 128,
+        "h": 128
+      },
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "nativeRgbSha256": "110a30b2a3a605714b53d283238cee0a73dae6427595f59f5ba44db158623516",
+      "sourceGuards": [
+        "128x128:8ff008acef40a86e"
+      ],
+      "currentDiffuse": {
+        "file": "assets/game/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-diffuse.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "6e09150d3ecf0bbf52dad75225b910a3417d2ef42fd93ac9c4808a1361c147f8",
+        "bytes": 48814,
+        "dimensions": [
+          512,
+          512
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "1ccc5b07716e54ed39e23574d2120a7adf371d82489baf8e565f7666d362fe4c"
+      },
+      "currentHeightDescriptor": {
+        "file": "official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-height.webp",
+        "strength": 1.15
+      },
+      "currentHeight": {
+        "file": "assets/game/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-height.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "f5d65e5e9e95bc9d0bb44e6775b29a26d0967795f01200a631897fb392d83918",
+        "bytes": 66074,
+        "dimensions": [
+          512,
+          512
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "6030ebbb2729e885ac7bd5b16ef5eeb9a38ce43607df4d22ddfaf2a2876a32c2"
+      },
+      "historicalBlobs": [
+        {
+          "commit": "7259378011fa4d85cf9aa4d28a22d68c7b0854d2",
+          "path": "newer/textures/tech09_3.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "d120711b006fbdfd28283c38c9e0b4b0cf4581e5cb6a6e197e6250f8c22268b8",
+          "bytes": 77830,
+          "dimensions": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "3bea4fa730ee29f56b8e96d6fe32cbf9b4ebccacff53c36d2b5d3e3c2d71caad"
+        },
+        {
+          "commit": "f4a260ecc325ccd6150ac1209e6ef2bedc2c4d48",
+          "path": "newer/textures/tech09_3.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "22b06312c384926ca4a0159fa2aaacb82bf4f4a176ed99673357708d918e8b4a",
+          "bytes": 70578,
+          "dimensions": [
+            768,
+            768
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "c52b535c27bdc348ff2fcb9d4ef68bd1ef161d208f944ca1def22e49afd3282f"
+        },
+        {
+          "commit": "0abd6528ae9d1a1df5e69dbe4d937fd8ec1a1da9",
+          "path": "newer/textures/tech09_3.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "5c76cb9850c2e99576dcbfdd438ddb72aa973d644cc2bc22ba499634623cecf2",
+          "bytes": 80772,
+          "dimensions": [
+            768,
+            768
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "c85a7abd671e85752742e46eb92cfbfdfb0d827369a141937408ed5fc6447617"
+        },
+        {
+          "commit": "c865b7540c89251aa17a68d5c2aeb3e995217c43",
+          "path": "newer/textures/tech09_3.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "5c76cb9850c2e99576dcbfdd438ddb72aa973d644cc2bc22ba499634623cecf2",
+          "bytes": 80772,
+          "dimensions": [
+            768,
+            768
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "c85a7abd671e85752742e46eb92cfbfdfb0d827369a141937408ed5fc6447617"
+        },
+        {
+          "commit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+          "path": "newer/textures/tech09_3.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "7362b48b6edb7ad3e95d61e4518391da75080b909d8b20d11899958f3cd4cb62",
+          "bytes": 62150,
+          "dimensions": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "cfefa79335a61395d79ee876aaff0f97c7b02e0768843d5ce22ec68f737083ec"
+        }
+      ],
+      "retainedNativeFile": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-tech09_3.png",
+        "webpFirstChunk": null,
+        "sha256": "1f82b18d9cec8ef8338a227c5be67fe0a3e06ffbabcc7af922c3bfb5063169fc",
+        "bytes": 14505,
+        "dimensions": [
+          128,
+          128
+        ],
+        "mode": "RGBA",
+        "decodedRgbSha256": "110a30b2a3a605714b53d283238cee0a73dae6427595f59f5ba44db158623516"
+      },
+      "retainedNativePixelsMatchRebuiltAtlas": true,
+      "retainedPre4x": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech09_3.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "5c76cb9850c2e99576dcbfdd438ddb72aa973d644cc2bc22ba499634623cecf2",
+        "bytes": 80772,
+        "dimensions": [
+          768,
+          768
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "c85a7abd671e85752742e46eb92cfbfdfb0d827369a141937408ed5fc6447617"
+      },
+      "retainedPre4xEqualsC865Blob": true,
+      "retainedSourceScale": [
+        6.0,
+        6.0
+      ],
+      "adequate8x": false,
+      "q92LineageReceipt": {
+        "factor": 4,
+        "quality": 92,
+        "lossless": false,
+        "method": 6,
+        "qualification": "Uninstalled direct-source format derivatives; not new photographic artworks or selected runtime bindings."
+      },
+      "q92ReceiptMaps": [
+        {
+          "name": "tech09_3",
+          "role": "diffuse",
+          "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech09_3.webp",
+          "retainedPre4xSha256": "5c76cb9850c2e99576dcbfdd438ddb72aa973d644cc2bc22ba499634623cecf2",
+          "predecessor": "newer/textures/tech09_3.webp",
+          "predecessorSha256": "7362b48b6edb7ad3e95d61e4518391da75080b909d8b20d11899958f3cd4cb62",
+          "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech09_3-4x-diffuse.png",
+          "masterDecodedRgbSha256": "753d3745feaaaf73602e5ab7540003e8c3275082d38640c3affa52018e86d541",
+          "file": "newer/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-diffuse.webp",
+          "dimensions": [
+            512,
+            512
+          ],
+          "masterSha256": "e0732b888f072d0dbe19717b1a0ffb8d4daa9e103b66fe0a12b7ff26056aafbe",
+          "sha256": "6e09150d3ecf0bbf52dad75225b910a3417d2ef42fd93ac9c4808a1361c147f8",
+          "pillowDecodedRgbaSha256": "a6bed0c32475619cd7e41fbf5570c9141c8891f13990f23384445e7c8cbf8a61",
+          "bytes": 48814
+        },
+        {
+          "name": "tech09_3",
+          "role": "height",
+          "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech09_3.webp",
+          "retainedPre4xSha256": "39d5af74127f92c605eb16787bd173b529b919f9055a4ffe8ad5fd6f3b5ba5d3",
+          "predecessor": "newer/textures/normals/tech09_3.webp",
+          "predecessorSha256": "6cc0a3a4c8fb4566dde5c2a4c7acea755421a649eaba4667cec6a550ab1122b4",
+          "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech09_3-4x-height.png",
+          "masterDecodedRgbSha256": "20c01c3a2cbb888b4524f8fca72f58d44b148a2cb6184c65a10415d51c30ad9d",
+          "file": "newer/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-height.webp",
+          "dimensions": [
+            512,
+            512
+          ],
+          "masterSha256": "927c1dfa9addf038c8374e5273efab8f835c8985c80b0851832e5a0860b76ca0",
+          "sha256": "f5d65e5e9e95bc9d0bb44e6775b29a26d0967795f01200a631897fb392d83918",
+          "pillowDecodedRgbaSha256": "90042aab8244617a0907203a2732d5ae333dd4a4514ad66497b8111f5ebcf681",
+          "bytes": 66074
+        }
+      ],
+      "actualQ92MasterFilesMatchHistoricalReceipt": true,
+      "actualSelectedRuntimeMatchesQ92Receipt": true,
+      "BOX": {
+        "2": {
+          "dimensions": [
+            64,
+            64
+          ],
+          "nativeMeanRgb": [
+            63.888671875,
+            48.909912109375,
+            32.974365234375
+          ],
+          "currentMeanRgb": [
+            76.445556640625,
+            62.455078125,
+            44.882080078125
+          ],
+          "currentMinusNativeMeanRgb": [
+            12.556884765625,
+            13.545166015625,
+            11.90771484375
+          ],
+          "meanAbsoluteRgbDifference": 17.768880208333332
+        },
+        "4": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "nativeMeanRgb": [
+            64.0234375,
+            49.0478515625,
+            33.0810546875
+          ],
+          "currentMeanRgb": [
+            76.376953125,
+            62.3857421875,
+            44.818359375
+          ],
+          "currentMinusNativeMeanRgb": [
+            12.353515625,
+            13.337890625,
+            11.7373046875
+          ],
+          "meanAbsoluteRgbDifference": 14.467122395833334
+        }
+      }
+    },
+    {
+      "name": "tech10_1",
+      "nativeAtlasCrop": {
+        "sheet": "tech_computers_2.png",
+        "x": 244,
+        "y": 292,
+        "w": 64,
+        "h": 64
+      },
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "nativeRgbSha256": "19d98651e1cd0ffc0e8e224d2c61db8981c4e120de5074b5ae939f52be427121",
+      "sourceGuards": [
+        "64x64:f26408ddd8ece0b7"
+      ],
+      "currentDiffuse": {
+        "file": "assets/game/textures/tech10_1.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "83d0b4bb09cb912760a1c2ad26b8eef566b4a71f73b5627b723ad6a17cb4bb63",
+        "bytes": 24666,
+        "dimensions": [
+          256,
+          256
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "3d49c6d13136949b47232593abee0c9d03583781f80021e19d5c9baf074a4d87"
+      },
+      "currentHeightDescriptor": {
+        "file": "normals/tech10_1.webp",
+        "strength": 1.2
+      },
+      "currentHeight": {
+        "file": "assets/game/textures/normals/tech10_1.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "8c9971eafe2961bddf1544303b1102778fe40870859e1bed9da49bd343c61c4b",
+        "bytes": 36420,
+        "dimensions": [
+          256,
+          256
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "542f735defd5b71d0953a412e8c3e8287187cfa81b15cb6c9b2c3251cd2108f4"
+      },
+      "historicalBlobs": [
+        {
+          "commit": "1d6f47c1e7ad39559b8ca7bb30b61c0fb3c83be3",
+          "path": "newer/textures/tech10_1.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "83d0b4bb09cb912760a1c2ad26b8eef566b4a71f73b5627b723ad6a17cb4bb63",
+          "bytes": 24666,
+          "dimensions": [
+            256,
+            256
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "3d49c6d13136949b47232593abee0c9d03583781f80021e19d5c9baf074a4d87"
+        },
+        {
+          "commit": "7259378011fa4d85cf9aa4d28a22d68c7b0854d2",
+          "path": "newer/textures/tech10_1.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "83d0b4bb09cb912760a1c2ad26b8eef566b4a71f73b5627b723ad6a17cb4bb63",
+          "bytes": 24666,
+          "dimensions": [
+            256,
+            256
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "3d49c6d13136949b47232593abee0c9d03583781f80021e19d5c9baf074a4d87"
+        },
+        {
+          "commit": "f4a260ecc325ccd6150ac1209e6ef2bedc2c4d48",
+          "path": "newer/textures/tech10_1.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "83d0b4bb09cb912760a1c2ad26b8eef566b4a71f73b5627b723ad6a17cb4bb63",
+          "bytes": 24666,
+          "dimensions": [
+            256,
+            256
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "3d49c6d13136949b47232593abee0c9d03583781f80021e19d5c9baf074a4d87"
+        },
+        {
+          "commit": "0abd6528ae9d1a1df5e69dbe4d937fd8ec1a1da9",
+          "path": "newer/textures/tech10_1.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "83d0b4bb09cb912760a1c2ad26b8eef566b4a71f73b5627b723ad6a17cb4bb63",
+          "bytes": 24666,
+          "dimensions": [
+            256,
+            256
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "3d49c6d13136949b47232593abee0c9d03583781f80021e19d5c9baf074a4d87"
+        },
+        {
+          "commit": "c865b7540c89251aa17a68d5c2aeb3e995217c43",
+          "path": "newer/textures/tech10_1.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "83d0b4bb09cb912760a1c2ad26b8eef566b4a71f73b5627b723ad6a17cb4bb63",
+          "bytes": 24666,
+          "dimensions": [
+            256,
+            256
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "3d49c6d13136949b47232593abee0c9d03583781f80021e19d5c9baf074a4d87"
+        },
+        {
+          "commit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+          "path": "newer/textures/tech10_1.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "83d0b4bb09cb912760a1c2ad26b8eef566b4a71f73b5627b723ad6a17cb4bb63",
+          "bytes": 24666,
+          "dimensions": [
+            256,
+            256
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "3d49c6d13136949b47232593abee0c9d03583781f80021e19d5c9baf074a4d87"
+        }
+      ],
+      "originalMislabeledImport": {
+        "commit": "bdae4c5cd2764a56810befef4207c834201992a7",
+        "path": "newer/textures/metalt2_3.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "83d0b4bb09cb912760a1c2ad26b8eef566b4a71f73b5627b723ad6a17cb4bb63",
+        "bytes": 24666,
+        "dimensions": [
+          256,
+          256
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "3d49c6d13136949b47232593abee0c9d03583781f80021e19d5c9baf074a4d87"
+      },
+      "originalImportEqualsCurrent": true,
+      "BOX": {
+        "2": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "nativeMeanRgb": [
+            60.8369140625,
+            45.5166015625,
+            25.90234375
+          ],
+          "currentMeanRgb": [
+            85.6015625,
+            60.923828125,
+            31.3671875
+          ],
+          "currentMinusNativeMeanRgb": [
+            24.7646484375,
+            15.4072265625,
+            5.46484375
+          ],
+          "meanAbsoluteRgbDifference": 16.749348958333332
+        },
+        "4": {
+          "dimensions": [
+            16,
+            16
+          ],
+          "nativeMeanRgb": [
+            60.99609375,
+            45.6328125,
+            26.0
+          ],
+          "currentMeanRgb": [
+            85.57421875,
+            60.8515625,
+            31.30078125
+          ],
+          "currentMinusNativeMeanRgb": [
+            24.578125,
+            15.21875,
+            5.30078125
+          ],
+          "meanAbsoluteRgbDifference": 15.483072916666666
+        }
+      }
+    },
+    {
+      "name": "tech10_3",
+      "nativeAtlasCrop": {
+        "sheet": "tech_computers_1.png",
+        "x": 140,
+        "y": 140,
+        "w": 32,
+        "h": 128
+      },
+      "nativeDimensions": [
+        32,
+        128
+      ],
+      "nativeRgbSha256": "3ba918893df89f35fba57a1a67a3d4acc2bc8eac25e9c401c64f1dd8bb89e6e9",
+      "sourceGuards": [
+        "32x128:31e072256a779b27"
+      ],
+      "currentDiffuse": {
+        "file": "assets/game/textures/official/owner-tech10_3-31e072256a779b27-v1-4x-q92-diffuse.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "876cf3820a00c5d62155bb392352f5ba2e5979e756a5ab1e7a4267804da1f707",
+        "bytes": 13540,
+        "dimensions": [
+          128,
+          512
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "918b888c1ec06141c386bb427daf577aea5e7ebedf25b171e42a5503813b4678"
+      },
+      "currentHeightDescriptor": {
+        "file": "official/owner-tech10_3-31e072256a779b27-v1-4x-q92-height.webp",
+        "strength": 1.15
+      },
+      "currentHeight": {
+        "file": "assets/game/textures/official/owner-tech10_3-31e072256a779b27-v1-4x-q92-height.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "b1d0c7db3e1eb311569d28a5ddd2b8670cb7685065fb3994cdd5feac754a9370",
+        "bytes": 25670,
+        "dimensions": [
+          128,
+          512
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "7b3d5ed280eb9507a7203373432e350004468d2be72b454e6a532bd0ec432688"
+      },
+      "historicalBlobs": [
+        {
+          "commit": "7259378011fa4d85cf9aa4d28a22d68c7b0854d2",
+          "path": "newer/textures/tech10_3.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "267d8903adfe68349b220d44a10e64b060a780a4ead0225d3956689e69f18089",
+          "bytes": 21758,
+          "dimensions": [
+            128,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "557bb9fffab7a2ee27c51603eeae9436a6752f431e31653007ac013433f63eba"
+        },
+        {
+          "commit": "f4a260ecc325ccd6150ac1209e6ef2bedc2c4d48",
+          "path": "newer/textures/tech10_3.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "4bd3c70aebd7e0030e1cf2026289a0b8dff8473c54e00e144da0dbbedc5dc2f8",
+          "bytes": 19602,
+          "dimensions": [
+            192,
+            768
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "807de1d82d61be73965ac87bad0471eb77c4d90220185519a5125beb74ad9e3f"
+        },
+        {
+          "commit": "0abd6528ae9d1a1df5e69dbe4d937fd8ec1a1da9",
+          "path": "newer/textures/tech10_3.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "4bd4d19fdb863212f4fdbf497f666f1b04e72166e177ebdcfff03c75aaca3eb5",
+          "bytes": 22154,
+          "dimensions": [
+            192,
+            768
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "a54aabc79f9993accf6ff39cbabf458ae3aa51d0e807ca6ae2d1c55725b143a0"
+        },
+        {
+          "commit": "c865b7540c89251aa17a68d5c2aeb3e995217c43",
+          "path": "newer/textures/tech10_3.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "70ea434c6d416714256889da379ad33b784dc9c6e7d2ff04c633019d194efcb8",
+          "bytes": 21888,
+          "dimensions": [
+            192,
+            768
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "c758b94aa95297ca9790b74667d2a4a3d790beea5c107b5d12e177da20ed4cb4"
+        },
+        {
+          "commit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+          "path": "newer/textures/tech10_3.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "e69082ad4e8a59cd9b387357e95bf06470ea0538ce84e8598124b3cb19b8e56c",
+          "bytes": 17612,
+          "dimensions": [
+            128,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "45a14b7b08c58a7f637a5d99e3b8565eb8a66c2af8c1642b68c373716f4c2fd0"
+        }
+      ],
+      "retainedNativeFile": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-tech10_3.png",
+        "webpFirstChunk": null,
+        "sha256": "177d76dddb40c72909f26d3e7c9af4a5009f3048ef4a5af5347879228b4766f5",
+        "bytes": 3867,
+        "dimensions": [
+          32,
+          128
+        ],
+        "mode": "RGBA",
+        "decodedRgbSha256": "3ba918893df89f35fba57a1a67a3d4acc2bc8eac25e9c401c64f1dd8bb89e6e9"
+      },
+      "retainedNativePixelsMatchRebuiltAtlas": true,
+      "retainedPre4x": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech10_3.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "70ea434c6d416714256889da379ad33b784dc9c6e7d2ff04c633019d194efcb8",
+        "bytes": 21888,
+        "dimensions": [
+          192,
+          768
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "c758b94aa95297ca9790b74667d2a4a3d790beea5c107b5d12e177da20ed4cb4"
+      },
+      "retainedPre4xEqualsC865Blob": true,
+      "retainedSourceScale": [
+        6.0,
+        6.0
+      ],
+      "adequate8x": false,
+      "q92LineageReceipt": {
+        "factor": 4,
+        "quality": 92,
+        "lossless": false,
+        "method": 6,
+        "qualification": "Uninstalled direct-source format derivatives; not new photographic artworks or selected runtime bindings."
+      },
+      "q92ReceiptMaps": [
+        {
+          "name": "tech10_3",
+          "role": "diffuse",
+          "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech10_3.webp",
+          "retainedPre4xSha256": "70ea434c6d416714256889da379ad33b784dc9c6e7d2ff04c633019d194efcb8",
+          "predecessor": "newer/textures/tech10_3.webp",
+          "predecessorSha256": "e69082ad4e8a59cd9b387357e95bf06470ea0538ce84e8598124b3cb19b8e56c",
+          "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech10_3-4x-diffuse.png",
+          "masterDecodedRgbSha256": "d13c9738fad4db9298febe6460a38557f427a4bc312c4e6930a0614612fefc71",
+          "file": "newer/textures/official/owner-tech10_3-31e072256a779b27-v1-4x-q92-diffuse.webp",
+          "dimensions": [
+            128,
+            512
+          ],
+          "masterSha256": "eb9a1420398fb50e5fef4760f53452195391c2ac1b6f8495e7f94f35a32fd7cc",
+          "sha256": "876cf3820a00c5d62155bb392352f5ba2e5979e756a5ab1e7a4267804da1f707",
+          "pillowDecodedRgbaSha256": "dc97438034bedc9d17f8295b11a1496ed839a17f9d2e72b4922d40c45e311491",
+          "bytes": 13540
+        },
+        {
+          "name": "tech10_3",
+          "role": "height",
+          "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech10_3.webp",
+          "retainedPre4xSha256": "59d557070192505c9125eaaa9a1ca049c0b950b0278f24f5d9f4be717e1f0590",
+          "predecessor": "newer/textures/normals/tech10_3.webp",
+          "predecessorSha256": "70a36a6cc59000a32a1669bc1926f144903ed0c2b398117baa4a6eb78b9f134d",
+          "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech10_3-4x-height.png",
+          "masterDecodedRgbSha256": "764c8f06430bd11f04b9ef49c27bb3789bf51d0823c0f1ed8f01850dbdf8d776",
+          "file": "newer/textures/official/owner-tech10_3-31e072256a779b27-v1-4x-q92-height.webp",
+          "dimensions": [
+            128,
+            512
+          ],
+          "masterSha256": "daf1986798411c98d5568e124f759b11be108e35bd69dfa30ee67bb9e51eede8",
+          "sha256": "b1d0c7db3e1eb311569d28a5ddd2b8670cb7685065fb3994cdd5feac754a9370",
+          "pillowDecodedRgbaSha256": "8ea51fb28c0c2bbb50631b7688b0deeb46dbd82cbcfac071258fe214ab51b38d",
+          "bytes": 25670
+        }
+      ],
+      "actualQ92MasterFilesMatchHistoricalReceipt": true,
+      "actualSelectedRuntimeMatchesQ92Receipt": true,
+      "BOX": {
+        "2": {
+          "dimensions": [
+            16,
+            64
+          ],
+          "nativeMeanRgb": [
+            78.5869140625,
+            60.943359375,
+            43.0107421875
+          ],
+          "currentMeanRgb": [
+            90.8583984375,
+            74.263671875,
+            52.361328125
+          ],
+          "currentMinusNativeMeanRgb": [
+            12.271484375,
+            13.3203125,
+            9.3505859375
+          ],
+          "meanAbsoluteRgbDifference": 16.1396484375
+        },
+        "4": {
+          "dimensions": [
+            8,
+            32
+          ],
+          "nativeMeanRgb": [
+            78.703125,
+            61.10546875,
+            43.09765625
+          ],
+          "currentMeanRgb": [
+            90.7890625,
+            74.203125,
+            52.3203125
+          ],
+          "currentMinusNativeMeanRgb": [
+            12.0859375,
+            13.09765625,
+            9.22265625
+          ],
+          "meanAbsoluteRgbDifference": 13.145833333333334
+        }
+      }
+    },
+    {
+      "name": "tech11_2",
+      "nativeAtlasCrop": {
+        "sheet": "tech_computers_1.png",
+        "x": 180,
+        "y": 140,
+        "w": 128,
+        "h": 128
+      },
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "nativeRgbSha256": "1a3d5e3f1f7820cdad3be3827cbc599262c9cc3df37a84318042422d9d269aaf",
+      "sourceGuards": [
+        "128x128:f56a5604372ecc96"
+      ],
+      "currentDiffuse": {
+        "file": "assets/game/textures/official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-diffuse.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "b31a831f2c6cc932b791f6f0816303f05541f51d1d72095d43ead1a81c833470",
+        "bytes": 50476,
+        "dimensions": [
+          512,
+          512
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "45b755dee8ad258ad666705bea346ba482226fa6071e51e7d31a2b55da843db9"
+      },
+      "currentHeightDescriptor": {
+        "file": "official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-height.webp",
+        "strength": 1.15
+      },
+      "currentHeight": {
+        "file": "assets/game/textures/official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-height.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "f2d6cd19b5b7476f60992c0164198ab55a292e935a0193a245eeaeea87038b6c",
+        "bytes": 62108,
+        "dimensions": [
+          512,
+          512
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "9f535592a683b37aa19fd3d99d96c2eb9fd55c5ba700d410af5e53d869a5b7bf"
+      },
+      "historicalBlobs": [
+        {
+          "commit": "7259378011fa4d85cf9aa4d28a22d68c7b0854d2",
+          "path": "newer/textures/tech11_2.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "5e662ee77d8f991b6d47bac31abd355a49c1ffb0eb93d06c3a0d41bc6c5b6b7b",
+          "bytes": 77874,
+          "dimensions": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "c8af0103cb9dfae8f643e8da1c190168ec0b88d87c635dee3995f2d07153fd66"
+        },
+        {
+          "commit": "f4a260ecc325ccd6150ac1209e6ef2bedc2c4d48",
+          "path": "newer/textures/tech11_2.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "a7043614b413f693f0681d577fc8ce328792771164a9190057f7bae8f5b291c3",
+          "bytes": 74444,
+          "dimensions": [
+            768,
+            768
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "f933f39e71adbb26a6b73bf17167ae4b6b5e966443f7aa3fa5d9eecf0f1f371f"
+        },
+        {
+          "commit": "0abd6528ae9d1a1df5e69dbe4d937fd8ec1a1da9",
+          "path": "newer/textures/tech11_2.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "b35e3223a4fe6f97598d96f68b97b80c0a8993f57154b80910d96954a3525e3b",
+          "bytes": 84024,
+          "dimensions": [
+            768,
+            768
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "90299e8e7517d013c19f57fe716d73a363e7b86bda0e8156e0ca4a3ef88781e6"
+        },
+        {
+          "commit": "c865b7540c89251aa17a68d5c2aeb3e995217c43",
+          "path": "newer/textures/tech11_2.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "b35e3223a4fe6f97598d96f68b97b80c0a8993f57154b80910d96954a3525e3b",
+          "bytes": 84024,
+          "dimensions": [
+            768,
+            768
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "90299e8e7517d013c19f57fe716d73a363e7b86bda0e8156e0ca4a3ef88781e6"
+        },
+        {
+          "commit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+          "path": "newer/textures/tech11_2.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "f2ff087807812be7c23cfe0f32d2952ca2ec034afc0089004e1f21b2aae669a2",
+          "bytes": 67190,
+          "dimensions": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "98e998cc2da2252c67514dc7b799385c20dbe3143e87a86d8e429083a94ba989"
+        }
+      ],
+      "retainedNativeFile": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-tech11_2.png",
+        "webpFirstChunk": null,
+        "sha256": "e13685968ded47c58af964a535aaef2af7a95d485617aa4c53d6831d83fc0392",
+        "bytes": 16707,
+        "dimensions": [
+          128,
+          128
+        ],
+        "mode": "RGBA",
+        "decodedRgbSha256": "1a3d5e3f1f7820cdad3be3827cbc599262c9cc3df37a84318042422d9d269aaf"
+      },
+      "retainedNativePixelsMatchRebuiltAtlas": true,
+      "retainedPre4x": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech11_2.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "b35e3223a4fe6f97598d96f68b97b80c0a8993f57154b80910d96954a3525e3b",
+        "bytes": 84024,
+        "dimensions": [
+          768,
+          768
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "90299e8e7517d013c19f57fe716d73a363e7b86bda0e8156e0ca4a3ef88781e6"
+      },
+      "retainedPre4xEqualsC865Blob": true,
+      "retainedSourceScale": [
+        6.0,
+        6.0
+      ],
+      "adequate8x": false,
+      "q92LineageReceipt": {
+        "factor": 4,
+        "quality": 92,
+        "lossless": false,
+        "method": 6,
+        "qualification": "Uninstalled direct-source format derivatives; not new photographic artworks or selected runtime bindings."
+      },
+      "q92ReceiptMaps": [
+        {
+          "name": "tech11_2",
+          "role": "diffuse",
+          "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech11_2.webp",
+          "retainedPre4xSha256": "b35e3223a4fe6f97598d96f68b97b80c0a8993f57154b80910d96954a3525e3b",
+          "predecessor": "newer/textures/tech11_2.webp",
+          "predecessorSha256": "f2ff087807812be7c23cfe0f32d2952ca2ec034afc0089004e1f21b2aae669a2",
+          "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech11_2-4x-diffuse.png",
+          "masterDecodedRgbSha256": "e5d9989a65ce1a05391b1a50dcaaed7ea202e5615dabee1109896bd301a43db3",
+          "file": "newer/textures/official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-diffuse.webp",
+          "dimensions": [
+            512,
+            512
+          ],
+          "masterSha256": "d9bb10644d81a84452264c25e40b895548be1484ba2100bc8baccd5b8cb33dbb",
+          "sha256": "b31a831f2c6cc932b791f6f0816303f05541f51d1d72095d43ead1a81c833470",
+          "pillowDecodedRgbaSha256": "78690663b22b43c31336821fc2f51d8e9a98ae4e784736f97b5016f31d040f5a",
+          "bytes": 50476
+        },
+        {
+          "name": "tech11_2",
+          "role": "height",
+          "retainedPre4xFile": "tools/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/height/tech11_2.webp",
+          "retainedPre4xSha256": "b06069c8ec174571e20638ae89891bbdc8f489eaf9d266146789474389481cfd",
+          "predecessor": "newer/textures/normals/tech11_2.webp",
+          "predecessorSha256": "e0853b1182a88c35e69b4452514892aa0517d897a28fad393f1e09d31738ea97",
+          "master": "tools/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech11_2-4x-height.png",
+          "masterDecodedRgbSha256": "4a8a84f2fc9412bae13312aa744b37fcd99d657e1333148b76a54f50fffc7e2c",
+          "file": "newer/textures/official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-height.webp",
+          "dimensions": [
+            512,
+            512
+          ],
+          "masterSha256": "4593d2df096a46b7abc40fbe23f8c01bf3c87498db954981bfc40abe23a7ed61",
+          "sha256": "f2d6cd19b5b7476f60992c0164198ab55a292e935a0193a245eeaeea87038b6c",
+          "pillowDecodedRgbaSha256": "b1d5593c1806ca5665a1f4924e6ee69a486a42a514f824a09b3f3c64eff7d608",
+          "bytes": 62108
+        }
+      ],
+      "actualQ92MasterFilesMatchHistoricalReceipt": true,
+      "actualSelectedRuntimeMatchesQ92Receipt": true,
+      "BOX": {
+        "2": {
+          "dimensions": [
+            64,
+            64
+          ],
+          "nativeMeanRgb": [
+            64.276123046875,
+            48.4599609375,
+            32.557373046875
+          ],
+          "currentMeanRgb": [
+            70.376220703125,
+            56.781005859375,
+            39.925537109375
+          ],
+          "currentMinusNativeMeanRgb": [
+            6.10009765625,
+            8.321044921875,
+            7.3681640625
+          ],
+          "meanAbsoluteRgbDifference": 16.921793619791668
+        },
+        "4": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "nativeMeanRgb": [
+            64.404296875,
+            48.6025390625,
+            32.66015625
+          ],
+          "currentMeanRgb": [
+            70.3017578125,
+            56.6982421875,
+            39.84375
+          ],
+          "currentMinusNativeMeanRgb": [
+            5.8974609375,
+            8.095703125,
+            7.18359375
+          ],
+          "meanAbsoluteRgbDifference": 12.6083984375
+        }
+      }
+    },
+    {
+      "name": "twall1_2",
+      "nativeAtlasCrop": {
+        "sheet": "base_walls_1.png",
+        "x": 292,
+        "y": 4,
+        "w": 64,
+        "h": 128
+      },
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "nativeRgbSha256": "bf2e4d90f6d7032ff62701578505edf6891ab2472f498aa4493333396dc2d6f4",
+      "sourceGuards": [
+        "64x128:bae9e5a2d80322b8"
+      ],
+      "currentDiffuse": {
+        "file": "assets/game/textures/twall1_2.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "270da5c60b98604fea19bd26713b9698ec48b598add362ed0fe0d05533476989",
+        "bytes": 45850,
+        "dimensions": [
+          256,
+          512
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "7d1b40304d179dd7daf1c8cb101df05b992a5dc11446968e26f9b6b5163e2b0c"
+      },
+      "currentHeightDescriptor": {
+        "file": "normals/twall1_2.webp",
+        "strength": 1.15,
+        "cap": 1.1
+      },
+      "currentHeight": {
+        "file": "assets/game/textures/normals/twall1_2.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "2ade4a3effd6338a5fa05662a96c1ebbcd71841488cf1ac3ac78ae543394df2f",
+        "bytes": 51092,
+        "dimensions": [
+          256,
+          512
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "fb1434c26b172d5bcbe8c8c43610eab71214e41f36a91bab5de3d4555accfb31"
+      },
+      "historicalBlobs": [
+        {
+          "commit": "1d6f47c1e7ad39559b8ca7bb30b61c0fb3c83be3",
+          "path": "newer/textures/twall1_2.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "4f7c8b36f9e5633f5a1a638e42545283763820d558e5c7a49ddb5bf73ad7b5b9",
+          "bytes": 47532,
+          "dimensions": [
+            256,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "c096d313309e3fdf7467ae9d1bc1e394a7af4c7e9c22a2ba683a47b46430bc63"
+        },
+        {
+          "commit": "7259378011fa4d85cf9aa4d28a22d68c7b0854d2",
+          "path": "newer/textures/twall1_2.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "4f7c8b36f9e5633f5a1a638e42545283763820d558e5c7a49ddb5bf73ad7b5b9",
+          "bytes": 47532,
+          "dimensions": [
+            256,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "c096d313309e3fdf7467ae9d1bc1e394a7af4c7e9c22a2ba683a47b46430bc63"
+        },
+        {
+          "commit": "f4a260ecc325ccd6150ac1209e6ef2bedc2c4d48",
+          "path": "newer/textures/twall1_2.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "4f7c8b36f9e5633f5a1a638e42545283763820d558e5c7a49ddb5bf73ad7b5b9",
+          "bytes": 47532,
+          "dimensions": [
+            256,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "c096d313309e3fdf7467ae9d1bc1e394a7af4c7e9c22a2ba683a47b46430bc63"
+        },
+        {
+          "commit": "0abd6528ae9d1a1df5e69dbe4d937fd8ec1a1da9",
+          "path": "newer/textures/twall1_2.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "7e885f67e2f08a408c01439f1d5647ffe04cfba43ab82ab9f19430b729d3dd9d",
+          "bytes": 46144,
+          "dimensions": [
+            256,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "97bb75fa02a7e31c9337d4fed401f7e40edf03fc36bc5719021a0adba52391d3"
+        },
+        {
+          "commit": "c865b7540c89251aa17a68d5c2aeb3e995217c43",
+          "path": "newer/textures/twall1_2.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "270da5c60b98604fea19bd26713b9698ec48b598add362ed0fe0d05533476989",
+          "bytes": 45850,
+          "dimensions": [
+            256,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "7d1b40304d179dd7daf1c8cb101df05b992a5dc11446968e26f9b6b5163e2b0c"
+        },
+        {
+          "commit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+          "path": "newer/textures/twall1_2.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "270da5c60b98604fea19bd26713b9698ec48b598add362ed0fe0d05533476989",
+          "bytes": 45850,
+          "dimensions": [
+            256,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "7d1b40304d179dd7daf1c8cb101df05b992a5dc11446968e26f9b6b5163e2b0c"
+        }
+      ],
+      "BOX": {
+        "2": {
+          "dimensions": [
+            32,
+            64
+          ],
+          "nativeMeanRgb": [
+            61.05224609375,
+            49.48193359375,
+            39.2216796875
+          ],
+          "currentMeanRgb": [
+            86.7392578125,
+            68.7197265625,
+            51.447265625
+          ],
+          "currentMinusNativeMeanRgb": [
+            25.68701171875,
+            19.23779296875,
+            12.2255859375
+          ],
+          "meanAbsoluteRgbDifference": 21.315755208333332
+        },
+        "4": {
+          "dimensions": [
+            16,
+            32
+          ],
+          "nativeMeanRgb": [
+            61.19921875,
+            49.609375,
+            39.33984375
+          ],
+          "currentMeanRgb": [
+            86.669921875,
+            68.681640625,
+            51.373046875
+          ],
+          "currentMinusNativeMeanRgb": [
+            25.470703125,
+            19.072265625,
+            12.033203125
+          ],
+          "meanAbsoluteRgbDifference": 19.007161458333332
+        }
+      }
+    },
+    {
+      "name": "twall3_1",
+      "nativeAtlasCrop": {
+        "sheet": "base_walls_1.png",
+        "x": 148,
+        "y": 140,
+        "w": 64,
+        "h": 128
+      },
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "nativeRgbSha256": "1d104b626993aa2f6af804731927673b089a786b7d8f1c470a8033f3932dddbd",
+      "sourceGuards": [
+        "64x128:d1c17ddd8ecf619f"
+      ],
+      "currentDiffuse": {
+        "file": "assets/game/textures/twall3_1.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "2478aa7c25d1d1ff831e5078f35176e3ba2347b72dc171f9db3801da664c0788",
+        "bytes": 46848,
+        "dimensions": [
+          256,
+          512
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "c08554e67c3b492b708e1825d3067298a61dbf796ea1979b9ce1fa11606e83cf"
+      },
+      "currentHeightDescriptor": {
+        "file": "normals/twall3_1.webp",
+        "strength": 1.15
+      },
+      "currentHeight": {
+        "file": "assets/game/textures/normals/twall3_1.webp",
+        "webpFirstChunk": "VP8 ",
+        "sha256": "35cc73226ce5354eadf96f8fa16000e01eeba37a25d4a3dc2008f77e33c0b404",
+        "bytes": 49652,
+        "dimensions": [
+          256,
+          512
+        ],
+        "mode": "RGB",
+        "decodedRgbSha256": "ec462f9b08bbfd0ba452ec4a0162e175cb744fe82279f02525a8825a8d627476"
+      },
+      "historicalBlobs": [
+        {
+          "commit": "1d6f47c1e7ad39559b8ca7bb30b61c0fb3c83be3",
+          "path": "newer/textures/twall3_1.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "6ebde3f2bff0653acc52c1c9557793cdfa881cbc8d724da185c6f18f49479949",
+          "bytes": 44298,
+          "dimensions": [
+            256,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "c040a4a5b41adea3ee2eb06aee15add8ba6105d3146d885f51f98e5e093e4436"
+        },
+        {
+          "commit": "7259378011fa4d85cf9aa4d28a22d68c7b0854d2",
+          "path": "newer/textures/twall3_1.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "6ebde3f2bff0653acc52c1c9557793cdfa881cbc8d724da185c6f18f49479949",
+          "bytes": 44298,
+          "dimensions": [
+            256,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "c040a4a5b41adea3ee2eb06aee15add8ba6105d3146d885f51f98e5e093e4436"
+        },
+        {
+          "commit": "f4a260ecc325ccd6150ac1209e6ef2bedc2c4d48",
+          "path": "newer/textures/twall3_1.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "6ebde3f2bff0653acc52c1c9557793cdfa881cbc8d724da185c6f18f49479949",
+          "bytes": 44298,
+          "dimensions": [
+            256,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "c040a4a5b41adea3ee2eb06aee15add8ba6105d3146d885f51f98e5e093e4436"
+        },
+        {
+          "commit": "0abd6528ae9d1a1df5e69dbe4d937fd8ec1a1da9",
+          "path": "newer/textures/twall3_1.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "2478aa7c25d1d1ff831e5078f35176e3ba2347b72dc171f9db3801da664c0788",
+          "bytes": 46848,
+          "dimensions": [
+            256,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "c08554e67c3b492b708e1825d3067298a61dbf796ea1979b9ce1fa11606e83cf"
+        },
+        {
+          "commit": "c865b7540c89251aa17a68d5c2aeb3e995217c43",
+          "path": "newer/textures/twall3_1.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "2478aa7c25d1d1ff831e5078f35176e3ba2347b72dc171f9db3801da664c0788",
+          "bytes": 46848,
+          "dimensions": [
+            256,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "c08554e67c3b492b708e1825d3067298a61dbf796ea1979b9ce1fa11606e83cf"
+        },
+        {
+          "commit": "73307bb3a9015afcbf6a3be9370b12e28a9747c4",
+          "path": "newer/textures/twall3_1.webp",
+          "webpFirstChunk": "VP8 ",
+          "sha256": "2478aa7c25d1d1ff831e5078f35176e3ba2347b72dc171f9db3801da664c0788",
+          "bytes": 46848,
+          "dimensions": [
+            256,
+            512
+          ],
+          "mode": "RGB",
+          "decodedRgbSha256": "c08554e67c3b492b708e1825d3067298a61dbf796ea1979b9ce1fa11606e83cf"
+        }
+      ],
+      "BOX": {
+        "2": {
+          "dimensions": [
+            32,
+            64
+          ],
+          "nativeMeanRgb": [
+            78.19287109375,
+            59.29296875,
+            41.09912109375
+          ],
+          "currentMeanRgb": [
+            105.39794921875,
+            78.17041015625,
+            51.2900390625
+          ],
+          "currentMinusNativeMeanRgb": [
+            27.205078125,
+            18.87744140625,
+            10.19091796875
+          ],
+          "meanAbsoluteRgbDifference": 23.2861328125
+        },
+        "4": {
+          "dimensions": [
+            16,
+            32
+          ],
+          "nativeMeanRgb": [
+            78.298828125,
+            59.41796875,
+            41.2109375
+          ],
+          "currentMeanRgb": [
+            105.373046875,
+            78.107421875,
+            51.20703125
+          ],
+          "currentMinusNativeMeanRgb": [
+            27.07421875,
+            18.689453125,
+            9.99609375
+          ],
+          "meanAbsoluteRgbDifference": 19.461588541666668
+        }
+      }
+    }
+  ]
+}

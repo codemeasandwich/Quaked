@@ -1,0 +1,383 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20T23:09:55.360234+00:00",
+  "verdict": "HOLD_AUTHOR_MATERIAL_DETAIL_AND_LAYOUT_TRADEOFF_AFTER_ONE_APPROVED_Y_TRIAL; ZERO_TIERS",
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/generated/rtex020.png",
+    "sha256": "3574e5e3cb69cf8e99d44d47688fb1b477c823ae52397e8c6998616b6f8db7c3"
+  },
+  "initialUnqualifiedMaster": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/masters/rtex020-v1/master.json",
+    "sha256": "ed037386f6d7e7f31eb94e3ce177b91c6b20fc99227bd7796e6d17ac13b82960"
+  },
+  "registeredUnqualifiedMaster": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/masters/rtex020-v2/master.json",
+    "sha256": "0b3d9aa053437236200f82c605c4c4383e64a6c920d736539f3fb0fbad6f7f8a"
+  },
+  "rootTrialAuthority": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/root-y-registration-trial-review-v1.json",
+    "sha256": "6d6e291e6be95164968777a68ac7b76146427ce658b12466ac1613ec18f76eaa"
+  },
+  "exactLandmarks": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/registration/measured-y-landmarks-proposal-v1.json",
+    "sha256": "4ca8eaf15d93ef63cd66090f4d0654ba3a1282bb6561848b234dda245e1e379d"
+  },
+  "technicalReplay": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/technical-replay-and-physical-samples-v2.json",
+    "sha256": "1bd36d1f6c7b0153f4f3b2bfcbc29bbf20477a00535321dc840939751ac271f4"
+  },
+  "workingResult": "Measured large-stone joints improve to22.6875/44.4375/73.4375/80.5625 versus native22.5/44.5/73.5/80.5. Four source-visible face medians remain above local mortar.",
+  "authorARTFinding": "At1:1, the targetY22.5..44.5 band has visibly softened and vertically elongated mineral detail versus the lower unwarped area. The actual material/sharpness gate is not qualified merely because major mortar centres align.",
+  "layoutTradeoff": "The added source thin course remains compressed into the upper zone. Monotone registration cannot delete a course; complete small-course topology is not claimed identical or independently accepted.",
+  "actualChecks": [
+    "Full registered RGB/scalar/XYZ and fixed opposedA/B at512x1024.",
+    "Critical1:1material crops across stretched band, control-knot transition, right small stone and lower unwarped stone.",
+    "Native/raw/registered sameBOX32x64 and16x32.",
+    "Literal completeX/Y RGB and neutral strips plus scalar/XYZ/both-light all-corner contacts; no final repeat ART acceptance.",
+    "Actual source-visible stone/mortar samples; technical replay reproduces all3package files byte-exact."
+  ],
+  "actualLandmarkMeasurements": [
+    {
+      "label": "left-large-top",
+      "native": {
+        "manualBoxNativeReference": [
+          1,
+          20,
+          33,
+          27
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 22.5,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "raw": {
+        "manualBoxNativeReference": [
+          1,
+          28,
+          33,
+          35
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 31.27846674182638,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "master": {
+        "manualBoxNativeReference": [
+          1,
+          20,
+          33,
+          27
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 22.6875,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      }
+    },
+    {
+      "label": "right-large-top",
+      "native": {
+        "manualBoxNativeReference": [
+          38,
+          42,
+          62,
+          49
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 44.5,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "raw": {
+        "manualBoxNativeReference": [
+          38,
+          43,
+          62,
+          49
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 44.48252536640361,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "master": {
+        "manualBoxNativeReference": [
+          38,
+          42,
+          62,
+          49
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 44.4375,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      }
+    },
+    {
+      "label": "left-large-bottom",
+      "native": {
+        "manualBoxNativeReference": [
+          1,
+          70,
+          33,
+          79
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 73.5,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "raw": {
+        "manualBoxNativeReference": [
+          1,
+          71,
+          33,
+          78
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 72.98308906426156,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "master": {
+        "manualBoxNativeReference": [
+          1,
+          70,
+          33,
+          79
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 73.4375,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      }
+    },
+    {
+      "label": "right-large-bottom",
+      "native": {
+        "manualBoxNativeReference": [
+          38,
+          78,
+          62,
+          86
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 80.5,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "raw": {
+        "manualBoxNativeReference": [
+          38,
+          78,
+          62,
+          85
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 80.84780157835401,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "master": {
+        "manualBoxNativeReference": [
+          38,
+          78,
+          62,
+          86
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 80.5625,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      }
+    }
+  ],
+  "actualPhysicalSamples": [
+    {
+      "label": "largeLeft",
+      "stoneFace": {
+        "boxMasterPixels": [
+          56,
+          264,
+          224,
+          520
+        ],
+        "median": 0.36465349793434143,
+        "mean": 0.40733763575553894,
+        "std": 0.20955009758472443,
+        "range": [
+          0.027464568614959717,
+          0.9725131988525391
+        ]
+      },
+      "mortarJoint": {
+        "boxMasterPixels": [
+          60,
+          585,
+          220,
+          592
+        ],
+        "median": 0.008507678285241127,
+        "mean": 0.013830335810780525,
+        "std": 0.014645331539213657,
+        "range": [
+          0.0009307763539254665,
+          0.08775316923856735
+        ]
+      },
+      "stoneMedianAboveLocalMortar": true
+    },
+    {
+      "label": "largeRight",
+      "stoneFace": {
+        "boxMasterPixels": [
+          336,
+          424,
+          472,
+          592
+        ],
+        "median": 0.4742090106010437,
+        "mean": 0.47221827507019043,
+        "std": 0.23564304411411285,
+        "range": [
+          0.012577167712152004,
+          0.9767290949821472
+        ]
+      },
+      "mortarJoint": {
+        "boxMasterPixels": [
+          340,
+          641,
+          464,
+          648
+        ],
+        "median": 0.02497813105583191,
+        "mean": 0.044331036508083344,
+        "std": 0.05506748706102371,
+        "range": [
+          0.004020506050437689,
+          0.43075400590896606
+        ]
+      },
+      "stoneMedianAboveLocalMortar": true
+    },
+    {
+      "label": "upperMiddle",
+      "stoneFace": {
+        "boxMasterPixels": [
+          200,
+          32,
+          285,
+          104
+        ],
+        "median": 0.6475236415863037,
+        "mean": 0.6054837703704834,
+        "std": 0.2571949064731598,
+        "range": [
+          0.018528422340750694,
+          0.9814485311508179
+        ]
+      },
+      "mortarJoint": {
+        "boxMasterPixels": [
+          326,
+          24,
+          334,
+          104
+        ],
+        "median": 0.021845918148756027,
+        "mean": 0.0473792627453804,
+        "std": 0.07032082229852676,
+        "range": [
+          0.00301484577357769,
+          0.5037608742713928
+        ]
+      },
+      "stoneMedianAboveLocalMortar": true
+    },
+    {
+      "label": "lowerLong",
+      "stoneFace": {
+        "boxMasterPixels": [
+          128,
+          770,
+          288,
+          812
+        ],
+        "median": 0.6989675760269165,
+        "mean": 0.6475805640220642,
+        "std": 0.2416904866695404,
+        "range": [
+          0.013745343312621117,
+          0.9809073805809021
+        ]
+      },
+      "mortarJoint": {
+        "boxMasterPixels": [
+          128,
+          828,
+          288,
+          836
+        ],
+        "median": 0.03622472286224365,
+        "mean": 0.06499478965997696,
+        "std": 0.07683072239160538,
+        "range": [
+          0.0046929046511650085,
+          0.5414732694625854
+        ]
+      },
+      "stoneMedianAboveLocalMortar": true
+    }
+  ],
+  "mechanism": "Unchanged finisher first downsamples887x1774raw to512x1024, then applies piecewise linearYregistration. Minimum coordinate slope~.600184 gives~1.666canonical-row magnification/~4.8015donor samples pernativeY in the stretched band. Raw cumulative pixel density is adequate but does not restore discarded/interpolated microdetail.",
+  "nextAction": "Root independent actualART review of retained trial and remaining small-course intent. Any source-aware/raw-first existing-mechanism adaptation needs its own concrete source-bound plan/authority and replay; it would address sampling only, not delete the extra course. No such implementation or second source is authorized/performed.",
+  "unchangedLimits": [
+    "One retained source only; native/prompt/raw bytes unchanged.",
+    "No blind landmark variants, normal amplitude hiding, sharpening/noise/clone/crop/upscale/fallback.",
+    "No producer edits, source-provider change, shared registration, Git or app/native build.",
+    "This is authorART HOLD, not a claimed independent technical/ART or owner decision."
+  ],
+  "views": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-RGB.png",
+      "sha256": "2519d9db8f7449b0cf76f80f355759cfb51a6d9f9993a5d0dba1ca8fe761eef3"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-scalar.png",
+      "sha256": "153d46da0a3dda5faea9ce201d1d4ac1a154a68c4512126ee2c4c75c589387fe"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-XYZ.png",
+      "sha256": "b2d617bbd1fbaa5647c732d21b8617c70ad04dacf9088e522251b5bc5f304e2e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-neutralA.png",
+      "sha256": "55c0569bebcd82972c3d87c529e97ea20ca6f1fa798cd8cf360017ee96d29f2f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-neutralB.png",
+      "sha256": "864f39328e9ee02f57a3ecb9e91dc61b6b0b54c36d7f127a43f1ea4049ccfab1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/native-raw-master-BOX-half-quarter.png",
+      "sha256": "6d267772bc7d797780e2ac48535ce429066cfff726156b75cfb7ba48593426c0"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/critical-material-contacts-1to1.png",
+      "sha256": "36c3357e297b1de50cad797178d7f901dad67eb7b0ff7712172af63bfb75a84a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-RGB-Xjoin-1to1.png",
+      "sha256": "3ba27c7f802e8ba369657282fc1cda1702b9df7f0352ea9f9a58cf608d97c6bf"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-RGB-Yjoin-1to1.png",
+      "sha256": "e39fbcd98d42b2bc43d5438c9b5c7c1c0e97be2f32877e3e760e4084acc2debb"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-scalar-corner-1to1.png",
+      "sha256": "60189cbb992a5f928047ac9c6fd99959bb06940c3fd94bfd493e5e7ad670ec1b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-XYZ-corner-1to1.png",
+      "sha256": "ecd46e2210e00cd6166773dadd9037979b31802bf5766372cab09f0ece702b64"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-neutralA-corner-1to1.png",
+      "sha256": "1b57418f68e37685bc09a8335f4ed26fc154ff93bbb1a95acbaa3773712c35fe"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-neutralB-corner-1to1.png",
+      "sha256": "3320228621808e25fd502740698549181f0645fbbc17200082643c2960c2a4c6"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-neutralA-Xjoin-1to1.png",
+      "sha256": "eb14941a27c9195acfa4916b9713bb6822477b1925ce136a79000eddf4924cde"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-neutralB-Yjoin-1to1.png",
+      "sha256": "bbc0e1dad8297384fc1cf8a06f01961db4e70d3c4cfc13c301e6bdc61e5df92e"
+    }
+  ],
+  "generationCount": 1,
+  "tiersEncoded": 0
+}

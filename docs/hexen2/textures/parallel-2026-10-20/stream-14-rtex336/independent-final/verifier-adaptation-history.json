@@ -1,0 +1,27 @@
+{
+  "scope": "Verifier adaptation history",
+  "rootPreparation": "Root reported a pre-run clone attempt stopped at changed freeze schema; no verifier/output was produced by that attempt. This reviewer used actual frozenInputs dictionary/nativeIdentity schema before executing.",
+  "currentRuns": "Fresh source refresh and first final336 verifier both completed PASS; no failed actual qualification run hidden.",
+  "referenceVerifier": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/independent-final/verify-final.py",
+    "sha256": "957838b5dbdf31dcb961821708b6c31e5e93159ad7aadd833208459037e24ce3",
+    "bytes": 21547
+  },
+  "sourceReference": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/independent-source-master/verify.py",
+    "sha256": "be94224c5e46a865bcd81bcef32f8366413c2238baee42df810caca66d6e3f26",
+    "bytes": 17522
+  },
+  "currentVerifiers": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/independent-final/verify-source-refresh.py",
+      "sha256": "1db474a11cb4bd7f5fd08b48d95d2c7cb589684f380fc7c2f1b6d943e1484d20",
+      "bytes": 17530
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/independent-final/verify-final.py",
+      "sha256": "eb44bf4b0f61d2c7bba41a77f9be966ca5c6f567b659f4e2e5de12a55b6f8744",
+      "bytes": 21537
+    }
+  ]
+}

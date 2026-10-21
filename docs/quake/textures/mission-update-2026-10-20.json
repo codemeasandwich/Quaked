@@ -1,0 +1,37 @@
+{
+  "updatedAt": "2026-10-20T09:53:26.720564+00:00",
+  "scope": "Quake mission/documentation amendment only: colour lossyQ92/method6, height/normal/mask losslessWebPmethod6.",
+  "files": [
+    {
+      "file": "docs/quake/textures/MISSION.md",
+      "sha256": "e5522b13c00c723468474e7a1bcca30123dea6be50d46b833442d260a06b7aa1"
+    },
+    {
+      "file": "AGENTS.md",
+      "sha256": "25888d44c7ddaf1d80ab2952976cb01a2741c99484d24c2f6e6c9c54cfab8545"
+    },
+    {
+      "file": "docs/texture-tier-standard.md",
+      "sha256": "77f33f5fa082f0206ce453b821c87c737a6d705cc3f37aa24bb09ba9ff805ff6"
+    },
+    {
+      "file": "skills/quaked-texture-authoring/SKILL.md",
+      "sha256": "944b761fcf9aa933177aa3c8cc31c7b9f69ec8b73a0fcf58f110394c7551f6b3"
+    },
+    {
+      "file": "skills/quaked-texture-authoring/references/workflow.md",
+      "sha256": "c8f872ed7a45ccaae4baa6981f40bf738bfa23f1276a5a90f0b79d1877f848a1"
+    },
+    {
+      "file": "skills/quaked-texture-authoring/references/repairs-and-verification.md",
+      "sha256": "99b8dae35d63ab417d5d658b95a5efc9972d6eb17573b3a55e6e9d1aedb948bf"
+    }
+  ],
+  "checks": {
+    "skillCreatorQuickValidate": "PASS",
+    "gitDiffCheck": "PASS",
+    "localMarkdownLinks": 10
+  },
+  "limits": "No exporter code or map-byte migration implemented. Historical all-lossy receipts preserved. SeparateHexenassets/records not edited.",
+  "nextAction": "Qualify role-aware exporter and fresh lossless data maps from retained uncompressed masters before new-contract acceptance."
+}

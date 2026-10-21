@@ -1,0 +1,25 @@
+{
+  "verdict": "PASS one existing measured Yregistration/sharedmaster trial; not final material/edge/relief/tier acceptance",
+  "time": "2026-10-21T00:00:33.712150+00:00",
+  "reviewer": "Root independently viewed actual1254source, Yjoin and actual512rightYstrip and read exact plan/landmarks",
+  "inputs": [
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/landmark-registration-plan-v1.json",
+      "sha256": "3db6b4117f62d05f7ab3e146981472b41ee7831690135fc17ebdeef1a209ad71"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/landmarks-y-v1.json",
+      "sha256": "62a97aedbc6f77bfeab58cbc2929109fa5ad4f172d6e60a05b0b2c1eecbba8c2"
+    }
+  ],
+  "findings": [
+    "Real weathered black timber structure visible; no grain overlay needed. Nearblack cool palette and native staggered structure remain authoritative.",
+    "Rightquarter joints measured272/976 map to native16/48 while leftmidpoint remains32->32; existing globallymonotoneYwarp is smallest mechanism and explicitly resamples finegrain between pins.",
+    "Actual512rightYstrip shows a thin grain/value transition with similar nearby horizontalgrain, not an openboardend trough or added smallbrick/endcap. Do not claim mathematicallyperfectsourcecontinuity or erase intentionalleftYjoint. Final actualtiers/repeats/corners remain required."
+  ],
+  "limits": [
+    "No newgeneration/operator/periodicY/roll/crop/profiletuning. Preserve exactraw/journal/native/prompt, one canonical512RGB/fullfloat for direct256/512tiers.",
+    "After existingprepare inspect actualnewRGB and freeze classifiedphysicalwitnesses beforeheight. Retainfalsepredicates and no pointmoves to manufacture PASS.",
+    "No catalog/browser/owner/Dev/CI acceptance fromthisplan; faileddecodededge/materialstaysHOLD."
+  ]
+}

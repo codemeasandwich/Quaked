@@ -1,0 +1,8 @@
+{
+  "observedAt": "2026-10-20T08:13:10.401109+00:00",
+  "command": "PYTHONDONTWRITEBYTECODE=1 /usr/bin/python3 -m unittest tests.hexen2_texture_tiers_test.HexenTextureTiersCLI.test_all_ten_outputs_direct_master_exact_q92_and_distance",
+  "exitCode": 0,
+  "testsRun": 1,
+  "result": "OK",
+  "scope": "Independent non-square publicCLI fixture exercises directmaster all10Q92 outputs, preservedLow, fullprecisionBOX, UVscaled normals, decodedheight/normal diagnostics, bothdistancecomparisons; no production asset/art acceptance"
+}

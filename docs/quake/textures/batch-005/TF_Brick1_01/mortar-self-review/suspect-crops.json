@@ -1,0 +1,306 @@
+{
+  "scope": "RGB-only adversarial SELF-review, not independent. CurrentV3 remains unchanged and unqualified.",
+  "v3Plan": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-layer-plan-v3.json",
+    "sha256": "645d3de38c398cd47f1d7df39370002c89b17a43cf4aaf37f631c91e93ab3de4"
+  },
+  "cases": [
+    {
+      "label": "vertical-c12-joint5",
+      "regionIndex": 109,
+      "polygonNative": [
+        [
+          112.18,
+          95.9938
+        ],
+        [
+          112.82,
+          95.9938
+        ],
+        [
+          112.82,
+          104.1937
+        ],
+        [
+          112.18,
+          104.1937
+        ]
+      ],
+      "cropMasterPixelEdges": [
+        850,
+        770,
+        930,
+        836
+      ],
+      "crop": {
+        "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/vertical-c12-joint5-suspect-exact-crop.png",
+        "sha256": "a23fd58eb409e58e9a62bb0ab37849b281a019ae4183ba48a56415b92553c3b6"
+      },
+      "status": "Self-review suspect false brick-face cut; actual crop requires independent review before any correction/execution."
+    },
+    {
+      "label": "vertical-c14-joint3",
+      "regionIndex": 122,
+      "polygonNative": [
+        [
+          59.48,
+          112.0525
+        ],
+        [
+          60.12,
+          112.0525
+        ],
+        [
+          60.12,
+          119.9525
+        ],
+        [
+          59.48,
+          119.9525
+        ]
+      ],
+      "cropMasterPixelEdges": [
+        435,
+        900,
+        510,
+        955
+      ],
+      "crop": {
+        "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/vertical-c14-joint3-suspect-exact-crop.png",
+        "sha256": "dfb40f8812a36423460f8b6538dc2b21bea81331882483ea70465e0e4c1d3a17"
+      },
+      "status": "Self-review suspect false brick-face cut; actual crop requires independent review before any correction/execution."
+    },
+    {
+      "label": "vertical-c14-joint4",
+      "regionIndex": 123,
+      "polygonNative": [
+        [
+          86.58,
+          111.9138
+        ],
+        [
+          87.22,
+          111.9138
+        ],
+        [
+          87.22,
+          119.9862
+        ],
+        [
+          86.58,
+          119.9862
+        ]
+      ],
+      "cropMasterPixelEdges": [
+        638,
+        900,
+        735,
+        955
+      ],
+      "crop": {
+        "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/vertical-c14-joint4-suspect-exact-crop.png",
+        "sha256": "5a97d0570b6b7d462e740827f849a04357e66f47355715a3ccde31fa9d7b2860"
+      },
+      "status": "Self-review suspect false brick-face cut; actual crop requires independent review before any correction/execution."
+    },
+    {
+      "label": "vertical-c14-joint5",
+      "regionIndex": 124,
+      "polygonNative": [
+        [
+          113.08,
+          112.0825
+        ],
+        [
+          113.72,
+          112.0825
+        ],
+        [
+          113.72,
+          120.0
+        ],
+        [
+          113.08,
+          120.0
+        ]
+      ],
+      "cropMasterPixelEdges": [
+        830,
+        900,
+        940,
+        955
+      ],
+      "crop": {
+        "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/vertical-c14-joint5-suspect-exact-crop.png",
+        "sha256": "59e63c3a4eecf4d34bfb7a3600238d4c11b81a951684c94072ebcf421d6cf9d5"
+      },
+      "status": "Self-review suspect false brick-face cut; actual crop requires independent review before any correction/execution."
+    },
+    {
+      "label": "vertical-c15-joint2",
+      "regionIndex": 126,
+      "polygonNative": [
+        [
+          14.98,
+          119.8088
+        ],
+        [
+          15.62,
+          119.8088
+        ],
+        [
+          15.62,
+          128.0
+        ],
+        [
+          14.98,
+          128.0
+        ]
+      ],
+      "cropMasterPixelEdges": [
+        85,
+        968,
+        155,
+        1024
+      ],
+      "crop": {
+        "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/vertical-c15-joint2-suspect-exact-crop.png",
+        "sha256": "082cc69f01bf7a03425aa18343b22e7840de70733d88812e905a76d9131d251c"
+      },
+      "status": "Self-review suspect false brick-face cut; actual crop requires independent review before any correction/execution."
+    },
+    {
+      "label": "vertical-c15-joint3",
+      "regionIndex": 127,
+      "polygonNative": [
+        [
+          28.18,
+          119.7
+        ],
+        [
+          28.82,
+          119.7
+        ],
+        [
+          28.82,
+          128.0
+        ],
+        [
+          28.18,
+          128.0
+        ]
+      ],
+      "cropMasterPixelEdges": [
+        195,
+        968,
+        245,
+        1024
+      ],
+      "crop": {
+        "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/vertical-c15-joint3-suspect-exact-crop.png",
+        "sha256": "25d4890d6fa89153e58931872aef7306097e5bb274f5b4e139da1c6bf47532bc"
+      },
+      "status": "Self-review suspect false brick-face cut; actual crop requires independent review before any correction/execution."
+    },
+    {
+      "label": "vertical-c15-joint8",
+      "regionIndex": 132,
+      "polygonNative": [
+        [
+          94.18,
+          119.8813
+        ],
+        [
+          94.82,
+          119.8813
+        ],
+        [
+          94.82,
+          128.0
+        ],
+        [
+          94.18,
+          128.0
+        ]
+      ],
+      "cropMasterPixelEdges": [
+        735,
+        968,
+        790,
+        1024
+      ],
+      "crop": {
+        "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/vertical-c15-joint8-suspect-exact-crop.png",
+        "sha256": "95444e9900fd0dd26da9bb361c79ee271d2f48551321138f7ea59edbdcbe7c3e"
+      },
+      "status": "Self-review suspect false brick-face cut; actual crop requires independent review before any correction/execution."
+    },
+    {
+      "label": "vertical-c15-joint9",
+      "regionIndex": 133,
+      "polygonNative": [
+        [
+          107.38,
+          119.8538
+        ],
+        [
+          108.02,
+          119.8538
+        ],
+        [
+          108.02,
+          128.0
+        ],
+        [
+          107.38,
+          128.0
+        ]
+      ],
+      "cropMasterPixelEdges": [
+        850,
+        968,
+        900,
+        1024
+      ],
+      "crop": {
+        "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/vertical-c15-joint9-suspect-exact-crop.png",
+        "sha256": "9d4194cd093154f296a091d2c26dab2ef8c1dddea759acb035578893e9880382"
+      },
+      "status": "Self-review suspect false brick-face cut; actual crop requires independent review before any correction/execution."
+    },
+    {
+      "label": "vertical-c15-joint10",
+      "regionIndex": 134,
+      "polygonNative": [
+        [
+          121.58,
+          119.8
+        ],
+        [
+          122.22,
+          119.8
+        ],
+        [
+          122.22,
+          128.0
+        ],
+        [
+          121.58,
+          128.0
+        ]
+      ],
+      "cropMasterPixelEdges": [
+        955,
+        968,
+        1010,
+        1024
+      ],
+      "crop": {
+        "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review/vertical-c15-joint10-suspect-exact-crop.png",
+        "sha256": "4f29a64c44797be9aa1f2f6f0219ddc079748ef335db18b511235c0c5f2bc3a9"
+      },
+      "status": "Self-review suspect false brick-face cut; actual crop requires independent review before any correction/execution."
+    }
+  ]
+}

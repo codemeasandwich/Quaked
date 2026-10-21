@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T04:45:30.757777+00:00",
+  "reviewType": "Author adversarial SELF-review, not independent qualification",
+  "verdict": "V3HOLD; frozenV4 candidate pending independent review",
+  "frozenV4": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-layer-plan-v4.json",
+    "sha256": "6570b757b1522a4455d82347b0d530267a28b2169aa38f46f3ea31d2fe450497"
+  },
+  "producer": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/trace-mortar-plan-v4.py",
+    "sha256": "858c817ed08f65139d37857c0e8c9a6a223e0f932f0bf5c45437eae1ca42db4e"
+  },
+  "summary": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/MORTAR-SELF-REVIEW.md",
+    "sha256": "ba3c8a85359ca6e8da622e9b0f29322d6e000b9b7d665321a32470e4f652aaab"
+  },
+  "counts": {
+    "regions": 137,
+    "horizontalContacts": 15,
+    "YWrapHalfSupports": 2,
+    "verticalJointCores": 120,
+    "maxVerticesPerRegion": 38
+  },
+  "oldV3Retention": {
+    "unchanged": 78,
+    "movedToMeasuredMortar": 47,
+    "failedCourse15Retired": 10,
+    "newExplicitMeasuredParts": 12
+  },
+  "all137RegionCropJustifications": "mortar-layer-plan-v4.json:allRegionLiteralRGBJustifications",
+  "actualViewed": [
+    "All sixteen originalV3actualRGB/overlaycoursepairs",
+    "All sixteen frozenV4actualRGB/overlaycoursepairs",
+    "Initial9exactfalsecutcrops",
+    "Actual source pixelcoordinate strips for all16courses",
+    "Actual literalX/Y/corneroverlayviews"
+  ],
+  "viewedCoursePairs": [
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review-v4/course-00-rgb-overlay.png",
+      "sha256": "a7c98d5d0eed934508c7849c24bb1f44f3bd1bce7d0dba0a6c31aaad0d0a4a7e"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review-v4/course-01-rgb-overlay.png",
+      "sha256": "4a0987216f267431393eaa80fb463e7021e7b91934c14ed56c13f7c25a6b4995"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review-v4/course-02-rgb-overlay.png",
+      "sha256": "3cf818c91c5dc9fe3650166c9fd32be2562c2f03788a795a0d1b542f8d17d80a"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review-v4/course-03-rgb-overlay.png",
+      "sha256": "3e35636c82ef843da0a311015b685791c79f060f66864af9b2d62d0e1fcea6bb"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review-v4/course-04-rgb-overlay.png",
+      "sha256": "edfc63bd413eee9601c20f6dfba978dc3daea22d18d5de8b6151dc83f181068b"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review-v4/course-05-rgb-overlay.png",
+      "sha256": "fb7bdb8a4a34904f636ffaa5431fd946b371fe78509ae1bd17960ceea00d5e75"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review-v4/course-06-rgb-overlay.png",
+      "sha256": "bfd6eff4ffff2e978baa21680a1fb8391d72a05f5b45a996b1ee9267e01b31a3"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review-v4/course-07-rgb-overlay.png",
+      "sha256": "e6caba741e131dc7da0848742d64d3280b2b368b81114e65eedd8419343f6345"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review-v4/course-08-rgb-overlay.png",
+      "sha256": "acebaa019c7155246d928ca21d0e4b73bcc9c6cf75518ec3aaa635dcc33bc92d"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review-v4/course-09-rgb-overlay.png",
+      "sha256": "0d98766991673c38c6fd77e0d01f1ee9a228987cae6fec0b5ea846d7217c594d"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review-v4/course-10-rgb-overlay.png",
+      "sha256": "83ac5d036d6437cfad34b5f4eb2764fe6ec83bc6ea13b47ed8018f447a471d18"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review-v4/course-11-rgb-overlay.png",
+      "sha256": "b9bb000be2c864e76ca3a72f1d09ef96e8a16f0a0978bddc7827fdbce23c1356"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review-v4/course-12-rgb-overlay.png",
+      "sha256": "9b2b2b91fd759bfa9342ad360faf51c450dfa5e796f63ae5defab0996f79b860"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review-v4/course-13-rgb-overlay.png",
+      "sha256": "76bfa3f781c72507e507b92932f0020690d45d073f80d843e0d8d09939dacfb7"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review-v4/course-14-rgb-overlay.png",
+      "sha256": "f7115e3fa43fcfdac2f3e100f90e8a55253d6f71efa81a00664a85f22f1129ee"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-self-review-v4/course-15-rgb-overlay.png",
+      "sha256": "536e1036e217cae2f1f50adfd65050f4b99e15ce3ef96aed6aaa41d142798c8e"
+    }
+  ],
+  "independentRootSourceMasterProof": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/root-source-master-proof.json",
+    "sha256": "8ecda6ba7027644fd2eaa31d6491c967489347bddfe044c8ac898ac3d9ed1a19"
+  },
+  "heightDecodedOrInspectedDuringMaskReview": false,
+  "layerCLIInvoked": false,
+  "tiersProduced": false,
+  "status": "Stop for independent root/reviewer geometry decision. No changes to frozenV4."
+}

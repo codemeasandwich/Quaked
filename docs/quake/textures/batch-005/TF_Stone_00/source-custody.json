@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T03:32:00.362404+00:00",
+  "verdict": "PASS current exact native/raw/prompt-file custody and historical rawhash chain; invocation provenance limit explicit",
+  "nativeProof": {
+    "file": "docs/quake/textures/batch-005/TF_Stone_00/selected-native-verification.json",
+    "sha256": "8e93a19851e96eb8aac5769f46e8416d752e4c4902b308debf6f375a72ce6eb7"
+  },
+  "freshNative": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Stone_00/originals/native-TF_Stone_00.png",
+    "sha256": "a9ec496d1ff976cd24f44e68d89fee08f62bfb80362edc0957d39ae11ec83856"
+  },
+  "retainedNamedNative": {
+    "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-TF_Stone_00.png",
+    "sha256": "a9ec496d1ff976cd24f44e68d89fee08f62bfb80362edc0957d39ae11ec83856"
+  },
+  "nativePNGAndDecodedRGBAEqual": true,
+  "retainedRaw": {
+    "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/TF_Stone_00-generated-v1.png",
+    "sha256": "a0642793a8414b0afadc434e00c742343419e34519fcc23c03e3da7220f4b443"
+  },
+  "rawDimensions": [
+    1254,
+    1254
+  ],
+  "rawMode": "RGB",
+  "supports1024MasterWithoutUpscaling": true,
+  "exactRetainedPromptFile": {
+    "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Stone_00-imagegen-prompt-v1.txt",
+    "sha256": "c4721c9d2a31d0d67cc4f0ac344e60e416f833b2510fc97d130cf11580801cf7"
+  },
+  "oldHalfNativeGuide": {
+    "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/TF_Stone_00-half-native-colour-guide.png",
+    "sha256": "e681505bf5a3f49364e0f4e9a5b0d2706b9af3f7980b8a738e520e47b06d3724",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "mode": "RGB"
+  },
+  "historicalRawHashWitness": {
+    "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/next-eight-independent-art-review.json",
+    "sha256": "97b9860a8c1aae3af8cd44fbda73fe827d2788667a600f7848e095f29dc126c2"
+  },
+  "resourceRelocation": {
+    "file": "assets/layout.json",
+    "sha256": "dc032d9332273c492bd4cf9fc3f6eb278dd4829182a238f8d8b2def7404448bb"
+  },
+  "retainedOldRegistration": {
+    "file": "tools/texture_sheets/sources/official-world-2026-10-17/next-eight-registration.json",
+    "sha256": "100dd91256485718f03b217b097d1562219cd6c1790e14c8f322122eaab7de99"
+  },
+  "retainedOldFinishRecord": {
+    "file": "tools/texture_sheets/sources/official-world-2026-10-17/next-eight-finish-v1.json",
+    "sha256": "175201669d5bf9762e4f7d5b8ffd4df3b8bcb910b22ef07482f3f81e46de5e6d"
+  },
+  "retainedOldAllLossyEncodingReceipt": {
+    "file": "assets/authoring/texture_sheets/official-encodings/2026-10-17/TF_Stone_00-photographic-seam-v2-4x-q92-xyz.json",
+    "sha256": "d7b1318104cd1c4fc880c4ce7a800996a83c0a939fcc9db9c07df56f7ebe3cf3"
+  },
+  "historicalLimits": [
+    "Old reviewed512alllossy outputs used photographic-seam-v2; they are not a current1024RGB/fullfloat dualtier package. Do not upscale/decode oldcompressedtiers as sources.",
+    "Exact retained prompt text is pinned, but original built-in imagegen invocation/returnedpath was not located in bounded17/18October transcript search. Do not invent callargs or assert promptfile equals actualhistoricalrequest.",
+    "Old sourcehash chain proves same retainedphoto; old512ARTPASS does not accept newlyreplayed1024RGB/semanticrelief/Quake mixedcodecs."
+  ],
+  "generationThisLane": 0,
+  "sourceIssuedAgain": false
+}

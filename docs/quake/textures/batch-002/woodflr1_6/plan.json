@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "recordType": "One-source woodflr1_6 material/prompt and planned journal for root review",
+  "recordedAt": "2026-10-20T16:49:47.843770+00:00",
+  "name": "woodflr1_6",
+  "edition": "hipnotic",
+  "nativeIdentity": "a47bf72a420b107f8363ff0f73038393ca0c60673b95f98f465d4a1c296f4b46",
+  "state": "AWAIT_EXACT_ROOT_PROMPT_REVIEW_NO_GENERATION",
+  "original": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/originals/native-woodflr1_6.png",
+    "sha256": "1c38411cb31af8db4ac2bbdf599a7e1bb516e6731a8cfeea1ff1de8ab8116311",
+    "dimensions": [
+      64,
+      64
+    ]
+  },
+  "nativeVerification": {
+    "file": "docs/quake/textures/batch-002/woodflr1_6/selected-native-verification.json",
+    "sha256": "0b3a1c62d9e5d9d3214fd7640f0f9ac01dd2ae11140d6eb20e80286c0b24aaf7",
+    "scope": "Independent PACKmount/map/palette/all4mips/flags/RGBA/PNG recheck for onehip2m2slot17identity and228directfaces; no allfamily/alias/material claim"
+  },
+  "prompt": {
+    "file": "docs/quake/textures/batch-002/woodflr1_6/prompt.txt",
+    "sha256": "f28f705e4ffb643fab76ad2b8a0692deffa65d0d255f83e37100c58c62e137d4"
+  },
+  "interpretation": {
+    "brownRails": "Real weathered brown wood with fibres following each rail. Material interpretation supported by visible native directional grain and name but not historically authenticated.",
+    "blueGreyField": "Tentative single slate/quarry-stone inset: native coarse mottling does not uniquely prove geological material; this deliberate physical interpretation needs independent root and actual image review.",
+    "ownerDetailSteering": "Subtle natural wood fibres/sparse small wear at existing joins and stone pores/mineralvariation/coherent fractures add close personality without altering originalstyle/colour/composition in32/16BOXviews."
+  },
+  "nativeRegionsPixelEdges": {
+    "verticalWoodRail": {
+      "rectangle": [
+        0,
+        0,
+        16,
+        48
+      ],
+      "grain": "vertical"
+    },
+    "bottomWoodRail": {
+      "rectangle": [
+        0,
+        48,
+        64,
+        64
+      ],
+      "grain": "horizontal; passesfullwidthincludinglowerleftcorner"
+    },
+    "blueGreyField": {
+      "rectangle": [
+        16,
+        0,
+        64,
+        48
+      ],
+      "material": "tentative slate/quarrystone"
+    },
+    "precision": "Source-measured coarse native pixel-edge regions. Actual generatedRGB boundaries must be inspected/reclassified before any mask/scalar recipe; these are not copied finalized depth parameters."
+  },
+  "relativePhysicalIntent": {
+    "faces": "Wood rails nearlyflush toslightlyproud of subduedstonefield; no deep raisedpictureframe or imageperimeterbevel.",
+    "contacts": "Narrowexistingwood/stonecontacts lie below both adjoiningfaces.",
+    "microstructure": "Shallow longitudinalwoodfibregrooves/wear and fine stonecleavage/pores; mineralcolour and pigmentvariation are not automaticallydepth.",
+    "gate": "Classify actualgenerated/registeredRGB regions and exactface/contactwitnesses before selecting source-specificscalar planes/amplitudes. Existingprepare/craft and, onlyifprovednecessary, qualifiedlayeredwrapper are reused; no newframework or imposed numericplane recipe."
+  },
+  "repeatTopology": "Rightedgefield meetsnexttileleftwoodrail; topedgefield meetspreviousbottomwoodrail. Preserve intentionalmaterialinterfaces rather than forcing sameedgeaverage orPoissoncorrection. Bottomrailgrain should continuenaturallyX; nativeLcorner unchanged. No top/right addedrail, four-sidedframe, hardware, ornament or missingcorner.",
+  "sourceSearch": {
+    "method": "rg --files assets/authoring/texture_sheets/sources tools/texture_sheets/sources | rg woodflr1_6",
+    "finding": "Only fresh nativePNG path found; root separately confirmed no retainedraw. No source call or generation journal currently exists in this lane."
+  },
+  "plannedJournal": {
+    "selection": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/source-v1/selection.json",
+    "sourceOrdinal": 1,
+    "knownPriorSourceRequests": 0,
+    "expectedKnownCumulativeAfterIssue": 1,
+    "generationCountBeforeIssue": 0,
+    "generationState": "not-issued; plannedjournalonlynotcreated",
+    "oneNativeOnlyImageReference": true,
+    "generationPolicy": "Only after rootexactreview/release: standardgeneration_journal issue immediatelybeforeONEbuiltincall; actualoutput_hintpath retainunchanged withsamehelper. Nocallnow/noAPI/CLI/modeloverride/autoretry."
+  },
+  "oneFinalSharedMaster": {
+    "RGB": "onecanonical512squareuncompressedRGBPNG",
+    "scalar": "onefullprecisionfloatmasterauthoredoncefromqualifiedsource; actualphysicalmaterialregionschecked",
+    "Low": "unchangednative64",
+    "Mid": [
+      256,
+      256
+    ],
+    "High": [
+      512,
+      512
+    ],
+    "encoding": "CurrentQuakecolourlossyWebPQ92method6; intended8bitheightXYZlosslessWebPmethod6; quantizationdistinctfromcompression"
+  },
+  "requiredAcceptance": [
+    "Actualphysicalwoodandstone recognition, nativeLrails/exactgrainorientation and no inventedfour-sidedframe.",
+    "Bothnativeanddecodedreplacement32/16BOXpreserve broadpalette/forms/scale/style.",
+    "ExactX/Yintentionalinterfaces,corners,repeats and actualphysicalplane/face/contactdepthbeforetiers.",
+    "Directsame-master4x/8x, actualcodecs/intendedchannels/source/publicproof and finalindependentART/browserreview; noautomaticcatalog/runtimeacceptance."
+  ],
+  "retainedOtherLaneObligation": {
+    "texture": "wwall1_1",
+    "state": "Source3materialPASS/lowerXgeometryHOLD; nofurthercallauthorized",
+    "ledger": "docs/quake/textures/parallel-020/wwall1_1/source-replacement-v3/README.md",
+    "review": "docs/quake/textures/parallel-020/wwall1_1/source-replacement-v3/source-art-review.json",
+    "responsibleOwner": "Root retainsconcreteseamrepairdecision; newwoodlane doesnotcloseordiscardit."
+  },
+  "retainedVerificationFailure": {
+    "source": "docs/quake/textures/batch-002/woodflr1_6/verify-selected-native-v1-failed.py",
+    "cause": "Initialevidenceverifierrootparentindexpointedatdocs/docs; FileNotFoundErrorbeforePAKread. Correctedrootlocatorandboundedstreamreads; currentproofPASS. No source/art failure or weakened assertion."
+  },
+  "prohibited": "No generationbeforeexactrootreview; no newframework/broadsuites/Git/catalog/runtime/Hexen/desktopbuild/release changes",
+  "nextOwner": "Root independentlyreviews exactprompt/materialambiguity/relativephysicalintent and plannednative-onlyone-calljournal; laneawaitsrelease."
+}

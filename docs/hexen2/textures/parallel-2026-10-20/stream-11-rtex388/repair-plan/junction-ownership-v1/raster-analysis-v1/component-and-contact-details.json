@@ -1,0 +1,241 @@
+{
+  "schemaVersion": 1,
+  "verdict": "DIAGNOSIS: two local opposite-owner alias edges and one actual disconnected X cell; current topology remains HOLD",
+  "rasterProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/raster-diagnosis.json",
+    "sha256": "75e0aa37be75feeebd605a55995be39a3b7f3415e48a236423fce7e88f2e8dfb"
+  },
+  "labels": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/ownership-labels-uint8.npy",
+    "sha256": "69009916d1edec237be8aa2b117f0ee852001feeaa9a71952085729bc47e5fd7"
+  },
+  "allDifferentOwnerNeighbourEdgeCounts": {
+    "P/X": 1300,
+    "P/Y": 1363,
+    "P/C": 1,
+    "X/Y": 2,
+    "X/C": 196,
+    "Y/C": 235
+  },
+  "isolatedXCells": [
+    {
+      "pixel": [
+        30,
+        465
+      ],
+      "owner": "X",
+      "fourNeighbours": [
+        {
+          "direction": "W",
+          "pixel": [
+            29,
+            465
+          ],
+          "owner": "C"
+        },
+        {
+          "direction": "E",
+          "pixel": [
+            31,
+            465
+          ],
+          "owner": "P"
+        },
+        {
+          "direction": "N",
+          "pixel": [
+            30,
+            464
+          ],
+          "owner": "P"
+        },
+        {
+          "direction": "S",
+          "pixel": [
+            30,
+            466
+          ],
+          "owner": "Y"
+        }
+      ],
+      "nearestJunction": "pm",
+      "junctionDistances": {
+        "pp": {
+          "torusEuclideanPixelCentre": 88.20430828479978,
+          "torusLinfPixelCentre": 88.0
+        },
+        "mp": {
+          "torusEuclideanPixelCentre": 110.0477169231602,
+          "torusLinfPixelCentre": 84.5
+        },
+        "pm": {
+          "torusEuclideanPixelCentre": 0.7071067811865476,
+          "torusLinfPixelCentre": 0.5
+        },
+        "mm": {
+          "torusEuclideanPixelCentre": 66.68208155119335,
+          "torusLinfPixelCentre": 65.5
+        }
+      }
+    }
+  ],
+  "declaredJunction5x5OwnerCells": {
+    "pp": {
+      "junction": [
+        24.5,
+        41.5
+      ],
+      "columnIndices": [
+        22,
+        23,
+        24,
+        25,
+        26
+      ],
+      "rows": [
+        {
+          "y": 39,
+          "owners": "CCYYY"
+        },
+        {
+          "y": 40,
+          "owners": "CCYYY"
+        },
+        {
+          "y": 41,
+          "owners": "CCPPP"
+        },
+        {
+          "y": 42,
+          "owners": "CXXPP"
+        },
+        {
+          "y": 43,
+          "owners": "XXXPP"
+        }
+      ]
+    },
+    "mp": {
+      "junction": [
+        472.0,
+        38.0
+      ],
+      "columnIndices": [
+        470,
+        471,
+        472,
+        473,
+        474
+      ],
+      "rows": [
+        {
+          "y": 36,
+          "owners": "YCCXX"
+        },
+        {
+          "y": 37,
+          "owners": "YYXXX"
+        },
+        {
+          "y": 38,
+          "owners": "PPXXX"
+        },
+        {
+          "y": 39,
+          "owners": "PPPXX"
+        },
+        {
+          "y": 40,
+          "owners": "PPPPX"
+        }
+      ]
+    },
+    "pm": {
+      "junction": [
+        31.0,
+        466.0
+      ],
+      "columnIndices": [
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "rows": [
+        {
+          "y": 464,
+          "owners": "XPPPP"
+        },
+        {
+          "y": 465,
+          "owners": "CXPPP"
+        },
+        {
+          "y": 466,
+          "owners": "CYYPP"
+        },
+        {
+          "y": 467,
+          "owners": "CYYYP"
+        },
+        {
+          "y": 468,
+          "owners": "CCYYY"
+        }
+      ]
+    },
+    "mm": {
+      "junction": [
+        477.0,
+        478.0
+      ],
+      "columnIndices": [
+        475,
+        476,
+        477,
+        478,
+        479
+      ],
+      "rows": [
+        {
+          "y": 476,
+          "owners": "PPXXX"
+        },
+        {
+          "y": 477,
+          "owners": "PPXXX"
+        },
+        {
+          "y": 478,
+          "owners": "PYCCC"
+        },
+        {
+          "y": 479,
+          "owners": "YYCCC"
+        },
+        {
+          "y": 480,
+          "owners": "YCCCC"
+        }
+      ]
+    }
+  },
+  "forbiddenEdgeClusters": {
+    "components": 2,
+    "edgesPerComponent": [
+      1,
+      1
+    ],
+    "maximumNearestJunctionDistance": 0.5,
+    "distanceMetric": "Euclidean torus distance from the declared junction to closed unit segment joining neighbouring pixel centres; both edge midpoint distances also .5."
+  },
+  "classification": "Localized pixel-centre/staircase alias within one texel of declared mp/pm four-owner junctions, not a long wrong-owner boundary. It remains a substantive digital topology failure because one X cell is disconnected under the unchanged four-neighbour torus rule.",
+  "notAnExceptionGrant": "No labels, priorities, graph arcs, exception cell, support chart, guard or journal was changed. Existing(24,41) P-owned exception remains the only declared exception. This diagnosis is not a proposal to permit isolated cells or waive connectivity.",
+  "nextOwner": "Root coordinator and independent digital-junction planner",
+  "nextAction": "Decide a separately reviewed exact digital-junction representation policy or retain HOLD. No actual replay/search/composite or label correction is authorized by these metrics.",
+  "tool": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/summarize_components.py",
+    "sha256": "94b3baece64188ddd5cbc8c20c587a1eb85553b141ce444b5244fe62caab226f"
+  }
+}

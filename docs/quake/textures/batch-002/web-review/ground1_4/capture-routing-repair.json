@@ -1,0 +1,58 @@
+{
+  "finding": "Persistent browser helper captured its old output folder; changing caller binding did not change its closed-over destination. Source assets/GPU pixels unaffected.",
+  "movedFiles": [
+    {
+      "from": "docs/quake/textures/web-review-2026-10-20/ground1_4-high-half-repeat3-comparison.png",
+      "to": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-half-repeat3-comparison.png",
+      "sha256": "daec2d8e2fbc32cbc6f3412d9bbd40348cd82b68072a6b56f0b1b42b2aeab855"
+    },
+    {
+      "from": "docs/quake/textures/web-review-2026-10-20/ground1_4-mid-quarter-repeat3-comparison.png",
+      "to": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-quarter-repeat3-comparison.png",
+      "sha256": "bb7d58beb363304c883b07d7e53b6a6d32c3d0d04bed328543b25e36f69fba61"
+    },
+    {
+      "from": "docs/quake/textures/web-review-2026-10-20/ground1_4-high-front-close-comparison.png",
+      "to": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-front-close-comparison.png",
+      "sha256": "d696e2fc2a4e1dd7af49861e6975404cd7b9179293f863a19f2b1c036c1e2b67"
+    },
+    {
+      "from": "docs/quake/textures/web-review-2026-10-20/ground1_4-mid-quarter-repeat3-gpu.png",
+      "to": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-quarter-repeat3-gpu.png",
+      "sha256": "9de1aa835a375265bcf4e42609c2aff80845ed7e97a801deb67bc8249329256a"
+    },
+    {
+      "from": "docs/quake/textures/web-review-2026-10-20/ground1_4-mid-half-repeat3-gpu.png",
+      "to": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-half-repeat3-gpu.png",
+      "sha256": "9de1aa835a375265bcf4e42609c2aff80845ed7e97a801deb67bc8249329256a"
+    },
+    {
+      "from": "docs/quake/textures/web-review-2026-10-20/ground1_4-high-front-close-gpu.png",
+      "to": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-front-close-gpu.png",
+      "sha256": "64a4ef2c8cc4986b63444054e5cbb1a3aaad1e2595fe73c081732503530efa43"
+    },
+    {
+      "from": "docs/quake/textures/web-review-2026-10-20/ground1_4-high-half-repeat3-gpu.png",
+      "to": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-half-repeat3-gpu.png",
+      "sha256": "83b881da73dbd2468449cfd66560504d038b42568b87deeacd658f2a96f5804a"
+    },
+    {
+      "from": "docs/quake/textures/web-review-2026-10-20/ground1_4-high-quarter-repeat3-gpu.png",
+      "to": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-quarter-repeat3-gpu.png",
+      "sha256": "83b881da73dbd2468449cfd66560504d038b42568b87deeacd658f2a96f5804a"
+    },
+    {
+      "from": "docs/quake/textures/web-review-2026-10-20/ground1_4-mid-half-repeat3-comparison.png",
+      "to": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-half-repeat3-comparison.png",
+      "sha256": "d31c03aa9ffea87cfbf8d88fb093985bb9e1984510147788736eca570902bb78"
+    },
+    {
+      "from": "docs/quake/textures/web-review-2026-10-20/ground1_4-high-quarter-repeat3-comparison.png",
+      "to": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-quarter-repeat3-comparison.png",
+      "sha256": "da6d4a693923eeedaffbc4b2c17b827744f0739bc0769e6f3fe6f24d6e107121"
+    }
+  ],
+  "restoredOldReceiptFromExactSnapshot": "docs/quake/textures/web-review-2026-10-20/browser-receipt-independent-review-snapshot.json",
+  "newReceiptSha256": "bb984f72c72b81daff805e2e8006e26cb84d7b7a2e5db84e138da625bc0c55a2",
+  "next": "Use explicit output directory argument in browser capture helper."
+}

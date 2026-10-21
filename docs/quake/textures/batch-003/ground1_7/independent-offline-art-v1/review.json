@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T03:41:10.058946+00:00",
+  "reviewer": "/root/quake_ground17_offline_art",
+  "verdict": "HOLD_MATERIAL_RECOGNITION",
+  "scope": "ground1_7 exact current raw/master and actual decoded Mid256/High512 offline ART only",
+  "nativeIdentity": "41987356d8ccd3f5a1754b2e514d85e13d6e3dbc2dc454949524b5992db26e00",
+  "finding": "Grey stone inclusions are recognizable; dominant rounded branching brown forms and longitudinal fibrous marks read as roots/bark rather than the approved weathered mineral interpretation. Native ambiguity preserved; no historical mineral identification asserted.",
+  "distance": "Bounded visual similarity broadly retained at both-input BOX32/16; not the HOLD cause.",
+  "repeat": "No dominant straight seam or border apparent in actual literal repeats/corners at either tier; bounded offline observation.",
+  "physical": "Actual height/XYZ and independently reconstructed opposed lights viewed; dense granular/crinkled response; no newly proven witness inversion. Existing 3 original coordinates/orderings remain unchanged. Shader glancing/POM acceptance pending.",
+  "inspectionProvenanceChecks": {
+    "passed": 16,
+    "total": 16,
+    "source": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/inspection-provenance.json",
+    "sha256": "8185d5621fef530fddfb94e39bd5886e2eb2201f7db455db68d29c71095e8e34"
+  },
+  "actuallyViewedImages": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+      "sha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+      "bytes": 4474,
+      "dimensions": [
+        64,
+        64
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/generated/ground1_7-source-v1.png",
+      "sha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+      "bytes": 2937459,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/master/color.png",
+      "sha256": "b9785f11457d8cd74c1c23de1d3ef5cc17e57db71c206f9a9ab23f16f80bb242",
+      "bytes": 508105,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/native-nearest512.png",
+      "sha256": "e054bcaff886d023aa5a4f60ff09b03fd630e63d5269383bb8abda11a22115f4",
+      "bytes": 10197,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/raw-review/raw-detail-1to1.png",
+      "sha256": "4e57856faf3d5a3d9f6344eddb118708162af908882c4fc3892f0804edcaa3ed",
+      "bytes": 458124,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/master-review/rgb-only-neighborhood-selection.png",
+      "sha256": "a3824641d272d6c119fea0feba75b6e7253b8b2c90ce72c609abb5c772cd3446",
+      "bytes": 86833,
+      "dimensions": [
+        1152,
+        420
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/master-review/rgb-coordinate-selection.png",
+      "sha256": "ce07a5283afe49c7d10f328100ab49710b795830a0193c6f28f604bf6a0b50dd",
+      "bytes": 500317,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/native-mid-high-both-box.png",
+      "sha256": "b88bf938b8694305a5424c31d2afa1493438aa5ef6c6f97ce654c14d4cb0a22b",
+      "bytes": 19975,
+      "dimensions": [
+        800,
+        360
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/mid-diffuse.png",
+      "sha256": "5a72895bfc3f9b6335364674fc9565e8bb87bed8ed61c0e413f5c3fe7b1aba91",
+      "bytes": 127829,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/mid-repeat2.png",
+      "sha256": "155abd881fda59b73a0b645a7692adb9e245f3b8ca669618f56717239e896f65",
+      "bytes": 261769,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/mid-four-corners.png",
+      "sha256": "adc9b8f3c3ff31d6b666268b1393e376dcd463a8cb32110d0d6f0e9a4134e57c",
+      "bytes": 127895,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/mid-height.png",
+      "sha256": "a0f175761b894ebd714c30c7ee152980bf0985ead847bc10de105d39017bf24a",
+      "bytes": 55165,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "L"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/mid-xyz.png",
+      "sha256": "158fba07165174ceace27d44013c81d6d5ff90729af33c328dd0edc695df3bc3",
+      "bytes": 138730,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/mid-neutral-opposed-flat.png",
+      "sha256": "0ef52a74a59c20d480dc77716aa7fe24c456cb3c36753440de91f0b9ec9fd228",
+      "bytes": 171259,
+      "dimensions": [
+        768,
+        280
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/mid-independent-opposed-flat.png",
+      "sha256": "0abd4b53b2c9d9732313ee34ddea7aee8f7bcabf2ee547cb6aa75d1cfe0a6f1c",
+      "bytes": 168361,
+      "dimensions": [
+        768,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/high-diffuse.png",
+      "sha256": "6a7330229863fc0e020dff3df0754248d20ac594ae34fe5531dad11ccebad86c",
+      "bytes": 500433,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/high-repeat2.png",
+      "sha256": "6014d1430430835254b50e06069334923bd4556c82d78b082b7001f152f0dfe9",
+      "bytes": 1026630,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/high-four-corners.png",
+      "sha256": "eaa2d772f4724969acf0ae877b243634a98054c3c2ae4e35597a8babfe730bbe",
+      "bytes": 500501,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/high-height.png",
+      "sha256": "d5415b66f42fe7a8230982b1e4e50c2bb283c60256885380043efc105e040cf9",
+      "bytes": 185342,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "L"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/high-xyz.png",
+      "sha256": "07fcba90bcb36f0466bec9b4de2b8a748cf1a2eb15e8ba29a27be377ddf440ac",
+      "bytes": 480950,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/high-neutral-opposed-flat.png",
+      "sha256": "0c35c82118288a63737c873ba452dc00824e35da2a54ad2569a6c01c3a18d7ad",
+      "bytes": 580145,
+      "dimensions": [
+        1536,
+        536
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/high-independent-opposed-flat.png",
+      "sha256": "798aab086d34c26a720e7dd35bbd4e8f5a826421bb914510222da47b9db46dde",
+      "bytes": 577021,
+      "dimensions": [
+        1536,
+        512
+      ],
+      "mode": "RGB"
+    }
+  ],
+  "retainedFailureBoundary": "Source/math verifier failed-v1 and its tuple/list correction remain intact; numerical PASS is not ART. No coordinates moved or observations relabeled.",
+  "hardwareAndPOM": "PENDING; no browser available to this reviewer",
+  "nextOwner": "Live root coordinator; retain ART HOLD, decide authorized source revision/replacement, then requalify whole selected source/master/both tiers.",
+  "writes": "Only independent-offline-art-v1 review folder; no authoring/product/shared-doc/Git/build/Hexen changes.",
+  "coordination": "Supervised by live root; root reports Bluey storage error c10dc7f789bb4a55a4c525b5629ccbea outcome unknown/automaticRetry false. No registration/card success or durable job claimed.",
+  "reviewMarkdown": {
+    "file": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/REVIEW.md",
+    "sha256": "dc4bbb699cc2b92e74e543031d0cb09cae79b2f00a752dada28d3b1d7da85fe8"
+  }
+}

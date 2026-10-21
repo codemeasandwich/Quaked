@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "verdict": "Core edit/multicall/shared-master contract consistent; two operational documentation gaps require explicit worked binding before edited-source end-to-end qualification",
+  "reviewer": "texture06 independent agent",
+  "reviewedAt": "2026-10-21T00:01:52.397270+00:00",
+  "scope": "Read-only forward walkthrough of source-edits/SKILL/workflow/standard and current primary journal/prepare interfaces. No skill/code/helper edits or model calls.",
+  "inputs": {
+    "skills/quaked-texture-authoring/references/source-edits.md": "8079faa7a2f74e6bc237f40d3afdf14df31ee899c41293654762a251c102abc0",
+    "skills/quaked-texture-authoring/SKILL.md": "8ddf6a6e0797a07933228aef4e3f984615a39009ea6915cfdf0fb1a84bb293d4",
+    "skills/quaked-texture-authoring/references/workflow.md": "19804b85d158d27217df29e825108801cf542b8911987be25577a8d5df0b0dfc",
+    "docs/texture-tier-standard.md": "e419749f6c084e5f262911738ba10df9ca380367f246a599d16c7c12e05a7f5e",
+    "skills/quaked-texture-authoring/scripts/generation_journal.py": "f1aab4d98ac1701f0d054b9892232f88c8e3fbc03332d9b9dcddfa7785329dc8",
+    "tools/texture_sheets/prepare_texture_master.py": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+  },
+  "currentPositiveFindings": [
+    "Owner clarification is consistent across standard/SKILL/workflow: one final source/master for both4x/8x, not one total model call.",
+    "Immutable pre-call issued plus separate retained return, exact parent/native/prompt/journal/file hashes and real returned bytes are specified. Legacy-issued snapshots are preserved by actual path/hash, matching388r1history.",
+    "Material/layout/edge/distance requalification includes unaffected material; a failed source cannot be selected or rescued by averagecolour/numericalPASS.",
+    "Branching from earlier raw must include all previous issued edits in call accounting; unresolved issue is not retainedsuccess.",
+    "Primary journal remains untouched and producer localgenerationCount1 is explicitly not the whole call history.",
+    "New source invalidates old RGB/scalar proofs and requires fresh shared relief/direct4x8x/codec/ART/preview/custody qualification."
+  ],
+  "walkthroughCases": [
+    {
+      "case": "Actual388r1 one retained edit has failed X/Ycontinuity",
+      "expected": "Issued+retained+HOLD remain; calls1generation+1edit=2; no active-source/master/tier.",
+      "assessment": "Supported by written rules and actual retained chain; no extra call performed."
+    },
+    {
+      "case": "Hypotheticalr2 branches from original after failedr1",
+      "expected": "Parent points to actual original, but history includesr1andr2; totalcalls3, not2. Both failed and successful receipts retained.",
+      "assessment": "Rule explicitly supports this; an example field schema would prevent parent-depth being mistaken for call total."
+    },
+    {
+      "case": "Hypotheticalr2passes source gate then builds master/tiers",
+      "expected": "One selected editedraw and exactr2prompt drive a new RGB/float pair; both tiers directfromsamepair; originaljournal stayshistorical.",
+      "assessment": "Intent correct, but selected-input/descriptor/verifier binding walkthrough is not executable from current primary-only helper examples."
+    },
+    {
+      "case": "Later qualifiedr3 supersedes previously selectedr2",
+      "expected": "Keep immutable final-selection record and r2proofs valid while active pointer moves.",
+      "assessment": "Preservepreviouspointer instruction helps, but no immutable selection-record naming/proof-binding rule prevents directly sealing mutableactive-source.json."
+    }
+  ],
+  "concreteGaps": [
+    {
+      "id": "EDIT-FWD-1",
+      "priority": "medium",
+      "location": "references/source-edits.md step5 and workflow sections4/5/6",
+      "problem": "No minimal active-source/selection schema or worked command mapping binds selected editedraw, its editprompt and all issue/retain/gate/history receipts to actual prepare inputs and batch/source-proof fields. generation_journal.py remains intentionallyprimary-only, and current bounded historical verifiers compare master generated/prompt inputs with primaryselection values. Following those examples verbatim rejects the edited source or tempts a false primary-journal rewrite.",
+      "smallestCorrection": "Document one concrete versioned selection record with raw/prompt/issued/retained/gate/history file+hash references and distinct counts, and show GENERATED/PROMPT resolution for unchanged prepareCLI plus source-proof/batch binding. State primary helper is not the edit selector; adapt the independent verifier to actual lineage instead of falsifying olditem. No new pipeline/service needed."
+    },
+    {
+      "id": "EDIT-FWD-2",
+      "priority": "medium",
+      "location": "references/source-edits.md step5 and Verification/accounting",
+      "problem": "active-source.json is mutable. If a final source proof/freeze directly seals its path/hash, a legitimate later source selection changes that path and breaks replay of the older proof even when a copy of the oldpointer is retained elsewhere. The current prose does not specify which immutable selection path the proof binds.",
+      "smallestCorrection": "Make each selection an immutable versioned record/snapshot retained from the outset; active-source.json points to that record. Bind source/master/custody proof to immutable selection+issued/retained/gate records, and verify the live pointer separately for current registration. Preserve prior selection records without rewriting sealed proofs."
+    }
+  ],
+  "verificationBoundary": "This was a forward source/code reading exercise, not a runtime fixture or an accepted editedmaster+10map replay. The text states a valid custody contract but this review cannot claim an executed revision-aware proof/tier pipeline.",
+  "actualEvidence": {
+    "388SourceHOLD": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/source-art-review-v1.json",
+    "issued": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/revisions/r1/source-revision-r1-issued.json",
+    "completion": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/revisions/r1/completion-receipt.json"
+  },
+  "modelCallsByThisReview": 0,
+  "mutations": "Only this attributed review artifact; no canonicaldocs/source/helper/producer/Git/build mutation.",
+  "nextOwner": "root",
+  "nextAction": "Clarify the two small binding examples before claiming editedsource end-to-end qualification; preserve approved editauthority and proceed with independent exact gate-code review separately."
+}

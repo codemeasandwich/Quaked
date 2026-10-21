@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T19:25:24.257037+00:00",
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/wgrnd1_8/master/master.json",
+    "sha256": "88580c3239940023aa8b2761626bfad18221729098c6fef4615ea8b8c41f737f"
+  },
+  "classifiedWitnesses": [
+    {
+      "gapXY": [
+        105,
+        64
+      ],
+      "faceXY": [
+        185,
+        65
+      ],
+      "gapXYCenter": 0.023475857451558113,
+      "gapXYMean5x5": 0.0352553054690361,
+      "faceXYCenter": 0.44947946071624756,
+      "faceXYMean5x5": 0.561153769493103,
+      "faceMinusGapMean5x5": 0.5258984640240669
+    },
+    {
+      "gapXY": [
+        300,
+        232
+      ],
+      "faceXY": [
+        300,
+        180
+      ],
+      "gapXYCenter": 0.08466527611017227,
+      "gapXYMean5x5": 0.0843089297413826,
+      "faceXYCenter": 0.40783584117889404,
+      "faceXYMean5x5": 0.3369331657886505,
+      "faceMinusGapMean5x5": 0.2526242360472679
+    },
+    {
+      "gapXY": [
+        275,
+        435
+      ],
+      "faceXY": [
+        225,
+        430
+      ],
+      "gapXYCenter": 0.24174028635025024,
+      "gapXYMean5x5": 0.22361542284488678,
+      "faceXYCenter": 0.1427515745162964,
+      "faceXYMean5x5": 0.17577067017555237,
+      "faceMinusGapMean5x5": -0.04784475266933441
+    }
+  ],
+  "initialProbeIssue": "Initial pair2 placed both labels in moss/gap material; pair3 placed face label at moss/face edge rather than a rock face. Negative initialscalar observations and markedcrops remain unchanged in physical-witness-samples-initial.json / physical-witness-crops-initial.png. The visible RGB coordinategrid was inspected before these source-specific face/gap positions were selected; no asset/profile/scalar change.",
+  "materialObservation": "Warm irregular weathered mineral faces with low muted olive moss in intervening gaps remain recognisable in actual512RGB. Fine pores/chips and low moss detail remain subordinate to original broad patch composition.",
+  "repeatObservation": "Actual5122x2repeat/X/Y/corner views reviewed. No blanket edgepixel identity criterion applied; native patch phase/scale remains representative. Root independent final repeat-art review remains required.",
+  "reliefObservation": "Fullfloat scalar/XYZ and opposed colour/neutralgrey lights reviewed. Judge physical source-specific gaps versus faces; pigment/moss is not assumed raised simply by value. Selected neighborhood values retained even if failing.",
+  "verdict": "HOLD_PRE_TIER_PHYSICAL_REVIEW_REQUIRED",
+  "currentFinding": "ActualRGB-classified third moss/gap mean5x5 .223615 exceeds nearby rockface .175771 by .047845. Two other selected gaps are recessed. Do not move the third witness again to obtain a positive order; root must judge physical meaning against fixed actualRGB/float/lights. No tiers exported.",
+  "nextOwner": "Root independent physical review of fixed third witness and all actualmaster/repeat evidence; no export until resolved."
+}

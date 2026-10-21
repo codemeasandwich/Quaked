@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "state": "SOURCE-MEASURED ANALYTIC CAP PLAN ONLY; no scalar or master created",
+  "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+  "name": "rtex054",
+  "edition": "base",
+  "referenceSize": [
+    64,
+    64
+  ],
+  "measurementRaster": [
+    512,
+    512
+  ],
+  "coordinateConvention": "Master pixel edges; pixel(i,j) samples at(i+.5,j+.5). Native coordinates divide all master edges by8.",
+  "sourceRGB": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/color.png",
+    "sha256": "20ab4d43c4c4cf7877629ff231a1bb15acfd4b136ce4a5373ffc7696873d0951"
+  },
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/generated/rtex054.png",
+    "sha256": "c347d238584b5d0aa3a597ab6014b51c30b3f808c593bec8f7756b3c00db6aab"
+  },
+  "initialMasterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/master.json",
+    "sha256": "eacb48c1a29970e6ca95ac093fb276c5dedc6eebf42951913b65edf16d8db189"
+  },
+  "sourceProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-source-master/source-master-proof-v1.json",
+    "sha256": "86284d4b4cfff5b049082c94069193a7995e43e1af9d097120d590ebb0053ebd"
+  },
+  "priorPhysicalHold": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/rounded-trial-physical-hold-v1.json",
+    "sha256": "945768edc01353ce73a6c352f3ed6657ac9a19a90e3e6346bb7c4fefe3a74251"
+  },
+  "heads": [
+    {
+      "label": "H1",
+      "centreMasterPixelEdges": [
+        45.5,
+        44.5
+      ],
+      "radiiMasterPixels": [
+        22,
+        23.5
+      ],
+      "ellipseBoundsMasterPixelEdges": [
+        23.5,
+        21.0,
+        67.5,
+        68.0
+      ],
+      "centreNativePixelEdges": [
+        5.6875,
+        5.5625
+      ],
+      "radiiNativePixels": [
+        2.75,
+        2.9375
+      ],
+      "measurementBasis": "Visible rounded iron head face in unchanged512RGB. Dark surrounding contact shadow and rough plate coating excluded where distinguishable; boundary uncertainty about1..2masterpixels. Axis aligned ellipse is an interpretation, not segmentation purity or calibrated dome geometry."
+    },
+    {
+      "label": "H2",
+      "centreMasterPixelEdges": [
+        256,
+        43.5
+      ],
+      "radiiMasterPixels": [
+        23,
+        23
+      ],
+      "ellipseBoundsMasterPixelEdges": [
+        233,
+        20.5,
+        279,
+        66.5
+      ],
+      "centreNativePixelEdges": [
+        32.0,
+        5.4375
+      ],
+      "radiiNativePixels": [
+        2.875,
+        2.875
+      ],
+      "measurementBasis": "Visible rounded iron head face in unchanged512RGB. Dark surrounding contact shadow and rough plate coating excluded where distinguishable; boundary uncertainty about1..2masterpixels. Axis aligned ellipse is an interpretation, not segmentation purity or calibrated dome geometry."
+    },
+    {
+      "label": "H3",
+      "centreMasterPixelEdges": [
+        467,
+        44
+      ],
+      "radiiMasterPixels": [
+        22.5,
+        23.5
+      ],
+      "ellipseBoundsMasterPixelEdges": [
+        444.5,
+        20.5,
+        489.5,
+        67.5
+      ],
+      "centreNativePixelEdges": [
+        58.375,
+        5.5
+      ],
+      "radiiNativePixels": [
+        2.8125,
+        2.9375
+      ],
+      "measurementBasis": "Visible rounded iron head face in unchanged512RGB. Dark surrounding contact shadow and rough plate coating excluded where distinguishable; boundary uncertainty about1..2masterpixels. Axis aligned ellipse is an interpretation, not segmentation purity or calibrated dome geometry."
+    },
+    {
+      "label": "H4",
+      "centreMasterPixelEdges": [
+        44,
+        255
+      ],
+      "radiiMasterPixels": [
+        23,
+        23.5
+      ],
+      "ellipseBoundsMasterPixelEdges": [
+        21,
+        231.5,
+        67,
+        278.5
+      ],
+      "centreNativePixelEdges": [
+        5.5,
+        31.875
+      ],
+      "radiiNativePixels": [
+        2.875,
+        2.9375
+      ],
+      "measurementBasis": "Visible rounded iron head face in unchanged512RGB. Dark surrounding contact shadow and rough plate coating excluded where distinguishable; boundary uncertainty about1..2masterpixels. Axis aligned ellipse is an interpretation, not segmentation purity or calibrated dome geometry."
+    },
+    {
+      "label": "H5",
+      "centreMasterPixelEdges": [
+        467.5,
+        255.5
+      ],
+      "radiiMasterPixels": [
+        23.5,
+        24
+      ],
+      "ellipseBoundsMasterPixelEdges": [
+        444.0,
+        231.5,
+        491.0,
+        279.5
+      ],
+      "centreNativePixelEdges": [
+        58.4375,
+        31.9375
+      ],
+      "radiiNativePixels": [
+        2.9375,
+        3.0
+      ],
+      "measurementBasis": "Visible rounded iron head face in unchanged512RGB. Dark surrounding contact shadow and rough plate coating excluded where distinguishable; boundary uncertainty about1..2masterpixels. Axis aligned ellipse is an interpretation, not segmentation purity or calibrated dome geometry."
+    },
+    {
+      "label": "H6",
+      "centreMasterPixelEdges": [
+        46,
+        465.5
+      ],
+      "radiiMasterPixels": [
+        23,
+        23.5
+      ],
+      "ellipseBoundsMasterPixelEdges": [
+        23,
+        442.0,
+        69,
+        489.0
+      ],
+      "centreNativePixelEdges": [
+        5.75,
+        58.1875
+      ],
+      "radiiNativePixels": [
+        2.875,
+        2.9375
+      ],
+      "measurementBasis": "Visible rounded iron head face in unchanged512RGB. Dark surrounding contact shadow and rough plate coating excluded where distinguishable; boundary uncertainty about1..2masterpixels. Axis aligned ellipse is an interpretation, not segmentation purity or calibrated dome geometry."
+    },
+    {
+      "label": "H7",
+      "centreMasterPixelEdges": [
+        256,
+        465.5
+      ],
+      "radiiMasterPixels": [
+        23,
+        23
+      ],
+      "ellipseBoundsMasterPixelEdges": [
+        233,
+        442.5,
+        279,
+        488.5
+      ],
+      "centreNativePixelEdges": [
+        32.0,
+        58.1875
+      ],
+      "radiiNativePixels": [
+        2.875,
+        2.875
+      ],
+      "measurementBasis": "Visible rounded iron head face in unchanged512RGB. Dark surrounding contact shadow and rough plate coating excluded where distinguishable; boundary uncertainty about1..2masterpixels. Axis aligned ellipse is an interpretation, not segmentation purity or calibrated dome geometry."
+    },
+    {
+      "label": "H8",
+      "centreMasterPixelEdges": [
+        467,
+        465
+      ],
+      "radiiMasterPixels": [
+        22,
+        23
+      ],
+      "ellipseBoundsMasterPixelEdges": [
+        445,
+        442,
+        489,
+        488
+      ],
+      "centreNativePixelEdges": [
+        58.375,
+        58.125
+      ],
+      "radiiNativePixels": [
+        2.75,
+        2.875
+      ],
+      "measurementBasis": "Visible rounded iron head face in unchanged512RGB. Dark surrounding contact shadow and rough plate coating excluded where distinguishable; boundary uncertainty about1..2masterpixels. Axis aligned ellipse is an interpretation, not segmentation purity or calibrated dome geometry."
+    }
+  ],
+  "diagnosticViews": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/ellipse-source-overlay-v1.png",
+      "sha256": "6231404bbbfda4a0e7a6d48e139ca9bda7d711357a748207843560147b6f2838"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/eight-ellipse-metal-contact-details-v1.png",
+      "sha256": "6e9ef0da37e6a563d0f4a945a54ed9c78e10219d78c0aa9787a9c2cfd0fa23c8"
+    }
+  ],
+  "limits": [
+    "No source/head placement change or pixel resampling. These are geometry proposals, not generated assets.",
+    "Head/coating/contact interfaces remain mixed in actual photo. Ellipse support cannot prove material purity.",
+    "No analytic scalar trial, production implementation or tier derivation before independent plan review."
+  ],
+  "tool": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/measure-head-ellipses.py",
+    "sha256": "217f4df2e996139bf3c86405943658da552987a4a838092629d19182b584544b"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "scope": "Pre-tier scalar physical depth samples, manually classified on actual master RGB; not full artwork acceptance",
+  "coordinateSpace": "512x512 master pixels; 5x5 means",
+  "samples": [
+    {
+      "face": [
+        100,
+        40
+      ],
+      "joint": [
+        100,
+        64
+      ],
+      "faceMeanHeight": 0.5983691215515137,
+      "jointMeanHeight": 0.11399232596158981,
+      "faceAboveJoint": true
+    },
+    {
+      "face": [
+        246,
+        43
+      ],
+      "joint": [
+        246,
+        67
+      ],
+      "faceMeanHeight": 0.48081451654434204,
+      "jointMeanHeight": 0.12492735683917999,
+      "faceAboveJoint": true
+    },
+    {
+      "face": [
+        310,
+        135
+      ],
+      "joint": [
+        310,
+        163
+      ],
+      "faceMeanHeight": 0.3581658601760864,
+      "jointMeanHeight": 0.16760015487670898,
+      "faceAboveJoint": true
+    },
+    {
+      "face": [
+        291,
+        279
+      ],
+      "joint": [
+        291,
+        298
+      ],
+      "faceMeanHeight": 0.846514105796814,
+      "jointMeanHeight": 0.142943874001503,
+      "faceAboveJoint": true
+    },
+    {
+      "face": [
+        300,
+        392
+      ],
+      "joint": [
+        300,
+        430
+      ],
+      "faceMeanHeight": 0.46421104669570923,
+      "jointMeanHeight": 0.215259850025177,
+      "faceAboveJoint": true
+    },
+    {
+      "face": [
+        450,
+        475
+      ],
+      "joint": [
+        410,
+        475
+      ],
+      "faceMeanHeight": 0.46090272068977356,
+      "jointMeanHeight": 0.020872117951512337,
+      "faceAboveJoint": true
+    }
+  ],
+  "allSampledFacesAboveJoints": true,
+  "heightDtype": "float32",
+  "finite": true,
+  "range": [
+    0.0,
+    0.9999995231628418
+  ],
+  "masterSha256": "aa7f749af729dea2d3f7789764bc884332ce26b7f1bb2af5afcae09ea0e0a7a1",
+  "diagnostic": "pre-tier-v2.png",
+  "sampleCorrection": "Coordinate-grid inspection shows v1 joint[268,418] was another stone face, and v1 face[410,475] was a vertical joint. The revised samples follow actual material classes; v1 remains retained."
+}

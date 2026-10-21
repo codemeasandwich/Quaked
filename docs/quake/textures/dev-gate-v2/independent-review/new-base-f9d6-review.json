@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "time": "2026-10-21T03:15:56.757876+00:00",
+  "baseCommit": "f9d66078be4056b00a80fd1761e42df1e79c8231",
+  "immutableCommittedPreimages": [
+    {
+      "file": "tools/distribution/precommit.mjs",
+      "sha256": "78513c0d0da78371dfccceb9480f605138d8aea12dad3689ffc1120681327ca3",
+      "savedExactCommittedPreimage": "docs/quake/textures/dev-gate-v2/independent-review/committed-f9d6/tools/distribution/precommit.mjs"
+    },
+    {
+      "file": "tests/staged_contract_test.mjs",
+      "sha256": "b3daa53c49a5a1f5f7d5755ddc583f55c967c27fedb55e687abcff3fa286dc05",
+      "savedExactCommittedPreimage": "docs/quake/textures/dev-gate-v2/independent-review/committed-f9d6/tests/staged_contract_test.mjs"
+    },
+    {
+      "file": "tools/texture_sheets/check_texture_catalog_custody.py",
+      "sha256": "1bd745a642ca3207ed680dae75a8379c416761ad242f25466c42fab36d1ff639",
+      "savedExactCommittedPreimage": "docs/quake/textures/dev-gate-v2/independent-review/committed-f9d6/tools/texture_sheets/check_texture_catalog_custody.py"
+    }
+  ],
+  "reviewedDelta": "Rounded-cap exact producer tools/texture_sheets/prepare_rounded_cap_texture_master.py and exact public test tests/texture_rounded_cap_master_test.py added to inherited allowlist/Dev commands; shared docs/texture-tier-standard.md exact path admitted. New exact-neighbor rejection suite and literal rounded-cap command assertion. Custody checker unchanged. Preserve these in combined Quake controls; no broad directory permission.",
+  "expectedCombinedCommands": "Eight inherited Hexen/shared Python suites including rounded-cap plus three additive Quake suites, both custody checks, web/distribution/site checks only.",
+  "source": "Read git show/diff immutable commit; never live primary unstaged files",
+  "state": "Base delta reviewed; final combined controls still require freeze and R1-R5 regression evidence"
+}

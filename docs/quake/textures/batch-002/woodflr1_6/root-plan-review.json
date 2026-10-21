@@ -1,0 +1,26 @@
+{
+  "verdict": "PASS for ONE native-only photographic source, not art/height acceptance",
+  "reviewer": "Root independent from prompt author",
+  "reviewedAt": "2026-10-20T16:58:21.271680+00:00",
+  "prompt": {
+    "file": "docs/quake/textures/batch-002/woodflr1_6/prompt.txt",
+    "sha256": "f28f705e4ffb643fab76ad2b8a0692deffa65d0d255f83e37100c58c62e137d4"
+  },
+  "plan": {
+    "file": "docs/quake/textures/batch-002/woodflr1_6/plan.json",
+    "sha256": "44f13a564a2774bd67349f21b659306ca06605c3a3005952c44dd34bf78a83e9"
+  },
+  "source": "Actual native64 leftquarter verticalwood +bottomquarter horizontalwood andupperright coolfield reviewed. Fieldmaterialuncertain; chosen weatheredslate/quarrystone is plausible artisticinterpretation without changingcolour/layout.",
+  "acceptance": [
+    "Onlyleft/bottomrails, lengths/fibreorientation/junction unchanged; noaddedtop/rightrail, hardware orbigknots",
+    "Subtlematerialpores/cleavage/fibrewear; noetchedblanket/no newdominantforms, representative32/16composition",
+    "Opposededgeinterfaces intentionallywood-to-stone; retainnativegridratherthanforcingcolourequality",
+    "Nearflushfaceswithwoodslightlyproudandcontactgrooveslowest; classifyactualRGB/scalar, neverbrightnessalone"
+  ],
+  "limits": [
+    "ONEbuiltinimagegenrequest1prior0 withexistingjournalissue/retain, nativeONLY, noCLI/API/modeloverride/duplicate",
+    "Onefinal512RGB/fullfloatmasterfeedsMid256High512currentcodec; no sourceorrelief failureexport",
+    "Reuseexistingguardedlayeredmasterrepairifneededafterindependentsource/masterproof, notnewpipeline",
+    "Rootindependentpublic/ART/browserreviewbeforecatalog; noGit/Hexen/Desktop/newframework"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root",
+  "observedAt": "2026-10-21T06:56:14.159685+00:00",
+  "authority": "Existing owner-authorized all-texture Quake/full-official-expansion campaign; built-in image generation only. One source-capacity trial, no fallback provider/credential/code/runtime/release authority.",
+  "plan": {
+    "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/8x-plan/PLAN.md",
+    "sha256": "c766ec8ae8e59001f9ec26648c3647700fe3d1d0d2be00d683fbdfd3c6caf9d5"
+  },
+  "independentReview": {
+    "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/8x-plan/independent-review/review.json",
+    "sha256": "5ff7a86dd9694c6c292a17a82c6174d67ba4061b01ae12a9abbbeda377375898"
+  },
+  "exactPrompt": {
+    "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/8x-plan/prompt-proposal.txt",
+    "sha256": "c49248787092c4e35042a090e69777df3caf8b836883c298c336cc0b74a39858"
+  },
+  "verified31Inputs": true,
+  "actualImagesInspected": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/fidelity-2026-10-12/ogre-owner-base.png",
+      "sha256": "dd36fe10a6494e040a14c18966cc3dd8819ecc63c373c107fd084a8f867d9912",
+      "role": "Appearance/design reference only; newly generated atlas is NOT an interpolation, upscale, compressed-tier derivative or byte-preserving edit of this parent."
+    },
+    {
+      "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/native-skin0-frame0-rgba.png",
+      "sha256": "36d71d7aacf5ccc911a0e3ee4ffc236be3fe1d9d7da86a5c06a9766a439a47d8",
+      "role": "Unchanged native264x194 strict UV positions, palette, feature scale and layout acceptance guide."
+    }
+  ],
+  "decision": "Approve exactly one NEW source generation request using owner appearance and native as references. It is not a tracked edit of a selected campaign source; inherited appearance reference generation history remains UNKNOWN.",
+  "newKnownCalls": 1,
+  "historicalInheritedCalls": null,
+  "outputContract": {
+    "width": 2112,
+    "height": 1552,
+    "orLargerExactAspect": "132:97",
+    "opaque": true,
+    "colourOnly": true
+  },
+  "stops": [
+    "Undersized/wrong-aspect output retained HOLD; no enlargement/crop/pad/automaticretry.",
+    "Adequate whole dimensions alone do not prove per-piece sampling, material, exact UV contacts or source acceptance.",
+    "No wide implementation before actual adequate source and independent source/material/UV review."
+  ]
+}

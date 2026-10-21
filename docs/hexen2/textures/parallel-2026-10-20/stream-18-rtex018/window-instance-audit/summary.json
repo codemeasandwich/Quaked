@@ -1,0 +1,1646 @@
+{
+  "status": "COMPILED_GEOMETRY_SUMMARY_NOT_PHYSICAL_WINDOW_COUNT",
+  "evidenceSha256": "492a115e5b21d1363cba02a4f1bc507535d294ce4b7c02f393057fbfb1b98a88",
+  "maps": [
+    {
+      "map": "maps/cath.bsp",
+      "faceCount": 206,
+      "categoryCounts": {
+        "single_full_uv_cell_face": 0,
+        "single_partial_uv_cell_face": 42,
+        "multiple_positive_area_uv_cells_face": 164
+      },
+      "cellIntersectionCountHistogram": {
+        "1": 42,
+        "3": 30,
+        "4": 44,
+        "2": 64,
+        "6": 14,
+        "8": 8,
+        "5": 2,
+        "10": 2
+      },
+      "sumPositiveCellFaceIncidences": 614,
+      "singleFaceCompleteCellCoverageCount": 0,
+      "orientationCounts": {
+        "downwardHorizontal": 24,
+        "upwardHorizontal": 24,
+        "vertical": 158
+      },
+      "inlineModelCount": 21,
+      "selectedFacesInWorldModel": 0,
+      "entityReferenceCount": 21,
+      "entityClasses": {
+        "breakable_brush": 21
+      },
+      "coplanarMappingGroupCount": 126,
+      "adjacencyPairs": 84,
+      "adjacentMultiFaceComponents": 72,
+      "groupFullUVCellCoverageCount": 20,
+      "fullCoverageCellsNeedingMultipleFaces": 20,
+      "modelExamples": [
+        {
+          "model": 6,
+          "entityReferences": [
+            {
+              "entityIndex": 140,
+              "thingtype": "0",
+              "classname": "breakable_brush",
+              "model": "*6"
+            }
+          ],
+          "faceCount": 10,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 5792,
+              "UVBounds": [
+                [
+                  15.0,
+                  -1.0
+                ],
+                [
+                  18.0,
+                  -0.125
+                ]
+              ],
+              "areaInCells": 2.625,
+              "S": [
+                0.0,
+                1.0,
+                0.0,
+                176.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "positiveAreaCells": 3
+            },
+            {
+              "face": 5794,
+              "UVBounds": [
+                [
+                  15.0,
+                  -1.0
+                ],
+                [
+                  18.0,
+                  -0.125
+                ]
+              ],
+              "areaInCells": 2.625,
+              "S": [
+                0.0,
+                1.0,
+                0.0,
+                176.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "positiveAreaCells": 3
+            }
+          ]
+        },
+        {
+          "model": 7,
+          "entityReferences": [
+            {
+              "entityIndex": 141,
+              "thingtype": "0",
+              "classname": "breakable_brush",
+              "model": "*7"
+            }
+          ],
+          "faceCount": 10,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 5802,
+              "UVBounds": [
+                [
+                  19.984375,
+                  -1.0
+                ],
+                [
+                  22.984375,
+                  -0.125
+                ]
+              ],
+              "areaInCells": 2.625,
+              "S": [
+                0.0,
+                1.0,
+                0.0,
+                176.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "positiveAreaCells": 4
+            },
+            {
+              "face": 5804,
+              "UVBounds": [
+                [
+                  19.984375,
+                  -1.0
+                ],
+                [
+                  22.984375,
+                  -0.125
+                ]
+              ],
+              "areaInCells": 2.625,
+              "S": [
+                0.0,
+                1.0,
+                0.0,
+                176.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "positiveAreaCells": 4
+            }
+          ]
+        },
+        {
+          "model": 8,
+          "entityReferences": [
+            {
+              "entityIndex": 142,
+              "thingtype": "0",
+              "classname": "breakable_brush",
+              "model": "*8"
+            }
+          ],
+          "faceCount": 10,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 5812,
+              "UVBounds": [
+                [
+                  14.984375,
+                  -1.0
+                ],
+                [
+                  17.984375,
+                  -0.125
+                ]
+              ],
+              "areaInCells": 2.625,
+              "S": [
+                0.0,
+                1.0,
+                0.0,
+                176.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "positiveAreaCells": 4
+            },
+            {
+              "face": 5814,
+              "UVBounds": [
+                [
+                  14.984375,
+                  -1.0
+                ],
+                [
+                  17.984375,
+                  -0.125
+                ]
+              ],
+              "areaInCells": 2.625,
+              "S": [
+                0.0,
+                1.0,
+                0.0,
+                176.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "positiveAreaCells": 4
+            }
+          ]
+        },
+        {
+          "model": 9,
+          "entityReferences": [
+            {
+              "entityIndex": 143,
+              "thingtype": "0",
+              "classname": "breakable_brush",
+              "model": "*9"
+            }
+          ],
+          "faceCount": 10,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 5822,
+              "UVBounds": [
+                [
+                  20.0,
+                  -1.0
+                ],
+                [
+                  23.0,
+                  -0.125
+                ]
+              ],
+              "areaInCells": 2.625,
+              "S": [
+                0.0,
+                1.0,
+                0.0,
+                176.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "positiveAreaCells": 3
+            },
+            {
+              "face": 5824,
+              "UVBounds": [
+                [
+                  20.0,
+                  -1.0
+                ],
+                [
+                  23.0,
+                  -0.125
+                ]
+              ],
+              "areaInCells": 2.625,
+              "S": [
+                0.0,
+                1.0,
+                0.0,
+                176.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "positiveAreaCells": 3
+            }
+          ]
+        },
+        {
+          "model": 10,
+          "entityReferences": [
+            {
+              "entityIndex": 144,
+              "thingtype": "0",
+              "classname": "breakable_brush",
+              "model": "*10"
+            }
+          ],
+          "faceCount": 10,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 5832,
+              "UVBounds": [
+                [
+                  3.921875,
+                  -3.35546875
+                ],
+                [
+                  5.03515625,
+                  -2.48046875
+                ]
+              ],
+              "areaInCells": 0.97412109375,
+              "S": [
+                1.25,
+                0.0,
+                0.0,
+                926.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -259.0
+              ],
+              "positiveAreaCells": 6
+            },
+            {
+              "face": 5834,
+              "UVBounds": [
+                [
+                  3.921875,
+                  -3.35546875
+                ],
+                [
+                  5.03515625,
+                  -2.48046875
+                ]
+              ],
+              "areaInCells": 0.97412109375,
+              "S": [
+                1.25,
+                0.0,
+                0.0,
+                926.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -259.0
+              ],
+              "positiveAreaCells": 6
+            }
+          ]
+        },
+        {
+          "model": 11,
+          "entityReferences": [
+            {
+              "entityIndex": 145,
+              "thingtype": "0",
+              "classname": "breakable_brush",
+              "model": "*11"
+            }
+          ],
+          "faceCount": 10,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 5842,
+              "UVBounds": [
+                [
+                  3.921875,
+                  -2.03125
+                ],
+                [
+                  5.015625,
+                  -1.15625
+                ]
+              ],
+              "areaInCells": 0.95703125,
+              "S": [
+                1.25,
+                0.0,
+                0.0,
+                926.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -259.0
+              ],
+              "positiveAreaCells": 6
+            },
+            {
+              "face": 5844,
+              "UVBounds": [
+                [
+                  3.921875,
+                  -2.03125
+                ],
+                [
+                  5.015625,
+                  -1.15625
+                ]
+              ],
+              "areaInCells": 0.95703125,
+              "S": [
+                1.25,
+                0.0,
+                0.0,
+                926.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -259.0
+              ],
+              "positiveAreaCells": 6
+            }
+          ]
+        },
+        {
+          "model": 12,
+          "entityReferences": [
+            {
+              "entityIndex": 146,
+              "thingtype": "0",
+              "classname": "breakable_brush",
+              "model": "*12"
+            }
+          ],
+          "faceCount": 10,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 5852,
+              "UVBounds": [
+                [
+                  -7.03125,
+                  -2.5625
+                ],
+                [
+                  -4.03125,
+                  -1.6875
+                ]
+              ],
+              "areaInCells": 2.625,
+              "S": [
+                1.0,
+                0.0,
+                0.0,
+                -16.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -142.0
+              ],
+              "positiveAreaCells": 8
+            },
+            {
+              "face": 5854,
+              "UVBounds": [
+                [
+                  -7.03125,
+                  -2.5625
+                ],
+                [
+                  -4.03125,
+                  -1.6875
+                ]
+              ],
+              "areaInCells": 2.625,
+              "S": [
+                1.0,
+                0.0,
+                0.0,
+                -16.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -142.0
+              ],
+              "positiveAreaCells": 8
+            }
+          ]
+        },
+        {
+          "model": 13,
+          "entityReferences": [
+            {
+              "entityIndex": 147,
+              "thingtype": "0",
+              "classname": "breakable_brush",
+              "model": "*13"
+            }
+          ],
+          "faceCount": 10,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 5862,
+              "UVBounds": [
+                [
+                  -7.03125,
+                  -2.5625
+                ],
+                [
+                  -4.03125,
+                  -1.6875
+                ]
+              ],
+              "areaInCells": 2.625,
+              "S": [
+                1.0,
+                0.0,
+                0.0,
+                176.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -142.0
+              ],
+              "positiveAreaCells": 8
+            },
+            {
+              "face": 5864,
+              "UVBounds": [
+                [
+                  -7.03125,
+                  -2.5625
+                ],
+                [
+                  -4.03125,
+                  -1.6875
+                ]
+              ],
+              "areaInCells": 2.625,
+              "S": [
+                1.0,
+                0.0,
+                0.0,
+                176.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -142.0
+              ],
+              "positiveAreaCells": 8
+            }
+          ]
+        },
+        {
+          "model": 14,
+          "entityReferences": [
+            {
+              "entityIndex": 148,
+              "thingtype": "0",
+              "classname": "breakable_brush",
+              "model": "*14"
+            }
+          ],
+          "faceCount": 10,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 5870,
+              "UVBounds": [
+                [
+                  6.981249909847975,
+                  -3.35546875
+                ],
+                [
+                  8.006249925121665,
+                  -2.48046875
+                ]
+              ],
+              "areaInCells": 0.896875013364479,
+              "S": [
+                0.800000011920929,
+                0.0,
+                0.0,
+                834.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -259.0
+              ],
+              "positiveAreaCells": 6
+            },
+            {
+              "face": 5872,
+              "UVBounds": [
+                [
+                  6.981249909847975,
+                  -3.35546875
+                ],
+                [
+                  8.006249925121665,
+                  -2.48046875
+                ]
+              ],
+              "areaInCells": 0.896875013364479,
+              "S": [
+                0.800000011920929,
+                0.0,
+                0.0,
+                834.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -259.0
+              ],
+              "positiveAreaCells": 6
+            }
+          ]
+        },
+        {
+          "model": 15,
+          "entityReferences": [
+            {
+              "entityIndex": 149,
+              "thingtype": "0",
+              "classname": "breakable_brush",
+              "model": "*15"
+            }
+          ],
+          "faceCount": 10,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 5878,
+              "UVBounds": [
+                [
+                  7.020833000540733,
+                  -3.35546875
+                ],
+                [
+                  8.062499716877937,
+                  -2.48046875
+                ]
+              ],
+              "areaInCells": 0.9114583767950535,
+              "S": [
+                1.1111111640930176,
+                0.0,
+                0.0,
+                896.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -259.0
+              ],
+              "positiveAreaCells": 4
+            },
+            {
+              "face": 5880,
+              "UVBounds": [
+                [
+                  7.020833000540733,
+                  -3.35546875
+                ],
+                [
+                  8.062499716877937,
+                  -2.48046875
+                ]
+              ],
+              "areaInCells": 0.9114583767950535,
+              "S": [
+                1.1111111640930176,
+                0.0,
+                0.0,
+                896.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -259.0
+              ],
+              "positiveAreaCells": 4
+            }
+          ]
+        },
+        {
+          "model": 16,
+          "entityReferences": [
+            {
+              "entityIndex": 150,
+              "thingtype": "0",
+              "classname": "breakable_brush",
+              "model": "*16"
+            }
+          ],
+          "faceCount": 10,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 5888,
+              "UVBounds": [
+                [
+                  5.989583000540733,
+                  -2.02734375
+                ],
+                [
+                  7.031249716877937,
+                  -1.15234375
+                ]
+              ],
+              "areaInCells": 0.9114583767950535,
+              "S": [
+                1.1111111640930176,
+                0.0,
+                0.0,
+                830.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -259.0
+              ],
+              "positiveAreaCells": 6
+            },
+            {
+              "face": 5890,
+              "UVBounds": [
+                [
+                  5.989583000540733,
+                  -2.02734375
+                ],
+                [
+                  7.031249716877937,
+                  -1.15234375
+                ]
+              ],
+              "areaInCells": 0.9114583767950535,
+              "S": [
+                1.1111111640930176,
+                0.0,
+                0.0,
+                830.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -259.0
+              ],
+              "positiveAreaCells": 6
+            }
+          ]
+        },
+        {
+          "model": 17,
+          "entityReferences": [
+            {
+              "entityIndex": 151,
+              "thingtype": "0",
+              "classname": "breakable_brush",
+              "model": "*17"
+            }
+          ],
+          "faceCount": 10,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 5900,
+              "UVBounds": [
+                [
+                  6.993749910034239,
+                  -2.02734375
+                ],
+                [
+                  8.006249925121665,
+                  -1.15234375
+                ]
+              ],
+              "areaInCells": 0.8859375132014975,
+              "S": [
+                0.800000011920929,
+                0.0,
+                0.0,
+                834.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -259.0
+              ],
+              "positiveAreaCells": 6
+            },
+            {
+              "face": 5902,
+              "UVBounds": [
+                [
+                  6.993749910034239,
+                  -2.02734375
+                ],
+                [
+                  8.006249925121665,
+                  -1.15234375
+                ]
+              ],
+              "areaInCells": 0.8859375132014975,
+              "S": [
+                0.800000011920929,
+                0.0,
+                0.0,
+                834.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -259.0
+              ],
+              "positiveAreaCells": 6
+            }
+          ]
+        },
+        {
+          "model": 28,
+          "entityReferences": [
+            {
+              "entityIndex": 181,
+              "thingtype": "0",
+              "classname": "breakable_brush",
+              "model": "*28"
+            }
+          ],
+          "faceCount": 16,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 5984,
+              "UVBounds": [
+                [
+                  -24.65625,
+                  -2.046875
+                ],
+                [
+                  -21.15625,
+                  -1.171875
+                ]
+              ],
+              "areaInCells": 3.0625,
+              "S": [
+                0.0,
+                1.0,
+                0.0,
+                -2324.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "positiveAreaCells": 8
+            },
+            {
+              "face": 5988,
+              "UVBounds": [
+                [
+                  -24.65625,
+                  -2.046875
+                ],
+                [
+                  -21.15625,
+                  -1.171875
+                ]
+              ],
+              "areaInCells": 3.0625,
+              "S": [
+                0.0,
+                1.0,
+                0.0,
+                -2324.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "positiveAreaCells": 8
+            }
+          ]
+        },
+        {
+          "model": 29,
+          "entityReferences": [
+            {
+              "entityIndex": 182,
+              "thingtype": "0",
+              "classname": "breakable_brush",
+              "model": "*29"
+            }
+          ],
+          "faceCount": 10,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 5997,
+              "UVBounds": [
+                [
+                  -25.03125,
+                  -2.21875
+                ],
+                [
+                  -21.53125,
+                  -1.3359375
+                ]
+              ],
+              "areaInCells": 3.08984375,
+              "S": [
+                1.0,
+                0.0,
+                0.0,
+                -8.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -32.0
+              ],
+              "positiveAreaCells": 10
+            },
+            {
+              "face": 5999,
+              "UVBounds": [
+                [
+                  -25.03125,
+                  -2.21875
+                ],
+                [
+                  -21.53125,
+                  -1.3359375
+                ]
+              ],
+              "areaInCells": 3.08984375,
+              "S": [
+                1.0,
+                0.0,
+                0.0,
+                -8.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -32.0
+              ],
+              "positiveAreaCells": 10
+            }
+          ]
+        },
+        {
+          "model": 30,
+          "entityReferences": [
+            {
+              "entityIndex": 183,
+              "thingtype": "0",
+              "classname": "breakable_brush",
+              "model": "*30"
+            }
+          ],
+          "faceCount": 10,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 6006,
+              "UVBounds": [
+                [
+                  24.028408251702785,
+                  -2.08984375
+                ],
+                [
+                  25.093749122694135,
+                  -1.21484375
+                ]
+              ],
+              "areaInCells": 0.9321732621174306,
+              "S": [
+                0.0,
+                0.9090908765792847,
+                0.0,
+                36.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -56.0
+              ],
+              "positiveAreaCells": 4
+            },
+            {
+              "face": 6010,
+              "UVBounds": [
+                [
+                  23.961123930156646,
+                  -2.08984375
+                ],
+                [
+                  25.01898799477476,
+                  -1.21484375
+                ]
+              ],
+              "areaInCells": 0.9256310565408441,
+              "S": [
+                0.0,
+                0.9090908765792847,
+                0.0,
+                36.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -56.0
+              ],
+              "positiveAreaCells": 6
+            }
+          ]
+        },
+        {
+          "model": 31,
+          "entityReferences": [
+            {
+              "entityIndex": 184,
+              "thingtype": "0",
+              "classname": "breakable_brush",
+              "model": "*31"
+            }
+          ],
+          "faceCount": 6,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 6014,
+              "UVBounds": [
+                [
+                  24.028408251702785,
+                  -1.125
+                ],
+                [
+                  25.093749122694135,
+                  -0.34375
+                ]
+              ],
+              "areaInCells": 0.8322975554619916,
+              "S": [
+                0.0,
+                0.9090908765792847,
+                0.0,
+                36.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -56.0
+              ],
+              "positiveAreaCells": 4
+            },
+            {
+              "face": 6016,
+              "UVBounds": [
+                [
+                  23.961123930156646,
+                  -1.125
+                ],
+                [
+                  25.01898799477476,
+                  -0.34375
+                ]
+              ],
+              "areaInCells": 0.8264563004829029,
+              "S": [
+                0.0,
+                0.9090908765792847,
+                0.0,
+                36.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -56.0
+              ],
+              "positiveAreaCells": 6
+            }
+          ]
+        },
+        {
+          "model": 32,
+          "entityReferences": [
+            {
+              "entityIndex": 185,
+              "thingtype": "0",
+              "classname": "breakable_brush",
+              "model": "*32"
+            }
+          ],
+          "faceCount": 10,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 6022,
+              "UVBounds": [
+                [
+                  23.015624161809683,
+                  -2.05859375
+                ],
+                [
+                  24.080965032801032,
+                  -1.18359375
+                ]
+              ],
+              "areaInCells": 0.9321732621174306,
+              "S": [
+                0.0,
+                0.9090908765792847,
+                0.0,
+                -27.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -48.0
+              ],
+              "positiveAreaCells": 4
+            },
+            {
+              "face": 6026,
+              "UVBounds": [
+                [
+                  22.948339840263543,
+                  -2.05859375
+                ],
+                [
+                  24.00620390488166,
+                  -1.18359375
+                ]
+              ],
+              "areaInCells": 0.9256310565408441,
+              "S": [
+                0.0,
+                0.9090908765792847,
+                0.0,
+                -27.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -48.0
+              ],
+              "positiveAreaCells": 6
+            }
+          ]
+        },
+        {
+          "model": 33,
+          "entityReferences": [
+            {
+              "entityIndex": 186,
+              "thingtype": "0",
+              "classname": "breakable_brush",
+              "model": "*33"
+            }
+          ],
+          "faceCount": 6,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 6030,
+              "UVBounds": [
+                [
+                  23.015624161809683,
+                  -1.09375
+                ],
+                [
+                  24.080965032801032,
+                  -0.3125
+                ]
+              ],
+              "areaInCells": 0.8322975554619916,
+              "S": [
+                0.0,
+                0.9090908765792847,
+                0.0,
+                -27.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -48.0
+              ],
+              "positiveAreaCells": 4
+            },
+            {
+              "face": 6032,
+              "UVBounds": [
+                [
+                  22.948339840263543,
+                  -1.09375
+                ],
+                [
+                  24.00620390488166,
+                  -0.3125
+                ]
+              ],
+              "areaInCells": 0.8264563004829029,
+              "S": [
+                0.0,
+                0.9090908765792847,
+                0.0,
+                -27.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -48.0
+              ],
+              "positiveAreaCells": 6
+            }
+          ]
+        },
+        {
+          "model": 35,
+          "entityReferences": [
+            {
+              "entityIndex": 256,
+              "classname": "breakable_brush",
+              "thingtype": "0",
+              "model": "*35"
+            }
+          ],
+          "faceCount": 6,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 6045,
+              "UVBounds": [
+                [
+                  2.0031250193715096,
+                  -1.03125
+                ],
+                [
+                  3.0031250342726707,
+                  -0.28125
+                ]
+              ],
+              "areaInCells": 0.7500000111758709,
+              "S": [
+                0.800000011920929,
+                0.0,
+                0.0,
+                45.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -48.0
+              ],
+              "positiveAreaCells": 4
+            },
+            {
+              "face": 6046,
+              "UVBounds": [
+                [
+                  2.0031250193715096,
+                  -1.03125
+                ],
+                [
+                  3.0031250342726707,
+                  -0.28125
+                ]
+              ],
+              "areaInCells": 0.7500000111758709,
+              "S": [
+                0.800000011920929,
+                0.0,
+                0.0,
+                45.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -48.0
+              ],
+              "positiveAreaCells": 4
+            }
+          ]
+        },
+        {
+          "model": 37,
+          "entityReferences": [
+            {
+              "entityIndex": 258,
+              "classname": "breakable_brush",
+              "thingtype": "0",
+              "model": "*37"
+            }
+          ],
+          "faceCount": 6,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 6057,
+              "UVBounds": [
+                [
+                  4.9906250685453415,
+                  -1.03125
+                ],
+                [
+                  5.990625083446503,
+                  -0.28125
+                ]
+              ],
+              "areaInCells": 0.7500000111758709,
+              "S": [
+                0.800000011920929,
+                0.0,
+                0.0,
+                25.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -48.0
+              ],
+              "positiveAreaCells": 4
+            },
+            {
+              "face": 6058,
+              "UVBounds": [
+                [
+                  4.9906250685453415,
+                  -1.03125
+                ],
+                [
+                  5.990625083446503,
+                  -0.28125
+                ]
+              ],
+              "areaInCells": 0.7500000111758709,
+              "S": [
+                0.800000011920929,
+                0.0,
+                0.0,
+                25.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                -48.0
+              ],
+              "positiveAreaCells": 4
+            }
+          ]
+        },
+        {
+          "model": 39,
+          "entityReferences": [
+            {
+              "entityIndex": 285,
+              "classname": "breakable_brush",
+              "thingtype": "0",
+              "model": "*39"
+            }
+          ],
+          "faceCount": 16,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 6076,
+              "UVBounds": [
+                [
+                  -18.65625,
+                  -2.046875
+                ],
+                [
+                  -15.15625,
+                  -1.171875
+                ]
+              ],
+              "areaInCells": 3.0625,
+              "S": [
+                0.0,
+                1.0,
+                0.0,
+                -2340.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "positiveAreaCells": 8
+            },
+            {
+              "face": 6080,
+              "UVBounds": [
+                [
+                  -18.65625,
+                  -2.046875
+                ],
+                [
+                  -15.15625,
+                  -1.171875
+                ]
+              ],
+              "areaInCells": 3.0625,
+              "S": [
+                0.0,
+                1.0,
+                0.0,
+                -2340.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "positiveAreaCells": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "map": "maps/demo1.bsp",
+      "faceCount": 12,
+      "categoryCounts": {
+        "single_full_uv_cell_face": 0,
+        "single_partial_uv_cell_face": 0,
+        "multiple_positive_area_uv_cells_face": 12
+      },
+      "cellIntersectionCountHistogram": {
+        "2": 4,
+        "4": 8
+      },
+      "sumPositiveCellFaceIncidences": 40,
+      "singleFaceCompleteCellCoverageCount": 0,
+      "orientationCounts": {
+        "downwardHorizontal": 2,
+        "upwardHorizontal": 2,
+        "vertical": 8
+      },
+      "inlineModelCount": 2,
+      "selectedFacesInWorldModel": 0,
+      "entityReferenceCount": 2,
+      "entityClasses": {
+        "breakable_brush": 2
+      },
+      "coplanarMappingGroupCount": 12,
+      "adjacencyPairs": 0,
+      "adjacentMultiFaceComponents": 0,
+      "groupFullUVCellCoverageCount": 0,
+      "fullCoverageCellsNeedingMultipleFaces": 0,
+      "modelExamples": [
+        {
+          "model": 20,
+          "entityReferences": [
+            {
+              "entityIndex": 87,
+              "classname": "breakable_brush",
+              "thingtype": "0",
+              "abslight": ".5",
+              "model": "*20"
+            }
+          ],
+          "faceCount": 6,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 4058,
+              "UVBounds": [
+                [
+                  -36.96782869100571,
+                  -1.0859375
+                ],
+                [
+                  -35.93841698765755,
+                  -0.4296875
+                ]
+              ],
+              "areaInCells": 0.6755514303222299,
+              "S": [
+                0.0,
+                1.1764705181121826,
+                0.0,
+                -13.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                90.0
+              ],
+              "positiveAreaCells": 4
+            },
+            {
+              "face": 4059,
+              "UVBounds": [
+                [
+                  -36.96782869100571,
+                  -1.0859375
+                ],
+                [
+                  -35.93841698765755,
+                  -0.4296875
+                ]
+              ],
+              "areaInCells": 0.6755514303222299,
+              "S": [
+                0.0,
+                1.1764705181121826,
+                0.0,
+                -13.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                90.0
+              ],
+              "positiveAreaCells": 4
+            }
+          ]
+        },
+        {
+          "model": 21,
+          "entityReferences": [
+            {
+              "entityIndex": 88,
+              "classname": "breakable_brush",
+              "thingtype": "0",
+              "abslight": ".5",
+              "model": "*21"
+            }
+          ],
+          "faceCount": 6,
+          "largestVerticalFaceExamples": [
+            {
+              "face": 4064,
+              "UVBounds": [
+                [
+                  -32.034005433321,
+                  -1.0859375
+                ],
+                [
+                  -31.00459372997284,
+                  -0.4296875
+                ]
+              ],
+              "areaInCells": 0.6755514303222299,
+              "S": [
+                0.0,
+                1.1764705181121826,
+                0.0,
+                11.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                90.0
+              ],
+              "positiveAreaCells": 4
+            },
+            {
+              "face": 4065,
+              "UVBounds": [
+                [
+                  -32.034005433321,
+                  -1.0859375
+                ],
+                [
+                  -31.00459372997284,
+                  -0.4296875
+                ]
+              ],
+              "areaInCells": 0.6755514303222299,
+              "S": [
+                0.0,
+                1.1764705181121826,
+                0.0,
+                11.0
+              ],
+              "T": [
+                0.0,
+                0.0,
+                -1.0,
+                90.0
+              ],
+              "positiveAreaCells": 4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "confirmedWindowInstances": null,
+  "limits": "Front/back/edge surfaces, UVcell repeats and splitfaces can refer to same brush assembly. Inline model references are compiled entities, not confirmed individual windows; no runtime transforms/visibility measured."
+}

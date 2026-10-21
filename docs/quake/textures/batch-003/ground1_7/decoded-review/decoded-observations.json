@@ -1,0 +1,240 @@
+{
+  "scope": "Actualdecoded diagnostic only; rootindependent math/art/webacceptance remains",
+  "method": "AssembledXYZ fromthreeactualLchannels; normalized; neutralLambert .25+.75max(dot,0) atgrey180, light(.6,.4,.7) andnegativeXY normalized; flat(0,0,1). Sameoriginal5x5masterROI sampled bycoarsepixelcentres, no witnessmoved.",
+  "tiers": [
+    {
+      "tier": "Mid",
+      "dimensions": [
+        256,
+        256
+      ],
+      "sameFixedMasterROIWitnesses": [
+        {
+          "faceXY": [
+            81,
+            47
+          ],
+          "intersticeXY": [
+            103,
+            50
+          ],
+          "classification": "Coolgrey fractured mineral face versus narrow dark channel toitsright",
+          "confidence": "Moderate: face has visible fracture facets; channel separatesitfrombrownform",
+          "faceMeanSameMasterROI": 0.43725490196078426,
+          "faceSamples": 4,
+          "intersticeMeanSameMasterROI": 0.41633986928104577,
+          "intersticeSamples": 6,
+          "faceAboveInterstice": true
+        },
+        {
+          "faceXY": [
+            236,
+            309
+          ],
+          "intersticeXY": [
+            250,
+            323
+          ],
+          "classification": "Brown granular mineral ridge top versus adjacent dark interstice",
+          "confidence": "Moderate: brown patch coherentroughsurface; nearbyshadowedgap followsitsedge",
+          "faceMeanSameMasterROI": 0.3803921568627451,
+          "faceSamples": 6,
+          "intersticeMeanSameMasterROI": 0.10000000000000002,
+          "intersticeSamples": 6,
+          "faceAboveInterstice": true
+        },
+        {
+          "faceXY": [
+            397,
+            239
+          ],
+          "intersticeXY": [
+            388,
+            227
+          ],
+          "classification": "Coolgrey exposed mineral face versus dark opening above-left",
+          "confidence": "Moderate: greyfacet and neighboring darkgap visibly distinct",
+          "faceMeanSameMasterROI": 0.7313725490196078,
+          "faceSamples": 4,
+          "intersticeMeanSameMasterROI": 0.016339869281045753,
+          "intersticeSamples": 6,
+          "faceAboveInterstice": true
+        }
+      ],
+      "allSelectedOrdering": true,
+      "actualRIFFChunks": {
+        "diffuse": [
+          "VP8 "
+        ],
+        "height": [
+          "VP8L"
+        ],
+        "normalX": [
+          "VP8L"
+        ],
+        "normalY": [
+          "VP8L"
+        ],
+        "normalZ": [
+          "VP8L"
+        ]
+      },
+      "producerIntegerCompression": {
+        "diffuse": {
+          "mismatchCount": 163489,
+          "meanAbsoluteError": 2.201054890950521,
+          "maximum": 22
+        },
+        "height": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        },
+        "normalX": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        },
+        "normalY": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        },
+        "normalZ": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        }
+      },
+      "quantization": {
+        "bitDepth": 8,
+        "rounding": "NumPy ties-to-even",
+        "height": "round(reduced full-precision scalar *255)",
+        "normalXYZ": "round(clip(normal*.5+.5,0,1)*255)",
+        "heightReduction": "float32 BOX when size differs; full precision otherwise"
+      },
+      "authoredVsDecodedXYZAngles": {
+        "mean": 0.1716277144094993,
+        "p99": 0.30867017413902753,
+        "maximum": 0.3731127094878452
+      }
+    },
+    {
+      "tier": "High",
+      "dimensions": [
+        512,
+        512
+      ],
+      "sameFixedMasterROIWitnesses": [
+        {
+          "faceXY": [
+            81,
+            47
+          ],
+          "intersticeXY": [
+            103,
+            50
+          ],
+          "classification": "Coolgrey fractured mineral face versus narrow dark channel toitsright",
+          "confidence": "Moderate: face has visible fracture facets; channel separatesitfrombrownform",
+          "faceMeanSameMasterROI": 0.5223529411764706,
+          "faceSamples": 25,
+          "intersticeMeanSameMasterROI": 0.3276862745098039,
+          "intersticeSamples": 25,
+          "faceAboveInterstice": true
+        },
+        {
+          "faceXY": [
+            236,
+            309
+          ],
+          "intersticeXY": [
+            250,
+            323
+          ],
+          "classification": "Brown granular mineral ridge top versus adjacent dark interstice",
+          "confidence": "Moderate: brown patch coherentroughsurface; nearbyshadowedgap followsitsedge",
+          "faceMeanSameMasterROI": 0.33145098039215687,
+          "faceSamples": 25,
+          "intersticeMeanSameMasterROI": 0.09458823529411765,
+          "intersticeSamples": 25,
+          "faceAboveInterstice": true
+        },
+        {
+          "faceXY": [
+            397,
+            239
+          ],
+          "intersticeXY": [
+            388,
+            227
+          ],
+          "classification": "Coolgrey exposed mineral face versus dark opening above-left",
+          "confidence": "Moderate: greyfacet and neighboring darkgap visibly distinct",
+          "faceMeanSameMasterROI": 0.7882352941176469,
+          "faceSamples": 25,
+          "intersticeMeanSameMasterROI": 0.02227450980392157,
+          "intersticeSamples": 25,
+          "faceAboveInterstice": true
+        }
+      ],
+      "allSelectedOrdering": true,
+      "actualRIFFChunks": {
+        "diffuse": [
+          "VP8 "
+        ],
+        "height": [
+          "VP8L"
+        ],
+        "normalX": [
+          "VP8L"
+        ],
+        "normalY": [
+          "VP8L"
+        ],
+        "normalZ": [
+          "VP8L"
+        ]
+      },
+      "producerIntegerCompression": {
+        "diffuse": {
+          "mismatchCount": 624185,
+          "meanAbsoluteError": 1.9302724202473958,
+          "maximum": 27
+        },
+        "height": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        },
+        "normalX": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        },
+        "normalY": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        },
+        "normalZ": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        }
+      },
+      "quantization": {
+        "bitDepth": 8,
+        "rounding": "NumPy ties-to-even",
+        "height": "round(reduced full-precision scalar *255)",
+        "normalXYZ": "round(clip(normal*.5+.5,0,1)*255)",
+        "heightReduction": "float32 BOX when size differs; full precision otherwise"
+      },
+      "authoredVsDecodedXYZAngles": {
+        "mean": 0.17088165415405335,
+        "p99": 0.3090785297145204,
+        "maximum": 0.3731260932491245
+      }
+    }
+  ]
+}

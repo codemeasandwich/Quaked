@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "name": "rtex020",
+  "edition": "base",
+  "generationCount": 1,
+  "generatorPolicy": "One retained generator output; this CLI never calls a generator",
+  "inputs": {
+    "original": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/originals/01-rtex020-e000f2f3924b.png",
+      "sha256": "53f9b965991724fafe1ef3bdf0582f64dba7d456232fd939aee88121ce2a30ff"
+    },
+    "generated": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/generated/rtex020.png",
+      "sha256": "3574e5e3cb69cf8e99d44d47688fb1b477c823ae52397e8c6998616b6f8db7c3"
+    },
+    "prompt": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/prompts/rtex020-material-v1.txt",
+      "sha256": "29bac48faba5119bb46b80c1780c4261319eb6f194116bb11981b34210b6d574"
+    },
+    "landmarks": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/registration/measured-y-landmarks-proposal-v1.json",
+      "sha256": "4ca8eaf15d93ef63cd66090f4d0654ba3a1282bb6561848b234dda245e1e379d"
+    }
+  },
+  "nativeDimensions": [
+    64,
+    128
+  ],
+  "generatedDimensions": [
+    887,
+    1774
+  ],
+  "masterDimensions": [
+    512,
+    1024
+  ],
+  "canonicalMasterFactor": 8,
+  "color": {
+    "file": "color.png",
+    "sha256": "2519d9db8f7449b0cf76f80f355759cfb51a6d9f9993a5d0dba1ca8fe761eef3"
+  },
+  "height": {
+    "file": "height.npy",
+    "sha256": "1a11fccfcbba5e1f3f2d20fe4a7efe20848d13322b4eed4382aa7ca17b210a01",
+    "dtype": "float32",
+    "authoredOnce": true,
+    "quantizedTo8Bit": false,
+    "profile": {
+      "bands": [
+        0.35,
+        1,
+        1.4,
+        1
+      ],
+      "groove": 1.4,
+      "bump": 0.7,
+      "glow": 0,
+      "strength": 0.3,
+      "cap": 0.5
+    },
+    "uniqueSamples": 520402
+  },
+  "registration": {
+    "method": "photographic",
+    "factor": 8,
+    "verticalLandmarks": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        22.5,
+        31.27846674182638
+      ],
+      [
+        44.5,
+        44.48252536640361
+      ],
+      [
+        73.5,
+        72.98308906426156
+      ],
+      [
+        80.5,
+        80.84780157835401
+      ],
+      [
+        128.0,
+        128.0
+      ]
+    ],
+    "colorStrength": 0.65,
+    "fieldSigma": 0.75,
+    "edgeAnchor": false,
+    "comparisonDivisor": 2,
+    "comparisonDimensions": [
+      32,
+      64
+    ],
+    "distanceMeanMaxError": 64.4609375,
+    "distanceMeanMAE": 9.94285774230957,
+    "donorDistanceMAE": 21.336267505740324,
+    "newClippedChannelFraction": 0.06154441833496094,
+    "donorContourCorrelation": 0.9972828822650265,
+    "sourceMean": [
+      41.15771484375,
+      31.1669921875,
+      21.36083984375
+    ],
+    "outputMean": [
+      49.92580795288086,
+      38.584205627441406,
+      26.824514389038086
+    ],
+    "donorBoundaries": {
+      "wrap_x_mean": 30.135750729561725,
+      "wrap_y_mean": 45.87253695867741,
+      "interior_x_mean": 10.308749492430863,
+      "interior_y_mean": 11.451060436361558
+    },
+    "boundaries": {
+      "wrap_x_mean": 27.636393229166668,
+      "wrap_y_mean": 43.57942708333333,
+      "interior_x_mean": 10.126174040892042,
+      "interior_y_mean": 11.2171984461551
+    },
+    "passedDistanceCheck": null,
+    "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+    "axis": "y"
+  },
+  "tools": {
+    "prepare": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    "finish": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    "derive": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    "craft": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    }
+  },
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "libwebp": "1.3.2"
+  },
+  "qualification": "Sole master package prepared; both-tier visual/public qualification remains separate"
+}

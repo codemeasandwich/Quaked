@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "policy": "source-bound-seam-crossing-x-edit-and-composite-proposal",
+  "name": "city8_2",
+  "edition": "quake-ordinary-world",
+  "nativeIdentity": "712726be7f599dd7d1d755bcb3c7de16bd36fd19e2d619c6305f48979abce772",
+  "parentSource": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v3/generated/city8_2-source-v3.png",
+    "sha256": "7d6626de61f9bdb268d361fc828f3f545256bd7911f91e9967674ce80390e9d9"
+  },
+  "parentSourceOrdinal": 3,
+  "parentJournal": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v3/selection.json",
+    "sha256": "1ef97a38a245f3f68de2fa2bd0dea1ecb8d565c9b85c82c6ea17feedb76f2ebb"
+  },
+  "materialGeometryReview": {
+    "file": "docs/quake/textures/parallel-020/city8_2/source-replacement-v3/raw-art-review.json",
+    "sha256": "185795039666d7ccc0b8458a62cb97862d30d14a2794fb652e5e8fa3835fb123"
+  },
+  "native": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v3/originals/native-city8_2.png",
+    "sha256": "0cc1e59f920acb6e3ddef02c087cd0b6e14d1c6c030a2cdd02de60a6eef4022f"
+  },
+  "rolledEditTarget": {
+    "file": "docs/quake/textures/parallel-020/city8_2/seam-edit-v1-plan/rolled-source-diagnostic.png",
+    "sha256": "8c82373fc806c2b979c9f6eb1dd5c090cc5d1812274be4d616b1fe3dfa2fa293"
+  },
+  "rolledNativeReference": {
+    "file": "docs/quake/textures/parallel-020/city8_2/seam-edit-v1-plan/rolled-native-diagnostic.png",
+    "sha256": "60e61d2c0e938498c5e122f93ccf164db311466ec0ecfe8ebb6e823b8ae4bace"
+  },
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "roll": {
+    "axis": "x",
+    "pixels": 627,
+    "nativePixels": 32,
+    "inversePixels": -627,
+    "Ymotion": 0
+  },
+  "support": [
+    519,
+    0,
+    735,
+    1254
+  ],
+  "core": [
+    539,
+    0,
+    715,
+    1254
+  ],
+  "featherPixels": 20,
+  "coordinateConvention": "Half-open integer pixel-edge rectangles, evaluated at x+0.5 centres",
+  "alpha": "C1smoothstep((x+0.5-519)/20) * C1smoothstep((735-(x+0.5))/20), clamped ramps; same on every row",
+  "composite": "round(parentRolled + alpha * (untouchedGPTReturn-parentRolled)), uint8RGB; inverseXroll-627 after exact outside/core checks",
+  "prompt": {
+    "file": "docs/quake/textures/parallel-020/city8_2/seam-edit-v1-plan/prompt.txt",
+    "sha256": "53e59a5f702205c0e741de3abc1fee2c3a3c8ee1d24c6d33977d848b763d4286"
+  },
+  "issued": false,
+  "rawEditOutput": null,
+  "derivedComposite": null
+}

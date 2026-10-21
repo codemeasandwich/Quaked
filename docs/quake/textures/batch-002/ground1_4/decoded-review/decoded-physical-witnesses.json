@@ -1,0 +1,110 @@
+[
+  {
+    "tier": "mid",
+    "dimensions": [
+      256,
+      256
+    ],
+    "witnesses": [
+      {
+        "pitXY": [
+          78,
+          60
+        ],
+        "pitXYCenter": 0.0196078431372549,
+        "pitXYMean3x3": 0.06187363834422658,
+        "faceXY": [
+          80,
+          55
+        ],
+        "faceXYCenter": 0.6666666666666666,
+        "faceXYMean3x3": 0.538562091503268,
+        "faceMinusPitMean3x3": 0.47668845315904135
+      },
+      {
+        "pitXY": [
+          122,
+          198
+        ],
+        "pitXYCenter": 0.058823529411764705,
+        "pitXYMean3x3": 0.11459694989106753,
+        "faceXY": [
+          118,
+          200
+        ],
+        "faceXYCenter": 0.6431372549019608,
+        "faceXYMean3x3": 0.5023965141612201,
+        "faceMinusPitMean3x3": 0.3877995642701526
+      },
+      {
+        "pitXY": [
+          222,
+          106
+        ],
+        "pitXYCenter": 0.00784313725490196,
+        "pitXYMean3x3": 0.06753812636165578,
+        "faceXY": [
+          225,
+          102
+        ],
+        "faceXYCenter": 0.39215686274509803,
+        "faceXYMean3x3": 0.34901960784313724,
+        "faceMinusPitMean3x3": 0.28148148148148144
+      }
+    ]
+  },
+  {
+    "tier": "high",
+    "dimensions": [
+      512,
+      512
+    ],
+    "witnesses": [
+      {
+        "pitXY": [
+          155,
+          119
+        ],
+        "pitXYCenter": 0.09803921568627451,
+        "pitXYMean3x3": 0.12984749455337688,
+        "faceXY": [
+          160,
+          110
+        ],
+        "faceXYCenter": 0.7607843137254902,
+        "faceXYMean3x3": 0.693681917211329,
+        "faceMinusPitMean3x3": 0.5638344226579521
+      },
+      {
+        "pitXY": [
+          244,
+          397
+        ],
+        "pitXYCenter": 0.03137254901960784,
+        "pitXYMean3x3": 0.040522875816993466,
+        "faceXY": [
+          237,
+          400
+        ],
+        "faceXYCenter": 0.7450980392156863,
+        "faceXYMean3x3": 0.6596949891067537,
+        "faceMinusPitMean3x3": 0.6191721132897603
+      },
+      {
+        "pitXY": [
+          444,
+          212
+        ],
+        "pitXYCenter": 0.00784313725490196,
+        "pitXYMean3x3": 0.01568627450980392,
+        "faceXY": [
+          450,
+          204
+        ],
+        "faceXYCenter": 0.5333333333333333,
+        "faceXYMean3x3": 0.47973856209150323,
+        "faceMinusPitMean3x3": 0.4640522875816993
+      }
+    ]
+  }
+]

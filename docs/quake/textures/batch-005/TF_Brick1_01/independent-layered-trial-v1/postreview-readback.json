@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T05:47:46.014986+00:00",
+  "verdict": "PASS retained-inputreadback only; physicalART remainsHOLD",
+  "protectedUniqueInputs": 71,
+  "allRecordedProtectedHashesStillExact": true,
+  "review": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/review.json",
+    "sha256": "ade9ead0032c616cea64291a83aa78af62fb0a1e54ed60e6b8473fed5549eb20"
+  },
+  "actualTrialOutputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-layered-v1/color.png",
+      "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5",
+      "bytes": 2160875
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-layered-v1/height.npy",
+      "sha256": "718d211590d99dd90e908dbd26abf950a60d2de90c729af9272534d3ad9fae64",
+      "bytes": 4194432
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-layered-v1/master.json",
+      "sha256": "dc7e0239301e724363f432739960a6342276adcf9a2cfdf34cefe770a84cf3c6",
+      "bytes": 98320
+    }
+  ],
+  "noTierExportOrAuthoringByReviewer": true
+}

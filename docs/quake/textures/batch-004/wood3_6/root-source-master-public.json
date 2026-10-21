@@ -1,0 +1,146 @@
+{
+  "verdict": "PASS source/master only",
+  "scope": "One selected actual batch004 wood3_6 initial opaque source/master package; exact native/RGB/float scalar/producer/journal bindings, source replay. SourceMasterOnly; no material/physical plane/tier or runtime acceptance.",
+  "createdAt": "2026-10-20T22:42:12.474253+00:00",
+  "verifier": {
+    "file": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/batch-004/wood3_6/verify-source-master.py",
+    "sha256": "a638b5d80264d807abd7534b427258c427d3710b5436fa845dd220558e8b9e76"
+  },
+  "nativeProof": {
+    "file": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/batch-004/native-source-proof.json",
+    "sha256": "84e0bc6086b8ae2dec766225e73f1b900a2e9980e73ef7b1ad4d6c0f006b4b08"
+  },
+  "materials": [
+    {
+      "nativeIdentity": "2313e68258ba0197b1b1d1423bc1c2880b4cd5ea2ac4ca8e6d5f2a558f702ed6",
+      "name": "wood3_6",
+      "edition": "rogue",
+      "sourceMasterOnly": true,
+      "verdict": "PASS exact initial source/master replay; physical relief/art/tier acceptance separate",
+      "masterPackage": {
+        "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master/master.json",
+        "sha256": "8a573adbe633ef063332e45081ad96eb7d792d06880eb090e4a1ebbbb052812b"
+      },
+      "sourceInputs": [
+        {
+          "role": "original",
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/originals/native-wood3_6.png",
+          "sha256": "0ad3fb6191a9f3e1e9eb3292c60490ab9159fc4c44ef90ad14571b4e838ee6d6"
+        },
+        {
+          "role": "generated",
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/generated/wood3_6-source-v1.png",
+          "sha256": "972d2189be25b1e3e5652e0f7302f6dd2a1d49765b0910cf215806acb6eec7e8"
+        },
+        {
+          "role": "prompt",
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/prompts/wood3_6-source-v1.txt",
+          "sha256": "b0628d9b62ab308f1ddbdab24f8873a7e282615b6595fdf60da1d084e8e549c8"
+        }
+      ],
+      "producerBindings": {
+        "prepare": {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/prepare_texture_master.py",
+          "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+        },
+        "finish": {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/finish_official_texture.py",
+          "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+        },
+        "derive": {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+          "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+        },
+        "craft": {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/craft_normals.py",
+          "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+        }
+      },
+      "replayedProfileExact": {
+        "bands": [
+          0.8,
+          1,
+          0.5,
+          0.2
+        ],
+        "groove": 0.8,
+        "bump": 0.2,
+        "glow": 0,
+        "strength": 0.3,
+        "cap": 0.5
+      },
+      "storedMasterRGB": {
+        "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master/color.png",
+        "sha256": "1b51a45b4bf2b73e99b02673da925e9f95ed114b4fb3db7ce0bdb1513d39ca1f"
+      },
+      "storedMasterScalar": {
+        "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master/height.npy",
+        "sha256": "ca94f97266c95e9e0f648708e099eaa17e83eb2d6c6f47175fa9fe429575f1eb"
+      },
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/originals/native-wood3_6.png",
+      "originalSha256": "0ad3fb6191a9f3e1e9eb3292c60490ab9159fc4c44ef90ad14571b4e838ee6d6",
+      "dimensions": [
+        512,
+        512
+      ],
+      "journal": {
+        "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/selection.json",
+        "sha256": "c7f26a523e3c8c295337403e8f83a88d2521ef7651eea9951253d802b7b9ade1"
+      }
+    }
+  ],
+  "watchedInputs": [
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/batch-004/native-source-proof.json",
+      "sha256": "84e0bc6086b8ae2dec766225e73f1b900a2e9980e73ef7b1ad4d6c0f006b4b08"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master/master.json",
+      "sha256": "8a573adbe633ef063332e45081ad96eb7d792d06880eb090e4a1ebbbb052812b"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/originals/native-wood3_6.png",
+      "sha256": "0ad3fb6191a9f3e1e9eb3292c60490ab9159fc4c44ef90ad14571b4e838ee6d6"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/generated/wood3_6-source-v1.png",
+      "sha256": "972d2189be25b1e3e5652e0f7302f6dd2a1d49765b0910cf215806acb6eec7e8"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/prompts/wood3_6-source-v1.txt",
+      "sha256": "b0628d9b62ab308f1ddbdab24f8873a7e282615b6595fdf60da1d084e8e549c8"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master/color.png",
+      "sha256": "1b51a45b4bf2b73e99b02673da925e9f95ed114b4fb3db7ce0bdb1513d39ca1f"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master/height.npy",
+      "sha256": "ca94f97266c95e9e0f648708e099eaa17e83eb2d6c6f47175fa9fe429575f1eb"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/selection.json",
+      "sha256": "c7f26a523e3c8c295337403e8f83a88d2521ef7651eea9951253d802b7b9ade1"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/batch-004/wood3_6/verify-source-master.py",
+      "sha256": "a638b5d80264d807abd7534b427258c427d3710b5436fa845dd220558e8b9e76"
+    }
+  ]
+}

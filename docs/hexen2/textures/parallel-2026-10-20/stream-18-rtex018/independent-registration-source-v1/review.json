@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS source-only registration and suitability to continue existing canonical colour-field/master preparation; final palette, scalar relief, decoded tiers and tiling remain unqualified.",
+  "reviewer": "Independent texture agent repair_skill_forward_check",
+  "reviewedAt": "2026-10-21T02:09:49.107210+00:00",
+  "target": {
+    "name": "rtex018",
+    "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6"
+  },
+  "actualSource": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+    "sha256": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef",
+    "dimensions": [
+      512,
+      2048
+    ]
+  },
+  "inMemoryProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-registration-source-v1/in-memory-registration-proof.json",
+    "sha256": "3fd320a1e78c99e4acafc3715427573bf4102d6bde24891e468832fa48120faf",
+    "actualTerminal": {
+      "toolChunk": "efce22",
+      "exitCode": 0,
+      "currentBindingsVerified": 35,
+      "fullRGBExact": true,
+      "PNGBytesExact": true,
+      "twoExistingBOXContactPanelsExact": true
+    }
+  },
+  "visualObservations": [
+    "Viewed actual final512x2048RGB in original detail, native64x256, both BOXcontacts and literal parent boundary/material witnesses. The full724x2172parent overview was displayed683x2048 by the viewer; it is not claimed as a full native-pixel parent inspection. Literal boundary/scene witnesses and final512x2048image supplied the detail views.",
+    "Final source reads as a Gothic window with rough dark brown masonry jambs/frame and darker metal/lead came. Glass carries a stylised painted woodland/sky/water/bridge composition with textured translucent-looking patches, fitting the owner-requested artist depiction. It is not qualified as optically transmitting runtime glass, alpha, refraction or emission.",
+    "Pointed apex, three large circular upper lobes, existing central small four-lobed rosette, both jambs, central mullion and horizontal bar rhythm remain visible. No new lower rosettes observed. Full lower painted panes, bridge/path and narrow sill remain.",
+    "The modest approved unequal minification leaves the circular forms readable without an obvious visually objectionable flattening. Numerical relative vertical shortening3.4991percent remains disclosed; this is resampling, not lossless pixel registration or an assertion of mathematically circular tracery.",
+    "Visible outer edges show retained solid brown jamb material and no external neutral-grey carrier stripe. Parent literal edge witnesses support the crop boundary; in-memory pixel equality proves the final image used that crop and one resize. No added bevel, fill, blur pass, sharpening, seam blending or feature invention occurred in registration.",
+    "At BOX32x128and16x64, layout and main light/dark masses remain representative, but the candidate is visibly brighter, warmer/golden and more contrasty in some pane/scene regions than native. Canonical coarse-colour finishing is still required; these contacts do not establish final palette or decoded-tier ART.",
+    "Fine frame cracks/wear, narrow came and painted scene detail remain readable in the actual final source. Painted trees, sky and bridge are chromatic illustration and must not become embossed terrain in height authoring."
+  ],
+  "literalBoundaryScope": "Actual final single image outer edges and pre-registration literal boundary witnesses were observed. No new repeat/corner image was created, and no full X/Y/corner seam acceptance is claimed. Actual native UV/cropped-window semantics and later decoded repeats remain separate gates.",
+  "custody": {
+    "rawParentPreserved": true,
+    "recipeAnd35CurrentBindingsVerified": true,
+    "builtinReturnCopyExact": true,
+    "originalGenerationCalls": 1,
+    "editCalls": 1,
+    "totalModelCalls": 2,
+    "thisReviewModelCalls": 0,
+    "thisReviewImageFilesWritten": 0,
+    "actualProductionScriptReruns": 0,
+    "rtex054FrozenInputsUnchanged": 187
+  },
+  "observedImages": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+      "sha256": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+      "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+      "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-review/original-source-BOX-div2.png",
+      "sha256": "8aad3e8f5a1f93393a95809c8783a9e000299ecf6d1113c065b84730b72a3571"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-review/original-source-BOX-div4.png",
+      "sha256": "bc12db603dcbfb1b28a4926690b05cfe672497599caf03cc3a5881a932ebb9a6"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/boundary-strips-top-middle-bottom-1to1.png",
+      "sha256": "327d6d9029893a446826e12fc5dd2b01c876cf4ea7c83b596c157151bca9724e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/scene-material-bottom-witnesses-1to1.png",
+      "sha256": "6cfc1c8127ebb54c3ff5208e9a3809c10f55301175ae5d925f58b713493e35f1"
+    }
+  ],
+  "notClaimed": [
+    "New native/PAK/all-mip qualification or historical verdict replacement.",
+    "Final native palette/distance similarity acceptance.",
+    "Relief/master physical qualification or any encoded tier/math/codec acceptance.",
+    "Full repeat/corner boundary acceptance.",
+    "Active source selection, shared catalog/runtime registration, Hexen playability or three-scene variation implementation."
+  ],
+  "nextOwner": "Root/author01: decide canonical immutable source-selection and existing colour-field/master preparation; obtain genuine current source/master proof and source-specific physical review before tiers. Runtime/three-scene work is separate."
+}

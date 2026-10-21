@@ -1,0 +1,90 @@
+✔ staged snapshot includes only index bytes and deletions, preserving working files (66.099083ms)
+✔ staged builds and tests never inherit the hook's Git environment (0.306208ms)
+✔ pinned export survives concurrent index changes without reading private work (94.967875ms)
+✔ texture scope rejects foreign endpoints, deletions, symlinks and submodules (314.345125ms)
+✔ bootstrap admits only exact reviewed changed controls at the exact base (94.418666ms)
+✔ rounded-cap tool, public suite and shared standard are admitted only at exact texture paths (194.615375ms)
+✔ Dev commands include real texture interfaces and HTML, with native commands retained only in full mode (0.36575ms)
+Staged dev-texture checks passed. Receipt: /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-gate-test-jBxC3p/dist/texture-checkpoints/6e16a89642e8b218eb57ac062b8202c03ff7946a/staged-receipt.json
+Commit blocked. Failed staged snapshot retained at /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-UnYlnu
+Commit blocked. Failed staged snapshot retained at /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-qzdrDl
+✔ public Dev orchestration publishes truthful receipt and rejects moved index or failed checks (302.95525ms)
+✔ exclusive texture publication preserves existing directories and symlinks and copies only owned HTML (76.9855ms)
+fatal: path 'assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/catalog.json' does not exist in '4b03ebc2fdf63cb1595761a0891a063c3fbd6670'
+Commit blocked during setup; owned temporary snapshot removed
+✔ failed export and pre-command setup remove only their private temporary directories (218.989208ms)
+Commit blocked. Failed staged snapshot retained at /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-NO5uC5
+✔ default scope fails closed while explicitly authorized full Dev mode reaches only an injected runner (198.539209ms)
+✔ an unstaged executing gate cannot qualify a different staged control implementation (135.417625ms)
+✔ public custody CLI remaps canonical paths into snapshot and rejects changed or missing bytes (236.127458ms)
+✔ Quake scope is precise, including only actual trial interfaces and three additive CLIs (0.150625ms)
+✖ Dev gate runs literal seven inherited and three Quake suites, both custody families, no collector or desktop (0.801958ms)
+✔ reviewed relocation-only bootstrap is explicit and rejects overlapping roots (84.262208ms)
+fatal: Not a valid commit name 0000000000000000000000000000000000000000
+✔ complete catalog history observes merged create/remove, rather than only the final absent tree (242.938666ms)
+✔ first introduction authorization binds actual base, staged addition and catalog SHA; no generic missing fallback (0.4175ms)
+✔ real compact Quake collective custody relocates both origins and never substitutes live bytes (678.868167ms)
+✔ current single-material ART/both-tier framebuffer proof is accepted, generic PASS or held member is not (1179.389459ms)
+✔ collective top-level PASS cannot accept the held or wrong native member (958.038375ms)
+✔ actual RIFF catches lossy data disguised as lossless even with new seals and exact flat pixels (739.055ms)
+✔ Quake rejects altered policy, source-composed schema, wrong role paths, counts and removed IDs (1277.350209ms)
+✔ required external input and reference-root overlap fail; historical external witness is not read (523.516458ms)
+✔ rectangular Quake tiers bind square max-dimension engine framebuffers (682.473125ms)
+✔ ordinary existing X and Y landmark inputs qualify, malformed or unbound registration fails (878.01675ms)
+✔ single-material browser proof cannot substitute another authored channel payload or native ID (748.836959ms)
+✔ non-scalar data and lossless diffuse are rejected by actual pixels/codec despite fresh file seals (817.404625ms)
+fatal: Not a valid commit name 260a3cc5551ed8a8d5b76b03d64a3253813fe420
+Commit blocked during setup; owned temporary snapshot removed
+✔ history observer fails closed on shallow history and first-introduction failure starts no children (158.981ms)
+✔ known composed source requires exact six-field attachment and unchanged immutable prepare fields (3034.674833ms)
+✔ composed journal must bind original raw once, not derived input or a second call (2615.615167ms)
+✔ freshly resealed composed source still fails pixel permutation outside support or a changed shift (2650.922708ms)
+✔ composed numerical/source proof cannot replace missing or held ART and final map closure (2737.213875ms)
+✔ Quake catalog and receipt reject additional tiers instead of silently ignoring them (636.038583ms)
+✔ empty current Quake catalog still validates its family schema paths and codec policy (304.24ms)
+✔ aligned numerical candidate paths cannot borrow a separate valid ART candidate (2270.071542ms)
+✔ aligned ART must bind the accepted current numerical proof and complete sixteen triples (3914.809292ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 36
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 29118.761375
+
+✖ failing tests:
+
+test at tests/staged_contract_test.mjs:167:1
+✖ Dev gate runs literal seven inherited and three Quake suites, both custody families, no collector or desktop (0.801958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      'tests/prepare_texture_master_test.py',
+      'tests/hexen2_texture_tiers_test.py',
+      'tests/texture_batch_review_test.py',
+      'tests/texture_boundary_registration_test.py',
+  ...
+      'tests/texture_motif_master_test.py',
+  +   'tests/texture_rounded_cap_master_test.py',
+      'tests/quake_texture_tiers_test.py',
+      'tests/quake_texture_batch_review_test.py',
+      'tests/texture_boundary_x_registration_test.py'
+    ]
+  
+      at TestContext.<anonymous> (file:///Users/bri/.codex/worktrees/fc24/Quaked/tests/staged_contract_test.mjs:169:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'tests/prepare_texture_master_test.py', 'tests/hexen2_texture_tiers_test.py', 'tests/texture_batch_review_test.py', 'tests/texture_boundary_registration_test.py', 'tests/texture_layered_master_test.py', 'tests/texture_layered_boundary_test.py', 'tests/texture_motif_master_test.py', 'tests/texture_rounded_cap_master_test.py', 'tests/quake_texture_tiers_test.py', 'tests/quake_texture_batch_review_test.py', 'tests/texture_boundary_x_registration_test.py' ],
+    expected: [ 'tests/prepare_texture_master_test.py', 'tests/hexen2_texture_tiers_test.py', 'tests/texture_batch_review_test.py', 'tests/texture_boundary_registration_test.py', 'tests/texture_layered_master_test.py', 'tests/texture_layered_boundary_test.py', 'tests/texture_motif_master_test.py', 'tests/quake_texture_tiers_test.py', 'tests/quake_texture_batch_review_test.py', 'tests/texture_boundary_x_registration_test.py' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

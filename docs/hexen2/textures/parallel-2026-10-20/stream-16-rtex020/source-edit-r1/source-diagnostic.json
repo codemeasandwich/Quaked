@@ -1,0 +1,203 @@
+{
+  "inputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/originals/01-rtex020-e000f2f3924b.png",
+      "sha256": "53f9b965991724fafe1ef3bdf0582f64dba7d456232fd939aee88121ce2a30ff"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/generated/rtex020.png",
+      "sha256": "3574e5e3cb69cf8e99d44d47688fb1b477c823ae52397e8c6998616b6f8db7c3"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/revisions/r1/rtex020-edit-r1.png",
+      "sha256": "ac0bbda8f65d961bbcbe45239cce5812cfa95a0c9713d462181966c3f75746c9"
+    }
+  ],
+  "jointMeasurements": [
+    {
+      "landmark": "leftTop",
+      "native": {
+        "xSpanNative": [
+          4,
+          30
+        ],
+        "searchedYSpanNative": [
+          20,
+          27
+        ],
+        "darkJointCentreNativeEquivalent": 22.5,
+        "contiguousQuarterContrastBandNativeEquivalent": [
+          21.0,
+          23.0
+        ],
+        "sourcePixelRow": 22,
+        "metric": "Rec709 RGB-weighted luminance mean over independent inner joint span, Gaussian sigma.25native pixels; near-minimum contiguous25percent contrast band. Visual mortar interpretation still required."
+      },
+      "edited": {
+        "xSpanNative": [
+          4,
+          30
+        ],
+        "searchedYSpanNative": [
+          20,
+          27
+        ],
+        "darkJointCentreNativeEquivalent": 22.47576099210823,
+        "contiguousQuarterContrastBandNativeEquivalent": [
+          21.645997745208568,
+          22.87260428410372
+        ],
+        "sourcePixelRow": 311,
+        "metric": "Rec709 RGB-weighted luminance mean over independent inner joint span, Gaussian sigma.25native pixels; near-minimum contiguous25percent contrast band. Visual mortar interpretation still required."
+      }
+    },
+    {
+      "landmark": "rightTop",
+      "native": {
+        "xSpanNative": [
+          40,
+          61
+        ],
+        "searchedYSpanNative": [
+          42,
+          49
+        ],
+        "darkJointCentreNativeEquivalent": 44.5,
+        "contiguousQuarterContrastBandNativeEquivalent": [
+          44.0,
+          45.0
+        ],
+        "sourcePixelRow": 44,
+        "metric": "Rec709 RGB-weighted luminance mean over independent inner joint span, Gaussian sigma.25native pixels; near-minimum contiguous25percent contrast band. Visual mortar interpretation still required."
+      },
+      "edited": {
+        "xSpanNative": [
+          40,
+          61
+        ],
+        "searchedYSpanNative": [
+          42,
+          49
+        ],
+        "darkJointCentreNativeEquivalent": 44.55467869222097,
+        "contiguousQuarterContrastBandNativeEquivalent": [
+          43.65276211950395,
+          45.31228861330327
+        ],
+        "sourcePixelRow": 617,
+        "metric": "Rec709 RGB-weighted luminance mean over independent inner joint span, Gaussian sigma.25native pixels; near-minimum contiguous25percent contrast band. Visual mortar interpretation still required."
+      }
+    },
+    {
+      "landmark": "leftBottom",
+      "native": {
+        "xSpanNative": [
+          4,
+          30
+        ],
+        "searchedYSpanNative": [
+          70,
+          79
+        ],
+        "darkJointCentreNativeEquivalent": 73.5,
+        "contiguousQuarterContrastBandNativeEquivalent": [
+          72.0,
+          74.0
+        ],
+        "sourcePixelRow": 73,
+        "metric": "Rec709 RGB-weighted luminance mean over independent inner joint span, Gaussian sigma.25native pixels; near-minimum contiguous25percent contrast band. Visual mortar interpretation still required."
+      },
+      "edited": {
+        "xSpanNative": [
+          4,
+          30
+        ],
+        "searchedYSpanNative": [
+          70,
+          79
+        ],
+        "darkJointCentreNativeEquivalent": 72.9109357384442,
+        "contiguousQuarterContrastBandNativeEquivalent": [
+          72.29763246899662,
+          73.37993235625704
+        ],
+        "sourcePixelRow": 1010,
+        "metric": "Rec709 RGB-weighted luminance mean over independent inner joint span, Gaussian sigma.25native pixels; near-minimum contiguous25percent contrast band. Visual mortar interpretation still required."
+      }
+    },
+    {
+      "landmark": "rightBottom",
+      "native": {
+        "xSpanNative": [
+          40,
+          61
+        ],
+        "searchedYSpanNative": [
+          78,
+          86
+        ],
+        "darkJointCentreNativeEquivalent": 80.5,
+        "contiguousQuarterContrastBandNativeEquivalent": [
+          80.0,
+          82.0
+        ],
+        "sourcePixelRow": 80,
+        "metric": "Rec709 RGB-weighted luminance mean over independent inner joint span, Gaussian sigma.25native pixels; near-minimum contiguous25percent contrast band. Visual mortar interpretation still required."
+      },
+      "edited": {
+        "xSpanNative": [
+          40,
+          61
+        ],
+        "searchedYSpanNative": [
+          78,
+          86
+        ],
+        "darkJointCentreNativeEquivalent": 80.84780157835401,
+        "contiguousQuarterContrastBandNativeEquivalent": [
+          80.30665163472379,
+          81.96617812852311
+        ],
+        "sourcePixelRow": 1120,
+        "metric": "Rec709 RGB-weighted luminance mean over independent inner joint span, Gaussian sigma.25native pixels; near-minimum contiguous25percent contrast band. Visual mortar interpretation still required."
+      }
+    }
+  ],
+  "method": "Reuse independent source-layout measure function unchanged. Same-footprint source-pixel material crops without resampling; BOX32x64 and16x32 native/original/edit columns; literal source repeat/corner views. Diagnostics only.",
+  "callCounts": {
+    "originalGeneration": 1,
+    "edit": 1,
+    "total": 2
+  },
+  "createdMasterOrTiers": false,
+  "images": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/source-edit-r1/edited-Xjoin-1to1.png",
+      "sha256": "43a3f44730ed7bd910b64bfed98050f84dd531a23604e9ece7aa90933eb7adb3"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/source-edit-r1/edited-Yjoin-1to1.png",
+      "sha256": "2360e819b342627efc29e95a20a44bda0789f1b9bc957d28e13795206b75eb21"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/source-edit-r1/edited-corner-1to1.png",
+      "sha256": "db14a71c463dc49221f49238a3b55c0a19878a1681bd2286241bb5329f5e1076"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/source-edit-r1/edited-repeat-1to1.png",
+      "sha256": "cefaea86a490f54a218b0aa891b3579e803b19b98f7af3f3ad68ecf1947c6961"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/source-edit-r1/native-original-edit-BOX16.png",
+      "sha256": "8b248f294ff044344c9a06e76ad8de1fe23f5bb7d6c1d2c8060f0db8468b5dfc"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/source-edit-r1/native-original-edit-BOX32.png",
+      "sha256": "8c03491144653dfb26c13f01c8c2ef739807850f4c7ec8c639c9d3e5e2eec0b6"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/source-edit-r1/original-edit-material-crops-1to1.png",
+      "sha256": "878b46de3f5b3779f5a2e3d4a8683e3b2fc419a04e626681a7205a407db28e25"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "state": "PUBLIC FIXTURE RUN COMPLETE; root independent code review and actual recipe/trial still required",
+  "command": [
+    "/usr/bin/python3",
+    "tests/texture_rounded_cap_master_test.py"
+  ],
+  "startedAt": "2026-10-20T23:46:26.547512+00:00",
+  "completedAt": "2026-10-20T23:47:10.838841+00:00",
+  "exitCode": 0,
+  "fullTerminalLog": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/public-fixture-run-v1.log",
+    "sha256": "a170bc54477480ab24346a4acd448ad40cadf4f3596917516a04219c3f3a6a57"
+  },
+  "codeInputs": {
+    "tools/texture_sheets/prepare_rounded_cap_texture_master.py": "50820aab8136fac2a432e584874d5db2d4e9e9be5e35fae33e7838467694e2c9",
+    "tests/texture_rounded_cap_master_test.py": "20f98de23e66c57541067db0138b1bc7f1e9195cbf472fb4be659ac3f4c43598"
+  },
+  "sixFrozenProducerAndPlanInputsStable": true,
+  "actual054Hold82AndPlan8Stable": true,
+  "actual054TrialExecuted": false,
+  "actual054TierMaps": 0
+}

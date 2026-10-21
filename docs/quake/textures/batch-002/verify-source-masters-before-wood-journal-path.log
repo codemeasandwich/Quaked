@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/batch-002/verify-source-masters-before-wood-journal-path.py", line 39, in <module>
+    journal=base/'selection.json';j=json.loads(read(journal));entry=next(i for i in j['items']if i['id']==native['nativeIdentity'])
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/batch-002/verify-source-masters-before-wood-journal-path.py", line 12, in read
+    p=Path(p).resolve();p.relative_to(ROOT);b=p.read_bytes()
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/pathlib.py", line 1249, in read_bytes
+    with self.open(mode='rb') as f:
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/pathlib.py", line 1242, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/pathlib.py", line 1110, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/selection.json'

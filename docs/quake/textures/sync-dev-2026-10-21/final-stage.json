@@ -1,0 +1,37 @@
+{
+  "at": "2026-10-21T09:09:41.286417+00:00",
+  "tree": "09078d08e84db0d6df812c985d99cf6422688d51",
+  "parents": [
+    "ed603b16f261e475583ffa95bb26b19f87e7a38e",
+    "de49ef8f6eb130011fe9ea170d881c756229dc74"
+  ],
+  "frozenOverlay": {
+    "file": "docs/quake/textures/sync-dev-2026-10-21/final-owned-overlay.json",
+    "sha256": "e89b69dfdc047532ca7a362c41d35e53ccc9270211899b14a1fe0939b700ba79"
+  },
+  "appendedFinalReviews": [
+    {
+      "file": "docs/quake/textures/sync-dev-2026-10-21/independent-scope/final-refresh-review.json",
+      "sha256": "fc785ba80dab89eb3baaeef54ab92fc82ba8b42102750cd17e2f42d0597de329"
+    },
+    {
+      "file": "docs/quake/textures/sync-dev-2026-10-21/independent-plan/FINAL.md",
+      "sha256": "2aafb88364af9d8a69d9f43a85cf31f7ac9df0e67ce342d2bb99ab906a59ed57"
+    },
+    {
+      "file": "docs/quake/textures/sync-dev-2026-10-21/independent-plan/final-exact-controls-review.json",
+      "sha256": "c5cb640e94291276c25a6cc5148017f154523fe5d8868e456700c09f815c8b9e"
+    },
+    {
+      "file": "docs/quake/textures/sync-dev-2026-10-21/independent-plan/reviewed-bootstrap.json",
+      "sha256": "6d5cc0753f5699dbfc580485654b98aaa58e63c7c0092f2de067f6f3a84abc9a"
+    },
+    {
+      "file": "docs/quake/textures/sync-dev-2026-10-21/independent-plan/final-exact-ogre-scope-public.log",
+      "sha256": "2d82db0f48f992f3632aebde7fa4b1291fa0fb38f5572345cf7ccf6778d69ebb"
+    }
+  ],
+  "bootstrapSha256": "6d5cc0753f5699dbfc580485654b98aaa58e63c7c0092f2de067f6f3a84abc9a",
+  "scope": "Exact true-merged index; no source/main indexwrites; normal17-command HTML-only gate required. No nativebuild/release.",
+  "remoteCI": "Commitmessage skipci honors ownerprohibition on nativeCI for texturework. Localmaintained17-command gate remainsrequired. No remoteCI PASS claimed."
+}

@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "approvedAt": "2026-10-21T05:16:39.439792+00:00",
+  "reviewer": "/root",
+  "verdict": "APPROVE one guarded master-resolution layered trial ONLY; no tier/ART qualification",
+  "recipe": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-recipe-proposal-v4.json",
+    "sha256": "8793c794047079196d81c50c7b0436fae7a6d54fcdab1ab5f79e2535211a73fc"
+  },
+  "sourceRGBPlan": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-layer-plan-v4.json",
+    "sha256": "6570b757b1522a4455d82347b0d530267a28b2169aa38f46f3ea31d2fe450497"
+  },
+  "independentMaskReview": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v1/review.json",
+    "sha256": "0b5929c7e7e04838ab648892cdc8d83cf412e8831a2a942163cbe7bf9c205b34"
+  },
+  "genuineSourceMasterProof": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/root-source-master-proof.json",
+    "sha256": "8ecda6ba7027644fd2eaa31d6491c967489347bddfe044c8ac898ac3d9ed1a19"
+  },
+  "actualRootViewed": [
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v4/overlay-quadrant-1.png",
+      "sha256": "909b86ad6017ce548497a4a99ce46442e3e60d017986bc974d00834962819252"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v4/overlay-quadrant-2.png",
+      "sha256": "457e1ab535f92f2c2ea38d2c37dbfbc164371c9a97a464a2242f7b92fa73d05c"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v4/overlay-quadrant-3.png",
+      "sha256": "d78aa9fb6fa754915a379db32c33bdb932af37ec9f77ced3b4b4d7d641d49c53"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v4/overlay-quadrant-4.png",
+      "sha256": "6cef40e8ee6fd70d25460643d6faf0e1f3ef7626c96b3654dcea769f6ef56d5a"
+    }
+  ],
+  "findings": [
+    "V4 masks actual mortar contacts rather than V3 invented cuts through intact faces.",
+    "Lower brickRegions is mortar; warm/pale/dark solid brick interiors remain facing.",
+    "Narrow core geometry leaves outer chipped arris/shoulders uncertain: actual fullfloat/XYZ/opposed-light review must judge them, not only fixed means.",
+    "Original draft pigment-relief HOLD, V3 mask failures and mixed green witness remain preserved; no witness substitution clears them."
+  ],
+  "approvedCommand": [
+    "/usr/bin/python3",
+    "tools/texture_sheets/prepare_layered_texture_master.py",
+    "--recipe",
+    "docs/quake/textures/batch-005/TF_Brick1_01/layered-recipe-proposal-v4.json",
+    "--output",
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-layered-v1"
+  ],
+  "parameters": {
+    "referenceSize": [
+      128,
+      128
+    ],
+    "facingHeight": 0.985,
+    "brickHeight": 0.935,
+    "chipFloor": 0.962,
+    "microAmplitude": 0.004,
+    "bevelPixels": 0.35
+  },
+  "limits": [
+    "No producer/control changes or model call. Parent/raw/native/prompt remain immutable.",
+    "New colour must be byte-identical to source RGB; one1024fullfloat scalar trial only.",
+    "Root and separate reviewer must inspect actual resulting relief and source-specific witnesses before either512/1024tier is encoded.",
+    "Historical original image invocation/calltotal remains unproved; no invented history."
+  ]
+}

@@ -1,0 +1,213 @@
+{
+  "scope": "Existing manually classified face/joint witnesses carried to decoded both-tier height maps; no exhaustive displacement acceptance",
+  "tiers": [
+    {
+      "tier": "Mid",
+      "heightMap": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/mid-height.webp",
+      "sha256": "a9087bf56bacd0bc14116cfd2d29d033464d40c4602bbc49cc9f94d8317e70e1",
+      "witnesses": [
+        {
+          "faceCoordinate": [
+            105,
+            60
+          ],
+          "faceHeight": 0.35294117647058826,
+          "faceNeighborhoodMean": 0.27262745098039215,
+          "jointCoordinate": [
+            129,
+            60
+          ],
+          "jointHeight": 0.2,
+          "jointNeighborhoodMean": 0.15043137254901962,
+          "faceAboveJointCentral": true,
+          "faceAboveJointNeighborhood": true
+        },
+        {
+          "faceCoordinate": [
+            155,
+            87
+          ],
+          "faceHeight": 0.3843137254901961,
+          "faceNeighborhoodMean": 0.5347450980392157,
+          "jointCoordinate": [
+            129,
+            87
+          ],
+          "jointHeight": 0.03137254901960784,
+          "jointNeighborhoodMean": 0.08454901960784314,
+          "faceAboveJointCentral": true,
+          "faceAboveJointNeighborhood": true
+        },
+        {
+          "faceCoordinate": [
+            100,
+            107
+          ],
+          "faceHeight": 0.7215686274509804,
+          "faceNeighborhoodMean": 0.5949803921568627,
+          "jointCoordinate": [
+            100,
+            127
+          ],
+          "jointHeight": 0.06666666666666667,
+          "jointNeighborhoodMean": 0.20282352941176474,
+          "faceAboveJointCentral": true,
+          "faceAboveJointNeighborhood": true
+        },
+        {
+          "faceCoordinate": [
+            142,
+            145
+          ],
+          "faceHeight": 0.7843137254901961,
+          "faceNeighborhoodMean": 0.5930980392156863,
+          "jointCoordinate": [
+            142,
+            127
+          ],
+          "jointHeight": 0.03529411764705882,
+          "jointNeighborhoodMean": 0.14729411764705883,
+          "faceAboveJointCentral": true,
+          "faceAboveJointNeighborhood": true
+        },
+        {
+          "faceCoordinate": [
+            42,
+            187
+          ],
+          "faceHeight": 0.6784313725490196,
+          "faceNeighborhoodMean": 0.5814901960784314,
+          "jointCoordinate": [
+            65,
+            187
+          ],
+          "jointHeight": 0.03137254901960784,
+          "jointNeighborhoodMean": 0.021490196078431372,
+          "faceAboveJointCentral": true,
+          "faceAboveJointNeighborhood": true
+        },
+        {
+          "faceCoordinate": [
+            175,
+            192
+          ],
+          "faceHeight": 0.23921568627450981,
+          "faceNeighborhoodMean": 0.2542745098039216,
+          "jointCoordinate": [
+            195,
+            192
+          ],
+          "jointHeight": 0.06274509803921569,
+          "jointNeighborhoodMean": 0.08062745098039216,
+          "faceAboveJointCentral": true,
+          "faceAboveJointNeighborhood": true
+        }
+      ],
+      "allCentralAndNeighborhoodOrderPass": true
+    },
+    {
+      "tier": "High",
+      "heightMap": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/high-height.webp",
+      "sha256": "9b908870ad065ca06b33d2955e6847fc7afd740d7c09cabb3b85ac1dfb3238d7",
+      "witnesses": [
+        {
+          "faceCoordinate": [
+            210,
+            120
+          ],
+          "faceHeight": 0.3215686274509804,
+          "faceNeighborhoodMean": 0.2909803921568628,
+          "jointCoordinate": [
+            258,
+            120
+          ],
+          "jointHeight": 0.18823529411764706,
+          "jointNeighborhoodMean": 0.16690196078431374,
+          "faceAboveJointCentral": true,
+          "faceAboveJointNeighborhood": true
+        },
+        {
+          "faceCoordinate": [
+            310,
+            175
+          ],
+          "faceHeight": 0.4392156862745098,
+          "faceNeighborhoodMean": 0.5124705882352941,
+          "jointCoordinate": [
+            259,
+            175
+          ],
+          "jointHeight": 0.03137254901960784,
+          "jointNeighborhoodMean": 0.04862745098039215,
+          "faceAboveJointCentral": true,
+          "faceAboveJointNeighborhood": true
+        },
+        {
+          "faceCoordinate": [
+            200,
+            215
+          ],
+          "faceHeight": 0.6705882352941176,
+          "faceNeighborhoodMean": 0.6494117647058824,
+          "jointCoordinate": [
+            200,
+            254
+          ],
+          "jointHeight": 0.0392156862745098,
+          "jointNeighborhoodMean": 0.07262745098039215,
+          "faceAboveJointCentral": true,
+          "faceAboveJointNeighborhood": true
+        },
+        {
+          "faceCoordinate": [
+            285,
+            290
+          ],
+          "faceHeight": 0.7294117647058823,
+          "faceNeighborhoodMean": 0.6414117647058823,
+          "jointCoordinate": [
+            285,
+            254
+          ],
+          "jointHeight": 0.023529411764705882,
+          "jointNeighborhoodMean": 0.027764705882352945,
+          "faceAboveJointCentral": true,
+          "faceAboveJointNeighborhood": true
+        },
+        {
+          "faceCoordinate": [
+            85,
+            375
+          ],
+          "faceHeight": 0.7137254901960784,
+          "faceNeighborhoodMean": 0.6512941176470589,
+          "jointCoordinate": [
+            130,
+            375
+          ],
+          "jointHeight": 0.023529411764705882,
+          "jointNeighborhoodMean": 0.02117647058823529,
+          "faceAboveJointCentral": true,
+          "faceAboveJointNeighborhood": true
+        },
+        {
+          "faceCoordinate": [
+            350,
+            385
+          ],
+          "faceHeight": 0.27058823529411763,
+          "faceNeighborhoodMean": 0.263843137254902,
+          "jointCoordinate": [
+            391,
+            385
+          ],
+          "jointHeight": 0.058823529411764705,
+          "jointNeighborhoodMean": 0.06384313725490195,
+          "faceAboveJointCentral": true,
+          "faceAboveJointNeighborhood": true
+        }
+      ],
+      "allCentralAndNeighborhoodOrderPass": true
+    }
+  ]
+}

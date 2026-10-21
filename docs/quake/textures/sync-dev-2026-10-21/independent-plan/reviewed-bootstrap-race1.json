@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "baseCommit": "ae03a8b23a74fdf598e41aa824ca4ac81a6f4c95",
+  "reviewedBy": "/root/owner_repair_tool_review",
+  "authority": "Owner requested all owned Quake work merged to Dev and Dev pulled into fc24 while preserving the other agent's published box artwork. Independent exact unchanged-control review authorizes only the existing texture/HTML gate at this new remote base; no artwork/runtime/native/release acceptance.",
+  "controls": {
+    "tools/distribution/precommit.mjs": "763953bca9c92f2153be87f67b645e200bce0f6ba0e008333364e5ebaa608bd5",
+    "tests/staged_contract_test.mjs": "ae2b3eea84318ac12aa925a1de008f6638aace353c9ea5a25e05f3cf9b753f01",
+    "tools/texture_sheets/check_texture_catalog_custody.py": "639b622a46e74d444cce100b5cbf7c70b928c6c4712d9ef103f165e26e04cbc1"
+  },
+  "referenceRoots": [
+    "/Users/bri/SOURCE/Quaked",
+    "/Users/bri/.codex/worktrees/fc24/Quaked"
+  ],
+  "initialQuakeCatalog": {
+    "path": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/catalog.json",
+    "anchorCommit": "260a3cc5551ed8a8d5b76b03d64a3253813fe420",
+    "stagedSha256": "9356d6637b0fcec5b87b5d74a6746ec909d44430d1f034b9c33edbab7786f447",
+    "authority": "Owner authorized the owned Quake Dev checkpoint and safe remote-race reconciliation. Independently reverified complete1107commit never-present history at exact ae03a8b23a74fdf598e41aa824ca4ac81a6f4c95 and exact staged catalogue addition; retain all HOLD and prior acceptance boundaries."
+  }
+}

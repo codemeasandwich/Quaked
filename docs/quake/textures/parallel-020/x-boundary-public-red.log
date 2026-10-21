@@ -1,0 +1,118 @@
+test_exact_nonsquare_x_poisson_and_final_float_height (__main__.BoundaryXCLI) ... FAIL
+test_existing_and_dangling_destinations_preserved (__main__.BoundaryXCLI) ... FAIL
+test_metadata_precision_profile_and_source_tool_guards (__main__.BoundaryXCLI) ... FAIL
+test_noop_y_joint_saturation_and_geometry_remain_unqualified (__main__.BoundaryXCLI) ... test_recipe_proof_native_and_operator_binding_guards (__main__.BoundaryXCLI) ... FAIL
+test_rehashed_rgb_and_scalar_cannot_bypass_source_replay (__main__.BoundaryXCLI) ... FAIL
+
+======================================================================
+FAIL: test_exact_nonsquare_x_poisson_and_final_float_height (__main__.BoundaryXCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 116, in test_exact_nonsquare_x_poisson_and_final_float_height
+    expected,raw,smooth=x_oracle(old);out,r=self.success()
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 107, in success
+    result,out=self.run_cli(f);self.assertEqual(result.returncode,0,result.stderr)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 97, in run_cli
+    f=f or self.f;self.assertTrue(f['cli'].is_file(),'X adapter absent: RED prerequisite')
+AssertionError: False is not true : X adapter absent: RED prerequisite
+
+======================================================================
+FAIL: test_existing_and_dangling_destinations_preserved (__main__.BoundaryXCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 176, in test_existing_and_dangling_destinations_preserved
+    out,_=self.success();before={p:p.read_bytes()for p in out.iterdir()}
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 107, in success
+    result,out=self.run_cli(f);self.assertEqual(result.returncode,0,result.stderr)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 97, in run_cli
+    f=f or self.f;self.assertTrue(f['cli'].is_file(),'X adapter absent: RED prerequisite')
+AssertionError: False is not true : X adapter absent: RED prerequisite
+
+======================================================================
+FAIL: test_metadata_precision_profile_and_source_tool_guards (__main__.BoundaryXCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 166, in test_metadata_precision_profile_and_source_tool_guards
+    self.restore();m=json.loads(self.f['package'].read_text());change(m);self.seal(master=m);self.reject()
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 112, in reject
+    result,out=self.run_cli(f);self.assertNotEqual(result.returncode,0,result.stdout);self.assertFalse(out.exists())
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 97, in run_cli
+    f=f or self.f;self.assertTrue(f['cli'].is_file(),'X adapter absent: RED prerequisite')
+AssertionError: False is not true : X adapter absent: RED prerequisite
+
+======================================================================
+FAIL: test_noop_y_joint_saturation_and_geometry_remain_unqualified (__main__.BoundaryXCLI) (style='flat')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 131, in test_noop_y_joint_saturation_and_geometry_remain_unqualified
+    out,r=self.success(f);self.assertEqual(Image.open(out/'color.png').tobytes(),expected.tobytes())
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 107, in success
+    result,out=self.run_cli(f);self.assertEqual(result.returncode,0,result.stderr)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 97, in run_cli
+    f=f or self.f;self.assertTrue(f['cli'].is_file(),'X adapter absent: RED prerequisite')
+AssertionError: False is not true : X adapter absent: RED prerequisite
+
+======================================================================
+FAIL: test_noop_y_joint_saturation_and_geometry_remain_unqualified (__main__.BoundaryXCLI) (style='y-joint')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 131, in test_noop_y_joint_saturation_and_geometry_remain_unqualified
+    out,r=self.success(f);self.assertEqual(Image.open(out/'color.png').tobytes(),expected.tobytes())
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 107, in success
+    result,out=self.run_cli(f);self.assertEqual(result.returncode,0,result.stderr)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 97, in run_cli
+    f=f or self.f;self.assertTrue(f['cli'].is_file(),'X adapter absent: RED prerequisite')
+AssertionError: False is not true : X adapter absent: RED prerequisite
+
+======================================================================
+FAIL: test_noop_y_joint_saturation_and_geometry_remain_unqualified (__main__.BoundaryXCLI) (style='saturated')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 131, in test_noop_y_joint_saturation_and_geometry_remain_unqualified
+    out,r=self.success(f);self.assertEqual(Image.open(out/'color.png').tobytes(),expected.tobytes())
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 107, in success
+    result,out=self.run_cli(f);self.assertEqual(result.returncode,0,result.stderr)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 97, in run_cli
+    f=f or self.f;self.assertTrue(f['cli'].is_file(),'X adapter absent: RED prerequisite')
+AssertionError: False is not true : X adapter absent: RED prerequisite
+
+======================================================================
+FAIL: test_noop_y_joint_saturation_and_geometry_remain_unqualified (__main__.BoundaryXCLI) (style='geometry')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 131, in test_noop_y_joint_saturation_and_geometry_remain_unqualified
+    out,r=self.success(f);self.assertEqual(Image.open(out/'color.png').tobytes(),expected.tobytes())
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 107, in success
+    result,out=self.run_cli(f);self.assertEqual(result.returncode,0,result.stderr)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 97, in run_cli
+    f=f or self.f;self.assertTrue(f['cli'].is_file(),'X adapter absent: RED prerequisite')
+AssertionError: False is not true : X adapter absent: RED prerequisite
+
+======================================================================
+FAIL: test_recipe_proof_native_and_operator_binding_guards (__main__.BoundaryXCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 143, in test_recipe_proof_native_and_operator_binding_guards
+    r=copy.deepcopy(baseline);change(r);self.f['recipe'].write_text(json.dumps(r));self.reject()
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 112, in reject
+    result,out=self.run_cli(f);self.assertNotEqual(result.returncode,0,result.stdout);self.assertFalse(out.exists())
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 97, in run_cli
+    f=f or self.f;self.assertTrue(f['cli'].is_file(),'X adapter absent: RED prerequisite')
+AssertionError: False is not true : X adapter absent: RED prerequisite
+
+======================================================================
+FAIL: test_rehashed_rgb_and_scalar_cannot_bypass_source_replay (__main__.BoundaryXCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 155, in test_rehashed_rgb_and_scalar_cannot_bypass_source_replay
+    m[role]['sha256']=sha(p.read_bytes());self.seal(master=m);self.reject()
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 112, in reject
+    result,out=self.run_cli(f);self.assertNotEqual(result.returncode,0,result.stdout);self.assertFalse(out.exists())
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/texture_boundary_x_registration_test.py", line 97, in run_cli
+    f=f or self.f;self.assertTrue(f['cli'].is_file(),'X adapter absent: RED prerequisite')
+AssertionError: False is not true : X adapter absent: RED prerequisite
+
+----------------------------------------------------------------------
+Ran 6 tests in 2.097s
+
+FAILED (failures=9)

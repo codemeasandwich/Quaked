@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T07:17:11.071086+00:00",
+  "scope": "Existing finisher actual legacy-source no-op control, in memory only; no corrected pixels/output authored",
+  "source": {
+    "file": "assets/game/textures/city5_8.webp",
+    "sha256": "4a4ec5964e891de99b377cf03d57aba5d941070f7beef518ef774526cf125a13"
+  },
+  "native": {
+    "file": "docs/quake/textures/owner-art-repair-2026-10-21/root-city5_8-before/native.png",
+    "sha256": "b7e567df51c617ca5f9f2d378e4d447211018ba9da4821fd7b614d2c60ac905e"
+  },
+  "tool": {
+    "file": "tools/texture_sheets/finish_official_texture.py",
+    "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+  },
+  "settings": {
+    "factor": 4,
+    "color_strength": 0,
+    "field_sigma": 0.75,
+    "comparison_divisor": 2,
+    "method": "photographic",
+    "vertical_landmarks": null,
+    "edge_anchor": false
+  },
+  "pixelsCompared": 65536,
+  "channelsCompared": 196608,
+  "allChannelsExact": true,
+  "receipt": {
+    "method": "photographic",
+    "factor": 4,
+    "verticalLandmarks": null,
+    "colorStrength": 0,
+    "fieldSigma": 0.75,
+    "edgeAnchor": false,
+    "comparisonDivisor": 2,
+    "comparisonDimensions": [
+      32,
+      32
+    ],
+    "distanceMeanMaxError": 76.390625,
+    "distanceMeanMAE": 14.801284790039062,
+    "donorDistanceMAE": 14.801284790039062,
+    "newClippedChannelFraction": 0.0,
+    "donorContourCorrelation": 1.0,
+    "sourceMean": [
+      75.0244140625,
+      51.4267578125,
+      30.9052734375
+    ],
+    "outputMean": [
+      79.54859924316406,
+      54.12577819824219,
+      34.98628234863281
+    ],
+    "donorBoundaries": {
+      "wrap_x_mean": 26.122395833333336,
+      "wrap_y_mean": 24.1171875,
+      "interior_x_mean": 12.598651960784315,
+      "interior_y_mean": 17.08654003267974
+    },
+    "boundaries": {
+      "wrap_x_mean": 26.122395833333336,
+      "wrap_y_mean": 24.1171875,
+      "interior_x_mean": 12.598651960784315,
+      "interior_y_mean": 17.08654003267974
+    },
+    "passedDistanceCheck": null,
+    "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review."
+  },
+  "next": "Measure actual source/native geometry; independent plan before one minimal changed candidate."
+}

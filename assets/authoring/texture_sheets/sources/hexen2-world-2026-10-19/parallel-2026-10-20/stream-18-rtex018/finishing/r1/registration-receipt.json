@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "state": "registered-candidate-awaiting-visual-source-review",
+  "recipe": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/proposed-recipe.json",
+    "sha256": "01bc357f7c9a77f1e75b340ca2d249f762bd09c7793aad23ab55d8f1b50dd1fb"
+  },
+  "parent": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+    "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+  },
+  "operation": "one crop then one down-only LANCZOS resize",
+  "cropXYXYHalfOpen": [
+    100,
+    0,
+    624,
+    2172
+  ],
+  "croppedDimensions": [
+    524,
+    2172
+  ],
+  "output": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+    "sha256": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef",
+    "dimensions": [
+      512,
+      2048
+    ],
+    "mode": "RGB",
+    "format": "lossless authoring PNG"
+  },
+  "tool": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/execute-once.py",
+    "sha256": "4556433ced071f150eb299714c863799c833118946648fb553d16ab1af0212a2"
+  },
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "pillow": "10.1.0"
+  },
+  "originalGenerationCalls": 1,
+  "editCalls": 1,
+  "totalModelCalls": 2,
+  "sourceARTAccepted": false,
+  "activeSourceSelected": false,
+  "masterOrTierCreated": false
+}

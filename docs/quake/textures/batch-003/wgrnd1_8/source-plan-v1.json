@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T18:31:47.434654+00:00",
+  "status": "PLAN ONLY; no image request or generation journal issued",
+  "scope": "One shared photographic source/master/tier package for two proven selected USED native aliases; retain separate names, strongIDs and Low bindings.",
+  "canonicalBinding": {
+    "name": "wgrnd1_8",
+    "edition": "quake-official",
+    "nativeIdentity": "ef228ee70fa781e81d42101f8075fa3accf26ef98b8a044859250a199f70ccab",
+    "original": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/wgrnd1_8/originals/native-wgrnd1_8.png",
+      "sha256": "f935750e172a50fa4d6c2b79f3fa68933c6c0dfc7cd62c5acf7d66d3f0f675dd"
+    },
+    "dimensions": [
+      64,
+      64
+    ]
+  },
+  "aliasBinding": {
+    "name": "ground1_8",
+    "nativeIdentity": "b944aece7bcf3a126b73cdba6210ddba1704de6ea95a93b785dcdefc1d218e2d",
+    "original": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_8/originals/native-ground1_8.png",
+      "sha256": "f935750e172a50fa4d6c2b79f3fa68933c6c0dfc7cd62c5acf7d66d3f0f675dd"
+    },
+    "contentAliasOf": "ef228ee70fa781e81d42101f8075fa3accf26ef98b8a044859250a199f70ccab"
+  },
+  "actualSelectedAliasProof": {
+    "file": "docs/quake/textures/batch-003/wgrnd1_8/selected-alias-proof.json",
+    "sha256": "7e61a812046d38d49c12876ea40238e19419e19ae029fc13d9380028cfb94432"
+  },
+  "rootNativeProof": {
+    "file": "docs/quake/textures/batch-003/native-source-proof.json",
+    "sha256": "cf6402a72b96daa09339d6ed3b4b14d5c8a2d5eb0943e3789a7787cb0dbd6111"
+  },
+  "aliasContract": [
+    "Current PACK/BSP reconstruction proves exact palette/indexed/RGBA/all4mip bytes, dimensions, ordinary flags[0], native semantics and originalPNG bytes across five used occurrences. Names differ; retain both strongIDs.",
+    "One unused embedded ground1_8 flags[] occurrence was reconstructed but explicitly excluded. It is not an alias.",
+    "One future qualified photo, one canonical RGB/float master and ten physical maps may serve both selected bindings only after shared-package acceptance. Each Low retains its own native reference. Different perfaceUV usage is not equated."
+  ],
+  "material": {
+    "chosen": "Natural mossy weathered rocky ground: low flattened irregular warm grey-brown/pinkish-brown mineral faces in compact earth, with dark muted olive moss in shallow crevices.",
+    "uncertainty": "The64pixel native suggests mossy stone-and-earth patches but cannot prove exact geology, species or dampness. Choose a matte plausible interpretation; infer no water/alpha semantics from the w prefix.",
+    "forms": "Broad warm mineral islands and olive recess network keep their native phase/scale. No regular masonry, pebble grid, newly subdivided stones or one large invented slab.",
+    "ownerDetail": "Subtle coherent pores, worn chips, modest mineral variation and low sparse moss structure. No uniform grain, glossy crystals or new dominant feature.",
+    "viewed": "Actualnative64, nearest8x interpretation, native3x3repeat and BOX32/16 without exposure changes.",
+    "evidence": [
+      {
+        "file": "docs/quake/textures/batch-003/wgrnd1_8/native-nearest8.png",
+        "sha256": "96f9bf1beb27ce1ee72d75bdecabc47ce8cc09406975151ca671255bc57884d1"
+      },
+      {
+        "file": "docs/quake/textures/batch-003/wgrnd1_8/native-repeat3-nearest4.png",
+        "sha256": "c9b2498cdd96c60874eb23574686bb3d2538d44e4352050f79a1356f0664c713"
+      },
+      {
+        "file": "docs/quake/textures/batch-003/wgrnd1_8/native-box-distance.png",
+        "sha256": "3727317b9dcb24c9f7e7d8e78bccd8a95bb71413ab7223af1d6fe7983ad567bc"
+      },
+      {
+        "file": "docs/quake/textures/batch-003/wgrnd1_8/native-box-32.png",
+        "sha256": "9185511146ec36f05c2f0c84d082bc8bafc864905a892b44c93c5b5037c58a64"
+      },
+      {
+        "file": "docs/quake/textures/batch-003/wgrnd1_8/native-box-16.png",
+        "sha256": "da02e52fbcc5e9c3ce2ba2c6e14b02eb6072c860724a1a4f5f120e04bf899691"
+      }
+    ]
+  },
+  "adequateSourceReuseSearch": {
+    "filenameSearch": "rg --files over assets/authoring/texture_sheets/sources and tools/texture_sheets/sources finds only the two named native originals.",
+    "metadataSearch": "Exact-name JSON search finds historical inventory/audit locators. Inspected all58, all111 and global79 provenance records mark both names missing with no replacement path. No adequate named raw was found.",
+    "evidence": [
+      {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/inventory-all58.json",
+        "sha256": "3f19e8ac02db3e072374326995a4b9bc2ff79aca8978a5315f7d3e5d98561366"
+      },
+      {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/all111-inventory.json",
+        "sha256": "46de17f23195ff8e259eab22d850620aff3876431499538ca58de57c1da7ec41"
+      },
+      {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/global-world-standards-all79-audit-provenance-index-draft.json",
+        "sha256": "069baf3a70b63411a35a84e19b1e5c73c50abb1125c5696ae4f633dbec2c47b8"
+      }
+    ],
+    "limit": "Bounded retained-source search; no claim about unidentified external images."
+  },
+  "prompt": {
+    "file": "docs/quake/textures/batch-003/wgrnd1_8/prompt-v1.txt",
+    "sha256": "f9fea6c845063c8c87167ca0a3abda608eea5e0b8d70f4b8705814bba9526b38"
+  },
+  "imageCall": {
+    "tool": "built-in image_gen.imagegen",
+    "nativeOnlyReference": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/wgrnd1_8/originals/native-wgrnd1_8.png",
+      "sha256": "f935750e172a50fa4d6c2b79f3fa68933c6c0dfc7cd62c5acf7d66d3f0f675dd"
+    },
+    "otherAIPhoto": false,
+    "requestedDimensions": [
+      1024,
+      1024
+    ],
+    "minimumDimensions": [
+      512,
+      512
+    ],
+    "transparentBackground": false,
+    "maxCalls": 1,
+    "noRetryAPIOrModelOverride": true
+  },
+  "journalProposal": {
+    "selection": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/wgrnd1_8/selection.json",
+    "historicalKnownSharedContentCalls": 0,
+    "requestOrdinal": 1,
+    "cumulativeKnownCallsAfterIssue": 1,
+    "canonicalItem": {
+      "id": "ef228ee70fa781e81d42101f8075fa3accf26ef98b8a044859250a199f70ccab",
+      "name": "wgrnd1_8",
+      "edition": "quake-official",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/wgrnd1_8/originals/native-wgrnd1_8.png",
+      "originalSha256": "f935750e172a50fa4d6c2b79f3fa68933c6c0dfc7cd62c5acf7d66d3f0f675dd",
+      "prompt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/wgrnd1_8/prompts/wgrnd1_8-shared-source-v1.txt",
+      "promptSha256": "f9fea6c845063c8c87167ca0a3abda608eea5e0b8d70f4b8705814bba9526b38",
+      "generationCount": 0,
+      "generationState": "not-issued"
+    },
+    "contentAliases": [
+      {
+        "id": "b944aece7bcf3a126b73cdba6210ddba1704de6ea95a93b785dcdefc1d218e2d",
+        "name": "ground1_8",
+        "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_8/originals/native-ground1_8.png",
+        "originalSha256": "f935750e172a50fa4d6c2b79f3fa68933c6c0dfc7cd62c5acf7d66d3f0f675dd",
+        "contentAliasOf": "ef228ee70fa781e81d42101f8075fa3accf26ef98b8a044859250a199f70ccab",
+        "sourceRequestAuthorized": false,
+        "aliasProof": {
+          "file": "docs/quake/textures/batch-003/wgrnd1_8/selected-alias-proof.json",
+          "sha256": "7e61a812046d38d49c12876ea40238e19419e19ae029fc13d9380028cfb94432"
+        }
+      }
+    ],
+    "mechanism": "After root review, copy exact prompt into canonical batch and use unchanged generation_journal issue/retain for one canonical item. Store alias bindings separately at top level; they are not issuable requests. Retain exact tool output, actual dimensions/mode/hash; poll same handle on uncertainty, never duplicate.",
+    "retainedRaw": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/wgrnd1_8/generated/wgrnd1_8-shared-source-v1.png"
+  },
+  "gates": [
+    "Actual raw at1:1 must visibly read as weathered mineral ground with low moss, not painted/grain-only/drawn abstraction. Actual square source at least512, no upscaling.",
+    "BOTH native and replacement BOX32/16 must retain warm mineral islands, muted olive distribution, broad patch scale and style. Similarity, not pixel identity.",
+    "Actual X/Y strips,2x2repeat and corners: reject visible straight phase bands, borders or large face cutoffs. Judge incidental fine detail at intended tier scale.",
+    "If viable use unchanged prepare CLI once for512RGB/fullfloat master, stone profile, photographic .65/.75 and .3/.5 normals. No new numerical repair or separate alias/tier source.",
+    "Inspect actual source-specific stone/crevice/moss witnesses, float height and opposed lights before encoding. Faces sit plausibly above shallow gaps; hue alone must not emboss moss or pigment as a separate object.",
+    "Both Mid256/default and High512 derive directly from same uncompressed master. Quake colourQ92/method6 and losslessheight/XYZ method6, exact intended8bit channels.",
+    "Root independent source/math/codec/finalART and actualwebGPU acceptance before catalog promotion or art-alias acceptance. Native alias proof alone qualifies no artwork."
+  ],
+  "preservedObligations": {
+    "ground1_4": "Completed candidate retained for root web/math/ART, unchanged by this lane.",
+    "rock3_2": "Contextual edit/composite remains ART-HOLD; no further rock call authorized.",
+    "owner": "Root coordinator retains earlier qualification/repair obligations and full campaign objective."
+  },
+  "prohibited": [
+    "No call before root independent plan review",
+    "No duplicate alias or separate tier generation",
+    "No unused flags[] alias",
+    "No oldraw/master/receipt overwrite, Git/catalog/Hexen edits, desktopbuild or newframework",
+    "No native/source evidence promoted to owner/runtime/landing/CI/release acceptance"
+  ],
+  "nextOwner": "Root coordinator: review exact native material interpretation/prompt and selected-used alias proof; authorize one shared source if approved. This plan issues none."
+}

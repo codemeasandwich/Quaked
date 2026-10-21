@@ -1,0 +1,1449 @@
+{
+  "scope": "Independent readback of actual saved composition pixels, BOX views and shared-edge strips; no GPU/runtime or art acceptance.",
+  "passed": 108,
+  "checks": [
+    {
+      "check": "actual output BOX reduction",
+      "wall": 2112,
+      "variant": "native",
+      "divisor": 2,
+      "passed": true
+    },
+    {
+      "check": "actual output BOX reduction",
+      "wall": 2112,
+      "variant": "native",
+      "divisor": 4,
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "native",
+      "face": 3233,
+      "xy": [
+        1638,
+        588
+      ],
+      "sourcePixel": [
+        9,
+        19
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "native",
+      "face": 3241,
+      "xy": [
+        1517,
+        301
+      ],
+      "sourcePixel": [
+        43,
+        123
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "native",
+      "face": 3242,
+      "xy": [
+        1344,
+        448
+      ],
+      "sourcePixel": [
+        0,
+        32
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "native",
+      "face": 3253,
+      "xy": [
+        1088,
+        374
+      ],
+      "sourcePixel": [
+        80,
+        13
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "native",
+      "face": 3256,
+      "xy": [
+        832,
+        448
+      ],
+      "sourcePixel": [
+        16,
+        32
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "native",
+      "face": 3257,
+      "xy": [
+        576,
+        298
+      ],
+      "sourcePixel": [
+        64,
+        122
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "native",
+      "face": 3275,
+      "xy": [
+        320,
+        448
+      ],
+      "sourcePixel": [
+        0,
+        32
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "native",
+      "face": 3282,
+      "xy": [
+        217,
+        512
+      ],
+      "sourcePixel": [
+        102,
+        48
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "native",
+      "face": 3284,
+      "xy": [
+        128,
+        416
+      ],
+      "sourcePixel": [
+        80,
+        24
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "native",
+      "face": 3285,
+      "xy": [
+        166,
+        38
+      ],
+      "sourcePixel": [
+        89,
+        57
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "native",
+      "face": 3287,
+      "xy": [
+        27,
+        338
+      ],
+      "sourcePixel": [
+        6,
+        84
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual output BOX reduction",
+      "wall": 2112,
+      "variant": "installed",
+      "divisor": 2,
+      "passed": true
+    },
+    {
+      "check": "actual output BOX reduction",
+      "wall": 2112,
+      "variant": "installed",
+      "divisor": 4,
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "installed",
+      "face": 3233,
+      "xy": [
+        1638,
+        588
+      ],
+      "sourcePixel": [
+        38,
+        76
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "installed",
+      "face": 3241,
+      "xy": [
+        1517,
+        301
+      ],
+      "sourcePixel": [
+        173,
+        493
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "installed",
+      "face": 3242,
+      "xy": [
+        1344,
+        448
+      ],
+      "sourcePixel": [
+        0,
+        128
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "installed",
+      "face": 3253,
+      "xy": [
+        1088,
+        374
+      ],
+      "sourcePixel": [
+        320,
+        54
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "installed",
+      "face": 3256,
+      "xy": [
+        832,
+        448
+      ],
+      "sourcePixel": [
+        64,
+        128
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "installed",
+      "face": 3257,
+      "xy": [
+        576,
+        298
+      ],
+      "sourcePixel": [
+        256,
+        490
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "installed",
+      "face": 3275,
+      "xy": [
+        320,
+        448
+      ],
+      "sourcePixel": [
+        0,
+        128
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "installed",
+      "face": 3282,
+      "xy": [
+        217,
+        512
+      ],
+      "sourcePixel": [
+        409,
+        192
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "installed",
+      "face": 3284,
+      "xy": [
+        128,
+        416
+      ],
+      "sourcePixel": [
+        320,
+        96
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "installed",
+      "face": 3285,
+      "xy": [
+        166,
+        38
+      ],
+      "sourcePixel": [
+        358,
+        230
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "installed",
+      "face": 3287,
+      "xy": [
+        27,
+        338
+      ],
+      "sourcePixel": [
+        27,
+        338
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual output BOX reduction",
+      "wall": 2112,
+      "variant": "trial",
+      "divisor": 2,
+      "passed": true
+    },
+    {
+      "check": "actual output BOX reduction",
+      "wall": 2112,
+      "variant": "trial",
+      "divisor": 4,
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "trial",
+      "face": 3233,
+      "xy": [
+        1638,
+        588
+      ],
+      "sourcePixel": [
+        38,
+        76
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "trial",
+      "face": 3241,
+      "xy": [
+        1517,
+        301
+      ],
+      "sourcePixel": [
+        173,
+        493
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "trial",
+      "face": 3242,
+      "xy": [
+        1344,
+        448
+      ],
+      "sourcePixel": [
+        0,
+        128
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "trial",
+      "face": 3253,
+      "xy": [
+        1088,
+        374
+      ],
+      "sourcePixel": [
+        320,
+        54
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "trial",
+      "face": 3256,
+      "xy": [
+        832,
+        448
+      ],
+      "sourcePixel": [
+        64,
+        128
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "trial",
+      "face": 3257,
+      "xy": [
+        576,
+        298
+      ],
+      "sourcePixel": [
+        256,
+        490
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "trial",
+      "face": 3275,
+      "xy": [
+        320,
+        448
+      ],
+      "sourcePixel": [
+        0,
+        128
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "trial",
+      "face": 3282,
+      "xy": [
+        217,
+        512
+      ],
+      "sourcePixel": [
+        409,
+        192
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "trial",
+      "face": 3284,
+      "xy": [
+        128,
+        416
+      ],
+      "sourcePixel": [
+        320,
+        96
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "trial",
+      "face": 3285,
+      "xy": [
+        166,
+        38
+      ],
+      "sourcePixel": [
+        358,
+        230
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2112,
+      "variant": "trial",
+      "face": 3287,
+      "xy": [
+        27,
+        338
+      ],
+      "sourcePixel": [
+        27,
+        338
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual output BOX reduction",
+      "wall": 2816,
+      "variant": "native",
+      "divisor": 2,
+      "passed": true
+    },
+    {
+      "check": "actual output BOX reduction",
+      "wall": 2816,
+      "variant": "native",
+      "divisor": 4,
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "native",
+      "face": 2816,
+      "xy": [
+        1109,
+        563
+      ],
+      "sourcePixel": [
+        5,
+        124
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "native",
+      "face": 2817,
+      "xy": [
+        1126,
+        1062
+      ],
+      "sourcePixel": [
+        9,
+        121
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "native",
+      "face": 2818,
+      "xy": [
+        832,
+        630
+      ],
+      "sourcePixel": [
+        64,
+        77
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "native",
+      "face": 2819,
+      "xy": [
+        307,
+        627
+      ],
+      "sourcePixel": [
+        12,
+        12
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "native",
+      "face": 2820,
+      "xy": [
+        800,
+        1184
+      ],
+      "sourcePixel": [
+        56,
+        88
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "native",
+      "face": 2821,
+      "xy": [
+        419,
+        320
+      ],
+      "sourcePixel": [
+        119,
+        64
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "native",
+      "face": 2822,
+      "xy": [
+        1056,
+        384
+      ],
+      "sourcePixel": [
+        87,
+        80
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "native",
+      "face": 2823,
+      "xy": [
+        313,
+        787
+      ],
+      "sourcePixel": [
+        14,
+        52
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "native",
+      "face": 2824,
+      "xy": [
+        1056,
+        712
+      ],
+      "sourcePixel": [
+        72,
+        126
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "native",
+      "face": 2825,
+      "xy": [
+        448,
+        1077
+      ],
+      "sourcePixel": [
+        31,
+        61
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "native",
+      "face": 2826,
+      "xy": [
+        112,
+        1024
+      ],
+      "sourcePixel": [
+        3,
+        48
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "native",
+      "face": 2827,
+      "xy": [
+        352,
+        712
+      ],
+      "sourcePixel": [
+        24,
+        126
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "native",
+      "face": 2828,
+      "xy": [
+        1056,
+        776
+      ],
+      "sourcePixel": [
+        8,
+        18
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "native",
+      "face": 2829,
+      "xy": [
+        867,
+        166
+      ],
+      "sourcePixel": [
+        23,
+        25
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "native",
+      "face": 2830,
+      "xy": [
+        857,
+        1024
+      ],
+      "sourcePixel": [
+        70,
+        48
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "native",
+      "face": 2831,
+      "xy": [
+        1056,
+        640
+      ],
+      "sourcePixel": [
+        8,
+        16
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "native",
+      "face": 2832,
+      "xy": [
+        1062,
+        985
+      ],
+      "sourcePixel": [
+        121,
+        38
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "native",
+      "face": 2833,
+      "xy": [
+        96,
+        320
+      ],
+      "sourcePixel": [
+        56,
+        64
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual output BOX reduction",
+      "wall": 2816,
+      "variant": "installed",
+      "divisor": 2,
+      "passed": true
+    },
+    {
+      "check": "actual output BOX reduction",
+      "wall": 2816,
+      "variant": "installed",
+      "divisor": 4,
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "installed",
+      "face": 2816,
+      "xy": [
+        1109,
+        563
+      ],
+      "sourcePixel": [
+        21,
+        499
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "installed",
+      "face": 2817,
+      "xy": [
+        1126,
+        1062
+      ],
+      "sourcePixel": [
+        38,
+        486
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "installed",
+      "face": 2818,
+      "xy": [
+        832,
+        630
+      ],
+      "sourcePixel": [
+        256,
+        310
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "installed",
+      "face": 2819,
+      "xy": [
+        307,
+        627
+      ],
+      "sourcePixel": [
+        51,
+        51
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "installed",
+      "face": 2820,
+      "xy": [
+        800,
+        1184
+      ],
+      "sourcePixel": [
+        224,
+        352
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "installed",
+      "face": 2821,
+      "xy": [
+        419,
+        320
+      ],
+      "sourcePixel": [
+        476,
+        256
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "installed",
+      "face": 2822,
+      "xy": [
+        1056,
+        384
+      ],
+      "sourcePixel": [
+        351,
+        320
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "installed",
+      "face": 2823,
+      "xy": [
+        313,
+        787
+      ],
+      "sourcePixel": [
+        57,
+        211
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "installed",
+      "face": 2824,
+      "xy": [
+        1056,
+        712
+      ],
+      "sourcePixel": [
+        288,
+        504
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "installed",
+      "face": 2825,
+      "xy": [
+        448,
+        1077
+      ],
+      "sourcePixel": [
+        127,
+        245
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "installed",
+      "face": 2826,
+      "xy": [
+        112,
+        1024
+      ],
+      "sourcePixel": [
+        15,
+        192
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "installed",
+      "face": 2827,
+      "xy": [
+        352,
+        712
+      ],
+      "sourcePixel": [
+        96,
+        504
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "installed",
+      "face": 2828,
+      "xy": [
+        1056,
+        776
+      ],
+      "sourcePixel": [
+        32,
+        72
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "installed",
+      "face": 2829,
+      "xy": [
+        867,
+        166
+      ],
+      "sourcePixel": [
+        92,
+        102
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "installed",
+      "face": 2830,
+      "xy": [
+        857,
+        1024
+      ],
+      "sourcePixel": [
+        281,
+        192
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "installed",
+      "face": 2831,
+      "xy": [
+        1056,
+        640
+      ],
+      "sourcePixel": [
+        32,
+        64
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "installed",
+      "face": 2832,
+      "xy": [
+        1062,
+        985
+      ],
+      "sourcePixel": [
+        486,
+        153
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "installed",
+      "face": 2833,
+      "xy": [
+        96,
+        320
+      ],
+      "sourcePixel": [
+        224,
+        256
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual output BOX reduction",
+      "wall": 2816,
+      "variant": "trial",
+      "divisor": 2,
+      "passed": true
+    },
+    {
+      "check": "actual output BOX reduction",
+      "wall": 2816,
+      "variant": "trial",
+      "divisor": 4,
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "trial",
+      "face": 2816,
+      "xy": [
+        1109,
+        563
+      ],
+      "sourcePixel": [
+        21,
+        499
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "trial",
+      "face": 2817,
+      "xy": [
+        1126,
+        1062
+      ],
+      "sourcePixel": [
+        38,
+        486
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "trial",
+      "face": 2818,
+      "xy": [
+        832,
+        630
+      ],
+      "sourcePixel": [
+        256,
+        310
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "trial",
+      "face": 2819,
+      "xy": [
+        307,
+        627
+      ],
+      "sourcePixel": [
+        51,
+        51
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "trial",
+      "face": 2820,
+      "xy": [
+        800,
+        1184
+      ],
+      "sourcePixel": [
+        224,
+        352
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "trial",
+      "face": 2821,
+      "xy": [
+        419,
+        320
+      ],
+      "sourcePixel": [
+        476,
+        256
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "trial",
+      "face": 2822,
+      "xy": [
+        1056,
+        384
+      ],
+      "sourcePixel": [
+        351,
+        320
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "trial",
+      "face": 2823,
+      "xy": [
+        313,
+        787
+      ],
+      "sourcePixel": [
+        57,
+        211
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "trial",
+      "face": 2824,
+      "xy": [
+        1056,
+        712
+      ],
+      "sourcePixel": [
+        288,
+        504
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "trial",
+      "face": 2825,
+      "xy": [
+        448,
+        1077
+      ],
+      "sourcePixel": [
+        127,
+        245
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "trial",
+      "face": 2826,
+      "xy": [
+        112,
+        1024
+      ],
+      "sourcePixel": [
+        15,
+        192
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "trial",
+      "face": 2827,
+      "xy": [
+        352,
+        712
+      ],
+      "sourcePixel": [
+        96,
+        504
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "trial",
+      "face": 2828,
+      "xy": [
+        1056,
+        776
+      ],
+      "sourcePixel": [
+        32,
+        72
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "trial",
+      "face": 2829,
+      "xy": [
+        867,
+        166
+      ],
+      "sourcePixel": [
+        92,
+        102
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "trial",
+      "face": 2830,
+      "xy": [
+        857,
+        1024
+      ],
+      "sourcePixel": [
+        281,
+        192
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "trial",
+      "face": 2831,
+      "xy": [
+        1056,
+        640
+      ],
+      "sourcePixel": [
+        32,
+        64
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "trial",
+      "face": 2832,
+      "xy": [
+        1062,
+        985
+      ],
+      "sourcePixel": [
+        486,
+        153
+      ],
+      "passed": true
+    },
+    {
+      "check": "actual composition interior sample vs independently evaluated source UV",
+      "wall": 2816,
+      "variant": "trial",
+      "face": 2833,
+      "xy": [
+        96,
+        320
+      ],
+      "sourcePixel": [
+        224,
+        256
+      ],
+      "passed": true
+    },
+    {
+      "check": "shared-edge strip exact source crop",
+      "file": "first-08-internal-cut-to11-strip-4x.png",
+      "variant": "native",
+      "passed": true
+    },
+    {
+      "check": "shared-edge strip exact source crop",
+      "file": "first-08-internal-cut-to11-strip-4x.png",
+      "variant": "installed",
+      "passed": true
+    },
+    {
+      "check": "shared-edge strip exact source crop",
+      "file": "first-08-internal-cut-to11-strip-4x.png",
+      "variant": "trial",
+      "passed": true
+    },
+    {
+      "check": "shared-edge strip exact source crop",
+      "file": "second-door-bottom-to08-strip-4x.png",
+      "variant": "native",
+      "passed": true
+    },
+    {
+      "check": "shared-edge strip exact source crop",
+      "file": "second-door-bottom-to08-strip-4x.png",
+      "variant": "installed",
+      "passed": true
+    },
+    {
+      "check": "shared-edge strip exact source crop",
+      "file": "second-door-bottom-to08-strip-4x.png",
+      "variant": "trial",
+      "passed": true
+    },
+    {
+      "check": "shared-edge strip exact source crop",
+      "file": "second-door-left-to10-strip-4x.png",
+      "variant": "native",
+      "passed": true
+    },
+    {
+      "check": "shared-edge strip exact source crop",
+      "file": "second-door-left-to10-strip-4x.png",
+      "variant": "installed",
+      "passed": true
+    },
+    {
+      "check": "shared-edge strip exact source crop",
+      "file": "second-door-left-to10-strip-4x.png",
+      "variant": "trial",
+      "passed": true
+    }
+  ]
+}

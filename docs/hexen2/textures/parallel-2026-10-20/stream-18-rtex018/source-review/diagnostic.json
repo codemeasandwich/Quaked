@@ -1,0 +1,89 @@
+{
+  "status": "SOURCE_DIAGNOSTIC_ONLY_WRONG_ASPECT_HOLD",
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/generated/rtex018.png",
+    "sha256": "1af4618ce68c65ff1837bf1bbfeafb91ab6e7ffac64fa4cdb8372810d8922b2d",
+    "dimensions": [
+      724,
+      2172
+    ]
+  },
+  "nativeDimensions": [
+    64,
+    256
+  ],
+  "BOXViews": "Native left / raw right, identicalBOXfilter to32x128/16x64. Raw wrong aspect is normalized ONLY in diagnostic distance panels; no authoring source correction, crop, upscale or active input made. Panel does not qualify aspect or feature shape.",
+  "literalCropWitnesses": [
+    {
+      "material": "upper glazing",
+      "rawXYXY": [
+        120,
+        580,
+        376,
+        836
+      ]
+    },
+    {
+      "material": "lower glazing",
+      "rawXYXY": [
+        365,
+        1540,
+        621,
+        1796
+      ]
+    },
+    {
+      "material": "tracery and glass",
+      "rawXYXY": [
+        245,
+        125,
+        501,
+        381
+      ]
+    },
+    {
+      "material": "left jamb",
+      "rawXYXY": [
+        0,
+        760,
+        256,
+        1016
+      ]
+    }
+  ],
+  "images": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/source-review/native-raw-BOX16.png",
+      "sha256": "8a778c27d53138619f7f7e98aa40aaa97432a2b32faebfbfb1a8f020b8c871cf"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/source-review/native-raw-BOX32.png",
+      "sha256": "6c72907f6ef209e4340583adfbe65bf860a3371eba898994020a6860dbf8d904"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/source-review/raw-Xjoin-bottom-1to1.png",
+      "sha256": "714842a07e420c2577b980fc7e4e433cc310367ebf6786ea733acfaf711a88ec"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/source-review/raw-Xjoin-top-1to1.png",
+      "sha256": "d8c28fc1d9077423d930288474b15178a21d4513bdd5a95e389e87b3775605c9"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/source-review/raw-Yjoin-1to1.png",
+      "sha256": "397800f1d43f247ef717931a446ce2b82a698515382716825e668e0c85604fce"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/source-review/raw-corner-1to1.png",
+      "sha256": "ac8e80bbb6c8d9588735e1553920780b6e5cd617a96db8c562346d4520709392"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/source-review/raw-material-witnesses-1to1.png",
+      "sha256": "d4232ee9d231c91104d5c65c97fb3013020e66d62c9df7d4f7321fd4b0b94473"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/source-review/raw-repeat-1to1.png",
+      "sha256": "5b653c9ce7e9d16bfb7cfd7c6a7e1f92239a6c5bfd5093790e2ffdddbef043fa"
+    }
+  ],
+  "noMasterHeightTiers": true
+}

@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "status": "PROPOSED ONLY; independent review before any RGB composition/master/export",
+  "createdAt": "2026-10-20T22:47:34.176220+00:00",
+  "author": "Root coordinator, independently from original texture author",
+  "name": "wood3_6",
+  "native": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/originals/native-wood3_6.png",
+    "sha256": "0ad3fb6191a9f3e1e9eb3292c60490ab9159fc4c44ef90ad14571b4e838ee6d6"
+  },
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/generated/wood3_6-source-v1.png",
+    "sha256": "972d2189be25b1e3e5652e0f7302f6dd2a1d49765b0910cf215806acb6eec7e8",
+    "dimensions": [
+      1254,
+      1254
+    ]
+  },
+  "finding": "Actual raw crop shows a short rightmost-board end strip: real butt centre row38, approximately1.94nativepx below intended nativeYwrap. Native first row is the existing butt; right board is not supposed to contain an extra little end unit. Global roll would shift other board joints, so scope the correction to only the rightmost board.",
+  "measurements": {
+    "method": "Actual RGB median luminance, X over raw rows150:1000 in disjoint reviewed gap windows; Y over right-board columns1050:1190 and rows0:100. These numerical minima identify already visibly classified physical gaps, not automatic artistic acceptance.",
+    "rawXGapCentres": [
+      276,
+      620,
+      935
+    ],
+    "rawRightButtCentreY": 38,
+    "rawMedianGapX": 0.3333333333333333,
+    "rawMedianButtY": 5.166666666666666,
+    "observedCrop": {
+      "file": "docs/quake/textures/batch-004/wood3_6/alignment-measurements-v1/right-board-top-native-source-crop.png",
+      "sha256": "3d422cdbee69e7c0693d84e19020f4ac4b6cdf0bf7b32211ebdb9c20ac7d79e6"
+    }
+  },
+  "proposedSameSourceComposition": {
+    "operation": "Exact integer cyclic row permutation ONLY on raw columns935..1253 inclusive; output[y,x]=raw[(y+38)%1254,x] for x>=935, and original bytes otherwise. No interpolation, blending, noise, sharpening or model call. Cut lies inside actual existing narrow dark vertical gap.",
+    "cutX": 935,
+    "rollUpRows": 38,
+    "outsideSupportExact": true,
+    "perColumnPixelMultisetPreserved": true,
+    "output": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/source-aligned-v1/registered-source.png",
+    "lineage": "Retain raw unchanged. Composition receipt binds exact raw/native/plan/script, every outside-support pixel and full inverse reconstruction. Registered derivative is NOT a new imagegen output, journal generationCount remains1.",
+    "candidateSourceGate": "Inspect actual full1254/rightboard detail/repeats/corners before master; cut or offset width/light drift is HOLD, do not hide with smoothing."
+  },
+  "existingXRegistration": {
+    "tool": "Unchanged prepare_texture_master.py --landmarks, axis=x; current public photographic finish with existing .65/.75 controls only after independent composition replay and source ART.",
+    "points": [
+      [
+        0,
+        0
+      ],
+      [
+        16,
+        14.086124401913876
+      ],
+      [
+        32,
+        31.64274322169059
+      ],
+      [
+        48,
+        47.719298245614034
+      ],
+      [
+        64,
+        64
+      ]
+    ],
+    "reason": "Measured existing X gaps align to native four-board landmarks; no new seams or extra boards. Source3rdgap remains the right-board composition boundary, all4board widths derived from native.",
+    "limitation": "The ordinary prepare descriptor generated input will be a registered derivative, not raw; exact upstream raw/journal/composition lineage must be separately retained and verified before master input provenance can qualify. Do not call an unchanged standard journal direct-generated check PASS on the derivative."
+  },
+  "masterAndTierPolicy": "Retain old geometry-HOLD candidate unchanged; if source composition passes, one replacement active canonical512RGB/floatheight master using source-specific reviewed existing pipeline, physical faces/joints before direct256/512role exports. No separate tier authoring or transcoding. Both native and replacement BOX32/16, actual repeated/corner/relief/opposed-light/browser reviews before catalog.",
+  "authority": "Owner explicitly approved deterministic finishing to lock layout/distant colour/edges; one shared final master and natural material detail. This proposes no additional provider call, release or other-project changes.",
+  "nextOwner": "Independent reviewer: assess exact support/shift/landmarks, lineage handling and physical/edge risks before any authoring operation."
+}

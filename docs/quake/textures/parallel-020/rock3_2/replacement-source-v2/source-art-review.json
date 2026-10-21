@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T15:40:16.861652+00:00",
+  "texture": "rock3_2",
+  "nativeIdentity": "70fdd089e566c1cf477b4d1a484c1ab8aea7b29952ec1c01d289b7da7af60f23",
+  "sourceOrdinal": 2,
+  "cumulativeKnownIssuedSourceCount": 2,
+  "verdict": "HOLD_REPLACEMENT_SOURCE_X_GEOMETRY_BEFORE_MASTER",
+  "generationExecution": {
+    "tool": "built-in image_gen.imagegen",
+    "callsForThisRequest": 1,
+    "authoritativeCompletion": "functions exec returned Script completed after29.0seconds with one image and exact saved PNG path; no live/pending handle remains",
+    "returnedPath": "/Users/bri/.codex/generated_images/01a15911-2e97-71c0-958a-f42a2ea7664b/exec-a12ad2ae-72c4-4960-8e7e-bb8d5a2088c3.png",
+    "retainedRaw": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/replacement-source-v2/generated/rock3_2-source-v2.png",
+      "sha256": "fee762afcc1819aca412df1c97013a4d00bb4e491088f3d6c3c4a02a0a07f64d"
+    },
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "noAutomaticRetry": true,
+    "sameReturnedPathRetainedByExistingJournalHelper": true
+  },
+  "journal": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/replacement-source-v2/selection.json",
+    "sha256": "483ed703ced86feff15a73301b292097648b1f11bfd799f5b4760254125b2079"
+  },
+  "exactPrompt": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/replacement-source-v2/prompts/rock3_2-source-v2.txt",
+    "sha256": "c8bd2c122b4e6ca1be4f7a184189ca7fbfe6a78f24c9ed23f79c8b46ab236ba2"
+  },
+  "reference": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/replacement-source-v2/originals/native-rock3_2.png",
+    "sha256": "2983c75b4694114d49fc863251be32a30242801255eb5496da6397e063865cf0"
+  },
+  "rootPlanReview": {
+    "file": "docs/quake/textures/parallel-020/replacement-sources-v2-root-plan-review.json",
+    "sha256": "c8bd315664c5c685a65650cb01cd225f4ddd9f3ace8c17998cab8d1163ae732c"
+  },
+  "historicalKnownSource": [
+    {
+      "sourceOrdinal": 1,
+      "state": "resolved retained materialPASS ART-HOLD; explicitly rejected for Xgeometry",
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/rock3_2-generated-v1.png",
+      "sha256": "fcdcbe35c8fb30112a141683b9068688ec601d7159f2eaeab84c03fedd6dff16",
+      "oldMaster": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/master.json",
+        "sha256": "32f2d5abfbb400eb98e64e54a2708540dafde0791ca915ed52261342f8656804"
+      },
+      "oneFailedRepair": {
+        "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/result.json",
+        "sha256": "a785da9e1cd8e8da091435c001fc479c95f4fc68e1fef4ef226cd76eac55531d"
+      }
+    }
+  ],
+  "material": {
+    "verdict": "PASS rawmaterial only",
+    "observation": "At full1254pixels the source shows recognisable weathered brown/grey sedimentary stone: layered fracture faces, coherent mineral patches and chips. No indeterminate grain blanket; natural photographic structure is clear."
+  },
+  "nativeColourFormsScale": {
+    "verdict": "PASS rawrepresentativeness only",
+    "observation": "Native64and raw1254 were BOTH BOX reduced to32and16. Warm subdued brown/grey relationships and broad uneven horizontal strata remain representative; no regular brickgrid or unrelated ornament. Raw longledges remain physically recognisable, rather than interpreting nativepixels literally."
+  },
+  "repeat": {
+    "verdict": "HOLD",
+    "X": "Exact raw1254Xjoin (join atx160 in320px-wide strip) retains abrupt ledge/mineral endpoints pinned to the boundary. Decisive examples around y40\u2013130,400\u2013500,715\u2013835,1070\u20131185. A tonal match or plausible standalone stone photograph does not make these disconnected ledge shapes continuous.",
+    "Y": "The intended horizontal stratum/course trough remains the reference; actual fullrawYjoin and rolled fourcorners inspected. Xfailure is independently decisive; no correction or globalretile attempted.",
+    "fourCorners": "Actual top/bottom/left/right repeatedcorner cross still exposes the abrupt Xface transition on both sides of the Ycourse.",
+    "evidence": [
+      {
+        "file": "docs/quake/textures/parallel-020/rock3_2/replacement-source-v2/raw-x-join.png",
+        "sha256": "1a6a4b32c1fd8a3c5d8763a67168bf88afaf8fb0c05d4955f21b1e11decd6058"
+      },
+      {
+        "file": "docs/quake/textures/parallel-020/rock3_2/replacement-source-v2/raw-y-join.png",
+        "sha256": "6d2ba53760bf85e74fa6d02bc0f6dfa11fd465c5c88f5a1c945281873b738f84"
+      },
+      {
+        "file": "docs/quake/textures/parallel-020/rock3_2/replacement-source-v2/raw-four-corners.png",
+        "sha256": "7edf7ab895468ebed634d928230a71860b3a16e7b66dab582fbe2c076d8640f3"
+      },
+      {
+        "file": "docs/quake/textures/parallel-020/rock3_2/replacement-source-v2/raw-repeat2x2.png",
+        "sha256": "cff1637ca7a4e4adb4ef938d48f4738ea7c26e663b7fca7af0360d1f1419230b"
+      },
+      {
+        "file": "docs/quake/textures/parallel-020/rock3_2/replacement-source-v2/raw-native-box-both.png",
+        "sha256": "f40612130d62d7d32f250cb02bd9810c2283ce756b0a78a3a3ad42fc9351a93f"
+      },
+      {
+        "file": "docs/quake/textures/parallel-020/rock3_2/replacement-source-v2/native-box-32.png",
+        "sha256": "3e826c7e053d65059a81810197be14f3b3c545c3a41e59cf27fa805740326d0a"
+      },
+      {
+        "file": "docs/quake/textures/parallel-020/rock3_2/replacement-source-v2/raw-box-32.png",
+        "sha256": "e29176a8dc4f811880c301031613cfb4824607a195a8d445fd08e3abd05133cd"
+      },
+      {
+        "file": "docs/quake/textures/parallel-020/rock3_2/replacement-source-v2/native-box-16.png",
+        "sha256": "e598ea67bf632536974bcacf19841116481ddd038cae815adf90354f94b0c9ec"
+      },
+      {
+        "file": "docs/quake/textures/parallel-020/rock3_2/replacement-source-v2/raw-box-16.png",
+        "sha256": "45265972eec82cec5adeb5ec98801d5aad8e87aa05b645b0d9c96acce594081b"
+      }
+    ]
+  },
+  "stop": {
+    "masterPrepared": false,
+    "tiersExported": false,
+    "furtherGenerationIssued": false,
+    "reason": "Failing rawgeometry is retained before authoring any newcanonicalRGB/floatmaster or compressed tiers. No weak numerical or source-only PASS promoted toARTacceptance."
+  },
+  "remainingBoundaries": [
+    "No runtime/webGPUacceptance, catalogpromotion, owneracceptance, Gitlanding, CI or release.",
+    "No original/raw/master/oldrecipe/oldARTrecord overwrite; firstsource and failed Xtrial preserved.",
+    "No API/CLI/modeloverride, new numericalframework, desktopbuild or Hexenmutation."
+  ],
+  "nextOwner": "Root coordinator: independently inspect the decisive rawXjoin/fourcorner evidence and retain HOLD unless a new bounded authoring decision is authorized. Current one-call authority is exhausted."
+}

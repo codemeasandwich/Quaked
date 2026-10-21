@@ -1,0 +1,93 @@
+{
+  "scope": "Pre-tier semantic samples classified on actual master RGB and native layout, independent of brightness thresholds. Six local face/joint witnesses, not exhaustive art acceptance.",
+  "coordinateSpace": "512x512 master pixels;5x5 means",
+  "samples": [
+    {
+      "face": [
+        210,
+        120
+      ],
+      "joint": [
+        258,
+        120
+      ],
+      "faceMeanHeight": 0.2911475598812103,
+      "jointMeanHeight": 0.16711384057998657,
+      "faceAboveJoint": true
+    },
+    {
+      "face": [
+        310,
+        175
+      ],
+      "joint": [
+        259,
+        175
+      ],
+      "faceMeanHeight": 0.511023759841919,
+      "jointMeanHeight": 0.048428792506456375,
+      "faceAboveJoint": true
+    },
+    {
+      "face": [
+        200,
+        215
+      ],
+      "joint": [
+        200,
+        254
+      ],
+      "faceMeanHeight": 0.6505203247070312,
+      "jointMeanHeight": 0.07196397334337234,
+      "faceAboveJoint": true
+    },
+    {
+      "face": [
+        285,
+        290
+      ],
+      "joint": [
+        285,
+        254
+      ],
+      "faceMeanHeight": 0.640114963054657,
+      "jointMeanHeight": 0.027813948690891266,
+      "faceAboveJoint": true
+    },
+    {
+      "face": [
+        85,
+        375
+      ],
+      "joint": [
+        130,
+        375
+      ],
+      "faceMeanHeight": 0.6516186594963074,
+      "jointMeanHeight": 0.020875077694654465,
+      "faceAboveJoint": true
+    },
+    {
+      "face": [
+        350,
+        385
+      ],
+      "joint": [
+        391,
+        385
+      ],
+      "faceMeanHeight": 0.2630056142807007,
+      "jointMeanHeight": 0.06356941163539886,
+      "faceAboveJoint": true
+    }
+  ],
+  "allSampledFacesAboveJoints": true,
+  "heightDtype": "float32",
+  "finite": true,
+  "range": [
+    0.0,
+    0.9999995231628418
+  ],
+  "masterSha256": "d26917c460fa1ac6ef8a7ab87551a8d0654d796b32a58faa6652a4aa203b7914",
+  "diagnostic": "pre-tier.png"
+}
